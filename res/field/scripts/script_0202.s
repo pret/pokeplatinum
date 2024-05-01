@@ -35,7 +35,7 @@ _002A:
     ScrCmd_01C 1, _007C
     ScrCmd_014 0x7FC
     ScrCmd_01E 213
-    ScrCmd_016 _0071
+    GoTo _0071
     End
 
 _0071:

@@ -19,7 +19,7 @@ _0006:
     ScrCmd_01C 1, _0056
     ScrCmd_014 0x7FC
     ScrCmd_01E 203
-    ScrCmd_016 _004B
+    GoTo _004B
 
 _004B:
     ScrCmd_02C 1

@@ -37,19 +37,19 @@ _000A:
 
 _007A:
     ScrCmd_0E5 0x108, 0
-    ScrCmd_01B
+    Return
 
 _0082:
     ScrCmd_0E5 0x365, 0
-    ScrCmd_01B
+    Return
 
 _008A:
     ScrCmd_1CD 11, 0x108, 0, 0, 0
-    ScrCmd_01B
+    Return
 
 _0098:
     ScrCmd_1CD 11, 0x365, 0, 0, 0
-    ScrCmd_01B
+    Return
 
 _00A6:
     ScrCmd_0EB

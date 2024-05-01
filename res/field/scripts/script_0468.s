@@ -64,7 +64,7 @@ _00A0:
     ScrCmd_01C 1, _00F0
     ScrCmd_014 0x7FC
     ScrCmd_01E 205
-    ScrCmd_016 _00E5
+    GoTo _00E5
 
 _00E5:
     ScrCmd_02C 2

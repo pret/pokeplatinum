@@ -80,33 +80,33 @@ _0136:
     ScrCmd_05F
     ScrCmd_05E 0xFF, _01B0
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _0154:
     ScrCmd_05E 1, _0204
     ScrCmd_05E 241, _0230
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _0168:
     ScrCmd_05E 1, _0210
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _0174:
     ScrCmd_05E 1, _0218
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _0180:
     ScrCmd_05E 0xFF, _0198
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _018C:
     ScrCmd_05E 0xFF, _01A4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _0198:

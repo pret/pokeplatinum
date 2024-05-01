@@ -53,7 +53,7 @@ _0027:
     ScrCmd_028 0x407E, 2
     ScrCmd_1CD 10, 156, 246, 0, 0
     ScrCmd_02C 3
-    ScrCmd_016 _00BC
+    GoTo _00BC
 
 _00BC:
     ScrCmd_028 0x8004, 0x180

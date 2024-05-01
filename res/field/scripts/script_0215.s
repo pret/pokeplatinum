@@ -13,7 +13,7 @@ _0016:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_016 _0034
+    GoTo _0034
 
     .byte 94
     .byte 0
@@ -35,7 +35,7 @@ _0016:
 _0034:
     ScrCmd_05E 0, _00D8
     ScrCmd_05F
-    ScrCmd_016 _0044
+    GoTo _0044
 
 _0044:
     ScrCmd_02C 0
@@ -50,7 +50,7 @@ _0059:
     ScrCmd_068
     ScrCmd_02C 1
     ScrCmd_034
-    ScrCmd_016 _0091
+    GoTo _0091
 
     .byte 94
     .byte 0
@@ -80,7 +80,7 @@ _0059:
 _0091:
     ScrCmd_05E 0, _00C0
     ScrCmd_05F
-    ScrCmd_016 _00A1
+    GoTo _00A1
 
 _00A1:
     ScrCmd_065 0

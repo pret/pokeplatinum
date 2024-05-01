@@ -14,7 +14,7 @@ _000E:
 
 _001B:
     ScrCmd_01F 0x1D1
-    ScrCmd_01B
+    Return
 
 _0021:
     ScrCmd_049 0x5DC

@@ -27,7 +27,7 @@ _000A:
     ScrCmd_01C 1, _0079
     ScrCmd_02C 1
     ScrCmd_014 0x7FC
-    ScrCmd_016 _0079
+    GoTo _0079
     End
 
 _0079:

@@ -22,7 +22,7 @@ _0016:
     ScrCmd_01E 130
     ScrCmd_028 0x4114, 1
     ScrCmd_14C 9
-    ScrCmd_016 _0052
+    GoTo _0052
     End
 
 _0052:

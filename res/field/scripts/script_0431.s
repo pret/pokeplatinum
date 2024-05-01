@@ -31,7 +31,7 @@ _0021:
     ScrCmd_01C 1, _0071
     ScrCmd_014 0x7FC
     ScrCmd_01E 197
-    ScrCmd_016 _0066
+    GoTo _0066
 
 _0066:
     ScrCmd_02C 2

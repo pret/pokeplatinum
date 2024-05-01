@@ -11,7 +11,7 @@ _0006:
     ScrCmd_068
     ScrCmd_011 0x4095, 1
     ScrCmd_01C 4, _002F
-    ScrCmd_016 _0021
+    GoTo _0021
 
 _0021:
     ScrCmd_0CE 0

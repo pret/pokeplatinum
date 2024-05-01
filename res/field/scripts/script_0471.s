@@ -67,24 +67,24 @@ _004D:
 _00CA:
     ScrCmd_05E 15, _0124
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _00D6:
     ScrCmd_05E 15, _0138
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _00E2:
     ScrCmd_05E 0xFF, _0114
     ScrCmd_05E 15, _0154
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _00F6:
     ScrCmd_05E 0xFF, _0114
     ScrCmd_05E 15, _0168
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _010C:

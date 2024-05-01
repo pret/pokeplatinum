@@ -51,7 +51,7 @@ _0088:
     ScrCmd_05F
     ScrCmd_02C 5
     ScrCmd_01E 0x29E
-    ScrCmd_016 _00DA
+    GoTo _00DA
     End
 
 _00DA:

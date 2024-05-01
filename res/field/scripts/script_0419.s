@@ -19,7 +19,7 @@ _0006:
     ScrCmd_1E9 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0057
-    ScrCmd_016 _0095
+    GoTo _0095
 
 _004C:
     ScrCmd_02C 0
@@ -73,11 +73,11 @@ _00D3:
 
 _00DE:
     ScrCmd_260 26
-    ScrCmd_01B
+    Return
 
 _00E4:
     ScrCmd_260 27
-    ScrCmd_01B
+    Return
 
     .byte 0
     .byte 0

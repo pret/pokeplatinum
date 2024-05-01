@@ -25,7 +25,7 @@ _001E:
     ScrCmd_043
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _00C2
-    ScrCmd_016 _00B7
+    GoTo _00B7
 
 _005F:
     ScrCmd_0CD 0
@@ -43,7 +43,7 @@ _005F:
     ScrCmd_01C 1, _00CD
     ScrCmd_011 0x800C, 2
     ScrCmd_01C 1, _00D8
-    ScrCmd_016 _00E3
+    GoTo _00E3
 
 _00B7:
     ScrCmd_02C 2

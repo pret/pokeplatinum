@@ -28,7 +28,7 @@ _002C:
     ScrCmd_134 16, 0x800C
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0089
-    ScrCmd_016 _006B
+    GoTo _006B
 
 _006B:
     ScrCmd_213 0x8000, 12

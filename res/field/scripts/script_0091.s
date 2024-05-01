@@ -40,12 +40,12 @@ _0034:
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _006F
     ScrCmd_02C 4
-    ScrCmd_016 _007A
+    GoTo _007A
     End
 
 _006F:
     ScrCmd_02C 5
-    ScrCmd_016 _007A
+    GoTo _007A
     End
 
 _007A:

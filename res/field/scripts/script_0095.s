@@ -24,12 +24,12 @@ _000E:
 
 _004C:
     ScrCmd_02C 2
-    ScrCmd_016 _0062
+    GoTo _0062
     End
 
 _0057:
     ScrCmd_02C 3
-    ScrCmd_016 _0062
+    GoTo _0062
     End
 
 _0062:
@@ -41,7 +41,7 @@ _0062:
 _006A:
     ScrCmd_0CD 0
     ScrCmd_02C 4
-    ScrCmd_016 _0062
+    GoTo _0062
     End
 
 _0078:

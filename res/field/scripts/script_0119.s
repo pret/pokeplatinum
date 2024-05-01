@@ -58,17 +58,17 @@ _002E:
     ScrCmd_14D 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _00EE
-    ScrCmd_016 _00F9
+    GoTo _00F9
     End
 
 _00EE:
     ScrCmd_02C 8
-    ScrCmd_016 _0104
+    GoTo _0104
     End
 
 _00F9:
     ScrCmd_02C 9
-    ScrCmd_016 _0104
+    GoTo _0104
     End
 
 _0104:
@@ -328,7 +328,7 @@ _038A:
     ScrCmd_28A 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _03C8
-    ScrCmd_01A _0437
+    Call _0437
     ScrCmd_01E 0x15A
     ScrCmd_02C 17
     ScrCmd_031
@@ -352,25 +352,25 @@ _03D3:
     ScrCmd_28A 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0419
-    ScrCmd_01A _0437
+    Call _0437
     ScrCmd_01E 0x15A
     ScrCmd_02C 16
     ScrCmd_034
-    ScrCmd_01A _0458
+    Call _0458
     ScrCmd_061
     End
 
 _0419:
     ScrCmd_02C 20
     ScrCmd_034
-    ScrCmd_01A _0458
+    Call _0458
     ScrCmd_061
     End
 
 _0428:
     ScrCmd_02C 12
     ScrCmd_034
-    ScrCmd_01A _0458
+    Call _0458
     ScrCmd_061
     End
 
@@ -381,7 +381,7 @@ _0437:
     ScrCmd_02C 14
     ScrCmd_04F
     ScrCmd_02C 15
-    ScrCmd_01B
+    Return
 
 _0458:
     ScrCmd_1BD 0x800C
@@ -389,12 +389,12 @@ _0458:
     ScrCmd_01C 1, _0475
     ScrCmd_05E 9, _0484
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _0475:
     ScrCmd_05E 9, _0490
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _0484:
@@ -443,52 +443,52 @@ _04EC:
 _052B:
     ScrCmd_05E 10, _0624
     ScrCmd_05F
-    ScrCmd_016 _04EC
+    GoTo _04EC
     End
 
 _053D:
     ScrCmd_05E 10, _0638
     ScrCmd_05F
-    ScrCmd_016 _04EC
+    GoTo _04EC
     End
 
 _054F:
     ScrCmd_05E 10, _064C
     ScrCmd_05F
-    ScrCmd_016 _04EC
+    GoTo _04EC
     End
 
 _0561:
     ScrCmd_05E 10, _0660
     ScrCmd_05F
-    ScrCmd_016 _04EC
+    GoTo _04EC
     End
 
 _0573:
     ScrCmd_05E 10, _05E8
     ScrCmd_05E 0xFF, _0604
     ScrCmd_05F
-    ScrCmd_016 _05D3
+    GoTo _05D3
     End
 
 _058D:
     ScrCmd_05E 10, _05E8
     ScrCmd_05E 0xFF, _0604
     ScrCmd_05F
-    ScrCmd_016 _05D3
+    GoTo _05D3
     End
 
 _05A7:
     ScrCmd_05E 10, _05E8
     ScrCmd_05F
-    ScrCmd_016 _05D3
+    GoTo _05D3
     End
 
 _05B9:
     ScrCmd_05E 10, _05F4
     ScrCmd_05E 0xFF, _0610
     ScrCmd_05F
-    ScrCmd_016 _05D3
+    GoTo _05D3
     End
 
 _05D3:

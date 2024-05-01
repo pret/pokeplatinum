@@ -266,13 +266,13 @@ static BOOL ScrCmd_013(ScriptContext * param0);
 static BOOL ScrCmd_014(ScriptContext * param0);
 static BOOL sub_0203F9EC(ScriptContext * param0);
 static BOOL ScrCmd_015(ScriptContext * param0);
-static BOOL ScrCmd_016(ScriptContext * param0);
+static BOOL ScrCmd_GoTo(ScriptContext * ctx);
 static LocalMapObject * sub_02040ED4(FieldSystem * param0, int param1);
 static BOOL ScrCmd_017(ScriptContext * param0);
 static BOOL ScrCmd_018(ScriptContext * param0);
 static BOOL ScrCmd_019(ScriptContext * param0);
-static BOOL ScrCmd_01A(ScriptContext * param0);
-static BOOL ScrCmd_01B(ScriptContext * param0);
+static BOOL ScrCmd_Call(ScriptContext * ctx);
+static BOOL ScrCmd_Return(ScriptContext * ctx);
 static BOOL ScrCmd_01C(ScriptContext * param0);
 static BOOL ScrCmd_01D(ScriptContext * param0);
 static BOOL ScrCmd_01E(ScriptContext * param0);
@@ -793,12 +793,12 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_013,
     ScrCmd_014,
     ScrCmd_015,
-    ScrCmd_016,
+    ScrCmd_GoTo,
     ScrCmd_017,
     ScrCmd_018,
     ScrCmd_019,
-    ScrCmd_01A,
-    ScrCmd_01B,
+    ScrCmd_Call,
+    ScrCmd_Return,
     ScrCmd_01C,
     ScrCmd_01D,
     ScrCmd_01E,
@@ -1899,14 +1899,10 @@ static BOOL ScrCmd_015 (ScriptContext * param0)
     return 0;
 }
 
-static BOOL ScrCmd_016 (ScriptContext * param0)
+static BOOL ScrCmd_GoTo (ScriptContext * ctx)
 {
-    s32 v0;
-
-    v0 = (s32)ScriptContext_ReadWord(param0);
-    ScriptContext_Jump(param0, (u8 *)(param0->scriptPtr + v0));
-
-    return 0;
+    ScriptContext_Jump(ctx, ctx->scriptPtr + ScriptContext_ReadWord(ctx));
+    return FALSE;
 }
 
 static BOOL ScrCmd_017 (ScriptContext * param0)
@@ -1962,18 +1958,16 @@ static BOOL ScrCmd_019 (ScriptContext * param0)
     return 0;
 }
 
-static BOOL ScrCmd_01A (ScriptContext * param0)
+static BOOL ScrCmd_Call (ScriptContext * ctx)
 {
-    s32 v0 = (s32)ScriptContext_ReadWord(param0);
-
-    ScriptContext_Call(param0, (u8 *)(param0->scriptPtr + v0));
-    return 0;
+    ScriptContext_Call(ctx, ctx->scriptPtr + ScriptContext_ReadWord(ctx));
+    return FALSE;
 }
 
-static BOOL ScrCmd_01B (ScriptContext * param0)
+static BOOL ScrCmd_Return (ScriptContext * ctx)
 {
-    ScriptContext_Return(param0);
-    return 0;
+    ScriptContext_Return(ctx);
+    return FALSE;
 }
 
 static BOOL ScrCmd_01C (ScriptContext * param0)

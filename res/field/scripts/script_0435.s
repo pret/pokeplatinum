@@ -49,7 +49,7 @@ _009D:
 
 _009F:
     ScrCmd_0C9 1
-    ScrCmd_01B
+    Return
 
 _00A4:
     ScrCmd_049 0x5DC

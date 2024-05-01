@@ -113,15 +113,15 @@ _0109:
 
 _0119:
     ScrCmd_028 0x8004, 94
-    ScrCmd_01B
+    Return
 
 _0121:
     ScrCmd_028 0x8004, 92
-    ScrCmd_01B
+    Return
 
 _0129:
     ScrCmd_028 0x8004, 93
-    ScrCmd_01B
+    Return
 
     .byte 0
     .byte 0

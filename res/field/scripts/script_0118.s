@@ -26,7 +26,7 @@ _002F:
 
 _004F:
     ScrCmd_01E 0x217
-    ScrCmd_01B
+    Return
 
 _0055:
     ScrCmd_020 0x217

@@ -71,7 +71,7 @@ _0076:
     ScrCmd_01E 0x156
     ScrCmd_1CD 10, 122, 0x13C, 0, 0
     ScrCmd_02C 3
-    ScrCmd_016 _010D
+    GoTo _010D
     End
 
 _010D:

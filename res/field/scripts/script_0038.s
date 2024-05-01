@@ -49,7 +49,7 @@ _0016:
     ScrCmd_028 0x4078, 2
     ScrCmd_01E 0x198
     ScrCmd_02C 3
-    ScrCmd_016 _00BF
+    GoTo _00BF
 
 _00BF:
     ScrCmd_028 0x8004, 0x1A2

@@ -43,19 +43,19 @@ _000A:
 
 _00A0:
     ScrCmd_0E5 0x107, 0
-    ScrCmd_01B
+    Return
 
 _00A8:
     ScrCmd_0E5 0x364, 0
-    ScrCmd_01B
+    Return
 
 _00B0:
     ScrCmd_1CD 11, 0x107, 0, 0, 0
-    ScrCmd_01B
+    Return
 
 _00BE:
     ScrCmd_1CD 11, 0x364, 0, 0, 0
-    ScrCmd_01B
+    Return
 
 _00CC:
     ScrCmd_0EB
@@ -78,27 +78,27 @@ _00F0:
     ScrCmd_05E 0, _0120
     ScrCmd_05F
     ScrCmd_02C 1
-    ScrCmd_01B
+    Return
 
 _0104:
     ScrCmd_02C 4
-    ScrCmd_01B
+    Return
 
 _0109:
     ScrCmd_02C 2
-    ScrCmd_01B
+    Return
 
 _010E:
     ScrCmd_02C 5
-    ScrCmd_01B
+    Return
 
 _0113:
     ScrCmd_02C 3
-    ScrCmd_01B
+    Return
 
 _0118:
     ScrCmd_02C 6
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _0120:

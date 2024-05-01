@@ -46,7 +46,7 @@ _0022:
     ScrCmd_028 0x407D, 1
     ScrCmd_028 0x411A, 1
     ScrCmd_02C 3
-    ScrCmd_016 _00B7
+    GoTo _00B7
     End
 
 _00B7:

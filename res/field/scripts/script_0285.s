@@ -57,7 +57,7 @@ _007D:
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_01B
+    Return
 
 _00B7:
     ScrCmd_186 14, 42, 68
@@ -66,7 +66,7 @@ _00B7:
     ScrCmd_05E 14, _0144
     ScrCmd_05F
     ScrCmd_02C 3
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _00DC:
@@ -138,21 +138,21 @@ _0154:
     ScrCmd_1BD 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0177
-    ScrCmd_016 _0191
+    GoTo _0191
     End
 
 _0177:
     ScrCmd_05E 14, _01F0
     ScrCmd_05E 0xFF, _01E4
     ScrCmd_05F
-    ScrCmd_016 _01AB
+    GoTo _01AB
     End
 
 _0191:
     ScrCmd_05E 14, _01FC
     ScrCmd_05E 0xFF, _01E4
     ScrCmd_05F
-    ScrCmd_016 _01AB
+    GoTo _01AB
     End
 
 _01AB:

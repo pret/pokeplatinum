@@ -17,14 +17,14 @@ _000A:
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0055
-    ScrCmd_016 _028F
+    GoTo _028F
 
 _003B:
     ScrCmd_02C 1
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0055
-    ScrCmd_016 _028F
+    GoTo _028F
 
 _0055:
     ScrCmd_02C 2
@@ -41,11 +41,11 @@ _0055:
     ScrCmd_198 0x8000, 0x8001
     ScrCmd_011 0x8001, 0
     ScrCmd_01C 1, _02A5
-    ScrCmd_01A _0195
+    Call _0195
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _029A
     ScrCmd_029 0x8002, 0x800C
-    ScrCmd_01A _0251
+    Call _0251
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _02BB
     ScrCmd_1B9 0x800C, 0x8000
@@ -56,7 +56,7 @@ _0055:
     ScrCmd_01C 1, _00FE
     ScrCmd_011 0x8002, 2
     ScrCmd_01C 1, _011E
-    ScrCmd_016 _013E
+    GoTo _013E
 
 _00FE:
     ScrCmd_02C 9
@@ -64,7 +64,7 @@ _00FE:
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _028F
     ScrCmd_028 0x8003, 0x133
-    ScrCmd_016 _015E
+    GoTo _015E
 
 _011E:
     ScrCmd_02C 10
@@ -72,7 +72,7 @@ _011E:
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _028F
     ScrCmd_028 0x8003, 0x134
-    ScrCmd_016 _015E
+    GoTo _015E
 
 _013E:
     ScrCmd_02C 11
@@ -80,7 +80,7 @@ _013E:
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _028F
     ScrCmd_028 0x8003, 0x152
-    ScrCmd_016 _015E
+    GoTo _015E
 
 _015E:
     ScrCmd_034
@@ -122,38 +122,38 @@ _0195:
     ScrCmd_011 0x8001, 0x185
     ScrCmd_01C 1, _0249
     ScrCmd_028 0x800C, 0
-    ScrCmd_01B
+    Return
 
 _0239:
     ScrCmd_028 0x800C, 1
-    ScrCmd_01B
+    Return
 
 _0241:
     ScrCmd_028 0x800C, 2
-    ScrCmd_01B
+    Return
 
 _0249:
     ScrCmd_028 0x800C, 3
-    ScrCmd_01B
+    Return
 
 _0251:
     ScrCmd_011 0x8002, 1
     ScrCmd_01C 1, _0271
     ScrCmd_011 0x8002, 2
     ScrCmd_01C 1, _027B
-    ScrCmd_016 _0285
+    GoTo _0285
 
 _0271:
     ScrCmd_099 0x800C, 0x133, 0x8000
-    ScrCmd_01B
+    Return
 
 _027B:
     ScrCmd_099 0x800C, 0x134, 0x8000
-    ScrCmd_01B
+    Return
 
 _0285:
     ScrCmd_099 0x800C, 0x152, 0x8000
-    ScrCmd_01B
+    Return
 
 _028F:
     ScrCmd_02C 3

@@ -40,22 +40,22 @@ _0039:
 _007B:
     ScrCmd_05E 0, _01B8
     ScrCmd_05F
-    ScrCmd_016 _00BB
+    GoTo _00BB
 
 _008B:
     ScrCmd_05E 0, _01DC
     ScrCmd_05F
-    ScrCmd_016 _00BB
+    GoTo _00BB
 
 _009B:
     ScrCmd_05E 0, _0200
     ScrCmd_05F
-    ScrCmd_016 _00BB
+    GoTo _00BB
 
 _00AB:
     ScrCmd_05E 0, _0224
     ScrCmd_05F
-    ScrCmd_016 _00BB
+    GoTo _00BB
 
 _00BB:
     ScrCmd_15B 4, 0x800C
@@ -90,7 +90,7 @@ _00BB:
     ScrCmd_01E 0x206
     ScrCmd_01F 0x207
     ScrCmd_02C 3
-    ScrCmd_016 _0158
+    GoTo _0158
 
 _0158:
     ScrCmd_028 0x8004, 0x188

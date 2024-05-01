@@ -33,7 +33,7 @@ _0046:
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0060
-    ScrCmd_016 _00D1
+    GoTo _00D1
 
 _0060:
     ScrCmd_034

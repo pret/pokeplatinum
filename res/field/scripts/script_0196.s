@@ -59,27 +59,27 @@ _000E:
 
 _00EB:
     ScrCmd_02C 0
-    ScrCmd_01B
+    Return
 
 _00F0:
     ScrCmd_02C 3
-    ScrCmd_01B
+    Return
 
 _00F5:
     ScrCmd_0E5 0x10B, 0
-    ScrCmd_01B
+    Return
 
 _00FD:
     ScrCmd_0E5 0x366, 0
-    ScrCmd_01B
+    Return
 
 _0105:
     ScrCmd_1CD 12, 0x10B, 0, 0, 0
-    ScrCmd_01B
+    Return
 
 _0113:
     ScrCmd_1CD 12, 0x366, 0, 0, 0
-    ScrCmd_01B
+    Return
 
 _0121:
     ScrCmd_01F 0x98B

@@ -54,7 +54,7 @@ _008C:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_028 0x8005, 0
-    ScrCmd_016 _00B8
+    GoTo _00B8
     End
 
 _00A2:
@@ -62,7 +62,7 @@ _00A2:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_028 0x8005, 1
-    ScrCmd_016 _00B8
+    GoTo _00B8
     End
 
 _00B8:
@@ -72,7 +72,7 @@ _00B8:
     ScrCmd_01D 1, _0259
     ScrCmd_011 0x8005, 2
     ScrCmd_01D 1, _025B
-    ScrCmd_016 _00E7
+    GoTo _00E7
     End
 
 _00E7:
@@ -91,7 +91,7 @@ _00E7:
     ScrCmd_01C 1, _0188
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0146
-    ScrCmd_016 _0175
+    GoTo _0175
     End
 
 _0146:
@@ -101,11 +101,11 @@ _0146:
     ScrCmd_01D 1, _0271
     ScrCmd_011 0x8005, 2
     ScrCmd_01D 1, _0273
-    ScrCmd_016 _00E7
+    GoTo _00E7
     End
 
 _0175:
-    ScrCmd_016 _017D
+    GoTo _017D
     End
 
 _017D:
@@ -126,17 +126,17 @@ _0188:
     ScrCmd_01C 1, _01C3
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _01D1
-    ScrCmd_016 _0175
+    GoTo _0175
     End
 
 _01C3:
     ScrCmd_028 0x8006, 0
-    ScrCmd_016 _01DF
+    GoTo _01DF
     End
 
 _01D1:
     ScrCmd_028 0x8006, 1
-    ScrCmd_016 _01DF
+    GoTo _01DF
     End
 
 _01DF:
@@ -144,7 +144,7 @@ _01DF:
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0175
-    ScrCmd_016 _01FB
+    GoTo _01FB
     End
 
 _01FB:
@@ -153,7 +153,7 @@ _01FB:
     ScrCmd_029 0x800C, 0x4000
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0175
-    ScrCmd_016 _0220
+    GoTo _0220
     End
 
 _0220:
@@ -168,43 +168,43 @@ _0220:
     End
 
 _024E:
-    ScrCmd_01B
+    Return
 
 _0250:
-    ScrCmd_01B
+    Return
 
 _0252:
-    ScrCmd_01B
+    Return
 
 _0254:
     ScrCmd_02C 0
-    ScrCmd_01B
+    Return
 
 _0259:
-    ScrCmd_01B
+    Return
 
 _025B:
     ScrCmd_02C 3
-    ScrCmd_01B
+    Return
 
 _0260:
     ScrCmd_02C 1
-    ScrCmd_01B
+    Return
 
 _0265:
-    ScrCmd_01B
+    Return
 
 _0267:
     ScrCmd_02C 4
-    ScrCmd_01B
+    Return
 
 _026C:
     ScrCmd_02C 2
-    ScrCmd_01B
+    Return
 
 _0271:
-    ScrCmd_01B
+    Return
 
 _0273:
     ScrCmd_02C 5
-    ScrCmd_01B
+    Return

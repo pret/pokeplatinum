@@ -43,7 +43,7 @@ _000E:
     ScrCmd_01F 0x19C
     ScrCmd_01E 0x198
     ScrCmd_02C 3
-    ScrCmd_016 _00BB
+    GoTo _00BB
     End
 
 _00BB:

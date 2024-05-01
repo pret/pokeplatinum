@@ -7,14 +7,14 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_01A _0018
+    Call _0018
     ScrCmd_285 0x410B, 0x410C
     End
 
 _0018:
     ScrCmd_026 0x410B, 1
     ScrCmd_026 0x410C, 1
-    ScrCmd_01B
+    Return
 
 _0026:
     ScrCmd_049 0x5DC

@@ -14,7 +14,7 @@ _000E:
 
 _001B:
     ScrCmd_01F 0x278
-    ScrCmd_01B
+    Return
 
 _0021:
     ScrCmd_060
@@ -74,12 +74,12 @@ _00C0:
     ScrCmd_011 0x40AA, 3
     ScrCmd_01C 4, _00E0
     ScrCmd_02C 3
-    ScrCmd_016 _00EB
+    GoTo _00EB
     End
 
 _00E0:
     ScrCmd_02C 4
-    ScrCmd_016 _00EB
+    GoTo _00EB
     End
 
 _00EB:

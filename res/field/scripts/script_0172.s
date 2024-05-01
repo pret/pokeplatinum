@@ -19,7 +19,7 @@ _0006:
 
 _0038:
     ScrCmd_028 0x8004, 0
-    ScrCmd_01A _009C
+    Call _009C
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BE 164, 0, 6, 10, 1
@@ -29,7 +29,7 @@ _0038:
 
 _006A:
     ScrCmd_028 0x8004, 1
-    ScrCmd_01A _009C
+    Call _009C
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BE 150, 0, 0x376, 0x317, 1
@@ -43,7 +43,7 @@ _009C:
     ScrCmd_05E 0xFF, _00C4
     ScrCmd_05F
     ScrCmd_049 0x603
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _00B8:

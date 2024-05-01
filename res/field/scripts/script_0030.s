@@ -132,7 +132,7 @@ _0105:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_028 0x8005, 2
-    ScrCmd_016 _0119
+    GoTo _0119
     End
 
 _0119:
@@ -148,7 +148,7 @@ _0119:
     ScrCmd_01C 1, _0163
     ScrCmd_011 0x8008, 1
     ScrCmd_01C 1, _0184
-    ScrCmd_016 _015D
+    GoTo _015D
     End
 
 _015D:
@@ -168,7 +168,7 @@ _0163:
 
 _0184:
     ScrCmd_02C 12
-    ScrCmd_016 _0119
+    GoTo _0119
 
     .byte 2
     .byte 0

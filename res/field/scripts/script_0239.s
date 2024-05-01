@@ -7,7 +7,7 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_01A _0012
+    Call _0012
     End
 
 _0012:
@@ -26,11 +26,11 @@ _0012:
     ScrCmd_020 0x11E
     ScrCmd_01C 1, _0075
     ScrCmd_028 0x4118, 1
-    ScrCmd_016 _0075
+    GoTo _0075
     End
 
 _0075:
-    ScrCmd_01B
+    Return
 
 _0077:
     ScrCmd_049 0x5DC
@@ -65,12 +65,12 @@ _00E8:
 
 _00EE:
     ScrCmd_01E 208
-    ScrCmd_01B
+    Return
 
 _00F4:
     ScrCmd_02C 2
     ScrCmd_031
-    ScrCmd_016 _0101
+    GoTo _0101
     End
 
 _0101:

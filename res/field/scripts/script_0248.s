@@ -21,27 +21,27 @@ _000A:
     ScrCmd_01C 1, _0069
     ScrCmd_011 0x8008, 2
     ScrCmd_01C 1, _0077
-    ScrCmd_016 _0085
+    GoTo _0085
     End
 
 _005B:
     ScrCmd_028 0x8004, 72
-    ScrCmd_016 _0093
+    GoTo _0093
     End
 
 _0069:
     ScrCmd_028 0x8004, 73
-    ScrCmd_016 _0093
+    GoTo _0093
     End
 
 _0077:
     ScrCmd_028 0x8004, 74
-    ScrCmd_016 _0093
+    GoTo _0093
     End
 
 _0085:
     ScrCmd_028 0x8004, 75
-    ScrCmd_016 _0093
+    GoTo _0093
     End
 
 _0093:

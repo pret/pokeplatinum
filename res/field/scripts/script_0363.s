@@ -66,7 +66,7 @@ _00BC:
 _00D8:
     ScrCmd_02C 1
     ScrCmd_034
-    ScrCmd_016 _00BC
+    GoTo _00BC
 
 _00E3:
     ScrCmd_02C 2

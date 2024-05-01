@@ -28,13 +28,13 @@ _005C:
     ScrCmd_0CD 0
     ScrCmd_0CE 1
     ScrCmd_02C 0
-    ScrCmd_016 _007A
+    GoTo _007A
 
 _006B:
     ScrCmd_0CD 0
     ScrCmd_0CE 1
     ScrCmd_02C 1
-    ScrCmd_016 _007A
+    GoTo _007A
 
 _007A:
     ScrCmd_031

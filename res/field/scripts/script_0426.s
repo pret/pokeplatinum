@@ -11,7 +11,7 @@ _0008:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_02C 0
-    ScrCmd_016 _001B
+    GoTo _001B
     End
 
 _001B:
@@ -29,7 +29,7 @@ _001B:
     ScrCmd_01C 1, _0121
     ScrCmd_011 0x8008, 2
     ScrCmd_01C 1, _0078
-    ScrCmd_016 _006D
+    GoTo _006D
     End
 
 _006D:
@@ -42,7 +42,7 @@ _006D:
 _0078:
     ScrCmd_02C 32
     ScrCmd_031
-    ScrCmd_016 _001B
+    GoTo _001B
     End
 
 _0085:
@@ -50,7 +50,7 @@ _0085:
     ScrCmd_0BD
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_01B
+    Return
 
 _0097:
     ScrCmd_0A1
@@ -59,7 +59,7 @@ _0097:
     ScrCmd_068
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    ScrCmd_01B
+    Return
 
 _00AF:
     ScrCmd_02C 8
@@ -70,12 +70,12 @@ _00AF:
 
 _00BA:
     ScrCmd_02C 6
-    ScrCmd_016 _006D
+    GoTo _006D
     End
 
 _00C5:
     ScrCmd_02C 7
-    ScrCmd_016 _006D
+    GoTo _006D
     End
 
 _00D0:
@@ -88,10 +88,10 @@ _00D0:
     ScrCmd_011 0x800C, 2
     ScrCmd_01C 1, _00C5
     ScrCmd_003 30, 0x800C
-    ScrCmd_01A _0085
+    Call _0085
     ScrCmd_1D7 0
-    ScrCmd_01A _0097
-    ScrCmd_016 _006D
+    Call _0097
+    GoTo _006D
     End
 
 _0121:
@@ -107,7 +107,7 @@ _0121:
     ScrCmd_029 0x800C, 0x4000
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0173
-    ScrCmd_016 _006D
+    GoTo _006D
     End
 
 _0173:
@@ -123,7 +123,7 @@ _0173:
     ScrCmd_01C 1, _01B7
     ScrCmd_011 0x8008, 1
     ScrCmd_01C 1, _020D
-    ScrCmd_016 _006D
+    GoTo _006D
     End
 
 _01B7:
@@ -137,17 +137,17 @@ _01B7:
     ScrCmd_01C 1, _01F9
     ScrCmd_011 0x800C, 3
     ScrCmd_01C 1, _0203
-    ScrCmd_016 _0263
+    GoTo _0263
     End
 
 _01F9:
     ScrCmd_150
-    ScrCmd_016 _0173
+    GoTo _0173
     End
 
 _0203:
     ScrCmd_150
-    ScrCmd_016 _0173
+    GoTo _0173
     End
 
 _020D:
@@ -161,17 +161,17 @@ _020D:
     ScrCmd_01C 1, _024F
     ScrCmd_011 0x800C, 3
     ScrCmd_01C 1, _0259
-    ScrCmd_016 _0263
+    GoTo _0263
     End
 
 _024F:
     ScrCmd_150
-    ScrCmd_016 _0173
+    GoTo _0173
     End
 
 _0259:
     ScrCmd_150
-    ScrCmd_016 _0173
+    GoTo _0173
     End
 
 _0263:
@@ -180,8 +180,8 @@ _0263:
     ScrCmd_061
     ScrCmd_1D7 1
     ScrCmd_150
-    ScrCmd_01A _0097
-    ScrCmd_016 _006D
+    Call _0097
+    GoTo _006D
 
     .byte 2
     .byte 0

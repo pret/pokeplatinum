@@ -13,7 +13,7 @@ _0006:
     ScrCmd_01C 1, _0026
     ScrCmd_02C 0
     ScrCmd_01E 1
-    ScrCmd_016 _0026
+    GoTo _0026
 
 _0026:
     ScrCmd_02C 1
@@ -27,7 +27,7 @@ _0026:
 _0049:
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_016 _0054
+    GoTo _0054
 
 _0054:
     ScrCmd_0BC 6, 1, 0, 0
@@ -77,12 +77,12 @@ _0105:
 _011A:
     ScrCmd_02C 5
     ScrCmd_034
-    ScrCmd_016 _0054
+    GoTo _0054
 
 _0125:
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_016 _0054
+    GoTo _0054
 
 _0130:
     ScrCmd_02C 3

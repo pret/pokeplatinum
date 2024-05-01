@@ -89,7 +89,7 @@ _0102:
     ScrCmd_01C 4, _019B
     ScrCmd_011 0x800C, 8
     ScrCmd_01C 4, _0190
-    ScrCmd_016 _0185
+    GoTo _0185
 
 _014D:
     ScrCmd_04B 0x5DC
@@ -206,7 +206,7 @@ _0254:
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
     ScrCmd_01E 162
-    ScrCmd_016 _020B
+    GoTo _020B
 
 _0270:
     ScrCmd_036 18, 1, 0, 0x800C

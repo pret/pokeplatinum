@@ -38,7 +38,7 @@ _0069:
     ScrCmd_01E 0x1E0
     ScrCmd_065 0
     ScrCmd_01F 142
-    ScrCmd_01B
+    Return
 
 _0077:
     ScrCmd_049 0x5DC

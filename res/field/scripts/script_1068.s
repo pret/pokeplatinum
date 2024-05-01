@@ -158,12 +158,12 @@ _0141:
 
 _019D:
     ScrCmd_02C 11
-    ScrCmd_016 _01B3
+    GoTo _01B3
     End
 
 _01A8:
     ScrCmd_02C 10
-    ScrCmd_016 _01B3
+    GoTo _01B3
     End
 
 _01B3:

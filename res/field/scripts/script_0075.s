@@ -73,7 +73,7 @@ _007D:
     ScrCmd_01C 4, _00FF
     ScrCmd_011 0x800C, 70
     ScrCmd_01C 4, _010A
-    ScrCmd_016 _0115
+    GoTo _0115
     End
 
 _00D9:

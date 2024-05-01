@@ -20,7 +20,7 @@ _000E:
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _003B
     ScrCmd_02C 1
-    ScrCmd_016 _003E
+    GoTo _003E
 
 _003B:
     ScrCmd_02C 2

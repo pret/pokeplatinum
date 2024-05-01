@@ -55,7 +55,7 @@ _007B:
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _009D
-    ScrCmd_016 _00D3
+    GoTo _00D3
     End
 
 _009D:

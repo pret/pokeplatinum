@@ -69,6 +69,6 @@ _00A7:
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
     ScrCmd_01E 132
-    ScrCmd_016 _005E
+    GoTo _005E
 
     .byte 0

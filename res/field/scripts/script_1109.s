@@ -85,7 +85,7 @@ _00D6:
     ScrCmd_230 0x800C, 0x8000, 66
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _018A
-    ScrCmd_016 _012F
+    GoTo _012F
 
 _012F:
     ScrCmd_072 20, 2

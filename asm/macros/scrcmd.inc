@@ -124,9 +124,9 @@
     .short 21
     .endm
 
-    .macro ScrCmd_016 arg0
+    .macro GoTo offset
     .short 22
-    .long \arg0-.-4
+    .long \offset-.-4
     .endm
 
     .macro ScrCmd_017 arg0, arg1
@@ -147,12 +147,12 @@
     .long \arg1-.-4
     .endm
 
-    .macro ScrCmd_01A arg0
+    .macro Call offset
     .short 26
-    .long \arg0-.-4
+    .long \offset-.-4
     .endm
 
-    .macro ScrCmd_01B
+    .macro Return
     .short 27
     .endm
 

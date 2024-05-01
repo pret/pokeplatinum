@@ -20,7 +20,7 @@ _000A:
     ScrCmd_01C 1, _005C
     ScrCmd_014 0x7FC
     ScrCmd_01E 201
-    ScrCmd_016 _0051
+    GoTo _0051
     End
 
 _0051:

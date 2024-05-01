@@ -50,7 +50,7 @@ _007D:
     ScrCmd_01C 1, _00CD
     ScrCmd_014 0x7FC
     ScrCmd_01E 206
-    ScrCmd_016 _00C2
+    GoTo _00C2
 
 _00C2:
     ScrCmd_02C 1

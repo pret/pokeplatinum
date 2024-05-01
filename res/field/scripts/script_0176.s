@@ -47,7 +47,7 @@ _0025:
     ScrCmd_1CD 10, 167, 0x13F, 0, 0
     ScrCmd_01E 0x1BF
     ScrCmd_02C 3
-    ScrCmd_016 _00B0
+    GoTo _00B0
 
 _00B0:
     ScrCmd_028 0x8004, 0x18F

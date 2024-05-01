@@ -41,7 +41,7 @@ _0075:
 
 _0079:
     ScrCmd_028 0x4069, 0
-    ScrCmd_01B
+    Return
 
 _0081:
     End

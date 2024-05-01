@@ -46,7 +46,7 @@ _007E:
     ScrCmd_186 1, 16, 14
     ScrCmd_05E 0, _0094
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _0094:

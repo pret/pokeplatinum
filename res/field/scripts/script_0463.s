@@ -17,7 +17,7 @@ _0006:
     ScrCmd_01C 1, _004F
     ScrCmd_011 0x800C, 2
     ScrCmd_01C 1, _005A
-    ScrCmd_016 _0065
+    GoTo _0065
 
 _0044:
     ScrCmd_02C 1

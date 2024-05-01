@@ -35,7 +35,7 @@ _0045:
     ScrCmd_134 14, 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 5, _0071
-    ScrCmd_016 _0066
+    GoTo _0066
 
 _0066:
     ScrCmd_02C 2

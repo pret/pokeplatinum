@@ -20,7 +20,7 @@ _0012:
 
 _003F:
     ScrCmd_028 0x406B, 0
-    ScrCmd_01B
+    Return
 
 _0047:
     ScrCmd_32B 0x4001

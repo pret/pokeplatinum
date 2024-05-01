@@ -25,7 +25,7 @@ _0012:
     ScrCmd_034
     ScrCmd_05E 128, _00E4
     ScrCmd_05F
-    ScrCmd_016 _007A
+    GoTo _007A
 
 _0059:
     ScrCmd_05E 128, _00F0
@@ -48,12 +48,12 @@ _0084:
     ScrCmd_01C 1, _00C6
     ScrCmd_05E 128, _0104
     ScrCmd_05F
-    ScrCmd_016 _00D0
+    GoTo _00D0
 
 _00B6:
     ScrCmd_05E 128, _010C
     ScrCmd_05F
-    ScrCmd_016 _00D0
+    GoTo _00D0
 
 _00C6:
     ScrCmd_05E 128, _0114

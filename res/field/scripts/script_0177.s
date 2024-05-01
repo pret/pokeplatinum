@@ -73,17 +73,17 @@ _0067:
 _00C8:
     ScrCmd_05E 4, _00FC
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _00D4:
     ScrCmd_05E 4, _0104
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _00E0:
     ScrCmd_05E 4, _010C
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _00EC:
     ScrCmd_0CD 0

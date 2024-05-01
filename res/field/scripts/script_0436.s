@@ -22,7 +22,7 @@ _001C:
 
 _0037:
     ScrCmd_01E 0x996
-    ScrCmd_01B
+    Return
 
 _003D:
     ScrCmd_049 0x5DC

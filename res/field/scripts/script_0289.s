@@ -8,14 +8,14 @@
 
 _000A:
     ScrCmd_01E 0x9D4
-    ScrCmd_01A _001C
+    Call _001C
     ScrCmd_285 0x410B, 0x410C
     End
 
 _001C:
     ScrCmd_028 0x410B, 0
     ScrCmd_028 0x410C, 0
-    ScrCmd_01B
+    Return
 
 _002A:
     ScrCmd_020 0x121

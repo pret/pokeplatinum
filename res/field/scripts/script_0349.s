@@ -106,13 +106,13 @@ _01AD:
     ScrCmd_05E 3, _0240
     ScrCmd_05E 0xFF, _0210
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _01C1:
     ScrCmd_05E 3, _0240
     ScrCmd_05E 0xFF, _021C
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _01D8:

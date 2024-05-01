@@ -38,7 +38,7 @@ _0062:
     ScrCmd_186 30, 0x28E, 0x32C
     ScrCmd_189 30, 3
     ScrCmd_188 30, 17
-    ScrCmd_01B
+    Return
 
 _0078:
     ScrCmd_049 0x5DC
@@ -57,27 +57,27 @@ _0078:
     ScrCmd_01C 1, _00F1
     ScrCmd_011 0x8004, 3
     ScrCmd_01C 1, _00DF
-    ScrCmd_016 _00C5
+    GoTo _00C5
     End
 
 _00C5:
     ScrCmd_05E 30, _0390
     ScrCmd_05E 0xFF, _03F0
     ScrCmd_05F
-    ScrCmd_016 _010B
+    GoTo _010B
     End
 
 _00DF:
     ScrCmd_05E 30, _0390
     ScrCmd_05F
-    ScrCmd_016 _010B
+    GoTo _010B
     End
 
 _00F1:
     ScrCmd_05E 30, _0398
     ScrCmd_05E 0xFF, _03F0
     ScrCmd_05F
-    ScrCmd_016 _010B
+    GoTo _010B
     End
 
 _010B:
@@ -103,21 +103,21 @@ _0133:
     ScrCmd_1BD 0x8004
     ScrCmd_011 0x8004, 2
     ScrCmd_01C 1, _0180
-    ScrCmd_016 _0166
+    GoTo _0166
     End
 
 _0166:
     ScrCmd_05E 0xFF, _03C0
     ScrCmd_05E 30, _03A4
     ScrCmd_05F
-    ScrCmd_016 _019A
+    GoTo _019A
     End
 
 _0180:
     ScrCmd_05E 0xFF, _03C0
     ScrCmd_05E 30, _03B4
     ScrCmd_05F
-    ScrCmd_016 _019A
+    GoTo _019A
     End
 
 _019A:
@@ -163,55 +163,55 @@ _019A:
 
 _0261:
     ScrCmd_049 0x639
-    ScrCmd_01B
+    Return
 
 _0267:
     ScrCmd_05E 33, _0318
     ScrCmd_05E 0xFF, _03CC
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _027B:
     ScrCmd_05E 33, _0308
     ScrCmd_05E 0xFF, _03CC
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _028F:
     ScrCmd_05E 33, _0338
     ScrCmd_05E 0xFF, _03CC
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02A3:
     ScrCmd_05E 33, _0328
     ScrCmd_05E 0xFF, _03D8
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02B7:
     ScrCmd_05E 33, _035C
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02CB:
     ScrCmd_05E 33, _0350
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02DF:
     ScrCmd_05E 33, _037C
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02F3:
     ScrCmd_05E 33, _0368
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _0308:

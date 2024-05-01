@@ -89,7 +89,7 @@ _00C4:
     ScrCmd_02C 3
     ScrCmd_034
     ScrCmd_02C 4
-    ScrCmd_016 _0194
+    GoTo _0194
 
 _014E:
     ScrCmd_311 130
@@ -99,7 +99,7 @@ _014E:
     ScrCmd_02C 3
     ScrCmd_034
     ScrCmd_02C 6
-    ScrCmd_016 _0194
+    GoTo _0194
 
 _016E:
     ScrCmd_01E 0x121

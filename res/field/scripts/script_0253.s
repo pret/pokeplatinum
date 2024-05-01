@@ -24,7 +24,7 @@ _0006:
 
 _0044:
     ScrCmd_02C 1
-    ScrCmd_016 _004F
+    GoTo _004F
     End
 
 _004F:

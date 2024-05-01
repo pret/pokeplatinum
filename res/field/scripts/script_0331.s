@@ -20,7 +20,7 @@ _0029:
 
 _002F:
     ScrCmd_01F 0x24D
-    ScrCmd_01B
+    Return
 
 _0035:
     ScrCmd_049 0x5DC

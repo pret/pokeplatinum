@@ -48,12 +48,12 @@ _000A:
 _00B1:
     ScrCmd_0CD 0
     ScrCmd_02C 5
-    ScrCmd_016 _00C9
+    GoTo _00C9
 
 _00BD:
     ScrCmd_0CD 0
     ScrCmd_02C 6
-    ScrCmd_016 _00C9
+    GoTo _00C9
 
 _00C9:
     ScrCmd_02C 7

@@ -59,22 +59,22 @@ _0010:
 
 _00DE:
     ScrCmd_186 1, 12, 22
-    ScrCmd_016 _011E
+    GoTo _011E
     End
 
 _00EE:
     ScrCmd_186 1, 12, 20
-    ScrCmd_016 _011E
+    GoTo _011E
     End
 
 _00FE:
     ScrCmd_186 1, 13, 21
-    ScrCmd_016 _011E
+    GoTo _011E
     End
 
 _010E:
     ScrCmd_186 1, 11, 21
-    ScrCmd_016 _011E
+    GoTo _011E
     End
 
 _011E:
@@ -105,7 +105,7 @@ _011E:
 
 _017F:
     ScrCmd_02C 4
-    ScrCmd_01B
+    Return
 
 _0184:
     ScrCmd_028 0x4059, 0

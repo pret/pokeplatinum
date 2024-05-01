@@ -47,12 +47,12 @@ _0047:
 
 _006F:
     ScrCmd_02C 3
-    ScrCmd_016 _0085
+    GoTo _0085
     End
 
 _007A:
     ScrCmd_02C 4
-    ScrCmd_016 _0085
+    GoTo _0085
     End
 
 _0085:

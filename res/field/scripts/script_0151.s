@@ -29,22 +29,22 @@ _000A:
 _005F:
     ScrCmd_05E 0, _0144
     ScrCmd_05F
-    ScrCmd_016 _009F
+    GoTo _009F
 
 _006F:
     ScrCmd_05E 0, _0168
     ScrCmd_05F
-    ScrCmd_016 _009F
+    GoTo _009F
 
 _007F:
     ScrCmd_05E 0, _00FC
     ScrCmd_05F
-    ScrCmd_016 _009F
+    GoTo _009F
 
 _008F:
     ScrCmd_05E 0, _0120
     ScrCmd_05F
-    ScrCmd_016 _009F
+    GoTo _009F
 
 _009F:
     ScrCmd_02C 2

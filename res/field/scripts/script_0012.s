@@ -62,15 +62,15 @@ _00A4:
 
 _00B4:
     ScrCmd_028 0x8004, 92
-    ScrCmd_01B
+    Return
 
 _00BC:
     ScrCmd_028 0x8004, 93
-    ScrCmd_01B
+    Return
 
 _00C4:
     ScrCmd_028 0x8004, 94
-    ScrCmd_01B
+    Return
 
 _00CC:
     ScrCmd_049 0x5DC

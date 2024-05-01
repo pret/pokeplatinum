@@ -52,19 +52,19 @@ _00A4:
     ScrCmd_05E 2, _0144
     ScrCmd_05E 0xFF, _0174
     ScrCmd_05F
-    ScrCmd_016 _00E2
+    GoTo _00E2
     End
 
 _00BE:
     ScrCmd_05E 2, _015C
     ScrCmd_05F
-    ScrCmd_016 _00E2
+    GoTo _00E2
     End
 
 _00D0:
     ScrCmd_05E 2, _0168
     ScrCmd_05F
-    ScrCmd_016 _00E2
+    GoTo _00E2
     End
 
 _00E2:

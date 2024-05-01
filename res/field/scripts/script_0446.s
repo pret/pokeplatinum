@@ -22,7 +22,7 @@ _000A:
     ScrCmd_01C 1, _00CF
     ScrCmd_014 0x7FC
     ScrCmd_01E 161
-    ScrCmd_016 _005C
+    GoTo _005C
     End
 
 _005C:
@@ -55,7 +55,7 @@ _0072:
     ScrCmd_01C 1, _00CF
     ScrCmd_014 0x7FC
     ScrCmd_01E 0x116
-    ScrCmd_016 _00C4
+    GoTo _00C4
     End
 
 _00C4:

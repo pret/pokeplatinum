@@ -60,18 +60,18 @@ _0092:
     ScrCmd_05E 2, _0104
     ScrCmd_05E 0xFF, _013C
     ScrCmd_05F
-    ScrCmd_016 _00D2
+    GoTo _00D2
 
 _00AA:
     ScrCmd_05E 2, _0118
     ScrCmd_05E 0xFF, _0148
     ScrCmd_05F
-    ScrCmd_016 _00D2
+    GoTo _00D2
 
 _00C2:
     ScrCmd_05E 2, _0118
     ScrCmd_05F
-    ScrCmd_016 _00D2
+    GoTo _00D2
 
 _00D2:
     ScrCmd_168 0, 0, 6, 9, 77

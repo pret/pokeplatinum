@@ -33,7 +33,7 @@ _0025:
     ScrCmd_063 0
     ScrCmd_269 0, 8, 90, 3, 0
     ScrCmd_062 0
-    ScrCmd_016 _0081
+    GoTo _0081
     End
 
 _0073:

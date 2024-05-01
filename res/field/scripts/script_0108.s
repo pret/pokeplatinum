@@ -74,7 +74,7 @@ _0098:
     ScrCmd_01C 4, _0134
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 4, _013F
-    ScrCmd_016 _014A
+    GoTo _014A
     End
 
 _0108:

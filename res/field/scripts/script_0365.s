@@ -13,10 +13,10 @@
     .long _01F1-.-4
 
 _0024:
-    ScrCmd_016 _0044
+    GoTo _0044
 
 _002A:
-    ScrCmd_016 _0030
+    GoTo _0030
 
 _0030:
     ScrCmd_049 0x5DC

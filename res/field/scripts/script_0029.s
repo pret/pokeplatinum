@@ -133,7 +133,7 @@ _0109:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_028 0x8005, 6
-    ScrCmd_016 _011D
+    GoTo _011D
     End
 
 _011D:
@@ -149,7 +149,7 @@ _011D:
     ScrCmd_01C 1, _0167
     ScrCmd_011 0x8008, 1
     ScrCmd_01C 1, _0188
-    ScrCmd_016 _0161
+    GoTo _0161
     End
 
 _0161:
@@ -169,14 +169,14 @@ _0167:
 
 _0188:
     ScrCmd_02C 14
-    ScrCmd_016 _011D
+    GoTo _011D
     End
 
 _0193:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_028 0x8005, 5
-    ScrCmd_016 _01A7
+    GoTo _01A7
     End
 
 _01A7:
@@ -192,7 +192,7 @@ _01A7:
     ScrCmd_01C 1, _01F1
     ScrCmd_011 0x8008, 1
     ScrCmd_01C 1, _0212
-    ScrCmd_016 _01EB
+    GoTo _01EB
     End
 
 _01EB:
@@ -212,7 +212,7 @@ _01F1:
 
 _0212:
     ScrCmd_02C 12
-    ScrCmd_016 _01A7
+    GoTo _01A7
 
     .byte 2
     .byte 0

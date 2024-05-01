@@ -38,7 +38,7 @@ _004E:
 _0079:
     ScrCmd_01E 0x234
     ScrCmd_01F 0x298
-    ScrCmd_01B
+    Return
 
 _0083:
     ScrCmd_036 5, 1, 0, 0x800C

@@ -59,7 +59,7 @@ _00D8:
     ScrCmd_05E 0xFF, _0138
     ScrCmd_05E 242, _012C
     ScrCmd_05F
-    ScrCmd_016 _00F0
+    GoTo _00F0
 
 _00F0:
     ScrCmd_028 0x4082, 1

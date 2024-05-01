@@ -16,12 +16,12 @@ _000E:
     ScrCmd_075 21, 1
     ScrCmd_028 0x8005, 0
     ScrCmd_028 0x8006, 0
-    ScrCmd_016 _0039
+    GoTo _0039
     End
 
 _0039:
     ScrCmd_02C 1
-    ScrCmd_01A _0119
+    Call _0119
     ScrCmd_011 0x800C, 0xFFFE
     ScrCmd_01C 1, _00D8
     ScrCmd_012 0x800C, 0x4001
@@ -46,7 +46,7 @@ _0039:
     ScrCmd_077
     ScrCmd_049 0x644
     ScrCmd_04B 0x644
-    ScrCmd_016 _0039
+    GoTo _0039
     End
 
 _00D8:
@@ -60,30 +60,30 @@ _00D8:
 _00E5:
     ScrCmd_0D1 0, 0x8000
     ScrCmd_02C 6
-    ScrCmd_016 _0039
+    GoTo _0039
     End
 
 _00F5:
     ScrCmd_02C 5
-    ScrCmd_016 _0039
+    GoTo _0039
     End
 
 _0100:
     ScrCmd_0D1 0, 0x8000
     ScrCmd_02C 2
-    ScrCmd_01B
+    Return
 
 _010A:
     ScrCmd_0D1 0, 0x8000
     ScrCmd_0D3 1, 0x8000
     ScrCmd_02C 3
-    ScrCmd_01B
+    Return
 
 _0119:
     ScrCmd_028 0x8008, 0
     ScrCmd_028 0x8009, 0
     ScrCmd_044 1, 1, 0, 1, 0x800C
-    ScrCmd_016 _0135
+    GoTo _0135
     End
 
 _0135:
@@ -94,13 +94,13 @@ _0135:
     ScrCmd_026 0x8008, 1
     ScrCmd_012 0x8008, 0x4001
     ScrCmd_01C 0, _0135
-    ScrCmd_016 _016C
+    GoTo _016C
     End
 
 _016C:
     ScrCmd_046 169, 0xFF, 0x8008
     ScrCmd_306 0x8005, 0x8006
-    ScrCmd_01B
+    Return
 
 _017C:
     ScrCmd_049 0x5DC
@@ -113,7 +113,7 @@ _017C:
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0250
-    ScrCmd_016 _01CB
+    GoTo _01CB
     End
 
 _01AF:
@@ -121,7 +121,7 @@ _01AF:
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0250
-    ScrCmd_016 _01CB
+    GoTo _01CB
     End
 
 _01CB:
@@ -146,28 +146,28 @@ _01CB:
     ScrCmd_01C 1, _0266
     ScrCmd_2FD 0, 0x8004
     ScrCmd_02C 11
-    ScrCmd_016 _0276
+    GoTo _0276
     End
 
 _0245:
     ScrCmd_02C 14
-    ScrCmd_016 _0276
+    GoTo _0276
     End
 
 _0250:
     ScrCmd_02C 12
-    ScrCmd_016 _0276
+    GoTo _0276
     End
 
 _025B:
     ScrCmd_02C 13
-    ScrCmd_016 _0276
+    GoTo _0276
     End
 
 _0266:
     ScrCmd_2FD 0, 0x8004
     ScrCmd_02C 10
-    ScrCmd_016 _0276
+    GoTo _0276
     End
 
 _0276:

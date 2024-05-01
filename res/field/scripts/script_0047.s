@@ -104,7 +104,7 @@ _0148:
 
 _0160:
     ScrCmd_060
-    ScrCmd_01A _0184
+    Call _0184
     ScrCmd_2B5 33, 58, 0x2CA
     ScrCmd_04E 0x48E
     ScrCmd_04F
@@ -119,10 +119,10 @@ _0184:
     ScrCmd_020 0x158
     ScrCmd_01C 1, _0197
     ScrCmd_028 0x40F8, 0
-    ScrCmd_01B
+    Return
 
 _0197:
     ScrCmd_028 0x40F8, 3
-    ScrCmd_01B
+    Return
 
     .byte 0
