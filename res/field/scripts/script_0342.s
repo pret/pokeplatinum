@@ -16,7 +16,7 @@ _001E:
     ScrCmd_060
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _003E
     GoTo _0074
 
@@ -94,11 +94,11 @@ _00CF:
     ScrCmd_068
     ScrCmd_02C 3
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _010A
     ScrCmd_02C 5
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _010A
     ScrCmd_02C 6
     GoTo _010A

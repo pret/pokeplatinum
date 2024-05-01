@@ -11,7 +11,7 @@ _000E:
     ScrCmd_028 0x4000, 0
     ScrCmd_25B
     ScrCmd_25D 0x4001
-    ScrCmd_011 0x4001, 0
+    CompareVarToValue 0x4001, 0
     ScrCmd_01C 1, _0029
     End
 

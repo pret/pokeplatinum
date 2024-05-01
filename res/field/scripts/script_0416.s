@@ -58,9 +58,9 @@ _009D:
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_1BD 0x8004
-    ScrCmd_011 0x8004, 1
+    CompareVarToValue 0x8004, 1
     ScrCmd_01C 1, _00E6
-    ScrCmd_011 0x8004, 0
+    CompareVarToValue 0x8004, 0
     ScrCmd_01C 1, _00FE
     GoTo _010E
 
@@ -94,14 +94,14 @@ _013A:
     ScrCmd_034
     ScrCmd_0E5 0x34F, 0
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _01D9
     ScrCmd_02C 3
     ScrCmd_034
     ScrCmd_1BD 0x8004
-    ScrCmd_011 0x8004, 1
+    CompareVarToValue 0x8004, 1
     ScrCmd_01C 1, _0185
-    ScrCmd_011 0x8004, 0
+    CompareVarToValue 0x8004, 0
     ScrCmd_01C 1, _019D
     GoTo _01AD
 
@@ -188,13 +188,13 @@ _023C:
     EndMovement
 
 _0248:
-    ScrCmd_011 0x8000, 0
+    CompareVarToValue 0x8000, 0
     ScrCmd_01D 1, _03EC
-    ScrCmd_011 0x8000, 1
+    CompareVarToValue 0x8000, 1
     ScrCmd_01D 1, _03F6
-    ScrCmd_011 0x8000, 2
+    CompareVarToValue 0x8000, 2
     ScrCmd_01D 1, _0400
-    ScrCmd_011 0x8000, 3
+    CompareVarToValue 0x8000, 3
     ScrCmd_01D 1, _040A
     ClearFlag 0x1AD
     ScrCmd_189 0, 1
@@ -204,26 +204,26 @@ _0248:
     ScrCmd_05F
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_011 0x8000, 0
+    CompareVarToValue 0x8000, 0
     ScrCmd_01D 1, _0444
-    ScrCmd_011 0x8000, 1
+    CompareVarToValue 0x8000, 1
     ScrCmd_01D 1, _044E
-    ScrCmd_011 0x8000, 2
+    CompareVarToValue 0x8000, 2
     ScrCmd_01D 1, _0458
-    ScrCmd_011 0x8000, 3
+    CompareVarToValue 0x8000, 3
     ScrCmd_01D 1, _0462
     ClearFlag 0x1D5
     ScrCmd_189 10, 0
     ScrCmd_188 10, 14
     ScrCmd_064 10
     ScrCmd_014 0x7FA
-    ScrCmd_011 0x8000, 0
+    CompareVarToValue 0x8000, 0
     ScrCmd_01D 1, _046C
-    ScrCmd_011 0x8000, 1
+    CompareVarToValue 0x8000, 1
     ScrCmd_01D 1, _0480
-    ScrCmd_011 0x8000, 2
+    CompareVarToValue 0x8000, 2
     ScrCmd_01D 1, _0494
-    ScrCmd_011 0x8000, 3
+    CompareVarToValue 0x8000, 3
     ScrCmd_01D 1, _04A8
     ScrCmd_0CD 0
     ScrCmd_0CE 1
@@ -231,13 +231,13 @@ _0248:
     ScrCmd_05E 10, _0574
     ScrCmd_05F
     ScrCmd_02C 6
-    ScrCmd_011 0x8000, 0
+    CompareVarToValue 0x8000, 0
     ScrCmd_01D 1, _04BC
-    ScrCmd_011 0x8000, 1
+    CompareVarToValue 0x8000, 1
     ScrCmd_01D 1, _04C8
-    ScrCmd_011 0x8000, 2
+    CompareVarToValue 0x8000, 2
     ScrCmd_01D 1, _04D4
-    ScrCmd_011 0x8000, 3
+    CompareVarToValue 0x8000, 3
     ScrCmd_01D 1, _04E0
     ScrCmd_02C 7
     ScrCmd_034
@@ -249,19 +249,19 @@ _0248:
     ScrCmd_014 0x7FB
     ScrCmd_02C 8
     ScrCmd_034
-    ScrCmd_011 0x8000, 0
+    CompareVarToValue 0x8000, 0
     ScrCmd_01D 1, _0414
-    ScrCmd_011 0x8000, 1
+    CompareVarToValue 0x8000, 1
     ScrCmd_01D 1, _0420
-    ScrCmd_011 0x8000, 2
+    CompareVarToValue 0x8000, 2
     ScrCmd_01D 1, _042C
-    ScrCmd_011 0x8000, 3
+    CompareVarToValue 0x8000, 3
     ScrCmd_01D 1, _0438
     ScrCmd_02C 9
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _04EC
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _04F7
     End
 
@@ -528,7 +528,7 @@ _0632:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_07E 0x1C3, 1, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _065A
     ScrCmd_02C 18
     ScrCmd_031
@@ -589,22 +589,22 @@ _06E2:
     ScrCmd_05E 9, _07A8
     ScrCmd_05F
     ScrCmd_069 0x8000, 0x8001
-    ScrCmd_011 0x8001, 0x315
+    CompareVarToValue 0x8001, 0x315
     ScrCmd_01D 1, _075D
-    ScrCmd_011 0x8001, 0x316
+    CompareVarToValue 0x8001, 0x316
     ScrCmd_01D 1, _0769
-    ScrCmd_011 0x8001, 0x317
+    CompareVarToValue 0x8001, 0x317
     ScrCmd_01D 1, _0775
     ScrCmd_05E 9, _07FC
     ScrCmd_05E 0xFF, _0804
     ScrCmd_05F
     ScrCmd_02C 16
     ScrCmd_034
-    ScrCmd_011 0x8001, 0x315
+    CompareVarToValue 0x8001, 0x315
     ScrCmd_01D 1, _0781
-    ScrCmd_011 0x8001, 0x316
+    CompareVarToValue 0x8001, 0x316
     ScrCmd_01D 1, _078D
-    ScrCmd_011 0x8001, 0x317
+    CompareVarToValue 0x8001, 0x317
     ScrCmd_01D 1, _0799
     ScrCmd_061
     End

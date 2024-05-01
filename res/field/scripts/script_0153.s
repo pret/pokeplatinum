@@ -26,14 +26,14 @@ _0037:
 
 _0042:
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _005B
     GoTo _00FE
     End
 
 _005B:
     ScrCmd_177 0x800C
-    ScrCmd_011 0x800C, 6
+    CompareVarToValue 0x800C, 6
     ScrCmd_01C 1, _00F3
     ScrCmd_02C 2
     ScrCmd_04E 0x486
@@ -44,9 +44,9 @@ _005B:
     SetFlag 151
     ScrCmd_02C 4
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00AC
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _00ED
     End
 
@@ -57,7 +57,7 @@ _00AC:
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BB 0x4000, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01D 5, _00E7
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD

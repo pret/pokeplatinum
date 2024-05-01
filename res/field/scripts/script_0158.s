@@ -22,7 +22,7 @@ _0022:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 7, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _0048
     ScrCmd_02C 0
     ScrCmd_031
@@ -42,7 +42,7 @@ _0056:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_15B 7, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _007A
     ScrCmd_02C 2
     ScrCmd_031
@@ -51,7 +51,7 @@ _0056:
     End
 
 _007A:
-    ScrCmd_011 0x40EF, 1
+    CompareVarToValue 0x40EF, 1
     ScrCmd_01C 4, _0098
     ScrCmd_0CD 0
     ScrCmd_0CE 1

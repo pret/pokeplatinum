@@ -14,7 +14,7 @@ _001A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x4086, 3
+    CompareVarToValue 0x4086, 3
     ScrCmd_01C 4, _003D
     ScrCmd_0CD 1
     ScrCmd_02C 1
@@ -24,15 +24,15 @@ _001A:
     End
 
 _003D:
-    ScrCmd_011 0x40CA, 5
+    CompareVarToValue 0x40CA, 5
     ScrCmd_01C 4, _009C
-    ScrCmd_011 0x40CA, 4
+    CompareVarToValue 0x40CA, 4
     ScrCmd_01C 1, _00AA
-    ScrCmd_011 0x40CA, 3
+    CompareVarToValue 0x40CA, 3
     ScrCmd_01C 1, _00BA
-    ScrCmd_011 0x40CA, 2
+    CompareVarToValue 0x40CA, 2
     ScrCmd_01C 1, _00CA
-    ScrCmd_011 0x40CA, 1
+    CompareVarToValue 0x40CA, 1
     ScrCmd_01C 1, _00DD
     ScrCmd_0CE 0
     ScrCmd_02C 2
@@ -103,9 +103,9 @@ _00F9:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x40CB, 2
+    CompareVarToValue 0x40CB, 2
     ScrCmd_01C 4, _0126
-    ScrCmd_011 0x40CB, 1
+    CompareVarToValue 0x40CB, 1
     ScrCmd_01C 1, _0131
     ScrCmd_0CE 0
     GoTo _013C
@@ -134,9 +134,9 @@ _014A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x40E8, 2
+    CompareVarToValue 0x40E8, 2
     ScrCmd_01C 4, _0185
-    ScrCmd_011 0x40E8, 1
+    CompareVarToValue 0x40E8, 1
     ScrCmd_01C 1, _017A
     ScrCmd_0CD 0
     ScrCmd_02C 12
@@ -167,11 +167,11 @@ _01A1:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x40E1, 3
+    CompareVarToValue 0x40E1, 3
     ScrCmd_01C 4, _01F4
-    ScrCmd_011 0x40E1, 2
+    CompareVarToValue 0x40E1, 2
     ScrCmd_01C 1, _01E9
-    ScrCmd_011 0x40E1, 1
+    CompareVarToValue 0x40E1, 1
     ScrCmd_01C 1, _01DE
     ScrCmd_0CD 0
     ScrCmd_02C 42
@@ -206,9 +206,9 @@ _020D:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x40E2, 2
+    CompareVarToValue 0x40E2, 2
     ScrCmd_01C 4, _0248
-    ScrCmd_011 0x40E2, 1
+    CompareVarToValue 0x40E2, 1
     ScrCmd_01C 1, _023D
     ScrCmd_0CD 0
     ScrCmd_02C 19
@@ -240,7 +240,7 @@ _0266:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x40E4, 1
+    CompareVarToValue 0x40E4, 1
     ScrCmd_01C 4, _0289
     ScrCmd_0CD 0
     ScrCmd_02C 38

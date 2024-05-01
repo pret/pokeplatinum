@@ -11,7 +11,7 @@
 _0012:
     SetFlag 0x9C2
     SetFlag 0x2C8
-    ScrCmd_011 0x4056, 1
+    CompareVarToValue 0x4056, 1
     ScrCmd_01D 1, _0029
     End
 
@@ -53,17 +53,17 @@ _0073:
     ScrCmd_028 0x8004, 0x12A
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0114
     ScrCmd_014 0x7FC
     ScrCmd_02C 5
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8005, 3
+    CompareVarToValue 0x8005, 3
     ScrCmd_01C 1, _00CC
-    ScrCmd_011 0x8005, 4
+    CompareVarToValue 0x8005, 4
     ScrCmd_01C 1, _00DE
-    ScrCmd_011 0x8005, 5
+    CompareVarToValue 0x8005, 5
     ScrCmd_01C 1, _00F0
     End
 

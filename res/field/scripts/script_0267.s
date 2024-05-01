@@ -11,7 +11,7 @@ _000A:
     CheckFlag 0x964
     ScrCmd_01C 0, _002F
     ScrCmd_22D 2, 0x4000
-    ScrCmd_011 0x4000, 0
+    CompareVarToValue 0x4000, 0
     ScrCmd_01C 1, _002F
     SetFlag 0x27E
 _002F:

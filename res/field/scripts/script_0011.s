@@ -36,7 +36,7 @@ _003F:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x40F2, 0
+    CompareVarToValue 0x40F2, 0
     ScrCmd_01C 5, _0257
     CheckFlag 0xAB3
     ScrCmd_01C 1, _00A0
@@ -44,14 +44,14 @@ _003F:
     ScrCmd_01C 1, _0084
     ScrCmd_02C 1
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00B6
     GoTo _00AB
 
 _0084:
     ScrCmd_02C 18
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00B6
     GoTo _00AB
     End
@@ -77,9 +77,9 @@ _00B6:
     ScrCmd_280 0, 0x8000, 2, 5
     ScrCmd_02C 5
     ScrCmd_24F 0x8001, 0x8002, 0x8003, 0x8000
-    ScrCmd_011 0x8002, 0
+    CompareVarToValue 0x8002, 0
     ScrCmd_01C 1, _00F5
-    ScrCmd_011 0x8003, 0
+    CompareVarToValue 0x8003, 0
     ScrCmd_01C 1, _0100
     GoTo _010E
 
@@ -102,15 +102,15 @@ _010E:
 
 _011C:
     ScrCmd_029 0x8008, 0x8002
-    ScrCmd_011 0x8008, 1
+    CompareVarToValue 0x8008, 1
     ScrCmd_01C 1, _0165
-    ScrCmd_011 0x8008, 2
+    CompareVarToValue 0x8008, 2
     ScrCmd_01C 1, _0170
-    ScrCmd_011 0x8008, 3
+    CompareVarToValue 0x8008, 3
     ScrCmd_01C 1, _0179
-    ScrCmd_011 0x8008, 4
+    CompareVarToValue 0x8008, 4
     ScrCmd_01C 1, _0182
-    ScrCmd_011 0x8008, 5
+    CompareVarToValue 0x8008, 5
     ScrCmd_01C 1, _018B
     End
 
@@ -137,15 +137,15 @@ _018B:
 
 _0194:
     ScrCmd_029 0x8008, 0x8002
-    ScrCmd_011 0x8008, 1
+    CompareVarToValue 0x8008, 1
     ScrCmd_01C 1, _01DD
-    ScrCmd_011 0x8008, 2
+    CompareVarToValue 0x8008, 2
     ScrCmd_01C 1, _01EB
-    ScrCmd_011 0x8008, 3
+    CompareVarToValue 0x8008, 3
     ScrCmd_01C 1, _01F7
-    ScrCmd_011 0x8008, 4
+    CompareVarToValue 0x8008, 4
     ScrCmd_01C 1, _0203
-    ScrCmd_011 0x8008, 5
+    CompareVarToValue 0x8008, 5
     ScrCmd_01C 1, _020F
     End
 
@@ -174,7 +174,7 @@ _021B:
     ScrCmd_029 0x8004, 0x8003
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0246
     ScrCmd_014 0x7FC
     GoTo _0269

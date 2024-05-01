@@ -9,23 +9,23 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_011 0x40DB, 0
+    CompareVarToValue 0x40DB, 0
     ScrCmd_01D 5, _008A
     ScrCmd_1DD 43, 0, 0x400A
     Call _008E
-    ScrCmd_011 0x400A, 2
+    CompareVarToValue 0x400A, 2
     ScrCmd_01D 1, _009E
-    ScrCmd_011 0x400A, 3
+    CompareVarToValue 0x400A, 3
     ScrCmd_01D 1, _009E
-    ScrCmd_011 0x400A, 0
+    CompareVarToValue 0x400A, 0
     ScrCmd_01D 1, _008E
-    ScrCmd_011 0x400A, 1
+    CompareVarToValue 0x400A, 1
     ScrCmd_01D 1, _008E
-    ScrCmd_011 0x400A, 4
+    CompareVarToValue 0x400A, 4
     ScrCmd_01D 1, _0096
-    ScrCmd_011 0x400A, 5
+    CompareVarToValue 0x400A, 5
     ScrCmd_01D 1, _0096
-    ScrCmd_011 0x400A, 6
+    CompareVarToValue 0x400A, 6
     ScrCmd_01D 1, _0096
     End
 
@@ -49,9 +49,9 @@ _00A6:
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_1DD 43, 0, 0x800C
-    ScrCmd_011 0x800C, 4
+    CompareVarToValue 0x800C, 4
     ScrCmd_01C 1, _01F8
-    ScrCmd_011 0x800C, 5
+    CompareVarToValue 0x800C, 5
     ScrCmd_01C 1, _01F8
     ScrCmd_1F8
     ScrCmd_2C4 5

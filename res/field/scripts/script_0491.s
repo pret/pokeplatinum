@@ -9,12 +9,12 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_011 0x406B, 0x122
+    CompareVarToValue 0x406B, 0x122
     ScrCmd_01D 5, _003F
     ScrCmd_32B 0x4001
-    ScrCmd_011 0x4001, 0
+    CompareVarToValue 0x4001, 0
     ScrCmd_01C 1, _0067
-    ScrCmd_011 0x4001, 1
+    CompareVarToValue 0x4001, 1
     ScrCmd_01C 1, _0071
     End
 
@@ -24,9 +24,9 @@ _003F:
 
 _0047:
     ScrCmd_32B 0x4001
-    ScrCmd_011 0x4001, 0
+    CompareVarToValue 0x4001, 0
     ScrCmd_01C 1, _0067
-    ScrCmd_011 0x4001, 1
+    CompareVarToValue 0x4001, 1
     ScrCmd_01C 1, _0071
     End
 

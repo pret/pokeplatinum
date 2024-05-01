@@ -12,9 +12,9 @@ _0006:
     ScrCmd_05F
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_011 0x8005, 12
+    CompareVarToValue 0x8005, 12
     ScrCmd_01D 1, _01AD
-    ScrCmd_011 0x8005, 13
+    CompareVarToValue 0x8005, 13
     ScrCmd_01D 1, _01C1
     ScrCmd_066 0x8004, 0x8005
     ScrCmd_0BC 6, 3, 0, 0

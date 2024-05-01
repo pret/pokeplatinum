@@ -34,13 +34,13 @@ _0034:
     CheckFlag 193
     ScrCmd_01C 1, _00A1
     ScrCmd_1C0 0x800C, 74
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0096
     ScrCmd_02C 3
     ScrCmd_028 0x8004, 14
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _008C
     SetFlag 193
     ScrCmd_014 0x7E0

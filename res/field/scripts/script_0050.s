@@ -54,7 +54,7 @@ _0090:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 0, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _00C1
     CheckFlag 122
     ScrCmd_01C 1, _00CC
@@ -84,11 +84,11 @@ _00D7:
     ScrCmd_188 3, 16
     ScrCmd_189 3, 2
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8005, 0x2EC
+    CompareVarToValue 0x8005, 0x2EC
     ScrCmd_01C 1, _011E
-    ScrCmd_011 0x8005, 0x2ED
+    CompareVarToValue 0x8005, 0x2ED
     ScrCmd_01C 1, _0144
-    ScrCmd_011 0x8005, 0x2EE
+    CompareVarToValue 0x8005, 0x2EE
     ScrCmd_01C 1, _016A
     GoTo _0190
     End
@@ -146,11 +146,11 @@ _01B6:
     ScrCmd_02C 5
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8005, 0x2EC
+    CompareVarToValue 0x8005, 0x2EC
     ScrCmd_01C 1, _021F
-    ScrCmd_011 0x8005, 0x2ED
+    CompareVarToValue 0x8005, 0x2ED
     ScrCmd_01C 1, _0239
-    ScrCmd_011 0x8005, 0x2EE
+    CompareVarToValue 0x8005, 0x2EE
     ScrCmd_01C 1, _0253
     GoTo _026D
     End
@@ -301,7 +301,7 @@ _0376:
     ScrCmd_028 0x8004, 26
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _03C8
     ScrCmd_014 0x7FC
     SetFlag 0x109
@@ -344,11 +344,11 @@ _03E5:
 _03F8:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8005, 0x2EC
+    CompareVarToValue 0x8005, 0x2EC
     ScrCmd_01C 1, _042F
-    ScrCmd_011 0x8005, 0x2ED
+    CompareVarToValue 0x8005, 0x2ED
     ScrCmd_01C 1, _0449
-    ScrCmd_011 0x8005, 0x2EE
+    CompareVarToValue 0x8005, 0x2EE
     ScrCmd_01C 1, _0463
     GoTo _047D
     End
@@ -386,13 +386,13 @@ _0497:
     ScrCmd_034
     ScrCmd_014 0x800
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8005, 0x2EC
+    CompareVarToValue 0x8005, 0x2EC
     ScrCmd_01C 1, _04DC
-    ScrCmd_011 0x8005, 0x2ED
+    CompareVarToValue 0x8005, 0x2ED
     ScrCmd_01C 1, _04F6
-    ScrCmd_011 0x8005, 0x2EE
+    CompareVarToValue 0x8005, 0x2EE
     ScrCmd_01C 1, _0510
-    ScrCmd_011 0x8005, 0x2EF
+    CompareVarToValue 0x8005, 0x2EF
     ScrCmd_01C 1, _052A
     End
 

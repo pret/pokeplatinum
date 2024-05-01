@@ -24,7 +24,7 @@ _0025:
     CheckFlag 0x11A
     ScrCmd_01C 1, _0081
     ScrCmd_26B 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0073
     SetFlag 0x11A
     ScrCmd_0CD 0
@@ -53,10 +53,10 @@ _0081:
     ScrCmd_2BD 0x1E6, 1
     ClearFlag 142
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00D1
     ScrCmd_2BC 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _00C6
     SetFlag 0x11B
     ScrCmd_061

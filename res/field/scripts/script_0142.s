@@ -87,11 +87,11 @@ _00A9:
     CheckFlag 0x129
     ScrCmd_01C 1, _0109
     ScrCmd_0DE 0x800C
-    ScrCmd_011 0x800C, 0x183
+    CompareVarToValue 0x800C, 0x183
     ScrCmd_01D 1, _0119
-    ScrCmd_011 0x800C, 0x186
+    CompareVarToValue 0x800C, 0x186
     ScrCmd_01D 1, _0121
-    ScrCmd_011 0x800C, 0x189
+    CompareVarToValue 0x800C, 0x189
     ScrCmd_01D 1, _0129
     ScrCmd_029 0x4107, 0x8004
     ScrCmd_343 0, 0x8004

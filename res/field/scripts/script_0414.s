@@ -41,17 +41,17 @@ _0066:
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8004, 80
+    CompareVarToValue 0x8004, 80
     ScrCmd_01C 1, _00D8
-    ScrCmd_011 0x8004, 81
+    CompareVarToValue 0x8004, 81
     ScrCmd_01C 1, _00D8
-    ScrCmd_011 0x8004, 82
+    CompareVarToValue 0x8004, 82
     ScrCmd_01C 1, _00D8
-    ScrCmd_011 0x8004, 83
+    CompareVarToValue 0x8004, 83
     ScrCmd_01C 1, _00D8
-    ScrCmd_011 0x8004, 84
+    CompareVarToValue 0x8004, 84
     ScrCmd_01C 1, _00D8
-    ScrCmd_011 0x8004, 85
+    CompareVarToValue 0x8004, 85
     ScrCmd_01C 1, _00D8
     End
 

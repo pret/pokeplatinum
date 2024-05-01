@@ -22,7 +22,7 @@ _001D:
     ScrCmd_068
     ScrCmd_02C 1
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _0044
     ScrCmd_02C 2
     GoTo _004F

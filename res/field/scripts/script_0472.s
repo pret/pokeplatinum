@@ -12,7 +12,7 @@ _0006:
     CheckFlag 222
     ScrCmd_01C 1, _0039
     ScrCmd_07E 0x1AB, 1, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _0044
     ScrCmd_02C 0
     ScrCmd_031
@@ -32,7 +32,7 @@ _0044:
     ScrCmd_028 0x8004, 0x12E
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0076
     ScrCmd_014 0x7FC
     SetFlag 222

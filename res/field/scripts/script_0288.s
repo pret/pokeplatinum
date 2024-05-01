@@ -71,7 +71,7 @@ _00C0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x40AA, 3
+    CompareVarToValue 0x40AA, 3
     ScrCmd_01C 4, _00E0
     ScrCmd_02C 3
     GoTo _00EB

@@ -23,7 +23,7 @@ _000A:
     CheckFlag 214
     ScrCmd_01D 1, _00A8
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00CC
     SetFlag 178
     ScrCmd_049 0x61A

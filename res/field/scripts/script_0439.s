@@ -51,7 +51,7 @@ _0070:
     ScrCmd_028 0x8004, 111
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00C0
     SetFlag 0x13F
     ScrCmd_014 0x7E0

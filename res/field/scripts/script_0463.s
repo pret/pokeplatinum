@@ -11,11 +11,11 @@ _0006:
     ScrCmd_068
     ScrCmd_02C 0
     ScrCmd_1B7 0x800C, 4
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0044
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _004F
-    ScrCmd_011 0x800C, 2
+    CompareVarToValue 0x800C, 2
     ScrCmd_01C 1, _005A
     GoTo _0065
 

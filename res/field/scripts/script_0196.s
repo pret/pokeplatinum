@@ -25,7 +25,7 @@ _000E:
     CheckFlag 214
     ScrCmd_01D 1, _00FD
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0121
     ScrCmd_02C 1
     SetFlag 180

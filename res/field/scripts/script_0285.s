@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    ScrCmd_011 0x4094, 2
+    CompareVarToValue 0x4094, 2
     ScrCmd_01C 0, _0029
     End
 
@@ -136,7 +136,7 @@ _0154:
     ScrCmd_162
     ScrCmd_06D 14, 15
     ScrCmd_1BD 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0177
     GoTo _0191
     End

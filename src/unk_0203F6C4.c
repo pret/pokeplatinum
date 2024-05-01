@@ -253,15 +253,15 @@ static BOOL ScrCmd_007(ScriptContext * param0);
 static BOOL ScrCmd_008(ScriptContext * param0);
 static BOOL ScrCmd_009(ScriptContext * param0);
 static BOOL ScrCmd_00A(ScriptContext * param0);
-static BOOL sub_0203F808(u16 param0, u16 param1);
+static BOOL Compare(u16 value0, u16 value1);
 static BOOL ScrCmd_00B(ScriptContext * param0);
 static BOOL ScrCmd_00C(ScriptContext * param0);
 static BOOL ScrCmd_00D(ScriptContext * param0);
 static BOOL ScrCmd_00E(ScriptContext * param0);
 static BOOL ScrCmd_00F(ScriptContext * param0);
 static BOOL ScrCmd_010(ScriptContext * param0);
-static BOOL ScrCmd_011(ScriptContext * param0);
-static BOOL ScrCmd_012(ScriptContext * param0);
+static BOOL ScrCmd_CompareVarToValue(ScriptContext * ctx);
+static BOOL ScrCmd_CompareVarToVar(ScriptContext * ctx);
 static BOOL ScrCmd_013(ScriptContext * param0);
 static BOOL ScrCmd_014(ScriptContext * param0);
 static BOOL sub_0203F9EC(ScriptContext * param0);
@@ -788,8 +788,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_00E,
     ScrCmd_00F,
     ScrCmd_010,
-    ScrCmd_011,
-    ScrCmd_012,
+    ScrCmd_CompareVarToValue,
+    ScrCmd_CompareVarToVar,
     ScrCmd_013,
     ScrCmd_014,
     ScrCmd_015,
@@ -1745,15 +1745,15 @@ static BOOL ScrCmd_00A (ScriptContext * param0)
     return 0;
 }
 
-static BOOL sub_0203F808 (u16 param0, u16 param1)
+static BOOL Compare (u16 value0, u16 value1)
 {
-    if (param0 < param1) {
+    if (value0 < value1) {
         return 0;
-    } else if (param0 == param1) {
+    } else if (value0 == value1) {
         return 1;
+    } else {
+        return 2;
     }
-
-    return 2;
 }
 
 static BOOL ScrCmd_00B (ScriptContext * param0)
@@ -1762,7 +1762,7 @@ static BOOL ScrCmd_00B (ScriptContext * param0)
 
     v0 = param0->data[ScriptContext_ReadByte(param0)];
     v1 = param0->data[ScriptContext_ReadByte(param0)];
-    param0->comparisonResult = sub_0203F808(v0, v1);
+    param0->comparisonResult = Compare(v0, v1);
 
     return 0;
 }
@@ -1773,7 +1773,7 @@ static BOOL ScrCmd_00C (ScriptContext * param0)
 
     v0 = param0->data[ScriptContext_ReadByte(param0)];
     v1 = ScriptContext_ReadByte(param0);
-    param0->comparisonResult = sub_0203F808(v0, v1);
+    param0->comparisonResult = Compare(v0, v1);
 
     return 0;
 }
@@ -1784,7 +1784,7 @@ static BOOL ScrCmd_00D (ScriptContext * param0)
 
     v0 = param0->data[ScriptContext_ReadByte(param0)];
     v1 = *(u8 *)ScriptContext_ReadWord(param0);
-    param0->comparisonResult = sub_0203F808(v0, v1);
+    param0->comparisonResult = Compare(v0, v1);
 
     return 0;
 }
@@ -1795,7 +1795,7 @@ static BOOL ScrCmd_00E (ScriptContext * param0)
 
     v0 = *(u8 *)ScriptContext_ReadWord(param0);
     v1 = param0->data[ScriptContext_ReadByte(param0)];
-    param0->comparisonResult = sub_0203F808(v0, v1);
+    param0->comparisonResult = Compare(v0, v1);
 
     return 0;
 }
@@ -1806,7 +1806,7 @@ static BOOL ScrCmd_00F (ScriptContext * param0)
 
     v0 = *(u8 *)ScriptContext_ReadWord(param0);
     v1 = ScriptContext_ReadByte(param0);
-    param0->comparisonResult = sub_0203F808(v0, v1);
+    param0->comparisonResult = Compare(v0, v1);
 
     return 0;
 }
@@ -1817,34 +1817,25 @@ static BOOL ScrCmd_010 (ScriptContext * param0)
 
     v0 = *(u8 *)ScriptContext_ReadWord(param0);
     v1 = *(u8 *)ScriptContext_ReadWord(param0);
-    param0->comparisonResult = sub_0203F808(v0, v1);
+    param0->comparisonResult = Compare(v0, v1);
 
     return 0;
 }
 
-static BOOL ScrCmd_011 (ScriptContext * param0)
+static BOOL ScrCmd_CompareVarToValue (ScriptContext * ctx)
 {
-    u16 * v0;
-    u16 v1, v2;
-
-    v0 = ScriptContext_GetVarPointer(param0);
-    v1 = *v0;
-    v2 = ScriptContext_ReadHalfWord(param0);
-
-    param0->comparisonResult = sub_0203F808(v1, v2);
-    return 0;
+    u16 value0 = *ScriptContext_GetVarPointer(ctx);
+    u16 value1 = ScriptContext_ReadHalfWord(ctx);
+    ctx->comparisonResult = Compare(value0, value1);
+    return FALSE;
 }
 
-static BOOL ScrCmd_012 (ScriptContext * param0)
+static BOOL ScrCmd_CompareVarToVar (ScriptContext * ctx)
 {
-    u16 * v0;
-    u16 * v1;
-
-    v0 = ScriptContext_GetVarPointer(param0);
-    v1 = ScriptContext_GetVarPointer(param0);
-    param0->comparisonResult = sub_0203F808(*v0, *v1);
-
-    return 0;
+    u16 * pointer0 = ScriptContext_GetVarPointer(ctx);
+    u16 * pointer1 = ScriptContext_GetVarPointer(ctx);
+    ctx->comparisonResult = Compare(*pointer0, *pointer1);
+    return FALSE;
 }
 
 static BOOL ScrCmd_013 (ScriptContext * param0)

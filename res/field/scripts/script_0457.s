@@ -14,15 +14,15 @@
 
 _0022:
     ScrCmd_1B6 0x4000
-    ScrCmd_011 0x4000, 0
+    CompareVarToValue 0x4000, 0
     ScrCmd_01C 1, _0069
-    ScrCmd_011 0x4000, 1
+    CompareVarToValue 0x4000, 1
     ScrCmd_01C 1, _0069
-    ScrCmd_011 0x4000, 2
+    CompareVarToValue 0x4000, 2
     ScrCmd_01C 1, _0069
-    ScrCmd_011 0x4000, 3
+    CompareVarToValue 0x4000, 3
     ScrCmd_01C 1, _0073
-    ScrCmd_011 0x4000, 4
+    CompareVarToValue 0x4000, 4
     ScrCmd_01C 1, _0073
     End
 

@@ -60,18 +60,18 @@ _007D:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_011 0x4002, 1
+    CompareVarToValue 0x4002, 1
     ScrCmd_01C 1, _00F4
     ScrCmd_134 5, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00D9
     ScrCmd_247 0x8000
     ScrCmd_0D0 0, 0x8000
     ScrCmd_02C 6
     ScrCmd_1B9 0x800C, 0x8000
-    ScrCmd_011 0x800C, 120
+    CompareVarToValue 0x800C, 120
     ScrCmd_01C 4, _00FF
-    ScrCmd_011 0x800C, 70
+    CompareVarToValue 0x800C, 70
     ScrCmd_01C 4, _010A
     GoTo _0115
     End

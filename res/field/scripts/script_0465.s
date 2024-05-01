@@ -11,7 +11,7 @@ _000A:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_134 14, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 5, _003A
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 14
@@ -33,7 +33,7 @@ _0045:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_134 14, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 5, _0071
     GoTo _0066
 

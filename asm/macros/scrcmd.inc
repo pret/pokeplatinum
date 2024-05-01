@@ -98,16 +98,16 @@
     .long \arg1
     .endm
 
-    .macro ScrCmd_011 arg0, arg1
+    .macro CompareVarToValue varID, value
     .short 17
-    .short \arg0
-    .short \arg1
+    .short \varID
+    .short \value
     .endm
 
-    .macro ScrCmd_012 arg0, arg1
+    .macro CompareVarToVar varID0, varID1
     .short 18
-    .short \arg0
-    .short \arg1
+    .short \varID0
+    .short \varID1
     .endm
 
     .macro ScrCmd_013 arg0

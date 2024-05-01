@@ -18,7 +18,7 @@ _000C:
     ScrCmd_209
     ScrCmd_04C 0x1E8, 0
     ScrCmd_1BD 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01D 1, _007E
     ScrCmd_063 0
     ScrCmd_26A 0, 6, 8
@@ -26,7 +26,7 @@ _000C:
     SetFlag 0x24F
     ScrCmd_065 0
     ScrCmd_21C 1
-    ScrCmd_011 0x4058, 3
+    CompareVarToValue 0x4058, 3
     ScrCmd_01C 1, _0074
     ClearFlag 0x452
     ScrCmd_064 1

@@ -28,7 +28,7 @@ _0031:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 7, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _0057
     ScrCmd_02C 1
     ScrCmd_031

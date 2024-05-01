@@ -62,16 +62,16 @@ _0078:
     ScrCmd_043
     ScrCmd_029 0x8004, 0x800C
     ScrCmd_029 0x8008, 0x800C
-    ScrCmd_011 0x8008, 4
+    CompareVarToValue 0x8008, 4
     ScrCmd_01C 1, _00E9
-    ScrCmd_011 0x8008, 0xFFFE
+    CompareVarToValue 0x8008, 0xFFFE
     ScrCmd_01C 1, _00E9
     ScrCmd_155 0x8004, 0x8005
     ScrCmd_344 0, 0x8005
     ScrCmd_346 0
     ScrCmd_02C 4
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00F4
     GoTo _0078
 

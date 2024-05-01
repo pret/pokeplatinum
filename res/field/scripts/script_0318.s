@@ -23,7 +23,7 @@ _002B:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_0C8 0
-    ScrCmd_011 0x4091, 1
+    CompareVarToValue 0x4091, 1
     ScrCmd_01C 4, _0095
     ScrCmd_0CD 0
     CheckFlag 224
@@ -54,9 +54,9 @@ _0090:
     Return
 
 _0095:
-    ScrCmd_011 0x40E2, 2
+    CompareVarToValue 0x40E2, 2
     ScrCmd_01C 4, _00C4
-    ScrCmd_011 0x40E2, 1
+    CompareVarToValue 0x40E2, 1
     ScrCmd_01C 1, _00BB
     ScrCmd_0CD 0
     ScrCmd_02C 9
@@ -89,7 +89,7 @@ _00E2:
     ScrCmd_162
     ScrCmd_06D 4, 16
     ScrCmd_1BD 0x800C
-    ScrCmd_011 0x800C, 2
+    CompareVarToValue 0x800C, 2
     ScrCmd_01C 1, _0103
     GoTo _011B
 
@@ -110,7 +110,7 @@ _0133:
     ScrCmd_02C 5
     ScrCmd_034
     ScrCmd_1BD 0x800C
-    ScrCmd_011 0x800C, 3
+    CompareVarToValue 0x800C, 3
     ScrCmd_01C 1, _0152
     GoTo _016A
 

@@ -16,14 +16,14 @@ _000A:
     ScrCmd_028 0x8004, 92
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0084
     ScrCmd_014 0x7FC
     SetFlag 218
     ScrCmd_028 0x8004, 92
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0079
     ScrCmd_02C 1
     ScrCmd_014 0x7FC

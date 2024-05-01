@@ -8,7 +8,7 @@
 
 _000A:
     ScrCmd_238 10, 0x4000
-    ScrCmd_011 0x4000, 0
+    CompareVarToValue 0x4000, 0
     ScrCmd_01C 1, _0023
     ClearFlag 0x216
     End

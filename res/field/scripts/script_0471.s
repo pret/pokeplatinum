@@ -40,9 +40,9 @@ _004D:
     ClearFlag 0x297
     ScrCmd_064 15
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8004, 0x12E
+    CompareVarToValue 0x8004, 0x12E
     ScrCmd_01D 1, _00CA
-    ScrCmd_011 0x8004, 0x12F
+    CompareVarToValue 0x8004, 0x12F
     ScrCmd_01D 1, _00D6
     ScrCmd_0CD 0
     ScrCmd_02C 0
@@ -54,9 +54,9 @@ _004D:
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8004, 0x12E
+    CompareVarToValue 0x8004, 0x12E
     ScrCmd_01D 1, _00E2
-    ScrCmd_011 0x8004, 0x12F
+    CompareVarToValue 0x8004, 0x12F
     ScrCmd_01D 1, _00F6
     ScrCmd_065 15
     ScrCmd_028 0x40A8, 1

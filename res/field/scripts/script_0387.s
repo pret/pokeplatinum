@@ -17,7 +17,7 @@ _0022:
     End
 
 _0026:
-    ScrCmd_011 0x4055, 7
+    CompareVarToValue 0x4055, 7
     ScrCmd_01C 1, _0080
     CheckFlag 0x9AD
     ScrCmd_01C 1, _0051

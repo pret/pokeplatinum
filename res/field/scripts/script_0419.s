@@ -12,12 +12,12 @@ _0006:
     CheckFlag 1
     ScrCmd_01C 1, _00D3
     ScrCmd_1E8 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _004C
     CheckFlag 171
     ScrCmd_01C 0, _0057
     ScrCmd_1E9 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0057
     GoTo _0095
 

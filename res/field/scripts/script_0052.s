@@ -12,14 +12,14 @@ _000E:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 0, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _0103
     ScrCmd_1CD 9, 47, 0, 0, 0
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_0E5 246, 0
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0119
     ScrCmd_02C 1
     ScrCmd_0CD 0
@@ -50,7 +50,7 @@ _00BB:
     ScrCmd_028 0x8004, 0x193
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _00F9
     ScrCmd_014 0x7FC
     SetFlag 117
@@ -87,7 +87,7 @@ _011F:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 0, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _0145
     ScrCmd_02C 6
     ScrCmd_031
@@ -107,7 +107,7 @@ _0153:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_15B 0, 0x800C
-    ScrCmd_011 0x800C, 1
+    CompareVarToValue 0x800C, 1
     ScrCmd_01C 1, _017D
     ScrCmd_0CE 0
     ScrCmd_0CE 1

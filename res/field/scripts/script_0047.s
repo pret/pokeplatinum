@@ -20,19 +20,19 @@ _001F:
 
 _002C:
     ScrCmd_22D 2, 0x4000
-    ScrCmd_011 0x4000, 1
+    CompareVarToValue 0x4000, 1
     ScrCmd_01C 1, _0040
     End
 
 _0040:
     ScrCmd_07E 0x1C6, 1, 0x4000
-    ScrCmd_011 0x4000, 1
+    CompareVarToValue 0x4000, 1
     ScrCmd_01C 1, _0057
     End
 
 _0057:
     ScrCmd_28B 0, 0x4000
-    ScrCmd_011 0x4000, 1
+    CompareVarToValue 0x4000, 1
     ScrCmd_01C 1, _006B
     End
 
@@ -42,7 +42,7 @@ _006B:
     End
 
 _0078:
-    ScrCmd_011 0x40F8, 2
+    CompareVarToValue 0x40F8, 2
     ScrCmd_01C 4, _0091
     ClearFlag 0x241
     ScrCmd_028 0x40F8, 1

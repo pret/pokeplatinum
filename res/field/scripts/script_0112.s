@@ -22,24 +22,24 @@ _001D:
     ScrCmd_05F
     ScrCmd_014 0x7FA
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8005, 5
+    CompareVarToValue 0x8005, 5
     ScrCmd_01D 1, _014E
-    ScrCmd_011 0x8005, 6
+    CompareVarToValue 0x8005, 6
     ScrCmd_01D 1, _015A
-    ScrCmd_011 0x8005, 7
+    CompareVarToValue 0x8005, 7
     ScrCmd_01D 1, _0166
-    ScrCmd_011 0x8005, 8
+    CompareVarToValue 0x8005, 8
     ScrCmd_01D 1, _0172
-    ScrCmd_011 0x8005, 9
+    CompareVarToValue 0x8005, 9
     ScrCmd_01D 1, _017E
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_0DE 0x800C
-    ScrCmd_011 0x800C, 0x183
+    CompareVarToValue 0x800C, 0x183
     ScrCmd_01C 1, _00B3
-    ScrCmd_011 0x800C, 0x186
+    CompareVarToValue 0x800C, 0x186
     ScrCmd_01C 1, _00C1
     GoTo _00A5
     End
@@ -61,22 +61,22 @@ _00C1:
 
 _00CF:
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
+    CompareVarToValue 0x800C, 0
     ScrCmd_01C 1, _0148
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 2
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_011 0x8005, 5
+    CompareVarToValue 0x8005, 5
     ScrCmd_01D 1, _018A
-    ScrCmd_011 0x8005, 6
+    CompareVarToValue 0x8005, 6
     ScrCmd_01D 1, _0196
-    ScrCmd_011 0x8005, 7
+    CompareVarToValue 0x8005, 7
     ScrCmd_01D 1, _01A2
-    ScrCmd_011 0x8005, 8
+    CompareVarToValue 0x8005, 8
     ScrCmd_01D 1, _01AE
-    ScrCmd_011 0x8005, 9
+    CompareVarToValue 0x8005, 9
     ScrCmd_01D 1, _01BA
     ScrCmd_049 0x603
     ScrCmd_065 1

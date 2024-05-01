@@ -11,7 +11,7 @@ _000E:
     End
 
 _0010:
-    ScrCmd_011 0x40DC, 0
+    CompareVarToValue 0x40DC, 0
     ScrCmd_01D 5, _001F
     End
 
@@ -24,11 +24,11 @@ _0025:
     Call _008E
     ScrCmd_1B7 0x800C, 4
     ScrCmd_029 0x8008, 0x800C
-    ScrCmd_011 0x8008, 1
+    CompareVarToValue 0x8008, 1
     ScrCmd_01C 1, _00F0
-    ScrCmd_011 0x8008, 2
+    CompareVarToValue 0x8008, 2
     ScrCmd_01C 1, _010A
-    ScrCmd_011 0x8008, 3
+    CompareVarToValue 0x8008, 3
     ScrCmd_01C 1, _0124
     GoTo _00D6
 

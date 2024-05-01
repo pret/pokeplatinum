@@ -10,11 +10,11 @@
 
 _0012:
     ScrCmd_284 0x4000
-    ScrCmd_011 0x4000, 26
+    CompareVarToValue 0x4000, 26
     ScrCmd_01C 4, _003F
-    ScrCmd_011 0x4000, 10
+    CompareVarToValue 0x4000, 10
     ScrCmd_01C 4, _0051
-    ScrCmd_011 0x4000, 10
+    CompareVarToValue 0x4000, 10
     ScrCmd_01C 0, _0063
     End
 
@@ -35,11 +35,11 @@ _0063:
 
 _0075:
     ScrCmd_284 0x4000
-    ScrCmd_011 0x4000, 26
+    CompareVarToValue 0x4000, 26
     ScrCmd_01C 4, _003F
-    ScrCmd_011 0x4000, 10
+    CompareVarToValue 0x4000, 10
     ScrCmd_01C 4, _0051
-    ScrCmd_011 0x4000, 10
+    CompareVarToValue 0x4000, 10
     ScrCmd_01C 0, _0063
     End
 
