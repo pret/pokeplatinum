@@ -7,7 +7,7 @@
 
 #include "unk_0204E378.h"
 
-BOOL sub_0204E378 (ScriptContext * param0)
+BOOL ScrCmd_2A6 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 * v1 = ScriptContext_GetVarPointer(param0);

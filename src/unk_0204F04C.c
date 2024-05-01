@@ -11,9 +11,9 @@
 #include "unk_0204F04C.h"
 #include "unk_0205DFC4.h"
 
-BOOL sub_0204F04C(ScriptContext * param0);
+BOOL ScrCmd_2C5(ScriptContext * param0);
 
-BOOL sub_0204F04C (ScriptContext * param0)
+BOOL ScrCmd_2C5 (ScriptContext * param0)
 {
     u32 v0;
     u8 v1[4];

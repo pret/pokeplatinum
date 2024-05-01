@@ -25,7 +25,7 @@
 #include "unk_020797C8.h"
 #include "unk_02092494.h"
 
-BOOL sub_0204C500 (ScriptContext * param0)
+BOOL ScrCmd_253 (ScriptContext * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
     u16 v1 = ScriptContext_GetVar(param0);
@@ -43,7 +43,7 @@ BOOL sub_0204C500 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C554 (ScriptContext * param0)
+BOOL ScrCmd_254 (ScriptContext * param0)
 {
     PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSys->saveData);
     Pokemon * v1 = Pokemon_New(32);
@@ -59,7 +59,7 @@ BOOL sub_0204C554 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C59C (ScriptContext * param0)
+BOOL ScrCmd_255 (ScriptContext * param0)
 {
     PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSys->saveData);
     PCBoxes * v1 = SaveData_PCBoxes(param0->fieldSys->saveData);
@@ -83,7 +83,7 @@ BOOL sub_0204C59C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C638 (ScriptContext * param0)
+BOOL ScrCmd_256 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 * v1 = ScriptContext_GetVarPointer(param0);

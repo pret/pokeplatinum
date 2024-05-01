@@ -21,7 +21,7 @@
 
 #include <nitro/code16.h>
 
-BOOL sub_0204E3CC (ScriptContext * param0)
+BOOL ScrCmd_157 (ScriptContext * param0)
 {
     const PokedexData * v0 = SaveData_Pokedex(param0->fieldSys->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -30,7 +30,7 @@ BOOL sub_0204E3CC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E3FC (ScriptContext * param0)
+BOOL ScrCmd_158 (ScriptContext * param0)
 {
     PokedexData * v0 = SaveData_Pokedex(param0->fieldSys->saveData);
 
@@ -38,7 +38,7 @@ BOOL sub_0204E3FC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E410 (ScriptContext * param0)
+BOOL ScrCmd_159 (ScriptContext * param0)
 {
     UnkStruct_0203A790 * v0;
     UnkStruct_0205EC34 * v1;
@@ -51,7 +51,7 @@ BOOL sub_0204E410 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E440 (ScriptContext * param0)
+BOOL ScrCmd_15A (ScriptContext * param0)
 {
     UnkStruct_0203A790 * v0;
     UnkStruct_0205EC34 * v1;
@@ -63,7 +63,7 @@ BOOL sub_0204E440 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E45C (ScriptContext * param0)
+BOOL ScrCmd_15B (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -74,7 +74,7 @@ BOOL sub_0204E45C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E4A4 (ScriptContext * param0)
+BOOL ScrCmd_15C (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
@@ -84,7 +84,7 @@ BOOL sub_0204E4A4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E4D8 (ScriptContext * param0)
+BOOL ScrCmd_15E (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
@@ -103,7 +103,7 @@ const u8 Unk_020EC064[8] = {
     0x7
 };
 
-BOOL sub_0204E504 (ScriptContext * param0)
+BOOL ScrCmd_15D (ScriptContext * param0)
 {
     u16 v0, v1;
     u16 * v2 = ScriptContext_GetVarPointer(param0);
@@ -118,13 +118,13 @@ BOOL sub_0204E504 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E554 (ScriptContext * param0)
+BOOL ScrCmd_15F (ScriptContext * param0)
 {
     sub_0206A92C(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E568 (ScriptContext * param0)
+BOOL ScrCmd_160 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
@@ -132,19 +132,19 @@ BOOL sub_0204E568 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E594 (ScriptContext * param0)
+BOOL ScrCmd_161 (ScriptContext * param0)
 {
     sub_0206A964(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E5A8 (ScriptContext * param0)
+BOOL ScrCmd_162 (ScriptContext * param0)
 {
     sub_0206A974(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E5BC (ScriptContext * param0)
+BOOL ScrCmd_163 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
@@ -152,19 +152,19 @@ BOOL sub_0204E5BC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E5E8 (ScriptContext * param0)
+BOOL ScrCmd_164 (ScriptContext * param0)
 {
     sub_0206A994(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E5FC (ScriptContext * param0)
+BOOL ScrCmd_165 (ScriptContext * param0)
 {
     sub_0206A9A4(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E610 (ScriptContext * param0)
+BOOL ScrCmd_166 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
@@ -172,13 +172,13 @@ BOOL sub_0204E610 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E63C (ScriptContext * param0)
+BOOL ScrCmd_167 (ScriptContext * param0)
 {
     sub_0206A944(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204E650 (ScriptContext * param0)
+BOOL ScrCmd_1CF (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
@@ -204,7 +204,7 @@ BOOL sub_0204E650 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E6AC (ScriptContext * param0)
+BOOL ScrCmd_1D0 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
@@ -230,7 +230,7 @@ BOOL sub_0204E6AC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E704 (ScriptContext * param0)
+BOOL ScrCmd_1D1 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;

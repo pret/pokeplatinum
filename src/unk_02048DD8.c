@@ -53,10 +53,10 @@ typedef struct {
 static int sub_020491D0(int param0, FieldSystem * param1, StringTemplate * param2);
 static void sub_020491B8(FieldSystem * param0, int param1, u16 param2, u16 param3);
 static BOOL sub_020491F4(FieldSystem * param0, int param1);
-BOOL sub_020493C8(ScriptContext * param0);
-BOOL sub_020493F4(ScriptContext * param0);
+BOOL ScrCmd_31B(ScriptContext * param0);
+BOOL ScrCmd_329(ScriptContext * param0);
 
-BOOL sub_02048DD8 (ScriptContext * param0)
+BOOL ScrCmd_235 (ScriptContext * param0)
 {
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
@@ -118,13 +118,13 @@ BOOL sub_02048DD8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_02048F74 (ScriptContext * param0)
+BOOL ScrCmd_236 (ScriptContext * param0)
 {
     sub_0206D4AC(param0->fieldSys, ScriptContext_GetVar(param0));
     return 0;
 }
 
-BOOL sub_02048F98 (ScriptContext * param0)
+BOOL ScrCmd_2B8 (ScriptContext * param0)
 {
     Party * v0 = Party_GetFromSavedata(param0->fieldSys->saveData);
     Pokemon * v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
@@ -133,19 +133,19 @@ BOOL sub_02048F98 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_02048FD0 (ScriptContext * param0)
+BOOL ScrCmd_30B (ScriptContext * param0)
 {
     sub_0206D7C4(param0->fieldSys);
     return 0;
 }
 
-BOOL sub_02048FE0 (ScriptContext * param0)
+BOOL ScrCmd_30C (ScriptContext * param0)
 {
     sub_0206DB20(param0->fieldSys);
     return 0;
 }
 
-BOOL sub_02048FF0 (ScriptContext * param0)
+BOOL ScrCmd_30D (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
@@ -155,7 +155,7 @@ BOOL sub_02048FF0 (ScriptContext * param0)
 
 static const UnkStruct_020EBB48 Unk_020EBB48[19];
 
-BOOL sub_02049018 (ScriptContext * param0)
+BOOL ScrCmd_237 (ScriptContext * param0)
 {
     StringTemplate ** v0;
 
@@ -194,7 +194,7 @@ BOOL sub_02049018 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_020490F0 (ScriptContext * param0)
+BOOL ScrCmd_238 (ScriptContext * param0)
 {
     u16 v0;
     u16 * v1;
@@ -206,7 +206,7 @@ BOOL sub_020490F0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204912C (ScriptContext * param0)
+BOOL ScrCmd_27C (ScriptContext * param0)
 {
     TVBroadcast * v0 = SaveData_TVBroadcast(param0->fieldSys->saveData);
 
@@ -400,7 +400,7 @@ static const UnkStruct_020EBB48 Unk_020EBB48[19] = {
     {sub_0206E768, sub_02049308, sub_020493B8, 0x15}
 };
 
-BOOL sub_020493C8 (ScriptContext * param0)
+BOOL ScrCmd_31B (ScriptContext * param0)
 {
     TVBroadcast * v0;
     UnkStruct_0202E808 * v1;
@@ -413,7 +413,7 @@ BOOL sub_020493C8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_020493F4 (ScriptContext * param0)
+BOOL ScrCmd_329 (ScriptContext * param0)
 {
     TVBroadcast * v0;
     UnkStruct_0202E81C * v1;
