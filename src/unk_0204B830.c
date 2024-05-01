@@ -84,7 +84,7 @@ static void sub_0204B850 (FieldSystem * param0)
     sub_0202DF78(sub_0202DF18());
 }
 
-BOOL sub_0204B85C (ScriptContext * param0)
+BOOL ScrCmd_23E (ScriptContext * param0)
 {
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:

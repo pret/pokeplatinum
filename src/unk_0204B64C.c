@@ -12,7 +12,7 @@
 #include "unk_0204B64C.h"
 #include "unk_02055C50.h"
 
-BOOL sub_0204B64C (ScriptContext * param0)
+BOOL ScrCmd_17D (ScriptContext * param0)
 {
     LocalMapObject ** v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -23,7 +23,7 @@ BOOL sub_0204B64C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204B680 (ScriptContext * param0)
+BOOL ScrCmd_17E (ScriptContext * param0)
 {
     LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -32,7 +32,7 @@ BOOL sub_0204B680 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204B6B4 (ScriptContext * param0)
+BOOL ScrCmd_17F (ScriptContext * param0)
 {
     LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -41,7 +41,7 @@ BOOL sub_0204B6B4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204B6E8 (ScriptContext * param0)
+BOOL ScrCmd_180 (ScriptContext * param0)
 {
     LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -50,7 +50,7 @@ BOOL sub_0204B6E8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204B71C (ScriptContext * param0)
+BOOL ScrCmd_181 (ScriptContext * param0)
 {
     LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -59,7 +59,7 @@ BOOL sub_0204B71C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204B750 (ScriptContext * param0)
+BOOL ScrCmd_182 (ScriptContext * param0)
 {
     LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 v1 = ScriptContext_GetVar(param0);
@@ -68,7 +68,7 @@ BOOL sub_0204B750 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204B784 (ScriptContext * param0)
+BOOL ScrCmd_183 (ScriptContext * param0)
 {
     LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->fieldSys->saveData);
@@ -80,7 +80,7 @@ BOOL sub_0204B784 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204B7CC (ScriptContext * param0)
+BOOL ScrCmd_184 (ScriptContext * param0)
 {
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
@@ -96,7 +96,7 @@ BOOL sub_0204B7CC (ScriptContext * param0)
     return 1;
 }
 
-BOOL sub_0204B7FC (ScriptContext * param0)
+BOOL ScrCmd_185 (ScriptContext * param0)
 {
     u16 v0;
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->fieldSys->saveData);

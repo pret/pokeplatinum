@@ -636,11 +636,11 @@ struct UnkStruct_ov5_021F7ED8_t {
     u16 unk_27E;
 };
 
-BOOL ov5_021F77E8(ScriptContext * param0);
-BOOL ov5_021F7844(ScriptContext * param0);
-BOOL ov5_021F789C(ScriptContext * param0);
-BOOL ov5_021F7998(ScriptContext * param0);
-BOOL ov5_021F7C04(ScriptContext * param0);
+BOOL ScrCmd_2E5(ScriptContext * param0);
+BOOL ScrCmd_2E9(ScriptContext * param0);
+BOOL ScrCmd_2EA(ScriptContext * param0);
+BOOL ScrCmd_2EB(ScriptContext * param0);
+BOOL ScrCmd_2E6(ScriptContext * param0);
 static BOOL ov5_021F7DE8(ScriptContext * param0);
 static u16 ov5_021F7A3C(u16 param0);
 static u16 ov5_021F7A4C(u16 param0);
@@ -657,7 +657,7 @@ static void ov5_021F819C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
 static void ov5_021F81A8(SysTask * param0, void * param1);
 static void ov5_021F8250(UnkStruct_ov5_021F7ED8 * param0);
 
-BOOL ov5_021F77A8 (ScriptContext * param0)
+BOOL ScrCmd_337 (ScriptContext * param0)
 {
     u16 v0 = sub_0203F150(param0->fieldSys, ScriptContext_ReadHalfWord(param0));
     u16 * v1 = sub_0203F118(param0->fieldSys, ScriptContext_ReadHalfWord(param0));
@@ -667,7 +667,7 @@ BOOL ov5_021F77A8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F77E8 (ScriptContext * param0)
+BOOL ScrCmd_2E5 (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -680,7 +680,7 @@ BOOL ov5_021F77E8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7844 (ScriptContext * param0)
+BOOL ScrCmd_2E9 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 v1 = ScriptContext_GetVar(param0);
@@ -690,7 +690,7 @@ BOOL ov5_021F7844 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F789C (ScriptContext * param0)
+BOOL ScrCmd_2EA (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
@@ -745,7 +745,7 @@ BOOL ov5_021F789C (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7998 (ScriptContext * param0)
+BOOL ScrCmd_2EB (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
@@ -882,7 +882,7 @@ static u16 ov5_021F7B60 (Pokemon * param0, u16 param1)
     return 0;
 }
 
-BOOL ov5_021F7C04 (ScriptContext * param0)
+BOOL ScrCmd_2E6 (ScriptContext * param0)
 {
     u8 v0, v1;
     int v2, v3, v4, v5;
@@ -1188,7 +1188,7 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
     return;
 }
 
-BOOL ov5_021F82B8 (ScriptContext * param0)
+BOOL ScrCmd_2EC (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     StringTemplate ** v1 = sub_0203F098(v0, 15);
@@ -1204,7 +1204,7 @@ BOOL ov5_021F82B8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F8358 (ScriptContext * param0)
+BOOL ScrCmd_2ED (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(v0, 0);

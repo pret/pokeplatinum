@@ -20,7 +20,7 @@
 
 static void sub_0204EE90(ScriptContext * param0, u16 param1, Pokemon * param2, u16 * param3);
 
-BOOL sub_0204EDA4 (ScriptContext * param0)
+BOOL ScrCmd_1C6 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     void ** v1;
@@ -32,7 +32,7 @@ BOOL sub_0204EDA4 (ScriptContext * param0)
     return 1;
 }
 
-BOOL sub_0204EDEC (ScriptContext * param0)
+BOOL ScrCmd_1C7 (ScriptContext * param0)
 {
     void ** v0;
     u16 * v1;
@@ -52,12 +52,12 @@ BOOL sub_0204EDEC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204EE38 (ScriptContext * param0)
+BOOL ScrCmd_21E (ScriptContext * param0)
 {
     return 0;
 }
 
-BOOL sub_0204EE3C (ScriptContext * param0)
+BOOL ScrCmd_21F (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 * v1;
@@ -91,12 +91,12 @@ static void sub_0204EE90 (ScriptContext * param0, u16 param1, Pokemon * param2, 
     Heap_FreeToHeap(param3);
 }
 
-BOOL sub_0204EEFC (ScriptContext * param0)
+BOOL ScrCmd_220 (ScriptContext * param0)
 {
     return 1;
 }
 
-BOOL sub_0204EF00 (ScriptContext * param0)
+BOOL ScrCmd_221 (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -110,7 +110,7 @@ BOOL sub_0204EF00 (ScriptContext * param0)
     return 1;
 }
 
-BOOL sub_0204EF40 (ScriptContext * param0)
+BOOL ScrCmd_224 (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -128,12 +128,12 @@ BOOL sub_0204EF40 (ScriptContext * param0)
     return 1;
 }
 
-BOOL sub_0204EFA0 (ScriptContext * param0)
+BOOL ScrCmd_222 (ScriptContext * param0)
 {
     return 0;
 }
 
-BOOL sub_0204EFA4 (ScriptContext * param0)
+BOOL ScrCmd_223 (ScriptContext * param0)
 {
     UnkStruct_020997B8 * v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -154,7 +154,7 @@ BOOL sub_0204EFA4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204EFE8 (ScriptContext * param0)
+BOOL ScrCmd_225 (ScriptContext * param0)
 {
     UnkStruct_020997B8 * v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);

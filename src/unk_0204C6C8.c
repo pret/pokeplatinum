@@ -18,7 +18,7 @@
 #include "overlay005/ov5_021DC018.h"
 
 
-BOOL sub_0204C6C8 (ScriptContext * param0)
+BOOL ScrCmd_075 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -31,7 +31,7 @@ BOOL sub_0204C6C8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C718 (ScriptContext * param0)
+BOOL ScrCmd_076 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Window ** v1 = sub_0203F098(v0, 38);
@@ -40,7 +40,7 @@ BOOL sub_0204C718 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C730 (ScriptContext * param0)
+BOOL ScrCmd_077 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Window ** v1 = sub_0203F098(v0, 38);
@@ -49,7 +49,7 @@ BOOL sub_0204C730 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C750 (ScriptContext * param0)
+BOOL ScrCmd_078 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -62,7 +62,7 @@ BOOL sub_0204C750 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C780 (ScriptContext * param0)
+BOOL ScrCmd_079 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -75,7 +75,7 @@ BOOL sub_0204C780 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C7AC (ScriptContext * param0)
+BOOL ScrCmd_07A (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -88,7 +88,7 @@ BOOL sub_0204C7AC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C7D8 (ScriptContext * param0)
+BOOL ScrCmd_2A8 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -103,7 +103,7 @@ BOOL sub_0204C7D8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C808 (ScriptContext * param0)
+BOOL ScrCmd_274 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
@@ -124,7 +124,7 @@ BOOL sub_0204C808 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C854 (ScriptContext * param0)
+BOOL ScrCmd_2A9 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
@@ -146,7 +146,7 @@ BOOL sub_0204C854 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C8AC (ScriptContext * param0)
+BOOL ScrCmd_276 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;

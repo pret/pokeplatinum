@@ -16,16 +16,16 @@ _001E:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_27E 0x800C
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _005F
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _005F
     ScrCmd_02C 0
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 229, 1
     ScrCmd_042 228, 0
     ScrCmd_043
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _00C2
-    ScrCmd_016 _00B7
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _00C2
+    GoTo _00B7
 
 _005F:
     ScrCmd_0CD 0
@@ -34,51 +34,51 @@ _005F:
     ScrCmd_042 229, 0
     ScrCmd_042 228, 1
     ScrCmd_043
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 5, _00B7
+    CompareVarToValue 0x800C, 0
+    GoToIf 5, _00B7
     ScrCmd_1B7 0x800C, 4
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 1, _00C2
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _00CD
-    ScrCmd_011 0x800C, 2
-    ScrCmd_01C 1, _00D8
-    ScrCmd_016 _00E3
+    CompareVarToValue 0x800C, 0
+    GoToIf 1, _00C2
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _00CD
+    CompareVarToValue 0x800C, 2
+    GoToIf 1, _00D8
+    GoTo _00E3
 
 _00B7:
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00C2:
     ScrCmd_02C 3
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00CD:
     ScrCmd_02C 4
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00D8:
     ScrCmd_02C 5
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00E3:
     ScrCmd_02C 6
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00EE:
     ScrCmd_049 0x5DC
@@ -88,7 +88,7 @@ _00EE:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0101:
     ScrCmd_049 0x5DC
@@ -98,7 +98,7 @@ _0101:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0114:
     ScrCmd_049 0x5DC
@@ -108,7 +108,7 @@ _0114:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0127:
     ScrCmd_049 0x5DC
@@ -118,7 +118,7 @@ _0127:
     ScrCmd_035
     ScrCmd_149 0
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _013D:
     ScrCmd_049 0x5DC
@@ -128,7 +128,7 @@ _013D:
     ScrCmd_035
     ScrCmd_149 1
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0153:
     ScrCmd_049 0x5DC
@@ -137,4 +137,4 @@ _0153:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End

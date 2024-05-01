@@ -7,9 +7,9 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_01E 0x9D2
-    ScrCmd_01E 0x28E
-    ScrCmd_002
+    SetFlag 0x9D2
+    SetFlag 0x28E
+    End
 
 _0014:
     ScrCmd_060
@@ -21,8 +21,8 @@ _0014:
     ScrCmd_05F
     ScrCmd_0E5 0x39E, 0
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 1, _0150
+    CompareVarToValue 0x800C, 0
+    GoToIf 1, _0150
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_05E 0, _0168
@@ -35,8 +35,8 @@ _0014:
     ScrCmd_05F
     ScrCmd_0E5 0x39F, 0
     ScrCmd_0EC 0x800C
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 1, _0150
+    CompareVarToValue 0x800C, 0
+    GoToIf 1, _0150
     ScrCmd_02C 3
     ScrCmd_034
     ScrCmd_003 15, 0x800C
@@ -82,12 +82,12 @@ _0014:
     ScrCmd_065 16
     ScrCmd_028 0x40AD, 1
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0150:
     ScrCmd_0EB
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0158:

@@ -14,13 +14,13 @@
 
 _0022:
     ScrCmd_2F2
-    ScrCmd_002
+    End
 
 _0026:
-    ScrCmd_011 0x4055, 7
-    ScrCmd_01C 1, _0080
-    ScrCmd_020 0x9AD
-    ScrCmd_01C 1, _0051
+    CompareVarToValue 0x4055, 7
+    GoToIf 1, _0080
+    CheckFlag 0x9AD
+    GoToIf 1, _0051
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
@@ -28,7 +28,7 @@ _0026:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0051:
     ScrCmd_049 0x5DC
@@ -36,14 +36,14 @@ _0051:
     ScrCmd_068
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_01E 0x977
+    SetFlag 0x977
     ScrCmd_05E 134, _0108
     ScrCmd_05F
     ScrCmd_05E 134, _011C
     ScrCmd_05F
     ScrCmd_028 0x4055, 7
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0080:
     ScrCmd_049 0x5DC
@@ -53,7 +53,7 @@ _0080:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0093:
     ScrCmd_060
@@ -65,7 +65,7 @@ _0093:
     ScrCmd_05F
     ScrCmd_312 131
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00B4:
     ScrCmd_060
@@ -77,7 +77,7 @@ _00B4:
     ScrCmd_05F
     ScrCmd_312 132
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00D5:
     ScrCmd_060
@@ -89,7 +89,7 @@ _00D5:
     ScrCmd_05F
     ScrCmd_312 133
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00F6:
     ScrCmd_049 0x5DC
@@ -98,7 +98,7 @@ _00F6:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0108:

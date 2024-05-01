@@ -29,7 +29,7 @@
 #include "unk_020923C0.h"
 #include "overlay005/ov5_021E622C.h"
 
-BOOL sub_0204CFFC (ScriptContext * param0)
+BOOL ScrCmd_096 (ScriptContext * param0)
 {
     int v0 = MapHeader_GetMapLabelTextID(param0->fieldSys->unk_1C->unk_00);
     int v1 = 24;
@@ -46,7 +46,7 @@ BOOL sub_0204CFFC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D08C (ScriptContext * param0)
+BOOL ScrCmd_198 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -64,7 +64,7 @@ BOOL sub_0204D08C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D0E8 (ScriptContext * param0)
+BOOL ScrCmd_199 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -86,7 +86,7 @@ BOOL sub_0204D0E8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D154 (ScriptContext * param0)
+BOOL ScrCmd_097 (ScriptContext * param0)
 {
     int v0;
     u8 v1;
@@ -115,7 +115,7 @@ BOOL sub_0204D154 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D1DC (ScriptContext * param0)
+BOOL ScrCmd_098 (ScriptContext * param0)
 {
     u16 v0, v1, v2;
 
@@ -127,7 +127,7 @@ BOOL sub_0204D1DC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D234 (ScriptContext * param0)
+BOOL ScrCmd_099 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -150,7 +150,7 @@ BOOL sub_0204D234 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D2D8 (ScriptContext * param0)
+BOOL ScrCmd_09A (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -177,7 +177,7 @@ BOOL sub_0204D2D8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D398 (ScriptContext * param0)
+BOOL ScrCmd_1F7 (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 v1;
@@ -191,7 +191,7 @@ BOOL sub_0204D398 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D3DC (ScriptContext * param0)
+BOOL ScrCmd_1F6 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -217,7 +217,7 @@ BOOL sub_0204D3DC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D470 (ScriptContext * param0)
+BOOL ScrCmd_278 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -234,7 +234,7 @@ BOOL sub_0204D470 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D4CC (ScriptContext * param0)
+BOOL ScrCmd_212 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -261,7 +261,7 @@ BOOL sub_0204D4CC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D540 (ScriptContext * param0)
+BOOL ScrCmd_213 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -286,7 +286,7 @@ BOOL sub_0204D540 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D5CC (ScriptContext * param0)
+BOOL ScrCmd_1B9 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -299,7 +299,7 @@ BOOL sub_0204D5CC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D614 (ScriptContext * param0)
+BOOL ScrCmd_1BA (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -335,7 +335,7 @@ BOOL sub_0204D614 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D6E4 (ScriptContext * param0)
+BOOL ScrCmd_1BB (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -356,7 +356,7 @@ BOOL sub_0204D6E4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D74C (ScriptContext * param0)
+BOOL ScrCmd_281 (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -369,7 +369,7 @@ BOOL sub_0204D74C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D7AC (ScriptContext * param0)
+BOOL ScrCmd_247 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
@@ -377,7 +377,7 @@ BOOL sub_0204D7AC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D7D4 (ScriptContext * param0)
+BOOL ScrCmd_248 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -392,7 +392,7 @@ BOOL sub_0204D7D4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D840 (ScriptContext * param0)
+BOOL ScrCmd_177 (ScriptContext * param0)
 {
     int v0;
     Pokemon * v1;
@@ -405,7 +405,7 @@ BOOL sub_0204D840 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D86C (ScriptContext * param0)
+BOOL ScrCmd_19A (ScriptContext * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
@@ -427,7 +427,7 @@ BOOL sub_0204D86C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D8C4 (ScriptContext * param0)
+BOOL ScrCmd_19B (ScriptContext * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
@@ -456,7 +456,7 @@ BOOL sub_0204D8C4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D94C (ScriptContext * param0)
+BOOL ScrCmd_19C (ScriptContext * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
@@ -482,7 +482,7 @@ BOOL sub_0204D94C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204D9C8 (ScriptContext * param0)
+BOOL ScrCmd_19D (ScriptContext * param0)
 {
     int v0, v1, v2;
     Pokemon * v3;
@@ -504,7 +504,7 @@ BOOL sub_0204D9C8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DA20 (ScriptContext * param0)
+BOOL ScrCmd_119 (ScriptContext * param0)
 {
     u16 v0, v1;
     u16 * v2;
@@ -530,7 +530,7 @@ BOOL sub_0204DA20 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DA84 (ScriptContext * param0)
+BOOL ScrCmd_11A (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -542,7 +542,7 @@ BOOL sub_0204DA84 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DACC (ScriptContext * param0)
+BOOL ScrCmd_1C8 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -579,7 +579,7 @@ BOOL sub_0204DACC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DB74 (ScriptContext * param0)
+BOOL ScrCmd_1C9 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -594,7 +594,7 @@ BOOL sub_0204DB74 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DBB8 (ScriptContext * param0)
+BOOL ScrCmd_1CA (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -608,7 +608,7 @@ BOOL sub_0204DBB8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DC18 (ScriptContext * param0)
+BOOL ScrCmd_1EE (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -621,7 +621,7 @@ BOOL sub_0204DC18 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DC60 (ScriptContext * param0)
+BOOL ScrCmd_1F0 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -636,7 +636,7 @@ BOOL sub_0204DC60 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DC98 (ScriptContext * param0)
+BOOL ScrCmd_1C0 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -666,7 +666,7 @@ BOOL sub_0204DC98 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DD28 (ScriptContext * param0)
+BOOL ScrCmd_2CB (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -711,7 +711,7 @@ BOOL sub_0204DD28 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DE00 (ScriptContext * param0)
+BOOL ScrCmd_2DD (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -741,7 +741,7 @@ BOOL sub_0204DE00 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DE94 (ScriptContext * param0)
+BOOL ScrCmd_22E (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -761,7 +761,7 @@ BOOL sub_0204DE94 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DF08 (ScriptContext * param0)
+BOOL ScrCmd_22F (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
@@ -789,7 +789,7 @@ BOOL sub_0204DF08 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204DFB0 (ScriptContext * param0)
+BOOL ScrCmd_230 (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -803,7 +803,7 @@ BOOL sub_0204DFB0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E01C (ScriptContext * param0)
+BOOL ScrCmd_231 (ScriptContext * param0)
 {
     Pokemon * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -818,7 +818,7 @@ BOOL sub_0204E01C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E094 (ScriptContext * param0)
+BOOL ScrCmd_2B7 (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
@@ -846,12 +846,12 @@ BOOL sub_0204E094 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E128 (ScriptContext * param0)
+BOOL ScrCmd_0A0 (ScriptContext * param0)
 {
     return 0;
 }
 
-BOOL sub_0204E12C (ScriptContext * param0)
+BOOL ScrCmd_31C (ScriptContext * param0)
 {
     u8 v0, v1;
     u16 v2;
@@ -883,7 +883,7 @@ BOOL sub_0204E12C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E1D0 (ScriptContext * param0)
+BOOL ScrCmd_32F (ScriptContext * param0)
 {
     int v0, v1;
     Party * v2;

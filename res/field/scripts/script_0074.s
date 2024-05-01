@@ -7,10 +7,10 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_002
+    End
 
 _000C:
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

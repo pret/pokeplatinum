@@ -20,7 +20,7 @@
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
 
-BOOL sub_0204CA84 (ScriptContext * param0)
+BOOL ScrCmd_16D (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -31,7 +31,7 @@ BOOL sub_0204CA84 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CAA4 (ScriptContext * param0)
+BOOL ScrCmd_16E (ScriptContext * param0)
 {
     u16 * v0;
     FieldSystem * v1 = param0->fieldSys;
@@ -45,7 +45,7 @@ BOOL sub_0204CAA4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CAD4 (ScriptContext * param0)
+BOOL ScrCmd_1A8 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -57,7 +57,7 @@ BOOL sub_0204CAD4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CAEC (ScriptContext * param0)
+BOOL ScrCmd_1A9 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -69,7 +69,7 @@ BOOL sub_0204CAEC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CB20 (ScriptContext * param0)
+BOOL ScrCmd_1A4 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     UnkStruct_02026310 * v1;
@@ -86,7 +86,7 @@ BOOL sub_0204CB20 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CB80 (ScriptContext * param0)
+BOOL ScrCmd_1AA (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     UnkStruct_02026310 * v1;
@@ -101,7 +101,7 @@ BOOL sub_0204CB80 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CBD4 (ScriptContext * param0)
+BOOL ScrCmd_1AE (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -116,7 +116,7 @@ BOOL sub_0204CBD4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CC24 (ScriptContext * param0)
+BOOL ScrCmd_1AF (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Party * v1;
@@ -131,7 +131,7 @@ BOOL sub_0204CC24 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CC78 (ScriptContext * param0)
+BOOL ScrCmd_1B0 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -147,7 +147,7 @@ BOOL sub_0204CC78 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CCB8 (ScriptContext * param0)
+BOOL ScrCmd_1BC (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -161,7 +161,7 @@ BOOL sub_0204CCB8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CD44 (ScriptContext * param0)
+BOOL ScrCmd_1BE (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -174,7 +174,7 @@ BOOL sub_0204CD44 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CD74 (ScriptContext * param0)
+BOOL ScrCmd_1BF (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     SaveData * v1 = v0->saveData;
@@ -187,7 +187,7 @@ BOOL sub_0204CD74 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CDA4 (ScriptContext * param0)
+BOOL ScrCmd_1A5 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -195,19 +195,19 @@ BOOL sub_0204CDA4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CDBC (ScriptContext * param0)
+BOOL ScrCmd_1A6 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     return 0;
 }
 
-BOOL sub_0204CDC0 (ScriptContext * param0)
+BOOL ScrCmd_1A7 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     return 0;
 }
 
-BOOL sub_0204CDC4 (ScriptContext * param0)
+BOOL ScrCmd_1AD (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 * v1 = ScriptContext_GetVarPointer(param0);

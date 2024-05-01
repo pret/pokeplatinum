@@ -47,8 +47,8 @@ typedef struct {
     void ** unk_0C;
 } UnkStruct_0204FE50;
 
-BOOL sub_0204FAB4(ScriptContext * param0);
-BOOL sub_0204FBB4(ScriptContext * param0);
+BOOL ScrCmd_2D2(ScriptContext * param0);
+BOOL ScrCmd_2D5(ScriptContext * param0);
 static void sub_0204FBEC(SaveData * param0, UnkStruct_0203041C * param1, u8 param2);
 static void sub_0204FDB4(TaskManager * param0, void ** param1, u8 param2);
 static BOOL sub_0204FDE8(TaskManager * param0);
@@ -56,11 +56,11 @@ static int sub_0204FE50(UnkStruct_0204FE50 * param0, FieldSystem * param1, int p
 static int sub_0204FF1C(UnkStruct_0204FE50 * param0, FieldSystem * param1);
 static int sub_0204FF6C(UnkStruct_0204FE50 * param0, FieldSystem * param1, int param2);
 static int sub_0204FFF4(UnkStruct_0204FE50 * param0, FieldSystem * param1);
-BOOL sub_0204FCAC(ScriptContext * param0);
+BOOL ScrCmd_2D3(ScriptContext * param0);
 static void sub_0204FCF8(TaskManager * param0, u16 param1, u16 param2, u16 * param3);
 static BOOL sub_0204FD38(TaskManager * param0);
 
-BOOL sub_0204FAB4 (ScriptContext * param0)
+BOOL ScrCmd_2D2 (ScriptContext * param0)
 {
     u8 v0;
     u8 v1[4];
@@ -116,7 +116,7 @@ BOOL sub_0204FAB4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204FBB4 (ScriptContext * param0)
+BOOL ScrCmd_2D5 (ScriptContext * param0)
 {
     UnkStruct_0203041C * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -152,7 +152,7 @@ static void sub_0204FBEC (SaveData * param0, UnkStruct_0203041C * param1, u8 par
     return;
 }
 
-BOOL sub_0204FCAC (ScriptContext * param0)
+BOOL ScrCmd_2D3 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 v1 = ScriptContext_GetVar(param0);

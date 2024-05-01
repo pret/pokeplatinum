@@ -7,8 +7,8 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_01E 0x9D8
-    ScrCmd_002
+    SetFlag 0x9D8
+    End
 
 _0010:
     ScrCmd_049 0x5DC
@@ -18,6 +18,6 @@ _0010:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0

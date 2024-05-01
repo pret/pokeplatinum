@@ -16,39 +16,39 @@
 
 _002A:
     ScrCmd_1B6 0x4000
-    ScrCmd_011 0x4000, 0
-    ScrCmd_01C 1, _0071
-    ScrCmd_011 0x4000, 1
-    ScrCmd_01C 1, _0071
-    ScrCmd_011 0x4000, 2
-    ScrCmd_01C 1, _0071
-    ScrCmd_011 0x4000, 3
-    ScrCmd_01C 1, _0093
-    ScrCmd_011 0x4000, 4
-    ScrCmd_01C 1, _0093
-    ScrCmd_002
+    CompareVarToValue 0x4000, 0
+    GoToIf 1, _0071
+    CompareVarToValue 0x4000, 1
+    GoToIf 1, _0071
+    CompareVarToValue 0x4000, 2
+    GoToIf 1, _0071
+    CompareVarToValue 0x4000, 3
+    GoToIf 1, _0093
+    CompareVarToValue 0x4000, 4
+    GoToIf 1, _0093
+    End
 
 _0071:
-    ScrCmd_01F 0x260
-    ScrCmd_01F 0x262
-    ScrCmd_01F 0x264
-    ScrCmd_01F 0x266
-    ScrCmd_01E 0x261
-    ScrCmd_01E 0x263
-    ScrCmd_01E 0x265
-    ScrCmd_01E 0x267
-    ScrCmd_002
+    ClearFlag 0x260
+    ClearFlag 0x262
+    ClearFlag 0x264
+    ClearFlag 0x266
+    SetFlag 0x261
+    SetFlag 0x263
+    SetFlag 0x265
+    SetFlag 0x267
+    End
 
 _0093:
-    ScrCmd_01F 0x261
-    ScrCmd_01F 0x263
-    ScrCmd_01F 0x265
-    ScrCmd_01F 0x267
-    ScrCmd_01E 0x260
-    ScrCmd_01E 0x262
-    ScrCmd_01E 0x264
-    ScrCmd_01E 0x266
-    ScrCmd_002
+    ClearFlag 0x261
+    ClearFlag 0x263
+    ClearFlag 0x265
+    ClearFlag 0x267
+    SetFlag 0x260
+    SetFlag 0x262
+    SetFlag 0x264
+    SetFlag 0x266
+    End
 
 _00B5:
     ScrCmd_049 0x5DC
@@ -58,7 +58,7 @@ _00B5:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00C8:
     ScrCmd_036 6, 1, 0, 0x800C
@@ -66,7 +66,7 @@ _00C8:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _00DF:
     ScrCmd_036 7, 2, 0, 0x800C
@@ -74,7 +74,7 @@ _00DF:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _00F6:
     ScrCmd_037 3, 0
@@ -82,7 +82,7 @@ _00F6:
     ScrCmd_039
     ScrCmd_03A 8, 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _010B:
     ScrCmd_049 0x5DC
@@ -92,7 +92,7 @@ _010B:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _011E:
     ScrCmd_049 0x5DC
@@ -102,7 +102,7 @@ _011E:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0131:
     ScrCmd_049 0x5DC
@@ -112,7 +112,7 @@ _0131:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0144:
     ScrCmd_049 0x5DC
@@ -122,7 +122,7 @@ _0144:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0157:
     ScrCmd_049 0x5DC
@@ -132,7 +132,7 @@ _0157:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

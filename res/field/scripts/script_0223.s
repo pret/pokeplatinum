@@ -26,7 +26,7 @@ _0006:
     ScrCmd_065 6
     ScrCmd_028 0x4096, 1
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0064:

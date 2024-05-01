@@ -8,7 +8,7 @@
 
 _000A:
     ScrCmd_2F2
-    ScrCmd_002
+    End
 
 _000E:
     ScrCmd_060
@@ -17,10 +17,10 @@ _000E:
     ScrCmd_05F
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _003B
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _003B
     ScrCmd_02C 1
-    ScrCmd_016 _003E
+    GoTo _003E
 
 _003B:
     ScrCmd_02C 2
@@ -33,7 +33,7 @@ _003E:
     ScrCmd_312 128
     ScrCmd_028 0x4055, 6
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0060:

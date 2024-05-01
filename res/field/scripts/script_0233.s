@@ -8,37 +8,37 @@
     .short 0xFD13
 
 _000E:
-    ScrCmd_011 0x406A, 0x122
-    ScrCmd_01D 5, _003B
+    CompareVarToValue 0x406A, 0x122
+    CallIf 5, _003B
     ScrCmd_32B 0x4001
-    ScrCmd_011 0x4001, 0
-    ScrCmd_01C 1, _0063
-    ScrCmd_011 0x4001, 1
-    ScrCmd_01C 1, _006D
-    ScrCmd_002
+    CompareVarToValue 0x4001, 0
+    GoToIf 1, _0063
+    CompareVarToValue 0x4001, 1
+    GoToIf 1, _006D
+    End
 
 _003B:
     ScrCmd_028 0x406A, 0
-    ScrCmd_01B
+    Return
 
 _0043:
     ScrCmd_32B 0x4001
-    ScrCmd_011 0x4001, 0
-    ScrCmd_01C 1, _0063
-    ScrCmd_011 0x4001, 1
-    ScrCmd_01C 1, _006D
-    ScrCmd_002
+    CompareVarToValue 0x4001, 0
+    GoToIf 1, _0063
+    CompareVarToValue 0x4001, 1
+    GoToIf 1, _006D
+    End
 
 _0063:
     ScrCmd_18A 3, 17, 16
-    ScrCmd_002
+    End
 
 _006D:
     ScrCmd_18A 2, 17, 16
-    ScrCmd_002
+    End
 
 _0077:
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

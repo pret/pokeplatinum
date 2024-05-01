@@ -96,14 +96,14 @@ struct UnkStruct_ov5_021F6704_t {
 };
 
 static u16 * ov5_021F65FC(int param0, int param1, int * param2);
-BOOL ov5_021F6454(ScriptContext * param0);
+BOOL ScrCmd_2DE(ScriptContext * param0);
 static BOOL ov5_021F65D4(ScriptContext * param0);
 static void ov5_021F70CC(Pokemon * param0, int * param1, int * param2);
-BOOL ov5_021F71B8(ScriptContext * param0);
-BOOL ov5_021F7208(ScriptContext * param0);
-BOOL ov5_021F72B8(ScriptContext * param0);
-BOOL ov5_021F6B3C(ScriptContext * param0);
-BOOL ov5_021F6E50(ScriptContext * param0);
+BOOL ScrCmd_300(ScriptContext * param0);
+BOOL ScrCmd_301(ScriptContext * param0);
+BOOL ScrCmd_30F(ScriptContext * param0);
+BOOL ScrCmd_2EE(ScriptContext * param0);
+BOOL ScrCmd_2F1(ScriptContext * param0);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 * param0, MessageLoader * param1);
 static void ov5_021F6624(FieldSystem * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
 UnkStruct_ov5_021F6704 * ov5_021F6704(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
@@ -128,7 +128,7 @@ static u16 Unk_ov5_0220210C[] = {
     0x1A
 };
 
-BOOL ov5_021F6454 (ScriptContext * param0)
+BOOL ScrCmd_2DE (ScriptContext * param0)
 {
     int v0;
     BattleFrontierStage * v1;
@@ -448,7 +448,7 @@ static const u16 Unk_ov5_02200C84[] = {
     0x7E
 };
 
-BOOL ov5_021F6B3C (ScriptContext * param0)
+BOOL ScrCmd_2EE (ScriptContext * param0)
 {
     u8 v0;
     u32 v1[6];
@@ -493,7 +493,7 @@ BOOL ov5_021F6B3C (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F6C60 (ScriptContext * param0)
+BOOL ScrCmd_31D (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
@@ -560,7 +560,7 @@ BOOL ov5_021F6C60 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F6D80 (ScriptContext * param0)
+BOOL ScrCmd_31E (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
@@ -616,7 +616,7 @@ BOOL ov5_021F6D80 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F6E50 (ScriptContext * param0)
+BOOL ScrCmd_2F1 (ScriptContext * param0)
 {
     Pokemon * v0;
     FieldSystem * v1 = param0->fieldSys;
@@ -629,7 +629,7 @@ BOOL ov5_021F6E50 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F6E9C (ScriptContext * param0)
+BOOL ScrCmd_303 (ScriptContext * param0)
 {
     u32 v0, v1, v2;
     int v3, v4, v5;
@@ -663,7 +663,7 @@ BOOL ov5_021F6E9C (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F6F44 (ScriptContext * param0)
+BOOL ScrCmd_304 (ScriptContext * param0)
 {
     u32 v0, v1;
     u16 v2, v3;
@@ -684,7 +684,7 @@ BOOL ov5_021F6F44 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F6FC0 (ScriptContext * param0)
+BOOL ScrCmd_2FF (ScriptContext * param0)
 {
     u16 v0;
     int v1, v2;
@@ -756,7 +756,7 @@ static void ov5_021F70CC (Pokemon * param0, int * param1, int * param2)
     }
 }
 
-BOOL ov5_021F71B8 (ScriptContext * param0)
+BOOL ScrCmd_300 (ScriptContext * param0)
 {
     MiscSaveBlock * v0;
     Pokemon * v1;
@@ -769,7 +769,7 @@ BOOL ov5_021F71B8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7208 (ScriptContext * param0)
+BOOL ScrCmd_301 (ScriptContext * param0)
 {
     int v0, v1, v2;
     MiscSaveBlock * v3;
@@ -789,7 +789,7 @@ BOOL ov5_021F7208 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7270 (ScriptContext * param0)
+BOOL ScrCmd_305 (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
@@ -804,7 +804,7 @@ BOOL ov5_021F7270 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F72B8 (ScriptContext * param0)
+BOOL ScrCmd_30F (ScriptContext * param0)
 {
     UnkStruct_020507E4 * v0;
     UnkStruct_0202CD88 * v1;
@@ -891,7 +891,7 @@ BOOL ov5_021F72B8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7414 (ScriptContext * param0)
+BOOL ScrCmd_316 (ScriptContext * param0)
 {
     return 1;
 }
@@ -926,7 +926,7 @@ static const UnkStruct_ov5_02200C90 Unk_ov5_02200CC8[] = {
     {0x9, 0x9}
 };
 
-BOOL ov5_021F7418 (ScriptContext * param0)
+BOOL ScrCmd_32C (ScriptContext * param0)
 {
     int v0, v1;
     u16 * v2 = ScriptContext_GetVarPointer(param0);
@@ -977,7 +977,7 @@ BOOL ov5_021F7418 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7538 (ScriptContext * param0)
+BOOL ScrCmd_32D (ScriptContext * param0)
 {
     fx32 v0;
     VecFx32 v1;
@@ -1021,7 +1021,7 @@ BOOL ov5_021F7538 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7604 (ScriptContext * param0)
+BOOL ScrCmd_32E (ScriptContext * param0)
 {
     int v0 = 0;
     FieldSystem * v1 = param0->fieldSys;
@@ -1059,7 +1059,7 @@ static void ov5_021F7654 (LocalMapObject * param0, int param1)
     }
 }
 
-BOOL ov5_021F76A0 (ScriptContext * param0)
+BOOL ScrCmd_331 (ScriptContext * param0)
 {
     LocalMapObject * v0;
     FieldSystem * v1 = param0->fieldSys;
@@ -1080,7 +1080,7 @@ BOOL ov5_021F76A0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F76D0 (ScriptContext * param0)
+BOOL ScrCmd_332 (ScriptContext * param0)
 {
     LocalMapObject * v0;
     MapObjectManager * v1 = param0->fieldSys->unk_38;
@@ -1100,7 +1100,7 @@ BOOL ov5_021F76D0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7704 (ScriptContext * param0)
+BOOL ScrCmd_338 (ScriptContext * param0)
 {    
     int v0;
     LocalMapObject * v1 = sub_0206251C(param0->fieldSys->unk_38, 15);
@@ -1129,7 +1129,7 @@ BOOL ov5_021F7704 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7754 (ScriptContext * param0)
+BOOL ScrCmd_339 (ScriptContext * param0)
 {
     LocalMapObject * v0 = sub_0206251C(param0->fieldSys->unk_38, 15);
     if (v0 != NULL)
@@ -1137,7 +1137,7 @@ BOOL ov5_021F7754 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ov5_021F7774 (ScriptContext * param0)
+BOOL ScrCmd_330 (ScriptContext * param0)
 {
     UnkStruct_0202C878 * v0 = sub_0202C878(param0->fieldSys->saveData);
 
@@ -1145,7 +1145,7 @@ BOOL ov5_021F7774 (ScriptContext * param0)
     return 1;
 }
 
-BOOL ov5_021F7788 (ScriptContext * param0)
+BOOL ScrCmd_333 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 

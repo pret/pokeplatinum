@@ -15,17 +15,17 @@ _000E:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0021:
     ScrCmd_060
     ScrCmd_02C 9
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 1, _0046
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _0059
-    ScrCmd_002
+    CompareVarToValue 0x800C, 0
+    GoToIf 1, _0046
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _0059
+    End
 
 _0046:
     ScrCmd_0A2
@@ -35,11 +35,11 @@ _0046:
     ScrCmd_2BB
     ScrCmd_204
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0059:
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0

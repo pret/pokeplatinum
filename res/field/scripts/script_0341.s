@@ -13,84 +13,84 @@
     .short 0xFD13
 
 _0022:
-    ScrCmd_01E 0x9DD
-    ScrCmd_002
+    SetFlag 0x9DD
+    End
 
 _0028:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x15E
-    ScrCmd_01C 1, _0046
+    CheckFlag 0x15E
+    GoToIf 1, _0046
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0046:
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0051:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x15E
-    ScrCmd_01C 1, _006F
+    CheckFlag 0x15E
+    GoToIf 1, _006F
     ScrCmd_02C 4
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _006F:
     ScrCmd_02C 5
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _007A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x15E
-    ScrCmd_01C 1, _0098
+    CheckFlag 0x15E
+    GoToIf 1, _0098
     ScrCmd_02C 6
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0098:
     ScrCmd_02C 7
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00A3:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x15E
-    ScrCmd_01C 1, _00C1
+    CheckFlag 0x15E
+    GoToIf 1, _00C1
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00C1:
     ScrCmd_02C 3
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00CC:
     ScrCmd_049 0x5DC
@@ -100,29 +100,29 @@ _00CC:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00DF:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
     ScrCmd_07E 0x1B8, 1, 0x800C
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _0107
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _0107
     ScrCmd_02C 9
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0107:
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 1, _012A
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _015E
-    ScrCmd_002
+    CompareVarToValue 0x800C, 0
+    GoToIf 1, _012A
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _015E
+    End
 
 _012A:
     ScrCmd_0CD 0
@@ -133,17 +133,17 @@ _012A:
     ScrCmd_05E 5, _0164
     ScrCmd_05E 6, _016C
     ScrCmd_05F
-    ScrCmd_01E 0x224
+    SetFlag 0x224
     ScrCmd_065 5
     ScrCmd_065 6
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _015E:
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0164:
@@ -162,7 +162,7 @@ _0174:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

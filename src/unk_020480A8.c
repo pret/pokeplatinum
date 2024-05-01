@@ -20,7 +20,7 @@
 
 static u8 sub_02048268(u16 param0, u16 param1);
 
-BOOL sub_020480A8 (ScriptContext * param0)
+BOOL ScrCmd_24E (ScriptContext * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -32,7 +32,7 @@ BOOL sub_020480A8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_020480D8 (ScriptContext * param0)
+BOOL ScrCmd_24F (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Pokemon * v1;
@@ -105,7 +105,7 @@ BOOL sub_020480D8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_02048254 (ScriptContext * param0)
+BOOL ScrCmd_250 (ScriptContext * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
 
