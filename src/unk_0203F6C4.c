@@ -1833,9 +1833,9 @@ static BOOL ScrCmd_CompareVarToValue (ScriptContext * ctx)
 
 static BOOL ScrCmd_CompareVarToVar (ScriptContext * ctx)
 {
-    u16 * pointer0 = ScriptContext_GetVarPointer(ctx);
-    u16 * pointer1 = ScriptContext_GetVarPointer(ctx);
-    ctx->comparisonResult = Compare(*pointer0, *pointer1);
+    u16 * var0 = ScriptContext_GetVarPointer(ctx);
+    u16 * var1 = ScriptContext_GetVarPointer(ctx);
+    ctx->comparisonResult = Compare(*var0, *var1);
     return FALSE;
 }
 
