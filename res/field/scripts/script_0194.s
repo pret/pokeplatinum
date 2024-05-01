@@ -11,24 +11,24 @@ _000A:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 179
-    ScrCmd_01C 1, _00AC
+    GoToIf 1, _00AC
     ScrCmd_0EA 0x108
     ScrCmd_02C 0
     ScrCmd_034
     CheckFlag 214
-    ScrCmd_01D 0, _007A
+    CallIf 0, _007A
     CheckFlag 214
-    ScrCmd_01D 1, _0082
+    CallIf 1, _0082
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _00A6
+    GoToIf 1, _00A6
     SetFlag 179
     ScrCmd_049 0x61A
     ScrCmd_065 1
     CheckFlag 214
-    ScrCmd_01D 0, _008A
+    CallIf 0, _008A
     CheckFlag 214
-    ScrCmd_01D 1, _0098
+    CallIf 1, _0098
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034

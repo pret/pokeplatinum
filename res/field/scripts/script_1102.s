@@ -10,13 +10,13 @@ _0006:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 203
-    ScrCmd_01C 1, _004B
+    GoToIf 1, _004B
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 0x171
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0056
+    GoToIf 1, _0056
     ScrCmd_014 0x7FC
     SetFlag 203
     GoTo _004B

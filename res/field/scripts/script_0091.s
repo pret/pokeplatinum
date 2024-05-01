@@ -34,11 +34,11 @@ _0034:
     ScrCmd_02C 2
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _006F
+    GoToIf 1, _006F
     ScrCmd_02C 3
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _006F
+    GoToIf 1, _006F
     ScrCmd_02C 4
     GoTo _007A
     End

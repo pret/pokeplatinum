@@ -253,7 +253,7 @@ static BOOL ScrCmd_007(ScriptContext * param0);
 static BOOL ScrCmd_008(ScriptContext * param0);
 static BOOL ScrCmd_009(ScriptContext * param0);
 static BOOL ScrCmd_00A(ScriptContext * param0);
-static BOOL Compare(u16 value0, u16 value1);
+static u32 Compare(u16 value0, u16 value1);
 static BOOL ScrCmd_00B(ScriptContext * param0);
 static BOOL ScrCmd_00C(ScriptContext * param0);
 static BOOL ScrCmd_00D(ScriptContext * param0);
@@ -273,8 +273,8 @@ static BOOL ScrCmd_018(ScriptContext * param0);
 static BOOL ScrCmd_019(ScriptContext * param0);
 static BOOL ScrCmd_Call(ScriptContext * ctx);
 static BOOL ScrCmd_Return(ScriptContext * ctx);
-static BOOL ScrCmd_01C(ScriptContext * param0);
-static BOOL ScrCmd_01D(ScriptContext * param0);
+static BOOL ScrCmd_GoToIf(ScriptContext * ctx);
+static BOOL ScrCmd_CallIf(ScriptContext * ctx);
 static BOOL ScrCmd_SetFlag(ScriptContext * ctx);
 static BOOL ScrCmd_ClearFlag(ScriptContext * ctx);
 static BOOL ScrCmd_CheckFlag(ScriptContext * ctx);
@@ -751,13 +751,14 @@ static void sub_02040F28(FieldSystem * param0, SysTask * param1, UnkStruct_ov5_0
 static void sub_02040F5C(SysTask * param0, void * param1);
 static u32 sub_0204676C(SaveData * param0);
 
-static const u8 Unk_020EABA6[6][3] = {
-    {0x1, 0x0, 0x0},
-    {0x0, 0x1, 0x0},
-    {0x0, 0x0, 0x1},
-    {0x1, 0x1, 0x0},
-    {0x0, 0x1, 0x1},
-    {0x1, 0x0, 0x1}
+static const u8 sConditionTable[6][3] = {
+    //   <     ==      >
+    {  TRUE, FALSE, FALSE }, //  <
+    { FALSE,  TRUE, FALSE }, //  ==
+    { FALSE, FALSE,  TRUE }, //  >
+    {  TRUE,  TRUE, FALSE }, //  <=
+    { FALSE,  TRUE,  TRUE }, //  >=
+    {  TRUE, FALSE,  TRUE }, //  !=
 };
 
 static const UnkStruct_ov61_0222C884 Unk_020EAB84 = {
@@ -799,8 +800,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_019,
     ScrCmd_Call,
     ScrCmd_Return,
-    ScrCmd_01C,
-    ScrCmd_01D,
+    ScrCmd_GoToIf,
+    ScrCmd_CallIf,
     ScrCmd_SetFlag,
     ScrCmd_ClearFlag,
     ScrCmd_CheckFlag,
@@ -1745,7 +1746,7 @@ static BOOL ScrCmd_00A (ScriptContext * param0)
     return 0;
 }
 
-static BOOL Compare (u16 value0, u16 value1)
+static u32 Compare (u16 value0, u16 value1)
 {
     if (value0 < value1) {
         return 0;
@@ -1961,34 +1962,24 @@ static BOOL ScrCmd_Return (ScriptContext * ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_01C (ScriptContext * param0)
+static BOOL ScrCmd_GoToIf (ScriptContext * ctx)
 {
-    u8 v0;
-    s32 v1;
-
-    v0 = ScriptContext_ReadByte(param0);
-    v1 = (s32)ScriptContext_ReadWord(param0);
-
-    if (Unk_020EABA6[v0][param0->comparisonResult] == 1) {
-        ScriptContext_Jump(param0, (u8 *)(param0->scriptPtr + v1));
+    u8 condition = ScriptContext_ReadByte(ctx);
+    s32 offset = ScriptContext_ReadWord(ctx);
+    if (sConditionTable[condition][ctx->comparisonResult] == TRUE) {
+        ScriptContext_Jump(ctx, ctx->scriptPtr + offset);
     }
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_01D (ScriptContext * param0)
+static BOOL ScrCmd_CallIf (ScriptContext * ctx)
 {
-    u8 v0;
-    s32 v1;
-
-    v0 = ScriptContext_ReadByte(param0);
-    v1 = (s32)ScriptContext_ReadWord(param0);
-
-    if (Unk_020EABA6[v0][param0->comparisonResult] == 1) {
-        ScriptContext_Call(param0, (u8 *)(param0->scriptPtr + v1));
+    u8 condition = ScriptContext_ReadByte(ctx);
+    s32 offset = ScriptContext_ReadWord(ctx);
+    if (sConditionTable[condition][ctx->comparisonResult] == TRUE) {
+        ScriptContext_Call(ctx, ctx->scriptPtr + offset);
     }
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_SetFlag (ScriptContext * ctx)

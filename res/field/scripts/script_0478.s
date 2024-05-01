@@ -11,7 +11,7 @@
 _0012:
     ScrCmd_22D 2, 0x4000
     CompareVarToValue 0x4000, 0
-    ScrCmd_01C 1, _002C
+    GoToIf 1, _002C
     SetFlag 0x27F
     SetFlag 0x280
 _002C:

@@ -18,7 +18,7 @@ _001E:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 200
-    ScrCmd_01C 1, _003C
+    GoToIf 1, _003C
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034

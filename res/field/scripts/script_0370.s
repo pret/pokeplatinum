@@ -9,10 +9,10 @@
 
 _000E:
     CompareVarToValue 0x40DD, 0
-    ScrCmd_01C 1, _0048
+    GoToIf 1, _0048
     ScrCmd_207 0x4000
     CompareVarToValue 0x4000, 1
-    ScrCmd_01C 1, _004A
+    GoToIf 1, _004A
     ScrCmd_1DD 55, 0, 0x4000
     ScrCmd_029 0x4020, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
@@ -29,7 +29,7 @@ _004A:
 
 _0068:
     CompareVarToValue 0x40DD, 0
-    ScrCmd_01D 5, _007F
+    CallIf 5, _007F
     ScrCmd_1B2 2
     ScrCmd_1B2 3
     End

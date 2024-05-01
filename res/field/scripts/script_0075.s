@@ -29,7 +29,7 @@ _0035:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 129
-    ScrCmd_01C 1, _0053
+    GoToIf 1, _0053
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034
@@ -61,18 +61,18 @@ _007D:
     ScrCmd_060
     ScrCmd_068
     CompareVarToValue 0x4002, 1
-    ScrCmd_01C 1, _00F4
+    GoToIf 1, _00F4
     ScrCmd_134 5, 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _00D9
+    GoToIf 1, _00D9
     ScrCmd_247 0x8000
     ScrCmd_0D0 0, 0x8000
     ScrCmd_02C 6
     ScrCmd_1B9 0x800C, 0x8000
     CompareVarToValue 0x800C, 120
-    ScrCmd_01C 4, _00FF
+    GoToIf 4, _00FF
     CompareVarToValue 0x800C, 70
-    ScrCmd_01C 4, _010A
+    GoToIf 4, _010A
     GoTo _0115
     End
 

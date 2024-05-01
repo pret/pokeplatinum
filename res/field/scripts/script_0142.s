@@ -85,14 +85,14 @@ _00A9:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 0x129
-    ScrCmd_01C 1, _0109
+    GoToIf 1, _0109
     ScrCmd_0DE 0x800C
     CompareVarToValue 0x800C, 0x183
-    ScrCmd_01D 1, _0119
+    CallIf 1, _0119
     CompareVarToValue 0x800C, 0x186
-    ScrCmd_01D 1, _0121
+    CallIf 1, _0121
     CompareVarToValue 0x800C, 0x189
-    ScrCmd_01D 1, _0129
+    CallIf 1, _0129
     ScrCmd_029 0x4107, 0x8004
     ScrCmd_343 0, 0x8004
     ScrCmd_02C 3

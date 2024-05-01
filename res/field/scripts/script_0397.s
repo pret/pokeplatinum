@@ -67,40 +67,40 @@ _00A2:
 
 _00B8:
     CompareVarToValue 0x8005, 0
-    ScrCmd_01D 1, _0254
+    CallIf 1, _0254
     CompareVarToValue 0x8005, 1
-    ScrCmd_01D 1, _0259
+    CallIf 1, _0259
     CompareVarToValue 0x8005, 2
-    ScrCmd_01D 1, _025B
+    CallIf 1, _025B
     GoTo _00E7
     End
 
 _00E7:
     CompareVarToValue 0x8005, 0
-    ScrCmd_01D 1, _0260
+    CallIf 1, _0260
     CompareVarToValue 0x8005, 1
-    ScrCmd_01D 1, _0265
+    CallIf 1, _0265
     CompareVarToValue 0x8005, 2
-    ScrCmd_01D 1, _0267
+    CallIf 1, _0267
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 14, 0
     ScrCmd_042 15, 1
     ScrCmd_042 16, 2
     ScrCmd_043
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0188
+    GoToIf 1, _0188
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _0146
+    GoToIf 1, _0146
     GoTo _0175
     End
 
 _0146:
     CompareVarToValue 0x8005, 0
-    ScrCmd_01D 1, _026C
+    CallIf 1, _026C
     CompareVarToValue 0x8005, 1
-    ScrCmd_01D 1, _0271
+    CallIf 1, _0271
     CompareVarToValue 0x8005, 2
-    ScrCmd_01D 1, _0273
+    CallIf 1, _0273
     GoTo _00E7
     End
 
@@ -123,9 +123,9 @@ _0188:
     ScrCmd_042 19, 2
     ScrCmd_043
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _01C3
+    GoToIf 1, _01C3
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _01D1
+    GoToIf 1, _01D1
     GoTo _0175
     End
 
@@ -143,7 +143,7 @@ _01DF:
     ScrCmd_02C 8
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _0175
+    GoToIf 1, _0175
     GoTo _01FB
     End
 
@@ -152,7 +152,7 @@ _01FB:
     ScrCmd_014 0x7D6
     ScrCmd_029 0x800C, 0x4000
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0175
+    GoToIf 1, _0175
     GoTo _0220
     End
 
@@ -160,11 +160,11 @@ _0220:
     ScrCmd_02C 9
     ScrCmd_034
     CompareVarToValue 0x8005, 0
-    ScrCmd_01D 1, _024E
+    CallIf 1, _024E
     CompareVarToValue 0x8005, 1
-    ScrCmd_01D 1, _0250
+    CallIf 1, _0250
     CompareVarToValue 0x8005, 2
-    ScrCmd_01D 1, _0252
+    CallIf 1, _0252
     End
 
 _024E:

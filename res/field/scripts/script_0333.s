@@ -9,7 +9,7 @@
 _000A:
     ScrCmd_292 10, 0x4000
     CompareVarToValue 0x4000, 1
-    ScrCmd_01C 1, _0022
+    GoToIf 1, _0022
     SetFlag 0x27B
     End
 

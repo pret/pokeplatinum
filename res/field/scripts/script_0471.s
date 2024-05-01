@@ -41,9 +41,9 @@ _004D:
     ScrCmd_064 15
     ScrCmd_069 0x8004, 0x8005
     CompareVarToValue 0x8004, 0x12E
-    ScrCmd_01D 1, _00CA
+    CallIf 1, _00CA
     CompareVarToValue 0x8004, 0x12F
-    ScrCmd_01D 1, _00D6
+    CallIf 1, _00D6
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_034
@@ -55,9 +55,9 @@ _004D:
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
     CompareVarToValue 0x8004, 0x12E
-    ScrCmd_01D 1, _00E2
+    CallIf 1, _00E2
     CompareVarToValue 0x8004, 0x12F
-    ScrCmd_01D 1, _00F6
+    CallIf 1, _00F6
     ScrCmd_065 15
     ScrCmd_028 0x40A8, 1
     SetFlag 0x298

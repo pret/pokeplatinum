@@ -10,7 +10,7 @@ _0006:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 0x107
-    ScrCmd_01C 1, _0024
+    GoToIf 1, _0024
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034

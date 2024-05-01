@@ -64,21 +64,21 @@ _006A:
     ScrCmd_047
     ScrCmd_029 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
-    ScrCmd_01C 1, _0135
+    GoToIf 1, _0135
     CompareVarToValue 0x8008, 1
-    ScrCmd_01C 1, _0140
+    GoToIf 1, _0140
     CompareVarToValue 0x8008, 2
-    ScrCmd_01C 1, _014B
+    GoToIf 1, _014B
     CompareVarToValue 0x8008, 3
-    ScrCmd_01C 1, _0156
+    GoToIf 1, _0156
     CompareVarToValue 0x8008, 4
-    ScrCmd_01C 1, _0161
+    GoToIf 1, _0161
     CompareVarToValue 0x8008, 5
-    ScrCmd_01C 1, _016C
+    GoToIf 1, _016C
     CompareVarToValue 0x8008, 6
-    ScrCmd_01C 1, _0177
+    GoToIf 1, _0177
     CompareVarToValue 0x8008, 7
-    ScrCmd_01C 1, _0182
+    GoToIf 1, _0182
     GoTo _018D
     End
 

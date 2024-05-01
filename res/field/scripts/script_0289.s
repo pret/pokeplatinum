@@ -19,7 +19,7 @@ _001C:
 
 _002A:
     CheckFlag 0x121
-    ScrCmd_01C 1, _0046
+    GoToIf 1, _0046
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_02C 0

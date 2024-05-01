@@ -11,14 +11,14 @@ _000A:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 0xAA3
-    ScrCmd_01C 1, _0055
+    GoToIf 1, _0055
     ScrCmd_02C 0
     ScrCmd_1B7 0x8004, 17
     ScrCmd_026 0x8004, 184
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0060
+    GoToIf 1, _0060
     SetFlag 0xAA3
     ScrCmd_014 0x7E0
     ScrCmd_034

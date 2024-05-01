@@ -53,16 +53,16 @@ _0067:
     ScrCmd_068
     ScrCmd_15B 6, 0x800C
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _00EC
+    GoToIf 1, _00EC
     ScrCmd_1BD 0x8000
     CompareVarToValue 0x8000, 0
-    ScrCmd_01D 1, _00C8
+    CallIf 1, _00C8
     CompareVarToValue 0x8000, 1
-    ScrCmd_01D 1, _00C8
+    CallIf 1, _00C8
     CompareVarToValue 0x8000, 2
-    ScrCmd_01D 1, _00D4
+    CallIf 1, _00D4
     CompareVarToValue 0x8000, 3
-    ScrCmd_01D 1, _00E0
+    CallIf 1, _00E0
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_031

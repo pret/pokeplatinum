@@ -21,12 +21,12 @@ _002A:
 _0032:
     ScrCmd_1B7 0x40C2, 3
     CheckFlag 214
-    ScrCmd_01C 0, _0052
+    GoToIf 0, _0052
     End
 
 _0045:
     CheckFlag 214
-    ScrCmd_01C 0, _0052
+    GoToIf 0, _0052
     End
 
 _0052:
@@ -68,7 +68,7 @@ _0095:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 215
-    ScrCmd_01C 1, _00B3
+    GoToIf 1, _00B3
     ScrCmd_02C 10
     ScrCmd_031
     ScrCmd_034
@@ -137,16 +137,16 @@ _0141:
     ScrCmd_068
     ScrCmd_234 0x4000
     CompareVarToValue 0x4000, 0
-    ScrCmd_01C 1, _01BE
+    GoToIf 1, _01BE
     CompareVarToValue 0x4000, 6
-    ScrCmd_01C 1, _01BE
+    GoToIf 1, _01BE
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_029 0x8008, 0x40C2
     CompareVarToValue 0x8008, 0
-    ScrCmd_01C 1, _0195
+    GoToIf 1, _0195
     CompareVarToValue 0x8008, 1
-    ScrCmd_01C 1, _01A0
+    GoToIf 1, _01A0
     GoTo _01AB
     End
 
@@ -173,25 +173,25 @@ _01B6:
 
 _01BE:
     CheckFlag 0xAB2
-    ScrCmd_01C 1, _02CB
+    GoToIf 1, _02CB
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 2
     ScrCmd_034
     ScrCmd_0DE 0x800C
     CompareVarToValue 0x800C, 0x183
-    ScrCmd_01C 1, _0236
+    GoToIf 1, _0236
     CompareVarToValue 0x800C, 0x186
-    ScrCmd_01C 1, _0272
+    GoToIf 1, _0272
     GoTo _01FA
     End
 
 _01FA:
     ScrCmd_28F 0x800C
     CompareVarToValue 0x800C, 20
-    ScrCmd_01C 0, _021A
+    GoToIf 0, _021A
     CompareVarToValue 0x800C, 20
-    ScrCmd_01C 4, _0228
+    GoToIf 4, _0228
     End
 
 _021A:
@@ -207,9 +207,9 @@ _0228:
 _0236:
     ScrCmd_28F 0x800C
     CompareVarToValue 0x800C, 20
-    ScrCmd_01C 0, _0256
+    GoToIf 0, _0256
     CompareVarToValue 0x800C, 20
-    ScrCmd_01C 4, _0264
+    GoToIf 4, _0264
     End
 
 _0256:
@@ -225,9 +225,9 @@ _0264:
 _0272:
     ScrCmd_28F 0x800C
     CompareVarToValue 0x800C, 20
-    ScrCmd_01C 0, _0292
+    GoToIf 0, _0292
     CompareVarToValue 0x800C, 20
-    ScrCmd_01C 4, _02A0
+    GoToIf 4, _02A0
     End
 
 _0292:
@@ -243,7 +243,7 @@ _02A0:
 _02AE:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _02DC
+    GoToIf 1, _02DC
     SetFlag 0xAB2
     GoTo _02CB
     End

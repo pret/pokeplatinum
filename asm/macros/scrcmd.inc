@@ -156,16 +156,16 @@
     .short 27
     .endm
 
-    .macro ScrCmd_01C arg0, arg1
+    .macro GoToIf condition, offset
     .short 28
-    .byte \arg0
-    .long \arg1-.-4
+    .byte \condition
+    .long \offset-.-4
     .endm
 
-    .macro ScrCmd_01D arg0, arg1
+    .macro CallIf condition, offset
     .short 29
-    .byte \arg0
-    .long \arg1-.-4
+    .byte \condition
+    .long \offset-.-4
     .endm
 
     .macro SetFlag flagID

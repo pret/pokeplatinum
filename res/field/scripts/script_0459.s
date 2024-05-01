@@ -14,23 +14,23 @@
 
 _0022:
     CheckFlag 0x104
-    ScrCmd_01C 0, _002F
+    GoToIf 0, _002F
     End
 
 _002F:
     ScrCmd_15B 3, 0x4000
     CompareVarToValue 0x4000, 1
-    ScrCmd_01C 1, _0044
+    GoToIf 1, _0044
     End
 
 _0044:
     CheckFlag 0x103
-    ScrCmd_01C 1, _0051
+    GoToIf 1, _0051
     End
 
 _0051:
     CheckFlag 0x118
-    ScrCmd_01D 0, _0062
+    CallIf 0, _0062
     ClearFlag 0x21A
     End
 
@@ -44,7 +44,7 @@ _0078:
     ScrCmd_049 0x5DC
     ScrCmd_060
     CheckFlag 0x118
-    ScrCmd_01C 1, _0133
+    GoToIf 1, _0133
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_068
@@ -54,9 +54,9 @@ _0078:
     ScrCmd_034
     ScrCmd_1BD 0x8004
     CompareVarToValue 0x8004, 2
-    ScrCmd_01C 1, _00F1
+    GoToIf 1, _00F1
     CompareVarToValue 0x8004, 3
-    ScrCmd_01C 1, _00DF
+    GoToIf 1, _00DF
     GoTo _00C5
     End
 
@@ -102,7 +102,7 @@ _0133:
     ScrCmd_034
     ScrCmd_1BD 0x8004
     CompareVarToValue 0x8004, 2
-    ScrCmd_01C 1, _0180
+    GoToIf 1, _0180
     GoTo _0166
     End
 
@@ -128,15 +128,15 @@ _019A:
     ScrCmd_014 0x807
     ScrCmd_315 0x800C
     CompareVarToValue 0x800C, 2
-    ScrCmd_01D 1, _0261
+    CallIf 1, _0261
     CompareVarToValue 0x8004, 2
-    ScrCmd_01D 1, _0267
+    CallIf 1, _0267
     CompareVarToValue 0x8004, 3
-    ScrCmd_01D 1, _027B
+    CallIf 1, _027B
     CompareVarToValue 0x8004, 0
-    ScrCmd_01D 1, _028F
+    CallIf 1, _028F
     CompareVarToValue 0x8004, 1
-    ScrCmd_01D 1, _02A3
+    CallIf 1, _02A3
     ScrCmd_02C 4
     ScrCmd_05E 33, _0348
     ScrCmd_05F
@@ -144,18 +144,18 @@ _019A:
     ScrCmd_02C 6
     ScrCmd_034
     CompareVarToValue 0x8004, 2
-    ScrCmd_01D 1, _02B7
+    CallIf 1, _02B7
     CompareVarToValue 0x8004, 3
-    ScrCmd_01D 1, _02CB
+    CallIf 1, _02CB
     CompareVarToValue 0x8004, 0
-    ScrCmd_01D 1, _02DF
+    CallIf 1, _02DF
     CompareVarToValue 0x8004, 1
-    ScrCmd_01D 1, _02F3
+    CallIf 1, _02F3
     ScrCmd_065 33
     ScrCmd_014 0x808
     ScrCmd_315 0x800C
     CompareVarToValue 0x800C, 2
-    ScrCmd_01D 1, _0261
+    CallIf 1, _0261
     ClearFlag 0x211
     ClearFlag 0x21B
     ScrCmd_061

@@ -16,7 +16,7 @@
 
 _002A:
     CompareVarToValue 0x40F9, 0
-    ScrCmd_01C 1, _0039
+    GoToIf 1, _0039
     End
 
 _0039:
@@ -102,58 +102,58 @@ _00E0:
     ScrCmd_02C 6
     ScrCmd_034
     CompareVarToValue 0x4000, 0
-    ScrCmd_01D 1, _0249
+    CallIf 1, _0249
     CompareVarToValue 0x4000, 1
-    ScrCmd_01D 1, _025D
+    CallIf 1, _025D
     CompareVarToValue 0x4000, 2
-    ScrCmd_01D 1, _0271
+    CallIf 1, _0271
     CompareVarToValue 0x4000, 3
-    ScrCmd_01D 1, _027D
+    CallIf 1, _027D
     ScrCmd_0CD 1
     ScrCmd_02C 7
     ScrCmd_034
     ScrCmd_05E 0, _03E0
     ScrCmd_05F
     CompareVarToValue 0x4000, 0
-    ScrCmd_01D 1, _0291
+    CallIf 1, _0291
     CompareVarToValue 0x4000, 1
-    ScrCmd_01D 1, _02A5
+    CallIf 1, _02A5
     CompareVarToValue 0x4000, 2
-    ScrCmd_01D 1, _02B9
+    CallIf 1, _02B9
     CompareVarToValue 0x4000, 3
-    ScrCmd_01D 1, _02CD
+    CallIf 1, _02CD
     ScrCmd_02C 8
     ScrCmd_034
     CompareVarToValue 0x4000, 0
-    ScrCmd_01D 1, _02E1
+    CallIf 1, _02E1
     CompareVarToValue 0x4000, 1
-    ScrCmd_01D 1, _02ED
+    CallIf 1, _02ED
     CompareVarToValue 0x4000, 2
-    ScrCmd_01D 1, _02F9
+    CallIf 1, _02F9
     CompareVarToValue 0x4000, 3
-    ScrCmd_01D 1, _0305
+    CallIf 1, _0305
     ScrCmd_0CE 0
     ScrCmd_02C 9
     ScrCmd_034
     CompareVarToValue 0x4000, 0
-    ScrCmd_01D 1, _0311
+    CallIf 1, _0311
     CompareVarToValue 0x4000, 1
-    ScrCmd_01D 1, _031D
+    CallIf 1, _031D
     CompareVarToValue 0x4000, 2
-    ScrCmd_01D 1, _0329
+    CallIf 1, _0329
     CompareVarToValue 0x4000, 3
-    ScrCmd_01D 1, _0335
+    CallIf 1, _0335
     ScrCmd_0CD 1
     ScrCmd_02C 10
     ScrCmd_034
     CompareVarToValue 0x4000, 0
-    ScrCmd_01D 1, _0341
+    CallIf 1, _0341
     CompareVarToValue 0x4000, 1
-    ScrCmd_01D 1, _0355
+    CallIf 1, _0355
     CompareVarToValue 0x4000, 2
-    ScrCmd_01D 1, _0369
+    CallIf 1, _0369
     CompareVarToValue 0x4000, 3
-    ScrCmd_01D 1, _037D
+    CallIf 1, _037D
     ScrCmd_049 0x603
     ScrCmd_065 0
     ScrCmd_014 0x7FB

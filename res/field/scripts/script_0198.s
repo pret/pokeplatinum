@@ -13,9 +13,9 @@ _0006:
     ScrCmd_05F
     ScrCmd_28F 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01D 1, _0111
+    CallIf 1, _0111
     CompareVarToValue 0x800C, 0
-    ScrCmd_01D 5, _0119
+    CallIf 5, _0119
     ScrCmd_034
     ScrCmd_05E 1, _0144
     ScrCmd_05E 0, _015C
@@ -23,9 +23,9 @@ _0006:
     ScrCmd_003 15, 0x800C
     ScrCmd_14D 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0074
+    GoToIf 1, _0074
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _0080
+    GoToIf 1, _0080
     End
 
 _0074:
@@ -49,9 +49,9 @@ _008C:
     SetFlag 0x982
     ScrCmd_22D 2, 0x800C
     CompareVarToValue 0x800C, 1
-    ScrCmd_01D 1, _010A
+    CallIf 1, _010A
     CompareVarToValue 0x40F4, 0
-    ScrCmd_01D 1, _0102
+    CallIf 1, _0102
     ScrCmd_177 0x800C
     ScrCmd_25A 0x800C
     ScrCmd_0BC 6, 3, 0, 0
@@ -128,34 +128,34 @@ _0174:
     ClearFlag 0x1D1
     ClearFlag 0x98B
     CheckFlag 208
-    ScrCmd_01D 0, _023C
+    CallIf 0, _023C
     CheckFlag 209
-    ScrCmd_01D 0, _0244
+    CallIf 0, _0244
     CheckFlag 0x120
-    ScrCmd_01D 0, _024C
+    CallIf 0, _024C
     CheckFlag 0x11B
-    ScrCmd_01D 0, _0263
+    CallIf 0, _0263
     CheckFlag 0x126
-    ScrCmd_01D 0, _027B
+    CallIf 0, _027B
     CheckFlag 0x127
-    ScrCmd_01D 0, _0281
+    CallIf 0, _0281
     CheckFlag 0x121
-    ScrCmd_01D 0, _0287
+    CallIf 0, _0287
     CompareVarToValue 0x4059, 2
-    ScrCmd_01D 1, _028D
+    CallIf 1, _028D
     CompareVarToValue 0x4058, 2
-    ScrCmd_01D 1, _0299
+    CallIf 1, _0299
     CompareVarToValue 0x405E, 2
-    ScrCmd_01D 1, _02A5
+    CallIf 1, _02A5
     CompareVarToValue 0x405F, 2
-    ScrCmd_01D 1, _02AD
+    CallIf 1, _02AD
     CompareVarToValue 0x4060, 2
-    ScrCmd_01D 1, _02B5
+    CallIf 1, _02B5
     CompareVarToValue 0x410F, 0
-    ScrCmd_01D 1, _0234
+    CallIf 1, _0234
     ClearFlag 0x177
     CheckFlag 185
-    ScrCmd_01D 0, _02BD
+    CallIf 0, _02BD
     ClearFlag 0x186
     ClearFlag 0x124
     SetFlag 0x2A0
@@ -175,7 +175,7 @@ _0244:
 
 _024C:
     CheckFlag 0x125
-    ScrCmd_01C 0, _0261
+    GoToIf 0, _0261
     ClearFlag 0x1DD
     ScrCmd_028 0x409E, 1
 _0261:
@@ -184,7 +184,7 @@ _0261:
 _0263:
     ScrCmd_22D 2, 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0279
+    GoToIf 1, _0279
     ClearFlag 0x243
 _0279:
     Return

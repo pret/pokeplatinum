@@ -10,9 +10,9 @@
 
 _0012:
     CheckFlag 186
-    ScrCmd_01C 0, _002A
+    GoToIf 0, _002A
     CheckFlag 186
-    ScrCmd_01C 1, _003C
+    GoToIf 1, _003C
     End
 
 _002A:
@@ -28,11 +28,11 @@ _003C:
 _004E:
     ScrCmd_15B 6, 0x4000
     CompareVarToValue 0x4000, 1
-    ScrCmd_01D 1, _0079
+    CallIf 1, _0079
     CheckFlag 186
-    ScrCmd_01C 0, _002A
+    GoToIf 0, _002A
     CheckFlag 186
-    ScrCmd_01C 1, _003C
+    GoToIf 1, _003C
     End
 
 _0079:

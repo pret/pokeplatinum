@@ -11,7 +11,7 @@
 _0012:
     ScrCmd_238 9, 0x4000
     CompareVarToValue 0x4000, 0
-    ScrCmd_01C 1, _002B
+    GoToIf 1, _002B
     ClearFlag 0x215
     End
 
@@ -34,14 +34,14 @@ _0044:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 0x13D
-    ScrCmd_01C 1, _00A4
+    GoToIf 1, _00A4
     ScrCmd_0DE 0x800C
     CompareVarToValue 0x800C, 0x183
-    ScrCmd_01D 1, _00B4
+    CallIf 1, _00B4
     CompareVarToValue 0x800C, 0x186
-    ScrCmd_01D 1, _00BC
+    CallIf 1, _00BC
     CompareVarToValue 0x800C, 0x189
-    ScrCmd_01D 1, _00C4
+    CallIf 1, _00C4
     ScrCmd_029 0x410A, 0x8004
     ScrCmd_343 0, 0x8004
     ScrCmd_02C 1

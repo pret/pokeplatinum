@@ -17,7 +17,7 @@ _0018:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 0x12A
-    ScrCmd_01C 1, _004D
+    GoToIf 1, _004D
     ScrCmd_028 0x8004, 95
     ScrCmd_261 0, 0x8004
     ScrCmd_02C 0

@@ -15,11 +15,11 @@
 
 _0026:
     CompareVarToValue 0x40F4, 1
-    ScrCmd_01D 1, _004F
+    CallIf 1, _004F
     CompareVarToValue 0x40A4, 4
-    ScrCmd_01D 1, _005F
+    CallIf 1, _005F
     CompareVarToValue 0x40A4, 6
-    ScrCmd_01D 1, _0057
+    CallIf 1, _0057
     End
 
 _004F:
@@ -39,11 +39,11 @@ _0067:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 144
-    ScrCmd_01C 1, _00A3
+    GoToIf 1, _00A3
     CompareVarToValue 0x4095, 1
-    ScrCmd_01C 4, _00AE
+    GoToIf 4, _00AE
     CheckFlag 234
-    ScrCmd_01C 1, _00BC
+    GoToIf 1, _00BC
     ScrCmd_0CD 0
     ScrCmd_0CE 1
     ScrCmd_02C 4
@@ -82,19 +82,19 @@ _00CD:
     ScrCmd_05F
     ScrCmd_069 0x8004, 0x8005
     CompareVarToValue 0x8004, 108
-    ScrCmd_01C 1, _0140
+    GoToIf 1, _0140
     CompareVarToValue 0x8004, 109
-    ScrCmd_01C 1, _0158
+    GoToIf 1, _0158
     CompareVarToValue 0x8004, 110
-    ScrCmd_01C 1, _0170
+    GoToIf 1, _0170
     CompareVarToValue 0x8004, 111
-    ScrCmd_01C 1, _0188
+    GoToIf 1, _0188
     CompareVarToValue 0x8004, 112
-    ScrCmd_01C 1, _01A0
+    GoToIf 1, _01A0
     CompareVarToValue 0x8004, 113
-    ScrCmd_01C 1, _01B8
+    GoToIf 1, _01B8
     CompareVarToValue 0x8004, 114
-    ScrCmd_01C 1, _01D0
+    GoToIf 1, _01D0
     GoTo _01E8
 
 _0140:
@@ -151,19 +151,19 @@ _0200:
     ScrCmd_02C 3
     ScrCmd_034
     CompareVarToValue 0x8004, 108
-    ScrCmd_01C 1, _026C
+    GoToIf 1, _026C
     CompareVarToValue 0x8004, 109
-    ScrCmd_01C 1, _027C
+    GoToIf 1, _027C
     CompareVarToValue 0x8004, 110
-    ScrCmd_01C 1, _028C
+    GoToIf 1, _028C
     CompareVarToValue 0x8004, 111
-    ScrCmd_01C 1, _029C
+    GoToIf 1, _029C
     CompareVarToValue 0x8004, 112
-    ScrCmd_01C 1, _02AC
+    GoToIf 1, _02AC
     CompareVarToValue 0x8004, 113
-    ScrCmd_01C 1, _02BC
+    GoToIf 1, _02BC
     CompareVarToValue 0x8004, 114
-    ScrCmd_01C 1, _02CC
+    GoToIf 1, _02CC
     GoTo _02DC
 
 _026C:
@@ -502,9 +502,9 @@ _05E7:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 144
-    ScrCmd_01C 1, _0612
+    GoToIf 1, _0612
     CompareVarToValue 0x4095, 1
-    ScrCmd_01C 4, _061D
+    GoToIf 4, _061D
     ScrCmd_02C 8
     ScrCmd_031
     ScrCmd_034

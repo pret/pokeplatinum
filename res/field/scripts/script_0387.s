@@ -18,9 +18,9 @@ _0022:
 
 _0026:
     CompareVarToValue 0x4055, 7
-    ScrCmd_01C 1, _0080
+    GoToIf 1, _0080
     CheckFlag 0x9AD
-    ScrCmd_01C 1, _0051
+    GoToIf 1, _0051
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068

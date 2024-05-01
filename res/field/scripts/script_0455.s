@@ -12,13 +12,13 @@ _000E:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 0x139
-    ScrCmd_01C 1, _005D
+    GoToIf 1, _005D
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 218
     ScrCmd_028 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0053
+    GoToIf 1, _0053
     SetFlag 0x139
     ScrCmd_014 0x7E0
     ScrCmd_034
@@ -54,7 +54,7 @@ _007B:
     ScrCmd_02C 3
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _009D
+    GoToIf 1, _009D
     GoTo _00D3
     End
 

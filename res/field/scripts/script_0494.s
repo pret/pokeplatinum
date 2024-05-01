@@ -16,9 +16,9 @@ _0016:
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 0
-    ScrCmd_01C 1, _0041
+    GoToIf 1, _0041
     CompareVarToValue 0x800C, 1
-    ScrCmd_01C 1, _004C
+    GoToIf 1, _004C
     End
 
 _0041:

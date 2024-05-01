@@ -10,7 +10,7 @@ _0006:
     ScrCmd_060
     ScrCmd_068
     CompareVarToValue 0x4095, 1
-    ScrCmd_01C 4, _002F
+    GoToIf 4, _002F
     GoTo _0021
 
 _0021:

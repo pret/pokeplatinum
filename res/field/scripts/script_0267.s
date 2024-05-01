@@ -9,10 +9,10 @@
 _000A:
     SetFlag 0x9CA
     CheckFlag 0x964
-    ScrCmd_01C 0, _002F
+    GoToIf 0, _002F
     ScrCmd_22D 2, 0x4000
     CompareVarToValue 0x4000, 0
-    ScrCmd_01C 1, _002F
+    GoToIf 1, _002F
     SetFlag 0x27E
 _002F:
     End
@@ -22,7 +22,7 @@ _0031:
     ScrCmd_060
     ScrCmd_068
     CheckFlag 0x964
-    ScrCmd_01C 1, _004F
+    GoToIf 1, _004F
     ScrCmd_02C 0
     GoTo _005A
     End

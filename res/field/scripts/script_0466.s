@@ -11,11 +11,11 @@
 _0012:
     ScrCmd_284 0x4000
     CompareVarToValue 0x4000, 26
-    ScrCmd_01C 4, _003F
+    GoToIf 4, _003F
     CompareVarToValue 0x4000, 10
-    ScrCmd_01C 4, _0051
+    GoToIf 4, _0051
     CompareVarToValue 0x4000, 10
-    ScrCmd_01C 0, _0063
+    GoToIf 0, _0063
     End
 
 _003F:
@@ -36,11 +36,11 @@ _0063:
 _0075:
     ScrCmd_284 0x4000
     CompareVarToValue 0x4000, 26
-    ScrCmd_01C 4, _003F
+    GoToIf 4, _003F
     CompareVarToValue 0x4000, 10
-    ScrCmd_01C 4, _0051
+    GoToIf 4, _0051
     CompareVarToValue 0x4000, 10
-    ScrCmd_01C 0, _0063
+    GoToIf 0, _0063
     End
 
 _00A2:

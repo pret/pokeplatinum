@@ -9,7 +9,7 @@
 
 _000E:
     CheckFlag 0x121
-    ScrCmd_01D 1, _001B
+    CallIf 1, _001B
     End
 
 _001B:
@@ -72,7 +72,7 @@ _00C0:
     ScrCmd_060
     ScrCmd_068
     CompareVarToValue 0x40AA, 3
-    ScrCmd_01C 4, _00E0
+    GoToIf 4, _00E0
     ScrCmd_02C 3
     GoTo _00EB
     End

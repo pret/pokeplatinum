@@ -15,15 +15,15 @@
 _0022:
     ScrCmd_1B6 0x4000
     CompareVarToValue 0x4000, 0
-    ScrCmd_01C 1, _0069
+    GoToIf 1, _0069
     CompareVarToValue 0x4000, 1
-    ScrCmd_01C 1, _0069
+    GoToIf 1, _0069
     CompareVarToValue 0x4000, 2
-    ScrCmd_01C 1, _0069
+    GoToIf 1, _0069
     CompareVarToValue 0x4000, 3
-    ScrCmd_01C 1, _0073
+    GoToIf 1, _0073
     CompareVarToValue 0x4000, 4
-    ScrCmd_01C 1, _0073
+    GoToIf 1, _0073
     End
 
 _0069:
