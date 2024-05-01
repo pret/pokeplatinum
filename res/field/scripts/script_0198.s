@@ -46,7 +46,7 @@ _008C:
     ScrCmd_05F
     ScrCmd_02C 6
     ScrCmd_034
-    ScrCmd_01E 0x982
+    SetFlag 0x982
     ScrCmd_22D 2, 0x800C
     ScrCmd_011 0x800C, 1
     ScrCmd_01D 1, _010A
@@ -125,21 +125,21 @@ _0164:
     EndMovement
 
 _0174:
-    ScrCmd_01F 0x1D1
-    ScrCmd_01F 0x98B
-    ScrCmd_020 208
+    ClearFlag 0x1D1
+    ClearFlag 0x98B
+    CheckFlag 208
     ScrCmd_01D 0, _023C
-    ScrCmd_020 209
+    CheckFlag 209
     ScrCmd_01D 0, _0244
-    ScrCmd_020 0x120
+    CheckFlag 0x120
     ScrCmd_01D 0, _024C
-    ScrCmd_020 0x11B
+    CheckFlag 0x11B
     ScrCmd_01D 0, _0263
-    ScrCmd_020 0x126
+    CheckFlag 0x126
     ScrCmd_01D 0, _027B
-    ScrCmd_020 0x127
+    CheckFlag 0x127
     ScrCmd_01D 0, _0281
-    ScrCmd_020 0x121
+    CheckFlag 0x121
     ScrCmd_01D 0, _0287
     ScrCmd_011 0x4059, 2
     ScrCmd_01D 1, _028D
@@ -153,12 +153,12 @@ _0174:
     ScrCmd_01D 1, _02B5
     ScrCmd_011 0x410F, 0
     ScrCmd_01D 1, _0234
-    ScrCmd_01F 0x177
-    ScrCmd_020 185
+    ClearFlag 0x177
+    CheckFlag 185
     ScrCmd_01D 0, _02BD
-    ScrCmd_01F 0x186
-    ScrCmd_01F 0x124
-    ScrCmd_01E 0x2A0
+    ClearFlag 0x186
+    ClearFlag 0x124
+    SetFlag 0x2A0
     Return
 
 _0234:
@@ -174,9 +174,9 @@ _0244:
     Return
 
 _024C:
-    ScrCmd_020 0x125
+    CheckFlag 0x125
     ScrCmd_01C 0, _0261
-    ScrCmd_01F 0x1DD
+    ClearFlag 0x1DD
     ScrCmd_028 0x409E, 1
 _0261:
     Return
@@ -185,29 +185,29 @@ _0263:
     ScrCmd_22D 2, 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0279
-    ScrCmd_01F 0x243
+    ClearFlag 0x243
 _0279:
     Return
 
 _027B:
-    ScrCmd_01F 0x1E0
+    ClearFlag 0x1E0
     Return
 
 _0281:
-    ScrCmd_01F 0x1E1
+    ClearFlag 0x1E1
     Return
 
 _0287:
-    ScrCmd_01F 0x250
+    ClearFlag 0x250
     Return
 
 _028D:
-    ScrCmd_01F 0x1DF
+    ClearFlag 0x1DF
     ScrCmd_028 0x4059, 3
     Return
 
 _0299:
-    ScrCmd_01F 0x24F
+    ClearFlag 0x24F
     ScrCmd_028 0x4058, 3
     Return
 
@@ -224,7 +224,7 @@ _02B5:
     Return
 
 _02BD:
-    ScrCmd_01F 0x185
+    ClearFlag 0x185
     Return
 
     .byte 0

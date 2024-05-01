@@ -22,11 +22,11 @@ _003A:
     ScrCmd_238 19, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 1, _0053
-    ScrCmd_01F 0x2C3
+    ClearFlag 0x2C3
     End
 
 _0053:
-    ScrCmd_01E 0x2C3
+    SetFlag 0x2C3
     End
 
 _0059:

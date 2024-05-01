@@ -101,7 +101,7 @@ _0139:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 134
+    CheckFlag 134
     ScrCmd_01C 1, _01E4
     ScrCmd_02C 9
     ScrCmd_03E 0x800C
@@ -129,7 +129,7 @@ _0168:
     ScrCmd_01C 5, _01CC
     ScrCmd_229 0x8004
     ScrCmd_22A
-    ScrCmd_01E 134
+    SetFlag 134
     ScrCmd_02C 10
     ScrCmd_031
     ScrCmd_034

@@ -20,7 +20,7 @@
     .short 0xFD13
 
 _003E:
-    ScrCmd_020 0x97D
+    CheckFlag 0x97D
     ScrCmd_01C 1, _004B
     End
 
@@ -36,9 +36,9 @@ _0059:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x97D
+    CheckFlag 0x97D
     ScrCmd_01C 1, _0109
-    ScrCmd_020 173
+    CheckFlag 173
     ScrCmd_01C 1, _0114
     ScrCmd_02C 0
     ScrCmd_034
@@ -46,7 +46,7 @@ _0059:
     ScrCmd_0EC 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _011F
-    ScrCmd_01E 173
+    SetFlag 173
     ScrCmd_028 0x410D, 1
     ScrCmd_02C 1
     ScrCmd_034
@@ -119,7 +119,7 @@ _0140:
 _014C:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 0x97D
+    CheckFlag 0x97D
     ScrCmd_01C 1, _0168
     ScrCmd_02C 13
     ScrCmd_031
@@ -137,7 +137,7 @@ _0168:
 _0173:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 0x97D
+    CheckFlag 0x97D
     ScrCmd_01C 1, _018F
     ScrCmd_02C 14
     ScrCmd_031
@@ -155,7 +155,7 @@ _018F:
 _019A:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 0x97D
+    CheckFlag 0x97D
     ScrCmd_01C 1, _01B6
     ScrCmd_02C 15
     ScrCmd_031
@@ -182,7 +182,7 @@ _01C5:
 _01C7:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 0x97D
+    CheckFlag 0x97D
     ScrCmd_01C 1, _0347
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
@@ -198,8 +198,8 @@ _01FB:
     ScrCmd_0CD 0
     ScrCmd_02C 11
     ScrCmd_034
-    ScrCmd_01F 0x295
-    ScrCmd_01E 0x97D
+    ClearFlag 0x295
+    SetFlag 0x97D
     ScrCmd_25F
     ScrCmd_003 30, 0x800C
     ScrCmd_05E 2, _036C
@@ -228,7 +228,7 @@ _0296:
     ScrCmd_065 1
     ScrCmd_065 3
     ScrCmd_003 2, 0x800C
-    ScrCmd_01F 0x236
+    ClearFlag 0x236
     ScrCmd_064 2
     ScrCmd_064 1
     ScrCmd_064 3
@@ -264,8 +264,8 @@ _030E:
     ScrCmd_065 0
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    ScrCmd_01E 0x235
-    ScrCmd_01F 0x182
+    SetFlag 0x235
+    ClearFlag 0x182
     ScrCmd_028 0x40A9, 1
     ScrCmd_061
     End
@@ -373,7 +373,7 @@ _03EA:
 _03FD:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 173
+    CheckFlag 173
     ScrCmd_01C 1, _0450
     ScrCmd_05E 4, _0470
     ScrCmd_05F

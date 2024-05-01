@@ -83,7 +83,7 @@ _00D2:
     ScrCmd_169 77
     ScrCmd_16A 77
     ScrCmd_065 2
-    ScrCmd_01E 0x162
+    SetFlag 0x162
     ScrCmd_061
     End
 

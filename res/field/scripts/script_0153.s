@@ -10,11 +10,11 @@ _000A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 151
+    CheckFlag 151
     ScrCmd_01C 1, _0109
-    ScrCmd_020 181
+    CheckFlag 181
     ScrCmd_01C 1, _0037
-    ScrCmd_01E 181
+    SetFlag 181
     ScrCmd_02C 0
     GoTo _0042
     End
@@ -41,7 +41,7 @@ _005B:
     ScrCmd_02C 3
     ScrCmd_04F
     ScrCmd_096 137, 25, 0, 0x800C
-    ScrCmd_01E 151
+    SetFlag 151
     ScrCmd_02C 4
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 0

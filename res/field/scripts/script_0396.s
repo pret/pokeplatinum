@@ -30,7 +30,7 @@ _003D:
     ScrCmd_01C 1, _00ED
     ScrCmd_011 0x406B, 0x118
     ScrCmd_01C 1, _00F8
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 0, _010F
     ScrCmd_32B 0x800C
     ScrCmd_011 0x800C, 0
@@ -156,7 +156,7 @@ _020D:
     End
 
 _020F:
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 0, _020D
     ScrCmd_04B 0x5DC
     ScrCmd_29F 1

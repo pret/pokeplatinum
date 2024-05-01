@@ -40,16 +40,16 @@ _0056:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 1, _007F
-    ScrCmd_020 0x9B8
+    CheckFlag 0x9B8
     ScrCmd_01C 1, _008E
     ScrCmd_02C 3
     GoTo _0099
     End
 
 _007F:
-    ScrCmd_01E 0x145
+    SetFlag 0x145
     ScrCmd_02C 5
     GoTo _0099
     End

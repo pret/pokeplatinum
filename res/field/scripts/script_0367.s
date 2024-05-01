@@ -43,7 +43,7 @@ _0062:
     ScrCmd_1E0 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 5, _00DF
-    ScrCmd_01E 0x1E9
+    SetFlag 0x1E9
     GoTo _00C6
     End
 
@@ -51,16 +51,16 @@ _00C6:
     ScrCmd_238 2, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 5, _00EB
-    ScrCmd_01E 0x20E
+    SetFlag 0x20E
     End
 
 _00DF:
-    ScrCmd_01F 0x1E9
+    ClearFlag 0x1E9
     GoTo _00C6
     End
 
 _00EB:
-    ScrCmd_01F 0x20E
+    ClearFlag 0x20E
     End
 
 _00F1:
@@ -87,11 +87,11 @@ _013C:
     End
 
 _0144:
-    ScrCmd_01E 0x2C3
+    SetFlag 0x2C3
     Return
 
 _014A:
-    ScrCmd_01F 0x2C3
+    ClearFlag 0x2C3
     Return
 
     .byte 219
@@ -1382,11 +1382,11 @@ _13E0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0xFF
+    CheckFlag 0xFF
     ScrCmd_01D 0, _1492
-    ScrCmd_020 0xFF
+    CheckFlag 0xFF
     ScrCmd_01D 1, _1497
-    ScrCmd_01E 0xFF
+    SetFlag 0xFF
     GoTo _140A
     End
 

@@ -20,11 +20,11 @@ _000A:
     ScrCmd_238 18, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 1, _0062
-    ScrCmd_01F 0x2C2
+    ClearFlag 0x2C2
     End
 
 _0062:
-    ScrCmd_01E 0x2C2
+    SetFlag 0x2C2
     End
 
 _0068:

@@ -9,10 +9,10 @@ _0006:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 1
+    CheckFlag 1
     ScrCmd_01C 1, _0026
     ScrCmd_02C 0
-    ScrCmd_01E 1
+    SetFlag 1
     GoTo _0026
 
 _0026:

@@ -7,17 +7,17 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_01E 0x9E4
+    SetFlag 0x9E4
     ScrCmd_270 1, 1
-    ScrCmd_01F 0x279
-    ScrCmd_020 0x158
+    ClearFlag 0x279
+    CheckFlag 0x158
     ScrCmd_01D 0, _0024
     End
 
 _0024:
     ScrCmd_011 0x40F8, 2
     ScrCmd_01C 5, _0035
-    ScrCmd_01E 0x279
+    SetFlag 0x279
 _0035:
     Return
 

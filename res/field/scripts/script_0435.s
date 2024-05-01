@@ -10,11 +10,11 @@
     .short 0xFD13
 
 _0016:
-    ScrCmd_01E 0x9E6
+    SetFlag 0x9E6
     End
 
 _001C:
-    ScrCmd_020 0x994
+    CheckFlag 0x994
     ScrCmd_01D 1, _009F
     ScrCmd_200 0x4000
     ScrCmd_011 0x4000, 80
@@ -24,7 +24,7 @@ _001C:
     End
 
 _0047:
-    ScrCmd_020 3
+    CheckFlag 3
     ScrCmd_01C 1, _009D
     ScrCmd_069 0x4000, 0x4001
     ScrCmd_011 0x4000, 0x12B
@@ -38,8 +38,8 @@ _0047:
     End
 
 _008E:
-    ScrCmd_01E 3
-    ScrCmd_01E 0x994
+    SetFlag 3
+    SetFlag 0x994
     ScrCmd_2BF
     ScrCmd_0C9 1
     End

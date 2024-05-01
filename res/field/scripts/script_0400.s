@@ -8,9 +8,9 @@
     .short 0xFD13
 
 _000E:
-    ScrCmd_01E 0x183
-    ScrCmd_01E 0x184
-    ScrCmd_020 0x97F
+    SetFlag 0x183
+    SetFlag 0x184
+    CheckFlag 0x97F
     ScrCmd_01C 0, _0029
     Call _002B
     End
@@ -161,43 +161,43 @@ _02C5:
     Return
 
 _0326:
-    ScrCmd_01F 0x183
+    ClearFlag 0x183
     ScrCmd_028 0x402A, 35
     Return
 
 _0332:
-    ScrCmd_01F 0x183
-    ScrCmd_01F 0x184
+    ClearFlag 0x183
+    ClearFlag 0x184
     ScrCmd_028 0x402A, 22
     ScrCmd_028 0x402B, 23
     Return
 
 _0348:
-    ScrCmd_01F 0x183
-    ScrCmd_01F 0x184
+    ClearFlag 0x183
+    ClearFlag 0x184
     ScrCmd_028 0x402A, 22
     ScrCmd_028 0x402B, 23
     Return
 
 _035E:
-    ScrCmd_01F 0x183
+    ClearFlag 0x183
     ScrCmd_028 0x402A, 43
     Return
 
 _036A:
-    ScrCmd_01F 0x183
-    ScrCmd_01F 0x184
+    ClearFlag 0x183
+    ClearFlag 0x184
     ScrCmd_028 0x402A, 22
     ScrCmd_028 0x402B, 23
     Return
 
 _0380:
-    ScrCmd_01F 0x183
+    ClearFlag 0x183
     ScrCmd_028 0x402A, 71
     Return
 
 _038C:
-    ScrCmd_01F 0x183
+    ClearFlag 0x183
     ScrCmd_028 0x402A, 10
     Return
 
@@ -959,7 +959,7 @@ _0DF9:
     Return
 
 _0DFE:
-    ScrCmd_01E 0xABC
+    SetFlag 0xABC
     ScrCmd_201 0x4001
     ScrCmd_011 0x4001, 48
     ScrCmd_01D 1, _0E2F
@@ -992,17 +992,17 @@ _0E3E:
     Return
 
 _0E6B:
-    ScrCmd_01E 0xABD
+    SetFlag 0xABD
     ScrCmd_02C 3
     Return
 
 _0E74:
-    ScrCmd_01E 0xABD
+    SetFlag 0xABD
     ScrCmd_02C 33
     Return
 
 _0E7D:
-    ScrCmd_01E 0xABD
+    SetFlag 0xABD
     ScrCmd_02C 71
     Return
 
@@ -1021,22 +1021,22 @@ _0E86:
     Return
 
 _0ECD:
-    ScrCmd_01E 0xABE
+    SetFlag 0xABE
     ScrCmd_02C 7
     Return
 
 _0ED6:
-    ScrCmd_01E 0xABE
+    SetFlag 0xABE
     ScrCmd_02C 37
     Return
 
 _0EDF:
-    ScrCmd_01E 0xABE
+    SetFlag 0xABE
     ScrCmd_02C 75
     Return
 
 _0EE8:
-    ScrCmd_01E 0xABF
+    SetFlag 0xABF
     ScrCmd_201 0x4001
     ScrCmd_011 0x4001, 101
     ScrCmd_01D 1, _0F19
@@ -1067,12 +1067,12 @@ _0F28:
     Return
 
 _0F48:
-    ScrCmd_01E 0xAC0
+    SetFlag 0xAC0
     ScrCmd_02C 29
     Return
 
 _0F51:
-    ScrCmd_01E 0xAC0
+    SetFlag 0xAC0
     ScrCmd_02C 59
     Return
 
@@ -1085,17 +1085,17 @@ _0F5A:
     Return
 
 _0F7A:
-    ScrCmd_01E 0xAC0
+    SetFlag 0xAC0
     ScrCmd_02C 24
     Return
 
 _0F83:
-    ScrCmd_01E 0xAC0
+    SetFlag 0xAC0
     ScrCmd_02C 54
     Return
 
 _0F8C:
-    ScrCmd_01E 0xAC1
+    SetFlag 0xAC1
     ScrCmd_201 0x4001
     ScrCmd_011 0x4001, 0x1AC
     ScrCmd_01D 1, _0FBD
@@ -1118,7 +1118,7 @@ _0FC7:
     Return
 
 _0FCC:
-    ScrCmd_01E 0xAC2
+    SetFlag 0xAC2
     ScrCmd_201 0x4001
     ScrCmd_011 0x4001, 36
     ScrCmd_01D 1, _0FFD
@@ -1174,15 +1174,15 @@ _105B:
 
 _1060:
     ScrCmd_028 0x8005, 0x173
-    ScrCmd_020 0x97F
+    CheckFlag 0x97F
     ScrCmd_01D 1, _109F
-    ScrCmd_020 0x980
+    CheckFlag 0x980
     ScrCmd_01D 1, _10A7
-    ScrCmd_020 0x981
+    CheckFlag 0x981
     ScrCmd_01D 1, _10AF
-    ScrCmd_020 0x982
+    CheckFlag 0x982
     ScrCmd_01D 1, _10B7
-    ScrCmd_020 0x983
+    CheckFlag 0x983
     ScrCmd_01D 1, _10BF
     Return
 
@@ -1208,15 +1208,15 @@ _10BF:
 
 _10C7:
     ScrCmd_028 0x8005, 0x172
-    ScrCmd_020 0x97F
+    CheckFlag 0x97F
     ScrCmd_01D 1, _1106
-    ScrCmd_020 0x980
+    CheckFlag 0x980
     ScrCmd_01D 1, _110E
-    ScrCmd_020 0x981
+    CheckFlag 0x981
     ScrCmd_01D 1, _1116
-    ScrCmd_020 0x982
+    CheckFlag 0x982
     ScrCmd_01D 1, _111E
-    ScrCmd_020 0x983
+    CheckFlag 0x983
     ScrCmd_01D 1, _1126
     Return
 
@@ -1242,15 +1242,15 @@ _1126:
 
 _112E:
     ScrCmd_028 0x8005, 0x171
-    ScrCmd_020 0x97F
+    CheckFlag 0x97F
     ScrCmd_01D 1, _116D
-    ScrCmd_020 0x980
+    CheckFlag 0x980
     ScrCmd_01D 1, _1175
-    ScrCmd_020 0x981
+    CheckFlag 0x981
     ScrCmd_01D 1, _117D
-    ScrCmd_020 0x982
+    CheckFlag 0x982
     ScrCmd_01D 1, _1185
-    ScrCmd_020 0x983
+    CheckFlag 0x983
     ScrCmd_01D 1, _118D
     Return
 
@@ -1276,15 +1276,15 @@ _118D:
 
 _1195:
     ScrCmd_028 0x8005, 0x1CC
-    ScrCmd_020 0x97F
+    CheckFlag 0x97F
     ScrCmd_01D 1, _11D4
-    ScrCmd_020 0x980
+    CheckFlag 0x980
     ScrCmd_01D 1, _11DC
-    ScrCmd_020 0x981
+    CheckFlag 0x981
     ScrCmd_01D 1, _11E4
-    ScrCmd_020 0x982
+    CheckFlag 0x982
     ScrCmd_01D 1, _11EC
-    ScrCmd_020 0x983
+    CheckFlag 0x983
     ScrCmd_01D 1, _11F4
     Return
 
@@ -1310,15 +1310,15 @@ _11F4:
 
 _11FC:
     ScrCmd_028 0x8005, 0x170
-    ScrCmd_020 0x97F
+    CheckFlag 0x97F
     ScrCmd_01D 1, _123B
-    ScrCmd_020 0x980
+    CheckFlag 0x980
     ScrCmd_01D 1, _1243
-    ScrCmd_020 0x981
+    CheckFlag 0x981
     ScrCmd_01D 1, _124B
-    ScrCmd_020 0x982
+    CheckFlag 0x982
     ScrCmd_01D 1, _1253
-    ScrCmd_020 0x983
+    CheckFlag 0x983
     ScrCmd_01D 1, _125B
     Return
 
@@ -1344,15 +1344,15 @@ _125B:
 
 _1263:
     ScrCmd_028 0x8005, 0x1D1
-    ScrCmd_020 0x97F
+    CheckFlag 0x97F
     ScrCmd_01D 1, _12A2
-    ScrCmd_020 0x980
+    CheckFlag 0x980
     ScrCmd_01D 1, _12AA
-    ScrCmd_020 0x981
+    CheckFlag 0x981
     ScrCmd_01D 1, _12B2
-    ScrCmd_020 0x982
+    CheckFlag 0x982
     ScrCmd_01D 1, _12BA
-    ScrCmd_020 0x983
+    CheckFlag 0x983
     ScrCmd_01D 1, _12C2
     Return
 
@@ -1378,15 +1378,15 @@ _12C2:
 
 _12CA:
     ScrCmd_028 0x8005, 0x1AF
-    ScrCmd_020 0x97F
+    CheckFlag 0x97F
     ScrCmd_01D 1, _1309
-    ScrCmd_020 0x980
+    CheckFlag 0x980
     ScrCmd_01D 1, _1311
-    ScrCmd_020 0x981
+    CheckFlag 0x981
     ScrCmd_01D 1, _1319
-    ScrCmd_020 0x982
+    CheckFlag 0x982
     ScrCmd_01D 1, _1321
-    ScrCmd_020 0x983
+    CheckFlag 0x983
     ScrCmd_01D 1, _1329
     Return
 
@@ -1411,7 +1411,7 @@ _1329:
     Return
 
 _1331:
-    ScrCmd_020 0xABC
+    CheckFlag 0xABC
     ScrCmd_01C 1, _13F7
     Return
 
@@ -1426,7 +1426,7 @@ _133E:
     Return
 
 _136B:
-    ScrCmd_020 0xABD
+    CheckFlag 0xABD
     ScrCmd_01C 1, _13F7
     Return
 
@@ -1436,12 +1436,12 @@ _1378:
     ScrCmd_01C 1, _13B0
     ScrCmd_011 0x4001, 134
     ScrCmd_01C 1, _13B0
-    ScrCmd_020 0xABE
+    CheckFlag 0xABE
     ScrCmd_01C 1, _13F7
     Return
 
 _13A3:
-    ScrCmd_020 0xABF
+    CheckFlag 0xABF
     ScrCmd_01C 1, _13F7
     Return
 
@@ -1454,17 +1454,17 @@ _13B0:
     Return
 
 _13D0:
-    ScrCmd_020 0xAC0
+    CheckFlag 0xAC0
     ScrCmd_01C 1, _13F7
     Return
 
 _13DD:
-    ScrCmd_020 0xAC1
+    CheckFlag 0xAC1
     ScrCmd_01C 1, _13F7
     Return
 
 _13EA:
-    ScrCmd_020 0xAC2
+    CheckFlag 0xAC2
     ScrCmd_01C 1, _13F7
     Return
 

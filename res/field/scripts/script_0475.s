@@ -22,7 +22,7 @@ _001D:
     ScrCmd_068
     ScrCmd_028 0x8004, 0x1BD
     ScrCmd_0D1 0, 0x8004
-    ScrCmd_020 132
+    CheckFlag 132
     ScrCmd_01C 1, _005E
     ScrCmd_02C 1
     ScrCmd_03E 0x800C
@@ -68,7 +68,7 @@ _00A7:
     ScrCmd_02C 2
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
-    ScrCmd_01E 132
+    SetFlag 132
     GoTo _005E
 
     .byte 0

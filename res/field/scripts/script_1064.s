@@ -27,11 +27,11 @@ _003E:
     End
 
 _005A:
-    ScrCmd_01F 0x198
+    ClearFlag 0x198
     ScrCmd_186 0, 7, 14
     ScrCmd_189 0, 1
     ScrCmd_188 0, 15
-    ScrCmd_01F 0x199
+    ClearFlag 0x199
     ScrCmd_186 3, 6, 14
     ScrCmd_189 3, 1
     ScrCmd_188 3, 15
@@ -55,7 +55,7 @@ _00B7:
     ScrCmd_22D 2, 0x800C
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _07AE
-    ScrCmd_020 0x9BA
+    CheckFlag 0x9BA
     ScrCmd_01C 0, _00E5
     ScrCmd_1E8 0x800C
     ScrCmd_011 0x800C, 1
@@ -115,11 +115,11 @@ _016A:
     ScrCmd_02C 54
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_01E 0x27D
+    SetFlag 0x27D
     ScrCmd_028 0x4112, 1
-    ScrCmd_01F 0x1DF
-    ScrCmd_01F 0x1E0
-    ScrCmd_01F 0x1E1
+    ClearFlag 0x1DF
+    ClearFlag 0x1E0
+    ClearFlag 0x1E1
     ScrCmd_028 0x40A6, 3
     ScrCmd_061
     End
@@ -242,7 +242,7 @@ _0330:
     ScrCmd_05E 0xFF, _04B4
     ScrCmd_05F
     ScrCmd_003 35, 0x800C
-    ScrCmd_01E 0x993
+    SetFlag 0x993
     ScrCmd_050 0x44A
     ScrCmd_02C 9
     ScrCmd_02C 10
@@ -264,7 +264,7 @@ _0375:
 _0394:
     ScrCmd_02C 12
     ScrCmd_158
-    ScrCmd_01E 144
+    SetFlag 144
     ScrCmd_0CD 0
     ScrCmd_02C 13
     ScrCmd_04E 0x486
@@ -327,7 +327,7 @@ _044D:
     ScrCmd_05E 3, _04D8
     ScrCmd_05F
     ScrCmd_065 3
-    ScrCmd_01F 0x177
+    ClearFlag 0x177
     ScrCmd_028 0x40A6, 1
     ScrCmd_061
     End
@@ -537,7 +537,7 @@ _05FD:
     End
 
 _060E:
-    ScrCmd_020 0x110
+    CheckFlag 0x110
     ScrCmd_01C 1, _0621
     GoTo _0631
     End
@@ -585,7 +585,7 @@ _0677:
     ScrCmd_01D 1, _07CF
     ScrCmd_011 0x8007, 3
     ScrCmd_01D 1, _07E3
-    ScrCmd_01F 0x22A
+    ClearFlag 0x22A
     ScrCmd_064 4
     ScrCmd_05E 0xFF, _0858
     ScrCmd_05E 4, _0884
@@ -603,7 +603,7 @@ _0677:
     ScrCmd_05E 0xFF, _086C
     ScrCmd_05F
     ScrCmd_02C 35
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01D 1, _07A2
     ScrCmd_011 0x4081, 2
     ScrCmd_01D 4, _079C
@@ -642,7 +642,7 @@ _0677:
     End
 
 _079C:
-    ScrCmd_01E 0x294
+    SetFlag 0x294
     Return
 
 _07A2:
@@ -776,7 +776,7 @@ _08A0:
     Return
 
 _08B5:
-    ScrCmd_020 0x9BE
+    CheckFlag 0x9BE
     ScrCmd_01C 0, _08C2
     Return
 

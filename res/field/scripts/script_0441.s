@@ -28,17 +28,17 @@ _0026:
     End
 
 _006D:
-    ScrCmd_01F 0x26D
-    ScrCmd_01F 0x26F
-    ScrCmd_01E 0x26C
-    ScrCmd_01E 0x26E
+    ClearFlag 0x26D
+    ClearFlag 0x26F
+    SetFlag 0x26C
+    SetFlag 0x26E
     End
 
 _007F:
-    ScrCmd_01F 0x26C
-    ScrCmd_01F 0x26E
-    ScrCmd_01E 0x26D
-    ScrCmd_01E 0x26F
+    ClearFlag 0x26C
+    ClearFlag 0x26E
+    SetFlag 0x26D
+    SetFlag 0x26F
     End
 
 _0091:
@@ -159,7 +159,7 @@ _01C7:
     ScrCmd_028 0x8004, 0x1BE
     ScrCmd_33C 0, 0x8004
     ScrCmd_346 0
-    ScrCmd_020 162
+    CheckFlag 162
     ScrCmd_01C 1, _020B
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
@@ -205,7 +205,7 @@ _0254:
     ScrCmd_02C 11
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
-    ScrCmd_01E 162
+    SetFlag 162
     GoTo _020B
 
 _0270:

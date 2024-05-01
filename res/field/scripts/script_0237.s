@@ -14,13 +14,13 @@
 
 _0022:
     ScrCmd_060
-    ScrCmd_01F 0x2BA
+    ClearFlag 0x2BA
     ScrCmd_064 1
     ScrCmd_1B2 1
     ScrCmd_186 0, 32, 34
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
-    ScrCmd_01F 0x1CD
+    ClearFlag 0x1CD
     ScrCmd_064 0
     ScrCmd_066 30, 30
     ScrCmd_05E 241, _016C
@@ -50,7 +50,7 @@ _0088:
     ScrCmd_05E 0, _0154
     ScrCmd_05F
     ScrCmd_02C 5
-    ScrCmd_01E 0x29E
+    SetFlag 0x29E
     GoTo _00DA
     End
 

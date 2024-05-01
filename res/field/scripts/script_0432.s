@@ -64,7 +64,7 @@ _0070:
     End
 
 _00B6:
-    ScrCmd_01E 127
+    SetFlag 127
     Return
 
     .balign 4, 0
@@ -121,7 +121,7 @@ _011E:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 145
+    CheckFlag 145
     ScrCmd_01C 1, _0142
     Call _014D
     ScrCmd_02C 0
@@ -138,8 +138,8 @@ _0142:
     End
 
 _014D:
-    ScrCmd_01E 0x1A1
-    ScrCmd_01E 145
+    SetFlag 0x1A1
+    SetFlag 145
     ScrCmd_028 0x4089, 1
     Return
 

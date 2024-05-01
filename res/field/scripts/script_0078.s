@@ -13,13 +13,13 @@ _0016:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 130
+    CheckFlag 130
     ScrCmd_01C 1, _0052
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 0x1C2
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
-    ScrCmd_01E 130
+    SetFlag 130
     ScrCmd_028 0x4114, 1
     ScrCmd_14C 9
     GoTo _0052
@@ -49,7 +49,7 @@ _007C:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 129
+    CheckFlag 129
     ScrCmd_01C 1, _009A
     ScrCmd_02C 3
     ScrCmd_031

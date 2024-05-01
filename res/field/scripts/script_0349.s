@@ -23,7 +23,7 @@ _0006:
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
     ScrCmd_003 15, 0x800C
-    ScrCmd_01F 0x253
+    ClearFlag 0x253
     ScrCmd_064 2
     ScrCmd_05E 2, _01D8
     ScrCmd_05F

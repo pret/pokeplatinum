@@ -37,7 +37,7 @@ _003A:
 
 _004D:
     ScrCmd_060
-    ScrCmd_01F 0x297
+    ClearFlag 0x297
     ScrCmd_064 15
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_011 0x8004, 0x12E
@@ -60,7 +60,7 @@ _004D:
     ScrCmd_01D 1, _00F6
     ScrCmd_065 15
     ScrCmd_028 0x40A8, 1
-    ScrCmd_01E 0x298
+    SetFlag 0x298
     ScrCmd_061
     End
 

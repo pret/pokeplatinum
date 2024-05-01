@@ -40,7 +40,7 @@ _0050:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 112
+    CheckFlag 112
     ScrCmd_01C 1, _006C
     ScrCmd_02C 2
     GoTo _0078
@@ -85,7 +85,7 @@ _00E9:
 _00F4:
     ScrCmd_344 0, 0x8005
     ScrCmd_02C 5
-    ScrCmd_01E 112
+    SetFlag 112
     ScrCmd_29C 0x8004, 0x8005
     ScrCmd_156 0x8005
     GoTo _00E9
@@ -94,7 +94,7 @@ _0110:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 1, _012E
     ScrCmd_02C 8
     ScrCmd_031

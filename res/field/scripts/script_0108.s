@@ -14,18 +14,18 @@ _001A:
     ScrCmd_238 4, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 1, _0033
-    ScrCmd_01F 0x210
+    ClearFlag 0x210
     End
 
 _0033:
-    ScrCmd_01E 0x210
+    SetFlag 0x210
     End
 
 _0039:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 141
+    CheckFlag 141
     ScrCmd_01C 1, _0083
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 0x1C1
@@ -34,7 +34,7 @@ _0039:
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _008E
     ScrCmd_014 0x7FC
-    ScrCmd_01E 141
+    SetFlag 141
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034

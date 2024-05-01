@@ -23,14 +23,14 @@ _000C:
     ScrCmd_063 0
     ScrCmd_26A 0, 6, 8
     ScrCmd_062 0
-    ScrCmd_01E 0x24F
+    SetFlag 0x24F
     ScrCmd_065 0
     ScrCmd_21C 1
     ScrCmd_011 0x4058, 3
     ScrCmd_01C 1, _0074
-    ScrCmd_01F 0x452
+    ClearFlag 0x452
     ScrCmd_064 1
-    ScrCmd_01E 0x11F
+    SetFlag 0x11F
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034

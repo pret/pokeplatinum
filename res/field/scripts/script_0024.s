@@ -48,7 +48,7 @@ _0063:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 191
+    CheckFlag 191
     ScrCmd_01C 1, _00B7
     ScrCmd_0D1 0, 217
     ScrCmd_02C 3
@@ -57,7 +57,7 @@ _0063:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _00AD
-    ScrCmd_01E 191
+    SetFlag 191
     ScrCmd_014 0x7E0
     ScrCmd_034
     ScrCmd_061

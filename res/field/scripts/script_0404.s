@@ -2434,7 +2434,7 @@ _20A8:
     End
 
 _20C0:
-    ScrCmd_01E 0x986
+    SetFlag 0x986
     Return
 
 _20C6:

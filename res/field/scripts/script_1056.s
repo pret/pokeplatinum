@@ -93,7 +93,7 @@ _00D2:
 
 _00E0:
     ScrCmd_060
-    ScrCmd_01F 0x173
+    ClearFlag 0x173
     ScrCmd_064 0
     ScrCmd_05E 0, _0394
     ScrCmd_05F
@@ -158,7 +158,7 @@ _00E0:
     ScrCmd_065 0
     ScrCmd_014 0x7FB
     ScrCmd_04B 0x603
-    ScrCmd_01E 0x173
+    SetFlag 0x173
     ScrCmd_028 0x40A5, 1
     ScrCmd_061
     End

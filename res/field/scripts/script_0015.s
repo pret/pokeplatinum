@@ -23,7 +23,7 @@ _003A:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_028 0x8007, 0
-    ScrCmd_020 136
+    CheckFlag 136
     ScrCmd_01D 0, _006F
     ScrCmd_011 0x4001, 0
     ScrCmd_01C 1, _0077
@@ -135,7 +135,7 @@ _01D2:
     GoTo _01EC
 
 _01EC:
-    ScrCmd_01E 136
+    SetFlag 136
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0A6 0x4002, 0x8005, 0x8007

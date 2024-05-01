@@ -17,7 +17,7 @@ _001E:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 200
+    CheckFlag 200
     ScrCmd_01C 1, _003C
     ScrCmd_02C 0
     ScrCmd_031

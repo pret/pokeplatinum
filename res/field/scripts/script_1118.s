@@ -848,11 +848,11 @@ _0BE3:
 
 _0BF3:
     ScrCmd_13A
-    ScrCmd_020 187
+    CheckFlag 187
     ScrCmd_01D 1, _0C50
-    ScrCmd_020 187
+    CheckFlag 187
     ScrCmd_01D 0, _0C55
-    ScrCmd_01E 187
+    SetFlag 187
     ScrCmd_040 31, 11, 0, 1, 0x800C
     ScrCmd_33A 1
     ScrCmd_042 10, 0

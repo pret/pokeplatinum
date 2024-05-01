@@ -84,7 +84,7 @@ _00A9:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x129
+    CheckFlag 0x129
     ScrCmd_01C 1, _0109
     ScrCmd_0DE 0x800C
     ScrCmd_011 0x800C, 0x183
@@ -98,7 +98,7 @@ _00A9:
     ScrCmd_02C 3
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7DF
-    ScrCmd_01E 0x129
+    SetFlag 0x129
     ScrCmd_034
     ScrCmd_061
     End

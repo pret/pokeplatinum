@@ -62,15 +62,15 @@ _0006:
     ScrCmd_049 0x603
     ScrCmd_065 2
     ScrCmd_04B 0x603
-    ScrCmd_01E 0x98F
-    ScrCmd_01F 0x223
+    SetFlag 0x98F
+    ClearFlag 0x223
     ScrCmd_028 0x40D3, 2
-    ScrCmd_01F 0x198
-    ScrCmd_01E 0x194
-    ScrCmd_01E 0x175
-    ScrCmd_01E 0x28D
-    ScrCmd_01E 0x28C
-    ScrCmd_01F 168
+    ClearFlag 0x198
+    SetFlag 0x194
+    SetFlag 0x175
+    SetFlag 0x28D
+    SetFlag 0x28C
+    ClearFlag 168
     ScrCmd_061
     End
 

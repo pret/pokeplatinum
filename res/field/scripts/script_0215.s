@@ -84,8 +84,8 @@ _0091:
 
 _00A1:
     ScrCmd_065 0
-    ScrCmd_01E 122
-    ScrCmd_01E 0x17C
+    SetFlag 122
+    SetFlag 0x17C
     ScrCmd_061
     End
 

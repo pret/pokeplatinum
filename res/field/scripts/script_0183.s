@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    ScrCmd_01E 0x9C0
+    SetFlag 0x9C0
     End
 
 _0020:

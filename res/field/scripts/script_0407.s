@@ -11,12 +11,12 @@ _000A:
     ScrCmd_23E 1, 0x40ED
     ScrCmd_011 0x40ED, 0
     ScrCmd_01C 1, _002B
-    ScrCmd_01F 0x20A
+    ClearFlag 0x20A
     ScrCmd_23E 7
     End
 
 _002B:
-    ScrCmd_01E 0x20A
+    SetFlag 0x20A
     ScrCmd_23E 7
     End
 

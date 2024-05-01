@@ -275,9 +275,9 @@ static BOOL ScrCmd_Call(ScriptContext * ctx);
 static BOOL ScrCmd_Return(ScriptContext * ctx);
 static BOOL ScrCmd_01C(ScriptContext * param0);
 static BOOL ScrCmd_01D(ScriptContext * param0);
-static BOOL ScrCmd_01E(ScriptContext * param0);
-static BOOL ScrCmd_01F(ScriptContext * param0);
-static BOOL ScrCmd_020(ScriptContext * param0);
+static BOOL ScrCmd_SetFlag(ScriptContext * ctx);
+static BOOL ScrCmd_ClearFlag(ScriptContext * ctx);
+static BOOL ScrCmd_CheckFlag(ScriptContext * ctx);
 static BOOL ScrCmd_021(ScriptContext * param0);
 static BOOL ScrCmd_022(ScriptContext * param0);
 static BOOL ScrCmd_023(ScriptContext * param0);
@@ -801,9 +801,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Return,
     ScrCmd_01C,
     ScrCmd_01D,
-    ScrCmd_01E,
-    ScrCmd_01F,
-    ScrCmd_020,
+    ScrCmd_SetFlag,
+    ScrCmd_ClearFlag,
+    ScrCmd_CheckFlag,
     ScrCmd_021,
     ScrCmd_022,
     ScrCmd_023,
@@ -2000,31 +2000,28 @@ static BOOL ScrCmd_01D (ScriptContext * param0)
     return 0;
 }
 
-static BOOL ScrCmd_01E (ScriptContext * param0)
+static BOOL ScrCmd_SetFlag (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 v1 = ScriptContext_ReadHalfWord(param0);
-
-    sub_0203F19C(v0, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 flagID = ScriptContext_ReadHalfWord(ctx);
+    sub_0203F19C(fieldSys, flagID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_01F (ScriptContext * param0)
+static BOOL ScrCmd_ClearFlag (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 v1 = ScriptContext_ReadHalfWord(param0);
-
-    sub_0203F1B0(v0, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 flagID = ScriptContext_ReadHalfWord(ctx);
+    sub_0203F1B0(fieldSys, flagID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_020 (ScriptContext * param0)
+static BOOL ScrCmd_CheckFlag (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 v1 = ScriptContext_ReadHalfWord(param0);
-
-    param0->comparisonResult = sub_0203F188(v0, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 flagID = ScriptContext_ReadHalfWord(ctx);
+    ctx->comparisonResult = sub_0203F188(fieldSys, flagID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_021 (ScriptContext * param0)

@@ -13,7 +13,7 @@ _0016:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 168
+    CheckFlag 168
     ScrCmd_01C 1, _0034
     ScrCmd_02C 0
     ScrCmd_031
@@ -31,7 +31,7 @@ _0034:
 _003F:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 168
+    CheckFlag 168
     ScrCmd_01C 1, _0068
     ScrCmd_02C 2
     ScrCmd_068

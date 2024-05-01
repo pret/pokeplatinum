@@ -9,13 +9,13 @@ _0006:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 144
+    CheckFlag 144
     ScrCmd_01C 1, _00B0
     ScrCmd_011 0x4095, 1
     ScrCmd_01C 4, _0082
-    ScrCmd_020 110
+    CheckFlag 110
     ScrCmd_01C 1, _0090
-    ScrCmd_020 234
+    CheckFlag 234
     ScrCmd_01C 1, _009E
     ScrCmd_14D 0x800C
     ScrCmd_011 0x800C, 0
@@ -59,7 +59,7 @@ _0090:
     End
 
 _009E:
-    ScrCmd_01E 110
+    SetFlag 110
     ScrCmd_0CE 1
     ScrCmd_02C 2
     ScrCmd_031

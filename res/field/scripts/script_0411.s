@@ -90,7 +90,7 @@ _00DF:
     GoTo _0126
 
 _00E8:
-    ScrCmd_020 0x9BA
+    CheckFlag 0x9BA
     ScrCmd_01C 0, _0104
     ScrCmd_1E8 0x800C
     ScrCmd_011 0x800C, 1
@@ -106,7 +106,7 @@ _0104:
     Return
 
 _0120:
-    ScrCmd_01E 0x110
+    SetFlag 0x110
     Return
 
 _0126:

@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_01E 0x9DE
+    SetFlag 0x9DE
     End
 
     .byte 2

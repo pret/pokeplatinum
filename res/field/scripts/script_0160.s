@@ -62,7 +62,7 @@ _00BC:
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _00FA
     ScrCmd_014 0x7FC
-    ScrCmd_01E 182
+    SetFlag 182
     ScrCmd_0D1 0, 0x8004
     ScrCmd_0D3 1, 0x8004
     ScrCmd_02C 4
@@ -78,7 +78,7 @@ _00FA:
     End
 
 _0104:
-    ScrCmd_020 182
+    CheckFlag 182
     ScrCmd_01C 0, _00BC
     ScrCmd_02C 5
     ScrCmd_031

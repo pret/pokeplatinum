@@ -12,15 +12,15 @@ _000E:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_247 0x8000
-    ScrCmd_020 0x140
+    CheckFlag 0x140
     ScrCmd_01C 0, _005C
-    ScrCmd_020 0x141
+    CheckFlag 0x141
     ScrCmd_01C 0, _005C
-    ScrCmd_020 0x142
+    CheckFlag 0x142
     ScrCmd_01C 0, _005C
-    ScrCmd_020 0x143
+    CheckFlag 0x143
     ScrCmd_01C 0, _005C
-    ScrCmd_020 0x144
+    CheckFlag 0x144
     ScrCmd_01C 0, _005C
     ScrCmd_02C 10
     ScrCmd_031
@@ -69,7 +69,7 @@ _00D7:
     ScrCmd_0D1 1, 0x104
     ScrCmd_02C 4
     ScrCmd_014 0x7FC
-    ScrCmd_01E 0x140
+    SetFlag 0x140
     ScrCmd_02C 5
     ScrCmd_031
     ScrCmd_034
@@ -86,7 +86,7 @@ _0118:
     ScrCmd_0D1 1, 0x105
     ScrCmd_02C 4
     ScrCmd_014 0x7FC
-    ScrCmd_01E 0x141
+    SetFlag 0x141
     ScrCmd_02C 6
     ScrCmd_031
     ScrCmd_034
@@ -103,7 +103,7 @@ _0159:
     ScrCmd_0D1 1, 0x106
     ScrCmd_02C 4
     ScrCmd_014 0x7FC
-    ScrCmd_01E 0x142
+    SetFlag 0x142
     ScrCmd_02C 7
     ScrCmd_031
     ScrCmd_034
@@ -120,7 +120,7 @@ _019A:
     ScrCmd_0D1 1, 0x107
     ScrCmd_02C 4
     ScrCmd_014 0x7FC
-    ScrCmd_01E 0x143
+    SetFlag 0x143
     ScrCmd_02C 8
     ScrCmd_031
     ScrCmd_034
@@ -137,7 +137,7 @@ _01DB:
     ScrCmd_0D1 1, 0x108
     ScrCmd_02C 4
     ScrCmd_014 0x7FC
-    ScrCmd_01E 0x144
+    SetFlag 0x144
     ScrCmd_02C 9
     ScrCmd_031
     ScrCmd_034
@@ -145,7 +145,7 @@ _01DB:
     End
 
 _021C:
-    ScrCmd_020 0x140
+    CheckFlag 0x140
     ScrCmd_01C 1, _0244
     ScrCmd_281 0x8000, 0, 0x800C
     ScrCmd_011 0x800C, 200
@@ -158,7 +158,7 @@ _0244:
     Return
 
 _024C:
-    ScrCmd_020 0x141
+    CheckFlag 0x141
     ScrCmd_01C 1, _0274
     ScrCmd_281 0x8000, 1, 0x800C
     ScrCmd_011 0x800C, 200
@@ -171,7 +171,7 @@ _0274:
     Return
 
 _027C:
-    ScrCmd_020 0x142
+    CheckFlag 0x142
     ScrCmd_01C 1, _02A4
     ScrCmd_281 0x8000, 2, 0x800C
     ScrCmd_011 0x800C, 200
@@ -184,7 +184,7 @@ _02A4:
     Return
 
 _02AC:
-    ScrCmd_020 0x143
+    CheckFlag 0x143
     ScrCmd_01C 1, _02D4
     ScrCmd_281 0x8000, 3, 0x800C
     ScrCmd_011 0x800C, 200
@@ -197,7 +197,7 @@ _02D4:
     Return
 
 _02DC:
-    ScrCmd_020 0x144
+    CheckFlag 0x144
     ScrCmd_01C 1, _0304
     ScrCmd_281 0x8000, 4, 0x800C
     ScrCmd_011 0x800C, 200

@@ -45,7 +45,7 @@ _0070:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x13F
+    CheckFlag 0x13F
     ScrCmd_01C 1, _00B5
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 111
@@ -53,7 +53,7 @@ _0070:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _00C0
-    ScrCmd_01E 0x13F
+    SetFlag 0x13F
     ScrCmd_014 0x7E0
     ScrCmd_034
     ScrCmd_061

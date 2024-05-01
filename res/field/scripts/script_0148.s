@@ -79,10 +79,10 @@ _0091:
 _00A4:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 185
+    CheckFlag 185
     ScrCmd_01C 1, _00D0
-    ScrCmd_01E 185
-    ScrCmd_01E 0x185
+    SetFlag 185
+    SetFlag 0x185
     ScrCmd_02C 0
     ScrCmd_068
     ScrCmd_0CD 0

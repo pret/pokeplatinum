@@ -15,11 +15,11 @@ _0016:
     ScrCmd_01C 1, _003C
     ScrCmd_011 0x4077, 2
     ScrCmd_01C 0, _003C
-    ScrCmd_01F 0x212
+    ClearFlag 0x212
     End
 
 _003C:
-    ScrCmd_01E 0x212
+    SetFlag 0x212
     End
 
 _0042:

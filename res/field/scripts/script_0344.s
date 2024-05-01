@@ -134,7 +134,7 @@ _0177:
     ScrCmd_05E 1, _01B4
     ScrCmd_05E 2, _01BC
     ScrCmd_05F
-    ScrCmd_01E 0x226
+    SetFlag 0x226
     ScrCmd_065 1
     ScrCmd_065 2
     ScrCmd_034

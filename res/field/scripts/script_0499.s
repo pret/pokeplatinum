@@ -10,9 +10,9 @@ _0006:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_294 21, 1
-    ScrCmd_020 114
+    CheckFlag 114
     ScrCmd_01C 1, _0031
-    ScrCmd_01E 114
+    SetFlag 114
     ScrCmd_0D5 0, 1
     ScrCmd_02C 15
     GoTo _0041

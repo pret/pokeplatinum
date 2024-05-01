@@ -34,10 +34,10 @@ _0055:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 1
+    CheckFlag 1
     ScrCmd_01C 1, _03D8
     ScrCmd_02C 1
-    ScrCmd_020 121
+    CheckFlag 121
     ScrCmd_01C 0, _04B6
     ScrCmd_011 0x40B4, 0
     ScrCmd_01C 5, _03F2
@@ -239,7 +239,7 @@ _03BC:
     GoTo _03D8
 
 _03D8:
-    ScrCmd_01E 1
+    SetFlag 1
     ScrCmd_02C 6
     ScrCmd_031
     ScrCmd_034

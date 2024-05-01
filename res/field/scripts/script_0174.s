@@ -22,7 +22,7 @@ _0032:
     End
 
 _0041:
-    ScrCmd_01E 0x1F3
+    SetFlag 0x1F3
     End
 
 _0047:
@@ -45,7 +45,7 @@ _0072:
     End
 
 _0088:
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 0, _0072
     GoTo _0111
 
@@ -81,7 +81,7 @@ _00D4:
     End
 
 _00DF:
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 0, _00D4
     ScrCmd_011 0x407F, 0
     ScrCmd_01C 1, _0102
@@ -105,7 +105,7 @@ _0111:
 
 _011B:
     ScrCmd_003 30, 0x800C
-    ScrCmd_01F 0x1F3
+    ClearFlag 0x1F3
     ScrCmd_064 7
     ScrCmd_05E 7, _016C
     ScrCmd_05F
@@ -224,7 +224,7 @@ _022A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 0, _0260
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
@@ -249,7 +249,7 @@ _026B:
     End
 
 _0276:
-    ScrCmd_020 0x157
+    CheckFlag 0x157
     ScrCmd_01D 0, _02A0
     ScrCmd_02C 11
     ScrCmd_034
@@ -260,7 +260,7 @@ _0276:
     End
 
 _02A0:
-    ScrCmd_01F 0x256
+    ClearFlag 0x256
     ScrCmd_064 10
     ScrCmd_062 10
     ScrCmd_034
@@ -284,7 +284,7 @@ _02A0:
     ScrCmd_065 10
     ScrCmd_05E 0xFF, _0318
     ScrCmd_05F
-    ScrCmd_01E 0x157
+    SetFlag 0x157
     Return
 
     .balign 4, 0

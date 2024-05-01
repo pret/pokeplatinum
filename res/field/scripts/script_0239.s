@@ -23,7 +23,7 @@ _0012:
     ScrCmd_28B 2, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 1, _0075
-    ScrCmd_020 0x11E
+    CheckFlag 0x11E
     ScrCmd_01C 1, _0075
     ScrCmd_028 0x4118, 1
     GoTo _0075
@@ -37,7 +37,7 @@ _0077:
     ScrCmd_060
     ScrCmd_011 0x40C4, 1
     ScrCmd_01C 4, _00F4
-    ScrCmd_020 208
+    CheckFlag 208
     ScrCmd_01C 1, _00F4
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
@@ -64,7 +64,7 @@ _00E8:
     End
 
 _00EE:
-    ScrCmd_01E 208
+    SetFlag 208
     Return
 
 _00F4:

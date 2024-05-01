@@ -43,9 +43,9 @@ _004C:
 _005F:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 253
+    CheckFlag 253
     ScrCmd_01C 1, _0081
-    ScrCmd_01E 253
+    SetFlag 253
     ScrCmd_068
     ScrCmd_02C 3
     ScrCmd_031

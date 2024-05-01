@@ -27,7 +27,7 @@ _0032:
     ScrCmd_01D 1, _01CC
     ScrCmd_011 0x8004, 26
     ScrCmd_01D 1, _01DE
-    ScrCmd_01F 0x276
+    ClearFlag 0x276
     ScrCmd_064 11
     ScrCmd_062 11
     ScrCmd_05E 11, _02C8
@@ -59,7 +59,7 @@ _0032:
     ScrCmd_011 0x8004, 26
     ScrCmd_01D 1, _022C
     ScrCmd_065 11
-    ScrCmd_01F 0x277
+    ClearFlag 0x277
     ScrCmd_064 12
     ScrCmd_062 12
     ScrCmd_05E 12, _02C8

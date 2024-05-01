@@ -29,25 +29,25 @@ _002A:
     End
 
 _0071:
-    ScrCmd_01F 0x260
-    ScrCmd_01F 0x262
-    ScrCmd_01F 0x264
-    ScrCmd_01F 0x266
-    ScrCmd_01E 0x261
-    ScrCmd_01E 0x263
-    ScrCmd_01E 0x265
-    ScrCmd_01E 0x267
+    ClearFlag 0x260
+    ClearFlag 0x262
+    ClearFlag 0x264
+    ClearFlag 0x266
+    SetFlag 0x261
+    SetFlag 0x263
+    SetFlag 0x265
+    SetFlag 0x267
     End
 
 _0093:
-    ScrCmd_01F 0x261
-    ScrCmd_01F 0x263
-    ScrCmd_01F 0x265
-    ScrCmd_01F 0x267
-    ScrCmd_01E 0x260
-    ScrCmd_01E 0x262
-    ScrCmd_01E 0x264
-    ScrCmd_01E 0x266
+    ClearFlag 0x261
+    ClearFlag 0x263
+    ClearFlag 0x265
+    ClearFlag 0x267
+    SetFlag 0x260
+    SetFlag 0x262
+    SetFlag 0x264
+    SetFlag 0x266
     End
 
 _00B5:

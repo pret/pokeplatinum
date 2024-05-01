@@ -19,7 +19,7 @@ _0022:
 _0026:
     ScrCmd_011 0x4055, 7
     ScrCmd_01C 1, _0080
-    ScrCmd_020 0x9AD
+    CheckFlag 0x9AD
     ScrCmd_01C 1, _0051
     ScrCmd_049 0x5DC
     ScrCmd_060
@@ -36,7 +36,7 @@ _0051:
     ScrCmd_068
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_01E 0x977
+    SetFlag 0x977
     ScrCmd_05E 134, _0108
     ScrCmd_05F
     ScrCmd_05E 134, _011C

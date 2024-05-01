@@ -60,11 +60,11 @@ _0092:
     End
 
 _009A:
-    ScrCmd_020 0x964
+    CheckFlag 0x964
     ScrCmd_01C 0, _005A
-    ScrCmd_020 240
+    CheckFlag 240
     ScrCmd_01C 1, _00C4
-    ScrCmd_01E 240
+    SetFlag 240
     ScrCmd_21B
     ScrCmd_0CD 0
     ScrCmd_02C 4

@@ -20,12 +20,12 @@ _001D:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x11C
+    CheckFlag 0x11C
     ScrCmd_01C 1, _00BD
-    ScrCmd_020 120
+    CheckFlag 120
     ScrCmd_01C 1, _004A
     ScrCmd_02C 1
-    ScrCmd_01E 120
+    SetFlag 120
     GoTo _00C8
     End
 
@@ -41,7 +41,7 @@ _004A:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _00B2
-    ScrCmd_01E 0x11C
+    SetFlag 0x11C
     ScrCmd_014 0x7FC
     GoTo _00BD
     End

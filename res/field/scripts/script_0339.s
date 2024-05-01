@@ -10,11 +10,11 @@ _000A:
     ScrCmd_292 25, 0x4000
     ScrCmd_011 0x4000, 1
     ScrCmd_01C 1, _0022
-    ScrCmd_01E 0x27C
+    SetFlag 0x27C
     End
 
 _0022:
-    ScrCmd_01F 0x27C
+    ClearFlag 0x27C
     ScrCmd_028 0x4111, 1
     End
 
@@ -22,7 +22,7 @@ _002E:
     ScrCmd_060
     ScrCmd_05E 1, _004C
     ScrCmd_05F
-    ScrCmd_01E 0x27C
+    SetFlag 0x27C
     ScrCmd_065 1
     ScrCmd_028 0x4111, 0
     ScrCmd_061

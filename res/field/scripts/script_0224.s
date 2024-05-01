@@ -34,7 +34,7 @@ _0036:
     ScrCmd_186 5, 20, 25
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
-    ScrCmd_01F 0x29F
+    ClearFlag 0x29F
     ScrCmd_064 5
     ScrCmd_05E 5, _0148
     ScrCmd_05F
@@ -64,7 +64,7 @@ _0036:
     End
 
 _00E5:
-    ScrCmd_01E 0x160
+    SetFlag 0x160
     ScrCmd_02C 3
     ScrCmd_031
     ScrCmd_034
@@ -147,7 +147,7 @@ _01A0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x160
+    CheckFlag 0x160
     ScrCmd_01C 0, _01BE
     ScrCmd_02C 3
     ScrCmd_031

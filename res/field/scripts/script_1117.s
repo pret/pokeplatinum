@@ -193,7 +193,7 @@ _0289:
     ScrCmd_05F
     ScrCmd_065 16
     ScrCmd_028 0x40D0, 1
-    ScrCmd_01E 0x992
+    SetFlag 0x992
     End
 
     .byte 0

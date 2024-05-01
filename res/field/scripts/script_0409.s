@@ -411,7 +411,7 @@ _05C3:
     End
 
 _0606:
-    ScrCmd_01E 123
+    SetFlag 123
     Return
 
 _060C:

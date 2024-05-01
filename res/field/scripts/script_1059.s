@@ -184,7 +184,7 @@ _02B5:
     ScrCmd_168 5, 26, 8, 10, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ScrCmd_01F 0x197
+    ClearFlag 0x197
     ScrCmd_064 3
     ScrCmd_05E 3, _0554
     ScrCmd_05F
@@ -473,7 +473,7 @@ _057C:
     ScrCmd_168 5, 26, 8, 10, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ScrCmd_01F 0x2C4
+    ClearFlag 0x2C4
     ScrCmd_064 14
     ScrCmd_05E 14, _0798
     ScrCmd_05F

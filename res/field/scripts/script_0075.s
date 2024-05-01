@@ -28,7 +28,7 @@ _0035:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 129
+    CheckFlag 129
     ScrCmd_01C 1, _0053
     ScrCmd_02C 1
     ScrCmd_031

@@ -168,19 +168,19 @@
     .long \arg1-.-4
     .endm
 
-    .macro ScrCmd_01E arg0
+    .macro SetFlag flagID
     .short 30
-    .short \arg0
+    .short \flagID
     .endm
 
-    .macro ScrCmd_01F arg0
+    .macro ClearFlag flagID
     .short 31
-    .short \arg0
+    .short \flagID
     .endm
 
-    .macro ScrCmd_020 arg0
+    .macro CheckFlag flagID
     .short 32
-    .short \arg0
+    .short \flagID
     .endm
 
     .macro ScrCmd_021 arg0, arg1

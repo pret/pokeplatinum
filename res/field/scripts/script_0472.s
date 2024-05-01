@@ -9,7 +9,7 @@ _0006:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 222
+    CheckFlag 222
     ScrCmd_01C 1, _0039
     ScrCmd_07E 0x1AB, 1, 0x800C
     ScrCmd_011 0x800C, 1
@@ -35,7 +35,7 @@ _0044:
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0076
     ScrCmd_014 0x7FC
-    ScrCmd_01E 222
+    SetFlag 222
     GoTo _0039
 
 _0076:

@@ -11,7 +11,7 @@ _000A:
     ScrCmd_05E 0xFF, _016C
     ScrCmd_05F
     ScrCmd_186 0, 6, 14
-    ScrCmd_01F 0x23A
+    ClearFlag 0x23A
     ScrCmd_064 0
     ScrCmd_062 0
     ScrCmd_05E 0, _0138
@@ -20,7 +20,7 @@ _000A:
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_186 1, 4, 14
-    ScrCmd_01F 0x23B
+    ClearFlag 0x23B
     ScrCmd_064 1
     ScrCmd_062 1
     ScrCmd_05E 1, _0114

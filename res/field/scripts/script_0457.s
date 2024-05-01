@@ -27,13 +27,13 @@ _0022:
     End
 
 _0069:
-    ScrCmd_01F 0x268
-    ScrCmd_01E 0x269
+    ClearFlag 0x268
+    SetFlag 0x269
     End
 
 _0073:
-    ScrCmd_01F 0x269
-    ScrCmd_01E 0x268
+    ClearFlag 0x269
+    SetFlag 0x268
     End
 
 _007D:

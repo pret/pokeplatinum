@@ -21,7 +21,7 @@ _0036:
     ScrCmd_060
     ScrCmd_028 0x800C, 7
     Call _0052
-    ScrCmd_01F 0x966
+    ClearFlag 0x966
     ScrCmd_028 0x40D5, 0
     ScrCmd_061
     End
@@ -131,11 +131,11 @@ _0166:
 
 _0168:
     ScrCmd_028 0x40CC, 0
-    ScrCmd_01E 0x201
-    ScrCmd_01E 0x202
-    ScrCmd_01E 0x203
-    ScrCmd_01E 0x204
-    ScrCmd_01E 0x205
+    SetFlag 0x201
+    SetFlag 0x202
+    SetFlag 0x203
+    SetFlag 0x204
+    SetFlag 0x205
     Return
 
 _0184:
@@ -145,15 +145,15 @@ _0184:
     ScrCmd_238 7, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 1, _01AB
-    ScrCmd_01F 0x213
+    ClearFlag 0x213
     End
 
 _01AB:
-    ScrCmd_01E 0x213
+    SetFlag 0x213
     End
 
 _01B1:
-    ScrCmd_020 0x159
+    CheckFlag 0x159
     ScrCmd_01C 1, _01BE
     Return
 
@@ -227,7 +227,7 @@ _0253:
 _0291:
     ScrCmd_150
     ScrCmd_028 0x40D5, 0
-    ScrCmd_01F 0x966
+    ClearFlag 0x966
     ScrCmd_02C 11
     ScrCmd_031
     ScrCmd_034
@@ -242,7 +242,7 @@ _02A8:
 
 _02BD:
     ScrCmd_14E
-    ScrCmd_01F 0x966
+    ClearFlag 0x966
     ScrCmd_014 0x7D6
     ScrCmd_029 0x800C, 0x4000
     ScrCmd_011 0x800C, 1
@@ -598,7 +598,7 @@ _07BC:
     End
 
 _07F1:
-    ScrCmd_01E 0x966
+    SetFlag 0x966
     ScrCmd_028 0x40D5, 5
     ScrCmd_168 0, 0, 7, 5, 77
     Call _010D
@@ -684,14 +684,14 @@ _08CD:
     End
 
 _0947:
-    ScrCmd_01F 0x220
+    ClearFlag 0x220
     ScrCmd_028 0x40CC, 1
     Call _0D20
     ScrCmd_049 0x603
-    ScrCmd_01F 0x201
-    ScrCmd_01F 0x202
-    ScrCmd_01F 0x203
-    ScrCmd_01F 0x204
+    ClearFlag 0x201
+    ClearFlag 0x202
+    ClearFlag 0x203
+    ClearFlag 0x204
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BE 118, 0, 29, 7, 0
@@ -832,7 +832,7 @@ _0B50:
     ScrCmd_0BD
     ScrCmd_028 0x800C, 7
     Call _0052
-    ScrCmd_01F 0x966
+    ClearFlag 0x966
     ScrCmd_028 0x40D5, 0
     GoTo _0C45
 
@@ -926,7 +926,7 @@ _0D20:
 _0D3A:
     ScrCmd_108 0x800C
     ScrCmd_10A 0x800C, 0x4024
-    ScrCmd_01F 0x205
+    ClearFlag 0x205
     ScrCmd_064 5
     ScrCmd_108 0x4000
     ScrCmd_011 0x4000, 0

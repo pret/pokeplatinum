@@ -33,7 +33,7 @@ _004E:
     End
 
 _0077:
-    ScrCmd_01E 0x199
+    SetFlag 0x199
     ScrCmd_028 0x40A6, 4
     Return
 
@@ -47,7 +47,7 @@ _0099:
     ScrCmd_060
     ScrCmd_05E 9, _04E8
     ScrCmd_05F
-    ScrCmd_01F 0x255
+    ClearFlag 0x255
     ScrCmd_064 20
     ScrCmd_062 20
     ScrCmd_069 0x8004, 0x8005
@@ -443,7 +443,7 @@ _0530:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 154
+    CheckFlag 154
     ScrCmd_01C 1, _056C
     ScrCmd_02C 8
     ScrCmd_15B 7, 0x800C
@@ -471,7 +471,7 @@ _0577:
     ScrCmd_028 0x8004, 0x1AA
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
-    ScrCmd_01E 154
+    SetFlag 154
     ScrCmd_02C 7
     Return
 
@@ -512,7 +512,7 @@ _05D7:
     ScrCmd_186 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
     ScrCmd_189 18, 1
-    ScrCmd_01F 0x239
+    ClearFlag 0x239
     ScrCmd_064 18
     ScrCmd_028 0x407E, 1
     ScrCmd_061
@@ -726,7 +726,7 @@ _0850:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0x162
+    CheckFlag 0x162
     ScrCmd_01C 1, _086E
     ScrCmd_02C 2
     ScrCmd_031

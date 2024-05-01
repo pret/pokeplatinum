@@ -43,7 +43,7 @@ _0082:
     End
 
 _0098:
-    ScrCmd_01E 0x1D3
+    SetFlag 0x1D3
     End
 
     .byte 52
@@ -178,7 +178,7 @@ _0198:
     ScrCmd_05F
     ScrCmd_0CE 0
     ScrCmd_02C 12
-    ScrCmd_01F 0x1E3
+    ClearFlag 0x1E3
     ScrCmd_064 26
     ScrCmd_04A 0x5DC
     ScrCmd_049 0x602
@@ -233,7 +233,7 @@ _0198:
 _02E0:
     ScrCmd_065 22
     ScrCmd_065 23
-    ScrCmd_01E 0x294
+    SetFlag 0x294
     Return
 
 _02EE:
@@ -545,7 +545,7 @@ _0521:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_0D1 0, 0x1BF
-    ScrCmd_020 107
+    CheckFlag 107
     ScrCmd_01C 1, _057A
     ScrCmd_02C 42
     ScrCmd_03E 0x800C
@@ -555,7 +555,7 @@ _0521:
     ScrCmd_028 0x8004, 0x1BF
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
-    ScrCmd_01E 107
+    SetFlag 107
     ScrCmd_02C 44
     ScrCmd_031
     ScrCmd_034

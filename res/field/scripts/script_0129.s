@@ -169,14 +169,14 @@ _01F1:
     End
 
 _021E:
-    ScrCmd_020 163
+    CheckFlag 163
     ScrCmd_01C 1, _024A
     ScrCmd_05E 2, _0334
     ScrCmd_05F
     ScrCmd_02C 18
     ScrCmd_028 0x8004, 22
     ScrCmd_014 0x7D9
-    ScrCmd_01E 163
+    SetFlag 163
     ScrCmd_034
     ScrCmd_061
     End
@@ -249,7 +249,7 @@ _0300:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 163
+    CheckFlag 163
     ScrCmd_01C 1, _031E
     ScrCmd_02C 15
     GoTo _0329

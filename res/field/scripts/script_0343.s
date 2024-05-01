@@ -48,7 +48,7 @@ _006C:
     ScrCmd_05E 5, _00A8
     ScrCmd_05E 6, _00B0
     ScrCmd_05F
-    ScrCmd_01E 0x225
+    SetFlag 0x225
     ScrCmd_065 5
     ScrCmd_065 6
     ScrCmd_034

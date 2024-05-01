@@ -12,8 +12,8 @@ _0012:
     ScrCmd_22D 2, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 1, _002C
-    ScrCmd_01E 0x27F
-    ScrCmd_01E 0x280
+    SetFlag 0x27F
+    SetFlag 0x280
 _002C:
     End
 

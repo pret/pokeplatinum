@@ -21,7 +21,7 @@ _0021:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 197
+    CheckFlag 197
     ScrCmd_01C 1, _0066
     ScrCmd_02C 1
     ScrCmd_028 0x8004, 0x195
@@ -30,7 +30,7 @@ _0021:
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0071
     ScrCmd_014 0x7FC
-    ScrCmd_01E 197
+    SetFlag 197
     GoTo _0066
 
 _0066:

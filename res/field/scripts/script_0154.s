@@ -11,7 +11,7 @@ _000E:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 0xAAC
+    CheckFlag 0xAAC
     ScrCmd_01C 1, _00D5
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
@@ -41,7 +41,7 @@ _000E:
     ScrCmd_0BD
     ScrCmd_0D6 0, 0x4000
     ScrCmd_02C 4
-    ScrCmd_01E 0xAAC
+    SetFlag 0xAAC
     ScrCmd_1BA 3, 0x4000
     ScrCmd_26C 0x8004
     ScrCmd_011 0x8004, 0xFFFF

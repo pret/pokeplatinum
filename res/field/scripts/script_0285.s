@@ -22,15 +22,15 @@ _0029:
 _0031:
     ScrCmd_060
     ScrCmd_0C8 0
-    ScrCmd_020 221
+    CheckFlag 221
     ScrCmd_01D 0, _007D
-    ScrCmd_020 221
+    CheckFlag 221
     ScrCmd_01D 1, _00B7
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
     ScrCmd_02C 1
     ScrCmd_04F
-    ScrCmd_01E 221
+    SetFlag 221
     ScrCmd_028 0x4094, 1
     ScrCmd_02C 2
     ScrCmd_031
@@ -48,7 +48,7 @@ _007D:
     ScrCmd_186 14, 42, 78
     ScrCmd_189 14, 0
     ScrCmd_188 14, 14
-    ScrCmd_01F 0x1DA
+    ClearFlag 0x1DA
     ScrCmd_064 14
     ScrCmd_05E 14, _00DC
     ScrCmd_05F

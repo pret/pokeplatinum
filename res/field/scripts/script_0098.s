@@ -11,15 +11,15 @@
     .short 0xFD13
 
 _001A:
-    ScrCmd_020 142
+    CheckFlag 142
     ScrCmd_01C 1, _0027
     End
 
 _0027:
-    ScrCmd_01E 0x29C
+    SetFlag 0x29C
     ScrCmd_065 2
     ScrCmd_065 1
-    ScrCmd_01F 142
+    ClearFlag 142
     End
 
 _0039:
@@ -64,9 +64,9 @@ _00BB:
     ScrCmd_1CD 9, 91, 0, 0, 0
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_01E 142
+    SetFlag 142
     ScrCmd_0E5 0x13E, 0
-    ScrCmd_01F 142
+    ClearFlag 142
     ScrCmd_0EC 0x800C
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0248
@@ -87,8 +87,8 @@ _00BB:
     ScrCmd_023 0x165
     ScrCmd_1CD 10, 91, 0x13E, 0, 0
     ScrCmd_028 0x407B, 1
-    ScrCmd_01E 0x206
-    ScrCmd_01F 0x207
+    SetFlag 0x206
+    ClearFlag 0x207
     ScrCmd_02C 3
     GoTo _0158
 
@@ -99,7 +99,7 @@ _0158:
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0196
     ScrCmd_014 0x7FC
-    ScrCmd_01E 125
+    SetFlag 125
     ScrCmd_0D1 0, 0x8004
     ScrCmd_0D3 1, 0x8004
     ScrCmd_02C 4
@@ -115,7 +115,7 @@ _0196:
     End
 
 _01A0:
-    ScrCmd_020 125
+    CheckFlag 125
     ScrCmd_01C 0, _0158
     ScrCmd_02C 5
     ScrCmd_031
@@ -172,7 +172,7 @@ _0224:
     EndMovement
 
 _0248:
-    ScrCmd_01F 0x29C
+    ClearFlag 0x29C
     ScrCmd_0EB
     ScrCmd_061
     End

@@ -20,22 +20,22 @@ _002F:
     ScrCmd_238 11, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 5, _0055
-    ScrCmd_020 0x217
+    CheckFlag 0x217
     ScrCmd_01D 0, _004F
     End
 
 _004F:
-    ScrCmd_01E 0x217
+    SetFlag 0x217
     Return
 
 _0055:
-    ScrCmd_020 0x217
+    CheckFlag 0x217
     ScrCmd_01C 1, _0066
-    ScrCmd_01F 0x217
+    ClearFlag 0x217
     End
 
 _0066:
-    ScrCmd_01F 0x217
+    ClearFlag 0x217
     ScrCmd_064 4
     End
 

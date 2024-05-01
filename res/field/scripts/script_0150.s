@@ -106,9 +106,9 @@ _017C:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 196
+    CheckFlag 196
     ScrCmd_01C 1, _01AF
-    ScrCmd_01E 196
+    SetFlag 196
     ScrCmd_02C 8
     ScrCmd_03E 0x800C
     ScrCmd_011 0x800C, 1

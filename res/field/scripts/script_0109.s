@@ -12,11 +12,11 @@ _0012:
     ScrCmd_238 13, 0x4000
     ScrCmd_011 0x4000, 0
     ScrCmd_01C 1, _002B
-    ScrCmd_01F 0x219
+    ClearFlag 0x219
     End
 
 _002B:
-    ScrCmd_01E 0x219
+    SetFlag 0x219
     End
 
 _0031:

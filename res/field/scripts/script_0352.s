@@ -12,9 +12,9 @@
     .short 0xFD13
 
 _001E:
-    ScrCmd_020 186
+    CheckFlag 186
     ScrCmd_01D 1, _009D
-    ScrCmd_020 186
+    CheckFlag 186
     ScrCmd_01D 0, _0087
     ScrCmd_011 0x4097, 0
     ScrCmd_01D 1, _0071
@@ -61,7 +61,7 @@ _00C7:
 _00CB:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 186
+    CheckFlag 186
     ScrCmd_01C 1, _0128
     ScrCmd_05E 5, _01C8
     ScrCmd_05F
@@ -105,7 +105,7 @@ _013B:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 186
+    CheckFlag 186
     ScrCmd_01C 1, _018B
     ScrCmd_14D 0x800C
     ScrCmd_011 0x800C, 0
@@ -221,16 +221,16 @@ _0230:
     ScrCmd_065 1
     ScrCmd_065 2
     ScrCmd_065 3
-    ScrCmd_01E 0x98E
+    SetFlag 0x98E
     ScrCmd_05E 6, _02FC
     ScrCmd_05E 0xFF, _0304
     ScrCmd_05F
     ScrCmd_187 5, 53, 1, 39, 3
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    ScrCmd_01E 0x29A
-    ScrCmd_01E 186
-    ScrCmd_01F 0x1BA
+    SetFlag 0x29A
+    SetFlag 186
+    ClearFlag 0x1BA
     ScrCmd_028 0x40D3, 1
     ScrCmd_0CE 0
     ScrCmd_02C 13
