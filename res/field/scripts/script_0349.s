@@ -100,7 +100,7 @@ _0006:
     ScrCmd_065 3
     ScrCmd_028 0x408E, 1
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _01AD:
     ScrCmd_05E 3, _0240

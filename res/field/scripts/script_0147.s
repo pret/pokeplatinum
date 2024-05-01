@@ -23,7 +23,7 @@ _0006:
     ScrCmd_01C 1, _0090
     ScrCmd_011 0x8008, 5
     ScrCmd_01C 1, _009A
-    ScrCmd_002
+    End
 
 _0068:
     ScrCmd_347 0, 5
@@ -48,7 +48,7 @@ _0090:
 _009A:
     ScrCmd_347 0, 0
     ScrCmd_016 _00A6
-    ScrCmd_002
+    End
 
 _00A6:
     ScrCmd_11D 20, 1, 0x40CE, 0x40CE
@@ -194,43 +194,43 @@ _033F:
     ScrCmd_01C 1, _03C1
     ScrCmd_011 0x8008, 5
     ScrCmd_01C 1, _03CC
-    ScrCmd_002
+    End
 
 _0395:
     ScrCmd_02C 9
     ScrCmd_016 _03D7
-    ScrCmd_002
+    End
 
 _03A0:
     ScrCmd_02C 8
     ScrCmd_016 _03D7
-    ScrCmd_002
+    End
 
 _03AB:
     ScrCmd_02C 7
     ScrCmd_016 _03D7
-    ScrCmd_002
+    End
 
 _03B6:
     ScrCmd_02C 6
     ScrCmd_016 _03D7
-    ScrCmd_002
+    End
 
 _03C1:
     ScrCmd_02C 5
     ScrCmd_016 _03D7
-    ScrCmd_002
+    End
 
 _03CC:
     ScrCmd_02C 10
     ScrCmd_016 _03D7
-    ScrCmd_002
+    End
 
 _03D7:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _03DF:
     ScrCmd_028 0x40CE, 0xFFFF
@@ -239,7 +239,7 @@ _03DF:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _03F6:
     ScrCmd_028 0x40CE, 0xFFFF
@@ -248,7 +248,7 @@ _03F6:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0410:

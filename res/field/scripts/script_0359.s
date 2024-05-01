@@ -17,7 +17,7 @@ _0006:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _002B:
     ScrCmd_0CE 0
@@ -25,7 +25,7 @@ _002B:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

@@ -38,13 +38,13 @@ _005E:
     ScrCmd_01D 1, _0737
     ScrCmd_020 0x102
     ScrCmd_01C 1, _009C
-    ScrCmd_002
+    End
 
 _009C:
     ScrCmd_186 21, 0x27D, 0x32C
     ScrCmd_189 21, 3
     ScrCmd_188 21, 17
-    ScrCmd_002
+    End
 
 _00B2:
     ScrCmd_049 0x5DC
@@ -54,7 +54,7 @@ _00B2:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00C5:
     ScrCmd_049 0x5DC
@@ -64,7 +64,7 @@ _00C5:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00D8:
     ScrCmd_049 0x5DC
@@ -74,7 +74,7 @@ _00D8:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00EB:
     ScrCmd_049 0x5DC
@@ -84,7 +84,7 @@ _00EB:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00FE:
     ScrCmd_049 0x5DC
@@ -97,14 +97,14 @@ _00FE:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0124:
     ScrCmd_02C 34
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _012F:
     ScrCmd_049 0x5DC
@@ -126,14 +126,14 @@ _012F:
     ScrCmd_01E 0x128
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0189:
     ScrCmd_02C 38
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0194:
     ScrCmd_028 0x8004, 93
@@ -155,7 +155,7 @@ _01AC:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _01BF:
     ScrCmd_049 0x5DC
@@ -165,7 +165,7 @@ _01BF:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _01D2:
     ScrCmd_049 0x5DC
@@ -175,7 +175,7 @@ _01D2:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _01E5:
     ScrCmd_049 0x5DC
@@ -188,7 +188,7 @@ _01E5:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0204:
     ScrCmd_049 0x5DC
@@ -199,7 +199,7 @@ _0204:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0220:
     ScrCmd_068
@@ -213,7 +213,7 @@ _0220:
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _0292
     ScrCmd_016 _02B2
-    ScrCmd_002
+    End
 
 _025A:
     ScrCmd_028 0x8007, 2
@@ -221,14 +221,14 @@ _025A:
     ScrCmd_05E 0xFF, _02EC
     ScrCmd_05F
     ScrCmd_016 _02D2
-    ScrCmd_002
+    End
 
 _027A:
     ScrCmd_028 0x8007, 3
     ScrCmd_05E 21, _0398
     ScrCmd_05F
     ScrCmd_016 _02D2
-    ScrCmd_002
+    End
 
 _0292:
     ScrCmd_028 0x8007, 0
@@ -236,7 +236,7 @@ _0292:
     ScrCmd_05E 0xFF, _030C
     ScrCmd_05F
     ScrCmd_016 _02D2
-    ScrCmd_002
+    End
 
 _02B2:
     ScrCmd_028 0x8007, 1
@@ -244,14 +244,14 @@ _02B2:
     ScrCmd_05E 0xFF, _0304
     ScrCmd_05F
     ScrCmd_016 _02D2
-    ScrCmd_002
+    End
 
 _02D2:
     ScrCmd_049 0x603
     ScrCmd_065 21
     ScrCmd_01E 0x103
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0
@@ -494,7 +494,7 @@ _03E4:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _03FB:
     ScrCmd_037 3, 0
@@ -502,7 +502,7 @@ _03FB:
     ScrCmd_039
     ScrCmd_03A 42, 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _0410:
     ScrCmd_036 43, 2, 0, 0x800C
@@ -510,7 +510,7 @@ _0410:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _0427:
     ScrCmd_036 44, 2, 0, 0x800C
@@ -518,7 +518,7 @@ _0427:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _043E:
     ScrCmd_049 0x5DC
@@ -532,7 +532,7 @@ _043E:
     ScrCmd_0CD 1
     ScrCmd_02C 4
     ScrCmd_016 _04A6
-    ScrCmd_002
+    End
 
 _0471:
     ScrCmd_1BD 0x800C
@@ -544,19 +544,19 @@ _0471:
     ScrCmd_05E 26, _04C0
     ScrCmd_05F
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0498:
     ScrCmd_0CE 0
     ScrCmd_02C 15
     ScrCmd_016 _04A6
-    ScrCmd_002
+    End
 
 _04A6:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _04AE:
     ScrCmd_0CE 0
@@ -565,7 +565,7 @@ _04AE:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _04C0:
@@ -623,13 +623,13 @@ _0563:
     ScrCmd_065 26
     ScrCmd_028 0x407C, 2
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0597:
     ScrCmd_01E 0x1A9
     ScrCmd_0EB
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _05A4:
@@ -730,7 +730,7 @@ _05E0:
     ScrCmd_187 26, 0x260, 0, 0x32E, 1
     ScrCmd_028 0x407C, 4
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0721:
     ScrCmd_186 26, 0x260, 0x32E
@@ -844,7 +844,7 @@ _07F8:
     ScrCmd_05F
     ScrCmd_01A _091C
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _086F:
     ScrCmd_05E 26, _0AE4
@@ -957,7 +957,7 @@ _09A8:
     ScrCmd_01D 1, _0A8D
     ScrCmd_01A _091C
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0A31:
     ScrCmd_05E 27, _0B6C
@@ -1142,7 +1142,7 @@ _0B90:
     ScrCmd_05E 26, _0BE0
     ScrCmd_05F
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0BC8:
@@ -1175,11 +1175,11 @@ _0BF0:
     ScrCmd_011 0x800C, 90
     ScrCmd_01C 4, _0C22
     ScrCmd_016 _0C1E
-    ScrCmd_002
+    End
 
 _0C1E:
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0C22:
     ScrCmd_01F 0x29D
@@ -1196,7 +1196,7 @@ _0C22:
     ScrCmd_065 28
     ScrCmd_04B 0x603
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0C64:

@@ -12,22 +12,22 @@
     .short 0xFD13
 
 _001E:
-    ScrCmd_002
+    End
 
 _0020:
-    ScrCmd_002
+    End
 
 _0022:
-    ScrCmd_002
+    End
 
 _0024:
-    ScrCmd_002
+    End
 
 _0026:
-    ScrCmd_002
+    End
 
 _0028:
-    ScrCmd_002
+    End
 
 _002A:
-    ScrCmd_002
+    End

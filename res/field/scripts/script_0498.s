@@ -19,7 +19,7 @@ _0006:
 
 _0043:
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0047:
     ScrCmd_02C 0
@@ -38,4 +38,4 @@ _0068:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End

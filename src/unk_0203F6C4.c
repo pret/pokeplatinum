@@ -241,9 +241,9 @@ typedef struct {
     FieldSystem * fieldSystem;
 } UnkStruct_02040F28;
 
-static BOOL ScrCmd_000(ScriptContext * param0);
-static BOOL ScrCmd_001(ScriptContext * param0);
-static BOOL ScrCmd_002(ScriptContext * param0);
+static BOOL ScrCmd_Noop(ScriptContext * ctx);
+static BOOL ScrCmd_Dummy(ScriptContext * ctx);
+static BOOL ScrCmd_End(ScriptContext * ctx);
 static BOOL ScrCmd_003(ScriptContext * param0);
 static BOOL sub_0203F70C(ScriptContext * param0);
 static BOOL ScrCmd_004(ScriptContext * param0);
@@ -771,9 +771,9 @@ static const UnkStruct_ov61_0222C884 Unk_020EAB84 = {
 };
 
 const ScrCmdFunc Unk_020EAC58[] = {
-    ScrCmd_000,
-    ScrCmd_001,
-    ScrCmd_002,
+    ScrCmd_Noop,
+    ScrCmd_Dummy,
+    ScrCmd_End,
     ScrCmd_003,
     ScrCmd_004,
     ScrCmd_005,
@@ -1615,20 +1615,20 @@ const ScrCmdFunc Unk_020EAC58[] = {
 
 const u32 Unk_020EAB80 = NELEMS(Unk_020EAC58);
 
-static BOOL ScrCmd_000 (ScriptContext * param0)
+static BOOL ScrCmd_Noop (ScriptContext * ctx)
 {
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_001 (ScriptContext * param0)
+static BOOL ScrCmd_Dummy (ScriptContext * ctx)
 {
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_002 (ScriptContext * param0)
+static BOOL ScrCmd_End (ScriptContext * ctx)
 {
-    ScriptContext_Stop(param0);
-    return 0;
+    ScriptContext_Stop(ctx);
+    return FALSE;
 }
 
 static BOOL ScrCmd_003 (ScriptContext * param0)

@@ -15,7 +15,7 @@ _0006:
     ScrCmd_01C 1, _0031
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0079
-    ScrCmd_002
+    End
 
 _0031:
     ScrCmd_02C 1
@@ -33,11 +33,11 @@ _0031:
     ScrCmd_01C 1, _0031
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _0079
-    ScrCmd_002
+    End
 
 _0079:
     ScrCmd_02C 3
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End

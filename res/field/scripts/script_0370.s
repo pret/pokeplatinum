@@ -18,21 +18,21 @@ _000E:
     ScrCmd_1DD 55, 1, 0x4000
     ScrCmd_029 0x4021, 0x4000
 _0048:
-    ScrCmd_002
+    End
 
 _004A:
     ScrCmd_1DD 55, 0, 0x4000
     ScrCmd_029 0x4021, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
     ScrCmd_029 0x4020, 0x4000
-    ScrCmd_002
+    End
 
 _0068:
     ScrCmd_011 0x40DD, 0
     ScrCmd_01D 5, _007F
     ScrCmd_1B2 2
     ScrCmd_1B2 3
-    ScrCmd_002
+    End
 
 _007F:
     ScrCmd_1B2 0xFF
@@ -50,7 +50,7 @@ _008D:
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00C9:
     ScrCmd_168 0, 0, 3, 2, 77

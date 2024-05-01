@@ -8,7 +8,7 @@
 
 _000A:
     ScrCmd_01A _0012
-    ScrCmd_002
+    End
 
 _0012:
     ScrCmd_166 0x4000
@@ -27,7 +27,7 @@ _0012:
     ScrCmd_01C 1, _0075
     ScrCmd_028 0x4118, 1
     ScrCmd_016 _0075
-    ScrCmd_002
+    End
 
 _0075:
     ScrCmd_01B
@@ -56,12 +56,12 @@ _0077:
     ScrCmd_011 0x800C, 0
     ScrCmd_01D 1, _00EE
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00E8:
     ScrCmd_0EB
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00EE:
     ScrCmd_01E 209
@@ -71,11 +71,11 @@ _00F4:
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_016 _0101
-    ScrCmd_002
+    End
 
 _0101:
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0

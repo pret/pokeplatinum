@@ -72,7 +72,7 @@ _0006:
     ScrCmd_01E 0x28C
     ScrCmd_01F 168
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0136:
     ScrCmd_05E 1, _01F4

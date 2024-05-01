@@ -9,7 +9,7 @@
 _000A:
     ScrCmd_01E 0x9D0
     ScrCmd_270 0, 1
-    ScrCmd_002
+    End
 
 _0015:
     ScrCmd_049 0x5DC
@@ -41,14 +41,14 @@ _005D:
     ScrCmd_01D 1, _00F1
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0098:
     ScrCmd_02C 3
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00A3:
     ScrCmd_05E 0, _010C

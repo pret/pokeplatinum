@@ -28,7 +28,7 @@ _0055:
     ScrCmd_21D 2, 1, 1
     ScrCmd_02C 1
     ScrCmd_016 _008C
-    ScrCmd_002
+    End
 
 _0070:
     ScrCmd_02C 2
@@ -216,4 +216,4 @@ _03E5:
 _03EA:
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End

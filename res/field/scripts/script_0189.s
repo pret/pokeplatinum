@@ -13,15 +13,15 @@ _000E:
     ScrCmd_25D 0x4001
     ScrCmd_011 0x4001, 0
     ScrCmd_01C 1, _0029
-    ScrCmd_002
+    End
 
 _0029:
     ScrCmd_028 0x4000, 1
-    ScrCmd_002
+    End
 
 _0031:
     ScrCmd_25C
     ScrCmd_028 0x4000, 1
-    ScrCmd_002
+    End
 
     .byte 0

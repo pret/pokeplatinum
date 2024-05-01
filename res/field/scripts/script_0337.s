@@ -34,31 +34,31 @@ _0006:
     ScrCmd_01C 1, _008B
     ScrCmd_01E 0x149
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _008B:
     ScrCmd_02C 3
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0096:
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _009C:
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00A7:
     ScrCmd_0EB
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

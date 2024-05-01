@@ -2,15 +2,15 @@
 
     .option alignment off
 
-    .macro ScrCmd_000
+    .macro Noop
     .short 0
     .endm
 
-    .macro ScrCmd_001
+    .macro Dummy
     .short 1
     .endm
 
-    .macro ScrCmd_002
+    .macro End
     .short 2
     .endm
 

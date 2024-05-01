@@ -8,7 +8,7 @@
 
 _000A:
     ScrCmd_2F2
-    ScrCmd_002
+    End
 
 _000E:
     ScrCmd_049 0x5DC
@@ -19,7 +19,7 @@ _000E:
     ScrCmd_01C 1, _002E
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _002E:
     ScrCmd_0CD 0
@@ -32,4 +32,4 @@ _002E:
     ScrCmd_0BE 0x10E, 0, 11, 15, 1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    ScrCmd_002
+    End

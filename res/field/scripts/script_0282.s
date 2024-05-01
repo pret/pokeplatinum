@@ -7,7 +7,7 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_002
+    End
 
 _000C:
     ScrCmd_049 0x5DC
@@ -35,12 +35,12 @@ _000C:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0074:
     ScrCmd_028 0x4058, 0
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _007E:
     ScrCmd_186 1, 16, 14

@@ -12,7 +12,7 @@
     .short 0xFD13
 
 _001E:
-    ScrCmd_002
+    End
 
 _0020:
     ScrCmd_049 0x5DC
@@ -22,7 +22,7 @@ _0020:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0033:
     ScrCmd_049 0x5DC
@@ -32,7 +32,7 @@ _0033:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0046:
     ScrCmd_049 0x5DC
@@ -41,7 +41,7 @@ _0046:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0057:
     ScrCmd_049 0x5DC
@@ -51,7 +51,7 @@ _0057:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _006A:
     ScrCmd_060
@@ -82,7 +82,7 @@ _006A:
     ScrCmd_065 5
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _00F0:
@@ -137,7 +137,7 @@ _0134:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _01AA:
-    ScrCmd_002
+    End

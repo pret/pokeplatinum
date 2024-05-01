@@ -15,12 +15,12 @@
 _0022:
     ScrCmd_020 250
     ScrCmd_01C 1, _002F
-    ScrCmd_002
+    End
 
 _002F:
     ScrCmd_186 0, 16, 14
     ScrCmd_189 0, 1
-    ScrCmd_002
+    End
 
 _003F:
     ScrCmd_060
@@ -36,7 +36,7 @@ _003F:
     ScrCmd_05E 0, _00AC
     ScrCmd_05F
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0078:
     ScrCmd_02C 0
@@ -48,7 +48,7 @@ _0078:
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _00AC:
@@ -67,7 +67,7 @@ _00C0:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00D6:
     ScrCmd_049 0x5DC
@@ -108,7 +108,7 @@ _012F:
     ScrCmd_034
     ScrCmd_073
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _018A:
     ScrCmd_072 20, 2
@@ -131,7 +131,7 @@ _018A:
     ScrCmd_034
     ScrCmd_073
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _01E7:
     ScrCmd_072 20, 2
@@ -154,14 +154,14 @@ _01E7:
     ScrCmd_034
     ScrCmd_073
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0244:
     ScrCmd_02C 6
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _024F:
     ScrCmd_02C 13
@@ -169,7 +169,7 @@ _024F:
     ScrCmd_034
     ScrCmd_073
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _025C:
     ScrCmd_02C 14
@@ -177,7 +177,7 @@ _025C:
     ScrCmd_034
     ScrCmd_073
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0269:
     ScrCmd_049 0x5DC
@@ -187,7 +187,7 @@ _0269:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _027C:
     ScrCmd_049 0x5DC
@@ -198,21 +198,21 @@ _027C:
     ScrCmd_01C 1, _02A4
     ScrCmd_011 0x800C, 1
     ScrCmd_01C 1, _02AF
-    ScrCmd_002
+    End
 
 _02A4:
     ScrCmd_02C 16
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _02AF:
     ScrCmd_02C 17
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _02BA:
     ScrCmd_049 0x5DC
@@ -225,7 +225,7 @@ _02BA:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _02D9:
     ScrCmd_049 0x5DC
@@ -238,4 +238,4 @@ _02D9:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End

@@ -39,7 +39,7 @@ _0060:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0081:
     ScrCmd_02C 3
@@ -86,7 +86,7 @@ _00AE:
     ScrCmd_01E 0xAB1
     ScrCmd_011 0x800C, 0
     ScrCmd_01C 1, _023F
-    ScrCmd_002
+    End
 
 _0189:
     ScrCmd_028 0x8004, 2
@@ -148,7 +148,7 @@ _01E9:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0216:
     ScrCmd_07D 93, 1, 0x800C
@@ -157,20 +157,20 @@ _0216:
     ScrCmd_029 0x8004, 0x4117
     ScrCmd_028 0x8005, 3
     ScrCmd_016 _025C
-    ScrCmd_002
+    End
 
 _023F:
     ScrCmd_029 0x4117, 0x8004
     ScrCmd_01E 220
     ScrCmd_016 _0251
-    ScrCmd_002
+    End
 
 _0251:
     ScrCmd_02C 6
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _025C:
     ScrCmd_02C 7
@@ -182,7 +182,7 @@ _025C:
     ScrCmd_014 0x7E0
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0283:
     ScrCmd_0DA 0, 0x40E5, 0, 0
@@ -192,7 +192,7 @@ _0283:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _029F:
     ScrCmd_02C 9
@@ -200,14 +200,14 @@ _029F:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _02B0:
     ScrCmd_02C 10
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _02BB:
     ScrCmd_049 0x5DC
@@ -217,7 +217,7 @@ _02BB:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _02CE:
     ScrCmd_049 0x5DC
@@ -241,40 +241,40 @@ _02CE:
     ScrCmd_011 0x8008, 3
     ScrCmd_01C 1, _0365
     ScrCmd_016 _0370
-    ScrCmd_002
+    End
 
 _0344:
     ScrCmd_02C 14
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _034F:
     ScrCmd_02C 15
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _035A:
     ScrCmd_02C 16
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0365:
     ScrCmd_02C 17
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0370:
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

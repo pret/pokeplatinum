@@ -15,7 +15,7 @@ _0006:
     ScrCmd_05E 16, _0024
     ScrCmd_05F
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _0024:

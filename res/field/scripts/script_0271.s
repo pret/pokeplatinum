@@ -6,4 +6,4 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_002
+    End

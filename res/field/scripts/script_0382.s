@@ -9,7 +9,7 @@
 
 _000E:
     ScrCmd_2F2
-    ScrCmd_002
+    End
 
 _0012:
     ScrCmd_049 0x5DC
@@ -38,7 +38,7 @@ _0059:
 _007A:
     ScrCmd_028 0x4055, 5
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0084:
     ScrCmd_317 0x8004, 0x8005, 0x8006
@@ -63,7 +63,7 @@ _00D0:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _00DC:

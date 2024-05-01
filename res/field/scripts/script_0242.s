@@ -17,40 +17,40 @@
     .short 0xFD13
 
 _0032:
-    ScrCmd_002
+    End
 
 _0034:
-    ScrCmd_002
+    End
 
 _0036:
-    ScrCmd_002
+    End
 
 _0038:
-    ScrCmd_002
+    End
 
 _003A:
-    ScrCmd_002
+    End
 
 _003C:
-    ScrCmd_002
+    End
 
 _003E:
-    ScrCmd_002
+    End
 
 _0040:
-    ScrCmd_002
+    End
 
 _0042:
-    ScrCmd_002
+    End
 
 _0044:
-    ScrCmd_002
+    End
 
 _0046:
-    ScrCmd_002
+    End
 
 _0048:
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

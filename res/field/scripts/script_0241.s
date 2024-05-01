@@ -7,7 +7,7 @@
 
 _0006:
     ScrCmd_01E 0x9C8
-    ScrCmd_002
+    End
 
     .byte 2
     .byte 0

@@ -8,7 +8,7 @@
 _0006:
     ScrCmd_01A _0014
     ScrCmd_285 0x410B, 0x410C
-    ScrCmd_002
+    End
 
 _0014:
     ScrCmd_026 0x410C, 1
