@@ -16,7 +16,7 @@ _0012:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0025:
     ScrCmd_049 0x5DC
@@ -26,7 +26,7 @@ _0025:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0038:
     ScrCmd_049 0x5DC
@@ -39,15 +39,15 @@ _0038:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0057:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
     ScrCmd_02C 3
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _006A:
     ScrCmd_02C 4
@@ -63,68 +63,68 @@ _006A:
     ScrCmd_046 22, 0xFF, 8
     ScrCmd_047
     ScrCmd_029 0x8008, 0x800C
-    ScrCmd_011 0x8008, 0
-    ScrCmd_01C 1, _0135
-    ScrCmd_011 0x8008, 1
-    ScrCmd_01C 1, _0140
-    ScrCmd_011 0x8008, 2
-    ScrCmd_01C 1, _014B
-    ScrCmd_011 0x8008, 3
-    ScrCmd_01C 1, _0156
-    ScrCmd_011 0x8008, 4
-    ScrCmd_01C 1, _0161
-    ScrCmd_011 0x8008, 5
-    ScrCmd_01C 1, _016C
-    ScrCmd_011 0x8008, 6
-    ScrCmd_01C 1, _0177
-    ScrCmd_011 0x8008, 7
-    ScrCmd_01C 1, _0182
-    ScrCmd_016 _018D
-    ScrCmd_002
+    CompareVarToValue 0x8008, 0
+    GoToIf 1, _0135
+    CompareVarToValue 0x8008, 1
+    GoToIf 1, _0140
+    CompareVarToValue 0x8008, 2
+    GoToIf 1, _014B
+    CompareVarToValue 0x8008, 3
+    GoToIf 1, _0156
+    CompareVarToValue 0x8008, 4
+    GoToIf 1, _0161
+    CompareVarToValue 0x8008, 5
+    GoToIf 1, _016C
+    CompareVarToValue 0x8008, 6
+    GoToIf 1, _0177
+    CompareVarToValue 0x8008, 7
+    GoToIf 1, _0182
+    GoTo _018D
+    End
 
 _0135:
     ScrCmd_02C 6
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _0140:
     ScrCmd_02C 7
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _014B:
     ScrCmd_02C 8
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _0156:
     ScrCmd_02C 9
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _0161:
     ScrCmd_02C 10
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _016C:
     ScrCmd_02C 11
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _0177:
     ScrCmd_02C 12
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _0182:
     ScrCmd_02C 13
-    ScrCmd_016 _006A
-    ScrCmd_002
+    GoTo _006A
+    End
 
 _018D:
     ScrCmd_02C 5
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End

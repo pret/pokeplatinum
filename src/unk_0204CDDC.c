@@ -12,17 +12,17 @@
 
 #include "constants/species.h"
 
-BOOL sub_0204CF68(ScriptContext * param0);
-BOOL sub_0204CF8C(ScriptContext * param0);
-BOOL sub_0204CFC4(ScriptContext * param0);
+BOOL ScrCmd_2DF(ScriptContext * param0);
+BOOL ScrCmd_2E0(ScriptContext * param0);
+BOOL ScrCmd_2E1(ScriptContext * param0);
 
-BOOL sub_0204CDDC (ScriptContext * param0)
+BOOL ScrCmd_215 (ScriptContext * param0)
 {
     sub_0206B218(SaveData_Events(param0->fieldSys->saveData));
     return 0;
 }
 
-BOOL sub_0204CDF0 (ScriptContext * param0)
+BOOL ScrCmd_216 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
@@ -39,7 +39,7 @@ static const u16 Unk_020EBF84[6][10] = {
     {0xC, 0x1E, 0x2, 0x14, 0x1D, 0x4, 0x9, 0x1B, 0xE, 0xA} // Jigglypuff, Torchic, Skitty, Shroomish
 };
 
-BOOL sub_0204CE1C (ScriptContext * ctx)
+BOOL ScrCmd_217 (ScriptContext * ctx)
 {
     u8 i, j;
     u16 rand;
@@ -132,7 +132,7 @@ static const u16 Unk_020EBF64[] = {
     0x21
 };
 
-BOOL sub_0204CF68 (ScriptContext * param0)
+BOOL ScrCmd_2DF (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
@@ -140,7 +140,7 @@ BOOL sub_0204CF68 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CF8C (ScriptContext * param0)
+BOOL ScrCmd_2E0 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -154,7 +154,7 @@ BOOL sub_0204CF8C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CFC4 (ScriptContext * param0)
+BOOL ScrCmd_2E1 (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 * v1 = ScriptContext_GetVarPointer(param0);

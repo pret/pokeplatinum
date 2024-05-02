@@ -8,11 +8,11 @@
 
 _000A:
     ScrCmd_25B
-    ScrCmd_002
+    End
 
 _000E:
     ScrCmd_25C
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

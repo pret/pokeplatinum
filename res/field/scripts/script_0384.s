@@ -8,7 +8,7 @@
 
 _000A:
     ScrCmd_2F2
-    ScrCmd_002
+    End
 
 _000E:
-    ScrCmd_002
+    End

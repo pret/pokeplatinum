@@ -17,7 +17,7 @@
 #include "overlay005/ov5_021DC018.h"
 
 
-BOOL sub_0204C8F0 (ScriptContext * param0)
+BOOL ScrCmd_06F (ScriptContext * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
     u32 v1;
@@ -28,7 +28,7 @@ BOOL sub_0204C8F0 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C914 (ScriptContext * param0)
+BOOL ScrCmd_070 (ScriptContext * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
     u32 v1;
@@ -39,7 +39,7 @@ BOOL sub_0204C914 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C938 (ScriptContext * param0)
+BOOL ScrCmd_1A3 (ScriptContext * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
     u32 v1;
@@ -50,7 +50,7 @@ BOOL sub_0204C938 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C968 (ScriptContext * param0)
+BOOL ScrCmd_071 (ScriptContext * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
     u16 * v1;
@@ -69,7 +69,7 @@ BOOL sub_0204C968 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C9AC (ScriptContext * param0)
+BOOL ScrCmd_1AB (ScriptContext * param0)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
     u16 * v1;
@@ -88,7 +88,7 @@ BOOL sub_0204C9AC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204C9FC (ScriptContext * param0)
+BOOL ScrCmd_072 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -101,7 +101,7 @@ BOOL sub_0204C9FC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CA4C (ScriptContext * param0)
+BOOL ScrCmd_073 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Window ** v1 = sub_0203F098(v0, 39);
@@ -110,7 +110,7 @@ BOOL sub_0204CA4C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204CA64 (ScriptContext * param0)
+BOOL ScrCmd_074 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     Window ** v1 = sub_0203F098(v0, 39);

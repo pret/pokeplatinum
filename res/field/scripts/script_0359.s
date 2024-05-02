@@ -9,15 +9,15 @@ _0006:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_020 169
-    ScrCmd_01C 1, _002B
-    ScrCmd_01E 169
+    CheckFlag 169
+    GoToIf 1, _002B
+    SetFlag 169
     ScrCmd_0CE 0
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _002B:
     ScrCmd_0CE 0
@@ -25,7 +25,7 @@ _002B:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

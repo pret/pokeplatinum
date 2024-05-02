@@ -20,7 +20,7 @@
 #include "unk_02048BD0.h"
 #include "unk_0206CCB0.h"
 
-BOOL sub_02048BD0 (ScriptContext * param0)
+BOOL ScrCmd_21D (ScriptContext * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->fieldSys, 15);
     UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->fieldSys->saveData);

@@ -3,31 +3,31 @@
 
 #include "field_script_context.h"
 
-BOOL sub_020482D4(ScriptContext * param0);
-BOOL sub_020482FC(ScriptContext * param0);
-BOOL sub_0204830C(ScriptContext * param0);
-BOOL sub_02048320(ScriptContext * param0);
-BOOL sub_02048338(ScriptContext * param0);
-BOOL sub_02048350(ScriptContext * param0);
-BOOL sub_0204838C(ScriptContext * param0);
-BOOL sub_020483B0(ScriptContext * param0);
-BOOL sub_020483CC(ScriptContext * param0);
-BOOL sub_020483E0(ScriptContext * param0);
-BOOL sub_020483F4(ScriptContext * param0);
-BOOL sub_02048410(ScriptContext * param0);
-BOOL sub_0204842C(ScriptContext * param0);
-BOOL sub_0204846C(ScriptContext * param0);
-BOOL sub_020484A0(ScriptContext * param0);
-BOOL sub_020484C4(ScriptContext * param0);
-BOOL sub_020484D4(ScriptContext * param0);
-BOOL sub_020484F8(ScriptContext * param0);
-BOOL sub_02048530(ScriptContext * param0);
-BOOL sub_0204855C(ScriptContext * param0);
-BOOL sub_02048568(ScriptContext * param0);
-BOOL sub_0204857C(ScriptContext * param0);
-BOOL sub_0204858C(ScriptContext * param0);
-BOOL sub_020485C0(ScriptContext * param0);
-BOOL sub_020485D4(ScriptContext * param0);
-BOOL sub_020485F4(ScriptContext * param0);
+BOOL ScrCmd_2AE(ScriptContext * param0);
+BOOL ScrCmd_050(ScriptContext * param0);
+BOOL ScrCmd_051(ScriptContext * param0);
+BOOL ScrCmd_052(ScriptContext * param0);
+BOOL ScrCmd_053(ScriptContext * param0);
+BOOL ScrCmd_054(ScriptContext * param0);
+BOOL ScrCmd_055(ScriptContext * param0);
+BOOL ScrCmd_056(ScriptContext * param0);
+BOOL ScrCmd_057(ScriptContext * param0);
+BOOL ScrCmd_058(ScriptContext * param0);
+BOOL ScrCmd_049(ScriptContext * param0);
+BOOL ScrCmd_04A(ScriptContext * param0);
+BOOL ScrCmd_04B(ScriptContext * param0);
+BOOL ScrCmd_04C(ScriptContext * param0);
+BOOL ScrCmd_04D(ScriptContext * param0);
+BOOL ScrCmd_04E(ScriptContext * param0);
+BOOL ScrCmd_04F(ScriptContext * param0);
+BOOL ScrCmd_059(ScriptContext * param0);
+BOOL ScrCmd_05A(ScriptContext * param0);
+BOOL ScrCmd_05B(ScriptContext * param0);
+BOOL ScrCmd_05C(ScriptContext * param0);
+BOOL ScrCmd_05D(ScriptContext * param0);
+BOOL ScrCmd_283(ScriptContext * param0);
+BOOL ScrCmd_2F8(ScriptContext * param0);
+BOOL ScrCmd_2F9(ScriptContext * param0);
+BOOL ScrCmd_2FA(ScriptContext * param0);
 
 #endif // POKEPLATINUM_UNK_020482D4_H

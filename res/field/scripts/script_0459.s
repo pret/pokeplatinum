@@ -13,38 +13,38 @@
     .short 0xFD13
 
 _0022:
-    ScrCmd_020 0x104
-    ScrCmd_01C 0, _002F
-    ScrCmd_002
+    CheckFlag 0x104
+    GoToIf 0, _002F
+    End
 
 _002F:
     ScrCmd_15B 3, 0x4000
-    ScrCmd_011 0x4000, 1
-    ScrCmd_01C 1, _0044
-    ScrCmd_002
+    CompareVarToValue 0x4000, 1
+    GoToIf 1, _0044
+    End
 
 _0044:
-    ScrCmd_020 0x103
-    ScrCmd_01C 1, _0051
-    ScrCmd_002
+    CheckFlag 0x103
+    GoToIf 1, _0051
+    End
 
 _0051:
-    ScrCmd_020 0x118
-    ScrCmd_01D 0, _0062
-    ScrCmd_01F 0x21A
-    ScrCmd_002
+    CheckFlag 0x118
+    CallIf 0, _0062
+    ClearFlag 0x21A
+    End
 
 _0062:
     ScrCmd_186 30, 0x28E, 0x32C
     ScrCmd_189 30, 3
     ScrCmd_188 30, 17
-    ScrCmd_01B
+    Return
 
 _0078:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_020 0x118
-    ScrCmd_01C 1, _0133
+    CheckFlag 0x118
+    GoToIf 1, _0133
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_068
@@ -53,43 +53,43 @@ _0078:
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_1BD 0x8004
-    ScrCmd_011 0x8004, 2
-    ScrCmd_01C 1, _00F1
-    ScrCmd_011 0x8004, 3
-    ScrCmd_01C 1, _00DF
-    ScrCmd_016 _00C5
-    ScrCmd_002
+    CompareVarToValue 0x8004, 2
+    GoToIf 1, _00F1
+    CompareVarToValue 0x8004, 3
+    GoToIf 1, _00DF
+    GoTo _00C5
+    End
 
 _00C5:
     ScrCmd_05E 30, _0390
     ScrCmd_05E 0xFF, _03F0
     ScrCmd_05F
-    ScrCmd_016 _010B
-    ScrCmd_002
+    GoTo _010B
+    End
 
 _00DF:
     ScrCmd_05E 30, _0390
     ScrCmd_05F
-    ScrCmd_016 _010B
-    ScrCmd_002
+    GoTo _010B
+    End
 
 _00F1:
     ScrCmd_05E 30, _0398
     ScrCmd_05E 0xFF, _03F0
     ScrCmd_05F
-    ScrCmd_016 _010B
-    ScrCmd_002
+    GoTo _010B
+    End
 
 _010B:
-    ScrCmd_01E 0x118
+    SetFlag 0x118
     ScrCmd_065 30
     ScrCmd_186 30, 0x2AB, 0x341
     ScrCmd_189 30, 3
     ScrCmd_188 30, 17
-    ScrCmd_01F 0x21A
+    ClearFlag 0x21A
     ScrCmd_064 30
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0133:
     ScrCmd_1BD 0x8004
@@ -101,117 +101,117 @@ _0133:
     ScrCmd_02C 3
     ScrCmd_034
     ScrCmd_1BD 0x8004
-    ScrCmd_011 0x8004, 2
-    ScrCmd_01C 1, _0180
-    ScrCmd_016 _0166
-    ScrCmd_002
+    CompareVarToValue 0x8004, 2
+    GoToIf 1, _0180
+    GoTo _0166
+    End
 
 _0166:
     ScrCmd_05E 0xFF, _03C0
     ScrCmd_05E 30, _03A4
     ScrCmd_05F
-    ScrCmd_016 _019A
-    ScrCmd_002
+    GoTo _019A
+    End
 
 _0180:
     ScrCmd_05E 0xFF, _03C0
     ScrCmd_05E 30, _03B4
     ScrCmd_05F
-    ScrCmd_016 _019A
-    ScrCmd_002
+    GoTo _019A
+    End
 
 _019A:
     ScrCmd_065 30
-    ScrCmd_01E 0x104
-    ScrCmd_01F 0x1E8
+    SetFlag 0x104
+    ClearFlag 0x1E8
     ScrCmd_064 33
     ScrCmd_014 0x807
     ScrCmd_315 0x800C
-    ScrCmd_011 0x800C, 2
-    ScrCmd_01D 1, _0261
-    ScrCmd_011 0x8004, 2
-    ScrCmd_01D 1, _0267
-    ScrCmd_011 0x8004, 3
-    ScrCmd_01D 1, _027B
-    ScrCmd_011 0x8004, 0
-    ScrCmd_01D 1, _028F
-    ScrCmd_011 0x8004, 1
-    ScrCmd_01D 1, _02A3
+    CompareVarToValue 0x800C, 2
+    CallIf 1, _0261
+    CompareVarToValue 0x8004, 2
+    CallIf 1, _0267
+    CompareVarToValue 0x8004, 3
+    CallIf 1, _027B
+    CompareVarToValue 0x8004, 0
+    CallIf 1, _028F
+    CompareVarToValue 0x8004, 1
+    CallIf 1, _02A3
     ScrCmd_02C 4
     ScrCmd_05E 33, _0348
     ScrCmd_05F
     ScrCmd_02C 5
     ScrCmd_02C 6
     ScrCmd_034
-    ScrCmd_011 0x8004, 2
-    ScrCmd_01D 1, _02B7
-    ScrCmd_011 0x8004, 3
-    ScrCmd_01D 1, _02CB
-    ScrCmd_011 0x8004, 0
-    ScrCmd_01D 1, _02DF
-    ScrCmd_011 0x8004, 1
-    ScrCmd_01D 1, _02F3
+    CompareVarToValue 0x8004, 2
+    CallIf 1, _02B7
+    CompareVarToValue 0x8004, 3
+    CallIf 1, _02CB
+    CompareVarToValue 0x8004, 0
+    CallIf 1, _02DF
+    CompareVarToValue 0x8004, 1
+    CallIf 1, _02F3
     ScrCmd_065 33
     ScrCmd_014 0x808
     ScrCmd_315 0x800C
-    ScrCmd_011 0x800C, 2
-    ScrCmd_01D 1, _0261
-    ScrCmd_01F 0x211
-    ScrCmd_01F 0x21B
+    CompareVarToValue 0x800C, 2
+    CallIf 1, _0261
+    ClearFlag 0x211
+    ClearFlag 0x21B
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0261:
     ScrCmd_049 0x639
-    ScrCmd_01B
+    Return
 
 _0267:
     ScrCmd_05E 33, _0318
     ScrCmd_05E 0xFF, _03CC
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _027B:
     ScrCmd_05E 33, _0308
     ScrCmd_05E 0xFF, _03CC
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _028F:
     ScrCmd_05E 33, _0338
     ScrCmd_05E 0xFF, _03CC
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02A3:
     ScrCmd_05E 33, _0328
     ScrCmd_05E 0xFF, _03D8
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02B7:
     ScrCmd_05E 33, _035C
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02CB:
     ScrCmd_05E 33, _0350
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02DF:
     ScrCmd_05E 33, _037C
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _02F3:
     ScrCmd_05E 33, _0368
     ScrCmd_05E 0xFF, _03E4
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _0308:
@@ -339,7 +339,7 @@ _03FC:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _040F:
     ScrCmd_049 0x5DC
@@ -349,7 +349,7 @@ _040F:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0422:
     ScrCmd_049 0x5DC
@@ -359,7 +359,7 @@ _0422:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0435:
     ScrCmd_036 10, 1, 0, 0x800C
@@ -367,7 +367,7 @@ _0435:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _044C:
     ScrCmd_036 11, 2, 0, 0x800C
@@ -375,7 +375,7 @@ _044C:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
 _0463:
     ScrCmd_036 12, 2, 0, 0x800C
@@ -383,7 +383,7 @@ _0463:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

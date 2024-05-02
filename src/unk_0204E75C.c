@@ -11,7 +11,7 @@
 #include "item.h"
 #include "unk_0207D3B8.h"
 
-BOOL sub_0204E75C (ScriptContext * param0)
+BOOL ScrCmd_07B (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -22,7 +22,7 @@ BOOL sub_0204E75C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E7B4 (ScriptContext * param0)
+BOOL ScrCmd_07C (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -33,7 +33,7 @@ BOOL sub_0204E7B4 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E80C (ScriptContext * param0)
+BOOL ScrCmd_07D (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -44,7 +44,7 @@ BOOL sub_0204E80C (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E864 (ScriptContext * param0)
+BOOL ScrCmd_07E (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -55,7 +55,7 @@ BOOL sub_0204E864 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E8BC (ScriptContext * param0)
+BOOL ScrCmd_2FE (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -65,7 +65,7 @@ BOOL sub_0204E8BC (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E900 (ScriptContext * param0)
+BOOL ScrCmd_07F (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -75,7 +75,7 @@ BOOL sub_0204E900 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E934 (ScriptContext * param0)
+BOOL ScrCmd_080 (ScriptContext * param0)
 {
     FieldSystem * v0 = param0->fieldSys;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -85,12 +85,12 @@ BOOL sub_0204E934 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204E96C (ScriptContext * param0)
+BOOL ScrCmd_081 (ScriptContext * param0)
 {
     return 0;
 }
 
-BOOL sub_0204E970 (ScriptContext * param0)
+BOOL ScrCmd_082 (ScriptContext * param0)
 {
     return 0;
 }

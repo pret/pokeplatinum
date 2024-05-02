@@ -3,27 +3,27 @@
 
 #include "field_script_context.h"
 
-BOOL ov5_021F6454(ScriptContext * param0);
-BOOL ov5_021F6B3C(ScriptContext * param0);
-BOOL ov5_021F6C60(ScriptContext * param0);
-BOOL ov5_021F6D80(ScriptContext * param0);
-BOOL ov5_021F6E50(ScriptContext * param0);
-BOOL ov5_021F6E9C(ScriptContext * param0);
-BOOL ov5_021F6F44(ScriptContext * param0);
-BOOL ov5_021F6FC0(ScriptContext * param0);
-BOOL ov5_021F71B8(ScriptContext * param0);
-BOOL ov5_021F7208(ScriptContext * param0);
-BOOL ov5_021F7270(ScriptContext * param0);
-BOOL ov5_021F72B8(ScriptContext * param0);
-BOOL ov5_021F7414(ScriptContext * param0);
-BOOL ov5_021F7418(ScriptContext * param0);
-BOOL ov5_021F7538(ScriptContext * param0);
-BOOL ov5_021F7604(ScriptContext * param0);
-BOOL ov5_021F76A0(ScriptContext * param0);
-BOOL ov5_021F76D0(ScriptContext * param0);
-BOOL ov5_021F7704(ScriptContext * param0);
-BOOL ov5_021F7754(ScriptContext * param0);
-BOOL ov5_021F7774(ScriptContext * param0);
-BOOL ov5_021F7788(ScriptContext * param0);
+BOOL ScrCmd_2DE(ScriptContext * param0);
+BOOL ScrCmd_2EE(ScriptContext * param0);
+BOOL ScrCmd_31D(ScriptContext * param0);
+BOOL ScrCmd_31E(ScriptContext * param0);
+BOOL ScrCmd_2F1(ScriptContext * param0);
+BOOL ScrCmd_303(ScriptContext * param0);
+BOOL ScrCmd_304(ScriptContext * param0);
+BOOL ScrCmd_2FF(ScriptContext * param0);
+BOOL ScrCmd_300(ScriptContext * param0);
+BOOL ScrCmd_301(ScriptContext * param0);
+BOOL ScrCmd_305(ScriptContext * param0);
+BOOL ScrCmd_30F(ScriptContext * param0);
+BOOL ScrCmd_316(ScriptContext * param0);
+BOOL ScrCmd_32C(ScriptContext * param0);
+BOOL ScrCmd_32D(ScriptContext * param0);
+BOOL ScrCmd_32E(ScriptContext * param0);
+BOOL ScrCmd_331(ScriptContext * param0);
+BOOL ScrCmd_332(ScriptContext * param0);
+BOOL ScrCmd_338(ScriptContext * param0);
+BOOL ScrCmd_339(ScriptContext * param0);
+BOOL ScrCmd_330(ScriptContext * param0);
+BOOL ScrCmd_333(ScriptContext * param0);
 
 #endif // POKEPLATINUM_OV5_021F6454_H

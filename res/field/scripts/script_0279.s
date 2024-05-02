@@ -8,43 +8,43 @@
     .short 0xFD13
 
 _000E:
-    ScrCmd_01E 0x9CF
-    ScrCmd_002
+    SetFlag 0x9CF
+    End
 
 _0014:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 0, 0x800C
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 1, _003A
+    CompareVarToValue 0x800C, 0
+    GoToIf 1, _003A
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _003A:
-    ScrCmd_020 147
-    ScrCmd_01C 1, _0064
+    CheckFlag 147
+    GoToIf 1, _0064
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 0x1A9
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
-    ScrCmd_01A _006F
-    ScrCmd_016 _0064
+    Call _006F
+    GoTo _0064
 
 _0064:
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _006F:
-    ScrCmd_01E 147
+    SetFlag 147
     ScrCmd_028 0x4093, 2
-    ScrCmd_01B
+    Return
 
 _007B:
     ScrCmd_060
@@ -55,12 +55,12 @@ _007B:
     ScrCmd_028 0x8004, 0x1A9
     ScrCmd_028 0x8005, 1
     ScrCmd_014 0x7FC
-    ScrCmd_01A _006F
+    Call _006F
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
     .balign 4, 0
 _00B4:

@@ -11,22 +11,22 @@ _000A:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_134 11, 0x800C
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _003A
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _003A
     ScrCmd_02C 0
     ScrCmd_028 0x8004, 11
     ScrCmd_014 0x7D9
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _003A:
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0045:
     ScrCmd_049 0x5DC
@@ -39,4 +39,4 @@ _0045:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End

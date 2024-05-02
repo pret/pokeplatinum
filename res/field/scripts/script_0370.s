@@ -8,49 +8,49 @@
     .short 0xFD13
 
 _000E:
-    ScrCmd_011 0x40DD, 0
-    ScrCmd_01C 1, _0048
+    CompareVarToValue 0x40DD, 0
+    GoToIf 1, _0048
     ScrCmd_207 0x4000
-    ScrCmd_011 0x4000, 1
-    ScrCmd_01C 1, _004A
+    CompareVarToValue 0x4000, 1
+    GoToIf 1, _004A
     ScrCmd_1DD 55, 0, 0x4000
     ScrCmd_029 0x4020, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
     ScrCmd_029 0x4021, 0x4000
 _0048:
-    ScrCmd_002
+    End
 
 _004A:
     ScrCmd_1DD 55, 0, 0x4000
     ScrCmd_029 0x4021, 0x4000
     ScrCmd_1DD 55, 1, 0x4000
     ScrCmd_029 0x4020, 0x4000
-    ScrCmd_002
+    End
 
 _0068:
-    ScrCmd_011 0x40DD, 0
-    ScrCmd_01D 5, _007F
+    CompareVarToValue 0x40DD, 0
+    CallIf 5, _007F
     ScrCmd_1B2 2
     ScrCmd_1B2 3
-    ScrCmd_002
+    End
 
 _007F:
     ScrCmd_1B2 0xFF
     ScrCmd_06B 8, 0, 0
-    ScrCmd_01B
+    Return
 
 _008D:
     ScrCmd_060
-    ScrCmd_01A _00C9
-    ScrCmd_01A _012B
-    ScrCmd_01A _014F
+    Call _00C9
+    Call _012B
+    Call _014F
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BE 0x14B, 0, 7, 5, 0
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _00C9:
     ScrCmd_168 0, 0, 3, 2, 77
@@ -73,7 +73,7 @@ _00C9:
     ScrCmd_169 78
     ScrCmd_16A 77
     ScrCmd_16A 78
-    ScrCmd_01B
+    Return
 
 _012B:
     ScrCmd_05E 0, _01AC
@@ -81,7 +81,7 @@ _012B:
     ScrCmd_05E 1, _01CC
     ScrCmd_05E 3, _0194
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
 _014F:
     ScrCmd_05E 0, _01EC
@@ -89,7 +89,7 @@ _014F:
     ScrCmd_05E 2, _01A0
     ScrCmd_05E 3, _01A0
     ScrCmd_05F
-    ScrCmd_01B
+    Return
 
     .balign 4, 0
 _0174:

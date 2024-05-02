@@ -64,11 +64,11 @@ enum {
     UnkEnum_0204F13C_5,
 };
 
-BOOL sub_0204F13C(ScriptContext * param0);
+BOOL ScrCmd_2CC(ScriptContext * param0);
 static BOOL sub_0204F268(u16 param0, SaveData * param1);
-BOOL sub_0204F360(ScriptContext * param0);
+BOOL ScrCmd_2D1(ScriptContext * param0);
 
-BOOL sub_0204F398(ScriptContext * param0);
+BOOL ScrCmd_2CF(ScriptContext * param0);
 void sub_0204F3D0(TaskManager * param0, u16 param1, u16 * param2);
 static BOOL sub_0204F414(TaskManager * param0);
 
@@ -79,7 +79,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 * param0, FieldSystem * param1);
 static int sub_0204F628(UnkStruct_0204F470 * param0, FieldSystem * param1, int param2);
 static int sub_0204F6B0(UnkStruct_0204F470 * param0, FieldSystem * param1);
 
-BOOL sub_0204F13C (ScriptContext * param0)
+BOOL ScrCmd_2CC (ScriptContext * param0)
 {
     u8 v0;
     u8 v1[4];
@@ -216,7 +216,7 @@ static BOOL sub_0204F268 (u16 param0, SaveData * param1)
     return 1;
 }
 
-BOOL sub_0204F360 (ScriptContext * param0)
+BOOL ScrCmd_2D1 (ScriptContext * param0)
 {
     UnkStruct_0203026C * v0;
     u16 v1 = ScriptContext_GetVar(param0);
@@ -227,7 +227,7 @@ BOOL sub_0204F360 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204F398 (ScriptContext * param0)
+BOOL ScrCmd_2CF (ScriptContext * param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
@@ -464,7 +464,7 @@ static int sub_0204F6B0 (UnkStruct_0204F470 * param0, FieldSystem * param1)
     return UnkEnum_0204F13C_1;
 }
 
-BOOL sub_0204F6D8(ScriptContext * param0);
+BOOL ScrCmd_324(ScriptContext * param0);
 
 typedef struct {
     u32 unk_00;
@@ -521,7 +521,7 @@ static const UnkStruct_020EC078 Unk_020EC078[] = {
     {100000, 1000},
 };
 
-BOOL sub_0204F6D8 (ScriptContext * param0)
+BOOL ScrCmd_324 (ScriptContext * param0)
 {
     int v0;
     int v1;
@@ -616,8 +616,8 @@ BOOL sub_0204F6D8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204F8A8(ScriptContext * param0);
-BOOL sub_0204F8A8 (ScriptContext * param0)
+BOOL ScrCmd_325(ScriptContext * param0);
+BOOL ScrCmd_325 (ScriptContext * param0)
 {
     int v0;
     BattleFrontierStage * v1;
@@ -665,8 +665,8 @@ BOOL sub_0204F8A8 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204F950(ScriptContext * param0);
-BOOL sub_0204F950 (ScriptContext * param0)
+BOOL ScrCmd_326(ScriptContext * param0);
+BOOL ScrCmd_326 (ScriptContext * param0)
 {
     int v0;
     int v1;
@@ -710,8 +710,8 @@ BOOL sub_0204F950 (ScriptContext * param0)
     return 0;
 }
 
-BOOL sub_0204F9D4(ScriptContext * param0);
-BOOL sub_0204F9D4 (ScriptContext * param0)
+BOOL ScrCmd_32A(ScriptContext * param0);
+BOOL ScrCmd_32A (ScriptContext * param0)
 {
     u16 v0, v1;
 

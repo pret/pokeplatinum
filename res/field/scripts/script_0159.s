@@ -11,18 +11,18 @@
 _0012:
     ScrCmd_028 0x4000, 0
     ScrCmd_175 1
-    ScrCmd_002
+    End
 
 _001D:
     ScrCmd_176 0
-    ScrCmd_002
+    End
 
 _0022:
     ScrCmd_176 1
-    ScrCmd_002
+    End
 
 _0027:
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0

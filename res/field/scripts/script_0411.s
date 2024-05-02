@@ -12,10 +12,10 @@ _0012:
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _0031
-    ScrCmd_016 _003E
-    ScrCmd_002
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _0031
+    GoTo _003E
+    End
 
 _0031:
     ScrCmd_02C 2
@@ -23,35 +23,35 @@ _0031:
     ScrCmd_034
     ScrCmd_061
     ScrCmd_015
-    ScrCmd_002
+    End
 
 _003E:
-    ScrCmd_01A _00E8
+    Call _00E8
     ScrCmd_034
     ScrCmd_061
     ScrCmd_015
-    ScrCmd_002
+    End
 
 _004C:
     ScrCmd_0CD 0
     ScrCmd_14D 0x800C
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01D 1, _0086
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01D 1, _008B
+    CompareVarToValue 0x800C, 0
+    CallIf 1, _0086
+    CompareVarToValue 0x800C, 1
+    CallIf 1, _008B
     ScrCmd_03E 0x800C
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _0090
-    ScrCmd_016 _009D
-    ScrCmd_002
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _0090
+    GoTo _009D
+    End
 
 _0086:
     ScrCmd_02C 18
-    ScrCmd_01B
+    Return
 
 _008B:
     ScrCmd_02C 19
-    ScrCmd_01B
+    Return
 
 _0090:
     ScrCmd_02C 21
@@ -59,42 +59,42 @@ _0090:
     ScrCmd_034
     ScrCmd_061
     ScrCmd_015
-    ScrCmd_002
+    End
 
 _009D:
-    ScrCmd_01A _0126
+    Call _0126
     ScrCmd_034
     ScrCmd_061
     ScrCmd_015
-    ScrCmd_002
+    End
 
 _00AB:
-    ScrCmd_01A _00B5
+    Call _00B5
     ScrCmd_015
-    ScrCmd_002
+    End
 
 _00B5:
     ScrCmd_22D 2, 0x800C
-    ScrCmd_011 0x800C, 0
-    ScrCmd_01C 1, _00D6
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01C 1, _00DF
-    ScrCmd_002
+    CompareVarToValue 0x800C, 0
+    GoToIf 1, _00D6
+    CompareVarToValue 0x800C, 1
+    GoToIf 1, _00DF
+    End
 
 _00D6:
     ScrCmd_02C 43
-    ScrCmd_016 _00E8
+    GoTo _00E8
 
 _00DF:
     ScrCmd_02C 44
-    ScrCmd_016 _0126
+    GoTo _0126
 
 _00E8:
-    ScrCmd_020 0x9BA
-    ScrCmd_01C 0, _0104
+    CheckFlag 0x9BA
+    GoToIf 0, _0104
     ScrCmd_1E8 0x800C
-    ScrCmd_011 0x800C, 1
-    ScrCmd_01D 1, _0120
+    CompareVarToValue 0x800C, 1
+    CallIf 1, _0120
 _0104:
     ScrCmd_11E 0x8004
     ScrCmd_0D5 0, 0x8004
@@ -103,11 +103,11 @@ _0104:
     ScrCmd_0CD 0
     ScrCmd_02D 0x800C
     ScrCmd_030
-    ScrCmd_01B
+    Return
 
 _0120:
-    ScrCmd_01E 0x110
-    ScrCmd_01B
+    SetFlag 0x110
+    Return
 
 _0126:
     ScrCmd_121 0x8004
@@ -118,7 +118,7 @@ _0126:
     ScrCmd_0CD 0
     ScrCmd_02D 0x800C
     ScrCmd_030
-    ScrCmd_01B
+    Return
 
     .byte 0
     .byte 0

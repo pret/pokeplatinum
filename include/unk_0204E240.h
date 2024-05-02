@@ -3,10 +3,10 @@
 
 #include "field_script_context.h"
 
-BOOL sub_0204E240(ScriptContext * param0);
-BOOL sub_0204E28C(ScriptContext * param0);
-BOOL sub_0204E2E0(ScriptContext * param0);
-BOOL sub_0204E370(ScriptContext * param0);
-BOOL sub_0204E374(ScriptContext * param0);
+BOOL ScrCmd_1F1(ScriptContext * param0);
+BOOL ScrCmd_1F4(ScriptContext * param0);
+BOOL ScrCmd_1F5(ScriptContext * param0);
+BOOL ScrCmd_1F2(ScriptContext * param0);
+BOOL ScrCmd_1F3(ScriptContext * param0);
 
 #endif // POKEPLATINUM_UNK_0204E240_H

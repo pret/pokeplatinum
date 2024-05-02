@@ -10,12 +10,12 @@
 
 _0012:
     ScrCmd_22D 2, 0x4000
-    ScrCmd_011 0x4000, 0
-    ScrCmd_01C 1, _002C
-    ScrCmd_01E 0x27F
-    ScrCmd_01E 0x280
+    CompareVarToValue 0x4000, 0
+    GoToIf 1, _002C
+    SetFlag 0x27F
+    SetFlag 0x280
 _002C:
-    ScrCmd_002
+    End
 
 _002E:
     ScrCmd_049 0x5DC
@@ -25,7 +25,7 @@ _002E:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0041:
     ScrCmd_049 0x5DC
@@ -35,7 +35,7 @@ _0041:
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0054:
     ScrCmd_036 2, 2, 0, 0x800C
@@ -43,6 +43,6 @@ _0054:
     ScrCmd_039
     ScrCmd_03B 0x800C
     ScrCmd_014 0x7D0
-    ScrCmd_002
+    End
 
     .byte 0

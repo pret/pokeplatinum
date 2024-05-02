@@ -2,15 +2,15 @@
 
     .option alignment off
 
-    .macro ScrCmd_000
+    .macro Noop
     .short 0
     .endm
 
-    .macro ScrCmd_001
+    .macro Dummy
     .short 1
     .endm
 
-    .macro ScrCmd_002
+    .macro End
     .short 2
     .endm
 
@@ -98,16 +98,16 @@
     .long \arg1
     .endm
 
-    .macro ScrCmd_011 arg0, arg1
+    .macro CompareVarToValue varID, value
     .short 17
-    .short \arg0
-    .short \arg1
+    .short \varID
+    .short \value
     .endm
 
-    .macro ScrCmd_012 arg0, arg1
+    .macro CompareVarToVar varID0, varID1
     .short 18
-    .short \arg0
-    .short \arg1
+    .short \varID0
+    .short \varID1
     .endm
 
     .macro ScrCmd_013 arg0
@@ -124,9 +124,9 @@
     .short 21
     .endm
 
-    .macro ScrCmd_016 arg0
+    .macro GoTo offset
     .short 22
-    .long \arg0-.-4
+    .long \offset-.-4
     .endm
 
     .macro ScrCmd_017 arg0, arg1
@@ -147,40 +147,40 @@
     .long \arg1-.-4
     .endm
 
-    .macro ScrCmd_01A arg0
+    .macro Call offset
     .short 26
-    .long \arg0-.-4
+    .long \offset-.-4
     .endm
 
-    .macro ScrCmd_01B
+    .macro Return
     .short 27
     .endm
 
-    .macro ScrCmd_01C arg0, arg1
+    .macro GoToIf condition, offset
     .short 28
-    .byte \arg0
-    .long \arg1-.-4
+    .byte \condition
+    .long \offset-.-4
     .endm
 
-    .macro ScrCmd_01D arg0, arg1
+    .macro CallIf condition, offset
     .short 29
-    .byte \arg0
-    .long \arg1-.-4
+    .byte \condition
+    .long \offset-.-4
     .endm
 
-    .macro ScrCmd_01E arg0
+    .macro SetFlag flagID
     .short 30
-    .short \arg0
+    .short \flagID
     .endm
 
-    .macro ScrCmd_01F arg0
+    .macro ClearFlag flagID
     .short 31
-    .short \arg0
+    .short \flagID
     .endm
 
-    .macro ScrCmd_020 arg0
+    .macro CheckFlag flagID
     .short 32
-    .short \arg0
+    .short \flagID
     .endm
 
     .macro ScrCmd_021 arg0, arg1

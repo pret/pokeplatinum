@@ -14,10 +14,10 @@ _000A:
     ScrCmd_035
     ScrCmd_147 1
     ScrCmd_061
-    ScrCmd_002
+    End
 
 _0020:
-    ScrCmd_002
+    End
 
     .byte 0
     .byte 0
