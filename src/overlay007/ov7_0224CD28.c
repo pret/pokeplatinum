@@ -396,7 +396,7 @@ static void ov7_0224D21C (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224D250 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
 {
-    if (sub_0205DA04(param1->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param1->unk_2A4) == 0) {
         return 0;
     }
 
@@ -920,7 +920,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224DE94 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 5;
     }
 
@@ -1111,7 +1111,7 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
 
 static u8 ov7_0224E3A0 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 7;
     }
 
@@ -1182,7 +1182,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 9;
     }
 
@@ -1220,7 +1220,7 @@ static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 10;
     }
 
@@ -1263,7 +1263,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224E7C8 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 11;
     }
 
@@ -1420,7 +1420,7 @@ static u8 ov7_0224E950 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
 
 static u8 ov7_0224EA2C (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 13;
     }
 

@@ -546,7 +546,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
 
 static int ov5_021F0E24 (UnkStruct_ov5_021F0D6C * param0)
 {
-    if ((sub_0205DA04(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
+    if ((FieldMessage_FinishedPrinting(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
         sub_0200E084(&param0->unk_38, 0);
         BGL_DeleteWindow(&param0->unk_38);
         return 1;

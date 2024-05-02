@@ -289,7 +289,7 @@ static void sub_02052FA8 (FieldSystem * param0, UnkStruct_0205300C * param1)
 
 static BOOL sub_02052FFC (UnkStruct_0205300C * param0)
 {
-    return sub_0205DA04(param0->unk_34);
+    return FieldMessage_FinishedPrinting(param0->unk_34);
 }
 
 static void sub_0205300C (UnkStruct_0205300C * param0)

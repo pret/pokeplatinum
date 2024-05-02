@@ -283,7 +283,7 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
 
 static BOOL sub_0209B100 (UnkStruct_0209AD84 * param0)
 {
-    return sub_0205DA04(param0->unk_58);
+    return FieldMessage_FinishedPrinting(param0->unk_58);
 }
 
 static void sub_0209B110 (UnkStruct_0209AD84 * param0)

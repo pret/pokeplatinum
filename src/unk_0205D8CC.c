@@ -66,7 +66,7 @@ u8 sub_0205D9CC (Window * param0, Strbuf *param1, int param2, int param3, u8 par
     return PrintStringSimple(param0, param2, param1, 0, 0, param3, NULL);
 }
 
-u8 sub_0205DA04 (u8 param0)
+u8 FieldMessage_FinishedPrinting (u8 param0)
 {
     if (Message_Printing(param0) == 0) {
         return 1;

@@ -1833,12 +1833,12 @@ u16 sub_02036128 (u16 param0)
     return 38;
 }
 
-int sub_02036148 (int param0)
+int CommType_MaxPlayers (int param0)
 {
     return sub_0203266C(param0) + 1;
 }
 
-int sub_02036158 (int param0)
+int CommType_MinPlayers (int param0)
 {
     return sub_02032698(param0) + 1;
 }

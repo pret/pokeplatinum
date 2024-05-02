@@ -277,7 +277,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 2;
         break;
     case 2:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             CommTiming_StartSync(93);
             v0->unk_34 = 3;
         }
@@ -345,7 +345,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 12;
         break;
     case 12:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             v0->unk_34 = 13;
         }
         break;
@@ -436,7 +436,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 25;
         break;
     case 25:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             v0->unk_34 = 13;
         }
         break;
@@ -457,7 +457,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 27:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             if (sub_0205A2FC()) {
                 v0->unk_34 = 5;
             } else if (CommTiming_IsSyncState(0)) {
@@ -486,7 +486,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 30:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             v0->unk_89 = 0;
             MessageLoader_GetStrbuf(v0->unk_2C, 17, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
@@ -495,7 +495,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 31:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             sub_0205AD80(v0);
             sub_0205ADF8(v0, v0->unk_84);
             v0->unk_34 = 32;
@@ -526,7 +526,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 37;
         break;
     case 37:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             sub_0205AF18(v0, 0);
             v0->unk_34 = 38;
         }
@@ -573,7 +573,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 39:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             if (CommTiming_IsSyncState(2)) {
                 sub_0205AD34(v0);
                 v0->unk_34 = 41;
@@ -601,7 +601,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 43;
         break;
     case 43:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             if (++(v0->unk_43) > 60) {
                 CommTiming_StartSync(4);
                 v0->unk_34 = 44;
@@ -1034,7 +1034,7 @@ static BOOL sub_0205B140 (TaskManager * param0)
         v1->unk_28++;
         break;
     case 1:
-        if (sub_0205DA04(v1->unk_20)) {
+        if (FieldMessage_FinishedPrinting(v1->unk_20)) {
             if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 MessageLoader_Free(v1->unk_1C);
                 StringTemplate_Free(v1->unk_18);

@@ -2242,7 +2242,7 @@ static BOOL sub_02040014 (ScriptContext * param0)
     FieldSystem * v0 = param0->fieldSys;
     u8 * v1 = sub_0203F098(v0, 3);
 
-    return sub_0205DA04(*v1);
+    return FieldMessage_FinishedPrinting(*v1);
 }
 
 static BOOL ScrCmd_02D (ScriptContext * param0)
@@ -2615,7 +2615,7 @@ static BOOL sub_02040670 (ScriptContext * param0)
     u8 v3 = ov5_021E1B54(v0->unk_64);
     int v4 = 0xffff;
 
-    if (sub_0205DA04(*v1) == 1) {
+    if (FieldMessage_FinishedPrinting(*v1) == 1) {
         *v2 = 2;
         return 1;
     }
@@ -6025,7 +6025,7 @@ static BOOL ScrCmd_19F (ScriptContext * param0)
 static BOOL sub_02044240 (ScriptContext * param0)
 {
     u8 * v0 = sub_0203F098(param0->fieldSys, 3);
-    return sub_0205DA04(*v0);
+    return FieldMessage_FinishedPrinting(*v0);
 }
 
 static BOOL ScrCmd_1A0 (ScriptContext * param0)

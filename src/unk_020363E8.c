@@ -166,7 +166,7 @@ int sub_020365A8 (int param0, u8 param1)
     return -1;
 }
 
-void sub_020365D0 (void)
+void CommList_Refresh (void)
 {
     int v0;
 

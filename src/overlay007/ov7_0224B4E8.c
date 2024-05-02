@@ -469,7 +469,7 @@ static BOOL ov7_0224BC74 (TaskManager * param0)
         v1->unk_7C++;
         break;
     case 1:
-        if (sub_0205DA04(v1->unk_74)) {
+        if (FieldMessage_FinishedPrinting(v1->unk_74)) {
             ov7_0224B5A8(v1);
             v1->unk_7C++;
         }
@@ -511,7 +511,7 @@ static BOOL ov7_0224BC74 (TaskManager * param0)
         }
         break;
     case 6:
-        if (sub_0205DA04(v1->unk_74)) {
+        if (FieldMessage_FinishedPrinting(v1->unk_74)) {
             if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_7C = 0;
             }
@@ -531,7 +531,7 @@ static BOOL ov7_0224BC74 (TaskManager * param0)
         }
         break;
     case 9:
-        if (sub_0205DA04(v1->unk_74)) {
+        if (FieldMessage_FinishedPrinting(v1->unk_74)) {
             v1->unk_7C = 3;
         }
         break;

@@ -1183,7 +1183,7 @@ BOOL sub_02054084 (TaskManager * param0)
         v1->unk_00 = 1;
         break;
     case 1:
-        if (sub_0205DA04(v1->unk_38) == 1) {
+        if (FieldMessage_FinishedPrinting(v1->unk_38) == 1) {
             Strbuf_Free(v1->unk_34);
             sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
             v1->unk_3C = sub_02002100(v0->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);

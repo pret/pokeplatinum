@@ -964,7 +964,7 @@ static BOOL sub_02068F48 (TaskManager * param0)
         v1->unk_16++;
         break;
     case 1:
-        if (sub_0205DA04(v1->unk_14) == 1) {
+        if (FieldMessage_FinishedPrinting(v1->unk_14) == 1) {
             if (gCoreSys.pressedKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_BUTTON_A | PAD_BUTTON_B)) {
                 sub_0200E084(&v1->unk_00, 0);
                 v1->unk_16++;

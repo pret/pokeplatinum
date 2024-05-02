@@ -170,7 +170,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         sub_020219F8(v0->unk_1BC);
         break;
     case 6:
-        if (sub_0205DA04(v0->unk_404)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_404)) {
             v0->unk_00++;
         }
         break;
@@ -484,7 +484,7 @@ static void ov23_0224966C (BGL * param0, Window * param1, int * param2, int * pa
         }
         break;
     case 1:
-        if (sub_0205DA04(*param2)) {
+        if (FieldMessage_FinishedPrinting(*param2)) {
             *param3 = 2;
             *param4 = 0;
         }

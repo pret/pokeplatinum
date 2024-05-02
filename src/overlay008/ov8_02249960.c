@@ -2947,7 +2947,7 @@ static BOOL ov8_0224B3D4 (TaskManager * param0)
         }
         break;
     case 11:
-        if (sub_0205DA04(v2->unk_40) != 1) {
+        if (FieldMessage_FinishedPrinting(v2->unk_40) != 1) {
             break;
         }
 
