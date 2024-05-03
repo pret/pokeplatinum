@@ -279,7 +279,7 @@ static BOOL ScrCmd_SetFlag(ScriptContext * ctx);
 static BOOL ScrCmd_ClearFlag(ScriptContext * ctx);
 static BOOL ScrCmd_CheckFlag(ScriptContext * ctx);
 static BOOL ScrCmd_021(ScriptContext * param0);
-static BOOL ScrCmd_022(ScriptContext * param0);
+static BOOL ScrCmd_SetFlagFromVar(ScriptContext * ctx);
 static BOOL ScrCmd_SetTrainerFlag(ScriptContext * ctx);
 static BOOL ScrCmd_ClearTrainerFlag(ScriptContext * ctx);
 static BOOL ScrCmd_CheckTrainerFlag(ScriptContext * ctx);
@@ -806,7 +806,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ClearFlag,
     ScrCmd_CheckFlag,
     ScrCmd_021,
-    ScrCmd_022,
+    ScrCmd_SetFlagFromVar,
     ScrCmd_SetTrainerFlag,
     ScrCmd_ClearTrainerFlag,
     ScrCmd_CheckTrainerFlag,
@@ -2016,13 +2016,12 @@ static BOOL ScrCmd_021 (ScriptContext * param0)
     return 0;
 }
 
-static BOOL ScrCmd_022 (ScriptContext * param0)
+static BOOL ScrCmd_SetFlagFromVar (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 * v1 = ScriptContext_GetVarPointer(param0);
-
-    sub_0203F19C(v0, (*v1));
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 flagID = *ScriptContext_GetVarPointer(ctx);
+    sub_0203F19C(fieldSys, flagID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_SetTrainerFlag (ScriptContext * ctx)

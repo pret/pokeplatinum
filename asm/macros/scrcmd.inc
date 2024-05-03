@@ -189,9 +189,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_022 arg0
+    .macro SetFlagFromVar varID
     .short 34
-    .short \arg0
+    .short \varID
     .endm
 
     .macro SetTrainerFlag trainerID

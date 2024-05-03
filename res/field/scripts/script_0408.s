@@ -391,7 +391,7 @@ _05FA:
     End
 
 _060D:
-    ScrCmd_022 0x8006
+    SetFlagFromVar 0x8006
     ScrCmd_02C 9
     ScrCmd_031
     SetVar 0x800C, 1
