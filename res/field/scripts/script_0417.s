@@ -188,8 +188,8 @@ _02DD:
 
 _02DF:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _212C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _212C
+    WaitMovement
     ScrCmd_003 20, 0x800C
     ScrCmd_02C 1
     ScrCmd_034
@@ -344,8 +344,8 @@ _04BC:
     End
 
 _04CF:
-    ScrCmd_05E 6, _212C
-    ScrCmd_05F
+    ApplyMovement 6, _212C
+    WaitMovement
     Return
 
 _04DB:
@@ -481,8 +481,8 @@ _0666:
     End
 
 _0679:
-    ScrCmd_05E 9, _2134
-    ScrCmd_05F
+    ApplyMovement 9, _2134
+    WaitMovement
     Return
 
 _0685:
@@ -618,8 +618,8 @@ _0810:
     End
 
 _0823:
-    ScrCmd_05E 2, _212C
-    ScrCmd_05F
+    ApplyMovement 2, _212C
+    WaitMovement
     Return
 
 _082F:
@@ -755,8 +755,8 @@ _09BA:
     End
 
 _09CD:
-    ScrCmd_05E 3, _2134
-    ScrCmd_05F
+    ApplyMovement 3, _2134
+    WaitMovement
     Return
 
 _09D9:
@@ -892,8 +892,8 @@ _0B64:
     End
 
 _0B77:
-    ScrCmd_05E 0, _212C
-    ScrCmd_05F
+    ApplyMovement 0, _212C
+    WaitMovement
     Return
 
 _0B83:
@@ -1029,8 +1029,8 @@ _0D0E:
     End
 
 _0D21:
-    ScrCmd_05E 1, _2134
-    ScrCmd_05F
+    ApplyMovement 1, _2134
+    WaitMovement
     Return
 
 _0D2D:
@@ -1166,8 +1166,8 @@ _0EB8:
     End
 
 _0ECB:
-    ScrCmd_05E 17, _212C
-    ScrCmd_05F
+    ApplyMovement 17, _212C
+    WaitMovement
     Return
 
 _0ED7:
@@ -1303,8 +1303,8 @@ _1062:
     End
 
 _1075:
-    ScrCmd_05E 10, _2134
-    ScrCmd_05F
+    ApplyMovement 10, _2134
+    WaitMovement
     Return
 
 _1081:
@@ -1440,8 +1440,8 @@ _120C:
     End
 
 _121F:
-    ScrCmd_05E 15, _212C
-    ScrCmd_05F
+    ApplyMovement 15, _212C
+    WaitMovement
     Return
 
 _122B:
@@ -1577,8 +1577,8 @@ _13B6:
     End
 
 _13C9:
-    ScrCmd_05E 13, _2134
-    ScrCmd_05F
+    ApplyMovement 13, _2134
+    WaitMovement
     Return
 
 _13D5:
@@ -1714,8 +1714,8 @@ _1560:
     End
 
 _1573:
-    ScrCmd_05E 11, _212C
-    ScrCmd_05F
+    ApplyMovement 11, _212C
+    WaitMovement
     Return
 
 _157F:
@@ -1851,8 +1851,8 @@ _170A:
     End
 
 _171D:
-    ScrCmd_05E 12, _2134
-    ScrCmd_05F
+    ApplyMovement 12, _2134
+    WaitMovement
     Return
 
 _1729:
@@ -1988,8 +1988,8 @@ _18B4:
     End
 
 _18C7:
-    ScrCmd_05E 5, _212C
-    ScrCmd_05F
+    ApplyMovement 5, _212C
+    WaitMovement
     Return
 
 _18D3:
@@ -2125,8 +2125,8 @@ _1A5E:
     End
 
 _1A71:
-    ScrCmd_05E 4, _2134
-    ScrCmd_05F
+    ApplyMovement 4, _2134
+    WaitMovement
     Return
 
 _1A7D:
@@ -2262,8 +2262,8 @@ _1C08:
     End
 
 _1C1B:
-    ScrCmd_05E 7, _212C
-    ScrCmd_05F
+    ApplyMovement 7, _212C
+    WaitMovement
     Return
 
 _1C27:
@@ -2399,8 +2399,8 @@ _1DB2:
     End
 
 _1DC5:
-    ScrCmd_05E 8, _2134
-    ScrCmd_05F
+    ApplyMovement 8, _2134
+    WaitMovement
     Return
 
 _1DD1:
@@ -2536,8 +2536,8 @@ _1F5C:
     End
 
 _1F6F:
-    ScrCmd_05E 14, _212C
-    ScrCmd_05F
+    ApplyMovement 14, _212C
+    WaitMovement
     Return
 
 _1F7B:
@@ -2673,8 +2673,8 @@ _2106:
     End
 
 _2119:
-    ScrCmd_05E 16, _2134
-    ScrCmd_05F
+    ApplyMovement 16, _2134
+    WaitMovement
     Return
 
 _2125:

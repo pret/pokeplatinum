@@ -39,12 +39,12 @@ _0050:
     ScrCmd_0C7 0x800C
     CompareVarToValue 0x800C, 1
     GoToIf 1, _0080
-    ScrCmd_05E 0, _0090
-    ScrCmd_05F
+    ApplyMovement 0, _0090
+    WaitMovement
     ScrCmd_02C 1
     ScrCmd_034
-    ScrCmd_05E 0xFF, _0098
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0098
+    WaitMovement
     ScrCmd_061
     End
 

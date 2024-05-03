@@ -21,8 +21,8 @@ _0006:
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 0, _0158
-    ScrCmd_05F
+    ApplyMovement 0, _0158
+    WaitMovement
     ScrCmd_02C 1
     SetVar 0x8004, 252
     SetVar 0x8005, 1

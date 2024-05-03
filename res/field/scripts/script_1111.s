@@ -69,8 +69,8 @@ _0105:
     CompareVarToValue 0x8004, 0
     CallIf 1, _0142
     ScrCmd_034
-    ScrCmd_05E 0, _017C
-    ScrCmd_05F
+    ApplyMovement 0, _017C
+    WaitMovement
     ScrCmd_04B 0x5DC
     ScrCmd_23C 0x8004, 4
     Return

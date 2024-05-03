@@ -139,21 +139,21 @@ _0183:
     End
 
 _01D5:
-    ScrCmd_05E 0xFF, _0214
-    ScrCmd_05E 1, _0240
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0214
+    ApplyMovement 1, _0240
+    WaitMovement
     Return
 
 _01E9:
-    ScrCmd_05E 0xFF, _0220
-    ScrCmd_05E 1, _0254
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0220
+    ApplyMovement 1, _0254
+    WaitMovement
     Return
 
 _01FD:
-    ScrCmd_05E 0xFF, _0234
-    ScrCmd_05E 1, _0264
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0234
+    ApplyMovement 1, _0264
+    WaitMovement
     Return
 
     .balign 4, 0
@@ -202,10 +202,10 @@ _0264:
 _0278:
     ScrCmd_060
     SetVar 0x40C1, 1
-    ScrCmd_05E 0, _02A0
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _02A8
-    ScrCmd_05F
+    ApplyMovement 0, _02A0
+    WaitMovement
+    ApplyMovement 0xFF, _02A8
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034

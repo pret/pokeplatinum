@@ -64,13 +64,13 @@ _0064:
     End
 
 _00D1:
-    ScrCmd_05E 4, _0170
-    ScrCmd_05F
+    ApplyMovement 4, _0170
+    WaitMovement
     Return
 
 _00DD:
-    ScrCmd_05E 4, _0184
-    ScrCmd_05F
+    ApplyMovement 4, _0184
+    WaitMovement
     Return
 
 _00E9:
@@ -83,9 +83,9 @@ _00EE:
 
 _00F3:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _0158
-    ScrCmd_05E 4, _0160
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0158
+    ApplyMovement 4, _0160
+    WaitMovement
     ScrCmd_02C 4
     ScrCmd_034
     SetVar 0x4092, 0
@@ -100,13 +100,13 @@ _00F3:
     End
 
 _013E:
-    ScrCmd_05E 4, _0190
-    ScrCmd_05F
+    ApplyMovement 4, _0190
+    WaitMovement
     Return
 
 _014A:
-    ScrCmd_05E 4, _01A0
-    ScrCmd_05F
+    ApplyMovement 4, _01A0
+    WaitMovement
     Return
 
     .balign 4, 0
@@ -168,16 +168,16 @@ _01AA:
     CallIf 1, _02A5
     ScrCmd_02C 5
     ScrCmd_034
-    ScrCmd_05E 5, _0384
-    ScrCmd_05F
+    ApplyMovement 5, _0384
+    WaitMovement
     ScrCmd_02C 6
     ScrCmd_034
-    ScrCmd_05E 6, _038C
-    ScrCmd_05F
+    ApplyMovement 6, _038C
+    WaitMovement
     ScrCmd_02C 7
     ScrCmd_034
-    ScrCmd_05E 4, _040C
-    ScrCmd_05F
+    ApplyMovement 4, _040C
+    WaitMovement
     ScrCmd_0CD 0
     ScrCmd_02C 8
     ScrCmd_034
@@ -187,12 +187,12 @@ _01AA:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _037D
-    ScrCmd_05E 5, _0394
-    ScrCmd_05F
+    ApplyMovement 5, _0394
+    WaitMovement
     ScrCmd_02C 9
     ScrCmd_034
-    ScrCmd_05E 6, _039C
-    ScrCmd_05F
+    ApplyMovement 6, _039C
+    WaitMovement
     ScrCmd_02C 10
     ScrCmd_034
     ScrCmd_0BC 6, 1, 0, 0
@@ -212,15 +212,15 @@ _01AA:
     End
 
 _0291:
-    ScrCmd_05E 4, _03D4
-    ScrCmd_05E 0xFF, _0434
-    ScrCmd_05F
+    ApplyMovement 4, _03D4
+    ApplyMovement 0xFF, _0434
+    WaitMovement
     Return
 
 _02A5:
-    ScrCmd_05E 4, _03E4
-    ScrCmd_05E 0xFF, _044C
-    ScrCmd_05F
+    ApplyMovement 4, _03E4
+    ApplyMovement 0xFF, _044C
+    WaitMovement
     Return
 
     .byte 94
@@ -249,15 +249,15 @@ _02A5:
     .byte 0
 
 _02D1:
-    ScrCmd_05E 4, _0414
-    ScrCmd_05E 0xFF, _0424
-    ScrCmd_05F
+    ApplyMovement 4, _0414
+    ApplyMovement 0xFF, _0424
+    WaitMovement
     Return
 
 _02E5:
-    ScrCmd_05E 4, _041C
-    ScrCmd_05E 0xFF, _042C
-    ScrCmd_05F
+    ApplyMovement 4, _041C
+    ApplyMovement 0xFF, _042C
+    WaitMovement
     Return
 
 _02F9:

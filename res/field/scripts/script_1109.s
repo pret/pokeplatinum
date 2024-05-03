@@ -33,8 +33,8 @@ _003F:
     ScrCmd_0CD 0
     ScrCmd_02C 1
     ScrCmd_034
-    ScrCmd_05E 0, _00AC
-    ScrCmd_05F
+    ApplyMovement 0, _00AC
+    WaitMovement
     ScrCmd_061
     End
 

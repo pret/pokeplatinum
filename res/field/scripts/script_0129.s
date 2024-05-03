@@ -19,8 +19,8 @@ _0020:
 
 _0022:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _0194
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0194
+    WaitMovement
     ScrCmd_069 0x4000, 0x4001
     CompareVarToValue 0x4000, 5
     CallIf 1, _017D
@@ -62,13 +62,13 @@ _008C:
     End
 
 _00E2:
-    ScrCmd_05E 0xFF, _019C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _019C
+    WaitMovement
     GoTo _0102
 
 _00F2:
-    ScrCmd_05E 0xFF, _01B4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01B4
+    WaitMovement
     GoTo _0102
 
 _0102:
@@ -87,16 +87,16 @@ _0141:
     ScrCmd_02C 6
     ScrCmd_034
     ScrCmd_073
-    ScrCmd_05E 0xFF, _01C4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01C4
+    WaitMovement
     ScrCmd_061
     End
 
 _0156:
     ScrCmd_034
     ScrCmd_073
-    ScrCmd_05E 0xFF, _01C4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01C4
+    WaitMovement
     ScrCmd_061
     End
 
@@ -104,14 +104,14 @@ _0168:
     ScrCmd_073
     ScrCmd_02C 7
     ScrCmd_034
-    ScrCmd_05E 0xFF, _01C4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01C4
+    WaitMovement
     ScrCmd_061
     End
 
 _017D:
-    ScrCmd_05E 0xFF, _018C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _018C
+    WaitMovement
     Return
 
     .balign 4, 0
@@ -158,8 +158,8 @@ _01CC:
 _01F1:
     ScrCmd_02C 10
     ScrCmd_034
-    ScrCmd_05E 0xFF, _0280
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0280
+    WaitMovement
     SetVar 0x40DA, 0
     ScrCmd_202 1
     ScrCmd_31B 0x4002
@@ -171,8 +171,8 @@ _01F1:
 _021E:
     CheckFlag 163
     GoToIf 1, _024A
-    ScrCmd_05E 2, _0334
-    ScrCmd_05F
+    ApplyMovement 2, _0334
+    WaitMovement
     ScrCmd_02C 18
     SetVar 0x8004, 22
     ScrCmd_014 0x7D9
@@ -187,8 +187,8 @@ _024A:
 
 _024E:
     ScrCmd_034
-    ScrCmd_05E 0xFF, _0288
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0288
+    WaitMovement
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BE 0x1FD, 0, 68, 116, 0
@@ -210,8 +210,8 @@ _0288:
 
 _0298:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _0280
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0280
+    WaitMovement
     SetVar 0x40DA, 0
     ScrCmd_31B 0x4002
     CompareVarToValue 0x4002, 5

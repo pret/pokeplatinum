@@ -103,8 +103,8 @@ _00E9:
     End
 
 _0114:
-    ScrCmd_05E 0xFF, _0124
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0124
+    WaitMovement
     ScrCmd_061
     End
 
@@ -127,8 +127,8 @@ _012C:
     End
 
 _0159:
-    ScrCmd_05E 0, _0168
-    ScrCmd_05F
+    ApplyMovement 0, _0168
+    WaitMovement
     ScrCmd_061
     End
 

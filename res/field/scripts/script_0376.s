@@ -291,18 +291,18 @@ _042E:
     ScrCmd_02C 9
     ScrCmd_030
     ScrCmd_034
-    ScrCmd_05E 0xFF, _04C8
-    ScrCmd_05E 0x800D, _04F0
-    ScrCmd_05F
+    ApplyMovement 0xFF, _04C8
+    ApplyMovement 0x800D, _04F0
+    WaitMovement
     Return
 
 _0449:
     ScrCmd_02C 9
     ScrCmd_030
     ScrCmd_034
-    ScrCmd_05E 0xFF, _04C8
-    ScrCmd_05E 0x800D, _04F0
-    ScrCmd_05F
+    ApplyMovement 0xFF, _04C8
+    ApplyMovement 0x800D, _04F0
+    WaitMovement
     Return
 
 _0464:
@@ -311,27 +311,27 @@ _0464:
     ScrCmd_136
     ScrCmd_135 169
     ScrCmd_034
-    ScrCmd_05E 0xFF, _04DC
-    ScrCmd_05E 0x800D, _0504
-    ScrCmd_05F
+    ApplyMovement 0xFF, _04DC
+    ApplyMovement 0x800D, _0504
+    WaitMovement
     Return
 
 _048A:
-    ScrCmd_05E 0xFF, _0518
-    ScrCmd_05E 0x800D, _0548
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0518
+    ApplyMovement 0x800D, _0548
+    WaitMovement
     Return
 
 _049E:
-    ScrCmd_05E 0xFF, _0518
-    ScrCmd_05E 0x800D, _0548
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0518
+    ApplyMovement 0x800D, _0548
+    WaitMovement
     Return
 
 _04B2:
-    ScrCmd_05E 0xFF, _0530
-    ScrCmd_05E 0x800D, _055C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0530
+    ApplyMovement 0x800D, _055C
+    WaitMovement
     Return
 
     .balign 4, 0

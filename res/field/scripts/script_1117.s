@@ -180,17 +180,17 @@ _027B:
     End
 
 _0289:
-    ScrCmd_05E 16, _02D4
-    ScrCmd_05F
+    ApplyMovement 16, _02D4
+    WaitMovement
     ScrCmd_152 3
     ScrCmd_19F 91
     ScrCmd_030
     ScrCmd_1A0
-    ScrCmd_05E 16, _02E4
-    ScrCmd_05F
+    ApplyMovement 16, _02E4
+    WaitMovement
     ScrCmd_049 0x630
-    ScrCmd_05E 16, _02F0
-    ScrCmd_05F
+    ApplyMovement 16, _02F0
+    WaitMovement
     ScrCmd_065 16
     SetVar 0x40D0, 1
     SetFlag 0x992

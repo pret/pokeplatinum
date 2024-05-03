@@ -344,18 +344,18 @@ _053D:
     ScrCmd_02C 32
     ScrCmd_030
     ScrCmd_034
-    ScrCmd_05E 0xFF, _05E4
-    ScrCmd_05E 0x800D, _0604
-    ScrCmd_05F
+    ApplyMovement 0xFF, _05E4
+    ApplyMovement 0x800D, _0604
+    WaitMovement
     Return
 
 _0558:
     ScrCmd_02C 32
     ScrCmd_030
     ScrCmd_034
-    ScrCmd_05E 0xFF, _05E4
-    ScrCmd_05E 0x800D, _0604
-    ScrCmd_05F
+    ApplyMovement 0xFF, _05E4
+    ApplyMovement 0x800D, _0604
+    WaitMovement
     Return
 
 _0573:
@@ -364,27 +364,27 @@ _0573:
     ScrCmd_136
     ScrCmd_135 137
     ScrCmd_034
-    ScrCmd_05E 0xFF, _05F0
-    ScrCmd_05E 0x800D, _0610
-    ScrCmd_05F
+    ApplyMovement 0xFF, _05F0
+    ApplyMovement 0x800D, _0610
+    WaitMovement
     Return
 
 _0599:
-    ScrCmd_05E 0xFF, _0624
-    ScrCmd_05E 0x800D, _0648
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0624
+    ApplyMovement 0x800D, _0648
+    WaitMovement
     Return
 
 _05AD:
-    ScrCmd_05E 0xFF, _0624
-    ScrCmd_05E 0x800D, _0648
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0624
+    ApplyMovement 0x800D, _0648
+    WaitMovement
     Return
 
 _05C1:
-    ScrCmd_05E 0xFF, _0634
-    ScrCmd_05E 0x800D, _0654
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0634
+    ApplyMovement 0x800D, _0654
+    WaitMovement
     Return
 
 _05D5:

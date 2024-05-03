@@ -20,8 +20,8 @@ _0022:
 
 _002E:
     ScrCmd_060
-    ScrCmd_05E 1, _004C
-    ScrCmd_05F
+    ApplyMovement 1, _004C
+    WaitMovement
     SetFlag 0x27C
     ScrCmd_065 1
     SetVar 0x4111, 0

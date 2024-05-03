@@ -1029,8 +1029,8 @@ _0FCB:
     End
 
 _0FE7:
-    ScrCmd_05E 0x800D, _104C
-    ScrCmd_05F
+    ApplyMovement 0x800D, _104C
+    WaitMovement
     ScrCmd_1BD 0x8000
     CompareVarToValue 0x8000, 0
     CallIf 1, _102B

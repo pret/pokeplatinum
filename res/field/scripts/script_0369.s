@@ -45,11 +45,11 @@ _008E:
     ScrCmd_168 0, 0, 2, 2, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ScrCmd_05E 0, _0140
-    ScrCmd_05F
+    ApplyMovement 0, _0140
+    WaitMovement
     ScrCmd_1B1 0xFF
-    ScrCmd_05E 0xFF, _014C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _014C
+    WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
@@ -77,30 +77,30 @@ _008E:
     .byte 0
 
 _00D6:
-    ScrCmd_05E 0, _0178
-    ScrCmd_05E 0xFF, _0188
-    ScrCmd_05F
+    ApplyMovement 0, _0178
+    ApplyMovement 0xFF, _0188
+    WaitMovement
     GoTo _0066
     End
 
 _00F0:
-    ScrCmd_05E 0, _019C
-    ScrCmd_05E 0xFF, _01AC
-    ScrCmd_05F
+    ApplyMovement 0, _019C
+    ApplyMovement 0xFF, _01AC
+    WaitMovement
     GoTo _0066
     End
 
 _010A:
-    ScrCmd_05E 0, _01C0
-    ScrCmd_05E 0xFF, _01D0
-    ScrCmd_05F
+    ApplyMovement 0, _01C0
+    ApplyMovement 0xFF, _01D0
+    WaitMovement
     GoTo _0066
     End
 
 _0124:
-    ScrCmd_05E 0, _01E4
-    ScrCmd_05E 0xFF, _01F4
-    ScrCmd_05F
+    ApplyMovement 0, _01E4
+    ApplyMovement 0xFF, _01F4
+    WaitMovement
     GoTo _0066
 
     .byte 2

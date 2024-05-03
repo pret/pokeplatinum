@@ -111,8 +111,8 @@ _0146:
     ScrCmd_04B 0x662
     SetFlag 0xAA5
     SetVar 0x400A, 1
-    ScrCmd_05E 1, _02DC
-    ScrCmd_05F
+    ApplyMovement 1, _02DC
+    WaitMovement
     Return
 
 _0160:
@@ -126,34 +126,34 @@ _0160:
     GoTo _01DB
 
 _0193:
-    ScrCmd_05E 0xFF, _026C
-    ScrCmd_05E 2, _0210
-    ScrCmd_05F
+    ApplyMovement 0xFF, _026C
+    ApplyMovement 2, _0210
+    WaitMovement
     GoTo _01F3
 
 _01AB:
-    ScrCmd_05E 0xFF, _0280
-    ScrCmd_05E 2, _0224
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0280
+    ApplyMovement 2, _0224
+    WaitMovement
     GoTo _01F3
 
 _01C3:
-    ScrCmd_05E 0xFF, _0294
-    ScrCmd_05E 2, _023C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0294
+    ApplyMovement 2, _023C
+    WaitMovement
     GoTo _01F3
 
 _01DB:
-    ScrCmd_05E 0xFF, _02AC
-    ScrCmd_05E 2, _0250
-    ScrCmd_05F
+    ApplyMovement 0xFF, _02AC
+    ApplyMovement 2, _0250
+    WaitMovement
     GoTo _01F3
 
 _01F3:
-    ScrCmd_05E 0, _02C4
-    ScrCmd_05E 1, _02CC
-    ScrCmd_05E 3, _02D4
-    ScrCmd_05F
+    ApplyMovement 0, _02C4
+    ApplyMovement 1, _02CC
+    ApplyMovement 3, _02D4
+    WaitMovement
     Return
 
     .balign 4, 0

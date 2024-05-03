@@ -94,15 +94,15 @@ _00E2:
     GoTo _011B
 
 _0103:
-    ScrCmd_05E 0xFF, _0194
-    ScrCmd_05E 4, _01D8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0194
+    ApplyMovement 4, _01D8
+    WaitMovement
     GoTo _0133
 
 _011B:
-    ScrCmd_05E 0xFF, _019C
-    ScrCmd_05E 4, _01E4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _019C
+    ApplyMovement 4, _01E4
+    WaitMovement
     GoTo _0133
 
 _0133:
@@ -115,15 +115,15 @@ _0133:
     GoTo _016A
 
 _0152:
-    ScrCmd_05E 0xFF, _01A4
-    ScrCmd_05E 4, _01F0
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01A4
+    ApplyMovement 4, _01F0
+    WaitMovement
     GoTo _0182
 
 _016A:
-    ScrCmd_05E 0xFF, _01B0
-    ScrCmd_05E 4, _0200
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01B0
+    ApplyMovement 4, _0200
+    WaitMovement
     GoTo _0182
 
 _0182:

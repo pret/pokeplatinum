@@ -13,8 +13,8 @@ _000A:
 _000E:
     ScrCmd_060
     ScrCmd_311 128
-    ScrCmd_05E 128, _0060
-    ScrCmd_05F
+    ApplyMovement 128, _0060
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 1
@@ -28,8 +28,8 @@ _003E:
     ScrCmd_02C 3
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_05E 128, _0068
-    ScrCmd_05F
+    ApplyMovement 128, _0068
+    WaitMovement
     ScrCmd_312 128
     SetVar 0x4055, 6
     ScrCmd_061

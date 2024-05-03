@@ -149,29 +149,29 @@ _01F4:
     End
 
 _0251:
-    ScrCmd_05E 4, _0474
-    ScrCmd_05E 0xFF, _0488
-    ScrCmd_05F
+    ApplyMovement 4, _0474
+    ApplyMovement 0xFF, _0488
+    WaitMovement
     GoTo _02B1
     End
 
 _026B:
-    ScrCmd_05E 4, _0474
-    ScrCmd_05E 0xFF, _0488
-    ScrCmd_05F
+    ApplyMovement 4, _0474
+    ApplyMovement 0xFF, _0488
+    WaitMovement
     GoTo _02B1
     End
 
 _0285:
-    ScrCmd_05E 4, _047C
-    ScrCmd_05E 0xFF, _0494
-    ScrCmd_05F
+    ApplyMovement 4, _047C
+    ApplyMovement 0xFF, _0494
+    WaitMovement
     GoTo _02B1
     End
 
 _029F:
-    ScrCmd_05E 4, _0474
-    ScrCmd_05F
+    ApplyMovement 4, _0474
+    WaitMovement
     GoTo _02B1
     End
 

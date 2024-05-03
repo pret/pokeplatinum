@@ -338,8 +338,8 @@ static BOOL ScrCmd_047(ScriptContext * param0);
 static BOOL ScrCmd_327(ScriptContext * param0);
 static BOOL ScrCmd_306(ScriptContext * param0);
 static BOOL ScrCmd_048(ScriptContext * param0);
-static BOOL ScrCmd_05E(ScriptContext * param0);
-static BOOL ScrCmd_05F(ScriptContext * param0);
+static BOOL ScrCmd_ApplyMovement(ScriptContext * ctx);
+static BOOL ScrCmd_WaitMovement(ScriptContext * ctx);
 static BOOL ScrCmd_060(ScriptContext * param0);
 static BOOL sub_020410CC(ScriptContext * param0);
 static BOOL ScrCmd_061(ScriptContext * param0);
@@ -866,8 +866,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_05B,
     ScrCmd_05C,
     ScrCmd_05D,
-    ScrCmd_05E,
-    ScrCmd_05F,
+    ScrCmd_ApplyMovement,
+    ScrCmd_WaitMovement,
     ScrCmd_060,
     ScrCmd_061,
     ScrCmd_062,
@@ -2966,31 +2966,20 @@ static BOOL ScrCmd_33B (ScriptContext * param0)
     return 1;
 }
 
-static BOOL ScrCmd_05E (ScriptContext * param0)
+static BOOL ScrCmd_ApplyMovement (ScriptContext * ctx)
 {
-    u8 * v0;
-    SysTask * v1;
-    u8 * v2;
-    LocalMapObject ** v3;
-    LocalMapObject * v4;
-    u16 v5 = ScriptContext_GetVar(param0);
-    u32 v6 = (s32)ScriptContext_ReadWord(param0);
-
-    v4 = sub_02040ED4(param0->fieldSys, v5);
-
-    if (v4 == NULL) {
+    u16 localID = ScriptContext_GetVar(ctx);
+    u32 movementOffset = ScriptContext_ReadWord(ctx);
+    LocalMapObject * object = sub_02040ED4(ctx->fieldSys, localID);
+    if (object == NULL) {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
-
-    v0 = (u8 *)(param0->scriptPtr + v6);
-    v1 = sub_02065700(v4, (UnkStruct_ov5_021F8E3C *)v0);
-    v2 = sub_0203F098(param0->fieldSys, 4);
+    SysTask * v1 = sub_02065700(object, (UnkStruct_ov5_021F8E3C *)(ctx->scriptPtr + movementOffset));
+    u8 * v2 = sub_0203F098(ctx->fieldSys, 4);
     (*v2)++;
-
-    sub_02040F28(param0->fieldSys, v1, NULL);
-
-    return 0;
+    sub_02040F28(ctx->fieldSys, v1, NULL);
+    return FALSE;
 }
 
 static BOOL ScrCmd_2A1 (ScriptContext * param0)
@@ -3067,10 +3056,10 @@ static LocalMapObject * sub_02040ED4 (FieldSystem * param0, int param1)
     return v1;
 }
 
-static BOOL ScrCmd_05F (ScriptContext * param0)
+static BOOL ScrCmd_WaitMovement (ScriptContext * ctx)
 {
-    ScriptContext_Pause(param0, sub_02040F0C);
-    return 1;
+    ScriptContext_Pause(ctx, sub_02040F0C);
+    return TRUE;
 }
 
 static BOOL sub_02040F0C (ScriptContext * param0)

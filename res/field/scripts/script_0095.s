@@ -70,12 +70,12 @@ _00A2:
 
 _00B6:
     ScrCmd_060
-    ScrCmd_05E 0, _00DC
-    ScrCmd_05F
+    ApplyMovement 0, _00DC
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 0, _00F0
-    ScrCmd_05F
+    ApplyMovement 0, _00F0
+    WaitMovement
     SetVar 0x40D1, 1
     ScrCmd_061
     End

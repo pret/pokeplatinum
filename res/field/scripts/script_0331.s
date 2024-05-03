@@ -54,8 +54,8 @@ _00A8:
     End
 
 _00B2:
-    ScrCmd_05E 0, _00F0
-    ScrCmd_05F
+    ApplyMovement 0, _00F0
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_065 0
     ScrCmd_04B 0x603
@@ -64,8 +64,8 @@ _00B2:
     End
 
 _00D0:
-    ScrCmd_05E 0, _00FC
-    ScrCmd_05F
+    ApplyMovement 0, _00FC
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_065 0
     ScrCmd_04B 0x603

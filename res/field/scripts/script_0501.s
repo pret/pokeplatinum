@@ -313,8 +313,8 @@ _03DE:
     End
 
 _03FE:
-    ScrCmd_05E 0, _046C
-    ScrCmd_05F
+    ApplyMovement 0, _046C
+    WaitMovement
     ScrCmd_1A4 0x8002, 0x8001
     ScrCmd_1A3 0x8004
     ScrCmd_074

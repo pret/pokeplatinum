@@ -430,23 +430,23 @@ _057F:
     GoTo _05D6
 
 _05B2:
-    ScrCmd_05E 2, _05E4
-    ScrCmd_05F
+    ApplyMovement 2, _05E4
+    WaitMovement
     Return
 
 _05BE:
-    ScrCmd_05E 2, _05F8
-    ScrCmd_05F
+    ApplyMovement 2, _05F8
+    WaitMovement
     Return
 
 _05CA:
-    ScrCmd_05E 2, _060C
-    ScrCmd_05F
+    ApplyMovement 2, _060C
+    WaitMovement
     Return
 
 _05D6:
-    ScrCmd_05E 2, _0620
-    ScrCmd_05F
+    ApplyMovement 2, _0620
+    WaitMovement
     Return
 
     .balign 4, 0

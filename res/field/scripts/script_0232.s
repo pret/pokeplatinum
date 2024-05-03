@@ -12,8 +12,8 @@ _0006:
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_05E 16, _0024
-    ScrCmd_05F
+    ApplyMovement 16, _0024
+    WaitMovement
     ScrCmd_061
     End
 

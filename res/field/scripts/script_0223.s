@@ -7,22 +7,22 @@
 
 _0006:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _008C
-    ScrCmd_05E 6, _0064
-    ScrCmd_05F
+    ApplyMovement 0xFF, _008C
+    ApplyMovement 6, _0064
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 6, _0070
-    ScrCmd_05E 0xFF, _009C
-    ScrCmd_05F
+    ApplyMovement 6, _0070
+    ApplyMovement 0xFF, _009C
+    WaitMovement
     ScrCmd_02C 1
-    ScrCmd_05E 6, _0078
-    ScrCmd_05F
+    ApplyMovement 6, _0078
+    WaitMovement
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_05E 0xFF, _00B0
-    ScrCmd_05E 6, _0080
-    ScrCmd_05F
+    ApplyMovement 0xFF, _00B0
+    ApplyMovement 6, _0080
+    WaitMovement
     ScrCmd_065 6
     SetVar 0x4096, 1
     ScrCmd_061

@@ -54,8 +54,8 @@ _005F:
     End
 
 _0081:
-    ScrCmd_05E 2, _009C
-    ScrCmd_05F
+    ApplyMovement 2, _009C
+    WaitMovement
     ScrCmd_02C 4
     ScrCmd_068
     ScrCmd_02C 5

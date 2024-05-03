@@ -29,13 +29,13 @@ _0035:
 
 _005F:
     ScrCmd_060
-    ScrCmd_05E 0, _0090
-    ScrCmd_05F
+    ApplyMovement 0, _0090
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 0, _0098
-    ScrCmd_05E 0xFF, _00A0
-    ScrCmd_05F
+    ApplyMovement 0, _0098
+    ApplyMovement 0xFF, _00A0
+    WaitMovement
     ScrCmd_065 0
     SetVar 0x40CF, 1
     ScrCmd_061
@@ -77,14 +77,14 @@ _00BF:
     End
 
 _00E3:
-    ScrCmd_05E 1, _0348
-    ScrCmd_05F
+    ApplyMovement 1, _0348
+    WaitMovement
     GoTo _0107
     End
 
 _00F5:
-    ScrCmd_05E 1, _0358
-    ScrCmd_05F
+    ApplyMovement 1, _0358
+    WaitMovement
     GoTo _0107
     End
 
@@ -97,15 +97,15 @@ _0107:
     GoToIf 1, _02B9
     ScrCmd_02C 3
     ScrCmd_034
-    ScrCmd_05E 7, _0374
-    ScrCmd_05F
+    ApplyMovement 7, _0374
+    WaitMovement
     ScrCmd_003 15, 0x800C
     ScrCmd_02C 4
-    ScrCmd_05E 1, _0364
-    ScrCmd_05F
+    ApplyMovement 1, _0364
+    WaitMovement
     ScrCmd_02C 5
-    ScrCmd_05E 1, _036C
-    ScrCmd_05F
+    ApplyMovement 1, _036C
+    WaitMovement
     ScrCmd_02C 6
     ScrCmd_034
     ScrCmd_0BC 6, 1, 0, 0
@@ -129,14 +129,14 @@ _0107:
     End
 
 _01B7:
-    ScrCmd_05E 2, _02E8
-    ScrCmd_05F
+    ApplyMovement 2, _02E8
+    WaitMovement
     GoTo _01DB
     End
 
 _01C9:
-    ScrCmd_05E 2, _02F4
-    ScrCmd_05F
+    ApplyMovement 2, _02F4
+    WaitMovement
     GoTo _01DB
     End
 
@@ -156,16 +156,16 @@ _01DB:
     End
 
 _0218:
-    ScrCmd_05E 5, _02C0
-    ScrCmd_05E 2, _0300
-    ScrCmd_05F
+    ApplyMovement 5, _02C0
+    ApplyMovement 2, _0300
+    WaitMovement
     GoTo _024C
     End
 
 _0232:
-    ScrCmd_05E 5, _02D4
-    ScrCmd_05E 2, _030C
-    ScrCmd_05F
+    ApplyMovement 5, _02D4
+    ApplyMovement 2, _030C
+    WaitMovement
     GoTo _024C
     End
 
@@ -180,14 +180,14 @@ _024C:
     End
 
 _0273:
-    ScrCmd_05E 2, _0318
-    ScrCmd_05F
+    ApplyMovement 2, _0318
+    WaitMovement
     GoTo _0297
     End
 
 _0285:
-    ScrCmd_05E 2, _0330
-    ScrCmd_05F
+    ApplyMovement 2, _0330
+    WaitMovement
     GoTo _0297
     End
 

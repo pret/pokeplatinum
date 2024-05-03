@@ -71,18 +71,18 @@ _0067:
     End
 
 _00C8:
-    ScrCmd_05E 4, _00FC
-    ScrCmd_05F
+    ApplyMovement 4, _00FC
+    WaitMovement
     Return
 
 _00D4:
-    ScrCmd_05E 4, _0104
-    ScrCmd_05F
+    ApplyMovement 4, _0104
+    WaitMovement
     Return
 
 _00E0:
-    ScrCmd_05E 4, _010C
-    ScrCmd_05F
+    ApplyMovement 4, _010C
+    WaitMovement
     Return
 
 _00EC:

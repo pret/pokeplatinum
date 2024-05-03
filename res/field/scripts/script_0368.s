@@ -105,14 +105,14 @@ _0172:
     End
 
 _0188:
-    ScrCmd_05E 0xFF, _01BC
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01BC
+    WaitMovement
     Return
 
 _0194:
-    ScrCmd_05E 0, _01C8
-    ScrCmd_05E 0xFF, _01E4
-    ScrCmd_05F
+    ApplyMovement 0, _01C8
+    ApplyMovement 0xFF, _01E4
+    WaitMovement
     Return
 
     .byte 12

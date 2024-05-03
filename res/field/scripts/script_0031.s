@@ -47,23 +47,23 @@ _0032:
     End
 
 _00A4:
-    ScrCmd_05E 1, _0114
-    ScrCmd_05E 0xFF, _0138
-    ScrCmd_05F
+    ApplyMovement 1, _0114
+    ApplyMovement 0xFF, _0138
+    WaitMovement
     GoTo _00F2
     End
 
 _00BE:
-    ScrCmd_05E 1, _0124
-    ScrCmd_05E 0xFF, _0148
-    ScrCmd_05F
+    ApplyMovement 1, _0124
+    ApplyMovement 0xFF, _0148
+    WaitMovement
     GoTo _00F2
     End
 
 _00D8:
-    ScrCmd_05E 1, _0124
-    ScrCmd_05E 0xFF, _0148
-    ScrCmd_05F
+    ApplyMovement 1, _0124
+    ApplyMovement 0xFF, _0148
+    WaitMovement
     GoTo _00F2
     End
 

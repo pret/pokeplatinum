@@ -147,30 +147,30 @@ _0151:
 
 _0168:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _0218
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0218
+    WaitMovement
     ScrCmd_014 0x7FA
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_186 18, 0x8004, 0x295
     ClearFlag 0x21E
     ScrCmd_064 18
     ScrCmd_062 18
-    ScrCmd_05E 0xFF, _0228
-    ScrCmd_05E 18, _01E8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0228
+    ApplyMovement 18, _01E8
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 18, _01F0
-    ScrCmd_05F
+    ApplyMovement 18, _01F0
+    WaitMovement
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 1
-    ScrCmd_05E 18, _0208
-    ScrCmd_05F
+    ApplyMovement 18, _0208
+    WaitMovement
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_05E 18, _0210
-    ScrCmd_05F
+    ApplyMovement 18, _0210
+    WaitMovement
     ScrCmd_065 18
     ScrCmd_014 0x7FB
     SetVar 0x4073, 1

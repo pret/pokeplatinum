@@ -252,24 +252,24 @@ _02B9:
     End
 
 _02C1:
-    ScrCmd_05E 3, _0334
-    ScrCmd_05E 4, _0334
-    ScrCmd_05E 5, _0334
-    ScrCmd_05E 6, _0334
-    ScrCmd_05E 7, _0334
-    ScrCmd_05E 8, _0334
-    ScrCmd_05F
+    ApplyMovement 3, _0334
+    ApplyMovement 4, _0334
+    ApplyMovement 5, _0334
+    ApplyMovement 6, _0334
+    ApplyMovement 7, _0334
+    ApplyMovement 8, _0334
+    WaitMovement
     Return
 
 _02F5:
-    ScrCmd_05E 3, _033C
-    ScrCmd_05E 4, _033C
-    ScrCmd_05E 5, _033C
-    ScrCmd_05E 6, _0344
-    ScrCmd_05E 7, _0344
-    ScrCmd_05E 8, _0344
-    ScrCmd_05E 0xFF, _034C
-    ScrCmd_05F
+    ApplyMovement 3, _033C
+    ApplyMovement 4, _033C
+    ApplyMovement 5, _033C
+    ApplyMovement 6, _0344
+    ApplyMovement 7, _0344
+    ApplyMovement 8, _0344
+    ApplyMovement 0xFF, _034C
+    WaitMovement
     Return
 
     .balign 4, 0

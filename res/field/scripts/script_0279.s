@@ -48,9 +48,9 @@ _006F:
 
 _007B:
     ScrCmd_060
-    ScrCmd_05E 10, _00C0
-    ScrCmd_05E 0xFF, _00B4
-    ScrCmd_05F
+    ApplyMovement 10, _00C0
+    ApplyMovement 0xFF, _00B4
+    WaitMovement
     ScrCmd_02C 0
     SetVar 0x8004, 0x1A9
     SetVar 0x8005, 1

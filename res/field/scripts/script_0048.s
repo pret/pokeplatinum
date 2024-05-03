@@ -164,34 +164,34 @@ _01FC:
     ClearFlag 0x25B
     ScrCmd_064 2
     ScrCmd_003 5, 0x800C
-    ScrCmd_05E 1, _0294
-    ScrCmd_05E 0, _0294
-    ScrCmd_05E 0xFF, _0294
-    ScrCmd_05F
-    ScrCmd_05E 2, _02B4
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _02C0
-    ScrCmd_05F
-    ScrCmd_05E 2, _02D4
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _029C
-    ScrCmd_05F
+    ApplyMovement 1, _0294
+    ApplyMovement 0, _0294
+    ApplyMovement 0xFF, _0294
+    WaitMovement
+    ApplyMovement 2, _02B4
+    WaitMovement
+    ApplyMovement 0xFF, _02C0
+    WaitMovement
+    ApplyMovement 2, _02D4
+    WaitMovement
+    ApplyMovement 0xFF, _029C
+    WaitMovement
     Return
 
 _0256:
-    ScrCmd_05E 2, _02A4
-    ScrCmd_05F
+    ApplyMovement 2, _02A4
+    WaitMovement
     Return
 
 _0262:
-    ScrCmd_05E 2, _02AC
-    ScrCmd_05F
+    ApplyMovement 2, _02AC
+    WaitMovement
     Return
 
 _026E:
-    ScrCmd_05E 0xFF, _0294
-    ScrCmd_05E 2, _02DC
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0294
+    ApplyMovement 2, _02DC
+    WaitMovement
     SetFlag 0x25B
     ScrCmd_065 2
     ScrCmd_049 0x603

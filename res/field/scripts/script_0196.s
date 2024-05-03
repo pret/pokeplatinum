@@ -11,8 +11,8 @@ _000A:
     End
 
 _000E:
-    ScrCmd_05E 0xFF, _012C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _012C
+    WaitMovement
     ScrCmd_0EA 0x10B
     CheckFlag 0x964
     CallIf 0, _00EB
@@ -35,19 +35,19 @@ _000E:
     CallIf 1, _0113
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_05E 0, _0144
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _0134
-    ScrCmd_05F
-    ScrCmd_05E 0, _0150
-    ScrCmd_05F
+    ApplyMovement 0, _0144
+    WaitMovement
+    ApplyMovement 0xFF, _0134
+    WaitMovement
+    ApplyMovement 0, _0150
+    WaitMovement
     ScrCmd_003 30, 0x800C
     ScrCmd_25C
     ScrCmd_003 30, 0x800C
     SetFlag 0x23A
     SetFlag 0x23B
-    ScrCmd_05E 0xFF, _013C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _013C
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD

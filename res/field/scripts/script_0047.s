@@ -56,9 +56,9 @@ _0093:
     ScrCmd_003 30, 0x800C
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 0, _0148
-    ScrCmd_05E 0xFF, _0130
-    ScrCmd_05F
+    ApplyMovement 0, _0148
+    ApplyMovement 0xFF, _0130
+    WaitMovement
     ScrCmd_003 15, 0x800C
     ScrCmd_0CD 0
     ScrCmd_02C 1

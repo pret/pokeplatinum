@@ -443,15 +443,15 @@ _06A0:
     End
 
 _06AE:
-    ScrCmd_05E 0x4002, _1248
-    ScrCmd_05E 0xFF, _1260
-    ScrCmd_05F
+    ApplyMovement 0x4002, _1248
+    ApplyMovement 0xFF, _1260
+    WaitMovement
     ScrCmd_168 0, 0, 0x4003, 2, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ScrCmd_05E 0x4002, _1254
-    ScrCmd_05E 0xFF, _126C
-    ScrCmd_05F
+    ApplyMovement 0x4002, _1254
+    ApplyMovement 0xFF, _126C
+    WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
@@ -715,8 +715,8 @@ _0AB5:
     End
 
 _0AC3:
-    ScrCmd_05E 0xFF, _1278
-    ScrCmd_05F
+    ApplyMovement 0xFF, _1278
+    WaitMovement
     Return
 
 _0ACF:

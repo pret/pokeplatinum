@@ -90,21 +90,21 @@ _00B4:
 _00CC:
     ScrCmd_02C 0
     ScrCmd_02C 1
-    ScrCmd_05E 0, _0074
-    ScrCmd_05E 1, _0074
-    ScrCmd_05F
+    ApplyMovement 0, _0074
+    ApplyMovement 1, _0074
+    WaitMovement
     ScrCmd_02C 2
     ScrCmd_02C 3
     ScrCmd_034
     Return
 
 _00EE:
-    ScrCmd_05E 0, _0080
-    ScrCmd_05F
+    ApplyMovement 0, _0080
+    WaitMovement
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_05E 0, _0088
-    ScrCmd_05F
+    ApplyMovement 0, _0088
+    WaitMovement
     ScrCmd_02C 5
     ScrCmd_034
     Return
@@ -151,13 +151,13 @@ _01B0:
     Return
 
 _01BA:
-    ScrCmd_05E 2, _00A0
-    ScrCmd_05F
+    ApplyMovement 2, _00A0
+    WaitMovement
     Return
 
 _01C6:
-    ScrCmd_05E 2, _00B4
-    ScrCmd_05F
+    ApplyMovement 2, _00B4
+    WaitMovement
     Return
 
     .byte 235

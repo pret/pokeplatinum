@@ -586,9 +586,9 @@ _081E:
     ScrCmd_049 0x603
     ScrCmd_064 6
     ScrCmd_04B 0x603
-    ScrCmd_05E 0xFF, _08AC
-    ScrCmd_05E 6, _08D4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _08AC
+    ApplyMovement 6, _08D4
+    WaitMovement
     ScrCmd_0CD 0
     ScrCmd_02C 35
     ScrCmd_034
@@ -597,16 +597,16 @@ _081E:
     CallIf 4, _08A8
     CompareVarToValue 0x8006, 4
     CallIf 3, _08AA
-    ScrCmd_05E 6, _08DC
-    ScrCmd_05F
+    ApplyMovement 6, _08DC
+    WaitMovement
     ScrCmd_02C 36
     ScrCmd_034
-    ScrCmd_05E 6, _08F4
-    ScrCmd_05F
+    ApplyMovement 6, _08F4
+    WaitMovement
     ScrCmd_02C 37
     ScrCmd_034
-    ScrCmd_05E 6, _0900
-    ScrCmd_05F
+    ApplyMovement 6, _0900
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_065 6
     ScrCmd_04B 0x603

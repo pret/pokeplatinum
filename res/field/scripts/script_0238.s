@@ -77,8 +77,8 @@ _00DF:
     End
 
 _00E9:
-    ScrCmd_05E 0xFF, _00F8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _00F8
+    WaitMovement
     Return
 
     .balign 4, 0
@@ -100,26 +100,26 @@ _0137:
     Return
 
 _0139:
-    ScrCmd_05E 0xFF, _017C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _017C
+    WaitMovement
     GoTo _0137
     End
 
 _014B:
-    ScrCmd_05E 0xFF, _018C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _018C
+    WaitMovement
     GoTo _0137
     End
 
 _015D:
-    ScrCmd_05E 0xFF, _0194
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0194
+    WaitMovement
     GoTo _0137
     End
 
 _016F:
-    ScrCmd_05E 0xFF, _01A4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01A4
+    WaitMovement
     Return
 
     .balign 4, 0

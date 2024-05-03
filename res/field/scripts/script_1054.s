@@ -12,15 +12,15 @@ _000E:
     ScrCmd_0CE 0
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 0, _0060
-    ScrCmd_05F
+    ApplyMovement 0, _0060
+    WaitMovement
     ScrCmd_014 0x7FA
     ScrCmd_0CD 0
     ScrCmd_02C 1
     ScrCmd_034
-    ScrCmd_05E 0, _006C
-    ScrCmd_05E 0xFF, _0080
-    ScrCmd_05F
+    ApplyMovement 0, _006C
+    ApplyMovement 0xFF, _0080
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_065 0
     ScrCmd_014 0x7FB

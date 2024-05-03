@@ -136,8 +136,8 @@ _0238:
 _0243:
     SetVar 0x40CE, -1
     ScrCmd_034
-    ScrCmd_05E 0, _029C
-    ScrCmd_05F
+    ApplyMovement 0, _029C
+    WaitMovement
     ScrCmd_04B 0x5DC
     ScrCmd_23C 0x8004, 4
     Return

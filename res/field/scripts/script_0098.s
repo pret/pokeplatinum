@@ -38,23 +38,23 @@ _0039:
     End
 
 _007B:
-    ScrCmd_05E 0, _01B8
-    ScrCmd_05F
+    ApplyMovement 0, _01B8
+    WaitMovement
     GoTo _00BB
 
 _008B:
-    ScrCmd_05E 0, _01DC
-    ScrCmd_05F
+    ApplyMovement 0, _01DC
+    WaitMovement
     GoTo _00BB
 
 _009B:
-    ScrCmd_05E 0, _0200
-    ScrCmd_05F
+    ApplyMovement 0, _0200
+    WaitMovement
     GoTo _00BB
 
 _00AB:
-    ScrCmd_05E 0, _0224
-    ScrCmd_05F
+    ApplyMovement 0, _0224
+    WaitMovement
     GoTo _00BB
 
 _00BB:

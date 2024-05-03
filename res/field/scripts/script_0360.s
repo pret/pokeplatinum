@@ -9,16 +9,16 @@ _0006:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
-    ScrCmd_05E 241, _0228
-    ScrCmd_05F
+    ApplyMovement 241, _0228
+    WaitMovement
     ScrCmd_003 15, 0x800C
-    ScrCmd_05E 2, _01C4
-    ScrCmd_05F
+    ApplyMovement 2, _01C4
+    WaitMovement
     ScrCmd_0CE 0
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 1, _01EC
-    ScrCmd_05F
+    ApplyMovement 1, _01EC
+    WaitMovement
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
@@ -42,23 +42,23 @@ _0006:
     CallIf 1, _0180
     CompareVarToValue 0x8004, 15
     CallIf 1, _018C
-    ScrCmd_05E 2, _01CC
-    ScrCmd_05F
+    ApplyMovement 2, _01CC
+    WaitMovement
     ScrCmd_0CE 0
     ScrCmd_02C 3
     ScrCmd_034
-    ScrCmd_05E 2, _01D4
-    ScrCmd_05F
+    ApplyMovement 2, _01D4
+    WaitMovement
     ScrCmd_02C 4
     ScrCmd_034
     ScrCmd_003 30, 0x800C
-    ScrCmd_05E 2, _01CC
-    ScrCmd_05F
+    ApplyMovement 2, _01CC
+    WaitMovement
     ScrCmd_02C 5
     ScrCmd_034
-    ScrCmd_05E 2, _01DC
-    ScrCmd_05E 0xFF, _01B8
-    ScrCmd_05F
+    ApplyMovement 2, _01DC
+    ApplyMovement 0xFF, _01B8
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_065 2
     ScrCmd_04B 0x603
@@ -75,37 +75,37 @@ _0006:
     End
 
 _0136:
-    ScrCmd_05E 1, _01F4
-    ScrCmd_05E 241, _0230
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _01B0
-    ScrCmd_05F
+    ApplyMovement 1, _01F4
+    ApplyMovement 241, _0230
+    WaitMovement
+    ApplyMovement 0xFF, _01B0
+    WaitMovement
     Return
 
 _0154:
-    ScrCmd_05E 1, _0204
-    ScrCmd_05E 241, _0230
-    ScrCmd_05F
+    ApplyMovement 1, _0204
+    ApplyMovement 241, _0230
+    WaitMovement
     Return
 
 _0168:
-    ScrCmd_05E 1, _0210
-    ScrCmd_05F
+    ApplyMovement 1, _0210
+    WaitMovement
     Return
 
 _0174:
-    ScrCmd_05E 1, _0218
-    ScrCmd_05F
+    ApplyMovement 1, _0218
+    WaitMovement
     Return
 
 _0180:
-    ScrCmd_05E 0xFF, _0198
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0198
+    WaitMovement
     Return
 
 _018C:
-    ScrCmd_05E 0xFF, _01A4
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01A4
+    WaitMovement
     Return
 
     .balign 4, 0

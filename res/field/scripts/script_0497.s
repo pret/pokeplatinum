@@ -409,33 +409,33 @@ _06C2:
     End
 
 _06D0:
-    ScrCmd_05E 0xFF, _0718
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0718
+    WaitMovement
     Return
 
 _06DC:
-    ScrCmd_05E 0xFF, _0724
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0724
+    WaitMovement
     Return
 
 _06E8:
-    ScrCmd_05E 0xFF, _0730
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0730
+    WaitMovement
     Return
 
 _06F4:
-    ScrCmd_05E 0xFF, _073C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _073C
+    WaitMovement
     Return
 
 _0700:
-    ScrCmd_05E 0xFF, _0748
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0748
+    WaitMovement
     Return
 
 _070C:
-    ScrCmd_05E 0xFF, _0754
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0754
+    WaitMovement
     Return
 
     .balign 4, 0

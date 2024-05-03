@@ -174,8 +174,8 @@ _0316:
 _0321:
     SetVar 0x40CE, -1
     ScrCmd_034
-    ScrCmd_05E 0, _0410
-    ScrCmd_05F
+    ApplyMovement 0, _0410
+    WaitMovement
     ScrCmd_04B 0x5DC
     ScrCmd_23C 0x8004, 4
     Return

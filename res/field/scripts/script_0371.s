@@ -267,14 +267,14 @@ _0429:
     End
 
 _043C:
-    ScrCmd_05E 2, _0504
-    ScrCmd_05F
+    ApplyMovement 2, _0504
+    WaitMovement
     Return
 
 _0448:
-    ScrCmd_05E 0, _0580
-    ScrCmd_05E 2, _05A0
-    ScrCmd_05F
+    ApplyMovement 0, _0580
+    ApplyMovement 2, _05A0
+    WaitMovement
     Return
 
 _045C:
@@ -282,41 +282,41 @@ _045C:
     SetVar 0x4021, 0x800C
     ClearFlag 0x1CB
     ScrCmd_064 1
-    ScrCmd_05E 1, _0524
-    ScrCmd_05F
+    ApplyMovement 1, _0524
+    WaitMovement
     Return
 
 _047E:
-    ScrCmd_05E 2, _0540
-    ScrCmd_05E 1, _0548
-    ScrCmd_05F
+    ApplyMovement 2, _0540
+    ApplyMovement 1, _0548
+    WaitMovement
     Return
 
 _0492:
-    ScrCmd_05E 1, _0550
-    ScrCmd_05F
+    ApplyMovement 1, _0550
+    WaitMovement
     SetFlag 0x1CB
     ScrCmd_065 1
     Return
 
 _04A6:
-    ScrCmd_05E 2, _0574
-    ScrCmd_05E 0, _0580
-    ScrCmd_05F
+    ApplyMovement 2, _0574
+    ApplyMovement 0, _0580
+    WaitMovement
     Return
 
 _04BA:
-    ScrCmd_05E 2, _0588
-    ScrCmd_05E 0, _0590
-    ScrCmd_05F
+    ApplyMovement 2, _0588
+    ApplyMovement 0, _0590
+    WaitMovement
     Return
 
 _04CE:
     SetVar 0x4021, 169
     ClearFlag 0x1CB
     ScrCmd_064 1
-    ScrCmd_05E 1, _05A8
-    ScrCmd_05F
+    ApplyMovement 1, _05A8
+    WaitMovement
     Return
 
     .byte 62

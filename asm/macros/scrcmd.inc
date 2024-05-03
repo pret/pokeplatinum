@@ -507,13 +507,13 @@
     .short 93
     .endm
 
-    .macro ScrCmd_05E arg0, arg1
+    .macro ApplyMovement localID, movementOffset
     .short 94
-    .short \arg0
-    .long \arg1-.-4
+    .short \localID
+    .long \movementOffset-.-4
     .endm
 
-    .macro ScrCmd_05F
+    .macro WaitMovement
     .short 95
     .endm
 
