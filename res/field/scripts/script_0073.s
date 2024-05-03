@@ -81,10 +81,10 @@ _0094:
     ScrCmd_04F
     ScrCmd_15C 1
     ScrCmd_260 23
-    ScrCmd_023 0x103
-    ScrCmd_023 0x104
-    ScrCmd_023 0x144
-    ScrCmd_023 0x15C
+    SetTrainerFlag 0x103
+    SetTrainerFlag 0x104
+    SetTrainerFlag 0x144
+    SetTrainerFlag 0x15C
     ClearFlag 0x1FC
     ScrCmd_1CD 10, 67, 0x13B, 0, 0
     ScrCmd_02C 3

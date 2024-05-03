@@ -349,7 +349,7 @@ _04CE:
     GoToIf 1, _0503
     ScrCmd_289 0x800C, 0x8007, 0x8000, 0x8001, 0x8002, 0x8003
     ScrCmd_014 0x334
-    ScrCmd_023 0x1900
+    SetTrainerFlag 0x1900
     ScrCmd_1A3 0x1900
     ScrCmd_027 0x8005, 1
     GoTo _04CE

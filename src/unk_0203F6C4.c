@@ -280,9 +280,9 @@ static BOOL ScrCmd_ClearFlag(ScriptContext * ctx);
 static BOOL ScrCmd_CheckFlag(ScriptContext * ctx);
 static BOOL ScrCmd_021(ScriptContext * param0);
 static BOOL ScrCmd_022(ScriptContext * param0);
-static BOOL ScrCmd_023(ScriptContext * param0);
-static BOOL ScrCmd_024(ScriptContext * param0);
-static BOOL ScrCmd_025(ScriptContext * param0);
+static BOOL ScrCmd_SetTrainerFlag(ScriptContext * ctx);
+static BOOL ScrCmd_ClearTrainerFlag(ScriptContext * ctx);
+static BOOL ScrCmd_CheckTrainerFlag(ScriptContext * ctx);
 static BOOL ScrCmd_026(ScriptContext * param0);
 static BOOL ScrCmd_027(ScriptContext * param0);
 static BOOL ScrCmd_028(ScriptContext * param0);
@@ -807,9 +807,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckFlag,
     ScrCmd_021,
     ScrCmd_022,
-    ScrCmd_023,
-    ScrCmd_024,
-    ScrCmd_025,
+    ScrCmd_SetTrainerFlag,
+    ScrCmd_ClearTrainerFlag,
+    ScrCmd_CheckTrainerFlag,
     ScrCmd_026,
     ScrCmd_027,
     ScrCmd_028,
@@ -2025,31 +2025,28 @@ static BOOL ScrCmd_022 (ScriptContext * param0)
     return 0;
 }
 
-static BOOL ScrCmd_023 (ScriptContext * param0)
+static BOOL ScrCmd_SetTrainerFlag (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 v1 = ScriptContext_GetVar(param0);
-
-    sub_0203F2BC(v0, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    sub_0203F2BC(fieldSys, trainerID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_024 (ScriptContext * param0)
+static BOOL ScrCmd_ClearTrainerFlag (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 v1 = ScriptContext_GetVar(param0);
-
-    sub_0203F2D8(v0, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    sub_0203F2D8(fieldSys, trainerID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_025 (ScriptContext * param0)
+static BOOL ScrCmd_CheckTrainerFlag (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 v1 = ScriptContext_GetVar(param0);
-
-    param0->comparisonResult = sub_0203F2A0(v0, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    ctx->comparisonResult = sub_0203F2A0(fieldSys, trainerID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_026 (ScriptContext * param0)

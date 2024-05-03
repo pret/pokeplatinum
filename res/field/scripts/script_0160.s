@@ -42,14 +42,14 @@ _0027:
     ScrCmd_04F
     ScrCmd_15C 7
     ScrCmd_260 23
-    ScrCmd_023 0x119
-    ScrCmd_023 0x11D
-    ScrCmd_023 0x12D
-    ScrCmd_023 0x12E
-    ScrCmd_023 0x12F
-    ScrCmd_023 0x14B
-    ScrCmd_023 0x155
-    ScrCmd_023 0x158
+    SetTrainerFlag 0x119
+    SetTrainerFlag 0x11D
+    SetTrainerFlag 0x12D
+    SetTrainerFlag 0x12E
+    SetTrainerFlag 0x12F
+    SetTrainerFlag 0x14B
+    SetTrainerFlag 0x155
+    SetTrainerFlag 0x158
     ScrCmd_028 0x407E, 2
     ScrCmd_1CD 10, 156, 246, 0, 0
     ScrCmd_02C 3

@@ -60,12 +60,12 @@ _0076:
     ScrCmd_04F
     ScrCmd_15C 3
     ScrCmd_260 23
-    ScrCmd_023 0x125
-    ScrCmd_023 0x153
-    ScrCmd_023 0x191
-    ScrCmd_023 0x1E3
-    ScrCmd_023 0x1F1
-    ScrCmd_023 0x1F2
+    SetTrainerFlag 0x125
+    SetTrainerFlag 0x153
+    SetTrainerFlag 0x191
+    SetTrainerFlag 0x1E3
+    SetTrainerFlag 0x1F1
+    SetTrainerFlag 0x1F2
     ScrCmd_028 0x407C, 3
     SetFlag 0x20C
     SetFlag 0x156

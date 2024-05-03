@@ -194,19 +194,19 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_023 arg0
+    .macro SetTrainerFlag trainerID
     .short 35
-    .short \arg0
+    .short \trainerID
     .endm
 
-    .macro ScrCmd_024 arg0
+    .macro ClearTrainerFlag trainerID
     .short 36
-    .short \arg0
+    .short \trainerID
     .endm
 
-    .macro ScrCmd_025 arg0
+    .macro CheckTrainerFlag trainerID
     .short 37
-    .short \arg0
+    .short \trainerID
     .endm
 
     .macro ScrCmd_026 arg0, arg1

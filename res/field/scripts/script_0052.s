@@ -26,12 +26,12 @@ _000E:
     ScrCmd_02C 2
     ScrCmd_04E 0x489
     ScrCmd_04F
-    ScrCmd_023 244
-    ScrCmd_023 245
+    SetTrainerFlag 244
+    SetTrainerFlag 245
     ScrCmd_15C 0
     ScrCmd_260 23
-    ScrCmd_023 244
-    ScrCmd_023 245
+    SetTrainerFlag 244
+    SetTrainerFlag 245
     SetFlag 0x23F
     ScrCmd_028 0x40F0, 1
     ScrCmd_028 0x4076, 1

@@ -33,13 +33,13 @@ _0016:
     ScrCmd_04F
     ScrCmd_15C 5
     ScrCmd_260 23
-    ScrCmd_023 232
-    ScrCmd_023 0x100
-    ScrCmd_023 0x101
-    ScrCmd_023 0x117
-    ScrCmd_023 0x11B
-    ScrCmd_023 0x13A
-    ScrCmd_023 0x16F
+    SetTrainerFlag 232
+    SetTrainerFlag 0x100
+    SetTrainerFlag 0x101
+    SetTrainerFlag 0x117
+    SetTrainerFlag 0x11B
+    SetTrainerFlag 0x13A
+    SetTrainerFlag 0x16F
     ScrCmd_1CD 10, 35, 250, 0, 0
     ClearFlag 0x1B2
     ClearFlag 0x2CC

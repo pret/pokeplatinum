@@ -38,12 +38,12 @@ _0025:
     ScrCmd_04F
     ScrCmd_15C 6
     ScrCmd_260 23
-    ScrCmd_023 0x10C
-    ScrCmd_023 0x10D
-    ScrCmd_023 0x33B
-    ScrCmd_023 0x10E
-    ScrCmd_023 0x10F
-    ScrCmd_023 0x33C
+    SetTrainerFlag 0x10C
+    SetTrainerFlag 0x10D
+    SetTrainerFlag 0x33B
+    SetTrainerFlag 0x10E
+    SetTrainerFlag 0x10F
+    SetTrainerFlag 0x33C
     ScrCmd_1CD 10, 167, 0x13F, 0, 0
     SetFlag 0x1BF
     ScrCmd_02C 3

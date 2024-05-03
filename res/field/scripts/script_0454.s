@@ -22,8 +22,8 @@ _0033:
     ScrCmd_1B7 0x404C, 5
     ScrCmd_026 0x404C, 5
     SetFlag 0xAB6
-    ScrCmd_024 0x37C
-    ScrCmd_024 0x37D
+    ClearTrainerFlag 0x37C
+    ClearTrainerFlag 0x37D
     End
 
 _004D:
@@ -54,9 +54,9 @@ _0087:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_025 0x37C
+    CheckTrainerFlag 0x37C
     GoToIf 1, _0396
-    ScrCmd_025 0x37D
+    CheckTrainerFlag 0x37D
     GoToIf 1, _0396
     ScrCmd_1BD 0x800C
     CompareVarToValue 0x800C, 0
@@ -89,8 +89,8 @@ _00FF:
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 1
     GoToIf 1, _0471
-    ScrCmd_023 0x37C
-    ScrCmd_023 0x37D
+    SetTrainerFlag 0x37C
+    SetTrainerFlag 0x37D
     ScrCmd_02C 5
     ScrCmd_034
     ScrCmd_05E 2, _03FC
@@ -201,8 +201,8 @@ _00FF:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0484
-    ScrCmd_023 0x37C
-    ScrCmd_023 0x37D
+    SetTrainerFlag 0x37C
+    SetTrainerFlag 0x37D
     CompareVarToValue 0x8006, 0
     CallIf 1, _03D7
     CompareVarToValue 0x8006, 1
