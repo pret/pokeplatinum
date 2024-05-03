@@ -8,7 +8,7 @@
     .short 0xFD13
 
 _000E:
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     ScrCmd_25B
     ScrCmd_25D 0x4001
     CompareVarToValue 0x4001, 0
@@ -16,12 +16,12 @@ _000E:
     End
 
 _0029:
-    ScrCmd_028 0x4000, 1
+    SetVar 0x4000, 1
     End
 
 _0031:
     ScrCmd_25C
-    ScrCmd_028 0x4000, 1
+    SetVar 0x4000, 1
     End
 
     .byte 0

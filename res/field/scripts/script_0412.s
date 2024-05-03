@@ -22,7 +22,7 @@ _0006:
     SetFlag 0x1BA
     SetFlag 0x174
     SetFlag 0x1F1
-    ScrCmd_028 0x4070, 1
+    SetVar 0x4070, 1
     SetFlag 0x197
     SetFlag 0x2C4
     SetFlag 0x22A
@@ -51,7 +51,7 @@ _0006:
     SetFlag 0x186
     SetFlag 0x2CC
     SetFlag 0x19A
-    ScrCmd_028 0x4093, 1
+    SetVar 0x4093, 1
     SetFlag 0x180
     SetFlag 0x18C
     SetFlag 0x1FE
@@ -110,7 +110,7 @@ _0006:
     SetFlag 0x252
     SetFlag 0x2CA
     SetFlag 0x452
-    ScrCmd_028 0x4040, 9
+    SetVar 0x4040, 9
     SetFlag 0x278
     SetFlag 0x217
     SetFlag 0x182

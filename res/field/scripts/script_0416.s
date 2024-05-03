@@ -373,8 +373,8 @@ _04F7:
 
 _0502:
     ScrCmd_02C 12
-    ScrCmd_028 0x8004, 0x1D0
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1D0
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     ScrCmd_02C 13
     ScrCmd_034
@@ -389,11 +389,11 @@ _0522:
 
 _053A:
     ScrCmd_065 0
-    ScrCmd_028 0x4083, 2
+    SetVar 0x4083, 2
     SetFlag 183
     SetFlag 0x1A9
     ClearFlag 0x20F
-    ScrCmd_028 0x407C, 6
+    SetVar 0x407C, 6
     ScrCmd_061
     End
 

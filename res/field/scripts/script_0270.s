@@ -14,7 +14,7 @@ _0012:
     End
 
 _001F:
-    ScrCmd_028 0x4090, 0
+    SetVar 0x4090, 0
     End
 
 _0027:
@@ -78,11 +78,11 @@ _00EC:
     ScrCmd_02C 1
     ScrCmd_04F
     SetFlag 223
-    ScrCmd_028 0x4090, 1
+    SetVar 0x4090, 1
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_028 0x403F, 0x262
+    SetVar 0x403F, 0x262
     ScrCmd_161
     ScrCmd_06D 28, 48
     ScrCmd_061
@@ -144,7 +144,7 @@ _0190:
     ScrCmd_05F
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_028 0x4090, 0
+    SetVar 0x4090, 0
     ScrCmd_162
     ScrCmd_06D 28, 14
     ScrCmd_069 0x8004, 0x8005
@@ -302,7 +302,7 @@ _0389:
 _03A1:
     ScrCmd_065 28
     SetFlag 230
-    ScrCmd_028 0x4090, 2
+    SetVar 0x4090, 2
     ScrCmd_061
     End
 

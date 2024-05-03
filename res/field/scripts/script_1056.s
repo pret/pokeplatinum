@@ -25,7 +25,7 @@ _0039:
 
 _0041:
     ScrCmd_060
-    ScrCmd_028 0x40F9, 1
+    SetVar 0x40F9, 1
     ScrCmd_02C 0
     ScrCmd_04E 0x482
     ScrCmd_02C 1
@@ -72,22 +72,22 @@ _0097:
     End
 
 _00A8:
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     GoTo _00E0
     End
 
 _00B6:
-    ScrCmd_028 0x4000, 1
+    SetVar 0x4000, 1
     GoTo _00E0
     End
 
 _00C4:
-    ScrCmd_028 0x4000, 2
+    SetVar 0x4000, 2
     GoTo _00E0
     End
 
 _00D2:
-    ScrCmd_028 0x4000, 3
+    SetVar 0x4000, 3
     GoTo _00E0
     End
 
@@ -159,7 +159,7 @@ _00E0:
     ScrCmd_014 0x7FB
     ScrCmd_04B 0x603
     SetFlag 0x173
-    ScrCmd_028 0x40A5, 1
+    SetVar 0x40A5, 1
     ScrCmd_061
     End
 

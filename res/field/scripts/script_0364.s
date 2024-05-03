@@ -86,7 +86,7 @@ _0032:
     CompareVarToValue 0x8004, 26
     CallIf 1, _027C
     ScrCmd_065 12
-    ScrCmd_028 0x410E, 1
+    SetVar 0x410E, 1
     ScrCmd_061
     End
 

@@ -45,7 +45,7 @@ _002F:
     ScrCmd_065 6
     ScrCmd_065 7
     ScrCmd_04B 0x603
-    ScrCmd_028 0x40A0, 1
+    SetVar 0x40A0, 1
     ScrCmd_061
     End
 
@@ -148,7 +148,7 @@ _0118:
     ScrCmd_065 4
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    ScrCmd_028 0x40A0, 3
+    SetVar 0x40A0, 3
     ScrCmd_061
     End
 

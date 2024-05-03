@@ -283,10 +283,10 @@ static BOOL ScrCmd_022(ScriptContext * param0);
 static BOOL ScrCmd_SetTrainerFlag(ScriptContext * ctx);
 static BOOL ScrCmd_ClearTrainerFlag(ScriptContext * ctx);
 static BOOL ScrCmd_CheckTrainerFlag(ScriptContext * ctx);
-static BOOL ScrCmd_026(ScriptContext * param0);
-static BOOL ScrCmd_027(ScriptContext * param0);
-static BOOL ScrCmd_028(ScriptContext * param0);
-static BOOL ScrCmd_029(ScriptContext * param0);
+static BOOL ScrCmd_AddVar(ScriptContext * ctx);
+static BOOL ScrCmd_SubVar(ScriptContext * ctx);
+static BOOL ScrCmd_SetVarFromValue(ScriptContext * ctx);
+static BOOL ScrCmd_SetVarFromVar(ScriptContext * ctx);
 static BOOL ScrCmd_02A(ScriptContext * param0);
 static BOOL ScrCmd_02B(ScriptContext * param0);
 static BOOL ScrCmd_1FA(ScriptContext * param0);
@@ -810,10 +810,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetTrainerFlag,
     ScrCmd_ClearTrainerFlag,
     ScrCmd_CheckTrainerFlag,
-    ScrCmd_026,
-    ScrCmd_027,
-    ScrCmd_028,
-    ScrCmd_029,
+    ScrCmd_AddVar,
+    ScrCmd_SubVar,
+    ScrCmd_SetVarFromValue,
+    ScrCmd_SetVarFromVar,
     ScrCmd_02A,
     ScrCmd_02B,
     ScrCmd_02C,
@@ -2049,47 +2049,33 @@ static BOOL ScrCmd_CheckTrainerFlag (ScriptContext * ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_026 (ScriptContext * param0)
+static BOOL ScrCmd_AddVar (ScriptContext * ctx)
 {
-    u16 * v0;
-    u16 v1;
-
-    v0 = ScriptContext_GetVarPointer(param0);
-    *v0 += ScriptContext_GetVar(param0);
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar += ScriptContext_GetVar(ctx);
+    return FALSE;
 }
 
-static BOOL ScrCmd_027 (ScriptContext * param0)
+static BOOL ScrCmd_SubVar (ScriptContext * ctx)
 {
-    u16 * v0;
-
-    v0 = ScriptContext_GetVarPointer(param0);
-    *v0 -= ScriptContext_GetVar(param0);
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar -= ScriptContext_GetVar(ctx);
+    return FALSE;
 }
 
-static BOOL ScrCmd_028 (ScriptContext * param0)
+static BOOL ScrCmd_SetVarFromValue (ScriptContext * ctx)
 {
-    u16 * v0;
-
-    v0 = ScriptContext_GetVarPointer(param0);
-    *v0 = ScriptContext_ReadHalfWord(param0);
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = ScriptContext_ReadHalfWord(ctx);
+    return FALSE;
 }
 
-static BOOL ScrCmd_029 (ScriptContext * param0)
+static BOOL ScrCmd_SetVarFromVar (ScriptContext * ctx)
 {
-    u16 * v0;
-    u16 * v1;
-
-    v0 = ScriptContext_GetVarPointer(param0);
-    v1 = ScriptContext_GetVarPointer(param0);
-    *v0 = *v1;
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    u16 * srcVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = *srcVar;
+    return FALSE;
 }
 
 static BOOL ScrCmd_02A (ScriptContext * param0)

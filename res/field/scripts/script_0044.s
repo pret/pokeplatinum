@@ -25,11 +25,11 @@ _0032:
     End
 
 _0052:
-    ScrCmd_028 0x4020, 97
+    SetVar 0x4020, 97
     End
 
 _005A:
-    ScrCmd_028 0x4020, 0
+    SetVar 0x4020, 0
     End
 
 _0062:
@@ -183,8 +183,8 @@ _0184:
     ScrCmd_049 0x603
     ScrCmd_065 2
     ScrCmd_04A 0x603
-    ScrCmd_028 0x4078, 4
-    ScrCmd_028 0x40B2, 2
+    SetVar 0x4078, 4
+    SetVar 0x40B2, 2
     SetFlag 168
     SetFlag 0x1AE
     ClearFlag 0x1B3

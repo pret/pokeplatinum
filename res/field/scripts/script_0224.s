@@ -30,7 +30,7 @@ _0023:
 _0036:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_028 0x40A9, 2
+    SetVar 0x40A9, 2
     ScrCmd_186 5, 20, 25
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
@@ -52,8 +52,8 @@ _0036:
     ScrCmd_05E 5, _018C
     ScrCmd_05F
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 68
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 68
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00F2
@@ -157,8 +157,8 @@ _01A0:
 
 _01BE:
     ScrCmd_02C 5
-    ScrCmd_028 0x8004, 68
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 68
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _01F0

@@ -43,15 +43,15 @@ _0022:
     ScrCmd_1CD 10, 133, 0x13D, 0, 0
     SetFlag 0x1A3
     ClearFlag 0x1A8
-    ScrCmd_028 0x407D, 1
-    ScrCmd_028 0x411A, 1
+    SetVar 0x407D, 1
+    SetVar 0x411A, 1
     ScrCmd_02C 3
     GoTo _00B7
     End
 
 _00B7:
-    ScrCmd_028 0x8004, 0x183
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x183
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00F5

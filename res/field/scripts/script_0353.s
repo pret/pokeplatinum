@@ -108,7 +108,7 @@ _017F:
     Return
 
 _0184:
-    ScrCmd_028 0x4059, 0
+    SetVar 0x4059, 0
     ScrCmd_061
     End
 

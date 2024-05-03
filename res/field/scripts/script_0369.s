@@ -23,7 +23,7 @@ _0025:
     ScrCmd_060
     Call _008E
     ScrCmd_1B7 0x800C, 4
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 1
     GoToIf 1, _00F0
     CompareVarToValue 0x8008, 2

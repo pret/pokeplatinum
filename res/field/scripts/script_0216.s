@@ -40,7 +40,7 @@ _007C:
     End
 
 _0082:
-    ScrCmd_028 0x40CF, 3
+    SetVar 0x40CF, 3
     Return
 
 _008A:
@@ -207,7 +207,7 @@ _0201:
     ScrCmd_05E 6, _0324
     ScrCmd_05F
     ScrCmd_065 6
-    ScrCmd_028 0x411E, 2
+    SetVar 0x411E, 2
     ScrCmd_061
     End
 

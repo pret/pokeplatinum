@@ -116,7 +116,7 @@ _0138:
     ScrCmd_049 0x61A
     ClearFlag 0x284
     ScrCmd_064 2
-    ScrCmd_028 0x4001, 1
+    SetVar 0x4001, 1
     ScrCmd_061
     End
 

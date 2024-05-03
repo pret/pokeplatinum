@@ -14,27 +14,27 @@
 
 _0022:
     SetFlag 0x1A7
-    ScrCmd_028 0x40D0, 1
+    SetVar 0x40D0, 1
     End
 
 _002E:
     ClearFlag 0x178
     ClearFlag 0x179
-    ScrCmd_028 0x4095, 1
-    ScrCmd_028 0x4082, 2
+    SetVar 0x4095, 1
+    SetVar 0x4082, 2
     ClearFlag 0x195
-    ScrCmd_028 0x4086, 2
-    ScrCmd_028 0x40A4, 3
+    SetVar 0x4086, 2
+    SetVar 0x40A4, 3
     End
 
 _0054:
-    ScrCmd_028 0x4057, 1
+    SetVar 0x4057, 1
     End
 
 _005C:
     ClearFlag 0x194
     ClearFlag 0x175
-    ScrCmd_028 0x4095, 1
+    SetVar 0x4095, 1
     SetFlag 0x196
     SetFlag 0x1AE
     ClearFlag 0x293
@@ -42,8 +42,8 @@ _005C:
 
 _0078:
     SetFlag 0x23F
-    ScrCmd_028 0x40F0, 1
-    ScrCmd_028 0x40D4, 1
+    SetVar 0x40F0, 1
+    SetVar 0x40D4, 1
     End
 
 _008A:
@@ -53,7 +53,7 @@ _008C:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_028 0x8005, 0
+    SetVar 0x8005, 0
     GoTo _00B8
     End
 
@@ -61,7 +61,7 @@ _00A2:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     GoTo _00B8
     End
 
@@ -130,12 +130,12 @@ _0188:
     End
 
 _01C3:
-    ScrCmd_028 0x8006, 0
+    SetVar 0x8006, 0
     GoTo _01DF
     End
 
 _01D1:
-    ScrCmd_028 0x8006, 1
+    SetVar 0x8006, 1
     GoTo _01DF
     End
 
@@ -148,9 +148,9 @@ _01DF:
     End
 
 _01FB:
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     ScrCmd_014 0x7D6
-    ScrCmd_029 0x800C, 0x4000
+    SetVar 0x800C, 0x4000
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0175
     GoTo _0220

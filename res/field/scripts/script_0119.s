@@ -34,8 +34,8 @@ _002E:
     ScrCmd_0CD 0
     ScrCmd_02C 3
     ScrCmd_02C 4
-    ScrCmd_028 0x8004, 49
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 49
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FF
     ScrCmd_02C 5
     ScrCmd_05E 6, _0158
@@ -47,7 +47,7 @@ _002E:
     ScrCmd_05E 0xFF, _01DC
     ScrCmd_05F
     ScrCmd_065 6
-    ScrCmd_028 0x40F7, 1
+    SetVar 0x40F7, 1
     ScrCmd_05E 5, _0190
     ScrCmd_05E 0xFF, _01E4
     ScrCmd_05F
@@ -375,8 +375,8 @@ _0428:
     End
 
 _0437:
-    ScrCmd_289 0x800C, 60, 30, 30, 30, 30
-    ScrCmd_028 78, 0x486
+    ScrCmd_289 0x800C, 60, 30, 30, 30, 30, 40
+    ScrCmd_04E 0x486
     ScrCmd_0CD 0
     ScrCmd_02C 14
     ScrCmd_04F

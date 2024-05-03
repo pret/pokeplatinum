@@ -59,7 +59,7 @@ _004D:
     CompareVarToValue 0x8004, 0x12F
     CallIf 1, _00F6
     ScrCmd_065 15
-    ScrCmd_028 0x40A8, 1
+    SetVar 0x40A8, 1
     SetFlag 0x298
     ScrCmd_061
     End

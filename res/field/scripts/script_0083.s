@@ -71,35 +71,35 @@ _00E7:
 _00ED:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_028 0x8004, 1
+    SetVar 0x8004, 1
     GoTo _0151
     End
 
 _0101:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_028 0x8004, 3
+    SetVar 0x8004, 3
     GoTo _0151
     End
 
 _0115:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_028 0x8004, 2
+    SetVar 0x8004, 2
     GoTo _0151
     End
 
 _0129:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_028 0x8004, 4
+    SetVar 0x8004, 4
     GoTo _0151
     End
 
 _013D:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_028 0x8004, 5
+    SetVar 0x8004, 5
     GoTo _0151
     End
 
@@ -156,7 +156,7 @@ _0254:
     ScrCmd_042 16, 1
     ScrCmd_042 14, 2
     ScrCmd_043
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _01F8
     CompareVarToValue 0x8008, 2
@@ -166,7 +166,7 @@ _0254:
 
 _0295:
     ScrCmd_303 0x8003, 0x800C
-    ScrCmd_029 0x8000, 0x800C
+    SetVar 0x8000, 0x800C
     CompareVarToValue 0x8003, 2
     GoToIf 4, _037B
     GoTo _02B6
@@ -309,14 +309,14 @@ _0473:
     CompareVarToValue 0x800C, 1
     GoToIf 1, _04FD
     ScrCmd_1C8 0x800C, 0x8000
-    ScrCmd_029 0x8002, 0x800C
+    SetVar 0x8002, 0x800C
     CompareVarToValue 0x800C, 4
     GoToIf 1, _051B
     GoTo _050B
     End
 
 _04FD:
-    ScrCmd_028 0x8002, 0
+    SetVar 0x8002, 0
     GoTo _050B
     End
 
@@ -427,23 +427,23 @@ _0697:
     Return
 
 _069D:
-    ScrCmd_028 0x8001, 0x13B
+    SetVar 0x8001, 0x13B
     Return
 
 _06A5:
-    ScrCmd_028 0x8001, 59
+    SetVar 0x8001, 59
     Return
 
 _06AD:
-    ScrCmd_028 0x8001, 56
+    SetVar 0x8001, 56
     Return
 
 _06B5:
-    ScrCmd_028 0x8001, 0x193
+    SetVar 0x8001, 0x193
     Return
 
 _06BD:
-    ScrCmd_028 0x8001, 0x1B5
+    SetVar 0x8001, 0x1B5
     Return
 
 _06C5:
@@ -560,7 +560,7 @@ _07BB:
     ScrCmd_33A 1
     ScrCmd_042 14, 0
     ScrCmd_043
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _0295
     ScrCmd_034
@@ -576,7 +576,7 @@ _0801:
 
 _080C:
     SetFlag 119
-    ScrCmd_028 0x411B, 1
+    SetVar 0x411B, 1
     GoTo _0325
     End
 
@@ -610,7 +610,7 @@ _081E:
     ScrCmd_049 0x603
     ScrCmd_065 6
     ScrCmd_04B 0x603
-    ScrCmd_028 0x411B, 2
+    SetVar 0x411B, 2
     ScrCmd_061
     End
 

@@ -10,7 +10,7 @@
     .short 0xFD13
 
 _0016:
-    ScrCmd_029 0x4000, 0x409E
+    SetVar 0x4000, 0x409E
     CompareVarToValue 0x409E, 1
     CallIf 4, _0031
     Call _0037
@@ -111,7 +111,7 @@ _00E6:
     ScrCmd_04B 0x5DC
     CheckFlag 215
     CallIf 0, _0174
-    ScrCmd_028 0x409E, 2
+    SetVar 0x409E, 2
     ScrCmd_04C 0x1E5, 0
     ScrCmd_02C 15
     ScrCmd_034
@@ -143,7 +143,7 @@ _015D:
     End
 
 _0168:
-    ScrCmd_028 0x409E, 1
+    SetVar 0x409E, 1
     ScrCmd_0EB
     ScrCmd_061
     End
@@ -278,10 +278,10 @@ _019C:
     ScrCmd_0CD 0
     ScrCmd_02C 14
     ScrCmd_034
-    ScrCmd_028 0x40A0, 2
+    SetVar 0x40A0, 2
     SetFlag 0x1DB
     SetFlag 0x231
-    ScrCmd_028 0x409E, 1
+    SetVar 0x409E, 1
     SetFlag 214
     ClearFlag 0x1A3
     ClearFlag 0x1D9

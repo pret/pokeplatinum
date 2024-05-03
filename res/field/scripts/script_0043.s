@@ -136,7 +136,7 @@ _0159:
     ScrCmd_05E 1, _01D4
     ScrCmd_05F
     ScrCmd_065 1
-    ScrCmd_028 0x4056, 3
+    SetVar 0x4056, 3
     ScrCmd_061
     End
 

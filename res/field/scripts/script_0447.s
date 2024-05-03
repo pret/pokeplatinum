@@ -127,8 +127,8 @@ _01C6:
     End
 
 _01E9:
-    ScrCmd_028 0x8004, 0x1B7
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1B7
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     ScrCmd_02C 4
     ScrCmd_034
@@ -278,8 +278,8 @@ _031F:
     CheckFlag 199
     GoToIf 1, _0364
     ScrCmd_02C 7
-    ScrCmd_028 0x8004, 0x17A
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x17A
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _036F

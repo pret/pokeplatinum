@@ -69,7 +69,7 @@ _006A:
     ScrCmd_064 5
     ScrCmd_065 4
     SetFlag 113
-    ScrCmd_028 0x411D, 1
+    SetVar 0x411D, 1
     ScrCmd_003 30, 0x800C
     ScrCmd_02C 1
     ScrCmd_05E 5, _0110

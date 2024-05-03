@@ -22,7 +22,7 @@ _0032:
 
 _0038:
     ScrCmd_060
-    ScrCmd_028 0x4113, 1
+    SetVar 0x4113, 1
     SetFlag 0x290
     SetFlag 0x291
     Call _02C1
@@ -61,7 +61,7 @@ _0095:
     ScrCmd_042 14, 4
     ScrCmd_042 15, 5
     ScrCmd_043
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _010E
     CompareVarToValue 0x8008, 1

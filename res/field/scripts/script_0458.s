@@ -75,14 +75,14 @@ _007E:
     ScrCmd_0D6 0, 0x8000
     ScrCmd_02C 5
     ScrCmd_2E6 0x8000, 0, 0x800C
-    ScrCmd_029 0x8003, 0x800C
+    SetVar 0x8003, 0x800C
     CompareVarToValue 0x8003, 0xFFFE
     GoToIf 1, _0264
     ScrCmd_2EA 0x8003, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _027A
     ScrCmd_1C8 0x800C, 0x8000
-    ScrCmd_029 0x8002, 0x800C
+    SetVar 0x8002, 0x800C
     CompareVarToValue 0x800C, 4
     GoToIf 1, _012F
     GoTo _0224

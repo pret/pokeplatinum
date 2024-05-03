@@ -110,7 +110,7 @@ _0135:
 _0146:
     ScrCmd_04B 0x662
     SetFlag 0xAA5
-    ScrCmd_028 0x400A, 1
+    SetVar 0x400A, 1
     ScrCmd_05E 1, _02DC
     ScrCmd_05F
     Return

@@ -50,8 +50,8 @@ _0055:
     End
 
 _0073:
-    ScrCmd_028 0x8004, 0x12A
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x12A
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0114
@@ -88,7 +88,7 @@ _00F0:
 _0102:
     ScrCmd_049 0x603
     ScrCmd_065 3
-    ScrCmd_028 0x4056, 2
+    SetVar 0x4056, 2
     ScrCmd_061
     End
 

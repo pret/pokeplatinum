@@ -56,8 +56,8 @@ _009F:
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00E4
     ScrCmd_02C 4
-    ScrCmd_028 0x8004, 0x1BC
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1BC
+    SetVar 0x8005, 1
     SetFlag 188
     ScrCmd_014 0x7E0
     ScrCmd_034

@@ -23,7 +23,7 @@ _0026:
 
 _0033:
     ScrCmd_31F
-    ScrCmd_028 0x4055, 14
+    SetVar 0x4055, 14
     ScrCmd_065 128
     End
 
@@ -43,7 +43,7 @@ _0061:
     ScrCmd_02C 14
     ScrCmd_034
     ScrCmd_270 2, 1
-    ScrCmd_028 0x40AA, 1
+    SetVar 0x40AA, 1
     ScrCmd_049 0x5D2
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD

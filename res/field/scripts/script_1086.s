@@ -209,7 +209,7 @@ _022C:
     End
 
 _024A:
-    ScrCmd_028 0x40F1, 1
+    SetVar 0x40F1, 1
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034
@@ -254,7 +254,7 @@ _0294:
     ScrCmd_034
     ScrCmd_05E 4, _02FC
     ScrCmd_05F
-    ScrCmd_028 0x4074, 2
+    SetVar 0x4074, 2
     SetFlag 0x299
     ScrCmd_003 12, 0x800C
     ScrCmd_02C 11

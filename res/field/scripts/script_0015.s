@@ -22,7 +22,7 @@ _003A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_028 0x8007, 0
+    SetVar 0x8007, 0
     CheckFlag 136
     CallIf 0, _006F
     CompareVarToValue 0x4001, 0
@@ -32,7 +32,7 @@ _003A:
     End
 
 _006F:
-    ScrCmd_028 0x8007, 1
+    SetVar 0x8007, 1
     Return
 
 _0077:
@@ -81,7 +81,7 @@ _00F5:
     End
 
 _0115:
-    ScrCmd_028 0x4002, 0
+    SetVar 0x4002, 0
     GoTo _016C
 
 _0121:
@@ -176,7 +176,7 @@ _0279:
 _0293:
     CompareVarToValue 0x8005, 0
     GoToIf 1, _0335
-    ScrCmd_028 0x4001, 1
+    SetVar 0x4001, 1
     ScrCmd_02C 7
     ScrCmd_031
     ScrCmd_034

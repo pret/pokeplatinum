@@ -46,14 +46,14 @@ _0016:
     ClearFlag 0x1B8
     ClearFlag 0x1B6
     ClearFlag 0x1B7
-    ScrCmd_028 0x4078, 2
+    SetVar 0x4078, 2
     SetFlag 0x198
     ScrCmd_02C 3
     GoTo _00BF
 
 _00BF:
-    ScrCmd_028 0x8004, 0x1A2
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1A2
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00FD

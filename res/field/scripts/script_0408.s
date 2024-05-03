@@ -290,9 +290,9 @@
 
 _0472:
     ScrCmd_04B 0x5DC
-    ScrCmd_029 0x8004, 0x8000
-    ScrCmd_029 0x8005, 0x8001
-    ScrCmd_029 0x8006, 0x8002
+    SetVar 0x8004, 0x8000
+    SetVar 0x8005, 0x8001
+    SetVar 0x8006, 0x8002
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 1
     GoToIf 1, _04B0
@@ -323,7 +323,7 @@ _04E2:
     ScrCmd_0CD 0
     ScrCmd_0D1 1, 0x8004
     ScrCmd_080 0x8004, 0x800C
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 7
     GoToIf 1, _0588
     CompareVarToValue 0x8008, 0
@@ -394,7 +394,7 @@ _060D:
     ScrCmd_022 0x8006
     ScrCmd_02C 9
     ScrCmd_031
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     GoTo _04AC
     End
 
@@ -417,7 +417,7 @@ _064F:
     ScrCmd_0D1 0, 0x8004
     ScrCmd_02C 4
     ScrCmd_031
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     GoTo _04AC
     End
 

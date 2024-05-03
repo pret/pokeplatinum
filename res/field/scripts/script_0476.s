@@ -35,7 +35,7 @@ _0047:
     ScrCmd_049 0x603
     SetFlag 0x21C
     ScrCmd_065 1
-    ScrCmd_028 0x4105, 1
+    SetVar 0x4105, 1
     ScrCmd_061
     End
 

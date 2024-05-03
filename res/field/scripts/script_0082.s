@@ -82,7 +82,7 @@ _00E2:
     ScrCmd_065 2
     ScrCmd_065 1
     ScrCmd_065 3
-    ScrCmd_028 0x407A, 3
+    SetVar 0x407A, 3
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
     SetFlag 0x987

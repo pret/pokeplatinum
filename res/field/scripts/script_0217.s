@@ -37,7 +37,7 @@ _005F:
     ScrCmd_05E 0xFF, _00A0
     ScrCmd_05F
     ScrCmd_065 0
-    ScrCmd_028 0x40CF, 1
+    SetVar 0x40CF, 1
     ScrCmd_061
     End
 
@@ -117,7 +117,7 @@ _0107:
     ScrCmd_065 4
     SetFlag 0x1A2
     ClearFlag 0x17F
-    ScrCmd_028 0x4089, 2
+    SetVar 0x4089, 2
     SetFlag 0xAA8
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
@@ -196,9 +196,9 @@ _0297:
     ScrCmd_02C 10
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_028 0x411E, 1
+    SetVar 0x411E, 1
     ClearFlag 0x1FA
-    ScrCmd_028 0x40CF, 2
+    SetVar 0x40CF, 2
     SetFlag 0x988
     ScrCmd_061
     End

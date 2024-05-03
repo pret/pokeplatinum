@@ -66,7 +66,7 @@ _008C:
     End
 
 _0102:
-    ScrCmd_028 0x40F4, 1
+    SetVar 0x40F4, 1
     Return
 
 _010A:
@@ -162,22 +162,22 @@ _0174:
     Return
 
 _0234:
-    ScrCmd_028 0x410F, 1
+    SetVar 0x410F, 1
     Return
 
 _023C:
-    ScrCmd_028 0x40C4, 0
+    SetVar 0x40C4, 0
     Return
 
 _0244:
-    ScrCmd_028 0x40C5, 0
+    SetVar 0x40C5, 0
     Return
 
 _024C:
     CheckFlag 0x125
     GoToIf 0, _0261
     ClearFlag 0x1DD
-    ScrCmd_028 0x409E, 1
+    SetVar 0x409E, 1
 _0261:
     Return
 
@@ -203,24 +203,24 @@ _0287:
 
 _028D:
     ClearFlag 0x1DF
-    ScrCmd_028 0x4059, 3
+    SetVar 0x4059, 3
     Return
 
 _0299:
     ClearFlag 0x24F
-    ScrCmd_028 0x4058, 3
+    SetVar 0x4058, 3
     Return
 
 _02A5:
-    ScrCmd_028 0x405E, 3
+    SetVar 0x405E, 3
     Return
 
 _02AD:
-    ScrCmd_028 0x405F, 3
+    SetVar 0x405F, 3
     Return
 
 _02B5:
-    ScrCmd_028 0x4060, 3
+    SetVar 0x4060, 3
     Return
 
 _02BD:

@@ -40,7 +40,7 @@ _0075:
     End
 
 _0079:
-    ScrCmd_028 0x4069, 0
+    SetVar 0x4069, 0
     Return
 
 _0081:

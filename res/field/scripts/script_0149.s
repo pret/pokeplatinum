@@ -89,8 +89,8 @@ _00D8:
     ScrCmd_05E 0xFF, _0174
     ScrCmd_05E 4, _015C
     ScrCmd_05F
-    ScrCmd_028 0x407C, 1
-    ScrCmd_028 0x411F, 2
+    SetVar 0x407C, 1
+    SetVar 0x411F, 2
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
@@ -182,7 +182,7 @@ _0197:
     CallIf 1, _02AE
     ScrCmd_065 4
     SetFlag 0x28A
-    ScrCmd_028 0x411F, 4
+    SetVar 0x411F, 4
     ScrCmd_061
     End
 

@@ -81,7 +81,7 @@ _00CF:
     ScrCmd_049 0x603
     ScrCmd_065 1
     ScrCmd_04B 0x603
-    ScrCmd_028 0x407B, 2
+    SetVar 0x407B, 2
     ScrCmd_061
     End
 

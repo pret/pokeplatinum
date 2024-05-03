@@ -80,7 +80,7 @@ _0014:
     ScrCmd_065 4
     ScrCmd_065 15
     ScrCmd_065 16
-    ScrCmd_028 0x40AD, 1
+    SetVar 0x40AD, 1
     ScrCmd_061
     End
 

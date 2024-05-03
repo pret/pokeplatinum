@@ -9,7 +9,7 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     ScrCmd_175 0
     End
 

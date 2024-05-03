@@ -53,7 +53,7 @@ _0012:
     ScrCmd_05E 0xFF, _0118
     ScrCmd_05F
     ScrCmd_065 3
-    ScrCmd_028 0x408B, 1
+    SetVar 0x408B, 1
     ScrCmd_061
     End
 
@@ -260,7 +260,7 @@ _0243:
     ScrCmd_05F
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_028 0x4119, 1
+    SetVar 0x4119, 1
     ScrCmd_061
     End
 

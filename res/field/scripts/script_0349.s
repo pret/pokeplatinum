@@ -98,7 +98,7 @@ _0006:
     ScrCmd_05E 0xFF, _022C
     ScrCmd_05F
     ScrCmd_065 3
-    ScrCmd_028 0x408E, 1
+    SetVar 0x408E, 1
     ScrCmd_061
     End
 

@@ -73,7 +73,7 @@ _00F3:
     CheckFlag 0x146
     GoToIf 0, _01F4
     ScrCmd_1B7 0x800C, 3
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _01CB
     CompareVarToValue 0x8008, 1
@@ -178,7 +178,7 @@ _029F:
 _02B1:
     ScrCmd_065 4
     ClearFlag 0x188
-    ScrCmd_028 0x4087, 2
+    SetVar 0x4087, 2
     ScrCmd_061
     End
 
@@ -393,11 +393,11 @@ _04A4:
     GoToIf 1, _04C6
     CompareVarToValue 0x40C5, 1
     GoToIf 1, _04C6
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     Return
 
 _04C6:
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     Return
 
     .byte 0

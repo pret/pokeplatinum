@@ -211,7 +211,7 @@ _0296:
     ScrCmd_049 0x603
     ScrCmd_065 5
     ScrCmd_04B 0x603
-    ScrCmd_028 0x40EF, 1
+    SetVar 0x40EF, 1
     ScrCmd_061
     End
 
@@ -285,7 +285,7 @@ _0323:
     End
 
 _0336:
-    ScrCmd_028 0x8007, 3
+    SetVar 0x8007, 3
     ScrCmd_014 0x7D2
     End
 

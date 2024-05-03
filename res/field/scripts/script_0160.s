@@ -9,7 +9,7 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     ScrCmd_175 2
     End
 
@@ -50,14 +50,14 @@ _0027:
     SetTrainerFlag 0x14B
     SetTrainerFlag 0x155
     SetTrainerFlag 0x158
-    ScrCmd_028 0x407E, 2
+    SetVar 0x407E, 2
     ScrCmd_1CD 10, 156, 246, 0, 0
     ScrCmd_02C 3
     GoTo _00BC
 
 _00BC:
-    ScrCmd_028 0x8004, 0x180
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x180
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00FA

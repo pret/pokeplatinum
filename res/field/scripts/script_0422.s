@@ -94,7 +94,7 @@ _00DD:
     End
 
 _00ED:
-    ScrCmd_026 0x40CA, 1
+    AddVar 0x40CA, 1
     ScrCmd_034
     ScrCmd_061
     End
@@ -126,7 +126,7 @@ _0131:
 _013C:
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_026 0x40CB, 1
+    AddVar 0x40CB, 1
     ScrCmd_061
     End
 
@@ -157,7 +157,7 @@ _0185:
     End
 
 _0193:
-    ScrCmd_026 0x40E8, 1
+    AddVar 0x40E8, 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
@@ -196,7 +196,7 @@ _01F4:
     End
 
 _01FF:
-    ScrCmd_026 0x40E1, 1
+    AddVar 0x40E1, 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
@@ -229,7 +229,7 @@ _0248:
     End
 
 _0256:
-    ScrCmd_026 0x40E2, 1
+    AddVar 0x40E2, 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
@@ -255,7 +255,7 @@ _0289:
     End
 
 _0294:
-    ScrCmd_026 0x40E4, 1
+    AddVar 0x40E4, 1
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061

@@ -20,11 +20,11 @@ _001E:
     End
 
 _003E:
-    ScrCmd_028 0x4020, 97
+    SetVar 0x4020, 97
     End
 
 _0046:
-    ScrCmd_028 0x4020, 0
+    SetVar 0x4020, 0
     End
 
 _004E:
@@ -112,8 +112,8 @@ _006F:
     End
 
 _01A1:
-    ScrCmd_028 0x4086, 4
-    ScrCmd_028 0x4095, 1
+    SetVar 0x4086, 4
+    SetVar 0x4095, 1
     ScrCmd_061
     End
 

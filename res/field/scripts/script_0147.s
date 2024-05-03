@@ -10,7 +10,7 @@ _0006:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_11C 0x40CE
-    ScrCmd_029 0x8008, 0x40CE
+    SetVar 0x8008, 0x40CE
     CompareVarToValue 0x8008, 0
     GoToIf 1, _0068
     CompareVarToValue 0x8008, 1
@@ -62,7 +62,7 @@ _00A6:
     ScrCmd_042 121, 5
     ScrCmd_042 124, 6
     ScrCmd_043
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _02BC
     CompareVarToValue 0x8008, 1
@@ -88,7 +88,7 @@ _0131:
     CompareVarToValue 0x40CE, 5
     CallIf 0, _0316
     Call _0321
-    ScrCmd_028 0x40CE, 5
+    SetVar 0x40CE, 5
     GoTo _033F
 
 _0180:
@@ -102,7 +102,7 @@ _0180:
     CompareVarToValue 0x40CE, 4
     CallIf 0, _0316
     Call _0321
-    ScrCmd_028 0x40CE, 4
+    SetVar 0x40CE, 4
     GoTo _033F
 
 _01CF:
@@ -116,7 +116,7 @@ _01CF:
     CompareVarToValue 0x40CE, 3
     CallIf 0, _0316
     Call _0321
-    ScrCmd_028 0x40CE, 3
+    SetVar 0x40CE, 3
     GoTo _033F
 
 _021E:
@@ -130,7 +130,7 @@ _021E:
     CompareVarToValue 0x40CE, 2
     CallIf 0, _0316
     Call _0321
-    ScrCmd_028 0x40CE, 2
+    SetVar 0x40CE, 2
     GoTo _033F
 
 _026D:
@@ -144,7 +144,7 @@ _026D:
     CompareVarToValue 0x40CE, 1
     CallIf 0, _0316
     Call _0321
-    ScrCmd_028 0x40CE, 1
+    SetVar 0x40CE, 1
     GoTo _033F
 
 _02BC:
@@ -158,21 +158,21 @@ _02BC:
     CompareVarToValue 0x40CE, 0
     CallIf 0, _0316
     Call _0321
-    ScrCmd_028 0x40CE, 0
+    SetVar 0x40CE, 0
     GoTo _033F
 
 _030B:
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 0
+    SetVar 0x8004, 0
     Return
 
 _0316:
     ScrCmd_02C 3
-    ScrCmd_028 0x8004, 1
+    SetVar 0x8004, 1
     Return
 
 _0321:
-    ScrCmd_028 0x40CE, 0xFFFF
+    SetVar 0x40CE, -1
     ScrCmd_034
     ScrCmd_05E 0, _0410
     ScrCmd_05F
@@ -181,7 +181,7 @@ _0321:
     Return
 
 _033F:
-    ScrCmd_029 0x8008, 0x40CE
+    SetVar 0x8008, 0x40CE
     CompareVarToValue 0x8008, 0
     GoToIf 1, _0395
     CompareVarToValue 0x8008, 1
@@ -233,7 +233,7 @@ _03D7:
     End
 
 _03DF:
-    ScrCmd_028 0x40CE, 0xFFFF
+    SetVar 0x40CE, -1
     ScrCmd_003 1, 0x800C
     ScrCmd_02C 4
     ScrCmd_031
@@ -242,7 +242,7 @@ _03DF:
     End
 
 _03F6:
-    ScrCmd_028 0x40CE, 0xFFFF
+    SetVar 0x40CE, -1
     ScrCmd_003 1, 0x800C
     ScrCmd_02C 1
     ScrCmd_031

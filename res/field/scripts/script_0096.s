@@ -6,6 +6,6 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     ScrCmd_171
     End

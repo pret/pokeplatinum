@@ -62,7 +62,7 @@ _00D8:
     GoTo _00F0
 
 _00F0:
-    ScrCmd_028 0x4082, 1
+    SetVar 0x4082, 1
     ScrCmd_061
     ScrCmd_049 0x603
     ScrCmd_0BC 6, 1, 0, 0

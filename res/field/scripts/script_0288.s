@@ -34,8 +34,8 @@ _0021:
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_028 0x40AA, 2
-    ScrCmd_028 0x40A6, 2
+    SetVar 0x40AA, 2
+    SetVar 0x40A6, 2
     SetFlag 0x1C7
     ClearFlag 0x132
     SetFlag 0x28F

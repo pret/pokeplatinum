@@ -114,7 +114,7 @@ _011B:
     ScrCmd_05E 0xFF, _0164
     ScrCmd_05E 6, _015C
     ScrCmd_05F
-    ScrCmd_028 0x407F, 1
+    SetVar 0x407F, 1
     ScrCmd_02C 4
     ScrCmd_031
     ScrCmd_034

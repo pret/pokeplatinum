@@ -20,11 +20,11 @@ _001E:
     End
 
 _003E:
-    ScrCmd_028 0x4020, 97
+    SetVar 0x4020, 97
     End
 
 _0046:
-    ScrCmd_028 0x4020, 0
+    SetVar 0x4020, 0
     End
 
 _004E:
@@ -86,13 +86,13 @@ _00F1:
 
 _012F:
     SetFlag 0x97F
-    ScrCmd_028 0x8004, 0x1BB
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1BB
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     Return
 
 _0145:
-    ScrCmd_028 0x8004, 6
+    SetVar 0x8004, 6
     ScrCmd_014 0x7D9
     ScrCmd_0D7 1, 6
     Return
@@ -103,7 +103,7 @@ _0156:
     ScrCmd_05F
     ScrCmd_065 18
     ScrCmd_014 0x7F9
-    ScrCmd_028 0x408C, 1
+    SetVar 0x408C, 1
     ScrCmd_061
     End
 

@@ -25,8 +25,8 @@ _000E:
     ScrCmd_065 0
     ScrCmd_014 0x7FB
     SetFlag 234
-    ScrCmd_028 0x40A3, 1
-    ScrCmd_028 0x4070, 2
+    SetVar 0x40A3, 1
+    SetVar 0x4070, 2
     ScrCmd_061
     End
 

@@ -142,7 +142,7 @@ _0141:
     GoToIf 1, _01BE
     ScrCmd_0CE 0
     ScrCmd_0CD 1
-    ScrCmd_029 0x8008, 0x40C2
+    SetVar 0x8008, 0x40C2
     CompareVarToValue 0x8008, 0
     GoToIf 1, _0195
     CompareVarToValue 0x8008, 1

@@ -23,15 +23,15 @@ _0026:
     End
 
 _004F:
-    ScrCmd_028 0x40F4, 2
+    SetVar 0x40F4, 2
     Return
 
 _0057:
-    ScrCmd_028 0x40A4, 7
+    SetVar 0x40A4, 7
     Return
 
 _005F:
-    ScrCmd_028 0x40A4, 5
+    SetVar 0x40A4, 5
     Return
 
 _0067:
@@ -439,8 +439,8 @@ _04D0:
     ScrCmd_16A 77
     ScrCmd_065 2
     ScrCmd_014 0x7FB
-    ScrCmd_028 0x4070, 1
-    ScrCmd_028 0x40E6, 1
+    SetVar 0x4070, 1
+    SetVar 0x40E6, 1
     ScrCmd_061
     End
 

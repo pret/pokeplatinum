@@ -140,7 +140,7 @@ _0142:
 _014D:
     SetFlag 0x1A1
     SetFlag 145
-    ScrCmd_028 0x4089, 1
+    SetVar 0x4089, 1
     Return
 
 _015D:

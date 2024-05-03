@@ -23,12 +23,12 @@ _001E:
 
 _004F:
     ClearFlag 0x28B
-    ScrCmd_028 0x4116, 0
+    SetVar 0x4116, 0
     End
 
 _005B:
     SetFlag 0x28B
-    ScrCmd_028 0x4116, 1
+    SetVar 0x4116, 1
     End
 
 _0067:
@@ -93,7 +93,7 @@ _00FB:
     ScrCmd_05E 2, _01F0
     ScrCmd_05F
     ScrCmd_065 2
-    ScrCmd_028 0x400B, 1
+    SetVar 0x400B, 1
     Call _016C
     SetFlag 0xAA2
     GoTo _0155

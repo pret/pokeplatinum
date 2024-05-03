@@ -97,8 +97,8 @@ _00FC:
     ScrCmd_068
     ScrCmd_0CD 0
     ScrCmd_02C 0
-    ScrCmd_028 0x8004, 0x1A7
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1A7
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     ScrCmd_15B 5, 0x800C
     CompareVarToValue 0x800C, 0

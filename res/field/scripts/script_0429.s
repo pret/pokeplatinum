@@ -152,7 +152,7 @@ _01E9:
 
 _01F9:
     ScrCmd_065 5
-    ScrCmd_028 0x4088, 1
+    SetVar 0x4088, 1
     ScrCmd_061
     End
 

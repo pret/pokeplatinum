@@ -64,7 +64,7 @@ _0006:
     ScrCmd_04B 0x603
     SetFlag 0x98F
     ClearFlag 0x223
-    ScrCmd_028 0x40D3, 2
+    SetVar 0x40D3, 2
     ClearFlag 0x198
     SetFlag 0x194
     SetFlag 0x175

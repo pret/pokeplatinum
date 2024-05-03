@@ -86,15 +86,15 @@ _00BB:
     SetTrainerFlag 0x157
     SetTrainerFlag 0x165
     ScrCmd_1CD 10, 91, 0x13E, 0, 0
-    ScrCmd_028 0x407B, 1
+    SetVar 0x407B, 1
     SetFlag 0x206
     ClearFlag 0x207
     ScrCmd_02C 3
     GoTo _0158
 
 _0158:
-    ScrCmd_028 0x8004, 0x188
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x188
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0196

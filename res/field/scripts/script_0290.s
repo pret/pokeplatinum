@@ -12,15 +12,15 @@ _000A:
     End
 
 _0018:
-    ScrCmd_026 0x410B, 1
-    ScrCmd_026 0x410C, 1
+    AddVar 0x410B, 1
+    AddVar 0x410C, 1
     Return
 
 _0026:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_029 0x8004, 0x410B
-    ScrCmd_029 0x8005, 0x410C
+    SetVar 0x8004, 0x410B
+    SetVar 0x8005, 0x410C
     ScrCmd_0D5 0, 0x8004
     ScrCmd_0D5 1, 0x8005
     ScrCmd_02C 0

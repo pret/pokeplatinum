@@ -28,7 +28,7 @@ _003F:
     ScrCmd_22F 0x8004
     CompareVarToValue 0x8004, 10
     GoToIf 0, _0078
-    ScrCmd_028 0x40A7, 1
+    SetVar 0x40A7, 1
     SetFlag 250
     ScrCmd_0CD 0
     ScrCmd_02C 1

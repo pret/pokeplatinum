@@ -34,7 +34,7 @@ _0048:
 
 _0056:
     ScrCmd_060
-    ScrCmd_028 0x4118, 0
+    SetVar 0x4118, 0
     Call _00E9
     Call _0104
     ScrCmd_04C 0x1ED, 0
@@ -59,7 +59,7 @@ _0056:
     End
 
 _00C8:
-    ScrCmd_028 0x4056, 1
+    SetVar 0x4056, 1
     Return
 
 _00D0:
@@ -89,7 +89,7 @@ _00F8:
 
 _0104:
     ScrCmd_069 0x8004, 0x8005
-    ScrCmd_029 0x8008, 0x8004
+    SetVar 0x8008, 0x8004
     CompareVarToValue 0x8008, 30
     GoToIf 1, _0139
     CompareVarToValue 0x8008, 31

@@ -34,15 +34,15 @@ _008A:
     Return
 
 _008E:
-    ScrCmd_028 0x402A, 231
+    SetVar 0x402A, 231
     Return
 
 _0096:
-    ScrCmd_028 0x402A, 235
+    SetVar 0x402A, 235
     Return
 
 _009E:
-    ScrCmd_028 0x402A, 232
+    SetVar 0x402A, 232
     Return
 
 _00A6:
@@ -85,21 +85,21 @@ _0132:
 
 _0146:
     ScrCmd_060
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     Call _0132
     GoTo _00A6
     End
 
 _015C:
     ScrCmd_060
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     Call _0132
     GoTo _00E9
     End
 
 _0172:
     ScrCmd_060
-    ScrCmd_028 0x4000, 1
+    SetVar 0x4000, 1
     Call _0132
     GoTo _010A
     End

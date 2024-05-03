@@ -20,7 +20,7 @@ _001A:
 
 _0033:
     ScrCmd_1B7 0x404C, 5
-    ScrCmd_026 0x404C, 5
+    AddVar 0x404C, 5
     SetFlag 0xAB6
     ClearTrainerFlag 0x37C
     ClearTrainerFlag 0x37D
@@ -95,8 +95,8 @@ _00FF:
     ScrCmd_034
     ScrCmd_05E 2, _03FC
     ScrCmd_05F
-    ScrCmd_028 0x404D, 0
-    ScrCmd_028 0x8005, 0
+    SetVar 0x404D, 0
+    SetVar 0x8005, 0
     ClearFlag 0x257
     ScrCmd_064 5
     ScrCmd_05E 5, _0420
@@ -107,7 +107,7 @@ _00FF:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0484
-    ScrCmd_026 0x8005, 0x404D
+    AddVar 0x8005, 0x404D
     ScrCmd_02C 16
     ScrCmd_034
     ScrCmd_05E 5, _0414
@@ -120,7 +120,7 @@ _00FF:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0484
-    ScrCmd_026 0x8005, 0x404D
+    AddVar 0x8005, 0x404D
     ScrCmd_02C 18
     ScrCmd_034
     ScrCmd_05E 5, _0414
@@ -133,7 +133,7 @@ _00FF:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0484
-    ScrCmd_026 0x8005, 0x404D
+    AddVar 0x8005, 0x404D
     ScrCmd_02C 20
     ScrCmd_034
     ScrCmd_05E 5, _0414
@@ -146,7 +146,7 @@ _00FF:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0484
-    ScrCmd_026 0x8005, 0x404D
+    AddVar 0x8005, 0x404D
     ScrCmd_02C 22
     ScrCmd_034
     ScrCmd_05E 5, _0414
@@ -167,7 +167,7 @@ _00FF:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0484
-    ScrCmd_026 0x8005, 0x404D
+    AddVar 0x8005, 0x404D
     ScrCmd_02C 24
     ScrCmd_034
     ScrCmd_05E 5, _0414
@@ -226,15 +226,15 @@ _0396:
     End
 
 _03A1:
-    ScrCmd_028 0x8007, 0x37C
-    ScrCmd_028 0x4020, 62
+    SetVar 0x8007, 0x37C
+    SetVar 0x4020, 62
     ScrCmd_2F3 2, 0x8007
     ScrCmd_02C 8
     Return
 
 _03B7:
-    ScrCmd_028 0x8007, 0x37D
-    ScrCmd_028 0x4020, 63
+    SetVar 0x8007, 0x37D
+    SetVar 0x4020, 63
     ScrCmd_2F3 2, 0x8007
     ScrCmd_02C 9
     Return

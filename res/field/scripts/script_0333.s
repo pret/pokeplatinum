@@ -15,7 +15,7 @@ _000A:
 
 _0022:
     ClearFlag 0x27B
-    ScrCmd_028 0x4110, 1
+    SetVar 0x4110, 1
     End
 
 _002E:
@@ -25,7 +25,7 @@ _002E:
     ScrCmd_05F
     SetFlag 0x27B
     ScrCmd_065 0
-    ScrCmd_028 0x4110, 0
+    SetVar 0x4110, 0
     ScrCmd_061
     End
 

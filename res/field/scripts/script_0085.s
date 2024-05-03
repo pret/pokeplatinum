@@ -14,8 +14,8 @@ _000E:
     CheckFlag 194
     GoToIf 1, _005D
     ScrCmd_02C 0
-    ScrCmd_028 0x8004, 0x18A
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x18A
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0053

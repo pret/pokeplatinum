@@ -38,7 +38,7 @@ _000C:
     End
 
 _0074:
-    ScrCmd_028 0x4058, 0
+    SetVar 0x4058, 0
     ScrCmd_061
     End
 

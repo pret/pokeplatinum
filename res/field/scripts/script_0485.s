@@ -51,8 +51,8 @@ _009C:
     .byte 0
 
 _00AA:
-    ScrCmd_028 0x4057, 2
-    ScrCmd_028 0x4085, 1
+    SetVar 0x4057, 2
+    SetVar 0x4085, 1
     Return
 
 _00B8:
@@ -81,7 +81,7 @@ _00E4:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_028 0x408D, 1
+    SetVar 0x408D, 1
     ScrCmd_0CD 0
     ScrCmd_14D 0x800C
     CompareVarToValue 0x800C, 1
@@ -131,7 +131,7 @@ _0124:
     SetFlag 0x12D
     SetFlag 0x252
     SetFlag 0x2CA
-    ScrCmd_028 0x408D, 0
+    SetVar 0x408D, 0
     ScrCmd_061
     End
 
@@ -171,7 +171,7 @@ _022D:
 
 _0240:
     ScrCmd_069 0x8000, 0x8001
-    ScrCmd_029 0x8008, 0x8000
+    SetVar 0x8008, 0x8000
     CompareVarToValue 0x8008, 0x38D
     GoToIf 1, _0272
     CompareVarToValue 0x8008, 0x38E
@@ -428,8 +428,8 @@ _0565:
     End
 
 _057F:
-    ScrCmd_028 0x4057, 2
-    ScrCmd_028 0x4085, 2
+    SetVar 0x4057, 2
+    SetVar 0x4085, 2
     ScrCmd_02C 10
     ScrCmd_031
     ScrCmd_034

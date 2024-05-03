@@ -27,7 +27,7 @@ _0022:
     ScrCmd_05F
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    ScrCmd_028 0x40C3, 2
+    SetVar 0x40C3, 2
     ScrCmd_05E 0, _0144
     ScrCmd_05F
     ScrCmd_02C 0

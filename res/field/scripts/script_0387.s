@@ -41,7 +41,7 @@ _0051:
     ScrCmd_05F
     ScrCmd_05E 134, _011C
     ScrCmd_05F
-    ScrCmd_028 0x4055, 7
+    SetVar 0x4055, 7
     ScrCmd_061
     End
 

@@ -121,7 +121,7 @@ _019D:
 
 _01C3:
     ClearFlag 0x1BD
-    ScrCmd_028 0x4074, 1
+    SetVar 0x4074, 1
     ScrCmd_02C 11
     ScrCmd_034
     ScrCmd_003 15, 0x800C
@@ -140,8 +140,8 @@ _01C3:
     CompareVarToValue 0x8004, 11
     CallIf 1, _0343
     ScrCmd_02C 13
-    ScrCmd_028 0x8004, 0x1A6
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1A6
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     SetFlag 0x1AC
     ClearFlag 0x1C3

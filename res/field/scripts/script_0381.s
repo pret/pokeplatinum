@@ -22,7 +22,7 @@ _0012:
     ScrCmd_05E 0xFF, _0080
     ScrCmd_05F
     ScrCmd_312 128
-    ScrCmd_028 0x4055, 3
+    SetVar 0x4055, 3
     ScrCmd_061
     End
 

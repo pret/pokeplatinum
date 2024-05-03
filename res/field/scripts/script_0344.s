@@ -41,8 +41,8 @@ _0074:
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00E1
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 1
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 1
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 1
     CallIf 1, _00DB
@@ -55,7 +55,7 @@ _0074:
     ScrCmd_05E 0, _0124
     ScrCmd_05F
     ScrCmd_065 0
-    ScrCmd_028 0x40D6, 1
+    SetVar 0x40D6, 1
     ScrCmd_061
     End
 
@@ -180,7 +180,7 @@ _01E6:
     ScrCmd_29D 0x10E, 2
     ScrCmd_29D 0x10F, 3
     ScrCmd_043
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _0240
     CompareVarToValue 0x8008, 1

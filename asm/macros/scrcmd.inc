@@ -209,28 +209,26 @@
     .short \trainerID
     .endm
 
-    .macro ScrCmd_026 arg0, arg1
+    .macro AddVar destVarID, valueOrVarID
     .short 38
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \valueOrVarID
     .endm
 
-    .macro ScrCmd_027 arg0, arg1
+    .macro SubVar destVarID, valueOrVarID
     .short 39
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \valueOrVarID
     .endm
 
-    .macro ScrCmd_028 arg0, arg1
-    .short 40
-    .short \arg0
-    .short \arg1
-    .endm
-
-    .macro ScrCmd_029 arg0, arg1
-    .short 41
-    .short \arg0
-    .short \arg1
+    .macro SetVar destVarID, valueOrVarID
+    .if \valueOrVarID < 0x4000
+        .short 40 // SetVarFromValue
+    .else
+        .short 41 // SetVarFromVar
+    .endif
+    .short \destVarID
+    .short \valueOrVarID
     .endm
 
     .macro ScrCmd_02A arg0, arg1
@@ -3497,7 +3495,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_289 arg0, arg1, arg2, arg3, arg4, arg5
+    .macro ScrCmd_289 arg0, arg1, arg2, arg3, arg4, arg5, arg6
     .short 649
     .short \arg0
     .short \arg1
@@ -3505,6 +3503,7 @@
     .short \arg3
     .short \arg4
     .short \arg5
+    .short \arg6
     .endm
 
     .macro ScrCmd_28A arg0
