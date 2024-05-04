@@ -1209,7 +1209,7 @@ static void sub_020376A8 (void)
     }
 
     if (Unk_021C07D4->unk_40 > (120 - 10)) {
-        sub_020360D0(6, Unk_02100A20);
+        CommSys_SendDataFixedSize(6, Unk_02100A20);
     }
 
     if (Unk_021C07D4->unk_40 != 0) {
@@ -1291,10 +1291,10 @@ void sub_0203781C (void)
 
     if (CommSys_CurNetId() == 0) {
         u8 v0 = 0;
-        sub_020360D0(10, &v0);
+        CommSys_SendDataFixedSize(10, &v0);
     } else {
         u8 v0 = 0;
-        sub_020360D0(10, &v0);
+        CommSys_SendDataFixedSize(10, &v0);
     }
 }
 
@@ -2041,7 +2041,7 @@ void sub_020383D4 (void)
 {
     u8 v0 = CommSys_CurNetId();
 
-    sub_020360D0(21, &v0);
+    CommSys_SendDataFixedSize(21, &v0);
 }
 
 BOOL sub_020383E8 (void)

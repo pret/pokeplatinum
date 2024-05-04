@@ -27,7 +27,7 @@ static u8 * sub_02095E80(int param0, void * param1, int param2);
 static int sub_02095E68(void);
 static int sub_02095E70(void);
 
-static const UnkStruct_02039A58 Unk_020F59BC[] = {
+static const CommCmdTable Unk_020F59BC[] = {
     {sub_02095CFC, sub_02095E78, sub_02095E80},
     {sub_02095D74, sub_02032950},
     {sub_02095D94, sub_02032950},
@@ -43,7 +43,7 @@ static const UnkStruct_02039A58 Unk_020F59BC[] = {
 
 void sub_02095CD4 (void * param0)
 {
-    int v0 = sizeof(Unk_020F59BC) / sizeof(UnkStruct_02039A58);
+    int v0 = sizeof(Unk_020F59BC) / sizeof(CommCmdTable);
     CommCmd_Init(Unk_020F59BC, v0, param0);
 }
 

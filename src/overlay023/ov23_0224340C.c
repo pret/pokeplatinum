@@ -987,7 +987,7 @@ static UnkStruct_ov23_02243DA8 * ov23_02243A80 (int param0, int param1, UnkStruc
 
 void ov23_02243AD4 (u8 param0)
 {
-    sub_020360D0(32, &param0);
+    CommSys_SendDataFixedSize(32, &param0);
 }
 
 void ov23_02243AE8 (void)
@@ -2053,7 +2053,7 @@ static void ov23_02244C70 (SysTask * param0, void * param1)
         if (v0->unk_14 == 28) {
             u8 v2 = Unk_ov23_02257764->unk_B9F;
 
-            sub_020360D0(38, &v2);
+            CommSys_SendDataFixedSize(38, &v2);
         }
 
         if (v0->unk_14 > 30) {

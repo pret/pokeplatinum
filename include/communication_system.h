@@ -45,7 +45,7 @@ void sub_02036008(int param0, int param1, void * param2, void * param3);
 void sub_02036030(int param0, int param1, void * param2, void * param3);
 void sub_02036058(int param0, int param1, void * param2, void * param3);
 u16 CommSys_CurNetId(void);
-BOOL sub_020360D0(int param0, const void * param1);
+BOOL CommSys_SendDataFixedSize(int param0, const void * param1);
 BOOL Link_Message(int param0);
 BOOL sub_020360E8(void);
 BOOL CommSys_CheckError(void);

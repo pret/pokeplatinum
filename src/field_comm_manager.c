@@ -384,7 +384,7 @@ static void sub_02059B10 (void)
 
         {
             u8 v0 = 1;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
 
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
@@ -425,7 +425,7 @@ static void sub_02059BF4 (void)
 
         {
             u8 v0 = 1;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
 
         FieldCommMan_SetTask(sub_02059CD8, 0);
@@ -446,7 +446,7 @@ static void sub_02059C2C (BOOL param0, const Party * party)
     } else {
         {
             u8 v0 = 3;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
 
         FieldCommMan_SetTask(sub_02059BF4, 0);
@@ -481,7 +481,7 @@ static void sub_02059CD8 (void)
 
         {
             u8 v0 = 0;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
     }
 

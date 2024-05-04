@@ -1528,7 +1528,7 @@ static void ov23_02250B9C (SysTask * param0, void * param1)
         {
             u8 v1 = 0;
 
-            sub_020360D0(84, &v1);
+            CommSys_SendDataFixedSize(84, &v1);
         }
         return;
     case 4:

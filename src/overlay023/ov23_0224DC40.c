@@ -168,7 +168,7 @@ static void ov23_0224DC40 (UnkStruct_ov23_022577B0 * param0, int param1)
     v0.unk_00 = param0->unk_2C;
     v0.unk_01 = param1;
 
-    sub_020360D0(74, &v0);
+    CommSys_SendDataFixedSize(74, &v0);
 }
 
 static void ov23_0224DC54 (UnkStruct_ov23_0224E280 * param0, int param1)
@@ -178,7 +178,7 @@ static void ov23_0224DC54 (UnkStruct_ov23_0224E280 * param0, int param1)
     v0.unk_00 = param0->unk_30;
     v0.unk_01 = param1;
 
-    sub_020360D0(73, &v0);
+    CommSys_SendDataFixedSize(73, &v0);
 }
 
 static void ov23_0224DC68 (UnkStruct_ov23_0224E280 * param0, int param1)
@@ -372,7 +372,7 @@ static BOOL ov23_0224DF1C (SysTask * param0, void * param1)
             v3.unk_01 = v0->unk_30;
             v3.unk_02 = 0;
 
-            sub_020360D0(79, &v3);
+            CommSys_SendDataFixedSize(79, &v3);
 
             v0->unk_32 = v1;
             v0->unk_37 = 30;
@@ -444,7 +444,7 @@ static BOOL ov23_0224E05C (SysTask * param0, void * param1)
         v2.unk_00 = (v1 + v0->unk_32 * 4);
         v2.unk_01 = v0->unk_30;
         v2.unk_02 = 2;
-        sub_020360D0(79, &v2);
+        CommSys_SendDataFixedSize(79, &v2);
         ov23_022540C8(ov23_0224219C(), v2.unk_00);
         ov23_022540E0(ov23_0224219C(), 6, v0->unk_33);
 
@@ -491,7 +491,7 @@ static void ov23_0224E19C (SysTask * param0, UnkStruct_ov23_0224E280 * param1)
 
     if (v0 == 0) {
         param1->unk_28.unk_00 = param1->unk_30;
-        sub_020360D0(77, &param1->unk_28);
+        CommSys_SendDataFixedSize(77, &param1->unk_28);
         param1->unk_37 = 21;
     } else {
         ov23_0224DC68(param1, 11);
@@ -1062,7 +1062,7 @@ static BOOL ov23_0224EB74 (SysTask * param0, void * param1)
         v2.unk_01 = v0->unk_2C;
         v2.unk_02 = 1;
 
-        sub_020360D0(79, &v2);
+        CommSys_SendDataFixedSize(79, &v2);
         ov23_0224DC40(v0, 32);
         break;
     }

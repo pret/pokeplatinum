@@ -286,7 +286,7 @@ void CommPlayer_SendXZPos (BOOL param0, int x, int z)
         data[4] = data[4] | 0x80;
     }
 
-    sub_020360D0(22, data);
+    CommSys_SendDataFixedSize(22, data);
     sCommPlayerManager->unk_2BB = TRUE;
 }
 
@@ -567,7 +567,7 @@ void sub_02057FC4 (BOOL param0)
             sCommPlayerManager->unk_2BC = param0;
         }
 
-        sub_020360D0(62, &sCommPlayerManager->unk_2BC);
+        CommSys_SendDataFixedSize(62, &sCommPlayerManager->unk_2BC);
     }
 }
 
@@ -576,7 +576,7 @@ static void sub_02057FF0 (BOOL param0)
     if (sCommPlayerManager != NULL) {
         if (sCommPlayerManager->unk_2BC != param0) {
             sCommPlayerManager->unk_2BC = param0;
-            sub_020360D0(62, &sCommPlayerManager->unk_2BC);
+            CommSys_SendDataFixedSize(62, &sCommPlayerManager->unk_2BC);
         }
     }
 }
@@ -1713,7 +1713,7 @@ void sub_0205948C (int param0)
 
     if (sCommPlayerManager->unk_00 == 0x10) {
         u8 data = 1;
-        sub_020360D0(62, &data);
+        CommSys_SendDataFixedSize(62, &data);
     }
 
     if (sCommPlayerManager->unk_00 == 0) {

@@ -75,7 +75,7 @@ static BOOL sub_0203233C (UnkStruct_0203233C * param0, u8 param1)
 
 static BOOL sub_02032358 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * param1)
 {
-    int v0 = sub_02032868(param0->unk_0E);
+    int v0 = CommCmd_PacketSizeOf(param0->unk_0E);
 
     if (v0 == 0xffff) {
         if (param1->unk_04 < 3) {
@@ -106,7 +106,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
 {
     int v0;
     int v1;
-    int v2 = sub_02032868(param0->unk_0E);
+    int v2 = CommCmd_PacketSizeOf(param0->unk_0E);
 
     if (v2 == 0xffff) {
         v1 = 3;
@@ -152,7 +152,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     return 1;
 }
 
-BOOL sub_02032498 (UnkStruct_020322F8 * param0, int param1, u8 * param2, int param3, BOOL param4, BOOL param5)
+BOOL sub_02032498 (UnkStruct_020322F8 * param0, int cmd, u8 * param2, int param3, BOOL param4, BOOL param5)
 {
     UnkStruct_020322D8 * v0;
     UnkStruct_020322D8 * v1 = sub_020322D8(param0);
@@ -166,7 +166,7 @@ BOOL sub_02032498 (UnkStruct_020322F8 * param0, int param1, u8 * param2, int par
     }
 
     GF_ASSERT(param3 < 65534);
-    v3 = sub_02032868(param1);
+    v3 = CommCmd_PacketSizeOf(cmd);
 
     if (0xffff == v3) {
         v3 = param3;
@@ -186,7 +186,7 @@ BOOL sub_02032498 (UnkStruct_020322F8 * param0, int param1, u8 * param2, int par
     }
 
     v1->unk_0C = v3;
-    v1->unk_0E = param1;
+    v1->unk_0E = cmd;
     v1->unk_00 = param2;
 
     if (param4 == 1) {

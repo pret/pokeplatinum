@@ -887,7 +887,7 @@ static void ov23_02252038 (SysTask * param0, void * param1)
         if (v1 == 0xffffffff) {
             return;
         } else if (v1 == 0) {
-            sub_020360D0(89, &v0->unk_0C);
+            CommSys_SendDataFixedSize(89, &v0->unk_0C);
         } else {
             sub_0205948C(0x40);
             ov23_02254044(ov23_0224219C());

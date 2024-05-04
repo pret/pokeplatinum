@@ -167,8 +167,6 @@ void sub_02050224 (TaskManager * param0, u16 param1, u16 param2, u16 * param3)
 
     CommFieldCmd_Init(v0);
     sub_02050944(param0, sub_02050264, v0);
-
-    return;
 }
 
 static BOOL sub_02050264 (TaskManager * param0)

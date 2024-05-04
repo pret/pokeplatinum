@@ -24,7 +24,7 @@ static int ov116_02260490(void);
 static int ov116_02260494(void);
 static int ov116_02260498(void);
 
-static const UnkStruct_02039A58 Unk_ov116_02267740[] = {
+static const CommCmdTable Unk_ov116_02267740[] = {
     {ov116_02260440, ov116_0226048C, NULL},
     {ov116_02260458, ov116_02260488, NULL},
     {ov116_02260464, ov116_02260490, NULL},
@@ -96,14 +96,14 @@ static int ov116_02260498 (void)
     return sizeof(UnkStruct_ov116_02260498);
 }
 
-const UnkStruct_02039A58 * ov116_0226049C (void)
+const CommCmdTable * ov116_0226049C (void)
 {
     return Unk_ov116_02267740;
 }
 
 int ov116_022604A4 (void)
 {
-    return sizeof(Unk_ov116_02267740) / sizeof(UnkStruct_02039A58);
+    return sizeof(Unk_ov116_02267740) / sizeof(CommCmdTable);
 }
 
 void ov116_022604A8 (UnkStruct_ov116_0226139C * param0)

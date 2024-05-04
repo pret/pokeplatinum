@@ -600,7 +600,7 @@ void ov23_02242830 (u8 param0)
     v1.unk_00 = v0;
     v1.unk_01 = (v2 & 0xf) * 16 + (v3 & 0xf);
 
-    sub_020360D0(28, &v1);
+    CommSys_SendDataFixedSize(28, &v1);
     sub_0203572C();
 
     Unk_ov23_02257748->unk_146 = 8;
@@ -1241,7 +1241,7 @@ void ov23_02243360 (void)
     v0.unk_04 = ov23_0224DB84();
     v0.unk_05 = ov23_02241670();
 
-    sub_020360D0(70, &v0);
+    CommSys_SendDataFixedSize(70, &v0);
 }
 
 void ov23_02243390 (int param0, int param1, void * param2, void * param3)

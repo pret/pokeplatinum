@@ -105,7 +105,7 @@ void sub_0203650C (void)
 {
     if (sCommTool) {
         if (sCommTool->sendTiming) {
-            if (sub_020360D0(16, &sCommTool->syncNo)) {
+            if (CommSys_SendDataFixedSize(16, &sCommTool->syncNo)) {
                 sCommTool->sendTiming = 0;
             }
         }
@@ -150,7 +150,7 @@ void sub_02036594 (u8 param0, u8 param1)
     v0.unk_00 = param0;
     v0.unk_01 = param1;
 
-    sub_020360D0(19, &v0);
+    CommSys_SendDataFixedSize(19, &v0);
 }
 
 int sub_020365A8 (int param0, u8 param1)
@@ -188,7 +188,7 @@ BOOL sub_02036614 (int param0, const void * param1)
 {
     if (sCommTool) {
         MI_CpuCopy8(param1, sCommTool->unk_18[param0], COMM_TOOL_TEMP_DATA_SIZE);
-        sub_020360D0(20, sCommTool->unk_18[param0]);
+        CommSys_SendDataFixedSize(20, sCommTool->unk_18[param0]);
         return 1;
     }
 

@@ -489,7 +489,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             if (v6 == sub_0202958C(v5)) {
                 ov23_02253F40(ov23_022421AC(), 7, 1, ov23_0224A300);
             } else {
-                sub_020360D0(96, &v6);
+                CommSys_SendDataFixedSize(96, &v6);
             }
 
             sub_0200502C(4, 1060, 60, 0, 0xff, NULL);
@@ -529,7 +529,7 @@ void ov23_0224AAB0 (void)
     v0->unk_2B9 = 0;
 
     if (v0->unk_290[CommSys_CurNetId()]) {
-        sub_020360D0(91, v0->unk_290[CommSys_CurNetId()]);
+        CommSys_SendDataFixedSize(91, v0->unk_290[CommSys_CurNetId()]);
     } else {
         TrainerInfo * v0 = TrainerInfo_New(15);
         Strbuf* v1 = Strbuf_Init(20, 15);
@@ -538,7 +538,7 @@ void ov23_0224AAB0 (void)
         GF_ASSERT(v1);
 
         TrainerInfo_SetNameFromStrbuf(v0, v1);
-        sub_020360D0(91, v0);
+        CommSys_SendDataFixedSize(91, v0);
         Strbuf_Free(v1);
         Heap_FreeToHeap(v0);
     }

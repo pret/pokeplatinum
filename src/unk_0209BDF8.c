@@ -30,7 +30,7 @@ typedef struct {
 
 static BOOL sub_0209BE84(UnkStruct_0209BDF8 * param0, u32 param1, const void * param2, u32 param3);
 
-static const UnkStruct_02039A58 Unk_020F8EA8[135];
+static const CommCmdTable Unk_020F8EA8[135];
 static const UnkFuncPtr_020F8E60 Unk_020F8E60[18];
 
 UnkStruct_0209BDF8 * sub_0209BDF8 (UnkStruct_0209C194 * param0, u32 param1)
@@ -361,7 +361,7 @@ void * sub_0209C188 (UnkStruct_0209BDF8 * param0, int param1)
     return (void *)v0;
 }
 
-static const UnkStruct_02039A58 Unk_020F8EA8[135] = {
+static const CommCmdTable Unk_020F8EA8[135] = {
     {sub_02099510, sub_0203294C, NULL},
     {sub_02099510, sub_0203294C, NULL},
     {sub_02099510, sub_0203294C, NULL},

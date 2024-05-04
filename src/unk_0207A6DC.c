@@ -78,7 +78,7 @@ static void sub_0207AD40(SysTask * param0, void * param1);
 static void sub_0207AE34(int param0, int param1, void * param2, void * param3);
 static void sub_0207ADD4(TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
 
-static const UnkStruct_02039A58 Unk_020F099C[] = {
+static const CommCmdTable Unk_020F099C[] = {
     {sub_0207ADB4, sub_02032944, NULL},
     {sub_0207A8A8, sub_02032944, NULL},
     {sub_0207A934, sub_0207A758, NULL},
@@ -95,7 +95,7 @@ static const UnkStruct_02039A58 Unk_020F099C[] = {
 
 void sub_0207A6DC (void * param0)
 {
-    int v0 = sizeof(Unk_020F099C) / sizeof(UnkStruct_02039A58);
+    int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
     BattleSystem * v1;
     UnkStruct_0207ACB4 * v2;
     UnkStruct_0207AD40 * v3;
@@ -125,7 +125,7 @@ void sub_0207A6DC (void * param0)
 
 void sub_0207A744 (void * param0)
 {
-    int v0 = sizeof(Unk_020F099C) / sizeof(UnkStruct_02039A58);
+    int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
     CommCmd_Init(Unk_020F099C, v0, param0);
 }
 

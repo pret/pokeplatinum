@@ -89,7 +89,7 @@ typedef struct {
     u8 unk_68F[8];
     u8 unk_697[8];
     u8 unk_69F[4];
-    u8 unk_6A3;
+    u8 transmissionState;
     u8 unk_6A4;
     u8 transmissionType;
     u8 unk_6A6;
@@ -128,7 +128,7 @@ static BOOL sub_020357F0(u8 * param0);
 static void sub_020358C0(u8 * param0);
 static BOOL sub_020356A0(u8 * param0, int param1);
 static BOOL sub_02035730(u8 * param0);
-static void sub_02035F84(void);
+static void CommSys_Transmission(void);
 static BOOL sub_0203594C(void);
 
 static u32 Unk_021C07C8 = 0;
@@ -387,7 +387,7 @@ static void CommSys_UpdateTransitionType (void)
         sub_02034670();
     }
 
-    sub_02035F84();
+    CommSys_Transmission();
 }
 
 static void CommSys_SwitchTransitionType (int type)
@@ -1470,7 +1470,7 @@ static void CommSys_RecvDataSingle (CommRing * ring, int netId, u8 * param2, Com
         if (param3->unk_08 != 0xffff) {
             size = param3->unk_08;
         } else {
-            size = sub_02032868(cmd);
+            size = CommCmd_PacketSizeOf(cmd);
 
             if (sCommunicationSystem->unk_6B1) {
                 return;
@@ -1700,7 +1700,7 @@ BOOL sub_02035F58 (int param0, const void * param1, int param2)
     return sub_02032498(&sCommunicationSystem->unk_580, param0, (u8 *)param1, param2, 0, 0);
 }
 
-static void sub_02035F84 (void)
+static void CommSys_Transmission (void)
 {
     BOOL v0 = 0;
 
@@ -1708,22 +1708,22 @@ static void sub_02035F84 (void)
         return;
     }
 
-    switch (sCommunicationSystem->unk_6A3) {
+    switch (sCommunicationSystem->transmissionState) {
     case 1:
         if (CommSys_TransmissionType() == 1) {
-            v0 = sub_020360D0(11, &sCommunicationSystem->unk_6A4);
+            v0 = CommSys_SendDataFixedSize(11, &sCommunicationSystem->unk_6A4);
         } else {
             v0 = CommSys_SendDataServer(11, &sCommunicationSystem->unk_6A4, 1);
         }
 
         if (v0) {
-            sCommunicationSystem->unk_6A3 = 2;
+            sCommunicationSystem->transmissionState = 2;
         }
         break;
     case 3:
-        if (sub_020360D0(12, &sCommunicationSystem->unk_6A4)) {
+        if (CommSys_SendDataFixedSize(12, &sCommunicationSystem->unk_6A4)) {
             CommSys_SwitchTransitionType(sCommunicationSystem->unk_6A4);
-            sCommunicationSystem->unk_6A3 = 0;
+            sCommunicationSystem->transmissionState = 0;
         }
         break;
     }
@@ -1738,7 +1738,7 @@ void sub_02036008 (int param0, int param1, void * param2, void * param3)
         return;
     }
 
-    sCommunicationSystem->unk_6A3 = 1;
+    sCommunicationSystem->transmissionState = 1;
     sCommunicationSystem->unk_6A4 = v0[0];
 }
 
@@ -1752,7 +1752,7 @@ void sub_02036030 (int param0, int param1, void * param2, void * param3)
     }
 
     sCommunicationSystem->unk_6A4 = v0[0];
-    sCommunicationSystem->unk_6A3 = 3;
+    sCommunicationSystem->transmissionState = 3;
 }
 
 void sub_02036058 (int param0, int param1, void * param2, void * param3)
@@ -1764,9 +1764,9 @@ void sub_02036058 (int param0, int param1, void * param2, void * param3)
         return;
     }
 
-    if (sCommunicationSystem->unk_6A3 == 2) {
+    if (sCommunicationSystem->transmissionState == 2) {
         CommSys_SwitchTransitionType(v0[0]);
-        sCommunicationSystem->unk_6A3 = 0;
+        sCommunicationSystem->transmissionState = 0;
     }
 }
 
@@ -1789,7 +1789,7 @@ u16 CommSys_CurNetId (void)
     return 0;
 }
 
-BOOL sub_020360D0 (int param0, const void * param1)
+BOOL CommSys_SendDataFixedSize (int param0, const void * param1)
 {
     return CommSys_SendData(param0, param1, 0);
 }

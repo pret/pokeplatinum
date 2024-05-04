@@ -563,7 +563,7 @@ static void ov17_0224D6CC (SysTask * param0, void * param1)
         ov17_0224B20C(v0->unk_04, &v0->unk_08);
         v0->unk_12 = 0;
     } else {
-        if (sub_020360D0(25, &v0->unk_08) == 1) {
+        if (CommSys_SendDataFixedSize(25, &v0->unk_08) == 1) {
             v0->unk_12 = 0;
         }
     }

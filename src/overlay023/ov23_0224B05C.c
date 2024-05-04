@@ -831,7 +831,7 @@ static void ov23_0224BA6C (SysTask * param0, void * param1)
     v1.unk_00 = v0->unk_2C;
     v1.unk_02 = 0;
 
-    sub_020360D0(59, &v1);
+    CommSys_SendDataFixedSize(59, &v1);
     SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
@@ -918,7 +918,7 @@ static void ov23_0224BAAC (SysTask * param0, void * param1)
         v8.unk_00 = v0->unk_2C;
         v8.unk_02 = 0;
 
-        sub_020360D0(59, &v8);
+        CommSys_SendDataFixedSize(59, &v8);
         ov23_0224BA48(param0, v0);
         return;
     }
@@ -1136,7 +1136,7 @@ static void ov23_0224BE28 (SysTask * param0, void * param1)
         if (sub_02033DFC() && (CommSys_CurNetId() == 0)) {
             u8 v9 = 1;
 
-            sub_020360D0(86, &v9);
+            CommSys_SendDataFixedSize(86, &v9);
             ov23_0224BA48(param0, v0);
 
             return;
@@ -1149,7 +1149,7 @@ static void ov23_0224BE28 (SysTask * param0, void * param1)
         v8.unk_00 = v0->unk_2C;
         v8.unk_02 = 1;
 
-        sub_020360D0(59, &v8);
+        CommSys_SendDataFixedSize(59, &v8);
         ov23_0224BA48(param0, v0);
 
         Unk_ov23_022577AC->unk_12D4 = 1;
@@ -1848,7 +1848,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
 
             ov23_0224D238();
 
-            sub_020360D0(86, &v10);
+            CommSys_SendDataFixedSize(86, &v10);
             SysTask_Done(param0);
             Heap_FreeToHeap(v0);
 
@@ -1880,7 +1880,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
 void ov23_0224CD68 (void)
 {
     u8 v0 = 0;
-    sub_020360D0(86, &v0);
+    CommSys_SendDataFixedSize(86, &v0);
 }
 
 int ov23_0224CD7C (void)
