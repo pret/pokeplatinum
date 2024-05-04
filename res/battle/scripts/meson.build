@@ -11,6 +11,7 @@ s_to_bin_gen = generator(make_script_bin_sh,
         '-i', relative_source_root / 'include',
         '-i', relative_source_root / 'asm',
         '-i', '.' / 'res' / 'text',
+        '-i', '.' / 'res',
         '-i', '.',
         '--assembler', mwrap_exe.full_path(),
         '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
@@ -18,17 +19,23 @@ s_to_bin_gen = generator(make_script_bin_sh,
         '@INPUT@',
     ],
     depends: [
-        pl_msg_narc # for GMM headers
+        pl_msg_narc, # for GMM headers
+        generated_consts_asm, # for ASM headers
+        generated_consts_c, # for C headers
     ],
     output: '@BASENAME@'
 )
 
+sub_seq_basename = 'sub_seq'
+
 be_seq_target_name = 'be_seq.narc'
-sub_seq_target_name = 'sub_seq.narc'
 waza_seq_target_name = 'waza_seq.narc'
 
+sub_seq_narc_name = sub_seq_basename + '.narc'
+sub_seq_naix_name = sub_seq_basename + '.naix'
+
 be_seq_private_dir = relative_build_dir / be_seq_target_name + '.p'
-sub_seq_private_dir = relative_build_dir / sub_seq_target_name + '.p'
+sub_seq_private_dir = relative_build_dir / sub_seq_narc_name + '.p'
 waza_seq_private_dir = relative_build_dir / waza_seq_target_name + '.p'
 
 be_seq_narc = custom_target(be_seq_target_name,
@@ -44,8 +51,11 @@ be_seq_narc = custom_target(be_seq_target_name,
     ]
 )
 
-sub_seq_narc = custom_target(sub_seq_target_name,
-    output: sub_seq_target_name,
+sub_seq_narc = custom_target(sub_seq_narc_name,
+    output: [
+        sub_seq_narc_name,
+        sub_seq_naix_name,
+    ],
     input: s_to_bin_gen.process(
         subscript_files,
         extra_args: ['--out-dir', sub_seq_private_dir]
@@ -53,7 +63,7 @@ sub_seq_narc = custom_target(sub_seq_target_name,
     command: [
         knarc_exe,
         '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT@',
+        '-p', '@OUTPUT0@',
         '-o', sub_seq_narc_order,
         '-n'
     ]
@@ -73,5 +83,7 @@ waza_seq_narc = custom_target(waza_seq_target_name,
 )
 
 nitrofs_files += be_seq_narc
-nitrofs_files += sub_seq_narc
+nitrofs_files += sub_seq_narc[0]
 nitrofs_files += waza_seq_narc
+
+naix_headers += sub_seq_narc[1]
