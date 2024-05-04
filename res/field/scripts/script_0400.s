@@ -162,51 +162,51 @@ _02C5:
 
 _0326:
     ClearFlag 0x183
-    ScrCmd_028 0x402A, 35
+    SetVar 0x402A, 35
     Return
 
 _0332:
     ClearFlag 0x183
     ClearFlag 0x184
-    ScrCmd_028 0x402A, 22
-    ScrCmd_028 0x402B, 23
+    SetVar 0x402A, 22
+    SetVar 0x402B, 23
     Return
 
 _0348:
     ClearFlag 0x183
     ClearFlag 0x184
-    ScrCmd_028 0x402A, 22
-    ScrCmd_028 0x402B, 23
+    SetVar 0x402A, 22
+    SetVar 0x402B, 23
     Return
 
 _035E:
     ClearFlag 0x183
-    ScrCmd_028 0x402A, 43
+    SetVar 0x402A, 43
     Return
 
 _036A:
     ClearFlag 0x183
     ClearFlag 0x184
-    ScrCmd_028 0x402A, 22
-    ScrCmd_028 0x402B, 23
+    SetVar 0x402A, 22
+    SetVar 0x402B, 23
     Return
 
 _0380:
     ClearFlag 0x183
-    ScrCmd_028 0x402A, 71
+    SetVar 0x402A, 71
     Return
 
 _038C:
     ClearFlag 0x183
-    ScrCmd_028 0x402A, 10
+    SetVar 0x402A, 10
     Return
 
 _0398:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_028 0x8004, 0
-    ScrCmd_028 0x8006, 0
+    SetVar 0x8004, 0
+    SetVar 0x8006, 0
     CompareVarToValue 0x402A, 35
     CallIf 1, _1331
     CompareVarToValue 0x402A, 22
@@ -228,8 +228,8 @@ _040F:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_028 0x8004, 1
-    ScrCmd_028 0x8006, 0
+    SetVar 0x8004, 1
+    SetVar 0x8006, 0
     CompareVarToValue 0x402B, 35
     CallIf 1, _1331
     CompareVarToValue 0x402B, 23
@@ -248,7 +248,7 @@ _040F:
     End
 
 _0486:
-    ScrCmd_028 0x8000, 1
+    SetVar 0x8000, 1
     ScrCmd_201 0x4001
     CompareVarToValue 0x4001, 69
     CallIf 1, _05B9
@@ -1173,7 +1173,7 @@ _105B:
     Return
 
 _1060:
-    ScrCmd_028 0x8005, 0x173
+    SetVar 0x8005, 0x173
     CheckFlag 0x97F
     CallIf 1, _109F
     CheckFlag 0x980
@@ -1187,27 +1187,27 @@ _1060:
     Return
 
 _109F:
-    ScrCmd_028 0x8005, 0x370
+    SetVar 0x8005, 0x370
     Return
 
 _10A7:
-    ScrCmd_028 0x8005, 0x371
+    SetVar 0x8005, 0x371
     Return
 
 _10AF:
-    ScrCmd_028 0x8005, 0x372
+    SetVar 0x8005, 0x372
     Return
 
 _10B7:
-    ScrCmd_028 0x8005, 0x38C
+    SetVar 0x8005, 0x38C
     Return
 
 _10BF:
-    ScrCmd_028 0x8005, 0x394
+    SetVar 0x8005, 0x394
     Return
 
 _10C7:
-    ScrCmd_028 0x8005, 0x172
+    SetVar 0x8005, 0x172
     CheckFlag 0x97F
     CallIf 1, _1106
     CheckFlag 0x980
@@ -1221,27 +1221,27 @@ _10C7:
     Return
 
 _1106:
-    ScrCmd_028 0x8005, 0x37E
+    SetVar 0x8005, 0x37E
     Return
 
 _110E:
-    ScrCmd_028 0x8005, 0x37F
+    SetVar 0x8005, 0x37F
     Return
 
 _1116:
-    ScrCmd_028 0x8005, 0x380
+    SetVar 0x8005, 0x380
     Return
 
 _111E:
-    ScrCmd_028 0x8005, 0x390
+    SetVar 0x8005, 0x390
     Return
 
 _1126:
-    ScrCmd_028 0x8005, 0x398
+    SetVar 0x8005, 0x398
     Return
 
 _112E:
-    ScrCmd_028 0x8005, 0x171
+    SetVar 0x8005, 0x171
     CheckFlag 0x97F
     CallIf 1, _116D
     CheckFlag 0x980
@@ -1255,27 +1255,27 @@ _112E:
     Return
 
 _116D:
-    ScrCmd_028 0x8005, 0x36A
+    SetVar 0x8005, 0x36A
     Return
 
 _1175:
-    ScrCmd_028 0x8005, 0x36B
+    SetVar 0x8005, 0x36B
     Return
 
 _117D:
-    ScrCmd_028 0x8005, 0x36C
+    SetVar 0x8005, 0x36C
     Return
 
 _1185:
-    ScrCmd_028 0x8005, 0x38A
+    SetVar 0x8005, 0x38A
     Return
 
 _118D:
-    ScrCmd_028 0x8005, 0x392
+    SetVar 0x8005, 0x392
     Return
 
 _1195:
-    ScrCmd_028 0x8005, 0x1CC
+    SetVar 0x8005, 0x1CC
     CheckFlag 0x97F
     CallIf 1, _11D4
     CheckFlag 0x980
@@ -1289,27 +1289,27 @@ _1195:
     Return
 
 _11D4:
-    ScrCmd_028 0x8005, 0x376
+    SetVar 0x8005, 0x376
     Return
 
 _11DC:
-    ScrCmd_028 0x8005, 0x377
+    SetVar 0x8005, 0x377
     Return
 
 _11E4:
-    ScrCmd_028 0x8005, 0x378
+    SetVar 0x8005, 0x378
     Return
 
 _11EC:
-    ScrCmd_028 0x8005, 0x38E
+    SetVar 0x8005, 0x38E
     Return
 
 _11F4:
-    ScrCmd_028 0x8005, 0x396
+    SetVar 0x8005, 0x396
     Return
 
 _11FC:
-    ScrCmd_028 0x8005, 0x170
+    SetVar 0x8005, 0x170
     CheckFlag 0x97F
     CallIf 1, _123B
     CheckFlag 0x980
@@ -1323,27 +1323,27 @@ _11FC:
     Return
 
 _123B:
-    ScrCmd_028 0x8005, 0x373
+    SetVar 0x8005, 0x373
     Return
 
 _1243:
-    ScrCmd_028 0x8005, 0x374
+    SetVar 0x8005, 0x374
     Return
 
 _124B:
-    ScrCmd_028 0x8005, 0x375
+    SetVar 0x8005, 0x375
     Return
 
 _1253:
-    ScrCmd_028 0x8005, 0x38D
+    SetVar 0x8005, 0x38D
     Return
 
 _125B:
-    ScrCmd_028 0x8005, 0x395
+    SetVar 0x8005, 0x395
     Return
 
 _1263:
-    ScrCmd_028 0x8005, 0x1D1
+    SetVar 0x8005, 0x1D1
     CheckFlag 0x97F
     CallIf 1, _12A2
     CheckFlag 0x980
@@ -1357,27 +1357,27 @@ _1263:
     Return
 
 _12A2:
-    ScrCmd_028 0x8005, 0x379
+    SetVar 0x8005, 0x379
     Return
 
 _12AA:
-    ScrCmd_028 0x8005, 0x37A
+    SetVar 0x8005, 0x37A
     Return
 
 _12B2:
-    ScrCmd_028 0x8005, 0x37B
+    SetVar 0x8005, 0x37B
     Return
 
 _12BA:
-    ScrCmd_028 0x8005, 0x38F
+    SetVar 0x8005, 0x38F
     Return
 
 _12C2:
-    ScrCmd_028 0x8005, 0x397
+    SetVar 0x8005, 0x397
     Return
 
 _12CA:
-    ScrCmd_028 0x8005, 0x1AF
+    SetVar 0x8005, 0x1AF
     CheckFlag 0x97F
     CallIf 1, _1309
     CheckFlag 0x980
@@ -1391,23 +1391,23 @@ _12CA:
     Return
 
 _1309:
-    ScrCmd_028 0x8005, 0x36D
+    SetVar 0x8005, 0x36D
     Return
 
 _1311:
-    ScrCmd_028 0x8005, 0x36E
+    SetVar 0x8005, 0x36E
     Return
 
 _1319:
-    ScrCmd_028 0x8005, 0x36F
+    SetVar 0x8005, 0x36F
     Return
 
 _1321:
-    ScrCmd_028 0x8005, 0x38B
+    SetVar 0x8005, 0x38B
     Return
 
 _1329:
-    ScrCmd_028 0x8005, 0x393
+    SetVar 0x8005, 0x393
     Return
 
 _1331:
@@ -1469,7 +1469,7 @@ _13EA:
     Return
 
 _13F7:
-    ScrCmd_028 0x8006, 1
+    SetVar 0x8006, 1
     Return
 
     .byte 0

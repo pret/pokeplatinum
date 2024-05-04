@@ -38,14 +38,14 @@ _000C:
     End
 
 _0074:
-    ScrCmd_028 0x4058, 0
+    SetVar 0x4058, 0
     ScrCmd_061
     End
 
 _007E:
     ScrCmd_186 1, 16, 14
-    ScrCmd_05E 0, _0094
-    ScrCmd_05F
+    ApplyMovement 0, _0094
+    WaitMovement
     Return
 
     .balign 4, 0

@@ -65,12 +65,12 @@ _00AC:
 
 _00B7:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _00DC
-    ScrCmd_05F
+    ApplyMovement 0xFF, _00DC
+    WaitMovement
     ScrCmd_049 0x61A
     ClearFlag 0x283
     ScrCmd_064 1
-    ScrCmd_028 0x4001, 1
+    SetVar 0x4001, 1
     ScrCmd_061
     End
 

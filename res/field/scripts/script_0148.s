@@ -125,7 +125,7 @@ _00FE:
     ScrCmd_042 15, 1
     ScrCmd_042 16, 2
     ScrCmd_043
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _0150
     CompareVarToValue 0x8008, 1
@@ -134,8 +134,8 @@ _00FE:
     End
 
 _0150:
-    ScrCmd_028 0x8004, 1
-    ScrCmd_028 0x8005, 200
+    SetVar 0x8004, 1
+    SetVar 0x8005, 200
     ScrCmd_07D 42, 0x8004, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _01FF
@@ -147,8 +147,8 @@ _0150:
     End
 
 _018F:
-    ScrCmd_028 0x8004, 10
-    ScrCmd_028 0x8005, 0x7D0
+    SetVar 0x8004, 10
+    SetVar 0x8005, 0x7D0
     ScrCmd_07D 42, 0x8004, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _01FF
@@ -211,7 +211,7 @@ _025B:
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0537
     Call _0697
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _031B
     CompareVarToValue 0x8008, 1
@@ -251,7 +251,7 @@ _031B:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _0557
     GoTo _04B5
     End
@@ -260,7 +260,7 @@ _0344:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _0577
     GoTo _04B5
     End
@@ -269,7 +269,7 @@ _036D:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _0597
     GoTo _04B5
     End
@@ -278,7 +278,7 @@ _0396:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _05B7
     GoTo _04B5
     End
@@ -287,7 +287,7 @@ _03BF:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _05D7
     GoTo _04B5
     End
@@ -296,7 +296,7 @@ _03E8:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _05F7
     GoTo _04B5
     End
@@ -305,7 +305,7 @@ _0411:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _0617
     GoTo _04B5
     End
@@ -314,7 +314,7 @@ _043A:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _0637
     GoTo _04B5
     End
@@ -323,7 +323,7 @@ _0463:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _0657
     GoTo _04B5
     End
@@ -332,7 +332,7 @@ _048C:
     ScrCmd_071 0x800C, 0x1900
     CompareVarToValue 0x800C, 0
     GoToIf 1, _052C
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     Call _0677
     GoTo _04B5
     End
@@ -347,11 +347,10 @@ _04B5:
 _04CE:
     CompareVarToValue 0x8005, 0
     GoToIf 1, _0503
-    ScrCmd_289 0x800C, 0x8007, 0x8000, 0x8001, 0x8002, 0x8003
-    ScrCmd_014 0x334
-    ScrCmd_023 0x1900
+    ScrCmd_289 0x800C, 0x8007, 0x8000, 0x8001, 0x8002, 0x8003, 20
+    ScrCmd_334 35, 0x1900
     ScrCmd_1A3 0x1900
-    ScrCmd_027 0x8005, 1
+    SubVar 0x8005, 1
     GoTo _04CE
     End
 
@@ -400,83 +399,83 @@ _054D:
     End
 
 _0557:
-    ScrCmd_028 0x8007, 32
-    ScrCmd_028 0x8000, 32
-    ScrCmd_028 0x8001, 0
-    ScrCmd_028 0x8002, 0
-    ScrCmd_028 0x8003, 0
+    SetVar 0x8007, 32
+    SetVar 0x8000, 32
+    SetVar 0x8001, 0
+    SetVar 0x8002, 0
+    SetVar 0x8003, 0
     Return
 
 _0577:
-    ScrCmd_028 0x8007, 32
-    ScrCmd_028 0x8000, 0
-    ScrCmd_028 0x8001, 32
-    ScrCmd_028 0x8002, 0
-    ScrCmd_028 0x8003, 0
+    SetVar 0x8007, 32
+    SetVar 0x8000, 0
+    SetVar 0x8001, 32
+    SetVar 0x8002, 0
+    SetVar 0x8003, 0
     Return
 
 _0597:
-    ScrCmd_028 0x8007, 32
-    ScrCmd_028 0x8000, 0
-    ScrCmd_028 0x8001, 0
-    ScrCmd_028 0x8002, 32
-    ScrCmd_028 0x8003, 0
+    SetVar 0x8007, 32
+    SetVar 0x8000, 0
+    SetVar 0x8001, 0
+    SetVar 0x8002, 32
+    SetVar 0x8003, 0
     Return
 
 _05B7:
-    ScrCmd_028 0x8007, 32
-    ScrCmd_028 0x8000, 0
-    ScrCmd_028 0x8001, 0
-    ScrCmd_028 0x8002, 0
-    ScrCmd_028 0x8003, 32
+    SetVar 0x8007, 32
+    SetVar 0x8000, 0
+    SetVar 0x8001, 0
+    SetVar 0x8002, 0
+    SetVar 0x8003, 32
     Return
 
 _05D7:
-    ScrCmd_028 0x8007, 0
-    ScrCmd_028 0x8000, 32
-    ScrCmd_028 0x8001, 32
-    ScrCmd_028 0x8002, 0
-    ScrCmd_028 0x8003, 0
+    SetVar 0x8007, 0
+    SetVar 0x8000, 32
+    SetVar 0x8001, 32
+    SetVar 0x8002, 0
+    SetVar 0x8003, 0
     Return
 
 _05F7:
-    ScrCmd_028 0x8007, 0
-    ScrCmd_028 0x8000, 32
-    ScrCmd_028 0x8001, 0
-    ScrCmd_028 0x8002, 32
-    ScrCmd_028 0x8003, 0
+    SetVar 0x8007, 0
+    SetVar 0x8000, 32
+    SetVar 0x8001, 0
+    SetVar 0x8002, 32
+    SetVar 0x8003, 0
     Return
 
 _0617:
-    ScrCmd_028 0x8007, 0
-    ScrCmd_028 0x8000, 32
-    ScrCmd_028 0x8001, 0
-    ScrCmd_028 0x8002, 0
-    ScrCmd_028 0x8003, 32
+    SetVar 0x8007, 0
+    SetVar 0x8000, 32
+    SetVar 0x8001, 0
+    SetVar 0x8002, 0
+    SetVar 0x8003, 32
     Return
 
 _0637:
-    ScrCmd_028 0x8007, 0
-    ScrCmd_028 0x8000, 0
-    ScrCmd_028 0x8001, 32
-    ScrCmd_028 0x8002, 32
-    ScrCmd_028 0x8003, 0
+    SetVar 0x8007, 0
+    SetVar 0x8000, 0
+    SetVar 0x8001, 32
+    SetVar 0x8002, 32
+    SetVar 0x8003, 0
     Return
 
 _0657:
-    ScrCmd_028 0x8007, 0
-    ScrCmd_028 0x8000, 0
-    ScrCmd_028 0x8001, 32
-    ScrCmd_028 0x8002, 0
-    ScrCmd_028 0x8003, 32
+    SetVar 0x8007, 0
+    SetVar 0x8000, 0
+    SetVar 0x8001, 32
+    SetVar 0x8002, 0
+    SetVar 0x8003, 32
     Return
 
 _0677:
-    ScrCmd_028 0x8007, 0
-    ScrCmd_028 0x8000, 0
-    ScrCmd_028 0x8001, 0
-    ScrCmd_028 0x8002, 32
-    ScrCmd_028 0x8003, 32
+    SetVar 0x8007, 0
+    SetVar 0x8000, 0
+    SetVar 0x8001, 0
+    SetVar 0x8002, 32
+    SetVar 0x8003, 32
     Return
 
 _0697:
@@ -500,7 +499,7 @@ _06FE:
     End
 
 _0700:
-    ScrCmd_026 0x4042, 1
+    AddVar 0x4042, 1
     Return
 
 _0708:

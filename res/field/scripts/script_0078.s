@@ -16,11 +16,11 @@ _0016:
     CheckFlag 130
     GoToIf 1, _0052
     ScrCmd_02C 0
-    ScrCmd_028 0x8004, 0x1C2
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1C2
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     SetFlag 130
-    ScrCmd_028 0x4114, 1
+    SetVar 0x4114, 1
     ScrCmd_14C 9
     GoTo _0052
     End

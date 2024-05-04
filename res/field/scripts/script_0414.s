@@ -34,9 +34,9 @@ _004E:
 
 _0066:
     ScrCmd_060
-    ScrCmd_05E 242, _0124
-    ScrCmd_05E 0xFF, _0144
-    ScrCmd_05F
+    ApplyMovement 242, _0124
+    ApplyMovement 0xFF, _0144
+    WaitMovement
     ScrCmd_0CE 0
     ScrCmd_02C 0
     ScrCmd_034
@@ -56,13 +56,13 @@ _0066:
     End
 
 _00D8:
-    ScrCmd_05E 0xFF, _0138
-    ScrCmd_05E 242, _012C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0138
+    ApplyMovement 242, _012C
+    WaitMovement
     GoTo _00F0
 
 _00F0:
-    ScrCmd_028 0x4082, 1
+    SetVar 0x4082, 1
     ScrCmd_061
     ScrCmd_049 0x603
     ScrCmd_0BC 6, 1, 0, 0

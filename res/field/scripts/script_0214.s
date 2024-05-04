@@ -50,8 +50,8 @@ _0055:
     End
 
 _0073:
-    ScrCmd_028 0x8004, 0x12A
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x12A
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0114
@@ -68,27 +68,27 @@ _0073:
     End
 
 _00CC:
-    ScrCmd_05E 3, _0138
-    ScrCmd_05F
+    ApplyMovement 3, _0138
+    WaitMovement
     GoTo _0102
     End
 
 _00DE:
-    ScrCmd_05E 3, _0144
-    ScrCmd_05F
+    ApplyMovement 3, _0144
+    WaitMovement
     GoTo _0102
     End
 
 _00F0:
-    ScrCmd_05E 3, _0144
-    ScrCmd_05F
+    ApplyMovement 3, _0144
+    WaitMovement
     GoTo _0102
     End
 
 _0102:
     ScrCmd_049 0x603
     ScrCmd_065 3
-    ScrCmd_028 0x4056, 2
+    SetVar 0x4056, 2
     ScrCmd_061
     End
 

@@ -10,7 +10,7 @@
     .short 0xFD13
 
 _0016:
-    ScrCmd_028 0x8007, 3
+    SetVar 0x8007, 3
     ScrCmd_014 0x7D2
     End
 
@@ -78,8 +78,8 @@ _007D:
 
 _00D9:
     ScrCmd_02C 4
-    ScrCmd_028 0x4002, 1
-    ScrCmd_028 0x8004, 5
+    SetVar 0x4002, 1
+    SetVar 0x8004, 5
     ScrCmd_014 0x7D9
     ScrCmd_031
     ScrCmd_034

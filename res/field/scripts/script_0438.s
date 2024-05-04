@@ -20,11 +20,11 @@ _001E:
     End
 
 _003E:
-    ScrCmd_028 0x4020, 97
+    SetVar 0x4020, 97
     End
 
 _0046:
-    ScrCmd_028 0x4020, 0
+    SetVar 0x4020, 0
     End
 
 _004E:
@@ -32,13 +32,13 @@ _004E:
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_186 18, 0x14B, 0x8005
     Call _008E
-    ScrCmd_05E 18, _0194
-    ScrCmd_05F
+    ApplyMovement 18, _0194
+    WaitMovement
     ScrCmd_014 0x7F8
-    ScrCmd_05E 18, _01A0
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _0174
-    ScrCmd_05F
+    ApplyMovement 18, _01A0
+    WaitMovement
+    ApplyMovement 0xFF, _0174
+    WaitMovement
     GoTo _009C
     End
 
@@ -86,24 +86,24 @@ _00F1:
 
 _012F:
     SetFlag 0x97F
-    ScrCmd_028 0x8004, 0x1BB
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1BB
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     Return
 
 _0145:
-    ScrCmd_028 0x8004, 6
+    SetVar 0x8004, 6
     ScrCmd_014 0x7D9
     ScrCmd_0D7 1, 6
     Return
 
 _0156:
     ScrCmd_034
-    ScrCmd_05E 18, _01A8
-    ScrCmd_05F
+    ApplyMovement 18, _01A8
+    WaitMovement
     ScrCmd_065 18
     ScrCmd_014 0x7F9
-    ScrCmd_028 0x408C, 1
+    SetVar 0x408C, 1
     ScrCmd_061
     End
 

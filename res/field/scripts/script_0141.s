@@ -27,51 +27,51 @@
     .short 0xFD13
 
 _005A:
-    ScrCmd_028 0x8004, 0
+    SetVar 0x8004, 0
     GoTo _00EA
 
 _0066:
-    ScrCmd_028 0x8004, 1
+    SetVar 0x8004, 1
     GoTo _00EA
 
 _0072:
-    ScrCmd_028 0x8004, 2
+    SetVar 0x8004, 2
     GoTo _00EA
 
 _007E:
-    ScrCmd_028 0x8004, 3
+    SetVar 0x8004, 3
     GoTo _00EA
 
 _008A:
-    ScrCmd_028 0x8004, 4
+    SetVar 0x8004, 4
     GoTo _00EA
 
 _0096:
-    ScrCmd_028 0x8004, 5
+    SetVar 0x8004, 5
     GoTo _00EA
 
 _00A2:
-    ScrCmd_028 0x8004, 6
+    SetVar 0x8004, 6
     GoTo _00EA
 
 _00AE:
-    ScrCmd_028 0x8004, 7
+    SetVar 0x8004, 7
     GoTo _00EA
 
 _00BA:
-    ScrCmd_028 0x8004, 8
+    SetVar 0x8004, 8
     GoTo _00EA
 
 _00C6:
-    ScrCmd_028 0x8004, 9
+    SetVar 0x8004, 9
     GoTo _00EA
 
 _00D2:
-    ScrCmd_028 0x8004, 10
+    SetVar 0x8004, 10
     GoTo _00EA
 
 _00DE:
-    ScrCmd_028 0x8004, 11
+    SetVar 0x8004, 11
     GoTo _00EA
 
 _00EA:
@@ -132,7 +132,7 @@ _01A4:
     ScrCmd_042 126, 1
     ScrCmd_042 127, 2
     ScrCmd_043
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 0
     GoToIf 1, _01E3
     CompareVarToValue 0x8008, 1
@@ -209,8 +209,8 @@ _02BB:
     End
 
 _02CA:
-    ScrCmd_028 0x8004, 0x187
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x187
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0327

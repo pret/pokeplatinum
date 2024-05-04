@@ -36,22 +36,22 @@ _0022:
     ScrCmd_04F
     ScrCmd_15C 2
     ScrCmd_260 23
-    ScrCmd_023 0x135
-    ScrCmd_023 0x136
-    ScrCmd_023 0x137
-    ScrCmd_023 0x138
+    SetTrainerFlag 0x135
+    SetTrainerFlag 0x136
+    SetTrainerFlag 0x137
+    SetTrainerFlag 0x138
     ScrCmd_1CD 10, 133, 0x13D, 0, 0
     SetFlag 0x1A3
     ClearFlag 0x1A8
-    ScrCmd_028 0x407D, 1
-    ScrCmd_028 0x411A, 1
+    SetVar 0x407D, 1
+    SetVar 0x411A, 1
     ScrCmd_02C 3
     GoTo _00B7
     End
 
 _00B7:
-    ScrCmd_028 0x8004, 0x183
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x183
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00F5

@@ -370,8 +370,8 @@ _034F:
 
 _0360:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _0398
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0398
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
@@ -387,8 +387,8 @@ _0398:
 
 _03A0:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _03D8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _03D8
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
@@ -404,8 +404,8 @@ _03D8:
 
 _03E0:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _0418
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0418
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
@@ -421,8 +421,8 @@ _0418:
 
 _0420:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _0458
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0458
+    WaitMovement
     ScrCmd_049 0x603
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD

@@ -33,8 +33,8 @@ _0016:
     .byte 0
 
 _0034:
-    ScrCmd_05E 0, _00D8
-    ScrCmd_05F
+    ApplyMovement 0, _00D8
+    WaitMovement
     GoTo _0044
 
 _0044:
@@ -78,8 +78,8 @@ _0059:
     .byte 0
 
 _0091:
-    ScrCmd_05E 0, _00C0
-    ScrCmd_05F
+    ApplyMovement 0, _00C0
+    WaitMovement
     GoTo _00A1
 
 _00A1:

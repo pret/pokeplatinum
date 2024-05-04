@@ -8,7 +8,7 @@
 _0006:
     ScrCmd_060
     ScrCmd_003 1, 0x800C
-    ScrCmd_029 0x8005, 0x8000
+    SetVar 0x8005, 0x8000
     ScrCmd_28C 0x8000
     ScrCmd_059 0x800C
     CompareVarToValue 0x800C, 1
@@ -29,7 +29,7 @@ _0054:
     ScrCmd_054 42, 10
     ScrCmd_02C 1
     ScrCmd_05A 0x800C
-    ScrCmd_029 0x8004, 0x800C
+    SetVar 0x8004, 0x800C
     ScrCmd_003 30, 0x800C
     ScrCmd_055 10
     ScrCmd_003 10, 0x800C

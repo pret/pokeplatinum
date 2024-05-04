@@ -24,59 +24,59 @@
     .short 0xFD13
 
 _004E:
-    ScrCmd_028 0x8000, 1
+    SetVar 0x8000, 1
     GoTo _0159
 
 _005A:
-    ScrCmd_028 0x8000, 2
+    SetVar 0x8000, 2
     GoTo _0159
 
 _0066:
-    ScrCmd_028 0x8000, 3
+    SetVar 0x8000, 3
     GoTo _0159
 
 _0072:
-    ScrCmd_028 0x8000, 4
+    SetVar 0x8000, 4
     GoTo _0159
 
 _007E:
-    ScrCmd_028 0x8000, 5
+    SetVar 0x8000, 5
     GoTo _0159
 
 _008A:
-    ScrCmd_028 0x8000, 6
+    SetVar 0x8000, 6
     GoTo _0159
 
 _0096:
-    ScrCmd_028 0x8000, 7
+    SetVar 0x8000, 7
     GoTo _0159
 
 _00A2:
-    ScrCmd_028 0x8000, 8
+    SetVar 0x8000, 8
     GoTo _0159
 
 _00AE:
-    ScrCmd_028 0x8000, 9
+    SetVar 0x8000, 9
     GoTo _0159
 
 _00BA:
-    ScrCmd_028 0x8000, 10
+    SetVar 0x8000, 10
     GoTo _0159
 
 _00C6:
-    ScrCmd_028 0x8000, 11
+    SetVar 0x8000, 11
     GoTo _0159
 
 _00D2:
-    ScrCmd_028 0x8000, 12
+    SetVar 0x8000, 12
     GoTo _0159
 
 _00DE:
-    ScrCmd_028 0x8000, 13
+    SetVar 0x8000, 13
     GoTo _0159
 
 _00EA:
-    ScrCmd_028 0x8000, 14
+    SetVar 0x8000, 14
     GoTo _0159
 
 _00F6:
@@ -86,23 +86,23 @@ _00F6:
     GoToIf 1, _0135
     CompareVarToValue 0x4032, 3
     GoToIf 1, _0141
-    ScrCmd_028 0x8000, 15
+    SetVar 0x8000, 15
     GoTo _0159
 
 _0129:
-    ScrCmd_028 0x8000, 16
+    SetVar 0x8000, 16
     GoTo _0159
 
 _0135:
-    ScrCmd_028 0x8000, 17
+    SetVar 0x8000, 17
     GoTo _0159
 
 _0141:
-    ScrCmd_028 0x8000, 18
+    SetVar 0x8000, 18
     GoTo _0159
 
 _014D:
-    ScrCmd_028 0x8000, 19
+    SetVar 0x8000, 19
     GoTo _0159
 
 _0159:

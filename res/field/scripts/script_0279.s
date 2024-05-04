@@ -28,8 +28,8 @@ _003A:
     CheckFlag 147
     GoToIf 1, _0064
     ScrCmd_02C 0
-    ScrCmd_028 0x8004, 0x1A9
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1A9
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     Call _006F
     GoTo _0064
@@ -43,17 +43,17 @@ _0064:
 
 _006F:
     SetFlag 147
-    ScrCmd_028 0x4093, 2
+    SetVar 0x4093, 2
     Return
 
 _007B:
     ScrCmd_060
-    ScrCmd_05E 10, _00C0
-    ScrCmd_05E 0xFF, _00B4
-    ScrCmd_05F
+    ApplyMovement 10, _00C0
+    ApplyMovement 0xFF, _00B4
+    WaitMovement
     ScrCmd_02C 0
-    ScrCmd_028 0x8004, 0x1A9
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1A9
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     Call _006F
     ScrCmd_02C 1

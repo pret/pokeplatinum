@@ -80,15 +80,15 @@ _010E:
 _011E:
     ClearFlag 0x296
     ScrCmd_064 1
-    ScrCmd_05E 1, _0190
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _01B0
-    ScrCmd_05F
+    ApplyMovement 1, _0190
+    WaitMovement
+    ApplyMovement 0xFF, _01B0
+    WaitMovement
     ScrCmd_0CD 0
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_05E 1, _0198
-    ScrCmd_05F
+    ApplyMovement 1, _0198
+    WaitMovement
     ScrCmd_0CD 0
     ScrCmd_02C 3
     ScrCmd_134 12, 0x800C
@@ -97,8 +97,8 @@ _011E:
     ScrCmd_0CD 0
     ScrCmd_02C 5
     ScrCmd_034
-    ScrCmd_05E 1, _01A8
-    ScrCmd_05F
+    ApplyMovement 1, _01A8
+    WaitMovement
     ScrCmd_065 1
     ScrCmd_061
     End
@@ -108,7 +108,7 @@ _017F:
     Return
 
 _0184:
-    ScrCmd_028 0x4059, 0
+    SetVar 0x4059, 0
     ScrCmd_061
     End
 

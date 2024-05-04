@@ -15,16 +15,16 @@ _000A:
 
 _0022:
     ClearFlag 0x27C
-    ScrCmd_028 0x4111, 1
+    SetVar 0x4111, 1
     End
 
 _002E:
     ScrCmd_060
-    ScrCmd_05E 1, _004C
-    ScrCmd_05F
+    ApplyMovement 1, _004C
+    WaitMovement
     SetFlag 0x27C
     ScrCmd_065 1
-    ScrCmd_028 0x4111, 0
+    SetVar 0x4111, 0
     ScrCmd_061
     End
 

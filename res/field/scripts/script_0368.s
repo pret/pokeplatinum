@@ -34,15 +34,15 @@ _008A:
     Return
 
 _008E:
-    ScrCmd_028 0x402A, 231
+    SetVar 0x402A, 231
     Return
 
 _0096:
-    ScrCmd_028 0x402A, 235
+    SetVar 0x402A, 235
     Return
 
 _009E:
-    ScrCmd_028 0x402A, 232
+    SetVar 0x402A, 232
     Return
 
 _00A6:
@@ -85,34 +85,34 @@ _0132:
 
 _0146:
     ScrCmd_060
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     Call _0132
     GoTo _00A6
     End
 
 _015C:
     ScrCmd_060
-    ScrCmd_028 0x4000, 0
+    SetVar 0x4000, 0
     Call _0132
     GoTo _00E9
     End
 
 _0172:
     ScrCmd_060
-    ScrCmd_028 0x4000, 1
+    SetVar 0x4000, 1
     Call _0132
     GoTo _010A
     End
 
 _0188:
-    ScrCmd_05E 0xFF, _01BC
-    ScrCmd_05F
+    ApplyMovement 0xFF, _01BC
+    WaitMovement
     Return
 
 _0194:
-    ScrCmd_05E 0, _01C8
-    ScrCmd_05E 0xFF, _01E4
-    ScrCmd_05F
+    ApplyMovement 0, _01C8
+    ApplyMovement 0xFF, _01E4
+    WaitMovement
     Return
 
     .byte 12

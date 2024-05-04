@@ -53,23 +53,23 @@ _008A:
     GoTo _00E1
 
 _00BD:
-    ScrCmd_05E 0, _0698
-    ScrCmd_05F
+    ApplyMovement 0, _0698
+    WaitMovement
     Return
 
 _00C9:
-    ScrCmd_05E 0, _06A8
-    ScrCmd_05F
+    ApplyMovement 0, _06A8
+    WaitMovement
     Return
 
 _00D5:
-    ScrCmd_05E 0, _06B8
-    ScrCmd_05F
+    ApplyMovement 0, _06B8
+    WaitMovement
     Return
 
 _00E1:
-    ScrCmd_05E 0, _06C8
-    ScrCmd_05F
+    ApplyMovement 0, _06C8
+    WaitMovement
     Return
 
 _00ED:
@@ -83,23 +83,23 @@ _00ED:
     GoTo _0144
 
 _0120:
-    ScrCmd_05E 0, _06D8
-    ScrCmd_05F
+    ApplyMovement 0, _06D8
+    WaitMovement
     Return
 
 _012C:
-    ScrCmd_05E 0, _06E0
-    ScrCmd_05F
+    ApplyMovement 0, _06E0
+    WaitMovement
     Return
 
 _0138:
-    ScrCmd_05E 0, _06E8
-    ScrCmd_05F
+    ApplyMovement 0, _06E8
+    WaitMovement
     Return
 
 _0144:
-    ScrCmd_05E 0, _06F0
-    ScrCmd_05F
+    ApplyMovement 0, _06F0
+    WaitMovement
     Return
 
 _0150:

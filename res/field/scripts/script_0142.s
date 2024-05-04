@@ -93,10 +93,10 @@ _00A9:
     CallIf 1, _0121
     CompareVarToValue 0x800C, 0x189
     CallIf 1, _0129
-    ScrCmd_029 0x4107, 0x8004
+    SetVar 0x4107, 0x8004
     ScrCmd_343 0, 0x8004
     ScrCmd_02C 3
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     ScrCmd_014 0x7DF
     SetFlag 0x129
     ScrCmd_034
@@ -112,15 +112,15 @@ _0109:
     End
 
 _0119:
-    ScrCmd_028 0x8004, 94
+    SetVar 0x8004, 94
     Return
 
 _0121:
-    ScrCmd_028 0x8004, 92
+    SetVar 0x8004, 92
     Return
 
 _0129:
-    ScrCmd_028 0x8004, 93
+    SetVar 0x8004, 93
     Return
 
     .byte 0

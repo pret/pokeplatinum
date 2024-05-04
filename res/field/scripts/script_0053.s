@@ -12,7 +12,7 @@
     .short 0xFD13
 
 _001E:
-    ScrCmd_028 0x8007, 3
+    SetVar 0x8007, 3
     ScrCmd_014 0x7D2
     End
 
@@ -60,8 +60,8 @@ _0078:
     ScrCmd_042 53, 3
     ScrCmd_042 43, 4
     ScrCmd_043
-    ScrCmd_029 0x8004, 0x800C
-    ScrCmd_029 0x8008, 0x800C
+    SetVar 0x8004, 0x800C
+    SetVar 0x8008, 0x800C
     CompareVarToValue 0x8008, 4
     GoToIf 1, _00E9
     CompareVarToValue 0x8008, 0xFFFE

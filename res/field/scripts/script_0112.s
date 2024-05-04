@@ -18,8 +18,8 @@ _000A:
 
 _001D:
     ScrCmd_060
-    ScrCmd_05E 1, _0264
-    ScrCmd_05F
+    ApplyMovement 1, _0264
+    WaitMovement
     ScrCmd_014 0x7FA
     ScrCmd_069 0x8004, 0x8005
     CompareVarToValue 0x8005, 5
@@ -81,7 +81,7 @@ _00CF:
     ScrCmd_049 0x603
     ScrCmd_065 1
     ScrCmd_04B 0x603
-    ScrCmd_028 0x407B, 2
+    SetVar 0x407B, 2
     ScrCmd_061
     End
 
@@ -91,53 +91,53 @@ _0148:
     End
 
 _014E:
-    ScrCmd_05E 1, _01D4
-    ScrCmd_05F
+    ApplyMovement 1, _01D4
+    WaitMovement
     Return
 
 _015A:
-    ScrCmd_05E 1, _01E4
-    ScrCmd_05F
+    ApplyMovement 1, _01E4
+    WaitMovement
     Return
 
 _0166:
-    ScrCmd_05E 1, _01F4
-    ScrCmd_05F
+    ApplyMovement 1, _01F4
+    WaitMovement
     Return
 
 _0172:
-    ScrCmd_05E 1, _01FC
-    ScrCmd_05F
+    ApplyMovement 1, _01FC
+    WaitMovement
     Return
 
 _017E:
-    ScrCmd_05E 1, _020C
-    ScrCmd_05F
+    ApplyMovement 1, _020C
+    WaitMovement
     Return
 
 _018A:
-    ScrCmd_05E 1, _021C
-    ScrCmd_05F
+    ApplyMovement 1, _021C
+    WaitMovement
     Return
 
 _0196:
-    ScrCmd_05E 1, _022C
-    ScrCmd_05F
+    ApplyMovement 1, _022C
+    WaitMovement
     Return
 
 _01A2:
-    ScrCmd_05E 1, _023C
-    ScrCmd_05F
+    ApplyMovement 1, _023C
+    WaitMovement
     Return
 
 _01AE:
-    ScrCmd_05E 1, _0244
-    ScrCmd_05F
+    ApplyMovement 1, _0244
+    WaitMovement
     Return
 
 _01BA:
-    ScrCmd_05E 1, _0254
-    ScrCmd_05F
+    ApplyMovement 1, _0254
+    WaitMovement
     Return
 
     .byte 0

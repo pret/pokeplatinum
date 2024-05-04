@@ -73,7 +73,7 @@ _010A:
 
 _0121:
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 2
+    SetVar 0x8004, 2
     ScrCmd_014 0x7D9
     ScrCmd_02C 3
     ScrCmd_031
@@ -83,7 +83,7 @@ _0121:
 
 _0139:
     ScrCmd_02C 5
-    ScrCmd_028 0x8004, 12
+    SetVar 0x8004, 12
     ScrCmd_014 0x7D9
     ScrCmd_02C 6
     ScrCmd_031
@@ -93,7 +93,7 @@ _0139:
 
 _0151:
     ScrCmd_02C 8
-    ScrCmd_028 0x8004, 13
+    SetVar 0x8004, 13
     ScrCmd_014 0x7D9
     ScrCmd_02C 9
     ScrCmd_031
@@ -103,7 +103,7 @@ _0151:
 
 _0169:
     ScrCmd_02C 11
-    ScrCmd_028 0x8004, 15
+    SetVar 0x8004, 15
     ScrCmd_014 0x7D9
     ScrCmd_02C 12
     ScrCmd_031

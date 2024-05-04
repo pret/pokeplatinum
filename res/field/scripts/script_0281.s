@@ -51,35 +51,35 @@ _0098:
     End
 
 _00A3:
-    ScrCmd_05E 0, _010C
-    ScrCmd_05F
+    ApplyMovement 0, _010C
+    WaitMovement
     ScrCmd_049 0x603
-    ScrCmd_05E 0, _0118
-    ScrCmd_05F
+    ApplyMovement 0, _0118
+    WaitMovement
     Return
 
 _00BD:
-    ScrCmd_05E 0xFF, _0120
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0120
+    WaitMovement
     ScrCmd_049 0x603
-    ScrCmd_05E 0xFF, _0118
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0118
+    WaitMovement
     Return
 
 _00D7:
-    ScrCmd_05E 0xFF, _0130
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0130
+    WaitMovement
     ScrCmd_049 0x603
-    ScrCmd_05E 0xFF, _0118
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0118
+    WaitMovement
     Return
 
 _00F1:
-    ScrCmd_05E 0xFF, _013C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _013C
+    WaitMovement
     ScrCmd_049 0x603
-    ScrCmd_05E 0xFF, _0118
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0118
+    WaitMovement
     Return
 
     .balign 4, 0
