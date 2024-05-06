@@ -7709,7 +7709,7 @@ static BOOL ScrCmd_2AA (ScriptContext * param0)
     StringTemplate_SetCustomMessageWord(v6, 2, v4);
     StringTemplate_SetCustomMessageWord(v6, 3, v5);
 
-    v8 = sub_0200B29C(v6, v7, 1, 32);
+    v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, 32);
     v9 = MessageLoader_GetNewStrbuf(v7, 0);
     *v1 = (Strbuf_Compare(v8, v9) == 0);
 

@@ -795,7 +795,7 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, StringTem
             Strbuf_Free(v1);
         }
 
-        v0 = sub_0200B29C(param2, param3, 208, 89);
+        v0 = MessageUtil_ExpandedStrbuf(param2, param3, 208, 89);
     }
 
     return v0;

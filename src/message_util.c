@@ -12,8 +12,7 @@
 #include "constants/message_banks.h"
 #include "constants/narc.h"
 
-// MessageUtil_ExpandedStrbuf
-Strbuf* sub_0200B29C (StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
+Strbuf* MessageUtil_ExpandedStrbuf (StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
 {
     Strbuf *ret = NULL;
     Strbuf *buffer = Strbuf_Init(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
@@ -33,8 +32,7 @@ Strbuf* sub_0200B29C (StringTemplate *template, MessageLoader *loader, u32 entry
     return ret;
 }
 
-// MessageUtil_MoveName
-Strbuf* sub_0200B2EC (u32 moveID, u32 heapID)
+Strbuf* MessageUtil_MoveName (u32 moveID, u32 heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MESSAGE_BANK_MOVE_NAMES, heapID);
 
@@ -52,8 +50,7 @@ Strbuf* sub_0200B2EC (u32 moveID, u32 heapID)
     return NULL;
 }
 
-// MessageUtil_MonName
-Strbuf* sub_0200B32C (u32 species, u32 heapID)
+Strbuf* MessageUtil_MonName (u32 species, u32 heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MESSAGE_BANK_SPECIES_NAMES, heapID);
 

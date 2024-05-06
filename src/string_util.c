@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nnsys.h>
 
-#include "unk_0201E0A4.h"
+#include "string_util.h"
 
 int sub_0201E0A4 (char * param0)
 {

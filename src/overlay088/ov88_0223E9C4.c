@@ -138,7 +138,7 @@ int ov88_0223ECBC (Window * param0, int param1, int param2, MessageLoader * para
     Strbuf* v0;
     int v1;
 
-    v0 = sub_0200B29C(param4, param3, param1, 26);
+    v0 = MessageUtil_ExpandedStrbuf(param4, param3, param1, 26);
 
     if (param2 == 1) {
         sub_0200E060(param0, 0, (512 - (9 + (18 + 12))), 10);

@@ -6304,7 +6304,7 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
         v1 = sub_02030698(v2, 124, v0);
-        v3 = sub_0200B32C(v1, param1);
+        v3 = MessageUtil_MonName(v1, param1);
 
         {
             u32 v4 = 33 - (sub_02002D7C(0, v3, 0) + 1) / 2;

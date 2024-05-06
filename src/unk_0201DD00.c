@@ -7,7 +7,7 @@
 #include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201DD00.h"
-#include "unk_0201E0A4.h"
+#include "string_util.h"
 #include "unk_0202414C.h"
 
 typedef struct UnkStruct_0201DDF4_t {

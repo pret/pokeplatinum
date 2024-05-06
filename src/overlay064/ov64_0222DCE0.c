@@ -68,7 +68,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E0A4.h"
+#include "string_util.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
@@ -4882,7 +4882,7 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldrb r2, [r2, #0xc]
     bl sub_02030698
     ldr r1, [sp, #0x24]
-    bl sub_0200B32C
+    bl MessageUtil_MonName
     str r0, [sp, #0x2c]
     mov r0, #0x18
     str r0, [sp]

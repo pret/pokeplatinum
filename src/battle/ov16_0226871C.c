@@ -2814,7 +2814,7 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
         }
 
         if ((v0->unk_28[v4].unk_00.unk_0C == NULL) || ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0))) {
-            v6 = sub_0200B2EC(param2->unk_00[v4], 5);
+            v6 = MessageUtil_MoveName(param2->unk_00[v4], 5);
             ov16_0226AEA0(param0, v6, 2, &v0->unk_28[v4], ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((9 & 0xff) << 0))));
             Strbuf_Free(v6);
         }

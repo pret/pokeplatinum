@@ -862,7 +862,7 @@ static void ov97_0222DE78 (OverlayManager * param0, Window * param1, u32 param2)
     if (v1->unk_14) {
         v0 = v1->unk_14;
     } else {
-        v0 = sub_0200B29C(v1->unk_0C, v1->unk_10, param2, 86);
+        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, 86);
     }
 
     v1->unk_6C = sub_0201D78C(param1, 1, v0, 0, 0, v1->unk_68, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
@@ -1047,7 +1047,7 @@ static int ov97_0222E228 (OverlayManager * param0, Window * param1, int param2, 
     if (param1 && param2) {
         v1 = MessageLoader_Init(1, 26, 421, 86);
         v0 = StringTemplate_Default(86);
-        v2->unk_14 = sub_0200B29C(v0, v1, param2, 86);
+        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, 86);
         v2->unk_68 = 1;
 
         ov97_0222DE78(param0, param1, param2);

@@ -1466,7 +1466,7 @@ void ov17_02240A80 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
             v0->unk_130[v1] = 0;
         }
 
-        v2 = sub_0200B2EC(param1[v1], 21);
+        v2 = MessageUtil_MoveName(param1[v1], 21);
 
         ov17_02240BF4(param0, v2, 2, &v0->unk_00[v1], ((u32)(((1 & 0xff) << 16) | ((7 & 0xff) << 8) | ((8 & 0xff) << 0))));
         Strbuf_Free(v2);

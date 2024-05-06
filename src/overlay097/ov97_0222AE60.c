@@ -542,7 +542,7 @@ static void ov97_0222B53C (Window * param0, MessageLoader * param1, StringTempla
     int v0, v1;
     Strbuf* v2;
 
-    v2 = sub_0200B29C(param2, param1, param4, 81);
+    v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, 81);
     v0 = sub_02002D7C(0, v2, sub_02002DF8(0, 2));
     v1 = sub_0201C294(param0) * 8 - (v0 + 32);
 
@@ -590,7 +590,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
             continue;
         }
 
-        v3 = sub_0200B29C(v4, v5, Unk_ov97_0223DF40[v0], 81);
+        v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], 81);
         sub_0201D78C(param2->unk_10, 0, v3, 32, v0 * 16, 0xff, v7, NULL);
         Strbuf_Free(v3);
     }

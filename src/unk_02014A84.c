@@ -105,7 +105,7 @@ Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
     }
 
     v2 = MessageLoader_Init(1, 26, Unk_020E5498[param0->type], param1);
-    v0 = sub_0200B29C(v1, v2, param0->id, param1);
+    v0 = MessageUtil_ExpandedStrbuf(v1, v2, param0->id, param1);
 
     MessageLoader_Free(v2);
     StringTemplate_Free(v1);

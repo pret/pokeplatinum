@@ -243,7 +243,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
                 v2 = param0->unk_14;
             }
 
-            v1 = sub_0200B29C(v2, v3, param0->unk_4C, v4->unk_08);
+            v1 = MessageUtil_ExpandedStrbuf(v2, v3, param0->unk_4C, v4->unk_08);
 
             if (param0->unk_0C == 0) {
                 v0 = sub_0201D78C(param0->unk_10, param0->unk_40, v1, param0->unk_20, param0->unk_24, param0->unk_50, param0->unk_44, NULL);

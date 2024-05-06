@@ -338,7 +338,7 @@ static void ov97_022305EC (Window * param0, int param1)
 
     BGL_FillWindow(param0, sub_02002DF8(1, 6));
 
-    v0 = sub_0200B29C(v2, v1, param1, 87);
+    v0 = MessageUtil_ExpandedStrbuf(v2, v1, param1, 87);
     sub_0201D78C(param0, 1, v0, 0, 0, 0xff, 66048, NULL);
     sub_0201A954(param0);
 
@@ -468,7 +468,7 @@ static BOOL ov97_02230904 (UnkStruct_ov97_02230868 * param0, Window * param1, u3
         }
     }
 
-    v0 = sub_0200B29C(param0->unk_2A60, param0->unk_2A64, v2, param0->unk_00);
+    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2, param0->unk_00);
 
     sub_0201D78C(param1, 1, v0, 0, 0, 0xff, param2, NULL);
     Strbuf_Free(v0);
@@ -507,7 +507,7 @@ static BOOL ov97_02230A34 (UnkStruct_ov97_02230868 * param0, Window * param1, u3
     if (param0->unk_2C14[param0->unk_2C20]->unk_348 == 255) {
         Strbuf* v0;
 
-        v0 = sub_0200B29C(param0->unk_2A60, param0->unk_2A64, 51, 87);
+        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 51, 87);
         sub_0201D78C(param1, 1, v0, 0, 0, 0xff, param2, NULL);
         Strbuf_Free(v0);
         return 0;
@@ -616,7 +616,7 @@ static void ov97_02230C44 (UnkStruct_ov97_02230868 * param0, int param1, int par
 
             if (v4[v0].unk_24(param0, &param0->unk_2A68[v0], v3) == 1) {
                 if (v4[v0].unk_20) {
-                    v2 = sub_0200B29C(param0->unk_2A60, param0->unk_2A64, v4[v0].unk_20, param0->unk_00);
+                    v2 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v4[v0].unk_20, param0->unk_00);
 
                     {
                         u32 v5 = (v4[v0].unk_28 == -1) ? sub_02002EEC(v4[v0].unk_14, v2, 0, v4[v0].unk_0C * 8) : v4[v0].unk_28;
@@ -663,7 +663,7 @@ static int ov97_02230E04 (UnkStruct_ov97_02230868 * param0, Window * param1, int
     v2->unk_24(param0, param1, 66048);
 
     if (v2->unk_20) {
-        v0 = sub_0200B29C(param0->unk_2A60, param0->unk_2A64, v2->unk_20, 87);
+        v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2->unk_20, 87);
 
         sub_0201D78C(param1, v2->unk_14, v0, 0, 0, 0xff, v2->unk_18, NULL);
         Strbuf_Free(v0);
@@ -1380,7 +1380,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
 
         if (v5) {
             StringTemplate_SetPlayerName(v7, 0, v5);
-            v6 = sub_0200B29C(v7, v8, 53, 87);
+            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 53, 87);
 
             if (TrainerInfo_Gender(v5) == 0) {
                 sub_0201D78C(param1, 0, v6, 0, v2, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -1391,7 +1391,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, Window * param1)
             Strbuf_Free(v6);
             StringTemplate_SetNumber(v7, 0, TrainerInfo_ID(v5) & 0xFFFF, 5, 2, 1);
 
-            v6 = sub_0200B29C(v7, v8, 54, 87);
+            v6 = MessageUtil_ExpandedStrbuf(v7, v8, 54, 87);
 
             sub_0201D78C(param1, 0, v6, 80, v2, 0xff, 921344, NULL);
             Strbuf_Free(v6);
@@ -1421,7 +1421,7 @@ static void ov97_02231E78 (UnkStruct_ov97_02230868 * param0, Window * param1, in
     BGL_FillWindow(param1, 0);
     StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C54, 1, 1, 1);
 
-    v0 = sub_0200B29C(param0->unk_2A60, param0->unk_2A64, 56, 87);
+    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, 56, 87);
 
     sub_0201D78C(param1, 1, v0, 0, 0, 0xff, 66048, NULL);
     sub_0201A954(param1);

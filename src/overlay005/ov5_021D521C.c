@@ -7,7 +7,7 @@
 #include "unk_02006E3C.h"
 #include "rtc.h"
 #include "heap.h"
-#include "unk_0201E0A4.h"
+#include "string_util.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021D5878.h"
 

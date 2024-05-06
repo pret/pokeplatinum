@@ -482,7 +482,7 @@ static void ov21_021E66B0 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov2
     Strbuf* v0 = Strbuf_Init(32, param2);
     MessageLoader * v1;
     int v2 = ov21_021D37BC(param1->unk_04);
-    Strbuf* v3 = sub_0200B32C(v2, param2);
+    Strbuf* v3 = MessageUtil_MonName(v2, param2);
     int v4;
 
     v4 = sub_020989D0();

@@ -1485,7 +1485,7 @@ static BOOL ov59_021D2418 (Window * param0, int param1, u32 param2, UnkStruct_02
             TrainerInfo_NameStrbuf(param3->unk_3C8[v0][0], param3->unk_2C[v0]);
             StringTemplate_SetNumber(param3->unk_24, 0, v3, 5, 2, 1);
 
-            v2 = sub_0200B29C(param3->unk_24, param3->unk_28, 1, 51);
+            v2 = MessageUtil_ExpandedStrbuf(param3->unk_24, param3->unk_28, 1, 51);
 
             if (v1 == v0) {
                 sub_0201D78C(&param0[0], 0, param3->unk_2C[v0], 5, 1 + v0 * 18, 0xff, (u32)(((2 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
