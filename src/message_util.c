@@ -50,15 +50,15 @@ Strbuf* MessageUtil_MoveName (u32 moveID, u32 heapID)
     return NULL;
 }
 
-Strbuf* MessageUtil_MonName (u32 species, u32 heapID)
+Strbuf* MessageUtil_SpeciesName (u32 species, u32 heapID)
 {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MESSAGE_BANK_SPECIES_NAMES, heapID);
 
     if (loader) {
-        Strbuf *monName = MessageLoader_GetNewStrbuf(loader, species);
+        Strbuf *speciesName = MessageLoader_GetNewStrbuf(loader, species);
 
         MessageLoader_Free(loader);
-        return monName;
+        return speciesName;
     }
 
     return NULL;

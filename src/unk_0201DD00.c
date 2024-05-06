@@ -201,7 +201,7 @@ void * sub_0201DF50 (NNSG3dResTex * param0, const char * param1)
     NNSG3dResName v0;
     const NNSG3dResDictTexData * v1;
 
-    sub_0201E140(&v0, param1);
+    StringUtil_SetResourceName(&v0, param1);
     v1 = NNS_G3dGetTexDataByName(param0, &v0);
 
     if (v1 == NULL) {
@@ -256,7 +256,7 @@ int sub_0201DFE4 (NNSG3dResTex * param0, const char * param1)
     const NNSG3dResDictTexData * v0;
     NNSG3dResName v1;
 
-    sub_0201E140(&v1, param1);
+    StringUtil_SetResourceName(&v1, param1);
     v0 = NNS_G3dGetTexDataByName(param0, &v1);
 
     return sub_0201DF84(param0, v0);

@@ -2924,7 +2924,7 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
 
     if (param1->unk_34.unk_04 == 1) {
         {
-            if (sub_0201E17C(*param1->unk_34.unk_00) == 0) {
+            if (StringUtil_IsJapaneseChar(*param1->unk_34.unk_00) == 0) {
                 Strbuf_CopyChars(v0->unk_18, param1->unk_34.unk_00);
             } else {
                 Strbuf_Clear(v0->unk_18);
@@ -4882,7 +4882,7 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldrb r2, [r2, #0xc]
     bl sub_02030698
     ldr r1, [sp, #0x24]
-    bl MessageUtil_MonName
+    bl MessageUtil_SpeciesName
     str r0, [sp, #0x2c]
     mov r0, #0x18
     str r0, [sp]

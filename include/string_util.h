@@ -8,10 +8,10 @@
 #define ASCII_LINE_FEED        0xA
 #define ASCII_CARRIAGE_RETURN  0xD
 
-int sub_0201E0A4 (char *str);
-char* sub_0201E0B8 (char *src, char *dst, char terminator);
-int sub_0201E0FC (char *str);
-void sub_0201E140 (NNSG3dResName *resource, const char *src);
-BOOL sub_0201E17C (u16 character);
+int StringUtil_Length(char *str);
+char* StringUtil_CopyToTerminator(char *src, char *dst, char terminator);
+int StringUtil_ConvertToInt(char *str);
+void StringUtil_SetResourceName(NNSG3dResName *resource, const char *src);
+BOOL StringUtil_IsJapaneseChar(u16 character);
 
 #endif // POKEPLATINUM_STRING_UTIL_H

@@ -5,8 +5,7 @@
 #include "string_util.h"
 #include "constants/charcode.h"
 
-// StringUtil_Length
-int sub_0201E0A4 (char *str)
+int StringUtil_Length (char *str)
 {
     int length = 0;
 
@@ -17,8 +16,7 @@ int sub_0201E0A4 (char *str)
     return length;
 }
 
-// StringUtil_CopyToTerminator
-char* sub_0201E0B8 (char *src, char *dst, char terminator)
+char* StringUtil_CopyToTerminator (char *src, char *dst, char terminator)
 {
     int i;
 
@@ -39,10 +37,9 @@ char* sub_0201E0B8 (char *src, char *dst, char terminator)
     return NULL;
 }
 
-// StringUtil_ConvertToInt
-int sub_0201E0FC (char *str)
+int StringUtil_ConvertToInt (char *str)
 {
-    int length = sub_0201E0A4(str);
+    int length = StringUtil_Length(str);
     int i;
     int powerOfTen = 1;
     int ret = 0;
@@ -66,23 +63,21 @@ int sub_0201E0FC (char *str)
     return ret;
 }
 
-// StringUtil_SetResourceName
-void sub_0201E140 (NNSG3dResName *resource, const char *src)
+void StringUtil_SetResourceName (NNSG3dResName *resource, const char *src)
 {
     u8 i;
     for (i = 0; i < NNS_G3D_RESNAME_VALSIZE; i++) {
         resource->val[i] = 0;
     }
 
-    u8 length = sub_0201E0A4((char *)src);
+    u8 length = StringUtil_Length((char *)src);
 
     for (i = 0; i < length; i++) {
         resource->name[i] = src[i];
     }
 }
 
-// StringUtil_IsJapaneseChar
-BOOL sub_0201E17C (u16 character)
+BOOL StringUtil_IsJapaneseChar (u16 character)
 {
     return character < CHAR_EN_0;
 }
