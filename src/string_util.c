@@ -18,15 +18,13 @@ int StringUtil_Length (char *str)
 
 char* StringUtil_CopyToTerminator (char *src, char *dst, char terminator)
 {
-    int i;
-
-    for (i = 0; i < MAX_STRING_COPY_LEN; i++) {
+    for (int i = 0; i < MAX_STRING_COPY_LEN; i++) {
         dst[i] = src[i];
 
         if (src[i] == terminator || src[i] == CHAR_EMPTY) {
             dst[i] = CHAR_EMPTY;
 
-            if (terminator == ASCII_CARRIAGE_RETURN && src[i + 1] == ASCII_LINE_FEED) {
+            if (terminator == '\r' && src[i + 1] == '\n') {
                 return &src[i + 2];
             } else {
                 return &src[i + 1];

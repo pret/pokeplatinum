@@ -15,18 +15,18 @@
 Strbuf* MessageUtil_ExpandedStrbuf (StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
 {
     Strbuf *ret = NULL;
-    Strbuf *buffer = Strbuf_Init(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
+    Strbuf *buf = Strbuf_Init(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
 
-    if (buffer) {
+    if (buf) {
         Strbuf *entry = MessageLoader_GetNewStrbuf(loader, entryID);
 
         if (entry) {
-            StringTemplate_Format(template, buffer, entry);
-            ret = Strbuf_Clone(buffer, heapID);
+            StringTemplate_Format(template, buf, entry);
+            ret = Strbuf_Clone(buf, heapID);
             Strbuf_Free(entry);
         }
 
-        Strbuf_Free(buffer);
+        Strbuf_Free(buf);
     }
 
     return ret;
