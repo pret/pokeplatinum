@@ -8,56 +8,60 @@
 #include "message_util.h"
 #include "string_template.h"
 #include "strbuf.h"
+#include "constants/heap.h"
+#include "constants/message_banks.h"
+#include "constants/narc.h"
 
-Strbuf* sub_0200B29C (StringTemplate * param0, MessageLoader * param1, u32 param2, u32 param3)
+// MessageUtil_ExpandedStrbuf
+Strbuf* sub_0200B29C (StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
 {
-    Strbuf* v0 = NULL;
-    Strbuf* v1;
+    Strbuf *ret = NULL;
+    Strbuf *buffer = Strbuf_Init(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
 
-    v1 = Strbuf_Init(1024, 0);
+    if (buffer) {
+        Strbuf *entry = MessageLoader_GetNewStrbuf(loader, entryID);
 
-    if (v1) {
-        Strbuf* v2 = MessageLoader_GetNewStrbuf(param1, param2);
-
-        if (v2) {
-            StringTemplate_Format(param0, v1, v2);
-            v0 = Strbuf_Clone(v1, param3);
-            Strbuf_Free(v2);
+        if (entry) {
+            StringTemplate_Format(template, buffer, entry);
+            ret = Strbuf_Clone(buffer, heapID);
+            Strbuf_Free(entry);
         }
 
-        Strbuf_Free(v1);
+        Strbuf_Free(buffer);
     }
 
-    return v0;
+    return ret;
 }
 
-Strbuf* sub_0200B2EC (u32 param0, u32 param1)
+// MessageUtil_MoveName
+Strbuf* sub_0200B2EC (u32 moveID, u32 heapID)
 {
-    MessageLoader * v0 = MessageLoader_Init(1, 26, 647, param1);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MESSAGE_BANK_MOVE_NAMES, heapID);
 
-    if (v0) {
-        Strbuf* v1 = Strbuf_Init(16, param1);
+    if (loader) {
+        Strbuf *moveName = Strbuf_Init(MOVE_NAME_LEN, heapID);
 
-        if (v1) {
-            MessageLoader_GetStrbuf(v0, param0, v1);
+        if (moveName) {
+            MessageLoader_GetStrbuf(loader, moveID, moveName);
         }
 
-        MessageLoader_Free(v0);
-        return v1;
+        MessageLoader_Free(loader);
+        return moveName;
     }
 
     return NULL;
 }
 
-Strbuf* sub_0200B32C (u32 param0, u32 param1)
+// MessageUtil_MonName
+Strbuf* sub_0200B32C (u32 species, u32 heapID)
 {
-    MessageLoader * v0 = MessageLoader_Init(1, 26, 412, param1);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MESSAGE_BANK_SPECIES_NAMES, heapID);
 
-    if (v0) {
-        Strbuf* v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    if (loader) {
+        Strbuf *monName = MessageLoader_GetNewStrbuf(loader, species);
 
-        MessageLoader_Free(v0);
-        return v1;
+        MessageLoader_Free(loader);
+        return monName;
     }
 
     return NULL;

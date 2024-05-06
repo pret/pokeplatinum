@@ -1,12 +1,14 @@
-#ifndef POKEPLATINUM_UNK_0200B29C_H
-#define POKEPLATINUM_UNK_0200B29C_H
+#ifndef POKEPLATINUM_MESSAGE_UTIL_H
+#define POKEPLATINUM_MESSAGE_UTIL_H
 
 #include "message.h"
 #include "string_template.h"
 #include "strbuf.h"
 
-Strbuf* sub_0200B29C(StringTemplate * param0, MessageLoader * param1, u32 param2, u32 param3);
-Strbuf* sub_0200B2EC(u32 param0, u32 param1);
-Strbuf* sub_0200B32C(u32 param0, u32 param1);
+#define EXPANDED_STRING_SIZE    1024
 
-#endif // POKEPLATINUM_UNK_0200B29C_H
+Strbuf* sub_0200B29C(StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID);
+Strbuf* sub_0200B2EC(u32 moveID, u32 heapID);
+Strbuf* sub_0200B32C(u32 species, u32 heapID);
+
+#endif // POKEPLATINUM_MESSAGE_UTIL_H
