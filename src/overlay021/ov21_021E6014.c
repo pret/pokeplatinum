@@ -25,7 +25,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

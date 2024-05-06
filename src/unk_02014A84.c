@@ -7,7 +7,7 @@
 #include "struct_defs/sentence.h"
 
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"

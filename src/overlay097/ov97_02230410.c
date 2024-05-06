@@ -36,7 +36,7 @@
 #include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"

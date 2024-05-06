@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "error_handling.h"
 #include "strbuf.h"
 #include "unk_020986CC.h"

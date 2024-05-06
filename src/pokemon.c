@@ -41,7 +41,7 @@
 #include "unk_02006224.h"
 #include "narc.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "unk_0200C6E4.h"
 #include "rtc.h"
 #include "unk_02015F84.h"

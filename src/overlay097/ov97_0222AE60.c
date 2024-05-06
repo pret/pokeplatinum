@@ -33,7 +33,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

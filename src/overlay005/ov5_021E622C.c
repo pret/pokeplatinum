@@ -15,7 +15,7 @@
 #include "field/field_system.h"
 
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_02017038.h"
 #include "heap.h"

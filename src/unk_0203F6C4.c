@@ -67,7 +67,7 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
