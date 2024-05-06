@@ -3,32 +3,35 @@
 #include <nnsys.h>
 
 #include "string_util.h"
+#include "constants/charcode.h"
 
-int sub_0201E0A4 (char * param0)
+// StringUtil_Length
+int sub_0201E0A4 (char *str)
 {
-    int v0 = 0;
+    int length = 0;
 
-    while (param0[v0] != 0) {
-        v0++;
+    while (str[length] != CHAR_EMPTY) {
+        length++;
     }
 
-    return v0;
+    return length;
 }
 
-char * sub_0201E0B8 (char * param0, char * param1, char param2)
+// StringUtil_CopyToTerminator
+char* sub_0201E0B8 (char *src, char *dst, char terminator)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 256; v0++) {
-        param1[v0] = param0[v0];
+    for (i = 0; i < MAX_STRING_COPY_LEN; i++) {
+        dst[i] = src[i];
 
-        if ((param0[v0] == param2) || (param0[v0] == 0)) {
-            param1[v0] = 0;
+        if (src[i] == terminator || src[i] == CHAR_EMPTY) {
+            dst[i] = CHAR_EMPTY;
 
-            if ((param2 == 0xd) && (param0[v0 + 1] == 0xa)) {
-                return &param0[v0 + 2];
+            if (terminator == ASCII_CARRIAGE_RETURN && src[i + 1] == ASCII_LINE_FEED) {
+                return &src[i + 2];
             } else {
-                return &param0[v0 + 1];
+                return &src[i + 1];
             }
         }
     }
@@ -36,50 +39,50 @@ char * sub_0201E0B8 (char * param0, char * param1, char param2)
     return NULL;
 }
 
-int sub_0201E0FC (char * param0)
+// StringUtil_ConvertToInt
+int sub_0201E0FC (char *str)
 {
-    int v0, v1, v2, v3;
+    int length = sub_0201E0A4(str);
+    int i;
+    int powerOfTen = 1;
+    int ret = 0;
 
-    v0 = sub_0201E0A4(param0);
-    v2 = 1;
-    v3 = 0;
-
-    for (v1 = v0 - 1; v1 >= 0; v1--) {
-        if ((param0[v1] >= '0') && (param0[v1] <= '9')) {
-            v3 += v2 * (param0[v1] - '0');
+    for (i = length - 1; i >= 0; i--) {
+        if (str[i] >= '0' && str[i] <= '9') {
+            ret += powerOfTen * (str[i] - '0');
         } else {
-            if (v1 == 0) {
-                if (param0[v1] == '-') {
-                    v3 *= -1;
+            if (i == 0) {
+                if (str[i] == '-') {
+                    ret *= -1;
                 }
             } else {
                 return -1;
             }
         }
 
-        v2 *= 10;
+        powerOfTen *= 10;
     }
 
-    return v3;
+    return ret;
 }
 
-void sub_0201E140 (NNSG3dResName * param0, const char * param1)
+// StringUtil_SetResourceName
+void sub_0201E140 (NNSG3dResName *resource, const char *src)
 {
-    u8 v0;
-    u8 v1;
-
-    for (v1 = 0; v1 < 4; v1++) {
-        param0->val[v1] = 0;
+    u8 i;
+    for (i = 0; i < NNS_G3D_RESNAME_VALSIZE; i++) {
+        resource->val[i] = 0;
     }
 
-    v0 = sub_0201E0A4((char *)param1);
+    u8 length = sub_0201E0A4((char *)src);
 
-    for (v1 = 0; v1 < v0; v1++) {
-        param0->name[v1] = param1[v1];
+    for (i = 0; i < length; i++) {
+        resource->name[i] = src[i];
     }
 }
 
-BOOL sub_0201E17C (u16 param0)
+// StringUtil_IsJapaneseChar
+BOOL sub_0201E17C (u16 character)
 {
-    return param0 < 0x121;
+    return character < CHAR_EN_0;
 }
