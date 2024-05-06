@@ -73,7 +73,7 @@ pokeplatinum_c = files(
     'unk_0201DBEC.c',
     'unk_0201DD00.c',
     'unk_0201E010.c',
-    'string_util.c',
+    'ascii_util.c',
     'unk_0201E190.c',
     'unk_0201E3BC.c',
     'unk_0201E3D8.c',

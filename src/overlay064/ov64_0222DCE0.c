@@ -68,7 +68,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "string_util.h"
+#include "ascii_util.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
@@ -2924,7 +2924,7 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
 
     if (param1->unk_34.unk_04 == 1) {
         {
-            if (StringUtil_IsJapaneseChar(*param1->unk_34.unk_00) == 0) {
+            if (IsFullWidthChar(*param1->unk_34.unk_00) == 0) {
                 Strbuf_CopyChars(v0->unk_18, param1->unk_34.unk_00);
             } else {
                 Strbuf_Clear(v0->unk_18);
