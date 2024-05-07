@@ -21,7 +21,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -309,8 +309,8 @@ static void ov94_0223DFDC (UnkStruct_ov94_0223FD4C * param0)
         StringTemplate_SetCityName(param0->unk_B8C, 9, v2->unk_11E, v2->unk_11F);
     }
 
-    param0->unk_BB4[0] = sub_0200B29C(param0->unk_B8C, param0->unk_B90, 79, 62);
-    param0->unk_BB4[1] = sub_0200B29C(param0->unk_B8C, param0->unk_B90, 80, 62);
+    param0->unk_BB4[0] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->unk_B90, 79, 62);
+    param0->unk_BB4[1] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->unk_B90, 80, 62);
 }
 
 static void ov94_0223E074 (UnkStruct_ov94_0223FD4C * param0)

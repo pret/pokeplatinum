@@ -37,7 +37,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
@@ -795,7 +795,7 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, StringTem
             Strbuf_Free(v1);
         }
 
-        v0 = sub_0200B29C(param2, param3, 208, 89);
+        v0 = MessageUtil_ExpandedStrbuf(param2, param3, 208, 89);
     }
 
     return v0;

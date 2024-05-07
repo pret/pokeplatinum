@@ -31,7 +31,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "unk_0200D9E8.h"
 #include "unk_02015064.h"
 #include "heap.h"
@@ -733,7 +733,7 @@ static void ov21_021E7DA8 (UnkStruct_ov21_021E747C * param0, const UnkStruct_ov2
     Strbuf* v0 = Strbuf_Init(32, param2);
     MessageLoader * v1;
     int v2 = ov21_021D37BC(param1->unk_00);
-    Strbuf* v3 = sub_0200B32C(v2, param2);
+    Strbuf* v3 = MessageUtil_SpeciesName(v2, param2);
     int v4;
 
     v4 = sub_020989C4();

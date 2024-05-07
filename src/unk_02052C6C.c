@@ -22,7 +22,7 @@
 
 #include "unk_02005474.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -308,7 +308,7 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
 
         v1 = StringTemplate_Default(4);
         StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(param0->saveData));
-        param1->unk_2C = sub_0200B29C(v1, v0, 16, 4);
+        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, 4);
         StringTemplate_Free(v1);
     } else {
         param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);

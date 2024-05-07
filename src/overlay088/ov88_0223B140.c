@@ -54,7 +54,7 @@
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -524,7 +524,7 @@ static void ov88_0223B748 (Window * param0, StringTemplate * param1, MessageLoad
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
-        Strbuf* v1 = sub_0200B29C(param1, param2, 1 + param4 + v0, 26);
+        Strbuf* v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, 26);
 
         ov88_0223EC78(&param0[v0], v1, 8, 0, 1, 0);
         Strbuf_Free(v1);

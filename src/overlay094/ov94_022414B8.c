@@ -35,7 +35,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -986,7 +986,7 @@ static void ov94_022423FC (MessageLoader * param0, StringTemplate * param1, Wind
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
     StringTemplate_SetNumber(param1, 3, v5, 3, 0, 1);
-    v1 = sub_0200B29C(param1, param0, 102, 62);
+    v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, 62);
 
     if (v4 != 3) {
         MessageLoader_GetStrbuf(param0, Unk_ov94_02245FD8[v4], v3);

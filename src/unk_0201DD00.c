@@ -7,7 +7,7 @@
 #include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201DD00.h"
-#include "unk_0201E0A4.h"
+#include "ascii_util.h"
 #include "unk_0202414C.h"
 
 typedef struct UnkStruct_0201DDF4_t {
@@ -201,7 +201,7 @@ void * sub_0201DF50 (NNSG3dResTex * param0, const char * param1)
     NNSG3dResName v0;
     const NNSG3dResDictTexData * v1;
 
-    sub_0201E140(&v0, param1);
+    Ascii_SetResourceName(&v0, param1);
     v1 = NNS_G3dGetTexDataByName(param0, &v0);
 
     if (v1 == NULL) {
@@ -256,7 +256,7 @@ int sub_0201DFE4 (NNSG3dResTex * param0, const char * param1)
     const NNSG3dResDictTexData * v0;
     NNSG3dResName v1;
 
-    sub_0201E140(&v1, param1);
+    Ascii_SetResourceName(&v1, param1);
     v0 = NNS_G3dGetTexDataByName(param0, &v1);
 
     return sub_0201DF84(param0, v0);

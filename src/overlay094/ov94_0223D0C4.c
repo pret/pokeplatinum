@@ -26,7 +26,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -539,7 +539,7 @@ void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, StringTempla
 
     StringTemplate_SetNumber(param2, 3, v7, 3, 0, 1);
 
-    v2 = sub_0200B29C(param2, param0, 102, 62);
+    v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, 62);
     v0 = MessageLoader_GetNewStrbuf(param1, v10);
 
     Item_LoadName(v5, v8, 62);

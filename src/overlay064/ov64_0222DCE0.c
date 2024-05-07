@@ -57,7 +57,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -68,7 +68,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201E0A4.h"
+#include "ascii_util.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
@@ -2924,7 +2924,7 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
 
     if (param1->unk_34.unk_04 == 1) {
         {
-            if (sub_0201E17C(*param1->unk_34.unk_00) == 0) {
+            if (IsFullWidthChar(*param1->unk_34.unk_00) == 0) {
                 Strbuf_CopyChars(v0->unk_18, param1->unk_34.unk_00);
             } else {
                 Strbuf_Clear(v0->unk_18);
@@ -4882,7 +4882,7 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     ldrb r2, [r2, #0xc]
     bl sub_02030698
     ldr r1, [sp, #0x24]
-    bl sub_0200B32C
+    bl MessageUtil_SpeciesName
     str r0, [sp, #0x2c]
     mov r0, #0x18
     str r0, [sp]

@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "error_handling.h"
 #include "strbuf.h"
 #include "unk_020986CC.h"
@@ -47,7 +47,7 @@ Strbuf* ov21_021D561C (int param0, int param1, int param2)
     ov21_021D5764(param0, param1, &v0, &v1, &v2);
     
     if (v2 == 6) {
-        return sub_0200B32C(param0, param2);
+        return MessageUtil_SpeciesName(param0, param2);
     } else {
         const int Unk_ov21_021E9CCC[] = {
             0x2CD,
