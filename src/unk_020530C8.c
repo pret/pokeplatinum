@@ -1178,7 +1178,7 @@ BOOL sub_02054084 (TaskManager * param0)
         MessageLoader_Free(v2);
     }
         sub_0205D8F4(v0->unk_08, &v1->unk_24, 3);
-        sub_0205D944(&v1->unk_24, sub_02025E44(v0->saveData));
+        FieldMessage_DrawWindow(&v1->unk_24, sub_02025E44(v0->saveData));
         v1->unk_38 = sub_0205D994(&v1->unk_24, v1->unk_34, sub_02025E44(v0->saveData), 1);
         v1->unk_00 = 1;
         break;

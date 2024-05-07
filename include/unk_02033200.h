@@ -7,7 +7,7 @@
 
 #include <nitro/wm.h>
 
-void sub_02033200(TrainerInfo * param0, BOOL param1);
+void CommServerClient_Init(TrainerInfo * param0, BOOL param1);
 BOOL sub_020332D0(void);
 void sub_02033478(void);
 BOOL sub_020334A4(void);
@@ -31,11 +31,11 @@ BOOL sub_020339E8(u16 param0);
 void sub_02033A5C(void);
 void sub_02033D94(u16 param0);
 BOOL sub_02033DFC(void);
-BOOL sub_02033E1C(void);
+BOOL CommServerClient_IsInitialized(void);
 BOOL sub_02033E30(void);
 BOOL sub_02033E48(void);
 BOOL sub_02033E68(void);
-BOOL sub_02033E84(void);
+BOOL CommServerClient_CheckError(void);
 void sub_02033EA8(BOOL param0);
 void sub_02033ED4(BOOL param0);
 WMBssDesc * sub_02033F3C(int param0);

@@ -1978,7 +1978,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
 static void ov69_0225DDC8 (UnkStruct_ov69_0225DDC8 * param0)
 {
     if (Message_Printing(param0->unk_04) != 0) {
-        sub_0201D730(param0->unk_04);
+        PrintString_ForceStop(param0->unk_04);
     }
 
     Strbuf_Free(param0->unk_0C);

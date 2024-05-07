@@ -1404,7 +1404,7 @@ static u8 ov7_0224E950 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
     }
 
     sub_0205D8F4(param0->unk_08, &param1->unk_08[1], 3);
-    sub_0205D944(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     {
         Strbuf* v1 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
@@ -1443,7 +1443,7 @@ static void ov7_0224EA54 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
     StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
     Strbuf_Free(v0);
     sub_0205D8F4(param0->unk_08, &param1->unk_08[1], 3);
-    sub_0205D944(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     param1->unk_2A4 = sub_0205D994(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
 }
@@ -1567,7 +1567,7 @@ static u8 ov7_0224EC9C (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
     }
 
     sub_0205D8F4(param0->unk_08, &param1->unk_08[1], 3);
-    sub_0205D944(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     {
         Strbuf* v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);

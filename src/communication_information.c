@@ -322,7 +322,7 @@ BOOL sub_02032E90 (void)
 
         for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
             if (!CommSys_IsPlayerConnected(netId) 
-                    && !(netId == 0 && sub_02036180())
+                    && !(netId == 0 && CommSys_IsAlone())
                     && sCommInfo->infoState[netId] != 0) {
                 CommInfo_InitPlayer(netId);
                 ret = TRUE;

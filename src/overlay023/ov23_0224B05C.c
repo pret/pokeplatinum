@@ -314,7 +314,7 @@ static void ov23_0224B128 (int param0, UnkStruct_ov23_0224B098 * param1)
 {
     int v0 = param0;
 
-    if (sub_02036180()) {
+    if (CommSys_IsAlone()) {
         v0 = 16;
     }
 
@@ -693,7 +693,7 @@ static void ov23_0224B844 (int param0, int param1, BOOL param2)
     ov23_0224B0DC(param0, &v1);
     Unk_ov23_022577AC->unk_135B[param1] = param0;
 
-    if (sub_02036180()) {
+    if (CommSys_IsAlone()) {
         v2 = Unk_ov23_022577AC->unk_13CC;
         v3 = Unk_ov23_022577AC->unk_13CE;
         v4 = Unk_ov23_022577AC->unk_13D0;

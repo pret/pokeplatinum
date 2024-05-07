@@ -2941,7 +2941,7 @@ static BOOL ov8_0224B3D4 (TaskManager * param0)
             MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             sub_0205D8F4(v1->unk_08, v2->unk_44, 3);
             sub_0200E084(v2->unk_44, 0);
-            sub_0205D944(v2->unk_44, sub_02025E44(v1->saveData));
+            FieldMessage_DrawWindow(v2->unk_44, sub_02025E44(v1->saveData));
 
             v2->unk_40 = sub_0205D994(v2->unk_44, v2->unk_4C, sub_02025E44(v1->saveData), 1);
         }

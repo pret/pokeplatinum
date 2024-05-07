@@ -233,7 +233,7 @@ static void ov23_02253FA4 (UnkStruct_ov23_02253E2C * param0, int param1)
         param0->unk_44_0 = 0;
 
         if ((param0->unk_30 < 8) && (Message_Printing(param0->unk_30))) {
-            sub_0201D730(param0->unk_30);
+            PrintString_ForceStop(param0->unk_30);
         }
 
         switch (param1) {
@@ -382,7 +382,7 @@ void ov23_02254210 (UnkStruct_ov23_02253E2C * param0)
 {
     if (param0->unk_30 < 8) {
         if (Message_Printing(param0->unk_30)) {
-            sub_0201D730(param0->unk_30);
+            PrintString_ForceStop(param0->unk_30);
             param0->unk_30 = 8;
         }
     }

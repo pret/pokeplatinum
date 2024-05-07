@@ -32,7 +32,7 @@ typedef struct {
     int unk_14F4;
     u8 unk_14F8;
     u8 unk_14F9;
-    TrainerInfo * unk_14FC;
+    TrainerInfo * personalTrainerInfo;
     BattleRegulation * unk_1500;
     u32 unk_1504;
     u32 unk_1508;
@@ -52,7 +52,7 @@ typedef struct {
     u8 unk_1519_5 : 1;
     u8 unk_1519_6 : 1;
     u8  : 1;
-} UnkStruct_021C07C0;
+} CommServerClient;
 
 static void sub_020334DC(BOOL param0);
 static void sub_02033550(BOOL param0);
@@ -64,40 +64,40 @@ static void sub_0203330C(WMBssDesc * param0);
 static void sub_0203344C(void * param0, WVRResult param1);
 static int sub_02033DDC(void);
 
-static UnkStruct_021C07C0 * Unk_021C07C0 = NULL;
+static CommServerClient * sCommServerClient = NULL;
 static u16 Unk_021C07B8 = 0;
 static volatile int Unk_021C07BC;
 
-void sub_02033200 (TrainerInfo * param0, BOOL param1)
+void CommServerClient_Init (TrainerInfo * trainerInfo, BOOL param1)
 {
     int v0;
 
-    if (Unk_021C07C0 != NULL) {
+    if (sCommServerClient != NULL) {
         return;
     }
 
-    Unk_021C07C0 = (UnkStruct_021C07C0 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07C0));
-    MI_CpuClear8(Unk_021C07C0, sizeof(UnkStruct_021C07C0));
+    sCommServerClient = (CommServerClient *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommServerClient));
+    MI_CpuClear8(sCommServerClient, sizeof(CommServerClient));
 
-    Unk_021C07C0->unk_14E8 = Heap_AllocFromHeap(15, sub_02031C50());
-    MI_CpuClear8(Unk_021C07C0->unk_14E8, sub_02031C50());
+    sCommServerClient->unk_14E8 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_02031C50());
+    MI_CpuClear8(sCommServerClient->unk_14E8, sub_02031C50());
 
-    Unk_021C07C0->unk_1500 = Heap_AllocFromHeap(15, sub_0202602C());
-    MI_CpuClear8(Unk_021C07C0->unk_1500, sub_0202602C());
+    sCommServerClient->unk_1500 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_0202602C());
+    MI_CpuClear8(sCommServerClient->unk_1500, sub_0202602C());
 
-    Unk_021C07C0->unk_1508 = (u32)Heap_AllocFromHeap(15, WM_SIZE_USER_GAMEINFO + 32);
-    Unk_021C07C0->unk_150C = (u16 *)(32 - (Unk_021C07C0->unk_1508 % 32) + Unk_021C07C0->unk_1508);
+    sCommServerClient->unk_1508 = (u32)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
+    sCommServerClient->unk_150C = (u16 *)(32 - (sCommServerClient->unk_1508 % 32) + sCommServerClient->unk_1508);
 
-    Unk_021C07C0->unk_1504 = 0x333;
-    Unk_021C07C0->unk_14FC = param0;
+    sCommServerClient->unk_1504 = 0x333;
+    sCommServerClient->personalTrainerInfo = trainerInfo;
 
-    sub_02014A84((Sentence *)&Unk_021C07C0->unk_14EC);
+    sub_02014A84((Sentence *)&sCommServerClient->unk_14EC);
     sub_020334DC(param1);
 }
 
 BOOL sub_020332D0 (void)
 {
-    if (Unk_021C07C0) {
+    if (sCommServerClient) {
         return 1;
     }
 
@@ -145,35 +145,35 @@ static void sub_0203330C (WMBssDesc * param0)
         return;
     }
 
-    MI_CpuCopy8(param0, &Unk_021C07C0->unk_54, sizeof(WMBssDesc));
-    Unk_021C07C0->unk_1519_6 = 1;
+    MI_CpuCopy8(param0, &sCommServerClient->unk_54, sizeof(WMBssDesc));
+    sCommServerClient->unk_1519_6 = 1;
 }
 
 static void sub_02033380 (void)
 {
-    WMBssDesc * v0 = &Unk_021C07C0->unk_54;
+    WMBssDesc * v0 = &sCommServerClient->unk_54;
     int v1;
 
-    if (!Unk_021C07C0->unk_1519_6) {
+    if (!sCommServerClient->unk_1519_6) {
         return;
     }
 
-    Unk_021C07C0->unk_1519_6 = 0;
+    sCommServerClient->unk_1519_6 = 0;
 
     for (v1 = 0; v1 < 16; ++v1) {
-        if (Unk_021C07C0->unk_14C8[v1] == 0) {
+        if (sCommServerClient->unk_14C8[v1] == 0) {
             continue;
         }
 
-        if (sub_020332E4(Unk_021C07C0->unk_188[v1].bssid, v0->bssid, WM_SIZE_BSSID)) {
-            Unk_021C07C0->unk_14C8[v1] = (30 * 10);
-            MI_CpuCopy8(v0, &Unk_021C07C0->unk_188[v1], sizeof(WMBssDesc));
+        if (sub_020332E4(sCommServerClient->unk_188[v1].bssid, v0->bssid, WM_SIZE_BSSID)) {
+            sCommServerClient->unk_14C8[v1] = (30 * 10);
+            MI_CpuCopy8(v0, &sCommServerClient->unk_188[v1], sizeof(WMBssDesc));
             return;
         }
     }
 
     for (v1 = 0; v1 < 16; ++v1) {
-        if (Unk_021C07C0->unk_14C8[v1] == 0) {
+        if (sCommServerClient->unk_14C8[v1] == 0) {
             break;
         }
     }
@@ -182,9 +182,9 @@ static void sub_02033380 (void)
         return;
     }
 
-    Unk_021C07C0->unk_14C8[v1] = (30 * 10);
-    MI_CpuCopy8(v0, &Unk_021C07C0->unk_188[v1], sizeof(WMBssDesc));
-    Unk_021C07C0->unk_14F8 = 1;
+    sCommServerClient->unk_14C8[v1] = (30 * 10);
+    MI_CpuCopy8(v0, &sCommServerClient->unk_188[v1], sizeof(WMBssDesc));
+    sCommServerClient->unk_14F8 = 1;
 }
 
 static void sub_0203344C (void * param0, WVRResult param1)
@@ -234,16 +234,16 @@ void sub_020334CC (void)
 
 static void sub_020334DC (BOOL param0)
 {
-    Unk_021C07C0->unk_14F4 = 0;
+    sCommServerClient->unk_14F4 = 0;
 
     {
-        u32 v0 = (u32)Unk_021C07C0->unk_14E8;
+        u32 v0 = (u32)sCommServerClient->unk_14E8;
 
         v0 = 32 - (v0 % 32) + v0;
         (void)sub_02031BC4((void *)v0, param0);
     }
 
-    sub_020318D0(Unk_021C07C0->unk_1504);
+    sub_020318D0(sCommServerClient->unk_1504);
 }
 
 void sub_02033518 (void)
@@ -251,26 +251,26 @@ void sub_02033518 (void)
     int v0;
 
     for (v0 = 0; v0 < 16; ++v0) {
-        Unk_021C07C0->unk_14C8[v0] = 0;
+        sCommServerClient->unk_14C8[v0] = 0;
     }
 
-    MI_CpuClear8(Unk_021C07C0->unk_188, sizeof(WMBssDesc) * 16);
+    MI_CpuClear8(sCommServerClient->unk_188, sizeof(WMBssDesc) * 16);
 }
 
 static void sub_02033550 (BOOL param0)
 {
-    Unk_021C07C0->unk_1519_3 = param0;
+    sCommServerClient->unk_1519_3 = param0;
 }
 
 static void sub_02033578 (void)
 {
-    Unk_021C07C0->unk_14F8 = 0;
-    Unk_021C07C0->unk_1519_0 = 0;
-    Unk_021C07C0->unk_1519_2 = 0;
-    Unk_021C07C0->unk_1516 = 0;
-    Unk_021C07C0->unk_1519_4 = 0;
-    Unk_021C07C0->unk_1518 = 0;
-    Unk_021C07C0->unk_1517 = 0;
+    sCommServerClient->unk_14F8 = 0;
+    sCommServerClient->unk_1519_0 = 0;
+    sCommServerClient->unk_1519_2 = 0;
+    sCommServerClient->unk_1516 = 0;
+    sCommServerClient->unk_1519_4 = 0;
+    sCommServerClient->unk_1518 = 0;
+    sCommServerClient->unk_1517 = 0;
     return;
 }
 
@@ -280,12 +280,12 @@ BOOL sub_020335DC (BOOL param0, BOOL param1, BOOL param2)
     sub_02033550(param1);
     sub_020320E8();
 
-    if (!Unk_021C07C0->unk_1517) {
+    if (!sCommServerClient->unk_1517) {
         sub_02031E6C(sub_020351F8, 14);
-        Unk_021C07C0->unk_1517 = 1;
+        sCommServerClient->unk_1517 = 1;
     }
 
-    Unk_021C07C0->unk_1519_5 = param2;
+    sCommServerClient->unk_1519_5 = param2;
 
     if (sub_02031934() == 1) {
         if (sub_0203195C()) {
@@ -304,9 +304,9 @@ BOOL sub_02033650 (BOOL param0, BOOL param1)
         sub_02033518();
     }
 
-    if (!Unk_021C07C0->unk_1517) {
+    if (!sCommServerClient->unk_1517) {
         sub_02031E6C(sub_0203509C, 14);
-        Unk_021C07C0->unk_1517 = 1;
+        sCommServerClient->unk_1517 = 1;
     }
 
     if (sub_02031934() == 1) {
@@ -322,27 +322,27 @@ BOOL sub_02033650 (BOOL param0, BOOL param1)
 
 BOOL sub_020336D4 (void)
 {
-    if (!Unk_021C07C0) {
+    if (!sCommServerClient) {
         return 1;
     }
 
-    switch (Unk_021C07C0->unk_1518) {
+    switch (sCommServerClient->unk_1518) {
     case 0:
         if (sub_02032010()) {
             sub_020314C0();
-            Unk_021C07C0->unk_1518 = 1;
+            sCommServerClient->unk_1518 = 1;
             break;
         } else if (sub_02031FD8()) {
             (void)0;
         } else {
             sub_02031EF4();
-            Unk_021C07C0->unk_1518 = 2;
+            sCommServerClient->unk_1518 = 2;
         }
         break;
     case 1:
         if (!sub_02031FD8()) {
             sub_02031EF4();
-            Unk_021C07C0->unk_1518 = 2;
+            sCommServerClient->unk_1518 = 2;
         }
         break;
     case 2:
@@ -351,7 +351,7 @@ BOOL sub_020336D4 (void)
         }
 
         if (sub_02031FF4()) {
-            Unk_021C07C0->unk_1518 = 1;
+            sCommServerClient->unk_1518 = 1;
         }
         break;
     }
@@ -361,9 +361,9 @@ BOOL sub_020336D4 (void)
 
 BOOL sub_02033768 (void)
 {
-    if (Unk_021C07C0) {
-        if (Unk_021C07C0->unk_1516 == 0) {
-            Unk_021C07C0->unk_1516 = 1;
+    if (sCommServerClient) {
+        if (sCommServerClient->unk_1516 == 0) {
+            sCommServerClient->unk_1516 = 1;
             sub_02031EF4();
             return 1;
         }
@@ -374,26 +374,26 @@ BOOL sub_02033768 (void)
 
 void sub_02033794 (BOOL param0)
 {
-    if (!Unk_021C07C0) {
+    if (!sCommServerClient) {
         return;
     }
 
     if (param0) {
-        Unk_021C07C0->unk_1516 = 2;
+        sCommServerClient->unk_1516 = 2;
     } else {
-        Unk_021C07C0->unk_1516 = 0;
+        sCommServerClient->unk_1516 = 0;
         sub_020334DC(1);
     }
 }
 
 static void sub_020337C0 (void)
 {
-    Heap_FreeToHeap(Unk_021C07C0->unk_1500);
-    Heap_FreeToHeap(Unk_021C07C0->unk_14E8);
-    Heap_FreeToHeap((void *)Unk_021C07C0->unk_1508);
-    Heap_FreeToHeap(Unk_021C07C0);
+    Heap_FreeToHeap(sCommServerClient->unk_1500);
+    Heap_FreeToHeap(sCommServerClient->unk_14E8);
+    Heap_FreeToHeap((void *)sCommServerClient->unk_1508);
+    Heap_FreeToHeap(sCommServerClient);
 
-    Unk_021C07C0 = NULL;
+    sCommServerClient = NULL;
 }
 
 int sub_02033808 (void)
@@ -407,7 +407,7 @@ int sub_02033808 (void)
     v1 = 0;
 
     for (v0 = 0; v0 < 16; ++v0) {
-        if (Unk_021C07C0->unk_14C8[v0] != 0) {
+        if (sCommServerClient->unk_14C8[v0] != 0) {
             v1++;
         }
     }
@@ -422,7 +422,7 @@ int sub_0203383C (int param0)
     v1 = 0;
 
     for (v0 = 0; v0 < 16; v0++) {
-        if (Unk_021C07C0->unk_14C8[v0] != 0) {
+        if (sCommServerClient->unk_14C8[v0] != 0) {
             if (v1 == param0) {
                 return v0;
             }
@@ -437,12 +437,12 @@ int sub_0203383C (int param0)
 
 BOOL sub_02033870 (void)
 {
-    return Unk_021C07C0->unk_14F8;
+    return sCommServerClient->unk_14F8;
 }
 
 void sub_02033884 (void)
 {
-    Unk_021C07C0->unk_14F8 = 0;
+    sCommServerClient->unk_14F8 = 0;
 }
 
 int sub_02033898 (int param0)
@@ -452,8 +452,8 @@ int sub_02033898 (int param0)
 
     v0 = 0;
 
-    if (Unk_021C07C0->unk_14C8[param0] != 0) {
-        v1 = (UnkStruct_0203330C *)Unk_021C07C0->unk_188[param0].gameInfo.userGameInfo;
+    if (sCommServerClient->unk_14C8[param0] != 0) {
+        v1 = (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
 
         if (v1->unk_06 == 0) {
             return 1;
@@ -489,8 +489,8 @@ int sub_020338EC (void)
     }
 
     for (v0 = 16 - 1; v0 >= 0; v0--) {
-        if (Unk_021C07C0->unk_14C8[v0] != 0) {
-            if (sub_02034014(&Unk_021C07C0->unk_188[v0].bssid[0])) {
+        if (sCommServerClient->unk_14C8[v0] != 0) {
+            if (sub_02034014(&sCommServerClient->unk_188[v0].bssid[0])) {
                 v1 = sub_02033898(v0);
 
                 if ((v1 > 1) && (v1 < (7 + 1))) {
@@ -512,8 +512,8 @@ int sub_0203394C (void)
     }
 
     for (v0 = 16 - 1; v0 >= 0; v0--) {
-        if (Unk_021C07C0->unk_14C8[v0] != 0) {
-            if (sub_02034014(&Unk_021C07C0->unk_188[v0].bssid[0])) {
+        if (sCommServerClient->unk_14C8[v0] != 0) {
+            if (sub_02034014(&sCommServerClient->unk_188[v0].bssid[0])) {
                 return v0;
             }
         }
@@ -542,7 +542,7 @@ void sub_020339AC (int param0, TrainerInfo * param1)
     v1 = 0;
 
     for (v0 = 0; v0 < 16; ++v0) {
-        if (Unk_021C07C0->unk_14C8[v0] != 0) {
+        if (sCommServerClient->unk_14C8[v0] != 0) {
             if (param0 == v1) {
                 TrainerInfo_Copy(sub_02033FB0(v0), param1);
                 return;
@@ -564,12 +564,12 @@ BOOL sub_020339E8 (u16 param0)
 
     if (sub_02031934() == 1) {
         v0 = sub_0203895C();
-        Unk_021C07C0->unk_1514 = Unk_021C07C0->unk_188[param0].channel;
+        sCommServerClient->unk_1514 = sCommServerClient->unk_188[param0].channel;
 
         if (sub_020326C4(v0)) {
-            sub_02031220(1, Unk_021C07C0->unk_188[param0].bssid, 0);
+            sub_02031220(1, sCommServerClient->unk_188[param0].bssid, 0);
         } else {
-            sub_02031DD8(1, &(Unk_021C07C0->unk_188[param0]));
+            sub_02031DD8(1, &(sCommServerClient->unk_188[param0]));
         }
 
         return 1;
@@ -585,15 +585,15 @@ void sub_02033A5C (void)
     sub_02033380();
 
     for (v0 = 0; v0 < 16; v0++) {
-        if (Unk_021C07C0->unk_14C8[v0] == 0) {
+        if (sCommServerClient->unk_14C8[v0] == 0) {
             continue;
         }
 
-        if (Unk_021C07C0->unk_14C8[v0] > 0) {
-            Unk_021C07C0->unk_14C8[v0]--;
+        if (sCommServerClient->unk_14C8[v0] > 0) {
+            sCommServerClient->unk_14C8[v0]--;
 
-            if (Unk_021C07C0->unk_14C8[v0] == 0) {
-                Unk_021C07C0->unk_14F8 = 1;
+            if (sCommServerClient->unk_14C8[v0] == 0) {
+                sCommServerClient->unk_14F8 = 1;
             }
         }
     }
@@ -610,45 +610,45 @@ static void sub_02033AA8 (void)
     v1 = sub_02033F9C();
 
     if (v4 != 15) {
-        v2 = (UnkStruct_0203330C *)Unk_021C07C0->unk_150C;
+        v2 = (UnkStruct_0203330C *)sCommServerClient->unk_150C;
 
         GF_ASSERT(32 >= sub_0202602C());
         GF_ASSERT(32 == TrainerInfo_Size());
         GF_ASSERT(WM_SIZE_USER_GAMEINFO >= MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
 
         MI_CpuCopy8(v1, v2->unk_10, TrainerInfo_Size());
-        MI_CpuCopy8(Unk_021C07C0->unk_1500, v2->unk_30, sub_0202602C());
+        MI_CpuCopy8(sCommServerClient->unk_1500, v2->unk_30, sub_0202602C());
 
         v2->unk_00 = TrainerInfo_ID(v1);
         v2->unk_04 = sub_0203895C();
         v2->unk_05 = sub_02038974();
 
-        MI_CpuCopy8(&Unk_021C07C0->unk_14EC, &v2->unk_08, sizeof(Sentence));
+        MI_CpuCopy8(&sCommServerClient->unk_14EC, &v2->unk_08, sizeof(Sentence));
 
         v2->unk_54 = sub_0203214C();
     } else {
-        v3 = (UnkStruct_02034168 *)Unk_021C07C0->unk_150C;
+        v3 = (UnkStruct_02034168 *)sCommServerClient->unk_150C;
 
         v3->unk_00 = TrainerInfo_ID(v1);
         v3->unk_04 = sub_0203895C();
         v3->unk_05 = sub_02038974();
 
-        MI_CpuCopy8(Unk_021C07C0->unk_00, v3->unk_08, 84);
+        MI_CpuCopy8(sCommServerClient->unk_00, v3->unk_08, 84);
     }
 
-    DC_FlushRange(Unk_021C07C0->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
-    sub_020318DC(Unk_021C07C0->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
+    DC_FlushRange(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
+    sub_020318DC(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
 }
 
 static void sub_02033B88 (void)
 {
-    UnkStruct_0203330C * v0 = (UnkStruct_0203330C *)Unk_021C07C0->unk_150C;
+    UnkStruct_0203330C * v0 = (UnkStruct_0203330C *)sCommServerClient->unk_150C;
 
     if (sub_02033DDC() != v0->unk_06) {
         v0->unk_06 = sub_02033DDC();
-        DC_FlushRange(Unk_021C07C0->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
-        sub_020318DC(Unk_021C07C0->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
-        sub_02032034(Unk_021C07C0->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), Unk_021C07C0->unk_1504, Unk_021C07B8);
+        DC_FlushRange(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
+        sub_020318DC(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
+        sub_02032034(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), sCommServerClient->unk_1504, Unk_021C07B8);
     }
 }
 
@@ -660,22 +660,22 @@ static void sub_02033BDC (u16 param0)
     sub_02033B88();
 
     if ((sub_02031F90() == 0) && (!sub_02033E48())) {
-        if (Unk_021C07C0->unk_1519_2) {
-            Unk_021C07C0->unk_1519_0 = 1;
+        if (sCommServerClient->unk_1519_2) {
+            sCommServerClient->unk_1519_0 = 1;
         }
     }
 
-    if (Unk_021C07C0->unk_1512 == 0xffff) {
-        Unk_021C07C0->unk_1512 = param0;
+    if (sCommServerClient->unk_1512 == 0xffff) {
+        sCommServerClient->unk_1512 = param0;
     }
 
-    if (Unk_021C07C0->unk_1519_1) {
-        if (Unk_021C07C0->unk_1512 > param0) {
-            Unk_021C07C0->unk_1519_0 = 1;
+    if (sCommServerClient->unk_1519_1) {
+        if (sCommServerClient->unk_1512 > param0) {
+            sCommServerClient->unk_1519_0 = 1;
         }
 
         if (v1) {
-            Unk_021C07C0->unk_1519_0 = 1;
+            sCommServerClient->unk_1519_0 = 1;
         }
     }
 
@@ -685,24 +685,24 @@ static void sub_02033BDC (u16 param0)
 
     switch (v0) {
     case 0:
-        if (Unk_021C07C0->unk_1516 == 1) {
+        if (sCommServerClient->unk_1516 == 1) {
             sub_020337C0();
             return;
         }
 
-        if (Unk_021C07C0->unk_1516 == 2) {
-            Unk_021C07C0->unk_1516 = 3;
+        if (sCommServerClient->unk_1516 == 2) {
+            sCommServerClient->unk_1516 = 3;
             return;
         }
         break;
     case 1:
-        if (Unk_021C07C0->unk_1516 == 1) {
+        if (sCommServerClient->unk_1516 == 1) {
             if (sub_02031F6C()) {
                 return;
             }
         }
 
-        if (Unk_021C07C0->unk_1516 == 2) {
+        if (sCommServerClient->unk_1516 == 2) {
             if (sub_02031F6C()) {
                 return;
             }
@@ -710,8 +710,8 @@ static void sub_02033BDC (u16 param0)
         break;
     case 8:
     case 9:
-        if (Unk_021C07C0) {
-            Unk_021C07C0->unk_1519_0 = 1;
+        if (sCommServerClient) {
+            sCommServerClient->unk_1519_0 = 1;
         }
         break;
     case 7:
@@ -720,22 +720,22 @@ static void sub_02033BDC (u16 param0)
 
         v2 = sub_02031B04();
 
-        if (Unk_021C07C0->unk_1515 == 0) {
-            Unk_021C07C0->unk_1510 = v2;
-            Unk_021C07C0->unk_1515 = 5;
+        if (sCommServerClient->unk_1515 == 0) {
+            sCommServerClient->unk_1510 = v2;
+            sCommServerClient->unk_1515 = 5;
         } else {
-            Unk_021C07C0->unk_1515--;
+            sCommServerClient->unk_1515--;
         }
 
-        v2 = Unk_021C07C0->unk_1510;
+        v2 = sCommServerClient->unk_1510;
 
-        if (Unk_021C07C0->unk_1519_3) {
+        if (sCommServerClient->unk_1519_3) {
             Unk_021C07B8++;
         }
 
         sub_02033AA8();
-        (void)sub_02031D04(0, Unk_021C07B8, v2, sub_0203266C(sub_0203895C()), sub_02033F0C(sub_0203895C()), Unk_021C07C0->unk_1519_5);
-        Unk_021C07C0->unk_1514 = v2;
+        (void)sub_02031D04(0, Unk_021C07B8, v2, sub_0203266C(sub_0203895C()), sub_02033F0C(sub_0203895C()), sCommServerClient->unk_1519_5);
+        sCommServerClient->unk_1514 = v2;
     }
     break;
     default:
@@ -745,14 +745,14 @@ static void sub_02033BDC (u16 param0)
 
 void sub_02033D94 (u16 param0)
 {
-    if (Unk_021C07C0) {
+    if (sCommServerClient) {
         sub_02033BDC(param0);
     }
 }
 
 static BOOL sub_02033DA8 (u16 param0)
 {
-    if (!Unk_021C07C0) {
+    if (!sCommServerClient) {
         return 0;
     }
 
@@ -785,21 +785,21 @@ static int sub_02033DDC (void)
 
 BOOL sub_02033DFC (void)
 {
-    if (Unk_021C07C0 && (Unk_021C07C0->unk_1516 == 3)) {
+    if (sCommServerClient && (sCommServerClient->unk_1516 == 3)) {
         return 1;
     }
 
     return 0;
 }
 
-BOOL sub_02033E1C (void)
+BOOL CommServerClient_IsInitialized (void)
 {
-    return Unk_021C07C0 != NULL;
+    return sCommServerClient != NULL;
 }
 
 BOOL sub_02033E30 (void)
 {
-    if (Unk_021C07C0) {
+    if (sCommServerClient) {
         return sub_02031FBC();
     }
 
@@ -808,7 +808,7 @@ BOOL sub_02033E30 (void)
 
 BOOL sub_02033E48 (void)
 {
-    if (Unk_021C07C0) {
+    if (sCommServerClient) {
         return sub_020318EC() & 0xfffe;
     }
 
@@ -817,17 +817,17 @@ BOOL sub_02033E48 (void)
 
 BOOL sub_02033E68 (void)
 {
-    if (sub_02033E84() && (20 == sub_02031948())) {
+    if (CommServerClient_CheckError() && (20 == sub_02031948())) {
         return 1;
     }
 
     return 0;
 }
 
-BOOL sub_02033E84 (void)
+BOOL CommServerClient_CheckError (void)
 {
-    if (Unk_021C07C0) {
-        if (Unk_021C07C0->unk_1519_0) {
+    if (sCommServerClient) {
+        if (sCommServerClient->unk_1519_0) {
             return 1;
         }
     }
@@ -837,16 +837,16 @@ BOOL sub_02033E84 (void)
 
 void sub_02033EA8 (BOOL param0)
 {
-    if (Unk_021C07C0) {
-        Unk_021C07C0->unk_1519_2 = param0;
+    if (sCommServerClient) {
+        sCommServerClient->unk_1519_2 = param0;
     }
 }
 
 void sub_02033ED4 (BOOL param0)
 {
-    if (Unk_021C07C0) {
-        Unk_021C07C0->unk_1519_1 = param0;
-        Unk_021C07C0->unk_1512 = 0xffff;
+    if (sCommServerClient) {
+        sCommServerClient->unk_1519_1 = param0;
+        sCommServerClient->unk_1512 = 0xffff;
     }
 }
 
@@ -869,8 +869,8 @@ u16 sub_02033F0C (u16 param0)
 
 WMBssDesc * sub_02033F3C (int param0)
 {
-    if (Unk_021C07C0 && (Unk_021C07C0->unk_14C8[param0] != 0)) {
-        return &Unk_021C07C0->unk_188[param0];
+    if (sCommServerClient && (sCommServerClient->unk_14C8[param0] != 0)) {
+        return &sCommServerClient->unk_188[param0];
     }
 
     return NULL;
@@ -878,8 +878,8 @@ WMBssDesc * sub_02033F3C (int param0)
 
 UnkStruct_0203330C * sub_02033F6C (int param0)
 {
-    if (Unk_021C07C0 && (Unk_021C07C0->unk_14C8[param0] != 0)) {
-        return (UnkStruct_0203330C *)Unk_021C07C0->unk_188[param0].gameInfo.userGameInfo;
+    if (sCommServerClient && (sCommServerClient->unk_14C8[param0] != 0)) {
+        return (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
     }
 
     return NULL;
@@ -887,7 +887,7 @@ UnkStruct_0203330C * sub_02033F6C (int param0)
 
 TrainerInfo * sub_02033F9C (void)
 {
-    return Unk_021C07C0->unk_14FC;
+    return sCommServerClient->personalTrainerInfo;
 }
 
 TrainerInfo * sub_02033FB0 (int param0)
@@ -895,11 +895,11 @@ TrainerInfo * sub_02033FB0 (int param0)
     TrainerInfo * v0;
     UnkStruct_0203330C * v1;
 
-    if (Unk_021C07C0->unk_14C8[param0] == 0) {
+    if (sCommServerClient->unk_14C8[param0] == 0) {
         return NULL;
     }
 
-    v1 = (UnkStruct_0203330C *)Unk_021C07C0->unk_188[param0].gameInfo.userGameInfo;
+    v1 = (UnkStruct_0203330C *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
     v0 = (TrainerInfo *)&v1->unk_10[0];
 
     return v0;
@@ -907,9 +907,9 @@ TrainerInfo * sub_02033FB0 (int param0)
 
 void sub_02033FDC (u8 * param0, int param1)
 {
-    if (Unk_021C07C0) {
+    if (sCommServerClient) {
         GF_ASSERT(param1 < (7 + 1));
-        MI_CpuCopy8(param0, Unk_021C07C0->unk_1498[param1], WM_SIZE_BSSID);
+        MI_CpuCopy8(param0, sCommServerClient->unk_1498[param1], WM_SIZE_BSSID);
     }
 }
 
@@ -918,7 +918,7 @@ static BOOL sub_02034014 (u8 * param0)
     int v0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (WM_IsBssidEqual(Unk_021C07C0->unk_1498[v0], param0)) {
+        if (WM_IsBssidEqual(sCommServerClient->unk_1498[v0], param0)) {
             return 1;
         }
     }
@@ -928,8 +928,8 @@ static BOOL sub_02034014 (u8 * param0)
 
 BOOL sub_0203406C (void)
 {
-    if (Unk_021C07C0) {
-        return Unk_021C07C0->unk_1519_4;
+    if (sCommServerClient) {
+        return sCommServerClient->unk_1519_4;
     }
 
     return 0;
@@ -937,30 +937,30 @@ BOOL sub_0203406C (void)
 
 void sub_0203408C (void)
 {
-    if (Unk_021C07C0) {
-        Unk_021C07C0->unk_1519_4 = 1;
+    if (sCommServerClient) {
+        sCommServerClient->unk_1519_4 = 1;
     }
 }
 
 void sub_020340A8 (Sentence * param0)
 {
-    MI_CpuCopy8(param0, &Unk_021C07C0->unk_14EC, sizeof(Sentence));
+    MI_CpuCopy8(param0, &sCommServerClient->unk_14EC, sizeof(Sentence));
 }
 
 void sub_020340C4 (void * param0)
 {
-    MI_CpuCopy8(param0, Unk_021C07C0->unk_1500, sub_0202602C());
+    MI_CpuCopy8(param0, sCommServerClient->unk_1500, sub_0202602C());
 }
 
 void * sub_020340E8 (void)
 {
-    return Unk_021C07C0->unk_1500;
+    return sCommServerClient->unk_1500;
 }
 
 void sub_020340FC (void)
 {
     sub_02033AA8();
-    sub_02032034(Unk_021C07C0->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), Unk_021C07C0->unk_1504, Unk_021C07B8);
+    sub_02032034(sCommServerClient->unk_150C, MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)), sCommServerClient->unk_1504, Unk_021C07B8);
 }
 
 int sub_02034120 (int param0)
@@ -987,16 +987,16 @@ BOOL sub_02034148 (void)
 
 void sub_02034150 (void * param0)
 {
-    MI_CpuCopy8(param0, Unk_021C07C0->unk_00, 84);
+    MI_CpuCopy8(param0, sCommServerClient->unk_00, 84);
     sub_020340FC();
 }
 
 const void * sub_02034168 (int param0)
 {
-    if (Unk_021C07C0 && (Unk_021C07C0->unk_14C8[param0] != 0)) {
+    if (sCommServerClient && (sCommServerClient->unk_14C8[param0] != 0)) {
         UnkStruct_02034168 * v0;
 
-        v0 = (UnkStruct_02034168 *)Unk_021C07C0->unk_188[param0].gameInfo.userGameInfo;
+        v0 = (UnkStruct_02034168 *)sCommServerClient->unk_188[param0].gameInfo.userGameInfo;
         return v0->unk_08;
     }
 

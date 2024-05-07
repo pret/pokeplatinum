@@ -4104,7 +4104,7 @@ static int ov65_02231E64 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3E4 = 0;
             param1 = 2;
         } else {
-            if (sub_020362C8() == 1) {
+            if (CommSys_WifiConnected() == 1) {
                 ov65_02232DC0(param0, ov4_021D2388());
                 ov65_02232B58(param0, 18, 0);
                 param0->unk_3A8 = 27;
@@ -4753,7 +4753,7 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
 
     if (param0->unk_180 != 8) {
         if (Message_Printing(param0->unk_180) != 0) {
-            sub_0201D730(param0->unk_180);
+            PrintString_ForceStop(param0->unk_180);
             param0->unk_180 = 8;
         }
     }
@@ -4793,7 +4793,7 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (param0->unk_180 != 8) {
         if (Message_Printing(param0->unk_180) != 0) {
-            sub_0201D730(param0->unk_180);
+            PrintString_ForceStop(param0->unk_180);
             param0->unk_180 = 8;
         }
     }
@@ -4826,7 +4826,7 @@ static void ov65_02232DFC (UnkStruct_ov65_0222EBE0 * param0)
 
     if (param0->unk_180 != 8) {
         if (Message_Printing(param0->unk_180) != 0) {
-            sub_0201D730(param0->unk_180);
+            PrintString_ForceStop(param0->unk_180);
             param0->unk_180 = 8;
         }
     }

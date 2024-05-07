@@ -94,7 +94,7 @@ u8 Message_Printing (u8 param0)
     return sub_0201D6F8(param0);
 }
 
-void sub_0201D730 (u8 param0)
+void PrintString_ForceStop (u8 param0)
 {
     sub_0201D6B0(param0);
 }

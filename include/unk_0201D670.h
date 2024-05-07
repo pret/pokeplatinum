@@ -11,7 +11,7 @@
 void sub_0201D670(const UnkStruct_0201D670 * param0);
 void sub_0201D710(void);
 u8 Message_Printing(u8 param0);
-void sub_0201D730(u8 param0);
+void PrintString_ForceStop(u8 param0);
 
 /**
  * @brief Print a string into the target window.

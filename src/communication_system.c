@@ -72,10 +72,10 @@ typedef struct {
     CommRecvPackage unk_618;
     MATHRandContext32 rand;
     u16 unk_63C[8];
-    u8 unk_64C[8];
+    u8 recvSpeed[8];
     u16 unk_654;
     u8 unk_656;
-    u8 unk_657;
+    u8 sendSpeed;
     u8 unk_658;
     s8 unk_659;
     u16 unk_65A;
@@ -104,7 +104,7 @@ typedef struct {
     u8 unk_6AF;
     u8 unk_6B0;
     u8 unk_6B1;
-    u8 unk_6B2;
+    u8 shuttingDown;
     u8 unk_6B3;
     u8 unk_6B4;
     u8 unk_6B5;
@@ -320,7 +320,7 @@ static void sub_02034734 (void)
 
     for (v0 = 1; v0 < (7 + 1); v0++) {
         if ((!CommSys_IsPlayerConnected(v0)) && !sCommunicationSystem->unk_697[v0]) {
-            if (!sub_02036180()) {
+            if (!CommSys_IsAlone()) {
                 sub_02034678(v0);
             }
         }
@@ -481,7 +481,7 @@ static void sub_0203498C (SysTask * param0, void * param1)
     if (Unk_021C07C5) {
         sub_020353CC();
 
-        if (((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0))) || sub_02036180()) {
+        if (((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0))) || CommSys_IsAlone()) {
             sub_02034DC8();
         }
 
@@ -511,7 +511,7 @@ BOOL CommSys_Update (void)
     sub_02036C50();
 
     if (sCommunicationSystem != NULL) {
-        if (!sCommunicationSystem->unk_6B2) {
+        if (!sCommunicationSystem->shuttingDown) {
             sCommunicationSystem->unk_6B5++;
             Unk_021C07C5 = 0;
             CommSys_UpdateTransitionType();
@@ -524,13 +524,13 @@ BOOL CommSys_Update (void)
                 CommSys_RecvData();
             }
 
-            if ((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0)) || sub_02036180()) {
+            if ((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0)) || CommSys_IsAlone()) {
                 if (!sub_0203272C(sub_0203895C())) {
                     sub_02034F68();
                 }
             }
 
-            if ((CommSys_CurNetId() == 0) || (CommSys_TransmissionType() == TRANSMISSION_TYPE_PARALLEL) || sub_02036180()) {
+            if ((CommSys_CurNetId() == 0) || (CommSys_TransmissionType() == TRANSMISSION_TYPE_PARALLEL) || CommSys_IsAlone()) {
                 CommSys_RecvDataServer();
             }
 
@@ -551,7 +551,7 @@ BOOL CommSys_Update (void)
     sub_02038A20(0);
     sub_0203650C();
 
-    return 1;
+    return TRUE;
 }
 
 void CommSys_Reset (void)
@@ -633,8 +633,6 @@ static void sub_02034B50 (void)
                 }
 
                 Unk_02100A1D = 4;
-            } else {
-                (void)0;
             }
         }
     } else if (sub_020326EC(sub_0203895C())) {
@@ -665,11 +663,9 @@ static void sub_02034B50 (void)
             if (ov4_021D142C(sCommunicationSystem->sendBuffer[0], 38)) {
                 Unk_02100A1D = 4;
                 sCommunicationSystem->unk_660++;
-            } else {
-                (void)0;
             }
         }
-    } else if (((sub_02031934() == 4) && (CommSys_IsPlayerConnected(CommSys_CurNetId()))) || sub_02036180()) {
+    } else if (((sub_02031934() == 4) && (CommSys_IsPlayerConnected(CommSys_CurNetId()))) || CommSys_IsAlone()) {
         while (TRUE) {
             if (Unk_02100A1D != 4) {
                 break;
@@ -750,7 +746,7 @@ static void sub_02034DC8 (void)
             }
         }
 
-        if ((sub_02031934() == 4) && !sub_02036180()) {
+        if ((sub_02031934() == 4) && !CommSys_IsAlone()) {
             if (!sub_02031E9C(sCommunicationSystem->unk_80[sCommunicationSystem->unk_6A8], 192, 14, sub_020353B0)) {
                 Unk_02100A1C--;
             }
@@ -762,7 +758,7 @@ static void sub_02034DC8 (void)
             for (v0 = 0; v0 < v3; v0++) {
                 if (CommSys_IsPlayerConnected(v0)) {
                     sCommunicationSystem->unk_664[v0]++;
-                } else if (sub_02036180() && (v0 == 0)) {
+                } else if (CommSys_IsAlone() && (v0 == 0)) {
                     sCommunicationSystem->unk_664[v0]++;
                 }
             }
@@ -771,7 +767,7 @@ static void sub_02034DC8 (void)
             sCommunicationSystem->unk_6A8 = 1 - sCommunicationSystem->unk_6A8;
         }
 
-        if ((sub_02031934() != 4) || sub_02036180()) {
+        if ((sub_02031934() != 4) || CommSys_IsAlone()) {
             Unk_02100A1C++;
         }
     }
@@ -836,7 +832,7 @@ static void sub_02034F68 (void)
                 (void)0;
             }
         }
-    } else if ((sub_02031934() == 4) || (sub_02036180())) {
+    } else if ((sub_02031934() == 4) || (CommSys_IsAlone())) {
         if (Unk_02100A1C != 4) {
             return;
         }
@@ -1057,7 +1053,7 @@ static void sub_020353CC (void)
         int v3 = sub_02036128(sub_0203895C());
         int v4 = sub_0203266C(sub_0203895C()) + 1;
 
-        if (sub_02036180()) {
+        if (CommSys_IsAlone()) {
             if ((Unk_02100A1D == 2) || (Unk_02100A1D == 0)) {
                 Unk_02100A1D++;
                 sub_02035394(1);
@@ -1196,7 +1192,7 @@ static BOOL sub_020356A0 (u8 * param0, int param1)
             sCommunicationSystem->unk_63C[param1] |= PAD_KEY_RIGHT;
         }
 
-        sCommunicationSystem->unk_64C[param1] = (*param0 >> 5) & 0x7;
+        sCommunicationSystem->recvSpeed[param1] = (*param0 >> 5) & 0x7;
     }
 
     return 1;
@@ -1237,7 +1233,7 @@ static BOOL sub_02035730 (u8 * param0)
         sCommunicationSystem->unk_6A9 = 8;
     }
 
-    param0[0] |= (sCommunicationSystem->unk_657 << 5);
+    param0[0] |= (sCommunicationSystem->sendSpeed << 5);
     return 0;
 }
 
@@ -1259,7 +1255,7 @@ static BOOL sub_020357F0 (u8 * param0)
 
     sCommunicationSystem->unk_6AC = 0;
 
-    if (sub_020322F8(&sCommunicationSystem->unk_580)) {
+    if (CommQueue_IsEmpty(&sCommunicationSystem->unk_580)) {
         param0[0] |= 0x2;
 
         if (param0[0] == 0x2) {
@@ -1340,7 +1336,7 @@ static BOOL sub_0203594C (void)
 
 BOOL sub_0203597C (int param0, const void * param1, int param2)
 {
-    if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return 0;
     }
 
@@ -1357,7 +1353,7 @@ BOOL sub_0203597C (int param0, const void * param1, int param2)
 
 BOOL CommSys_SendData (int param0, const void * param1, int param2)
 {
-    if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()) {
+    if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return 0;
     }
 
@@ -1379,7 +1375,7 @@ BOOL sub_02035A3C (int param0, const void * param1, int param2)
         return 0;
     }
 
-    if (!CommSys_IsPlayerConnected(0) && !sub_02036180()) {
+    if (!CommSys_IsPlayerConnected(0) && !CommSys_IsAlone()) {
         return 0;
     }
 
@@ -1406,7 +1402,7 @@ BOOL CommSys_SendDataServer (int param0, const void * param1, int param2)
         return 0;
     }
 
-    if (!CommSys_IsPlayerConnected(0) && !sub_02036180()) {
+    if (!CommSys_IsPlayerConnected(0) && !CommSys_IsAlone()) {
         return 0;
     }
 
@@ -1632,21 +1628,21 @@ BOOL CommSys_IsInitialized (void)
 {
     if (sCommunicationSystem) {
         if (sub_020326EC(sub_0203895C())) {
-            return 1;
+            return TRUE;
         }
     }
 
-    return sub_02033E1C();
+    return CommServerClient_IsInitialized();
 }
 
-void sub_02035E5C (u8 param0)
+void CommSys_SetSendSpeed (u8 param0)
 {
-    sCommunicationSystem->unk_657 = param0;
+    sCommunicationSystem->sendSpeed = param0;
 }
 
-u8 sub_02035E70 (int param0)
+u8 CommSys_RecvSpeed (int param0)
 {
-    return sCommunicationSystem->unk_64C[param0];
+    return sCommunicationSystem->recvSpeed[param0];
 }
 
 u16 sub_02035E84 (int param0)
@@ -1774,12 +1770,12 @@ u16 CommSys_CurNetId (void)
 {
     if (sCommunicationSystem) {
         if (sub_020326EC(sub_0203895C())) {
-            int v0 = ov4_021D1E30();
+            int netId = ov4_021D1E30();
 
-            if (v0 != -1) {
-                return v0;
+            if (netId != -1) {
+                return netId;
             }
-        } else if (sub_02036180()) {
+        } else if (CommSys_IsAlone()) {
             return 0;
         } else {
             return sub_02031F90();
@@ -1789,14 +1785,14 @@ u16 CommSys_CurNetId (void)
     return 0;
 }
 
-BOOL CommSys_SendDataFixedSize (int param0, const void * param1)
+BOOL CommSys_SendDataFixedSize (int cmd, const void * data)
 {
-    return CommSys_SendData(param0, param1, 0);
+    return CommSys_SendData(cmd, data, 0);
 }
 
-BOOL Link_Message (int param0)
+BOOL Link_Message (int cmd)
 {
-    return CommSys_SendData(param0, NULL, 0);
+    return CommSys_SendData(cmd, NULL, 0);
 }
 
 BOOL sub_020360E8 (void)
@@ -1806,18 +1802,18 @@ BOOL sub_020360E8 (void)
 
 BOOL CommSys_CheckError (void)
 {
-    if (sub_02036180()) {
-        return 0;
+    if (CommSys_IsAlone()) {
+        return FALSE;
     }
 
     if (sCommunicationSystem) {
         if (sCommunicationSystem->unk_6B1) {
             CommMan_SetErrorHandling(1, 1);
-            return 1;
+            return TRUE;
         }
     }
 
-    return sub_02033E84();
+    return CommServerClient_CheckError();
 }
 
 u16 sub_02036128 (u16 param0)
@@ -1843,20 +1839,20 @@ int CommType_MinPlayers (int param0)
     return sub_02032698(param0) + 1;
 }
 
-void sub_02036168 (BOOL param0)
+void CommSys_SetAlone (BOOL param0)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->unk_6AE = param0;
     }
 }
 
-BOOL sub_02036180 (void)
+BOOL CommSys_IsAlone (void)
 {
     if (sCommunicationSystem) {
         return sCommunicationSystem->unk_6AE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0203619C (int param0, int param1, void * param2, void * param3)
@@ -1885,30 +1881,30 @@ void CommSys_Seed (MATHRandContext32 * rand)
 
 BOOL sub_02036254 (int param0)
 {
-    return sub_02032644(&sCommunicationSystem->unk_5A0, param0);
+    return CommQueue_CompareCmd(&sCommunicationSystem->unk_5A0, param0);
 }
 
 BOOL sub_0203626C (int param0)
 {
-    return sub_02032644(&sCommunicationSystem->unk_580, param0);
+    return CommQueue_CompareCmd(&sCommunicationSystem->unk_580, param0);
 }
 
 BOOL sub_02036284 (void)
 {
-    return sub_020322F8(&sCommunicationSystem->unk_5A0);
+    return CommQueue_IsEmpty(&sCommunicationSystem->unk_5A0);
 }
 
 BOOL sub_0203629C (void)
 {
-    return sub_020322F8(&sCommunicationSystem->unk_580);
+    return CommQueue_IsEmpty(&sCommunicationSystem->unk_580);
 }
 
-void sub_020362B4 (BOOL param0)
+void CommSys_SetWifiConnected (BOOL param0)
 {
     sCommunicationSystem->unk_6AF = param0;
 }
 
-BOOL sub_020362C8 (void)
+BOOL CommSys_WifiConnected (void)
 {
     return sCommunicationSystem->unk_6AF;
 }
@@ -1954,7 +1950,7 @@ void sub_0203632C (BOOL param0)
         if (param0) {
             sCommunicationSystem->unk_660 = 0;
 
-            for (v0 = 0; v0 < (7 + 1); v0++) {
+            for (v0 = 0; v0 < MAX_CONNECTED_PLAYERS; v0++) {
                 sCommunicationSystem->unk_664[v0] = 0;
             }
         }
@@ -1988,9 +1984,9 @@ void sub_020363BC (void)
     sCommunicationSystem->unk_6B1 = 1;
 }
 
-void sub_020363D0 (void)
+void CommSys_StartShutdown (void)
 {
     if (sCommunicationSystem) {
-        sCommunicationSystem->unk_6B2 = 1;
+        sCommunicationSystem->shuttingDown = 1;
     }
 }

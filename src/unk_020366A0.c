@@ -230,7 +230,7 @@ void sub_020367D0 (void)
         return;
     }
 
-    sub_020363D0();
+    CommSys_StartShutdown();
     sub_02036C94(sub_02037344, 0);
 }
 
@@ -545,7 +545,7 @@ void sub_02036C50 (void)
 
     if (sub_020389B8()) {
         sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
-    } else if (sub_02033E1C()) {
+    } else if (CommServerClient_IsInitialized()) {
         sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 }
@@ -569,9 +569,9 @@ static void sub_02036CA4 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 1);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     CommInfo_Init(Unk_021C07D4->unk_28, NULL);
-    sub_02036168(1);
+    CommSys_SetAlone(1);
     CommSys_EnableSendMovementData();
 
     if (Unk_021C07D4->unk_55) {
@@ -600,7 +600,7 @@ static void sub_02036D80 (void)
         return;
     }
 
-    sub_02036168(1);
+    CommSys_SetAlone(1);
     CommSys_EnableSendMovementData();
 
     if (Unk_021C07D4->unk_55) {
@@ -695,7 +695,7 @@ static void sub_02036F44 (void)
 {
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         CommSys_Reset();
-        sub_02036168(0);
+        CommSys_SetAlone(0);
         CommSys_EnableSendMovementData();
         sub_02036C94(sub_020370B8, 0);
         return;
@@ -740,7 +740,7 @@ static void sub_02036FD4 (void)
         return;
     }
 
-    sub_02036168(1);
+    CommSys_SetAlone(1);
 
     if (CommSys_InitServer(0, Unk_021C07D4->unk_4E, 500, 1)) {
         u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 40 / 2);
@@ -774,7 +774,7 @@ static void sub_02037040 (void)
 
 static void sub_02037094 (void)
 {
-    sub_02036168(0);
+    CommSys_SetAlone(0);
     sub_02033EA8(1);
     CommSys_EnableSendMovementData();
     sub_02036C94(sub_020370B4, 0);
@@ -797,7 +797,7 @@ static void sub_020370BC (void)
             return;
         }
 
-        sub_02036168(1);
+        CommSys_SetAlone(1);
         CommSys_EnableSendMovementData();
         sub_02033794(1);
     } else {
@@ -845,7 +845,7 @@ static void sub_02037144 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 1);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     CommInfo_Init(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
@@ -876,7 +876,7 @@ static void sub_020371C0 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 1);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     CommInfo_Init(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
 
     if (CommSys_InitClient(1, 1, 512)) {
@@ -1040,7 +1040,7 @@ static void sub_020373F0 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 1);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     sub_02031FA4(Unk_021C07D4->unk_46);
     CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
@@ -1513,7 +1513,7 @@ static void sub_02037B78 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 1);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
     if (CommSys_InitClient(1, 1, 32)) {
@@ -1600,7 +1600,7 @@ static void sub_02037D08 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 0);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 0);
     CommInfo_Init(Unk_021C07D4->unk_28, NULL);
     sub_020320FC(sub_02037C5C);
     sub_02036C94(sub_02037CE4, 0);
@@ -1634,7 +1634,7 @@ u8 sub_02037DA0 (void)
 
 BOOL sub_02037DB0 (void)
 {
-    sub_020363D0();
+    CommSys_StartShutdown();
 
     if (Unk_021C07D4 == NULL) {
         return 1;
@@ -1664,7 +1664,7 @@ static void sub_02037E20 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 1);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
@@ -1679,7 +1679,7 @@ static void sub_02037E68 (void)
         return;
     }
 
-    sub_02033200(Unk_021C07D4->unk_2C, 1);
+    CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     CommInfo_Init(Unk_021C07D4->unk_28, NULL);
 
     if (CommSys_InitClient(1, 1, 512)) {
@@ -1720,7 +1720,7 @@ static void sub_02037ED8 (void)
 {
     int v0, v1;
 
-    sub_020362B4(1);
+    CommSys_SetWifiConnected(1);
 
     v0 = ov4_021D12D4(0);
 
@@ -1905,7 +1905,7 @@ static void sub_020381F0 (void)
 {
     int v0;
 
-    sub_020362B4(0);
+    CommSys_SetWifiConnected(0);
 
     if (ov4_021D20B0(Unk_021C07D4->unk_4C)) {
         if (ov4_021D2134()) {
@@ -1985,7 +1985,7 @@ static void sub_02038314 (void)
 {
     int v0;
 
-    sub_020362B4(0);
+    CommSys_SetWifiConnected(0);
 
     if (ov4_021D20B0(0)) {
         ov4_021D2134();
@@ -2495,7 +2495,7 @@ BOOL Link_SetErrorState (int param0)
 {
     if (Unk_021C07D4) {
         Unk_021C07D4->unk_59 = param0;
-        sub_020363D0();
+        CommSys_StartShutdown();
         return 1;
     }
 
@@ -2563,7 +2563,7 @@ static void sub_02038C1C (void)
         return;
     }
 
-    sub_020362B4(1);
+    CommSys_SetWifiConnected(1);
 
     v0 = sub_02038D44();
 
@@ -2704,7 +2704,7 @@ static void sub_02038D94 (void)
         ResetUnlock(1);
         CommInfo_Delete();
         sub_02036C94(sub_020373B8, 5);
-        sub_020362B4(0);
+        CommSys_SetWifiConnected(0);
     }
 }
 

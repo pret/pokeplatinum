@@ -4,9 +4,9 @@
 void CommTool_Init(int param0);
 void CommTool_Delete(void);
 BOOL sub_02036450(void);
-void sub_02036464(int param0, int param1, void * param2, void * param3);
-void sub_020364C8(int param0, int param1, void * param2, void * param3);
-void sub_020364DC(int param0, int param1, void * param2, void * param3);
+void CommCmd_16(int param0, int param1, void * param2, void * param3);
+void CommCmd_18(int param0, int param1, void * param2, void * param3);
+void CommCmd_17(int param0, int param1, void * param2, void * param3);
 void CommTiming_StartSync(u8 param0);
 void sub_0203650C(void);
 BOOL CommTiming_IsSyncState(u8 param0);

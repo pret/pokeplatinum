@@ -1588,7 +1588,7 @@ static void ov114_0225D368 (UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0
     }
 
     if (Message_Printing(param0->unk_20[param3])) {
-        sub_0201D730(param0->unk_20[param3]);
+        PrintString_ForceStop(param0->unk_20[param3]);
     }
 
     ov114_0225D474(param0, param3);
@@ -1603,7 +1603,7 @@ static void ov114_0225D400 (UnkStruct_ov114_0225D338 * param0, u32 param1)
     ov114_0225D474(param0, param1);
 
     if (Message_Printing(param0->unk_20[param1])) {
-        sub_0201D730(param0->unk_20[param1]);
+        PrintString_ForceStop(param0->unk_20[param1]);
     }
 
     sub_0200E084(&param0->unk_00[param1], 1);

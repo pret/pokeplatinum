@@ -281,7 +281,7 @@ static void sub_02052FA8 (FieldSystem * param0, UnkStruct_0205300C * param1)
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
     sub_0205D8F4(param0->unk_08, &param1->unk_1C, 3);
-    sub_0205D944(&param1->unk_1C, v0);
+    FieldMessage_DrawWindow(&param1->unk_1C, v0);
 
     param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, v0, 1);
     param1->unk_30 = sub_0200E7FC(&param1->unk_1C, 1024 - (18 + 12));

@@ -958,7 +958,7 @@ static BOOL sub_02068F48 (TaskManager * param0)
         {
             const Options * v2 = sub_02025E44(v0->saveData);
 
-            sub_0205D944(&v1->unk_00, v2);
+            FieldMessage_DrawWindow(&v1->unk_00, v2);
             v1->unk_14 = sub_0205D994(&v1->unk_00, v1->unk_10, v2, 1);
         }
         v1->unk_16++;

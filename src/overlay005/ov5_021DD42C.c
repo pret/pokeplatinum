@@ -136,7 +136,7 @@ static void ov5_021DD610 (FieldSystem * param0, UnkStruct_ov5_021DD648 * param1)
 {
     if (*(param1->unk_10) == 0) {
         sub_0205D8F4(param0->unk_08, param1->unk_0C, 3);
-        sub_0205D944(param1->unk_0C, sub_02025E44(param0->saveData));
+        FieldMessage_DrawWindow(param1->unk_0C, sub_02025E44(param0->saveData));
         *(param1->unk_10) = 1;
     }
 

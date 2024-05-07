@@ -1982,7 +1982,7 @@ static BOOL ov104_02230FF8 (UnkStruct_ov104_0222E930 * param0)
 static BOOL ov104_02231010 (UnkStruct_ov104_0222E930 * param0)
 {
     if (CommMan_IsInitialized() != 1) {
-        if (sub_02033E1C() != 1) {
+        if (CommServerClient_IsInitialized() != 1) {
             return 1;
         }
     }

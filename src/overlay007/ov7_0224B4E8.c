@@ -95,7 +95,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
     if (sub_0201A7CC(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
         sub_0205D8F4(param0->unk_10->unk_08, &param0->unk_54, 3);
-        sub_0205D944(&param0->unk_54, sub_02025E44(param0->unk_10->saveData));
+        FieldMessage_DrawWindow(&param0->unk_54, sub_02025E44(param0->unk_10->saveData));
     } else {
         sub_0205D988(&param0->unk_54);
     }

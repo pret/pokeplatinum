@@ -1118,7 +1118,7 @@ static void ov64_0222E71C (UnkStruct_ov64_0222E21C * param0)
 static void ov64_0222E738 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 {
     if (Message_Printing(param0->unk_238) == 1) {
-        sub_0201D730(param0->unk_238);
+        PrintString_ForceStop(param0->unk_238);
     }
 
     BGL_FillWindow(&param0->unk_220, 0);
@@ -1133,7 +1133,7 @@ static void ov64_0222E738 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 static void ov64_0222E7C8 (UnkStruct_ov64_0222E21C * param0)
 {
     if (Message_Printing(param0->unk_238) == 1) {
-        sub_0201D730(param0->unk_238);
+        PrintString_ForceStop(param0->unk_238);
     }
 
     sub_0201AD10(&param0->unk_220);

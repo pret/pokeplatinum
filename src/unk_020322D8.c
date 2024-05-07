@@ -27,7 +27,7 @@ static UnkStruct_020322D8 * sub_020322D8 (UnkStruct_020322F8 * param0)
     return NULL;
 }
 
-BOOL sub_020322F8 (UnkStruct_020322F8 * param0)
+BOOL CommQueue_IsEmpty (UnkStruct_020322F8 * param0)
 {
     UnkStruct_020322D8 * v0 = param0->unk_18;
     int v1;
@@ -303,7 +303,7 @@ void sub_02032638 (UnkStruct_020322F8 * param0)
     Heap_FreeToHeap(param0->unk_18);
 }
 
-BOOL sub_02032644 (UnkStruct_020322F8 * param0, int param1)
+BOOL CommQueue_CompareCmd (UnkStruct_020322F8 * param0, int param1)
 {
     int v0;
     UnkStruct_020322D8 * v1 = param0->unk_18;

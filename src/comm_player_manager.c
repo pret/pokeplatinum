@@ -485,7 +485,7 @@ static void CommPlayer_SendMoveSpeed ()
         moveSpeed = 1;
     }
 
-    sub_02035E5C(moveSpeed);
+    CommSys_SetSendSpeed(moveSpeed);
 }
 
 static void Task_CommPlayerManagerRun (SysTask * task, void * data)
@@ -522,14 +522,14 @@ static void sub_02057EF8 (void * param0)
 {
     for (int netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
         if (!CommSys_IsPlayerConnected(netId)) {
-            if (!(sub_02036180() && (netId == 0))) {
+            if (!(CommSys_IsAlone() && (netId == 0))) {
                 if ((CommSys_CurNetId() == 0) && (sCommPlayerManager->isUnderground)) {
                     ov23_0224D898(netId);
                 }
             }
         }
 
-        if (CommSys_IsPlayerConnected(netId) || (sub_02036180() && (netId == 0))) {
+        if (CommSys_IsPlayerConnected(netId) || (CommSys_IsAlone() && (netId == 0))) {
             CommPlayer_MoveClient(netId);
 
             if (sCommPlayerManager->isUnderground) {
@@ -755,7 +755,7 @@ static void CommPlayer_Move (SysTask * param0, void * param1)
                 keys = 0;
             }
 
-            playerLocation->moveSpeed = sub_02035E70(netId);
+            playerLocation->moveSpeed = CommSys_RecvSpeed(netId);
 
             if (sCommPlayerManager->unk_13A[netId] != 0) {
                 continue;
@@ -1258,7 +1258,7 @@ int sub_02058C3C (void)
 
 BOOL sub_02058C40 (void)
 {
-    if (sub_02036180()) {
+    if (CommSys_IsAlone()) {
         return 1;
     }
 

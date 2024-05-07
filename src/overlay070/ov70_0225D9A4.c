@@ -1556,7 +1556,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
 static void ov70_0225EA14 (UnkStruct_ov70_0225E9C8 * param0)
 {
     if (Message_Printing(param0->unk_10)) {
-        sub_0201D730(param0->unk_10);
+        PrintString_ForceStop(param0->unk_10);
     }
 
     ov70_0225EB38(param0);
@@ -1568,7 +1568,7 @@ static void ov70_0225EA14 (UnkStruct_ov70_0225E9C8 * param0)
 static void ov70_0225EA44 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param1)
 {
     if (Message_Printing(param0->unk_10)) {
-        sub_0201D730(param0->unk_10);
+        PrintString_ForceStop(param0->unk_10);
     }
 
     BGL_FillWindow(&param0->unk_00, 15);
@@ -1582,7 +1582,7 @@ static void ov70_0225EA44 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param
 static void ov70_0225EAA4 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param1)
 {
     if (Message_Printing(param0->unk_10)) {
-        sub_0201D730(param0->unk_10);
+        PrintString_ForceStop(param0->unk_10);
     }
 
     BGL_FillWindow(&param0->unk_00, 15);
@@ -1635,7 +1635,7 @@ static BOOL ov70_0225EB5C (const UnkStruct_ov70_0225E9C8 * param0)
 static void ov70_0225EB74 (UnkStruct_ov70_0225E9C8 * param0)
 {
     if (Message_Printing(param0->unk_10)) {
-        sub_0201D730(param0->unk_10);
+        PrintString_ForceStop(param0->unk_10);
     }
 
     ov70_0225EB38(param0);
@@ -1658,7 +1658,7 @@ static void ov70_0225EBBC (UnkStruct_ov70_0225E9C8 * param0)
 static void ov70_0225EBC4 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param1)
 {
     if (Message_Printing(param0->unk_10)) {
-        sub_0201D730(param0->unk_10);
+        PrintString_ForceStop(param0->unk_10);
     }
 
     BGL_FillWindow(&param0->unk_00, 15);

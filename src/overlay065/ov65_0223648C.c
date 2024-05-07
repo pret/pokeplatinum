@@ -905,7 +905,7 @@ static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 
     if (param0->unk_14 != 0xff) {
         if (Message_Printing(param0->unk_14) != 0) {
-            sub_0201D730(param0->unk_14);
+            PrintString_ForceStop(param0->unk_14);
             param0->unk_14 = 0xff;
         }
     }
@@ -954,7 +954,7 @@ static void ov65_02236F38 (UnkStruct_ov65_02236840 * param0)
 {
     if (param0->unk_14 != 0xff) {
         if (Message_Printing(param0->unk_14) != 0) {
-            sub_0201D730(param0->unk_14);
+            PrintString_ForceStop(param0->unk_14);
         }
 
         param0->unk_14 = 0xff;

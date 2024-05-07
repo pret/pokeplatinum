@@ -1277,7 +1277,7 @@ static int ov59_021D20D0 (UnkStruct_020961E8 * param0, int param1)
 static int ov59_021D20F4 (UnkStruct_020961E8 * param0, int param1)
 {
     if ((param0->unk_4C != 0xff) && (ov59_021D26B8(param0->unk_4C) == 0)) {
-        sub_0201D730(param0->unk_4C);
+        PrintString_ForceStop(param0->unk_4C);
     }
 
     ov59_021D2628(param0, 15, 1);
@@ -1346,7 +1346,7 @@ void ov59_021D2204 (UnkStruct_020961E8 * param0, int param1, u8 param2)
         break;
     case 25:
         if (ov59_021D26B8(param0->unk_4C) == 0) {
-            sub_0201D730(param0->unk_4C);
+            PrintString_ForceStop(param0->unk_4C);
         }
 
         ov59_021D2628(param0, 12, 0);

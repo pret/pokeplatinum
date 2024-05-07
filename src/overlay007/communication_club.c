@@ -160,7 +160,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov7_0224ED0C = {
 static void CommClubMan_PrintMessage (int msgId, BOOL format)
 {
     if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        sub_0201D730(sCommClubMan->printMsgIndex);
+        PrintString_ForceStop(sCommClubMan->printMsgIndex);
     }
 
     if (format) {
@@ -174,7 +174,7 @@ static void CommClubMan_PrintMessage (int msgId, BOOL format)
         sub_0205D8F4(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
     }
 
-    sub_0205D944(&sCommClubMan->msgWindow, sub_02025E44(sCommClubMan->fieldSystem->saveData));
+    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, sub_02025E44(sCommClubMan->fieldSystem->saveData));
     sCommClubMan->printMsgIndex = sub_0205D994(&sCommClubMan->msgWindow, sCommClubMan->unk_00[5], sub_02025E44(sCommClubMan->fieldSystem->saveData), 1);
 }
 
@@ -544,7 +544,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
               ldr r0, [r0, #0]
     add r0, #0x94
     ldrb r0, [r0]
-    bl sub_0201D730
+    bl PrintString_ForceStop
  _0224A1AE:
     ldr r0, = sCommClubMan
               mov r1, #2
@@ -581,7 +581,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     ldr r0, = sCommClubMan
               ldr r0, [r0, #0]
     add r0, #0x40
-    bl sub_0205D944
+    bl FieldMessage_DrawWindow
     mov r0, #1
     bl sub_02002AC8
     mov r0, #0
@@ -636,7 +636,7 @@ static BOOL ov7_0224A244 (SysTask * task, void * data)
         commClubMan->connectedCnt = CommInfo_CountReceived();
 
         if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-            sub_0201D730(sCommClubMan->printMsgIndex);
+            PrintString_ForceStop(sCommClubMan->printMsgIndex);
         }
 
         CommClubMan_DestroyList(task, commClubMan);
@@ -1526,7 +1526,7 @@ static void CommClubTask_WaitForGroup (SysTask * task, void * param1)
     } else if (CommTiming_IsSyncState(10)) {
         if (sub_02036450()) {
             if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-                sub_0201D730(sCommClubMan->printMsgIndex);
+                PrintString_ForceStop(sCommClubMan->printMsgIndex);
             }
 
             commClubMan->connectedCnt = CommSys_ConnectedCount();

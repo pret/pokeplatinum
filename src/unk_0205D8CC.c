@@ -33,7 +33,7 @@ void sub_0205D8F4 (BGL * param0, Window * param1, u32 param2)
     }
 }
 
-void sub_0205D944 (Window * param0, const Options * param1)
+void FieldMessage_DrawWindow (Window * param0, const Options * param1)
 {
     sub_0200DD0C(param0->unk_00, sub_0201C290(param0), 1024 - (18 + 12), 10, Options_Frame(param1), 4);
     sub_0205D988(param0);

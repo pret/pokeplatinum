@@ -272,7 +272,7 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
 
     if (sub_0201A7CC(v0) == 0) {
         sub_0205D8F4(param0->unk_00->unk_08, v0, 3);
-        sub_0205D944(v0, sub_02025E44(param0->unk_00->saveData));
+        FieldMessage_DrawWindow(v0, sub_02025E44(param0->unk_00->saveData));
     } else {
         sub_0205D988(v0);
         sub_0200E060(v0, 0, 1024 - (18 + 12), 10);

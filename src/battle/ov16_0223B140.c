@@ -2325,7 +2325,7 @@ static void ov16_0223DECC (void)
 
     if (sub_020389B8()) {
         sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
-    } else if (sub_02033E1C()) {
+    } else if (CommServerClient_IsInitialized()) {
         sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 }

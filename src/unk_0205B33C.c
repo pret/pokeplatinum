@@ -174,7 +174,7 @@ static void sub_0205B408 (UnkStruct_0205B43C * param0)
 {
     Sentence v0;
 
-    if (sub_02033E1C()) {
+    if (CommServerClient_IsInitialized()) {
         sub_02014AB4(&v0);
         sub_0205C12C(&v0);
         sub_0205C010(param0, &v0);

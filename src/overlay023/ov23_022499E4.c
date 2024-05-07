@@ -392,7 +392,7 @@ static void ov23_02249E18 (void)
         return;
     }
 
-    if (CommSys_CheckError() || !sub_02033E48() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !sub_02036180()))) {
+    if (CommSys_CheckError() || !sub_02033E48() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()))) {
         ov23_0224B5CC(0);
         ov23_0224AA84();
         ov23_0224DA8C();
@@ -502,7 +502,7 @@ static void ov23_02249F7C (void)
 
 static void ov23_02249FB4 (void)
 {
-    if (!sub_02036180()) {
+    if (!CommSys_IsAlone()) {
         return;
     }
 

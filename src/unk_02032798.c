@@ -43,9 +43,9 @@ static const CommCmdTable Unk_020E5D64[] = {
     {sub_02032958, sub_0203294C, NULL},
     {sub_0203299C, sub_0203294C, NULL},
     {sub_020329C4, sub_0203294C, NULL},
-    {sub_02036464, sub_02032950, NULL},
-    {sub_020364DC, sub_02032950, NULL},
-    {sub_020364C8, sub_02032954, NULL},
+    {CommCmd_16, sub_02032950, NULL},
+    {CommCmd_17, sub_02032950, NULL},
+    {CommCmd_18, sub_02032954, NULL},
     {sub_02036574, sub_02036590, NULL},
     {sub_02036670, CommTool_TempDataSize, NULL},
     {sub_02038240, sub_0203294C, NULL}

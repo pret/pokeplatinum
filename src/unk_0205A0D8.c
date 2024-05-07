@@ -626,7 +626,7 @@ static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf *param1)
 
     if (sub_0201A7CC(v0) == 0) {
         sub_0205D8F4(param0->unk_24->unk_08, v0, 3);
-        sub_0205D944(v0, sub_02025E44(param0->unk_24->saveData));
+        FieldMessage_DrawWindow(v0, sub_02025E44(param0->unk_24->saveData));
     } else {
         sub_0205D988(v0);
     }
@@ -1028,7 +1028,7 @@ static BOOL sub_0205B140 (TaskManager * param0)
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
-        sub_0205D944(&v1->unk_08, sub_02025E44(v0->saveData));
+        FieldMessage_DrawWindow(&v1->unk_08, sub_02025E44(v0->saveData));
 
         v1->unk_20 = sub_0205D994(&v1->unk_08, v1->unk_04, sub_02025E44(v0->saveData), 1);
         v1->unk_28++;

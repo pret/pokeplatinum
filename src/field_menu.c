@@ -772,7 +772,7 @@ static BOOL FieldMenu_Select (TaskManager * taskMan)
 
 static void sub_0203B2EC (FieldMenu * menu, FieldSystem * fieldSystem)
 {
-    if (sub_02033E1C()) {
+    if (CommServerClient_IsInitialized()) {
         if (menu->unk_228) {
             sub_0205C2B0(fieldSystem->unk_80);
 
@@ -1586,25 +1586,25 @@ static BOOL sub_0203C0F8 (TaskManager * taskMan)
 {
     Sentence sentence;
     FieldSystem * fieldSystem;
-    FieldMenu * v2;
+    FieldMenu * menu;
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
-    v2 = TaskManager_Environment(taskMan);
+    menu = TaskManager_Environment(taskMan);
 
-    if (sub_02097528(v2->unk_25C) == 0) {
-        sub_02097540(v2->unk_25C, &sentence);
+    if (sub_02097528(menu->unk_25C) == 0) {
+        sub_02097540(menu->unk_25C, &sentence);
 
-        if (sub_02033E1C()) {
+        if (CommServerClient_IsInitialized()) {
             sub_0205C12C(&sentence);
             sub_0205C010(fieldSystem->unk_7C, &sentence);
         }
 
-        v2->state = FIELD_MENU_STATE_8;
+        menu->state = FIELD_MENU_STATE_8;
     } else {
-        v2->state = FIELD_MENU_STATE_12;
+        menu->state = FIELD_MENU_STATE_12;
     }
 
-    sub_020974EC((UnkStruct_0209747C *)v2->unk_25C);
+    sub_020974EC((UnkStruct_0209747C *)menu->unk_25C);
     sub_020509D4(fieldSystem);
     sub_0205C2B0(fieldSystem->unk_80);
 

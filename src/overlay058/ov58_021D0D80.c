@@ -1289,7 +1289,7 @@ static int ov58_021D22FC (UnkStruct_02095EAC * param0, int param1)
 static int ov58_021D2320 (UnkStruct_02095EAC * param0, int param1)
 {
     if ((param0->unk_30 != 0xff) && (ov58_021D2B0C(param0->unk_30) == 0)) {
-        sub_0201D730(param0->unk_30);
+        PrintString_ForceStop(param0->unk_30);
     }
 
     ov58_021D2A98(param0, 2, 1);

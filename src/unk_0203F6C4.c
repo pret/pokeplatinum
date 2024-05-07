@@ -2403,7 +2403,7 @@ static BOOL ScrCmd_033 (ScriptContext * param0)
     u8 * v1 = sub_0203F098(v0, 6);
 
     sub_0205D8F4(v0->unk_08, sub_0203F098(v0, 1), 3);
-    sub_0205D944(sub_0203F098(v0, 1), sub_02025E44(param0->fieldSys->saveData));
+    FieldMessage_DrawWindow(sub_0203F098(v0, 1), sub_02025E44(param0->fieldSys->saveData));
 
     *v1 = 1;
     return 0;
@@ -2631,14 +2631,14 @@ static BOOL sub_02040670 (ScriptContext * param0)
     }
 
     if (v4 != 0xffff) {
-        sub_0201D730(*v1);
+        PrintString_ForceStop(*v1);
         Player_SetDir(param0->fieldSys->playerAvatar, v4);
         *v2 = 0;
         return 1;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
-        sub_0201D730(*v1);
+        PrintString_ForceStop(*v1);
         *v2 = 1;
         return 1;
     }
@@ -5669,7 +5669,7 @@ static BOOL ScrCmd_150 (ScriptContext * param0)
 static BOOL sub_02043C70 (ScriptContext * param0)
 {
     if (CommMan_IsInitialized() != 1) {
-        if (sub_02033E1C() != 1) {
+        if (CommServerClient_IsInitialized() != 1) {
             return 1;
         }
     }
