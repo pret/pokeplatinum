@@ -20,7 +20,7 @@ s_to_bin_gen = generator(make_script_bin_sh,
     depends: [
         pl_msg_narc # for GMM headers
     ],
-    output: '@BASENAME@' + '.bin'
+    output: '@BASENAME@'
 )
 
 be_seq_target_name = 'be_seq.narc'
@@ -53,7 +53,9 @@ sub_seq_narc = custom_target(sub_seq_target_name,
     command: [
         knarc_exe,
         '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT@'
+        '-p', '@OUTPUT@',
+        '-o', sub_seq_narc_order,
+        '-n'
     ]
 )
 

@@ -67,7 +67,7 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
 
     # Target output files
     script_obj="$OUTDIR/$script_noext.o"
-    script_bin="$OUTDIR/$script_noext.bin"
+    script_bin="$OUTDIR/$script_noext"
 
     # Convert + clean-up
     $AS$MWRAP_ARG ${INCLUDE_ARGS[@]} -gccinc -o $script_obj $script_file
