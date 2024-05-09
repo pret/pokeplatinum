@@ -1065,13 +1065,13 @@ BOOL ScrCmd_331 (ScriptContext * param0)
     FieldSystem * v1 = param0->fieldSys;
     MapObjectManager * v2 = v1->unk_38;
 
-    v0 = sub_0206251C(v2, 32);
+    v0 = MapObjMan_LocalMapObjByIndex(v2, 32);
 
     if (v0 != NULL) {
         ov5_021F7654(v0, 9);
     }
 
-    v0 = sub_0206251C(v2, 2);
+    v0 = MapObjMan_LocalMapObjByIndex(v2, 2);
 
     if (v0 != NULL) {
         ov5_021F7654(v0, 9);
@@ -1085,13 +1085,13 @@ BOOL ScrCmd_332 (ScriptContext * param0)
     LocalMapObject * v0;
     MapObjectManager * v1 = param0->fieldSys->unk_38;
 
-    v0 = sub_0206251C(v1, 32);
+    v0 = MapObjMan_LocalMapObjByIndex(v1, 32);
 
     if (v0 != NULL) {
         sub_020628C4(v0, (1 << 13));
     }
 
-    v0 = sub_0206251C(v1, 2);
+    v0 = MapObjMan_LocalMapObjByIndex(v1, 2);
 
     if (v0 != NULL) {
         sub_020628C4(v0, (1 << 13));
@@ -1103,7 +1103,7 @@ BOOL ScrCmd_332 (ScriptContext * param0)
 BOOL ScrCmd_338 (ScriptContext * param0)
 {    
     int v0;
-    LocalMapObject * v1 = sub_0206251C(param0->fieldSys->unk_38, 15);
+    LocalMapObject * v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSys->unk_38, 15);
     if (v1 != NULL)
     {
         switch (sub_02063020(v1))
@@ -1131,7 +1131,7 @@ BOOL ScrCmd_338 (ScriptContext * param0)
 
 BOOL ScrCmd_339 (ScriptContext * param0)
 {
-    LocalMapObject * v0 = sub_0206251C(param0->fieldSys->unk_38, 15);
+    LocalMapObject * v0 = MapObjMan_LocalMapObjByIndex(param0->fieldSys->unk_38, 15);
     if (v0 != NULL)
         sub_020628C4(v0, 8192);
     return 0;

@@ -46,7 +46,7 @@ void CommTool_Delete (void)
     sCommTool = NULL;
 }
 
-BOOL sub_02036450 (void)
+BOOL CommTool_IsInitialized (void)
 {
     if (sCommTool) {
         return 1;
@@ -153,7 +153,7 @@ void sub_02036594 (u8 param0, u8 param1)
     CommSys_SendDataFixedSize(19, &v0);
 }
 
-int sub_020365A8 (int param0, u8 param1)
+int CommList_Get (int param0, u8 param1)
 {
     if (!sCommTool) {
         return -1;

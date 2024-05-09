@@ -54,7 +54,7 @@ void ov23_02242FE4(void);
 void ov23_02242FF8(void);
 void ov23_0224300C(int param0, int param1);
 void ov23_02243020(int param0);
-void ov23_02243038(int param0);
+void UndergroundMan_SetReturnLog(int param0);
 void ov23_022430B8(int param0);
 void ov23_022430D0(u16 param0);
 void ov23_022430E0(u16 param0, u16 param1, u16 param2);

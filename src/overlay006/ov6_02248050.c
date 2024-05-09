@@ -75,7 +75,7 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
     VecFx32 v3;
     LocalMapObject * v4;
 
-    v4 = sub_0206251C(param0, param1);
+    v4 = MapObjMan_LocalMapObjByIndex(param0, param1);
 
     sub_02063050(v4, &v3);
 

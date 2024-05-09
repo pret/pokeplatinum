@@ -2731,7 +2731,7 @@ static void ov8_0224B2C4 (FieldSystem * param0, UnkStruct_ov8_0224B28C * param1)
 
     ov5_021E931C(v0, param0->unk_28);
     sub_02020690(v0, param0->unk_24);
-    sub_02061AF4(param1->unk_20);
+    LocalMapObj_Delete(param1->unk_20);
 }
 
 static BOOL ov8_0224B2E8 (UnkStruct_ov8_0224B28C * param0)
@@ -3142,7 +3142,7 @@ static LocalMapObject * ov8_0224B7D8 (FieldSystem * param0, int param1, int para
 
     v0 = sub_020619DC(param0->unk_38, param1, param2, 0, 0x2000, 0x0, param0->unk_1C->unk_00);
 
-    sub_0206290C(v0, 0xfd);
+    LocalMapObj_SetId(v0, 0xfd);
     sub_020629B4(v0, param3, 0);
 
     return v0;
@@ -3204,7 +3204,7 @@ static void ov8_0224B8A0 (UnkStruct_ov8_0224B8A0 * param0)
     GF_ASSERT(param0->unk_08.unk_08);
 
     sub_0207136C(param0->unk_08.unk_0C);
-    sub_02061AF4(param0->unk_08.unk_08);
+    LocalMapObj_Delete(param0->unk_08.unk_08);
 
     param0->unk_00 = 0;
 }
@@ -3729,7 +3729,7 @@ static void ov8_0224C098 (UnkStruct_ov8_0224C098 * param0)
 
     ov5_021E931C(v1, v0->unk_34->unk_28);
     sub_02020690(v1, v0->unk_34->unk_24);
-    sub_02061AF4(v0->unk_30);
+    LocalMapObj_Delete(v0->unk_30);
 }
 
 static BOOL ov8_0224C0C4 (UnkStruct_ov8_0224C098 * param0)

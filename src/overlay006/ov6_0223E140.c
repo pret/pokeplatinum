@@ -500,7 +500,7 @@ static void ov6_0223E318 (FieldSystem * param0, u32 param1, BOOL param2)
 {
     LocalMapObject * v0;
 
-    v0 = sub_0206251C(param0->unk_38, param1);
+    v0 = MapObjMan_LocalMapObjByIndex(param0->unk_38, param1);
 
     if (param2 == 1) {
         sub_020628BC(v0, (1 << 20));
@@ -839,7 +839,7 @@ static void ov6_0223E7B4 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     LocalMapObject * v1;
     u16 v2, v3, v4;
 
-    v1 = sub_0206251C(param1->unk_38, 0);
+    v1 = MapObjMan_LocalMapObjByIndex(param1->unk_38, 0);
     GF_ASSERT(v1);
 
     v2 = sub_02063020(v1);
@@ -1090,8 +1090,8 @@ static void ov6_0223EB4C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v0->unk_18 = 0;
     v0->unk_D0 = 30;
     v0->unk_104 = param1;
-    v0->unk_108 = sub_0206251C(v0->unk_104->unk_38, 1);
-    v0->unk_10C = sub_0206251C(v0->unk_104->unk_38, 0);
+    v0->unk_108 = MapObjMan_LocalMapObjByIndex(v0->unk_104->unk_38, 1);
+    v0->unk_10C = MapObjMan_LocalMapObjByIndex(v0->unk_104->unk_38, 0);
     v0->unk_110 = Player_LocalMapObject(sub_0205EF3C(v0->unk_104));
 
     Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, 4, 32);
@@ -2129,7 +2129,7 @@ void ov6_02240228 (UnkStruct_ov6_022401B8 * param0)
 
 static void ov6_02240240 (UnkStruct_ov6_02240240 * param0, FieldSystem * param1, u32 param2)
 {
-    param0->unk_00 = sub_0206251C(param1->unk_38, param2);
+    param0->unk_00 = MapObjMan_LocalMapObjByIndex(param1->unk_38, param2);
     GF_ASSERT(param0->unk_00);
     param0->unk_24 = 0;
     param0->unk_28 = 0;
@@ -2826,7 +2826,7 @@ void ov6_02240C44 (UnkStruct_ov6_02240C44 * param0, u32 param1)
     VecFx32 v0;
     LocalMapObject * v1;
 
-    v1 = sub_0206251C(param0->unk_D8->unk_38, param1);
+    v1 = MapObjMan_LocalMapObjByIndex(param0->unk_D8->unk_38, param1);
 
     sub_02063050(v1, &v0);
 

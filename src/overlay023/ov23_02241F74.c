@@ -1050,7 +1050,7 @@ void ov23_02243020 (int param0)
     }
 }
 
-void ov23_02243038 (int param0)
+void UndergroundMan_SetReturnLog (int param0)
 {
     StringTemplate * v0;
     Strbuf* v1;

@@ -394,10 +394,10 @@ static void CommPlayer_Add (u8 netId)
         if (trainerInfo) {
             if (!sCommPlayerManager->isUnderground) {
                 if (netId != CommSys_CurNetId()) {
-                    LocalMapObject * obj = sub_0206251C(sCommPlayerManager->fieldSys->unk_38, 0xff + netId + 1);
+                    LocalMapObject * obj = MapObjMan_LocalMapObjByIndex(sCommPlayerManager->fieldSys->unk_38, 0xff + netId + 1);
 
                     if (obj != 0) {
-                        sub_02061AF4(obj);
+                        LocalMapObj_Delete(obj);
                     }
                 }
             }
@@ -415,10 +415,10 @@ static void CommPlayer_Add (u8 netId)
             GF_ASSERT(playerAvatar != NULL);
             sCommPlayerManager->playerAvatar[netId] = playerAvatar;
 
-            sub_0206290C(Player_LocalMapObject(playerAvatar), 0xff + netId + 1);
+            LocalMapObj_SetId(Player_LocalMapObject(playerAvatar), 0xff + netId + 1);
 
             if (sCommPlayerManager->isUnderground) {
-                ov23_02243038(netId);
+                UndergroundMan_SetReturnLog(netId);
             }
 
             if (sCommPlayerManager->isUnderground && !sCommPlayerManager->isActive[netId]) {
@@ -426,9 +426,9 @@ static void CommPlayer_Add (u8 netId)
                     ov5_021F5634(sCommPlayerManager->fieldSys, sCommPlayerManager->playerLocation[netId].x, 0, sCommPlayerManager->playerLocation[netId].z);
                 }
 
-                sCommPlayerManager->isActive[netId] = 1;
+                sCommPlayerManager->isActive[netId] = TRUE;
             } else if (!sCommPlayerManager->isUnderground) {
-                sCommPlayerManager->isActive[netId] = 1;
+                sCommPlayerManager->isActive[netId] = TRUE;
             }
         }
     }
@@ -440,7 +440,7 @@ void CommPlayer_Destroy (u8 param0, BOOL param1, BOOL param2)
         return;
     }
 
-    MI_CpuClear8(sCommPlayerManager->unk_5A, (7 + 1));
+    MI_CpuClear8(sCommPlayerManager->unk_5A, MAX_CONNECTED_PLAYERS);
 
     if (sCommPlayerManager->isUnderground) {
         ov23_0224AF4C(param0);
@@ -469,10 +469,6 @@ void CommPlayer_Destroy (u8 param0, BOOL param1, BOOL param2)
 
         if (sCommPlayerManager->isUnderground) {
             ov23_0224AE60(param0);
-
-            if (param0 != 0) {
-                (void)0;
-            }
         }
     }
 }

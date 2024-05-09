@@ -255,7 +255,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
     v3 = Player_ZPos(param0->unk_08);
 
     for (v1 = 0; v1 < 50; v1++) {
-        v0 = sub_0206251C(param1, v1 + 1);
+        v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
 
         if (v0 == NULL) {
             GF_ASSERT(0);
@@ -424,7 +424,7 @@ static void sub_0205C7E4 (MapObjectManager * param0, int param1, int param2)
     LocalMapObject * v1;
 
     for (v0 = param1; v0 < param2; v0++) {
-        v1 = sub_0206251C(param0, v0);
+        v1 = MapObjMan_LocalMapObjByIndex(param0, v0);
 
         if (v1 == NULL) {
             GF_ASSERT(0);
@@ -441,7 +441,7 @@ void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
     LocalMapObject * v0;
     UnkStruct_0205C680 * v1;
 
-    v0 = sub_0206251C(param0, 0);
+    v0 = MapObjMan_LocalMapObjByIndex(param0, 0);
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -458,7 +458,7 @@ void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
                     continue;
                 }
 
-                v0 = sub_0206251C(param0, v2 + 1);
+                v0 = MapObjMan_LocalMapObjByIndex(param0, v2 + 1);
 
                 if (v0 == NULL) {
                     GF_ASSERT(0);

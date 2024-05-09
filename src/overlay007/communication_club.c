@@ -619,18 +619,18 @@ static BOOL ov7_0224A244 (SysTask * task, void * data)
         CommClubMan_DestroyList(task, commClubMan);
         CommClubMan_PrintMessage(pl_msg_00000353_00000, FALSE);
         ov7_0224B348(commClubMan);
-    } else if (sub_020365A8(0, 3) == CommSys_CurNetId()) {
+    } else if (CommList_Get(0, 3) == CommSys_CurNetId()) {
         CommList_Refresh();
         CommClubMan_DestroyList(task, commClubMan);
         CommClubMan_PlayerRefused(commClubMan);
-    } else if (sub_020365A8(0, 5) != -1) {
+    } else if (CommList_Get(0, 5) != -1) {
         CommList_Refresh();
         CommClubMan_DestroyList(task, commClubMan);
         CommClubMan_PlayerRefused(commClubMan);
-    } else if (sub_020365A8(0, 4) == CommSys_CurNetId()) {
+    } else if (CommList_Get(0, 4) == CommSys_CurNetId()) {
         CommClubMan_PrintMessage(pl_msg_00000353_00097, FALSE); //Players have choseen different rules. The same rules must be chosen.
         CommClubMan_SetTask(CommClubTask_DifferentRegulation);
-    } else if (sub_020365A8(0, 2) == CommSys_CurNetId()) {
+    } else if (CommList_Get(0, 2) == CommSys_CurNetId()) {
         CommList_Refresh();
 
         commClubMan->connectedCnt = CommInfo_CountReceived();
@@ -1429,7 +1429,7 @@ static void ov7_0224AF2C (SysTask * task, void * param1)
         ov7_0224A64C(commClubMan);
         sub_02001288(commClubMan->unk_5C);
 
-        if (CommTiming_IsSyncState(10) && sub_02036450()) {
+        if (CommTiming_IsSyncState(10) && CommTool_IsInitialized()) {
             CommClubMan_DestroyList(task, commClubMan);
             ov7_0224B3A8(commClubMan);          
         }
@@ -1520,11 +1520,11 @@ static void CommClubTask_WaitForGroup (SysTask * task, void * param1)
     } else if (!CommSys_IsPlayerConnected(0)) {
         CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
         return;
-    } else if (sub_020365A8(0, 5) != -1) {
+    } else if (CommList_Get(0, 5) != -1) {
         CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
         return;
     } else if (CommTiming_IsSyncState(10)) {
-        if (sub_02036450()) {
+        if (CommTool_IsInitialized()) {
             if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
                 PrintString_ForceStop(sCommClubMan->printMsgIndex);
             }

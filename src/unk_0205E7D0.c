@@ -123,7 +123,7 @@ void Player_Delete (PlayerAvatar * param0)
 {
     LocalMapObject * v0 = Player_LocalMapObject(param0);
 
-    sub_02061AF4(v0);
+    LocalMapObj_Delete(v0);
     sub_0205E8E0(param0);
 }
 
@@ -163,7 +163,7 @@ static void sub_0205E988 (PlayerAvatar * param0, const MapObjectManager * param1
     v0 = sub_020619DC(param1, param4, param5, param3, param2, 0x1, 1);
     GF_ASSERT(v0 != NULL);
 
-    sub_0206290C(v0, 0xff);
+    LocalMapObj_SetId(v0, 0xff);
     sub_0206294C(v0, 0);
     sub_02062954(v0, 0);
     sub_0206295C(v0, 0);

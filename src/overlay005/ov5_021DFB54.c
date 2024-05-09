@@ -958,7 +958,7 @@ static int ov5_021E06A8 (FieldSystem * param0, PlayerAvatar * param1)
         }
 
         ov5_021EC7F0(v1);
-        sub_02061AF4(v1);
+        LocalMapObj_Delete(v1);
         Sound_PlayEffect(1627);
     }
 

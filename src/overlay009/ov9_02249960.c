@@ -4967,10 +4967,10 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
             u16 v5 = sub_0206B5D8(v4);
 
             if ((v0 == 573) && (v5 == 2)) {
-                param1->unk_68 = sub_0206251C(param0->unk_00->unk_38, (0x80 + 1));
+                param1->unk_68 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, (0x80 + 1));
                 GF_ASSERT(param1->unk_68 != NULL);
             } else if ((v0 == 580) && (v5 == 7)) {
-                param1->unk_68 = sub_0206251C(param0->unk_00->unk_38, (0x80 + 6));
+                param1->unk_68 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, (0x80 + 6));
                 GF_ASSERT(param1->unk_68 != NULL);
             }
         }
@@ -5168,9 +5168,9 @@ static int ov9_0224D430 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 
     if (param1->unk_68 != NULL) {
         if (param1->unk_06 == 574) {
-            sub_0206290C(param1->unk_68, (0x80 + 0));
+            LocalMapObj_SetId(param1->unk_68, (0x80 + 0));
         } else {
-            sub_0206290C(param1->unk_68, (0x80 + 0));
+            LocalMapObj_SetId(param1->unk_68, (0x80 + 0));
             sub_0206295C(param1->unk_68, 6);
         }
 
@@ -5326,7 +5326,7 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     LocalMapObject * v1;
     const UnkStruct_ov5_021F8E3C * v2;
 
-    v1 = sub_0206251C(param0->unk_00->unk_38, (0x80 + 6));
+    v1 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, (0x80 + 6));
     GF_ASSERT(v1 != NULL);
 
     v0 = sub_02063020(v1);
@@ -5346,7 +5346,7 @@ static int ov9_0224D6E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
         LocalMapObject * v1;
 
         sub_02065758(param1->unk_6C);
-        v1 = sub_0206251C(param0->unk_00->unk_38, (0x80 + 6));
+        v1 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, (0x80 + 6));
 
         ov9_0224EE70(param0, v1);
         v0 = SaveData_Events(param0->unk_00->saveData);
@@ -5859,7 +5859,7 @@ static LocalMapObject * ov9_0224DE94 (UnkStruct_ov9_02249B04 * param0, int param
     v0 = sub_020619DC(param0->unk_00->unk_38, param1, param3, 0, 0x2000, 0x0, ov9_022510D0(param0));
 
     sub_02063034(v0, param2);
-    sub_0206290C(v0, 0xfd);
+    LocalMapObj_SetId(v0, 0xfd);
     sub_020629B4(v0, param4, 0);
     sub_020629B4(v0, param6, 1);
     sub_020629B4(v0, param5, 2);
@@ -5938,7 +5938,7 @@ static void ov9_0224E044 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0D
 static void ov9_0224E060 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1)
 {
     if (param1->unk_1C != NULL) {
-        sub_02061AF4(param1->unk_1C);
+        LocalMapObj_Delete(param1->unk_1C);
     }
 
     ov9_0224E044(param0, param1);
@@ -6324,7 +6324,7 @@ static int ov9_0224E4E8 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     const UnkStruct_ov9_0224E4E8 * v1 = param3;
     UnkStruct_ov9_0224E4D8 * v2 = ov9_0224E39C(param0);
 
-    v0 = sub_0206251C(param0->unk_00->unk_38, v1->unk_00);
+    v0 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, v1->unk_00);
     GF_ASSERT(v0 != NULL);
 
     if (LocalMapObj_IsAnimationSet(v0) == 1) {
@@ -6341,7 +6341,7 @@ static int ov9_0224E520 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     const UnkStruct_ov9_0224E4E8 * v1 = param3;
     UnkStruct_ov9_0224E4D8 * v2 = ov9_0224E39C(param0);
 
-    v0 = sub_0206251C(param0->unk_00->unk_38, v1->unk_00);
+    v0 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, v1->unk_00);
     GF_ASSERT(v0 != NULL);
 
     if (sub_020656AC(v0) == 1) {
@@ -7115,7 +7115,7 @@ static void ov9_0224EE70 (UnkStruct_ov9_02249B04 * param0, LocalMapObject * para
 
     for (v0 = 0; v0 < 19; v0++, v2++) {
         if ((*v2 != NULL) && (*v2 == param1)) {
-            sub_02061AF4(*v2);
+            LocalMapObj_Delete(*v2);
             *v2 = NULL;
             return;
         }
@@ -7261,7 +7261,7 @@ static void ov9_0224F0A4 (UnkStruct_ov9_02249B04 * param0, u32 param1)
     for (v0 = 0; v0 < 19; v0++, v2++) {
         if ((*v2) != NULL) {
             if (sub_02062918(*v2) == param1) {
-                sub_02061AF4(*v2);
+                LocalMapObj_Delete(*v2);
                 *v2 = NULL;
             }
         }
@@ -7565,7 +7565,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
             }
 
             ov9_02249DE4(param0->unk_00, v5);
-            sub_0206290C(v6, v4);
+            LocalMapObj_SetId(v6, v4);
 
             {
                 int v7 = sub_0206299C(v6);
