@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "consts/generated/c/abilities.h"
-#include "consts/generated/c/battle_subscripts.h"
 #include "consts/generated/c/gender.h"
 
 #include "constants/battle.h"
@@ -31,6 +30,7 @@
 #include "battle/btlcmd.h"
 #include "battle/common.h"
 #include "battle/battle_controller.h"
+#include "battle/scripts/sub_seq.naix"
 
 #include "constdata/const_020F2DAC.h"
 
@@ -1837,7 +1837,7 @@ static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *bat
     }
 
     if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_WAIT_MOVE_ANIMATION);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_wait_move_animation);
     }
 
     return FALSE;
@@ -1882,7 +1882,7 @@ static BOOL BtlCmd_PlayMoveAnimationOnMons(BattleSystem *battleSys, BattleContex
     }
 
     if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_WAIT_MOVE_ANIMATION);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_wait_move_animation);
     }
 
     return FALSE;
@@ -2363,7 +2363,7 @@ static BOOL BtlCmd_GoToMoveScript(BattleSystem *battleSys, BattleContext *battle
 
     if (battleCtx->defender == BATTLER_NONE) {
         battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-        BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
+        BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_no_target);
     } else {
         BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, battleCtx->moveCur);
     }
@@ -3747,7 +3747,7 @@ static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleC
 
         if (battleCtx->defender == BATTLER_NONE) {
             battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-            BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
+            BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_no_target);
         } else {
             ATTACKER_ACTION[BATTLE_ACTION_CHOOSE_TARGET] = battleCtx->defender;
             BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, move);
@@ -4875,7 +4875,7 @@ static BOOL BtlCmd_Counter(BattleSystem *battleSys, BattleContext *battleCtx)
             // CompareVarToValue there are no possible targets, fail
             if (DEFENDING_MON.curHP == 0) {
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_no_target);
             }
         }
 
@@ -4928,7 +4928,7 @@ static BOOL BtlCmd_MirrorCoat(BattleSystem *battleSys, BattleContext *battleCtx)
             // CompareVarToValue there are no possible targets, fail
             if (DEFENDING_MON.curHP == 0) {
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_no_target);
             }
         }
 
@@ -6143,7 +6143,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_BIND;
         battleCtx->msgBattlerTemp = ATTACKING_MON.moveEffectsData.bindTarget;
         battleCtx->msgMoveTemp = ATTACKING_MON.moveEffectsData.bindingMove;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BREAK_BIND_EFFECT);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_break_bind_effect);
 
         return FALSE;
     }
@@ -6152,7 +6152,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_LEECH_SEED;
         ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_LEECH_SEED_RECIPIENT;
         battleCtx->msgMoveTemp = MOVE_LEECH_SEED;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_blow_away_hazards);
 
         return FALSE;
     }
@@ -6161,7 +6161,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_SPIKES;
         battleCtx->sideConditions[side].spikesLayers = 0;
         battleCtx->msgMoveTemp = MOVE_SPIKES;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_blow_away_hazards);
 
         return FALSE;
     }
@@ -6171,7 +6171,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         battleCtx->sideConditions[side].toxicSpikesLayers = 0;
         battleCtx->msgMoveTemp = MOVE_TOXIC_SPIKES;
 
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_blow_away_hazards);
 
         return FALSE;
     }
@@ -6179,7 +6179,7 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_STEALTH_ROCK) {
         battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_STEALTH_ROCK;
         battleCtx->msgMoveTemp = MOVE_STEALTH_ROCK;
-        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_BLOW_AWAY_HAZARDS);
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_blow_away_hazards);
 
         return FALSE;
     }
@@ -7408,7 +7408,7 @@ static BOOL BtlCmd_TryMetalBurst(BattleSystem *battleSys, BattleContext *battleC
 
             if (DEFENDING_MON.curHP == 0) {
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
-                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSCRIPT_NO_TARGET);
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_no_target);
             }
         }
 

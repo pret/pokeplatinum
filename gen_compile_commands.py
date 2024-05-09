@@ -208,6 +208,7 @@ c_commands = [
             f'-iquote{homedir}',
             f'-iquote{homedir}/include',
             f'-iquote{homedir}/build', # Meson includes this implicitly
+            f'-iquote{homedir}/build/res', # knarc-generated NAIX headers
             f'-iquote{homedir}/build/res/text', # GMM-generated headers
             f'-include{homedir}/include/pch/global_pch.h',
             '-mthumb',
