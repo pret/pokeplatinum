@@ -4,101 +4,102 @@
 #include "comm_ring.h"
 #include "communication_system.h"
 
-static int sub_020322BC(CommRing * ring, int param1);
-static int sub_0203229C(CommRing * ring);
+static int CommRing_Index(CommRing * ring, int index);
+static int CommRing_RemainingSizeBackup(CommRing * ring);
 
-void sub_02032188 (CommRing * ring, u8 * param1, int param2)
+void CommRing_Init (CommRing * ring, u8 * buffer, int size)
 {
-    ring->unk_00 = param1;
-    ring->unk_0A = param2;
+    ring->buffer = buffer;
+    ring->size = size;
     ring->startIndex = 0;
-    ring->unk_06 = 0;
-    ring->unk_08 = 0;
+    ring->endIndex = 0;
+    ring->backupEndIndex = 0;
 }
 
-void sub_02032198 (CommRing * ring, u8 * param1, int param2, int param3)
+void CommRring_Write (CommRing * ring, u8 * buffer, int size, int unused)
 {
-    int v0, v1;
+    int i, j;
 
-    if (sub_0203229C(ring) <= param2) {
+    if (CommRing_RemainingSizeBackup(ring) <= size) {
         sub_020363BC();
         return;
     }
 
-    v1 = 0;
+    j = 0;
 
-    for (v0 = ring->unk_08; v0 < ring->unk_08 + param2; v0++, v1++) {
-        GF_ASSERT(param1);
-        ring->unk_00[sub_020322BC(ring, v0)] = param1[v1];
+    for (i = ring->backupEndIndex; i < ring->backupEndIndex + size; i++, j++) {
+        GF_ASSERT(buffer);
+        ring->buffer[CommRing_Index(ring, i)] = buffer[j];
     }
 
-    ring->unk_08 = sub_020322BC(ring, v0);
+    ring->backupEndIndex = CommRing_Index(ring, i);
 }
 
-int sub_020321F4 (CommRing * ring, u8 * param1, int param2)
+int CommRing_Read (CommRing * ring, u8 * buffer, int size)
 {
-    int v0, v1;
+    int index;
 
-    v0 = sub_02032220(ring, param1, param2);
-    ring->startIndex = sub_020322BC(ring, ring->startIndex + v0);
+    index = CommRing_Peek(ring, buffer, size);
+    ring->startIndex = CommRing_Index(ring, ring->startIndex + index);
 
-    return v0;
+    return index;
 }
 
 u8 CommRing_ReadByte (CommRing * ring)
 {
-    u8 v0;
+    u8 buff;
 
-    sub_020321F4(ring, &v0, 1);
-    return v0;
+    CommRing_Read(ring, &buff, 1);
+    return buff;
 }
 
-int sub_02032220 (CommRing * ring, u8 * param1, int param2)
+//Reading but doesn't incriment the index
+int CommRing_Peek (CommRing * ring, u8 * buffer, int size)
 {
-    int v0, v1;
+    int i, j;
 
-    v1 = 0;
+    j = 0;
 
-    for (v0 = ring->startIndex; v0 < ring->startIndex + param2; v0++, v1++) {
-        if (ring->unk_06 == sub_020322BC(ring, v0)) {
-            return v1;
+    for (i = ring->startIndex; i < ring->startIndex + size; i++, j++) {
+        if (ring->endIndex == CommRing_Index(ring, i)) {
+            return j;
         }
 
-        param1[v1] = ring->unk_00[sub_020322BC(ring, v0)];
+        buffer[j] = ring->buffer[CommRing_Index(ring, i)];
     }
 
-    return v1;
+    return j;
 }
 
 int CommRing_DataSize (CommRing * ring)
 {
-    if (ring->startIndex > ring->unk_06) {
-        return ring->unk_0A + ring->unk_06 - ring->startIndex;
+    if (ring->startIndex > ring->endIndex) {
+        return ring->size + ring->endIndex - ring->startIndex;
     }
 
-    return ring->unk_06 - ring->startIndex;
+    return ring->endIndex - ring->startIndex;
 }
 
-int sub_0203228C (CommRing * ring)
+int CommRing_RemainingSize (CommRing * ring)
 {
-    return ring->unk_0A - CommRing_DataSize(ring);
+    return ring->size - CommRing_DataSize(ring);
 }
 
-static int sub_0203229C (CommRing * ring)
+static int CommRing_RemainingSizeBackup (CommRing * ring)
 {
-    if (ring->startIndex > ring->unk_08) {
-        return ring->startIndex - ring->unk_08;
+    if (ring->startIndex > ring->backupEndIndex) {
+        return ring->startIndex - ring->backupEndIndex;
     }
 
-    return ring->unk_0A - (ring->unk_08 - ring->startIndex);
+    return ring->size - (ring->backupEndIndex - ring->startIndex);
 }
 
-int sub_020322BC (CommRing * ring, int param1)
+int CommRing_Index (CommRing * ring, int index)
 {
-    return param1 % ring->unk_0A;
+    return index % ring->size;
 }
 
-void sub_020322D0 (CommRing * ring)
+void CommRing_UpdateEndPos (CommRing * ring)
 {
-    ring->unk_06 = ring->unk_08;
+    ring->endIndex = ring->backupEndIndex;
 }

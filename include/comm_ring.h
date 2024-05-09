@@ -2,20 +2,20 @@
 #define POKEPLATINUM_UNK_02032188_H
 
 typedef struct {
-    u8 * unk_00;
+    u8 * buffer;
     s16 startIndex;
-    volatile s16 unk_06;
-    volatile s16 unk_08;
-    s16 unk_0A;
+    volatile s16 endIndex;
+    volatile s16 backupEndIndex;
+    s16 size;
 } CommRing;
 
-void sub_02032188(CommRing * ring, u8 * param1, int param2);
-void sub_02032198(CommRing * ring, u8 * param1, int param2, int param3);
-int sub_020321F4(CommRing * ring, u8 * param1, int param2);
+void CommRing_Init(CommRing * ring, u8 * param1, int param2);
+void CommRring_Write(CommRing * ring, u8 * param1, int param2, int param3);
+int CommRing_Read(CommRing * ring, u8 * param1, int param2);
 u8 CommRing_ReadByte(CommRing * ring);
-int sub_02032220(CommRing * ring, u8 * param1, int param2);
+int CommRing_Peek(CommRing * ring, u8 * param1, int param2);
 int CommRing_DataSize(CommRing * ring);
-int sub_0203228C(CommRing * ring);
-void sub_020322D0(CommRing * ring);
+int CommRing_RemainingSize(CommRing * ring);
+void CommRing_UpdateEndPos(CommRing * ring);
 
 #endif // POKEPLATINUM_UNK_02032188_H

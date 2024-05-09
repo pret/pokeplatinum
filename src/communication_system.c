@@ -220,24 +220,24 @@ static void sub_02034378 (void)
     v1 = sCommunicationSystem->allocSize / v2;
 
     for (v0 = 0; v0 < v2; v0++) {
-        sub_02032188(&sCommunicationSystem->unk_51C[v0], &sCommunicationSystem->unk_48C[v0 * v1], v1);
+        CommRing_Init(&sCommunicationSystem->unk_51C[v0], &sCommunicationSystem->unk_48C[v0 * v1], v1);
     }
 
     MI_CpuClear8(sCommunicationSystem->unk_488, sCommunicationSystem->allocSize);
     MI_CpuClear8(sCommunicationSystem->unk_4B0, sizeof(CommRing) * (7 + 1));
 
     for (v0 = 0; v0 < v2; v0++) {
-        sub_02032188(&sCommunicationSystem->unk_4B0[v0], &sCommunicationSystem->unk_488[v0 * v1], v1);
+        CommRing_Init(&sCommunicationSystem->unk_4B0[v0], &sCommunicationSystem->unk_488[v0 * v1], v1);
     }
 
     MI_CpuClear8(sCommunicationSystem->unk_308, (192 * 2));
-    sub_02032188(&sCommunicationSystem->unk_510, sCommunicationSystem->unk_308, (192 * 2));
+    CommRing_Init(&sCommunicationSystem->unk_510, sCommunicationSystem->unk_308, (192 * 2));
 
     MI_CpuFill8(sCommunicationSystem->unk_80[0], 0xee, (192 * 2));
     MI_CpuFill8(sCommunicationSystem->unk_80[1], 0xee, (192 * 2));
     MI_CpuClear8(sCommunicationSystem->unk_200, (12 * 22));
 
-    sub_02032188(&sCommunicationSystem->unk_498, sCommunicationSystem->unk_200, (12 * 22));
+    CommRing_Init(&sCommunicationSystem->unk_498, sCommunicationSystem->unk_200, (12 * 22));
 
     MI_CpuFill8(sCommunicationSystem->sendBuffer[0], 0xee, 38);
     MI_CpuFill8(sCommunicationSystem->sendBuffer[1], 0xee, 38);
@@ -246,7 +246,7 @@ static void sub_02034378 (void)
     sCommunicationSystem->sendBuffer[1][0] = 0xff;
 
     MI_CpuClear8(sCommunicationSystem->unk_490, sCommunicationSystem->maxPacketSize * 2);
-    sub_02032188(&sCommunicationSystem->unk_4A4, sCommunicationSystem->unk_490, sCommunicationSystem->maxPacketSize * 2);
+    CommRing_Init(&sCommunicationSystem->unk_4A4, sCommunicationSystem->unk_490, sCommunicationSystem->maxPacketSize * 2);
 
     sCommunicationSystem->unk_6AC = 0;
     sCommunicationSystem->unk_6AD = 0;
@@ -304,8 +304,8 @@ static void sub_02034678 (int param0)
         int v0 = sub_0203266C(sub_0203895C()) + 1;
         int v1 = sCommunicationSystem->allocSize / v0;
 
-        sub_02032188(&sCommunicationSystem->unk_4B0[param0], &sCommunicationSystem->unk_488[param0 * v1], v1);
-        sub_02032188(&sCommunicationSystem->unk_51C[param0], &sCommunicationSystem->unk_48C[param0 * v1], v1);
+        CommRing_Init(&sCommunicationSystem->unk_4B0[param0], &sCommunicationSystem->unk_488[param0 * v1], v1);
+        CommRing_Init(&sCommunicationSystem->unk_51C[param0], &sCommunicationSystem->unk_48C[param0 * v1], v1);
     }
 
     sCommunicationSystem->unk_5C0[param0].unk_0A = 0xee;
@@ -695,7 +695,7 @@ static BOOL sub_02034CF8 (int param0)
     v1 = sub_0203266C(sub_0203895C()) + 1;
 
     for (v2 = 0; v2 < v1; v2++) {
-        sub_020322D0(&sCommunicationSystem->unk_4B0[v2]);
+        CommRing_UpdateEndPos(&sCommunicationSystem->unk_4B0[v2]);
 
         if (CommSys_IsPlayerConnected(v2)) {
             sCommunicationSystem->unk_80[param0][v2 * v0] = 0xe;
@@ -705,7 +705,7 @@ static BOOL sub_02034CF8 (int param0)
             continue;
         }
 
-        v3 = sub_020321F4(&sCommunicationSystem->unk_4B0[v2], &sCommunicationSystem->unk_80[param0][v2 * v0], v0);
+        v3 = CommRing_Read(&sCommunicationSystem->unk_4B0[v2], &sCommunicationSystem->unk_80[param0][v2 * v0], v0);
 
         if (sCommunicationSystem->unk_80[param0][v2 * v0] == 0xe) {
             v4++;
@@ -906,7 +906,7 @@ static void sub_020350A4 (u16 param0, u16 * param1, u16 param2)
                 v0 += v3;
             } else {
                 v0++;
-                sub_02032198(&sCommunicationSystem->unk_51C[v1], v0, v3 - 1, 1360 + v1);
+                CommRring_Write(&sCommunicationSystem->unk_51C[v1], v0, v3 - 1, 1360 + v1);
                 v0 += (v3 - 1);
                 sCommunicationSystem->unk_697[v1] = 0;
             }
@@ -924,7 +924,7 @@ static void sub_020350A4 (u16 param0, u16 * param1, u16 param2)
         v2 = v0[0];
 
         v0++;
-        sub_02032198(&sCommunicationSystem->unk_4A4, v0, v2, 1380);
+        CommRring_Write(&sCommunicationSystem->unk_4A4, v0, v2, 1380);
     }
 }
 
@@ -957,7 +957,7 @@ static void sub_02035200 (u16 param0, u16 * param1, u16 param2)
         int v3 = sub_0203266C(sub_0203895C()) + 1;
 
         if (!(v0[0] & 0x2)) {
-            sub_02032198(&sCommunicationSystem->unk_4B0[param0], v0, v2, 1449);
+            CommRring_Write(&sCommunicationSystem->unk_4B0[param0], v0, v2, 1449);
         }
 
         sCommunicationSystem->unk_68F[param0]++;
@@ -969,7 +969,7 @@ static void sub_02035200 (u16 param0, u16 * param1, u16 param2)
         }
 
         v0++;
-        sub_02032198(&sCommunicationSystem->unk_51C[param0], v0, (12 - 1), 1458);
+        CommRring_Write(&sCommunicationSystem->unk_51C[param0], v0, (12 - 1), 1458);
     }
 }
 
@@ -1011,7 +1011,7 @@ void sub_020352C0 (u16 param0, u16 * param1, u16 param2)
             (void)0;
         } else {
             v0++;
-            sub_02032198(&sCommunicationSystem->unk_51C[param0], v0, v2 - 1, 1515);
+            CommRring_Write(&sCommunicationSystem->unk_51C[param0], v0, v2 - 1, 1515);
             sCommunicationSystem->unk_697[param0] = 0;
         }
     }
@@ -1428,7 +1428,7 @@ BOOL sub_02035B48 (int param0, const void * param1)
 
 int sub_02035B54 (void)
 {
-    return sub_0203228C(&sCommunicationSystem->unk_498);
+    return CommRing_RemainingSize(&sCommunicationSystem->unk_498);
 }
 
 static void CommSys_EndCallback (int netId, int command, int param2, void * param3, CommRecvPackage * param4)
@@ -1491,7 +1491,7 @@ static void CommSys_RecvDataSingle (CommRing * ring, int netId, u8 * param2, Com
                 param3->unk_04 = sub_0203290C(cmd, netId, param3->unk_08);
             }
 
-            v3 = sub_020321F4(ring, param2, size - param3->unk_00);
+            v3 = CommRing_Read(ring, param2, size - param3->unk_00);
 
             if (param3->unk_04) {
                 MI_CpuCopy8(param2, &param3->unk_04[param3->unk_00], v3);
@@ -1508,7 +1508,7 @@ static void CommSys_RecvDataSingle (CommRing * ring, int netId, u8 * param2, Com
             }
         } else {
             if (CommRing_DataSize(ring) >= size) {
-                sub_020321F4(ring, param2, size);
+                CommRing_Read(ring, param2, size);
                 CommSys_EndCallback(netId, cmd, size, (void *)param2, param3);
 
                 if (cmd == 17) {
@@ -1537,7 +1537,7 @@ static void CommSys_RecvData (void)
         return;
     }
 
-    sub_020322D0(&sCommunicationSystem->unk_4A4);
+    CommRing_UpdateEndPos(&sCommunicationSystem->unk_4A4);
 
     if (CommRing_DataSize(&sCommunicationSystem->unk_4A4) > 0) {
         CommSys_RecvDataSingle(&sCommunicationSystem->unk_4A4, v0, sCommunicationSystem->unk_494, &sCommunicationSystem->unk_618);
@@ -1562,7 +1562,7 @@ static void CommSys_RecvDataServer (void)
     v3 = sub_0203266C(sub_0203895C()) + 1;
 
     for (v0 = 0; v0 < v3; v0++) {
-        sub_020322D0(&sCommunicationSystem->unk_51C[v0]);
+        CommRing_UpdateEndPos(&sCommunicationSystem->unk_51C[v0]);
 
         if (CommRing_DataSize(&sCommunicationSystem->unk_51C[v0]) > 0) {
             CommSys_RecvDataSingle(&sCommunicationSystem->unk_51C[v0], v0, sCommunicationSystem->unk_494, &sCommunicationSystem->unk_5C0[v0]);

@@ -126,7 +126,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
 
     if (param1->unk_04 < param0->unk_0C) {
         if (param0->unk_0F_1) {
-            sub_020321F4(param2, param1->unk_00, param1->unk_04);
+            CommRing_Read(param2, param1->unk_00, param1->unk_04);
         } else {
             for (v0 = 0; v0 < param1->unk_04; v0++) {
                 param1->unk_00[v0] = param0->unk_00[v0];
@@ -141,7 +141,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     }
 
     if (param0->unk_0F_1) {
-        sub_020321F4(param2, param1->unk_00, param0->unk_0C);
+        CommRing_Read(param2, param1->unk_00, param0->unk_0C);
     } else {
         MI_CpuCopy8(param0->unk_00, param1->unk_00, param0->unk_0C);
     }
@@ -173,14 +173,14 @@ BOOL sub_02032498 (UnkStruct_020322F8 * param0, int cmd, u8 * param2, int param3
     }
 
     if (param5) {
-        int v4 = sub_0203228C(param0->unk_14);
+        int v4 = CommRing_RemainingSize(param0->unk_14);
 
         if ((v3 + 3) >= v4) {
             return 0;
         }
 
-        sub_02032198(param0->unk_14, param2, v3, 265);
-        sub_020322D0(param0->unk_14);
+        CommRring_Write(param0->unk_14, param2, v3, 265);
+        CommRing_UpdateEndPos(param0->unk_14);
 
         v1->unk_0F_1 = 1;
     }
