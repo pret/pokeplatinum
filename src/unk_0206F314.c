@@ -103,7 +103,7 @@ typedef struct {
     u16 unk_28;
     UnkStruct_0206F7F8_sub1 unk_2C;
     UnkStruct_ov84_02240FA8 unk_A0;
-    UnkStruct_0200112C * unk_C0;
+    BmpList * unk_C0;
     ResourceMetadata * unk_C4;
     UIControlData * unk_C8;
     FieldSystem * unk_CC;
@@ -137,7 +137,7 @@ static void sub_0206FCC4(UnkStruct_0206F7F8 * param0);
 static void sub_0206FD94(UnkStruct_0206F7F8 * param0);
 static void sub_0206FDC0(UnkStruct_0206F7F8 * param0, u16 param1, u16 param2);
 static void sub_0206FF10(UnkStruct_0206F7F8 * param0);
-static void sub_0206FF60(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void sub_0206FF60(BmpList * param0, u32 param1, u8 param2);
 static void sub_0206FFB4(UnkStruct_0206F7F8 * param0);
 static void sub_0206FFE4(UnkStruct_0206F7F8 * param0);
 static void sub_02070010(UnkStruct_0206F7F8 * param0);
@@ -213,8 +213,8 @@ static int sub_0206F314 (UnkStruct_0206F314 * param0, FieldSystem * param1, u16 
     v0->unk_CC = param1;
     v0->unk_D0 = param1->unk_08;
     v0->unk_304 = sub_0202E8C0(v1);
-    v0->unk_1A = Options_TextFrameDelay(sub_02025E44(v1));
-    v0->unk_1C = Options_Frame(sub_02025E44(v1));
+    v0->unk_1A = Options_TextFrameDelay(SaveData_Options(v1));
+    v0->unk_1C = Options_Frame(SaveData_Options(v1));
 
     param0->unk_08 = v0;
 
@@ -732,7 +732,7 @@ static void sub_0206FF10 (UnkStruct_0206F7F8 * param0)
     sub_0201C3C0(param0->unk_D0, 3);
 }
 
-static void sub_0206FF60 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void sub_0206FF60 (BmpList * param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
     UnkStruct_0206F7F8 * v3 = (UnkStruct_0206F7F8 *)sub_02001504(param0, 19);

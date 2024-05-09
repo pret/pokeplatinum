@@ -135,7 +135,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov84_02240FA8 unk_00;
     Window unk_20;
-    UnkStruct_0200112C * unk_30;
+    BmpList * unk_30;
     ResourceMetadata * unk_34;
     u16 unk_38;
     u16 unk_3A;
@@ -280,7 +280,7 @@ static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 * param0, u32 param1);
 static void ov70_0225EE30(UnkStruct_ov70_0225EC20 * param0, const UnkStruct_ov84_02240FA8 * param1, UnkStruct_ov70_0225E4EC * param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8);
 static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 * param0);
 static void ov70_0225EF14(UnkStruct_ov70_0225EC20 * param0, u16 * param1, u16 * param2);
-static void ov70_0225EF58(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov70_0225EF58(BmpList * param0, u32 param1, u8 param2);
 static void ov70_0225EF6C(UnkStruct_ov70_0225EC20 * param0, BOOL param1);
 static void ov70_0225EF70(UnkStruct_ov70_0225EC20 * param0);
 static void ov70_0225EFD4(UnkStruct_ov70_0225EFD4 * param0, UnkStruct_ov70_0225E4EC * param1, u32 param2);
@@ -1314,7 +1314,7 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, SaveData * param1, 
         Options * v1;
         u8 v2;
 
-        v1 = sub_02025E44(param1);
+        v1 = SaveData_Options(param1);
         v2 = Options_Frame(v1);
 
         sub_02002E7C(0, 5 * 32, param2);
@@ -1548,7 +1548,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
     {
         Options * v0;
 
-        v0 = sub_02025E44(param2);
+        v0 = SaveData_Options(param2);
         param0->unk_14 = Options_TextFrameDelay(v0);
     }
 }
@@ -1838,7 +1838,7 @@ static void ov70_0225EF14 (UnkStruct_ov70_0225EC20 * param0, u16 * param1, u16 *
     }
 }
 
-static void ov70_0225EF58 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov70_0225EF58 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -1895,7 +1895,7 @@ static void ov70_0225EFE0 (UnkStruct_ov70_0225EFD4 * param0, UnkStruct_ov70_0225
 
 static void ov70_0225F024 (UnkStruct_ov70_0225EFD4 * param0)
 {
-    if (sub_0201A7CC(&param0->unk_00) == 1) {
+    if (BGL_WindowAdded(&param0->unk_00) == 1) {
         Window_Clear(&param0->unk_00, 1);
         sub_0201AD10(&param0->unk_00);
         BGL_DeleteWindow(&param0->unk_00);

@@ -2402,8 +2402,8 @@ static BOOL ScrCmd_033 (ScriptContext * param0)
     FieldSystem * v0 = param0->fieldSys;
     u8 * v1 = sub_0203F098(v0, 6);
 
-    sub_0205D8F4(v0->unk_08, sub_0203F098(v0, 1), 3);
-    FieldMessage_DrawWindow(sub_0203F098(v0, 1), sub_02025E44(param0->fieldSys->saveData));
+    FieldMessage_AddWindow(v0->unk_08, sub_0203F098(v0, 1), 3);
+    FieldMessage_DrawWindow(sub_0203F098(v0, 1), SaveData_Options(param0->fieldSys->saveData));
 
     *v1 = 1;
     return 0;
@@ -2599,7 +2599,7 @@ static BOOL ScrCmd_03A (ScriptContext * param0)
     MessageLoader_GetStrbuf(param0->loader, v5, *v2);
     StringTemplate_Format(*v4, *v3, *v2);
 
-    *v1 = sub_0205D994(ov5_021E1B50(v0->unk_64), *v3, sub_02025E44(param0->fieldSys->saveData), 1);
+    *v1 = FieldMessage_Print(ov5_021E1B50(v0->unk_64), *v3, SaveData_Options(param0->fieldSys->saveData), 1);
 
     param0->data[0] = v6;
     ScriptContext_Pause(param0, sub_02040670);
@@ -4492,7 +4492,7 @@ static BOOL ScrCmd_0B4 (ScriptContext * param0)
 
     *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020425E0));
     v0 = *v1;
-    v0->unk_04 = sub_02025E44(param0->fieldSys->saveData);
+    v0->unk_04 = SaveData_Options(param0->fieldSys->saveData);
 
     sub_0203E0C0(param0->fieldSys, *v1);
     ScriptContext_Pause(param0, sub_02041D60);
@@ -4921,7 +4921,7 @@ static BOOL ScrCmd_0E6 (ScriptContext * param0)
     TrainerData_LoadMessage(v5, v6, *v2, 11);
     BGL_FillWindow(sub_0203F098(v0, 1), 15);
 
-    *v4 = sub_0205D994(sub_0203F098(v0, 1), *v2, sub_02025E44(param0->fieldSys->saveData), 1);
+    *v4 = FieldMessage_Print(sub_0203F098(v0, 1), *v2, SaveData_Options(param0->fieldSys->saveData), 1);
     ScriptContext_Pause(param0, sub_02040014);
 
     return 1;
@@ -7879,7 +7879,7 @@ static BOOL ScrCmd_2C4 (ScriptContext * param0)
         v2->unk_00 = NULL;
     }
 
-    v2->unk_04 = sub_02025E44(param0->fieldSys->saveData);
+    v2->unk_04 = SaveData_Options(param0->fieldSys->saveData);
     v2->unk_24 = v1;
     v2->unk_08 = param0->fieldSys->saveData;
     v2->unk_1C = param0->fieldSys->unk_1C->unk_00;

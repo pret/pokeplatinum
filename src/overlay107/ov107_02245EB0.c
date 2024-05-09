@@ -117,7 +117,7 @@ struct UnkStruct_ov107_02246170_t {
     UnkStruct_02081CF4 unk_110;
     UIControlData * unk_11C;
     ResourceMetadata unk_120[3];
-    UnkStruct_0200112C * unk_138;
+    BmpList * unk_138;
     ResourceMetadata * unk_13C;
     PaletteData * unk_140;
     UnkStruct_0200C440 * unk_144;
@@ -190,10 +190,10 @@ static void ov107_02247D68(UnkStruct_ov107_02246170 * param0, u8 param1, u8 para
 static void ov107_02247D94(UnkStruct_ov107_02246170 * param0);
 static void ov107_02247DF0(UnkStruct_ov107_02246170 * param0);
 static void ov107_02247E5C(UnkStruct_ov107_02246170 * param0);
-static void ov107_02247F14(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov107_02247F14(BmpList * param0, u32 param1, u8 param2);
 static void ov107_02247F6C(UnkStruct_ov107_02246170 * param0);
-static void ov107_02248028(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov107_022480A0(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov107_02248028(BmpList * param0, u32 param1, u8 param2);
+static void ov107_022480A0(BmpList * param0, u32 param1, u8 param2);
 static void ov107_022480EC(UnkStruct_ov107_02246170 * param0, u32 param1, s32 param2, u32 param3, int param4);
 static void ov107_02248104(UnkStruct_ov107_02246170 * param0, u32 param1, BoxPokemon * param2);
 static void ov107_02248110(UnkStruct_ov107_02246170 * param0, u32 param1);
@@ -274,7 +274,7 @@ int ov107_02245EB0 (OverlayManager * param0, int * param1)
     v1->unk_154 = sub_0203041C(v1->unk_14C);
     v1->unk_09 = v2->unk_04;
     v1->unk_3C8 = &v2->unk_20;
-    v1->unk_148 = sub_02025E44(v1->unk_14C);
+    v1->unk_148 = SaveData_Options(v1->unk_14C);
     v1->unk_3DC = v2->unk_1C;
     v1->unk_3CC = &v2->unk_08[0];
     v1->unk_3D0 = &v2->unk_0C[0];
@@ -2003,7 +2003,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
-static void ov107_02247F14 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov107_02247F14 (BmpList * param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2, v3, v4;
@@ -2065,7 +2065,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
-static void ov107_02248028 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov107_02248028 (BmpList * param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
     u16 v2;
@@ -2090,7 +2090,7 @@ static void ov107_02248028 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov107_022480A0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov107_022480A0 (BmpList * param0, u32 param1, u8 param2)
 {
     u8 v0, v1;
     UnkStruct_ov107_02246170 * v2 = (UnkStruct_ov107_02246170 *)sub_02001504(param0, 19);

@@ -64,7 +64,7 @@ struct UnkStruct_ov5_021DC1A4_t {
     UIControlData * unk_B8;
     ResourceMetadata unk_BC[28];
     UnkStruct_ov84_02240FA8 unk_19C;
-    UnkStruct_0200112C * unk_1BC;
+    BmpList * unk_1BC;
     u16 unk_1C0;
     u16 unk_1C2;
     ResourceMetadata unk_1C4[28];
@@ -90,8 +90,8 @@ static void ov5_021DC530(UnkStruct_ov5_021DC1A4 * param0, u32 param1);
 static void ov5_021DC708(UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param2, u32 param3);
 static u32 ov5_021DC7A8(UnkStruct_ov5_021DC1A4 * param0);
 static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 * param0);
-static void ov5_021DC8F4(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov5_021DC918(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov5_021DC8F4(BmpList * param0, u32 param1, u8 param2);
+static void ov5_021DC918(BmpList * param0, u32 param1, u8 param2);
 static void ov5_021DC95C(SysTask * param0, void * param1);
 static void ov5_021DCA28(UnkStruct_ov5_021DC1A4 * param0);
 static void ov5_021DCA90(UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param2);
@@ -507,7 +507,7 @@ static void ov5_021DC7E4 (UnkStruct_ov5_021DC1A4 * param0)
     return;
 }
 
-static void ov5_021DC8F4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov5_021DC8F4 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -516,7 +516,7 @@ static void ov5_021DC8F4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov5_021DC918 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov5_021DC918 (BmpList * param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;

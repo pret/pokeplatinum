@@ -87,7 +87,7 @@ struct UnkStruct_ov5_021F6704_t {
     u16 * unk_214;
     u16 * unk_218;
     UnkStruct_ov84_02240FA8 unk_21C;
-    UnkStruct_0200112C * unk_23C;
+    BmpList * unk_23C;
     u16 unk_240;
     u16 unk_242;
     ResourceMetadata unk_244[120];
@@ -111,8 +111,8 @@ void ov5_021F6760(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 p
 static void ov5_021F6768(UnkStruct_ov5_021F6704 * param0);
 static void ov5_021F6830(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F68BC(UnkStruct_ov5_021F6704 * param0);
-static void ov5_021F69CC(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov5_021F69F0(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov5_021F69CC(BmpList * param0, u32 param1, u8 param2);
+static void ov5_021F69F0(BmpList * param0, u32 param1, u8 param2);
 static void ov5_021F6A34(SysTask * param0, void * param1);
 static void ov5_021F6AD4(UnkStruct_ov5_021F6704 * param0);
 
@@ -344,7 +344,7 @@ static void ov5_021F68BC (UnkStruct_ov5_021F6704 * param0)
     return;
 }
 
-static void ov5_021F69CC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov5_021F69CC (BmpList * param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -353,7 +353,7 @@ static void ov5_021F69CC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov5_021F69F0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov5_021F69F0 (BmpList * param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;

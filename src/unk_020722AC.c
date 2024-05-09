@@ -111,7 +111,7 @@ typedef struct {
     u16 unk_13C;
     u16 unk_13E;
     UnkStruct_ov84_02240FA8 unk_140;
-    UnkStruct_0200112C * unk_160;
+    BmpList * unk_160;
     ResourceMetadata * unk_164;
     UIControlData * unk_168;
     FieldSystem * unk_16C;
@@ -152,10 +152,10 @@ static void sub_02072EB8(UnkStruct_02072EB8 * param0, u8 param1);
 static void sub_02072ED0(UnkStruct_02072EB8 * param0, u8 param1, int param2);
 static void sub_02072F04(UnkStruct_02072EB8 * param0, u8 param1);
 static void sub_020729B4(UnkStruct_02072334 * param0);
-static void sub_02072BBC(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void sub_02072C0C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void sub_02072BBC(BmpList * param0, u32 param1, u8 param2);
+static void sub_02072C0C(BmpList * param0, u32 param1, u8 param2);
 static void sub_02072C98(UnkStruct_02072334 * param0, u8 param1, u8 param2);
-static void sub_02072DA4(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void sub_02072DA4(BmpList * param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 * param0);
 static void sub_02072E4C(UnkStruct_02072334 * param0);
 static void sub_02072F30(UnkStruct_02072334 * param0, SaveData * param1, int param2);
@@ -223,8 +223,8 @@ void sub_020722AC (void * param0, int * param1)
     v0->unk_00 = 43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = Options_TextFrameDelay(sub_02025E44(v1));
-    v0->unk_14 = Options_Frame(sub_02025E44(v1));
+    v0->unk_16 = Options_TextFrameDelay(SaveData_Options(v1));
+    v0->unk_14 = Options_Frame(SaveData_Options(v1));
 
     sub_02072ED0(v0->unk_1C, 20, v0->unk_00);
     sub_02072F30(v0, v1, v0->unk_00);
@@ -748,7 +748,7 @@ static void sub_020729B4 (UnkStruct_02072334 * param0)
     param0->unk_13B_0 = 0;
 }
 
-static void sub_02072BBC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void sub_02072BBC (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_02072334 * v0 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
 
@@ -763,7 +763,7 @@ static void sub_02072BBC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void sub_02072C0C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void sub_02072C0C (BmpList * param0, u32 param1, u8 param2)
 {
     u16 v0, v1, v2;
     UnkStruct_02072334 * v3 = (UnkStruct_02072334 *)sub_02001504(param0, 19);
@@ -828,7 +828,7 @@ static void sub_02072C98 (UnkStruct_02072334 * param0, u8 param1, u8 param2)
     param0->unk_13B_0 = 1;
 }
 
-static void sub_02072DA4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void sub_02072DA4 (BmpList * param0, u32 param1, u8 param2)
 {
     if (!param2) {
         Sound_PlayEffect(1500);
@@ -1226,7 +1226,7 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
 
         v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->unk_16C));
         v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->unk_16C));
-        v0->unk_0C = sub_02025E44(FieldSystem_SaveData(param0->unk_16C));
+        v0->unk_0C = SaveData_Options(FieldSystem_SaveData(param0->unk_16C));
         v0->unk_08 = sub_02028430(param0->unk_16C->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;

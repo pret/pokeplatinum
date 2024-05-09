@@ -43,7 +43,7 @@ TrainerInfo * SaveData_GetTrainerInfo (SaveData * param0)
     return &v0->unk_04;
 }
 
-Options * sub_02025E44 (SaveData * param0)
+Options * SaveData_Options (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 

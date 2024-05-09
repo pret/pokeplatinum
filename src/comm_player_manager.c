@@ -137,7 +137,7 @@ void CommPlayerMan_Restart (void)
         return;
     }
 
-    sCommPlayerManager->unk_2BB = TRUE;
+    sCommPlayerManager->sendAllPos = TRUE;
     sCommPlayerManager->isResetting = FALSE;
 
     CommPlayer_InitPersonal();
@@ -287,7 +287,7 @@ void CommPlayer_SendXZPos (BOOL param0, int x, int z)
     }
 
     CommSys_SendDataFixedSize(22, data);
-    sCommPlayerManager->unk_2BB = TRUE;
+    sCommPlayerManager->sendAllPos = TRUE;
 }
 
 void CommPlayer_SendPos (BOOL param0)
@@ -361,14 +361,14 @@ static void sub_02057C2C (void * param0)
         if (sCommPlayerManager->isActive[netId]) {
             CommPlayerLocation * location = &sCommPlayerManager->playerLocationServer[netId];
 
-            if (sCommPlayerManager->unk_132[netId] || sCommPlayerManager->unk_2BB) {
+            if (sCommPlayerManager->unk_132[netId] || sCommPlayerManager->sendAllPos) {
                 sCommPlayerManager->unk_132[netId] = 0;
                 sub_02057B48(netId, location);
             }
         }
     }
 
-    sCommPlayerManager->unk_2BB = FALSE;
+    sCommPlayerManager->sendAllPos = FALSE;
 }
 
 u32 CommPlayer_Size (void)
@@ -839,7 +839,7 @@ void CommPlayer_RecvLocation (int netId, int param1, void * src, void * param3)
     playerLocation = &sCommPlayerManager->playerLocationServer[netId];
 
     if (buffer[4] & 0x80) {
-        sCommPlayerManager->unk_2BB = TRUE;
+        sCommPlayerManager->sendAllPos = TRUE;
         return;
     }
 

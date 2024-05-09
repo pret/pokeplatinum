@@ -257,7 +257,7 @@ static void ov97_0222D34C (OverlayManager * param0)
 
     sub_0201ACF4(&v1->unk_18); BGL_DeleteWindow(&v1->unk_18);
 
-    if (sub_0201A7CC(&v1->unk_58)) {
+    if (BGL_WindowAdded(&v1->unk_58)) {
         sub_0201ACF4(&v1->unk_58); BGL_DeleteWindow(&v1->unk_58);
     }
 
@@ -293,14 +293,14 @@ static void ov97_0222D40C (UnkStruct_ov97_0222D04C * param0, int param1)
 
 static void ov97_0222D444 (Window * param0, u8 param1)
 {
-    if (sub_0201A7CC(param0) == 1) {
+    if (BGL_WindowAdded(param0) == 1) {
         Window_Clear(param0, param1);
     }
 }
 
 static void ov97_0222D45C (Window * param0, u8 param1)
 {
-    if (sub_0201A7CC(param0) == 1) {
+    if (BGL_WindowAdded(param0) == 1) {
         sub_0200E084(param0, param1);
     }
 }
@@ -945,7 +945,7 @@ static BOOL ov97_0222DFD4 (OverlayManager * param0, UnkStruct_ov97_0222D04C * pa
 
     *((u16 *)HW_BG_PLTT) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
 
-    if (!sub_0201A7CC(&param1->unk_18)) {
+    if (!BGL_WindowAdded(&param1->unk_18)) {
         BGL_AddWindow(param1->unk_00, &param1->unk_18, 0, 2, 19, 27, 4, 0, ((1 + (18 + 12)) + 9));
     }
 
@@ -1116,7 +1116,7 @@ static int ov97_0222E2DC (OverlayManager * param0, int * param1)
 
     v0->unk_62C = 29;
     v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
-    v0->unk_08 = sub_02025E44(v0->unk_04);
+    v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_68 = 0xff;
 
     Heap_Create(0, 91, 0x300);
@@ -2052,7 +2052,7 @@ static int ov97_0222F75C (OverlayManager * param0, int * param1)
                 ov97_0222D30C(v3, 0);
                 *param1 = 49;
             } else {
-                if (!sub_0201A7CC(&v3->unk_58)) {
+                if (!BGL_WindowAdded(&v3->unk_58)) {
                     BGL_AddWindow(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
                 }
 
@@ -2165,7 +2165,7 @@ static int ov97_0222F75C (OverlayManager * param0, int * param1)
 
             v3->unk_80 = ov97_02232148(v3->unk_04, &v3->unk_8C);
 
-            if (!sub_0201A7CC(&v3->unk_58)) {
+            if (!BGL_WindowAdded(&v3->unk_58)) {
                 BGL_AddWindow(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
             }
 
@@ -2329,7 +2329,7 @@ static int ov97_0222F75C (OverlayManager * param0, int * param1)
             ov97_0222D30C(v3, 0);
             *param1 = 49;
         } else {
-            if (!sub_0201A7CC(&v3->unk_58)) {
+            if (!BGL_WindowAdded(&v3->unk_58)) {
                 BGL_AddWindow(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
             }
 

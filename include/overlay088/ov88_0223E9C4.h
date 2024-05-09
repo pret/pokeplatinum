@@ -16,6 +16,6 @@ void ov88_0223EC78(Window * param0, Strbuf *param1, int param2, u32 param3, int 
 int ov88_0223ECBC(Window * param0, int param1, int param2, MessageLoader * param3, StringTemplate * param4);
 u32  ov88_0223ED2C(BGL * param0, UIControlData ** param1, int * param2);
 void ov88_0223ED80(Window * param0);
-UnkStruct_0200112C * ov88_0223ED94(ResourceMetadata * param0, int param1, Window * param2, BGL * param3);
+BmpList * ov88_0223ED94(ResourceMetadata * param0, int param1, Window * param2, BGL * param3);
 
 #endif // POKEPLATINUM_OV88_0223E9C4_H

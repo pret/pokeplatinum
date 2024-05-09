@@ -194,7 +194,7 @@ typedef struct {
     u32 unk_DC;
     Window unk_E0;
     ResourceMetadata * unk_F0[2];
-    UnkStruct_0200112C * unk_F8;
+    BmpList * unk_F8;
     UIControlData * unk_FC;
     s32 unk_100;
     GraphicElementData * unk_104;
@@ -333,7 +333,7 @@ static void ov64_0222FE70(UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
 static BOOL ov64_0222FEFC(const UnkStruct_ov64_0222F0C4 * param0);
 static void ov64_0222FF18(UnkStruct_ov64_0222F0C4 * param0);
 static u32 ov64_0222FF38(const UnkStruct_ov64_0222F0C4 * param0);
-static void ov64_0222FF48(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov64_0222FF48(BmpList * param0, u32 param1, u8 param2);
 static void ov64_0222FF5C(UnkStruct_ov64_0222F0C4 * param0);
 static BOOL ov64_02230008(UnkStruct_ov64_0222F0C4 * param0);
 static void ov64_02230044(UnkStruct_ov64_0222F0C4 * param0);
@@ -1075,7 +1075,7 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 {
     int v0;
 
-    v0 = Options_Frame(sub_02025E44(param1->unk_00));
+    v0 = Options_Frame(SaveData_Options(param1->unk_00));
 
     sub_02002E98(0, 7 * 0x20, param2);
     sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
@@ -1499,7 +1499,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x38]
     ldr r0, [r5, #0]
-    bl sub_02025E44
+    bl SaveData_Options
     bl Options_TextFrameDelay
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x34]
@@ -1751,7 +1751,7 @@ static BOOL ov64_0222F068 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222F09C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    param0->unk_DC = Options_TextFrameDelay(sub_02025E44(param1->unk_00));
+    param0->unk_DC = Options_TextFrameDelay(SaveData_Options(param1->unk_00));
     ov64_0222F414(param0, param1, param2, param3);
 }
 
@@ -2633,7 +2633,7 @@ static u32 ov64_0222FF38 (const UnkStruct_ov64_0222F0C4 * param0)
     return v0;
 }
 
-static void ov64_0222FF48 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov64_0222FF48 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -2835,7 +2835,7 @@ static int ov64_0223044C (UnkStruct_ov64_02230444 * param0, UnkStruct_ov64_0222D
         v0[2] = 4;
         v0[3] = 0;
 
-        param0->unk_08 = sub_02089400(param4, 12, v0, sub_02025E44(param2->unk_00), 0, 0);
+        param0->unk_08 = sub_02089400(param4, 12, v0, SaveData_Options(param2->unk_00), 0, 0);
         ov64_0222DFD0(param1);
         param0->unk_00 = OverlayManager_New(&Unk_020F2DAC, param0->unk_04, param4);
         param2->unk_04 = 1;
@@ -2920,7 +2920,7 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
 {
     UnkStruct_0208737C * v0;
 
-    v0 = sub_0208712C(param2, 7, 0, 7, sub_02025E44(param1->unk_00));
+    v0 = sub_0208712C(param2, 7, 0, 7, SaveData_Options(param1->unk_00));
 
     if (param1->unk_34.unk_04 == 1) {
         {

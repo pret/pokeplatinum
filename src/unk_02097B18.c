@@ -432,7 +432,7 @@ void sub_020980DC (TaskManager * param0, SaveData * param1)
     v0->unk_10 = param1;
     v0->unk_08 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
-    v0->unk_08->unk_24 = sub_02025E44(param1);
+    v0->unk_08->unk_24 = SaveData_Options(param1);
     v0->unk_08->unk_28 = param1;
     v0->unk_0C = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));

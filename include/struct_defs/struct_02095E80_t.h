@@ -128,7 +128,7 @@ struct UnkStruct_02095E80_t {
     StringTemplate * unk_36CC;
     MessageLoader * unk_36D0;
     ResourceMetadata * unk_36D4;
-    UnkStruct_0200112C * unk_36D8;
+    BmpList * unk_36D8;
     Window unk_36DC;
     UnkStruct_0202B370 * unk_36EC;
     int unk_36F0;

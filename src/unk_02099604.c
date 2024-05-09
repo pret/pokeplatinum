@@ -31,7 +31,7 @@ UnkStruct_ov82_0223B164 * sub_02099604 (int param0, SaveData * param1, int param
     v0->unk_08 = Poffin_GetSavedataBlock(param1);
     v0->unk_10 = SaveData_GetTrainerInfo(param1);
     v0->unk_14 = sub_0207D990(param1);
-    v0->unk_18 = sub_02025E44(param1);
+    v0->unk_18 = SaveData_Options(param1);
     v0->unk_1C = param3;
     v0->unk_20 = 0;
     v0->unk_04 = param0;

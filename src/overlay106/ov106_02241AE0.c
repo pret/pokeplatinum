@@ -214,7 +214,7 @@ int ov106_02241AE0 (OverlayManager * param0, int * param1)
     v1->unk_B8 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
     v1->unk_28C = &v2->unk_06;
-    v1->unk_B4 = sub_02025E44(v1->unk_B8);
+    v1->unk_B4 = SaveData_Options(v1->unk_B8);
     v1->unk_290 = v2->unk_0C;
     v1->unk_294 = v2->unk_08;
     v1->unk_298 = v2->unk_14;
@@ -505,7 +505,7 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
         break;
     case 4:
         ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
-        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_TextFrameDelay(sub_02025E44(param0->unk_B8)), 1, 2, 15, 1);
+        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_TextFrameDelay(SaveData_Options(param0->unk_B8)), 1, 2, 15, 1);
         sub_0201A954(&param0->unk_4C[0]);
         param0->unk_08 = 5;
         break;

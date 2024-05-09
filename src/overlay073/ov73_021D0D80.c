@@ -71,7 +71,7 @@ typedef struct {
     Window unk_1C;
     int unk_2C;
     Window unk_30;
-    UnkStruct_0200112C * unk_40;
+    BmpList * unk_40;
     ResourceMetadata * unk_44;
     int unk_48;
     MessageLoader * unk_4C;
@@ -150,7 +150,7 @@ int ov73_021D0D80 (OverlayManager * param0, int * param1)
 
     v0->unk_00 = v1;
     v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
-    v0->unk_08 = sub_02025E44(v0->unk_04);
+    v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
     v0->unk_14 = NULL;
@@ -746,7 +746,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
     return v0;
 }
 
-static void ov73_021D1634 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov73_021D1634 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

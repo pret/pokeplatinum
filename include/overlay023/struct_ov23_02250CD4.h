@@ -29,9 +29,9 @@ typedef struct {
     Window unk_30;
     ResourceMetadata * unk_40;
     ResourceMetadata * unk_44;
-    UnkStruct_0200112C * unk_48;
+    BmpList * unk_48;
     UnkStruct_ov23_02248D20 * unk_4C;
-    UnkStruct_0200112C * unk_50;
+    BmpList * unk_50;
     UIControlData * unk_54;
     ResourceMetadata * unk_58;
     UIControlData * unk_5C;

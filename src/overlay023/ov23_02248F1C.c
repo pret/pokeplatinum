@@ -434,7 +434,7 @@ static void ov23_0224944C (BGL * param0, Window * param1)
 
     sub_0205D8CC(4, 0);
     sub_02019690(7, 32, 0, 4);
-    sub_0205D8F4(param0, param1, 7);
+    FieldMessage_AddWindow(param0, param1, 7);
     BGL_FillWindow(param1, 0);
     sub_02006E84(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
     sub_0200F338(1);

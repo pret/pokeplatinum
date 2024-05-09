@@ -452,7 +452,7 @@ static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, SaveData * param1, 
 {
     Options * v0;
 
-    v0 = sub_02025E44(param1);
+    v0 = SaveData_Options(param1);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
     sub_0201DBEC(32, param2);
@@ -920,7 +920,7 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
     {
         Options * v0;
 
-        v0 = sub_02025E44(param2);
+        v0 = SaveData_Options(param2);
         param0->unk_04 = Options_TextFrameDelay(v0);
     }
 }

@@ -127,7 +127,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     v1->unk_05 = v2->unk_04;
     v1->unk_06 = v2->unk_05;
     v1->unk_08 = v2->unk_06;
-    v1->unk_124 = sub_02025E44(v1->unk_128);
+    v1->unk_124 = SaveData_Options(v1->unk_128);
 
     ov110_021D1180(v1);
 

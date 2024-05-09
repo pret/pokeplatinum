@@ -173,7 +173,7 @@ static int ov23_02253E90 (UnkStruct_ov23_02253E2C * param0, BOOL param1, UnkStru
     ov23_02253FA4(param0, 0);
     ov23_022421EC();
 
-    if (!sub_0201A7CC(&param0->unk_08)) {
+    if (!BGL_WindowAdded(&param0->unk_08)) {
         BGL_AddWindow(param0->unk_18, &param0->unk_08, 3, 2, 19, 27, 4, 12, param0->unk_40);
     }
 

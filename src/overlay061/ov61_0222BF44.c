@@ -82,7 +82,7 @@ typedef struct {
     int unk_94;
     int unk_98;
     ResourceMetadata * unk_9C;
-    UnkStruct_0200112C * unk_A0;
+    BmpList * unk_A0;
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
 
@@ -445,7 +445,7 @@ static void ov61_0222C3B0 (UnkStruct_ov61_0222C664 * param0)
     sub_02007130(v1, 3, 4, 0, 0, 117);
     sub_02002E98(0, 13 * 0x20, 117);
     sub_02002E98(4, 13 * 0x20, 117);
-    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(sub_02025E44(param0->unk_00->unk_00->unk_04)), 117);
+    sub_0200DD0C(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), 117);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 117);
     sub_020070E8(v1, 2, v0, 1, 0, 0, 0, 117);
     sub_0200710C(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 117);

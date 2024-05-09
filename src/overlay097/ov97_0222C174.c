@@ -579,7 +579,7 @@ static BOOL ov97_0222C404 (UnkStruct_ov97_0222C388 * param0)
 {
     UnkStruct_ov97_02237808 v0;
 
-    if (sub_0201A7CC(&param0->unk_18) == 0) {
+    if (BGL_WindowAdded(&param0->unk_18) == 0) {
         ov97_02237808(&v0, &param0->unk_18, 0, 14, 1, 1);
         ov97_02237858(&v0, 22, 16, param0->unk_144);
         ov97_0223795C(param0->unk_04, &v0, 5, 4, 2);
@@ -666,7 +666,7 @@ static void ov97_0222C688 (OverlayManager * param0)
 
     ov97_02237DA0();
 
-    if (sub_0201A7CC(&v1->unk_18) == 1) {
+    if (BGL_WindowAdded(&v1->unk_18) == 1) {
         sub_0201ACF4(&v1->unk_18); BGL_DeleteWindow(&v1->unk_18);
         sub_0201ACF4(&v1->unk_28); BGL_DeleteWindow(&v1->unk_28);
         sub_0201ACF4(&v1->unk_38); BGL_DeleteWindow(&v1->unk_38);
@@ -690,7 +690,7 @@ static int ov97_0222C6F8 (OverlayManager * param0, int * param1)
     v0->unk_08 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = SaveData_Pokedex(v0->unk_08);
-    v0->unk_14 = sub_02025E44(v0->unk_08);
+    v0->unk_14 = SaveData_Options(v0->unk_08);
 
     ov97_02237694(v0->unk_00);
 

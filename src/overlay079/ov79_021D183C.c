@@ -27,9 +27,9 @@
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D183C.h"
 
-static void ov79_021D1D88(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov79_021D1D94(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov79_021D1FA8(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov79_021D1D88(BmpList * param0, u32 param1, u8 param2);
+static void ov79_021D1D94(BmpList * param0, u32 param1, u8 param2);
+static void ov79_021D1FA8(BmpList * param0, u32 param1, u8 param2);
 
 static const UnkStruct_ov84_02240FA8 Unk_ov79_021D3BB0 = {
     NULL,
@@ -305,7 +305,7 @@ static void ov79_021D1D20 (UnkStruct_ov79_021D0E1C * param0, UnkStruct_020989DC 
     }
 }
 
-static void ov79_021D1D88 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov79_021D1D88 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
     u32 v1;
@@ -313,7 +313,7 @@ static void ov79_021D1D88 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
 }
 
-static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov79_021D1D94 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov79_021D0E1C * v0 = (UnkStruct_ov79_021D0E1C *)sub_02001504(param0, 19);
     u32 v1;
@@ -402,7 +402,7 @@ void ov79_021D1F60 (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_D0 = NULL;
 }
 
-static void ov79_021D1FA8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov79_021D1FA8 (BmpList * param0, u32 param1, u8 param2)
 {
     if (!param2) {
         Sound_PlayEffect(1500);

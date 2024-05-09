@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0200112C_DECL_H
 #define POKEPLATINUM_STRUCT_0200112C_DECL_H
 
-typedef struct UnkStruct_0200112C_t UnkStruct_0200112C;
+typedef struct UnkStruct_0200112C_t BmpList;
 
 #endif // POKEPLATINUM_STRUCT_0200112C_DECL_H

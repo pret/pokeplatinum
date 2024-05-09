@@ -139,7 +139,7 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * param1, Par
 
     v0->dexMode = sub_0207A274(v1);
     v0->contest = PokemonSummary_ShowContestData(v1);
-    v0->options = sub_02025E44(v1);
+    v0->options = SaveData_Options(v1);
     v0->monData = param2;
     v0->dataType = 1;
     v0->pos = param3;
@@ -161,7 +161,7 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
 
     MI_CpuClear8(v1, sizeof(PartyManagementData));
 
-    v1->unk_0C = sub_02025E44(param0->unk_24->saveData);
+    v1->unk_0C = SaveData_Options(param0->unk_24->saveData);
     v1->unk_14 = (void *)param0->unk_24->unk_B0;
     v1->unk_00 = Party_GetFromSavedata(param0->unk_24->saveData);
     v1->unk_04 = sub_0207D990(param0->unk_24->saveData);
@@ -624,19 +624,19 @@ static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf *param1)
 {
     Window * v0 = &(param0->unk_14);
 
-    if (sub_0201A7CC(v0) == 0) {
-        sub_0205D8F4(param0->unk_24->unk_08, v0, 3);
-        FieldMessage_DrawWindow(v0, sub_02025E44(param0->unk_24->saveData));
+    if (BGL_WindowAdded(v0) == 0) {
+        FieldMessage_AddWindow(param0->unk_24->unk_08, v0, 3);
+        FieldMessage_DrawWindow(v0, SaveData_Options(param0->unk_24->saveData));
     } else {
         sub_0205D988(v0);
     }
 
-    return sub_0205D994(v0, (Strbuf *)param1, sub_02025E44(param0->unk_24->saveData), 1);
+    return FieldMessage_Print(v0, (Strbuf *)param1, SaveData_Options(param0->unk_24->saveData), 1);
 }
 
 static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
 {
-    if (sub_0201A7CC(&(param0->unk_14))) {
+    if (BGL_WindowAdded(&(param0->unk_14))) {
         if (param1) {
             sub_0200E084(&param0->unk_14, 0);
             sub_0201ACF4(&param0->unk_14);
@@ -646,12 +646,12 @@ static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
         Window_Init(&param0->unk_14);
     }
 
-    if (sub_0201A7CC(&(param0->unk_54))) {
+    if (BGL_WindowAdded(&(param0->unk_54))) {
         BGL_DeleteWindow(&param0->unk_54);
         Window_Init(&param0->unk_54);
     }
 
-    if (sub_0201A7CC(&(param0->unk_64))) {
+    if (BGL_WindowAdded(&(param0->unk_64))) {
         BGL_DeleteWindow(&param0->unk_64);
         Window_Init(&param0->unk_64);
     }
@@ -874,7 +874,7 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
 {
     Window * v0 = &(param0->unk_54);
 
-    if (sub_0201A7CC(v0) == 0) {
+    if (BGL_WindowAdded(v0) == 0) {
         int v1, v2, v3;
         MessageLoader * v4;
 
@@ -910,7 +910,7 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
 {
     Window * v0 = &(param0->unk_64);
 
-    if (sub_0201A7CC(v0) == 0) {
+    if (BGL_WindowAdded(v0) == 0) {
         int v1;
 
         BGL_AddWindow(param0->unk_24->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
@@ -1027,10 +1027,10 @@ static BOOL sub_0205B140 (TaskManager * param0)
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
-        sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
-        FieldMessage_DrawWindow(&v1->unk_08, sub_02025E44(v0->saveData));
+        FieldMessage_AddWindow(v0->unk_08, &v1->unk_08, 3);
+        FieldMessage_DrawWindow(&v1->unk_08, SaveData_Options(v0->saveData));
 
-        v1->unk_20 = sub_0205D994(&v1->unk_08, v1->unk_04, sub_02025E44(v0->saveData), 1);
+        v1->unk_20 = FieldMessage_Print(&v1->unk_08, v1->unk_04, SaveData_Options(v0->saveData), 1);
         v1->unk_28++;
         break;
     case 1:

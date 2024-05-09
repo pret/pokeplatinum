@@ -68,7 +68,7 @@ typedef struct {
     FieldSystem * unk_08;
     Window unk_0C;
     ResourceMetadata * unk_1C;
-    UnkStruct_0200112C * unk_20;
+    BmpList * unk_20;
     UIControlData * unk_24;
     UnkStruct_ov23_0224F184 unk_28;
     UnkFuncPtr_ov23_0224DCB8 unk_2C;
@@ -90,7 +90,7 @@ typedef struct {
     FieldSystem * unk_04;
     Window unk_08;
     ResourceMetadata * unk_18;
-    UnkStruct_0200112C * unk_1C;
+    BmpList * unk_1C;
     UIControlData * unk_20;
     UnkStruct_ov23_0224F184 unk_24;
     UnkFuncPtr_ov23_0224DCB8 unk_28;

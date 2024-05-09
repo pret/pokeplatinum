@@ -53,7 +53,7 @@ void sub_0201A60C(const UnkStruct_0201AE08 * param0, u16 param1, u16 param2, u16
 void sub_0201A6D0(const UnkStruct_0201AE08 * param0, u16 param1, u16 param2, u16 param3, u16 param4, u8 param5);
 Window * sub_0201A778(u32 param0, u8 param1);
 void Window_Init(Window * param0);
-u8 sub_0201A7CC(Window * param0);
+u8 BGL_WindowAdded(Window * param0);
 void BGL_AddWindow(BGL * param0, Window * param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8);
 void BGL_AddFramelessWindow(BGL * param0, Window * param1, u8 param2, u8 param3, u16 param4, u8 param5);
 void sub_0201A8D4(BGL * param0, Window * param1, const UnkStruct_ov61_0222C884 * param2);

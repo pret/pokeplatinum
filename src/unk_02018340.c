@@ -1633,7 +1633,7 @@ void Window_Init (Window * param0)
     param0->unk_0A_15 = UnkEnum_00;
 }
 
-u8 sub_0201A7CC (Window * param0)
+u8 BGL_WindowAdded (Window * param0)
 {
     if ((param0->unk_00 == NULL) || (param0->unk_04 == 0xff) || (param0->unk_0C == NULL)) {
         return 0;

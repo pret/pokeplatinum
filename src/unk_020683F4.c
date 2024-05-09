@@ -345,7 +345,7 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_00 = Party_GetFromSavedata(v0->saveData);
     v2->unk_04 = sub_0207D990(v0->saveData);
     v2->unk_08 = sub_02028430(v0->saveData);
-    v2->unk_0C = sub_02025E44(v0->saveData);
+    v2->unk_0C = SaveData_Options(v0->saveData);
     v2->unk_10 = SaveData_TVBroadcast(v0->saveData);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
@@ -598,7 +598,7 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_00 = Party_GetFromSavedata(v0->saveData);
     v2->unk_04 = sub_0207D990(v0->saveData);
     v2->unk_08 = sub_02028430(v0->saveData);
-    v2->unk_0C = sub_02025E44(v0->saveData);
+    v2->unk_0C = SaveData_Options(v0->saveData);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
     v2->unk_20 = 6;
@@ -953,13 +953,13 @@ static BOOL sub_02068F48 (TaskManager * param0)
     switch (v1->unk_16) {
     case 0:
         MapObjectMan_PauseAllMovement(v0->unk_38);
-        sub_0205D8F4(v0->unk_08, &v1->unk_00, 3);
+        FieldMessage_AddWindow(v0->unk_08, &v1->unk_00, 3);
 
         {
-            const Options * v2 = sub_02025E44(v0->saveData);
+            const Options * v2 = SaveData_Options(v0->saveData);
 
             FieldMessage_DrawWindow(&v1->unk_00, v2);
-            v1->unk_14 = sub_0205D994(&v1->unk_00, v1->unk_10, v2, 1);
+            v1->unk_14 = FieldMessage_Print(&v1->unk_00, v1->unk_10, v2, 1);
         }
         v1->unk_16++;
         break;
@@ -998,7 +998,7 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_00 = Party_GetFromSavedata(v0->saveData);
     v2->unk_04 = sub_0207D990(v0->saveData);
     v2->unk_08 = sub_02028430(v0->saveData);
-    v2->unk_0C = sub_02025E44(v0->saveData);
+    v2->unk_0C = SaveData_Options(v0->saveData);
     v2->unk_10 = SaveData_TVBroadcast(v0->saveData);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;

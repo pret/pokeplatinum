@@ -101,7 +101,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     Window * unk_04;
-    UnkStruct_0200112C * unk_08;
+    BmpList * unk_08;
     ResourceMetadata unk_0C[23];
     Strbuf* unk_C4[23];
     s32 unk_120;
@@ -370,7 +370,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
 
 static void ov7_0224C338 (UnkStruct_ov7_0224BEFC * param0)
 {
-    Options * v0 = sub_02025E44(param0->unk_08);
+    Options * v0 = SaveData_Options(param0->unk_08);
 
     param0->unk_1B0 = Options_Frame(v0);
     param0->unk_1B4 = Options_TextFrameDelay(v0);

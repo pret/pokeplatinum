@@ -1177,9 +1177,9 @@ BOOL sub_02054084 (TaskManager * param0)
         v1->unk_34 = MessageLoader_GetNewStrbuf(v2, 124);
         MessageLoader_Free(v2);
     }
-        sub_0205D8F4(v0->unk_08, &v1->unk_24, 3);
-        FieldMessage_DrawWindow(&v1->unk_24, sub_02025E44(v0->saveData));
-        v1->unk_38 = sub_0205D994(&v1->unk_24, v1->unk_34, sub_02025E44(v0->saveData), 1);
+        FieldMessage_AddWindow(v0->unk_08, &v1->unk_24, 3);
+        FieldMessage_DrawWindow(&v1->unk_24, SaveData_Options(v0->saveData));
+        v1->unk_38 = FieldMessage_Print(&v1->unk_24, v1->unk_34, SaveData_Options(v0->saveData), 1);
         v1->unk_00 = 1;
         break;
     case 1:

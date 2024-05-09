@@ -526,8 +526,8 @@ static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
 {
     FieldSystem * v0 = param0->unk_20;
 
-    sub_0205D8F4(v0->unk_08, &param0->unk_38, 3);
-    FieldMessage_DrawWindow(&param0->unk_38, sub_02025E44(v0->saveData));
+    FieldMessage_AddWindow(v0->unk_08, &param0->unk_38, 3);
+    FieldMessage_DrawWindow(&param0->unk_38, SaveData_Options(v0->saveData));
 }
 
 static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
@@ -540,7 +540,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
         MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
         StringTemplate_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
 
-        param0->unk_28 = sub_0205D994(&param0->unk_38, param0->unk_2C, sub_02025E44(v0->saveData), 1);
+        param0->unk_28 = FieldMessage_Print(&param0->unk_38, param0->unk_2C, SaveData_Options(v0->saveData), 1);
     }
 }
 

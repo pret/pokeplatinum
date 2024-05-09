@@ -689,7 +689,7 @@ void ov23_0224FB7C (UnkStruct_ov23_02250CD4 * param0)
         param0->unk_25C = 0;
     }
 
-    if (sub_0201A7CC(&param0->unk_10)) {
+    if (BGL_WindowAdded(&param0->unk_10)) {
         Window_Clear(&param0->unk_10, 1);
         sub_0201C3C0(param0->unk_10.unk_00, param0->unk_10.unk_04);
         BGL_DeleteWindow(&param0->unk_10);
@@ -779,7 +779,7 @@ static void ov23_0224FCF4 (UnkStruct_ov23_02250CD4 * param0)
         param0->unk_50 = NULL;
     }
 
-    if (sub_0201A7CC(&param0->unk_20)) {
+    if (BGL_WindowAdded(&param0->unk_20)) {
         Window_Clear(&param0->unk_20, 1);
         BGL_DeleteWindow(&param0->unk_20);
     }
@@ -805,7 +805,7 @@ void ov23_0224FD68 (int param0)
     }
 }
 
-void ov23_0224FD84 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+void ov23_0224FD84 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -995,7 +995,7 @@ void ov23_02250128 (int param0)
     sub_02028C6C(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
 }
 
-static void ov23_0225014C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_0225014C (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -1175,7 +1175,7 @@ static BOOL ov23_0225044C (SysTask * param0, void * param1)
     return 1;
 }
 
-void ov23_02250540 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+void ov23_02250540 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -1541,7 +1541,7 @@ static void ov23_02250B9C (SysTask * param0, void * param1)
     }
 }
 
-void ov23_02250C3C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+void ov23_02250C3C (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     UnkFuncPtr_ov23_0224FD84 v1 = v0->unk_268;
@@ -1557,7 +1557,7 @@ void ov23_02250C3C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421DC(), v2, 0, NULL);
 }
 
-static void ov23_02250C74 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_02250C74 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;

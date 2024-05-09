@@ -116,7 +116,7 @@ BOOL ScrCmd_0FA (ScriptContext * param0)
     v8.unk_0C = v0;
     v8.unk_10 = v3;
     v8.unk_14 = sub_0202A750(param0->fieldSys->saveData);
-    v8.unk_18 = sub_02025E44(param0->fieldSys->saveData);
+    v8.unk_18 = SaveData_Options(param0->fieldSys->saveData);
     v8.unk_1C = param0->fieldSys->saveData;
     v8.unk_20 = GetChatotCryDataFromSave(param0->fieldSys->saveData);
 

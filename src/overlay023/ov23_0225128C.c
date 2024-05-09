@@ -267,7 +267,7 @@ static int ov23_0225144C (int param0, UnkStruct_ov23_02250CD4 * param1)
     return 0;
 }
 
-static void ov23_0225148C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_0225148C (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;
@@ -279,7 +279,7 @@ static void ov23_0225148C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421BC(), 6 + v1, 0, NULL);
 }
 
-static void ov23_022514B0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_022514B0 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;

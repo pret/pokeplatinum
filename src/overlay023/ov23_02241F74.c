@@ -126,7 +126,7 @@ static UnkStruct_ov23_02257748 * Unk_ov23_02257748 = NULL;
 
 static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, FieldSystem * param1)
 {
-    u8 v0 = Options_TextFrameDelay(sub_02025E44(param1->saveData));
+    u8 v0 = Options_TextFrameDelay(SaveData_Options(param1->saveData));
     int v1;
 
     Unk_ov23_02257748 = param0;

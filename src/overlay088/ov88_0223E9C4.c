@@ -25,7 +25,7 @@
 #include "game_options.h"
 #include "overlay088/ov88_0223E9C4.h"
 
-static void ov88_0223EE14(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov88_0223EE14(BmpList * param0, u32 param1, u8 param2);
 
 static const u16 Unk_ov88_0223F1A8[][5] = {
     {0x4, 0x1, 0x9, 0x2, 0x1},
@@ -210,9 +210,9 @@ static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
     NULL
 };
 
-UnkStruct_0200112C * ov88_0223ED94 (ResourceMetadata * param0, int param1, Window * param2, BGL * param3)
+BmpList * ov88_0223ED94 (ResourceMetadata * param0, int param1, Window * param2, BGL * param3)
 {
-    UnkStruct_0200112C * v0;
+    BmpList * v0;
     UnkStruct_ov84_02240FA8 v1;
     int v2 = 5;
 
@@ -230,7 +230,7 @@ UnkStruct_0200112C * ov88_0223ED94 (ResourceMetadata * param0, int param1, Windo
     return v0;
 }
 
-static void ov88_0223EE14 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov88_0223EE14 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

@@ -266,7 +266,7 @@ static void * ov23_022524B8 (UnkStruct_ov23_02250CD4 * param0)
     return param0;
 }
 
-static void ov23_0225265C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_0225265C (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     u32 v1 = param1;
@@ -300,7 +300,7 @@ static void ov23_0225265C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov23_02252754 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_02252754 (BmpList * param0, u32 param1, u8 param2)
 {
     MATHRandContext16 v0;
     UnkStruct_ov23_02250CD4 * v1 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
@@ -450,7 +450,7 @@ static void ov23_02252A18 (UnkStruct_ov23_02250CD4 * param0)
 
 static void ov23_02252B90 (UnkStruct_ov23_02250CD4 * param0, BOOL param1)
 {
-    if (sub_0201A7CC(&param0->unk_20)) {
+    if (BGL_WindowAdded(&param0->unk_20)) {
         Window_Clear(&param0->unk_20, 1);
         BGL_DeleteWindow(&param0->unk_20);
     }
@@ -550,7 +550,7 @@ void ov23_02252D08 (int param0, int param1)
 
 static void ov23_02252D1C (UnkStruct_ov23_02250CD4 * param0)
 {
-    if (!sub_0201A7CC(&param0->unk_20)) {
+    if (!BGL_WindowAdded(&param0->unk_20)) {
         BGL_AddWindow(param0->unk_0C->unk_08, &param0->unk_20, 3, 1, 12, 12, 4, 13, 1);
         Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
     }
@@ -574,7 +574,7 @@ void ov23_02252D74 (UnkStruct_ov23_02250CD4 * param0, int param1)
 
 void ov23_02252DF4 (UnkStruct_ov23_02250CD4 * param0)
 {
-    if (sub_0201A7CC(&param0->unk_30)) {
+    if (BGL_WindowAdded(&param0->unk_30)) {
         Window_Clear(&param0->unk_30, 1);
         BGL_DeleteWindow(&param0->unk_30);
     }
@@ -582,7 +582,7 @@ void ov23_02252DF4 (UnkStruct_ov23_02250CD4 * param0)
 
 void ov23_02252E18 (UnkStruct_ov23_02250CD4 * param0)
 {
-    if (sub_0201A7CC(&param0->unk_30)) {
+    if (BGL_WindowAdded(&param0->unk_30)) {
         Window_Clear(&param0->unk_30, 0);
         BGL_DeleteWindow(&param0->unk_30);
     }

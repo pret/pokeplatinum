@@ -38,8 +38,8 @@
 #include "overlay007/ov7_0224B4E8.h"
 
 typedef struct {
-    UnkStruct_0200112C * unk_00;
-    UnkStruct_0200112C * unk_04;
+    BmpList * unk_00;
+    BmpList * unk_04;
     ResourceMetadata * unk_08;
     ResourceMetadata * unk_0C;
     FieldSystem * unk_10;
@@ -92,10 +92,10 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224F188 = {
 
 static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
 {
-    if (sub_0201A7CC(&param0->unk_54) == 0) {
+    if (BGL_WindowAdded(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
-        sub_0205D8F4(param0->unk_10->unk_08, &param0->unk_54, 3);
-        FieldMessage_DrawWindow(&param0->unk_54, sub_02025E44(param0->unk_10->saveData));
+        FieldMessage_AddWindow(param0->unk_10->unk_08, &param0->unk_54, 3);
+        FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->unk_10->saveData));
     } else {
         sub_0205D988(&param0->unk_54);
     }
@@ -103,7 +103,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
     StringTemplate_Format(param0->unk_64, param0->unk_18, param0->unk_14);
 
-    param0->unk_74 = sub_0205D994(&param0->unk_54, param0->unk_18, sub_02025E44(param0->unk_10->saveData), 1);
+    param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_Options(param0->unk_10->saveData), 1);
 }
 
 static void ov7_0224B558 (UnkStruct_ov7_0224B4E8 * param0, BOOL param1)
@@ -133,7 +133,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
         v3++;
     }
 
-    if (sub_0201A7CC(v1) == 0) {
+    if (BGL_WindowAdded(v1) == 0) {
         int v4;
 
         param0->unk_08 = sub_02013A04(v3 + 2, 4);

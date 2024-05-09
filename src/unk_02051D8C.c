@@ -157,7 +157,7 @@ BattleParams * sub_02051F38 (int param0, int param1)
 BattleParams * sub_02051F4C (int param0, const FieldSystem * param1)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param1->saveData);
-    Options * v1 = sub_02025E44(param1->saveData);
+    Options * v1 = SaveData_Options(param1->saveData);
     MessageLoader * v2;
     Strbuf* v3;
     BattleParams * v4;
@@ -256,7 +256,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * param1, SaveData *
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
     PokedexData * v3 = SaveData_Pokedex(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
-    Options * v5 = sub_02025E44(param2);
+    Options * v5 = SaveData_Options(param2);
     UnkStruct_0203A790 * v6 = sub_0203A790(param2);
 
     if (param1 != NULL) {
@@ -311,7 +311,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * param1, int param2
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->saveData);
     PokedexData * v5 = SaveData_Pokedex(param1->saveData);
     ChatotCry * v6 = GetChatotCryDataFromSave(param1->saveData);
-    Options * v7 = sub_02025E44(param1->saveData);
+    Options * v7 = SaveData_Options(param1->saveData);
     Pokemon * v8;
 
     param0->unk_128 = 6;
@@ -361,7 +361,7 @@ void sub_020524E4 (BattleParams * param0, const FieldSystem * param1, const Part
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->saveData);
     PokedexData * v2 = SaveData_Pokedex(param1->saveData);
     ChatotCry * v3 = GetChatotCryDataFromSave(param1->saveData);
-    Options * v4 = sub_02025E44(param1->saveData);
+    Options * v4 = SaveData_Options(param1->saveData);
     const BattleRegulation * v5 = param1->unk_B0;
     int v6, v7, v8;
     Pokemon * v9;

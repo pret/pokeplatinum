@@ -85,7 +85,7 @@ static void ov23_02248CA4 (u16 param0, u16 param1, UnkStruct_ov23_02248D20 * par
 
 u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
 {
-    UnkStruct_0200112C * v0 = param0->unk_0C;
+    BmpList * v0 = param0->unk_0C;
     u16 v1, v2, v3;
     int v4, v5;
     u32 v6;
@@ -206,7 +206,7 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
 
 void ov23_02248EF8 (UnkStruct_ov23_02248D20 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0200112C * v0 = param0->unk_0C;
+    BmpList * v0 = param0->unk_0C;
 
     sub_02001384(v0, param1, param2);
 

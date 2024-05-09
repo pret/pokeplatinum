@@ -96,7 +96,7 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     UIControlData * unk_B0;
     ResourceMetadata unk_B4[28];
     UnkStruct_ov84_02240FA8 unk_194;
-    UnkStruct_0200112C * unk_1B4;
+    BmpList * unk_1B4;
     u16 unk_1B8;
     u16 unk_1BA;
     ResourceMetadata unk_1BC[28];
@@ -132,8 +132,8 @@ void ov104_02232624(UnkStruct_ov104_02232B5C * param0);
 static void ov104_02232750(UnkStruct_ov104_02232B5C * param0, u32 param1, u32 param2, u32 param3);
 static u32 ov104_022327F0(UnkStruct_ov104_02232B5C * param0);
 static void ov104_02232830(UnkStruct_ov104_02232B5C * param0);
-static void ov104_0223293C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov104_02232960(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov104_0223293C(BmpList * param0, u32 param1, u8 param2);
+static void ov104_02232960(BmpList * param0, u32 param1, u8 param2);
 static void ov104_0223296C(SysTask * param0, void * param1);
 static void ov104_02232A58(UnkStruct_ov104_02232B5C * param0, u8 param1);
 static void ov104_02232B2C(UnkStruct_ov104_02232B5C * param0);
@@ -599,7 +599,7 @@ static void ov104_02232830 (UnkStruct_ov104_02232B5C * param0)
     return;
 }
 
-static void ov104_0223293C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov104_0223293C (BmpList * param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -608,7 +608,7 @@ static void ov104_0223293C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov104_02232960 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov104_02232960 (BmpList * param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;
@@ -1095,7 +1095,7 @@ void ov104_0223310C (UnkStruct_ov104_0222E930 * param0, u16 * param1, u32 param2
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);
     } else {
-        v0 = Options_TextFrameDelay(sub_02025E44(v2->unk_08));
+        v0 = Options_TextFrameDelay(SaveData_Options(v2->unk_08));
         ov104_022320B4(param0->unk_00, v0, param1[0], param1[1], param1[2], param1[3], 1);
     }
 

@@ -126,7 +126,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     ResourceMetadata * unk_10CC;
     UIControlData * unk_10D0;
     UIControlData * unk_10D4;
-    UnkStruct_0200112C * unk_10D8;
+    BmpList * unk_10D8;
     void * unk_10DC;
     int unk_10E0;
     UnkStruct_ov94_0223FD4C_sub3 * unk_10E4;

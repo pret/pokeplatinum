@@ -28,7 +28,7 @@ void sub_020985E4 (TaskManager * param0, SaveData * param1)
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209862C));
     v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020985E4));
 
-    v1->unk_04 = sub_02025E44(param1);
+    v1->unk_04 = SaveData_Options(param1);
     v1->unk_08 = SaveData_GetTrainerInfo(param1);
     v1->unk_00 = TrainerInfo_Gender(v1->unk_08);
 

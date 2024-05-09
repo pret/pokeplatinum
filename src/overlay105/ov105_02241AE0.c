@@ -383,7 +383,7 @@ int ov105_02241AE0 (OverlayManager * param0, int * param1)
     v1->unk_31C = v2->unk_08;
     v1->unk_320 = v2->unk_0C;
     v1->unk_330 = &v2->unk_10[0];
-    v1->unk_138 = sub_02025E44(v1->unk_13C);
+    v1->unk_138 = SaveData_Options(v1->unk_13C);
     v1->unk_14 = (4 * 2);
 
     if (ov105_022454F8(v1, 0) == 1) {
@@ -2107,7 +2107,7 @@ static BOOL ov105_02244424 (UnkStruct_ov105_02241FF4 * param0)
         ov105_02244F00(param0, 2, v2);
         ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(sub_02025E44(param0->unk_13C)), 1, 2, 15, 1);
+        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(SaveData_Options(param0->unk_13C)), 1, 2, 15, 1);
 
         sub_0201A9A4(&param0->unk_50[5]);
 
