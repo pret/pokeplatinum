@@ -21,7 +21,9 @@ poke_icon_shared = files(
 otherpoke_shared = files(
     '.shared/substitute_back.png',
     '.shared/substitute_front.png',
+    '.shared/substitute.pal',
     '.shared/shadows.png',
+    '.shared/shadows.pal',
 )
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')

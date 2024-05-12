@@ -12,8 +12,8 @@ otherpoke_index += {
     '135': files('forms/base/front.png'),
     '136': files('forms/sky/back.png'),
     '137': files('forms/sky/front.png'),
-    '228': files('forms/base/front.png'),
-    '229': files('forms/base/back.png'),
-    '230': files('forms/sky/front.png'),
-    '231': files('forms/sky/back.png'),
+    '228': files('forms/base/normal.pal'),
+    '229': files('forms/base/shiny.pal'),
+    '230': files('forms/sky/normal.pal'),
+    '231': files('forms/sky/shiny.pal'),
 }
