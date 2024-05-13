@@ -90,6 +90,6 @@ otherpoke_index += {
     '61': files('forms/exc/front.png'),
     '62': files('forms/que/back.png'),
     '63': files('forms/que/front.png'),
-    '156': files('forms/base/front.png'),
-    '157': files('forms/base/back.png'),
+    '156': files('forms/base/normal.pal'),
+    '157': files('forms/base/shiny.pal'),
 }

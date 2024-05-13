@@ -13,8 +13,8 @@ otherpoke_index += {
     '89': files('forms/east_sea/back.png'),
     '90': files('forms/base/front.png'),
     '91': files('forms/east_sea/front.png'),
-    '182': files('forms/base/front.png'),
-    '183': files('forms/base/back.png'),
-    '184': files('forms/east_sea/front.png'),
-    '185': files('forms/east_sea/back.png'),
+    '182': files('forms/base/normal.pal'),
+    '183': files('forms/base/shiny.pal'),
+    '184': files('forms/east_sea/normal.pal'),
+    '185': files('forms/east_sea/shiny.pal'),
 }

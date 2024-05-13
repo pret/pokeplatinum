@@ -60,11 +60,12 @@ for i in range(args.sprite_entries, args.sprite_entries + args.palette_entries):
         '-comp', '10'
     ])
 
-# The last three entries are references to the Substitute sprite and in-battle shadows
-# There are five more files to process from these three entries
-sub_back = args.files[-3]
-sub_front = args.files[-2]
-shadows = args.files[-1]
+# The last five entries are the Substitute sprite and in-battle shadows
+sub_back = args.files[-5]
+sub_front = args.files[-4]
+sub_pal = args.files[-3]
+shadows = args.files[-2]
+shadows_pal = args.files[-1]
 i = args.sprite_entries + args.palette_entries
 
 subprocess.run([
@@ -81,7 +82,7 @@ subprocess.run([
 ])
 subprocess.run([
     args.nitrogfx,
-    sub_front,
+    sub_pal,
     private_dir / f'pl_otherpoke_{(i+2):04}.NCLR',
     '-bitdepth', '8',
     '-nopad',
@@ -95,7 +96,7 @@ subprocess.run([
 ])
 subprocess.run([
     args.nitrogfx,
-    shadows,
+    shadows_pal,
     private_dir / f'pl_otherpoke_{(i+4):04}.NCLR',
     '-bitdepth', '8',
     '-nopad',
