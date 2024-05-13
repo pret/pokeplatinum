@@ -747,7 +747,7 @@ static int ov109_021D11A0 (UnkStruct_ov109_021D0F70 * param0)
     u32 v1;
 
     v1 = (u32)param0->unk_24;
-    v0 = sub_0203597C(131, (void *)v1, (236 * 6 + 4 * 2));
+    v0 = CommSys_SendDataHuge(131, (void *)v1, (236 * 6 + 4 * 2));
 
     if (v0) {
         param0->unk_00 = 14;

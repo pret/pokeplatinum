@@ -57,9 +57,9 @@ typedef struct {
     u8 sendBufferCommRing[264];
     u8 sendBufferCommRingServer[384];
     u8 * unk_488;
-    u8 * unk_48C;
-    u8 * unk_490;
-    u8 * unk_494;
+    u8 * recvBufferRingServer;
+    u8 * recvBufferRing;
+    u8 * tempBuffer;
     CommRing sendRing;
     CommRing recvRing;
     CommRing unk_4B0[8];
@@ -73,7 +73,7 @@ typedef struct {
     MATHRandContext32 rand;
     u16 unk_63C[8];
     u8 recvSpeed[8];
-    u16 unk_654;
+    u16 sendHeldKeys;
     u8 unk_656;
     u8 sendSpeed;
     u8 unk_658;
@@ -113,7 +113,7 @@ typedef struct {
 static void sub_0203463C(void);
 static void sub_0203498C(SysTask * param0, void * param1);
 static void sub_02034B50(void);
-static void sub_02034DC8(void);
+static void CommSys_UpdateServerClient(void);
 static void sub_02034F68(void);
 static void sub_02035394(BOOL param0);
 static void sub_020353B0(BOOL param0);
@@ -168,9 +168,9 @@ static BOOL CommSys_Init (BOOL shouldAlloc, int maxPacketSize)
         sCommunicationSystem->allocSize = sCommunicationSystem->maxPacketSize * maxMachines;
         sCommunicationSystem->transmissionType = TRANSMISSION_TYPE_SERVER_CLIENT;
         sCommunicationSystem->unk_6A6 = 38;
-        sCommunicationSystem->unk_490 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize * 2);
-        sCommunicationSystem->unk_494 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize);
-        sCommunicationSystem->unk_48C = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
+        sCommunicationSystem->recvBufferRing = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize * 2);
+        sCommunicationSystem->tempBuffer = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->maxPacketSize);
+        sCommunicationSystem->recvBufferRingServer = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
         sCommunicationSystem->unk_488 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sCommunicationSystem->allocSize);
 
         if (sub_0203895C() == 10) {
@@ -213,13 +213,13 @@ static void CommSys_ClearData (void)
     sCommunicationSystem->unk_658 = 0;
     sCommunicationSystem->unk_659 = 0;
 
-    MI_CpuClear8(sCommunicationSystem->unk_48C, sCommunicationSystem->allocSize);
+    MI_CpuClear8(sCommunicationSystem->recvBufferRingServer, sCommunicationSystem->allocSize);
     MI_CpuClear8(sCommunicationSystem->sendRingClient, sizeof(CommRing) * (7 + 1));
 
     size = sCommunicationSystem->allocSize / maxMachines;
 
     for (netId = 0; netId < maxMachines; netId++) {
-        CommRing_Init(&sCommunicationSystem->sendRingClient[netId], &sCommunicationSystem->unk_48C[netId * size], size);
+        CommRing_Init(&sCommunicationSystem->sendRingClient[netId], &sCommunicationSystem->recvBufferRingServer[netId * size], size);
     }
 
     MI_CpuClear8(sCommunicationSystem->unk_488, sCommunicationSystem->allocSize);
@@ -244,8 +244,8 @@ static void CommSys_ClearData (void)
     sCommunicationSystem->sendBuffer[0][0] = 0xff;
     sCommunicationSystem->sendBuffer[1][0] = 0xff;
 
-    MI_CpuClear8(sCommunicationSystem->unk_490, sCommunicationSystem->maxPacketSize * 2);
-    CommRing_Init(&sCommunicationSystem->recvRing, sCommunicationSystem->unk_490, sCommunicationSystem->maxPacketSize * 2);
+    MI_CpuClear8(sCommunicationSystem->recvBufferRing, sCommunicationSystem->maxPacketSize * 2);
+    CommRing_Init(&sCommunicationSystem->recvRing, sCommunicationSystem->recvBufferRing, sCommunicationSystem->maxPacketSize * 2);
 
     sCommunicationSystem->unk_6AC = 0;
     sCommunicationSystem->unk_6AD = 0;
@@ -304,7 +304,7 @@ static void CommSys_ClearServerRecvData (int netId)
         int v1 = sCommunicationSystem->allocSize / v0;
 
         CommRing_Init(&sCommunicationSystem->unk_4B0[netId], &sCommunicationSystem->unk_488[netId * v1], v1);
-        CommRing_Init(&sCommunicationSystem->sendRingClient[netId], &sCommunicationSystem->unk_48C[netId * v1], v1);
+        CommRing_Init(&sCommunicationSystem->sendRingClient[netId], &sCommunicationSystem->recvBufferRingServer[netId * v1], v1);
     }
 
     sCommunicationSystem->commRecvServer[netId].unk_0A = 0xee;
@@ -457,12 +457,12 @@ void CommSys_Delete (void)
         SysTask_Done(sCommunicationSystem->unk_57C);
         sCommunicationSystem->unk_57C = NULL;
 
-        Heap_FreeToHeap(sCommunicationSystem->unk_490);
-        Heap_FreeToHeap(sCommunicationSystem->unk_494);
-        Heap_FreeToHeap(sCommunicationSystem->unk_48C);
+        Heap_FreeToHeap(sCommunicationSystem->recvBufferRing);
+        Heap_FreeToHeap(sCommunicationSystem->tempBuffer);
+        Heap_FreeToHeap(sCommunicationSystem->recvBufferRingServer);
         Heap_FreeToHeap(sCommunicationSystem->unk_488);
-        sub_02032638(&sCommunicationSystem->commQueueManSendServer);
-        sub_02032638(&sCommunicationSystem->commQueueManSend);
+        CommQueueMan_Delete(&sCommunicationSystem->commQueueManSendServer);
+        CommQueueMan_Delete(&sCommunicationSystem->commQueueManSend);
         Heap_FreeToHeap((void *)Unk_021C07C8);
 
         sCommunicationSystem = NULL;
@@ -481,7 +481,7 @@ static void sub_0203498C (SysTask * param0, void * param1)
         sub_020353CC();
 
         if (((CommSys_CurNetId() == 0) && (CommSys_IsPlayerConnected(0))) || CommSys_IsAlone()) {
-            sub_02034DC8();
+            CommSys_UpdateServerClient();
         }
 
         Unk_021C07C5 = 0;
@@ -514,10 +514,10 @@ BOOL CommSys_Update (void)
             sCommunicationSystem->unk_6B5++;
             Unk_021C07C5 = 0;
             CommSys_UpdateTransitionType();
-            sCommunicationSystem->unk_654 |= (gCoreSys.heldKeys & 0x7fff);
+            sCommunicationSystem->sendHeldKeys |= (gCoreSys.heldKeys & 0x7fff);
             sub_02035534();
             sub_02034B50();
-            sCommunicationSystem->unk_654 &= 0x8000;
+            sCommunicationSystem->sendHeldKeys &= 0x8000;
 
             if (CommSys_TransmissionType() == TRANSMISSION_TYPE_SERVER_CLIENT) {
                 CommSys_RecvData();
@@ -718,7 +718,7 @@ static BOOL sub_02034CF8 (int param0)
     return 1;
 }
 
-static void sub_02034DC8 (void)
+static void CommSys_UpdateServerClient (void)
 {
     int v0;
     int v1 = 0;
@@ -847,13 +847,12 @@ static void sub_02034F68 (void)
 
         Unk_02100A1C = 0;
 
-        sub_02034DC8();
+        CommSys_UpdateServerClient();
     }
 }
 
 void sub_0203509C (u16 param0, u16 * param1, u16 param2)
 {
-    u8 * v0 = (u8 *)param1;
     sub_020350A4(param0, param1, param2);
 }
 
@@ -1102,24 +1101,24 @@ static void sub_02035534 (void)
         return;
     }
 
-    if (!(sCommunicationSystem->unk_654 & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN))) {
+    if (!(sCommunicationSystem->sendHeldKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN))) {
         return;
     }
 
     if (sCommunicationSystem->unk_658 == 2) {
-        if (sCommunicationSystem->unk_654 & PAD_KEY_LEFT) {
+        if (sCommunicationSystem->sendHeldKeys & PAD_KEY_LEFT) {
             v0 |= PAD_KEY_RIGHT;
         }
 
-        if (sCommunicationSystem->unk_654 & PAD_KEY_RIGHT) {
+        if (sCommunicationSystem->sendHeldKeys & PAD_KEY_RIGHT) {
             v0 |= PAD_KEY_LEFT;
         }
 
-        if (sCommunicationSystem->unk_654 & PAD_KEY_UP) {
+        if (sCommunicationSystem->sendHeldKeys & PAD_KEY_UP) {
             v0 |= PAD_KEY_DOWN;
         }
 
-        if (sCommunicationSystem->unk_654 & PAD_KEY_DOWN) {
+        if (sCommunicationSystem->sendHeldKeys & PAD_KEY_DOWN) {
             v0 |= PAD_KEY_UP;
         }
     } else {
@@ -1151,8 +1150,8 @@ static void sub_02035534 (void)
         }
     }
 
-    sCommunicationSystem->unk_654 &= ~(PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN);
-    sCommunicationSystem->unk_654 += v0;
+    sCommunicationSystem->sendHeldKeys &= ~(PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN);
+    sCommunicationSystem->sendHeldKeys += v0;
 }
 
 void sub_02035664 (void)
@@ -1209,7 +1208,7 @@ static BOOL sub_02035730 (u8 * param0)
         return 0;
     }
 
-    if (sub_02035EE0() == 0) {
+    if (CommSys_IsSendingMovementData() == 0) {
         return 0;
     }
 
@@ -1217,16 +1216,16 @@ static BOOL sub_02035730 (u8 * param0)
         sCommunicationSystem->unk_6A9--;
     }
 
-    if (sCommunicationSystem->unk_654 & PAD_KEY_UP) {
+    if (sCommunicationSystem->sendHeldKeys & PAD_KEY_UP) {
         param0[0] = param0[0] | 0x0 | 0x10;
         sCommunicationSystem->unk_6A9 = 8;
-    } else if (sCommunicationSystem->unk_654 & PAD_KEY_DOWN) {
+    } else if (sCommunicationSystem->sendHeldKeys & PAD_KEY_DOWN) {
         param0[0] = param0[0] | 0x4 | 0x10;
         sCommunicationSystem->unk_6A9 = 8;
-    } else if (sCommunicationSystem->unk_654 & PAD_KEY_LEFT) {
+    } else if (sCommunicationSystem->sendHeldKeys & PAD_KEY_LEFT) {
         param0[0] = param0[0] | 0x8 | 0x10;
         sCommunicationSystem->unk_6A9 = 8;
-    } else if (sCommunicationSystem->unk_654 & PAD_KEY_RIGHT) {
+    } else if (sCommunicationSystem->sendHeldKeys & PAD_KEY_RIGHT) {
         param0[0] = param0[0] | 0xC | 0x10;
         sCommunicationSystem->unk_6A9 = 8;
     }
@@ -1332,13 +1331,13 @@ static BOOL sub_0203594C (void)
     return 0;
 }
 
-BOOL sub_0203597C (int param0, const void * param1, int param2)
+BOOL CommSys_SendDataHuge (int cmd, const void * param1, int param2)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return 0;
     }
 
-    if (sub_02032498(&sCommunicationSystem->commQueueManSend, param0, (u8 *)param1, param2, 1, 0)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)param1, param2, 1, 0)) {
         return 1;
     }
 
@@ -1349,13 +1348,13 @@ BOOL sub_0203597C (int param0, const void * param1, int param2)
     return 0;
 }
 
-BOOL CommSys_SendData (int param0, const void * param1, int param2)
+BOOL CommSys_SendData (int cmd, const void * param1, int param2)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return 0;
     }
 
-    if (sub_02032498(&sCommunicationSystem->commQueueManSend, param0, (u8 *)param1, param2, 1, 1)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)param1, param2, 1, 1)) {
         return 1;
     }
 
@@ -1366,7 +1365,7 @@ BOOL CommSys_SendData (int param0, const void * param1, int param2)
     return 0;
 }
 
-BOOL sub_02035A3C (int param0, const void * param1, int param2)
+BOOL sub_02035A3C (int cmd, const void * param1, int param2)
 {
     if (CommSys_CurNetId() != 0) {
         GF_ASSERT(FALSE);
@@ -1378,10 +1377,10 @@ BOOL sub_02035A3C (int param0, const void * param1, int param2)
     }
 
     if (CommSys_TransmissionType() == 1) {
-        return sub_0203597C(param0, param1, param2);
+        return CommSys_SendDataHuge(cmd, param1, param2);
     }
 
-    if (sub_02032498(&sCommunicationSystem->commQueueManSendServer, param0, (u8 *)param1, param2, 1, 0)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)param1, param2, 1, 0)) {
         return 1;
     }
 
@@ -1392,7 +1391,7 @@ BOOL sub_02035A3C (int param0, const void * param1, int param2)
     return 0;
 }
 
-BOOL CommSys_SendDataServer (int param0, const void * param1, int param2)
+BOOL CommSys_SendDataServer (int cmd, const void * param1, int param2)
 {
     if (CommSys_CurNetId() != 0) {
         sub_020363BC();
@@ -1405,10 +1404,10 @@ BOOL CommSys_SendDataServer (int param0, const void * param1, int param2)
     }
 
     if (CommSys_TransmissionType() == 1) {
-        return CommSys_SendData(param0, param1, param2);
+        return CommSys_SendData(cmd, param1, param2);
     }
 
-    if (sub_02032498(&sCommunicationSystem->commQueueManSendServer, param0, (u8 *)param1, param2, 1, 1)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)param1, param2, 1, 1)) {
         return 1;
     }
 
@@ -1419,9 +1418,9 @@ BOOL CommSys_SendDataServer (int param0, const void * param1, int param2)
     return 0;
 }
 
-BOOL sub_02035B48 (int param0, const void * param1)
+BOOL sub_02035B48 (int cmd, const void * param1)
 {
-    return CommSys_SendDataServer(param0, param1, 0);
+    return CommSys_SendDataServer(cmd, param1, 0);
 }
 
 int CommSys_SendRingRemainingSize (void)
@@ -1538,7 +1537,7 @@ static void CommSys_RecvData (void)
     CommRing_UpdateEndPos(&sCommunicationSystem->recvRing);
 
     if (CommRing_DataSize(&sCommunicationSystem->recvRing) > 0) {
-        CommSys_RecvDataSingle(&sCommunicationSystem->recvRing, v0, sCommunicationSystem->unk_494, &sCommunicationSystem->commRecvClient);
+        CommSys_RecvDataSingle(&sCommunicationSystem->recvRing, v0, sCommunicationSystem->tempBuffer, &sCommunicationSystem->commRecvClient);
     }
 }
 
@@ -1563,7 +1562,7 @@ static void CommSys_RecvDataServer (void)
         CommRing_UpdateEndPos(&sCommunicationSystem->sendRingClient[v0]);
 
         if (CommRing_DataSize(&sCommunicationSystem->sendRingClient[v0]) > 0) {
-            CommSys_RecvDataSingle(&sCommunicationSystem->sendRingClient[v0], v0, sCommunicationSystem->unk_494, &sCommunicationSystem->commRecvServer[v0]);
+            CommSys_RecvDataSingle(&sCommunicationSystem->sendRingClient[v0], v0, sCommunicationSystem->tempBuffer, &sCommunicationSystem->commRecvServer[v0]);
         }
     }
 }
@@ -1660,38 +1659,38 @@ u16 sub_02035E84 (int param0)
 void CommSys_EnableSendMovementData (void)
 {
     if (sCommunicationSystem) {
-        sCommunicationSystem->unk_654 |= 0x8000;
+        sCommunicationSystem->sendHeldKeys |= 0x8000;
     }
 }
 
-void sub_02035EC8 (void)
+void CommSys_DisableSendMovementData (void)
 {
     if (sCommunicationSystem) {
-        sCommunicationSystem->unk_654 = 0;
+        sCommunicationSystem->sendHeldKeys = 0;
     }
 }
 
-BOOL sub_02035EE0 (void)
+BOOL CommSys_IsSendingMovementData (void)
 {
     if (sCommunicationSystem) {
-        return sCommunicationSystem->unk_654 & 0x8000;
+        return sCommunicationSystem->sendHeldKeys & 0x8000;
     }
 
     return 1;
 }
 
-BOOL CommSys_ServerSetSendQueue (int param0, const void * param1, int param2)
+BOOL CommSys_WriteToQueueServer (int cmd, const void * param1, int param2)
 {
     if (CommSys_TransmissionType() == 1) {
-        return sub_02032498(&sCommunicationSystem->commQueueManSend, param0, (u8 *)param1, param2, 1, 0);
+        return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)param1, param2, 1, 0);
     } else {
-        return sub_02032498(&sCommunicationSystem->commQueueManSendServer, param0, (u8 *)param1, param2, 1, 0);
+        return CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)param1, param2, 1, 0);
     }
 }
 
-BOOL sub_02035F58 (int param0, const void * param1, int param2)
+BOOL CommSys_WriteToQueue (int cmd, const void * param1, int param2)
 {
-    return sub_02032498(&sCommunicationSystem->commQueueManSend, param0, (u8 *)param1, param2, 0, 0);
+    return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)param1, param2, 0, 0);
 }
 
 static void CommSys_Transmission (void)

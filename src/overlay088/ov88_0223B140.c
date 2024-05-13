@@ -1663,7 +1663,7 @@ void ov88_0223D098 (int param0, Party * param1, int param2)
     if (CommSys_IsPlayerConnected(param0)) {
         u8 v0 = param2;
 
-        sub_0203597C(22, ov88_0223D08C(param1, param2), (236 * 6 + 4 * 2));
+        CommSys_SendDataHuge(22, ov88_0223D08C(param1, param2), (236 * 6 + 4 * 2));
     }
 }
 
@@ -1693,12 +1693,12 @@ static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, Un
         param2->unk_78[v0] = param1[v0].unk_16;
     }
 
-    sub_0203597C(28, param2, sizeof(UnkStruct_02027F8C));
+    CommSys_SendDataHuge(28, param2, sizeof(UnkStruct_02027F8C));
 }
 
 static void ov88_0223D140 (ChatotCry * param0)
 {
-    sub_0203597C(29, param0, 1000);
+    CommSys_SendDataHuge(29, param0, 1000);
 }
 
 static int ov88_0223D150 (UnkStruct_02095E80 * param0)

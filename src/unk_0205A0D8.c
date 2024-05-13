@@ -784,7 +784,7 @@ static BOOL sub_0205ACC8 (UnkStruct_0205A0D8 * param0)
         if (param0->unk_86 == 0) {
             v0 = sub_02035A3C(106, v1, v2);
         } else {
-            v0 = sub_0203597C(106, v1, v2);
+            v0 = CommSys_SendDataHuge(106, v1, v2);
         }
 
         if (v0) {

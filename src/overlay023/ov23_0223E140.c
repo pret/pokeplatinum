@@ -1018,7 +1018,7 @@ void ov23_0223E9D4 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if ((v0[0] == CommSys_CurNetId()) && sub_02035EE0()) {
+    if ((v0[0] == CommSys_CurNetId()) && CommSys_IsSendingMovementData()) {
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 19, 0, NULL);
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 

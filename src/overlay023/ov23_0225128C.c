@@ -201,7 +201,7 @@ void ov23_022513B0 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_022513B0 * v0 = param2;
     FieldSystem * v1 = param3;
 
-    if (!sub_02035EE0()) {
+    if (!CommSys_IsSendingMovementData()) {
         return;
     }
 

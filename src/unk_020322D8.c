@@ -152,7 +152,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     return 1;
 }
 
-BOOL sub_02032498 (CommQueueMan * param0, int cmd, u8 * param2, int param3, BOOL param4, BOOL param5)
+BOOL CommQueue_Write (CommQueueMan * param0, int cmd, u8 * param2, int param3, BOOL param4, BOOL param5)
 {
     UnkStruct_020322D8 * v0;
     UnkStruct_020322D8 * v1 = sub_020322D8(param0);
@@ -298,7 +298,7 @@ void CommQueueMan_Reset (CommQueueMan * param0)
     param0->unk_10 = NULL;
 }
 
-void sub_02032638 (CommQueueMan * param0)
+void CommQueueMan_Delete (CommQueueMan * param0)
 {
     Heap_FreeToHeap(param0->unk_18);
 }

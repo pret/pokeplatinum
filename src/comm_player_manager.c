@@ -1074,7 +1074,7 @@ static void CommPlayer_MoveClient (int netId)
 
             if (sCommPlayerManager->forceDirTimer && (netId == CommSys_CurNetId())) {
                 sCommPlayerManager->forceDirTimer--;
-            } else if (!sub_02035EE0() && sCommPlayerManager->isUnderground && (netId == CommSys_CurNetId())) {
+            } else if (!CommSys_IsSendingMovementData() && sCommPlayerManager->isUnderground && (netId == CommSys_CurNetId())) {
                 v9 = sub_0206147C(
                     playerAvatar, pad, pad, v10, 1, 0);
             } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->collisionFlag)) {

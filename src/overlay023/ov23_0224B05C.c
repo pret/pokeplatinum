@@ -1264,12 +1264,12 @@ void ov23_0224C21C (void)
     u8 v2 = 0;
     int v3 = CommSys_CurNetId();
 
-    sub_02035F58(53, &Unk_ov23_022577AC->unk_08[16], sizeof(UnkStruct_ov23_0224B144));
+    CommSys_WriteToQueue(53, &Unk_ov23_022577AC->unk_08[16], sizeof(UnkStruct_ov23_0224B144));
 }
 
 void ov23_0224C23C (int param0)
 {
-    CommSys_ServerSetSendQueue(54, &Unk_ov23_022577AC->unk_08[param0], sizeof(UnkStruct_ov23_0224B144));
+    CommSys_WriteToQueueServer(54, &Unk_ov23_022577AC->unk_08[param0], sizeof(UnkStruct_ov23_0224B144));
 }
 
 void ov23_0224C25C (int param0, int param1, void * param2, void * param3)
@@ -1391,7 +1391,7 @@ static void ov23_0224C448 (void)
         v1++;
     }
 
-    CommSys_ServerSetSendQueue(55, &Unk_ov23_022577AC->unk_137B, sizeof(Unk_ov23_022577AC->unk_137B));
+    CommSys_WriteToQueueServer(55, &Unk_ov23_022577AC->unk_137B, sizeof(Unk_ov23_022577AC->unk_137B));
 }
 
 void ov23_0224C4CC (int param0, int param1, void * param2, void * param3)
@@ -1581,7 +1581,7 @@ static BOOL ov23_0224C790 (TaskManager * param0)
 
         v1->unk_28 = CommSys_ConnectedCount();
 
-        sub_02035EC8();
+        CommSys_DisableSendMovementData();
         ov23_022417CC();
 
         if (ov23_02249AB8()) {

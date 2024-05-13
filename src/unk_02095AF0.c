@@ -149,7 +149,7 @@ BOOL sub_02095BEC (UnkStruct_02095C48 * param0, UnkStruct_02029C88 ** param1)
         MI_CpuCopy8(param1[v4], &v0[v1 * v4], v1);
     }
 
-    if (sub_0203597C(33, v0, v2) == 1) {
+    if (CommSys_SendDataHuge(33, v0, v2) == 1) {
         v3 = 1;
     } else {
         v3 = 0;

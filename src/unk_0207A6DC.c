@@ -336,7 +336,7 @@ BOOL sub_0207A988 (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(25, (void *)&param0->unk_20[0], TrainerInfo_Size());
+    return CommSys_SendDataHuge(25, (void *)&param0->unk_20[0], TrainerInfo_Size());
 }
 
 static void sub_0207A9BC (int param0, int param1, void * param2, void * param3)
@@ -369,7 +369,7 @@ BOOL sub_0207A9F8 (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(26, (void *)&param0->unk_20[0], sizeof(TrainerData));
+    return CommSys_SendDataHuge(26, (void *)&param0->unk_20[0], sizeof(TrainerData));
 }
 
 static void sub_0207AA28 (int param0, int param1, void * param2, void * param3)
@@ -402,7 +402,7 @@ BOOL sub_0207AA5C (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(27, (void *)&param0->unk_20[0], Party_SaveSize());
+    return CommSys_SendDataHuge(27, (void *)&param0->unk_20[0], Party_SaveSize());
 }
 
 static void sub_0207AA90 (int param0, int param1, void * param2, void * param3)
@@ -436,7 +436,7 @@ BOOL sub_0207AAC8 (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(28, (void *)&param0->unk_20[0], 1000);
+    return CommSys_SendDataHuge(28, (void *)&param0->unk_20[0], 1000);
 }
 
 BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
@@ -479,7 +479,7 @@ BOOL sub_0207AB58 (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(33, (void *)param0->unk_20, 1000);
+    return CommSys_SendDataHuge(33, (void *)param0->unk_20, 1000);
 }
 
 static void sub_0207AB8C (int param0, int param1, void * param2, void * param3)
@@ -513,9 +513,9 @@ BOOL sub_0207ABD0 (UnkStruct_0207A778 * param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return sub_0203597C(29, (void *)&param0->unk_20[0], sizeof(TrainerData));
+        return CommSys_SendDataHuge(29, (void *)&param0->unk_20[0], sizeof(TrainerData));
     } else {
-        return sub_0203597C(30, (void *)&param0->unk_20[0], sizeof(TrainerData));
+        return CommSys_SendDataHuge(30, (void *)&param0->unk_20[0], sizeof(TrainerData));
     }
 }
 
@@ -550,9 +550,9 @@ BOOL sub_0207AC54 (UnkStruct_0207A778 * param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return sub_0203597C(31, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(31, (void *)&param0->unk_20[0], Party_SaveSize());
     } else {
-        return sub_0203597C(32, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(32, (void *)&param0->unk_20[0], Party_SaveSize());
     }
 }
 

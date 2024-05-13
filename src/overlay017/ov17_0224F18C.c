@@ -142,7 +142,7 @@ BOOL ov17_0224F35C (UnkStruct_ov17_0224F30C * param0)
 
         v0 = (void *)param0->unk_10;
 
-        if (sub_0203597C(24, param0->unk_10, v0->unk_00) == 1) {
+        if (CommSys_SendDataHuge(24, param0->unk_10, v0->unk_00) == 1) {
             param0->unk_A10 = 0;
             return 1;
         }

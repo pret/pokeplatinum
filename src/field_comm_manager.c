@@ -288,7 +288,7 @@ static void sub_02059984 (void)
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
-        sub_02035EC8();
+        CommSys_DisableSendMovementData();
         CommTiming_StartSync(92);
         FieldCommMan_SetTask(sub_020599E4, 0);
         return;
@@ -626,7 +626,7 @@ static void FieldCommTask_StartCopyTrainerCard (void)
     int v0, v1 = CommSys_CurNetId();
 
     if (CommTiming_IsSyncState(95)) {
-        sub_0203597C(88, sFieldCommMan->trainerCard[v1], sizeof(TrainerCard));
+        CommSys_SendDataHuge(88, sFieldCommMan->trainerCard[v1], sizeof(TrainerCard));
         FieldCommMan_SetTask(FieldCommTask_CopyTrainerCard, 0);
     }
 }

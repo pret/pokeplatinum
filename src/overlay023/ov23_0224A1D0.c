@@ -183,7 +183,7 @@ void ov23_0224A3A8 (int param0, int param1, void * param2, void * param3)
     CommPlayerManager * v0 = CommPlayerMan_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
 
-    if (!sub_02035EE0()) {
+    if (!CommSys_IsSendingMovementData()) {
         return;
     }
 

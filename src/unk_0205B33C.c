@@ -1386,5 +1386,5 @@ void sub_0205C1F0 (UnkStruct_0205B43C * param0)
 
 void sub_0205C214 (UnkStruct_0205B43C * param0)
 {
-    sub_0203597C(105, param0->unk_184, sizeof(TrainerCard));
+    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCard));
 }

@@ -359,7 +359,7 @@ void sub_0203CF5C (FieldSystem * param0)
 void sub_0203D128 (void)
 {
     Unk_021C07DC->unk_00->unk_08 = 1;
-    sub_02035EC8();
+    CommSys_DisableSendMovementData();
 }
 
 void sub_0203D140 (void)

@@ -1002,7 +1002,7 @@ void ov23_02243AF0 (void)
     int v0;
     u8 v1 = 0;
 
-    sub_02035F58(35, &Unk_ov23_02257764->unk_308[0], sizeof(UnkStruct_ov23_02243DA8) * 16);
+    CommSys_WriteToQueue(35, &Unk_ov23_02257764->unk_308[0], sizeof(UnkStruct_ov23_02243DA8) * 16);
 }
 
 void ov23_02243B0C (int param0, int param1, void * param2, void * param3)
