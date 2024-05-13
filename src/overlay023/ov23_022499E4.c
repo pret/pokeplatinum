@@ -334,7 +334,7 @@ static void ov23_02249D20 (void)
         if (v0->timer != 0) {
             v0->timer--;
 
-            if (sub_02035B54() != 264) {
+            if (CommSys_SendRingRemainingSize() != 264) {
                 return;
             }
         }
@@ -392,7 +392,7 @@ static void ov23_02249E18 (void)
         return;
     }
 
-    if (CommSys_CheckError() || !sub_02033E48() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()))) {
+    if (CommSys_CheckError() || !CommServerClient_IsClientConnecting() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()))) {
         ov23_0224B5CC(0);
         ov23_0224AA84();
         ov23_0224DA8C();

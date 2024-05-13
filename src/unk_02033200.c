@@ -274,7 +274,7 @@ static void sub_02033578 (void)
     return;
 }
 
-BOOL sub_020335DC (BOOL param0, BOOL param1, BOOL param2)
+BOOL CommServerClient_InitServer (BOOL param0, BOOL param1, BOOL param2)
 {
     sub_02033578();
     sub_02033550(param1);
@@ -296,7 +296,7 @@ BOOL sub_020335DC (BOOL param0, BOOL param1, BOOL param2)
     return 0;
 }
 
-BOOL sub_02033650 (BOOL param0, BOOL param1)
+BOOL CommServerClient_InitClient (BOOL param0, BOOL param1)
 {
     sub_02033578();
 
@@ -659,7 +659,7 @@ static void sub_02033BDC (u16 param0)
 
     sub_02033B88();
 
-    if ((sub_02031F90() == 0) && (!sub_02033E48())) {
+    if ((sub_02031F90() == 0) && (!CommServerClient_IsClientConnecting())) {
         if (sCommServerClient->unk_1519_2) {
             sCommServerClient->unk_1519_0 = 1;
         }
@@ -734,7 +734,7 @@ static void sub_02033BDC (u16 param0)
         }
 
         sub_02033AA8();
-        (void)sub_02031D04(0, Unk_021C07B8, v2, sub_0203266C(sub_0203895C()), sub_02033F0C(sub_0203895C()), sCommServerClient->unk_1519_5);
+        (void)sub_02031D04(0, Unk_021C07B8, v2, CommLocal_MaxMachines(sub_0203895C()), sub_02033F0C(sub_0203895C()), sCommServerClient->unk_1519_5);
         sCommServerClient->unk_1514 = v2;
     }
     break;
@@ -806,7 +806,7 @@ BOOL sub_02033E30 (void)
     return 1;
 }
 
-BOOL sub_02033E48 (void)
+BOOL CommServerClient_IsClientConnecting (void)
 {
     if (sCommServerClient) {
         return sub_020318EC() & 0xfffe;

@@ -12,6 +12,6 @@ typedef struct {
     CommRing * unk_14;
     void * unk_18;
     int unk_1C;
-} UnkStruct_020322F8;
+} CommQueueMan;
 
 #endif // POKEPLATINUM_STRUCT_020322F8_H

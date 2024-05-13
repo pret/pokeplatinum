@@ -326,7 +326,7 @@ void sub_02036948 (int param0)
 
 void sub_02036964 (void)
 {
-    sub_02034B2C();
+    CommSys_ResetBattleClient();
     sub_02036C94(sub_020372DC, 0);
 }
 
@@ -990,7 +990,7 @@ static void sub_02037354 (void)
 {
     if (CommSys_ConnectedCount() <= 1) {
         sub_02032160(0);
-        sub_02034B04();
+        CommSys_ResetDS();
         sub_02036C94(sub_02037474, 0);
     }
 
@@ -1000,7 +1000,7 @@ static void sub_02037354 (void)
     }
 
     sub_02032160(0);
-    sub_02034B04();
+    CommSys_ResetDS();
     sub_02036C94(sub_02037474, 0);
 }
 
@@ -1794,7 +1794,7 @@ static void sub_0203802C (void)
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
     } else {
-        int v1 = ov4_021D2248(Unk_021C07D4->unk_4D, sub_0203266C(Unk_021C07D4->unk_4A) + 1, 0);
+        int v1 = ov4_021D2248(Unk_021C07D4->unk_4D, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1, 0);
 
         switch (v1) {
         case 0:
@@ -2215,7 +2215,7 @@ static void sub_020386B4 (void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->unk_28, 49, (0x2B000 + 0x1400), sub_0203266C(Unk_021C07D4->unk_4A) + 1);
+        ov4_021D0D80(Unk_021C07D4->unk_28, 49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         ov4_021D2170(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         sub_02036C94(sub_0203862C, (30 * 60 * 2));
@@ -2404,7 +2404,7 @@ void sub_020389A0 (u8 * param0)
 
 BOOL sub_020389B8 (void)
 {
-    return sub_020326EC(sub_0203895C());
+    return CommLocal_IsWifiGroup(sub_0203895C());
 }
 
 void sub_020389C4 (u8 param0)
@@ -2543,7 +2543,7 @@ static void sub_02038BA8 (void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->unk_28, 49, 0x58000, sub_0203266C(Unk_021C07D4->unk_4A) + 1);
+        ov4_021D0D80(Unk_021C07D4->unk_28, 49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         ov4_021D2170(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         ov4_021D2584(0);
