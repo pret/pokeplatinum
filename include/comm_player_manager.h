@@ -35,7 +35,7 @@ typedef struct CommPlayerManager {
     u8 unk_11A[MAX_CONNECTED_PLAYERS];
     u8 unk_122[MAX_CONNECTED_PLAYERS];
     u8 unk_12A[MAX_CONNECTED_PLAYERS];
-    u8 unk_132[MAX_CONNECTED_PLAYERS];
+    u8 movementChanged[MAX_CONNECTED_PLAYERS];
     u8 unk_13A[MAX_CONNECTED_PLAYERS];
     u8 unk_142[MAX_CONNECTED_PLAYERS];
     UnkStruct_ov23_0224ABC4 unk_14A[8 + 1];

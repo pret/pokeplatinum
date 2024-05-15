@@ -43,7 +43,7 @@
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022416A8.h"
-#include "overlay023/CommManUnderground_Init.h"
+#include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
