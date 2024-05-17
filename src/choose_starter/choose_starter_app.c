@@ -71,7 +71,7 @@
 #include "unk_0202419C.h"
 #include "game_options.h"
 #include "pokemon.h"
-#include "overlay078/ov78_021D0D80.h"
+#include "choose_starter/choose_starter_app.h"
 
 typedef struct {
     NNSG3dRenderObj unk_00;
