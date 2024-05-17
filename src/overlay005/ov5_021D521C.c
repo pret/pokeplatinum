@@ -7,7 +7,7 @@
 #include "unk_02006E3C.h"
 #include "rtc.h"
 #include "heap.h"
-#include "unk_0201E0A4.h"
+#include "ascii_util.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021D5878.h"
 
@@ -151,18 +151,18 @@ static u32 ov5_021D53D4 (u32 param0, UnkStruct_ov5_021D52F4 ** param1)
     v2 = 0;
 
     do {
-        v3 = sub_0201E0B8(v3, v5, 0xd);
+        v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
 
         if (!((v5[0] == 'E') && (v5[1] == 'O') && (v5[2] == 'F'))) {
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
-            v3 = sub_0201E0B8(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
+            v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
             v2++;
         }
     } while (!((v5[0] == 'E') && (v5[1] == 'O') && (v5[2] == 'F')));
@@ -173,10 +173,10 @@ static u32 ov5_021D53D4 (u32 param0, UnkStruct_ov5_021D52F4 ** param1)
 
     for (v0 = 0; v0 < v2; v0++) {
         v8 = &((*param1)[v0]);
-        v3 = sub_0201E0B8(v3, v5, 0xd);
+        v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
         v6 = v5;
-        v6 = sub_0201E0B8(v6, v7, ',');
-        v8->unk_00 = sub_0201E0FC(v7);
+        v6 = Ascii_CopyToTerminator(v6, v7, ',');
+        v8->unk_00 = Ascii_ConvertToInt(v7);
 
         for (v1 = 0; v1 < 4; v1++) {
             v3 = ov5_021D5570(v3, &v8->unk_08[v1], &v8->unk_10[v1]);
@@ -192,7 +192,7 @@ static u32 ov5_021D53D4 (u32 param0, UnkStruct_ov5_021D52F4 ** param1)
         v3 = ov5_021D5660(v3, &v8->unk_2A);
         v3 = ov5_021D5660(v3, &v8->unk_2C);
         v3 = ov5_021D5660(v3, &v8->unk_2E);
-        v3 = sub_0201E0B8(v3, v5, 0xd);
+        v3 = Ascii_CopyToTerminator(v3, v5, 0xd);
     }
 
     Heap_FreeToHeapExplicit(4, v4);
@@ -216,23 +216,23 @@ static char * ov5_021D5570 (char * param0, GXRgb * param1, VecFx16 * param2)
     u16 v5[3];
     s32 v6[3];
 
-    param0 = sub_0201E0B8(param0, v0, 0xd);
+    param0 = Ascii_CopyToTerminator(param0, v0, 0xd);
 
     v2 = v0;
-    v2 = sub_0201E0B8(v2, v1, ',');
-    v3 = sub_0201E0FC(v1);
+    v2 = Ascii_CopyToTerminator(v2, v1, ',');
+    v3 = Ascii_ConvertToInt(v1);
 
     if (v3 == 1) {
         for (v4 = 0; v4 < 3; v4++) {
-            v2 = sub_0201E0B8(v2, v1, ',');
-            v5[v4] = sub_0201E0FC(v1);
+            v2 = Ascii_CopyToTerminator(v2, v1, ',');
+            v5[v4] = Ascii_ConvertToInt(v1);
         }
 
         *param1 = GX_RGB(v5[0], v5[1], v5[2]);
 
         for (v4 = 0; v4 < 3; v4++) {
-            v2 = sub_0201E0B8(v2, v1, ',');
-            v6[v4] = sub_0201E0FC(v1);
+            v2 = Ascii_CopyToTerminator(v2, v1, ',');
+            v6[v4] = Ascii_ConvertToInt(v1);
         }
 
         param2->x = v6[0];
@@ -277,12 +277,12 @@ static char * ov5_021D5660 (char * param0, GXRgb * param1)
     int v3;
     u16 v4[3];
 
-    param0 = sub_0201E0B8(param0, v0, 0xd);
+    param0 = Ascii_CopyToTerminator(param0, v0, 0xd);
     v2 = v0;
 
     for (v3 = 0; v3 < 3; v3++) {
-        v2 = sub_0201E0B8(v2, v1, ',');
-        v4[v3] = sub_0201E0FC(v1);
+        v2 = Ascii_CopyToTerminator(v2, v1, ',');
+        v4[v3] = Ascii_ConvertToInt(v1);
     }
 
     *param1 = GX_RGB(v4[0], v4[1], v4[2]);

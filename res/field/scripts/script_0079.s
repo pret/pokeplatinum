@@ -55,13 +55,13 @@ _0057:
 
 _006A:
     ScrCmd_060
-    ScrCmd_05E 4, _00FC
-    ScrCmd_05E 0xFF, _00F0
-    ScrCmd_05F
+    ApplyMovement 4, _00FC
+    ApplyMovement 0xFF, _00F0
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 4, _0110
-    ScrCmd_05F
+    ApplyMovement 4, _0110
+    WaitMovement
     ClearFlag 0x1BB
     ScrCmd_186 5, 12, 15
     ScrCmd_188 5, 16
@@ -69,11 +69,11 @@ _006A:
     ScrCmd_064 5
     ScrCmd_065 4
     SetFlag 113
-    ScrCmd_028 0x411D, 1
+    SetVar 0x411D, 1
     ScrCmd_003 30, 0x800C
     ScrCmd_02C 1
-    ScrCmd_05E 5, _0110
-    ScrCmd_05F
+    ApplyMovement 5, _0110
+    WaitMovement
     ClearFlag 0x1C2
     ScrCmd_186 4, 12, 15
     ScrCmd_188 4, 16

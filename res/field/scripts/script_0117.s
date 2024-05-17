@@ -52,7 +52,7 @@ _0057:
 _00A8:
     ScrCmd_034
     ScrCmd_177 0x4000
-    ScrCmd_027 0x4000, 1
+    SubVar 0x4000, 1
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BB 0x4000, 0x800C

@@ -4,5 +4,6 @@
 #define MON_NAME_LEN        10
 #define TRAINER_NAME_LEN    7
 #define TABLET_NAME_LEN     10
+#define MOVE_NAME_LEN       16
 
 #endif

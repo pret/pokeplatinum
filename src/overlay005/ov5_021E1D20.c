@@ -16,7 +16,7 @@
 
 #include "unk_02002B7C.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -145,7 +145,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
 
     v3 = sub_02002DF8(0, 1) + sub_02002DF8(0, 3);
     v2 = 0;
-    v0 = sub_0200B29C(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
+    v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
 
     PrintStringSimple(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
     Strbuf_Free(v0);
@@ -161,7 +161,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
         PrintStringSimple(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
         Strbuf_Free(v0);
 
-        v0 = sub_0200B29C(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
+        v0 = MessageUtil_ExpandedStrbuf(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
         v1 = 13 * 8 - sub_02002D7C(0, v0, sub_02002DF8(0, 2));
 
         PrintStringSimple(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);

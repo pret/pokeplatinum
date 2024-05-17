@@ -22,20 +22,20 @@ _0021:
     ScrCmd_2B5 0x10A, 0x2FA, 0x2CA
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 0, _00A0
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _0098
-    ScrCmd_05F
+    ApplyMovement 0, _00A0
+    WaitMovement
+    ApplyMovement 0xFF, _0098
+    WaitMovement
     ScrCmd_02C 1
     ScrCmd_034
-    ScrCmd_05E 0, _00B8
-    ScrCmd_05F
+    ApplyMovement 0, _00B8
+    WaitMovement
     ScrCmd_0CD 0
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_028 0x40AA, 2
-    ScrCmd_028 0x40A6, 2
+    SetVar 0x40AA, 2
+    SetVar 0x40A6, 2
     SetFlag 0x1C7
     ClearFlag 0x132
     SetFlag 0x28F

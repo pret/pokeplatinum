@@ -14,7 +14,6 @@ gen_asm_consts_root = gen_consts_root / 'asm'
 gen_py_consts_root = gen_consts_root / 'py'
 
 generated_consts_c = custom_target('generated_consts_c',
-    build_by_default: true,
     capture: true,
     output: 'generated_consts_c',
     input: consts_manifests,
@@ -27,7 +26,6 @@ generated_consts_c = custom_target('generated_consts_c',
 )
 
 generated_consts_asm = custom_target('generated_consts_asm',
-    build_by_default: true,
     capture: true,
     output: 'generated_consts_asm',
     input: consts_manifests,
@@ -40,7 +38,6 @@ generated_consts_asm = custom_target('generated_consts_asm',
 )
 
 generated_consts_py = custom_target('generated_consts_py',
-    build_by_default: true,
     capture: true,
     output: 'generated_consts_py',
     input: consts_manifests,

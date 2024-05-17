@@ -33,7 +33,7 @@
 #include "overlay_manager.h"
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "rtc.h"
@@ -813,7 +813,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     v2 = StringTemplate_Default(param0->unk_00);
 
     v4->unk_00 = 7;
-    v1 = sub_0200B29C(v2, v3, 76, param0->unk_00);
+    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 76, param0->unk_00);
 
     Strbuf_ToChars((const Strbuf *)v1, v4->unk_104.unk_00, 36);
     Strbuf_Free(v1);
@@ -826,7 +826,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     v4->unk_104.unk_4E_3 = 1;
     v4->unk_104.unk_4E_5 = 0;
 
-    v1 = sub_0200B29C(v2, v3, 75, param0->unk_00);
+    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->unk_00);
 
     Strbuf_ToChars((const Strbuf *)v1, v4->unk_154, 250);
     Strbuf_Free(v1);

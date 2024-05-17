@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "consts/generated/c/abilities.h"
-#include "consts/generated/c/battle_subscripts.h"
 #include "consts/generated/c/gender.h"
 
 #include "constants/battle.h"
@@ -25,6 +24,7 @@
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/common.h"
+#include "battle/scripts/sub_seq.naix"
 
 #include "unk_020021B0.h"
 #include "narc.h"
@@ -1795,7 +1795,7 @@ BOOL BattleSystem_TriggerRedirectionAbilities(BattleSystem *battleSys, BattleCon
     if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE && DEFENDER_SELF_TURN_FLAGS.lightningRodActivated) {
         battleCtx->selfTurnFlags[battleCtx->defender].lightningRodActivated = FALSE;
 
-        LOAD_SUBSEQ(BATTLE_SUBSCRIPT_LIGHTNING_ROD_REDIRECTED);
+        LOAD_SUBSEQ(subscript_lightning_rod_redirected);
         battleCtx->commandNext = battleCtx->command;
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
@@ -1805,7 +1805,7 @@ BOOL BattleSystem_TriggerRedirectionAbilities(BattleSystem *battleSys, BattleCon
     if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE && DEFENDER_SELF_TURN_FLAGS.stormDrainActivated) {
         battleCtx->selfTurnFlags[battleCtx->defender].stormDrainActivated = FALSE;
 
-        LOAD_SUBSEQ(BATTLE_SUBSCRIPT_LIGHTNING_ROD_REDIRECTED);
+        LOAD_SUBSEQ(subscript_lightning_rod_redirected);
         battleCtx->commandNext = battleCtx->command;
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
@@ -3504,7 +3504,7 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
             && moveType == TYPE_ELECTRIC
             && attacker != defender) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
-        subscript = BATTLE_SUBSCRIPT_ABILITY_RESTORES_HP;
+        subscript = subscript_ability_restores_hp;
     }
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WATER_ABSORB) == TRUE
@@ -3512,7 +3512,7 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE // do not proc on first turn of Dive
             && CURRENT_MOVE_DATA.power) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
-        subscript = BATTLE_SUBSCRIPT_ABILITY_RESTORES_HP;
+        subscript = subscript_ability_restores_hp;
     }
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLASH_FIRE) == TRUE
@@ -3520,13 +3520,13 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
             && (battleCtx->battleMons[defender].status & MON_CONDITION_FREEZE) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (CURRENT_MOVE_DATA.power || battleCtx->moveCur == MOVE_WILL_O_WISP)) {
-        subscript = BATTLE_SUBSCRIPT_ABSORB_AND_BOOST_FIRE_TYPE_MOVES;
+        subscript = subscript_absorb_and_boost_fire_type_moves;
     }
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SOUNDPROOF) == TRUE) {
         for (int i = 0; i < NELEMS(sSoundMoves); i++) {
             if (sSoundMoves[i] == battleCtx->moveCur) {
-                subscript = BATTLE_SUBSCRIPT_BLOCKED_BY_SOUNDPROOF;
+                subscript = subscript_blocked_by_soundproof;
                 break;
             }
         }
@@ -3535,7 +3535,7 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_MOTOR_DRIVE) == TRUE
             && moveType == TYPE_ELECTRIC
             && attacker != defender) {
-        subscript = BATTLE_SUBSCRIPT_ABSORB_AND_SPEED_UP_1_STAGE;
+        subscript = subscript_absorb_and_speed_up_1_stage;
     }
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_DRY_SKIN) == TRUE
@@ -3543,7 +3543,7 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && CURRENT_MOVE_DATA.power) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
-        subscript = BATTLE_SUBSCRIPT_ABILITY_RESTORES_HP;
+        subscript = subscript_ability_restores_hp;
     }
 
     return subscript;
@@ -3562,7 +3562,7 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
             battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE;
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battler;
-            subscript = BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE;
+            subscript = subscript_update_stat_stage;
             result = TRUE;
         }
         break;
@@ -3584,7 +3584,7 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
             }
 
             battleCtx->msgBattlerTemp = battler;
-            subscript = BATTLE_SUBSCRIPT_ABILITY_RESTORE_STATUS;
+            subscript = subscript_ability_restore_status;
             result = TRUE;
         }
         break;
@@ -3670,35 +3670,35 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 case OVERWORLD_WEATHER_RAINING:
                 case OVERWORLD_WEATHER_HEAVY_RAIN:
                 case OVERWORLD_WEATHER_THUNDERSTORM:
-                    subscript = BATTLE_SUBSCRIPT_OVERWORLD_RAIN;
+                    subscript = subscript_overworld_rain;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
 
                 case OVERWORLD_WEATHER_SNOWING:
                 case OVERWORLD_WEATHER_HEAVY_SNOW:
                 case OVERWORLD_WEATHER_BLIZZARD:
-                    subscript = BATTLE_SUBSCRIPT_OVERWORLD_HAIL;
+                    subscript = subscript_overworld_hail;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
 
                 case OVERWORLD_WEATHER_SANDSTORM:
-                    subscript = BATTLE_SUBSCRIPT_OVERWORLD_SAND;
+                    subscript = subscript_overworld_sand;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
 
                 case OVERWORLD_WEATHER_FOG:
                 case OVERWORLD_WEATHER_DEEP_FOG:
-                    subscript = BATTLE_SUBSCRIPT_OVERWORLD_FOG;
+                    subscript = subscript_overworld_fog;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
 
                 case OVERWORLD_WEATHER_HARSH_SUN:
-                    subscript = BATTLE_SUBSCRIPT_OVERWORLD_SUN;
+                    subscript = subscript_overworld_sun;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
 
                 case OVERWORLD_WEATHER_TRICK_ROOM:
-                    subscript = BATTLE_SUBSCRIPT_OVERWORLD_TRICK_ROOM;
+                    subscript = subscript_overworld_trick_room;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
 
@@ -3730,7 +3730,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         && Battler_Ability(battleCtx, battler) == ABILITY_TRACE) {
                     battleCtx->battleMons[battler].traceAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
-                    subscript = BATTLE_SUBSCRIPT_TRACE;
+                    subscript = subscript_trace;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -3752,7 +3752,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
                         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING_PERM) == FALSE) {
-                            subscript = BATTLE_SUBSCRIPT_DRIZZLE;
+                            subscript = subscript_drizzle;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
                         break;
@@ -3761,7 +3761,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
                         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM_PERM) == FALSE) {
-                            subscript = BATTLE_SUBSCRIPT_SAND_STREAM;
+                            subscript = subscript_sand_stream;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
                         break;
@@ -3770,7 +3770,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
                         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY_PERM) == FALSE) {
-                            subscript = BATTLE_SUBSCRIPT_DROUGHT;
+                            subscript = subscript_drought;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
                         break;
@@ -3779,7 +3779,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
                         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING_PERM) == FALSE) {
-                            subscript = BATTLE_SUBSCRIPT_SNOW_WARNING;
+                            subscript = subscript_snow_warning;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
                         break;
@@ -3806,7 +3806,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         && Battler_Ability(battleCtx, battler) == ABILITY_INTIMIDATE) {
                     battleCtx->battleMons[battler].intimidateAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
-                    subscript = BATTLE_SUBSCRIPT_INTIMIDATE;
+                    subscript = subscript_intimidate;
                     result = TRUE;
                     break;
                 }
@@ -3851,7 +3851,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
                         battleCtx->sideEffectMon = battler;
-                        subscript = BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE;
+                        subscript = subscript_update_stat_stage;
                         result = SWITCH_IN_CHECK_RESULT_BREAK;
                         break;
                     }
@@ -3904,7 +3904,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                     if (result == SWITCH_IN_CHECK_RESULT_BREAK) {
                         battleCtx->msgBattlerTemp = battler;
-                        subscript = BATTLE_SUBSCRIPT_ANTICIPATION;
+                        subscript = subscript_anticipation;
                     }
                     break;
                 }
@@ -3976,7 +3976,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     if (maxPower) {
                         battleCtx->msgBattlerTemp = battler;
 
-                        subscript = BATTLE_SUBSCRIPT_FOREWARN;
+                        subscript = subscript_forewarn;
                         result = SWITCH_IN_CHECK_RESULT_BREAK;
                     } else if (sumEnemyHP) {
                         j = BattleSystem_RandomOpponent(battleSys, battleCtx, battler);
@@ -3985,7 +3985,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         battleCtx->msgMoveTemp = battleCtx->battleMons[j].moves[BattleSystem_RandNext(battleSys) % k];
                         battleCtx->msgBattlerTemp = battler;
 
-                        subscript = BATTLE_SUBSCRIPT_FOREWARN;
+                        subscript = subscript_forewarn;
                         result = SWITCH_IN_CHECK_RESULT_BREAK;
                     }
                     break;
@@ -4035,7 +4035,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                 if (result == SWITCH_IN_CHECK_RESULT_BREAK) {
                     battleCtx->msgBattlerTemp = battler;
-                    subscript = BATTLE_SUBSCRIPT_FRISK;
+                    subscript = subscript_frisk;
                     break;
                 }
             }
@@ -4055,7 +4055,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         && battleCtx->totalTurns <= battleCtx->battleMons[battler].moveEffectsData.slowStartTurnNumber) {
                     battleCtx->battleMons[battler].slowStartAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
-                    subscript = BATTLE_SUBSCRIPT_SLOW_START;
+                    subscript = subscript_slow_start;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -4063,7 +4063,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 if ((battleCtx->battleMons[battler].slowStartFinished == 0) && (battleCtx->battleMons[battler].curHP) && (Battler_Ability(battleCtx, battler) == 112) && ((battleCtx->totalTurns - battleCtx->battleMons[battler].moveEffectsData.slowStartTurnNumber) == 5)) {
                     battleCtx->battleMons[battler].slowStartFinished = 1;
                     battleCtx->msgBattlerTemp = battler;
-                    subscript = BATTLE_SUBSCRIPT_SLOW_START_END;
+                    subscript = subscript_slow_start_end;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -4083,7 +4083,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         && Battler_Ability(battleCtx, battler) == ABILITY_MOLD_BREAKER) {
                     battleCtx->battleMons[battler].moldBreakerAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
-                    subscript = BATTLE_SUBSCRIPT_MOLD_BREAKER;
+                    subscript = subscript_mold_breaker;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -4103,7 +4103,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         && Battler_Ability(battleCtx, battler) == ABILITY_PRESSURE) {
                     battleCtx->battleMons[battler].pressureAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
-                    subscript = BATTLE_SUBSCRIPT_PRESSURE;
+                    subscript = subscript_pressure;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -4139,7 +4139,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 battler = battleCtx->monSpeedOrder[i];
 
                 if (BattleSystem_RecoverStatusByAbility(battleSys, battleCtx, battler, TRUE) == TRUE) {
-                    subscript = BATTLE_SUBSCRIPT_ABILITY_FORBIDS_STATUS;
+                    subscript = subscript_ability_forbids_status;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -4226,7 +4226,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *subscript = BATTLE_SUBSCRIPT_PARALYZE;
+            *subscript = subscript_paralyze;
             result = TRUE;
         }
         break;
@@ -4250,7 +4250,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
                 && CURRENT_MOVE_DATA.power
                 && BattleMon_Get(battleCtx, battleCtx->defender, 27, NULL) != moveType
                 && BattleMon_Get(battleCtx, battleCtx->defender, 28, NULL) != moveType) {
-            *subscript = BATTLE_SUBSCRIPT_COLOR_CHANGE;
+            *subscript = subscript_color_change;
             battleCtx->msgTemp = moveType;
             result = TRUE;
         }
@@ -4267,7 +4267,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 8);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
-            *subscript = BATTLE_SUBSCRIPT_ROUGH_SKIN;
+            *subscript = subscript_rough_skin;
             result = TRUE;
         }
         break;
@@ -4284,13 +4284,13 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
             default:
-                *subscript = BATTLE_SUBSCRIPT_POISON;
+                *subscript = subscript_poison;
                 break;
             case 1:
-                *subscript = BATTLE_SUBSCRIPT_PARALYZE;
+                *subscript = subscript_paralyze;
                 break;
             case 2:
-                *subscript = BATTLE_SUBSCRIPT_FALL_ASLEEP;
+                *subscript = subscript_fall_asleep;
                 break;
             }
 
@@ -4315,7 +4315,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *subscript = BATTLE_SUBSCRIPT_POISON;
+            *subscript = subscript_poison;
             result = TRUE;
         }
         break;
@@ -4333,7 +4333,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *subscript = BATTLE_SUBSCRIPT_BURN;
+            *subscript = subscript_burn;
             result = TRUE;
         }
         break;
@@ -4352,7 +4352,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->sideEffectMon = battleCtx->attacker;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            *subscript = BATTLE_SUBSCRIPT_INFATUATE;
+            *subscript = subscript_infatuate;
             result = TRUE;
         }
         break;
@@ -4368,7 +4368,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 4);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
-            *subscript = BATTLE_SUBSCRIPT_AFTERMATH;
+            *subscript = subscript_aftermath;
             result = TRUE;
         }
         break;
@@ -4444,7 +4444,7 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
         battleCtx->msgAbilityTemp = Battler_Ability(battleCtx, battler);
 
         if (skipLoad == FALSE) {
-            LOAD_SUBSEQ(BATTLE_SUBSCRIPT_ABILITY_FORBIDS_STATUS);
+            LOAD_SUBSEQ(subscript_ability_forbids_status);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         }
@@ -4517,11 +4517,11 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem *battleSys, BattleContext *batt
 
     if (result == TRUE) {
         if (battleCtx->battleMons[battleCtx->msgBattlerTemp].status & MON_CONDITION_ANY_POISON) {
-            nextSeq = BATTLE_SUBSCRIPT_POISON;
+            nextSeq = subscript_poison;
         } else if (battleCtx->battleMons[battleCtx->msgBattlerTemp].status & MON_CONDITION_BURN) {
-            nextSeq = BATTLE_SUBSCRIPT_BURN;
+            nextSeq = subscript_burn;
         } else if (battleCtx->battleMons[battleCtx->msgBattlerTemp].status & MON_CONDITION_PARALYSIS) {
-            nextSeq = BATTLE_SUBSCRIPT_PARALYZE;
+            nextSeq = subscript_paralyze;
         }
 
         if (nextSeq) {
@@ -4562,7 +4562,7 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem *battleSys, BattleContext *batt
     }
 
     if (result == TRUE) {
-        nextSeq = BATTLE_SUBSCRIPT_INFATUATE;
+        nextSeq = subscript_infatuate;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_HELD_ITEM;
 
         LOAD_SUBSEQ(nextSeq);
@@ -4587,7 +4587,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
         case HOLD_EFFECT_HP_RESTORE:
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
                 battleCtx->hpCalcTemp = itemPower;
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                subscript = subscript_held_item_hp_restore;
                 result = TRUE;
             }
             break;
@@ -4595,42 +4595,42 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
         case HOLD_EFFECT_HP_PCT_RESTORE:
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * itemPower, 100);
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                subscript = subscript_held_item_hp_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_PRZ_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+                subscript = subscript_held_item_prz_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_SLP_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+                subscript = subscript_held_item_slp_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_PSN_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+                subscript = subscript_held_item_psn_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_BRN_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+                subscript = subscript_held_item_brn_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_FRZ_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+                subscript = subscript_held_item_frz_restore;
                 result = TRUE;
             }
             break;
@@ -4647,7 +4647,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PP_RESTORE;
+                subscript = subscript_held_item_pp_restore;
                 result = TRUE;
             }
 
@@ -4656,7 +4656,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
 
         case HOLD_EFFECT_CONFUSE_RESTORE:
             if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+                subscript = subscript_held_item_cnf_restore;
                 result = TRUE;
             }
             break;
@@ -4665,32 +4665,32 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
                     || (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+                    subscript = subscript_held_item_prz_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+                    subscript = subscript_held_item_slp_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+                    subscript = subscript_held_item_psn_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+                    subscript = subscript_held_item_brn_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+                    subscript = subscript_held_item_frz_restore;
                 }
 
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+                    subscript = subscript_held_item_cnf_restore;
                 }
 
                 if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
                         && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_MULTI_RESTORE;
+                    subscript = subscript_held_item_multi_restore;
                 }
 
                 result = TRUE;
@@ -4703,9 +4703,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->msgTemp = FLAVOR_SPICY;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SPICY) == -1) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -4718,9 +4718,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->msgTemp = FLAVOR_DRY;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_DRY) == -1) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -4733,9 +4733,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->msgTemp = FLAVOR_SWEET;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SWEET) == -1) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -4748,9 +4748,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->msgTemp = FLAVOR_BITTER;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_BITTER) == -1) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -4763,9 +4763,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->msgTemp = FLAVOR_SOUR;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SOUR) == -1) {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -4780,7 +4780,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_ATTACK;
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -4793,7 +4793,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_DEFENSE] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -4806,7 +4806,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_SPEED;
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -4819,7 +4819,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_ATTACK] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -4832,7 +4832,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_DEFENSE] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -4844,7 +4844,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_FOCUS_ENERGY) == FALSE) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_CRIT;
+                subscript = subscript_held_item_raise_crit;
                 result = TRUE;
             }
             break;
@@ -4868,7 +4868,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                     } while (battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK + i] == 12);
 
                     battleCtx->msgTemp = BATTLE_STAT_ATTACK + i;
-                    subscript = BATTLE_SUBSCRIPT_HELD_ITEM_SHARPLY_RAISE_STAT;
+                    subscript = subscript_held_item_sharply_raise_stat;
                     result = TRUE;
                 }
             }
@@ -4883,7 +4883,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (result == TRUE) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_STATDOWN_RESTORE;
+                subscript = subscript_held_item_statdown_restore;
             }
             break;
         }
@@ -4891,7 +4891,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
         case HOLD_EFFECT_HEAL_INFATUATION:
             if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_ATTRACT) {
                 battleCtx->msgTemp = MSGCOND_INFATUATION;
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HEAL_INFATUATION;
+                subscript = subscript_held_item_heal_infatuation;
                 result = TRUE;
             }
             break;
@@ -4902,7 +4902,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower) {
-                subscript = BATTLE_SUBSCRIPT_HELD_ITEM_TEMP_ACC_UP;
+                subscript = subscript_held_item_temp_acc_up;
                 result = TRUE;
             }
             break;
@@ -4933,7 +4933,7 @@ BOOL BattleSystem_TriggerLeftovers(BattleSystem *battleSys, BattleContext *battl
         case HOLD_EFFECT_HP_RESTORE_GRADUAL:
             if (battleCtx->battleMons[battler].curHP < (battleCtx->battleMons[battler].maxHP)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
-                subscript = BATTLE_SUBSCRIPT_RESTORE_A_LITTLE_HP;
+                subscript = subscript_restore_a_little_hp;
                 result = TRUE;
             }
             break;
@@ -4942,12 +4942,12 @@ BOOL BattleSystem_TriggerLeftovers(BattleSystem *battleSys, BattleContext *battl
             if (MON_HAS_TYPE(battler, TYPE_POISON)) {
                 if (battleCtx->battleMons[battler].curHP < (battleCtx->battleMons[battler].maxHP)) {
                     battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
-                    subscript = BATTLE_SUBSCRIPT_RESTORE_A_LITTLE_HP;
+                    subscript = subscript_restore_a_little_hp;
                     result = TRUE;
                 }
             } else if (Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 8);
-                subscript = BATTLE_SUBSCRIPT_LOSE_HP_FROM_ITEM_WITH_MESSAGE;
+                subscript = subscript_lose_hp_from_item_with_message;
                 result = TRUE;
             }
             break;
@@ -4977,7 +4977,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
         case HOLD_EFFECT_HP_RESTORE:
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
                 battleCtx->hpCalcTemp = itemPower;
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                *subscript = subscript_held_item_hp_restore;
                 result = TRUE;
             }
             break;
@@ -4985,42 +4985,42 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
         case HOLD_EFFECT_HP_PCT_RESTORE:
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * itemPower, 100);
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                *subscript = subscript_held_item_hp_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_PRZ_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+                *subscript = subscript_held_item_prz_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_SLP_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+                *subscript = subscript_held_item_slp_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_PSN_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+                *subscript = subscript_held_item_psn_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_BRN_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+                *subscript = subscript_held_item_brn_restore;
                 result = TRUE;
             }
             break;
 
         case HOLD_EFFECT_FRZ_RESTORE:
             if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+                *subscript = subscript_held_item_frz_restore;
                 result = TRUE;
             }
             break;
@@ -5037,7 +5037,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PP_RESTORE;
+                *subscript = subscript_held_item_pp_restore;
                 result = TRUE;
             }
 
@@ -5046,7 +5046,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
 
         case HOLD_EFFECT_CONFUSE_RESTORE:
             if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+                *subscript = subscript_held_item_cnf_restore;
                 result = TRUE;
             }
             break;
@@ -5055,32 +5055,32 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
                     || (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+                    *subscript = subscript_held_item_prz_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+                    *subscript = subscript_held_item_slp_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+                    *subscript = subscript_held_item_psn_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+                    *subscript = subscript_held_item_brn_restore;
                 }
 
                 if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+                    *subscript = subscript_held_item_frz_restore;
                 }
 
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+                    *subscript = subscript_held_item_cnf_restore;
                 }
 
                 if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
                         && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_MULTI_RESTORE;
+                    *subscript = subscript_held_item_multi_restore;
                 }
 
                 result = TRUE;
@@ -5096,7 +5096,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (result == TRUE) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_STATDOWN_RESTORE;
+                *subscript = subscript_held_item_statdown_restore;
             }
             break;
         }
@@ -5104,7 +5104,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
         case HOLD_EFFECT_HEAL_INFATUATION:
             if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_ATTRACT) {
                 battleCtx->msgTemp = MSGCOND_INFATUATION;
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HEAL_INFATUATION;
+                *subscript = subscript_held_item_heal_infatuation;
                 result = TRUE;
             }
             break;
@@ -5115,7 +5115,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_TEMP_ACC_UP;
+                *subscript = subscript_held_item_temp_acc_up;
                 result = TRUE;
             }
             break;
@@ -5126,9 +5126,9 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->msgTemp = FLAVOR_SPICY;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SPICY) == -1) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    *subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    *subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -5141,9 +5141,9 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->msgTemp = FLAVOR_DRY;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_DRY) == -1) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    *subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    *subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -5156,9 +5156,9 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->msgTemp = FLAVOR_SWEET;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SWEET) == -1) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    *subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    *subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -5171,9 +5171,9 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->msgTemp = FLAVOR_BITTER;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_BITTER) == -1) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    *subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    *subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -5186,9 +5186,9 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->msgTemp = FLAVOR_SOUR;
 
                 if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SOUR) == -1) {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                    *subscript = subscript_held_item_dislike_flavor;
                 } else {
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                    *subscript = subscript_held_item_hp_restore;
                 }
 
                 result = TRUE;
@@ -5203,7 +5203,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_ATTACK;
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -5216,7 +5216,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_DEFENSE] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -5229,7 +5229,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_SPEED;
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -5242,7 +5242,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_ATTACK] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -5255,7 +5255,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_DEFENSE] < 12) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+                *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
             }
             break;
@@ -5267,7 +5267,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
                     && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_FOCUS_ENERGY) == FALSE) {
-                *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_CRIT;
+                *subscript = subscript_held_item_raise_crit;
                 result = TRUE;
             }
             break;
@@ -5291,7 +5291,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                     } while (battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK + i] == 12);
 
                     battleCtx->msgTemp = BATTLE_STAT_ATTACK + i;
-                    *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_SHARPLY_RAISE_STAT;
+                    *subscript = subscript_held_item_sharply_raise_stat;
                     result = TRUE;
                 }
             }
@@ -5318,21 +5318,21 @@ BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem *battleSys, BattleCont
         case HOLD_EFFECT_PSN_USER:
             battleCtx->sideEffectMon = battler;
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_HELD_ITEM;
-            subscript = BATTLE_SUBSCRIPT_BADLY_POISON;
+            subscript = subscript_badly_poison;
             result = TRUE;
             break;
             
         case HOLD_EFFECT_BRN_USER:
             battleCtx->sideEffectMon = battler;
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_HELD_ITEM;
-            subscript = BATTLE_SUBSCRIPT_BURN;
+            subscript = subscript_burn;
             result = TRUE;
             break;
 
         case HOLD_EFFECT_DMG_USER_CONTACT_XFR:
             if (Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, itemPower);
-                subscript = BATTLE_SUBSCRIPT_LOSE_HP_FROM_ITEM_WITH_MESSAGE;
+                subscript = subscript_lose_hp_from_item_with_message;
                 result = TRUE;
             }
             break;
@@ -5394,7 +5394,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
                 && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
                 && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
                 && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
-            *subscript = BATTLE_SUBSCRIPT_TRANSFER_STICKY_BARB;
+            *subscript = subscript_transfer_sticky_barb;
             result = TRUE;
         }
         break;
@@ -5405,7 +5405,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
                 && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
                 && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, itemPower);
-            *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RECOIL_WHEN_HIT;
+            *subscript = subscript_held_item_recoil_when_hit;
             result = TRUE;
         }
         break;
@@ -5415,7 +5415,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
                 && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
                 && DEFENDER_SELF_TURN_FLAGS.specialDamageTaken) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, itemPower);
-            *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RECOIL_WHEN_HIT;
+            *subscript = subscript_held_item_recoil_when_hit;
             result = TRUE;
         }
         break;
@@ -5423,7 +5423,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     case HOLD_EFFECT_HP_RESTORE_SE:
         if (DEFENDING_MON.curHP && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, itemPower);
-            *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            *subscript = subscript_held_item_hp_restore;
             battleCtx->msgBattlerTemp = battleCtx->defender;
             battleCtx->msgItemTemp = battleCtx->battleMons[battleCtx->defender].heldItem;
             result = TRUE;
@@ -5553,7 +5553,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_HP_RESTORE:
         if (ATTACKING_MON.curHP != ATTACKING_MON.maxHP) {
             battleCtx->hpCalcTemp = power;
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            nextSeq = subscript_held_item_hp_restore;
         }
 
         result = TRUE;
@@ -5562,7 +5562,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_HP_PCT_RESTORE:
         if (ATTACKING_MON.curHP != ATTACKING_MON.maxHP) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * power, 100);
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            nextSeq = subscript_held_item_hp_restore;
         }
 
         result = TRUE;
@@ -5570,7 +5570,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     case PLUCK_EFFECT_PRZ_RESTORE:
         if (ATTACKING_MON.status & MON_CONDITION_PARALYSIS) {
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+            nextSeq = subscript_held_item_prz_restore;
         }
 
         result = TRUE;
@@ -5578,7 +5578,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     case PLUCK_EFFECT_SLP_RESTORE:
         if (ATTACKING_MON.status & MON_CONDITION_SLEEP) {
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+            nextSeq = subscript_held_item_slp_restore;
         }
 
         result = TRUE;
@@ -5586,7 +5586,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     case PLUCK_EFFECT_PSN_RESTORE:
         if (ATTACKING_MON.status & MON_CONDITION_ANY_POISON) {
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+            nextSeq = subscript_held_item_psn_restore;
         }
 
         result = TRUE;
@@ -5594,7 +5594,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     case PLUCK_EFFECT_BRN_RESTORE:
         if (ATTACKING_MON.status & MON_CONDITION_BURN) {
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+            nextSeq = subscript_held_item_brn_restore;
         }
 
         result = TRUE;
@@ -5602,7 +5602,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     case PLUCK_EFFECT_FRZ_RESTORE:
         if (ATTACKING_MON.status & MON_CONDITION_FREEZE) {
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+            nextSeq = subscript_held_item_frz_restore;
         }
 
         result = TRUE;
@@ -5628,7 +5628,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         BattleMon_AddVal(&ATTACKING_MON, BATTLEMON_CUR_PP_1 + slot, power);
         BattleMon_CopyToParty(battleSys, battleCtx, battleCtx->attacker);
         battleCtx->msgMoveTemp = ATTACKING_MON.moves[slot];
-        nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_PP_RESTORE;
+        nextSeq = subscript_held_item_pp_restore;
 
         result = TRUE;
         break;
@@ -5636,7 +5636,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     case PLUCK_EFFECT_CNF_RESTORE:
         if (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+            nextSeq = subscript_held_item_cnf_restore;
         }
 
         result = TRUE;
@@ -5645,32 +5645,32 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_ALL_RESTORE:
         if ((ATTACKING_MON.status & MON_CONDITION_ANY) || (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
             if (ATTACKING_MON.status & MON_CONDITION_PARALYSIS) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+                nextSeq = subscript_held_item_prz_restore;
             }
 
             if (ATTACKING_MON.status & MON_CONDITION_SLEEP) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+                nextSeq = subscript_held_item_slp_restore;
             }
 
             if (ATTACKING_MON.status & MON_CONDITION_ANY_POISON) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+                nextSeq = subscript_held_item_psn_restore;
             }
 
             if (ATTACKING_MON.status & MON_CONDITION_BURN) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+                nextSeq = subscript_held_item_brn_restore;
             }
 
             if (ATTACKING_MON.status & MON_CONDITION_FREEZE) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+                nextSeq = subscript_held_item_frz_restore;
             }
 
             if (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+                nextSeq = subscript_held_item_cnf_restore;
             }
 
             if ((ATTACKING_MON.status & MON_CONDITION_ANY)
                     && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_MULTI_RESTORE;
+                nextSeq = subscript_held_item_multi_restore;
             }
         }
 
@@ -5683,9 +5683,9 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->msgTemp = FLAVOR_SPICY;
 
             if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_SPICY) == -1) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                nextSeq = subscript_held_item_dislike_flavor;
             } else {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                nextSeq = subscript_held_item_hp_restore;
             }
         }
 
@@ -5698,9 +5698,9 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->msgTemp = FLAVOR_DRY;
 
             if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_DRY) == -1) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                nextSeq = subscript_held_item_dislike_flavor;
             } else {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                nextSeq = subscript_held_item_hp_restore;
             }
         }
 
@@ -5713,9 +5713,9 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->msgTemp = FLAVOR_SWEET;
 
             if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_SWEET) == -1) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                nextSeq = subscript_held_item_dislike_flavor;
             } else {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                nextSeq = subscript_held_item_hp_restore;
             }
         }
 
@@ -5728,9 +5728,9 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->msgTemp = FLAVOR_BITTER;
 
             if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_BITTER) == -1) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                nextSeq = subscript_held_item_dislike_flavor;
             } else {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                nextSeq = subscript_held_item_hp_restore;
             }
         }
 
@@ -5743,9 +5743,9 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->msgTemp = FLAVOR_SOUR;
 
             if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_SOUR) == -1) {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+                nextSeq = subscript_held_item_dislike_flavor;
             } else {
-                nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+                nextSeq = subscript_held_item_hp_restore;
             }
         }
 
@@ -5755,7 +5755,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_ATK_UP:
         if (ATTACKING_MON.statBoosts[BATTLE_STAT_ATTACK] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_ATTACK;
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            nextSeq = subscript_held_item_raise_stat;
         }
 
         result = TRUE;
@@ -5764,7 +5764,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_DEF_UP:
         if (ATTACKING_MON.statBoosts[BATTLE_STAT_DEFENSE] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            nextSeq = subscript_held_item_raise_stat;
         }
 
         result = TRUE;
@@ -5773,7 +5773,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_SPEED_UP:
         if (ATTACKING_MON.statBoosts[BATTLE_STAT_SPEED] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_SPEED;
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            nextSeq = subscript_held_item_raise_stat;
         }
 
         result = TRUE;
@@ -5782,7 +5782,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_SPATK_UP:
         if (ATTACKING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            nextSeq = subscript_held_item_raise_stat;
         }
 
         result = TRUE;
@@ -5791,7 +5791,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_SPDEF_UP:
         if (ATTACKING_MON.statBoosts[BATTLE_STAT_SP_DEFENSE] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            nextSeq = subscript_held_item_raise_stat;
         }
 
         result = TRUE;
@@ -5811,7 +5811,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             } while (ATTACKING_MON.statBoosts[BATTLE_STAT_ATTACK + stat] == 12);
 
             battleCtx->msgTemp = BATTLE_STAT_ATTACK + stat;
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_SHARPLY_RAISE_STAT;
+            nextSeq = subscript_held_item_sharply_raise_stat;
         }
 
         result = TRUE;
@@ -5820,14 +5820,14 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     case PLUCK_EFFECT_CRIT_UP:
         if ((ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_FOCUS_ENERGY) == FALSE) {
-            nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_CRIT;
+            nextSeq = subscript_held_item_raise_crit;
         }
 
         result = TRUE;
         break;
 
     case PLUCK_EFFECT_TEMP_ACC_UP:
-        nextSeq = BATTLE_SUBSCRIPT_HELD_ITEM_TEMP_ACC_UP;
+        nextSeq = subscript_held_item_temp_acc_up;
         result = TRUE;
         break;
 
@@ -5869,41 +5869,41 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
     switch (effect) {
     case FLING_EFFECT_HP_RESTORE:
         battleCtx->flingTemp = effectPower;
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+        battleCtx->flingScript = subscript_held_item_hp_restore;
         break;
 
     case FLING_EFFECT_HP_PCT_RESTORE:
         battleCtx->flingTemp = BattleSystem_Divide(DEFENDING_MON.maxHP * effectPower, 100);
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+        battleCtx->flingScript = subscript_held_item_hp_restore;
         break;
 
     case FLING_EFFECT_PRZ_RESTORE:
         if (DEFENDING_MON.status & MON_CONDITION_PARALYSIS) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+            battleCtx->flingScript = subscript_held_item_prz_restore;
         }
         break;
 
     case FLING_EFFECT_SLP_RESTORE:
         if (DEFENDING_MON.status & MON_CONDITION_SLEEP) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+            battleCtx->flingScript = subscript_held_item_slp_restore;
         }
         break;
 
     case FLING_EFFECT_PSN_RESTORE:
         if (DEFENDING_MON.status & MON_CONDITION_ANY_POISON) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+            battleCtx->flingScript = subscript_held_item_psn_restore;
         }
         break;
 
     case FLING_EFFECT_BRN_RESTORE:
         if (DEFENDING_MON.status & MON_CONDITION_BURN) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+            battleCtx->flingScript = subscript_held_item_brn_restore;
         }
         break;
 
     case FLING_EFFECT_FRZ_RESTORE:
         if (DEFENDING_MON.status & MON_CONDITION_FREEZE) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+            battleCtx->flingScript = subscript_held_item_frz_restore;
         }
         break;
 
@@ -5928,7 +5928,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
             BattleMon_AddVal(&DEFENDING_MON, BATTLEMON_CUR_PP_1 + slot, effectPower);
             BattleMon_CopyToParty(battleSys, battleCtx, battleCtx->defender);
             battleCtx->msgMoveTemp = DEFENDING_MON.moves[slot];
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_PP_RESTORE;
+            battleCtx->flingScript = subscript_held_item_pp_restore;
         }
 
         break;
@@ -5936,39 +5936,39 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
 
     case FLING_EFFECT_CNF_RESTORE:
         if (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+            battleCtx->flingScript = subscript_held_item_cnf_restore;
         }
         break;
 
     case FLING_EFFECT_ALL_RESTORE:
         if ((DEFENDING_MON.status & MON_CONDITION_ANY) || (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
             if (DEFENDING_MON.status & MON_CONDITION_PARALYSIS) {
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_PRZ_RESTORE;
+                battleCtx->flingScript = subscript_held_item_prz_restore;
             }
 
             if (DEFENDING_MON.status & MON_CONDITION_SLEEP) {
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_SLP_RESTORE;
+                battleCtx->flingScript = subscript_held_item_slp_restore;
             }
 
             if (DEFENDING_MON.status & MON_CONDITION_ANY_POISON) {
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_PSN_RESTORE;
+                battleCtx->flingScript = subscript_held_item_psn_restore;
             }
 
             if (DEFENDING_MON.status & MON_CONDITION_BURN) {
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_BRN_RESTORE;
+                battleCtx->flingScript = subscript_held_item_brn_restore;
             }
 
             if (DEFENDING_MON.status & MON_CONDITION_FREEZE) {
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_FRZ_RESTORE;
+                battleCtx->flingScript = subscript_held_item_frz_restore;
             }
 
             if (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_CNF_RESTORE;
+                battleCtx->flingScript = subscript_held_item_cnf_restore;
             }
 
             if ((DEFENDING_MON.status & MON_CONDITION_ANY)
                     && (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION)) {
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_MULTI_RESTORE;
+                battleCtx->flingScript = subscript_held_item_multi_restore;
             }
         }
         break;
@@ -5978,9 +5978,9 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->msgTemp = FLAVOR_SPICY;
 
         if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_SPICY) == -1) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+            battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            battleCtx->flingScript = subscript_held_item_hp_restore;
         }
         break;
 
@@ -5989,9 +5989,9 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->msgTemp = FLAVOR_DRY;
 
         if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_DRY) == -1) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+            battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            battleCtx->flingScript = subscript_held_item_hp_restore;
         }
         break;
 
@@ -6000,9 +6000,9 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->msgTemp = FLAVOR_SWEET;
 
         if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_SWEET) == -1) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+            battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            battleCtx->flingScript = subscript_held_item_hp_restore;
         }
         break;
 
@@ -6011,9 +6011,9 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->msgTemp = FLAVOR_BITTER;
 
         if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_BITTER) == -1) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+            battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            battleCtx->flingScript = subscript_held_item_hp_restore;
         }
         break;
 
@@ -6022,9 +6022,9 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->msgTemp = FLAVOR_SOUR;
 
         if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_SOUR) == -1) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_DISLIKE_FLAVOR;
+            battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HP_RESTORE;
+            battleCtx->flingScript = subscript_held_item_hp_restore;
         }
         break;
 
@@ -6032,7 +6032,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         for (int i = BATTLE_STAT_HP; i < BATTLE_STAT_MAX; i++) {
             if (DEFENDING_MON.statBoosts[i] < 6) {
                 DEFENDING_MON.statBoosts[i] = 6;
-                battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_STATDOWN_RESTORE;
+                battleCtx->flingScript = subscript_held_item_statdown_restore;
             }
         }
         break;
@@ -6040,72 +6040,72 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
     case FLING_EFFECT_HEAL_INFATUATION:
         if (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_ATTRACT) {
             battleCtx->msgTemp = MSGCOND_INFATUATION;
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_HEAL_INFATUATION;
+            battleCtx->flingScript = subscript_held_item_heal_infatuation;
         }
         break;
 
     case FLING_EFFECT_FLINCH:
         battleCtx->sideEffectMon = battler;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_FLINCH_MON;
+        battleCtx->flingScript = subscript_flinch_mon;
         break;
 
     case FLING_EFFECT_PARALYZE:
         battleCtx->sideEffectMon = battler;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_PARALYZE;
+        battleCtx->flingScript = subscript_paralyze;
         break;
 
     case FLING_EFFECT_POISON:
         battleCtx->sideEffectMon = battler;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_POISON;
+        battleCtx->flingScript = subscript_poison;
         break;
 
     case FLING_EFFECT_BADLY_POISON:
         battleCtx->sideEffectMon = battler;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_BADLY_POISON;
+        battleCtx->flingScript = subscript_badly_poison;
         break;
 
     case FLING_EFFECT_BURN:
         battleCtx->sideEffectMon = battler;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_BURN;
+        battleCtx->flingScript = subscript_burn;
         break;
 
     case FLING_EFFECT_ATK_UP:
         if (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_ATTACK;
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_DEF_UP:
         if (DEFENDING_MON.statBoosts[BATTLE_STAT_DEFENSE] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_SPEED_UP:
         if (DEFENDING_MON.statBoosts[BATTLE_STAT_SPEED] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_SPEED;
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_SPATK_UP:
         if (DEFENDING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_SPDEF_UP:
         if (DEFENDING_MON.statBoosts[BATTLE_STAT_SP_DEFENSE] < 12) {
             battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_STAT;
+            battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
@@ -6124,7 +6124,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
             } while (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK + stat] == 12);
 
             battleCtx->msgTemp = BATTLE_STAT_ATTACK + stat;
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_SHARPLY_RAISE_STAT;
+            battleCtx->flingScript = subscript_held_item_sharply_raise_stat;
         }
 
         break;
@@ -6132,12 +6132,12 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
 
     case FLING_EFFECT_CRIT_UP:
         if ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_FOCUS_ENERGY) == FALSE) {
-            battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_RAISE_CRIT;
+            battleCtx->flingScript = subscript_held_item_raise_crit;
         }
         break;
 
     case FLING_EFFECT_TEMP_ACC_UP:
-        battleCtx->flingScript = BATTLE_SUBSCRIPT_HELD_ITEM_TEMP_ACC_UP;
+        battleCtx->flingScript = subscript_held_item_temp_acc_up;
         break;
 
     default:
@@ -6323,7 +6323,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_NORMAL;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_NORMAL;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 } else if (WEATHER_IS_SUN
@@ -6332,7 +6332,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_FIRE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_FIRE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 1;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 } else if (WEATHER_IS_RAIN
@@ -6341,7 +6341,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_WATER;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_WATER;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 2;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 } else if (WEATHER_IS_HAIL
@@ -6350,7 +6350,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_ICE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_ICE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 3;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 }
@@ -6359,7 +6359,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_NORMAL;
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_NORMAL;
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
-                *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                *subscript = subscript_form_change;
                 result = TRUE;
                 break;
             }
@@ -6371,28 +6371,28 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_CASTFORM) == FALSE
                         && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 } else if (WEATHER_IS_SUN && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 0) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 1;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 } else if (WEATHER_IS_RAIN && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 } else if (WEATHER_IS_HAIL && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
-                    *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                    *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 }
             } else if (battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
-                *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                *subscript = subscript_form_change;
                 result = TRUE;
                 break;
             }
@@ -6405,7 +6405,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
 
             if (battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum != arceusForm) {
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = arceusForm;
-                *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                *subscript = subscript_form_change;
                 result = TRUE;
                 break;
             }
@@ -6450,11 +6450,11 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 BattleIO_UpdatePartyMon(battleSys, battleCtx, battleCtx->msgBattlerTemp);
                 Heap_FreeToHeap(mon);
 
-                *subscript = BATTLE_SUBSCRIPT_FORM_CHANGE;
+                *subscript = subscript_form_change;
                 result = TRUE;
                 break;
             } else {
-                *subscript = BATTLE_SUBSCRIPT_GIRATINA_FORM_CHANGE;
+                *subscript = subscript_giratina_form_change;
                 result = TRUE;
                 break;
             }
@@ -7352,7 +7352,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
             && ATTACKING_MON.curHP) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt * -1, attackerItemPower);
         battleCtx->msgBattlerTemp = battleCtx->attacker;
-        *subscript = BATTLE_SUBSCRIPT_RESTORE_A_LITTLE_HP;
+        *subscript = subscript_restore_a_little_hp;
         result = TRUE;
     }
 
@@ -7363,7 +7363,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
             && ATTACKING_MON.curHP) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 10);
         battleCtx->msgBattlerTemp = battleCtx->attacker;
-        *subscript = BATTLE_SUBSCRIPT_LOSE_HP_FROM_ITEM;
+        *subscript = subscript_lose_hp_from_item;
         result = TRUE;
     }
 
@@ -7372,7 +7372,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
             && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, defenderItemPower);
-        *subscript = BATTLE_SUBSCRIPT_HELD_ITEM_RECOIL_WHEN_HIT;
+        *subscript = subscript_held_item_recoil_when_hit;
         result = TRUE;
     }
 
@@ -7382,7 +7382,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
             && (battleCtx->sideConditions[attackingSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker])) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
-        *subscript = BATTLE_SUBSCRIPT_TRANSFER_STICKY_BARB;
+        *subscript = subscript_transfer_sticky_barb;
         result = TRUE;
     }
 

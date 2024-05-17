@@ -167,20 +167,20 @@ _0184:
     CallIf 1, _02A8
     ScrCmd_02C 9
     ScrCmd_034
-    ScrCmd_05E 13, _0388
-    ScrCmd_05F
+    ApplyMovement 13, _0388
+    WaitMovement
     ScrCmd_168 25, 14, 22, 21, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ScrCmd_05E 13, _0390
-    ScrCmd_05E 0xFF, _03C0
-    ScrCmd_05F
+    ApplyMovement 13, _0390
+    ApplyMovement 0xFF, _03C0
+    WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
     ScrCmd_065 13
-    ScrCmd_028 0x40C8, 1
-    ScrCmd_028 0x404E, 0xFF
+    SetVar 0x40C8, 1
+    SetVar 0x404E, 0xFF
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BE 0x1D0, 0, 10, 6, 2
@@ -189,34 +189,34 @@ _0184:
     End
 
 _0266:
-    ScrCmd_05E 13, _0328
-    ScrCmd_05F
+    ApplyMovement 13, _0328
+    WaitMovement
     Return
 
 _0272:
     Return
 
 _0274:
-    ScrCmd_05E 13, _0334
-    ScrCmd_05F
+    ApplyMovement 13, _0334
+    WaitMovement
     Return
 
 _0280:
-    ScrCmd_05E 13, _0358
-    ScrCmd_05E 0xFF, _039C
-    ScrCmd_05F
+    ApplyMovement 13, _0358
+    ApplyMovement 0xFF, _039C
+    WaitMovement
     Return
 
 _0294:
-    ScrCmd_05E 13, _0368
-    ScrCmd_05E 0xFF, _03A8
-    ScrCmd_05F
+    ApplyMovement 13, _0368
+    ApplyMovement 0xFF, _03A8
+    WaitMovement
     Return
 
 _02A8:
-    ScrCmd_05E 13, _0378
-    ScrCmd_05E 0xFF, _03B4
-    ScrCmd_05F
+    ApplyMovement 13, _0378
+    ApplyMovement 0xFF, _03B4
+    WaitMovement
     Return
 
 _02BC:
@@ -233,20 +233,20 @@ _02BC:
     End
 
 _02F2:
-    ScrCmd_05E 13, _0340
-    ScrCmd_05E 0xFF, _03CC
-    ScrCmd_05F
+    ApplyMovement 13, _0340
+    ApplyMovement 0xFF, _03CC
+    WaitMovement
     Return
 
 _0306:
-    ScrCmd_05E 0xFF, _03CC
-    ScrCmd_05F
+    ApplyMovement 0xFF, _03CC
+    WaitMovement
     Return
 
 _0312:
-    ScrCmd_05E 13, _034C
-    ScrCmd_05E 0xFF, _03CC
-    ScrCmd_05F
+    ApplyMovement 13, _034C
+    ApplyMovement 0xFF, _03CC
+    WaitMovement
     Return
 
     .balign 4, 0
@@ -345,7 +345,7 @@ _03D4:
     ScrCmd_02C 11
     ScrCmd_034
     SetFlag 0x2AA
-    ScrCmd_028 0x404E, 2
+    SetVar 0x404E, 2
     SetFlag 0x9AB
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
@@ -376,7 +376,7 @@ _043C:
     ScrCmd_02C 14
     ScrCmd_034
     SetFlag 0x2AD
-    ScrCmd_028 0x404E, 4
+    SetVar 0x404E, 4
     SetFlag 0x9AB
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
@@ -401,7 +401,7 @@ _049C:
     ScrCmd_02C 17
     ScrCmd_034
     SetFlag 0x2AF
-    ScrCmd_028 0x404E, 5
+    SetVar 0x404E, 5
     SetFlag 0x9AB
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
@@ -426,7 +426,7 @@ _04FC:
     ScrCmd_02C 20
     ScrCmd_034
     SetFlag 0x2B2
-    ScrCmd_028 0x404E, 7
+    SetVar 0x404E, 7
     SetFlag 0x9AB
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
@@ -451,7 +451,7 @@ _055C:
     ScrCmd_02C 23
     ScrCmd_034
     SetFlag 0x2B5
-    ScrCmd_028 0x404E, 9
+    SetVar 0x404E, 9
     SetFlag 0x9AB
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD

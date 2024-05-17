@@ -43,9 +43,9 @@ _0040:
     ScrCmd_02C 1
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_05E 0, _04B8
-    ScrCmd_05E 0xFF, _0424
-    ScrCmd_05F
+    ApplyMovement 0, _04B8
+    ApplyMovement 0xFF, _0424
+    WaitMovement
     ScrCmd_02C 3
     ScrCmd_034
     SetFlag 0x1AC
@@ -70,17 +70,17 @@ _0040:
     End
 
 _0110:
-    ScrCmd_05E 0, _0488
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _03E4
-    ScrCmd_05F
+    ApplyMovement 0, _0488
+    WaitMovement
+    ApplyMovement 0xFF, _03E4
+    WaitMovement
     Return
 
 _0126:
-    ScrCmd_05E 0, _04A0
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _03EC
-    ScrCmd_05F
+    ApplyMovement 0, _04A0
+    WaitMovement
+    ApplyMovement 0xFF, _03EC
+    WaitMovement
     Return
 
 _013C:
@@ -95,17 +95,17 @@ _013C:
     End
 
 _0165:
-    ScrCmd_05E 0, _04C0
-    ScrCmd_05E 0xFF, _03F4
-    ScrCmd_05E 1, _03CC
-    ScrCmd_05F
+    ApplyMovement 0, _04C0
+    ApplyMovement 0xFF, _03F4
+    ApplyMovement 1, _03CC
+    WaitMovement
     Return
 
 _0181:
-    ScrCmd_05E 0, _04CC
-    ScrCmd_05E 0xFF, _040C
-    ScrCmd_05E 1, _03D8
-    ScrCmd_05F
+    ApplyMovement 0, _04CC
+    ApplyMovement 0xFF, _040C
+    ApplyMovement 1, _03D8
+    WaitMovement
     Return
 
 _019D:
@@ -121,7 +121,7 @@ _019D:
 
 _01C3:
     ClearFlag 0x1BD
-    ScrCmd_028 0x4074, 1
+    SetVar 0x4074, 1
     ScrCmd_02C 11
     ScrCmd_034
     ScrCmd_003 15, 0x800C
@@ -140,8 +140,8 @@ _01C3:
     CompareVarToValue 0x8004, 11
     CallIf 1, _0343
     ScrCmd_02C 13
-    ScrCmd_028 0x8004, 0x1A6
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x1A6
+    SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     SetFlag 0x1AC
     ClearFlag 0x1C3
@@ -159,33 +159,33 @@ _01C3:
     Return
 
 _0285:
-    ScrCmd_05E 1, _039C
-    ScrCmd_05F
+    ApplyMovement 1, _039C
+    WaitMovement
     Return
 
 _0291:
-    ScrCmd_05E 1, _03B4
-    ScrCmd_05F
+    ApplyMovement 1, _03B4
+    WaitMovement
     Return
 
 _029D:
-    ScrCmd_05E 0xFF, _042C
-    ScrCmd_05E 0, _04D8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _042C
+    ApplyMovement 0, _04D8
+    WaitMovement
     Return
 
 _02B1:
     CompareVarToValue 0x8005, 4
     GoToIf 1, _02D2
-    ScrCmd_05E 0xFF, _0434
-    ScrCmd_05E 0, _04D8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0434
+    ApplyMovement 0, _04D8
+    WaitMovement
     Return
 
 _02D2:
-    ScrCmd_05E 0xFF, _043C
-    ScrCmd_05E 0, _04D8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _043C
+    ApplyMovement 0, _04D8
+    WaitMovement
     Return
 
     .byte 94
@@ -212,15 +212,15 @@ _02D2:
 _02FA:
     CompareVarToValue 0x8005, 4
     GoToIf 1, _031B
-    ScrCmd_05E 0xFF, _0454
-    ScrCmd_05E 0, _04E0
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0454
+    ApplyMovement 0, _04E0
+    WaitMovement
     Return
 
 _031B:
-    ScrCmd_05E 0xFF, _045C
-    ScrCmd_05E 0, _04E0
-    ScrCmd_05F
+    ApplyMovement 0xFF, _045C
+    ApplyMovement 0, _04E0
+    WaitMovement
     Return
 
     .byte 94
@@ -245,27 +245,27 @@ _031B:
     .byte 0
 
 _0343:
-    ScrCmd_05E 0xFF, _0474
-    ScrCmd_05E 0, _04E8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0474
+    ApplyMovement 0, _04E8
+    WaitMovement
     Return
 
 _0357:
-    ScrCmd_05E 0xFF, _047C
-    ScrCmd_05E 0, _04F0
-    ScrCmd_05F
+    ApplyMovement 0xFF, _047C
+    ApplyMovement 0, _04F0
+    WaitMovement
     Return
 
 _036B:
-    ScrCmd_05E 0xFF, _047C
-    ScrCmd_05E 0, _0508
-    ScrCmd_05F
+    ApplyMovement 0xFF, _047C
+    ApplyMovement 0, _0508
+    WaitMovement
     Return
 
 _037F:
-    ScrCmd_05E 0xFF, _047C
-    ScrCmd_05E 0, _0520
-    ScrCmd_05F
+    ApplyMovement 0xFF, _047C
+    ApplyMovement 0, _0520
+    WaitMovement
     Return
 
 _0393:
@@ -534,9 +534,9 @@ _0596:
     CompareVarToValue 0x800C, 1
     GoToIf 1, _0753
     ScrCmd_034
-    ScrCmd_05E 2, _07F0
-    ScrCmd_05E 0xFF, _0858
-    ScrCmd_05F
+    ApplyMovement 2, _07F0
+    ApplyMovement 0xFF, _0858
+    WaitMovement
     ScrCmd_003 15, 0x800C
     ScrCmd_02C 18
     ScrCmd_069 0x8004, 0x8005
@@ -553,9 +553,9 @@ _0596:
     GoToIf 1, _0753
     ScrCmd_02C 19
     ScrCmd_034
-    ScrCmd_05E 0xFF, _0864
-    ScrCmd_05E 2, _07F8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0864
+    ApplyMovement 2, _07F8
+    WaitMovement
     ScrCmd_02C 20
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
@@ -572,49 +572,49 @@ _0596:
     End
 
 _06CF:
-    ScrCmd_05E 2, _07B0
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _0848
-    ScrCmd_05F
+    ApplyMovement 2, _07B0
+    WaitMovement
+    ApplyMovement 0xFF, _0848
+    WaitMovement
     Return
 
 _06E5:
-    ScrCmd_05E 2, _07C8
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _0850
-    ScrCmd_05F
+    ApplyMovement 2, _07C8
+    WaitMovement
+    ApplyMovement 0xFF, _0850
+    WaitMovement
     Return
 
 _06FB:
-    ScrCmd_05E 0xFF, _0848
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0848
+    WaitMovement
     Return
 
 _0707:
-    ScrCmd_05E 0xFF, _0850
-    ScrCmd_05F
+    ApplyMovement 0xFF, _0850
+    WaitMovement
     Return
 
 _0713:
-    ScrCmd_05E 2, _07E0
-    ScrCmd_05F
+    ApplyMovement 2, _07E0
+    WaitMovement
     Return
 
 _071F:
-    ScrCmd_05E 2, _07E8
-    ScrCmd_05F
+    ApplyMovement 2, _07E8
+    WaitMovement
     Return
 
 _072B:
-    ScrCmd_05E 2, _0800
-    ScrCmd_05E 0xFF, _0870
-    ScrCmd_05F
+    ApplyMovement 2, _0800
+    ApplyMovement 0xFF, _0870
+    WaitMovement
     Return
 
 _073F:
-    ScrCmd_05E 2, _080C
-    ScrCmd_05E 0xFF, _087C
-    ScrCmd_05F
+    ApplyMovement 2, _080C
+    ApplyMovement 0xFF, _087C
+    WaitMovement
     Return
 
 _0753:
@@ -634,15 +634,15 @@ _075E:
     End
 
 _0788:
-    ScrCmd_05E 2, _0818
-    ScrCmd_05E 0xFF, _0888
-    ScrCmd_05F
+    ApplyMovement 2, _0818
+    ApplyMovement 0xFF, _0888
+    WaitMovement
     Return
 
 _079C:
-    ScrCmd_05E 2, _0830
-    ScrCmd_05E 0xFF, _0888
-    ScrCmd_05F
+    ApplyMovement 2, _0830
+    ApplyMovement 0xFF, _0888
+    WaitMovement
     Return
 
     .balign 4, 0

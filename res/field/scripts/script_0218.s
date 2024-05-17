@@ -18,10 +18,10 @@ _0018:
     ScrCmd_068
     CheckFlag 0x12A
     GoToIf 1, _004D
-    ScrCmd_028 0x8004, 95
+    SetVar 0x8004, 95
     ScrCmd_261 0, 0x8004
     ScrCmd_02C 0
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     ScrCmd_014 0x7DF
     SetFlag 0x12A
     ScrCmd_034

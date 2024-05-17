@@ -1,4 +1,5 @@
 nitrofs_files = []
+naix_headers = []
 
 # Prebuilt files
 subdir('prebuilt')

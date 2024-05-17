@@ -67,7 +67,7 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -279,14 +279,14 @@ static BOOL ScrCmd_SetFlag(ScriptContext * ctx);
 static BOOL ScrCmd_ClearFlag(ScriptContext * ctx);
 static BOOL ScrCmd_CheckFlag(ScriptContext * ctx);
 static BOOL ScrCmd_021(ScriptContext * param0);
-static BOOL ScrCmd_022(ScriptContext * param0);
-static BOOL ScrCmd_023(ScriptContext * param0);
-static BOOL ScrCmd_024(ScriptContext * param0);
-static BOOL ScrCmd_025(ScriptContext * param0);
-static BOOL ScrCmd_026(ScriptContext * param0);
-static BOOL ScrCmd_027(ScriptContext * param0);
-static BOOL ScrCmd_028(ScriptContext * param0);
-static BOOL ScrCmd_029(ScriptContext * param0);
+static BOOL ScrCmd_SetFlagFromVar(ScriptContext * ctx);
+static BOOL ScrCmd_SetTrainerFlag(ScriptContext * ctx);
+static BOOL ScrCmd_ClearTrainerFlag(ScriptContext * ctx);
+static BOOL ScrCmd_CheckTrainerFlag(ScriptContext * ctx);
+static BOOL ScrCmd_AddVar(ScriptContext * ctx);
+static BOOL ScrCmd_SubVar(ScriptContext * ctx);
+static BOOL ScrCmd_SetVarFromValue(ScriptContext * ctx);
+static BOOL ScrCmd_SetVarFromVar(ScriptContext * ctx);
 static BOOL ScrCmd_02A(ScriptContext * param0);
 static BOOL ScrCmd_02B(ScriptContext * param0);
 static BOOL ScrCmd_1FA(ScriptContext * param0);
@@ -338,8 +338,8 @@ static BOOL ScrCmd_047(ScriptContext * param0);
 static BOOL ScrCmd_327(ScriptContext * param0);
 static BOOL ScrCmd_306(ScriptContext * param0);
 static BOOL ScrCmd_048(ScriptContext * param0);
-static BOOL ScrCmd_05E(ScriptContext * param0);
-static BOOL ScrCmd_05F(ScriptContext * param0);
+static BOOL ScrCmd_ApplyMovement(ScriptContext * ctx);
+static BOOL ScrCmd_WaitMovement(ScriptContext * ctx);
 static BOOL ScrCmd_060(ScriptContext * param0);
 static BOOL sub_020410CC(ScriptContext * param0);
 static BOOL ScrCmd_061(ScriptContext * param0);
@@ -806,14 +806,14 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ClearFlag,
     ScrCmd_CheckFlag,
     ScrCmd_021,
-    ScrCmd_022,
-    ScrCmd_023,
-    ScrCmd_024,
-    ScrCmd_025,
-    ScrCmd_026,
-    ScrCmd_027,
-    ScrCmd_028,
-    ScrCmd_029,
+    ScrCmd_SetFlagFromVar,
+    ScrCmd_SetTrainerFlag,
+    ScrCmd_ClearTrainerFlag,
+    ScrCmd_CheckTrainerFlag,
+    ScrCmd_AddVar,
+    ScrCmd_SubVar,
+    ScrCmd_SetVarFromValue,
+    ScrCmd_SetVarFromVar,
     ScrCmd_02A,
     ScrCmd_02B,
     ScrCmd_02C,
@@ -866,8 +866,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_05B,
     ScrCmd_05C,
     ScrCmd_05D,
-    ScrCmd_05E,
-    ScrCmd_05F,
+    ScrCmd_ApplyMovement,
+    ScrCmd_WaitMovement,
     ScrCmd_060,
     ScrCmd_061,
     ScrCmd_062,
@@ -2016,83 +2016,65 @@ static BOOL ScrCmd_021 (ScriptContext * ctx)
     return 0;
 }
 
-static BOOL ScrCmd_022 (ScriptContext * ctx)
+static BOOL ScrCmd_SetFlagFromVar (ScriptContext * ctx)
 {
-    FieldSystem * fieldSystem = ctx->fieldSys;
-    u16 * v1 = ScriptContext_GetVarPointer(ctx);
-
-    sub_0203F19C(fieldSystem, (*v1));
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 flagID = *ScriptContext_GetVarPointer(ctx);
+    sub_0203F19C(fieldSys, flagID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_023 (ScriptContext * ctx)
+static BOOL ScrCmd_SetTrainerFlag (ScriptContext * ctx)
 {
-    FieldSystem * fieldSystem = ctx->fieldSys;
-    u16 v1 = ScriptContext_GetVar(ctx);
-
-    sub_0203F2BC(fieldSystem, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    sub_0203F2BC(fieldSys, trainerID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_024 (ScriptContext * ctx)
+static BOOL ScrCmd_ClearTrainerFlag (ScriptContext * ctx)
 {
-    FieldSystem * fieldSystem = ctx->fieldSys;
-    u16 v1 = ScriptContext_GetVar(ctx);
-
-    sub_0203F2D8(fieldSystem, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    sub_0203F2D8(fieldSys, trainerID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_025 (ScriptContext * ctx)
+static BOOL ScrCmd_CheckTrainerFlag (ScriptContext * ctx)
 {
-    FieldSystem * fieldSystem = ctx->fieldSys;
-    u16 v1 = ScriptContext_GetVar(ctx);
-
-    ctx->comparisonResult = sub_0203F2A0(fieldSystem, v1);
-    return 0;
+    FieldSystem * fieldSys = ctx->fieldSys;
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    ctx->comparisonResult = sub_0203F2A0(fieldSys, trainerID);
+    return FALSE;
 }
 
-static BOOL ScrCmd_026 (ScriptContext * ctx)
+static BOOL ScrCmd_AddVar (ScriptContext * ctx)
 {
-    u16 * v0;
-    u16 v1;
-
-    v0 = ScriptContext_GetVarPointer(ctx);
-    *v0 += ScriptContext_GetVar(ctx);
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar += ScriptContext_GetVar(ctx);
+    return FALSE;
 }
 
-static BOOL ScrCmd_027 (ScriptContext * ctx)
+static BOOL ScrCmd_SubVar (ScriptContext * ctx)
 {
-    u16 * v0;
-
-    v0 = ScriptContext_GetVarPointer(ctx);
-    *v0 -= ScriptContext_GetVar(ctx);
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar -= ScriptContext_GetVar(ctx);
+    return FALSE;
 }
 
-static BOOL ScrCmd_028 (ScriptContext * ctx)
+static BOOL ScrCmd_SetVarFromValue (ScriptContext * ctx)
 {
-    u16 * v0;
-
-    v0 = ScriptContext_GetVarPointer(ctx);
-    *v0 = ScriptContext_ReadHalfWord(ctx);
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = ScriptContext_ReadHalfWord(ctx);
+    return FALSE;
 }
 
-static BOOL ScrCmd_029 (ScriptContext * ctx)
+static BOOL ScrCmd_SetVarFromVar (ScriptContext * ctx)
 {
-    u16 * v0;
-    u16 * v1;
-
-    v0 = ScriptContext_GetVarPointer(ctx);
-    v1 = ScriptContext_GetVarPointer(ctx);
-    *v0 = *v1;
-
-    return 0;
+    u16 * destVar = ScriptContext_GetVarPointer(ctx);
+    u16 * srcVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = *srcVar;
+    return FALSE;
 }
 
 static BOOL ScrCmd_02A (ScriptContext * ctx)
@@ -2984,31 +2966,21 @@ static BOOL ScrCmd_33B (ScriptContext * ctx)
     return 1;
 }
 
-static BOOL ScrCmd_05E (ScriptContext * ctx)
+static BOOL ScrCmd_ApplyMovement (ScriptContext * ctx)
 {
-    u8 * v0;
-    SysTask * v1;
-    u8 * v2;
-    MapObject ** v3;
-    MapObject * v4;
-    u16 v5 = ScriptContext_GetVar(ctx);
-    u32 v6 = (s32)ScriptContext_ReadWord(ctx);
-
-    v4 = sub_02040ED4(ctx->fieldSys, v5);
-
-    if (v4 == NULL) {
+    u16 localID = ScriptContext_GetVar(ctx);
+    u32 movementOffset = ScriptContext_ReadWord(ctx);
+    LocalMapObject * object = sub_02040ED4(ctx->fieldSys, localID);
+    if (object == NULL) {
         GF_ASSERT(FALSE);
-        return 0;
+        return FALSE;
     }
 
-    v0 = (u8 *)(ctx->scriptPtr + v6);
-    v1 = sub_02065700(v4, (UnkStruct_ov5_021F8E3C *)v0);
-    v2 = sub_0203F098(ctx->fieldSys, 4);
+    SysTask * v1 = sub_02065700(object, (UnkStruct_ov5_021F8E3C *)(ctx->scriptPtr + movementOffset));
+    u8 * v2 = sub_0203F098(ctx->fieldSys, 4);
     (*v2)++;
-
     sub_02040F28(ctx->fieldSys, v1, NULL);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_2A1 (ScriptContext * ctx)
@@ -3085,10 +3057,10 @@ static MapObject * sub_02040ED4 (FieldSystem * ctx, int param1)
     return v1;
 }
 
-static BOOL ScrCmd_05F (ScriptContext * ctx)
+static BOOL ScrCmd_WaitMovement (ScriptContext * ctx)
 {
     ScriptContext_Pause(ctx, sub_02040F0C);
-    return 1;
+    return TRUE;
 }
 
 static BOOL sub_02040F0C (ScriptContext * ctx)
@@ -7738,7 +7710,7 @@ static BOOL ScrCmd_2AA (ScriptContext * param0)
     StringTemplate_SetCustomMessageWord(v6, 2, v4);
     StringTemplate_SetCustomMessageWord(v6, 3, v5);
 
-    v8 = sub_0200B29C(v6, v7, 1, 32);
+    v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, 32);
     v9 = MessageLoader_GetNewStrbuf(v7, 0);
     *v1 = (Strbuf_Compare(v8, v9) == 0);
 

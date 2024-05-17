@@ -23,13 +23,13 @@ _0022:
     ClearFlag 0x1CD
     ScrCmd_064 0
     ScrCmd_066 30, 30
-    ScrCmd_05E 241, _016C
-    ScrCmd_05F
+    ApplyMovement 241, _016C
+    WaitMovement
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    ScrCmd_028 0x40C3, 2
-    ScrCmd_05E 0, _0144
-    ScrCmd_05F
+    SetVar 0x40C3, 2
+    ApplyMovement 0, _0144
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_20D 4, 0x800C
@@ -39,16 +39,16 @@ _0088:
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0088
     ScrCmd_065 1
-    ScrCmd_05E 241, _0178
-    ScrCmd_05F
+    ApplyMovement 241, _0178
+    WaitMovement
     ScrCmd_067
-    ScrCmd_05E 0xFF, _013C
-    ScrCmd_05E 0, _014C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _013C
+    ApplyMovement 0, _014C
+    WaitMovement
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_05E 0, _0154
-    ScrCmd_05F
+    ApplyMovement 0, _0154
+    WaitMovement
     ScrCmd_02C 5
     SetFlag 0x29E
     GoTo _00DA

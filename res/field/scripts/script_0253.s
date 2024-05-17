@@ -28,8 +28,8 @@ _0044:
     End
 
 _004F:
-    ScrCmd_05E 0, _00D4
-    ScrCmd_05F
+    ApplyMovement 0, _00D4
+    WaitMovement
     ScrCmd_02C 2
     ScrCmd_03E 0x800C
     CompareVarToValue 0x800C, 0
@@ -40,8 +40,8 @@ _004F:
 
 _007C:
     ScrCmd_02C 3
-    ScrCmd_028 0x8004, 75
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 75
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00AE

@@ -42,10 +42,10 @@ _0044:
     CallIf 1, _00BC
     CompareVarToValue 0x800C, 0x189
     CallIf 1, _00C4
-    ScrCmd_029 0x410A, 0x8004
+    SetVar 0x410A, 0x8004
     ScrCmd_343 0, 0x8004
     ScrCmd_02C 1
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     ScrCmd_014 0x7DF
     SetFlag 0x13D
     ScrCmd_034
@@ -61,15 +61,15 @@ _00A4:
     End
 
 _00B4:
-    ScrCmd_028 0x8004, 92
+    SetVar 0x8004, 92
     Return
 
 _00BC:
-    ScrCmd_028 0x8004, 93
+    SetVar 0x8004, 93
     Return
 
 _00C4:
-    ScrCmd_028 0x8004, 94
+    SetVar 0x8004, 94
     Return
 
 _00CC:

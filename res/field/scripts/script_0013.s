@@ -12,13 +12,13 @@ _0012:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    ScrCmd_05E 0, _0044
-    ScrCmd_05F
+    ApplyMovement 0, _0044
+    WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_003 8, 0x800C
-    ScrCmd_05E 0, _004C
-    ScrCmd_05F
+    ApplyMovement 0, _004C
+    WaitMovement
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034

@@ -24,7 +24,7 @@ _0021:
     CompareVarToValue 0x800C, 1
     GoToIf 1, _0051
     ScrCmd_02C 0
-    ScrCmd_028 0x8004, 8
+    SetVar 0x8004, 8
     ScrCmd_014 0x7D9
     ScrCmd_031
     ScrCmd_034

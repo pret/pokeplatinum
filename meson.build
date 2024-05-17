@@ -12,7 +12,7 @@ fs = import('fs')
 ############################################################
 ###                    INCLUDE PATHS                     ###
 ############################################################
-public_includes = include_directories('include', 'asm')
+public_includes = include_directories('include', 'asm', 'res')
 
 
 ############################################################
@@ -142,7 +142,9 @@ subdir('asm')
 main = executable('main',
     sources: [
         pokeplatinum_c,
-        pokeplatinum_asm
+        pokeplatinum_asm,
+        generated_consts_c,
+        naix_headers,
     ],
     c_args: [
         pokeplatinum_args,
@@ -154,7 +156,7 @@ main = executable('main',
         public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        gmm_header_includes
+        gmm_header_includes,
     ],
     dependencies: [
         nitrosdk_dep,

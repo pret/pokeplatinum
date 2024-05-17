@@ -39,7 +39,7 @@ Static main
 	Object main.nef.p/src_unk_0200A784.c.o
 	Object main.nef.p/src_unk_0200A9DC.c.o
 	Object main.nef.p/src_message.c.o
-	Object main.nef.p/src_unk_0200B29C.c.o
+	Object main.nef.p/src_message_util.c.o
 	Object main.nef.p/src_string_template.c.o
 	Object main.nef.p/src_unk_0200C440.c.o
 	Object main.nef.p/src_unk_0200C6E4.c.o
@@ -78,7 +78,7 @@ Static main
 	Object main.nef.p/src_unk_0201DBEC.c.o
 	Object main.nef.p/src_unk_0201DD00.c.o
 	Object main.nef.p/src_unk_0201E010.c.o
-	Object main.nef.p/src_unk_0201E0A4.c.o
+	Object main.nef.p/src_ascii_util.c.o
 	Object main.nef.p/src_unk_0201E190.c.o
 	Object main.nef.p/src_unk_0201E3BC.c.o
 	Object main.nef.p/src_unk_0201E3D8.c.o

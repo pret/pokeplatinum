@@ -76,7 +76,7 @@ _0097:
 _00A2:
     ScrCmd_177 0x4000
 _00A6:
-    ScrCmd_027 0x4000, 1
+    SubVar 0x4000, 1
     ScrCmd_198 0x4000, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00FC
@@ -120,7 +120,7 @@ _010F:
     ScrCmd_1B9 0x800C, 0x8000
     CompareVarToValue 0x800C, 0xFF
     GoToIf 0, _0097
-    ScrCmd_028 0x8003, 0x1B2
+    SetVar 0x8003, 0x1B2
     GoTo _019B
 
 _019B:
@@ -145,11 +145,11 @@ _01D7:
     GoToIf 1, _0201
     CompareVarToValue 0x8005, 16
     GoToIf 1, _0201
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     Return
 
 _0201:
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     Return
 
     .byte 0

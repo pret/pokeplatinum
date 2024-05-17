@@ -97,13 +97,13 @@ _00D5:
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 8, _011C
-    ScrCmd_05F
+    ApplyMovement 8, _011C
+    WaitMovement
     ScrCmd_168 20, 10, 12, 18, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ScrCmd_05E 8, _0124
-    ScrCmd_05F
+    ApplyMovement 8, _0124
+    WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
@@ -142,7 +142,7 @@ _0141:
     GoToIf 1, _01BE
     ScrCmd_0CE 0
     ScrCmd_0CD 1
-    ScrCmd_029 0x8008, 0x40C2
+    SetVar 0x8008, 0x40C2
     CompareVarToValue 0x8008, 0
     GoToIf 1, _0195
     CompareVarToValue 0x8008, 1

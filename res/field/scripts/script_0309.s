@@ -11,5 +11,5 @@ _0006:
     End
 
 _0014:
-    ScrCmd_026 0x410C, 1
+    AddVar 0x410C, 1
     Return

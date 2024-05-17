@@ -130,9 +130,9 @@ _012A:
     ScrCmd_031
     ScrCmd_04B 0x5DC
     ScrCmd_049 0x608
-    ScrCmd_05E 5, _0164
-    ScrCmd_05E 6, _016C
-    ScrCmd_05F
+    ApplyMovement 5, _0164
+    ApplyMovement 6, _016C
+    WaitMovement
     SetFlag 0x224
     ScrCmd_065 5
     ScrCmd_065 6

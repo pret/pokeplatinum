@@ -12,31 +12,31 @@
     .short 0xFD13
 
 _001E:
-    ScrCmd_028 0x4001, 0
-    ScrCmd_028 0x4002, 1
-    ScrCmd_028 0x4003, 0
+    SetVar 0x4001, 0
+    SetVar 0x4002, 1
+    SetVar 0x4003, 0
     ScrCmd_16F
     End
 
 _0034:
     ScrCmd_170
-    ScrCmd_028 0x4001, 1
-    ScrCmd_028 0x4002, 0
-    ScrCmd_028 0x4003, 0
+    SetVar 0x4001, 1
+    SetVar 0x4002, 0
+    SetVar 0x4003, 0
     End
 
 _004A:
     ScrCmd_170
-    ScrCmd_028 0x4001, 0
-    ScrCmd_028 0x4002, 1
-    ScrCmd_028 0x4003, 0
+    SetVar 0x4001, 0
+    SetVar 0x4002, 1
+    SetVar 0x4003, 0
     End
 
 _0060:
     ScrCmd_170
-    ScrCmd_028 0x4001, 0
-    ScrCmd_028 0x4002, 0
-    ScrCmd_028 0x4003, 1
+    SetVar 0x4001, 0
+    SetVar 0x4002, 0
+    SetVar 0x4003, 1
     End
 
 _0076:
@@ -60,13 +60,13 @@ _0076:
     ScrCmd_04F
     ScrCmd_15C 3
     ScrCmd_260 23
-    ScrCmd_023 0x125
-    ScrCmd_023 0x153
-    ScrCmd_023 0x191
-    ScrCmd_023 0x1E3
-    ScrCmd_023 0x1F1
-    ScrCmd_023 0x1F2
-    ScrCmd_028 0x407C, 3
+    SetTrainerFlag 0x125
+    SetTrainerFlag 0x153
+    SetTrainerFlag 0x191
+    SetTrainerFlag 0x1E3
+    SetTrainerFlag 0x1F1
+    SetTrainerFlag 0x1F2
+    SetVar 0x407C, 3
     SetFlag 0x20C
     SetFlag 0x156
     ScrCmd_1CD 10, 122, 0x13C, 0, 0
@@ -75,8 +75,8 @@ _0076:
     End
 
 _010D:
-    ScrCmd_028 0x8004, 0x17E
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x17E
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _014B

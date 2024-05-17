@@ -40,8 +40,8 @@ _0057:
 
 _0062:
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 0x19F
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x19F
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _009F

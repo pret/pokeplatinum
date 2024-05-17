@@ -16,7 +16,7 @@ _001A:
     End
 
 _0029:
-    ScrCmd_028 0x4094, 0
+    SetVar 0x4094, 0
     End
 
 _0031:
@@ -31,11 +31,11 @@ _0031:
     ScrCmd_02C 1
     ScrCmd_04F
     SetFlag 221
-    ScrCmd_028 0x4094, 1
+    SetVar 0x4094, 1
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
-    ScrCmd_028 0x403F, 0x263
+    SetVar 0x403F, 0x263
     ScrCmd_161
     ScrCmd_06D 14, 48
     ScrCmd_061
@@ -50,10 +50,10 @@ _007D:
     ScrCmd_188 14, 14
     ClearFlag 0x1DA
     ScrCmd_064 14
-    ScrCmd_05E 14, _00DC
-    ScrCmd_05F
-    ScrCmd_05E 0xFF, _00EC
-    ScrCmd_05F
+    ApplyMovement 14, _00DC
+    WaitMovement
+    ApplyMovement 0xFF, _00EC
+    WaitMovement
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_034
@@ -63,8 +63,8 @@ _00B7:
     ScrCmd_186 14, 42, 68
     ScrCmd_189 14, 0
     ScrCmd_188 14, 14
-    ScrCmd_05E 14, _0144
-    ScrCmd_05F
+    ApplyMovement 14, _0144
+    WaitMovement
     ScrCmd_02C 3
     Return
 
@@ -98,16 +98,16 @@ _00EC:
 
 _00FC:
     ScrCmd_060
-    ScrCmd_05E 14, _014C
-    ScrCmd_05E 0xFF, _0134
-    ScrCmd_05F
+    ApplyMovement 14, _014C
+    ApplyMovement 0xFF, _0134
+    WaitMovement
     ScrCmd_02C 4
     ScrCmd_034
-    ScrCmd_028 0x4094, 0
+    SetVar 0x4094, 0
     ScrCmd_162
     ScrCmd_06D 14, 15
-    ScrCmd_05E 14, _013C
-    ScrCmd_05F
+    ApplyMovement 14, _013C
+    WaitMovement
     ScrCmd_061
     End
 
@@ -142,32 +142,32 @@ _0154:
     End
 
 _0177:
-    ScrCmd_05E 14, _01F0
-    ScrCmd_05E 0xFF, _01E4
-    ScrCmd_05F
+    ApplyMovement 14, _01F0
+    ApplyMovement 0xFF, _01E4
+    WaitMovement
     GoTo _01AB
     End
 
 _0191:
-    ScrCmd_05E 14, _01FC
-    ScrCmd_05E 0xFF, _01E4
-    ScrCmd_05F
+    ApplyMovement 14, _01FC
+    ApplyMovement 0xFF, _01E4
+    WaitMovement
     GoTo _01AB
     End
 
 _01AB:
-    ScrCmd_05E 14, _0204
-    ScrCmd_05F
+    ApplyMovement 14, _0204
+    WaitMovement
     ScrCmd_0CD 0
     ScrCmd_02C 5
     ScrCmd_034
-    ScrCmd_05E 14, _0214
-    ScrCmd_05F
+    ApplyMovement 14, _0214
+    WaitMovement
     ScrCmd_04B 0x5DC
     ScrCmd_049 0x603
     ScrCmd_065 14
     ScrCmd_04B 0x603
-    ScrCmd_028 0x4094, 2
+    SetVar 0x4094, 2
     ScrCmd_061
     End
 

@@ -19,16 +19,16 @@ _000A:
 _001D:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    ScrCmd_05E 16, _0058
-    ScrCmd_05F
+    ApplyMovement 16, _0058
+    WaitMovement
     ScrCmd_02C 1
-    ScrCmd_05E 17, _0060
-    ScrCmd_05F
+    ApplyMovement 17, _0060
+    WaitMovement
     ScrCmd_02C 2
     ScrCmd_034
-    ScrCmd_05E 16, _0068
-    ScrCmd_05E 17, _0068
-    ScrCmd_05F
+    ApplyMovement 16, _0068
+    ApplyMovement 17, _0068
+    WaitMovement
     ScrCmd_061
     End
 

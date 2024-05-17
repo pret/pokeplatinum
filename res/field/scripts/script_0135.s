@@ -60,8 +60,8 @@ _00CC:
     End
 
 _00D7:
-    ScrCmd_028 0x8004, 0x104
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x104
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00CC
@@ -77,8 +77,8 @@ _00D7:
     End
 
 _0118:
-    ScrCmd_028 0x8004, 0x105
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x105
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00CC
@@ -94,8 +94,8 @@ _0118:
     End
 
 _0159:
-    ScrCmd_028 0x8004, 0x106
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x106
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00CC
@@ -111,8 +111,8 @@ _0159:
     End
 
 _019A:
-    ScrCmd_028 0x8004, 0x107
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x107
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00CC
@@ -128,8 +128,8 @@ _019A:
     End
 
 _01DB:
-    ScrCmd_028 0x8004, 0x108
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x108
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _00CC
@@ -150,11 +150,11 @@ _021C:
     ScrCmd_281 0x8000, 0, 0x800C
     CompareVarToValue 0x800C, 200
     GoToIf 0, _0244
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     Return
 
 _0244:
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     Return
 
 _024C:
@@ -163,11 +163,11 @@ _024C:
     ScrCmd_281 0x8000, 1, 0x800C
     CompareVarToValue 0x800C, 200
     GoToIf 0, _0274
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     Return
 
 _0274:
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     Return
 
 _027C:
@@ -176,11 +176,11 @@ _027C:
     ScrCmd_281 0x8000, 2, 0x800C
     CompareVarToValue 0x800C, 200
     GoToIf 0, _02A4
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     Return
 
 _02A4:
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     Return
 
 _02AC:
@@ -189,11 +189,11 @@ _02AC:
     ScrCmd_281 0x8000, 3, 0x800C
     CompareVarToValue 0x800C, 200
     GoToIf 0, _02D4
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     Return
 
 _02D4:
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     Return
 
 _02DC:
@@ -202,11 +202,11 @@ _02DC:
     ScrCmd_281 0x8000, 4, 0x800C
     CompareVarToValue 0x800C, 200
     GoToIf 0, _0304
-    ScrCmd_028 0x800C, 1
+    SetVar 0x800C, 1
     Return
 
 _0304:
-    ScrCmd_028 0x800C, 0
+    SetVar 0x800C, 0
     Return
 
 _030C:

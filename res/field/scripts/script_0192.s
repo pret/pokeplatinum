@@ -75,8 +75,8 @@ _00D2:
 _00F0:
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 0, _0120
-    ScrCmd_05F
+    ApplyMovement 0, _0120
+    WaitMovement
     ScrCmd_02C 1
     Return
 
@@ -111,12 +111,12 @@ _0120:
 
 _0138:
     ScrCmd_060
-    ScrCmd_05E 0xFF, _015C
-    ScrCmd_05F
+    ApplyMovement 0xFF, _015C
+    WaitMovement
     ScrCmd_049 0x61A
     ClearFlag 0x284
     ScrCmd_064 2
-    ScrCmd_028 0x4001, 1
+    SetVar 0x4001, 1
     ScrCmd_061
     End
 

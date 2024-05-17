@@ -69,9 +69,9 @@ _00A5:
     GoToIf 1, _00F4
     CompareVarToValue 0x410C, 15
     GoToIf 0, _0100
-    ScrCmd_028 0x8004, 90
+    SetVar 0x8004, 90
 _00CB:
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _010C
@@ -82,11 +82,11 @@ _00CB:
     End
 
 _00F4:
-    ScrCmd_028 0x8004, 0x145
+    SetVar 0x8004, 0x145
     GoTo _00CB
 
 _0100:
-    ScrCmd_028 0x8004, 106
+    SetVar 0x8004, 106
     GoTo _00CB
 
 _010C:

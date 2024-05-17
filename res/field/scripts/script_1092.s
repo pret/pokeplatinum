@@ -57,8 +57,8 @@ _0093:
     CheckFlag 0x134
     GoToIf 1, _0153
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 0x129
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x129
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0174
@@ -71,8 +71,8 @@ _00D3:
     CheckFlag 0x135
     GoToIf 1, _015E
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 240
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 240
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0174
@@ -85,8 +85,8 @@ _0113:
     CheckFlag 0x136
     GoToIf 1, _0169
     ScrCmd_02C 2
-    ScrCmd_028 0x8004, 0x10B
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 0x10B
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0174

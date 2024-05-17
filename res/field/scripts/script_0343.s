@@ -45,9 +45,9 @@ _006C:
     ScrCmd_031
     ScrCmd_04B 0x5DC
     ScrCmd_049 0x608
-    ScrCmd_05E 5, _00A8
-    ScrCmd_05E 6, _00B0
-    ScrCmd_05F
+    ApplyMovement 5, _00A8
+    ApplyMovement 6, _00B0
+    WaitMovement
     SetFlag 0x225
     ScrCmd_065 5
     ScrCmd_065 6

@@ -13,8 +13,8 @@ _000A:
     End
 
 _001C:
-    ScrCmd_028 0x410B, 0
-    ScrCmd_028 0x410C, 0
+    SetVar 0x410B, 0
+    SetVar 0x410C, 0
     Return
 
 _002A:

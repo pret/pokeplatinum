@@ -14,7 +14,7 @@ _001A:
     ScrCmd_069 0x4004, 0x4005
     CompareVarToValue 0x4005, 12
     CallIf 4, _0035
-    ScrCmd_028 0x4003, 1
+    SetVar 0x4003, 1
     End
 
 _0035:
@@ -45,18 +45,18 @@ _0061:
     ScrCmd_0C7 0x800C
     CompareVarToValue 0x800C, 1
     GoToIf 1, _0091
-    ScrCmd_05E 1, _00A0
-    ScrCmd_05F
+    ApplyMovement 1, _00A0
+    WaitMovement
     ScrCmd_02C 1
     ScrCmd_034
-    ScrCmd_05E 0xFF, _00A8
-    ScrCmd_05F
+    ApplyMovement 0xFF, _00A8
+    WaitMovement
     ScrCmd_061
     End
 
 _0091:
     SetFlag 0x996
-    ScrCmd_028 0x4002, 1
+    SetVar 0x4002, 1
     ScrCmd_061
     End
 
@@ -73,7 +73,7 @@ _00A8:
 _00B0:
     ScrCmd_060
     ClearFlag 0x996
-    ScrCmd_028 0x4002, 0
+    SetVar 0x4002, 0
     ScrCmd_061
     End
 
@@ -104,8 +104,8 @@ _0102:
     CompareVarToValue 0x8004, 35
     GoToIf 0, _015F
     ScrCmd_02C 5
-    ScrCmd_028 0x8004, 216
-    ScrCmd_028 0x8005, 1
+    SetVar 0x8004, 216
+    SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _014A

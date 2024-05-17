@@ -78,8 +78,8 @@ _00D3:
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_068
-    ScrCmd_05E 1, _013C
-    ScrCmd_05F
+    ApplyMovement 1, _013C
+    WaitMovement
     ScrCmd_003 30, 0x800C
     ScrCmd_02C 1
     ScrCmd_034

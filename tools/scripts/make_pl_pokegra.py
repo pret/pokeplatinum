@@ -55,21 +55,17 @@ for i, subdir in enumerate(args.subdirs):
                 ])
             else:
                 subprocess.run(['touch', target_file])
-            
+
             j += 1
 
     if i == 0:  # species 000 has special palette files
         shutil.copy(source_dir / '000/normal_pal.NCLR', private_dir / '0000-04.NCLR')
         shutil.copy(source_dir / '000/shiny_pal.NCLR', private_dir / '0000-05.NCLR')
         continue
-    
-    if (source_dir / subdir / 'male_front.png').exists():
-        normal_pal_src = source_dir / subdir / 'male_front.png'
-        shiny_pal_src = source_dir / subdir / 'male_back.png'
-    else:
-        normal_pal_src = source_dir / subdir / 'female_front.png'
-        shiny_pal_src = source_dir / subdir / 'female_back.png'
-    
+
+    normal_pal_src = source_dir / subdir / 'normal.pal'
+    shiny_pal_src = source_dir / subdir / 'shiny.pal'
+
     subprocess.run([
         args.nitrogfx,
         normal_pal_src,

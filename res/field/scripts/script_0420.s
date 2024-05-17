@@ -52,20 +52,20 @@ _009A:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
-    ScrCmd_05E 241, _00E8
-    ScrCmd_05F
+    ApplyMovement 241, _00E8
+    WaitMovement
     ScrCmd_003 15, 0x800C
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 0
     ScrCmd_034
-    ScrCmd_05E 2, _00F8
-    ScrCmd_05F
+    ApplyMovement 2, _00F8
+    WaitMovement
     ScrCmd_065 2
-    ScrCmd_05E 241, _00F0
-    ScrCmd_05F
+    ApplyMovement 241, _00F0
+    WaitMovement
     ScrCmd_067
-    ScrCmd_028 0x4084, 1
+    SetVar 0x4084, 1
     ScrCmd_061
     End
 

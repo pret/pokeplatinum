@@ -40,7 +40,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
-#include "unk_0200B29C.h"
+#include "message_util.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -1425,8 +1425,8 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, OverlayManager * param1)
         param0->unk_14 = 1;
     }
 
-    param0->unk_178 = sub_0200B29C(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], 18);
-    param0->unk_17C = sub_0200B29C(param0->unk_168, param0->unk_16C, 8, 18);
+    param0->unk_178 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], 18);
+    param0->unk_17C = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, 8, 18);
     param0->unk_184 = MessageLoader_GetNewStrbuf(param0->unk_16C, 7);
     param0->unk_158 = GF_strlen(param0->unk_118);
     param0->unk_1C.unk_00 = 0;
@@ -1492,7 +1492,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, OverlayManager * param1)
             StringTemplate_SetStrbuf(param0->unk_168, 0, v0, 0, 0, 0);
         }
 
-        param0->unk_180 = sub_0200B29C(param0->unk_168, param0->unk_174, v1->unk_44, 18);
+        param0->unk_180 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_174, v1->unk_44, 18);
         param0->unk_14 = 1;
 
         Strbuf_Free(v0);

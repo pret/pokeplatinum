@@ -947,7 +947,7 @@ _0E86:
     CallIf 1, _0FE7
     CompareVarToValue 0x8001, 54
     CallIf 1, _0FE7
-    ScrCmd_025 0x8004
+    CheckTrainerFlag 0x8004
     GoToIf 1, _0F40
     ScrCmd_0E9 0x800C
     CompareVarToValue 0x800C, 1
@@ -973,7 +973,7 @@ _0F1D:
     ScrCmd_0EC 0x800C
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0FC5
-    ScrCmd_023 0x8004
+    SetTrainerFlag 0x8004
     ScrCmd_061
     End
 
@@ -994,7 +994,7 @@ _0F5B:
     End
 
 _0F73:
-    ScrCmd_029 0x8007, 0x800C
+    SetVar 0x8007, 0x800C
     ScrCmd_0E9 0x800C
     CompareVarToValue 0x800C, 1
     GoToIf 5, _0FA3
@@ -1009,7 +1009,7 @@ _0FA3:
     ScrCmd_033
     ScrCmd_0E8 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8000
-    ScrCmd_029 0x8004, 0x8007
+    SetVar 0x8004, 0x8007
     GoTo _0F1D
     End
 
@@ -1029,8 +1029,8 @@ _0FCB:
     End
 
 _0FE7:
-    ScrCmd_05E 0x800D, _104C
-    ScrCmd_05F
+    ApplyMovement 0x800D, _104C
+    WaitMovement
     ScrCmd_1BD 0x8000
     CompareVarToValue 0x8000, 0
     CallIf 1, _102B
@@ -1076,12 +1076,12 @@ _1054:
 
 _1083:
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
+    SetVar 0x8004, 0x800C
     ScrCmd_0EA 0x8004
     ScrCmd_0B6 0
     Call _10DE
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
+    SetVar 0x8004, 0x800C
     ScrCmd_033
     ScrCmd_0E6 0x8004, 0
     ScrCmd_034
@@ -1090,8 +1090,8 @@ _1083:
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0FC5
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
-    ScrCmd_023 0x8004
+    SetVar 0x8004, 0x800C
+    SetTrainerFlag 0x8004
     ScrCmd_061
     End
 
@@ -1103,18 +1103,18 @@ _10DE:
 
 _10F3:
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
+    SetVar 0x8004, 0x800C
     ScrCmd_0EA 0x8004
     ScrCmd_0B6 0
     ScrCmd_0B6 1
     Call _1178
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
+    SetVar 0x8004, 0x800C
     ScrCmd_033
     ScrCmd_0E6 0x8004, 3
     ScrCmd_034
     ScrCmd_0B9 1, 0x800C
-    ScrCmd_029 0x8005, 0x800C
+    SetVar 0x8005, 0x800C
     ScrCmd_033
     ScrCmd_0E6 0x8005, 7
     ScrCmd_034
@@ -1123,11 +1123,11 @@ _10F3:
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0FC5
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
-    ScrCmd_023 0x8004
+    SetVar 0x8004, 0x800C
+    SetTrainerFlag 0x8004
     ScrCmd_0B9 1, 0x800C
-    ScrCmd_029 0x8005, 0x800C
-    ScrCmd_023 0x8005
+    SetVar 0x8005, 0x800C
+    SetTrainerFlag 0x8005
     ScrCmd_061
     End
 
@@ -1142,22 +1142,22 @@ _1178:
 
 _11A0:
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
+    SetVar 0x8004, 0x800C
     ScrCmd_0EA 0x8004
     ScrCmd_0B6 0
     Call _123B
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
+    SetVar 0x8004, 0x800C
     ScrCmd_033
     ScrCmd_0E6 0x8004, 0
     ScrCmd_034
     ScrCmd_0B9 1, 0x800C
-    ScrCmd_029 0x8005, 0x800C
+    SetVar 0x8005, 0x800C
     ScrCmd_0EA 0x8005
     ScrCmd_0B6 1
     Call _1250
     ScrCmd_0B9 1, 0x800C
-    ScrCmd_029 0x8005, 0x800C
+    SetVar 0x8005, 0x800C
     ScrCmd_033
     ScrCmd_0E6 0x8005, 0
     ScrCmd_034
@@ -1166,11 +1166,11 @@ _11A0:
     CompareVarToValue 0x800C, 0
     GoToIf 1, _0FC5
     ScrCmd_0B9 0, 0x800C
-    ScrCmd_029 0x8004, 0x800C
-    ScrCmd_023 0x8004
+    SetVar 0x8004, 0x800C
+    SetTrainerFlag 0x8004
     ScrCmd_0B9 1, 0x800C
-    ScrCmd_029 0x8005, 0x800C
-    ScrCmd_023 0x8005
+    SetVar 0x8005, 0x800C
+    SetTrainerFlag 0x8005
     ScrCmd_061
     End
 
