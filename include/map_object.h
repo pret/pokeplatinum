@@ -164,7 +164,7 @@ void sub_02062D34(MapObject * param0);
 void sub_02062D40(MapObject * param0);
 int sub_02062D4C(const MapObject * param0);
 int sub_02062D58(const MapObject * param0);
-void sub_02062D64(MapObject * param0, int param1);
+void MapObject_SetHidden(MapObject * param0, int param1);
 void sub_02062D80(MapObject * param0, int param1);
 int sub_02062D9C(MapObject * param0);
 void sub_02062DB4(MapObject * param0, int param1);

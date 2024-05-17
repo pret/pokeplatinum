@@ -313,7 +313,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
                 param0->unk_0C[v1].unk_00 = 0;
                 param0->unk_0C[v1].unk_09 = 0;
 
-                sub_02062D64(v0, 1);
+                MapObject_SetHidden(v0, 1);
                 sub_02062D80(v0, 0);
             }
             break;
@@ -378,7 +378,7 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, MapObject * param1, int p
     LocalMapObj_SetPosDir(param1, v0, v1, v2, 1);
     sub_0206296C(param1, 1);
     LocalMapObj_SetAnimationCode(param1, 0x44);
-    sub_02062D64(param1, 0);
+    MapObject_SetHidden(param1, 0);
     sub_02062D80(param1, 1);
 
     param0->unk_01 = 1;
@@ -430,7 +430,7 @@ static void sub_0205C7E4 (MapObjectManager * param0, int param1, int param2)
             GF_ASSERT(0);
         }
 
-        sub_02062D64(v1, 1);
+        MapObject_SetHidden(v1, 1);
         sub_02062D80(v1, 0);
         sub_02062DB4(v1, 1);
     }
@@ -467,7 +467,7 @@ void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
                 sub_02061AD4(v0, v1->unk_08);
                 sub_0206296C(v0, 1);
                 LocalMapObj_SetAnimationCode(v0, 0x44);
-                sub_02062D64(v0, 0);
+                MapObject_SetHidden(v0, 0);
                 sub_02062D80(v0, 1);
 
                 v1->unk_01 = 1;

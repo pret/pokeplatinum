@@ -963,9 +963,9 @@ static BOOL sub_020586A8 (int netId, int param1, int param2, int animSpeed)
     obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
 
     if (Player_Dir(sCommPlayerManager->playerAvatar[netId]) != CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId])) {
-        MapObject_SetStatusFlagOff(obj, (1 << 7));
+        MapObject_SetStatusFlagOff(obj, MAP_OBJ_STATUS_LOCK_DIR);
         Player_SetDir(sCommPlayerManager->playerAvatar[netId], CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId]));
-        MapObject_SetStatusFlagOn(obj, (1 << 7));
+        MapObject_SetStatusFlagOn(obj, MAP_OBJ_STATUS_LOCK_DIR);
     }
 
     LocalMapObj_CheckAnimationFinished(obj);
@@ -1222,8 +1222,8 @@ void sub_02058BA8 (int param0, int param1, BOOL param2)
 
     obj = Player_MapObject(sCommPlayerManager->playerAvatar[param0]);
 
-    MapObject_SetStatusFlagOn(obj, (1 << 7));
-    MapObject_SetStatusFlagOn(obj, (1 << 8));
+    MapObject_SetStatusFlagOn(obj, MAP_OBJ_STATUS_LOCK_DIR);
+    MapObject_SetStatusFlagOn(obj, MAP_OBJ_STATUS_PAUSE_ANIMATION);
 
     sCommPlayerManager->blowDir[param0] = param1;
 }

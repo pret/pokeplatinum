@@ -270,7 +270,7 @@ MapObject * sub_02061918 (const MapObjectManager * param0, const UnkStruct_02061
     sub_02062914(v0, param2);
     sub_02062660(v0);
     sub_02062670(v0);
-    MapObject_SetStatusFlagOn(v0, (1 << 2));
+    MapObject_SetStatusFlagOn(v0, MAP_OBJ_STATUS_START_MOVEMENT);
     sub_020621AC(param0, v0);
     sub_02062828(sub_0206281C(param0));
 
@@ -594,8 +594,8 @@ static void sub_02061FA8 (const MapObjectManager * param0, MapObject * param1)
 
 static void sub_02061FF0 (MapObject * param0)
 {
-    MapObject_SetStatusFlagOn(param0, (1 << 0) | (1 << 2));
-    MapObject_SetStatusFlagOff(param0, (1 << 6) | (1 << 9) | (1 << 14) | (1 << 16) | (1 << 17) | (1 << 3) | (1 << 18) | (1 << 19) | (1 << 21) | (1 << 22) | (1 << 23));
+    MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_0 | MAP_OBJ_STATUS_START_MOVEMENT);
+    MapObject_SetStatusFlagOff(param0, MAP_OBJ_STATUS_PAUSE_MOVEMENT | MAP_OBJ_STATUS_HIDE | MAP_OBJ_STATUS_14 | MAP_OBJ_STATUS_16 | MAP_OBJ_STATUS_17 | MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_18 | MAP_OBJ_STATUS_19 | MAP_OBJ_STATUS_21 | MAP_OBJ_STATUS_22 | MAP_OBJ_STATUS_23);
     sub_02062618(param0);
 }
 
@@ -774,7 +774,7 @@ static void sub_020622B8 (MapObject * param0, const UnkStruct_020619DC * param1)
 
 static void sub_0206234C (MapObject * param0, const MapObjectManager * param1)
 {
-    MapObject_SetStatusFlagOn(param0, (1 << 0) | (1 << 12) | (1 << 11));
+    MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_0 | MAP_OBJ_STATUS_12 | MAP_OBJ_STATUS_11);
 
     if (sub_020626B4(param0) == 1) {
         sub_02062E78(param0, 1);
@@ -947,7 +947,7 @@ int sub_020625B0 (const MapObjectManager * param0, MapObject ** param1, int * pa
 
 static void sub_02062604 (MapObject * param0)
 {
-    MapObject_SetStatusFlagOn(param0, (1 << 2));
+    MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_START_MOVEMENT);
     sub_02062618(param0);
 }
 
@@ -1827,12 +1827,12 @@ int sub_02062D58 (const MapObject * param0)
     return sub_020628D8(param0, (1 << 9));
 }
 
-void sub_02062D64 (MapObject * param0, int param1)
+void MapObject_SetHidden (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetStatusFlagOn(param0, (1 << 9));
+        MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_HIDE);
     } else {
-        MapObject_SetStatusFlagOff(param0, (1 << 9));
+        MapObject_SetStatusFlagOff(param0, MAP_OBJ_STATUS_HIDE);
     }
 }
 

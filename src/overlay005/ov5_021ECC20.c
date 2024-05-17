@@ -160,7 +160,7 @@ void ov5_021ECDFC (MapObject * param0, int param1)
 
 void ov5_021ECE18 (MapObject * param0)
 {
-    sub_02062D64(param0, 1);
+    MapObject_SetHidden(param0, 1);
     MapObject_SetStatusFlagOn(param0, (1 << 20));
 }
 

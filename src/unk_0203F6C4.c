@@ -3370,7 +3370,7 @@ static BOOL ScrCmd_066 (ScriptContext * param0)
     *v2 = sub_020619DC(param0->fieldSys->unk_38, v0, v1, 0, 0x2000, 0x0, param0->fieldSys->unk_1C->unk_00);
 
     sub_020642F8(*v2);
-    sub_02062D64(*v2, 1);
+    MapObject_SetHidden(*v2, 1);
     sub_02062D80(*v2, 0);
 
     {
@@ -3413,7 +3413,7 @@ static BOOL ScrCmd_308 (ScriptContext * param0)
     *v2 = sub_020619DC(param0->fieldSys->unk_38, v0, v1, 0, 0x2000, 0x0, param0->fieldSys->unk_1C->unk_00);
 
     sub_020642F8(*v2);
-    sub_02062D64(*v2, 1);
+    MapObject_SetHidden(*v2, 1);
     sub_02062D80(*v2, 0);
 
     return 0;
@@ -6068,7 +6068,7 @@ static BOOL ScrCmd_1B1 (ScriptContext * param0)
         GF_ASSERT(FALSE);
     }
 
-    sub_02062D64(v0, 0);
+    MapObject_SetHidden(v0, 0);
     return 0;
 }
 
@@ -6083,7 +6083,7 @@ static BOOL ScrCmd_1B2 (ScriptContext * param0)
         GF_ASSERT(FALSE);
     }
 
-    sub_02062D64(v0, 1);
+    MapObject_SetHidden(v0, 1);
     return 0;
 }
 

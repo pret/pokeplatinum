@@ -1347,7 +1347,7 @@ static BOOL ov6_0223EE5C (UnkStruct_ov6_0223EA98 * param0)
             break;
         }
 
-        sub_02062D64(param0->unk_108, 0);
+        MapObject_SetHidden(param0->unk_108, 0);
         sub_02017348(&param0->unk_24, 0);
         param0->unk_18++;
         break;
@@ -1376,7 +1376,7 @@ static BOOL ov6_0223EE5C (UnkStruct_ov6_0223EA98 * param0)
             break;
         }
 
-        sub_02062D64(param0->unk_108, 1);
+        MapObject_SetHidden(param0->unk_108, 1);
         sub_02017348(&param0->unk_24, 1);
 
         param0->unk_18++;

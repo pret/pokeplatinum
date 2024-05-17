@@ -185,7 +185,7 @@ BOOL ov5_021D433C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
-            sub_02062D64(v0, 1);
+            MapObject_SetHidden(v0, 1);
             {
                 int v13;
                 int v14;
@@ -347,7 +347,7 @@ BOOL ov5_021D453C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
 
         if (v12) {
             v0 = Player_MapObject(param0->playerAvatar);
-            sub_02062D64(v0, 0);
+            MapObject_SetHidden(v0, 0);
             (param1->unk_00)++;
         }
     }
@@ -895,10 +895,10 @@ BOOL ov5_021D4E10 (TaskManager * param0)
         v0 = Player_MapObject(v1->playerAvatar);
 
         if (Player_Dir(v1->playerAvatar) == 1) {
-            sub_02062D64(v0, 1);
+            MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
-            sub_02062D64(v0, 0);
+            MapObject_SetHidden(v0, 0);
             (v2->unk_00) = 3;
         }
 
@@ -915,7 +915,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
         break;
     case 1:
         v0 = Player_MapObject(v1->playerAvatar);
-        sub_02062D64(v0, 0);
+        MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
@@ -954,7 +954,7 @@ BOOL ov5_021D4F14 (TaskManager * param0)
 
         v2 = Player_MapObject(v0->playerAvatar);
 
-        sub_02062D64(v2, 1);
+        MapObject_SetHidden(v2, 1);
 
         v1->unk_08 = 0;
         v1->unk_04 = 0;
@@ -1030,10 +1030,10 @@ BOOL ov5_021D5020 (TaskManager * param0)
         v3 = Player_Dir(v1->playerAvatar);
 
         if (v3 == 1) {
-            sub_02062D64(v0, 1);
+            MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
-            sub_02062D64(v0, 0);
+            MapObject_SetHidden(v0, 0);
             (v2->unk_00) = 3;
         }
 
@@ -1068,7 +1068,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
     break;
     case 1:
         v0 = Player_MapObject(v1->playerAvatar);
-        sub_02062D64(v0, 0);
+        MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
@@ -1111,10 +1111,10 @@ BOOL ov5_021D5150 (TaskManager * param0)
         v3 = Player_Dir(v1->playerAvatar);
 
         if (v3 == 1) {
-            sub_02062D64(v0, 1);
+            MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
-            sub_02062D64(v0, 0);
+            MapObject_SetHidden(v0, 0);
             (v2->unk_00) = 3;
         }
 
@@ -1123,7 +1123,7 @@ BOOL ov5_021D5150 (TaskManager * param0)
     break;
     case 1:
         v0 = Player_MapObject(v1->playerAvatar);
-        sub_02062D64(v0, 0);
+        MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;

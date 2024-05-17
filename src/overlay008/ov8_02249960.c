@@ -2658,7 +2658,7 @@ static void ov8_0224B18C (FieldSystem * param0, UnkStruct_ov8_0224B28C * param1,
     param1->unk_20 = sub_020619DC(param0->unk_38, v0, v1, 0, 0x2000, 0x0, param0->unk_1C->unk_00);
 
     sub_020642F8(param1->unk_20);
-    sub_02062D64(param1->unk_20, 1);
+    MapObject_SetHidden(param1->unk_20, 1);
     sub_02062D80(param1->unk_20, 0);
     sub_02062E28(param1->unk_20, 1);
 
@@ -3712,7 +3712,7 @@ static void ov8_0224BFCC (FieldSystem * param0, UnkStruct_ov8_0224C098 * param1,
     v3->unk_30 = sub_020619DC(param0->unk_38, v0, v1, 0, 0x2000, 0x0, param0->unk_1C->unk_00);
 
     sub_020642F8(v3->unk_30);
-    sub_02062D64(v3->unk_30, 1);
+    MapObject_SetHidden(v3->unk_30, 1);
     sub_02062D80(v3->unk_30, 0);
     sub_02062E28(v3->unk_30, 1);
 

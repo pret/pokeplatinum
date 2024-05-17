@@ -441,7 +441,7 @@ static BOOL sub_02057050 (TaskManager * param0)
         v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
-            sub_02062D64(v5, 1);
+            MapObject_SetHidden(v5, 1);
             (v2->unk_04) = 1;
         } else {
             UnkStruct_ov5_021D4E00 * v6;
@@ -466,7 +466,7 @@ static BOOL sub_02057050 (TaskManager * param0)
             {
                 MapObject * v7 = Player_MapObject(v1->playerAvatar);
 
-                sub_02062D64(v7, 0);
+                MapObject_SetHidden(v7, 0);
             }
             return 1;
         }
@@ -494,7 +494,7 @@ static BOOL sub_0205711C (TaskManager * param0)
         v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
-            sub_02062D64(v5, 1);
+            MapObject_SetHidden(v5, 1);
             v2->unk_04 = 1;
             sub_02050924(param0, sub_02057050, v2);
         } else {

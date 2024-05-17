@@ -1221,7 +1221,7 @@ static int sub_02066418 (MapObject * param0)
 
 static int sub_02066430 (MapObject * param0)
 {
-    MapObject_SetStatusFlagOff(param0, (1 << 9));
+    MapObject_SetStatusFlagOff(param0, MAP_OBJ_STATUS_HIDE);
     sub_02062BC8(param0);
 
     return 1;

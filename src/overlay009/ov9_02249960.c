@@ -7195,7 +7195,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, 
         GF_ASSERT((*param1) != NULL);
     }
 
-    sub_02062D64(*param1, 1);
+    MapObject_SetHidden(*param1, 1);
 
     if (param2->unk_04 == 1) {
         ov9_0224A390(param0, *param1, param2->unk_06);
@@ -7220,7 +7220,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, 
         (void)0;
     }
 
-    sub_02062D64(*param1, 0);
+    MapObject_SetHidden(*param1, 0);
 
     return 1;
 }

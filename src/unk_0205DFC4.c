@@ -341,7 +341,7 @@ static BOOL sub_0205E3AC (TaskManager * param0)
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0205E3AC * v1 = TaskManager_Environment(param0);
 
-    sub_02062D64(v1->unk_00, v1->unk_09);
+    MapObject_SetHidden(v1->unk_00, v1->unk_09);
 
     if (v1->unk_08++ >= v1->unk_06) {
         v1->unk_09 ^= 1;

@@ -1027,7 +1027,7 @@ static void ov6_02243F50 (void)
 static void ov6_02243F74 (FieldSystem * param0, int param1)
 {
     MapObject * v0 = Player_MapObject(param0->playerAvatar);
-    sub_02062D64(v0, param1);
+    MapObject_SetHidden(v0, param1);
 }
 
 SysTask * ov6_02243F88 (FieldSystem * param0, u32 param1, Pokemon * param2, int param3)
@@ -3045,7 +3045,7 @@ static void ov6_02245F64 (UnkStruct_ov6_02243FFC * param0, int param1)
     MapObject * v0 = Player_MapObject(param0->unk_60->playerAvatar);
 
     sub_02062DDC(v0);
-    sub_02062D64(v0, param1);
+    MapObject_SetHidden(v0, param1);
 }
 
 static int ov6_02245F80 (UnkStruct_ov101_021D5D90 * param0, void * param1)

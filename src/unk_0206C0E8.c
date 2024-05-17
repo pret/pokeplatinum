@@ -96,7 +96,7 @@ static BOOL sub_0206C120 (TaskManager * param0)
             int v4;
 
             v4 = ov6_02242984(v0);
-            sub_02062D64(v3, 1);
+            MapObject_SetHidden(v3, 1);
             ov6_022426C0(v1->unk_00, v4);
             ov6_022427F4(v1->unk_00);
             v1->unk_0E = 0;
@@ -104,7 +104,7 @@ static BOOL sub_0206C120 (TaskManager * param0)
             sub_02056B30(param0, 3, 17, 0xffff, 0x0, 6, 1, 11);
             v1->unk_0C = 5;
         } else {
-            sub_02062D64(v3, 0);
+            MapObject_SetHidden(v3, 0);
             sub_020558F0(param0);
             v1->unk_0C = 8;
         }

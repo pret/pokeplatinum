@@ -134,7 +134,7 @@ static BOOL sub_020505A0 (TaskManager * param0)
 static void sub_0205074C (PlayerAvatar * param0, BOOL param1)
 {
     MapObject * v0 = Player_MapObject(param0);
-    sub_02062D64(v0, param1);
+    MapObject_SetHidden(v0, param1);
 }
 
 static void sub_0205075C (FieldSystem * param0)
