@@ -68,7 +68,7 @@
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_0206A8DC.h"
@@ -7204,7 +7204,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, 
     sub_02062FC4(*param1, 1);
     sub_02062E5C(*param1, 1);
     sub_02062E28(*param1, 1);
-    MapObject_SetFlagOn(*param1, (1 << 13));
+    MapObject_SetStatusFlagOn(*param1, (1 << 13));
 
     if (v0 == NULL) {
         UnkStruct_020216E0 * v1;

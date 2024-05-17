@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 
 struct UnkStruct_0203A3E8_t {
     u32 unk_00;

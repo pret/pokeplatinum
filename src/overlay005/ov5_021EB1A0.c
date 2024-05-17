@@ -13,7 +13,7 @@
 
 #include "unk_0201D15C.h"
 #include "unk_02020AEC.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECA70.h"
@@ -219,7 +219,7 @@ void ov5_021EB328 (MapObject * param0)
     }
 
     ov5_021ECFA4(param0, &v0->unk_04);
-    MapObject_SetFlagOn(param0, (1 << 21));
+    MapObject_SetStatusFlagOn(param0, (1 << 21));
 }
 
 void ov5_021EB354 (MapObject * param0)
@@ -241,7 +241,7 @@ void ov5_021EB354 (MapObject * param0)
         ov5_021ED03C(v1->unk_04, &v1->unk_08);
         ov5_021EDEB4(param0, v1->unk_04);
 
-        MapObject_SetFlagOff(param0, (1 << 21));
+        MapObject_SetStatusFlagOff(param0, (1 << 21));
     }
 }
 
@@ -610,7 +610,7 @@ void ov5_021EB848 (MapObject * param0)
     }
 
     ov5_021ECFA4(param0, &v0->unk_04);
-    MapObject_SetFlagOn(param0, (1 << 21));
+    MapObject_SetStatusFlagOn(param0, (1 << 21));
 }
 
 void ov5_021EB874 (MapObject * param0)
@@ -631,7 +631,7 @@ void ov5_021EB874 (MapObject * param0)
     if (v1->unk_04 != NULL) {
         ov5_021ED03C(v1->unk_04, &v1->unk_08);
         ov5_021EDEB4(param0, v1->unk_04);
-        MapObject_SetFlagOff(param0, (1 << 21));
+        MapObject_SetStatusFlagOff(param0, (1 << 21));
     }
 }
 
@@ -777,7 +777,7 @@ void ov5_021EBA60 (MapObject * param0)
     }
 
     ov5_021ECFA4(param0, &v0->unk_04);
-    MapObject_SetFlagOn(param0, (1 << 21));
+    MapObject_SetStatusFlagOn(param0, (1 << 21));
 }
 
 void ov5_021EBA8C (MapObject * param0)
@@ -798,7 +798,7 @@ void ov5_021EBA8C (MapObject * param0)
     if (v1->unk_04 != NULL) {
         ov5_021ED03C(v1->unk_04, &v1->unk_08);
         ov5_021EDEB4(param0, v1->unk_04);
-        MapObject_SetFlagOff(param0, (1 << 21));
+        MapObject_SetStatusFlagOff(param0, (1 << 21));
     }
 }
 
@@ -1706,7 +1706,7 @@ void ov5_021EC86C (MapObject * param0)
     }
 
     ov5_021ECFA4(param0, &v0->unk_04);
-    MapObject_SetFlagOn(param0, (1 << 21));
+    MapObject_SetStatusFlagOn(param0, (1 << 21));
 }
 
 void ov5_021EC898 (MapObject * param0)
@@ -1727,7 +1727,7 @@ void ov5_021EC898 (MapObject * param0)
     if (v1->unk_04 != NULL) {
         ov5_021ED03C(v1->unk_04, &v1->unk_08);
         ov5_021EDEB4(param0, v1->unk_04);
-        MapObject_SetFlagOff(param0, (1 << 21));
+        MapObject_SetStatusFlagOff(param0, (1 << 21));
         sub_02021444(v1->unk_04, ov5_021EC804, v1);
     }
 }
@@ -1793,7 +1793,7 @@ void ov5_021EC970 (MapObject * param0)
     }
 
     ov5_021ECFA4(param0, &v0->unk_08);
-    MapObject_SetFlagOn(param0, (1 << 21));
+    MapObject_SetStatusFlagOn(param0, (1 << 21));
 }
 
 void ov5_021EC9A0 (MapObject * param0)
@@ -1814,7 +1814,7 @@ void ov5_021EC9A0 (MapObject * param0)
     if (v1->unk_08 != NULL) {
         ov5_021ED03C(v1->unk_08, &v1->unk_0C);
         ov5_021EDEB4(param0, v1->unk_08);
-        MapObject_SetFlagOff(param0, (1 << 21));
+        MapObject_SetStatusFlagOff(param0, (1 << 21));
     }
 }
 

@@ -19,7 +19,7 @@
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"

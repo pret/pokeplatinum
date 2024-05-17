@@ -33,7 +33,7 @@
 #include "comm_player_manager.h"
 #include "unk_0205E7D0.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
@@ -963,9 +963,9 @@ static BOOL sub_020586A8 (int netId, int param1, int param2, int animSpeed)
     obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
 
     if (Player_Dir(sCommPlayerManager->playerAvatar[netId]) != CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId])) {
-        MapObject_SetFlagOff(obj, (1 << 7));
+        MapObject_SetStatusFlagOff(obj, (1 << 7));
         Player_SetDir(sCommPlayerManager->playerAvatar[netId], CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId]));
-        MapObject_SetFlagOn(obj, (1 << 7));
+        MapObject_SetStatusFlagOn(obj, (1 << 7));
     }
 
     LocalMapObj_CheckAnimationFinished(obj);
@@ -1222,8 +1222,8 @@ void sub_02058BA8 (int param0, int param1, BOOL param2)
 
     obj = Player_MapObject(sCommPlayerManager->playerAvatar[param0]);
 
-    MapObject_SetFlagOn(obj, (1 << 7));
-    MapObject_SetFlagOn(obj, (1 << 8));
+    MapObject_SetStatusFlagOn(obj, (1 << 7));
+    MapObject_SetStatusFlagOn(obj, (1 << 8));
 
     sCommPlayerManager->blowDir[param0] = param1;
 }
@@ -1240,8 +1240,8 @@ void sub_02058BE8 (int param0)
         obj = Player_MapObject(sCommPlayerManager->playerAvatar[param0]);
 
         sub_020656AC(obj);
-        MapObject_SetFlagOff(obj, (1 << 7));
-        MapObject_SetFlagOff(obj, (1 << 8));
+        MapObject_SetStatusFlagOff(obj, (1 << 7));
+        MapObject_SetStatusFlagOff(obj, (1 << 8));
 
         sCommPlayerManager->blowDir[param0] = -1;
     }

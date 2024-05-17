@@ -18,7 +18,7 @@
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02067A84.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"

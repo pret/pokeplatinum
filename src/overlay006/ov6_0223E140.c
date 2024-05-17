@@ -41,7 +41,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
@@ -503,9 +503,9 @@ static void ov6_0223E318 (FieldSystem * param0, u32 param1, BOOL param2)
     v0 = MapObjMan_LocalMapObjByIndex(param0->unk_38, param1);
 
     if (param2 == 1) {
-        MapObject_SetFlagOn(v0, (1 << 20));
+        MapObject_SetStatusFlagOn(v0, (1 << 20));
     } else {
-        MapObject_SetFlagOff(v0, (1 << 20));
+        MapObject_SetStatusFlagOff(v0, (1 << 20));
     }
 }
 

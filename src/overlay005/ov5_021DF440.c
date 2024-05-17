@@ -31,7 +31,7 @@
 #include "unk_02020AEC.h"
 #include "unk_0202298C.h"
 #include "unk_0202414C.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021D521C.h"

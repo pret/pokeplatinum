@@ -21,7 +21,7 @@
 #include "unk_020553DC.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "pokeradar.h"
 #include "unk_020711EC.h"
 #include "unk_0207D3B8.h"

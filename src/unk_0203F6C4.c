@@ -159,7 +159,7 @@
 #include "unk_0205D8CC.h"
 #include "unk_0205DFC4.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "pokeradar.h"

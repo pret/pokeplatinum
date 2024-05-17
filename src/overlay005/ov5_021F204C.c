@@ -13,7 +13,7 @@
 
 #include "unk_02020AEC.h"
 #include "unk_02055C50.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"

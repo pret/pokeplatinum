@@ -13,7 +13,7 @@
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021E1154.h"
 
@@ -89,7 +89,7 @@ static BOOL ov5_021E120C (TaskManager * param0)
 
     switch (v0->unk_08) {
     case 0:
-        MapObject_SetFlagOn(v1, (1 << 8));
+        MapObject_SetStatusFlagOn(v1, (1 << 8));
         v0->unk_08++;
         break;
     case 1:
@@ -136,8 +136,8 @@ static BOOL ov5_021E120C (TaskManager * param0)
                 if (v4 == 0) {
                     v0->unk_08 = 1;
                 } else {
-                    MapObject_SetFlagOff(v1, (1 << 7));
-                    MapObject_SetFlagOff(v1, (1 << 8));
+                    MapObject_SetStatusFlagOff(v1, (1 << 7));
+                    MapObject_SetStatusFlagOff(v1, (1 << 8));
                     Player_SetDir(v0->unk_10, v0->unk_00);
                     ov5_021E1350(v0);
                     sub_020057A4(1624, 0);

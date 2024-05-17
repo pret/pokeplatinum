@@ -1,0 +1,7 @@
+#ifndef POKEPLATINUM_CONSTANTS_FIELD_OBJECT_H
+#define POKEPLATINUM_CONSTANTS_FIELD_OBJECT_H
+
+//Status Flags
+#define FIELD_OBJ_STATUS_HIDE       (1 << 9)
+
+#endif

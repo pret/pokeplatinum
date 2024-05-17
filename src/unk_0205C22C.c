@@ -31,7 +31,7 @@
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_020711EC.h"
 #include "overlay005/ov5_021F134C.h"

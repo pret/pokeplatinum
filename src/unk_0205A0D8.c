@@ -47,7 +47,7 @@
 #include "unk_0205A0D8.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "pokemon.h"
 #include "party.h"

@@ -29,7 +29,7 @@
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_02071B10.h"
@@ -211,7 +211,7 @@ static void ov5_021DFB90 (PlayerAvatar * param0)
         }
     }
 
-    v0 = sub_0205ED6C(v1, sub_0205EB98(param0));
+    v0 = Player_Gender(v1, sub_0205EB98(param0));
 
     ov5_021E106C(param0, v0);
     sub_0205EB58(param0, 0x0);
@@ -232,7 +232,7 @@ static void ov5_021DFBF4 (PlayerAvatar * param0)
 {
     int v0;
 
-    v0 = sub_0205ED6C(0x1, sub_0205EB98(param0));
+    v0 = Player_Gender(0x1, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 
     sub_0205EB58(param0, 0x1);
@@ -281,7 +281,7 @@ static void ov5_021DFC3C (PlayerAvatar * param0)
 
     sub_0205EC00(param0, v5);
 
-    v0 = sub_0205ED6C(v0, sub_0205EB98(param0));
+    v0 = Player_Gender(v0, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 
     sub_0205EB58(param0, 0x2);
@@ -297,7 +297,7 @@ static void ov5_021DFCF0 (PlayerAvatar * param0)
 {
     int v0;
 
-    v0 = sub_0205ED6C(0x11, sub_0205EB98(param0));
+    v0 = Player_Gender(0x11, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 }
 
@@ -305,7 +305,7 @@ static void ov5_021DFD0C (PlayerAvatar * param0)
 {
     int v0;
 
-    v0 = sub_0205ED6C(0x13, sub_0205EB98(param0));
+    v0 = Player_Gender(0x13, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 }
 
@@ -325,7 +325,7 @@ static void ov5_021DFD28 (PlayerAvatar * param0)
         }
     }
 
-    v0 = sub_0205ED6C(v1, sub_0205EB98(param0));
+    v0 = Player_Gender(v1, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 }
 
@@ -345,7 +345,7 @@ static void ov5_021DFD68 (PlayerAvatar * param0)
         }
     }
 
-    v0 = sub_0205ED6C(v1, sub_0205EB98(param0));
+    v0 = Player_Gender(v1, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 }
 
@@ -353,7 +353,7 @@ static void ov5_021DFDA8 (PlayerAvatar * param0)
 {
     int v0;
 
-    v0 = sub_0205ED6C(0x16, sub_0205EB98(param0));
+    v0 = Player_Gender(0x16, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 }
 
@@ -361,7 +361,7 @@ static void ov5_021DFDC4 (PlayerAvatar * param0)
 {
     int v0;
 
-    v0 = sub_0205ED6C(0x17, sub_0205EB98(param0));
+    v0 = Player_Gender(0x17, sub_0205EB98(param0));
     ov5_021E106C(param0, v0);
 }
 
@@ -691,13 +691,13 @@ static BOOL ov5_021E0160 (TaskManager * param0)
             int v10;
 
             ov5_021F2838(v0->unk_28, 1);
-            v10 = sub_0205ED6C(0x2, sub_0205EB98(v0->unk_20));
+            v10 = Player_Gender(0x2, sub_0205EB98(v0->unk_20));
             ov5_021E106C(v0->unk_20, v10);
         } else {
             int v11;
 
             ov5_021F88CC(v0->unk_28, 1 << 1);
-            v11 = sub_0205ED6C(0x19, sub_0205EB98(v0->unk_20));
+            v11 = Player_Gender(0x19, sub_0205EB98(v0->unk_20));
             ov5_021E106C(v0->unk_20, v11);
         }
 
@@ -769,10 +769,10 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
 
             if (v2 == 0) {
                 ov5_021F2838(v0->unk_14, 0);
-                v1 = sub_0205ED6C(0x0, sub_0205EB98(v0->unk_0C));
+                v1 = Player_Gender(0x0, sub_0205EB98(v0->unk_0C));
             } else {
                 ov5_021F88DC(v0->unk_14, 1 << 1);
-                v1 = sub_0205ED6C(0x18, sub_0205EB98(v0->unk_0C));
+                v1 = Player_Gender(0x18, sub_0205EB98(v0->unk_0C));
             }
 
             ov5_021E106C(v0->unk_0C, v1);
@@ -1541,7 +1541,7 @@ static BOOL ov5_021E0E10 (TaskManager * param0)
         break;
     case 1:
         if (sub_0206574C(v0->unk_14) == 1) {
-            int v1 = sub_0205ED6C(0x12, v0->unk_10);
+            int v1 = Player_Gender(0x12, v0->unk_10);
 
             ov5_021E106C(v0->unk_04, v1);
             sub_02065758(v0->unk_14);
@@ -1667,7 +1667,7 @@ static void ov5_021E0FC0 (SysTask * param0)
     {
         UnkStruct_ov5_021E0FF0 * v0 = sub_0201CED0(param0);
         PlayerAvatar * v1 = v0->unk_0C;
-        int v2 = sub_0205ED6C(0x0, sub_0205EB98(v1));
+        int v2 = Player_Gender(0x0, sub_0205EB98(v1));
 
         ov5_021DFB90(v1);
         Heap_FreeToHeap(v0);

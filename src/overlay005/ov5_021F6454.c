@@ -49,7 +49,7 @@
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020677F4.h"
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
@@ -993,7 +993,7 @@ BOOL ScrCmd_32D (ScriptContext * param0)
 
     while (sub_020625B0(v5, &v7, &v3, (1 << 0)) == 1) {
         if (v7 != v6) {
-            MapObject_SetFlagOn(v7, (1 << 13));
+            MapObject_SetStatusFlagOn(v7, (1 << 13));
 
             if (sub_020628D8(v7, (1 << 12)) == 1) {
                 sub_02063050(v7, &v1);
@@ -1031,7 +1031,7 @@ BOOL ScrCmd_32E (ScriptContext * param0)
 
     while (sub_020625B0(v2, &v4, &v0, (1 << 0)) == 1) {
         if (v4 != v3) {
-            MapObject_SetFlagOff(v4, (1 << 13));
+            MapObject_SetStatusFlagOff(v4, (1 << 13));
         }
     }
 
@@ -1043,7 +1043,7 @@ static void ov5_021F7654 (MapObject * param0, int param1)
     VecFx32 v0;
     UnkStruct_020216E0 * v1;
 
-    MapObject_SetFlagOn(param0, (1 << 13));
+    MapObject_SetStatusFlagOn(param0, (1 << 13));
     sub_02063050(param0, &v0);
 
     v0.y = (((param1) << 4) * FX32_ONE);
@@ -1088,13 +1088,13 @@ BOOL ScrCmd_332 (ScriptContext * param0)
     v0 = MapObjMan_LocalMapObjByIndex(v1, 32);
 
     if (v0 != NULL) {
-        MapObject_SetFlagOff(v0, (1 << 13));
+        MapObject_SetStatusFlagOff(v0, (1 << 13));
     }
 
     v0 = MapObjMan_LocalMapObjByIndex(v1, 2);
 
     if (v0 != NULL) {
-        MapObject_SetFlagOff(v0, (1 << 13));
+        MapObject_SetStatusFlagOff(v0, (1 << 13));
     }
 
     return 0;
@@ -1133,7 +1133,7 @@ BOOL ScrCmd_339 (ScriptContext * param0)
 {
     MapObject * v0 = MapObjMan_LocalMapObjByIndex(param0->fieldSys->unk_38, 15);
     if (v0 != NULL)
-        MapObject_SetFlagOff(v0, 8192);
+        MapObject_SetStatusFlagOff(v0, 8192);
     return 0;
 }
 

@@ -9,7 +9,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0205E7D0.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_0206450C.h"
 #include "unk_020655F4.h"
@@ -1476,13 +1476,13 @@ static void sub_02065568 (MapObject * param0, UnkStruct_02065550 * param1)
     }
 
     sub_02062974(param0, v1);
-    MapObject_SetFlagOn(param0, (1 << 7));
+    MapObject_SetStatusFlagOn(param0, (1 << 7));
 }
 
 static void sub_020655E4 (MapObject * param0, UnkStruct_02065550 * param1)
 {
     if (param1->unk_02 == 0) {
-        MapObject_SetFlagOff(param0, (1 << 7));
+        MapObject_SetStatusFlagOff(param0, (1 << 7));
     }
 }
 

@@ -28,7 +28,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0203E880.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
@@ -270,7 +270,7 @@ MapObject * sub_02061918 (const MapObjectManager * param0, const UnkStruct_02061
     sub_02062914(v0, param2);
     sub_02062660(v0);
     sub_02062670(v0);
-    MapObject_SetFlagOn(v0, (1 << 2));
+    MapObject_SetStatusFlagOn(v0, (1 << 2));
     sub_020621AC(param0, v0);
     sub_02062828(sub_0206281C(param0));
 
@@ -324,7 +324,7 @@ void sub_02061AB4 (MapObject * param0, int param1)
 {
     sub_0206291C(param0, param1);
     sub_02062604(param0);
-    MapObject_SetFlagOff(param0, (1 << 14));
+    MapObject_SetStatusFlagOff(param0, (1 << 14));
     sub_02062670(param0);
 }
 
@@ -373,7 +373,7 @@ void sub_02061B48 (MapObject * param0)
             sub_02062B7C(param0);
         }
 
-        MapObject_SetFlagOff(param0, (1 << 14));
+        MapObject_SetStatusFlagOff(param0, (1 << 14));
     }
 
     sub_0206291C(param0, 0xffff);
@@ -594,8 +594,8 @@ static void sub_02061FA8 (const MapObjectManager * param0, MapObject * param1)
 
 static void sub_02061FF0 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 0) | (1 << 2));
-    MapObject_SetFlagOff(param0, (1 << 6) | (1 << 9) | (1 << 14) | (1 << 16) | (1 << 17) | (1 << 3) | (1 << 18) | (1 << 19) | (1 << 21) | (1 << 22) | (1 << 23));
+    MapObject_SetStatusFlagOn(param0, (1 << 0) | (1 << 2));
+    MapObject_SetStatusFlagOff(param0, (1 << 6) | (1 << 9) | (1 << 14) | (1 << 16) | (1 << 17) | (1 << 3) | (1 << 18) | (1 << 19) | (1 << 21) | (1 << 22) | (1 << 23));
     sub_02062618(param0);
 }
 
@@ -774,7 +774,7 @@ static void sub_020622B8 (MapObject * param0, const UnkStruct_020619DC * param1)
 
 static void sub_0206234C (MapObject * param0, const MapObjectManager * param1)
 {
-    MapObject_SetFlagOn(param0, (1 << 0) | (1 << 12) | (1 << 11));
+    MapObject_SetStatusFlagOn(param0, (1 << 0) | (1 << 12) | (1 << 11));
 
     if (sub_020626B4(param0) == 1) {
         sub_02062E78(param0, 1);
@@ -947,13 +947,13 @@ int sub_020625B0 (const MapObjectManager * param0, MapObject ** param1, int * pa
 
 static void sub_02062604 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 2));
+    MapObject_SetStatusFlagOn(param0, (1 << 2));
     sub_02062618(param0);
 }
 
 static void sub_02062618 (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 15) | (1 << 20) | (1 << 26) | (1 << 24));
+    MapObject_SetStatusFlagOff(param0, (1 << 15) | (1 << 20) | (1 << 26) | (1 << 24));
 }
 
 static void sub_02062628 (MapObject * param0)
@@ -1217,12 +1217,12 @@ u32 sub_020628B8 (const MapObject * param0)
     return param0->unk_00;
 }
 
-void MapObject_SetFlagOn (MapObject * param0, u32 param1)
+void MapObject_SetStatusFlagOn (MapObject * param0, u32 param1)
 {
     param0->unk_00 |= param1;
 }
 
-void MapObject_SetFlagOff (MapObject * param0, u32 param1)
+void MapObject_SetStatusFlagOff (MapObject * param0, u32 param1)
 {
     param0->unk_00 &= ~param1;
 }
@@ -1789,12 +1789,12 @@ int sub_02062CF8 (const MapObject * param0)
 
 void sub_02062D04 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 1));
+    MapObject_SetStatusFlagOn(param0, (1 << 1));
 }
 
 void sub_02062D10 (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 1));
+    MapObject_SetStatusFlagOff(param0, (1 << 1));
 }
 
 int sub_02062D1C (const MapObject * param0)
@@ -1804,17 +1804,17 @@ int sub_02062D1C (const MapObject * param0)
 
 void sub_02062D28 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 2));
+    MapObject_SetStatusFlagOn(param0, (1 << 2));
 }
 
 void sub_02062D34 (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 3));
+    MapObject_SetStatusFlagOff(param0, (1 << 3));
 }
 
 void sub_02062D40 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 14));
+    MapObject_SetStatusFlagOn(param0, (1 << 14));
 }
 
 int sub_02062D4C (const MapObject * param0)
@@ -1830,18 +1830,18 @@ int sub_02062D58 (const MapObject * param0)
 void sub_02062D64 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 9));
+        MapObject_SetStatusFlagOn(param0, (1 << 9));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 9));
+        MapObject_SetStatusFlagOff(param0, (1 << 9));
     }
 }
 
 void sub_02062D80 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOff(param0, (1 << 18));
+        MapObject_SetStatusFlagOff(param0, (1 << 18));
     } else {
-        MapObject_SetFlagOn(param0, (1 << 18));
+        MapObject_SetStatusFlagOn(param0, (1 << 18));
     }
 }
 
@@ -1857,20 +1857,20 @@ int sub_02062D9C (MapObject * param0)
 void sub_02062DB4 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 19));
+        MapObject_SetStatusFlagOn(param0, (1 << 19));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 19));
+        MapObject_SetStatusFlagOff(param0, (1 << 19));
     }
 }
 
 void sub_02062DD0 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 6));
+    MapObject_SetStatusFlagOn(param0, (1 << 6));
 }
 
 void sub_02062DDC (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 6));
+    MapObject_SetStatusFlagOff(param0, (1 << 6));
 }
 
 int sub_02062DE8 (const MapObject * param0)
@@ -1902,9 +1902,9 @@ int sub_02062DFC (const MapObject * param0)
 void sub_02062E28 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 23));
+        MapObject_SetStatusFlagOn(param0, (1 << 23));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 23));
+        MapObject_SetStatusFlagOff(param0, (1 << 23));
     }
 }
 
@@ -1920,18 +1920,18 @@ int sub_02062E44 (const MapObject * param0)
 void sub_02062E5C (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 10));
+        MapObject_SetStatusFlagOn(param0, (1 << 10));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 10));
+        MapObject_SetStatusFlagOff(param0, (1 << 10));
     }
 }
 
 void sub_02062E78 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 25));
+        MapObject_SetStatusFlagOn(param0, (1 << 25));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 25));
+        MapObject_SetStatusFlagOff(param0, (1 << 25));
     }
 }
 
@@ -1947,9 +1947,9 @@ int sub_02062E94 (const MapObject * param0)
 void sub_02062EAC (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 26));
+        MapObject_SetStatusFlagOn(param0, (1 << 26));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 26));
+        MapObject_SetStatusFlagOff(param0, (1 << 26));
     }
 }
 
@@ -1965,9 +1965,9 @@ int sub_02062EC8 (const MapObject * param0)
 void sub_02062EE0 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 27));
+        MapObject_SetStatusFlagOn(param0, (1 << 27));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 27));
+        MapObject_SetStatusFlagOff(param0, (1 << 27));
     }
 }
 
@@ -1983,9 +1983,9 @@ int sub_02062EFC (const MapObject * param0)
 void sub_02062F14 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 28));
+        MapObject_SetStatusFlagOn(param0, (1 << 28));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 28));
+        MapObject_SetStatusFlagOff(param0, (1 << 28));
     }
 }
 
@@ -2001,9 +2001,9 @@ int sub_02062F30 (const MapObject * param0)
 void sub_02062F48 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 24));
+        MapObject_SetStatusFlagOn(param0, (1 << 24));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 24));
+        MapObject_SetStatusFlagOff(param0, (1 << 24));
     }
 }
 
@@ -2028,9 +2028,9 @@ int sub_02062F7C (const MapObject * param0)
 void sub_02062F90 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 29));
+        MapObject_SetStatusFlagOn(param0, (1 << 29));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 29));
+        MapObject_SetStatusFlagOff(param0, (1 << 29));
     }
 }
 
@@ -2523,8 +2523,8 @@ void sub_020632D4 (MapObject * param0, const VecFx32 * param1, int param2)
     sub_0206296C(param0, param2);
 
     sub_020656DC(param0);
-    MapObject_SetFlagOn(param0, (1 << 2));
-    MapObject_SetFlagOff(param0, (1 << 1) | (1 << 3));
+    MapObject_SetStatusFlagOn(param0, (1 << 2));
+    MapObject_SetStatusFlagOff(param0, (1 << 1) | (1 << 3));
 }
 
 void LocalMapObj_SetPosDir (MapObject * param0, int param1, int param2, int param3, int param4)
@@ -2545,8 +2545,8 @@ void LocalMapObj_SetPosDir (MapObject * param0, int param1, int param2, int para
 
     sub_0206296C(param0, param4);
 
-    MapObject_SetFlagOn(param0, (1 << 2));
-    MapObject_SetFlagOff(param0, (1 << 1) | (1 << 3));
+    MapObject_SetStatusFlagOn(param0, (1 << 2));
+    MapObject_SetStatusFlagOff(param0, (1 << 1) | (1 << 3));
 
     sub_020656DC(param0);
 }

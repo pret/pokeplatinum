@@ -10,7 +10,7 @@
 
 #include "struct_defs/struct_020EDF0C.h"
 
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_0206450C.h"
 #include "unk_020677F4.h"
 #include "unk_02069BE0.h"

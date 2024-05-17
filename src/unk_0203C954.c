@@ -13,7 +13,7 @@
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 
 static u8 sub_0203CB18(FieldSystem * param0, const UnkStruct_0203A594 * param1);
 static u8 sub_0203CAEC(FieldSystem * param0, const UnkStruct_0203A594 * param1);

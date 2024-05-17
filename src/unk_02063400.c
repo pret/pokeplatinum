@@ -9,7 +9,7 @@
 
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_020673B8.h"
@@ -141,7 +141,7 @@ static void sub_02063518 (MapObject * param0)
         sub_020635AC(param0);
     }
 
-    MapObject_SetFlagOff(param0, (1 << 2) | (1 << 16));
+    MapObject_SetStatusFlagOff(param0, (1 << 2) | (1 << 16));
 }
 
 static void sub_0206353C (MapObject * param0)
@@ -152,7 +152,7 @@ static void sub_0206353C (MapObject * param0)
         sub_0206363C(param0);
     }
 
-    MapObject_SetFlagOff(param0, (1 << 2) | (1 << 16));
+    MapObject_SetStatusFlagOff(param0, (1 << 2) | (1 << 16));
 }
 
 static void sub_02063574 (MapObject * param0)
@@ -163,7 +163,7 @@ static void sub_02063574 (MapObject * param0)
         sub_0206375C(param0);
     }
 
-    MapObject_SetFlagOff(param0, (1 << 3) | (1 << 17));
+    MapObject_SetStatusFlagOff(param0, (1 << 3) | (1 << 17));
 }
 
 static void sub_020635AC (MapObject * param0)
@@ -395,11 +395,11 @@ static void sub_02063A78 (MapObject * param0, u8 param1, u8 param2, const UnkStr
     }
 
     if ((sub_0205DAC8(param1) == 1) || (sub_0205DAD4(param1) == 1) || (sub_0206406C(param0, param1) == 1) || (sub_0205DE5C(param1) == 1) || (sub_0205DB78(param1) == 1) || (sub_020640D4(param0, param1) == 1) || (sub_0205DCE0(param1) == 1) || (sub_0205DCFC(param1) == 1) || sub_0205DF9C(param1)) {
-        MapObject_SetFlagOn(param0, (1 << 20));
+        MapObject_SetStatusFlagOn(param0, (1 << 20));
     } else {
         if (sub_020628D0(param0, (1 << 15)) == 0) {
             ov5_021F1570(param0);
-            MapObject_SetFlagOn(param0, (1 << 15));
+            MapObject_SetStatusFlagOn(param0, (1 << 15));
         }
     }
 }
@@ -419,9 +419,9 @@ static void sub_02063B20 (MapObject * param0, u8 param1, u8 param2, const UnkStr
     }
 
     if ((sub_0205DAC8(param1) == 1) || (sub_0205DAD4(param1) == 1) || (sub_0206406C(param0, param1) == 1) || (sub_0205DE5C(param1) == 1) || (sub_0205DB78(param1) == 1) || (sub_020640D4(param0, param1) == 1) || (sub_0205DCE0(param1) == 1) || (sub_0205DCFC(param1) == 1) || sub_0205DF9C(param1)) {
-        MapObject_SetFlagOn(param0, (1 << 20));
+        MapObject_SetStatusFlagOn(param0, (1 << 20));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 20));
+        MapObject_SetStatusFlagOff(param0, (1 << 20));
     }
 }
 
@@ -922,7 +922,7 @@ int sub_020642F8 (MapObject * param0)
     v1 = v0;
 
     if (sub_02062E44(param0) == 1) {
-        MapObject_SetFlagOff(param0, (1 << 12));
+        MapObject_SetStatusFlagOff(param0, (1 << 12));
         return 0;
     }
 
@@ -936,9 +936,9 @@ int sub_020642F8 (MapObject * param0)
             sub_02063060(param0, &v0);
             sub_02063014(param0, sub_02063030(param0));
             sub_02063034(param0, (((v0.y) >> 3) / FX32_ONE));
-            MapObject_SetFlagOff(param0, (1 << 12));
+            MapObject_SetStatusFlagOff(param0, (1 << 12));
         } else {
-            MapObject_SetFlagOn(param0, (1 << 12));
+            MapObject_SetStatusFlagOn(param0, (1 << 12));
         }
 
         return v4;
@@ -965,11 +965,11 @@ int sub_02064390 (MapObject * param0)
     sub_02062BE0(param0, v1);
 
     if (sub_0205DF8C(v1) == 1) {
-        MapObject_SetFlagOn(param0, (1 << 11));
+        MapObject_SetStatusFlagOn(param0, (1 << 11));
         return 0;
     }
 
-    MapObject_SetFlagOff(param0, (1 << 11));
+    MapObject_SetStatusFlagOff(param0, (1 << 11));
     return 1;
 }
 

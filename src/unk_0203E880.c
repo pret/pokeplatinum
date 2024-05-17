@@ -34,7 +34,7 @@
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "trainer_data.h"
 
 typedef void (* UnkFuncPtr_0203E950)(FieldSystem *);

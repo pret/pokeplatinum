@@ -48,7 +48,7 @@
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02067A84.h"
 #include "unk_020683F4.h"
 #include "pokeradar.h"

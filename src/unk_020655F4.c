@@ -15,7 +15,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201CCF0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
@@ -143,15 +143,15 @@ void LocalMapObj_SetAnimationCode (MapObject * param0, int param1)
 
     sub_02062BB0(param0, param1);
     sub_02062BC0(param0, 0);
-    MapObject_SetFlagOn(param0, (1 << 4));
-    MapObject_SetFlagOff(param0, (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 4));
+    MapObject_SetStatusFlagOff(param0, (1 << 5));
 }
 
 void sub_02065668 (MapObject * param0, int param1)
 {
     sub_02062BB0(param0, param1);
     sub_02062BC0(param0, 0);
-    MapObject_SetFlagOff(param0, (1 << 5));
+    MapObject_SetStatusFlagOff(param0, (1 << 5));
 }
 
 int LocalMapObj_CheckAnimationFinished (const MapObject * param0)
@@ -177,15 +177,15 @@ int sub_020656AC (MapObject * param0)
         return 0;
     }
 
-    MapObject_SetFlagOff(param0, (1 << 4) | (1 << 5));
+    MapObject_SetStatusFlagOff(param0, (1 << 4) | (1 << 5));
 
     return 1;
 }
 
 void sub_020656DC (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 4));
-    MapObject_SetFlagOn(param0, (1 << 5));
+    MapObject_SetStatusFlagOff(param0, (1 << 4));
+    MapObject_SetStatusFlagOn(param0, (1 << 5));
     sub_02062BB0(param0, 0xff);
     sub_02062BC0(param0, 0);
 }
@@ -405,7 +405,7 @@ int sub_020658DC (MapObject * param0)
         return 0;
     }
 
-    MapObject_SetFlagOff(param0, (1 << 5));
+    MapObject_SetStatusFlagOff(param0, (1 << 5));
     sub_02062BB0(param0, 0xff);
     sub_02062BC0(param0, 0);
 
@@ -419,7 +419,7 @@ static int sub_02065910 (MapObject * param0, int param1, int param2)
 
 static int sub_02065924 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 5));
     return 0;
 }
 
@@ -469,7 +469,7 @@ static void sub_02065980 (MapObject * param0, int param1, fx32 param2, s16 param
     sub_020641B4(param0, param1);
     sub_020629A0(param0, param1);
     sub_02062A0C(param0, param4);
-    MapObject_SetFlagOn(param0, (1 << 2));
+    MapObject_SetStatusFlagOn(param0, (1 << 2));
     sub_02062BC8(param0);
 }
 
@@ -488,7 +488,7 @@ static int sub_020659C8 (MapObject * param0)
         return 0;
     }
 
-    MapObject_SetFlagOn(param0, (1 << 3) | (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 3) | (1 << 5));
     sub_02064208(param0);
     sub_02062B68(param0);
     sub_02062A0C(param0, 0x0);
@@ -691,7 +691,7 @@ static int sub_02065C98 (MapObject * param0)
         return 0;
     }
 
-    MapObject_SetFlagOn(param0, (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 5));
     sub_02062A0C(param0, 0x0);
     sub_02062BC8(param0);
 
@@ -837,7 +837,7 @@ static void sub_02065E0C (MapObject * param0, int param1, fx32 param2, s16 param
         sub_020641B4(param0, param1);
     }
 
-    MapObject_SetFlagOn(param0, (1 << 2) | (1 << 16));
+    MapObject_SetStatusFlagOn(param0, (1 << 2) | (1 << 16));
     sub_020629A0(param0, param1);
     sub_02062A0C(param0, param4);
     sub_02062BC8(param0);
@@ -865,7 +865,7 @@ static int sub_02065EA0 (MapObject * param0)
         if (v0->unk_04 >= (16 * FX32_ONE)) {
             v0->unk_04 = 0;
             sub_020641B4(param0, v0->unk_0C);
-            MapObject_SetFlagOn(param0, (1 << 2));
+            MapObject_SetStatusFlagOn(param0, (1 << 2));
         }
 
         {
@@ -910,7 +910,7 @@ static int sub_02065EA0 (MapObject * param0)
         sub_02063088(param0, &v5);
     }
 
-    MapObject_SetFlagOn(param0, (1 << 3) | (1 << 17) | (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 3) | (1 << 17) | (1 << 5));
     sub_02064208(param0);
     sub_02062B68(param0);
     sub_02062A0C(param0, 0x0);
@@ -1213,7 +1213,7 @@ static int sub_020663D0 (MapObject * param0)
 
 static int sub_02066418 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 9));
+    MapObject_SetStatusFlagOn(param0, (1 << 9));
     sub_02062BC8(param0);
 
     return 1;
@@ -1221,7 +1221,7 @@ static int sub_02066418 (MapObject * param0)
 
 static int sub_02066430 (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 9));
+    MapObject_SetStatusFlagOff(param0, (1 << 9));
     sub_02062BC8(param0);
 
     return 1;
@@ -1229,7 +1229,7 @@ static int sub_02066430 (MapObject * param0)
 
 static int sub_02066448 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 7));
+    MapObject_SetStatusFlagOn(param0, (1 << 7));
     sub_02062BC8(param0);
 
     return 1;
@@ -1237,7 +1237,7 @@ static int sub_02066448 (MapObject * param0)
 
 static int sub_0206645C (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 7));
+    MapObject_SetStatusFlagOff(param0, (1 << 7));
     sub_02062BC8(param0);
 
     return 1;
@@ -1245,7 +1245,7 @@ static int sub_0206645C (MapObject * param0)
 
 static int sub_02066470 (MapObject * param0)
 {
-    MapObject_SetFlagOn(param0, (1 << 8));
+    MapObject_SetStatusFlagOn(param0, (1 << 8));
     sub_02062BC8(param0);
 
     return 1;
@@ -1253,7 +1253,7 @@ static int sub_02066470 (MapObject * param0)
 
 static int sub_02066488 (MapObject * param0)
 {
-    MapObject_SetFlagOff(param0, (1 << 8));
+    MapObject_SetStatusFlagOff(param0, (1 << 8));
     sub_02062BC8(param0);
 
     return 1;
@@ -1317,7 +1317,7 @@ static void sub_02066520 (MapObject * param0, int param1, s16 param2, u16 param3
     sub_020641B4(param0, param1);
     sub_020629A0(param0, param1);
     sub_02062A0C(param0, param3);
-    MapObject_SetFlagOn(param0, (1 << 2));
+    MapObject_SetStatusFlagOn(param0, (1 << 2));
     sub_02062BC8(param0);
 }
 
@@ -1336,7 +1336,7 @@ static int sub_02066560 (MapObject * param0, const fx32 * param1)
         return 0;
     }
 
-    MapObject_SetFlagOn(param0, (1 << 3) | (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 3) | (1 << 5));
     sub_02064208(param0);
     sub_02062B68(param0);
     sub_02062A0C(param0, 0x0);
@@ -1488,8 +1488,8 @@ static int sub_02066710 (MapObject * param0)
 
     ov5_021F3F10(param0);
 
-    MapObject_SetFlagOn(param0, (1 << 2) | (1 << 16));
-    MapObject_SetFlagOff(param0, (1 << 20));
+    MapObject_SetStatusFlagOn(param0, (1 << 2) | (1 << 16));
+    MapObject_SetStatusFlagOff(param0, (1 << 20));
     sub_02062BC8(param0);
 
     return 0;
@@ -1513,7 +1513,7 @@ static int sub_02066764 (MapObject * param0)
     v2.y = 0;
 
     sub_02063088(param0, &v2);
-    MapObject_SetFlagOn(param0, (1 << 3) | (1 << 17) | (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 3) | (1 << 17) | (1 << 5));
     sub_0206A230(param0);
     sub_02062BC8(param0);
 
@@ -1605,7 +1605,7 @@ static int sub_020668EC (MapObject * param0)
         return 0;
     }
 
-    MapObject_SetFlagOn(
+    MapObject_SetStatusFlagOn(
         param0, (1 << 3) | (1 << 5));
 
     sub_02064208(param0);
@@ -2034,7 +2034,7 @@ static int sub_02067068 (MapObject * param0)
         sub_02063088(param0, &v7);
     }
 
-    MapObject_SetFlagOn(param0, (1 << 3) | (1 << 17) | (1 << 5));
+    MapObject_SetStatusFlagOn(param0, (1 << 3) | (1 << 17) | (1 << 5));
     sub_02064208(param0);
     sub_02062B68(param0);
     sub_02062A0C(param0, 0x0);

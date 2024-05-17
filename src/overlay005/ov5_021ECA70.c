@@ -8,7 +8,7 @@
 #include "overlay005/struct_ov5_021ED01C.h"
 
 #include "unk_02020AEC.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "overlay005/ov5_021ECA70.h"
 #include "overlay005/ov5_021ECE40.h"
 
@@ -68,7 +68,7 @@ void ov5_021ECAC4 (MapObject * param0)
     }
 
     ov5_021ECFA4(param0, &v0->unk_00);
-    MapObject_SetFlagOn(param0, (1 << 21));
+    MapObject_SetStatusFlagOn(param0, (1 << 21));
 }
 
 void ov5_021ECAF0 (MapObject * param0)
@@ -88,7 +88,7 @@ void ov5_021ECAF0 (MapObject * param0)
     if (v0->unk_00 != NULL) {
         ov5_021ED03C(v0->unk_00, &v0->unk_04);
         ov5_021EDEB4(param0, v0->unk_00);
-        MapObject_SetFlagOff(param0, (1 << 21));
+        MapObject_SetStatusFlagOff(param0, (1 << 21));
     }
 }
 

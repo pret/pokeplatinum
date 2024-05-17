@@ -27,7 +27,7 @@
 #include "unk_02056B30.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D431C.h"

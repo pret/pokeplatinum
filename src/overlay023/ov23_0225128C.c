@@ -630,7 +630,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            sub_0205EB18(v0->playerAvatar, 0);
+            PlayerAvatar_SetVisible(v0->playerAvatar, 0);
 
             ov23_02251A84(1, v0);
             v1->unk_00 = 2;
@@ -644,7 +644,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
         v1->unk_00 = 4;
         break;
     case 4:
-        sub_0205EB18(v0->playerAvatar, 1);
+        PlayerAvatar_SetVisible(v0->playerAvatar, 1);
         ov23_02251A84(0, v0);
         sub_0200F174(1, 1, 1, 0x0, 6, 1, 4);
         v1->unk_00 = 5;

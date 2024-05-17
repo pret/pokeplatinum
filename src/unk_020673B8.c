@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_020673B8.h"
 

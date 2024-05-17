@@ -21,7 +21,7 @@
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206C0E8.h"
 #include "unk_02070428.h"

@@ -11,7 +11,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_02020AEC.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020711EC.h"
 #include "overlay005/ov5_021DF440.h"

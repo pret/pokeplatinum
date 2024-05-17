@@ -14,7 +14,7 @@
 #include "unk_0201CCF0.h"
 #include "unk_0203E880.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -485,7 +485,7 @@ static int sub_020680A4 (UnkStruct_020EF6D0 * param0)
     }
 
     ov5_021ECDFC(param0->unk_24, param0->unk_08);
-    MapObject_SetFlagOn(v0, (1 << 6));
+    MapObject_SetStatusFlagOn(v0, (1 << 6));
 
     param0->unk_00 = 2;
     return 1;
@@ -650,7 +650,7 @@ static int sub_02068264 (UnkStruct_020EF6D0 * param0)
 
     if ((Player_Dir(param0->unk_28) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
         if (LocalMapObj_IsAnimationSet(v2) == 1) {
-            MapObject_SetFlagOff(v2, (1 << 7));
+            MapObject_SetStatusFlagOff(v2, (1 << 7));
             v0 = sub_02065838(v1, 0x0);
             LocalMapObj_SetAnimationCode(v2, v0);
             param0->unk_00 = 15;

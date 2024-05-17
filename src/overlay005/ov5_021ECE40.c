@@ -46,7 +46,7 @@
 #include "unk_0202298C.h"
 #include "unk_0202414C.h"
 #include "unk_0205DAC8.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020677F4.h"
 #include "unk_020711EC.h"
@@ -1408,9 +1408,9 @@ static u32 ov5_021EDD50 (int param0)
 void ov5_021EDD78 (MapObject * param0, int param1)
 {
     if (param1 == 1) {
-        MapObject_SetFlagOn(param0, (1 << 22));
+        MapObject_SetStatusFlagOn(param0, (1 << 22));
     } else {
-        MapObject_SetFlagOff(param0, (1 << 22));
+        MapObject_SetStatusFlagOff(param0, (1 << 22));
     }
 }
 

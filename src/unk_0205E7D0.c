@@ -10,7 +10,7 @@
 
 #include "heap.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "overlay005/ov5_021F25C0.h"
 #include "overlay005/ov5_021F61BC.h"
@@ -54,7 +54,7 @@ PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, i
         int v1;
 
         if (param6 == 0) {
-            v1 = sub_0205ED6C(param4, param5);
+            v1 = Player_Gender(param4, param5);
         } else {
             if (param5 == 0) {
                 v1 = 0xfc;
@@ -81,9 +81,9 @@ PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, UnkStruct_0205EC34
     sub_0205E91C(playerAvatar, v0, param2, param1);
     v2 = sub_0205EA64(param0);
 
-    sub_0206291C(v2, sub_0205ED6C(v0, param2));
-    MapObject_SetFlagOn(v2, ((1 << 10) | (1 << 13)));
-    MapObject_SetFlagOff(v2, ((1 << 7) | (1 << 8)));
+    sub_0206291C(v2, Player_Gender(v0, param2));
+    MapObject_SetStatusFlagOn(v2, ((1 << 10) | (1 << 13)));
+    MapObject_SetStatusFlagOff(v2, ((1 << 7) | (1 << 8)));
     sub_02062F90(v2, 1);
     PlayerAvatar_SetMapObject(playerAvatar, v2);
 
@@ -138,14 +138,14 @@ static PlayerAvatar * PlayerAvatar_Alloc (void)
     return playerAvatar;
 }
 
-static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int param2, UnkStruct_0205EC34 * param3)
+static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int gender, UnkStruct_0205EC34 * param3)
 {
     sub_0205EC08(playerAvatar, param3);
 
     sub_0205EB08(playerAvatar, 0);
     sub_0205EB10(playerAvatar, 0);
     sub_0205EB58(playerAvatar, param1);
-    sub_0205EB94(playerAvatar, param2);
+    PlayerAvatar_SetGender(playerAvatar, gender);
     sub_0205EB8C(playerAvatar, 0);
     sub_0205EBC0(playerAvatar);
     sub_0205EBDC(playerAvatar, -1);
@@ -172,8 +172,8 @@ static void PlayerAvatar_AddMapObject (PlayerAvatar * playerAvatar, const MapObj
     sub_020629B4(v0, 0, 2);
     sub_020629FC(v0, -1);
     sub_02062A04(v0, -1);
-    MapObject_SetFlagOn(v0, ((1 << 10) | (1 << 13)));
-    MapObject_SetFlagOff(v0, ((1 << 7) | (1 << 8)));
+    MapObject_SetStatusFlagOn(v0, ((1 << 10) | (1 << 13)));
+    MapObject_SetStatusFlagOff(v0, ((1 << 7) | (1 << 8)));
     sub_02062F90(v0, 1);
 
     PlayerAvatar_SetMapObject(playerAvatar, v0);
@@ -275,16 +275,16 @@ int Player_MoveState (const PlayerAvatar * param0)
     return param0->unk_18;
 }
 
-void sub_0205EB18 (PlayerAvatar * param0, int param1)
+void PlayerAvatar_SetVisible (PlayerAvatar * param0, int param1)
 {
     MapObject * v0;
 
     v0 = Player_MapObject(param0);
 
     if (param1 == 1) {
-        MapObject_SetFlagOff(v0, (1 << 9));
+        MapObject_SetStatusFlagOff(v0, (1 << 9));
     } else {
-        MapObject_SetFlagOn(v0, (1 << 9));
+        MapObject_SetStatusFlagOn(v0, (1 << 9));
     }
 }
 
@@ -335,7 +335,7 @@ u32 sub_0205EB90 (PlayerAvatar * param0)
     return param0->unk_04;
 }
 
-void sub_0205EB94 (PlayerAvatar * param0, int param1)
+void PlayerAvatar_SetGender (PlayerAvatar * param0, int param1)
 {
     param0->unk_20 = param1;
 }
@@ -591,7 +591,7 @@ void sub_0205ED48 (PlayerAvatar * param0, int param1)
     }
 }
 
-int sub_0205ED6C (int param0, int param1)
+int Player_Gender (int param0, int param1)
 {
     if (param1 == 0) {
         switch (param0) {

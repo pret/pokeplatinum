@@ -18,7 +18,7 @@
 #include "communication_system.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "pokemon.h"
 #include "party.h"
 #include "overlay004/ov4_021D0D80.h"

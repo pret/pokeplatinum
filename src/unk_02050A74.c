@@ -41,7 +41,7 @@
 #include "unk_02055808.h"
 #include "unk_020562F8.h"
 #include "field_comm_manager.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"

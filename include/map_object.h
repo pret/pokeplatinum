@@ -20,6 +20,8 @@
 
 #include <nitro/fx/fx.h>
 
+#include "constants/field_object.h"
+
 MapObjectManager * sub_02061804(FieldSystem * param0, int param1, int param2);
 void sub_02061830(MapObjectManager * param0);
 void sub_0206184C(MapObjectManager * param0, int param1, int param2, int param3, const UnkStruct_020619DC * param4);
@@ -62,8 +64,8 @@ void sub_0206289C(MapObjectManager * param0, NARC * param1);
 NARC * sub_020628A0(const MapObjectManager * param0);
 void sub_020628B4(MapObject * param0, u32 param1);
 u32 sub_020628B8(const MapObject * param0);
-void MapObject_SetFlagOn(MapObject * param0, u32 param1);
-void MapObject_SetFlagOff(MapObject * param0, u32 param1);
+void MapObject_SetStatusFlagOn(MapObject * param0, u32 param1);
+void MapObject_SetStatusFlagOff(MapObject * param0, u32 param1);
 u32 sub_020628D0(const MapObject * param0, u32 param1);
 u32 sub_020628D8(const MapObject * param0, u32 param1);
 void sub_020628E8(MapObject * param0, u32 param1);

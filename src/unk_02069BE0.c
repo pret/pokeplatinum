@@ -11,7 +11,7 @@
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -421,7 +421,7 @@ static void sub_0206A0BC (MapObject * param0, int param1)
 
     sub_02062A0C(param0, 0x0);
     sub_02062D10(param0);
-    MapObject_SetFlagOn(param0, (1 << 20));
+    MapObject_SetStatusFlagOn(param0, (1 << 20));
 
     {
         VecFx32 v1 = {0, (FX32_ONE * -32), 0};
@@ -479,7 +479,7 @@ void sub_0206A168 (MapObject * param0)
         VecFx32 v1 = {0, (FX32_ONE * -32), 0};
 
         sub_02063088(param0, &v1);
-        MapObject_SetFlagOn(param0, (1 << 20));
+        MapObject_SetStatusFlagOn(param0, (1 << 20));
     }
 }
 
@@ -510,7 +510,7 @@ static int sub_0206A1DC (MapObject * param0, UnkStruct_0206A0BC * param1)
             }
         }
 
-        MapObject_SetFlagOn(param0, (1 << 20));
+        MapObject_SetStatusFlagOn(param0, (1 << 20));
     }
 
     return 0;

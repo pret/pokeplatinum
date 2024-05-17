@@ -17,7 +17,7 @@
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_02068344.h"
@@ -524,7 +524,7 @@ static int sub_0205F6D0 (PlayerAvatar * param0, int param1)
             return 0;
         }
 
-        MapObject_SetFlagOn(v0, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(v0, (1 << 7) | (1 << 8));
         sub_02060B64(param0, v0, sub_02065838(v1, 0x8), 3);
         sub_0205EF6C(param0, 1);
         sub_0205EF40(param0, 1);
@@ -544,13 +544,13 @@ static int sub_0205F6D0 (PlayerAvatar * param0, int param1)
             return 0;
         }
 
-        MapObject_SetFlagOn(v0, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(v0, (1 << 7) | (1 << 8));
         sub_02060B64(param0, v0, sub_02065838(v1, 0x8), 3);
         sub_0205EF6C(param0, 1);
         sub_0205EF40(param0, 1);
         sub_0205EBEC(param0, -1, -1);
     } else {
-        MapObject_SetFlagOn(v0, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(v0, (1 << 7) | (1 << 8));
         sub_0205FB40(param0, v1);
     }
 
@@ -582,7 +582,7 @@ static int sub_0205F808 (PlayerAvatar * param0, int param1)
             return 0;
         }
 
-        MapObject_SetFlagOn(v1, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOn(v1, (1 << 7) | (1 << 8));
         sub_02060B64(param0, v1, sub_02065838(v2, 0x8), 3);
         sub_0205EBC0(param0);
         sub_0205EF40(param0, 1);
@@ -602,7 +602,7 @@ static int sub_0205F808 (PlayerAvatar * param0, int param1)
             sub_0205EBEC(param0, -1, -1);
             return 1;
         } else {
-            MapObject_SetFlagOn(v1, (1 << 7) | (1 << 8));
+            MapObject_SetStatusFlagOn(v1, (1 << 7) | (1 << 8));
             sub_02060B64(param0, v1, sub_02065838(v2, 0x8), 3);
             sub_0205EF40(param0, 1);
             sub_0205EB08(param0, 1);
@@ -687,7 +687,7 @@ static void sub_0205FA6C (PlayerAvatar * param0)
     if (sub_0205EF58(param0) == 1) {
         MapObject * v0 = Player_MapObject(param0);
 
-        MapObject_SetFlagOff(v0, (1 << 7) | (1 << 8));
+        MapObject_SetStatusFlagOff(v0, (1 << 7) | (1 << 8));
 
         if (sub_0205F08C(param0) == 0) {
             sub_0205EBC0(param0);

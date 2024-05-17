@@ -24,7 +24,7 @@
 #include "unk_02054D00.h"
 #include "unk_02055C50.h"
 #include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"

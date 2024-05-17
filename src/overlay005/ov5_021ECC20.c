@@ -12,7 +12,7 @@
 
 #include "narc.h"
 #include "heap.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 
@@ -161,7 +161,7 @@ void ov5_021ECDFC (MapObject * param0, int param1)
 void ov5_021ECE18 (MapObject * param0)
 {
     sub_02062D64(param0, 1);
-    MapObject_SetFlagOn(param0, (1 << 20));
+    MapObject_SetStatusFlagOn(param0, (1 << 20));
 }
 
 void ov5_021ECE30 (MapObject * param0)
