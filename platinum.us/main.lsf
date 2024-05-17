@@ -465,7 +465,7 @@ Overlay overlay4
 Overlay overlay5
 {
 	After main
-	Object main.nef.p/src_overlay005_ov5_021D0D80.c.o
+	Object main.nef.p/src_overlay005_fieldmap.c.o
 	Object main.nef.p/src_overlay005_ov5_021D1A94.c.o
 	Object main.nef.p/src_overlay005_ov5_021D1C30.c.o
 	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
