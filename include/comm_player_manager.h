@@ -84,8 +84,8 @@ void CommPlayer_RecvLocationAndInit(int param0, int param1, void * param2, void 
 void sub_02058B0C(int param0, int param1, BOOL param2);
 void sub_02058B7C(int param0);
 void sub_02058B94(int param0);
-void sub_02058BA8(int param0, int param1, BOOL param2);
-void sub_02058BE8(int param0);
+void CommPlayer_StartBlowAnimation(int param0, int param1, BOOL param2);
+void CommPlayer_StopBlowAnimation(int param0);
 int sub_02058C3C(void);
 BOOL sub_02058C40(void);
 BOOL CommPlayer_IsActive(int param0);

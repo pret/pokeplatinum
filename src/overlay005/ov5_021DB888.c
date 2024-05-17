@@ -50,11 +50,11 @@ typedef struct {
     UnkStruct_ov5_021DBA58 * unk_08;
 } UnkStruct_ov5_021DBC64;
 
-void ov5_021DB888(TaskManager * param0, StringTemplate * param1, u16 * param2);
-u16 ov5_021DBD98(FieldSystem * param0, MapObject * param1, u16 param2);
-BOOL ov5_021DBB94(FieldSystem * param0);
+void ov5_021DB888(TaskManager * taskMan, StringTemplate * param1, u16 * param2);
+u16 ov5_021DBD98(FieldSystem * fieldSystem, MapObject * param1, u16 param2);
+BOOL ov5_021DBB94(FieldSystem * fieldSystem);
 static BOOL ov5_021DBB70(u32 param0);
-static BOOL ov5_021DB8D8(TaskManager * param0);
+static BOOL ov5_021DB8D8(TaskManager * taskMan);
 static int ov5_021DBA58(UnkStruct_ov5_021DBA58 * param0);
 static void ov5_021DBA54(UnkStruct_ov5_021DBA58 * param0, u32 param1);
 static void ov5_021DBA7C(UnkStruct_ov5_021DBA58 * param0);
@@ -484,7 +484,7 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
     }
 
     for (v5 = 0; v5 < v12; v5++) {
-        v11 = MapObjMan_LocalMapObjByIndex(param0->unk_04->unk_38, v5);
+        v11 = MapObjMan_LocalMapObjByIndex(param0->unk_04->mapObjMan, v5);
 
         if (v11 == NULL) {
             continue;
@@ -557,14 +557,14 @@ BOOL ov5_021DBB94 (FieldSystem * param0)
     return 0;
 }
 
-static void ov5_021DBC08 (FieldSystem * param0)
+static void ov5_021DBC08 (FieldSystem * fieldSystem)
 {
     int v0;
     MapObject * v1;
-    u32 v2 = sub_0203A4B4(param0);
+    u32 v2 = sub_0203A4B4(fieldSystem);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v1 = MapObjMan_LocalMapObjByIndex(param0->unk_38, v0);
+        v1 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, v0);
 
         if (v1 == NULL) {
             continue;
@@ -818,16 +818,16 @@ void ov5_021DBED4 (FieldSystem * param0, MapObject * param1)
     return;
 }
 
-static BOOL ov5_021DBF20 (FieldSystem * param0)
+static BOOL ov5_021DBF20 (FieldSystem * fieldSystem)
 {
     int v0, v1;
     MapObject * v2;
-    u32 v3 = sub_0203A4B4(param0);
+    u32 v3 = sub_0203A4B4(fieldSystem);
 
     v1 = 0;
 
     for (v0 = 0; v0 < v3; v0++) {
-        v2 = MapObjMan_LocalMapObjByIndex(param0->unk_38, v0);
+        v2 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, v0);
 
         if (v2 == NULL) {
             continue;
@@ -848,11 +848,11 @@ static BOOL ov5_021DBF20 (FieldSystem * param0)
     }
 }
 
-static MapObject * ov5_021DBF70 (FieldSystem * param0, MapObject * param1, int param2)
+static MapObject * ov5_021DBF70 (FieldSystem * fieldSystem, MapObject * param1, int param2)
 {
     MapObject * v0;
     u32 v1, v2, v3, v4;
-    u32 v5 = sub_0203A4B4(param0);
+    u32 v5 = sub_0203A4B4(fieldSystem);
     u16 v6 = sub_02062960(param1);
     u16 v7 = sub_0203F254(v6);
 
@@ -861,7 +861,7 @@ static MapObject * ov5_021DBF70 (FieldSystem * param0, MapObject * param1, int p
     }
 
     for (v1 = 0; v1 < v5; v1++) {
-        v0 = MapObjMan_LocalMapObjByIndex(param0->unk_38, v1);
+        v0 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, v1);
 
         if (v0 == NULL) {
             continue;

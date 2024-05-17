@@ -951,7 +951,7 @@ void ov23_022534A0 (FieldSystem * param0)
 
         for (v9 = 0; v9 < v8; v9++) {
             if ((v10[v9].unk_1A == v1) && (v10[v9].unk_1C == v2)) {
-                v11 = MapObjMan_LocalMapObjByIndex(v4->unk_0C->unk_38, v9);
+                v11 = MapObjMan_LocalMapObjByIndex(v4->unk_0C->mapObjMan, v9);
                 sub_02062974(v11, v3);
             }
         }

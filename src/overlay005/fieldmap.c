@@ -132,9 +132,9 @@ static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 * param0);
 static void ov5_021D1A70(UnkStruct_ov5_021D1A68 * param0);
 
 
-static inline void inline_ov5_021D0D80 (FieldSystem * param0)
+static inline void inline_ov5_021D0D80 (FieldSystem * fieldSystem)
 {
-    UnkStruct_ov5_021ED0A4 * v0 = sub_0206285C(param0->unk_38);
+    UnkStruct_ov5_021ED0A4 * v0 = sub_0206285C(fieldSystem->mapObjMan);
     UnkStruct_02020C44 * v1 = ov5_021EDC8C(v0);
 
     sub_02020D68(v1);
@@ -142,13 +142,13 @@ static inline void inline_ov5_021D0D80 (FieldSystem * param0)
 
 static void ov5_021D0D80 (void * param0)
 {
-    FieldSystem * v0 = param0;
+    FieldSystem * fieldSystem = param0;
 
-    sub_0201C2B8(v0->unk_08);
+    sub_0201C2B8(fieldSystem->unk_08);
     sub_0201DCAC();
     sub_0200A858();
 
-    inline_ov5_021D0D80(v0);
+    inline_ov5_021D0D80(fieldSystem);
 }
 
 static int FieldMap_Init (OverlayManager * param0, int * param1)
@@ -303,10 +303,10 @@ static int FieldMap_Exit (OverlayManager * param0, int * param1)
 
         fieldSystem->unk_04->unk_10 = NULL;
 
-        sub_02061BF0(fieldSystem->unk_38);
-        ov5_021ECC78(fieldSystem->unk_38);
+        sub_02061BF0(fieldSystem->mapObjMan);
+        ov5_021ECC78(fieldSystem->mapObjMan);
 
-        sub_02062C30(fieldSystem->unk_38);
+        sub_02062C30(fieldSystem->mapObjMan);
         ov5_021DF500(fieldSystem->unk_40);
 
         ov5_021D1A70(fieldSystem->unk_34);
@@ -395,14 +395,14 @@ static int ov5_021D1178 (FieldSystem * param0)
 
 static BOOL ov5_021D119C (FieldSystem * fieldSystem)
 {
-    int v0, v1;
+    int x, y;
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    x = Player_XPos(fieldSystem->playerAvatar);
+    y = Player_ZPos(fieldSystem->playerAvatar);
 
-    if ((v0 != fieldSystem->unk_1C->unk_08) || (v1 != fieldSystem->unk_1C->unk_0C)) {
-        fieldSystem->unk_1C->unk_08 = v0;
-        fieldSystem->unk_1C->unk_0C = v1;
+    if ((x != fieldSystem->unk_1C->unk_08) || (y != fieldSystem->unk_1C->unk_0C)) {
+        fieldSystem->unk_1C->unk_08 = x;
+        fieldSystem->unk_1C->unk_0C = y;
         return TRUE;
     } else {
         return FALSE;
@@ -441,7 +441,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
         int v5 = sub_0203A4B4(fieldSystem);
         const UnkStruct_020619DC * v6 = sub_0203A4BC(fieldSystem);
 
-        sub_0206184C(fieldSystem->unk_38, v1, v0, v5, v6);
+        sub_0206184C(fieldSystem->mapObjMan, v1, v0, v5, v6);
     }
 
     {
@@ -475,65 +475,65 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     return TRUE;
 }
 
-void ov5_021D12D0 (FieldSystem * param0, u32 param1)
+void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
 {
     u32 v0;
     UnkStruct_0203A790 * v1;
 
-    v0 = param0->unk_1C->unk_00;
-    v1 = sub_0203A790(param0->saveData);
+    v0 = fieldSystem->unk_1C->unk_00;
+    v1 = sub_0203A790(fieldSystem->saveData);
 
     {
-        param0->unk_1C->unk_00 = param1;
+        fieldSystem->unk_1C->unk_00 = param1;
 
-        sub_0203A3B0(param0, param1);
-        sub_020532A8(param0, 1);
+        sub_0203A3B0(fieldSystem, param1);
+        sub_020532A8(fieldSystem, 1);
     }
 
     {
-        int v2 = sub_0203A4B4(param0);
-        const UnkStruct_020619DC * v3 = sub_0203A4BC(param0);
+        int v2 = sub_0203A4B4(fieldSystem);
+        const UnkStruct_020619DC * v3 = sub_0203A4BC(fieldSystem);
 
-        sub_0206184C(param0->unk_38, v0, param1, v2, v3);
+        sub_0206184C(fieldSystem->mapObjMan, v0, param1, v2, v3);
     }
 
     {
-        sub_02055554(param0, sub_02055428(param0, param0->unk_1C->unk_00), 1);
-        sub_0203A418(param0);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
+        sub_0203A418(fieldSystem);
 
-        if (param0->unk_04->unk_0C != NULL) {
-            ov5_021D5F7C(param0->unk_04->unk_0C, sub_0203A74C(v1));
+        if (fieldSystem->unk_04->unk_0C != NULL) {
+            ov5_021D5F7C(fieldSystem->unk_04->unk_0C, sub_0203A74C(v1));
         }
     }
 }
 
-static void ov5_021D134C (FieldSystem * param0, u8 param1)
+static void ov5_021D134C (FieldSystem * fieldSystem, u8 param1)
 {
-    if (sub_020509A4(param0) == 0) {
-        sub_020559DC(param0);
+    if (sub_020509A4(fieldSystem) == 0) {
+        sub_020559DC(fieldSystem);
     }
 
-    ov5_021D5298(param0->unk_4C);
-    ov5_021E1B68(param0);
+    ov5_021D5298(fieldSystem->unk_4C);
+    ov5_021E1B68(fieldSystem);
 
     if ((param1 & 1) != 0) {
-        ov5_021D5DEC(param0->unk_04->unk_10);
+        ov5_021D5DEC(fieldSystem->unk_04->unk_10);
     }
 
     if ((param1 & 8) != 0) {
-        ov5_021D3F10(param0->unk_50);
+        ov5_021D3F10(fieldSystem->unk_50);
     }
 
     if ((param1 & 2) != 0) {
-        ov5_021E8188(param0, param0->unk_28);
+        ov5_021E8188(fieldSystem, fieldSystem->unk_28);
 
-        if (FieldMap_InDistortionWorld(param0) == 1) {
-            ov9_0224CA5C(param0);
+        if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
+            ov9_0224CA5C(fieldSystem);
         }
     }
 
     if ((param1 & 4) != 0) {
-        ov5_021D15F4(param0);
+        ov5_021D15F4(fieldSystem);
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
@@ -541,19 +541,19 @@ static void ov5_021D134C (FieldSystem * param0, u8 param1)
     }
 }
 
-static void ov5_021D13B4 (FieldSystem * param0)
+static void ov5_021D13B4 (FieldSystem * fieldSystem)
 {
     UnkStruct_020556C4 * v0;
     int v1, v2, v3;
 
-    if (MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00) == 0) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 0) {
         return;
     }
 
-    v0 = sub_0203A76C(sub_0203A790(param0->saveData));
-    v1 = (Player_XPos(param0->playerAvatar) - ov5_021EA6AC(param0->unk_28)) / 32;
-    v2 = (Player_ZPos(param0->playerAvatar) - ov5_021EA6B4(param0->unk_28)) / 32;
-    v3 = Player_Dir(param0->playerAvatar);
+    v0 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
+    v1 = (Player_XPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
+    v2 = (Player_ZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
+    v3 = Player_Dir(fieldSystem->playerAvatar);
 
     sub_02055740(v0, v1, v2, v3);
 }
@@ -576,17 +576,17 @@ static void ov5_021D1414 (void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov5_021D1434 (BGL * param0)
+void ov5_021D1434 (BGL * bgl)
 {
-    ov5_021D1444(param0);
+    ov5_021D1444(bgl);
 }
 
-void ov5_021D143C (BGL * param0)
+void ov5_021D143C (BGL * bgl)
 {
-    ov5_021D1524(param0);
+    ov5_021D1524(bgl);
 }
 
-static void ov5_021D1444 (BGL * param0)
+static void ov5_021D1444 (BGL * bgl)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -616,9 +616,9 @@ static void ov5_021D1444 (BGL * param0)
             0
         };
 
-        sub_020183C4(param0, 1, &v1, 0);
+        sub_020183C4(bgl, 1, &v1, 0);
         sub_02019690(1, 32, 0, 4);
-        sub_02019EBC(param0, 1);
+        sub_02019EBC(bgl, 1);
     }
 
     {
@@ -638,9 +638,9 @@ static void ov5_021D1444 (BGL * param0)
             0
         };
 
-        sub_020183C4(param0, 2, &v2, 0);
+        sub_020183C4(bgl, 2, &v2, 0);
         sub_02019690(2, 32, 0, 4);
-        sub_02019EBC(param0, 2);
+        sub_02019EBC(bgl, 2);
     }
     {
         UnkStruct_ov97_0222DB78 v3 = {
@@ -659,9 +659,9 @@ static void ov5_021D1444 (BGL * param0)
             0
         };
 
-        sub_020183C4(param0, 3, &v3, 0);
+        sub_020183C4(bgl, 3, &v3, 0);
         sub_02019690(3, 32, 0, 4);
-        sub_02019EBC(param0, 3);
+        sub_02019EBC(bgl, 3);
     }
 
     {
@@ -672,12 +672,12 @@ static void ov5_021D1444 (BGL * param0)
     }
 }
 
-static void ov5_021D1524 (BGL * param0)
+static void ov5_021D1524 (BGL * bgl)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
-    sub_02019044(param0, 1);
-    sub_02019044(param0, 2);
-    sub_02019044(param0, 3);
+    sub_02019044(bgl, 1);
+    sub_02019044(bgl, 2);
+    sub_02019044(bgl, 3);
 }
 
 static void ov5_021D154C (void)
@@ -721,15 +721,15 @@ void ov5_021D15E8 (void)
     sub_0201F8B4();
 }
 
-static void ov5_021D15F4 (FieldSystem * param0)
+static void ov5_021D15F4 (FieldSystem * fieldSystem)
 {
     MtxFx44 v0, v1;
 
     sub_020241B4();
 
-    if (param0->unk_20 == 1) {
-        if (FieldMap_InDistortionWorld(param0) == 1) {
-            ov9_02249F9C(param0);
+    if (fieldSystem->unk_20 == 1) {
+        if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
+            ov9_02249F9C(fieldSystem);
         }
 
         sub_0202049C();
@@ -737,14 +737,14 @@ static void ov5_021D15F4 (FieldSystem * param0)
         sub_020203EC();
     }
 
-    sub_0206979C(param0);
-    ov5_021E91FC(param0->unk_28, param0->unk_44);
+    sub_0206979C(fieldSystem);
+    ov5_021E91FC(fieldSystem->unk_28, fieldSystem->unk_44);
 
-    if (FieldMap_InDistortionWorld(param0) == 1) {
-        ov9_0224CA50(param0);
+    if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
+        ov9_0224CA50(fieldSystem);
     }
 
-    ov5_021E1A6C(param0->unk_A4, param0->unk_30);
+    ov5_021E1A6C(fieldSystem->unk_A4, fieldSystem->unk_30);
 
     {
         const MtxFx44 * v2;
@@ -758,11 +758,11 @@ static void ov5_021D15F4 (FieldSystem * param0)
         NNS_G3dGlbFlush();
     }
 
-    ov5_021DF4F8(param0->unk_40);
+    ov5_021DF4F8(fieldSystem->unk_40);
     sub_02020C08();
 
-    if (FieldMap_InDistortionWorld(param0) == 1) {
-        ov9_02250780(param0);
+    if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
+        ov9_02250780(fieldSystem);
     }
 
     {
@@ -770,31 +770,31 @@ static void ov5_021D15F4 (FieldSystem * param0)
         NNS_G3dGlbFlush();
     }
 
-    ov5_021D1B18(param0->unk_04->unk_04);
+    ov5_021D1B18(fieldSystem->unk_04->unk_04);
     sub_020241BC(GX_SORTMODE_AUTO, Unk_02100844);
 }
 
-void ov5_021D16F4 (FieldSystem * param0, BOOL param1)
+void ov5_021D16F4 (FieldSystem * fieldSystem, BOOL param1)
 {
     if (param1 == 1) {
-        param0->unk_C0 |= 4;
+        fieldSystem->unk_C0 |= 4;
     } else {
-        param0->unk_C0 &= ~4;
+        fieldSystem->unk_C0 &= ~4;
     }
 }
 
-void ov5_021D1718 (FieldSystem * param0, BOOL param1)
+void ov5_021D1718 (FieldSystem * fieldSystem, BOOL param1)
 {
     if (param1 == 1) {
-        param0->unk_C0 |= 1;
+        fieldSystem->unk_C0 |= 1;
     } else {
-        param0->unk_C0 &= ~1;
+        fieldSystem->unk_C0 &= ~1;
     }
 }
 
-static void ov5_021D173C (FieldSystem * param0)
+static void ov5_021D173C (FieldSystem * fieldSystem)
 {
-    param0->unk_C0 = (8 | 1 | 2 | 4);
+    fieldSystem->unk_C0 = (8 | 1 | 2 | 4);
 }
 
 void ov5_021D1744 (const u8 param0)
@@ -810,152 +810,152 @@ void ov5_021D1744 (const u8 param0)
     }
 }
 
-static void ov5_021D1790 (FieldSystem * param0)
+static void ov5_021D1790 (FieldSystem * fieldSystem)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, Unk_02100844);
 
-    param0->unk_50 = ov5_021D38B8();
-    param0->unk_54 = ov5_021D4194();
+    fieldSystem->unk_50 = ov5_021D38B8();
+    fieldSystem->unk_54 = ov5_021D4194();
 
     {
         u16 v0, v1;
 
-        v0 = sub_0203A038(param0->unk_1C->unk_00);
-        param0->unk_30 = ov5_021EF76C(v0, param0->unk_50);
+        v0 = sub_0203A038(fieldSystem->unk_1C->unk_00);
+        fieldSystem->unk_30 = ov5_021EF76C(v0, fieldSystem->unk_50);
 
-        v1 = sub_0203A04C(param0->unk_1C->unk_00);
-        GF_ASSERT(param0->unk_34 == NULL);
+        v1 = sub_0203A04C(fieldSystem->unk_1C->unk_00);
+        GF_ASSERT(fieldSystem->unk_34 == NULL);
 
-        param0->unk_34 = ov5_021D1A14(4, v1);
+        fieldSystem->unk_34 = ov5_021D1A14(4, v1);
     }
 }
 
-static void ov5_021D17EC (FieldSystem * param0)
+static void ov5_021D17EC (FieldSystem * fieldSystem)
 {
-    param0->unk_28 = ov5_021E9084(param0->unk_2C, param0->unk_30, param0->unk_50, param0->unk_60);
+    fieldSystem->unk_28 = ov5_021E9084(fieldSystem->unk_2C, fieldSystem->unk_30, fieldSystem->unk_50, fieldSystem->unk_60);
 
-    if (FieldMap_InDistortionWorld(param0) == 1) {
+    if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         int v0 = 0, v1 = 0, v2 = 0;
 
-        ov9_02251094(param0->unk_1C->unk_00, &v0, &v1, &v2);
-        ov5_021EA678(param0->unk_28, v0, v1, v2);
-        ov5_021EA6A4(param0->unk_28, 1);
-        ov5_021EA6D0(param0->unk_28, 1);
+        ov9_02251094(fieldSystem->unk_1C->unk_00, &v0, &v1, &v2);
+        ov5_021EA678(fieldSystem->unk_28, v0, v1, v2);
+        ov5_021EA6A4(fieldSystem->unk_28, 1);
+        ov5_021EA6D0(fieldSystem->unk_28, 1);
     }
 
-    param0->unk_A0 = ov5_021EF28C(8, 4);
-    param0->unk_A8 = ov5_021EFB0C();
+    fieldSystem->unk_A0 = ov5_021EF28C(8, 4);
+    fieldSystem->unk_A8 = ov5_021EFB0C();
 
-    if (param0->unk_70 == 0) {
-        ov5_021E9630(param0->unk_28, ov5_021F0030, param0);
+    if (fieldSystem->unk_70 == 0) {
+        ov5_021E9630(fieldSystem->unk_28, ov5_021F0030, fieldSystem);
     }
 
-    ov5_021E9150(param0->unk_28, param0->unk_1C->unk_08, param0->unk_1C->unk_0C);
+    ov5_021E9150(fieldSystem->unk_28, fieldSystem->unk_1C->unk_08, fieldSystem->unk_1C->unk_0C);
 }
 
-static void ov5_021D1878 (FieldSystem * param0)
+static void ov5_021D1878 (FieldSystem * fieldSystem)
 {
-    param0->unk_40 = ov5_021DF440(param0, 34, 4);
+    fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, 4);
 
     {
         int v0 = 80;
 
-        if (FieldMap_InDistortionWorld(param0) == 1) {
+        if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
             v0 = 112;
         }
 
-        ov5_021DF47C(param0->unk_40, v0);
+        ov5_021DF47C(fieldSystem->unk_40, v0);
     }
 
-    ov5_021DF488(param0->unk_40, 4, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
+    ov5_021DF488(fieldSystem->unk_40, 4, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
 
-    if ((param0->unk_70 == 1) || (param0->unk_70 == 2)) {
-        sub_02062CCC(param0->unk_38, 0);
+    if ((fieldSystem->unk_70 == 1) || (fieldSystem->unk_70 == 2)) {
+        sub_02062CCC(fieldSystem->mapObjMan, 0);
     }
 
     {
         const u32 * v1;
 
-        if (param0->unk_70 == 1) {
+        if (fieldSystem->unk_70 == 1) {
             v1 = Unk_ov5_021FF7D0;
         } else {
-            if (FieldMap_InDistortionWorld(param0) == 1) {
+            if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
                 v1 = Unk_ov5_021FF6B8;
             } else {
                 v1 = Unk_ov5_021FF744;
             }
         }
 
-        ov5_021DF4C8(param0->unk_40, v1);
+        ov5_021DF4C8(fieldSystem->unk_40, v1);
     }
 
     {
         int v2 = 10;
 
-        if (param0->unk_70 == 2) {
+        if (fieldSystem->unk_70 == 2) {
             v2 = 5;
         }
 
-        ov5_021ECC20(param0->unk_38, 32, ov5_021D1A6C(param0->unk_34) + 3, ov5_021D1A68(param0->unk_34), v2);
+        ov5_021ECC20(fieldSystem->mapObjMan, 32, ov5_021D1A6C(fieldSystem->unk_34) + 3, ov5_021D1A68(fieldSystem->unk_34), v2);
     }
 
-    FieldEffect_InitRenderObject(param0->unk_40);
+    FieldEffect_InitRenderObject(fieldSystem->unk_40);
 
     {
-        UnkStruct_02027860 * v3 = sub_02027860(FieldSystem_SaveData(param0));
+        UnkStruct_02027860 * v3 = sub_02027860(FieldSystem_SaveData(fieldSystem));
         int v4 = sub_02027F80(v3);
 
-        PlayerAvatar_InitDraw(param0->playerAvatar, v4);
+        PlayerAvatar_InitDraw(fieldSystem->playerAvatar, v4);
     }
 
-    sub_02061C48(param0->unk_38);
+    sub_02061C48(fieldSystem->mapObjMan);
     CommPlayerMan_ForcePos();
-    sub_02062C3C(param0->unk_38);
-    ov5_021E931C(sub_0205EAFC(param0->playerAvatar), param0->unk_28);
+    sub_02062C3C(fieldSystem->mapObjMan);
+    ov5_021E931C(sub_0205EAFC(fieldSystem->playerAvatar), fieldSystem->unk_28);
 
-    param0->unk_04->unk_18 = sub_02055C8C(param0, 4);
+    fieldSystem->unk_04->unk_18 = sub_02055C8C(fieldSystem, 4);
 }
 
-static void ov5_021D1968 (FieldSystem * param0)
+static void ov5_021D1968 (FieldSystem * fieldSystem)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_TurnBothDispOn();
-    param0->unk_44 = ov5_021D5878();
-    ov5_021D1578(param0->unk_44);
-    param0->unk_48 = ov5_021D57BC();
+    fieldSystem->unk_44 = ov5_021D5878();
+    ov5_021D1578(fieldSystem->unk_44);
+    fieldSystem->unk_48 = ov5_021D57BC();
 
     {
-        int v0 = sub_0203A770(sub_0203A790(param0->saveData));
-        ov5_021D5B40(sub_0205EAFC(param0->playerAvatar), param0, v0, 1);
+        int v0 = sub_0203A770(sub_0203A790(fieldSystem->saveData));
+        ov5_021D5B40(sub_0205EAFC(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
-    param0->unk_4C = ov5_021D521C(param0->unk_44, ov5_021EFAD8(param0->unk_30));
+    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, ov5_021EFAD8(fieldSystem->unk_30));
 
-    if (FieldMap_InDistortionWorld(param0) == 1) {
-        param0->unk_04->unk_0C = NULL;
+    if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
+        fieldSystem->unk_04->unk_0C = NULL;
     } else {
-        param0->unk_04->unk_0C = ov5_021D5EB8(param0);
+        fieldSystem->unk_04->unk_0C = ov5_021D5EB8(fieldSystem);
     }
 
-    param0->unk_04->unk_08 = ov5_021DD98C(param0->unk_08);
-    param0->unk_64 = ov5_021E1B08(4);
-    param0->unk_04->unk_10 = ov5_021D5CB0();
+    fieldSystem->unk_04->unk_08 = ov5_021DD98C(fieldSystem->unk_08);
+    fieldSystem->unk_64 = ov5_021E1B08(4);
+    fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 
-    ov5_021D5CE4(param0->unk_04->unk_10, ov5_021EFA8C(param0->unk_30));
-    sub_02068344(param0);
-    ov5_021EE7C0(param0);
-    SetMainCallback(ov5_021D0D80, param0);
+    ov5_021D5CE4(fieldSystem->unk_04->unk_10, ov5_021EFA8C(fieldSystem->unk_30));
+    sub_02068344(fieldSystem);
+    ov5_021EE7C0(fieldSystem);
+    SetMainCallback(ov5_021D0D80, fieldSystem);
 }
 
-static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
+static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int fieldSystem, int param1)
 {
     int v0;
     u16 * v1;
     UnkStruct_ov5_021D1A68 * v2;
 
-    v2 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021D1A68));
-    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, param0);
+    v2 = Heap_AllocFromHeap(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
+    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, fieldSystem);
 
     for (v0 = 0; v0 < 24; v0++) {
         v2->unk_02[v0] = 0xffff;

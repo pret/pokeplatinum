@@ -285,7 +285,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 3:
         if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
-            sub_02062C30(v0->unk_24->unk_38);
+            sub_02062C30(v0->unk_24->mapObjMan);
             v0->unk_08(1, v0->unk_50);
         } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v0->unk_34 = 4;
@@ -296,7 +296,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 4:
         if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
-            sub_02062C30(v0->unk_24->unk_38);
+            sub_02062C30(v0->unk_24->mapObjMan);
             v0->unk_08(1, v0->unk_50);
         }
 

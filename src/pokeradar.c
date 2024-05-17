@@ -350,10 +350,10 @@ static void sub_020698E4 (FieldSystem *param0, RadarChain *chain) {
     }
 }
 
-static u8 sub_0206994C (FieldSystem *param0) {
+static u8 sub_0206994C (FieldSystem *fieldSystem) {
     u8 v1;
     BOOL v2;
-    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(param0->saveData));
+    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(fieldSystem->saveData));
 
     for (v1 = 0; v1 < 3; v1++) {
         if (v0->unk_00[v1].unk_00 == 0) {
@@ -394,27 +394,27 @@ static BOOL CheckPatchContinueChain (const u8 patchRing, const int battleResult)
     }
 }
 
-BOOL RefreshRadarChain (TaskManager *param0) {
-    FieldSystem *v0 = TaskManager_FieldSystem(param0);
-    int *v1 = TaskManager_Environment(param0);
+BOOL RefreshRadarChain (TaskManager *taskMan) {
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    int *v1 = TaskManager_Environment(taskMan);
 
     switch (*v1) {
     case 0:
-        MapObjectMan_PauseAllMovement(v0->unk_38);
-        u8 *v2 = sub_0202D9C4(sub_0202D834(v0->saveData));
+        MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
+        u8 *v2 = sub_0202D9C4(sub_0202D834(fieldSystem->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
-            sub_0203E8E0(param0, 8970, NULL, NULL);
-            *(u16 *)(sub_0203F098(v0, 41)) = RADAR_BATTERY_STEPS - (*v2);
+            sub_0203E8E0(taskMan, 8970, NULL, NULL);
+            *(u16 *)(sub_0203F098(fieldSystem, 41)) = RADAR_BATTERY_STEPS - (*v2);
             *v1 = 4;
         } else {
             *v2 = 0;
-            int v3 = Player_XPos(v0->playerAvatar);
-            int v4 = Player_ZPos(v0->playerAvatar);
-            RadarSpawnPatches(v0, v3, v4, v0->chain);
-            if (v0->chain->active) {
-                SetupGrassPatches(v0, 0x1, v0->chain);
-                sub_02069638(v0, v0->chain);
+            int v3 = Player_XPos(fieldSystem->playerAvatar);
+            int v4 = Player_ZPos(fieldSystem->playerAvatar);
+            RadarSpawnPatches(fieldSystem, v3, v4, fieldSystem->chain);
+            if (fieldSystem->chain->active) {
+                SetupGrassPatches(fieldSystem, 0x1, fieldSystem->chain);
+                sub_02069638(fieldSystem, fieldSystem->chain);
                 *v1 = 1;
             } else {
                 *v1 = 3;
@@ -426,17 +426,17 @@ BOOL RefreshRadarChain (TaskManager *param0) {
         *v1 = 2;
         break;
     case 2:
-        if (sub_02069690(v0->chain)) {
+        if (sub_02069690(fieldSystem->chain)) {
             *v1 = 4;
         }
         break;
     case 4:
         Heap_FreeToHeap(v1);
-        MapObjectMan_UnpauseAllMovement(v0->unk_38);
+        MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
         break;
     case 3:
-        sub_0203E8E0(param0, 8971, NULL, NULL);
+        sub_0203E8E0(taskMan, 8971, NULL, NULL);
         *v1 = 4;
         break;
     }
@@ -461,20 +461,20 @@ static BOOL CheckPatchShiny (const int chainCount) {
     }
 }
 
-void sub_02069B74 (FieldSystem *param0) {
-    IncWithCap(&(param0->chain->count));
-    sub_020698E4(param0, param0->chain);
+void sub_02069B74 (FieldSystem *fieldSystem) {
+    IncWithCap(&(fieldSystem->chain->count));
+    sub_020698E4(fieldSystem, fieldSystem->chain);
 }
 
-int GetChainCount (FieldSystem *param0) {
-    return param0->chain->count;
+int GetChainCount (FieldSystem *fieldSystem) {
+    return fieldSystem->chain->count;
 }
 
-void RadarChargeStep (FieldSystem *param0) {
+void RadarChargeStep (FieldSystem *fieldSystem) {
     u8 *v0;
 
-    if (sub_0207D688(sub_0207D990(param0->saveData), 431, 1, 4) == 1) {
-        v0 = sub_0202D9C4(sub_0202D834(param0->saveData));
+    if (sub_0207D688(sub_0207D990(fieldSystem->saveData), 431, 1, 4) == 1) {
+        v0 = sub_0202D9C4(sub_0202D834(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;
         }

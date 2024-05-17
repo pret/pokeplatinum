@@ -59,7 +59,7 @@ typedef struct FieldSystem_t {
     UnkStruct_02039E30 * unk_2C;
     UnkStruct_ov5_021EF76C * unk_30;
     UnkStruct_ov5_021D1A68 * unk_34;
-    MapObjectManager * unk_38;
+    MapObjectManager * mapObjMan;
     PlayerAvatar * playerAvatar;
     UnkStruct_ov5_021DF47C * unk_40;
     UnkStruct_ov5_021D5894 * unk_44;

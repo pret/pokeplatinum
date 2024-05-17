@@ -62,13 +62,13 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    FieldSystem * unk_20;
+    FieldSystem * fieldSystem;
     UnkStruct_ov101_021D5D90 * unk_24;
     u8 unk_28;
     Strbuf* unk_2C;
     Strbuf* unk_30;
     StringTemplate * unk_34;
-    Window unk_38;
+    Window window;
     MessageLoader * unk_48;
 } UnkStruct_ov5_021F0D6C;
 
@@ -86,7 +86,7 @@ static u16 ov5_021F0E58(int param0);
 int(*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *, MapObject *);
 const int Unk_ov5_021FFA00[];
 
-void * ov5_021F08CC (FieldSystem * param0, u32 param1, int param2)
+void * ov5_021F08CC (FieldSystem * fieldSystem, u32 param1, int param2)
 {
     UnkStruct_ov5_021F08CC * v0 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_ov5_021F08CC));
 
@@ -98,17 +98,17 @@ void * ov5_021F08CC (FieldSystem * param0, u32 param1, int param2)
     return v0;
 }
 
-BOOL ov5_021F08F8 (TaskManager * param0)
+BOOL ov5_021F08F8 (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_ov5_021F08CC * v1 = TaskManager_Environment(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov5_021F08CC * v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_00) {
     case 0:
-        MapObjectMan_PauseAllMovement(v0->unk_38);
+        MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         v1->unk_10 = NULL;
-        v1->unk_08 = ov6_0224106C(v0, v1->unk_0C, &v1->unk_10);
-        v1->unk_14 = ov5_021F09B4(v0, v1->unk_0C, v1->unk_08);
+        v1->unk_08 = ov6_0224106C(fieldSystem, v1->unk_0C, &v1->unk_10);
+        v1->unk_14 = ov5_021F09B4(fieldSystem, v1->unk_0C, v1->unk_08);
         v1->unk_00++;
         break;
     case 1:
@@ -120,15 +120,15 @@ BOOL ov5_021F08F8 (TaskManager * param0)
             if (v2 == 1) {
                 {
                     Pokemon * v3 = Party_GetPokemonBySlotIndex(v1->unk_10->parties[1], 0);
-                    sub_0206D340(v0, 1, v1->unk_04, v3);
+                    sub_0206D340(fieldSystem, 1, v1->unk_04, v3);
                 }
 
                 {
-                    UnkStruct_0202CD88 * v4 = sub_0202CD88(v0->saveData);
+                    UnkStruct_0202CD88 * v4 = sub_0202CD88(fieldSystem->saveData);
                     sub_0202CF28(v4, (1 + 9));
                 }
 
-                sub_02050E78(v0, param0, v1->unk_10);
+                sub_02050E78(fieldSystem, taskMan, v1->unk_10);
                 Heap_FreeToHeap(v1);
 
                 return 0;
@@ -138,7 +138,7 @@ BOOL ov5_021F08F8 (TaskManager * param0)
                 sub_020520A4(v1->unk_10);
             }
 
-            MapObjectMan_UnpauseAllMovement(v0->unk_38);
+            MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
             Heap_FreeToHeap(v1);
 
             return 1;
@@ -149,44 +149,44 @@ BOOL ov5_021F08F8 (TaskManager * param0)
     return 0;
 }
 
-SysTask * ov5_021F09B4 (FieldSystem * param0, int param1, BOOL param2)
+SysTask * ov5_021F09B4 (FieldSystem * fieldSystem, int param1, BOOL param2)
 {
-    SysTask * v0;
+    SysTask * task;
     UnkStruct_ov5_021F0D6C * v1 = ov5_021F0D1C(sizeof(UnkStruct_ov5_021F0D6C));
 
-    v1->unk_20 = param0;
+    v1->fieldSystem = fieldSystem;
     v1->unk_1C = param1;
     v1->unk_00 = param2;
 
-    v0 = SysTask_Start(ov5_021F0A04, v1, 128);
+    task = SysTask_Start(ov5_021F0A04, v1, 128);
 
-    return v0;
+    return task;
 }
 
-int ov5_021F09D8 (SysTask * param0)
+int ov5_021F09D8 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
+    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
     return v0->unk_04;
 }
 
-int ov5_021F09E4 (SysTask * param0)
+int ov5_021F09E4 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
+    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
     return v0->unk_08;
 }
 
-void ov5_021F09F0 (SysTask * param0)
+void ov5_021F09F0 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
+    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
 
     Heap_FreeToHeap(v0);
-    SysTask_Done(param0);
+    SysTask_Done(task);
 }
 
-static void ov5_021F0A04 (SysTask * param0, void * param1)
+static void ov5_021F0A04 (SysTask * task, void * param1)
 {
     UnkStruct_ov5_021F0D6C * v0 = param1;
-    PlayerAvatar * v1 = v0->unk_20->playerAvatar;
+    PlayerAvatar * v1 = v0->fieldSystem->playerAvatar;
     MapObject * v2 = Player_MapObject(v1);
 
     while (Unk_ov5_021FFA0C[v0->unk_0C](v0, v1, v2)) {
@@ -353,11 +353,11 @@ static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1,
     param0->unk_0C = 14;
 
     {
-        UnkStruct_0202CD88 * v0 = sub_0202CD88(param0->unk_20->saveData);
+        UnkStruct_0202CD88 * v0 = sub_0202CD88(param0->fieldSystem->saveData);
         sub_0202CF28(v0, (((70 + 1)) + 29));
     }
 
-    sub_0206D340(param0->unk_20, 0, ov5_021F0E58(param0->unk_1C), NULL);
+    sub_0206D340(param0->fieldSystem, 0, ov5_021F0E58(param0->unk_1C), NULL);
 
     return 1;
 }
@@ -506,7 +506,7 @@ static int ov5_021F0D54 (void)
 
 static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
 {
-    FieldSystem * v0 = param0->unk_20;
+    FieldSystem * v0 = param0->fieldSystem;
 
     param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
@@ -524,10 +524,10 @@ static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 
 static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
 {
-    FieldSystem * v0 = param0->unk_20;
+    FieldSystem * v0 = param0->fieldSystem;
 
-    FieldMessage_AddWindow(v0->unk_08, &param0->unk_38, 3);
-    FieldMessage_DrawWindow(&param0->unk_38, SaveData_Options(v0->saveData));
+    FieldMessage_AddWindow(v0->unk_08, &param0->window, 3);
+    FieldMessage_DrawWindow(&param0->window, SaveData_Options(v0->saveData));
 }
 
 static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
@@ -535,20 +535,20 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
     ov5_021F0DC4(param0);
 
     {
-        FieldSystem * v0 = param0->unk_20;
+        FieldSystem * fieldSystem = param0->fieldSystem;
 
         MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
         StringTemplate_Format(param0->unk_34, param0->unk_2C, param0->unk_30);
 
-        param0->unk_28 = FieldMessage_Print(&param0->unk_38, param0->unk_2C, SaveData_Options(v0->saveData), 1);
+        param0->unk_28 = FieldMessage_Print(&param0->window, param0->unk_2C, SaveData_Options(fieldSystem->saveData), 1);
     }
 }
 
 static int ov5_021F0E24 (UnkStruct_ov5_021F0D6C * param0)
 {
     if ((FieldMessage_FinishedPrinting(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
-        sub_0200E084(&param0->unk_38, 0);
-        BGL_DeleteWindow(&param0->unk_38);
+        sub_0200E084(&param0->window, 0);
+        BGL_DeleteWindow(&param0->window);
         return 1;
     }
 

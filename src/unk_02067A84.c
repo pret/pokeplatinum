@@ -64,13 +64,13 @@ static void sub_0206806C(SysTask * param0, void * param1);
 int(*const Unk_020EF6C0[])(const MapObject *, int, int, int, int);
 int(*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
 
-int sub_02067A84 (FieldSystem * param0, BOOL param1)
+int sub_02067A84 (FieldSystem * fieldSystem, BOOL param1)
 {
     UnkStruct_02067C28 v0;
-    MapObjectManager * v1 = param0->unk_38;
-    PlayerAvatar * v2 = param0->playerAvatar;
+    MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
+    PlayerAvatar * playerAvatar = fieldSystem->playerAvatar;
 
-    if (sub_02067BA8(param0, v1, v2, NULL, &v0) == 0) {
+    if (sub_02067BA8(fieldSystem, mapObjMan, playerAvatar, NULL, &v0) == 0) {
         return 0;
     }
 
@@ -78,15 +78,15 @@ int sub_02067A84 (FieldSystem * param0, BOOL param1)
         MapObject * v3;
         UnkStruct_02067C28 v4;
 
-        sub_0203E880(param0, 3928, v0.unk_14);
+        sub_0203E880(fieldSystem, 3928, v0.unk_14);
 
-        if ((param1 == 0) || (sub_02067BA8(param0, v1, v2, v0.unk_14, &v4) == 0)) {
-            sub_0203E8B0(param0, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 0, 0);
+        if ((param1 == 0) || (sub_02067BA8(fieldSystem, mapObjMan, playerAvatar, v0.unk_14, &v4) == 0)) {
+            sub_0203E8B0(fieldSystem, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 0, 0);
             return 1;
         }
 
-        sub_0203E8B0(param0, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 2, 0);
-        sub_0203E8B0(param0, v4.unk_14, v4.unk_00, v4.unk_04, v4.unk_08, v4.unk_0C, 2, 1);
+        sub_0203E8B0(fieldSystem, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 2, 0);
+        sub_0203E8B0(fieldSystem, v4.unk_14, v4.unk_00, v4.unk_04, v4.unk_08, v4.unk_0C, 2, 1);
 
         return 1;
     }
@@ -99,12 +99,12 @@ int sub_02067A84 (FieldSystem * param0, BOOL param1)
             return 0;
         }
 
-        v5 = sub_02067F2C(param0, v1, v0.unk_14, v0.unk_0C);
+        v5 = sub_02067F2C(fieldSystem, mapObjMan, v0.unk_14, v0.unk_0C);
 
         sub_02067C28(&v6, v5, v0.unk_00, v0.unk_04);
-        sub_0203E880(param0, 3928, v0.unk_14);
-        sub_0203E8B0(param0, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 1, 0);
-        sub_0203E8B0(param0, v6.unk_14, v6.unk_00, v6.unk_04, v6.unk_08, v6.unk_0C, 1, 1);
+        sub_0203E880(fieldSystem, 3928, v0.unk_14);
+        sub_0203E8B0(fieldSystem, v0.unk_14, v0.unk_00, v0.unk_04, v0.unk_08, v0.unk_0C, 1, 0);
+        sub_0203E8B0(fieldSystem, v6.unk_14, v6.unk_00, v6.unk_04, v6.unk_08, v6.unk_0C, 1, 1);
 
         return 1;
     }
@@ -113,7 +113,7 @@ int sub_02067A84 (FieldSystem * param0, BOOL param1)
     return 0;
 }
 
-static int sub_02067BA8 (FieldSystem * param0, MapObjectManager * param1, PlayerAvatar * param2, const MapObject * param3, UnkStruct_02067C28 * param4)
+static int sub_02067BA8 (FieldSystem * fieldSystem, MapObjectManager * param1, PlayerAvatar * param2, const MapObject * param3, UnkStruct_02067C28 * param4)
 {
     int v0, v1, v2;
     MapObject * v3;
@@ -127,7 +127,7 @@ static int sub_02067BA8 (FieldSystem * param0, MapObjectManager * param1, Player
             v1 = sub_02067C80(v3, param2, &v2);
 
             if (v1 != -1) {
-                if (sub_0203F2A0(param0, sub_02067F14(v3)) == 0) {
+                if (sub_0203F2A0(fieldSystem, sub_02067F14(v3)) == 0) {
                     sub_02067C28(param4, v3, v1, v2);
                     return 1;
                 }
