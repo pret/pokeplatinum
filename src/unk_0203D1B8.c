@@ -1350,14 +1350,14 @@ void sub_0203E0C0 (FieldSystem * param0, UnkStruct_020425E0 * param1)
 {
     FS_EXTERN_OVERLAY(choose_starter);
 
-    static const OverlayManagerTemplate v0 = {
-        ov78_021D0D80,
-        ov78_021D0EF4,
-        ov78_021D0FA8,
+    static const OverlayManagerTemplate template = {
+        ChooseStarter_Init,
+        ChooseStarter_Main,
+        ChooseStarter_Exit,
         FS_OVERLAY_ID(choose_starter)
     };
 
-    sub_0203CD84(param0, &v0, param1);
+    sub_0203CD84(param0, &template, param1);
 }
 
 void sub_0203E0D0 (FieldSystem * param0)

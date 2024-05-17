@@ -1,9 +1,11 @@
-#ifndef POKEPLATINUM_OV78_021D0D80_H
-#define POKEPLATINUM_OV78_021D0D80_H
+#ifndef POKEPLATINUM_CHOOSE_STARTER_APP_H
+#define POKEPLATINUM_CHOOSE_STARTER_APP_H
 
+#include "overlay_manager.h"
 
-int ov78_021D0D80(OverlayManager * param0, int * param1);
-int ov78_021D0EF4(OverlayManager * param0, int * param1);
-int ov78_021D0FA8(OverlayManager * param0, int * param1);
+int ChooseStarter_Init(OverlayManager *ovyManager, int *state);
+int ChooseStarter_Main(OverlayManager *ovyManager, int *state);
+int ChooseStarter_Exit(OverlayManager *ovyManager, int *state);
 
-#endif // POKEPLATINUM_OV78_021D0D80_H
+#endif // POKEPLATINUM_CHOOSE_STARTER_APP_H
+
