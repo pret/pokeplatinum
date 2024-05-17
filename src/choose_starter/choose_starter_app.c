@@ -244,13 +244,13 @@ typedef struct ChooseStarterApp {
 } ChooseStarterApp;
 
 static void ChooseStarterAppMainCallback(void *data);
-static void ov78_021D107C(ChooseStarterApp * param0);
-static void ov78_021D109C(ChooseStarterApp * param0);
-static BOOL ov78_021D10BC(ChooseStarterApp * param0);
+static void StartFadeIn(ChooseStarterApp * param0);
+static void StartFadeOut(ChooseStarterApp * param0);
+static BOOL IsFadeDone(ChooseStarterApp * param0);
 static u16 GetSelectedSpecies(u16 cursorPosition);
-static BOOL ov78_021D1978(ChooseStarterApp * param0, int param1);
-static void ov78_021D19D4(ChooseStarterApp * param0, int param1);
-static void ov78_021D1AAC(ChooseStarterApp * param0);
+static BOOL IsSelectionMade(ChooseStarterApp * param0, int param1);
+static void UpdateGraphics(ChooseStarterApp * param0, int param1);
+static void DrawScene(ChooseStarterApp * param0);
 static void SetupDrawing(ChooseStarterApp *app, enum HeapId heapID);
 static void ov78_021D10DC(void);
 static void SetupVRAMBank(void);
@@ -334,7 +334,7 @@ static void StartCursorMovement(ChooseStarterCursor * param0);
 static void ov78_021D23E8(SysTask * param0, void * param1);
 static void ov78_021D241C(ChooseStarterCursor * param0);
 
-int ChooseStarter_Init (OverlayManager * param0, int * param1)
+BOOL ChooseStarter_Init (OverlayManager * param0, int * param1)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_CHOOSE_STARTER_APP, HEAP_SIZE_CHOOSE_STARTER_APP);
 
@@ -391,56 +391,67 @@ int ChooseStarter_Init (OverlayManager * param0, int * param1)
 
     sub_02004550(60, 0, 0);
 
-    return 1;
+    return TRUE;
 }
 
-int ChooseStarter_Main (OverlayManager * param0, int * param1)
+enum {
+    CHOOSE_STARTER_MAIN_FADE_IN = 0,
+    CHOOSE_STARTER_MAIN_WAIT_FADE_IN,
+    CHOOSE_STARTER_MAIN_LOOP,
+    CHOOSE_STARTER_MAIN_FADE_OUT,
+    CHOOSE_STARTER_MAIN_WAIT_FADE_OUT,
+};
+
+BOOL ChooseStarter_Main (OverlayManager * ovyManager, int * state)
 {
-    ChooseStarterApp * v0 = OverlayManager_Data(param0);
-    BOOL v1;
-    short v2 = 0x8c3;
+    ChooseStarterApp *app = OverlayManager_Data(ovyManager);
+    BOOL selectionMade;
+    u16 palette = 0x08C3;
 
-    switch (*param1) {
-    case 0:
-        ov78_021D107C(v0);
-        GX_LoadBGPltt(&v2, 0, sizeof(short));
-        (*param1)++;
+    switch (*state) {
+    case CHOOSE_STARTER_MAIN_FADE_IN:
+        StartFadeIn(app);
+        GX_LoadBGPltt(&palette, 0, sizeof(u16));
+        (*state)++;
         break;
-    case 1:
-        if (ov78_021D10BC(v0)) {
+
+    case CHOOSE_STARTER_MAIN_WAIT_FADE_IN:
+        if (IsFadeDone(app)) {
             sub_0200F32C(0);
             sub_0200F32C(1);
-            (*param1)++;
+            (*state)++;
         }
         break;
-    case 2:
-        v1 = ov78_021D1978(v0, 47);
-        ov78_021D19D4(v0, 47);
 
-        if (v1 == 1) {
-            (*param1)++;
+    case CHOOSE_STARTER_MAIN_LOOP:
+        selectionMade = IsSelectionMade(app, HEAP_ID_CHOOSE_STARTER_APP);
+        UpdateGraphics(app, HEAP_ID_CHOOSE_STARTER_APP);
+
+        if (selectionMade == TRUE) {
+            (*state)++;
         }
         break;
-    case 3:
-        ov78_021D109C(v0);
-        (*param1)++;
+
+    case CHOOSE_STARTER_MAIN_FADE_OUT:
+        StartFadeOut(app);
+        (*state)++;
         break;
-    case 4:
-        if (ov78_021D10BC(v0)) {
+
+    case CHOOSE_STARTER_MAIN_WAIT_FADE_OUT:
+        if (IsFadeDone(app)) {
             sub_0200F32C(0);
             sub_0200F32C(1);
 
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    ov78_021D1AAC(v0);
-
-    return 0;
+    DrawScene(app);
+    return FALSE;
 }
 
-int ChooseStarter_Exit (OverlayManager * param0, int * param1)
+BOOL ChooseStarter_Exit (OverlayManager * param0, int * param1)
 {
     ChooseStarterApp * v0 = OverlayManager_Data(param0);
     ChooseStarterData * v1 = OverlayManager_Args(param0);
@@ -474,7 +485,7 @@ int ChooseStarter_Exit (OverlayManager * param0, int * param1)
     OverlayManager_FreeData(param0);
     Heap_Destroy(47);
 
-    return 1;
+    return TRUE;
 }
 
 static void ChooseStarterAppMainCallback(void *data)
@@ -487,17 +498,17 @@ static void ChooseStarterAppMainCallback(void *data)
     sub_0201DCAC();
 }
 
-static void ov78_021D107C (ChooseStarterApp * param0)
+static void StartFadeIn (ChooseStarterApp * param0)
 {
     sub_0200F174(0, 1, 1, 0x0, 6, 1, 47);
 }
 
-static void ov78_021D109C (ChooseStarterApp * param0)
+static void StartFadeOut (ChooseStarterApp * param0)
 {
     sub_0200F174(0, 0, 0, 0x0, 6, 1, 47);
 }
 
-static BOOL ov78_021D10BC (ChooseStarterApp * param0)
+static BOOL IsFadeDone (ChooseStarterApp * param0)
 {
     return ScreenWipe_Done();
 }
@@ -954,7 +965,7 @@ static void ov78_021D192C (ChooseStarterApp * param0)
     }
 }
 
-static BOOL ov78_021D1978 (ChooseStarterApp * param0, int param1)
+static BOOL IsSelectionMade (ChooseStarterApp * param0, int param1)
 {
     if (param0->unk_08 == 1) {
         return 0;
@@ -987,7 +998,7 @@ static BOOL ov78_021D1978 (ChooseStarterApp * param0, int param1)
     return 0;
 }
 
-static void ov78_021D19D4 (ChooseStarterApp * param0, int param1)
+static void UpdateGraphics (ChooseStarterApp * param0, int param1)
 {
     switch (ov78_021D1CA4(param0)) {
     case 0:
@@ -1029,7 +1040,7 @@ static void ov78_021D19D4 (ChooseStarterApp * param0, int param1)
     }
 }
 
-static void ov78_021D1AAC (ChooseStarterApp * param0)
+static void DrawScene (ChooseStarterApp * param0)
 {
     sub_020241B4();
 
