@@ -11,7 +11,7 @@
 #include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
 #include "unk_020655F4.h"

@@ -10,7 +10,7 @@
 
 #include "heap.h"
 #include "unk_020508D4.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/ov5_021F101C.h"
 #include "overlay006/ov6_02243258.h"

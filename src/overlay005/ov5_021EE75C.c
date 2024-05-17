@@ -9,7 +9,7 @@
 
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021EE75C.h"

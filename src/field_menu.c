@@ -79,7 +79,7 @@
 #include "poketch_data.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
 #include "unk_020683F4.h"

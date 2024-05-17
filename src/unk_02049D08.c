@@ -36,7 +36,7 @@
 #include "unk_0204AEE8.h"
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"

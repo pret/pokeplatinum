@@ -13,7 +13,7 @@
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 
 typedef struct UnkStruct_0203A790_t {

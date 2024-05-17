@@ -13,7 +13,7 @@
 #include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_0203E880.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"

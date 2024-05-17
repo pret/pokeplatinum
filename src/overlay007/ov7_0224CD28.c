@@ -54,7 +54,7 @@
 #include "unk_020508D4.h"
 #include "unk_020573FC.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_0207CB08.h"

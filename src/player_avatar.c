@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "heap.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_02063400.h"
 #include "overlay005/ov5_021F25C0.h"
@@ -275,16 +275,16 @@ int Player_MoveState (const PlayerAvatar * param0)
     return param0->unk_18;
 }
 
-void PlayerAvatar_SetVisible (PlayerAvatar * param0, int param1)
+void PlayerAvatar_SetHidden (PlayerAvatar * param0, int param1)
 {
     MapObject * v0;
 
     v0 = Player_MapObject(param0);
 
     if (param1 == 1) {
-        MapObject_SetStatusFlagOff(v0, (1 << 9));
+        MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_HIDE);
     } else {
-        MapObject_SetStatusFlagOn(v0, (1 << 9));
+        MapObject_SetStatusFlagOn(v0, MAP_OBJ_STATUS_HIDE);
     }
 }
 

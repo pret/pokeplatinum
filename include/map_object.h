@@ -20,7 +20,7 @@
 
 #include <nitro/fx/fx.h>
 
-#include "constants/field_object.h"
+#include "constants/map_object.h"
 
 MapObjectManager * sub_02061804(FieldSystem * param0, int param1, int param2);
 void sub_02061830(MapObjectManager * param0);

@@ -12,7 +12,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/ov5_021ECC20.h"

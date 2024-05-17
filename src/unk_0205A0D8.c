@@ -46,7 +46,7 @@
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_020655F4.h"
 #include "pokemon.h"

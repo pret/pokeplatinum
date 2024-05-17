@@ -7,7 +7,7 @@
 #include "field/field_system.h"
 
 #include "unk_0201D15C.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
 #include "unk_02063400.h"

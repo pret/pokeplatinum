@@ -20,7 +20,7 @@
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "pokeradar.h"
 #include "unk_020711EC.h"

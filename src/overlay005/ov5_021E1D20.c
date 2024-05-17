@@ -31,7 +31,7 @@
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay005/ov5_021E1D20.h"
 #include "overlay005/ov5_021EA714.h"
 

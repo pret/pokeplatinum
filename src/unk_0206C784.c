@@ -21,7 +21,7 @@
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206C784.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"

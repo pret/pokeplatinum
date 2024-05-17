@@ -23,7 +23,7 @@
 #include "unk_020530C8.h"
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_0206A8DC.h"
 #include "unk_02070428.h"

@@ -50,7 +50,7 @@
 #include "unk_02054D00.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
 #include "unk_02063400.h"

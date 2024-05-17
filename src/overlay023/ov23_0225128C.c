@@ -41,7 +41,7 @@
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "comm_player_manager.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206A780.h"
 #include "unk_0206A8DC.h"
 #include "overlay023/ov23_0223E140.h"
@@ -630,7 +630,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            PlayerAvatar_SetVisible(v0->playerAvatar, 0);
+            PlayerAvatar_SetHidden(v0->playerAvatar, 0);
 
             ov23_02251A84(1, v0);
             v1->unk_00 = 2;
@@ -644,7 +644,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
         v1->unk_00 = 4;
         break;
     case 4:
-        PlayerAvatar_SetVisible(v0->playerAvatar, 1);
+        PlayerAvatar_SetHidden(v0->playerAvatar, 1);
         ov23_02251A84(0, v0);
         sub_0200F174(1, 1, 1, 0x0, 6, 1, 4);
         v1->unk_00 = 5;

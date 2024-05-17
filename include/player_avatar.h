@@ -30,7 +30,7 @@ void sub_0205EB08(PlayerAvatar * param0, int param1);
 int sub_0205EB0C(const PlayerAvatar * param0);
 void sub_0205EB10(PlayerAvatar * param0, int param1);
 int Player_MoveState(const PlayerAvatar * param0);
-void PlayerAvatar_SetVisible(PlayerAvatar * param0, int param1);
+void PlayerAvatar_SetHidden(PlayerAvatar * param0, int param1);
 void PlayerAvatar_SetMapObject(PlayerAvatar * param0, MapObject * param1);
 MapObject * Player_MapObject(PlayerAvatar * param0);
 const MapObject * sub_0205EB54(const PlayerAvatar * param0);

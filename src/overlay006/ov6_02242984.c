@@ -14,7 +14,7 @@
 #include "unk_02039C80.h"
 #include "unk_0203A378.h"
 #include "unk_0203CC84.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay006/ov6_02240C9C.h"
 #include "overlay006/ov6_02242984.h"
 #include "overlay006/ov6_02242F74.h"

@@ -37,7 +37,7 @@
 #include "communication_system.h"
 #include "comm_player_manager.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248F1C.h"
 

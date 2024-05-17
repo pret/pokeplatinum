@@ -19,7 +19,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "heap.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay006/ov6_02248050.h"

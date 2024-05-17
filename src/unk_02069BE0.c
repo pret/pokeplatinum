@@ -10,7 +10,7 @@
 
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"

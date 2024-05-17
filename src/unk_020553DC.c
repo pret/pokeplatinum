@@ -14,7 +14,7 @@
 #include "unk_0203A6DC.h"
 #include "unk_020507CC.h"
 #include "unk_020553DC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "trainer_data.h"

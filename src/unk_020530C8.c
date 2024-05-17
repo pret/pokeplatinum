@@ -62,7 +62,7 @@
 #include "unk_0205C22C.h"
 #include "unk_0205CA94.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "pokeradar.h"
 #include "unk_0206A8DC.h"

@@ -33,7 +33,7 @@
 #include "unk_02050A74.h"
 #include "unk_02051D8C.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"

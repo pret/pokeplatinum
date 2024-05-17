@@ -35,7 +35,7 @@
 #include "unk_02054D00.h"
 #include "unk_020559DC.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"

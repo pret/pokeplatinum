@@ -46,7 +46,7 @@
 #include "unk_0205A0D8.h"
 #include "unk_0205B33C.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
 #include "unk_02067A84.h"

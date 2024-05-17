@@ -48,7 +48,7 @@
 #include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "comm_player_manager.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "unk_02063400.h"
 #include "unk_020655F4.h"

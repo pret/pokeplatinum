@@ -60,7 +60,7 @@
 #include "unk_02055C50.h"
 #include "comm_player_manager.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_02068344.h"
 #include "pokeradar.h"

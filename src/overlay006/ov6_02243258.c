@@ -35,7 +35,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "map_object.h"
 #include "unk_020711EC.h"
 #include "pokemon.h"

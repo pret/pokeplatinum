@@ -22,7 +22,7 @@
 #include "unk_0203CC84.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
 
