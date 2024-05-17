@@ -69,7 +69,7 @@ static void ov5_021F58E8 (UnkStruct_021F58C0 * param0)
     sub_02073AA8(&param0->unk_18);
 }
 
-void ov5_021F58FC (LocalMapObject * param0, int param1, int param2, int param3)
+void ov5_021F58FC (MapObject * param0, int param1, int param2, int param3)
 {
     int v0, v1, v2;
     UnkStruct_021F58FC v3;

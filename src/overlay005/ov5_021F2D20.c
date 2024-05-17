@@ -28,7 +28,7 @@ typedef struct {
     FieldSystem * unk_0C;
     UnkStruct_ov5_021DF47C * unk_10;
     UnkStruct_ov5_021F2D20 * unk_14;
-    LocalMapObject * unk_18;
+    MapObject * unk_18;
 } UnkStruct_021F2EA4;
 
 typedef struct {
@@ -147,7 +147,7 @@ static void ov5_021F2E2C (UnkStruct_ov5_021F2D20 * param0)
     ov5_021DF9D4(param0->unk_00, 7);
 }
 
-void ov5_021F2EA4 (LocalMapObject * param0, int param1)
+void ov5_021F2EA4 (MapObject * param0, int param1)
 {
     int v0;
     VecFx32 v1;
@@ -217,7 +217,7 @@ static void ov5_021F2FAC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     int v0;
     UnkStruct_021F2FA0 * v1;
-    LocalMapObject * v2;
+    MapObject * v2;
 
     v1 = param1;
     v2 = v1->unk_18.unk_18;
@@ -281,7 +281,7 @@ static void ov5_021F308C (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     VecFx32 v0;
     UnkStruct_021F2FA0 * v1;
-    LocalMapObject * v2;
+    MapObject * v2;
 
     v1 = param1;
     v2 = v1->unk_18.unk_18;

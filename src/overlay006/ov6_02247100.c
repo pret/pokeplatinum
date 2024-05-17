@@ -32,7 +32,7 @@ typedef struct {
     SysTask * unk_0C;
     SysTask * unk_10;
     SysTask * unk_14;
-    LocalMapObject * unk_18;
+    MapObject * unk_18;
     FieldSystem * unk_1C;
     Pokemon * unk_20;
 } UnkStruct_ov6_02247100;
@@ -54,7 +54,7 @@ void * ov6_02247100 (FieldSystem * param0, u32 param1)
 
     v0->unk_08 = 0;
     v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_18 = Player_MapObject(param0->playerAvatar);
 
     return v0;
 }
@@ -174,7 +174,7 @@ void * ov6_022472C8 (FieldSystem * param0, u32 param1, int param2)
 
     v0->unk_08 = param2;
     v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_18 = Player_MapObject(param0->playerAvatar);
 
     return v0;
 }
@@ -293,7 +293,7 @@ void * ov6_02247488 (FieldSystem * param0, Pokemon * param1, u32 param2)
 
     v0->unk_08 = 1;
     v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_18 = Player_MapObject(param0->playerAvatar);
     v0->unk_20 = param1;
 
     return v0;
@@ -352,7 +352,7 @@ void * ov6_02247530 (FieldSystem * param0, Pokemon * param1, u32 param2)
 
     v0->unk_08 = 2;
     v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_18 = Player_MapObject(param0->playerAvatar);
     v0->unk_20 = param1;
 
     return v0;

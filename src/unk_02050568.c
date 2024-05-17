@@ -133,7 +133,7 @@ static BOOL sub_020505A0 (TaskManager * param0)
 
 static void sub_0205074C (PlayerAvatar * param0, BOOL param1)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0);
+    MapObject * v0 = Player_MapObject(param0);
     sub_02062D64(v0, param1);
 }
 

@@ -6,6 +6,6 @@
 
 void * ov5_021F2BD0(UnkStruct_ov5_021DF47C * param0);
 void ov5_021F2BEC(void * param0);
-void ov5_021F2C38(LocalMapObject * param0, int param1, int param2, int param3);
+void ov5_021F2C38(MapObject * param0, int param1, int param2, int param3);
 
 #endif // POKEPLATINUM_OV5_021F2BD0_H

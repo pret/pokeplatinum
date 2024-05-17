@@ -337,14 +337,14 @@ static BOOL sub_02056F1C (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
-    LocalMapObject * v2;
+    MapObject * v2;
 
     switch (v1->unk_04) {
     case 0:
     {
         int v3 = Player_Dir(v0->playerAvatar);
 
-        v2 = Player_LocalMapObject(v0->playerAvatar);
+        v2 = Player_MapObject(v0->playerAvatar);
 
         if (v3 == 2) {
             LocalMapObj_SetAnimationCode(v2, 0xa);
@@ -357,7 +357,7 @@ static BOOL sub_02056F1C (TaskManager * param0)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = Player_LocalMapObject(v0->playerAvatar);
+        v2 = Player_MapObject(v0->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
@@ -383,7 +383,7 @@ static BOOL sub_02056FC0 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
-    LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
+    MapObject * v2 = Player_MapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
     case 0:
@@ -406,7 +406,7 @@ static BOOL sub_02057008 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
-    LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
+    MapObject * v2 = Player_MapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
     case 0:
@@ -427,7 +427,7 @@ static BOOL sub_02057008 (TaskManager * param0)
 
 static BOOL sub_02057050 (TaskManager * param0)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v2 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v3;
@@ -436,7 +436,7 @@ static BOOL sub_02057050 (TaskManager * param0)
     case 0:
     {
         u8 v4;
-        LocalMapObject * v5 = Player_LocalMapObject(v1->playerAvatar);
+        MapObject * v5 = Player_MapObject(v1->playerAvatar);
 
         v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
 
@@ -464,7 +464,7 @@ static BOOL sub_02057050 (TaskManager * param0)
         if (ov5_021D453C(v1, v3)) {
             ov5_021D432C(v3);
             {
-                LocalMapObject * v7 = Player_LocalMapObject(v1->playerAvatar);
+                MapObject * v7 = Player_MapObject(v1->playerAvatar);
 
                 sub_02062D64(v7, 0);
             }
@@ -480,7 +480,7 @@ static BOOL sub_02057050 (TaskManager * param0)
 
 static BOOL sub_0205711C (TaskManager * param0)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v2 = TaskManager_Environment(param0);
     UnkStruct_ov5_021D432C * v3;
@@ -489,7 +489,7 @@ static BOOL sub_0205711C (TaskManager * param0)
     case 0:
     {
         u8 v4;
-        LocalMapObject * v5 = Player_LocalMapObject(v1->playerAvatar);
+        MapObject * v5 = Player_MapObject(v1->playerAvatar);
 
         v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
 
@@ -545,13 +545,13 @@ static BOOL sub_02057218 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
-    LocalMapObject * v2;
+    MapObject * v2;
 
     switch (v1->unk_04) {
     case 0:
 
         ov5_021D1744(1);
-        v2 = Player_LocalMapObject(v0->playerAvatar);
+        v2 = Player_MapObject(v0->playerAvatar);
 
         if (1) {
             int v3;
@@ -572,7 +572,7 @@ static BOOL sub_02057218 (TaskManager * param0)
         (v1->unk_04)++;
         break;
     case 1:
-        v2 = Player_LocalMapObject(v0->playerAvatar);
+        v2 = Player_MapObject(v0->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v2) == 1) {
             sub_020656AC(v2);
@@ -595,7 +595,7 @@ static BOOL sub_020572B8 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
-    LocalMapObject * v2 = Player_LocalMapObject(v0->playerAvatar);
+    MapObject * v2 = Player_MapObject(v0->playerAvatar);
 
     switch (v1->unk_04) {
     case 0:

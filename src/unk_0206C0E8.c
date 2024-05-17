@@ -88,7 +88,7 @@ static BOOL sub_0206C120 (TaskManager * param0)
         break;
     case 4:
     {
-        LocalMapObject * v3 = Player_LocalMapObject(v0->playerAvatar);
+        MapObject * v3 = Player_MapObject(v0->playerAvatar);
 
         v1->unk_0D++;
 

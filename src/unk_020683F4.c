@@ -209,7 +209,7 @@ u32 sub_020683F4 (u16 param0, u16 param1)
 void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
 {
     int v0, v1, v2;
-    LocalMapObject * v3;
+    MapObject * v3;
 
     if (sub_0205F158(param0->playerAvatar) == 1) {
         sub_020684D0(param0, param1);
@@ -308,7 +308,7 @@ static BOOL sub_020685AC (TaskManager * param0)
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0206851C * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
-    LocalMapObject * v3;
+    MapObject * v3;
 
     switch (*v2) {
     case 0:
@@ -489,7 +489,7 @@ static BOOL sub_02068884 (TaskManager * param0)
         break;
     case 1:
         if (sub_0205EB74(v0->playerAvatar) == 0x1) {
-            sub_02062DDC(Player_LocalMapObject(v0->playerAvatar));
+            sub_02062DDC(Player_MapObject(v0->playerAvatar));
             ov5_021DFB54(v0->playerAvatar, (1 << 0));
             ov5_021DFB5C(v0->playerAvatar);
 
@@ -499,7 +499,7 @@ static BOOL sub_02068884 (TaskManager * param0)
         } else {
             sub_020553F0(v0, 1152);
             sub_02055554(v0, 1152, 1);
-            sub_02062DDC(Player_LocalMapObject(v0->playerAvatar));
+            sub_02062DDC(Player_MapObject(v0->playerAvatar));
 
             ov5_021DFB54(v0->playerAvatar, (1 << 1));
             ov5_021DFB5C(v0->playerAvatar);
@@ -537,7 +537,7 @@ static u32 sub_02068948 (const UnkStruct_020684D0 * param0)
     }
 
     {
-        LocalMapObject * v1 = Player_LocalMapObject(param0->unk_14);
+        MapObject * v1 = Player_MapObject(param0->unk_14);
 
         if ((sub_0206415C(v1, param0->unk_0E) == 1) || (sub_0206417C(v1, param0->unk_0E) == 1)) {
             return 1;
@@ -637,7 +637,7 @@ static void sub_02068B1C (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 {
     FieldSystem * v0;
     FieldMenu * v1;
-    LocalMapObject * v2;
+    MapObject * v2;
 
     v0 = TaskManager_FieldSystem(param0->unk_00);
     v1 = TaskManager_Environment(param0->unk_00);
@@ -916,7 +916,7 @@ static u32 sub_02068E94 (const UnkStruct_020684D0 * param0)
 
     if (sub_0205DB58(param0->unk_0C) == 1) {
         if ((sub_0205DEFC(param0->unk_0E) == 1) || (sub_0205DEF0(param0->unk_0E) == 1)) {
-            LocalMapObject * v0 = Player_LocalMapObject(param0->unk_14);
+            MapObject * v0 = Player_MapObject(param0->unk_14);
 
             if (sub_02062F30(v0) == 1) {
                 return -1;

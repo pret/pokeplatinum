@@ -332,7 +332,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         if (v0->unk_44 != 0) {
             v0->unk_44--;
         } else {
-            if (LocalMapObj_CheckAnimationFinished(Player_LocalMapObject(v1->playerAvatar))) {
+            if (LocalMapObj_CheckAnimationFinished(Player_MapObject(v1->playerAvatar))) {
                 v0->unk_34 = 11;
             }
         }

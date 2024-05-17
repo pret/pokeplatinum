@@ -62,7 +62,7 @@ static void ov5_021ECCBC (MapObjectManager * param0)
     NARC_dtor(v0);
 }
 
-void ov5_021ECCC8 (LocalMapObject * param0)
+void ov5_021ECCC8 (MapObject * param0)
 {
     const MapObjectManager * v0 = sub_02062A40(param0);
 
@@ -79,7 +79,7 @@ void ov5_021ECCC8 (LocalMapObject * param0)
     }
 }
 
-const UnkStruct_ov5_021ECD10 * ov5_021ECD04 (const LocalMapObject * param0)
+const UnkStruct_ov5_021ECD10 * ov5_021ECD04 (const MapObject * param0)
 {
     int v0 = sub_02062920(param0);
     const UnkStruct_ov5_021ECD10 * v1 = ov5_021ECD10(v0);
@@ -103,7 +103,7 @@ static const UnkStruct_ov5_021ECD10 * ov5_021ECD10 (int param0)
     return NULL;
 }
 
-int ov5_021ECD38 (const LocalMapObject * param0)
+int ov5_021ECD38 (const MapObject * param0)
 {
     if (sub_02062DE8(param0) == 1) {
         if (sub_02062F7C(param0) == 0) {
@@ -135,7 +135,7 @@ void * ov5_021ECD68 (const MapObjectManager * param0, u32 param1, int param2)
     return v0;
 }
 
-void ov5_021ECDA0 (const LocalMapObject * param0, VecFx32 * param1)
+void ov5_021ECDA0 (const MapObject * param0, VecFx32 * param1)
 {
     VecFx32 v0, v1, v2, v3;
 
@@ -149,7 +149,7 @@ void ov5_021ECDA0 (const LocalMapObject * param0, VecFx32 * param1)
     param1->z = v0.z + v1.z + v2.z + v3.z;
 }
 
-void ov5_021ECDFC (LocalMapObject * param0, int param1)
+void ov5_021ECDFC (MapObject * param0, int param1)
 {
     sub_02062974(param0, param1);
 
@@ -158,28 +158,28 @@ void ov5_021ECDFC (LocalMapObject * param0, int param1)
     }
 }
 
-void ov5_021ECE18 (LocalMapObject * param0)
+void ov5_021ECE18 (MapObject * param0)
 {
     sub_02062D64(param0, 1);
-    sub_020628BC(param0, (1 << 20));
+    MapObject_SetFlagOn(param0, (1 << 20));
 }
 
-void ov5_021ECE30 (LocalMapObject * param0)
+void ov5_021ECE30 (MapObject * param0)
 {
     return;
 }
 
-void ov5_021ECE34 (LocalMapObject * param0)
+void ov5_021ECE34 (MapObject * param0)
 {
     return;
 }
 
-void ov5_021ECE38 (LocalMapObject * param0)
+void ov5_021ECE38 (MapObject * param0)
 {
     return;
 }
 
-void ov5_021ECE3C (LocalMapObject * param0)
+void ov5_021ECE3C (MapObject * param0)
 {
     return;
 }

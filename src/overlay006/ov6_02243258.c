@@ -246,7 +246,7 @@ typedef struct {
     VecFx32 unk_18;
     fx32 unk_24;
     fx32 unk_28;
-    LocalMapObject * unk_2C;
+    MapObject * unk_2C;
     UnkStruct_ov6_02243FFC * unk_30;
 } UnkStruct_ov100_021D4890;
 
@@ -1026,7 +1026,7 @@ static void ov6_02243F50 (void)
 
 static void ov6_02243F74 (FieldSystem * param0, int param1)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0->playerAvatar);
+    MapObject * v0 = Player_MapObject(param0->playerAvatar);
     sub_02062D64(v0, param1);
 }
 
@@ -3042,7 +3042,7 @@ static void * ov6_02245F44 (u32 param0, int param1)
 
 static void ov6_02245F64 (UnkStruct_ov6_02243FFC * param0, int param1)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0->unk_60->playerAvatar);
+    MapObject * v0 = Player_MapObject(param0->unk_60->playerAvatar);
 
     sub_02062DDC(v0);
     sub_02062D64(v0, param1);

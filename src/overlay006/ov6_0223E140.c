@@ -140,9 +140,9 @@ typedef struct {
     UnkStruct_ov6_0223FD0C unk_E4;
     UnkStruct_ov6_0223FD0C unk_F4;
     FieldSystem * unk_104;
-    LocalMapObject * unk_108;
-    LocalMapObject * unk_10C;
-    LocalMapObject * unk_110;
+    MapObject * unk_108;
+    MapObject * unk_10C;
+    MapObject * unk_110;
     PlayerAvatar * unk_114;
 } UnkStruct_ov6_0223EA98;
 
@@ -195,7 +195,7 @@ typedef struct UnkStruct_ov6_022400A8_t {
 } UnkStruct_ov6_022400A8;
 
 typedef struct {
-    LocalMapObject * unk_00;
+    MapObject * unk_00;
     UnkStruct_ov6_0223FD0C unk_04;
     UnkStruct_ov6_0223FD0C unk_14;
     int unk_24;
@@ -498,14 +498,14 @@ static void ov6_0223E2FC (SysTask * param0, void * param1)
 
 static void ov6_0223E318 (FieldSystem * param0, u32 param1, BOOL param2)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     v0 = MapObjMan_LocalMapObjByIndex(param0->unk_38, param1);
 
     if (param2 == 1) {
-        sub_020628BC(v0, (1 << 20));
+        MapObject_SetFlagOn(v0, (1 << 20));
     } else {
-        sub_020628C4(v0, (1 << 20));
+        MapObject_SetFlagOff(v0, (1 << 20));
     }
 }
 
@@ -836,7 +836,7 @@ static BOOL ov6_0223E71C (UnkStruct_ov6_0223E71C * param0)
 static void ov6_0223E7B4 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
 {
     UnkStruct_ov6_0223E7B4 * v0 = param2;
-    LocalMapObject * v1;
+    MapObject * v1;
     u16 v2, v3, v4;
 
     v1 = MapObjMan_LocalMapObjByIndex(param1->unk_38, 0);
@@ -1092,7 +1092,7 @@ static void ov6_0223EB4C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v0->unk_104 = param1;
     v0->unk_108 = MapObjMan_LocalMapObjByIndex(v0->unk_104->unk_38, 1);
     v0->unk_10C = MapObjMan_LocalMapObjByIndex(v0->unk_104->unk_38, 0);
-    v0->unk_110 = Player_LocalMapObject(sub_0205EF3C(v0->unk_104));
+    v0->unk_110 = Player_MapObject(sub_0205EF3C(v0->unk_104));
 
     Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, 4, 32);
     ov6_0223EA98(v0);
@@ -2824,7 +2824,7 @@ UnkStruct_ov6_02240C44 * ov6_02240B9C (u32 param0, FieldSystem * param1)
 void ov6_02240C44 (UnkStruct_ov6_02240C44 * param0, u32 param1)
 {
     VecFx32 v0;
-    LocalMapObject * v1;
+    MapObject * v1;
 
     v1 = MapObjMan_LocalMapObjByIndex(param0->unk_D8->unk_38, param1);
 

@@ -40,10 +40,10 @@ int sub_020677F4 (int param0)
     return 0;
 }
 
-int sub_02067800 (const LocalMapObject * param0)
+int sub_02067800 (const MapObject * param0)
 {
     {
-        UnkStruct_02067800 * v0 = sub_02062A78((LocalMapObject *)param0);
+        UnkStruct_02067800 * v0 = sub_02062A78((MapObject *)param0);
 
         if (v0->unk_00 == 0) {
             return 0xffff;
@@ -51,7 +51,7 @@ int sub_02067800 (const LocalMapObject * param0)
     }
 
     if (sub_02062DFC(param0) == 1) {
-        UnkStruct_02067870 * v1 = sub_02062AF0((LocalMapObject *)param0);
+        UnkStruct_02067870 * v1 = sub_02062AF0((MapObject *)param0);
 
         if (v1->unk_04 != 0) {
             return v1->unk_00;
@@ -61,13 +61,13 @@ int sub_02067800 (const LocalMapObject * param0)
     return 0xffff;
 }
 
-void sub_02067834 (LocalMapObject * param0)
+void sub_02067834 (MapObject * param0)
 {
     UnkStruct_02067800 * v0 = sub_02062A78(param0);
     v0->unk_02 = 1;
 }
 
-void sub_02067840 (LocalMapObject * param0)
+void sub_02067840 (MapObject * param0)
 {
     UnkStruct_02067800 * v0;
 
@@ -75,7 +75,7 @@ void sub_02067840 (LocalMapObject * param0)
     v0->unk_00 = 0;
 }
 
-void sub_02067850 (LocalMapObject * param0)
+void sub_02067850 (MapObject * param0)
 {
     UnkStruct_02067800 * v0;
 
@@ -83,12 +83,12 @@ void sub_02067850 (LocalMapObject * param0)
     v0->unk_00 = sub_02055F00(sub_02062C00(param0), param0);
 }
 
-void sub_0206786C (LocalMapObject * param0)
+void sub_0206786C (MapObject * param0)
 {
     return;
 }
 
-void sub_02067870 (LocalMapObject * param0)
+void sub_02067870 (MapObject * param0)
 {
     UnkStruct_02067870 * v0 = sub_02062ACC(param0, (sizeof(UnkStruct_02067870)));
 
@@ -98,7 +98,7 @@ void sub_02067870 (LocalMapObject * param0)
     ov5_021F20D4(param0);
 }
 
-void sub_02067890 (LocalMapObject * param0)
+void sub_02067890 (MapObject * param0)
 {
     UnkStruct_02067800 * v0 = sub_02062A78(param0);
     UnkStruct_02067870 * v1 = sub_02062AF0(param0);
@@ -146,13 +146,13 @@ void sub_02067890 (LocalMapObject * param0)
     }
 }
 
-void sub_02067950 (LocalMapObject * param0)
+void sub_02067950 (MapObject * param0)
 {
     UnkStruct_02067870 * v0 = sub_02062AF0(param0);
     ov5_021ECFD8(param0, &v0->unk_08, v0->unk_00);
 }
 
-void sub_02067968 (LocalMapObject * param0)
+void sub_02067968 (MapObject * param0)
 {
     UnkStruct_02067870 * v0 = sub_02062AF0(param0);
 
@@ -161,10 +161,10 @@ void sub_02067968 (LocalMapObject * param0)
     }
 
     ov5_021ECFD8(param0, &v0->unk_08, v0->unk_00);
-    sub_020628BC(param0, (1 << 21));
+    MapObject_SetFlagOn(param0, (1 << 21));
 }
 
-void sub_02067998 (LocalMapObject * param0)
+void sub_02067998 (MapObject * param0)
 {
     UnkStruct_02067870 * v0 = sub_02062AF0(param0);
 
@@ -176,7 +176,7 @@ void sub_02067998 (LocalMapObject * param0)
         if (v0->unk_00 != 0xffff) {
             ov5_021ECEB4(param0, &v0->unk_08, v0->unk_00);
         } else {
-            sub_020628C4(param0, (1 << 21));
+            MapObject_SetFlagOff(param0, (1 << 21));
         }
 
         ov5_021F20D4(param0);
@@ -185,7 +185,7 @@ void sub_02067998 (LocalMapObject * param0)
     if (v0->unk_08 != NULL) {
         ov5_021ED03C(v0->unk_08, &v0->unk_0C);
         ov5_021EDEB4(param0, v0->unk_08);
-        sub_020628C4(param0, (1 << 21));
+        MapObject_SetFlagOff(param0, (1 << 21));
     }
 }
 
@@ -221,7 +221,7 @@ static int sub_020679FC (int param0, int param1)
     return 0xffff;
 }
 
-UnkStruct_020216E0 * sub_02067A58 (LocalMapObject * param0)
+UnkStruct_020216E0 * sub_02067A58 (MapObject * param0)
 {
     UnkStruct_020216E0 * v0 = NULL;
 

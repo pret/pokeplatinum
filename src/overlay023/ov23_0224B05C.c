@@ -1764,7 +1764,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
         ov23_02254098(ov23_0224219C(), 33);
         Sound_PlayEffect(1566);
 
-        ov5_021F58FC(Player_LocalMapObject(v1->playerAvatar), 0, 0, 0);
+        ov5_021F58FC(Player_MapObject(v1->playerAvatar), 0, 0, 0);
         ov23_02253F40(ov23_0224219C(), 33, 0, NULL);
 
         v0->unk_0C = 1;

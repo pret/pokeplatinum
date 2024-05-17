@@ -985,15 +985,15 @@ BOOL ScrCmd_32D (ScriptContext * param0)
     int v3 = 0;
     FieldSystem * v4 = param0->fieldSys;
     MapObjectManager * v5 = v4->unk_38;
-    LocalMapObject * v6 = Player_LocalMapObject(v4->playerAvatar);
-    LocalMapObject * v7;
+    MapObject * v6 = Player_MapObject(v4->playerAvatar);
+    MapObject * v7;
 
     sub_02063050(v6, &v1);
     v0 = v1.y;
 
     while (sub_020625B0(v5, &v7, &v3, (1 << 0)) == 1) {
         if (v7 != v6) {
-            sub_020628BC(v7, (1 << 13));
+            MapObject_SetFlagOn(v7, (1 << 13));
 
             if (sub_020628D8(v7, (1 << 12)) == 1) {
                 sub_02063050(v7, &v1);
@@ -1026,24 +1026,24 @@ BOOL ScrCmd_32E (ScriptContext * param0)
     int v0 = 0;
     FieldSystem * v1 = param0->fieldSys;
     MapObjectManager * v2 = v1->unk_38;
-    LocalMapObject * v3 = Player_LocalMapObject(v1->playerAvatar);
-    LocalMapObject * v4;
+    MapObject * v3 = Player_MapObject(v1->playerAvatar);
+    MapObject * v4;
 
     while (sub_020625B0(v2, &v4, &v0, (1 << 0)) == 1) {
         if (v4 != v3) {
-            sub_020628C4(v4, (1 << 13));
+            MapObject_SetFlagOff(v4, (1 << 13));
         }
     }
 
     return 0;
 }
 
-static void ov5_021F7654 (LocalMapObject * param0, int param1)
+static void ov5_021F7654 (MapObject * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_020216E0 * v1;
 
-    sub_020628BC(param0, (1 << 13));
+    MapObject_SetFlagOn(param0, (1 << 13));
     sub_02063050(param0, &v0);
 
     v0.y = (((param1) << 4) * FX32_ONE);
@@ -1061,7 +1061,7 @@ static void ov5_021F7654 (LocalMapObject * param0, int param1)
 
 BOOL ScrCmd_331 (ScriptContext * param0)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     FieldSystem * v1 = param0->fieldSys;
     MapObjectManager * v2 = v1->unk_38;
 
@@ -1082,19 +1082,19 @@ BOOL ScrCmd_331 (ScriptContext * param0)
 
 BOOL ScrCmd_332 (ScriptContext * param0)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     MapObjectManager * v1 = param0->fieldSys->unk_38;
 
     v0 = MapObjMan_LocalMapObjByIndex(v1, 32);
 
     if (v0 != NULL) {
-        sub_020628C4(v0, (1 << 13));
+        MapObject_SetFlagOff(v0, (1 << 13));
     }
 
     v0 = MapObjMan_LocalMapObjByIndex(v1, 2);
 
     if (v0 != NULL) {
-        sub_020628C4(v0, (1 << 13));
+        MapObject_SetFlagOff(v0, (1 << 13));
     }
 
     return 0;
@@ -1103,7 +1103,7 @@ BOOL ScrCmd_332 (ScriptContext * param0)
 BOOL ScrCmd_338 (ScriptContext * param0)
 {    
     int v0;
-    LocalMapObject * v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSys->unk_38, 15);
+    MapObject * v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSys->unk_38, 15);
     if (v1 != NULL)
     {
         switch (sub_02063020(v1))
@@ -1131,9 +1131,9 @@ BOOL ScrCmd_338 (ScriptContext * param0)
 
 BOOL ScrCmd_339 (ScriptContext * param0)
 {
-    LocalMapObject * v0 = MapObjMan_LocalMapObjByIndex(param0->fieldSys->unk_38, 15);
+    MapObject * v0 = MapObjMan_LocalMapObjByIndex(param0->fieldSys->unk_38, 15);
     if (v0 != NULL)
-        sub_020628C4(v0, 8192);
+        MapObject_SetFlagOff(v0, 8192);
     return 0;
 }
 

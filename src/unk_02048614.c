@@ -53,7 +53,7 @@ BOOL ScrCmd_0B6 (ScriptContext * param0)
     int * v3;
     int * v4;
     SysTask ** v5;
-    LocalMapObject ** v6;
+    MapObject ** v6;
     PlayerAvatar * v7;
     FieldSystem * v8 = param0->fieldSys;
     u16 v9 = ScriptContext_GetVar(param0);
@@ -312,7 +312,7 @@ BOOL ScrCmd_0EF (ScriptContext * param0)
 
 BOOL ScrCmd_0F0 (ScriptContext * param0)
 {
-    LocalMapObject ** v0;
+    MapObject ** v0;
     FieldSystem * v1 = param0->fieldSys;
 
     v0 = sub_0203F098(v1, 10);
@@ -325,7 +325,7 @@ BOOL ScrCmd_0F1 (ScriptContext * param0)
 {
     int v0;
     s32 v1;
-    LocalMapObject ** v2;
+    MapObject ** v2;
     FieldSystem * v3 = param0->fieldSys;
 
     v2 = sub_0203F098(v3, 10);

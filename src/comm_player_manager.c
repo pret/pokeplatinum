@@ -191,7 +191,7 @@ void CommPlayerMan_Reinit (void)
         if (sCommPlayerManager->playerAvatar[netId] != NULL) {
             if (sCommPlayerManager->fieldSys->playerAvatar != sCommPlayerManager->playerAvatar[netId]) {
                 if (sCommPlayerManager->isUnderground) {
-                    Player_Delete(sCommPlayerManager->playerAvatar[netId]);
+                    Player_DeleteAll(sCommPlayerManager->playerAvatar[netId]);
                 }
             }
 
@@ -394,10 +394,10 @@ static void CommPlayer_Add (u8 netId)
         if (trainerInfo) {
             if (!sCommPlayerManager->isUnderground) {
                 if (netId != CommSys_CurNetId()) {
-                    LocalMapObject * obj = MapObjMan_LocalMapObjByIndex(sCommPlayerManager->fieldSys->unk_38, 0xff + netId + 1);
+                    MapObject * obj = MapObjMan_LocalMapObjByIndex(sCommPlayerManager->fieldSys->unk_38, 0xff + netId + 1);
 
                     if (obj != 0) {
-                        LocalMapObj_Delete(obj);
+                        MapObject_Delete(obj);
                     }
                 }
             }
@@ -415,7 +415,7 @@ static void CommPlayer_Add (u8 netId)
             GF_ASSERT(playerAvatar != NULL);
             sCommPlayerManager->playerAvatar[netId] = playerAvatar;
 
-            LocalMapObj_SetId(Player_LocalMapObject(playerAvatar), 0xff + netId + 1);
+            LocalMapObj_SetId(Player_MapObject(playerAvatar), 0xff + netId + 1);
 
             if (sCommPlayerManager->isUnderground) {
                 UndergroundMan_SetReturnLog(netId);
@@ -449,9 +449,9 @@ void CommPlayer_Destroy (u8 param0, BOOL param1, BOOL param2)
     if (sCommPlayerManager->playerAvatar[param0] != NULL) {
         if (sCommPlayerManager->fieldSys->playerAvatar != sCommPlayerManager->playerAvatar[param0]) {
             if (sCommPlayerManager->isUnderground || param2) {
-                Player_Delete(sCommPlayerManager->playerAvatar[param0]);
+                Player_DeleteAll(sCommPlayerManager->playerAvatar[param0]);
             } else {
-                sub_0205E8E0(sCommPlayerManager->playerAvatar[param0]);
+                Player_Delete(sCommPlayerManager->playerAvatar[param0]);
             }
         }
 
@@ -947,7 +947,7 @@ static void sub_02058644 (int param0)
 
 static BOOL sub_020586A8 (int netId, int param1, int param2, int animSpeed)
 {
-    LocalMapObject * obj;
+    MapObject * obj;
     u8 walkAnimationCode[] = {
         0x14, 0x15, 0x16, 0x17, 0x10, 0x11, 0x12, 0x13, 0xc, 0xd, 0xe, 0xf
     };
@@ -960,12 +960,12 @@ static BOOL sub_020586A8 (int netId, int param1, int param2, int animSpeed)
         return TRUE;
     }
 
-    obj = Player_LocalMapObject(sCommPlayerManager->playerAvatar[netId]);
+    obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
 
     if (Player_Dir(sCommPlayerManager->playerAvatar[netId]) != CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId])) {
-        sub_020628C4(obj, (1 << 7));
+        MapObject_SetFlagOff(obj, (1 << 7));
         Player_SetDir(sCommPlayerManager->playerAvatar[netId], CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId]));
-        sub_020628BC(obj, (1 << 7));
+        MapObject_SetFlagOn(obj, (1 << 7));
     }
 
     LocalMapObj_CheckAnimationFinished(obj);
@@ -1214,34 +1214,34 @@ void sub_02058B94 (int param0)
 
 void sub_02058BA8 (int param0, int param1, BOOL param2)
 {
-    LocalMapObject * obj;
+    MapObject * obj;
 
     if (sCommPlayerManager->playerAvatar[param0] == NULL) {
         return;
     }
 
-    obj = Player_LocalMapObject(sCommPlayerManager->playerAvatar[param0]);
+    obj = Player_MapObject(sCommPlayerManager->playerAvatar[param0]);
 
-    sub_020628BC(obj, (1 << 7));
-    sub_020628BC(obj, (1 << 8));
+    MapObject_SetFlagOn(obj, (1 << 7));
+    MapObject_SetFlagOn(obj, (1 << 8));
 
     sCommPlayerManager->blowDir[param0] = param1;
 }
 
 void sub_02058BE8 (int param0)
 {
-    LocalMapObject * obj;
+    MapObject * obj;
 
     if (sCommPlayerManager->playerAvatar[param0] == NULL) {
         return;
     }
 
     if (sCommPlayerManager->blowDir[param0] != -1) {
-        obj = Player_LocalMapObject(sCommPlayerManager->playerAvatar[param0]);
+        obj = Player_MapObject(sCommPlayerManager->playerAvatar[param0]);
 
         sub_020656AC(obj);
-        sub_020628C4(obj, (1 << 7));
-        sub_020628C4(obj, (1 << 8));
+        MapObject_SetFlagOff(obj, (1 << 7));
+        MapObject_SetFlagOff(obj, (1 << 8));
 
         sCommPlayerManager->blowDir[param0] = -1;
     }
@@ -1768,7 +1768,7 @@ void sub_02059570 (void)
 void CommPlayerMan_ForcePos (void)
 {
     int netId, x, z, dir;
-    LocalMapObject * obj;
+    MapObject * obj;
 
     if (!sCommPlayerManager) {
         return;
@@ -1783,7 +1783,7 @@ void CommPlayerMan_ForcePos (void)
             continue;
         }
 
-        obj = Player_LocalMapObject(sCommPlayerManager->playerAvatar[netId]);
+        obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
         x = sCommPlayerManager->playerLocation[netId].x;
         z = sCommPlayerManager->playerLocation[netId].z;
         dir = sCommPlayerManager->playerLocation[netId].dir;

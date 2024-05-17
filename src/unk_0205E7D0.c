@@ -28,16 +28,16 @@ typedef struct UnkStruct_0205E884_t {
     int unk_24;
     int unk_28;
     int unk_2C;
-    LocalMapObject * unk_30;
+    MapObject * mapObject;
     UnkStruct_ov101_021D5D90 * unk_34;
     UnkStruct_0205EC34 * unk_38;
     const UnkStruct_0205EC34 * unk_3C;
 } PlayerAvatar;
 
-static PlayerAvatar * sub_0205E8FC(void);
+static PlayerAvatar * PlayerAvatar_Alloc(void);
 static void sub_0205E91C(PlayerAvatar * param0, int param1, int param2, UnkStruct_0205EC34 * param3);
-static void sub_0205E988(PlayerAvatar * param0, const MapObjectManager * param1, int param2, int param3, int param4, int param5);
-static LocalMapObject * sub_0205EA64(const MapObjectManager * param0);
+static void PlayerAvatar_AddMapObject(PlayerAvatar * param0, const MapObjectManager * param1, int param2, int param3, int param4, int param5);
+static MapObject * sub_0205EA64(const MapObjectManager * param0);
 static void sub_0205EB9C(PlayerAvatar * param0, u32 param1);
 static void sub_0205EBA4(PlayerAvatar * param0, u32 param1);
 static u32 sub_0205EBB0(PlayerAvatar * param0, u32 param1);
@@ -45,10 +45,10 @@ static void sub_0205EC08(PlayerAvatar * param0, UnkStruct_0205EC34 * param1);
 
 PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7)
 {
-    PlayerAvatar * v0;
+    PlayerAvatar * playerAvatar;
 
-    v0 = sub_0205E8FC();
-    sub_0205E91C(v0, param4, param5, param7);
+    playerAvatar = PlayerAvatar_Alloc();
+    sub_0205E91C(playerAvatar, param4, param5, param7);
 
     {
         int v1;
@@ -63,102 +63,102 @@ PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, i
             }
         }
 
-        sub_0205E988(v0, param0, v1, param3, param1, param2);
+        PlayerAvatar_AddMapObject(playerAvatar, param0, v1, param3, param1, param2);
     }
 
-    return v0;
+    return playerAvatar;
 }
 
 PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, UnkStruct_0205EC34 * param1, int param2)
 {
     int v0;
-    PlayerAvatar * v1;
-    LocalMapObject * v2;
+    PlayerAvatar * playerAvatar;
+    MapObject * v2;
 
-    v1 = sub_0205E8FC();
+    playerAvatar = PlayerAvatar_Alloc();
     v0 = sub_0205EC94(param1);
 
-    sub_0205E91C(v1, v0, param2, param1);
+    sub_0205E91C(playerAvatar, v0, param2, param1);
     v2 = sub_0205EA64(param0);
 
     sub_0206291C(v2, sub_0205ED6C(v0, param2));
-    sub_020628BC(v2, ((1 << 10) | (1 << 13)));
-    sub_020628C4(v2, ((1 << 7) | (1 << 8)));
+    MapObject_SetFlagOn(v2, ((1 << 10) | (1 << 13)));
+    MapObject_SetFlagOff(v2, ((1 << 7) | (1 << 8)));
     sub_02062F90(v2, 1);
-    sub_0205EB38(v1, v2);
+    PlayerAvatar_SetMapObject(playerAvatar, v2);
 
-    return v1;
+    return playerAvatar;
 }
 
-void sub_0205E884 (PlayerAvatar * param0, int param1)
+void sub_0205E884 (PlayerAvatar * playerAvatar, int groundId)
 {
     int v0, v1;
-    LocalMapObject * v2;
+    MapObject * v2;
     const MapObjectManager * v3;
 
-    v2 = Player_LocalMapObject(param0);
+    v2 = Player_MapObject(playerAvatar);
     GF_ASSERT(v2 != NULL);
     v3 = sub_02062A40(v2);
 
-    ov5_021F6218(param0);
+    ov5_021F6218(playerAvatar);
 
-    if (sub_0205EB74(param0) == 0x2) {
-        if (param1 != 9) {
-            int v4 = Player_XPos(param0);
-            int v5 = Player_ZPos(param0);
-            int v6 = Player_Dir(param0);
+    if (sub_0205EB74(playerAvatar) == 0x2) {
+        if (groundId != 9) {
+            int v4 = Player_XPos(playerAvatar);
+            int v5 = Player_ZPos(playerAvatar);
+            int v6 = Player_Dir(playerAvatar);
             UnkStruct_ov101_021D5D90 * v7 = ov5_021F261C(v2, v4, v5, v6, 1);
 
-            sub_0205EC00(param0, v7);
+            sub_0205EC00(playerAvatar, v7);
         }
     }
 }
 
-void sub_0205E8E0 (PlayerAvatar * param0)
+void Player_Delete (PlayerAvatar * playerAvatar)
 {
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(playerAvatar);
 }
 
-void Player_Delete (PlayerAvatar * param0)
+void Player_DeleteAll (PlayerAvatar * playerAvatar)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0);
+    MapObject * mapObject = Player_MapObject(playerAvatar);
 
-    LocalMapObj_Delete(v0);
-    sub_0205E8E0(param0);
+    MapObject_Delete(mapObject);
+    Player_Delete(playerAvatar);
 }
 
-static PlayerAvatar * sub_0205E8FC (void)
+static PlayerAvatar * PlayerAvatar_Alloc (void)
 {
-    PlayerAvatar * v0;
+    PlayerAvatar * playerAvatar;
 
-    v0 = Heap_AllocFromHeap(11, (sizeof(PlayerAvatar)));
-    GF_ASSERT(v0 != NULL);
-    memset(v0, 0, (sizeof(PlayerAvatar)));
+    playerAvatar = Heap_AllocFromHeap(11, (sizeof(PlayerAvatar)));
+    GF_ASSERT(playerAvatar != NULL);
+    memset(playerAvatar, 0, (sizeof(PlayerAvatar)));
 
-    return v0;
+    return playerAvatar;
 }
 
-static void sub_0205E91C (PlayerAvatar * param0, int param1, int param2, UnkStruct_0205EC34 * param3)
+static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int param2, UnkStruct_0205EC34 * param3)
 {
-    sub_0205EC08(param0, param3);
+    sub_0205EC08(playerAvatar, param3);
 
-    sub_0205EB08(param0, 0);
-    sub_0205EB10(param0, 0);
-    sub_0205EB58(param0, param1);
-    sub_0205EB94(param0, param2);
-    sub_0205EB8C(param0, 0);
-    sub_0205EBC0(param0);
-    sub_0205EBDC(param0, -1);
-    sub_0205EBE4(param0, -1);
-    sub_0205EC20(param0, 0xff, 0);
+    sub_0205EB08(playerAvatar, 0);
+    sub_0205EB10(playerAvatar, 0);
+    sub_0205EB58(playerAvatar, param1);
+    sub_0205EB94(playerAvatar, param2);
+    sub_0205EB8C(playerAvatar, 0);
+    sub_0205EBC0(playerAvatar);
+    sub_0205EBDC(playerAvatar, -1);
+    sub_0205EBE4(playerAvatar, -1);
+    sub_0205EC20(playerAvatar, 0xff, 0);
 
-    sub_0205EF6C(param0, 1);
-    sub_0205EFF0(param0, 1);
+    sub_0205EF6C(playerAvatar, 1);
+    sub_0205EFF0(playerAvatar, 1);
 }
 
-static void sub_0205E988 (PlayerAvatar * param0, const MapObjectManager * param1, int param2, int param3, int param4, int param5)
+static void PlayerAvatar_AddMapObject (PlayerAvatar * playerAvatar, const MapObjectManager * param1, int param2, int param3, int param4, int param5)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     v0 = sub_020619DC(param1, param4, param5, param3, param2, 0x1, 1);
     GF_ASSERT(v0 != NULL);
@@ -172,19 +172,19 @@ static void sub_0205E988 (PlayerAvatar * param0, const MapObjectManager * param1
     sub_020629B4(v0, 0, 2);
     sub_020629FC(v0, -1);
     sub_02062A04(v0, -1);
-    sub_020628BC(v0, ((1 << 10) | (1 << 13)));
-    sub_020628C4(v0, ((1 << 7) | (1 << 8)));
+    MapObject_SetFlagOn(v0, ((1 << 10) | (1 << 13)));
+    MapObject_SetFlagOff(v0, ((1 << 7) | (1 << 8)));
     sub_02062F90(v0, 1);
 
-    sub_0205EB38(param0, v0);
+    PlayerAvatar_SetMapObject(playerAvatar, v0);
 }
 
-LocalMapObject * sub_0205EA24 (const MapObjectManager * param0)
+MapObject * sub_0205EA24 (const MapObjectManager * mapObjMan)
 {
     int v0 = 0;
-    LocalMapObject * v1 = NULL;
+    MapObject * v1 = NULL;
 
-    while (sub_020625B0(param0, &v1, &v0, (1 << 0))) {
+    while (sub_020625B0(mapObjMan, &v1, &v0, (1 << 0))) {
         if (sub_02062948(v1) == 0x1) {
             break;
         }
@@ -193,9 +193,9 @@ LocalMapObject * sub_0205EA24 (const MapObjectManager * param0)
     return v1;
 }
 
-static LocalMapObject * sub_0205EA64 (const MapObjectManager * param0)
+static MapObject * sub_0205EA64 (const MapObjectManager * mapObjMan)
 {
-    LocalMapObject * v0 = sub_0205EA24(param0);
+    MapObject * v0 = sub_0205EA24(mapObjMan);
 
     GF_ASSERT(v0 != NULL);
     return v0;
@@ -203,17 +203,17 @@ static LocalMapObject * sub_0205EA64 (const MapObjectManager * param0)
 
 int Player_Dir (PlayerAvatar * const param0)
 {
-    return sub_0206298C(Player_LocalMapObject(param0));
+    return sub_0206298C(Player_MapObject(param0));
 }
 
 void Player_SetDir (PlayerAvatar * param0, int param1)
 {
-    sub_02062974(Player_LocalMapObject(param0), param1);
+    sub_02062974(Player_MapObject(param0), param1);
 }
 
 int sub_0205EA94 (PlayerAvatar * const param0)
 {
-    return sub_0206299C(Player_LocalMapObject(param0));
+    return sub_0206299C(Player_MapObject(param0));
 }
 
 int sub_0205EAA0 (PlayerAvatar * const param0)
@@ -227,27 +227,27 @@ int sub_0205EAA0 (PlayerAvatar * const param0)
 
 int Player_XPos (PlayerAvatar * const param0)
 {
-    return sub_02063020(Player_LocalMapObject(param0));
+    return sub_02063020(Player_MapObject(param0));
 }
 
 int Player_ZPos (PlayerAvatar * const param0)
 {
-    return sub_02063040(Player_LocalMapObject(param0));
+    return sub_02063040(Player_MapObject(param0));
 }
 
 int sub_0205EAD4 (PlayerAvatar * const param0)
 {
-    return sub_02063008(Player_LocalMapObject(param0));
+    return sub_02063008(Player_MapObject(param0));
 }
 
 int sub_0205EAE0 (PlayerAvatar * const param0)
 {
-    return sub_02063018(Player_LocalMapObject(param0));
+    return sub_02063018(Player_MapObject(param0));
 }
 
 void sub_0205EAEC (PlayerAvatar * const param0, VecFx32 * param1)
 {
-    sub_02063050(Player_LocalMapObject(param0), param1);
+    sub_02063050(Player_MapObject(param0), param1);
 }
 
 const VecFx32 * sub_0205EAFC (PlayerAvatar * const param0)
@@ -277,33 +277,33 @@ int Player_MoveState (const PlayerAvatar * param0)
 
 void sub_0205EB18 (PlayerAvatar * param0, int param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
-    v0 = Player_LocalMapObject(param0);
+    v0 = Player_MapObject(param0);
 
     if (param1 == 1) {
-        sub_020628C4(v0, (1 << 9));
+        MapObject_SetFlagOff(v0, (1 << 9));
     } else {
-        sub_020628BC(v0, (1 << 9));
+        MapObject_SetFlagOn(v0, (1 << 9));
     }
 }
 
-void sub_0205EB38 (PlayerAvatar * param0, LocalMapObject * param1)
+void PlayerAvatar_SetMapObject (PlayerAvatar * playerAvatar, MapObject * mapObject)
 {
-    param0->unk_30 = param1;
+    playerAvatar->mapObject = mapObject;
 }
 
-LocalMapObject * Player_LocalMapObject (PlayerAvatar * param0)
+MapObject * Player_MapObject (PlayerAvatar * playerAvatar)
 {
-    GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->unk_30 != NULL);
+    GF_ASSERT(playerAvatar != NULL);
+    GF_ASSERT(playerAvatar->mapObject != NULL);
 
-    return param0->unk_30;
+    return playerAvatar->mapObject;
 }
 
-const LocalMapObject * sub_0205EB54 (const PlayerAvatar * param0)
+const MapObject * sub_0205EB54 (const PlayerAvatar * param0)
 {
-    return param0->unk_30;
+    return param0->mapObject;
 }
 
 void sub_0205EB58 (PlayerAvatar * param0, int param1)
@@ -538,9 +538,9 @@ void sub_0205ECA8 (PlayerAvatar * param0, u32 param1)
 
 void sub_0205ECB8 (PlayerAvatar * param0, const VecFx32 * param1, int param2)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
-    v0 = Player_LocalMapObject(param0);
+    v0 = Player_MapObject(param0);
 
     sub_020632D4(v0, param1, param2);
     sub_0205EB08(param0, 0);
@@ -549,9 +549,9 @@ void sub_0205ECB8 (PlayerAvatar * param0, const VecFx32 * param1, int param2)
 
 void sub_0205ECE0 (PlayerAvatar * param0, int param1, int param2, int param3)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
-    v0 = Player_LocalMapObject(param0);
+    v0 = Player_MapObject(param0);
 
     LocalMapObj_SetPosDir(v0, param1, 0, param2, param3);
     sub_0205EB08(param0, 0);
@@ -561,7 +561,7 @@ void sub_0205ECE0 (PlayerAvatar * param0, int param1, int param2, int param3)
 void sub_0205ED0C (PlayerAvatar * param0, fx32 param1)
 {
     VecFx32 v0;
-    LocalMapObject * v1 = Player_LocalMapObject(param0);
+    MapObject * v1 = Player_MapObject(param0);
 
     sub_02063050(v1, &v0);
     v0.y = param1;
@@ -570,7 +570,7 @@ void sub_0205ED0C (PlayerAvatar * param0, fx32 param1)
 
 void sub_0205ED2C (PlayerAvatar * param0, int param1)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0);
+    MapObject * v0 = Player_MapObject(param0);
 
     if (param1 == 1) {
         sub_02062E28(v0, 0);
@@ -581,7 +581,7 @@ void sub_0205ED2C (PlayerAvatar * param0, int param1)
 
 void sub_0205ED48 (PlayerAvatar * param0, int param1)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0);
+    MapObject * v0 = Player_MapObject(param0);
 
     if (param1 == 1) {
         sub_02062E28(v0, 0);

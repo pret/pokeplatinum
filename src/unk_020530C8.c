@@ -360,7 +360,7 @@ static void sub_02053320 (FieldSystem * param0)
 
 static void sub_02053374 (FieldSystem * param0)
 {
-    sub_0205E8E0(param0->playerAvatar);
+    Player_Delete(param0->playerAvatar);
     sub_02061BBC(param0->unk_38);
     sub_02061830(param0->unk_38);
 }

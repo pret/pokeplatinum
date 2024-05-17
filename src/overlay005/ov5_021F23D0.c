@@ -25,7 +25,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DF47C * unk_00;
     UnkStruct_ov5_021F23FC * unk_04;
-    LocalMapObject * unk_08;
+    MapObject * unk_08;
 } UnkStruct_ov5_021F2438;
 
 typedef struct {
@@ -74,7 +74,7 @@ static void ov5_021F2424 (UnkStruct_ov5_021F23FC * param0)
     sub_02073AA8(&param0->unk_18);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F2438 (LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F2438 (MapObject * param0)
 {
     UnkStruct_ov101_021D5D90 * v0;
     UnkStruct_ov5_021DF47C * v1;
@@ -123,7 +123,7 @@ static int ov5_021F2488 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     {
         VecFx32 v2, v3;
-        LocalMapObject * v4 = v0->unk_10.unk_08;
+        MapObject * v4 = v0->unk_10.unk_08;
 
         sub_02063050(v4, &v2);
         sub_02063078(v4, &v3);
@@ -147,7 +147,7 @@ static void ov5_021F2510 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F251C (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F247C * v0 = param1;
-    LocalMapObject * v1 = v0->unk_10.unk_08;
+    MapObject * v1 = v0->unk_10.unk_08;
 
     if (v0->unk_0C == 0) {
         if (sub_02062764(v1, v0->unk_04, v0->unk_08) == 0) {

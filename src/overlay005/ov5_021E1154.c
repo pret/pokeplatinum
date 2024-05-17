@@ -23,7 +23,7 @@ typedef struct {
     int unk_08;
     FieldSystem * unk_0C;
     PlayerAvatar * unk_10;
-    LocalMapObject * unk_14;
+    MapObject * unk_14;
 } UnkStruct_ov5_021E11B0;
 
 static void ov5_021E11B0(FieldSystem * param0, PlayerAvatar * param1, int param2);
@@ -33,7 +33,7 @@ static void ov5_021E1350(void * param0);
 
 int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * param1, int param2)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param1);
+    MapObject * v0 = Player_MapObject(param1);
     u8 v1 = sub_02062BE8(v0);
     int v2;
 
@@ -84,12 +84,12 @@ static int ov5_021E11E0 (int param0)
 static BOOL ov5_021E120C (TaskManager * param0)
 {
     UnkStruct_ov5_021E11B0 * v0 = TaskManager_Environment(param0);
-    LocalMapObject * v1 = Player_LocalMapObject(v0->unk_10);
+    MapObject * v1 = Player_MapObject(v0->unk_10);
     u8 v2 = sub_02062BE8(v1);
 
     switch (v0->unk_08) {
     case 0:
-        sub_020628BC(v1, (1 << 8));
+        MapObject_SetFlagOn(v1, (1 << 8));
         v0->unk_08++;
         break;
     case 1:
@@ -136,8 +136,8 @@ static BOOL ov5_021E120C (TaskManager * param0)
                 if (v4 == 0) {
                     v0->unk_08 = 1;
                 } else {
-                    sub_020628C4(v1, (1 << 7));
-                    sub_020628C4(v1, (1 << 8));
+                    MapObject_SetFlagOff(v1, (1 << 7));
+                    MapObject_SetFlagOff(v1, (1 << 8));
                     Player_SetDir(v0->unk_10, v0->unk_00);
                     ov5_021E1350(v0);
                     sub_020057A4(1624, 0);

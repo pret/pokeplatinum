@@ -295,10 +295,10 @@ static BOOL ov6_02242D94 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
 
 static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     VecFx32 v1;
 
-    v0 = Player_LocalMapObject(param0->playerAvatar);
+    v0 = Player_MapObject(param0->playerAvatar);
     sub_0205EAEC(param0->playerAvatar, &v1);
 
     param3->z = v1.z + ((FX32_ONE * 16) / 2);

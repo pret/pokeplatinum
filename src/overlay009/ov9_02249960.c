@@ -322,7 +322,7 @@ typedef struct {
     NNSG3dAnmObj * unk_10;
     u16 unk_14;
     u16 unk_16;
-    LocalMapObject * unk_18;
+    MapObject * unk_18;
     UnkStruct_020216E0 * unk_1C;
 } UnkStruct_ov9_0224A294;
 
@@ -443,7 +443,7 @@ typedef struct {
     u8 unk_01;
     u16 unk_02;
     UnkStruct_ov9_0224DF10 unk_04;
-    LocalMapObject * unk_1C;
+    MapObject * unk_1C;
     UnkStruct_ov101_021D5D90 * unk_20;
 } UnkStruct_ov9_0224E0DC;
 
@@ -505,7 +505,7 @@ typedef struct {
 } UnkStruct_ov9_02252EB4;
 
 typedef struct {
-    LocalMapObject * unk_00[19];
+    MapObject * unk_00[19];
 } UnkStruct_ov9_0224EE40;
 
 typedef struct {
@@ -672,7 +672,7 @@ typedef struct {
     fx32 unk_5C;
     u32 unk_60;
     UnkStruct_ov9_0224E0DC * unk_64;
-    LocalMapObject * unk_68;
+    MapObject * unk_68;
     SysTask * unk_6C;
 } UnkStruct_ov9_0224D078;
 
@@ -735,7 +735,7 @@ struct UnkStruct_ov9_0224F6EC_t {
     UnkStruct_ov9_02249B04 * unk_00;
     FieldSystem * unk_04;
     TaskManager * unk_08;
-    LocalMapObject * unk_0C;
+    MapObject * unk_0C;
     u16 unk_10;
     u16 unk_12;
     u32 unk_14;
@@ -835,7 +835,7 @@ typedef struct {
     fx32 unk_04;
     VecFx32 unk_08;
     int unk_14;
-    LocalMapObject * unk_18;
+    MapObject * unk_18;
     u16 unk_1C[16];
 } UnkStruct_ov9_0225074C;
 
@@ -846,14 +846,14 @@ typedef struct {
     fx32 unk_0C;
     fx32 unk_10;
     VecFx32 unk_14;
-    LocalMapObject * unk_20;
+    MapObject * unk_20;
 } UnkStruct_ov9_02250918;
 
 typedef struct {
     fx32 unk_00;
     VecFx32 unk_04;
     SysTask * unk_10;
-    LocalMapObject * unk_14;
+    MapObject * unk_14;
 } UnkStruct_ov9_02250AFC;
 
 typedef struct {
@@ -861,7 +861,7 @@ typedef struct {
     VecFx32 unk_04;
     SysTask * unk_10;
     SysTask * unk_14;
-    LocalMapObject * unk_18;
+    MapObject * unk_18;
 } UnkStruct_ov9_02250C14;
 
 typedef struct {
@@ -912,12 +912,12 @@ static void ov9_0224A228(UnkStruct_ov9_0224A228 * param0, UnkStruct_ov9_0224A294
 static void ov9_0224A294(UnkStruct_ov9_0224A228 * param0, UnkStruct_ov9_0224A294 * param1);
 static void ov9_0224A2AC(UnkStruct_ov9_0224A228 * param0, UnkStruct_ov9_0224A294 * param1);
 static void ov9_0224A334(UnkStruct_ov9_02249B04 * param0);
-static void ov9_0224A390(UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1, int param2);
+static void ov9_0224A390(UnkStruct_ov9_02249B04 * param0, MapObject * param1, int param2);
 static void ov9_0224A3C4(UnkStruct_ov9_02249B04 * param0, UnkStruct_020216E0 * param1, int param2);
 static void ov9_0224A408(UnkStruct_ov9_02249B04 * param0, const UnkStruct_020216E0 * param1);
 static void ov9_0224A49C(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224A4C8(UnkStruct_020216E0 * param0, void * param1);
-static void ov9_0224A4D0(UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1, int param2, int param3);
+static void ov9_0224A4D0(UnkStruct_ov9_02249B04 * param0, MapObject * param1, int param2, int param3);
 static void ov9_0224A570(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224A574(UnkStruct_ov9_02249B04 * param0);
 static void * ov9_0224A578(UnkStruct_ov9_02249B04 * param0, int param1);
@@ -928,7 +928,7 @@ static void ov9_0224A9E8(UnkStruct_ov9_02249B04 * param0);
 static BOOL ov9_0224AA00(UnkStruct_ov9_02249B04 * param0, int param1, int param2, int param3, int param4);
 static void ov9_0224AA34(UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0224AA00 * param1);
 static BOOL ov9_0224AAD4(TaskManager * param0);
-static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 * param0, LocalMapObject * param1);
+static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 * param0, MapObject * param1);
 static void ov9_0224ADC0(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224AED8(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224AEE4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B064 * param1, NARC * param2);
@@ -1076,8 +1076,8 @@ static UnkStruct_ov9_0224E0DC * ov9_0224DE08(UnkStruct_ov9_02249B04 * param0, u3
 static const UnkStruct_ov9_02252C38 * ov9_0224DE40(u32 param0);
 static const UnkStruct_ov9_0224DF10 * ov9_0224DE60(u32 param0, u32 param1);
 static const UnkStruct_ov9_02253830 * ov9_0224DE70(u32 param0);
-static LocalMapObject * ov9_0224DE94(UnkStruct_ov9_02249B04 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
-static void ov9_0224DF10(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1, LocalMapObject * param2);
+static MapObject * ov9_0224DE94(UnkStruct_ov9_02249B04 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
+static void ov9_0224DF10(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1, MapObject * param2);
 static UnkStruct_ov101_021D5D90 * ov9_0224DFA0(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1);
 static void ov9_0224DFF4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1, const UnkStruct_ov9_0224DF10 * param2, u32 param3);
 static void ov9_0224E044(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1);
@@ -1120,15 +1120,15 @@ static BOOL ov9_0224ECE8(UnkStruct_ov9_02249B04 * param0, u32 param1);
 static BOOL ov9_0224ED20(UnkStruct_ov9_02249B04 * param0, u32 param1);
 static void ov9_0224EE40(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224EE6C(UnkStruct_ov9_02249B04 * param0);
-static void ov9_0224EE70(UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1);
-static LocalMapObject ** ov9_0224EEA0(UnkStruct_ov9_02249B04 * param0);
+static void ov9_0224EE70(UnkStruct_ov9_02249B04 * param0, MapObject * param1);
+static MapObject ** ov9_0224EEA0(UnkStruct_ov9_02249B04 * param0);
 static BOOL ov9_0224EF30(UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0224EF30 * param1, u16 param2);
-static BOOL ov9_0224EF64(UnkStruct_ov9_02249B04 * param0, LocalMapObject ** param1, const UnkStruct_ov9_0224EF30 * param2, u32 param3, u16 param4);
+static BOOL ov9_0224EF64(UnkStruct_ov9_02249B04 * param0, MapObject ** param1, const UnkStruct_ov9_0224EF30 * param2, u32 param3, u16 param4);
 static BOOL ov9_0224F048(UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0224EF30 ** param1, u32 param2);
 static void ov9_0224F078(UnkStruct_ov9_02249B04 * param0, u32 param1);
 static void ov9_0224F0A4(UnkStruct_ov9_02249B04 * param0, u32 param1);
-static LocalMapObject * ov9_0224F0D4(UnkStruct_ov9_02249B04 * param0, u32 param1, u16 param2);
-static BOOL ov9_0224F1CC(UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1);
+static MapObject * ov9_0224F0D4(UnkStruct_ov9_02249B04 * param0, u32 param1, u16 param2);
+static BOOL ov9_0224F1CC(UnkStruct_ov9_02249B04 * param0, MapObject * param1);
 static void ov9_0224F724(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224F760(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224F764(UnkStruct_ov9_02249B04 * param0);
@@ -1145,7 +1145,7 @@ static u32 ov9_022510D0(UnkStruct_ov9_02249B04 * param0);
 static int ov9_022510D8(u32 param0);
 static BOOL ov9_02251104(UnkStruct_ov9_02249B04 * param0, u32 param1, u32 param2);
 static void ov9_022511E0(u16 param0);
-static void ov9_022511F4(LocalMapObject * param0, const VecFx32 * param1);
+static void ov9_022511F4(MapObject * param0, const VecFx32 * param1);
 
 static const UnkStruct_ov101_021D86B0 Unk_ov9_02251508;
 static const UnkStruct_ov101_021D86B0 Unk_ov9_02251468;
@@ -1846,7 +1846,7 @@ static void ov9_0224A334 (UnkStruct_ov9_02249B04 * param0)
     v1->unk_04 = NULL;
 }
 
-static void ov9_0224A374 (UnkStruct_ov9_0224A294 * param0, LocalMapObject * param1, int param2)
+static void ov9_0224A374 (UnkStruct_ov9_0224A294 * param0, MapObject * param1, int param2)
 {
     param0->unk_00 = param2;
     param0->unk_04 = (FX32_ONE * (param2));
@@ -1858,7 +1858,7 @@ static void ov9_0224A374 (UnkStruct_ov9_0224A294 * param0, LocalMapObject * para
     }
 }
 
-static void ov9_0224A390 (UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1, int param2)
+static void ov9_0224A390 (UnkStruct_ov9_02249B04 * param0, MapObject * param1, int param2)
 {
     int v0 = 0;
     UnkStruct_ov9_0224A228 * v1 = &param0->unk_188;
@@ -1966,7 +1966,7 @@ static void ov9_0224A4C8 (UnkStruct_020216E0 * param0, void * param1)
     NNS_G3dAnmObjSetFrame(v0->unk_10, v0->unk_0C);
 }
 
-static void ov9_0224A4D0 (UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1, int param2, int param3)
+static void ov9_0224A4D0 (UnkStruct_ov9_02249B04 * param0, MapObject * param1, int param2, int param3)
 {
     int v0 = 0;
     UnkStruct_ov9_0224A228 * v1 = &param0->unk_188;
@@ -1988,7 +1988,7 @@ static void ov9_0224A4D0 (UnkStruct_ov9_02249B04 * param0, LocalMapObject * para
     GF_ASSERT(0);
 }
 
-int ov9_0224A520 (FieldSystem * param0, LocalMapObject * param1)
+int ov9_0224A520 (FieldSystem * param0, MapObject * param1)
 {
     int v0 = 0;
     UnkStruct_ov9_02249B04 * v1 = param0->unk_04->unk_24;
@@ -2242,7 +2242,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
     int v2, v3, v4, v5;
     int v6[6] = {0, 0, 0, 90, 270, 180};
     PlayerAvatar * v7 = param0->unk_00->playerAvatar;
-    LocalMapObject * v8 = Player_LocalMapObject(v7);
+    MapObject * v8 = Player_MapObject(v7);
 
     ov9_02250F44(param0, &v2, &v3, &v4);
 
@@ -2317,7 +2317,7 @@ static BOOL ov9_0224AA00 (UnkStruct_ov9_02249B04 * param0, int param1, int param
         v0 = ov9_0224C69C(param0, param1, param2, param3, param4);
 
         if (v0) {
-            LocalMapObject * v1 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+            MapObject * v1 = Player_MapObject(param0->unk_00->playerAvatar);
 
             Unk_ov9_02251224[v0->unk_00](param0, v0);
             return 1;
@@ -2362,7 +2362,7 @@ static BOOL ov9_0224AAD4 (TaskManager * param0)
     UnkStruct_ov9_02249B04 * v1 = TaskManager_Environment(param0);
     UnkStruct_ov9_0224AC58 * v2 = ov9_0224A598(v1);
     PlayerAvatar * v3 = v0->playerAvatar;
-    LocalMapObject * v4 = Player_LocalMapObject(v3);
+    MapObject * v4 = Player_MapObject(v3);
 
     switch (v2->unk_00) {
     case 0:
@@ -2422,7 +2422,7 @@ static BOOL ov9_0224AAD4 (TaskManager * param0)
         {
             int v11 = 1;
             int v12 = 0;
-            LocalMapObject * v13 = Player_LocalMapObject(v3);
+            MapObject * v13 = Player_MapObject(v3);
 
             ov9_0224C3F8(v1, v2->unk_34.unk_26);
             v11 = ov9_022510D8(v2->unk_34.unk_24);
@@ -2469,7 +2469,7 @@ static BOOL ov9_0224AAD4 (TaskManager * param0)
     return 0;
 }
 
-static BOOL ov9_0224AC58 (UnkStruct_ov9_0224AC58 * param0, LocalMapObject * param1)
+static BOOL ov9_0224AC58 (UnkStruct_ov9_0224AC58 * param0, MapObject * param1)
 {
     const UnkStruct_ov9_0224AA00 * v0 = &param0->unk_34;
 
@@ -3352,7 +3352,7 @@ static void ov9_0224BA6C (UnkStruct_ov101_021D5D90 * param0, void * param1)
         int v6 = 0;
         int v7 = ((v2->unk_08.unk_08) * 2);
         const MapObjectManager * v8 = v2->unk_14->unk_00->unk_38;
-        LocalMapObject * v9;
+        MapObject * v9;
 
         while (sub_020625B0(
                    v8, &v9, &v6, (1 << 0)) == 1) {
@@ -4424,7 +4424,7 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
 
     if (ov9_02249D38(param0) == 0) {
         VecFx32 v12, v13;
-        LocalMapObject * v14 = Player_LocalMapObject(v3->playerAvatar);
+        MapObject * v14 = Player_MapObject(v3->playerAvatar);
 
         sub_02063050(v14, &v13);
         ov5_021EA6BC(v3->unk_28, &v12);
@@ -4949,7 +4949,7 @@ static BOOL ov9_0224D098 (TaskManager * param0)
 static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     u32 v0;
-    LocalMapObject * v1;
+    MapObject * v1;
     const UnkStruct_ov9_022530A4 * v2;
     const UnkStruct_ov9_02253830 * v3;
 
@@ -4994,7 +4994,7 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     }
 
     v3 = ov9_0224DE70(param1->unk_02);
-    v1 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    v1 = Player_MapObject(param0->unk_00->playerAvatar);
 
     sub_02063050(v1, &param1->unk_14);
     sub_02062E28(v1, 1);
@@ -5050,7 +5050,7 @@ static int ov9_0224D288 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 {
     VecFx32 v0;
     PlayerAvatar * v1 = param0->unk_00->playerAvatar;
-    LocalMapObject * v2 = Player_LocalMapObject(v1);
+    MapObject * v2 = Player_MapObject(v1);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
     sub_0206309C(v2, &v0);
@@ -5111,7 +5111,7 @@ static int ov9_0224D374 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 {
     int v0;
     PlayerAvatar * v1 = param0->unk_00->playerAvatar;
-    LocalMapObject * v2 = Player_LocalMapObject(v1);
+    MapObject * v2 = Player_MapObject(v1);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
     if (param1->unk_44.x != param1->unk_2C.x) {
@@ -5193,7 +5193,7 @@ static int ov9_0224D4C4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 {
     int v0;
     PlayerAvatar * v1 = param0->unk_00->playerAvatar;
-    LocalMapObject * v2 = Player_LocalMapObject(v1);
+    MapObject * v2 = Player_MapObject(v1);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
     if (param1->unk_44.x != param1->unk_2C.x) {
@@ -5229,7 +5229,7 @@ static int ov9_0224D4C4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
             sub_020057A4(1481, 0);
             param1->unk_04 = 5;
         } else {
-            LocalMapObject * v5 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+            MapObject * v5 = Player_MapObject(param0->unk_00->playerAvatar);
 
             LocalMapObj_SetX(v5, param1->unk_0A);
             sub_02063034(v5, param1->unk_0C);
@@ -5260,7 +5260,7 @@ static int ov9_0224D4C4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D5E8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     if (ov9_0224CC7C(param0) == 0) {
-        LocalMapObject * v0 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+        MapObject * v0 = Player_MapObject(param0->unk_00->playerAvatar);
 
         LocalMapObj_SetX(v0, param1->unk_0A);
         sub_02063034(v0, param1->unk_0C);
@@ -5323,7 +5323,7 @@ static const UnkStruct_ov5_021F8E3C * const Unk_ov9_02251384[3] = {
 static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     int v0;
-    LocalMapObject * v1;
+    MapObject * v1;
     const UnkStruct_ov5_021F8E3C * v2;
 
     v1 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, (0x80 + 6));
@@ -5343,7 +5343,7 @@ static int ov9_0224D6E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 {
     if (sub_0206574C(param1->unk_6C) == 1) {
         UnkStruct_020507E4 * v0;
-        LocalMapObject * v1;
+        MapObject * v1;
 
         sub_02065758(param1->unk_6C);
         v1 = MapObjMan_LocalMapObjByIndex(param0->unk_00->unk_38, (0x80 + 6));
@@ -5711,7 +5711,7 @@ static void ov9_0224DCA8 (UnkStruct_ov9_02249B04 * param0)
     if (ov9_02249D38(param0) == 1) {
         int v0 = 0;
         UnkStruct_ov9_0224E0DC * v1;
-        LocalMapObject * v2;
+        MapObject * v2;
         MapObjectManager * v3 = param0->unk_00->unk_38;
 
         while (sub_020625B0(v3, &v2, &v0, (1 << 0)) == 1) {
@@ -5852,9 +5852,9 @@ static const UnkStruct_ov9_02253830 * ov9_0224DE70 (u32 param0)
     return NULL;
 }
 
-static LocalMapObject * ov9_0224DE94 (UnkStruct_ov9_02249B04 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6)
+static MapObject * ov9_0224DE94 (UnkStruct_ov9_02249B04 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     v0 = sub_020619DC(param0->unk_00->unk_38, param1, param3, 0, 0x2000, 0x0, ov9_022510D0(param0));
 
@@ -5871,7 +5871,7 @@ static LocalMapObject * ov9_0224DE94 (UnkStruct_ov9_02249B04 * param0, int param
     return v0;
 }
 
-static void ov9_0224DF10 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1, LocalMapObject * param2)
+static void ov9_0224DF10 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1, MapObject * param2)
 {
     u32 v0, v1, v2, v3;
     const UnkStruct_ov9_0224DF10 * v4;
@@ -5938,7 +5938,7 @@ static void ov9_0224E044 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0D
 static void ov9_0224E060 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0DC * param1)
 {
     if (param1->unk_1C != NULL) {
-        LocalMapObj_Delete(param1->unk_1C);
+        MapObject_Delete(param1->unk_1C);
     }
 
     ov9_0224E044(param0, param1);
@@ -5956,7 +5956,7 @@ static void ov9_0224E07C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0D
     }
 
     {
-        LocalMapObject * v1 = param1->unk_1C;
+        MapObject * v1 = param1->unk_1C;
 
         LocalMapObj_SetX(v1, param1->unk_04.unk_02);
         sub_02063034(v1, param1->unk_04.unk_04);
@@ -6320,7 +6320,7 @@ static int ov9_0224E4D8 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
 static int ov9_0224E4E8 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     const UnkStruct_ov9_0224E4E8 * v1 = param3;
     UnkStruct_ov9_0224E4D8 * v2 = ov9_0224E39C(param0);
 
@@ -6337,7 +6337,7 @@ static int ov9_0224E4E8 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
 static int ov9_0224E520 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     const UnkStruct_ov9_0224E4E8 * v1 = param3;
     UnkStruct_ov9_0224E4D8 * v2 = ov9_0224E39C(param0);
 
@@ -6380,7 +6380,7 @@ static int ov9_0224E550 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     if (v0->unk_02 == 1) {
         VecFx32 v3;
-        LocalMapObject * v4 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+        MapObject * v4 = Player_MapObject(param0->unk_00->playerAvatar);
 
         sub_02062E28(v4, 1);
         sub_0206309C(v4, &v3);
@@ -6396,13 +6396,13 @@ static int ov9_0224E550 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
 static int ov9_0224E5EC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
-    LocalMapObject * v0 = NULL;
+    MapObject * v0 = NULL;
     const UnkStruct_ov9_0224E550 * v1 = param3;
     UnkStruct_ov9_0224E5EC * v2 = ov9_0224E39C(param0);
     VecFx32 * v3 = ov9_0224E330(v2->unk_24->unk_20);
 
     if (v1->unk_02 == 1) {
-        v0 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+        v0 = Player_MapObject(param0->unk_00->playerAvatar);
     }
 
     v3->y = v2->unk_2C + v2->unk_30;
@@ -6488,7 +6488,7 @@ static int ov9_0224E6B0 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     if (v1->unk_02 == 1) {
         VecFx32 v4;
-        LocalMapObject * v5 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+        MapObject * v5 = Player_MapObject(param0->unk_00->playerAvatar);
 
         sub_02063050(v5, &v4);
 
@@ -6511,7 +6511,7 @@ static int ov9_0224E798 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     const UnkStruct_ov9_0224E550 * v0 = param3;
 
     if (v0->unk_02 == 1) {
-        LocalMapObject * v1 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+        MapObject * v1 = Player_MapObject(param0->unk_00->playerAvatar);
         int v2 = sub_02063020(v1) + v0->unk_06;
         int v3 = sub_02063030(v1) + ((v0->unk_08) * 2);
         int v4 = sub_02063040(v1) + v0->unk_0A;
@@ -7107,15 +7107,15 @@ static void ov9_0224EE6C (UnkStruct_ov9_02249B04 * param0)
     return;
 }
 
-static void ov9_0224EE70 (UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1)
+static void ov9_0224EE70 (UnkStruct_ov9_02249B04 * param0, MapObject * param1)
 {
     int v0 = 0;
     UnkStruct_ov9_0224EE40 * v1 = &param0->unk_1C64;
-    LocalMapObject ** v2 = v1->unk_00;
+    MapObject ** v2 = v1->unk_00;
 
     for (v0 = 0; v0 < 19; v0++, v2++) {
         if ((*v2 != NULL) && (*v2 == param1)) {
-            LocalMapObj_Delete(*v2);
+            MapObject_Delete(*v2);
             *v2 = NULL;
             return;
         }
@@ -7124,7 +7124,7 @@ static void ov9_0224EE70 (UnkStruct_ov9_02249B04 * param0, LocalMapObject * para
     GF_ASSERT(0);
 }
 
-static LocalMapObject ** ov9_0224EEA0 (UnkStruct_ov9_02249B04 * param0)
+static MapObject ** ov9_0224EEA0 (UnkStruct_ov9_02249B04 * param0)
 {
     int v0;
     UnkStruct_ov9_0224EE40 * v1 = &param0->unk_1C64;
@@ -7139,10 +7139,10 @@ static LocalMapObject ** ov9_0224EEA0 (UnkStruct_ov9_02249B04 * param0)
     return NULL;
 }
 
-static LocalMapObject * ov9_0224EECC (UnkStruct_ov9_02249B04 * param0, const UnkStruct_020619DC * param1, u32 param2)
+static MapObject * ov9_0224EECC (UnkStruct_ov9_02249B04 * param0, const UnkStruct_020619DC * param1, u32 param2)
 {
     int v0 = 0;
-    LocalMapObject * v1;
+    MapObject * v1;
     const MapObjectManager * v2 = param0->unk_00->unk_38;
 
     while (sub_020625B0(v2, &v1, &v0, (1 << 0))) {
@@ -7174,9 +7174,9 @@ static BOOL ov9_0224EF30 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0
     return 1;
 }
 
-static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, LocalMapObject ** param1, const UnkStruct_ov9_0224EF30 * param2, u32 param3, u16 param4)
+static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, const UnkStruct_ov9_0224EF30 * param2, u32 param3, u16 param4)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     v0 = ov9_0224EECC(param0, &param2->unk_08, param3);
 
@@ -7204,7 +7204,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, LocalMapObject ** par
     sub_02062FC4(*param1, 1);
     sub_02062E5C(*param1, 1);
     sub_02062E28(*param1, 1);
-    sub_020628BC(*param1, (1 << 13));
+    MapObject_SetFlagOn(*param1, (1 << 13));
 
     if (v0 == NULL) {
         UnkStruct_020216E0 * v1;
@@ -7227,7 +7227,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, LocalMapObject ** par
 
 static BOOL ov9_0224F048 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0224EF30 ** param1, u32 param2)
 {
-    LocalMapObject ** v0;
+    MapObject ** v0;
 
     while ((*param1) != NULL) {
         v0 = ov9_0224EEA0(param0);
@@ -7256,21 +7256,21 @@ static void ov9_0224F0A4 (UnkStruct_ov9_02249B04 * param0, u32 param1)
 {
     int v0 = 0;
     UnkStruct_ov9_0224EE40 * v1 = &param0->unk_1C64;
-    LocalMapObject ** v2 = v1->unk_00;
+    MapObject ** v2 = v1->unk_00;
 
     for (v0 = 0; v0 < 19; v0++, v2++) {
         if ((*v2) != NULL) {
             if (sub_02062918(*v2) == param1) {
-                LocalMapObj_Delete(*v2);
+                MapObject_Delete(*v2);
                 *v2 = NULL;
             }
         }
     }
 }
 
-static LocalMapObject * ov9_0224F0D4 (UnkStruct_ov9_02249B04 * param0, u32 param1, u16 param2)
+static MapObject * ov9_0224F0D4 (UnkStruct_ov9_02249B04 * param0, u32 param1, u16 param2)
 {
-    LocalMapObject ** v0 = NULL;
+    MapObject ** v0 = NULL;
     const UnkStruct_ov9_02252EB4 * v1 = Unk_ov9_02252EB4;
 
     while (v1->unk_00 != 593) {
@@ -7316,7 +7316,7 @@ void ov9_0224F158 (FieldSystem * param0, u16 param1)
 void ov9_0224F16C (FieldSystem * param0, u16 param1)
 {
     int v0 = 0;
-    LocalMapObject * v1;
+    MapObject * v1;
     u32 v2 = param0->unk_1C->unk_00;
     MapObjectManager * v3 = param0->unk_38;
     UnkStruct_ov9_02249B04 * v4 = param0->unk_04->unk_24;
@@ -7332,11 +7332,11 @@ void ov9_0224F16C (FieldSystem * param0, u16 param1)
     GF_ASSERT(0);
 }
 
-static BOOL ov9_0224F1CC (UnkStruct_ov9_02249B04 * param0, LocalMapObject * param1)
+static BOOL ov9_0224F1CC (UnkStruct_ov9_02249B04 * param0, MapObject * param1)
 {
     int v0 = 0;
     UnkStruct_ov9_0224EE40 * v1 = &param0->unk_1C64;
-    LocalMapObject ** v2 = v1->unk_00;
+    MapObject ** v2 = v1->unk_00;
 
     GF_ASSERT(param1 != NULL);
 
@@ -7386,7 +7386,7 @@ static BOOL ov9_0224F1F8 (u32 param0, int param1, int param2, u32 * param3)
     return 0;
 }
 
-BOOL ov9_0224F240 (const LocalMapObject * param0, int param1)
+BOOL ov9_0224F240 (const MapObject * param0, int param1)
 {
     int v0, v1;
     u32 v2, v3;
@@ -7402,7 +7402,7 @@ BOOL ov9_0224F240 (const LocalMapObject * param0, int param1)
     return ov9_0224F1F8(v3, v0, v1, &v2);
 }
 
-static BOOL ov9_0224F284 (const LocalMapObject * param0, u32 * param1)
+static BOOL ov9_0224F284 (const MapObject * param0, u32 * param1)
 {
     int v0, v1;
     u32 v2;
@@ -7416,13 +7416,13 @@ static BOOL ov9_0224F284 (const LocalMapObject * param0, u32 * param1)
     return ov9_0224F1F8(v2, v0, v1, param1);
 }
 
-BOOL ov9_0224F2B0 (const LocalMapObject * param0)
+BOOL ov9_0224F2B0 (const MapObject * param0)
 {
     u32 v0;
     return ov9_0224F284(param0, &v0);
 }
 
-UnkStruct_ov9_0224F6EC * ov9_0224F2BC (FieldSystem * param0, TaskManager * param1, LocalMapObject * param2)
+UnkStruct_ov9_0224F6EC * ov9_0224F2BC (FieldSystem * param0, TaskManager * param1, MapObject * param2)
 {
     UnkStruct_ov9_0224F6EC * v0;
 
@@ -7460,7 +7460,7 @@ static BOOL ov9_0224F324 (UnkStruct_ov9_0224F6EC * param0)
 {
     int v0;
     VecFx32 v1;
-    LocalMapObject * v2 = param0->unk_0C;
+    MapObject * v2 = param0->unk_0C;
 
     sub_02063050(v2, &v1);
     v1.y -= FX32_ONE * 8;
@@ -7506,7 +7506,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
     case 0:
     {
         VecFx32 v0;
-        LocalMapObject * v1 = param0->unk_0C;
+        MapObject * v1 = param0->unk_0C;
 
         sub_02063050(v1, &v0);
         v0.y -= FX32_ONE * 2;
@@ -7526,7 +7526,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
     case 1:
     {
         VecFx32 v2;
-        LocalMapObject * v3 = param0->unk_0C;
+        MapObject * v3 = param0->unk_0C;
 
         sub_02063050(v3, &v2);
         v2.y -= FX32_ONE * 4;
@@ -7543,7 +7543,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
 
         {
             u32 v4 = 0, v5 = 0;
-            LocalMapObject * v6 = param0->unk_0C;
+            MapObject * v6 = param0->unk_0C;
 
             ov9_02249DC8(param0->unk_00, param0->unk_14);
 
@@ -7600,7 +7600,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
     case 2:
     {
         VecFx32 v12;
-        LocalMapObject * v13 = param0->unk_0C;
+        MapObject * v13 = param0->unk_0C;
 
         sub_0206309C(v13, &v12);
         v12.y = param0->unk_1C + param0->unk_20;
@@ -7621,7 +7621,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
 
         {
             u32 v14 = 0, v15 = 0;
-            LocalMapObject * v16 = param0->unk_0C;
+            MapObject * v16 = param0->unk_0C;
 
             switch (param0->unk_14) {
             case 6:
@@ -7675,7 +7675,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
     case 0:
     {
         VecFx32 v0;
-        LocalMapObject * v1 = param0->unk_0C;
+        MapObject * v1 = param0->unk_0C;
 
         sub_02063050(v1, &v0);
         v0.y -= FX32_ONE * 2;
@@ -7695,7 +7695,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
     case 1:
     {
         VecFx32 v2;
-        LocalMapObject * v3 = param0->unk_0C;
+        MapObject * v3 = param0->unk_0C;
 
         sub_02063050(v3, &v2);
         v2.y -= FX32_ONE * 4;
@@ -7714,7 +7714,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
     case 2:
     {
         VecFx32 v4;
-        LocalMapObject * v5 = param0->unk_0C;
+        MapObject * v5 = param0->unk_0C;
 
         sub_02063050(v5, &v4);
         v4.y -= FX32_ONE * 8;
@@ -7729,7 +7729,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
 
         {
             u32 v6 = 0, v7 = 0, v8 = 0, v9 = 0;
-            LocalMapObject * v10 = param0->unk_0C;
+            MapObject * v10 = param0->unk_0C;
 
             switch (sub_02062910(v10)) {
             case (0x80 + 0):
@@ -8024,7 +8024,7 @@ static const UnkStruct_ov9_0224A8A0 Unk_ov9_02251888 = {
 
 static void ov9_0224FA94 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224FA94 * param1)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v0 = Player_MapObject(param0->unk_00->playerAvatar);
     int v1 = (((param1->unk_40.unk_10.y) >> 4) / FX32_ONE);
 
     if ((param1->unk_04 == 0) && (v1 == -20)) {
@@ -8052,7 +8052,7 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     VecFx32 v0;
     UnkStruct_ov9_0224F930 * v1;
-    LocalMapObject * v2;
+    MapObject * v2;
     PlayerAvatar * v3;
     UnkStruct_ov9_0224FA94 * v4;
     const UnkStruct_ov9_02252384 * v5;
@@ -8061,7 +8061,7 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     v4 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0224FA94));
     v1 = &v4->unk_40;
     v3 = param0->unk_00->playerAvatar;
-    v2 = Player_LocalMapObject(v3);
+    v2 = Player_MapObject(v3);
 
     sub_02063050(v2, &v0);
     sub_02062974(v2, 2);
@@ -8113,7 +8113,7 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
 static int ov9_0224FC2C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v0 = Player_MapObject(param0->unk_00->playerAvatar);
     UnkStruct_ov9_0224FA94 * v1 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v2 = &v1->unk_40;
 
@@ -8186,7 +8186,7 @@ static int ov9_0224FD74 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
-    LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v2 = Player_MapObject(param0->unk_00->playerAvatar);
     UnkStruct_ov9_0224FA94 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_40;
 
@@ -8262,7 +8262,7 @@ static int ov9_0224FEDC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
-    LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v2 = Player_MapObject(param0->unk_00->playerAvatar);
     UnkStruct_ov9_0224FA94 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_40;
 
@@ -8349,7 +8349,7 @@ static int ov9_022500E0 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     u32 v0[2] = {0xa, 0x6};
     UnkStruct_ov9_0224FA94 * v1 = ov9_0224E39C(param0);
-    LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v2 = Player_MapObject(param0->unk_00->playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(v2) == 0) {
         return 0;
@@ -8383,7 +8383,7 @@ static const UnkStruct_ov9_0224A8A0 Unk_ov9_02251C48 = {
 
 static void ov9_02250138 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_02250138 * param1)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v0 = Player_MapObject(param0->unk_00->playerAvatar);
     int v1 = (((param1->unk_34.unk_10.y) >> 4) / FX32_ONE);
 
     if ((param1->unk_04 == 0) && (v1 == 20)) {
@@ -8396,7 +8396,7 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     VecFx32 v0;
     UnkStruct_ov9_0224F930 * v1;
-    LocalMapObject * v2;
+    MapObject * v2;
     PlayerAvatar * v3;
     UnkStruct_ov9_02250138 * v4;
     const UnkStruct_ov9_022523F0 * v5;
@@ -8405,7 +8405,7 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     v4 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250138));
     v1 = &v4->unk_34;
     v3 = param0->unk_00->playerAvatar;
-    v2 = Player_LocalMapObject(v3);
+    v2 = Player_MapObject(v3);
 
     sub_02063050(v2, &v0);
     sub_02062974(v2, 3);
@@ -8457,7 +8457,7 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
 static int ov9_02250260 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v0 = Player_MapObject(param0->unk_00->playerAvatar);
     UnkStruct_ov9_02250138 * v1 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v2 = &v1->unk_34;
 
@@ -8527,7 +8527,7 @@ static int ov9_02250388 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
-    LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v2 = Player_MapObject(param0->unk_00->playerAvatar);
     UnkStruct_ov9_02250138 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_34;
 
@@ -8580,7 +8580,7 @@ static int ov9_02250468 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0->unk_00->playerAvatar);
-    LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v2 = Player_MapObject(param0->unk_00->playerAvatar);
     UnkStruct_ov9_02250138 * v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_34;
 
@@ -8662,7 +8662,7 @@ static int ov9_02250650 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     u32 v0[3] = {0x97, 0x93, 0x73};
     UnkStruct_ov9_02250138 * v1 = ov9_0224E39C(param0);
-    LocalMapObject * v2 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v2 = Player_MapObject(param0->unk_00->playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(v2) == 0) {
         return 0;
@@ -9282,7 +9282,7 @@ static int ov9_02250C48 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
         }
 
         v0->unk_10 = sub_02065700(v0->unk_18, v6);
-        v0->unk_14 = sub_02065700(Player_LocalMapObject(param0->unk_00->playerAvatar), v5);
+        v0->unk_14 = sub_02065700(Player_MapObject(param0->unk_00->playerAvatar), v5);
         *param2 = 2;
     }
 
@@ -9497,7 +9497,7 @@ static void ov9_02250F1C (fx32 * param0, fx32 param1)
 
 static void ov9_02250F44 (UnkStruct_ov9_02249B04 * param0, int * param1, int * param2, int * param3)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param0->unk_00->playerAvatar);
+    MapObject * v0 = Player_MapObject(param0->unk_00->playerAvatar);
 
     *param1 = sub_02063020(v0);
     *param2 = sub_02063030(v0);
@@ -9704,7 +9704,7 @@ static void ov9_022511E0 (u16 param0)
     }
 }
 
-static void ov9_022511F4 (LocalMapObject * param0, const VecFx32 * param1)
+static void ov9_022511F4 (MapObject * param0, const VecFx32 * param1)
 {
     UnkStruct_020216E0 * v0;
 

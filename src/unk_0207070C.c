@@ -48,7 +48,7 @@ typedef struct {
 
 typedef struct {
     u32 unk_00;
-    LocalMapObject * unk_04;
+    MapObject * unk_04;
     UnkStruct_020709CC unk_08;
 } UnkStruct_0207086C;
 
@@ -164,7 +164,7 @@ u32 sub_0207070C (u16 param0, u16 param1)
 
 void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     int v1, v2;
     int v3;
     int v4;
