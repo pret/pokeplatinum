@@ -73,7 +73,7 @@
 #include "pokemon.h"
 #include "choose_starter/choose_starter_app.h"
 
-typedef struct {
+typedef struct ChooseStarter3DGraphics {
     NNSG3dRenderObj unk_00;
     void * unk_54;
     NNSG3dResMdlSet * unk_58;
@@ -89,50 +89,50 @@ typedef struct {
     u16 unk_90;
     u16 unk_92;
     u16 unk_94;
-} UnkStruct_ov78_021D15CC;
+} ChooseStarter3DGraphics;
 
-typedef struct {
+typedef struct ChooseStarterMovement {
     s32 unk_00;
     s32 unk_04;
     s32 unk_08;
     s32 unk_0C;
-} UnkStruct_ov78_021D2108;
+} ChooseStarterMovement;
 
-typedef struct {
-    UnkStruct_ov78_021D2108 unk_00;
-    UnkStruct_ov78_021D2108 unk_10;
-    UnkStruct_ov78_021D2108 unk_20;
+typedef struct ChooseStarterCameraMovement {
+    ChooseStarterMovement unk_00;
+    ChooseStarterMovement unk_10;
+    ChooseStarterMovement unk_20;
     UnkStruct_020203AC * unk_30;
     VecFx32 * unk_34;
     s32 unk_38;
     BOOL unk_3C;
     SysTask * unk_40;
-} UnkStruct_ov78_021D213C;
+} ChooseStarterCameraMovement;
 
-typedef struct {
+typedef struct ChooseStarterRotation {
     fx32 unk_00;
     fx32 unk_04;
     int unk_08;
     int unk_0C;
-} UnkStruct_ov78_021D235C;
+} ChooseStarterRotation;
 
-typedef struct {
+typedef struct ChooseStarterCursor {
     GraphicElementData * unk_00;
     UnkStruct_02009DC8 * unk_04[6];
     VecFx32 unk_1C;
     SysTask * unk_28;
-    UnkStruct_ov78_021D235C unk_2C;
-} UnkStruct_ov78_021D2350;
+    ChooseStarterRotation unk_2C;
+} ChooseStarterCursor;
 
-typedef struct {
-    UnkStruct_ov78_021D2108 unk_00;
-    UnkStruct_ov78_021D2108 unk_10;
-    UnkStruct_ov78_021D2108 unk_20;
+typedef struct StarterPreviewAnimation {
+    ChooseStarterMovement unk_00;
+    ChooseStarterMovement unk_10;
+    ChooseStarterMovement unk_20;
     int unk_30;
     int unk_34;
-} UnkStruct_ov78_021D2448_sub1;
+} StarterPreviewAnimation;
 
-typedef struct {
+typedef struct StarterPreviewWindow {
     UnkStruct_02015128 * unk_00;
     UnkStruct_020151A4 * unk_04;
     UnkStruct_02015214 * unk_08;
@@ -140,22 +140,22 @@ typedef struct {
     void * unk_10;
     NNSG2dCharacterData * unk_14;
     NNSG2dPaletteData * unk_18;
-    UnkStruct_ov78_021D2448_sub1 unk_1C;
+    StarterPreviewAnimation unk_1C;
     SysTask * unk_54;
-} UnkStruct_ov78_021D2448;
+} StarterPreviewWindow;
 
-typedef struct {
+typedef struct StarterPreviewGraphics {
     Sprite * unk_00;
-    UnkStruct_ov78_021D2448_sub1 unk_04;
+    StarterPreviewAnimation unk_04;
     SysTask * unk_3C;
-} UnkStruct_ov78_021D26B4;
+} StarterPreviewGraphics;
 
-typedef struct {
+typedef struct ChooseStarterApp {
     int unk_00;
     int unk_04;
     BOOL unk_08;
     int unk_0C;
-    UnkStruct_ov78_021D213C unk_10;
+    ChooseStarterCameraMovement unk_10;
     int unk_54;
     int unk_58[3][3];
     int unk_7C[3][2];
@@ -171,124 +171,124 @@ typedef struct {
     UnkStruct_02009714 * unk_24C[6];
     UnkStruct_02007768 * unk_264;
     Sprite * unk_268[3];
-    UnkStruct_ov78_021D26B4 unk_274;
+    StarterPreviewGraphics unk_274;
     NNSFndAllocator unk_2B4;
-    UnkStruct_ov78_021D15CC unk_2C4[6];
+    ChooseStarter3DGraphics unk_2C4[6];
     UnkStruct_020203AC * unk_648;
     VecFx32 unk_64C;
-    UnkStruct_ov78_021D2350 unk_658;
+    ChooseStarterCursor unk_658;
     GXRgb unk_694[8];
     UnkStruct_02015064 * unk_6A4;
-    UnkStruct_ov78_021D2448 unk_6A8;
+    StarterPreviewWindow unk_6A8;
     int unk_700;
     u32 unk_704;
     u8 unk_708;
     u8 unk_709[3];
-} UnkStruct_ov78_021D107C;
+} ChooseStarterApp;
 
 static void ov78_021D1058(void * param0);
-static void ov78_021D107C(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D109C(UnkStruct_ov78_021D107C * param0);
-static BOOL ov78_021D10BC(UnkStruct_ov78_021D107C * param0);
+static void ov78_021D107C(ChooseStarterApp * param0);
+static void ov78_021D109C(ChooseStarterApp * param0);
+static BOOL ov78_021D10BC(ChooseStarterApp * param0);
 static u16 ov78_021D291C(u16 param0);
-static BOOL ov78_021D1978(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D19D4(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D1AAC(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D10C4(UnkStruct_ov78_021D107C * param0, int param1);
+static BOOL ov78_021D1978(ChooseStarterApp * param0, int param1);
+static void ov78_021D19D4(ChooseStarterApp * param0, int param1);
+static void ov78_021D1AAC(ChooseStarterApp * param0);
+static void ov78_021D10C4(ChooseStarterApp * param0, int param1);
 static void ov78_021D10DC(void);
 static void ov78_021D10F0(void);
 static void ov78_021D1110(int param0);
-static void ov78_021D1168(UnkStruct_ov78_021D107C * param0);
+static void ov78_021D1168(ChooseStarterApp * param0);
 static void ov78_021D1218(void);
 static void ov78_021D1224(BGL * param0, int param1);
 static void ov78_021D12EC(BGL * param0);
-static void ov78_021D1308(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D13A0(UnkStruct_ov78_021D107C * param0);
+static void ov78_021D1308(ChooseStarterApp * param0, int param1);
+static void ov78_021D13A0(ChooseStarterApp * param0);
 static u8 ov78_021D1FB4(Window * param0, int param1, int param2, int param3, u32 param4, u32 param5);
 static u8 ov78_021D201C(Window * param0, int param1, int param2, int param3, u32 param4, u32 param5, Strbuf **param6);
-static void ov78_021D2090(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D27CC(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D2884(UnkStruct_ov78_021D107C * param0);
+static void ov78_021D2090(ChooseStarterApp * param0);
+static void ov78_021D27CC(ChooseStarterApp * param0, int param1);
+static void ov78_021D2884(ChooseStarterApp * param0);
 static void ov78_021D28A8(Window * param0, int param1, int param2, int param3, u32 param4);
-static void ov78_021D2904(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D20A4(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D13B8(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D14BC(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D14E8(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D1518(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1528(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D1594(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1B20(UnkStruct_ov78_021D107C * param0, int param1);
+static void ov78_021D2904(ChooseStarterApp * param0);
+static void ov78_021D20A4(ChooseStarterApp * param0, int param1);
+static void ov78_021D13B8(ChooseStarterApp * param0, int param1);
+static void ov78_021D14BC(ChooseStarterApp * param0);
+static void ov78_021D14E8(ChooseStarterApp * param0, int param1);
+static void ov78_021D1518(ChooseStarterApp * param0);
+static void ov78_021D1528(ChooseStarterApp * param0, int param1);
+static void ov78_021D1594(ChooseStarterApp * param0);
+static void ov78_021D1B20(ChooseStarterApp * param0, int param1);
 static void ov78_021D1B3C(UnkStruct_020203AC * param0, VecFx32 * param1);
-static void ov78_021D1B90(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1834(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D1908(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D192C(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D2204(UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D2350 * param1, int param2);
-static void ov78_021D2290(UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D2350 * param1);
-static void ov78_021D22D4(UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D2350 * param1, int param2);
-static void ov78_021D2350(UnkStruct_ov78_021D2350 * param0);
-static void ov78_021D2430(UnkStruct_ov78_021D2350 * param0, BOOL param1);
-static void ov78_021D243C(UnkStruct_ov78_021D2350 * param0, int param1, int param2);
-static void ov78_021D1BA0(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1C28(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1CA8(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D1DF0(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1E28(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1E44(UnkStruct_ov78_021D107C * param0, int param1);
-static void ov78_021D1468(Sprite ** param0, UnkStruct_ov78_021D107C * param1, int param2);
-static void ov78_021D15CC(UnkStruct_ov78_021D15CC * param0, int param1, int param2, int param3, NNSFndAllocator * param4);
-static void ov78_021D1604(UnkStruct_ov78_021D15CC * param0, int param1, int param2);
-static void ov78_021D16D8(UnkStruct_ov78_021D15CC * param0, NNSFndAllocator * param1);
-static void ov78_021D1708(UnkStruct_ov78_021D15CC * param0);
-static void ov78_021D17A4(UnkStruct_ov78_021D15CC * param0, BOOL param1);
-static void ov78_021D17A8(UnkStruct_ov78_021D15CC * param0, fx32 param1, fx32 param2, fx32 param3);
-static void ov78_021D17B4(UnkStruct_ov78_021D15CC * param0, fx32 param1, fx32 param2, fx32 param3);
-static void ov78_021D17CC(UnkStruct_ov78_021D15CC * param0, u16 param1, u16 param2, u16 param3);
-static BOOL ov78_021D17E4(UnkStruct_ov78_021D15CC * param0);
-static void ov78_021D180C(UnkStruct_ov78_021D15CC * param0);
-static void ov78_021D182C(UnkStruct_ov78_021D15CC * param0, fx32 param1);
-static void ov78_021D1630(UnkStruct_ov78_021D15CC * param0, int param1, int param2);
-static void ov78_021D1694(UnkStruct_ov78_021D15CC * param0, int param1, int param2, NNSFndAllocator * param3);
-static void ov78_021D2448(UnkStruct_ov78_021D2448 * param0, UnkStruct_ov78_021D107C * param1, int param2);
-static void ov78_021D24E4(UnkStruct_ov78_021D2448 * param0);
-static void ov78_021D2508(UnkStruct_ov78_021D2448 * param0, BOOL param1);
-static void ov78_021D2514(UnkStruct_ov78_021D2448 * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
-static void ov78_021D256C(UnkStruct_ov78_021D2448 * param0);
+static void ov78_021D1B90(ChooseStarterApp * param0);
+static void ov78_021D1834(ChooseStarterApp * param0, int param1);
+static void ov78_021D1908(ChooseStarterApp * param0);
+static void ov78_021D192C(ChooseStarterApp * param0);
+static void ov78_021D2204(ChooseStarterApp * param0, ChooseStarterCursor * param1, int param2);
+static void ov78_021D2290(ChooseStarterApp * param0, ChooseStarterCursor * param1);
+static void ov78_021D22D4(ChooseStarterApp * param0, ChooseStarterCursor * param1, int param2);
+static void ov78_021D2350(ChooseStarterCursor * param0);
+static void ov78_021D2430(ChooseStarterCursor * param0, BOOL param1);
+static void ov78_021D243C(ChooseStarterCursor * param0, int param1, int param2);
+static void ov78_021D1BA0(ChooseStarterApp * param0);
+static void ov78_021D1C28(ChooseStarterApp * param0);
+static void ov78_021D1CA8(ChooseStarterApp * param0, int param1);
+static void ov78_021D1DF0(ChooseStarterApp * param0);
+static void ov78_021D1E28(ChooseStarterApp * param0);
+static void ov78_021D1E44(ChooseStarterApp * param0, int param1);
+static void ov78_021D1468(Sprite ** param0, ChooseStarterApp * param1, int param2);
+static void ov78_021D15CC(ChooseStarter3DGraphics * param0, int param1, int param2, int param3, NNSFndAllocator * param4);
+static void ov78_021D1604(ChooseStarter3DGraphics * param0, int param1, int param2);
+static void ov78_021D16D8(ChooseStarter3DGraphics * param0, NNSFndAllocator * param1);
+static void ov78_021D1708(ChooseStarter3DGraphics * param0);
+static void ov78_021D17A4(ChooseStarter3DGraphics * param0, BOOL param1);
+static void ov78_021D17A8(ChooseStarter3DGraphics * param0, fx32 param1, fx32 param2, fx32 param3);
+static void ov78_021D17B4(ChooseStarter3DGraphics * param0, fx32 param1, fx32 param2, fx32 param3);
+static void ov78_021D17CC(ChooseStarter3DGraphics * param0, u16 param1, u16 param2, u16 param3);
+static BOOL ov78_021D17E4(ChooseStarter3DGraphics * param0);
+static void ov78_021D180C(ChooseStarter3DGraphics * param0);
+static void ov78_021D182C(ChooseStarter3DGraphics * param0, fx32 param1);
+static void ov78_021D1630(ChooseStarter3DGraphics * param0, int param1, int param2);
+static void ov78_021D1694(ChooseStarter3DGraphics * param0, int param1, int param2, NNSFndAllocator * param3);
+static void ov78_021D2448(StarterPreviewWindow * param0, ChooseStarterApp * param1, int param2);
+static void ov78_021D24E4(StarterPreviewWindow * param0);
+static void ov78_021D2508(StarterPreviewWindow * param0, BOOL param1);
+static void ov78_021D2514(StarterPreviewWindow * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
+static void ov78_021D256C(StarterPreviewWindow * param0);
 static void ov78_021D25A0(SysTask * param0, void * param1);
-static BOOL ov78_021D2608(UnkStruct_ov78_021D2448 * param0);
-static void ov78_021D2618(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D2688(UnkStruct_ov78_021D107C * param0);
-static BOOL ov78_021D26A4(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D26B4(UnkStruct_ov78_021D26B4 * param0, Sprite * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
-static void ov78_021D270C(UnkStruct_ov78_021D26B4 * param0);
+static BOOL ov78_021D2608(StarterPreviewWindow * param0);
+static void ov78_021D2618(ChooseStarterApp * param0);
+static void ov78_021D2688(ChooseStarterApp * param0);
+static BOOL ov78_021D26A4(ChooseStarterApp * param0);
+static void ov78_021D26B4(StarterPreviewGraphics * param0, Sprite * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
+static void ov78_021D270C(StarterPreviewGraphics * param0);
 static void ov78_021D2740(SysTask * param0, void * param1);
-static void ov78_021D1C58(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D1C98(UnkStruct_ov78_021D107C * param0, int param1);
-static int ov78_021D1CA4(UnkStruct_ov78_021D107C * param0);
-static void ov78_021D2108(UnkStruct_ov78_021D2108 * param0, s32 param1, s32 param2, s32 param3);
-static BOOL ov78_021D2114(UnkStruct_ov78_021D2108 * param0, s32 param1);
-static void ov78_021D235C(UnkStruct_ov78_021D235C * param0, fx32 param1, int param2);
-static void ov78_021D2368(UnkStruct_ov78_021D235C * param0);
-static void ov78_021D213C(UnkStruct_ov78_021D213C * param0, UnkStruct_020203AC * param1, VecFx32 * param2);
+static void ov78_021D1C58(ChooseStarterApp * param0);
+static void ov78_021D1C98(ChooseStarterApp * param0, int param1);
+static int ov78_021D1CA4(ChooseStarterApp * param0);
+static void ov78_021D2108(ChooseStarterMovement * param0, s32 param1, s32 param2, s32 param3);
+static BOOL ov78_021D2114(ChooseStarterMovement * param0, s32 param1);
+static void ov78_021D235C(ChooseStarterRotation * param0, fx32 param1, int param2);
+static void ov78_021D2368(ChooseStarterRotation * param0);
+static void ov78_021D213C(ChooseStarterCameraMovement * param0, UnkStruct_020203AC * param1, VecFx32 * param2);
 static void ov78_021D219C(SysTask * param0, void * param1);
-static BOOL ov78_021D2200(UnkStruct_ov78_021D213C * param0);
-static void ov78_021D23B8(UnkStruct_ov78_021D2350 * param0);
+static BOOL ov78_021D2200(ChooseStarterCameraMovement * param0);
+static void ov78_021D23B8(ChooseStarterCursor * param0);
 static void ov78_021D23E8(SysTask * param0, void * param1);
-static void ov78_021D241C(UnkStruct_ov78_021D2350 * param0);
+static void ov78_021D241C(ChooseStarterCursor * param0);
 
 int ChooseStarter_Init (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov78_021D107C * v0;
+    ChooseStarterApp * v0;
     UnkStruct_020425E0 * v1;
     UnkStruct_ov84_0223BA5C v2;
     BOOL v3;
 
     Heap_Create(3, 47, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov78_021D107C), 47);
+    v0 = OverlayManager_NewData(param0, sizeof(ChooseStarterApp), 47);
     GF_ASSERT(v0);
-    memset(v0, 0, sizeof(UnkStruct_ov78_021D107C));
+    memset(v0, 0, sizeof(ChooseStarterApp));
 
     Heap_FndInitAllocatorForExpHeap(&v0->unk_2B4, 47, 32);
 
@@ -344,7 +344,7 @@ int ChooseStarter_Init (OverlayManager * param0, int * param1)
 
 int ChooseStarter_Main (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov78_021D107C * v0 = OverlayManager_Data(param0);
+    ChooseStarterApp * v0 = OverlayManager_Data(param0);
     BOOL v1;
     short v2 = 0x8c3;
 
@@ -390,7 +390,7 @@ int ChooseStarter_Main (OverlayManager * param0, int * param1)
 
 int ChooseStarter_Exit (OverlayManager * param0, int * param1)
 {
-    UnkStruct_ov78_021D107C * v0 = OverlayManager_Data(param0);
+    ChooseStarterApp * v0 = OverlayManager_Data(param0);
     UnkStruct_020425E0 * v1 = OverlayManager_Args(param0);
     BOOL v2;
 
@@ -427,7 +427,7 @@ int ChooseStarter_Exit (OverlayManager * param0, int * param1)
 
 static void ov78_021D1058 (void * param0)
 {
-    UnkStruct_ov78_021D107C * v0 = param0;
+    ChooseStarterApp * v0 = param0;
 
     sub_0200A858();
     sub_0201C2B8(v0->unk_94);
@@ -435,22 +435,22 @@ static void ov78_021D1058 (void * param0)
     sub_0201DCAC();
 }
 
-static void ov78_021D107C (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D107C (ChooseStarterApp * param0)
 {
     sub_0200F174(0, 1, 1, 0x0, 6, 1, 47);
 }
 
-static void ov78_021D109C (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D109C (ChooseStarterApp * param0)
 {
     sub_0200F174(0, 0, 0, 0x0, 6, 1, 47);
 }
 
-static BOOL ov78_021D10BC (UnkStruct_ov78_021D107C * param0)
+static BOOL ov78_021D10BC (ChooseStarterApp * param0)
 {
     return ScreenWipe_Done();
 }
 
-static void ov78_021D10C4 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D10C4 (ChooseStarterApp * param0, int param1)
 {
     ov78_021D10F0();
     ov78_021D1110(param1);
@@ -505,7 +505,7 @@ static void ov78_021D1110 (int param0)
     sub_0201F8E4();
 }
 
-static void ov78_021D1168 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1168 (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -616,7 +616,7 @@ static void ov78_021D12EC (BGL * param0)
     sub_02019044(param0, 3);
 }
 
-static void ov78_021D1308 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D1308 (ChooseStarterApp * param0, int param1)
 {
     param0->unk_98 = sub_0201A778(param1, 1);
 
@@ -628,13 +628,13 @@ static void ov78_021D1308 (UnkStruct_ov78_021D107C * param0, int param1)
     sub_0200E060(param0->unk_98, 0, 512, 0);
 }
 
-static void ov78_021D13A0 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D13A0 (ChooseStarterApp * param0)
 {
     BGL_DeleteWindow(param0->unk_98);
     Heap_FreeToHeap(param0->unk_98);
 }
 
-static void ov78_021D13B8 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D13B8 (ChooseStarterApp * param0, int param1)
 {
     NNSGfdTexKey v0;
     NNSGfdPlttKey v1;
@@ -657,7 +657,7 @@ static void ov78_021D13B8 (UnkStruct_ov78_021D107C * param0, int param1)
     }
 }
 
-static void ov78_021D1468 (Sprite ** param0, UnkStruct_ov78_021D107C * param1, int param2)
+static void ov78_021D1468 (Sprite ** param0, ChooseStarterApp * param1, int param2)
 {
     ArchivedSprite v0;
     int v1;
@@ -669,7 +669,7 @@ static void ov78_021D1468 (Sprite ** param0, UnkStruct_ov78_021D107C * param1, i
     *param0 = sub_02007C34(param1->unk_264, &v0, 128, 96, 1023, 0, NULL, NULL);
 }
 
-static void ov78_021D14BC (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D14BC (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -682,7 +682,7 @@ static void ov78_021D14BC (UnkStruct_ov78_021D107C * param0)
     sub_02007B6C(param0->unk_264);
 }
 
-static void ov78_021D14E8 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D14E8 (ChooseStarterApp * param0, int param1)
 {
     UnkStruct_ov22_022550D4 v0 = {
         1, 1, 1, 0
@@ -692,12 +692,12 @@ static void ov78_021D14E8 (UnkStruct_ov78_021D107C * param0, int param1)
     param0->unk_6A4 = sub_02015064(&v0);
 }
 
-static void ov78_021D1518 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1518 (ChooseStarterApp * param0)
 {
     sub_020150A8(param0->unk_6A4);
 }
 
-static void ov78_021D1528 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D1528 (ChooseStarterApp * param0, int param1)
 {
     param0->unk_248 = sub_020095C4(2, &param0->unk_BC, param1);
     param0->unk_24C[0] = sub_02009714(2, 0, param1);
@@ -709,7 +709,7 @@ static void ov78_021D1528 (UnkStruct_ov78_021D107C * param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov78_021D1594 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1594 (ChooseStarterApp * param0)
 {
     sub_02021964(param0->unk_248);
     sub_02009754(param0->unk_24C[0]);
@@ -718,24 +718,24 @@ static void ov78_021D1594 (UnkStruct_ov78_021D107C * param0)
     sub_02009754(param0->unk_24C[3]);
 }
 
-static void ov78_021D15CC (UnkStruct_ov78_021D15CC * param0, int param1, int param2, int param3, NNSFndAllocator * param4)
+static void ov78_021D15CC (ChooseStarter3DGraphics * param0, int param1, int param2, int param3, NNSFndAllocator * param4)
 {
-    memset(param0, 0, sizeof(UnkStruct_ov78_021D15CC));
+    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 
     ov78_021D1630(param0, param1, param3);
     ov78_021D1694(param0, param2, param3, param4);
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1604 (UnkStruct_ov78_021D15CC * param0, int param1, int param2)
+static void ov78_021D1604 (ChooseStarter3DGraphics * param0, int param1, int param2)
 {
-    memset(param0, 0, sizeof(UnkStruct_ov78_021D15CC));
+    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 
     ov78_021D1630(param0, param1, param2);
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1630 (UnkStruct_ov78_021D15CC * param0, int param1, int param2)
+static void ov78_021D1630 (ChooseStarter3DGraphics * param0, int param1, int param2)
 {
     param0->unk_54 = sub_02006FE8(82, param1, 0, param2, 0);
     param0->unk_58 = NNS_G3dGetMdlSet(param0->unk_54);
@@ -748,7 +748,7 @@ static void ov78_021D1630 (UnkStruct_ov78_021D15CC * param0, int param1, int par
     NNS_G3dRenderObjInit(&param0->unk_00, param0->unk_5C);
 }
 
-static void ov78_021D1694 (UnkStruct_ov78_021D15CC * param0, int param1, int param2, NNSFndAllocator * param3)
+static void ov78_021D1694 (ChooseStarter3DGraphics * param0, int param1, int param2, NNSFndAllocator * param3)
 {
     param0->unk_64 = sub_02006FE8(82, param1, 0, param2, 0);
     param0->unk_68 = NNS_G3dGetAnmByIdx(param0->unk_64, 0);
@@ -758,7 +758,7 @@ static void ov78_021D1694 (UnkStruct_ov78_021D15CC * param0, int param1, int par
     NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param0->unk_6C);
 }
 
-static void ov78_021D16D8 (UnkStruct_ov78_021D15CC * param0, NNSFndAllocator * param1)
+static void ov78_021D16D8 (ChooseStarter3DGraphics * param0, NNSFndAllocator * param1)
 {
     if (param0->unk_54) {
         Heap_FreeToHeap(param0->unk_54);
@@ -769,10 +769,10 @@ static void ov78_021D16D8 (UnkStruct_ov78_021D15CC * param0, NNSFndAllocator * p
         Heap_FreeToHeap(param0->unk_64);
     }
 
-    memset(param0, 0, sizeof(UnkStruct_ov78_021D15CC));
+    memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 }
 
-static void ov78_021D1708 (UnkStruct_ov78_021D15CC * param0)
+static void ov78_021D1708 (ChooseStarter3DGraphics * param0)
 {
     MtxFx33 v0;
     MtxFx33 v1;
@@ -790,33 +790,33 @@ static void ov78_021D1708 (UnkStruct_ov78_021D15CC * param0)
     }
 }
 
-static void ov78_021D17A4 (UnkStruct_ov78_021D15CC * param0, BOOL param1)
+static void ov78_021D17A4 (ChooseStarter3DGraphics * param0, BOOL param1)
 {
     param0->unk_74 = param1;
 }
 
-static void ov78_021D17A8 (UnkStruct_ov78_021D15CC * param0, fx32 param1, fx32 param2, fx32 param3)
+static void ov78_021D17A8 (ChooseStarter3DGraphics * param0, fx32 param1, fx32 param2, fx32 param3)
 {
     param0->unk_78.x = param1;
     param0->unk_78.y = param2;
     param0->unk_78.z = param3;
 }
 
-static void ov78_021D17B4 (UnkStruct_ov78_021D15CC * param0, fx32 param1, fx32 param2, fx32 param3)
+static void ov78_021D17B4 (ChooseStarter3DGraphics * param0, fx32 param1, fx32 param2, fx32 param3)
 {
     param0->unk_84.x = param1;
     param0->unk_84.y = param2;
     param0->unk_84.z = param3;
 }
 
-static void ov78_021D17CC (UnkStruct_ov78_021D15CC * param0, u16 param1, u16 param2, u16 param3)
+static void ov78_021D17CC (ChooseStarter3DGraphics * param0, u16 param1, u16 param2, u16 param3)
 {
     param0->unk_90 = param1;
     param0->unk_92 = param2;
     param0->unk_94 = param3;
 }
 
-static BOOL ov78_021D17E4 (UnkStruct_ov78_021D15CC * param0)
+static BOOL ov78_021D17E4 (ChooseStarter3DGraphics * param0)
 {
     fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_6C);
     BOOL v1;
@@ -834,7 +834,7 @@ static BOOL ov78_021D17E4 (UnkStruct_ov78_021D15CC * param0)
     return v1;
 }
 
-static void ov78_021D180C (UnkStruct_ov78_021D15CC * param0)
+static void ov78_021D180C (ChooseStarter3DGraphics * param0)
 {
     fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_6C);
 
@@ -842,13 +842,13 @@ static void ov78_021D180C (UnkStruct_ov78_021D15CC * param0)
     NNS_G3dAnmObjSetFrame(param0->unk_6C, param0->unk_70);
 }
 
-static void ov78_021D182C (UnkStruct_ov78_021D15CC * param0, fx32 param1)
+static void ov78_021D182C (ChooseStarter3DGraphics * param0, fx32 param1)
 {
     param0->unk_70 = param1;
     NNS_G3dAnmObjSetFrame(param0->unk_6C, param1);
 }
 
-static void ov78_021D1834 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D1834 (ChooseStarterApp * param0, int param1)
 {
     int v0;
 
@@ -871,7 +871,7 @@ static void ov78_021D1834 (UnkStruct_ov78_021D107C * param0, int param1)
     ov78_021D17CC(&param0->unk_2C4[5], (((0 * 0xffff) / 360)), (((180 * 0xffff) / 360)), (((0 * 0xffff) / 360)));
 }
 
-static void ov78_021D1908 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1908 (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -880,7 +880,7 @@ static void ov78_021D1908 (UnkStruct_ov78_021D107C * param0)
     }
 }
 
-static void ov78_021D192C (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D192C (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -894,7 +894,7 @@ static void ov78_021D192C (UnkStruct_ov78_021D107C * param0)
     }
 }
 
-static BOOL ov78_021D1978 (UnkStruct_ov78_021D107C * param0, int param1)
+static BOOL ov78_021D1978 (ChooseStarterApp * param0, int param1)
 {
     if (param0->unk_08 == 1) {
         return 0;
@@ -927,7 +927,7 @@ static BOOL ov78_021D1978 (UnkStruct_ov78_021D107C * param0, int param1)
     return 0;
 }
 
-static void ov78_021D19D4 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D19D4 (ChooseStarterApp * param0, int param1)
 {
     switch (ov78_021D1CA4(param0)) {
     case 0:
@@ -969,7 +969,7 @@ static void ov78_021D19D4 (UnkStruct_ov78_021D107C * param0, int param1)
     }
 }
 
-static void ov78_021D1AAC (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1AAC (ChooseStarterApp * param0)
 {
     sub_020241B4();
 
@@ -997,7 +997,7 @@ static void ov78_021D1AAC (UnkStruct_ov78_021D107C * param0)
     sub_020219F8(param0->unk_248);
 }
 
-static void ov78_021D1B20 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D1B20 (ChooseStarterApp * param0, int param1)
 {
     param0->unk_648 = sub_020203AC(param1);
     ov78_021D1B3C(param0->unk_648, &param0->unk_64C);
@@ -1026,12 +1026,12 @@ static void ov78_021D1B3C (UnkStruct_020203AC * param0, VecFx32 * param1)
     sub_020203D4(param0);
 }
 
-static void ov78_021D1B90 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1B90 (ChooseStarterApp * param0)
 {
     sub_020203B8(param0->unk_648);
 }
 
-static void ov78_021D1BA0 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1BA0 (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -1073,7 +1073,7 @@ static void ov78_021D1BA0 (UnkStruct_ov78_021D107C * param0)
     }
 }
 
-static void ov78_021D1C28 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1C28 (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -1082,7 +1082,7 @@ static void ov78_021D1C28 (UnkStruct_ov78_021D107C * param0)
     }
 }
 
-static void ov78_021D1C58 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1C58 (ChooseStarterApp * param0)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
         if (param0->unk_54 - 1 >= 0) {
@@ -1099,18 +1099,18 @@ static void ov78_021D1C58 (UnkStruct_ov78_021D107C * param0)
     }
 }
 
-static void ov78_021D1C98 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D1C98 (ChooseStarterApp * param0, int param1)
 {
     param0->unk_00 += param1;
     param0->unk_04 = 0;
 }
 
-static int ov78_021D1CA4 (UnkStruct_ov78_021D107C * param0)
+static int ov78_021D1CA4 (ChooseStarterApp * param0)
 {
     return param0->unk_00;
 }
 
-static void ov78_021D1CA8 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D1CA8 (ChooseStarterApp * param0, int param1)
 {
     switch (param0->unk_04) {
     case 0:
@@ -1164,7 +1164,7 @@ static void ov78_021D1CA8 (UnkStruct_ov78_021D107C * param0, int param1)
     }
 }
 
-static void ov78_021D1DF0 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1DF0 (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -1177,12 +1177,12 @@ static void ov78_021D1DF0 (UnkStruct_ov78_021D107C * param0)
     }
 }
 
-static void ov78_021D1E28 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D1E28 (ChooseStarterApp * param0)
 {
     ov78_021D243C(&param0->unk_658, param0->unk_7C[param0->unk_54][0], param0->unk_7C[param0->unk_54][1]);
 }
 
-static void ov78_021D1E44 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D1E44 (ChooseStarterApp * param0, int param1)
 {
     u32 v0;
 
@@ -1278,13 +1278,13 @@ static u8 ov78_021D201C (Window * param0, int param1, int param2, int param3, u3
     return v1;
 }
 
-static void ov78_021D2090 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D2090 (ChooseStarterApp * param0)
 {
     Strbuf_Free(param0->unk_AC);
     param0->unk_AC = NULL;
 }
 
-static void ov78_021D20A4 (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D20A4 (ChooseStarterApp * param0, int param1)
 {
     param0->unk_B0.unk_00 = 1;
     param0->unk_B0.unk_01 = 23;
@@ -1298,7 +1298,7 @@ static void ov78_021D20A4 (UnkStruct_ov78_021D107C * param0, int param1)
     sub_02002E7C(0, 3 * 32, param1);
 }
 
-static void ov78_021D2108 (UnkStruct_ov78_021D2108 * param0, s32 param1, s32 param2, s32 param3)
+static void ov78_021D2108 (ChooseStarterMovement * param0, s32 param1, s32 param2, s32 param3)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param1;
@@ -1306,7 +1306,7 @@ static void ov78_021D2108 (UnkStruct_ov78_021D2108 * param0, s32 param1, s32 par
     param0->unk_0C = param3;
 }
 
-static BOOL ov78_021D2114 (UnkStruct_ov78_021D2108 * param0, s32 param1)
+static BOOL ov78_021D2114 (ChooseStarterMovement * param0, s32 param1)
 {
     s32 v0;
     BOOL v1;
@@ -1329,7 +1329,7 @@ static BOOL ov78_021D2114 (UnkStruct_ov78_021D2108 * param0, s32 param1)
     return v1;
 }
 
-static void ov78_021D213C (UnkStruct_ov78_021D213C * param0, UnkStruct_020203AC * param1, VecFx32 * param2)
+static void ov78_021D213C (ChooseStarterCameraMovement * param0, UnkStruct_020203AC * param1, VecFx32 * param2)
 {
     GF_ASSERT(param0->unk_40 == NULL);
 
@@ -1347,7 +1347,7 @@ static void ov78_021D213C (UnkStruct_ov78_021D213C * param0, UnkStruct_020203AC 
 
 static void ov78_021D219C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov78_021D213C * v0 = param1;
+    ChooseStarterCameraMovement * v0 = param1;
     BOOL v1;
     UnkStruct_ov115_0226527C v2;
 
@@ -1372,12 +1372,12 @@ static void ov78_021D219C (SysTask * param0, void * param1)
     }
 }
 
-static BOOL ov78_021D2200 (UnkStruct_ov78_021D213C * param0)
+static BOOL ov78_021D2200 (ChooseStarterCameraMovement * param0)
 {
     return param0->unk_3C;
 }
 
-static void ov78_021D2204 (UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D2350 * param1, int param2)
+static void ov78_021D2204 (ChooseStarterApp * param0, ChooseStarterCursor * param1, int param2)
 {
     param1->unk_04[0] = sub_0200985C(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -1393,7 +1393,7 @@ static void ov78_021D2204 (UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D
     param1->unk_04[3] = sub_02009918(param0->unk_24C[3], 82, 13, 0, 13, 3, param2);
 }
 
-static void ov78_021D2290 (UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D2350 * param1)
+static void ov78_021D2290 (ChooseStarterApp * param0, ChooseStarterCursor * param1)
 {
     sub_0200A4E4(param1->unk_04[0]);
     sub_0200A6DC(param1->unk_04[1]);
@@ -1404,7 +1404,7 @@ static void ov78_021D2290 (UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D
     sub_02009D68(param0->unk_24C[3], param1->unk_04[3]);
 }
 
-static void ov78_021D22D4 (UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D2350 * param1, int param2)
+static void ov78_021D22D4 (ChooseStarterApp * param0, ChooseStarterCursor * param1, int param2)
 {
     UnkStruct_ov19_021DA864 v0;
     UnkStruct_ov83_0223D9A8 v1;
@@ -1427,12 +1427,12 @@ static void ov78_021D22D4 (UnkStruct_ov78_021D107C * param0, UnkStruct_ov78_021D
     param1->unk_1C.y = 0;
 }
 
-static void ov78_021D2350 (UnkStruct_ov78_021D2350 * param0)
+static void ov78_021D2350 (ChooseStarterCursor * param0)
 {
     sub_02021BD4(param0->unk_00);
 }
 
-static void ov78_021D235C (UnkStruct_ov78_021D235C * param0, fx32 param1, int param2)
+static void ov78_021D235C (ChooseStarterRotation * param0, fx32 param1, int param2)
 {
     param0->unk_00 = 0;
     param0->unk_04 = param1;
@@ -1440,7 +1440,7 @@ static void ov78_021D235C (UnkStruct_ov78_021D235C * param0, fx32 param1, int pa
     param0->unk_0C = 0;
 }
 
-static void ov78_021D2368 (UnkStruct_ov78_021D235C * param0)
+static void ov78_021D2368 (ChooseStarterRotation * param0)
 {
     u16 v0;
     int v1;
@@ -1453,7 +1453,7 @@ static void ov78_021D2368 (UnkStruct_ov78_021D235C * param0)
     param0->unk_0C = (param0->unk_0C + 1) % param0->unk_08;
 }
 
-static void ov78_021D23B8 (UnkStruct_ov78_021D2350 * param0)
+static void ov78_021D23B8 (ChooseStarterCursor * param0)
 {
     GF_ASSERT(param0->unk_28 == NULL);
 
@@ -1463,7 +1463,7 @@ static void ov78_021D23B8 (UnkStruct_ov78_021D2350 * param0)
 
 static void ov78_021D23E8 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov78_021D2350 * v0 = param1;
+    ChooseStarterCursor * v0 = param1;
     VecFx32 v1;
 
     ov78_021D2368(&v0->unk_2C);
@@ -1474,7 +1474,7 @@ static void ov78_021D23E8 (SysTask * param0, void * param1)
     sub_02021C50(v0->unk_00, &v1);
 }
 
-static void ov78_021D241C (UnkStruct_ov78_021D2350 * param0)
+static void ov78_021D241C (ChooseStarterCursor * param0)
 {
     if (param0->unk_28) {
         SysTask_Done(param0->unk_28);
@@ -1482,18 +1482,18 @@ static void ov78_021D241C (UnkStruct_ov78_021D2350 * param0)
     }
 }
 
-static void ov78_021D2430 (UnkStruct_ov78_021D2350 * param0, BOOL param1)
+static void ov78_021D2430 (ChooseStarterCursor * param0, BOOL param1)
 {
     sub_02021CAC(param0->unk_00, param1);
 }
 
-static void ov78_021D243C (UnkStruct_ov78_021D2350 * param0, int param1, int param2)
+static void ov78_021D243C (ChooseStarterCursor * param0, int param1, int param2)
 {
     param0->unk_1C.x = param1 << FX32_SHIFT;
     param0->unk_1C.y = param2 << FX32_SHIFT;
 }
 
-static void ov78_021D2448 (UnkStruct_ov78_021D2448 * param0, UnkStruct_ov78_021D107C * param1, int param2)
+static void ov78_021D2448 (StarterPreviewWindow * param0, ChooseStarterApp * param1, int param2)
 {
     UnkStruct_ov22_022557A0 v0;
     UnkStruct_ov22_02255800 v1;
@@ -1529,7 +1529,7 @@ static void ov78_021D2448 (UnkStruct_ov78_021D2448 * param0, UnkStruct_ov78_021D
     sub_02015268(param0->unk_08, 128 / 2, 128 / 2);
 }
 
-static void ov78_021D24E4 (UnkStruct_ov78_021D2448 * param0)
+static void ov78_021D24E4 (StarterPreviewWindow * param0)
 {
     sub_02015238(param0->unk_08);
     sub_02015164(param0->unk_00);
@@ -1538,12 +1538,12 @@ static void ov78_021D24E4 (UnkStruct_ov78_021D2448 * param0)
     Heap_FreeToHeap(param0->unk_10);
 }
 
-static void ov78_021D2508 (UnkStruct_ov78_021D2448 * param0, BOOL param1)
+static void ov78_021D2508 (StarterPreviewWindow * param0, BOOL param1)
 {
     sub_02015240(param0->unk_08, param1);
 }
 
-static void ov78_021D2514 (UnkStruct_ov78_021D2448 * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
+static void ov78_021D2514 (StarterPreviewWindow * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
 {
     GF_ASSERT(param0->unk_54 == NULL);
 
@@ -1556,7 +1556,7 @@ static void ov78_021D2514 (UnkStruct_ov78_021D2448 * param0, fx32 param1, fx32 p
     param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
 }
 
-static void ov78_021D256C (UnkStruct_ov78_021D2448 * param0)
+static void ov78_021D256C (StarterPreviewWindow * param0)
 {
     GF_ASSERT(param0->unk_54 == NULL);
 
@@ -1571,7 +1571,7 @@ static void ov78_021D256C (UnkStruct_ov78_021D2448 * param0)
 
 static void ov78_021D25A0 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov78_021D2448 * v0 = param1;
+    StarterPreviewWindow * v0 = param1;
     BOOL v1;
     fx32 v2, v3;
 
@@ -1594,7 +1594,7 @@ static void ov78_021D25A0 (SysTask * param0, void * param1)
     v0->unk_1C.unk_30 += v0->unk_1C.unk_34;
 }
 
-static BOOL ov78_021D2608 (UnkStruct_ov78_021D2448 * param0)
+static BOOL ov78_021D2608 (StarterPreviewWindow * param0)
 {
     if (param0->unk_54) {
         return 0;
@@ -1603,7 +1603,7 @@ static BOOL ov78_021D2608 (UnkStruct_ov78_021D2448 * param0)
     return 1;
 }
 
-static void ov78_021D2618 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D2618 (ChooseStarterApp * param0)
 {
     fx32 v0, v1;
 
@@ -1614,18 +1614,18 @@ static void ov78_021D2618 (UnkStruct_ov78_021D107C * param0)
     ov78_021D26B4(&param0->unk_274, param0->unk_268[param0->unk_54], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, (FX32_CONST(0.40f)), (FX32_CONST(1.0f)), 6);
 }
 
-static void ov78_021D2688 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D2688 (ChooseStarterApp * param0)
 {
     ov78_021D256C(&param0->unk_6A8);
     ov78_021D270C(&param0->unk_274);
 }
 
-static BOOL ov78_021D26A4 (UnkStruct_ov78_021D107C * param0)
+static BOOL ov78_021D26A4 (ChooseStarterApp * param0)
 {
     return ov78_021D2608(&param0->unk_6A8);
 }
 
-static void ov78_021D26B4 (UnkStruct_ov78_021D26B4 * param0, Sprite * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
+static void ov78_021D26B4 (StarterPreviewGraphics * param0, Sprite * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
 {
     GF_ASSERT(param0->unk_3C == NULL);
 
@@ -1639,7 +1639,7 @@ static void ov78_021D26B4 (UnkStruct_ov78_021D26B4 * param0, Sprite * param1, fx
     param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
 }
 
-static void ov78_021D270C (UnkStruct_ov78_021D26B4 * param0)
+static void ov78_021D270C (StarterPreviewGraphics * param0)
 {
     GF_ASSERT(param0->unk_3C == NULL);
 
@@ -1654,7 +1654,7 @@ static void ov78_021D270C (UnkStruct_ov78_021D26B4 * param0)
 
 static void ov78_021D2740 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov78_021D26B4 * v0 = param1;
+    StarterPreviewGraphics * v0 = param1;
     BOOL v1;
     u32 v2;
 
@@ -1678,7 +1678,7 @@ static void ov78_021D2740 (SysTask * param0, void * param1)
     v0->unk_04.unk_30 += v0->unk_04.unk_34;
 }
 
-static void ov78_021D27CC (UnkStruct_ov78_021D107C * param0, int param1)
+static void ov78_021D27CC (ChooseStarterApp * param0, int param1)
 {
     int v0;
     int v1, v2;
@@ -1709,7 +1709,7 @@ static void ov78_021D27CC (UnkStruct_ov78_021D107C * param0, int param1)
     }
 }
 
-static void ov78_021D2884 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D2884 (ChooseStarterApp * param0)
 {
     int v0;
 
@@ -1734,7 +1734,7 @@ static void ov78_021D28A8 (Window * param0, int param1, int param2, int param3, 
     MessageLoader_Free(v0);
 }
 
-static void ov78_021D2904 (UnkStruct_ov78_021D107C * param0)
+static void ov78_021D2904 (ChooseStarterApp * param0)
 {
     sub_0201ACF4(param0->unk_9C[param0->unk_A8]);
 }
