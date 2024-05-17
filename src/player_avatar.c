@@ -73,41 +73,39 @@ PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, PlayerData * param
 {
     int v0;
     PlayerAvatar * playerAvatar;
-    MapObject * v2;
+    MapObject * mapObj;
 
     playerAvatar = PlayerAvatar_Alloc();
     v0 = sub_0205EC94(param1);
 
     sub_0205E91C(playerAvatar, v0, param2, param1);
-    v2 = sub_0205EA64(param0);
+    mapObj = sub_0205EA64(param0);
 
-    sub_0206291C(v2, Player_Gender(v0, param2));
-    MapObject_SetStatusFlagOn(v2, ((1 << 10) | (1 << 13)));
-    MapObject_SetStatusFlagOff(v2, ((1 << 7) | (1 << 8)));
-    sub_02062F90(v2, 1);
-    PlayerAvatar_SetMapObject(playerAvatar, v2);
+    sub_0206291C(mapObj, Player_Gender(v0, param2));
+    MapObject_SetStatusFlagOn(mapObj, ((1 << 10) | (1 << 13)));
+    MapObject_SetStatusFlagOff(mapObj, ((1 << 7) | (1 << 8)));
+    sub_02062F90(mapObj, 1);
+    PlayerAvatar_SetMapObject(playerAvatar, mapObj);
 
     return playerAvatar;
 }
 
-void sub_0205E884 (PlayerAvatar * playerAvatar, int groundId)
+void PlayerAvatar_InitDraw (PlayerAvatar * playerAvatar, int groundId)
 {
-    int v0, v1;
-    MapObject * v2;
-    const MapObjectManager * v3;
+    MapObject * mapObj;
 
-    v2 = Player_MapObject(playerAvatar);
-    GF_ASSERT(v2 != NULL);
-    v3 = sub_02062A40(v2);
+    mapObj = Player_MapObject(playerAvatar);
+    GF_ASSERT(mapObj != NULL);
+    sub_02062A40(mapObj);
 
     ov5_021F6218(playerAvatar);
 
     if (sub_0205EB74(playerAvatar) == 0x2) {
         if (groundId != 9) {
-            int v4 = Player_XPos(playerAvatar);
-            int v5 = Player_ZPos(playerAvatar);
-            int v6 = Player_Dir(playerAvatar);
-            UnkStruct_ov101_021D5D90 * v7 = ov5_021F261C(v2, v4, v5, v6, 1);
+            int x = Player_XPos(playerAvatar);
+            int z = Player_ZPos(playerAvatar);
+            int dir = Player_Dir(playerAvatar);
+            UnkStruct_ov101_021D5D90 * v7 = ov5_021F261C(mapObj, x, z, dir, 1);
 
             sub_0205EC00(playerAvatar, v7);
         }

@@ -119,7 +119,7 @@ void sub_0203CD00 (FieldSystem * param0)
 
     param0->unk_68 = 0;
     param0->unk_00->unk_08 = 0;
-    param0->unk_00->unk_00 = OverlayManager_New(&Unk_ov5_021F89B0, param0, 11);
+    param0->unk_00->unk_00 = OverlayManager_New(&gFieldMapTemplate, param0, 11);
 }
 
 void sub_0203CD44 (FieldSystem * param0)

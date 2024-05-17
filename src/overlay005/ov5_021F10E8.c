@@ -262,7 +262,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_0220021C = {
     ov5_021F1310
 };
 
-void ov5_021F1328 (UnkStruct_ov5_021DF47C * param0)
+void FieldEffect_InitRenderObject (UnkStruct_ov5_021DF47C * param0)
 {
     const UnkStruct_ov5_02200230 * v0 = Unk_ov5_02200230;
     u32 v1 = NELEMS(Unk_ov5_02200230);

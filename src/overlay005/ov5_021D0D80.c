@@ -116,16 +116,16 @@ static void ov5_021D1790(FieldSystem * param0);
 static void ov5_021D17EC(FieldSystem * param0);
 static void ov5_021D1878(FieldSystem * param0);
 static void ov5_021D1968(FieldSystem * param0);
-static int ov5_021D0DA4(OverlayManager * param0, int * param1);
-static int ov5_021D0F68(OverlayManager * param0, int * param1);
-static int ov5_021D0FB4(OverlayManager * param0, int * param1);
-static BOOL ov5_021D11CC(FieldSystem * param0);
+static int FieldMap_Init(OverlayManager * param0, int * param1);
+static int FieldMap_Main(OverlayManager * param0, int * param1);
+static int FieldMap_Exit(OverlayManager * param0, int * param1);
+static BOOL FieldMap_ChangeZone(FieldSystem * param0);
 static void ov5_021D134C(FieldSystem * param0, u8 param1);
 static BOOL ov5_021D119C(FieldSystem * param0);
 static void ov5_021D0D80(void * param0);
 static void ov5_021D13B4(FieldSystem * param0);
 static int ov5_021D1178(FieldSystem * param0);
-static BOOL ov5_021D1A78(FieldSystem * param0);
+static BOOL FieldMap_InDistortionWorld(FieldSystem * param0);
 static UnkStruct_ov5_021D1A68 * ov5_021D1A14(int param0, int param1);
 static const int * ov5_021D1A68(const UnkStruct_ov5_021D1A68 * param0);
 static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 * param0);
@@ -151,13 +151,12 @@ static void ov5_021D0D80 (void * param0)
     inline_ov5_021D0D80(v0);
 }
 
-static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
+static int FieldMap_Init (OverlayManager * param0, int * param1)
 {
-    u16 v0;
-    FieldSystem * v1;
+    FieldSystem * fieldSystem;
     int v2 = 0;
 
-    v1 = OverlayManager_Args(param0);
+    fieldSystem = OverlayManager_Args(param0);
 
     switch (*param1) {
     case 0:
@@ -169,13 +168,13 @@ static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
 
         sub_0200F32C(0);
         sub_0200F32C(1);
-        ov5_021D173C(v1);
-        sub_020531A0(v1);
+        ov5_021D173C(fieldSystem);
+        sub_020531A0(fieldSystem);
 
-        if (v1->unk_74->unk_00_20) {
+        if (fieldSystem->unk_74->unk_00_20) {
             Overlay_LoadByID(FS_OVERLAY_ID(overlay6), 2);
 
-            switch (ov5_021D1178(v1)) {
+            switch (ov5_021D1178(fieldSystem)) {
             case 0:
                 Overlay_LoadByID(FS_OVERLAY_ID(overlay8), 2);
                 break;
@@ -188,12 +187,12 @@ static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
             }
         }
 
-        Heap_Create(3, 4, v1->unk_74->unk_04);
-        GF_ASSERT(v1->unk_04 == NULL);
+        Heap_Create(3, 4, fieldSystem->unk_74->unk_04);
+        GF_ASSERT(fieldSystem->unk_04 == NULL);
 
-        v1->unk_04 = Heap_AllocFromHeap(4, sizeof(FieldSystem_sub2));
-        MI_CpuClear8(v1->unk_04, sizeof(FieldSystem_sub2));
-        v1->unk_04->unk_04 = ov5_021D1A94(v1, 4, 8);
+        fieldSystem->unk_04 = Heap_AllocFromHeap(4, sizeof(FieldSystem_sub2));
+        MI_CpuClear8(fieldSystem->unk_04, sizeof(FieldSystem_sub2));
+        fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, 4, 8);
 
         ov5_021D1414();
 
@@ -205,40 +204,40 @@ static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
         ov5_021D154C();
 
         GXLayers_SwapDisplay();
-        v1->unk_08 = sub_02018340(4);
-        ov5_021D1444(v1->unk_08);
+        fieldSystem->unk_08 = sub_02018340(4);
+        ov5_021D1444(fieldSystem->unk_08);
         sub_0205D8CC(0, 1);
-        sub_0203F5C0(v1, 4);
+        sub_0203F5C0(fieldSystem, 4);
         break;
     case 1:
-        ov5_021D1790(v1);
-        ov5_021EF7A0(v1->unk_30);
+        ov5_021D1790(fieldSystem);
+        ov5_021EF7A0(fieldSystem->unk_30);
 
-        v1->unk_A4 = ov5_021E15F4(4);
+        fieldSystem->unk_A4 = ov5_021E15F4(4);
 
-        ov5_021F0824(v1);
-        ov5_021D17EC(v1);
-        ov5_021D1878(v1);
-        ov5_021D1968(v1);
+        ov5_021F0824(fieldSystem);
+        ov5_021D17EC(fieldSystem);
+        ov5_021D1878(fieldSystem);
+        ov5_021D1968(fieldSystem);
 
-        if (v1->unk_04->unk_0C != NULL) {
-            u16 v3 = sub_0203A74C(sub_0203A790(v1->saveData));
-            ov5_021D5F24(v1->unk_04->unk_0C, v3);
+        if (fieldSystem->unk_04->unk_0C != NULL) {
+            u16 v3 = sub_0203A74C(sub_0203A790(fieldSystem->saveData));
+            ov5_021D5F24(fieldSystem->unk_04->unk_0C, v3);
         }
 
-        sub_020556A0(v1, v1->unk_1C->unk_00);
-        sub_0203F5C0(v1, 3);
+        sub_020556A0(fieldSystem, fieldSystem->unk_1C->unk_00);
+        sub_0203F5C0(fieldSystem, 3);
 
-        v1->unk_04->unk_1C = ov5_021EF3A8(4);
-        ov5_021EF3DC(v1->unk_04->unk_1C);
-        v1->unk_04->unk_20 = ov5_021EF4BC(4, v1->unk_04->unk_1C);
+        fieldSystem->unk_04->unk_1C = ov5_021EF3A8(4);
+        ov5_021EF3DC(fieldSystem->unk_04->unk_1C);
+        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(4, fieldSystem->unk_04->unk_1C);
         break;
     case 2:
-        ov5_021D5BD8(v1);
+        ov5_021D5BD8(fieldSystem);
         break;
     case 3:
-        if (ov5_021D5BF4(v1)) {
-            v1->unk_68 = 1;
+        if (ov5_021D5BF4(fieldSystem)) {
+            fieldSystem->unk_68 = 1;
             v2 = 1;
         }
         break;
@@ -248,115 +247,115 @@ static int ov5_021D0DA4 (OverlayManager * param0, int * param1)
     return v2;
 }
 
-static int ov5_021D0F68 (OverlayManager * param0, int * param1)
+static int FieldMap_Main (OverlayManager * param0, int * param1)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
 
-    v0 = OverlayManager_Args(param0);
+    fieldSystem = OverlayManager_Args(param0);
 
-    if (ov5_021D119C(v0)) {
-        sub_02055D94(v0);
-        ov5_021D13B4(v0);
-        ov5_021EA714(v0, 1, 1);
+    if (ov5_021D119C(fieldSystem)) {
+        sub_02055D94(fieldSystem);
+        ov5_021D13B4(fieldSystem);
+        ov5_021EA714(fieldSystem, 1, 1);
 
-        if (ov5_021D11CC(v0)) {
+        if (FieldMap_ChangeZone(fieldSystem)) {
             (void)0;
         }
     }
 
-    ov5_021D134C(v0, v0->unk_C0);
+    ov5_021D134C(fieldSystem, fieldSystem->unk_C0);
 
-    if (v0->unk_68) {
+    if (fieldSystem->unk_68) {
         return 0;
     } else {
         return 1;
     }
 }
 
-static int ov5_021D0FB4 (OverlayManager * param0, int * param1)
+static int FieldMap_Exit (OverlayManager * param0, int * param1)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
 
-    v0 = OverlayManager_Args(param0);
-    ov5_021E8188(v0, v0->unk_28);
+    fieldSystem = OverlayManager_Args(param0);
+    ov5_021E8188(fieldSystem, fieldSystem->unk_28);
 
     switch (*param1) {
     case 0:
-        sub_02068368(v0);
-        ov5_021E9338(v0->unk_28);
+        sub_02068368(fieldSystem);
+        ov5_021E9338(fieldSystem->unk_28);
 
-        v0->unk_1C->unk_08 = Player_XPos(v0->playerAvatar);
-        v0->unk_1C->unk_0C = Player_ZPos(v0->playerAvatar);
-        v0->unk_1C->unk_10 = Player_Dir(v0->playerAvatar);
+        fieldSystem->unk_1C->unk_08 = Player_XPos(fieldSystem->playerAvatar);
+        fieldSystem->unk_1C->unk_0C = Player_ZPos(fieldSystem->playerAvatar);
+        fieldSystem->unk_1C->unk_10 = Player_Dir(fieldSystem->playerAvatar);
 
-        ov5_021EF300(v0->unk_A0);
+        ov5_021EF300(fieldSystem->unk_A0);
 
         {
-            GF_ASSERT(v0->unk_50 != 0);
-            ov5_021E924C(v0->unk_28);
+            GF_ASSERT(fieldSystem->unk_50 != 0);
+            ov5_021E924C(fieldSystem->unk_28);
         }
 
-        ov5_021D3CAC(v0->unk_50);
-        ov5_021D3D7C(v0->unk_50);
-        ov5_021D41B4(&v0->unk_54);
-        ov5_021D5E8C(v0->unk_04->unk_10);
-        ov5_021D5EAC(v0->unk_04->unk_10);
+        ov5_021D3CAC(fieldSystem->unk_50);
+        ov5_021D3D7C(fieldSystem->unk_50);
+        ov5_021D41B4(&fieldSystem->unk_54);
+        ov5_021D5E8C(fieldSystem->unk_04->unk_10);
+        ov5_021D5EAC(fieldSystem->unk_04->unk_10);
 
-        v0->unk_04->unk_10 = NULL;
+        fieldSystem->unk_04->unk_10 = NULL;
 
-        sub_02061BF0(v0->unk_38);
-        ov5_021ECC78(v0->unk_38);
+        sub_02061BF0(fieldSystem->unk_38);
+        ov5_021ECC78(fieldSystem->unk_38);
 
-        sub_02062C30(v0->unk_38);
-        ov5_021DF500(v0->unk_40);
+        sub_02062C30(fieldSystem->unk_38);
+        ov5_021DF500(fieldSystem->unk_40);
 
-        ov5_021D1A70(v0->unk_34);
-        v0->unk_34 = NULL;
-        ov5_021E1608(v0->unk_A4);
+        ov5_021D1A70(fieldSystem->unk_34);
+        fieldSystem->unk_34 = NULL;
+        ov5_021E1608(fieldSystem->unk_A4);
 
         (*param1)++;
         break;
     case 1:
-        if (ov5_021E9300(v0->unk_28) == 1) {
-            ov5_021EFA10(&v0->unk_30);
-            ov5_021E92E4(v0->unk_28);
-            ov5_021EFB30(&v0->unk_A8);
-            ov5_021D5BA8(v0);
-            ov5_021D5278(&v0->unk_4C);
-            ov5_021E1B20(v0->unk_64);
-            ov5_021DD9C8(v0->unk_04->unk_08);
+        if (ov5_021E9300(fieldSystem->unk_28) == 1) {
+            ov5_021EFA10(&fieldSystem->unk_30);
+            ov5_021E92E4(fieldSystem->unk_28);
+            ov5_021EFB30(&fieldSystem->unk_A8);
+            ov5_021D5BA8(fieldSystem);
+            ov5_021D5278(&fieldSystem->unk_4C);
+            ov5_021E1B20(fieldSystem->unk_64);
+            ov5_021DD9C8(fieldSystem->unk_04->unk_08);
 
-            if (v0->unk_04->unk_0C != NULL) {
-                ov5_021D5EF8(v0->unk_04->unk_0C);
+            if (fieldSystem->unk_04->unk_0C != NULL) {
+                ov5_021D5EF8(fieldSystem->unk_04->unk_0C);
             }
 
-            ov5_021EF4F8(v0->unk_04->unk_20);
-            ov5_021EF3BC(v0->unk_04->unk_1C);
-            sub_02055CBC(v0->unk_04->unk_18);
-            ov5_021D57D8(&v0->unk_48);
-            ov5_021D5894(&v0->unk_44);
+            ov5_021EF4F8(fieldSystem->unk_04->unk_20);
+            ov5_021EF3BC(fieldSystem->unk_04->unk_1C);
+            sub_02055CBC(fieldSystem->unk_04->unk_18);
+            ov5_021D57D8(&fieldSystem->unk_48);
+            ov5_021D5894(&fieldSystem->unk_44);
             ov5_021D1570();
-            ov5_021D1524(v0->unk_08);
-            ov5_021D5C14(v0);
+            ov5_021D1524(fieldSystem->unk_08);
+            ov5_021D5C14(fieldSystem);
             (*param1)++;
         }
         break;
     case 2:
-        if (ov5_021D5C30(v0)) {
+        if (ov5_021D5C30(fieldSystem)) {
             ov5_021D15E8();
             sub_02020BD0();
             sub_0201DC3C();
             sub_0201CBA0();
-            ov5_021D1AE4(v0->unk_04->unk_04);
+            ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetMainCallback(NULL, NULL);
-            Heap_FreeToHeap(v0->unk_08);
-            Heap_FreeToHeap(v0->unk_04);
+            Heap_FreeToHeap(fieldSystem->unk_08);
+            Heap_FreeToHeap(fieldSystem->unk_04);
 
-            v0->unk_04 = NULL;
+            fieldSystem->unk_04 = NULL;
 
             Heap_Destroy(4);
 
-            if (v0->unk_74->unk_00_20) {
+            if (fieldSystem->unk_74->unk_00_20) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay8));
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay7));
@@ -371,10 +370,10 @@ static int ov5_021D0FB4 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-const OverlayManagerTemplate Unk_ov5_021F89B0 = {
-    ov5_021D0DA4,
-    ov5_021D0F68,
-    ov5_021D0FB4,
+const OverlayManagerTemplate gFieldMapTemplate = {
+    FieldMap_Init,
+    FieldMap_Main,
+    FieldMap_Exit,
     0xffffffff
 };
 
@@ -394,65 +393,65 @@ static int ov5_021D1178 (FieldSystem * param0)
     return 0;
 }
 
-static BOOL ov5_021D119C (FieldSystem * param0)
+static BOOL ov5_021D119C (FieldSystem * fieldSystem)
 {
     int v0, v1;
 
-    v0 = Player_XPos(param0->playerAvatar);
-    v1 = Player_ZPos(param0->playerAvatar);
+    v0 = Player_XPos(fieldSystem->playerAvatar);
+    v1 = Player_ZPos(fieldSystem->playerAvatar);
 
-    if ((v0 != param0->unk_1C->unk_08) || (v1 != param0->unk_1C->unk_0C)) {
-        param0->unk_1C->unk_08 = v0;
-        param0->unk_1C->unk_0C = v1;
-        return 1;
+    if ((v0 != fieldSystem->unk_1C->unk_08) || (v1 != fieldSystem->unk_1C->unk_0C)) {
+        fieldSystem->unk_1C->unk_08 = v0;
+        fieldSystem->unk_1C->unk_0C = v1;
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static BOOL ov5_021D11CC (FieldSystem * param0)
+static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 {
     u32 v0;
     u32 v1;
     int v2, v3;
     UnkStruct_0203A790 * v4;
 
-    if (ov5_021D1A78(param0) == 1) {
+    if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         return 0;
     }
 
-    v2 = (Player_XPos(param0->playerAvatar) - ov5_021EA6AC(param0->unk_28)) / 32;
-    v3 = (Player_ZPos(param0->playerAvatar) - ov5_021EA6B4(param0->unk_28)) / 32;
-    v0 = sub_02039E30(param0->unk_2C, v2, v3);
-    v1 = param0->unk_1C->unk_00;
+    v2 = (Player_XPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
+    v3 = (Player_ZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
+    v0 = sub_02039E30(fieldSystem->unk_2C, v2, v3);
+    v1 = fieldSystem->unk_1C->unk_00;
 
     if (v0 == v1) {
         return 0;
     }
 
-    v4 = sub_0203A790(param0->saveData);
+    v4 = sub_0203A790(fieldSystem->saveData);
     {
-        param0->unk_1C->unk_00 = v0;
+        fieldSystem->unk_1C->unk_00 = v0;
 
-        sub_0203A3B0(param0, v0);
-        sub_020531C0(param0, 1);
+        sub_0203A3B0(fieldSystem, v0);
+        sub_020531C0(fieldSystem, 1);
     }
 
     {
-        int v5 = sub_0203A4B4(param0);
-        const UnkStruct_020619DC * v6 = sub_0203A4BC(param0);
+        int v5 = sub_0203A4B4(fieldSystem);
+        const UnkStruct_020619DC * v6 = sub_0203A4BC(fieldSystem);
 
-        sub_0206184C(param0->unk_38, v1, v0, v5, v6);
+        sub_0206184C(fieldSystem->unk_38, v1, v0, v5, v6);
     }
 
     {
-        RadarChain_Clear(param0->chain);
-        sub_02055554(param0, sub_02055428(param0, param0->unk_1C->unk_00), 1);
-        sub_0203A418(param0);
+        RadarChain_Clear(fieldSystem->chain);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
+        sub_0203A418(fieldSystem);
 
-        if (param0->unk_04->unk_0C != NULL) {
+        if (fieldSystem->unk_04->unk_0C != NULL) {
             ov5_021D5F7C(
-                param0->unk_04->unk_0C, sub_0203A74C(v4));
+                fieldSystem->unk_04->unk_0C, sub_0203A74C(v4));
         }
     }
 
@@ -469,11 +468,11 @@ static BOOL ov5_021D11CC (FieldSystem * param0)
                 v9--;
             }
 
-            ov5_021DD9E8(param0->unk_04->unk_08, v8, v9);
+            ov5_021DD9E8(fieldSystem->unk_04->unk_08, v8, v9);
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 void ov5_021D12D0 (FieldSystem * param0, u32 param1)
@@ -528,7 +527,7 @@ static void ov5_021D134C (FieldSystem * param0, u8 param1)
     if ((param1 & 2) != 0) {
         ov5_021E8188(param0, param0->unk_28);
 
-        if (ov5_021D1A78(param0) == 1) {
+        if (FieldMap_InDistortionWorld(param0) == 1) {
             ov9_0224CA5C(param0);
         }
     }
@@ -729,7 +728,7 @@ static void ov5_021D15F4 (FieldSystem * param0)
     sub_020241B4();
 
     if (param0->unk_20 == 1) {
-        if (ov5_021D1A78(param0) == 1) {
+        if (FieldMap_InDistortionWorld(param0) == 1) {
             ov9_02249F9C(param0);
         }
 
@@ -741,7 +740,7 @@ static void ov5_021D15F4 (FieldSystem * param0)
     sub_0206979C(param0);
     ov5_021E91FC(param0->unk_28, param0->unk_44);
 
-    if (ov5_021D1A78(param0) == 1) {
+    if (FieldMap_InDistortionWorld(param0) == 1) {
         ov9_0224CA50(param0);
     }
 
@@ -762,7 +761,7 @@ static void ov5_021D15F4 (FieldSystem * param0)
     ov5_021DF4F8(param0->unk_40);
     sub_02020C08();
 
-    if (ov5_021D1A78(param0) == 1) {
+    if (FieldMap_InDistortionWorld(param0) == 1) {
         ov9_02250780(param0);
     }
 
@@ -836,7 +835,7 @@ static void ov5_021D17EC (FieldSystem * param0)
 {
     param0->unk_28 = ov5_021E9084(param0->unk_2C, param0->unk_30, param0->unk_50, param0->unk_60);
 
-    if (ov5_021D1A78(param0) == 1) {
+    if (FieldMap_InDistortionWorld(param0) == 1) {
         int v0 = 0, v1 = 0, v2 = 0;
 
         ov9_02251094(param0->unk_1C->unk_00, &v0, &v1, &v2);
@@ -862,7 +861,7 @@ static void ov5_021D1878 (FieldSystem * param0)
     {
         int v0 = 80;
 
-        if (ov5_021D1A78(param0) == 1) {
+        if (FieldMap_InDistortionWorld(param0) == 1) {
             v0 = 112;
         }
 
@@ -881,7 +880,7 @@ static void ov5_021D1878 (FieldSystem * param0)
         if (param0->unk_70 == 1) {
             v1 = Unk_ov5_021FF7D0;
         } else {
-            if (ov5_021D1A78(param0) == 1) {
+            if (FieldMap_InDistortionWorld(param0) == 1) {
                 v1 = Unk_ov5_021FF6B8;
             } else {
                 v1 = Unk_ov5_021FF744;
@@ -901,13 +900,13 @@ static void ov5_021D1878 (FieldSystem * param0)
         ov5_021ECC20(param0->unk_38, 32, ov5_021D1A6C(param0->unk_34) + 3, ov5_021D1A68(param0->unk_34), v2);
     }
 
-    ov5_021F1328(param0->unk_40);
+    FieldEffect_InitRenderObject(param0->unk_40);
 
     {
         UnkStruct_02027860 * v3 = sub_02027860(FieldSystem_SaveData(param0));
         int v4 = sub_02027F80(v3);
 
-        sub_0205E884(param0->playerAvatar, v4);
+        PlayerAvatar_InitDraw(param0->playerAvatar, v4);
     }
 
     sub_02061C48(param0->unk_38);
@@ -933,7 +932,7 @@ static void ov5_021D1968 (FieldSystem * param0)
 
     param0->unk_4C = ov5_021D521C(param0->unk_44, ov5_021EFAD8(param0->unk_30));
 
-    if (ov5_021D1A78(param0) == 1) {
+    if (FieldMap_InDistortionWorld(param0) == 1) {
         param0->unk_04->unk_0C = NULL;
     } else {
         param0->unk_04->unk_0C = ov5_021D5EB8(param0);
@@ -990,7 +989,7 @@ static void ov5_021D1A70 (UnkStruct_ov5_021D1A68 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL ov5_021D1A78 (FieldSystem * param0)
+static BOOL FieldMap_InDistortionWorld (FieldSystem * param0)
 {
     UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
     int v1 = sub_02027F80(v0);
