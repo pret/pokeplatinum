@@ -30,20 +30,20 @@ typedef struct UnkStruct_0205E884_t {
     int unk_2C;
     MapObject * mapObject;
     UnkStruct_ov101_021D5D90 * unk_34;
-    UnkStruct_0205EC34 * unk_38;
-    const UnkStruct_0205EC34 * unk_3C;
+    PlayerData * unk_38;
+    const PlayerData * unk_3C;
 } PlayerAvatar;
 
 static PlayerAvatar * PlayerAvatar_Alloc(void);
-static void sub_0205E91C(PlayerAvatar * param0, int param1, int param2, UnkStruct_0205EC34 * param3);
+static void sub_0205E91C(PlayerAvatar * param0, int param1, int param2, PlayerData * param3);
 static void PlayerAvatar_AddMapObject(PlayerAvatar * param0, const MapObjectManager * param1, int param2, int param3, int param4, int param5);
 static MapObject * sub_0205EA64(const MapObjectManager * param0);
 static void sub_0205EB9C(PlayerAvatar * param0, u32 param1);
 static void sub_0205EBA4(PlayerAvatar * param0, u32 param1);
 static u32 sub_0205EBB0(PlayerAvatar * param0, u32 param1);
-static void sub_0205EC08(PlayerAvatar * param0, UnkStruct_0205EC34 * param1);
+static void sub_0205EC08(PlayerAvatar * param0, PlayerData * param1);
 
-PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7)
+PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData * param7)
 {
     PlayerAvatar * playerAvatar;
 
@@ -69,7 +69,7 @@ PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, i
     return playerAvatar;
 }
 
-PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, UnkStruct_0205EC34 * param1, int param2)
+PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, PlayerData * param1, int param2)
 {
     int v0;
     PlayerAvatar * playerAvatar;
@@ -138,7 +138,7 @@ static PlayerAvatar * PlayerAvatar_Alloc (void)
     return playerAvatar;
 }
 
-static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int gender, UnkStruct_0205EC34 * param3)
+static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int gender, PlayerData * param3)
 {
     sub_0205EC08(playerAvatar, param3);
 
@@ -423,12 +423,12 @@ UnkStruct_ov101_021D5D90 * sub_0205EC04 (PlayerAvatar * param0)
     return param0->unk_34;
 }
 
-static void sub_0205EC08 (PlayerAvatar * param0, UnkStruct_0205EC34 * param1)
+static void sub_0205EC08 (PlayerAvatar * param0, PlayerData * param1)
 {
     param0->unk_38 = param1;
 }
 
-UnkStruct_0205EC34 * sub_0205EC0C (PlayerAvatar * param0)
+PlayerData * PlayerAvatar_PlayerData (PlayerAvatar * param0)
 {
     return param0->unk_38;
 }
@@ -459,62 +459,62 @@ void sub_0205EC20 (PlayerAvatar * param0, u32 param1, int param2)
     sub_0205EC18(param0, param2);
 }
 
-void sub_0205EC34 (UnkStruct_0205EC34 * param0)
+void PlayerData_Init (PlayerData * playerData)
 {
-    param0->unk_00 = 0;
-    param0->unk_02 = 0;
-    param0->unk_04 = 0x0;
+    playerData->unk_00 = 0;
+    playerData->runningShoes = FALSE;
+    playerData->unk_04 = 0x0;
 }
 
-int sub_0205EC40 (UnkStruct_0205EC34 * param0)
+int PlayerData_HasRunningShoes (PlayerData * playerData)
 {
-    if (param0 != NULL) {
-        if (param0->unk_02 == 1) {
-            return 1;
+    if (playerData != NULL) {
+        if (playerData->runningShoes == TRUE) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0205EC54 (UnkStruct_0205EC34 * param0, int param1)
+void PlayerData_SetRunningShoes (PlayerData * playerData, int flag)
 {
-    if (param1 == 1) {
-        param0->unk_02 = 1;
+    if (flag == 1) {
+        playerData->runningShoes = TRUE;
     } else {
-        param0->unk_02 = 0;
+        playerData->runningShoes = FALSE;
     }
 }
 
-int sub_0205EC64 (UnkStruct_0205EC34 * param0)
+int sub_0205EC64 (PlayerData * playerData)
 {
-    if (param0 == NULL) {
+    if (playerData == NULL) {
         return 0;
     }
 
-    return param0->unk_00;
+    return playerData->unk_00;
 }
 
-void sub_0205EC70 (UnkStruct_0205EC34 * param0, int param1)
+void sub_0205EC70 (PlayerData * playerData, int param1)
 {
-    if (param0 != NULL) {
-        param0->unk_00 = param1;
+    if (playerData != NULL) {
+        playerData->unk_00 = param1;
     }
 }
 
 void sub_0205EC78 (PlayerAvatar * param0, int param1)
 {
-    UnkStruct_0205EC34 * v0 = sub_0205EC0C(param0);
+    PlayerData * v0 = PlayerAvatar_PlayerData(param0);
     sub_0205EC70(v0, param1);
 }
 
 int sub_0205EC88 (PlayerAvatar * param0)
 {
-    UnkStruct_0205EC34 * v0 = sub_0205EC0C(param0);
+    PlayerData * v0 = PlayerAvatar_PlayerData(param0);
     return sub_0205EC64(v0);
 }
 
-u32 sub_0205EC94 (UnkStruct_0205EC34 * param0)
+u32 sub_0205EC94 (PlayerData * param0)
 {
     if (param0 != NULL) {
         return param0->unk_04;
@@ -523,7 +523,7 @@ u32 sub_0205EC94 (UnkStruct_0205EC34 * param0)
     return 0x0;
 }
 
-void sub_0205ECA0 (UnkStruct_0205EC34 * param0, u32 param1)
+void sub_0205ECA0 (PlayerData * param0, u32 param1)
 {
     if (param0 != NULL) {
         param0->unk_04 = param1;
@@ -532,7 +532,7 @@ void sub_0205ECA0 (UnkStruct_0205EC34 * param0, u32 param1)
 
 void sub_0205ECA8 (PlayerAvatar * param0, u32 param1)
 {
-    UnkStruct_0205EC34 * v0 = sub_0205EC0C(param0);
+    PlayerData * v0 = PlayerAvatar_PlayerData(param0);
     sub_0205ECA0(v0, param1);
 }
 

@@ -27,7 +27,7 @@ void sub_0203A764(UnkStruct_0203A790 * param0, u16 param1);
 UnkStruct_020556C4 * sub_0203A76C(UnkStruct_0203A790 * param0);
 int sub_0203A770(const UnkStruct_0203A790 * param0);
 void sub_0203A778(UnkStruct_0203A790 * param0, int param1);
-UnkStruct_0205EC34 * sub_0203A780(UnkStruct_0203A790 * param0);
+PlayerData * sub_0203A780(UnkStruct_0203A790 * param0);
 u16 * sub_0203A784(UnkStruct_0203A790 * param0);
 u16 * sub_0203A788(UnkStruct_0203A790 * param0);
 u16 * sub_0203A78C(UnkStruct_0203A790 * param0);

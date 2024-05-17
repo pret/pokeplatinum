@@ -88,7 +88,7 @@ void sub_02070494 (FieldSystem * param0)
     }
 
     {
-        UnkStruct_0205EC34 * v2 = sub_0203A780(sub_0203A790(param0->saveData));
+        PlayerData * v2 = sub_0203A780(sub_0203A790(param0->saveData));
 
         if ((v2->unk_04 == 0x1) && (MapHeader_IsBikeAllowed(param0->unk_1C->unk_00) == 0)) {
             v2->unk_04 = 0x0;

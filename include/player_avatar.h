@@ -10,8 +10,8 @@
 
 #include <nitro/fx/fx.h>
 
-PlayerAvatar * PlayerAvatar_Init(const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, UnkStruct_0205EC34 * param7);
-PlayerAvatar * sub_0205E820(const MapObjectManager * param0, UnkStruct_0205EC34 * param1, int param2);
+PlayerAvatar * PlayerAvatar_Init(const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData * param7);
+PlayerAvatar * sub_0205E820(const MapObjectManager * param0, PlayerData * param1, int param2);
 void sub_0205E884(PlayerAvatar * param0, int param1);
 void Player_Delete(PlayerAvatar * param0);
 void Player_DeleteAll(PlayerAvatar * param0);
@@ -52,21 +52,21 @@ int sub_0205EBE8(PlayerAvatar * param0);
 void sub_0205EBEC(PlayerAvatar * param0, int param1, int param2);
 void sub_0205EC00(PlayerAvatar * param0, UnkStruct_ov101_021D5D90 * param1);
 UnkStruct_ov101_021D5D90 * sub_0205EC04(PlayerAvatar * param0);
-UnkStruct_0205EC34 * sub_0205EC0C(PlayerAvatar * param0);
+PlayerData * PlayerAvatar_PlayerData(PlayerAvatar * param0);
 void sub_0205EC10(PlayerAvatar * param0, u32 param1);
 u32 sub_0205EC14(PlayerAvatar * param0);
 void sub_0205EC18(PlayerAvatar * param0, int param1);
 int sub_0205EC1C(PlayerAvatar * param0);
 void sub_0205EC20(PlayerAvatar * param0, u32 param1, int param2);
-void sub_0205EC34(UnkStruct_0205EC34 * param0);
-int sub_0205EC40(UnkStruct_0205EC34 * param0);
-void sub_0205EC54(UnkStruct_0205EC34 * param0, int param1);
-int sub_0205EC64(UnkStruct_0205EC34 * param0);
-void sub_0205EC70(UnkStruct_0205EC34 * param0, int param1);
+void PlayerData_Init(PlayerData * param0);
+int PlayerData_HasRunningShoes(PlayerData * param0);
+void PlayerData_SetRunningShoes(PlayerData * param0, int param1);
+int sub_0205EC64(PlayerData * param0);
+void sub_0205EC70(PlayerData * param0, int param1);
 void sub_0205EC78(PlayerAvatar * param0, int param1);
 int sub_0205EC88(PlayerAvatar * param0);
-u32 sub_0205EC94(UnkStruct_0205EC34 * param0);
-void sub_0205ECA0(UnkStruct_0205EC34 * param0, u32 param1);
+u32 sub_0205EC94(PlayerData * param0);
+void sub_0205ECA0(PlayerData * param0, u32 param1);
 void sub_0205ECA8(PlayerAvatar * param0, u32 param1);
 void sub_0205ECB8(PlayerAvatar * param0, const VecFx32 * param1, int param2);
 void sub_0205ECE0(PlayerAvatar * param0, int param1, int param2, int param3);

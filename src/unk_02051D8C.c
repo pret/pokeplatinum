@@ -522,7 +522,7 @@ static int sub_02052780 (const FieldSystem * param0, int param1)
 
 static void sub_0205281C (BattleParams * param0, const FieldSystem * param1)
 {
-    UnkStruct_0205EC34 * v0 = sub_0203A780(sub_0203A790(param1->saveData));
+    PlayerData * v0 = sub_0203A780(sub_0203A790(param1->saveData));
 
     param0->unk_128 = MapHeader_GetBattleBG(param1->unk_1C->unk_00);
 

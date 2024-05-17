@@ -27,7 +27,7 @@ typedef struct UnkStruct_0203A790_t {
     u16 unk_68;
     u8 unk_6A;
     UnkStruct_020556C4 unk_6C;
-    UnkStruct_0205EC34 unk_8C;
+    PlayerData unk_8C;
     u16 unk_94;
     u16 unk_96;
     u16 unk_98;
@@ -59,7 +59,7 @@ void FieldPlayerState_Init (UnkStruct_0203A790 * param0)
     memset(param0, 0, sizeof(UnkStruct_0203A790));
 
     sub_020556C4(&param0->unk_6C);
-    sub_0205EC34(&param0->unk_8C);
+    PlayerData_Init(&param0->unk_8C);
 
     param0->unk_68 = sub_0203A7EC();
 }
@@ -135,7 +135,7 @@ void sub_0203A778 (UnkStruct_0203A790 * param0, int param1)
     param0->unk_6A = param1;
 }
 
-UnkStruct_0205EC34 * sub_0203A780 (UnkStruct_0203A790 * param0)
+PlayerData * sub_0203A780 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_8C;
 }

@@ -942,9 +942,9 @@ static void sub_0205FDC8 (PlayerAvatar * param0, MapObject * param1, int param2,
             v2 = 4;
 
             {
-                UnkStruct_0205EC34 * v3 = sub_0205EC0C(param0);
+                PlayerData * v3 = PlayerAvatar_PlayerData(param0);
 
-                if (sub_0205EC40(v3) == 1) {
+                if (PlayerData_HasRunningShoes(v3) == 1) {
                     if (sub_020613FC(param0, param4) == 1) {
                         v1 = 0x58;
                         v2 = 5;
@@ -1018,13 +1018,13 @@ static void sub_0205FECC (PlayerAvatar * param0, MapObject * param1, int param2,
             Sound_PlayEffect(1537);
             sub_02062994(param1, param2);
         } else {
-            UnkStruct_0205EC34 * v7;
+            PlayerData * v7;
 
             v1 = 0xc;
             v2 = 4;
-            v7 = sub_0205EC0C(param0);
+            v7 = PlayerAvatar_PlayerData(param0);
 
-            if ((sub_0205EC40(v7) == 1) && (sub_020613FC(param0, param4) == 1)) {
+            if ((PlayerData_HasRunningShoes(v7) == 1) && (sub_020613FC(param0, param4) == 1)) {
                 v1 = 0x58;
                 v2 = 5;
             }
@@ -1065,13 +1065,13 @@ static void sub_0206000C (PlayerAvatar * param0, MapObject * param1, int param2,
             Sound_PlayEffect(1537);
             sub_02062994(param1, param9[param2]);
         } else {
-            UnkStruct_0205EC34 * v3;
+            PlayerData * v3;
 
             v2 = 4;
             v1 = param5[param2];
-            v3 = sub_0205EC0C(param0);
+            v3 = PlayerAvatar_PlayerData(param0);
 
-            if ((sub_0205EC40(v3) == 1) && (sub_020613FC(param0, param4) == 1)) {
+            if ((PlayerData_HasRunningShoes(v3) == 1) && (sub_020613FC(param0, param4) == 1)) {
                 v2 = 5;
                 v1 = param6[param2];
             }

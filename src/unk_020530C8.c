@@ -344,7 +344,7 @@ static void sub_02053320 (FieldSystem * param0)
     int v0;
     int v1;
     UnkStruct_0203A790 * v2;
-    UnkStruct_0205EC34 * v3;
+    PlayerData * v3;
 
     param0->unk_38 = sub_02061804(param0, 64, 5);
 
@@ -372,7 +372,7 @@ static void sub_0205338C (FieldSystem * param0)
 
     {
         UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
-        UnkStruct_0205EC34 * v1 = sub_0203A780(v0);
+        PlayerData * v1 = sub_0203A780(v0);
         int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0->saveData));
 
         param0->playerAvatar = sub_0205E820(param0->unk_38, v1, v2);
