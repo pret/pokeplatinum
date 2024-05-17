@@ -47,7 +47,7 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_020425E0.h"
+#include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
@@ -1346,7 +1346,7 @@ BOOL sub_0203E0AC (FieldSystem * param0, void * param1)
     return 1;
 }
 
-void sub_0203E0C0 (FieldSystem * param0, UnkStruct_020425E0 * param1)
+void sub_0203E0C0 (FieldSystem * param0, ChooseStarterData * param1)
 {
     FS_EXTERN_OVERLAY(choose_starter);
 

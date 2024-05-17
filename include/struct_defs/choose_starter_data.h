@@ -3,9 +3,10 @@
 
 #include "game_options.h"
 
-typedef struct {
-    int unk_00;
-    const Options * unk_04;
-} UnkStruct_020425E0;
+typedef struct ChooseStarterData {
+    int species;
+    const Options *options;
+} ChooseStarterData;
 
 #endif // POKEPLATINUM_STRUCT_020425E0_H
+

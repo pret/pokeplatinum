@@ -51,7 +51,7 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_020425E0.h"
+#include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -4459,12 +4459,12 @@ static BOOL ScrCmd_0B3 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0B4 (ScriptContext * ctx)
 {
-    UnkStruct_020425E0 * v0;
+    ChooseStarterData * v0;
     void ** v1 = sub_0203F098(ctx->fieldSys, 20);
 
-    *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020425E0));
+    *v1 = Heap_AllocFromHeap(11, sizeof(ChooseStarterData));
     v0 = *v1;
-    v0->unk_04 = SaveData_Options(ctx->fieldSys->saveData);
+    v0->options = SaveData_Options(ctx->fieldSys->saveData);
 
     sub_0203E0C0(ctx->fieldSys, *v1);
     ScriptContext_Pause(ctx, sub_02041D60);
@@ -4474,12 +4474,12 @@ static BOOL ScrCmd_0B4 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0B5 (ScriptContext * ctx)
 {
-    UnkStruct_020425E0 * v0;
+    ChooseStarterData * v0;
     void ** v1 = sub_0203F098(ctx->fieldSys, 20);
 
     v0 = (*v1);
 
-    sub_0206B044(SaveData_Events(ctx->fieldSys->saveData), v0->unk_00);
+    sub_0206B044(SaveData_Events(ctx->fieldSys->saveData), v0->species);
     Heap_FreeToHeap(*v1);
 
     return 0;

@@ -2,6 +2,8 @@
 #include <string.h>
 #include <nnsys.h>
 
+#include "constants/species.h"
+
 #include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -23,7 +25,7 @@
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_020425E0.h"
+#include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -72,6 +74,16 @@
 #include "game_options.h"
 #include "pokemon.h"
 #include "choose_starter/choose_starter_app.h"
+
+#define STARTER_OPTION_0 SPECIES_TURTWIG
+#define STARTER_OPTION_1 SPECIES_CHIMCHAR
+#define STARTER_OPTION_2 SPECIES_PIPLUP
+
+enum CursorPosition {
+    CURSOR_POSITION_LEFT = 0,
+    CURSOR_POSITION_CENTER,
+    CURSOR_POSITION_RIGHT,
+};
 
 typedef struct ChooseStarter3DGraphics {
     NNSG3dRenderObj unk_00;
@@ -156,7 +168,7 @@ typedef struct ChooseStarterApp {
     BOOL unk_08;
     int unk_0C;
     ChooseStarterCameraMovement unk_10;
-    int unk_54;
+    enum CursorPosition cursorPosition;
     int unk_58[3][3];
     int unk_7C[3][2];
     BGL * unk_94;
@@ -190,7 +202,7 @@ static void ov78_021D1058(void * param0);
 static void ov78_021D107C(ChooseStarterApp * param0);
 static void ov78_021D109C(ChooseStarterApp * param0);
 static BOOL ov78_021D10BC(ChooseStarterApp * param0);
-static u16 ov78_021D291C(u16 param0);
+static u16 GetSelectedSpecies(u16 cursorPosition);
 static BOOL ov78_021D1978(ChooseStarterApp * param0, int param1);
 static void ov78_021D19D4(ChooseStarterApp * param0, int param1);
 static void ov78_021D1AAC(ChooseStarterApp * param0);
@@ -280,7 +292,7 @@ static void ov78_021D241C(ChooseStarterCursor * param0);
 int ChooseStarter_Init (OverlayManager * param0, int * param1)
 {
     ChooseStarterApp * v0;
-    UnkStruct_020425E0 * v1;
+    ChooseStarterData * v1;
     UnkStruct_ov84_0223BA5C v2;
     BOOL v3;
 
@@ -293,8 +305,8 @@ int ChooseStarter_Init (OverlayManager * param0, int * param1)
     Heap_FndInitAllocatorForExpHeap(&v0->unk_2B4, 47, 32);
 
     v1 = OverlayManager_Args(param0);
-    v0->unk_700 = Options_Frame(v1->unk_04);
-    v0->unk_704 = Options_TextFrameDelay(v1->unk_04);
+    v0->unk_700 = Options_Frame(v1->options);
+    v0->unk_704 = Options_TextFrameDelay(v1->options);
 
     sub_0201DBEC(8, 47);
     SetMainCallback(ov78_021D1058, v0);
@@ -391,12 +403,12 @@ int ChooseStarter_Main (OverlayManager * param0, int * param1)
 int ChooseStarter_Exit (OverlayManager * param0, int * param1)
 {
     ChooseStarterApp * v0 = OverlayManager_Data(param0);
-    UnkStruct_020425E0 * v1 = OverlayManager_Args(param0);
+    ChooseStarterData * v1 = OverlayManager_Args(param0);
     BOOL v2;
 
     SetMainCallback(NULL, NULL);
 
-    v1->unk_00 = ov78_021D291C(v0->unk_54);
+    v1->species = GetSelectedSpecies(v0->cursorPosition);
 
     v2 = sub_0201E530();
     GF_ASSERT(v2 == 1);
@@ -1085,15 +1097,15 @@ static void ov78_021D1C28 (ChooseStarterApp * param0)
 static void ov78_021D1C58 (ChooseStarterApp * param0)
 {
     if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
-        if (param0->unk_54 - 1 >= 0) {
-            param0->unk_54 -= 1;
+        if (param0->cursorPosition - 1 >= 0) {
+            param0->cursorPosition -= 1;
             Sound_PlayEffect(1500);
         }
     }
 
     if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
-        if (param0->unk_54 + 1 < 3) {
-            param0->unk_54 += 1;
+        if (param0->cursorPosition + 1 < 3) {
+            param0->cursorPosition += 1;
             Sound_PlayEffect(1500);
         }
     }
@@ -1169,7 +1181,7 @@ static void ov78_021D1DF0 (ChooseStarterApp * param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_54 == v0) {
+        if (param0->cursorPosition == v0) {
             ov78_021D180C(&param0->unk_2C4[2 + v0]);
         } else {
             ov78_021D182C(&param0->unk_2C4[2 + v0], 0);
@@ -1179,7 +1191,7 @@ static void ov78_021D1DF0 (ChooseStarterApp * param0)
 
 static void ov78_021D1E28 (ChooseStarterApp * param0)
 {
-    ov78_021D243C(&param0->unk_658, param0->unk_7C[param0->unk_54][0], param0->unk_7C[param0->unk_54][1]);
+    ov78_021D243C(&param0->unk_658, param0->unk_7C[param0->cursorPosition][0], param0->unk_7C[param0->cursorPosition][1]);
 }
 
 static void ov78_021D1E44 (ChooseStarterApp * param0, int param1)
@@ -1197,16 +1209,16 @@ static void ov78_021D1E44 (ChooseStarterApp * param0, int param1)
         break;
     case 1:
         ov78_021D2508(&param0->unk_6A8, 1);
-        sub_02007DEC(param0->unk_268[param0->unk_54], 6, 0);
+        sub_02007DEC(param0->unk_268[param0->cursorPosition], 6, 0);
 
         if (ov78_021D26A4(param0)) {
-            sub_02005844(ov78_021D291C(param0->unk_54), 0);
+            sub_02005844(GetSelectedSpecies(param0->cursorPosition), 0);
 
             param0->unk_04++;
         }
         break;
     case 2:
-        ov78_021D1FB4(param0->unk_98, param1, 360, 1 + param0->unk_54, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0xff);
+        ov78_021D1FB4(param0->unk_98, param1, 360, 1 + param0->cursorPosition, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0xff);
         param0->unk_B8 = sub_02002100(param0->unk_94, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
         param0->unk_08 = 0;
         param0->unk_04++;
@@ -1231,7 +1243,7 @@ static void ov78_021D1E44 (ChooseStarterApp * param0, int param1)
             ov78_021D1C98(param0, -1);
             param0->unk_04 = 7;
             ov78_021D2508(&param0->unk_6A8, 0);
-            sub_02007DEC(param0->unk_268[param0->unk_54], 6, 1);
+            sub_02007DEC(param0->unk_268[param0->cursorPosition], 6, 1);
             param0->unk_708 = ov78_021D1FB4(param0->unk_98, param1, 360, 7, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0xff);
         }
         break;
@@ -1607,11 +1619,11 @@ static void ov78_021D2618 (ChooseStarterApp * param0)
 {
     fx32 v0, v1;
 
-    v0 = param0->unk_7C[param0->unk_54][0] << FX32_SHIFT;
-    v1 = (param0->unk_7C[param0->unk_54][1] + 48) << FX32_SHIFT;
+    v0 = param0->unk_7C[param0->cursorPosition][0] << FX32_SHIFT;
+    v1 = (param0->unk_7C[param0->cursorPosition][1] + 48) << FX32_SHIFT;
 
     ov78_021D2514(&param0->unk_6A8, v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, (FX32_CONST(0.40f)), (FX32_CONST(1.0f)), 6);
-    ov78_021D26B4(&param0->unk_274, param0->unk_268[param0->unk_54], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, (FX32_CONST(0.40f)), (FX32_CONST(1.0f)), 6);
+    ov78_021D26B4(&param0->unk_274, param0->unk_268[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, (FX32_CONST(0.40f)), (FX32_CONST(1.0f)), 6);
 }
 
 static void ov78_021D2688 (ChooseStarterApp * param0)
@@ -1739,19 +1751,23 @@ static void ov78_021D2904 (ChooseStarterApp * param0)
     sub_0201ACF4(param0->unk_9C[param0->unk_A8]);
 }
 
-static u16 ov78_021D291C (u16 param0)
+static u16 GetSelectedSpecies(u16 cursorPosition)
 {
-    switch (param0) {
-    case 0:
-        return 387;
-    case 1:
-        return 390;
-    case 2:
-        return 393;
+    switch (cursorPosition) {
+    case CURSOR_POSITION_LEFT:
+        return STARTER_OPTION_0;
+
+    case CURSOR_POSITION_CENTER:
+        return STARTER_OPTION_1;
+
+    case CURSOR_POSITION_RIGHT:
+        return STARTER_OPTION_2;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    return 0;
+    return SPECIES_NONE;
 }
+
