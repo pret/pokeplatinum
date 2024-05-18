@@ -548,7 +548,7 @@ static void sub_0206A23C (MapObject * param0, int param1, u32 param2)
     v0->unk_01 = -1;
     v0->unk_02 = param2;
 
-    sub_02062974(param0, 0);
+    MapObject_SetDir(param0, 0);
 }
 
 void sub_0206A25C (MapObject * param0)
@@ -602,7 +602,7 @@ void sub_0206A2BC (MapObject * param0)
 
 static int sub_0206A2E0 (MapObject * param0, UnkStruct_0206A23C * param1)
 {
-    int v0 = sub_0206298C(param0);
+    int v0 = MapObject_Dir(param0);
 
     v0 = sub_02065838(v0, 0x0);
 
@@ -915,12 +915,12 @@ static int sub_0206A630 (MapObject * param0, UnkStruct_0206A47C * param1, int pa
 {
     u32 v0;
     int v1 = param1->unk_08;
-    int v2 = sub_0206298C(param0);
+    int v2 = MapObject_Dir(param0);
 
     v0 = sub_0206A60C(param0, &v2, v1);
 
     if (v2 == -1) {
-        v2 = sub_0206298C(param0);
+        v2 = MapObject_Dir(param0);
         param2 = sub_02065838(v2, 0x1c);
         sub_02065668(param0, param2);
         return 0;
@@ -934,14 +934,14 @@ static int sub_0206A630 (MapObject * param0, UnkStruct_0206A47C * param1, int pa
     }
 
     if ((v0 & (1 << 0)) && (param1->unk_04 == 2)) {
-        v2 = sub_0206447C(sub_0206298C(param0));
+        v2 = sub_0206447C(MapObject_Dir(param0));
         v1 = Unk_020EF8E4[v1];
         param1->unk_08 = v1;
 
         v0 = sub_0206A60C(param0, &v2, v1);
 
         if (v2 == -1) {
-            v2 = sub_0206298C(param0);
+            v2 = MapObject_Dir(param0);
             param2 = sub_02065838(v2, 0x1c);
             sub_02065668(param0, param2);
             return 0;
@@ -960,7 +960,7 @@ static int sub_0206A630 (MapObject * param0, UnkStruct_0206A47C * param1, int pa
         v0 = sub_0206A60C(param0, &v2, v1);
 
         if (v2 == -1) {
-            v2 = sub_0206298C(param0);
+            v2 = MapObject_Dir(param0);
             param2 = sub_02065838(v2, 0x1c);
             sub_02065668(param0, param2);
             return 0;
@@ -974,7 +974,7 @@ static int sub_0206A630 (MapObject * param0, UnkStruct_0206A47C * param1, int pa
         }
     }
 
-    v2 = sub_0206298C(param0);
+    v2 = MapObject_Dir(param0);
     param2 = sub_02065838(v2, 0x1c);
 
     sub_02065668(param0, param2);

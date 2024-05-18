@@ -151,7 +151,7 @@ void ov5_021ECDA0 (const MapObject * param0, VecFx32 * param1)
 
 void ov5_021ECDFC (MapObject * param0, int param1)
 {
-    sub_02062974(param0, param1);
+    MapObject_SetDir(param0, param1);
 
     if (sub_02062D4C(param0) == 1) {
         sub_02062B68(param0);

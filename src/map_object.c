@@ -503,7 +503,7 @@ static void sub_02061D3C (FieldSystem * param0, MapObject * param1, UnkStruct_02
     param2->unk_16 = sub_02062958(param1);
     param2->unk_18 = sub_02062960(param1);
     param2->unk_0C = sub_02062968(param1);
-    param2->unk_0D = sub_0206298C(param1);
+    param2->unk_0D = MapObject_Dir(param1);
     param2->unk_0E = sub_0206299C(param1);
     param2->unk_1A = sub_020629D8(param1, 0);
     param2->unk_1C = sub_020629D8(param1, 1);
@@ -1363,7 +1363,7 @@ void sub_0206296C (MapObject * param0, int param1)
     param0->unk_28 = param1;
 }
 
-void sub_02062974 (MapObject * param0, int param1)
+void MapObject_SetDir (MapObject * param0, int param1)
 {
     if (sub_020628D0(param0, (1 << 7)) == 0) {
         param0->unk_30 = param0->unk_28;
@@ -1371,7 +1371,7 @@ void sub_02062974 (MapObject * param0, int param1)
     }
 }
 
-int sub_0206298C (const MapObject * param0)
+int MapObject_Dir (const MapObject * param0)
 {
     return param0->unk_28;
 }
@@ -1394,7 +1394,7 @@ int sub_0206299C (const MapObject * param0)
 
 void sub_020629A0 (MapObject * param0, int param1)
 {
-    sub_02062974(param0, param1);
+    MapObject_SetDir(param0, param1);
     sub_02062994(param0, param1);
 }
 

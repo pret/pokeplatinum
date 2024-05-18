@@ -80,7 +80,7 @@ void ov5_021F58FC (MapObject * param0, int param1, int param2, int param3)
 
     sub_02063050(param0, &v4);
 
-    v2 = sub_0206298C(param0);
+    v2 = MapObject_Dir(param0);
 
     switch (v2) {
     case 0:

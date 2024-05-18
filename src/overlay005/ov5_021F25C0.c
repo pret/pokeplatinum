@@ -145,7 +145,7 @@ static void ov5_021F2708 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     }
 
     v0->unk_00 = 0;
-    v0->unk_04 = sub_0206298C(v1);
+    v0->unk_04 = MapObject_Dir(v1);
 
     if (v0->unk_04 == -1) {
         v0->unk_00 = 1;

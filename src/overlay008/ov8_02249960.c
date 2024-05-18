@@ -4034,7 +4034,7 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
 
         if ((v4 == 0xff) || ((sub_02062950(v5) == 0x1) && v6->unk_08)) {
             v6->unk_00 = 1;
-            v6->unk_04 = sub_0206298C(v5);
+            v6->unk_04 = MapObject_Dir(v5);
             v6->unk_14 = v5;
             v6->unk_18 = param0;
 
@@ -4092,7 +4092,7 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
     v5 = fieldSystem->playerAvatar;
     v8 = Player_MapObject(v5);
     v2 = 2;
-    v1 = sub_0206447C(sub_0206298C(v8));
+    v1 = sub_0206447C(MapObject_Dir(v8));
 
     while (sub_020625B0(mapObjMan, &v7, &v0, (1 << 0))) {
         if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {

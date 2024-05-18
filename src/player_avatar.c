@@ -43,7 +43,7 @@ static void sub_0205EBA4(PlayerAvatar * param0, u32 param1);
 static u32 sub_0205EBB0(PlayerAvatar * param0, u32 param1);
 static void sub_0205EC08(PlayerAvatar * param0, PlayerData * param1);
 
-PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData * param7)
+PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * mapObjMan, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData * param7)
 {
     PlayerAvatar * playerAvatar;
 
@@ -63,13 +63,13 @@ PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * param0, int param1, i
             }
         }
 
-        PlayerAvatar_AddMapObject(playerAvatar, param0, v1, param3, param1, param2);
+        PlayerAvatar_AddMapObject(playerAvatar, mapObjMan, v1, param3, param1, param2);
     }
 
     return playerAvatar;
 }
 
-PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, PlayerData * param1, int param2)
+PlayerAvatar * sub_0205E820 (const MapObjectManager * mapObjMan, PlayerData * param1, int param2)
 {
     int v0;
     PlayerAvatar * playerAvatar;
@@ -79,11 +79,11 @@ PlayerAvatar * sub_0205E820 (const MapObjectManager * param0, PlayerData * param
     v0 = sub_0205EC94(param1);
 
     sub_0205E91C(playerAvatar, v0, param2, param1);
-    mapObj = sub_0205EA64(param0);
+    mapObj = sub_0205EA64(mapObjMan);
 
     sub_0206291C(mapObj, Player_Gender(v0, param2));
-    MapObject_SetStatusFlagOn(mapObj, ((1 << 10) | (1 << 13)));
-    MapObject_SetStatusFlagOff(mapObj, ((1 << 7) | (1 << 8)));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10 | MAP_OBJ_STATUS_13);
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
     sub_02062F90(mapObj, 1);
     PlayerAvatar_SetMapObject(playerAvatar, mapObj);
 
@@ -199,85 +199,85 @@ static MapObject * sub_0205EA64 (const MapObjectManager * mapObjMan)
     return v0;
 }
 
-int Player_Dir (PlayerAvatar * const param0)
+int Player_Dir (PlayerAvatar * const playerAvatar)
 {
-    return sub_0206298C(Player_MapObject(param0));
+    return MapObject_Dir(Player_MapObject(playerAvatar));
 }
 
-void Player_SetDir (PlayerAvatar * param0, int param1)
+void Player_SetDir (PlayerAvatar * playerAvatar, int dir)
 {
-    sub_02062974(Player_MapObject(param0), param1);
+    MapObject_SetDir(Player_MapObject(playerAvatar), dir);
 }
 
-int sub_0205EA94 (PlayerAvatar * const param0)
+int sub_0205EA94 (PlayerAvatar * const playerAvatar)
 {
-    return sub_0206299C(Player_MapObject(param0));
+    return sub_0206299C(Player_MapObject(playerAvatar));
 }
 
-int sub_0205EAA0 (PlayerAvatar * const param0)
+int sub_0205EAA0 (PlayerAvatar * const playerAvatar)
 {
-    if (sub_0205F16C(param0) == 1) {
-        return Player_Dir(param0);
+    if (sub_0205F16C(playerAvatar) == 1) {
+        return Player_Dir(playerAvatar);
     }
 
-    return sub_0205EA94(param0);
+    return sub_0205EA94(playerAvatar);
 }
 
-int Player_XPos (PlayerAvatar * const param0)
+int Player_XPos (PlayerAvatar * const playerAvatar)
 {
-    return sub_02063020(Player_MapObject(param0));
+    return sub_02063020(Player_MapObject(playerAvatar));
 }
 
-int Player_ZPos (PlayerAvatar * const param0)
+int Player_ZPos (PlayerAvatar * const playerAvatar)
 {
-    return sub_02063040(Player_MapObject(param0));
+    return sub_02063040(Player_MapObject(playerAvatar));
 }
 
-int sub_0205EAD4 (PlayerAvatar * const param0)
+int sub_0205EAD4 (PlayerAvatar * const playerAvatar)
 {
-    return sub_02063008(Player_MapObject(param0));
+    return sub_02063008(Player_MapObject(playerAvatar));
 }
 
-int sub_0205EAE0 (PlayerAvatar * const param0)
+int sub_0205EAE0 (PlayerAvatar * const playerAvatar)
 {
-    return sub_02063018(Player_MapObject(param0));
+    return sub_02063018(Player_MapObject(playerAvatar));
 }
 
-void sub_0205EAEC (PlayerAvatar * const param0, VecFx32 * param1)
+void sub_0205EAEC (PlayerAvatar * const playerAvatar, VecFx32 * param1)
 {
-    sub_02063050(Player_MapObject(param0), param1);
+    sub_02063050(Player_MapObject(playerAvatar), param1);
 }
 
-const VecFx32 * sub_0205EAFC (PlayerAvatar * const param0)
+const VecFx32 * sub_0205EAFC (PlayerAvatar * const playerAvatar)
 {
-    return sub_02063070(sub_0205EB54(param0));
+    return sub_02063070(sub_0205EB54(playerAvatar));
 }
 
-void sub_0205EB08 (PlayerAvatar * param0, int param1)
+void sub_0205EB08 (PlayerAvatar * playerAvatar, int param1)
 {
-    param0->unk_14 = param1;
+    playerAvatar->unk_14 = param1;
 }
 
-int sub_0205EB0C (const PlayerAvatar * param0)
+int sub_0205EB0C (const PlayerAvatar * playerAvatar)
 {
-    return param0->unk_14;
+    return playerAvatar->unk_14;
 }
 
-void sub_0205EB10 (PlayerAvatar * param0, int param1)
+void sub_0205EB10 (PlayerAvatar * playerAvatar, int param1)
 {
-    param0->unk_18 = param1;
+    playerAvatar->unk_18 = param1;
 }
 
-int Player_MoveState (const PlayerAvatar * param0)
+int Player_MoveState (const PlayerAvatar * playerAvatar)
 {
-    return param0->unk_18;
+    return playerAvatar->unk_18;
 }
 
-void PlayerAvatar_SetHidden (PlayerAvatar * param0, int param1)
+void PlayerAvatar_SetHidden (PlayerAvatar * playerAvatar, int param1)
 {
     MapObject * v0;
 
-    v0 = Player_MapObject(param0);
+    v0 = Player_MapObject(playerAvatar);
 
     if (param1 == 1) {
         MapObject_SetStatusFlagOff(v0, MAP_OBJ_STATUS_HIDE);
@@ -299,162 +299,162 @@ MapObject * Player_MapObject (PlayerAvatar * playerAvatar)
     return playerAvatar->mapObject;
 }
 
-const MapObject * sub_0205EB54 (const PlayerAvatar * param0)
+const MapObject * sub_0205EB54 (const PlayerAvatar * playerAvatar)
 {
-    return param0->mapObject;
+    return playerAvatar->mapObject;
 }
 
-void sub_0205EB58 (PlayerAvatar * param0, int param1)
+void sub_0205EB58 (PlayerAvatar * playerAvatar, int param1)
 {
     GF_ASSERT(param1 < 0x6);
-    param0->unk_1C = param1;
+    playerAvatar->unk_1C = param1;
 
-    sub_0205ECA8(param0, param1);
+    sub_0205ECA8(playerAvatar, param1);
 }
 
-int sub_0205EB74 (PlayerAvatar * param0)
+int sub_0205EB74 (PlayerAvatar * playerAvatar)
 {
-    GF_ASSERT(param0 != NULL);
-    return param0->unk_1C;
+    GF_ASSERT(playerAvatar != NULL);
+    return playerAvatar->unk_1C;
 }
 
-void sub_0205EB84 (PlayerAvatar * param0, u32 param1)
+void sub_0205EB84 (PlayerAvatar * playerAvatar, u32 param1)
 {
-    param0->unk_04 |= param1;
+    playerAvatar->unk_04 |= param1;
 }
 
-void sub_0205EB8C (PlayerAvatar * param0, u32 param1)
+void sub_0205EB8C (PlayerAvatar * playerAvatar, u32 param1)
 {
-    param0->unk_04 = param1;
+    playerAvatar->unk_04 = param1;
 }
 
-u32 sub_0205EB90 (PlayerAvatar * param0)
+u32 sub_0205EB90 (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_04;
+    return playerAvatar->unk_04;
 }
 
-void PlayerAvatar_SetGender (PlayerAvatar * param0, int param1)
+void PlayerAvatar_SetGender (PlayerAvatar * playerAvatar, int param1)
 {
-    param0->unk_20 = param1;
+    playerAvatar->unk_20 = param1;
 }
 
-int sub_0205EB98 (PlayerAvatar * param0)
+int sub_0205EB98 (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_20;
+    return playerAvatar->unk_20;
 }
 
-static void sub_0205EB9C (PlayerAvatar * param0, u32 param1)
+static void sub_0205EB9C (PlayerAvatar * playerAvatar, u32 param1)
 {
-    param0->unk_00 |= param1;
+    playerAvatar->unk_00 |= param1;
 }
 
-static void sub_0205EBA4 (PlayerAvatar * param0, u32 param1)
+static void sub_0205EBA4 (PlayerAvatar * playerAvatar, u32 param1)
 {
-    param0->unk_00 &= ~param1;
+    playerAvatar->unk_00 &= ~param1;
 }
 
-static u32 sub_0205EBB0 (PlayerAvatar * param0, u32 param1)
+static u32 sub_0205EBB0 (PlayerAvatar * playerAvatar, u32 param1)
 {
-    return param0->unk_00 & param1;
+    return playerAvatar->unk_00 & param1;
 }
 
-int sub_0205EBB8 (PlayerAvatar * param0)
+int sub_0205EBB8 (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_24;
+    return playerAvatar->unk_24;
 }
 
-void sub_0205EBBC (PlayerAvatar * param0, int param1)
+void sub_0205EBBC (PlayerAvatar * playerAvatar, int param1)
 {
-    param0->unk_24 = param1;
+    playerAvatar->unk_24 = param1;
 }
 
-void sub_0205EBC0 (PlayerAvatar * param0)
+void sub_0205EBC0 (PlayerAvatar * playerAvatar)
 {
-    param0->unk_24 = 0;
-    sub_0205EF98(param0, 0);
+    playerAvatar->unk_24 = 0;
+    sub_0205EF98(playerAvatar, 0);
 }
 
-int sub_0205EBCC (PlayerAvatar * param0, int param1, int param2)
+int sub_0205EBCC (PlayerAvatar * playerAvatar, int param1, int param2)
 {
-    param0->unk_24 += param1;
+    playerAvatar->unk_24 += param1;
 
-    if (param0->unk_24 > param2) {
-        param0->unk_24 = param2;
+    if (playerAvatar->unk_24 > param2) {
+        playerAvatar->unk_24 = param2;
     }
 
-    return param0->unk_24;
+    return playerAvatar->unk_24;
 }
 
-void sub_0205EBDC (PlayerAvatar * param0, int param1)
+void sub_0205EBDC (PlayerAvatar * playerAvatar, int param1)
 {
-    param0->unk_28 = param1;
+    playerAvatar->unk_28 = param1;
 }
 
-int sub_0205EBE0 (PlayerAvatar * param0)
+int sub_0205EBE0 (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_28;
+    return playerAvatar->unk_28;
 }
 
-void sub_0205EBE4 (PlayerAvatar * param0, int param1)
+void sub_0205EBE4 (PlayerAvatar * playerAvatar, int param1)
 {
-    param0->unk_2C = param1;
+    playerAvatar->unk_2C = param1;
 }
 
-int sub_0205EBE8 (PlayerAvatar * param0)
+int sub_0205EBE8 (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_2C;
+    return playerAvatar->unk_2C;
 }
 
-void sub_0205EBEC (PlayerAvatar * param0, int param1, int param2)
+void sub_0205EBEC (PlayerAvatar * playerAvatar, int param1, int param2)
 {
-    sub_0205EBDC(param0, param1);
-    sub_0205EBE4(param0, param2);
+    sub_0205EBDC(playerAvatar, param1);
+    sub_0205EBE4(playerAvatar, param2);
 }
 
-void sub_0205EC00 (PlayerAvatar * param0, UnkStruct_ov101_021D5D90 * param1)
+void sub_0205EC00 (PlayerAvatar * playerAvatar, UnkStruct_ov101_021D5D90 * param1)
 {
-    param0->unk_34 = param1;
+    playerAvatar->unk_34 = param1;
 }
 
-UnkStruct_ov101_021D5D90 * sub_0205EC04 (PlayerAvatar * param0)
+UnkStruct_ov101_021D5D90 * sub_0205EC04 (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_34;
+    return playerAvatar->unk_34;
 }
 
-static void sub_0205EC08 (PlayerAvatar * param0, PlayerData * param1)
+static void sub_0205EC08 (PlayerAvatar * playerAvatar, PlayerData * param1)
 {
-    param0->unk_38 = param1;
+    playerAvatar->unk_38 = param1;
 }
 
-PlayerData * PlayerAvatar_PlayerData (PlayerAvatar * param0)
+PlayerData * PlayerAvatar_PlayerData (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_38;
+    return playerAvatar->unk_38;
 }
 
-void sub_0205EC10 (PlayerAvatar * param0, u32 param1)
+void sub_0205EC10 (PlayerAvatar * playerAvatar, u32 param1)
 {
-    param0->unk_08 = param1;
+    playerAvatar->unk_08 = param1;
 }
 
-u32 sub_0205EC14 (PlayerAvatar * param0)
+u32 sub_0205EC14 (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_08;
+    return playerAvatar->unk_08;
 }
 
-void sub_0205EC18 (PlayerAvatar * param0, int param1)
+void sub_0205EC18 (PlayerAvatar * playerAvatar, int param1)
 {
-    param0->unk_0C = param1;
+    playerAvatar->unk_0C = param1;
 }
 
-int sub_0205EC1C (PlayerAvatar * param0)
+int sub_0205EC1C (PlayerAvatar * playerAvatar)
 {
-    return param0->unk_0C;
+    return playerAvatar->unk_0C;
 }
 
-void sub_0205EC20 (PlayerAvatar * param0, u32 param1, int param2)
+void sub_0205EC20 (PlayerAvatar * playerAvatar, u32 param1, int param2)
 {
-    sub_0205EC10(param0, param1);
-    sub_0205EC18(param0, param2);
+    sub_0205EC10(playerAvatar, param1);
+    sub_0205EC18(playerAvatar, param2);
 }
 
 void PlayerData_Init (PlayerData * playerData)
@@ -500,75 +500,75 @@ void sub_0205EC70 (PlayerData * playerData, int param1)
     }
 }
 
-void sub_0205EC78 (PlayerAvatar * param0, int param1)
+void sub_0205EC78 (PlayerAvatar * playerAvatar, int param1)
 {
-    PlayerData * v0 = PlayerAvatar_PlayerData(param0);
+    PlayerData * v0 = PlayerAvatar_PlayerData(playerAvatar);
     sub_0205EC70(v0, param1);
 }
 
-int sub_0205EC88 (PlayerAvatar * param0)
+int sub_0205EC88 (PlayerAvatar * playerAvatar)
 {
-    PlayerData * v0 = PlayerAvatar_PlayerData(param0);
+    PlayerData * v0 = PlayerAvatar_PlayerData(playerAvatar);
     return sub_0205EC64(v0);
 }
 
-u32 sub_0205EC94 (PlayerData * param0)
+u32 sub_0205EC94 (PlayerData * player)
 {
-    if (param0 != NULL) {
-        return param0->unk_04;
+    if (player != NULL) {
+        return player->unk_04;
     }
 
     return 0x0;
 }
 
-void sub_0205ECA0 (PlayerData * param0, u32 param1)
+void sub_0205ECA0 (PlayerData * player, u32 param1)
 {
-    if (param0 != NULL) {
-        param0->unk_04 = param1;
+    if (player != NULL) {
+        player->unk_04 = param1;
     }
 }
 
-void sub_0205ECA8 (PlayerAvatar * param0, u32 param1)
+void sub_0205ECA8 (PlayerAvatar * playerAvatar, u32 param1)
 {
-    PlayerData * v0 = PlayerAvatar_PlayerData(param0);
+    PlayerData * v0 = PlayerAvatar_PlayerData(playerAvatar);
     sub_0205ECA0(v0, param1);
 }
 
-void sub_0205ECB8 (PlayerAvatar * param0, const VecFx32 * param1, int param2)
+void sub_0205ECB8 (PlayerAvatar * playerAvatar, const VecFx32 * param1, int param2)
 {
     MapObject * v0;
 
-    v0 = Player_MapObject(param0);
+    v0 = Player_MapObject(playerAvatar);
 
     sub_020632D4(v0, param1, param2);
-    sub_0205EB08(param0, 0);
-    sub_0205EB10(param0, 0);
+    sub_0205EB08(playerAvatar, 0);
+    sub_0205EB10(playerAvatar, 0);
 }
 
-void sub_0205ECE0 (PlayerAvatar * param0, int param1, int param2, int param3)
+void sub_0205ECE0 (PlayerAvatar * playerAvatar, int param1, int param2, int param3)
 {
     MapObject * v0;
 
-    v0 = Player_MapObject(param0);
+    v0 = Player_MapObject(playerAvatar);
 
     LocalMapObj_SetPosDir(v0, param1, 0, param2, param3);
-    sub_0205EB08(param0, 0);
-    sub_0205EB10(param0, 0);
+    sub_0205EB08(playerAvatar, 0);
+    sub_0205EB10(playerAvatar, 0);
 }
 
-void sub_0205ED0C (PlayerAvatar * param0, fx32 param1)
+void sub_0205ED0C (PlayerAvatar * playerAvatar, fx32 param1)
 {
     VecFx32 v0;
-    MapObject * v1 = Player_MapObject(param0);
+    MapObject * v1 = Player_MapObject(playerAvatar);
 
     sub_02063050(v1, &v0);
     v0.y = param1;
     sub_02063060(v1, &v0);
 }
 
-void sub_0205ED2C (PlayerAvatar * param0, int param1)
+void sub_0205ED2C (PlayerAvatar * playerAvatar, int param1)
 {
-    MapObject * v0 = Player_MapObject(param0);
+    MapObject * v0 = Player_MapObject(playerAvatar);
 
     if (param1 == 1) {
         sub_02062E28(v0, 0);
@@ -577,9 +577,9 @@ void sub_0205ED2C (PlayerAvatar * param0, int param1)
     }
 }
 
-void sub_0205ED48 (PlayerAvatar * param0, int param1)
+void sub_0205ED48 (PlayerAvatar * playerAvatar, int param1)
 {
-    MapObject * v0 = Player_MapObject(param0);
+    MapObject * v0 = Player_MapObject(playerAvatar);
 
     if (param1 == 1) {
         sub_02062E28(v0, 0);

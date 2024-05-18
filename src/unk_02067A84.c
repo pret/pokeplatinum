@@ -174,7 +174,7 @@ static int sub_02067C80 (const MapObject * param0, PlayerAvatar * param1, int * 
     if (v0 == 0x1) {
         v3 = Player_XPos(param1);
         v4 = Player_ZPos(param1);
-        v2 = sub_0206298C(param0);
+        v2 = MapObject_Dir(param0);
         v1 = sub_020629D8(param0, 0);
         v5 = sub_02067DA8(param0, v2, v1, v3, v4, 0);
 

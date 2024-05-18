@@ -796,7 +796,7 @@ void ov5_021DBED4 (FieldSystem * param0, MapObject * param1)
         return;
     }
 
-    v2 = sub_0206298C(param1);
+    v2 = MapObject_Dir(param1);
 
     if (v2 == 0) {
         v1 = 0xe;

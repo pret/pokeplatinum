@@ -191,7 +191,7 @@ static UnkStruct_ov101_021D5D90 * ov5_021F1ECC (const MapObject * param0, int pa
     int v3 = sub_02063008(param0);
     int v4 = sub_02063018(param0);
     fx32 v5 = sub_02063074(param0);
-    int v6 = sub_0206298C(param0);
+    int v6 = MapObject_Dir(param0);
     int v7 = sub_02062990(param0);
     int v8 = sub_02062758(param0, 2);
     UnkStruct_ov5_021DF47C * v9 = ov5_021DF578(param0);

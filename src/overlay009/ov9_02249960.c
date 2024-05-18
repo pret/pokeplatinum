@@ -2409,7 +2409,7 @@ static BOOL ov9_0224AAD4 (TaskManager * param0)
             v6 = sub_02065838(v5, 0x0);
 
             LocalMapObj_SetAnimationCode(v4, v6);
-            sub_02062974(v4, v5);
+            MapObject_SetDir(v4, v5);
 
             ov9_0224A4D0(v1, v4, v2->unk_34.unk_1A, v2->unk_34.unk_1C);
             v2->unk_00++;
@@ -2573,7 +2573,7 @@ static BOOL ov9_0224AC58 (UnkStruct_ov9_0224AC58 * param0, MapObject * param1)
             *v4 = 0;
             sub_02064208(param1);
             sub_02062B68(param1);
-            sub_02062974(param1, v0->unk_22);
+            MapObject_SetDir(param1, v0->unk_22);
             sub_02062A0C(param1, 0x0);
             return 1;
         }
@@ -7472,7 +7472,7 @@ static BOOL ov9_0224F324 (UnkStruct_ov9_0224F6EC * param0)
 
     Sound_PlayEffect(1571);
     v1.y = (((115 << 4) * FX32_ONE));
-    sub_020632D4(v2, &v1, sub_0206298C(v2));
+    sub_020632D4(v2, &v1, MapObject_Dir(v2));
     sub_02062914(v2, 580);
 
     {
@@ -8032,7 +8032,7 @@ static void ov9_0224FA94 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224FA9
         ov9_0224A4D0(param0, v0, -32, 72);
         param1->unk_04++;
     } else if ((param1->unk_04 == 1) && (v1 == -36)) {
-        sub_02062974(v0, 2);
+        MapObject_SetDir(v0, 2);
         ov9_0224A148(param0, &Unk_ov9_02251888);
         ov9_0224A4D0(param0, v0, 32, 31);
         param1->unk_04++;
@@ -8042,7 +8042,7 @@ static void ov9_0224FA94 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224FA9
         param1->unk_06++;
 
         if (param1->unk_06 >= 32) {
-            sub_02062974(v0, 0);
+            MapObject_SetDir(v0, 0);
             param1->unk_06 = -1;
         }
     }
@@ -8064,7 +8064,7 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     v2 = Player_MapObject(v3);
 
     sub_02063050(v2, &v0);
-    sub_02062974(v2, 2);
+    MapObject_SetDir(v2, 2);
     ov9_0224F8C4(param0, v1, &v5->unk_00, &v0);
 
     v1->unk_04.x >>= 1;
@@ -8311,7 +8311,7 @@ static int ov9_0224FEDC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
         sub_02063034(v2, v9);
         LocalMapObj_SetZ(v2, v10);
         sub_02064208(v2);
-        sub_02062974(v2, 2);
+        MapObject_SetDir(v2, 2);
         sub_02062994(v2, 2);
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);
@@ -8408,7 +8408,7 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     v2 = Player_MapObject(v3);
 
     sub_02063050(v2, &v0);
-    sub_02062974(v2, 3);
+    MapObject_SetDir(v2, 3);
     ov9_0224F8C4(param0, v1, &v5->unk_00, &v0);
 
     v1->unk_04.x >>= 1;
@@ -8629,7 +8629,7 @@ static int ov9_02250468 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
         sub_02063034(v2, v9);
         LocalMapObj_SetZ(v2, v10);
         sub_02064208(v2);
-        sub_02062974(v2, 3);
+        MapObject_SetDir(v2, 3);
         sub_02062994(v2, 3);
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);

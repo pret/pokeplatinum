@@ -97,7 +97,7 @@ static BOOL ov5_021E120C (TaskManager * param0)
             int v3 = 0xc;
 
             v3 = sub_02065838(v0->unk_00, v3);
-            sub_02061550(v0->unk_10, v3, 1);
+            PlayerAvatar_SetAnimationCode(v0->unk_10, v3, 1);
             Player_SetDir(v0->unk_10, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;

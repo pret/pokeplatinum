@@ -425,7 +425,7 @@ static int sub_02065924 (MapObject * param0)
 
 static void sub_02065930 (MapObject * param0, int param1)
 {
-    sub_02062974(param0, param1);
+    MapObject_SetDir(param0, param1);
     sub_02062A0C(param0, 0x0);
     sub_02064208(param0);
     sub_02062BC8(param0);
@@ -674,7 +674,7 @@ static void sub_02065C64 (MapObject * param0, int param1, s16 param2, u16 param3
     v0->unk_00 = param3;
     v0->unk_02 = param2 + 1;
 
-    sub_02062974(param0, param1);
+    MapObject_SetDir(param0, param1);
     sub_02062A0C(param0, param3);
     sub_02064208(param0);
     sub_02062BC8(param0);
@@ -1461,7 +1461,7 @@ static int sub_020666E4 (MapObject * param0)
     v0->unk_00++;
 
     if (v0->unk_00 >= 8) {
-        sub_02062974(param0, 1);
+        MapObject_SetDir(param0, 1);
         sub_02062A0C(param0, 0x0);
         sub_02062BC8(param0);
     }
@@ -1562,7 +1562,7 @@ static void sub_02066824 (MapObject * param0, const VecFx32 * param1, int param2
     v0->unk_00 = param4;
     v0->unk_04 = *param1;
 
-    sub_02062974(param0, param2);
+    MapObject_SetDir(param0, param2);
     sub_02062994(param0, param3);
     sub_02062A0C(param0, param5);
     sub_02062D28(param0);
@@ -1886,7 +1886,7 @@ static void sub_02066F88 (MapObject * param0, fx32 param1, int param2, int param
     v1->unk_03 = param8;
     v1->unk_0E = (0x100 * 16) / v1->unk_00;
 
-    sub_02062974(param0, param2);
+    MapObject_SetDir(param0, param2);
     sub_02062994(param0, param3);
     sub_02062A0C(param0, param5);
     sub_02062D28(param0);

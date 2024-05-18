@@ -138,7 +138,7 @@ static int ov5_021F487C (UnkStruct_ov101_021D5D90 * param0, void * param1)
     const UnkStruct_ov5_021F4840 * v1 = sub_020715BC(param0);
 
     v0->unk_24 = *v1;
-    v0->unk_00 = sub_0206298C(v1->unk_0C);
+    v0->unk_00 = MapObject_Dir(v1->unk_0C);
     v0->unk_88 = ov5_021DF528(v1->unk_04, sizeof(UnkStruct_02073974), 0);
 
     sub_02073B70(&v0->unk_34, &v0->unk_24.unk_08->unk_04[0]);
@@ -164,7 +164,7 @@ static void ov5_021F4908 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     const VecFx32 * v3;
     UnkStruct_021F487C * v4 = param1;
     const MapObject * v5 = v4->unk_24.unk_0C;
-    int v6 = sub_0206298C(v5);
+    int v6 = MapObject_Dir(v5);
 
     sub_02063050(v5, &v2);
 
@@ -265,7 +265,7 @@ static int ov5_021F4AB4 (const MapObject * param0, int param1, VecFx32 * param2)
     v4 = sub_02063020(param0);
     v5 = sub_02063030(param0);
     v6 = sub_02063040(param0);
-    v3 = sub_0206298C(param0);
+    v3 = MapObject_Dir(param0);
 
     sub_02063050(param0, &v1);
 

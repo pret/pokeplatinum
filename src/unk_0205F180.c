@@ -437,7 +437,7 @@ void sub_0205F5E4 (PlayerAvatar * param0, int param1)
 
     v0 = Player_MapObject(param0);
 
-    sub_02062974(v0, param1);
+    MapObject_SetDir(v0, param1);
     sub_02062A0C(v0, 0x0);
     sub_02064208(v0);
     sub_020656DC(v0);
@@ -887,7 +887,7 @@ static void sub_0205FD20 (PlayerAvatar * param0, MapObject * param1, int param2,
 {
     int v0;
 
-    v0 = sub_02065838(sub_0206298C(param1), 0x0);
+    v0 = sub_02065838(MapObject_Dir(param1), 0x0);
     sub_02060B64(param0, param1, v0, 1);
 }
 
@@ -1345,7 +1345,7 @@ static void sub_02060548 (PlayerAvatar * param0, MapObject * param1, int param2,
 {
     int v0;
 
-    v0 = sub_02065838(sub_0206298C(param1), 0x0);
+    v0 = sub_02065838(MapObject_Dir(param1), 0x0);
 
     sub_02060B64(param0, param1, v0, 1);
     sub_0205EBC0(param0);
@@ -1552,7 +1552,7 @@ static void sub_020608BC (PlayerAvatar * param0, MapObject * param1, int param2,
 {
     int v0;
 
-    v0 = sub_02065838(sub_0206298C(param1), 0x0);
+    v0 = sub_02065838(MapObject_Dir(param1), 0x0);
 
     sub_02060B64(param0, param1, v0, 1);
     sub_0205EBC0(param0);
@@ -2344,7 +2344,7 @@ int sub_02061544 (PlayerAvatar * param0)
     return LocalMapObj_IsAnimationSet(v0);
 }
 
-void sub_02061550 (PlayerAvatar * param0, u32 param1, int param2)
+void PlayerAvatar_SetAnimationCode (PlayerAvatar * param0, u32 param1, int param2)
 {
     MapObject * v0 = Player_MapObject(param0);
     sub_02060B64(param0, v0, param1, param2);

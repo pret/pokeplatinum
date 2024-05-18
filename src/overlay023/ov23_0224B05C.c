@@ -1673,7 +1673,7 @@ static BOOL ov23_0224C790 (TaskManager * param0)
         break;
     case 11:
         CommPlayerMan_ForceDir();
-        sub_02061550(v0->playerAvatar, sub_02065838(1, 0x24), 1);
+        PlayerAvatar_SetAnimationCode(v0->playerAvatar, sub_02065838(1, 0x24), 1);
         CommPlayer_SetDir(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
         Sound_PlayEffect(1540);

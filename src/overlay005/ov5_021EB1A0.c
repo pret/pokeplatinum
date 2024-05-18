@@ -261,7 +261,7 @@ void ov5_021EB398 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     GF_ASSERT(v1 < (0x8 + 1));
@@ -524,7 +524,7 @@ void ov5_021EB720 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     GF_ASSERT(v1 < (0x9 + 1));
@@ -651,7 +651,7 @@ void ov5_021EB8B8 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     if (v2->unk_02) {
@@ -690,7 +690,7 @@ void ov5_021EB944 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     switch (v1) {
@@ -818,7 +818,7 @@ void ov5_021EBAD0 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     GF_ASSERT(v1 < (((0x8 + 1)) + 1));
@@ -1073,7 +1073,7 @@ void ov5_021EBF50 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     GF_ASSERT(v1 < (((0x8 + 1) + 1) + 1));
@@ -1191,7 +1191,7 @@ void ov5_021EC15C (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     GF_ASSERT(v1 < (0x3 + 1));
@@ -1351,7 +1351,7 @@ void ov5_021EC3F0 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
 
     v1->unk_00 = v0;
     v1->unk_02 = sub_02062A14(param0);
@@ -1384,7 +1384,7 @@ void ov5_021EC454 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
 
     v1->unk_00 = v0;
     v1->unk_02 = sub_02062A14(param0);
@@ -1416,7 +1416,7 @@ void ov5_021EC4BC (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     switch (v1) {
@@ -1460,7 +1460,7 @@ void ov5_021EC554 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
 
     if (v0 != v2->unk_00) {
         v1 = ov5_021EDF18(v0);
@@ -1492,7 +1492,7 @@ void ov5_021EC5C0 (MapObject * param0)
         return;
     }
 
-    v0 = sub_0206298C(param0);
+    v0 = MapObject_Dir(param0);
     v1 = sub_02062A14(param0);
 
     if (v1 != v2->unk_02) {

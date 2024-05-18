@@ -198,7 +198,7 @@ static int sub_02067540 (MapObject * param0)
     case 0:
     {
         int v1[4] = {0, 0, 1, 1};
-        int v2 = sub_0206298C(param0);
+        int v2 = MapObject_Dir(param0);
 
         v0->unk_04 = v2;
         v0->unk_05 = v1[v2];
@@ -238,7 +238,7 @@ static int sub_02067540 (MapObject * param0)
             return 1;
         }
 
-        sub_02062974(param0, v0->unk_04);
+        MapObject_SetDir(param0, v0->unk_04);
 
         v0->unk_01++;
         v0->unk_07 = 0;
@@ -319,7 +319,7 @@ static int sub_020676D4 (MapObject * param0)
     switch (v0->unk_01) {
     case 0:
     {
-        int v2, v3 = sub_0206298C(param0);
+        int v2, v3 = MapObject_Dir(param0);
 
         for (v2 = 0; (v2 < 4 && v3 != v1[v0->unk_05][v2]); v2++) {
             (void)0;
@@ -364,7 +364,7 @@ static int sub_020676D4 (MapObject * param0)
             return 1;
         }
 
-        sub_02062974(param0, v0->unk_04);
+        MapObject_SetDir(param0, v0->unk_04);
         v0->unk_01++;
         v0->unk_07 = 0;
         v0->unk_00 = 0;

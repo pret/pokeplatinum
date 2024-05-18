@@ -912,7 +912,7 @@ static BOOL ov5_021E0560 (TaskManager * param0)
         }
 
         v3 = sub_02065838(v6, v3);
-        sub_02061550(v0->unk_0C, v3, 1);
+        PlayerAvatar_SetAnimationCode(v0->unk_0C, v3, 1);
     }
     break;
     }
