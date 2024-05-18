@@ -318,7 +318,7 @@ BOOL ov6_022474AC (TaskManager * param0)
 
 static int ov6_022474E8 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
-    int v0 = sub_0205EB98(param1->playerAvatar);
+    int v0 = PlayerAvatar_Gender(param1->playerAvatar);
 
     param2->unk_10 = ov6_02243F88(param1, 0, param2->unk_20, v0);
     param2->unk_00++;

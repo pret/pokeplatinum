@@ -903,7 +903,7 @@ static void sub_02053C70 (TaskManager * param0)
     }
 
     {
-        v1->unk_04 = ov6_02245CCC(v0, sub_0205EB98(v0->playerAvatar));
+        v1->unk_04 = ov6_02245CCC(v0, PlayerAvatar_Gender(v0->playerAvatar));
         sub_02050944(param0, sub_02053CB4, v1);
     }
 }

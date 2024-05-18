@@ -4772,7 +4772,7 @@ static BOOL ScrCmd_0C5 (ScriptContext * param0)
     u16 v2 = ScriptContext_GetVar(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSys->saveData), v2);
-    *v1 = ov6_02243F88(param0->fieldSys, 0, v0, sub_0205EB98(param0->fieldSys->playerAvatar));
+    *v1 = ov6_02243F88(param0->fieldSys, 0, v0, PlayerAvatar_Gender(param0->fieldSys->playerAvatar));
 
     ScriptContext_Pause(param0, sub_02042C80);
     return 1;

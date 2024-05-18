@@ -48,7 +48,7 @@ BOOL sub_02070680 (TaskManager * param0)
 
     switch (v1->unk_04) {
     case 0:
-        v1->unk_14 = ov6_02243F88(v1->unk_00, 1, v1->unk_10, sub_0205EB98(v1->unk_00->playerAvatar));
+        v1->unk_14 = ov6_02243F88(v1->unk_00, 1, v1->unk_10, PlayerAvatar_Gender(v1->unk_00->playerAvatar));
         v1->unk_04++;
         break;
     case 1:

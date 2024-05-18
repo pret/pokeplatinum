@@ -3899,7 +3899,7 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
         PlayerAvatar * v4 = fieldSystem->playerAvatar;
         MapObject * v5 = Player_MapObject(v4);
 
-        if (sub_0205EB98(fieldSystem->playerAvatar) == 1) {
+        if (PlayerAvatar_Gender(fieldSystem->playerAvatar) == 1) {
             v3 = 0xd3;
         }
 
