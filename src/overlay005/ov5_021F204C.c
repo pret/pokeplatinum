@@ -128,7 +128,7 @@ void ov5_021F20D4 (MapObject * param0)
     v2.unk_04 = ov5_021DF55C(v3, 12);
     v2.unk_08 = param0;
 
-    sub_02063050(param0, &v4);
+    MapObject_PosVectorOut(param0, &v4);
 
     v0 = 0;
     v1 = sub_02062C0C(param0) + 1;
@@ -183,7 +183,7 @@ static void ov5_021F2148 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     {
         VecFx32 v2;
 
-        sub_02063050(v1, &v2);
+        MapObject_PosVectorOut(v1, &v2);
         sub_020715D4(param0, &v2);
     }
 }

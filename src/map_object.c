@@ -604,7 +604,7 @@ static void sub_02062010 (MapObject * param0)
     int v0;
     VecFx32 v1;
 
-    sub_02063050(param0, &v1);
+    MapObject_PosVectorOut(param0, &v1);
 
     v0 = MapObject_XPos(param0);
     v1.x = (((v0) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));
@@ -2166,7 +2166,7 @@ void sub_02063048 (MapObject * param0, int param1)
     param0->unk_6C += param1;
 }
 
-void sub_02063050 (const MapObject * param0, VecFx32 * param1)
+void MapObject_PosVectorOut (const MapObject * param0, VecFx32 * param1)
 {
     *param1 = param0->unk_70;
 }
@@ -2176,7 +2176,7 @@ void sub_02063060 (MapObject * param0, const VecFx32 * param1)
     param0->unk_70 = *param1;
 }
 
-const VecFx32 * sub_02063070 (const MapObject * param0)
+const VecFx32 * MapObject_PosVector (const MapObject * param0)
 {
     return &param0->unk_70;
 }

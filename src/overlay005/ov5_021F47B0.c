@@ -166,7 +166,7 @@ static void ov5_021F4908 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     const MapObject * v5 = v4->unk_24.unk_0C;
     int v6 = MapObject_Dir(v5);
 
-    sub_02063050(v5, &v2);
+    MapObject_PosVectorOut(v5, &v2);
 
     v0 = ov5_021F4AB4(v5, v4->unk_24.unk_00, &v1);
 
@@ -221,7 +221,7 @@ static void ov5_021F49D0 (UnkStruct_ov101_021D5D90 * param0, UnkStruct_021F487C 
     const MapObject * v1 = param1->unk_24.unk_0C;
 
     param1->unk_1C = Unk_ov5_0220077C[param1->unk_00];
-    sub_02063050(param1->unk_24.unk_0C, &v0);
+    MapObject_PosVectorOut(param1->unk_24.unk_0C, &v0);
 
     v0.x += param1->unk_04.x;
     v0.y += param1->unk_04.y;
@@ -267,7 +267,7 @@ static int ov5_021F4AB4 (const MapObject * param0, int param1, VecFx32 * param2)
     v6 = MapObject_ZPos(param0);
     v3 = MapObject_Dir(param0);
 
-    sub_02063050(param0, &v1);
+    MapObject_PosVectorOut(param0, &v1);
 
     for (v2 = 0; v2 < param1; v2++) {
         v4 += sub_0206419C(v3);
@@ -281,7 +281,7 @@ static int ov5_021F4AB4 (const MapObject * param0, int param1, VecFx32 * param2)
 
                 v7 = sub_0206326C(sub_02062A40(param0), v4, v6, 1);
                 GF_ASSERT(v7 != NULL);
-                sub_02063050(v7, param2);
+                MapObject_PosVectorOut(v7, param2);
             } else {
                 sub_02064450(v4, v6, param2);
             }

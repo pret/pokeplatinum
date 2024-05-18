@@ -118,7 +118,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F85BC (PlayerAvatar * param0, int param1, int 
         v3.z = (((param3) << 4) * FX32_ONE) + v2->z;
     } else {
         v2 = &Unk_ov5_02201C10[param6];
-        sub_02063050(v5, &v3);
+        MapObject_PosVectorOut(v5, &v3);
         sub_020630AC(v5, v2);
     }
 
@@ -208,7 +208,7 @@ static void ov5_021F86E4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         }
 
         sub_020630AC(v1, &v3);
-        sub_02063050(v1, &v3);
+        MapObject_PosVectorOut(v1, &v3);
 
         {
             const VecFx32 * v4;

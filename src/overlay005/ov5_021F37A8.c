@@ -101,7 +101,7 @@ void ov5_021F3844 (MapObject * param0, int param1)
     v2.unk_14 = ov5_021DF55C(v3, 24);
     v2.unk_18 = param0;
 
-    sub_02063050(param0, &v1);
+    MapObject_PosVectorOut(param0, &v1);
 
     v0 = sub_02062758(param0, 2);
     v4 = ov5_021DF72C(v3, &Unk_ov5_02200620, &v1, param1, &v2, v0);

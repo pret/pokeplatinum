@@ -77,7 +77,7 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
 
     v4 = MapObjMan_LocalMapObjByIndex(param0, param1);
 
-    sub_02063050(v4, &v3);
+    MapObject_PosVectorOut(v4, &v3);
 
     v1 = MapObject_XPos(v4);
     v2 = MapObject_ZPos(v4);
@@ -110,7 +110,7 @@ static void ov6_022480BC (PlayerAvatar * const param0, UnkStruct_02017294 * para
     int v1, v2;
     VecFx32 v3;
 
-    sub_0205EAEC(param0, &v3);
+    PlayerAvatar_PosVectorOut(param0, &v3);
 
     v1 = Player_XPos(param0);
     v2 = Player_ZPos(param0);
@@ -141,7 +141,7 @@ static void ov6_02248124 (PlayerAvatar * const param0, UnkStruct_02017294 * para
 {
     VecFx32 v0;
 
-    sub_0205EAEC(param0, &v0);
+    PlayerAvatar_PosVectorOut(param0, &v0);
     sub_02017350(param1, v0.x, v0.y, v0.z);
 }
 
@@ -506,7 +506,7 @@ static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, PlayerAvatar * const 
 
     GF_ASSERT(param0->unk_C8 == 0);
 
-    sub_0205EAEC(playerAvatar, &v0);
+    PlayerAvatar_PosVectorOut(playerAvatar, &v0);
     sub_02017350(&param0->unk_00, v0.x, v0.y + param2, v0.z + param3);
 
     param0->unk_C8 = 1;
@@ -570,7 +570,7 @@ static void ov6_02248728 (UnkStruct_ov6_022487F8 * param0)
 {
     VecFx32 v0;
 
-    sub_0205EAEC(param0->unk_CE0->playerAvatar, &v0);
+    PlayerAvatar_PosVectorOut(param0->unk_CE0->playerAvatar, &v0);
 
     if (((v0.x - param0->unk_CF0.x) == 0) && (v0.y < param0->unk_CF0.y) && (v0.z > param0->unk_CF0.z)) {
         param0->unk_CE8 = 0;
@@ -630,7 +630,7 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     }
 
     v0->unk_CE0 = param1;
-    sub_0205EAEC(v0->unk_CE0->playerAvatar, &v0->unk_CF0);
+    PlayerAvatar_PosVectorOut(v0->unk_CE0->playerAvatar, &v0->unk_CF0);
 
     v0->unk_D0C = 0;
     NARC_dtor(v2);

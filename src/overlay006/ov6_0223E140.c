@@ -2101,10 +2101,10 @@ void ov6_022401D0 (UnkStruct_ov6_022401B8 * param0, u32 param1)
     VecFx32 v0;
 
     ov6_02240240(&param0->unk_08, param0->unk_04, 1);
-    sub_02063050(param0->unk_08.unk_00, &v0);
+    MapObject_PosVectorOut(param0->unk_08.unk_00, &v0);
     ov6_022402E4(&param0->unk_34, v0.x, v0.y, v0.z);
     ov6_02240240(&param0->unk_08, param0->unk_04, param1);
-    sub_02063050(param0->unk_08.unk_00, &v0);
+    MapObject_PosVectorOut(param0->unk_08.unk_00, &v0);
 
     param0->unk_00 = 1;
 }
@@ -2828,7 +2828,7 @@ void ov6_02240C44 (UnkStruct_ov6_02240C44 * param0, u32 param1)
 
     v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, param1);
 
-    sub_02063050(v1, &v0);
+    MapObject_PosVectorOut(v1, &v0);
 
     ov6_0223FDCC(&param0->unk_00, v0.x, v0.y, v0.z);
     ov6_0223FDC4(&param0->unk_00, 1);

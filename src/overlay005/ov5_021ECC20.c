@@ -139,7 +139,7 @@ void ov5_021ECDA0 (const MapObject * param0, VecFx32 * param1)
 {
     VecFx32 v0, v1, v2, v3;
 
-    sub_02063050(param0, &v0);
+    MapObject_PosVectorOut(param0, &v0);
     sub_02063078(param0, &v1);
     sub_0206309C(param0, &v2);
     sub_020630BC(param0, &v3);

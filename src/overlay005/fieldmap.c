@@ -912,7 +912,7 @@ static void ov5_021D1878 (FieldSystem * fieldSystem)
     sub_02061C48(fieldSystem->mapObjMan);
     CommPlayerMan_ForcePos();
     sub_02062C3C(fieldSystem->mapObjMan);
-    ov5_021E931C(sub_0205EAFC(fieldSystem->playerAvatar), fieldSystem->unk_28);
+    ov5_021E931C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_28);
 
     fieldSystem->unk_04->unk_18 = sub_02055C8C(fieldSystem, 4);
 }
@@ -927,7 +927,7 @@ static void ov5_021D1968 (FieldSystem * fieldSystem)
 
     {
         int v0 = sub_0203A770(sub_0203A790(fieldSystem->saveData));
-        ov5_021D5B40(sub_0205EAFC(fieldSystem->playerAvatar), fieldSystem, v0, 1);
+        ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, ov5_021EFAD8(fieldSystem->unk_30));

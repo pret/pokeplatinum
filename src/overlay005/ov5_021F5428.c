@@ -94,7 +94,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F5488 (MapObject * param0)
     v2.unk_04 = ov5_021DF55C(v3, 7);
     v2.unk_08 = param0;
 
-    sub_02063050(param0, &v4);
+    MapObject_PosVectorOut(param0, &v4);
 
     v0 = 0;
     v5 = ov5_021DF72C(v3, &Unk_ov5_02200AD8, &v4, v0, &v2, 0xff);
@@ -116,7 +116,7 @@ static int ov5_021F54C4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v0->unk_0C = sub_02062918(v0->unk_34.unk_08);
     v0->unk_24.y = ((FX32_ONE * 6));
 
-    sub_02063050(v0->unk_34.unk_08, &v2);
+    MapObject_PosVectorOut(v0->unk_34.unk_08, &v2);
     sub_020715D4(param0, &v2);
 
     v0->unk_30 = 60;
@@ -145,7 +145,7 @@ static void ov5_021F5514 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     }
 
     v1 = v0->unk_34.unk_08;
-    sub_02063050(v1, &v2);
+    MapObject_PosVectorOut(v1, &v2);
 
     v2.z += ((FX32_ONE * -10));
     sub_020715D4(param0, &v2);

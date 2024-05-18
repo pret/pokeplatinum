@@ -369,7 +369,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F5D8C (MapObject * param0, int param1, int par
     v1.unk_08 = ov5_021DF55C(v2, 20);
     v1.unk_0C = param0;
 
-    sub_02063050(param0, &v3);
+    MapObject_PosVectorOut(param0, &v3);
     v0 = sub_02062C0C(param0) + 1;
 
     if (param3 == 1) {

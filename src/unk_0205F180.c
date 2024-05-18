@@ -706,7 +706,7 @@ static int sub_0205FAB0 (PlayerAvatar * param0, int param1)
     MapObject * v3 = Player_MapObject(param0);
     FieldSystem * v4 = sub_02062C00(v3);
 
-    sub_02063050(v3, &v1);
+    MapObject_PosVectorOut(v3, &v1);
     v2 = v1;
 
     sub_02064418(param1, &v2, ((16 * FX32_ONE) >> 1) / 2);
@@ -1749,7 +1749,7 @@ static u32 sub_02060C24 (PlayerAvatar * param0, MapObject * param1, int param2)
     int v4 = sub_02063030(param1);
     int v5 = MapObject_ZPos(param1) + sub_020641A8(param2);
 
-    sub_02063050(param1, &v0);
+    MapObject_PosVectorOut(param1, &v0);
 
     v1 = 0;
 

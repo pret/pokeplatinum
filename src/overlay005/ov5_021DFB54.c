@@ -1236,7 +1236,7 @@ static int ov5_021E0A68 (UnkStruct_ov5_021F9B10 * param0)
     param0->unk_10 = (((param0->unk_28.y) >> 3) / FX32_ONE);
     param0->unk_14 = v1;
 
-    sub_02063050(param0->unk_3C, &v2);
+    MapObject_PosVectorOut(param0->unk_3C, &v2);
 
     GF_ASSERT(v2.z > param0->unk_28.z);
     GF_ASSERT(v2.y < param0->unk_28.y);
@@ -1258,7 +1258,7 @@ static int ov5_021E0B24 (UnkStruct_ov5_021F9B10 * param0)
 {
     VecFx32 v0;
 
-    sub_02063050(param0->unk_3C, &v0);
+    MapObject_PosVectorOut(param0->unk_3C, &v0);
 
     v0.y += param0->unk_1C.y;
 
@@ -1282,7 +1282,7 @@ static int ov5_021E0B64 (UnkStruct_ov5_021F9B10 * param0)
 {
     VecFx32 v0;
 
-    sub_02063050(param0->unk_3C, &v0);
+    MapObject_PosVectorOut(param0->unk_3C, &v0);
 
     v0.y += param0->unk_1C.y;
 
@@ -1362,7 +1362,7 @@ static int ov5_021E0C34 (UnkStruct_ov5_021F9B10 * param0)
     param0->unk_10 = (((param0->unk_28.y) >> 3) / FX32_ONE);
     param0->unk_14 = v1;
 
-    sub_02063050(param0->unk_3C, &v2);
+    MapObject_PosVectorOut(param0->unk_3C, &v2);
 
     GF_ASSERT(v2.z < param0->unk_28.z);
     GF_ASSERT(v2.y > param0->unk_28.y);
@@ -1384,7 +1384,7 @@ static int ov5_021E0CF4 (UnkStruct_ov5_021F9B10 * param0)
 {
     VecFx32 v0;
 
-    sub_02063050(param0->unk_3C, &v0);
+    MapObject_PosVectorOut(param0->unk_3C, &v0);
 
     v0.z += param0->unk_1C.z;
 
@@ -1410,7 +1410,7 @@ static int ov5_021E0D40 (UnkStruct_ov5_021F9B10 * param0)
 {
     VecFx32 v0;
 
-    sub_02063050(param0->unk_3C, &v0);
+    MapObject_PosVectorOut(param0->unk_3C, &v0);
 
     v0.y += param0->unk_1C.y;
 

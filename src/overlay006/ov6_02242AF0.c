@@ -299,7 +299,7 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
     VecFx32 v1;
 
     v0 = Player_MapObject(param0->playerAvatar);
-    sub_0205EAEC(param0->playerAvatar, &v1);
+    PlayerAvatar_PosVectorOut(param0->playerAvatar, &v1);
 
     param3->z = v1.z + ((FX32_ONE * 16) / 2);
 

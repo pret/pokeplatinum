@@ -162,7 +162,7 @@ void sub_02055D94 (FieldSystem * fieldSystem)
 
     while (sub_020625B0(fieldSystem->mapObjMan, &v1, &v0, (1 << 0)) == 1) {
         if (sub_020677F4(sub_02062920(v1)) == 1) {
-            if (sub_02055D54(fieldSystem, sub_02063070(v1))) {
+            if (sub_02055D54(fieldSystem, MapObject_PosVector(v1))) {
                 int v3 = sub_020629D8(v1, 0);
                 sub_02027D90(v2, v3, 1);
             }

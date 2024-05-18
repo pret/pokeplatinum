@@ -620,7 +620,7 @@ static void sub_02057300 (FieldSystem * param0)
     VecFx32 v1;
 
     v0 = Player_Dir(param0->playerAvatar);
-    sub_0205EAEC(param0->playerAvatar, &v1);
+    PlayerAvatar_PosVectorOut(param0->playerAvatar, &v1);
 
     if (v0 == 3) {
         v1.x -= (FX32_ONE * 16);
@@ -631,8 +631,8 @@ static void sub_02057300 (FieldSystem * param0)
     v1.y = sub_02054FBC(param0, v1.y, v1.x, v1.z, NULL);
 
     sub_0205ECB8(param0->playerAvatar, &v1, v0);
-    sub_02020A5C(sub_0205EAFC(param0->playerAvatar), param0->unk_24);
-    sub_02020690(sub_0205EAFC(param0->playerAvatar), param0->unk_24);
+    sub_02020A5C(PlayerAvatar_PosVector(param0->playerAvatar), param0->unk_24);
+    sub_02020690(PlayerAvatar_PosVector(param0->playerAvatar), param0->unk_24);
 }
 
 static void sub_02057368 (FieldSystem * param0)
@@ -642,7 +642,7 @@ static void sub_02057368 (FieldSystem * param0)
     u8 v4;
 
     v2 = Player_Dir(param0->playerAvatar);
-    sub_0205EAEC(param0->playerAvatar, &v3);
+    PlayerAvatar_PosVectorOut(param0->playerAvatar, &v3);
 
     v0 = Player_XPos(param0->playerAvatar);
     v1 = Player_ZPos(param0->playerAvatar);
@@ -661,6 +661,6 @@ static void sub_02057368 (FieldSystem * param0)
     v3.y = sub_02054FBC(param0, v3.y, v3.x, v3.z, NULL);
 
     sub_0205ECB8(param0->playerAvatar, &v3, v2);
-    sub_02020A5C(sub_0205EAFC(param0->playerAvatar), param0->unk_24);
-    sub_02020690(sub_0205EAFC(param0->playerAvatar), param0->unk_24);
+    sub_02020A5C(PlayerAvatar_PosVector(param0->playerAvatar), param0->unk_24);
+    sub_02020690(PlayerAvatar_PosVector(param0->playerAvatar), param0->unk_24);
 }

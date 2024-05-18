@@ -153,7 +153,7 @@ static void ov5_021F615C (UnkStruct_ov101_021D5D90 * param0, void * param1)
         return;
     }
 
-    sub_02063050(v3, &v0);
+    MapObject_PosVectorOut(v3, &v0);
     sub_02063078(v3, &v1);
 
     v0.x += v1.x;

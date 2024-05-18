@@ -98,7 +98,7 @@ BOOL RadarSpawnPatches (FieldSystem *param0, const int param1, const int param2,
         32, 24, 16, 8
     };
 
-    const VecFx32 *v8 = sub_0205EAFC(param0->playerAvatar);
+    const VecFx32 *v8 = PlayerAvatar_PosVector(param0->playerAvatar);
     v7 = 0;
 
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {

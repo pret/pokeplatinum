@@ -988,7 +988,7 @@ BOOL ScrCmd_32D (ScriptContext * ctx)
     MapObject * v6 = Player_MapObject(fieldSystem->playerAvatar);
     MapObject * v7;
 
-    sub_02063050(v6, &v1);
+    MapObject_PosVectorOut(v6, &v1);
     v0 = v1.y;
 
     while (sub_020625B0(mapObjMan, &v7, &v3, (1 << 0)) == 1) {
@@ -996,7 +996,7 @@ BOOL ScrCmd_32D (ScriptContext * ctx)
             MapObject_SetStatusFlagOn(v7, (1 << 13));
 
             if (sub_020628D8(v7, (1 << 12)) == 1) {
-                sub_02063050(v7, &v1);
+                MapObject_PosVectorOut(v7, &v1);
                 v1.y = v0;
                 sub_02063060(v7, &v1);
                 sub_02063034(v7, (((v0) >> 3) / FX32_ONE));
@@ -1044,7 +1044,7 @@ static void ov5_021F7654 (MapObject * param0, int param1)
     UnkStruct_020216E0 * v1;
 
     MapObject_SetStatusFlagOn(param0, (1 << 13));
-    sub_02063050(param0, &v0);
+    MapObject_PosVectorOut(param0, &v0);
 
     v0.y = (((param1) << 4) * FX32_ONE);
 

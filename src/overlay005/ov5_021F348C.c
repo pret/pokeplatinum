@@ -119,7 +119,7 @@ static void ov5_021F35E8 (UnkStruct_ov5_021DF47C * param0, MapObject * param1, U
     param2->unk_08 = ov5_021DF55C(param0, 23);
     param2->unk_0C = param1;
 
-    sub_02063050(param1, param3);
+    MapObject_PosVectorOut(param1, param3);
     sub_02064450(MapObject_XPos(param1), MapObject_ZPos(param1), param3);
 
     *param4 = sub_02062758(param1, 2);

@@ -181,7 +181,7 @@ static void ov5_021F3448 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         return;
     }
 
-    sub_02063050(v2, &v0);
+    MapObject_PosVectorOut(v2, &v0);
 
     v0.z += FX32_ONE * 8;
     sub_020212A8(v1->unk_24, &v0);

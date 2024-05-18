@@ -1933,7 +1933,7 @@ static int sub_02067068 (MapObject * param0)
     UnkStruct_02066F88 * v2;
 
     v2 = sub_02062AC8(param0);
-    sub_02063050(param0, &v1);
+    MapObject_PosVectorOut(param0, &v1);
 
     switch (v2->unk_02) {
     case 0:

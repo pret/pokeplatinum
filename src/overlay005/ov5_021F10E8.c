@@ -234,7 +234,7 @@ static void ov5_021F12AC (UnkStruct_ov101_021D5D90 * param0, void * param1)
     {
         VecFx32 v2, v3;
 
-        sub_02063050(v1, &v2);
+        MapObject_PosVectorOut(v1, &v2);
         sub_02063078(v1, &v3);
 
         v2.x += v3.x + v0->unk_0C.x;

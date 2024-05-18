@@ -768,7 +768,7 @@ void ov8_02249FB8 (FieldSystem * param0)
         v2 = sub_02027860(FieldSystem_SaveData(param0));
         v3 = (UnkStruct_ov8_02249FB8 *)sub_02027F6C(v2, 2);
 
-        sub_0205EAEC(param0->playerAvatar, &v1);
+        PlayerAvatar_PosVectorOut(param0->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
             sub_02050944(param0->unk_10, ov8_0224A018, v0);
@@ -1230,7 +1230,7 @@ static u8 ov8_0224A1E4 (UnkStruct_ov8_0224A1E4 * param0)
     u8 v3;
     VecFx32 v4;
 
-    sub_0205EAEC(param0->unk_00->playerAvatar, &v4);
+    PlayerAvatar_PosVectorOut(param0->unk_00->playerAvatar, &v4);
 
     v1 = v4.y / (FX32_ONE * 16);
     v2 = v4.x / (FX32_ONE * 16);
@@ -1441,7 +1441,7 @@ static BOOL ov8_0224A620 (TaskManager * param0)
             VecFx32 v6, v7;
 
             v6 = ov5_021E1894(v0);
-            sub_0205EAEC(v2->playerAvatar, &v7);
+            PlayerAvatar_PosVectorOut(v2->playerAvatar, &v7);
             v6.x = v7.x;
 
             if (v4->unk_F0 == 4) {
@@ -1525,7 +1525,7 @@ static BOOL ov8_0224A770 (TaskManager * param0)
             VecFx32 v6, v7;
 
             v6 = ov5_021E1894(v0);
-            sub_0205EAEC(v2->playerAvatar, &v7);
+            PlayerAvatar_PosVectorOut(v2->playerAvatar, &v7);
             v6.z = v7.z;
 
             if (v4->unk_F0 == 3) {
@@ -1644,7 +1644,7 @@ void ov8_0224A8C8 (FieldSystem * param0)
     {
         VecFx32 v6;
 
-        sub_0205EAEC(param0->playerAvatar, &v6);
+        PlayerAvatar_PosVectorOut(param0->playerAvatar, &v6);
         ov8_0224A434(v0, v6.y);
     }
 
@@ -2662,7 +2662,7 @@ static void ov8_0224B18C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * pa
     sub_02062D80(param1->unk_20, 0);
     sub_02062E28(param1->unk_20, 1);
 
-    v4 = sub_02063070(param1->unk_20);
+    v4 = MapObject_PosVector(param1->unk_20);
 
     ov5_021E931C(v4, fieldSystem->unk_28);
     sub_02020690(v4, fieldSystem->unk_24);
@@ -2727,7 +2727,7 @@ static void ov8_0224B2B4 (UnkStruct_ov8_0224B28C * param0, int param1, int param
 
 static void ov8_0224B2C4 (FieldSystem * param0, UnkStruct_ov8_0224B28C * param1)
 {
-    const VecFx32 * v0 = sub_0205EAFC(param0->playerAvatar);
+    const VecFx32 * v0 = PlayerAvatar_PosVector(param0->playerAvatar);
 
     ov5_021E931C(v0, param0->unk_28);
     sub_02020690(v0, param0->unk_24);
@@ -3716,7 +3716,7 @@ static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * pa
     sub_02062D80(v3->unk_30, 0);
     sub_02062E28(v3->unk_30, 1);
 
-    v2 = sub_02063070(v3->unk_30);
+    v2 = MapObject_PosVector(v3->unk_30);
 
     ov5_021E931C(v2, fieldSystem->unk_28);
     sub_02020690(v2, fieldSystem->unk_24);
@@ -3725,7 +3725,7 @@ static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * pa
 static void ov8_0224C098 (UnkStruct_ov8_0224C098 * param0)
 {
     UnkStruct_ov8_0224C0C4 * v0 = &param0->unk_40;
-    const VecFx32 * v1 = sub_0205EAFC(v0->unk_34->playerAvatar);
+    const VecFx32 * v1 = PlayerAvatar_PosVector(v0->unk_34->playerAvatar);
 
     ov5_021E931C(v1, v0->unk_34->unk_28);
     sub_02020690(v1, v0->unk_34->unk_24);

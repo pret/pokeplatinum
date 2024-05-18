@@ -104,7 +104,7 @@ void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const
             v0->unk_03 = 0;
             v0->unk_7C = (FX32_ONE / 4);
 
-            sub_0205EAEC(param0->playerAvatar, &v0->unk_24);
+            PlayerAvatar_PosVectorOut(param0->playerAvatar, &v0->unk_24);
             sub_020206B0(param0->unk_24);
             sub_02020690(&v0->unk_24, param0->unk_24);
 

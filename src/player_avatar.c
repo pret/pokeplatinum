@@ -243,14 +243,14 @@ int PlayerAvatar_ZPosPrev (PlayerAvatar * const playerAvatar)
     return MapObject_ZPosPrev(Player_MapObject(playerAvatar));
 }
 
-void sub_0205EAEC (PlayerAvatar * const playerAvatar, VecFx32 * param1)
+void PlayerAvatar_PosVectorOut (PlayerAvatar * const playerAvatar, VecFx32 * pos)
 {
-    sub_02063050(Player_MapObject(playerAvatar), param1);
+    MapObject_PosVectorOut(Player_MapObject(playerAvatar), pos);
 }
 
-const VecFx32 * sub_0205EAFC (PlayerAvatar * const playerAvatar)
+const VecFx32 * PlayerAvatar_PosVector (PlayerAvatar * const playerAvatar)
 {
-    return sub_02063070(sub_0205EB54(playerAvatar));
+    return MapObject_PosVector(PlayerAvatar_ConstMapObject(playerAvatar));
 }
 
 void sub_0205EB08 (PlayerAvatar * playerAvatar, int param1)
@@ -299,7 +299,7 @@ MapObject * Player_MapObject (PlayerAvatar * playerAvatar)
     return playerAvatar->mapObject;
 }
 
-const MapObject * sub_0205EB54 (const PlayerAvatar * playerAvatar)
+const MapObject * PlayerAvatar_ConstMapObject (const PlayerAvatar * playerAvatar)
 {
     return playerAvatar->mapObject;
 }
@@ -561,7 +561,7 @@ void sub_0205ED0C (PlayerAvatar * playerAvatar, fx32 param1)
     VecFx32 v0;
     MapObject * v1 = Player_MapObject(playerAvatar);
 
-    sub_02063050(v1, &v0);
+    MapObject_PosVectorOut(v1, &v0);
     v0.y = param1;
     sub_02063060(v1, &v0);
 }

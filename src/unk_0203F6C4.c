@@ -3348,7 +3348,7 @@ static BOOL ScrCmd_066 (ScriptContext * ctx)
     {
         const VecFx32 * v3;
 
-        v3 = sub_02063070(*v2);
+        v3 = MapObject_PosVector(*v2);
         ov5_021E931C(v3, ctx->fieldSys->unk_28);
         sub_02020690(v3, ctx->fieldSys->unk_24);
     }
@@ -3367,7 +3367,7 @@ static BOOL ScrCmd_067 (ScriptContext * ctx)
         const VecFx32 * v2;
 
         v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, 0xff);
-        v2 = sub_02063070(v1);
+        v2 = MapObject_PosVector(v1);
 
         ov5_021E931C(v2, ctx->fieldSys->unk_28);
         sub_02020690(v2, ctx->fieldSys->unk_24);

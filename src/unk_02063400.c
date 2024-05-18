@@ -598,7 +598,7 @@ u32 sub_02063E94 (const MapObject * param0, int param1, int param2, int param3, 
 {
     VecFx32 v0;
 
-    sub_02063050(param0, &v0);
+    MapObject_PosVectorOut(param0, &v0);
     return sub_02063E18(param0, &v0, param1, param2, param3, param4);
 }
 
@@ -881,7 +881,7 @@ void sub_02064270 (MapObject * param0, const VecFx32 * param1)
 {
     VecFx32 v0;
 
-    sub_02063050(param0, &v0);
+    MapObject_PosVectorOut(param0, &v0);
 
     v0.x += param1->x;
     v0.y += param1->y;
@@ -894,7 +894,7 @@ void sub_020642A4 (MapObject * param0, int param1, fx32 param2)
 {
     VecFx32 v0;
 
-    sub_02063050(param0, &v0);
+    MapObject_PosVectorOut(param0, &v0);
 
     switch (param1) {
     case 0:
@@ -918,7 +918,7 @@ int sub_020642F8 (MapObject * param0)
 {
     VecFx32 v0, v1;
 
-    sub_02063050(param0, &v0);
+    MapObject_PosVectorOut(param0, &v0);
     v1 = v0;
 
     if (sub_02062E44(param0) == 1) {
