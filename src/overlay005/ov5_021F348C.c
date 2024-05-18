@@ -114,7 +114,7 @@ static void ov5_021F358C (UnkStruct_ov5_021F34D0 * param0)
 
 static void ov5_021F35E8 (UnkStruct_ov5_021DF47C * param0, MapObject * param1, UnkStruct_ov5_021F35E8 * param2, VecFx32 * param3, int * param4)
 {
-    param2->unk_00 = sub_02062C00(param1);
+    param2->unk_00 = MapObject_FieldSystem(param1);
     param2->unk_04 = param0;
     param2->unk_08 = ov5_021DF55C(param0, 23);
     param2->unk_0C = param1;

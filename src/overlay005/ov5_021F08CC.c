@@ -420,7 +420,7 @@ static int ov5_021F0CB0 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1,
     ov5_021F0DA4(param0);
 
     {
-        int v0 = sub_0205EB74(param1);
+        int v0 = PlayerAvatar_PlayerState(param1);
         u32 v1 = sub_0205EED8(v0);
 
         ov5_021DFB54(param1, v1);

@@ -94,7 +94,7 @@ void ov5_021F3844 (MapObject * param0, int param1)
     v3 = ov5_021DF578(param0);
 
     v2.unk_00 = MapObject_XPos(param0);
-    v2.unk_04 = sub_02063030(param0);
+    v2.unk_04 = MapObject_YPos(param0);
     v2.unk_08 = MapObject_ZPos(param0);
     v2.unk_10 = v3;
     v2.unk_0C = ov5_021DF574(v3);

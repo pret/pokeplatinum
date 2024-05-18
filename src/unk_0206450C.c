@@ -1104,7 +1104,7 @@ static void sub_02065100 (UnkStruct_0206502C * param0)
 static int sub_02065124 (MapObject * param0, UnkStruct_0206502C * param1)
 {
     if (sub_02062950(param0) == 0xa) {
-        FieldSystem * v0 = sub_02062C00(param0);
+        FieldSystem * v0 = MapObject_FieldSystem(param0);
         PlayerAvatar * v1 = sub_0205EF3C(v0);
         int v2 = MapObject_Dir(param0);
         int v3 = sub_020629D8(param0, 0);
@@ -1284,7 +1284,7 @@ static int sub_0206537C (MapObject * param0)
     }
 
     {
-        FieldSystem * v1 = sub_02062C00(param0);
+        FieldSystem * v1 = MapObject_FieldSystem(param0);
         PlayerAvatar * v2 = sub_0205EF3C(v1);
 
         if (sub_0206140C(v2) == 0) {
@@ -1374,7 +1374,7 @@ static int sub_02065448 (MapObject * param0, int param1, int param2)
                 int v4 = -1, v5 = -1;
                 int v6 = MapObject_XPos(param0);
                 int v7 = MapObject_ZPos(param0);
-                FieldSystem * v8 = sub_02062C00(param0);
+                FieldSystem * v8 = MapObject_FieldSystem(param0);
                 PlayerAvatar * v9 = sub_0205EF3C(v8);
                 int v10 = Player_XPos(v9);
                 int v11 = Player_ZPos(v9);

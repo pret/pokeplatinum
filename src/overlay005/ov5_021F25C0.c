@@ -90,7 +90,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F261C (MapObject * param0, int param1, int par
     v0.unk_0C = param0;
 
     if (param4 == 0) {
-        FieldSystem * v2 = sub_02062C00(param0);
+        FieldSystem * v2 = MapObject_FieldSystem(param0);
 
         v1.x = (((param1) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));
         v1.z = (((param2) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));

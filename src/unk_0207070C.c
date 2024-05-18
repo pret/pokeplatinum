@@ -357,7 +357,7 @@ static int sub_02070A24 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_PlayerState(param0->unk_04->playerAvatar) == 0x2) {
         return 4;
     }
 
@@ -497,7 +497,7 @@ static int sub_02070C40 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_PlayerState(param0->unk_04->playerAvatar) == 0x2) {
         return 1;
     }
 

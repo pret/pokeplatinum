@@ -219,7 +219,7 @@ void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
     param1->unk_18 = param0;
     param1->unk_00 = param0->unk_1C->unk_00;
     param1->unk_04 = sub_0206A984(SaveData_Events(param0->saveData));
-    param1->unk_08 = sub_0205EB74(param0->playerAvatar);
+    param1->unk_08 = PlayerAvatar_PlayerState(param0->playerAvatar);
 
     v0 = Player_XPos(param0->playerAvatar);
     v1 = Player_ZPos(param0->playerAvatar);
@@ -255,7 +255,7 @@ static void sub_020684D0 (FieldSystem * param0, UnkStruct_020684D0 * param1)
     param1->unk_18 = param0;
     param1->unk_00 = param0->unk_1C->unk_00;
     param1->unk_04 = sub_0206A984(SaveData_Events(param0->saveData));
-    param1->unk_08 = sub_0205EB74(param0->playerAvatar);
+    param1->unk_08 = PlayerAvatar_PlayerState(param0->playerAvatar);
     param1->unk_0E = sub_02061760(param0->playerAvatar);
 
     {
@@ -428,7 +428,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (sub_0205EB74(param0->unk_14) == 0x2) {
+    if (PlayerAvatar_PlayerState(param0->unk_14) == 0x2) {
         return -1;
     }
 
@@ -488,7 +488,7 @@ static BOOL sub_02068884 (TaskManager * param0)
         (*v1)++;
         break;
     case 1:
-        if (sub_0205EB74(fieldSystem->playerAvatar) == 0x1) {
+        if (PlayerAvatar_PlayerState(fieldSystem->playerAvatar) == 0x1) {
             sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
             ov5_021DFB54(fieldSystem->playerAvatar, (1 << 0));
             ov5_021DFB5C(fieldSystem->playerAvatar);
@@ -742,7 +742,7 @@ static u32 sub_02068C5C (const UnkStruct_020684D0 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_18->playerAvatar) == 0x1) {
+    if (PlayerAvatar_PlayerState(param0->unk_18->playerAvatar) == 0x1) {
         return -1;
     }
 

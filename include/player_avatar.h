@@ -8,6 +8,8 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "constants/player_avatar.h"
+
 #include <nitro/fx/fx.h>
 
 PlayerAvatar * PlayerAvatar_Init(const MapObjectManager * param0, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData * param7);
@@ -27,7 +29,7 @@ int PlayerAvatar_ZPosPrev(PlayerAvatar * const param0);
 void PlayerAvatar_PosVectorOut(PlayerAvatar * const param0, VecFx32 * param1);
 const VecFx32 * PlayerAvatar_PosVector(PlayerAvatar * const param0);
 void sub_0205EB08(PlayerAvatar * param0, int param1);
-int sub_0205EB0C(const PlayerAvatar * param0);
+int PlayerAvatar_MoveState(const PlayerAvatar * param0);
 void sub_0205EB10(PlayerAvatar * param0, int param1);
 int Player_MoveState(const PlayerAvatar * param0);
 void PlayerAvatar_SetHidden(PlayerAvatar * param0, int param1);
@@ -35,16 +37,16 @@ void PlayerAvatar_SetMapObject(PlayerAvatar * param0, MapObject * param1);
 MapObject * Player_MapObject(PlayerAvatar * param0);
 const MapObject * PlayerAvatar_ConstMapObject(const PlayerAvatar * param0);
 void sub_0205EB58(PlayerAvatar * param0, int param1);
-int sub_0205EB74(PlayerAvatar * param0);
+int PlayerAvatar_PlayerState(PlayerAvatar * param0);
 void sub_0205EB84(PlayerAvatar * param0, u32 param1);
 void sub_0205EB8C(PlayerAvatar * param0, u32 param1);
 u32 sub_0205EB90(PlayerAvatar * param0);
 void PlayerAvatar_SetGender(PlayerAvatar * param0, int param1);
 int PlayerAvatar_Gender(PlayerAvatar * param0);
-int sub_0205EBB8(PlayerAvatar * param0);
-void sub_0205EBBC(PlayerAvatar * param0, int param1);
-void sub_0205EBC0(PlayerAvatar * param0);
-int sub_0205EBCC(PlayerAvatar * param0, int param1, int param2);
+int PlayerAvatar_Speed(PlayerAvatar * param0);
+void PlayerAvatar_SetSpeed(PlayerAvatar * param0, int param1);
+void PlayerAvatar_ClearSpeed(PlayerAvatar * param0);
+int PlayerAvatar_AddMoveSpeed(PlayerAvatar * param0, int param1, int param2);
 void sub_0205EBDC(PlayerAvatar * param0, int param1);
 int sub_0205EBE0(PlayerAvatar * param0);
 void sub_0205EBE4(PlayerAvatar * param0, int param1);
@@ -84,8 +86,8 @@ void sub_0205EF98(PlayerAvatar * param0, int param1);
 int sub_0205EFB0(PlayerAvatar * param0);
 void sub_0205EFC4(PlayerAvatar * param0, int param1);
 int sub_0205EFDC(PlayerAvatar * param0);
-void sub_0205EFF0(PlayerAvatar * param0, int param1);
-int sub_0205F008(PlayerAvatar * param0);
+void PlayerAvatar_SetInDeepSwamp(PlayerAvatar * param0, int param1);
+int PlayerAvatar_IsNotInDeepSwamp(PlayerAvatar * param0);
 void sub_0205F01C(PlayerAvatar * param0, int param1);
 int sub_0205F034(PlayerAvatar * param0);
 void sub_0205F048(PlayerAvatar * param0);

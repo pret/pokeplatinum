@@ -125,7 +125,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F28F4 (MapObject * param0, int param1, int par
 
     v2.unk_00 = param3;
     v2.unk_04 = v4;
-    v2.unk_08 = sub_02062C00(param0);
+    v2.unk_08 = MapObject_FieldSystem(param0);
     v2.unk_0C = ov5_021DF55C(v4, 16);
     v2.unk_10 = param0;
 

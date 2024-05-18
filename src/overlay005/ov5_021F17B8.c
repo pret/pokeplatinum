@@ -104,7 +104,7 @@ void ov5_021F1800 (MapObject * param0, int param1)
     UnkStruct_ov5_021F1800 v2;
     UnkStruct_ov101_021D5D90 * v3;
 
-    v2.unk_00 = sub_02062C00(param0);
+    v2.unk_00 = MapObject_FieldSystem(param0);
     v2.unk_04 = ov5_021DF578(param0);
     v2.unk_08 = ov5_021DF55C(v2.unk_04, 1);
     v2.unk_0C = param0;

@@ -6,7 +6,7 @@
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 
 void sub_0205F180(PlayerAvatar * param0, const UnkStruct_ov5_021E8F60 * param1, int param2, u16 param3, u16 param4, BOOL param5);
-int sub_0205F224(PlayerAvatar * param0, int param1);
+int PlayerAvatar_CheckStartMove(PlayerAvatar * param0, int param1);
 void sub_0205F490(PlayerAvatar * param0);
 void sub_0205F56C(PlayerAvatar * param0);
 int sub_0205F588(PlayerAvatar * param0);

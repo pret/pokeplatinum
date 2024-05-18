@@ -227,7 +227,7 @@ FieldSystem * ov5_021DF574 (const UnkStruct_ov5_021DF47C * param0)
 
 UnkStruct_ov5_021DF47C * ov5_021DF578 (const MapObject * param0)
 {
-    FieldSystem * v0 = sub_02062C00(param0);
+    FieldSystem * v0 = MapObject_FieldSystem(param0);
     return (UnkStruct_ov5_021DF47C *)v0->unk_40;
 }
 

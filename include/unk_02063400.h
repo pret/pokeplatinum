@@ -16,7 +16,7 @@ int sub_02063FAC(const MapObject * param0, int param1, int param2, int param3);
 int sub_02064004(const MapObject * param0, int param1, int param2, int param3);
 int sub_0206406C(MapObject * param0, u32 param1);
 int sub_020640A0(MapObject * param0, u32 param1);
-int sub_020640D4(MapObject * param0, u32 param1);
+int MapObject_IsOnSnow(MapObject * param0, u32 param1);
 int sub_02064108(MapObject * param0, u32 param1);
 int sub_0206413C(MapObject * param0, u32 param1);
 int sub_0206415C(MapObject * param0, u32 param1);

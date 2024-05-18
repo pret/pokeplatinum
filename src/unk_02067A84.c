@@ -319,7 +319,7 @@ static int sub_02067E74 (const MapObject * param0, int param1, int param2)
 
     v1 = MapObject_XPos(param0);
     v2 = MapObject_ZPos(param0);
-    v3 = sub_02063030(param0);
+    v3 = MapObject_YPos(param0);
     v1 += sub_0206419C(param1);
     v2 += sub_020641A8(param1);
 

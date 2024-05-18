@@ -857,7 +857,7 @@ static BOOL ov6_022417C8 (FieldSystem * param0, const u32 param1, const u8 param
     if (sub_0205DAD4(param2)) {
         v0 += 30;
     } else {
-        if (sub_0205EB74(param0->playerAvatar) == 0x1) {
+        if (PlayerAvatar_PlayerState(param0->playerAvatar) == 0x1) {
             v0 += 30;
         }
     }

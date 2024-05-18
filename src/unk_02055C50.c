@@ -479,7 +479,7 @@ void sub_020562AC (FieldSystem * param0)
 
 void sub_020562D8 (FieldSystem * param0)
 {
-    int v0 = sub_0205EB74(param0->playerAvatar);
+    int v0 = PlayerAvatar_PlayerState(param0->playerAvatar);
     u32 v1 = sub_0205EED8(v0);
 
     ov5_021DFB54(param0->playerAvatar, v1);

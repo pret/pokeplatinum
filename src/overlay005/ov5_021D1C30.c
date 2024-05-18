@@ -124,7 +124,7 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 pa
     ov5_021D1C30(param0);
 
     v0 = Player_MoveState(param1->playerAvatar);
-    v1 = sub_0205EB0C(param1->playerAvatar);
+    v1 = PlayerAvatar_MoveState(param1->playerAvatar);
     v2 = Player_Dir(param1->playerAvatar);
 
     param0->unk_04 = param2;
@@ -744,7 +744,7 @@ u16 ov5_021D271C (FieldSystem * fieldSystem, u8 param1)
         return 10003;
     }
 
-    if (sub_0205EB74(fieldSystem->playerAvatar) != 0x2) {
+    if (PlayerAvatar_PlayerState(fieldSystem->playerAvatar) != 0x2) {
         TrainerInfo * v1 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         u32 v2 = sub_02061760(fieldSystem->playerAvatar);
 
@@ -1152,7 +1152,7 @@ static BOOL ov5_021D2EA4 (FieldSystem * fieldSystem, MapObject ** param1)
 
     while (sub_020625B0(fieldSystem->mapObjMan, param1, &v0, (1 << 0))) {
         v4 = MapObject_XPos(*param1);
-        v5 = ((sub_02063030(*param1) / 2));
+        v5 = ((MapObject_YPos(*param1) / 2));
         v6 = MapObject_ZPos(*param1);
 
         if ((v2 == v5) && (v1 == v4) && (v3 == v6)) {

@@ -340,7 +340,7 @@ static void CommPlayer_SendPosNetId (int netId, const CommPlayerLocation * playe
 
 void CommPlayer_SendDataTask (void * param0)
 {
-    int v0 = sub_0205EB0C(sCommPlayerManager->fieldSys->playerAvatar);
+    int v0 = PlayerAvatar_MoveState(sCommPlayerManager->fieldSys->playerAvatar);
     int moveState = Player_MoveState(sCommPlayerManager->fieldSys->playerAvatar);
 
     if ((0 == v0) && CommSys_IsPlayerConnected(CommSys_CurNetId())) {

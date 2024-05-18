@@ -263,7 +263,7 @@ static int ov5_021F4AB4 (const MapObject * param0, int param1, VecFx32 * param2)
     GF_ASSERT(param1);
 
     v4 = MapObject_XPos(param0);
-    v5 = sub_02063030(param0);
+    v5 = MapObject_YPos(param0);
     v6 = MapObject_ZPos(param0);
     v3 = MapObject_Dir(param0);
 

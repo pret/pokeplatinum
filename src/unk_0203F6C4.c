@@ -4800,7 +4800,7 @@ static BOOL ScrCmd_0C7 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    if (sub_0205EB74(param0->fieldSys->playerAvatar) == 0x1) {
+    if (PlayerAvatar_PlayerState(param0->fieldSys->playerAvatar) == 0x1) {
         *v0 = 1;
     } else {
         *v0 = 0;
@@ -4844,7 +4844,7 @@ static BOOL ScrCmd_0CA (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0205EB74(param0->fieldSys->playerAvatar);
+    *v0 = PlayerAvatar_PlayerState(param0->fieldSys->playerAvatar);
     return 0;
 }
 
@@ -5943,7 +5943,7 @@ static BOOL ScrCmd_317 (ScriptContext * param0)
         MapObject * v4 = Player_MapObject(v3->playerAvatar);
 
         *v0 = MapObject_XPos(v4);
-        *v2 = ((sub_02063030(v4) / 2));
+        *v2 = ((MapObject_YPos(v4) / 2));
         *v1 = MapObject_ZPos(v4);
     }
 

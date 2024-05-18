@@ -110,7 +110,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F85BC (PlayerAvatar * param0, int param1, int 
     v4.unk_14 = param0;
 
     if (param5 == 0) {
-        FieldSystem * v6 = sub_02062C00(v5);
+        FieldSystem * v6 = MapObject_FieldSystem(v5);
 
         v2 = &Unk_ov5_02201BC8[param6];
         v3.x = (((param1) << 4) * FX32_ONE) + v2->x;

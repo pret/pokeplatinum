@@ -25,13 +25,13 @@ typedef struct UnkStruct_0205E884_t {
     int unk_18;
     int unk_1C;
     int gender;
-    int unk_24;
+    int speed;
     int unk_28;
     int unk_2C;
     MapObject * mapObject;
     UnkStruct_ov101_021D5D90 * unk_34;
     PlayerData * player;
-    const PlayerData * unk_3C;
+    const PlayerData * playerConst;
 } PlayerAvatar;
 
 static PlayerAvatar * PlayerAvatar_Alloc(void);
@@ -100,7 +100,7 @@ void PlayerAvatar_InitDraw (PlayerAvatar * playerAvatar, int groundId)
 
     ov5_021F6218(playerAvatar);
 
-    if (sub_0205EB74(playerAvatar) == 0x2) {
+    if (PlayerAvatar_PlayerState(playerAvatar) == 0x2) {
         if (groundId != 9) {
             int x = Player_XPos(playerAvatar);
             int z = Player_ZPos(playerAvatar);
@@ -145,13 +145,13 @@ static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int gender, P
     sub_0205EB58(playerAvatar, param1);
     PlayerAvatar_SetGender(playerAvatar, gender);
     sub_0205EB8C(playerAvatar, 0);
-    sub_0205EBC0(playerAvatar);
+    PlayerAvatar_ClearSpeed(playerAvatar);
     sub_0205EBDC(playerAvatar, -1);
     sub_0205EBE4(playerAvatar, -1);
     sub_0205EC20(playerAvatar, 0xff, 0);
 
     sub_0205EF6C(playerAvatar, 1);
-    sub_0205EFF0(playerAvatar, 1);
+    PlayerAvatar_SetInDeepSwamp(playerAvatar, 1);
 }
 
 static void PlayerAvatar_AddMapObject (PlayerAvatar * playerAvatar, const MapObjectManager * param1, int param2, int param3, int param4, int param5)
@@ -258,7 +258,7 @@ void sub_0205EB08 (PlayerAvatar * playerAvatar, int param1)
     playerAvatar->unk_14 = param1;
 }
 
-int sub_0205EB0C (const PlayerAvatar * playerAvatar)
+int PlayerAvatar_MoveState (const PlayerAvatar * playerAvatar)
 {
     return playerAvatar->unk_14;
 }
@@ -312,7 +312,7 @@ void sub_0205EB58 (PlayerAvatar * playerAvatar, int param1)
     sub_0205ECA8(playerAvatar, param1);
 }
 
-int sub_0205EB74 (PlayerAvatar * playerAvatar)
+int PlayerAvatar_PlayerState (PlayerAvatar * playerAvatar)
 {
     GF_ASSERT(playerAvatar != NULL);
     return playerAvatar->unk_1C;
@@ -358,31 +358,31 @@ static u32 sub_0205EBB0 (PlayerAvatar * playerAvatar, u32 param1)
     return playerAvatar->unk_00 & param1;
 }
 
-int sub_0205EBB8 (PlayerAvatar * playerAvatar)
+int PlayerAvatar_Speed (PlayerAvatar * playerAvatar)
 {
-    return playerAvatar->unk_24;
+    return playerAvatar->speed;
 }
 
-void sub_0205EBBC (PlayerAvatar * playerAvatar, int param1)
+void PlayerAvatar_SetSpeed (PlayerAvatar * playerAvatar, int speed)
 {
-    playerAvatar->unk_24 = param1;
+    playerAvatar->speed = speed;
 }
 
-void sub_0205EBC0 (PlayerAvatar * playerAvatar)
+void PlayerAvatar_ClearSpeed (PlayerAvatar * playerAvatar)
 {
-    playerAvatar->unk_24 = 0;
+    playerAvatar->speed = 0;
     sub_0205EF98(playerAvatar, 0);
 }
 
-int sub_0205EBCC (PlayerAvatar * playerAvatar, int param1, int param2)
+int PlayerAvatar_AddMoveSpeed (PlayerAvatar * playerAvatar, int dSpeed, int maxSpeed)
 {
-    playerAvatar->unk_24 += param1;
+    playerAvatar->speed += dSpeed;
 
-    if (playerAvatar->unk_24 > param2) {
-        playerAvatar->unk_24 = param2;
+    if (playerAvatar->speed > maxSpeed) {
+        playerAvatar->speed = maxSpeed;
     }
 
-    return playerAvatar->unk_24;
+    return playerAvatar->speed;
 }
 
 void sub_0205EBDC (PlayerAvatar * playerAvatar, int param1)
@@ -777,7 +777,7 @@ int sub_0205EFDC (PlayerAvatar * param0)
     return 0;
 }
 
-void sub_0205EFF0 (PlayerAvatar * param0, int param1)
+void PlayerAvatar_SetInDeepSwamp (PlayerAvatar * param0, int param1)
 {
     if (param1 == 1) {
         sub_0205EB9C(param0, (1 << 4));
@@ -786,7 +786,7 @@ void sub_0205EFF0 (PlayerAvatar * param0, int param1)
     }
 }
 
-int sub_0205F008 (PlayerAvatar * param0)
+int PlayerAvatar_IsNotInDeepSwamp (PlayerAvatar * param0)
 {
     if (sub_0205EBB0(param0, (1 << 4))) {
         return 1;

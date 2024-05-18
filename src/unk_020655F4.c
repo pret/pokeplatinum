@@ -1568,7 +1568,7 @@ static void sub_02066824 (MapObject * param0, const VecFx32 * param1, int param2
     sub_02062D28(param0);
 
     sub_0206300C(param0, MapObject_XPos(param0));
-    sub_02063014(param0, sub_02063030(param0));
+    sub_02063014(param0, MapObject_YPos(param0));
     sub_0206301C(param0, MapObject_ZPos(param0));
 
     if (param1->x < 0) {
@@ -1892,7 +1892,7 @@ static void sub_02066F88 (MapObject * param0, fx32 param1, int param2, int param
     sub_02062D28(param0);
 
     sub_0206300C(param0, MapObject_XPos(param0));
-    sub_02063014(param0, sub_02063030(param0));
+    sub_02063014(param0, MapObject_YPos(param0));
     sub_0206301C(param0, MapObject_ZPos(param0));
 
     GF_ASSERT(param6 <= 2);
@@ -1997,7 +1997,7 @@ static int sub_02067068 (MapObject * param0)
         v0 = v2->unk_04;
 
         sub_0206300C(param0, MapObject_XPos(param0));
-        sub_02063014(param0, sub_02063030(param0));
+        sub_02063014(param0, MapObject_YPos(param0));
         sub_0206301C(param0, MapObject_ZPos(param0));
 
         switch (v2->unk_02) {

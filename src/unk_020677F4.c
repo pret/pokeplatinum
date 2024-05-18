@@ -80,7 +80,7 @@ void sub_02067850 (MapObject * param0)
     UnkStruct_02067800 * v0;
 
     v0 = sub_02062A78(param0);
-    v0->unk_00 = sub_02055F00(sub_02062C00(param0), param0);
+    v0->unk_00 = sub_02055F00(MapObject_FieldSystem(param0), param0);
 }
 
 void sub_0206786C (MapObject * param0)
@@ -102,7 +102,7 @@ void sub_02067890 (MapObject * param0)
 {
     UnkStruct_02067800 * v0 = sub_02062A78(param0);
     UnkStruct_02067870 * v1 = sub_02062AF0(param0);
-    u32 v2 = sub_02055F00(sub_02062C00(param0), param0);
+    u32 v2 = sub_02055F00(MapObject_FieldSystem(param0), param0);
 
     if (ov5_021EDD94(param0) == 1) {
         return;
@@ -112,7 +112,7 @@ void sub_02067890 (MapObject * param0)
         ov5_021ECFD8(param0, &v1->unk_08, v1->unk_00);
 
         v1->unk_00 = sub_020679FC(
-            sub_02055F20(sub_02062C00(param0), param0), v2);
+            sub_02055F20(MapObject_FieldSystem(param0), param0), v2);
 
         if (v1->unk_00 != 0xffff) {
             if (v1->unk_04 != 0) {

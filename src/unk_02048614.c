@@ -316,7 +316,7 @@ BOOL ScrCmd_0F0 (ScriptContext * param0)
     FieldSystem * v1 = param0->fieldSys;
 
     v0 = sub_0203F098(v1, 10);
-    sub_0203F2BC(sub_02062C00(*v0), sub_02062910(*v0));
+    sub_0203F2BC(MapObject_FieldSystem(*v0), sub_02062910(*v0));
 
     return 0;
 }
@@ -330,7 +330,7 @@ BOOL ScrCmd_0F1 (ScriptContext * param0)
 
     v2 = sub_0203F098(v3, 10);
     v1 = (s32)ScriptContext_ReadWord(param0);
-    v0 = sub_0203F2A0(sub_02062C00(*v2), sub_02062910(*v2));
+    v0 = sub_0203F2A0(MapObject_FieldSystem(*v2), sub_02062910(*v2));
 
     if (v0 == 1) {
         ScriptContext_Jump(param0, (u8 *)(param0->scriptPtr + v1));

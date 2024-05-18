@@ -86,7 +86,7 @@ void ov5_021F331C (MapObject * param0, int param1)
 
     v1 = ov5_021DF578(param0);
 
-    v0.unk_00 = sub_02062C00(param0);
+    v0.unk_00 = MapObject_FieldSystem(param0);
     v0.unk_04 = v1;
     v0.unk_08 = ov5_021DF55C(v1, 21);
     v0.unk_0C = param0;

@@ -171,13 +171,13 @@ static void ov5_021F2148 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     v0->unk_08 = 0;
 
-    if ((sub_020628D8(v1, (1 << 9)) == 1) || (sub_02055F00(sub_02062C00(v1), v1) == 0)) {
+    if ((sub_020628D8(v1, (1 << 9)) == 1) || (sub_02055F00(MapObject_FieldSystem(v1), v1) == 0)) {
         v0->unk_08 = 1;
         return;
     }
 
     {
-        v0->unk_0C = sub_02055F88(sub_02062C00(v1), v1);
+        v0->unk_0C = sub_02055F88(MapObject_FieldSystem(v1), v1);
     }
 
     {
