@@ -203,9 +203,9 @@ static int sub_0205F22C (PlayerAvatar * param0, int param1)
 
             if ((v2 & (~(1 << 7))) && (sub_0205F108(param0) == 2)) {
                 FieldSystem * v3 = sub_02062C00(v1);
-                int v4, v5 = sub_02063020(v1);
+                int v4, v5 = MapObject_XPos(v1);
                 int v6, v7 = sub_02063030(v1);
-                int v8, v9 = sub_02063040(v1);
+                int v8, v9 = MapObject_ZPos(v1);
 
                 v7 = ((v7) / 2);
                 v4 = v5;
@@ -502,7 +502,7 @@ static int sub_0205F6C4 (PlayerAvatar * param0, int param1)
 static int sub_0205F6D0 (PlayerAvatar * param0, int param1)
 {
     MapObject * v0 = Player_MapObject(param0);
-    int v1 = sub_0206299C(v0);
+    int v1 = MapObject_MoveDir(v0);
     int v2 = sub_0205FAB0(param0, v1);
     u32 v3 = sub_02060B7C(param0, v0, v1);
 
@@ -562,7 +562,7 @@ static int sub_0205F808 (PlayerAvatar * param0, int param1)
 {
     u32 v0;
     MapObject * v1 = Player_MapObject(param0);
-    int v2 = sub_0206299C(v1);
+    int v2 = MapObject_MoveDir(v1);
 
     Sound_PlayEffect(1620);
 
@@ -618,7 +618,7 @@ static int sub_0205F808 (PlayerAvatar * param0, int param1)
 static int sub_0205F95C (PlayerAvatar * param0, int param1)
 {
     MapObject * v0 = Player_MapObject(param0);
-    int v1 = sub_0206299C(v0);
+    int v1 = MapObject_MoveDir(v0);
 
     if (sub_0205EC88(param0) == 1) {
         Sound_PlayEffect(1622);
@@ -636,7 +636,7 @@ static int sub_0205F95C (PlayerAvatar * param0, int param1)
 static int sub_0205F9AC (PlayerAvatar * param0, int param1)
 {
     MapObject * v0 = Player_MapObject(param0);
-    int v1 = sub_0206299C(v0);
+    int v1 = MapObject_MoveDir(v0);
 
     if (sub_0205EC88(param0) == 1) {
         Sound_PlayEffect(1622);
@@ -870,7 +870,7 @@ static int sub_0205FCC0 (PlayerAvatar * param0, int param1)
         int v1 = sub_0205F108(param0);
 
         if ((v1 != 0) && (v1 != 1) && (v1 != 2)) {
-            v0 = sub_0205EA94(param0);
+            v0 = PlayerAvatar_MoveDir(param0);
         }
     }
 
@@ -991,9 +991,9 @@ static void sub_0205FECC (PlayerAvatar * param0, MapObject * param1, int param2,
 
     if ((v0 & (~(1 << 7)))) {
         FieldSystem * v3 = sub_02062C00(param1);
-        int v4 = sub_02063020(param1);
+        int v4 = MapObject_XPos(param1);
         int v5 = sub_02063030(param1);
-        int v6 = sub_02063040(param1);
+        int v6 = MapObject_ZPos(param1);
 
         v5 = ((v5) / 2);
         sub_02061674(param0, param2, &v4, &v5, &v6);
@@ -1378,7 +1378,7 @@ static void sub_02060570 (PlayerAvatar * param0, MapObject * param1, int param2,
     } else if ((v0 & (1 << 6))) {
         v1 = 0x0;
         v2 = 1;
-        param2 = sub_0206299C(param1);
+        param2 = MapObject_MoveDir(param1);
         sub_02062994(param1, param2);
         sub_0205EBC0(param0);
         sub_0205EBEC(param0, -1, -1);
@@ -1396,7 +1396,7 @@ static void sub_02060570 (PlayerAvatar * param0, MapObject * param1, int param2,
         } else {
             v1 = 0x0;
             v2 = 1;
-            param2 = sub_0206299C(param1);
+            param2 = MapObject_MoveDir(param1);
             sub_02062994(param1, param2);
             sub_0205EBC0(param0);
             sub_0205EBEC(param0, -1, -1);
@@ -1434,7 +1434,7 @@ static void sub_020606C8 (PlayerAvatar * param0, MapObject * param1, int param2,
     int v1;
     int v2, v3 = sub_020603EC(param0);
 
-    param2 = sub_0205EA94(param0);
+    param2 = PlayerAvatar_MoveDir(param0);
     v0 = sub_02060B7C(param0, param1, param2);
 
     if ((v0 & (1 << 2))) {
@@ -1596,7 +1596,7 @@ static void sub_020608E4 (PlayerAvatar * param0, MapObject * param1, int param2,
             sub_0205EBC0(param0);
         }
     } else if ((v0 & (1 << 6))) {
-        param2 = sub_0206299C(param1);
+        param2 = MapObject_MoveDir(param1);
         v1 = sub_02065838(param2, 0x0);
         v2 = 1;
         sub_02062994(param1, param2);
@@ -1615,7 +1615,7 @@ static void sub_020608E4 (PlayerAvatar * param0, MapObject * param1, int param2,
             sub_0205EBC0(param0);
         } else {
             v2 = 1;
-            param2 = sub_0206299C(param1);
+            param2 = MapObject_MoveDir(param1);
             v1 = sub_02065838(param2, 0x0);
             sub_02062994(param1, param2);
             sub_0205EBC0(param0);
@@ -1653,7 +1653,7 @@ static void sub_02060AA0 (PlayerAvatar * param0, MapObject * param1, int param2,
     int v1;
     int v2, v3 = sub_020603EC(param0);
 
-    param2 = sub_0205EA94(param0);
+    param2 = PlayerAvatar_MoveDir(param0);
     v0 = sub_02060B7C(param0, param1, param2);
 
     if ((v0 & (1 << 2))) {
@@ -1745,9 +1745,9 @@ static u32 sub_02060C24 (PlayerAvatar * param0, MapObject * param1, int param2)
 {
     VecFx32 v0;
     u32 v1, v2;
-    int v3 = sub_02063020(param1) + sub_0206419C(param2);
+    int v3 = MapObject_XPos(param1) + sub_0206419C(param2);
     int v4 = sub_02063030(param1);
-    int v5 = sub_02063040(param1) + sub_020641A8(param2);
+    int v5 = MapObject_ZPos(param1) + sub_020641A8(param2);
 
     sub_02063050(param1, &v0);
 
@@ -1785,8 +1785,8 @@ static int sub_02060CE4 (PlayerAvatar * param0, MapObject * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
-        int v1 = sub_02063020(param1) + sub_0206419C(param2);
-        int v2 = sub_02063040(param1) + sub_020641A8(param2);
+        int v1 = MapObject_XPos(param1) + sub_0206419C(param2);
+        int v2 = MapObject_ZPos(param1) + sub_020641A8(param2);
 
         if (sub_020683D8(v0, v1, v2, 0, param2) == 1) {
             return 1;
@@ -1829,8 +1829,8 @@ static int sub_02060D98 (PlayerAvatar * param0, MapObject * param1, int param2)
 
     if (param2 != -1) {
         FieldSystem * v1 = sub_02062C00(param1);
-        int v2 = sub_02063020(param1) + sub_0206419C(param2);
-        int v3 = sub_02063040(param1) + sub_020641A8(param2);
+        int v2 = MapObject_XPos(param1) + sub_0206419C(param2);
+        int v3 = MapObject_ZPos(param1) + sub_020641A8(param2);
         u8 v4 = sub_02054F94(v1, v2, v3);
 
         switch (param2) {
@@ -1864,8 +1864,8 @@ static int sub_02060E40 (PlayerAvatar * param0, MapObject * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
-        int v1 = sub_02063020(param1);
-        int v2 = sub_02063040(param1);
+        int v1 = MapObject_XPos(param1);
+        int v2 = MapObject_ZPos(param1);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         switch (param2) {
@@ -1907,8 +1907,8 @@ static int sub_02060EE4 (PlayerAvatar * param0, MapObject * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
-        int v1 = sub_02063020(param1) + sub_0206419C(param2);
-        int v2 = sub_02063040(param1) + sub_020641A8(param2);
+        int v1 = MapObject_XPos(param1) + sub_0206419C(param2);
+        int v2 = MapObject_ZPos(param1) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if ((param2 == 3) && sub_0205DD90(v3)) {
@@ -1927,8 +1927,8 @@ static int sub_02060F4C (PlayerAvatar * param0, MapObject * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
-        int v1 = sub_02063020(param1) + sub_0206419C(param2);
-        int v2 = sub_02063040(param1) + sub_020641A8(param2);
+        int v1 = MapObject_XPos(param1) + sub_0206419C(param2);
+        int v2 = MapObject_ZPos(param1) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if (sub_0206406C(param1, v3)) {
@@ -1943,8 +1943,8 @@ static int sub_02060FA8 (PlayerAvatar * param0, MapObject * param1, int param2)
 {
     if (param2 != -1) {
         FieldSystem * v0 = sub_02062C00(param1);
-        int v1 = sub_02063020(param1) + sub_0206419C(param2);
-        int v2 = sub_02063040(param1) + sub_020641A8(param2);
+        int v1 = MapObject_XPos(param1) + sub_0206419C(param2);
+        int v2 = MapObject_ZPos(param1) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if (sub_0205EB74(param0) == 0x1) {
@@ -1977,8 +1977,8 @@ static int sub_02061058 (PlayerAvatar * param0, MapObject * param1, int param2)
 {
     if ((param2 != -1) && (sub_0205EB74(param0) == 0x1)) {
         FieldSystem * v0 = sub_02062C00(param1);
-        int v1 = sub_02063020(param1) + sub_0206419C(param2);
-        int v2 = sub_02063040(param1) + sub_020641A8(param2);
+        int v1 = MapObject_XPos(param1) + sub_0206419C(param2);
+        int v2 = MapObject_ZPos(param1) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if (sub_0206406C(param1, v3)) {
@@ -2011,9 +2011,9 @@ static int sub_02061100 (PlayerAvatar * param0, MapObject * param1, int param2)
     FieldSystem * v1 = sub_02062C00(param1);
 
     if (sub_02071CB4(v1, 9) == 1) {
-        int v2 = sub_02063020(param1);
+        int v2 = MapObject_XPos(param1);
         int v3 = ((sub_02063030(param1) / 2));
-        int v4 = sub_02063040(param1);
+        int v4 = MapObject_ZPos(param1);
 
         sub_02061674(param0, param2, &v2, &v3, &v4);
 
@@ -2039,9 +2039,9 @@ static int sub_02061180 (PlayerAvatar * param0, MapObject * param1, int param2)
         if (sub_02071CB4(v0, 9) == 1) {
             BOOL v1;
             u32 v2;
-            int v3 = sub_02063020(param1);
+            int v3 = MapObject_XPos(param1);
             int v4 = ((sub_02063030(param1) / 2));
-            int v5 = sub_02063040(param1);
+            int v5 = MapObject_ZPos(param1);
 
             sub_02061674(param0, param2, &v3, &v4, &v5);
 
@@ -2090,9 +2090,9 @@ static int sub_02061248 (PlayerAvatar * param0, MapObject * param1, int param2)
 
         if (sub_02071CB4(v1, 9) == 1) {
             u32 v2;
-            int v3 = sub_02063020(param1);
+            int v3 = MapObject_XPos(param1);
             int v4 = ((sub_02063030(param1) / 2));
-            int v5 = sub_02063040(param1);
+            int v5 = MapObject_ZPos(param1);
 
             sub_02061674(param0, param2, &v3, &v4, &v5);
 
@@ -2163,7 +2163,7 @@ static int sub_02061348 (PlayerAvatar * param0, u16 param1, u16 param2)
     }
 
     {
-        int v2 = sub_0205EA94(param0);
+        int v2 = PlayerAvatar_MoveDir(param0);
         int v3 = sub_0205EBE0(param0);
         int v4 = sub_0205EBE8(param0);
 
@@ -2465,9 +2465,9 @@ u32 sub_020616F0 (PlayerAvatar * param0, int param1)
     } else {
         MapObject * v1 = Player_MapObject(param0);
         FieldSystem * v2 = sub_02062C00(v1);
-        int v3 = sub_02063020(v1);
+        int v3 = MapObject_XPos(v1);
         int v4 = ((sub_02063030(v1) / 2));
-        int v5 = sub_02063040(v1);
+        int v5 = MapObject_ZPos(v1);
 
         sub_02061674(param0, param1, &v3, &v4, &v5);
         ov9_02251044(v2, v3, v4, v5, &v0);
@@ -2481,9 +2481,9 @@ u32 sub_02061760 (PlayerAvatar * param0)
     u32 v0;
     MapObject * v1 = Player_MapObject(param0);
     FieldSystem * v2 = sub_02062C00(v1);
-    int v3 = sub_02063020(v1);
+    int v3 = MapObject_XPos(v1);
     int v4 = ((sub_02063030(v1) / 2));
-    int v5 = sub_02063040(v1);
+    int v5 = MapObject_ZPos(v1);
 
     if (sub_0205F158(param0) == 0) {
         v0 = sub_02054F94(v2, v3, v5);
@@ -2499,9 +2499,9 @@ void sub_020617BC (PlayerAvatar * const param0, int * param1, int * param2, int 
     int v0 = sub_0205EAA0(param0);
     MapObject * v1 = Player_MapObject(param0);
 
-    *param1 = sub_02063020(v1);
+    *param1 = MapObject_XPos(v1);
     *param2 = ((sub_02063030(v1) / 2));
-    *param3 = sub_02063040(v1);
+    *param3 = MapObject_ZPos(v1);
 
     sub_02061674(param0, v0, param1, param2, param3);
 }

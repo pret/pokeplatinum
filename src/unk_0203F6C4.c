@@ -3004,8 +3004,8 @@ static BOOL ScrCmd_2A1 (ScriptContext * ctx)
     }
 
     v10 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8E3C) * 64);
-    v8 = sub_02063020(v4);
-    v9 = sub_02063040(v4);
+    v8 = MapObject_XPos(v4);
+    v9 = MapObject_ZPos(v4);
     v11 = 0;
 
     if (v8 < v6) {
@@ -3448,8 +3448,8 @@ static BOOL ScrCmd_06A (ScriptContext * ctx)
     mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
     v1 = ScriptContext_GetVarPointer(ctx);
     v2 = ScriptContext_GetVarPointer(ctx);
-    *v1 = sub_02063020(mapObj);
-    *v2 = sub_02063040(mapObj);
+    *v1 = MapObject_XPos(mapObj);
+    *v2 = MapObject_ZPos(mapObj);
 
     return 0;
 }
@@ -4718,7 +4718,7 @@ static BOOL ScrCmd_0C0 (ScriptContext * param0)
         if (sub_0205F16C(param0->fieldSys->playerAvatar) == 1) {
             v0 = Player_Dir(param0->fieldSys->playerAvatar);
         } else {
-            v0 = sub_0205EA94(param0->fieldSys->playerAvatar);
+            v0 = PlayerAvatar_MoveDir(param0->fieldSys->playerAvatar);
         }
 
         ov5_021E00EC(param0->taskManager, v0, ScriptContext_GetVar(param0));
@@ -5942,9 +5942,9 @@ static BOOL ScrCmd_317 (ScriptContext * param0)
     {
         MapObject * v4 = Player_MapObject(v3->playerAvatar);
 
-        *v0 = sub_02063020(v4);
+        *v0 = MapObject_XPos(v4);
         *v2 = ((sub_02063030(v4) / 2));
-        *v1 = sub_02063040(v4);
+        *v1 = MapObject_ZPos(v4);
     }
 
     return 0;

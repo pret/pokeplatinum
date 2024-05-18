@@ -500,8 +500,8 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
         case 0x6:
         case 0x7:
         case 0x8:
-            v0 = sub_02063020(v11);
-            v1 = sub_02063040(v11);
+            v0 = MapObject_XPos(v11);
+            v1 = MapObject_ZPos(v11);
 
             if ((v0 >= v7) && (v0 <= v8) && (v1 >= v9) && (v1 <= v10)) {
                 if (ov5_021DBB70(sub_02062948(v11)) == 0) {

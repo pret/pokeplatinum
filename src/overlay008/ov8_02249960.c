@@ -2740,8 +2740,8 @@ static BOOL ov8_0224B2E8 (UnkStruct_ov8_0224B28C * param0)
 
     if (LocalMapObj_IsAnimationSet(param0->unk_20) == 1) {
         int v1 = 0x9a;
-        int v2 = sub_02063020(v0);
-        int v3 = sub_02063040(v0);
+        int v2 = MapObject_XPos(v0);
+        int v3 = MapObject_ZPos(v0);
 
         if ((v2 == param0->unk_08) && (v3 == param0->unk_0C)) {
             return 1;
@@ -3151,8 +3151,8 @@ static MapObject * ov8_0224B7D8 (FieldSystem * fieldSystem, int param1, int para
 static void ov8_0224B80C (UnkStruct_ov8_0224B80C * param0, MapObject * param1, FieldSystem * param2)
 {
     param0->unk_08 = param1;
-    param0->unk_00 = sub_02063020(param1);
-    param0->unk_04 = sub_02063040(param1);
+    param0->unk_00 = MapObject_XPos(param1);
+    param0->unk_04 = MapObject_ZPos(param1);
 
     if (sub_020629D8(param1, 0) == 0) {
         param0->unk_0C = ov5_021F4474(param2, param0->unk_00, param0->unk_04, 0);
@@ -4124,8 +4124,8 @@ BOOL ov8_0224C5DC (FieldSystem * fieldSystem, void * param1)
     {
         MapObject * v1 = param1;
 
-        sub_02062FF4(v1, sub_02063020(v1));
-        sub_02063004(v1, sub_02063040(v1));
+        sub_02062FF4(v1, MapObject_XPos(v1));
+        sub_02063004(v1, MapObject_ZPos(v1));
         sub_020629FC(v1, 2);
         sub_02062A04(v1, 2);
         sub_020633A8(v1, 0x3);

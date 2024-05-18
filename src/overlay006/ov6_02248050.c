@@ -79,8 +79,8 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
 
     sub_02063050(v4, &v3);
 
-    v1 = sub_02063020(v4);
-    v2 = sub_02063040(v4);
+    v1 = MapObject_XPos(v4);
+    v2 = MapObject_ZPos(v4);
     v0 = MapObject_Dir(v4);
 
     switch (v0) {

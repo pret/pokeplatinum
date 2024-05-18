@@ -842,9 +842,9 @@ static void ov6_0223E7B4 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v1 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, 0);
     GF_ASSERT(v1);
 
-    v2 = sub_02063020(v1);
+    v2 = MapObject_XPos(v1);
     v3 = 0;
-    v4 = sub_02063040(v1);
+    v4 = MapObject_ZPos(v1);
 
     v0->unk_00 = ov6_02240768(4);
     ov6_0224077C(v0->unk_00, v2, v3, v4);

@@ -465,28 +465,28 @@ static void sub_02063C48 (MapObject * param0, u8 param1, u8 param2, const UnkStr
 static void sub_02063C60 (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DE5C(param2) == 1) {
-        ov5_021F2AE4(param0, sub_02063008(param0), sub_02063010(param0), sub_02063018(param0));
+        ov5_021F2AE4(param0, MapObject_XPosPrev(param0), sub_02063010(param0), MapObject_ZPosPrev(param0));
     }
 }
 
 static void sub_02063C94 (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DE5C(param1) == 1) {
-        ov5_021F2AE4(param0, sub_02063020(param0), sub_02063030(param0), sub_02063040(param0));
+        ov5_021F2AE4(param0, MapObject_XPos(param0), sub_02063030(param0), MapObject_ZPos(param0));
     }
 }
 
 static void sub_02063CC8 (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DCE0(param2) == 1) {
-        ov5_021F2C38(param0, sub_02063008(param0), sub_02063010(param0), sub_02063018(param0));
+        ov5_021F2C38(param0, MapObject_XPosPrev(param0), sub_02063010(param0), MapObject_ZPosPrev(param0));
     }
 }
 
 static void sub_02063CFC (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DCE0(param1) == 1) {
-        ov5_021F2C38(param0, sub_02063020(param0), sub_02063030(param0), sub_02063040(param0));
+        ov5_021F2C38(param0, MapObject_XPos(param0), sub_02063030(param0), MapObject_ZPos(param0));
     }
 }
 
@@ -606,9 +606,9 @@ u32 sub_02063EBC (const MapObject * param0, int param1)
 {
     int v0, v1, v2;
 
-    v0 = sub_02063020(param0) + sub_0206419C(param1);
+    v0 = MapObject_XPos(param0) + sub_0206419C(param1);
     v1 = sub_02063030(param0);
-    v2 = sub_02063040(param0) + sub_020641A8(param1);
+    v2 = MapObject_ZPos(param0) + sub_020641A8(param1);
 
     return sub_02063E94(param0, v0, v1, v2, param1);
 }
@@ -627,8 +627,8 @@ int sub_02063F00 (const MapObject * param0, int param1, int param2, int param3)
         if (v4 != param0) {
             if (sub_020628D0(v4, (1 << 0))) {
                 if (sub_020628D0(v4, (1 << 18)) == 0) {
-                    v1 = sub_02063020(v4);
-                    v2 = sub_02063040(v4);
+                    v1 = MapObject_XPos(v4);
+                    v2 = MapObject_ZPos(v4);
 
                     if ((v1 == param1) && (v2 == param3)) {
                         int v5 = sub_02063030(v4);
@@ -643,8 +643,8 @@ int sub_02063F00 (const MapObject * param0, int param1, int param2, int param3)
                         }
                     }
 
-                    v1 = sub_02063008(v4);
-                    v2 = sub_02063018(v4);
+                    v1 = MapObject_XPosPrev(v4);
+                    v2 = MapObject_ZPosPrev(v4);
 
                     if ((v1 == param1) && (v2 == param3)) {
                         int v7 = sub_02063030(v4);
@@ -851,9 +851,9 @@ int sub_020641A8 (int param0)
 
 void sub_020641B4 (MapObject * param0, int param1)
 {
-    sub_0206300C(param0, sub_02063020(param0));
+    sub_0206300C(param0, MapObject_XPos(param0));
     sub_02063014(param0, sub_02063030(param0));
-    sub_0206301C(param0, sub_02063040(param0));
+    sub_0206301C(param0, MapObject_ZPos(param0));
 
     sub_02063028(param0, sub_0206419C(param1));
     sub_02063038(param0, 0);
@@ -862,15 +862,15 @@ void sub_020641B4 (MapObject * param0, int param1)
 
 void sub_02064208 (MapObject * param0)
 {
-    sub_0206300C(param0, sub_02063020(param0));
+    sub_0206300C(param0, MapObject_XPos(param0));
     sub_02063014(param0, sub_02063030(param0));
-    sub_0206301C(param0, sub_02063040(param0));
+    sub_0206301C(param0, MapObject_ZPos(param0));
 }
 
 u32 sub_02064238 (MapObject * param0, int param1)
 {
-    int v0 = sub_02063020(param0) + sub_0206419C(param1);
-    int v1 = sub_02063040(param0) + sub_020641A8(param1);
+    int v0 = MapObject_XPos(param0) + sub_0206419C(param1);
+    int v1 = MapObject_ZPos(param0) + sub_020641A8(param1);
     FieldSystem * v2 = sub_02062C00(param0);
     u8 v3 = sub_02054F94(v2, v0, v1);
 
@@ -951,13 +951,13 @@ int sub_02064390 (MapObject * param0)
     u8 v1 = v0;
 
     if (sub_02062FDC(param0) == 0) {
-        int v2 = sub_02063008(param0);
-        int v3 = sub_02063018(param0);
+        int v2 = MapObject_XPosPrev(param0);
+        int v3 = MapObject_ZPosPrev(param0);
         FieldSystem * v4 = sub_02062C00(param0);
 
         v0 = sub_02054F94(v4, v2, v3);
-        v2 = sub_02063020(param0);
-        v3 = sub_02063040(param0);
+        v2 = MapObject_XPos(param0);
+        v3 = MapObject_ZPos(param0);
         v1 = sub_02054F94(v4, v2, v3);
     }
 

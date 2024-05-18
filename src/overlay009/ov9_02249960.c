@@ -2493,7 +2493,7 @@ static BOOL ov9_0224AC58 (UnkStruct_ov9_0224AC58 * param0, MapObject * param1)
         if (param0->unk_1C.x >= (16 * FX32_ONE)) {
             param0->unk_1C.x -= (16 * FX32_ONE);
 
-            v2 = sub_02063020(param1);
+            v2 = MapObject_XPos(param1);
 
             if (v0->unk_14 > 0) {
                 v2++;
@@ -2525,7 +2525,7 @@ static BOOL ov9_0224AC58 (UnkStruct_ov9_0224AC58 * param0, MapObject * param1)
         if (param0->unk_1C.z >= (16 * FX32_ONE)) {
             param0->unk_1C.z -= (16 * FX32_ONE);
 
-            v2 = sub_02063040(param1);
+            v2 = MapObject_ZPos(param1);
 
             if (v0->unk_18 > 0) {
                 v2++;
@@ -3357,8 +3357,8 @@ static void ov9_0224BA6C (UnkStruct_ov101_021D5D90 * param0, void * param1)
         while (sub_020625B0(
                    v8, &v9, &v6, (1 << 0)) == 1) {
             if (sub_02063030(v9) == v7) {
-                if (sub_02063040(v9) == v2->unk_08.unk_0A) {
-                    if (sub_02063020(v9) == v2->unk_08.unk_06) {
+                if (MapObject_ZPos(v9) == v2->unk_08.unk_0A) {
+                    if (MapObject_XPos(v9) == v2->unk_08.unk_06) {
                         v4 = 1;
                         break;
                     }
@@ -5002,11 +5002,11 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     param1->unk_44.x = 0;
     param1->unk_44.y = 0;
     param1->unk_44.z = 0;
-    param1->unk_0A = sub_02063020(v1);
+    param1->unk_0A = MapObject_XPos(v1);
     param1->unk_0A += v3->unk_04;
     param1->unk_0C = sub_02063030(v1);
     param1->unk_0C += ((v3->unk_06) * 2);
-    param1->unk_0E = sub_02063040(v1);
+    param1->unk_0E = MapObject_ZPos(v1);
     param1->unk_0E += v3->unk_08;
     param1->unk_2C.x = (((v3->unk_04) << 4) * FX32_ONE);
     param1->unk_2C.y = (((v3->unk_06) << 4) * FX32_ONE);
@@ -5329,7 +5329,7 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     v1 = MapObjMan_LocalMapObjByIndex(param0->unk_00->mapObjMan, (0x80 + 6));
     GF_ASSERT(v1 != NULL);
 
-    v0 = sub_02063020(v1);
+    v0 = MapObject_XPos(v1);
     GF_ASSERT((u32)(v0 - 88) < 3);
 
     v2 = Unk_ov9_02251384[v0 - 88];
@@ -5884,9 +5884,9 @@ static void ov9_0224DF10 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0D
     param1->unk_00 = 1;
     param1->unk_02 = v1;
     param1->unk_04 = *v4;
-    param1->unk_04.unk_02 = sub_02063020(param2);
+    param1->unk_04.unk_02 = MapObject_XPos(param2);
     param1->unk_04.unk_04 = sub_02063030(param2);
-    param1->unk_04.unk_06 = sub_02063040(param2);
+    param1->unk_04.unk_06 = MapObject_ZPos(param2);
     param1->unk_04.unk_08 = v3;
     param1->unk_1C = param2;
     param1->unk_20 = ov9_0224DFA0(param0, param1);
@@ -6512,9 +6512,9 @@ static int ov9_0224E798 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     if (v0->unk_02 == 1) {
         MapObject * v1 = Player_MapObject(param0->unk_00->playerAvatar);
-        int v2 = sub_02063020(v1) + v0->unk_06;
+        int v2 = MapObject_XPos(v1) + v0->unk_06;
         int v3 = sub_02063030(v1) + ((v0->unk_08) * 2);
-        int v4 = sub_02063040(v1) + v0->unk_0A;
+        int v4 = MapObject_ZPos(v1) + v0->unk_0A;
 
         LocalMapObj_SetX(v1, v2);
         sub_02063034(v1, v3);
@@ -7394,8 +7394,8 @@ BOOL ov9_0224F240 (const MapObject * param0, int param1)
 
     v4 = sub_02062C00(param0);
     v3 = v4->unk_1C->unk_00;
-    v0 = sub_02063020(param0);
-    v1 = sub_02063040(param0);
+    v0 = MapObject_XPos(param0);
+    v1 = MapObject_ZPos(param0);
     v0 += sub_0206419C(param1);
     v1 += sub_020641A8(param1);
 
@@ -7410,8 +7410,8 @@ static BOOL ov9_0224F284 (const MapObject * param0, u32 * param1)
 
     v3 = sub_02062C00(param0);
     v2 = v3->unk_1C->unk_00;
-    v0 = sub_02063020(param0);
-    v1 = sub_02063040(param0);
+    v0 = MapObject_XPos(param0);
+    v1 = MapObject_ZPos(param0);
 
     return ov9_0224F1F8(v2, v0, v1, param1);
 }
@@ -7511,7 +7511,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
         sub_02063050(v1, &v0);
         v0.y -= FX32_ONE * 2;
         sub_02063060(v1, &v0);
-        sub_020642A4(v1, sub_0206299C(v1), (FX32_ONE * 2));
+        sub_020642A4(v1, MapObject_MoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;
@@ -7568,10 +7568,10 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
             LocalMapObj_SetId(v6, v4);
 
             {
-                int v7 = sub_0206299C(v6);
-                int v8 = sub_02063020(v6);
+                int v7 = MapObject_MoveDir(v6);
+                int v8 = MapObject_XPos(v6);
                 int v9 = sub_02063030(v6);
-                int v10 = sub_02063040(v6);
+                int v10 = MapObject_ZPos(v6);
 
                 v8 += sub_0206419C(v7);
                 v9 -= (2 * 2);
@@ -7680,7 +7680,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
         sub_02063050(v1, &v0);
         v0.y -= FX32_ONE * 2;
         sub_02063060(v1, &v0);
-        sub_020642A4(v1, sub_0206299C(v1), (FX32_ONE * 2));
+        sub_020642A4(v1, MapObject_MoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;
@@ -8303,9 +8303,9 @@ static int ov9_0224FEDC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
         const UnkStruct_ov9_0224F8C4 * v12 = &v11->unk_00;
         VecFx32 v13 = {0, 0, 0};
 
-        v8 = sub_02063020(v2) + v12->unk_06;
+        v8 = MapObject_XPos(v2) + v12->unk_06;
         v9 = sub_02063030(v2) + ((v12->unk_08) * 2);
-        v10 = sub_02063040(v2) + v12->unk_0A;
+        v10 = MapObject_ZPos(v2) + v12->unk_0A;
 
         LocalMapObj_SetX(v2, v8);
         sub_02063034(v2, v9);
@@ -8621,9 +8621,9 @@ static int ov9_02250468 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
         const UnkStruct_ov9_0224F8C4 * v12 = &v11->unk_00;
         VecFx32 v13 = {0, 0, 0};
 
-        v8 = sub_02063020(v2) + v12->unk_06;
+        v8 = MapObject_XPos(v2) + v12->unk_06;
         v9 = sub_02063030(v2) + ((v12->unk_08) * 2);
-        v10 = sub_02063040(v2) + v12->unk_0A;
+        v10 = MapObject_ZPos(v2) + v12->unk_0A;
 
         LocalMapObj_SetX(v2, v8);
         sub_02063034(v2, v9);
@@ -9499,10 +9499,10 @@ static void ov9_02250F44 (UnkStruct_ov9_02249B04 * param0, int * param1, int * p
 {
     MapObject * v0 = Player_MapObject(param0->unk_00->playerAvatar);
 
-    *param1 = sub_02063020(v0);
+    *param1 = MapObject_XPos(v0);
     *param2 = sub_02063030(v0);
     *param2 = ((*param2) / 2);
-    *param3 = sub_02063040(v0);
+    *param3 = MapObject_ZPos(v0);
 }
 
 BOOL ov9_02250F74 (FieldSystem * param0)

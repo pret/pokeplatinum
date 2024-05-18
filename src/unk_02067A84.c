@@ -237,10 +237,10 @@ static int sub_02067DC4 (const MapObject * param0, int param1, int param2, int p
 {
     int v0, v1;
 
-    v0 = sub_02063020(param0);
+    v0 = MapObject_XPos(param0);
 
     if (v0 == param2) {
-        v1 = sub_02063040(param0);
+        v1 = MapObject_ZPos(param0);
 
         if ((param3 < v1) && (param3 >= (v1 - param1))) {
             return v1 - param3;
@@ -254,10 +254,10 @@ static int sub_02067DF0 (const MapObject * param0, int param1, int param2, int p
 {
     int v0, v1;
 
-    v0 = sub_02063020(param0);
+    v0 = MapObject_XPos(param0);
 
     if (v0 == param2) {
-        v1 = sub_02063040(param0);
+        v1 = MapObject_ZPos(param0);
 
         if ((param3 > v1) && (param3 <= (v1 + param1))) {
             return param3 - v1;
@@ -271,10 +271,10 @@ static int sub_02067E1C (const MapObject * param0, int param1, int param2, int p
 {
     int v0, v1;
 
-    v1 = sub_02063040(param0);
+    v1 = MapObject_ZPos(param0);
 
     if (v1 == param3) {
-        v0 = sub_02063020(param0);
+        v0 = MapObject_XPos(param0);
 
         if ((param2 < v0) && (param2 >= (v0 - param1))) {
             return v0 - param2;
@@ -288,10 +288,10 @@ static int sub_02067E48 (const MapObject * param0, int param1, int param2, int p
 {
     int v0, v1;
 
-    v1 = sub_02063040(param0);
+    v1 = MapObject_ZPos(param0);
 
     if (v1 == param3) {
-        v0 = sub_02063020(param0);
+        v0 = MapObject_XPos(param0);
 
         if ((param2 > v0) && (param2 <= (v0 + param1))) {
             return param2 - v0;
@@ -317,8 +317,8 @@ static int sub_02067E74 (const MapObject * param0, int param1, int param2)
         return 1;
     }
 
-    v1 = sub_02063020(param0);
-    v2 = sub_02063040(param0);
+    v1 = MapObject_XPos(param0);
+    v2 = MapObject_ZPos(param0);
     v3 = sub_02063030(param0);
     v1 += sub_0206419C(param1);
     v2 += sub_020641A8(param1);
@@ -646,7 +646,7 @@ static int sub_02068264 (UnkStruct_020EF6D0 * param0)
     MapObject * v2;
 
     v2 = Player_MapObject(param0->unk_28);
-    v1 = sub_02064488(sub_02063020(v2), sub_02063040(v2), sub_02063020(param0->unk_24), sub_02063040(param0->unk_24));
+    v1 = sub_02064488(MapObject_XPos(v2), MapObject_ZPos(v2), MapObject_XPos(param0->unk_24), MapObject_ZPos(param0->unk_24));
 
     if ((Player_Dir(param0->unk_28) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
         if (LocalMapObj_IsAnimationSet(v2) == 1) {

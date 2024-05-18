@@ -93,9 +93,9 @@ void ov5_021F3AEC (MapObject * param0, int param1)
 
     v3 = ov5_021DF578(param0);
 
-    v2.unk_00 = sub_02063020(param0);
+    v2.unk_00 = MapObject_XPos(param0);
     v2.unk_04 = sub_02063030(param0);
-    v2.unk_08 = sub_02063040(param0);
+    v2.unk_08 = MapObject_ZPos(param0);
     v2.unk_10 = v3;
     v2.unk_0C = ov5_021DF574(v3);
     v2.unk_14 = ov5_021DF55C(v3, 25);
@@ -196,8 +196,8 @@ static void ov5_021F3C00 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         v1->unk_00 = 2;
     case 2:
     {
-        int v5 = sub_02063020(v2);
-        int v6 = sub_02063040(v2);
+        int v5 = MapObject_XPos(v2);
+        int v6 = MapObject_ZPos(v2);
 
         if ((v1->unk_18.unk_00 != v5) || (v1->unk_18.unk_08 != v6)) {
             ov5_021DF74C(param0);

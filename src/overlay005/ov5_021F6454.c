@@ -1106,7 +1106,7 @@ BOOL ScrCmd_338 (ScriptContext * ctx)
     MapObject * v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, 15);
     if (v1 != NULL)
     {
-        switch (sub_02063020(v1))
+        switch (MapObject_XPos(v1))
         {
             case 28:
                 v0 = 6;

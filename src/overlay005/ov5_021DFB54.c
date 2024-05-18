@@ -268,7 +268,7 @@ static void ov5_021DFC3C (PlayerAvatar * param0)
     if (sub_0205F16C(param0) == 1) {
         v1 = Player_Dir(param0);
     } else {
-        v1 = sub_0205EA94(param0);
+        v1 = PlayerAvatar_MoveDir(param0);
     }
 
     if (v4 == 0) {
@@ -650,9 +650,9 @@ static BOOL ov5_021E0160 (TaskManager * param0)
 
             v0->unk_28 = ov5_021F261C(v0->unk_24, v1, v2, v0->unk_04, 0);
         } else {
-            int v3 = sub_02063020(v0->unk_24);
+            int v3 = MapObject_XPos(v0->unk_24);
             int v4 = ((sub_02063030(v0->unk_24) / 2));
-            int v5 = sub_02063040(v0->unk_24);
+            int v5 = MapObject_ZPos(v0->unk_24);
             int v6 = sub_0205F108(v0->unk_20);
 
             sub_02061674(v0->unk_20, v0->unk_04, &v3, &v4, &v5);
@@ -942,7 +942,7 @@ static int ov5_021E06A8 (FieldSystem * param0, PlayerAvatar * param1)
     }
 
     {
-        int v0 = sub_0205EA94(param1);
+        int v0 = PlayerAvatar_MoveDir(param1);
         MapObject * v1 = ov5_021E10D4(param1, v0);
 
         if (v1 == NULL) {
@@ -1096,7 +1096,7 @@ static int ov5_021E08C0 (UnkStruct_ov5_021F9B54 * param0)
     }
 
     {
-        int v0 = sub_0206299C(param0->unk_14);
+        int v0 = MapObject_MoveDir(param0->unk_14);
         u8 v1 = sub_02064238(param0->unk_14, v0);
 
         if (ov5_021E0760(v1, v0) == 1) {
@@ -1226,8 +1226,8 @@ static int ov5_021E0A68 (UnkStruct_ov5_021F9B10 * param0)
     int v0, v1;
     VecFx32 v2, v3;
 
-    v0 = sub_02063020(param0->unk_3C) + (sub_0206419C(0) << 1);
-    v1 = sub_02063040(param0->unk_3C) + (sub_020641A8(0) << 1);
+    v0 = MapObject_XPos(param0->unk_3C) + (sub_0206419C(0) << 1);
+    v1 = MapObject_ZPos(param0->unk_3C) + (sub_020641A8(0) << 1);
 
     sub_02064450(v0, v1, &param0->unk_28);
     sub_020644A4(param0->unk_34, &param0->unk_28);
@@ -1351,8 +1351,8 @@ static int ov5_021E0C34 (UnkStruct_ov5_021F9B10 * param0)
     int v0, v1;
     VecFx32 v2, v3;
 
-    v0 = sub_02063020(param0->unk_3C) + (sub_0206419C(1) << 1);
-    v1 = sub_02063040(param0->unk_3C) + (sub_020641A8(1) << 1);
+    v0 = MapObject_XPos(param0->unk_3C) + (sub_0206419C(1) << 1);
+    v1 = MapObject_ZPos(param0->unk_3C) + (sub_020641A8(1) << 1);
 
     sub_02064450(v0, v1, &param0->unk_28);
     sub_020644A4(param0->unk_34, &param0->unk_28);

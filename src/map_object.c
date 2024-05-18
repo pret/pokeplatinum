@@ -504,7 +504,7 @@ static void sub_02061D3C (FieldSystem * param0, MapObject * param1, UnkStruct_02
     param2->unk_18 = sub_02062960(param1);
     param2->unk_0C = sub_02062968(param1);
     param2->unk_0D = MapObject_Dir(param1);
-    param2->unk_0E = sub_0206299C(param1);
+    param2->unk_0E = MapObject_MoveDir(param1);
     param2->unk_1A = sub_020629D8(param1, 0);
     param2->unk_1C = sub_020629D8(param1, 1);
     param2->unk_1E = sub_020629D8(param1, 2);
@@ -513,9 +513,9 @@ static void sub_02061D3C (FieldSystem * param0, MapObject * param1, UnkStruct_02
     param2->unk_20 = sub_02062FF0(param1);
     param2->unk_22 = sub_02062FF8(param1);
     param2->unk_24 = sub_02063000(param1);
-    param2->unk_26 = sub_02063020(param1);
+    param2->unk_26 = MapObject_XPos(param1);
     param2->unk_28 = sub_02063030(param1);
-    param2->unk_2A = sub_02063040(param1);
+    param2->unk_2A = MapObject_ZPos(param1);
 
     {
         VecFx32 v0;
@@ -606,14 +606,14 @@ static void sub_02062010 (MapObject * param0)
 
     sub_02063050(param0, &v1);
 
-    v0 = sub_02063020(param0);
+    v0 = MapObject_XPos(param0);
     v1.x = (((v0) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));
 
     sub_0206300C(param0, v0);
     v0 = sub_02063030(param0);
     sub_02063014(param0, v0);
 
-    v0 = sub_02063040(param0);
+    v0 = MapObject_ZPos(param0);
     v1.z = (((v0) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));
 
     sub_0206301C(param0, v0);
@@ -1387,7 +1387,7 @@ void sub_02062994 (MapObject * param0, int param1)
     param0->unk_2C = param1;
 }
 
-int sub_0206299C (const MapObject * param0)
+int MapObject_MoveDir (const MapObject * param0)
 {
     return param0->unk_2C;
 }
@@ -2091,7 +2091,7 @@ void sub_02063004 (MapObject * param0, int param1)
     param0->unk_54 = param1;
 }
 
-int sub_02063008 (const MapObject * param0)
+int MapObject_XPosPrev (const MapObject * param0)
 {
     return param0->unk_58;
 }
@@ -2111,7 +2111,7 @@ void sub_02063014 (MapObject * param0, int param1)
     param0->unk_5C = param1;
 }
 
-int sub_02063018 (const MapObject * param0)
+int MapObject_ZPosPrev (const MapObject * param0)
 {
     return param0->unk_60;
 }
@@ -2121,7 +2121,7 @@ void sub_0206301C (MapObject * param0, int param1)
     param0->unk_60 = param1;
 }
 
-int sub_02063020 (const MapObject * param0)
+int MapObject_XPos (const MapObject * param0)
 {
     return param0->unk_64;
 }
@@ -2151,7 +2151,7 @@ void sub_02063038 (MapObject * param0, int param1)
     param0->unk_68 += param1;
 }
 
-int sub_02063040 (const MapObject * param0)
+int MapObject_ZPos (const MapObject * param0)
 {
     return param0->unk_6C;
 }
@@ -2487,12 +2487,12 @@ MapObject * sub_0206326C (const MapObjectManager * param0, int param1, int param
     do {
         if (sub_020628D0(v1, (1 << 0))) {
             if (param3) {
-                if ((sub_02063008(v1) == param1) && (sub_02063018(v1) == param2)) {
+                if ((MapObject_XPosPrev(v1) == param1) && (MapObject_ZPosPrev(v1) == param2)) {
                     return v1;
                 }
             }
 
-            if ((sub_02063020(v1) == param1) && (sub_02063040(v1) == param2)) {
+            if ((MapObject_XPos(v1) == param1) && (MapObject_ZPos(v1) == param2)) {
                 return v1;
             }
         }

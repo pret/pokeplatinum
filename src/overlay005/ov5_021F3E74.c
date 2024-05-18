@@ -95,7 +95,7 @@ void ov5_021F3F10 (MapObject * param0)
     v0.unk_0C = param0;
 
     sub_02063050(param0, &v3);
-    sub_02064450(sub_02063020(param0), sub_02063040(param0), &v3);
+    sub_02064450(MapObject_XPos(param0), MapObject_ZPos(param0), &v3);
 
     v4 = sub_02062758(param0, 2);
     v2 = ov5_021DF72C(v1, &Unk_ov5_0220069C, &v3, 0, &v0, v4);
