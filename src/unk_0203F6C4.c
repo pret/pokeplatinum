@@ -2970,7 +2970,7 @@ static BOOL ScrCmd_ApplyMovement (ScriptContext * ctx)
 {
     u16 localID = ScriptContext_GetVar(ctx);
     u32 movementOffset = ScriptContext_ReadWord(ctx);
-    LocalMapObject * object = sub_02040ED4(ctx->fieldSys, localID);
+    MapObject * object = sub_02040ED4(ctx->fieldSys, localID);
     if (object == NULL) {
         GF_ASSERT(FALSE);
         return FALSE;
