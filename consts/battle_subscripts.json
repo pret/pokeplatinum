@@ -1,9 +1,4 @@
 {
-    "targets": {
-        "battle_subscripts": [
-            "@BattleSubscriptNARC"
-        ]
-    },
     "definitions": {
         "@BattleSubscriptNARC": {
             "type": "enum",

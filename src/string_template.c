@@ -5,9 +5,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/generated/c/abilities.h"
-#include "consts/generated/c/gender.h"
-#include "consts/generated/c/moves.h"
+#include "consts/abilities.h"
+#include "consts/gender.h"
+#include "consts/moves.h"
 
 #include "gmm/pl_msg_0213.h"
 #include "gmm/pl_msg_0361.h"

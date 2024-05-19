@@ -8,16 +8,14 @@
 #include "gmm/pl_msg_0368.h"
 #include "battle/btlcmd.h"
 
-    .include "consts/generated/asm/abilities.inc"
-    .include "consts/generated/asm/battle.inc"
-    .include "consts/generated/asm/battle_controller_params.inc"
-    .include "consts/generated/asm/battle_lib_params.inc"
-    .include "consts/generated/asm/battle_subscripts.inc"
-    .include "consts/generated/asm/btlcmd.inc"
-    .include "consts/generated/asm/gender.inc"
-    .include "consts/generated/asm/items.inc"
-    .include "consts/generated/asm/moves.inc"
-    .include "consts/generated/asm/pokemon.inc"
+    .include "consts/abilities.inc"
+    .include "consts/battle.inc"
+    .include "consts/battle_subscripts.inc"
+    .include "consts/btlcmd.inc"
+    .include "consts/gender.inc"
+    .include "consts/items.inc"
+    .include "consts/moves.inc"
+    .include "consts/pokemon.inc"
 
     .equ FALSE 0
     .equ TRUE 1

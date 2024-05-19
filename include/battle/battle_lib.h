@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_BATTLE_LIB_H
 #define POKEPLATINUM_BATTLE_BATTLE_LIB_H
 
+#include "constants/battle.h"
 #include "constants/sound.h"
 
 #include "pokemon.h"
@@ -9,8 +10,6 @@
 #include "battle/battle_mon.h"
 #include "battle/battle_message.h"
 #include "battle/btlcmd.h"
-
-#include "consts/generated/c/battle_lib_params.h" // defs for BattleContextParam and BattleMonParam
 
 enum CountAbilityMode {
     COUNT_ALL_BATTLERS_OUR_SIDE = 0, //< Count all the battlers on our side with the ability

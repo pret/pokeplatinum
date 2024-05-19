@@ -4,7 +4,7 @@
 #include "pch/global_pch.h"
 #include "assert.h"
 
-#include "consts/generated/c/abilities.h"
+#include "consts/abilities.h"
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/species.h"

@@ -1,50 +1,68 @@
-consts_manifests = files(
-    'battle.json',
-    'global.json',
-    'narc_files.json',
-    'trainer.json',
-    'sprites.json',
-    'movement.json',
-    'map.json',
-)
+consts_manifest_basenames = [
+    'abilities',
+    'battle',
+    'battle_subscripts',
+    'btlcmd',
+    'gender',
+    'items',
+    'map',
+    'movement',
+    'moves',
+    'pokemon',
+    'shadows',
+    'species',
+    'tm_learnset',
+    'trainer',
+    'trainer_ai',
+]
 
-gen_consts_root = meson.current_build_dir() / 'generated'
-gen_c_consts_root = gen_consts_root / 'c'
-gen_asm_consts_root = gen_consts_root / 'asm'
-gen_py_consts_root = gen_consts_root / 'py'
+generated_consts_root = meson.current_build_dir()
+consts_manifests = []
+generated_c_headers = []
+generated_asm_headers = []
+generated_py_headers = []
 
-generated_consts_c = custom_target('generated_consts_c',
-    capture: true,
-    output: 'generated_consts_c',
-    input: consts_manifests,
-    command: [
-        constgen_py,
-        '-f', '@INPUT@',
-        '-r', gen_c_consts_root,
-        '-l', 'c'
-    ]
-)
+c_consts_generators = []
+asm_consts_generators = []
+py_consts_generators = []
 
-generated_consts_asm = custom_target('generated_consts_asm',
-    capture: true,
-    output: 'generated_consts_asm',
-    input: consts_manifests,
-    command: [
-        constgen_py,
-        '-f', '@INPUT@',
-        '-r', gen_asm_consts_root,
-        '-l', 'asm'
-    ]
-)
+foreach basename : consts_manifest_basenames
+    manifest = basename + '.json'
+    c_header = basename + '.h'
+    asm_header = basename + '.inc'
+    py_header = basename + '.py'
 
-generated_consts_py = custom_target('generated_consts_py',
-    capture: true,
-    output: 'generated_consts_py',
-    input: consts_manifests,
-    command: [
-        constgen_py,
-        '-f', '@INPUT@',
-        '-r', gen_py_consts_root,
-        '-l', 'py'
-    ]
-)
+    c_consts_generators += custom_target(
+        input: manifest,
+        output: c_header,
+        command: [
+            constgen_py,
+            '--file', '@INPUT@',
+            '--root', generated_consts_root,
+            '--lang', 'c'
+        ]
+    )
+
+    asm_consts_generators += custom_target(
+        input: manifest,
+        output: asm_header,
+        command: [
+            constgen_py,
+            '--file', '@INPUT@',
+            '--root', generated_consts_root,
+            '--lang', 'asm'
+        ]
+    )
+
+    py_consts_generators += custom_target(
+        input: manifest,
+        output: py_header,
+        command: [
+            constgen_py,
+            '--file', '@INPUT@',
+            '--root', generated_consts_root,
+            '--lang', 'py'
+        ]
+    )
+endforeach
+

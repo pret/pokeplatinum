@@ -2,7 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_ITEMS_H
 
 #ifndef __ASM_PM_
-#include "consts/generated/c/items.h"
+#include "consts/items.h"
 
 enum {
     BATTLE_POCKET_RECOVER_HP = 0,

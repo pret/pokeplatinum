@@ -1,4 +1,4 @@
-#include "consts/generated/c/gender.h"
+#include "consts/gender.h"
 #include "constants/trainer.h"
 
 static const u8 sTrainerClassGender[] = {

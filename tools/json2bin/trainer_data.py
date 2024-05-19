@@ -2,7 +2,7 @@
 from collections.abc import Mapping, Sequence
 import pathlib, functools
 
-from consts.generated.py import (
+from consts import (
     items,
     moves,
     species,

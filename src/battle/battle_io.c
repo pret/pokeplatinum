@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/generated/c/gender.h"
+#include "consts/gender.h"
 
 #include "constants/pokemon.h"
 #include "constants/species.h"

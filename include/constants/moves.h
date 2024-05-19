@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_MOVES_H
 #define POKEPLATINUM_CONSTANTS_MOVES_H
 
-#include "consts/generated/c/moves.h"
+#include "consts/moves.h"
 
 #define LEARNED_MOVES_MAX     4
 

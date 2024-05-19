@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRING_TEMPLATE_H
 #define POKEPLATINUM_STRING_TEMPLATE_H
 
-#include "consts/generated/c/abilities.h"
-#include "consts/generated/c/gender.h"
-#include "consts/generated/c/moves.h"
+#include "consts/abilities.h"
+#include "consts/gender.h"
+#include "consts/moves.h"
 
 #include "pokemon.h"
 #include "savedata.h"

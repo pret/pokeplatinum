@@ -1,4 +1,4 @@
-    .include "consts/generated/asm/movement.inc"
+    .include "consts/movement.inc"
 
     .macro MoveAction_000 length=1
     .short MOVEMENT_ACTION_0

@@ -1,7 +1,7 @@
 #include "constants/battle/side_effects.h"
 
 #include "battle/scripts/sub_seq.naix"
-#include "consts/generated/c/battle.h"
+#include "consts/battle.h"
 
 static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_NONE]                             = NULL,

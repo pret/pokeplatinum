@@ -4,7 +4,7 @@ import json
 import pathlib
 import subprocess
 
-from consts.generated.py.species import PokemonSpecies
+from consts.species import PokemonSpecies
 
 
 argparser = argparse.ArgumentParser(

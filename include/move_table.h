@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_MOVE_TABLE_H
 #define POKEPLATINUM_MOVE_TABLE_H
 
-#include "consts/generated/c/moves.h" // def for MoveAttribute
+#include "consts/moves.h" // def for MoveAttribute
 
 typedef struct MoveContestData {
     u8 effect;

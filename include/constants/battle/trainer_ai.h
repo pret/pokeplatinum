@@ -2,7 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_BATTLE_TRAINER_AI_H
 
 #ifndef __ASM_PM_
-#include "consts/generated/c/trainer_ai.h"
+#include "consts/trainer_ai.h"
 
 enum AIActionChoice {
     AI_ENEMY_ATTACK_1 = 0,
