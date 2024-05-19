@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/Nomura-RH/NitroSDK.git
-revision = head
+revision = main
 depth = 1
 directory = NitroSDK-4.2.30001
 
