@@ -148,13 +148,13 @@ static int ov6_02247288 (TaskManager * param0, FieldSystem * param1, UnkStruct_o
 
     if (param2->unk_08 == 2) {
         u16 v1;
-        UnkStruct_02049FA8 v2;
+        Location v2;
 
         v1 = sub_0203A75C(v0);
         sub_0203A7F0(v1, &v2);
         sub_02053CD4(param0, &v2, param2->unk_08);
     } else {
-        UnkStruct_02049FA8 * v3 = sub_0203A72C(v0);
+        Location * v3 = sub_0203A72C(v0);
         sub_02053CD4(param0, v3, param2->unk_08);
     }
 

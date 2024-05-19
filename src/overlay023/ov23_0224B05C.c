@@ -843,7 +843,7 @@ static void ov23_0224BAAC (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
     FieldSystem * v1 = v0->unk_00;
-    UnkStruct_02049FA8 v2;
+    Location v2;
     int v3 = 0, v4 = 0, v5, v6, v7 = 0;
     UnkStruct_ov23_0224B730 v8;
 
@@ -1043,7 +1043,7 @@ static void ov23_0224BE28 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
     FieldSystem * v1 = v0->unk_00;
-    UnkStruct_02049FA8 v2;
+    Location v2;
     int v3 = 0, v4 = 0, v5, v6, v7 = 0;
     UnkStruct_ov23_0224B730 v8;
 
@@ -1571,7 +1571,7 @@ static BOOL ov23_0224C790 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_0224BA48 * v1 = TaskManager_Environment(param0);
-    UnkStruct_02049FA8 v2;
+    Location v2;
     int v3 = 0, v4 = 0;
 
     switch (v1->unk_0C) {
@@ -1747,7 +1747,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224CB1C * v0 = param1;
     FieldSystem * v1 = v0->unk_00;
-    UnkStruct_02049FA8 v2;
+    Location v2;
     u32 v3;
     BOOL v4 = 0;
     int v5;

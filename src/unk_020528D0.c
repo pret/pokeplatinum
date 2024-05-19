@@ -224,7 +224,7 @@ BOOL sub_02052B2C (TaskManager * param0)
     }
 
         {
-            UnkStruct_02049FA8 v2;
+            Location v2;
             UnkStruct_0203A790 * v3 = sub_0203A790(v0->saveData);
             u16 v4 = sub_0203A75C(v3);
 

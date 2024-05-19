@@ -70,7 +70,7 @@ static BOOL sub_020505A0 (TaskManager * param0)
         sub_0206AE0C(v2);
 
         {
-            UnkStruct_02049FA8 v3;
+            Location v3;
 
             inline_02049FA8(&v3, 172, -1, 847, 561, 1);
             sub_020539A0(param0, &v3);
@@ -106,7 +106,7 @@ static BOOL sub_020505A0 (TaskManager * param0)
         sub_0206AE1C(v2);
 
         {
-            UnkStruct_02049FA8 v4;
+            Location v4;
 
             inline_02049FA8(&v4, 164, -1, v1->unk_04, v1->unk_06, 0);
             sub_020539A0(param0, &v4);

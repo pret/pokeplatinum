@@ -7,6 +7,6 @@ typedef struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-} UnkStruct_02049FA8;
+} Location;
 
 #endif // POKEPLATINUM_STRUCT_02049FA8_H

@@ -489,7 +489,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
         sub_020518B0(fieldSystem, v1->unk_10);
 
         if (((*v3) == 0) && (v1->unk_10->unk_14 != 0x4)) {
-            UnkStruct_02049FA8 * v6;
+            Location * v6;
 
             v6 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
             sub_020539A0(taskMan, v6);

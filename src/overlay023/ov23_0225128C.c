@@ -617,7 +617,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02251ACC * v1 = TaskManager_Environment(param0);
-    UnkStruct_02049FA8 v2;
+    Location v2;
     u32 v3;
     BOOL v4 = 0;
     int v5;

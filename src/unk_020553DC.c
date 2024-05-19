@@ -210,7 +210,7 @@ static u16 sub_020554E8 (FieldSystem * param0, int param1)
 {
     int v0, v1;
     UnkStruct_0203A790 * v2 = sub_0203A790(param0->saveData);
-    UnkStruct_02049FA8 * v3 = sub_0203A728(v2);
+    Location * v3 = sub_0203A728(v2);
 
     v0 = Player_XPos(param0->playerAvatar);
     v1 = Player_ZPos(param0->playerAvatar);

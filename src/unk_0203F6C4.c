@@ -4687,7 +4687,7 @@ static BOOL ScrCmd_204 (ScriptContext * param0)
 static BOOL ScrCmd_200 (ScriptContext * param0)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param0->fieldSys->saveData);
-    UnkStruct_02049FA8 * v1 = sub_0203A728(v0);
+    Location * v1 = sub_0203A728(v0);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
     *v2 = v1->unk_00;
@@ -5000,7 +5000,7 @@ static BOOL ScrCmd_0F7 (ScriptContext * param0)
 
 static BOOL ScrCmd_11B (ScriptContext * param0)
 {
-    UnkStruct_02049FA8 v0;
+    Location v0;
 
     v0.unk_00 = ScriptContext_GetVar(param0);
     v0.unk_04 = ScriptContext_GetVar(param0);
@@ -5014,7 +5014,7 @@ static BOOL ScrCmd_11B (ScriptContext * param0)
 
 static BOOL ScrCmd_11C (ScriptContext * param0)
 {
-    UnkStruct_02049FA8 * v0;
+    Location * v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     v0 = sub_0203A730(sub_0203A790(param0->fieldSys->saveData));
@@ -7767,7 +7767,7 @@ static BOOL ScrCmd_2B5 (ScriptContext * param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     UnkStruct_0203A790 * v3 = sub_0203A790(param0->fieldSys->saveData);
-    UnkStruct_02049FA8 * v4 = sub_0203A72C(v3);
+    Location * v4 = sub_0203A72C(v3);
 
     v4->unk_00 = v0;
     v4->unk_08 = v1;

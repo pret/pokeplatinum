@@ -92,7 +92,7 @@ static void ov5_021D2C98(const FieldSystem * fieldSystem, int * param1, int * pa
 static void ov5_021D2CB4(const FieldSystem * fieldSystem, int param1, int * param2, int * param3);
 static u8 ov5_021D2CFC(const FieldSystem * fieldSystem);
 static u8 ov5_021D2D18(const FieldSystem * fieldSystem);
-static BOOL ov5_021D2D34(const FieldSystem * fieldSystem, int param1, int param2, UnkStruct_02049FA8 * param3);
+static BOOL ov5_021D2D34(const FieldSystem * fieldSystem, int param1, int param2, Location * param3);
 static void ov5_021D2E14(FieldSystem * fieldSystem);
 static BOOL ov5_021D2EA4(FieldSystem * fieldSystem, MapObject ** param1);
 static int ov5_021D2274(void);
@@ -622,7 +622,7 @@ static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CA
     int v2;
     int v3;
     u8 v4;
-    UnkStruct_02049FA8 v5;
+    Location v5;
 
     if (param1->unk_03 == -1) {
         return 0;
@@ -849,7 +849,7 @@ static BOOL ov5_021D29A0 (FieldSystem * fieldSystem)
 
 static BOOL ov5_021D29D8 (FieldSystem * fieldSystem, const int param1, const int param2, const u8 param3)
 {
-    UnkStruct_02049FA8 v0;
+    Location v0;
 
     if (ov5_021D2D34(fieldSystem, param1, param2, &v0) == 0) {
         return 0;
@@ -1071,7 +1071,7 @@ static u8 ov5_021D2D18 (const FieldSystem * fieldSystem)
     return sub_02054F94(fieldSystem, v0, v1);
 }
 
-static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param2, UnkStruct_02049FA8 * param3)
+static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param2, Location * param3)
 {
     const UnkStruct_0203A55C * v0;
     int v1;
@@ -1096,7 +1096,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
     }
 
     {
-        UnkStruct_02049FA8 * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
+        Location * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
         inline_02049FA8(v2, fieldSystem->unk_1C->unk_00, v1, param1, param2, Player_Dir(fieldSystem->playerAvatar));
     }
 
@@ -1106,7 +1106,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
 static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int param2, const int param3)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
-    UnkStruct_02049FA8 * v1 = sub_0203A72C(v0);
+    Location * v1 = sub_0203A72C(v0);
 
     (*v1) = *(fieldSystem->unk_1C);
     v1->unk_10 = param3;
@@ -1124,7 +1124,7 @@ static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int
 static void ov5_021D2E14 (FieldSystem * fieldSystem)
 {
     int v0, v1;
-    UnkStruct_02049FA8 v2;
+    Location v2;
 
     ov5_021D2C7C(fieldSystem, &v0, &v1);
 

@@ -37,7 +37,7 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02049FA8 unk_08;
+    Location unk_08;
     void * unk_1C;
     int unk_20;
 } UnkStruct_02056BDC;
@@ -206,7 +206,7 @@ static BOOL sub_02056CFC (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_02056BDC * v1 = TaskManager_Environment(param0);
-    UnkStruct_02049FA8 * v2 = &v1->unk_08;
+    Location * v2 = &v1->unk_08;
 
     switch (v1->unk_00) {
     case 0:

@@ -60,7 +60,7 @@ BOOL sub_02070680 (TaskManager * param0)
 
         {
             u16 v2;
-            UnkStruct_02049FA8 v3;
+            Location v3;
 
             v2 = sub_0203A8A0(v1->unk_08, v1->unk_0A, v1->unk_0C);
             GF_ASSERT(v2 != 0);

@@ -27,7 +27,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov6_02242A8C_t {
     UnkStruct_ov6_02242A10 unk_00[6];
-    UnkStruct_02049FA8 unk_18;
+    Location unk_18;
     FieldSystem * unk_2C;
     int unk_30;
 } UnkStruct_ov6_02242A8C;
@@ -114,7 +114,7 @@ void ov6_02242A94 (const u8 param0, UnkStruct_ov6_02242A8C * param1)
     inline_02049FA8(&param1->unk_18, v0, -1, param1->unk_00[param0].unk_00, param1->unk_00[param0].unk_02, 0);
 }
 
-UnkStruct_02049FA8 * ov6_02242AEC (UnkStruct_ov6_02242A8C * param0)
+Location * ov6_02242AEC (UnkStruct_ov6_02242A8C * param0)
 {
     return &param0->unk_18;
 }

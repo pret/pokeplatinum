@@ -17,11 +17,11 @@
 #include "map_object.h"
 
 typedef struct UnkStruct_0203A790_t {
-    UnkStruct_02049FA8 unk_00;
-    UnkStruct_02049FA8 unk_14;
-    UnkStruct_02049FA8 unk_28;
-    UnkStruct_02049FA8 unk_3C;
-    UnkStruct_02049FA8 unk_50;
+    Location unk_00;
+    Location unk_14;
+    Location unk_28;
+    Location unk_3C;
+    Location unk_50;
     u16 unk_64;
     u16 unk_66;
     u16 unk_68;
@@ -64,32 +64,32 @@ void FieldPlayerState_Init (UnkStruct_0203A790 * param0)
     param0->unk_68 = sub_0203A7EC();
 }
 
-UnkStruct_02049FA8 * sub_0203A720 (UnkStruct_0203A790 * param0)
+Location * sub_0203A720 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_00;
 }
 
-UnkStruct_02049FA8 * sub_0203A724 (UnkStruct_0203A790 * param0)
+Location * sub_0203A724 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_14;
 }
 
-UnkStruct_02049FA8 * sub_0203A728 (UnkStruct_0203A790 * param0)
+Location * sub_0203A728 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_28;
 }
 
-UnkStruct_02049FA8 * sub_0203A72C (UnkStruct_0203A790 * param0)
+Location * sub_0203A72C (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_50;
 }
 
-UnkStruct_02049FA8 * sub_0203A730 (UnkStruct_0203A790 * param0)
+Location * sub_0203A730 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_3C;
 }
 
-void sub_0203A734 (UnkStruct_0203A790 * param0, UnkStruct_02049FA8 * param1)
+void sub_0203A734 (UnkStruct_0203A790 * param0, Location * param1)
 {
     param0->unk_3C = *param1;
     return;

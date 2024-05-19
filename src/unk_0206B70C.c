@@ -80,7 +80,7 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
     UnkStruct_020556C4 * v7;
     UnkStruct_020507E4 * v8 = SaveData_Events(param0->saveData);
     UnkStruct_0203A790 * v9 = sub_0203A790(param0->saveData);
-    UnkStruct_02049FA8 * v10 = sub_0203A72C(v9);
+    Location * v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 
@@ -89,7 +89,7 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
 
     {
         int v11 = 10 - 1;
-        UnkStruct_02049FA8 * v12 = sub_0203A720(v9);
+        Location * v12 = sub_0203A720(v9);
 
         v6 = v12->unk_00;
 
