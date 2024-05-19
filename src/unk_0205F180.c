@@ -66,7 +66,7 @@ static void sub_02060150(PlayerAvatar * playerAvatar, MapObject * param1, int pa
 static void sub_020601D4(PlayerAvatar * playerAvatar, MapObject * param1, int param2, u16 param3, u16 param4);
 static void sub_02060258(PlayerAvatar * playerAvatar, MapObject * param1, int param2, u16 param3, u16 param4);
 static void sub_020602DC(PlayerAvatar * playerAvatar, MapObject * param1, const UnkStruct_ov5_021E8F60 * param2, int param3, u16 param4, u16 param5);
-static void sub_02060324(PlayerAvatar * playerAvatar, u16 param1);
+static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar * playerAvatar, u16 param1);
 int sub_02060390(PlayerAvatar * playerAvatar, int param1);
 static int sub_020603BC(PlayerAvatar * playerAvatar);
 static int sub_020603EC(PlayerAvatar * playerAvatar);
@@ -137,19 +137,19 @@ static const UnkStruct_020EDB04 Unk_020EDB64[4] = {
 const UnkStruct_020EDB84 Unk_020EDB84[];
 static int(*const Unk_020EDAEC[6])(PlayerAvatar *, int);
 
-void sub_0205F180 (PlayerAvatar * playerAvatar, const UnkStruct_ov5_021E8F60 * param1, int dir, u16 param3, u16 keyPress, BOOL param5)
+void PlayerAvatar_MoveControl (PlayerAvatar * playerAvatar, const UnkStruct_ov5_021E8F60 * param1, int dir, u16 keyPad, u16 keyPress, BOOL param5)
 {
     if (dir == -1) {
-        dir = sub_02061348(playerAvatar, param3, keyPress);
+        dir = sub_02061348(playerAvatar, keyPad, keyPress);
     }
 
-    sub_02060324(playerAvatar, param3);
+    PlayerAvatar_TryCyclingGearChange(playerAvatar, keyPad);
 
     if (PlayerAvatar_CheckStartMoveInternal(playerAvatar, dir) == FALSE) {
         return;
     }
 
-    PlayerAvatar_StartMoveInit(playerAvatar, dir, param3, keyPress);
+    PlayerAvatar_StartMoveInit(playerAvatar, dir, keyPad, keyPress);
     ov5_021DFB5C(playerAvatar);
 
     if (sub_0205F62C(playerAvatar, dir) == 1) {
@@ -157,7 +157,7 @@ void sub_0205F180 (PlayerAvatar * playerAvatar, const UnkStruct_ov5_021E8F60 * p
         return;
     }
 
-    if (PlayerAvatar_PlayerState(playerAvatar) == 0x0) {
+    if (PlayerAvatar_PlayerState(playerAvatar) == PLAYER_STATE_WALKING) {
         int v0 = sub_0205FC48(playerAvatar, dir);
 
         if (v0 != 0) {
@@ -167,7 +167,7 @@ void sub_0205F180 (PlayerAvatar * playerAvatar, const UnkStruct_ov5_021E8F60 * p
         }
     }
 
-    inline_0205F180(playerAvatar, param1, dir, param3, keyPress);
+    inline_0205F180(playerAvatar, param1, dir, keyPad, keyPress);
 
     sub_0205F378(playerAvatar);
     PlayerAvatar_PlayWalkSE(playerAvatar);
@@ -181,9 +181,7 @@ int PlayerAvatar_CheckStartMove (PlayerAvatar * playerAvatar, int dir)
 static int PlayerAvatar_CheckStartMoveInternal (PlayerAvatar * playerAvatar, int dir)
 {
     int v0;
-    MapObject * mapObj;
-
-    mapObj = Player_MapObject(playerAvatar);
+    MapObject * mapObj = Player_MapObject(playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
         return 1;
@@ -265,8 +263,8 @@ static void PlayerAvatar_PlayWalkSE (PlayerAvatar * playerAvatar)
         u8 v1, v2 = sub_02062BE8(mapObj);
 
         {
-            int v3 = MapObject_AnimationCode(mapObj);
-            int v4 = sub_0206587C(v3);
+            int animationCode = MapObject_AnimationCode(mapObj);
+            int v4 = sub_0206587C(animationCode);
 
             if (v4 == -1) {
                 v1 = v2;
@@ -310,11 +308,11 @@ static void PlayerAvatar_PlayWalkSE (PlayerAvatar * playerAvatar)
 void sub_0205F490 (PlayerAvatar * playerAvatar)
 {
     int v0, v1, v2;
-    const MapObject * v3;
+    const MapObject * mapObj;
 
     v0 = PlayerAvatar_MoveState(playerAvatar);
     v1 = Player_MoveState(playerAvatar);
-    v3 = Player_MapObject(playerAvatar);
+    mapObj = Player_MapObject(playerAvatar);
 
     sub_0205EB10(playerAvatar, 0);
 
@@ -327,12 +325,12 @@ void sub_0205F490 (PlayerAvatar * playerAvatar)
         }
     }
 
-    if (LocalMapObj_IsAnimationSet(v3) == 0) {
+    if (LocalMapObj_IsAnimationSet(mapObj) == 0) {
         switch (v0) {
         case 0:
             break;
         case 1:
-            v2 = MapObject_AnimationCode(v3);
+            v2 = MapObject_AnimationCode(mapObj);
 
             if (sub_020613D8(v2) == 1) {
                 break;
@@ -352,7 +350,7 @@ void sub_0205F490 (PlayerAvatar * playerAvatar)
         return;
     }
 
-    if (LocalMapObj_CheckAnimationFinished(v3) == 1) {
+    if (LocalMapObj_CheckAnimationFinished(mapObj) == 1) {
         switch (v0) {
         case 0:
             break;
@@ -394,7 +392,7 @@ void sub_0205F56C (PlayerAvatar * playerAvatar)
 int sub_0205F588 (PlayerAvatar * playerAvatar)
 {
     int v0, v1, v2;
-    const MapObject * v3;
+    const MapObject * mapObj;
 
     v0 = PlayerAvatar_MoveState(playerAvatar);
     v1 = Player_MoveState(playerAvatar);
@@ -412,13 +410,13 @@ int sub_0205F588 (PlayerAvatar * playerAvatar)
             return 1;
         }
 
-        v3 = Player_MapObject(playerAvatar);
+        mapObj = Player_MapObject(playerAvatar);
 
-        if (LocalMapObj_IsAnimationSet(v3) == 1) {
+        if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
             return 1;
         }
 
-        v2 = MapObject_AnimationCode(v3);
+        v2 = MapObject_AnimationCode(mapObj);
 
         if (sub_020613D8(v2) == 1) {
             return 1;
@@ -595,7 +593,7 @@ static int sub_0205F808 (PlayerAvatar * playerAvatar, int param1)
             sub_02060B64(playerAvatar, v1, sub_02065838(v2, 0x15), 6);
             sub_0205EB08(playerAvatar, 1);
 
-            if (sub_0205EC88(playerAvatar) == 1) {
+            if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
                 PlayerAvatar_SetSpeed(playerAvatar, 3);
             }
 
@@ -620,7 +618,7 @@ static int sub_0205F95C (PlayerAvatar * playerAvatar, int param1)
     MapObject * v0 = Player_MapObject(playerAvatar);
     int v1 = MapObject_MoveDir(v0);
 
-    if (sub_0205EC88(playerAvatar) == 1) {
+    if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(1622);
         sub_02060B64(playerAvatar, v0, 0x5f, 2);
     } else {
@@ -638,7 +636,7 @@ static int sub_0205F9AC (PlayerAvatar * playerAvatar, int param1)
     MapObject * v0 = Player_MapObject(playerAvatar);
     int v1 = MapObject_MoveDir(v0);
 
-    if (sub_0205EC88(playerAvatar) == 1) {
+    if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
         Sound_PlayEffect(1622);
         sub_02060B64(playerAvatar, v0, 0x5e, 2);
     } else {
@@ -1169,20 +1167,20 @@ static void sub_020602DC (PlayerAvatar * playerAvatar, MapObject * param1, const
 {
     int v0;
 
-    if (sub_0205EC88(playerAvatar) == 1) {
+    if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
         sub_0206078C(playerAvatar, param1, param2, param3, param4, param5);
     } else {
         sub_02060420(playerAvatar, param1, param2, param3, param4, param5);
     }
 }
 
-static void sub_02060324 (PlayerAvatar * playerAvatar, u16 param1)
+static void PlayerAvatar_TryCyclingGearChange (PlayerAvatar * playerAvatar, u16 pad)
 {
     if (PlayerAvatar_PlayerState(playerAvatar) != 0x1) {
         return;
     }
 
-    if ((param1 & PAD_BUTTON_B)) {
+    if ((pad & PAD_BUTTON_B)) {
         u32 v0 = sub_02062BE8(Player_MapObject(playerAvatar));
 
         if (sub_0205DD90(v0) || sub_0205DD9C(v0)) {
@@ -1190,15 +1188,15 @@ static void sub_02060324 (PlayerAvatar * playerAvatar, u16 param1)
         }
 
         {
-            int v1 = 1;
+            int gear = 1;
 
-            if (sub_0205EC88(playerAvatar) == 1) {
-                v1 = 0;
+            if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
+                gear = 0;
             }
 
-            sub_0205EC78(playerAvatar, v1);
+            PlayerAvatar_SetCyclingGear(playerAvatar, gear);
 
-            if (v1 == 0) {
+            if (gear == 0) {
                 Sound_PlayEffect(1564);
             } else {
                 Sound_PlayEffect(1561);
@@ -2187,14 +2185,14 @@ static int sub_02061348 (PlayerAvatar * playerAvatar, u16 param1, u16 param2)
 
 int sub_020613AC (PlayerAvatar * playerAvatar)
 {
-    MapObject * v0 = Player_MapObject(playerAvatar);
+    MapObject * mapObj = Player_MapObject(playerAvatar);
 
-    if (LocalMapObj_IsAnimationSet(v0) == 1) {
+    if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
         return 1;
     }
 
     {
-        int v1 = MapObject_AnimationCode(v0);
+        int v1 = MapObject_AnimationCode(mapObj);
 
         if (sub_020613D8(v1) == 1) {
             return 1;
@@ -2252,7 +2250,7 @@ int sub_02061434 (PlayerAvatar * playerAvatar, int param1)
         v1 = sub_0205FC64(v0);
         break;
     case 0x1:
-        if (sub_0205EC88(playerAvatar) == 1) {
+        if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
             v0 = sub_02060850(playerAvatar, param1);
             v1 = sub_0206081C(v0);
         } else {

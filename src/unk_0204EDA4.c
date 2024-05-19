@@ -9,7 +9,7 @@
 
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"

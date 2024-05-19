@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
 #include "unk_020985E4.h"
 #include "overlay005/ov5_021D0D80.h"

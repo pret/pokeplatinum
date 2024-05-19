@@ -12,7 +12,7 @@
 
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0209BA18.h"
 
 UnkStruct_ov104_02230BE4 * sub_0209BA18(FieldSystem * param0, void * param1);

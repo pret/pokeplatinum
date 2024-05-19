@@ -23,7 +23,7 @@
 #include "unk_0202CD50.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020507CC.h"
 #include "comm_player_manager.h"
 #include "player_avatar.h"

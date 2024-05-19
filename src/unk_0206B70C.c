@@ -19,7 +19,7 @@
 #include "unk_02039C80.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "player_avatar.h"

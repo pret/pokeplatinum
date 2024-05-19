@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0203CC84_H
-#define POKEPLATINUM_UNK_0203CC84_H
+#ifndef POKEPLATINUM_FIELD_SYSTEM_H
+#define POKEPLATINUM_FIELD_SYSTEM_H
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "field/field_system_decl.h"

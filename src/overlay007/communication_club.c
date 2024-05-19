@@ -37,7 +37,7 @@
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "field_comm_manager.h"
 #include "unk_0205D8CC.h"
 #include "overlay007/communication_club.h"

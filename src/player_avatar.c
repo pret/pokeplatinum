@@ -500,13 +500,13 @@ void sub_0205EC70 (PlayerData * playerData, int param1)
     }
 }
 
-void sub_0205EC78 (PlayerAvatar * playerAvatar, int param1)
+void PlayerAvatar_SetCyclingGear (PlayerAvatar * playerAvatar, int param1)
 {
     PlayerData * v0 = PlayerAvatar_PlayerData(playerAvatar);
     sub_0205EC70(v0, param1);
 }
 
-int sub_0205EC88 (PlayerAvatar * playerAvatar)
+int PlayerAvatar_CyclingGear (PlayerAvatar * playerAvatar)
 {
     PlayerData * v0 = PlayerAvatar_PlayerData(playerAvatar);
     return sub_0205EC64(v0);

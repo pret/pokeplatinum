@@ -2,6 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_PLAYER_AVATAR_H
 
 //Player State
+#define PLAYER_STATE_WALKING        0
 #define PLAYER_STATE_CYCLING        1
 
 #endif

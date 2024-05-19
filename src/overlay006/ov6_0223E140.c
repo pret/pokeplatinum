@@ -38,7 +38,7 @@
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
 #include "player_avatar.h"
 #include "map_object.h"

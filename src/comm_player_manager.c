@@ -28,7 +28,7 @@
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "unk_0203A378.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_02054D00.h"
 #include "comm_player_manager.h"
 #include "player_avatar.h"

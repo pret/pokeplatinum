@@ -23,7 +23,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207E0B8.h"

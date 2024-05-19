@@ -32,7 +32,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "pokemon.h"

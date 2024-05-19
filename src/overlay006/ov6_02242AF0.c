@@ -13,7 +13,7 @@
 #include "heap.h"
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
 #include "player_avatar.h"
 #include "unk_020655F4.h"
