@@ -6,15 +6,13 @@
 #include "constants/items.h"
 #include "constants/battle/trainer_ai.h"
 
-    .include "consts/generated/asm/abilities.inc"
-    .include "consts/generated/asm/battle.inc"
-    .include "consts/generated/asm/battle_controller_params.inc"
-    .include "consts/generated/asm/battle_lib_params.inc"
-    .include "consts/generated/asm/gender.inc"
-    .include "consts/generated/asm/items.inc"
-    .include "consts/generated/asm/moves.inc"
-    .include "consts/generated/asm/pokemon.inc"
-    .include "consts/generated/asm/trainer_ai.inc"
+    .include "consts/abilities.inc"
+    .include "consts/battle.inc"
+    .include "consts/gender.inc"
+    .include "consts/items.inc"
+    .include "consts/moves.inc"
+    .include "consts/pokemon.inc"
+    .include "consts/trainer_ai.inc"
     .include "macros/aicmd.inc"
 
     .text

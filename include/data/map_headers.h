@@ -1,4 +1,4 @@
-#include "consts/generated/c/map.h"
+#include "consts/map.h"
 
 static const MapHeader sMapHeaders[] = {
     [MAP_HEADER_EVERYWHERE] = {

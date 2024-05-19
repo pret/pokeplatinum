@@ -143,7 +143,8 @@ main = executable('main',
     sources: [
         pokeplatinum_c,
         pokeplatinum_asm,
-        generated_consts_c,
+        c_consts_generators,
+        asm_consts_generators,
         naix_headers,
     ],
     c_args: [

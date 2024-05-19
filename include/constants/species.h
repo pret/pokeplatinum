@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_SPECIES_H
 #define POKEPLATINUM_CONSTANTS_SPECIES_H
 
-#include "consts/generated/c/species.h"
+#include "consts/species.h"
 
 #define KANTO_DEX_COUNT         (SPECIES_MEW - SPECIES_NONE)
 #define JOHTO_DEX_COUNT         (SPECIES_CELEBI - SPECIES_MEW)

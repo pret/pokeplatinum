@@ -539,7 +539,7 @@ events_narc = custom_target('zone_event.narc',
     output: 'zone_event.narc',
     input: events_files,
     env: json2bin_env,
-    depends: [ generated_consts_py ],
+    depends: [ py_consts_generators ],
     command: [
         events_py,
         '--knarc', knarc_exe,

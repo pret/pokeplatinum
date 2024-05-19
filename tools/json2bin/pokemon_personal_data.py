@@ -3,7 +3,7 @@ import pathlib
 
 import json2bin as j2b
 
-from consts.generated.py import (
+from consts import (
     abilities,
     items,
     pokemon,

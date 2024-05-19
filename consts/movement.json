@@ -1,9 +1,4 @@
 {
-    "targets": {
-        "movement": [
-            "@MovementAction"
-        ]
-    },
     "definitions": {
         "@MovementAction": {
             "type": "enum",

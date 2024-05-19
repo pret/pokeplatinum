@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/generated/c/abilities.h"
-#include "consts/generated/c/gender.h"
+#include "consts/abilities.h"
+#include "consts/gender.h"
 
 #include "constants/charcode.h"
 #include "constants/heap.h"

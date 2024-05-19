@@ -1,0 +1,12 @@
+{
+    "definitions": {
+        "@Gender": {
+            "type": "enum",
+            "values": [
+                "GENDER_MALE",
+                "GENDER_FEMALE",
+                "GENDER_NONE"
+            ]
+        }
+    }
+}

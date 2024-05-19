@@ -4,7 +4,7 @@ import json
 import pathlib
 import subprocess
 
-from consts.generated.py.pokemon import PokemonGenderRatio
+from consts.pokemon import PokemonGenderRatio
 
 
 argparser = argparse.ArgumentParser(

@@ -1,9 +1,4 @@
 {
-    "targets": {
-        "map": [
-            "@MapHeader"
-        ]
-    },
     "definitions": {
         "@MapHeader": {
             "type": "enum",
