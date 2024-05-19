@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/Nomura-RH/NitroSystem.git
-revision = head
+revision = main
 depth = 1
 directory = NitroSystem-071126.1
 
