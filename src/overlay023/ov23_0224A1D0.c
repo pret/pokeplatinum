@@ -78,25 +78,25 @@ void ov23_0224A1D0 (void)
 static void ov23_0224A204 (int param0)
 {
     int v0;
-    CommPlayerManager * v1 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
 
     if (param0 == CommSys_CurNetId()) {
-        if (v1->unk_290[param0] != NULL) {
-            sub_0202CFEC(sub_0202CD88(v1->fieldSys->saveData), 28);
+        if (commPlayerMan->unk_290[param0] != NULL) {
+            sub_0202CFEC(sub_0202CD88(commPlayerMan->fieldSys->saveData), 28);
 
-            if (v1->unk_27C[5 - 1]) {
-                Heap_FreeToHeap(v1->unk_27C[5 - 1]);
+            if (commPlayerMan->unk_27C[5 - 1]) {
+                Heap_FreeToHeap(commPlayerMan->unk_27C[5 - 1]);
             }
 
             for (v0 = 5 - 1; v0 >= 1; v0--) {
-                v1->unk_27C[v0] = v1->unk_27C[v0 - 1];
+                commPlayerMan->unk_27C[v0] = commPlayerMan->unk_27C[v0 - 1];
             }
 
-            v1->unk_27C[0] = v1->unk_290[param0];
-            sub_02028830(sub_020298B0(FieldSystem_SaveData(v1->fieldSys)), v1->unk_290[param0]);
+            commPlayerMan->unk_27C[0] = commPlayerMan->unk_290[param0];
+            sub_02028830(sub_020298B0(FieldSystem_SaveData(commPlayerMan->fieldSys)), commPlayerMan->unk_290[param0]);
 
-            v1->unk_290[param0] = NULL;
-            v1->unk_14A[param0].unk_20 = 0xff;
+            commPlayerMan->unk_290[param0] = NULL;
+            commPlayerMan->unk_14A[param0].unk_20 = 0xff;
         }
     } else {
         ov23_0224AE60(param0);
@@ -158,12 +158,12 @@ static void ov23_0224A334 (int param0)
 void ov23_0224A348 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224A348 v0;
-    CommPlayerManager * v1 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
 
     v0.unk_00 = 2;
     v0.unk_01 = param0;
 
-    if (v1->unk_E2[param0] && !ov23_0224ACC0(param0)) {
+    if (commPlayerMan->unk_E2[param0] && !ov23_0224ACC0(param0)) {
         if (ov23_0224AEA4(param0)) {
             v0.unk_00 = 3;
         } else {
@@ -180,7 +180,7 @@ void ov23_0224A348 (int param0, int param1, void * param2, void * param3)
 
 void ov23_0224A3A8 (int param0, int param1, void * param2, void * param3)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
 
     if (!CommSys_IsSendingMovementData()) {
@@ -188,24 +188,24 @@ void ov23_0224A3A8 (int param0, int param1, void * param2, void * param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_01 == CommSys_CurNetId())) {
-        if (!v0->unk_2B8) {
-            v0->unk_2B8 = 1;
+        if (!commPlayerMan->unk_2B8) {
+            commPlayerMan->unk_2B8 = 1;
 
-            ov23_0224F758(ov23_0224A334, v0->fieldSys);
+            ov23_0224F758(ov23_0224A334, commPlayerMan->fieldSys);
         }
     } else if ((v1->unk_00 == 3) && (v1->unk_01 == CommSys_CurNetId())) {
-        if (!v0->unk_2B8) {
-            v0->unk_2B8 = 1;
-            ov23_02250A50(ov23_0224A334, v0->fieldSys);
+        if (!commPlayerMan->unk_2B8) {
+            commPlayerMan->unk_2B8 = 1;
+            ov23_02250A50(ov23_0224A334, commPlayerMan->fieldSys);
         }
     }
 }
 
 void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
-    UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSys->saveData);
+    UnkStruct_020507E4 * v2 = SaveData_Events(commPlayerMan->fieldSys->saveData);
 
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
@@ -219,24 +219,24 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_01 == CommSys_CurNetId())) {
-        ov23_0224DCB8(v1->unk_02, ov23_0224A334, v0->fieldSys);
+        ov23_0224DCB8(v1->unk_02, ov23_0224A334, commPlayerMan->fieldSys);
 
-        v0->unk_58.unk_00_0 = v1->unk_01;
-        v0->unk_58.unk_00_4 = v1->unk_02;
-        v0->unk_58.unk_00_8 = 0;
-        v0->unk_58.unk_00_9 = 0;
+        commPlayerMan->unk_58.unk_00_0 = v1->unk_01;
+        commPlayerMan->unk_58.unk_00_4 = v1->unk_02;
+        commPlayerMan->unk_58.unk_00_8 = 0;
+        commPlayerMan->unk_58.unk_00_9 = 0;
 
-        if (v0->unk_5A[v1->unk_02] == 0) {
-            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_SaveData(v0->fieldSys)), v1->unk_02);
+        if (commPlayerMan->unk_5A[v1->unk_02] == 0) {
+            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSys)), v1->unk_02);
             sub_0206B364(v2, sub_0206B354(v2) + 1);
             sub_0206B384(v2, sub_0206B374(v2) + 1);
 
-            v0->unk_5A[v1->unk_02]++;
+            commPlayerMan->unk_5A[v1->unk_02]++;
         }
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_02 == CommSys_CurNetId())) {
-        ov23_0224F07C(v1->unk_02, v1->unk_01, v0->fieldSys);
+        ov23_0224F07C(v1->unk_02, v1->unk_01, commPlayerMan->fieldSys);
     }
 
     if ((v1->unk_00 == 2) && (v1->unk_01 == CommSys_CurNetId())) {
@@ -284,7 +284,7 @@ static void ov23_0224A5B0 (int param0)
 
 static void ov23_0224A5CC (SysTask * param0, void * param1)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A5CC * v1 = param1;
     u8 v2 = v1->unk_04;
     u8 v3 = 0;
@@ -302,7 +302,7 @@ static void ov23_0224A5CC (SysTask * param0, void * param1)
     }
 
     if (v3) {
-        v0->unk_EA[v2] = 1;
+        commPlayerMan->unk_EA[v2] = 1;
         Heap_FreeToHeap(v1);
         SysTask_Done(param0);
     }
@@ -310,12 +310,12 @@ static void ov23_0224A5CC (SysTask * param0, void * param1)
 
 static void ov23_0224A620 (int param0)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A5CC * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov23_0224A5CC));
 
     v1->unk_00 = 0;
     v1->unk_04 = param0;
-    v0->unk_EA[param0] = 0;
+    commPlayerMan->unk_EA[param0] = 0;
 
     SysTask_Start(ov23_0224A5CC, v1, 100);
     sub_02059058(param0, 0);
@@ -367,7 +367,7 @@ BOOL ov23_0224A6B8 (int param0)
 
 static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, SecretBaseRecord * param2)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
 
     ov23_0224321C();
 
@@ -377,7 +377,7 @@ static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, Secret
     ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(param0->unk_01));
 
     if (param1) {
-        v0->unk_FA[CommSys_CurNetId()] = 0;
+        commPlayerMan->unk_FA[CommSys_CurNetId()] = 0;
         ov23_0224B040(CommSys_CurNetId());
         ov23_0224B00C(CommSys_CurNetId());
         ov23_02253F40(ov23_022421AC(), 10, 1, ov23_0224A5B0);
@@ -391,15 +391,15 @@ static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, Secret
 
 void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A570 * v1 = param2;
     BOOL v2;
     int v3 = 0;
-    SecretBaseRecord * v4 = SaveData_SecretBaseRecord(FieldSystem_SaveData(v0->fieldSys));
+    SecretBaseRecord * v4 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSys));
 
     switch (v1->unk_00) {
     case 0:
-        if (v0->unk_290[v1->unk_01]) {
+        if (commPlayerMan->unk_290[v1->unk_01]) {
             ov23_0224AE60(v1->unk_01);
             ov23_0224B040(v1->unk_01);
 
@@ -416,7 +416,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             return;
         }
 
-        if (v0->unk_290[v1->unk_02] == NULL) {
+        if (commPlayerMan->unk_290[v1->unk_02] == NULL) {
             if (v1->unk_01 == CommSys_CurNetId()) {
                 sub_02059514();
             }
@@ -424,7 +424,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             return;
         }
 
-        if (TrainerInfo_Equals(v0->unk_290[v1->unk_02], CommInfo_TrainerInfo(v1->unk_01)) == 1) {
+        if (TrainerInfo_Equals(commPlayerMan->unk_290[v1->unk_02], CommInfo_TrainerInfo(v1->unk_01)) == 1) {
             ov23_0224AE60(v1->unk_02);
 
             if (v1->unk_01 == CommSys_CurNetId()) {
@@ -465,21 +465,21 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
         }
         break;
     case 3:
-        v0->unk_FA[v1->unk_01] = 0;
+        commPlayerMan->unk_FA[v1->unk_01] = 0;
         ov23_0224B040(v1->unk_01);
 
         if (v1->unk_01 == CommSys_CurNetId()) {
-            SecretBaseRecord * v5 = SaveData_SecretBaseRecord(FieldSystem_SaveData(v0->fieldSys));
+            SecretBaseRecord * v5 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSys));
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(SaveData_Events(v0->fieldSys->saveData));
+            sub_0206AA40(SaveData_Events(commPlayerMan->fieldSys->saveData));
 
-            if (v0->unk_290[v1->unk_01]) {
-                sub_0206DAB8(v0->fieldSys, v0->unk_290[v1->unk_01]);
+            if (commPlayerMan->unk_290[v1->unk_01]) {
+                sub_0206DAB8(commPlayerMan->fieldSys, commPlayerMan->unk_290[v1->unk_01]);
 
-                if (v0->unk_2B2 != 0xffff) {
-                    v0->unk_2B2++;
+                if (commPlayerMan->unk_2B2 != 0xffff) {
+                    commPlayerMan->unk_2B2++;
                 }
             }
 
@@ -495,9 +495,9 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             sub_0200502C(4, 1060, 60, 0, 0xff, NULL);
         }
 
-        if (v0->unk_290[v1->unk_01]) {
-            if (TrainerInfo_Equals(v0->unk_290[v1->unk_01], CommInfo_TrainerInfo(CommSys_CurNetId())) == 1) {
-                sub_0206DAD4(v0->fieldSys, CommInfo_TrainerInfo(v1->unk_01));
+        if (commPlayerMan->unk_290[v1->unk_01]) {
+            if (TrainerInfo_Equals(commPlayerMan->unk_290[v1->unk_01], CommInfo_TrainerInfo(CommSys_CurNetId())) == 1) {
+                sub_0206DAD4(commPlayerMan->fieldSys, CommInfo_TrainerInfo(v1->unk_01));
             }
         }
 
@@ -509,10 +509,10 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
 void ov23_0224AA84 (void)
 {
     int v0;
-    CommPlayerManager * v1 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        v1->unk_14A[v0].unk_20 = 0xff;
+        commPlayerMan->unk_14A[v0].unk_20 = 0xff;
     }
 }
 
@@ -524,12 +524,12 @@ u8 * ov23_0224AAA0 (int param0, void * param1, int param2)
 
 void ov23_0224AAB0 (void)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
 
-    v0->unk_2B9 = 0;
+    commPlayerMan->unk_2B9 = 0;
 
-    if (v0->unk_290[CommSys_CurNetId()]) {
-        CommSys_SendDataFixedSize(91, v0->unk_290[CommSys_CurNetId()]);
+    if (commPlayerMan->unk_290[CommSys_CurNetId()]) {
+        CommSys_SendDataFixedSize(91, commPlayerMan->unk_290[CommSys_CurNetId()]);
     } else {
         TrainerInfo * v0 = TrainerInfo_New(15);
         Strbuf* v1 = Strbuf_Init(20, 15);
@@ -551,32 +551,32 @@ int ov23_0224AB2C (void)
 
 void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     int v1;
     const TrainerInfo * v2 = param2;
     Strbuf* v3;
     u8 v4 = param0;
 
-    if (v0) {
-        TrainerInfo_Copy(v2, (TrainerInfo *)v0->unk_14A[param0].unk_00);
+    if (commPlayerMan) {
+        TrainerInfo_Copy(v2, (TrainerInfo *)commPlayerMan->unk_14A[param0].unk_00);
 
         v3 = TrainerInfo_NameNewStrbuf(v2, 15);
 
         if (Strbuf_Length(v3) != 0) {
-            v0->unk_14A[param0].unk_20 = param0;
+            commPlayerMan->unk_14A[param0].unk_20 = param0;
         }
 
         for (v1 = 0; v1 < (7 + 1); v1++) {
-            if (v0->unk_14A[v1].unk_20 != 0xff) {
-                v0->unk_14A[v1].unk_20 = v1;
-                sub_02035A3C(92, &v0->unk_14A[v1], sizeof(UnkStruct_ov23_0224ABC4));
+            if (commPlayerMan->unk_14A[v1].unk_20 != 0xff) {
+                commPlayerMan->unk_14A[v1].unk_20 = v1;
+                sub_02035A3C(92, &commPlayerMan->unk_14A[v1], sizeof(UnkStruct_ov23_0224ABC4));
             }
         }
 
         CommSys_SendDataServer(93, &v4, 1);
         Strbuf_Free(v3);
 
-        v0->unk_2C2 = 1;
+        commPlayerMan->unk_2C2 = 1;
     } else {
         GF_ASSERT(0);
     }
@@ -584,20 +584,20 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
 
 void ov23_0224ABC4 (int param0, int param1, void * param2, void * param3)
 {
-    CommPlayerManager * v0 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224ABC4 * v1 = param2;
     int v2, v3;
 
-    if (v0) {
+    if (commPlayerMan) {
         v3 = v1->unk_20;
 
-        if (v0->unk_290[v3]) {
-            Heap_FreeToHeap(v0->unk_290[v3]);
+        if (commPlayerMan->unk_290[v3]) {
+            Heap_FreeToHeap(commPlayerMan->unk_290[v3]);
         }
 
-        v0->unk_290[v3] = TrainerInfo_New(15);
-        TrainerInfo_Copy((TrainerInfo *)v1->unk_00, v0->unk_290[v3]);
-        v0->unk_FA[v3] = 1;
+        commPlayerMan->unk_290[v3] = TrainerInfo_New(15);
+        TrainerInfo_Copy((TrainerInfo *)v1->unk_00, commPlayerMan->unk_290[v3]);
+        commPlayerMan->unk_FA[v3] = 1;
     }
 }
 
@@ -609,13 +609,13 @@ int ov23_0224AC0C (void)
 void ov23_0224AC10 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
-    CommPlayerManager * v1 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
 
     if (v0[0] == CommSys_CurNetId()) {
-        v1->unk_2B9 = 1;
+        commPlayerMan->unk_2B9 = 1;
     }
 
-    v1->unk_2C2 = 0;
+    commPlayerMan->unk_2C2 = 0;
 }
 
 BOOL ov23_0224AC3C (void)
@@ -629,13 +629,13 @@ void ov23_0224AC4C (void)
     TrainerInfo * v0 = NULL;
     int v1, v2;
     int v3 = CommSys_CurNetId();
-    CommPlayerManager * v4 = CommPlayerMan_Get();
+    CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
 
-    if (v4->unk_290[v3]) {
-        v0 = v4->unk_290[v3];
-        v4->unk_290[v3] = NULL;
-        v4->unk_FA[v3] = 0;
-        v4->unk_14A[v3].unk_20 = 0xff;
+    if (commPlayerMan->unk_290[v3]) {
+        v0 = commPlayerMan->unk_290[v3];
+        commPlayerMan->unk_290[v3] = NULL;
+        commPlayerMan->unk_FA[v3] = 0;
+        commPlayerMan->unk_14A[v3].unk_20 = 0xff;
     }
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
@@ -643,12 +643,12 @@ void ov23_0224AC4C (void)
     }
 
     if (v0) {
-        v4->unk_290[0] = v0;
-        v4->unk_FA[0] = 1;
+        commPlayerMan->unk_290[0] = v0;
+        commPlayerMan->unk_FA[0] = 1;
 
-        TrainerInfo_Copy(v0, (TrainerInfo *)&v4->unk_14A[0].unk_00);
+        TrainerInfo_Copy(v0, (TrainerInfo *)&commPlayerMan->unk_14A[0].unk_00);
 
-        v4->unk_14A[0].unk_20 = 0;
+        commPlayerMan->unk_14A[0].unk_20 = 0;
     }
 }
 

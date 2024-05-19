@@ -37,40 +37,40 @@ typedef struct {
     u8 unk_0E;
 } UnkStruct_0206C0E8;
 
-static BOOL sub_0206C120(TaskManager * param0);
+static BOOL sub_0206C120(TaskManager * taskMan);
 
-void sub_0206C0E8 (FieldSystem * param0)
+void sub_0206C0E8 (FieldSystem * fieldSystem)
 {
     UnkStruct_0206C0E8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C0E8));
 
     v0->unk_00 = ov6_022426AC(11);
-    v0->unk_04 = ov6_02242A10(11, param0);
+    v0->unk_04 = ov6_02242A10(11, fieldSystem);
     v0->unk_0C = 0;
     v0->unk_0D = 0;
 
-    sub_02050944(param0->unk_10, sub_0206C120, v0);
+    sub_02050944(fieldSystem->unk_10, sub_0206C120, v0);
 }
 
-static BOOL sub_0206C120 (TaskManager * param0)
+static BOOL sub_0206C120 (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_0206C0E8 * v1 = TaskManager_Environment(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_0206C0E8 * v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_0C) {
     case 0:
-        sub_02070428(v0, 1);
+        sub_02070428(fieldSystem, 1);
         ov6_02242A94(v1->unk_0D, v1->unk_04);
         v1->unk_08 = ov6_02242AEC(v1->unk_04);
-        sub_020558AC(param0);
+        sub_020558AC(taskMan);
         v1->unk_0C = 1;
         break;
     case 1:
-        sub_02055820(param0);
+        sub_02055820(taskMan);
         v1->unk_0C = 2;
         break;
     case 2:
     {
-        UnkStruct_020507E4 * v2 = SaveData_Events(v0->saveData);
+        UnkStruct_020507E4 * v2 = SaveData_Events(fieldSystem->saveData);
 
         if (v1->unk_0D == 0) {
             sub_0206AE0C(v2);
@@ -79,33 +79,33 @@ static BOOL sub_0206C120 (TaskManager * param0)
         }
     }
 
-        sub_020539A0(param0, v1->unk_08);
+        sub_020539A0(taskMan, v1->unk_08);
         v1->unk_0C = 3;
         break;
     case 3:
-        sub_02055868(param0);
+        sub_02055868(taskMan);
         v1->unk_0C = 4;
         break;
     case 4:
     {
-        MapObject * v3 = Player_MapObject(v0->playerAvatar);
+        MapObject * v3 = Player_MapObject(fieldSystem->playerAvatar);
 
         v1->unk_0D++;
 
         if (v1->unk_0D <= 5) {
             int v4;
 
-            v4 = ov6_02242984(v0);
+            v4 = ov6_02242984(fieldSystem);
             MapObject_SetHidden(v3, 1);
             ov6_022426C0(v1->unk_00, v4);
             ov6_022427F4(v1->unk_00);
             v1->unk_0E = 0;
             Sound_PlayEffect(1657);
-            sub_02056B30(param0, 3, 17, 0xffff, 0x0, 6, 1, 11);
+            sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, 11);
             v1->unk_0C = 5;
         } else {
             MapObject_SetHidden(v3, 0);
-            sub_020558F0(param0);
+            sub_020558F0(taskMan);
             v1->unk_0C = 8;
         }
     }
@@ -117,7 +117,7 @@ static BOOL sub_0206C120 (TaskManager * param0)
             ov6_02242A94(v1->unk_0D, v1->unk_04);
             v1->unk_08 = ov6_02242AEC(v1->unk_04);
             Sound_PlayEffect(1657);
-            sub_02056B30(param0, 3, 16, 0xffff, 0x0, 6, 1, 11);
+            sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, 11);
             v1->unk_0C = 6;
         }
         break;
@@ -132,7 +132,7 @@ static BOOL sub_0206C120 (TaskManager * param0)
         }
         break;
     case 8:
-        sub_02070428(v0, 0);
+        sub_02070428(fieldSystem, 0);
         ov6_02242A8C(v1->unk_04);
         ov6_022426B8(v1->unk_00);
         Heap_FreeToHeap(v1);

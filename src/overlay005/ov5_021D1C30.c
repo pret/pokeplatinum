@@ -115,7 +115,7 @@ static void ov5_021D1C30 (UnkStruct_ov5_021D1CAC * param0)
     param0->unk_03 = -1;
 }
 
-void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 param2, u16 param3)
+void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem, u16 param2, u16 param3)
 {
     int v0;
     int v1;
@@ -123,9 +123,9 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 pa
 
     ov5_021D1C30(param0);
 
-    v0 = Player_MoveState(param1->playerAvatar);
-    v1 = PlayerAvatar_MoveState(param1->playerAvatar);
-    v2 = Player_Dir(param1->playerAvatar);
+    v0 = Player_MoveState(fieldSystem->playerAvatar);
+    v1 = PlayerAvatar_MoveState(fieldSystem->playerAvatar);
+    v2 = Player_Dir(fieldSystem->playerAvatar);
 
     param0->unk_04 = param2;
     param0->unk_06 = param3;
@@ -170,7 +170,7 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * param1, u16 pa
         param0->unk_03 = -1;
     }
 
-    param0->unk_02 = sub_02061308(param1->playerAvatar, param2, param3);
+    param0->unk_02 = sub_02061308(fieldSystem->playerAvatar, param2, param3);
 }
 
 int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)

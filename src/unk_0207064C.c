@@ -17,7 +17,7 @@
 #include "overlay006/ov6_02243258.h"
 
 typedef struct {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     int unk_04;
     u16 unk_08;
     s16 unk_0A;
@@ -26,13 +26,13 @@ typedef struct {
     SysTask * unk_14;
 } UnkStruct_0207064C;
 
-void * sub_0207064C (u32 param0, FieldSystem * param1, Pokemon * param2, u16 param3, s16 param4, s16 param5)
+void * sub_0207064C (u32 param0, FieldSystem * fieldSystem, Pokemon * param2, u16 param3, s16 param4, s16 param5)
 {
     UnkStruct_0207064C * v0 = Heap_AllocFromHeapAtEnd(param0, (sizeof(UnkStruct_0207064C)));
 
     memset(v0, 0, (sizeof(UnkStruct_0207064C)));
 
-    v0->unk_00 = param1;
+    v0->fieldSystem = fieldSystem;
     v0->unk_10 = param2;
     v0->unk_08 = param3;
     v0->unk_0A = param4;
@@ -43,12 +43,12 @@ void * sub_0207064C (u32 param0, FieldSystem * param1, Pokemon * param2, u16 par
 
 BOOL sub_02070680 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0207064C * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
-        v1->unk_14 = ov6_02243F88(v1->unk_00, 1, v1->unk_10, PlayerAvatar_Gender(v1->unk_00->playerAvatar));
+        v1->unk_14 = ov6_02243F88(v1->fieldSystem, 1, v1->unk_10, PlayerAvatar_Gender(v1->fieldSystem->playerAvatar));
         v1->unk_04++;
         break;
     case 1:

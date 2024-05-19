@@ -28,39 +28,39 @@ typedef struct {
 typedef struct UnkStruct_ov6_02242A8C_t {
     UnkStruct_ov6_02242A10 unk_00[6];
     Location unk_18;
-    FieldSystem * unk_2C;
+    FieldSystem * fieldSystem;
     int unk_30;
 } UnkStruct_ov6_02242A8C;
 
-int ov6_02242984 (FieldSystem * param0)
+int ov6_02242984 (FieldSystem * fieldSystem)
 {
     u8 v0;
     BOOL v1;
     int v2[12];
     UnkStruct_ov6_02242634 * v3;
 
-    v3 = (UnkStruct_ov6_02242634 *)sub_0203A640(param0);
+    v3 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
 
     for (v0 = 0; v0 < 12; v0++) {
         v2[v0] = v3->unk_04[v0].unk_04;
     }
 
-    v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(param0)));
+    v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
 
-    ov6_02242F74(sub_0202D814(sub_0202D834(param0->saveData), 1), v1, param0->unk_1C->unk_00, &v2[6], &v2[7]);
+    ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->unk_1C->unk_00, &v2[6], &v2[7]);
     ov6_02240C9C(v3, &v2[2], &v2[3]);
     ov6_022477B8(v3, v1, &v2[8], &v2[9]);
 
     return v2[inline_020564D0(12)];
 }
 
-UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * param1)
+UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * fieldSystem)
 {
     u8 v0;
     UnkStruct_ov6_02242A8C * v1;
 
     v1 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_02242A8C));
-    v1->unk_2C = param1;
+    v1->fieldSystem = fieldSystem;
 
     {
         u8 v2;
@@ -75,9 +75,9 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * param1)
         }
 
         {
-            v1->unk_00[5].unk_00 = Player_XPos(param1->playerAvatar);
-            v1->unk_00[5].unk_02 = Player_ZPos(param1->playerAvatar);
-            v1->unk_30 = param1->unk_1C->unk_00;
+            v1->unk_00[5].unk_00 = Player_XPos(fieldSystem->playerAvatar);
+            v1->unk_00[5].unk_02 = Player_ZPos(fieldSystem->playerAvatar);
+            v1->unk_30 = fieldSystem->unk_1C->unk_00;
         }
 
         Heap_FreeToHeap(v3);
@@ -108,7 +108,7 @@ void ov6_02242A94 (const u8 param0, UnkStruct_ov6_02242A8C * param1)
     } else {
         v1 = param1->unk_00[param0].unk_00 / 32;
         v2 = param1->unk_00[param0].unk_02 / 32;
-        v0 = sub_02039E30(param1->unk_2C->unk_2C, v1, v2);
+        v0 = sub_02039E30(param1->fieldSystem->unk_2C, v1, v2);
     }
 
     inline_02049FA8(&param1->unk_18, v0, -1, param1->unk_00[param0].unk_00, param1->unk_00[param0].unk_02, 0);

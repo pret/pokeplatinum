@@ -78,8 +78,8 @@ typedef struct {
     SysTask * unk_10;
 } UnkStruct_ov23_02252038;
 
-static void ov23_022520E8(FieldSystem * param0, UnkStruct_ov23_022513B0 * param1);
-static void ov23_02251F94(FieldSystem * param0);
+static void ov23_022520E8(FieldSystem * fieldSystem, UnkStruct_ov23_022513B0 * param1);
+static void ov23_02251F94(FieldSystem * fieldSystem);
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 * param0);
 
 static const UnkStruct_ov61_0222C884 Unk_ov23_022569C8 = {
@@ -179,8 +179,6 @@ BOOL ov23_02251324 (int param0, UnkStruct_ov23_0224271C * param1)
                 u8 v5 = 3;
                 ov23_0224A570(param0, 1, &v5, NULL);
                 return 1;
-            } else {
-                (void)0;
             }
         }
 

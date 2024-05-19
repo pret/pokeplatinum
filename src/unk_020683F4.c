@@ -102,8 +102,8 @@ typedef struct {
     u16 unk_16;
 } UnkStruct_02068EFC;
 
-void * sub_0203D8AC(FieldSystem * param0);
-static void sub_020684D0(FieldSystem * param0, UnkStruct_020684D0 * param1);
+void * sub_0203D8AC(FieldSystem * fieldSystem);
+static void sub_020684D0(FieldSystem * fieldSystem, UnkStruct_020684D0 * param1);
 static void sub_02068630(UnkStruct_02068630 * param0, const UnkStruct_020684D0 * param1);
 static void sub_020686C8(UnkStruct_02068630 * param0, const UnkStruct_020684D0 * param1);
 static void sub_02068710(UnkStruct_02068630 * param0, const UnkStruct_020684D0 * param1);
@@ -206,27 +206,27 @@ u32 sub_020683F4 (u16 param0, u16 param1)
     return (u32)Unk_020EF79C[param1].unk_08;
 }
 
-void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
+void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 {
     int v0, v1, v2;
     MapObject * v3;
 
-    if (sub_0205F158(param0->playerAvatar) == 1) {
-        sub_020684D0(param0, param1);
+    if (sub_0205F158(fieldSystem->playerAvatar) == 1) {
+        sub_020684D0(fieldSystem, param1);
         return;
     }
 
-    param1->unk_18 = param0;
-    param1->unk_00 = param0->unk_1C->unk_00;
-    param1->unk_04 = sub_0206A984(SaveData_Events(param0->saveData));
-    param1->unk_08 = PlayerAvatar_PlayerState(param0->playerAvatar);
+    param1->unk_18 = fieldSystem;
+    param1->unk_00 = fieldSystem->unk_1C->unk_00;
+    param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
+    param1->unk_08 = PlayerAvatar_PlayerState(fieldSystem->playerAvatar);
 
-    v0 = Player_XPos(param0->playerAvatar);
-    v1 = Player_ZPos(param0->playerAvatar);
+    v0 = Player_XPos(fieldSystem->playerAvatar);
+    v1 = Player_ZPos(fieldSystem->playerAvatar);
 
-    param1->unk_0E = sub_02054F94(param0, v0, v1);
+    param1->unk_0E = sub_02054F94(fieldSystem, v0, v1);
 
-    v2 = Player_Dir(param0->playerAvatar);
+    v2 = Player_Dir(fieldSystem->playerAvatar);
 
     switch (v2) {
     case 0:
@@ -243,28 +243,28 @@ void sub_0206842C (FieldSystem * param0, UnkStruct_020684D0 * param1)
         break;
     }
 
-    param1->unk_0C = sub_02054F94(param0, v0, v1);
-    sub_0203C9D4(param0, &v3);
+    param1->unk_0C = sub_02054F94(fieldSystem, v0, v1);
+    sub_0203C9D4(fieldSystem, &v3);
 
-    param1->unk_10 = sub_02055FC8(param0, v3);
-    param1->unk_14 = param0->playerAvatar;
+    param1->unk_10 = sub_02055FC8(fieldSystem, v3);
+    param1->unk_14 = fieldSystem->playerAvatar;
 }
 
-static void sub_020684D0 (FieldSystem * param0, UnkStruct_020684D0 * param1)
+static void sub_020684D0 (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 {
-    param1->unk_18 = param0;
-    param1->unk_00 = param0->unk_1C->unk_00;
-    param1->unk_04 = sub_0206A984(SaveData_Events(param0->saveData));
-    param1->unk_08 = PlayerAvatar_PlayerState(param0->playerAvatar);
-    param1->unk_0E = sub_02061760(param0->playerAvatar);
+    param1->unk_18 = fieldSystem;
+    param1->unk_00 = fieldSystem->unk_1C->unk_00;
+    param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
+    param1->unk_08 = PlayerAvatar_PlayerState(fieldSystem->playerAvatar);
+    param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
 
     {
-        int v0 = sub_0205EAA0(param0->playerAvatar);
-        param1->unk_0C = sub_020616F0(param0->playerAvatar, v0);
+        int v0 = sub_0205EAA0(fieldSystem->playerAvatar);
+        param1->unk_0C = sub_020616F0(fieldSystem->playerAvatar, v0);
     }
 
-    param1->unk_10 = sub_02055FC8(param0, NULL);
-    param1->unk_14 = param0->playerAvatar;
+    param1->unk_10 = sub_02055FC8(fieldSystem, NULL);
+    param1->unk_14 = fieldSystem->playerAvatar;
 }
 
 static UnkStruct_0206851C * sub_0206851C (u32 param0, u16 param1, u16 param2, u16 param3, u16 param4)
@@ -303,17 +303,17 @@ static void sub_02068584 (UnkStruct_02068870 * param0, u32 param1)
     sub_02050904(param0->unk_00, sub_020685AC, v0);
 }
 
-static BOOL sub_020685AC (TaskManager * param0)
+static BOOL sub_020685AC (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_0206851C * v1 = TaskManager_Environment(param0);
-    int * v2 = sub_02050A68(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_0206851C * v1 = TaskManager_Environment(taskMan);
+    int * v2 = sub_02050A68(taskMan);
     MapObject * v3;
 
     switch (*v2) {
     case 0:
         sub_0203C9D4(v0, &v3);
-        sub_0203E8E0(param0, v1->unk_00, v3, NULL);
+        sub_0203E8E0(taskMan, v1->unk_00, v3, NULL);
 
         *(u16 *)(sub_0203F098(v0, 41)) = v1->unk_04;
         *(u16 *)(sub_0203F098(v0, 42)) = v1->unk_06;

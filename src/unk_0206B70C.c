@@ -34,7 +34,7 @@ typedef struct {
     u8 unk_03;
 } UnkStruct_0206B878;
 
-static void sub_0206B878(FieldSystem * param0, UnkStruct_0203D8AC * param1, const char * param2);
+static void sub_0206B878(FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, const char * param2);
 
 static const int Unk_020EFA98[10][4] = {
 	{ 0x23D, 0x15, 0x120, 0xA },
@@ -72,20 +72,20 @@ static const u8 Unk_020EFA84[20] = {
     0x44
 };
 
-void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2)
+void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int param2)
 {
     TrainerInfo * v0;
     int v1 = 0, v2 = 0, v3 = 0;
-    int v4, v5, v6;
+    int x, z, v6;
     UnkStruct_020556C4 * v7;
-    UnkStruct_020507E4 * v8 = SaveData_Events(param0->saveData);
-    UnkStruct_0203A790 * v9 = sub_0203A790(param0->saveData);
+    UnkStruct_020507E4 * v8 = SaveData_Events(fieldSystem->saveData);
+    UnkStruct_0203A790 * v9 = sub_0203A790(fieldSystem->saveData);
     Location * v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 
-    v4 = Player_XPos(param0->playerAvatar);
-    v5 = Player_ZPos(param0->playerAvatar);
+    x = Player_XPos(fieldSystem->playerAvatar);
+    z = Player_ZPos(fieldSystem->playerAvatar);
 
     {
         int v11 = 10 - 1;
@@ -95,8 +95,8 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
 
         while (v11 >= 0) {
             if (v6 == Unk_020EFA98[v11][0]) {
-                v4 -= Unk_020EFA98[v11][1];
-                v5 -= Unk_020EFA98[v11][3];
+                x -= Unk_020EFA98[v11][1];
+                z -= Unk_020EFA98[v11][3];
                 break;
             }
 
@@ -104,19 +104,19 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
         }
     }
 
-    v6 = sub_02039E30(param0->unk_2C, v4 / 32, v5 / 32);
+    v6 = sub_02039E30(fieldSystem->unk_2C, x / 32, z / 32);
 
     if (MapHeader_IsOnMainMatrix(v6)) {
-        param1->unk_00 = v4;
-        param1->unk_04 = v5;
+        param1->unk_00 = x;
+        param1->unk_04 = z;
     } else {
         param1->unk_00 = v10->unk_08;
         param1->unk_04 = v10->unk_0C;
     }
 
-    v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0));
+    v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
     param1->unk_0C = TrainerInfo_Gender(v0);
-    v7 = sub_0203A76C(sub_0203A790(param0->saveData));
+    v7 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
     v2 = (v7->unk_00 - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {
@@ -147,19 +147,19 @@ void sub_0206B70C (FieldSystem * param0, UnkStruct_0203D8AC * param1, int param2
         param1->unk_124[v1] = inline_0208BE68(v8, Unk_020EFA84[v1]);
     }
 
-    sub_0206B878(param0, param1, "data/tmap_flags.dat");
+    sub_0206B878(fieldSystem, param1, "data/tmap_flags.dat");
 
     param1->unk_139 = param2;
 }
 
-static void sub_0206B878 (FieldSystem * param0, UnkStruct_0203D8AC * param1, const char * param2)
+static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, const char * param2)
 {
     FSFile v0;
     int v1, v2;
     int v3;
     UnkStruct_0206B878 * v4;
     UnkUnion_0206B878 * v5;
-    UnkStruct_020507E4 * v6 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v6 = SaveData_Events(fieldSystem->saveData);
 
     FS_InitFile(&v0);
 
@@ -186,7 +186,7 @@ static void sub_0206B878 (FieldSystem * param0, UnkStruct_0203D8AC * param1, con
             v5->val1_0 = 1;
             break;
         case 2:
-            v5->val1_2 = sub_0203F188(param0, v4->unk_01);
+            v5->val1_2 = sub_0203F188(fieldSystem, v4->unk_01);
             v5->val1_0 = 1;
             break;
         }
@@ -197,7 +197,7 @@ static void sub_0206B878 (FieldSystem * param0, UnkStruct_0203D8AC * param1, con
             v5->val1_4 = 1;
             break;
         case 2:
-            v5->val1_6 = sub_0203F188(param0, v4->unk_03);
+            v5->val1_6 = sub_0203F188(fieldSystem, v4->unk_03);
             v5->val1_4 = 1;
             break;
         }

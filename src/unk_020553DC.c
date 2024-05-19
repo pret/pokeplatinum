@@ -103,11 +103,11 @@ const static u16 Unk_020EC3E0[][2] = {
 
 
 void sub_020553DC(void);
-u16 sub_02055428(FieldSystem * param0, int param1);
-u16 sub_020554A4(FieldSystem * param0, int param1);
-static u16 sub_020554E8(FieldSystem * param0, int param1);
-BOOL sub_02055554(FieldSystem * param0, u16 param1, int param2);
-static void sub_020555CC(FieldSystem * param0, int param1, int * param2, int * param3);
+u16 sub_02055428(FieldSystem * fieldSystem, int param1);
+u16 sub_020554A4(FieldSystem * fieldSystem, int param1);
+static u16 sub_020554E8(FieldSystem * fieldSystem, int param1);
+BOOL sub_02055554(FieldSystem * fieldSystem, u16 param1, int param2);
+static void sub_020555CC(FieldSystem * fieldSystem, int param1, int * param2, int * param3);
 u16 sub_0205560C(int param0);
 
 void sub_020553DC ()
@@ -119,35 +119,35 @@ void sub_020553DC ()
     return;
 }
 
-void sub_020553F0 (FieldSystem * param0, u16 param1)
+void sub_020553F0 (FieldSystem * fieldSystem, u16 param1)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(param0->saveData));
+    u16 * v0 = sub_0203A748(sub_0203A790(fieldSystem->saveData));
 
     *v0 = param1;
     return;
 }
 
-u16 sub_02055404 (FieldSystem * param0)
+u16 sub_02055404 (FieldSystem * fieldSystem)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(param0->saveData));
+    u16 * v0 = sub_0203A748(sub_0203A790(fieldSystem->saveData));
     return *v0;
 }
 
-void sub_02055414 (FieldSystem * param0)
+void sub_02055414 (FieldSystem * fieldSystem)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(param0->saveData));
+    u16 * v0 = sub_0203A748(sub_0203A790(fieldSystem->saveData));
 
     *v0 = 0;
     return;
 }
 
-u16 sub_02055428 (FieldSystem * param0, int param1)
+u16 sub_02055428 (FieldSystem * fieldSystem, int param1)
 {
     PlayerAvatar * v0;
     int v1;
     u16 v2, v3;
 
-    v0 = param0->playerAvatar;
+    v0 = fieldSystem->playerAvatar;
     v1 = PlayerAvatar_PlayerState(v0);
 
     if (v1 == 0x2) {
@@ -168,20 +168,20 @@ u16 sub_02055428 (FieldSystem * param0, int param1)
         }
     }
 
-    if (GetRadarChainActive(param0->chain) == 1) {
+    if (GetRadarChainActive(fieldSystem->chain) == 1) {
         return 1150;
     }
 
-    v2 = sub_020554A4(param0, param1);
+    v2 = sub_020554A4(fieldSystem, param1);
 
-    if (sub_02055404(param0) != 0) {
-        v2 = sub_02055404(param0);
+    if (sub_02055404(fieldSystem) != 0) {
+        v2 = sub_02055404(fieldSystem);
     }
 
     return v2;
 }
 
-u16 sub_020554A4 (FieldSystem * param0, int param1)
+u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
 {
     u16 v0, v1;
 
@@ -191,13 +191,13 @@ u16 sub_020554A4 (FieldSystem * param0, int param1)
         v0 = MapHeader_GetNightMusicID(param1);
     }
 
-    v1 = sub_0206AB68(SaveData_Events(param0->saveData), param1);
+    v1 = sub_0206AB68(SaveData_Events(fieldSystem->saveData), param1);
 
     if (v1 != 0) {
         v0 = v1;
     }
 
-    v1 = sub_020554E8(param0, param1);
+    v1 = sub_020554E8(fieldSystem, param1);
 
     if (v1 != 0) {
         v0 = v1;
@@ -206,14 +206,14 @@ u16 sub_020554A4 (FieldSystem * param0, int param1)
     return v0;
 }
 
-static u16 sub_020554E8 (FieldSystem * param0, int param1)
+static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
 {
     int v0, v1;
-    UnkStruct_0203A790 * v2 = sub_0203A790(param0->saveData);
+    UnkStruct_0203A790 * v2 = sub_0203A790(fieldSystem->saveData);
     Location * v3 = sub_0203A728(v2);
 
-    v0 = Player_XPos(param0->playerAvatar);
-    v1 = Player_ZPos(param0->playerAvatar);
+    v0 = Player_XPos(fieldSystem->playerAvatar);
+    v1 = Player_ZPos(fieldSystem->playerAvatar);
 
     if (param1 != 350) {
         return 0;
@@ -236,24 +236,24 @@ static u16 sub_020554E8 (FieldSystem * param0, int param1)
     return 0;
 }
 
-BOOL sub_02055554 (FieldSystem * param0, u16 param1, int param2)
+BOOL sub_02055554 (FieldSystem * fieldSystem, u16 param1, int param2)
 {
     PlayerAvatar * v0;
     int v1, v2, v3;
 
-    v0 = param0->playerAvatar;
+    v0 = fieldSystem->playerAvatar;
     v3 = PlayerAvatar_PlayerState(v0);
 
     if (sub_020041DC() == 1) {
         return 0;
     }
 
-    if (param1 == sub_020041FC(param0)) {
+    if (param1 == sub_020041FC(fieldSystem)) {
         return 0;
     }
 
     sub_02004A3C();
-    sub_020555CC(param0, param2, &v1, &v2);
+    sub_020555CC(fieldSystem, param2, &v1, &v2);
 
     if ((v3 == 0x1) || (v3 == 0x1)) {
         sub_02005068(4, param1, v1, v2, 30, 0, NULL);
@@ -264,7 +264,7 @@ BOOL sub_02055554 (FieldSystem * param0, u16 param1, int param2)
     return 1;
 }
 
-static void sub_020555CC (FieldSystem * param0, int param1, int * param2, int * param3)
+static void sub_020555CC (FieldSystem * fieldSystem, int param1, int * param2, int * param3)
 {
     switch (param1) {
     case 0:
@@ -306,20 +306,20 @@ u16 sub_0205560C (int param0)
     return v1;
 }
 
-void sub_02055644 (FieldSystem * param0, int param1)
+void sub_02055644 (FieldSystem * fieldSystem, int param1)
 {
     if (sub_020041DC() == 1) {
         return;
     }
 
-    if (sub_020041FC() != sub_020554A4(param0, param1)) {
+    if (sub_020041FC() != sub_020554A4(fieldSystem, param1)) {
         sub_0200564C(0, 40);
     }
 
     return;
 }
 
-void sub_02055670 (FieldSystem * param0, int param1)
+void sub_02055670 (FieldSystem * fieldSystem, int param1)
 {
     u16 v0;
 
@@ -329,7 +329,7 @@ void sub_02055670 (FieldSystem * param0, int param1)
 
     sub_02004234(0);
 
-    v0 = sub_020554A4(param0, param1);
+    v0 = sub_020554A4(fieldSystem, param1);
 
     sub_02004224(v0);
     sub_02004550(4, v0, 1);
@@ -337,13 +337,13 @@ void sub_02055670 (FieldSystem * param0, int param1)
     return;
 }
 
-void sub_020556A0 (FieldSystem * param0, int param1)
+void sub_020556A0 (FieldSystem * fieldSystem, int param1)
 {
     u16 v0;
 
-    v0 = sub_02055428(param0, param1);
+    v0 = sub_02055428(fieldSystem, param1);
 
-    sub_02004224(sub_020554A4(param0, param1));
+    sub_02004224(sub_020554A4(fieldSystem, param1));
     sub_02004550(4, v0, 1);
 
     return;
