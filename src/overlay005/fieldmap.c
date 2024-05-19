@@ -102,30 +102,30 @@ struct UnkStruct_ov5_021D1A68_t {
     int unk_02[24];
 };
 
-static void ov5_021D1444(BGL * param0);
-static void ov5_021D1524(BGL * param0);
+static void ov5_021D1444(BGL * bgl);
+static void ov5_021D1524(BGL * bgl);
 static void ov5_021D154C(void);
 static void ov5_021D1570(void);
 static void ov5_021D1578(UnkStruct_ov5_021D5894 * param0);
-static void ov5_021D15F4(FieldSystem * param0);
-static void ov5_021D173C(FieldSystem * param0);
+static void ov5_021D15F4(FieldSystem * fieldSystem);
+static void ov5_021D173C(FieldSystem * fieldSystem);
 static void ov5_021D1414(void);
 static void ov5_021D15B4(void);
 static void ov5_021D15E8(void);
-static void ov5_021D1790(FieldSystem * param0);
-static void ov5_021D17EC(FieldSystem * param0);
-static void ov5_021D1878(FieldSystem * param0);
-static void ov5_021D1968(FieldSystem * param0);
-static int FieldMap_Init(OverlayManager * param0, int * param1);
-static int FieldMap_Main(OverlayManager * param0, int * param1);
-static int FieldMap_Exit(OverlayManager * param0, int * param1);
-static BOOL FieldMap_ChangeZone(FieldSystem * param0);
-static void ov5_021D134C(FieldSystem * param0, u8 param1);
-static BOOL ov5_021D119C(FieldSystem * param0);
+static void ov5_021D1790(FieldSystem * fieldSystem);
+static void ov5_021D17EC(FieldSystem * fieldSystem);
+static void ov5_021D1878(FieldSystem * fieldSystem);
+static void ov5_021D1968(FieldSystem * fieldSystem);
+static BOOL FieldMap_Init(OverlayManager * overlayMan, int * param1);
+static BOOL FieldMap_Main(OverlayManager * overlayMan, int * param1);
+static BOOL FieldMap_Exit(OverlayManager * overlayMan, int * param1);
+static BOOL FieldMap_ChangeZone(FieldSystem * fieldSystem);
+static void ov5_021D134C(FieldSystem * fieldSystem, u8 param1);
+static BOOL ov5_021D119C(FieldSystem * fieldSystem);
 static void ov5_021D0D80(void * param0);
-static void ov5_021D13B4(FieldSystem * param0);
-static int ov5_021D1178(FieldSystem * param0);
-static BOOL FieldMap_InDistortionWorld(FieldSystem * param0);
+static void ov5_021D13B4(FieldSystem * fieldSystem);
+static int ov5_021D1178(FieldSystem * fieldSystem);
+static BOOL FieldMap_InDistortionWorld(FieldSystem * fieldSystem);
 static UnkStruct_ov5_021D1A68 * ov5_021D1A14(int param0, int param1);
 static const int * ov5_021D1A68(const UnkStruct_ov5_021D1A68 * param0);
 static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 * param0);
@@ -151,12 +151,12 @@ static void ov5_021D0D80 (void * param0)
     inline_ov5_021D0D80(fieldSystem);
 }
 
-static int FieldMap_Init (OverlayManager * param0, int * param1)
+static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
 {
     FieldSystem * fieldSystem;
     int v2 = 0;
 
-    fieldSystem = OverlayManager_Args(param0);
+    fieldSystem = OverlayManager_Args(overlayMan);
 
     switch (*param1) {
     case 0:
@@ -247,20 +247,18 @@ static int FieldMap_Init (OverlayManager * param0, int * param1)
     return v2;
 }
 
-static int FieldMap_Main (OverlayManager * param0, int * param1)
+static BOOL FieldMap_Main (OverlayManager * overlayMan, int * param1)
 {
     FieldSystem * fieldSystem;
 
-    fieldSystem = OverlayManager_Args(param0);
+    fieldSystem = OverlayManager_Args(overlayMan);
 
     if (ov5_021D119C(fieldSystem)) {
         sub_02055D94(fieldSystem);
         ov5_021D13B4(fieldSystem);
         ov5_021EA714(fieldSystem, 1, 1);
 
-        if (FieldMap_ChangeZone(fieldSystem)) {
-            (void)0;
-        }
+        FieldMap_ChangeZone(fieldSystem);
     }
 
     ov5_021D134C(fieldSystem, fieldSystem->unk_C0);
@@ -272,11 +270,9 @@ static int FieldMap_Main (OverlayManager * param0, int * param1)
     }
 }
 
-static int FieldMap_Exit (OverlayManager * param0, int * param1)
+static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
 {
-    FieldSystem * fieldSystem;
-
-    fieldSystem = OverlayManager_Args(param0);
+    FieldSystem * fieldSystem = OverlayManager_Args(overlayMan);
     ov5_021E8188(fieldSystem, fieldSystem->unk_28);
 
     switch (*param1) {
@@ -377,9 +373,9 @@ const OverlayManagerTemplate gFieldMapTemplate = {
     0xffffffff
 };
 
-static int ov5_021D1178 (FieldSystem * param0)
+static int ov5_021D1178 (FieldSystem * fieldSystem)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 0) {
@@ -534,10 +530,6 @@ static void ov5_021D134C (FieldSystem * fieldSystem, u8 param1)
 
     if ((param1 & 4) != 0) {
         ov5_021D15F4(fieldSystem);
-    }
-
-    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
-        (void)0;
     }
 }
 
@@ -989,9 +981,9 @@ static void ov5_021D1A70 (UnkStruct_ov5_021D1A68 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL FieldMap_InDistortionWorld (FieldSystem * param0)
+static BOOL FieldMap_InDistortionWorld (FieldSystem * fieldSystem)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     int v1 = sub_02027F80(v0);
 
     if (v1 == 9) {

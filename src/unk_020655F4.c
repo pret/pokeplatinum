@@ -141,7 +141,7 @@ void LocalMapObj_SetAnimationCode (MapObject * param0, int param1)
 {
     GF_ASSERT(param1 < 0x9a);
 
-    sub_02062BB0(param0, param1);
+    MapObject_SetAnimationCode(param0, param1);
     sub_02062BC0(param0, 0);
     MapObject_SetStatusFlagOn(param0, (1 << 4));
     MapObject_SetStatusFlagOff(param0, (1 << 5));
@@ -149,7 +149,7 @@ void LocalMapObj_SetAnimationCode (MapObject * param0, int param1)
 
 void sub_02065668 (MapObject * param0, int param1)
 {
-    sub_02062BB0(param0, param1);
+    MapObject_SetAnimationCode(param0, param1);
     sub_02062BC0(param0, 0);
     MapObject_SetStatusFlagOff(param0, (1 << 5));
 }
@@ -186,7 +186,7 @@ void sub_020656DC (MapObject * param0)
 {
     MapObject_SetStatusFlagOff(param0, (1 << 4));
     MapObject_SetStatusFlagOn(param0, (1 << 5));
-    sub_02062BB0(param0, 0xff);
+    MapObject_SetAnimationCode(param0, 0xff);
     sub_02062BC0(param0, 0);
 }
 
@@ -387,7 +387,7 @@ void sub_020658B4 (MapObject * param0)
     int v0, v1;
 
     do {
-        v0 = sub_02062BB8(param0);
+        v0 = MapObject_AnimationCode(param0);
 
         if (v0 == 0xff) {
             break;
@@ -406,7 +406,7 @@ int sub_020658DC (MapObject * param0)
     }
 
     MapObject_SetStatusFlagOff(param0, (1 << 5));
-    sub_02062BB0(param0, 0xff);
+    MapObject_SetAnimationCode(param0, 0xff);
     sub_02062BC0(param0, 0);
 
     return 1;

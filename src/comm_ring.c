@@ -18,14 +18,14 @@ void CommRing_Init (CommRing * ring, u8 * buffer, int size)
 
 void CommRring_Write (CommRing * ring, u8 * buffer, int size, int unused)
 {
-    int i, j;
+    int i;
 
     if (CommRing_RemainingSizeBackup(ring) <= size) {
         sub_020363BC();
         return;
     }
 
-    j = 0;
+    int j = 0;
 
     for (i = ring->backupEndIndex; i < ring->backupEndIndex + size; i++, j++) {
         GF_ASSERT(buffer);
@@ -37,9 +37,7 @@ void CommRring_Write (CommRing * ring, u8 * buffer, int size, int unused)
 
 int CommRing_Read (CommRing * ring, u8 * buffer, int size)
 {
-    int index;
-
-    index = CommRing_Peek(ring, buffer, size);
+    int index = CommRing_Peek(ring, buffer, size);
     ring->startIndex = CommRing_Index(ring, ring->startIndex + index);
 
     return index;
@@ -56,11 +54,9 @@ u8 CommRing_ReadByte (CommRing * ring)
 //Reading but doesn't incriment the index
 int CommRing_Peek (CommRing * ring, u8 * buffer, int size)
 {
-    int i, j;
+    int j = 0;
 
-    j = 0;
-
-    for (i = ring->startIndex; i < ring->startIndex + size; i++, j++) {
+    for (int i = ring->startIndex; i < ring->startIndex + size; i++, j++) {
         if (ring->endIndex == CommRing_Index(ring, i)) {
             return j;
         }

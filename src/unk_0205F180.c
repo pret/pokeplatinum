@@ -193,7 +193,7 @@ static int PlayerAvatar_CheckStartMoveInternal (PlayerAvatar * playerAvatar, int
         return 0;
     }
 
-    v0 = sub_02062BB8(mapObj);
+    v0 = MapObject_AnimationCode(mapObj);
 
     if (sub_020613D8(v0) == 1) {
         u32 v2;
@@ -265,7 +265,7 @@ static void PlayerAvatar_PlayWalkSE (PlayerAvatar * playerAvatar)
         u8 v1, v2 = sub_02062BE8(mapObj);
 
         {
-            int v3 = sub_02062BB8(mapObj);
+            int v3 = MapObject_AnimationCode(mapObj);
             int v4 = sub_0206587C(v3);
 
             if (v4 == -1) {
@@ -296,7 +296,7 @@ static void PlayerAvatar_PlayWalkSE (PlayerAvatar * playerAvatar)
         }
 
         {
-            int v5 = sub_02062BB8(mapObj);
+            int v5 = MapObject_AnimationCode(mapObj);
 
             if (sub_020613D8(v5) == 0) {
                 if ((sub_0205DAD4(v2) == 1) || (sub_0205DAD4(v1) == 1)) {
@@ -332,7 +332,7 @@ void sub_0205F490 (PlayerAvatar * playerAvatar)
         case 0:
             break;
         case 1:
-            v2 = sub_02062BB8(v3);
+            v2 = MapObject_AnimationCode(v3);
 
             if (sub_020613D8(v2) == 1) {
                 break;
@@ -418,7 +418,7 @@ int sub_0205F588 (PlayerAvatar * playerAvatar)
             return 1;
         }
 
-        v2 = sub_02062BB8(v3);
+        v2 = MapObject_AnimationCode(v3);
 
         if (sub_020613D8(v2) == 1) {
             return 1;
@@ -2194,7 +2194,7 @@ int sub_020613AC (PlayerAvatar * playerAvatar)
     }
 
     {
-        int v1 = sub_02062BB8(v0);
+        int v1 = MapObject_AnimationCode(v0);
 
         if (sub_020613D8(v1) == 1) {
             return 1;
