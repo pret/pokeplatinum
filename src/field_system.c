@@ -49,18 +49,18 @@ typedef struct FieldSystem_sub1_t {
     BOOL unk_0C;
 };
 
-static FieldSystem * sub_0203CDB0(OverlayManager * param0);
-static BOOL sub_0203CEEC(FieldSystem * fieldSystem);
+static FieldSystem * FieldSystem_Init(OverlayManager * param0);
+static BOOL FieldSystem_Run(FieldSystem * fieldSystem);
 static void sub_0203CE6C(OverlayManager * param0);
-static void sub_0203CF5C(FieldSystem * fieldSystem);
+static void FieldSystem_Control(FieldSystem * fieldSystem);
 
 static FieldSystem * sFieldSystem;
 
-static int sub_0203CC84 (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
 {
     UnkStruct_0203CC84 * v0 = OverlayManager_Args(overlayMan);
 
-    sFieldSystem = sub_0203CDB0(overlayMan);
+    sFieldSystem = FieldSystem_Init(overlayMan);
 
     if (v0->unk_04) {
         sub_02053808(sFieldSystem);
@@ -72,42 +72,42 @@ static int sub_0203CC84 (OverlayManager * overlayMan, int * param1)
     return 1;
 }
 
-static int sub_0203CCB4 (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_InitNewGame (OverlayManager * overlayMan, int * param1)
 {
-    sFieldSystem = sub_0203CDB0(overlayMan);
+    sFieldSystem = FieldSystem_Init(overlayMan);
     sub_020535CC(sFieldSystem);
     return 1;
 }
 
-static int sub_0203CCCC (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_Main (OverlayManager * overlayMan, int * param1)
 {
-    FieldSystem * v0 = OverlayManager_Data(overlayMan);
+    FieldSystem * fieldSystem = OverlayManager_Data(overlayMan);
 
-    if (sub_0203CEEC(v0)) {
+    if (FieldSystem_Run(fieldSystem)) {
         return 1;
     } else {
         return 0;
     }
 }
 
-static int sub_0203CCE4 (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_Exit (OverlayManager * overlayMan, int * param1)
 {
     sub_0203CE6C(overlayMan);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     return 1;
 }
 
-const OverlayManagerTemplate Unk_020EA10C = {
-    sub_0203CCB4,
-    sub_0203CCCC,
-    sub_0203CCE4,
+const OverlayManagerTemplate gFieldSystemNewGameTemplate = {
+    FieldSystem_InitNewGame,
+    FieldSystem_Main,
+    FieldSystem_Exit,
     0xffffffff
 };
 
-const OverlayManagerTemplate Unk_020EA11C = {
-    sub_0203CC84,
-    sub_0203CCCC,
-    sub_0203CCE4,
+const OverlayManagerTemplate gFieldSystemContinueTemplate = {
+    FieldSystem_InitContinue,
+    FieldSystem_Main,
+    FieldSystem_Exit,
     0xffffffff
 };
 
@@ -153,7 +153,7 @@ void sub_0203CD84 (FieldSystem * fieldSystem, const OverlayManagerTemplate * par
     fieldSystem->unk_00->unk_04 = OverlayManager_New(param1, param2, 11);
 }
 
-static FieldSystem * sub_0203CDB0 (OverlayManager * overlayMan)
+static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
 {
     UnkStruct_0203CC84 * v0;
     FieldSystem * fieldSystem;
@@ -219,11 +219,11 @@ static void sub_0203CECC (OverlayManager ** overlayMan)
     }
 }
 
-BOOL sub_0203CEEC (FieldSystem * fieldSystem)
+BOOL FieldSystem_Run (FieldSystem * fieldSystem)
 {
     BOOL v0;
 
-    sub_0203CF5C(fieldSystem);
+    FieldSystem_Control(fieldSystem);
     v0 = sub_02050958(fieldSystem);
 
     if ((v0 == 1) && (fieldSystem->unk_04 != NULL)) {
@@ -247,7 +247,7 @@ BOOL sub_0203CEEC (FieldSystem * fieldSystem)
     return 0;
 }
 
-void sub_0203CF5C (FieldSystem * fieldSystem)
+void FieldSystem_Control (FieldSystem * fieldSystem)
 {
     int v0;
     UnkStruct_ov5_021D1CAC v1;
