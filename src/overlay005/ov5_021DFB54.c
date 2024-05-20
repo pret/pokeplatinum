@@ -1264,7 +1264,7 @@ static int ov5_021E0B24 (UnkStruct_ov5_021F9B10 * param0)
         v0.y = param0->unk_28.y;
     }
 
-    sub_02063060(param0->unk_3C, &v0);
+    MapObject_SetPosVec(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1294,7 +1294,7 @@ static int ov5_021E0B64 (UnkStruct_ov5_021F9B10 * param0)
         v0.z = param0->unk_28.z;
     }
 
-    sub_02063060(param0->unk_3C, &v0);
+    MapObject_SetPosVec(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1392,7 +1392,7 @@ static int ov5_021E0CF4 (UnkStruct_ov5_021F9B10 * param0)
         param0->unk_18 += param0->unk_1C.z;
     }
 
-    sub_02063060(param0->unk_3C, &v0);
+    MapObject_SetPosVec(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1424,7 +1424,7 @@ static int ov5_021E0D40 (UnkStruct_ov5_021F9B10 * param0)
         param0->unk_18 += param0->unk_1C.z;
     }
 
-    sub_02063060(param0->unk_3C, &v0);
+    MapObject_SetPosVec(param0->unk_3C, &v0);
 
     param0->unk_08++;
 
@@ -1757,7 +1757,7 @@ static MapObject * ov5_021E10D4 (PlayerAvatar * param0, int param1)
 {
     int v0 = Player_XPos(param0) + sub_0206419C(param1);
     int v1 = Player_ZPos(param0) + sub_020641A8(param1);
-    const MapObjectManager * v2 = sub_02062A40(Player_MapObject(param0));
+    const MapObjectManager * v2 = MapObject_MapObjectManager(Player_MapObject(param0));
     MapObject * v3 = sub_0206326C(v2, v0, v1, 0);
 
     return v3;

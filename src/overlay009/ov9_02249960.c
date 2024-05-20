@@ -2482,7 +2482,7 @@ static BOOL ov9_0224AC58 (UnkStruct_ov9_0224AC58 * param0, MapObject * param1)
         v1.y += param0->unk_08.y;
         v1.z += param0->unk_08.z;
 
-        sub_02063060(param1, &v1);
+        MapObject_SetPosVec(param1, &v1);
     }
 
     {
@@ -4431,8 +4431,8 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
 
         v13.y = v12.y + ((1 << 4) * FX32_ONE);
 
-        sub_02063060(v14, &v13);
-        sub_02063014(v14, MapObject_YPos(v14));
+        MapObject_SetPosVec(v14, &v13);
+        MapObject_SetYPosPrev(v14, MapObject_YPos(v14));
         MapObject_SetY(v14, (((v13.y) >> 3) / FX32_ONE));
     }
 }
@@ -7464,7 +7464,7 @@ static BOOL ov9_0224F324 (UnkStruct_ov9_0224F6EC * param0)
 
     MapObject_PosVectorOut(v2, &v1);
     v1.y -= FX32_ONE * 8;
-    sub_02063060(v2, &v1);
+    MapObject_SetPosVec(v2, &v1);
 
     if (v1.y > (((115 << 4) * FX32_ONE))) {
         return 0;
@@ -7510,7 +7510,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
 
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
-        sub_02063060(v1, &v0);
+        MapObject_SetPosVec(v1, &v0);
         sub_020642A4(v1, MapObject_MoveDir(v1), (FX32_ONE * 2));
     }
 
@@ -7530,7 +7530,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
 
         MapObject_PosVectorOut(v3, &v2);
         v2.y -= FX32_ONE * 4;
-        sub_02063060(v3, &v2);
+        MapObject_SetPosVec(v3, &v2);
     }
 
         param0->unk_18++;
@@ -7679,7 +7679,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
 
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
-        sub_02063060(v1, &v0);
+        MapObject_SetPosVec(v1, &v0);
         sub_020642A4(v1, MapObject_MoveDir(v1), (FX32_ONE * 2));
     }
 
@@ -7699,7 +7699,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
 
         MapObject_PosVectorOut(v3, &v2);
         v2.y -= FX32_ONE * 4;
-        sub_02063060(v3, &v2);
+        MapObject_SetPosVec(v3, &v2);
     }
 
         param0->unk_18++;
@@ -7718,7 +7718,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
 
         MapObject_PosVectorOut(v5, &v4);
         v4.y -= FX32_ONE * 8;
-        sub_02063060(v5, &v4);
+        MapObject_SetPosVec(v5, &v4);
     }
 
         param0->unk_18++;
@@ -8118,7 +8118,7 @@ static int ov9_0224FC2C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     UnkStruct_ov9_0224F930 * v2 = &v1->unk_40;
 
     ov9_0224F970(param0, v2);
-    sub_02063060(v0, &v2->unk_34);
+    MapObject_SetPosVec(v0, &v2->unk_34);
     ov9_0224FA94(param0, v1);
 
     {
@@ -8191,7 +8191,7 @@ static int ov9_0224FD74 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     UnkStruct_ov9_0224F930 * v4 = &v3->unk_40;
 
     v0 = ov9_0224F970(param0, v4);
-    sub_02063060(v2, &v4->unk_34);
+    MapObject_SetPosVec(v2, &v4->unk_34);
 
     {
         VecFx32 v5 = v4->unk_40;
@@ -8268,7 +8268,7 @@ static int ov9_0224FEDC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     v0 = ov9_0224F970(param0, v4);
 
-    sub_02063060(v2, &v4->unk_34);
+    MapObject_SetPosVec(v2, &v4->unk_34);
     sub_02063088(v2, &v4->unk_40);
 
     ov9_0224FA94(param0, v3);
@@ -8462,7 +8462,7 @@ static int ov9_02250260 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     UnkStruct_ov9_0224F930 * v2 = &v1->unk_34;
 
     ov9_0224F970(param0, v2);
-    sub_02063060(v0, &v2->unk_34);
+    MapObject_SetPosVec(v0, &v2->unk_34);
     ov9_02250138(param0, v1);
 
     {
@@ -8533,7 +8533,7 @@ static int ov9_02250388 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     v0 = ov9_0224F970(param0, v4);
 
-    sub_02063060(v2, &v4->unk_34);
+    MapObject_SetPosVec(v2, &v4->unk_34);
     sub_02063088(v2, &v4->unk_40);
     ov9_02250138(param0, v3);
 
@@ -8586,7 +8586,7 @@ static int ov9_02250468 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     v0 = ov9_0224F970(param0, v4);
 
-    sub_02063060(v2, &v4->unk_34);
+    MapObject_SetPosVec(v2, &v4->unk_34);
     sub_02063088(v2, &v4->unk_40);
 
     ov9_02250138(param0, v3);
@@ -9708,7 +9708,7 @@ static void ov9_022511F4 (MapObject * param0, const VecFx32 * param1)
 {
     UnkStruct_020216E0 * v0;
 
-    sub_02063060(param0, param1);
+    MapObject_SetPosVec(param0, param1);
     v0 = ov5_021EB1A0(param0);
 
     if (v0 != NULL) {

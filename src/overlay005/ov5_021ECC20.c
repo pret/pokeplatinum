@@ -64,7 +64,7 @@ static void ov5_021ECCBC (MapObjectManager * param0)
 
 void ov5_021ECCC8 (MapObject * param0)
 {
-    const MapObjectManager * v0 = sub_02062A40(param0);
+    const MapObjectManager * v0 = MapObject_MapObjectManager(param0);
 
     if (sub_0206284C(v0, (1 << 2))) {
         return;

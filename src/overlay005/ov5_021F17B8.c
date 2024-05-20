@@ -293,7 +293,7 @@ static void ov5_021F1A8C (UnkStruct_ov101_021D5D90 * param0, UnkStruct_ov5_021F1
     UnkStruct_ov5_021DF84C v3;
 
     {
-        const MapObjectManager * v4 = sub_02062A40(param1->unk_14.unk_0C);
+        const MapObjectManager * v4 = MapObject_MapObjectManager(param1->unk_14.unk_0C);
 
         if (ov5_021ED150(v4, param1->unk_08, &v3) == 0) {
             return;

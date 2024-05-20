@@ -383,7 +383,7 @@ static void sub_02063A70 (MapObject * param0, u8 param1, u8 param2, const UnkStr
 static void sub_02063A78 (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     {
-        const MapObjectManager * v0 = sub_02062A40(param0);
+        const MapObjectManager * v0 = MapObject_MapObjectManager(param0);
 
         if (sub_02062CE4(v0) == 0) {
             return;
@@ -407,7 +407,7 @@ static void sub_02063A78 (MapObject * param0, u8 param1, u8 param2, const UnkStr
 static void sub_02063B20 (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     {
-        const MapObjectManager * v0 = sub_02062A40(param0);
+        const MapObjectManager * v0 = MapObject_MapObjectManager(param0);
 
         if (sub_02062CE4(v0) == 0) {
             return;
@@ -465,7 +465,7 @@ static void sub_02063C48 (MapObject * param0, u8 param1, u8 param2, const UnkStr
 static void sub_02063C60 (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DE5C(param2) == 1) {
-        ov5_021F2AE4(param0, MapObject_XPosPrev(param0), sub_02063010(param0), MapObject_ZPosPrev(param0));
+        ov5_021F2AE4(param0, MapObject_XPosPrev(param0), MapObject_YPosPrev(param0), MapObject_ZPosPrev(param0));
     }
 }
 
@@ -479,7 +479,7 @@ static void sub_02063C94 (MapObject * param0, u8 param1, u8 param2, const UnkStr
 static void sub_02063CC8 (MapObject * param0, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DCE0(param2) == 1) {
-        ov5_021F2C38(param0, MapObject_XPosPrev(param0), sub_02063010(param0), MapObject_ZPosPrev(param0));
+        ov5_021F2C38(param0, MapObject_XPosPrev(param0), MapObject_YPosPrev(param0), MapObject_ZPosPrev(param0));
     }
 }
 
@@ -619,7 +619,7 @@ int sub_02063F00 (const MapObject * param0, int param1, int param2, int param3)
     const MapObjectManager * v3;
     const MapObject * v4;
 
-    v3 = sub_02062A40(param0);
+    v3 = MapObject_MapObjectManager(param0);
     v4 = sub_02062868(v3);
     v0 = MapObjectMan_MaxObjects(v3);
 
@@ -851,20 +851,20 @@ int sub_020641A8 (int param0)
 
 void sub_020641B4 (MapObject * param0, int param1)
 {
-    sub_0206300C(param0, MapObject_XPos(param0));
-    sub_02063014(param0, MapObject_YPos(param0));
-    sub_0206301C(param0, MapObject_ZPos(param0));
+    MapObject_SetXPosPrev(param0, MapObject_XPos(param0));
+    MapObject_SetYPosPrev(param0, MapObject_YPos(param0));
+    MapObject_SetZPosPrev(param0, MapObject_ZPos(param0));
 
-    sub_02063028(param0, sub_0206419C(param1));
-    sub_02063038(param0, 0);
-    sub_02063048(param0, sub_020641A8(param1));
+    MapObject_AddX(param0, sub_0206419C(param1));
+    MapObject_AddY(param0, 0);
+    MapObject_AddZ(param0, sub_020641A8(param1));
 }
 
 void sub_02064208 (MapObject * param0)
 {
-    sub_0206300C(param0, MapObject_XPos(param0));
-    sub_02063014(param0, MapObject_YPos(param0));
-    sub_0206301C(param0, MapObject_ZPos(param0));
+    MapObject_SetXPosPrev(param0, MapObject_XPos(param0));
+    MapObject_SetYPosPrev(param0, MapObject_YPos(param0));
+    MapObject_SetZPosPrev(param0, MapObject_ZPos(param0));
 }
 
 u32 sub_02064238 (MapObject * param0, int param1)
@@ -887,7 +887,7 @@ void sub_02064270 (MapObject * param0, const VecFx32 * param1)
     v0.y += param1->y;
     v0.z += param1->z;
 
-    sub_02063060(param0, &v0);
+    MapObject_SetPosVec(param0, &v0);
 }
 
 void sub_020642A4 (MapObject * param0, int param1, fx32 param2)
@@ -911,7 +911,7 @@ void sub_020642A4 (MapObject * param0, int param1, fx32 param2)
         break;
     }
 
-    sub_02063060(param0, &v0);
+    MapObject_SetPosVec(param0, &v0);
 }
 
 int sub_020642F8 (MapObject * param0)
@@ -933,8 +933,8 @@ int sub_020642F8 (MapObject * param0)
 
         if (v4 == 1) {
             v0.y = v1.y;
-            sub_02063060(param0, &v0);
-            sub_02063014(param0, MapObject_YPos(param0));
+            MapObject_SetPosVec(param0, &v0);
+            MapObject_SetYPosPrev(param0, MapObject_YPos(param0));
             MapObject_SetY(param0, (((v0.y) >> 3) / FX32_ONE));
             MapObject_SetStatusFlagOff(param0, (1 << 12));
         } else {

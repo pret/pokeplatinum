@@ -279,7 +279,7 @@ static int ov5_021F4AB4 (const MapObject * param0, int param1, VecFx32 * param2)
             if (v0 == (1 << 2)) {
                 MapObject * v7;
 
-                v7 = sub_0206326C(sub_02062A40(param0), v4, v6, 1);
+                v7 = sub_0206326C(MapObject_MapObjectManager(param0), v4, v6, 1);
                 GF_ASSERT(v7 != NULL);
                 MapObject_PosVectorOut(v7, param2);
             } else {

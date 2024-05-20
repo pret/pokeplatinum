@@ -138,7 +138,7 @@ static int(*const Unk_020EF8D4[])(MapObject *, UnkStruct_02069CA8 *) = {
 
 static int sub_02069CA8 (MapObject * param0, UnkStruct_02069CA8 * param1)
 {
-    const MapObjectManager * v0 = sub_02062A40(param0);
+    const MapObjectManager * v0 = MapObject_MapObjectManager(param0);
     MapObject * v1 = sub_0205EA24(v0);
 
     if (v1 == NULL) {
@@ -311,7 +311,7 @@ MapObject * sub_02069EB8 (MapObject * param0)
     int v1 = sub_02062950(param0);
     int v2 = sub_02062918(param0);
     u32 v3 = sub_02067F24(param0);
-    const MapObjectManager * v4 = sub_02062A40(param0);
+    const MapObjectManager * v4 = MapObject_MapObjectManager(param0);
     MapObject * v5;
 
     switch (v1) {
@@ -340,7 +340,7 @@ static int sub_02069F48 (MapObject * param0, UnkStruct_02069F48 * param1)
     int v0, v1;
     u32 v2;
     MapObject * v3;
-    const MapObjectManager * v4 = sub_02062A40(param0);
+    const MapObjectManager * v4 = MapObject_MapObjectManager(param0);
 
     v0 = 0;
     v1 = sub_02062918(param0);

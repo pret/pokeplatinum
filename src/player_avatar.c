@@ -91,7 +91,7 @@ void PlayerAvatar_InitDraw (PlayerAvatar * playerAvatar, int groundId)
 {
     MapObject * mapObj = Player_MapObject(playerAvatar);
     GF_ASSERT(mapObj != NULL);
-    sub_02062A40(mapObj);
+    MapObject_MapObjectManager(mapObj);
 
     ov5_021F6218(playerAvatar);
 
@@ -548,7 +548,7 @@ void sub_0205ED0C (PlayerAvatar * playerAvatar, fx32 param1)
 
     MapObject_PosVectorOut(v1, &v0);
     v0.y = param1;
-    sub_02063060(v1, &v0);
+    MapObject_SetPosVec(v1, &v0);
 }
 
 void sub_0205ED2C (PlayerAvatar * playerAvatar, int param1)

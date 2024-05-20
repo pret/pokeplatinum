@@ -4124,8 +4124,8 @@ BOOL ov8_0224C5DC (FieldSystem * fieldSystem, void * param1)
     {
         MapObject * v1 = param1;
 
-        sub_02062FF4(v1, MapObject_XPos(v1));
-        sub_02063004(v1, MapObject_ZPos(v1));
+        MapObject_SetXInitial(v1, MapObject_XPos(v1));
+        MapObject_SetZInitial(v1, MapObject_ZPos(v1));
         sub_020629FC(v1, 2);
         sub_02062A04(v1, 2);
         sub_020633A8(v1, 0x3);

@@ -998,7 +998,7 @@ BOOL ScrCmd_32D (ScriptContext * ctx)
             if (sub_020628D8(v7, (1 << 12)) == 1) {
                 MapObject_PosVectorOut(v7, &v1);
                 v1.y = v0;
-                sub_02063060(v7, &v1);
+                MapObject_SetPosVec(v7, &v1);
                 MapObject_SetY(v7, (((v0) >> 3) / FX32_ONE));
             }
 
@@ -1048,7 +1048,7 @@ static void ov5_021F7654 (MapObject * param0, int param1)
 
     v0.y = (((param1) << 4) * FX32_ONE);
 
-    sub_02063060(param0, &v0);
+    MapObject_SetPosVec(param0, &v0);
     MapObject_SetY(param0, ((param1) * 2));
 
     v1 = ov5_021EB1A0(param0);

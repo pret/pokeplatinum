@@ -203,7 +203,7 @@ SysTask * sub_02065700 (MapObject * param0, const UnkStruct_ov5_021F8E3C * param
     {
         int v2;
 
-        v2 = sub_02062858(sub_02062A40(param0)) - 1;
+        v2 = sub_02062858(MapObject_MapObjectManager(param0)) - 1;
         v0 = SysTask_Start(sub_02065788, v1, v2);
         GF_ASSERT(v0 != NULL);
     }
@@ -1567,26 +1567,26 @@ static void sub_02066824 (MapObject * param0, const VecFx32 * param1, int param2
     sub_02062A0C(param0, param5);
     sub_02062D28(param0);
 
-    sub_0206300C(param0, MapObject_XPos(param0));
-    sub_02063014(param0, MapObject_YPos(param0));
-    sub_0206301C(param0, MapObject_ZPos(param0));
+    MapObject_SetXPosPrev(param0, MapObject_XPos(param0));
+    MapObject_SetYPosPrev(param0, MapObject_YPos(param0));
+    MapObject_SetZPosPrev(param0, MapObject_ZPos(param0));
 
     if (param1->x < 0) {
-        sub_02063028(param0, -1);
+        MapObject_AddX(param0, -1);
     } else if (param1->x > 0) {
-        sub_02063028(param0, 1);
+        MapObject_AddX(param0, 1);
     }
 
     if (param1->y < 0) {
-        sub_02063038(param0, -1 * 2);
+        MapObject_AddY(param0, -1 * 2);
     } else if (param1->y > 0) {
-        sub_02063038(param0, 1 * 2);
+        MapObject_AddY(param0, 1 * 2);
     }
 
     if (param1->z < 0) {
-        sub_02063048(param0, -1);
+        MapObject_AddZ(param0, -1);
     } else if (param1->z > 0) {
-        sub_02063048(param0, 1);
+        MapObject_AddZ(param0, 1);
     }
 
     sub_02062BC8(param0);
@@ -1891,9 +1891,9 @@ static void sub_02066F88 (MapObject * param0, fx32 param1, int param2, int param
     sub_02062A0C(param0, param5);
     sub_02062D28(param0);
 
-    sub_0206300C(param0, MapObject_XPos(param0));
-    sub_02063014(param0, MapObject_YPos(param0));
-    sub_0206301C(param0, MapObject_ZPos(param0));
+    MapObject_SetXPosPrev(param0, MapObject_XPos(param0));
+    MapObject_SetYPosPrev(param0, MapObject_YPos(param0));
+    MapObject_SetZPosPrev(param0, MapObject_ZPos(param0));
 
     GF_ASSERT(param6 <= 2);
 
@@ -1904,21 +1904,21 @@ static void sub_02066F88 (MapObject * param0, fx32 param1, int param2, int param
                 v0 = -v0;
             }
 
-            sub_02063028(param0, v0);
+            MapObject_AddX(param0, v0);
             break;
         case 1:
             if (param1 < 0) {
                 v0 = -v0;
             }
 
-            sub_02063038(param0, v0 * 2);
+            MapObject_AddY(param0, v0 * 2);
             break;
         case 2:
             if (param1 < 0) {
                 v0 = -v0;
             }
 
-            sub_02063048(param0, v0);
+            MapObject_AddZ(param0, v0);
             break;
         }
     }
@@ -1947,7 +1947,7 @@ static int sub_02067068 (MapObject * param0)
         break;
     }
 
-    sub_02063060(param0, &v1);
+    MapObject_SetPosVec(param0, &v1);
 
     v0 = v2->unk_04;
 
@@ -1996,9 +1996,9 @@ static int sub_02067068 (MapObject * param0)
         v2->unk_08 -= (16 * FX32_ONE);
         v0 = v2->unk_04;
 
-        sub_0206300C(param0, MapObject_XPos(param0));
-        sub_02063014(param0, MapObject_YPos(param0));
-        sub_0206301C(param0, MapObject_ZPos(param0));
+        MapObject_SetXPosPrev(param0, MapObject_XPos(param0));
+        MapObject_SetYPosPrev(param0, MapObject_YPos(param0));
+        MapObject_SetZPosPrev(param0, MapObject_ZPos(param0));
 
         switch (v2->unk_02) {
         case 0:
@@ -2006,21 +2006,21 @@ static int sub_02067068 (MapObject * param0)
                 v6 = -v6;
             }
 
-            sub_02063028(param0, v6);
+            MapObject_AddX(param0, v6);
             break;
         case 1:
             if (v0 < 0) {
                 v6 = -v6;
             }
 
-            sub_02063038(param0, v6 * 2);
+            MapObject_AddY(param0, v6 * 2);
             break;
         case 2:
             if (v0 < 0) {
                 v6 = -v6;
             }
 
-            sub_02063048(param0, v6);
+            MapObject_AddZ(param0, v6);
             break;
         }
     }

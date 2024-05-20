@@ -263,7 +263,7 @@ void ov5_021ECF70 (const MapObject * param0, UnkStruct_020216E0 ** param1, int p
     sub_020211FC(*param1);
     *param1 = NULL;
 
-    v0 = ov5_021ED1C8(sub_02062A40(param0), param0, param2);
+    v0 = ov5_021ED1C8(MapObject_MapObjectManager(param0), param0, param2);
 
     if (v0 == 0) {
         ov5_021ED184(ov5_021EDEA8(param0), param2);
@@ -297,7 +297,7 @@ void ov5_021ECFD8 (const MapObject * param0, UnkStruct_020216E0 ** param1, int p
     }
 
     if (param2 != 0xffff) {
-        v0 = ov5_021ED1C8(sub_02062A40(param0), param0, param2);
+        v0 = ov5_021ED1C8(MapObject_MapObjectManager(param0), param0, param2);
 
         if (v0 == 0) {
             ov5_021ED184(ov5_021EDEA8(param0), param2);
@@ -1504,7 +1504,7 @@ static UnkStruct_ov5_021ED0A4 * ov5_021EDEA8 (const MapObject * param0)
 {
     const MapObjectManager * v0;
 
-    v0 = sub_02062A40(param0);
+    v0 = MapObject_MapObjectManager(param0);
     return (UnkStruct_ov5_021ED0A4 *)sub_0206285C(v0);
 }
 
@@ -1929,7 +1929,7 @@ UnkStruct_020216E0 * ov5_021EE3FC (MapObject * param0, int param1, UnkFuncPtr_ov
 {
     if ((ov5_021EDD94(param0) == 1) || (ov5_021EB1A0(param0) == NULL)) {
         int v0 = sub_02062920(param0);
-        const MapObjectManager * v1 = sub_02062A40(param0);
+        const MapObjectManager * v1 = MapObject_MapObjectManager(param0);
 
         sub_02061B48(param0);
         ov5_021EDBC4(v1, v0, param0);
