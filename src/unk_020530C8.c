@@ -821,7 +821,7 @@ static BOOL sub_02053B44 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 1:
-        sub_0205EB58(fieldSystem->playerAvatar, 0x0);
+        PlayerAvatar_SetPlayerState(fieldSystem->playerAvatar, 0x0);
         sub_020539A0(taskMan, &v1->unk_08);
         (v1->unk_00)++;
         break;
@@ -945,7 +945,7 @@ static BOOL sub_02053D0C (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 1:
-        sub_0205EB58(v0->playerAvatar, 0x0);
+        PlayerAvatar_SetPlayerState(v0->playerAvatar, 0x0);
         sub_020539A0(taskMan, &v1->unk_0C);
         (v1->unk_00)++;
         break;

@@ -392,7 +392,7 @@ static BOOL sub_02056124 (TaskManager * param0)
     switch (v1->unk_00) {
     case 0:
         ov5_021DFB54(v0->playerAvatar, (1 << 4));
-        ov5_021DFB5C(v0->playerAvatar);
+        PlayerAvatar_RequestChangeState(v0->playerAvatar);
         sub_02062DDC(Player_MapObject(v0->playerAvatar));
         v1->unk_00 = 1;
         break;
@@ -483,5 +483,5 @@ void sub_020562D8 (FieldSystem * param0)
     u32 v1 = sub_0205EED8(v0);
 
     ov5_021DFB54(param0->playerAvatar, v1);
-    ov5_021DFB5C(param0->playerAvatar);
+    PlayerAvatar_RequestChangeState(param0->playerAvatar);
 }

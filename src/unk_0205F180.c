@@ -150,7 +150,7 @@ void PlayerAvatar_MoveControl (PlayerAvatar * playerAvatar, const UnkStruct_ov5_
     }
 
     PlayerAvatar_StartMoveInit(playerAvatar, dir, keyPad, keyPress);
-    ov5_021DFB5C(playerAvatar);
+    PlayerAvatar_RequestChangeState(playerAvatar);
 
     if (sub_0205F62C(playerAvatar, dir) == 1) {
         ov5_021E0EEC(playerAvatar);

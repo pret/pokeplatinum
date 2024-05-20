@@ -4817,10 +4817,10 @@ static BOOL ScrCmd_0C8 (ScriptContext * ctx)
         sub_020553F0(ctx->fieldSys, 1152);
         sub_02055554(ctx->fieldSys, 1152, 1);
         ov5_021DFB54(ctx->fieldSys->playerAvatar, (1 << 1));
-        ov5_021DFB5C(ctx->fieldSys->playerAvatar);
+        PlayerAvatar_RequestChangeState(ctx->fieldSys->playerAvatar);
     } else {
         ov5_021DFB54(ctx->fieldSys->playerAvatar, (1 << 0));
-        ov5_021DFB5C(ctx->fieldSys->playerAvatar);
+        PlayerAvatar_RequestChangeState(ctx->fieldSys->playerAvatar);
         sub_020553F0(ctx->fieldSys, 0);
         sub_02055554(ctx->fieldSys, sub_02055428(ctx->fieldSys, ctx->fieldSys->unk_1C->unk_00), 1);
     }
@@ -4858,7 +4858,7 @@ static BOOL ScrCmd_0CB (ScriptContext * ctx)
 
 static BOOL ScrCmd_0CC (ScriptContext * ctx)
 {
-    ov5_021DFB5C(ctx->fieldSys->playerAvatar);
+    PlayerAvatar_RequestChangeState(ctx->fieldSys->playerAvatar);
     return 0;
 }
 

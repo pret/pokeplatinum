@@ -208,7 +208,7 @@ static int ov5_021F0A48 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1,
     if (LocalMapObj_IsAnimationSet(param2) == 1) {
         sub_020656AC(param2);
         ov5_021DFB54(param1, (1 << 5));
-        ov5_021DFB5C(param1);
+        PlayerAvatar_RequestChangeState(param1);
         sub_02062A0C(param2, 0x1);
         param0->unk_0C = 2;
     }
@@ -424,7 +424,7 @@ static int ov5_021F0CB0 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * param1,
         u32 v1 = sub_0205EED8(v0);
 
         ov5_021DFB54(param1, v1);
-        ov5_021DFB5C(param1);
+        PlayerAvatar_RequestChangeState(param1);
     }
 
     param0->unk_10 = 0;

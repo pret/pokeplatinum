@@ -142,9 +142,9 @@ static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int gender, P
 
     sub_0205EB08(playerAvatar, 0);
     sub_0205EB10(playerAvatar, 0);
-    sub_0205EB58(playerAvatar, param1);
+    PlayerAvatar_SetPlayerState(playerAvatar, param1);
     PlayerAvatar_SetGender(playerAvatar, gender);
-    sub_0205EB8C(playerAvatar, 0);
+    PlayerAvatar_SetRequestStateFlag(playerAvatar, 0);
     PlayerAvatar_ClearSpeed(playerAvatar);
     sub_0205EBDC(playerAvatar, -1);
     sub_0205EBE4(playerAvatar, -1);
@@ -304,7 +304,7 @@ const MapObject * PlayerAvatar_ConstMapObject (const PlayerAvatar * playerAvatar
     return playerAvatar->mapObject;
 }
 
-void sub_0205EB58 (PlayerAvatar * playerAvatar, int param1)
+void PlayerAvatar_SetPlayerState (PlayerAvatar * playerAvatar, int param1)
 {
     GF_ASSERT(param1 < 0x6);
     playerAvatar->unk_1C = param1;
@@ -323,12 +323,12 @@ void sub_0205EB84 (PlayerAvatar * playerAvatar, u32 param1)
     playerAvatar->unk_04 |= param1;
 }
 
-void sub_0205EB8C (PlayerAvatar * playerAvatar, u32 param1)
+void PlayerAvatar_SetRequestStateFlag (PlayerAvatar * playerAvatar, u32 param1)
 {
     playerAvatar->unk_04 = param1;
 }
 
-u32 sub_0205EB90 (PlayerAvatar * playerAvatar)
+u32 PlayerAvatar_RequestStateFlag (PlayerAvatar * playerAvatar)
 {
     return playerAvatar->unk_04;
 }

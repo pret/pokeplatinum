@@ -491,7 +491,7 @@ static BOOL sub_02068884 (TaskManager * param0)
         if (PlayerAvatar_PlayerState(fieldSystem->playerAvatar) == 0x1) {
             sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
             ov5_021DFB54(fieldSystem->playerAvatar, (1 << 0));
-            ov5_021DFB5C(fieldSystem->playerAvatar);
+            PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             sub_020553F0(fieldSystem, 0);
             sub_02055554(
@@ -502,7 +502,7 @@ static BOOL sub_02068884 (TaskManager * param0)
             sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
 
             ov5_021DFB54(fieldSystem->playerAvatar, (1 << 1));
-            ov5_021DFB5C(fieldSystem->playerAvatar);
+            PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             RadarChain_Clear(fieldSystem->chain);
         }

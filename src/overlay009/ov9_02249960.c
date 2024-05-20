@@ -2283,7 +2283,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
         GF_ASSERT(0);
     }
 
-    sub_0205EB58(v7, v5);
+    PlayerAvatar_SetPlayerState(v7, v5);
     sub_02061AD4(v8, v1);
 
     if (v0 != 1) {

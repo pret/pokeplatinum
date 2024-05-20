@@ -160,7 +160,7 @@ static void ov5_021E0FF0(SysTask * param0, void * param1);
 static void ov5_021E1028(FieldSystem * param0, Pokemon * param1, UnkStruct_ov5_021E1050 * param2);
 static void ov5_021E103C(FieldSystem * param0, UnkStruct_ov5_021E1050 * param1);
 static int ov5_021E1050(UnkStruct_ov5_021E1050 * param0);
-static void ov5_021E106C(PlayerAvatar * param0, int param1);
+static void PlayerAvatar_Redraw(PlayerAvatar * param0, int param1);
 static void ov5_021E10C0(void * param0, const UnkStruct_020216E0 * param1);
 static MapObject * ov5_021E10D4(PlayerAvatar * param0, int param1);
 static void * ov5_021E1110(int param0);
@@ -169,311 +169,309 @@ static Pokemon * ov5_021E1140(FieldSystem * param0, int param1);
 static void ov5_021E0DE0(FieldSystem * param0);
 static BOOL ov5_021E0E10(TaskManager * param0);
 
-static void(*const Unk_ov5_021F9B74[10])(PlayerAvatar *);
+static void(*const sPlayerAvatarRequestStateTbl[10])(PlayerAvatar *);
 int(*const Unk_ov5_021F9B54[])(UnkStruct_ov5_021F9B54 *);
 int(*const Unk_ov5_021F9B10[])(UnkStruct_ov5_021F9B10 *);
 int(*const Unk_ov5_021F9AFC[])(UnkStruct_ov5_021F9B10 *);
 
-void ov5_021DFB54 (PlayerAvatar * param0, u32 param1)
+void ov5_021DFB54 (PlayerAvatar * playerAvatar, u32 param1)
 {
-    sub_0205EB84(param0, param1);
+    sub_0205EB84(playerAvatar, param1);
 }
 
-void ov5_021DFB5C (PlayerAvatar * param0)
+void PlayerAvatar_RequestChangeState (PlayerAvatar * playerAvatar)
 {
-    u32 v0 = 0;
-    u32 v1 = sub_0205EB90(param0);
+    u32 state = 0;
+    u32 flag = PlayerAvatar_RequestStateFlag(playerAvatar);
 
     do {
-        if ((v1 & 0x1)) {
-            Unk_ov5_021F9B74[v0](param0);
+        if ((flag & 0x1)) {
+            sPlayerAvatarRequestStateTbl[state](playerAvatar);
         }
 
-        v1 >>= 1;
-    } while (++v0 < 10);
+        flag >>= 1;
+    } while (++state < 10);
 
-    sub_0205EB8C(param0, 0);
+    PlayerAvatar_SetRequestStateFlag(playerAvatar, 0);
 }
 
-static void ov5_021DFB90 (PlayerAvatar * param0)
+static void PlayerAvatar_RequestStateWalking (PlayerAvatar * playerAvatar)
 {
     int v0;
     int v1 = 0x0;
 
-    if (sub_0205F108(param0) != 0) {
+    if (sub_0205F108(playerAvatar) != 0) {
         v1 = 0x18;
     } else {
-        MapObject * v2 = Player_MapObject(param0);
-        FieldSystem * v3 = MapObject_FieldSystem(v2);
+        MapObject * mapObj = Player_MapObject(playerAvatar);
+        FieldSystem * v3 = MapObject_FieldSystem(mapObj);
 
         if (sub_02071CB4(v3, 2) == 1) {
             v1 = 0x1c;
         }
     }
 
-    v0 = Player_MoveStateFromGender(v1, PlayerAvatar_Gender(param0));
+    v0 = Player_MoveStateFromGender(v1, PlayerAvatar_Gender(playerAvatar));
 
-    ov5_021E106C(param0, v0);
-    sub_0205EB58(param0, 0x0);
-    PlayerAvatar_ClearSpeed(param0);
+    PlayerAvatar_Redraw(playerAvatar, v0);
+    PlayerAvatar_SetPlayerState(playerAvatar, 0x0);
+    PlayerAvatar_ClearSpeed(playerAvatar);
 
     {
-        UnkStruct_ov101_021D5D90 * v4 = sub_0205EC04(param0);
+        UnkStruct_ov101_021D5D90 * v4 = sub_0205EC04(playerAvatar);
 
         if (v4 != NULL) {
             ov5_021DF74C(v4);
         }
 
-        sub_0205EC00(param0, NULL);
+        sub_0205EC00(playerAvatar, NULL);
     }
 }
 
-static void ov5_021DFBF4 (PlayerAvatar * param0)
+static void PlayerAvatar_RequestStateCycle (PlayerAvatar * playerAvatar)
 {
-    int v0;
+    int v0 = Player_MoveStateFromGender(PLAYER_STATE_CYCLING, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
 
-    v0 = Player_MoveStateFromGender(0x1, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
-
-    sub_0205EB58(param0, 0x1);
-    PlayerAvatar_ClearSpeed(param0);
+    PlayerAvatar_SetPlayerState(playerAvatar, PLAYER_STATE_CYCLING);
+    PlayerAvatar_ClearSpeed(playerAvatar);
 
     {
-        UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(param0);
+        UnkStruct_ov101_021D5D90 * v1 = sub_0205EC04(playerAvatar);
 
         if (v1 != NULL) {
             ov5_021DF74C(v1);
         }
 
-        sub_0205EC00(param0, NULL);
+        sub_0205EC00(playerAvatar, NULL);
     }
 
     Sound_PlayEffect(1560);
 }
 
-static void ov5_021DFC3C (PlayerAvatar * param0)
+static void PlayerAvatar_RequestStateSurf (PlayerAvatar * playerAvatar)
 {
     int v0, v1;
-    MapObject * v2 = Player_MapObject(param0);
-    FieldSystem * v3 = MapObject_FieldSystem(v2);
-    int v4 = sub_0205F108(param0);
-    UnkStruct_ov101_021D5D90 * v5 = sub_0205EC04(param0);
+    MapObject * mapObj = Player_MapObject(playerAvatar);
+    FieldSystem * v3 = MapObject_FieldSystem(mapObj);
+    int v4 = sub_0205F108(playerAvatar);
+    UnkStruct_ov101_021D5D90 * v5 = sub_0205EC04(playerAvatar);
 
     if (v5 != NULL) {
         ov5_021DF74C(v5);
     }
 
-    sub_0205EC00(param0, NULL);
+    sub_0205EC00(playerAvatar, NULL);
 
-    if (sub_0205F16C(param0) == 1) {
-        v1 = Player_Dir(param0);
+    if (sub_0205F16C(playerAvatar) == 1) {
+        v1 = Player_Dir(playerAvatar);
     } else {
-        v1 = PlayerAvatar_MoveDir(param0);
+        v1 = PlayerAvatar_MoveDir(playerAvatar);
     }
 
     if (v4 == 0) {
-        v5 = ov5_021F261C(v2, 0, 0, v1, 1);
-        v0 = 0x2;
+        v5 = ov5_021F261C(mapObj, 0, 0, v1, 1);
+        v0 = PLAYER_STATE_SURFING;
     } else {
-        v5 = ov5_021F85BC(param0, 0, 0, 0, v1, 1, v4);
+        v5 = ov5_021F85BC(playerAvatar, 0, 0, 0, v1, 1, v4);
         v0 = 0x19;
     }
 
-    sub_0205EC00(param0, v5);
+    sub_0205EC00(playerAvatar, v5);
 
-    v0 = Player_MoveStateFromGender(v0, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
+    v0 = Player_MoveStateFromGender(v0, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
 
-    sub_0205EB58(param0, 0x2);
-    PlayerAvatar_ClearSpeed(param0);
+    PlayerAvatar_SetPlayerState(playerAvatar, PLAYER_STATE_SURFING);
+    PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
-static void ov5_021DFCE4 (PlayerAvatar * param0)
+static void ov5_021DFCE4 (PlayerAvatar * playerAvatar)
 {
-    sub_0205EF6C(param0, 1);
+    sub_0205EF6C(playerAvatar, 1);
 }
 
-static void ov5_021DFCF0 (PlayerAvatar * param0)
-{
-    int v0;
-
-    v0 = Player_MoveStateFromGender(0x11, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
-}
-
-static void ov5_021DFD0C (PlayerAvatar * param0)
+static void ov5_021DFCF0 (PlayerAvatar * playerAvatar)
 {
     int v0;
 
-    v0 = Player_MoveStateFromGender(0x13, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
+    v0 = Player_MoveStateFromGender(0x11, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFD28 (PlayerAvatar * param0)
+static void ov5_021DFD0C (PlayerAvatar * playerAvatar)
+{
+    int v0;
+
+    v0 = Player_MoveStateFromGender(0x13, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
+}
+
+static void PlayerAvatar_RequestStatePoketch (PlayerAvatar * playerAvatar)
 {
     int v0;
     int v1 = 0x14;
 
-    if (sub_0205F108(param0) != 0) {
+    if (sub_0205F108(playerAvatar) != 0) {
         v1 = 0x1b;
     } else {
-        MapObject * v2 = Player_MapObject(param0);
-        FieldSystem * v3 = MapObject_FieldSystem(v2);
+        MapObject * mapObj = Player_MapObject(playerAvatar);
+        FieldSystem * v3 = MapObject_FieldSystem(mapObj);
 
         if (sub_02071CB4(v3, 2) == 1) {
             v1 = 0x1e;
         }
     }
 
-    v0 = Player_MoveStateFromGender(v1, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
+    v0 = Player_MoveStateFromGender(v1, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFD68 (PlayerAvatar * param0)
+static void PlayerAvatar_RequestStateSave (PlayerAvatar * playerAvatar)
 {
     int v0;
     int v1 = 0x15;
 
-    if (sub_0205F108(param0) != 0) {
+    if (sub_0205F108(playerAvatar) != 0) {
         v1 = 0x1a;
     } else {
-        MapObject * v2 = Player_MapObject(param0);
-        FieldSystem * v3 = MapObject_FieldSystem(v2);
+        MapObject * mapObj = Player_MapObject(playerAvatar);
+        FieldSystem * v3 = MapObject_FieldSystem(mapObj);
 
         if (sub_02071CB4(v3, 2) == 1) {
             v1 = 0x1d;
         }
     }
 
-    v0 = Player_MoveStateFromGender(v1, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
+    v0 = Player_MoveStateFromGender(v1, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFDA8 (PlayerAvatar * param0)
+static void ov5_021DFDA8 (PlayerAvatar * playerAvatar)
 {
     int v0;
 
-    v0 = Player_MoveStateFromGender(0x16, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
+    v0 = Player_MoveStateFromGender(0x16, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFDC4 (PlayerAvatar * param0)
+static void ov5_021DFDC4 (PlayerAvatar * playerAvatar)
 {
     int v0;
 
-    v0 = Player_MoveStateFromGender(0x17, PlayerAvatar_Gender(param0));
-    ov5_021E106C(param0, v0);
+    v0 = Player_MoveStateFromGender(0x17, PlayerAvatar_Gender(playerAvatar));
+    PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void(*const Unk_ov5_021F9B74[10])(PlayerAvatar *) = {
-    ov5_021DFB90,
-    ov5_021DFBF4,
-    ov5_021DFC3C,
+static void(*const sPlayerAvatarRequestStateTbl[10])(PlayerAvatar *) = {
+    PlayerAvatar_RequestStateWalking,
+    PlayerAvatar_RequestStateCycle,
+    PlayerAvatar_RequestStateSurf,
     ov5_021DFCE4,
     ov5_021DFCF0,
     ov5_021DFD0C,
-    ov5_021DFD28,
-    ov5_021DFD68,
+    PlayerAvatar_RequestStatePoketch,
+    PlayerAvatar_RequestStateSave,
     ov5_021DFDA8,
     ov5_021DFDC4
 };
 
-int ov5_021DFDE0 (FieldSystem * param0, PlayerAvatar * param1, int param2, int param3)
+int ov5_021DFDE0 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int dir, int param3)
 {
     {
         MapObject * v0;
 
-        GF_ASSERT(param1 != NULL);
-        v0 = Player_MapObject(param1);
+        GF_ASSERT(playerAvatar != NULL);
+        v0 = Player_MapObject(playerAvatar);
         GF_ASSERT(v0 != NULL);
     }
 
-    if (sub_0205EF58(param1) == 1) {
-        if (ov5_021E067C(param0, param1, param3) == 1) {
+    if (sub_0205EF58(playerAvatar) == 1) {
+        if (ov5_021E067C(fieldSystem, playerAvatar, param3) == 1) {
             return 1;
         }
 
         return 0;
     }
 
-    if (PlayerAvatar_CheckStartMove(param1, param2) == 0) {
+    if (PlayerAvatar_CheckStartMove(playerAvatar, dir) == 0) {
         return 0;
     }
 
-    if (param2 == -1) {
-        if (ov5_021DFEF4(param0, param1, param2, param3) == 1) {
+    if (dir == -1) {
+        if (ov5_021DFEF4(fieldSystem, playerAvatar, dir, param3) == 1) {
             return 1;
         }
 
         return 0;
     }
 
-    if (ov5_021DFE68(param0, param1, param2, param3) == 1) {
+    if (ov5_021DFE68(fieldSystem, playerAvatar, dir, param3) == 1) {
         return 1;
     }
 
     return 0;
 }
 
-static int ov5_021DFE68 (FieldSystem * param0, PlayerAvatar * param1, int param2, int param3)
+static int ov5_021DFE68 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(param1, param2);
+    int v0 = sub_02061434(playerAvatar, param2);
 
     if ((param3 & 1 << 2)) {
-        if (ov9_0224A59C(param0, param2) == 1) {
+        if (ov9_0224A59C(fieldSystem, param2) == 1) {
             return 1;
         }
     }
 
     if ((param3 & 1 << 0)) {
-        if (ov5_021DFF1C(param0, param1, param2, v0) == 1) {
+        if (ov5_021DFF1C(fieldSystem, playerAvatar, param2, v0) == 1) {
             return 1;
         }
     }
 
     if ((param3 & 1 << 1)) {
-        if (ov5_021E04A8(param0, param1, param2, v0) == 1) {
+        if (ov5_021E04A8(fieldSystem, playerAvatar, param2, v0) == 1) {
             return 1;
         }
     }
 
-    if (ov5_021E032C(param0, param1, param2, v0) == 1) {
+    if (ov5_021E032C(fieldSystem, playerAvatar, param2, v0) == 1) {
         return 1;
     }
 
-    if (ov5_021E04EC(param0, param1, param2, v0) == 1) {
+    if (ov5_021E04EC(fieldSystem, playerAvatar, param2, v0) == 1) {
         return 1;
     }
 
     return 0;
 }
 
-static int ov5_021DFEF4 (FieldSystem * param0, PlayerAvatar * param1, int param2, int param3)
+static int ov5_021DFEF4 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2, int param3)
 {
-    int v0 = sub_02061434(param1, param2);
+    int v0 = sub_02061434(playerAvatar, param2);
 
-    if (ov5_021E04EC(param0, param1, param2, v0) == 1) {
+    if (ov5_021E04EC(fieldSystem, playerAvatar, param2, v0) == 1) {
         return 1;
     }
 
     return 0;
 }
 
-static int ov5_021DFF1C (FieldSystem * param0, PlayerAvatar * param1, int param2, int param3)
+static int ov5_021DFF1C (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2, int param3)
 {
     if (param3 != 1) {
         return 0;
     }
 
     {
-        MapObject * v0 = ov5_021E10D4(param1, param2);
+        MapObject * mapObj = ov5_021E10D4(playerAvatar, param2);
 
-        if (v0 == NULL) {
+        if (mapObj == NULL) {
             return 0;
         }
 
         {
-            int v1 = sub_02062920(v0);
+            int v1 = sub_02062920(mapObj);
 
             if (v1 != 0x54) {
                 return 0;
@@ -481,13 +479,13 @@ static int ov5_021DFF1C (FieldSystem * param0, PlayerAvatar * param1, int param2
         }
 
         {
-            u32 v2 = sub_02063EBC(v0, param2);
+            u32 v2 = sub_02063EBC(mapObj, param2);
 
             v2 &= ~(1 << 0);
 
             if (v2 != 0) {
-                if (sub_02071CB4(param0, 9) == 1) {
-                    if (ov9_0224F240(v0, param2) == 0) {
+                if (sub_02071CB4(fieldSystem, 9) == 1) {
+                    if (ov9_0224F240(mapObj, param2) == 0) {
                         return 0;
                     }
                 } else {
@@ -496,22 +494,22 @@ static int ov5_021DFF1C (FieldSystem * param0, PlayerAvatar * param1, int param2
             }
         }
 
-        ov5_021DFF88(param2, param0, param1, v0);
+        ov5_021DFF88(param2, fieldSystem, playerAvatar, mapObj);
         return 1;
     }
 }
 
-static void ov5_021DFF88 (int param0, FieldSystem * param1, PlayerAvatar * param2, MapObject * param3)
+static void ov5_021DFF88 (int param0, FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, MapObject * param3)
 {
     UnkStruct_ov5_021DFF88 * v0 = ov5_021E1110((sizeof(UnkStruct_ov5_021DFF88)));
 
     v0->unk_04 = param0;
-    v0->unk_08 = param1;
+    v0->unk_08 = fieldSystem;
     v0->unk_10 = param3;
-    v0->unk_0C = param2;
+    v0->unk_0C = playerAvatar;
 
-    sub_02050904(param1, ov5_021DFFBC, v0);
-    sub_0202CF28(sub_0202CD88(param1->saveData), (1 + 54));
+    sub_02050904(fieldSystem, ov5_021DFFBC, v0);
+    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 54));
 }
 
 static BOOL ov5_021DFFBC (TaskManager * param0)
@@ -579,32 +577,32 @@ static BOOL ov5_021DFFBC (TaskManager * param0)
     return 0;
 }
 
-static void ov5_021E00B0 (FieldSystem * param0, int param1, const UnkStruct_ov5_021E1050 * param2)
+static void ov5_021E00B0 (FieldSystem * fieldSystem, int param1, const UnkStruct_ov5_021E1050 * param2)
 {
     UnkStruct_ov5_021E00B0 * v0 = ov5_021E1110((sizeof(UnkStruct_ov5_021E00B0)));
 
     v0->unk_04 = param1;
-    v0->unk_1C = param0;
-    v0->unk_20 = param0->playerAvatar;
+    v0->unk_1C = fieldSystem;
+    v0->unk_20 = fieldSystem->playerAvatar;
     v0->unk_24 = Player_MapObject(v0->unk_20);
     v0->unk_0C = *param2;
 
-    sub_02050944(param0->unk_10, ov5_021E0160, v0);
+    sub_02050944(fieldSystem->unk_10, ov5_021E0160, v0);
 }
 
-void ov5_021E00EC (TaskManager * param0, int param1, int param2)
+void ov5_021E00EC (TaskManager * taskMan, int param1, int param2)
 {
     UnkStruct_ov5_021E1050 v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
     Pokemon * v2 = ov5_021E1140(v1, param2);
 
     ov5_021E1028(v1, v2, &v0);
     ov5_021E00B0(v1, param1, &v0);
 }
 
-int ov5_021E0118 (PlayerAvatar * param0, u32 param1, u32 param2)
+int ov5_021E0118 (PlayerAvatar * playerAvatar, u32 param1, u32 param2)
 {
-    MapObject * v0 = Player_MapObject(param0);
+    MapObject * v0 = Player_MapObject(playerAvatar);
 
     if (sub_0205DB58(param2) == 1) {
         if ((sub_0205DEFC(param1) == 1) || (sub_0205DEF0(param1) == 1)) {
@@ -619,9 +617,9 @@ int ov5_021E0118 (PlayerAvatar * param0, u32 param1, u32 param2)
     return 0;
 }
 
-static BOOL ov5_021E0160 (TaskManager * param0)
+static BOOL ov5_021E0160 (TaskManager * taskMan)
 {
-    UnkStruct_ov5_021E00B0 * v0 = TaskManager_Environment(param0);
+    UnkStruct_ov5_021E00B0 * v0 = TaskManager_Environment(taskMan);
 
     switch (v0->unk_00) {
     case 0:
@@ -660,7 +658,7 @@ static BOOL ov5_021E0160 (TaskManager * param0)
         }
 
         sub_0205EC00(v0->unk_20, v0->unk_28);
-        sub_0205EB58(v0->unk_20, 0x2);
+        PlayerAvatar_SetPlayerState(v0->unk_20, 0x2);
     }
 
         v0->unk_00++;
@@ -692,13 +690,13 @@ static BOOL ov5_021E0160 (TaskManager * param0)
 
             ov5_021F2838(v0->unk_28, 1);
             v10 = Player_MoveStateFromGender(0x2, PlayerAvatar_Gender(v0->unk_20));
-            ov5_021E106C(v0->unk_20, v10);
+            PlayerAvatar_Redraw(v0->unk_20, v10);
         } else {
             int v11;
 
             ov5_021F88CC(v0->unk_28, 1 << 1);
             v11 = Player_MoveStateFromGender(0x19, PlayerAvatar_Gender(v0->unk_20));
-            ov5_021E106C(v0->unk_20, v11);
+            PlayerAvatar_Redraw(v0->unk_20, v11);
         }
 
         ov5_021E1134(v0);
@@ -708,7 +706,7 @@ static BOOL ov5_021E0160 (TaskManager * param0)
     return 0;
 }
 
-static int ov5_021E032C (FieldSystem * param0, PlayerAvatar * param1, int param2, int param3)
+static int ov5_021E032C (FieldSystem * fieldSystem, PlayerAvatar * param1, int param2, int param3)
 {
     if ((param3 != 1) || (PlayerAvatar_PlayerState(param1) != 0x2)) {
         return 0;
@@ -735,21 +733,21 @@ static int ov5_021E032C (FieldSystem * param0, PlayerAvatar * param1, int param2
         }
     }
 
-    ov5_021E0390(param2, param0, param1);
+    ov5_021E0390(param2, fieldSystem, param1);
     return 1;
 }
 
-static void ov5_021E0390 (int param0, FieldSystem * param1, PlayerAvatar * param2)
+static void ov5_021E0390 (int param0, FieldSystem * fieldSystem, PlayerAvatar * param2)
 {
     UnkStruct_ov5_021E0390 * v0 = ov5_021E1110((sizeof(UnkStruct_ov5_021E0390)));
 
     v0->unk_04 = param0;
-    v0->unk_08 = param1;
+    v0->unk_08 = fieldSystem;
     v0->unk_0C = param2;
     v0->unk_10 = Player_MapObject(param2);
     v0->unk_14 = sub_0205EC04(param2);
 
-    sub_02050904(param1, ov5_021E03C8, v0);
+    sub_02050904(fieldSystem, ov5_021E03C8, v0);
 }
 
 static BOOL ov5_021E03C8 (TaskManager * param0)
@@ -775,7 +773,7 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
                 v1 = Player_MoveStateFromGender(0x18, PlayerAvatar_Gender(v0->unk_0C));
             }
 
-            ov5_021E106C(v0->unk_0C, v1);
+            PlayerAvatar_Redraw(v0->unk_0C, v1);
 
             v1 = sub_02065838(v0->unk_04, v3[v2]);
             LocalMapObj_SetAnimationCode(v0->unk_10, v1);
@@ -794,7 +792,7 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
         }
 
         sub_0205EC00(v0->unk_0C, NULL);
-        sub_0205EB58(v0->unk_0C, 0x0);
+        PlayerAvatar_SetPlayerState(v0->unk_0C, 0x0);
         sub_02055554(v0->unk_08, sub_020554A4(v0->unk_08, v0->unk_08->unk_1C->unk_00), 1);
         ov5_021E1134(v0);
         return 1;
@@ -803,14 +801,14 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
     return 0;
 }
 
-static int ov5_021E04A8 (FieldSystem * param0, PlayerAvatar * param1, int param2, int param3)
+static int ov5_021E04A8 (FieldSystem * param0, PlayerAvatar * playerAvatar, int param2, int param3)
 {
-    if ((param2 != 1) || (param3 != 1) || (PlayerAvatar_PlayerState(param1) != 0x2)) {
+    if ((param2 != 1) || (param3 != 1) || (PlayerAvatar_PlayerState(playerAvatar) != 0x2)) {
         return 0;
     }
 
     {
-        u8 v0 = sub_0206156C(param1, param2);
+        u8 v0 = sub_0206156C(playerAvatar, param2);
 
         if (sub_0205DDB4(v0) == 0) {
             return 0;
@@ -821,14 +819,14 @@ static int ov5_021E04A8 (FieldSystem * param0, PlayerAvatar * param1, int param2
     return 1;
 }
 
-static int ov5_021E04EC (FieldSystem * param0, PlayerAvatar * param1, int param2, int param3)
+static int ov5_021E04EC (FieldSystem * param0, PlayerAvatar * playerAvatar, int param2, int param3)
 {
-    if (PlayerAvatar_IsNotInDeepSwamp(param1) == 1) {
+    if (PlayerAvatar_IsNotInDeepSwamp(playerAvatar) == 1) {
         return 0;
     }
 
     {
-        MapObject * v0 = Player_MapObject(param1);
+        MapObject * v0 = Player_MapObject(playerAvatar);
         u8 v1 = sub_02062BE8(v0);
 
         if ((sub_0205DCF0(v1) != 1) && (sub_0205DD0C(v1) != 1)) {
@@ -836,16 +834,16 @@ static int ov5_021E04EC (FieldSystem * param0, PlayerAvatar * param1, int param2
         }
     }
 
-    ov5_021E0534(param0, param1);
+    ov5_021E0534(param0, playerAvatar);
     return 1;
 }
 
-static void ov5_021E0534 (FieldSystem * param0, PlayerAvatar * param1)
+static void ov5_021E0534 (FieldSystem * param0, PlayerAvatar * playerAvatar)
 {
     UnkStruct_ov5_021E0534 * v0 = ov5_021E1110((sizeof(UnkStruct_ov5_021E0534)));
 
     v0->unk_08 = param0;
-    v0->unk_0C = param1;
+    v0->unk_0C = playerAvatar;
 
     sub_02050904(param0, ov5_021E0560, v0);
     sub_0202CF28(sub_0202CD88(param0->saveData), (1 + 55));
@@ -920,30 +918,30 @@ static BOOL ov5_021E0560 (TaskManager * param0)
     return 0;
 }
 
-static int ov5_021E067C (FieldSystem * param0, PlayerAvatar * param1, int param2)
+static int ov5_021E067C (FieldSystem * param0, PlayerAvatar * playerAvatar, int param2)
 {
-    MapObject * v0 = Player_MapObject(param1);
+    MapObject * v0 = Player_MapObject(playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(v0) == 0) {
         return 0;
     }
 
-    if (ov5_021E06A8(param0, param1) == 1) {
+    if (ov5_021E06A8(param0, playerAvatar) == 1) {
         return 1;
     }
 
     return 0;
 }
 
-static int ov5_021E06A8 (FieldSystem * param0, PlayerAvatar * param1)
+static int ov5_021E06A8 (FieldSystem * param0, PlayerAvatar * playerAvatar)
 {
-    if (PlayerAvatar_Speed(param1) < 1) {
+    if (PlayerAvatar_Speed(playerAvatar) < 1) {
         return 0;
     }
 
     {
-        int v0 = PlayerAvatar_MoveDir(param1);
-        MapObject * v1 = ov5_021E10D4(param1, v0);
+        int v0 = PlayerAvatar_MoveDir(playerAvatar);
+        MapObject * v1 = ov5_021E10D4(playerAvatar, v0);
 
         if (v1 == NULL) {
             return 0;
@@ -1543,7 +1541,7 @@ static BOOL ov5_021E0E10 (TaskManager * param0)
         if (sub_0206574C(v0->unk_14) == 1) {
             int v1 = Player_MoveStateFromGender(0x12, v0->unk_10);
 
-            ov5_021E106C(v0->unk_04, v1);
+            PlayerAvatar_Redraw(v0->unk_04, v1);
             sub_02065758(v0->unk_14);
 
             v0->unk_14 = sub_02065700(v0->unk_08, Unk_ov5_021F9C00);
@@ -1587,10 +1585,10 @@ void ov5_021E0E94 (PlayerAvatar * param0)
     }
 
     {
-        u32 v3 = sub_0205EB90(param0);
+        u32 v3 = PlayerAvatar_RequestStateFlag(param0);
 
         ov5_021DFB54(param0, (1 << 6));
-        ov5_021DFB5C(param0);
+        PlayerAvatar_RequestChangeState(param0);
         ov5_021DFB54(param0, v3);
     }
 }
@@ -1620,10 +1618,10 @@ void ov5_021E0EEC (PlayerAvatar * param0)
     }
 
     {
-        u32 v3 = sub_0205EB90(param0);
+        u32 v3 = PlayerAvatar_RequestStateFlag(param0);
 
         ov5_021DFB54(param0, (1 << 0));
-        ov5_021DFB5C(param0);
+        PlayerAvatar_RequestChangeState(param0);
         ov5_021DFB54(param0, v3);
     }
 }
@@ -1649,7 +1647,7 @@ static SysTask * ov5_021E0F54 (FieldSystem * param0, u32 param1)
 
         sub_02062DDC(v3);
         ov5_021DFB54(v0, param1);
-        ov5_021DFB5C(v0);
+        PlayerAvatar_RequestChangeState(v0);
 
         v2 = SysTask_Start(ov5_021E0FF0, v4, 0xffff);
         GF_ASSERT(v2 != NULL);
@@ -1669,7 +1667,7 @@ static void ov5_021E0FC0 (SysTask * param0)
         PlayerAvatar * v1 = v0->unk_0C;
         int v2 = Player_MoveStateFromGender(0x0, PlayerAvatar_Gender(v1));
 
-        ov5_021DFB90(v1);
+        PlayerAvatar_RequestStateWalking(v1);
         Heap_FreeToHeap(v0);
         SysTask_Done(param0);
     }
@@ -1725,7 +1723,7 @@ static int ov5_021E1050 (UnkStruct_ov5_021E1050 * param0)
     return 0;
 }
 
-static void ov5_021E106C (PlayerAvatar * param0, int param1)
+static void PlayerAvatar_Redraw (PlayerAvatar * param0, int param1)
 {
     MapObject * v0 = Player_MapObject(param0);
 
