@@ -12,7 +12,7 @@
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"
 #include "map_object.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
 #include "unk_02069BE0.h"
@@ -377,7 +377,7 @@ static int sub_02069FE8 (MapObject * param0, UnkStruct_02069F48 * param1)
     int v3 = MapObject_XPosPrev(v0);
     int v4 = MapObject_ZPosPrev(v0);
 
-    if (((v1 != v3) || (v2 != v4)) && ((sub_02062D1C(v0) == 1) || (sub_020628D0(v0, ((1 << 11) | (1 << 12) | (1 << 6))) == 0))) {
+    if (((v1 != v3) || (v2 != v4)) && ((sub_02062D1C(v0) == 1) || (MapObject_CheckStatus(v0, ((1 << 11) | (1 << 12) | (1 << 6))) == 0))) {
         return 1;
     }
 

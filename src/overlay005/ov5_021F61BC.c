@@ -14,7 +14,7 @@
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"
 #include "map_object.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"

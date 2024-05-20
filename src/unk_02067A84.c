@@ -15,7 +15,7 @@
 #include "unk_0203E880.h"
 #include "player_avatar.h"
 #include "map_object.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
 #include "unk_020711EC.h"

@@ -1,13 +1,13 @@
-#ifndef POKEPLATINUM_UNK_02063400_H
-#define POKEPLATINUM_UNK_02063400_H
+#ifndef POKEPLATINUM_MAP_OBJECT_MOVE_H
+#define POKEPLATINUM_MAP_OBJECT_MOVE_H
 
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include <nitro/fx/fx.h>
 
-void sub_02063400(MapObject * param0);
-void sub_02063410(MapObject * param0);
+void MapObject_InitMove(MapObject * param0);
+void MapObject_Move(MapObject * param0);
 u32 sub_02063E18(const MapObject * param0, const VecFx32 * param1, int param2, int param3, int param4, int param5);
 u32 sub_02063E94(const MapObject * param0, int param1, int param2, int param3, int param4);
 u32 sub_02063EBC(const MapObject * param0, int param1);
@@ -38,4 +38,4 @@ int sub_02064488(int param0, int param1, int param2, int param3);
 int sub_020644A4(FieldSystem * param0, VecFx32 * param1);
 int sub_020644D0(FieldSystem * param0, VecFx32 * param1, int param2);
 
-#endif // POKEPLATINUM_UNK_02063400_H
+#endif // POKEPLATINUM_MAP_OBJECT_MOVE_H

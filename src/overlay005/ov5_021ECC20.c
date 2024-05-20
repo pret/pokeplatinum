@@ -70,11 +70,11 @@ void ov5_021ECCC8 (MapObject * param0)
         return;
     }
 
-    if (sub_020628D0(param0, (1 << 14)) == 0) {
+    if (MapObject_CheckStatus(param0, (1 << 14)) == 0) {
         return;
     }
 
-    if ((sub_02062DE8(param0) == 0) || sub_02062F7C(param0)) {
+    if ((MapObject_IsMovementPaused(param0) == 0) || sub_02062F7C(param0)) {
         sub_02062B68(param0);
     }
 }
@@ -105,13 +105,13 @@ static const UnkStruct_ov5_021ECD10 * ov5_021ECD10 (int param0)
 
 int ov5_021ECD38 (const MapObject * param0)
 {
-    if (sub_02062DE8(param0) == 1) {
+    if (MapObject_IsMovementPaused(param0) == 1) {
         if (sub_02062F7C(param0) == 0) {
             return 1;
         }
     }
 
-    if (sub_020628D0(param0, (1 << 8))) {
+    if (MapObject_CheckStatus(param0, (1 << 8))) {
         return 1;
     }
 

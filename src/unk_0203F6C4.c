@@ -160,7 +160,7 @@
 #include "unk_0205DFC4.h"
 #include "player_avatar.h"
 #include "map_object.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020655F4.h"
 #include "pokeradar.h"
 #include "unk_02069BE0.h"

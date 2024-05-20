@@ -51,7 +51,7 @@
 #include "unk_02054D00.h"
 #include "comm_player_manager.h"
 #include "player_avatar.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"

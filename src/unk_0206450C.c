@@ -10,7 +10,7 @@
 #include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_0206450C.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
@@ -1469,7 +1469,7 @@ static void sub_02065568 (MapObject * param0, UnkStruct_02065550 * param1)
     v0 = (v0 + 1) % 4;
     v1 = Unk_020EEAB0[param1->unk_01][v0];
 
-    if (sub_020628D0(param0, (1 << 7))) {
+    if (MapObject_CheckStatus(param0, (1 << 7))) {
         param1->unk_02 = 1;
     } else {
         param1->unk_02 = 0;

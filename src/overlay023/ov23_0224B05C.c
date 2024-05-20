@@ -50,7 +50,7 @@
 #include "comm_player_manager.h"
 #include "player_avatar.h"
 #include "unk_0205F180.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020655F4.h"
 #include "unk_0206A8DC.h"
 #include "overlay005/ov5_021E15F4.h"

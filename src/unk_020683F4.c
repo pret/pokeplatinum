@@ -50,7 +50,7 @@
 #include "player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020683F4.h"
 #include "pokeradar.h"
 #include "unk_0206A8DC.h"

@@ -47,7 +47,7 @@
 #include "unk_0202414C.h"
 #include "unk_0205DAC8.h"
 #include "map_object.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020677F4.h"
 #include "unk_020711EC.h"
 #include "overlay005/ov5_021D521C.h"
@@ -1416,7 +1416,7 @@ void ov5_021EDD78 (MapObject * param0, int param1)
 
 int ov5_021EDD94 (MapObject * param0)
 {
-    if (sub_020628D0(param0, (1 << 22))) {
+    if (MapObject_CheckStatus(param0, (1 << 22))) {
         return 1;
     }
 
