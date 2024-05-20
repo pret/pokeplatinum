@@ -29,7 +29,7 @@ void ov5_021ECC20 (MapObjectManager * param0, int param1, int param2, const int 
 
     ov5_021ECCA4(param0);
 
-    v0 = sub_02062824(param0);
+    v0 = MapObjectMan_MaxObjects(param0);
     v1 = sub_02062858(param0) - 1;
     v2 = sub_0206285C(param0);
 

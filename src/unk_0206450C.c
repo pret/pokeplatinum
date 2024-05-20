@@ -364,10 +364,10 @@ static void sub_020647A0 (MapObject * param0, UnkStruct_020647A0 * param1)
 {
     int v0, v1, v2, v3, v4;
 
-    v1 = sub_02062FF0(param0);
-    v2 = sub_02063000(param0);
-    v3 = sub_02062A00(param0);
-    v4 = sub_02062A08(param0);
+    v1 = MapObject_XInitial(param0);
+    v2 = MapObject_ZInitial(param0);
+    v3 = MapObject_MaxXOffset(param0);
+    v4 = MapObject_MaxZOffset(param0);
     v0 = sub_02062948(param0);
 
     switch (v0) {
@@ -747,8 +747,8 @@ static int sub_02064CA8 (MapObject * param0, UnkStruct_02064C28 * param1)
     if (param1->unk_02) {
         int v0, v1, v2, v3;
 
-        v0 = sub_02062FF0(param0);
-        v1 = sub_02063000(param0);
+        v0 = MapObject_XInitial(param0);
+        v1 = MapObject_ZInitial(param0);
         v2 = MapObject_XPos(param0);
         v3 = MapObject_ZPos(param0);
 
@@ -928,14 +928,14 @@ static int sub_02064EEC (MapObject * param0, UnkStruct_02064D98 * param1)
 {
     if (param1->unk_01 == param1->unk_02) {
         if (param1->unk_03 == 0) {
-            int v0 = sub_02062FF0(param0);
+            int v0 = MapObject_XInitial(param0);
             int v1 = MapObject_XPos(param0);
 
             if (v0 == v1) {
                 param1->unk_01++;
             }
         } else {
-            int v2 = sub_02063000(param0);
+            int v2 = MapObject_ZInitial(param0);
             int v3 = MapObject_ZPos(param0);
 
             if (v2 == v3) {
@@ -945,8 +945,8 @@ static int sub_02064EEC (MapObject * param0, UnkStruct_02064D98 * param1)
     }
 
     if (param1->unk_01 == 3) {
-        int v4 = sub_02062FF0(param0);
-        int v5 = sub_02063000(param0);
+        int v4 = MapObject_XInitial(param0);
+        int v5 = MapObject_ZInitial(param0);
         int v6 = MapObject_XPos(param0);
         int v7 = MapObject_ZPos(param0);
 
@@ -1139,14 +1139,14 @@ static int sub_020651A4 (MapObject * param0, UnkStruct_0206502C * param1)
 {
     if (param1->unk_01 == param1->unk_02) {
         if (param1->unk_03 == 0) {
-            int v0 = sub_02062FF0(param0);
+            int v0 = MapObject_XInitial(param0);
             int v1 = MapObject_XPos(param0);
 
             if (v0 == v1) {
                 sub_02065100(param1);
             }
         } else {
-            int v2 = sub_02063000(param0);
+            int v2 = MapObject_ZInitial(param0);
             int v3 = MapObject_ZPos(param0);
 
             if (v2 == v3) {
@@ -1156,8 +1156,8 @@ static int sub_020651A4 (MapObject * param0, UnkStruct_0206502C * param1)
     }
 
     if (param1->unk_01 == 3) {
-        int v4 = sub_02062FF0(param0);
-        int v5 = sub_02063000(param0);
+        int v4 = MapObject_XInitial(param0);
+        int v5 = MapObject_ZInitial(param0);
         int v6 = MapObject_XPos(param0);
         int v7 = MapObject_ZPos(param0);
 

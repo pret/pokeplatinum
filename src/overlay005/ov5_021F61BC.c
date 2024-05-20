@@ -114,7 +114,7 @@ static int ov5_021F6264 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1 = Player_MapObject(v2->unk_08);
 
     v0->unk_04 = -1;
-    v0->unk_14 = sub_02062910(v1);
+    v0->unk_14 = MapObject_Id(v1);
     v0->unk_18 = sub_02062918(v1);
 
     return 1;

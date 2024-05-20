@@ -364,9 +364,9 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, MapObject * param1, int p
 {
     int v0, v1, v2;
 
-    v0 = sub_02062FF0(param1);
-    v1 = sub_02062FF8(param1);
-    v2 = sub_02063000(param1);
+    v0 = MapObject_XInitial(param1);
+    v1 = MapObject_YInitial(param1);
+    v2 = MapObject_ZInitial(param1);
 
     if ((v0 == param2) && (v2 == param3)) {
         return;
@@ -375,7 +375,7 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, MapObject * param1, int p
     Sound_PlayEffect(1615);
     sub_02061AD4(param1, param0->unk_08);
     sub_0205C680(param0, 0);
-    LocalMapObj_SetPosDir(param1, v0, v1, v2, 1);
+    MapObject_SetPosDir(param1, v0, v1, v2, 1);
     sub_0206296C(param1, 1);
     LocalMapObj_SetAnimationCode(param1, 0x44);
     MapObject_SetHidden(param1, 0);

@@ -415,7 +415,7 @@ static void CommPlayer_Add (u8 netId)
             GF_ASSERT(playerAvatar != NULL);
             sCommPlayerManager->playerAvatar[netId] = playerAvatar;
 
-            LocalMapObj_SetId(Player_MapObject(playerAvatar), 0xff + netId + 1);
+            MapObject_SetId(Player_MapObject(playerAvatar), 0xff + netId + 1);
 
             if (sCommPlayerManager->isUnderground) {
                 UndergroundMan_SetReturnLog(netId);
@@ -640,7 +640,7 @@ static int CommPlayer_Direction (u16 unused, u16 keys)
 BOOL CommPlayer_CheckNPCCollision (int x, int z)
 {
     int npcCnt, i;
-    const UnkStruct_020619DC * npcList;
+    const MapObjectHeader * npcList;
 
     npcCnt = sub_0203A4B4(sCommPlayerManager->fieldSys);
     npcList = sub_0203A4BC(sCommPlayerManager->fieldSys);
@@ -1788,9 +1788,9 @@ void CommPlayerMan_ForcePos (void)
         z = sCommPlayerManager->playerLocation[netId].z;
         dir = sCommPlayerManager->playerLocation[netId].dir;
 
-        LocalMapObj_SetX(obj, x);
-        LocalMapObj_SetZ(obj, z);
-        LocalMapObj_SetPosDir(obj, x, 0, z, dir);
+        MapObject_SetX(obj, x);
+        MapObject_SetZ(obj, z);
+        MapObject_SetPosDir(obj, x, 0, z, dir);
     }
 }
 

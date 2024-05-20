@@ -36,7 +36,7 @@ typedef struct UnkStruct_0203A790_t {
 } UnkStruct_0203A790;
 
 typedef struct UnkStruct_0203A79C_t {
-    UnkStruct_02061D3C unk_00[64];
+    MapObjectSave unk_00[64];
 } UnkStruct_0203A79C;
 
 int FieldPlayerState_SaveSize (void)
@@ -173,16 +173,16 @@ UnkStruct_0203A79C * sub_0203A79C (SaveData * param0)
 
 void sub_0203A7A8 (FieldSystem * fieldSystem)
 {
-    UnkStruct_02061D3C * v0;
+    MapObjectSave * v0;
 
     v0 = ((UnkStruct_0203A79C *)sub_0203A79C(fieldSystem->saveData))->unk_00;
-    sub_02061CA8(fieldSystem, fieldSystem->mapObjMan, v0, 64);
+    MapObjectMan_SaveAll(fieldSystem, fieldSystem->mapObjMan, v0, 64);
 }
 
 void sub_0203A7C0 (FieldSystem * fieldSystem)
 {
-    UnkStruct_02061D3C * v0;
+    MapObjectSave * v0;
 
     v0 = ((UnkStruct_0203A79C *)sub_0203A79C(fieldSystem->saveData))->unk_00;
-    sub_02061D04(fieldSystem->mapObjMan, v0, 64);
+    MapObjectMan_LoadAllObjects(fieldSystem->mapObjMan, v0, 64);
 }

@@ -152,7 +152,7 @@ static void PlayerAvatar_AddMapObject (PlayerAvatar * playerAvatar, const MapObj
     MapObject * mapObj = sub_020619DC(mapObjMan, param4, param5, param3, param2, 0x1, 1);
     GF_ASSERT(mapObj != NULL);
 
-    LocalMapObj_SetId(mapObj, 0xff);
+    MapObject_SetId(mapObj, 0xff);
     sub_0206294C(mapObj, 0);
     sub_02062954(mapObj, 0);
     sub_0206295C(mapObj, 0);
@@ -536,7 +536,7 @@ void sub_0205ECE0 (PlayerAvatar * playerAvatar, int param1, int param2, int para
 {
     MapObject * mapObj = Player_MapObject(playerAvatar);
 
-    LocalMapObj_SetPosDir(mapObj, param1, 0, param2, param3);
+    MapObject_SetPosDir(mapObj, param1, 0, param2, param3);
     sub_0205EB08(playerAvatar, 0);
     sub_0205EB10(playerAvatar, 0);
 }

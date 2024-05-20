@@ -621,7 +621,7 @@ int sub_02063F00 (const MapObject * param0, int param1, int param2, int param3)
 
     v3 = sub_02062A40(param0);
     v4 = sub_02062868(v3);
-    v0 = sub_02062824(v3);
+    v0 = MapObjectMan_MaxObjects(v3);
 
     do {
         if (v4 != param0) {
@@ -673,8 +673,8 @@ int sub_02063FAC (const MapObject * param0, int param1, int param2, int param3)
 {
     int v0, v1, v2, v3;
 
-    v0 = sub_02062FF0(param0);
-    v1 = sub_02062A00(param0);
+    v0 = MapObject_XInitial(param0);
+    v1 = MapObject_MaxXOffset(param0);
 
     if (v1 != -1) {
         v2 = v0 - v1;
@@ -685,8 +685,8 @@ int sub_02063FAC (const MapObject * param0, int param1, int param2, int param3)
         }
     }
 
-    v0 = sub_02063000(param0);
-    v1 = sub_02062A08(param0);
+    v0 = MapObject_ZInitial(param0);
+    v1 = MapObject_MaxZOffset(param0);
 
     if (v1 != -1) {
         v2 = v0 - v1;
@@ -935,7 +935,7 @@ int sub_020642F8 (MapObject * param0)
             v0.y = v1.y;
             sub_02063060(param0, &v0);
             sub_02063014(param0, MapObject_YPos(param0));
-            sub_02063034(param0, (((v0.y) >> 3) / FX32_ONE));
+            MapObject_SetY(param0, (((v0.y) >> 3) / FX32_ONE));
             MapObject_SetStatusFlagOff(param0, (1 << 12));
         } else {
             MapObject_SetStatusFlagOn(param0, (1 << 12));

@@ -3142,7 +3142,7 @@ static MapObject * ov8_0224B7D8 (FieldSystem * fieldSystem, int param1, int para
 
     v0 = sub_020619DC(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->unk_1C->unk_00);
 
-    LocalMapObj_SetId(v0, 0xfd);
+    MapObject_SetId(v0, 0xfd);
     sub_020629B4(v0, param3, 0);
 
     return v0;
@@ -3244,7 +3244,7 @@ static void ov8_0224B958 (UnkStruct_ov8_0224B8D0 * param0)
     UnkStruct_ov8_0224BCA8 * v6 = param0->unk_10C;
 
     while (sub_020625B0(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
-        if (sub_02062910(v2) == 0xfd) {
+        if (MapObject_Id(v2) == 0xfd) {
             if (sub_020629D8(v2, 0) == 0) {
                 ov8_0224B80C(&v5->unk_08, v2, fieldSystem);
                 v5->unk_00 = 1;
@@ -3490,8 +3490,8 @@ static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
             (void)0;
         } else {
             sub_02064450(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
-            LocalMapObj_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
-            LocalMapObj_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
+            MapObject_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
+            MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
             sub_02064208(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
             sub_020057A4(1356, 0);
@@ -4029,7 +4029,7 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
     v3 = sub_02062858(mapObjMan) + 2;
 
     while (sub_020625B0(mapObjMan, &v5, &v0, (1 << 0))) {
-        v4 = sub_02062910(v5);
+        v4 = MapObject_Id(v5);
         v6->unk_08 = sub_020629D8(v5, 0);
 
         if ((v4 == 0xff) || ((sub_02062950(v5) == 0x1) && v6->unk_08)) {

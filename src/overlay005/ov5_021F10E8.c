@@ -203,7 +203,7 @@ static int ov5_021F1258 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1 = sub_020715BC(param0);
 
     v0->unk_1C = *v1;
-    v0->unk_04 = sub_02062910(v0->unk_1C.unk_08);
+    v0->unk_04 = MapObject_Id(v0->unk_1C.unk_08);
     v0->unk_18 = ov5_021F11FC(v0->unk_1C.unk_04, v0->unk_1C.unk_00);
 
     if (sub_02062E94(v0->unk_1C.unk_08) == 1) {

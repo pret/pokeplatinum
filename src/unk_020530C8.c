@@ -346,7 +346,7 @@ static void sub_02053320 (FieldSystem * fieldSystem)
     UnkStruct_0203A790 * v2;
     PlayerData * v3;
 
-    fieldSystem->mapObjMan = sub_02061804(fieldSystem, 64, 5);
+    fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
 
     v0 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
     v2 = sub_0203A790(fieldSystem->saveData);
@@ -361,13 +361,13 @@ static void sub_02053320 (FieldSystem * fieldSystem)
 static void sub_02053374 (FieldSystem * fieldSystem)
 {
     Player_Delete(fieldSystem->playerAvatar);
-    sub_02061BBC(fieldSystem->mapObjMan);
-    sub_02061830(fieldSystem->mapObjMan);
+    MapObjectMan_DeleteAll(fieldSystem->mapObjMan);
+    MapObjectMan_Delete(fieldSystem->mapObjMan);
 }
 
 static void sub_0205338C (FieldSystem * fieldSystem)
 {
-    fieldSystem->mapObjMan = sub_02061804(fieldSystem, 64, 5);
+    fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
     sub_0203A7C0(fieldSystem);
 
     {

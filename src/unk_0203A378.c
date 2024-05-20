@@ -131,7 +131,7 @@ u32 sub_0203A4B4 (const FieldSystem * fieldSystem)
     return fieldSystem->unk_14->unk_04;
 }
 
-const UnkStruct_020619DC * sub_0203A4BC (const FieldSystem * fieldSystem)
+const MapObjectHeader * sub_0203A4BC (const FieldSystem * fieldSystem)
 {
     return fieldSystem->unk_14->unk_14;
 }
@@ -139,7 +139,7 @@ const UnkStruct_020619DC * sub_0203A4BC (const FieldSystem * fieldSystem)
 BOOL sub_0203A4C4 (FieldSystem * fieldSystem, int param1, u16 param2, u16 param3)
 {
     int v0;
-    UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)fieldSystem->unk_14->unk_14;
+    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
     u32 v2 = fieldSystem->unk_14->unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {
@@ -157,7 +157,7 @@ BOOL sub_0203A4C4 (FieldSystem * fieldSystem, int param1, u16 param2, u16 param3
 BOOL sub_0203A4FC (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
-    UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)fieldSystem->unk_14->unk_14;
+    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
     u32 v2 = fieldSystem->unk_14->unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {
@@ -174,7 +174,7 @@ BOOL sub_0203A4FC (FieldSystem * fieldSystem, int param1, int param2)
 BOOL sub_0203A52C (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
-    UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)fieldSystem->unk_14->unk_14;
+    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
     u32 v2 = fieldSystem->unk_14->unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {

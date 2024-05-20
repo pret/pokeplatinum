@@ -1305,9 +1305,9 @@ static int ov5_021E0B64 (UnkStruct_ov5_021F9B10 * param0)
     GF_ASSERT(v0.z == param0->unk_28.z);
     GF_ASSERT(v0.y == param0->unk_28.y);
 
-    LocalMapObj_SetX(param0->unk_3C, param0->unk_0C);
-    sub_02063034(param0->unk_3C, param0->unk_10);
-    LocalMapObj_SetZ(param0->unk_3C, param0->unk_14);
+    MapObject_SetX(param0->unk_3C, param0->unk_0C);
+    MapObject_SetY(param0->unk_3C, param0->unk_10);
+    MapObject_SetZ(param0->unk_3C, param0->unk_14);
     sub_02064208(param0->unk_3C);
 
     ov6_02248608(param0->unk_50);
@@ -1435,9 +1435,9 @@ static int ov5_021E0D40 (UnkStruct_ov5_021F9B10 * param0)
     GF_ASSERT(v0.z == param0->unk_28.z);
     GF_ASSERT(v0.y == param0->unk_28.y);
 
-    LocalMapObj_SetX(param0->unk_3C, param0->unk_0C);
-    sub_02063034(param0->unk_3C, param0->unk_10);
-    LocalMapObj_SetZ(param0->unk_3C, param0->unk_14);
+    MapObject_SetX(param0->unk_3C, param0->unk_0C);
+    MapObject_SetY(param0->unk_3C, param0->unk_10);
+    MapObject_SetZ(param0->unk_3C, param0->unk_14);
     sub_02064208(param0->unk_3C);
 
     ov6_02248608(param0->unk_50);

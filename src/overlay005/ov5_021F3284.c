@@ -110,7 +110,7 @@ static int ov5_021F336C (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     v1->unk_14 = *v2;
     v1->unk_04 = sub_02062924(v1->unk_14.unk_0C);
-    v1->unk_08 = sub_02062910(v1->unk_14.unk_0C);
+    v1->unk_08 = MapObject_Id(v1->unk_14.unk_0C);
     v1->unk_0C = sub_02062918(v1->unk_14.unk_0C);
 
     sub_020715D4(param0, &v0);

@@ -264,7 +264,7 @@ static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16
     param1->unk_34 = param4;
 
     if (param3 != NULL) {
-        *v0 = sub_02062910(param3);
+        *v0 = MapObject_Id(param3);
     }
 
     if ((param2 >= 8000) && (param2 <= 8799)) {

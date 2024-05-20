@@ -110,7 +110,7 @@ static int ov5_021F5158 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1 = sub_020715BC(param0);
 
     v0->unk_30 = *v1;
-    v0->unk_08 = sub_02062910(v0->unk_30.unk_08);
+    v0->unk_08 = MapObject_Id(v0->unk_30.unk_08);
     v0->unk_0C = sub_02062918(v0->unk_30.unk_08);
     v0->unk_24.y = ((FX32_ONE * 6));
 

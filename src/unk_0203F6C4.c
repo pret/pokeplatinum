@@ -1908,7 +1908,7 @@ static BOOL ScrCmd_017 (ScriptContext * ctx)
     v0 = ScriptContext_ReadByte(ctx);
     v1 = (s32)ScriptContext_ReadWord(ctx);
 
-    if (sub_02062910(*v2) == v0) {
+    if (MapObject_Id(*v2) == v0) {
         ScriptContext_Jump(ctx, (u8 *)(ctx->scriptPtr + v1));
     }
 
@@ -5350,7 +5350,7 @@ static BOOL ScrCmd_13C (ScriptContext * ctx)
     u16 v5;
 
     if (v2 == 0) {
-        v5 = sub_02062910(*v0);
+        v5 = MapObject_Id(*v0);
     } else {
         v5 = 0;
     }
@@ -5388,7 +5388,7 @@ static BOOL ScrCmd_13F (ScriptContext * ctx)
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
     StringTemplate ** v3 = sub_0203F098(ctx->fieldSys, 15);
 
-    *v2 = sub_0205BCF4(ctx->fieldSys->unk_7C, sub_02062910(*v0), v1, *v3);
+    *v2 = sub_0205BCF4(ctx->fieldSys->unk_7C, MapObject_Id(*v0), v1, *v3);
     return 0;
 }
 
@@ -5415,7 +5415,7 @@ static BOOL ScrCmd_140 (ScriptContext * ctx)
     MapObject ** v1 = sub_0203F098(v0, 10);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205B780(v0->unk_7C, sub_02062910(*v1));
+    *v2 = sub_0205B780(v0->unk_7C, MapObject_Id(*v1));
     return 0;
 }
 
@@ -5426,7 +5426,7 @@ static BOOL ScrCmd_146 (ScriptContext * ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 * v3 = ScriptContext_GetVarPointer(ctx);
 
-    *v3 = sub_0205B804(v0->unk_7C, sub_02062910(*v1), v2);
+    *v3 = sub_0205B804(v0->unk_7C, MapObject_Id(*v1), v2);
     return 0;
 }
 
@@ -5698,7 +5698,7 @@ static BOOL ScrCmd_187 (ScriptContext * ctx)
 
     v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, v1);
 
-    LocalMapObj_SetPosDir(v0, v2, v3, v4, v5);
+    MapObject_SetPosDir(v0, v2, v3, v4, v5);
     sub_020642F8(v0);
 
     return 0;
@@ -5964,7 +5964,7 @@ static BOOL ScrCmd_19E (ScriptContext * ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
     ctx->data[0] = v3;
-    *v0 = ov23_02252C98(v2, ctx->fieldSys, sub_02062910(*v1));
+    *v0 = ov23_02252C98(v2, ctx->fieldSys, MapObject_Id(*v1));
 
     ScriptContext_Pause(ctx, sub_020441C8);
     return 1;

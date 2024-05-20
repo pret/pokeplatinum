@@ -119,7 +119,7 @@ static int ov5_021F3B54 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     v3->unk_18 = *v4;
     v3->unk_04 = sub_02062924(v3->unk_18.unk_18);
-    v3->unk_08 = sub_02062910(v3->unk_18.unk_18);
+    v3->unk_08 = MapObject_Id(v3->unk_18.unk_18);
     v3->unk_0C = sub_02062918(v3->unk_18.unk_18);
 
     v2.x = (((v3->unk_18.unk_00) << 4) * FX32_ONE);
