@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/generated/c/pokemon.h"
+#include "consts/pokemon.h"
 #include "message.h"
 #include "strbuf.h"
 #include "trainer_info.h"
