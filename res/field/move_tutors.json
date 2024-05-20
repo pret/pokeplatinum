@@ -1,0 +1,274 @@
+{
+    "static": true,
+    "const": true,
+    "type": "TeachableMove",
+    "name": "sTeachableMoves",
+    "moves": {
+        "MOVE_DIVE": {
+            "redCost": 2,
+            "blueCost": 4,
+            "yellowCost": 2,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_MUD_SLAP": {
+            "redCost": 4,
+            "blueCost": 4,
+            "yellowCost": 0,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_FURY_CUTTER": {
+            "redCost": 0,
+            "blueCost": 8,
+            "yellowCost": 0,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_ICY_WIND": {
+            "redCost": 0,
+            "blueCost": 6,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_ROLLOUT": {
+            "redCost": 4,
+            "blueCost": 2,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_THUNDER_PUNCH": {
+            "redCost": 2,
+            "blueCost": 6,
+            "yellowCost": 0,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_FIRE_PUNCH": {
+            "redCost": 2,
+            "blueCost": 6,
+            "yellowCost": 0,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_SUPERPOWER": {
+            "redCost": 8,
+            "blueCost": 0,
+            "yellowCost": 0,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_ICE_PUNCH": {
+            "redCost": 2,
+            "blueCost": 6,
+            "yellowCost": 0,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_IRON_HEAD": {
+            "redCost": 6,
+            "blueCost": 0,
+            "yellowCost": 2,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_AQUA_TAIL": {
+            "redCost": 6,
+            "blueCost": 0,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_OMINOUS_WIND": {
+            "redCost": 0,
+            "blueCost": 6,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_GASTRO_ACID": {
+            "redCost": 4,
+            "blueCost": 0,
+            "yellowCost": 2,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_SNORE": {
+            "redCost": 2,
+            "blueCost": 0,
+            "yellowCost": 4,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        },
+        "MOVE_SPITE": {
+            "redCost": 0,
+            "blueCost": 0,
+            "yellowCost": 8,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        },
+        "MOVE_AIR_CUTTER": {
+            "redCost": 2,
+            "blueCost": 4,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_HELPING_HAND": {
+            "redCost": 2,
+            "blueCost": 0,
+            "yellowCost": 4,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        },
+        "MOVE_ENDEAVOR": {
+            "redCost": 4,
+            "blueCost": 0,
+            "yellowCost": 4,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_OUTRAGE": {
+            "redCost": 6,
+            "blueCost": 0,
+            "yellowCost": 2,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_ANCIENT_POWER": {
+            "redCost": 6,
+            "blueCost": 0,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_SYNTHESIS": {
+            "redCost": 0,
+            "blueCost": 0,
+            "yellowCost": 2,
+            "greenCost": 6,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        },
+        "MOVE_SIGNAL_BEAM": {
+            "redCost": 2,
+            "blueCost": 2,
+            "yellowCost": 2,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_ZEN_HEADBUTT": {
+            "redCost": 0,
+            "blueCost": 4,
+            "yellowCost": 4,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_VACUUM_WAVE": {
+            "redCost": 2,
+            "blueCost": 4,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_EARTH_POWER": {
+            "redCost": 6,
+            "blueCost": 0,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_GUNK_SHOT": {
+            "redCost": 4,
+            "blueCost": 2,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_TWISTER": {
+            "redCost": 6,
+            "blueCost": 0,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_SEED_BOMB": {
+            "redCost": 4,
+            "blueCost": 0,
+            "yellowCost": 0,
+            "greenCost": 4,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_IRON_DEFENSE": {
+            "redCost": 4,
+            "blueCost": 2,
+            "yellowCost": 2,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_MAGNET_RISE": {
+            "redCost": 0,
+            "blueCost": 2,
+            "yellowCost": 4,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        },
+        "MOVE_LAST_RESORT": {
+            "redCost": 0,
+            "blueCost": 0,
+            "yellowCost": 0,
+            "greenCost": 8,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        },
+        "MOVE_BOUNCE": {
+            "redCost": 4,
+            "blueCost": 0,
+            "yellowCost": 2,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_TRICK": {
+            "redCost": 0,
+            "blueCost": 4,
+            "yellowCost": 4,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_HEAT_WAVE": {
+            "redCost": 4,
+            "blueCost": 2,
+            "yellowCost": 0,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SURVIVAL_AREA"
+        },
+        "MOVE_KNOCK_OFF": {
+            "redCost": 4,
+            "blueCost": 4,
+            "yellowCost": 0,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_SUCKER_PUNCH": {
+            "redCost": 0,
+            "blueCost": 6,
+            "yellowCost": 2,
+            "greenCost": 0,
+            "location": "TUTOR_LOCATION_ROUTE_212"
+        },
+        "MOVE_SWIFT": {
+            "redCost": 0,
+            "blueCost": 2,
+            "yellowCost": 2,
+            "greenCost": 4,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        },
+        "MOVE_UPROAR": {
+            "redCost": 0,
+            "blueCost": 0,
+            "yellowCost": 6,
+            "greenCost": 2,
+            "location": "TUTOR_LOCATION_SNOWPOINT_CITY"
+        }
+    }
+}

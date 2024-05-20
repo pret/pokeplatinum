@@ -2,7 +2,6 @@
 import argparse
 import json
 import pathlib
-import sys
 from consts.moves import Move
 from consts.species import PokemonSpecies
 from consts.pokemon import PokemonFootprintSize
@@ -12,6 +11,9 @@ argparser = argparse.ArgumentParser(
     prog='make_species_tables.py',
     description='Creates generated .h files for species-specific data'
 )
+argparser.add_argument('-t', '--tutorable-moves',
+                       required=True,
+                       help='Path to the tutorable moves schema')
 argparser.add_argument('-s', '--source-dir',
                        required=True,
                        help='Path to the source directory (res/pokemon)')
@@ -23,46 +25,11 @@ args = argparser.parse_args()
 source_dir = pathlib.Path(args.source_dir)
 output_dir = pathlib.Path(args.output_dir)
 
-moveset = [
-    Move.MOVE_DIVE,
-    Move.MOVE_MUD_SLAP,
-    Move.MOVE_FURY_CUTTER,
-    Move.MOVE_ICY_WIND,
-    Move.MOVE_ROLLOUT,
-    Move.MOVE_THUNDER_PUNCH,
-    Move.MOVE_FIRE_PUNCH,
-    Move.MOVE_SUPERPOWER,
-    Move.MOVE_ICE_PUNCH,
-    Move.MOVE_IRON_HEAD,
-    Move.MOVE_AQUA_TAIL,
-    Move.MOVE_OMINOUS_WIND,
-    Move.MOVE_GASTRO_ACID,
-    Move.MOVE_SNORE,
-    Move.MOVE_SPITE,
-    Move.MOVE_AIR_CUTTER,
-    Move.MOVE_HELPING_HAND,
-    Move.MOVE_ENDEAVOR,
-    Move.MOVE_OUTRAGE,
-    Move.MOVE_ANCIENT_POWER,
-    Move.MOVE_SYNTHESIS,
-    Move.MOVE_SIGNAL_BEAM,
-    Move.MOVE_ZEN_HEADBUTT,
-    Move.MOVE_VACUUM_WAVE,
-    Move.MOVE_EARTH_POWER,
-    Move.MOVE_GUNK_SHOT,
-    Move.MOVE_TWISTER,
-    Move.MOVE_SEED_BOMB,
-    Move.MOVE_IRON_DEFENSE,
-    Move.MOVE_MAGNET_RISE,
-    Move.MOVE_LAST_RESORT,
-    Move.MOVE_BOUNCE,
-    Move.MOVE_TRICK,
-    Move.MOVE_HEAT_WAVE,
-    Move.MOVE_KNOCK_OFF,
-    Move.MOVE_SUCKER_PUNCH,
-    Move.MOVE_SWIFT,
-    Move.MOVE_UPROAR,
-]
+tutors_schema = {}
+with open(args.tutorable_moves, 'r', encoding='utf-8') as f:
+    tutors_schema = json.load(f)
+
+moveset = [Move[m] for m in tutors_schema["moves"].keys()]
 
 NATIONAL_DEX_COUNT = 493
 
