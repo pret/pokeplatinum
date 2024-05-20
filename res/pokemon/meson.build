@@ -773,8 +773,11 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
 
 species_header_target = meson.current_build_dir()
 
-gen_species_headers = custom_target('auto-generated species headers',
-    output: 'gen_species_headers',
+gen_species_headers = custom_target('gen_species_headers',
+    output: [
+        'tutor_movesets.h',
+        'footprint_data.h',
+    ],
     input: personal_files,
     env: json2bin_env,
     depends: [ py_consts_generators ],

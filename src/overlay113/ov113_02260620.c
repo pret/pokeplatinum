@@ -11,7 +11,7 @@
 #include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay113/struct_ov113_02260818.h"
-#include "overlay113/FootprintSizeData.h"
+#include "overlay113/footprint_data.h"
 
 #include "message.h"
 #include "constants/species.h"

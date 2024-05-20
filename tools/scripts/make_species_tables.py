@@ -140,10 +140,10 @@ with open(output_path, "w") as output_file:
     output_file.writelines(generated_disclaimer)
     output_file.write("#ifndef POKEPLATINUM_GENERATED_FOOTPRINT_DATA_H\n")
     output_file.write("#define POKEPLATINUM_GENERATED_FOOTPRINT_DATA_H\n")
-    output_file.write("#include \"overlay113/FootprintSizeData.h\"\n")
+    output_file.write("#include \"overlay113/footprint_data.h\"\n")
     output_file.write("#include \"constants/species.h\"\n")
     output_file.write("\n")
-    output_file.write("static const FootprintSizeData sSpeciesFootprintData[NATIONAL_DEX_COUNT + 1] = {\n")
+    output_file.write("static const FootprintData sSpeciesFootprintData[NATIONAL_DEX_COUNT + 1] = {\n")
 
     sorted_array = sorted(species_footprints.items())
 
