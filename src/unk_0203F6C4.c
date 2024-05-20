@@ -4816,10 +4816,10 @@ static BOOL ScrCmd_0C8 (ScriptContext * ctx)
     if (v0 == 1) {
         sub_020553F0(ctx->fieldSys, 1152);
         sub_02055554(ctx->fieldSys, 1152, 1);
-        ov5_021DFB54(ctx->fieldSys->playerAvatar, (1 << 1));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSys->playerAvatar, (1 << 1));
         PlayerAvatar_RequestChangeState(ctx->fieldSys->playerAvatar);
     } else {
-        ov5_021DFB54(ctx->fieldSys->playerAvatar, (1 << 0));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSys->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSys->playerAvatar);
         sub_020553F0(ctx->fieldSys, 0);
         sub_02055554(ctx->fieldSys, sub_02055428(ctx->fieldSys, ctx->fieldSys->unk_1C->unk_00), 1);
@@ -4852,7 +4852,7 @@ static BOOL ScrCmd_0CB (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0205EB84(ctx->fieldSys->playerAvatar, v0);
+    PlayerAvatar_TurnOnRequestStateBit(ctx->fieldSys->playerAvatar, v0);
     return 1;
 }
 

@@ -154,7 +154,7 @@ static void ov5_021D0D80 (void * param0)
 static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
 {
     FieldSystem * fieldSystem;
-    int v2 = 0;
+    BOOL ret = FALSE;
 
     fieldSystem = OverlayManager_Args(overlayMan);
 
@@ -238,20 +238,18 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
     case 3:
         if (ov5_021D5BF4(fieldSystem)) {
             fieldSystem->unk_68 = 1;
-            v2 = 1;
+            ret = TRUE;
         }
         break;
     }
 
     (*param1)++;
-    return v2;
+    return ret;
 }
 
 static BOOL FieldMap_Main (OverlayManager * overlayMan, int * param1)
 {
-    FieldSystem * fieldSystem;
-
-    fieldSystem = OverlayManager_Args(overlayMan);
+    FieldSystem * fieldSystem = OverlayManager_Args(overlayMan);
 
     if (ov5_021D119C(fieldSystem)) {
         sub_02055D94(fieldSystem);
@@ -264,9 +262,9 @@ static BOOL FieldMap_Main (OverlayManager * overlayMan, int * param1)
     ov5_021D134C(fieldSystem, fieldSystem->unk_C0);
 
     if (fieldSystem->unk_68) {
-        return 0;
+        return FALSE;
     } else {
-        return 1;
+        return TRUE;
     }
 }
 
@@ -358,12 +356,12 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay9));
             }
 
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 const OverlayManagerTemplate gFieldMapTemplate = {

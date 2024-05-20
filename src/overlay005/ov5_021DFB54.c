@@ -174,9 +174,9 @@ int(*const Unk_ov5_021F9B54[])(UnkStruct_ov5_021F9B54 *);
 int(*const Unk_ov5_021F9B10[])(UnkStruct_ov5_021F9B10 *);
 int(*const Unk_ov5_021F9AFC[])(UnkStruct_ov5_021F9B10 *);
 
-void ov5_021DFB54 (PlayerAvatar * playerAvatar, u32 param1)
+void PlayerAvatar_SetRequestStateBit (PlayerAvatar * playerAvatar, u32 bit)
 {
-    sub_0205EB84(playerAvatar, param1);
+    PlayerAvatar_TurnOnRequestStateBit(playerAvatar, bit);
 }
 
 void PlayerAvatar_RequestChangeState (PlayerAvatar * playerAvatar)
@@ -1587,9 +1587,9 @@ void ov5_021E0E94 (PlayerAvatar * param0)
     {
         u32 v3 = PlayerAvatar_RequestStateFlag(param0);
 
-        ov5_021DFB54(param0, (1 << 6));
+        PlayerAvatar_SetRequestStateBit(param0, (1 << 6));
         PlayerAvatar_RequestChangeState(param0);
-        ov5_021DFB54(param0, v3);
+        PlayerAvatar_SetRequestStateBit(param0, v3);
     }
 }
 
@@ -1620,9 +1620,9 @@ void ov5_021E0EEC (PlayerAvatar * param0)
     {
         u32 v3 = PlayerAvatar_RequestStateFlag(param0);
 
-        ov5_021DFB54(param0, (1 << 0));
+        PlayerAvatar_SetRequestStateBit(param0, (1 << 0));
         PlayerAvatar_RequestChangeState(param0);
-        ov5_021DFB54(param0, v3);
+        PlayerAvatar_SetRequestStateBit(param0, v3);
     }
 }
 
@@ -1646,7 +1646,7 @@ static SysTask * ov5_021E0F54 (FieldSystem * param0, u32 param1)
         v4->unk_04 = v1;
 
         sub_02062DDC(v3);
-        ov5_021DFB54(v0, param1);
+        PlayerAvatar_SetRequestStateBit(v0, param1);
         PlayerAvatar_RequestChangeState(v0);
 
         v2 = SysTask_Start(ov5_021E0FF0, v4, 0xffff);

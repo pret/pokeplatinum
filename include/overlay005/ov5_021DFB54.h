@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 
-void ov5_021DFB54(PlayerAvatar * param0, u32 param1);
+void PlayerAvatar_SetRequestStateBit(PlayerAvatar * param0, u32 param1);
 void PlayerAvatar_RequestChangeState(PlayerAvatar * param0);
 int ov5_021DFDE0(FieldSystem * param0, PlayerAvatar * param1, int param2, int param3);
 void ov5_021E00EC(TaskManager * param0, int param1, int param2);

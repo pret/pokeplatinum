@@ -490,7 +490,7 @@ static BOOL sub_02068884 (TaskManager * param0)
     case 1:
         if (PlayerAvatar_PlayerState(fieldSystem->playerAvatar) == 0x1) {
             sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
-            ov5_021DFB54(fieldSystem->playerAvatar, (1 << 0));
+            PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 0));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             sub_020553F0(fieldSystem, 0);
@@ -501,7 +501,7 @@ static BOOL sub_02068884 (TaskManager * param0)
             sub_02055554(fieldSystem, 1152, 1);
             sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
 
-            ov5_021DFB54(fieldSystem->playerAvatar, (1 << 1));
+            PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 1));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
 
             RadarChain_Clear(fieldSystem->chain);
@@ -1136,7 +1136,7 @@ static void * sub_02069228 (void * param0)
     return sub_0203E598(param0, 11, 466);
 }
 
-BOOL sub_02069238 (FieldSystem * param0)
+BOOL sub_02069238 (FieldSystem * fieldSystem)
 {
     UnkStruct_02068870 * v0;
     UnkFuncPtr_020EF79C v1;
@@ -1145,15 +1145,15 @@ BOOL sub_02069238 (FieldSystem * param0)
     u16 v4;
     BOOL v5;
 
-    if (sub_0206C0D0(param0) == 1) {
+    if (sub_0206C0D0(fieldSystem) == 1) {
         return 0;
     }
 
-    if (sub_0206AE8C(SaveData_Events(param0->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
         return 0;
     }
 
-    v3 = (u16)sub_0207D3FC(sub_0207D990(param0->saveData));
+    v3 = (u16)sub_0207D3FC(sub_0207D990(fieldSystem->saveData));
     v4 = (u16)Item_LoadParam(v3, 6, 11);
     v2 = (UnkFuncPtr_02069238)sub_020683F4(2, v4);
     v1 = (UnkFuncPtr_020EF79C)sub_020683F4(1, v4);
@@ -1165,10 +1165,10 @@ BOOL sub_02069238 (FieldSystem * param0)
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068870));
     memset(v0, 0, sizeof(UnkStruct_02068870));
 
-    v0->unk_00 = param0;
+    v0->unk_00 = fieldSystem;
     v0->unk_28 = v3;
 
-    sub_0206842C(param0, &v0->unk_04);
+    sub_0206842C(fieldSystem, &v0->unk_04);
 
     v5 = 0;
 
@@ -1202,13 +1202,13 @@ static void sub_020692E4 (UnkStruct_02068870 * param0, u32 param1)
     sub_02050904(param0->unk_00, sub_02068F48, v0);
 }
 
-static BOOL sub_0206932C (TaskManager * param0)
+static BOOL sub_0206932C (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem;
     UnkStruct_02068870 * v1;
 
-    fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = TaskManager_Environment(param0);
+    fieldSystem = TaskManager_FieldSystem(taskMan);
+    v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_2A) {
     case 0:
