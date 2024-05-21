@@ -687,7 +687,7 @@ static int sub_02064B74 (MapObject * param0, UnkStruct_0206496C * param1)
         int v6 = sub_02062968(param0);
 
         if (v5 == v6) {
-            param1->unk_00 = sub_0206447C(param1->unk_00);
+            param1->unk_00 = Direction_GetOpposite(param1->unk_00);
         }
     }
 
@@ -729,7 +729,7 @@ static int sub_02064C6C (MapObject * param0, UnkStruct_02064C28 * param1)
     v0 = sub_02062968(param0);
 
     if (param1->unk_02 == 1) {
-        v0 = sub_0206447C(v0);
+        v0 = Direction_GetOpposite(v0);
     }
 
     sub_02062994(param0, v0);
@@ -753,7 +753,7 @@ static int sub_02064CA8 (MapObject * param0, UnkStruct_02064C28 * param1)
         v3 = MapObject_GetZPos(param0);
 
         if ((v0 == v2) && (v1 == v3)) {
-            int v4 = sub_0206447C(MapObject_GetMoveDir(param0));
+            int v4 = Direction_GetOpposite(MapObject_GetMoveDir(param0));
 
             sub_02062994(param0, v4);
 
@@ -774,7 +774,7 @@ static int sub_02064CA8 (MapObject * param0, UnkStruct_02064C28 * param1)
 
         if ((v7 & (1 << 0))) {
             param1->unk_02 = 1;
-            v5 = sub_0206447C(v5);
+            v5 = Direction_GetOpposite(v5);
             v7 = sub_02063EBC(param0, v5);
         }
 
@@ -1320,8 +1320,8 @@ static int sub_0206537C (MapObject * param0)
         }
 
         {
-            int v8 = Player_XPos(v2);
-            int v9 = Player_ZPos(v2);
+            int v8 = Player_GetXPos(v2);
+            int v9 = Player_GetZPos(v2);
             int v10 = sub_020629D8(param0, 0);
             int v11 = MapObject_GetXPos(param0);
             int v12 = MapObject_GetZPos(param0);
@@ -1376,8 +1376,8 @@ static int sub_02065448 (MapObject * param0, int param1, int param2)
                 int v7 = MapObject_GetZPos(param0);
                 FieldSystem * v8 = MapObject_FieldSystem(param0);
                 PlayerAvatar * v9 = sub_0205EF3C(v8);
-                int v10 = Player_XPos(v9);
-                int v11 = Player_ZPos(v9);
+                int v10 = Player_GetXPos(v9);
+                int v11 = Player_GetZPos(v9);
 
                 if (v6 > v10) {
                     v4 = 2;

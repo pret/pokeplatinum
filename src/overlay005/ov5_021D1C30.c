@@ -387,7 +387,7 @@ BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
         return 1;
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(CommSys_CurNetId()))) {
+    if (sub_020363A0() || (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId()))) {
         return 0;
     }
 
@@ -419,7 +419,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
         }
     }
 
-    if (sub_020363A0() || (0 != sub_020593CC(CommSys_CurNetId())) || !sub_02059D2C()) {
+    if (sub_020363A0() || (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId())) || !sub_02059D2C()) {
         return 0;
     }
 
@@ -782,8 +782,8 @@ static BOOL ov5_021D2884 (FieldSystem * fieldSystem)
         return 1;
     }
 
-    v1 = Player_XPos(fieldSystem->playerAvatar);
-    v2 = Player_ZPos(fieldSystem->playerAvatar);
+    v1 = Player_GetXPos(fieldSystem->playerAvatar);
+    v2 = Player_GetZPos(fieldSystem->playerAvatar);
     v0 = sub_02054F94(fieldSystem, v1, v2);
 
     if (ov5_021D29A0(fieldSystem) == 1) {
@@ -1021,8 +1021,8 @@ static BOOL ov5_021D2C14 (FieldSystem * fieldSystem)
 
 static void ov5_021D2C7C (const FieldSystem * fieldSystem, int * param1, int * param2)
 {
-    *param1 = Player_XPos(fieldSystem->playerAvatar);
-    *param2 = Player_ZPos(fieldSystem->playerAvatar);
+    *param1 = Player_GetXPos(fieldSystem->playerAvatar);
+    *param2 = Player_GetZPos(fieldSystem->playerAvatar);
 }
 
 static void ov5_021D2C98 (const FieldSystem * fieldSystem, int * param1, int * param2)

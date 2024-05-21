@@ -159,8 +159,8 @@ static void sub_02069CD4 (MapObject * param0, UnkStruct_02069CA8 * param1)
     PlayerAvatar * v1 = sub_0205EF3C(v0);
 
     param1->unk_01 = 1;
-    param1->unk_02 = Player_XPos(v1);
-    param1->unk_04 = Player_ZPos(v1);
+    param1->unk_02 = Player_GetXPos(v1);
+    param1->unk_04 = Player_GetZPos(v1);
     param1->unk_06 = 0xff;
 }
 
@@ -170,8 +170,8 @@ static int sub_02069CFC (MapObject * param0, UnkStruct_02069CA8 * param1)
     PlayerAvatar * v1 = sub_0205EF3C(v0);
 
     if (v1 != NULL) {
-        int v2 = Player_XPos(v1);
-        int v3 = Player_ZPos(v1);
+        int v2 = Player_GetXPos(v1);
+        int v3 = Player_GetZPos(v1);
 
         if ((v2 != param1->unk_02) || (v3 != param1->unk_04)) {
             return 1;
@@ -186,8 +186,8 @@ static void sub_02069D30 (MapObject * param0, UnkStruct_02069CA8 * param1)
     FieldSystem * v0 = MapObject_FieldSystem(param0);
     PlayerAvatar * v1 = sub_0205EF3C(v0);
 
-    param1->unk_02 = Player_XPos(v1);
-    param1->unk_04 = Player_ZPos(v1);
+    param1->unk_02 = Player_GetXPos(v1);
+    param1->unk_04 = Player_GetZPos(v1);
 }
 
 static u32 sub_02069D50 (MapObject * param0)
@@ -934,7 +934,7 @@ static int sub_0206A630 (MapObject * param0, UnkStruct_0206A47C * param1, int pa
     }
 
     if ((v0 & (1 << 0)) && (param1->unk_04 == 2)) {
-        v2 = sub_0206447C(MapObject_Dir(param0));
+        v2 = Direction_GetOpposite(MapObject_Dir(param0));
         v1 = Unk_020EF8E4[v1];
         param1->unk_08 = v1;
 

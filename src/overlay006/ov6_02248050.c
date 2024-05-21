@@ -112,8 +112,8 @@ static void ov6_022480BC (PlayerAvatar * const param0, UnkStruct_02017294 * para
 
     PlayerAvatar_PosVectorOut(param0, &v3);
 
-    v1 = Player_XPos(param0);
-    v2 = Player_ZPos(param0);
+    v1 = Player_GetXPos(param0);
+    v2 = Player_GetZPos(param0);
     v0 = PlayerAvatar_GetDir(param0);
 
     switch (v0) {

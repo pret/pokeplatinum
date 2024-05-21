@@ -56,7 +56,7 @@ static BOOL sub_0206CB8C(const fx32 * param0, const fx32 * param1, u8 * param2);
 static void sub_0206CBA0(FieldSystem * param0);
 static void sub_0206CC64(UnkStruct_0206CAD0 * param0);
 
-void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const int param3, const int param4, const int param5)
+void sub_0206C784 (FieldSystem * fieldSystem, const u8 param1, const u8 param2, const int param3, const int param4, const int param5)
 {
     UnkStruct_0206CAD0 * v0;
     BOOL v1;
@@ -72,7 +72,7 @@ void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const
     v0->unk_18 = param3;
     v0->unk_1C = param4;
     v0->unk_20 = param5;
-    v0->unk_34 = *(param0->unk_44);
+    v0->unk_34 = *(fieldSystem->unk_44);
 
     v1 = 0;
 
@@ -84,19 +84,19 @@ void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const
 
     if (param1 == 3) {
         v4 = 34;
-        sub_020550F4(Player_XPos(param0->playerAvatar), Player_ZPos(param0->playerAvatar), 1, -3, 3, 6, &v3);
+        sub_020550F4(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &v3);
         v1 = 1;
         v5 = (25 * 16 * FX32_ONE);
         v0->unk_10 = (14 * 16 * FX32_ONE);
     } else if (param1 == 2) {
         v4 = 538;
-        sub_020550F4(Player_XPos(param0->playerAvatar), Player_ZPos(param0->playerAvatar), -2, 2, 6, 3, &v3);
+        sub_020550F4(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &v3);
         v1 = 1;
         v5 = (12 * 16 * FX32_ONE);
     }
 
     if (v1) {
-        v2 = sub_02055178(param0, v4, &v3, &v0->unk_30);
+        v2 = sub_02055178(fieldSystem, v4, &v3, &v0->unk_30);
 
         if (v2) {
             v0->unk_0C = v5;
@@ -104,15 +104,15 @@ void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const
             v0->unk_03 = 0;
             v0->unk_7C = (FX32_ONE / 4);
 
-            PlayerAvatar_PosVectorOut(param0->playerAvatar, &v0->unk_24);
-            sub_020206B0(param0->unk_24);
-            sub_02020690(&v0->unk_24, param0->unk_24);
+            PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v0->unk_24);
+            sub_020206B0(fieldSystem->unk_24);
+            sub_02020690(&v0->unk_24, fieldSystem->unk_24);
 
             if (v0->unk_10 != 0xffffffff) {
                 v0->unk_02 = 0;
                 v0->unk_00 = 1;
 
-                sub_0206CBA0(param0);
+                sub_0206CBA0(fieldSystem);
                 Sound_PlayEffect(1757);
             } else {
                 v0->unk_00 = 0;
@@ -126,10 +126,10 @@ void sub_0206C784 (FieldSystem * param0, const u8 param1, const u8 param2, const
         v0->unk_00 = 2;
     }
 
-    sub_02050944(param0->unk_10, sub_0206C964, v0);
+    sub_02050944(fieldSystem->unk_10, sub_0206C964, v0);
 }
 
-static void sub_0206C8D4 (FieldSystem * param0, const u8 param1, UnkStruct_ov5_021D5894 * param2)
+static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 * param2)
 {
     UnkStruct_0206C8D4 * v0;
 
@@ -138,14 +138,14 @@ static void sub_0206C8D4 (FieldSystem * param0, const u8 param1, UnkStruct_ov5_0
     v0->unk_04 = param2;
     v0->unk_00 = param1;
 
-    sub_02050944(param0->unk_10, sub_0206C8F8, v0);
+    sub_02050944(fieldSystem->unk_10, sub_0206C8F8, v0);
 }
 
-static BOOL sub_0206C8F8 (TaskManager * param0)
+static BOOL sub_0206C8F8 (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_0206C8D4 * v1 = TaskManager_Environment(param0);
-    int * v2 = sub_02050A68(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_0206C8D4 * v1 = TaskManager_Environment(taskMan);
+    int * v2 = sub_02050A68(taskMan);
 
     switch (*v2) {
     case 0:
@@ -169,10 +169,10 @@ static BOOL sub_0206C8F8 (TaskManager * param0)
     return 0;
 }
 
-static BOOL sub_0206C964 (TaskManager * param0)
+static BOOL sub_0206C964 (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_0206CAD0 * v1 = TaskManager_Environment(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_0206CAD0 * v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_00) {
     case 0:
@@ -217,7 +217,7 @@ static BOOL sub_0206C964 (TaskManager * param0)
             ov5_021D42B0(v0->unk_50, v0->unk_54, 2);
         }
 
-        sub_02055820(param0);
+        sub_02055820(taskMan);
         v1->unk_00 = 4;
         break;
     case 4:
@@ -225,12 +225,12 @@ static BOOL sub_0206C964 (TaskManager * param0)
         v1->unk_00 = 5;
         break;
     case 5:
-        sub_020539E8(param0, v1->unk_18, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
+        sub_020539E8(taskMan, v1->unk_18, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
         v1->unk_00 = 6;
         break;
     case 6:
         sub_02055670(v0, v1->unk_18);
-        sub_020559CC(param0);
+        sub_020559CC(taskMan);
         v1->unk_00 = 7;
         break;
     case 7:
@@ -298,7 +298,7 @@ static BOOL sub_0206CB8C (const fx32 * param0, const fx32 * param1, u8 * param2)
     }
 }
 
-static void sub_0206CBA0 (FieldSystem * param0)
+static void sub_0206CBA0 (FieldSystem * fieldSystem)
 {
     u8 v0;
     BOOL v1;
@@ -306,7 +306,7 @@ static void sub_0206CBA0 (FieldSystem * param0)
     int v3[2] = {1, 2};
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1 = sub_020552B4(param0, v2[v0], NULL, NULL);
+        v1 = sub_020552B4(fieldSystem, v2[v0], NULL, NULL);
 
         if (v1) {
             NNSG3dResMdl * v4;
@@ -314,14 +314,14 @@ static void sub_0206CBA0 (FieldSystem * param0)
             UnkStruct_ov5_021E1890 * v6;
             NNSG3dRenderObj * v7;
 
-            v5 = ov5_021EF9E8(v2[v0], param0->unk_30);
+            v5 = ov5_021EF9E8(v2[v0], fieldSystem->unk_30);
             v4 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v5), 0);
-            v1 = sub_020552B4(param0, v2[v0], &v6, NULL);
+            v1 = sub_020552B4(fieldSystem, v2[v0], &v6, NULL);
 
             GF_ASSERT(v1);
             v7 = ov5_021E18BC(v6);
 
-            ov5_021D41C8(param0->unk_50, param0->unk_54, v3[v0], v2[v0], v7, v4, ov5_021EFAA0(param0->unk_30), 1, 1, 0);
+            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, v3[v0], v2[v0], v7, v4, ov5_021EFAA0(fieldSystem->unk_30), 1, 1, 0);
         } else {
             GF_ASSERT(FALSE);
         }

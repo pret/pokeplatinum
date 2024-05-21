@@ -3056,7 +3056,7 @@ static void ov23_022414D4 (void)
             continue;
         }
 
-        if (sub_020593CC(v1)) {
+        if (CommPlayer_GetMovementTimer(v1)) {
             Unk_ov23_02257740->unk_8FC[v1] = 0;
             continue;
         }

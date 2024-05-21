@@ -444,7 +444,7 @@ static void sub_020534BC (FieldSystem * fieldSystem)
 
 static void sub_020534EC (Location * location, const FieldSystem * param1)
 {
-    inline_02049FA8(location, param1->unk_1C->unk_00, -1, Player_XPos(param1->playerAvatar), Player_ZPos(param1->playerAvatar), 1);
+    inline_02049FA8(location, param1->unk_1C->unk_00, -1, Player_GetXPos(param1->playerAvatar), Player_GetZPos(param1->playerAvatar), 1);
 }
 
 static BOOL sub_02053518 (const FieldSystem * fieldSystem)

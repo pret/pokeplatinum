@@ -479,7 +479,7 @@ static int sub_020659C8 (MapObject * mapObj)
 
     v0 = sub_02062AC8(mapObj);
 
-    sub_020642A4(mapObj, v0->unk_04, v0->unk_08);
+    MapObject_AddValInDir(mapObj, v0->unk_04, v0->unk_08);
     sub_020642F8(mapObj);
 
     v0->unk_02--;
@@ -859,7 +859,7 @@ static int sub_02065EA0 (MapObject * mapObj)
     v0 = sub_02062AC8(mapObj);
 
     if (v0->unk_00) {
-        sub_020642A4(mapObj, v0->unk_0C, v0->unk_00);
+        MapObject_AddValInDir(mapObj, v0->unk_0C, v0->unk_00);
         sub_020642F8(mapObj);
 
         if (v0->unk_04 >= (16 * FX32_ONE)) {
@@ -1327,7 +1327,7 @@ static int sub_02066560 (MapObject * mapObj, const fx32 * param1)
 
     v0 = sub_02062AC8(mapObj);
 
-    sub_020642A4(mapObj, v0->unk_00, param1[v0->unk_06]);
+    MapObject_AddValInDir(mapObj, v0->unk_00, param1[v0->unk_06]);
     sub_020642F8(mapObj);
 
     v0->unk_06++;
@@ -1597,7 +1597,7 @@ static int sub_020668EC (MapObject * mapObj)
     UnkStruct_02066824 * v0;
 
     v0 = sub_02062AC8(mapObj);
-    sub_02064270(mapObj, &v0->unk_04);
+    MapObject_AddVecToPos(mapObj, &v0->unk_04);
 
     v0->unk_00--;
 

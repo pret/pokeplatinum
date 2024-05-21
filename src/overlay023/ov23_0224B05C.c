@@ -1465,8 +1465,8 @@ static void ov23_0224C5B4 (SysTask * param0, void * param1)
         return;
     }
 
-    v4 = Player_XPos(Unk_ov23_022577AC->unk_00->playerAvatar);
-    v5 = Player_ZPos(Unk_ov23_022577AC->unk_00->playerAvatar);
+    v4 = Player_GetXPos(Unk_ov23_022577AC->unk_00->playerAvatar);
+    v5 = Player_GetZPos(Unk_ov23_022577AC->unk_00->playerAvatar);
 
     if (ov23_02242E58(v4, v5)) {
         return;

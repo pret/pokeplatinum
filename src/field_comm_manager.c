@@ -460,7 +460,7 @@ static void sub_02059C7C (void)
 
 static void sub_02059C8C (void)
 {
-    if (sub_020363A0() || (0 != sub_020593CC(CommSys_CurNetId()))) {
+    if (sub_020363A0() || (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId()))) {
         return;
     }
 

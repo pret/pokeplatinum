@@ -283,7 +283,7 @@ static BOOL sub_02056E20 (TaskManager * taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_XPos(fieldSystem->playerAvatar), Player_ZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -315,7 +315,7 @@ static BOOL sub_02056EA4 (TaskManager * taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_XPos(fieldSystem->playerAvatar), Player_ZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -438,7 +438,7 @@ static BOOL sub_02057050 (TaskManager * taskMan)
         u8 v4;
         MapObject * v5 = Player_MapObject(v1->playerAvatar);
 
-        v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
+        v4 = sub_02054F94(v1, Player_GetXPos(v1->playerAvatar), Player_GetZPos(v1->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -455,7 +455,7 @@ static BOOL sub_02057050 (TaskManager * taskMan)
     case 1:
         v2->unk_1C = (UnkStruct_ov5_021D432C *)ov5_021D431C();
         v3 = (UnkStruct_ov5_021D432C *)v2->unk_1C;
-        ov5_021D4334(Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar), v3);
+        ov5_021D4334(Player_GetXPos(v1->playerAvatar), Player_GetZPos(v1->playerAvatar), v3);
         (v2->unk_04)++;
         break;
     case 2:
@@ -491,7 +491,7 @@ static BOOL sub_0205711C (TaskManager * taskMan)
         u8 v4;
         MapObject * v5 = Player_MapObject(v1->playerAvatar);
 
-        v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
+        v4 = sub_02054F94(v1, Player_GetXPos(v1->playerAvatar), Player_GetZPos(v1->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -523,7 +523,7 @@ static BOOL sub_020571A0 (TaskManager * taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_XPos(fieldSystem->playerAvatar), Player_ZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -644,8 +644,8 @@ static void sub_02057368 (FieldSystem * fieldSystem)
     v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v3);
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
     v4 = sub_02054F94(fieldSystem, v0, v1);
 
     if (sub_0205DC44(v4)) {

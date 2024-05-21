@@ -22,8 +22,8 @@ static int sub_0203C954 (FieldSystem * fieldSystem, int * param1, int * param2)
 {
     int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    *param1 = Player_XPos(fieldSystem->playerAvatar);
-    *param2 = Player_ZPos(fieldSystem->playerAvatar);
+    *param1 = Player_GetXPos(fieldSystem->playerAvatar);
+    *param2 = Player_GetZPos(fieldSystem->playerAvatar);
 
     switch (v0) {
     case 0:
@@ -214,8 +214,8 @@ u16 sub_0203CC14 (FieldSystem * fieldSystem, void * param1, int param2)
     int v3;
 
     v0 = (const UnkStruct_0203A4AC *)param1;
-    v1 = Player_XPos(fieldSystem->playerAvatar);
-    v2 = Player_ZPos(fieldSystem->playerAvatar);
+    v1 = Player_GetXPos(fieldSystem->playerAvatar);
+    v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
     for (v3 = 0; v3 < param2; v3++) {
         if ((v1 >= v0[v3].unk_02) && (v1 < (v0[v3].unk_02 + v0[v3].unk_06)) && (v2 >= v0[v3].unk_04) && (v2 < (v0[v3].unk_04 + v0[v3].unk_08)) && (sub_0203F150(fieldSystem, v0[v3].unk_0E) == v0[v3].unk_0C)) {

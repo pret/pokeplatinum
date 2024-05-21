@@ -293,13 +293,11 @@ static void PlayerAvatar_PlayWalkSE (PlayerAvatar * playerAvatar)
             Sound_PlayEffect(1621);
         }
 
-        {
-            int code = MapObject_AnimationCode(mapObj);
+        int code = MapObject_AnimationCode(mapObj);
 
-            if (sub_020613D8(code) == 0) {
-                if ((sub_0205DAD4(v2) == 1) || (sub_0205DAD4(v1) == 1)) {
-                    Sound_PlayEffect(1619);
-                }
+        if (sub_020613D8(code) == 0) {
+            if ((sub_0205DAD4(v2) == 1) || (sub_0205DAD4(v1) == 1)) {
+                Sound_PlayEffect(1619);
             }
         }
     }
@@ -316,20 +314,18 @@ void sub_0205F490 (PlayerAvatar * playerAvatar)
 
     sub_0205EB10(playerAvatar, 0);
 
-    {
-        u32 v4 = sub_0205F644(playerAvatar, -1);
+    u32 v4 = sub_0205F644(playerAvatar, -1);
 
-        if ((v4 != 0) && (v4 != 5)) {
-            sub_0205EB10(playerAvatar, 2);
-            return;
-        }
+    if ((v4 != 0) && (v4 != 5)) {
+        sub_0205EB10(playerAvatar, 2);
+        return;
     }
 
     if (LocalMapObj_IsAnimationSet(mapObj) == 0) {
         switch (v0) {
-        case 0:
+        case PLAYER_STATE_WALKING:
             break;
-        case 1:
+        case PLAYER_STATE_CYCLING:
             v2 = MapObject_AnimationCode(mapObj);
 
             if (sub_020613D8(v2) == 1) {
@@ -342,7 +338,7 @@ void sub_0205F490 (PlayerAvatar * playerAvatar)
                 sub_0205EB10(playerAvatar, 2);
             }
             break;
-        case 2:
+        case PLAYER_STATE_SURFING:
             sub_0205EB10(playerAvatar, 2);
             break;
         }
@@ -428,18 +424,18 @@ int sub_0205F588 (PlayerAvatar * playerAvatar)
 
 void sub_0205F5E4 (PlayerAvatar * playerAvatar, int param1)
 {
-    MapObject * v0;
+    MapObject * mapObj;
 
     sub_0205EB08(playerAvatar, 0);
     sub_0205EB10(playerAvatar, 0);
 
-    v0 = Player_MapObject(playerAvatar);
+    mapObj = Player_MapObject(playerAvatar);
 
-    MapObject_SetDir(v0, param1);
-    sub_02062A0C(v0, 0x0);
-    sub_02064208(v0);
-    sub_020656DC(v0);
-    LocalMapObj_SetAnimationCode(v0, sub_02065838(param1, 0x0));
+    MapObject_SetDir(mapObj, param1);
+    sub_02062A0C(mapObj, 0x0);
+    sub_02064208(mapObj);
+    sub_020656DC(mapObj);
+    LocalMapObj_SetAnimationCode(mapObj, sub_02065838(param1, 0x0));
 }
 
 static int sub_0205F62C (PlayerAvatar * playerAvatar, int param1)
@@ -515,7 +511,7 @@ static int sub_0205F6D0 (PlayerAvatar * playerAvatar, int param1)
             return 0;
         }
 
-        v1 = sub_0206447C(v1);
+        v1 = Direction_GetOpposite(v1);
         v3 = sub_02060B7C(playerAvatar, mapObj, v1);
 
         if (v3 != 0) {
@@ -535,7 +531,7 @@ static int sub_0205F6D0 (PlayerAvatar * playerAvatar, int param1)
     if (sub_0205FB10(playerAvatar, v2) == 0) {
         sub_0205FA6C(playerAvatar);
 
-        v1 = sub_0206447C(v1);
+        v1 = Direction_GetOpposite(v1);
         v3 = sub_02060B7C(playerAvatar, mapObj, v1);
 
         if (v3 != 0) {
@@ -573,7 +569,7 @@ static int sub_0205F808 (PlayerAvatar * playerAvatar, int param1)
             }
         }
 
-        v2 = sub_0206447C(v2);
+        v2 = Direction_GetOpposite(v2);
         v0 = sub_02060B7C(playerAvatar, mapObj, v2);
 
         if (v0 != 0) {
@@ -707,7 +703,7 @@ static int sub_0205FAB0 (PlayerAvatar * playerAvatar, int param1)
     MapObject_PosVectorOut(mapObj, &v1);
     v2 = v1;
 
-    sub_02064418(param1, &v2, ((16 * FX32_ONE) >> 1) / 2);
+    VecFx32_AddValInDirection(param1, &v2, ((16 * FX32_ONE) >> 1) / 2);
     v0 = sub_020644A4(v4, &v2);
 
     if ((v0 == 0) || (v1.y == v2.y)) {
@@ -2354,8 +2350,8 @@ u32 sub_0206156C (PlayerAvatar * playerAvatar, int param1)
 
 void sub_0206157C (PlayerAvatar * playerAvatar, int param1, int * param2, int * param3)
 {
-    *param2 = Player_XPos(playerAvatar) + sub_0206419C(param1);
-    *param3 = Player_ZPos(playerAvatar) + sub_020641A8(param1);
+    *param2 = Player_GetXPos(playerAvatar) + sub_0206419C(param1);
+    *param3 = Player_GetZPos(playerAvatar) + sub_020641A8(param1);
 }
 
 void sub_020615AC (PlayerAvatar * playerAvatar, int * param1, int * param2)
@@ -2401,26 +2397,24 @@ static int sub_020615E0 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 static int PlayerAvatar_IsUnderCyclingRoad (PlayerAvatar * playerAvatar, u32 param1, int param2)
 {
     if (param2 != -1) {
-        return 0;
+        return FALSE;
     }
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_CYCLING) {
-        return 0;
+        return FALSE;
     }
 
     if (sub_0205EFDC(playerAvatar) == 0) {
-        return 0;
+        return FALSE;
+    }
+    
+    MapObject * mapObj = Player_MapObject(playerAvatar);
+
+    if (sub_0206413C(mapObj, param1) == 1) {
+        return TRUE;
     }
 
-    {
-        MapObject * mapObj = Player_MapObject(playerAvatar);
-
-        if (sub_0206413C(mapObj, param1) == 1) {
-            return 1;
-        }
-    }
-
-    return 0;
+    return FALSE;
 }
 
 void sub_02061674 (PlayerAvatar * playerAvatar, int param1, int * param2, int * param3, int * param4)

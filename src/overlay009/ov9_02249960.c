@@ -4413,8 +4413,8 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
     }
 
     {
-        int v10 = Player_XPos(v3->playerAvatar);
-        int v11 = Player_ZPos(v3->playerAvatar);
+        int v10 = Player_GetXPos(v3->playerAvatar);
+        int v11 = Player_GetZPos(v3->playerAvatar);
 
         ov5_021E99D8(v2->unk_18, v10, v11);
         v2->unk_08 = 1;
@@ -4687,8 +4687,8 @@ static int ov9_0224CCB8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224CBD8
     ov9_0224BF18(param0, v2->unk_08);
     ov5_021E9CD8(v0->unk_28);
 
-    param1->unk_08 = Player_XPos(v0->playerAvatar);
-    param1->unk_0A = Player_ZPos(v0->playerAvatar);
+    param1->unk_08 = Player_GetXPos(v0->playerAvatar);
+    param1->unk_0A = Player_GetZPos(v0->playerAvatar);
 
     ov5_021E9D3C(v1->unk_10, v1->unk_14, v1->unk_18, v0->unk_28, param1->unk_08, param1->unk_0A);
     v1->unk_08 = 0;
@@ -7511,7 +7511,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPosVec(v1, &v0);
-        sub_020642A4(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
+        MapObject_AddValInDir(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;
@@ -7680,7 +7680,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPosVec(v1, &v0);
-        sub_020642A4(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
+        MapObject_AddValInDir(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;

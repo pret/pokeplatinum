@@ -172,8 +172,8 @@ static int sub_02067C80 (const MapObject * param0, PlayerAvatar * param1, int * 
     v0 = sub_02067C54(param0);
 
     if (v0 == 0x1) {
-        v3 = Player_XPos(param1);
-        v4 = Player_ZPos(param1);
+        v3 = Player_GetXPos(param1);
+        v4 = Player_GetZPos(param1);
         v2 = MapObject_Dir(param0);
         v1 = sub_020629D8(param0, 0);
         v5 = sub_02067DA8(param0, v2, v1, v3, v4, 0);
@@ -189,8 +189,8 @@ static int sub_02067C80 (const MapObject * param0, PlayerAvatar * param1, int * 
     }
 
     if (v0 == 0x2) {
-        v3 = Player_XPos(param1);
-        v4 = Player_ZPos(param1);
+        v3 = Player_GetXPos(param1);
+        v4 = Player_GetZPos(param1);
         v1 = sub_020629D8(param0, 0);
         v2 = 0;
 
@@ -215,8 +215,8 @@ static int sub_02067C80 (const MapObject * param0, PlayerAvatar * param1, int * 
 
 int sub_02067D58 (const MapObject * param0, PlayerAvatar * param1, int param2, int param3)
 {
-    int v0 = Player_XPos(param1);
-    int v1 = Player_ZPos(param1);
+    int v0 = Player_GetXPos(param1);
+    int v1 = Player_GetZPos(param1);
     int v2 = sub_02067DA8(param0, param2, param3, v0, v1, 0);
 
     if (v2 != -1) {

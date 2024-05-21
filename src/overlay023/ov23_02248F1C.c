@@ -226,8 +226,8 @@ static void ov23_02249214 (PlayerAvatar * const param0, int param1[][2], int par
 
     if (CommSys_IsInitialized()) {
         if (CommSys_IsPlayerConnected(CommSys_CurNetId()) == 0) {
-            param1[0][0] = Player_XPos(param0);
-            param1[0][1] = Player_ZPos(param0);
+            param1[0][0] = Player_GetXPos(param0);
+            param1[0][1] = Player_GetZPos(param0);
         } else {
             int v1 = param1[0][0];
             int v2 = param1[0][1];

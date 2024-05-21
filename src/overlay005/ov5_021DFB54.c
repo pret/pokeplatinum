@@ -643,8 +643,8 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
     case 2:
     {
         if (sub_0205F108(v0->unk_20) == 0) {
-            int v1 = Player_XPos(v0->unk_20) + sub_0206419C(v0->unk_04);
-            int v2 = Player_ZPos(v0->unk_20) + sub_020641A8(v0->unk_04);
+            int v1 = Player_GetXPos(v0->unk_20) + sub_0206419C(v0->unk_04);
+            int v2 = Player_GetZPos(v0->unk_20) + sub_020641A8(v0->unk_04);
 
             v0->unk_28 = ov5_021F261C(v0->unk_24, v1, v2, v0->unk_04, 0);
         } else {
@@ -1041,8 +1041,8 @@ static int ov5_021E07E4 (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E07FC (UnkStruct_ov5_021F9B54 * param0)
 {
-    int v0 = Player_XPos(param0->unk_10) + sub_0206419C(param0->unk_04);
-    int v1 = Player_ZPos(param0->unk_10) + sub_020641A8(param0->unk_04);
+    int v0 = Player_GetXPos(param0->unk_10) + sub_0206419C(param0->unk_04);
+    int v1 = Player_GetZPos(param0->unk_10) + sub_020641A8(param0->unk_04);
 
     param0->unk_18 = ov5_021F28F4(param0->unk_14, v0, v1, param0->unk_04, 0);
     param0->unk_2C = ov6_0224892C(param0->unk_0C);
@@ -1755,8 +1755,8 @@ static void ov5_021E10C0 (void * param0, const UnkStruct_020216E0 * param1)
 
 static MapObject * ov5_021E10D4 (PlayerAvatar * param0, int param1)
 {
-    int v0 = Player_XPos(param0) + sub_0206419C(param1);
-    int v1 = Player_ZPos(param0) + sub_020641A8(param1);
+    int v0 = Player_GetXPos(param0) + sub_0206419C(param1);
+    int v1 = Player_GetZPos(param0) + sub_020641A8(param1);
     const MapObjectManager * v2 = MapObject_MapObjectManager(Player_MapObject(param0));
     MapObject * v3 = sub_0206326C(v2, v0, v1, 0);
 

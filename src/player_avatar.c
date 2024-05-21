@@ -97,8 +97,8 @@ void PlayerAvatar_InitDraw (PlayerAvatar * playerAvatar, int groundId)
 
     if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_SURFING) {
         if (groundId != 9) {
-            int x = Player_XPos(playerAvatar);
-            int z = Player_ZPos(playerAvatar);
+            int x = Player_GetXPos(playerAvatar);
+            int z = Player_GetZPos(playerAvatar);
             int dir = PlayerAvatar_GetDir(playerAvatar);
             UnkStruct_ov101_021D5D90 * v7 = ov5_021F261C(mapObj, x, z, dir, 1);
 
@@ -214,12 +214,12 @@ int sub_0205EAA0 (PlayerAvatar * const playerAvatar)
     return PlayerAvatar_GetMoveDir(playerAvatar);
 }
 
-int Player_XPos (PlayerAvatar * const playerAvatar)
+int Player_GetXPos (PlayerAvatar * const playerAvatar)
 {
     return MapObject_GetXPos(Player_MapObject(playerAvatar));
 }
 
-int Player_ZPos (PlayerAvatar * const playerAvatar)
+int Player_GetZPos (PlayerAvatar * const playerAvatar)
 {
     return MapObject_GetZPos(Player_MapObject(playerAvatar));
 }

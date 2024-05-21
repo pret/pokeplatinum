@@ -305,8 +305,8 @@ static BOOL sub_02056010 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1
 {
     int v0, v1;
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     if (param2 == 2) {
         v0--;
@@ -331,8 +331,8 @@ static MapObject * sub_02056074 (FieldSystem * fieldSystem, int param1)
 {
     int v0, v1;
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
     v1 -= 1;
 
     if (param1 == 2) {
@@ -348,8 +348,8 @@ static MapObject * sub_020560A8 (FieldSystem * fieldSystem, UnkStruct_020562AC *
 {
     int v0, v1;
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     if (param1->unk_04 == 0) {
         v1 -= 1;

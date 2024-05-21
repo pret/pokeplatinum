@@ -368,7 +368,7 @@ void ov5_021F4698 (UnkStruct_ov101_021D5D90 * param0, int param1, BOOL param2)
     v2->unk_00_7 = 0;
     v2->unk_00_0 = 1;
 
-    param1 = sub_0206447C(param1);
+    param1 = Direction_GetOpposite(param1);
 
     if (param2 == 1) {
         param1 += 4;

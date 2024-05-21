@@ -3414,7 +3414,7 @@ static BOOL ScrCmd_068 (ScriptContext * ctx)
         v0 = PlayerAvatar_GetDir(v4);
     }
 
-    v0 = sub_0206447C(v0);
+    v0 = Direction_GetOpposite(v0);
     v1 = sub_0203F098(v2, 10);
 
     if (*v1 == NULL) {
@@ -3433,8 +3433,8 @@ static BOOL ScrCmd_069 (ScriptContext * ctx)
 
     v0 = ScriptContext_GetVarPointer(ctx);
     v1 = ScriptContext_GetVarPointer(ctx);
-    *v0 = Player_XPos(fieldSystem->playerAvatar);
-    *v1 = Player_ZPos(fieldSystem->playerAvatar);
+    *v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    *v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     return 0;
 }

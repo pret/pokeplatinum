@@ -1831,8 +1831,8 @@ static BOOL ov23_0224495C (int param0, BOOL param1)
 {
     int v0, v1, v2, v3, v4;
 
-    v0 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
-    v1 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
+    v0 = Player_GetXPos(Unk_ov23_02257764->unk_40->playerAvatar);
+    v1 = Player_GetZPos(Unk_ov23_02257764->unk_40->playerAvatar);
     v4 = CommPlayer_GetOppositeDir(param0);
     v2 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_00;
     v3 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_02;
@@ -2014,8 +2014,8 @@ static int ov23_02244C10 (void)
 {
     int v0, v1, v2;
 
-    v1 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
-    v2 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
+    v1 = Player_GetXPos(Unk_ov23_02257764->unk_40->playerAvatar);
+    v2 = Player_GetZPos(Unk_ov23_02257764->unk_40->playerAvatar);
 
     ov5_021F5634(Unk_ov23_02257764->unk_40, v1, 0, v2);
     ov23_022541B4(ov23_0224219C(), 0, Unk_ov23_02257764->unk_B9F);
@@ -2944,8 +2944,8 @@ static void ov23_02245BA8 (SysTask * param0, void * param1)
             ov23_02254044(ov23_0224219C());
 
             v0->unk_00 = 7;
-            v2 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
-            v3 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
+            v2 = Player_GetXPos(Unk_ov23_02257764->unk_40->playerAvatar);
+            v3 = Player_GetZPos(Unk_ov23_02257764->unk_40->playerAvatar);
 
             if (!v0->unk_08) {
                 v0->unk_14 = ov5_021F4EAC(Unk_ov23_02257764->unk_40, v2, v3, 2, 32);
@@ -3947,8 +3947,8 @@ static BOOL ov23_02247568 (BGL * param0, UnkStruct_ov23_022471D8 * param1)
     switch (param1->unk_125) {
     case 0:
         param1->unk_124 = 0;
-        v5 = Player_XPos(Unk_ov23_02257764->unk_40->playerAvatar);
-        v6 = Player_ZPos(Unk_ov23_02257764->unk_40->playerAvatar);
+        v5 = Player_GetXPos(Unk_ov23_02257764->unk_40->playerAvatar);
+        v6 = Player_GetZPos(Unk_ov23_02257764->unk_40->playerAvatar);
         param1->unk_114 = ov5_021F4F18(Unk_ov23_02257764->unk_40, v5, v6, 5, 32);
         param1->unk_125 = 1;
         Sound_PlayEffect(1630);

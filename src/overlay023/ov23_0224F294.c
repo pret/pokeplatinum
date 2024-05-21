@@ -1373,7 +1373,7 @@ static void ov23_0225093C (UnkStruct_ov23_02250CD4 * param0)
 {
     ov23_0224FB7C(param0);
 
-    if (ov23_02242E58(Player_XPos(param0->unk_0C->playerAvatar), Player_ZPos(param0->unk_0C->playerAvatar))) {
+    if (ov23_02242E58(Player_GetXPos(param0->unk_0C->playerAvatar), Player_GetZPos(param0->unk_0C->playerAvatar))) {
         ov23_02253F40(ov23_0224219C(), 66, 0, NULL);
         param0->unk_2AA = 13;
     } else {

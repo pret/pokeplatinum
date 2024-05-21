@@ -363,7 +363,7 @@ BOOL ov23_02242458 (void)
                     return 0;
                 }
 
-                if (0 != sub_020593CC(CommSys_CurNetId())) {
+                if (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId())) {
                     return 0;
                 }
 
@@ -558,7 +558,7 @@ void ov23_022427DC (int param0, UnkFuncPtr_ov23_022427DC param1)
 
 void ov23_022427F8 (void)
 {
-    if (0 == sub_020593CC(CommSys_CurNetId())) {
+    if (0 == CommPlayer_GetMovementTimer(CommSys_CurNetId())) {
         Link_Message(27);
         sub_0203572C();
     }
@@ -582,7 +582,7 @@ void ov23_02242830 (u8 param0)
         return;
     }
 
-    if (0 != sub_020593CC(CommSys_CurNetId())) {
+    if (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId())) {
         return;
     }
 
@@ -662,7 +662,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
             }
         } else if (!sub_02059094(param0)) {
             (void)0;
-        } else if (!sub_02059094(v3) || (0 != sub_020593E0(v3))) {
+        } else if (!sub_02059094(v3) || (0 != CommPlayer_GetMovementTimerServer(v3))) {
             v0.unk_00 = 2;
             v0.unk_02 = v3;
             v0.unk_01 = param0;

@@ -221,8 +221,8 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     param1->unk_0E = sub_02054F94(fieldSystem, v0, v1);
 
@@ -443,8 +443,8 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
     {
         u16 v0, v1;
 
-        v0 = Player_XPos(param0->unk_18->playerAvatar);
-        v1 = Player_ZPos(param0->unk_18->playerAvatar);
+        v0 = Player_GetXPos(param0->unk_18->playerAvatar);
+        v1 = Player_GetZPos(param0->unk_18->playerAvatar);
 
         if (sub_0203A6A4(param0->unk_18, v0, v1) == 0) {
             return -1;

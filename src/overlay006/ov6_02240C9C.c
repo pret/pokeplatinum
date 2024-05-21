@@ -244,8 +244,8 @@ BOOL ov6_02240D5C (FieldSystem * param0)
     UnkStruct_ov6_0224222C v13[12];
     UnkStruct_ov6_022422D0 v14;
 
-    v2 = Player_XPos(param0->playerAvatar);
-    v3 = Player_ZPos(param0->playerAvatar);
+    v2 = Player_GetXPos(param0->playerAvatar);
+    v3 = Player_GetZPos(param0->playerAvatar);
     v4 = (u8)sub_02054F94(param0, v2, v3);
 
     {
@@ -498,8 +498,8 @@ BOOL ov6_022411C8 (FieldSystem * param0, TaskManager * param1)
     UnkStruct_ov6_0224222C v12[12];
     UnkStruct_ov6_022422D0 v13;
 
-    v2 = Player_XPos(param0->playerAvatar);
-    v3 = Player_ZPos(param0->playerAvatar);
+    v2 = Player_GetXPos(param0->playerAvatar);
+    v3 = Player_GetZPos(param0->playerAvatar);
     v4 = (u8)sub_02054F94(param0, v2, v3);
 
     {
@@ -623,8 +623,8 @@ BOOL ov6_022413E4 (FieldSystem * param0, BattleParams ** param1)
 
     *param1 = NULL;
 
-    v1 = Player_XPos(param0->playerAvatar);
-    v2 = Player_ZPos(param0->playerAvatar);
+    v1 = Player_GetXPos(param0->playerAvatar);
+    v2 = Player_GetZPos(param0->playerAvatar);
     v3 = (u8)sub_02054F94(param0, v1, v2);
 
     {
@@ -779,8 +779,8 @@ static BOOL ov6_02241674 (FieldSystem * param0, Pokemon * param1, BattleParams *
             {
                 int v4, v5;
 
-                v4 = Player_XPos(param0->playerAvatar);
-                v5 = Player_ZPos(param0->playerAvatar);
+                v4 = Player_GetXPos(param0->playerAvatar);
+                v5 = Player_GetZPos(param0->playerAvatar);
 
                 RadarSpawnPatches(param0, v4, v5, param0->chain);
             }

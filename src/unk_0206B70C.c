@@ -84,8 +84,8 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
 
-    x = Player_XPos(fieldSystem->playerAvatar);
-    z = Player_ZPos(fieldSystem->playerAvatar);
+    x = Player_GetXPos(fieldSystem->playerAvatar);
+    z = Player_GetZPos(fieldSystem->playerAvatar);
 
     {
         int v11 = 10 - 1;

@@ -212,8 +212,8 @@ static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
     UnkStruct_0203A790 * v2 = sub_0203A790(fieldSystem->saveData);
     Location * v3 = sub_0203A728(v2);
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     if (param1 != 350) {
         return 0;

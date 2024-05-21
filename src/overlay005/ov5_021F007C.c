@@ -485,8 +485,8 @@ BOOL ov5_021F0488 (TaskManager * param0)
                     u8 v3;
                     int v4, v5;
 
-                    v4 = Player_XPos(v0->playerAvatar);
-                    v5 = Player_ZPos(v0->playerAvatar);
+                    v4 = Player_GetXPos(v0->playerAvatar);
+                    v5 = Player_GetZPos(v0->playerAvatar);
                     v3 = (u8)sub_02054F94(v0, v4, v5);
 
                     if (ov6_02242110(v0, v3)) {

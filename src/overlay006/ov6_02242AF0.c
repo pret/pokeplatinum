@@ -310,13 +310,13 @@ static BOOL ov6_02242E60 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * pa
             if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 LocalMapObj_SetAnimationCode(v0, Unk_ov6_02249058[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(fieldSystem->playerAvatar) > param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (Player_ZPos(fieldSystem->playerAvatar) <= param1->unk_10) {
+                } else if (Player_GetZPos(fieldSystem->playerAvatar) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);
@@ -330,13 +330,13 @@ static BOOL ov6_02242E60 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * pa
             if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 LocalMapObj_SetAnimationCode(v0, Unk_ov6_0224903C[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(fieldSystem->playerAvatar) < param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (Player_ZPos(fieldSystem->playerAvatar) >= param1->unk_10) {
+                } else if (Player_GetZPos(fieldSystem->playerAvatar) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);

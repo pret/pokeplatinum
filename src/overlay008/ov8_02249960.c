@@ -351,8 +351,8 @@ void ov8_0224997C (FieldSystem * fieldSystem)
     int v4;
     int v5[] = {239, 240, 241};
 
-    v1 = Player_XPos(fieldSystem->playerAvatar);
-    v2 = Player_ZPos(fieldSystem->playerAvatar);
+    v1 = Player_GetXPos(fieldSystem->playerAvatar);
+    v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
     sub_020550F4(v1, v2, 0, 0, 1, 1, &v0);
 
@@ -2619,8 +2619,8 @@ static void ov8_0224B18C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * pa
     int v0, v1, v2, v3;
     const VecFx32 * v4;
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     param1->unk_10 = v0;
     param1->unk_14 = v1;
@@ -2712,8 +2712,8 @@ static void ov8_0224B28C (UnkStruct_ov8_0224B28C * param0)
     param0->unk_04 ^= 1;
     param0->unk_08 = param0->unk_10;
     param0->unk_0C = param0->unk_14;
-    param0->unk_18 = sub_0206447C(param0->unk_18);
-    param0->unk_1C = sub_0206447C(param0->unk_1C);
+    param0->unk_18 = Direction_GetOpposite(param0->unk_18);
+    param0->unk_1C = Direction_GetOpposite(param0->unk_1C);
 }
 
 static void ov8_0224B2B4 (UnkStruct_ov8_0224B28C * param0, int param1, int param2, int param3, int param4, int param5)
@@ -2954,8 +2954,8 @@ static BOOL ov8_0224B3D4 (TaskManager * param0)
         v2->unk_00++;
     case 12:
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            int v9 = Player_XPos(v1->playerAvatar);
-            int v10 = Player_ZPos(v1->playerAvatar);
+            int v9 = Player_GetXPos(v1->playerAvatar);
+            int v10 = Player_GetZPos(v1->playerAvatar);
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
             sub_0200E084(v2->unk_44, 0);
@@ -3435,7 +3435,7 @@ static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
 
 static int ov8_0224BC48 (UnkStruct_ov8_0224C098 * param0)
 {
-    sub_02064418(param0->unk_08, &param0->unk_20, param0->unk_2C);
+    VecFx32_AddValInDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
     sub_020715D4(param0->unk_34->unk_08.unk_0C, &param0->unk_20);
 
     param0->unk_2C += ((FX32_ONE / 2) / 30);
@@ -3458,7 +3458,7 @@ static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
 {
     UnkStruct_ov8_0224BCA8 * v0 = param0->unk_34;
 
-    sub_02064418(param0->unk_08, &param0->unk_20, param0->unk_2C);
+    VecFx32_AddValInDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
     sub_020715D4(v0->unk_08.unk_0C, &param0->unk_20);
 
     param0->unk_30 += param0->unk_2C;
@@ -3704,8 +3704,8 @@ static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * pa
     v3->unk_18 = v0 + (sub_0206419C(param3) * v3->unk_24);
     v3->unk_1C = v1 + (sub_020641A8(param3) * v3->unk_24);
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     v3->unk_10 = v0;
     v3->unk_14 = v1;
@@ -3762,7 +3762,7 @@ static void ov8_0224C0FC (UnkStruct_ov8_0224C098 * param0, int param1)
     v0->unk_2C = 0;
 
     if (param1 == 1) {
-        v0->unk_20 = sub_0206447C(v0->unk_20);
+        v0->unk_20 = Direction_GetOpposite(v0->unk_20);
     }
 }
 
@@ -4092,7 +4092,7 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
     v5 = fieldSystem->playerAvatar;
     v8 = Player_MapObject(v5);
     v2 = 2;
-    v1 = sub_0206447C(MapObject_Dir(v8));
+    v1 = Direction_GetOpposite(MapObject_Dir(v8));
 
     while (sub_020625B0(mapObjMan, &v7, &v0, (1 << 0))) {
         if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {

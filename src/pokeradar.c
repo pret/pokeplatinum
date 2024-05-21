@@ -409,8 +409,8 @@ BOOL RefreshRadarChain (TaskManager *taskMan) {
             *v1 = 4;
         } else {
             *v2 = 0;
-            int v3 = Player_XPos(fieldSystem->playerAvatar);
-            int v4 = Player_ZPos(fieldSystem->playerAvatar);
+            int v3 = Player_GetXPos(fieldSystem->playerAvatar);
+            int v4 = Player_GetZPos(fieldSystem->playerAvatar);
             RadarSpawnPatches(fieldSystem, v3, v4, fieldSystem->chain);
             if (fieldSystem->chain->active) {
                 SetupGrassPatches(fieldSystem, 0x1, fieldSystem->chain);

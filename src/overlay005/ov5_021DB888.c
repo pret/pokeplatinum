@@ -468,8 +468,8 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
         param0->unk_10[v5] = NULL;
     }
 
-    v3 = Player_XPos(param0->unk_04->playerAvatar);
-    v4 = Player_ZPos(param0->unk_04->playerAvatar);
+    v3 = Player_GetXPos(param0->unk_04->playerAvatar);
+    v4 = Player_GetZPos(param0->unk_04->playerAvatar);
     v7 = v3 - 7;
     v8 = v3 + 7;
     v9 = v4 - 7;

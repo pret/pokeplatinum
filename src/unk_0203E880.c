@@ -852,8 +852,8 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
         return v0;
     }
 
-    v2 = Player_XPos(param0->playerAvatar);
-    v3 = Player_ZPos(param0->playerAvatar);
+    v2 = Player_GetXPos(param0->playerAvatar);
+    v3 = Player_GetZPos(param0->playerAvatar);
     v8 = v2 - 7;
     v9 = v2 + 7;
     v10 = v3 - 7;
