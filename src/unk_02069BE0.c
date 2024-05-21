@@ -220,8 +220,8 @@ static int sub_02069D8C (MapObject * param0)
 {
     FieldSystem * v0 = MapObject_FieldSystem(param0);
     PlayerAvatar * v1 = sub_0205EF3C(v0);
-    int v2 = MapObject_XPos(param0);
-    int v3 = MapObject_ZPos(param0);
+    int v2 = MapObject_GetXPos(param0);
+    int v3 = MapObject_GetZPos(param0);
     int v4 = PlayerAvatar_XPosPrev(v1);
     int v5 = PlayerAvatar_ZPosPrev(v1);
 
@@ -363,8 +363,8 @@ static int sub_02069F48 (MapObject * param0, UnkStruct_02069F48 * param1)
 static void sub_02069FC4 (MapObject * param0, UnkStruct_02069F48 * param1, MapObject * param2)
 {
     param1->unk_01 = 1;
-    param1->unk_02 = MapObject_XPos(param2);
-    param1->unk_04 = MapObject_ZPos(param2);
+    param1->unk_02 = MapObject_GetXPos(param2);
+    param1->unk_04 = MapObject_GetZPos(param2);
     param1->unk_06 = 0xff;
     param1->unk_08 = param2;
 }
@@ -372,8 +372,8 @@ static void sub_02069FC4 (MapObject * param0, UnkStruct_02069F48 * param1, MapOb
 static int sub_02069FE8 (MapObject * param0, UnkStruct_02069F48 * param1)
 {
     MapObject * v0 = param1->unk_08;
-    int v1 = MapObject_XPos(param0);
-    int v2 = MapObject_ZPos(param0);
+    int v1 = MapObject_GetXPos(param0);
+    int v2 = MapObject_GetZPos(param0);
     int v3 = MapObject_XPosPrev(v0);
     int v4 = MapObject_ZPosPrev(v0);
 
@@ -386,10 +386,10 @@ static int sub_02069FE8 (MapObject * param0, UnkStruct_02069F48 * param1)
 
 static int sub_0206A034 (MapObject * param0, UnkStruct_02069F48 * param1)
 {
-    int v0 = MapObject_XPos(param0);
-    int v1 = MapObject_ZPos(param0);
-    int v2 = MapObject_XPos(param1->unk_08);
-    int v3 = MapObject_ZPos(param1->unk_08);
+    int v0 = MapObject_GetXPos(param0);
+    int v1 = MapObject_GetZPos(param0);
+    int v2 = MapObject_GetXPos(param1->unk_08);
+    int v3 = MapObject_GetZPos(param1->unk_08);
     int v4 = MapObject_XPosPrev(param1->unk_08);
     int v5 = MapObject_ZPosPrev(param1->unk_08);
     int v6;
@@ -867,8 +867,8 @@ static BOOL sub_0206A54C (FieldSystem * param0, int param1, int param2, int para
 static int sub_0206A574 (MapObject * param0, int param1, int param2)
 {
     FieldSystem * v0 = MapObject_FieldSystem(param0);
-    int v1 = MapObject_XPos(param0);
-    int v2 = MapObject_ZPos(param0);
+    int v1 = MapObject_GetXPos(param0);
+    int v2 = MapObject_GetZPos(param0);
     BOOL v3 = sub_0206A524(v0, v1, v2, param1, param2);
 
     return v3;
@@ -877,8 +877,8 @@ static int sub_0206A574 (MapObject * param0, int param1, int param2)
 static int sub_0206A5A4 (MapObject * param0, int param1, int param2)
 {
     FieldSystem * v0 = MapObject_FieldSystem(param0);
-    int v1 = MapObject_XPos(param0);
-    int v2 = MapObject_ZPos(param0);
+    int v1 = MapObject_GetXPos(param0);
+    int v2 = MapObject_GetZPos(param0);
     BOOL v3 = sub_0206A54C(v0, v1, v2, param1, param2);
 
     return v3;

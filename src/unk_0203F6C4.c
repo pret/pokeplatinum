@@ -3004,8 +3004,8 @@ static BOOL ScrCmd_2A1 (ScriptContext * ctx)
     }
 
     v10 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8E3C) * 64);
-    v8 = MapObject_XPos(v4);
-    v9 = MapObject_ZPos(v4);
+    v8 = MapObject_GetXPos(v4);
+    v9 = MapObject_GetZPos(v4);
     v11 = 0;
 
     if (v8 < v6) {
@@ -3339,7 +3339,7 @@ static BOOL ScrCmd_066 (ScriptContext * ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     MapObject ** v2 = sub_0203F098(ctx->fieldSys, 11);
 
-    *v2 = sub_020619DC(ctx->fieldSys->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSys->unk_1C->unk_00);
+    *v2 = MapObjectMan_AddMapObject(ctx->fieldSys->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSys->unk_1C->unk_00);
 
     sub_020642F8(*v2);
     MapObject_SetHidden(*v2, 1);
@@ -3382,7 +3382,7 @@ static BOOL ScrCmd_308 (ScriptContext * ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     MapObject ** v2 = sub_0203F098(ctx->fieldSys, 11);
 
-    *v2 = sub_020619DC(ctx->fieldSys->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSys->unk_1C->unk_00);
+    *v2 = MapObjectMan_AddMapObject(ctx->fieldSys->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSys->unk_1C->unk_00);
 
     sub_020642F8(*v2);
     MapObject_SetHidden(*v2, 1);
@@ -3448,8 +3448,8 @@ static BOOL ScrCmd_06A (ScriptContext * ctx)
     mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
     v1 = ScriptContext_GetVarPointer(ctx);
     v2 = ScriptContext_GetVarPointer(ctx);
-    *v1 = MapObject_XPos(mapObj);
-    *v2 = MapObject_ZPos(mapObj);
+    *v1 = MapObject_GetXPos(mapObj);
+    *v2 = MapObject_GetZPos(mapObj);
 
     return 0;
 }
@@ -5942,9 +5942,9 @@ static BOOL ScrCmd_317 (ScriptContext * ctx)
     {
         MapObject * v4 = Player_MapObject(v3->playerAvatar);
 
-        *v0 = MapObject_XPos(v4);
-        *v2 = ((MapObject_YPos(v4) / 2));
-        *v1 = MapObject_ZPos(v4);
+        *v0 = MapObject_GetXPos(v4);
+        *v2 = ((MapObject_GetYPos(v4) / 2));
+        *v1 = MapObject_GetZPos(v4);
     }
 
     return 0;

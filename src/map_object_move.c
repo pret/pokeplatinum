@@ -78,14 +78,10 @@ void MapObject_Move (MapObject * mapObj)
     sub_020634F4(mapObj);
     sub_02063518(mapObj);
 
-    if (MapObject_CheckStatus(mapObj, (1 << 4))) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_4)) {
         sub_020658B4(mapObj);
-    } else if (MapObject_IsMovementPaused(mapObj) == FALSE) {
-        if (sub_02063478(mapObj) == 1) {
-            if (sub_020673C0(mapObj) == 0) {
-                sub_02062B14(mapObj);
-            }
-        }
+    } else if (MapObject_IsMovementPaused(mapObj) == FALSE && sub_02063478(mapObj) == 1 && sub_020673C0(mapObj) == 0) {
+        sub_02062B14(mapObj);
     }
 
     sub_0206353C(mapObj);
@@ -104,16 +100,14 @@ static BOOL sub_02063478 (const MapObject * mapObj)
         return TRUE;
     }
 
-    {
-        u32 v0 = sub_020628B8(mapObj);
+    u32 v0 = sub_020628B8(mapObj);
 
-        if ((v0 & (1 << 12)) && ((v0 & (1 << 23)) == 0)) {
-            return FALSE;
-        }
+    if ((v0 & (1 << 12)) && ((v0 & (1 << 23)) == 0)) {
+        return FALSE;
+    }
 
-        if ((v0 & (1 << 11)) && (sub_02062FDC(mapObj) == 0)) {
-            return FALSE;
-        }
+    if ((v0 & (1 << 11)) && (sub_02062FDC(mapObj) == 0)) {
+        return FALSE;
     }
 
     return TRUE;
@@ -157,13 +151,13 @@ static void sub_0206353C (MapObject * mapObj)
 
 static void MapObject_EndMove (MapObject * mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, (1 << 17))) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_17)) {
         sub_020637D4(mapObj);
-    } else if (MapObject_CheckStatus(mapObj, (1 << 3))) {
+    } else if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_END_MOVEMENT)) {
         sub_0206375C(mapObj);
     }
 
-    MapObject_SetStatusFlagOff(mapObj, (1 << 3) | (1 << 17));
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_17);
 }
 
 static void sub_020635AC (MapObject * mapObj)
@@ -304,10 +298,8 @@ static void sub_02063864 (MapObject * mapObj, u8 param1, u8 param2, const UnkStr
         }
     }
 
-    {
-        VecFx32 v5 = {0, 0, 0};
-        sub_020630CC(mapObj, &v5);
-    }
+    VecFx32 v5 = {0, 0, 0};
+    sub_020630CC(mapObj, &v5);
 }
 
 static void sub_02063964 (MapObject * mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
@@ -382,12 +374,10 @@ static void sub_02063A70 (MapObject * mapObj, u8 param1, u8 param2, const UnkStr
 
 static void sub_02063A78 (MapObject * mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
-    {
-        const MapObjectManager * v0 = MapObject_MapObjectManager(mapObj);
+    const MapObjectManager * mapObjMan = MapObject_MapObjectManager(mapObj);
 
-        if (sub_02062CE4(v0) == 0) {
-            return;
-        }
+    if (sub_02062CE4(mapObjMan) == 0) {
+        return;
     }
 
     if (param3->unk_04_4 == 0) {
@@ -406,12 +396,10 @@ static void sub_02063A78 (MapObject * mapObj, u8 param1, u8 param2, const UnkStr
 
 static void sub_02063B20 (MapObject * mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
-    {
-        const MapObjectManager * v0 = MapObject_MapObjectManager(mapObj);
+    const MapObjectManager * mapObjMan = MapObject_MapObjectManager(mapObj);
 
-        if (sub_02062CE4(v0) == 0) {
-            return;
-        }
+    if (sub_02062CE4(mapObjMan) == 0) {
+        return;
     }
 
     if (param3->unk_04_4 == 0) {
@@ -472,7 +460,7 @@ static void sub_02063C60 (MapObject * mapObj, u8 param1, u8 param2, const UnkStr
 static void sub_02063C94 (MapObject * mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DE5C(param1) == 1) {
-        ov5_021F2AE4(mapObj, MapObject_XPos(mapObj), MapObject_YPos(mapObj), MapObject_ZPos(mapObj));
+        ov5_021F2AE4(mapObj, MapObject_GetXPos(mapObj), MapObject_GetYPos(mapObj), MapObject_GetZPos(mapObj));
     }
 }
 
@@ -486,7 +474,7 @@ static void sub_02063CC8 (MapObject * mapObj, u8 param1, u8 param2, const UnkStr
 static void sub_02063CFC (MapObject * mapObj, u8 param1, u8 param2, const UnkStruct_ov5_021ECD10 * param3)
 {
     if (sub_0205DCE0(param1) == 1) {
-        ov5_021F2C38(mapObj, MapObject_XPos(mapObj), MapObject_YPos(mapObj), MapObject_ZPos(mapObj));
+        ov5_021F2C38(mapObj, MapObject_GetXPos(mapObj), MapObject_GetYPos(mapObj), MapObject_GetZPos(mapObj));
     }
 }
 
@@ -496,35 +484,33 @@ static void sub_02063D30 (MapObject * mapObj, u8 param1, u8 param2, const UnkStr
         return;
     }
 
-    {
-        if (sub_02062F64(mapObj) == 0) {
-            u8 v0 = sub_0205DF98();
+    if (sub_02062F64(mapObj) == 0) {
+        u8 v0 = sub_0205DF98();
 
-            if (sub_0205DE90(param1) == 1) {
-                v0 = param1;
+        if (sub_0205DE90(param1) == 1) {
+            v0 = param1;
+        } else {
+            u8 v1 = sub_02064238(mapObj, 1);
+
+            if (sub_0205DE90(v1) == 1) {
+                v0 = v1;
+            }
+        }
+
+        if (v0 != sub_0205DF98()) {
+            int v2;
+
+            sub_02062F48(mapObj, 1);
+
+            if (sub_0205DF9C(v0) == 1) {
+                v2 = 2;
+            } else if (sub_0205DE5C(v0) == 1) {
+                v2 = 0;
             } else {
-                u8 v1 = sub_02064238(mapObj, 1);
-
-                if (sub_0205DE90(v1) == 1) {
-                    v0 = v1;
-                }
+                v2 = 1;
             }
 
-            if (v0 != sub_0205DF98()) {
-                int v2;
-
-                sub_02062F48(mapObj, 1);
-
-                if (sub_0205DF9C(v0) == 1) {
-                    v2 = 2;
-                } else if (sub_0205DE5C(v0) == 1) {
-                    v2 = 0;
-                } else {
-                    v2 = 1;
-                }
-
-                ov5_021F1800(mapObj, v2);
-            }
+            ov5_021F1800(mapObj, v2);
         }
     }
 }
@@ -535,12 +521,10 @@ static void sub_02063DA8 (MapObject * mapObj, u8 param1, u8 param2, const UnkStr
         return;
     }
 
-    {
-        u8 v0 = sub_02064238(mapObj, 1);
+    u8 v0 = sub_02064238(mapObj, 1);
 
-        if (sub_0205DE90(v0) == 0) {
-            sub_02062F48(mapObj, 0);
-        }
+    if (sub_0205DE90(v0) == 0) {
+        sub_02062F48(mapObj, 0);
     }
 }
 
@@ -570,16 +554,14 @@ u32 sub_02063E18 (const MapObject * mapObj, const VecFx32 * param1, int param2, 
         v0 |= (1 << 0);
     }
 
-    {
-        s8 v1;
-        FieldSystem * v2 = MapObject_FieldSystem(mapObj);
+    s8 v1;
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
 
-        if (sub_02055024(v2, param1, param2, param4, &v1) == 1) {
-            v0 |= (1 << 1);
+    if (sub_02055024(fieldSystem, param1, param2, param4, &v1) == 1) {
+        v0 |= (1 << 1);
 
-            if (v1 != 0) {
-                v0 |= (1 << 3);
-            }
+        if (v1 != 0) {
+            v0 |= (1 << 3);
         }
     }
 
@@ -604,34 +586,34 @@ u32 sub_02063E94 (const MapObject * mapObj, int param1, int param2, int param3, 
 
 u32 sub_02063EBC (const MapObject * mapObj, int param1)
 {
-    int v0, v1, v2;
+    int x, y, z;
 
-    v0 = MapObject_XPos(mapObj) + sub_0206419C(param1);
-    v1 = MapObject_YPos(mapObj);
-    v2 = MapObject_ZPos(mapObj) + sub_020641A8(param1);
+    x = MapObject_GetXPos(mapObj) + sub_0206419C(param1);
+    y = MapObject_GetYPos(mapObj);
+    z = MapObject_GetZPos(mapObj) + sub_020641A8(param1);
 
-    return sub_02063E94(mapObj, v0, v1, v2, param1);
+    return sub_02063E94(mapObj, x, y, z, param1);
 }
 
 int sub_02063F00 (const MapObject * mapObj, int param1, int param2, int param3)
 {
     int v0, v1, v2;
-    const MapObjectManager * v3;
+    const MapObjectManager * mapObjMan;
     const MapObject * v4;
 
-    v3 = MapObject_MapObjectManager(mapObj);
-    v4 = sub_02062868(v3);
-    v0 = MapObjectMan_GetMaxObjects(v3);
+    mapObjMan = MapObject_MapObjectManager(mapObj);
+    v4 = sub_02062868(mapObjMan);
+    v0 = MapObjectMan_GetMaxObjects(mapObjMan);
 
     do {
         if (v4 != mapObj) {
             if (MapObject_CheckStatus(v4, (1 << 0))) {
                 if (MapObject_CheckStatus(v4, (1 << 18)) == 0) {
-                    v1 = MapObject_XPos(v4);
-                    v2 = MapObject_ZPos(v4);
+                    v1 = MapObject_GetXPos(v4);
+                    v2 = MapObject_GetZPos(v4);
 
                     if ((v1 == param1) && (v2 == param3)) {
-                        int v5 = MapObject_YPos(v4);
+                        int v5 = MapObject_GetYPos(v4);
                         int v6 = v5 - param2;
 
                         if (v6 < 0) {
@@ -647,7 +629,7 @@ int sub_02063F00 (const MapObject * mapObj, int param1, int param2, int param3)
                     v2 = MapObject_ZPosPrev(v4);
 
                     if ((v1 == param1) && (v2 == param3)) {
-                        int v7 = MapObject_YPos(v4);
+                        int v7 = MapObject_GetYPos(v4);
                         int v8 = v7 - param2;
 
                         if (v8 < 0) {
@@ -851,9 +833,9 @@ int sub_020641A8 (int param0)
 
 void sub_020641B4 (MapObject * mapObj, int param1)
 {
-    MapObject_SetXPosPrev(mapObj, MapObject_XPos(mapObj));
-    MapObject_SetYPosPrev(mapObj, MapObject_YPos(mapObj));
-    MapObject_SetZPosPrev(mapObj, MapObject_ZPos(mapObj));
+    MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
+    MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
+    MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
 
     MapObject_AddX(mapObj, sub_0206419C(param1));
     MapObject_AddY(mapObj, 0);
@@ -862,15 +844,15 @@ void sub_020641B4 (MapObject * mapObj, int param1)
 
 void sub_02064208 (MapObject * mapObj)
 {
-    MapObject_SetXPosPrev(mapObj, MapObject_XPos(mapObj));
-    MapObject_SetYPosPrev(mapObj, MapObject_YPos(mapObj));
-    MapObject_SetZPosPrev(mapObj, MapObject_ZPos(mapObj));
+    MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
+    MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
+    MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
 }
 
 u32 sub_02064238 (MapObject * mapObj, int param1)
 {
-    int v0 = MapObject_XPos(mapObj) + sub_0206419C(param1);
-    int v1 = MapObject_ZPos(mapObj) + sub_020641A8(param1);
+    int v0 = MapObject_GetXPos(mapObj) + sub_0206419C(param1);
+    int v1 = MapObject_GetZPos(mapObj) + sub_020641A8(param1);
     FieldSystem * v2 = MapObject_FieldSystem(mapObj);
     u8 v3 = sub_02054F94(v2, v0, v1);
 
@@ -926,23 +908,21 @@ int sub_020642F8 (MapObject * mapObj)
         return 0;
     }
 
-    {
-        int v2 = sub_02062FAC(mapObj);
-        FieldSystem * v3 = MapObject_FieldSystem(mapObj);
-        int v4 = sub_020644D0(v3, &v1, v2);
+    int v2 = sub_02062FAC(mapObj);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+    int v4 = sub_020644D0(fieldSystem, &v1, v2);
 
-        if (v4 == 1) {
-            v0.y = v1.y;
-            MapObject_SetPosVec(mapObj, &v0);
-            MapObject_SetYPosPrev(mapObj, MapObject_YPos(mapObj));
-            MapObject_SetY(mapObj, (((v0.y) >> 3) / FX32_ONE));
-            MapObject_SetStatusFlagOff(mapObj, (1 << 12));
-        } else {
-            MapObject_SetStatusFlagOn(mapObj, (1 << 12));
-        }
-
-        return v4;
+    if (v4 == 1) {
+        v0.y = v1.y;
+        MapObject_SetPosVec(mapObj, &v0);
+        MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
+        MapObject_SetY(mapObj, (((v0.y) >> 3) / FX32_ONE));
+        MapObject_SetStatusFlagOff(mapObj, (1 << 12));
+    } else {
+        MapObject_SetStatusFlagOn(mapObj, (1 << 12));
     }
+
+    return v4;
 }
 
 int sub_02064390 (MapObject * mapObj)
@@ -952,13 +932,13 @@ int sub_02064390 (MapObject * mapObj)
 
     if (sub_02062FDC(mapObj) == 0) {
         int v2 = MapObject_XPosPrev(mapObj);
-        int v3 = MapObject_ZPosPrev(mapObj);
+        int z = MapObject_ZPosPrev(mapObj);
         FieldSystem * v4 = MapObject_FieldSystem(mapObj);
 
-        v0 = sub_02054F94(v4, v2, v3);
-        v2 = MapObject_XPos(mapObj);
-        v3 = MapObject_ZPos(mapObj);
-        v1 = sub_02054F94(v4, v2, v3);
+        v0 = sub_02054F94(v4, v2, z);
+        v2 = MapObject_GetXPos(mapObj);
+        z = MapObject_GetZPos(mapObj);
+        v1 = sub_02054F94(v4, v2, z);
     }
 
     sub_02062BF0(mapObj, v0);

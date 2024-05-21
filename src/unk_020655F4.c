@@ -1567,9 +1567,9 @@ static void sub_02066824 (MapObject * mapObj, const VecFx32 * param1, int param2
     sub_02062A0C(mapObj, param5);
     sub_02062D28(mapObj);
 
-    MapObject_SetXPosPrev(mapObj, MapObject_XPos(mapObj));
-    MapObject_SetYPosPrev(mapObj, MapObject_YPos(mapObj));
-    MapObject_SetZPosPrev(mapObj, MapObject_ZPos(mapObj));
+    MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
+    MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
+    MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
 
     if (param1->x < 0) {
         MapObject_AddX(mapObj, -1);
@@ -1891,9 +1891,9 @@ static void sub_02066F88 (MapObject * mapObj, fx32 param1, int param2, int param
     sub_02062A0C(mapObj, param5);
     sub_02062D28(mapObj);
 
-    MapObject_SetXPosPrev(mapObj, MapObject_XPos(mapObj));
-    MapObject_SetYPosPrev(mapObj, MapObject_YPos(mapObj));
-    MapObject_SetZPosPrev(mapObj, MapObject_ZPos(mapObj));
+    MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
+    MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
+    MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
 
     GF_ASSERT(param6 <= 2);
 
@@ -1996,9 +1996,9 @@ static int sub_02067068 (MapObject * mapObj)
         v2->unk_08 -= (16 * FX32_ONE);
         v0 = v2->unk_04;
 
-        MapObject_SetXPosPrev(mapObj, MapObject_XPos(mapObj));
-        MapObject_SetYPosPrev(mapObj, MapObject_YPos(mapObj));
-        MapObject_SetZPosPrev(mapObj, MapObject_ZPos(mapObj));
+        MapObject_SetXPosPrev(mapObj, MapObject_GetXPos(mapObj));
+        MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
+        MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
 
         switch (v2->unk_02) {
         case 0:

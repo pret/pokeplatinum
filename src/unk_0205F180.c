@@ -201,9 +201,9 @@ static int PlayerAvatar_CheckStartMoveInternal (PlayerAvatar * playerAvatar, int
 
             if ((v2 & (~(1 << 7))) && (sub_0205F108(playerAvatar) == 2)) {
                 FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
-                int xOut, x = MapObject_XPos(mapObj);
-                int yOut, y = MapObject_YPos(mapObj);
-                int zOut, z = MapObject_ZPos(mapObj);
+                int xOut, x = MapObject_GetXPos(mapObj);
+                int yOut, y = MapObject_GetYPos(mapObj);
+                int zOut, z = MapObject_GetZPos(mapObj);
 
                 y = y / 2;
                 xOut = x;
@@ -989,9 +989,9 @@ static void sub_0205FECC (PlayerAvatar * playerAvatar, MapObject * param1, int p
 
     if ((v0 & (~(1 << 7)))) {
         FieldSystem * v3 = MapObject_FieldSystem(param1);
-        int x = MapObject_XPos(param1);
-        int y = MapObject_YPos(param1);
-        int z = MapObject_ZPos(param1);
+        int x = MapObject_GetXPos(param1);
+        int y = MapObject_GetYPos(param1);
+        int z = MapObject_GetZPos(param1);
 
         y = ((y) / 2);
         sub_02061674(playerAvatar, param2, &x, &y, &z);
@@ -1741,9 +1741,9 @@ static u32 sub_02060C24 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     VecFx32 v0;
     u32 v1, v2;
-    int x = MapObject_XPos(mapObj) + sub_0206419C(param2);
-    int y = MapObject_YPos(mapObj);
-    int z = MapObject_ZPos(mapObj) + sub_020641A8(param2);
+    int x = MapObject_GetXPos(mapObj) + sub_0206419C(param2);
+    int y = MapObject_GetYPos(mapObj);
+    int z = MapObject_GetZPos(mapObj) + sub_020641A8(param2);
 
     MapObject_PosVectorOut(mapObj, &v0);
 
@@ -1781,8 +1781,8 @@ static int sub_02060CE4 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     if (param2 != -1) {
         FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_XPos(mapObj) + sub_0206419C(param2);
-        int v2 = MapObject_ZPos(mapObj) + sub_020641A8(param2);
+        int v1 = MapObject_GetXPos(mapObj) + sub_0206419C(param2);
+        int v2 = MapObject_GetZPos(mapObj) + sub_020641A8(param2);
 
         if (sub_020683D8(v0, v1, v2, 0, param2) == 1) {
             return 1;
@@ -1825,8 +1825,8 @@ static int sub_02060D98 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 
     if (param2 != -1) {
         FieldSystem * v1 = MapObject_FieldSystem(mapObj);
-        int v2 = MapObject_XPos(mapObj) + sub_0206419C(param2);
-        int v3 = MapObject_ZPos(mapObj) + sub_020641A8(param2);
+        int v2 = MapObject_GetXPos(mapObj) + sub_0206419C(param2);
+        int v3 = MapObject_GetZPos(mapObj) + sub_020641A8(param2);
         u8 v4 = sub_02054F94(v1, v2, v3);
 
         switch (param2) {
@@ -1860,8 +1860,8 @@ static int sub_02060E40 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     if (param2 != -1) {
         FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_XPos(mapObj);
-        int v2 = MapObject_ZPos(mapObj);
+        int v1 = MapObject_GetXPos(mapObj);
+        int v2 = MapObject_GetZPos(mapObj);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         switch (param2) {
@@ -1903,8 +1903,8 @@ static int sub_02060EE4 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     if (param2 != -1) {
         FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_XPos(mapObj) + sub_0206419C(param2);
-        int v2 = MapObject_ZPos(mapObj) + sub_020641A8(param2);
+        int v1 = MapObject_GetXPos(mapObj) + sub_0206419C(param2);
+        int v2 = MapObject_GetZPos(mapObj) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if ((param2 == 3) && sub_0205DD90(v3)) {
@@ -1923,8 +1923,8 @@ static int sub_02060F4C (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     if (param2 != -1) {
         FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_XPos(mapObj) + sub_0206419C(param2);
-        int v2 = MapObject_ZPos(mapObj) + sub_020641A8(param2);
+        int v1 = MapObject_GetXPos(mapObj) + sub_0206419C(param2);
+        int v2 = MapObject_GetZPos(mapObj) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
@@ -1939,8 +1939,8 @@ static int sub_02060FA8 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     if (param2 != -1) {
         FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_XPos(mapObj) + sub_0206419C(param2);
-        int v2 = MapObject_ZPos(mapObj) + sub_020641A8(param2);
+        int v1 = MapObject_GetXPos(mapObj) + sub_0206419C(param2);
+        int v2 = MapObject_GetZPos(mapObj) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
@@ -1973,8 +1973,8 @@ static int sub_02061058 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     if ((param2 != -1) && PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
         FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-        int v1 = MapObject_XPos(mapObj) + sub_0206419C(param2);
-        int v2 = MapObject_ZPos(mapObj) + sub_020641A8(param2);
+        int v1 = MapObject_GetXPos(mapObj) + sub_0206419C(param2);
+        int v2 = MapObject_GetZPos(mapObj) + sub_020641A8(param2);
         u8 v3 = sub_02054F94(v0, v1, v2);
 
         if (sub_0206406C(mapObj, v3)) {
@@ -2007,9 +2007,9 @@ static int sub_02061100 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
     FieldSystem * v1 = MapObject_FieldSystem(mapObj);
 
     if (sub_02071CB4(v1, 9) == 1) {
-        int x = MapObject_XPos(mapObj);
-        int y = MapObject_YPos(mapObj) / 2;
-        int z = MapObject_ZPos(mapObj);
+        int x = MapObject_GetXPos(mapObj);
+        int y = MapObject_GetYPos(mapObj) / 2;
+        int z = MapObject_GetZPos(mapObj);
 
         sub_02061674(playerAvatar, param2, &x, &y, &z);
 
@@ -2035,9 +2035,9 @@ static int sub_02061180 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
         if (sub_02071CB4(v0, 9) == 1) {
             BOOL v1;
             u32 v2;
-            int x = MapObject_XPos(mapObj);
-            int y = MapObject_YPos(mapObj) / 2;
-            int z = MapObject_ZPos(mapObj);
+            int x = MapObject_GetXPos(mapObj);
+            int y = MapObject_GetYPos(mapObj) / 2;
+            int z = MapObject_GetZPos(mapObj);
 
             sub_02061674(playerAvatar, param2, &x, &y, &z);
 
@@ -2086,9 +2086,9 @@ static int sub_02061248 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 
         if (sub_02071CB4(fieldSystem, 9) == 1) {
             u32 v2;
-            int x = MapObject_XPos(mapObj);
-            int y = MapObject_YPos(mapObj) / 2;
-            int z = MapObject_ZPos(mapObj);
+            int x = MapObject_GetXPos(mapObj);
+            int y = MapObject_GetYPos(mapObj) / 2;
+            int z = MapObject_GetZPos(mapObj);
 
             sub_02061674(playerAvatar, param2, &x, &y, &z);
 
@@ -2461,9 +2461,9 @@ u32 sub_020616F0 (PlayerAvatar * playerAvatar, int param1)
     } else {
         MapObject * mapObj = Player_MapObject(playerAvatar);
         FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
-        int x = MapObject_XPos(mapObj);
-        int y = MapObject_YPos(mapObj) / 2;
-        int z = MapObject_ZPos(mapObj);
+        int x = MapObject_GetXPos(mapObj);
+        int y = MapObject_GetYPos(mapObj) / 2;
+        int z = MapObject_GetZPos(mapObj);
 
         sub_02061674(playerAvatar, param1, &x, &y, &z);
         ov9_02251044(fieldSystem, x, y, z, &v0);
@@ -2477,9 +2477,9 @@ u32 sub_02061760 (PlayerAvatar * playerAvatar)
     u32 v0;
     MapObject * mapObj = Player_MapObject(playerAvatar);
     FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
-    int x = MapObject_XPos(mapObj);
-    int y = MapObject_YPos(mapObj) / 2;
-    int z = MapObject_ZPos(mapObj);
+    int x = MapObject_GetXPos(mapObj);
+    int y = MapObject_GetYPos(mapObj) / 2;
+    int z = MapObject_GetZPos(mapObj);
 
     if (sub_0205F158(playerAvatar) == 0) {
         v0 = sub_02054F94(fieldSystem, x, z);
@@ -2495,9 +2495,9 @@ void sub_020617BC (PlayerAvatar * const playerAvatar, int * xOut, int * yOut, in
     int v0 = sub_0205EAA0(playerAvatar);
     MapObject * mapObj = Player_MapObject(playerAvatar);
 
-    *xOut = MapObject_XPos(mapObj);
-    *yOut = MapObject_YPos(mapObj) / 2;
-    *zOut = MapObject_ZPos(mapObj);
+    *xOut = MapObject_GetXPos(mapObj);
+    *yOut = MapObject_GetYPos(mapObj) / 2;
+    *zOut = MapObject_GetZPos(mapObj);
 
     sub_02061674(playerAvatar, v0, xOut, yOut, zOut);
 }

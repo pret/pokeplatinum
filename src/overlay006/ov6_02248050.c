@@ -79,8 +79,8 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
 
     MapObject_PosVectorOut(v4, &v3);
 
-    v1 = MapObject_XPos(v4);
-    v2 = MapObject_ZPos(v4);
+    v1 = MapObject_GetXPos(v4);
+    v2 = MapObject_GetZPos(v4);
     v0 = MapObject_Dir(v4);
 
     switch (v0) {

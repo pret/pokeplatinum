@@ -43,7 +43,7 @@ static void sub_0205EBA4(PlayerAvatar * playerAvatar, u32 param1);
 static u32 sub_0205EBB0(PlayerAvatar * playerAvatar, u32 param1);
 static void PlayerAvatar_SetPlayerData(PlayerAvatar * playerAvatar, PlayerData * param1);
 
-PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * mapObjMan, int param1, int param2, int param3, int param4, int param5, int param6, PlayerData * param7)
+PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * mapObjMan, int x, int z, int dir, int param4, int param5, int param6, PlayerData * param7)
 {
     PlayerAvatar * playerAvatar = PlayerAvatar_Alloc();
     sub_0205E91C(playerAvatar, param4, param5, param7);
@@ -60,7 +60,7 @@ PlayerAvatar * PlayerAvatar_Init (const MapObjectManager * mapObjMan, int param1
         }
     }
 
-    PlayerAvatar_AddMapObject(playerAvatar, mapObjMan, v1, param3, param1, param2);
+    PlayerAvatar_AddMapObject(playerAvatar, mapObjMan, v1, dir, x, z);
 
 
     return playerAvatar;
@@ -147,9 +147,9 @@ static void sub_0205E91C (PlayerAvatar * playerAvatar, int param1, int gender, P
     PlayerAvatar_SetInDeepSwamp(playerAvatar, 1);
 }
 
-static void PlayerAvatar_AddMapObject (PlayerAvatar * playerAvatar, const MapObjectManager * mapObjMan, int param2, int param3, int param4, int param5)
+static void PlayerAvatar_AddMapObject (PlayerAvatar * playerAvatar, const MapObjectManager * mapObjMan, int param2, int dir, int x, int z)
 {
-    MapObject * mapObj = sub_020619DC(mapObjMan, param4, param5, param3, param2, 0x1, 1);
+    MapObject * mapObj = MapObjectMan_AddMapObject(mapObjMan, x, z, dir, param2, 0x1, 1);
     GF_ASSERT(mapObj != NULL);
 
     MapObject_SetId(mapObj, 0xff);
@@ -161,8 +161,8 @@ static void PlayerAvatar_AddMapObject (PlayerAvatar * playerAvatar, const MapObj
     sub_020629B4(mapObj, 0, 2);
     sub_020629FC(mapObj, -1);
     sub_02062A04(mapObj, -1);
-    MapObject_SetStatusFlagOn(mapObj, ((1 << 10) | (1 << 13)));
-    MapObject_SetStatusFlagOff(mapObj, ((1 << 7) | (1 << 8)));
+    MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10 | MAP_OBJ_STATUS_13);
+    MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
     sub_02062F90(mapObj, 1);
 
     PlayerAvatar_SetMapObject(playerAvatar, mapObj);
@@ -216,12 +216,12 @@ int sub_0205EAA0 (PlayerAvatar * const playerAvatar)
 
 int Player_XPos (PlayerAvatar * const playerAvatar)
 {
-    return MapObject_XPos(Player_MapObject(playerAvatar));
+    return MapObject_GetXPos(Player_MapObject(playerAvatar));
 }
 
 int Player_ZPos (PlayerAvatar * const playerAvatar)
 {
-    return MapObject_ZPos(Player_MapObject(playerAvatar));
+    return MapObject_GetZPos(Player_MapObject(playerAvatar));
 }
 
 int PlayerAvatar_XPosPrev (PlayerAvatar * const playerAvatar)

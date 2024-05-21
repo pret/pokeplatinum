@@ -415,8 +415,8 @@ static int sub_0206489C (MapObject * param0, int param1)
 
     sub_020647A0(param0, &v2);
 
-    v0 = MapObject_XPos(param0) + sub_0206419C(param1);
-    v1 = MapObject_ZPos(param0) + sub_020641A8(param1);
+    v0 = MapObject_GetXPos(param0) + sub_0206419C(param1);
+    v1 = MapObject_GetZPos(param0) + sub_020641A8(param1);
 
     if ((v2.unk_00 > v0) || (v2.unk_08 < v0)) {
         return 0;
@@ -749,8 +749,8 @@ static int sub_02064CA8 (MapObject * param0, UnkStruct_02064C28 * param1)
 
         v0 = MapObject_XInitial(param0);
         v1 = MapObject_ZInitial(param0);
-        v2 = MapObject_XPos(param0);
-        v3 = MapObject_ZPos(param0);
+        v2 = MapObject_GetXPos(param0);
+        v3 = MapObject_GetZPos(param0);
 
         if ((v0 == v2) && (v1 == v3)) {
             int v4 = sub_0206447C(MapObject_GetMoveDir(param0));
@@ -929,14 +929,14 @@ static int sub_02064EEC (MapObject * param0, UnkStruct_02064D98 * param1)
     if (param1->unk_01 == param1->unk_02) {
         if (param1->unk_03 == 0) {
             int v0 = MapObject_XInitial(param0);
-            int v1 = MapObject_XPos(param0);
+            int v1 = MapObject_GetXPos(param0);
 
             if (v0 == v1) {
                 param1->unk_01++;
             }
         } else {
             int v2 = MapObject_ZInitial(param0);
-            int v3 = MapObject_ZPos(param0);
+            int v3 = MapObject_GetZPos(param0);
 
             if (v2 == v3) {
                 param1->unk_01++;
@@ -947,8 +947,8 @@ static int sub_02064EEC (MapObject * param0, UnkStruct_02064D98 * param1)
     if (param1->unk_01 == 3) {
         int v4 = MapObject_XInitial(param0);
         int v5 = MapObject_ZInitial(param0);
-        int v6 = MapObject_XPos(param0);
-        int v7 = MapObject_ZPos(param0);
+        int v6 = MapObject_GetXPos(param0);
+        int v7 = MapObject_GetZPos(param0);
 
         if ((v4 == v6) && (v5 == v7)) {
             param1->unk_01 = 0;
@@ -1140,14 +1140,14 @@ static int sub_020651A4 (MapObject * param0, UnkStruct_0206502C * param1)
     if (param1->unk_01 == param1->unk_02) {
         if (param1->unk_03 == 0) {
             int v0 = MapObject_XInitial(param0);
-            int v1 = MapObject_XPos(param0);
+            int v1 = MapObject_GetXPos(param0);
 
             if (v0 == v1) {
                 sub_02065100(param1);
             }
         } else {
             int v2 = MapObject_ZInitial(param0);
-            int v3 = MapObject_ZPos(param0);
+            int v3 = MapObject_GetZPos(param0);
 
             if (v2 == v3) {
                 sub_02065100(param1);
@@ -1158,8 +1158,8 @@ static int sub_020651A4 (MapObject * param0, UnkStruct_0206502C * param1)
     if (param1->unk_01 == 3) {
         int v4 = MapObject_XInitial(param0);
         int v5 = MapObject_ZInitial(param0);
-        int v6 = MapObject_XPos(param0);
-        int v7 = MapObject_ZPos(param0);
+        int v6 = MapObject_GetXPos(param0);
+        int v7 = MapObject_GetZPos(param0);
 
         if ((v4 == v6) && (v5 == v7)) {
             param1->unk_01 = 0;
@@ -1323,8 +1323,8 @@ static int sub_0206537C (MapObject * param0)
             int v8 = Player_XPos(v2);
             int v9 = Player_ZPos(v2);
             int v10 = sub_020629D8(param0, 0);
-            int v11 = MapObject_XPos(param0);
-            int v12 = MapObject_ZPos(param0);
+            int v11 = MapObject_GetXPos(param0);
+            int v12 = MapObject_GetZPos(param0);
             int v13 = v11 - v10;
             int v14 = v11 + v10;
             int v15 = v12 - v10;
@@ -1372,8 +1372,8 @@ static int sub_02065448 (MapObject * param0, int param1, int param2)
 
             {
                 int v4 = -1, v5 = -1;
-                int v6 = MapObject_XPos(param0);
-                int v7 = MapObject_ZPos(param0);
+                int v6 = MapObject_GetXPos(param0);
+                int v7 = MapObject_GetZPos(param0);
                 FieldSystem * v8 = MapObject_FieldSystem(param0);
                 PlayerAvatar * v9 = sub_0205EF3C(v8);
                 int v10 = Player_XPos(v9);

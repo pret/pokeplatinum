@@ -1151,9 +1151,9 @@ static BOOL ov5_021D2EA4 (FieldSystem * fieldSystem, MapObject ** param1)
     sub_020617BC(fieldSystem->playerAvatar, &v1, &v2, &v3);
 
     while (sub_020625B0(fieldSystem->mapObjMan, param1, &v0, (1 << 0))) {
-        v4 = MapObject_XPos(*param1);
-        v5 = ((MapObject_YPos(*param1) / 2));
-        v6 = MapObject_ZPos(*param1);
+        v4 = MapObject_GetXPos(*param1);
+        v5 = ((MapObject_GetYPos(*param1) / 2));
+        v6 = MapObject_GetZPos(*param1);
 
         if ((v2 == v5) && (v1 == v4) && (v3 == v6)) {
             return 1;

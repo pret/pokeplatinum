@@ -89,14 +89,14 @@ static int sub_0206741C (MapObject * param0)
 
 static int sub_02067438 (MapObject * param0)
 {
-    int v0 = MapObject_XPos(param0);
+    int v0 = MapObject_GetXPos(param0);
     int v1 = MapObject_XPosPrev(param0);
 
     if (v0 != v1) {
         return 1;
     }
 
-    v0 = MapObject_ZPos(param0);
+    v0 = MapObject_GetZPos(param0);
     v1 = MapObject_ZPosPrev(param0);
 
     if (v0 != v1) {
@@ -108,14 +108,14 @@ static int sub_02067438 (MapObject * param0)
 
 static int sub_0206746C (MapObject * param0)
 {
-    int v0 = MapObject_XPos(param0);
+    int v0 = MapObject_GetXPos(param0);
     int v1 = MapObject_XPosPrev(param0);
 
     if (v0 != v1) {
         return 0;
     }
 
-    v0 = MapObject_ZPos(param0);
+    v0 = MapObject_GetZPos(param0);
     v1 = MapObject_ZPosPrev(param0);
 
     if (v0 != v1) {

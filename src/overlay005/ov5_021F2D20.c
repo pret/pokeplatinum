@@ -157,9 +157,9 @@ void ov5_021F2EA4 (MapObject * param0, int param1)
 
     v3 = ov5_021DF578(param0);
 
-    v2.unk_00 = MapObject_XPos(param0);
-    v2.unk_04 = MapObject_YPos(param0);
-    v2.unk_08 = MapObject_ZPos(param0);
+    v2.unk_00 = MapObject_GetXPos(param0);
+    v2.unk_04 = MapObject_GetYPos(param0);
+    v2.unk_08 = MapObject_GetZPos(param0);
     v2.unk_10 = v3;
     v2.unk_0C = ov5_021DF574(v3);
     v2.unk_14 = ov5_021DF55C(v3, 19);
@@ -265,8 +265,8 @@ static void ov5_021F2FAC (UnkStruct_ov101_021D5D90 * param0, void * param1)
         {
             int v5, v6;
 
-            v5 = MapObject_XPos(v2);
-            v6 = MapObject_ZPos(v2);
+            v5 = MapObject_GetXPos(v2);
+            v6 = MapObject_GetZPos(v2);
 
             if ((v1->unk_18.unk_00 != v5) || (v1->unk_18.unk_08 != v6)) {
                 ov5_021DF74C(param0);
