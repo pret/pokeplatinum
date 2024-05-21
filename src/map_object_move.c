@@ -100,7 +100,7 @@ static BOOL sub_02063478 (const MapObject * mapObj)
 
     if (MapObject_CheckStatus(mapObj, ((1 << 12) | (1 << 11))) == 0) {
         return TRUE;
-    } else if (sub_02062948(mapObj) == 0x32) {
+    } else if (MapObject_GetMoveCode(mapObj) == 0x32) {
         return TRUE;
     }
 
@@ -621,7 +621,7 @@ int sub_02063F00 (const MapObject * mapObj, int param1, int param2, int param3)
 
     v3 = MapObject_MapObjectManager(mapObj);
     v4 = sub_02062868(v3);
-    v0 = MapObjectMan_MaxObjects(v3);
+    v0 = MapObjectMan_GetMaxObjects(v3);
 
     do {
         if (v4 != mapObj) {
@@ -999,7 +999,7 @@ void sub_02064450 (int param0, int param1, VecFx32 * param2)
 
 void sub_02064464 (MapObject * mapObj)
 {
-    int v0 = sub_02062948(mapObj);
+    int v0 = MapObject_GetMoveCode(mapObj);
 
     if ((v0 == 0x33) || (v0 == 0x34) || (v0 == 0x35) || (v0 == 0x36)) {
         sub_02062B14(mapObj);

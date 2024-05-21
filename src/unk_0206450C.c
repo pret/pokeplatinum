@@ -368,7 +368,7 @@ static void sub_020647A0 (MapObject * param0, UnkStruct_020647A0 * param1)
     v2 = MapObject_ZInitial(param0);
     v3 = MapObject_MaxXOffset(param0);
     v4 = MapObject_MaxZOffset(param0);
-    v0 = sub_02062948(param0);
+    v0 = MapObject_GetMoveCode(param0);
 
     switch (v0) {
     case 0x6:
@@ -753,7 +753,7 @@ static int sub_02064CA8 (MapObject * param0, UnkStruct_02064C28 * param1)
         v3 = MapObject_ZPos(param0);
 
         if ((v0 == v2) && (v1 == v3)) {
-            int v4 = sub_0206447C(MapObject_MoveDir(param0));
+            int v4 = sub_0206447C(MapObject_GetMoveDir(param0));
 
             sub_02062994(param0, v4);
 
@@ -769,7 +769,7 @@ static int sub_02064CA8 (MapObject * param0, UnkStruct_02064C28 * param1)
         int v5, v6;
         u32 v7;
 
-        v5 = MapObject_MoveDir(param0);
+        v5 = MapObject_GetMoveDir(param0);
         v7 = sub_02063EBC(param0, v5);
 
         if ((v7 & (1 << 0))) {
@@ -1294,7 +1294,7 @@ static int sub_0206537C (MapObject * param0)
         {
             int v3, v4 = 0;
 
-            v0 = sub_02062948(param0);
+            v0 = MapObject_GetMoveCode(param0);
 
             do {
                 v3 = Unk_020EEAD0[v4++];

@@ -20,7 +20,7 @@ static u8 sub_0203CAEC(FieldSystem * fieldSystem, const UnkStruct_0203A594 * par
 
 static int sub_0203C954 (FieldSystem * fieldSystem, int * param1, int * param2)
 {
-    int v0 = Player_Dir(fieldSystem->playerAvatar);
+    int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     *param1 = Player_XPos(fieldSystem->playerAvatar);
     *param2 = Player_ZPos(fieldSystem->playerAvatar);
@@ -142,7 +142,7 @@ static u8 sub_0203CB18 (FieldSystem * fieldSystem, const UnkStruct_0203A594 * pa
         return 1;
     }
 
-    switch (Player_Dir(fieldSystem->playerAvatar)) {
+    switch (PlayerAvatar_GetDir(fieldSystem->playerAvatar)) {
     case 0:
         if ((param1->unk_10 == 0) || (param1->unk_10 == 6)) {
             return 1;
@@ -174,7 +174,7 @@ u16 sub_0203CB80 (FieldSystem * fieldSystem, void * param1, int param2)
     int v1, v2;
     int v3;
 
-    if (Player_Dir(fieldSystem->playerAvatar) != 0) {
+    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != 0) {
         return 0xffff;
     }
 
@@ -192,7 +192,7 @@ u16 sub_0203CB80 (FieldSystem * fieldSystem, void * param1, int param2)
 
 u8 sub_0203CBE0 (FieldSystem * fieldSystem, MapObject ** param1)
 {
-    if (Player_Dir(fieldSystem->playerAvatar) != 0) {
+    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != 0) {
         return 0;
     }
 

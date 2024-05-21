@@ -2958,7 +2958,7 @@ static void ov23_02245BA8 (SysTask * param0, void * param1)
         break;
     case 7:
     {
-        int v5 = Player_Dir(Unk_ov23_02257764->unk_40->playerAvatar);
+        int v5 = PlayerAvatar_GetDir(Unk_ov23_02257764->unk_40->playerAvatar);
 
         if (v0->unk_18 != v5) {
             Sound_PlayEffect(1515);
@@ -3029,7 +3029,7 @@ static void ov23_02245DF8 (BOOL param0, BOOL param1, int param2)
     v1->unk_08 = param0;
     v1->unk_10 = 0;
     v1->unk_0D = param1;
-    v1->unk_18 = Player_Dir(Unk_ov23_02257764->unk_40->playerAvatar);
+    v1->unk_18 = PlayerAvatar_GetDir(Unk_ov23_02257764->unk_40->playerAvatar);
     v1->unk_0C = param2;
 
     Unk_ov23_02257764->unk_300 = v1;

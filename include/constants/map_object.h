@@ -1,6 +1,13 @@
 #ifndef POKEPLATINUM_CONSTANTS_MAP_OBJECT_H
 #define POKEPLATINUM_CONSTANTS_MAP_OBJECT_H
 
+//Facing Direction
+#define DIR_NORTH        0
+#define DIR_SOUTH        1
+#define DIR_WEST         2
+#define DIR_EAST         3
+#define DIR_NONE        -1
+
 //Status Flags
 #define MAP_OBJ_STATUS_0                        (1 << 0)
 #define MAP_OBJ_STATUS_START_MOVEMENT           (1 << 2)

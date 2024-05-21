@@ -236,7 +236,7 @@ static void ov5_021E2028 (FieldSystem * fieldSystem)
     fieldSystem->unk_1C->unk_08 = Player_XPos(fieldSystem->playerAvatar);
     fieldSystem->unk_1C->unk_0C = Player_ZPos(fieldSystem->playerAvatar);
     fieldSystem->unk_1C->unk_04 = -1;
-    fieldSystem->unk_1C->unk_10 = Player_Dir(fieldSystem->playerAvatar);
+    fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }
 
 void ov5_021E2064 (FieldSystem * fieldSystem)

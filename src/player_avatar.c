@@ -95,11 +95,11 @@ void PlayerAvatar_InitDraw (PlayerAvatar * playerAvatar, int groundId)
 
     ov5_021F6218(playerAvatar);
 
-    if (PlayerAvatar_PlayerState(playerAvatar) == PLAYER_STATE_SURFING) {
+    if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_SURFING) {
         if (groundId != 9) {
             int x = Player_XPos(playerAvatar);
             int z = Player_ZPos(playerAvatar);
-            int dir = Player_Dir(playerAvatar);
+            int dir = PlayerAvatar_GetDir(playerAvatar);
             UnkStruct_ov101_021D5D90 * v7 = ov5_021F261C(mapObj, x, z, dir, 1);
 
             sub_0205EC00(playerAvatar, v7);
@@ -174,7 +174,7 @@ MapObject * sub_0205EA24 (const MapObjectManager * mapObjMan)
     MapObject * mapObj = NULL;
 
     while (sub_020625B0(mapObjMan, &mapObj, &v0, (1 << 0))) {
-        if (sub_02062948(mapObj) == 0x1) {
+        if (MapObject_GetMoveCode(mapObj) == 0x1) {
             break;
         }
     }
@@ -190,7 +190,7 @@ static MapObject * sub_0205EA64 (const MapObjectManager * mapObjMan)
     return mapObj;
 }
 
-int Player_Dir (PlayerAvatar * const playerAvatar)
+int PlayerAvatar_GetDir (PlayerAvatar * const playerAvatar)
 {
     return MapObject_Dir(Player_MapObject(playerAvatar));
 }
@@ -200,18 +200,18 @@ void Player_SetDir (PlayerAvatar * playerAvatar, int dir)
     MapObject_SetDir(Player_MapObject(playerAvatar), dir);
 }
 
-int PlayerAvatar_MoveDir (PlayerAvatar * const playerAvatar)
+int PlayerAvatar_GetMoveDir (PlayerAvatar * const playerAvatar)
 {
-    return MapObject_MoveDir(Player_MapObject(playerAvatar));
+    return MapObject_GetMoveDir(Player_MapObject(playerAvatar));
 }
 
 int sub_0205EAA0 (PlayerAvatar * const playerAvatar)
 {
     if (sub_0205F16C(playerAvatar) == 1) {
-        return Player_Dir(playerAvatar);
+        return PlayerAvatar_GetDir(playerAvatar);
     }
 
-    return PlayerAvatar_MoveDir(playerAvatar);
+    return PlayerAvatar_GetMoveDir(playerAvatar);
 }
 
 int Player_XPos (PlayerAvatar * const playerAvatar)
@@ -301,7 +301,7 @@ void PlayerAvatar_SetPlayerState (PlayerAvatar * playerAvatar, int param1)
     sub_0205ECA8(playerAvatar, param1);
 }
 
-int PlayerAvatar_PlayerState (PlayerAvatar * playerAvatar)
+int PlayerAvatar_GetPlayerState (PlayerAvatar * playerAvatar)
 {
     GF_ASSERT(playerAvatar != NULL);
     return playerAvatar->unk_1C;

@@ -240,10 +240,10 @@ void CommPlayer_InitPersonal (void)
     sCommPlayerManager->isActive[CommSys_CurNetId()] = 1;
     sCommPlayerManager->playerLocation[CommSys_CurNetId()].x = Player_XPos(sCommPlayerManager->fieldSys->playerAvatar);
     sCommPlayerManager->playerLocation[CommSys_CurNetId()].z = Player_ZPos(sCommPlayerManager->fieldSys->playerAvatar);
-    sCommPlayerManager->playerLocation[CommSys_CurNetId()].dir = Player_Dir(sCommPlayerManager->fieldSys->playerAvatar);
+    sCommPlayerManager->playerLocation[CommSys_CurNetId()].dir = PlayerAvatar_GetDir(sCommPlayerManager->fieldSys->playerAvatar);
     sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].x = Player_XPos(sCommPlayerManager->fieldSys->playerAvatar);
     sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].z = Player_ZPos(sCommPlayerManager->fieldSys->playerAvatar);
-    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].dir = Player_Dir(sCommPlayerManager->fieldSys->playerAvatar);
+    sCommPlayerManager->playerLocationServer[CommSys_CurNetId()].dir = PlayerAvatar_GetDir(sCommPlayerManager->fieldSys->playerAvatar);
 }
 
 void CommPlayer_CopyPersonal (int param0)
@@ -274,7 +274,7 @@ void CommPlayer_CopyPersonal (int param0)
 void CommPlayer_SendXZPos (BOOL param0, int x, int z)
 {
     u8 data[5 + 1];
-    int dir = Player_Dir(sCommPlayerManager->fieldSys->playerAvatar);
+    int dir = PlayerAvatar_GetDir(sCommPlayerManager->fieldSys->playerAvatar);
 
     data[0] = x;
     data[1] = x >> 8;
@@ -962,7 +962,7 @@ static BOOL CommPlayer_BlowAnimation (int netId, int param1, int param2, int ani
 
     obj = Player_MapObject(sCommPlayerManager->playerAvatar[netId]);
 
-    if (Player_Dir(sCommPlayerManager->playerAvatar[netId]) != CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId])) {
+    if (PlayerAvatar_GetDir(sCommPlayerManager->playerAvatar[netId]) != CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId])) {
         MapObject_SetStatusFlagOff(obj, MAP_OBJ_STATUS_LOCK_DIR);
         Player_SetDir(sCommPlayerManager->playerAvatar[netId], CommPlayer_GetOppositeDir(sCommPlayerManager->blowDir[netId]));
         MapObject_SetStatusFlagOn(obj, MAP_OBJ_STATUS_LOCK_DIR);
@@ -1024,7 +1024,7 @@ static void CommPlayer_MoveClient (int netId)
     if (playerAvatar) {
         int dx = Player_XPos(playerAvatar) - playerLocation->x;
         int dy = Player_ZPos(playerAvatar) - playerLocation->z;
-        int dir = Player_Dir(playerAvatar);
+        int dir = PlayerAvatar_GetDir(playerAvatar);
 
         if ((dx == 0) && (dy == 0)) {
             pad = 0;
@@ -1687,7 +1687,7 @@ int CommPlayer_DirClient (int netId)
         return -1;
     }
 
-    return Player_Dir(sCommPlayerManager->playerAvatar[netId]);
+    return PlayerAvatar_GetDir(sCommPlayerManager->playerAvatar[netId]);
 }
 
 void sub_02059464 (int param0)

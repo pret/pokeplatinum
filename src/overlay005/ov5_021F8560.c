@@ -169,7 +169,7 @@ static void ov5_021F86E4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         return;
     }
 
-    v0->unk_04 = MapObject_MoveDir(v1);
+    v0->unk_04 = MapObject_GetMoveDir(v1);
     v0->unk_34 = sub_0205F108(v2);
 
     GF_ASSERT(v0->unk_04 != -1);

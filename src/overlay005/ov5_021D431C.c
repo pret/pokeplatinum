@@ -894,7 +894,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
     case 0:
         v0 = Player_MapObject(v1->playerAvatar);
 
-        if (Player_Dir(v1->playerAvatar) == 1) {
+        if (PlayerAvatar_GetDir(v1->playerAvatar) == 1) {
             MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
@@ -1027,7 +1027,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
         u8 v4;
 
         v0 = Player_MapObject(v1->playerAvatar);
-        v3 = Player_Dir(v1->playerAvatar);
+        v3 = PlayerAvatar_GetDir(v1->playerAvatar);
 
         if (v3 == 1) {
             MapObject_SetHidden(v0, 1);
@@ -1108,7 +1108,7 @@ BOOL ov5_021D5150 (TaskManager * param0)
         u8 v4;
 
         v0 = Player_MapObject(v1->playerAvatar);
-        v3 = Player_Dir(v1->playerAvatar);
+        v3 = PlayerAvatar_GetDir(v1->playerAvatar);
 
         if (v3 == 1) {
             MapObject_SetHidden(v0, 1);

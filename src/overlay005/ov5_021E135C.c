@@ -93,7 +93,7 @@ static void ov5_021E1470 (SysTask * param0, void * param1)
         v3 = (20 - v0->unk_0C);
         v2.y = ((FX32_ONE * 2.2) + ((FX32_ONE / 2) * v3)) * v3;
         sub_020630AC(v1, &v2);
-        ov5_021ECCC8(v1);
+        MapObject_Draw(v1);
     }
 
         Sound_PlayEffect(1615);
@@ -136,7 +136,7 @@ void ov5_021E15A8 (FieldSystem * param0, BOOL param1, BOOL * param2)
 
     v0->unk_00 = param0;
     v0->unk_04 = param2;
-    v0->unk_10 = Player_Dir(param0->playerAvatar);
+    v0->unk_10 = PlayerAvatar_GetDir(param0->playerAvatar);
 
     if (param1) {
         SysTask_Start(ov5_021E139C, v0, 100);

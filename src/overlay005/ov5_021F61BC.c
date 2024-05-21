@@ -143,7 +143,7 @@ static void ov5_021F62A0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1->unk_04 = ov5_021F6414(v1->unk_08);
     v1->unk_00 = 0;
 
-    if ((v1->unk_04 == -1) || (v1->unk_04 != Player_Dir(v2))) {
+    if ((v1->unk_04 == -1) || (v1->unk_04 != PlayerAvatar_GetDir(v2))) {
         v1->unk_1C = 0;
         v1->unk_20 = 0;
         v1->unk_00 = 1;

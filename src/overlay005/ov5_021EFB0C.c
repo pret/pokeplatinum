@@ -113,7 +113,7 @@ BOOL ov5_021EFB40 (FieldSystem * param0, int * param1)
 
     v1 = Player_XPos(param0->playerAvatar);
     v2 = Player_ZPos(param0->playerAvatar);
-    v4 = Player_Dir(param0->playerAvatar);
+    v4 = PlayerAvatar_GetDir(param0->playerAvatar);
 
     if (v4 == 0) {
         sub_020550F4(v1, v2, 0, -1, 1, 1, &v0);

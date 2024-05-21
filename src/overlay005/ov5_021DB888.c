@@ -504,7 +504,7 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
             v1 = MapObject_ZPos(v11);
 
             if ((v0 >= v7) && (v0 <= v8) && (v1 >= v9) && (v1 <= v10)) {
-                if (ov5_021DBB70(sub_02062948(v11)) == 0) {
+                if (ov5_021DBB70(MapObject_GetMoveCode(v11)) == 0) {
                     param0->unk_10[v6] = v11;
                     v6++;
                 }
@@ -570,7 +570,7 @@ static void ov5_021DBC08 (FieldSystem * fieldSystem)
             continue;
         }
 
-        if (sub_02062948(v1) == 0x31) {
+        if (MapObject_GetMoveCode(v1) == 0x31) {
             ov5_021DBECC(v1, 0x2);
         }
     }
@@ -773,7 +773,7 @@ static u16 ov5_021DBEA4 (u16 param0, u16 param1)
 
 static BOOL ov5_021DBEB8 (MapObject * param0)
 {
-    if (sub_02062948(param0) == 0x31) {
+    if (MapObject_GetMoveCode(param0) == 0x31) {
         return 1;
     }
 
@@ -868,7 +868,7 @@ static MapObject * ov5_021DBF70 (FieldSystem * fieldSystem, MapObject * param1, 
         }
 
         if (param2 == 0) {
-            if (sub_02062948(v0) == 0x31) {
+            if (MapObject_GetMoveCode(v0) == 0x31) {
                 continue;
             }
         }

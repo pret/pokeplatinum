@@ -2147,7 +2147,7 @@ BOOL ov9_0224A71C (FieldSystem * param0)
 
     {
         int v1, v2, v3;
-        int v4 = Player_Dir(param0->playerAvatar);
+        int v4 = PlayerAvatar_GetDir(param0->playerAvatar);
         UnkStruct_ov9_02249B04 * v5 = param0->unk_04->unk_24;
 
         ov9_02250F44(v5, &v1, &v2, &v3);
@@ -2292,7 +2292,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
 
     if (v5 == 0x2) {
         UnkStruct_ov101_021D5D90 * v9;
-        int v10 = Player_Dir(v7);
+        int v10 = PlayerAvatar_GetDir(v7);
 
         v9 = ov5_021F85BC(v7, v2, v3, v4, v10, 1, v0);
         sub_0205EC00(v7, v9);
@@ -7191,7 +7191,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, 
             return 0;
         }
 
-        *param1 = sub_02061918(param0->unk_00->mapObjMan, &param2->unk_08, param3);
+        *param1 = MapObjectMan_AddMapObjectFromHeader(param0->unk_00->mapObjMan, &param2->unk_08, param3);
         GF_ASSERT((*param1) != NULL);
     }
 
@@ -7511,7 +7511,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPosVec(v1, &v0);
-        sub_020642A4(v1, MapObject_MoveDir(v1), (FX32_ONE * 2));
+        sub_020642A4(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;
@@ -7568,7 +7568,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
             MapObject_SetId(v6, v4);
 
             {
-                int v7 = MapObject_MoveDir(v6);
+                int v7 = MapObject_GetMoveDir(v6);
                 int v8 = MapObject_XPos(v6);
                 int v9 = MapObject_YPos(v6);
                 int v10 = MapObject_ZPos(v6);
@@ -7680,7 +7680,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPosVec(v1, &v0);
-        sub_020642A4(v1, MapObject_MoveDir(v1), (FX32_ONE * 2));
+        sub_020642A4(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;

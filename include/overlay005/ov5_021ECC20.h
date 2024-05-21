@@ -9,7 +9,7 @@
 
 void ov5_021ECC20(MapObjectManager * param0, int param1, int param2, const int * param3, int param4);
 void ov5_021ECC78(MapObjectManager * param0);
-void ov5_021ECCC8(MapObject * param0);
+void MapObject_Draw(MapObject * param0);
 const UnkStruct_ov5_021ECD10 * ov5_021ECD04(const MapObject * param0);
 int ov5_021ECD38(const MapObject * param0);
 void * ov5_021ECD68(const MapObjectManager * param0, u32 param1, int param2);

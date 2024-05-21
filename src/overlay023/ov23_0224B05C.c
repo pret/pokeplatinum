@@ -1783,7 +1783,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
     {
         v6 = sub_02058D88(CommSys_CurNetId());
         v7 = sub_02058DC0(CommSys_CurNetId());
-        v8 = CommPlayer_GetOppositeDir(Player_Dir(v1->playerAvatar));
+        v8 = CommPlayer_GetOppositeDir(PlayerAvatar_GetDir(v1->playerAvatar));
 
         ov23_02253F40(ov23_0224219C(), 34, 0, NULL);
         ov23_0224C588(v6, v7, v8, 16);

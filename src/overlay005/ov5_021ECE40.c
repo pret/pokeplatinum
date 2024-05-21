@@ -474,7 +474,7 @@ static int ov5_021ED1C8 (const MapObjectManager * param0, const MapObject * para
     int v0, v1;
     const MapObject * v2;
 
-    v0 = MapObjectMan_MaxObjects(param0);
+    v0 = MapObjectMan_GetMaxObjects(param0);
     v2 = sub_02062868(param0);
 
     do {

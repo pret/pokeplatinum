@@ -219,14 +219,14 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     param1->unk_18 = fieldSystem;
     param1->unk_00 = fieldSystem->unk_1C->unk_00;
     param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
-    param1->unk_08 = PlayerAvatar_PlayerState(fieldSystem->playerAvatar);
+    param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
     v0 = Player_XPos(fieldSystem->playerAvatar);
     v1 = Player_ZPos(fieldSystem->playerAvatar);
 
     param1->unk_0E = sub_02054F94(fieldSystem, v0, v1);
 
-    v2 = Player_Dir(fieldSystem->playerAvatar);
+    v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     switch (v2) {
     case 0:
@@ -255,7 +255,7 @@ static void sub_020684D0 (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1
     param1->unk_18 = fieldSystem;
     param1->unk_00 = fieldSystem->unk_1C->unk_00;
     param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
-    param1->unk_08 = PlayerAvatar_PlayerState(fieldSystem->playerAvatar);
+    param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
 
     {
@@ -428,7 +428,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (PlayerAvatar_PlayerState(param0->unk_14) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->unk_14) == 0x2) {
         return -1;
     }
 
@@ -488,7 +488,7 @@ static BOOL sub_02068884 (TaskManager * param0)
         (*v1)++;
         break;
     case 1:
-        if (PlayerAvatar_PlayerState(fieldSystem->playerAvatar) == 0x1) {
+        if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
             sub_02062DDC(Player_MapObject(fieldSystem->playerAvatar));
             PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, (1 << 0));
             PlayerAvatar_RequestChangeState(fieldSystem->playerAvatar);
@@ -742,7 +742,7 @@ static u32 sub_02068C5C (const UnkStruct_020684D0 * param0)
         return 2;
     }
 
-    if (PlayerAvatar_PlayerState(param0->unk_18->playerAvatar) == 0x1) {
+    if (PlayerAvatar_GetPlayerState(param0->unk_18->playerAvatar) == 0x1) {
         return -1;
     }
 

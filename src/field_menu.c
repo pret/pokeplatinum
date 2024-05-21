@@ -290,7 +290,7 @@ void FieldMenu_Init (FieldSystem * fieldSystem)
     menu->unk_228 = 0;
 
     if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
+        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     sub_02050904(fieldSystem, sub_0203AC44, menu);
@@ -304,7 +304,7 @@ void sub_0203AA78 (FieldSystem * fieldSystem)
     menu->unk_228 = 1;
 
     if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
+        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     sub_02050904(fieldSystem, sub_0203AC44, menu);
@@ -318,7 +318,7 @@ void sub_0203AABC (FieldSystem * fieldSystem)
     menu->unk_228 = 0;
 
     if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-        sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
+        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     sub_02050904(fieldSystem, sub_0203AC44, menu);

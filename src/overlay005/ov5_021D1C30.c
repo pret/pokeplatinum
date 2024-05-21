@@ -125,7 +125,7 @@ void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem, u
 
     v0 = Player_MoveState(fieldSystem->playerAvatar);
     v1 = PlayerAvatar_MoveState(fieldSystem->playerAvatar);
-    v2 = Player_Dir(fieldSystem->playerAvatar);
+    v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     param0->unk_04 = param2;
     param0->unk_06 = param3;
@@ -239,7 +239,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
             int v3 = (s8)param0->unk_02;
 
             if (v3 == -1) {
-                v3 = Player_Dir(fieldSystem->playerAvatar);
+                v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
             }
 
             if (ov9_0224A67C(fieldSystem, v3) == 1) {
@@ -248,7 +248,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
         }
     }
 
-    if (param0->unk_00_4 && (Player_Dir(fieldSystem->playerAvatar) == param0->unk_02)) {
+    if (param0->unk_00_4 && (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == param0->unk_02)) {
         if (ov5_021D20DC(fieldSystem) == 1) {
             return 1;
         }
@@ -270,7 +270,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
 
                 if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
                     sub_0205F5E4(
-                        fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
+                        fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
                 }
 
                 if (sub_02062950(v5) != 0x9) {
@@ -324,7 +324,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
         {
             int v13, v14, v15;
 
-            v15 = Player_Dir(fieldSystem->playerAvatar);
+            v15 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
             ov5_021D2C98(fieldSystem, &v13, &v14);
 
             if (ov5_021F8410(fieldSystem, v13, v14, v15) == 1) {
@@ -430,9 +430,9 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
             if (sub_0203CA40(fieldSystem, &v0) == 1) {
                 UnkStruct_ov5_021D219C * v1;
 
-                if (0x1 != sub_02062948(v0)) {
+                if (0x1 != MapObject_GetMoveCode(v0)) {
                     if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-                        sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
+                        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
                     }
 
                     sub_0203E880(fieldSystem, sub_02062960(v0), v0);
@@ -490,7 +490,7 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSys
 
         if (sub_0203CA40(fieldSystem, &v0) == 1) {
             if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-                sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
             sub_02036B84();
@@ -535,7 +535,7 @@ int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
                 UnkStruct_ov5_021D219C * v1;
 
                 if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-                    sub_0205F5E4(fieldSystem->playerAvatar, Player_Dir(fieldSystem->playerAvatar));
+                    sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
                 }
 
                 if (sub_02062950(v0) != 0x9) {
@@ -710,7 +710,7 @@ static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CA
 
 u16 ov5_021D271C (FieldSystem * fieldSystem, u8 param1)
 {
-    int v0 = Player_Dir(fieldSystem->playerAvatar);
+    int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     if (sub_0205DBE4(param1) && (v0 == 0)) {
         return 2018;
@@ -744,7 +744,7 @@ u16 ov5_021D271C (FieldSystem * fieldSystem, u8 param1)
         return 10003;
     }
 
-    if (PlayerAvatar_PlayerState(fieldSystem->playerAvatar) != 0x2) {
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != 0x2) {
         TrainerInfo * v1 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         u32 v2 = sub_02061760(fieldSystem->playerAvatar);
 
@@ -776,7 +776,7 @@ static BOOL ov5_021D2884 (FieldSystem * fieldSystem)
         }
     }
 
-    v3 = Player_Dir(fieldSystem->playerAvatar);
+    v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     if (ov5_021E1154(fieldSystem, fieldSystem->playerAvatar, v3) == 1) {
         return 1;
@@ -856,7 +856,7 @@ static BOOL ov5_021D29D8 (FieldSystem * fieldSystem, const int param1, const int
     }
 
     if (sub_0205DC2C(param3) == 1) {
-        int v1 = Player_Dir(fieldSystem->playerAvatar);
+        int v1 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (v1 == 2) {
             v1 = 3;
@@ -870,7 +870,7 @@ static BOOL ov5_021D29D8 (FieldSystem * fieldSystem, const int param1, const int
         sub_02056BDC(fieldSystem, v0.unk_00, v0.unk_04, 0, 0, v1, 2);
         return 1;
     } else if (sub_0205DC38(param3) == 1) {
-        int v1 = Player_Dir(fieldSystem->playerAvatar);
+        int v1 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if ((v1 != 2) && (v1 != 3)) {
             GF_ASSERT(FALSE);
@@ -1029,7 +1029,7 @@ static void ov5_021D2C98 (const FieldSystem * fieldSystem, int * param1, int * p
 {
     int v0;
 
-    v0 = Player_Dir(fieldSystem->playerAvatar);
+    v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     ov5_021D2CB4(fieldSystem, v0, param1, param2);
 }
 
@@ -1097,7 +1097,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
 
     {
         Location * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
-        inline_02049FA8(v2, fieldSystem->unk_1C->unk_00, v1, param1, param2, Player_Dir(fieldSystem->playerAvatar));
+        inline_02049FA8(v2, fieldSystem->unk_1C->unk_00, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     return 1;
@@ -1130,14 +1130,14 @@ static void ov5_021D2E14 (FieldSystem * fieldSystem)
 
     if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
         if ((MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
-            ov5_021D2DCC(fieldSystem, v0, v1, Player_Dir(fieldSystem->playerAvatar));
+            ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
     } else {
         ov5_021D2C98(fieldSystem, &v0, &v1);
 
         if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
             if ((MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
-                ov5_021D2DCC(fieldSystem, v0, v1, Player_Dir(fieldSystem->playerAvatar));
+                ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
         }
     }

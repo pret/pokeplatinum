@@ -306,7 +306,7 @@ void * sub_0203D20C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->unk_98);
     sub_0207CB78(v1, fieldSystem->unk_70);
 
-    if (PlayerAvatar_PlayerState(fieldSystem->playerAvatar) == 0x1) {
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
         sub_0207CB58(v1);
     }
 

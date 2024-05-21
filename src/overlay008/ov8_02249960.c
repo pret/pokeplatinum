@@ -3659,7 +3659,7 @@ BOOL ov8_0224BF4C (FieldSystem * param0)
     {
         int v1, v2, v3;
         UnkStruct_ov8_0224BCA8 * v4;
-        int v5 = Player_Dir(param0->playerAvatar);
+        int v5 = PlayerAvatar_GetDir(param0->playerAvatar);
         UnkStruct_ov8_0224B8D0 * v6 = param0->unk_04->unk_24;
 
         sub_0206157C(param0->playerAvatar, v5, &v1, &v2);

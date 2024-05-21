@@ -264,9 +264,9 @@ static void PlayerAvatar_RequestStateSurf (PlayerAvatar * playerAvatar)
     sub_0205EC00(playerAvatar, NULL);
 
     if (sub_0205F16C(playerAvatar) == 1) {
-        v1 = Player_Dir(playerAvatar);
+        v1 = PlayerAvatar_GetDir(playerAvatar);
     } else {
-        v1 = PlayerAvatar_MoveDir(playerAvatar);
+        v1 = PlayerAvatar_GetMoveDir(playerAvatar);
     }
 
     if (v4 == 0) {
@@ -708,7 +708,7 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
 
 static int ov5_021E032C (FieldSystem * fieldSystem, PlayerAvatar * param1, int param2, int param3)
 {
-    if ((param3 != 1) || (PlayerAvatar_PlayerState(param1) != 0x2)) {
+    if ((param3 != 1) || (PlayerAvatar_GetPlayerState(param1) != 0x2)) {
         return 0;
     }
 
@@ -803,7 +803,7 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
 
 static int ov5_021E04A8 (FieldSystem * param0, PlayerAvatar * playerAvatar, int param2, int param3)
 {
-    if ((param2 != 1) || (param3 != 1) || (PlayerAvatar_PlayerState(playerAvatar) != 0x2)) {
+    if ((param2 != 1) || (param3 != 1) || (PlayerAvatar_GetPlayerState(playerAvatar) != 0x2)) {
         return 0;
     }
 
@@ -875,7 +875,7 @@ static BOOL ov5_021E0560 (TaskManager * param0)
         v0->unk_00++;
     case 2:
     {
-        int v2 = Player_Dir(v0->unk_0C);
+        int v2 = PlayerAvatar_GetDir(v0->unk_0C);
         u32 v3, v4 = gCoreSys.pressedKeys, v5 = gCoreSys.heldKeys;
         int v6 = sub_02061308(v0->unk_0C, v4, v5);
 
@@ -940,7 +940,7 @@ static int ov5_021E06A8 (FieldSystem * param0, PlayerAvatar * playerAvatar)
     }
 
     {
-        int v0 = PlayerAvatar_MoveDir(playerAvatar);
+        int v0 = PlayerAvatar_GetMoveDir(playerAvatar);
         MapObject * v1 = ov5_021E10D4(playerAvatar, v0);
 
         if (v1 == NULL) {
@@ -1094,7 +1094,7 @@ static int ov5_021E08C0 (UnkStruct_ov5_021F9B54 * param0)
     }
 
     {
-        int v0 = MapObject_MoveDir(param0->unk_14);
+        int v0 = MapObject_GetMoveDir(param0->unk_14);
         u8 v1 = sub_02064238(param0->unk_14, v0);
 
         if (ov5_021E0760(v1, v0) == 1) {
@@ -1569,7 +1569,7 @@ void ov5_021E0E94 (PlayerAvatar * param0)
     }
 
     {
-        int v1 = PlayerAvatar_PlayerState(param0);
+        int v1 = PlayerAvatar_GetPlayerState(param0);
 
         if (v1 != 0x0) {
             return;
@@ -1602,7 +1602,7 @@ void ov5_021E0EEC (PlayerAvatar * param0)
     }
 
     {
-        int v1 = PlayerAvatar_PlayerState(param0);
+        int v1 = PlayerAvatar_GetPlayerState(param0);
 
         if (v1 != 0x0) {
             return;
@@ -1629,7 +1629,7 @@ void ov5_021E0EEC (PlayerAvatar * param0)
 static SysTask * ov5_021E0F54 (FieldSystem * param0, u32 param1)
 {
     PlayerAvatar * v0 = param0->playerAvatar;
-    int v1 = PlayerAvatar_PlayerState(v0);
+    int v1 = PlayerAvatar_GetPlayerState(v0);
 
     if (v1 != 0x0) {
         return NULL;

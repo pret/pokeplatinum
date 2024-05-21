@@ -472,14 +472,14 @@ void sub_020562AC (FieldSystem * fieldSystem)
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;
-    v0->unk_04 = Player_Dir(fieldSystem->playerAvatar);
+    v0->unk_04 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     sub_02050944(fieldSystem->unk_10, sub_02056124, v0);
 }
 
 void sub_020562D8 (FieldSystem * fieldSystem)
 {
-    int v0 = PlayerAvatar_PlayerState(fieldSystem->playerAvatar);
+    int v0 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     u32 v1 = sub_0205EED8(v0);
 
     PlayerAvatar_SetRequestStateBit(fieldSystem->playerAvatar, v1);

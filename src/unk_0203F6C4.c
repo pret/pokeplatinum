@@ -3411,7 +3411,7 @@ static BOOL ScrCmd_068 (ScriptContext * ctx)
 
         v3 = ctx->fieldSys;
         v4 = v3->playerAvatar;
-        v0 = Player_Dir(v4);
+        v0 = PlayerAvatar_GetDir(v4);
     }
 
     v0 = sub_0206447C(v0);
@@ -3459,7 +3459,7 @@ static BOOL ScrCmd_1BD (ScriptContext * ctx)
     u16 * v0;
 
     v0 = ScriptContext_GetVarPointer(ctx);
-    *v0 = Player_Dir(ctx->fieldSys->playerAvatar);
+    *v0 = PlayerAvatar_GetDir(ctx->fieldSys->playerAvatar);
 
     return 0;
 }
@@ -3517,7 +3517,7 @@ static BOOL ScrCmd_2AD (ScriptContext * ctx)
     mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, ScriptContext_GetVar(ctx));
 
     if (mapObj != NULL) {
-        *v1 = sub_02062948(mapObj);
+        *v1 = MapObject_GetMoveCode(mapObj);
     }
 
     return 0;
@@ -4704,7 +4704,7 @@ static BOOL ScrCmd_201 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0BF (ScriptContext * ctx)
 {
-    ov5_021E0734(ctx->taskManager, Player_Dir(ctx->fieldSys->playerAvatar), ScriptContext_GetVar(ctx));
+    ov5_021E0734(ctx->taskManager, PlayerAvatar_GetDir(ctx->fieldSys->playerAvatar), ScriptContext_GetVar(ctx));
     return 1;
 }
 
@@ -4716,9 +4716,9 @@ static BOOL ScrCmd_0C0 (ScriptContext * ctx)
         int v0;
 
         if (sub_0205F16C(ctx->fieldSys->playerAvatar) == 1) {
-            v0 = Player_Dir(ctx->fieldSys->playerAvatar);
+            v0 = PlayerAvatar_GetDir(ctx->fieldSys->playerAvatar);
         } else {
-            v0 = PlayerAvatar_MoveDir(ctx->fieldSys->playerAvatar);
+            v0 = PlayerAvatar_GetMoveDir(ctx->fieldSys->playerAvatar);
         }
 
         ov5_021E00EC(ctx->taskManager, v0, ScriptContext_GetVar(ctx));
@@ -4729,7 +4729,7 @@ static BOOL ScrCmd_0C0 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0C1 (ScriptContext * ctx)
 {
-    ov5_021E0998(ctx->taskManager, Player_Dir(ctx->fieldSys->playerAvatar), ScriptContext_GetVar(ctx));
+    ov5_021E0998(ctx->taskManager, PlayerAvatar_GetDir(ctx->fieldSys->playerAvatar), ScriptContext_GetVar(ctx));
     return 1;
 }
 
@@ -4800,7 +4800,7 @@ static BOOL ScrCmd_0C7 (ScriptContext * ctx)
 {
     u16 * v0 = ScriptContext_GetVarPointer(ctx);
 
-    if (PlayerAvatar_PlayerState(ctx->fieldSys->playerAvatar) == 0x1) {
+    if (PlayerAvatar_GetPlayerState(ctx->fieldSys->playerAvatar) == 0x1) {
         *v0 = 1;
     } else {
         *v0 = 0;
@@ -4844,7 +4844,7 @@ static BOOL ScrCmd_0CA (ScriptContext * ctx)
 {
     u16 * v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = PlayerAvatar_PlayerState(ctx->fieldSys->playerAvatar);
+    *v0 = PlayerAvatar_GetPlayerState(ctx->fieldSys->playerAvatar);
     return 0;
 }
 

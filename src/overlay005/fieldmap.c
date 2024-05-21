@@ -280,7 +280,7 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
 
         fieldSystem->unk_1C->unk_08 = Player_XPos(fieldSystem->playerAvatar);
         fieldSystem->unk_1C->unk_0C = Player_ZPos(fieldSystem->playerAvatar);
-        fieldSystem->unk_1C->unk_10 = Player_Dir(fieldSystem->playerAvatar);
+        fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         ov5_021EF300(fieldSystem->unk_A0);
 
@@ -543,7 +543,7 @@ static void ov5_021D13B4 (FieldSystem * fieldSystem)
     v0 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
     v1 = (Player_XPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
     v2 = (Player_ZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
-    v3 = Player_Dir(fieldSystem->playerAvatar);
+    v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     sub_02055740(v0, v1, v2, v3);
 }

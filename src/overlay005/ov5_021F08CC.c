@@ -420,7 +420,7 @@ static int ov5_021F0CB0 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * playerA
     ov5_021F0DA4(param0);
 
     {
-        int v0 = PlayerAvatar_PlayerState(playerAvatar);
+        int v0 = PlayerAvatar_GetPlayerState(playerAvatar);
         u32 v1 = sub_0205EED8(v0);
 
         PlayerAvatar_SetRequestStateBit(playerAvatar, v1);

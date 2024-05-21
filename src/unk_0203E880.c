@@ -258,7 +258,7 @@ static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16
 {
     u16 * v0 = sub_0203EF60(param1, 54);
 
-    param1->unk_28 = Player_Dir(param0->playerAvatar);
+    param1->unk_28 = PlayerAvatar_GetDir(param0->playerAvatar);
     param1->unk_2C = param3;
     param1->unk_0A = param2;
     param1->unk_34 = param4;

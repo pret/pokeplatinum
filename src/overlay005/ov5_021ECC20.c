@@ -29,7 +29,7 @@ void ov5_021ECC20 (MapObjectManager * param0, int param1, int param2, const int 
 
     ov5_021ECCA4(param0);
 
-    v0 = MapObjectMan_MaxObjects(param0);
+    v0 = MapObjectMan_GetMaxObjects(param0);
     v1 = sub_02062858(param0) - 1;
     v2 = sub_0206285C(param0);
 
@@ -41,7 +41,7 @@ void ov5_021ECC78 (MapObjectManager * param0)
 {
     int v0;
 
-    v0 = sub_02062CA8(param0);
+    v0 = MapObjectMan_IsDrawInitialized(param0);
     GF_ASSERT(v0 == 1);
 
     ov5_021ECE94(sub_0206285C(param0));
@@ -62,7 +62,7 @@ static void ov5_021ECCBC (MapObjectManager * param0)
     NARC_dtor(v0);
 }
 
-void ov5_021ECCC8 (MapObject * param0)
+void MapObject_Draw (MapObject * param0)
 {
     const MapObjectManager * v0 = MapObject_MapObjectManager(param0);
 

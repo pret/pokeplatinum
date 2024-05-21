@@ -1097,7 +1097,7 @@ void sub_02053F58 (FieldSystem * fieldSystem, int param1, int param2)
 
     MI_CpuClear8(v1, sizeof(UnkStruct_02053E98));
 
-    inline_02049FA8(&v0, param1, param2, 0, 0, Player_Dir(fieldSystem->playerAvatar));
+    inline_02049FA8(&v0, param1, param2, 0, 0, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     v1->unk_08 = v0;
     sub_02050904(fieldSystem, sub_02053E98, v1);
 }

@@ -148,7 +148,7 @@ u16 sub_02055428 (FieldSystem * fieldSystem, int param1)
     u16 v2, v3;
 
     v0 = fieldSystem->playerAvatar;
-    v1 = PlayerAvatar_PlayerState(v0);
+    v1 = PlayerAvatar_GetPlayerState(v0);
 
     if (v1 == 0x2) {
         switch (param1) {
@@ -242,7 +242,7 @@ BOOL sub_02055554 (FieldSystem * fieldSystem, u16 param1, int param2)
     int v1, v2, v3;
 
     v0 = fieldSystem->playerAvatar;
-    v3 = PlayerAvatar_PlayerState(v0);
+    v3 = PlayerAvatar_GetPlayerState(v0);
 
     if (sub_020041DC() == 1) {
         return 0;

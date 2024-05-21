@@ -321,7 +321,7 @@ static BOOL sub_02056EA4 (TaskManager * taskMan)
     case 1:
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
 
-        if (ov5_021D4A24(fieldSystem, v2, Player_Dir(fieldSystem->playerAvatar))) {
+        if (ov5_021D4A24(fieldSystem, v2, PlayerAvatar_GetDir(fieldSystem->playerAvatar))) {
             ov5_021D432C(v1->unk_1C);
             (v1->unk_04)++;
         }
@@ -342,7 +342,7 @@ static BOOL sub_02056F1C (TaskManager * taskMan)
     switch (v1->unk_04) {
     case 0:
     {
-        int v3 = Player_Dir(fieldSystem->playerAvatar);
+        int v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         v2 = Player_MapObject(fieldSystem->playerAvatar);
 
@@ -529,7 +529,7 @@ static BOOL sub_020571A0 (TaskManager * taskMan)
     case 1:
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
 
-        if (ov5_021D4858(fieldSystem, v2, Player_Dir(fieldSystem->playerAvatar))) {
+        if (ov5_021D4858(fieldSystem, v2, PlayerAvatar_GetDir(fieldSystem->playerAvatar))) {
             ov5_021D432C(v1->unk_1C);
             (v1->unk_04)++;
         }
@@ -556,7 +556,7 @@ static BOOL sub_02057218 (TaskManager * taskMan)
         if (1) {
             int v3;
 
-            v3 = Player_Dir(fieldSystem->playerAvatar);
+            v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
             if (v3 == 2) {
                 LocalMapObj_SetAnimationCode(v2, 0xa);
@@ -619,7 +619,7 @@ static void sub_02057300 (FieldSystem * fieldSystem)
     int v0;
     VecFx32 v1;
 
-    v0 = Player_Dir(fieldSystem->playerAvatar);
+    v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
     if (v0 == 3) {
@@ -641,7 +641,7 @@ static void sub_02057368 (FieldSystem * fieldSystem)
     VecFx32 v3;
     u8 v4;
 
-    v2 = Player_Dir(fieldSystem->playerAvatar);
+    v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v3);
 
     v0 = Player_XPos(fieldSystem->playerAvatar);

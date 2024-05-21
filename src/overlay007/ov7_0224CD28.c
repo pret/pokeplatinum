@@ -221,7 +221,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * param1, u16 * param2, u8 
 
 static u8 ov7_0224CE90 (FieldSystem * param0)
 {
-    int v0 = Player_Dir(param0->playerAvatar);
+    int v0 = PlayerAvatar_GetDir(param0->playerAvatar);
 
     if ((v0 == 0) || (v0 == 1) || (v0 == 3)) {
         return 10;

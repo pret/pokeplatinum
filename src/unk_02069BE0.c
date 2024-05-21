@@ -629,7 +629,7 @@ static int sub_0206A324 (MapObject * param0, UnkStruct_0206A23C * param1)
     if (param1->unk_01 == -1) {
         FieldSystem * v0 = MapObject_FieldSystem(param0);
 
-        param1->unk_01 = Player_Dir(v0->playerAvatar);
+        param1->unk_01 = PlayerAvatar_GetDir(v0->playerAvatar);
     }
 
     sub_02062D10(param0);
@@ -675,7 +675,7 @@ static int sub_0206A3BC (MapObject * param0, UnkStruct_0206A23C * param1)
 {
     int v0;
     FieldSystem * v1 = MapObject_FieldSystem(param0);
-    int v2 = Player_Dir(v1->playerAvatar);
+    int v2 = PlayerAvatar_GetDir(v1->playerAvatar);
     u32 v3 = sub_0205EC1C(v1->playerAvatar);
 
     switch (v3) {

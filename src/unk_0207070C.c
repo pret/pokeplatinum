@@ -206,7 +206,7 @@ void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
         param1->unk_0C |= (1 << 2);
     }
 
-    if (ov5_021E0760(v3, Player_Dir(param0->playerAvatar))) {
+    if (ov5_021E0760(v3, PlayerAvatar_GetDir(param0->playerAvatar))) {
         param1->unk_0C |= (1 << 7);
     }
 
@@ -357,7 +357,7 @@ static int sub_02070A24 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (PlayerAvatar_PlayerState(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->unk_04->playerAvatar) == 0x2) {
         return 4;
     }
 
@@ -497,7 +497,7 @@ static int sub_02070C40 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (PlayerAvatar_PlayerState(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->unk_04->playerAvatar) == 0x2) {
         return 1;
     }
 

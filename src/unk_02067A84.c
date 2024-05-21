@@ -500,7 +500,7 @@ static int sub_020680D0 (UnkStruct_020EF6D0 * param0)
     }
 
     {
-        u32 v1 = sub_02062948(param0->unk_24);
+        u32 v1 = MapObject_GetMoveCode(param0->unk_24);
 
         switch (v1) {
         case 0x33:
@@ -648,7 +648,7 @@ static int sub_02068264 (UnkStruct_020EF6D0 * param0)
     v2 = Player_MapObject(param0->unk_28);
     v1 = sub_02064488(MapObject_XPos(v2), MapObject_ZPos(v2), MapObject_XPos(param0->unk_24), MapObject_ZPos(param0->unk_24));
 
-    if ((Player_Dir(param0->unk_28) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
+    if ((PlayerAvatar_GetDir(param0->unk_28) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
         if (LocalMapObj_IsAnimationSet(v2) == 1) {
             MapObject_SetStatusFlagOff(v2, (1 << 7));
             v0 = sub_02065838(v1, 0x0);
