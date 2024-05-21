@@ -84,7 +84,13 @@
             "31": "MOVE_MUD_SLAP",
             "38": "MOVE_METAL_CLAW",
             "45": "MOVE_DIG"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SPITE"
+        ]
     },
     "evolutions": [
         [
@@ -97,5 +103,9 @@
             20,
             "SPECIES_SHEDINJA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

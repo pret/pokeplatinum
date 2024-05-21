@@ -97,7 +97,17 @@
             "28": "MOVE_SUPER_FANG",
             "31": "MOVE_DOUBLE_EDGE",
             "34": "MOVE_ENDEAVOR"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -105,5 +115,9 @@
             20,
             "SPECIES_RATICATE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

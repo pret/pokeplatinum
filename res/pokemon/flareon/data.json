@@ -93,6 +93,19 @@
             "64": "MOVE_SCARY_FACE",
             "71": "MOVE_FIRE_BLAST",
             "78": "MOVE_LAVA_PLUME"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_LAST_RESORT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

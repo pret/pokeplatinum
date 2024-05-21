@@ -92,7 +92,14 @@
             "42": "MOVE_CRUNCH",
             "45": "MOVE_HEAT_WAVE",
             "48": "MOVE_FLARE_BLITZ"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -100,5 +107,9 @@
             "ITEM_FIRE_STONE",
             "SPECIES_ARCANINE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -91,12 +91,27 @@
             "9": "MOVE_POUND",
             "13": "MOVE_SWEET_KISS",
             "17": "MOVE_COPYCAT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
             "EVO_HAPPINESS",
             "SPECIES_JIGGLYPUFF"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

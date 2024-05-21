@@ -101,6 +101,19 @@
             "47": "MOVE_AQUA_RING",
             "52": "MOVE_HYDRO_PUMP",
             "57": "MOVE_CHARGE"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_BOUNCE",
+            "MOVE_SUCKER_PUNCH"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

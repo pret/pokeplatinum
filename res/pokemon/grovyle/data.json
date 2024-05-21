@@ -103,7 +103,17 @@
             "47": "MOVE_DETECT",
             "53": "MOVE_FALSE_SWIPE",
             "59": "MOVE_LEAF_STORM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -111,5 +121,9 @@
             36,
             "SPECIES_SCEPTILE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -85,7 +85,14 @@
             "40": "MOVE_IRON_DEFENSE",
             "44": "MOVE_BRINE",
             "49": "MOVE_ICE_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -93,5 +100,9 @@
             "ITEM_WATER_STONE",
             "SPECIES_CLOYSTER"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

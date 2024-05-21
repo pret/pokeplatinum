@@ -100,7 +100,14 @@
             "53": "MOVE_AIR_SLASH",
             "57": "MOVE_SWORDS_DANCE",
             "61": "MOVE_FEINT"
-        }
+        },
+        "tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -108,5 +115,9 @@
             "ITEM_METAL_COAT",
             "SPECIES_SCIZOR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

@@ -98,7 +98,17 @@
             "41": "MOVE_DETECT",
             "46": "MOVE_GIGA_DRAIN",
             "51": "MOVE_ENERGY_BALL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -106,5 +116,9 @@
             16,
             "SPECIES_GROVYLE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

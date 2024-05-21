@@ -1,5 +1,5 @@
 {
-    "name": "Nidoran\u2640",
+    "name": "Nidoran♀",
     "base_stats": {
         "hp": 55,
         "attack": 47,
@@ -96,7 +96,12 @@
             "37": "MOVE_CRUNCH",
             "43": "MOVE_CAPTIVATE",
             "45": "MOVE_POISON_FANG"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND"
+        ]
     },
     "evolutions": [
         [
@@ -104,5 +109,9 @@
             16,
             "SPECIES_NIDORINA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

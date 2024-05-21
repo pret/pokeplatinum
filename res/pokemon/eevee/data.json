@@ -81,7 +81,14 @@
             "43": "MOVE_TAKE_DOWN",
             "50": "MOVE_LAST_RESORT",
             "57": "MOVE_TRUMP_CARD"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -115,5 +122,9 @@
             "EVO_HAPPINESS_NIGHT",
             "SPECIES_UMBREON"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

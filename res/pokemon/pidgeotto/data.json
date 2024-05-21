@@ -90,7 +90,17 @@
             "47": "MOVE_TAILWIND",
             "52": "MOVE_MIRROR_MOVE",
             "57": "MOVE_AIR_SLASH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -98,5 +108,9 @@
             36,
             "SPECIES_PIDGEOT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

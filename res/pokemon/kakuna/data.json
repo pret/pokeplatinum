@@ -48,7 +48,10 @@
         "level_up": {
             "1": "MOVE_HARDEN",
             "7": "MOVE_HARDEN"
-        }
+        },
+        "tutor": [
+            "MOVE_IRON_DEFENSE"
+        ]
     },
     "evolutions": [
         [
@@ -56,5 +59,9 @@
             10,
             "SPECIES_BEEDRILL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

@@ -92,7 +92,14 @@
             "33": "MOVE_GIGA_DRAIN",
             "38": "MOVE_AROMATHERAPY",
             "43": "MOVE_X_SCISSOR"
-        }
+        },
+        "tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [
@@ -100,5 +107,9 @@
             24,
             "SPECIES_PARASECT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

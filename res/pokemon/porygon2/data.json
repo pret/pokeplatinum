@@ -101,7 +101,16 @@
             "56": "MOVE_MAGIC_COAT",
             "62": "MOVE_ZAP_CANNON",
             "67": "MOVE_HYPER_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -109,5 +118,9 @@
             "ITEM_DUBIOUS_DISC",
             "SPECIES_PORYGON_Z"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

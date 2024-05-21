@@ -98,7 +98,19 @@
             "44": "MOVE_SWORDS_DANCE",
             "47": "MOVE_CRUNCH",
             "53": "MOVE_GUILLOTINE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [
@@ -106,5 +118,9 @@
             30,
             "SPECIES_CRAWDAUNT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

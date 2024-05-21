@@ -91,7 +91,20 @@
             "31": "MOVE_AQUA_JET",
             "36": "MOVE_AGILITY",
             "38": "MOVE_TAKE_DOWN"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -99,5 +112,9 @@
             30,
             "SPECIES_SHARPEDO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

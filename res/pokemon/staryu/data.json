@@ -96,7 +96,16 @@
             "46": "MOVE_POWER_GEM",
             "51": "MOVE_COSMIC_POWER",
             "55": "MOVE_HYDRO_PUMP"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -104,5 +113,9 @@
             "ITEM_WATER_STONE",
             "SPECIES_STARMIE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

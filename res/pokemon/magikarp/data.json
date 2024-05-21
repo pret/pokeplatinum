@@ -49,7 +49,10 @@
             "1": "MOVE_SPLASH",
             "15": "MOVE_TACKLE",
             "30": "MOVE_FLAIL"
-        }
+        },
+        "tutor": [
+            "MOVE_BOUNCE"
+        ]
     },
     "evolutions": [
         [
@@ -57,5 +60,9 @@
             20,
             "SPECIES_GYARADOS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

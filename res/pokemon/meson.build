@@ -771,6 +771,24 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
     ]
 )
 
+species_header_target = meson.current_build_dir()
+
+gen_species_headers = custom_target('gen_species_headers',
+    output: [
+        'tutor_movesets.h',
+        'footprint_data.h',
+    ],
+    input: personal_files,
+    env: json2bin_env,
+    depends: [ py_consts_generators ],
+    command: [
+        make_species_tables_py,
+        '--tutorable-moves', move_tutors_json,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--output-dir', species_header_target,
+    ]
+)
+
 nitrofs_files += pl_personal_narc
 nitrofs_files += evo_narc
 nitrofs_files += pl_poke_icon_narc

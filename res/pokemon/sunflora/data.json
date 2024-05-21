@@ -93,6 +93,18 @@
             "37": "MOVE_SUNNY_DAY",
             "41": "MOVE_SOLAR_BEAM",
             "43": "MOVE_LEAF_STORM"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

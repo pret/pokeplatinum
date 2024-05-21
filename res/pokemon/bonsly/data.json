@@ -90,7 +90,15 @@
             "38": "MOVE_SLAM",
             "41": "MOVE_SUCKER_PUNCH",
             "46": "MOVE_DOUBLE_EDGE"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_EARTH_POWER",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -98,5 +106,9 @@
             "MOVE_MIMIC",
             "SPECIES_SUDOWOODO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

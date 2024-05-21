@@ -98,7 +98,17 @@
             "49": "MOVE_COTTON_SPORE",
             "53": "MOVE_SANDSTORM",
             "57": "MOVE_DESTINY_BOND"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [
@@ -106,5 +116,9 @@
             32,
             "SPECIES_CACTURNE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

@@ -51,7 +51,10 @@
                 "MOVE_STRING_SHOT"
             ],
             "15": "MOVE_BUG_BITE"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE"
+        ]
     },
     "evolutions": [
         [
@@ -59,5 +62,9 @@
             7,
             "SPECIES_METAPOD"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

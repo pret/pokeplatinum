@@ -98,7 +98,15 @@
             "37": "MOVE_NATURAL_GIFT",
             "43": "MOVE_SOLAR_BEAM",
             "47": "MOVE_PSYCHIC"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -106,5 +114,9 @@
             "ITEM_LEAF_STONE",
             "SPECIES_EXEGGUTOR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

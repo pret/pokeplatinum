@@ -99,6 +99,17 @@
             "52": "MOVE_TAKE_DOWN",
             "57": "MOVE_THIEF",
             "62": "MOVE_SUCKER_PUNCH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

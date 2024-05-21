@@ -52,6 +52,11 @@
                 "MOVE_SAFEGUARD",
                 "MOVE_DESTINY_BOND"
             ]
-        }
+        },
+        "tutor": []
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
     }
 }

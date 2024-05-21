@@ -86,7 +86,13 @@
             "35": "MOVE_WAKE_UP_SLAP",
             "38": "MOVE_HYDRO_PUMP",
             "41": "MOVE_MUD_BOMB"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND"
+        ]
     },
     "evolutions": [
         [
@@ -94,5 +100,9 @@
             25,
             "SPECIES_POLIWHIRL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

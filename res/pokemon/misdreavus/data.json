@@ -102,7 +102,17 @@
             "41": "MOVE_PERISH_SONG",
             "46": "MOVE_GRUDGE",
             "50": "MOVE_POWER_GEM"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -110,5 +120,9 @@
             "ITEM_DUSK_STONE",
             "SPECIES_MISMAGIUS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }
