@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"
@@ -25,7 +25,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DF47C * unk_00;
     UnkStruct_ov5_021F23FC * unk_04;
-    LocalMapObject * unk_08;
+    MapObject * unk_08;
 } UnkStruct_ov5_021F2438;
 
 typedef struct {
@@ -74,7 +74,7 @@ static void ov5_021F2424 (UnkStruct_ov5_021F23FC * param0)
     sub_02073AA8(&param0->unk_18);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F2438 (LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F2438 (MapObject * param0)
 {
     UnkStruct_ov101_021D5D90 * v0;
     UnkStruct_ov5_021DF47C * v1;
@@ -118,14 +118,14 @@ static int ov5_021F2488 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     ov5_021DFB40(v0->unk_10.unk_00, &v0->unk_1C, &v0->unk_10.unk_04->unk_04, &v0->unk_10.unk_04->unk_18, 0);
     sub_02073B90(&v0->unk_40, &v0->unk_10.unk_04->unk_04, &v0->unk_1C);
 
-    v0->unk_04 = sub_02062910(v0->unk_10.unk_08);
+    v0->unk_04 = MapObject_Id(v0->unk_10.unk_08);
     v0->unk_08 = sub_02062918(v0->unk_10.unk_08);
 
     {
         VecFx32 v2, v3;
-        LocalMapObject * v4 = v0->unk_10.unk_08;
+        MapObject * v4 = v0->unk_10.unk_08;
 
-        sub_02063050(v4, &v2);
+        MapObject_PosVectorOut(v4, &v2);
         sub_02063078(v4, &v3);
 
         v2.x += v3.x + 0;
@@ -147,7 +147,7 @@ static void ov5_021F2510 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F251C (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F247C * v0 = param1;
-    LocalMapObject * v1 = v0->unk_10.unk_08;
+    MapObject * v1 = v0->unk_10.unk_08;
 
     if (v0->unk_0C == 0) {
         if (sub_02062764(v1, v0->unk_04, v0->unk_08) == 0) {
@@ -166,7 +166,7 @@ static void ov5_021F251C (UnkStruct_ov101_021D5D90 * param0, void * param1)
     if (v0->unk_0C == 0) {
         VecFx32 v2, v3;
 
-        sub_02063050(v1, &v2);
+        MapObject_PosVectorOut(v1, &v2);
         sub_02063078(v1, &v3);
 
         v2.x += v3.x + 0;

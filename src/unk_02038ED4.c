@@ -18,11 +18,11 @@ int sub_02038EDC (SaveData * param0, int param1, int * param2)
 
     switch (*param2) {
     case 0:
-        sub_020364F0(111);
+        CommTiming_StartSync(111);
         *param2 = 1;
         break;
     case 1:
-        if (sub_02036540(111)) {
+        if (CommTiming_IsSyncState(111)) {
             SaveData_SaveStateInit(param0, param1);
             *param2 = 2;
         }
@@ -35,11 +35,11 @@ int sub_02038EDC (SaveData * param0, int param1, int * param2)
 
         if (v0 == 1) {
             *param2 = 3;
-            sub_020364F0(112);
+            CommTiming_StartSync(112);
         }
         break;
     case 3:
-        if (sub_02036540(112)) {
+        if (CommTiming_IsSyncState(112)) {
             *param2 = 4;
         }
         break;

@@ -9,7 +9,7 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"
@@ -30,7 +30,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
-    const LocalMapObject * unk_08;
+    const MapObject * unk_08;
 } UnkStruct_021F121C;
 
 typedef struct {
@@ -178,7 +178,7 @@ UnkStruct_02073B50 * ov5_021F11FC (UnkStruct_ov5_021DF47C * param0, u32 param1)
     return &v1->unk_18;
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F121C (const LocalMapObject * param0, const VecFx32 * param1)
+UnkStruct_ov101_021D5D90 * ov5_021F121C (const MapObject * param0, const VecFx32 * param1)
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1;
@@ -203,7 +203,7 @@ static int ov5_021F1258 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1 = sub_020715BC(param0);
 
     v0->unk_1C = *v1;
-    v0->unk_04 = sub_02062910(v0->unk_1C.unk_08);
+    v0->unk_04 = MapObject_Id(v0->unk_1C.unk_08);
     v0->unk_18 = ov5_021F11FC(v0->unk_1C.unk_04, v0->unk_1C.unk_00);
 
     if (sub_02062E94(v0->unk_1C.unk_08) == 1) {
@@ -224,7 +224,7 @@ static void ov5_021F12A8 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F12AC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_021F1258 * v0 = param1;
-    const LocalMapObject * v1 = v0->unk_1C.unk_08;
+    const MapObject * v1 = v0->unk_1C.unk_08;
 
     if (sub_02062764(v1, v0->unk_04, v0->unk_08) == 0) {
         ov5_021DF74C(param0);
@@ -234,7 +234,7 @@ static void ov5_021F12AC (UnkStruct_ov101_021D5D90 * param0, void * param1)
     {
         VecFx32 v2, v3;
 
-        sub_02063050(v1, &v2);
+        MapObject_PosVectorOut(v1, &v2);
         sub_02063078(v1, &v3);
 
         v2.x += v3.x + v0->unk_0C.x;
@@ -262,7 +262,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_0220021C = {
     ov5_021F1310
 };
 
-void ov5_021F1328 (UnkStruct_ov5_021DF47C * param0)
+void FieldEffect_InitRenderObject (UnkStruct_ov5_021DF47C * param0)
 {
     const UnkStruct_ov5_02200230 * v0 = Unk_ov5_02200230;
     u32 v1 = NELEMS(Unk_ov5_02200230);

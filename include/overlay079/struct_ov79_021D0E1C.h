@@ -43,8 +43,8 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     u16 unk_82;
     UnkStruct_ov84_02240FA8 unk_84;
     UnkStruct_ov84_02240FA8 unk_A4;
-    UnkStruct_0200112C * unk_C4;
-    UnkStruct_0200112C * unk_C8;
+    BmpList * unk_C4;
+    BmpList * unk_C8;
     ResourceMetadata * unk_CC;
     ResourceMetadata * unk_D0;
     UIControlData * unk_D4;

@@ -29,6 +29,6 @@ typedef struct UnkStruct_02061D3C_t {
     fx32 unk_2C;
     u8 unk_30[16];
     u8 unk_40[16];
-} UnkStruct_02061D3C;
+} MapObjectSave;
 
 #endif // POKEPLATINUM_STRUCT_02061D3C_H

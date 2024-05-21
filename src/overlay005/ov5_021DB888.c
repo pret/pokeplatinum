@@ -18,8 +18,8 @@
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
@@ -36,7 +36,7 @@ typedef struct {
     FieldSystem * unk_04;
     UnkStruct_020507E4 * unk_08;
     const UnkStruct_ov5_021F8E48 * unk_0C;
-    LocalMapObject * unk_10[64];
+    MapObject * unk_10[64];
     u16 unk_110;
     u16 unk_112;
     u16 * unk_114;
@@ -50,31 +50,31 @@ typedef struct {
     UnkStruct_ov5_021DBA58 * unk_08;
 } UnkStruct_ov5_021DBC64;
 
-void ov5_021DB888(TaskManager * param0, StringTemplate * param1, u16 * param2);
-u16 ov5_021DBD98(FieldSystem * param0, LocalMapObject * param1, u16 param2);
-BOOL ov5_021DBB94(FieldSystem * param0);
+void ov5_021DB888(TaskManager * taskMan, StringTemplate * param1, u16 * param2);
+u16 ov5_021DBD98(FieldSystem * fieldSystem, MapObject * param1, u16 param2);
+BOOL ov5_021DBB94(FieldSystem * fieldSystem);
 static BOOL ov5_021DBB70(u32 param0);
-static BOOL ov5_021DB8D8(TaskManager * param0);
+static BOOL ov5_021DB8D8(TaskManager * taskMan);
 static int ov5_021DBA58(UnkStruct_ov5_021DBA58 * param0);
 static void ov5_021DBA54(UnkStruct_ov5_021DBA58 * param0, u32 param1);
 static void ov5_021DBA7C(UnkStruct_ov5_021DBA58 * param0);
-static void ov5_021DBC40(UnkStruct_ov5_021DBA58 * param0, LocalMapObject * param1, const UnkStruct_ov5_021F8E3C * param2);
+static void ov5_021DBC40(UnkStruct_ov5_021DBA58 * param0, MapObject * param1, const UnkStruct_ov5_021F8E3C * param2);
 static void ov5_021DBC64(UnkStruct_ov5_021DBA58 * param0, SysTask * param1);
 static void ov5_021DBC94(SysTask * param0, void * param1);
 static BOOL ov5_021DBCD4(UnkStruct_ov5_021DBA58 * param0);
 static BOOL ov5_021DBCE0(UnkStruct_ov5_021DBA58 * param0);
-static u16 ov5_021DBD88(LocalMapObject * param0);
+static u16 ov5_021DBD88(MapObject * param0);
 static void ov5_021DBC08(FieldSystem * param0);
 static u16 ov5_021DBDDC(FieldSystem * param0, u16 param1);
 static u16 ov5_021DBDFC(FieldSystem * param0, u16 param1);
 static u16 ov5_021DBE48(FieldSystem * param0, u16 param1, u16 param2);
 static u16 ov5_021DBE70(u16 param0, u16 param1);
 static u16 ov5_021DBEA4(u16 param0, u16 param1);
-static BOOL ov5_021DBEB8(LocalMapObject * param0);
-static void ov5_021DBECC(LocalMapObject * param0, u16 param1);
-void ov5_021DBED4(FieldSystem * param0, LocalMapObject * param1);
+static BOOL ov5_021DBEB8(MapObject * param0);
+static void ov5_021DBECC(MapObject * param0, u16 param1);
+void ov5_021DBED4(FieldSystem * param0, MapObject * param1);
 static BOOL ov5_021DBF20(FieldSystem * param0);
-static LocalMapObject * ov5_021DBF70(FieldSystem * param0, LocalMapObject * param1, int param2);
+static MapObject * ov5_021DBF70(FieldSystem * param0, MapObject * param1, int param2);
 
 const UnkStruct_ov5_021F8E48 Unk_ov5_021F8E48[] = {
 	{ 0xE, 0xE, 0x0, 0x0, 0x0, 0x0 },
@@ -459,7 +459,7 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
     u32 v2;
     int v3, v4, v5, v6;
     int v7, v8, v9, v10;
-    LocalMapObject * v11;
+    MapObject * v11;
     u32 v12 = sub_0203A4B4(param0->unk_04);
 
     v6 = 0;
@@ -484,7 +484,7 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
     }
 
     for (v5 = 0; v5 < v12; v5++) {
-        v11 = sub_0206251C(param0->unk_04->unk_38, v5);
+        v11 = MapObjMan_LocalMapObjByIndex(param0->unk_04->mapObjMan, v5);
 
         if (v11 == NULL) {
             continue;
@@ -500,11 +500,11 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
         case 0x6:
         case 0x7:
         case 0x8:
-            v0 = sub_02063020(v11);
-            v1 = sub_02063040(v11);
+            v0 = MapObject_GetXPos(v11);
+            v1 = MapObject_GetZPos(v11);
 
             if ((v0 >= v7) && (v0 <= v8) && (v1 >= v9) && (v1 <= v10)) {
-                if (ov5_021DBB70(sub_02062948(v11)) == 0) {
+                if (ov5_021DBB70(MapObject_GetMoveCode(v11)) == 0) {
                     param0->unk_10[v6] = v11;
                     v6++;
                 }
@@ -557,20 +557,20 @@ BOOL ov5_021DBB94 (FieldSystem * param0)
     return 0;
 }
 
-static void ov5_021DBC08 (FieldSystem * param0)
+static void ov5_021DBC08 (FieldSystem * fieldSystem)
 {
     int v0;
-    LocalMapObject * v1;
-    u32 v2 = sub_0203A4B4(param0);
+    MapObject * v1;
+    u32 v2 = sub_0203A4B4(fieldSystem);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v1 = sub_0206251C(param0->unk_38, v0);
+        v1 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, v0);
 
         if (v1 == NULL) {
             continue;
         }
 
-        if (sub_02062948(v1) == 0x31) {
+        if (MapObject_GetMoveCode(v1) == 0x31) {
             ov5_021DBECC(v1, 0x2);
         }
     }
@@ -578,7 +578,7 @@ static void ov5_021DBC08 (FieldSystem * param0)
     return;
 }
 
-static void ov5_021DBC40 (UnkStruct_ov5_021DBA58 * param0, LocalMapObject * param1, const UnkStruct_ov5_021F8E3C * param2)
+static void ov5_021DBC40 (UnkStruct_ov5_021DBA58 * param0, MapObject * param1, const UnkStruct_ov5_021F8E3C * param2)
 {
     SysTask * v0;
 
@@ -634,7 +634,7 @@ static BOOL ov5_021DBCD4 (UnkStruct_ov5_021DBA58 * param0)
 static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
 {
     UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_04->saveData);
-    LocalMapObject * v1;
+    MapObject * v1;
     u16 v2;
     int v3, v4;
 
@@ -669,13 +669,13 @@ static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
     return v4;
 }
 
-static u16 ov5_021DBD88 (LocalMapObject * param0)
+static u16 ov5_021DBD88 (MapObject * param0)
 {
     u32 v0 = sub_02062960(param0);
     return sub_0203F254(v0);
 }
 
-u16 ov5_021DBD98 (FieldSystem * param0, LocalMapObject * param1, u16 param2)
+u16 ov5_021DBD98 (FieldSystem * param0, MapObject * param1, u16 param2)
 {
     u16 v0, v1, v2;
 
@@ -771,24 +771,24 @@ static u16 ov5_021DBEA4 (u16 param0, u16 param1)
     return v0[param0].unk_00[param1];
 }
 
-static BOOL ov5_021DBEB8 (LocalMapObject * param0)
+static BOOL ov5_021DBEB8 (MapObject * param0)
 {
-    if (sub_02062948(param0) == 0x31) {
+    if (MapObject_GetMoveCode(param0) == 0x31) {
         return 1;
     }
 
     return 0;
 }
 
-static void ov5_021DBECC (LocalMapObject * param0, u16 param1)
+static void ov5_021DBECC (MapObject * param0, u16 param1)
 {
     sub_020633A8(param0, param1);
     return;
 }
 
-void ov5_021DBED4 (FieldSystem * param0, LocalMapObject * param1)
+void ov5_021DBED4 (FieldSystem * param0, MapObject * param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     u32 v1;
     int v2;
 
@@ -796,7 +796,7 @@ void ov5_021DBED4 (FieldSystem * param0, LocalMapObject * param1)
         return;
     }
 
-    v2 = sub_0206298C(param1);
+    v2 = MapObject_Dir(param1);
 
     if (v2 == 0) {
         v1 = 0xe;
@@ -818,16 +818,16 @@ void ov5_021DBED4 (FieldSystem * param0, LocalMapObject * param1)
     return;
 }
 
-static BOOL ov5_021DBF20 (FieldSystem * param0)
+static BOOL ov5_021DBF20 (FieldSystem * fieldSystem)
 {
     int v0, v1;
-    LocalMapObject * v2;
-    u32 v3 = sub_0203A4B4(param0);
+    MapObject * v2;
+    u32 v3 = sub_0203A4B4(fieldSystem);
 
     v1 = 0;
 
     for (v0 = 0; v0 < v3; v0++) {
-        v2 = sub_0206251C(param0->unk_38, v0);
+        v2 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, v0);
 
         if (v2 == NULL) {
             continue;
@@ -848,11 +848,11 @@ static BOOL ov5_021DBF20 (FieldSystem * param0)
     }
 }
 
-static LocalMapObject * ov5_021DBF70 (FieldSystem * param0, LocalMapObject * param1, int param2)
+static MapObject * ov5_021DBF70 (FieldSystem * fieldSystem, MapObject * param1, int param2)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     u32 v1, v2, v3, v4;
-    u32 v5 = sub_0203A4B4(param0);
+    u32 v5 = sub_0203A4B4(fieldSystem);
     u16 v6 = sub_02062960(param1);
     u16 v7 = sub_0203F254(v6);
 
@@ -861,14 +861,14 @@ static LocalMapObject * ov5_021DBF70 (FieldSystem * param0, LocalMapObject * par
     }
 
     for (v1 = 0; v1 < v5; v1++) {
-        v0 = sub_0206251C(param0->unk_38, v1);
+        v0 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, v1);
 
         if (v0 == NULL) {
             continue;
         }
 
         if (param2 == 0) {
-            if (sub_02062948(v0) == 0x31) {
+            if (MapObject_GetMoveCode(v0) == 0x31) {
                 continue;
             }
         }

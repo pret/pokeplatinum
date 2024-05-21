@@ -161,7 +161,7 @@ void sub_02081B90 (GameWindowLayout * param0)
     }
 
     for (v0 = 0; v0 < 1; v0++) {
-        if (sub_0201A7CC(&param0->unk_254[v0]) == 1) {
+        if (BGL_WindowAdded(&param0->unk_254[v0]) == 1) {
             BGL_DeleteWindow(&param0->unk_254[v0]);
         }
     }

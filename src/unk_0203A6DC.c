@@ -13,21 +13,21 @@
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 
 typedef struct UnkStruct_0203A790_t {
-    UnkStruct_02049FA8 unk_00;
-    UnkStruct_02049FA8 unk_14;
-    UnkStruct_02049FA8 unk_28;
-    UnkStruct_02049FA8 unk_3C;
-    UnkStruct_02049FA8 unk_50;
+    Location unk_00;
+    Location unk_14;
+    Location unk_28;
+    Location unk_3C;
+    Location unk_50;
     u16 unk_64;
     u16 unk_66;
     u16 unk_68;
     u8 unk_6A;
     UnkStruct_020556C4 unk_6C;
-    UnkStruct_0205EC34 unk_8C;
+    PlayerData unk_8C;
     u16 unk_94;
     u16 unk_96;
     u16 unk_98;
@@ -36,7 +36,7 @@ typedef struct UnkStruct_0203A790_t {
 } UnkStruct_0203A790;
 
 typedef struct UnkStruct_0203A79C_t {
-    UnkStruct_02061D3C unk_00[64];
+    MapObjectSave unk_00[64];
 } UnkStruct_0203A79C;
 
 int FieldPlayerState_SaveSize (void)
@@ -59,37 +59,37 @@ void FieldPlayerState_Init (UnkStruct_0203A790 * param0)
     memset(param0, 0, sizeof(UnkStruct_0203A790));
 
     sub_020556C4(&param0->unk_6C);
-    sub_0205EC34(&param0->unk_8C);
+    PlayerData_Init(&param0->unk_8C);
 
     param0->unk_68 = sub_0203A7EC();
 }
 
-UnkStruct_02049FA8 * sub_0203A720 (UnkStruct_0203A790 * param0)
+Location * sub_0203A720 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_00;
 }
 
-UnkStruct_02049FA8 * sub_0203A724 (UnkStruct_0203A790 * param0)
+Location * sub_0203A724 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_14;
 }
 
-UnkStruct_02049FA8 * sub_0203A728 (UnkStruct_0203A790 * param0)
+Location * sub_0203A728 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_28;
 }
 
-UnkStruct_02049FA8 * sub_0203A72C (UnkStruct_0203A790 * param0)
+Location * sub_0203A72C (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_50;
 }
 
-UnkStruct_02049FA8 * sub_0203A730 (UnkStruct_0203A790 * param0)
+Location * sub_0203A730 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_3C;
 }
 
-void sub_0203A734 (UnkStruct_0203A790 * param0, UnkStruct_02049FA8 * param1)
+void sub_0203A734 (UnkStruct_0203A790 * param0, Location * param1)
 {
     param0->unk_3C = *param1;
     return;
@@ -135,7 +135,7 @@ void sub_0203A778 (UnkStruct_0203A790 * param0, int param1)
     param0->unk_6A = param1;
 }
 
-UnkStruct_0205EC34 * sub_0203A780 (UnkStruct_0203A790 * param0)
+PlayerData * sub_0203A780 (UnkStruct_0203A790 * param0)
 {
     return &param0->unk_8C;
 }
@@ -171,18 +171,18 @@ UnkStruct_0203A79C * sub_0203A79C (SaveData * param0)
     return v0;
 }
 
-void sub_0203A7A8 (FieldSystem * param0)
+void sub_0203A7A8 (FieldSystem * fieldSystem)
 {
-    UnkStruct_02061D3C * v0;
+    MapObjectSave * v0;
 
-    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(param0->saveData))->unk_00;
-    sub_02061CA8(param0, param0->unk_38, v0, 64);
+    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(fieldSystem->saveData))->unk_00;
+    MapObjectMan_SaveAll(fieldSystem, fieldSystem->mapObjMan, v0, 64);
 }
 
-void sub_0203A7C0 (FieldSystem * param0)
+void sub_0203A7C0 (FieldSystem * fieldSystem)
 {
-    UnkStruct_02061D3C * v0;
+    MapObjectSave * v0;
 
-    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(param0->saveData))->unk_00;
-    sub_02061D04(param0->unk_38, v0, 64);
+    v0 = ((UnkStruct_0203A79C *)sub_0203A79C(fieldSystem->saveData))->unk_00;
+    MapObjectMan_LoadAllObjects(fieldSystem->mapObjMan, v0, 64);
 }

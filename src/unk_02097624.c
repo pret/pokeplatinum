@@ -289,7 +289,7 @@ static int sub_02097944 (OverlayManager * param0, int * param1)
 
     v0->unk_00 = 40;
     v0->unk_10 = sub_02097834(v1->unk_14, v0->unk_00);
-    v0->unk_10->unk_04 = sub_02025E44(v1->unk_10);
+    v0->unk_10->unk_04 = SaveData_Options(v1->unk_10);
 
     if (v1->unk_00 == 1) {
         v0->unk_10->unk_0F = v1->unk_0F;

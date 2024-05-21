@@ -10,8 +10,8 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02061804.h"
-#include "unk_02063400.h"
+#include "map_object.h"
+#include "map_object_move.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"
@@ -70,7 +70,7 @@ static void ov5_021F2AD0 (UnkStruct_ov5_021F2AA8 * param0)
     sub_02073AA8(&param0->unk_18);
 }
 
-void ov5_021F2AE4 (LocalMapObject * param0, int param1, int param2, int param3)
+void ov5_021F2AE4 (MapObject * param0, int param1, int param2, int param3)
 {
     int v0, v1;
     UnkStruct_ov5_021F2AE4 v2;
@@ -82,7 +82,7 @@ void ov5_021F2AE4 (LocalMapObject * param0, int param1, int param2, int param3)
     sub_02064450(param1, param3, &v3);
 
     v3.z += ((param2) << 3) + (FX32_ONE * 1);
-    v3.y = (((sub_02063010(param0)) << 3) * FX32_ONE) + (-FX32_ONE * 8);
+    v3.y = (((MapObject_YPosPrev(param0)) << 3) * FX32_ONE) + (-FX32_ONE * 8);
 
     v1 = 0;
     v0 = sub_02062758(param0, 2);

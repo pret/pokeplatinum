@@ -48,8 +48,8 @@
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 #include "unk_020677F4.h"
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
@@ -87,7 +87,7 @@ struct UnkStruct_ov5_021F6704_t {
     u16 * unk_214;
     u16 * unk_218;
     UnkStruct_ov84_02240FA8 unk_21C;
-    UnkStruct_0200112C * unk_23C;
+    BmpList * unk_23C;
     u16 unk_240;
     u16 unk_242;
     ResourceMetadata unk_244[120];
@@ -96,14 +96,14 @@ struct UnkStruct_ov5_021F6704_t {
 };
 
 static u16 * ov5_021F65FC(int param0, int param1, int * param2);
-BOOL ScrCmd_2DE(ScriptContext * param0);
-static BOOL ov5_021F65D4(ScriptContext * param0);
+BOOL ScrCmd_2DE(ScriptContext * ctx);
+static BOOL ov5_021F65D4(ScriptContext * ctx);
 static void ov5_021F70CC(Pokemon * param0, int * param1, int * param2);
-BOOL ScrCmd_300(ScriptContext * param0);
-BOOL ScrCmd_301(ScriptContext * param0);
-BOOL ScrCmd_30F(ScriptContext * param0);
-BOOL ScrCmd_2EE(ScriptContext * param0);
-BOOL ScrCmd_2F1(ScriptContext * param0);
+BOOL ScrCmd_300(ScriptContext * ctx);
+BOOL ScrCmd_301(ScriptContext * ctx);
+BOOL ScrCmd_30F(ScriptContext * ctx);
+BOOL ScrCmd_2EE(ScriptContext * ctx);
+BOOL ScrCmd_2F1(ScriptContext * ctx);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 * param0, MessageLoader * param1);
 static void ov5_021F6624(FieldSystem * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
 UnkStruct_ov5_021F6704 * ov5_021F6704(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
@@ -111,8 +111,8 @@ void ov5_021F6760(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 p
 static void ov5_021F6768(UnkStruct_ov5_021F6704 * param0);
 static void ov5_021F6830(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F68BC(UnkStruct_ov5_021F6704 * param0);
-static void ov5_021F69CC(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov5_021F69F0(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov5_021F69CC(BmpList * param0, u32 param1, u8 param2);
+static void ov5_021F69F0(BmpList * param0, u32 param1, u8 param2);
 static void ov5_021F6A34(SysTask * param0, void * param1);
 static void ov5_021F6AD4(UnkStruct_ov5_021F6704 * param0);
 
@@ -128,7 +128,7 @@ static u16 Unk_ov5_0220210C[] = {
     0x1A
 };
 
-BOOL ScrCmd_2DE (ScriptContext * param0)
+BOOL ScrCmd_2DE (ScriptContext * ctx)
 {
     int v0;
     BattleFrontierStage * v1;
@@ -137,19 +137,19 @@ BOOL ScrCmd_2DE (ScriptContext * param0)
     int v4, v5;
     MessageLoader * v6;
     MessageLoader * v7;
-    FieldSystem * v8 = param0->fieldSys;
+    FieldSystem * v8 = ctx->fieldSys;
     UnkStruct_ov5_021F6704 * v9;
     StringTemplate ** v10 = sub_0203F098(v8, 15);
-    u16 v11 = ScriptContext_GetVar(param0);
-    u16 v12 = ScriptContext_GetVar(param0);
-    u16 v13 = ScriptContext_ReadHalfWord(param0);
-    u16 v14 = ScriptContext_ReadHalfWord(param0);
-    u16 v15 = ScriptContext_ReadHalfWord(param0);
+    u16 v11 = ScriptContext_GetVar(ctx);
+    u16 v12 = ScriptContext_GetVar(ctx);
+    u16 v13 = ScriptContext_ReadHalfWord(ctx);
+    u16 v14 = ScriptContext_ReadHalfWord(ctx);
+    u16 v15 = ScriptContext_ReadHalfWord(ctx);
 
-    param0->data[0] = v13;
+    ctx->data[0] = v13;
 
     v6 = MessageLoader_Init(0, 26, 412, 32);
-    v9 = ov5_021F6704(v8, 20, 1, 0, 1, sub_0203F118(v8, v13), *v10, sub_0203F098(param0->fieldSys, 1), v6, sub_0203F118(v8, v14), sub_0203F118(v8, v15));
+    v9 = ov5_021F6704(v8, 20, 1, 0, 1, sub_0203F118(v8, v13), *v10, sub_0203F098(ctx->fieldSys, 1), v6, sub_0203F118(v8, v14), sub_0203F118(v8, v15));
     v1 = sub_020308A0(v8->saveData, 11, &v0);
 
     if (v0 == 1) {
@@ -180,16 +180,16 @@ BOOL ScrCmd_2DE (ScriptContext * param0)
     ov5_021F661C(v9, v6);
     ov5_021F6768(v9);
 
-    ScriptContext_Pause(param0, ov5_021F65D4);
+    ScriptContext_Pause(ctx, ov5_021F65D4);
     MessageLoader_Free(v6);
 
     return 1;
 }
 
-static BOOL ov5_021F65D4 (ScriptContext * param0)
+static BOOL ov5_021F65D4 (ScriptContext * ctx)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 * v1 = sub_0203F118(v0, param0->data[0]);
+    FieldSystem * v0 = ctx->fieldSys;
+    u16 * v1 = sub_0203F118(v0, ctx->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;
@@ -215,14 +215,14 @@ static void ov5_021F661C (UnkStruct_ov5_021F6704 * param0, MessageLoader * param
     return;
 }
 
-static void ov5_021F6624 (FieldSystem * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11)
+static void ov5_021F6624 (FieldSystem * fieldSystem, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11)
 {
     int v0;
 
     param1->unk_1FC = param9;
     param1->unk_207_1 = 0;
     param1->unk_200 = param7;
-    param1->unk_00 = param0;
+    param1->unk_00 = fieldSystem;
     param1->unk_210 = param6;
 
     *param1->unk_210 = 0;
@@ -252,7 +252,7 @@ static void ov5_021F6624 (FieldSystem * param0, UnkStruct_ov5_021F6704 * param1,
     return;
 }
 
-UnkStruct_ov5_021F6704 * ov5_021F6704 (FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10)
+UnkStruct_ov5_021F6704 * ov5_021F6704 (FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10)
 {
     UnkStruct_ov5_021F6704 * v0;
     int v1;
@@ -264,7 +264,7 @@ UnkStruct_ov5_021F6704 * ov5_021F6704 (FieldSystem * param0, u8 param1, u8 param
     }
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021F6704));
-    ov5_021F6624(param0, v0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
+    ov5_021F6624(fieldSystem, v0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
 
     return v0;
 }
@@ -344,7 +344,7 @@ static void ov5_021F68BC (UnkStruct_ov5_021F6704 * param0)
     return;
 }
 
-static void ov5_021F69CC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov5_021F69CC (BmpList * param0, u32 param1, u8 param2)
 {
     if (param1 == 0xfffffffd) {
         sub_0200147C(param0, 3, 15, 4);
@@ -353,7 +353,7 @@ static void ov5_021F69CC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov5_021F69F0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov5_021F69F0 (BmpList * param0, u32 param1, u8 param2)
 {
     u32 v0, v1;
     u16 v2 = 0;
@@ -977,29 +977,29 @@ BOOL ScrCmd_32C (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_32D (ScriptContext * param0)
+BOOL ScrCmd_32D (ScriptContext * ctx)
 {
     fx32 v0;
     VecFx32 v1;
     UnkStruct_020216E0 * v2;
     int v3 = 0;
-    FieldSystem * v4 = param0->fieldSys;
-    MapObjectManager * v5 = v4->unk_38;
-    LocalMapObject * v6 = Player_LocalMapObject(v4->playerAvatar);
-    LocalMapObject * v7;
+    FieldSystem * fieldSystem = ctx->fieldSys;
+    MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
+    MapObject * v6 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject * v7;
 
-    sub_02063050(v6, &v1);
+    MapObject_PosVectorOut(v6, &v1);
     v0 = v1.y;
 
-    while (sub_020625B0(v5, &v7, &v3, (1 << 0)) == 1) {
+    while (sub_020625B0(mapObjMan, &v7, &v3, (1 << 0)) == 1) {
         if (v7 != v6) {
-            sub_020628BC(v7, (1 << 13));
+            MapObject_SetStatusFlagOn(v7, (1 << 13));
 
             if (sub_020628D8(v7, (1 << 12)) == 1) {
-                sub_02063050(v7, &v1);
+                MapObject_PosVectorOut(v7, &v1);
                 v1.y = v0;
-                sub_02063060(v7, &v1);
-                sub_02063034(v7, (((v0) >> 3) / FX32_ONE));
+                MapObject_SetPosVec(v7, &v1);
+                MapObject_SetY(v7, (((v0) >> 3) / FX32_ONE));
             }
 
             v2 = ov5_021EB1A0(v7);
@@ -1021,35 +1021,35 @@ BOOL ScrCmd_32D (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_32E (ScriptContext * param0)
+BOOL ScrCmd_32E (ScriptContext * ctx)
 {
     int v0 = 0;
-    FieldSystem * v1 = param0->fieldSys;
-    MapObjectManager * v2 = v1->unk_38;
-    LocalMapObject * v3 = Player_LocalMapObject(v1->playerAvatar);
-    LocalMapObject * v4;
+    FieldSystem * fieldSystem = ctx->fieldSys;
+    MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
+    MapObject * v3 = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject * v4;
 
-    while (sub_020625B0(v2, &v4, &v0, (1 << 0)) == 1) {
+    while (sub_020625B0(mapObjMan, &v4, &v0, (1 << 0)) == 1) {
         if (v4 != v3) {
-            sub_020628C4(v4, (1 << 13));
+            MapObject_SetStatusFlagOff(v4, (1 << 13));
         }
     }
 
     return 0;
 }
 
-static void ov5_021F7654 (LocalMapObject * param0, int param1)
+static void ov5_021F7654 (MapObject * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_020216E0 * v1;
 
-    sub_020628BC(param0, (1 << 13));
-    sub_02063050(param0, &v0);
+    MapObject_SetStatusFlagOn(param0, (1 << 13));
+    MapObject_PosVectorOut(param0, &v0);
 
     v0.y = (((param1) << 4) * FX32_ONE);
 
-    sub_02063060(param0, &v0);
-    sub_02063034(param0, ((param1) * 2));
+    MapObject_SetPosVec(param0, &v0);
+    MapObject_SetY(param0, ((param1) * 2));
 
     v1 = ov5_021EB1A0(param0);
 
@@ -1059,19 +1059,19 @@ static void ov5_021F7654 (LocalMapObject * param0, int param1)
     }
 }
 
-BOOL ScrCmd_331 (ScriptContext * param0)
+BOOL ScrCmd_331 (ScriptContext * ctx)
 {
-    LocalMapObject * v0;
-    FieldSystem * v1 = param0->fieldSys;
-    MapObjectManager * v2 = v1->unk_38;
+    MapObject * v0;
+    FieldSystem * v1 = ctx->fieldSys;
+    MapObjectManager * mapObjMan = v1->mapObjMan;
 
-    v0 = sub_0206251C(v2, 32);
+    v0 = MapObjMan_LocalMapObjByIndex(mapObjMan, 32);
 
     if (v0 != NULL) {
         ov5_021F7654(v0, 9);
     }
 
-    v0 = sub_0206251C(v2, 2);
+    v0 = MapObjMan_LocalMapObjByIndex(mapObjMan, 2);
 
     if (v0 != NULL) {
         ov5_021F7654(v0, 9);
@@ -1080,33 +1080,33 @@ BOOL ScrCmd_331 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_332 (ScriptContext * param0)
+BOOL ScrCmd_332 (ScriptContext * ctx)
 {
-    LocalMapObject * v0;
-    MapObjectManager * v1 = param0->fieldSys->unk_38;
+    MapObject * v0;
+    MapObjectManager * v1 = ctx->fieldSys->mapObjMan;
 
-    v0 = sub_0206251C(v1, 32);
+    v0 = MapObjMan_LocalMapObjByIndex(v1, 32);
 
     if (v0 != NULL) {
-        sub_020628C4(v0, (1 << 13));
+        MapObject_SetStatusFlagOff(v0, (1 << 13));
     }
 
-    v0 = sub_0206251C(v1, 2);
+    v0 = MapObjMan_LocalMapObjByIndex(v1, 2);
 
     if (v0 != NULL) {
-        sub_020628C4(v0, (1 << 13));
+        MapObject_SetStatusFlagOff(v0, (1 << 13));
     }
 
     return 0;
 }
 
-BOOL ScrCmd_338 (ScriptContext * param0)
+BOOL ScrCmd_338 (ScriptContext * ctx)
 {    
     int v0;
-    LocalMapObject * v1 = sub_0206251C(param0->fieldSys->unk_38, 15);
+    MapObject * v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, 15);
     if (v1 != NULL)
     {
-        switch (sub_02063020(v1))
+        switch (MapObject_GetXPos(v1))
         {
             case 28:
                 v0 = 6;
@@ -1129,25 +1129,25 @@ BOOL ScrCmd_338 (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_339 (ScriptContext * param0)
+BOOL ScrCmd_339 (ScriptContext * ctx)
 {
-    LocalMapObject * v0 = sub_0206251C(param0->fieldSys->unk_38, 15);
+    MapObject * v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, 15);
     if (v0 != NULL)
-        sub_020628C4(v0, 8192);
+        MapObject_SetStatusFlagOff(v0, 8192);
     return 0;
 }
 
-BOOL ScrCmd_330 (ScriptContext * param0)
+BOOL ScrCmd_330 (ScriptContext * ctx)
 {
-    UnkStruct_0202C878 * v0 = sub_0202C878(param0->fieldSys->saveData);
+    UnkStruct_0202C878 * v0 = sub_0202C878(ctx->fieldSys->saveData);
 
     sub_02038F8C(v0);
     return 1;
 }
 
-BOOL ScrCmd_333 (ScriptContext * param0)
+BOOL ScrCmd_333 (ScriptContext * ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
+    u16 v0 = ScriptContext_GetVar(ctx);
 
     sub_0200544C(1, v0);
     return 0;

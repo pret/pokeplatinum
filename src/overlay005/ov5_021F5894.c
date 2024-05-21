@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"
@@ -69,7 +69,7 @@ static void ov5_021F58E8 (UnkStruct_021F58C0 * param0)
     sub_02073AA8(&param0->unk_18);
 }
 
-void ov5_021F58FC (LocalMapObject * param0, int param1, int param2, int param3)
+void ov5_021F58FC (MapObject * param0, int param1, int param2, int param3)
 {
     int v0, v1, v2;
     UnkStruct_021F58FC v3;
@@ -78,9 +78,9 @@ void ov5_021F58FC (LocalMapObject * param0, int param1, int param2, int param3)
     v3.unk_00 = ov5_021DF578(param0);
     v3.unk_04 = ov5_021DF55C(v3.unk_00, 10);
 
-    sub_02063050(param0, &v4);
+    MapObject_PosVectorOut(param0, &v4);
 
-    v2 = sub_0206298C(param0);
+    v2 = MapObject_Dir(param0);
 
     switch (v2) {
     case 0:

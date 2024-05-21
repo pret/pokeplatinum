@@ -645,7 +645,7 @@ int ov116_02260CF4 (OverlayManager * param0, int * param1)
         break;
     case 19:
         v1 = 1;
-        sub_020364F0(27);
+        CommTiming_StartSync(27);
 
         if (v0->unk_80->unk_3C) {
             ov4_021D1F18();
@@ -655,7 +655,7 @@ int ov116_02260CF4 (OverlayManager * param0, int * param1)
         break;
     case 20:
     default:
-        v1 = sub_02036540(27);
+        v1 = CommTiming_IsSyncState(27);
         return (v1 == 1) ? 1 : 0;
         break;
     }
@@ -749,12 +749,12 @@ int ov116_0226126C (OverlayManager * param0, int * param1)
             return 1;
         }
 
-        sub_020364F0(999);
+        CommTiming_StartSync(999);
         (*param1)++;
     }
     break;
     default:
-        if ((sub_02036540(999) == 1) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
+        if ((CommTiming_IsSyncState(999) == 1) || (CommSys_ConnectedCount() < CommInfo_CountReceived())) {
             return 1;
         }
         break;

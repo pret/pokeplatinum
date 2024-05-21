@@ -9,8 +9,8 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02061804.h"
-#include "unk_02063400.h"
+#include "map_object.h"
+#include "map_object_move.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"
@@ -44,7 +44,7 @@ static void ov5_021F1CF8(UnkStruct_021F1CF8 * param0);
 static void ov5_021F1D80(UnkStruct_021F1CF8 * param0);
 static UnkStruct_02073B50 * ov5_021F1DA4(UnkStruct_021F1CF8 * param0, int param1, int param2, int param3);
 static UnkStruct_02073838 * ov5_021F1E24(UnkStruct_021F1CF8 * param0, int param1, int param2, int param3);
-static UnkStruct_ov101_021D5D90 * ov5_021F1ECC(const LocalMapObject * param0, int param1);
+static UnkStruct_ov101_021D5D90 * ov5_021F1ECC(const MapObject * param0, int param1);
 
 static const u32 Unk_ov5_0220039C[10];
 static const u32 Unk_ov5_02200374[10];
@@ -153,45 +153,45 @@ static UnkStruct_02073838 * ov5_021F1E24 (UnkStruct_021F1CF8 * param0, int param
     return v1;
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1E8C (const LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1E8C (const MapObject * param0)
 {
     return ov5_021F1ECC(param0, 0);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1E98 (const LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1E98 (const MapObject * param0)
 {
     return ov5_021F1ECC(param0, 1);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EA4 (const LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EA4 (const MapObject * param0)
 {
     return ov5_021F1ECC(param0, 2);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EB0 (const LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EB0 (const MapObject * param0)
 {
     return ov5_021F1ECC(param0, 3);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EBC (const LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EBC (const MapObject * param0)
 {
     return ov5_021F1ECC(param0, 4);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F1EC8 (const LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F1EC8 (const MapObject * param0)
 {
     return NULL;
 }
 
-static UnkStruct_ov101_021D5D90 * ov5_021F1ECC (const LocalMapObject * param0, int param1)
+static UnkStruct_ov101_021D5D90 * ov5_021F1ECC (const MapObject * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5D90 * v1;
     UnkStruct_021F1FB8 v2;
-    int v3 = sub_02063008(param0);
-    int v4 = sub_02063018(param0);
+    int v3 = MapObject_XPosPrev(param0);
+    int v4 = MapObject_ZPosPrev(param0);
     fx32 v5 = sub_02063074(param0);
-    int v6 = sub_0206298C(param0);
+    int v6 = MapObject_Dir(param0);
     int v7 = sub_02062990(param0);
     int v8 = sub_02062758(param0, 2);
     UnkStruct_ov5_021DF47C * v9 = ov5_021DF578(param0);

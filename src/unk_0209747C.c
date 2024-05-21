@@ -45,7 +45,7 @@ UnkStruct_0209747C * sub_0209747C (u32 param0, u32 param1, SaveData * param2, u3
     v0->unk_05 = 0;
     v0->unk_02 = 1;
     v0->unk_03 = 0;
-    v0->unk_08 = Options_Frame(sub_02025E44(param2));
+    v0->unk_08 = Options_Frame(SaveData_Options(param2));
 
     if (param0 == 2) {
         sub_02014A9C(&v0->unk_14, 3);

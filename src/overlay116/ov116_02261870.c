@@ -413,7 +413,7 @@ void ov116_02261F70 (UnkStruct_ov116_02262A8C * param0)
 
 void ov116_02262004 (UnkStruct_ov116_02262A8C * param0)
 {
-    if (sub_0201A7CC(&param0->unk_1FC8) == 1) {
+    if (BGL_WindowAdded(&param0->unk_1FC8) == 1) {
         Window_Clear(&param0->unk_1FC8, 1);
         sub_0201ACF4(&param0->unk_1FC8);
         BGL_DeleteWindow(&param0->unk_1FC8);
@@ -560,7 +560,7 @@ void ov116_02262264 (UnkStruct_ov116_02262A8C * param0)
             continue;
         }
 
-        if (sub_0201A7CC(&param0->unk_1FD8[v1]) == 1) {
+        if (BGL_WindowAdded(&param0->unk_1FD8[v1]) == 1) {
             Window_Clear(&param0->unk_1FD8[v1], 1);
             sub_0201ACF4(&param0->unk_1FD8[v1]);
             BGL_DeleteWindow(&param0->unk_1FD8[v1]);

@@ -1365,7 +1365,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     ldr r6, [r5, r0]
     add r0, r6, #0
     add r0, #0x10
-    bl sub_0201A7CC
+    bl BGL_WindowAdded
     cmp r0, #1
     bne _0223973E
     b _0223984A
@@ -1500,7 +1500,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     ldr r6, [r5, r0]
     add r0, r6, #0
     add r0, #0x10
-    bl sub_0201A7CC
+    bl BGL_WindowAdded
     cmp r0, #1
     bne _0223986E
     b _0223997A
@@ -1902,7 +1902,7 @@ static void ov62_02239D0C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
 
-    if (sub_0201A7CC(&v0->unk_10[0]) == 1) {
+    if (BGL_WindowAdded(&v0->unk_10[0]) == 1) {
         sub_0201ACF4(&v0->unk_10[0]);
         BGL_DeleteWindow(&v0->unk_10[0]);
     }

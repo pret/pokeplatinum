@@ -12,8 +12,8 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_0201E190.h"
-#include "unk_02061804.h"
-#include "unk_02063400.h"
+#include "map_object.h"
+#include "map_object_move.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"
@@ -34,7 +34,7 @@ typedef struct {
     UnkStruct_ov5_021DF47C * unk_04;
     FieldSystem * unk_08;
     UnkStruct_ov5_021F2874 * unk_0C;
-    LocalMapObject * unk_10;
+    MapObject * unk_10;
 } UnkStruct_ov5_021F28F4;
 
 typedef struct {
@@ -115,7 +115,7 @@ static void ov5_021F28E4 (UnkStruct_ov5_021F2874 * param0)
     }
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F28F4 (LocalMapObject * param0, int param1, int param2, int param3, int param4)
+UnkStruct_ov101_021D5D90 * ov5_021F28F4 (MapObject * param0, int param1, int param2, int param3, int param4)
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1;
@@ -125,7 +125,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F28F4 (LocalMapObject * param0, int param1, in
 
     v2.unk_00 = param3;
     v2.unk_04 = v4;
-    v2.unk_08 = sub_02062C00(param0);
+    v2.unk_08 = MapObject_FieldSystem(param0);
     v2.unk_0C = ov5_021DF55C(v4, 16);
     v2.unk_10 = param0;
 
@@ -134,7 +134,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F28F4 (LocalMapObject * param0, int param1, in
         v3.z = (((param2) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));
         sub_020644A4(v2.unk_08, &v3);
     } else {
-        sub_02063050(param0, &v3);
+        MapObject_PosVectorOut(param0, &v3);
     }
 
     v0 = sub_02062758(param0, 2);
@@ -175,7 +175,7 @@ static void ov5_021F29BC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F29D0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F2974 * v0 = param1;
-    LocalMapObject * v1 = v0->unk_10.unk_10;
+    MapObject * v1 = v0->unk_10.unk_10;
 
     if (v0->unk_0C == 0) {
         return;
@@ -189,7 +189,7 @@ static void ov5_021F29D0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     {
         VecFx32 v3;
 
-        sub_02063050(v1, &v3);
+        MapObject_PosVectorOut(v1, &v3);
         v3.y += 0;
         sub_020715D4(param0, &v3);
     }

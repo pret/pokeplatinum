@@ -82,8 +82,8 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 * param0);
 static void ov84_0223C194(u16 * param0, u16 * param1, u8 param2);
 static void ov84_0223C1D0(u16 * param0, u16 * param1, u8 param2, u8 param3);
 static void ov84_0223C224(UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2);
-static void ov84_0223C2AC(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov84_0223C3B8(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov84_0223C2AC(BmpList * param0, u32 param1, u8 param2);
+static void ov84_0223C3B8(BmpList * param0, u32 param1, u8 param2);
 static void ov84_0223C4E0(UnkStruct_ov84_0223B5A0 * param0);
 static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 * param0);
 static u8 ov84_02240C30(UnkStruct_ov84_0223B5A0 * param0, u8 param1);
@@ -605,7 +605,7 @@ static void ov84_0223B9AC (UnkStruct_ov84_0223B5A0 * param0)
 {
     param0->unk_C8 = sub_0207D990(param0->unk_C4->unk_00);
     param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->unk_00);
-    param0->unk_D0 = sub_02025E44(param0->unk_C4->unk_00);
+    param0->unk_D0 = SaveData_Options(param0->unk_C4->unk_00);
 }
 
 static UnkStruct_0202D7B0 * ov84_0223B9E4 (UnkStruct_ov84_0223B5A0 * param0)
@@ -1091,7 +1091,7 @@ static void ov84_0223C224 (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 par
     sub_0201A9A4(&param0->unk_04[0]);
 }
 
-static void ov84_0223C2AC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov84_0223C2AC (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov84_0223B5A0 * v0 = (UnkStruct_ov84_0223B5A0 *)sub_02001504(param0, 19);
 
@@ -1138,7 +1138,7 @@ static void ov84_0223C2AC (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov84_0223C3B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov84_0223C3B8 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov84_0223B5A0 * v0 = (UnkStruct_ov84_0223B5A0 *)sub_02001504(param0, 19);
     UnkStruct_ov84_0223BE5C * v1 = &v0->unk_C4->unk_04[v0->unk_C4->unk_64];

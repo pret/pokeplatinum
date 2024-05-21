@@ -39,15 +39,15 @@
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0205A0D8.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "pokemon.h"
 #include "party.h"
@@ -63,7 +63,7 @@ typedef struct {
     Strbuf* unk_0C;
     Strbuf* unk_10;
     Window unk_14;
-    FieldSystem * unk_24;
+    FieldSystem * fieldSystem;
     StringTemplate * unk_28;
     MessageLoader * unk_2C;
     int unk_30;
@@ -139,7 +139,7 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * param1, Par
 
     v0->dexMode = sub_0207A274(v1);
     v0->contest = PokemonSummary_ShowContestData(v1);
-    v0->options = sub_02025E44(v1);
+    v0->options = SaveData_Options(v1);
     v0->monData = param2;
     v0->dataType = 1;
     v0->pos = param3;
@@ -161,15 +161,15 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
 
     MI_CpuClear8(v1, sizeof(PartyManagementData));
 
-    v1->unk_0C = sub_02025E44(param0->unk_24->saveData);
-    v1->unk_14 = (void *)param0->unk_24->unk_B0;
-    v1->unk_00 = Party_GetFromSavedata(param0->unk_24->saveData);
-    v1->unk_04 = sub_0207D990(param0->unk_24->saveData);
+    v1->unk_0C = SaveData_Options(param0->fieldSystem->saveData);
+    v1->unk_14 = (void *)param0->fieldSystem->unk_B0;
+    v1->unk_00 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    v1->unk_04 = sub_0207D990(param0->fieldSystem->saveData);
     v1->unk_21 = 0;
     v1->unk_20 = 2;
 
-    if (param0->unk_24->unk_B0) {
-        v1->unk_32_0 = sub_02026074(param0->unk_24->unk_B0, 1);
+    if (param0->fieldSystem->unk_B0) {
+        v1->unk_32_0 = sub_02026074(param0->fieldSystem->unk_B0, 1);
         v1->unk_32_4 = v1->unk_32_0;
     } else {
         v1->unk_32_0 = 3;
@@ -183,15 +183,15 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
         v1->unk_2C[v0] = param0->unk_3D[v0];
     }
 
-    sub_0203CD84(param0->unk_24, &Unk_020F1E88, v1);
+    sub_0203CD84(param0->fieldSystem, &Unk_020F1E88, v1);
     param0->unk_04 = v1;
 }
 
-static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, FieldSystem * param1)
+static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem)
 {
     int v0;
 
-    if (sub_020509B4(param1)) {
+    if (sub_020509B4(fieldSystem)) {
         return 0;
     }
 
@@ -216,11 +216,11 @@ static BOOL sub_0205A258 (UnkStruct_0205A0D8 * param0, FieldSystem * param1)
     return 1;
 }
 
-static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, FieldSystem * param1)
+static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem)
 {
     PokemonSummary * v0;
 
-    if (sub_020509B4(param1)) {
+    if (sub_020509B4(fieldSystem)) {
         return 0;
     }
 
@@ -233,7 +233,7 @@ static BOOL sub_0205A2B0 (UnkStruct_0205A0D8 * param0, FieldSystem * param1)
 
 static BOOL sub_0205A2DC (UnkStruct_0205A0D8 * param0)
 {
-    if (sub_020509DC(param0->unk_24)) {
+    if (sub_020509DC(param0->fieldSystem)) {
         ov5_021D1744(1);
         CommPlayerMan_Restart();
         return 1;
@@ -277,26 +277,26 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 2;
         break;
     case 2:
-        if (sub_0205DA04(v0->unk_30)) {
-            sub_020364F0(93);
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
+            CommTiming_StartSync(93);
             v0->unk_34 = 3;
         }
         break;
     case 3:
-        if (sub_02036540(93)) {
+        if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
-            sub_02062C30(v0->unk_24->unk_38);
+            sub_02062C30(v0->fieldSystem->mapObjMan);
             v0->unk_08(1, v0->unk_50);
         } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v0->unk_34 = 4;
-            sub_020364F0(92);
+            CommTiming_StartSync(92);
             v0->unk_43 = 5;
         }
         break;
     case 4:
-        if (sub_02036540(93)) {
+        if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
-            sub_02062C30(v0->unk_24->unk_38);
+            sub_02062C30(v0->fieldSystem->mapObjMan);
             v0->unk_08(1, v0->unk_50);
         }
 
@@ -316,7 +316,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         sub_02059514();
         return 1;
     case 8:
-        if (sub_02036540(93)) {
+        if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 5;
             v0->unk_08(1, v0->unk_50);
         } else {
@@ -332,7 +332,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         if (v0->unk_44 != 0) {
             v0->unk_44--;
         } else {
-            if (LocalMapObj_CheckAnimationFinished(Player_LocalMapObject(v1->playerAvatar))) {
+            if (LocalMapObj_CheckAnimationFinished(Player_MapObject(v1->playerAvatar))) {
                 v0->unk_34 = 11;
             }
         }
@@ -345,7 +345,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 12;
         break;
     case 12:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             v0->unk_34 = 13;
         }
         break;
@@ -367,7 +367,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 16;
         break;
     case 16:
-        if (sub_0205A258(v0, v0->unk_24)) {
+        if (sub_0205A258(v0, v0->fieldSystem)) {
             switch (v0->unk_38) {
             case 0:
                 v0->unk_34 = 20;
@@ -382,16 +382,16 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 17:
-        sub_0205A0D8(v0, v0->unk_24, Party_GetFromSavedata(v0->unk_24->saveData), v0->unk_3C, 0, 11);
+        sub_0205A0D8(v0, v0->fieldSystem, Party_GetFromSavedata(v0->fieldSystem->saveData), v0->unk_3C, 0, 11);
         v0->unk_34 = 18;
         break;
     case 18:
-        if (sub_0205A2B0(v0, v0->unk_24)) {
+        if (sub_0205A2B0(v0, v0->fieldSystem)) {
             v0->unk_34 = 15;
         }
         break;
     case 19:
-        sub_020509D4(v0->unk_24);
+        sub_020509D4(v0->fieldSystem);
 
         if (v0->unk_88 != 3) {
             v0->unk_43 = 5;
@@ -409,7 +409,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 20:
-        sub_020509D4(v0->unk_24);
+        sub_020509D4(v0->fieldSystem);
 
         if (v0->unk_88 != 3) {
             v0->unk_34 = 22;
@@ -436,7 +436,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 25;
         break;
     case 25:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             v0->unk_34 = 13;
         }
         break;
@@ -447,7 +447,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
             } else {
                 v0->unk_82 = (v0->unk_38 != 0);
                 sub_0205AC80(v0, v0->unk_82);
-                sub_020364F0(0);
+                CommTiming_StartSync(0);
                 StringTemplate_SetPlayerName(v0->unk_28, 0, v0->unk_74);
                 MessageLoader_GetStrbuf(v0->unk_2C, 14, v0->unk_0C);
                 StringTemplate_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
@@ -457,10 +457,10 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 27:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             if (sub_0205A2FC()) {
                 v0->unk_34 = 5;
-            } else if (sub_02036540(0)) {
+            } else if (CommTiming_IsSyncState(0)) {
                 sub_0205ACC8(v0);
                 v0->unk_34 = 28;
             }
@@ -468,12 +468,12 @@ static BOOL sub_0205A324 (TaskManager * param0)
         break;
     case 28:
         if (sub_0205AD10(v0)) {
-            sub_020364F0(1);
+            CommTiming_StartSync(1);
             v0->unk_34 = 29;
         }
         break;
     case 29:
-        if (sub_02036540(1)) {
+        if (CommTiming_IsSyncState(1)) {
             v0->unk_83 = sub_0205AD20(v0);
 
             if (v0->unk_82 && v0->unk_83) {
@@ -486,7 +486,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 30:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             v0->unk_89 = 0;
             MessageLoader_GetStrbuf(v0->unk_2C, 17, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
@@ -495,7 +495,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 31:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             sub_0205AD80(v0);
             sub_0205ADF8(v0, v0->unk_84);
             v0->unk_34 = 32;
@@ -513,7 +513,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
             v0->unk_84 = 255;
             MessageLoader_GetStrbuf(v0->unk_2C, 15, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
-            sub_020364F0(2);
+            CommTiming_StartSync(2);
             v0->unk_34 = 39;
             break;
         }
@@ -526,7 +526,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 37;
         break;
     case 37:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             sub_0205AF18(v0, 0);
             v0->unk_34 = 38;
         }
@@ -545,7 +545,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
                 MessageLoader_GetStrbuf(v0->unk_2C, 14, v0->unk_0C);
                 StringTemplate_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
-                sub_020364F0(2);
+                CommTiming_StartSync(2);
                 v0->unk_34 = 39;
             } else {
                 ov5_021D1744(0);
@@ -557,13 +557,13 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 33:
         if (ScreenWipe_Done()) {
             sub_0205AAA0(v0, 0);
-            sub_0205A0D8(v0, v0->unk_24, v0->unk_50, v0->unk_84, 1, 11);
+            sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, 11);
             v0->unk_34 = 34;
         }
         break;
     case 34:
-        if (sub_0205A2B0(v0, v0->unk_24)) {
-            sub_020509D4(v0->unk_24);
+        if (sub_0205A2B0(v0, v0->fieldSystem)) {
+            sub_020509D4(v0->fieldSystem);
             v0->unk_34 = 35;
         }
         break;
@@ -573,8 +573,8 @@ static BOOL sub_0205A324 (TaskManager * param0)
         }
         break;
     case 39:
-        if (sub_0205DA04(v0->unk_30)) {
-            if (sub_02036540(2)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
+            if (CommTiming_IsSyncState(2)) {
                 sub_0205AD34(v0);
                 v0->unk_34 = 41;
             }
@@ -583,13 +583,13 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 41:
         if (sub_0205AD70(v0)) {
             if (v0->unk_84 == 255) {
-                sub_020364F0(4);
+                CommTiming_StartSync(4);
                 v0->unk_34 = 44;
             } else if (v0->unk_85 == 255) {
                 v0->unk_34 = 42;
             } else {
                 sub_0205ADAC(v0);
-                sub_020364F0(93);
+                CommTiming_StartSync(93);
                 v0->unk_34 = 2;
             }
         }
@@ -601,15 +601,15 @@ static BOOL sub_0205A324 (TaskManager * param0)
         v0->unk_34 = 43;
         break;
     case 43:
-        if (sub_0205DA04(v0->unk_30)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_30)) {
             if (++(v0->unk_43) > 60) {
-                sub_020364F0(4);
+                CommTiming_StartSync(4);
                 v0->unk_34 = 44;
             }
         }
         break;
     case 44:
-        if (sub_02036540(4)) {
+        if (CommTiming_IsSyncState(4)) {
             sub_0200E084(&(v0->unk_14), 0);
             v0->unk_08(0, NULL);
             v0->unk_34 = 5;
@@ -624,19 +624,19 @@ static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf *param1)
 {
     Window * v0 = &(param0->unk_14);
 
-    if (sub_0201A7CC(v0) == 0) {
-        sub_0205D8F4(param0->unk_24->unk_08, v0, 3);
-        sub_0205D944(v0, sub_02025E44(param0->unk_24->saveData));
+    if (BGL_WindowAdded(v0) == 0) {
+        FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
+        FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(v0);
     }
 
-    return sub_0205D994(v0, (Strbuf *)param1, sub_02025E44(param0->unk_24->saveData), 1);
+    return FieldMessage_Print(v0, (Strbuf *)param1, SaveData_Options(param0->fieldSystem->saveData), 1);
 }
 
 static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
 {
-    if (sub_0201A7CC(&(param0->unk_14))) {
+    if (BGL_WindowAdded(&(param0->unk_14))) {
         if (param1) {
             sub_0200E084(&param0->unk_14, 0);
             sub_0201ACF4(&param0->unk_14);
@@ -646,21 +646,21 @@ static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
         Window_Init(&param0->unk_14);
     }
 
-    if (sub_0201A7CC(&(param0->unk_54))) {
+    if (BGL_WindowAdded(&(param0->unk_54))) {
         BGL_DeleteWindow(&param0->unk_54);
         Window_Init(&param0->unk_54);
     }
 
-    if (sub_0201A7CC(&(param0->unk_64))) {
+    if (BGL_WindowAdded(&(param0->unk_64))) {
         BGL_DeleteWindow(&param0->unk_64);
         Window_Init(&param0->unk_64);
     }
 }
 
-void sub_0205AB10 (FieldSystem * param0, UnkFuncPtr_0205AB10 * param1)
+void sub_0205AB10 (FieldSystem * fieldSystem, UnkFuncPtr_0205AB10 * param1)
 {
     UnkStruct_0205A0D8 * v0;
-    TaskManager * v1 = param0->unk_10;
+    TaskManager * v1 = fieldSystem->unk_10;
 
     if (v1) {
         return;
@@ -670,7 +670,7 @@ void sub_0205AB10 (FieldSystem * param0, UnkFuncPtr_0205AB10 * param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_0205A0D8));
 
     v0->unk_43 = 5;
-    v0->unk_24 = param0;
+    v0->fieldSystem = fieldSystem;
     v0->unk_08 = param1;
     v0->unk_28 = StringTemplate_Default(11);
     v0->unk_2C = MessageLoader_Init(0, 26, 11, 11);
@@ -709,7 +709,7 @@ void sub_0205AB10 (FieldSystem * param0, UnkFuncPtr_0205AB10 * param1)
         v0->unk_34 = 9;
         break;
     default:
-        if (v0->unk_24->unk_B0) {
+        if (v0->fieldSystem->unk_B0) {
             v0->unk_34 = 9;
         } else {
             v0->unk_34 = 0;
@@ -717,7 +717,7 @@ void sub_0205AB10 (FieldSystem * param0, UnkFuncPtr_0205AB10 * param1)
         break;
     }
 
-    sub_02050904(param0, sub_0205A324, v0);
+    sub_02050904(fieldSystem, sub_0205A324, v0);
 }
 
 static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
@@ -755,7 +755,7 @@ static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
     u8 * v2;
     int v3, v4;
 
-    v0 = Party_GetFromSavedata(param0->unk_24->saveData);
+    v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
     v2 = param0->unk_4C;
     v4 = Pokemon_GetStructSize();
     v1 = (UnkStruct_0205AD20 *)(v2 + v4 * 3);
@@ -784,7 +784,7 @@ static BOOL sub_0205ACC8 (UnkStruct_0205A0D8 * param0)
         if (param0->unk_86 == 0) {
             v0 = sub_02035A3C(106, v1, v2);
         } else {
-            v0 = sub_0203597C(106, v1, v2);
+            v0 = CommSys_SendDataHuge(106, v1, v2);
         }
 
         if (v0) {
@@ -874,15 +874,15 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
 {
     Window * v0 = &(param0->unk_54);
 
-    if (sub_0201A7CC(v0) == 0) {
+    if (BGL_WindowAdded(v0) == 0) {
         int v1, v2, v3;
         MessageLoader * v4;
 
         v4 = MessageLoader_Init(1, 26, 412, 4);
         v3 = Pokemon_GetStructSize();
 
-        BGL_AddWindow(param0->unk_24->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
-        sub_0200DAA4(param0->unk_24->unk_08, 3, 1, 11, 0, 4);
+        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
+        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
         BGL_FillWindow(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -910,11 +910,11 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
 {
     Window * v0 = &(param0->unk_64);
 
-    if (sub_0201A7CC(v0) == 0) {
+    if (BGL_WindowAdded(v0) == 0) {
         int v1;
 
-        BGL_AddWindow(param0->unk_24->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
-        sub_0200DAA4(param0->unk_24->unk_08, 3, 1, 11, 0, 4);
+        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 20, 11, 11, 6, 13, 90);
+        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1, 11, 0, 4);
         BGL_FillWindow(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -1013,7 +1013,7 @@ void sub_0205B110 (int param0, int param1, void * param2, void * param3)
 
 static BOOL sub_0205B140 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205B2D4 * v1 = TaskManager_Environment(param0);
     TrainerCard * v2 = (TrainerCard *)sub_02059EBC(v1->unk_24, NULL, 0);
 
@@ -1027,14 +1027,14 @@ static BOOL sub_0205B140 (TaskManager * param0)
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
-        sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
-        sub_0205D944(&v1->unk_08, sub_02025E44(v0->saveData));
+        FieldMessage_AddWindow(fieldSystem->unk_08, &v1->unk_08, 3);
+        FieldMessage_DrawWindow(&v1->unk_08, SaveData_Options(fieldSystem->saveData));
 
-        v1->unk_20 = sub_0205D994(&v1->unk_08, v1->unk_04, sub_02025E44(v0->saveData), 1);
+        v1->unk_20 = FieldMessage_Print(&v1->unk_08, v1->unk_04, SaveData_Options(fieldSystem->saveData), 1);
         v1->unk_28++;
         break;
     case 1:
-        if (sub_0205DA04(v1->unk_20)) {
+        if (FieldMessage_FinishedPrinting(v1->unk_20)) {
             if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
                 MessageLoader_Free(v1->unk_1C);
                 StringTemplate_Free(v1->unk_18);
@@ -1053,20 +1053,20 @@ static BOOL sub_0205B140 (TaskManager * param0)
         }
         break;
     case 3:
-        sub_0203E09C(v0, v2);
+        sub_0203E09C(fieldSystem, v2);
         v1->unk_28++;
         break;
     case 4:
-        if (!sub_020509B4(v0)) {
+        if (!sub_020509B4(fieldSystem)) {
             v1->unk_28++;
         }
         break;
     case 5:
-        sub_020509D4(v0);
+        sub_020509D4(fieldSystem);
         v1->unk_28++;
         break;
     case 6:
-        if (!sub_020509DC(v0)) {
+        if (!sub_020509DC(fieldSystem)) {
             ov5_021D1744(1);
             CommPlayerMan_Restart();
             v1->unk_28++;
@@ -1083,7 +1083,7 @@ static BOOL sub_0205B140 (TaskManager * param0)
     return 0;
 }
 
-void sub_0205B2D4 (FieldSystem * param0)
+void sub_0205B2D4 (FieldSystem * fieldSystem)
 {
     int v0;
     int v1 = CommSys_CurNetId();
@@ -1101,7 +1101,7 @@ void sub_0205B2D4 (FieldSystem * param0)
             v4->unk_24 = v0;
             v4->unk_28 = 0;
 
-            sub_02050904(param0, sub_0205B140, v4);
+            sub_02050904(fieldSystem, sub_0205B140, v4);
             sub_0203D128();
             break;
         }

@@ -34,7 +34,7 @@ typedef struct UnkStruct_0204AFC4_t {
     u16 unk_2E[4];
     u16 unk_36[4];
     u16 unk_3E[14];
-    UnkStruct_02049FA8 unk_5C;
+    Location unk_5C;
     UnkStruct_0202D060 * unk_70;
     UnkStruct_0202D750 * unk_74;
     UnkStruct_ov104_0223A348 unk_78[2];

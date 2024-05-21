@@ -96,7 +96,7 @@ typedef struct {
     UnkStruct_0202DBAC * unk_2C14[3];
     int unk_2C20;
     int unk_2C24;
-    UnkStruct_0200112C * unk_2C28;
+    BmpList * unk_2C28;
     ResourceMetadata * unk_2C2C;
     Window unk_2C30;
     Window unk_2C40;
@@ -287,14 +287,14 @@ static void ov97_022304AC (UnkStruct_ov97_02230868 * param0)
 
 static void ov97_02230500 (Window * param0, u8 param1)
 {
-    if (sub_0201A7CC(param0) == 1) {
+    if (BGL_WindowAdded(param0) == 1) {
         Window_Clear(param0, param1);
     }
 }
 
 static void ov97_02230518 (Window * param0, u8 param1)
 {
-    if (sub_0201A7CC(param0) == 1) {
+    if (BGL_WindowAdded(param0) == 1) {
         sub_0200E084(param0, param1);
     }
 }
@@ -1016,7 +1016,7 @@ static void ov97_022314FC (UnkStruct_ov97_02230868 * param0, int param1, int * p
 
     if (v0 == 1) {
         Sound_PlayEffect(1500);
-        sub_020364F0(0xAB);
+        CommTiming_StartSync(0xAB);
 
         param0->unk_2C94 = 1;
         *param2 = 21;
@@ -1043,7 +1043,7 @@ static int ov97_0223161C (OverlayManager * param0, int * param1)
     case 0:
         v4->unk_2C04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
         v4->unk_2C00 = SaveData_MysteryGift(v4->unk_2C04);
-        v4->unk_2C08 = sub_02025E44(v4->unk_2C04);
+        v4->unk_2C08 = SaveData_Options(v4->unk_2C04);
         v4->unk_2C0C = Options_Frame(v4->unk_2C08);
 
         v4->unk_2C14[0] = sub_0202DB00(v4->unk_2C00, 0);
@@ -1224,12 +1224,12 @@ static int ov97_0223161C (OverlayManager * param0, int * param1)
         break;
     case 23:
         if (ov97_02238528() == 4) {
-            sub_020364F0(0x93);
+            CommTiming_StartSync(0x93);
             *param1 = 24;
         }
         break;
     case 24:
-        if ((ov97_02231C84(v4) == 0) || (sub_02036540(0x93) == 1)) {
+        if ((ov97_02231C84(v4) == 0) || (CommTiming_IsSyncState(0x93) == 1)) {
             ov97_022384F4();
             ov97_02230E04(v4, &v4->unk_2C30, 17 + 1, 640);
             DeleteWaitDial(v4->unk_3E14);

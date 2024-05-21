@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const OverlayManagerTemplate Unk_ov5_021F89B0;
+extern const OverlayManagerTemplate gFieldMapTemplate;
 
 #endif // POKEPLATINUM_CONST_OV5_021F89B0_H

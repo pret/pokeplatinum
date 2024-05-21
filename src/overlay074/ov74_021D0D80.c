@@ -218,7 +218,7 @@ int ov74_021D0F60 (OverlayManager * param0, int * param1)
         return 0;
     case 6:
         if (Message_Printing(v0->unk_2AC)) {
-            sub_0201D730(v0->unk_2AC);
+            PrintString_ForceStop(v0->unk_2AC);
         }
 
         sub_0200F174(3, 0, 0, 0x0, 6, 1, v0->unk_00);
@@ -671,7 +671,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
     u8 v2;
 
     if (ov74_021D1A08(param0) == 0) {
-        sub_0201D730(param0->unk_2AC);
+        PrintString_ForceStop(param0->unk_2AC);
     }
 
     v2 = Options_TextFrameDelay(param0->unk_1C);

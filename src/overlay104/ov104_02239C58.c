@@ -115,7 +115,7 @@ static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_A8->unk_00 = Party_GetFromSavedata(param1->unk_00);
     param1->unk_A8->unk_04 = sub_0207D990(param1->unk_00);
     param1->unk_A8->unk_08 = sub_02028430(param1->unk_00);
-    param1->unk_A8->unk_0C = sub_02025E44(param1->unk_00);
+    param1->unk_A8->unk_0C = SaveData_Options(param1->unk_00);
     param1->unk_A8->unk_21 = 0;
 
     if (param1->unk_A0 == 1) {
@@ -198,7 +198,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(PokemonSummary));
     MI_CpuClear8(param1->unk_AC, sizeof(PokemonSummary));
 
-    param1->unk_AC->options = sub_02025E44(param1->unk_00);
+    param1->unk_AC->options = SaveData_Options(param1->unk_00);
     param1->unk_AC->monData = Party_GetFromSavedata(param1->unk_00);
     param1->unk_AC->dexMode = sub_0207A274(param1->unk_00);
     param1->unk_AC->contest = PokemonSummary_ShowContestData(param1->unk_00);

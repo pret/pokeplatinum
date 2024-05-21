@@ -64,7 +64,7 @@
 #include "communication_system.h"
 #include "unk_020393C8.h"
 #include "unk_02039C80.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
@@ -1018,7 +1018,7 @@ void ov23_0223E9D4 (int param0, int param1, void * param2, void * param3)
 {
     u8 * v0 = param2;
 
-    if ((v0[0] == CommSys_CurNetId()) && sub_02035EE0()) {
+    if ((v0[0] == CommSys_CurNetId()) && CommSys_IsSendingMovementData()) {
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 19, 0, NULL);
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
@@ -1048,7 +1048,7 @@ static void ov23_0223EA38 (SysTask * param0, void * param1)
             sub_02059514();
         }
 
-        sub_020360D0(65, &v0);
+        CommSys_SendDataFixedSize(65, &v0);
         Unk_ov23_02257740->unk_848 = NULL;
 
         ov23_02254044(ov23_0224219C());
@@ -1608,7 +1608,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
             ov23_0224B460();
             ov23_022417E0();
 
-            sub_020360D0(67, &v0->unk_50);
+            CommSys_SendDataFixedSize(67, &v0->unk_50);
             sub_02059514();
 
             Unk_ov23_02257740->unk_8CC = NULL;
@@ -2714,7 +2714,7 @@ static BOOL ov23_02240CFC (UnkStruct_ov23_0223EE80 * param0)
                 v1 = 8;
             }
 
-            sub_020360D0(68, v0);
+            CommSys_SendDataFixedSize(68, v0);
 
             if (Unk_ov23_02257740->unk_A2B > v1) {
                 Unk_ov23_02257740->unk_A2B -= v1;

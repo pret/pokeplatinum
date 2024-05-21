@@ -19,7 +19,7 @@
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 #include "unk_02054D00.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E779C.h"
@@ -113,7 +113,7 @@ BOOL ov5_021EFB40 (FieldSystem * param0, int * param1)
 
     v1 = Player_XPos(param0->playerAvatar);
     v2 = Player_ZPos(param0->playerAvatar);
-    v4 = Player_Dir(param0->playerAvatar);
+    v4 = PlayerAvatar_GetDir(param0->playerAvatar);
 
     if (v4 == 0) {
         sub_020550F4(v1, v2, 0, -1, 1, 1, &v0);

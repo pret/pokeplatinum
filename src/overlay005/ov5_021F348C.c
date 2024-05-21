@@ -11,8 +11,8 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_02020AEC.h"
-#include "unk_02061804.h"
-#include "unk_02063400.h"
+#include "map_object.h"
+#include "map_object_move.h"
 #include "unk_020711EC.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021F348C.h"
@@ -26,7 +26,7 @@ typedef struct {
     FieldSystem * unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
     UnkStruct_ov5_021F34D0 * unk_08;
-    LocalMapObject * unk_0C;
+    MapObject * unk_0C;
 } UnkStruct_ov5_021F35E8;
 
 typedef struct {
@@ -112,20 +112,20 @@ static void ov5_021F358C (UnkStruct_ov5_021F34D0 * param0)
     }
 }
 
-static void ov5_021F35E8 (UnkStruct_ov5_021DF47C * param0, LocalMapObject * param1, UnkStruct_ov5_021F35E8 * param2, VecFx32 * param3, int * param4)
+static void ov5_021F35E8 (UnkStruct_ov5_021DF47C * param0, MapObject * param1, UnkStruct_ov5_021F35E8 * param2, VecFx32 * param3, int * param4)
 {
-    param2->unk_00 = sub_02062C00(param1);
+    param2->unk_00 = MapObject_FieldSystem(param1);
     param2->unk_04 = param0;
     param2->unk_08 = ov5_021DF55C(param0, 23);
     param2->unk_0C = param1;
 
-    sub_02063050(param1, param3);
-    sub_02064450(sub_02063020(param1), sub_02063040(param1), param3);
+    MapObject_PosVectorOut(param1, param3);
+    sub_02064450(MapObject_GetXPos(param1), MapObject_GetZPos(param1), param3);
 
     *param4 = sub_02062758(param1, 2);
 }
 
-void ov5_021F3638 (LocalMapObject * param0)
+void ov5_021F3638 (MapObject * param0)
 {
     int v0;
     UnkStruct_ov5_021DF47C * v1;
@@ -139,7 +139,7 @@ void ov5_021F3638 (LocalMapObject * param0)
     v2 = ov5_021DF72C(v1, &Unk_ov5_022005C4, &v3, 0, &v4, v0);
 }
 
-void ov5_021F3678 (LocalMapObject * param0, int param1)
+void ov5_021F3678 (MapObject * param0, int param1)
 {
     int v0;
     UnkStruct_ov5_021DF47C * v1;
@@ -192,7 +192,7 @@ static int ov5_021F36F4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v3 = sub_020715BC(param0);
 
     v2->unk_10 = *v3;
-    v2->unk_04 = sub_02062910(v2->unk_10.unk_0C);
+    v2->unk_04 = MapObject_Id(v2->unk_10.unk_0C);
     v2->unk_08 = sub_02062918(v2->unk_10.unk_0C);
 
     sub_020715E4(param0, &v1);
@@ -219,7 +219,7 @@ static void ov5_021F3760 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     int v0;
     UnkStruct_ov5_021F36F4 * v1;
-    LocalMapObject * v2;
+    MapObject * v2;
 
     v1 = param1;
     v2 = v1->unk_10.unk_0C;
@@ -241,7 +241,7 @@ static void ov5_021F3790 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     VecFx32 v0, v1;
     UnkStruct_ov5_021F36F4 * v2;
-    LocalMapObject * v3;
+    MapObject * v3;
 
     v2 = param1;
     v3 = v2->unk_10.unk_0C;

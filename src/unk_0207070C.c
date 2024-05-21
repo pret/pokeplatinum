@@ -29,9 +29,9 @@
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206B70C.h"
 #include "unk_0207070C.h"
@@ -48,7 +48,7 @@ typedef struct {
 
 typedef struct {
     u32 unk_00;
-    LocalMapObject * unk_04;
+    MapObject * unk_04;
     UnkStruct_020709CC unk_08;
 } UnkStruct_0207086C;
 
@@ -164,7 +164,7 @@ u32 sub_0207070C (u16 param0, u16 param1)
 
 void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     int v1, v2;
     int v3;
     int v4;
@@ -206,7 +206,7 @@ void sub_02070728 (FieldSystem * param0, UnkStruct_02070950 * param1)
         param1->unk_0C |= (1 << 2);
     }
 
-    if (ov5_021E0760(v3, Player_Dir(param0->playerAvatar))) {
+    if (ov5_021E0760(v3, PlayerAvatar_GetDir(param0->playerAvatar))) {
         param1->unk_0C |= (1 << 7);
     }
 
@@ -357,7 +357,7 @@ static int sub_02070A24 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->unk_04->playerAvatar) == 0x2) {
         return 4;
     }
 
@@ -497,7 +497,7 @@ static int sub_02070C40 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (sub_0205EB74(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->unk_04->playerAvatar) == 0x2) {
         return 1;
     }
 

@@ -104,7 +104,7 @@ int ov98_02246C20 (OverlayManager * param0, int * param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), 108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->unk_04 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
-    v0->unk_08 = sub_02025E44(v0->unk_04);
+    v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_114 = Strbuf_Init(100, 108);
     v0->unk_118 = Strbuf_Init(100, 108);
     sub_02004550(17, 1175, 1);
@@ -352,7 +352,7 @@ void * ov98_02246FC4 (UnkStruct_ov98_02246E88 * param0)
     v0[2] = 4;
     v0[3] = 4;
     
-    param0->unk_98 = sub_02089400(108, 16, v0, sub_02025E44(param0->unk_04), 4, 0);
+    param0->unk_98 = sub_02089400(108, 16, v0, SaveData_Options(param0->unk_04), 4, 0);
     return param0->unk_98;
 }
 
@@ -385,7 +385,7 @@ void * ov98_02247070 (UnkStruct_ov98_02246E88 * param0)
     v0[2] = 0;
     v0[3] = 0;
     
-    param0->unk_98 = sub_0208941C(108, 7, v0, sub_02025E44(param0->unk_04), 5, 1, 1, param0->unk_7C);
+    param0->unk_98 = sub_0208941C(108, 7, v0, SaveData_Options(param0->unk_04), 5, 1, 1, param0->unk_7C);
     return param0->unk_98;
 }
 
@@ -408,7 +408,7 @@ void * ov98_022470F8 (UnkStruct_ov98_02246E88 * param0)
     v0[2] = 0;
     v0[3] = 0;
     
-    param0->unk_98 = sub_02089400(108, 4, v0, sub_02025E44(param0->unk_04), 6, 0);
+    param0->unk_98 = sub_02089400(108, 4, v0, SaveData_Options(param0->unk_04), 6, 0);
     return param0->unk_98;
 }
 

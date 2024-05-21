@@ -28,7 +28,7 @@
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_02038FFC.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
 #include "unk_0204AEE8.h"
@@ -76,7 +76,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, FieldSystem * param1, int 
     v1 = param1->saveData;
     MI_CpuClear8(v2, sizeof(PartyManagementData));
 
-    v2->unk_0C = sub_02025E44(v1);
+    v2->unk_0C = SaveData_Options(v1);
     v2->unk_00 = Party_GetFromSavedata(v1);
     v2->unk_04 = sub_0207D990(v1);
     v2->unk_21 = 0;
@@ -138,7 +138,7 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, FieldSystem * param1, int 
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = sub_02025E44(v1);
+    v0->options = SaveData_Options(v1);
     v0->monData = Party_GetFromSavedata(v1);
     v0->dexMode = sub_0207A274(v1);
     v0->contest = PokemonSummary_ShowContestData(v1);

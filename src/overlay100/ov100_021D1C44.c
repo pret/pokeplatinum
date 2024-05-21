@@ -622,7 +622,7 @@ BOOL ov100_021D2428 (void * param0)
 
         if (v0->unk_1A0.unk_934[4].unk_160 == 0) {
             if (Message_Printing(v0->unk_1EBC->unk_40)) {
-                sub_0201D730(v0->unk_1EBC->unk_40);
+                PrintString_ForceStop(v0->unk_1EBC->unk_40);
             }
 
             v0->unk_1EBC->unk_50.unk_03 = -16;

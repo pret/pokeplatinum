@@ -144,7 +144,7 @@ int ov90_021D0D80 (OverlayManager * param0, int * param1)
 
     v0->unk_08 = v1->unk_04;
     v0->unk_0A = v1->unk_06;
-    v0->unk_18 = sub_02025E44(v1->unk_00);
+    v0->unk_18 = SaveData_Options(v1->unk_00);
     v0->unk_1C = sub_0203068C(v1->unk_00);
     v0->unk_20 = sub_0202D750(v1->unk_00);
     v0->unk_24 = sub_0202D764(v1->unk_00);

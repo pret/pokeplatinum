@@ -190,7 +190,7 @@ static BOOL ov97_0222AE64 (UnkStruct_0222AE60 * param0)
     UnkStruct_ov97_0223DF54 * v1;
     UnkStruct_ov97_02237808 v2;
 
-    if (sub_0201A7CC(&param0->unk_158) == 0) {
+    if (BGL_WindowAdded(&param0->unk_158) == 0) {
         for (v0 = 0; v0 < 1; v0++) {
             if (param0->unk_154[v0] == 1) {
                 param0->unk_154[v0] = 0;
@@ -808,7 +808,7 @@ static void ov97_0222BAD8 (UnkStruct_0222AE60 * param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014); v0++) {
-        if (sub_0201A7CC(&param0->unk_5C[v0]) == 0) {
+        if (BGL_WindowAdded(&param0->unk_5C[v0]) == 0) {
             continue;
         }
 
@@ -878,7 +878,7 @@ static void ov97_0222BC1C (UnkStruct_0222AE60 * param0)
     v5 = param0->unk_120 / FX32_ONE;
 
     for (v0 = 0; v0 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v0++) {
-        if (sub_0201A7CC(&param0->unk_5C[v0]) == 0) {
+        if (BGL_WindowAdded(&param0->unk_5C[v0]) == 0) {
             continue;
         }
 

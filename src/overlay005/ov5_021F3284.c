@@ -11,7 +11,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_02020AEC.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021F3284.h"
@@ -24,7 +24,7 @@ typedef struct {
     FieldSystem * unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
     UnkStruct_ov5_021F32B0 * unk_08;
-    LocalMapObject * unk_0C;
+    MapObject * unk_0C;
 } UnkStruct_ov5_021F331C;
 
 typedef struct {
@@ -78,7 +78,7 @@ static void ov5_021F32F4 (UnkStruct_ov5_021F32B0 * param0)
     ov5_021DF9D4(param0->unk_00, 3);
 }
 
-void ov5_021F331C (LocalMapObject * param0, int param1)
+void ov5_021F331C (MapObject * param0, int param1)
 {
     UnkStruct_ov5_021F331C v0;
     UnkStruct_ov5_021DF47C * v1;
@@ -86,7 +86,7 @@ void ov5_021F331C (LocalMapObject * param0, int param1)
 
     v1 = ov5_021DF578(param0);
 
-    v0.unk_00 = sub_02062C00(param0);
+    v0.unk_00 = MapObject_FieldSystem(param0);
     v0.unk_04 = v1;
     v0.unk_08 = ov5_021DF55C(v1, 21);
     v0.unk_0C = param0;
@@ -110,7 +110,7 @@ static int ov5_021F336C (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     v1->unk_14 = *v2;
     v1->unk_04 = sub_02062924(v1->unk_14.unk_0C);
-    v1->unk_08 = sub_02062910(v1->unk_14.unk_0C);
+    v1->unk_08 = MapObject_Id(v1->unk_14.unk_0C);
     v1->unk_0C = sub_02062918(v1->unk_14.unk_0C);
 
     sub_020715D4(param0, &v0);
@@ -131,7 +131,7 @@ static void ov5_021F33D0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     int v0, v1;
     UnkStruct_ov5_021F336C * v2;
-    LocalMapObject * v3;
+    MapObject * v3;
 
     v2 = param1;
     v3 = v2->unk_14.unk_0C;
@@ -171,7 +171,7 @@ static void ov5_021F3448 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     VecFx32 v0;
     UnkStruct_ov5_021F336C * v1;
-    LocalMapObject * v2;
+    MapObject * v2;
 
     v1 = param1;
     v2 = v1->unk_14.unk_0C;
@@ -181,7 +181,7 @@ static void ov5_021F3448 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         return;
     }
 
-    sub_02063050(v2, &v0);
+    MapObject_PosVectorOut(v2, &v0);
 
     v0.z += FX32_ONE * 8;
     sub_020212A8(v1->unk_24, &v0);

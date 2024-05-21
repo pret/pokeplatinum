@@ -383,7 +383,7 @@ int ov105_02241AE0 (OverlayManager * param0, int * param1)
     v1->unk_31C = v2->unk_08;
     v1->unk_320 = v2->unk_0C;
     v1->unk_330 = &v2->unk_10[0];
-    v1->unk_138 = sub_02025E44(v1->unk_13C);
+    v1->unk_138 = SaveData_Options(v1->unk_13C);
     v1->unk_14 = (4 * 2);
 
     if (ov105_022454F8(v1, 0) == 1) {
@@ -627,14 +627,14 @@ static BOOL ov105_02241FF4 (UnkStruct_ov105_02241FF4 * param0)
     case 0:
         if (ov104_0223AED4(param0->unk_09) == 1) {
             sub_020365F4();
-            sub_020364F0(237);
+            CommTiming_StartSync(237);
         }
 
         param0->unk_08++;
         break;
     case 1:
         if (ov104_0223AED4(param0->unk_09) == 1) {
-            if (sub_02036540(237) == 1) {
+            if (CommTiming_IsSyncState(237) == 1) {
                 sub_020365F4();
                 param0->unk_08++;
             }
@@ -1267,12 +1267,12 @@ static BOOL ov105_02242D04 (UnkStruct_ov105_02241FF4 * param0)
             param0->unk_10 = ov105_02244D14(param0, 2);
 
             sub_020365F4();
-            sub_020364F0(164);
+            CommTiming_StartSync(164);
             param0->unk_08++;
         }
         break;
     case 7:
-        if (sub_02036540(164) == 1) {
+        if (CommTiming_IsSyncState(164) == 1) {
             sub_020365F4();
             return 1;
         }
@@ -2043,13 +2043,13 @@ static BOOL ov105_0224439C (UnkStruct_ov105_02241FF4 * param0)
         param0->unk_10 = ov105_02244D14(param0, 15);
 
         sub_020365F4();
-        sub_020364F0(165);
+        CommTiming_StartSync(165);
 
         param0->unk_08++;
 
         break;
     case 1:
-        if (sub_02036540(165) == 1) {
+        if (CommTiming_IsSyncState(165) == 1) {
             sub_020365F4();
             return 1;
         }
@@ -2107,7 +2107,7 @@ static BOOL ov105_02244424 (UnkStruct_ov105_02241FF4 * param0)
         ov105_02244F00(param0, 2, v2);
         ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(sub_02025E44(param0->unk_13C)), 1, 2, 15, 1);
+        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(SaveData_Options(param0->unk_13C)), 1, 2, 15, 1);
 
         sub_0201A9A4(&param0->unk_50[5]);
 

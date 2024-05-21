@@ -232,11 +232,11 @@ BOOL CommInfo_ServerSendArray (void)
             if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
                 sCommInfo->playerInfo[netId].netId = netId;
                 MI_CpuCopy8(sCommInfo->trainerInfo[netId], sCommInfo->playerInfo[netId].trainerInfoBuffer, TrainerInfo_Size());
-                CommSys_ServerSetSendQueue(4, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
+                CommSys_WriteToQueueServer(4, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
             }
         }
 
-        CommSys_ServerSetSendQueue(5, NULL, 0);
+        CommSys_WriteToQueueServer(5, NULL, 0);
         sCommInfo->dataRecvFlag = FALSE;
         return TRUE;
     }
@@ -322,7 +322,7 @@ BOOL sub_02032E90 (void)
 
         for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
             if (!CommSys_IsPlayerConnected(netId) 
-                    && !(netId == 0 && sub_02036180())
+                    && !(netId == 0 && CommSys_IsAlone())
                     && sCommInfo->infoState[netId] != 0) {
                 CommInfo_InitPlayer(netId);
                 ret = TRUE;

@@ -574,7 +574,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
 
     switch (param0->unk_4C) {
     case 0:
-        sub_020364F0(80);
+        CommTiming_StartSync(80);
         ResetLock(2);
         ov88_0223E894(param0);
 
@@ -600,7 +600,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         param0->unk_4C++;
         break;
     case 1:
-        if (sub_02036540(80)) {
+        if (CommTiming_IsSyncState(80)) {
             if (param0->unk_08->unk_34 == 0) {
                 param0->unk_4C = 6;
             } else {
@@ -638,11 +638,11 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         break;
     case 6:
         sub_0203632C(1);
-        sub_020364F0(81);
+        CommTiming_StartSync(81);
         param0->unk_4C++;
         break;
     case 7:
-        if (sub_02036540(81)) {
+        if (CommTiming_IsSyncState(81)) {
             param0->unk_4C++;
         }
         break;
@@ -1663,7 +1663,7 @@ void ov88_0223D098 (int param0, Party * param1, int param2)
     if (CommSys_IsPlayerConnected(param0)) {
         u8 v0 = param2;
 
-        sub_0203597C(22, ov88_0223D08C(param1, param2), (236 * 6 + 4 * 2));
+        CommSys_SendDataHuge(22, ov88_0223D08C(param1, param2), (236 * 6 + 4 * 2));
     }
 }
 
@@ -1693,12 +1693,12 @@ static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, Un
         param2->unk_78[v0] = param1[v0].unk_16;
     }
 
-    sub_0203597C(28, param2, sizeof(UnkStruct_02027F8C));
+    CommSys_SendDataHuge(28, param2, sizeof(UnkStruct_02027F8C));
 }
 
 static void ov88_0223D140 (ChatotCry * param0)
 {
-    sub_0203597C(29, param0, 1000);
+    CommSys_SendDataHuge(29, param0, 1000);
 }
 
 static int ov88_0223D150 (UnkStruct_02095E80 * param0)
@@ -1999,7 +1999,7 @@ static int ov88_0223D7AC (UnkStruct_02095E80 * param0)
 
 static int ov88_0223D840 (UnkStruct_02095E80 * param0)
 {
-    if (sub_02036540(19)) {
+    if (CommTiming_IsSyncState(19)) {
         return 2;
     }
 
@@ -2024,7 +2024,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
     if (param0->unk_36C4 == -1) {
         MessageLoader_Free(param0->unk_36D0);
         StringTemplate_Free(param0->unk_36CC);
-        sub_020364F0(19);
+        CommTiming_StartSync(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, 1, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
         return 0;
@@ -2056,7 +2056,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
 static int ov88_0223D96C (UnkStruct_02095E80 * param0)
 {
     if (0 == sub_020391DC(param0->unk_04, param0->unk_3644, 26)) {
-        sub_020364F0(19);
+        CommTiming_StartSync(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, 1, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D840;
         return 0;

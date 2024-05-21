@@ -1535,7 +1535,7 @@ static void ov114_0225D254 (UnkStruct_ov114_0225D084 * param0, u32 param1, Windo
 
 static void ov114_0225D290 (UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0225CEF0 * param1, SaveData * param2, BOOL param3, u32 param4)
 {
-    u32 v0 = Options_Frame(sub_02025E44(param2));
+    u32 v0 = Options_Frame(SaveData_Options(param2));
     u32 v1;
     int v2;
     u8 v3;
@@ -1588,7 +1588,7 @@ static void ov114_0225D368 (UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0
     }
 
     if (Message_Printing(param0->unk_20[param3])) {
-        sub_0201D730(param0->unk_20[param3]);
+        PrintString_ForceStop(param0->unk_20[param3]);
     }
 
     ov114_0225D474(param0, param3);
@@ -1603,7 +1603,7 @@ static void ov114_0225D400 (UnkStruct_ov114_0225D338 * param0, u32 param1)
     ov114_0225D474(param0, param1);
 
     if (Message_Printing(param0->unk_20[param1])) {
-        sub_0201D730(param0->unk_20[param1]);
+        PrintString_ForceStop(param0->unk_20[param1]);
     }
 
     sub_0200E084(&param0->unk_00[param1], 1);
@@ -1814,7 +1814,7 @@ static void ov114_0225D688 (SysTask * param0, void * param1)
 
         if (v0->unk_01 == 0) {
             v0->unk_00++;
-            sub_020364F0(129);
+            CommTiming_StartSync(129);
 
             if (v0->unk_08.unk_0A) {
                 ov4_021D1F18();
@@ -1822,7 +1822,7 @@ static void ov114_0225D688 (SysTask * param0, void * param1)
         }
         break;
     case 10:
-        if (sub_02036540(129)) {
+        if (CommTiming_IsSyncState(129)) {
             v0->unk_00++;
         }
         break;
@@ -2077,7 +2077,7 @@ static void ov114_0225DDA0 (UnkStruct_ov114_0225DAC0 * param0)
         param0->unk_14 = NULL;
     }
 
-    if (sub_0201A7CC(&param0->unk_00) == 1) {
+    if (BGL_WindowAdded(&param0->unk_00) == 1) {
         BGL_DeleteWindow(&param0->unk_00);
     }
 }
@@ -2856,7 +2856,7 @@ static void ov114_0225E874 (SysTask * param0, void * param1)
         if (v0->unk_00 > 0) {
             v0->unk_00--;
         } else {
-            sub_020364F0(130);
+            CommTiming_StartSync(130);
 
             if (v0->unk_0C.unk_0A) {
                 ov4_021D1F18();
@@ -2866,7 +2866,7 @@ static void ov114_0225E874 (SysTask * param0, void * param1)
         }
         break;
     case 16:
-        if (sub_02036540(130)) {
+        if (CommTiming_IsSyncState(130)) {
             if (v0->unk_0C.unk_0B) {
                 v0->unk_04 = 19;
             } else {
@@ -3106,11 +3106,11 @@ static void ov114_0225ED40 (SysTask * param0, void * param1)
             ov4_021D1F18();
         }
 
-        sub_020364F0(130);
+        CommTiming_StartSync(130);
         v0->unk_04++;
         break;
     case 15:
-        if (sub_02036540(130)) {
+        if (CommTiming_IsSyncState(130)) {
             if (v0->unk_0C.unk_0B) {
                 v0->unk_04 = 18;
             } else {

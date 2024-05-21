@@ -451,7 +451,7 @@ void sub_0206B514 (SaveData * param0)
     u32 v0;
     UnkStruct_020507E4 * v1 = SaveData_Events(param0);
     UnkStruct_0203A790 * v2 = sub_0203A790(param0);
-    UnkStruct_02049FA8 * v3 = sub_0203A720(v2);
+    Location * v3 = sub_0203A720(v2);
 
     if ((v3->unk_00 != 457) && (v3->unk_00 != 464)) {
         sub_0206AF90(v1);

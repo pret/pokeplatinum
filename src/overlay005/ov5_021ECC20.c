@@ -12,7 +12,7 @@
 
 #include "narc.h"
 #include "heap.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
 
@@ -29,7 +29,7 @@ void ov5_021ECC20 (MapObjectManager * param0, int param1, int param2, const int 
 
     ov5_021ECCA4(param0);
 
-    v0 = sub_02062824(param0);
+    v0 = MapObjectMan_GetMaxObjects(param0);
     v1 = sub_02062858(param0) - 1;
     v2 = sub_0206285C(param0);
 
@@ -41,7 +41,7 @@ void ov5_021ECC78 (MapObjectManager * param0)
 {
     int v0;
 
-    v0 = sub_02062CA8(param0);
+    v0 = MapObjectMan_IsDrawInitialized(param0);
     GF_ASSERT(v0 == 1);
 
     ov5_021ECE94(sub_0206285C(param0));
@@ -62,24 +62,24 @@ static void ov5_021ECCBC (MapObjectManager * param0)
     NARC_dtor(v0);
 }
 
-void ov5_021ECCC8 (LocalMapObject * param0)
+void MapObject_Draw (MapObject * param0)
 {
-    const MapObjectManager * v0 = sub_02062A40(param0);
+    const MapObjectManager * v0 = MapObject_MapObjectManager(param0);
 
     if (sub_0206284C(v0, (1 << 2))) {
         return;
     }
 
-    if (sub_020628D0(param0, (1 << 14)) == 0) {
+    if (MapObject_CheckStatus(param0, (1 << 14)) == 0) {
         return;
     }
 
-    if ((sub_02062DE8(param0) == 0) || sub_02062F7C(param0)) {
+    if ((MapObject_IsMovementPaused(param0) == 0) || sub_02062F7C(param0)) {
         sub_02062B68(param0);
     }
 }
 
-const UnkStruct_ov5_021ECD10 * ov5_021ECD04 (const LocalMapObject * param0)
+const UnkStruct_ov5_021ECD10 * ov5_021ECD04 (const MapObject * param0)
 {
     int v0 = sub_02062920(param0);
     const UnkStruct_ov5_021ECD10 * v1 = ov5_021ECD10(v0);
@@ -103,15 +103,15 @@ static const UnkStruct_ov5_021ECD10 * ov5_021ECD10 (int param0)
     return NULL;
 }
 
-int ov5_021ECD38 (const LocalMapObject * param0)
+int ov5_021ECD38 (const MapObject * param0)
 {
-    if (sub_02062DE8(param0) == 1) {
+    if (MapObject_IsMovementPaused(param0) == 1) {
         if (sub_02062F7C(param0) == 0) {
             return 1;
         }
     }
 
-    if (sub_020628D0(param0, (1 << 8))) {
+    if (MapObject_CheckStatus(param0, (1 << 8))) {
         return 1;
     }
 
@@ -135,11 +135,11 @@ void * ov5_021ECD68 (const MapObjectManager * param0, u32 param1, int param2)
     return v0;
 }
 
-void ov5_021ECDA0 (const LocalMapObject * param0, VecFx32 * param1)
+void ov5_021ECDA0 (const MapObject * param0, VecFx32 * param1)
 {
     VecFx32 v0, v1, v2, v3;
 
-    sub_02063050(param0, &v0);
+    MapObject_PosVectorOut(param0, &v0);
     sub_02063078(param0, &v1);
     sub_0206309C(param0, &v2);
     sub_020630BC(param0, &v3);
@@ -149,37 +149,37 @@ void ov5_021ECDA0 (const LocalMapObject * param0, VecFx32 * param1)
     param1->z = v0.z + v1.z + v2.z + v3.z;
 }
 
-void ov5_021ECDFC (LocalMapObject * param0, int param1)
+void ov5_021ECDFC (MapObject * param0, int param1)
 {
-    sub_02062974(param0, param1);
+    MapObject_SetDir(param0, param1);
 
     if (sub_02062D4C(param0) == 1) {
         sub_02062B68(param0);
     }
 }
 
-void ov5_021ECE18 (LocalMapObject * param0)
+void ov5_021ECE18 (MapObject * param0)
 {
-    sub_02062D64(param0, 1);
-    sub_020628BC(param0, (1 << 20));
+    MapObject_SetHidden(param0, 1);
+    MapObject_SetStatusFlagOn(param0, (1 << 20));
 }
 
-void ov5_021ECE30 (LocalMapObject * param0)
-{
-    return;
-}
-
-void ov5_021ECE34 (LocalMapObject * param0)
+void ov5_021ECE30 (MapObject * param0)
 {
     return;
 }
 
-void ov5_021ECE38 (LocalMapObject * param0)
+void ov5_021ECE34 (MapObject * param0)
 {
     return;
 }
 
-void ov5_021ECE3C (LocalMapObject * param0)
+void ov5_021ECE38 (MapObject * param0)
+{
+    return;
+}
+
+void ov5_021ECE3C (MapObject * param0)
 {
     return;
 }

@@ -109,7 +109,7 @@ void ov5_021DD530 (ScriptContext * param0, StringTemplate * param1, u8 param2, u
 
 static u8 ov5_021DD574 (ScriptContext * param0)
 {
-    return Options_TextFrameDelay(sub_02025E44(param0->fieldSys->saveData));
+    return Options_TextFrameDelay(SaveData_Options(param0->fieldSys->saveData));
 }
 
 static void ov5_021DD588 (FieldSystem * param0, UnkStruct_ov5_021DD648 * param1)
@@ -135,8 +135,8 @@ static void ov5_021DD5D0 (FieldSystem * param0, StringTemplate * param1, UnkStru
 static void ov5_021DD610 (FieldSystem * param0, UnkStruct_ov5_021DD648 * param1)
 {
     if (*(param1->unk_10) == 0) {
-        sub_0205D8F4(param0->unk_08, param1->unk_0C, 3);
-        sub_0205D944(param1->unk_0C, sub_02025E44(param0->saveData));
+        FieldMessage_AddWindow(param0->unk_08, param1->unk_0C, 3);
+        FieldMessage_DrawWindow(param1->unk_0C, SaveData_Options(param0->saveData));
         *(param1->unk_10) = 1;
     }
 

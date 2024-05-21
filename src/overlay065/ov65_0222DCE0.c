@@ -1478,7 +1478,7 @@ static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
     sub_0200710C(param1, 11, v0, 4, 0, 0, 0, 54);
 
     {
-        int v1 = Options_Frame(sub_02025E44(param0->unk_160));
+        int v1 = Options_Frame(SaveData_Options(param0->unk_160));
 
         sub_0200DD0C(v0, 2, (512 - (18 + 12)), 10, v1, 54);
         sub_0200DAA4(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, 54);
@@ -1530,7 +1530,7 @@ static void ov65_0222EE98 (UnkStruct_ov65_0222EBE0 * param0)
 {
     int v0, v1;
 
-    if (sub_0201A7CC(&param0->unk_350)) {
+    if (BGL_WindowAdded(&param0->unk_350)) {
         Window_Clear(&param0->unk_350, 0);
         BGL_DeleteWindow(&param0->unk_350);
     }
@@ -1554,23 +1554,23 @@ static void ov65_0222EF4C (UnkStruct_ov65_0222EBE0 * param0)
 
     ov65_02232DFC(param0);
 
-    if (sub_0201A7CC(&param0->unk_350)) {
+    if (BGL_WindowAdded(&param0->unk_350)) {
         BGL_DeleteWindow(&param0->unk_350);
     }
 
-    if (sub_0201A7CC(&param0->unk_330)) {
+    if (BGL_WindowAdded(&param0->unk_330)) {
         BGL_DeleteWindow(&param0->unk_330);
     }
 
-    if (sub_0201A7CC(&param0->unk_390)) {
+    if (BGL_WindowAdded(&param0->unk_390)) {
         BGL_DeleteWindow(&param0->unk_390);
     }
 
-    if (sub_0201A7CC(&param0->unk_340)) {
+    if (BGL_WindowAdded(&param0->unk_340)) {
         BGL_DeleteWindow(&param0->unk_340);
     }
 
-    if (sub_0201A7CC(&param0->unk_370)) {
+    if (BGL_WindowAdded(&param0->unk_370)) {
         BGL_DeleteWindow(&param0->unk_370);
     }
 
@@ -1583,7 +1583,7 @@ static void ov65_0222EF4C (UnkStruct_ov65_0222EBE0 * param0)
         param0->unk_14C = NULL;
     }
 
-    if (sub_0201A7CC(&param0->unk_360)) {
+    if (BGL_WindowAdded(&param0->unk_360)) {
         BGL_DeleteWindow(&param0->unk_360);
     }
 }
@@ -1631,7 +1631,7 @@ static int ov65_0222F010 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         } else {
             ov65_02232B58(param0, 77, 0);
             CommMan_SetErrorHandling(1, 1);
-            sub_020364F0(16);
+            CommTiming_StartSync(16);
             param0->unk_3A8 = 61;
         }
     } else {
@@ -1967,7 +1967,7 @@ static void ov65_0222F6EC (UnkStruct_ov65_0222EBE0 * param0)
 static int ov65_0222F7AC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
-        if (sub_0201A7CC(&param0->unk_360)) {
+        if (BGL_WindowAdded(&param0->unk_360)) {
             sub_0200E084(&param0->unk_360, 0);
             BGL_DeleteWindow(&param0->unk_360);
         }
@@ -1998,7 +1998,7 @@ static int ov65_0222F808 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
-        if (sub_0201A7CC(&param0->unk_360)) {
+        if (BGL_WindowAdded(&param0->unk_360)) {
             sub_0200E084(&param0->unk_360, 0);
             BGL_DeleteWindow(&param0->unk_360);
         }
@@ -2066,12 +2066,12 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
             ov65_02233068(param0);
         }
 
-        if (sub_0201A7CC(&param0->unk_350)) {
+        if (BGL_WindowAdded(&param0->unk_350)) {
             Window_Clear(&param0->unk_350, 0);
             BGL_DeleteWindow(&param0->unk_350);
         }
 
-        if (sub_0201A7CC(&param0->unk_340)) {
+        if (BGL_WindowAdded(&param0->unk_340)) {
             BGL_DeleteWindow(&param0->unk_340);
         }
 
@@ -2293,7 +2293,7 @@ static int ov65_0222FCDC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
             param0->unk_3A8 = ov65_0222EBB8();
 
-            if (sub_0201A7CC(&param0->unk_360)) {
+            if (BGL_WindowAdded(&param0->unk_360)) {
                 sub_0200E084(&param0->unk_360, 0);
                 BGL_DeleteWindow(&param0->unk_360);
             }
@@ -2311,7 +2311,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     Strbuf* v5 = TrainerInfo_NameNewStrbuf(v4, 54);
     u32 v6;
 
-    if (!sub_0201A7CC(&param0->unk_340)) {
+    if (!BGL_WindowAdded(&param0->unk_340)) {
         Strbuf_Free(v5);
         return;
     }
@@ -2363,7 +2363,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     sub_0201A9A4(&param0->unk_340);
 }
 
-static void ov65_0222FED8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov65_0222FED8 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
@@ -2372,11 +2372,11 @@ static void ov65_0222FED8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov65_0222FEEC (UnkStruct_ov65_0222EBE0 * param0)
 {
-    if (sub_0201A7CC(&param0->unk_340)) {
+    if (BGL_WindowAdded(&param0->unk_340)) {
         BGL_DeleteWindow(&param0->unk_340);
     }
 
-    if (sub_0201A7CC(&param0->unk_350)) {
+    if (BGL_WindowAdded(&param0->unk_350)) {
         Window_Clear(&param0->unk_350, 0);
         BGL_DeleteWindow(&param0->unk_350);
     }
@@ -3292,7 +3292,7 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         sub_02013A4C(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
     }
 
-    if (sub_0201A7CC(&param0->unk_380)) {
+    if (BGL_WindowAdded(&param0->unk_380)) {
         Window_Clear(&param0->unk_380, 0);
         BGL_DeleteWindow(&param0->unk_380);
     }
@@ -3485,7 +3485,7 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         }
     }
 
-    if (sub_0201A7CC(&param0->unk_380)) {
+    if (BGL_WindowAdded(&param0->unk_380)) {
         Window_Clear(&param0->unk_380, 0);
         BGL_DeleteWindow(&param0->unk_380);
     }
@@ -4104,7 +4104,7 @@ static int ov65_02231E64 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3E4 = 0;
             param1 = 2;
         } else {
-            if (sub_020362C8() == 1) {
+            if (CommSys_WifiConnected() == 1) {
                 ov65_02232DC0(param0, ov4_021D2388());
                 ov65_02232B58(param0, 18, 0);
                 param0->unk_3A8 = 27;
@@ -4242,9 +4242,9 @@ static int ov65_022321F4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         (void)0;
     } else {
         if (param0->unk_3BC == 0) {
-            if (sub_02036540(13)) {
+            if (CommTiming_IsSyncState(13)) {
                 sub_020365F4();
-                sub_020364F0(14);
+                CommTiming_StartSync(14);
 
                 param0->unk_3E4 = 0;
                 param0->unk_3A8 = 50;
@@ -4253,7 +4253,7 @@ static int ov65_022321F4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             param0->unk_3BC--;
 
             if (param0->unk_3BC == 0) {
-                sub_020364F0(13);
+                CommTiming_StartSync(13);
             }
         }
     }
@@ -4265,7 +4265,7 @@ static int ov65_0223229C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (ov65_022321A8(param0)) {
         (void)0;
-    } else if (sub_02036540(14)) {
+    } else if (CommTiming_IsSyncState(14)) {
         u16 v0 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
         BOOL v1;
 
@@ -4299,7 +4299,7 @@ static int ov65_022322DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
         u16 v3 = ov65_0222DED4(v2);
 
         if ((v0[0] == v3) || (v0[0] == v2)) {
-            sub_020364F0(15);
+            CommTiming_StartSync(15);
             param0->unk_3A8 = 52;
         } else {
             ov65_02232DC0(param0, ov4_021D2388());
@@ -4317,10 +4317,10 @@ static int ov65_02232358 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (ov65_022321A8(param0)) {
         (void)0;
-    } else if (sub_02036540(15)) {
+    } else if (CommTiming_IsSyncState(15)) {
         CommInfo_SendBattleRegulation();
         CommMan_SetErrorHandling(1, 1);
-        sub_020364F0(18);
+        CommTiming_StartSync(18);
 
         param0->unk_3A8 = 53;
     }
@@ -4334,7 +4334,7 @@ static BOOL ov65_02232390 (UnkStruct_ov65_0222EBE0 * param0)
         return 1;
     }
 
-    if (sub_0201A7CC(&param0->unk_330) == 0) {
+    if (BGL_WindowAdded(&param0->unk_330) == 0) {
         return 1;
     }
 
@@ -4349,7 +4349,7 @@ static int ov65_022323C0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (ov65_022321A8(param0)) {
         (void)0;
-    } else if (sub_02036540(18) && (ov65_02232390(param0) == 1)) {
+    } else if (CommTiming_IsSyncState(18) && (ov65_02232390(param0) == 1)) {
         sub_020391DC(param0->unk_160, v1, 54);
         ov65_02232DFC(param0);
 
@@ -4536,7 +4536,7 @@ static int ov65_022326F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_02232734 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_02036540(16) == 0) {
+    if (CommTiming_IsSyncState(16) == 0) {
         return param1;
     }
 
@@ -4737,23 +4737,23 @@ static int ov65_02232B28 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL param2)
 {
-    u8 v0 = Options_TextFrameDelay(sub_02025E44(param0->unk_160));
+    u8 v0 = Options_TextFrameDelay(SaveData_Options(param0->unk_160));
 
     ov65_02232F50(param0);
 
-    if (sub_0201A7CC(&param0->unk_360)) {
+    if (BGL_WindowAdded(&param0->unk_360)) {
         sub_0200E084(&param0->unk_360, 0);
         BGL_DeleteWindow(&param0->unk_360);
     }
 
-    if (sub_0201A7CC(&param0->unk_330)) {
+    if (BGL_WindowAdded(&param0->unk_330)) {
         sub_0200E084(&param0->unk_330, 0);
         BGL_DeleteWindow(&param0->unk_330);
     }
 
     if (param0->unk_180 != 8) {
         if (Message_Printing(param0->unk_180) != 0) {
-            sub_0201D730(param0->unk_180);
+            PrintString_ForceStop(param0->unk_180);
             param0->unk_180 = 8;
         }
     }
@@ -4781,19 +4781,19 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     ov65_02232F50(param0);
 
-    if (sub_0201A7CC(&param0->unk_360)) {
+    if (BGL_WindowAdded(&param0->unk_360)) {
         sub_0200E084(&param0->unk_360, 0);
         BGL_DeleteWindow(&param0->unk_360);
     }
 
-    if (sub_0201A7CC(&param0->unk_330)) {
+    if (BGL_WindowAdded(&param0->unk_330)) {
         sub_0200E084(&param0->unk_330, 0);
         BGL_DeleteWindow(&param0->unk_330);
     }
 
     if (param0->unk_180 != 8) {
         if (Message_Printing(param0->unk_180) != 0) {
-            sub_0201D730(param0->unk_180);
+            PrintString_ForceStop(param0->unk_180);
             param0->unk_180 = 8;
         }
     }
@@ -4826,12 +4826,12 @@ static void ov65_02232DFC (UnkStruct_ov65_0222EBE0 * param0)
 
     if (param0->unk_180 != 8) {
         if (Message_Printing(param0->unk_180) != 0) {
-            sub_0201D730(param0->unk_180);
+            PrintString_ForceStop(param0->unk_180);
             param0->unk_180 = 8;
         }
     }
 
-    if (sub_0201A7CC(&param0->unk_330)) {
+    if (BGL_WindowAdded(&param0->unk_330)) {
         sub_0200E084(&param0->unk_330, 0);
         BGL_DeleteWindow(&param0->unk_330);
     }
@@ -4908,7 +4908,7 @@ static void ov65_02232F50 (UnkStruct_ov65_0222EBE0 * param0)
 
         param0->unk_188 = NULL;
 
-        if (sub_0201A7CC(&param0->unk_330)) {
+        if (BGL_WindowAdded(&param0->unk_330)) {
             sub_0200E084(&param0->unk_330, 0);
             BGL_DeleteWindow(&param0->unk_330);
         }
@@ -6916,7 +6916,7 @@ static u8 ov65_02234FC4 (int param0)
 
 static BOOL ov65_02234FCC (UnkStruct_ov65_0222EBE0 * param0, int param1, int param2)
 {
-    sub_020363E8(15);
+    CommTool_Init(15);
     ov4_021D2584(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {

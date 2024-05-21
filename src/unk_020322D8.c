@@ -1,18 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02032188.h"
 #include "struct_defs/struct_020322D8.h"
 #include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_02032318.h"
 #include "struct_defs/struct_0203233C.h"
 
 #include "heap.h"
-#include "unk_02032188.h"
+#include "comm_ring.h"
 #include "unk_020322D8.h"
 #include "unk_02032798.h"
 
-static UnkStruct_020322D8 * sub_020322D8 (UnkStruct_020322F8 * param0)
+static UnkStruct_020322D8 * sub_020322D8 (CommQueueMan * param0)
 {
     UnkStruct_020322D8 * v0 = param0->unk_18;
     int v1;
@@ -28,7 +27,7 @@ static UnkStruct_020322D8 * sub_020322D8 (UnkStruct_020322F8 * param0)
     return NULL;
 }
 
-BOOL sub_020322F8 (UnkStruct_020322F8 * param0)
+BOOL CommQueue_IsEmpty (CommQueueMan * param0)
 {
     UnkStruct_020322D8 * v0 = param0->unk_18;
     int v1;
@@ -76,7 +75,7 @@ static BOOL sub_0203233C (UnkStruct_0203233C * param0, u8 param1)
 
 static BOOL sub_02032358 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * param1)
 {
-    int v0 = sub_02032868(param0->unk_0E);
+    int v0 = CommCmd_PacketSizeOf(param0->unk_0E);
 
     if (v0 == 0xffff) {
         if (param1->unk_04 < 3) {
@@ -103,11 +102,11 @@ static BOOL sub_02032358 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     return 0;
 }
 
-static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * param1, UnkStruct_02032188 * param2, BOOL param3)
+static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * param1, CommRing * param2, BOOL param3)
 {
     int v0;
     int v1;
-    int v2 = sub_02032868(param0->unk_0E);
+    int v2 = CommCmd_PacketSizeOf(param0->unk_0E);
 
     if (v2 == 0xffff) {
         v1 = 3;
@@ -127,7 +126,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
 
     if (param1->unk_04 < param0->unk_0C) {
         if (param0->unk_0F_1) {
-            sub_020321F4(param2, param1->unk_00, param1->unk_04);
+            CommRing_Read(param2, param1->unk_00, param1->unk_04);
         } else {
             for (v0 = 0; v0 < param1->unk_04; v0++) {
                 param1->unk_00[v0] = param0->unk_00[v0];
@@ -142,7 +141,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     }
 
     if (param0->unk_0F_1) {
-        sub_020321F4(param2, param1->unk_00, param0->unk_0C);
+        CommRing_Read(param2, param1->unk_00, param0->unk_0C);
     } else {
         MI_CpuCopy8(param0->unk_00, param1->unk_00, param0->unk_0C);
     }
@@ -153,7 +152,7 @@ static BOOL sub_020323D0 (UnkStruct_020322D8 * param0, UnkStruct_0203233C * para
     return 1;
 }
 
-BOOL sub_02032498 (UnkStruct_020322F8 * param0, int param1, u8 * param2, int param3, BOOL param4, BOOL param5)
+BOOL CommQueue_Write (CommQueueMan * param0, int cmd, u8 * param2, int param3, BOOL param4, BOOL param5)
 {
     UnkStruct_020322D8 * v0;
     UnkStruct_020322D8 * v1 = sub_020322D8(param0);
@@ -167,27 +166,27 @@ BOOL sub_02032498 (UnkStruct_020322F8 * param0, int param1, u8 * param2, int par
     }
 
     GF_ASSERT(param3 < 65534);
-    v3 = sub_02032868(param1);
+    v3 = CommCmd_PacketSizeOf(cmd);
 
     if (0xffff == v3) {
         v3 = param3;
     }
 
     if (param5) {
-        int v4 = sub_0203228C(param0->unk_14);
+        int v4 = CommRing_RemainingSize(param0->unk_14);
 
         if ((v3 + 3) >= v4) {
             return 0;
         }
 
-        sub_02032198(param0->unk_14, param2, v3, 265);
-        sub_020322D0(param0->unk_14);
+        CommRring_Write(param0->unk_14, param2, v3, 265);
+        CommRing_UpdateEndPos(param0->unk_14);
 
         v1->unk_0F_1 = 1;
     }
 
     v1->unk_0C = v3;
-    v1->unk_0E = param1;
+    v1->unk_0E = cmd;
     v1->unk_00 = param2;
 
     if (param4 == 1) {
@@ -208,7 +207,7 @@ BOOL sub_02032498 (UnkStruct_020322F8 * param0, int param1, u8 * param2, int par
     return 1;
 }
 
-static UnkStruct_020322D8 * sub_02032530 (UnkStruct_020322F8 * param0)
+static UnkStruct_020322D8 * sub_02032530 (CommQueueMan * param0)
 {
     UnkStruct_02032318 * v0;
 
@@ -227,7 +226,7 @@ static UnkStruct_020322D8 * sub_02032530 (UnkStruct_020322F8 * param0)
     return NULL;
 }
 
-static void sub_02032550 (UnkStruct_020322F8 * param0)
+static void sub_02032550 (CommQueueMan * param0)
 {
     UnkStruct_02032318 * v0;
 
@@ -240,7 +239,7 @@ static void sub_02032550 (UnkStruct_020322F8 * param0)
     }
 }
 
-BOOL sub_02032574 (UnkStruct_020322F8 * param0, UnkStruct_0203233C * param1, BOOL param2)
+BOOL sub_02032574 (CommQueueMan * param0, UnkStruct_0203233C * param1, BOOL param2)
 {
     int v0;
     int v1;
@@ -278,9 +277,9 @@ BOOL sub_02032574 (UnkStruct_020322F8 * param0, UnkStruct_0203233C * param1, BOO
     return 1;
 }
 
-void sub_020325EC (UnkStruct_020322F8 * param0, int param1, UnkStruct_02032188 * param2)
+void CommQueueMan_Init (CommQueueMan * param0, int param1, CommRing * param2)
 {
-    MI_CpuFill8(param0, 0, sizeof(UnkStruct_020322F8));
+    MI_CpuFill8(param0, 0, sizeof(CommQueueMan));
     param0->unk_18 = Heap_AllocFromHeap(15, sizeof(UnkStruct_020322D8) * param1);
 
     MI_CpuFill8(param0->unk_18, 0, sizeof(UnkStruct_020322D8) * param1);
@@ -288,7 +287,7 @@ void sub_020325EC (UnkStruct_020322F8 * param0, int param1, UnkStruct_02032188 *
     param0->unk_14 = param2;
 }
 
-void sub_02032618 (UnkStruct_020322F8 * param0)
+void CommQueueMan_Reset (CommQueueMan * param0)
 {
     MI_CpuFill8(param0->unk_18, 0, sizeof(UnkStruct_020322D8) * param0->unk_1C);
 
@@ -299,12 +298,12 @@ void sub_02032618 (UnkStruct_020322F8 * param0)
     param0->unk_10 = NULL;
 }
 
-void sub_02032638 (UnkStruct_020322F8 * param0)
+void CommQueueMan_Delete (CommQueueMan * param0)
 {
     Heap_FreeToHeap(param0->unk_18);
 }
 
-BOOL sub_02032644 (UnkStruct_020322F8 * param0, int param1)
+BOOL CommQueue_CompareCmd (CommQueueMan * param0, int param1)
 {
     int v0;
     UnkStruct_020322D8 * v1 = param0->unk_18;

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02061830_DECL_H
 #define POKEPLATINUM_STRUCT_02061830_DECL_H
 
-typedef struct UnkStruct_02061830_t MapObjectManager;
+typedef struct MapObjectMan MapObjectManager;
 
 #endif // POKEPLATINUM_STRUCT_02061830_DECL_H

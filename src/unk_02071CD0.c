@@ -8,7 +8,7 @@
 
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 
 void sub_02071CD0(FieldSystem * param0);
 

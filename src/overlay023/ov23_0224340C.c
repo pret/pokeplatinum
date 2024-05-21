@@ -46,12 +46,12 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_02054D00.h"
 #include "comm_player_manager.h"
-#include "unk_0205E7D0.h"
-#include "unk_02063400.h"
+#include "player_avatar.h"
+#include "map_object_move.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
@@ -987,7 +987,7 @@ static UnkStruct_ov23_02243DA8 * ov23_02243A80 (int param0, int param1, UnkStruc
 
 void ov23_02243AD4 (u8 param0)
 {
-    sub_020360D0(32, &param0);
+    CommSys_SendDataFixedSize(32, &param0);
 }
 
 void ov23_02243AE8 (void)
@@ -1002,7 +1002,7 @@ void ov23_02243AF0 (void)
     int v0;
     u8 v1 = 0;
 
-    sub_02035F58(35, &Unk_ov23_02257764->unk_308[0], sizeof(UnkStruct_ov23_02243DA8) * 16);
+    CommSys_WriteToQueue(35, &Unk_ov23_02257764->unk_308[0], sizeof(UnkStruct_ov23_02243DA8) * 16);
 }
 
 void ov23_02243B0C (int param0, int param1, void * param2, void * param3)
@@ -1626,7 +1626,7 @@ void ov23_0224461C (int param0, int param1, void * param2, void * param3)
     u8 * v0 = param2;
 
     if (v0[0] != CommSys_CurNetId()) {
-        sub_02058BA8(v0[0], v0[1], v0[2]);
+        CommPlayer_StartBlowAnimation(v0[0], v0[1], v0[2]);
     }
 }
 
@@ -2053,14 +2053,14 @@ static void ov23_02244C70 (SysTask * param0, void * param1)
         if (v0->unk_14 == 28) {
             u8 v2 = Unk_ov23_02257764->unk_B9F;
 
-            sub_020360D0(38, &v2);
+            CommSys_SendDataFixedSize(38, &v2);
         }
 
         if (v0->unk_14 > 30) {
             sub_0205948C(0x10);
             sub_0200AAE0(1, -4, 0, GX_BLEND_PLANEMASK_BG0, 1);
             ov23_02254044(ov23_0224219C());
-            sub_02058BA8(v0->unk_0C, v0->unk_10, v0->unk_18);
+            CommPlayer_StartBlowAnimation(v0->unk_0C, v0->unk_10, v0->unk_18);
             Sound_PlayEffect(1631);
             v0->unk_00 = 5;
         }
@@ -2104,7 +2104,7 @@ static void ov23_02244D80 (FieldSystem * param0, int param1, int param2, BOOL pa
 
 static void ov23_02244DE0 (int param0, BOOL param1)
 {
-    sub_02058BE8(param0);
+    CommPlayer_StopBlowAnimation(param0);
 
     if (Unk_ov23_02257764->unk_300) {
         UnkStruct_ov23_02244C70 * v0 = Unk_ov23_02257764->unk_300;
@@ -2118,7 +2118,7 @@ static void ov23_02244DE0 (int param0, BOOL param1)
 
 static void ov23_02244E10 (int param0, BOOL param1)
 {
-    sub_02058BE8(param0);
+    CommPlayer_StopBlowAnimation(param0);
 
     if (Unk_ov23_02257764->unk_300) {
         UnkStruct_ov23_02244C70 * v0 = Unk_ov23_02257764->unk_300;
@@ -2958,7 +2958,7 @@ static void ov23_02245BA8 (SysTask * param0, void * param1)
         break;
     case 7:
     {
-        int v5 = Player_Dir(Unk_ov23_02257764->unk_40->playerAvatar);
+        int v5 = PlayerAvatar_GetDir(Unk_ov23_02257764->unk_40->playerAvatar);
 
         if (v0->unk_18 != v5) {
             Sound_PlayEffect(1515);
@@ -3029,7 +3029,7 @@ static void ov23_02245DF8 (BOOL param0, BOOL param1, int param2)
     v1->unk_08 = param0;
     v1->unk_10 = 0;
     v1->unk_0D = param1;
-    v1->unk_18 = Player_Dir(Unk_ov23_02257764->unk_40->playerAvatar);
+    v1->unk_18 = PlayerAvatar_GetDir(Unk_ov23_02257764->unk_40->playerAvatar);
     v1->unk_0C = param2;
 
     Unk_ov23_02257764->unk_300 = v1;
@@ -4917,7 +4917,7 @@ static void ov23_02248A6C (SysTask * param0, void * param1)
 
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
-        sub_02058BE8(v3);
+        CommPlayer_StopBlowAnimation(v3);
 
         return;
     }
@@ -4994,7 +4994,7 @@ void ov23_02248B98 (int param0)
     Unk_ov23_02257764->unk_00[param0] = NULL;
     Unk_ov23_02257764->unk_20[param0] = NULL;
 
-    sub_02058BE8(param0);
+    CommPlayer_StopBlowAnimation(param0);
 }
 
 static void ov23_02248BD0 (void)

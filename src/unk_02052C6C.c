@@ -92,7 +92,7 @@ static void sub_02052C6C (FieldSystem * param0, BOOL param1)
 
 static BOOL sub_02052CBC (TaskManager * param0)
 {
-    UnkStruct_02049FA8 * v0;
+    Location * v0;
     UnkStruct_020507E4 * v1;
     FieldSystem * v2 = TaskManager_FieldSystem(param0);
     UnkStruct_0205300C * v3 = TaskManager_Environment(param0);
@@ -181,7 +181,7 @@ static BOOL sub_02052CBC (TaskManager * param0)
 void sub_02052E58 (TaskManager * param0)
 {
     FieldSystem * v0;
-    UnkStruct_02049FA8 * v1, * v2;
+    Location * v1, * v2;
     UnkStruct_020507E4 * v3;
     TrainerInfo * v4;
     UnkStruct_0205300C * v5;
@@ -276,20 +276,20 @@ static void sub_02052F28 (FieldSystem * param0, UnkStruct_0205300C * param1)
 
 static void sub_02052FA8 (FieldSystem * param0, UnkStruct_0205300C * param1)
 {
-    Options * v0 = sub_02025E44(param0->saveData);
+    Options * v0 = SaveData_Options(param0->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
-    sub_0205D8F4(param0->unk_08, &param1->unk_1C, 3);
-    sub_0205D944(&param1->unk_1C, v0);
+    FieldMessage_AddWindow(param0->unk_08, &param1->unk_1C, 3);
+    FieldMessage_DrawWindow(&param1->unk_1C, v0);
 
-    param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, v0, 1);
+    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, v0, 1);
     param1->unk_30 = sub_0200E7FC(&param1->unk_1C, 1024 - (18 + 12));
 }
 
 static BOOL sub_02052FFC (UnkStruct_0205300C * param0)
 {
-    return sub_0205DA04(param0->unk_34);
+    return FieldMessage_FinishedPrinting(param0->unk_34);
 }
 
 static void sub_0205300C (UnkStruct_0205300C * param0)
@@ -315,7 +315,7 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
     }
 
     MessageLoader_Free(v0);
-    param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, sub_02025E44(param0->saveData), 1);
+    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, SaveData_Options(param0->saveData), 1);
 }
 
 static void sub_02053098 (FieldSystem * param0, UnkStruct_0205300C * param1)
@@ -324,7 +324,7 @@ static void sub_02053098 (FieldSystem * param0, UnkStruct_0205300C * param1)
         Strbuf_Free(param1->unk_2C);
     }
 
-    if (sub_0201A7CC(&param1->unk_1C)) {
+    if (BGL_WindowAdded(&param1->unk_1C)) {
         BGL_DeleteWindow(&param1->unk_1C);
     }
 

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_FIELD_SYSTEM_H
-#define POKEPLATINUM_FIELD_SYSTEM_H
+#ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
+#define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
@@ -52,14 +52,14 @@ typedef struct FieldSystem_t {
     TaskManager * unk_10;
     UnkStruct_0203A3E8 * unk_14;
     int unk_18;
-    UnkStruct_02049FA8 * unk_1C;
+    Location * unk_1C;
     int unk_20;
     UnkStruct_020203AC * unk_24;
     UnkStruct_ov5_021E8F60 * unk_28;
     UnkStruct_02039E30 * unk_2C;
     UnkStruct_ov5_021EF76C * unk_30;
     UnkStruct_ov5_021D1A68 * unk_34;
-    MapObjectManager * unk_38;
+    MapObjectManager * mapObjMan;
     PlayerAvatar * playerAvatar;
     UnkStruct_ov5_021DF47C * unk_40;
     UnkStruct_ov5_021D5894 * unk_44;

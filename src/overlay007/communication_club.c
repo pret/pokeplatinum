@@ -37,7 +37,7 @@
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "field_comm_manager.h"
 #include "unk_0205D8CC.h"
 #include "overlay007/communication_club.h"
@@ -51,14 +51,14 @@ typedef void (* CommClubManTaskFunc)(SysTask *, void *);
 typedef void (* UnkFuncPtr_ov7_02249C2C_1)(CommClubManager *);
 
 typedef struct CommClubManager {
-    Strbuf* unk_00[8];
+    Strbuf* strBuff[8];
     Window unk_20;
     Window unk_30;
     Window msgWindow;
     StringTemplate * unk_50;
     StringTemplate * unk_54;
-    StringTemplate * unk_58;
-    UnkStruct_0200112C * unk_5C;
+    StringTemplate * strTempMsg;
+    BmpList * unk_5C;
     UIControlData * unk_60;
     ResourceMetadata * unk_64;
     FieldSystem * fieldSystem;
@@ -68,28 +68,36 @@ typedef struct CommClubManager {
     TrainerInfo * trainerInfoPersonal;
     TrainerInfo * unk_7C;
     u8 unk_80[8];
-    u32 unk_88;
+    u32 retCode;
     u16 unk_8C;
-    u16 unk_8E;
-    u8 unk_90;
+    u16 connectIndex;
+    u8 connectedCnt;
     u8 commType;
     u8 unk_92;
     u8 unk_93;
     u8 printMsgIndex;
     u8 unk_95;
-    u8 unk_96;
+    u8 msgDelay;
     u8 unk_97;
     u8 unk_98;
 } CommClubManager;
+
+enum CommClubRetCode {
+    COMM_CLUB_RET_0,
+    COMM_CLUB_RET_CANCEL,
+    COMM_CLUB_RET_2,
+    COMM_CLUB_RET_ERROR,
+    COMM_CLUB_RET_4,
+};
 
 static void CommClubMan_Run(SysTask * task, void * param1);
 static void CommClubMan_SetTask(CommClubManTaskFunc param0);
 static void CommClubMan_PrintMessage(int param0, BOOL param1);
 static void CommClubMan_StartBattleClient(CommClubManager * param0);
 static void ov7_0224A510(CommClubManager * param0);
-static void ov7_02249C44(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov7_02249C64(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov7_02249C94(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov7_02249C44(BmpList * param0, u32 param1, u8 param2);
+static void ov7_02249C64(BmpList * param0, u32 param1, u8 param2);
+static void ov7_02249C94(BmpList * param0, u32 param1, u8 param2);
 static void CommClubMan_PrintChooseJoinMsg(CommClubManager * param0);
 static void CommClubMan_DisplayPersonalTrainerInfo(CommClubManager * param0);
 static void ov7_02249F54(SysTask * param0, void * param1);
@@ -103,7 +111,7 @@ static void CommClubMan_Disconnect(void);
 static void ov7_0224A53C(CommClubManager * param0);
 static void ov7_0224A5D0(void);
 static void ov7_0224A64C(CommClubManager * param0);
-static void ov7_0224A438(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov7_0224A438(BmpList * param0, u32 param1, u8 param2);
 static void ov7_0224A72C(SysTask * param0, void * param1);
 static void ov7_0224A7D0(SysTask * param0, void * param1);
 static void ov7_0224A97C(SysTask * param0, void * param1);
@@ -125,15 +133,15 @@ static void CommClubMan_PrintPlayerContactMsg(int param0, CommClubManager * para
 static void ov7_0224B054(CommClubManager * param0);
 static void ov7_0224B08C(CommClubManager * param0);
 static void ov7_0224B0E8(SysTask * param0, void * param1);
-static void ov7_0224B14C(SysTask * param0, void * param1);
-static void ov7_0224B274(SysTask * param0, void * param1);
-static void ov7_0224B2A0(SysTask * param0, void * param1);
+static void CommClubTask_WaitForGroup(SysTask * param0, void * param1);
+static void CommClubTask_ExitGuestRoom(SysTask * param0, void * param1);
+static void CommClubTask_ExitGuestRoomEnd(SysTask * param0, void * param1);
 static void CommClubMan_PlayerRefused(CommClubManager * param0);
 static void ov7_0224B31C(SysTask * param0, void * param1);
 static void ov7_0224B348(CommClubManager * param0);
 static void ov7_0224B370(SysTask * param0, void * param1);
 static void ov7_0224B3A8(CommClubManager * param0);
-static int ov7_0224B3E8(void);
+static int CommClubMan_MaxPlayers(void);
 static int CommClubMan_MinPlayers(void);
 static int CommClubMan_Regulation(void);
 
@@ -151,28 +159,28 @@ static const UnkStruct_ov61_0222C884 Unk_ov7_0224ED0C = {
 
 static void CommClubMan_PrintMessage (int msgId, BOOL format)
 {
-    if (!sub_0205DA04(sCommClubMan->printMsgIndex)) {
-        sub_0201D730(sCommClubMan->printMsgIndex);
+    if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
+        PrintString_ForceStop(sCommClubMan->printMsgIndex);
     }
 
     if (format) {
-        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->unk_00[4]);
-        StringTemplate_Format(sCommClubMan->unk_58, sCommClubMan->unk_00[5], sCommClubMan->unk_00[4]);
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->strBuff[4]);
+        StringTemplate_Format(sCommClubMan->strTempMsg, sCommClubMan->strBuff[5], sCommClubMan->strBuff[4]);
     } else {
-        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->unk_00[5]);
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msgId, sCommClubMan->strBuff[5]);
     }
 
-    if (!sub_0201A7CC(&sCommClubMan->msgWindow)) {
-        sub_0205D8F4(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
+    if (!BGL_WindowAdded(&sCommClubMan->msgWindow)) {
+        FieldMessage_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->msgWindow, 3);
     }
 
-    sub_0205D944(&sCommClubMan->msgWindow, sub_02025E44(sCommClubMan->fieldSystem->saveData));
-    sCommClubMan->printMsgIndex = sub_0205D994(&sCommClubMan->msgWindow, sCommClubMan->unk_00[5], sub_02025E44(sCommClubMan->fieldSystem->saveData), 1);
+    FieldMessage_DrawWindow(&sCommClubMan->msgWindow, SaveData_Options(sCommClubMan->fieldSystem->saveData));
+    sCommClubMan->printMsgIndex = FieldMessage_Print(&sCommClubMan->msgWindow, sCommClubMan->strBuff[5], SaveData_Options(sCommClubMan->fieldSystem->saveData), 1);
 }
 
 static void CommClubMan_CreateList (UnkStruct_ov84_02240FA8 param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)
 {
-    if (!sub_0201A7CC(&sCommClubMan->unk_20)) {
+    if (!BGL_WindowAdded(&sCommClubMan->unk_20)) {
         BGL_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_20, 3, param1, param2, param3, param4, 13, param5);
     }
 
@@ -195,7 +203,7 @@ static void CommClubMan_Init (FieldSystem * fsys)
     sCommClubMan = Heap_AllocFromHeap(4, sizeof(CommClubManager));
     MI_CpuFill8(sCommClubMan, 0, sizeof(CommClubManager));
 
-    sCommClubMan->unk_88 = 0;
+    sCommClubMan->retCode = 0;
     sCommClubMan->fieldSystem = fsys;
     sCommClubMan->unk_97 = 0;
     sCommClubMan->msgLoader = MessageLoader_Init(1, 26, 353, 4);
@@ -208,7 +216,7 @@ static void CommClubMan_Init (FieldSystem * fsys)
 
     sCommClubMan->unk_50 = StringTemplate_Default(4);
     sCommClubMan->unk_54 = StringTemplate_Default(4);
-    sCommClubMan->unk_58 = StringTemplate_Default(4);
+    sCommClubMan->strTempMsg = StringTemplate_Default(4);
     sCommClubMan->unk_98 = 0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
@@ -216,14 +224,14 @@ static void CommClubMan_Init (FieldSystem * fsys)
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        sCommClubMan->unk_00[v0] = Strbuf_Init((70 * 2), 4);
+        sCommClubMan->strBuff[v0] = Strbuf_Init((70 * 2), 4);
     }
 }
 
 static void CommClubMan_Delete (void)
 {
     for (int i = 0; i < 8; i++) {
-        Strbuf_Free(sCommClubMan->unk_00[i]);
+        Strbuf_Free(sCommClubMan->strBuff[i]);
     }
 
     Heap_FreeToHeap(sCommClubMan->unk_7C);
@@ -238,9 +246,9 @@ static void CommClubMan_Delete (void)
         sCommClubMan->unk_54 = NULL;
     }
 
-    if (sCommClubMan->unk_58) {
-        StringTemplate_Free(sCommClubMan->unk_58);
-        sCommClubMan->unk_58 = NULL;
+    if (sCommClubMan->strTempMsg) {
+        StringTemplate_Free(sCommClubMan->strTempMsg);
+        sCommClubMan->strTempMsg = NULL;
     }
 
     MessageLoader_Free(sCommClubMan->msgLoader);
@@ -280,7 +288,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224ED34 = {
     NULL
 };
 
-static void ov7_02249C44 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov7_02249C44 (BmpList * param0, u32 param1, u8 param2)
 {
     sCommClubMan->unk_98 = 1;
 
@@ -289,14 +297,14 @@ static void ov7_02249C44 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov7_02249C64 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov7_02249C64 (BmpList * param0, u32 param1, u8 param2)
 {
     for (int v0 = 0; v0 < sub_02001504(param0, 3); v0++) {
         ov7_02249C94(param0, 0, v0);
     }
 }
 
-static void ov7_02249C94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov7_02249C94 (BmpList * param0, u32 param1, u8 param2)
 {
     int v0 = sub_02033808();
     u16 cnt = 0;
@@ -314,29 +322,29 @@ static void ov7_02249C94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         
         StringTemplate_SetNumber(sCommClubMan->unk_50, 0, cnt + 1, 2, 2, 1);
         StringTemplate_SetPlayerName(sCommClubMan->unk_50, 1, sCommClubMan->unk_7C);
-        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00063, sCommClubMan->unk_00[1]);
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00063, sCommClubMan->strBuff[1]);
         
-        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[0], 8, param2 * 16, 0xff, NULL);
+        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
+        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0xff, NULL);
         
         StringTemplate_SetNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID(sCommClubMan->unk_7C) % 0x10000, 5, 2, 1);
         //ID {ID Number}
-        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->unk_00[3]);
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->strBuff[3]);
         
-        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[2], sCommClubMan->unk_00[3]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[2], 11 * 8, param2 * 16, 0xff, NULL);
+        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[2], sCommClubMan->strBuff[3]);
+        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[2], 11 * 8, param2 * 16, 0xff, NULL);
     } else {
         StringTemplate_SetNumber(sCommClubMan->unk_50, 0, cnt + 1, 2, 2, 1);
-        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->unk_00[1]);
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->strBuff[1]);
         
-        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[0], 8, param2 * 16, 0xff, NULL);
+        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
+        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0xff, NULL);
     }
 }
 
 static void CommClubMan_PrintChooseJoinMsg (CommClubManager * param0)
 {
-    if (!sub_0201A7CC(&sCommClubMan->unk_30)) {
+    if (!BGL_WindowAdded(&sCommClubMan->unk_30)) {
         BGL_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 23, 2, 8, 4, 13, (1 + 20 * 5 * 2));
     }
 
@@ -399,23 +407,23 @@ static void CommClubMan_DisplayPersonalTrainerInfo (CommClubManager * param0)
 {
     StringTemplate_SetPlayerName(sCommClubMan->unk_54, 0, sCommClubMan->trainerInfoPersonal);
     StringTemplate_SetNumber(sCommClubMan->unk_54, 1, TrainerInfo_ID(sCommClubMan->trainerInfoPersonal) % 0x10000, 5, 2, 1);
-    MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00062, sCommClubMan->unk_00[6]);
-    StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->unk_00[7], sCommClubMan->unk_00[6]);
-    PrintStringSimple(&sCommClubMan->unk_30, 0, sCommClubMan->unk_00[7], 2, 2, 0, NULL);
+    MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00062, sCommClubMan->strBuff[6]);
+    StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->strBuff[7], sCommClubMan->strBuff[6]);
+    PrintStringSimple(&sCommClubMan->unk_30, 0, sCommClubMan->strBuff[7], 2, 2, 0, NULL);
 }
 
 static void ov7_02249F54 (SysTask * task, void * data)
 {
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         int v2;
 
         sCommClubMan->unk_64 = sub_02013A04(16, 4);
 
         for (v2 = 0; v2 < 16; v2++) {
             StringTemplate_SetNumber(sCommClubMan->unk_50, 0, v2 + 1, 2, 2, 1);
-            MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->unk_00[1]);
-            StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
-            sub_02013A6C(sCommClubMan->unk_64, sCommClubMan->unk_00[0], 0);
+            MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00064, sCommClubMan->strBuff[1]);
+            StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
+            sub_02013A6C(sCommClubMan->unk_64, sCommClubMan->strBuff[0], 0);
         }
 
         CommClubMan_CreateList(Unk_ov7_0224ED34, 1, 2, 20, 5 * 2, 1);
@@ -432,7 +440,7 @@ static void ov7_02249FFC (SysTask * task, void * param1)
     CommClubMan_DisplayPersonalTrainerInfo(commClubMan);
 
     if (CommSys_CheckError()) {
-        sCommClubMan->unk_88 = 3;
+        sCommClubMan->retCode = COMM_CLUB_RET_ERROR;
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
     } else {
@@ -448,19 +456,19 @@ static void ov7_02249FFC (SysTask * task, void * param1)
             break;
         case 0xfffffffe:
             Sound_PlayEffect(1500);
-            sCommClubMan->unk_88 = 1;
+            sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
             CommClubMan_Disconnect();
             CommClubMan_DestroyList(task, commClubMan);
             break;
         default:
             Sound_PlayEffect(1500);
-            sub_020014D0(commClubMan->unk_5C, &commClubMan->unk_8E);
+            sub_020014D0(commClubMan->unk_5C, &commClubMan->connectIndex);
 
-            if (sub_02033808() > commClubMan->unk_8E) {
+            if (sub_02033808() > commClubMan->connectIndex) {
                 ov7_0224A0C8(commClubMan);
-                commClubMan->unk_8E = sub_0203383C(commClubMan->unk_8E);
-                FieldCommMan_ConnectBattleClient(commClubMan->unk_8E);
-                sub_020365D0();
+                commClubMan->connectIndex = sub_0203383C(commClubMan->connectIndex);
+                FieldCommMan_ConnectBattleClient(commClubMan->connectIndex);
+                CommList_Refresh();
                 CommClubMan_SetTask(CommClubTask_SelectServerList);
             }
             break;
@@ -503,7 +511,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     bl CommInfo_TrainerInfo
     cmp r0, #0
     beq _0224A238
-    bl sub_020365D0
+    bl CommList_Refresh
     ldr r1, = sCommClubMan
               add r0, r4, #0
     add r0, #0x8e
@@ -529,14 +537,14 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
               ldr r0, [r0, #0]
     add r0, #0x94
     ldrb r0, [r0]
-    bl sub_0205DA04
+    bl FieldMessage_FinishedPrinting
     cmp r0, #0
     bne _0224A1AE
     ldr r0, = sCommClubMan
               ldr r0, [r0, #0]
     add r0, #0x94
     ldrb r0, [r0]
-    bl sub_0201D730
+    bl PrintString_ForceStop
  _0224A1AE:
     ldr r0, = sCommClubMan
               mov r1, #2
@@ -553,7 +561,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     ldr r0, = sCommClubMan
               ldr r0, [r0, #0]
     add r0, #0x40
-    bl sub_0201A7CC
+    bl BGL_WindowAdded
     cmp r0, #0
     bne _0224A1E8
     ldr r0, = sCommClubMan
@@ -562,18 +570,18 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
     ldr r0, [r1, #0x68]
     add r1, #0x40
     ldr r0, [r0, #8]
-    bl sub_0205D8F4
+    bl FieldMessage_AddWindow
  _0224A1E8:
     ldr r0, = sCommClubMan
               ldr r0, [r0, #0]
     ldr r0, [r0, #0x68]
     ldr r0, [r0, #0xc]
-    bl sub_02025E44
+    bl SaveData_Options
     add r1, r0, #0
     ldr r0, = sCommClubMan
               ldr r0, [r0, #0]
     add r0, #0x40
-    bl sub_0205D944
+    bl FieldMessage_DrawWindow
     mov r0, #1
     bl sub_02002AC8
     mov r0, #0
@@ -611,24 +619,24 @@ static BOOL ov7_0224A244 (SysTask * task, void * data)
         CommClubMan_DestroyList(task, commClubMan);
         CommClubMan_PrintMessage(pl_msg_00000353_00000, FALSE);
         ov7_0224B348(commClubMan);
-    } else if (sub_020365A8(0, 3) == CommSys_CurNetId()) {
-        sub_020365D0();
+    } else if (CommList_Get(0, 3) == CommSys_CurNetId()) {
+        CommList_Refresh();
         CommClubMan_DestroyList(task, commClubMan);
         CommClubMan_PlayerRefused(commClubMan);
-    } else if (sub_020365A8(0, 5) != -1) {
-        sub_020365D0();
+    } else if (CommList_Get(0, 5) != -1) {
+        CommList_Refresh();
         CommClubMan_DestroyList(task, commClubMan);
         CommClubMan_PlayerRefused(commClubMan);
-    } else if (sub_020365A8(0, 4) == CommSys_CurNetId()) {
+    } else if (CommList_Get(0, 4) == CommSys_CurNetId()) {
         CommClubMan_PrintMessage(pl_msg_00000353_00097, FALSE); //Players have choseen different rules. The same rules must be chosen.
         CommClubMan_SetTask(CommClubTask_DifferentRegulation);
-    } else if (sub_020365A8(0, 2) == CommSys_CurNetId()) {
-        sub_020365D0();
+    } else if (CommList_Get(0, 2) == CommSys_CurNetId()) {
+        CommList_Refresh();
 
-        commClubMan->unk_90 = CommInfo_CountReceived();
+        commClubMan->connectedCnt = CommInfo_CountReceived();
 
-        if (!sub_0205DA04(sCommClubMan->printMsgIndex)) {
-            sub_0201D730(sCommClubMan->printMsgIndex);
+        if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
+            PrintString_ForceStop(sCommClubMan->printMsgIndex);
         }
 
         CommClubMan_DestroyList(task, commClubMan);
@@ -645,9 +653,7 @@ static BOOL ov7_0224A244 (SysTask * task, void * data)
 
 static void ov7_0224A34C (SysTask * task, void * param1)
 {
-    CommClubManager * v0 = param1;
-
-    if (!sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         return;
     }
 
@@ -669,7 +675,7 @@ static void CommClubTask_WaitConfirmLeaveGroup (SysTask * task, void * data)
         return;
     } 
     
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         commClubMan->unk_60 = sub_02002100(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(CommClubTask_LeaveGroup);
     }
@@ -719,7 +725,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov7_0224ED14 = {
     NULL
 };
 
-static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov7_0224A438 (BmpList * param0, u32 param1, u8 param2)
 {
     u16 v0 = 0;
 
@@ -731,16 +737,16 @@ static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
     if (NULL != CommInfo_TrainerInfo(v0)) {
         StringTemplate_SetPlayerName(sCommClubMan->unk_50, 0, CommInfo_TrainerInfo(v0));
-        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00066, sCommClubMan->unk_00[1]);
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00066, sCommClubMan->strBuff[1]);
         
-        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[0], sCommClubMan->unk_00[1]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[0], 8, param2 * 16, 0, NULL);
+        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[0], sCommClubMan->strBuff[1]);
+        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[0], 8, param2 * 16, 0, NULL);
         
         StringTemplate_SetNumber(sCommClubMan->unk_50, 2, TrainerInfo_ID_LowHalf(CommInfo_TrainerInfo(v0)), 5, 2, 1);
-        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->unk_00[3]);
+        MessageLoader_GetStrbuf(sCommClubMan->msgLoader, pl_msg_00000353_00065, sCommClubMan->strBuff[3]);
         
-        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->unk_00[2], sCommClubMan->unk_00[3]);
-        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->unk_00[2], 9 * 8, param2 * 16, 0, NULL);
+        StringTemplate_Format(sCommClubMan->unk_50, sCommClubMan->strBuff[2], sCommClubMan->strBuff[3]);
+        PrintStringSimple(&sCommClubMan->unk_20, 0, sCommClubMan->strBuff[2], 9 * 8, param2 * 16, 0, NULL);
     }
 }
 
@@ -766,7 +772,7 @@ static void ov7_0224A53C (CommClubManager * man)
     SysTask_Start(CommClubMan_Run, man, 0);
     ov7_0224A5D0();
 
-    if (!sub_0201A7CC(&sCommClubMan->unk_30)) {
+    if (!BGL_WindowAdded(&sCommClubMan->unk_30)) {
         BGL_AddWindow(sCommClubMan->fieldSystem->unk_08, &sCommClubMan->unk_30, 3, 22, 2, 9, 4, 13, (1 + 17 * 6 * 2));
     }
 
@@ -848,9 +854,9 @@ static void ov7_0224A64C (CommClubManager * commClubMan)
     StringTemplate_SetNumber(sCommClubMan->unk_54, 0, playerCnt, 2, 5, 1);
     BGL_FillWindow(&sCommClubMan->unk_30, 15);
     
-    MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msg, sCommClubMan->unk_00[7]);
-    StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->unk_00[6], sCommClubMan->unk_00[7]);
-    PrintStringSimple(&sCommClubMan->unk_30, 0, sCommClubMan->unk_00[6], 2, 2, 0, NULL);
+    MessageLoader_GetStrbuf(sCommClubMan->msgLoader, msg, sCommClubMan->strBuff[7]);
+    StringTemplate_Format(sCommClubMan->unk_54, sCommClubMan->strBuff[6], sCommClubMan->strBuff[7]);
+    PrintStringSimple(&sCommClubMan->unk_30, 0, sCommClubMan->strBuff[6], 2, 2, 0, NULL);
 }
 
 static void CommClubMan_PrintPlayerContactMsg (int netId, CommClubManager * commClubMan)
@@ -893,7 +899,7 @@ static void CommClubMan_PrintPlayerContactMsg (int netId, CommClubManager * comm
     TrainerInfo * trainerInfo = CommInfo_TrainerInfo(netId);
 
     if (trainerInfo != NULL) {
-        StringTemplate_SetPlayerName(commClubMan->unk_58, 1, trainerInfo);
+        StringTemplate_SetPlayerName(commClubMan->strTempMsg, 1, trainerInfo);
     }
 
     CommClubMan_PrintMessage(sContactMsg[commClubMan->commType], TRUE);
@@ -917,7 +923,7 @@ static void ov7_0224A72C (SysTask * task, void * param1)
 
     ov7_0224A64C(v0);
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         int netId;
 
         sCommClubMan->unk_64 = sub_02013A04(5, 4);
@@ -980,7 +986,7 @@ static void ov7_0224A7D0 (SysTask * task, void * param1)
     if (CommSys_CheckError()) {
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
-        sCommClubMan->unk_88 = 3;
+        sCommClubMan->retCode = COMM_CLUB_RET_ERROR;
     } else {
         switch (v1) {
         case 0xffffffff:
@@ -1026,7 +1032,7 @@ static void ov7_0224A7D0 (SysTask * task, void * param1)
                     pl_msg_00000353_00000
                 };
 
-                commClubMan->unk_90 = CommInfo_CountReceived();
+                commClubMan->connectedCnt = CommInfo_CountReceived();
 
                 CommClubMan_PrintMessage(sGroupConfirmMsg[commClubMan->commType], FALSE);
                 CommClubMan_SetTask(ov7_0224AC48);
@@ -1054,7 +1060,7 @@ static void ov7_0224A97C (SysTask * task, void * param1)
         }
 
         if (commClubMan->commType == COMM_TYPE_CONTEST) {
-            for (v2 = 1; v2 < ov7_0224B3E8(); v2++) {
+            for (v2 = 1; v2 < CommClubMan_MaxPlayers(); v2++) {
                 if (CommSys_IsPlayerConnected(v2)) {
                     CommInfo_InitPlayer(v2);
                     sub_02036594(5, v2);
@@ -1089,10 +1095,10 @@ static void ov7_0224A97C (SysTask * task, void * param1)
         sub_02032E1C(commClubMan->unk_95);
         sub_02036594(2, commClubMan->unk_95);
 
-        if (ov7_0224B3E8() == CommInfo_CountReceived()) {
-            commClubMan->unk_90 = CommInfo_CountReceived();
+        if (CommClubMan_MaxPlayers() == CommInfo_CountReceived()) {
+            commClubMan->connectedCnt = CommInfo_CountReceived();
 
-            if (ov7_0224B3E8() > 2) {
+            if (CommClubMan_MaxPlayers() > 2) {
                 CommClubMan_SetTask(ov7_0224AC08);
             } else {
                 CommClubMan_DestroyList(task, commClubMan);
@@ -1104,7 +1110,7 @@ static void ov7_0224A97C (SysTask * task, void * param1)
         }
     } else if (v1 != 0xffffffff) {
         if (commClubMan->commType == COMM_TYPE_CONTEST) {
-            for (v2 = 1; v2 < ov7_0224B3E8(); v2++) {
+            for (v2 = 1; v2 < CommClubMan_MaxPlayers(); v2++) {
                 if (CommSys_IsPlayerConnected(v2)) {
                     CommInfo_InitPlayer(v2);
                     sub_02036594(5, v2);
@@ -1126,11 +1132,11 @@ static void CommClubTask_DifferentRegulation (SysTask * task, void * param1)
 {
     CommClubManager * commClubMan = (CommClubManager *)param1;
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             CommClubMan_DestroyList(task, commClubMan);
             CommClubMan_Disconnect();
-            sCommClubMan->unk_88 = 4;
+            sCommClubMan->retCode = 4;
         }
     }
 }
@@ -1142,7 +1148,7 @@ static void ov7_0224ABA4 (SysTask * task, void * param1)
 
     ov7_0224A64C(commClubMan);
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov7_0224A5D0();
             CommClubMan_SetTask(ov7_0224ABE0);
@@ -1157,7 +1163,7 @@ static void ov7_0224ABE0 (SysTask * task, void * param1)
 
     ov7_0224A64C(commClubMan);
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         CommClubMan_SetTask(ov7_0224A7D0);
     }
 }
@@ -1217,7 +1223,7 @@ static void ov7_0224AC48 (SysTask * task, void * param1)
     sub_02036994(0);
     sub_02001288(commClubMan->unk_5C);
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         commClubMan->unk_60 = sub_02002100(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(ov7_0224ACA4);
     }
@@ -1234,7 +1240,7 @@ static void ov7_0224ACA4 (SysTask * task, void * param1)
 
     v1 = sub_02002114(commClubMan->unk_60, 4);
 
-    if (CommSys_CheckError() || (CommSys_ConnectedCount() != commClubMan->unk_90)) {
+    if (CommSys_CheckError() || (CommSys_ConnectedCount() != commClubMan->connectedCnt)) {
         if (v1 == 0xffffffff) {
             sub_02002154(commClubMan->unk_60, 4);
         }
@@ -1251,13 +1257,13 @@ static void ov7_0224ACA4 (SysTask * task, void * param1)
             }
         }
 
-        sub_020364F0(10);
+        CommTiming_StartSync(10);
         CommClubMan_SetTask(ov7_0224AF2C);
     } else if (v1 != 0xffffffff) {
         sub_02036994(1);
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
-        sCommClubMan->unk_88 = 1;
+        sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
     }
 }
 
@@ -1315,9 +1321,9 @@ static void ov7_0224AD68 (SysTask * task, void * param1)
 
 static void ov7_0224ADD8 (SysTask * task, void * param1)
 {
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sCommClubMan->unk_88 = 1;
+            sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
             SysTask_Done(task);
         }
     }
@@ -1371,7 +1377,7 @@ static void ov7_0224AE10 (SysTask * task, void * param1)
     } else {
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
-        sCommClubMan->unk_88 = 1;
+        sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
     }
 }
 
@@ -1382,7 +1388,7 @@ static void ov7_0224AE78 (SysTask * task, void * param1)
     ov7_0224A64C(commClubMan);
     sub_02001288(commClubMan->unk_5C);
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         commClubMan->unk_60 = sub_02002100(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(ov7_0224AECC);
     }
@@ -1405,7 +1411,7 @@ static void ov7_0224AECC (SysTask * task, void * param1)
     if (v1 == 0) {
         CommClubMan_Disconnect();
         CommClubMan_DestroyList(task, commClubMan);
-        sCommClubMan->unk_88 = 1;
+        sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
     } else if (v1 != 0xffffffff) {
         ov7_0224A5D0();
         CommClubMan_SetTask(ov7_0224ABE0);
@@ -1417,13 +1423,13 @@ static void ov7_0224AF2C (SysTask * task, void * param1)
     CommClubManager * commClubMan = (CommClubManager *)param1;
     u32 v1 = 0xffffffff;
 
-    if (CommSys_CheckError() || (CommSys_ConnectedCount() != commClubMan->unk_90)) {
+    if (CommSys_CheckError() || (CommSys_ConnectedCount() != commClubMan->connectedCnt)) {
         CommClubMan_SetTask(ov7_0224AD68);
     } else {
         ov7_0224A64C(commClubMan);
         sub_02001288(commClubMan->unk_5C);
 
-        if (sub_02036540(10) && sub_02036450()) {
+        if (CommTiming_IsSyncState(10) && CommTool_IsInitialized()) {
             CommClubMan_DestroyList(task, commClubMan);
             ov7_0224B3A8(commClubMan);          
         }
@@ -1438,7 +1444,7 @@ static void ov7_0224AF84 (SysTask * task, void * param1)
     ov7_0224A64C(commClubMan);
     sub_02001288(commClubMan->unk_5C);
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         commClubMan->unk_60 = sub_02002100(sCommClubMan->fieldSystem->unk_08, &Unk_ov7_0224ED0C, 1024 - (18 + 12) - 9, 11, 4);
         CommClubMan_SetTask(ov7_0224A97C);
     }
@@ -1467,7 +1473,7 @@ static void CommClubMan_DestroyList (SysTask * task, CommClubManager * param1)
 
 static void ov7_0224B054 (CommClubManager * commClubMan)
 {
-    StringTemplate_SetPlayerName(commClubMan->unk_58, 1, CommInfo_TrainerInfo(1));
+    StringTemplate_SetPlayerName(commClubMan->strTempMsg, 1, CommInfo_TrainerInfo(1));
     CommClubMan_PrintMessage(pl_msg_00000353_00057, 1); //Reeplied "OK" to {}
 
     SysTask_Start(CommClubMan_Run, commClubMan, 0);
@@ -1476,64 +1482,64 @@ static void ov7_0224B054 (CommClubManager * commClubMan)
 
 static void ov7_0224B08C (CommClubManager * commClubMan)
 {
-    sub_020339AC(commClubMan->unk_8E, sCommClubMan->unk_7C);
-    StringTemplate_SetPlayerName(commClubMan->unk_58, 1, sCommClubMan->unk_7C);
+    sub_020339AC(commClubMan->connectIndex, sCommClubMan->unk_7C);
+    StringTemplate_SetPlayerName(commClubMan->strTempMsg, 1, sCommClubMan->unk_7C);
     CommClubMan_PrintMessage(pl_msg_00000353_00004, 1); //Replied, "OK"
 
-    commClubMan->unk_90 = CommSys_ConnectedCount();
+    commClubMan->connectedCnt = CommSys_ConnectedCount();
 
     SysTask_Start(CommClubMan_Run, commClubMan, 0);
     CommClubMan_SetTask(ov7_0224B0E8);
 
-    sCommClubMan->unk_96 = (30 * 3);
+    sCommClubMan->msgDelay = (30 * 3);
 }
 
 static void ov7_0224B0E8 (SysTask * task, void * param1)
 {
     CommClubManager * commClubMan = (CommClubManager *)param1;
 
-    if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() != commClubMan->unk_90)) {
-        CommClubMan_SetTask(ov7_0224B274);
+    if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() != commClubMan->connectedCnt)) {
+        CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
     } else if (ov7_0224B4E4() || CommSys_CheckError()) {
-        CommClubMan_SetTask(ov7_0224B274);
-    } else if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
-        sub_020364F0(10);
-        CommClubMan_SetTask(ov7_0224B14C);
+        CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
+    } else if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
+        CommTiming_StartSync(10);
+        CommClubMan_SetTask(CommClubTask_WaitForGroup);
     }
 }
 
-static void ov7_0224B14C (SysTask * task, void * param1)
+static void CommClubTask_WaitForGroup (SysTask * task, void * param1)
 {
     CommClubManager * commClubMan = (CommClubManager *)param1;
 
-    if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() != commClubMan->unk_90)) {
-        CommClubMan_SetTask(ov7_0224B274);
+    if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() != commClubMan->connectedCnt)) {
+        CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
     } else if (ov7_0224B4E4() || CommSys_CheckError()) {
-        CommClubMan_SetTask(ov7_0224B274);
+        CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
         return;
     } else if (!CommSys_IsPlayerConnected(0)) {
-        CommClubMan_SetTask(ov7_0224B274);
+        CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
         return;
-    } else if (sub_020365A8(0, 5) != -1) {
-        CommClubMan_SetTask(ov7_0224B274);
+    } else if (CommList_Get(0, 5) != -1) {
+        CommClubMan_SetTask(CommClubTask_ExitGuestRoom);
         return;
-    } else if (sub_02036540(10)) {
-        if (sub_02036450()) {
-            if (!sub_0205DA04(sCommClubMan->printMsgIndex)) {
-                sub_0201D730(sCommClubMan->printMsgIndex);
+    } else if (CommTiming_IsSyncState(10)) {
+        if (CommTool_IsInitialized()) {
+            if (!FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
+                PrintString_ForceStop(sCommClubMan->printMsgIndex);
             }
 
-            commClubMan->unk_90 = CommSys_ConnectedCount();
+            commClubMan->connectedCnt = CommSys_ConnectedCount();
             ov7_0224B3A8(commClubMan);
             SysTask_Done(task);
             return;
         }
     }
 
-    if (sCommClubMan->unk_96 != 0) {
-        sCommClubMan->unk_96--;
+    if (sCommClubMan->msgDelay != 0) {
+        sCommClubMan->msgDelay--;
 
-        if (sCommClubMan->unk_96 == 0) {
+        if (sCommClubMan->msgDelay == 0) {
             int sWaitingForGroupMsg[] = {
                 pl_msg_00000353_00000,
                 pl_msg_00000353_00000,
@@ -1580,33 +1586,33 @@ static void ov7_0224B14C (SysTask * task, void * param1)
     }
 }
 
-static void ov7_0224B274 (SysTask * task, void * param1)
+static void CommClubTask_ExitGuestRoom (SysTask * task, void * param1)
 {
     CommClubManager * commClubMan = (CommClubManager *)param1;
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         CommClubMan_PrintMessage(pl_msg_00000353_00000, 0);
-        CommClubMan_SetTask(ov7_0224B2A0);
+        CommClubMan_SetTask(CommClubTask_ExitGuestRoomEnd);
     }
 }
 
-static void ov7_0224B2A0 (SysTask * task, void * param1)
+static void CommClubTask_ExitGuestRoomEnd (SysTask * task, void * param1)
 {
     CommClubManager * commClubMan = (CommClubManager *)param1;
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             SysTask_Done(task);
             CommClubMan_Disconnect();
-            sCommClubMan->unk_88 = 1;
+            sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
         }
     }
 }
 
 static void CommClubMan_PlayerRefused (CommClubManager * commClubMan)
 {
-    sub_020339AC(commClubMan->unk_8E, sCommClubMan->unk_7C);
-    StringTemplate_SetPlayerName(commClubMan->unk_58, 1, sCommClubMan->unk_7C);
+    sub_020339AC(commClubMan->connectIndex, sCommClubMan->unk_7C);
+    StringTemplate_SetPlayerName(commClubMan->strTempMsg, 1, sCommClubMan->unk_7C);
 
     CommClubMan_PrintMessage(pl_msg_00000353_00005, 1); //{Player Name} refused...
 
@@ -1618,7 +1624,7 @@ static void ov7_0224B31C (SysTask * task, void * param1)
 {
     CommClubManager * commClubMan = (CommClubManager *)param1;
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         FieldCommMan_ReconnectBattleClient();
         CommClubMan_PrintChooseJoinMsg(commClubMan);
         SysTask_Done(task);
@@ -1640,7 +1646,7 @@ static void ov7_0224B370 (SysTask * task, void * param1)
 {
     CommClubManager * commClubMan = (CommClubManager *)param1;
 
-    if (sub_0205DA04(sCommClubMan->printMsgIndex)) {
+    if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             CommClubMan_PrintChooseJoinMsg(commClubMan);
             SysTask_Done(task);
@@ -1651,7 +1657,7 @@ static void ov7_0224B370 (SysTask * task, void * param1)
 static void ov7_0224B3A8 (CommClubManager * commClubMan)
 {
     sub_02036994(0);
-    sCommClubMan->unk_88 = 2;
+    sCommClubMan->retCode = 2;
     CommMan_SetErrorHandling(1, 1);
     CommInfo_SendBattleRegulation();
     sub_02033EA8(1);
@@ -1659,12 +1665,12 @@ static void ov7_0224B3A8 (CommClubManager * commClubMan)
 
 int CommClubMan_MinPlayers (void)
 {
-    return sub_02036158(sCommClubMan->commType);
+    return CommType_MinPlayers(sCommClubMan->commType);
 }
 
-static int ov7_0224B3E8 (void)
+static int CommClubMan_MaxPlayers (void)
 {
-    return sub_02036148(sCommClubMan->commType);
+    return CommType_MaxPlayers(sCommClubMan->commType);
 }
 
 static int CommClubMan_Regulation (void)
@@ -1694,7 +1700,7 @@ void ov7_0224B450 (void)
 
 u32 ov7_0224B460 (void)
 {
-    u32 v0 = sCommClubMan->unk_88;
+    u32 v0 = sCommClubMan->retCode;
 
     if (0 != v0) {
         CommClubMan_Delete();
@@ -1725,7 +1731,7 @@ void ov7_0224B4B8 (void)
 
 u32 CommClub_CheckWindowOpenClient (void)
 {
-    u32 ret = sCommClubMan->unk_88;
+    u32 ret = sCommClubMan->retCode;
 
     if (0 != ret) {
         CommClubMan_Delete();

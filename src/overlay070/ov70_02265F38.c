@@ -732,7 +732,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         }
 
         if (v0->unk_05 == 0) {
-            sub_020364F0(v0->unk_06);
+            CommTiming_StartSync(v0->unk_06);
             ov70_02262E88(param0, 27);
         }
         break;
@@ -740,11 +740,11 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         v0->unk_0A++;
 
         if (v0->unk_0A >= (5 * 30)) {
-            sub_020364F0(v0->unk_06);
+            CommTiming_StartSync(v0->unk_06);
             v0->unk_0A = 0;
         }
 
-        if (sub_02036540(v0->unk_06)) {
+        if (CommTiming_IsSyncState(v0->unk_06)) {
             ov70_02262E88(param0, v0->unk_04);
         }
         break;

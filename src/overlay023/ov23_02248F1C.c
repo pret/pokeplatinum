@@ -37,7 +37,7 @@
 #include "communication_system.h"
 #include "comm_player_manager.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248F1C.h"
 
@@ -170,7 +170,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         sub_020219F8(v0->unk_1BC);
         break;
     case 6:
-        if (sub_0205DA04(v0->unk_404)) {
+        if (FieldMessage_FinishedPrinting(v0->unk_404)) {
             v0->unk_00++;
         }
         break;
@@ -434,7 +434,7 @@ static void ov23_0224944C (BGL * param0, Window * param1)
 
     sub_0205D8CC(4, 0);
     sub_02019690(7, 32, 0, 4);
-    sub_0205D8F4(param0, param1, 7);
+    FieldMessage_AddWindow(param0, param1, 7);
     BGL_FillWindow(param1, 0);
     sub_02006E84(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
     sub_0200F338(1);
@@ -484,7 +484,7 @@ static void ov23_0224966C (BGL * param0, Window * param1, int * param2, int * pa
         }
         break;
     case 1:
-        if (sub_0205DA04(*param2)) {
+        if (FieldMessage_FinishedPrinting(*param2)) {
             *param3 = 2;
             *param4 = 0;
         }

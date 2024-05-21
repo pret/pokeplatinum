@@ -41,7 +41,7 @@ typedef struct {
     Strbuf* unk_124[12];
     ResourceMetadata * unk_154;
     UIControlData * unk_158;
-    UnkStruct_0200112C * unk_15C;
+    BmpList * unk_15C;
     ResourceMetadata * unk_160;
     Strbuf* unk_164[165];
     Strbuf* unk_3F8;

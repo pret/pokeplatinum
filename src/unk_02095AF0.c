@@ -26,7 +26,7 @@ static void sub_02095C98(int param0, int param1, void * param2, void * param3);
 static int sub_02095B24(void);
 static int sub_02095B28(void);
 
-static const UnkStruct_02039A58 Unk_020F58FC[] = {
+static const CommCmdTable Unk_020F58FC[] = {
     {NULL, sub_0203294C, NULL},
     {sub_02095B2C, sub_0203294C, NULL},
     {ov17_02252CEC, sub_02032944, sub_02095B04},
@@ -47,8 +47,8 @@ static const UnkStruct_02039A58 Unk_020F58FC[] = {
 
 void sub_02095AF0 (void * param0)
 {
-    int v0 = sizeof(Unk_020F58FC) / sizeof(UnkStruct_02039A58);
-    sub_02032798(Unk_020F58FC, v0, param0);
+    int v0 = sizeof(Unk_020F58FC) / sizeof(CommCmdTable);
+    CommCmd_Init(Unk_020F58FC, v0, param0);
 }
 
 static u8 * sub_02095B04 (int param0, void * param1, int param2)
@@ -149,7 +149,7 @@ BOOL sub_02095BEC (UnkStruct_02095C48 * param0, UnkStruct_02029C88 ** param1)
         MI_CpuCopy8(param1[v4], &v0[v1 * v4], v1);
     }
 
-    if (sub_0203597C(33, v0, v2) == 1) {
+    if (CommSys_SendDataHuge(33, v0, v2) == 1) {
         v3 = 1;
     } else {
         v3 = 0;

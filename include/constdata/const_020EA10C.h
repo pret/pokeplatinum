@@ -2,6 +2,6 @@
 #define POKEPLATINUM_CONST_020EA10C_H
 
 
-extern const OverlayManagerTemplate Unk_020EA10C;
+extern const OverlayManagerTemplate gFieldSystemNewGameTemplate;
 
 #endif // POKEPLATINUM_CONST_020EA10C_H

@@ -9,7 +9,7 @@
 
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
@@ -82,7 +82,7 @@ static void sub_0204EE90 (ScriptContext * param0, u16 param1, Pokemon * param2, 
 
     v1->unk_00 = param2;
     v1->unk_04 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
-    v1->unk_08 = sub_02025E44(param0->fieldSys->saveData);
+    v1->unk_08 = SaveData_Options(param0->fieldSys->saveData);
     v1->unk_0C = param3;
     v1->unk_15 = param1;
 

@@ -84,7 +84,7 @@ void NitroMain (void)
     Unk_02101D28.unk_10.unk_00 = -1;
     Unk_02101D28.unk_10.unk_08 = SaveData_Init();
 
-    sub_02003B60(GetChatotCryDataFromSave(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
+    sub_02003B60(GetChatotCryDataFromSave(Unk_02101D28.unk_10.unk_08), SaveData_Options(Unk_02101D28.unk_10.unk_08));
     sub_02022844();
 
     if (sub_02038FFC(3) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {
@@ -130,7 +130,7 @@ void NitroMain (void)
             }
         }
 
-        if (sub_020349EC()) {
+        if (CommSys_Update()) {
             CheckHeapCanary();
             sub_02000E54();
             sub_0201CDD4(gCoreSys.unk_18);
@@ -213,7 +213,7 @@ void sub_02000EC4 (FSOverlayID param0, const OverlayManagerTemplate * param1)
 
 static void WaitFrame (void)
 {
-    sub_020349EC();
+    CommSys_Update();
 
     OS_WaitIrq(1, OS_IE_V_BLANK);
 

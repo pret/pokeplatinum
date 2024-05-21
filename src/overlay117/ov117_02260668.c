@@ -332,11 +332,11 @@ int ov117_0226098C (OverlayManager * param0, int * param1)
         }
         break;
     case 1:
-        sub_020364F0(211);
+        CommTiming_StartSync(211);
         (*param1)++;
         break;
     case 2:
-        if (sub_02036540(211) == 1) {
+        if (CommTiming_IsSyncState(211) == 1) {
             (*param1)++;
         }
         break;
@@ -1783,7 +1783,7 @@ static BOOL ov117_022623B0 (UnkStruct_ov117_02261280 * param0)
     }
 
     if (v0 == 1) {
-        sub_020364F0(param0->unk_2FD8);
+        CommTiming_StartSync(param0->unk_2FD8);
 
         if (ov117_02261FF4(param0) == 1) {
             param0->unk_2FD4 = 7;
@@ -1807,7 +1807,7 @@ static int ov117_02262448 (UnkStruct_ov117_02261280 * param0, int param1)
         return 0;
     }
 
-    if (sub_02036540(param0->unk_2FD8) == 1) {
+    if (CommTiming_IsSyncState(param0->unk_2FD8) == 1) {
         param0->unk_2FD4 = 0;
         return 1;
     }

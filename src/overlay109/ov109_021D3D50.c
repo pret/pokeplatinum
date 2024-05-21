@@ -1203,7 +1203,7 @@ static int ov109_021D4F28 (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int ov109_021D4F4C (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    sub_020364F0(202);
+    CommTiming_StartSync(202);
     param0->unk_3B8 = 16;
 
     ov109_021D48D0(param0);
@@ -1212,7 +1212,7 @@ static int ov109_021D4F4C (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static int ov109_021D4F6C (UnkStruct_ov109_021D5140 * param0, int param1)
 {
-    if (sub_02036540(202)) {
+    if (CommTiming_IsSyncState(202)) {
         CommMan_SetErrorHandling(0, 0);
         sub_0200F174(0, 16, 16, 0x0, 16, 1, 95);
         param1 = 3;
@@ -1247,7 +1247,7 @@ static int ov109_021D4FD8 (UnkStruct_ov109_021D5140 * param0, int param1)
 static int ov109_021D4FFC (UnkStruct_ov109_021D5140 * param0, int param1)
 {
     if ((param0->unk_5C != 0xff) && (ov109_021D5638(param0->unk_5C) == 0)) {
-        sub_0201D730(param0->unk_5C);
+        PrintString_ForceStop(param0->unk_5C);
     }
 
     ov109_021D55A8(param0, 15, 1);
@@ -1329,7 +1329,7 @@ void ov109_021D5140 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
         break;
     case 25:
         if (ov109_021D5638(param0->unk_5C) == 0) {
-            sub_0201D730(param0->unk_5C);
+            PrintString_ForceStop(param0->unk_5C);
         }
 
         ov109_021D55A8(param0, 12, 0);
@@ -1366,7 +1366,7 @@ void ov109_021D5140 (UnkStruct_ov109_021D5140 * param0, int param1, u8 param2)
         break;
     case 31:
         if (ov109_021D5638(param0->unk_5C) == 0) {
-            sub_0201D730(param0->unk_5C);
+            PrintString_ForceStop(param0->unk_5C);
         }
 
         if (param0->unk_394 != NULL) {

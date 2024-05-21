@@ -291,7 +291,7 @@ BOOL ov104_0222EE60 (UnkStruct_ov104_0223B5C0 * param0)
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);
 
-    if (sub_0203597C(38, param0->unk_784, v3) == 1) {
+    if (CommSys_SendDataHuge(38, param0->unk_784, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1088,7 +1088,7 @@ BOOL ov104_0222F758 (UnkStruct_ov104_0223BA10 * param0)
         MI_CpuCopy8(v6, &param0->unk_410[v0 * v4], v4);
     }
 
-    if (sub_0203597C(48, param0->unk_410, v3) == 1) {
+    if (CommSys_SendDataHuge(48, param0->unk_410, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;
@@ -1387,7 +1387,7 @@ BOOL ov104_0222FAD0 (UnkStruct_ov104_0223BFFC * param0)
         MI_CpuCopy8(v6, &param0->unk_474[v0 * v4], v4);
     }
 
-    if (sub_0203597C(70, param0->unk_474, v3) == 1) {
+    if (CommSys_SendDataHuge(70, param0->unk_474, v3) == 1) {
         v2 = 1;
     } else {
         v2 = 0;

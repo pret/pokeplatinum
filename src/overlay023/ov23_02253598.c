@@ -46,7 +46,7 @@ typedef struct {
     void * unk_04;
     Window unk_08;
     ResourceMetadata * unk_18;
-    UnkStruct_0200112C * unk_1C;
+    BmpList * unk_1C;
     UnkFuncPtr_ov23_0224DCB8 unk_20;
     u16 unk_24;
     int unk_28;

@@ -11,9 +11,9 @@
 #include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021E1154.h"
 
@@ -23,7 +23,7 @@ typedef struct {
     int unk_08;
     FieldSystem * unk_0C;
     PlayerAvatar * unk_10;
-    LocalMapObject * unk_14;
+    MapObject * unk_14;
 } UnkStruct_ov5_021E11B0;
 
 static void ov5_021E11B0(FieldSystem * param0, PlayerAvatar * param1, int param2);
@@ -33,7 +33,7 @@ static void ov5_021E1350(void * param0);
 
 int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * param1, int param2)
 {
-    LocalMapObject * v0 = Player_LocalMapObject(param1);
+    MapObject * v0 = Player_MapObject(param1);
     u8 v1 = sub_02062BE8(v0);
     int v2;
 
@@ -84,12 +84,12 @@ static int ov5_021E11E0 (int param0)
 static BOOL ov5_021E120C (TaskManager * param0)
 {
     UnkStruct_ov5_021E11B0 * v0 = TaskManager_Environment(param0);
-    LocalMapObject * v1 = Player_LocalMapObject(v0->unk_10);
+    MapObject * v1 = Player_MapObject(v0->unk_10);
     u8 v2 = sub_02062BE8(v1);
 
     switch (v0->unk_08) {
     case 0:
-        sub_020628BC(v1, (1 << 8));
+        MapObject_SetStatusFlagOn(v1, (1 << 8));
         v0->unk_08++;
         break;
     case 1:
@@ -97,7 +97,7 @@ static BOOL ov5_021E120C (TaskManager * param0)
             int v3 = 0xc;
 
             v3 = sub_02065838(v0->unk_00, v3);
-            sub_02061550(v0->unk_10, v3, 1);
+            PlayerAvatar_SetAnimationCode(v0->unk_10, v3, 1);
             Player_SetDir(v0->unk_10, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;
@@ -136,8 +136,8 @@ static BOOL ov5_021E120C (TaskManager * param0)
                 if (v4 == 0) {
                     v0->unk_08 = 1;
                 } else {
-                    sub_020628C4(v1, (1 << 7));
-                    sub_020628C4(v1, (1 << 8));
+                    MapObject_SetStatusFlagOff(v1, (1 << 7));
+                    MapObject_SetStatusFlagOff(v1, (1 << 8));
                     Player_SetDir(v0->unk_10, v0->unk_00);
                     ov5_021E1350(v0);
                     sub_020057A4(1624, 0);

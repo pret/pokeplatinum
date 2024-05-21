@@ -32,9 +32,9 @@ struct UnkStruct_ov65_0222EBE0_t {
     int unk_4C[32];
     int unk_CC[32];
     ResourceMetadata * unk_14C;
-    UnkStruct_0200112C * unk_150;
+    BmpList * unk_150;
     ResourceMetadata * unk_154;
-    UnkStruct_0200112C * unk_158;
+    BmpList * unk_158;
     BGL * unk_15C;
     SaveData * unk_160;
     StringTemplate * unk_164;

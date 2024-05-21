@@ -705,7 +705,7 @@ int ov69_0225C700 (OverlayManager * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_ov69_0225CE64));
 
     v0->unk_0C = sub_0202C878(v1->unk_04);
-    v0->unk_10 = sub_02025E44(v1->unk_04);
+    v0->unk_10 = SaveData_Options(v1->unk_04);
     v0->unk_14 = sub_0202C8C0(v0->unk_0C);
     v0->unk_18 = sub_0202C8C4(v0->unk_0C);
     v0->unk_1C = v1->unk_08;
@@ -1961,7 +1961,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
     {
         Options * v0;
 
-        v0 = sub_02025E44(param3);
+        v0 = SaveData_Options(param3);
         param0->unk_08 = Options_TextFrameDelay(v0);
     }
 
@@ -1978,7 +1978,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
 static void ov69_0225DDC8 (UnkStruct_ov69_0225DDC8 * param0)
 {
     if (Message_Printing(param0->unk_04) != 0) {
-        sub_0201D730(param0->unk_04);
+        PrintString_ForceStop(param0->unk_04);
     }
 
     Strbuf_Free(param0->unk_0C);

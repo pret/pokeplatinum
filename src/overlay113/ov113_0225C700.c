@@ -520,7 +520,7 @@ int ov113_0225CA04 (OverlayManager * param0, int * param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(sub_02025E44(v0->unk_04)), NULL);
+        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -570,7 +570,7 @@ int ov113_0225CA04 (OverlayManager * param0, int * param1)
         BGL_FillWindow(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(sub_02025E44(v0->unk_04)), NULL);
+        v0->unk_C8 = PrintStringSimple(&v0->unk_B4, 1, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_Options(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:
@@ -921,7 +921,7 @@ static void ov113_0225D160 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
 
     {
         int v2;
-        v2 = Options_Frame(sub_02025E44(param0->unk_04));
+        v2 = Options_Frame(SaveData_Options(param0->unk_04));
 
         PaletteSys_LoadPalette(param0->unk_0C, 38, sub_0200DD08(v2), 118, 0, 0x20, 14 * 16);
         sub_0200DD0C(param0->unk_08, 1, 1, 14, v2, 118);

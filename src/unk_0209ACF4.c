@@ -102,17 +102,17 @@ static void sub_0209AD84 (UnkStruct_0209AD84 * param0)
 
 static void sub_0209ADBC (UnkStruct_0209AD84 * param0)
 {
-    if (sub_0201A7CC(&(param0->unk_18))) {
+    if (BGL_WindowAdded(&(param0->unk_18))) {
         BGL_DeleteWindow(&param0->unk_18);
         Window_Init(&(param0->unk_18));
     }
 
-    if (sub_0201A7CC(&(param0->unk_28))) {
+    if (BGL_WindowAdded(&(param0->unk_28))) {
         BGL_DeleteWindow(&param0->unk_28);
         Window_Init(&(param0->unk_28));
     }
 
-    if (sub_0201A7CC(&(param0->unk_38))) {
+    if (BGL_WindowAdded(&(param0->unk_38))) {
         BGL_DeleteWindow(&param0->unk_38);
         Window_Init(&(param0->unk_38));
     }
@@ -270,27 +270,27 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
         MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_08);
     }
 
-    if (sub_0201A7CC(v0) == 0) {
-        sub_0205D8F4(param0->unk_00->unk_08, v0, 3);
-        sub_0205D944(v0, sub_02025E44(param0->unk_00->saveData));
+    if (BGL_WindowAdded(v0) == 0) {
+        FieldMessage_AddWindow(param0->unk_00->unk_08, v0, 3);
+        FieldMessage_DrawWindow(v0, SaveData_Options(param0->unk_00->saveData));
     } else {
         sub_0205D988(v0);
         sub_0200E060(v0, 0, 1024 - (18 + 12), 10);
     }
 
-    param0->unk_58 = sub_0205D994(v0, param0->unk_08, sub_02025E44(param0->unk_00->saveData), 1);
+    param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_Options(param0->unk_00->saveData), 1);
 }
 
 static BOOL sub_0209B100 (UnkStruct_0209AD84 * param0)
 {
-    return sub_0205DA04(param0->unk_58);
+    return FieldMessage_FinishedPrinting(param0->unk_58);
 }
 
 static void sub_0209B110 (UnkStruct_0209AD84 * param0)
 {
     Window * v0 = &(param0->unk_18);
 
-    if (sub_0201A7CC(v0)) {
+    if (BGL_WindowAdded(v0)) {
         sub_0200E084(v0, 0);
     }
 }
@@ -299,7 +299,7 @@ static void sub_0209B12C (UnkStruct_0209AD84 * param0)
 {
     Window * v0 = &(param0->unk_28);
 
-    if (sub_0201A7CC(v0) == 0) {
+    if (BGL_WindowAdded(v0) == 0) {
         int v1;
 
         sub_0200DAA4(param0->unk_00->unk_08, 3, 155, 11, 0, 32);
@@ -331,7 +331,7 @@ static void sub_0209B1D8 (UnkStruct_0209AD84 * param0)
 {
     Window * v0 = &(param0->unk_38);
 
-    if (sub_0201A7CC(v0) == 0) {
+    if (BGL_WindowAdded(v0) == 0) {
         int v1;
 
         sub_0200DAA4(param0->unk_00->unk_08, 3, 155, 11, 0, 32);

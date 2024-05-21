@@ -38,7 +38,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
     Window unk_04;
     Window unk_14;
     ResourceMetadata * unk_24;
-    UnkStruct_0200112C * unk_28;
+    BmpList * unk_28;
     Strbuf* unk_2C;
     u16 * unk_30;
     u16 * unk_34;
@@ -54,7 +54,7 @@ typedef struct UnkStruct_ov23_02254594_t {
     Window unk_18;
     ResourceMetadata * unk_28;
     UnkStruct_ov23_02248D20 * unk_2C;
-    UnkStruct_0200112C * unk_30;
+    BmpList * unk_30;
     Strbuf* unk_34;
     u16 * unk_38;
     u16 * unk_3C;
@@ -144,7 +144,7 @@ BOOL ov23_02254318 (UnkStruct_ov23_022542D8 * param0)
     return 0;
 }
 
-static void ov23_02254350 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_02254350 (BmpList * param0, u32 param1, u8 param2)
 {
     const int v0[4] = {
         5, 6, 7, 8,
@@ -256,7 +256,7 @@ static void ov23_0225451C (UnkStruct_ov23_022542D8 * param0)
     sub_02013A3C(param0->unk_24);
 }
 
-static void ov23_02254564 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_02254564 (BmpList * param0, u32 param1, u8 param2)
 {
     u8 v0;
 
@@ -364,7 +364,7 @@ static void ov23_0225461C (UnkStruct_ov23_02254594 * param0)
     return;
 }
 
-static void ov23_022546A0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_022546A0 (BmpList * param0, u32 param1, u8 param2)
 {
     int v0;
     UndergroundData * v1;

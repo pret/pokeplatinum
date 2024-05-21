@@ -8,10 +8,10 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-void sub_0203E880(FieldSystem * param0, u16 param1, LocalMapObject * param2);
-void sub_0203E8B0(FieldSystem * param0, LocalMapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7);
-void sub_0203E8E0(TaskManager * param0, u16 param1, LocalMapObject * param2, void * param3);
-void sub_0203E918(TaskManager * param0, u16 param1, LocalMapObject * param2);
+void sub_0203E880(FieldSystem * param0, u16 param1, MapObject * param2);
+void sub_0203E8B0(FieldSystem * param0, MapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7);
+void sub_0203E8E0(TaskManager * param0, u16 param1, MapObject * param2, void * param3);
+void sub_0203E918(TaskManager * param0, u16 param1, MapObject * param2);
 ScriptContext * sub_0203EAB8(FieldSystem * param0, u16 param1);
 void * sub_0203EF60(UnkStruct_0203EF60 * param0, u32 param1);
 void * sub_0203F098(FieldSystem * param0, u32 param1);

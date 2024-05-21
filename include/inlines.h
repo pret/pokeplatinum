@@ -132,7 +132,7 @@ static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
 static inline void inline_ov47_0225621C_sub (FieldSystem * param0, int * param1, int * param2)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
-    UnkStruct_02049FA8 * v1 = sub_0203A72C(v0);
+    Location * v1 = sub_0203A72C(v0);
 
     if (MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00)) {
         *param1 = param0->unk_1C->unk_08;
@@ -150,7 +150,7 @@ static inline void inline_ov47_0225621C (FieldSystem * param0, int * param1, int
     *param2 /= 32;
 }
 
-static inline void inline_02049FA8 (UnkStruct_02049FA8 * param0, int param1, int param2, int param3, int param4, int param5)
+static inline void inline_02049FA8 (Location * param0, int param1, int param2, int param3, int param4, int param5)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;

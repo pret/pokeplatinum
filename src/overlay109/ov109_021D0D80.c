@@ -718,14 +718,14 @@ static int ov109_021D1124 (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D1150 (UnkStruct_ov109_021D0F70 * param0)
 {
-    sub_020364F0(202);
+    CommTiming_StartSync(202);
     param0->unk_00 = 11;
     return 0;
 }
 
 static int ov109_021D1164 (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_02036540(202)) {
+    if (CommTiming_IsSyncState(202)) {
         param0->unk_00 = 12;
     }
 
@@ -747,7 +747,7 @@ static int ov109_021D11A0 (UnkStruct_ov109_021D0F70 * param0)
     u32 v1;
 
     v1 = (u32)param0->unk_24;
-    v0 = sub_0203597C(131, (void *)v1, (236 * 6 + 4 * 2));
+    v0 = CommSys_SendDataHuge(131, (void *)v1, (236 * 6 + 4 * 2));
 
     if (v0) {
         param0->unk_00 = 14;
@@ -900,14 +900,14 @@ static int ov109_021D13BC (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D13D8 (UnkStruct_ov109_021D0F70 * param0)
 {
-    sub_020364F0(202);
+    CommTiming_StartSync(202);
     param0->unk_00 = 23;
     return 0;
 }
 
 static int ov109_021D13EC (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_02036540(202)) {
+    if (CommTiming_IsSyncState(202)) {
         param0->unk_00 = 24;
     }
 
@@ -1147,14 +1147,14 @@ static int ov109_021D16A4 (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D1720 (UnkStruct_ov109_021D0F70 * param0)
 {
-    sub_020364F0(202);
+    CommTiming_StartSync(202);
     param0->unk_00 = 33;
     return 0;
 }
 
 static int ov109_021D1734 (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_02036540(202)) {
+    if (CommTiming_IsSyncState(202)) {
         if (CommSys_CurNetId() == 0) {
             param0->unk_00 = 34;
         } else {
@@ -1365,7 +1365,7 @@ static int ov109_021D1A14 (UnkStruct_ov109_021D0F70 * param0)
     sub_0202CF28(param0->unk_CC->unk_14.unk_14, (((70 + 1)) + 48));
     sub_0202CFEC(param0->unk_CC->unk_14.unk_14, 45);
     ov109_021D2634(param0, 11);
-    sub_020364F0(202);
+    CommTiming_StartSync(202);
 
     gCoreSys.inhibitReset = 1;
     param0->unk_00 = 44;
@@ -1375,7 +1375,7 @@ static int ov109_021D1A14 (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D1A6C (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_02036540(202)) {
+    if (CommTiming_IsSyncState(202)) {
         ov109_021D3B70(param0, param0->unk_28->unk_0C);
         sub_02038ED4(&param0->unk_04);
         param0->unk_DC8 = sub_0200E7FC(&param0->unk_C9C.unk_0C[0], (1 + 9));
@@ -1423,7 +1423,7 @@ static int ov109_021D1AF0 (UnkStruct_ov109_021D0F70 * param0)
 static int ov109_021D1B0C (UnkStruct_ov109_021D0F70 * param0)
 {
     if (param0->unk_18 == 0) {
-        sub_020364F0(202);
+        CommTiming_StartSync(202);
     }
 
     ov109_021D2634(param0, 10);
@@ -1435,7 +1435,7 @@ static int ov109_021D1B0C (UnkStruct_ov109_021D0F70 * param0)
 static int ov109_021D1B2C (UnkStruct_ov109_021D0F70 * param0)
 {
     if (param0->unk_18 == 0) {
-        if (sub_02036540(202)) {
+        if (CommTiming_IsSyncState(202)) {
             CommMan_SetErrorHandling(0, 0);
             sub_02037B58(1);
             sub_02036AC4();

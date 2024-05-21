@@ -36,7 +36,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_0203909C.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
 #include "unk_0207D3B8.h"
@@ -44,7 +44,7 @@
 
 typedef struct {
     ResourceMetadata * unk_00;
-    UnkStruct_0200112C * unk_04;
+    BmpList * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
     Window unk_10;
@@ -64,7 +64,7 @@ typedef struct {
 
 static void ov5_021EAE78(UnkStruct_ov5_021EAE78 * param0, int param1);
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 * param0);
-static void ov5_021EAF90(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov5_021EAF90(BmpList * param0, u32 param1, u8 param2);
 
 static BOOL ov5_021EA874 (UnkStruct_ov5_021EAE78 * param0)
 {
@@ -78,7 +78,7 @@ static BOOL ov5_021EA874 (UnkStruct_ov5_021EAE78 * param0)
 
     param0->unk_8C = 0;
 
-    sub_0200DD0C(param0->unk_30->unk_08, 3, (512 - (18 + 12)), 10, Options_Frame(sub_02025E44(param0->unk_34)), 4);
+    sub_0200DD0C(param0->unk_30->unk_08, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
     sub_0200DAA4(param0->unk_30->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
     param0->unk_48 = 1;
@@ -438,16 +438,16 @@ static BOOL ov5_021EADB4 (TaskManager * param0)
 
 static void ov5_021EAE78 (UnkStruct_ov5_021EAE78 * param0, int param1)
 {
-    if (sub_0201A7CC(&param0->unk_10)) {
+    if (BGL_WindowAdded(&param0->unk_10)) {
         BGL_DeleteWindow(&param0->unk_10);
     }
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
     StringTemplate_Format(param0->unk_38, param0->unk_0C, param0->unk_08);
-    sub_0205D8F4(param0->unk_30->unk_08, &param0->unk_10, 3);
-    sub_0205D944(&param0->unk_10, sub_02025E44(param0->unk_30->saveData));
+    FieldMessage_AddWindow(param0->unk_30->unk_08, &param0->unk_10, 3);
+    FieldMessage_DrawWindow(&param0->unk_10, SaveData_Options(param0->unk_30->saveData));
 
-    param0->unk_40 = sub_0205D994(&param0->unk_10, param0->unk_0C, sub_02025E44(param0->unk_30->saveData), 1);
+    param0->unk_40 = FieldMessage_Print(&param0->unk_10, param0->unk_0C, SaveData_Options(param0->unk_30->saveData), 1);
 }
 
 static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
@@ -467,7 +467,7 @@ static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
 
-    if (sub_0201A7CC(&param0->unk_10)) {
+    if (BGL_WindowAdded(&param0->unk_10)) {
         BGL_DeleteWindow(&param0->unk_10);
     }
 }
@@ -491,7 +491,7 @@ void ov5_021EAF50 (FieldSystem * param0)
     }
 }
 
-static void ov5_021EAF90 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov5_021EAF90 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

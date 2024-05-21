@@ -21,7 +21,7 @@
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_02050A74.h"
 #include "comm_player_manager.h"
@@ -36,9 +36,9 @@
 static void FieldCommMan_RunTask(SysTask * param0, void * param1);
 static void FieldCommMan_SetTask(FieldCommTask param0, int param1);
 static void Task_StartBattleServer(void);
-static void sub_02059920(void);
+static void Task_ServerWait(void);
 static void Task_StartBattleClient(void);
-static void sub_02059940(void);
+static void Task_ClientWait(void);
 static void Task_ConnectBattleClient(void);
 static void sub_02059964(void);
 static void sub_02059980(void);
@@ -79,7 +79,7 @@ void FieldCommMan_Init (FieldSystem * fieldSys)
         return;
     }
 
-    sub_02099514((void *)fieldSys);
+    CommFieldCmd_Init((void *)fieldSys);
 
     sFieldCommMan = (FieldCommunicationManager *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(FieldCommunicationManager));
     MI_CpuFill8(sFieldCommMan, 0, sizeof(FieldCommunicationManager));
@@ -162,27 +162,27 @@ void FieldCommMan_EnterBattleRoom (FieldSystem * fieldSys)
 
     if (sFieldCommMan == NULL) {
         FieldCommMan_Init(fieldSys);
-        sFieldCommMan->unk_42 = 1;
+        sFieldCommMan->isReturningFromBattle = TRUE;
     } else {
-        sFieldCommMan->unk_42 = 0;
+        sFieldCommMan->isReturningFromBattle = FALSE;
     }
 
     sFieldCommMan->unk_43 = 0;
 
     {
-        int v0, v1 = CommSys_CurNetId();
-        TrainerInfo * v2 = CommInfo_TrainerInfo(CommSys_CurNetId());
+        int netJd, netId = CommSys_CurNetId();
+        CommInfo_TrainerInfo(CommSys_CurNetId());
 
-        for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
-            if (sFieldCommMan->trainerCard[v0] == NULL) {
-                sFieldCommMan->trainerCard[v0] = Heap_AllocFromHeap(0, sizeof(TrainerCard));
+        for (netJd = 0; netJd < CommSys_ConnectedCount(); netJd++) {
+            if (sFieldCommMan->trainerCard[netJd] == NULL) {
+                sFieldCommMan->trainerCard[netJd] = Heap_AllocFromHeap(0, sizeof(TrainerCard));
             }
         }
 
-        sub_02071D40(0, 0, 0, 0xff, sFieldCommMan->fieldSys, sFieldCommMan->trainerCard[v1]);
+        sub_02071D40(0, 0, 0, 0xff, sFieldCommMan->fieldSys, sFieldCommMan->trainerCard[netId]);
     }
 
-    sub_020364F0(95);
+    CommTiming_StartSync(95);
     FieldCommMan_SetTask(FieldCommTask_StartCopyTrainerCard, 0);
 }
 
@@ -202,7 +202,7 @@ void sub_020598A0 (void)
         return;
     }
 
-    sub_020364F0(91);
+    CommTiming_StartSync(91);
     FieldCommMan_SetTask(sub_0205A018, 5);
 }
 
@@ -221,10 +221,10 @@ void FieldCommMan_RunTask (SysTask * task, void * param1)
     }
 }
 
-static void FieldCommMan_SetTask (FieldCommTask param0, int param1)
+static void FieldCommMan_SetTask (FieldCommTask task, int time)
 {
-    sFieldCommMan->task = param0;
-    sFieldCommMan->timer = param1;
+    sFieldCommMan->task = task;
+    sFieldCommMan->timer = time;
 }
 
 static void Task_StartBattleServer (void)
@@ -236,10 +236,10 @@ static void Task_StartBattleServer (void)
     ov7_0224B4B8();
 
     CommInfo_SendBattleRegulation();
-    FieldCommMan_SetTask(sub_02059920, 0);
+    FieldCommMan_SetTask(Task_ServerWait, 0);
 }
 
-static void sub_02059920 (void)
+static void Task_ServerWait (void)
 {
     return;
 }
@@ -251,10 +251,10 @@ static void Task_StartBattleClient (void)
     }
 
     ov7_0224B450();
-    FieldCommMan_SetTask(sub_02059940, 0);
+    FieldCommMan_SetTask(Task_ClientWait, 0);
 }
 
-static void sub_02059940 (void)
+static void Task_ClientWait (void)
 {
     return;
 }
@@ -284,12 +284,12 @@ static void sub_02059984 (void)
 {
     void * v0;
 
-    if (sub_02036540(98)) {
+    if (CommTiming_IsSyncState(98)) {
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
-        sub_02035EC8();
-        sub_020364F0(92);
+        CommSys_DisableSendMovementData();
+        CommTiming_StartSync(92);
         FieldCommMan_SetTask(sub_020599E4, 0);
         return;
     }
@@ -298,7 +298,7 @@ static void sub_02059984 (void)
         sFieldCommMan->timer--;
     } else {
         sFieldCommMan->timer = 30;
-        sub_020364F0(98);
+        CommTiming_StartSync(98);
     }
 }
 
@@ -308,7 +308,7 @@ static void sub_020599E4 (void)
         CommInfo_ServerSendArray();
     }
 
-    if (sub_02036540(92)) {
+    if (CommTiming_IsSyncState(92)) {
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
         sub_0200F32C(0);
         sub_0200F32C(1);
@@ -325,7 +325,7 @@ static void sub_02059A3C (void)
         return;
     }
 
-    if (sub_02036540(30)) {
+    if (CommTiming_IsSyncState(30)) {
         CommSys_EnableSendMovementData();
         FieldCommMan_SetTask(sub_02059BF4, 0);
     }
@@ -343,9 +343,9 @@ static void sub_02059A70 (void)
             return;
         }
 
-        sub_020364F0(30);
+        CommTiming_StartSync(30);
     } else {
-        sub_020364F0(30);
+        CommTiming_StartSync(30);
     }
 
     FieldCommMan_SetTask(sub_02059A3C, 20);
@@ -355,11 +355,11 @@ static void sub_02059AB4 (void)
 {
     void * v0;
 
-    if (sub_02036540(98)) {
+    if (CommTiming_IsSyncState(98)) {
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(v0, sFieldCommMan->fieldSys, 0);
         sub_02059524();
-        sub_020364F0(92);
+        CommTiming_StartSync(92);
         FieldCommMan_SetTask(sub_02059B10, 0);
         return;
     }
@@ -368,7 +368,7 @@ static void sub_02059AB4 (void)
         sFieldCommMan->timer--;
     } else {
         sFieldCommMan->timer = 30;
-        sub_020364F0(98);
+        CommTiming_StartSync(98);
     }
 }
 
@@ -378,13 +378,13 @@ static void sub_02059B10 (void)
         CommInfo_ServerSendArray();
     }
 
-    if (sub_02036540(92)) {
+    if (CommTiming_IsSyncState(92)) {
         CommPlayerMan_Restart();
         CommPlayer_SendPos(0);
 
         {
             u8 v0 = 1;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
 
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
@@ -425,7 +425,7 @@ static void sub_02059BF4 (void)
 
         {
             u8 v0 = 1;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
 
         FieldCommMan_SetTask(sub_02059CD8, 0);
@@ -446,7 +446,7 @@ static void sub_02059C2C (BOOL param0, const Party * party)
     } else {
         {
             u8 v0 = 3;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
 
         FieldCommMan_SetTask(sub_02059BF4, 0);
@@ -481,7 +481,7 @@ static void sub_02059CD8 (void)
 
         {
             u8 v0 = 0;
-            sub_020360D0(94, &v0);
+            CommSys_SendDataFixedSize(94, &v0);
         }
     }
 
@@ -546,16 +546,16 @@ static void sub_02059D58 (void)
 
 static void sub_02059DC8 (void)
 {
-    if (sub_020348B0()) {
+    if (CommSys_TransitionTypeIsParallel()) {
         if (sFieldCommMan->timer != 0) {
             sFieldCommMan->timer--;
         }
 
         if (sFieldCommMan->timer == 90) {
-            sub_020364F0(4);
+            CommTiming_StartSync(4);
         }
 
-        if (sub_02036540(4)) {
+        if (CommTiming_IsSyncState(4)) {
             FieldCommMan_SetTask(sub_02059D58, 0);
         }
     }
@@ -568,7 +568,7 @@ static void sub_02059E0C (void)
         return;
     }
 
-    sub_02034878();
+    CommSys_SwitchTransitionTypeToParallel();
     FieldCommMan_SetTask(sub_02059DC8, 120);
 }
 
@@ -576,7 +576,7 @@ static void sub_02059E34 (void)
 {
     BOOL v0 = 1;
 
-    if (sub_02036540(3)) {
+    if (CommTiming_IsSyncState(3)) {
         FieldCommMan_SetTask(sub_02059E0C, 2);
     }
 }
@@ -591,7 +591,7 @@ static void sub_02059E50 (void)
     }
 
     CommPlayerMan_Delete(0);
-    sub_020364F0(3);
+    CommTiming_StartSync(3);
     FieldCommMan_SetTask(sub_02059E34, 0);
 }
 
@@ -625,8 +625,8 @@ static void FieldCommTask_StartCopyTrainerCard (void)
 {
     int v0, v1 = CommSys_CurNetId();
 
-    if (sub_02036540(95)) {
-        sub_0203597C(88, sFieldCommMan->trainerCard[v1], sizeof(TrainerCard));
+    if (CommTiming_IsSyncState(95)) {
+        CommSys_SendDataHuge(88, sFieldCommMan->trainerCard[v1], sizeof(TrainerCard));
         FieldCommMan_SetTask(FieldCommTask_CopyTrainerCard, 0);
     }
 }
@@ -641,22 +641,22 @@ static void FieldCommTask_CopyTrainerCard (void)
         }
     }
 
-    sub_020364F0(97);
+    CommTiming_StartSync(97);
     FieldCommMan_SetTask(sub_02059FB8, 0);
 }
 
 static void sub_02059F4C (void)
 {
-    if (!sub_020348B0()) {
+    if (!CommSys_TransitionTypeIsParallel()) {
         if (sFieldCommMan->timer != 0) {
             sFieldCommMan->timer--;
         }
 
         if (sFieldCommMan->timer == 90) {
-            sub_020364F0(5);
+            CommTiming_StartSync(5);
         }
 
-        if (sub_02036540(5)) {
+        if (CommTiming_IsSyncState(5)) {
             FieldCommMan_SetTask(sub_02059FD4, 0);
         }
     }
@@ -669,13 +669,13 @@ static void sub_02059F90 (void)
         return;
     }
 
-    sub_02034884();
+    CommSys_SwitchTransitionTypeToServerClient();
     FieldCommMan_SetTask(sub_02059F4C, 120);
 }
 
 static void sub_02059FB8 (void)
 {
-    if (sub_02036540(97)) {
+    if (CommTiming_IsSyncState(97)) {
         FieldCommMan_SetTask(sub_02059F90, 2);
     }
 }
@@ -687,9 +687,9 @@ static void sub_02059FD4 (void)
         return;
     }
 
-    sub_020364F0(98);
+    CommTiming_StartSync(98);
 
-    if (sFieldCommMan->unk_42) {
+    if (sFieldCommMan->isReturningFromBattle) {
         FieldCommMan_SetTask(sub_02059984, 30);
     } else {
         FieldCommMan_SetTask(sub_02059AB4, 30);
@@ -698,7 +698,7 @@ static void sub_02059FD4 (void)
 
 static void sub_0205A018 (void)
 {
-    if (sub_02036540(91)) {
+    if (CommTiming_IsSyncState(91)) {
         CommMan_SetErrorHandling(0, 0);
         CommPlayerMan_Delete(1);
         FieldCommMan_SetTask(sub_0205A058, 5);

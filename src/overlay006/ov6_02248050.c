@@ -19,8 +19,8 @@
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "heap.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay006/ov6_02248050.h"
 
@@ -73,15 +73,15 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
     int v0;
     int v1, v2;
     VecFx32 v3;
-    LocalMapObject * v4;
+    MapObject * v4;
 
-    v4 = sub_0206251C(param0, param1);
+    v4 = MapObjMan_LocalMapObjByIndex(param0, param1);
 
-    sub_02063050(v4, &v3);
+    MapObject_PosVectorOut(v4, &v3);
 
-    v1 = sub_02063020(v4);
-    v2 = sub_02063040(v4);
-    v0 = sub_0206298C(v4);
+    v1 = MapObject_GetXPos(v4);
+    v2 = MapObject_GetZPos(v4);
+    v0 = MapObject_Dir(v4);
 
     switch (v0) {
     case 0:
@@ -110,11 +110,11 @@ static void ov6_022480BC (PlayerAvatar * const param0, UnkStruct_02017294 * para
     int v1, v2;
     VecFx32 v3;
 
-    sub_0205EAEC(param0, &v3);
+    PlayerAvatar_PosVectorOut(param0, &v3);
 
     v1 = Player_XPos(param0);
     v2 = Player_ZPos(param0);
-    v0 = Player_Dir(param0);
+    v0 = PlayerAvatar_GetDir(param0);
 
     switch (v0) {
     case 0:
@@ -141,7 +141,7 @@ static void ov6_02248124 (PlayerAvatar * const param0, UnkStruct_02017294 * para
 {
     VecFx32 v0;
 
-    sub_0205EAEC(param0, &v0);
+    PlayerAvatar_PosVectorOut(param0, &v0);
     sub_02017350(param1, v0.x, v0.y, v0.z);
 }
 
@@ -282,7 +282,7 @@ BOOL ov6_02248328 (UnkStruct_ov5_021D1BEC * param0)
     return 0;
 }
 
-static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248340 * v0 = param2;
     int v1;
@@ -296,13 +296,13 @@ static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
     NARC_dtor(v2);
 
-    ov6_022480BC(param1->playerAvatar, &v0->unk_00.unk_00);
+    ov6_022480BC(fieldSystem->playerAvatar, &v0->unk_00.unk_00);
     Sound_PlayEffect(1610);
 
     v0->unk_EC = 0;
 }
 
-static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248340 * v0 = param2;
     int v1;
@@ -314,7 +314,7 @@ static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, 4);
 
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
-    ov6_02248050(param1->unk_38, 0, &v0->unk_00.unk_00);
+    ov6_02248050(fieldSystem->mapObjMan, 0, &v0->unk_00.unk_00);
 
     Sound_PlayEffect(1610);
     NARC_dtor(v2);
@@ -322,13 +322,13 @@ static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v0->unk_EC = 0;
 }
 
-static void ov6_02248400 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_02248400 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248340 * v0 = param2;
     ov6_022481BC(&v0->unk_00, &v0->unk_DC);
 }
 
-static void ov6_02248410 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_02248410 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248340 * v0 = param2;
     int v1;
@@ -350,7 +350,7 @@ static void ov6_02248410 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     }
 }
 
-static void ov6_02248444 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_02248444 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248340 * v0 = param2;
     ov6_02248254(&v0->unk_00);
@@ -404,7 +404,7 @@ BOOL ov6_02248480 (UnkStruct_ov5_021D1BEC * param0)
     return 0;
 }
 
-static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248498 * v0 = param2;
     int v1;
@@ -416,7 +416,7 @@ static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, 4);
 
     ov6_02248140(&v0->unk_00[0], v2, 14, 12, 2, &v0->unk_1B8);
-    ov6_02248124(param1->playerAvatar, &v0->unk_00[0].unk_00);
+    ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[0].unk_00);
 
     NARC_dtor(v2);
     Sound_PlayEffect(1613);
@@ -424,7 +424,7 @@ static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v0->unk_1C8 = 0;
 }
 
-static void ov6_02248500 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_02248500 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248498 * v0 = param2;
     int v1;
@@ -434,7 +434,7 @@ static void ov6_02248500 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     }
 }
 
-static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248498 * v0 = param2;
     BOOL v1;
@@ -445,30 +445,30 @@ static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
         v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, 4);
         ov6_02248140(&v0->unk_00[1], v2, 11, 9, 2, &v0->unk_1B8);
         NARC_dtor(v2);
-        ov6_02248124(param1->playerAvatar, &v0->unk_00[1].unk_00);
+        ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
         sub_02017348(&v0->unk_00[1].unk_00, 0);
         v0->unk_1C8++;
     case 1:
         v1 = ov6_022481F0(&v0->unk_00[0]);
-        ov6_02248124(param1->playerAvatar, &v0->unk_00[0].unk_00);
+        ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[0].unk_00);
 
         if (v1 == 1) {
             sub_02017348(&v0->unk_00[1].unk_00, 1);
             sub_02017348(&v0->unk_00[0].unk_00, 0);
-            ov6_02248124(param1->playerAvatar, &v0->unk_00[1].unk_00);
+            ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
             v0->unk_1C8++;
         }
         break;
     case 2:
         ov6_02248224(&v0->unk_00[1]);
-        ov6_02248124(param1->playerAvatar, &v0->unk_00[1].unk_00);
+        ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
         break;
     default:
         break;
     }
 }
 
-static void ov6_022485DC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov6_022485DC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov6_02248498 * v0 = param2;
     int v1;
@@ -499,14 +499,14 @@ void ov6_02248608 (UnkStruct_ov5_021D1BEC * param0)
     ov5_021D1BEC(param0);
 }
 
-static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, PlayerAvatar * const param1, fx32 param2, fx32 param3)
+static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, PlayerAvatar * const playerAvatar, fx32 param2, fx32 param3)
 {
     VecFx32 v0;
     int v1;
 
     GF_ASSERT(param0->unk_C8 == 0);
 
-    sub_0205EAEC(param1, &v0);
+    PlayerAvatar_PosVectorOut(playerAvatar, &v0);
     sub_02017350(&param0->unk_00, v0.x, v0.y + param2, v0.z + param3);
 
     param0->unk_C8 = 1;
@@ -570,7 +570,7 @@ static void ov6_02248728 (UnkStruct_ov6_022487F8 * param0)
 {
     VecFx32 v0;
 
-    sub_0205EAEC(param0->unk_CE0->playerAvatar, &v0);
+    PlayerAvatar_PosVectorOut(param0->unk_CE0->playerAvatar, &v0);
 
     if (((v0.x - param0->unk_CF0.x) == 0) && (v0.y < param0->unk_CF0.y) && (v0.z > param0->unk_CF0.z)) {
         param0->unk_CE8 = 0;
@@ -630,7 +630,7 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     }
 
     v0->unk_CE0 = param1;
-    sub_0205EAEC(v0->unk_CE0->playerAvatar, &v0->unk_CF0);
+    PlayerAvatar_PosVectorOut(v0->unk_CE0->playerAvatar, &v0->unk_CF0);
 
     v0->unk_D0C = 0;
     NARC_dtor(v2);

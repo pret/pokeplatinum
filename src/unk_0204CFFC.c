@@ -17,7 +17,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "map_header.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0204CFFC.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"

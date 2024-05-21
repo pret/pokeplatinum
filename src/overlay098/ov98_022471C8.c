@@ -94,7 +94,7 @@ typedef struct {
     int unk_98;
     int unk_9C;
     ResourceMetadata * unk_A0;
-    UnkStruct_0200112C * unk_A4;
+    BmpList * unk_A4;
     int unk_A8;
     int unk_AC;
     int unk_B0;
@@ -171,8 +171,8 @@ static int ov98_02249894(Window * param0, Strbuf *param1, int param2, int param3
 void ov98_022498CC(Window * param0, Strbuf *param1, int param2, int param3, int param4, u32 param5);
 static void ov98_02249900(UnkStruct_ov98_02247704 * param0, int param1);
 static void ov98_02249964(UnkStruct_ov98_02247704 * param0, int param1, int param2);
-static void ov98_022499A0(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov98_022499B4(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov98_022499A0(BmpList * param0, u32 param1, u8 param2);
+static void ov98_022499B4(BmpList * param0, u32 param1, u8 param2);
 
 static int (* Unk_ov98_02249D70[])(UnkStruct_ov98_02247704 *) = {
     ov98_02247B98,
@@ -2533,14 +2533,14 @@ static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int par
     ov98_02249900(param0, v0);
 }
 
-static void ov98_022499A0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov98_022499A0 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);
     }
 }
 
-static void ov98_022499B4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov98_022499B4 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

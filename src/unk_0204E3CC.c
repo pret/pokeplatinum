@@ -16,7 +16,7 @@
 #include "unk_0203A6DC.h"
 #include "unk_0204E3CC.h"
 #include "unk_020507CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206A8DC.h"
 
 #include <nitro/code16.h>
@@ -41,12 +41,12 @@ BOOL ScrCmd_158 (ScriptContext * param0)
 BOOL ScrCmd_159 (ScriptContext * param0)
 {
     UnkStruct_0203A790 * v0;
-    UnkStruct_0205EC34 * v1;
+    PlayerData * v1;
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
     v0 = sub_0203A790(param0->fieldSys->saveData);
     v1 = sub_0203A780(v0);
-    *v2 = sub_0205EC40(v1);
+    *v2 = PlayerData_HasRunningShoes(v1);
 
     return 0;
 }
@@ -54,12 +54,12 @@ BOOL ScrCmd_159 (ScriptContext * param0)
 BOOL ScrCmd_15A (ScriptContext * param0)
 {
     UnkStruct_0203A790 * v0;
-    UnkStruct_0205EC34 * v1;
+    PlayerData * v1;
 
     v0 = sub_0203A790(param0->fieldSys->saveData);
     v1 = sub_0203A780(v0);
 
-    sub_0205EC54(v1, 1);
+    PlayerData_SetRunningShoes(v1, 1);
     return 0;
 }
 

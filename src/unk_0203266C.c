@@ -3,7 +3,7 @@
 
 #include "unk_0203266C.h"
 
-u16 sub_0203266C (u16 param0)
+u16 CommLocal_MaxMachines (u16 param0)
 {
     u8 v0[] = {
         0x1,
@@ -109,7 +109,7 @@ BOOL sub_020326C4 (int param0)
     return 0;
 }
 
-BOOL sub_020326EC (int param0)
+BOOL CommLocal_IsWifiGroup (int param0)
 {
     switch (param0) {
     case 19:

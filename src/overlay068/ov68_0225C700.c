@@ -452,7 +452,7 @@ static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, SaveData * param1, 
 {
     Options * v0;
 
-    v0 = sub_02025E44(param1);
+    v0 = SaveData_Options(param1);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
     sub_0201DBEC(32, param2);
@@ -920,7 +920,7 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
     {
         Options * v0;
 
-        v0 = sub_02025E44(param2);
+        v0 = SaveData_Options(param2);
         param0->unk_04 = Options_TextFrameDelay(v0);
     }
 }
@@ -928,7 +928,7 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
 static void ov68_0225D178 (UnkStruct_ov68_0225D128 * param0, u32 param1)
 {
     if (Message_Printing(param0->unk_00)) {
-        sub_0201D730(param0->unk_00);
+        PrintString_ForceStop(param0->unk_00);
     }
 
     ov68_0225D2A0(param0);
@@ -942,7 +942,7 @@ static void ov68_0225D178 (UnkStruct_ov68_0225D128 * param0, u32 param1)
 static void ov68_0225D1B4 (UnkStruct_ov68_0225D128 * param0, const Strbuf *param1)
 {
     if (Message_Printing(param0->unk_00)) {
-        sub_0201D730(param0->unk_00);
+        PrintString_ForceStop(param0->unk_00);
     }
 
     BGL_FillWindow(&param0->unk_08, 15);
@@ -954,7 +954,7 @@ static void ov68_0225D1B4 (UnkStruct_ov68_0225D128 * param0, const Strbuf *param
 static void ov68_0225D218 (UnkStruct_ov68_0225D128 * param0, const Strbuf *param1)
 {
     if (Message_Printing(param0->unk_00)) {
-        sub_0201D730(param0->unk_00);
+        PrintString_ForceStop(param0->unk_00);
     }
 
     BGL_FillWindow(&param0->unk_08, 15);
@@ -990,7 +990,7 @@ static BOOL ov68_0225D2B4 (const UnkStruct_ov68_0225D128 * param0)
 static void ov68_0225D2CC (UnkStruct_ov68_0225D128 * param0)
 {
     if (Message_Printing(param0->unk_00)) {
-        sub_0201D730(param0->unk_00);
+        PrintString_ForceStop(param0->unk_00);
     }
 
     ov68_0225D2A0(param0);

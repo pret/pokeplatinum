@@ -60,7 +60,7 @@ int sub_0203A7EC (void)
     return 1;
 }
 
-void sub_0203A7F0 (int param0, UnkStruct_02049FA8 * param1)
+void sub_0203A7F0 (int param0, Location * param1)
 {
     param0 = sub_0203A7D8(param0);
 
@@ -71,7 +71,7 @@ void sub_0203A7F0 (int param0, UnkStruct_02049FA8 * param1)
     param1->unk_10 = 1;
 }
 
-void sub_0203A824 (int param0, UnkStruct_02049FA8 * param1)
+void sub_0203A824 (int param0, Location * param1)
 {
     param0 = sub_0203A7D8(param0);
 

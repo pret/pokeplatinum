@@ -7,8 +7,8 @@
 
 typedef struct {
     const ResourceMetadata * unk_00;
-    void (* unk_04)(UnkStruct_0200112C *, u32, u8);
-    void (* unk_08)(UnkStruct_0200112C *, u32, u8);
+    void (* unk_04)(BmpList *, u32, u8);
+    void (* unk_08)(BmpList *, u32, u8);
     Window * unk_0C;
     u16 unk_10;
     u16 unk_12;

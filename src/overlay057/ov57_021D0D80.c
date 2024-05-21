@@ -113,7 +113,7 @@ static int ov57_021D0DE0 (OverlayManager * param0, int * param1)
 static int ov57_021D0E00 (OverlayManager * param0, int * param1)
 {
     Heap_Destroy(77);
-    sub_02000EC4(0xffffffff, &Unk_020EA10C);
+    sub_02000EC4(0xffffffff, &gFieldSystemNewGameTemplate);
     return 1;
 }
 
@@ -146,7 +146,7 @@ static int ov57_021D0E34 (OverlayManager * param0, int * param1)
 static int ov57_021D0E90 (OverlayManager * param0, int * param1)
 {
     Heap_Destroy(77);
-    sub_02000EC4(0xffffffff, &Unk_020EA11C);
+    sub_02000EC4(0xffffffff, &gFieldSystemContinueTemplate);
     return 1;
 }
 

@@ -33,7 +33,7 @@
 #include "unk_02025E08.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_020508D4.h"
 #include "unk_020528D0.h"
@@ -224,7 +224,7 @@ BOOL sub_02052B2C (TaskManager * param0)
     }
 
         {
-            UnkStruct_02049FA8 v2;
+            Location v2;
             UnkStruct_0203A790 * v3 = sub_0203A790(v0->saveData);
             u16 v4 = sub_0203A75C(v3);
 

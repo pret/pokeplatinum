@@ -69,7 +69,7 @@ typedef struct {
     MessageLoader * unk_F8;
     StringTemplate * unk_FC;
     Strbuf* unk_100;
-    UnkStruct_0200112C * unk_104;
+    BmpList * unk_104;
     ResourceMetadata * unk_108;
     UIControlData * unk_10C;
     SpriteRenderer * unk_110;
@@ -118,8 +118,8 @@ static void ov91_021D1498(UnkStruct_ov91_021D0ED8 * param0);
 static void ov91_021D1664(UnkStruct_ov91_021D0ED8 * param0);
 static void ov91_021D1784(UnkStruct_ov91_021D0ED8 * param0);
 static void ov91_021D1868(UnkStruct_ov91_021D0ED8 * param0);
-static void ov91_021D188C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov91_021D18C4(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov91_021D188C(BmpList * param0, u32 param1, u8 param2);
+static void ov91_021D18C4(BmpList * param0, u32 param1, u8 param2);
 static void ov91_021D18C8(UnkStruct_ov91_021D0ED8 * param0, u32 param1);
 static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 * param0, u32 param1);
 static void ov91_021D1BBC(UnkStruct_ov91_021D0ED8 * param0, u16 param1);
@@ -955,7 +955,7 @@ static void ov91_021D1868 (UnkStruct_ov91_021D0ED8 * param0)
     sub_02013A3C(param0->unk_108);
 }
 
-static void ov91_021D188C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov91_021D188C (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov91_021D0ED8 * v0 = (UnkStruct_ov91_021D0ED8 *)sub_02001504(param0, 19);
 
@@ -970,7 +970,7 @@ static void ov91_021D188C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 }
 
-static void ov91_021D18C4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov91_021D18C4 (BmpList * param0, u32 param1, u8 param2)
 {
     return;
 }

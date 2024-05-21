@@ -7,7 +7,7 @@
 
 void * ov5_021F134C(UnkStruct_ov5_021DF47C * param0);
 void ov5_021F1370(void * param0);
-void ov5_021F1570(LocalMapObject * param0);
-UnkStruct_ov101_021D5D90 * ov5_021F16D4(LocalMapObject * param0, int param1);
+void ov5_021F1570(MapObject * param0);
+UnkStruct_ov101_021D5D90 * ov5_021F16D4(MapObject * param0, int param1);
 
 #endif // POKEPLATINUM_OV5_021F134C_H

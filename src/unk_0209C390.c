@@ -13,12 +13,12 @@
 
 void sub_0209C390 (UnkStruct_ov65_02236744 * param0)
 {
-    sub_02032798(sub_02039A58(), sub_02039A60(), param0);
+    CommCmd_Init(sub_02039A58(), sub_02039A60(), param0);
 }
 
 void sub_0209C3AC (void)
 {
-    sub_02032798(sub_02039A58(), sub_02039A60(), NULL);
+    CommCmd_Init(sub_02039A58(), sub_02039A60(), NULL);
 }
 
 int sub_0209C3C4 (void)

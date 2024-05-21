@@ -19,7 +19,7 @@ int sub_0203A468(const FieldSystem * param0, int param1, int param2);
 int sub_0203A4A4(const FieldSystem * param0);
 const UnkStruct_0203A4AC * sub_0203A4AC(const FieldSystem * param0);
 u32 sub_0203A4B4(const FieldSystem * param0);
-const UnkStruct_020619DC * sub_0203A4BC(const FieldSystem * param0);
+const MapObjectHeader * sub_0203A4BC(const FieldSystem * param0);
 BOOL sub_0203A4C4(FieldSystem * param0, int param1, u16 param2, u16 param3);
 BOOL sub_0203A4FC(FieldSystem * param0, int param1, int param2);
 BOOL sub_0203A52C(FieldSystem * param0, int param1, int param2);

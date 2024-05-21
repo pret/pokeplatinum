@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 
 struct UnkStruct_0203A3E8_t {
     u32 unk_00;
@@ -73,42 +73,42 @@ static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
     NARC_ReadWholeMemberByIndexPair(param0->unk_20, 32, v0);
 }
 
-void sub_0203A418 (FieldSystem * param0)
+void sub_0203A418 (FieldSystem * fieldSystem)
 {
-    int v0 = param0->unk_14->unk_04;
+    int v0 = fieldSystem->unk_14->unk_04;
 
-    GF_ASSERT(param0->unk_14 != NULL);
+    GF_ASSERT(fieldSystem->unk_14 != NULL);
 
     if (v0 != 0) {
-        sub_02062068(param0->unk_38, param0->unk_1C->unk_00, v0, param0->unk_14->unk_14);
+        sub_02062068(fieldSystem->mapObjMan, fieldSystem->unk_1C->unk_00, v0, fieldSystem->unk_14->unk_14);
     }
 }
 
-const UnkStruct_0203A594 * sub_0203A440 (const FieldSystem * param0)
+const UnkStruct_0203A594 * sub_0203A440 (const FieldSystem * fieldSystem)
 {
-    return param0->unk_14->unk_10;
+    return fieldSystem->unk_14->unk_10;
 }
 
-int sub_0203A448 (const FieldSystem * param0)
+int sub_0203A448 (const FieldSystem * fieldSystem)
 {
-    return param0->unk_14->unk_00;
+    return fieldSystem->unk_14->unk_00;
 }
 
-const UnkStruct_0203A55C * sub_0203A450 (const FieldSystem * param0, int param1)
+const UnkStruct_0203A55C * sub_0203A450 (const FieldSystem * fieldSystem, int param1)
 {
-    if (param1 >= param0->unk_14->unk_08) {
+    if (param1 >= fieldSystem->unk_14->unk_08) {
         return NULL;
     }
 
-    return &param0->unk_14->unk_18[param1];
+    return &fieldSystem->unk_14->unk_18[param1];
 }
 
-int sub_0203A468 (const FieldSystem * param0, int param1, int param2)
+int sub_0203A468 (const FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->unk_14->unk_08; v0++) {
-        if ((param0->unk_14->unk_18[v0].unk_00 == param1) && (param0->unk_14->unk_18[v0].unk_02 == param2)) {
+    for (v0 = 0; v0 < fieldSystem->unk_14->unk_08; v0++) {
+        if ((fieldSystem->unk_14->unk_18[v0].unk_00 == param1) && (fieldSystem->unk_14->unk_18[v0].unk_02 == param2)) {
             return v0;
         }
     }
@@ -116,31 +116,31 @@ int sub_0203A468 (const FieldSystem * param0, int param1, int param2)
     return -1;
 }
 
-int sub_0203A4A4 (const FieldSystem * param0)
+int sub_0203A4A4 (const FieldSystem * fieldSystem)
 {
-    return param0->unk_14->unk_0C;
+    return fieldSystem->unk_14->unk_0C;
 }
 
-const UnkStruct_0203A4AC * sub_0203A4AC (const FieldSystem * param0)
+const UnkStruct_0203A4AC * sub_0203A4AC (const FieldSystem * fieldSystem)
 {
-    return param0->unk_14->unk_1C;
+    return fieldSystem->unk_14->unk_1C;
 }
 
-u32 sub_0203A4B4 (const FieldSystem * param0)
+u32 sub_0203A4B4 (const FieldSystem * fieldSystem)
 {
-    return param0->unk_14->unk_04;
+    return fieldSystem->unk_14->unk_04;
 }
 
-const UnkStruct_020619DC * sub_0203A4BC (const FieldSystem * param0)
+const MapObjectHeader * sub_0203A4BC (const FieldSystem * fieldSystem)
 {
-    return param0->unk_14->unk_14;
+    return fieldSystem->unk_14->unk_14;
 }
 
-BOOL sub_0203A4C4 (FieldSystem * param0, int param1, u16 param2, u16 param3)
+BOOL sub_0203A4C4 (FieldSystem * fieldSystem, int param1, u16 param2, u16 param3)
 {
     int v0;
-    UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)param0->unk_14->unk_14;
-    u32 v2 = param0->unk_14->unk_04;
+    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
+    u32 v2 = fieldSystem->unk_14->unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -154,11 +154,11 @@ BOOL sub_0203A4C4 (FieldSystem * param0, int param1, u16 param2, u16 param3)
     return 0;
 }
 
-BOOL sub_0203A4FC (FieldSystem * param0, int param1, int param2)
+BOOL sub_0203A4FC (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
-    UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)param0->unk_14->unk_14;
-    u32 v2 = param0->unk_14->unk_04;
+    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
+    u32 v2 = fieldSystem->unk_14->unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -171,11 +171,11 @@ BOOL sub_0203A4FC (FieldSystem * param0, int param1, int param2)
     return 0;
 }
 
-BOOL sub_0203A52C (FieldSystem * param0, int param1, int param2)
+BOOL sub_0203A52C (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
-    UnkStruct_020619DC * v1 = (UnkStruct_020619DC *)param0->unk_14->unk_14;
-    u32 v2 = param0->unk_14->unk_04;
+    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
+    u32 v2 = fieldSystem->unk_14->unk_04;
 
     for (v0 = 0; v0 < v2; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -188,9 +188,9 @@ BOOL sub_0203A52C (FieldSystem * param0, int param1, int param2)
     return 0;
 }
 
-BOOL sub_0203A55C (FieldSystem * param0, u16 param1, u16 param2, u16 param3)
+BOOL sub_0203A55C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3)
 {
-    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)param0->unk_14->unk_18;
+    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)fieldSystem->unk_14->unk_18;
 
     v0[param1].unk_00 = param2;
     v0[param1].unk_02 = param3;
@@ -198,25 +198,25 @@ BOOL sub_0203A55C (FieldSystem * param0, u16 param1, u16 param2, u16 param3)
     return 1;
 }
 
-BOOL sub_0203A574 (FieldSystem * param0, u16 param1, u16 param2)
+BOOL sub_0203A574 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)param0->unk_14->unk_18;
+    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)fieldSystem->unk_14->unk_18;
 
     v0[param1].unk_04 = param2;
     return 1;
 }
 
-BOOL sub_0203A584 (FieldSystem * param0, u16 param1, u16 param2)
+BOOL sub_0203A584 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)param0->unk_14->unk_18;
+    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)fieldSystem->unk_14->unk_18;
 
     v0[param1].unk_06 = param2;
     return 1;
 }
 
-BOOL sub_0203A594 (FieldSystem * param0, u16 param1, u16 param2, u16 param3)
+BOOL sub_0203A594 (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3)
 {
-    UnkStruct_0203A594 * v0 = (UnkStruct_0203A594 *)sub_0203A440(param0);
+    UnkStruct_0203A594 * v0 = (UnkStruct_0203A594 *)sub_0203A440(fieldSystem);
 
     (v0) += param1;
     v0->unk_04 = param2;

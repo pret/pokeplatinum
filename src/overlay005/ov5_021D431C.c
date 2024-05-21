@@ -17,8 +17,8 @@
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_02056B30.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D37AC.h"
@@ -72,7 +72,7 @@ void ov5_021D4334 (const int param0, const int param1, UnkStruct_ov5_021D432C * 
 
 BOOL ov5_021D433C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     switch (param1->unk_00) {
     case 0:
@@ -176,16 +176,16 @@ BOOL ov5_021D433C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
     }
     break;
     case 3:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
         LocalMapObj_SetAnimationCode(v0, 0xc);
         (param1->unk_00)++;
         break;
     case 4:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
-            sub_02062D64(v0, 1);
+            MapObject_SetHidden(v0, 1);
             {
                 int v13;
                 int v14;
@@ -238,7 +238,7 @@ BOOL ov5_021D433C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
 
 BOOL ov5_021D453C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     switch (param1->unk_00) {
     case 0:
@@ -346,19 +346,19 @@ BOOL ov5_021D453C (FieldSystem * param0, UnkStruct_ov5_021D432C * param1)
         v12 = ov5_021D42F0(param0->unk_54, 1);
 
         if (v12) {
-            v0 = Player_LocalMapObject(param0->playerAvatar);
-            sub_02062D64(v0, 0);
+            v0 = Player_MapObject(param0->playerAvatar);
+            MapObject_SetHidden(v0, 0);
             (param1->unk_00)++;
         }
     }
     break;
     case 3:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
         LocalMapObj_SetAnimationCode(v0, 0xd);
         (param1->unk_00)++;
         break;
     case 4:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -493,7 +493,7 @@ static u8 ov5_021D481C (const int param0)
 
 BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const u8 param2)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     switch (param1->unk_00) {
     case 0:
@@ -524,7 +524,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
             return 1;
         }
 
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, 0x49);
@@ -539,7 +539,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
         ov5_021D1744(1);
         ov5_021D4278(param0->unk_54, 2, 0, 1557);
 
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v8;
@@ -558,7 +558,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
         (param1->unk_00)++;
         break;
     case 2:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, 0x4a);
@@ -566,7 +566,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
         }
         break;
     case 3:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v9;
@@ -582,7 +582,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
         }
         break;
     case 4:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -609,7 +609,7 @@ BOOL ov5_021D4858 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
 
 BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const u8 param2)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
 
     switch (param1->unk_00) {
     case 0:
@@ -640,7 +640,7 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
             return 1;
         }
 
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, 0x49);
@@ -653,7 +653,7 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
     break;
     case 1:
         ov5_021D4278(param0->unk_54, 2, 0, 1557);
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             int v8;
@@ -672,7 +672,7 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
         (param1->unk_00)++;
         break;
     case 2:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
             LocalMapObj_SetAnimationCode(v0, 0x4a);
@@ -682,7 +682,7 @@ BOOL ov5_021D4A24 (FieldSystem * param0, UnkStruct_ov5_021D432C * param1, const 
         }
         break;
     case 3:
-        v0 = Player_LocalMapObject(param0->playerAvatar);
+        v0 = Player_MapObject(param0->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -886,19 +886,19 @@ UnkStruct_ov5_021D4E00 * ov5_021D4E00 (void)
 
 BOOL ov5_021D4E10 (TaskManager * param0)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_00) {
     case 0:
-        v0 = Player_LocalMapObject(v1->playerAvatar);
+        v0 = Player_MapObject(v1->playerAvatar);
 
-        if (Player_Dir(v1->playerAvatar) == 1) {
-            sub_02062D64(v0, 1);
+        if (PlayerAvatar_GetDir(v1->playerAvatar) == 1) {
+            MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
-            sub_02062D64(v0, 0);
+            MapObject_SetHidden(v0, 0);
             (v2->unk_00) = 3;
         }
 
@@ -914,13 +914,13 @@ BOOL ov5_021D4E10 (TaskManager * param0)
         v2->unk_08 = 1;
         break;
     case 1:
-        v0 = Player_LocalMapObject(v1->playerAvatar);
-        sub_02062D64(v0, 0);
+        v0 = Player_MapObject(v1->playerAvatar);
+        MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
     case 2:
-        v0 = Player_LocalMapObject(v1->playerAvatar);
+        v0 = Player_MapObject(v1->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -950,11 +950,11 @@ BOOL ov5_021D4F14 (TaskManager * param0)
     switch (v1->unk_00) {
     case 0:
     {
-        LocalMapObject * v2;
+        MapObject * v2;
 
-        v2 = Player_LocalMapObject(v0->playerAvatar);
+        v2 = Player_MapObject(v0->playerAvatar);
 
-        sub_02062D64(v2, 1);
+        MapObject_SetHidden(v2, 1);
 
         v1->unk_08 = 0;
         v1->unk_04 = 0;
@@ -1016,7 +1016,7 @@ BOOL ov5_021D4FA0 (TaskManager * param0)
 
 BOOL ov5_021D5020 (TaskManager * param0)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v2 = TaskManager_Environment(param0);
 
@@ -1026,14 +1026,14 @@ BOOL ov5_021D5020 (TaskManager * param0)
         u8 v3;
         u8 v4;
 
-        v0 = Player_LocalMapObject(v1->playerAvatar);
-        v3 = Player_Dir(v1->playerAvatar);
+        v0 = Player_MapObject(v1->playerAvatar);
+        v3 = PlayerAvatar_GetDir(v1->playerAvatar);
 
         if (v3 == 1) {
-            sub_02062D64(v0, 1);
+            MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
-            sub_02062D64(v0, 0);
+            MapObject_SetHidden(v0, 0);
             (v2->unk_00) = 3;
         }
 
@@ -1067,13 +1067,13 @@ BOOL ov5_021D5020 (TaskManager * param0)
     }
     break;
     case 1:
-        v0 = Player_LocalMapObject(v1->playerAvatar);
-        sub_02062D64(v0, 0);
+        v0 = Player_MapObject(v1->playerAvatar);
+        MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
     case 2:
-        v0 = Player_LocalMapObject(v1->playerAvatar);
+        v0 = Player_MapObject(v1->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);
@@ -1097,7 +1097,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
 
 BOOL ov5_021D5150 (TaskManager * param0)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     FieldSystem * v1 = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021D4E00 * v2 = TaskManager_Environment(param0);
 
@@ -1107,14 +1107,14 @@ BOOL ov5_021D5150 (TaskManager * param0)
         u8 v3;
         u8 v4;
 
-        v0 = Player_LocalMapObject(v1->playerAvatar);
-        v3 = Player_Dir(v1->playerAvatar);
+        v0 = Player_MapObject(v1->playerAvatar);
+        v3 = PlayerAvatar_GetDir(v1->playerAvatar);
 
         if (v3 == 1) {
-            sub_02062D64(v0, 1);
+            MapObject_SetHidden(v0, 1);
             (v2->unk_00) = 1;
         } else {
-            sub_02062D64(v0, 0);
+            MapObject_SetHidden(v0, 0);
             (v2->unk_00) = 3;
         }
 
@@ -1122,13 +1122,13 @@ BOOL ov5_021D5150 (TaskManager * param0)
     }
     break;
     case 1:
-        v0 = Player_LocalMapObject(v1->playerAvatar);
-        sub_02062D64(v0, 0);
+        v0 = Player_MapObject(v1->playerAvatar);
+        MapObject_SetHidden(v0, 0);
         LocalMapObj_SetAnimationCode(v0, 0xd);
         (v2->unk_00)++;
         break;
     case 2:
-        v0 = Player_LocalMapObject(v1->playerAvatar);
+        v0 = Player_MapObject(v1->playerAvatar);
 
         if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
             sub_020656AC(v0);

@@ -18,7 +18,7 @@
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_02067A84.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
@@ -53,7 +53,7 @@ BOOL ScrCmd_0B6 (ScriptContext * param0)
     int * v3;
     int * v4;
     SysTask ** v5;
-    LocalMapObject ** v6;
+    MapObject ** v6;
     PlayerAvatar * v7;
     FieldSystem * v8 = param0->fieldSys;
     u16 v9 = ScriptContext_GetVar(param0);
@@ -312,11 +312,11 @@ BOOL ScrCmd_0EF (ScriptContext * param0)
 
 BOOL ScrCmd_0F0 (ScriptContext * param0)
 {
-    LocalMapObject ** v0;
+    MapObject ** v0;
     FieldSystem * v1 = param0->fieldSys;
 
     v0 = sub_0203F098(v1, 10);
-    sub_0203F2BC(sub_02062C00(*v0), sub_02062910(*v0));
+    sub_0203F2BC(MapObject_FieldSystem(*v0), MapObject_Id(*v0));
 
     return 0;
 }
@@ -325,12 +325,12 @@ BOOL ScrCmd_0F1 (ScriptContext * param0)
 {
     int v0;
     s32 v1;
-    LocalMapObject ** v2;
+    MapObject ** v2;
     FieldSystem * v3 = param0->fieldSys;
 
     v2 = sub_0203F098(v3, 10);
     v1 = (s32)ScriptContext_ReadWord(param0);
-    v0 = sub_0203F2A0(sub_02062C00(*v2), sub_02062910(*v2));
+    v0 = sub_0203F2A0(MapObject_FieldSystem(*v2), MapObject_Id(*v2));
 
     if (v0 == 1) {
         ScriptContext_Jump(param0, (u8 *)(param0->scriptPtr + v1));

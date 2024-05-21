@@ -129,7 +129,7 @@ void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int pa
     param3->unk_04 = Pokemon_GetBoxPokemon(param5);
     param3->unk_08 = param1->unk_08;
     param3->unk_10 = 1;
-    param3->unk_14 = sub_02025E44(param0->saveData);
+    param3->unk_14 = SaveData_Options(param0->saveData);
 
     v4 = sub_02055BA8(param0);
 

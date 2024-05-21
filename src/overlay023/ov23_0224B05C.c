@@ -41,16 +41,16 @@
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "unk_020530C8.h"
 #include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "comm_player_manager.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0205F180.h"
-#include "unk_02063400.h"
+#include "map_object_move.h"
 #include "unk_020655F4.h"
 #include "unk_0206A8DC.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -184,9 +184,9 @@ static void ov23_0224B39C(UnkStruct_02029894 * param0, u32 * param1);
 static void ov23_0224C448(void);
 static void ov23_0224C6E8(void);
 static void ov23_0224C588(int param0, int param1, int param2, int param3);
-static void ov23_0224CAF0(FieldSystem * param0, int param1, int param2, int param3, int param4, BOOL param5);
-static void ov23_0224BC5C(FieldSystem * param0, int param1, int param2, int param3, int param4, int param5);
-static void ov23_0224C090(FieldSystem * param0, int param1, int param2, int param3, int param4, int param5);
+static void ov23_0224CAF0(FieldSystem * fieldSystem, int param1, int param2, int param3, int param4, BOOL param5);
+static void ov23_0224BC5C(FieldSystem * fieldSystem, int param1, int param2, int param3, int param4, int param5);
+static void ov23_0224C090(FieldSystem * fieldSystem, int param1, int param2, int param3, int param4, int param5);
 static BOOL ov23_0224B79C(int param0, int param1);
 static void ov23_0224B844(int param0, int param1, BOOL param2);
 static void ov23_0224D238(void);
@@ -314,7 +314,7 @@ static void ov23_0224B128 (int param0, UnkStruct_ov23_0224B098 * param1)
 {
     int v0 = param0;
 
-    if (sub_02036180()) {
+    if (CommSys_IsAlone()) {
         v0 = 16;
     }
 
@@ -693,7 +693,7 @@ static void ov23_0224B844 (int param0, int param1, BOOL param2)
     ov23_0224B0DC(param0, &v1);
     Unk_ov23_022577AC->unk_135B[param1] = param0;
 
-    if (sub_02036180()) {
+    if (CommSys_IsAlone()) {
         v2 = Unk_ov23_022577AC->unk_13CC;
         v3 = Unk_ov23_022577AC->unk_13CE;
         v4 = Unk_ov23_022577AC->unk_13D0;
@@ -831,7 +831,7 @@ static void ov23_0224BA6C (SysTask * param0, void * param1)
     v1.unk_00 = v0->unk_2C;
     v1.unk_02 = 0;
 
-    sub_020360D0(59, &v1);
+    CommSys_SendDataFixedSize(59, &v1);
     SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
@@ -843,7 +843,7 @@ static void ov23_0224BAAC (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
     FieldSystem * v1 = v0->unk_00;
-    UnkStruct_02049FA8 v2;
+    Location v2;
     int v3 = 0, v4 = 0, v5, v6, v7 = 0;
     UnkStruct_ov23_0224B730 v8;
 
@@ -918,7 +918,7 @@ static void ov23_0224BAAC (SysTask * param0, void * param1)
         v8.unk_00 = v0->unk_2C;
         v8.unk_02 = 0;
 
-        sub_020360D0(59, &v8);
+        CommSys_SendDataFixedSize(59, &v8);
         ov23_0224BA48(param0, v0);
         return;
     }
@@ -1043,7 +1043,7 @@ static void ov23_0224BE28 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
     FieldSystem * v1 = v0->unk_00;
-    UnkStruct_02049FA8 v2;
+    Location v2;
     int v3 = 0, v4 = 0, v5, v6, v7 = 0;
     UnkStruct_ov23_0224B730 v8;
 
@@ -1136,7 +1136,7 @@ static void ov23_0224BE28 (SysTask * param0, void * param1)
         if (sub_02033DFC() && (CommSys_CurNetId() == 0)) {
             u8 v9 = 1;
 
-            sub_020360D0(86, &v9);
+            CommSys_SendDataFixedSize(86, &v9);
             ov23_0224BA48(param0, v0);
 
             return;
@@ -1149,7 +1149,7 @@ static void ov23_0224BE28 (SysTask * param0, void * param1)
         v8.unk_00 = v0->unk_2C;
         v8.unk_02 = 1;
 
-        sub_020360D0(59, &v8);
+        CommSys_SendDataFixedSize(59, &v8);
         ov23_0224BA48(param0, v0);
 
         Unk_ov23_022577AC->unk_12D4 = 1;
@@ -1264,12 +1264,12 @@ void ov23_0224C21C (void)
     u8 v2 = 0;
     int v3 = CommSys_CurNetId();
 
-    sub_02035F58(53, &Unk_ov23_022577AC->unk_08[16], sizeof(UnkStruct_ov23_0224B144));
+    CommSys_WriteToQueue(53, &Unk_ov23_022577AC->unk_08[16], sizeof(UnkStruct_ov23_0224B144));
 }
 
 void ov23_0224C23C (int param0)
 {
-    CommSys_ServerSetSendQueue(54, &Unk_ov23_022577AC->unk_08[param0], sizeof(UnkStruct_ov23_0224B144));
+    CommSys_WriteToQueueServer(54, &Unk_ov23_022577AC->unk_08[param0], sizeof(UnkStruct_ov23_0224B144));
 }
 
 void ov23_0224C25C (int param0, int param1, void * param2, void * param3)
@@ -1391,7 +1391,7 @@ static void ov23_0224C448 (void)
         v1++;
     }
 
-    CommSys_ServerSetSendQueue(55, &Unk_ov23_022577AC->unk_137B, sizeof(Unk_ov23_022577AC->unk_137B));
+    CommSys_WriteToQueueServer(55, &Unk_ov23_022577AC->unk_137B, sizeof(Unk_ov23_022577AC->unk_137B));
 }
 
 void ov23_0224C4CC (int param0, int param1, void * param2, void * param3)
@@ -1571,7 +1571,7 @@ static BOOL ov23_0224C790 (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_0224BA48 * v1 = TaskManager_Environment(param0);
-    UnkStruct_02049FA8 v2;
+    Location v2;
     int v3 = 0, v4 = 0;
 
     switch (v1->unk_0C) {
@@ -1581,7 +1581,7 @@ static BOOL ov23_0224C790 (TaskManager * param0)
 
         v1->unk_28 = CommSys_ConnectedCount();
 
-        sub_02035EC8();
+        CommSys_DisableSendMovementData();
         ov23_022417CC();
 
         if (ov23_02249AB8()) {
@@ -1673,7 +1673,7 @@ static BOOL ov23_0224C790 (TaskManager * param0)
         break;
     case 11:
         CommPlayerMan_ForceDir();
-        sub_02061550(v0->playerAvatar, sub_02065838(1, 0x24), 1);
+        PlayerAvatar_SetAnimationCode(v0->playerAvatar, sub_02065838(1, 0x24), 1);
         CommPlayer_SetDir(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
         Sound_PlayEffect(1540);
@@ -1747,7 +1747,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224CB1C * v0 = param1;
     FieldSystem * v1 = v0->unk_00;
-    UnkStruct_02049FA8 v2;
+    Location v2;
     u32 v3;
     BOOL v4 = 0;
     int v5;
@@ -1764,7 +1764,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
         ov23_02254098(ov23_0224219C(), 33);
         Sound_PlayEffect(1566);
 
-        ov5_021F58FC(Player_LocalMapObject(v1->playerAvatar), 0, 0, 0);
+        ov5_021F58FC(Player_MapObject(v1->playerAvatar), 0, 0, 0);
         ov23_02253F40(ov23_0224219C(), 33, 0, NULL);
 
         v0->unk_0C = 1;
@@ -1783,7 +1783,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
     {
         v6 = sub_02058D88(CommSys_CurNetId());
         v7 = sub_02058DC0(CommSys_CurNetId());
-        v8 = CommPlayer_GetOppositeDir(Player_Dir(v1->playerAvatar));
+        v8 = CommPlayer_GetOppositeDir(PlayerAvatar_GetDir(v1->playerAvatar));
 
         ov23_02253F40(ov23_0224219C(), 34, 0, NULL);
         ov23_0224C588(v6, v7, v8, 16);
@@ -1848,7 +1848,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
 
             ov23_0224D238();
 
-            sub_020360D0(86, &v10);
+            CommSys_SendDataFixedSize(86, &v10);
             SysTask_Done(param0);
             Heap_FreeToHeap(v0);
 
@@ -1880,7 +1880,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
 void ov23_0224CD68 (void)
 {
     u8 v0 = 0;
-    sub_020360D0(86, &v0);
+    CommSys_SendDataFixedSize(86, &v0);
 }
 
 int ov23_0224CD7C (void)

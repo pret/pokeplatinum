@@ -148,7 +148,7 @@ BOOL ov6_02248B70 (UnkStruct_02095C48 * param0, Pokemon ** param1)
         MI_CpuCopy8(param1[v4], &v0[v1 * v4], v1);
     }
 
-    if (sub_0203597C(28, v0, v2) == 1) {
+    if (CommSys_SendDataHuge(28, v0, v2) == 1) {
         v3 = 1;
     } else {
         v3 = 0;
@@ -320,7 +320,7 @@ BOOL ov6_02248D64 (UnkStruct_02095C48 * param0, int param1, void * param2)
 
     v0[v1] = param1;
 
-    if (sub_0203597C(36, v0, v1 + 1) == 1) {
+    if (CommSys_SendDataHuge(36, v0, v1 + 1) == 1) {
         v2 = 1;
     } else {
         v2 = 0;

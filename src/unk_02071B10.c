@@ -16,7 +16,7 @@
 
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_02071B10.h"
 
 static void sub_02071C80(const u8 param0, const u8 param1, int * param2);

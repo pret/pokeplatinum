@@ -18,13 +18,13 @@
 #include "communication_system.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "pokemon.h"
 #include "party.h"
 #include "overlay004/ov4_021D0D80.h"
 
 typedef struct {
-    LocalMapObject * unk_00;
+    MapObject * unk_00;
     fx32 unk_04;
     fx32 unk_08;
     u16 unk_0C;
@@ -33,7 +33,7 @@ typedef struct {
 } UnkStruct_0205E268;
 
 typedef struct {
-    LocalMapObject * unk_00;
+    MapObject * unk_00;
     u16 unk_04;
     u16 unk_06;
     u8 unk_08;
@@ -320,7 +320,7 @@ static BOOL sub_0205E268 (TaskManager * param0)
     return 0;
 }
 
-void sub_0205E318 (TaskManager * param0, LocalMapObject * param1, u16 param2, u16 param3, u16 param4, u16 param5)
+void sub_0205E318 (TaskManager * param0, MapObject * param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0205E268 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
@@ -341,7 +341,7 @@ static BOOL sub_0205E3AC (TaskManager * param0)
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0205E3AC * v1 = TaskManager_Environment(param0);
 
-    sub_02062D64(v1->unk_00, v1->unk_09);
+    MapObject_SetHidden(v1->unk_00, v1->unk_09);
 
     if (v1->unk_08++ >= v1->unk_06) {
         v1->unk_09 ^= 1;
@@ -356,7 +356,7 @@ static BOOL sub_0205E3AC (TaskManager * param0)
     return 0;
 }
 
-void sub_0205E3F4 (TaskManager * param0, LocalMapObject * param1, u16 param2, u16 param3)
+void sub_0205E3F4 (TaskManager * param0, MapObject * param1, u16 param2, u16 param3)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_0205E3AC * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));

@@ -14,7 +14,7 @@
 
 BOOL ScrCmd_17D (ScriptContext * param0)
 {
-    LocalMapObject ** v0;
+    MapObject ** v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     v0 = sub_0203F098(param0->fieldSys, 10);
@@ -25,7 +25,7 @@ BOOL ScrCmd_17D (ScriptContext * param0)
 
 BOOL ScrCmd_17E (ScriptContext * param0)
 {
-    LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
+    MapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02055F40(param0->fieldSys, *v0);
@@ -34,7 +34,7 @@ BOOL ScrCmd_17E (ScriptContext * param0)
 
 BOOL ScrCmd_17F (ScriptContext * param0)
 {
-    LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
+    MapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02055F64(param0->fieldSys, *v0);
@@ -43,7 +43,7 @@ BOOL ScrCmd_17F (ScriptContext * param0)
 
 BOOL ScrCmd_180 (ScriptContext * param0)
 {
-    LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
+    MapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02055F88(param0->fieldSys, *v0);
@@ -52,7 +52,7 @@ BOOL ScrCmd_180 (ScriptContext * param0)
 
 BOOL ScrCmd_181 (ScriptContext * param0)
 {
-    LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
+    MapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02055FA8(param0->fieldSys, *v0);
@@ -61,7 +61,7 @@ BOOL ScrCmd_181 (ScriptContext * param0)
 
 BOOL ScrCmd_182 (ScriptContext * param0)
 {
-    LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
+    MapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     u16 v1 = ScriptContext_GetVar(param0);
 
     sub_02055E80(param0->fieldSys, *v0, v1);
@@ -70,7 +70,7 @@ BOOL ScrCmd_182 (ScriptContext * param0)
 
 BOOL ScrCmd_183 (ScriptContext * param0)
 {
-    LocalMapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
+    MapObject ** v0 = sub_0203F098(param0->fieldSys, 10);
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->fieldSys->saveData);
     u16 v2 = ScriptContext_GetVar(param0);
 
@@ -100,7 +100,7 @@ BOOL ScrCmd_185 (ScriptContext * param0)
 {
     u16 v0;
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->fieldSys->saveData);
-    LocalMapObject ** v2 = sub_0203F098(param0->fieldSys, 10);
+    MapObject ** v2 = sub_0203F098(param0->fieldSys, 10);
 
     sub_02055E00(param0->fieldSys, *v2);
     sub_0202CFEC(v1, 0);

@@ -30,8 +30,8 @@
 #include "unk_020508D4.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 #include "unk_020655F4.h"
 #include "unk_020711EC.h"
 #include "overlay005/ov5_021F134C.h"
@@ -43,9 +43,9 @@ static int sub_0205C340(UnkStruct_0205C22C * param0, int param1, WMBssDesc * par
 static void sub_0205C51C(UnkStruct_0205C22C * param0, MapObjectManager * param1);
 static void sub_0205C680(UnkStruct_0205C680 * param0, int param1);
 static void sub_0205C6BC(UnkStruct_0205C680 * param0);
-static void sub_0205C6E0(UnkStruct_0205C680 * param0, LocalMapObject * param1, int param2, int param3);
-static void sub_0205C788(UnkStruct_0205C680 * param0, LocalMapObject * param1);
-static void sub_0205C7BC(UnkStruct_0205C680 * param0, LocalMapObject * param1);
+static void sub_0205C6E0(UnkStruct_0205C680 * param0, MapObject * param1, int param2, int param3);
+static void sub_0205C788(UnkStruct_0205C680 * param0, MapObject * param1);
+static void sub_0205C7BC(UnkStruct_0205C680 * param0, MapObject * param1);
 static void sub_0205C7E4(MapObjectManager * param0, int param1, int param2);
 static void sub_0205C444(UnkStruct_0205C680 param0[], int param1, int param2);
 void sub_0205C970(UnkStruct_0205C95C * param0);
@@ -112,13 +112,13 @@ static void sub_0205C304 (SysTask * param0, void * param1)
 {
     UnkStruct_0205C22C * v0 = (UnkStruct_0205C22C *)param1;
     UnkStruct_0205B43C * v1 = v0->unk_00;
-    LocalMapObject * v2;
+    MapObject * v2;
     int v3;
 
     if (!sub_020509A4(v0->unk_470)) {
         v0->unk_08 = v0->unk_470->playerAvatar;
-        sub_0205C44C(v0, v1, v0->unk_470->unk_38, v0->unk_474);
-        sub_0205C51C(v0, v0->unk_470->unk_38);
+        sub_0205C44C(v0, v1, v0->unk_470->mapObjMan, v0->unk_474);
+        sub_0205C51C(v0, v0->unk_470->mapObjMan);
     }
 }
 
@@ -127,7 +127,7 @@ static int sub_0205C340 (UnkStruct_0205C22C * param0, int param1, WMBssDesc * pa
     int v0, v1, v2 = 0;
     UnkStruct_0203330C * v3;
     UnkStruct_0205B4F8 * v4;
-    LocalMapObject * v5;
+    MapObject * v5;
 
     if (param2 == NULL) {
         for (v0 = 0; v0 < 4; v0++) {
@@ -246,7 +246,7 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
 
 static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     int v1, v2, v3;
 
     GF_ASSERT(param0->unk_08 != NULL);
@@ -255,7 +255,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
     v3 = Player_ZPos(param0->unk_08);
 
     for (v1 = 0; v1 < 50; v1++) {
-        v0 = sub_0206251C(param1, v1 + 1);
+        v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
 
         if (v0 == NULL) {
             GF_ASSERT(0);
@@ -313,7 +313,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
                 param0->unk_0C[v1].unk_00 = 0;
                 param0->unk_0C[v1].unk_09 = 0;
 
-                sub_02062D64(v0, 1);
+                MapObject_SetHidden(v0, 1);
                 sub_02062D80(v0, 0);
             }
             break;
@@ -323,7 +323,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
         }
     }
 
-    sub_0205C7BC(&param0->unk_0C[50], Player_LocalMapObject(param0->unk_08));
+    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->unk_08));
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 
@@ -360,13 +360,13 @@ static void sub_0205C6BC (UnkStruct_0205C680 * param0)
     }
 }
 
-static void sub_0205C6E0 (UnkStruct_0205C680 * param0, LocalMapObject * param1, int param2, int param3)
+static void sub_0205C6E0 (UnkStruct_0205C680 * param0, MapObject * param1, int param2, int param3)
 {
     int v0, v1, v2;
 
-    v0 = sub_02062FF0(param1);
-    v1 = sub_02062FF8(param1);
-    v2 = sub_02063000(param1);
+    v0 = MapObject_XInitial(param1);
+    v1 = MapObject_YInitial(param1);
+    v2 = MapObject_ZInitial(param1);
 
     if ((v0 == param2) && (v2 == param3)) {
         return;
@@ -375,10 +375,10 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, LocalMapObject * param1, 
     Sound_PlayEffect(1615);
     sub_02061AD4(param1, param0->unk_08);
     sub_0205C680(param0, 0);
-    LocalMapObj_SetPosDir(param1, v0, v1, v2, 1);
+    MapObject_SetPosDir(param1, v0, v1, v2, 1);
     sub_0206296C(param1, 1);
     LocalMapObj_SetAnimationCode(param1, 0x44);
-    sub_02062D64(param1, 0);
+    MapObject_SetHidden(param1, 0);
     sub_02062D80(param1, 1);
 
     param0->unk_01 = 1;
@@ -394,7 +394,7 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, LocalMapObject * param1, 
     }
 }
 
-static void sub_0205C788 (UnkStruct_0205C680 * param0, LocalMapObject * param1)
+static void sub_0205C788 (UnkStruct_0205C680 * param0, MapObject * param1)
 {
     LocalMapObj_SetAnimationCode(param1, 0x43);
     sub_02062DB4(param1, 1);
@@ -406,7 +406,7 @@ static void sub_0205C788 (UnkStruct_0205C680 * param0, LocalMapObject * param1)
     param0->unk_01 = 3;
 }
 
-static void sub_0205C7BC (UnkStruct_0205C680 * param0, LocalMapObject * param1)
+static void sub_0205C7BC (UnkStruct_0205C680 * param0, MapObject * param1)
 {
     if (param0->unk_03 == 1) {
         if (param0->unk_04 == 0) {
@@ -421,16 +421,16 @@ static void sub_0205C7BC (UnkStruct_0205C680 * param0, LocalMapObject * param1)
 static void sub_0205C7E4 (MapObjectManager * param0, int param1, int param2)
 {
     int v0;
-    LocalMapObject * v1;
+    MapObject * v1;
 
     for (v0 = param1; v0 < param2; v0++) {
-        v1 = sub_0206251C(param0, v0);
+        v1 = MapObjMan_LocalMapObjByIndex(param0, v0);
 
         if (v1 == NULL) {
             GF_ASSERT(0);
         }
 
-        sub_02062D64(v1, 1);
+        MapObject_SetHidden(v1, 1);
         sub_02062D80(v1, 0);
         sub_02062DB4(v1, 1);
     }
@@ -438,10 +438,10 @@ static void sub_0205C7E4 (MapObjectManager * param0, int param1, int param2)
 
 void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     UnkStruct_0205C680 * v1;
 
-    v0 = sub_0206251C(param0, 0);
+    v0 = MapObjMan_LocalMapObjByIndex(param0, 0);
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -458,7 +458,7 @@ void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
                     continue;
                 }
 
-                v0 = sub_0206251C(param0, v2 + 1);
+                v0 = MapObjMan_LocalMapObjByIndex(param0, v2 + 1);
 
                 if (v0 == NULL) {
                     GF_ASSERT(0);
@@ -467,7 +467,7 @@ void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
                 sub_02061AD4(v0, v1->unk_08);
                 sub_0206296C(v0, 1);
                 LocalMapObj_SetAnimationCode(v0, 0x44);
-                sub_02062D64(v0, 0);
+                MapObject_SetHidden(v0, 0);
                 sub_02062D80(v0, 1);
 
                 v1->unk_01 = 1;

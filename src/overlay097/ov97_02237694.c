@@ -789,7 +789,7 @@ void ov97_02238324 (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
     Heap_FreeToHeap(v1);
 }
 
-void ov97_022383C4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+void ov97_022383C4 (BmpList * param0, u32 param1, u8 param2)
 {
     switch (param2) {
     case 0:

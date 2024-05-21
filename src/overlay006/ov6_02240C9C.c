@@ -27,7 +27,7 @@
 #include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A6DC.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_02050A74.h"
 #include "unk_02051D8C.h"
@@ -35,7 +35,7 @@
 #include "unk_02054D00.h"
 #include "unk_020559DC.h"
 #include "unk_0205DAC8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "pokeradar.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
@@ -857,7 +857,7 @@ static BOOL ov6_022417C8 (FieldSystem * param0, const u32 param1, const u8 param
     if (sub_0205DAD4(param2)) {
         v0 += 30;
     } else {
-        if (sub_0205EB74(param0->playerAvatar) == 0x1) {
+        if (PlayerAvatar_GetPlayerState(param0->playerAvatar) == 0x1) {
             v0 += 30;
         }
     }

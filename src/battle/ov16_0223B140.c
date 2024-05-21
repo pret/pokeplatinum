@@ -223,11 +223,11 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         if (ov16_0223DAD4(param0) == 1) {
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay10));
             *param1 = 7;
-            sub_020364F0(61);
+            CommTiming_StartSync(61);
         }
         break;
     case 7:
-        if (sub_02036540(61)) {
+        if (CommTiming_IsSyncState(61)) {
             *param1 = 8;
         }
         break;
@@ -1785,12 +1785,12 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         }
         break;
     case 2:
-        sub_020364F0(50);
+        CommTiming_StartSync(50);
         v0->unk_1021++;
         break;
     case 3:
-        if (sub_02036540(50)) {
-            sub_020364F0(51);
+        if (CommTiming_IsSyncState(50)) {
+            CommTiming_StartSync(51);
             v0->unk_1022 = 0;
             v0->unk_1021++;
         } else {
@@ -1808,7 +1808,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 6:
         if (sub_0207A960(v0) == 1) {
-            sub_020364F0(52);
+            CommTiming_StartSync(52);
             v0->unk_1021++;
         }
         break;
@@ -1819,7 +1819,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 9:
         if (sub_0207A9CC(v0) == 1) {
-            sub_020364F0(53);
+            CommTiming_StartSync(53);
             v0->unk_1021++;
         }
         break;
@@ -1830,7 +1830,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 12:
         if (sub_0207AA38(v0) == 1) {
-            sub_020364F0(54);
+            CommTiming_StartSync(54);
             v0->unk_1021++;
         }
         break;
@@ -1841,7 +1841,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 15:
         if (sub_0207AAA0(v0) == 1) {
-            sub_020364F0(55);
+            CommTiming_StartSync(55);
             v0->unk_1021++;
         }
         break;
@@ -1852,7 +1852,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 18:
         if (sub_0207AAFC(v0) == 1) {
-            sub_020364F0(56);
+            CommTiming_StartSync(56);
             v0->unk_1021++;
         }
         break;
@@ -1866,10 +1866,10 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
             v0->unk_1021 = 33;
         } else {
             if (CommSys_CurNetId()) {
-                sub_020364F0(57);
+                CommTiming_StartSync(57);
                 v0->unk_1021++;
             } else if (sub_0207AB9C(v0, 1) == 1) {
-                sub_020364F0(57);
+                CommTiming_StartSync(57);
                 v0->unk_1021++;
             }
         }
@@ -1878,7 +1878,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         v0->unk_1020 = 1;
 
         if (CommSys_CurNetId()) {
-            if (sub_02036540(57) == 1) {
+            if (CommTiming_IsSyncState(57) == 1) {
                 v0->unk_1021++;
             }
         } else if (sub_0207ABD0(v0, 1, 57) == 1) {
@@ -1887,10 +1887,10 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 24:
         if (CommSys_CurNetId()) {
-            sub_020364F0(58);
+            CommTiming_StartSync(58);
             v0->unk_1021++;
         } else if (sub_0207AB9C(v0, 3) == 1) {
-            sub_020364F0(58);
+            CommTiming_StartSync(58);
             v0->unk_1021++;
         }
         break;
@@ -1898,7 +1898,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         v0->unk_1020 = 1;
 
         if (CommSys_CurNetId()) {
-            if (sub_02036540(58) == 1) {
+            if (CommTiming_IsSyncState(58) == 1) {
                 v0->unk_1021++;
             }
         } else if (sub_0207ABD0(v0, 3, 58) == 1) {
@@ -1907,10 +1907,10 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 27:
         if (CommSys_CurNetId()) {
-            sub_020364F0(59);
+            CommTiming_StartSync(59);
             v0->unk_1021++;
         } else if (sub_0207AC28(v0, 1) == 1) {
-            sub_020364F0(59);
+            CommTiming_StartSync(59);
             v0->unk_1021++;
         }
         break;
@@ -1918,7 +1918,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         v0->unk_1020 = 1;
 
         if (CommSys_CurNetId()) {
-            if (sub_02036540(59) == 1) {
+            if (CommTiming_IsSyncState(59) == 1) {
                 v0->unk_1021++;
             }
         } else if (sub_0207AC54(v0, 1, 59) == 1) {
@@ -1927,10 +1927,10 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         break;
     case 30:
         if (CommSys_CurNetId()) {
-            sub_020364F0(60);
+            CommTiming_StartSync(60);
             v0->unk_1021++;
         } else if (sub_0207AC28(v0, 3) == 1) {
-            sub_020364F0(60);
+            CommTiming_StartSync(60);
             v0->unk_1021++;
         }
         break;
@@ -1938,7 +1938,7 @@ static BOOL ov16_0223D354 (OverlayManager * param0)
         v0->unk_1020 = 1;
 
         if (CommSys_CurNetId()) {
-            if (sub_02036540(60) == 1) {
+            if (CommTiming_IsSyncState(60) == 1) {
                 v0->unk_1021++;
             }
         } else if (sub_0207AC54(v0, 3, 60) == 1) {
@@ -2325,7 +2325,7 @@ static void ov16_0223DECC (void)
 
     if (sub_020389B8()) {
         sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
-    } else if (sub_02033E1C()) {
+    } else if (CommServerClient_IsInitialized()) {
         sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 }

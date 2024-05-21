@@ -16,7 +16,7 @@ static void ov117_02266660(int param0, int param1, void * param2, void * param3)
 static int ov117_02266610(void);
 static int ov117_02266614(void);
 
-static const UnkStruct_02039A58 Unk_ov117_02266FE4[] = {
+static const CommCmdTable Unk_ov117_02266FE4[] = {
     {NULL, sub_0203294C, NULL},
     {ov117_02266660, ov117_02266614, NULL},
     {ov117_02266618, ov117_02266610, NULL},
@@ -25,9 +25,9 @@ static const UnkStruct_02039A58 Unk_ov117_02266FE4[] = {
 
 void ov117_022665FC (void * param0)
 {
-    int v0 = sizeof(Unk_ov117_02266FE4) / sizeof(UnkStruct_02039A58);
+    int v0 = sizeof(Unk_ov117_02266FE4) / sizeof(CommCmdTable);
 
-    sub_02032798(Unk_ov117_02266FE4, v0, param0);
+    CommCmd_Init(Unk_ov117_02266FE4, v0, param0);
     GF_ASSERT(sizeof(UnkStruct_ov117_022621D4) < 256);
 }
 

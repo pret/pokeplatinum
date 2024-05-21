@@ -135,7 +135,7 @@ static void ov97_0222D164 (void)
     Unk_ov97_0223F1A4->unk_3C0 = 0;
 
     CommInfo_SendBattleRegulation();
-    sub_020364F0(0xAB);
+    CommTiming_StartSync(0xAB);
 
     ov97_0222D0A4(ov97_0222D198, 0);
 }

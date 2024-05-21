@@ -54,7 +54,7 @@
 #include "unk_020508D4.h"
 #include "unk_020573FC.h"
 #include "unk_0205D8CC.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_0207CB08.h"
@@ -81,8 +81,8 @@ static u8 ov7_0224D620(UnkStruct_ov7_0224D008 * param0);
 static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 * param0);
 static u8 ov7_0224E950(FieldSystem * param0, UnkStruct_ov7_0224D008 * param1);
 static void ov7_0224D6BC(UnkStruct_ov7_0224D008 * param0);
-static void ov7_0224D85C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov7_0224D9B8(UnkStruct_0200112C * param0, u32 param1, u8 param2);
+static void ov7_0224D85C(BmpList * param0, u32 param1, u8 param2);
+static void ov7_0224D9B8(BmpList * param0, u32 param1, u8 param2);
 static void ov7_0224DAF8(UnkStruct_ov7_0224D008 * param0, u8 param1);
 static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 * param0);
 static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 * param0);
@@ -195,7 +195,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * param1, u16 * param2, u8 
 
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
     v0->unk_270 = SaveData_GetTrainerInfo(param1->saveData);
-    v0->unk_278 = sub_02025E44(param1->saveData);
+    v0->unk_278 = SaveData_Options(param1->saveData);
     v0->unk_280 = sub_0202CD88(param1->saveData);
     v0->unk_288 = SaveData_Events(param1->saveData);
     v0->unk_28C = param4;
@@ -221,7 +221,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * param1, u16 * param2, u8 
 
 static u8 ov7_0224CE90 (FieldSystem * param0)
 {
-    int v0 = Player_Dir(param0->playerAvatar);
+    int v0 = PlayerAvatar_GetDir(param0->playerAvatar);
 
     if ((v0 == 0) || (v0 == 1) || (v0 == 3)) {
         return 10;
@@ -396,7 +396,7 @@ static void ov7_0224D21C (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224D250 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
 {
-    if (sub_0205DA04(param1->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param1->unk_2A4) == 0) {
         return 0;
     }
 
@@ -655,7 +655,7 @@ static void ov7_0224D6BC (UnkStruct_ov7_0224D008 * param0)
     param0->unk_78 = sub_0200112C(&v2, 0, 0, 11);
 }
 
-static void ov7_0224D85C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov7_0224D85C (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov7_0224D008 * v0 = (UnkStruct_ov7_0224D008 *)sub_02001504(param0, 19);
 
@@ -720,7 +720,7 @@ static void ov7_0224D85C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     sub_0201A9A4(&v0->unk_08[1]);
 }
 
-static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov7_0224D9B8 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov7_0224D008 * v0 = (UnkStruct_ov7_0224D008 *)sub_02001504(param0, 19);
 
@@ -879,7 +879,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
             StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
             Strbuf_Free(v3);
 
-            param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+            param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
             return 10;
         }
 
@@ -906,7 +906,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
         StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
         Strbuf_Free(v3);
 
-        param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
 
         ov7_0224EB38(param0, 1);
         Sound_PlayEffect(1500);
@@ -920,7 +920,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224DE94 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 5;
     }
 
@@ -1038,7 +1038,7 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
         StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
         Strbuf_Free(v0);
 
-        param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
         return 10;
     }
 
@@ -1068,7 +1068,7 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
     StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
     Strbuf_Free(v0);
 
-    param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+    param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
     return 7;
 }
 
@@ -1111,7 +1111,7 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
 
 static u8 ov7_0224E3A0 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 7;
     }
 
@@ -1164,7 +1164,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
         Strbuf_Free(v0);
     }
         BGL_FillWindow(&param0->unk_08[5], 15);
-        param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
         Sound_PlayEffect(1604);
         return 9;
     case 0xfffffffe:
@@ -1182,7 +1182,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 9;
     }
 
@@ -1220,7 +1220,7 @@ static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 10;
     }
 
@@ -1237,7 +1237,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
                 Strbuf_Free(v0);
                 BGL_FillWindow(&param0->unk_08[5], 15);
 
-                param0->unk_2A4 = sub_0205D994(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+                param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
 
                 {
                     UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->unk_284);
@@ -1263,7 +1263,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224E7C8 (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 11;
     }
 
@@ -1403,8 +1403,8 @@ static u8 ov7_0224E950 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
         return 19;
     }
 
-    sub_0205D8F4(param0->unk_08, &param1->unk_08[1], 3);
-    sub_0205D944(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(param0->unk_08, &param1->unk_08[1], 3);
+    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     {
         Strbuf* v1 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
@@ -1413,14 +1413,14 @@ static u8 ov7_0224E950 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
         Strbuf_Free(v1);
     }
 
-    param1->unk_2A4 = sub_0205D994(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
 
     return 13;
 }
 
 static u8 ov7_0224EA2C (UnkStruct_ov7_0224D008 * param0)
 {
-    if (sub_0205DA04(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 13;
     }
 
@@ -1442,10 +1442,10 @@ static void ov7_0224EA54 (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
 
     StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
     Strbuf_Free(v0);
-    sub_0205D8F4(param0->unk_08, &param1->unk_08[1], 3);
-    sub_0205D944(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(param0->unk_08, &param1->unk_08[1], 3);
+    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
-    param1->unk_2A4 = sub_0205D994(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
 }
 
 static const UnkStruct_ov7_0224F2EC Unk_ov7_0224F2EC = {
@@ -1566,8 +1566,8 @@ static u8 ov7_0224EC9C (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
         return 18;
     }
 
-    sub_0205D8F4(param0->unk_08, &param1->unk_08[1], 3);
-    sub_0205D944(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(param0->unk_08, &param1->unk_08[1], 3);
+    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
 
     {
         Strbuf* v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
@@ -1576,6 +1576,6 @@ static u8 ov7_0224EC9C (FieldSystem * param0, UnkStruct_ov7_0224D008 * param1)
         Strbuf_Free(v0);
     }
 
-    param1->unk_2A4 = sub_0205D994(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
     return 13;
 }

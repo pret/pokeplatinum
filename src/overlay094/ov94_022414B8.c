@@ -1101,7 +1101,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov94_0224608C = {
     NULL
 };
 
-UnkStruct_0200112C * ov94_022426A8 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3)
+BmpList * ov94_022426A8 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1177,7 +1177,7 @@ static int ov94_02242718 (ResourceMetadata ** param0, MessageLoader * param1, Me
     return v2 + 1;
 }
 
-UnkStruct_0200112C * ov94_022427C0 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3, MessageLoader * param4, UnkStruct_ov94_0223FD4C_sub3 * param5, PokedexData * param6)
+BmpList * ov94_022427C0 (UnkStruct_ov94_0223FD4C * param0, ResourceMetadata ** param1, Window * param2, MessageLoader * param3, MessageLoader * param4, UnkStruct_ov94_0223FD4C_sub3 * param5, PokedexData * param6)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1, v2, v3;
@@ -1204,7 +1204,7 @@ static Unk_ov94_0224693C[][2] = {
     {0x79, 0xFFFFFFFE}
 };
 
-UnkStruct_0200112C * ov94_02242840 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2)
+BmpList * ov94_02242840 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1225,7 +1225,7 @@ UnkStruct_0200112C * ov94_02242840 (ResourceMetadata ** param0, Window * param1,
     return sub_0200112C(&v0, 0, 0, 62);
 }
 
-UnkStruct_0200112C * ov94_022428B0 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2, int param3)
+BmpList * ov94_022428B0 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2, int param3)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1295,7 +1295,7 @@ int ov94_02242970 (int param0, int param1, int param2)
     return 0;
 }
 
-UnkStruct_0200112C * ov94_022429B4 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2, MessageLoader * param3)
+BmpList * ov94_022429B4 (ResourceMetadata ** param0, Window * param1, MessageLoader * param2, MessageLoader * param3)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1330,7 +1330,7 @@ void ov94_02242A44 (UnkStruct_ov94_0223FD4C * param0, int param1)
     }
 }
 
-u32 ov94_02242A6C (UnkStruct_0200112C * param0, u16 * param1)
+u32 ov94_02242A6C (BmpList * param0, u16 * param1)
 {
     u16 v0;
     u32 v1 = sub_02001288(param0);

@@ -12,8 +12,8 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_0205E7D0.h"
-#include "unk_02061804.h"
+#include "player_avatar.h"
+#include "map_object.h"
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/ov5_021ECC20.h"
 
@@ -48,7 +48,7 @@ static void ov5_021E135C (UnkStruct_ov5_021E135C * param0)
 static void ov5_021E139C (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021E135C * v0 = param1;
-    LocalMapObject * v1 = Player_LocalMapObject(v0->unk_00->playerAvatar);
+    MapObject * v1 = Player_MapObject(v0->unk_00->playerAvatar);
     VecFx32 v2;
 
     switch (v0->unk_08) {
@@ -81,7 +81,7 @@ static void ov5_021E139C (SysTask * param0, void * param1)
 static void ov5_021E1470 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021E135C * v0 = param1;
-    LocalMapObject * v1 = Player_LocalMapObject(v0->unk_00->playerAvatar);
+    MapObject * v1 = Player_MapObject(v0->unk_00->playerAvatar);
     VecFx32 v2;
     int v3;
 
@@ -93,7 +93,7 @@ static void ov5_021E1470 (SysTask * param0, void * param1)
         v3 = (20 - v0->unk_0C);
         v2.y = ((FX32_ONE * 2.2) + ((FX32_ONE / 2) * v3)) * v3;
         sub_020630AC(v1, &v2);
-        ov5_021ECCC8(v1);
+        MapObject_Draw(v1);
     }
 
         Sound_PlayEffect(1615);
@@ -136,7 +136,7 @@ void ov5_021E15A8 (FieldSystem * param0, BOOL param1, BOOL * param2)
 
     v0->unk_00 = param0;
     v0->unk_04 = param2;
-    v0->unk_10 = Player_Dir(param0->playerAvatar);
+    v0->unk_10 = PlayerAvatar_GetDir(param0->playerAvatar);
 
     if (param1) {
         SysTask_Start(ov5_021E139C, v0, 100);

@@ -43,9 +43,9 @@ static int sub_02099508 (void)
     return 236 * 6 + 4 * 2;
 }
 
-static const UnkStruct_02039A58 Unk_020F68A4[] = {
+static const CommCmdTable Unk_020F68A4[] = {
     {CommPlayer_RecvLocation, sub_020585A4, NULL},
-    {sub_020585A8, sub_02058C3C, NULL},
+    {CommPlayer_RecvLocationAndInit, sub_02058C3C, NULL},
     {ov23_022431C4, sub_02032950, NULL},
     {ov23_0224ACE8, sub_0203294C, NULL},
     {ov23_0224ACF8, sub_02032950, NULL},
@@ -164,10 +164,10 @@ void sub_02099510 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-void sub_02099514 (void * param0)
+void CommFieldCmd_Init (void * param0)
 {
-    int v0 = sizeof(Unk_020F68A4) / sizeof(UnkStruct_02039A58);
-    sub_02032798(Unk_020F68A4, v0, param0);
+    int v0 = sizeof(Unk_020F68A4) / sizeof(CommCmdTable);
+    CommCmd_Init(Unk_020F68A4, v0, param0);
 }
 
 static int sub_02099528 (void)

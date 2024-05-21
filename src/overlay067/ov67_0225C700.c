@@ -591,7 +591,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
         Options * v1;
         u8 v2;
 
-        v1 = sub_02025E44(param0->unk_00);
+        v1 = SaveData_Options(param0->unk_00);
         v2 = Options_Frame(v1);
 
         sub_02002E7C(0, 12 * 32, param1);
@@ -647,7 +647,7 @@ static void ov67_0225D188 (UnkStruct_ov67_0225D210 * param0, BGL * param1, u32 p
     param0->unk_18 = Strbuf_Init(256, param10);
     param0->unk_1C = Strbuf_Init(256, param10);
     param0->unk_20 = param2;
-    param0->unk_28 = Options_TextFrameDelay(sub_02025E44(param9));
+    param0->unk_28 = Options_TextFrameDelay(SaveData_Options(param9));
     param0->unk_2C = 0;
 
     BGL_AddWindow(param1, &param0->unk_08, Unk_ov67_0225D3F4[1], param4, param5, param6, param7, 11, param8);
@@ -656,7 +656,7 @@ static void ov67_0225D188 (UnkStruct_ov67_0225D210 * param0, BGL * param1, u32 p
 static void ov67_0225D210 (UnkStruct_ov67_0225D210 * param0, u32 param1)
 {
     if (Message_Printing(param0->unk_2C)) {
-        sub_0201D730(param0->unk_2C);
+        PrintString_ForceStop(param0->unk_2C);
     }
 
     BGL_FillWindow(&param0->unk_08, 15);
@@ -676,7 +676,7 @@ static void ov67_0225D210 (UnkStruct_ov67_0225D210 * param0, u32 param1)
 static void ov67_0225D294 (UnkStruct_ov67_0225D210 * param0)
 {
     if (Message_Printing(param0->unk_2C)) {
-        sub_0201D730(param0->unk_2C);
+        PrintString_ForceStop(param0->unk_2C);
     }
 
     if (param0->unk_20 == 0) {
@@ -712,7 +712,7 @@ static void ov67_0225D310 (UnkStruct_ov67_0225D210 * param0)
 static void ov67_0225D330 (UnkStruct_ov67_0225D210 * param0)
 {
     if (Message_Printing(param0->unk_2C)) {
-        sub_0201D730(param0->unk_2C);
+        PrintString_ForceStop(param0->unk_2C);
     }
 
     if (param0->unk_24) {

@@ -19,7 +19,7 @@
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
 #include "unk_020530C8.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021F0EB0.h"
 #include "overlay006/ov6_02243258.h"
@@ -32,13 +32,13 @@ typedef struct {
     SysTask * unk_0C;
     SysTask * unk_10;
     SysTask * unk_14;
-    LocalMapObject * unk_18;
+    MapObject * unk_18;
     FieldSystem * unk_1C;
     Pokemon * unk_20;
 } UnkStruct_ov6_02247100;
 
 static void * ov6_02247590(u32 param0, u32 param1);
-static void ov6_0224732C(FieldSystem * param0, UnkStruct_ov6_02247100 * param1);
+static void ov6_0224732C(FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param1);
 
 int(*const Unk_ov6_022495CC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *);
 int(*const Unk_ov6_022495BC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *);
@@ -48,25 +48,25 @@ const UnkStruct_ov5_021F8E3C Unk_ov6_02249608[];
 const UnkStruct_ov5_021F8E3C Unk_ov6_022495DC[];
 const UnkStruct_ov5_021F8E3C Unk_ov6_0224966C[];
 
-void * ov6_02247100 (FieldSystem * param0, u32 param1)
+void * ov6_02247100 (FieldSystem * fieldSystem, u32 param1)
 {
     UnkStruct_ov6_02247100 * v0 = ov6_02247590(param1, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 0;
-    v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_1C = fieldSystem;
+    v0->unk_18 = Player_MapObject(fieldSystem->playerAvatar);
 
     return v0;
 }
 
-BOOL ov6_02247120 (TaskManager * param0)
+BOOL ov6_02247120 (TaskManager * taskMan)
 {
     int v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(taskMan);
 
     do {
-        v0 = Unk_ov6_022495CC[v2->unk_00](param0, v1, v2);
+        v0 = Unk_ov6_022495CC[v2->unk_00](taskMan, v1, v2);
 
         if (v0 == 2) {
             Heap_FreeToHeap(v2);
@@ -76,7 +76,7 @@ BOOL ov6_02247120 (TaskManager * param0)
     return 0;
 }
 
-static int ov6_0224715C (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_0224715C (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     param2->unk_14 = ov5_021F0EB0(param1, 4);
     ov5_021F0F10(param2->unk_14, 1, ((FX32_ONE * -150)), 15);
@@ -98,7 +98,7 @@ static int ov6_0224715C (TaskManager * param0, FieldSystem * param1, UnkStruct_o
     return 0;
 }
 
-static int ov6_022471C0 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_022471C0 (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 0) {
         return 0;
@@ -123,7 +123,7 @@ static int ov6_022471C0 (TaskManager * param0, FieldSystem * param1, UnkStruct_o
     return 0;
 }
 
-static int ov6_02247244 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247244 (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 1) {
         sub_02065758(param2->unk_0C);
@@ -142,20 +142,20 @@ static int ov6_02247244 (TaskManager * param0, FieldSystem * param1, UnkStruct_o
     return 1;
 }
 
-static int ov6_02247288 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247288 (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param1->saveData);
 
     if (param2->unk_08 == 2) {
         u16 v1;
-        UnkStruct_02049FA8 v2;
+        Location v2;
 
         v1 = sub_0203A75C(v0);
         sub_0203A7F0(v1, &v2);
-        sub_02053CD4(param0, &v2, param2->unk_08);
+        sub_02053CD4(taskMan, &v2, param2->unk_08);
     } else {
-        UnkStruct_02049FA8 * v3 = sub_0203A72C(v0);
-        sub_02053CD4(param0, v3, param2->unk_08);
+        Location * v3 = sub_0203A72C(v0);
+        sub_02053CD4(taskMan, v3, param2->unk_08);
     }
 
     return 2;
@@ -168,25 +168,25 @@ static int(*const Unk_ov6_022495CC[])(TaskManager *, FieldSystem *, UnkStruct_ov
     ov6_02247288
 };
 
-void * ov6_022472C8 (FieldSystem * param0, u32 param1, int param2)
+void * ov6_022472C8 (FieldSystem * fieldSystem, u32 param1, int param2)
 {
     UnkStruct_ov6_02247100 * v0 = ov6_02247590(param1, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = param2;
-    v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_1C = fieldSystem;
+    v0->unk_18 = Player_MapObject(fieldSystem->playerAvatar);
 
     return v0;
 }
 
-BOOL ov6_022472E8 (TaskManager * param0)
+BOOL ov6_022472E8 (TaskManager * taskMan)
 {
     int v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(taskMan);
 
     do {
-        v0 = Unk_ov6_022495BC[v2->unk_00](param0, v1, v2);
+        v0 = Unk_ov6_022495BC[v2->unk_00](taskMan, v1, v2);
 
         if (v0 == 2) {
             ov6_0224732C(v1, v2);
@@ -198,20 +198,20 @@ BOOL ov6_022472E8 (TaskManager * param0)
     return 0;
 }
 
-static void ov6_0224732C (FieldSystem * param0, UnkStruct_ov6_02247100 * param1)
+static void ov6_0224732C (FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param1)
 {
     void * v0;
 
     if (param1->unk_08 == 2) {
-        v0 = sub_0202BE00((28 - 19), param0->unk_1C->unk_00, 4);
+        v0 = sub_0202BE00((28 - 19), fieldSystem->unk_1C->unk_00, 4);
     } else {
         return;
     }
 
-    sub_0202B758(param0->unk_9C, v0, 1);
+    sub_0202B758(fieldSystem->unk_9C, v0, 1);
 }
 
-static int ov6_02247354 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247354 (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (param2->unk_08 == 2) {
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
@@ -227,7 +227,7 @@ static int ov6_02247354 (TaskManager * param0, FieldSystem * param1, UnkStruct_o
     return 0;
 }
 
-static int ov6_022473C8 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_022473C8 (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 1) {
         sub_02065758(param2->unk_0C);
@@ -244,7 +244,7 @@ static int ov6_022473C8 (TaskManager * param0, FieldSystem * param1, UnkStruct_o
     return 1;
 }
 
-static int ov6_0224740C (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_0224740C (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 0) {
         return 0;
@@ -264,7 +264,7 @@ static int ov6_0224740C (TaskManager * param0, FieldSystem * param1, UnkStruct_o
     return 0;
 }
 
-static int ov6_02247458 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_02247458 (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (sub_0206574C(param2->unk_0C) == 0) {
         return 0;
@@ -287,26 +287,26 @@ static int(*const Unk_ov6_022495BC[])(TaskManager *, FieldSystem *, UnkStruct_ov
     ov6_02247458
 };
 
-void * ov6_02247488 (FieldSystem * param0, Pokemon * param1, u32 param2)
+void * ov6_02247488 (FieldSystem * fieldSystem, Pokemon * param1, u32 param2)
 {
     UnkStruct_ov6_02247100 * v0 = ov6_02247590(param2, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 1;
-    v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_1C = fieldSystem;
+    v0->unk_18 = Player_MapObject(fieldSystem->playerAvatar);
     v0->unk_20 = param1;
 
     return v0;
 }
 
-BOOL ov6_022474AC (TaskManager * param0)
+BOOL ov6_022474AC (TaskManager * taskMan)
 {
     int v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(taskMan);
 
     do {
-        v0 = Unk_ov6_022495F0[v2->unk_00](param0, v1, v2);
+        v0 = Unk_ov6_022495F0[v2->unk_00](taskMan, v1, v2);
 
         if (v0 == 2) {
             Heap_FreeToHeap(v2);
@@ -316,9 +316,9 @@ BOOL ov6_022474AC (TaskManager * param0)
     return 0;
 }
 
-static int ov6_022474E8 (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_022474E8 (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
-    int v0 = sub_0205EB98(param1->playerAvatar);
+    int v0 = PlayerAvatar_Gender(param1->playerAvatar);
 
     param2->unk_10 = ov6_02243F88(param1, 0, param2->unk_20, v0);
     param2->unk_00++;
@@ -326,7 +326,7 @@ static int ov6_022474E8 (TaskManager * param0, FieldSystem * param1, UnkStruct_o
     return 0;
 }
 
-static int ov6_0224750C (TaskManager * param0, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
+static int ov6_0224750C (TaskManager * taskMan, FieldSystem * param1, UnkStruct_ov6_02247100 * param2)
 {
     if (ov6_02243FBC(param2->unk_10) == 0) {
         return 0;
@@ -346,26 +346,26 @@ static int(*const Unk_ov6_022495F0[])(TaskManager *, FieldSystem *, UnkStruct_ov
     ov6_02247288
 };
 
-void * ov6_02247530 (FieldSystem * param0, Pokemon * param1, u32 param2)
+void * ov6_02247530 (FieldSystem * fieldSystem, Pokemon * param1, u32 param2)
 {
     UnkStruct_ov6_02247100 * v0 = ov6_02247590(param2, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 2;
-    v0->unk_1C = param0;
-    v0->unk_18 = Player_LocalMapObject(param0->playerAvatar);
+    v0->unk_1C = fieldSystem;
+    v0->unk_18 = Player_MapObject(fieldSystem->playerAvatar);
     v0->unk_20 = param1;
 
     return v0;
 }
 
-BOOL ov6_02247554 (TaskManager * param0)
+BOOL ov6_02247554 (TaskManager * taskMan)
 {
     int v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov6_02247100 * v2 = TaskManager_Environment(taskMan);
 
     do {
-        v0 = Unk_ov6_022495F0[v2->unk_00](param0, v1, v2);
+        v0 = Unk_ov6_022495F0[v2->unk_00](taskMan, v1, v2);
 
         if (v0 == 2) {
             Heap_FreeToHeap(v2);

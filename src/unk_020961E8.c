@@ -26,7 +26,7 @@ static void sub_020963C0(UnkStruct_020961E8 * param0, int param1);
 void sub_020961FC(int param0, int param1, void * param2, void * param3);
 void sub_0209620C(int param0, int param1, void * param2, void * param3);
 
-static const UnkStruct_02039A58 Unk_020F5F68[] = {
+static const CommCmdTable Unk_020F5F68[] = {
     {sub_02099510, sub_02096400, NULL},
     {sub_02099510, sub_02096400, NULL},
     {sub_02099510, sub_02096400, NULL},
@@ -143,9 +143,9 @@ void sub_020961E8 (void * param0)
 {
     UnkStruct_020961E8 * v0 = (UnkStruct_020961E8 *)param0;
     int v1;
-    int v2 = sizeof(Unk_020F5F68) / sizeof(UnkStruct_02039A58);
+    int v2 = sizeof(Unk_020F5F68) / sizeof(CommCmdTable);
 
-    sub_02032798(Unk_020F5F68, v2, param0);
+    CommCmd_Init(Unk_020F5F68, v2, param0);
 
     for (v1 = 0; v1 < 5; v1++) {
         (void)0;
@@ -303,7 +303,7 @@ static void sub_020963C0 (UnkStruct_020961E8 * param0, int param1)
     }
 
     param0->unk_418.unk_BBC = LCRNG_Next();
-    sub_0203597C(116, &param0->unk_418, sizeof(UnkStruct_ov59_021D30E0));
+    CommSys_SendDataHuge(116, &param0->unk_418, sizeof(UnkStruct_ov59_021D30E0));
 }
 
 static int sub_02096400 (void)

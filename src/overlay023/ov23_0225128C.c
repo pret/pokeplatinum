@@ -37,11 +37,11 @@
 #include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "comm_player_manager.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0206A780.h"
 #include "unk_0206A8DC.h"
 #include "overlay023/ov23_0223E140.h"
@@ -78,8 +78,8 @@ typedef struct {
     SysTask * unk_10;
 } UnkStruct_ov23_02252038;
 
-static void ov23_022520E8(FieldSystem * param0, UnkStruct_ov23_022513B0 * param1);
-static void ov23_02251F94(FieldSystem * param0);
+static void ov23_022520E8(FieldSystem * fieldSystem, UnkStruct_ov23_022513B0 * param1);
+static void ov23_02251F94(FieldSystem * fieldSystem);
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 * param0);
 
 static const UnkStruct_ov61_0222C884 Unk_ov23_022569C8 = {
@@ -179,8 +179,6 @@ BOOL ov23_02251324 (int param0, UnkStruct_ov23_0224271C * param1)
                 u8 v5 = 3;
                 ov23_0224A570(param0, 1, &v5, NULL);
                 return 1;
-            } else {
-                (void)0;
             }
         }
 
@@ -201,7 +199,7 @@ void ov23_022513B0 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_022513B0 * v0 = param2;
     FieldSystem * v1 = param3;
 
-    if (!sub_02035EE0()) {
+    if (!CommSys_IsSendingMovementData()) {
         return;
     }
 
@@ -267,7 +265,7 @@ static int ov23_0225144C (int param0, UnkStruct_ov23_02250CD4 * param1)
     return 0;
 }
 
-static void ov23_0225148C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_0225148C (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;
@@ -279,7 +277,7 @@ static void ov23_0225148C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421BC(), 6 + v1, 0, NULL);
 }
 
-static void ov23_022514B0 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov23_022514B0 (BmpList * param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
     int v1 = param1;
@@ -617,7 +615,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
 {
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02251ACC * v1 = TaskManager_Environment(param0);
-    UnkStruct_02049FA8 v2;
+    Location v2;
     u32 v3;
     BOOL v4 = 0;
     int v5;
@@ -630,7 +628,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            sub_0205EB18(v0->playerAvatar, 0);
+            PlayerAvatar_SetHidden(v0->playerAvatar, 0);
 
             ov23_02251A84(1, v0);
             v1->unk_00 = 2;
@@ -644,7 +642,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
         v1->unk_00 = 4;
         break;
     case 4:
-        sub_0205EB18(v0->playerAvatar, 1);
+        PlayerAvatar_SetHidden(v0->playerAvatar, 1);
         ov23_02251A84(0, v0);
         sub_0200F174(1, 1, 1, 0x0, 6, 1, 4);
         v1->unk_00 = 5;
@@ -887,7 +885,7 @@ static void ov23_02252038 (SysTask * param0, void * param1)
         if (v1 == 0xffffffff) {
             return;
         } else if (v1 == 0) {
-            sub_020360D0(89, &v0->unk_0C);
+            CommSys_SendDataFixedSize(89, &v0->unk_0C);
         } else {
             sub_0205948C(0x40);
             ov23_02254044(ov23_0224219C());

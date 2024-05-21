@@ -24,7 +24,7 @@
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "communication_system.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_02049D08.h"
@@ -165,10 +165,8 @@ void sub_02050224 (TaskManager * param0, u16 param1, u16 param2, u16 * param3)
     v0->unk_04[1] = param2;
     v0->unk_0C = param3;
 
-    sub_02099514(v0);
+    CommFieldCmd_Init(v0);
     sub_02050944(param0, sub_02050264, v0);
-
-    return;
 }
 
 static BOOL sub_02050264 (TaskManager * param0)
@@ -254,7 +252,7 @@ static int sub_0205037C (UnkStruct_0205037C * param0, FieldSystem * param1, int 
     v1->unk_00 = Party_GetFromSavedata(param1->saveData);
     v1->unk_04 = sub_0207D990(param1->saveData);
     v1->unk_08 = sub_02028430(param1->saveData);
-    v1->unk_0C = sub_02025E44(param1->saveData);
+    v1->unk_0C = SaveData_Options(param1->saveData);
     v1->unk_21 = 0;
     v1->unk_20 = 23;
     v1->unk_1C = param1;
@@ -320,7 +318,7 @@ static int sub_02050498 (UnkStruct_0205037C * param0, FieldSystem * param1, int 
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = sub_02025E44(v1);
+    v0->options = SaveData_Options(v1);
     v0->monData = Party_GetFromSavedata(v1);
     v0->dexMode = sub_0207A274(v1);
     v0->contest = PokemonSummary_ShowContestData(v1);

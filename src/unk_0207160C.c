@@ -13,10 +13,10 @@
 #include "heap.h"
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_0207160C.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF250.h"
@@ -43,8 +43,8 @@ typedef struct {
     int unk_0C;
 } UnkStruct_020718D8;
 
-static BOOL sub_020718D8(TaskManager * param0);
-static BOOL sub_020719D8(TaskManager * param0);
+static BOOL sub_020718D8(TaskManager * taskMan);
+static BOOL sub_020719D8(TaskManager * taskMan);
 static void sub_02071ACC(const int param0);
 static void sub_02071AEC(const int param0);
 
@@ -114,7 +114,7 @@ static const UnkStruct_020F03F4 Unk_020F03F4[9] = {
     }
 };
 
-void sub_0207160C (FieldSystem * param0)
+void sub_0207160C (FieldSystem * fieldSystem)
 {
     BOOL v0;
     UnkStruct_ov5_021E1890 * v1;
@@ -123,7 +123,7 @@ void sub_0207160C (FieldSystem * param0)
     const UnkStruct_020F03F4 * v4;
     fx32 v5;
 
-    v2 = sub_02027860(FieldSystem_SaveData(param0));
+    v2 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v3 = (UnkStruct_020716D4 *)sub_02027F6C(v2, 7);
     v4 = &Unk_020F03F4[v3->unk_02];
     v5 = v4->unk_00[v3->unk_00];
@@ -136,12 +136,12 @@ void sub_0207160C (FieldSystem * param0)
         };
 
         v6.y = v5;
-        ov5_021E19CC(param0->unk_A4, param0->unk_30, 258, &v6, NULL, param0->unk_50);
-        v1 = ov5_021E18CC(param0->unk_A4, 258);
+        ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 258, &v6, NULL, fieldSystem->unk_50);
+        v1 = ov5_021E18CC(fieldSystem->unk_A4, 258);
     } else {
         const int v7[2] = {258, 502};
 
-        v0 = sub_02055324(param0, v7, 2, &v1, NULL);
+        v0 = sub_02055324(fieldSystem, v7, 2, &v1, NULL);
         GF_ASSERT(v0);
     }
 
@@ -154,15 +154,15 @@ void sub_0207160C (FieldSystem * param0)
         ov5_021E18A4(v1, &v8);
     }
 
-    ov5_021EF2CC(0, v4->unk_08, v4->unk_0C, 3, 2, v5, param0->unk_A0);
+    ov5_021EF2CC(0, v4->unk_08, v4->unk_0C, 3, 2, v5, fieldSystem->unk_A0);
 }
 
-void sub_020716D4 (FieldSystem * param0)
+void sub_020716D4 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_020716D4 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 7);
 
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
@@ -170,9 +170,9 @@ void sub_020716D4 (FieldSystem * param0)
     v1->unk_04 = 1;
     v1->unk_08 = 0;
 
-    switch (param0->unk_1C->unk_00) {
+    switch (fieldSystem->unk_1C->unk_00) {
     case 291:
-        if (param0->unk_1C->unk_0C == 26) {
+        if (fieldSystem->unk_1C->unk_0C == 26) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -181,7 +181,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_02 = 0;
         break;
     case 293:
-        if (param0->unk_1C->unk_0C == (32 * 1 + 16)) {
+        if (fieldSystem->unk_1C->unk_0C == (32 * 1 + 16)) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -190,7 +190,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_02 = 1;
         break;
     case 294:
-        if (param0->unk_1C->unk_0C == 15) {
+        if (fieldSystem->unk_1C->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -199,7 +199,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_02 = 2;
         break;
     case 176:
-        if (param0->unk_1C->unk_0C == 15) {
+        if (fieldSystem->unk_1C->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -210,7 +210,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_08 = 1;
         break;
     case 178:
-        if (param0->unk_1C->unk_0C == 15) {
+        if (fieldSystem->unk_1C->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -221,7 +221,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_08 = 1;
         break;
     case 180:
-        if (param0->unk_1C->unk_0C == 15) {
+        if (fieldSystem->unk_1C->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -232,7 +232,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_08 = 1;
         break;
     case 182:
-        if (param0->unk_1C->unk_0C == 15) {
+        if (fieldSystem->unk_1C->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -243,7 +243,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_08 = 1;
         break;
     case 184:
-        if (param0->unk_1C->unk_0C == 23) {
+        if (fieldSystem->unk_1C->unk_0C == 23) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -254,7 +254,7 @@ void sub_020716D4 (FieldSystem * param0)
         v1->unk_08 = 1;
         break;
     case 185:
-        if (param0->unk_1C->unk_0C == 18) {
+        if (fieldSystem->unk_1C->unk_0C == 18) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -269,12 +269,12 @@ void sub_020716D4 (FieldSystem * param0)
     }
 }
 
-u8 sub_02071818 (FieldSystem * param0)
+u8 sub_02071818 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_020716D4 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
 
     if (v1->unk_04) {
@@ -284,13 +284,13 @@ u8 sub_02071818 (FieldSystem * param0)
     }
 }
 
-void sub_0207183C (FieldSystem * param0)
+void sub_0207183C (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_020716D4 * v1;
     UnkStruct_020718D8 * v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_020716D4 *)sub_02027F6C(v0, 7);
 
     if ((Unk_020F03F4[v1->unk_02].unk_10) && (v1->unk_00 == 1)) {
@@ -306,21 +306,21 @@ void sub_0207183C (FieldSystem * param0)
 
         if (v1->unk_00 == 0) {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[1];
-            sub_02050944(param0->unk_10, sub_020718D8, v2);
+            sub_02050944(fieldSystem->unk_10, sub_020718D8, v2);
             v1->unk_00 = 1;
         } else {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[0];
-            sub_02050944(param0->unk_10, sub_020719D8, v2);
+            sub_02050944(fieldSystem->unk_10, sub_020719D8, v2);
             v1->unk_00 = 0;
         }
     }
 }
 
-static BOOL sub_020718D8 (TaskManager * param0)
+static BOOL sub_020718D8 (TaskManager * taskMan)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
-    UnkStruct_020718D8 * v2 = TaskManager_Environment(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_020718D8 * v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
@@ -379,11 +379,11 @@ static BOOL sub_020718D8 (TaskManager * param0)
     return 0;
 }
 
-static BOOL sub_020719D8 (TaskManager * param0)
+static BOOL sub_020719D8 (TaskManager * taskMan)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
-    UnkStruct_020718D8 * v2 = TaskManager_Environment(param0);
+    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_020718D8 * v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:

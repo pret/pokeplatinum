@@ -35,7 +35,7 @@ typedef struct {
     int unk_6C;
     int unk_70;
     int unk_74;
-    UnkStruct_0200112C * unk_78;
+    BmpList * unk_78;
     ResourceMetadata * unk_7C;
     int unk_80;
     int unk_84;

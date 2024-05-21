@@ -31,7 +31,7 @@
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C980.h"
@@ -125,7 +125,7 @@ UnkStruct_0205B43C * sub_0205B33C (FieldSystem * param0)
         v0 = param0->unk_7C;
     }
 
-    sub_02099514((void *)param0);
+    CommFieldCmd_Init((void *)param0);
     sub_02037B58(2);
     sub_0205B5B4(v0, sub_0205B408, 40);
 
@@ -174,7 +174,7 @@ static void sub_0205B408 (UnkStruct_0205B43C * param0)
 {
     Sentence v0;
 
-    if (sub_02033E1C()) {
+    if (CommServerClient_IsInitialized()) {
         sub_02014AB4(&v0);
         sub_0205C12C(&v0);
         sub_0205C010(param0, &v0);
@@ -216,7 +216,7 @@ static void sub_0205B43C (UnkStruct_0205B43C * param0)
 static void sub_0205B4B0 (UnkStruct_0205B43C * param0)
 {
     if (sub_02036B44() == 1) {
-        sub_02099514((void *)param0->unk_00);
+        CommFieldCmd_Init((void *)param0->unk_00);
         sub_0205B5B4(param0, sub_0205B43C, 2);
     }
 }
@@ -1386,5 +1386,5 @@ void sub_0205C1F0 (UnkStruct_0205B43C * param0)
 
 void sub_0205C214 (UnkStruct_0205B43C * param0)
 {
-    sub_0203597C(105, param0->unk_184, sizeof(TrainerCard));
+    CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCard));
 }

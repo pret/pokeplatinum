@@ -13,9 +13,9 @@
 #include "heap.h"
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
-#include "unk_0203CC84.h"
+#include "field_system.h"
 #include "unk_020508D4.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -37,9 +37,9 @@ typedef struct UnkStruct_ov6_02242B58_t {
     int unk_10;
 } UnkStruct_ov6_02242B58;
 
-static BOOL ov6_02242C5C(TaskManager * param0);
-static BOOL ov6_02242D94(FieldSystem * param0, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3);
-static BOOL ov6_02242E60(FieldSystem * param0, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3);
+static BOOL ov6_02242C5C(TaskManager * taskMan);
+static BOOL ov6_02242D94(FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3);
+static BOOL ov6_02242E60(FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3);
 
 static const int Unk_ov6_02249058[7] = {
     0x4,
@@ -81,13 +81,13 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE / 2
 };
 
-void ov6_02242AF0 (FieldSystem * param0)
+void ov6_02242AF0 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_ov6_02242AF0 * v1;
     VecFx32 v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
 
     v2.x = ((FX32_ONE * 16) * (32 * 2 + 2));
@@ -105,16 +105,16 @@ void ov6_02242AF0 (FieldSystem * param0)
         break;
     }
 
-    ov5_021E19CC(param0->unk_A4, param0->unk_30, 475, &v2, NULL, param0->unk_50);
+    ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 475, &v2, NULL, fieldSystem->unk_50);
 }
 
-void ov6_02242B58 (FieldSystem * param0, const u16 param1, const u16 param2)
+void ov6_02242B58 (FieldSystem * fieldSystem, const u16 param1, const u16 param2)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_ov6_02242AF0 * v1;
     UnkStruct_ov6_02242B58 * v2;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
     v2 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02242B58));
 
@@ -175,15 +175,15 @@ void ov6_02242B58 (FieldSystem * param0, const u16 param1, const u16 param2)
         v2->unk_00 = ov6_02242E60;
     }
 
-    sub_02050944(param0->unk_10, ov6_02242C5C, v2);
+    sub_02050944(fieldSystem->unk_10, ov6_02242C5C, v2);
 }
 
-u32 ov6_02242C3C (FieldSystem * param0, const u16 param1)
+u32 ov6_02242C3C (FieldSystem * fieldSystem, const u16 param1)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_ov6_02242AF0 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
 
     if (v1->unk_00 == param1) {
@@ -193,10 +193,10 @@ u32 ov6_02242C3C (FieldSystem * param0, const u16 param1)
     }
 }
 
-static BOOL ov6_02242C5C (TaskManager * param0)
+static BOOL ov6_02242C5C (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_ov6_02242B58 * v1 = TaskManager_Environment(param0);
+    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov6_02242B58 * v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_05) {
     case 0:
@@ -256,7 +256,7 @@ static BOOL ov6_02242C5C (TaskManager * param0)
     return 0;
 }
 
-static BOOL ov6_02242D94 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
+static BOOL ov6_02242D94 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
 {
     if (param1->unk_04 == 0) {
         param3->z -= Unk_ov6_02249074[param1->unk_06];
@@ -293,13 +293,13 @@ static BOOL ov6_02242D94 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
     }
 }
 
-static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
+static BOOL ov6_02242E60 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
 {
-    LocalMapObject * v0;
+    MapObject * v0;
     VecFx32 v1;
 
-    v0 = Player_LocalMapObject(param0->playerAvatar);
-    sub_0205EAEC(param0->playerAvatar, &v1);
+    v0 = Player_MapObject(fieldSystem->playerAvatar);
+    PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
     param3->z = v1.z + ((FX32_ONE * 16) / 2);
 
@@ -310,13 +310,13 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
             if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 LocalMapObj_SetAnimationCode(v0, Unk_ov6_02249058[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->playerAvatar) > param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(fieldSystem->playerAvatar) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (Player_ZPos(param0->playerAvatar) <= param1->unk_10) {
+                } else if (Player_ZPos(fieldSystem->playerAvatar) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);
@@ -330,13 +330,13 @@ static BOOL ov6_02242E60 (FieldSystem * param0, UnkStruct_ov6_02242B58 * param1,
             if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 LocalMapObj_SetAnimationCode(v0, Unk_ov6_0224903C[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(param0->playerAvatar) < param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(fieldSystem->playerAvatar) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (Player_ZPos(param0->playerAvatar) >= param1->unk_10) {
+                } else if (Player_ZPos(fieldSystem->playerAvatar) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);

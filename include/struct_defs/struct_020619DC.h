@@ -17,6 +17,6 @@ typedef struct UnkStruct_020619DC_t {
     unsigned short unk_1A;
     unsigned short unk_1C;
     int unk_1E;
-} UnkStruct_020619DC;
+} MapObjectHeader;
 
 #endif // POKEPLATINUM_STRUCT_020619DC_H

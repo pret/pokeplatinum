@@ -38,7 +38,7 @@ void sub_0209BD88(int param0, int param1, void * param2, void * param3);
 BOOL sub_0209BDB0(UnkStruct_0209BBA4 * param0, u16 param1);
 void sub_0209BDD0(int param0, int param1, void * param2, void * param3);
 
-static const UnkStruct_02039A58 Unk_020F8BF0[] = {
+static const CommCmdTable Unk_020F8BF0[] = {
     {ov104_0222EF30, sub_02032944, NULL},
     {ov104_0222EF94, sub_02032944, NULL},
     {ov104_0222F03C, sub_02032944, NULL},
@@ -95,8 +95,8 @@ static const UnkStruct_02039A58 Unk_020F8BF0[] = {
 
 void sub_0209BA80 (void * param0)
 {
-    int v0 = sizeof(Unk_020F8BF0) / sizeof(UnkStruct_02039A58);
-    sub_02032798(Unk_020F8BF0, v0, param0);
+    int v0 = sizeof(Unk_020F8BF0) / sizeof(CommCmdTable);
+    CommCmd_Init(Unk_020F8BF0, v0, param0);
 }
 
 static void sub_0209BA94 (int param0, int param1, void * param2, void * param3)

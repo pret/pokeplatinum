@@ -25,7 +25,7 @@ typedef struct {
     void * unk_04;
     Window unk_08[6];
     Window unk_68;
-    UnkStruct_0200112C * unk_78;
+    BmpList * unk_78;
     ResourceMetadata * unk_7C;
     UIControlData * unk_80;
     ResourceMetadata * unk_84;

@@ -10,8 +10,8 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02061804.h"
-#include "unk_02063400.h"
+#include "map_object.h"
+#include "map_object_move.h"
 #include "unk_02069BE0.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
@@ -28,7 +28,7 @@ typedef struct {
     int unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
     UnkStruct_ov5_021F3D2C * unk_08;
-    LocalMapObject * unk_0C;
+    MapObject * unk_0C;
     UnkStruct_02073B50 * unk_10;
 } UnkStruct_ov5_021F3D90;
 
@@ -90,7 +90,7 @@ static UnkStruct_02073B50 * ov5_021F3D84 (UnkStruct_ov5_021F3D2C * param0, int p
     return &param0->unk_54[param1];
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F3D90 (LocalMapObject * param0, int param1)
+UnkStruct_ov101_021D5D90 * ov5_021F3D90 (MapObject * param0, int param1)
 {
     VecFx32 v0;
     UnkStruct_ov101_021D5D90 * v1;
@@ -101,8 +101,8 @@ UnkStruct_ov101_021D5D90 * ov5_021F3D90 (LocalMapObject * param0, int param1)
 
     {
         FieldSystem * v4 = ov5_021DF574(v3);
-        int v5 = sub_02063020(param0);
-        int v6 = sub_02063040(param0);
+        int v5 = MapObject_GetXPos(param0);
+        int v6 = MapObject_GetZPos(param0);
 
         sub_02064450(v5, v6, &v0);
         sub_020644A4(v4, &v0);
@@ -128,10 +128,10 @@ static int ov5_021F3E00 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F3E00 * v0 = param1;
     const UnkStruct_ov5_021F3D90 * v1 = sub_020715BC(param0);
-    LocalMapObject * v2 = v1->unk_0C;
+    MapObject * v2 = v1->unk_0C;
 
     v0->unk_10 = *v1;
-    v0->unk_08 = sub_02062910(v2);
+    v0->unk_08 = MapObject_Id(v2);
     v0->unk_0C = sub_02062918(v2);
 
     return 1;
@@ -140,7 +140,7 @@ static int ov5_021F3E00 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F3E30 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F3E00 * v0 = param1;
-    LocalMapObject * v1 = v0->unk_10.unk_0C;
+    MapObject * v1 = v0->unk_10.unk_0C;
 
     if (sub_02062764(v1, v0->unk_08, v0->unk_0C) == 1) {
         sub_0206A218(v1, NULL);

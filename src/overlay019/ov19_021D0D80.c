@@ -3312,7 +3312,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_120 = SaveData_PCBoxes(param1->unk_00);
     param0->unk_11C = param1->unk_00;
     param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
-    param0->unk_1A4 = sub_02025E44(param1->unk_00);
+    param0->unk_1A4 = SaveData_Options(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
     param0->unk_18C = MessageLoader_Init(0, 26, 19, 9);

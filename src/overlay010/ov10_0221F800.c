@@ -1082,7 +1082,7 @@ static u8 ov10_022208B0 (UnkStruct_ov10_0221FB28 * param0)
         ov10_022229D4(param0);
         MessageLoader_GetStrbuf(param0->unk_BA0, 9, param0->unk_BA8);
         param0->unk_BAC = PrintStringSimple(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
-        sub_020364F0(62);
+        CommTiming_StartSync(62);
 
         if (param0->unk_BBC == 0) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -1091,7 +1091,7 @@ static u8 ov10_022208B0 (UnkStruct_ov10_0221FB28 * param0)
         param0->unk_B76++;
         break;
     case 1:
-        if (sub_02036540(62)) {
+        if (CommTiming_IsSyncState(62)) {
             param0->unk_B76 = 0;
             return 1;
         }

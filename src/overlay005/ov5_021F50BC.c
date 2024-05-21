@@ -10,7 +10,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_0201E190.h"
-#include "unk_02061804.h"
+#include "map_object.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "overlay005/ov5_021DF440.h"
@@ -22,13 +22,13 @@ typedef struct {
     UnkStruct_ov5_021DF47C * unk_08;
     UnkStruct_02073838 unk_0C;
     UnkStruct_02073B50 unk_20;
-    LocalMapObject * unk_74;
+    MapObject * unk_74;
 } UnkStruct_021F50E8;
 
 typedef struct {
     UnkStruct_ov5_021DF47C * unk_00;
     UnkStruct_021F50E8 * unk_04;
-    LocalMapObject * unk_08;
+    MapObject * unk_08;
 } UnkStruct_ov5_021F511C;
 
 typedef struct {
@@ -78,7 +78,7 @@ static void ov5_021F5110 (UnkStruct_021F50E8 * param0)
     sub_0207395C(&param0->unk_0C);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F511C (LocalMapObject * param0)
+UnkStruct_ov101_021D5D90 * ov5_021F511C (MapObject * param0)
 {
     int v0, v1;
     UnkStruct_ov5_021F511C v2;
@@ -92,7 +92,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F511C (LocalMapObject * param0)
     v2.unk_04 = ov5_021DF55C(v3, 5);
     v2.unk_08 = param0;
 
-    sub_02063050(param0, &v4);
+    MapObject_PosVectorOut(param0, &v4);
 
     v0 = 0;
     v5 = ov5_021DF72C(v3, &Unk_ov5_02200A50, &v4, v0, &v2, 0xff);
@@ -110,11 +110,11 @@ static int ov5_021F5158 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1 = sub_020715BC(param0);
 
     v0->unk_30 = *v1;
-    v0->unk_08 = sub_02062910(v0->unk_30.unk_08);
+    v0->unk_08 = MapObject_Id(v0->unk_30.unk_08);
     v0->unk_0C = sub_02062918(v0->unk_30.unk_08);
     v0->unk_24.y = ((FX32_ONE * 6));
 
-    sub_02063050(v0->unk_30.unk_08, &v2);
+    MapObject_PosVectorOut(v0->unk_30.unk_08, &v2);
     sub_020715D4(param0, &v2);
 
     return 1;
@@ -128,7 +128,7 @@ static void ov5_021F51A0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov5_021F51A4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F5158 * v0;
-    LocalMapObject * v1;
+    MapObject * v1;
     VecFx32 v2;
 
     v0 = param1;
@@ -138,7 +138,7 @@ static void ov5_021F51A4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        sub_02063050(v1, &v2);
+        MapObject_PosVectorOut(v1, &v2);
         v2.z += ((FX32_ONE * -10));
         sub_020715D4(param0, &v2);
         break;

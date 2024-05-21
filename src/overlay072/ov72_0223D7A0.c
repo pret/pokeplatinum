@@ -148,7 +148,7 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
             v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((SaveData *)OverlayManager_Args(param0));
-            v0->unk_0C = (Options *)sub_02025E44((SaveData *)OverlayManager_Args(param0));
+            v0->unk_0C = (Options *)SaveData_Options((SaveData *)OverlayManager_Args(param0));
         }
 
         ov72_0223DCA8(v0, v1);

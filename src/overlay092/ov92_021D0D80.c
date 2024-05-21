@@ -88,7 +88,7 @@ typedef struct {
     Window unk_B824;
     Window unk_B834;
     Window unk_B844;
-    UnkStruct_0200112C * unk_B854;
+    BmpList * unk_B854;
     ResourceMetadata * unk_B858;
     UIControlData * unk_B85C;
     MessageLoader * unk_B860;
@@ -344,7 +344,7 @@ int ov92_021D0D80 (OverlayManager * param0, int * param1)
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
         v0->unk_BB18 = sub_0202C8C4(v0->unk_04);
         v0->unk_BB24 = sub_0202C990(v0->unk_04);
-        v0->unk_08 = sub_02025E44(v2);
+        v0->unk_08 = SaveData_Options(v2);
     }
 
     ov92_021D14F0();
@@ -1039,7 +1039,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
     return v0;
 }
 
-static void ov92_021D1C38 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
+static void ov92_021D1C38 (BmpList * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
         Sound_PlayEffect(1500);

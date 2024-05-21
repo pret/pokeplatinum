@@ -10,7 +10,7 @@
 
 #include "heap.h"
 #include "unk_020508D4.h"
-#include "unk_0205E7D0.h"
+#include "player_avatar.h"
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/ov5_021F101C.h"
 #include "overlay006/ov6_02243258.h"
@@ -43,7 +43,7 @@ BOOL ov5_021F101C (TaskManager * param0)
         break;
     case 2:
     {
-        int v5 = sub_0205EB98(v0->playerAvatar);
+        int v5 = PlayerAvatar_Gender(v0->playerAvatar);
         v3->unk_00 = ov6_02243F88(v0, 0, v1->unk_00, v5);
     }
         (*v2)++;

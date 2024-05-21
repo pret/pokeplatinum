@@ -78,7 +78,7 @@ static void sub_0207AD40(SysTask * param0, void * param1);
 static void sub_0207AE34(int param0, int param1, void * param2, void * param3);
 static void sub_0207ADD4(TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
 
-static const UnkStruct_02039A58 Unk_020F099C[] = {
+static const CommCmdTable Unk_020F099C[] = {
     {sub_0207ADB4, sub_02032944, NULL},
     {sub_0207A8A8, sub_02032944, NULL},
     {sub_0207A934, sub_0207A758, NULL},
@@ -95,7 +95,7 @@ static const UnkStruct_02039A58 Unk_020F099C[] = {
 
 void sub_0207A6DC (void * param0)
 {
-    int v0 = sizeof(Unk_020F099C) / sizeof(UnkStruct_02039A58);
+    int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
     BattleSystem * v1;
     UnkStruct_0207ACB4 * v2;
     UnkStruct_0207AD40 * v3;
@@ -109,7 +109,7 @@ void sub_0207A6DC (void * param0)
     v2 = (UnkStruct_0207ACB4 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207ACB4));
     v3 = (UnkStruct_0207AD40 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207AD40));
 
-    sub_02032798(Unk_020F099C, v0, param0);
+    CommCmd_Init(Unk_020F099C, v0, param0);
 
     v2->unk_00 = v1;
     v2->unk_04 = 0;
@@ -125,8 +125,8 @@ void sub_0207A6DC (void * param0)
 
 void sub_0207A744 (void * param0)
 {
-    int v0 = sizeof(Unk_020F099C) / sizeof(UnkStruct_02039A58);
-    sub_02032798(Unk_020F099C, v0, param0);
+    int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
+    CommCmd_Init(Unk_020F099C, v0, param0);
 }
 
 static int sub_0207A758 (void)
@@ -292,11 +292,11 @@ BOOL sub_0207A8F4 (UnkStruct_0207A778 * param0, u32 param1)
 {
     Party * v0;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(51) == 0) {
+    if (CommTiming_IsSyncState(51) == 0) {
         return 0;
     }
 
@@ -316,7 +316,7 @@ BOOL sub_0207A960 (UnkStruct_0207A778 * param0)
 {
     TrainerInfo * v0;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
@@ -328,15 +328,15 @@ BOOL sub_0207A960 (UnkStruct_0207A778 * param0)
 
 BOOL sub_0207A988 (UnkStruct_0207A778 * param0)
 {
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(52) == 0) {
+    if (CommTiming_IsSyncState(52) == 0) {
         return 0;
     }
 
-    return sub_0203597C(25, (void *)&param0->unk_20[0], TrainerInfo_Size());
+    return CommSys_SendDataHuge(25, (void *)&param0->unk_20[0], TrainerInfo_Size());
 }
 
 static void sub_0207A9BC (int param0, int param1, void * param2, void * param3)
@@ -349,7 +349,7 @@ BOOL sub_0207A9CC (UnkStruct_0207A778 * param0)
 {
     TrainerData * v0;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
@@ -361,15 +361,15 @@ BOOL sub_0207A9CC (UnkStruct_0207A778 * param0)
 
 BOOL sub_0207A9F8 (UnkStruct_0207A778 * param0)
 {
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(53) == 0) {
+    if (CommTiming_IsSyncState(53) == 0) {
         return 0;
     }
 
-    return sub_0203597C(26, (void *)&param0->unk_20[0], sizeof(TrainerData));
+    return CommSys_SendDataHuge(26, (void *)&param0->unk_20[0], sizeof(TrainerData));
 }
 
 static void sub_0207AA28 (int param0, int param1, void * param2, void * param3)
@@ -382,7 +382,7 @@ BOOL sub_0207AA38 (UnkStruct_0207A778 * param0)
 {
     Party * v0;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
@@ -394,15 +394,15 @@ BOOL sub_0207AA38 (UnkStruct_0207A778 * param0)
 
 BOOL sub_0207AA5C (UnkStruct_0207A778 * param0)
 {
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(54) == 0) {
+    if (CommTiming_IsSyncState(54) == 0) {
         return 0;
     }
 
-    return sub_0203597C(27, (void *)&param0->unk_20[0], Party_SaveSize());
+    return CommSys_SendDataHuge(27, (void *)&param0->unk_20[0], Party_SaveSize());
 }
 
 static void sub_0207AA90 (int param0, int param1, void * param2, void * param3)
@@ -416,7 +416,7 @@ BOOL sub_0207AAA0 (UnkStruct_0207A778 * param0)
 {
     ChatotCry * v0;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
@@ -428,15 +428,15 @@ BOOL sub_0207AAA0 (UnkStruct_0207A778 * param0)
 
 BOOL sub_0207AAC8 (UnkStruct_0207A778 * param0)
 {
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(55) == 0) {
+    if (CommTiming_IsSyncState(55) == 0) {
         return 0;
     }
 
-    return sub_0203597C(28, (void *)&param0->unk_20[0], 1000);
+    return CommSys_SendDataHuge(28, (void *)&param0->unk_20[0], 1000);
 }
 
 BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
@@ -444,7 +444,7 @@ BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
     UnkStruct_02027F8C * v0;
     TrainerInfo * v1;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
@@ -471,15 +471,15 @@ BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
 
 BOOL sub_0207AB58 (UnkStruct_0207A778 * param0)
 {
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(56) == 0) {
+    if (CommTiming_IsSyncState(56) == 0) {
         return 0;
     }
 
-    return sub_0203597C(33, (void *)param0->unk_20, 1000);
+    return CommSys_SendDataHuge(33, (void *)param0->unk_20, 1000);
 }
 
 static void sub_0207AB8C (int param0, int param1, void * param2, void * param3)
@@ -492,7 +492,7 @@ BOOL sub_0207AB9C (UnkStruct_0207A778 * param0, int param1)
 {
     TrainerData * v0;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
@@ -504,18 +504,18 @@ BOOL sub_0207AB9C (UnkStruct_0207A778 * param0, int param1)
 
 BOOL sub_0207ABD0 (UnkStruct_0207A778 * param0, int param1, int param2)
 {
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(param2) == 0) {
+    if (CommTiming_IsSyncState(param2) == 0) {
         return 0;
     }
 
     if (param1 == 1) {
-        return sub_0203597C(29, (void *)&param0->unk_20[0], sizeof(TrainerData));
+        return CommSys_SendDataHuge(29, (void *)&param0->unk_20[0], sizeof(TrainerData));
     } else {
-        return sub_0203597C(30, (void *)&param0->unk_20[0], sizeof(TrainerData));
+        return CommSys_SendDataHuge(30, (void *)&param0->unk_20[0], sizeof(TrainerData));
     }
 }
 
@@ -529,7 +529,7 @@ BOOL sub_0207AC28 (UnkStruct_0207A778 * param0, int param1)
 {
     Party * v0;
 
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
@@ -541,18 +541,18 @@ BOOL sub_0207AC28 (UnkStruct_0207A778 * param0, int param1)
 
 BOOL sub_0207AC54 (UnkStruct_0207A778 * param0, int param1, int param2)
 {
-    if (sub_02035B54() != 264) {
+    if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
     }
 
-    if (sub_02036540(param2) == 0) {
+    if (CommTiming_IsSyncState(param2) == 0) {
         return 0;
     }
 
     if (param1 == 1) {
-        return sub_0203597C(31, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(31, (void *)&param0->unk_20[0], Party_SaveSize());
     } else {
-        return sub_0203597C(32, (void *)&param0->unk_20[0], Party_SaveSize());
+        return CommSys_SendDataHuge(32, (void *)&param0->unk_20[0], Party_SaveSize());
     }
 }
 
@@ -578,7 +578,7 @@ void sub_0207ACB4 (SysTask * param0, void * param1)
 
     switch (v0->unk_04) {
     case 0:
-        if (sub_02035B54() != 264) {
+        if (CommSys_SendRingRemainingSize() != 264) {
             break;
         }
 
