@@ -47,7 +47,7 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_020425E0.h"
+#include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
@@ -131,7 +131,7 @@
 #include "overlay071/ov71_0223B140.h"
 #include "overlay072/ov72_0223D7A0.h"
 #include "overlay074/ov74_021D0D80.h"
-#include "overlay078/ov78_021D0D80.h"
+#include "choose_starter/choose_starter_app.h"
 #include "overlay080/ov80_021D0D80.h"
 #include "overlay081/ov81_021D0D80.h"
 #include "overlay084/ov84_0223B5A0.h"
@@ -167,7 +167,7 @@ FS_EXTERN_OVERLAY(overlay64);
 FS_EXTERN_OVERLAY(overlay71);
 FS_EXTERN_OVERLAY(overlay72);
 FS_EXTERN_OVERLAY(overlay74);
-FS_EXTERN_OVERLAY(overlay78);
+FS_EXTERN_OVERLAY(choose_starter);
 FS_EXTERN_OVERLAY(overlay80);
 FS_EXTERN_OVERLAY(overlay81);
 FS_EXTERN_OVERLAY(overlay84);
@@ -1346,18 +1346,18 @@ BOOL sub_0203E0AC (FieldSystem * param0, void * param1)
     return 1;
 }
 
-void sub_0203E0C0 (FieldSystem * param0, UnkStruct_020425E0 * param1)
+void sub_0203E0C0 (FieldSystem * param0, ChooseStarterData * param1)
 {
-    FS_EXTERN_OVERLAY(overlay78);
+    FS_EXTERN_OVERLAY(choose_starter);
 
-    static const OverlayManagerTemplate v0 = {
-        ov78_021D0D80,
-        ov78_021D0EF4,
-        ov78_021D0FA8,
-        FS_OVERLAY_ID(overlay78)
+    static const OverlayManagerTemplate template = {
+        ChooseStarter_Init,
+        ChooseStarter_Main,
+        ChooseStarter_Exit,
+        FS_OVERLAY_ID(choose_starter)
     };
 
-    sub_0203CD84(param0, &v0, param1);
+    sub_0203CD84(param0, &template, param1);
 }
 
 void sub_0203E0D0 (FieldSystem * param0)

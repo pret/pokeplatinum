@@ -10,6 +10,26 @@
 
 #include <nitro/fx/fx.h>
 
+enum BGLFrame {
+    BGL_FRAME_MAIN_0 = 0,
+    BGL_FRAME_MAIN_1,
+    BGL_FRAME_MAIN_2,
+    BGL_FRAME_MAIN_3,
+    BGL_FRAME_SUB_0,
+    BGL_FRAME_SUB_1,
+    BGL_FRAME_SUB_2,
+    BGL_FRAME_SUB_3,
+};
+
+enum BGLScreenSize {
+    SCREEN_SIZE_128x128 = 0,
+    SCREEN_SIZE_256x256,
+    SCREEN_SIZE_256x512,
+    SCREEN_SIZE_512x256,
+    SCREEN_SIZE_512x512,
+    SCREEN_SIZE_1024x1024,
+};
+
 BGL * sub_02018340(u32 param0);
 u32 sub_02018364(BGL * param0);
 void sub_02018368(const UnkStruct_ov84_0223BA5C * param0);
