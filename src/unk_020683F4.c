@@ -247,7 +247,7 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     sub_0203C9D4(fieldSystem, &v3);
 
     param1->unk_10 = sub_02055FC8(fieldSystem, v3);
-    param1->unk_14 = fieldSystem->playerAvatar;
+    param1->playerAvatar = fieldSystem->playerAvatar;
 }
 
 static void sub_020684D0 (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
@@ -264,7 +264,7 @@ static void sub_020684D0 (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1
     }
 
     param1->unk_10 = sub_02055FC8(fieldSystem, NULL);
-    param1->unk_14 = fieldSystem->playerAvatar;
+    param1->playerAvatar = fieldSystem->playerAvatar;
 }
 
 static UnkStruct_0206851C * sub_0206851C (u32 param0, u16 param1, u16 param2, u16 param3, u16 param4)
@@ -420,7 +420,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (sub_0205EFDC(param0->unk_14) == 1) {
+    if (sub_0205EFDC(param0->playerAvatar) == 1) {
         return -1;
     }
 
@@ -428,7 +428,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (PlayerAvatar_GetPlayerState(param0->unk_14) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->playerAvatar) == 0x2) {
         return -1;
     }
 
@@ -532,12 +532,12 @@ static u32 sub_02068948 (const UnkStruct_020684D0 * param0)
         return 1;
     }
 
-    if (sub_0205EFDC(param0->unk_14) == 1) {
+    if (sub_0205EFDC(param0->playerAvatar) == 1) {
         return 1;
     }
 
     {
-        MapObject * v1 = Player_MapObject(param0->unk_14);
+        MapObject * v1 = Player_MapObject(param0->playerAvatar);
 
         if ((sub_0206415C(v1, param0->unk_0E) == 1) || (sub_0206417C(v1, param0->unk_0E) == 1)) {
             return 1;
@@ -916,7 +916,7 @@ static u32 sub_02068E94 (const UnkStruct_020684D0 * param0)
 
     if (sub_0205DB58(param0->unk_0C) == 1) {
         if ((sub_0205DEFC(param0->unk_0E) == 1) || (sub_0205DEF0(param0->unk_0E) == 1)) {
-            MapObject * v0 = Player_MapObject(param0->unk_14);
+            MapObject * v0 = Player_MapObject(param0->playerAvatar);
 
             if (sub_02062F30(v0) == 1) {
                 return -1;

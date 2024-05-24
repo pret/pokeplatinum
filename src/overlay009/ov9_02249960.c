@@ -2241,8 +2241,8 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
     u32 v0, v1;
     int v2, v3, v4, v5;
     int v6[6] = {0, 0, 0, 90, 270, 180};
-    PlayerAvatar * v7 = param0->unk_00->playerAvatar;
-    MapObject * v8 = Player_MapObject(v7);
+    PlayerAvatar * playerAvatar = param0->unk_00->playerAvatar;
+    MapObject * v8 = Player_MapObject(playerAvatar);
 
     ov9_02250F44(param0, &v2, &v3, &v4);
 
@@ -2255,7 +2255,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
         sub_02062E28(v8, 1);
     }
 
-    sub_0205F098(v7, v0);
+    sub_0205F098(playerAvatar, v0);
 
     v5 = 0x0;
     v1 = sub_02062920(v8);
@@ -2283,7 +2283,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
         GF_ASSERT(0);
     }
 
-    PlayerAvatar_SetPlayerState(v7, v5);
+    PlayerAvatar_SetPlayerState(playerAvatar, v5);
     sub_02061AD4(v8, v1);
 
     if (v0 != 1) {
@@ -2292,10 +2292,10 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
 
     if (v5 == 0x2) {
         UnkStruct_ov101_021D5D90 * v9;
-        int v10 = PlayerAvatar_GetDir(v7);
+        int v10 = PlayerAvatar_GetDir(playerAvatar);
 
-        v9 = ov5_021F85BC(v7, v2, v3, v4, v10, 1, v0);
-        sub_0205EC00(v7, v9);
+        v9 = ov5_021F85BC(playerAvatar, v2, v3, v4, v10, 1, v0);
+        sub_0205EC00(playerAvatar, v9);
     }
 
     ov9_0224A390(param0, v8, v6[v0]);
@@ -2361,8 +2361,8 @@ static BOOL ov9_0224AAD4 (TaskManager * param0)
     FieldSystem * v0 = TaskManager_FieldSystem(param0);
     UnkStruct_ov9_02249B04 * v1 = TaskManager_Environment(param0);
     UnkStruct_ov9_0224AC58 * v2 = ov9_0224A598(v1);
-    PlayerAvatar * v3 = v0->playerAvatar;
-    MapObject * v4 = Player_MapObject(v3);
+    PlayerAvatar * playerAvatar = v0->playerAvatar;
+    MapObject * v4 = Player_MapObject(playerAvatar);
 
     switch (v2->unk_00) {
     case 0:
@@ -2422,13 +2422,13 @@ static BOOL ov9_0224AAD4 (TaskManager * param0)
         {
             int v11 = 1;
             int v12 = 0;
-            MapObject * v13 = Player_MapObject(v3);
+            MapObject * v13 = Player_MapObject(playerAvatar);
 
             ov9_0224C3F8(v1, v2->unk_34.unk_26);
             v11 = ov9_022510D8(v2->unk_34.unk_24);
 
-            sub_0205F098(v3, v11);
-            PlayerAvatar_ClearSpeed(v3);
+            sub_0205F098(playerAvatar, v11);
+            PlayerAvatar_ClearSpeed(playerAvatar);
 
             if (v2->unk_34.unk_26 < 0) {
                 sub_02062E28(v13, 0);
@@ -5049,8 +5049,8 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D288 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     VecFx32 v0;
-    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
-    MapObject * v2 = Player_MapObject(v1);
+    PlayerAvatar * playerAvatar = param0->unk_00->playerAvatar;
+    MapObject * v2 = Player_MapObject(playerAvatar);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
     sub_0206309C(v2, &v0);
@@ -5110,8 +5110,8 @@ static int ov9_0224D288 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D374 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     int v0;
-    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
-    MapObject * v2 = Player_MapObject(v1);
+    PlayerAvatar * playerAvatar = param0->unk_00->playerAvatar;
+    MapObject * v2 = Player_MapObject(playerAvatar);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
     if (param1->unk_44.x != param1->unk_2C.x) {
@@ -5192,8 +5192,8 @@ static int ov9_0224D430 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D4C4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     int v0;
-    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
-    MapObject * v2 = Player_MapObject(v1);
+    PlayerAvatar * playerAvatar = param0->unk_00->playerAvatar;
+    MapObject * v2 = Player_MapObject(playerAvatar);
     VecFx32 * v3 = ov9_0224E330(param1->unk_64->unk_20);
 
     if (param1->unk_44.x != param1->unk_2C.x) {
@@ -6523,13 +6523,13 @@ static int ov9_0224E798 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
         {
             u32 v5;
-            PlayerAvatar * v6 = param0->unk_00->playerAvatar;
+            PlayerAvatar * playerAvatar = param0->unk_00->playerAvatar;
 
             v3 = ((v3) / 2);
             ov9_0224C378(param0, v2, v3, v4, 4);
             v5 = ov9_0224C4B8(param0, v2, v3, v4);
             v5 = ov9_022510D8(v5);
-            sub_0205F098(v6, v5);
+            sub_0205F098(playerAvatar, v5);
 
             if (v5 == 1) {
                 sub_02062E28(v1, 0);
@@ -7807,8 +7807,8 @@ static void ov9_0224F760 (UnkStruct_ov9_02249B04 * param0)
 static void ov9_0224F764 (UnkStruct_ov9_02249B04 * param0)
 {
     UnkStruct_ov9_0224ADC0 * v0 = &param0->unk_1D00;
-    PlayerAvatar * v1 = param0->unk_00->playerAvatar;
-    const VecFx32 * v2 = PlayerAvatar_PosVector(v1);
+    PlayerAvatar * playerAvatar = param0->unk_00->playerAvatar;
+    const VecFx32 * v2 = PlayerAvatar_PosVector(playerAvatar);
 
     if (v0->unk_06 == 0) {
         v0->unk_00 = (v2->y - (((65 << 4) * FX32_ONE))) / ((((((289 - 65)) << 4) * FX32_ONE)) / 12);
@@ -8053,15 +8053,15 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     VecFx32 v0;
     UnkStruct_ov9_0224F930 * v1;
     MapObject * v2;
-    PlayerAvatar * v3;
+    PlayerAvatar * playerAvatar;
     UnkStruct_ov9_0224FA94 * v4;
     const UnkStruct_ov9_02252384 * v5;
 
     v5 = param3;
     v4 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0224FA94));
     v1 = &v4->unk_40;
-    v3 = param0->unk_00->playerAvatar;
-    v2 = Player_MapObject(v3);
+    playerAvatar = param0->unk_00->playerAvatar;
+    v2 = Player_MapObject(playerAvatar);
 
     MapObject_PosVectorOut(v2, &v0);
     MapObject_SetDir(v2, 2);
@@ -8081,7 +8081,7 @@ static int ov9_0224FB3C (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     {
         VecFx32 * v7;
-        UnkStruct_ov101_021D5D90 * v8 = sub_0205EC04(v3);
+        UnkStruct_ov101_021D5D90 * v8 = sub_0205EC04(playerAvatar);
         UnkStruct_ov5_02201C58 * v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 2, 5);
@@ -8397,15 +8397,15 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     VecFx32 v0;
     UnkStruct_ov9_0224F930 * v1;
     MapObject * v2;
-    PlayerAvatar * v3;
+    PlayerAvatar * playerAvatar;
     UnkStruct_ov9_02250138 * v4;
     const UnkStruct_ov9_022523F0 * v5;
 
     v5 = param3;
     v4 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250138));
     v1 = &v4->unk_34;
-    v3 = param0->unk_00->playerAvatar;
-    v2 = Player_MapObject(v3);
+    playerAvatar = param0->unk_00->playerAvatar;
+    v2 = Player_MapObject(playerAvatar);
 
     MapObject_PosVectorOut(v2, &v0);
     MapObject_SetDir(v2, 3);
@@ -8425,7 +8425,7 @@ static int ov9_02250170 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     {
         VecFx32 * v7;
-        UnkStruct_ov101_021D5D90 * v8 = sub_0205EC04(v3);
+        UnkStruct_ov101_021D5D90 * v8 = sub_0205EC04(playerAvatar);
         UnkStruct_ov5_02201C58 * v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 3, 1);

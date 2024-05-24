@@ -104,17 +104,17 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
     sub_02017350(param2, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_022480BC (PlayerAvatar * const param0, UnkStruct_02017294 * param1)
+static void ov6_022480BC (PlayerAvatar * const playerAvatar, UnkStruct_02017294 * param1)
 {
     int v0;
     int v1, v2;
     VecFx32 v3;
 
-    PlayerAvatar_PosVectorOut(param0, &v3);
+    PlayerAvatar_PosVectorOut(playerAvatar, &v3);
 
-    v1 = Player_GetXPos(param0);
-    v2 = Player_GetZPos(param0);
-    v0 = PlayerAvatar_GetDir(param0);
+    v1 = Player_GetXPos(playerAvatar);
+    v2 = Player_GetZPos(playerAvatar);
+    v0 = PlayerAvatar_GetDir(playerAvatar);
 
     switch (v0) {
     case 0:
@@ -137,11 +137,11 @@ static void ov6_022480BC (PlayerAvatar * const param0, UnkStruct_02017294 * para
     sub_02017350(param1, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_02248124 (PlayerAvatar * const param0, UnkStruct_02017294 * param1)
+static void ov6_02248124 (PlayerAvatar * const playerAvatar, UnkStruct_02017294 * param1)
 {
     VecFx32 v0;
 
-    PlayerAvatar_PosVectorOut(param0, &v0);
+    PlayerAvatar_PosVectorOut(playerAvatar, &v0);
     sub_02017350(param1, v0.x, v0.y, v0.z);
 }
 

@@ -3407,11 +3407,11 @@ static BOOL ScrCmd_068 (ScriptContext * ctx)
 
     {
         FieldSystem * v3;
-        PlayerAvatar * v4;
+        PlayerAvatar * playerAvatar;
 
         v3 = ctx->fieldSys;
-        v4 = v3->playerAvatar;
-        v0 = PlayerAvatar_GetDir(v4);
+        playerAvatar = v3->playerAvatar;
+        v0 = PlayerAvatar_GetDir(playerAvatar);
     }
 
     v0 = Direction_GetOpposite(v0);
@@ -3468,7 +3468,7 @@ static BOOL ScrCmd_06B (ScriptContext * ctx)
 {
     u16 v0, v1, v2;
     VecFx32 v3;
-    FieldSystem * v4 = ctx->fieldSys;
+    FieldSystem * fieldSystem = ctx->fieldSys;
 
     v0 = ScriptContext_GetVar(ctx);
     v1 = ScriptContext_GetVar(ctx);

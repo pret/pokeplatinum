@@ -12,7 +12,7 @@ typedef struct {
     u16 unk_0E;
     u16 unk_10;
     u8 padding_12[2];
-    PlayerAvatar * unk_14;
+    PlayerAvatar * playerAvatar;
     FieldSystem * unk_18;
 } UnkStruct_020684D0;
 

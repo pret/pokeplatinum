@@ -3896,8 +3896,8 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
 
     {
         int v3 = 0xd2;
-        PlayerAvatar * v4 = fieldSystem->playerAvatar;
-        MapObject * v5 = Player_MapObject(v4);
+        PlayerAvatar * playerAvatar = fieldSystem->playerAvatar;
+        MapObject * v5 = Player_MapObject(playerAvatar);
 
         if (PlayerAvatar_Gender(fieldSystem->playerAvatar) == 1) {
             v3 = 0xd3;
@@ -4075,7 +4075,7 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
 {
     int v0, v1, v2, v3;
     UnkStruct_02027860 * v4;
-    PlayerAvatar * v5;
+    PlayerAvatar * playerAvatar;
     MapObjectManager * mapObjMan;
     MapObject * v7;
     MapObject * v8;
@@ -4089,14 +4089,14 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
     v0 = 0;
     v7 = NULL;
     mapObjMan = fieldSystem->mapObjMan;
-    v5 = fieldSystem->playerAvatar;
-    v8 = Player_MapObject(v5);
+    playerAvatar = fieldSystem->playerAvatar;
+    v8 = Player_MapObject(playerAvatar);
     v2 = 2;
     v1 = Direction_GetOpposite(MapObject_Dir(v8));
 
     while (sub_020625B0(mapObjMan, &v7, &v0, (1 << 0))) {
         if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {
-            v3 = sub_02067D58(v7, v5, v1, v2);
+            v3 = sub_02067D58(v7, playerAvatar, v1, v2);
 
             if (v3 != -1) {
                 int v9 = sub_02062960(v7);

@@ -75,7 +75,7 @@ int Unk_ov23_0225776C[8][2];
 
 static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C * param0);
-static void ov23_02249214(PlayerAvatar * const param0, int param1[][2], int param2[][3]);
+static void ov23_02249214(PlayerAvatar * const playerAvatar, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
 static void ov23_022492C8(int param0[][3], GraphicElementData * param1[]);
 static void ov23_0224944C(BGL * param0, Window * param1);
@@ -215,7 +215,7 @@ static void ov23_022491CC (int param0[][2], int param1[][3])
     }
 }
 
-static void ov23_02249214 (PlayerAvatar * const param0, int param1[][2], int param2[][3])
+static void ov23_02249214 (PlayerAvatar * const playerAvatar, int param1[][2], int param2[][3])
 {
     int v0;
 
@@ -226,8 +226,8 @@ static void ov23_02249214 (PlayerAvatar * const param0, int param1[][2], int par
 
     if (CommSys_IsInitialized()) {
         if (CommSys_IsPlayerConnected(CommSys_CurNetId()) == 0) {
-            param1[0][0] = Player_GetXPos(param0);
-            param1[0][1] = Player_GetZPos(param0);
+            param1[0][0] = Player_GetXPos(playerAvatar);
+            param1[0][1] = Player_GetZPos(playerAvatar);
         } else {
             int v1 = param1[0][0];
             int v2 = param1[0][1];

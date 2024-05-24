@@ -66,7 +66,7 @@ UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
     v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
     v0->unk_470 = sub_0205B770(param0);
     v0->unk_474 = SaveData_SaveTable(v0->unk_470->saveData, 9);
-    v0->unk_08 = v0->unk_470->playerAvatar;
+    v0->playerAvatar = v0->unk_470->playerAvatar;
 
     Heap_CreateAtEnd(11, 89, 10000);
     v0->unk_478 = sub_0205C95C(89);
@@ -112,7 +112,7 @@ static void sub_0205C304 (SysTask * task, void * param1)
     UnkStruct_0205B43C * v1 = v0->unk_00;
 
     if (!sub_020509A4(v0->unk_470)) {
-        v0->unk_08 = v0->unk_470->playerAvatar;
+        v0->playerAvatar = v0->unk_470->playerAvatar;
         sub_0205C44C(v0, v1, v0->unk_470->mapObjMan, v0->unk_474);
         sub_0205C51C(v0, v0->unk_470->mapObjMan);
     }
@@ -245,10 +245,10 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
     MapObject * v0;
     int v1, v2, v3;
 
-    GF_ASSERT(param0->unk_08 != NULL);
+    GF_ASSERT(param0->playerAvatar != NULL);
 
-    v2 = Player_GetXPos(param0->unk_08);
-    v3 = Player_GetZPos(param0->unk_08);
+    v2 = Player_GetXPos(param0->playerAvatar);
+    v3 = Player_GetZPos(param0->playerAvatar);
 
     for (v1 = 0; v1 < 50; v1++) {
         v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
@@ -319,7 +319,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
         }
     }
 
-    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->unk_08));
+    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->playerAvatar));
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 

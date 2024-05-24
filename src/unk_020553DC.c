@@ -143,12 +143,12 @@ void sub_02055414 (FieldSystem * fieldSystem)
 
 u16 sub_02055428 (FieldSystem * fieldSystem, int param1)
 {
-    PlayerAvatar * v0;
+    PlayerAvatar * playerAvatar;
     int v1;
     u16 v2, v3;
 
-    v0 = fieldSystem->playerAvatar;
-    v1 = PlayerAvatar_GetPlayerState(v0);
+    playerAvatar = fieldSystem->playerAvatar;
+    v1 = PlayerAvatar_GetPlayerState(playerAvatar);
 
     if (v1 == 0x2) {
         switch (param1) {
@@ -238,11 +238,11 @@ static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
 
 BOOL sub_02055554 (FieldSystem * fieldSystem, u16 param1, int param2)
 {
-    PlayerAvatar * v0;
+    PlayerAvatar * playerAvatar;
     int v1, v2, v3;
 
-    v0 = fieldSystem->playerAvatar;
-    v3 = PlayerAvatar_GetPlayerState(v0);
+    playerAvatar = fieldSystem->playerAvatar;
+    v3 = PlayerAvatar_GetPlayerState(playerAvatar);
 
     if (sub_020041DC() == 1) {
         return 0;

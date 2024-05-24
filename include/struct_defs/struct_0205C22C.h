@@ -12,7 +12,7 @@
 typedef struct UnkStruct_0205C22C_t {
     UnkStruct_0205B43C * unk_00;
     SysTask * unk_04;
-    PlayerAvatar * unk_08;
+    PlayerAvatar * playerAvatar;
     UnkStruct_0205C680 unk_0C[50 + 1];
     FieldSystem * unk_470;
     UnkStruct_02027F8C * unk_474;

@@ -143,7 +143,7 @@ typedef struct {
     MapObject * unk_108;
     MapObject * unk_10C;
     MapObject * unk_110;
-    PlayerAvatar * unk_114;
+    PlayerAvatar * playerAvatar;
 } UnkStruct_ov6_0223EA98;
 
 typedef struct UnkStruct_ov6_0223FDE4_t {

@@ -29,7 +29,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DF47C * unk_00;
     UnkStruct_021F61E8 * unk_04;
-    PlayerAvatar * unk_08;
+    PlayerAvatar * playerAvatar;
 } UnkStruct_021F6218;
 
 typedef struct {
@@ -83,7 +83,7 @@ static void ov5_021F620C (UnkStruct_021F61E8 * param0)
     sub_0207395C(&param0->unk_04);
 }
 
-void ov5_021F6218 (PlayerAvatar * param0)
+void ov5_021F6218 (PlayerAvatar * playerAvatar)
 {
     int v0 = 0, v1;
     UnkStruct_021F6218 v2;
@@ -91,12 +91,12 @@ void ov5_021F6218 (PlayerAvatar * param0)
     MapObject * v4;
     VecFx32 v5 = {0, 0, 0};
 
-    v4 = Player_MapObject(param0);
+    v4 = Player_MapObject(playerAvatar);
     v3 = ov5_021DF578(v4);
 
     v2.unk_00 = v3;
     v2.unk_04 = ov5_021DF55C(v3, 14);
-    v2.unk_08 = param0;
+    v2.playerAvatar = playerAvatar;
 
     v1 = sub_02062758(v4, 2);
     ov5_021DF72C(v3, &Unk_ov5_02200C10, &v5, v0, &v2, v1);
@@ -111,7 +111,7 @@ static int ov5_021F6264 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v0 = param1;
     v2 = sub_020715BC(param0);
     v0->unk_24 = *v2;
-    v1 = Player_MapObject(v2->unk_08);
+    v1 = Player_MapObject(v2->playerAvatar);
 
     v0->unk_04 = -1;
     v0->unk_14 = MapObject_Id(v1);
@@ -129,8 +129,8 @@ static void ov5_021F62A0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     int v0;
     UnkStruct_021F6264 * v1 = param1;
-    PlayerAvatar * v2 = v1->unk_24.unk_08;
-    MapObject * v3 = Player_MapObject(v2);
+    PlayerAvatar * playerAvatar = v1->unk_24.playerAvatar;
+    MapObject * v3 = Player_MapObject(playerAvatar);
 
     if (sub_02062764(v3, v1->unk_14, v1->unk_18) == 0) {
         ov5_021DF74C(param0);
@@ -143,7 +143,7 @@ static void ov5_021F62A0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1->unk_04 = ov5_021F6414(v1->unk_08);
     v1->unk_00 = 0;
 
-    if ((v1->unk_04 == -1) || (v1->unk_04 != PlayerAvatar_GetDir(v2))) {
+    if ((v1->unk_04 == -1) || (v1->unk_04 != PlayerAvatar_GetDir(playerAvatar))) {
         v1->unk_1C = 0;
         v1->unk_20 = 0;
         v1->unk_00 = 1;

@@ -186,10 +186,10 @@ void ov5_021F09F0 (SysTask * task)
 static void ov5_021F0A04 (SysTask * task, void * param1)
 {
     UnkStruct_ov5_021F0D6C * v0 = param1;
-    PlayerAvatar * v1 = v0->fieldSystem->playerAvatar;
-    MapObject * v2 = Player_MapObject(v1);
+    PlayerAvatar * playerAvatar = v0->fieldSystem->playerAvatar;
+    MapObject * v2 = Player_MapObject(playerAvatar);
 
-    while (Unk_ov5_021FFA0C[v0->unk_0C](v0, v1, v2)) {
+    while (Unk_ov5_021FFA0C[v0->unk_0C](v0, playerAvatar, v2)) {
         (void)0;
     }
 }

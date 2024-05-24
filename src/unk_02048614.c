@@ -54,7 +54,7 @@ BOOL ScrCmd_0B6 (ScriptContext * param0)
     int * v4;
     SysTask ** v5;
     MapObject ** v6;
-    PlayerAvatar * v7;
+    PlayerAvatar * playerAvatar;
     FieldSystem * v8 = param0->fieldSys;
     u16 v9 = ScriptContext_GetVar(param0);
 
@@ -76,8 +76,8 @@ BOOL ScrCmd_0B6 (ScriptContext * param0)
         v5 = sub_0203F098(v8, 37);
     }
 
-    v7 = v8->playerAvatar;
-    *v5 = sub_02067FB8(v8, *v6, v7, *v4, *v0, 0, *v3, v9);
+    playerAvatar = v8->playerAvatar;
+    *v5 = sub_02067FB8(v8, *v6, playerAvatar, *v4, *v0, 0, *v3, v9);
 
     return 0;
 }
