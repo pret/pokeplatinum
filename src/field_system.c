@@ -14,7 +14,6 @@
 #include "struct_defs/struct_0203CC84.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay005/struct_ov5_021D1CAC.h"
 
 #include "unk_02000C88.h"
 #include "game_overlay.h"

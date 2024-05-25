@@ -16,7 +16,6 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "overlay005/struct_ov5_021D1CAC.h"
 #include "overlay005/struct_ov5_021D219C.h"
 
 #include "unk_02005474.h"
