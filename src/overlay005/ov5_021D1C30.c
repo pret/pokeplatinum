@@ -46,6 +46,7 @@
 #include "unk_0205B33C.h"
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"
+#include "constants/player_avatar.h"
 #include "unk_0205F180.h"
 #include "map_object.h"
 #include "unk_02067A84.h"
@@ -71,1093 +72,1024 @@
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_02241F74.h"
 
-static BOOL ov5_021D2504(FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CAC * param1);
-static u16 ov5_021D271C(FieldSystem * fieldSystem, u8 param1);
-static BOOL ov5_021D249C(FieldSystem * fieldSystem);
-static BOOL ov5_021D2884(FieldSystem * fieldSystem);
-static BOOL ov5_021D29A0(FieldSystem * fieldSystem);
-static BOOL ov5_021D29D8(FieldSystem * fieldSystem, const int param1, const int param2, const u8 param3);
-static BOOL ov5_021D2ABC(FieldSystem * fieldSystem);
-static BOOL ov5_021D2B94(FieldSystem * fieldSystem);
-static BOOL ov5_021D2C14(FieldSystem * fieldSystem);
-static BOOL ov5_021D2B08(FieldSystem * fieldSystem);
-static BOOL ov5_021D2B14(FieldSystem * fieldSystem);
-static BOOL ov5_021D20DC(FieldSystem * fieldSystem);
-static BOOL ov5_021D2B20(FieldSystem * fieldSystem);
-static BOOL ov5_021D2B2C(FieldSystem * fieldSystem);
-static void ov5_021D2B54(FieldSystem * fieldSystem);
-static void ov5_021D2C7C(const FieldSystem * fieldSystem, int * param1, int * param2);
-static void ov5_021D2C98(const FieldSystem * fieldSystem, int * param1, int * param2);
-static void ov5_021D2CB4(const FieldSystem * fieldSystem, int param1, int * param2, int * param3);
-static u8 ov5_021D2CFC(const FieldSystem * fieldSystem);
-static u8 ov5_021D2D18(const FieldSystem * fieldSystem);
-static BOOL ov5_021D2D34(const FieldSystem * fieldSystem, int param1, int param2, Location * param3);
-static void ov5_021D2E14(FieldSystem * fieldSystem);
-static BOOL ov5_021D2EA4(FieldSystem * fieldSystem, MapObject ** param1);
-static int ov5_021D2274(void);
+static BOOL FieldEventCheck_MapTransition(FieldSystem *fieldSystem, const FieldEventCheck *eventCheck);
+static u16 FieldEventCheck_MapAttribute(FieldSystem *fieldSystem, u8 attribute);
+static BOOL FieldEventCheck_WildEncounter(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_Step(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_PositionalEvent(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_Transition(FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curAttribute);
+static BOOL FieldEventCheck_Daycare(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_Poison(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_Safari(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_VsSeeker(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_PokeRadar(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_Sign(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_Repel(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_Friendship(FieldSystem *fieldSystem);
+static void FieldEventCheck_CalculateFriendship(FieldSystem *fieldSystem);
+static void FieldEventCheck_PlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
+static void FieldEventCheck_NextPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
+static void FieldEventCheck_NextFacingPos(const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ);
+static u8 FieldEventCheck_CurrentAttribute(const FieldSystem *fieldSystem);
+static u8 FieldEventCheck_NextAttribute(const FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap);
+static void FieldEventCheck_TrySetMapConnection(FieldSystem *fieldSystem);
+static BOOL FieldEventCheck_DistortionInteract(FieldSystem *fieldSystem, MapObject **object);
+static int FieldEventCheck_TrainerInfo(void);
 
-static void ov5_021D1C30 (UnkStruct_ov5_021D1CAC * param0)
+static void FieldEventCheck_Clear (FieldEventCheck *eventCheck)
 {
-    param0->unk_00_0 = 0;
-    param0->unk_00_1 = 0;
-    param0->unk_00_2 = 0;
-    param0->unk_00_3 = 0;
-    param0->unk_00_4 = 0;
-    param0->unk_00_5 = 0;
-    param0->unk_00_6 = 0;
-    param0->unk_00_7 = 0;
-    param0->unk_00_8 = 0;
-    param0->unk_00_9 = 0;
-    param0->unk_00_10 = 0;
-    param0->unk_00_11 = 0;
-    param0->unk_02 = -1;
-    param0->unk_03 = -1;
+    eventCheck->interact = FALSE;
+    eventCheck->endMovement = FALSE;
+    eventCheck->menu = FALSE;
+    eventCheck->registeredItem = FALSE;
+    eventCheck->sign = FALSE;
+    eventCheck->mapTransition = FALSE;
+    eventCheck->movement = FALSE;
+    eventCheck->unused1 = FALSE;
+    eventCheck->unused2 = FALSE;
+    eventCheck->unused3 = FALSE;
+    eventCheck->unused4 = FALSE;
+    eventCheck->unused5 = FALSE;
+    eventCheck->playerDir = DIR_NONE;
+    eventCheck->transitionDir = DIR_NONE;
 }
 
-void ov5_021D1CAC (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem, u16 param2, u16 param3)
+void FieldEventCheck_Set (FieldEventCheck *eventCheck, FieldSystem *fieldSystem, u16 pressedKeys, u16 heldKeys)
 {
-    int v0;
-    int v1;
-    int v2;
+    FieldEventCheck_Clear(eventCheck);
 
-    ov5_021D1C30(param0);
+    int moveState = Player_MoveState(fieldSystem->playerAvatar);
+    int avatarState = PlayerAvatar_MoveState(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    v0 = Player_MoveState(fieldSystem->playerAvatar);
-    v1 = PlayerAvatar_MoveState(fieldSystem->playerAvatar);
-    v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    eventCheck->pressedKeys = pressedKeys;
+    eventCheck->heldKeys = heldKeys;
 
-    param0->unk_04 = param2;
-    param0->unk_06 = param3;
-
-    if ((v0 == 3) || (v0 == 0)) {
-        if (param2 & PAD_BUTTON_X) {
-            param0->unk_00_2 = 1;
+    if (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE) {
+        if (pressedKeys & PAD_BUTTON_X) {
+            eventCheck->menu = TRUE;
         }
 
-        if (param2 & PAD_BUTTON_Y) {
-            param0->unk_00_3 = 1;
+        if (pressedKeys & PAD_BUTTON_Y) {
+            eventCheck->registeredItem = TRUE;
         }
 
-        if (param2 & PAD_BUTTON_A) {
-            param0->unk_00_0 = 1;
+        if (pressedKeys & PAD_BUTTON_A) {
+            eventCheck->interact = TRUE;
         }
 
-        if (param2 & PAD_BUTTON_B) {
-            param0->unk_00_7 = 1;
+        if (pressedKeys & PAD_BUTTON_B) {
+            eventCheck->unused1 = TRUE;
         }
 
-        if (param3 & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-            param0->unk_00_4 = 1;
+        if (heldKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+            eventCheck->sign = TRUE;
         }
 
-        if (param3 & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-            param0->unk_00_5 = 1;
+        if (heldKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+            eventCheck->mapTransition = TRUE;
         }
     }
 
-    if ((v0 == 3) && (v1 == 1)) {
-        param0->unk_00_6 = 1;
+    if (moveState == PLAYER_MOVE_STATE_END && avatarState == AVATAR_MOVE_STATE_MOVING) {
+        eventCheck->movement = TRUE;
     }
 
-    if (v0 == 3) {
-        param0->unk_00_1 = 1;
+    if (moveState == PLAYER_MOVE_STATE_END) {
+        eventCheck->endMovement = TRUE;
     }
 
-    if (((v2 == 0) && (param3 & PAD_KEY_UP)) || ((v2 == 1) && (param3 & PAD_KEY_DOWN)) || ((v2 == 2) && (param3 & PAD_KEY_LEFT)) || ((v2 == 3) && (param3 & PAD_KEY_RIGHT))) {
-        param0->unk_03 = v2;
+    if (playerDir == DIR_NORTH && heldKeys & PAD_KEY_UP || 
+        playerDir == DIR_SOUTH && heldKeys & PAD_KEY_DOWN || 
+        playerDir == DIR_WEST  && heldKeys & PAD_KEY_LEFT || 
+        playerDir == DIR_EAST  && heldKeys & PAD_KEY_RIGHT) {
+
+        eventCheck->transitionDir = playerDir;
     } else {
-        param0->unk_03 = -1;
+        eventCheck->transitionDir = DIR_NONE;
     }
 
-    param0->unk_02 = sub_02061308(fieldSystem->playerAvatar, param2, param3);
+    eventCheck->playerDir = sub_02061308(fieldSystem->playerAvatar, pressedKeys, heldKeys);
 }
 
-int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
+int FieldEvent_Check (const FieldEventCheck *eventCheck, FieldSystem *fieldSystem)
 {
-    if ((param0->unk_00_11 == 0) && (sub_0203F5C0(fieldSystem, 1) == 1)) {
-        return 1;
+    if (eventCheck->unused5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+        return TRUE;
     }
 
-    {
-        if (param0->unk_00_11 == 0) {
-            BOOL v0 = sub_02054AB0(Party_GetFromSavedata(fieldSystem->saveData));
+    if (eventCheck->unused5 == FALSE) {
+        BOOL doublesCheck = sub_02054AB0(Party_GetFromSavedata(fieldSystem->saveData));
 
-            if (sub_0206A984(SaveData_Events(fieldSystem->saveData)) == 1) {
-                v0 = 1;
-            }
+        if (sub_0206A984(SaveData_Events(fieldSystem->saveData)) == TRUE) {
+            doublesCheck = TRUE;
+        }
 
-            if ((sub_02067A84(fieldSystem, v0) == 1) || ((sub_02071CB4(fieldSystem, 2) == 1) && (ov8_0224C51C(fieldSystem) == 1))) {
-                sub_0205F56C(fieldSystem->playerAvatar);
-                MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-                return 1;
-            }
+        if (sub_02067A84(fieldSystem, doublesCheck) == TRUE || 
+            sub_02071CB4(fieldSystem, 2) == TRUE && 
+            ov8_0224C51C(fieldSystem) == TRUE) {
+
+            sub_0205F56C(fieldSystem->playerAvatar);
+            MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_6) {
+    if (eventCheck->movement) {
         sub_0206A9A4(SaveData_Events(fieldSystem->saveData));
 
-        if (ov5_021D2884(fieldSystem) == 1) {
-            return 1;
+        if (FieldEventCheck_Step(fieldSystem) == TRUE) {
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_11 == 0) {
-        int v1 = 0;
-        int v2 = sub_02061308(fieldSystem->playerAvatar, param0->unk_04, param0->unk_06);
+    if (eventCheck->unused5 == FALSE) {
+        int playerEvent = PLAYER_EVENT_NONE;
+        int direction = sub_02061308(fieldSystem->playerAvatar, eventCheck->pressedKeys, eventCheck->heldKeys);
 
         if (inline_0204E650_2(SaveData_Events(fieldSystem->saveData))) {
-            v1 |= 1 << 0;
+            playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
         if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 127) != 0xff) {
-            v1 |= 1 << 1;
+            playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
-            if (ov9_02250F74(fieldSystem) == 1) {
-                v1 |= 1 << 2;
-            }
+        if (sub_02071CB4(fieldSystem, 9) == TRUE && ov9_02250F74(fieldSystem) == TRUE) {
+            playerEvent |= PLAYER_EVENT_DISTORTION_WORLD;
         }
 
-        if (ov5_021DFDE0(fieldSystem, fieldSystem->playerAvatar, v2, v1) == 1) {
-            return 1;
+        if (ov5_021DFDE0(fieldSystem, fieldSystem->playerAvatar, direction, playerEvent) == TRUE) {
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_1) {
-        if (ov5_021D249C(fieldSystem)) {
-            return 1;
+    if (eventCheck->endMovement) {
+        if (FieldEventCheck_WildEncounter(fieldSystem)) {
+            return TRUE;
         }
 
-        if (ov5_021D20DC(fieldSystem) == 1) {
-            return 1;
+        if (FieldEventCheck_Sign(fieldSystem) == TRUE) {
+            return TRUE;
         }
 
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
-            int v3 = (s8)param0->unk_02;
+        if (sub_02071CB4(fieldSystem, 9) == TRUE) {
+            int direction = (s8)eventCheck->playerDir;
 
-            if (v3 == -1) {
-                v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+            if (direction == DIR_NONE) {
+                direction = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
             }
 
-            if (ov9_0224A67C(fieldSystem, v3) == 1) {
-                return 1;
+            if (ov9_0224A67C(fieldSystem, direction) == TRUE) {
+                return TRUE;
             }
         }
     }
 
-    if (param0->unk_00_4 && (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == param0->unk_02)) {
-        if (ov5_021D20DC(fieldSystem) == 1) {
-            return 1;
+    if (eventCheck->sign && PlayerAvatar_GetDir(fieldSystem->playerAvatar) == eventCheck->playerDir) {
+        if (FieldEventCheck_Sign(fieldSystem) == TRUE) {
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_0) {
-        {
-            int v4;
-            MapObject * v5;
+    if (eventCheck->interact) {
+        int interactCheck;
+        MapObject *object;
 
-            if (sub_02071CB4(fieldSystem, 9) == 1) {
-                v4 = ov5_021D2EA4(fieldSystem, &v5);
+        if (sub_02071CB4(fieldSystem, 9) == TRUE) {
+            interactCheck = FieldEventCheck_DistortionInteract(fieldSystem, &object);
+        } else {
+            interactCheck = sub_0203CA40(fieldSystem, &object);
+        }
+
+        if (interactCheck == TRUE) {
+            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+            }
+
+            if (sub_02062950(object) != 0x9) {
+                sub_0203E880(fieldSystem, sub_02062960(object), object);
             } else {
-                v4 = sub_0203CA40(fieldSystem, &v5);
+                sub_0203E880(fieldSystem, 0, object);
             }
 
-            if (v4 == 1) {
-                UnkStruct_ov5_021D219C * v6;
+            return TRUE;
+        }
 
-                if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-                    sub_0205F5E4(
-                        fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
-                }
+        int distortionCheck = sub_0205F108(fieldSystem->playerAvatar);
 
-                if (sub_02062950(v5) != 0x9) {
-                    sub_0203E880(fieldSystem, sub_02062960(v5), v5);
-                } else {
-                    sub_0203E880(fieldSystem, 0, v5);
-                }
+        if (distortionCheck == AVATAR_DISTORTION_STATE_NONE || distortionCheck == AVATAR_DISTORTION_STATE_ACTIVE) {
+            int event = sub_0203CA6C(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
 
-                return 1;
+            if (event != 0xffff) {
+                sub_0203E880(fieldSystem, event, NULL);
+                return TRUE;
             }
         }
 
-        {
-            int v7;
+        if (distortionCheck == AVATAR_DISTORTION_STATE_NONE) {
+            int event;
 
-            v7 = sub_0205F108(fieldSystem->playerAvatar);
-
-            if ((v7 == 0) || (v7 == 1)) {
-                int v8;
-
-                v8 = sub_0203CA6C(
-                    fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
-
-                if (v8 != 0xffff) {
-                    sub_0203E880(fieldSystem, v8, NULL);
-                    return 1;
-                }
-            }
-
-            if (v7 == 0) {
-                int v9;
-
-                if (ov5_021EFB40(fieldSystem, &v9)) {
-                    sub_0203E880(fieldSystem, v9, NULL);
-                    return 1;
-                }
+            if (ov5_021EFB40(fieldSystem, &event)) {
+                sub_0203E880(fieldSystem, event, NULL);
+                return TRUE;
             }
         }
 
-        {
-            int v10 = sub_0205EAA0(fieldSystem->playerAvatar);
-            u32 v11 = sub_020616F0(fieldSystem->playerAvatar, v10);
-            int v12 = ov5_021D271C(fieldSystem, v11);
+        int distortionDir = sub_0205EAA0(fieldSystem->playerAvatar);
+        u32 distortionAttribute = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
+        int distortionEvent = FieldEventCheck_MapAttribute(fieldSystem, distortionAttribute);
 
-            if (v12 != 0xffff) {
-                sub_0203E880(fieldSystem, v12, NULL);
-                return 1;
-            }
+        if (distortionEvent != 0xffff) {
+            sub_0203E880(fieldSystem, distortionEvent, NULL);
+            return TRUE;
         }
 
-        {
-            int v13, v14, v15;
+        int playerX, playerZ;
+        int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-            v15 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-            ov5_021D2C98(fieldSystem, &v13, &v14);
+        FieldEventCheck_NextPos(fieldSystem, &playerX, &playerZ);
 
-            if (ov5_021F8410(fieldSystem, v13, v14, v15) == 1) {
-                return 1;
-            }
+        if (ov5_021F8410(fieldSystem, playerX, playerZ, playerDir) == TRUE) {
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_5) {
-        if (sub_02071CB4(fieldSystem, 9) == 1) {
-            ov9_0224A800(fieldSystem, param0->unk_03);
-        } else if (ov5_021D2504(fieldSystem, param0) == 1) {
-            ov5_021D2E14(fieldSystem);
-            return 1;
+    if (eventCheck->mapTransition) {
+        if (sub_02071CB4(fieldSystem, 9) == TRUE) {
+            ov9_0224A800(fieldSystem, eventCheck->transitionDir);
+        } else if (FieldEventCheck_MapTransition(fieldSystem, eventCheck) == TRUE) {
+            FieldEventCheck_TrySetMapConnection(fieldSystem);
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_3) {
-        if (sub_02069238(fieldSystem) == 1) {
-            return 1;
-        }
+    if (eventCheck->registeredItem && sub_02069238(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (param0->unk_00_2) {
-        if (sub_0203A9C8(fieldSystem) == 1) {
-            Sound_PlayEffect(1533);
-            FieldMenu_Init(fieldSystem);
-            return 1;
-        }
+    if (eventCheck->menu && sub_0203A9C8(fieldSystem) == TRUE) {
+        Sound_PlayEffect(1533);
+        FieldMenu_Init(fieldSystem);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D20DC (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_Sign (FieldSystem *fieldSystem)
 {
-    MapObject * v0;
-    int v1;
+    MapObject *object;
 
-    if (sub_0203CBE0(fieldSystem, &v0) == 1) {
-        sub_0203E880(fieldSystem, sub_02062960(v0), v0);
-        return 1;
+    if (sub_0203CBE0(fieldSystem, &object) == TRUE) {
+        sub_0203E880(fieldSystem, sub_02062960(object), object);
+        return TRUE;
     }
 
-    v1 = sub_0203CB80(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
-
-    if (v1 != 0xffff) {
-        sub_0203E880(fieldSystem, v1, NULL);
-        return 1;
+    int event = sub_0203CB80(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+    
+    if (event != 0xffff) {
+        sub_0203E880(fieldSystem, event, NULL);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov5_021D213C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
+BOOL FieldEventCheck_Underground (FieldEventCheck *eventCheck, FieldSystem *fieldSystem)
 {
-    u8 v0 = 0;
-
-    if ((param0->unk_00_11 == 0) && (sub_0203F5C0(fieldSystem, 1) == 1)) {
-        return 1;
+    if (eventCheck->unused5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+        return TRUE;
     }
 
-    if (sub_020363A0() || (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId()))) {
-        return 0;
+    if (sub_020363A0() || CommPlayer_GetMovementTimer(CommSys_CurNetId()) != 0) {
+        return FALSE;
     }
 
     ov23_02242814();
 
-    if (param0->unk_00_0) {
-        ov23_02242830(v0);
-        return 0;
+    u8 interactCheck = FALSE;
+
+    if (eventCheck->interact) {
+        ov23_02242830(interactCheck);
+        return FALSE;
     }
 
-    if (param0->unk_00_2) {
+    if (eventCheck->menu) {
         ov23_022427F8();
-        return 0;
+        return FALSE;
     }
 
     if (ov23_02242458()) {
-        return 0;
+        return FALSE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
+BOOL FieldEventCheck_Colosseum (FieldEventCheck *eventCheck, FieldSystem *fieldSystem)
 {
-    if (param0->unk_00_5) {
-        if ((param0->unk_03 == 1) && sub_0205DB1C(ov5_021D2CFC(fieldSystem))) {
-            sub_0203E880(fieldSystem, 9101, NULL);
-            return 1;
-        }
+    if (eventCheck->mapTransition && 
+        eventCheck->transitionDir == DIR_SOUTH && 
+        sub_0205DB1C(FieldEventCheck_CurrentAttribute(fieldSystem))) {
+
+        sub_0203E880(fieldSystem, 9101, NULL);
+        return TRUE;
     }
 
-    if (sub_020363A0() || (0 != CommPlayer_GetMovementTimer(CommSys_CurNetId())) || !sub_02059D2C()) {
-        return 0;
+    if (sub_020363A0() || CommPlayer_GetMovementTimer(CommSys_CurNetId()) != 0 || !sub_02059D2C()) {
+        return FALSE;
     }
 
-    if (param0->unk_00_0) {
-        {
-            MapObject * v0;
+    if (eventCheck->interact) {
+        MapObject *object;
 
-            if (sub_0203CA40(fieldSystem, &v0) == 1) {
-                UnkStruct_ov5_021D219C * v1;
-
-                if (0x1 != MapObject_GetMoveCode(v0)) {
-                    if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-                        sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
-                    }
-
-                    sub_0203E880(fieldSystem, sub_02062960(v0), v0);
-                    return 1;
+        if (sub_0203CA40(fieldSystem, &object) == TRUE) {
+            if (MapObject_GetMoveCode(object) != 0x1) {
+                if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
+                    sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
                 }
+
+                sub_0203E880(fieldSystem, sub_02062960(object), object);
+                return TRUE;
             }
         }
     }
 
-    if (param0->unk_00_0) {
+    if (eventCheck->interact) {
         sub_0205B2D4(fieldSystem);
-        return 1;
+        return TRUE;
     }
 
-    if (param0->unk_00_2) {
+    if (eventCheck->menu) {
         Sound_PlayEffect(1533);
         sub_0203AABC(fieldSystem);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int ov5_021D2274 (void)
+static int FieldEventCheck_TrainerInfo (void)
 {
-    int v0, v1;
-    TrainerInfo * v2;
+    int netId;
+    TrainerInfo *info;
 
-    v1 = 0;
+    int ret = 0;
 
-    for (v0 = 1; v0 < 5; v0++) {
-        v2 = CommInfo_TrainerInfo(v0);
+    for (netId = 1; netId < 5; netId++) {
+        info = CommInfo_TrainerInfo(netId);
 
-        if (v2 != NULL) {
-            v1++;
+        if (info != NULL) {
+            ret++;
         }
     }
 
-    return v1 >= 1;
+    return ret >= 1;
 }
 
-BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
+BOOL FieldEventCheck_UnionRoom (const FieldEventCheck *eventCheck, FieldSystem *fieldSystem)
 {
     if (sub_020318EC() & 0xfe) {
-        if (ov5_021D2274() && (CommSys_ConnectedCount() > 1)) {
+        if (FieldEventCheck_TrainerInfo() && CommSys_ConnectedCount() > 1) {
             sub_0203E880(fieldSystem, 5, NULL);
-            return 1;
+            return TRUE;
         }
 
-        return 0;
+        return FALSE;
     }
 
-    if (param0->unk_00_0) {
-        MapObject * v0;
+    if (eventCheck->interact) {
+        MapObject *object;
 
-        if (sub_0203CA40(fieldSystem, &v0) == 1) {
-            if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
+        if (sub_0203CA40(fieldSystem, &object) == TRUE) {
+            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
             sub_02036B84();
-            sub_0203E880(fieldSystem, sub_02062960(v0), v0);
+            sub_0203E880(fieldSystem, sub_02062960(object), object);
 
-            return 1;
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_6 && sub_0205DEE4(ov5_021D2CFC(fieldSystem))) {
+    if (eventCheck->movement && sub_0205DEE4(FieldEventCheck_CurrentAttribute(fieldSystem))) {
         sub_020545EC(fieldSystem);
-        return 1;
+        return TRUE;
     }
 
-    if (param0->unk_00_2) {
-        if (CommSys_ConnectedCount() > 1) {
-            (void)0;
-        } else {
-            Sound_PlayEffect(1533);
-            sub_0203AA78(fieldSystem);
-            sub_0205BEA8(4);
-            sub_02036BA0();
-
-            return 1;
-        }
+    if (eventCheck->menu && CommSys_ConnectedCount() <= 1) {
+        Sound_PlayEffect(1533);
+        sub_0203AA78(fieldSystem);
+        sub_0205BEA8(4);
+        sub_02036BA0();
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSystem)
+int FieldEventCheck_BattleTower (const FieldEventCheck *eventCheck, FieldSystem *fieldSystem)
 {
-    if ((param0->unk_00_11 == 0) && (sub_0203F5C0(fieldSystem, 1) == 1)) {
-        return 1;
+    if (eventCheck->unused5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+        return TRUE;
     }
 
-    if (param0->unk_00_0) {
-        {
-            MapObject * v0;
+    if (eventCheck->interact) {
+        MapObject *object;
 
-            if (sub_0203CA40(fieldSystem, &v0) == 1) {
-                UnkStruct_ov5_021D219C * v1;
-
-                if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
-                    sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
-                }
-
-                if (sub_02062950(v0) != 0x9) {
-                    sub_0203E880(fieldSystem, sub_02062960(v0), v0);
-                } else {
-                    sub_0203E880(fieldSystem, 0, v0);
-                }
-
-                return 1;
+        if (sub_0203CA40(fieldSystem, &object) == TRUE) {
+            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
-        }
-
-        {
-            int v2;
-
-            v2 = sub_0203CA6C(
-                fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
-
-            if (v2 != 0xffff) {
-                sub_0203E880(fieldSystem, v2, NULL);
-                return 1;
+            
+            if (sub_02062950(object) != 0x9) {
+                sub_0203E880(fieldSystem, sub_02062960(object), object);
+            } else {
+                sub_0203E880(fieldSystem, 0, object);
             }
+
+            return TRUE;
         }
 
-        {
-            int v3;
-
-            v3 = ov5_021D271C(fieldSystem, ov5_021D2D18(fieldSystem));
-
-            if (v3 != 0xffff) {
-                sub_0203E880(fieldSystem, v3, NULL);
-                return 1;
-            }
+        int bgEvent = sub_0203CA6C(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+        
+        if (bgEvent != 0xffff) {
+            sub_0203E880(fieldSystem, bgEvent, NULL);
+            return TRUE;
         }
-    }
 
-    if (param0->unk_00_5) {
-        if (ov5_021D2504(fieldSystem, param0) == 1) {
-            return 1;
-        }
-    }
+        int attributeEvent = FieldEventCheck_MapAttribute(fieldSystem, FieldEventCheck_NextAttribute(fieldSystem));
 
-    if (param0->unk_00_3) {
-        if (sub_02069238(fieldSystem) == 1) {
-            return 1;
+        if (attributeEvent != 0xffff) {
+            sub_0203E880(fieldSystem, attributeEvent, NULL);
+            return TRUE;
         }
     }
 
-    if (param0->unk_00_2) {
+    if (eventCheck->mapTransition && FieldEventCheck_MapTransition(fieldSystem, eventCheck) == TRUE) {
+        return TRUE;
+    }
+
+    if (eventCheck->registeredItem && sub_02069238(fieldSystem) == TRUE) {
+        return TRUE;
+    }
+
+    if (eventCheck->menu) {
         Sound_PlayEffect(1533);
         FieldMenu_Init(fieldSystem);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D249C (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_WildEncounter (FieldSystem *fieldSystem)
 {
-    int v0, v1;
+    int playerX, playerZ;
 
-    ov5_021D2C7C(fieldSystem, &v0, &v1);
+    FieldEventCheck_PlayerPos(fieldSystem, &playerX, &playerZ);
 
-    if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
-        if (sub_02056374(fieldSystem, v0, v1) == 1) {
+    if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == TRUE) {
+        if (sub_02056374(fieldSystem, playerX, playerZ) == TRUE) {
             sub_02051450(fieldSystem, sub_0205639C(fieldSystem));
-            return 1;
+            return TRUE;
         } else {
-            return 0;
+            return FALSE;
         }
     }
 
-    if (MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00) && (ov6_02240D5C(fieldSystem) == 1)) {
-        return 1;
+    if (MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00) && ov6_02240D5C(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CAC * param1)
+static BOOL FieldEventCheck_MapTransition (FieldSystem *fieldSystem, const FieldEventCheck *eventCheck)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    u8 v4;
-    Location v5;
-
-    if (param1->unk_03 == -1) {
-        return 0;
+    if (eventCheck->transitionDir == DIR_NONE) {
+        return FALSE;
     }
 
-    if ((sub_02071CB4(fieldSystem, 4) == 1) && (ov8_0224BF4C(fieldSystem) == 1)) {
-        return 1;
+    if (sub_02071CB4(fieldSystem, 4) == TRUE && ov8_0224BF4C(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    ov5_021D2C98(fieldSystem, &v1, &v2);
+    int playerX, playerZ;
+    FieldEventCheck_NextPos(fieldSystem, &playerX, &playerZ);
 
-    if (FieldSystem_CheckCollision(fieldSystem, v1, v2) == 0) {
-        return 0;
+    if (FieldSystem_CheckCollision(fieldSystem, playerX, playerZ) == FALSE) {
+        return FALSE;
     }
 
-    if (ov5_021D2D34(fieldSystem, v1, v2, &v5) && (param1->unk_03 != -1)) {
-        v4 = sub_02054F94(fieldSystem, v1, v2);
+    u8 attribute;
+    Location nextMap;
 
-        if (sub_0205DAEC(v4)) {
-            int v6 = param1->unk_03;
+    if (FieldEventCheck_MapConnection(fieldSystem, playerX, playerZ, &nextMap) && eventCheck->transitionDir != DIR_NONE) {
+        attribute = sub_02054F94(fieldSystem, playerX, playerZ);
 
-            if (sub_02071CB4(fieldSystem, 2) == 1) {
-                ov8_0224C62C(fieldSystem, v1, v2, &v6);
+        if (sub_0205DAEC(attribute)) {
+            int v6 = eventCheck->transitionDir;
+
+            if (sub_02071CB4(fieldSystem, 2) == TRUE) {
+                ov8_0224C62C(fieldSystem, playerX, playerZ, &v6);
             }
 
-            sub_02056BDC(fieldSystem, v5.unk_00, v5.unk_04, 0, 0, v6, 1);
+            sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, v6, 1);
 
-            return 1;
+            return TRUE;
         }
     }
 
-    ov5_021D2C7C(fieldSystem, &v1, &v2);
+    FieldEventCheck_PlayerPos(fieldSystem, &playerX, &playerZ);
 
-    v4 = sub_02054F94(fieldSystem, v1, v2);
+    attribute = sub_02054F94(fieldSystem, playerX, playerZ);
 
-    if (sub_0205DAF8(v4) || sub_0205DB28(v4)) {
-        if (param1->unk_03 != 3) {
-            return 0;
+    if (sub_0205DAF8(attribute) || sub_0205DB28(attribute)) {
+        if (eventCheck->transitionDir != DIR_EAST) {
+            return FALSE;
         }
-    } else if (sub_0205DB04(v4) || sub_0205DB34(v4)) {
-        if (param1->unk_03 != 2) {
-            return 0;
+    } else if (sub_0205DB04(attribute) || sub_0205DB34(attribute)) {
+        if (eventCheck->transitionDir != DIR_WEST) {
+            return FALSE;
         }
-    } else if (sub_0205DB1C(v4) || sub_0205DB4C(v4)) {
-        if (param1->unk_03 != 1) {
-            return 0;
+    } else if (sub_0205DB1C(attribute) || sub_0205DB4C(attribute)) {
+        if (eventCheck->transitionDir != DIR_SOUTH) {
+            return FALSE;
         }
-    } else if (sub_0205DC44(v4)) {
-        if (param1->unk_03 != 3) {
-            return 0;
+    } else if (sub_0205DC44(attribute)) {
+        if (eventCheck->transitionDir != DIR_EAST) {
+            return FALSE;
         }
-    } else if (sub_0205DC50(v4)) {
-        if (param1->unk_03 != 2) {
-            return 0;
+    } else if (sub_0205DC50(attribute)) {
+        if (eventCheck->transitionDir != DIR_WEST) {
+            return FALSE;
         }
     }
 
-    if (ov5_021D2D34(fieldSystem, v1, v2, &v5) == 0) {
-        return 0;
+    if (FieldEventCheck_MapConnection(fieldSystem, playerX, playerZ, &nextMap) == FALSE) {
+        return FALSE;
     }
 
-    {
-        int v7;
+    int transitionType;
 
-        if (sub_0205DAEC(v4)) {
-            v7 = 1;
-        } else if (sub_0205DC44(v4)) {
-            v7 = 3;
-        } else if (sub_0205DC50(v4)) {
-            v7 = 3;
-        } else if (sub_0205DAF8(v4) || sub_0205DB28(v4)
-                   || sub_0205DB04(v4) || sub_0205DB34(v4)
-                   || sub_0205DB1C(v4) || sub_0205DB4C(v4)) {
-            sub_02056C18(fieldSystem, v5.unk_00, v5.unk_04, 0, 0, param1->unk_03);
-            return 1;
-        } else {
-            return 0;
-        }
-
-        sub_02056BDC(fieldSystem, v5.unk_00, v5.unk_04, 0, 0, param1->unk_03, v7);
+    if (sub_0205DAEC(attribute)) {
+        transitionType = 1;
+    } else if (sub_0205DC44(attribute)) {
+        transitionType = 3;
+    } else if (sub_0205DC50(attribute)) {
+        transitionType = 3;
+    } else if (sub_0205DAF8(attribute) || sub_0205DB28(attribute)
+            || sub_0205DB04(attribute) || sub_0205DB34(attribute)
+            || sub_0205DB1C(attribute) || sub_0205DB4C(attribute)) {
+        sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, eventCheck->transitionDir);
+        return TRUE;
+    } else {
+        return FALSE;
     }
 
-    return 1;
+    sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, eventCheck->transitionDir, transitionType);
+
+    return TRUE;
 }
 
-u16 ov5_021D271C (FieldSystem * fieldSystem, u8 param1)
+u16 FieldEventCheck_MapAttribute (FieldSystem *fieldSystem, u8 attribute)
 {
-    int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if (sub_0205DBE4(param1) && (v0 == 0)) {
+    if (sub_0205DBE4(attribute) && playerDir == DIR_NORTH) {
         return 2018;
-    } else if (sub_0205DC80(param1)) {
+    } else if (sub_0205DC80(attribute)) {
         return 2500;
-    } else if (sub_0205DC8C(param1)) {
+    } else if (sub_0205DC8C(attribute)) {
         return 2501;
-    } else if (sub_0205DC98(param1)) {
+    } else if (sub_0205DC98(attribute)) {
         return 2502;
-    } else if (sub_0205DCA4(param1)) {
+    } else if (sub_0205DCA4(attribute)) {
         return 2503;
-    } else if (sub_0205DCB0(param1)) {
+    } else if (sub_0205DCB0(attribute)) {
         return 2504;
-    } else if (sub_0205DCBC(param1)) {
+    } else if (sub_0205DCBC(attribute)) {
         return 2505;
-    } else if (sub_0205DCC8(param1)) {
+    } else if (sub_0205DCC8(attribute)) {
         return 2506;
-    } else if (sub_0205DCD4(param1)) {
+    } else if (sub_0205DCD4(attribute)) {
         return 2507;
-    } else if (sub_0205DDB4(param1)) {
+    } else if (sub_0205DDB4(attribute)) {
         return 10006;
-    } else if (sub_0205DBF0(param1)) {
+    } else if (sub_0205DBF0(attribute)) {
         return 2508;
-    } else if (sub_0205DDC0(param1)) {
+    } else if (sub_0205DDC0(attribute)) {
         return 2030;
-    } else if (sub_0205DE84(param1) && (v0 == 0)) {
+    } else if (sub_0205DE84(attribute) && playerDir == DIR_NORTH) {
         return 10100;
     }
 
-    if (ov5_021E0760(param1, v0)) {
+    if (ov5_021E0760(attribute, playerDir)) {
         return 10003;
     }
 
-    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != 0x2) {
-        TrainerInfo * v1 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        u32 v2 = sub_02061760(fieldSystem->playerAvatar);
+    if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != PLAYER_STATE_SURFING) {
+        TrainerInfo *info = SaveData_GetTrainerInfo(fieldSystem->saveData);
+        u32 distortionAttribute = sub_02061760(fieldSystem->playerAvatar);
 
-        if (ov5_021E0118(fieldSystem->playerAvatar, v2, param1)
-
-            && TrainerInfo_HasBadge(v1, 3)) {
+        if (ov5_021E0118(fieldSystem->playerAvatar, distortionAttribute, attribute) && TrainerInfo_HasBadge(info, 3)) {
             if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 57) != 0xff) {
                 return 10004;
             }
         }
     }
-
+    
     return 0xffff;
 }
 
-static BOOL ov5_021D2884 (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_Step (FieldSystem *fieldSystem)
 {
-    u8 v0;
-    int v1, v2;
-    int v3;
-
-    if ((sub_02071CB4(fieldSystem, 3) == 1) && ov8_0224AAA8(fieldSystem)) {
-        return 1;
+    if ((sub_02071CB4(fieldSystem, 3) == TRUE) && ov8_0224AAA8(fieldSystem)) {
+        return TRUE;
     }
 
-    if (sub_02071CB4(fieldSystem, 9) == 1) {
-        if (ov9_0224A71C(fieldSystem) == 1) {
-            return 1;
+    if (sub_02071CB4(fieldSystem, 9) == TRUE) {
+        if (ov9_0224A71C(fieldSystem) == TRUE) {
+            return TRUE;
         }
     }
 
-    v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if (ov5_021E1154(fieldSystem, fieldSystem->playerAvatar, v3) == 1) {
-        return 1;
+    if (ov5_021E1154(fieldSystem, fieldSystem->playerAvatar, playerDir) == TRUE) {
+        return TRUE;
     }
 
-    v1 = Player_GetXPos(fieldSystem->playerAvatar);
-    v2 = Player_GetZPos(fieldSystem->playerAvatar);
-    v0 = sub_02054F94(fieldSystem, v1, v2);
+    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    u8 attribute = sub_02054F94(fieldSystem, playerX, playerZ);
 
-    if (ov5_021D29A0(fieldSystem) == 1) {
-        return 1;
+    if (FieldEventCheck_PositionalEvent(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (ov5_021D29D8(fieldSystem, v1, v2, v0) == 1) {
-        ov5_021D2E14(fieldSystem);
-        return 1;
+    if (FieldEventCheck_Transition(fieldSystem, playerX, playerZ, attribute) == TRUE) {
+        FieldEventCheck_TrySetMapConnection(fieldSystem);
+        return TRUE;
     }
 
     if (sub_0205EF58(fieldSystem->playerAvatar)) {
-        return 0;
+        return FALSE;
     }
 
     ov5_021EA714(fieldSystem, 5, 1);
 
-    if (ov5_021D2B94(fieldSystem) == 1) {
-        return 1;
+    if (FieldEventCheck_Poison(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (ov5_021D2C14(fieldSystem) == 1) {
-        return 1;
+    if (FieldEventCheck_Safari(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (ov5_021D2ABC(fieldSystem) == 1) {
-        return 1;
+    if (FieldEventCheck_Daycare(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (ov5_021D2B08(fieldSystem) == 1) {
-        return 1;
+    if (FieldEventCheck_VsSeeker(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (ov5_021D2B14(fieldSystem) == 1) {
-        return 1;
+    if (FieldEventCheck_PokeRadar(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (ov5_021D2B20(fieldSystem) == 1) {
-        return 1;
+    if (FieldEventCheck_Repel(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
-    if (ov5_021D2B2C(fieldSystem)) {
-        ov5_021D2B54(fieldSystem);
+    if (FieldEventCheck_Friendship(fieldSystem)) {
+        FieldEventCheck_CalculateFriendship(fieldSystem);
     }
 
     sub_0206B238(SaveData_Events(fieldSystem->saveData));
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D29A0 (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_PositionalEvent (FieldSystem *fieldSystem)
 {
-    u16 v0;
-
-    v0 = sub_0203CC14(fieldSystem, (void *)sub_0203A4AC(fieldSystem), sub_0203A4A4(fieldSystem));
-
-    if (v0 != 0xffff) {
-        sub_0203E880(fieldSystem, v0, NULL);
-        return 1;
+    u16 event = sub_0203CC14(fieldSystem, (void *)sub_0203A4AC(fieldSystem), sub_0203A4A4(fieldSystem));
+    
+    if (event != 0xffff) {
+        sub_0203E880(fieldSystem, event, NULL);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D29D8 (FieldSystem * fieldSystem, const int param1, const int param2, const u8 param3)
+static BOOL FieldEventCheck_Transition (FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curAttribute)
 {
-    Location v0;
+    Location nextMap;
 
-    if (ov5_021D2D34(fieldSystem, param1, param2, &v0) == 0) {
-        return 0;
+    if (FieldEventCheck_MapConnection(fieldSystem, playerX, playerZ, &nextMap) == FALSE) {
+        return FALSE;
     }
 
-    if (sub_0205DC2C(param3) == 1) {
-        int v1 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    if (sub_0205DC2C(curAttribute) == TRUE) {
+        int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-        if (v1 == 2) {
-            v1 = 3;
-        } else if (v1 == 3) {
-            v1 = 2;
+        if (playerDir == DIR_WEST) {
+            playerDir = DIR_EAST;
+        } else if (playerDir == DIR_EAST) {
+            playerDir = DIR_WEST;
         } else {
             GF_ASSERT(FALSE);
-            return 0;
+            return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, v0.unk_00, v0.unk_04, 0, 0, v1, 2);
-        return 1;
-    } else if (sub_0205DC38(param3) == 1) {
-        int v1 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, playerDir, 2);
+        return TRUE;
+    } else if (sub_0205DC38(curAttribute) == TRUE) {
+        int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-        if ((v1 != 2) && (v1 != 3)) {
+        if (playerDir != DIR_WEST && playerDir != DIR_EAST) {
             GF_ASSERT(FALSE);
-            return 0;
+            return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, v0.unk_00, v0.unk_04, 0, 0, v1, 2);
-        return 1;
+        sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, playerDir, 2);
+        return TRUE;
     }
 
-    if (sub_0205DB10(param3) || sub_0205DB40(param3)) {
-        sub_02056C18(fieldSystem, v0.unk_00, v0.unk_04, 0, 0, 0);
-        return 1;
+    if (sub_0205DB10(curAttribute) || sub_0205DB40(curAttribute)) {
+        sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, 0);
+        return TRUE;
     }
 
-    if (sub_0205DEE4(param3)) {
-        sub_02053F58(fieldSystem, v0.unk_00, v0.unk_04);
-        return 1;
+    if (sub_0205DEE4(curAttribute)) {
+        sub_02053F58(fieldSystem, nextMap.unk_00, nextMap.unk_04);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D2ABC (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_Daycare (FieldSystem *fieldSystem)
 {
-    Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
-    UnkStruct_02026310 * v1 = sub_02026310(fieldSystem->saveData);
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    UnkStruct_02026310 *v1 = sub_02026310(fieldSystem->saveData);
 
-    if (ov5_021E7154(v1, v0, fieldSystem) == 1) {
-        UnkStruct_0202CD88 * v2 = sub_0202CD88(fieldSystem->saveData);
+    if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
+        UnkStruct_0202CD88 *v2 = sub_0202CD88(fieldSystem->saveData);
 
         sub_0202CF28(v2, (1 + 10));
         sub_0202CFEC(v2, 15);
         sub_0203E880(fieldSystem, 2031, NULL);
 
-        return 1;
-    } else {
-        return 0;
+        return TRUE;
     }
+
+    return FALSE;
 }
 
-static BOOL ov5_021D2B08 (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_VsSeeker (FieldSystem *fieldSystem)
 {
     ov5_021DBB94(fieldSystem);
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D2B14 (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_PokeRadar (FieldSystem *fieldSystem)
 {
     RadarChargeStep(fieldSystem);
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D2B20 (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_Repel (FieldSystem *fieldSystem)
 {
     return ov6_02246BF4(fieldSystem->saveData, fieldSystem);
 }
 
-static BOOL ov5_021D2B2C (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_Friendship (FieldSystem *fieldSystem)
 {
-    u16 v0;
-    UnkStruct_020507E4 * v1;
-    BOOL v2 = 0;
+    UnkStruct_020507E4 *events;
+    BOOL ret = FALSE;
 
-    v1 = SaveData_Events(fieldSystem->saveData);
-    v0 = sub_0206B44C(v1);
+    events = SaveData_Events(fieldSystem->saveData);
+    u16 steps = sub_0206B44C(events);
 
-    v0++;
+    steps++;
 
-    if (v0 >= 128) {
-        v0 = 0;
-        v2 = 1;
+    if (steps >= 128) {
+        steps = 0;
+        ret = TRUE;
     }
 
-    sub_0206B45C(v1, v0);
+    sub_0206B45C(events, steps);
 
-    return v2;
+    return ret;
 }
 
-static void ov5_021D2B54 (FieldSystem * fieldSystem)
+static void FieldEventCheck_CalculateFriendship (FieldSystem *fieldSystem)
 {
-    int v0, v1;
-    Pokemon * v2;
-    Party * v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 v4 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+    int i, partyCount;
+    Pokemon *mon;
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
 
-    v1 = Party_GetCurrentCount(v3);
+    partyCount = Party_GetCurrentCount(party);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = Party_GetPokemonBySlotIndex(v3, v0);
-        Pokemon_UpdateFriendship(v2, 5, v4);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
+        Pokemon_UpdateFriendship(mon, 5, mapID);
     }
 }
 
-static BOOL ov5_021D2B94 (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_Poison (FieldSystem *fieldSystem)
 {
-    Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 * v1 = sub_0203A78C(sub_0203A790(fieldSystem->saveData));
+    Party *party = Party_GetFromSavedata(fieldSystem->saveData);
+    u16 *poisonSteps = sub_0203A78C(sub_0203A790(fieldSystem->saveData));
 
-    (*v1)++;
-    (*v1) %= 4;
+    (*poisonSteps)++;
+    (*poisonSteps) %= 4;
 
-    if (*v1 != 0) {
-        return 0;
+    if (*poisonSteps != 0) {
+        return FALSE;
     }
 
-    switch (sub_02054B04(v0, MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00))) {
+    switch (sub_02054B04(party, MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00))) {
     case 0:
-        return 0;
+        return FALSE;
     case 1:
         ov5_021EF518(fieldSystem->unk_04->unk_20);
-        return 0;
+        return FALSE;
     case 2:
         ov5_021EF518(fieldSystem->unk_04->unk_20);
         sub_0203E880(fieldSystem, 2003, NULL);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov5_021D2C14 (FieldSystem * fieldSystem)
+static BOOL FieldEventCheck_Safari (FieldSystem *fieldSystem)
 {
-    u16 * v0;
-    u16 * v1;
-
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 0) {
-        return 0;
+    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == FALSE) {
+        return FALSE;
     }
 
-    v0 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+    u16 *balls = sub_0203A784(sub_0203A790(fieldSystem->saveData));
 
-    if (*v0 == 0) {
+    if (*balls == 0) {
         sub_0203E880(fieldSystem, 8802, NULL);
-        return 1;
+        return TRUE;
     }
 
-    v1 = sub_0203A788(sub_0203A790(fieldSystem->saveData));
-    (*v1)++;
+    u16 *steps = sub_0203A788(sub_0203A790(fieldSystem->saveData));
+    (*steps)++;
 
-    if (*v1 >= 500) {
+    if (*steps >= 500) {
         sub_0203E880(fieldSystem, 8801, NULL);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov5_021D2C7C (const FieldSystem * fieldSystem, int * param1, int * param2)
+static void FieldEventCheck_PlayerPos (const FieldSystem *fieldSystem, int *playerX, int *playerZ)
 {
-    *param1 = Player_GetXPos(fieldSystem->playerAvatar);
-    *param2 = Player_GetZPos(fieldSystem->playerAvatar);
+    *playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    *playerZ = Player_GetZPos(fieldSystem->playerAvatar);
 }
 
-static void ov5_021D2C98 (const FieldSystem * fieldSystem, int * param1, int * param2)
+static void FieldEventCheck_NextPos (const FieldSystem *fieldSystem, int *playerX, int *playerZ)
 {
-    int v0;
-
-    v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-    ov5_021D2CB4(fieldSystem, v0, param1, param2);
+    int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    FieldEventCheck_NextFacingPos(fieldSystem, playerDir, playerX, playerZ);
 }
 
-static void ov5_021D2CB4 (const FieldSystem * fieldSystem, int param1, int * param2, int * param3)
+static void FieldEventCheck_NextFacingPos (const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ)
 {
-    ov5_021D2C7C(fieldSystem, param2, param3);
+    FieldEventCheck_PlayerPos(fieldSystem, playerX, playerZ);
 
-    switch (param1) {
-    case 0:
-        *param3 -= 1;
+    switch (playerDir) {
+    case DIR_NORTH:
+        *playerZ -= 1;
         break;
-    case 1:
-        *param3 += 1;
+    case DIR_SOUTH:
+        *playerZ += 1;
         break;
-    case 2:
-        *param2 -= 1;
+    case DIR_WEST:
+        *playerX -= 1;
         break;
-    case 3:
-        *param2 += 1;
+    case DIR_EAST:
+        *playerX += 1;
         break;
     default:
         GF_ASSERT("FALSE");
     }
 }
 
-static u8 ov5_021D2CFC (const FieldSystem * fieldSystem)
+static u8 FieldEventCheck_CurrentAttribute (const FieldSystem *fieldSystem)
 {
-    int v0, v1;
-
-    ov5_021D2C7C(fieldSystem, &v0, &v1);
-    return sub_02054F94(fieldSystem, v0, v1);
+    int playerX, playerZ;
+    FieldEventCheck_PlayerPos(fieldSystem, &playerX, &playerZ);
+    return sub_02054F94(fieldSystem, playerX, playerZ);
 }
 
-static u8 ov5_021D2D18 (const FieldSystem * fieldSystem)
+static u8 FieldEventCheck_NextAttribute (const FieldSystem *fieldSystem)
 {
-    int v0, v1;
-
-    ov5_021D2C98(fieldSystem, &v0, &v1);
-    return sub_02054F94(fieldSystem, v0, v1);
+    int playerX, playerZ;
+    FieldEventCheck_NextPos(fieldSystem, &playerX, &playerZ);
+    return sub_02054F94(fieldSystem, playerX, playerZ);
 }
 
-static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param2, Location * param3)
+static BOOL FieldEventCheck_MapConnection (const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap)
 {
-    const UnkStruct_0203A55C * v0;
+    const UnkStruct_0203A55C *v0;
     int v1;
 
-    v1 = sub_0203A468(fieldSystem, param1, param2);
+    v1 = sub_0203A468(fieldSystem, playerX, playerZ);
 
     if (v1 == -1) {
-        return 0;
+        return FALSE;
     }
 
     v0 = sub_0203A450(fieldSystem, v1);
 
     if (v0 == NULL) {
-        return 0;
+        return FALSE;
     }
 
     if (v0->unk_06 == 0x100) {
         GF_ASSERT(v0->unk_04 == 0xfff);
-        *param3 = *(sub_0203A730(sub_0203A790(fieldSystem->saveData)));
+        *nextMap = *(sub_0203A730(sub_0203A790(fieldSystem->saveData)));
     } else {
-        inline_02049FA8(param3, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
+        inline_02049FA8(nextMap, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
     }
 
-    {
-        Location * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
-        inline_02049FA8(v2, fieldSystem->unk_1C->unk_00, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
-    }
+    Location *v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
+    inline_02049FA8(v2, fieldSystem->unk_1C->unk_00, v1, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
-    return 1;
+    return TRUE;
 }
 
-static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int param2, const int param3)
+static void FieldEventCheck_SetMapConnection (FieldSystem *fieldSystem, const int playerX, const int playerZ, const int playerDir)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
-    Location * v1 = sub_0203A72C(v0);
+    UnkStruct_0203A790 *v0 = sub_0203A790(fieldSystem->saveData);
+    Location *nextMap = sub_0203A72C(v0);
 
-    (*v1) = *(fieldSystem->unk_1C);
-    v1->unk_10 = param3;
-    v1->unk_08 = param1;
-    v1->unk_0C = param2;
+    (*nextMap) = *(fieldSystem->unk_1C);
+    nextMap->unk_10 = playerDir;
+    nextMap->unk_08 = playerX;
+    nextMap->unk_0C = playerZ;
 
-    if (param3 == 0) {
-        (v1->unk_0C)++;
+    if (playerDir == DIR_NORTH) {
+        (nextMap->unk_0C)++;
     }
 
-    v1->unk_00 = fieldSystem->unk_1C->unk_00;
-    v1->unk_04 = -1;
+    nextMap->unk_00 = fieldSystem->unk_1C->unk_00;
+    nextMap->unk_04 = -1;
 }
 
-static void ov5_021D2E14 (FieldSystem * fieldSystem)
+static void FieldEventCheck_TrySetMapConnection (FieldSystem *fieldSystem)
 {
-    int v0, v1;
-    Location v2;
+    int playerX, playerZ;
+    FieldEventCheck_PlayerPos(fieldSystem, &playerX, &playerZ);
 
-    ov5_021D2C7C(fieldSystem, &v0, &v1);
+    Location nextMap;
 
-    if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
-        if ((MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
-            ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    if (FieldEventCheck_MapConnection(fieldSystem, playerX, playerZ, &nextMap)) {
+        if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == TRUE && MapHeader_IsOnMainMatrix(nextMap.unk_00) == FALSE) {
+            FieldEventCheck_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
     } else {
-        ov5_021D2C98(fieldSystem, &v0, &v1);
+        FieldEventCheck_NextPos(fieldSystem, &playerX, &playerZ);
 
-        if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
-            if ((MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
-                ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
-            }
+        if (FieldEventCheck_MapConnection(fieldSystem, playerX, playerZ, &nextMap) &&
+            MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == TRUE && 
+            MapHeader_IsOnMainMatrix(nextMap.unk_00) == FALSE) {
+
+            FieldEventCheck_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
     }
 }
 
-static BOOL ov5_021D2EA4 (FieldSystem * fieldSystem, MapObject ** param1)
+static BOOL FieldEventCheck_DistortionInteract (FieldSystem *fieldSystem, MapObject **object)
 {
-    int v0 = 0;
-    int v1, v2, v3, v4, v5, v6;
+    int objectIndex = 0;
+    int playerX, playerY, playerZ, objectX, objectY, objectZ;
 
-    sub_020617BC(fieldSystem->playerAvatar, &v1, &v2, &v3);
+    sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, param1, &v0, (1 << 0))) {
-        v4 = MapObject_GetXPos(*param1);
-        v5 = ((MapObject_GetYPos(*param1) / 2));
-        v6 = MapObject_GetZPos(*param1);
+    while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, (1 << 0))) {
+        objectX = MapObject_GetXPos(*object);
+        objectY = ((MapObject_GetYPos(*object) / 2));
+        objectZ = MapObject_GetZPos(*object);
 
-        if ((v2 == v5) && (v1 == v4) && (v3 == v6)) {
-            return 1;
+        if (playerY == objectY && playerX == objectX && playerZ == objectZ) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }

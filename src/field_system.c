@@ -249,7 +249,7 @@ BOOL FieldSystem_Run (FieldSystem * fieldSystem)
 void FieldSystem_Control (FieldSystem * fieldSystem)
 {
     int v0;
-    UnkStruct_ov5_021D1CAC v1;
+    FieldEventCheck v1;
     BOOL v2 = 0;
 
     if (!fieldSystem->unk_00->unk_08 && fieldSystem->unk_68 && (sub_020509A4(fieldSystem) == 0)) {
@@ -258,7 +258,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
     if (v2) {
         sub_0205F490(fieldSystem->playerAvatar);
-        ov5_021D1CAC(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
+        FieldEventCheck_Set(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
     v0 = fieldSystem->unk_70;
@@ -271,7 +271,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     case 1:
         if (v2) {
             if (sub_02058C40()) {
-                if (ov5_021D213C(&v1, fieldSystem) == 1) {
+                if (FieldEventCheck_Underground(&v1, fieldSystem) == 1) {
                     
                 }
             }
@@ -282,7 +282,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     case 3:
         if (v2) {
             if (sub_02058C40()) {
-                if (ov5_021D219C(&v1, fieldSystem) == 1) {
+                if (FieldEventCheck_Colosseum(&v1, fieldSystem) == 1) {
                     v2 = 0;
                 }
             } else {
@@ -294,16 +294,16 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
         break;
     case 2:
         if (v2) {
-            if (ov5_021D2298(&v1, fieldSystem) == 1) {
+            if (FieldEventCheck_UnionRoom(&v1, fieldSystem) == 1) {
                 
             } else {
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.unk_04, v1.unk_06, 0);
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, 0);
             }
         }
         break;
     case 4:
         if (v2) {
-            if (ov5_021D2368(&v1, fieldSystem) == 1) {
+            if (FieldEventCheck_BattleTower(&v1, fieldSystem) == 1) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
@@ -321,14 +321,14 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
                         v3 = ov25_02253DD4(v4);
                     }
 
-                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.unk_04, v1.unk_06, v3);
+                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v3);
                 }
             }
         }
         break;
     default:
         if (v2) {
-            if (ov5_021D1DA4(&v1, fieldSystem) == 1) {
+            if (FieldEvent_Check(&v1, fieldSystem) == 1) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 sub_0205F56C(fieldSystem->playerAvatar);
@@ -347,7 +347,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
                         v5 = ov25_02253DD4(v6);
                     }
 
-                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.unk_04, v1.unk_06, v5);
+                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v5);
                 }
             }
         }
