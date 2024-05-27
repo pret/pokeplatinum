@@ -22,7 +22,7 @@ static u8 sub_02048268(u16 param0, u16 param1);
 
 BOOL ScrCmd_24E (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
     u32 v2;
 
@@ -34,10 +34,10 @@ BOOL ScrCmd_24E (ScriptContext * param0)
 
 BOOL ScrCmd_24F (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     Pokemon * v1;
     BoxPokemon * v2;
-    PCBoxes * v3 = SaveData_PCBoxes(v0->saveData);
+    PCBoxes * v3 = SaveData_PCBoxes(fieldSystem->saveData);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
     u16 * v5 = ScriptContext_GetVarPointer(param0);
     u16 * v6 = ScriptContext_GetVarPointer(param0);
@@ -49,10 +49,10 @@ BOOL ScrCmd_24F (ScriptContext * param0)
     u8 v16;
     u32 v17, v18, v19;
 
-    v8 = Party_GetCurrentCount(Party_GetFromSavedata(v0->saveData));
+    v8 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
     for (v11 = 0, v12 = 0, v9 = 0; v9 < v8; v9++) {
-        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->saveData), v9);
+        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v9);
 
         if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
             v15 = (Pokemon_GetValue(v1, MON_DATA_OT_ID, NULL) & 0xffff);
@@ -107,7 +107,7 @@ BOOL ScrCmd_24F (ScriptContext * param0)
 
 BOOL ScrCmd_250 (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
 
     sub_0206B2C8(v0);
     return 0;

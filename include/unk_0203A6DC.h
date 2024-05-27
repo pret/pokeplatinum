@@ -33,7 +33,7 @@ u16 * sub_0203A788(UnkStruct_0203A790 * param0);
 u16 * sub_0203A78C(UnkStruct_0203A790 * param0);
 UnkStruct_0203A790 * sub_0203A790(SaveData * param0);
 UnkStruct_0203A79C * sub_0203A79C(SaveData * param0);
-void sub_0203A7A8(FieldSystem * param0);
-void sub_0203A7C0(FieldSystem * param0);
+void sub_0203A7A8(FieldSystem * fieldSystem);
+void sub_0203A7C0(FieldSystem * fieldSystem);
 
 #endif // POKEPLATINUM_UNK_0203A6DC_H

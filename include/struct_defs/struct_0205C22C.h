@@ -14,7 +14,7 @@ typedef struct UnkStruct_0205C22C_t {
     SysTask * unk_04;
     PlayerAvatar * playerAvatar;
     UnkStruct_0205C680 unk_0C[50 + 1];
-    FieldSystem * unk_470;
+    FieldSystem * fieldSystem;
     UnkStruct_02027F8C * unk_474;
     UnkStruct_0205C95C * unk_478;
     int unk_47C;

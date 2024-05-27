@@ -740,7 +740,7 @@ static BOOL ov5_021E80D0 (UnkStruct_ov5_021E8F60 * param0, const int param1, con
     return 1;
 }
 
-void ov5_021E8188 (FieldSystem * param0, UnkStruct_ov5_021E8F60 * param1)
+void ov5_021E8188 (FieldSystem * fieldSystem, UnkStruct_ov5_021E8F60 * param1)
 {
     u8 v0;
     UnkStruct_ov5_021E7814 * v1;
@@ -2293,7 +2293,7 @@ void ov5_021E9F98 (UnkStruct_ov5_021E8F60 * param0, UnkStruct_ov5_021E8F60 * par
     param0->unk_A8 = param1->unk_A8;
 }
 
-void ov5_021EA174 (FieldSystem * param0, UnkStruct_ov5_021E8F60 * param1)
+void ov5_021EA174 (FieldSystem * fieldSystem, UnkStruct_ov5_021E8F60 * param1)
 {
     u8 v0;
     UnkStruct_ov5_021E7814 * v1;

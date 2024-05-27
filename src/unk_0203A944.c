@@ -1846,7 +1846,7 @@ static const u8 Unk_020E98F4[] = {
 };
 
 
-int sub_0203A944 (FieldSystem * param0, int param1)
+int sub_0203A944 (FieldSystem * fieldSystem, int param1)
 {
     int v0;
 
@@ -1858,7 +1858,7 @@ int sub_0203A944 (FieldSystem * param0, int param1)
 
     {
         int v1;
-        UnkStruct_02055BA8 * v2 = sub_02025CD8(param0->saveData);
+        UnkStruct_02055BA8 * v2 = sub_02025CD8(fieldSystem->saveData);
 
         v1 = DayNumberForDate(&v2->unk_04) - 1;
         GF_ASSERT(v1 >= 0 && v1 < 366);
@@ -1867,7 +1867,7 @@ int sub_0203A944 (FieldSystem * param0, int param1)
             v1++;
         }
 
-        if (sub_02055C40(param0)) {
+        if (sub_02055C40(fieldSystem)) {
             v1 = 1;
         }
 

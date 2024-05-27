@@ -319,22 +319,22 @@ void sub_0207183C (FieldSystem * fieldSystem)
 static BOOL sub_020718D8 (TaskManager * taskMan)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_020718D8 * v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(v1->playerAvatar, 0);
+        sub_0205ED2C(fieldSystem->playerAvatar, 0);
         sub_02071ACC(v2->unk_0C);
         (v2->unk_00)++;
         break;
     case 1:
     {
         if (v2->unk_08) {
-            v0 = ov5_021E18CC(v1->unk_A4, 258);
+            v0 = ov5_021E18CC(fieldSystem->unk_A4, 258);
         } else {
             const int v3[2] = {258, 502};
-            BOOL v4 = sub_02055324(v1, v3, 2, &v0, NULL);
+            BOOL v4 = sub_02055324(fieldSystem, v3, 2, &v0, NULL);
 
             GF_ASSERT(v4);
         }
@@ -360,14 +360,14 @@ static BOOL sub_020718D8 (TaskManager * taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(v1->playerAvatar, v6.y);
+            sub_0205ED0C(fieldSystem->playerAvatar, v6.y);
             ov5_021E18A4(v0, &v6);
         }
     }
     break;
     case 2:
-        ov5_021EF388(0, v2->unk_04, v1->unk_A0);
-        sub_0205ED48(v1->playerAvatar, 1);
+        ov5_021EF388(0, v2->unk_04, fieldSystem->unk_A0);
+        sub_0205ED48(fieldSystem->playerAvatar, 1);
         Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
@@ -382,22 +382,22 @@ static BOOL sub_020718D8 (TaskManager * taskMan)
 static BOOL sub_020719D8 (TaskManager * taskMan)
 {
     UnkStruct_ov5_021E1890 * v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_020718D8 * v2 = TaskManager_Environment(taskMan);
 
     switch (v2->unk_00) {
     case 0:
-        sub_0205ED2C(v1->playerAvatar, 0);
+        sub_0205ED2C(fieldSystem->playerAvatar, 0);
         sub_02071ACC(v2->unk_0C);
         (v2->unk_00)++;
         break;
     case 1:
     {
         if (v2->unk_08) {
-            v0 = ov5_021E18CC(v1->unk_A4, 258);
+            v0 = ov5_021E18CC(fieldSystem->unk_A4, 258);
         } else {
             const int v3[2] = {258, 502};
-            BOOL v4 = sub_02055324(v1, v3, 2, &v0, NULL);
+            BOOL v4 = sub_02055324(fieldSystem, v3, 2, &v0, NULL);
 
             GF_ASSERT(v4);
         }
@@ -415,14 +415,14 @@ static BOOL sub_020719D8 (TaskManager * taskMan)
                 (v2->unk_00)++;
             }
 
-            sub_0205ED0C(v1->playerAvatar, v5.y);
+            sub_0205ED0C(fieldSystem->playerAvatar, v5.y);
             ov5_021E18A4(v0, &v5);
         }
     }
     break;
     case 2:
-        ov5_021EF388(0, v2->unk_04, v1->unk_A0);
-        sub_0205ED48(v1->playerAvatar, 1);
+        ov5_021EF388(0, v2->unk_04, fieldSystem->unk_A0);
+        sub_0205ED48(fieldSystem->playerAvatar, 1);
         Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;

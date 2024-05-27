@@ -24,7 +24,7 @@ typedef struct {
     u16 unk_7E[4];
     u16 unk_86[4];
     u16 unk_8E[4];
-    FieldSystem * unk_98;
+    FieldSystem * fieldSystem;
     u8 unk_9C;
     u8 unk_9D;
     u8 unk_9E;

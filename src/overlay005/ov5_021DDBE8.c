@@ -154,7 +154,7 @@ typedef struct {
     u16 unk_00;
     u8 unk_02;
     u8 unk_03;
-    FieldSystem * unk_04;
+    FieldSystem * fieldSystem;
     UnkStruct_02014014 * unk_08;
     void * unk_0C;
     u32 unk_10;
@@ -180,8 +180,8 @@ static void ov5_021DEE84(UnkStruct_ov5_021DED04 * param0);
 static void ov5_021DE67C(GraphicElementData * param0, void * param1, u32 param2);
 static void ov5_021DF258(SysTask * param0, void * param1);
 static void ov5_021DF28C(SysTask * param0, void * param1);
-static void ov5_021DF30C(FieldSystem * param0);
-static void ov5_021DF3D4(FieldSystem * param0);
+static void ov5_021DF30C(FieldSystem * fieldSystem);
+static void ov5_021DF3D4(FieldSystem * fieldSystem);
 static u32 ov5_021DF3E8(u32 param0, BOOL param1);
 static u32 ov5_021DF414(u32 param0, BOOL param1);
 static void include_ov5_021DDBE8_rodata(SysTask * dummy1, void * dummy2);
@@ -245,14 +245,14 @@ static const u16 Unk_ov5_021F9A2C[8][2] = {
 
 static UnkStruct_ov5_02202120 * Unk_ov5_02202120 = NULL;
 
-void ov5_021DDBE8 (int param0, FieldSystem * param1, BOOL * param2)
+void ov5_021DDBE8 (int param0, FieldSystem * fieldSystem, BOOL * param2)
 {
     SysTask * v0;
     UnkStruct_ov5_021DDC28 * v1;
 
     v0 = sub_0200679C(Unk_ov5_021F9A74[param0], sizeof(UnkStruct_ov5_021DDC28), 5, 4);
     v1 = sub_0201CED0(v0);
-    v1->unk_10 = param1;
+    v1->fieldSystem = fieldSystem;
     v1->unk_14 = param2;
     v1->unk_20 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 4);
 
@@ -514,7 +514,7 @@ void ov5_021DDF9C (UnkStruct_ov5_021DDC28 * param0, UnkStruct_ov5_021DDF74 * par
     GF_ASSERT(param1->unk_24 == NULL);
 
     param0->unk_18 = 0;
-    param1->unk_20 = param0->unk_10->unk_04->unk_1C;
+    param1->unk_20 = param0->fieldSystem->unk_04->unk_1C;
     param1->unk_18 = param2;
     param1->unk_1C = 0;
     param1->unk_2C = &param0->unk_18;
@@ -651,7 +651,7 @@ void ov5_021DE240 (UnkStruct_ov5_021DDC28 * param0, UnkStruct_ov5_021DE374 * par
     GF_ASSERT(param1->unk_3C == NULL);
 
     param0->unk_18 = 0;
-    param1->unk_38 = param0->unk_10->unk_04->unk_1C;
+    param1->unk_38 = param0->fieldSystem->unk_04->unk_1C;
     param1->unk_30 = 96;
     param1->unk_34 = 0;
     param1->unk_44 = &param0->unk_18;
@@ -1314,7 +1314,7 @@ void ov5_021DED20 (UnkStruct_ov5_021DDC28 * param0, UnkStruct_ov5_021DED04 * par
     GF_ASSERT(param1->unk_E0 == NULL);
 
     param0->unk_18 = 0;
-    param1->unk_D8 = param0->unk_10->unk_04->unk_1C;
+    param1->unk_D8 = param0->fieldSystem->unk_04->unk_1C;
     param1->unk_14 = 0;
     param1->unk_E4 = &param0->unk_18;
 
@@ -1467,7 +1467,7 @@ void ov5_021DEF8C (int * param0)
     sub_0200DA3C(ov5_021DEF74, param0, 1024);
 }
 
-void ov5_021DEFA0 (FieldSystem * param0)
+void ov5_021DEFA0 (FieldSystem * fieldSystem)
 {
     GF_ASSERT(Unk_ov5_02202120 == NULL);
 
@@ -1476,7 +1476,7 @@ void ov5_021DEFA0 (FieldSystem * param0)
 
     Unk_ov5_02202120->unk_00 = 0;
     Unk_ov5_02202120->unk_02 = 0;
-    Unk_ov5_02202120->unk_04 = param0;
+    Unk_ov5_02202120->fieldSystem = fieldSystem;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -1517,9 +1517,9 @@ void ov5_021DF084 (void)
 
     sub_020141E4();
 
-    ov5_021DF3D4(Unk_ov5_02202120->unk_04);
-    ov5_021D16F4(Unk_ov5_02202120->unk_04, 1);
-    ov5_021D1718(Unk_ov5_02202120->unk_04, 1);
+    ov5_021DF3D4(Unk_ov5_02202120->fieldSystem);
+    ov5_021D16F4(Unk_ov5_02202120->fieldSystem, 1);
+    ov5_021D1718(Unk_ov5_02202120->fieldSystem, 1);
 
     Heap_FreeToHeap(Unk_ov5_02202120);
     Unk_ov5_02202120 = NULL;
@@ -1606,7 +1606,7 @@ static void ov5_021DF258 (SysTask * param0, void * param1)
         break;
     case 1:
         if (v0->unk_03 == 1) {
-            ov5_021DF30C(v0->unk_04);
+            ov5_021DF30C(v0->fieldSystem);
             SysTask_Done(param0);
             v0->unk_00++;
         }
@@ -1635,8 +1635,8 @@ static void ov5_021DF28C (SysTask * param0, void * param1)
             NNS_G3dGlbSetBaseRot(&v3);
         }
 
-        ov5_021D16F4(v0->unk_04, 0);
-        ov5_021D1718(v0->unk_04, 0);
+        ov5_021D16F4(v0->fieldSystem, 0);
+        ov5_021D1718(v0->fieldSystem, 0);
 
         BGL_SetPriority(0, 0);
 
@@ -1648,7 +1648,7 @@ static void ov5_021DF28C (SysTask * param0, void * param1)
     }
 }
 
-static void ov5_021DF30C (FieldSystem * param0)
+static void ov5_021DF30C (FieldSystem * fieldSystem)
 {
     {
         UnkStruct_02099F80 v0 = {
@@ -1682,7 +1682,7 @@ static void ov5_021DF30C (FieldSystem * param0)
     }
 
     {
-        ov5_021D143C(param0->unk_08);
+        ov5_021D143C(fieldSystem->unk_08);
 
         {
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
@@ -1715,19 +1715,19 @@ static void ov5_021DF30C (FieldSystem * param0)
                 0
             };
 
-            sub_020183C4(param0->unk_08, 2, &v3, 0);
+            sub_020183C4(fieldSystem->unk_08, 2, &v3, 0);
             sub_02019690(2, 32, 0, 4);
-            sub_02019EBC(param0->unk_08, 2);
+            sub_02019EBC(fieldSystem->unk_08, 2);
         }
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov5_021DF3D4 (FieldSystem * param0)
+static void ov5_021DF3D4 (FieldSystem * fieldSystem)
 {
-    sub_02019044(param0->unk_08, 2);
-    ov5_021D1434(param0->unk_08);
+    sub_02019044(fieldSystem->unk_08, 2);
+    ov5_021D1434(fieldSystem->unk_08);
 }
 
 static u32 ov5_021DF3E8 (u32 param0, BOOL param1)

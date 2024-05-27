@@ -77,7 +77,7 @@ void sub_0205ED2C(PlayerAvatar * playerAvatar, int param1);
 void sub_0205ED48(PlayerAvatar * playerAvatar, int param1);
 int Player_MoveStateFromGender(int param0, int param1);
 u32 sub_0205EED8(int param0);
-PlayerAvatar * sub_0205EF3C(FieldSystem * param0);
+PlayerAvatar * sub_0205EF3C(FieldSystem * fieldSystem);
 void sub_0205EF40(PlayerAvatar * playerAvatar, int param1);
 int sub_0205EF58(PlayerAvatar * playerAvatar);
 void sub_0205EF6C(PlayerAvatar * playerAvatar, int param1);

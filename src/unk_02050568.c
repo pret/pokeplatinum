@@ -29,7 +29,7 @@
 #include "unk_02070428.h"
 
 typedef struct {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     u16 unk_04;
     u16 unk_06;
     u8 unk_08;

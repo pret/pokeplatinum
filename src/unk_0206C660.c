@@ -32,7 +32,7 @@ static void sub_0206C660(TaskManager * param0);
 
 void sub_0206C660 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0206C660 * v1 = TaskManager_Environment(param0);
 
     {
@@ -48,13 +48,13 @@ void sub_0206C660 (TaskManager * param0)
 
 static BOOL sub_0206C680 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0206C660 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
-        ov6_02246254(v0, v1->unk_00, v1->unk_08, &v1->unk_0C, v1->unk_24, v1->unk_28);
-        ov6_02246234(v0, v1->unk_00, v1->unk_08);
+        ov6_02246254(fieldSystem, v1->unk_00, v1->unk_08, &v1->unk_0C, v1->unk_24, v1->unk_28);
+        ov6_02246234(fieldSystem, v1->unk_00, v1->unk_08);
         v1->unk_04++;
         break;
     case 1:

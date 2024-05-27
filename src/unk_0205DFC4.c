@@ -292,7 +292,7 @@ BOOL HasAllLegendaryTitansInParty (SaveData * param0)
 static BOOL sub_0205E268 (TaskManager * param0)
 {
     VecFx32 v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205E268 * v2 = TaskManager_Environment(param0);
 
     v0.x = FX32_CONST(8);
@@ -322,7 +322,7 @@ static BOOL sub_0205E268 (TaskManager * param0)
 
 void sub_0205E318 (TaskManager * param0, MapObject * param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205E268 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
@@ -333,12 +333,12 @@ void sub_0205E318 (TaskManager * param0, MapObject * param1, u16 param2, u16 par
     v1->unk_10 = param3;
     v1->unk_00 = param1;
 
-    sub_02050944(v0->unk_10, sub_0205E268, v1);
+    sub_02050944(fieldSystem->unk_10, sub_0205E268, v1);
 }
 
 static BOOL sub_0205E3AC (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205E3AC * v1 = TaskManager_Environment(param0);
 
     MapObject_SetHidden(v1->unk_00, v1->unk_09);
@@ -358,7 +358,7 @@ static BOOL sub_0205E3AC (TaskManager * param0)
 
 void sub_0205E3F4 (TaskManager * param0, MapObject * param1, u16 param2, u16 param3)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205E3AC * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
@@ -368,7 +368,7 @@ void sub_0205E3F4 (TaskManager * param0, MapObject * param1, u16 param2, u16 par
     v1->unk_00 = param1;
     v1->unk_09 = 0;
 
-    sub_02050944(v0->unk_10, sub_0205E3AC, v1);
+    sub_02050944(fieldSystem->unk_10, sub_0205E3AC, v1);
 }
 
 int sub_0205E430 (u8 param0, u8 param1)

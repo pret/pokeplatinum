@@ -51,7 +51,7 @@ typedef struct {
     u8 unk_454[8];
     SysTask * unk_45C;
     UnkStruct_ov23_02241E4C * unk_460;
-    FieldSystem * unk_464;
+    FieldSystem * fieldSystem;
     u8 unk_468[8];
     int unk_470;
     u8 unk_474;
@@ -82,7 +82,7 @@ static void ov23_022416B0 (int param0)
     }
 }
 
-void ov23_022416E0 (void * param0, FieldSystem * param1)
+void ov23_022416E0 (void * param0, FieldSystem * fieldSystem)
 {
     int v0;
     UndergroundData * v1;
@@ -93,9 +93,9 @@ void ov23_022416E0 (void * param0, FieldSystem * param1)
 
     Unk_ov23_02257744 = param0;
     MI_CpuFill8(Unk_ov23_02257744, 0, sizeof(UnkStruct_ov23_02257744));
-    Unk_ov23_02257744->unk_464 = param1;
+    Unk_ov23_02257744->fieldSystem = fieldSystem;
 
-    v1 = sub_020298B0(FieldSystem_SaveData(param1));
+    v1 = sub_020298B0(FieldSystem_SaveData(fieldSystem));
 
     for (v0 = 0; v0 < 100; v0++) {
         Unk_ov23_02257744->unk_00[v0].unk_06 = sub_020290DC(v1, v0);
@@ -112,7 +112,7 @@ void ov23_022416E0 (void * param0, FieldSystem * param1)
 
 static void ov23_02241778 (void)
 {
-    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->unk_464));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 100; v1++) {
@@ -161,7 +161,7 @@ void ov23_02241810 (void)
         int v2 = ov23_02241D38(v0);
 
         if ((v1 != 0) && (v2 != 0)) {
-            ov5_021F57C8(Unk_ov23_02257744->unk_464, v1, v2);
+            ov5_021F57C8(Unk_ov23_02257744->fieldSystem, v1, v2);
         }
     }
 }
@@ -364,7 +364,7 @@ void ov23_02241AE8 (int param0, int param1, int param2, int param3)
         return;
     }
 
-    if (FieldSystem_CheckCollision(Unk_ov23_02257744->unk_464, param2, param3)) {
+    if (FieldSystem_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
         ov23_02253F40(ov23_0224219C(), 60, 0, NULL);
         return;
     }
@@ -399,10 +399,10 @@ void ov23_02241AE8 (int param0, int param1, int param2, int param3)
         ov23_02250128(param0);
 
         Sound_PlayEffect(1585);
-        sub_0206AA14(SaveData_Events(Unk_ov23_02257744->unk_464->saveData));
-        sub_0202CF28(sub_0202CD88(Unk_ov23_02257744->unk_464->saveData), (1 + 46));
+        sub_0206AA14(SaveData_Events(Unk_ov23_02257744->fieldSystem->saveData));
+        sub_0202CF28(sub_0202CD88(Unk_ov23_02257744->fieldSystem->saveData), (1 + 46));
 
-        ov5_021F57C8(Unk_ov23_02257744->unk_464, param2, param3);
+        ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);
     }
 }
 
@@ -525,7 +525,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
 
 int ov23_02241DF8 (MATHRandContext16 * param0)
 {
-    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->unk_464));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(Unk_ov23_02257744->fieldSystem));
     int v1, v2, v3;
 
     for (v3 = 0; v3 < 100; v3++) {

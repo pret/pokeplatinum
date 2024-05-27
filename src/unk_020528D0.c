@@ -46,14 +46,14 @@
 
 typedef struct {
     int unk_00;
-    FieldSystem * unk_04;
+    FieldSystem * fieldSystem;
     BGL * unk_08;
     Window unk_0C;
     MessageLoader * unk_1C;
     StringTemplate * unk_20;
 } UnkStruct_02052AA4;
 
-static void sub_02052914(FieldSystem * param0, TaskManager * param1);
+static void sub_02052914(FieldSystem * fieldSystem, TaskManager * param1);
 static BOOL sub_020529C4(TaskManager * param0);
 static void sub_02052AA4(UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8 param3);
 
@@ -109,7 +109,7 @@ static void sub_020528D0 (BGL * param0)
     sub_02006E84(14, 6, 0, 13 * 0x20, 0x20, 11);
 }
 
-static void sub_02052914 (FieldSystem * param0, TaskManager * param1)
+static void sub_02052914 (FieldSystem * fieldSystem, TaskManager * param1)
 {
     UnkStruct_02052AA4 * v0;
 
@@ -122,7 +122,7 @@ static void sub_02052914 (FieldSystem * param0, TaskManager * param1)
     memset(v0, 0, sizeof(UnkStruct_02052AA4));
 
     v0->unk_00 = 0;
-    v0->unk_04 = param0;
+    v0->fieldSystem = fieldSystem;
     v0->unk_08 = sub_02018340(11);
 
     sub_020528D0(v0->unk_08);
@@ -131,9 +131,9 @@ static void sub_02052914 (FieldSystem * param0, TaskManager * param1)
     v0->unk_20 = StringTemplate_Default(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
-    StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(param0)));
+    StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
 
-    if (param0->unk_1C->unk_00 == 414) {
+    if (fieldSystem->unk_1C->unk_00 == 414) {
         sub_02052AA4(v0, 4, 0, 0);
     } else {
         sub_02052AA4(v0, 3, 0, 0);
@@ -209,29 +209,29 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
 
 BOOL sub_02052B2C (TaskManager * param0)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
     int * v1;
 
-    v0 = TaskManager_FieldSystem(param0);
+    fieldSystem = TaskManager_FieldSystem(param0);
     v1 = sub_02050A68(param0);
 
     switch (*v1) {
     case 0:
     {
-        if ((v0 != NULL) && (v0->saveData != NULL)) {
-            Party_SetGiratinaForm(Party_GetFromSavedata(v0->saveData), 0);
+        if ((fieldSystem != NULL) && (fieldSystem->saveData != NULL)) {
+            Party_SetGiratinaForm(Party_GetFromSavedata(fieldSystem->saveData), 0);
         }
     }
 
         {
             Location v2;
-            UnkStruct_0203A790 * v3 = sub_0203A790(v0->saveData);
+            UnkStruct_0203A790 * v3 = sub_0203A790(fieldSystem->saveData);
             u16 v4 = sub_0203A75C(v3);
 
             sub_0203A824(v4, &v2);
             sub_0203A7F0(v4, sub_0203A72C(v3));
             sub_020539A0(param0, &v2);
-            sub_020705B4(v0);
+            sub_020705B4(fieldSystem);
         }
         (*v1)++;
         break;
@@ -248,7 +248,7 @@ BOOL sub_02052B2C (TaskManager * param0)
     case 3:
         sub_0200AB4C(-16, ((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) ^ GX_BLEND_PLANEMASK_BG3), 1);
         sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
-        sub_02052914(v0, param0);
+        sub_02052914(fieldSystem, param0);
         (*v1)++;
         break;
     case 4:
@@ -259,7 +259,7 @@ BOOL sub_02052B2C (TaskManager * param0)
         sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
         if (sub_0203A7EC()
-            == sub_0203A75C(sub_0203A790(v0->saveData))) {
+            == sub_0203A75C(sub_0203A790(fieldSystem->saveData))) {
             sub_0203E8E0(param0, 2020, NULL, NULL);
         } else {
             sub_0203E8E0(param0, 2021, NULL, NULL);

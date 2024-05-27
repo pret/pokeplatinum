@@ -33,35 +33,35 @@ struct UnkStruct_0203A3E8_t {
 static void sub_0203A3E8(UnkStruct_0203A3E8 * param0, int param1);
 static void sub_0203A5B0(UnkStruct_0203A3E8 * param0);
 static void sub_0203A64C(UnkStruct_0203A3E8 * param0, int param1);
-BOOL sub_0203A4FC(FieldSystem * param0, int param1, int param2);
-BOOL sub_0203A52C(FieldSystem * param0, int param1, int param2);
-BOOL sub_0203A55C(FieldSystem * param0, u16 param1, u16 param2, u16 param3);
-BOOL sub_0203A574(FieldSystem * param0, u16 param1, u16 param2);
-BOOL sub_0203A584(FieldSystem * param0, u16 param1, u16 param2);
-BOOL sub_0203A594(FieldSystem * param0, u16 param1, u16 param2, u16 param3);
+BOOL sub_0203A4FC(FieldSystem * fieldSystem, int param1, int param2);
+BOOL sub_0203A52C(FieldSystem * fieldSystem, int param1, int param2);
+BOOL sub_0203A55C(FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3);
+BOOL sub_0203A574(FieldSystem * fieldSystem, u16 param1, u16 param2);
+BOOL sub_0203A584(FieldSystem * fieldSystem, u16 param1, u16 param2);
+BOOL sub_0203A594(FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3);
 
-void sub_0203A378 (FieldSystem * param0, int param1)
+void sub_0203A378 (FieldSystem * fieldSystem, int param1)
 {
     UnkStruct_0203A3E8 * v0;
 
-    GF_ASSERT(param0->unk_14 == NULL);
-    param0->unk_14 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203A3E8));
+    GF_ASSERT(fieldSystem->unk_14 == NULL);
+    fieldSystem->unk_14 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203A3E8));
 }
 
-void sub_0203A398 (FieldSystem * param0)
+void sub_0203A398 (FieldSystem * fieldSystem)
 {
-    GF_ASSERT(param0->unk_14 != NULL);
-    Heap_FreeToHeap(param0->unk_14);
+    GF_ASSERT(fieldSystem->unk_14 != NULL);
+    Heap_FreeToHeap(fieldSystem->unk_14);
 }
 
-void sub_0203A3B0 (FieldSystem * param0, int param1)
+void sub_0203A3B0 (FieldSystem * fieldSystem, int param1)
 {
-    GF_ASSERT(param0->unk_14 != NULL);
+    GF_ASSERT(fieldSystem->unk_14 != NULL);
 
-    sub_0203A3E8(param0->unk_14, param1);
-    sub_0203A5B0(param0->unk_14);
-    sub_0203A614(&param0->unk_14->unk_920, param1);
-    sub_0203A64C(param0->unk_14, param1);
+    sub_0203A3E8(fieldSystem->unk_14, param1);
+    sub_0203A5B0(fieldSystem->unk_14);
+    sub_0203A614(&fieldSystem->unk_14->unk_920, param1);
+    sub_0203A64C(fieldSystem->unk_14, param1);
 }
 
 static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
@@ -288,9 +288,9 @@ void sub_0203A614 (UnkStruct_ov6_02242634 * param0, int param1)
     }
 }
 
-const UnkStruct_ov6_02242634 * sub_0203A640 (const FieldSystem * param0)
+const UnkStruct_ov6_02242634 * sub_0203A640 (const FieldSystem * fieldSystem)
 {
-    return &param0->unk_14->unk_920;
+    return &fieldSystem->unk_14->unk_920;
 }
 
 static void sub_0203A64C (UnkStruct_0203A3E8 * param0, int param1)
@@ -305,15 +305,15 @@ static void sub_0203A64C (UnkStruct_0203A3E8 * param0, int param1)
     NARC_ReadWholeMemberByIndexPair(param0->unk_820, NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, v0);
 }
 
-void * sub_0203A68C (const FieldSystem * param0)
+void * sub_0203A68C (const FieldSystem * fieldSystem)
 {
-    GF_ASSERT(param0->unk_14 != NULL);
-    return &param0->unk_14->unk_820;
+    GF_ASSERT(fieldSystem->unk_14 != NULL);
+    return &fieldSystem->unk_14->unk_820;
 }
 
-BOOL sub_0203A6A4 (const FieldSystem * param0, u16 param1, u16 param2)
+BOOL sub_0203A6A4 (const FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    const UnkStruct_0203A3E8 * v0 = param0->unk_14;
+    const UnkStruct_0203A3E8 * v0 = fieldSystem->unk_14;
     u32 v1;
 
     for (v1 = 0; v1 < v0->unk_04; v1++) {

@@ -7,8 +7,8 @@
 #include "savedata.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
 
-void ov23_0224B144(void * param0, FieldSystem * param1);
-void ov23_0224B2C8(FieldSystem * param0);
+void ov23_0224B144(void * param0, FieldSystem * fieldSystem);
+void ov23_0224B2C8(FieldSystem * fieldSystem);
 void ov23_0224B430(void);
 void ov23_0224B460(void);
 void ov23_0224B4E4(void);

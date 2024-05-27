@@ -48,12 +48,12 @@ typedef struct {
     fx32 unk_7C;
 } UnkStruct_0206CAD0;
 
-static void sub_0206C8D4(FieldSystem * param0, const u8 param1, UnkStruct_ov5_021D5894 * param2);
+static void sub_0206C8D4(FieldSystem * fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 * param2);
 static BOOL sub_0206C8F8(TaskManager * param0);
 static BOOL sub_0206C964(TaskManager * param0);
 static BOOL sub_0206CAD0(UnkStruct_0206CAD0 * param0);
 static BOOL sub_0206CB8C(const fx32 * param0, const fx32 * param1, u8 * param2);
-static void sub_0206CBA0(FieldSystem * param0);
+static void sub_0206CBA0(FieldSystem * fieldSystem);
 static void sub_0206CC64(UnkStruct_0206CAD0 * param0);
 
 void sub_0206C784 (FieldSystem * fieldSystem, const u8 param1, const u8 param2, const int param3, const int param4, const int param5)
@@ -143,20 +143,20 @@ static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_
 
 static BOOL sub_0206C8F8 (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206C8D4 * v1 = TaskManager_Environment(taskMan);
     int * v2 = sub_02050A68(taskMan);
 
     switch (*v2) {
     case 0:
         if ((v1->unk_00 == 1) || (v1->unk_00 == 2)) {
-            sub_0203E2D4(v0, v1);
+            sub_0203E2D4(fieldSystem, v1);
         } else {
-            sub_0203E2AC(v0, v1);
+            sub_0203E2AC(fieldSystem, v1);
         }
         break;
     case 1:
-        if (sub_020509B4(v0)) {
+        if (sub_020509B4(fieldSystem)) {
             return 0;
         }
         break;
@@ -171,7 +171,7 @@ static BOOL sub_0206C8F8 (TaskManager * taskMan)
 
 static BOOL sub_0206C964 (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206CAD0 * v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_00) {
@@ -191,12 +191,12 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
 
         if (!v1->unk_02) {
             if (sub_0206CB8C(&v1->unk_10, &v1->unk_14, &v1->unk_02)) {
-                ov5_021D4250(v0->unk_54, 1, 0);
-                ov5_021D4250(v0->unk_54, 2, 0);
+                ov5_021D4250(fieldSystem->unk_54, 1, 0);
+                ov5_021D4250(fieldSystem->unk_54, 2, 0);
                 Sound_PlayEffect(1758);
             }
         } else {
-            if ((ov5_021D42F0(v0->unk_54, 1)) && (ov5_021D42F0(v0->unk_54, 2)) && v2) {
+            if ((ov5_021D42F0(fieldSystem->unk_54, 1)) && (ov5_021D42F0(fieldSystem->unk_54, 2)) && v2) {
                 v1->unk_00 = 2;
             }
         }
@@ -213,15 +213,15 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         }
 
         if (v1->unk_10 != 0xffffffff) {
-            ov5_021D42B0(v0->unk_50, v0->unk_54, 1);
-            ov5_021D42B0(v0->unk_50, v0->unk_54, 2);
+            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 1);
+            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
         }
 
         sub_02055820(taskMan);
         v1->unk_00 = 4;
         break;
     case 4:
-        sub_0206C8D4(v0, v1->unk_01, &v1->unk_34);
+        sub_0206C8D4(fieldSystem, v1->unk_01, &v1->unk_34);
         v1->unk_00 = 5;
         break;
     case 5:
@@ -229,7 +229,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         v1->unk_00 = 6;
         break;
     case 6:
-        sub_02055670(v0, v1->unk_18);
+        sub_02055670(fieldSystem, v1->unk_18);
         sub_020559CC(taskMan);
         v1->unk_00 = 7;
         break;

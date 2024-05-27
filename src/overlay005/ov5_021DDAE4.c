@@ -25,7 +25,7 @@ typedef struct {
 
 static BOOL ov5_021DDAE4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021DDBC8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
@@ -35,18 +35,18 @@ static BOOL ov5_021DDAE4 (TaskManager * param0)
         break;
     case 1:
         if (sub_0200AC1C(2)) {
-            ov24_02253DA4(v0->unk_08);
+            ov24_02253DA4(fieldSystem->unk_08);
             v1->unk_00++;
         }
         break;
     case 2:
-        if (ov24_02253DB4(v0->unk_08)) {
-            PoketchData * v2 = SaveData_PoketchData(v0->saveData);
+        if (ov24_02253DB4(fieldSystem->unk_08)) {
+            PoketchData * v2 = SaveData_PoketchData(fieldSystem->saveData);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
             PoketchData_Enable(v2);
-            PoketchSystem_Create(v0, &v0->unk_04->unk_14, v0->saveData, v0->unk_08, sub_0200A914(1));
+            PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->unk_14, fieldSystem->saveData, fieldSystem->unk_08, sub_0200A914(1));
             v1->unk_00++;
         }
         break;

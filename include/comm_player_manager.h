@@ -20,7 +20,7 @@ typedef struct CommPlayerManager {
     UnkStruct_ov101_021D5D90 * unk_28[MAX_CONNECTED_PLAYERS];
     u8 isActive[MAX_CONNECTED_PLAYERS];
     SysTask * task;
-    FieldSystem * fieldSys;
+    FieldSystem * fieldSystem;
     UnkStruct_ov23_0224A294_sub1 unk_58;
     u8 unk_5A[MAX_CONNECTED_PLAYERS];
     CommPlayerLocation playerLocationServer[MAX_CONNECTED_PLAYERS];
@@ -59,7 +59,7 @@ typedef struct CommPlayerManager {
 } CommPlayerManager;
 
 CommPlayerManager * CommPlayerMan_Get(void);
-BOOL CommPlayerMan_Init(void * param0, FieldSystem * param1, BOOL param2);
+BOOL CommPlayerMan_Init(void * param0, FieldSystem * fieldSystem, BOOL param2);
 void CommPlayerMan_Reset(void);
 void CommPlayerMan_Restart(void);
 void CommPlayerMan_Delete(BOOL param0);
@@ -75,7 +75,7 @@ void CommPlayer_Destroy(u8 param0, BOOL param1, BOOL param2);
 BOOL sub_02057FAC(void);
 void sub_02057FC4(BOOL param0);
 void sub_02058018(int param0, int param1, void * param2, void * param3);
-void sub_0205805C(FieldSystem * param0, BOOL param1);
+void sub_0205805C(FieldSystem * fieldSystem, BOOL param1);
 BOOL CommPlayer_CheckNPCCollision(int param0, int param1);
 void CommPlayer_RecvLocation(int param0, int param1, void * param2, void * param3);
 void CommPlayer_RecvDelete(int param0, int param1, void * param2, void * param3);

@@ -111,7 +111,7 @@ typedef struct {
 } UnkStruct_020620C4;
 
 static MapObjectManager * MapObjectMan_Alloc(int param0);
-static void MapObject_Save(FieldSystem * param0, MapObject * param1, MapObjectSave * param2);
+static void MapObject_Save(FieldSystem * fieldSystem, MapObject * param1, MapObjectSave * param2);
 static void MapObject_LoadSave(MapObject * mapObj, MapObjectSave * param1);
 static void sub_02061FA8(const MapObjectManager * param0, MapObject * param1);
 static void sub_02061FF0(MapObject * mapObj);
@@ -120,7 +120,7 @@ static void sub_020620C4(UnkStruct_020620C4 * param0);
 static MapObject * sub_02062120(const MapObjectManager * param0);
 static MapObject * sub_02062154(const MapObjectManager * param0, int param1, int param2);
 static void MapObjectMan_AddMoveTask(const MapObjectManager * param0, MapObject * param1);
-static void sub_020621E8(MapObject * param0, const MapObjectHeader * param1, FieldSystem * param2);
+static void sub_020621E8(MapObject * param0, const MapObjectHeader * param1, FieldSystem * fieldSystem);
 static void sub_020622B8(MapObject * param0, const MapObjectHeader * param1);
 static void sub_0206234C(MapObject * param0, const MapObjectManager * param1);
 static void sub_0206239C(MapObject * param0);
@@ -131,7 +131,7 @@ static MapObject * sub_020624CC(const MapObjectManager * param0, int param1, int
 static void sub_02062604(MapObject * param0);
 static void sub_02062618(MapObject * param0);
 static void sub_02062628(MapObject * param0);
-static int sub_0206262C(FieldSystem * param0, int param1);
+static int sub_0206262C(FieldSystem * fieldSystem, int param1);
 static void sub_02062648(MapObject * param0);
 static void sub_02062660(MapObject * param0);
 static void sub_02062670(MapObject * param0);
@@ -305,9 +305,9 @@ MapObject * sub_02061A74 (const MapObjectManager * mapObjMan, int param1, int pa
 
     if (v1 != NULL) {
         int v2 = sub_02063114(v1);
-        FieldSystem * v3 = MapObjectMan_FieldSystem(mapObjMan);
+        FieldSystem * fieldSystem = MapObjectMan_FieldSystem(mapObjMan);
 
-        if (sub_0203F188(v3, v2) == 0) {
+        if (sub_0203F188(fieldSystem, v2) == 0) {
             mapObj = MapObjectMan_AddMapObjectFromHeader(mapObjMan, v1, param3);
         }
     }
@@ -632,14 +632,14 @@ void sub_02062068 (const MapObjectManager * mapObjMan, int param1, int param2, c
 static void sub_020620C4 (UnkStruct_020620C4 * param0)
 {
     MapObject * mapObj;
-    FieldSystem * v1;
+    FieldSystem * fieldSystem;
     const MapObjectHeader * v2;
 
-    v1 = MapObjectMan_FieldSystem(param0->unk_0C);
+    fieldSystem = MapObjectMan_FieldSystem(param0->unk_0C);
     v2 = param0->unk_10;
 
     do {
-        if ((sub_020631D8(v2) == 1) || (sub_0203F188(v1, v2->unk_08) == 0)) {
+        if ((sub_020631D8(v2) == 1) || (sub_0203F188(fieldSystem, v2->unk_08) == 0)) {
             mapObj = MapObjectMan_AddMapObjectFromHeader(param0->unk_0C, v2, param0->unk_00);
             GF_ASSERT(mapObj != NULL);
         }
@@ -709,10 +709,10 @@ static void MapObjectMan_AddMoveTask (const MapObjectManager * mapObjMan, MapObj
     sub_02062A1C(mapObj, task);
 }
 
-static void sub_020621E8 (MapObject * mapObj, const MapObjectHeader * mapObjHeader, FieldSystem * param2)
+static void sub_020621E8 (MapObject * mapObj, const MapObjectHeader * mapObjHeader, FieldSystem * fieldSystem)
 {
     MapObject_SetId(mapObj, sub_020630F4(mapObjHeader));
-    sub_0206291C(mapObj, sub_0206262C(param2, sub_020630FC(mapObjHeader)));
+    sub_0206291C(mapObj, sub_0206262C(fieldSystem, sub_020630FC(mapObjHeader)));
     sub_02062944(mapObj, sub_02063104(mapObjHeader));
     sub_0206294C(mapObj, sub_0206310C(mapObjHeader));
     sub_02062954(mapObj, sub_02063114(mapObjHeader));

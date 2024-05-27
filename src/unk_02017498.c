@@ -98,7 +98,7 @@ int sub_02017524 (OverlayManager * param0, int * param1)
         const OverlayManagerTemplate * v1;
 
         v1 = sub_0208BE5C(v0->unk_00->unk_0C);
-        v0->unk_14 = OverlayManager_New(v1, v0->unk_00->unk_00, 116);
+        v0->unk_14 = OverlayManager_New(v1, v0->unk_00->fieldSystem, 116);
         (*param1)++;
     }
     break;

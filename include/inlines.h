@@ -129,23 +129,23 @@ static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
     }
 }
 
-static inline void inline_ov47_0225621C_sub (FieldSystem * param0, int * param1, int * param2)
+static inline void inline_ov47_0225621C_sub (FieldSystem * fieldSystem, int * param1, int * param2)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(param0->saveData);
+    UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
     Location * v1 = sub_0203A72C(v0);
 
-    if (MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00)) {
-        *param1 = param0->unk_1C->unk_08;
-        *param2 = param0->unk_1C->unk_0C;
+    if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00)) {
+        *param1 = fieldSystem->unk_1C->unk_08;
+        *param2 = fieldSystem->unk_1C->unk_0C;
     } else {
         *param1 = v1->unk_08;
         *param2 = v1->unk_0C;
     }
 }
 
-static inline void inline_ov47_0225621C (FieldSystem * param0, int * param1, int * param2)
+static inline void inline_ov47_0225621C (FieldSystem * fieldSystem, int * param1, int * param2)
 {
-    inline_ov47_0225621C_sub(param0, param1, param2);
+    inline_ov47_0225621C_sub(fieldSystem, param1, param2);
     *param1 /= 32;
     *param2 /= 32;
 }
@@ -161,12 +161,12 @@ static inline void inline_02049FA8 (Location * param0, int param1, int param2, i
 
 static inline u16 * ScriptContext_GetVarPointer (ScriptContext * ctx)
 {
-    return sub_0203F118(ctx->fieldSys, ScriptContext_ReadHalfWord(ctx));
+    return sub_0203F118(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
 static inline u16 ScriptContext_GetVar (ScriptContext * ctx)
 {
-    return sub_0203F150(ctx->fieldSys, ScriptContext_ReadHalfWord(ctx));
+    return sub_0203F150(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
 static inline void inline_0204E650 (UnkStruct_020507E4 * param0)

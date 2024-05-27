@@ -1967,7 +1967,7 @@ u16 ov5_021E73A0(Party * param0, int param1, StringTemplate * param2);
 u8 ov5_021E73C8(UnkStruct_02026310 * param0);
 void ov5_021E72BC(UnkStruct_02026310 * param0, StringTemplate * param1);
 static void ov5_021E62C4(Party * param0, int param1, UnkStruct_02026218 * param2, SaveData * param3);
-static int ov5_021E7110(FieldSystem * param0);
+static int ov5_021E7110(FieldSystem * fieldSystem);
 
 static BoxPokemon * ov5_021E622C (UnkStruct_02026310 * param0, int param1)
 {
@@ -2832,12 +2832,12 @@ static const u16 Unk_ov5_021F9F54[] = {
     0x4BE
 };
 
-static int ov5_021E7110 (FieldSystem * param0)
+static int ov5_021E7110 (FieldSystem * fieldSystem)
 {
-    int v0 = sub_02055BB8(param0) * 100 + sub_02055BC4(param0);
+    int v0 = sub_02055BB8(fieldSystem) * 100 + sub_02055BC4(fieldSystem);
     int v1;
 
-    if (sub_02055C40(param0)) {
+    if (sub_02055C40(fieldSystem)) {
         return 255;
     }
 
@@ -2850,7 +2850,7 @@ static int ov5_021E7110 (FieldSystem * param0)
     return 255;
 }
 
-BOOL ov5_021E7154 (UnkStruct_02026310 * param0, Party * param1, FieldSystem * param2)
+BOOL ov5_021E7154 (UnkStruct_02026310 * param0, Party * param1, FieldSystem * fieldSystem)
 {
     u32 v0, v1, v2, v3, v4;
     u32 v5 = 0, v6;
@@ -2883,7 +2883,7 @@ BOOL ov5_021E7154 (UnkStruct_02026310 * param0, Party * param1, FieldSystem * pa
     v6 = sub_02026250(param0);
     sub_02026278(param0, ++v6);
 
-    if (v6 == ov5_021E7110(param2)) {
+    if (v6 == ov5_021E7110(fieldSystem)) {
         sub_02026278(param0, 0);
         v7 = ov5_021E6F6C(param1);
 

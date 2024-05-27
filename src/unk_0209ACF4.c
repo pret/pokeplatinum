@@ -34,7 +34,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 typedef struct {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     Strbuf* unk_04;
     Strbuf* unk_08;
     StringTemplate * unk_0C;
@@ -67,16 +67,16 @@ static int sub_0209B288(UnkStruct_0209AD84 * param0);
 
 void sub_0209ACF4 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0209AD84 * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
 
-    v1->unk_00 = v0;
+    v1->fieldSystem = fieldSystem;
     v1->unk_04 = Strbuf_Init(400, 32);
     v1->unk_08 = Strbuf_Init(400, 32);
     v1->unk_0C = StringTemplate_Default(32);
     v1->unk_10 = MessageLoader_Init(1, 26, 420, 32);
     v1->unk_14 = sub_020149F0(32);
-    v1->unk_50 = sub_0209747C(2, 0, v1->unk_00->saveData, 32);
+    v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, 32);
 
     sub_02097520(v1->unk_50);
     Window_Init(&(v1->unk_18));
@@ -141,19 +141,19 @@ static BOOL sub_0209AE14 (TaskManager * param0)
 
             switch (v0->unk_64) {
             case 0:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->unk_00->saveData, 0));
+                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 0));
                 v0->unk_54 = 3;
                 break;
             case 1:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->unk_00->saveData, 1));
+                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 1));
                 v0->unk_54 = 3;
                 break;
             case 2:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->unk_00->saveData, 2));
+                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 2));
                 v0->unk_54 = 3;
                 break;
             case 3:
-                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->unk_00->saveData, 3));
+                sub_02014CC0(&(v0->unk_48), sub_0202D498(v0->fieldSystem->saveData, 3));
                 v0->unk_54 = 3;
                 break;
             case 4:
@@ -177,18 +177,18 @@ static BOOL sub_0209AE14 (TaskManager * param0)
             sub_02097500(v0->unk_50, &(v0->unk_48));
             sub_02097514(v0->unk_50);
             sub_0209ADBC(v0);
-            sub_0203D874(v0->unk_00, v0->unk_50);
+            sub_0203D874(v0->fieldSystem, v0->unk_50);
             v0->unk_54 = 6;
         }
         break;
     case 6:
-        if (sub_020509B4(v0->unk_00) == 0) {
-            sub_020509D4(v0->unk_00);
+        if (sub_020509B4(v0->fieldSystem) == 0) {
+            sub_020509D4(v0->fieldSystem);
             v0->unk_54 = 7;
         }
         break;
     case 7:
-        if (sub_020509DC(v0->unk_00)) {
+        if (sub_020509DC(v0->fieldSystem)) {
             ov5_021D1744(1);
             v0->unk_54 = 8;
         }
@@ -199,7 +199,7 @@ static BOOL sub_0209AE14 (TaskManager * param0)
                 v0->unk_54 = 11;
             } else {
                 sub_02097540(v0->unk_50, &(v0->unk_48));
-                sub_0202D478(v0->unk_00->saveData, v0->unk_64, &(v0->unk_48));
+                sub_0202D478(v0->fieldSystem->saveData, v0->unk_64, &(v0->unk_48));
                 sub_0209B084(v0, 6, 0);
                 v0->unk_54 = 9;
             }
@@ -271,14 +271,14 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
     }
 
     if (BGL_WindowAdded(v0) == 0) {
-        FieldMessage_AddWindow(param0->unk_00->unk_08, v0, 3);
-        FieldMessage_DrawWindow(v0, SaveData_Options(param0->unk_00->saveData));
+        FieldMessage_AddWindow(param0->fieldSystem->unk_08, v0, 3);
+        FieldMessage_DrawWindow(v0, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(v0);
         sub_0200E060(v0, 0, 1024 - (18 + 12), 10);
     }
 
-    param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_Options(param0->unk_00->saveData), 1);
+    param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_Options(param0->fieldSystem->saveData), 1);
 }
 
 static BOOL sub_0209B100 (UnkStruct_0209AD84 * param0)
@@ -302,8 +302,8 @@ static void sub_0209B12C (UnkStruct_0209AD84 * param0)
     if (BGL_WindowAdded(v0) == 0) {
         int v1;
 
-        sub_0200DAA4(param0->unk_00->unk_08, 3, 155, 11, 0, 32);
-        BGL_AddWindow(param0->unk_00->unk_08, v0, 3, 1, 1, 13, 10, 13, 1);
+        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
+        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 1, 1, 13, 10, 13, 1);
         BGL_FillWindow(v0, 15);
 
         for (v1 = 0; v1 < 5; v1++) {
@@ -334,8 +334,8 @@ static void sub_0209B1D8 (UnkStruct_0209AD84 * param0)
     if (BGL_WindowAdded(v0) == 0) {
         int v1;
 
-        sub_0200DAA4(param0->unk_00->unk_08, 3, 155, 11, 0, 32);
-        BGL_AddWindow(param0->unk_00->unk_08, v0, 3, 25, 13, 6, 4, 13, 131);
+        sub_0200DAA4(param0->fieldSystem->unk_08, 3, 155, 11, 0, 32);
+        BGL_AddWindow(param0->fieldSystem->unk_08, v0, 3, 25, 13, 6, 4, 13, 131);
         BGL_FillWindow(v0, 15);
 
         for (v1 = 0; v1 < 2; v1++) {

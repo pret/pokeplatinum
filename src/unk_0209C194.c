@@ -28,7 +28,7 @@ typedef struct {
     int unk_04;
     UnkStruct_0209C194_1 unk_08;
     UnkStruct_0209C194 * unk_28;
-    FieldSystem * unk_2C;
+    FieldSystem * fieldSystem;
     PartyManagementData * unk_30;
     PokemonSummary * unk_34;
 } UnkStruct_0209C1EC;
@@ -61,21 +61,21 @@ BOOL sub_0209C1E8 (UnkStruct_0209C194 * param0)
     return param0->unk_10;
 }
 
-void * sub_0209C1EC (FieldSystem * param0)
+void * sub_0209C1EC (FieldSystem * fieldSystem)
 {
     UnkStruct_0209C1EC * v0;
 
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209C1EC));
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
-    v0->unk_2C = param0;
-    v0->unk_08.unk_08 = param0->saveData;
-    v0->unk_08.unk_0C = param0->unk_80;
-    v0->unk_08.unk_10 = SaveData_Options(param0->saveData);
-    v0->unk_08.unk_14 = sub_0202CD88(param0->saveData);
-    v0->unk_08.unk_18 = sub_0202B628(param0->saveData);
+    v0->fieldSystem = fieldSystem;
+    v0->unk_08.unk_08 = fieldSystem->saveData;
+    v0->unk_08.unk_0C = fieldSystem->unk_80;
+    v0->unk_08.unk_10 = SaveData_Options(fieldSystem->saveData);
+    v0->unk_08.unk_14 = sub_0202CD88(fieldSystem->saveData);
+    v0->unk_08.unk_18 = sub_0202B628(fieldSystem->saveData);
     v0->unk_08.unk_04 = Options_Frame(v0->unk_08.unk_10);
-    v0->unk_08.unk_1C = param0;
+    v0->unk_08.fieldSystem = fieldSystem;
 
     return v0;
 }
@@ -96,19 +96,19 @@ static BOOL sub_0209C25C (UnkStruct_0209C1EC * param0)
 {
     param0->unk_28 = sub_0209C194(&param0->unk_08, 11);
     param0->unk_00 = 1;
-    sub_0203CD84(param0->unk_2C, &Unk_020F94FC, param0->unk_28);
+    sub_0203CD84(param0->fieldSystem, &Unk_020F94FC, param0->unk_28);
     return 0;
 }
 
 static BOOL sub_0209C280 (UnkStruct_0209C1EC * param0)
 {
-    if (sub_020509B4(param0->unk_2C) == 0) {
+    if (sub_020509B4(param0->fieldSystem) == 0) {
         if (sub_0209C1E8(param0->unk_28) == 0) {
             param0->unk_00 = 5;
         } else {
             CommMan_SetErrorHandling(1, 1);
 
-            param0->unk_30 = sub_0203D644(param0->unk_2C, param0->unk_04);
+            param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
             param0->unk_28->unk_00 = 1;
             param0->unk_00 = 2;
         }
@@ -119,20 +119,20 @@ static BOOL sub_0209C280 (UnkStruct_0209C1EC * param0)
 
 static BOOL sub_0209C2C0 (UnkStruct_0209C1EC * param0)
 {
-    if (sub_020509B4(param0->unk_2C) == 0) {
+    if (sub_020509B4(param0->fieldSystem) == 0) {
         int v0 = param0->unk_30->unk_22;
 
         Heap_FreeToHeap(param0->unk_30);
 
         if (param0->unk_30->unk_23 == 1) {
-            param0->unk_34 = sub_0203D670(param0->unk_2C, 3, 0);
+            param0->unk_34 = sub_0203D670(param0->fieldSystem, 3, 0);
             param0->unk_04 = v0;
             param0->unk_34->pos = v0;
-            sub_0203D334(param0->unk_2C, param0->unk_34);
+            sub_0203D334(param0->fieldSystem, param0->unk_34);
             param0->unk_00 = 3;
         } else {
             param0->unk_28->unk_04 = v0;
-            sub_0203CD84(param0->unk_2C, &Unk_020F950C, param0->unk_28);
+            sub_0203CD84(param0->fieldSystem, &Unk_020F950C, param0->unk_28);
             param0->unk_28->unk_00 = 3;
             param0->unk_00 = 4;
         }
@@ -143,9 +143,9 @@ static BOOL sub_0209C2C0 (UnkStruct_0209C1EC * param0)
 
 static BOOL sub_0209C324 (UnkStruct_0209C1EC * param0)
 {
-    if (sub_020509B4(param0->unk_2C) == 0) {
+    if (sub_020509B4(param0->fieldSystem) == 0) {
         Heap_FreeToHeap(param0->unk_34);
-        param0->unk_30 = sub_0203D644(param0->unk_2C, param0->unk_04);
+        param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
         param0->unk_00 = 2;
     }
 
@@ -154,7 +154,7 @@ static BOOL sub_0209C324 (UnkStruct_0209C1EC * param0)
 
 static BOOL sub_0209C34C (UnkStruct_0209C1EC * param0)
 {
-    if (sub_020509B4(param0->unk_2C) == 0) {
+    if (sub_020509B4(param0->fieldSystem) == 0) {
         param0->unk_00 = 5;
     }
 

@@ -100,12 +100,12 @@ UnkStruct_ov101_021D5D90 * ov5_021F3D90 (MapObject * param0, int param1)
     v3 = ov5_021DF578(param0);
 
     {
-        FieldSystem * v4 = ov5_021DF574(v3);
+        FieldSystem * fieldSystem = ov5_021DF574(v3);
         int v5 = MapObject_GetXPos(param0);
         int v6 = MapObject_GetZPos(param0);
 
         sub_02064450(v5, v6, &v0);
-        sub_020644A4(v4, &v0);
+        sub_020644A4(fieldSystem, &v0);
     }
 
     {

@@ -48,24 +48,24 @@ static const u8 Unk_020F04CC[24] = {
     0x1
 };
 
-void sub_02071B10 (FieldSystem * param0)
+void sub_02071B10 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071B10 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 1);
 
     v1 = (UnkStruct_02071B10 *)sub_02027F6C(v0, 1);
     v1->unk_00 = 1;
 }
 
-void sub_02071B30 (FieldSystem * param0)
+void sub_02071B30 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071B30 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 3);
 
     v1 = (UnkStruct_02071B30 *)sub_02027F6C(v0, 3);
@@ -79,7 +79,7 @@ void sub_02071B30 (FieldSystem * param0)
     }
 }
 
-void sub_02071B6C (FieldSystem * param0, const u8 param1)
+void sub_02071B6C (FieldSystem * fieldSystem, const u8 param1)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071B6C * v1;
@@ -87,7 +87,7 @@ void sub_02071B6C (FieldSystem * param0, const u8 param1)
 
     GF_ASSERT(param1 < 3);
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 5);
 
     v1 = (UnkStruct_02071B6C *)sub_02027F6C(v0, 5);
@@ -110,63 +110,63 @@ void sub_02071B6C (FieldSystem * param0, const u8 param1)
         GF_ASSERT(0);
     }
 
-    if (param0->unk_1C->unk_0C == v2) {
+    if (fieldSystem->unk_1C->unk_0C == v2) {
         v1->unk_00 = 0;
     }
 }
 
-void sub_02071BD0 (FieldSystem * param0)
+void sub_02071BD0 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071BD0 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 8);
 
     v1 = sub_02027F6C(v0, 8);
     memset(v1, 0, sizeof(8));
 }
 
-void sub_02071BF8 (FieldSystem * param0)
+void sub_02071BF8 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071BF8 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 4);
     v1 = (UnkStruct_02071BF8 *)sub_02027F6C(v0, 4);
 
     v1->unk_00 = 0;
 }
 
-void sub_02071C18 (FieldSystem * param0)
+void sub_02071C18 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071C18 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 2);
     v1 = (UnkStruct_02071C18 *)sub_02027F6C(v0, 2);
 }
 
-void sub_02071C34 (FieldSystem * param0)
+void sub_02071C34 (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071C34 * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 10);
     v1 = sub_02027F6C(v0, 10);
 
     memset(v1, 0, sizeof(UnkStruct_02071C34));
 }
 
-void sub_02071C5C (FieldSystem * param0)
+void sub_02071C5C (FieldSystem * fieldSystem)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071C5C * v1;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     sub_02027F5C(v0, 9);
 
     v1 = sub_02027F6C(v0, 9);
@@ -186,11 +186,11 @@ static void sub_02071C80 (const u8 param0, const u8 param1, int * param2)
     (*param2) = (v0 | v1 | v2);
 }
 
-BOOL sub_02071CB4 (FieldSystem * param0, int param1)
+BOOL sub_02071CB4 (FieldSystem * fieldSystem, int param1)
 {
     UnkStruct_02027860 * v0;
 
-    v0 = sub_02027860(FieldSystem_SaveData(param0));
+    v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
 
     if (param1 == sub_02027F80(v0)) {
         return 1;

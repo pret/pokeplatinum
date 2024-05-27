@@ -20,15 +20,15 @@ void sub_020557DC(TaskManager * param0, int param1, int param2);
 
 static BOOL sub_0205578C (TaskManager * param0)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
     UnkStruct_0205578C * v1;
 
-    v0 = TaskManager_FieldSystem(param0);
+    fieldSystem = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
-        ov5_021DDBE8(v1->unk_08, v0, &v1->unk_04);
+        ov5_021DDBE8(v1->unk_08, fieldSystem, &v1->unk_04);
         sub_02004550(5, v1->unk_0C, 1);
         v1->unk_00++;
         break;

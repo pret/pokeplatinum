@@ -19,23 +19,23 @@ typedef struct UnkStruct_02054C18_t {
 static void sub_02054C18(UnkStruct_02039E30 * param0, UnkStruct_02054C18 * param1, const u8 param2);
 static const u8 sub_02054CC4(const u16 param0, u16 * param1, u8 * param2);
 
-void sub_02054BD0 (FieldSystem * param0, const u8 param1)
+void sub_02054BD0 (FieldSystem * fieldSystem, const u8 param1)
 {
     int v0;
     void * v1;
 
-    if (param0->unk_58 == NULL) {
-        param0->unk_58 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02054C18));
+    if (fieldSystem->unk_58 == NULL) {
+        fieldSystem->unk_58 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02054C18));
 
-        sub_02054C18(param0->unk_2C, param0->unk_58, param1);
+        sub_02054C18(fieldSystem->unk_2C, fieldSystem->unk_58, param1);
     }
 }
 
-void sub_02054BF8 (FieldSystem * param0)
+void sub_02054BF8 (FieldSystem * fieldSystem)
 {
-    if (param0->unk_58 != NULL) {
-        Heap_FreeToHeap(param0->unk_58);
-        param0->unk_58 = NULL;
+    if (fieldSystem->unk_58 != NULL) {
+        Heap_FreeToHeap(fieldSystem->unk_58);
+        fieldSystem->unk_58 = NULL;
     }
 }
 

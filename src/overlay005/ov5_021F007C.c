@@ -58,7 +58,7 @@ static void ov5_021F0260(BGL * param0);
 static void ov5_021F02B8(UnkStruct_ov5_021F02B8 * param0, int param1, int param2, int param3);
 static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 * param0);
 
-static void ov5_021F007C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F007C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov5_021F007C * v0 = param2;
 
@@ -72,7 +72,7 @@ static void ov5_021F007C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     Sound_PlayEffect(1608);
 }
 
-static void ov5_021F00BC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F00BC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov5_021F007C * v0 = param2;
 
@@ -84,13 +84,13 @@ static void ov5_021F00BC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     v0->unk_3C = 0;
 }
 
-static void ov5_021F00E4 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F00E4 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov5_021F007C * v0 = param2;
     Heap_FreeToHeap(v0->unk_00);
 }
 
-static void ov5_021F00F0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F00F0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     BOOL v0;
     UnkStruct_ov5_021F007C * v1 = param2;
@@ -109,11 +109,11 @@ static void ov5_021F00F0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     sub_0201972C(2, v1->unk_08, 32, 6 * 32);
 }
 
-static void ov5_021F013C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F013C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov5_021F013C * v0 = param2;
 
-    ov5_021F0260(param1->unk_08);
+    ov5_021F0260(fieldSystem->unk_08);
     ov5_021F02B8(&v0->unk_00, 0, 10, 19);
 
     v0->unk_14 = 0;
@@ -125,11 +125,11 @@ static void ov5_021F013C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     Sound_PlayEffect(1608);
 }
 
-static void ov5_021F0188 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F0188 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     UnkStruct_ov5_021F013C * v0 = param2;
 
-    ov5_021F0260(param1->unk_08);
+    ov5_021F0260(fieldSystem->unk_08);
     ov5_021F02B8(&v0->unk_00, 10, 0, 15);
 
     v0->unk_14 = 0;
@@ -137,12 +137,12 @@ static void ov5_021F0188 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     G2_SetBlendAlpha((GX_PLANEMASK_BG2), GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 10, 16 - 10);
 }
 
-static void ov5_021F01BC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F01BC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     return;
 }
 
-static void ov5_021F01C0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F01C0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     BOOL v0;
     UnkStruct_ov5_021F013C * v1 = param2;
@@ -160,12 +160,12 @@ static void ov5_021F01C0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1,
     G2_ChangeBlendAlpha(v1->unk_00.unk_00, 16 - v1->unk_00.unk_00);
 }
 
-static void ov5_021F01EC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * param1, void * param2)
+static void ov5_021F01EC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
 {
     return;
 }
 
-UnkStruct_ov5_021D1BEC * ov5_021F01F0 (FieldSystem * param0)
+UnkStruct_ov5_021D1BEC * ov5_021F01F0 (FieldSystem * fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -177,11 +177,11 @@ UnkStruct_ov5_021D1BEC * ov5_021F01F0 (FieldSystem * param0)
     };
     UnkStruct_ov5_021D1BEC * v1;
 
-    v1 = ov5_021D1B6C(param0->unk_04->unk_04, &v0);
+    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
-UnkStruct_ov5_021D1BEC * ov5_021F0204 (FieldSystem * param0)
+UnkStruct_ov5_021D1BEC * ov5_021F0204 (FieldSystem * fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -193,7 +193,7 @@ UnkStruct_ov5_021D1BEC * ov5_021F0204 (FieldSystem * param0)
     };
     UnkStruct_ov5_021D1BEC * v1;
 
-    v1 = ov5_021D1B6C(param0->unk_04->unk_04, &v0);
+    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -208,7 +208,7 @@ BOOL ov5_021F0220 (UnkStruct_ov5_021D1BEC * param0)
     return v0->unk_14;
 }
 
-UnkStruct_ov5_021D1BEC * ov5_021F022C (FieldSystem * param0)
+UnkStruct_ov5_021D1BEC * ov5_021F022C (FieldSystem * fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -220,11 +220,11 @@ UnkStruct_ov5_021D1BEC * ov5_021F022C (FieldSystem * param0)
     };
     UnkStruct_ov5_021D1BEC * v1;
 
-    v1 = ov5_021D1B6C(param0->unk_04->unk_04, &v0);
+    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
-UnkStruct_ov5_021D1BEC * ov5_021F0240 (FieldSystem * param0)
+UnkStruct_ov5_021D1BEC * ov5_021F0240 (FieldSystem * fieldSystem)
 {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
@@ -236,7 +236,7 @@ UnkStruct_ov5_021D1BEC * ov5_021F0240 (FieldSystem * param0)
     };
     UnkStruct_ov5_021D1BEC * v1;
 
-    v1 = ov5_021D1B6C(param0->unk_04->unk_04, &v0);
+    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -288,17 +288,17 @@ static BOOL ov5_021F02C8 (UnkStruct_ov5_021F02B8 * param0)
     return 1;
 }
 
-static void ov5_021F02F4 (FieldSystem * param0)
+static void ov5_021F02F4 (FieldSystem * fieldSystem)
 {
     sub_0201975C(2, 0);
 }
 
-static void ov5_021F0300 (FieldSystem * param0)
+static void ov5_021F0300 (FieldSystem * fieldSystem)
 {
     sub_0201975C(2, 0x7fff);
 }
 
-static void ov5_021F0310 (FieldSystem * param0)
+static void ov5_021F0310 (FieldSystem * fieldSystem)
 {
     u16 v0 = 0x7fff;
 
@@ -307,14 +307,14 @@ static void ov5_021F0310 (FieldSystem * param0)
     G2_SetBG2Priority(3);
 
     sub_0201972C(2, &v0, 2, ((6 * 32) + 4));
-    sub_020196C0(param0->unk_08, 2, 2, 1, 2);
-    sub_02019EE0(param0->unk_08, 2, ((6 << 12) | 2));
+    sub_020196C0(fieldSystem->unk_08, 2, 2, 1, 2);
+    sub_02019EE0(fieldSystem->unk_08, 2, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
-    ov5_021F02F4(param0);
+    ov5_021F02F4(fieldSystem);
 }
 
-static void ov5_021F0374 (FieldSystem * param0)
+static void ov5_021F0374 (FieldSystem * fieldSystem)
 {
     u16 v0 = 0x7fff;
 
@@ -323,14 +323,14 @@ static void ov5_021F0374 (FieldSystem * param0)
     G2_SetBG3Priority(3);
 
     sub_0201972C(3, &v0, 2, ((6 * 32) + 4));
-    sub_020196C0(param0->unk_08, 3, 2, 1, 2);
-    sub_02019EE0(param0->unk_08, 3, ((6 << 12) | 2));
+    sub_020196C0(fieldSystem->unk_08, 3, 2, 1, 2);
+    sub_02019EE0(fieldSystem->unk_08, 3, ((6 << 12) | 2));
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
-    ov5_021F02F4(param0);
+    ov5_021F02F4(fieldSystem);
 }
 
-static BOOL ov5_021F03D8 (FieldSystem * param0)
+static BOOL ov5_021F03D8 (FieldSystem * fieldSystem)
 {
     static const u32 v0[] = {
         23,
@@ -338,11 +338,11 @@ static BOOL ov5_021F03D8 (FieldSystem * param0)
     u32 v1;
     int v2;
 
-    if (param0->unk_04->unk_0C == NULL) {
+    if (fieldSystem->unk_04->unk_0C == NULL) {
         return 0;
     }
 
-    v1 = ov5_021D5FE0(param0->unk_04->unk_0C);
+    v1 = ov5_021D5FE0(fieldSystem->unk_04->unk_0C);
 
     for (v2 = 0; v2 < NELEMS(v0); v2++) {
         if (v1 == v0[v2]) {
@@ -353,7 +353,7 @@ static BOOL ov5_021F03D8 (FieldSystem * param0)
     return 0;
 }
 
-static BOOL ov5_021F0408 (FieldSystem * param0)
+static BOOL ov5_021F0408 (FieldSystem * fieldSystem)
 {
     static const u32 v0[1] = {
         8,
@@ -361,11 +361,11 @@ static BOOL ov5_021F0408 (FieldSystem * param0)
     u32 v1;
     int v2;
 
-    if (param0->unk_04->unk_0C == NULL) {
+    if (fieldSystem->unk_04->unk_0C == NULL) {
         return 0;
     }
 
-    v1 = ov5_021D5FE0(param0->unk_04->unk_0C);
+    v1 = ov5_021D5FE0(fieldSystem->unk_04->unk_0C);
 
     for (v2 = 0; v2 < 1; v2++) {
         if (v1 == v0[v2]) {
@@ -376,7 +376,7 @@ static BOOL ov5_021F0408 (FieldSystem * param0)
     return 0;
 }
 
-static BOOL ov5_021F0438 (FieldSystem * param0)
+static BOOL ov5_021F0438 (FieldSystem * fieldSystem)
 {
     static const u32 v0[18] = {
         2,
@@ -401,11 +401,11 @@ static BOOL ov5_021F0438 (FieldSystem * param0)
     u32 v1;
     int v2;
 
-    if (param0->unk_04->unk_0C == NULL) {
+    if (fieldSystem->unk_04->unk_0C == NULL) {
         return 0;
     }
 
-    v1 = ov5_021D5FE0(param0->unk_04->unk_0C);
+    v1 = ov5_021D5FE0(fieldSystem->unk_04->unk_0C);
 
     for (v2 = 0; v2 < 18; v2++) {
         if (v1 == v0[v2]) {
@@ -433,19 +433,19 @@ u32 ov5_021F0484 (void)
 
 BOOL ov5_021F0488 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov5_021F0468 * v1 = TaskManager_Environment(param0);
     BOOL v2;
 
     switch (v1->unk_0C) {
     case 0:
-        if (ov5_021F0438(v0) == 1) {
+        if (ov5_021F0438(fieldSystem) == 1) {
             v1->unk_0C = 1;
-            v1->unk_08 = ov5_021F03D8(v0);
-            v1->unk_04 = ov5_021F0408(v0);
+            v1->unk_08 = ov5_021F03D8(fieldSystem);
+            v1->unk_04 = ov5_021F0408(fieldSystem);
 
             if (v1->unk_04) {
-                ov5_021F0300(v0);
+                ov5_021F0300(fieldSystem);
             }
         } else {
             v1->unk_0C = 7;
@@ -454,9 +454,9 @@ BOOL ov5_021F0488 (TaskManager * param0)
         break;
     case 1:
         if (v1->unk_08 == 0) {
-            v1->unk_00 = ov5_021F01F0(v0);
+            v1->unk_00 = ov5_021F01F0(fieldSystem);
         } else {
-            v1->unk_00 = ov5_021F022C(v0);
+            v1->unk_00 = ov5_021F022C(fieldSystem);
         }
 
         v1->unk_0C = 2;
@@ -479,17 +479,17 @@ BOOL ov5_021F0488 (TaskManager * param0)
     case 3:
         v1->unk_0E--;
 
-        if (MapHeader_HasWildEncounters(v0->unk_1C->unk_00)) {
+        if (MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00)) {
             if (v1->unk_0E < 0) {
                 {
                     u8 v3;
                     int v4, v5;
 
-                    v4 = Player_GetXPos(v0->playerAvatar);
-                    v5 = Player_GetZPos(v0->playerAvatar);
-                    v3 = (u8)sub_02054F94(v0, v4, v5);
+                    v4 = Player_GetXPos(fieldSystem->playerAvatar);
+                    v5 = Player_GetZPos(fieldSystem->playerAvatar);
+                    v3 = (u8)sub_02054F94(fieldSystem, v4, v5);
 
-                    if (ov6_02242110(v0, v3)) {
+                    if (ov6_02242110(fieldSystem, v3)) {
                         v1->unk_0C = 6;
                     } else {
                         v1->unk_0C = 4;
@@ -504,9 +504,9 @@ BOOL ov5_021F0488 (TaskManager * param0)
         ov5_021F0218(v1->unk_00);
 
         if (v1->unk_08 == 0) {
-            v1->unk_00 = ov5_021F0204(v0);
+            v1->unk_00 = ov5_021F0204(fieldSystem);
         } else {
-            v1->unk_00 = ov5_021F0240(v0);
+            v1->unk_00 = ov5_021F0240(fieldSystem);
         }
 
         v1->unk_0C = 5;
@@ -524,7 +524,7 @@ BOOL ov5_021F0488 (TaskManager * param0)
                 G2_BlendNone();
                 BGL_SetPriority(2, 3);
 
-                sub_02019EBC(v0->unk_08, 2);
+                sub_02019EBC(fieldSystem->unk_08, 2);
             } else {
                 BGL_SetPriority(2, 1);
             }
@@ -539,10 +539,10 @@ BOOL ov5_021F0488 (TaskManager * param0)
         ov5_021F0468(v1);
 
         if (v1->unk_04) {
-            ov5_021F0374(v0);
+            ov5_021F0374(fieldSystem);
         }
 
-        v6 = ov6_022411C8(v0, param0);
+        v6 = ov6_022411C8(fieldSystem, param0);
         GF_ASSERT(v6);
     }
     break;
@@ -562,7 +562,7 @@ BOOL ov5_021F0488 (TaskManager * param0)
         ov5_021F0468(v1);
 
         if (v1->unk_04) {
-            ov5_021F0310(v0);
+            ov5_021F0310(fieldSystem);
         }
 
         return 1;

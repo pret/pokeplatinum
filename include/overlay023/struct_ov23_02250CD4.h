@@ -23,7 +23,7 @@ typedef struct {
     void * unk_00;
     SysTask * unk_04;
     UnkStruct_0206A844 * unk_08;
-    FieldSystem * unk_0C;
+    FieldSystem * fieldSystem;
     Window unk_10;
     Window unk_20;
     Window unk_30;

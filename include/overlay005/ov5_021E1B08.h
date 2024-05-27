@@ -12,7 +12,7 @@ void ov5_021E1B40(UnkStruct_ov5_021E1B20 * param0, u8 param1);
 Window * ov5_021E1B50(UnkStruct_ov5_021E1B20 * param0);
 u8 ov5_021E1B54(UnkStruct_ov5_021E1B20 * param0);
 BOOL ov5_021E1B58(UnkStruct_ov5_021E1B20 * param0);
-void ov5_021E1B68(FieldSystem * param0);
-void ov5_021E1BCC(FieldSystem * param0, u8 param1);
+void ov5_021E1B68(FieldSystem * fieldSystem);
+void ov5_021E1BCC(FieldSystem * fieldSystem, u8 param1);
 
 #endif // POKEPLATINUM_OV5_021E1B08_H

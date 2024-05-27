@@ -45,18 +45,18 @@ typedef struct {
     UnkStruct_ov101_021D5D90 * unk_20;
     MapObject * unk_24;
     PlayerAvatar * playerAvatar;
-    FieldSystem * unk_2C;
+    FieldSystem * fieldSystem;
 } UnkStruct_020EF6D0;
 
-static int sub_02067BA8(FieldSystem * param0, MapObjectManager * param1, PlayerAvatar * playerAvatar, const MapObject * param3, UnkStruct_02067C28 * param4);
+static int sub_02067BA8(FieldSystem * fieldSystem, MapObjectManager * param1, PlayerAvatar * playerAvatar, const MapObject * param3, UnkStruct_02067C28 * param4);
 static void sub_02067C28(UnkStruct_02067C28 * param0, MapObject * param1, int param2, int param3);
 static int sub_02067C54(const MapObject * param0);
 static int sub_02067C80(const MapObject * param0, PlayerAvatar * playerAvatar, int * param2);
 static int sub_02067DA8(const MapObject * param0, int param1, int param2, int param3, int param4, int param5);
 static int sub_02067E74(const MapObject * param0, int param1, int param2);
 static int sub_02067F14(MapObject * param0);
-static MapObject * sub_02067F2C(FieldSystem * param0, MapObjectManager * param1, MapObject * param2, int param3);
-static SysTask * sub_02067FF0(FieldSystem * param0, MapObject * param1, PlayerAvatar * playerAvatar, int param3, int param4, int param5, int param6, int param7);
+static MapObject * sub_02067F2C(FieldSystem * fieldSystem, MapObjectManager * param1, MapObject * param2, int param3);
+static SysTask * sub_02067FF0(FieldSystem * fieldSystem, MapObject * param1, PlayerAvatar * playerAvatar, int param3, int param4, int param5, int param6, int param7);
 static int sub_02068048(SysTask * param0);
 static void sub_02068054(SysTask * param0);
 static void sub_0206806C(SysTask * param0, void * param1);
@@ -425,7 +425,7 @@ static SysTask * sub_02067FF0 (FieldSystem * fieldSystem, MapObject * param1, Pl
     v1->unk_10 = param5;
     v1->unk_14 = param6;
     v1->unk_18 = param7;
-    v1->unk_2C = fieldSystem;
+    v1->fieldSystem = fieldSystem;
     v1->unk_24 = param1;
     v1->playerAvatar = playerAvatar;
 
@@ -682,7 +682,7 @@ static int sub_02068308 (UnkStruct_020EF6D0 * param0)
 {
     sub_020656AC(param0->unk_24);
 
-    if ((sub_02071CB4(param0->unk_2C, 2) == 0) || (ov8_0224C5DC(param0->unk_2C, param0->unk_24) == 0)) {
+    if ((sub_02071CB4(param0->fieldSystem, 2) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->unk_24) == 0)) {
         sub_020633A8(param0->unk_24, 0x0);
     }
 

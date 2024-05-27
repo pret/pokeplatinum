@@ -325,11 +325,11 @@ int ov88_0223B140 (OverlayManager * param0, int * param1)
     ov88_0223CBA0(v0);
     ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->unk_18);
 
-    v0->unk_00 = v0->unk_08->unk_00;
+    v0->fieldSystem = v0->unk_08->fieldSystem;
 
-    sub_02095E60(v0->unk_00, v0);
+    sub_02095E60(v0->fieldSystem, v0);
     ov88_0223ECBC(&v0->unk_49C[23], 20, 1, v0->unk_184, v0->unk_178);
-    sub_02095CD4(v0->unk_00);
+    sub_02095CD4(v0->fieldSystem);
     sub_02019120(0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02038A1C(26, v0->unk_174);

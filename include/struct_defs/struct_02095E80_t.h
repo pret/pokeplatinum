@@ -35,7 +35,7 @@
 #include <nitro/fx/fx.h>
 
 struct UnkStruct_02095E80_t {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     SaveData * unk_04;
     UnkStruct_ov88_0223C370 * unk_08;
     PokemonSummary unk_0C;

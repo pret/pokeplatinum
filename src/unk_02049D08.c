@@ -224,19 +224,19 @@ BOOL sub_02049FA0 (UnkStruct_0202D060 * param0)
     return sub_0202D214(param0);
 }
 
-void sub_02049FA8 (FieldSystem * param0)
+void sub_02049FA8 (FieldSystem * fieldSystem)
 {
-    Location * v0 = sub_0203A730(sub_0203A790(param0->saveData));
+    Location * v0 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
 
-    inline_02049FA8(v0, param0->unk_1C->unk_00, -1, Player_GetXPos(param0->playerAvatar), Player_GetZPos(param0->playerAvatar), 0);
-    sub_0206AD9C(SaveData_Events(param0->saveData));
+    inline_02049FA8(v0, fieldSystem->unk_1C->unk_00, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
+    sub_0206AD9C(SaveData_Events(fieldSystem->saveData));
 
     return;
 }
 
-void sub_02049FE8 (FieldSystem * param0)
+void sub_02049FE8 (FieldSystem * fieldSystem)
 {
-    sub_0206ADAC(SaveData_Events(param0->saveData));
+    sub_0206ADAC(SaveData_Events(fieldSystem->saveData));
 }
 
 u16 sub_02049FF8 (SaveData * param0, u16 param1)

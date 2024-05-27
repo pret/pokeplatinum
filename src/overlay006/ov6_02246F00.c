@@ -24,11 +24,11 @@ typedef struct {
 
 static BOOL ov6_02246F40(TaskManager * param0);
 
-void ov6_02246F00 (FieldSystem * param0, const u8 param1, const u8 param2)
+void ov6_02246F00 (FieldSystem * fieldSystem, const u8 param1, const u8 param2)
 {
     BOOL v0;
 
-    v0 = sub_020552B4(param0, 498, NULL, NULL);
+    v0 = sub_020552B4(fieldSystem, 498, NULL, NULL);
 
     if (v0) {
         UnkStruct_ov6_02246F00 * v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246F00));
@@ -37,7 +37,7 @@ void ov6_02246F00 (FieldSystem * param0, const u8 param1, const u8 param2)
         v1->unk_01 = param1;
         v1->unk_02 = 0;
 
-        sub_02050944(param0->unk_10, ov6_02246F40, v1);
+        sub_02050944(fieldSystem->unk_10, ov6_02246F40, v1);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -45,7 +45,7 @@ void ov6_02246F00 (FieldSystem * param0, const u8 param1, const u8 param2)
 
 static BOOL ov6_02246F40 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02246F00 * v1 = (UnkStruct_ov6_02246F00 *)TaskManager_Environment(param0);
 
     switch (v1->unk_02) {
@@ -57,21 +57,21 @@ static BOOL ov6_02246F40 (TaskManager * param0)
         NNSG3dRenderObj * v5;
         BOOL v6;
 
-        v3 = ov5_021EF9E8(498, v0->unk_30);
+        v3 = ov5_021EF9E8(498, fieldSystem->unk_30);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
-        v6 = sub_020552B4(v0, 498, &v4, NULL);
+        v6 = sub_020552B4(fieldSystem, 498, &v4, NULL);
         GF_ASSERT(v6);
         v5 = ov5_021E18BC(v4);
 
-        ov5_021D41C8(v0->unk_50, v0->unk_54, 0x1, 498, v5, v2, ov5_021EFAA0(v0->unk_30), 2, v1->unk_00, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x1, 498, v5, v2, ov5_021EFAA0(fieldSystem->unk_30), 2, v1->unk_00, 0);
     }
         (v1->unk_02)++;
         break;
     case 1:
         GF_ASSERT(((v1->unk_01 == 0) || (v1->unk_01 == 1)));
 
-        ov5_021D4250(v0->unk_54, 0x1, v1->unk_01);
+        ov5_021D4250(fieldSystem->unk_54, 0x1, v1->unk_01);
 
         if (v1->unk_01 == 0) {
             Sound_PlayEffect(1554);
@@ -82,7 +82,7 @@ static BOOL ov6_02246F40 (TaskManager * param0)
         (v1->unk_02)++;
         break;
     case 2:
-        if ((ov5_021D42F0(v0->unk_54, 0x1))) {
+        if ((ov5_021D42F0(fieldSystem->unk_54, 0x1))) {
             if (v1->unk_01 == 0) {
                 sub_020057A4(1554, 0);
             } else {
@@ -90,7 +90,7 @@ static BOOL ov6_02246F40 (TaskManager * param0)
             }
 
             Sound_PlayEffect(1521);
-            ov5_021D42B0(v0->unk_50, v0->unk_54, 0x1);
+            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 0x1);
             (v1->unk_02)++;
         }
         break;

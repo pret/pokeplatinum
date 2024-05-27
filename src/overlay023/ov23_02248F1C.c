@@ -55,7 +55,7 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_04[8][2];
     int unk_44[8][3];
     int unk_A4[17][4];
-    FieldSystem * unk_1B4;
+    FieldSystem * fieldSystem;
     BGL * unk_1B8;
     GraphicElementManager * unk_1BC;
     UnkStruct_0200C738 unk_1C0;
@@ -162,7 +162,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 5:
-        ov23_02249214(v0->unk_1B4->playerAvatar, v0->unk_04, v0->unk_44);
+        ov23_02249214(v0->fieldSystem->playerAvatar, v0->unk_04, v0->unk_44);
         ov23_022492C8(v0->unk_44, v0->unk_390);
         ov23_02249334(v0->unk_A4);
         ov23_0224937C(v0->unk_A4, v0->unk_3B0);
@@ -193,7 +193,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 8:
-        v0->unk_1B4->unk_6C = NULL;
+        v0->fieldSystem->unk_6C = NULL;
         sub_020067D0(param0);
         break;
     }
@@ -325,7 +325,7 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
     }
 }
 
-UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * param0)
+UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov23_0224942C * v0;
     SysTask * v1;
@@ -333,8 +333,8 @@ UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * param0)
     v1 = sub_0200679C(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
     v0 = sub_0201CED0(v1);
 
-    v0->unk_1B4 = param0;
-    v0->unk_1B8 = param0->unk_08;
+    v0->fieldSystem = fieldSystem;
+    v0->unk_1B8 = fieldSystem->unk_08;
 
     return v0;
 }

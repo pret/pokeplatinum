@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov5_021DF47C_t {
     u32 unk_04;
     u32 unk_08;
     u32 unk_0C;
-    FieldSystem * unk_10;
+    FieldSystem * fieldSystem;
     UnkStruct_ov5_021DF6AC * unk_14;
     NARC * unk_18;
     UnkStruct_020711EC * unk_1C;
@@ -111,7 +111,7 @@ static void ov5_021DFA88(UnkStruct_ov5_021DF47C * param0, u32 param1, UnkStruct_
 static void ov5_021DFAC0(SysTask * param0, void * param1);
 static void ov5_021DFADC(SysTask * param0, void * param1);
 
-UnkStruct_ov5_021DF47C * ov5_021DF440 (FieldSystem * param0, u32 param1, u32 param2)
+UnkStruct_ov5_021DF47C * ov5_021DF440 (FieldSystem * fieldSystem, u32 param1, u32 param2)
 {
     UnkStruct_ov5_021DF47C * v0;
 
@@ -120,7 +120,7 @@ UnkStruct_ov5_021DF47C * ov5_021DF440 (FieldSystem * param0, u32 param1, u32 par
 
     v0->unk_00 = param2;
     v0->unk_04 = param1;
-    v0->unk_10 = param0;
+    v0->fieldSystem = fieldSystem;
     v0->unk_14 = Heap_AllocFromHeap(param2, (sizeof(UnkStruct_ov5_021DF6AC)) * param1);
 
     ov5_021DF5E8(v0);
@@ -222,13 +222,13 @@ void * ov5_021DF55C (UnkStruct_ov5_021DF47C * param0, u32 param1)
 
 FieldSystem * ov5_021DF574 (const UnkStruct_ov5_021DF47C * param0)
 {
-    return param0->unk_10;
+    return param0->fieldSystem;
 }
 
 UnkStruct_ov5_021DF47C * ov5_021DF578 (const MapObject * param0)
 {
-    FieldSystem * v0 = MapObject_FieldSystem(param0);
-    return (UnkStruct_ov5_021DF47C *)v0->unk_40;
+    FieldSystem * fieldSystem = MapObject_FieldSystem(param0);
+    return (UnkStruct_ov5_021DF47C *)fieldSystem->unk_40;
 }
 
 static u32 ov5_021DF584 (const UnkStruct_ov5_021DF47C * param0)

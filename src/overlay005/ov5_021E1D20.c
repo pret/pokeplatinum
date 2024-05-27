@@ -72,9 +72,9 @@ static const int Unk_ov5_021F9CBC[] = {
     0x8
 };
 
-static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * param1)
+static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * fieldSystem)
 {
-    SaveData * v0 = param1->saveData;
+    SaveData * v0 = fieldSystem->saveData;
     Location * v1 = sub_0203A720(sub_0203A790(v0));
     PokedexData * v2 = SaveData_Pokedex(v0);
 

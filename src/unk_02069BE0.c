@@ -155,8 +155,8 @@ static int sub_02069CA8 (MapObject * mapObj, UnkStruct_02069CA8 * param1)
 
 static void sub_02069CD4 (MapObject * mapObj, UnkStruct_02069CA8 * param1)
 {
-    FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-    PlayerAvatar * playerAvatar = sub_0205EF3C(v0);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+    PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
 
     param1->unk_01 = 1;
     param1->unk_02 = Player_GetXPos(playerAvatar);
@@ -166,8 +166,8 @@ static void sub_02069CD4 (MapObject * mapObj, UnkStruct_02069CA8 * param1)
 
 static int sub_02069CFC (MapObject * mapObj, UnkStruct_02069CA8 * param1)
 {
-    FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-    PlayerAvatar * playerAvatar = sub_0205EF3C(v0);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+    PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
 
     if (playerAvatar != NULL) {
         int v2 = Player_GetXPos(playerAvatar);
@@ -183,8 +183,8 @@ static int sub_02069CFC (MapObject * mapObj, UnkStruct_02069CA8 * param1)
 
 static void sub_02069D30 (MapObject * mapObj, UnkStruct_02069CA8 * param1)
 {
-    FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-    PlayerAvatar * playerAvatar = sub_0205EF3C(v0);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+    PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
 
     param1->unk_02 = Player_GetXPos(playerAvatar);
     param1->unk_04 = Player_GetZPos(playerAvatar);
@@ -193,8 +193,8 @@ static void sub_02069D30 (MapObject * mapObj, UnkStruct_02069CA8 * param1)
 static u32 sub_02069D50 (MapObject * mapObj)
 {
     u32 v0;
-    FieldSystem * v1 = MapObject_FieldSystem(mapObj);
-    PlayerAvatar * playerAvatar = sub_0205EF3C(v1);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+    PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
 
     v0 = sub_0205EC14(playerAvatar);
 
@@ -218,8 +218,8 @@ static u32 sub_02069D50 (MapObject * mapObj)
 
 static int sub_02069D8C (MapObject * mapObj)
 {
-    FieldSystem * v0 = MapObject_FieldSystem(mapObj);
-    PlayerAvatar * playerAvatar = sub_0205EF3C(v0);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+    PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
     int v2 = MapObject_GetXPos(mapObj);
     int v3 = MapObject_GetZPos(mapObj);
     int v4 = PlayerAvatar_XPosPrev(playerAvatar);
@@ -627,9 +627,9 @@ static int sub_0206A30C (MapObject * mapObj, UnkStruct_0206A23C * param1)
 static int sub_0206A324 (MapObject * mapObj, UnkStruct_0206A23C * param1)
 {
     if (param1->unk_01 == -1) {
-        FieldSystem * v0 = MapObject_FieldSystem(mapObj);
+        FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
 
-        param1->unk_01 = PlayerAvatar_GetDir(v0->playerAvatar);
+        param1->unk_01 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     }
 
     sub_02062D10(mapObj);
@@ -674,9 +674,9 @@ static void sub_0206A37C (MapObject * mapObj, int param1, int param2, u32 param3
 static int sub_0206A3BC (MapObject * mapObj, UnkStruct_0206A23C * param1)
 {
     int v0;
-    FieldSystem * v1 = MapObject_FieldSystem(mapObj);
-    int v2 = PlayerAvatar_GetDir(v1->playerAvatar);
-    u32 v3 = sub_0205EC1C(v1->playerAvatar);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+    int v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    u32 v3 = sub_0205EC1C(fieldSystem->playerAvatar);
 
     switch (v3) {
     case 0:
@@ -866,20 +866,20 @@ static BOOL sub_0206A54C (FieldSystem * fieldSystem, int param1, int param2, int
 
 static int sub_0206A574 (MapObject * mapObj, int param1, int param2)
 {
-    FieldSystem * v0 = MapObject_FieldSystem(mapObj);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
     int v1 = MapObject_GetXPos(mapObj);
     int v2 = MapObject_GetZPos(mapObj);
-    BOOL v3 = sub_0206A524(v0, v1, v2, param1, param2);
+    BOOL v3 = sub_0206A524(fieldSystem, v1, v2, param1, param2);
 
     return v3;
 }
 
 static int sub_0206A5A4 (MapObject * mapObj, int param1, int param2)
 {
-    FieldSystem * v0 = MapObject_FieldSystem(mapObj);
+    FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
     int v1 = MapObject_GetXPos(mapObj);
     int v2 = MapObject_GetZPos(mapObj);
-    BOOL v3 = sub_0206A54C(v0, v1, v2, param1, param2);
+    BOOL v3 = sub_0206A54C(fieldSystem, v1, v2, param1, param2);
 
     return v3;
 }

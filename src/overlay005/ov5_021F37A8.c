@@ -25,7 +25,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    FieldSystem * unk_0C;
+    FieldSystem * fieldSystem;
     UnkStruct_ov5_021DF47C * unk_10;
     UnkStruct_ov5_021F37D4 * unk_14;
     MapObject * unk_18;
@@ -97,7 +97,7 @@ void ov5_021F3844 (MapObject * param0, int param1)
     v2.unk_04 = MapObject_GetYPos(param0);
     v2.unk_08 = MapObject_GetZPos(param0);
     v2.unk_10 = v3;
-    v2.unk_0C = ov5_021DF574(v3);
+    v2.fieldSystem = ov5_021DF574(v3);
     v2.unk_14 = ov5_021DF55C(v3, 24);
     v2.unk_18 = param0;
 
@@ -126,7 +126,7 @@ static int ov5_021F38AC (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v2.z = (((v3->unk_18.unk_08) << 4) * FX32_ONE);
     v2.y = sub_02063074(v3->unk_18.unk_18);
 
-    v3->unk_14 = sub_020644A4(v3->unk_18.unk_0C, &v2);
+    v3->unk_14 = sub_020644A4(v3->unk_18.fieldSystem, &v2);
 
     v2.x += ((((16 * FX32_ONE) >> 1)));
     v2.z += ((((16 * FX32_ONE) >> 1)) + (FX32_ONE * 6) + (FX32_ONE * 4));
@@ -172,7 +172,7 @@ static void ov5_021F394C (UnkStruct_ov101_021D5D90 * param0, void * param1)
         v4.z = (((v1->unk_18.unk_08) << 4) * FX32_ONE);
         v4.y = v3.y;
 
-        v1->unk_14 = sub_020644A4(v1->unk_18.unk_0C, &v4);
+        v1->unk_14 = sub_020644A4(v1->unk_18.fieldSystem, &v4);
 
         if (v1->unk_14 == 1) {
             v3.y = v4.y;

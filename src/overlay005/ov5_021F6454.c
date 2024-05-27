@@ -65,7 +65,7 @@ typedef struct {
 } UnkStruct_ov5_02200C90;
 
 struct UnkStruct_ov5_021F6704_t {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     SysTask * unk_04;
     Window unk_08;
     Window * unk_18;
@@ -105,8 +105,8 @@ BOOL ScrCmd_30F(ScriptContext * ctx);
 BOOL ScrCmd_2EE(ScriptContext * ctx);
 BOOL ScrCmd_2F1(ScriptContext * ctx);
 static void ov5_021F661C(UnkStruct_ov5_021F6704 * param0, MessageLoader * param1);
-static void ov5_021F6624(FieldSystem * param0, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
-UnkStruct_ov5_021F6704 * ov5_021F6704(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
+static void ov5_021F6624(FieldSystem * fieldSystem, UnkStruct_ov5_021F6704 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9, u16 * param10, u16 * param11);
+UnkStruct_ov5_021F6704 * ov5_021F6704(FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8, u16 * param9, u16 * param10);
 void ov5_021F6760(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F6768(UnkStruct_ov5_021F6704 * param0);
 static void ov5_021F6830(UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 param3);
@@ -137,9 +137,9 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
     int v4, v5;
     MessageLoader * v6;
     MessageLoader * v7;
-    FieldSystem * v8 = ctx->fieldSys;
+    FieldSystem * fieldSystem = ctx->fieldSystem;
     UnkStruct_ov5_021F6704 * v9;
-    StringTemplate ** v10 = sub_0203F098(v8, 15);
+    StringTemplate ** v10 = sub_0203F098(fieldSystem, 15);
     u16 v11 = ScriptContext_GetVar(ctx);
     u16 v12 = ScriptContext_GetVar(ctx);
     u16 v13 = ScriptContext_ReadHalfWord(ctx);
@@ -149,14 +149,14 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
     ctx->data[0] = v13;
 
     v6 = MessageLoader_Init(0, 26, 412, 32);
-    v9 = ov5_021F6704(v8, 20, 1, 0, 1, sub_0203F118(v8, v13), *v10, sub_0203F098(ctx->fieldSys, 1), v6, sub_0203F118(v8, v14), sub_0203F118(v8, v15));
-    v1 = sub_020308A0(v8->saveData, 11, &v0);
+    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, sub_0203F118(fieldSystem, v13), *v10, sub_0203F098(ctx->fieldSystem, 1), v6, sub_0203F118(fieldSystem, v14), sub_0203F118(fieldSystem, v15));
+    v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
 
     if (v0 == 1) {
         v3 = ov5_021F65FC(32, Unk_ov5_0220210C[v12], &v5);
 
         for (v4 = 0; v4 < v5; v4++) {
-            v2 = sub_020308BC(v8->saveData, v1, sub_0205E584(v11), v3[v4]);
+            v2 = sub_020308BC(fieldSystem->saveData, v1, sub_0205E584(v11), v3[v4]);
 
             if (v2 != 0) {
                 ov5_021F6760(v9, v3[v4], 0xff, v3[v4]);
@@ -188,8 +188,8 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
 
 static BOOL ov5_021F65D4 (ScriptContext * ctx)
 {
-    FieldSystem * v0 = ctx->fieldSys;
-    u16 * v1 = sub_0203F118(v0, ctx->data[0]);
+    FieldSystem * fieldSystem = ctx->fieldSystem;
+    u16 * v1 = sub_0203F118(fieldSystem, ctx->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;
@@ -222,7 +222,7 @@ static void ov5_021F6624 (FieldSystem * fieldSystem, UnkStruct_ov5_021F6704 * pa
     param1->unk_1FC = param9;
     param1->unk_207_1 = 0;
     param1->unk_200 = param7;
-    param1->unk_00 = fieldSystem;
+    param1->fieldSystem = fieldSystem;
     param1->unk_210 = param6;
 
     *param1->unk_210 = 0;
@@ -278,12 +278,12 @@ void ov5_021F6760 (UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param2, u32 
 static void ov5_021F6768 (UnkStruct_ov5_021F6704 * param0)
 {
     if (param0->unk_20B > 8) {
-        BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
+        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, 8 * 2, 13, 1);
     } else {
-        BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
+        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
     }
 
-    sub_0200DAA4(param0->unk_00->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
@@ -453,13 +453,13 @@ BOOL ScrCmd_2EE (ScriptContext * param0)
     u8 v0;
     u32 v1[6];
     Pokemon * v2;
-    FieldSystem * v3 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v4 = ScriptContext_GetVar(param0);
     u16 * v5 = ScriptContext_GetVarPointer(param0);
     u16 * v6 = ScriptContext_GetVarPointer(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
 
-    v2 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v3->saveData), v4);
+    v2 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v4);
 
     v1[0] = Pokemon_GetValue(v2, MON_DATA_HP_IV, NULL);
     v1[1] = Pokemon_GetValue(v2, MON_DATA_ATK_IV, NULL);
@@ -502,10 +502,10 @@ BOOL ScrCmd_31D (ScriptContext * param0)
     u32 v7;
     int v8[6];
     int v9 = 0;
-    FieldSystem * v10 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 * v11 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(v10->saveData);
+    v1 = Party_GetFromSavedata(fieldSystem->saveData);
     v2 = Party_GetCurrentCount(v1);
     *v11 = 0;
 
@@ -519,7 +519,7 @@ BOOL ScrCmd_31D (ScriptContext * param0)
     }
 
     if (v9 > 0) {
-        v4 = sub_0207D570(sub_0207D990(v10->saveData), 112, v9, 4);
+        v4 = sub_0207D570(sub_0207D990(fieldSystem->saveData), 112, v9, 4);
 
         if (v4 == 0) {
             *v11 = 0xff;
@@ -568,11 +568,11 @@ BOOL ScrCmd_31E (ScriptContext * param0)
     u32 v4;
     int v5;
     int v6;
-    FieldSystem * v7 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v8 = ScriptContext_GetVar(param0);
     u16 * v9 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(v7->saveData);
+    v1 = Party_GetFromSavedata(fieldSystem->saveData);
     v0 = Party_GetPokemonBySlotIndex(v1, v8);
 
     *v9 = 0;
@@ -584,7 +584,7 @@ BOOL ScrCmd_31E (ScriptContext * param0)
     v5 = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
     if (v5 == 112) {
-        v6 = sub_0207D570(sub_0207D990(v7->saveData), 112, 1, 4);
+        v6 = sub_0207D570(sub_0207D990(fieldSystem->saveData), 112, 1, 4);
 
         if (v6 == 0) {
             *v9 = 0xff;
@@ -619,11 +619,11 @@ BOOL ScrCmd_31E (ScriptContext * param0)
 BOOL ScrCmd_2F1 (ScriptContext * param0)
 {
     Pokemon * v0;
-    FieldSystem * v1 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->saveData), v2);
+    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
     Pokemon_SetValue(v0, 112, &v3);
 
     return 0;
@@ -635,13 +635,13 @@ BOOL ScrCmd_303 (ScriptContext * param0)
     int v3, v4, v5;
     Pokemon * v6;
     Party * v7;
-    FieldSystem * v8 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 * v9 = ScriptContext_GetVarPointer(param0);
     u16 * v10 = ScriptContext_GetVarPointer(param0);
 
     v5 = 0;
     *v10 = 0xff;
-    v7 = Party_GetFromSavedata(v8->saveData);
+    v7 = Party_GetFromSavedata(fieldSystem->saveData);
     v3 = Party_GetCurrentCount(v7);
 
     for (v4 = 0; v4 < v3; v4++) {
@@ -669,17 +669,17 @@ BOOL ScrCmd_304 (ScriptContext * param0)
     u16 v2, v3;
     Pokemon * v4;
     Party * v5;
-    FieldSystem * v6 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v7 = ScriptContext_GetVar(param0);
     u16 v8 = ScriptContext_GetVar(param0);
     u16 v9 = ScriptContext_GetVar(param0);
     u16 v10 = ScriptContext_GetVar(param0);
 
-    v5 = Party_GetFromSavedata(v6->saveData);
+    v5 = Party_GetFromSavedata(fieldSystem->saveData);
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
 
     Pokemon_SetRotomForm(v4, v10, v8);
-    sub_0202736C(SaveData_Pokedex(v6->saveData), v4);
+    sub_0202736C(SaveData_Pokedex(fieldSystem->saveData), v4);
 
     return 0;
 }
@@ -689,11 +689,11 @@ BOOL ScrCmd_2FF (ScriptContext * param0)
     u16 v0;
     int v1, v2;
     Pokemon * v3;
-    FieldSystem * v4 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v5 = ScriptContext_GetVar(param0);
     u16 * v6 = ScriptContext_GetVarPointer(param0);
 
-    v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v4->saveData), v5);
+    v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v5);
     v0 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
@@ -760,10 +760,10 @@ BOOL ScrCmd_300 (ScriptContext * param0)
 {
     MiscSaveBlock * v0;
     Pokemon * v1;
-    FieldSystem * v2 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v2->saveData), 0);
-    v0 = SaveData_MiscSaveBlock(v2->saveData);
+    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), 0);
+    v0 = SaveData_MiscSaveBlock(fieldSystem->saveData);
 
     MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
     return 0;
@@ -774,12 +774,12 @@ BOOL ScrCmd_301 (ScriptContext * param0)
     int v0, v1, v2;
     MiscSaveBlock * v3;
     Pokemon * v4;
-    FieldSystem * v5 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 * v6 = ScriptContext_GetVarPointer(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
     u16 * v8 = ScriptContext_GetVarPointer(param0);
 
-    v3 = SaveData_MiscSaveBlock(v5->saveData);
+    v3 = SaveData_MiscSaveBlock(fieldSystem->saveData);
     MiscSaveBlock_FavoriteMon(v3, &v0, &v1, &v2);
 
     *v6 = v0;
@@ -793,11 +793,11 @@ BOOL ScrCmd_305 (ScriptContext * param0)
 {
     Pokemon * v0;
     Party * v1;
-    FieldSystem * v2 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
 
-    v1 = Party_GetFromSavedata(v2->saveData);
+    v1 = Party_GetFromSavedata(fieldSystem->saveData);
     v0 = Party_GetPokemonBySlotIndex(v1, v3);
     *v4 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
@@ -808,12 +808,12 @@ BOOL ScrCmd_30F (ScriptContext * param0)
 {
     UnkStruct_020507E4 * v0;
     UnkStruct_0202CD88 * v1;
-    FieldSystem * v2 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_Events(v2->saveData);
-    v1 = sub_0202CD88(v2->saveData);
+    v0 = SaveData_Events(fieldSystem->saveData);
+    v1 = sub_0202CD88(fieldSystem->saveData);
     *v4 = 1;
 
     switch (v3) {
@@ -983,7 +983,7 @@ BOOL ScrCmd_32D (ScriptContext * ctx)
     VecFx32 v1;
     UnkStruct_020216E0 * v2;
     int v3 = 0;
-    FieldSystem * fieldSystem = ctx->fieldSys;
+    FieldSystem * fieldSystem = ctx->fieldSystem;
     MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
     MapObject * v6 = Player_MapObject(fieldSystem->playerAvatar);
     MapObject * v7;
@@ -1024,7 +1024,7 @@ BOOL ScrCmd_32D (ScriptContext * ctx)
 BOOL ScrCmd_32E (ScriptContext * ctx)
 {
     int v0 = 0;
-    FieldSystem * fieldSystem = ctx->fieldSys;
+    FieldSystem * fieldSystem = ctx->fieldSystem;
     MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
     MapObject * v3 = Player_MapObject(fieldSystem->playerAvatar);
     MapObject * v4;
@@ -1062,8 +1062,8 @@ static void ov5_021F7654 (MapObject * param0, int param1)
 BOOL ScrCmd_331 (ScriptContext * ctx)
 {
     MapObject * v0;
-    FieldSystem * v1 = ctx->fieldSys;
-    MapObjectManager * mapObjMan = v1->mapObjMan;
+    FieldSystem * fieldSystem = ctx->fieldSystem;
+    MapObjectManager * mapObjMan = fieldSystem->mapObjMan;
 
     v0 = MapObjMan_LocalMapObjByIndex(mapObjMan, 32);
 
@@ -1083,7 +1083,7 @@ BOOL ScrCmd_331 (ScriptContext * ctx)
 BOOL ScrCmd_332 (ScriptContext * ctx)
 {
     MapObject * v0;
-    MapObjectManager * v1 = ctx->fieldSys->mapObjMan;
+    MapObjectManager * v1 = ctx->fieldSystem->mapObjMan;
 
     v0 = MapObjMan_LocalMapObjByIndex(v1, 32);
 
@@ -1103,7 +1103,7 @@ BOOL ScrCmd_332 (ScriptContext * ctx)
 BOOL ScrCmd_338 (ScriptContext * ctx)
 {    
     int v0;
-    MapObject * v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, 15);
+    MapObject * v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 15);
     if (v1 != NULL)
     {
         switch (MapObject_GetXPos(v1))
@@ -1131,7 +1131,7 @@ BOOL ScrCmd_338 (ScriptContext * ctx)
 
 BOOL ScrCmd_339 (ScriptContext * ctx)
 {
-    MapObject * v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSys->mapObjMan, 15);
+    MapObject * v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 15);
     if (v0 != NULL)
         MapObject_SetStatusFlagOff(v0, 8192);
     return 0;
@@ -1139,7 +1139,7 @@ BOOL ScrCmd_339 (ScriptContext * ctx)
 
 BOOL ScrCmd_330 (ScriptContext * ctx)
 {
-    UnkStruct_0202C878 * v0 = sub_0202C878(ctx->fieldSys->saveData);
+    UnkStruct_0202C878 * v0 = sub_0202C878(ctx->fieldSystem->saveData);
 
     sub_02038F8C(v0);
     return 1;

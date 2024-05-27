@@ -14,40 +14,40 @@
 
 static BOOL ov6_02247FD0(TaskManager * param0);
 
-void ov6_02247F5C (FieldSystem * param0)
+void ov6_02247F5C (FieldSystem * fieldSystem)
 {
     UnkStruct_ov5_021D3CE4 * v0;
 
-    if (!sub_0206ADEC(SaveData_Events(param0->saveData))) {
-        v0 = ov5_021D3DE4(496, 1, param0->unk_50);
+    if (!sub_0206ADEC(SaveData_Events(fieldSystem->saveData))) {
+        v0 = ov5_021D3DE4(496, 1, fieldSystem->unk_50);
         ov5_021D3F08(v0, 1);
         ov5_021D3E40(v0, 1);
     } else {
-        v0 = ov5_021D3DE4(496, 0, param0->unk_50);
+        v0 = ov5_021D3DE4(496, 0, fieldSystem->unk_50);
         ov5_021D3E40(v0, 1);
 
-        v0 = ov5_021D3DE4(496, 1, param0->unk_50);
+        v0 = ov5_021D3DE4(496, 1, fieldSystem->unk_50);
         ov5_021D3E9C(v0);
         ov5_021D3E40(v0, 1);
     }
 }
 
-void ov6_02247FBC (FieldSystem * param0)
+void ov6_02247FBC (FieldSystem * fieldSystem)
 {
-    sub_02050944(param0->unk_10, ov6_02247FD0, NULL);
+    sub_02050944(fieldSystem->unk_10, ov6_02247FD0, NULL);
 }
 
 static BOOL ov6_02247FD0 (TaskManager * param0)
 {
     int * v0;
     UnkStruct_ov5_021D3CE4 * v1;
-    FieldSystem * v2 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     v0 = sub_02050A68(param0);
 
     switch (*v0) {
     case 0:
-        v1 = ov5_021D3DE4(496, 0, v2->unk_50);
+        v1 = ov5_021D3DE4(496, 0, fieldSystem->unk_50);
 
         if (ov5_021D3E4C(v1)) {
             ov5_021D3E40(v1, 1);
@@ -55,12 +55,12 @@ static BOOL ov6_02247FD0 (TaskManager * param0)
         }
         break;
     case 1:
-        v1 = ov5_021D3DE4(496, 1, v2->unk_50);
+        v1 = ov5_021D3DE4(496, 1, fieldSystem->unk_50);
         ov5_021D3E40(v1, 0);
         (*v0)++;
         break;
     case 2:
-        v1 = ov5_021D3DE4(496, 1, v2->unk_50);
+        v1 = ov5_021D3DE4(496, 1, fieldSystem->unk_50);
 
         if (ov5_021D3F70(v1)) {
             return 1;

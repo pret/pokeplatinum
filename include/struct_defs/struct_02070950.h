@@ -6,7 +6,7 @@
 
 typedef struct UnkStruct_02070950_t {
     u32 unk_00;
-    FieldSystem * unk_04;
+    FieldSystem * fieldSystem;
     MapObject * unk_08;
     u16 unk_0C;
 } UnkStruct_02070950;

@@ -152,10 +152,10 @@ u16 sub_0204AF9C (u8 param0)
     return 0x3;
 }
 
-u16 sub_0204AFC4 (FieldSystem * param0, const u16 * param1)
+u16 sub_0204AFC4 (FieldSystem * fieldSystem, const u16 * param1)
 {
     u16 v0 = 0;
-    UnkStruct_0204AFC4 * v1 = param0->unk_AC;
+    UnkStruct_0204AFC4 * v1 = fieldSystem->unk_AC;
 
     v1->unk_12 = (u8)param1[0];
     v1->unk_16[0] = param1[1];
@@ -174,10 +174,10 @@ u16 sub_0204AFC4 (FieldSystem * param0, const u16 * param1)
     return v0;
 }
 
-u16 sub_0204B020 (FieldSystem * param0, const u16 * param1)
+u16 sub_0204B020 (FieldSystem * fieldSystem, const u16 * param1)
 {
     int v0;
-    UnkStruct_0204AFC4 * v1 = param0->unk_AC;
+    UnkStruct_0204AFC4 * v1 = fieldSystem->unk_AC;
 
     if (CommSys_CurNetId() == 0) {
         return 0;
@@ -187,10 +187,10 @@ u16 sub_0204B020 (FieldSystem * param0, const u16 * param1)
     return 1;
 }
 
-u16 sub_0204B044 (FieldSystem * param0, const u16 * param1)
+u16 sub_0204B044 (FieldSystem * fieldSystem, const u16 * param1)
 {
     int v0;
-    UnkStruct_0204AFC4 * v1 = param0->unk_AC;
+    UnkStruct_0204AFC4 * v1 = fieldSystem->unk_AC;
 
     if (v1->unk_10_3 || param1[0]) {
         return 1;

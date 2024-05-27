@@ -64,7 +64,7 @@ static void ov23_022499E4 (char * param0)
     return;
 }
 
-void ov23_022499E8 (FieldSystem * param0)
+void ov23_022499E8 (FieldSystem * fieldSystem)
 {
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
@@ -72,13 +72,13 @@ void ov23_022499E8 (FieldSystem * param0)
         return;
     }
 
-    sub_02036794(FieldSystem_SaveData(param0));
-    FieldCommMan_Init(param0);
+    sub_02036794(FieldSystem_SaveData(fieldSystem));
+    FieldCommMan_Init(fieldSystem);
 
     v0 = FieldCommMan_Get();
     Heap_Create(3, 33, 0xe800);
 
-    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->saveData))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->fieldSystem->saveData))) {
         sub_02036894();
     }
 }
@@ -88,9 +88,9 @@ void ov23_02249A2C (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     v0->unk_41 = 1;
-    sub_0202CFEC(sub_0202CD88(v0->fieldSys->saveData), 36);
+    sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 36);
 
-    ov23_02242BC0(v0->fieldSys);
+    ov23_02242BC0(v0->fieldSystem);
     ov23_02249C24(ov23_02249C34, 0);
 }
 
@@ -262,7 +262,7 @@ static void ov23_02249C34 (void)
         return;
     }
 
-    ov23_02242D44(v0->fieldSys);
+    ov23_02242D44(v0->fieldSystem);
 
     CommInfo_SendBattleRegulation();
     CommPlayer_SendPos(0);
@@ -270,7 +270,7 @@ static void ov23_02249C34 (void)
     ov23_02243AF0();
     ov23_0224C21C();
 
-    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->saveData))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->fieldSystem->saveData))) {
         ov23_02249C24(ov23_02249C98, 0);
     } else {
         sub_02059524();
@@ -282,7 +282,7 @@ static void ov23_02249C98 (void)
 {
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
-    if (!sub_0206ADDC(SaveData_Events(v0->fieldSys->saveData))) {
+    if (!sub_0206ADDC(SaveData_Events(v0->fieldSystem->saveData))) {
         return;
     }
 
@@ -388,7 +388,7 @@ static void ov23_02249E18 (void)
 
     ov23_02242B14();
 
-    if (v0->fieldSys->unk_10 != NULL) {
+    if (v0->fieldSystem->unk_10 != NULL) {
         return;
     }
 
@@ -548,7 +548,7 @@ static void ov23_0224A02C (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     if (CommSys_CurNetId() == 0) {
-        ov23_02242D44(v0->fieldSys);
+        ov23_02242D44(v0->fieldSystem);
         CommInfo_SendBattleRegulation();
         CommPlayer_SendPos(0);
         ov23_02243AF0();
@@ -576,7 +576,7 @@ static void ov23_0224A09C (void)
     ov23_02242B14();
     sub_02059524();
 
-    if (v0->fieldSys->unk_10 != NULL) {
+    if (v0->fieldSystem->unk_10 != NULL) {
         return;
     }
 

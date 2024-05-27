@@ -11,8 +11,8 @@
 
 #include <nitro/wm.h>
 
-UnkStruct_0205B43C * sub_0205B33C(FieldSystem * param0);
-void sub_0205B388(FieldSystem * param0);
+UnkStruct_0205B43C * sub_0205B33C(FieldSystem * fieldSystem);
+void sub_0205B388(FieldSystem * fieldSystem);
 void sub_0205B5BC(SysTask * param0, void * param1);
 FieldSystem * sub_0205B770(UnkStruct_0205B43C * param0);
 WMBssDesc * sub_0205B774(UnkStruct_0205B43C * param0, int param1);

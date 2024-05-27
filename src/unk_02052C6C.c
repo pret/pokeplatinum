@@ -62,31 +62,31 @@ typedef struct {
     int unk_38;
 } UnkStruct_0205300C;
 
-static void sub_02052F28(FieldSystem * param0, UnkStruct_0205300C * param1);
-static void sub_02052FA8(FieldSystem * param0, UnkStruct_0205300C * param1);
-static void sub_02053028(FieldSystem * param0, UnkStruct_0205300C * param1, int param2);
+static void sub_02052F28(FieldSystem * fieldSystem, UnkStruct_0205300C * param1);
+static void sub_02052FA8(FieldSystem * fieldSystem, UnkStruct_0205300C * param1);
+static void sub_02053028(FieldSystem * fieldSystem, UnkStruct_0205300C * param1, int param2);
 static void sub_0205300C(UnkStruct_0205300C * param0);
-static void sub_02053098(FieldSystem * param0, UnkStruct_0205300C * param1);
+static void sub_02053098(FieldSystem * fieldSystem, UnkStruct_0205300C * param1);
 static BOOL sub_02052FFC(UnkStruct_0205300C * param0);
 
-static void sub_02052C6C (FieldSystem * param0, BOOL param1)
+static void sub_02052C6C (FieldSystem * fieldSystem, BOOL param1)
 {
     HallOfFame * v0;
     Party * v1;
     RTCDate v2;
     int v3;
 
-    v0 = SaveData_HallOfFame(param0->saveData, 11, &v3);
+    v0 = SaveData_HallOfFame(fieldSystem->saveData, 11, &v3);
 
     if ((v3 != 1) || !param1) {
         HallOfFame_Init(v0);
     }
 
-    v1 = Party_GetFromSavedata(param0->saveData);
+    v1 = Party_GetFromSavedata(fieldSystem->saveData);
 
     GetCurrentDate(&v2);
     sub_0202DFA8(v0, v1, &v2);
-    SaveData_SaveHallOfFame(param0->saveData, v0);
+    SaveData_SaveHallOfFame(fieldSystem->saveData, v0);
     Heap_FreeToHeap(v0);
 }
 
@@ -94,28 +94,28 @@ static BOOL sub_02052CBC (TaskManager * param0)
 {
     Location * v0;
     UnkStruct_020507E4 * v1;
-    FieldSystem * v2 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205300C * v3 = TaskManager_Environment(param0);
     int * v4 = sub_02050A68(param0);
     UnkStruct_0203E234 * v5 = &v3->unk_04;
 
     switch (*v4) {
     case 0:
-        sub_0203E234(v2, v5);
+        sub_0203E234(fieldSystem, v5);
         (*v4)++;
         break;
     case 1:
-        if (!sub_020509B4(v2)) {
+        if (!sub_020509B4(fieldSystem)) {
             Heap_Create(3, 4, 0x20000);
-            sub_02052F28(v2, v3);
+            sub_02052F28(fieldSystem, v3);
             sub_0200F174(3, 1, 1, 0x0, 8, 1, 32);
             (*v4)++;
         }
         break;
     case 2:
         if (ScreenWipe_Done()) {
-            if (SaveData_OverwriteCheck(v2->saveData) == 0) {
-                sub_02052FA8(v2, v3);
+            if (SaveData_OverwriteCheck(fieldSystem->saveData) == 0) {
+                sub_02052FA8(fieldSystem, v3);
                 (*v4)++;
             } else {
                 (*v4) = 7;
@@ -131,12 +131,12 @@ static BOOL sub_02052CBC (TaskManager * param0)
     {
         int v6;
 
-        HealAllPokemonInParty(Party_GetFromSavedata(v2->saveData));
+        HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         SaveData_SetFullSaveRequired();
-        v6 = SaveData_Save(v2->saveData);
-        sub_02052C6C(v2, v3->unk_00);
+        v6 = SaveData_Save(fieldSystem->saveData);
+        sub_02052C6C(fieldSystem, v3->unk_00);
         sub_0205300C(v3);
-        sub_02053028(v2, v3, v6);
+        sub_02053028(fieldSystem, v3, v6);
         (*v4)++;
     }
     break;
@@ -160,13 +160,13 @@ static BOOL sub_02052CBC (TaskManager * param0)
         break;
     case 8:
         if (ScreenWipe_Done()) {
-            sub_02053098(v2, v3);
-            sub_0203E274(v2, &(v3->unk_10));
+            sub_02053098(fieldSystem, v3);
+            sub_0203E274(fieldSystem, &(v3->unk_10));
             (*v4)++;
         }
         break;
     case 9:
-        if (!sub_020509B4(v2)) {
+        if (!sub_020509B4(fieldSystem)) {
             Heap_FreeToHeap(v3);
             Heap_Destroy(4);
             OS_ResetSystem(0);
@@ -180,7 +180,7 @@ static BOOL sub_02052CBC (TaskManager * param0)
 
 void sub_02052E58 (TaskManager * param0)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
     Location * v1, * v2;
     UnkStruct_020507E4 * v3;
     TrainerInfo * v4;
@@ -188,26 +188,26 @@ void sub_02052E58 (TaskManager * param0)
     UnkStruct_0202CD88 * v6;
     Party * v7;
 
-    v0 = TaskManager_FieldSystem(param0);
+    fieldSystem = TaskManager_FieldSystem(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
-    v3 = SaveData_Events(v0->saveData);
-    v4 = SaveData_GetTrainerInfo(v0->saveData);
-    v1 = sub_0203A730(sub_0203A790(v0->saveData));
-    v2 = sub_0203A72C(sub_0203A790(v0->saveData));
+    v3 = SaveData_Events(fieldSystem->saveData);
+    v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    v1 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
+    v2 = sub_0203A72C(sub_0203A790(fieldSystem->saveData));
 
     v5->unk_00 = sub_0206A954(v3);
-    v5->unk_04.unk_00 = SaveData_GetTrainerInfo(v0->saveData);
-    v5->unk_04.unk_04 = Party_GetFromSavedata(v0->saveData);
-    v5->unk_04.unk_08 = sub_02025E5C(v0->saveData);
-    v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(v0->saveData));
+    v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    v5->unk_04.unk_04 = Party_GetFromSavedata(fieldSystem->saveData);
+    v5->unk_04.unk_08 = sub_02025E5C(fieldSystem->saveData);
+    v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
     v5->unk_10.unk_04 = sub_0206A954(v3);
-    v5->unk_10.unk_08 = SaveData_Pokedex(v0->saveData);
+    v5->unk_10.unk_08 = SaveData_Pokedex(fieldSystem->saveData);
 
     if (sub_0206A954(v3) == 0) {
-        sub_02055C2C(v0);
+        sub_02055C2C(fieldSystem);
     }
 
-    v7 = Party_GetFromSavedata(v0->saveData);
+    v7 = Party_GetFromSavedata(fieldSystem->saveData);
 
     sub_02054AC4(v7);
     sub_0203D178(v1);
@@ -216,13 +216,13 @@ void sub_02052E58 (TaskManager * param0)
     sub_0206A944(v3);
     TrainerInfo_SetMainStoryCleared(v4);
 
-    v6 = sub_0202CD88(v0->saveData);
+    v6 = sub_0202CD88(fieldSystem->saveData);
 
     sub_0202CF28(v6, (((70 + 1)) + 2));
     sub_02050944(param0, sub_02052CBC, v5);
 }
 
-static void sub_02052F28 (FieldSystem * param0, UnkStruct_0205300C * param1)
+static void sub_02052F28 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1)
 {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
@@ -268,19 +268,19 @@ static void sub_02052F28 (FieldSystem * param0, UnkStruct_0205300C * param1)
 
     sub_02018368(&v1);
     sub_0201975C(3, 0x0);
-    sub_020183C4(param0->unk_08, 3, &v2, 0);
+    sub_020183C4(fieldSystem->unk_08, 3, &v2, 0);
     sub_02019690(3, 0x20, 0, 32);
-    sub_02019CB8(param0->unk_08, 3, 0x0, 0, 0, 32, 32, 17);
-    sub_02019448(param0->unk_08, 3);
+    sub_02019CB8(fieldSystem->unk_08, 3, 0x0, 0, 0, 32, 32, 17);
+    sub_02019448(fieldSystem->unk_08, 3);
 }
 
-static void sub_02052FA8 (FieldSystem * param0, UnkStruct_0205300C * param1)
+static void sub_02052FA8 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1)
 {
-    Options * v0 = SaveData_Options(param0->saveData);
+    Options * v0 = SaveData_Options(fieldSystem->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
-    FieldMessage_AddWindow(param0->unk_08, &param1->unk_1C, 3);
+    FieldMessage_AddWindow(fieldSystem->unk_08, &param1->unk_1C, 3);
     FieldMessage_DrawWindow(&param1->unk_1C, v0);
 
     param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, v0, 1);
@@ -299,7 +299,7 @@ static void sub_0205300C (UnkStruct_0205300C * param0)
     sub_0205D988(&param0->unk_1C);
 }
 
-static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int param2)
+static void sub_02053028 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1, int param2)
 {
     MessageLoader * v0 = MessageLoader_Init(1, 26, 213, 4);
 
@@ -307,7 +307,7 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
         StringTemplate * v1;
 
         v1 = StringTemplate_Default(4);
-        StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(param0->saveData));
+        StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
         param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, 4);
         StringTemplate_Free(v1);
     } else {
@@ -315,10 +315,10 @@ static void sub_02053028 (FieldSystem * param0, UnkStruct_0205300C * param1, int
     }
 
     MessageLoader_Free(v0);
-    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, SaveData_Options(param0->saveData), 1);
+    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, SaveData_Options(fieldSystem->saveData), 1);
 }
 
-static void sub_02053098 (FieldSystem * param0, UnkStruct_0205300C * param1)
+static void sub_02053098 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1)
 {
     if (param1->unk_2C) {
         Strbuf_Free(param1->unk_2C);
@@ -328,5 +328,5 @@ static void sub_02053098 (FieldSystem * param0, UnkStruct_0205300C * param1)
         BGL_DeleteWindow(&param1->unk_1C);
     }
 
-    sub_02019044(param0->unk_08, 3);
+    sub_02019044(fieldSystem->unk_08, 3);
 }

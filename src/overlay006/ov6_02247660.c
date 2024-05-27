@@ -12,7 +12,7 @@
 #include "unk_0205F180.h"
 #include "overlay006/ov6_02247660.h"
 
-BOOL ov6_02247660 (FieldSystem * param0)
+BOOL ov6_02247660 (FieldSystem * fieldSystem)
 {
     u8 v0;
     int v1;
@@ -35,11 +35,11 @@ BOOL ov6_02247660 (FieldSystem * param0)
         return 0;
     }
 
-    v13 = sub_0202B428(sub_0202B4A0(param0->saveData));
+    v13 = sub_0202B428(sub_0202B4A0(fieldSystem->saveData));
 
-    sub_020615AC(param0->playerAvatar, &v15, &v16);
+    sub_020615AC(fieldSystem->playerAvatar, &v15, &v16);
 
-    v14 = sub_02039E10(param0->unk_2C);
+    v14 = sub_02039E10(fieldSystem->unk_2C);
     v12 = 0;
 
     v8[0] = (v13 >> 24) & 0xff;

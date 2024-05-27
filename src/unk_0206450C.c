@@ -1284,8 +1284,8 @@ static int sub_0206537C (MapObject * mapObj)
     }
 
     {
-        FieldSystem * v1 = MapObject_FieldSystem(mapObj);
-        PlayerAvatar * playerAvatar = sub_0205EF3C(v1);
+        FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+        PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
 
         if (sub_0206140C(playerAvatar) == 0) {
             return(-1);
@@ -1374,8 +1374,8 @@ static int sub_02065448 (MapObject * mapObj, int param1, int param2)
                 int v4 = -1, v5 = -1;
                 int v6 = MapObject_GetXPos(mapObj);
                 int v7 = MapObject_GetZPos(mapObj);
-                FieldSystem * v8 = MapObject_FieldSystem(mapObj);
-                PlayerAvatar * playerAvatar = sub_0205EF3C(v8);
+                FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
+                PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
                 int v10 = Player_GetXPos(playerAvatar);
                 int v11 = Player_GetZPos(playerAvatar);
 

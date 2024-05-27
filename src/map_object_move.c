@@ -685,9 +685,9 @@ int sub_02063FAC (const MapObject * mapObj, int param1, int param2, int param3)
 int sub_02064004 (const MapObject * mapObj, int param1, int param2, int param3)
 {
     if (sub_02062FDC(mapObj) == 0) {
-        FieldSystem * v0 = MapObject_FieldSystem(mapObj);
+        FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
         u8 v1 = sub_02062BE8(mapObj);
-        u8 v2 = sub_02054F94(v0, param1, param2);
+        u8 v2 = sub_02054F94(fieldSystem, param1, param2);
 
         if (v2 == sub_0205DF98()) {
             return 1;

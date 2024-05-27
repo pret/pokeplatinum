@@ -64,9 +64,9 @@ UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
     v0->unk_00 = param0;
     v0->unk_47C = 1;
     v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
-    v0->unk_470 = sub_0205B770(param0);
-    v0->unk_474 = SaveData_SaveTable(v0->unk_470->saveData, 9);
-    v0->playerAvatar = v0->unk_470->playerAvatar;
+    v0->fieldSystem = sub_0205B770(param0);
+    v0->unk_474 = SaveData_SaveTable(v0->fieldSystem->saveData, 9);
+    v0->playerAvatar = v0->fieldSystem->playerAvatar;
 
     Heap_CreateAtEnd(11, 89, 10000);
     v0->unk_478 = sub_0205C95C(89);
@@ -111,10 +111,10 @@ static void sub_0205C304 (SysTask * task, void * param1)
     UnkStruct_0205C22C * v0 = (UnkStruct_0205C22C *)param1;
     UnkStruct_0205B43C * v1 = v0->unk_00;
 
-    if (!sub_020509A4(v0->unk_470)) {
-        v0->playerAvatar = v0->unk_470->playerAvatar;
-        sub_0205C44C(v0, v1, v0->unk_470->mapObjMan, v0->unk_474);
-        sub_0205C51C(v0, v0->unk_470->mapObjMan);
+    if (!sub_020509A4(v0->fieldSystem)) {
+        v0->playerAvatar = v0->fieldSystem->playerAvatar;
+        sub_0205C44C(v0, v1, v0->fieldSystem->mapObjMan, v0->unk_474);
+        sub_0205C51C(v0, v0->fieldSystem->mapObjMan);
     }
 }
 

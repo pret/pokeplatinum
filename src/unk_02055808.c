@@ -13,9 +13,9 @@
 
 static BOOL sub_02055808 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(v0)) {
+    if (!sub_0203CD4C(fieldSystem)) {
         return 1;
     }
 
@@ -24,22 +24,22 @@ static BOOL sub_02055808 (TaskManager * param0)
 
 void sub_02055820 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(v0)) {
+    if (!sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    sub_0203CD44(v0);
+    sub_0203CD44(fieldSystem);
     sub_02050944(param0, sub_02055808, NULL);
 }
 
 static BOOL sub_02055850 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (sub_020509DC(v0)) {
+    if (sub_020509DC(fieldSystem)) {
         return 1;
     }
 
@@ -48,14 +48,14 @@ static BOOL sub_02055850 (TaskManager * param0)
 
 void sub_02055868 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (sub_0203CD4C(v0)) {
+    if (sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    sub_020509D4(v0);
+    sub_020509D4(fieldSystem);
     sub_02050944(param0, sub_02055850, NULL);
 }
 
@@ -70,9 +70,9 @@ static BOOL sub_02055898 (TaskManager * param0)
 
 void sub_020558AC (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(v0)) {
+    if (!sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
@@ -85,9 +85,9 @@ void sub_020558AC (TaskManager * param0)
 
 void sub_020558F0 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    if (!sub_0203CD4C(v0)) {
+    if (!sub_0203CD4C(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
@@ -126,7 +126,7 @@ void sub_02055974 (TaskManager * param0)
 static BOOL sub_02055984 (TaskManager * param0)
 {
     int * v0 = sub_02050A68(param0);
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (*v0) {
     case 0:
@@ -134,7 +134,7 @@ static BOOL sub_02055984 (TaskManager * param0)
         (*v0)++;
         break;
     case 1:
-        ov5_021DDAA4(v1);
+        ov5_021DDAA4(fieldSystem);
         sub_020558F0(param0);
         (*v0)++;
         break;

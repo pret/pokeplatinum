@@ -3,6 +3,6 @@
 
 #include "field/field_system_decl.h"
 
-void ov5_021EAF50(FieldSystem * param0);
+void ov5_021EAF50(FieldSystem * fieldSystem);
 
 #endif // POKEPLATINUM_OV5_021EA874_H

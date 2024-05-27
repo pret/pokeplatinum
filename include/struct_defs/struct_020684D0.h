@@ -13,7 +13,7 @@ typedef struct {
     u16 unk_10;
     u8 padding_12[2];
     PlayerAvatar * playerAvatar;
-    FieldSystem * unk_18;
+    FieldSystem * fieldSystem;
 } UnkStruct_020684D0;
 
 #endif // POKEPLATINUM_STRUCT_020684D0_H

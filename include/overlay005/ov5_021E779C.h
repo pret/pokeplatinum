@@ -15,7 +15,7 @@
 #include <nitro/fx/fx.h>
 
 void ov5_021E7A54(UnkStruct_ov5_021E8F60 * param0);
-void ov5_021E8188(FieldSystem * param0, UnkStruct_ov5_021E8F60 * param1);
+void ov5_021E8188(FieldSystem * fieldSystem, UnkStruct_ov5_021E8F60 * param1);
 UnkStruct_ov5_021E8F60 * ov5_021E9084(UnkStruct_02039E30 * param0, UnkStruct_ov5_021EF76C * param1, UnkStruct_ov5_021D3CAC * param2, const int param3);
 void ov5_021E9150(UnkStruct_ov5_021E8F60 * param0, const int param1, const int param2);
 void ov5_021E9190(const u8 param0, UnkStruct_ov5_021E8F60 * param1);
@@ -48,7 +48,7 @@ void ov5_021E9C0C(const UnkStruct_ov5_021E8F60 * param0, const UnkStruct_ov5_021
 void ov5_021E9CD8(UnkStruct_ov5_021E8F60 * param0);
 void ov5_021E9D3C(UnkStruct_02039E30 * param0, UnkStruct_ov5_021EF76C * param1, UnkStruct_ov5_021E8F60 * param2, UnkStruct_ov5_021E8F60 * param3, const int param4, const int param5);
 void ov5_021E9F98(UnkStruct_ov5_021E8F60 * param0, UnkStruct_ov5_021E8F60 * param1);
-void ov5_021EA174(FieldSystem * param0, UnkStruct_ov5_021E8F60 * param1);
+void ov5_021EA174(FieldSystem * fieldSystem, UnkStruct_ov5_021E8F60 * param1);
 void ov5_021EA540(UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1, UnkStruct_ov5_021EF76C * param2);
 void ov5_021EA58C(UnkStruct_ov5_021E8F60 * param0, const int param1, const int param2, int * param3);
 void ov5_021EA5E0(UnkStruct_ov5_021E8F60 * param0, int param1, int param2);

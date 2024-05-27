@@ -201,27 +201,27 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     },
 };
 
-void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * param1, const int param2, const BOOL param3)
+void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * fieldSystem, const int param2, const BOOL param3)
 {
     const VecFx32 * v0 = param0;
     const UnkStruct_ov5_021F8AE4 * v1 = &Unk_ov5_021F8AE4[param2];
 
     GF_ASSERT(param2 < NELEMS(Unk_ov5_021F8AE4));
 
-    param1->unk_24 = sub_020203AC(4);
+    fieldSystem->unk_24 = sub_020203AC(4);
 
-    sub_020206D0(v0, v1->unk_00, &v1->unk_04, v1->unk_0E, v1->unk_0C, 1, param1->unk_24);
-    sub_020203D4(param1->unk_24);
-    sub_020206BC(v1->unk_10, v1->unk_14, param1->unk_24);
+    sub_020206D0(v0, v1->unk_00, &v1->unk_04, v1->unk_0E, v1->unk_0C, 1, fieldSystem->unk_24);
+    sub_020203D4(fieldSystem->unk_24);
+    sub_020206BC(v1->unk_10, v1->unk_14, fieldSystem->unk_24);
 
     if (param3) {
-        sub_02020304((6 + 1), 6, 2, 4, param1->unk_24);
+        sub_02020304((6 + 1), 6, 2, 4, fieldSystem->unk_24);
     }
 }
 
-void ov5_021D5BA8 (FieldSystem * param0)
+void ov5_021D5BA8 (FieldSystem * fieldSystem)
 {
     sub_020203E0();
-    sub_02020390(param0->unk_24);
-    sub_020203B8(param0->unk_24);
+    sub_02020390(fieldSystem->unk_24);
+    sub_020203B8(fieldSystem->unk_24);
 }

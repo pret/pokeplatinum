@@ -19,7 +19,7 @@
 #include "overlay005/ov5_021D0D80.h"
 
 typedef struct {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     StringTemplate * unk_04;
     Sentence unk_08;
     UnkStruct_0209747C * unk_10;
@@ -34,13 +34,13 @@ static BOOL sub_0209B3C4(TaskManager * param0);
 
 void sub_0209B344 (TaskManager * param0, u16 * param1)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0209B3AC * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
 
-    v1->unk_00 = v0;
+    v1->fieldSystem = fieldSystem;
     v1->unk_04 = StringTemplate_Default(32);
-    v1->unk_10 = sub_0209747C(2, 0, v1->unk_00->saveData, 32);
-    v1->unk_14 = SaveData_MiscSaveBlock(v0->saveData);
+    v1->unk_10 = sub_0209747C(2, 0, v1->fieldSystem->saveData, 32);
+    v1->unk_14 = SaveData_MiscSaveBlock(fieldSystem->saveData);
     v1->unk_20 = param1;
 
     sub_02014A9C(&v1->unk_08, 4);
@@ -68,17 +68,17 @@ static BOOL sub_0209B3C4 (TaskManager * param0)
     case 0:
         sub_02097500(v0->unk_10, &(v0->unk_08));
         sub_02097514(v0->unk_10);
-        sub_0203D874(v0->unk_00, v0->unk_10);
+        sub_0203D874(v0->fieldSystem, v0->unk_10);
         v0->unk_18 = 1;
         break;
     case 1:
-        if (sub_020509B4(v0->unk_00) == 0) {
-            sub_020509D4(v0->unk_00);
+        if (sub_020509B4(v0->fieldSystem) == 0) {
+            sub_020509D4(v0->fieldSystem);
             v0->unk_18 = 2;
         }
         break;
     case 2:
-        if (sub_020509DC(v0->unk_00)) {
+        if (sub_020509DC(v0->fieldSystem)) {
             ov5_021D1744(1);
             v0->unk_18 = 3;
         }

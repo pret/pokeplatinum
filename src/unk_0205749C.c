@@ -42,15 +42,15 @@ void sub_0205749C (TaskManager * param0, BOOL param1)
 
 static BOOL sub_020574CC (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205749C * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
     {
-        v1->unk_04.unk_04 = v0->saveData;
+        v1->unk_04.unk_04 = fieldSystem->saveData;
         v1->unk_04.unk_08 = v1->unk_02;
-        v1->unk_04.unk_00 = &v0->unk_C4;
+        v1->unk_04.unk_00 = &fieldSystem->unk_C4;
         sub_02050A38(param0, &Unk_020ED4CC, &v1->unk_04);
         v1->unk_00++;
     }

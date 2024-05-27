@@ -21,17 +21,17 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    FieldSystem * unk_0C;
+    FieldSystem * fieldSystem;
     PlayerAvatar * playerAvatar;
     MapObject * unk_14;
 } UnkStruct_ov5_021E11B0;
 
-static void ov5_021E11B0(FieldSystem * param0, PlayerAvatar * playerAvatar, int param2);
+static void ov5_021E11B0(FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2);
 static BOOL ov5_021E120C(TaskManager * param0);
 static void * ov5_021E132C(int param0);
 static void ov5_021E1350(void * param0);
 
-int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * playerAvatar, int param2)
+int ov5_021E1154 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2)
 {
     MapObject * v0 = Player_MapObject(playerAvatar);
     u8 v1 = sub_02062BE8(v0);
@@ -49,20 +49,20 @@ int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * playerAvatar, int param2)
         return 0;
     }
 
-    ov5_021E11B0(param0, playerAvatar, v2);
+    ov5_021E11B0(fieldSystem, playerAvatar, v2);
     return 1;
 }
 
-static void ov5_021E11B0 (FieldSystem * param0, PlayerAvatar * playerAvatar, int param2)
+static void ov5_021E11B0 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2)
 {
     UnkStruct_ov5_021E11B0 * v0 = ov5_021E132C((sizeof(UnkStruct_ov5_021E11B0)));
 
-    v0->unk_0C = param0;
+    v0->fieldSystem = fieldSystem;
     v0->playerAvatar = playerAvatar;
     v0->unk_00 = param2;
 
     Sound_PlayEffect(1624);
-    sub_02050904(param0, ov5_021E120C, v0);
+    sub_02050904(fieldSystem, ov5_021E120C, v0);
 }
 
 static int ov5_021E11E0 (int param0)

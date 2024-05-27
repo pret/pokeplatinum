@@ -35,7 +35,7 @@ void sub_02064450(int param0, int param1, VecFx32 * param2);
 void sub_02064464(MapObject * param0);
 int Direction_GetOpposite(int param0);
 int sub_02064488(int param0, int param1, int param2, int param3);
-int sub_020644A4(FieldSystem * param0, VecFx32 * param1);
-int sub_020644D0(FieldSystem * param0, VecFx32 * param1, int param2);
+int sub_020644A4(FieldSystem * fieldSystem, VecFx32 * param1);
+int sub_020644D0(FieldSystem * fieldSystem, VecFx32 * param1, int param2);
 
 #endif // POKEPLATINUM_MAP_OBJECT_MOVE_H

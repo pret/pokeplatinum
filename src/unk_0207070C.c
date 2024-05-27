@@ -118,17 +118,17 @@ static inline BOOL inline_020708AC (const UnkStruct_02070950 * param0, int param
 
 static inline BOOL inline_02070950 (const UnkStruct_02070950 * param0, int param1)
 {
-    return TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->unk_04->saveData), param1);
+    return TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), param1);
 }
 
 static inline BOOL inline_02070A24 (const UnkStruct_02070950 * param0)
 {
-    return sub_0206A984(SaveData_Events(param0->unk_04->saveData));
+    return sub_0206A984(SaveData_Events(param0->fieldSystem->saveData));
 }
 
 static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 {
-    if ((sub_0206AE5C(SaveData_Events(param0->unk_04->saveData)) == 1) || (sub_0206AE8C(SaveData_Events(param0->unk_04->saveData)) == 1)) {
+    if ((sub_0206AE5C(SaveData_Events(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1)) {
         return 1;
     }
 
@@ -137,7 +137,7 @@ static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 
 static inline BOOL inline_020710A4 (const UnkStruct_02070950 * param0)
 {
-    if (sub_0206AE8C(SaveData_Events(param0->unk_04->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1) {
         return 1;
     }
 
@@ -146,7 +146,7 @@ static inline BOOL inline_020710A4 (const UnkStruct_02070950 * param0)
 
 static inline BOOL inline_02070AF0 (const UnkStruct_02070950 * param0)
 {
-    if ((param0->unk_04->unk_70 == 3) || (param0->unk_04->unk_70 == 2)) {
+    if ((param0->fieldSystem->unk_70 == 3) || (param0->fieldSystem->unk_70 == 2)) {
         return 0;
     }
 
@@ -169,7 +169,7 @@ void sub_02070728 (FieldSystem * fieldSystem, UnkStruct_02070950 * param1)
     int v3;
     int v4;
 
-    param1->unk_04 = fieldSystem;
+    param1->fieldSystem = fieldSystem;
     param1->unk_00 = fieldSystem->unk_1C->unk_00;
     param1->unk_0C = 0;
 
@@ -280,7 +280,7 @@ static void sub_020708E0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070914;
     menu->unk_25C = v1;
@@ -353,7 +353,7 @@ static int sub_02070A24 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (PlayerAvatar_GetPlayerState(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->fieldSystem->playerAvatar) == 0x2) {
         return 4;
     }
 
@@ -376,7 +376,7 @@ static void sub_02070A80 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070AB4;
     menu->unk_25C = v1;
@@ -420,7 +420,7 @@ static void sub_02070B28 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070B5C;
     menu->unk_25C = v1;
@@ -464,7 +464,7 @@ static void sub_02070BD0 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070C04;
     menu->unk_25C = v1;
@@ -493,7 +493,7 @@ static int sub_02070C40 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (PlayerAvatar_GetPlayerState(param0->unk_04->playerAvatar) == 0x2) {
+    if (PlayerAvatar_GetPlayerState(param0->fieldSystem->playerAvatar) == 0x2) {
         return 1;
     }
 
@@ -512,7 +512,7 @@ static void sub_02070C88 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070CBC;
     menu->unk_25C = v1;
@@ -522,10 +522,10 @@ static void sub_02070C88 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 static BOOL sub_02070CBC (TaskManager * taskMan)
 {
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
-    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
     sub_0203E918(taskMan, 10009, v0->unk_04);
-    sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
+    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -556,7 +556,7 @@ static void sub_02070D30 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070D64;
     menu->unk_25C = v1;
@@ -604,7 +604,7 @@ static void sub_02070DEC (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070E20;
     menu->unk_25C = v1;
@@ -614,10 +614,10 @@ static void sub_02070DEC (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 static BOOL sub_02070E20 (TaskManager * taskMan)
 {
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
-    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
     sub_0203E918(taskMan, 10011, NULL);
-    sub_0203F21C(v1, v0->unk_08.unk_04, 0, 0, 0);
+    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -644,7 +644,7 @@ static void sub_02070E7C (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     menu = TaskManager_Environment(param0->unk_00);
     v1 = sub_0207086C(param0, param1);
 
-    sub_020509D4(param1->unk_04);
+    sub_020509D4(param1->fieldSystem);
 
     menu->unk_22C = sub_02070EB0;
     menu->unk_25C = v1;
@@ -807,7 +807,7 @@ static void sub_020710D4 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
 
 static int sub_02071130 (const UnkStruct_02070950 * param0)
 {
-    if ((inline_02070AF0(param0) == 0) || (sub_02071CB4(param0->unk_04, 9) == 1)) {
+    if ((inline_02070AF0(param0) == 0) || (sub_02071CB4(param0->fieldSystem, 9) == 1)) {
         return 1;
     }
 

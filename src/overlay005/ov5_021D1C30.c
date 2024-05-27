@@ -359,20 +359,20 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
     return 0;
 }
 
-static BOOL ov5_021D20DC (FieldSystem * param0)
+static BOOL ov5_021D20DC (FieldSystem * fieldSystem)
 {
     MapObject * v0;
     int v1;
 
-    if (sub_0203CBE0(param0, &v0) == 1) {
-        sub_0203E880(param0, sub_02062960(v0), v0);
+    if (sub_0203CBE0(fieldSystem, &v0) == 1) {
+        sub_0203E880(fieldSystem, sub_02062960(v0), v0);
         return 1;
     }
 
-    v1 = sub_0203CB80(param0, (void *)sub_0203A440(param0), sub_0203A448(param0));
+    v1 = sub_0203CB80(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
 
     if (v1 != 0xffff) {
-        sub_0203E880(param0, v1, NULL);
+        sub_0203E880(fieldSystem, v1, NULL);
         return 1;
     }
 

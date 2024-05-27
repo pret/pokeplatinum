@@ -506,8 +506,6 @@ static int ov5_021F0D54 (void)
 
 static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
 {
-    FieldSystem * v0 = param0->fieldSystem;
-
     param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
     param0->unk_30 = Strbuf_Init(0x400, 4);
@@ -524,10 +522,10 @@ static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 
 static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
 {
-    FieldSystem * v0 = param0->fieldSystem;
+    FieldSystem * fieldSystem = param0->fieldSystem;
 
-    FieldMessage_AddWindow(v0->unk_08, &param0->window, 3);
-    FieldMessage_DrawWindow(&param0->window, SaveData_Options(v0->saveData));
+    FieldMessage_AddWindow(fieldSystem->unk_08, &param0->window, 3);
+    FieldMessage_DrawWindow(&param0->window, SaveData_Options(fieldSystem->saveData));
 }
 
 static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)

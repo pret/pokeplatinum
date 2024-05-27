@@ -54,11 +54,11 @@ struct PoketchSystem {
     NNSG2dOamManagerInstance * unk_50;
     SaveData * saveData;
     PoketchData * poketchData;
-    FieldSystem * fieldSys;
+    FieldSystem * fieldSystem;
     enum ButtonDir buttonDir;
 };
 
-void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
+void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
 void ov25_02253D5C(PoketchSystem *poketchSys);
 BOOL ov25_02253D70(PoketchSystem *poketchSys);
 void ov25_02253D7C(PoketchSystem *poketchSys, int param1, u32 param2);

@@ -8,7 +8,7 @@
 
 #include <nitro/math.h>
 
-void ov23_022416E0(void * param0, FieldSystem * param1);
+void ov23_022416E0(void * param0, FieldSystem * fieldSystem);
 int ov23_022417C4(void);
 void ov23_022417CC(void);
 void ov23_022417E0(void);

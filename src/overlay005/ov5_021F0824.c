@@ -13,7 +13,7 @@
 #include "overlay005/ov5_021F0824.h"
 #include "overlay023/ov23_02241F74.h"
 
-void ov5_021F0824 (FieldSystem * param0)
+void ov5_021F0824 (FieldSystem * fieldSystem)
 {
     int v0;
     int v1;
@@ -24,7 +24,7 @@ void ov5_021F0824 (FieldSystem * param0)
     VecFx32 v9;
     int v10;
 
-    v2 = sub_0205A080(param0->saveData);
+    v2 = sub_0205A080(fieldSystem->saveData);
 
     if (v2 == NULL) {
         return;
@@ -51,9 +51,9 @@ void ov5_021F0824 (FieldSystem * param0)
 
             v9.x += (v7 * FX32_ONE * 8);
             v9.z += (v8 * FX32_ONE * 8);
-            v10 = ov5_021EFAE8(param0->unk_30, v1);
+            v10 = ov5_021EFAE8(fieldSystem->unk_30, v1);
 
-            ov5_021E19CC(param0->unk_A4, param0->unk_30, v10, &v9, NULL, param0->unk_50);
+            ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, v10, &v9, NULL, fieldSystem->unk_50);
         }
     }
 }

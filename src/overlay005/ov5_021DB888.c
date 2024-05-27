@@ -33,7 +33,7 @@ typedef struct {
 
 typedef struct {
     u32 unk_00;
-    FieldSystem * unk_04;
+    FieldSystem * fieldSystem;
     UnkStruct_020507E4 * unk_08;
     const UnkStruct_ov5_021F8E48 * unk_0C;
     MapObject * unk_10[64];
@@ -64,17 +64,17 @@ static void ov5_021DBC94(SysTask * param0, void * param1);
 static BOOL ov5_021DBCD4(UnkStruct_ov5_021DBA58 * param0);
 static BOOL ov5_021DBCE0(UnkStruct_ov5_021DBA58 * param0);
 static u16 ov5_021DBD88(MapObject * param0);
-static void ov5_021DBC08(FieldSystem * param0);
-static u16 ov5_021DBDDC(FieldSystem * param0, u16 param1);
-static u16 ov5_021DBDFC(FieldSystem * param0, u16 param1);
-static u16 ov5_021DBE48(FieldSystem * param0, u16 param1, u16 param2);
+static void ov5_021DBC08(FieldSystem * fieldSystem);
+static u16 ov5_021DBDDC(FieldSystem * fieldSystem, u16 param1);
+static u16 ov5_021DBDFC(FieldSystem * fieldSystem, u16 param1);
+static u16 ov5_021DBE48(FieldSystem * fieldSystem, u16 param1, u16 param2);
 static u16 ov5_021DBE70(u16 param0, u16 param1);
 static u16 ov5_021DBEA4(u16 param0, u16 param1);
 static BOOL ov5_021DBEB8(MapObject * param0);
 static void ov5_021DBECC(MapObject * param0, u16 param1);
-void ov5_021DBED4(FieldSystem * param0, MapObject * param1);
-static BOOL ov5_021DBF20(FieldSystem * param0);
-static MapObject * ov5_021DBF70(FieldSystem * param0, MapObject * param1, int param2);
+void ov5_021DBED4(FieldSystem * fieldSystem, MapObject * param1);
+static BOOL ov5_021DBF20(FieldSystem * fieldSystem);
+static MapObject * ov5_021DBF70(FieldSystem * fieldSystem, MapObject * param1, int param2);
 
 const UnkStruct_ov5_021F8E48 Unk_ov5_021F8E48[] = {
 	{ 0xE, 0xE, 0x0, 0x0, 0x0, 0x0 },
@@ -333,7 +333,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F8E34[] = {
 void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
 {
     UnkStruct_ov5_021DBA58 * v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBA58));
 
@@ -344,8 +344,8 @@ void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021DBA58));
 
-    v0->unk_04 = v1;
-    v0->unk_08 = SaveData_Events(v1->saveData);
+    v0->fieldSystem = fieldSystem;
+    v0->unk_08 = SaveData_Events(fieldSystem->saveData);
     v0->unk_114 = param2;
     v0->unk_118 = param1;
 
@@ -361,7 +361,7 @@ static BOOL ov5_021DB8D8 (TaskManager * param0)
 
     switch (v3->unk_00) {
     case 0:
-        if (ov5_021DBF20(v3->unk_04) == 1) {
+        if (ov5_021DBF20(v3->fieldSystem) == 1) {
             ov5_021DBA54(v3, 1);
         }
         break;
@@ -381,7 +381,7 @@ static BOOL ov5_021DB8D8 (TaskManager * param0)
         }
         break;
     case 2:
-        v3->unk_11C = ov5_021E1014(v3->unk_04);
+        v3->unk_11C = ov5_021E1014(v3->fieldSystem);
         Sound_PlayEffect(1568);
         sub_0206B0F8(v3->unk_08, 0);
         ov5_021DBA54(v3, 3);
@@ -460,7 +460,7 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
     int v3, v4, v5, v6;
     int v7, v8, v9, v10;
     MapObject * v11;
-    u32 v12 = sub_0203A4B4(param0->unk_04);
+    u32 v12 = sub_0203A4B4(param0->fieldSystem);
 
     v6 = 0;
 
@@ -468,8 +468,8 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
         param0->unk_10[v5] = NULL;
     }
 
-    v3 = Player_GetXPos(param0->unk_04->playerAvatar);
-    v4 = Player_GetZPos(param0->unk_04->playerAvatar);
+    v3 = Player_GetXPos(param0->fieldSystem->playerAvatar);
+    v4 = Player_GetZPos(param0->fieldSystem->playerAvatar);
     v7 = v3 - 7;
     v8 = v3 + 7;
     v9 = v4 - 7;
@@ -484,7 +484,7 @@ static void ov5_021DBA7C (UnkStruct_ov5_021DBA58 * param0)
     }
 
     for (v5 = 0; v5 < v12; v5++) {
-        v11 = MapObjMan_LocalMapObjByIndex(param0->unk_04->mapObjMan, v5);
+        v11 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, v5);
 
         if (v11 == NULL) {
             continue;
@@ -529,13 +529,13 @@ static BOOL ov5_021DBB70 (u32 param0)
     return 0;
 }
 
-BOOL ov5_021DBB94 (FieldSystem * param0)
+BOOL ov5_021DBB94 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     u16 v1 = sub_0206B0E8(v0);
     u16 v2 = sub_0206B108(v0);
 
-    if (sub_0207D688(sub_0207D990(param0->saveData), 443, 1, 4) == 1) {
+    if (sub_0207D688(sub_0207D990(fieldSystem->saveData), 443, 1, 4) == 1) {
         if (v1 < 100) {
             v1++;
             sub_0206B0F8(v0, v1);
@@ -550,7 +550,7 @@ BOOL ov5_021DBB94 (FieldSystem * param0)
 
         if (v2 == 100) {
             sub_0206B0D4(v0);
-            ov5_021DBC08(param0);
+            ov5_021DBC08(fieldSystem);
         }
     }
 
@@ -633,7 +633,7 @@ static BOOL ov5_021DBCD4 (UnkStruct_ov5_021DBA58 * param0)
 
 static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_04->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
     MapObject * v1;
     u16 v2;
     int v3, v4;
@@ -643,7 +643,7 @@ static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
     for (v3 = 0; v3 < param0->unk_110; v3++) {
         v2 = ov5_021DBD88(param0->unk_10[v3]);
 
-        if (sub_0203F2A0(param0->unk_04, v2) == 0) {
+        if (sub_0203F2A0(param0->fieldSystem, v2) == 0) {
             ov5_021DBC40(param0, param0->unk_10[v3], Unk_ov5_021F8E34);
             v4 = 1;
         } else {
@@ -651,7 +651,7 @@ static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
                 ov5_021DBECC(param0->unk_10[v3], 0x31);
                 ov5_021DBC40(param0, param0->unk_10[v3], Unk_ov5_021F8E3C);
 
-                v1 = ov5_021DBF70(param0->unk_04, param0->unk_10[v3], 0);
+                v1 = ov5_021DBF70(param0->fieldSystem, param0->unk_10[v3], 0);
 
                 if (v1 != NULL) {
                     ov5_021DBECC(v1, 0x31);
@@ -675,7 +675,7 @@ static u16 ov5_021DBD88 (MapObject * param0)
     return sub_0203F254(v0);
 }
 
-u16 ov5_021DBD98 (FieldSystem * param0, MapObject * param1, u16 param2)
+u16 ov5_021DBD98 (FieldSystem * fieldSystem, MapObject * param1, u16 param2)
 {
     u16 v0, v1, v2;
 
@@ -683,20 +683,20 @@ u16 ov5_021DBD98 (FieldSystem * param0, MapObject * param1, u16 param2)
         return 0;
     }
 
-    v0 = ov5_021DBDDC(param0, param2);
+    v0 = ov5_021DBDDC(fieldSystem, param2);
 
     if (v0 == 0xff) {
         return 0;
     }
 
-    v1 = ov5_021DBDFC(param0, v0);
-    v1 = ov5_021DBE48(param0, v0, v1);
+    v1 = ov5_021DBDFC(fieldSystem, v0);
+    v1 = ov5_021DBE48(fieldSystem, v0, v1);
     v2 = ov5_021DBEA4(v0, v1);
 
     return v2;
 }
 
-static u16 ov5_021DBDDC (FieldSystem * param0, u16 param1)
+static u16 ov5_021DBDDC (FieldSystem * fieldSystem, u16 param1)
 {
     int v0, v1;
     const UnkStruct_ov5_021F8E48 * v2 = Unk_ov5_021F8E48;
@@ -712,7 +712,7 @@ static u16 ov5_021DBDDC (FieldSystem * param0, u16 param1)
     return 0xff;
 }
 
-static u16 ov5_021DBDFC (FieldSystem * param0, u16 param1)
+static u16 ov5_021DBDFC (FieldSystem * fieldSystem, u16 param1)
 {
     int v0, v1;
     const UnkStruct_ov5_021F8E48 * v2 = Unk_ov5_021F8E48;
@@ -723,7 +723,7 @@ static u16 ov5_021DBDFC (FieldSystem * param0, u16 param1)
         }
 
         if (v2[param1].unk_00[v1] != 0xffff) {
-            if (sub_0203F2A0(param0, v2[param1].unk_00[v1]) == 0) {
+            if (sub_0203F2A0(fieldSystem, v2[param1].unk_00[v1]) == 0) {
                 return v1;
             }
         }
@@ -732,9 +732,9 @@ static u16 ov5_021DBDFC (FieldSystem * param0, u16 param1)
     return v1 - 1;
 }
 
-static u16 ov5_021DBE48 (FieldSystem * param0, u16 param1, u16 param2)
+static u16 ov5_021DBE48 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     u16 v1 = param2;
 
     switch (param2) {
@@ -786,7 +786,7 @@ static void ov5_021DBECC (MapObject * param0, u16 param1)
     return;
 }
 
-void ov5_021DBED4 (FieldSystem * param0, MapObject * param1)
+void ov5_021DBED4 (FieldSystem * fieldSystem, MapObject * param1)
 {
     MapObject * v0;
     u32 v1;
@@ -808,7 +808,7 @@ void ov5_021DBED4 (FieldSystem * param0, MapObject * param1)
         v1 = 0x11;
     }
 
-    v0 = ov5_021DBF70(param0, param1, 1);
+    v0 = ov5_021DBF70(fieldSystem, param1, 1);
 
     if (v0 != NULL) {
         ov5_021DBECC(v0, v1);
