@@ -92,7 +92,15 @@
             "28": "MOVE_AGILITY",
             "36": "MOVE_WHIRLPOOL",
             "45": "MOVE_RAZOR_WIND"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -100,5 +108,9 @@
             26,
             "SPECIES_FLOATZEL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

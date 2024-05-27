@@ -90,6 +90,18 @@
             "34": "MOVE_SILVER_WIND",
             "38": "MOVE_GIGA_DRAIN",
             "41": "MOVE_BUG_BUZZ"
-        }
+        },
+        "tutor": [
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_TWISTER",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

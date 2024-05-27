@@ -105,7 +105,18 @@
             "37": "MOVE_COUNTER",
             "43": "MOVE_FOCUS_PUNCH",
             "49": "MOVE_REVERSAL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -113,5 +124,9 @@
             36,
             "SPECIES_SLAKING"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

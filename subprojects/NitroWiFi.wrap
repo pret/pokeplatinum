@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/Nomura-RH/NitroWiFi.git
-revision = head
+revision = main
 depth = 1
 directory = NitroWiFi-2.1.30003
 

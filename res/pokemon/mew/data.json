@@ -161,6 +161,50 @@
             "80": "MOVE_BATON_PASS",
             "90": "MOVE_NASTY_PLOT",
             "100": "MOVE_AURA_SPHERE"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_IRON_HEAD",
+            "MOVE_AQUA_TAIL",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_OUTRAGE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SYNTHESIS",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_EARTH_POWER",
+            "MOVE_GUNK_SHOT",
+            "MOVE_TWISTER",
+            "MOVE_SEED_BOMB",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_TRICK",
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

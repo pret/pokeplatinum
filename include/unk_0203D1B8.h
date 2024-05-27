@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_020425E0.h"
+#include "struct_defs/choose_starter_data.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_decls/struct_02070950_decl.h"

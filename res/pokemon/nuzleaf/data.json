@@ -101,7 +101,17 @@
             "37": "MOVE_RAZOR_WIND",
             "43": "MOVE_SWAGGER",
             "49": "MOVE_EXTRASENSORY"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -109,5 +119,9 @@
             "ITEM_LEAF_STONE",
             "SPECIES_SHIFTRY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

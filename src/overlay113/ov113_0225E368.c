@@ -682,7 +682,7 @@ static void ov113_0225E920 (NNSG3dResTex * param0, NARC * param1, NARC * param2,
     NNSG2dCharacterData * v3;
     int v4;
 
-    v4 = ov113_02260788(param3->unk_02, param3->unk_08, param4);
+    v4 = PokemonHasOverworldFootprint(param3->unk_02, param3->unk_08, param4);
     v1 = (u8 *)((u8 *)param0 + param0->texInfo.ofsTex);
 
     if (v4 == 1) {
@@ -920,7 +920,7 @@ static void ov113_0225ECA0 (UnkStruct_02017294 * param0, const UnkStruct_ov113_0
     int v6;
     fx64 v7, v8, v9, v10;
 
-    v6 = ov113_022607B8(param1->unk_02, param1->unk_08);
+    v6 = PokemonOverworldFootprintSize(param1->unk_02, param1->unk_08);
     GF_ASSERT(v6 < NELEMS(Unk_ov113_02260C38));
 
     sub_02017358(param0, &v0, &v1, &v2);

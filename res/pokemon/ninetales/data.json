@@ -87,6 +87,18 @@
                 "MOVE_CONFUSE_RAY",
                 "MOVE_SAFEGUARD"
             ]
-        }
+        },
+        "tutor": [
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

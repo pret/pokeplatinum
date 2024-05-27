@@ -92,7 +92,15 @@
             "42": "MOVE_LIGHT_SCREEN",
             "47": "MOVE_POWER_GEM",
             "53": "MOVE_THUNDER"
-        }
+        },
+        "tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -100,5 +108,9 @@
             30,
             "SPECIES_AMPHAROS"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

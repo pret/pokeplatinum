@@ -97,7 +97,18 @@
             "47": "MOVE_EARTHQUAKE",
             "54": "MOVE_STONE_EDGE",
             "60": "MOVE_HYPER_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -105,5 +116,9 @@
             55,
             "SPECIES_TYRANITAR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

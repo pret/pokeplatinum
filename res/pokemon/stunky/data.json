@@ -97,7 +97,14 @@
             "32": "MOVE_NIGHT_SLASH",
             "38": "MOVE_MEMENTO",
             "44": "MOVE_EXPLOSION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -105,5 +112,9 @@
             34,
             "SPECIES_SKUNTANK"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

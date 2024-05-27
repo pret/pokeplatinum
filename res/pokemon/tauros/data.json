@@ -100,6 +100,21 @@
             "41": "MOVE_SWAGGER",
             "48": "MOVE_THRASH",
             "55": "MOVE_GIGA_IMPACT"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

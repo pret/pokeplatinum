@@ -98,12 +98,26 @@
             "39": "MOVE_POISON_FANG",
             "45": "MOVE_HAZE",
             "51": "MOVE_AIR_SLASH"
-        }
+        },
+        "tutor": [
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
             "EVO_HAPPINESS",
             "SPECIES_CROBAT"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

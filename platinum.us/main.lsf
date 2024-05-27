@@ -1298,10 +1298,10 @@ Overlay overlay77
 	Object main.nef.p/src_overlay077_ov77_021D6C70.c.o
 }
 
-Overlay overlay78
+Overlay choose_starter
 {
 	After main
-	Object main.nef.p/src_overlay078_ov78_021D0D80.c.o
+	Object main.nef.p/src_choose_starter_choose_starter_app.c.o
 }
 
 Overlay overlay79

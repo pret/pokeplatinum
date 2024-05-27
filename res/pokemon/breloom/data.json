@@ -107,6 +107,21 @@
             "37": "MOVE_MIND_READER",
             "41": "MOVE_SEED_BOMB",
             "45": "MOVE_DYNAMIC_PUNCH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SYNTHESIS",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_SEED_BOMB"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

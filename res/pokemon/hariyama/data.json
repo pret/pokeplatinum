@@ -105,6 +105,22 @@
             "47": "MOVE_ENDURE",
             "52": "MOVE_CLOSE_COMBAT",
             "57": "MOVE_REVERSAL"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_KNOCK_OFF"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

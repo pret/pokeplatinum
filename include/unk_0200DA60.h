@@ -5,6 +5,8 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
 
+#define TEXT_WINDOW_SIZE    30
+
 void Window_SetFrame(BGL * param0, u8 param1, u16 param2, u8 param3, u32 param4);
 u32 Window_FramePalette(void);
 void sub_0200DAA4(BGL * param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5);

@@ -97,6 +97,23 @@
             "50": "MOVE_ZEN_HEADBUTT",
             "75": "MOVE_CRUSH_GRIP",
             "100": "MOVE_GIGA_IMPACT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

@@ -102,6 +102,20 @@
             "44": "MOVE_POWER_GEM",
             "48": "MOVE_MIRROR_COAT",
             "53": "MOVE_EARTH_POWER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_SUCKER_PUNCH"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
     }
 }

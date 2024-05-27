@@ -102,7 +102,21 @@
             ],
             "50": "MOVE_THRASH",
             "57": "MOVE_FLING"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -110,5 +124,9 @@
             30,
             "SPECIES_URSARING"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

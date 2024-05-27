@@ -96,6 +96,19 @@
             "64": "MOVE_AGILITY",
             "71": "MOVE_THUNDER",
             "78": "MOVE_DISCHARGE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

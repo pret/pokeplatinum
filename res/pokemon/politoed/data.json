@@ -92,6 +92,18 @@
             "27": "MOVE_SWAGGER",
             "37": "MOVE_BOUNCE",
             "48": "MOVE_HYPER_VOICE"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_BOUNCE"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

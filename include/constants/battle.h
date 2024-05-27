@@ -2,7 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_BATTLE_H
 
 #ifndef __ASM_PM_
-#include "consts/generated/c/battle.h"
+#include "consts/battle.h"
 
 enum BattleActions {
     BATTLE_ACTION_PICK_COMMAND = 0,

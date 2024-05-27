@@ -188,7 +188,7 @@ pl_enc_tbl_narc = custom_target('pl_enc_data.narc',
     output: 'pl_enc_data.narc',
     input: pl_enc_data_srcs,
     env: json2bin_env,
-    depends: [ generated_consts_py ],
+    depends: [ py_consts_generators ],
     command: [
         encounters_py,
         '--knarc', knarc_exe,

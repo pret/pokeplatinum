@@ -88,7 +88,15 @@
             "40": "MOVE_GYRO_BALL",
             "43": "MOVE_EXPLOSION",
             "47": "MOVE_MIRROR_COAT"
-        }
+        },
+        "tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -96,5 +104,9 @@
             30,
             "SPECIES_ELECTRODE"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

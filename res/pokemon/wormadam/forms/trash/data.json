@@ -91,6 +91,17 @@
             "41": "MOVE_ATTRACT",
             "44": "MOVE_PSYCHIC",
             "47": "MOVE_IRON_HEAD"
-        }
+        },
+        "tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_GUNK_SHOT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
     }
 }

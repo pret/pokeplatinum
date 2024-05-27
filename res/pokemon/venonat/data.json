@@ -87,7 +87,13 @@
             "37": "MOVE_ZEN_HEADBUTT",
             "41": "MOVE_POISON_FANG",
             "47": "MOVE_PSYCHIC"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -95,5 +101,9 @@
             31,
             "SPECIES_VENOMOTH"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

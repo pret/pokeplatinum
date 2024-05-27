@@ -98,6 +98,22 @@
             "41": "MOVE_SAFEGUARD",
             "46": "MOVE_EXTRASENSORY",
             "49": "MOVE_HEALING_WISH"
-        }
+        },
+        "tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

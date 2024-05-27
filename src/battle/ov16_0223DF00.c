@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/generated/c/battle.h"
+#include "consts/battle.h"
 
 #include "battle/common.h"
 #include "constants/battle.h"

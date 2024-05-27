@@ -90,7 +90,18 @@
             "5": "MOVE_COPYCAT",
             "9": "MOVE_REFRESH",
             "12": "MOVE_SWEET_KISS"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_LAST_RESORT",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -98,5 +109,9 @@
             "ITEM_OVAL_STONE",
             "SPECIES_CHANSEY"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

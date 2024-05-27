@@ -94,7 +94,18 @@
             "37": "MOVE_DISCHARGE",
             "42": "MOVE_LIGHT_SCREEN",
             "45": "MOVE_THUNDER"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_MAGNET_RISE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -102,5 +113,9 @@
             "ITEM_THUNDERSTONE",
             "SPECIES_RAICHU"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

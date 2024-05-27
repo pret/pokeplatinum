@@ -109,6 +109,22 @@
             "56": "MOVE_CAPTIVATE",
             "61": "MOVE_NIGHT_SLASH",
             "68": "MOVE_FEINT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_LAST_RESORT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

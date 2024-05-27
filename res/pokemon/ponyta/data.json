@@ -85,7 +85,13 @@
             "37": "MOVE_FIRE_BLAST",
             "42": "MOVE_BOUNCE",
             "46": "MOVE_FLARE_BLITZ"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE",
+            "MOVE_BOUNCE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -93,5 +99,9 @@
             40,
             "SPECIES_RAPIDASH"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

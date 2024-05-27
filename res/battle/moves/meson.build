@@ -481,7 +481,7 @@ pl_waza_tbl_narc = custom_target('pl_waza_tbl.narc',
     output: 'pl_waza_tbl.narc',
     input: pl_waza_tbl_data_srcs,
     env: json2bin_env,
-    depends: [ generated_consts_py ],
+    depends: [ py_consts_generators ],
     command: [
         movedata_py,
         '--knarc', knarc_exe,

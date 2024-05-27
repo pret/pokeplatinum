@@ -94,7 +94,18 @@
             "37": "MOVE_SUPER_FANG",
             "41": "MOVE_SUPERPOWER",
             "45": "MOVE_CURSE"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SUPERPOWER",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -102,5 +113,9 @@
             15,
             "SPECIES_BIBAREL"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
+    }
 }

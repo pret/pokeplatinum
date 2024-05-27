@@ -94,12 +94,29 @@
             "19": "MOVE_REVERSAL",
             "24": "MOVE_SCREECH",
             "29": "MOVE_COPYCAT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
             "EVO_HAPPINESS_DAY",
             "SPECIES_LUCARIO"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

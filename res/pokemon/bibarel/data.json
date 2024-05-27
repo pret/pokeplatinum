@@ -107,6 +107,22 @@
             "43": "MOVE_SUPER_FANG",
             "48": "MOVE_SUPERPOWER",
             "53": "MOVE_CURSE"
-        }
+        },
+        "tutor": [
+            "MOVE_DIVE",
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
+            "MOVE_ROLLOUT",
+            "MOVE_SUPERPOWER",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

@@ -109,6 +109,25 @@
             "49": "MOVE_BRAVE_BIRD",
             "59": "MOVE_SKY_UPPERCUT",
             "66": "MOVE_FLARE_BLITZ"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_LAST_RESORT",
+            "MOVE_BOUNCE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

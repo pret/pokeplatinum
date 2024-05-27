@@ -116,7 +116,19 @@
             "43": "MOVE_MEAN_LOOK",
             "51": "MOVE_PAYBACK",
             "61": "MOVE_FUTURE_SIGHT"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH"
+        ]
     },
     "evolutions": [
         [
@@ -124,5 +136,9 @@
             "ITEM_REAPER_CLOTH",
             "SPECIES_DUSKNOIR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

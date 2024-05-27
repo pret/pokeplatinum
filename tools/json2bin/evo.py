@@ -3,7 +3,7 @@ from collections.abc import Sequence
 import pathlib
 import json2bin as j2b
 
-from consts.generated.py import (
+from consts import (
     items,
     moves,
     pokemon,

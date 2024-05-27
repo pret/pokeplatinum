@@ -86,7 +86,14 @@
             "40": "MOVE_ROLLOUT",
             "46": "MOVE_DOUBLE_EDGE",
             "49": "MOVE_ERUPTION"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_SNORE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -94,5 +101,9 @@
             14,
             "SPECIES_QUILAVA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

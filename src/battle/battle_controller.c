@@ -1,8 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/generated/c/abilities.h"
-#include "consts/generated/c/battle_controller_params.h"
+#include "consts/abilities.h"
 
 #include "constants/battle.h"
 #include "constants/heap.h"

@@ -91,7 +91,14 @@
             "45": "MOVE_TAKE_DOWN",
             "49": "MOVE_SUCKER_PUNCH",
             "53": "MOVE_CRUNCH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SNORE",
+            "MOVE_SPITE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
+        ]
     },
     "evolutions": [
         [
@@ -99,5 +106,9 @@
             18,
             "SPECIES_MIGHTYENA"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

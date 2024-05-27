@@ -86,7 +86,16 @@
             "29": "MOVE_ASSURANCE",
             "33": "MOVE_ROOST",
             "37": "MOVE_DRILL_PECK"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
     },
     "evolutions": [
         [
@@ -94,5 +103,9 @@
             20,
             "SPECIES_FEAROW"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

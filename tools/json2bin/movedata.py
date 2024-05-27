@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import pathlib
 
-from consts.generated.py import (
+from consts import (
     battle,
     moves,
     pokemon

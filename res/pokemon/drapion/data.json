@@ -110,6 +110,17 @@
             "39": "MOVE_POISON_FANG",
             "49": "MOVE_CRUNCH",
             "58": "MOVE_CROSS_POISON"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_KNOCK_OFF"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_SMALL"
     }
 }

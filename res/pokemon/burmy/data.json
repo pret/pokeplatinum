@@ -50,7 +50,10 @@
             "10": "MOVE_TACKLE",
             "15": "MOVE_BUG_BITE",
             "20": "MOVE_HIDDEN_POWER"
-        }
+        },
+        "tutor": [
+            "MOVE_SNORE"
+        ]
     },
     "evolutions": [
         [
@@ -63,5 +66,9 @@
             20,
             "SPECIES_MOTHIM"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
+    }
 }

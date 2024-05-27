@@ -1,9 +1,4 @@
 {
-    "targets": {
-        "shadows": [
-            "@PokemonBattleShadowSize"
-        ]
-    },
     "definitions": {
         "@PokemonBattleShadowSize": {
             "type": "enum",

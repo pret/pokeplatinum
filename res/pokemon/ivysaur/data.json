@@ -95,7 +95,15 @@
             "36": "MOVE_WORRY_SEED",
             "39": "MOVE_SYNTHESIS",
             "44": "MOVE_SOLAR_BEAM"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF"
+        ]
     },
     "evolutions": [
         [
@@ -103,5 +111,9 @@
             32,
             "SPECIES_VENUSAUR"
         ]
-    ]
+    ],
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
+    }
 }

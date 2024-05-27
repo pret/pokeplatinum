@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_POKEMON_H
 #define POKEPLATINUM_CONSTANTS_POKEMON_H
 
-#include "consts/generated/c/pokemon.h" // defs for PokemonType and PokemonPersonalDataParam
+#include "consts/pokemon.h" // defs for PokemonType and PokemonPersonalDataParam
 
 /**
  * @brief Pokemon Stats

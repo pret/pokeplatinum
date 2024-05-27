@@ -114,6 +114,19 @@
             "43": "MOVE_TAKE_DOWN",
             "51": "MOVE_PAYBACK",
             "59": "MOVE_CRUNCH"
-        }
+        },
+        "tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_LAST_RESORT"
+        ]
+    },
+    "footprint": {
+        "has_footprint": true,
+        "footprint_size": "FOOTPRINT_MEDIUM"
     }
 }

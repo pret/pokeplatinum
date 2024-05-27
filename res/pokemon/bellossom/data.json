@@ -87,6 +87,17 @@
             ],
             "23": "MOVE_MAGICAL_LEAF",
             "53": "MOVE_LEAF_STORM"
-        }
+        },
+        "tutor": [
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_UPROAR"
+        ]
+    },
+    "footprint": {
+        "has_footprint": false,
+        "footprint_size": "FOOTPRINT_LARGE"
     }
 }

@@ -9,6 +9,7 @@ RUN apt-get install -y \
         python3-venv \
         python3-pip \
         python-is-python3 \
+        binutils-arm-none-eabi \
         wget
 RUN dpkg --add-architecture i386
 RUN mkdir -pm755 /etc/apt/keyrings

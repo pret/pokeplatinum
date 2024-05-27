@@ -2,7 +2,7 @@
 #define POKEPLATINUM_BATTLE_BTLCMD_H
 
 #ifndef __ASM_PM_
-#include "consts/generated/c/btlcmd.h"
+#include "consts/btlcmd.h"
 #endif
 
 // TODO: move these to constgen

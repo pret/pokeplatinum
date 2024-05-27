@@ -20,8 +20,8 @@ s_to_bin_gen = generator(make_script_bin_sh,
     ],
     depends: [
         pl_msg_narc, # for GMM headers
-        generated_consts_asm, # for ASM headers
-        generated_consts_c, # for C headers
+        asm_consts_generators, # for ASM headers
+        c_consts_generators, # for C headers
     ],
     output: '@BASENAME@'
 )
