@@ -57,7 +57,7 @@
 #include "unk_02071B10.h"
 #include "pokemon.h"
 #include "party.h"
-#include "overlay005/ov5_021D1C30.h"
+#include "overlay005/event_check.h"
 #include "overlay005/ov5_021DB888.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1154.h"
