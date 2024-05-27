@@ -73,11 +73,11 @@
 #include "overlay023/ov23_02241F74.h"
 
 static BOOL FieldEventCheck_MapTransition(FieldSystem *fieldSystem, const FieldEventCheck *eventCheck);
-static u16 FieldEventCheck_MapAttribute(FieldSystem *fieldSystem, u8 attribute);
+static u16 FieldEventCheck_TilePermissionsToEvent(FieldSystem *fieldSystem, u8 permissions);
 static BOOL FieldEventCheck_WildEncounter(FieldSystem *fieldSystem);
 static BOOL FieldEventCheck_Step(FieldSystem *fieldSystem);
 static BOOL FieldEventCheck_PositionalEvent(FieldSystem *fieldSystem);
-static BOOL FieldEventCheck_Transition(FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curAttribute);
+static BOOL FieldEventCheck_Transition(FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curPermissions);
 static BOOL FieldEventCheck_Daycare(FieldSystem *fieldSystem);
 static BOOL FieldEventCheck_Poison(FieldSystem *fieldSystem);
 static BOOL FieldEventCheck_Safari(FieldSystem *fieldSystem);
@@ -90,8 +90,8 @@ static void FieldEventCheck_CalculateFriendship(FieldSystem *fieldSystem);
 static void FieldEventCheck_PlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
 static void FieldEventCheck_NextPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
 static void FieldEventCheck_NextFacingPos(const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ);
-static u8 FieldEventCheck_CurrentAttribute(const FieldSystem *fieldSystem);
-static u8 FieldEventCheck_NextAttribute(const FieldSystem *fieldSystem);
+static u8 FieldEventCheck_CurrentTilePermissions(const FieldSystem *fieldSystem);
+static u8 FieldEventCheck_NextTilePermissions(const FieldSystem *fieldSystem);
 static BOOL FieldEventCheck_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap);
 static void FieldEventCheck_TrySetMapConnection(FieldSystem *fieldSystem);
 static BOOL FieldEventCheck_DistortionInteract(FieldSystem *fieldSystem, MapObject **object);
@@ -298,8 +298,8 @@ int FieldEvent_Check (const FieldEventCheck *eventCheck, FieldSystem *fieldSyste
         }
 
         int distortionDir = sub_0205EAA0(fieldSystem->playerAvatar);
-        u32 distortionAttribute = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
-        int distortionEvent = FieldEventCheck_MapAttribute(fieldSystem, distortionAttribute);
+        u32 distortionPermissions = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
+        int distortionEvent = FieldEventCheck_TilePermissionsToEvent(fieldSystem, distortionPermissions);
 
         if (distortionEvent != 0xffff) {
             sub_0203E880(fieldSystem, distortionEvent, NULL);
@@ -392,7 +392,7 @@ BOOL FieldEventCheck_Colosseum (FieldEventCheck *eventCheck, FieldSystem *fieldS
 {
     if (eventCheck->mapTransition && 
         eventCheck->transitionDir == DIR_SOUTH && 
-        sub_0205DB1C(FieldEventCheck_CurrentAttribute(fieldSystem))) {
+        sub_0205DB1C(FieldEventCheck_CurrentTilePermissions(fieldSystem))) {
 
         sub_0203E880(fieldSystem, 9101, NULL);
         return TRUE;
@@ -475,7 +475,7 @@ BOOL FieldEventCheck_UnionRoom (const FieldEventCheck *eventCheck, FieldSystem *
         }
     }
 
-    if (eventCheck->movement && sub_0205DEE4(FieldEventCheck_CurrentAttribute(fieldSystem))) {
+    if (eventCheck->movement && sub_0205DEE4(FieldEventCheck_CurrentTilePermissions(fieldSystem))) {
         sub_020545EC(fieldSystem);
         return TRUE;
     }
@@ -521,10 +521,10 @@ int FieldEventCheck_BattleTower (const FieldEventCheck *eventCheck, FieldSystem 
             return TRUE;
         }
 
-        int attributeEvent = FieldEventCheck_MapAttribute(fieldSystem, FieldEventCheck_NextAttribute(fieldSystem));
+        int permissionsEvent = FieldEventCheck_TilePermissionsToEvent(fieldSystem, FieldEventCheck_NextTilePermissions(fieldSystem));
 
-        if (attributeEvent != 0xffff) {
-            sub_0203E880(fieldSystem, attributeEvent, NULL);
+        if (permissionsEvent != 0xffff) {
+            sub_0203E880(fieldSystem, permissionsEvent, NULL);
             return TRUE;
         }
     }
@@ -585,13 +585,13 @@ static BOOL FieldEventCheck_MapTransition (FieldSystem *fieldSystem, const Field
         return FALSE;
     }
 
-    u8 attribute;
+    u8 permissions;
     Location nextMap;
 
     if (FieldEventCheck_MapConnection(fieldSystem, playerX, playerZ, &nextMap) && eventCheck->transitionDir != DIR_NONE) {
-        attribute = sub_02054F94(fieldSystem, playerX, playerZ);
+        permissions = sub_02054F94(fieldSystem, playerX, playerZ);
 
-        if (sub_0205DAEC(attribute)) {
+        if (sub_0205DAEC(permissions)) {
             int v6 = eventCheck->transitionDir;
 
             if (sub_02071CB4(fieldSystem, 2) == TRUE) {
@@ -606,25 +606,25 @@ static BOOL FieldEventCheck_MapTransition (FieldSystem *fieldSystem, const Field
 
     FieldEventCheck_PlayerPos(fieldSystem, &playerX, &playerZ);
 
-    attribute = sub_02054F94(fieldSystem, playerX, playerZ);
+    permissions = sub_02054F94(fieldSystem, playerX, playerZ);
 
-    if (sub_0205DAF8(attribute) || sub_0205DB28(attribute)) {
+    if (sub_0205DAF8(permissions) || sub_0205DB28(permissions)) {
         if (eventCheck->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (sub_0205DB04(attribute) || sub_0205DB34(attribute)) {
+    } else if (sub_0205DB04(permissions) || sub_0205DB34(permissions)) {
         if (eventCheck->transitionDir != DIR_WEST) {
             return FALSE;
         }
-    } else if (sub_0205DB1C(attribute) || sub_0205DB4C(attribute)) {
+    } else if (sub_0205DB1C(permissions) || sub_0205DB4C(permissions)) {
         if (eventCheck->transitionDir != DIR_SOUTH) {
             return FALSE;
         }
-    } else if (sub_0205DC44(attribute)) {
+    } else if (sub_0205DC44(permissions)) {
         if (eventCheck->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (sub_0205DC50(attribute)) {
+    } else if (sub_0205DC50(permissions)) {
         if (eventCheck->transitionDir != DIR_WEST) {
             return FALSE;
         }
@@ -636,15 +636,15 @@ static BOOL FieldEventCheck_MapTransition (FieldSystem *fieldSystem, const Field
 
     int transitionType;
 
-    if (sub_0205DAEC(attribute)) {
+    if (sub_0205DAEC(permissions)) {
         transitionType = 1;
-    } else if (sub_0205DC44(attribute)) {
+    } else if (sub_0205DC44(permissions)) {
         transitionType = 3;
-    } else if (sub_0205DC50(attribute)) {
+    } else if (sub_0205DC50(permissions)) {
         transitionType = 3;
-    } else if (sub_0205DAF8(attribute) || sub_0205DB28(attribute)
-            || sub_0205DB04(attribute) || sub_0205DB34(attribute)
-            || sub_0205DB1C(attribute) || sub_0205DB4C(attribute)) {
+    } else if (sub_0205DAF8(permissions) || sub_0205DB28(permissions)
+            || sub_0205DB04(permissions) || sub_0205DB34(permissions)
+            || sub_0205DB1C(permissions) || sub_0205DB4C(permissions)) {
         sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, eventCheck->transitionDir);
         return TRUE;
     } else {
@@ -656,47 +656,47 @@ static BOOL FieldEventCheck_MapTransition (FieldSystem *fieldSystem, const Field
     return TRUE;
 }
 
-u16 FieldEventCheck_MapAttribute (FieldSystem *fieldSystem, u8 attribute)
+u16 FieldEventCheck_TilePermissionsToEvent (FieldSystem *fieldSystem, u8 permissions)
 {
     int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if (sub_0205DBE4(attribute) && playerDir == DIR_NORTH) {
+    if (sub_0205DBE4(permissions) && playerDir == DIR_NORTH) {
         return 2018;
-    } else if (sub_0205DC80(attribute)) {
+    } else if (sub_0205DC80(permissions)) {
         return 2500;
-    } else if (sub_0205DC8C(attribute)) {
+    } else if (sub_0205DC8C(permissions)) {
         return 2501;
-    } else if (sub_0205DC98(attribute)) {
+    } else if (sub_0205DC98(permissions)) {
         return 2502;
-    } else if (sub_0205DCA4(attribute)) {
+    } else if (sub_0205DCA4(permissions)) {
         return 2503;
-    } else if (sub_0205DCB0(attribute)) {
+    } else if (sub_0205DCB0(permissions)) {
         return 2504;
-    } else if (sub_0205DCBC(attribute)) {
+    } else if (sub_0205DCBC(permissions)) {
         return 2505;
-    } else if (sub_0205DCC8(attribute)) {
+    } else if (sub_0205DCC8(permissions)) {
         return 2506;
-    } else if (sub_0205DCD4(attribute)) {
+    } else if (sub_0205DCD4(permissions)) {
         return 2507;
-    } else if (sub_0205DDB4(attribute)) {
+    } else if (sub_0205DDB4(permissions)) {
         return 10006;
-    } else if (sub_0205DBF0(attribute)) {
+    } else if (sub_0205DBF0(permissions)) {
         return 2508;
-    } else if (sub_0205DDC0(attribute)) {
+    } else if (sub_0205DDC0(permissions)) {
         return 2030;
-    } else if (sub_0205DE84(attribute) && playerDir == DIR_NORTH) {
+    } else if (sub_0205DE84(permissions) && playerDir == DIR_NORTH) {
         return 10100;
     }
 
-    if (ov5_021E0760(attribute, playerDir)) {
+    if (ov5_021E0760(permissions, playerDir)) {
         return 10003;
     }
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != PLAYER_STATE_SURFING) {
         TrainerInfo *info = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        u32 distortionAttribute = sub_02061760(fieldSystem->playerAvatar);
+        u32 distortionPermissions = sub_02061760(fieldSystem->playerAvatar);
 
-        if (ov5_021E0118(fieldSystem->playerAvatar, distortionAttribute, attribute) && TrainerInfo_HasBadge(info, 3)) {
+        if (ov5_021E0118(fieldSystem->playerAvatar, distortionPermissions, permissions) && TrainerInfo_HasBadge(info, 3)) {
             if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 57) != 0xff) {
                 return 10004;
             }
@@ -726,13 +726,13 @@ static BOOL FieldEventCheck_Step (FieldSystem *fieldSystem)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 attribute = sub_02054F94(fieldSystem, playerX, playerZ);
+    u8 permissions = sub_02054F94(fieldSystem, playerX, playerZ);
 
     if (FieldEventCheck_PositionalEvent(fieldSystem) == TRUE) {
         return TRUE;
     }
 
-    if (FieldEventCheck_Transition(fieldSystem, playerX, playerZ, attribute) == TRUE) {
+    if (FieldEventCheck_Transition(fieldSystem, playerX, playerZ, permissions) == TRUE) {
         FieldEventCheck_TrySetMapConnection(fieldSystem);
         return TRUE;
     }
@@ -787,7 +787,7 @@ static BOOL FieldEventCheck_PositionalEvent (FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static BOOL FieldEventCheck_Transition (FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curAttribute)
+static BOOL FieldEventCheck_Transition (FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curPermissions)
 {
     Location nextMap;
 
@@ -795,7 +795,7 @@ static BOOL FieldEventCheck_Transition (FieldSystem *fieldSystem, const int play
         return FALSE;
     }
 
-    if (sub_0205DC2C(curAttribute) == TRUE) {
+    if (sub_0205DC2C(curPermissions) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (playerDir == DIR_WEST) {
@@ -809,7 +809,7 @@ static BOOL FieldEventCheck_Transition (FieldSystem *fieldSystem, const int play
 
         sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, playerDir, 2);
         return TRUE;
-    } else if (sub_0205DC38(curAttribute) == TRUE) {
+    } else if (sub_0205DC38(curPermissions) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (playerDir != DIR_WEST && playerDir != DIR_EAST) {
@@ -821,12 +821,12 @@ static BOOL FieldEventCheck_Transition (FieldSystem *fieldSystem, const int play
         return TRUE;
     }
 
-    if (sub_0205DB10(curAttribute) || sub_0205DB40(curAttribute)) {
+    if (sub_0205DB10(curPermissions) || sub_0205DB40(curPermissions)) {
         sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, 0);
         return TRUE;
     }
 
-    if (sub_0205DEE4(curAttribute)) {
+    if (sub_0205DEE4(curPermissions)) {
         sub_02053F58(fieldSystem, nextMap.unk_00, nextMap.unk_04);
         return TRUE;
     }
@@ -989,14 +989,14 @@ static void FieldEventCheck_NextFacingPos (const FieldSystem *fieldSystem, int p
     }
 }
 
-static u8 FieldEventCheck_CurrentAttribute (const FieldSystem *fieldSystem)
+static u8 FieldEventCheck_CurrentTilePermissions (const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     FieldEventCheck_PlayerPos(fieldSystem, &playerX, &playerZ);
     return sub_02054F94(fieldSystem, playerX, playerZ);
 }
 
-static u8 FieldEventCheck_NextAttribute (const FieldSystem *fieldSystem)
+static u8 FieldEventCheck_NextTilePermissions (const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     FieldEventCheck_NextPos(fieldSystem, &playerX, &playerZ);
