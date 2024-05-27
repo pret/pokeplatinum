@@ -68,7 +68,7 @@ void sub_0203DE88(FieldSystem * fieldSystem, SaveData * param1);
 void sub_0203DFE8(TaskManager * param0, int param1, int param2, int param3, int param4, const u16 * param5, u16 * param6);
 void sub_0203E09C(FieldSystem * fieldSystem, TrainerCard * param1);
 BOOL sub_0203E0AC(FieldSystem * fieldSystem, void * param1);
-void sub_0203E0C0(FieldSystem * fieldSystem, UnkStruct_020425E0 * param1);
+void sub_0203E0C0(FieldSystem * fieldSystem, ChooseStarterData * param1);
 void sub_0203E0D0(FieldSystem * fieldSystem);
 void sub_0203E0FC(FieldSystem * fieldSystem, int param1);
 void * sub_0203E1AC(FieldSystem * fieldSystem, int param1, int param2);
