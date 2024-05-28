@@ -74,11 +74,11 @@
 #include "overlay023/ov23_02241F74.h"
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input);
-static u16 Field_TilePermissionsToEvent(FieldSystem *fieldSystem, u8 permissions);
+static u16 Field_TileBehaviorToEvent(FieldSystem *fieldSystem, u8 behavior);
 static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem);
 static BOOL Field_ProcessStep(FieldSystem *fieldSystem);
 static BOOL Field_CheckPositionalEvent(FieldSystem *fieldSystem);
-static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curPermissions);
+static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curTileBehavior);
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem);
 static BOOL Field_UpdatePoison(FieldSystem *fieldSystem);
 static BOOL Field_UpdateSafari(FieldSystem *fieldSystem);
@@ -91,8 +91,8 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem);
 static void Field_PlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
 static void Field_NextPlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
 static void Field_NextPlayerFacingPos(const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ);
-static u8 Field_CurrentTilePermissions(const FieldSystem *fieldSystem);
-static u8 Field_NextTilePermissions(const FieldSystem *fieldSystem);
+static u8 Field_CurrentTileBehavior(const FieldSystem *fieldSystem);
+static u8 Field_NextTileBehavior(const FieldSystem *fieldSystem);
 static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap);
 static void Field_TrySetMapConnection(FieldSystem *fieldSystem);
 static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **object);
@@ -299,8 +299,8 @@ int FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         int distortionDir = sub_0205EAA0(fieldSystem->playerAvatar);
-        u32 distortionPermissions = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
-        int distortionEvent = Field_TilePermissionsToEvent(fieldSystem, distortionPermissions);
+        u32 distortionBehavior = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
+        int distortionEvent = Field_TileBehaviorToEvent(fieldSystem, distortionBehavior);
 
         if (distortionEvent != 0xffff) {
             sub_0203E880(fieldSystem, distortionEvent, NULL);
@@ -393,7 +393,7 @@ BOOL FieldInput_Process_Colosseum (FieldInput *input, FieldSystem *fieldSystem)
 {
     if (input->mapTransition && 
         input->transitionDir == DIR_SOUTH && 
-        sub_0205DB1C(Field_CurrentTilePermissions(fieldSystem))) {
+        sub_0205DB1C(Field_CurrentTileBehavior(fieldSystem))) {
 
         sub_0203E880(fieldSystem, 9101, NULL);
         return TRUE;
@@ -474,7 +474,7 @@ BOOL FieldInput_Process_UnionRoom (const FieldInput *input, FieldSystem *fieldSy
         }
     }
 
-    if (input->movement && sub_0205DEE4(Field_CurrentTilePermissions(fieldSystem))) {
+    if (input->movement && sub_0205DEE4(Field_CurrentTileBehavior(fieldSystem))) {
         sub_020545EC(fieldSystem);
         return TRUE;
     }
@@ -520,10 +520,10 @@ int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldS
             return TRUE;
         }
 
-        int permissionsEvent = Field_TilePermissionsToEvent(fieldSystem, Field_NextTilePermissions(fieldSystem));
+        int behaviorEvent = Field_TileBehaviorToEvent(fieldSystem, Field_NextTileBehavior(fieldSystem));
 
-        if (permissionsEvent != 0xffff) {
-            sub_0203E880(fieldSystem, permissionsEvent, NULL);
+        if (behaviorEvent != 0xffff) {
+            sub_0203E880(fieldSystem, behaviorEvent, NULL);
             return TRUE;
         }
     }
@@ -584,13 +584,13 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
         return FALSE;
     }
 
-    u8 permissions;
+    u8 tileBehavior;
     Location nextMap;
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap) && input->transitionDir != DIR_NONE) {
-        permissions = sub_02054F94(fieldSystem, playerX, playerZ);
+        tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
 
-        if (sub_0205DAEC(permissions)) {
+        if (sub_0205DAEC(tileBehavior)) {
             int v6 = input->transitionDir;
 
             if (sub_02071CB4(fieldSystem, 2) == TRUE) {
@@ -605,25 +605,25 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
 
     Field_PlayerPos(fieldSystem, &playerX, &playerZ);
 
-    permissions = sub_02054F94(fieldSystem, playerX, playerZ);
+    tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
 
-    if (sub_0205DAF8(permissions) || sub_0205DB28(permissions)) {
+    if (sub_0205DAF8(tileBehavior) || sub_0205DB28(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (sub_0205DB04(permissions) || sub_0205DB34(permissions)) {
+    } else if (sub_0205DB04(tileBehavior) || sub_0205DB34(tileBehavior)) {
         if (input->transitionDir != DIR_WEST) {
             return FALSE;
         }
-    } else if (sub_0205DB1C(permissions) || sub_0205DB4C(permissions)) {
+    } else if (sub_0205DB1C(tileBehavior) || sub_0205DB4C(tileBehavior)) {
         if (input->transitionDir != DIR_SOUTH) {
             return FALSE;
         }
-    } else if (sub_0205DC44(permissions)) {
+    } else if (sub_0205DC44(tileBehavior)) {
         if (input->transitionDir != DIR_EAST) {
             return FALSE;
         }
-    } else if (sub_0205DC50(permissions)) {
+    } else if (sub_0205DC50(tileBehavior)) {
         if (input->transitionDir != DIR_WEST) {
             return FALSE;
         }
@@ -635,15 +635,15 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
 
     int transitionType;
 
-    if (sub_0205DAEC(permissions)) {
+    if (sub_0205DAEC(tileBehavior)) {
         transitionType = 1;
-    } else if (sub_0205DC44(permissions)) {
+    } else if (sub_0205DC44(tileBehavior)) {
         transitionType = 3;
-    } else if (sub_0205DC50(permissions)) {
+    } else if (sub_0205DC50(tileBehavior)) {
         transitionType = 3;
-    } else if (sub_0205DAF8(permissions) || sub_0205DB28(permissions)
-            || sub_0205DB04(permissions) || sub_0205DB34(permissions)
-            || sub_0205DB1C(permissions) || sub_0205DB4C(permissions)) {
+    } else if (sub_0205DAF8(tileBehavior) || sub_0205DB28(tileBehavior)
+            || sub_0205DB04(tileBehavior) || sub_0205DB34(tileBehavior)
+            || sub_0205DB1C(tileBehavior) || sub_0205DB4C(tileBehavior)) {
         sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, input->transitionDir);
         return TRUE;
     } else {
@@ -655,47 +655,47 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
     return TRUE;
 }
 
-u16 Field_TilePermissionsToEvent (FieldSystem *fieldSystem, u8 permissions)
+u16 Field_TileBehaviorToEvent (FieldSystem *fieldSystem, u8 behavior)
 {
     int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if (sub_0205DBE4(permissions) && playerDir == DIR_NORTH) {
+    if (sub_0205DBE4(behavior) && playerDir == DIR_NORTH) {
         return 2018;
-    } else if (sub_0205DC80(permissions)) {
+    } else if (sub_0205DC80(behavior)) {
         return 2500;
-    } else if (sub_0205DC8C(permissions)) {
+    } else if (sub_0205DC8C(behavior)) {
         return 2501;
-    } else if (sub_0205DC98(permissions)) {
+    } else if (sub_0205DC98(behavior)) {
         return 2502;
-    } else if (sub_0205DCA4(permissions)) {
+    } else if (sub_0205DCA4(behavior)) {
         return 2503;
-    } else if (sub_0205DCB0(permissions)) {
+    } else if (sub_0205DCB0(behavior)) {
         return 2504;
-    } else if (sub_0205DCBC(permissions)) {
+    } else if (sub_0205DCBC(behavior)) {
         return 2505;
-    } else if (sub_0205DCC8(permissions)) {
+    } else if (sub_0205DCC8(behavior)) {
         return 2506;
-    } else if (sub_0205DCD4(permissions)) {
+    } else if (sub_0205DCD4(behavior)) {
         return 2507;
-    } else if (sub_0205DDB4(permissions)) {
+    } else if (sub_0205DDB4(behavior)) {
         return 10006;
-    } else if (sub_0205DBF0(permissions)) {
+    } else if (sub_0205DBF0(behavior)) {
         return 2508;
-    } else if (sub_0205DDC0(permissions)) {
+    } else if (sub_0205DDC0(behavior)) {
         return 2030;
-    } else if (sub_0205DE84(permissions) && playerDir == DIR_NORTH) {
+    } else if (sub_0205DE84(behavior) && playerDir == DIR_NORTH) {
         return 10100;
     }
 
-    if (ov5_021E0760(permissions, playerDir)) {
+    if (ov5_021E0760(behavior, playerDir)) {
         return 10003;
     }
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) != PLAYER_STATE_SURFING) {
         TrainerInfo *info = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        u32 distortionPermissions = sub_02061760(fieldSystem->playerAvatar);
+        u32 distortionBehavior = sub_02061760(fieldSystem->playerAvatar);
 
-        if (ov5_021E0118(fieldSystem->playerAvatar, distortionPermissions, permissions) && TrainerInfo_HasBadge(info, 3)) {
+        if (ov5_021E0118(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
             if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 57) != 0xff) {
                 return 10004;
             }
@@ -723,13 +723,13 @@ static BOOL Field_ProcessStep (FieldSystem *fieldSystem)
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
-    u8 permissions = sub_02054F94(fieldSystem, playerX, playerZ);
+    u8 tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
 
     if (Field_CheckPositionalEvent(fieldSystem) == TRUE) {
         return TRUE;
     }
 
-    if (Field_CheckTransition(fieldSystem, playerX, playerZ, permissions) == TRUE) {
+    if (Field_CheckTransition(fieldSystem, playerX, playerZ, tileBehavior) == TRUE) {
         Field_TrySetMapConnection(fieldSystem);
         return TRUE;
     }
@@ -784,7 +784,7 @@ static BOOL Field_CheckPositionalEvent (FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static BOOL Field_CheckTransition (FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curPermissions)
+static BOOL Field_CheckTransition (FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curTileBehavior)
 {
     Location nextMap;
 
@@ -792,7 +792,7 @@ static BOOL Field_CheckTransition (FieldSystem *fieldSystem, const int playerX, 
         return FALSE;
     }
 
-    if (sub_0205DC2C(curPermissions) == TRUE) {
+    if (sub_0205DC2C(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (playerDir == DIR_WEST) {
@@ -806,7 +806,7 @@ static BOOL Field_CheckTransition (FieldSystem *fieldSystem, const int playerX, 
 
         sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, playerDir, 2);
         return TRUE;
-    } else if (sub_0205DC38(curPermissions) == TRUE) {
+    } else if (sub_0205DC38(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         if (playerDir != DIR_WEST && playerDir != DIR_EAST) {
@@ -818,12 +818,12 @@ static BOOL Field_CheckTransition (FieldSystem *fieldSystem, const int playerX, 
         return TRUE;
     }
 
-    if (sub_0205DB10(curPermissions) || sub_0205DB40(curPermissions)) {
+    if (sub_0205DB10(curTileBehavior) || sub_0205DB40(curTileBehavior)) {
         sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, 0);
         return TRUE;
     }
 
-    if (sub_0205DEE4(curPermissions)) {
+    if (sub_0205DEE4(curTileBehavior)) {
         sub_02053F58(fieldSystem, nextMap.unk_00, nextMap.unk_04);
         return TRUE;
     }
@@ -986,14 +986,14 @@ static void Field_NextPlayerFacingPos (const FieldSystem *fieldSystem, int playe
     }
 }
 
-static u8 Field_CurrentTilePermissions (const FieldSystem *fieldSystem)
+static u8 Field_CurrentTileBehavior (const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_PlayerPos(fieldSystem, &playerX, &playerZ);
     return sub_02054F94(fieldSystem, playerX, playerZ);
 }
 
-static u8 Field_NextTilePermissions (const FieldSystem *fieldSystem)
+static u8 Field_NextTileBehavior (const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
     Field_NextPlayerPos(fieldSystem, &playerX, &playerZ);
