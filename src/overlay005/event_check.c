@@ -57,6 +57,7 @@
 #include "unk_02071B10.h"
 #include "pokemon.h"
 #include "party.h"
+#include "constants/sdat.h"
 #include "overlay005/event_check.h"
 #include "overlay005/ov5_021DB888.h"
 #include "overlay005/ov5_021DFB54.h"
@@ -330,7 +331,7 @@ int FieldEvent_Check (const FieldEventCheck *eventCheck, FieldSystem *fieldSyste
     }
 
     if (eventCheck->menu && sub_0203A9C8(fieldSystem) == TRUE) {
-        Sound_PlayEffect(1533);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
         FieldMenu_Init(fieldSystem);
         return TRUE;
     }
@@ -405,15 +406,13 @@ BOOL FieldEventCheck_Colosseum (FieldEventCheck *eventCheck, FieldSystem *fieldS
     if (eventCheck->interact) {
         MapObject *object;
 
-        if (sub_0203CA40(fieldSystem, &object) == TRUE) {
-            if (MapObject_GetMoveCode(object) != 0x1) {
-                if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
-                    sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
-                }
-
-                sub_0203E880(fieldSystem, sub_02062960(object), object);
-                return TRUE;
+        if (sub_0203CA40(fieldSystem, &object) == TRUE && MapObject_GetMoveCode(object) != 0x1) {
+            if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
+                sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
+
+            sub_0203E880(fieldSystem, sub_02062960(object), object);
+            return TRUE;
         }
     }
 
@@ -423,7 +422,7 @@ BOOL FieldEventCheck_Colosseum (FieldEventCheck *eventCheck, FieldSystem *fieldS
     }
 
     if (eventCheck->menu) {
-        Sound_PlayEffect(1533);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
         sub_0203AABC(fieldSystem);
         return TRUE;
     }
@@ -481,7 +480,7 @@ BOOL FieldEventCheck_UnionRoom (const FieldEventCheck *eventCheck, FieldSystem *
     }
 
     if (eventCheck->menu && CommSys_ConnectedCount() <= 1) {
-        Sound_PlayEffect(1533);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
         sub_0203AA78(fieldSystem);
         sub_0205BEA8(4);
         sub_02036BA0();
@@ -538,7 +537,7 @@ int FieldEventCheck_BattleTower (const FieldEventCheck *eventCheck, FieldSystem 
     }
 
     if (eventCheck->menu) {
-        Sound_PlayEffect(1533);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
         FieldMenu_Init(fieldSystem);
         return TRUE;
     }
@@ -708,14 +707,12 @@ u16 FieldEventCheck_TilePermissionsToEvent (FieldSystem *fieldSystem, u8 permiss
 
 static BOOL FieldEventCheck_Step (FieldSystem *fieldSystem)
 {
-    if ((sub_02071CB4(fieldSystem, 3) == TRUE) && ov8_0224AAA8(fieldSystem)) {
+    if (sub_02071CB4(fieldSystem, 3) == TRUE && ov8_0224AAA8(fieldSystem)) {
         return TRUE;
     }
 
-    if (sub_02071CB4(fieldSystem, 9) == TRUE) {
-        if (ov9_0224A71C(fieldSystem) == TRUE) {
-            return TRUE;
-        }
+    if (sub_02071CB4(fieldSystem, 9) == TRUE && ov9_0224A71C(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
     int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
