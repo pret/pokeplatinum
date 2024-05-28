@@ -3435,7 +3435,7 @@ static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
 
 static int ov8_0224BC48 (UnkStruct_ov8_0224C098 * param0)
 {
-    VecFx32_AddValInDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
+    VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
     sub_020715D4(param0->unk_34->unk_08.unk_0C, &param0->unk_20);
 
     param0->unk_2C += ((FX32_ONE / 2) / 30);
@@ -3458,7 +3458,7 @@ static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
 {
     UnkStruct_ov8_0224BCA8 * v0 = param0->unk_34;
 
-    VecFx32_AddValInDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
+    VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
     sub_020715D4(v0->unk_08.unk_0C, &param0->unk_20);
 
     param0->unk_30 += param0->unk_2C;

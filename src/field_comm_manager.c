@@ -79,7 +79,7 @@ void FieldCommMan_Init (FieldSystem * fieldSystem)
         return;
     }
 
-    CommFieldCmd_Init((void *)fieldSystem);
+    CommFieldCmd_Init(fieldSystem);
 
     sFieldCommMan = (FieldCommunicationManager *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(FieldCommunicationManager));
     MI_CpuFill8(sFieldCommMan, 0, sizeof(FieldCommunicationManager));

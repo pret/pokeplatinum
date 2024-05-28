@@ -369,7 +369,7 @@ static BOOL ov5_021D20DC (FieldSystem * fieldSystem)
         return 1;
     }
 
-    v1 = sub_0203CB80(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+    v1 = sub_0203CB80(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
 
     if (v1 != 0xffff) {
         sub_0203E880(fieldSystem, v1, NULL);

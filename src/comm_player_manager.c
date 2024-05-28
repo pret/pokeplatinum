@@ -391,26 +391,22 @@ static void CommPlayer_Add (u8 netId)
     TrainerInfo * trainerInfo = CommInfo_TrainerInfo(netId);
 
     if (trainerInfo) {
-        if (!sCommPlayerManager->isUnderground) {
-            if (netId != CommSys_CurNetId()) {
-                MapObject * obj = MapObjMan_LocalMapObjByIndex(sCommPlayerManager->fieldSystem->mapObjMan, 0xff + netId + 1);
+        if (!sCommPlayerManager->isUnderground && netId != CommSys_CurNetId()) {
+            MapObject * obj = MapObjMan_LocalMapObjByIndex(sCommPlayerManager->fieldSystem->mapObjMan, 0xff + netId + 1);
 
-                if (obj != NULL) {
-                    MapObject_Delete(obj);
-                }
+            if (obj != NULL) {
+                MapObject_Delete(obj);
             }
         }
+        
+        int version = 0;
 
-        {
-            int version = 0;
-
-            if (0 == TrainerInfo_GameCode(trainerInfo)) {
-                version = 1;
-            }
-
-            playerAvatar = PlayerAvatar_Init(sCommPlayerManager->fieldSystem->mapObjMan, sCommPlayerManager->playerLocation[netId].x, sCommPlayerManager->playerLocation[netId].z, sCommPlayerManager->playerLocation[netId].dir, 0x0, TrainerInfo_Gender(trainerInfo), version, NULL);
+        if (0 == TrainerInfo_GameCode(trainerInfo)) {
+            version = 1;
         }
 
+        playerAvatar = PlayerAvatar_Init(sCommPlayerManager->fieldSystem->mapObjMan, sCommPlayerManager->playerLocation[netId].x, sCommPlayerManager->playerLocation[netId].z, sCommPlayerManager->playerLocation[netId].dir, 0x0, TrainerInfo_Gender(trainerInfo), version, NULL);
+    
         GF_ASSERT(playerAvatar != NULL);
         sCommPlayerManager->playerAvatar[netId] = playerAvatar;
 

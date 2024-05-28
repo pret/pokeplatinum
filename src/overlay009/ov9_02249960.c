@@ -7511,7 +7511,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPosVec(v1, &v0);
-        MapObject_AddValInDir(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
+        MapObject_StepDirection(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;
@@ -7680,7 +7680,7 @@ static BOOL ov9_0224F5D8 (UnkStruct_ov9_0224F6EC * param0)
         MapObject_PosVectorOut(v1, &v0);
         v0.y -= FX32_ONE * 2;
         MapObject_SetPosVec(v1, &v0);
-        MapObject_AddValInDir(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
+        MapObject_StepDirection(v1, MapObject_GetMoveDir(v1), (FX32_ONE * 2));
     }
 
         param0->unk_18++;

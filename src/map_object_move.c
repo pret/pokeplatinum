@@ -873,7 +873,7 @@ void MapObject_AddVecToPos (MapObject * mapObj, const VecFx32 * vec)
 }
 
 //TODO: This could really use a better name
-void MapObject_AddValInDir (MapObject * mapObj, int dir, fx32 param2)
+void MapObject_StepDirection (MapObject * mapObj, int dir, fx32 param2)
 {
     VecFx32 pos;
 
@@ -954,7 +954,7 @@ int sub_02064390 (MapObject * mapObj)
     return 1;
 }
 
-void VecFx32_AddValInDirection (int dir, VecFx32 * vec, fx32 val)
+void VecFx32_StepDirection (int dir, VecFx32 * vec, fx32 val)
 {
     switch (dir) {
     case DIR_NORTH:
