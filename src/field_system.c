@@ -32,7 +32,7 @@
 #include "unk_0207D3B8.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
-#include "overlay005/event_check.h"
+#include "overlay005/field_control.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"

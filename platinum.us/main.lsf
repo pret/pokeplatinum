@@ -467,7 +467,7 @@ Overlay overlay5
 	After main
 	Object main.nef.p/src_overlay005_fieldmap.c.o
 	Object main.nef.p/src_overlay005_ov5_021D1A94.c.o
-	Object main.nef.p/src_overlay005_event_check.c.o
+	Object main.nef.p/src_overlay005_field_control.c.o
 	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
 	Object main.nef.p/src_overlay005_ov5_021D37AC.c.o
 	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
