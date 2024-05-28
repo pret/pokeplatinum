@@ -89,8 +89,8 @@ static BOOL Field_UpdateRepel(FieldSystem *fieldSystem);
 static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem);
 static void Field_CalculateFriendship(FieldSystem *fieldSystem);
 static void Field_PlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
-static void Field_NextPlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
-static void Field_NextPlayerFacingPos(const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ);
+static void Field_Step(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
+static void Field_StepInDirection(const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ);
 static u8 Field_CurrentTileBehavior(const FieldSystem *fieldSystem);
 static u8 Field_NextTileBehavior(const FieldSystem *fieldSystem);
 static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap);
@@ -174,7 +174,7 @@ void FieldInput_Update (FieldInput *input, FieldSystem *fieldSystem, u16 pressed
     input->playerDir = sub_02061308(fieldSystem->playerAvatar, pressedKeys, heldKeys);
 }
 
-int FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
+BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
 {
     if (input->unused5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
         return TRUE;
@@ -248,10 +248,10 @@ int FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         }
     }
 
-    if (input->sign && PlayerAvatar_GetDir(fieldSystem->playerAvatar) == input->playerDir) {
-        if (Field_CheckSign(fieldSystem) == TRUE) {
-            return TRUE;
-        }
+    if (input->sign &&
+        PlayerAvatar_GetDir(fieldSystem->playerAvatar) == input->playerDir &&
+        Field_CheckSign(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
     if (input->interact) {
@@ -310,7 +310,7 @@ int FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         int playerX, playerZ;
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-        Field_NextPlayerPos(fieldSystem, &playerX, &playerZ);
+        Field_Step(fieldSystem, &playerX, &playerZ);
 
         if (ov5_021F8410(fieldSystem, playerX, playerZ, playerDir) == TRUE) {
             return TRUE;
@@ -560,11 +560,7 @@ static BOOL Field_CheckWildEncounter (FieldSystem *fieldSystem)
         }
     }
 
-    if (MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00) && ov6_02240D5C(fieldSystem) == TRUE) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00) && ov6_02240D5C(fieldSystem) == TRUE;
 }
 
 static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput *input)
@@ -578,7 +574,7 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
     }
 
     int playerX, playerZ;
-    Field_NextPlayerPos(fieldSystem, &playerX, &playerZ);
+    Field_Step(fieldSystem, &playerX, &playerZ);
 
     if (FieldSystem_CheckCollision(fieldSystem, playerX, playerZ) == FALSE) {
         return FALSE;
@@ -889,14 +885,13 @@ static BOOL Field_UpdateFriendship (FieldSystem *fieldSystem)
 static void Field_CalculateFriendship (FieldSystem *fieldSystem)
 {
     int i, partyCount;
-    Pokemon *mon;
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
 
     partyCount = Party_GetCurrentCount(party);
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(party, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
         Pokemon_UpdateFriendship(mon, 5, mapID);
     }
 }
@@ -958,13 +953,13 @@ static void Field_PlayerPos (const FieldSystem *fieldSystem, int *playerX, int *
     *playerZ = Player_GetZPos(fieldSystem->playerAvatar);
 }
 
-static void Field_NextPlayerPos (const FieldSystem *fieldSystem, int *playerX, int *playerZ)
+static void Field_Step (const FieldSystem *fieldSystem, int *playerX, int *playerZ)
 {
     int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
-    Field_NextPlayerFacingPos(fieldSystem, playerDir, playerX, playerZ);
+    Field_StepInDirection(fieldSystem, playerDir, playerX, playerZ);
 }
 
-static void Field_NextPlayerFacingPos (const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ)
+static void Field_StepInDirection (const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ)
 {
     Field_PlayerPos(fieldSystem, playerX, playerZ);
 
@@ -996,7 +991,7 @@ static u8 Field_CurrentTileBehavior (const FieldSystem *fieldSystem)
 static u8 Field_NextTileBehavior (const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
-    Field_NextPlayerPos(fieldSystem, &playerX, &playerZ);
+    Field_Step(fieldSystem, &playerX, &playerZ);
     return sub_02054F94(fieldSystem, playerX, playerZ);
 }
 
@@ -1060,7 +1055,7 @@ static void Field_TrySetMapConnection (FieldSystem *fieldSystem)
             Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
     } else {
-        Field_NextPlayerPos(fieldSystem, &playerX, &playerZ);
+        Field_Step(fieldSystem, &playerX, &playerZ);
 
         if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap) &&
             MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == TRUE && 
@@ -1080,7 +1075,7 @@ static BOOL Field_DistortionInteract (FieldSystem *fieldSystem, MapObject **obje
 
     while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, (1 << 0))) {
         objectX = MapObject_GetXPos(*object);
-        objectY = ((MapObject_GetYPos(*object) / 2));
+        objectY = (MapObject_GetYPos(*object) / 2);
         objectZ = MapObject_GetZPos(*object);
 
         if (playerY == objectY && playerX == objectX && playerZ == objectZ) {
