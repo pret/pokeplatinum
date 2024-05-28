@@ -249,7 +249,7 @@ BOOL FieldSystem_Run (FieldSystem * fieldSystem)
 void FieldSystem_Control (FieldSystem * fieldSystem)
 {
     int v0;
-    FieldEventCheck v1;
+    FieldInput v1;
     BOOL v2 = 0;
 
     if (!fieldSystem->unk_00->unk_08 && fieldSystem->unk_68 && (sub_020509A4(fieldSystem) == 0)) {
@@ -258,7 +258,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
     if (v2) {
         sub_0205F490(fieldSystem->playerAvatar);
-        FieldEventCheck_Set(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
+        FieldInput_Update(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
     v0 = fieldSystem->unk_70;
@@ -271,7 +271,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     case 1:
         if (v2) {
             if (sub_02058C40()) {
-                if (FieldEventCheck_Underground(&v1, fieldSystem) == 1) {
+                if (FieldInput_Process_Underground(&v1, fieldSystem) == 1) {
                     
                 }
             }
@@ -282,7 +282,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     case 3:
         if (v2) {
             if (sub_02058C40()) {
-                if (FieldEventCheck_Colosseum(&v1, fieldSystem) == 1) {
+                if (FieldInput_Process_Colosseum(&v1, fieldSystem) == 1) {
                     v2 = 0;
                 }
             } else {
@@ -294,7 +294,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
         break;
     case 2:
         if (v2) {
-            if (FieldEventCheck_UnionRoom(&v1, fieldSystem) == 1) {
+            if (FieldInput_Process_UnionRoom(&v1, fieldSystem) == 1) {
                 
             } else {
                 PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, 0);
@@ -303,7 +303,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
         break;
     case 4:
         if (v2) {
-            if (FieldEventCheck_BattleTower(&v1, fieldSystem) == 1) {
+            if (FieldInput_Process_BattleTower(&v1, fieldSystem) == 1) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
@@ -328,7 +328,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
         break;
     default:
         if (v2) {
-            if (FieldEvent_Check(&v1, fieldSystem) == 1) {
+            if (FieldInput_Process(&v1, fieldSystem) == 1) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 sub_0205F56C(fieldSystem->playerAvatar);
