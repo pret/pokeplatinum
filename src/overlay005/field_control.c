@@ -161,10 +161,10 @@ void FieldInput_Update (FieldInput *input, FieldSystem *fieldSystem, u16 pressed
         input->endMovement = TRUE;
     }
 
-    if (playerDir == DIR_NORTH && heldKeys & PAD_KEY_UP || 
-        playerDir == DIR_SOUTH && heldKeys & PAD_KEY_DOWN || 
-        playerDir == DIR_WEST  && heldKeys & PAD_KEY_LEFT || 
-        playerDir == DIR_EAST  && heldKeys & PAD_KEY_RIGHT) {
+    if (playerDir == DIR_NORTH && heldKeys & PAD_KEY_UP
+        || playerDir == DIR_SOUTH && heldKeys & PAD_KEY_DOWN
+        || playerDir == DIR_WEST  && heldKeys & PAD_KEY_LEFT
+        || playerDir == DIR_EAST  && heldKeys & PAD_KEY_RIGHT) {
 
         input->transitionDir = playerDir;
     } else {
@@ -181,15 +181,15 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->unused5 == FALSE) {
-        BOOL doublesCheck = sub_02054AB0(Party_GetFromSavedata(fieldSystem->saveData));
+        BOOL hasTwoAliveMons = Party_HasTwoAliveMons(Party_GetFromSavedata(fieldSystem->saveData));
 
         if (sub_0206A984(SaveData_Events(fieldSystem->saveData)) == TRUE) {
-            doublesCheck = TRUE;
+            hasTwoAliveMons = TRUE;
         }
 
-        if (sub_02067A84(fieldSystem, doublesCheck) == TRUE || 
-            sub_02071CB4(fieldSystem, 2) == TRUE && 
-            ov8_0224C51C(fieldSystem) == TRUE) {
+        if (sub_02067A84(fieldSystem, hasTwoAliveMons) == TRUE
+            || sub_02071CB4(fieldSystem, 2) == TRUE
+            && ov8_0224C51C(fieldSystem) == TRUE) {
 
             sub_0205F56C(fieldSystem->playerAvatar);
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
@@ -248,9 +248,9 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         }
     }
 
-    if (input->sign &&
-        PlayerAvatar_GetDir(fieldSystem->playerAvatar) == input->playerDir &&
-        Field_CheckSign(fieldSystem) == TRUE) {
+    if (input->sign
+        && PlayerAvatar_GetDir(fieldSystem->playerAvatar) == input->playerDir
+        && Field_CheckSign(fieldSystem) == TRUE) {
         return TRUE;
     }
 
@@ -391,9 +391,9 @@ BOOL FieldInput_Process_Underground (FieldInput *input, FieldSystem *fieldSystem
 
 BOOL FieldInput_Process_Colosseum (FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->mapTransition && 
-        input->transitionDir == DIR_SOUTH && 
-        sub_0205DB1C(Field_CurrentTileBehavior(fieldSystem))) {
+    if (input->mapTransition
+        && input->transitionDir == DIR_SOUTH
+        && sub_0205DB1C(Field_CurrentTileBehavior(fieldSystem))) {
 
         sub_0203E880(fieldSystem, 9101, NULL);
         return TRUE;
@@ -884,6 +884,7 @@ static BOOL Field_UpdateFriendship (FieldSystem *fieldSystem)
 
 static void Field_CalculateFriendship (FieldSystem *fieldSystem)
 {
+    // C99-style declarations don't match
     int i, partyCount;
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
     u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
@@ -1057,9 +1058,9 @@ static void Field_TrySetMapConnection (FieldSystem *fieldSystem)
     } else {
         Field_Step(fieldSystem, &playerX, &playerZ);
 
-        if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap) &&
-            MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == TRUE && 
-            MapHeader_IsOnMainMatrix(nextMap.unk_00) == FALSE) {
+        if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap)
+            && MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == TRUE
+            && MapHeader_IsOnMainMatrix(nextMap.unk_00) == FALSE) {
 
             Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
