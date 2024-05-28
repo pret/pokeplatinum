@@ -55,10 +55,10 @@ typedef struct RadarChain {
     u8 unk_D0;
 } RadarChain;
 
-static BOOL CheckTileIsGrass(FieldSystem *param0, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch);
+static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch);
 static BOOL sub_020698AC(const RadarChain *chain, const int param1, const int param2, u8 *param3);
-static void sub_020698E4(FieldSystem *param0, RadarChain *chain);
-static u8 sub_0206994C(FieldSystem *param0);
+static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain);
+static u8 sub_0206994C(FieldSystem *fieldSystem);
 static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult);
 static BOOL CheckPatchShiny(const int param0);
 static void IncWithCap(int *param0);
@@ -88,7 +88,7 @@ void RadarChain_Clear (RadarChain *chain) {
     }
 }
 
-BOOL RadarSpawnPatches (FieldSystem *param0, const int param1, const int param2, RadarChain *chain) {
+BOOL RadarSpawnPatches (FieldSystem *fieldSystem, const int param1, const int param2, RadarChain *chain) {
     u8 v1, v2;
     u8 v3;
     u8 v4;
@@ -98,7 +98,7 @@ BOOL RadarSpawnPatches (FieldSystem *param0, const int param1, const int param2,
         32, 24, 16, 8
     };
 
-    const VecFx32 *v8 = PlayerAvatar_PosVector(param0->playerAvatar);
+    const VecFx32 *v8 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
     v7 = 0;
 
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
@@ -124,7 +124,7 @@ BOOL RadarSpawnPatches (FieldSystem *param0, const int param1, const int param2,
             }
         }
 
-        BOOL v10 = CheckTileIsGrass(param0, v8->y, param1, param2, v5, v6, &chain->patch[patchRing]);
+        BOOL v10 = CheckTileIsGrass(fieldSystem, v8->y, param1, param2, v5, v6, &chain->patch[patchRing]);
         if (v10) {
             v7++;
         }
@@ -132,7 +132,7 @@ BOOL RadarSpawnPatches (FieldSystem *param0, const int param1, const int param2,
 
     if (v7 == 0) {
         RadarChain_Clear(chain);
-        sub_02055554(param0, sub_02055428(param0, param0->unk_1C->unk_00), 1);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
     } else {
         chain->active = TRUE;
     }
@@ -140,7 +140,7 @@ BOOL RadarSpawnPatches (FieldSystem *param0, const int param1, const int param2,
     return chain->active;
 }
 
-void SetupGrassPatches (FieldSystem *param0, const int param1, RadarChain *chain) {
+void SetupGrassPatches (FieldSystem *fieldSystem, const int param1, RadarChain *chain) {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
             chain->patch[patchRing].continueChain = CheckPatchContinueChain(patchRing, param1);
@@ -153,24 +153,24 @@ void SetupGrassPatches (FieldSystem *param0, const int param1, RadarChain *chain
                 chain->patch[patchRing].shiny = FALSE;
             } else {
                 chain->patch[patchRing].shakeType = chain->shakeType;  // A patch that continues the chain, shakes the type the chain is set to
-                chain->patch[patchRing].shiny = CheckPatchShiny(param0->chain->count);
+                chain->patch[patchRing].shiny = CheckPatchShiny(fieldSystem->chain->count);
             }
         }
     }
 }
 
-void sub_02069638 (FieldSystem *param0, RadarChain *chain) {
+void sub_02069638 (FieldSystem *fieldSystem, RadarChain *chain) {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
             int v1 = chain->patch[patchRing].unk_00;
             int v2 = chain->patch[patchRing].unk_04;
             if (chain->patch[patchRing].shiny) {
-                chain->patch[patchRing].unk_18 = ov5_021F3154(param0, v1, v2, 2);
+                chain->patch[patchRing].unk_18 = ov5_021F3154(fieldSystem, v1, v2, 2);
             } else {
                 if (chain->patch[patchRing].shakeType == PATCH_SHAKE_SOFT) {
-                    chain->patch[patchRing].unk_18 = ov5_021F3154(param0, v1, v2, 0);
+                    chain->patch[patchRing].unk_18 = ov5_021F3154(fieldSystem, v1, v2, 0);
                 } else {
-                    chain->patch[patchRing].unk_18 = ov5_021F3154(param0, v1, v2, 1);
+                    chain->patch[patchRing].unk_18 = ov5_021F3154(fieldSystem, v1, v2, 1);
                 }
             }
         } else {
@@ -201,7 +201,7 @@ BOOL sub_02069690 (RadarChain *chain) {
     return FALSE;
 }
 
-BOOL sub_020696DC (const int param0, const int param1, FieldSystem *param2, RadarChain *chain, int *param4, BOOL *param5, BOOL *param6) {
+BOOL sub_020696DC (const int param0, const int param1, FieldSystem *fieldSystem, RadarChain *chain, int *param4, BOOL *param5, BOOL *param6) {
     u8 patchRing;
     *param5 = 0;
     *param6 = 0;
@@ -219,7 +219,7 @@ BOOL sub_020696DC (const int param0, const int param1, FieldSystem *param2, Rada
             IncWithCap(&(chain->count));
             *param4 = shakeType;
             *param5 = 1;
-            sub_020698E4(param2, chain);
+            sub_020698E4(fieldSystem, chain);
             *param6 = chain->patch[patchRing].shiny;
             return TRUE;
         } else {
@@ -228,7 +228,7 @@ BOOL sub_020696DC (const int param0, const int param1, FieldSystem *param2, Rada
     } else {
         *param4 = shakeType;
         chain->unk_14 = 0;
-        chain->unk_D0 = sub_0206994C(param2);
+        chain->unk_D0 = sub_0206994C(fieldSystem);
     }
 
     chain->shakeType = *param4;
@@ -250,18 +250,18 @@ const BOOL sub_02069798 (const RadarChain *chain) {
     return chain->unk_18;
 }
 
-void sub_0206979C (FieldSystem *param0) {
+void sub_0206979C (FieldSystem *fieldSystem) {
     BOOL v0;
     GrassPatch *patch;
     int patchRing;
 
-    if (!param0->chain->active || param0->unk_10 != NULL) {
+    if (!fieldSystem->chain->active || fieldSystem->unk_10 != NULL) {
         return;
     }
 
     for (patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
-        patch = &(param0->chain->patch[patchRing]);
-        v0 = sub_0201CF7C(&(patch->position), &(param0->chain->unk_BC));
+        patch = &(fieldSystem->chain->patch[patchRing]);
+        v0 = sub_0201CF7C(&(patch->position), &(fieldSystem->chain->unk_BC));
         if (patch->active && !v0) {
             patch->active = FALSE;
         }
@@ -269,15 +269,15 @@ void sub_0206979C (FieldSystem *param0) {
 
     int v3 = 0;
     for (patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
-        patch = &(param0->chain->patch[patchRing]);
+        patch = &(fieldSystem->chain->patch[patchRing]);
         if (patch->active == 0) {
             v3++;
         }
     }
 
     if (v3 == 4) {
-        RadarChain_Clear(param0->chain);
-        sub_02055554(param0, sub_02055428(param0, param0->unk_1C->unk_00), 1);
+        RadarChain_Clear(fieldSystem->chain);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
     }
 }
 
@@ -285,18 +285,18 @@ BOOL GetRadarChainActive (const RadarChain *chain) {
     return chain->active;
 }
 
-static BOOL CheckTileIsGrass (FieldSystem *param0, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch) {
+static BOOL CheckTileIsGrass (FieldSystem *fieldSystem, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch) {
     int v0 = (param2 - (9 / 2)) + param4;
     int v1 = (param3 - (9 / 2)) + param5;
     patch->unk_00 = v0;
     patch->unk_04 = v1;
-    u8 v2 = sub_02054F94(param0, v0, v1);
+    u8 v2 = sub_02054F94(fieldSystem, v0, v1);
 
     if (sub_0205DAC8(v2)) {
         u8 v3;
         patch->position.x = FX32_ONE * 16 * v0;
         patch->position.z = FX32_ONE * 16 * v1;
-        patch->position.y = sub_02054FBC(param0, 0, patch->position.x, patch->position.z, &v3);
+        patch->position.y = sub_02054FBC(fieldSystem, 0, patch->position.x, patch->position.z, &v3);
 
         if (param1 != patch->position.y) {
             patch->active = FALSE;
@@ -305,8 +305,8 @@ static BOOL CheckTileIsGrass (FieldSystem *param0, const fx32 param1, const int 
 
         int v5 = v0 / 32;
         int v6 = v1 / 32;
-        int v4 = sub_02039E30(param0->unk_2C, v5, v6);
-        if (param0->unk_1C->unk_00 != v4) {
+        int v4 = sub_02039E30(fieldSystem->unk_2C, v5, v6);
+        if (fieldSystem->unk_1C->unk_00 != v4) {
             patch->active = FALSE;
             return FALSE;
         }
@@ -330,8 +330,8 @@ static BOOL sub_020698AC (const RadarChain *chain, const int param1, const int p
     return FALSE;
 }
 
-static void sub_020698E4 (FieldSystem *param0, RadarChain *chain) {
-    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(param0->saveData));
+static void sub_020698E4 (FieldSystem *fieldSystem, RadarChain *chain) {
+    UnkStruct_020698E4 *v0 = sub_0202D830(sub_0202D834(fieldSystem->saveData));
     int v1 = v0->unk_00[chain->unk_D0].unk_02;
 
     if (v1 < chain->count) {
@@ -409,8 +409,8 @@ BOOL RefreshRadarChain (TaskManager *taskMan) {
             *v1 = 4;
         } else {
             *v2 = 0;
-            int v3 = Player_XPos(fieldSystem->playerAvatar);
-            int v4 = Player_ZPos(fieldSystem->playerAvatar);
+            int v3 = Player_GetXPos(fieldSystem->playerAvatar);
+            int v4 = Player_GetZPos(fieldSystem->playerAvatar);
             RadarSpawnPatches(fieldSystem, v3, v4, fieldSystem->chain);
             if (fieldSystem->chain->active) {
                 SetupGrassPatches(fieldSystem, 0x1, fieldSystem->chain);

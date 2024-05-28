@@ -60,13 +60,13 @@ static void ov6_02248948 (SysTask * param0, void * param1)
     }
 }
 
-void ov6_0224899C (FieldSystem * param0, u16 * param1, u32 param2, u32 param3)
+void ov6_0224899C (FieldSystem * fieldSystem, u16 * param1, u32 param2, u32 param3)
 {
     UnkStruct_ov6_02248948 * v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov6_02248948));
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248948));
 
-    v0->unk_00 = Unk_ov6_02249840[param2](param0);
+    v0->unk_00 = Unk_ov6_02249840[param2](fieldSystem);
     v0->unk_04 = param1;
     v0->unk_0C = param2;
 

@@ -21,19 +21,19 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    FieldSystem * unk_0C;
-    PlayerAvatar * unk_10;
+    FieldSystem * fieldSystem;
+    PlayerAvatar * playerAvatar;
     MapObject * unk_14;
 } UnkStruct_ov5_021E11B0;
 
-static void ov5_021E11B0(FieldSystem * param0, PlayerAvatar * param1, int param2);
+static void ov5_021E11B0(FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2);
 static BOOL ov5_021E120C(TaskManager * param0);
 static void * ov5_021E132C(int param0);
 static void ov5_021E1350(void * param0);
 
-int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * param1, int param2)
+int ov5_021E1154 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2)
 {
-    MapObject * v0 = Player_MapObject(param1);
+    MapObject * v0 = Player_MapObject(playerAvatar);
     u8 v1 = sub_02062BE8(v0);
     int v2;
 
@@ -49,20 +49,20 @@ int ov5_021E1154 (FieldSystem * param0, PlayerAvatar * param1, int param2)
         return 0;
     }
 
-    ov5_021E11B0(param0, param1, v2);
+    ov5_021E11B0(fieldSystem, playerAvatar, v2);
     return 1;
 }
 
-static void ov5_021E11B0 (FieldSystem * param0, PlayerAvatar * param1, int param2)
+static void ov5_021E11B0 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2)
 {
     UnkStruct_ov5_021E11B0 * v0 = ov5_021E132C((sizeof(UnkStruct_ov5_021E11B0)));
 
-    v0->unk_0C = param0;
-    v0->unk_10 = param1;
+    v0->fieldSystem = fieldSystem;
+    v0->playerAvatar = playerAvatar;
     v0->unk_00 = param2;
 
     Sound_PlayEffect(1624);
-    sub_02050904(param0, ov5_021E120C, v0);
+    sub_02050904(fieldSystem, ov5_021E120C, v0);
 }
 
 static int ov5_021E11E0 (int param0)
@@ -84,7 +84,7 @@ static int ov5_021E11E0 (int param0)
 static BOOL ov5_021E120C (TaskManager * param0)
 {
     UnkStruct_ov5_021E11B0 * v0 = TaskManager_Environment(param0);
-    MapObject * v1 = Player_MapObject(v0->unk_10);
+    MapObject * v1 = Player_MapObject(v0->playerAvatar);
     u8 v2 = sub_02062BE8(v1);
 
     switch (v0->unk_08) {
@@ -93,12 +93,12 @@ static BOOL ov5_021E120C (TaskManager * param0)
         v0->unk_08++;
         break;
     case 1:
-        if (sub_02061544(v0->unk_10)) {
+        if (sub_02061544(v0->playerAvatar)) {
             int v3 = 0xc;
 
             v3 = sub_02065838(v0->unk_00, v3);
-            PlayerAvatar_SetAnimationCode(v0->unk_10, v3, 1);
-            Player_SetDir(v0->unk_10, v0->unk_00);
+            PlayerAvatar_SetAnimationCode(v0->playerAvatar, v3, 1);
+            Player_SetDir(v0->playerAvatar, v0->unk_00);
             v0->unk_08++;
             v0->unk_04 = 7;
         }
@@ -109,7 +109,7 @@ static BOOL ov5_021E120C (TaskManager * param0)
         case 4:
         case 2:
             v0->unk_00 = ov5_021E11E0(v0->unk_00);
-            Player_SetDir(v0->unk_10, v0->unk_00);
+            Player_SetDir(v0->playerAvatar, v0->unk_00);
             break;
         default:
             break;
@@ -131,14 +131,14 @@ static BOOL ov5_021E120C (TaskManager * param0)
             }
 
             {
-                u32 v4 = sub_02060B7C(v0->unk_10, v1, v0->unk_00);
+                u32 v4 = sub_02060B7C(v0->playerAvatar, v1, v0->unk_00);
 
                 if (v4 == 0) {
                     v0->unk_08 = 1;
                 } else {
                     MapObject_SetStatusFlagOff(v1, (1 << 7));
                     MapObject_SetStatusFlagOff(v1, (1 << 8));
-                    Player_SetDir(v0->unk_10, v0->unk_00);
+                    Player_SetDir(v0->playerAvatar, v0->unk_00);
                     ov5_021E1350(v0);
                     sub_020057A4(1624, 0);
                     return 1;

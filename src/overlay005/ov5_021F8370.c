@@ -46,64 +46,64 @@ typedef struct {
 } UnkStruct_ov5_021F8480_sub1;
 
 struct UnkStruct_ov5_021F8480_t {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     UnkStruct_02071C34 * unk_04;
     UnkStruct_ov5_021F8480_sub1 unk_08[23];
 };
 
 static void ov5_021F8480(UnkStruct_ov5_021F8480 * param0, const u32 param1);
-static BOOL ov5_021F8508(FieldSystem * param0, u32 param1);
-static BOOL ov5_021F851C(int param0, int param1, const UnkStruct_ov5_0220192C * param2, FieldSystem * param3);
+static BOOL ov5_021F8508(FieldSystem * fieldSystem, u32 param1);
+static BOOL ov5_021F851C(int param0, int param1, const UnkStruct_ov5_0220192C * param2, FieldSystem * fieldSystem);
 
 static const UnkStruct_ov5_0220192C Unk_ov5_0220192C[23];
 static const u32 Unk_ov5_0220188C[20];
 static const UnkStruct_ov5_022018DC Unk_ov5_022018DC[20];
 
-void ov5_021F8370 (FieldSystem * param0)
+void ov5_021F8370 (FieldSystem * fieldSystem)
 {
     int v0;
     UnkStruct_02027860 * v1;
     UnkStruct_02071C34 * v2;
     UnkStruct_ov5_021F8480 * v3;
 
-    v1 = sub_02027860(FieldSystem_SaveData(param0));
+    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v2 = sub_02027F6C(v1, 10);
     v3 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8480));
 
     memset(v3, 0, sizeof(UnkStruct_ov5_021F8480));
 
-    v3->unk_00 = param0;
+    v3->fieldSystem = fieldSystem;
     v3->unk_04 = v2;
 
-    param0->unk_04->unk_24 = v3;
+    fieldSystem->unk_04->unk_24 = v3;
 
     {
         int v4;
 
         for (v4 = 0; v4 < 20; v4++) {
-            if (ov5_021F8508(param0, v4) == 1) {
+            if (ov5_021F8508(fieldSystem, v4) == 1) {
                 ov5_021F8480(v3, v4);
             }
         }
     }
 }
 
-void ov5_021F83C0 (FieldSystem * param0)
+void ov5_021F83C0 (FieldSystem * fieldSystem)
 {
-    UnkStruct_ov5_021F8480 * v0 = param0->unk_04->unk_24;
+    UnkStruct_ov5_021F8480 * v0 = fieldSystem->unk_04->unk_24;
 
     Heap_FreeToHeap(v0);
-    param0->unk_04->unk_24 = NULL;
+    fieldSystem->unk_04->unk_24 = NULL;
 }
 
-BOOL ov5_021F83D4 (FieldSystem * param0, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL ov5_021F83D4 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
 {
     int v0;
     const UnkStruct_ov5_021F83D4 * v1;
     const UnkStruct_ov5_0220192C * v2 = Unk_ov5_0220192C;
 
     for (v0 = 0; v0 < 23; v0++, v2++) {
-        if (ov5_021F851C(param1, param2, v2, param0) == 1) {
+        if (ov5_021F851C(param1, param2, v2, fieldSystem) == 1) {
             *param4 = 1;
             return 1;
         }
@@ -113,9 +113,9 @@ BOOL ov5_021F83D4 (FieldSystem * param0, const int param1, const int param2, con
     return 0;
 }
 
-BOOL ov5_021F8410 (FieldSystem * param0, const int param1, const int param2, const int param3)
+BOOL ov5_021F8410 (FieldSystem * fieldSystem, const int param1, const int param2, const int param3)
 {
-    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(param0));
+    UnkStruct_02027860 * v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
 
     if (sub_02027F80(v0) == 10) {
         int v1;
@@ -123,7 +123,7 @@ BOOL ov5_021F8410 (FieldSystem * param0, const int param1, const int param2, con
         const UnkStruct_ov5_0220192C * v3 = Unk_ov5_0220192C;
 
         for (v1 = 0; v1 < 23; v1++, v3++) {
-            if (ov5_021F851C(param1, param2, v3, param0) == 1) {
+            if (ov5_021F851C(param1, param2, v3, fieldSystem) == 1) {
                 const UnkStruct_ov5_022018DC * v4 = &Unk_ov5_022018DC[v3->unk_00];
 
                 if (v4->unk_00 == 10100) {
@@ -132,7 +132,7 @@ BOOL ov5_021F8410 (FieldSystem * param0, const int param1, const int param2, con
                     }
                 }
 
-                sub_0203E880(param0, v4->unk_00, NULL);
+                sub_0203E880(fieldSystem, v4->unk_00, NULL);
                 return 1;
             }
         }
@@ -148,7 +148,7 @@ static void ov5_021F8480 (UnkStruct_ov5_021F8480 * param0, const u32 param1)
     VecFx32 v3 = {0, 0, 0};
     int v4 = Unk_ov5_0220188C[param1];
     const UnkStruct_ov5_0220192C * v5 = Unk_ov5_0220192C;
-    FieldSystem * v6 = param0->unk_00;
+    FieldSystem * fieldSystem = param0->fieldSystem;
 
     for (v0 = 0; v0 < 23; v0++, v5++) {
         if (v5->unk_00 == param1) {
@@ -159,8 +159,8 @@ static void ov5_021F8480 (UnkStruct_ov5_021F8480 * param0, const u32 param1)
                 if (v2->unk_00 == 0) {
                     v2->unk_00 = 1;
                     v2->unk_04 = v4;
-                    v2->unk_02 = ov5_021E19CC(v6->unk_A4, v6->unk_30, v4, &v5->unk_04, &v3, v6->unk_50);
-                    v2->unk_08 = ov5_021E18CC(v6->unk_A4, v4);
+                    v2->unk_02 = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, v4, &v5->unk_04, &v3, fieldSystem->unk_50);
+                    v2->unk_08 = ov5_021E18CC(fieldSystem->unk_A4, v4);
                     break;
                 }
 
@@ -171,16 +171,16 @@ static void ov5_021F8480 (UnkStruct_ov5_021F8480 * param0, const u32 param1)
     }
 }
 
-static BOOL ov5_021F8508 (FieldSystem * param0, u32 param1)
+static BOOL ov5_021F8508 (FieldSystem * fieldSystem, u32 param1)
 {
-    return sub_0206AF6C(SaveData_Events(param0->saveData), 2, param1);
+    return sub_0206AF6C(SaveData_Events(fieldSystem->saveData), 2, param1);
 }
 
-static BOOL ov5_021F851C (int param0, int param1, const UnkStruct_ov5_0220192C * param2, FieldSystem * param3)
+static BOOL ov5_021F851C (int param0, int param1, const UnkStruct_ov5_0220192C * param2, FieldSystem * fieldSystem)
 {
     const UnkStruct_ov5_021F83D4 * v0 = &param2->unk_10;
 
-    if ((param2->unk_02 == 1) && (ov5_021F8508(param3, param2->unk_00) == 1)) {
+    if ((param2->unk_02 == 1) && (ov5_021F8508(fieldSystem, param2->unk_00) == 1)) {
         if ((param1 >= v0->unk_02) && (param1 <= v0->unk_06) && (param0 >= v0->unk_00) && (param0 <= v0->unk_04)) {
             return 1;
         }

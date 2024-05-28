@@ -278,8 +278,8 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
         sub_02068368(fieldSystem);
         ov5_021E9338(fieldSystem->unk_28);
 
-        fieldSystem->unk_1C->unk_08 = Player_XPos(fieldSystem->playerAvatar);
-        fieldSystem->unk_1C->unk_0C = Player_ZPos(fieldSystem->playerAvatar);
+        fieldSystem->unk_1C->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
+        fieldSystem->unk_1C->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
         fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         ov5_021EF300(fieldSystem->unk_A0);
@@ -391,8 +391,8 @@ static BOOL ov5_021D119C (FieldSystem * fieldSystem)
 {
     int x, y;
 
-    x = Player_XPos(fieldSystem->playerAvatar);
-    y = Player_ZPos(fieldSystem->playerAvatar);
+    x = Player_GetXPos(fieldSystem->playerAvatar);
+    y = Player_GetZPos(fieldSystem->playerAvatar);
 
     if ((x != fieldSystem->unk_1C->unk_08) || (y != fieldSystem->unk_1C->unk_0C)) {
         fieldSystem->unk_1C->unk_08 = x;
@@ -414,8 +414,8 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
         return 0;
     }
 
-    v2 = (Player_XPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
-    v3 = (Player_ZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
+    v2 = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
+    v3 = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
     v0 = sub_02039E30(fieldSystem->unk_2C, v2, v3);
     v1 = fieldSystem->unk_1C->unk_00;
 
@@ -541,8 +541,8 @@ static void ov5_021D13B4 (FieldSystem * fieldSystem)
     }
 
     v0 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
-    v1 = (Player_XPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
-    v2 = (Player_ZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
+    v1 = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
+    v2 = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
     v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     sub_02055740(v0, v1, v2, v3);

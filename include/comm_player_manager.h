@@ -20,7 +20,7 @@ typedef struct CommPlayerManager {
     UnkStruct_ov101_021D5D90 * unk_28[MAX_CONNECTED_PLAYERS];
     u8 isActive[MAX_CONNECTED_PLAYERS];
     SysTask * task;
-    FieldSystem * fieldSys;
+    FieldSystem * fieldSystem;
     UnkStruct_ov23_0224A294_sub1 unk_58;
     u8 unk_5A[MAX_CONNECTED_PLAYERS];
     CommPlayerLocation playerLocationServer[MAX_CONNECTED_PLAYERS];
@@ -36,8 +36,8 @@ typedef struct CommPlayerManager {
     u8 unk_122[MAX_CONNECTED_PLAYERS];
     u8 unk_12A[MAX_CONNECTED_PLAYERS];
     u8 movementChanged[MAX_CONNECTED_PLAYERS];
-    u8 unk_13A[MAX_CONNECTED_PLAYERS];
-    u8 unk_142[MAX_CONNECTED_PLAYERS];
+    u8 moveTimerServer[MAX_CONNECTED_PLAYERS];
+    u8 moveTimer[MAX_CONNECTED_PLAYERS];
     UnkStruct_ov23_0224ABC4 unk_14A[8 + 1];
     TrainerInfo * unk_27C[5];
     TrainerInfo * unk_290[MAX_CONNECTED_PLAYERS];
@@ -59,7 +59,7 @@ typedef struct CommPlayerManager {
 } CommPlayerManager;
 
 CommPlayerManager * CommPlayerMan_Get(void);
-BOOL CommPlayerMan_Init(void * param0, FieldSystem * param1, BOOL param2);
+BOOL CommPlayerMan_Init(void * param0, FieldSystem * fieldSystem, BOOL param2);
 void CommPlayerMan_Reset(void);
 void CommPlayerMan_Restart(void);
 void CommPlayerMan_Delete(BOOL param0);
@@ -75,7 +75,7 @@ void CommPlayer_Destroy(u8 param0, BOOL param1, BOOL param2);
 BOOL sub_02057FAC(void);
 void sub_02057FC4(BOOL param0);
 void sub_02058018(int param0, int param1, void * param2, void * param3);
-void sub_0205805C(FieldSystem * param0, BOOL param1);
+void sub_0205805C(FieldSystem * fieldSystem, BOOL param1);
 BOOL CommPlayer_CheckNPCCollision(int param0, int param1);
 void CommPlayer_RecvLocation(int param0, int param1, void * param2, void * param3);
 void CommPlayer_RecvDelete(int param0, int param1, void * param2, void * param3);
@@ -117,8 +117,8 @@ void sub_02059354(int param0, int param1);
 void sub_02059378(int param0);
 void sub_02059390(int param0, int param1);
 void sub_020593B4(int param0);
-int sub_020593CC(int param0);
-int sub_020593E0(int param0);
+int CommPlayer_GetMovementTimer(int param0);
+int CommPlayer_GetMovementTimerServer(int param0);
 void CommPlayer_SetDir(int param0);
 void CommPlayer_SetDirClient(int param0, int param1);
 int CommPlayer_DirClient(int param0);

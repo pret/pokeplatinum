@@ -52,15 +52,15 @@ typedef struct {
 
 void sub_02099570(void);
 static BOOL sub_0207DA28(TaskManager * param0);
-static void sub_0207DE04(UnkStruct_0207DE40 * param0, FieldSystem * param1, u32 param2, u32 param3);
+static void sub_0207DE04(UnkStruct_0207DE40 * param0, FieldSystem * fieldSystem, u32 param2, u32 param3);
 static u32 sub_0207DE40(UnkStruct_0207DE40 * param0);
-static UnkStruct_ov115_02260440 * sub_0207DE90(FieldSystem * param0, u32 param1, u32 param2);
+static UnkStruct_ov115_02260440 * sub_0207DE90(FieldSystem * fieldSystem, u32 param1, u32 param2);
 static void sub_0207DED8(UnkStruct_ov115_02260440 * param0);
-static UnkStruct_ov66_02231134 * sub_0207DEEC(FieldSystem * param0, u32 param1, u32 param2);
+static UnkStruct_ov66_02231134 * sub_0207DEEC(FieldSystem * fieldSystem, u32 param1, u32 param2);
 static void sub_0207DF2C(UnkStruct_ov66_02231134 * param0);
-static UnkStruct_ov117_02260440 * sub_0207DF40(FieldSystem * param0, u32 param1, u32 param2);
+static UnkStruct_ov117_02260440 * sub_0207DF40(FieldSystem * fieldSystem, u32 param1, u32 param2);
 static void sub_0207DF88(UnkStruct_ov115_02260440 * param0);
-static void sub_0207DF9C(FieldSystem * param0);
+static void sub_0207DF9C(FieldSystem * fieldSystem);
 
 static const OverlayManagerTemplate Unk_020F1B98 = {
     ov65_0222E2A8,
@@ -86,17 +86,17 @@ static const u8 Unk_020F1B64[4] = {
 static BOOL sub_0207DA28 (TaskManager * param0)
 {
     int v0;
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0207DE40 * v2 = TaskManager_Environment(param0);
 
     switch (v2->unk_04) {
     case 0:
-        v2->unk_00->unk_00 = v1->saveData;
+        v2->unk_00->unk_00 = fieldSystem->saveData;
     case 1:
         v2->unk_04++;
 
         if (v2->unk_00->unk_04 == 1) {
-            if (sub_02039074(v1->saveData)) {
+            if (sub_02039074(fieldSystem->saveData)) {
                 v2->unk_04 = 10;
                 *(v2->unk_08) = 0;
             }
@@ -107,8 +107,8 @@ static BOOL sub_0207DA28 (TaskManager * param0)
         v2->unk_04++;
         break;
     case 3:
-        if (sub_02039074(v1->saveData)) {
-            sub_0206AF5C(SaveData_Events(v1->saveData));
+        if (sub_02039074(fieldSystem->saveData)) {
+            sub_0206AF5C(SaveData_Events(fieldSystem->saveData));
         }
 
         switch (v2->unk_00->unk_04) {
@@ -200,91 +200,91 @@ static BOOL sub_0207DA28 (TaskManager * param0)
         v2->unk_04++;
         return 1;
     case 12:
-        sub_0207DE04(v2, v1, 11, 0);
+        sub_0207DE04(v2, fieldSystem, 11, 0);
         v2->unk_04++;
         break;
     case 13:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
     case 14:
-        v2->unk_10 = (void *)sub_020996A0(v1, 11, v2->unk_14);
+        v2->unk_10 = (void *)sub_020996A0(fieldSystem, 11, v2->unk_14);
         v2->unk_04++;
         break;
     case 15:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             Heap_FreeToHeap(v2->unk_10);
             v2->unk_04 = 2;
         }
         break;
     case 16:
         sub_0203632C(0);
-        v2->unk_10 = sub_0209BA18(v1, NULL);
+        v2->unk_10 = sub_0209BA18(fieldSystem, NULL);
         v2->unk_04++;
         break;
     case 17:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             Heap_FreeToHeap(v2->unk_10);
             v2->unk_04 = 2;
         }
         break;
     case 18:
-        sub_0207DE04(v2, v1, 11, 1);
+        sub_0207DE04(v2, fieldSystem, 11, 1);
         v2->unk_04++;
         break;
     case 19:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
     case 20:
-        sub_0207DF9C(v1);
-        v2->unk_10 = sub_0207DE90(v1, 11, v2->unk_14);
+        sub_0207DF9C(fieldSystem);
+        v2->unk_10 = sub_0207DE90(fieldSystem, 11, v2->unk_14);
         v2->unk_04++;
         break;
     case 21:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DED8(v2->unk_10);
         }
         break;
     case 22:
-        sub_0207DE04(v2, v1, 11, 2);
+        sub_0207DE04(v2, fieldSystem, 11, 2);
         v2->unk_04++;
         break;
     case 23:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
     case 24:
-        sub_0207DF9C(v1);
-        v2->unk_10 = sub_0207DEEC(v1, 11, v2->unk_14);
+        sub_0207DF9C(fieldSystem);
+        v2->unk_10 = sub_0207DEEC(fieldSystem, 11, v2->unk_14);
         v2->unk_04++;
         break;
     case 25:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DF2C(v2->unk_10);
         }
         break;
     case 26:
-        sub_0207DE04(v2, v1, 11, 3);
+        sub_0207DE04(v2, fieldSystem, 11, 3);
         v2->unk_04++;
         break;
     case 27:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             v2->unk_04 = sub_0207DE40(v2);
         }
         break;
     case 28:
-        sub_0207DF9C(v1);
-        v2->unk_10 = sub_0207DF40(v1, 11, v2->unk_14);
+        sub_0207DF9C(fieldSystem);
+        v2->unk_10 = sub_0207DF40(fieldSystem, 11, v2->unk_14);
         v2->unk_04++;
         break;
     case 29:
-        if (!sub_020509B4(v1)) {
+        if (!sub_020509B4(fieldSystem)) {
             v2->unk_04 = 2;
             sub_0207DF88(v2->unk_10);
         }
@@ -324,7 +324,7 @@ void sub_0207DDE0 (TaskManager * param0, u16 * param1)
     sub_02050944(param0, sub_0207DA28, v0);
 }
 
-static void sub_0207DE04 (UnkStruct_0207DE40 * param0, FieldSystem * param1, u32 param2, u32 param3)
+static void sub_0207DE04 (UnkStruct_0207DE40 * param0, FieldSystem * fieldSystem, u32 param2, u32 param3)
 {
     UnkStruct_0207DE04 * v0;
 
@@ -335,11 +335,11 @@ static void sub_0207DE04 (UnkStruct_0207DE40 * param0, FieldSystem * param1, u32
     v0->unk_02 = Unk_020F1B64[param3];
     v0->unk_03 = 0;
     v0->unk_04 = 0;
-    v0->unk_08 = param1->saveData;
+    v0->unk_08 = fieldSystem->saveData;
 
     param0->unk_10 = v0;
 
-    sub_0203CD84(param1, &Unk_020F1B88, v0);
+    sub_0203CD84(fieldSystem, &Unk_020F1B88, v0);
 }
 
 static u32 sub_0207DE40 (UnkStruct_0207DE40 * param0)
@@ -371,7 +371,7 @@ static u32 sub_0207DE40 (UnkStruct_0207DE40 * param0)
     return param0->unk_04;
 }
 
-static UnkStruct_ov115_02260440 * sub_0207DE90 (FieldSystem * param0, u32 param1, u32 param2)
+static UnkStruct_ov115_02260440 * sub_0207DE90 (FieldSystem * fieldSystem, u32 param1, u32 param2)
 {
     UnkStruct_ov115_02260440 * v0;
 
@@ -388,10 +388,10 @@ static UnkStruct_ov115_02260440 * sub_0207DE90 (FieldSystem * param0, u32 param1
 
         v0->unk_38 = param2;
         v0->unk_39 = 0;
-        v0->unk_34 = param0->saveData;
+        v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(param0, &v1, v0);
+        sub_0203CD84(fieldSystem, &v1, v0);
     }
     return v0;
 }
@@ -404,7 +404,7 @@ static void sub_0207DED8 (UnkStruct_ov115_02260440 * param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov66_02231134 * sub_0207DEEC (FieldSystem * param0, u32 param1, u32 param2)
+static UnkStruct_ov66_02231134 * sub_0207DEEC (FieldSystem * fieldSystem, u32 param1, u32 param2)
 {
     UnkStruct_ov66_02231134 * v0;
 
@@ -419,10 +419,10 @@ static UnkStruct_ov66_02231134 * sub_0207DEEC (FieldSystem * param0, u32 param1,
         memset(v0, 0, sizeof(UnkStruct_ov66_02231134));
         v0->unk_3C = param2;
         v0->unk_38 = 0;
-        v0->unk_34 = param0->saveData;
+        v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(param0, &v1, v0);
+        sub_0203CD84(fieldSystem, &v1, v0);
     }
     return v0;
 }
@@ -435,7 +435,7 @@ static void sub_0207DF2C (UnkStruct_ov66_02231134 * param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov117_02260440 * sub_0207DF40 (FieldSystem * param0, u32 param1, u32 param2)
+static UnkStruct_ov117_02260440 * sub_0207DF40 (FieldSystem * fieldSystem, u32 param1, u32 param2)
 {
     UnkStruct_ov117_02260440 * v0;
 
@@ -452,10 +452,10 @@ static UnkStruct_ov117_02260440 * sub_0207DF40 (FieldSystem * param0, u32 param1
 
         v0->unk_38 = param2;
         v0->unk_39 = 0;
-        v0->unk_34 = param0->saveData;
+        v0->unk_34 = fieldSystem->saveData;
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay114), 2);
-        sub_0203CD84(param0, &v1, v0);
+        sub_0203CD84(fieldSystem, &v1, v0);
     }
 
     return v0;
@@ -469,10 +469,10 @@ static void sub_0207DF88 (UnkStruct_ov115_02260440 * param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static void sub_0207DF9C (FieldSystem * param0)
+static void sub_0207DF9C (FieldSystem * fieldSystem)
 {
     UnkStruct_0202CD88 * v0;
 
-    v0 = sub_0202CD88(param0->saveData);
+    v0 = sub_0202CD88(fieldSystem->saveData);
     sub_0202CFEC(v0, 50);
 }

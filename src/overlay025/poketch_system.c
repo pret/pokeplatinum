@@ -118,7 +118,7 @@ static PoketchSystem * ov25_02253CE0 (void)
 }
 
 
-void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager)
+void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_MAIN, HEAP_SIZE_POKETCH_MAIN);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, HEAP_SIZE_POKETCH_APP);
@@ -128,7 +128,7 @@ void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, Sav
     if (new_system != NULL) {
         *poketchSys = new_system;
 
-        new_system->fieldSys = fieldSys;
+        new_system->fieldSystem = fieldSystem;
         new_system->saveData = saveData;
         new_system->poketchData = SaveData_PoketchData(saveData);
         new_system->bgl = bgl;
@@ -735,7 +735,7 @@ BOOL ov25_022544BC (u32 * param0, u32 * param1)
 
 BOOL ov25_0225450C (const PoketchSystem *poketchSys)
 {
-    return sub_020509A4(poketchSys->fieldSys);
+    return sub_020509A4(poketchSys->fieldSystem);
 }
 
 void ov25_02254518 (const PoketchSystem *poketchSys, PoketchButtonManager * param1)
@@ -757,7 +757,7 @@ BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys)
 
 FieldSystem* PoketchSystem_FieldSystem(const PoketchSystem *poketchSys)
 {
-    return poketchSys->fieldSys;
+    return poketchSys->fieldSystem;
 }
 
 PoketchData* PoketchSystem_PoketchData(const PoketchSystem *poketchSys)

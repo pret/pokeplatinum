@@ -26,16 +26,16 @@ int sub_020641A8(int param0);
 void sub_020641B4(MapObject * param0, int param1);
 void sub_02064208(MapObject * param0);
 u32 sub_02064238(MapObject * param0, int param1);
-void sub_02064270(MapObject * param0, const VecFx32 * param1);
-void sub_020642A4(MapObject * param0, int param1, fx32 param2);
+void MapObject_AddVecToPos(MapObject * param0, const VecFx32 * param1);
+void MapObject_StepDirection(MapObject * param0, int param1, fx32 param2);
 int sub_020642F8(MapObject * param0);
 int sub_02064390(MapObject * param0);
-void sub_02064418(int param0, VecFx32 * param1, fx32 param2);
+void VecFx32_StepDirection(int param0, VecFx32 * param1, fx32 param2);
 void sub_02064450(int param0, int param1, VecFx32 * param2);
 void sub_02064464(MapObject * param0);
-int sub_0206447C(int param0);
+int Direction_GetOpposite(int param0);
 int sub_02064488(int param0, int param1, int param2, int param3);
-int sub_020644A4(FieldSystem * param0, VecFx32 * param1);
-int sub_020644D0(FieldSystem * param0, VecFx32 * param1, int param2);
+int sub_020644A4(FieldSystem * fieldSystem, VecFx32 * param1);
+int sub_020644D0(FieldSystem * fieldSystem, VecFx32 * param1, int param2);
 
 #endif // POKEPLATINUM_MAP_OBJECT_MOVE_H

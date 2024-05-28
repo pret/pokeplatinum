@@ -45,7 +45,7 @@ typedef struct {
     BattleParams * unk_10;
     UnkStruct_0208C06C * unk_14;
     UnkStruct_0208BA84 unk_18;
-    FieldSystem * unk_28;
+    FieldSystem * fieldSystem;
 } UnkStruct_0208BC3C;
 
 static void sub_0208BAAC(OverlayManager * param0, int param1);
@@ -93,8 +93,8 @@ static void sub_0208BAAC (OverlayManager * param0, int param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0208BC3C), 119);
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0208BC3C));
 
-    v0->unk_28 = OverlayManager_Args(param0);
-    v0->saveData = v0->unk_28->saveData;
+    v0->fieldSystem = OverlayManager_Args(param0);
+    v0->saveData = v0->fieldSystem->saveData;
     v0->unk_14 = Heap_AllocFromHeap(119, sizeof(UnkStruct_0208C06C));
 
     MI_CpuFill8(v0->unk_14, 0, sizeof(UnkStruct_0208C06C));
@@ -325,9 +325,9 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
             sub_02005464(0);
             sub_02004234(0);
 
-            v1 = sub_02055428(param0->unk_28, param0->unk_28->unk_1C->unk_00);
+            v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->unk_1C->unk_00);
 
-            sub_02004224(sub_020554A4(param0->unk_28, param0->unk_28->unk_1C->unk_00));
+            sub_02004224(sub_020554A4(param0->fieldSystem, param0->fieldSystem->unk_1C->unk_00));
             sub_02004550(4, v1, 1);
         }
 

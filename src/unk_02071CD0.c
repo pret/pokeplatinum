@@ -10,15 +10,15 @@
 #include "unk_02027F50.h"
 #include "field_system.h"
 
-void sub_02071CD0(FieldSystem * param0);
+void sub_02071CD0(FieldSystem * fieldSystem);
 
-void sub_02071CD0 (FieldSystem * param0)
+void sub_02071CD0 (FieldSystem * fieldSystem)
 {
     int v0;
     UnkStruct_02027860 * v1;
     UnkStruct_ov6_02242AF0 * v2;
 
-    v1 = sub_02027860(FieldSystem_SaveData(param0));
+    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 != 6) {

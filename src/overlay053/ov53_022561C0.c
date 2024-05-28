@@ -87,24 +87,24 @@ static BOOL ov53_0225621C (UnkStruct_ov53_0225621C * param0, PoketchSystem * par
             (48 + (48 / 2))
         }
     };
-    FieldSystem * v1;
+    FieldSystem * fieldSystem;
     int v2;
 
-    v1 = PoketchSystem_FieldSystem(param1);
-    param0->unk_04.unk_04 = ov6_02243140(v1);
+    fieldSystem = PoketchSystem_FieldSystem(param1);
+    param0->unk_04.unk_04 = ov6_02243140(fieldSystem);
 
     if (param0->unk_04.unk_04) {
-        param0->unk_04.unk_00 = GetRadarSpecies(v1);
+        param0->unk_04.unk_00 = GetRadarSpecies(fieldSystem);
     } else {
         param0->unk_04.unk_00 = 0;
     }
 
     for (v2 = 0; v2 < 3; v2++) {
-        param0->unk_04.unk_14[v2] = ov6_02243114(v1, v2);
-        param0->unk_04.unk_08[v2] = ov6_022430E8(v1, v2);
+        param0->unk_04.unk_14[v2] = ov6_02243114(fieldSystem, v2);
+        param0->unk_04.unk_08[v2] = ov6_022430E8(fieldSystem, v2);
     }
 
-    param0->unk_04.unk_20 = ov6_022430C4(v1);
+    param0->unk_04.unk_20 = ov6_022430C4(fieldSystem);
 
     if (ov53_02256420(&(param0->unk_2C), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -201,16 +201,16 @@ static BOOL ov53_02256370 (UnkStruct_ov53_0225621C * param0)
     }
 
     {
-        FieldSystem * v0;
+        FieldSystem * fieldSystem;
         int v1;
 
-        v0 = PoketchSystem_FieldSystem(param0->unk_30);
-        param0->unk_04.unk_04 = ov6_02243140(v0);
+        fieldSystem = PoketchSystem_FieldSystem(param0->unk_30);
+        param0->unk_04.unk_04 = ov6_02243140(fieldSystem);
 
         if (param0->unk_04.unk_04 == 0) {
             v1 = 0;
         } else {
-            v1 = GetRadarSpecies(v0);
+            v1 = GetRadarSpecies(fieldSystem);
         }
 
         if (v1 != param0->unk_04.unk_00) {

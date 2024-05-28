@@ -15,6 +15,6 @@ u32 sub_0206BFFC(u32 param0);
 u32 sub_0206C008(SaveData * param0);
 u32 sub_0206C02C(SaveData * param0);
 u32 sub_0206C068(SaveData * param0);
-BOOL sub_0206C0D0(FieldSystem * param0);
+BOOL sub_0206C0D0(FieldSystem * fieldSystem);
 
 #endif // POKEPLATINUM_UNK_0206B9D8_H

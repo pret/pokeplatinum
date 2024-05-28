@@ -52,10 +52,10 @@ BOOL ScrCmd_2D5(ScriptContext * param0);
 static void sub_0204FBEC(SaveData * param0, UnkStruct_0203041C * param1, u8 param2);
 static void sub_0204FDB4(TaskManager * param0, void ** param1, u8 param2);
 static BOOL sub_0204FDE8(TaskManager * param0);
-static int sub_0204FE50(UnkStruct_0204FE50 * param0, FieldSystem * param1, int param2);
-static int sub_0204FF1C(UnkStruct_0204FE50 * param0, FieldSystem * param1);
-static int sub_0204FF6C(UnkStruct_0204FE50 * param0, FieldSystem * param1, int param2);
-static int sub_0204FFF4(UnkStruct_0204FE50 * param0, FieldSystem * param1);
+static int sub_0204FE50(UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem, int param2);
+static int sub_0204FF1C(UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem);
+static int sub_0204FF6C(UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem, int param2);
+static int sub_0204FFF4(UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem);
 BOOL ScrCmd_2D3(ScriptContext * param0);
 static void sub_0204FCF8(TaskManager * param0, u16 param1, u16 param2, u16 * param3);
 static BOOL sub_0204FD38(TaskManager * param0);
@@ -75,24 +75,24 @@ BOOL ScrCmd_2D2 (ScriptContext * param0)
     v3 = ScriptContext_ReadHalfWord(param0);
     v4 = ScriptContext_GetVar(param0);
     v5 = ScriptContext_ReadHalfWord(param0);
-    v6 = sub_0203F118(param0->fieldSys, v5);
-    v10 = sub_020302DC(param0->fieldSys->saveData);
-    v11 = sub_0203041C(param0->fieldSys->saveData);
-    v8 = sub_0203F098(param0->fieldSys, 19);
+    v6 = sub_0203F118(param0->fieldSystem, v5);
+    v10 = sub_020302DC(param0->fieldSystem->saveData);
+    v11 = sub_0203041C(param0->fieldSystem->saveData);
+    v8 = sub_0203F098(param0->fieldSystem, 19);
 
     switch (v3) {
     case 0:
-        *v6 = sub_02049EC4(v4, param0->fieldSys->saveData, 0);
+        *v6 = sub_02049EC4(v4, param0->fieldSystem->saveData, 0);
         break;
     case 1:
         if (v4 == 3) {
-            *v6 = sub_02030698(sub_0203068C(param0->fieldSys->saveData), 108, sub_0205E6A8(108));
+            *v6 = sub_02030698(sub_0203068C(param0->fieldSystem->saveData), 108, sub_0205E6A8(108));
         } else {
             *v6 = (u16)sub_02030470(v11, 9, v4, 0, NULL);
         }
         break;
     case 3:
-        sub_0204FBEC(param0->fieldSys->saveData, v11, v4);
+        sub_0204FBEC(param0->fieldSystem->saveData, v11, v4);
         break;
     case 4:
         if (v4 == 0) {
@@ -121,8 +121,8 @@ BOOL ScrCmd_2D5 (ScriptContext * param0)
     UnkStruct_0203041C * v0;
     u16 v1 = ScriptContext_GetVar(param0);
 
-    v0 = sub_0203041C(param0->fieldSys->saveData);
-    sub_0204FBEC(param0->fieldSys->saveData, v0, v1);
+    v0 = sub_0203041C(param0->fieldSystem->saveData);
+    sub_0204FBEC(param0->fieldSystem->saveData, v0, v1);
 
     return 0;
 }
@@ -214,7 +214,7 @@ static BOOL sub_0204FD38 (TaskManager * param0)
 
 static void sub_0204FDB4 (TaskManager * param0, void ** param1, u8 param2)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0204FE50 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204FE50));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0204FE50));
@@ -222,27 +222,27 @@ static void sub_0204FDB4 (TaskManager * param0, void ** param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_0C = param1;
 
-    sub_02050944(v0->unk_10, sub_0204FDE8, v1);
+    sub_02050944(fieldSystem->unk_10, sub_0204FDE8, v1);
     return;
 }
 
 static BOOL sub_0204FDE8 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0204FE50 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
-        v1->unk_00 = sub_0204FE50(v1, v0, 11);
+        v1->unk_00 = sub_0204FE50(v1, fieldSystem, 11);
         break;
     case 1:
-        v1->unk_00 = sub_0204FF1C(v1, v0);
+        v1->unk_00 = sub_0204FF1C(v1, fieldSystem);
         break;
     case 2:
-        v1->unk_00 = sub_0204FF6C(v1, v0, 11);
+        v1->unk_00 = sub_0204FF6C(v1, fieldSystem, 11);
         break;
     case 3:
-        v1->unk_00 = sub_0204FFF4(v1, v0);
+        v1->unk_00 = sub_0204FFF4(v1, fieldSystem);
         break;
     case 4:
         Heap_FreeToHeap(v1);
@@ -252,21 +252,21 @@ static BOOL sub_0204FDE8 (TaskManager * param0)
     return 0;
 }
 
-static int sub_0204FE50 (UnkStruct_0204FE50 * param0, FieldSystem * param1, int param2)
+static int sub_0204FE50 (UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem, int param2)
 {
     u8 v0;
     PartyManagementData * v1 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
 
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
-    v1->unk_00 = Party_GetFromSavedata(param1->saveData);
-    v1->unk_04 = sub_0207D990(param1->saveData);
-    v1->unk_08 = sub_02028430(param1->saveData);
-    v1->unk_0C = SaveData_Options(param1->saveData);
+    v1->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
+    v1->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v1->unk_08 = sub_02028430(fieldSystem->saveData);
+    v1->unk_0C = SaveData_Options(fieldSystem->saveData);
 
     v1->unk_21 = 0;
     v1->unk_20 = 23;
-    v1->unk_1C = param1;
+    v1->unk_1C = fieldSystem;
     v1->unk_22 = param0->unk_05;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -282,19 +282,19 @@ static int sub_0204FE50 (UnkStruct_0204FE50 * param0, FieldSystem * param1, int 
         v1->unk_32_4 = 2;
     }
 
-    sub_0203CD84(param1, &Unk_020F1E88, v1);
+    sub_0203CD84(fieldSystem, &Unk_020F1E88, v1);
 
     *(param0->unk_0C) = v1;
 
     return 1;
 }
 
-static int sub_0204FF1C (UnkStruct_0204FE50 * param0, FieldSystem * param1)
+static int sub_0204FF1C (UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem)
 {
     int v0;
     PartyManagementData * v1;
 
-    if (sub_020509B4(param1)) {
+    if (sub_020509B4(fieldSystem)) {
         return 1;
     }
 
@@ -317,7 +317,7 @@ static int sub_0204FF1C (UnkStruct_0204FE50 * param0, FieldSystem * param1)
     return 2;
 }
 
-static int sub_0204FF6C (UnkStruct_0204FE50 * param0, FieldSystem * param1, int param2)
+static int sub_0204FF6C (UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem, int param2)
 {
     PokemonSummary * v0;
     SaveData * v1;
@@ -325,7 +325,7 @@ static int sub_0204FF6C (UnkStruct_0204FE50 * param0, FieldSystem * param1, int 
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = param1->saveData;
+    v1 = fieldSystem->saveData;
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
@@ -343,17 +343,17 @@ static int sub_0204FF6C (UnkStruct_0204FE50 * param0, FieldSystem * param1, int 
 
     PokemonSummary_FlagVisiblePages(v0, v2);
     PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
-    sub_0203CD84(param1, &Unk_020F410C, v0);
+    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
 
     *(param0->unk_0C) = v0;
     return 3;
 }
 
-static int sub_0204FFF4 (UnkStruct_0204FE50 * param0, FieldSystem * param1)
+static int sub_0204FFF4 (UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem)
 {
     PokemonSummary * v0;
 
-    if (sub_020509B4(param1)) {
+    if (sub_020509B4(fieldSystem)) {
         return 3;
     }
 

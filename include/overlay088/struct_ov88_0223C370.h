@@ -14,7 +14,7 @@
 #include "savedata.h"
 
 typedef struct {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     TrainerInfo * unk_04;
     Party * unk_08;
     UnkStruct_02027F8C * unk_0C;

@@ -57,18 +57,16 @@ static void sub_0205C8DC(UnkStruct_0205C924 * param0);
 
 UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
 {
-    UnkStruct_0205C22C * v0;
-
-    v0 = (UnkStruct_0205C22C *)Heap_AllocFromHeap(31, sizeof(UnkStruct_0205C22C));
+    UnkStruct_0205C22C * v0 = (UnkStruct_0205C22C *)Heap_AllocFromHeap(31, sizeof(UnkStruct_0205C22C));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0205C22C));
 
     v0->unk_00 = param0;
     v0->unk_47C = 1;
     v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
-    v0->unk_470 = sub_0205B770(param0);
-    v0->unk_474 = SaveData_SaveTable(v0->unk_470->saveData, 9);
-    v0->unk_08 = v0->unk_470->playerAvatar;
+    v0->fieldSystem = sub_0205B770(param0);
+    v0->unk_474 = SaveData_SaveTable(v0->fieldSystem->saveData, 9);
+    v0->playerAvatar = v0->fieldSystem->playerAvatar;
 
     Heap_CreateAtEnd(11, 89, 10000);
     v0->unk_478 = sub_0205C95C(89);
@@ -108,17 +106,15 @@ void sub_0205C2E0 (UnkStruct_0205C22C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void sub_0205C304 (SysTask * param0, void * param1)
+static void sub_0205C304 (SysTask * task, void * param1)
 {
     UnkStruct_0205C22C * v0 = (UnkStruct_0205C22C *)param1;
     UnkStruct_0205B43C * v1 = v0->unk_00;
-    MapObject * v2;
-    int v3;
 
-    if (!sub_020509A4(v0->unk_470)) {
-        v0->unk_08 = v0->unk_470->playerAvatar;
-        sub_0205C44C(v0, v1, v0->unk_470->mapObjMan, v0->unk_474);
-        sub_0205C51C(v0, v0->unk_470->mapObjMan);
+    if (!sub_020509A4(v0->fieldSystem)) {
+        v0->playerAvatar = v0->fieldSystem->playerAvatar;
+        sub_0205C44C(v0, v1, v0->fieldSystem->mapObjMan, v0->unk_474);
+        sub_0205C51C(v0, v0->fieldSystem->mapObjMan);
     }
 }
 
@@ -249,10 +245,10 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
     MapObject * v0;
     int v1, v2, v3;
 
-    GF_ASSERT(param0->unk_08 != NULL);
+    GF_ASSERT(param0->playerAvatar != NULL);
 
-    v2 = Player_XPos(param0->unk_08);
-    v3 = Player_ZPos(param0->unk_08);
+    v2 = Player_GetXPos(param0->playerAvatar);
+    v3 = Player_GetZPos(param0->playerAvatar);
 
     for (v1 = 0; v1 < 50; v1++) {
         v0 = MapObjMan_LocalMapObjByIndex(param1, v1 + 1);
@@ -323,7 +319,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
         }
     }
 
-    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->unk_08));
+    sub_0205C7BC(&param0->unk_0C[50], Player_MapObject(param0->playerAvatar));
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 
@@ -418,13 +414,13 @@ static void sub_0205C7BC (UnkStruct_0205C680 * param0, MapObject * param1)
     }
 }
 
-static void sub_0205C7E4 (MapObjectManager * param0, int param1, int param2)
+static void sub_0205C7E4 (MapObjectManager * mapObjMan, int param1, int param2)
 {
     int v0;
     MapObject * v1;
 
     for (v0 = param1; v0 < param2; v0++) {
-        v1 = MapObjMan_LocalMapObjByIndex(param0, v0);
+        v1 = MapObjMan_LocalMapObjByIndex(mapObjMan, v0);
 
         if (v1 == NULL) {
             GF_ASSERT(0);
@@ -436,18 +432,18 @@ static void sub_0205C7E4 (MapObjectManager * param0, int param1, int param2)
     }
 }
 
-void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
+void sub_0205C820 (MapObjectManager * mapObjMan, UnkStruct_0205C22C * param1)
 {
-    MapObject * v0;
+    MapObject * mapObj;
     UnkStruct_0205C680 * v1;
 
-    v0 = MapObjMan_LocalMapObjByIndex(param0, 0);
+    mapObj = MapObjMan_LocalMapObjByIndex(mapObjMan, 0);
 
-    if (v0 == NULL) {
+    if (mapObj == NULL) {
         GF_ASSERT(0);
     }
 
-    if (LocalMapObj_IsAnimationSet(v0) == 1) {
+    if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
         if (sub_02036AA0() || sub_02036A68()) {
             int v2;
 
@@ -458,34 +454,34 @@ void sub_0205C820 (MapObjectManager * param0, UnkStruct_0205C22C * param1)
                     continue;
                 }
 
-                v0 = MapObjMan_LocalMapObjByIndex(param0, v2 + 1);
+                mapObj = MapObjMan_LocalMapObjByIndex(mapObjMan, v2 + 1);
 
-                if (v0 == NULL) {
+                if (mapObj == NULL) {
                     GF_ASSERT(0);
                 }
 
-                sub_02061AD4(v0, v1->unk_08);
-                sub_0206296C(v0, 1);
-                LocalMapObj_SetAnimationCode(v0, 0x44);
-                MapObject_SetHidden(v0, 0);
-                sub_02062D80(v0, 1);
+                sub_02061AD4(mapObj, v1->unk_08);
+                sub_0206296C(mapObj, 1);
+                LocalMapObj_SetAnimationCode(mapObj, 0x44);
+                MapObject_SetHidden(mapObj, 0);
+                sub_02062D80(mapObj, 1);
 
                 v1->unk_01 = 1;
 
                 if (v1->unk_02 != 0) {
                     if (v1->unk_02 == 1) {
-                        v1->unk_14 = ov5_021F16D4(v0, 1);
+                        v1->unk_14 = ov5_021F16D4(mapObj, 1);
                     } else if (v1->unk_02 >= 2) {
-                        v1->unk_14 = ov5_021F16D4(v0, 2);
+                        v1->unk_14 = ov5_021F16D4(mapObj, 2);
                     }
 
                     v1->unk_02 = 0;
                 }
             }
 
-            sub_0205C7E4(param0, 11, 51);
+            sub_0205C7E4(mapObjMan, 11, 51);
         } else {
-            sub_0205C7E4(param0, 1, 51);
+            sub_0205C7E4(mapObjMan, 1, 51);
         }
     }
 }

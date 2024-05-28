@@ -90,7 +90,7 @@ int ov6_022464A4 (const UnkStruct_ov6_022465F4 * param0)
     return param0->unk_00;
 }
 
-static UnkStruct_ov6_022465F4 * ov6_022464A8 (FieldSystem * param0, UnkStruct_0202E794 * param1)
+static UnkStruct_ov6_022465F4 * ov6_022464A8 (FieldSystem * fieldSystem, UnkStruct_0202E794 * param1)
 {
     UnkStruct_ov6_022465F4 * v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
@@ -103,9 +103,9 @@ static UnkStruct_ov6_022465F4 * ov6_022464A8 (FieldSystem * param0, UnkStruct_02
     return v0;
 }
 
-static UnkStruct_ov6_022465F4 * ov6_022464F8 (FieldSystem * param0, UnkStruct_0202E768 * param1)
+static UnkStruct_ov6_022465F4 * ov6_022464F8 (FieldSystem * fieldSystem, UnkStruct_0202E768 * param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
@@ -118,9 +118,9 @@ static UnkStruct_ov6_022465F4 * ov6_022464F8 (FieldSystem * param0, UnkStruct_02
     return v1;
 }
 
-static UnkStruct_ov6_022465F4 * ov6_02246550 (FieldSystem * param0, int param1)
+static UnkStruct_ov6_022465F4 * ov6_02246550 (FieldSystem * fieldSystem, int param1)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
@@ -134,20 +134,20 @@ static UnkStruct_ov6_022465F4 * ov6_02246550 (FieldSystem * param0, int param1)
     return v1;
 }
 
-UnkStruct_ov6_022465F4 * ov6_022465A0 (FieldSystem * param0, int param1, int param2)
+UnkStruct_ov6_022465F4 * ov6_022465A0 (FieldSystem * fieldSystem, int param1, int param2)
 {
-    TVBroadcast * v0 = SaveData_TVBroadcast(param0->saveData);
+    TVBroadcast * v0 = SaveData_TVBroadcast(fieldSystem->saveData);
 
     if ((param1 == 4) || (param1 == 5)) {
-        return ov6_02246550(param0, param2);
+        return ov6_02246550(fieldSystem, param2);
     }
 
     if (sub_0202E7C0(param2) == 0) {
         UnkStruct_0202E794 * v1 = sub_0202E794(v0, param1, param2);
-        return ov6_022464A8(param0, v1);
+        return ov6_022464A8(fieldSystem, v1);
     } else {
         UnkStruct_0202E768 * v2 = sub_0202E768(v0, param1, param2);
-        return ov6_022464F8(param0, v2);
+        return ov6_022464F8(fieldSystem, v2);
     }
 }
 

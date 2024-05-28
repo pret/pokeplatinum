@@ -304,23 +304,23 @@ void ov5_021DDA78 (UnkStruct_ov5_021DD9C8 * param0)
     }
 }
 
-void ov5_021DDAA4 (FieldSystem * param0)
+void ov5_021DDAA4 (FieldSystem * fieldSystem)
 {
     int v0;
     int v1;
 
-    if (MapHeader_GetMapLabelWindowID(param0->unk_1C->unk_00) == 0) {
+    if (MapHeader_GetMapLabelWindowID(fieldSystem->unk_1C->unk_00) == 0) {
         return;
     }
 
-    if (!sub_0203A288(param0->unk_1C->unk_00)) {
-        v0 = MapHeader_GetMapLabelTextID(param0->unk_1C->unk_00);
-        v1 = MapHeader_GetMapLabelWindowID(param0->unk_1C->unk_00);
+    if (!sub_0203A288(fieldSystem->unk_1C->unk_00)) {
+        v0 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+        v1 = MapHeader_GetMapLabelWindowID(fieldSystem->unk_1C->unk_00);
 
         if (v1 != 0) {
             v1--;
         }
 
-        ov5_021DD9E8(param0->unk_04->unk_08, v0, v1);
+        ov5_021DD9E8(fieldSystem->unk_04->unk_08, v0, v1);
     }
 }

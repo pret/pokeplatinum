@@ -114,7 +114,7 @@ typedef struct {
     BmpList * unk_160;
     ResourceMetadata * unk_164;
     UIControlData * unk_168;
-    FieldSystem * unk_16C;
+    FieldSystem * fieldSystem;
     BGL * unk_170;
     Window unk_174;
     Window unk_184;
@@ -219,7 +219,7 @@ void sub_020722AC (void * param0, int * param1)
 
     v1 = FieldSystem_SaveData(param0);
 
-    v0->unk_16C = (FieldSystem *)param0;
+    v0->fieldSystem = (FieldSystem *)param0;
     v0->unk_00 = 43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
@@ -1011,7 +1011,7 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
         return;
     }
 
-    v1 = Party_GetFromSavedata(FieldSystem_SaveData(param0->unk_16C));
+    v1 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
@@ -1060,7 +1060,7 @@ static void sub_020731A4 (UnkStruct_02072334 * param0)
 
 static void sub_020731F4 (UnkStruct_02072334 * param0)
 {
-    param0->unk_170 = sub_0203D170(param0->unk_16C);
+    param0->unk_170 = sub_0203D170(param0->fieldSystem);
 
     sub_0200DD0C(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
     sub_0200DAA4(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
@@ -1177,20 +1177,20 @@ static int sub_02073480 (UnkStruct_02072334 * param0)
 {
     switch (param0->unk_12) {
     case 0:
-        sub_020509D4(param0->unk_16C);
+        sub_020509D4(param0->fieldSystem);
         param0->unk_12++;
         break;
     case 1:
-        if (!sub_020509DC(param0->unk_16C)) {
+        if (!sub_020509DC(param0->fieldSystem)) {
             break;
         }
 
-        ov6_02247078(param0->unk_16C, 90);
-        ov6_022470E8(param0->unk_16C, 90);
+        ov6_02247078(param0->fieldSystem, 90);
+        ov6_022470E8(param0->fieldSystem, 90);
         param0->unk_12++;
         break;
     case 2:
-        if (!ov5_021D42F0(param0->unk_16C->unk_54, 90)) {
+        if (!ov5_021D42F0(param0->fieldSystem->unk_54, 90)) {
             break;
         }
 
@@ -1203,7 +1203,7 @@ static int sub_02073480 (UnkStruct_02072334 * param0)
 
 static int sub_020734F4 (UnkStruct_02072334 * param0, u8 param1)
 {
-    ov5_021D4D68(param0->unk_16C, 90);
+    ov5_021D4D68(param0->fieldSystem, 90);
 
     if (param1 == 0) {
         sub_02072DB8(param0);
@@ -1224,10 +1224,10 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
         v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
-        v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->unk_16C));
-        v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->unk_16C));
-        v0->unk_0C = SaveData_Options(FieldSystem_SaveData(param0->unk_16C));
-        v0->unk_08 = sub_02028430(param0->unk_16C->saveData);
+        v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
+        v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->fieldSystem));
+        v0->unk_0C = SaveData_Options(FieldSystem_SaveData(param0->fieldSystem));
+        v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
         v0->unk_21 = 0;
         v0->unk_20 = param1;
         v0->unk_24 = param0->unk_1C[param0->unk_18].unk_06;
@@ -1236,12 +1236,12 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
             v0->unk_22 = param0->unk_17;
         }
 
-        sub_0203CD84(param0->unk_16C, &Unk_020F1E88, v0);
+        sub_0203CD84(param0->fieldSystem, &Unk_020F1E88, v0);
         param0->unk_1B4 = v0;
         param0->unk_12++;
         break;
     case 1:
-        if (sub_020509B4(param0->unk_16C)) {
+        if (sub_020509B4(param0->fieldSystem)) {
             break;
         }
 
@@ -1259,15 +1259,15 @@ static int sub_020735E8 (UnkStruct_02072334 * param0)
     switch (param0->unk_12) {
     case 0:
         if (param0->unk_1C[param0->unk_18].unk_01) {
-            param0->unk_1A8 = sub_0203D94C(param0->unk_16C, 0, param0->unk_18, param0->unk_00);
+            param0->unk_1A8 = sub_0203D94C(param0->fieldSystem, 0, param0->unk_18, param0->unk_00);
         } else {
-            param0->unk_1A8 = sub_0203D920(param0->unk_16C, 0, param0->unk_17, param0->unk_1C[param0->unk_18].unk_05, param0->unk_00);
+            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].unk_05, param0->unk_00);
         }
 
         param0->unk_12++;
         break;
     case 1:
-        if (sub_020509B4(param0->unk_16C)) {
+        if (sub_020509B4(param0->fieldSystem)) {
             break;
         }
 
@@ -1290,12 +1290,12 @@ static int sub_020735E8 (UnkStruct_02072334 * param0)
 
 static BOOL sub_02073694 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020736D8 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
-        sub_020722AC(v0, &(v1->unk_00));
+        sub_020722AC(fieldSystem, &(v1->unk_00));
         v1->unk_04++;
         break;
     case 1:
@@ -1312,11 +1312,11 @@ static BOOL sub_02073694 (TaskManager * param0)
 
 void sub_020736D8 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020736D8 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;
     v1->unk_04 = 0;
 
-    sub_02050944(v0->unk_10, sub_02073694, v1);
+    sub_02050944(fieldSystem->unk_10, sub_02073694, v1);
 }

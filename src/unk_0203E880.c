@@ -85,62 +85,62 @@ struct UnkStruct_0203EF60_t {
 
 #include "data/field/hidden_items.h"
 
-void sub_0203E880(FieldSystem * param0, u16 param1, MapObject * param2);
+void sub_0203E880(FieldSystem * fieldSystem, u16 param1, MapObject * param2);
 void sub_0203E8E0(TaskManager * param0, u16 param1, MapObject * param2, void * param3);
 static BOOL sub_0203E950(TaskManager * param0);
 static UnkStruct_0203EF60 * sub_0203EA28();
 static void sub_0203EA50(ScriptContext * param0);
-static void sub_0203EA68(FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, MapObject * param3, void * param4);
-ScriptContext * sub_0203EAB8(FieldSystem * param0, u16 param1);
-static void sub_0203EAF4(FieldSystem * param0, ScriptContext * param1, u16 param2, u8 param3);
-static u16 sub_0203EB20(FieldSystem * param0, ScriptContext * param1, u16 param2);
-static void sub_0203EF14(FieldSystem * param0, ScriptContext * param1, int param2, u32 param3);
-static void sub_0203EF38(FieldSystem * param0, ScriptContext * param1);
+static void sub_0203EA68(FieldSystem * fieldSystem, UnkStruct_0203EF60 * param1, u16 param2, MapObject * param3, void * param4);
+ScriptContext * sub_0203EAB8(FieldSystem * fieldSystem, u16 param1);
+static void sub_0203EAF4(FieldSystem * fieldSystem, ScriptContext * param1, u16 param2, u8 param3);
+static u16 sub_0203EB20(FieldSystem * fieldSystem, ScriptContext * param1, u16 param2);
+static void sub_0203EF14(FieldSystem * fieldSystem, ScriptContext * param1, int param2, u32 param3);
+static void sub_0203EF38(FieldSystem * fieldSystem, ScriptContext * param1);
 void * sub_0203EF60(UnkStruct_0203EF60 * param0, u32 param1);
-void * sub_0203F098(FieldSystem * param0, u32 param1);
-void sub_0203F0C0(FieldSystem * param0);
+void * sub_0203F098(FieldSystem * fieldSystem, u32 param1);
+void sub_0203F0C0(FieldSystem * fieldSystem);
 static void sub_0203F0E4(ScriptContext * param0, u16 param1);
 static void * sub_0203F0FC(int param0);
 static u32 sub_0203F110(int param0);
-u16 * sub_0203F118(FieldSystem * param0, u16 param1);
-u16 sub_0203F150(FieldSystem * param0, u16 param1);
-u16 sub_0203F164(FieldSystem * param0, u16 param1);
-BOOL sub_0203F188(FieldSystem * param0, u16 param1);
-void sub_0203F19C(FieldSystem * param0, u16 param1);
-void sub_0203F1B0(FieldSystem * param0, u16 param1);
-void sub_0203F1C4(FieldSystem * param0);
-void sub_0203F1FC(FieldSystem * param0);
+u16 * sub_0203F118(FieldSystem * fieldSystem, u16 param1);
+u16 sub_0203F150(FieldSystem * fieldSystem, u16 param1);
+u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
+BOOL sub_0203F188(FieldSystem * fieldSystem, u16 param1);
+void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
+void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
+void sub_0203F1C4(FieldSystem * fieldSystem);
+void sub_0203F1FC(FieldSystem * fieldSystem);
 u16 sub_0203F254(u16 param0);
 BOOL sub_0203F278(u16 param0);
 BOOL sub_0203F28C(u16 param0);
-BOOL sub_0203F2A0(FieldSystem * param0, u16 param1);
-void sub_0203F2BC(FieldSystem * param0, u16 param1);
-void sub_0203F2D8(FieldSystem * param0, u16 param1);
+BOOL sub_0203F2A0(FieldSystem * fieldSystem, u16 param1);
+void sub_0203F2BC(FieldSystem * fieldSystem, u16 param1);
+void sub_0203F2D8(FieldSystem * fieldSystem, u16 param1);
 u16 sub_0203F2F4(u16 param0);
 u16 sub_0203F304(u16 param0);
 u8 sub_0203F3C8(u16 param0);
 static BOOL sub_0203F404(UnkStruct_0203EF60 * param0, u16 param1);
-void sub_0203F310(FieldSystem * param0);
-void sub_0203F598(FieldSystem * param0);
-void sub_0203F5A4(FieldSystem * param0, u16 param1);
-BOOL sub_0203F5C0(FieldSystem * param0, u8 param1);
+void sub_0203F310(FieldSystem * fieldSystem);
+void sub_0203F598(FieldSystem * fieldSystem);
+void sub_0203F5A4(FieldSystem * fieldSystem, u16 param1);
+BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
 static u16 sub_0203F610(const u8 * param0, u8 param1);
-static u16 sub_0203F638(FieldSystem * param0, const u8 * param1, u8 param2);
+static u16 sub_0203F638(FieldSystem * fieldSystem, const u8 * param1, u8 param2);
 UnkStruct_0203F478 * sub_0203F478(FieldSystem * param0, int param1);
 
-void sub_0203E880 (FieldSystem * param0, u16 param1, MapObject * param2)
+void sub_0203E880 (FieldSystem * fieldSystem, u16 param1, MapObject * param2)
 {
     UnkStruct_0203EF60 * v0 = sub_0203EA28();
 
-    sub_0203EA68(param0, v0, param1, param2, NULL);
-    sub_02050904(param0, sub_0203E950, v0);
+    sub_0203EA68(fieldSystem, v0, param1, param2, NULL);
+    sub_02050904(fieldSystem, sub_0203E950, v0);
 
     return;
 }
 
-void sub_0203E8B0 (FieldSystem * param0, MapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7)
+void sub_0203E8B0 (FieldSystem * fieldSystem, MapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(fieldSystem->unk_10);
     UnkStruct_0203E8B0 * v1 = &v0->unk_50[param7];
 
     v1->unk_00 = param2;
@@ -153,10 +153,10 @@ void sub_0203E8B0 (FieldSystem * param0, MapObject * param1, int param2, int par
 
 void sub_0203E8E0 (TaskManager * param0, u16 param1, MapObject * param2, void * param3)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
-    sub_0203EA68(v0, v1, param1, param2, param3);
+    sub_0203EA68(fieldSystem, v1, param1, param2, param3);
     sub_02050944(param0, sub_0203E950, v1);
 
     return;
@@ -164,10 +164,10 @@ void sub_0203E8E0 (TaskManager * param0, u16 param1, MapObject * param2, void * 
 
 void sub_0203E918 (TaskManager * param0, u16 param1, MapObject * param2)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
-    sub_0203EA68(v0, v1, param1, param2, NULL);
+    sub_0203EA68(fieldSystem, v1, param1, param2, NULL);
     sub_02050924(param0, sub_0203E950, v1);
 
     return;
@@ -179,11 +179,11 @@ static BOOL sub_0203E950 (TaskManager * param0)
     UnkFuncPtr_0203E950 v1;
     ScriptContext * v2 = NULL;
     UnkStruct_0203EF60 * v3 = TaskManager_Environment(param0);
-    FieldSystem * v4 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (v3->unk_04) {
     case 0:
-        v3->unk_38[0] = sub_0203EAB8(v4, v3->unk_0A);
+        v3->unk_38[0] = sub_0203EAB8(fieldSystem, v3->unk_0A);
         v3->unk_09 = 1;
         v3->unk_40 = StringTemplate_New(8, 64, 11);
         v3->unk_44 = Strbuf_Init(1024, 11);
@@ -216,7 +216,7 @@ static BOOL sub_0203E950 (TaskManager * param0)
             Heap_FreeToHeap(v3);
 
             if (v1 != NULL) {
-                v1(v4);
+                v1(fieldSystem);
                 return 0;
             }
 
@@ -254,11 +254,11 @@ static void sub_0203EA50 (ScriptContext * param0)
     return;
 }
 
-static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16 param2, MapObject * param3, void * param4)
+static void sub_0203EA68 (FieldSystem * fieldSystem, UnkStruct_0203EF60 * param1, u16 param2, MapObject * param3, void * param4)
 {
     u16 * v0 = sub_0203EF60(param1, 54);
 
-    param1->unk_28 = PlayerAvatar_GetDir(param0->playerAvatar);
+    param1->unk_28 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     param1->unk_2C = param3;
     param1->unk_0A = param2;
     param1->unk_34 = param4;
@@ -274,7 +274,7 @@ static void sub_0203EA68 (FieldSystem * param0, UnkStruct_0203EF60 * param1, u16
     return;
 }
 
-ScriptContext * sub_0203EAB8 (FieldSystem * param0, u16 param1)
+ScriptContext * sub_0203EAB8 (FieldSystem * fieldSystem, u16 param1)
 {
     ScriptContext * v0 = NULL;
 
@@ -285,131 +285,131 @@ ScriptContext * sub_0203EAB8 (FieldSystem * param0, u16 param1)
     }
 
     ScriptContext_Init(v0, Unk_020EAC58, Unk_020EAB80);
-    sub_0203EAF4(param0, v0, param1, 0);
+    sub_0203EAF4(fieldSystem, v0, param1, 0);
 
     return v0;
 }
 
-static void sub_0203EAF4 (FieldSystem * param0, ScriptContext * param1, u16 param2, u8 param3)
+static void sub_0203EAF4 (FieldSystem * fieldSystem, ScriptContext * param1, u16 param2, u8 param3)
 {
     u16 v0;
 
-    param1->fieldSys = param0;
-    v0 = sub_0203EB20(param0, param1, param2);
+    param1->fieldSystem = fieldSystem;
+    v0 = sub_0203EB20(fieldSystem, param1, param2);
 
     ScriptContext_Start(param1, param1->scripts);
     sub_0203F0E4(param1, v0);
-    ScriptContext_SetTaskManager(param1, param0->unk_10);
+    ScriptContext_SetTaskManager(param1, fieldSystem->unk_10);
 
     return;
 }
 
-static u16 sub_0203EB20 (FieldSystem * param0, ScriptContext * param1, u16 param2)
+static u16 sub_0203EB20 (FieldSystem * fieldSystem, ScriptContext * param1, u16 param2)
 {
     u16 v0 = param2;
 
     if (v0 >= 10490) {
-        sub_0203EF14(param0, param1, 499, 541);
+        sub_0203EF14(fieldSystem, param1, 499, 541);
         v0 -= 10490;
     } else if (v0 >= 10450) {
-        sub_0203EF14(param0, param1, 500, 16);
+        sub_0203EF14(fieldSystem, param1, 500, 16);
         v0 -= 10450;
     } else if (v0 >= 10400) {
-        sub_0203EF14(param0, param1, 400, 203);
+        sub_0203EF14(fieldSystem, param1, 400, 203);
         v0 -= 10400;
     } else if (v0 >= 10300) {
-        sub_0203EF14(param0, param1, 1051, 552);
+        sub_0203EF14(fieldSystem, param1, 1051, 552);
         v0 -= 10300;
     } else if (v0 >= 10200) {
-        sub_0203EF14(param0, param1, 407, 379);
+        sub_0203EF14(fieldSystem, param1, 407, 379);
         v0 -= 10200;
     } else if (v0 >= 10150) {
-        sub_0203EF14(param0, param1, 1116, 621);
+        sub_0203EF14(fieldSystem, param1, 1116, 621);
         v0 -= 10150;
     } else if (v0 >= 10100) {
-        sub_0203EF14(param0, param1, 1115, 622);
+        sub_0203EF14(fieldSystem, param1, 1115, 622);
         v0 -= 10100;
     } else if (v0 >= 10000) {
-        sub_0203EF14(param0, param1, 409, 381);
+        sub_0203EF14(fieldSystem, param1, 409, 381);
         v0 -= 10000;
     } else if (v0 >= 9950) {
-        sub_0203EF14(param0, param1, 411, 383);
+        sub_0203EF14(fieldSystem, param1, 411, 383);
         v0 -= 9950;
     } else if (v0 >= 9900) {
-        sub_0203EF14(param0, param1, 397, 213);
+        sub_0203EF14(fieldSystem, param1, 397, 213);
         v0 -= 9900;
     } else if (v0 >= 9800) {
-        sub_0203EF14(param0, param1, 212, 217);
+        sub_0203EF14(fieldSystem, param1, 212, 217);
         v0 -= 9800;
     } else if (v0 >= 9700) {
-        sub_0203EF14(param0, param1, 422, 429);
+        sub_0203EF14(fieldSystem, param1, 422, 429);
         v0 -= 9700;
     } else if (v0 >= 9600) {
-        sub_0203EF14(param0, param1, 412, 213);
+        sub_0203EF14(fieldSystem, param1, 412, 213);
         v0 -= 9600;
     } else if (v0 >= 9500) {
-        sub_0203EF14(param0, param1, 501, 547);
+        sub_0203EF14(fieldSystem, param1, 501, 547);
         v0 -= 9500;
     } else if (v0 >= 9400) {
-        sub_0203EF14(param0, param1, 426, 432);
+        sub_0203EF14(fieldSystem, param1, 426, 432);
         v0 -= 9400;
     } else if (v0 >= 9300) {
-        sub_0203EF14(param0, param1, 406, 374);
+        sub_0203EF14(fieldSystem, param1, 406, 374);
         v0 -= 9300;
     } else if (v0 >= 9200) {
-        sub_0203EF14(param0, param1, 423, 430);
+        sub_0203EF14(fieldSystem, param1, 423, 430);
         v0 -= 9200;
     } else if (v0 >= 9100) {
-        sub_0203EF14(param0, param1, 0, 11);
+        sub_0203EF14(fieldSystem, param1, 0, 11);
         v0 -= 9100;
     } else if (v0 >= 9000) {
-        sub_0203EF14(param0, param1, 213, 221);
+        sub_0203EF14(fieldSystem, param1, 213, 221);
         v0 -= 9000;
     } else if (v0 >= 8970) {
-        sub_0203EF14(param0, param1, 425, 7);
+        sub_0203EF14(fieldSystem, param1, 425, 7);
         v0 -= 8970;
     } else if (v0 >= 8950) {
-        sub_0203EF14(param0, param1, 498, 539);
+        sub_0203EF14(fieldSystem, param1, 498, 539);
         v0 -= 8950;
     } else if (v0 >= 8900) {
-        sub_0203EF14(param0, param1, 424, 431);
+        sub_0203EF14(fieldSystem, param1, 424, 431);
         v0 -= 8900;
     } else if (v0 >= 8800) {
-        sub_0203EF14(param0, param1, 497, 538);
+        sub_0203EF14(fieldSystem, param1, 497, 538);
         v0 -= 8800;
     } else if (v0 >= 8000) {
-        sub_0203EF14(param0, param1, 408, 380);
+        sub_0203EF14(fieldSystem, param1, 408, 380);
         v0 -= 8000;
     } else if (v0 >= 7000) {
-        sub_0203EF14(param0, param1, 404, 369);
+        sub_0203EF14(fieldSystem, param1, 404, 369);
         v0 -= 7000;
     } else if (v0 >= 5000) {
-        sub_0203EF14(param0, param1, 1114, 213);
+        sub_0203EF14(fieldSystem, param1, 1114, 213);
         v0 -= 5000;
     } else if (v0 >= 3000) {
-        sub_0203EF14(param0, param1, 1114, 213);
+        sub_0203EF14(fieldSystem, param1, 1114, 213);
         v0 -= 3000;
     } else if (v0 >= 2800) {
-        sub_0203EF14(param0, param1, 413, 397);
+        sub_0203EF14(fieldSystem, param1, 413, 397);
         v0 -= 2800;
     } else if (v0 >= 2500) {
-        sub_0203EF14(param0, param1, 1, 17);
+        sub_0203EF14(fieldSystem, param1, 1, 17);
         v0 -= 2500;
     } else if (v0 >= 2000) {
-        sub_0203EF14(param0, param1, 211, 213);
+        sub_0203EF14(fieldSystem, param1, 211, 213);
         v0 -= 2000;
     } else if (v0 >= 1) {
-        sub_0203EF38(param0, param1);
+        sub_0203EF38(fieldSystem, param1);
         v0 -= 1;
     } else {
-        sub_0203EF14(param0, param1, 402, 355);
+        sub_0203EF14(fieldSystem, param1, 402, 355);
         v0 = 0;
     }
 
     return v0;
 }
 
-static void sub_0203EF14 (FieldSystem * param0, ScriptContext * param1, int param2, u32 param3)
+static void sub_0203EF14 (FieldSystem * fieldSystem, ScriptContext * param1, int param2, u32 param3)
 {
     u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, param2, 11);
 
@@ -419,12 +419,12 @@ static void sub_0203EF14 (FieldSystem * param0, ScriptContext * param1, int para
     return;
 }
 
-static void sub_0203EF38 (FieldSystem * param0, ScriptContext * param1)
+static void sub_0203EF38 (FieldSystem * fieldSystem, ScriptContext * param1)
 {
-    u8 * v0 = sub_0203F0FC(param0->unk_1C->unk_00);
+    u8 * v0 = sub_0203F0FC(fieldSystem->unk_1C->unk_00);
 
     param1->scripts = (u8 *)v0;
-    param1->loader = MessageLoader_Init(1, 26, sub_0203F110(param0->unk_1C->unk_00), 11);
+    param1->loader = MessageLoader_Init(1, 26, sub_0203F110(fieldSystem->unk_1C->unk_00), 11);
 
     return;
 }
@@ -552,9 +552,9 @@ void * sub_0203EF60 (UnkStruct_0203EF60 * param0, u32 param1)
     return NULL;
 }
 
-void * sub_0203F098 (FieldSystem * param0, u32 param1)
+void * sub_0203F098 (FieldSystem * fieldSystem, u32 param1)
 {
-    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(fieldSystem->unk_10);
 
     if (v0->unk_00 != 0x3643f) {
         GF_ASSERT(FALSE);
@@ -563,11 +563,11 @@ void * sub_0203F098 (FieldSystem * param0, u32 param1)
     return sub_0203EF60(v0, param1);
 }
 
-void sub_0203F0C0 (FieldSystem * param0)
+void sub_0203F0C0 (FieldSystem * fieldSystem)
 {
-    UnkStruct_0203EF60 * v0 = TaskManager_Environment(param0->unk_10);
+    UnkStruct_0203EF60 * v0 = TaskManager_Environment(fieldSystem->unk_10);
 
-    if (sub_0203A9C8(param0) == 1) {
+    if (sub_0203A9C8(fieldSystem) == 1) {
         v0->unk_A4 = sub_0203AB00;
     }
 
@@ -592,11 +592,11 @@ static u32 sub_0203F110 (int param0)
     return MapHeader_GetMsgArchiveID(param0);
 }
 
-u16 * sub_0203F118 (FieldSystem * param0, u16 param1)
+u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 param1)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = SaveData_Events(param0->saveData);
+    v0 = SaveData_Events(fieldSystem->saveData);
 
     if (param1 < 0x4000) {
         return NULL;
@@ -606,12 +606,12 @@ u16 * sub_0203F118 (FieldSystem * param0, u16 param1)
         return sub_020508B8(v0, param1);
     }
 
-    return sub_0203F098(param0, (41 + param1 - 0x8000));
+    return sub_0203F098(fieldSystem, (41 + param1 - 0x8000));
 }
 
-u16 sub_0203F150 (FieldSystem * param0, u16 param1)
+u16 sub_0203F150 (FieldSystem * fieldSystem, u16 param1)
 {
-    u16 * v0 = sub_0203F118(param0, param1);
+    u16 * v0 = sub_0203F118(fieldSystem, param1);
 
     if (v0 == NULL) {
         return param1;
@@ -620,35 +620,35 @@ u16 sub_0203F150 (FieldSystem * param0, u16 param1)
     return *v0;
 }
 
-u16 sub_0203F164 (FieldSystem * param0, u16 param1)
+u16 sub_0203F164 (FieldSystem * fieldSystem, u16 param1)
 {
     GF_ASSERT((param1 < 16));
-    return sub_0203F150(param0, (((0 + 0x4000) + 32) + param1));
+    return sub_0203F150(fieldSystem, (((0 + 0x4000) + 32) + param1));
 }
 
-BOOL sub_0203F188 (FieldSystem * param0, u16 param1)
+BOOL sub_0203F188 (FieldSystem * fieldSystem, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(param0->saveData), param1);
+    return sub_020507F0(SaveData_Events(fieldSystem->saveData), param1);
 }
 
-void sub_0203F19C (FieldSystem * param0, u16 param1)
+void sub_0203F19C (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_Events(param0->saveData), param1);
+    sub_0205081C(SaveData_Events(fieldSystem->saveData), param1);
     return;
 }
 
-void sub_0203F1B0 (FieldSystem * param0, u16 param1)
+void sub_0203F1B0 (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_Events(param0->saveData), param1);
+    sub_02050844(SaveData_Events(fieldSystem->saveData), param1);
     return;
 }
 
-void sub_0203F1C4 (FieldSystem * param0)
+void sub_0203F1C4 (FieldSystem * fieldSystem)
 {
     int v0;
     UnkStruct_020507E4 * v1;
 
-    v1 = SaveData_Events(param0->saveData);
+    v1 = SaveData_Events(fieldSystem->saveData);
 
     memset(sub_02050870(v1, 1), 0, (64 / 8));
     memset(sub_020508B8(v1, (0 + 0x4000)), 0, 2 * 32);
@@ -656,22 +656,22 @@ void sub_0203F1C4 (FieldSystem * param0)
     return;
 }
 
-void sub_0203F1FC (FieldSystem * param0)
+void sub_0203F1FC (FieldSystem * fieldSystem)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = SaveData_Events(param0->saveData);
+    v0 = SaveData_Events(fieldSystem->saveData);
     memset(sub_02050870(v0, 2400 + 320), 0, 192 / 8);
 
     return;
 }
 
-void sub_0203F21C (FieldSystem * param0, u16 param1, u16 param2, u16 param3, u16 param4)
+void sub_0203F21C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4)
 {
-    *(u16 *)sub_0203F098(param0, 41) = param1;
-    *(u16 *)sub_0203F098(param0, 42) = param2;
-    *(u16 *)sub_0203F098(param0, 43) = param3;
-    *(u16 *)sub_0203F098(param0, 44) = param4;
+    *(u16 *)sub_0203F098(fieldSystem, 41) = param1;
+    *(u16 *)sub_0203F098(fieldSystem, 42) = param2;
+    *(u16 *)sub_0203F098(fieldSystem, 43) = param3;
+    *(u16 *)sub_0203F098(fieldSystem, 44) = param4;
 }
 
 u16 sub_0203F254 (u16 param0)
@@ -701,20 +701,20 @@ BOOL sub_0203F28C (u16 param0)
     return 1;
 }
 
-BOOL sub_0203F2A0 (FieldSystem * param0, u16 param1)
+BOOL sub_0203F2A0 (FieldSystem * fieldSystem, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(param0->saveData), 1360 + param1);
+    return sub_020507F0(SaveData_Events(fieldSystem->saveData), 1360 + param1);
 }
 
-void sub_0203F2BC (FieldSystem * param0, u16 param1)
+void sub_0203F2BC (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_Events(param0->saveData), 1360 + param1);
+    sub_0205081C(SaveData_Events(fieldSystem->saveData), 1360 + param1);
     return;
 }
 
-void sub_0203F2D8 (FieldSystem * param0, u16 param1)
+void sub_0203F2D8 (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_Events(param0->saveData), 1360 + param1);
+    sub_02050844(SaveData_Events(fieldSystem->saveData), 1360 + param1);
     return;
 }
 
@@ -744,28 +744,28 @@ static u16 Unk_02100AD4[] = {
     0xDE
 };
 
-void sub_0203F310 (FieldSystem * param0)
+void sub_0203F310 (FieldSystem * fieldSystem)
 {
     u8 v0;
 
     v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
-    if (param0->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
-        sub_0203F1B0(param0, (730 + Unk_02100AE0[v0][1]));
+    if (fieldSystem->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
+        sub_0203F1B0(fieldSystem, (730 + Unk_02100AE0[v0][1]));
     }
 
     v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
-    if (param0->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
-        sub_0203F1B0(param0, (730 + Unk_02100AE0[v0][1]));
+    if (fieldSystem->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
+        sub_0203F1B0(fieldSystem, (730 + Unk_02100AE0[v0][1]));
     }
 
-    if (param0->unk_1C->unk_00 != 256) {
+    if (fieldSystem->unk_1C->unk_00 != 256) {
         v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
-        sub_0203F1B0(param0, (730 + Unk_02100AD4[v0]));
+        sub_0203F1B0(fieldSystem, (730 + Unk_02100AD4[v0]));
 
         v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
-        sub_0203F1B0(param0, (730 + Unk_02100AD4[v0]));
+        sub_0203F1B0(fieldSystem, (730 + Unk_02100AD4[v0]));
     }
 
     return;
@@ -824,7 +824,7 @@ static BOOL sub_0203F404 (UnkStruct_0203EF60 * param0, u16 param1)
     return 1;
 }
 
-UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
+UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
 {
     UnkStruct_0203F478 * v0;
     const UnkStruct_0203A594 * v1;
@@ -832,7 +832,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
     int v8, v9, v10, v11;
 
     v6 = 0;
-    v5 = sub_0203A448(param0);
+    v5 = sub_0203A448(fieldSystem);
     v5++;
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
 
@@ -843,7 +843,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
         return v0;
     }
 
-    v1 = sub_0203A440(param0);
+    v1 = sub_0203A440(fieldSystem);
 
     if (v1 == NULL) {
         v0[0].unk_04 = 0xff;
@@ -852,8 +852,8 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
         return v0;
     }
 
-    v2 = Player_XPos(param0->playerAvatar);
-    v3 = Player_ZPos(param0->playerAvatar);
+    v2 = Player_GetXPos(fieldSystem->playerAvatar);
+    v3 = Player_GetZPos(fieldSystem->playerAvatar);
     v8 = v2 - 7;
     v9 = v2 + 7;
     v10 = v3 - 7;
@@ -868,7 +868,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
     }
 
     for (v4 = 0; v4 < v5; v4++) {
-        if ((v1[v4].unk_02 == 2) && (sub_0203F188(param0, sub_0203F2F4(v1[v4].unk_00)) == 0)) {
+        if ((v1[v4].unk_02 == 2) && (sub_0203F188(fieldSystem, sub_0203F2F4(v1[v4].unk_00)) == 0)) {
             if ((v1[v4].unk_04 >= v8) && (v1[v4].unk_04 <= v9) && (v1[v4].unk_08 >= v10) && (v1[v4].unk_08 <= v11)) {
                 v0[v6].unk_04 = sub_0203F3C8(v1[v4].unk_00);
                 v7 = (v2 - v1[v4].unk_04);
@@ -887,15 +887,15 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * param0, int param1)
     return v0;
 }
 
-void sub_0203F598 (FieldSystem * param0)
+void sub_0203F598 (FieldSystem * fieldSystem)
 {
-    sub_0203F5A4(param0, 9600);
+    sub_0203F5A4(fieldSystem, 9600);
     return;
 }
 
-void sub_0203F5A4 (FieldSystem * param0, u16 param1)
+void sub_0203F5A4 (FieldSystem * fieldSystem, u16 param1)
 {
-    ScriptContext * v0 = sub_0203EAB8(param0, param1);
+    ScriptContext * v0 = sub_0203EAB8(fieldSystem, param1);
 
     while (ScriptContext_Run(v0) == 1) {
         (void)0;
@@ -905,19 +905,19 @@ void sub_0203F5A4 (FieldSystem * param0, u16 param1)
     return;
 }
 
-BOOL sub_0203F5C0 (FieldSystem * param0, u8 param1)
+BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
 {
     u16 v0;
     const u8 * v1;
 
-    v1 = sub_0203A68C(param0);
+    v1 = sub_0203A68C(fieldSystem);
 
     if (v1 == NULL) {
         return 0;
     }
 
     if (param1 == 1) {
-        v0 = sub_0203F638(param0, v1, param1);
+        v0 = sub_0203F638(fieldSystem, v1, param1);
     } else {
         v0 = sub_0203F610(v1, param1);
     }
@@ -927,9 +927,9 @@ BOOL sub_0203F5C0 (FieldSystem * param0, u8 param1)
     }
 
     if (param1 == 1) {
-        sub_0203E880(param0, v0, NULL);
+        sub_0203E880(fieldSystem, v0, NULL);
     } else {
-        sub_0203F5A4(param0, v0);
+        sub_0203F5A4(fieldSystem, v0);
     }
 
     return 1;
@@ -953,7 +953,7 @@ static u16 sub_0203F610 (const u8 * param0, u8 param1)
     return 0xffff;
 }
 
-static u16 sub_0203F638 (FieldSystem * param0, const u8 * param1, u8 param2)
+static u16 sub_0203F638 (FieldSystem * fieldSystem, const u8 * param1, u8 param2)
 {
     u16 v0, v1;
     u32 v2;
@@ -996,7 +996,7 @@ static u16 sub_0203F638 (FieldSystem * param0, const u8 * param1, u8 param2)
         v1 = (*param1 + (*(param1 + 1) << 8));
         param1 += 2;
 
-        if (sub_0203F150(param0, v0) == sub_0203F150(param0, v1)) {
+        if (sub_0203F150(fieldSystem, v0) == sub_0203F150(fieldSystem, v1)) {
             return *param1 + (*(param1 + 1) << 8);
         }
 

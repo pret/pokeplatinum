@@ -2456,7 +2456,7 @@ static int ProcessWindowInput (GameWindowLayout * param0)
             Pokemon * v0;
             Strbuf* v1;
             void * v2;
-            FieldSystem * v3;
+            FieldSystem * fieldSystem;
 
             v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 64);
@@ -2468,8 +2468,8 @@ static int ProcessWindowInput (GameWindowLayout * param0)
             sub_02082708(param0, 0xffffffff, 1);
 
             v2 = sub_0202BE00((u8)param0->unk_B14[3], 0, 12);
-            v3 = param0->unk_5A4->unk_1C;
-            sub_0202B758(v3->unk_9C, v2, 1);
+            fieldSystem = param0->unk_5A4->unk_1C;
+            sub_0202B758(fieldSystem->unk_9C, v2, 1);
             param0->unk_B14[1] = 4;
             param0->unk_B0E = 30;
             return 24;
@@ -2644,11 +2644,11 @@ static int ProcessItemApplication (GameWindowLayout * param0)
     Pokemon * v0;
     Window * v1;
     int v2 = -1, v3;
-    FieldSystem * v4;
+    FieldSystem * fieldSystem;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     v1 = &param0->unk_04[34];
-    v4 = param0->unk_5A4->unk_1C;
+    fieldSystem = param0->unk_5A4->unk_1C;
 
     if (param0->unk_5A4->unk_24 == 112) {
         if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != 487) {
@@ -2657,8 +2657,8 @@ static int ProcessItemApplication (GameWindowLayout * param0)
             StringTemplate_SetItemNameWithArticle(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
             StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
-        } else if (v4 != NULL) {
-            if (v4->unk_1C->unk_00 == 466) {
+        } else if (fieldSystem != NULL) {
+            if (fieldSystem->unk_1C->unk_00 == 466) {
                 MessageLoader_GetStrbuf(param0->unk_69C, 204, param0->unk_6A8);
                 StringTemplate_SetItemName(param0->unk_6A0, 0, param0->unk_5A4->unk_24);
                 StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
@@ -2706,15 +2706,15 @@ static int ProcessItemApplication (GameWindowLayout * param0)
 static int UpdatePokemonWithItem (GameWindowLayout * param0, Pokemon * param1, int * param2)
 {
     u32 v0 = param0->unk_5A4->unk_24;
-    FieldSystem * v1;
+    FieldSystem * fieldSystem;
 
-    v1 = param0->unk_5A4->unk_1C;
+    fieldSystem = param0->unk_5A4->unk_1C;
 
     Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
     Pokemon_SetValue(param1, 6, &v0);
     Pokemon_SetArceusForm(param1);
 
-    if ((v1 == NULL) || (v1->unk_1C->unk_00 < 573) || (v1->unk_1C->unk_00 > 583)) {
+    if ((fieldSystem == NULL) || (fieldSystem->unk_1C->unk_00 < 573) || (fieldSystem->unk_1C->unk_00 > 583)) {
         *param2 = Pokemon_SetGiratinaForm(param1);
     } else {
         *param2 = -1;

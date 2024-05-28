@@ -70,13 +70,13 @@ static void ov5_021F5620 (UnkStruct_ov5_021F55F8 * param0)
     sub_02073AA8(&param0->unk_18);
 }
 
-void ov5_021F5634 (FieldSystem * param0, int param1, int param2, int param3)
+void ov5_021F5634 (FieldSystem * fieldSystem, int param1, int param2, int param3)
 {
     int v0, v1;
     UnkStruct_ov5_021F5634 v2;
     VecFx32 v3;
 
-    v2.unk_00 = param0->unk_40;
+    v2.unk_00 = fieldSystem->unk_40;
     v2.unk_04 = ov5_021DF55C(v2.unk_00, 8);
 
     v3.x = (((param1) << 4) * FX32_ONE) + (FX32_ONE * 8);

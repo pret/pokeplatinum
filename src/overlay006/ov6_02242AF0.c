@@ -195,7 +195,7 @@ u32 ov6_02242C3C (FieldSystem * fieldSystem, const u16 param1)
 
 static BOOL ov6_02242C5C (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_ov6_02242B58 * v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_05) {
@@ -207,13 +207,13 @@ static BOOL ov6_02242C5C (TaskManager * taskMan)
         UnkStruct_ov5_021E1890 * v4;
         NNSG3dRenderObj * v5;
 
-        v4 = ov5_021E18CC(v0->unk_A4, 475);
+        v4 = ov5_021E18CC(fieldSystem->unk_A4, 475);
         v5 = ov5_021E18BC(v4);
-        v3 = ov5_021EF9E8(475, v0->unk_30);
+        v3 = ov5_021EF9E8(475, fieldSystem->unk_30);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
-        ov5_021D41C8(v0->unk_50, v0->unk_54, 16, 475, v5, v2, ov5_021EFAA0(v0->unk_30), 1, -1, 0);
-        ov5_021D4250(v0->unk_54, 16, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 16, 475, v5, v2, ov5_021EFAA0(fieldSystem->unk_30), 1, -1, 0);
+        ov5_021D4250(fieldSystem->unk_54, 16, 0);
     }
         (v1->unk_05)++;
         break;
@@ -234,10 +234,10 @@ static BOOL ov6_02242C5C (TaskManager * taskMan)
         UnkStruct_ov5_021E1890 * v6;
         VecFx32 v7;
 
-        v6 = ov5_021E18CC(v0->unk_A4, 475);
+        v6 = ov5_021E18CC(fieldSystem->unk_A4, 475);
         v7 = ov5_021E1894(v6);
 
-        if (v1->unk_00(v0, v1, &v1->unk_0C, &v7)) {
+        if (v1->unk_00(fieldSystem, v1, &v1->unk_0C, &v7)) {
             (v1->unk_05)++;
         }
 
@@ -245,7 +245,7 @@ static BOOL ov6_02242C5C (TaskManager * taskMan)
     }
     break;
     case 4:
-        ov5_021D42B0(v0->unk_50, v0->unk_54, 16);
+        ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 16);
         (v1->unk_05)++;
         break;
     case 5:
@@ -310,13 +310,13 @@ static BOOL ov6_02242E60 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * pa
             if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 LocalMapObj_SetAnimationCode(v0, Unk_ov6_02249058[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(fieldSystem->playerAvatar) > param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (Player_ZPos(fieldSystem->playerAvatar) <= param1->unk_10) {
+                } else if (Player_GetZPos(fieldSystem->playerAvatar) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);
@@ -330,13 +330,13 @@ static BOOL ov6_02242E60 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * pa
             if (LocalMapObj_IsAnimationSet(v0) == 1) {
                 LocalMapObj_SetAnimationCode(v0, Unk_ov6_0224903C[param1->unk_06]);
 
-                if ((param1->unk_06 < 7 - 1) && (Player_ZPos(fieldSystem->playerAvatar) < param1->unk_10)) {
+                if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
                         Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
-                } else if (Player_ZPos(fieldSystem->playerAvatar) >= param1->unk_10) {
+                } else if (Player_GetZPos(fieldSystem->playerAvatar) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
                             Sound_PlayEffect(1754);

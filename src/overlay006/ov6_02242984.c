@@ -75,8 +75,8 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * fieldSyst
         }
 
         {
-            v1->unk_00[5].unk_00 = Player_XPos(fieldSystem->playerAvatar);
-            v1->unk_00[5].unk_02 = Player_ZPos(fieldSystem->playerAvatar);
+            v1->unk_00[5].unk_00 = Player_GetXPos(fieldSystem->playerAvatar);
+            v1->unk_00[5].unk_02 = Player_GetZPos(fieldSystem->playerAvatar);
             v1->unk_30 = fieldSystem->unk_1C->unk_00;
         }
 

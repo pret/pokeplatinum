@@ -72,7 +72,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    FieldSystem * unk_04;
+    FieldSystem * fieldSystem;
     UIControlData * unk_08;
     UnkStruct_ov23_022513B0 unk_0C;
     SysTask * unk_10;
@@ -197,7 +197,7 @@ static void ov23_022513A4 (int param0)
 void ov23_022513B0 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_022513B0 * v0 = param2;
-    FieldSystem * v1 = param3;
+    FieldSystem * fieldSystem = param3;
 
     if (!CommSys_IsSendingMovementData()) {
         return;
@@ -207,12 +207,12 @@ void ov23_022513B0 (int param0, int param1, void * param2, void * param3)
         if (v0->unk_01 == CommSys_CurNetId()) {
             Sound_PlayEffect(1548);
             sub_020594FC();
-            ov23_02251F94(v1);
+            ov23_02251F94(fieldSystem);
         } else {
             sub_02059464(0x40);
 
             if (v0->unk_02) {
-                ov23_022520E8(v1, v0);
+                ov23_022520E8(fieldSystem, v0);
             } else {
                 ov23_02253F40(ov23_022421AC(), 9, 1, ov23_022513A4);
             }
@@ -233,7 +233,7 @@ int ov23_02251414 (void)
 
 static BOOL ov23_02251418 (int param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->fieldSystem));
     int v1;
 
     v1 = sub_02028B88(v0, param0);
@@ -248,7 +248,7 @@ static BOOL ov23_02251418 (int param0, UnkStruct_ov23_02250CD4 * param1)
 
 static int ov23_0225144C (int param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param1->fieldSystem));
     int v1;
 
     if (sub_02028AFC(v0, param0)) {
@@ -310,7 +310,7 @@ static BOOL ov23_022514D8 (SysTask * param0, void * param1)
         break;
     case 0:
     {
-        UndergroundData * v4 = sub_020298B0(v0->unk_0C->saveData);
+        UndergroundData * v4 = sub_020298B0(v0->fieldSystem->saveData);
 
         if (0 == sub_020289A0(v4)) {
             ov23_02253F40(ov23_022421BC(), 60, 0, NULL);
@@ -353,7 +353,7 @@ static void ov23_022515D8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
-    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->unk_0C->saveData))) {
+    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->fieldSystem->saveData))) {
         v2 = 0;
         v1 -= 1;
     }
@@ -362,7 +362,7 @@ static void ov23_022515D8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
 
     param0->unk_40 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->unk_0C->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -408,7 +408,7 @@ static void ov23_022516E8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
 
     param0->unk_40 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->unk_0C->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -595,25 +595,25 @@ static BOOL ov23_02251A58 (UnkStruct_ov23_02250CD4 * param0)
     return 0;
 }
 
-static void ov23_02251A84 (BOOL param0, FieldSystem * param1)
+static void ov23_02251A84 (BOOL param0, FieldSystem * fieldSystem)
 {
     VecFx32 v0;
 
     v0.y = 0;
-    v0.x = 15 * FX32_ONE * 16 - Player_XPos(param1->playerAvatar) * FX32_ONE * 16;
-    v0.z = 17 * FX32_ONE * 16 - Player_ZPos(param1->playerAvatar) * FX32_ONE * 16;
+    v0.x = 15 * FX32_ONE * 16 - Player_GetXPos(fieldSystem->playerAvatar) * FX32_ONE * 16;
+    v0.z = 17 * FX32_ONE * 16 - Player_GetZPos(fieldSystem->playerAvatar) * FX32_ONE * 16;
 
     if (!param0) {
         v0.x = -v0.x;
         v0.z = -v0.z;
     }
 
-    sub_02020990(&v0, param1->unk_24);
+    sub_02020990(&v0, fieldSystem->unk_24);
 }
 
 static BOOL ov23_02251ACC (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov23_02251ACC * v1 = TaskManager_Environment(param0);
     Location v2;
     u32 v3;
@@ -628,30 +628,30 @@ static BOOL ov23_02251ACC (TaskManager * param0)
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            PlayerAvatar_SetHidden(v0->playerAvatar, 0);
+            PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 0);
 
-            ov23_02251A84(1, v0);
+            ov23_02251A84(1, fieldSystem);
             v1->unk_00 = 2;
         }
         break;
     case 2:
-        ov23_02254D98(v0, param0);
+        ov23_02254D98(fieldSystem, param0);
         v1->unk_00 = 3;
         break;
     case 3:
         v1->unk_00 = 4;
         break;
     case 4:
-        PlayerAvatar_SetHidden(v0->playerAvatar, 1);
-        ov23_02251A84(0, v0);
+        PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 1);
+        ov23_02251A84(0, fieldSystem);
         sub_0200F174(1, 1, 1, 0x0, 6, 1, 4);
         v1->unk_00 = 5;
         break;
     case 5:
         if (ScreenWipe_Done()) {
-            ov23_0224B2C8(v0);
-            sub_0206AA30(SaveData_Events(v0->saveData));
-            ov23_02251F94(v0);
+            ov23_0224B2C8(fieldSystem);
+            sub_0206AA30(SaveData_Events(fieldSystem->saveData));
+            ov23_02251F94(fieldSystem);
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -709,7 +709,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->unk_0C)), sub_020298B0(FieldSystem_SaveData(v0->unk_0C)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->fieldSystem->unk_08, SaveData_GetTrainerInfo(FieldSystem_SaveData(v0->fieldSystem)), sub_020298B0(FieldSystem_SaveData(v0->fieldSystem)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:
@@ -790,12 +790,12 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
         }
         break;
     case 3:
-        if (v0->unk_0C->unk_10 == NULL) {
+        if (v0->fieldSystem->unk_10 == NULL) {
             v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
             v2->unk_04 = 0;
-            sub_02050904(v0->unk_0C, ov23_02251ACC, v2);
+            sub_02050904(v0->fieldSystem, ov23_02251ACC, v2);
         }
 
         ov23_02251BB4(param0, v0);
@@ -838,7 +838,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
     }
 }
 
-static void ov23_02251F94 (FieldSystem * param0)
+static void ov23_02251F94 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov84_02240FA8 v0;
     UnkStruct_ov23_02250CD4 * v1;
@@ -848,7 +848,7 @@ static void ov23_02251F94 (FieldSystem * param0)
 
     v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02250CD4));
-    v1->unk_0C = param0;
+    v1->fieldSystem = fieldSystem;
 
     ov23_02253DFC(ov23_022421BC(), 639, 1);
 
@@ -875,7 +875,7 @@ static void ov23_02252038 (SysTask * param0, void * param1)
     switch (v0->unk_00) {
     case 0:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_08 = sub_02002100(v0->unk_04->unk_08, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_08 = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_022569C8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_00 = 1;
         }
         break;
@@ -914,14 +914,14 @@ static void ov23_022520C8 (SysTask * param0, void * param1)
     SysTask_Done(param0);
 }
 
-static void ov23_022520E8 (FieldSystem * param0, UnkStruct_ov23_022513B0 * param1)
+static void ov23_022520E8 (FieldSystem * fieldSystem, UnkStruct_ov23_022513B0 * param1)
 {
     UnkStruct_ov23_02252038 * v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02252038));
 
     v0->unk_00 = 0;
-    v0->unk_04 = param0;
+    v0->fieldSystem = fieldSystem;
     v0->unk_10 = SysTask_Start(ov23_02252038, v0, 10000);
 
     ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param1->unk_01));
@@ -945,7 +945,7 @@ void ov23_0225215C (int param0, int param1, void * param2, void * param3)
 
 void ov23_02252178 (int param0, int param1, void * param2, void * param3)
 {
-    FieldSystem * v0 = param3;
+    FieldSystem * fieldSystem = param3;
     UnkStruct_ov23_022513B0 * v1 = param2;
 
     if (CommSys_CurNetId() == v1->unk_00) {

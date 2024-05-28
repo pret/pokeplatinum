@@ -34,7 +34,7 @@
 #include "overlay023/ov23_022542CC.h"
 
 typedef struct UnkStruct_ov23_022542D8_t {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     Window unk_04;
     Window unk_14;
     ResourceMetadata * unk_24;
@@ -48,7 +48,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
 };
 
 typedef struct UnkStruct_ov23_02254594_t {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     UnkStruct_0206A844 * unk_04;
     Window unk_08;
     Window unk_18;
@@ -105,15 +105,15 @@ UnkStruct_ov23_022542D8 * ov23_022542CC (void)
     return v0;
 }
 
-void ov23_022542D8 (UnkStruct_ov23_022542D8 * param0, FieldSystem * param1, u16 * param2, u16 * param3)
+void ov23_022542D8 (UnkStruct_ov23_022542D8 * param0, FieldSystem * fieldSystem, u16 * param2, u16 * param3)
 {
-    param0->unk_00 = param1;
+    param0->fieldSystem = fieldSystem;
     param0->unk_38 = 0;
     param0->unk_30 = param2;
     param0->unk_34 = param3;
     param0->unk_40 = 0;
 
-    sub_0200DAA4(param1->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 }
 
 void ov23_0225430C (UnkStruct_ov23_022542D8 * param0)
@@ -165,8 +165,8 @@ static void ov23_0225437C (UnkStruct_ov23_022542D8 * param0)
     v1 = 12 * v4 * 2;
     v2 = 7 * (1 * 2);
 
-    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_04, 3, 19, 3, 12, v4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1));
-    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_14, 3, 1, 1, 7, (1 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1 + v2));
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_04, 3, 19, 3, 12, v4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1));
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_14, 3, 1, 1, 7, (1 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1 + v2));
 
     Window_Show(&param0->unk_04, 1, 1024 - (18 + 12) - 9, 11);
     Window_Show(&param0->unk_14, 1, 1024 - (18 + 12) - 9, 11);
@@ -277,15 +277,15 @@ UnkStruct_ov23_02254594 * ov23_02254588 (void)
     return v0;
 }
 
-void ov23_02254594 (UnkStruct_ov23_02254594 * param0, FieldSystem * param1, u16 * param2, u16 * param3)
+void ov23_02254594 (UnkStruct_ov23_02254594 * param0, FieldSystem * fieldSystem, u16 * param2, u16 * param3)
 {
-    param0->unk_00 = param1;
+    param0->fieldSystem = fieldSystem;
     param0->unk_42 = 0;
     param0->unk_04 = NULL;
     param0->unk_38 = param2;
     param0->unk_3C = param3;
 
-    sub_0200DAA4(param1->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+    sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
 }
 
 void ov23_022545C4 (UnkStruct_ov23_02254594 * param0, const u8 param1, const u8 param2)
@@ -393,7 +393,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
     int v4;
     int v5;
 
-    v0 = sub_020298B0(param0->unk_00->saveData);
+    v0 = sub_020298B0(param0->fieldSystem->saveData);
     v4 = sub_020289A0(v0);
     param0->unk_48 = v4;
     v5 = v4 + 1;
@@ -407,8 +407,8 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
     v2 = 12 * 7 * 2;
     v3 = 8 * (2 * 2);
 
-    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, 19, 3, 12, v5 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2));
-    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_18, 3, 1, 1, 8, (2 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2 + v3));
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, 19, 3, 12, v5 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2));
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_18, 3, 1, 1, 8, (2 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2 + v3));
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     Window_Show(&param0->unk_18, 1, 1024 - (18 + 12) - 9, 11);
 

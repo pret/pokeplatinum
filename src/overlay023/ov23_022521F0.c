@@ -91,7 +91,7 @@ static void ov23_022521F0 (UnkStruct_ov23_02250CD4 * param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    UndergroundData * v6 = sub_020298B0(FieldSystem_SaveData(param0->unk_0C));
+    UndergroundData * v6 = sub_020298B0(FieldSystem_SaveData(param0->fieldSystem));
 
     MATH_InitRand16(&v0, sub_02028930(v6) + param1);
 
@@ -136,7 +136,7 @@ static void ov23_022522F0 (UnkStruct_ov23_02250CD4 * param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    SaveData * v6 = FieldSystem_SaveData(param0->unk_0C);
+    SaveData * v6 = FieldSystem_SaveData(param0->fieldSystem);
     UndergroundData * v7 = sub_020298B0(v6);
     BOOL v8 = sub_02027474(SaveData_Pokedex(v6));
 
@@ -181,7 +181,7 @@ static void ov23_022522F0 (UnkStruct_ov23_02250CD4 * param0, int param1)
 static int ov23_02252404 (UnkStruct_ov23_02250CD4 * param0, int param1, int param2)
 {
     BOOL v0 = 0;
-    UndergroundData * v1 = sub_020298B0(FieldSystem_SaveData(param0->unk_0C));
+    UndergroundData * v1 = sub_020298B0(FieldSystem_SaveData(param0->fieldSystem));
 
     if (param0->unk_279[param1] != ov23_0224F684(param2, param0)) {
         return 0xfffd;
@@ -221,7 +221,7 @@ static void * ov23_022524B8 (UnkStruct_ov23_02250CD4 * param0)
 
     param0->unk_40 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->unk_0C->unk_08, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -304,7 +304,7 @@ static void ov23_02252754 (BmpList * param0, u32 param1, u8 param2)
 {
     MATHRandContext16 v0;
     UnkStruct_ov23_02250CD4 * v1 = (UnkStruct_ov23_02250CD4 *)sub_02001504(param0, 19);
-    UndergroundData * v2 = sub_020298B0(FieldSystem_SaveData(v1->unk_0C));
+    UndergroundData * v2 = sub_020298B0(FieldSystem_SaveData(v1->fieldSystem));
     int v3 = param1, v4, v5;
     int v6, v7 = 0, v8;
 
@@ -403,7 +403,7 @@ static void ov23_02252A18 (UnkStruct_ov23_02250CD4 * param0)
     ov23_0224FB7C(param0);
     param0->unk_40 = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->unk_0C->unk_08, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
     Window_Show(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -479,7 +479,7 @@ static void ov23_02252BB8 (int param0, UnkStruct_ov23_02250CD4 * param1)
 
 static u32 ov23_02252C08 (UnkStruct_ov23_02250CD4 * param0)
 {
-    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param0->unk_0C));
+    UndergroundData * v0 = sub_020298B0(FieldSystem_SaveData(param0->fieldSystem));
 
     if (ov23_0224F6E0(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {
@@ -514,7 +514,7 @@ static void ov23_02252C78 (UnkStruct_ov23_02250CD4 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void * ov23_02252C98 (int param0, FieldSystem * param1, int param2)
+void * ov23_02252C98 (int param0, FieldSystem * fieldSystem, int param2)
 {
     UnkStruct_ov23_02250CD4 * v0 = NULL;
     return v0;
@@ -551,7 +551,7 @@ void ov23_02252D08 (int param0, int param1)
 static void ov23_02252D1C (UnkStruct_ov23_02250CD4 * param0)
 {
     if (!BGL_WindowAdded(&param0->unk_20)) {
-        BGL_AddWindow(param0->unk_0C->unk_08, &param0->unk_20, 3, 1, 12, 12, 4, 13, 1);
+        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_20, 3, 1, 12, 12, 4, 13, 1);
         Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
     }
 
@@ -561,7 +561,7 @@ static void ov23_02252D1C (UnkStruct_ov23_02250CD4 * param0)
 
 void ov23_02252D74 (UnkStruct_ov23_02250CD4 * param0, int param1)
 {
-    BGL_AddWindow(param0->unk_0C->unk_08, &param0->unk_30, 3, 1, 1, 7, 4, 13, 51);
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_30, 3, 1, 1, 7, 4, 13, 51);
     Window_Show(&param0->unk_30, 1, 1024 - (18 + 12) - 9, 11);
 
     BGL_FillWindow(&param0->unk_30, 15);
@@ -855,7 +855,7 @@ static void ov23_02252E70 (SysTask * param0, void * param1)
         break;
     case 14:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            v0->unk_5C = sub_02002100(v0->unk_0C->unk_08, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_5C = sub_02002100(v0->fieldSystem->unk_08, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_2AA = 15;
         }
         break;
@@ -913,7 +913,7 @@ static void ov23_02252E70 (SysTask * param0, void * param1)
     }
 }
 
-void ov23_022534A0 (FieldSystem * param0)
+void ov23_022534A0 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1 = sub_02058D88(CommSys_CurNetId());
@@ -929,7 +929,7 @@ void ov23_022534A0 (FieldSystem * param0)
     v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_02250CD4));
 
-    v4->unk_0C = param0;
+    v4->fieldSystem = fieldSystem;
     v4->unk_2AC = v7;
     v4->unk_288 = v6;
     v4->unk_68 = Strbuf_Init((50 * 2), 4);
@@ -946,12 +946,12 @@ void ov23_022534A0 (FieldSystem * param0)
         const MapObjectHeader * v10;
         MapObject * v11;
 
-        v8 = sub_0203A4B4(v4->unk_0C);
-        v10 = sub_0203A4BC(v4->unk_0C);
+        v8 = sub_0203A4B4(v4->fieldSystem);
+        v10 = sub_0203A4BC(v4->fieldSystem);
 
         for (v9 = 0; v9 < v8; v9++) {
             if ((v10[v9].unk_1A == v1) && (v10[v9].unk_1C == v2)) {
-                v11 = MapObjMan_LocalMapObjByIndex(v4->unk_0C->mapObjMan, v9);
+                v11 = MapObjMan_LocalMapObjByIndex(v4->fieldSystem->mapObjMan, v9);
                 MapObject_SetDir(v11, v3);
             }
         }

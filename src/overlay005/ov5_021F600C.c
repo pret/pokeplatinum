@@ -21,7 +21,7 @@ typedef struct UnkStruct_ov5_021F600C_t {
 } UnkStruct_ov5_021F600C;
 
 typedef struct {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     UnkStruct_ov5_021DF47C * unk_04;
     UnkStruct_ov5_021F600C * unk_08;
     MapObject * unk_0C;
@@ -83,7 +83,7 @@ UnkStruct_ov101_021D5D90 * ov5_021F6094 (MapObject * param0)
 
     v1 = ov5_021DF578(param0);
 
-    v0.unk_00 = MapObject_FieldSystem(param0);
+    v0.fieldSystem = MapObject_FieldSystem(param0);
     v0.unk_04 = v1;
     v0.unk_08 = ov5_021DF55C(v1, 22);
     v0.unk_0C = param0;

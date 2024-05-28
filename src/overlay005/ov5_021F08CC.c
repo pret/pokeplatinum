@@ -186,10 +186,10 @@ void ov5_021F09F0 (SysTask * task)
 static void ov5_021F0A04 (SysTask * task, void * param1)
 {
     UnkStruct_ov5_021F0D6C * v0 = param1;
-    PlayerAvatar * v1 = v0->fieldSystem->playerAvatar;
-    MapObject * v2 = Player_MapObject(v1);
+    PlayerAvatar * playerAvatar = v0->fieldSystem->playerAvatar;
+    MapObject * v2 = Player_MapObject(playerAvatar);
 
-    while (Unk_ov5_021FFA0C[v0->unk_0C](v0, v1, v2)) {
+    while (Unk_ov5_021FFA0C[v0->unk_0C](v0, playerAvatar, v2)) {
         (void)0;
     }
 }
@@ -506,8 +506,6 @@ static int ov5_021F0D54 (void)
 
 static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
 {
-    FieldSystem * v0 = param0->fieldSystem;
-
     param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
     param0->unk_30 = Strbuf_Init(0x400, 4);
@@ -524,10 +522,10 @@ static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 
 static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
 {
-    FieldSystem * v0 = param0->fieldSystem;
+    FieldSystem * fieldSystem = param0->fieldSystem;
 
-    FieldMessage_AddWindow(v0->unk_08, &param0->window, 3);
-    FieldMessage_DrawWindow(&param0->window, SaveData_Options(v0->saveData));
+    FieldMessage_AddWindow(fieldSystem->unk_08, &param0->window, 3);
+    FieldMessage_DrawWindow(&param0->window, SaveData_Options(fieldSystem->saveData));
 }
 
 static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)

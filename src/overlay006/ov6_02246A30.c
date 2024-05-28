@@ -19,18 +19,18 @@
 
 typedef BOOL (* UnkStruct_ov6_022494B0)(FieldSystem *);
 
-static BOOL ov6_02246A30(FieldSystem * param0);
-static BOOL ov6_02246A34(FieldSystem * param0);
-static BOOL ov6_02246A38(FieldSystem * param0);
-static BOOL ov6_02246A4C(FieldSystem * param0);
-static BOOL ov6_02246A60(FieldSystem * param0);
-static BOOL ov6_02246A74(FieldSystem * param0);
-static BOOL ov6_02246A88(FieldSystem * param0);
-static BOOL ov6_02246A9C(FieldSystem * param0);
-static BOOL ov6_02246AB0(FieldSystem * param0);
-static BOOL ov6_02246AC8(FieldSystem * param0);
-static BOOL ov6_02246AD8(FieldSystem * param0);
-static BOOL ov6_02246AE8(FieldSystem * param0);
+static BOOL ov6_02246A30(FieldSystem * fieldSystem);
+static BOOL ov6_02246A34(FieldSystem * fieldSystem);
+static BOOL ov6_02246A38(FieldSystem * fieldSystem);
+static BOOL ov6_02246A4C(FieldSystem * fieldSystem);
+static BOOL ov6_02246A60(FieldSystem * fieldSystem);
+static BOOL ov6_02246A74(FieldSystem * fieldSystem);
+static BOOL ov6_02246A88(FieldSystem * fieldSystem);
+static BOOL ov6_02246A9C(FieldSystem * fieldSystem);
+static BOOL ov6_02246AB0(FieldSystem * fieldSystem);
+static BOOL ov6_02246AC8(FieldSystem * fieldSystem);
+static BOOL ov6_02246AD8(FieldSystem * fieldSystem);
+static BOOL ov6_02246AE8(FieldSystem * fieldSystem);
 
 static const UnkStruct_ov6_022494B0 Unk_ov6_022494B0[] = {
     ov6_02246A30,
@@ -85,55 +85,55 @@ static u8 Unk_ov6_02249878[] = {
     0x3
 };
 
-static BOOL ov6_02246A30 (FieldSystem * param0)
+static BOOL ov6_02246A30 (FieldSystem * fieldSystem)
 {
     return 1;
 }
 
-static BOOL ov6_02246A34 (FieldSystem * param0)
+static BOOL ov6_02246A34 (FieldSystem * fieldSystem)
 {
     return 0;
 }
 
-static BOOL ov6_02246A38 (FieldSystem * param0)
+static BOOL ov6_02246A38 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 7);
 }
 
-static BOOL ov6_02246A4C (FieldSystem * param0)
+static BOOL ov6_02246A4C (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 2);
 }
 
-static BOOL ov6_02246A60 (FieldSystem * param0)
+static BOOL ov6_02246A60 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 9);
 }
 
-static BOOL ov6_02246A74 (FieldSystem * param0)
+static BOOL ov6_02246A74 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 10);
 }
 
-static BOOL ov6_02246A88 (FieldSystem * param0)
+static BOOL ov6_02246A88 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 11);
 }
 
-static BOOL ov6_02246A9C (FieldSystem * param0)
+static BOOL ov6_02246A9C (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 17);
 }
 
-static BOOL ov6_02246AB0 (FieldSystem * param0)
+static BOOL ov6_02246AB0 (FieldSystem * fieldSystem)
 {
-    TrainerInfo * v0 = SaveData_GetTrainerInfo(param0->saveData);
+    TrainerInfo * v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
 
     if (TrainerInfo_BadgeCount(v0) >= 5) {
         return 1;
@@ -142,25 +142,25 @@ static BOOL ov6_02246AB0 (FieldSystem * param0)
     }
 }
 
-static BOOL ov6_02246AC8 (FieldSystem * param0)
+static BOOL ov6_02246AC8 (FieldSystem * fieldSystem)
 {
-    PokedexData * v0 = SaveData_Pokedex(param0->saveData);
+    PokedexData * v0 = SaveData_Pokedex(fieldSystem->saveData);
     return sub_02026F0C(v0);
 }
 
-static BOOL ov6_02246AD8 (FieldSystem * param0)
+static BOOL ov6_02246AD8 (FieldSystem * fieldSystem)
 {
-    PokedexData * v0 = SaveData_Pokedex(param0->saveData);
+    PokedexData * v0 = SaveData_Pokedex(fieldSystem->saveData);
     return sub_02027520(v0);
 }
 
-static BOOL ov6_02246AE8 (FieldSystem * param0)
+static BOOL ov6_02246AE8 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
     return sub_0206A954(v0);
 }
 
-static int ov6_02246AF8 (FieldSystem * param0, u8 * param1)
+static int ov6_02246AF8 (FieldSystem * fieldSystem, u8 * param1)
 {
     int v0, v1;
     BOOL v2[NELEMS(Unk_ov6_022494B0)];
@@ -168,7 +168,7 @@ static int ov6_02246AF8 (FieldSystem * param0, u8 * param1)
     GF_ASSERT(NELEMS(Unk_ov6_022494B0) == 12);
 
     for (v0 = 0; v0 < NELEMS(Unk_ov6_022494B0); v0++) {
-        v2[v0] = Unk_ov6_022494B0[v0](param0);
+        v2[v0] = Unk_ov6_022494B0[v0](fieldSystem);
     }
 
     for (v0 = 0, v1 = 0; v0 < NELEMS(Unk_ov6_02249878); v0++) {
@@ -181,13 +181,13 @@ static int ov6_02246AF8 (FieldSystem * param0, u8 * param1)
     return v1;
 }
 
-int ov6_02246B40 (FieldSystem * param0)
+int ov6_02246B40 (FieldSystem * fieldSystem)
 {
     u8 v0[36];
     int v1;
 
     MI_CpuClear8(v0, 36);
-    v1 = ov6_02246AF8(param0, v0);
+    v1 = ov6_02246AF8(fieldSystem, v0);
 
     if (v1 == 0) {
         return 0;

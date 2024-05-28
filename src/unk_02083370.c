@@ -166,13 +166,13 @@ static void sub_020834B0 (GameWindowLayout * param0, int * param1)
     Pokemon * v0;
     int v1;
     int v2 = 17;
-    FieldSystem * v3;
+    FieldSystem * fieldSystem;
 
     Window_Clear(&param0->unk_04[35], 1);
     sub_02001BC4(param0->unk_700, NULL);
     sub_02013A3C(param0->unk_6FC);
 
-    v3 = param0->unk_5A4->unk_1C;
+    fieldSystem = param0->unk_5A4->unk_1C;
 
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
@@ -188,7 +188,7 @@ static void sub_020834B0 (GameWindowLayout * param0, int * param1)
         Pokemon_SetValue(v0, 6, &v4);
         Pokemon_SetArceusForm(v0);
 
-        if ((v3 == NULL) || (v3->unk_1C->unk_00 < 573) || (v3->unk_1C->unk_00 > 583)) {
+        if ((fieldSystem == NULL) || (fieldSystem->unk_1C->unk_00 < 573) || (fieldSystem->unk_1C->unk_00 > 583)) {
             v1 = Pokemon_SetGiratinaForm(v0);
 
             if ((param0->unk_704[param0->unk_B11].unk_0C == 112) && (v1 == 0)) {

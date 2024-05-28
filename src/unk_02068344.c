@@ -61,27 +61,27 @@ const static UnkFuncPtr_020EF770 Unk_020EF770[11] = {
     ov5_021F83D4
 };
 
-void sub_02068344 (FieldSystem * param0)
+void sub_02068344 (FieldSystem * fieldSystem)
 {
     int v0;
     UnkStruct_02027860 * v1;
 
-    v1 = sub_02027860(FieldSystem_SaveData(param0));
+    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {
         return;
     }
 
-    Unk_020EF744[v0](param0);
+    Unk_020EF744[v0](fieldSystem);
 }
 
-void sub_02068368 (FieldSystem * param0)
+void sub_02068368 (FieldSystem * fieldSystem)
 {
     int v0;
     UnkStruct_02027860 * v1;
 
-    v1 = sub_02027860(FieldSystem_SaveData(param0));
+    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {
@@ -89,16 +89,16 @@ void sub_02068368 (FieldSystem * param0)
     }
 
     if (Unk_020EF718[v0] != NULL) {
-        Unk_020EF718[v0](param0);
+        Unk_020EF718[v0](fieldSystem);
     }
 }
 
-BOOL sub_02068390 (FieldSystem * param0, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL sub_02068390 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
 {
     int v0;
     UnkStruct_02027860 * v1;
 
-    v1 = sub_02027860(FieldSystem_SaveData(param0));
+    v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {
@@ -108,17 +108,17 @@ BOOL sub_02068390 (FieldSystem * param0, const int param1, const int param2, con
     if (Unk_020EF770[v0] != NULL) {
         BOOL v2;
 
-        v2 = Unk_020EF770[v0](param0, param1, param2, param3, param4);
+        v2 = Unk_020EF770[v0](fieldSystem, param1, param2, param3, param4);
         return v2;
     }
 
     return 0;
 }
 
-BOOL sub_020683D8 (FieldSystem * param0, const int param1, const int param2, const fx32 param3, int param4)
+BOOL sub_020683D8 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, int param4)
 {
-    if (param0->unk_1C->unk_00 == 67) {
-        if (ov8_0224B714(param0, param1, param2, param4)) {
+    if (fieldSystem->unk_1C->unk_00 == 67) {
+        if (ov8_0224B714(fieldSystem, param1, param2, param4)) {
             return 1;
         }
     }

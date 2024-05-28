@@ -212,13 +212,13 @@ static BOOL sub_0209843C (TaskManager * param0)
         break;
     case 2:
     {
-        FieldSystem * v1 = TaskManager_FieldSystem(param0);
+        FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
-            TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(v1));
+            TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
             int v4 = 6;
-            int v5 = MapHeader_GetMapLabelTextID(v1->unk_1C->unk_00);
+            int v5 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
             int v6 = 11;
             int v7 = 0;
 
@@ -228,7 +228,7 @@ static BOOL sub_0209843C (TaskManager * param0)
         }
 
         {
-            sub_0202F180(FieldSystem_SaveData(v1), v0->unk_0C.unk_00);
+            sub_0202F180(FieldSystem_SaveData(fieldSystem), v0->unk_0C.unk_00);
         }
 
         if (v0->unk_04 == 1) {
@@ -240,12 +240,12 @@ static BOOL sub_0209843C (TaskManager * param0)
     break;
     case 3:
     {
-        FieldSystem * v8 = TaskManager_FieldSystem(param0);
+        FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
         int v9;
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = sub_0208712C(11, 1, v9, 10, SaveData_Options(FieldSystem_SaveData(v8)));
+        v0->unk_08 = sub_0208712C(11, 1, v9, 10, SaveData_Options(FieldSystem_SaveData(fieldSystem)));
         v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         sub_02050A38(param0, &Unk_020F2DAC, v0->unk_08);
@@ -257,8 +257,8 @@ static BOOL sub_0209843C (TaskManager * param0)
             Pokemon_SetValue(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
 
             {
-                FieldSystem * v10 = TaskManager_FieldSystem(param0);
-                UnkStruct_0202CD88 * v11 = sub_0202CD88(FieldSystem_SaveData(v10));
+                FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+                UnkStruct_0202CD88 * v11 = sub_0202CD88(FieldSystem_SaveData(fieldSystem));
 
                 sub_0202CF28(v11, (1 + 48));
             }

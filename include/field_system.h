@@ -7,12 +7,12 @@
 #include "savedata.h"
 #include "overlay025/poketch_system.h"
 
-void sub_0203CD00(FieldSystem * param0);
-void sub_0203CD44(FieldSystem * param0);
-BOOL sub_0203CD4C(FieldSystem * param0);
-BOOL sub_0203CD5C(FieldSystem * param0);
-BOOL sub_0203CD74(FieldSystem * param0);
-void sub_0203CD84(FieldSystem * param0, const OverlayManagerTemplate * param1, void * param2);
+void sub_0203CD00(FieldSystem * fieldSystem);
+void sub_0203CD44(FieldSystem * fieldSystem);
+BOOL sub_0203CD4C(FieldSystem * fieldSystem);
+BOOL sub_0203CD5C(FieldSystem * fieldSystem);
+BOOL sub_0203CD74(FieldSystem * fieldSystem);
+void sub_0203CD84(FieldSystem * fieldSystem, const OverlayManagerTemplate * param1, void * param2);
 void sub_0203D128(void);
 void sub_0203D140(void);
 PoketchSystem * sub_0203D158(void);

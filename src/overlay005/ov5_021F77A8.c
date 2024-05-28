@@ -44,7 +44,7 @@
 #include "res/pokemon/tutor_movesets.h"
 
 struct UnkStruct_ov5_021F7ED8_t {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     SysTask * unk_04;
     Window unk_08;
     Window * unk_18;
@@ -83,8 +83,8 @@ static u16 ov5_021F7A4C(u16 param0);
 static u8 ReadMovesetMaskByte(Pokemon * param0, u8 param1);
 static u16 ov5_021F7B60(Pokemon * param0, u16 param1);
 static void ov5_021F7E10(UnkStruct_ov5_021F7ED8 * param0, MessageLoader * param1);
-static void ov5_021F7E18(FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9);
-UnkStruct_ov5_021F7ED8 * ov5_021F7ED8(FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8);
+static void ov5_021F7E18(FieldSystem * fieldSystem, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9);
+UnkStruct_ov5_021F7ED8 * ov5_021F7ED8(FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8);
 void ov5_021F7F2C(UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 * param0);
 static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 param3);
@@ -95,9 +95,9 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 * param0);
 
 BOOL ScrCmd_337 (ScriptContext * param0)
 {
-    u16 v0 = sub_0203F150(param0->fieldSys, ScriptContext_ReadHalfWord(param0));
-    u16 * v1 = sub_0203F118(param0->fieldSys, ScriptContext_ReadHalfWord(param0));
-    PokedexData * v2 = SaveData_Pokedex(param0->fieldSys->saveData);
+    u16 v0 = sub_0203F150(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 * v1 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    PokedexData * v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
 
     *v1 = sub_02026FE8(v2, v0);
     return 0;
@@ -110,7 +110,7 @@ BOOL ScrCmd_2E5 (ScriptContext * param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSys->saveData), v1);
+    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
     *v3 = ov5_021F7B60(v0, v2);
 
     return 0;
@@ -122,7 +122,7 @@ BOOL ScrCmd_2E9 (ScriptContext * param0)
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
 
-    sub_02054988(Party_GetFromSavedata(param0->fieldSys->saveData), v0, v1, v2);
+    sub_02054988(Party_GetFromSavedata(param0->fieldSystem->saveData), v0, v1, v2);
     return 0;
 }
 
@@ -134,7 +134,7 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
     u16 v6 = ScriptContext_GetVar(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
 
-    v5 = sub_0207D990(param0->fieldSys->saveData);
+    v5 = sub_0207D990(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -188,7 +188,7 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
     UnkStruct_0207D3C0 * v5;
     u16 v6 = ScriptContext_GetVar(param0);
 
-    v5 = sub_0207D990(param0->fieldSys->saveData);
+    v5 = sub_0207D990(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -325,11 +325,11 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
     Pokemon * v6;
     MessageLoader * v7;
     MessageLoader * v8;
-    FieldSystem * v9 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     UnkStruct_ov5_021F7ED8 * v10;
     u16 v11[4];
     u16 v12[(NELEMS(sTeachableMoves))];
-    StringTemplate ** v13 = sub_0203F098(v9, 15);
+    StringTemplate ** v13 = sub_0203F098(fieldSystem, 15);
     u16 v14 = ScriptContext_GetVar(param0);
     u16 v15 = ScriptContext_GetVar(param0);
     u16 v16 = ScriptContext_ReadHalfWord(param0);
@@ -337,11 +337,11 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
     param0->data[0] = v16;
 
     if (v14 != 0xff) {
-        v6 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSys->saveData), v14);
+        v6 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v14);
     }
 
     v7 = MessageLoader_Init(0, 26, 647, 32);
-    v10 = ov5_021F7ED8(v9, 20, 1, 0, 1, sub_0203F118(v9, v16), *v13, sub_0203F098(param0->fieldSys, 1), v7);
+    v10 = ov5_021F7ED8(fieldSystem, 20, 1, 0, 1, sub_0203F118(fieldSystem, v16), *v13, sub_0203F098(param0->fieldSystem, 1), v7);
 
     for (v2 = 0; v2 < (NELEMS(sTeachableMoves)); v2++) {
         v12[v2] = 0;
@@ -403,8 +403,8 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
 
 static BOOL ov5_021F7DE8 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    u16 * v1 = sub_0203F118(v0, param0->data[0]);
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    u16 * v1 = sub_0203F118(fieldSystem, param0->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;
@@ -419,14 +419,14 @@ static void ov5_021F7E10 (UnkStruct_ov5_021F7ED8 * param0, MessageLoader * param
     return;
 }
 
-static void ov5_021F7E18 (FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9)
+static void ov5_021F7E18 (FieldSystem * fieldSystem, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, StringTemplate * param7, Window * param8, MessageLoader * param9)
 {
     int v0;
 
     param1->unk_B8 = param9;
     param1->unk_C3_1 = 0;
     param1->unk_BC = param7;
-    param1->unk_00 = param0;
+    param1->fieldSystem = fieldSystem;
     param1->unk_CC = param6;
     param1->unk_C3_0 = param5;
     param1->unk_C2 = param4;
@@ -452,7 +452,7 @@ static void ov5_021F7E18 (FieldSystem * param0, UnkStruct_ov5_021F7ED8 * param1,
     return;
 }
 
-UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (FieldSystem * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8)
+UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (FieldSystem * fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, StringTemplate * param6, Window * param7, MessageLoader * param8)
 {
     UnkStruct_ov5_021F7ED8 * v0;
     int v1;
@@ -464,7 +464,7 @@ UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (FieldSystem * param0, u8 param1, u8 param
     }
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021F7ED8));
-    ov5_021F7E18(param0, v0, param1, param2, param3, param4, param5, param6, param7, param8);
+    ov5_021F7E18(fieldSystem, v0, param1, param2, param3, param4, param5, param6, param7, param8);
 
     return v0;
 }
@@ -478,12 +478,12 @@ void ov5_021F7F2C (UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 
 static void ov5_021F7F34 (UnkStruct_ov5_021F7ED8 * param0)
 {
     if (param0->unk_C7 > 8) {
-        BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
+        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
     } else {
-        BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
+        BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
     }
 
-    sub_0200DAA4(param0->unk_00->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    sub_0200DAA4(param0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F8090(param0);
 
@@ -626,24 +626,24 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
 
 BOOL ScrCmd_2EC (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    StringTemplate ** v1 = sub_0203F098(v0, 15);
-    UnkStruct_ov5_021DC1A4 ** v2 = sub_0203F098(v0, 0);
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    StringTemplate ** v1 = sub_0203F098(fieldSystem, 15);
+    UnkStruct_ov5_021DC1A4 ** v2 = sub_0203F098(fieldSystem, 0);
     u8 v3 = ScriptContext_ReadByte(param0);
     u8 v4 = ScriptContext_ReadByte(param0);
     u16 v5 = ScriptContext_GetVar(param0);
     u16 * v6 = ScriptContext_GetVarPointer(param0);
 
     v5 = ov5_021F7A4C(v5);
-    *v2 = ov5_021DD250(v0, v3, v4, v6, *v1, sTeachableMoves[v5].redCost, sTeachableMoves[v5].blueCost, sTeachableMoves[v5].yellowCost, sTeachableMoves[v5].greenCost);
+    *v2 = ov5_021DD250(fieldSystem, v3, v4, v6, *v1, sTeachableMoves[v5].redCost, sTeachableMoves[v5].blueCost, sTeachableMoves[v5].yellowCost, sTeachableMoves[v5].greenCost);
 
     return 0;
 }
 
 BOOL ScrCmd_2ED (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(v0, 0);
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
 
     ov5_021DD3A8(*v1);
     return 0;

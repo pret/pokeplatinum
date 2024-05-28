@@ -72,9 +72,9 @@ static const int Unk_ov5_021F9CBC[] = {
     0x8
 };
 
-static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * param1)
+static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * fieldSystem)
 {
-    SaveData * v0 = param1->saveData;
+    SaveData * v0 = fieldSystem->saveData;
     Location * v1 = sub_0203A720(sub_0203A790(v0));
     PokedexData * v2 = SaveData_Pokedex(v0);
 
@@ -233,8 +233,8 @@ static void ov5_021E2028 (FieldSystem * fieldSystem)
     sub_0203A7A8(fieldSystem);
     ov5_021EA714(fieldSystem, 4, 0);
 
-    fieldSystem->unk_1C->unk_08 = Player_XPos(fieldSystem->playerAvatar);
-    fieldSystem->unk_1C->unk_0C = Player_ZPos(fieldSystem->playerAvatar);
+    fieldSystem->unk_1C->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
+    fieldSystem->unk_1C->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
     fieldSystem->unk_1C->unk_04 = -1;
     fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }

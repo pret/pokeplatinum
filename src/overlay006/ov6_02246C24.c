@@ -36,14 +36,14 @@ static VecFx32 Unk_ov6_0224989C[6] = {
     {((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, ((FX32_ONE * 4) + (FX32_ONE / 2))}
 };
 
-void ov6_02246C24 (FieldSystem * param0, const u8 param1)
+void ov6_02246C24 (FieldSystem * fieldSystem, const u8 param1)
 {
     BOOL v0;
     UnkStruct_ov5_021E1890 * v1;
     int v2;
     int v3 = 123;
 
-    v0 = sub_020552B4(param0, v3, &v1, &v2);
+    v0 = sub_020552B4(fieldSystem, v3, &v1, &v2);
 
     if (v0) {
         UnkStruct_ov6_02246C24 * v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
@@ -56,14 +56,14 @@ void ov6_02246C24 (FieldSystem * param0, const u8 param1)
         {
             VecFx32 v5;
 
-            sub_020553A4(v2, sub_02039E10(param0->unk_2C), &v5);
+            sub_020553A4(v2, sub_02039E10(fieldSystem->unk_2C), &v5);
 
             v4->unk_00 = ov5_021E1894(v1);
             v4->unk_00.x += v5.x;
             v4->unk_00.z += v5.z;
         }
 
-        sub_02050944(param0->unk_10, ov6_02246C9C, v4);
+        sub_02050944(fieldSystem->unk_10, ov6_02246C9C, v4);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -71,7 +71,7 @@ void ov6_02246C24 (FieldSystem * param0, const u8 param1)
 
 static BOOL ov6_02246C9C (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02246C24 * v1 = (UnkStruct_ov6_02246C24 *)TaskManager_Environment(param0);
 
     switch (v1->unk_0F) {
@@ -85,18 +85,18 @@ static BOOL ov6_02246C9C (TaskManager * param0)
         NNSG3dRenderObj * v7;
         BOOL v8;
 
-        v3 = ov5_021EF9E8(517, v0->unk_30);
-        v5 = ov5_021EF9E8(124, v0->unk_30);
+        v3 = ov5_021EF9E8(517, fieldSystem->unk_30);
+        v5 = ov5_021EF9E8(124, fieldSystem->unk_30);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
         v4 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v5), 0);
 
-        ov5_021D41C8(v0->unk_50, v0->unk_54, 0x10, 517, NULL, v2, ov5_021EFAA0(v0->unk_30), 1, 1, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x10, 517, NULL, v2, ov5_021EFAA0(fieldSystem->unk_30), 1, 1, 0);
 
-        v8 = sub_020552B4(v0, 124, &v6, NULL);
+        v8 = sub_020552B4(fieldSystem, 124, &v6, NULL);
         GF_ASSERT(v8);
         v7 = ov5_021E18BC(v6);
 
-        ov5_021D41C8(v0->unk_50, v0->unk_54, 0x20, 124, v7, v4, ov5_021EFAA0(v0->unk_30), 1, 1, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x20, 124, v7, v4, ov5_021EFAA0(fieldSystem->unk_30), 1, 1, 0);
     }
         (v1->unk_0F)++;
         break;
@@ -113,11 +113,11 @@ static BOOL ov6_02246C9C (TaskManager * param0)
 
         Sound_PlayEffect(1534);
 
-        v1->unk_10[v1->unk_0D] = ov5_021E19CC(v0->unk_A4, v0->unk_30, 517, &v11, &v12, v0->unk_50);
+        v1->unk_10[v1->unk_0D] = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 517, &v11, &v12, fieldSystem->unk_50);
 
-        v9 = ov5_021E18E0(v0->unk_A4, v1->unk_10[v1->unk_0D]);
+        v9 = ov5_021E18E0(fieldSystem->unk_A4, v1->unk_10[v1->unk_0D]);
         v10 = ov5_021E18BC(v9);
-        ov5_021D4220(v0->unk_54, 0x10, v1->unk_0D, v10);
+        ov5_021D4220(fieldSystem->unk_54, 0x10, v1->unk_0D, v10);
         (v1->unk_0F)++;
     }
     break;
@@ -139,20 +139,20 @@ static BOOL ov6_02246C9C (TaskManager * param0)
 
         break;
     case 3:
-        ov5_021D4250(v0->unk_54, 0x10, 0);
-        ov5_021D4250(v0->unk_54, 0x20, 0);
+        ov5_021D4250(fieldSystem->unk_54, 0x10, 0);
+        ov5_021D4250(fieldSystem->unk_54, 0x20, 0);
         sub_02006150(1166);
         (v1->unk_0F)++;
         break;
     case 4:
-        if ((ov5_021D42F0(v0->unk_54, 0x10)) && (ov5_021D42F0(v0->unk_54, 0x20)) && (sub_020061E4() == 0)) {
+        if ((ov5_021D42F0(fieldSystem->unk_54, 0x10)) && (ov5_021D42F0(fieldSystem->unk_54, 0x20)) && (sub_020061E4() == 0)) {
             u8 v13;
 
-            ov5_021D42B0(v0->unk_50, v0->unk_54, 0x20);
-            ov5_021D42B0(v0->unk_50, v0->unk_54, 0x10);
+            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 0x20);
+            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 0x10);
 
             for (v13 = 0; v13 < v1->unk_0C; v13++) {
-                ov5_021E1674(v1->unk_10[v13], v0->unk_A4);
+                ov5_021E1674(v1->unk_10[v13], fieldSystem->unk_A4);
             }
 
             (v1->unk_0F)++;

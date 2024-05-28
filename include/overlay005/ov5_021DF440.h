@@ -14,7 +14,7 @@
 
 #include <nitro/fx/fx.h>
 
-UnkStruct_ov5_021DF47C * ov5_021DF440(FieldSystem * param0, u32 param1, u32 param2);
+UnkStruct_ov5_021DF47C * ov5_021DF440(FieldSystem * fieldSystem, u32 param1, u32 param2);
 void ov5_021DF47C(UnkStruct_ov5_021DF47C * param0, u32 param1);
 void ov5_021DF488(UnkStruct_ov5_021DF47C * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov5_021DF4A8(UnkStruct_ov5_021DF47C * param0, u32 param1);

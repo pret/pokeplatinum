@@ -19,7 +19,7 @@ typedef struct {
     int unk_1C;
     UnkStruct_0209C370 * unk_20;
     u8 unk_24;
-    FieldSystem * unk_28;
+    FieldSystem * fieldSystem;
 } UnkStruct_ov104_02230BE4;
 
 #endif // POKEPLATINUM_STRUCT_OV104_02230BE4_H

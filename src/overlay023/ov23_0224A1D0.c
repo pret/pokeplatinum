@@ -82,7 +82,7 @@ static void ov23_0224A204 (int param0)
 
     if (param0 == CommSys_CurNetId()) {
         if (commPlayerMan->unk_290[param0] != NULL) {
-            sub_0202CFEC(sub_0202CD88(commPlayerMan->fieldSys->saveData), 28);
+            sub_0202CFEC(sub_0202CD88(commPlayerMan->fieldSystem->saveData), 28);
 
             if (commPlayerMan->unk_27C[5 - 1]) {
                 Heap_FreeToHeap(commPlayerMan->unk_27C[5 - 1]);
@@ -93,7 +93,7 @@ static void ov23_0224A204 (int param0)
             }
 
             commPlayerMan->unk_27C[0] = commPlayerMan->unk_290[param0];
-            sub_02028830(sub_020298B0(FieldSystem_SaveData(commPlayerMan->fieldSys)), commPlayerMan->unk_290[param0]);
+            sub_02028830(sub_020298B0(FieldSystem_SaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
 
             commPlayerMan->unk_290[param0] = NULL;
             commPlayerMan->unk_14A[param0].unk_20 = 0xff;
@@ -191,12 +191,12 @@ void ov23_0224A3A8 (int param0, int param1, void * param2, void * param3)
         if (!commPlayerMan->unk_2B8) {
             commPlayerMan->unk_2B8 = 1;
 
-            ov23_0224F758(ov23_0224A334, commPlayerMan->fieldSys);
+            ov23_0224F758(ov23_0224A334, commPlayerMan->fieldSystem);
         }
     } else if ((v1->unk_00 == 3) && (v1->unk_01 == CommSys_CurNetId())) {
         if (!commPlayerMan->unk_2B8) {
             commPlayerMan->unk_2B8 = 1;
-            ov23_02250A50(ov23_0224A334, commPlayerMan->fieldSys);
+            ov23_02250A50(ov23_0224A334, commPlayerMan->fieldSystem);
         }
     }
 }
@@ -205,7 +205,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
 {
     CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
-    UnkStruct_020507E4 * v2 = SaveData_Events(commPlayerMan->fieldSys->saveData);
+    UnkStruct_020507E4 * v2 = SaveData_Events(commPlayerMan->fieldSystem->saveData);
 
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
@@ -219,7 +219,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_01 == CommSys_CurNetId())) {
-        ov23_0224DCB8(v1->unk_02, ov23_0224A334, commPlayerMan->fieldSys);
+        ov23_0224DCB8(v1->unk_02, ov23_0224A334, commPlayerMan->fieldSystem);
 
         commPlayerMan->unk_58.unk_00_0 = v1->unk_01;
         commPlayerMan->unk_58.unk_00_4 = v1->unk_02;
@@ -227,7 +227,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
         commPlayerMan->unk_58.unk_00_9 = 0;
 
         if (commPlayerMan->unk_5A[v1->unk_02] == 0) {
-            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSys)), v1->unk_02);
+            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSystem)), v1->unk_02);
             sub_0206B364(v2, sub_0206B354(v2) + 1);
             sub_0206B384(v2, sub_0206B374(v2) + 1);
 
@@ -236,7 +236,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
     }
 
     if ((v1->unk_00 == 1) && (v1->unk_02 == CommSys_CurNetId())) {
-        ov23_0224F07C(v1->unk_02, v1->unk_01, commPlayerMan->fieldSys);
+        ov23_0224F07C(v1->unk_02, v1->unk_01, commPlayerMan->fieldSystem);
     }
 
     if ((v1->unk_00 == 2) && (v1->unk_01 == CommSys_CurNetId())) {
@@ -395,7 +395,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224A570 * v1 = param2;
     BOOL v2;
     int v3 = 0;
-    SecretBaseRecord * v4 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSys));
+    SecretBaseRecord * v4 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSystem));
 
     switch (v1->unk_00) {
     case 0:
@@ -469,14 +469,14 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
         ov23_0224B040(v1->unk_01);
 
         if (v1->unk_01 == CommSys_CurNetId()) {
-            SecretBaseRecord * v5 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSys));
+            SecretBaseRecord * v5 = SaveData_SecretBaseRecord(FieldSystem_SaveData(commPlayerMan->fieldSystem));
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(SaveData_Events(commPlayerMan->fieldSys->saveData));
+            sub_0206AA40(SaveData_Events(commPlayerMan->fieldSystem->saveData));
 
             if (commPlayerMan->unk_290[v1->unk_01]) {
-                sub_0206DAB8(commPlayerMan->fieldSys, commPlayerMan->unk_290[v1->unk_01]);
+                sub_0206DAB8(commPlayerMan->fieldSystem, commPlayerMan->unk_290[v1->unk_01]);
 
                 if (commPlayerMan->unk_2B2 != 0xffff) {
                     commPlayerMan->unk_2B2++;
@@ -497,7 +497,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
 
         if (commPlayerMan->unk_290[v1->unk_01]) {
             if (TrainerInfo_Equals(commPlayerMan->unk_290[v1->unk_01], CommInfo_TrainerInfo(CommSys_CurNetId())) == 1) {
-                sub_0206DAD4(commPlayerMan->fieldSys, CommInfo_TrainerInfo(v1->unk_01));
+                sub_0206DAD4(commPlayerMan->fieldSystem, CommInfo_TrainerInfo(v1->unk_01));
             }
         }
 
@@ -740,7 +740,7 @@ void ov23_0224ADE8 (int param0, int param1, int param2, int param3)
     v1 = &v0->playerLocation[param0];
 
     if (!v0->isResetting) {
-        ov5_021F5634(v0->fieldSys, v1->x, 0, v1->z);
+        ov5_021F5634(v0->fieldSystem, v1->x, 0, v1->z);
     }
 
     v1->x = param1;
@@ -752,7 +752,7 @@ void ov23_0224ADE8 (int param0, int param1, int param2, int param3)
     }
 
     if (!v0->isResetting) {
-        ov5_021F5634(v0->fieldSys, v1->x, 0, v1->z);
+        ov5_021F5634(v0->fieldSystem, v1->x, 0, v1->z);
     }
 
     if (!v0->isResetting) {
@@ -805,7 +805,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
             TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
 
             if (param1 == CommSys_CurNetId()) {
-                SecretBaseRecord * v2 = SaveData_SecretBaseRecord(v0->fieldSys->saveData);
+                SecretBaseRecord * v2 = SaveData_SecretBaseRecord(v0->fieldSystem->saveData);
                 sub_020297B4(v2);
             }
 

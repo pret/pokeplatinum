@@ -62,8 +62,8 @@ static int sub_02095CE8 (u8 param0)
 
 void sub_02095CFC (int param0, int param1, void * param2, void * param3)
 {
-    FieldSystem * v0 = (FieldSystem *)param3;
-    UnkStruct_02095E80 * v1 = v0->unk_88;
+    FieldSystem * fieldSystem = (FieldSystem *)param3;
+    UnkStruct_02095E80 * v1 = fieldSystem->unk_88;
 
     if (param0 != CommSys_CurNetId()) {
         memcpy((void *)v1->unk_2274, param2, (236 * 6 + 4 * 2));
@@ -132,9 +132,9 @@ void sub_02095DBC (int param0, int param1, void * param2, void * param3)
 
 void sub_02095DCC (int param0, int param1, void * param2, void * param3)
 {
-    FieldSystem * v0 = (FieldSystem *)param3;
+    FieldSystem * fieldSystem = (FieldSystem *)param3;
     int v1;
-    u8 * v2 = sub_0202D79C(v0->saveData);
+    u8 * v2 = sub_0202D79C(fieldSystem->saveData);
     u8 * v3 = (u8 *)param2;
 
     if (CommSys_CurNetId() == param0) {
@@ -171,9 +171,9 @@ void sub_02095E28 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-void sub_02095E60 (FieldSystem * param0, UnkStruct_02095E80 * param1)
+void sub_02095E60 (FieldSystem * fieldSystem, UnkStruct_02095E80 * param1)
 {
-    param0->unk_88 = param1;
+    fieldSystem->unk_88 = param1;
 }
 
 static int sub_02095E68 (void)

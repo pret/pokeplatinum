@@ -22,9 +22,9 @@
 
 BOOL ScrCmd_21D (ScriptContext * param0)
 {
-    StringTemplate ** v0 = sub_0203F098(param0->fieldSys, 15);
-    UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->fieldSys->saveData);
-    SaveData * v2 = param0->fieldSys->saveData;
+    StringTemplate ** v0 = sub_0203F098(param0->fieldSystem, 15);
+    UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->fieldSystem->saveData);
+    SaveData * v2 = param0->fieldSystem->saveData;
 
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:
@@ -87,14 +87,14 @@ BOOL ScrCmd_21D (ScriptContext * param0)
         sub_0202B384(v1, v12, 1);
 
         if (v13) {
-            sub_0206D430(param0->fieldSys);
+            sub_0206D430(param0->fieldSystem);
         }
     }
         return 0;
     case 6:
     {
         Strbuf* v14 = Strbuf_Init(64, 32);
-        TrainerInfo * v15 = SaveData_GetTrainerInfo(param0->fieldSys->saveData);
+        TrainerInfo * v15 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
 
         TrainerInfo_NameStrbuf(v15, v14);
         sub_0202B444(v1, 0, 1, v14);
@@ -103,7 +103,7 @@ BOOL ScrCmd_21D (ScriptContext * param0)
         sub_0202B40C(v1, 0, MTRNG_Next());
         Strbuf_Free(v14);
         sub_0202B384(v1, 0, 1);
-        sub_0206D424(param0->fieldSys);
+        sub_0206D424(param0->fieldSystem);
     }
     break;
     }

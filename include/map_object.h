@@ -22,7 +22,7 @@
 
 #include "constants/map_object.h"
 
-MapObjectManager * MapObjectMan_New(FieldSystem * param0, int param1, int param2);
+MapObjectManager * MapObjectMan_New(FieldSystem * fieldSystem, int param1, int param2);
 void MapObjectMan_Delete(MapObjectManager * param0);
 void sub_0206184C(MapObjectManager * param0, int param1, int param2, int param3, const MapObjectHeader * param4);
 MapObject * MapObjectMan_AddMapObjectFromHeader(const MapObjectManager * param0, const MapObjectHeader * param1, int param2);
@@ -36,7 +36,7 @@ void sub_02061B48(MapObject * param0);
 void MapObjectMan_DeleteAll(MapObjectManager * param0);
 void sub_02061BF0(MapObjectManager * param0);
 void sub_02061C48(MapObjectManager * param0);
-void MapObjectMan_SaveAll(FieldSystem * param0, const MapObjectManager * param1, MapObjectSave * param2, int param3);
+void MapObjectMan_SaveAll(FieldSystem * fieldSystem, const MapObjectManager * param1, MapObjectSave * param2, int param3);
 void MapObjectMan_LoadAllObjects(const MapObjectManager * param0, MapObjectSave * param1, int param2);
 void sub_02062068(const MapObjectManager * param0, int param1, int param2, const MapObjectHeader * param3);
 MapObject * MapObjMan_LocalMapObjByIndex(const MapObjectManager * param0, int param1);
@@ -58,7 +58,7 @@ void sub_02062860(MapObjectManager * param0, MapObject * param1);
 const MapObject * sub_02062868(const MapObjectManager * param0);
 MapObject * sub_02062878(const MapObjectManager * param0);
 void sub_02062880(const MapObject ** param0);
-void MapObjectMan_SetFieldSystem(MapObjectManager * param0, FieldSystem * param1);
+void MapObjectMan_SetFieldSystem(MapObjectManager * param0, FieldSystem * fieldSystem);
 FieldSystem * MapObjectMan_FieldSystem(const MapObjectManager * param0);
 void sub_0206289C(MapObjectManager * param0, NARC * param1);
 NARC * sub_020628A0(const MapObjectManager * param0);

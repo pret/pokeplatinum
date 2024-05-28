@@ -20,21 +20,21 @@
 
 BOOL ScrCmd_075 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     Window ** v3;
 
-    v3 = sub_0203F098(v0, 38);
-    *v3 = ov5_021DD020(param0->fieldSys, v1, v2);
+    v3 = sub_0203F098(fieldSystem, 38);
+    *v3 = ov5_021DD020(param0->fieldSystem, v1, v2);
 
     return 0;
 }
 
 BOOL ScrCmd_076 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    Window ** v1 = sub_0203F098(v0, 38);
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    Window ** v1 = sub_0203F098(fieldSystem, 38);
 
     ov5_021DD084(*v1);
     return 0;
@@ -42,17 +42,17 @@ BOOL ScrCmd_076 (ScriptContext * param0)
 
 BOOL ScrCmd_077 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    Window ** v1 = sub_0203F098(v0, 38);
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    Window ** v1 = sub_0203F098(fieldSystem, 38);
 
-    ov5_021DD098(param0->fieldSys, *v1);
+    ov5_021DD098(param0->fieldSystem, *v1);
     return 0;
 }
 
 BOOL ScrCmd_078 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    SaveData * v1 = v0->saveData;
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    SaveData * v1 = fieldSystem->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3;
 
@@ -64,8 +64,8 @@ BOOL ScrCmd_078 (ScriptContext * param0)
 
 BOOL ScrCmd_079 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    SaveData * v1 = v0->saveData;
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    SaveData * v1 = fieldSystem->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 v3;
 
@@ -77,8 +77,8 @@ BOOL ScrCmd_079 (ScriptContext * param0)
 
 BOOL ScrCmd_07A (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    SaveData * v1 = v0->saveData;
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    SaveData * v1 = fieldSystem->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 v3;
 
@@ -90,8 +90,8 @@ BOOL ScrCmd_07A (ScriptContext * param0)
 
 BOOL ScrCmd_2A8 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    SaveData * v1 = v0->saveData;
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    SaveData * v1 = fieldSystem->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
     u16 v4;
@@ -105,9 +105,9 @@ BOOL ScrCmd_2A8 (ScriptContext * param0)
 
 BOOL ScrCmd_274 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
-    SaveData * v2 = v0->saveData;
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    SaveData * v2 = fieldSystem->saveData;
     u16 * v3 = sub_02025E50(v2);
     u32 v4, v5;
     u16 * v6 = ScriptContext_GetVarPointer(param0);
@@ -126,9 +126,9 @@ BOOL ScrCmd_274 (ScriptContext * param0)
 
 BOOL ScrCmd_2A9 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSys));
-    SaveData * v2 = v0->saveData;
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
+    SaveData * v2 = fieldSystem->saveData;
     u16 * v3 = sub_02025E50(v2);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
     u16 * v5 = ScriptContext_GetVarPointer(param0);
@@ -148,8 +148,8 @@ BOOL ScrCmd_2A9 (ScriptContext * param0)
 
 BOOL ScrCmd_276 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
-    SaveData * v1 = v0->saveData;
+    FieldSystem * fieldSystem = param0->fieldSystem;
+    SaveData * v1 = fieldSystem->saveData;
     u16 * v2 = sub_02025E50(v1);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
     u16 v4 = ScriptContext_GetVar(param0);

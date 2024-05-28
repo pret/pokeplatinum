@@ -21,13 +21,13 @@ const u16 Unk_020EBFFC[7][2] = {
 
 BOOL ScrCmd_1F1 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u8 v1;
     u16 v2, v3;
     u16 * v4 = ScriptContext_GetVarPointer(param0);
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += sub_0207D730(sub_0207D990(v0->saveData), Unk_020EBFFC[v1][0], 4);
+        v3 += sub_0207D730(sub_0207D990(fieldSystem->saveData), Unk_020EBFFC[v1][0], 4);
     }
 
     *v4 = v3;
@@ -55,7 +55,7 @@ BOOL ScrCmd_1F4 (ScriptContext * param0)
 
 BOOL ScrCmd_1F5 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u8 v1;
     u16 v2, v3;
     u16 * v4 = ScriptContext_GetVarPointer(param0);
@@ -66,7 +66,7 @@ BOOL ScrCmd_1F5 (ScriptContext * param0)
     *v5 = 0;
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += sub_0207D730(sub_0207D990(v0->saveData), Unk_020EBFFC[v1][0], 4);
+        v3 += sub_0207D730(sub_0207D990(fieldSystem->saveData), Unk_020EBFFC[v1][0], 4);
 
         if (v3 >= v6) {
             *v4 = Unk_020EBFFC[v1][0];

@@ -126,7 +126,7 @@ typedef struct UnkStruct_ov5_021D6594_t {
     UnkStruct_ov5_021D69B8 * unk_00;
     const UnkStruct_ov5_021F8D90 * unk_04;
     UnkStruct_ov5_021D61D0 unk_08;
-    FieldSystem * unk_140;
+    FieldSystem * fieldSystem;
     NARC * unk_144;
 } UnkStruct_ov5_021D6594;
 
@@ -380,14 +380,14 @@ static void ov5_021DB500(UnkStruct_ov5_021DB614 * param0);
 static void ov5_021DB7CC(UnkStruct_ov5_021DB614 * param0);
 static void ov5_021DB588(fx32 param0, int param1, int param2, int param3, int * param4, int * param5);
 
-UnkStruct_ov5_021D5EF8 * ov5_021D5EB8 (FieldSystem * param0)
+UnkStruct_ov5_021D5EF8 * ov5_021D5EB8 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov5_021D5EF8 * v0;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021D5EF8));
     memset(v0, 0, sizeof(UnkStruct_ov5_021D5EF8));
 
-    v0->unk_00 = ov5_021D6364(param0);
+    v0->unk_00 = ov5_021D6364(fieldSystem);
     v0->unk_04 = 0;
     v0->unk_08 = 0;
     v0->unk_0C = 6;
@@ -875,12 +875,12 @@ static void ov5_021D630C (GraphicElementData * param0, VecFx32 * param1)
     sub_02021C50(param0, param1);
 }
 
-UnkStruct_ov5_021D6594 * ov5_021D6364 (FieldSystem * param0)
+UnkStruct_ov5_021D6594 * ov5_021D6364 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov5_021D6594 * v0;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021D6594));
-    v0->unk_140 = param0;
+    v0->fieldSystem = fieldSystem;
 
     ov5_021D61D0(&v0->unk_08);
 
@@ -900,7 +900,7 @@ void ov5_021D63A4 (UnkStruct_ov5_021D6594 ** param0)
             ov5_021D68B8(*param0, v0);
         }
 
-        ov5_021D57FC((*param0)->unk_140->unk_48, 1, 0, 0, 0, 0);
+        ov5_021D57FC((*param0)->fieldSystem->unk_48, 1, 0, 0, 0, 0);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -936,7 +936,7 @@ BOOL ov5_021D6418 (UnkStruct_ov5_021D6594 * param0, int param1, int param2)
         v0 = ov5_021D676C(param0, param2, 2, 1);
         break;
     case 4:
-        if (ov5_021D57EC(param0->unk_140->unk_48) == 1) {
+        if (ov5_021D57EC(param0->fieldSystem->unk_48) == 1) {
             v0 = ov5_021D676C(param0, param2, 0, 2);
         } else {
             v0 = ov5_021D676C(param0, param2, 0, 1);
@@ -1273,7 +1273,7 @@ static void ov5_021D68B8 (UnkStruct_ov5_021D6594 * param0, int param1)
         v0->unk_08 = NULL;
     }
 
-    ov5_021D57FC(param0->unk_140->unk_48, 1, 0, 0, 0, 0);
+    ov5_021D57FC(param0->fieldSystem->unk_48, 1, 0, 0, 0, 0);
 }
 
 static void ov5_021D69B8 (UnkStruct_ov5_021D69B8 * param0)
@@ -1523,7 +1523,7 @@ static void ov5_021D6DCC (UnkStruct_ov5_021D6594 * param0, int param1)
 
         NNS_G2dGetUnpackedCharacterData(v0.unk_04, &v0.unk_10);
 
-        sub_0201958C(param0->unk_140->unk_08, 2, v0.unk_10->pRawData, v0.unk_10->szByte, 0);
+        sub_0201958C(param0->fieldSystem->unk_08, 2, v0.unk_10->pRawData, v0.unk_10->szByte, 0);
         Heap_FreeToHeap(v0.unk_04);
 
         v0.unk_04 = NULL;
@@ -1542,10 +1542,10 @@ static void ov5_021D6E20 (UnkStruct_ov5_021D6594 * param0, int param1)
 
         NNS_G2dGetUnpackedScreenData(v0.unk_08, &v0.unk_0C);
 
-        sub_02019460(param0->unk_140->unk_08, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte, 0);
-        sub_02019574(param0->unk_140->unk_08, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte);
-        sub_02019E2C(param0->unk_140->unk_08, 2, 0, 0, 32, 32, 6);
-        sub_02019448(param0->unk_140->unk_08, 2);
+        sub_02019460(param0->fieldSystem->unk_08, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte, 0);
+        sub_02019574(param0->fieldSystem->unk_08, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte);
+        sub_02019E2C(param0->fieldSystem->unk_08, 2, 0, 0, 32, 32, 6);
+        sub_02019448(param0->fieldSystem->unk_08, 2);
         Heap_FreeToHeap(v0.unk_08);
 
         v0.unk_08 = NULL;
@@ -1680,7 +1680,7 @@ static void ov5_021D7028 (fx32 * param0, fx32 * param1, UnkStruct_ov5_021DB4B8 *
     v6 = (v0.z - param2->unk_B8C.z);
     v8 = FX_Div(FX32_CONST(4), FX32_CONST(3));
 
-    sub_0201E34C(sub_02020A88(param2->unk_00->unk_140->unk_24), sub_02020A90(param2->unk_00->unk_140->unk_24), v8, &v3, &v4);
+    sub_0201E34C(sub_02020A88(param2->unk_00->fieldSystem->unk_24), sub_02020A90(param2->unk_00->fieldSystem->unk_24), v8, &v3, &v4);
     v3 = FX_Div(v3, 256 * FX32_ONE);
 
     if (v6 <= 0) {
@@ -2129,7 +2129,7 @@ static void ov5_021D7658 (SysTask * param0, void * param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 8, 4, 0, -1, 1, 1, ov5_021D78A4);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
 
         v2->unk_B4[0] = 0;
 
@@ -2153,7 +2153,7 @@ static void ov5_021D7658 (SysTask * param0, void * param1)
         ov5_021D7210(&v2->unk_00, v0, 4, 0, 4, 0, -1, 1, 1, ov5_021D78A4);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26));
 
             ov5_021D74D4(&v2->unk_1C);
@@ -2325,7 +2325,7 @@ static void ov5_021D79F0 (SysTask * param0, void * param1)
         ov5_021D7210(&v3->unk_00, v0, 1, 24, 1, 14, -5, 1, 0, ov5_021D7C40);
         v3->unk_B4[1] = 0;
 
-        ov5_021D7308(&v3->unk_4C, &v3->unk_1C, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
+        ov5_021D7308(&v3->unk_4C, &v3->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
         v3->unk_B4[0] = 16;
 
         v0->unk_BA2 = 1;
@@ -2350,7 +2350,7 @@ static void ov5_021D79F0 (SysTask * param0, void * param1)
         v3->unk_B4[2] = 0;
 
         if (v0->unk_BA4 != 0) {
-            v3->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v3->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v3->unk_1C.unk_00, 3, 0x6F6F + 0x300, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v3->unk_1C);
         }
@@ -2562,7 +2562,7 @@ static void ov5_021D7E54 (SysTask * param0, void * param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 30, 6, 3, -5, 2, 1, ov5_021D8098);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + -0x200, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -0x200, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
 
         v2->unk_B4[0] = 8;
         v2->unk_B4[1] = 0;
@@ -2585,7 +2585,7 @@ static void ov5_021D7E54 (SysTask * param0, void * param1)
         ov5_021D7210(&v2->unk_00, v0, 6, 3, 6, 3, -5, 2, 1, ov5_021D8098);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F + -0x200, GX_RGB(24, 24, 24));
             ov5_021D74D4(&v2->unk_1C);
         }
@@ -2750,7 +2750,7 @@ static void ov5_021D823C (SysTask * param0, void * param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 30, 6, 3, -5, 2, 1, ov5_021D8098);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->unk_140->unk_48, 3, 0x6F6F, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F, GX_RGB(24, 24, 24), 2, v0->unk_BA4);
 
         v2->unk_B4[0] = 8;
         v2->unk_B4[1] = 0;
@@ -2778,7 +2778,7 @@ static void ov5_021D823C (SysTask * param0, void * param1)
         ov5_021D7210(&v2->unk_00, v0, 6, 3, 6, 3, -5, 2, 1, ov5_021D8098);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F, GX_RGB(24, 24, 24));
 
             ov5_021D74D4(&v2->unk_1C);
@@ -2866,7 +2866,7 @@ static void ov5_021D84D4 (SysTask * param0, void * param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
         v2->unk_98[0] = 16;
 
         v0->unk_BA2 = 1;
@@ -2884,7 +2884,7 @@ static void ov5_021D84D4 (SysTask * param0, void * param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v2->unk_00.unk_00 = v0->unk_00->unk_140->unk_48;
+            v2->unk_00.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v2->unk_00.unk_00, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v2->unk_00);
         }
@@ -2942,7 +2942,7 @@ static void ov5_021D8638 (SysTask * param0, void * param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + -0x9E0, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_30, &v2->unk_00, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -0x9E0, GX_RGB(26, 26, 26), 2, v0->unk_BA4);
         v2->unk_98[0] = 16;
         v0->unk_BA2 = 1;
         break;
@@ -2959,7 +2959,7 @@ static void ov5_021D8638 (SysTask * param0, void * param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v2->unk_00.unk_00 = v0->unk_00->unk_140->unk_48;
+            v2->unk_00.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v2->unk_00.unk_00, 3, 0x6F6F + -0x9E0, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v2->unk_00);
         }
@@ -3017,7 +3017,7 @@ static void ov5_021D879C (SysTask * param0, void * param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->unk_140->unk_48, 5, 0x6F6F + 0xAA0, GX_RGB(31, 31, 31), 2, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 5, 0x6F6F + 0xAA0, GX_RGB(31, 31, 31), 2, v0->unk_BA4);
         ov5_021D64FC(&v1->unk_00, 0, 16, 30);
         ov5_021D64E4(0, 16);
         G2_SetBG2Priority(3);
@@ -3036,7 +3036,7 @@ static void ov5_021D879C (SysTask * param0, void * param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->unk_140->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v1->unk_14.unk_00, 5, 0x6F6F + 0xAA0, GX_RGB(31, 31, 31));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -3100,7 +3100,7 @@ static void ov5_021D8948 (SysTask * param0, void * param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 1, 15, 8, 1, -2, 4, 2, ov5_021D8B88);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->unk_140->unk_48, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
         v2->unk_B4[0] = 0;
         v2->unk_B4[1] = 0;
         v0->unk_BA2 = 1;
@@ -3122,7 +3122,7 @@ static void ov5_021D8948 (SysTask * param0, void * param1)
         ov5_021D7210(&v2->unk_00, v0, 8, 1, 8, 1, -2, 4, 2, ov5_021D8B88);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 28399, GX_RGB(26, 20, 5));
             ov5_021D74D4(&v2->unk_1C);
         }
@@ -3290,7 +3290,7 @@ static void ov5_021D8D08 (SysTask * param0, void * param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v5->unk_00, v0, 1, 15, 8, 1, -2, 4, 2, ov5_021D8B88);
-        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->unk_140->unk_48, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
+        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 28399, GX_RGB(26, 20, 5), 1, v0->unk_BA4);
         v5->unk_B4[0] = 0;
         v5->unk_B4[1] = 0;
         v5->unk_B4[2] = 0;
@@ -3315,7 +3315,7 @@ static void ov5_021D8D08 (SysTask * param0, void * param1)
         ov5_021D7210(&v5->unk_00, v0, 8, 1, 8, 1, -2, 4, 2, ov5_021D8B88);
 
         if (v0->unk_BA4 != 0) {
-            v5->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v5->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v5->unk_1C.unk_00, 3, 28399, GX_RGB(26, 20, 5));
             ov5_021D74D4(&v5->unk_1C);
         }
@@ -3413,7 +3413,7 @@ static void ov5_021D8FF8 (SysTask * param0, void * param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v5->unk_00, v0, 1, 30, 10, 1, -4, 2, 3, ov5_021D92C4);
-        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + -0x400, GX_RGB(24, 24, 24), 1, v0->unk_BA4);
+        ov5_021D7308(&v5->unk_4C, &v5->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -0x400, GX_RGB(24, 24, 24), 1, v0->unk_BA4);
         v5->unk_B4[0] = 16;
         v5->unk_B4[1] = 0;
         v5->unk_B4[2] = 0;
@@ -3437,7 +3437,7 @@ static void ov5_021D8FF8 (SysTask * param0, void * param1)
         ov5_021D7210(&v5->unk_00, v0, 10, 1, 10, 1, -4, 2, 3, ov5_021D92C4);
 
         if (v0->unk_BA4 != 0) {
-            v5->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v5->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v5->unk_1C.unk_00, 3, 0x6F6F + -0x400, GX_RGB(24, 24, 24));
             ov5_021D74D4(&v5->unk_1C);
         }
@@ -3619,7 +3619,7 @@ static void ov5_021D9464 (SysTask * param0, void * param1)
     switch (v0->unk_BA2) {
     case 0:
         ov5_021D7210(&v2->unk_00, v0, 2, 16, 20, 2, -2, 4, 2, ov5_021D9690);
-        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
+        ov5_021D7308(&v2->unk_4C, &v2->unk_1C, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26), 1, v0->unk_BA4);
         v2->unk_B4[0] = 0;
         v0->unk_BA2 = 1;
         break;
@@ -3640,7 +3640,7 @@ static void ov5_021D9464 (SysTask * param0, void * param1)
         ov5_021D7210(&v2->unk_00, v0, 20, 2, 20, 2, -2, 4, 2, ov5_021D9690);
 
         if (v0->unk_BA4 != 0) {
-            v2->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v2->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v2->unk_1C.unk_00, 3, 0x6F6F + 0x200, GX_RGB(26, 26, 26));
             ov5_021D74D4(&v2->unk_1C);
         }
@@ -3903,7 +3903,7 @@ static void ov5_021D97E8 (SysTask * param0, void * param1)
 static void ov5_021D9984 (UnkStruct_ov5_021DB4B8 * param0, UnkStruct_ov5_021D9984 * param1)
 {
     ov5_021D7210(&param1->unk_00, param0, 1, 15, 10, 0, -3, 2, 1, ov5_021DA0A8);
-    ov5_021D7308(&param1->unk_4C, &param1->unk_1C, param0->unk_00->unk_140->unk_48, 3, 0x6F6F, GX_RGB(26, 26, 26), 1, param0->unk_BA4);
+    ov5_021D7308(&param1->unk_4C, &param1->unk_1C, param0->unk_00->fieldSystem->unk_48, 3, 0x6F6F, GX_RGB(26, 26, 26), 1, param0->unk_BA4);
 
     param1->unk_B4[0] = 0;
     param1->unk_B4[1] = 0;
@@ -3937,7 +3937,7 @@ static void ov5_021D9A58 (UnkStruct_ov5_021DB4B8 * param0, UnkStruct_ov5_021D998
     ov5_021D7210(&param1->unk_00, param0, 10, 0, 10, 0, -3, 2, 1, ov5_021DA0A8);
 
     if (param0->unk_BA4 != 0) {
-        param1->unk_1C.unk_00 = param0->unk_00->unk_140->unk_48;
+        param1->unk_1C.unk_00 = param0->unk_00->fieldSystem->unk_48;
         ov5_021D7384(param1->unk_1C.unk_00, 3, 0x6F6F, GX_RGB(26, 26, 26));
         ov5_021D74D4(&param1->unk_1C);
     }
@@ -4030,8 +4030,8 @@ static void ov5_021D9C20 (SysTask * param0, void * param1, u32 param2, u32 param
     switch (v0->unk_BA2) {
     case 0:
         if (v0->unk_BA4 != 0) {
-            ov5_021D7384(v0->unk_00->unk_140->unk_48, 5, 28591, (GX_RGB(0, 0, 0)));
-            ov5_021D585C(v0->unk_00->unk_140->unk_48, Unk_ov5_021F8E14);
+            ov5_021D7384(v0->unk_00->fieldSystem->unk_48, 5, 28591, (GX_RGB(0, 0, 0)));
+            ov5_021D585C(v0->unk_00->fieldSystem->unk_48, Unk_ov5_021F8E14);
             ov5_021D64E4(param2, 16 - param2);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -4047,8 +4047,8 @@ static void ov5_021D9C20 (SysTask * param0, void * param1, u32 param2, u32 param
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            ov5_021D7384(v0->unk_00->unk_140->unk_48, 5, 28591, (GX_RGB(0, 0, 0)));
-            ov5_021D585C(v0->unk_00->unk_140->unk_48, Unk_ov5_021F8E14);
+            ov5_021D7384(v0->unk_00->fieldSystem->unk_48, 5, 28591, (GX_RGB(0, 0, 0)));
+            ov5_021D585C(v0->unk_00->fieldSystem->unk_48, Unk_ov5_021F8E14);
             ov5_021D64E4(param2, 16 - param2);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             v2->unk_98[0] = param4;
@@ -4091,7 +4091,7 @@ static void ov5_021D9C20 (SysTask * param0, void * param1, u32 param2, u32 param
         break;
     case 5:
         if (v0->unk_BA4 != 0) {
-            ov5_021D57FC(v0->unk_00->unk_140->unk_48, 1, 0, 0, 0, 0);
+            ov5_021D57FC(v0->unk_00->fieldSystem->unk_48, 1, 0, 0, 0, 0);
         }
 
         {
@@ -4111,7 +4111,7 @@ static void ov5_021D9DFC (UnkStruct_ov5_021DB4B8 * param0, UnkStruct_ov5_021D84D
 
     switch (param0->unk_BA2) {
     case 0:
-        ov5_021D7308(&param1->unk_30, &param1->unk_00, param0->unk_00->unk_140->unk_48, param2, param3, param4, param5, param0->unk_BA4);
+        ov5_021D7308(&param1->unk_30, &param1->unk_00, param0->unk_00->fieldSystem->unk_48, param2, param3, param4, param5, param0->unk_BA4);
         param0->unk_BA2 = 1;
         break;
     case 1:
@@ -4123,7 +4123,7 @@ static void ov5_021D9DFC (UnkStruct_ov5_021DB4B8 * param0, UnkStruct_ov5_021D84D
         break;
     case 2:
         if (param0->unk_BA4 != 0) {
-            param1->unk_00.unk_00 = param0->unk_00->unk_140->unk_48;
+            param1->unk_00.unk_00 = param0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(param1->unk_00.unk_00, param2, param3, param4);
             ov5_021D74D4(&param1->unk_00);
         }
@@ -4370,7 +4370,7 @@ static void ov5_021DA244 (SysTask * param0, void * param1)
         v7->unk_B4[4] = 0;
         v7->unk_B4[5] = 0;
 
-        ov5_021D7308(&v7->unk_4C, &v7->unk_1C, v0->unk_00->unk_140->unk_48, 3 + 0, 0x6F6F + -0x40, GX_RGB(20, 20, 14), 1, v0->unk_BA4);
+        ov5_021D7308(&v7->unk_4C, &v7->unk_1C, v0->unk_00->fieldSystem->unk_48, 3 + 0, 0x6F6F + -0x40, GX_RGB(20, 20, 14), 1, v0->unk_BA4);
 
         v7->unk_B4[0] = 0;
         v0->unk_BA2 = 1;
@@ -4399,7 +4399,7 @@ static void ov5_021DA244 (SysTask * param0, void * param1)
         v7->unk_B4[5] = 0;
 
         if (v0->unk_BA4 != 0) {
-            v7->unk_1C.unk_00 = v0->unk_00->unk_140->unk_48;
+            v7->unk_1C.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v7->unk_1C.unk_00, 3, 0x6F6F + -0x40, GX_RGB(20, 20, 14));
             ov5_021D74D4(&v7->unk_1C);
         }
@@ -4968,7 +4968,7 @@ static void ov5_021DAD38 (SysTask * param0, void * param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->unk_140->unk_48, 7, 30287, (GX_RGB(0, 0, 0)), 1, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 7, 30287, (GX_RGB(0, 0, 0)), 1, v0->unk_BA4);
         ov5_021D64FC(&v1->unk_00, 0, 9, 30);
         ov5_021D64E4(0, 16);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -4986,7 +4986,7 @@ static void ov5_021DAD38 (SysTask * param0, void * param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->unk_140->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v1->unk_14.unk_00, 7, 30287, (GX_RGB(0, 0, 0)));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -5046,7 +5046,7 @@ static void ov5_021DAEC0 (SysTask * param0, void * param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->unk_140->unk_48, 6, 30037, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 6, 30037, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
         ov5_021D64FC(&v1->unk_00, 0, 9, 30);
         ov5_021D64E4(0, 16);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -5064,7 +5064,7 @@ static void ov5_021DAEC0 (SysTask * param0, void * param1)
         break;
     case 2:
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->unk_140->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v1->unk_14.unk_00, 6, 30037, (GX_RGB(31, 31, 31)));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -5117,13 +5117,13 @@ static void ov5_021DB04C (SysTask * param0, void * param1)
     UnkStruct_ov5_021DB4B8 * v0 = (UnkStruct_ov5_021DB4B8 *)param1;
     UnkStruct_ov5_021DB04C * v1;
     UnkStruct_ov5_021D6594 * v2 = v0->unk_00;
-    FieldSystem * v3 = v2->unk_140;
+    FieldSystem * fieldSystem = v2->fieldSystem;
 
     v1 = (UnkStruct_ov5_021DB04C *)v0->unk_B98;
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021DB614(&v1->unk_00, v3->unk_04->unk_1C);
+        ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->unk_1C);
         ov5_021DB6E0(&v1->unk_00, (FX32_CONST(256)), (FX32_CONST(32)), 128, 84, 30);
         v0->unk_BA2 = 1;
         break;
@@ -5140,7 +5140,7 @@ static void ov5_021DB04C (SysTask * param0, void * param1)
         break;
     case 3:
         if (v0->unk_BA6 == 5) {
-            ov5_021DB614(&v1->unk_00, v3->unk_04->unk_1C);
+            ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->unk_1C);
             ov5_021DB6E0(&v1->unk_00, (FX32_CONST(32)), (FX32_CONST(256)), 128, 84, 30);
             v0->unk_BA2 = 4;
         }
@@ -5178,7 +5178,7 @@ static void ov5_021DB144 (SysTask * param0, void * param1)
         ov5_021D64FC(&v1->unk_00, 0, 7, 8);
         ov5_021D64E4(0, 16);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->unk_140->unk_48, 3, 0x6F6F + -1600, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
+        ov5_021D7308(&v1->unk_44, &v1->unk_14, v0->unk_00->fieldSystem->unk_48, 3, 0x6F6F + -1600, (GX_RGB(31, 31, 31)), 1, v0->unk_BA4);
 
         v1->unk_AC = 0;
         v1->unk_B0 = 0;
@@ -5199,7 +5199,7 @@ static void ov5_021DB144 (SysTask * param0, void * param1)
         ov5_021D64E4(7, 16 - 7);
 
         if (v0->unk_BA4 != 0) {
-            v1->unk_14.unk_00 = v0->unk_00->unk_140->unk_48;
+            v1->unk_14.unk_00 = v0->unk_00->fieldSystem->unk_48;
             ov5_021D7384(v1->unk_14.unk_00, 3, 0x6F6F + -1600, (GX_RGB(31, 31, 31)));
             ov5_021D74D4(&v1->unk_14);
         }
@@ -5268,8 +5268,8 @@ static void ov5_021DB144 (SysTask * param0, void * param1)
 
         v5 = Unk_ov5_02201D38[v1->unk_B4 / 8];
 
-        sub_0201C63C(v0->unk_00->unk_140->unk_08, 2, 0, (v1->unk_AC >> FX32_SHIFT) + v5);
-        sub_0201C63C(v0->unk_00->unk_140->unk_08, 2, 3, (v1->unk_B0 >> FX32_SHIFT));
+        sub_0201C63C(v0->unk_00->fieldSystem->unk_08, 2, 0, (v1->unk_AC >> FX32_SHIFT) + v5);
+        sub_0201C63C(v0->unk_00->fieldSystem->unk_08, 2, 3, (v1->unk_B0 >> FX32_SHIFT));
     }
 }
 

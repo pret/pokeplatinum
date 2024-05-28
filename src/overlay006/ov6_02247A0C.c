@@ -106,12 +106,12 @@ void ov6_02247A0C (TaskManager * param0)
 
 static BOOL ov6_02247A34 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov6_02247A0C * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:
-        v1->unk_00 = ov6_02247A90(v0);
+        v1->unk_00 = ov6_02247A90(fieldSystem);
         v1->unk_04++;
         break;
     case 1:

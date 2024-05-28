@@ -10,7 +10,7 @@ typedef struct FieldCommunicationManager {
     TrainerCard * trainerCard[4];
     u8 unk_10[4];
     u8 padding_14[4];
-    FieldSystem * fieldSys;
+    FieldSystem * fieldSystem;
     MATHRandContext32 unk_1C;
     FieldCommTask task;
     SysTask * sysTask;
@@ -25,13 +25,13 @@ typedef struct FieldCommunicationManager {
 } FieldCommunicationManager;
 
 FieldCommunicationManager * FieldCommMan_Get(void);
-void FieldCommMan_Init(FieldSystem * param0);
+void FieldCommMan_Init(FieldSystem * fieldSystem);
 void FieldCommMan_Delete(void);
-void FieldCommMan_StartBattleServer(FieldSystem * param0, int param1, int param2);
-void FieldCommMan_StartBattleClient(FieldSystem * param0, int param1, int param2);
+void FieldCommMan_StartBattleServer(FieldSystem * fieldSystem, int param1, int param2);
+void FieldCommMan_StartBattleClient(FieldSystem * fieldSystem, int param1, int param2);
 void FieldCommMan_ConnectBattleClient(int param0);
 void FieldCommMan_ReconnectBattleClient(void);
-void FieldCommMan_EnterBattleRoom(FieldSystem * param0);
+void FieldCommMan_EnterBattleRoom(FieldSystem * fieldSystem);
 void FieldCommMan_EndBattle(void);
 void sub_020598A0(void);
 void sub_02059D0C(int param0, int param1, void * param2, void * param3);

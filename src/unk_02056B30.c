@@ -66,8 +66,8 @@ static BOOL sub_0205711C(TaskManager * taskMan);
 static BOOL sub_020571A0(TaskManager * taskMan);
 static BOOL sub_02057218(TaskManager * taskMan);
 static BOOL sub_020572B8(TaskManager * taskMan);
-static void sub_02057300(FieldSystem * taskMan);
-static void sub_02057368(FieldSystem * taskMan);
+static void sub_02057300(FieldSystem * fieldSystem);
+static void sub_02057368(FieldSystem * fieldSystem);
 
 static const UnkFuncPtr_020EC560 Unk_020EC560[7] = {
     sub_02056DE4,
@@ -283,7 +283,7 @@ static BOOL sub_02056E20 (TaskManager * taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_XPos(fieldSystem->playerAvatar), Player_ZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -315,7 +315,7 @@ static BOOL sub_02056EA4 (TaskManager * taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_XPos(fieldSystem->playerAvatar), Player_ZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -428,7 +428,7 @@ static BOOL sub_02057008 (TaskManager * taskMan)
 static BOOL sub_02057050 (TaskManager * taskMan)
 {
     MapObject * mapObj;
-    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC * v2 = TaskManager_Environment(taskMan);
     UnkStruct_ov5_021D432C * v3;
 
@@ -436,9 +436,9 @@ static BOOL sub_02057050 (TaskManager * taskMan)
     case 0:
     {
         u8 v4;
-        MapObject * v5 = Player_MapObject(v1->playerAvatar);
+        MapObject * v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
+        v4 = sub_02054F94(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -455,16 +455,16 @@ static BOOL sub_02057050 (TaskManager * taskMan)
     case 1:
         v2->unk_1C = (UnkStruct_ov5_021D432C *)ov5_021D431C();
         v3 = (UnkStruct_ov5_021D432C *)v2->unk_1C;
-        ov5_021D4334(Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar), v3);
+        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v3);
         (v2->unk_04)++;
         break;
     case 2:
         v3 = (UnkStruct_ov5_021D432C *)v2->unk_1C;
 
-        if (ov5_021D453C(v1, v3)) {
+        if (ov5_021D453C(fieldSystem, v3)) {
             ov5_021D432C(v3);
             {
-                MapObject * v7 = Player_MapObject(v1->playerAvatar);
+                MapObject * v7 = Player_MapObject(fieldSystem->playerAvatar);
 
                 MapObject_SetHidden(v7, 0);
             }
@@ -481,7 +481,7 @@ static BOOL sub_02057050 (TaskManager * taskMan)
 static BOOL sub_0205711C (TaskManager * taskMan)
 {
     MapObject * mapObj;
-    FieldSystem * v1 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02056BDC * v2 = TaskManager_Environment(taskMan);
     UnkStruct_ov5_021D432C * v3;
 
@@ -489,9 +489,9 @@ static BOOL sub_0205711C (TaskManager * taskMan)
     case 0:
     {
         u8 v4;
-        MapObject * v5 = Player_MapObject(v1->playerAvatar);
+        MapObject * v5 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v4 = sub_02054F94(v1, Player_XPos(v1->playerAvatar), Player_ZPos(v1->playerAvatar));
+        v4 = sub_02054F94(fieldSystem, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar));
 
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
@@ -523,7 +523,7 @@ static BOOL sub_020571A0 (TaskManager * taskMan)
     case 0:
         v1->unk_1C = ov5_021D431C();
         v2 = (UnkStruct_ov5_021D432C *)v1->unk_1C;
-        ov5_021D4334(Player_XPos(fieldSystem->playerAvatar), Player_ZPos(fieldSystem->playerAvatar), v2);
+        ov5_021D4334(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), v2);
         (v1->unk_04)++;
         break;
     case 1:
@@ -644,8 +644,8 @@ static void sub_02057368 (FieldSystem * fieldSystem)
     v2 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v3);
 
-    v0 = Player_XPos(fieldSystem->playerAvatar);
-    v1 = Player_ZPos(fieldSystem->playerAvatar);
+    v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    v1 = Player_GetZPos(fieldSystem->playerAvatar);
     v4 = sub_02054F94(fieldSystem, v0, v1);
 
     if (sub_0205DC44(v4)) {

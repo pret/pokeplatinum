@@ -40,10 +40,10 @@ void sub_020985E4 (TaskManager * param0, SaveData * param1)
 
 BOOL sub_0209862C (TaskManager * param0)
 {
-    FieldSystem * v0;
+    FieldSystem * fieldSystem;
     UnkStruct_0209862C * v1;
 
-    v0 = TaskManager_FieldSystem(param0);
+    fieldSystem = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
@@ -63,18 +63,18 @@ BOOL sub_0209862C (TaskManager * param0)
                 FS_OVERLAY_ID(overlay100)
             };
 
-            sub_0203CD84(v0, &v2, v1->unk_04);
+            sub_0203CD84(fieldSystem, &v2, v1->unk_04);
             v1->unk_00++;
         }
         break;
     case 2:
-        if (sub_020509B4(v0) == 0) {
-            sub_020509D4(v0);
+        if (sub_020509B4(fieldSystem) == 0) {
+            sub_020509D4(fieldSystem);
             v1->unk_00++;
         }
         break;
     case 3:
-        if (sub_020509DC(v0) == 0) {
+        if (sub_020509DC(fieldSystem) == 0) {
             v1->unk_00++;
         }
         break;

@@ -78,7 +78,7 @@ struct UnkStruct_ov56_02256468_t {
     int unk_00;
     UnkStruct_0205C22C * unk_04;
     UnkStruct_0205B43C * unk_08;
-    FieldSystem * unk_0C;
+    FieldSystem * fieldSystem;
     TrainerInfo * unk_10;
     BGL * unk_14;
     StringTemplate * unk_18;
@@ -147,7 +147,7 @@ static void ov56_022561C0 (SysTask * param0, void * param1)
     BGL * v1 = v0->unk_14;
     int v2;
 
-    if (v0->unk_0C->unk_80 == NULL) {
+    if (v0->fieldSystem->unk_80 == NULL) {
         return;
     }
 
@@ -232,7 +232,7 @@ static void ov56_022563E8 (UnkStruct_ov56_022562EC * param0)
     }
 }
 
-UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * param0)
+UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov56_02256468 * v0;
     SysTask * v1;
@@ -240,14 +240,14 @@ UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * param0)
     v1 = sub_0200679C(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
     v0 = sub_0201CED0(v1);
 
-    v0->unk_0C = param0;
-    v0->unk_14 = param0->unk_08;
-    v0->unk_04 = param0->unk_80;
-    v0->unk_08 = param0->unk_7C;
-    v0->unk_10 = SaveData_GetTrainerInfo(param0->saveData);
+    v0->fieldSystem = fieldSystem;
+    v0->unk_14 = fieldSystem->unk_08;
+    v0->unk_04 = fieldSystem->unk_80;
+    v0->unk_08 = fieldSystem->unk_7C;
+    v0->unk_10 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_00 = 0;
     v0->unk_2F8 = v1;
-    v0->unk_2D4 = param0->unk_80->unk_478;
+    v0->unk_2D4 = fieldSystem->unk_80->unk_478;
 
     return v0;
 }
@@ -716,7 +716,7 @@ static void ov56_02256D04 (UnkStruct_ov56_02256468 * param0)
 {
     int v0 = 0xffffffff;
 
-    if (!sub_020509A4(param0->unk_0C)) {
+    if (!sub_020509A4(param0->fieldSystem)) {
         int v1;
 
         v1 = ov56_02256A68(param0);
@@ -893,7 +893,7 @@ static void ov56_02257098 (UnkStruct_ov56_02256468 * param0)
     TrainerInfo * v5;
     Sentence v6;
 
-    if (sub_020509A4(param0->unk_0C)) {
+    if (sub_020509A4(param0->fieldSystem)) {
         return;
     }
 

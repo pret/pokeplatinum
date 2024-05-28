@@ -13,61 +13,61 @@
 
 BOOL ScrCmd_07B (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
 
-    *v3 = sub_0207D570(sub_0207D990(v0->saveData), v1, v2, 4);
+    *v3 = sub_0207D570(sub_0207D990(fieldSystem->saveData), v1, v2, 4);
     return 0;
 }
 
 BOOL ScrCmd_07C (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
 
-    *v3 = Bag_SubtractItem(sub_0207D990(v0->saveData), v1, v2, 4);
+    *v3 = Bag_SubtractItem(sub_0207D990(fieldSystem->saveData), v1, v2, 4);
     return 0;
 }
 
 BOOL ScrCmd_07D (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
 
-    *v3 = sub_0207D55C(sub_0207D990(v0->saveData), v1, v2, 4);
+    *v3 = sub_0207D55C(sub_0207D990(fieldSystem->saveData), v1, v2, 4);
     return 0;
 }
 
 BOOL ScrCmd_07E (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
 
-    *v3 = sub_0207D688(sub_0207D990(v0->saveData), v1, v2, 11);
+    *v3 = sub_0207D688(sub_0207D990(fieldSystem->saveData), v1, v2, 11);
     return 0;
 }
 
 BOOL ScrCmd_2FE (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
-    *v2 = sub_0207D730(sub_0207D990(v0->saveData), v1, 11);
+    *v2 = sub_0207D730(sub_0207D990(fieldSystem->saveData), v1, 11);
     return 0;
 }
 
 BOOL ScrCmd_07F (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
@@ -77,7 +77,7 @@ BOOL ScrCmd_07F (ScriptContext * param0)
 
 BOOL ScrCmd_080 (ScriptContext * param0)
 {
-    FieldSystem * v0 = param0->fieldSys;
+    FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 

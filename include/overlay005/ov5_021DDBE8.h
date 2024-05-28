@@ -26,7 +26,7 @@
 
 #include <nitro/fx/fx.h>
 
-void ov5_021DDBE8(int param0, FieldSystem * param1, BOOL * param2);
+void ov5_021DDBE8(int param0, FieldSystem * fieldSystem, BOOL * param2);
 void ov5_021DDC28(UnkStruct_ov5_021DDC28 * param0, SysTask * param1);
 void ov5_021DDC44(int param0, u32 param1, u32 param2, BOOL * param3, u32 param4);
 BOOL ov5_021DDD7C(UnkStruct_ov5_021DDC28 * param0);
@@ -79,7 +79,7 @@ void ov5_021DED04(UnkStruct_ov5_021DED04 * param0);
 void ov5_021DED20(UnkStruct_ov5_021DDC28 * param0, UnkStruct_ov5_021DED04 * param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6);
 u32 CutInEffects_ForBattle(const BattleParams * param0);
 void ov5_021DEF8C(int * param0);
-void ov5_021DEFA0(FieldSystem * param0);
+void ov5_021DEFA0(FieldSystem * fieldSystem);
 void ov5_021DF038(void);
 BOOL ov5_021DF054(void);
 void ov5_021DF070(void);

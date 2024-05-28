@@ -42,7 +42,7 @@ typedef struct {
     BmpList * unk_04;
     ResourceMetadata * unk_08;
     ResourceMetadata * unk_0C;
-    FieldSystem * unk_10;
+    FieldSystem * fieldSystem;
     Strbuf* unk_14;
     Strbuf* unk_18;
     Strbuf* unk_1C;
@@ -94,8 +94,8 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
 {
     if (BGL_WindowAdded(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
-        FieldMessage_AddWindow(param0->unk_10->unk_08, &param0->unk_54, 3);
-        FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->unk_10->saveData));
+        FieldMessage_AddWindow(param0->fieldSystem->unk_08, &param0->unk_54, 3);
+        FieldMessage_DrawWindow(&param0->unk_54, SaveData_Options(param0->fieldSystem->saveData));
     } else {
         sub_0205D988(&param0->unk_54);
     }
@@ -103,7 +103,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
     StringTemplate_Format(param0->unk_64, param0->unk_18, param0->unk_14);
 
-    param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_Options(param0->unk_10->saveData), 1);
+    param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_Options(param0->fieldSystem->saveData), 1);
 }
 
 static void ov7_0224B558 (UnkStruct_ov7_0224B4E8 * param0, BOOL param1)
@@ -118,7 +118,7 @@ static void ov7_0224B558 (UnkStruct_ov7_0224B4E8 * param0, BOOL param1)
 
 static void ov7_0224B57C (UnkStruct_ov7_0224B4E8 * param0, int param1)
 {
-    sub_0202616C(param0->unk_10->saveData, param1, param0->unk_1C, 4);
+    sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, 4);
     StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 
@@ -126,7 +126,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
 {
     UnkStruct_ov84_02240FA8 v0;
     Window * v1 = &(param0->unk_34);
-    BattleRegulation * v2 = sub_0202610C(param0->unk_10->saveData, 0);
+    BattleRegulation * v2 = sub_0202610C(param0->fieldSystem->saveData, 0);
     int v3 = 5;
 
     if (v2) {
@@ -138,7 +138,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
 
         param0->unk_08 = sub_02013A04(v3 + 2, 4);
 
-        BGL_AddWindow(param0->unk_10->unk_08, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
+        BGL_AddWindow(param0->fieldSystem->unk_08, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
         Window_Show(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
         sub_02013A4C(param0->unk_08, param0->unk_68, 123, 12);
 
@@ -197,17 +197,17 @@ static int ov7_0224B6E8 (UnkStruct_ov7_0224B4E8 * param0)
         return 0;
     case 12:
         Sound_PlayEffect(1500);
-        param0->unk_10->unk_B0 = NULL;
+        param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return 2;
     case 0xfffffffe:
         Sound_PlayEffect(1500);
-        param0->unk_10->unk_B0 = NULL;
+        param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return -1;
     default:
         Sound_PlayEffect(1500);
-        param0->unk_10->unk_B0 = sub_02026150(param0->unk_10->saveData, v0);
+        param0->fieldSystem->unk_B0 = sub_02026150(param0->fieldSystem->saveData, v0);
         break;
     }
 
@@ -231,7 +231,7 @@ static void ov7_0224B788 (UnkStruct_ov7_0224B4E8 * param0)
 
     param0->unk_0C = sub_02013A04(v1, 4);
 
-    BGL_AddWindow(param0->unk_10->unk_08, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
+    BGL_AddWindow(param0->fieldSystem->unk_08, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
     Window_Show(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
 
     {
@@ -338,7 +338,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
     v3 = Strbuf_Init((90 * 2), 4);
     v4 = &param0->unk_24;
 
-    BGL_AddWindow(param0->unk_10->unk_08, v4, 3, 4, 2, 24, 19, 13, 1);
+    BGL_AddWindow(param0->fieldSystem->unk_08, v4, 3, 4, 2, 24, 19, 13, 1);
     Window_Show(v4, 1, 1024 - (18 + 12) - 9, 11);
     BGL_FillWindow(v4, 15);
 
@@ -354,7 +354,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
     }
 
     for (v5 = 0; v5 < 9; v5++) {
-        v6 = sub_02026074(param0->unk_10->unk_B0, Unk_ov7_0224F4C0[v5]);
+        v6 = sub_02026074(param0->fieldSystem->unk_B0, Unk_ov7_0224F4C0[v5]);
         v7 = Unk_ov7_0224F4CC[v5];
 
         switch (Unk_ov7_0224F4C0[v5]) {
@@ -430,8 +430,8 @@ static void ov7_0224BBA0 (UnkStruct_ov7_0224B4E8 * param0)
 
 static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 {
-    Party * v0 = Party_GetFromSavedata(param0->unk_10->saveData);
-    int v1 = sub_0207A594(param0->unk_10->unk_B0, v0, param0->unk_6C);
+    Party * v0 = Party_GetFromSavedata(param0->fieldSystem->saveData);
+    int v1 = sub_0207A594(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
     int v2;
 
     switch (v1) {
@@ -440,7 +440,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
     case 4:
         Sound_PlayEffect(1523);
         ov7_0224B57C(param0, param0->unk_78 - 1);
-        v2 = sub_02026074(param0->unk_10->unk_B0, 1);
+        v2 = sub_02026074(param0->fieldSystem->unk_B0, 1);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 1, 1, 1);
         ov7_0224B4E8(param0, 107);
         break;
@@ -448,7 +448,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
     case 1:
         Sound_PlayEffect(1523);
         ov7_0224B57C(param0, param0->unk_78 - 1);
-        v2 = sub_02026074(param0->unk_10->unk_B0, 3);
+        v2 = sub_02026074(param0->fieldSystem->unk_B0, 3);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 3, 0, 1);
         ov7_0224B4E8(param0, 121);
         break;
@@ -459,7 +459,7 @@ static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 
 static BOOL ov7_0224BC74 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov7_0224B4E8 * v1 = TaskManager_Environment(param0);
     int v2;
 
@@ -556,15 +556,15 @@ static BOOL ov7_0224BC74 (TaskManager * param0)
     return 0;
 }
 
-static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * param0)
+static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov7_0224B4E8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov7_0224B4E8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov7_0224B4E8));
 
     v0->unk_7C = 0;
-    v0->unk_10 = param0;
-    v0->unk_10->unk_B0 = NULL;
+    v0->fieldSystem = fieldSystem;
+    v0->fieldSystem->unk_B0 = NULL;
     v0->unk_64 = StringTemplate_Default(4);
     v0->unk_68 = MessageLoader_Init(0, 26, 221, 4);
     v0->unk_14 = Strbuf_Init((90 * 2), 4);
@@ -578,8 +578,8 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (FieldSystem * param0)
 
 void ov7_0224BE7C (TaskManager * param0, u16 * param1)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
-    UnkStruct_ov7_0224B4E8 * v1 = ov7_0224BE10(v0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_ov7_0224B4E8 * v1 = ov7_0224BE10(fieldSystem);
 
     v1->unk_70 = param1;
     sub_02050944(param0, ov7_0224BC74, v1);

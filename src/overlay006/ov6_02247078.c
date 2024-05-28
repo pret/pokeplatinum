@@ -12,7 +12,7 @@
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay006/ov6_02247078.h"
 
-void ov6_02247078 (FieldSystem * param0, const u8 param1)
+void ov6_02247078 (FieldSystem * fieldSystem, const u8 param1)
 {
     BOOL v0;
     UnkStruct_ov5_021E1890 * v1;
@@ -20,24 +20,24 @@ void ov6_02247078 (FieldSystem * param0, const u8 param1)
     int v3;
     int v4[] = {119, 112, 115, 248};
 
-    v0 = sub_02055324(param0, v4, 4, &v1, &v3);
+    v0 = sub_02055324(fieldSystem, v4, 4, &v1, &v3);
 
     if (v0) {
         NNSG3dResTex * v5;
 
-        v5 = ov5_021EFAA0(param0->unk_30);
-        ov5_021D41C8(param0->unk_50, param0->unk_54, param1, v3, ov5_021E18BC(v1), ov5_021E18C0(v1), v5, 2, 1, 0);
+        v5 = ov5_021EFAA0(fieldSystem->unk_30);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, param1, v3, ov5_021E18BC(v1), ov5_021E18C0(v1), v5, 2, 1, 0);
     } else {
         GF_ASSERT(0);
     }
 }
 
-void ov6_022470E8 (FieldSystem * param0, const u8 param1)
+void ov6_022470E8 (FieldSystem * fieldSystem, const u8 param1)
 {
-    ov5_021D4250(param0->unk_54, param1, 0);
+    ov5_021D4250(fieldSystem->unk_54, param1, 0);
 }
 
-void ov6_022470F4 (FieldSystem * param0, const u8 param1)
+void ov6_022470F4 (FieldSystem * fieldSystem, const u8 param1)
 {
-    ov5_021D4250(param0->unk_54, param1, 1);
+    ov5_021D4250(fieldSystem->unk_54, param1, 1);
 }

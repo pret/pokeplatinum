@@ -55,7 +55,7 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_04[8][2];
     int unk_44[8][3];
     int unk_A4[17][4];
-    FieldSystem * unk_1B4;
+    FieldSystem * fieldSystem;
     BGL * unk_1B8;
     GraphicElementManager * unk_1BC;
     UnkStruct_0200C738 unk_1C0;
@@ -75,7 +75,7 @@ int Unk_ov23_0225776C[8][2];
 
 static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C * param0);
-static void ov23_02249214(PlayerAvatar * const param0, int param1[][2], int param2[][3]);
+static void ov23_02249214(PlayerAvatar * const playerAvatar, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
 static void ov23_022492C8(int param0[][3], GraphicElementData * param1[]);
 static void ov23_0224944C(BGL * param0, Window * param1);
@@ -162,7 +162,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 5:
-        ov23_02249214(v0->unk_1B4->playerAvatar, v0->unk_04, v0->unk_44);
+        ov23_02249214(v0->fieldSystem->playerAvatar, v0->unk_04, v0->unk_44);
         ov23_022492C8(v0->unk_44, v0->unk_390);
         ov23_02249334(v0->unk_A4);
         ov23_0224937C(v0->unk_A4, v0->unk_3B0);
@@ -193,7 +193,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 8:
-        v0->unk_1B4->unk_6C = NULL;
+        v0->fieldSystem->unk_6C = NULL;
         sub_020067D0(param0);
         break;
     }
@@ -215,7 +215,7 @@ static void ov23_022491CC (int param0[][2], int param1[][3])
     }
 }
 
-static void ov23_02249214 (PlayerAvatar * const param0, int param1[][2], int param2[][3])
+static void ov23_02249214 (PlayerAvatar * const playerAvatar, int param1[][2], int param2[][3])
 {
     int v0;
 
@@ -226,8 +226,8 @@ static void ov23_02249214 (PlayerAvatar * const param0, int param1[][2], int par
 
     if (CommSys_IsInitialized()) {
         if (CommSys_IsPlayerConnected(CommSys_CurNetId()) == 0) {
-            param1[0][0] = Player_XPos(param0);
-            param1[0][1] = Player_ZPos(param0);
+            param1[0][0] = Player_GetXPos(playerAvatar);
+            param1[0][1] = Player_GetZPos(playerAvatar);
         } else {
             int v1 = param1[0][0];
             int v2 = param1[0][1];
@@ -325,7 +325,7 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
     }
 }
 
-UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * param0)
+UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov23_0224942C * v0;
     SysTask * v1;
@@ -333,8 +333,8 @@ UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * param0)
     v1 = sub_0200679C(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
     v0 = sub_0201CED0(v1);
 
-    v0->unk_1B4 = param0;
-    v0->unk_1B8 = param0->unk_08;
+    v0->fieldSystem = fieldSystem;
+    v0->unk_1B8 = fieldSystem->unk_08;
 
     return v0;
 }

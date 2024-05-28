@@ -134,7 +134,7 @@ BOOL ov104_022396D4 (UnkStruct_ov104_0222E930 * param0)
     v0 = sub_0209B978(param0->unk_00->unk_00);
     v1 = sub_0209B970(param0->unk_00->unk_00);
 
-    v0->unk_98 = v1->unk_28;
+    v0->fieldSystem = v1->fieldSystem;
     v0->unk_B0 = v4;
 
     ov104_02239CD0(param0->unk_00->unk_00, v0, v3);

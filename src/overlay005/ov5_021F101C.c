@@ -22,7 +22,7 @@ typedef struct {
 
 BOOL ov5_021F101C (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020711C8 * v1 = TaskManager_Environment(param0);
     int * v2 = sub_02050A68(param0);
     UnkStruct_ov5_021F101C * v3 = v1->unk_04;
@@ -43,8 +43,8 @@ BOOL ov5_021F101C (TaskManager * param0)
         break;
     case 2:
     {
-        int v5 = PlayerAvatar_Gender(v0->playerAvatar);
-        v3->unk_00 = ov6_02243F88(v0, 0, v1->unk_00, v5);
+        int v5 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
+        v3->unk_00 = ov6_02243F88(fieldSystem, 0, v1->unk_00, v5);
     }
         (*v2)++;
         break;

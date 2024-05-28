@@ -43,16 +43,16 @@ static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, cons
 static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard * param7);
 static void sub_0207207C(const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
 static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5);
-static void sub_0207216C(TrainerInfo * param0, FieldSystem * param1, TrainerCard * param2);
+static void sub_0207216C(TrainerInfo * param0, FieldSystem * fieldSystem, TrainerCard * param2);
 static BOOL sub_02072230(TaskManager * param0);
 
-void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * param4, TrainerCard * param5)
+void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * fieldSystem, TrainerCard * param5)
 {
     TrainerInfo * v0;
     UnkStruct_0202CD88 * v1;
     SaveData * v2;
 
-    v2 = FieldSystem_SaveData(param4);
+    v2 = FieldSystem_SaveData(fieldSystem);
     v0 = SaveData_GetTrainerInfo(v2);
     v1 = sub_0202CD88(v2);
 
@@ -61,11 +61,11 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
     {
         u8 v3;
 
-        v3 = sub_02071F28(param4);
+        v3 = sub_02071F28(fieldSystem);
         sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(v0), param5);
     }
 
-    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(SaveData_Pokedex(param4->saveData)), sub_02027520(SaveData_Pokedex(param4->saveData)), sub_0202D034(v1), param5);
+    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(SaveData_Pokedex(fieldSystem->saveData)), sub_02027520(SaveData_Pokedex(fieldSystem->saveData)), sub_0202D034(v1), param5);
 
     {
         RTCDate v4;
@@ -75,16 +75,16 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 
         v7 = sub_02025E5C(v2);
 
-        sub_02055BF4(param4, &v4, &v6);
-        sub_02055C10(param4, &v5, &v6);
-        sub_0207207C(sub_0206A954(SaveData_Events(param4->saveData)), v7, &v4, &v5, &v6, param1, param5);
+        sub_02055BF4(fieldSystem, &v4, &v6);
+        sub_02055C10(fieldSystem, &v5, &v6);
+        sub_0207207C(sub_0206A954(SaveData_Events(fieldSystem->saveData)), v7, &v4, &v5, &v6, param1, param5);
     }
 
     {
         u32 v8, v9, v10, v11;
         UnkStruct_0202C834 * v12;
 
-        v12 = sub_0202C834(param4->saveData);
+        v12 = sub_0202C834(fieldSystem->saveData);
         v8 = sub_0202CFB8(v1, (((70 + 1)) + 20)) + sub_0202CFB8(v1, (1 + 18)) + sub_0202CFB8(v1, (1 + 23)) + sub_0202CFB8(v1, (1 + 19)) + sub_0202CFB8(v1, (1 + 24)) + sub_0202CFB8(v1, (1 + 31));
         v9 = sub_0202CFB8(v1, (1 + 20)) + sub_0202CFB8(v1, (1 + 25));
         v10 = sub_0202CFB8(v1, (1 + 21)) + sub_0202CFB8(v1, (1 + 26));
@@ -93,7 +93,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         sub_02072120(v8, v9, v10, v11, sub_0202C840(v12), param5);
     }
 
-    sub_0207216C(v0, param4, param5);
+    sub_0207216C(v0, fieldSystem, param5);
 
     {
         int v13, v14 = 0;
@@ -122,7 +122,7 @@ void sub_02071F20 (TrainerCard * param0)
     Heap_FreeToHeap(param0);
 }
 
-u8 sub_02071F28 (FieldSystem * param0)
+u8 sub_02071F28 (FieldSystem * fieldSystem)
 {
     u8 v0;
     SaveData * v1;
@@ -131,7 +131,7 @@ u8 sub_02071F28 (FieldSystem * param0)
     SecretBaseRecord * v4;
     UnkStruct_0203068C * v5;
 
-    v1 = FieldSystem_SaveData(param0);
+    v1 = FieldSystem_SaveData(fieldSystem);
     v2 = sub_0202CD88(v1);
     v3 = SaveData_Events(v1);
     v4 = SaveData_SecretBaseRecord(v1);
@@ -242,13 +242,13 @@ static void sub_02072120 (const u32 param0, const u32 param1, const u32 param2, 
     MI_CpuCopy8(param4, param5->unk_68, 24 * 8 * 8);
 }
 
-static void sub_0207216C (TrainerInfo * param0, FieldSystem * param1, TrainerCard * param2)
+static void sub_0207216C (TrainerInfo * param0, FieldSystem * fieldSystem, TrainerCard * param2)
 {
     u8 v0;
     UnkStruct_0202C834 * v1;
     UnkStruct_0202C844 * v2;
 
-    v1 = sub_0202C834(param1->saveData);
+    v1 = sub_0202C834(fieldSystem->saveData);
     v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -262,13 +262,13 @@ static void sub_0207216C (TrainerInfo * param0, FieldSystem * param1, TrainerCar
     }
 }
 
-void sub_020721D4 (FieldSystem * param0, const TrainerCard * param1)
+void sub_020721D4 (FieldSystem * fieldSystem, const TrainerCard * param1)
 {
     u8 v0;
     UnkStruct_0202C834 * v1;
     UnkStruct_0202C844 * v2;
 
-    v1 = sub_0202C834(param0->saveData);
+    v1 = sub_0202C834(fieldSystem->saveData);
     v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -276,24 +276,24 @@ void sub_020721D4 (FieldSystem * param0, const TrainerCard * param1)
     }
 }
 
-void sub_02072204 (FieldSystem * param0)
+void sub_02072204 (FieldSystem * fieldSystem)
 {
     UnkStruct_02072204 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02072204));
 
     v0->unk_00 = 0;
-    v0->unk_04 = (TrainerCard *)sub_0205C17C(param0->unk_7C);
+    v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);
 
-    sub_02050944(param0->unk_10, sub_02072230, v0);
+    sub_02050944(fieldSystem->unk_10, sub_02072230, v0);
 }
 
 static BOOL sub_02072230 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_02072204 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
-        sub_0205C214(v0->unk_7C);
+        sub_0205C214(fieldSystem->unk_7C);
         v1->unk_00 = 1;
     case 1:
         if (v1->unk_04->unk_66A != 0) {
@@ -301,12 +301,12 @@ static BOOL sub_02072230 (TaskManager * param0)
         }
         break;
     case 10:
-        sub_0203E09C(v0, v1->unk_04);
+        sub_0203E09C(fieldSystem, v1->unk_04);
         v1->unk_00 = 11;
         break;
     case 11:
-        if (!sub_020509B4(v0)) {
-            sub_0205C1F0(v0->unk_7C);
+        if (!sub_020509B4(fieldSystem)) {
+            sub_0205C1F0(fieldSystem->unk_7C);
             Heap_FreeToHeap(v1);
             return 1;
         }

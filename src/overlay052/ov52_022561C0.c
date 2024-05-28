@@ -169,11 +169,11 @@ static BOOL ov52_022562F8 (UnkStruct_ov52_0225621C * param0)
     case 0:
         if (ov52_02256554(param0)) {
             if (ov52_02256684(param0)) {
-                FieldSystem * v0 = PoketchSystem_FieldSystem(param0->unk_18);
+                FieldSystem * fieldSystem = PoketchSystem_FieldSystem(param0->unk_18);
 
                 ov52_022567A4(param0->unk_14, 3);
 
-                if (sub_0203A2C8(v0->unk_1C->unk_00)) {
+                if (sub_0203A2C8(fieldSystem->unk_1C->unk_00)) {
                     ov52_022562A4(param0, 3);
                 } else {
                     ov52_022562A4(param0, 2);

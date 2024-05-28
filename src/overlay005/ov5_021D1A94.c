@@ -17,7 +17,7 @@
 #include "overlay005/ov5_021D1A94.h"
 
 struct UnkStruct_ov5_021D1A94_t {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     int unk_04;
     int unk_08;
     UnkStruct_ov5_021D1BEC * unk_0C;
@@ -32,14 +32,14 @@ struct UnkStruct_ov5_021D1BEC_t {
     void * unk_10;
 };
 
-UnkStruct_ov5_021D1A94 * ov5_021D1A94 (FieldSystem * param0, int param1, int param2)
+UnkStruct_ov5_021D1A94 * ov5_021D1A94 (FieldSystem * fieldSystem, int param1, int param2)
 {
     UnkStruct_ov5_021D1A94 * v0;
     u32 v1;
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021D1A94));
 
-    v0->unk_00 = param0;
+    v0->fieldSystem = fieldSystem;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
     v0->unk_0C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021D1BEC) * param2);
@@ -76,9 +76,9 @@ static void ov5_021D1B24 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D1BEC * v0 = param1;
 
-    if (sub_0203CD5C(v0->unk_00->unk_00)) {
+    if (sub_0203CD5C(v0->unk_00->fieldSystem)) {
         if (v0->unk_0C->unk_10) {
-            v0->unk_0C->unk_10(v0, v0->unk_00->unk_00, v0->unk_10);
+            v0->unk_0C->unk_10(v0, v0->unk_00->fieldSystem, v0->unk_10);
         }
     }
 }
@@ -87,9 +87,9 @@ static void ov5_021D1B48 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D1BEC * v0 = param1;
 
-    if (sub_0203CD5C(v0->unk_00->unk_00)) {
+    if (sub_0203CD5C(v0->unk_00->fieldSystem)) {
         if (v0->unk_0C->unk_14) {
-            v0->unk_0C->unk_14(v0, v0->unk_00->unk_00, v0->unk_10);
+            v0->unk_0C->unk_14(v0, v0->unk_00->fieldSystem, v0->unk_10);
         }
     }
 }
@@ -114,7 +114,7 @@ UnkStruct_ov5_021D1BEC * ov5_021D1B6C (UnkStruct_ov5_021D1A94 * param0, const Un
             }
 
             if (param1->unk_08) {
-                param1->unk_08(v1, param0->unk_00, v1->unk_10);
+                param1->unk_08(v1, param0->fieldSystem, v1->unk_10);
             }
 
             return v1;
@@ -132,7 +132,7 @@ void ov5_021D1BEC (UnkStruct_ov5_021D1BEC * param0)
     }
 
     if (param0->unk_0C->unk_0C) {
-        param0->unk_0C->unk_0C(param0, param0->unk_00->unk_00, param0->unk_10);
+        param0->unk_0C->unk_0C(param0, param0->unk_00->fieldSystem, param0->unk_10);
     }
 
     if (param0->unk_0C->unk_04 != 0) {

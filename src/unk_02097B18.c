@@ -315,7 +315,7 @@ static BOOL sub_02097F38 (TaskManager * param0)
 {
     UnkStruct_02097F38 * v0 = TaskManager_Environment(param0);
     UnkStruct_02097F18 * v1 = v0->unk_08;
-    FieldSystem * v2 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (v0->unk_14) {
     case 0:
@@ -403,7 +403,7 @@ static BOOL sub_02097F38 (TaskManager * param0)
             v10 = sub_0202CA64(v9, 0);
             v12 = sub_0202CA7C(v10);
             v12 = sub_02098164(v12);
-            v11 = SaveData_TVBroadcast(v2->saveData);
+            v11 = SaveData_TVBroadcast(fieldSystem->saveData);
 
             sub_0206D9B4(v11, v8, v12);
         }

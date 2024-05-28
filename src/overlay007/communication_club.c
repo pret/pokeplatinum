@@ -194,7 +194,7 @@ static void CommClubMan_CreateList (UnkStruct_ov84_02240FA8 param0, u8 param1, u
     sub_0201A954(&sCommClubMan->unk_20);
 }
 
-static void CommClubMan_Init (FieldSystem * fsys)
+static void CommClubMan_Init (FieldSystem * fieldSystem)
 {
     int v0;
 
@@ -204,7 +204,7 @@ static void CommClubMan_Init (FieldSystem * fsys)
     MI_CpuFill8(sCommClubMan, 0, sizeof(CommClubManager));
 
     sCommClubMan->retCode = 0;
-    sCommClubMan->fieldSystem = fsys;
+    sCommClubMan->fieldSystem = fieldSystem;
     sCommClubMan->unk_97 = 0;
     sCommClubMan->msgLoader = MessageLoader_Init(1, 26, 353, 4);
     sCommClubMan->trainerInfoPersonal = SaveData_GetTrainerInfo(FieldSystem_SaveData(sCommClubMan->fieldSystem));
@@ -1678,13 +1678,13 @@ static int CommClubMan_Regulation (void)
     return sCommClubMan->unk_92 + (sCommClubMan->unk_93 << 4);
 }
 
-void ov7_0224B414 (FieldSystem * fieldSys, int commType, int param2, int param3)
+void ov7_0224B414 (FieldSystem * fieldSystem, int commType, int param2, int param3)
 {
-    CommClubMan_Init(fieldSys);
+    CommClubMan_Init(fieldSystem);
     sCommClubMan->commType = commType;
 
     if ((commType == COMM_TYPE_MIX_BATTLE) || (commType == COMM_TYPE_MULTI_BATTLE_1)) {
-        fieldSys->unk_B0 = NULL;
+        fieldSystem->unk_B0 = NULL;
     }
 
     sCommClubMan->unk_92 = param2;
@@ -1709,13 +1709,13 @@ u32 ov7_0224B460 (void)
     return v0;
 }
 
-void ov7_0224B47C (FieldSystem * fieldSys, int commType, int param2, int param3)
+void ov7_0224B47C (FieldSystem * fieldSystem, int commType, int param2, int param3)
 {
-    CommClubMan_Init(fieldSys);
+    CommClubMan_Init(fieldSystem);
     sCommClubMan->commType = commType;
 
     if ((commType == COMM_TYPE_MIX_BATTLE) || (commType == COMM_TYPE_MULTI_BATTLE_1)) {
-        fieldSys->unk_B0 = NULL;
+        fieldSystem->unk_B0 = NULL;
     }
 
     sCommClubMan->unk_92 = param2;

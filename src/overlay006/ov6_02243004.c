@@ -11,14 +11,14 @@
 
 static UnkStruct_ov5_021D1BEC * Unk_ov6_02249940;
 
-BOOL ov6_02243004 (FieldSystem * param0, int param1)
+BOOL ov6_02243004 (FieldSystem * fieldSystem, int param1)
 {
     VecFx32 v0;
     UnkStruct_ov115_0226527C v1;
 
     switch (param1) {
     case 0:
-        Unk_ov6_02249940 = ov6_0223E6EC(param0);
+        Unk_ov6_02249940 = ov6_0223E6EC(fieldSystem);
         break;
     case 1:
         if (ov6_0223E708(Unk_ov6_02249940)) {
@@ -29,13 +29,13 @@ BOOL ov6_02243004 (FieldSystem * param0, int param1)
         }
         break;
     case 2:
-        Unk_ov6_02249940 = ov6_0223E814(param0);
+        Unk_ov6_02249940 = ov6_0223E814(fieldSystem);
         break;
     case 3:
         ov6_0223E828(Unk_ov6_02249940);
         break;
     case 4:
-        Unk_ov6_02249940 = ov6_0223FCCC(param0);
+        Unk_ov6_02249940 = ov6_0223FCCC(fieldSystem);
         break;
     case 5:
         ov6_0223FCE8(Unk_ov6_02249940);
@@ -49,13 +49,13 @@ BOOL ov6_02243004 (FieldSystem * param0, int param1)
         }
         break;
     case 7:
-        Unk_ov6_02249940 = ov6_0223EA74(param0, 0);
+        Unk_ov6_02249940 = ov6_0223EA74(fieldSystem, 0);
         break;
     case 8:
-        Unk_ov6_02249940 = ov6_0223EA74(param0, 1);
+        Unk_ov6_02249940 = ov6_0223EA74(fieldSystem, 1);
         break;
     case 9:
-        Unk_ov6_02249940 = ov6_0223EA74(param0, 2);
+        Unk_ov6_02249940 = ov6_0223EA74(fieldSystem, 2);
         break;
     default:
         GF_ASSERT(0);

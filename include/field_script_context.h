@@ -23,7 +23,7 @@ struct ScriptContext {
     TaskManager * taskManager;
     MessageLoader * loader;
     const u8 * scripts;
-    FieldSystem * fieldSys;
+    FieldSystem * fieldSystem;
 };
 
 #define ScriptContext_ReadByte(ctx)    (*(ctx->scriptPtr++))

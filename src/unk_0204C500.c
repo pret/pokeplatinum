@@ -27,15 +27,15 @@
 
 BOOL ScrCmd_253 (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSys->saveData);
+    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
     u16 v1 = ScriptContext_GetVar(param0);
 
     if (v1 == 0) {
         sub_0206AE6C(v0);
-        sub_020562F8(param0->fieldSys);
+        sub_020562F8(param0->fieldSystem);
     } else if (v1 == 1) {
         sub_0206AE7C(v0);
-        sub_02056328(param0->fieldSys);
+        sub_02056328(param0->fieldSystem);
     } else {
         GF_ASSERT(0);
     }
@@ -45,7 +45,7 @@ BOOL ScrCmd_253 (ScriptContext * param0)
 
 BOOL ScrCmd_254 (ScriptContext * param0)
 {
-    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSys->saveData);
+    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSystem->saveData);
     Pokemon * v1 = Pokemon_New(32);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
@@ -61,11 +61,11 @@ BOOL ScrCmd_254 (ScriptContext * param0)
 
 BOOL ScrCmd_255 (ScriptContext * param0)
 {
-    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSys->saveData);
-    PCBoxes * v1 = SaveData_PCBoxes(param0->fieldSys->saveData);
+    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->fieldSystem->saveData);
+    PCBoxes * v1 = SaveData_PCBoxes(param0->fieldSystem->saveData);
     Pokemon * v2 = Pokemon_New(32);
-    TrainerInfo * v3 = SaveData_GetTrainerInfo(param0->fieldSys->saveData);
-    PokedexData * v4 = SaveData_Pokedex(param0->fieldSys->saveData);
+    TrainerInfo * v3 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
+    PokedexData * v4 = SaveData_Pokedex(param0->fieldSystem->saveData);
     BOOL v5;
     int v6;
 
@@ -74,7 +74,7 @@ BOOL ScrCmd_255 (ScriptContext * param0)
         sub_0209304C(v2, v3, 2, 0, 32);
         v5 = sub_02079868(v1, Pokemon_GetBoxPokemon(v2));
         GF_ASSERT(v5);
-        sub_0202F180(param0->fieldSys->saveData, v2);
+        sub_0202F180(param0->fieldSystem->saveData, v2);
     }
 
     Heap_FreeToHeap(v2);
@@ -90,16 +90,16 @@ BOOL ScrCmd_256 (ScriptContext * param0)
 
     switch (v0) {
     case 0:
-        *v1 = sub_020563D0(param0->fieldSys);
+        *v1 = sub_020563D0(param0->fieldSystem);
         break;
     case 1:
-        *v1 = sub_020563E0(param0->fieldSys);
+        *v1 = sub_020563E0(param0->fieldSystem);
         break;
     case 2:
-        *v1 = sub_020563F0(param0->fieldSys);
+        *v1 = sub_020563F0(param0->fieldSystem);
         break;
     case 3:
-        *v1 = sub_020563D0(param0->fieldSys) + sub_020563F0(param0->fieldSys) + sub_020563E0(param0->fieldSys);
+        *v1 = sub_020563D0(param0->fieldSystem) + sub_020563F0(param0->fieldSystem) + sub_020563E0(param0->fieldSystem);
         break;
     }
 

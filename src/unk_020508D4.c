@@ -16,7 +16,7 @@ typedef struct UnkStruct_020508D4_t {
     void * unk_0C;
     int unk_10;
     void * unk_14;
-    FieldSystem * unk_18;
+    FieldSystem * fieldSystem;
     UnkStruct_ov5_021D219C * unk_1C;
 } TaskManager;
 
@@ -26,7 +26,7 @@ typedef struct {
     void * unk_08;
 } UnkStruct_020509F0;
 
-static TaskManager * sub_020508D4 (FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2)
+static TaskManager * sub_020508D4 (FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2)
 {
     TaskManager * v0;
 
@@ -37,20 +37,20 @@ static TaskManager * sub_020508D4 (FieldSystem * param0, UnkFuncPtr_02050904 par
     v0->unk_0C = param2;
     v0->unk_10 = 0;
     v0->unk_14 = NULL;
-    v0->unk_18 = param0;
+    v0->fieldSystem = fieldSystem;
     v0->unk_1C = Heap_AllocFromHeapAtEnd(32, sizeof(UnkStruct_ov5_021D219C));
 
     return v0;
 }
 
-TaskManager * sub_02050904 (FieldSystem * param0, UnkFuncPtr_02050904 param1, void * param2)
+TaskManager * sub_02050904 (FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2)
 {
     TaskManager * v0;
 
-    GF_ASSERT(param0->unk_10 == NULL);
+    GF_ASSERT(fieldSystem->unk_10 == NULL);
 
-    v0 = sub_020508D4(param0, param1, param2);
-    param0->unk_10 = v0;
+    v0 = sub_020508D4(fieldSystem, param1, param2);
+    fieldSystem->unk_10 = v0;
 
     return v0;
 }
@@ -72,33 +72,33 @@ TaskManager * sub_02050944 (TaskManager * param0, UnkFuncPtr_02050904 param1, vo
 {
     TaskManager * v0;
 
-    v0 = sub_020508D4(param0->unk_18, param1, param2);
+    v0 = sub_020508D4(param0->fieldSystem, param1, param2);
     v0->unk_00 = param0;
 
-    param0->unk_18->unk_10 = v0;
+    param0->fieldSystem->unk_10 = v0;
 
     return v0;
 }
 
-BOOL sub_02050958 (FieldSystem * param0)
+BOOL sub_02050958 (FieldSystem * fieldSystem)
 {
-    if (param0->unk_10 == NULL) {
+    if (fieldSystem->unk_10 == NULL) {
         return 0;
     }
 
-    while (param0->unk_10->unk_04(param0->unk_10) == 1) {
+    while (fieldSystem->unk_10->unk_04(fieldSystem->unk_10) == 1) {
         TaskManager * v0;
 
-        v0 = param0->unk_10->unk_00;
+        v0 = fieldSystem->unk_10->unk_00;
 
-        if (param0->unk_10->unk_14) {
-            Heap_FreeToHeap(param0->unk_10->unk_14);
+        if (fieldSystem->unk_10->unk_14) {
+            Heap_FreeToHeap(fieldSystem->unk_10->unk_14);
         }
 
-        Heap_FreeToHeap(param0->unk_10->unk_1C);
-        Heap_FreeToHeap(param0->unk_10);
+        Heap_FreeToHeap(fieldSystem->unk_10->unk_1C);
+        Heap_FreeToHeap(fieldSystem->unk_10);
 
-        param0->unk_10 = v0;
+        fieldSystem->unk_10 = v0;
 
         if (v0 == NULL) {
             return 1;
@@ -108,28 +108,28 @@ BOOL sub_02050958 (FieldSystem * param0)
     return 0;
 }
 
-BOOL sub_020509A4 (FieldSystem * param0)
+BOOL sub_020509A4 (FieldSystem * fieldSystem)
 {
-    return param0->unk_10 != NULL;
+    return fieldSystem->unk_10 != NULL;
 }
 
-BOOL sub_020509B4 (FieldSystem * param0)
+BOOL sub_020509B4 (FieldSystem * fieldSystem)
 {
-    if (sub_0203CD4C(param0) || sub_0203CD74(param0)) {
+    if (sub_0203CD4C(fieldSystem) || sub_0203CD74(fieldSystem)) {
         return 1;
     } else {
         return 0;
     }
 }
 
-void sub_020509D4 (FieldSystem * param0)
+void sub_020509D4 (FieldSystem * fieldSystem)
 {
-    sub_0203CD00(param0);
+    sub_0203CD00(fieldSystem);
 }
 
-BOOL sub_020509DC (FieldSystem * param0)
+BOOL sub_020509DC (FieldSystem * fieldSystem)
 {
-    if (sub_0203CD5C(param0)) {
+    if (sub_0203CD5C(fieldSystem)) {
         return 1;
     } else {
         return 0;
@@ -138,16 +138,16 @@ BOOL sub_020509DC (FieldSystem * param0)
 
 static BOOL sub_020509F0 (TaskManager * param0)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020509F0 * v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_00) {
     case 0:
-        sub_0203CD84(v0, v1->unk_04, v1->unk_08);
+        sub_0203CD84(fieldSystem, v1->unk_04, v1->unk_08);
         v1->unk_00++;
         break;
     case 1:
-        if (sub_020509B4(v0)) {
+        if (sub_020509B4(fieldSystem)) {
             break;
         }
 
@@ -171,7 +171,7 @@ void sub_02050A38 (TaskManager * param0, const OverlayManagerTemplate * param1, 
 
 FieldSystem * TaskManager_FieldSystem (TaskManager * param0)
 {
-    return param0->unk_18;
+    return param0->fieldSystem;
 }
 
 void * TaskManager_Environment (TaskManager * param0)

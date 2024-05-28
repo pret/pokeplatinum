@@ -32,7 +32,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov5_021DF47C * unk_04;
-    FieldSystem * unk_08;
+    FieldSystem * fieldSystem;
     UnkStruct_ov5_021F2874 * unk_0C;
     MapObject * unk_10;
 } UnkStruct_ov5_021F28F4;
@@ -125,14 +125,14 @@ UnkStruct_ov101_021D5D90 * ov5_021F28F4 (MapObject * param0, int param1, int par
 
     v2.unk_00 = param3;
     v2.unk_04 = v4;
-    v2.unk_08 = MapObject_FieldSystem(param0);
+    v2.fieldSystem = MapObject_FieldSystem(param0);
     v2.unk_0C = ov5_021DF55C(v4, 16);
     v2.unk_10 = param0;
 
     if (param4 == 0) {
         v3.x = (((param1) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));
         v3.z = (((param2) << 4) * FX32_ONE) + (((16 * FX32_ONE) >> 1));
-        sub_020644A4(v2.unk_08, &v3);
+        sub_020644A4(v2.fieldSystem, &v3);
     } else {
         MapObject_PosVectorOut(param0, &v3);
     }

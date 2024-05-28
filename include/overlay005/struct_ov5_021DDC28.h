@@ -9,7 +9,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     void * unk_0C;
-    FieldSystem * unk_10;
+    FieldSystem * fieldSystem;
     BOOL * unk_14;
     BOOL unk_18;
     BOOL unk_1C;

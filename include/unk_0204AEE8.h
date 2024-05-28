@@ -10,9 +10,9 @@
 
 StringTemplate * sub_0204AEE8(SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4);
 u16 sub_0204AF9C(u8 param0);
-u16 sub_0204AFC4(FieldSystem * param0, const u16 * param1);
-u16 sub_0204B020(FieldSystem * param0, const u16 * param1);
-u16 sub_0204B044(FieldSystem * param0, const u16 * param1);
+u16 sub_0204AFC4(FieldSystem * fieldSystem, const u16 * param1);
+u16 sub_0204B020(FieldSystem * fieldSystem, const u16 * param1);
+u16 sub_0204B044(FieldSystem * fieldSystem, const u16 * param1);
 void sub_0204B060(UnkStruct_0204AFC4 * param0, SaveData * param1);
 void sub_0204B0BC(UnkStruct_0204AFC4 * param0);
 void sub_0204B0D4(UnkStruct_0204AFC4 * param0, u16 param1);

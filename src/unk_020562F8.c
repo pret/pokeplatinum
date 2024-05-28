@@ -42,10 +42,10 @@ struct UnkStruct_020564B4_t {
     int unk_48;
 };
 
-static void sub_0205642C(FieldSystem * param0, UnkStruct_020564B4 * param1);
-static void sub_02056624(FieldSystem * param0, BattleParams * param1, UnkStruct_020564B4 * param2);
-static BOOL sub_02056554(FieldSystem * param0, UnkStruct_020564B4 * param1, int param2, int param3);
-static BattleParams * sub_0205664C(FieldSystem * param0, UnkStruct_020564B4 * param1);
+static void sub_0205642C(FieldSystem * fieldSystem, UnkStruct_020564B4 * param1);
+static void sub_02056624(FieldSystem * fieldSystem, BattleParams * param1, UnkStruct_020564B4 * param2);
+static BOOL sub_02056554(FieldSystem * fieldSystem, UnkStruct_020564B4 * param1, int param2, int param3);
+static BattleParams * sub_0205664C(FieldSystem * fieldSystem, UnkStruct_020564B4 * param1);
 static sub_020564B4(UnkStruct_020564B4 * param0);
 static void sub_020564D0(UnkStruct_020564B4 * param0);
 static BOOL sub_020564F4(UnkStruct_020564B4 * param0);
@@ -55,23 +55,23 @@ static u32 sub_0205671C(UnkStruct_020564B4 * param0);
 
 static UnkStruct_020564B4 Unk_021C07FC;
 
-void sub_020562F8 (FieldSystem * param0)
+void sub_020562F8 (FieldSystem * fieldSystem)
 {
     int v0;
     UnkStruct_020564B4 * v1 = &Unk_021C07FC;
 
     MI_CpuClearFast(v1, sizeof(UnkStruct_020564B4));
 
-    sub_0205642C(param0, v1);
+    sub_0205642C(fieldSystem, v1);
     sub_020564D0(v1);
 
     v1->unk_40 = GetTimestamp();
 }
 
-void sub_02056328 (FieldSystem * param0)
+void sub_02056328 (FieldSystem * fieldSystem)
 {
     UnkStruct_020564B4 * v0 = &Unk_021C07FC;
-    UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->saveData);
+    UnkStruct_0202CD88 * v1 = sub_0202CD88(fieldSystem->saveData);
     s64 v2 = GetTimestamp();
     s64 v3 = TimeElapsed(v0->unk_40, v2);
 
@@ -84,41 +84,41 @@ void sub_02056328 (FieldSystem * param0)
     sub_0202CFEC(v1, 17);
 }
 
-BOOL sub_02056374 (FieldSystem * param0, int param1, int param2)
+BOOL sub_02056374 (FieldSystem * fieldSystem, int param1, int param2)
 {
     if (sub_020564F4(&Unk_021C07FC) == 1) {
-        return sub_02056554(param0, &Unk_021C07FC, param1, param2);
+        return sub_02056554(fieldSystem, &Unk_021C07FC, param1, param2);
     } else {
         return 0;
     }
 }
 
-BattleParams * sub_0205639C (FieldSystem * param0)
+BattleParams * sub_0205639C (FieldSystem * fieldSystem)
 {
-    return sub_0205664C(param0, &Unk_021C07FC);
+    return sub_0205664C(fieldSystem, &Unk_021C07FC);
 }
 
-void sub_020563AC (FieldSystem * param0, BattleParams * param1)
+void sub_020563AC (FieldSystem * fieldSystem, BattleParams * param1)
 {
-    sub_02056624(param0, param1, &Unk_021C07FC);
+    sub_02056624(fieldSystem, param1, &Unk_021C07FC);
 }
 
-int sub_020563BC (FieldSystem * param0)
+int sub_020563BC (FieldSystem * fieldSystem)
 {
     return 6 - sub_020564B4(&Unk_021C07FC);
 }
 
-int sub_020563D0 (FieldSystem * param0)
+int sub_020563D0 (FieldSystem * fieldSystem)
 {
     return sub_02056698(&Unk_021C07FC);
 }
 
-int sub_020563E0 (FieldSystem * param0)
+int sub_020563E0 (FieldSystem * fieldSystem)
 {
     return sub_0205671C(&Unk_021C07FC);
 }
 
-int sub_020563F0 (FieldSystem * param0)
+int sub_020563F0 (FieldSystem * fieldSystem)
 {
     return sub_020566AC(&Unk_021C07FC);
 }
@@ -133,7 +133,7 @@ static void sub_02056400 (u32 param0, u8 * param1)
     NARC_ReadFromMemberByIndexPair(param1, NARC_INDEX_ARC__PPARK, 0, v0, sizeof(u8) * 6);
 }
 
-static void sub_0205642C (FieldSystem * param0, UnkStruct_020564B4 * param1)
+static void sub_0205642C (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1)
 {
     int v0;
     u8 v1[8];
@@ -141,7 +141,7 @@ static void sub_0205642C (FieldSystem * param0, UnkStruct_020564B4 * param1)
     Pokemon * v3;
     PalParkTransfer * v4;
 
-    v4 = SaveData_PalParkTransfer(param0->saveData);
+    v4 = SaveData_PalParkTransfer(fieldSystem->saveData);
     v3 = Pokemon_New(4);
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -199,9 +199,9 @@ static BOOL sub_020564F4 (UnkStruct_020564B4 * param0)
     return 0;
 }
 
-static int sub_0205650C (FieldSystem * param0, int param1, int param2)
+static int sub_0205650C (FieldSystem * fieldSystem, int param1, int param2)
 {
-    u16 v0 = sub_02054F94(param0, param1, param2);
+    u16 v0 = sub_02054F94(fieldSystem, param1, param2);
     int v1;
 
     v1 = (param1 < 32) ? 0 : 1;
@@ -216,11 +216,11 @@ static int sub_0205650C (FieldSystem * param0, int param1, int param2)
     return 0;
 }
 
-static BOOL sub_02056554 (FieldSystem * param0, UnkStruct_020564B4 * param1, int param2, int param3)
+static BOOL sub_02056554 (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1, int param2, int param3)
 {
     int v0;
     int v1, v2 = 0;
-    int v3 = sub_0205650C(param0, param2, param3);
+    int v3 = sub_0205650C(fieldSystem, param2, param3);
 
     if (v3 == 0) {
         return 0;
@@ -259,7 +259,7 @@ static BOOL sub_02056554 (FieldSystem * param0, UnkStruct_020564B4 * param1, int
     return 0;
 }
 
-static void sub_02056624 (FieldSystem * param0, BattleParams * param1, UnkStruct_020564B4 * param2)
+static void sub_02056624 (FieldSystem * fieldSystem, BattleParams * param1, UnkStruct_020564B4 * param2)
 {
     switch (param1->unk_14) {
     case 0x4:
@@ -272,16 +272,16 @@ static void sub_02056624 (FieldSystem * param0, BattleParams * param1, UnkStruct
     }
 }
 
-static BattleParams * sub_0205664C (FieldSystem * param0, UnkStruct_020564B4 * param1)
+static BattleParams * sub_0205664C (FieldSystem * fieldSystem, UnkStruct_020564B4 * param1)
 {
     BattleParams * v0;
     Pokemon * v1 = Pokemon_New(32);
-    PalParkTransfer * v2 = SaveData_PalParkTransfer(param0->saveData);
-    int v3 = sub_020563BC(param0);
+    PalParkTransfer * v2 = SaveData_PalParkTransfer(fieldSystem->saveData);
+    int v3 = sub_020563BC(fieldSystem);
 
     v0 = sub_02051F38(11, v3);
 
-    sub_02052314(v0, param0);
+    sub_02052314(v0, fieldSystem);
     sub_0202F000(v2, param1->unk_3C, v1);
     sub_0205213C(v0, v1, 1);
     Heap_FreeToHeap(v1);

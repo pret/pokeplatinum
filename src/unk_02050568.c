@@ -29,7 +29,7 @@
 #include "unk_02070428.h"
 
 typedef struct {
-    FieldSystem * unk_00;
+    FieldSystem * fieldSystem;
     u16 unk_04;
     u16 unk_06;
     u8 unk_08;
@@ -56,8 +56,8 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
 
     switch (v1->unk_08) {
     case 0:
-        v1->unk_04 = Player_XPos(fieldSystem->playerAvatar);
-        v1->unk_06 = Player_ZPos(fieldSystem->playerAvatar);
+        v1->unk_04 = Player_GetXPos(fieldSystem->playerAvatar);
+        v1->unk_06 = Player_GetZPos(fieldSystem->playerAvatar);
         sub_02070428(fieldSystem, 1);
         sub_020558AC(taskMan);
         v1->unk_08++;

@@ -123,7 +123,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 * param0, BOOL param1);
 static void sub_0205AF18(UnkStruct_0205A0D8 * param0, int param1);
 static BOOL sub_0205AD20(UnkStruct_0205A0D8 * param0);
 
-static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * param1, Party * param2, int param3, int param4, int param5)
+static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * fieldSystem, Party * param2, int param3, int param4, int param5)
 {
     PokemonSummary * v0;
     SaveData * v1;
@@ -131,11 +131,11 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * param1, Par
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = param1->saveData;
+    v1 = fieldSystem->saveData;
     v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
-    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(param1->saveData));
+    PokemonSummary_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
 
     v0->dexMode = sub_0207A274(v1);
     v0->contest = PokemonSummary_ShowContestData(v1);
@@ -149,7 +149,7 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, FieldSystem * param1, Par
     v0->ribbons = sub_0202D79C(v1);
 
     PokemonSummary_FlagVisiblePages(v0, v2);
-    sub_0203CD84(param1, &Unk_020F410C, v0);
+    sub_0203CD84(fieldSystem, &Unk_020F410C, v0);
 
     param0->unk_00 = v0;
 }
@@ -260,7 +260,7 @@ static BOOL sub_0205A2FC (void)
 static BOOL sub_0205A324 (TaskManager * param0)
 {
     UnkStruct_0205A0D8 * v0 = TaskManager_Environment(param0);
-    FieldSystem * v1 = TaskManager_FieldSystem(param0);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (v0->unk_34) {
     case 0:
@@ -332,7 +332,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
         if (v0->unk_44 != 0) {
             v0->unk_44--;
         } else {
-            if (LocalMapObj_CheckAnimationFinished(Player_MapObject(v1->playerAvatar))) {
+            if (LocalMapObj_CheckAnimationFinished(Player_MapObject(fieldSystem->playerAvatar))) {
                 v0->unk_34 = 11;
             }
         }
@@ -743,9 +743,9 @@ static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
     sub_0205AAA0(param0, 1);
 }
 
-static UnkStruct_0205A0D8 * sub_0205AC74 (FieldSystem * param0)
+static UnkStruct_0205A0D8 * sub_0205AC74 (FieldSystem * fieldSystem)
 {
-    return TaskManager_Environment(param0->unk_10);
+    return TaskManager_Environment(fieldSystem->unk_10);
 }
 
 static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)

@@ -32,7 +32,7 @@ typedef struct {
     UnkStruct_ov5_021DF47C * unk_08;
     UnkStruct_ov5_021F858C * unk_0C;
     MapObject * unk_10;
-    PlayerAvatar * unk_14;
+    PlayerAvatar * playerAvatar;
 } UnkStruct_ov5_021F8668;
 
 typedef struct {
@@ -91,7 +91,7 @@ static void ov5_021F85B0 (UnkStruct_ov5_021F858C * param0)
     sub_0207395C(&param0->unk_04);
 }
 
-UnkStruct_ov101_021D5D90 * ov5_021F85BC (PlayerAvatar * param0, int param1, int param2, int param3, int param4, int param5, int param6)
+UnkStruct_ov101_021D5D90 * ov5_021F85BC (PlayerAvatar * playerAvatar, int param1, int param2, int param3, int param4, int param5, int param6)
 {
     int v0;
     UnkStruct_ov101_021D5D90 * v1;
@@ -100,17 +100,17 @@ UnkStruct_ov101_021D5D90 * ov5_021F85BC (PlayerAvatar * param0, int param1, int 
     UnkStruct_ov5_021F8668 v4;
     MapObject * v5;
 
-    v5 = Player_MapObject(param0);
+    v5 = Player_MapObject(playerAvatar);
 
     v4.unk_00 = param4;
     v4.unk_04 = param6;
     v4.unk_08 = ov5_021DF578(v5);
     v4.unk_0C = ov5_021DF55C(v4.unk_08, 33);
     v4.unk_10 = v5;
-    v4.unk_14 = param0;
+    v4.playerAvatar = playerAvatar;
 
     if (param5 == 0) {
-        FieldSystem * v6 = MapObject_FieldSystem(v5);
+        FieldSystem * fieldSystem = MapObject_FieldSystem(v5);
 
         v2 = &Unk_ov5_02201BC8[param6];
         v3.x = (((param1) << 4) * FX32_ONE) + v2->x;
@@ -163,14 +163,14 @@ static void ov5_021F86E4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov5_021F86CC * v0 = param1;
     MapObject * v1 = v0->unk_38.unk_10;
-    PlayerAvatar * v2 = v0->unk_38.unk_14;
+    PlayerAvatar * playerAvatar = v0->unk_38.playerAvatar;
 
     if (((v0)->unk_00 & (1 << 1)) == 0) {
         return;
     }
 
     v0->unk_04 = MapObject_GetMoveDir(v1);
-    v0->unk_34 = sub_0205F108(v2);
+    v0->unk_34 = sub_0205F108(playerAvatar);
 
     GF_ASSERT(v0->unk_04 != -1);
 

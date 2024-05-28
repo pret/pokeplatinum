@@ -101,17 +101,17 @@ u32 ov6_0224622C (const UnkStruct_ov6_02246204 * param0)
     return param0->unk_00->unk_4C;
 }
 
-void ov6_02246234 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int param2)
+void ov6_02246234 (FieldSystem * fieldSystem, UnkStruct_ov6_02246204 * param1, int param2)
 {
-    Party * v0 = Party_GetFromSavedata(param0->saveData);
+    Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
 
     sub_0207A128(v0, param2, param1->unk_04);
-    sub_0202F180(param0->saveData, param1->unk_04);
+    sub_0202F180(fieldSystem->saveData, param1->unk_04);
 }
 
-void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, Pokemon * param4, Pokemon * param5)
+void ov6_02246254 (FieldSystem * fieldSystem, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, Pokemon * param4, Pokemon * param5)
 {
-    Party * v0 = Party_GetFromSavedata(param0->saveData);
+    Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
     Pokemon * v1;
     Strbuf* v2;
     u32 v3;
@@ -120,7 +120,7 @@ void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int pa
     v1 = Party_GetPokemonBySlotIndex(v0, param2);
     v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
-    ov6_0224630C(param1->unk_04, param1->unk_00, v3, param1->unk_0C, param1->unk_10, param0->unk_1C->unk_00);
+    ov6_0224630C(param1->unk_04, param1->unk_00, v3, param1->unk_0C, param1->unk_10, fieldSystem->unk_1C->unk_00);
 
     Pokemon_Copy(v1, param4);
     Pokemon_Copy(param1->unk_04, param5);
@@ -129,9 +129,9 @@ void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int pa
     param3->unk_04 = Pokemon_GetBoxPokemon(param5);
     param3->unk_08 = param1->unk_08;
     param3->unk_10 = 1;
-    param3->unk_14 = SaveData_Options(param0->saveData);
+    param3->unk_14 = SaveData_Options(fieldSystem->saveData);
 
-    v4 = sub_02055BA8(param0);
+    v4 = sub_02055BA8(fieldSystem);
 
     if ((v4 == 0) || (v4 == 1)) {
         param3->unk_0C = 0;
@@ -142,10 +142,10 @@ void ov6_02246254 (FieldSystem * param0, UnkStruct_ov6_02246204 * param1, int pa
     }
 }
 
-static Strbuf* ov6_022462E4 (u32 param0, u32 param1)
+static Strbuf* ov6_022462E4 (u32 fieldSystem, u32 param1)
 {
     Strbuf* v0;
-    MessageLoader * v1 = MessageLoader_Init(0, 26, 370, param0);
+    MessageLoader * v1 = MessageLoader_Init(0, 26, 370, fieldSystem);
 
     v0 = MessageLoader_GetNewStrbuf(v1, param1);
     MessageLoader_Free(v1);

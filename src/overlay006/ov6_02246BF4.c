@@ -8,7 +8,7 @@
 #include "unk_0203E880.h"
 #include "overlay006/ov6_02246BF4.h"
 
-BOOL ov6_02246BF4 (SaveData * param0, FieldSystem * param1)
+BOOL ov6_02246BF4 (SaveData * param0, FieldSystem * fieldSystem)
 {
     u8 * v0;
 
@@ -18,7 +18,7 @@ BOOL ov6_02246BF4 (SaveData * param0, FieldSystem * param1)
         (*v0)--;
 
         if ((*v0) == 0) {
-            sub_0203E880(param1, 2032, NULL);
+            sub_0203E880(fieldSystem, 2032, NULL);
             return 1;
         }
     }
