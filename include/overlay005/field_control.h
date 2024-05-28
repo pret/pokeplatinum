@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_FIELD_EVENT_CHECK_H
-#define POKEPLATINUM_FIELD_EVENT_CHECK_H
+#ifndef POKEPLATINUM_FIELD_CONTROL_H
+#define POKEPLATINUM_FIELD_CONTROL_H
 
 #include "field/field_system_decl.h"
 
@@ -30,4 +30,4 @@ BOOL FieldInput_Process_Colosseum(FieldInput *input, FieldSystem *fieldSystem);
 BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSystem);
 int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSystem);
 
-#endif // POKEPLATINUM_FIELD_EVENT_CHECK_H
+#endif // POKEPLATINUM_FIELD_CONTROL_H
