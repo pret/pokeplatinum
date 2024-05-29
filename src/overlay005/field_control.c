@@ -107,11 +107,11 @@ static void FieldInput_Clear (FieldInput *input)
     input->sign = FALSE;
     input->mapTransition = FALSE;
     input->movement = FALSE;
-    input->unused1 = FALSE;
-    input->unused2 = FALSE;
-    input->unused3 = FALSE;
-    input->unused4 = FALSE;
-    input->unused5 = FALSE;
+    input->dummy1 = FALSE;
+    input->dummy2 = FALSE;
+    input->dummy3 = FALSE;
+    input->dummy4 = FALSE;
+    input->dummy5 = FALSE;
     input->playerDir = DIR_NONE;
     input->transitionDir = DIR_NONE;
 }
@@ -141,7 +141,7 @@ void FieldInput_Update (FieldInput *input, FieldSystem *fieldSystem, u16 pressed
         }
 
         if (pressedKeys & PAD_BUTTON_B) {
-            input->unused1 = TRUE;
+            input->dummy1 = TRUE;
         }
 
         if (heldKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
@@ -176,11 +176,12 @@ void FieldInput_Update (FieldInput *input, FieldSystem *fieldSystem, u16 pressed
 
 BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->unused5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+    if (input->dummy5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
         return TRUE;
     }
 
-    if (input->unused5 == FALSE) {
+    // dummy5 will always be false, so this branch will always be taken, but it doesn't match without the condition
+    if (input->dummy5 == FALSE) {
         BOOL hasTwoAliveMons = Party_HasTwoAliveMons(Party_GetFromSavedata(fieldSystem->saveData));
 
         if (sub_0206A984(SaveData_Events(fieldSystem->saveData)) == TRUE) {
@@ -205,7 +206,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         }
     }
 
-    if (input->unused5 == FALSE) {
+    if (input->dummy5 == FALSE) {
         int playerEvent = PLAYER_EVENT_NONE;
         int direction = sub_02061308(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
 
@@ -360,7 +361,7 @@ static BOOL Field_CheckSign (FieldSystem *fieldSystem)
 
 BOOL FieldInput_Process_Underground (FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->unused5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+    if (input->dummy5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
         return TRUE;
     }
 
@@ -492,7 +493,7 @@ BOOL FieldInput_Process_UnionRoom (const FieldInput *input, FieldSystem *fieldSy
 
 int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->unused5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+    if (input->dummy5 == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
         return TRUE;
     }
 

@@ -11,11 +11,11 @@ typedef struct FieldInput {
     u16 sign : 1;
     u16 mapTransition : 1;
     u16 movement : 1;
-    u16 unused1 : 1;
-    u16 unused2 : 1;
-    u16 unused3 : 1;
-    u16 unused4 : 1;
-    u16 unused5 : 1;
+    u16 dummy1 : 1;
+    u16 dummy2 : 1;
+    u16 dummy3 : 1;
+    u16 dummy4 : 1;
+    u16 dummy5 : 1;
     u16 padding : 4;
     u8 playerDir;
     s8 transitionDir;
