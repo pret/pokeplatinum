@@ -371,10 +371,8 @@ BOOL FieldInput_Process_Underground (FieldInput *input, FieldSystem *fieldSystem
 
     ov23_02242814();
 
-    u8 interactCheck = FALSE;
-
     if (input->interact) {
-        ov23_02242830(interactCheck);
+        ov23_02242830(FALSE);
         return FALSE;
     }
 
@@ -433,13 +431,12 @@ BOOL FieldInput_Process_Colosseum (FieldInput *input, FieldSystem *fieldSystem)
 
 static int Field_CheckTrainerInfo (void)
 {
+    // C99-style declaration doesn't match
     int netId;
-    TrainerInfo *info;
-
     int ret = 0;
 
     for (netId = 1; netId < 5; netId++) {
-        info = CommInfo_TrainerInfo(netId);
+        TrainerInfo *info = CommInfo_TrainerInfo(netId);
 
         if (info != NULL) {
             ret++;
@@ -514,10 +511,10 @@ int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldS
             return TRUE;
         }
 
-        int bgEvent = sub_0203CA6C(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+        int v2 = sub_0203CA6C(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
         
-        if (bgEvent != 0xffff) {
-            sub_0203E880(fieldSystem, bgEvent, NULL);
+        if (v2 != 0xffff) {
+            sub_0203E880(fieldSystem, v2, NULL);
             return TRUE;
         }
 
