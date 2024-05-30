@@ -919,13 +919,13 @@ void CommPlayer_RecvLocationAndInit (int netId, int size, void * src, void * unu
     CommPlayer_Add(netJd);
 }
 
-static void sub_02058644 (int param0)
+static void sub_02058644 (int netId)
 {
     UndergroundData * underground = sub_020298B0(FieldSystem_SaveData(sCommPlayerManager->fieldSystem));
     SaveData_SecretBaseRecord(FieldSystem_SaveData(sCommPlayerManager->fieldSystem));
 
     if (sCommPlayerManager->isUnderground) {
-        if (param0 == CommSys_CurNetId()) {
+        if (netId == CommSys_CurNetId()) {
             sub_0202929C(underground);
 
             if (sub_020292B4(underground) == 50) {
