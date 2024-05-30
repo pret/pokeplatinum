@@ -320,8 +320,8 @@ static int sub_02067E74 (const MapObject * mapObj, int param1, int param2)
     v1 = MapObject_GetXPos(mapObj);
     v2 = MapObject_GetZPos(mapObj);
     v3 = MapObject_GetYPos(mapObj);
-    v1 += sub_0206419C(param1);
-    v2 += sub_020641A8(param1);
+    v1 += MapObject_GetDxFromDir(param1);
+    v2 += MapObject_GetDyFromDir(param1);
 
     for (v0 = 0; v0 < (param2 - 1); v0++) {
         v4 = sub_02063E94(mapObj, v1, v3, v2, param1);
@@ -331,8 +331,8 @@ static int sub_02067E74 (const MapObject * mapObj, int param1, int param2)
             return 1;
         }
 
-        v1 += sub_0206419C(param1);
-        v2 += sub_020641A8(param1);
+        v1 += MapObject_GetDxFromDir(param1);
+        v2 += MapObject_GetDyFromDir(param1);
     }
 
     v4 = sub_02063E94(mapObj, v1, v3, v2, param1);

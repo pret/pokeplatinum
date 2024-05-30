@@ -47,7 +47,7 @@
 #include "overlay023/ov23_0224B05C.h"
 
 static int sub_020581CC(int param0, int param1);
-static BOOL sub_02058A18(int param0, int param1);
+static BOOL CommPlayer_MoveBlow(int param0, int param1);
 static BOOL CommPlayer_BlowAnimation(int param0, int param1, int param2, int param3);
 static void CommPlayer_SendDataTask(void * param0);
 static void sub_02057C2C(void * param0);
@@ -514,7 +514,7 @@ static void sub_02057EF8 (void * param0)
         if (!CommSys_IsPlayerConnected(netId)) {
             if (!(CommSys_IsAlone() && (netId == 0))) {
                 if ((CommSys_CurNetId() == 0) && (sCommPlayerManager->isUnderground)) {
-                    ov23_0224D898(netId);
+                    Underground_SecretBaseRemovePlayer(netId);
                 }
             }
         }
@@ -525,17 +525,15 @@ static void sub_02057EF8 (void * param0)
             if (sCommPlayerManager->isUnderground) {
                 ov23_0224AF7C(netId);
             }
-        } else {
-            if (sCommPlayerManager->isActive[netId]) {
-                if ((CommSys_CurNetId() == 0) && (sCommPlayerManager->isUnderground)) {
-                    ov23_022436F0(netId);
-                    ov23_02241648(netId);
-                }
-                
-                u8 netId_u8 = netId;
-                CommPlayer_RecvDelete(0, 1, &netId_u8, sCommPlayerManager->fieldSystem);
+        } else if (sCommPlayerManager->isActive[netId]) {
+            if ((CommSys_CurNetId() == 0) && (sCommPlayerManager->isUnderground)) {
+                ov23_022436F0(netId);
+                ov23_02241648(netId);
             }
-        }
+            
+            u8 netId_u8 = netId;
+            CommPlayer_RecvDelete(0, 1, &netId_u8, sCommPlayerManager->fieldSystem);
+        } 
     }
 }
 
@@ -654,7 +652,7 @@ static BOOL CommPlayer_CheckCollision (int x, int z, int netIdTarget)
                 continue;
             }
 
-            if ((x == sub_02058DF8(netId)) && (z == sub_02058E4C(netId))) {
+            if ((x == CommPlayer_GetXServer(netId)) && (z == CommPlayer_GetZServer(netId))) {
                 return TRUE;
             }
         }
@@ -751,7 +749,7 @@ static void CommPlayer_Move (SysTask * param0, void * param1)
 
             v6 = sub_020581CC(sCommPlayerManager->unk_10A[netId], sCommPlayerManager->unk_12A[netId]);
 
-            if (sub_02058A18(netId, v6)) {
+            if (CommPlayer_MoveBlow(netId, v6)) {
                 sCommPlayerManager->moveTimerServer[netId] = v6;
                 sCommPlayerManager->movementChanged[netId] = 1;
                 continue;
@@ -1115,7 +1113,7 @@ static void CommPlayer_MoveClient (int netId)
     }
 }
 
-static BOOL sub_02058A18 (int netId, int param1)
+static BOOL CommPlayer_MoveBlow (int netId, int param1)
 {
     int x, z;
     CommPlayerLocation * playerLocation;
@@ -1134,10 +1132,10 @@ static BOOL sub_02058A18 (int netId, int param1)
         return 1;
     }
 
-    x = sub_02058DF8(netId);
-    z = sub_02058E4C(netId);
-    x += sub_0206419C(sCommPlayerManager->unk_112[netId]);
-    z += sub_020641A8(sCommPlayerManager->unk_112[netId]);
+    x = CommPlayer_GetXServer(netId);
+    z = CommPlayer_GetZServer(netId);
+    x += MapObject_GetDxFromDir(sCommPlayerManager->unk_112[netId]);
+    z += MapObject_GetDyFromDir(sCommPlayerManager->unk_112[netId]);
 
     if (sCommPlayerManager->unk_10A[netId] != 0) {
         if (CommPlayer_CheckCollision(x, z, netId)) {
@@ -1317,7 +1315,7 @@ int sub_02058D88 (int netId)
         return 0xffff;
     }
 
-    return sCommPlayerManager->playerLocation[netId].x + sub_0206419C(sCommPlayerManager->playerLocation[netId].dir);
+    return sCommPlayerManager->playerLocation[netId].x + MapObject_GetDxFromDir(sCommPlayerManager->playerLocation[netId].dir);
 }
 
 int sub_02058DC0 (int netId)
@@ -1326,10 +1324,10 @@ int sub_02058DC0 (int netId)
         return 0xffff;
     }
 
-    return sCommPlayerManager->playerLocation[netId].z + sub_020641A8(sCommPlayerManager->playerLocation[netId].dir);
+    return sCommPlayerManager->playerLocation[netId].z + MapObject_GetDyFromDir(sCommPlayerManager->playerLocation[netId].dir);
 }
 
-int sub_02058DF8 (int netId)
+int CommPlayer_GetXServer (int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1342,7 +1340,7 @@ int sub_02058DF8 (int netId)
     return sCommPlayerManager->playerLocationServer[netId].x;
 }
 
-int sub_02058E4C (int netId)
+int CommPlayer_GetZServer (int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1375,20 +1373,20 @@ int sub_02058EC0 (int netId)
 
 int CommPlayer_AddXServer (int netId)
 {
-    if (sub_02058DF8(netId) == 0xffff) {
+    if (CommPlayer_GetXServer(netId) == 0xffff) {
         return 0xffff;
     }
 
-    return sCommPlayerManager->playerLocationServer[netId].x + sub_0206419C(sCommPlayerManager->playerLocationServer[netId].dir);
+    return sCommPlayerManager->playerLocationServer[netId].x + MapObject_GetDxFromDir(sCommPlayerManager->playerLocationServer[netId].dir);
 }
 
 int CommPlayer_AddZServer (int netId)
 {
-    if (sub_02058E4C(netId) == 0xffff) {
+    if (CommPlayer_GetZServer(netId) == 0xffff) {
         return 0xffff;
     }
 
-    return sCommPlayerManager->playerLocationServer[netId].z + sub_020641A8(sCommPlayerManager->playerLocationServer[netId].dir);
+    return sCommPlayerManager->playerLocationServer[netId].z + MapObject_GetDyFromDir(sCommPlayerManager->playerLocationServer[netId].dir);
 }
 
 int CommPlayer_Dir (int netId)
@@ -1558,7 +1556,7 @@ static void sub_020591A8 (void)
         }
 
         for (netJd = 0; netJd < connectedPlayers; netJd++) {
-            if ((sub_02058DF8(netId) == v6[netJd].unk_00) && (sub_02058E4C(netId) == v6[netJd].unk_02)) {
+            if ((CommPlayer_GetXServer(netId) == v6[netJd].unk_00) && (CommPlayer_GetZServer(netId) == v6[netJd].unk_02)) {
                 sCommPlayerManager->unk_F2[netId] = 1;
                 sub_02035B48(95, &netId);
             }
@@ -1598,8 +1596,8 @@ BOOL sub_0205928C (void)
         CommPlayerLocation * playerLocation = &sCommPlayerManager->playerLocationServer[netId];
 
         dir = CommPlayer_GetOppositeDir(playerLocation->dir);
-        playerLocation->x += sub_0206419C(dir);
-        playerLocation->z += sub_020641A8(dir);
+        playerLocation->x += MapObject_GetDxFromDir(dir);
+        playerLocation->z += MapObject_GetDyFromDir(dir);
         playerLocation->moveSpeed = 2;
 
         sCommPlayerManager->movementChanged[netId] = 1;

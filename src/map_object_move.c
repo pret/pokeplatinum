@@ -588,9 +588,9 @@ u32 sub_02063EBC (const MapObject * mapObj, int param1)
 {
     int x, y, z;
 
-    x = MapObject_GetXPos(mapObj) + sub_0206419C(param1);
+    x = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param1);
     y = MapObject_GetYPos(mapObj);
-    z = MapObject_GetZPos(mapObj) + sub_020641A8(param1);
+    z = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param1);
 
     return sub_02063E94(mapObj, x, y, z, param1);
 }
@@ -800,7 +800,7 @@ int sub_0206417C (MapObject * mapObj, u32 param1)
     return 0;
 }
 
-static const int Unk_020EE75C[] = {
+static const int sMapObjectDxDir[] = {
     0x0,
     0x0,
     -1,
@@ -814,21 +814,21 @@ static const int DATA_GPosY_Dir4AddTbl[] = {
     0
 };
 
-static const int Unk_020EE78C[] = {
+static const int sMapObjectDyDir[] = {
     -1,
     0x1,
     0x0,
     0x0
 };
 
-int sub_0206419C (int param0)
+int MapObject_GetDxFromDir (int param0)
 {
-    return Unk_020EE75C[param0];
+    return sMapObjectDxDir[param0];
 }
 
-int sub_020641A8 (int param0)
+int MapObject_GetDyFromDir (int param0)
 {
-    return Unk_020EE78C[param0];
+    return sMapObjectDyDir[param0];
 }
 
 void sub_020641B4 (MapObject * mapObj, int param1)
@@ -837,9 +837,9 @@ void sub_020641B4 (MapObject * mapObj, int param1)
     MapObject_SetYPosPrev(mapObj, MapObject_GetYPos(mapObj));
     MapObject_SetZPosPrev(mapObj, MapObject_GetZPos(mapObj));
 
-    MapObject_AddX(mapObj, sub_0206419C(param1));
+    MapObject_AddX(mapObj, MapObject_GetDxFromDir(param1));
     MapObject_AddY(mapObj, 0);
-    MapObject_AddZ(mapObj, sub_020641A8(param1));
+    MapObject_AddZ(mapObj, MapObject_GetDyFromDir(param1));
 }
 
 void sub_02064208 (MapObject * mapObj)
@@ -851,8 +851,8 @@ void sub_02064208 (MapObject * mapObj)
 
 u32 sub_02064238 (MapObject * mapObj, int param1)
 {
-    int v0 = MapObject_GetXPos(mapObj) + sub_0206419C(param1);
-    int v1 = MapObject_GetZPos(mapObj) + sub_020641A8(param1);
+    int v0 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param1);
+    int v1 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param1);
     FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
     u8 v3 = sub_02054F94(fieldSystem, v0, v1);
 

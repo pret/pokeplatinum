@@ -399,8 +399,8 @@ static int sub_0206A034 (MapObject * mapObj, UnkStruct_02069F48 * param1)
     }
 
     v6 = sub_02064488(v0, v1, v4, v5);
-    v0 += sub_0206419C(v6);
-    v1 += sub_020641A8(v6);
+    v0 += MapObject_GetDxFromDir(v6);
+    v1 += MapObject_GetDyFromDir(v6);
 
     if ((v0 != v2) || (v1 != v3)) {
         u32 v7 = 0xc;

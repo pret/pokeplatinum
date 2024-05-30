@@ -3071,7 +3071,7 @@ static void ov23_022414D4 (void)
             continue;
         }
 
-        v2 = ov23_0223E8CC(sub_02058DF8(v1), sub_02058E4C(v1));
+        v2 = ov23_0223E8CC(CommPlayer_GetXServer(v1), CommPlayer_GetZServer(v1));
 
         if (v2 != -1) {
             v0 = &Unk_ov23_02257740->unk_26C[v2];

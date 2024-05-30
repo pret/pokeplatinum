@@ -623,7 +623,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
     v2.unk_00 = CommPlayer_AddXServer(param0);
     v2.unk_02 = CommPlayer_AddZServer(param0);
 
-    if ((sub_02058DF8(param0) == 0xffff) && (sub_02058E4C(param0) == 0xffff)) {
+    if ((CommPlayer_GetXServer(param0) == 0xffff) && (CommPlayer_GetZServer(param0) == 0xffff)) {
         return;
     }
 

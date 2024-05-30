@@ -1022,7 +1022,7 @@ void ov23_02243B0C (int param0, int param1, void * param2, void * param3)
     v1 = CommPlayer_AddXServer(param0);
     v2 = CommPlayer_AddZServer(param0);
 
-    if ((sub_02058DF8(param0) == 0xffff) && (sub_02058E4C(param0) == 0xffff)) {
+    if ((CommPlayer_GetXServer(param0) == 0xffff) && (CommPlayer_GetZServer(param0) == 0xffff)) {
         v4.unk_07 = 7;
         CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;
@@ -1479,7 +1479,7 @@ static BOOL ov23_022442F0 (int param0)
         return 0;
     }
 
-    v1 = ov23_0224429C(sub_02058DF8(param0), sub_02058E4C(param0));
+    v1 = ov23_0224429C(CommPlayer_GetXServer(param0), CommPlayer_GetZServer(param0));
 
     if (!v1) {
         return 0;
@@ -1821,8 +1821,8 @@ static void ov23_022448FC (int param0)
 
     v0 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_00;
     v1 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_02;
-    v0 = v0 + sub_0206419C(v2);
-    v1 = v1 + sub_020641A8(v2);
+    v0 = v0 + MapObject_GetDxFromDir(v2);
+    v1 = v1 + MapObject_GetDyFromDir(v2);
 
     CommPlayer_SendXZPos(0, v0, v1);
 }
@@ -1838,8 +1838,8 @@ static BOOL ov23_0224495C (int param0, BOOL param1)
     v3 = Unk_ov23_02257764->unk_B28[CommSys_CurNetId()].unk_00.unk_02;
 
     if (!param1) {
-        v2 = v2 + sub_0206419C(v4);
-        v3 = v3 + sub_020641A8(v4);
+        v2 = v2 + MapObject_GetDxFromDir(v4);
+        v3 = v3 + MapObject_GetDyFromDir(v4);
     }
 
     if ((v0 == v2) && (v1 == v3)) {

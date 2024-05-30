@@ -7396,8 +7396,8 @@ BOOL ov9_0224F240 (const MapObject * param0, int param1)
     v3 = fieldSystem->unk_1C->unk_00;
     v0 = MapObject_GetXPos(param0);
     v1 = MapObject_GetZPos(param0);
-    v0 += sub_0206419C(param1);
-    v1 += sub_020641A8(param1);
+    v0 += MapObject_GetDxFromDir(param1);
+    v1 += MapObject_GetDyFromDir(param1);
 
     return ov9_0224F1F8(v3, v0, v1, &v2);
 }
@@ -7573,9 +7573,9 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
                 int v9 = MapObject_GetYPos(v6);
                 int v10 = MapObject_GetZPos(v6);
 
-                v8 += sub_0206419C(v7);
+                v8 += MapObject_GetDxFromDir(v7);
                 v9 -= (2 * 2);
-                v10 += sub_020641A8(v7);
+                v10 += MapObject_GetDyFromDir(v7);
 
                 MapObject_SetX(v6, v8);
                 MapObject_SetY(v6, v9);

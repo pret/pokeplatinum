@@ -705,8 +705,8 @@ static void ov23_0224B844 (int param0, int param1, BOOL param2)
 
     ov23_0224ADB0(param1, v2, v3, v4);
 
-    v2 += sub_0206419C(v4);
-    v3 += sub_020641A8(v4);
+    v2 += MapObject_GetDxFromDir(v4);
+    v3 += MapObject_GetDyFromDir(v4);
 
     v0.unk_00 = v2;
     v0.unk_02 = v3;
@@ -992,8 +992,8 @@ static int ov23_0224BD1C (int param0, BOOL param1)
         }
 
         if (param1) {
-            v3 = sub_02058DF8(v0);
-            v4 = sub_02058E4C(v0);
+            v3 = CommPlayer_GetXServer(v0);
+            v4 = CommPlayer_GetZServer(v0);
         } else {
             v3 = CommPlayer_XPos(v0);
             v4 = CommPlayer_ZPos(v0);
@@ -1898,8 +1898,8 @@ void ov23_0224CD80 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224CF18 v8;
     int v9;
 
-    v5 = v1 - sub_02058DF8(param0);
-    v6 = v2 - sub_02058E4C(param0);
+    v5 = v1 - CommPlayer_GetXServer(param0);
+    v6 = v2 - CommPlayer_GetZServer(param0);
 
     if (v6 != 0) {
         v3 = v1 + 1;
@@ -2515,8 +2515,8 @@ BOOL ov23_0224D7C8 (int param0)
     int v0;
     int v1;
     UnkStruct_02029894 * v2;
-    int v3 = sub_02058DF8(param0);
-    int v4 = sub_02058E4C(param0);
+    int v3 = CommPlayer_GetXServer(param0);
+    int v4 = CommPlayer_GetZServer(param0);
     int v5 = CommPlayer_DirServer(param0);
 
     if (!ov23_02242E58(v3, v4)) {
@@ -2558,7 +2558,7 @@ BOOL ov23_0224D87C (int param0)
     return v0;
 }
 
-void ov23_0224D898 (int param0)
+void Underground_SecretBaseRemovePlayer (int param0)
 {
     int v0, v1 = 0;
     int v2, v3;
@@ -2568,8 +2568,8 @@ void ov23_0224D898 (int param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (CommSys_IsPlayerConnected(v0)) {
-            v2 = sub_02058DF8(v0);
-            v3 = sub_02058E4C(v0);
+            v2 = CommPlayer_GetXServer(v0);
+            v3 = CommPlayer_GetZServer(v0);
 
             if ((v2 == 0xffff) && (v3 == 0xffff)) {
                 continue;
@@ -2599,8 +2599,8 @@ void ov23_0224D898 (int param0)
     v0 = CommSys_CurNetId();
 
     if (Unk_ov23_022577AC->unk_12D4 == 6) {
-        v2 = sub_02058DF8(v0);
-        v3 = sub_02058E4C(v0);
+        v2 = CommPlayer_GetXServer(v0);
+        v3 = CommPlayer_GetZServer(v0);
 
         if ((v2 == 0xffff) && (v3 == 0xffff)) {
             (void)0;
@@ -2651,8 +2651,8 @@ BOOL ov23_0224D9AC (int param0, BOOL param1)
 
     GF_ASSERT((v2 != 0) && (v3 != 0));
 
-    v2 += sub_0206419C(v4);
-    v3 += sub_020641A8(v4);
+    v2 += MapObject_GetDxFromDir(v4);
+    v3 += MapObject_GetDyFromDir(v4);
 
     Unk_ov23_022577AC->unk_13D6 = 0;
 
