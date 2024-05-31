@@ -644,6 +644,7 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
         return FALSE;
     }
 
+    // these statements are unreachable, but required for matching
     sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, input->transitionDir, transitionType);
 
     return TRUE;
