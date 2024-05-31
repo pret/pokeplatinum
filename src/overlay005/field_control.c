@@ -77,7 +77,7 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 static u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior);
 static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem);
 static BOOL Field_ProcessStep(FieldSystem *fieldSystem);
-static BOOL Field_CheckCoordinateEvent(FieldSystem *fieldSystem);
+static BOOL Field_CheckCoordEvent(FieldSystem *fieldSystem);
 static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curTileBehavior);
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem);
 static BOOL Field_UpdatePoison(FieldSystem *fieldSystem);
@@ -719,7 +719,7 @@ static BOOL Field_ProcessStep (FieldSystem *fieldSystem)
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
     u8 tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
 
-    if (Field_CheckCoordinateEvent(fieldSystem) == TRUE) {
+    if (Field_CheckCoordEvent(fieldSystem) == TRUE) {
         return TRUE;
     }
 
@@ -766,7 +766,7 @@ static BOOL Field_ProcessStep (FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static BOOL Field_CheckCoordinateEvent (FieldSystem *fieldSystem)
+static BOOL Field_CheckCoordEvent (FieldSystem *fieldSystem)
 {
     u16 event = sub_0203CC14(fieldSystem, sub_0203A4AC(fieldSystem), sub_0203A4A4(fieldSystem));
     
