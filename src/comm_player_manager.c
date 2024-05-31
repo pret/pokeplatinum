@@ -46,6 +46,8 @@
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 
+#include "constants/communication/comm_packets.h"
+
 static int sub_020581CC(int param0, int param1);
 static BOOL CommPlayer_MoveBlow(int param0, int param1);
 static BOOL CommPlayer_BlowAnimation(int param0, int param1, int param2, int param3);
@@ -308,7 +310,7 @@ void CommPlayer_SendPosServer (BOOL param0)
 
 static void CommPlayer_SendPosNetId (int netId, const CommPlayerLocation * playerLocation)
 {
-    u8 data[4 + 1];
+    u8 data[COMM_PACKET_SIZE_POS_NETID + 1];
     int x = playerLocation->x, z = playerLocation->z;
 
     if (playerLocation->x < 0) {
@@ -880,7 +882,7 @@ void CommPlayer_RecvDelete (int unused0, int unused2, void * src, void * param3)
 
 int CommPacketSizeOf_RecvLocation (void)
 {
-    return 5;
+    return COMM_PACKET_SIZE_LOCATION;
 }
 
 void CommPlayer_RecvLocationAndInit (int netId, int size, void * src, void * unused)
@@ -1236,7 +1238,7 @@ void CommPlayer_StopBlowAnimation (int netId)
 
 int CommPacketSizeOf_RecvLocationAndInit (void)
 {
-    return 4;
+    return COMM_PACKET_SIZE_POS_NETID;
 }
 
 BOOL sub_02058C40 (void)
