@@ -878,7 +878,7 @@ void CommPlayer_RecvDelete (int unused0, int unused2, void * src, void * param3)
     CommInfo_InitPlayer(netId);
 }
 
-int sub_020585A4 (void)
+int CommPacketSizeOf_RecvLocation (void)
 {
     return 5;
 }
@@ -1234,7 +1234,7 @@ void CommPlayer_StopBlowAnimation (int netId)
     }
 }
 
-int sub_02058C3C (void)
+int CommPacketSizeOf_RecvLocationAndInit (void)
 {
     return 4;
 }

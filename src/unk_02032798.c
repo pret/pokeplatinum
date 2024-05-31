@@ -37,14 +37,14 @@ static const CommCmdTable Unk_020E5D64[] = {
     {sub_02037AD8, sub_02037B54, NULL},
     {NULL, NULL, NULL},
     {NULL, NULL, NULL},
-    {sub_02036008, sub_02032950, NULL},
-    {sub_02036030, sub_02032950, NULL},
-    {sub_02036058, sub_02032950, NULL},
+    {sub_02036008, CommPacketSizeOf_NetId, NULL},
+    {sub_02036030, CommPacketSizeOf_NetId, NULL},
+    {sub_02036058, CommPacketSizeOf_NetId, NULL},
     {sub_02032958, sub_0203294C, NULL},
     {sub_0203299C, sub_0203294C, NULL},
     {sub_020329C4, sub_0203294C, NULL},
-    {CommCmd_16, sub_02032950, NULL},
-    {CommCmd_17, sub_02032950, NULL},
+    {CommCmd_16, CommPacketSizeOf_NetId, NULL},
+    {CommCmd_17, CommPacketSizeOf_NetId, NULL},
     {CommCmd_18, sub_02032954, NULL},
     {sub_02036574, sub_02036590, NULL},
     {sub_02036670, CommTool_TempDataSize, NULL},
@@ -171,7 +171,7 @@ int sub_0203294C (void)
     return 0;
 }
 
-int sub_02032950 (void)
+int CommPacketSizeOf_NetId (void)
 {
     return 1;
 }

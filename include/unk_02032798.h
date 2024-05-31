@@ -11,6 +11,6 @@ BOOL sub_020328D0(int param0);
 void * sub_0203290C(int param0, int param1, int param2);
 int sub_02032944(void);
 int sub_0203294C(void);
-int sub_02032950(void);
+int CommPacketSizeOf_NetId(void);
 
 #endif // POKEPLATINUM_UNK_02032798_H

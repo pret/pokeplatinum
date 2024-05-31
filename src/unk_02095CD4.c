@@ -29,15 +29,15 @@ static int sub_02095E70(void);
 
 static const CommCmdTable Unk_020F59BC[] = {
     {sub_02095CFC, sub_02095E78, sub_02095E80},
-    {sub_02095D74, sub_02032950},
-    {sub_02095D94, sub_02032950},
-    {sub_02095DA4, sub_02032950},
-    {sub_02095DA8, sub_02032950},
-    {sub_02095DAC, sub_02032950},
+    {sub_02095D74, CommPacketSizeOf_NetId},
+    {sub_02095D94, CommPacketSizeOf_NetId},
+    {sub_02095DA4, CommPacketSizeOf_NetId},
+    {sub_02095DA8, CommPacketSizeOf_NetId},
+    {sub_02095DAC, CommPacketSizeOf_NetId},
     {sub_02095DFC, sub_02095E74, sub_02095E80},
     {sub_02095E28, sub_02095E68, sub_02095E80},
     {sub_02095DB8, sub_0203294C},
-    {sub_02095DBC, sub_02032950},
+    {sub_02095DBC, CommPacketSizeOf_NetId},
     {sub_02095DCC, sub_02095E70}
 };
 
