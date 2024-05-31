@@ -161,11 +161,7 @@ Pokemon * sub_02054A74 (const Party * param0)
 
 BOOL Party_HasTwoAliveMons (const Party *party)
 {
-    if (sub_02054A10(party) >= 2) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return sub_02054A10(party) >= 2;
 }
 
 void sub_02054AC4 (Party * param0)

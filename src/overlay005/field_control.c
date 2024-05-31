@@ -189,8 +189,8 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         if (sub_02067A84(fieldSystem, hasTwoAliveMons) == TRUE
-            || sub_02071CB4(fieldSystem, 2) == TRUE
-            && ov8_0224C51C(fieldSystem) == TRUE) {
+            || (sub_02071CB4(fieldSystem, 2) == TRUE
+            && ov8_0224C51C(fieldSystem) == TRUE)) {
 
             sub_0205F56C(fieldSystem->playerAvatar);
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
@@ -1074,7 +1074,7 @@ static BOOL Field_DistortionInteract (FieldSystem *fieldSystem, MapObject **obje
 
     while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, (1 << 0))) {
         objectX = MapObject_GetXPos(*object);
-        objectY = (MapObject_GetYPos(*object) / 2);
+        objectY = MapObject_GetYPos(*object) / 2;
         objectZ = MapObject_GetZPos(*object);
 
         if (playerY == objectY && playerX == objectX && playerZ == objectZ) {
