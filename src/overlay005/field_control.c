@@ -74,10 +74,10 @@
 #include "overlay023/ov23_02241F74.h"
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input);
-static u16 Field_TileBehaviorToEvent(FieldSystem *fieldSystem, u8 behavior);
+static u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior);
 static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem);
 static BOOL Field_ProcessStep(FieldSystem *fieldSystem);
-static BOOL Field_CheckPositionalEvent(FieldSystem *fieldSystem);
+static BOOL Field_CheckCoordinateEvent(FieldSystem *fieldSystem);
 static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, const int playerZ, const u8 curTileBehavior);
 static BOOL Field_UpdateDaycare(FieldSystem *fieldSystem);
 static BOOL Field_UpdatePoison(FieldSystem *fieldSystem);
@@ -256,16 +256,16 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->interact) {
-        int interactCheck;
+        int validInteraction;
         MapObject *object;
 
         if (sub_02071CB4(fieldSystem, 9) == TRUE) {
-            interactCheck = Field_DistortionInteract(fieldSystem, &object);
+            validInteraction = Field_DistortionInteract(fieldSystem, &object);
         } else {
-            interactCheck = sub_0203CA40(fieldSystem, &object);
+            validInteraction = sub_0203CA40(fieldSystem, &object);
         }
 
-        if (interactCheck == TRUE) {
+        if (validInteraction == TRUE) {
             if (sub_0205F588(fieldSystem->playerAvatar) == TRUE) {
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
@@ -282,7 +282,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         int distortionState = PlayerAvatar_DistortionWorldState(fieldSystem->playerAvatar);
 
         if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
-            int event = sub_0203CA6C(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+            int event = sub_0203CA6C(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
 
             if (event != 0xffff) {
                 sub_0203E880(fieldSystem, event, NULL);
@@ -301,10 +301,10 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
 
         int distortionDir = sub_0205EAA0(fieldSystem->playerAvatar);
         u32 distortionBehavior = sub_020616F0(fieldSystem->playerAvatar, distortionDir);
-        int distortionEvent = Field_TileBehaviorToEvent(fieldSystem, distortionBehavior);
+        int distortionScript = Field_TileBehaviorToScript(fieldSystem, distortionBehavior);
 
-        if (distortionEvent != 0xffff) {
-            sub_0203E880(fieldSystem, distortionEvent, NULL);
+        if (distortionScript != 0xffff) {
+            sub_0203E880(fieldSystem, distortionScript, NULL);
             return TRUE;
         }
 
@@ -511,17 +511,17 @@ int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldS
             return TRUE;
         }
 
-        int v2 = sub_0203CA6C(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+        int v2 = sub_0203CA6C(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
         
         if (v2 != 0xffff) {
             sub_0203E880(fieldSystem, v2, NULL);
             return TRUE;
         }
 
-        int behaviorEvent = Field_TileBehaviorToEvent(fieldSystem, Field_NextTileBehavior(fieldSystem));
+        int tileScript = Field_TileBehaviorToScript(fieldSystem, Field_NextTileBehavior(fieldSystem));
 
-        if (behaviorEvent != 0xffff) {
-            sub_0203E880(fieldSystem, behaviorEvent, NULL);
+        if (tileScript != 0xffff) {
+            sub_0203E880(fieldSystem, tileScript, NULL);
             return TRUE;
         }
     }
@@ -649,7 +649,7 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
     return TRUE;
 }
 
-u16 Field_TileBehaviorToEvent (FieldSystem *fieldSystem, u8 behavior)
+u16 Field_TileBehaviorToScript (FieldSystem *fieldSystem, u8 behavior)
 {
     int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
@@ -719,7 +719,7 @@ static BOOL Field_ProcessStep (FieldSystem *fieldSystem)
     int playerZ = Player_GetZPos(fieldSystem->playerAvatar);
     u8 tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
 
-    if (Field_CheckPositionalEvent(fieldSystem) == TRUE) {
+    if (Field_CheckCoordinateEvent(fieldSystem) == TRUE) {
         return TRUE;
     }
 
@@ -766,9 +766,9 @@ static BOOL Field_ProcessStep (FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static BOOL Field_CheckPositionalEvent (FieldSystem *fieldSystem)
+static BOOL Field_CheckCoordinateEvent (FieldSystem *fieldSystem)
 {
-    u16 event = sub_0203CC14(fieldSystem, (void *)sub_0203A4AC(fieldSystem), sub_0203A4A4(fieldSystem));
+    u16 event = sub_0203CC14(fieldSystem, sub_0203A4AC(fieldSystem), sub_0203A4A4(fieldSystem));
     
     if (event != 0xffff) {
         sub_0203E880(fieldSystem, event, NULL);
