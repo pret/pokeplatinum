@@ -279,9 +279,9 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             return TRUE;
         }
 
-        int distortionCheck = sub_0205F108(fieldSystem->playerAvatar);
+        int distortionState = PlayerAvatar_DistortionWorldState(fieldSystem->playerAvatar);
 
-        if (distortionCheck == AVATAR_DISTORTION_STATE_NONE || distortionCheck == AVATAR_DISTORTION_STATE_ACTIVE) {
+        if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
             int event = sub_0203CA6C(fieldSystem, (void *)sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
 
             if (event != 0xffff) {
@@ -290,7 +290,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             }
         }
 
-        if (distortionCheck == AVATAR_DISTORTION_STATE_NONE) {
+        if (distortionState == AVATAR_DISTORTION_STATE_NONE) {
             int event;
 
             if (ov5_021EFB40(fieldSystem, &event)) {

@@ -858,35 +858,35 @@ void sub_0205F098 (PlayerAvatar * playerAvatar, int param1)
     GF_ASSERT(0);
 }
 
-int sub_0205F108 (PlayerAvatar * const playerAvatar)
+int PlayerAvatar_DistortionWorldState (PlayerAvatar * const playerAvatar)
 {
-    int v0 = 0;
+    int state = AVATAR_DISTORTION_STATE_NONE;
     u32 v1 = sub_0205EBB0(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
 
     switch (v1) {
     case (1 << 8):
-        v0 = 1;
+        state = AVATAR_DISTORTION_STATE_ACTIVE;
         break;
     case (1 << 9):
-        v0 = 2;
+        state = AVATAR_DISTORTION_STATE_FLOOR;
         break;
     case (1 << 10):
-        v0 = 3;
+        state = AVATAR_DISTORTION_STATE_WEST_WALL;
         break;
     case (1 << 11):
-        v0 = 4;
+        state = AVATAR_DISTORTION_STATE_EAST_WALL;
         break;
     case (1 << 12):
-        v0 = 5;
+        state = AVATAR_DISTORTION_STATE_CEILING;
         break;
     }
 
-    return v0;
+    return state;
 }
 
 BOOL sub_0205F158 (PlayerAvatar * const playerAvatar)
 {
-    int v0 = sub_0205F108(playerAvatar);
+    int v0 = PlayerAvatar_DistortionWorldState(playerAvatar);
 
     if ((v0 == 0) || (v0 == 1)) {
         return FALSE;
@@ -897,7 +897,7 @@ BOOL sub_0205F158 (PlayerAvatar * const playerAvatar)
 
 BOOL sub_0205F16C (PlayerAvatar * const playerAvatar)
 {
-    int v0 = sub_0205F108(playerAvatar);
+    int v0 = PlayerAvatar_DistortionWorldState(playerAvatar);
 
     if ((v0 == 0) || (v0 == 1) || (v0 == 2)) {
         return TRUE;
