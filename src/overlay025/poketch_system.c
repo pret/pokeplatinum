@@ -60,14 +60,14 @@ FS_EXTERN_OVERLAY(overlay55);
 static PoketchSystem *PoketchSystem_GetFromFieldSystem(void);
 static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys);
 static void PoketchSystem_Shutdown(PoketchSystem *poketchSys);
-static void PoketchSystem_MainTask(SysTask *param0, void * param1);
-static void PoketchSystem_PostRender(SysTask *param0, void * param1);
-static void PoketchSystem_SetState(PoketchSystem *poketchSys, u32 param1);
+static void PoketchSystem_MainTask(SysTask *task, void *system);
+static void PoketchSystem_PostRender(SysTask *, void *system);
+static void PoketchSystem_SetState(PoketchSystem *poketchSys, u32 state);
 static void PoketchEvent_InitApp(PoketchSystem *poketchSys);
 static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys);
 static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys);
 static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys);
-static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int param1);
+static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int appID);
 static void PoketchSystem_UnloadApp(PoketchSystem *poketchSys);
 static void PoketchSystem_InitApp(PoketchSystem *poketchSys, u32 param1);
 static BOOL PoketchSystem_IsAppInitialized(PoketchSystem *poketchSys);
@@ -78,7 +78,7 @@ static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys);
 static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
 static BOOL ov25_022543EC(UnkStruct_ov25_02254560 * param0, u32 param1);
-static inline BOOL PoketchSystem_InsideScreenBounds(u32 param0, u32 param1);
+static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y);
 
 // the order of this array determines the app order in the poketch.
 static const struct {
