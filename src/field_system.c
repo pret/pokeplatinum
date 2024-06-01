@@ -318,7 +318,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
                     PoketchSystem * v4 = sub_0203D158();
 
                     if (v4 != NULL) {
-                        v3 = ov25_02253DD4(v4);
+                        v3 = PoketchSystem_CheckTouch(v4);
                     }
 
                     PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v3);
@@ -344,7 +344,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
                     PoketchSystem * v6 = sub_0203D158();
 
                     if (v6 != NULL) {
-                        v5 = ov25_02253DD4(v6);
+                        v5 = PoketchSystem_CheckTouch(v6);
                     }
 
                     PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v5);
