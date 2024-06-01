@@ -776,7 +776,7 @@ static void ov33_0225718C (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
     case 0:
         VEC_Set(&v0->unk_08, 0, 0, 0);
         ov33_02256C98(param0, param2);
-        ov25_02254424(1641);
+        PoketchSystem_PlaySoundEffect(1641);
         v0->unk_34_val3[0]++;
     case 1:
         v0->unk_34_val3[1] += 8;

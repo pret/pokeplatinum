@@ -115,7 +115,7 @@ void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
 void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys);
 void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData);
 UnkStruct_ov25_02254560 * ov25_02254418(void);
-void ov25_02254424(u32 param0);
+void PoketchSystem_PlaySoundEffect(u32 param0);
 void ov25_02254444(u32 param0, u32 param1);
 BOOL PoketchSystem_IsTouchingDisplay(u32 *x, u32 *y);
 BOOL PoketchSystem_TappedDisplay(u32 *x, u32 *y);

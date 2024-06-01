@@ -238,7 +238,7 @@ static BOOL ov45_022563C0 (UnkStruct_ov45_022561D4 * param0)
 
         if ((param0->unk_1C == 1) && (param0->unk_18 == 1)) {
             param0->unk_1C = 0;
-            ov25_02254424(1646);
+            PoketchSystem_PlaySoundEffect(1646);
             break;
         }
 
@@ -304,7 +304,7 @@ static BOOL ov45_022564D0 (UnkStruct_ov45_022561D4 * param0)
         }
 
         if ((param0->unk_1C == 1) && (param0->unk_18 == 0)) {
-            ov25_02254424(1646);
+            PoketchSystem_PlaySoundEffect(1646);
             break;
         }
 

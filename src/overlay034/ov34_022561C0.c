@@ -157,7 +157,7 @@ static BOOL ov34_022562F0 (UnkStruct_ov34_0225621C * param0)
     case 0:
         if (ov34_022563E4(param0, &v0, &v1)) {
             ov34_02256428(param0, v0, v1);
-            ov25_02254424(1640);
+            PoketchSystem_PlaySoundEffect(1640);
             ov34_02256640(param0->unk_48, 2);
             param0->unk_01 = 1;
         }
@@ -188,7 +188,7 @@ static BOOL ov34_022562F0 (UnkStruct_ov34_0225621C * param0)
         break;
     case 3:
         if (ov34_02256664(param0->unk_48, 2)) {
-            ov25_02254424(1640);
+            PoketchSystem_PlaySoundEffect(1640);
             ov34_02256640(param0->unk_48, 2);
             param0->unk_01 = 1;
         }

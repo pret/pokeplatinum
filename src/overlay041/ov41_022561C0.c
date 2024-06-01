@@ -190,16 +190,16 @@ static BOOL ov41_02256378 (UnkStruct_ov41_02256220 * param0)
                 param0->unk_04.unk_5B76 = 1;
                 ov41_0225688C(param0->unk_5B7C, 5);
                 ov41_0225688C(param0->unk_5B7C, 7);
-                ov25_02254424(1635);
+                PoketchSystem_PlaySoundEffect(1635);
                 param0->unk_01 = 1;
                 break;
             case 1:
-                ov25_02254424(1646);
+                PoketchSystem_PlaySoundEffect(1646);
                 break;
             case 2:
                 param0->unk_04.unk_5B76 = 1;
                 ov41_0225688C(param0->unk_5B7C, 5);
-                ov25_02254424(1635);
+                PoketchSystem_PlaySoundEffect(1635);
                 param0->unk_01 = 3;
                 break;
             }
@@ -231,7 +231,7 @@ static BOOL ov41_02256378 (UnkStruct_ov41_02256220 * param0)
             switch (param0->unk_5B8C) {
             case 2:
             case 0:
-                ov25_02254424(1646);
+                PoketchSystem_PlaySoundEffect(1646);
                 break;
             case 1:
                 param0->unk_04.unk_5B74 = 1;
@@ -239,7 +239,7 @@ static BOOL ov41_02256378 (UnkStruct_ov41_02256220 * param0)
                 param0->unk_04.unk_5B76 = 1;
                 ov41_0225688C(param0->unk_5B7C, 5);
                 ov41_0225688C(param0->unk_5B7C, 8);
-                ov25_02254424(1635);
+                PoketchSystem_PlaySoundEffect(1635);
                 param0->unk_01 = 2;
                 break;
             }

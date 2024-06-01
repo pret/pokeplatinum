@@ -661,17 +661,14 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
 
 static BOOL ov25_022543EC (UnkStruct_ov25_02254560 * param0, u32 param1)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < 6; v0++) {
-        if (ov25_022547F4(param0, param1) == 0) {
-            return 0;
+   for (u32 i = 0; i < 6; i++) {
+        if (ov25_022547F4(param0, param1) == FALSE) {
+            return FALSE;
         }
     }
 
     ov25_022547D0(param0, param1);
-
-    return 1;
+    return TRUE;
 }
 
 UnkStruct_ov25_02254560 * ov25_02254418 (void)
@@ -680,12 +677,12 @@ UnkStruct_ov25_02254560 * ov25_02254418 (void)
     return poketchSys->unk_1C;
 }
 
-void ov25_02254424 (u32 param0)
+void PoketchSystem_PlaySoundEffect(u32 soundID)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
-        Sound_PlayEffect(param0);
+    if ((poketchSys->unk_05 == FALSE) && (ov25_0225450C(poketchSys) == FALSE)) {
+        Sound_PlayEffect(soundID);
     }
 }
 

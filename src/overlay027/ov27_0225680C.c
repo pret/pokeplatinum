@@ -358,7 +358,7 @@ static void ov27_02256BE8 (SysTask * param0, void * param1)
 
     sub_02019448(v0->unk_04, 6);
 
-    ov25_02254424(1641);
+    PoketchSystem_PlaySoundEffect(1641);
     ov27_02256A04(param1);
 }
 
@@ -409,7 +409,7 @@ static void ov27_02256C80 (SysTask * param0, void * param1)
         ov25_0225524C(param1);
     case 1:
         if (ov27_02256E90(v2, 6)) {
-            ov25_02254424(1641);
+            PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
             sub_02019448(v1->unk_04, 6);
         }
@@ -442,7 +442,7 @@ static void ov27_02256D00 (SysTask * param0, void * param1)
         ov25_0225524C(param1);
     case 1:
         if (ov27_02256E90(v2, 3)) {
-            ov25_02254424(1641);
+            PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
             sub_02019448(v1->unk_04, 6);
         }
@@ -472,7 +472,7 @@ static void ov27_02256D80 (SysTask * param0, void * param1)
         ov25_022558C4(v1->unk_60[8], 15);
         ov27_02256EC4(v1->unk_04, 5);
         sub_02019448(v1->unk_04, 6);
-        ov25_02254424(1638);
+        PoketchSystem_PlaySoundEffect(1638);
         ov25_0225524C(param1);
     case 1:
         if (++(v2->unk_00) > 2) {

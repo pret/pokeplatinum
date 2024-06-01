@@ -180,10 +180,10 @@ static BOOL ov39_02256324 (UnkStruct_ov39_0225621C * param0)
             if (param0->unk_04.unk_04[param0->unk_34]) {
                 param0->unk_04.unk_1C = param0->unk_34;
                 ov39_02256418(param0->unk_24, 2);
-                ov25_02254424(1635);
+                PoketchSystem_PlaySoundEffect(1635);
                 param0->unk_01++;
             } else {
-                ov25_02254424(1646);
+                PoketchSystem_PlaySoundEffect(1646);
             }
         }
         break;

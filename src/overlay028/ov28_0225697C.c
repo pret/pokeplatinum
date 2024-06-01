@@ -586,7 +586,7 @@ static void ov28_02256B24 (SysTask * param0, void * param1)
     v1 = ov25_0225523C(param1);
     v2 = v0->unk_00;
 
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
 
     sub_020198C0(v1->unk_04, 6, Unk_ov28_0225797C[v2], Unk_ov28_02257938[v2].unk_00, Unk_ov28_02257938[v2].unk_01, Unk_ov28_02257938[v2].unk_02, Unk_ov28_02257938[v2].unk_03);
     sub_02019448(v1->unk_04, 6);

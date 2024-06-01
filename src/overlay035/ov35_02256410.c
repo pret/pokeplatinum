@@ -194,7 +194,7 @@ static void ov35_02256644 (SysTask * param0, void * param1)
 
     switch (v0->unk_00->unk_04) {
     case 0:
-        ov25_02254424(1641);
+        PoketchSystem_PlaySoundEffect(1641);
         ov25_022558C4(v0->unk_24, 1);
         break;
     case 1:

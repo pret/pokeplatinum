@@ -172,7 +172,7 @@ static void ov37_02256588 (SysTask * param0, void * param1)
     UnkStruct_ov37_022563D4 * v0 = ov25_0225523C(param1);
     const UnkStruct_ov37_022563D4_1 * v1 = ov25_02255240(param1);
 
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
 
     if (v1->unk_00) {
         ov25_022558C4(v0->unk_24, 0);

@@ -206,7 +206,7 @@ static void ov48_0225672C (SysTask * param0, void * param1)
 
         G2S_SetBGMosaicSize(v0->unk_154, v0->unk_154);
         G2S_SetOBJMosaicSize(v0->unk_154, v0->unk_154);
-        ov25_02254424(1656);
+        PoketchSystem_PlaySoundEffect(1656);
         ov25_0225524C(param1);
         break;
     case 1:

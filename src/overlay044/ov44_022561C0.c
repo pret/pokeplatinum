@@ -217,7 +217,7 @@ static BOOL ov44_022563D0 (UnkStruct_ov44_0225621C * param0)
                     ov44_02256744(param0->unk_38, 2);
                     param0->unk_01 = 2;
                 } else {
-                    ov25_02254424(1646);
+                    PoketchSystem_PlaySoundEffect(1646);
                 }
                 break;
             }
