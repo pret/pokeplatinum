@@ -16,7 +16,6 @@ void sub_0203CD84(FieldSystem * param0, const OverlayManagerTemplate * param1, v
 void sub_0203D128(void);
 void sub_0203D140(void);
 PoketchSystem * FieldSystem_PoketchSystem(void);
-
 BGL * sub_0203D170(void * param0);
 SaveData * FieldSystem_SaveData(void * param0);
 
