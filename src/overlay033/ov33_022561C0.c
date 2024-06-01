@@ -44,7 +44,7 @@ static BOOL ov33_02256440(UnkStruct_ov33_0225621C * param0);
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov33_022561D4, ov33_02256374);
+    PoketchSystem_SetAppFunctions(ov33_022561D4, ov33_02256374);
 }
 
 static BOOL ov33_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -163,7 +163,7 @@ static void ov33_02256340 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov33_0225632C(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_60);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_60);
         }
     } else {
     }
@@ -194,7 +194,7 @@ static BOOL ov33_02256390 (UnkStruct_ov33_0225621C * param0)
         break;
     case 1:
         if (ov33_0225656C(param0->unk_5C, 0)) {
-            ov25_0225424C(param0->unk_60);
+            PoketchSystem_NotifyAppLoaded(param0->unk_60);
             ov33_0225637C(param0, 1);
         }
         break;

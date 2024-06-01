@@ -50,7 +50,7 @@ static const TouchScreenHitTable Unk_ov29_02256B3C[] = {
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov29_022561D4, ov29_02256324);
+    PoketchSystem_SetAppFunctions(ov29_022561D4, ov29_02256324);
 }
 
 static BOOL ov29_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -117,7 +117,7 @@ static void ov29_022562AC (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov29_02256288(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_16F8);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_16F8);
         }
     } else {
     }
@@ -160,7 +160,7 @@ static BOOL ov29_02256340 (UnkStruct_ov29_0225621C * param0)
         break;
     case 1:
         if (ov29_022567D8(param0->unk_16F4, 0)) {
-            ov25_0225424C(param0->unk_16F8);
+            PoketchSystem_NotifyAppLoaded(param0->unk_16F8);
             ov29_0225632C(param0, 1);
         }
         break;
