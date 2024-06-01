@@ -742,7 +742,7 @@ void ov25_02254518 (const PoketchSystem *poketchSys, PoketchButtonManager *butto
     }
 }
 
-BOOL ov25_02254534 (const PoketchSystem *poketchSys)
+BOOL PoketchSystem_PlayerMoved(const PoketchSystem *poketchSys)
 {
     return poketchSys->playerMoved;
 }

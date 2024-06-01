@@ -168,7 +168,7 @@ static BOOL ov34_022562F0 (UnkStruct_ov34_0225621C * param0)
             break;
         }
 
-        if ((ov25_02254534(param0->unk_4C) == 1) || (ov25_0225450C(param0->unk_4C))) {
+        if ((PoketchSystem_PlayerMoved(param0->unk_4C) == 1) || (ov25_0225450C(param0->unk_4C))) {
             ov34_02256A0C(param0->unk_48);
             param0->unk_01 = 2;
             break;
