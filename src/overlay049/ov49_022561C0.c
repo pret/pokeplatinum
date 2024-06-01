@@ -168,7 +168,7 @@ static BOOL ov49_02256348 (UnkStruct_ov49_0225621C * param0)
     if (ov25_0225450C(param0->unk_0C) == 0) {
         u32 v0, v1;
 
-        if (sub_020227A4(&v0, &v1)) {
+        if (TouchScreen_TouchLocation(&v0, &v1)) {
             if ((136 <= v1) && (v1 < 160) && (48 <= v0) && (v0 < 184)) {
                 u32 v2 = (v0 - 48) / 16;
 

@@ -61,7 +61,7 @@ static BOOL ov31_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
         if (ov31_02256228(v0, param1, param2, param3)) {
             if (SysTask_Start(ov31_022563CC, v0, 1) != NULL) {
                 *param0 = v0;
-                ov25_02254274(ov31_022563B0, v0);
+                PoketchSystem_SetSaveFunction(ov31_022563B0, v0);
                 return 1;
             }
         }
@@ -254,7 +254,7 @@ static BOOL ov31_0225646C (UnkStruct_ov31_02256228 * param0)
     if (ov31_022565B4(param0->unk_1EC, 1)) {
         u32 v0, v1;
 
-        if (ov25_0225446C(&v0, &v1)) {
+        if (PoketchSystem_IsTouchingDisplay(&v0, &v1)) {
             if ((v0 >= 16) && (v1 >= 16)) {
                 v0 = (v0 - 16) / 8;
                 v1 = (v1 - 16) / 8;

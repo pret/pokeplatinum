@@ -535,7 +535,7 @@ static BOOL ov111_021D10B8 (UnkStruct_ov111_021D0F7C * param0)
             param0->unk_15[param0->unk_0E] = v3;
             param0->unk_0E++;
 
-            sub_020227A4(&v0, &v1);
+            TouchScreen_TouchLocation(&v0, &v1);
             sub_0200E084(&param0->unk_5C[15], 0);
             GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 0);
             param0->unk_08 = 2;

@@ -208,7 +208,7 @@ static BOOL ov29_02256404 (UnkStruct_ov29_0225621C * param0)
 {
     u32 v0, v1;
 
-    if (ov25_0225446C(&v0, &v1)) {
+    if (PoketchSystem_IsTouchingDisplay(&v0, &v1)) {
         if (((u32)(v0 - 16) < (u32)(172 - 16)) & ((u32)(v1 - 16) < (u32)(166 - 16))) {
             v0 = (v0 - 16) >> 1;
             v1 = (v1 - 16) >> 1;
@@ -228,7 +228,7 @@ static BOOL ov29_02256460 (UnkStruct_ov29_0225621C * param0)
 {
     u32 v0, v1;
 
-    if (ov25_0225446C(&v0, &v1)) {
+    if (PoketchSystem_IsTouchingDisplay(&v0, &v1)) {
         if (((u32)(v0 - 16) < (u32)(172 - 16)) & ((u32)(v1 - 16) < (u32)(166 - 16))) {
             v0 = (v0 - 16) >> 1;
             v1 = (v1 - 16) >> 1;

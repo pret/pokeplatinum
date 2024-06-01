@@ -11,7 +11,7 @@ typedef void (* PoketchButtonCallback)(u32, u32, u32, void *);
 enum ButtonManagerState {
 	BUTTON_MANAGER_STATE_NULL = 0,
 	BUTTON_MANAGER_STATE_TOUCH,
-	BUTTON_MANAGER_STATE_OUT,
+	BUTTON_MANAGER_STATE_SLIDEOUT, // Slid touch off of button but did not release
 	BUTTON_MANAGER_STATE_TAP,
 	BUTTON_MANAGER_STATE_DOUBLETAP,
 	BUTTON_MANAGER_STATE_TIMER0,

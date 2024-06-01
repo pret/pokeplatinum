@@ -656,7 +656,7 @@ static int ov56_02256BC0 (UnkStruct_ov56_02256468 * param0)
         switch (v0) {
         case 0:
             ov56_0225717C(param0, 0);
-            sub_020227A4(&v1, &v2);
+            TouchScreen_TouchLocation(&v1, &v2);
             ov56_02256994(param0->unk_1FC[2], v2);
 
             if (param0->unk_2D8.unk_00 > 3) {

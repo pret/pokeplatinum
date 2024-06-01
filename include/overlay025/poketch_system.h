@@ -55,7 +55,10 @@ enum PoketchFieldEventID {
 };
 
 enum PoketchScreenCoordinates {
-    
+    POKETCH_SCREEN_MINX = 16,
+    POKETCH_SCREEN_MINY = 16,
+    POKETCH_SCREEN_MAXX = 207,
+    POKETCH_SCREEN_MAXY = 175,
 };
 
 typedef struct PoketchSystem PoketchSystem;
@@ -107,15 +110,15 @@ BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys);
 void PoketchSystem_SendFieldEvent(PoketchSystem *poketchSys, enum PoketchFieldEventID eventID, u32);
 BOOL PoketchSystem_CheckTouch(PoketchSystem *poketchSys);
 enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys);
-void PoketchSystem_SetAppFunctions(PoketchAppInitFunction param0, PoketchAppShutdownFunction param1);
+void PoketchSystem_SetAppFunctions(PoketchAppInitFunction initFunction, PoketchAppShutdownFunction shutdownFunction);
 void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
 void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys);
-void ov25_02254274(PoketchAppSaveFunction param0, void * param1);
+void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData);
 UnkStruct_ov25_02254560 * ov25_02254418(void);
 void ov25_02254424(u32 param0);
 void ov25_02254444(u32 param0, u32 param1);
-BOOL ov25_0225446C(u32 * param0, u32 * param1);
-BOOL ov25_022544BC(u32 * param0, u32 * param1);
+BOOL PoketchSystem_IsTouchingDisplay(u32 *x, u32 *y);
+BOOL PoketchSystem_TappedDisplay(u32 *x, u32 *y);
 BOOL ov25_0225450C(const PoketchSystem *poketchSys);
 void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager * param1);
 BOOL ov25_02254534(const PoketchSystem *poketchSys);

@@ -193,7 +193,7 @@ static BOOL ov40_02256388 (UnkStruct_ov40_0225621C * param0)
     if (ov25_0225450C(param0->unk_2C) == 0) {
         u32 v0, v1;
 
-        if (sub_020227C0(&v0, &v1)) {
+        if (TouchScreen_TapLocation(&v0, &v1)) {
             if (((u32)(v0 - 16) < (u32)(207 - 16)) & ((u32)(v1 - 16) < (u32)(175 - 16))) {
                 return 1;
             }

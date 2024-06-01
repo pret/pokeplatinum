@@ -76,9 +76,9 @@ static BOOL PoketchSystem_IsAppShutdown(PoketchSystem *poketchSys);
 static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys);
-static void ov25_022542E4(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
+static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
 static BOOL ov25_022543EC(UnkStruct_ov25_02254560 * param0, u32 param1);
-static inline BOOL inline_ov25_0225446C(u32 param0, u32 param1);
+static inline BOOL PoketchSystem_InsideScreenBounds(u32 param0, u32 param1);
 
 // the order of this array determines the app order in the poketch.
 static const struct {
@@ -313,8 +313,8 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         }
 
         switch (poketchSys->buttonState) {
-        case 3:
-        case 5:
+        case BUTTON_MANAGER_STATE_TAP:
+        case BUTTON_MANAGER_STATE_TIMER0:
             poketchSys->unk_0C = 0;
             poketchSys->unk_05 = 1;
             ov25_022547D0(poketchSys->unk_1C, 4);
@@ -544,7 +544,7 @@ void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys)
     poketchSys->appState = POKETCH_APP_STATE_NONE;
 }
 
-void ov25_02254274 (PoketchAppSaveFunction saveFunction, void * saveData)
+void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
@@ -560,7 +560,7 @@ static const TouchScreenHitTable sMainPoketchButtons[] = {
 
 static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
 {
-    poketchSys->buttonManager = PoketchButtonManager_New(sMainPoketchButtons, NELEMS(sMainPoketchButtons), ov25_022542E4, poketchSys, 7);
+    poketchSys->buttonManager = PoketchButtonManager_New(sMainPoketchButtons, NELEMS(sMainPoketchButtons), PoketchSystem_OnButtonEvent, poketchSys, 7);
 
     if (poketchSys->buttonManager != NULL) {
         PoketchButtonManager_SetButtonTimer(poketchSys->buttonManager, 0, 0, 7);
@@ -583,9 +583,9 @@ static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys)
     PoketchButtonManager_Update(poketchSys->buttonManager);
 }
 
-static void ov25_022542E4 (u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system)
+static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system)
 {
-    PoketchSystem * poketchSys = (PoketchSystem *)system;
+    PoketchSystem *poketchSys = (PoketchSystem *)system;
 
     if (ov25_0225450C(poketchSys) == FALSE) {
         switch (touchEvent) {
@@ -647,7 +647,7 @@ static void ov25_022542E4 (u32 buttonID, u32 buttonEvent, u32 touchEvent, void *
                 buttonEvent = BUTTON_MANAGER_STATE_NULL;
             }
             break;
-        case BUTTON_MANAGER_STATE_OUT:
+        case BUTTON_MANAGER_STATE_SLIDEOUT:
             if ((poketchSys->unk_30 == 7) || (poketchSys->unk_30 == 10)) {
                 buttonEvent = BUTTON_MANAGER_STATE_TAP;
             }
@@ -698,39 +698,39 @@ void ov25_02254444 (u32 param0, u32 param1)
     }
 }
 
-static inline BOOL inline_ov25_0225446C (u32 param0, u32 param1)
+static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y)
 {
-    if (((u32)(param0 - 16) < (u32)(207 - 16)) & ((u32)(param1 - 16) < (u32)(175 - 16))) {
+    if (((u32)(x - POKETCH_SCREEN_MINX) < (u32)(POKETCH_SCREEN_MAXX - POKETCH_SCREEN_MINX)) & ((u32)(y - POKETCH_SCREEN_MINY) < (u32)(POKETCH_SCREEN_MAXY - POKETCH_SCREEN_MINY))) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-BOOL ov25_0225446C (u32 * param0, u32 * param1)
+BOOL PoketchSystem_IsTouchingDisplay(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
-        if (sub_020227A4(param0, param1)) {
-            return inline_ov25_0225446C(*param0, *param1);
+        if (TouchScreen_TouchLocation(x, y)) {
+            return PoketchSystem_InsideScreenBounds(*x, *y);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov25_022544BC (u32 * param0, u32 * param1)
+BOOL PoketchSystem_TappedDisplay(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
-        if (sub_020227C0(param0, param1)) {
-            return inline_ov25_0225446C(*param0, *param1);
+        if (TouchScreen_TapLocation(x, y)) {
+            return PoketchSystem_InsideScreenBounds(*x, *y);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov25_0225450C (const PoketchSystem *poketchSys)
@@ -770,7 +770,7 @@ SaveData* PoketchSystem_SaveData(const PoketchSystem *poketchSys)
     return poketchSys->saveData;
 }
 
-int PoketchSystem_BorderColor (const PoketchSystem *poketchSys)
+int PoketchSystem_BorderColor(const PoketchSystem *poketchSys)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(poketchSys->saveData);
 

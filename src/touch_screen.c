@@ -139,26 +139,26 @@ BOOL TouchScreen_Tapped(void)
     return gCoreSys.touchPressed;
 }
 
-BOOL sub_020227A4 (u32 * param0, u32 * param1)
+BOOL TouchScreen_TouchLocation(u32 *x, u32 *y)
 {
     if (gCoreSys.touchHeld) {
-        *param0 = gCoreSys.touchX;
-        *param1 = gCoreSys.touchY;
-        return 1;
+        *x = gCoreSys.touchX;
+        *y = gCoreSys.touchY;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_020227C0 (u32 * param0, u32 * param1)
+BOOL TouchScreen_TapLocation(u32 * x, u32 * y)
 {
     if (gCoreSys.touchPressed) {
-        *param0 = gCoreSys.touchX;
-        *param1 = gCoreSys.touchY;
-        return 1;
+        *x = gCoreSys.touchX;
+        *y = gCoreSys.touchY;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 int sub_020227DC (const TouchScreenHitTable *hitTable, u32 param1, u32 param2)
