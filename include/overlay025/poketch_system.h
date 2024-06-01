@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_PoketchSystem_GetFromFieldSystem_H
-#define POKEPLATINUM_PoketchSystem_GetFromFieldSystem_H
+#ifndef POKEPLATINUM_POKETCHSYSTEM_H
+#define POKEPLATINUM_POKETCHSYSTEM_H
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "field/field_system_decl.h"
@@ -128,4 +128,4 @@ PoketchData * PoketchSystem_PoketchData(const PoketchSystem *poketchSys);
 SaveData * PoketchSystem_SaveData(const PoketchSystem *poketchSys);
 int PoketchSystem_BorderColor(const PoketchSystem *poketchSys);
 
-#endif // POKEPLATINUM_PoketchSystem_GetFromFieldSystem_H
+#endif // POKEPLATINUM_POKETCHSYSTEM_H
