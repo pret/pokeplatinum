@@ -73,12 +73,12 @@ struct PoketchSystem {
     u8 appState;
     u8 touchingScreen;
     u8 playerMoved;
-    u8 unk_05;
+    u8 appChanging;
     u8 unk_06;
     u8 pedometerUpdated;
     u32 buttonState;
-    BOOL unk_0C;
-    u32 unk_10;
+    BOOL skipApp;
+    u32 appSkipTimer;
     enum PoketchAppID loadedAppID;
     FSOverlayID loadedAppOverlayID;
     UnkStruct_ov25_02254560 * unk_1C;

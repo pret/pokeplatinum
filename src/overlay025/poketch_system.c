@@ -205,7 +205,7 @@ static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
         poketchSys->touchingScreen = FALSE;
         poketchSys->playerMoved = 0;
         poketchSys->pedometerUpdated = FALSE;
-        poketchSys->unk_05 = 0;
+        poketchSys->appChanging = FALSE;
         poketchSys->unk_06 = 0;
         poketchSys->loadedAppID = POKETCH_APPID_NONE;
         poketchSys->appState = POKETCH_APP_STATE_NONE;
@@ -315,8 +315,8 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         switch (poketchSys->buttonState) {
         case BUTTON_MANAGER_STATE_TAP:
         case BUTTON_MANAGER_STATE_TIMER0:
-            poketchSys->unk_0C = 0;
-            poketchSys->unk_05 = 1;
+            poketchSys->skipApp = FALSE;
+            poketchSys->appChanging = TRUE;
             ov25_022547D0(poketchSys->unk_1C, 4);
             poketchSys->subState++;
             break;
@@ -324,7 +324,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         break;
     case 1:
         if ((poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP) || (poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0)) {
-            poketchSys->unk_0C = 1;
+            poketchSys->skipApp = TRUE;
         }
 
         if (ov25_02254800(poketchSys->unk_1C)) {
@@ -334,13 +334,13 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
                 poketchSys->unk_20.unk_00 = PoketchData_IncrementAppID(poketchSys->poketchData);
             }
 
-            if (poketchSys->unk_0C) {
+            if (poketchSys->skipApp) {
                 ov25_022547D0(poketchSys->unk_1C, 12);
-                poketchSys->unk_10 = 30;
-                poketchSys->unk_0C = 0;
+                poketchSys->appSkipTimer = 30;
+                poketchSys->skipApp = FALSE;
                 poketchSys->subState = 4;
             } else {
-                poketchSys->unk_10 = 3;
+                poketchSys->appSkipTimer = 3;
                 poketchSys->subState = 2;
             }
         }
@@ -348,14 +348,14 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
     case 2:
         if ((poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP) || (poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0)) {
             ov25_022547D0(poketchSys->unk_1C, 12);
-            poketchSys->unk_10 = 30;
-            poketchSys->unk_0C = 0;
+            poketchSys->appSkipTimer = 30;
+            poketchSys->skipApp = FALSE;
             poketchSys->subState = 4;
             break;
         }
 
-        if (poketchSys->unk_10) {
-            poketchSys->unk_10--;
+        if (poketchSys->appSkipTimer) {
+            poketchSys->appSkipTimer--;
         } else {
             PoketchSystem_ShutdownApp(poketchSys);
             poketchSys->subState = 3;
@@ -376,13 +376,13 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
                 poketchSys->unk_20.unk_00 = PoketchData_IncrementAppID(poketchSys->poketchData);
             }
 
-            poketchSys->unk_10 = 30;
+            poketchSys->appSkipTimer = 30;
             ov25_022547D0(poketchSys->unk_1C, 13);
             break;
         }
 
-        if (poketchSys->unk_10) {
-            poketchSys->unk_10--;
+        if (poketchSys->appSkipTimer) {
+            poketchSys->appSkipTimer--;
         } else {
             ov25_022547D0(poketchSys->unk_1C, 14);
             PoketchSystem_ShutdownApp(poketchSys);
@@ -416,7 +416,7 @@ static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
         break;
     case 2:
         if (ov25_022547F4(poketchSys->unk_1C, 2)) {
-            poketchSys->unk_05 = 0;
+            poketchSys->appChanging = FALSE;
             poketchSys->unk_06 = 0;
             PoketchSystem_SetState(poketchSys, POKETCHSYSTEM_UPDATE);
         }
@@ -681,7 +681,7 @@ void PoketchSystem_PlaySoundEffect(u32 soundID)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->unk_05 == FALSE) && (ov25_0225450C(poketchSys) == FALSE)) {
+    if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == FALSE)) {
         Sound_PlayEffect(soundID);
     }
 }
@@ -690,7 +690,7 @@ void ov25_02254444 (u32 param0, u32 param1)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
+    if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == 0)) {
         sub_02005844(param0, param1);
     }
 }
@@ -708,7 +708,7 @@ BOOL PoketchSystem_IsTouchingDisplay(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
+    if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == 0)) {
         if (TouchScreen_TouchLocation(x, y)) {
             return PoketchSystem_InsideScreenBounds(*x, *y);
         }
@@ -721,7 +721,7 @@ BOOL PoketchSystem_TappedDisplay(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
+    if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == 0)) {
         if (TouchScreen_TapLocation(x, y)) {
             return PoketchSystem_InsideScreenBounds(*x, *y);
         }
@@ -737,7 +737,7 @@ BOOL ov25_0225450C (const PoketchSystem *poketchSys)
 
 void ov25_02254518 (const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager)
 {
-    if ((ov25_0225450C(poketchSys) == 0) && (poketchSys->unk_05 == 0)) {
+    if ((ov25_0225450C(poketchSys) == 0) && (poketchSys->appChanging == FALSE)) {
         PoketchButtonManager_Update(buttonManager);
     }
 }
