@@ -77,6 +77,7 @@ static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys);
 static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys);
 static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
+static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system);
 static BOOL ov25_022543EC(UnkStruct_ov25_02254560 * param0, u32 param1);
 static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y);
 
