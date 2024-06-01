@@ -19,7 +19,7 @@ FS_EXTERN_OVERLAY(overlay25);
 void ov5_021EA714 (FieldSystem * fieldSystem, int param1, u32 param2)
 {
     if ((fieldSystem->unk_04 != NULL) && (fieldSystem->unk_04->unk_14 != NULL)) {
-        ov25_02253D7C(fieldSystem->unk_04->unk_14, param1, param2);
+        PoketchSystem_SendFieldEvent(fieldSystem->unk_04->unk_14, param1, param2);
     }
 }
 

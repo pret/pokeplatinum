@@ -13,9 +13,25 @@
 
 #include <nnsys.h>
 
+#define POKETCH_PEDOMETER_MAX 99999
+
 enum ButtonDir {
     BUTTON_UP,
     BUTTON_DOWN,
+};
+
+enum PoketchMainButton {
+    POKETCHSYSTEM_MAINBUTTON_UP,
+    // POKETCHSYSTEM_MAINBUTTON_DOWN,
+    POKETCHSYSTEM_MAINBUTTON_SCREEN = 2,
+};
+
+enum PoketchSystemState {
+    POKETCHSYSTEM_INIT,
+    POKETCHSYSTEM_UPDATE,
+    POKETCHSYSTEM_CHANGEAPP,
+    POKETCHSYSTEM_SHUTDOWN,
+    POKETCHSYSTEM_UNLOAD
 };
 
 enum PoketchAppState {
@@ -30,6 +46,18 @@ enum PoketchBorderColor {
     POKETCH_BORDER_BLUE
 };
 
+enum PoketchFieldEventID {
+    POKETCH_FIELDEVENT_SLEEP = 0,
+    POKETCH_FIELDEVENT_PLAYERMOVED,
+    
+    POKETCH_FIELDEVENT_SAVE = 4,
+    POKETCH_FIELDEVENT_PEDOMETER,
+};
+
+enum PoketchScreenCoordinates {
+    
+};
+
 typedef struct PoketchSystem PoketchSystem;
 
 typedef BOOL (* PoketchAppInitFunction)(void **, PoketchSystem *, BGL *, u32);
@@ -37,11 +65,11 @@ typedef void (* PoketchAppShutdownFunction)(void *);
 typedef void (* PoketchAppSaveFunction)(void *);
 
 struct PoketchSystem {
-    u8 unk_00;
-    u8 unk_01;
+    u8 systemState;
+    u8 subState; // each systemState has its own sub-state machine, they all share this variable
     u8 appState;
-    u8 unk_03;
-    u8 unk_04;
+    u8 touchingScreen;
+    u8 playerMoved;
     u8 unk_05;
     u8 unk_06;
     u8 pedometerUpdated;
@@ -58,23 +86,26 @@ struct PoketchSystem {
     u32 unk_30;
     PoketchSystem ** poketchSysPtr;
     SysTask * unk_38;
+
     PoketchAppInitFunction currAppInit;
     PoketchAppShutdownFunction currAppShutdown;
     PoketchAppSaveFunction currAppSave;
-    void * unk_48;
+    void * appSaveData;
+
     BGL *bgl;
-    NNSG2dOamManagerInstance * unk_50;
+    NNSG2dOamManagerInstance * oamManager;
+
     SaveData *saveData;
     PoketchData *poketchData;
     FieldSystem *fieldSys;
     enum ButtonDir buttonDir;
 };
 
-void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
-void ov25_02253D5C(PoketchSystem *poketchSys);
-BOOL ov25_02253D70(PoketchSystem *poketchSys);
-void ov25_02253D7C(PoketchSystem *poketchSys, int param1, u32 param2);
-BOOL ov25_02253DD4(PoketchSystem *poketchSys);
+void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
+void PoketchSystem_StartShutdown(PoketchSystem *poketchSys);
+BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys);
+void PoketchSystem_SendFieldEvent(PoketchSystem *poketchSys, enum PoketchFieldEventID eventID, u32);
+BOOL PoketchSystem_CheckTouch(PoketchSystem *poketchSys);
 enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys);
 void PoketchSystem_SetAppFunctions(PoketchAppInitFunction param0, PoketchAppShutdownFunction param1);
 void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
