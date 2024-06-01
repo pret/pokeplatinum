@@ -61,7 +61,7 @@ static BOOL ov27_02256E90(UnkStruct_ov27_02256E90 * param0, u32 param1);
 static void ov27_02256EC4(BGL * param0, u32 param1);
 static void ov27_02256F24(SysTask * param0, void * param1);
 static void ov27_02256F7C(UnkStruct_ov27_0225680C * param0);
-struct PoketchSystem * sub_0203D158(void);
+struct PoketchSystem * FieldSystem_PoketchSystem(void);
 
 BOOL ov27_0225680C (UnkStruct_ov27_0225680C ** param0, const UnkStruct_ov27_0225680C_1 * param1, BGL * param2)
 {

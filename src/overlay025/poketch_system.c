@@ -21,6 +21,7 @@
 #include "heap.h"
 #include "unk_0201E3D8.h"
 #include "unk_02025E08.h"
+#include "unk_0203CC84.h"
 #include "trainer_info.h"
 #include "unk_020508D4.h"
 #include "unk_02099D44.h"
@@ -56,9 +57,9 @@ FS_EXTERN_OVERLAY(overlay53);
 FS_EXTERN_OVERLAY(overlay54);
 FS_EXTERN_OVERLAY(overlay55);
 
-static PoketchSystem * ov25_02253CE0(void);
+static PoketchSystem *PoketchSystem_GetFromFieldSystem(void);
 static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys);
-static void ov25_02253E20(PoketchSystem *poketchSys);
+static void PoketchSystem_Shutdown(PoketchSystem *poketchSys);
 static void PoketchSystem_MainTask(SysTask *param0, void * param1);
 static void ov25_02253E94(SysTask *param0, void * param1);
 static void ov25_02253E9C(PoketchSystem *poketchSys, u32 param1);
@@ -73,12 +74,11 @@ static BOOL ov25_022541FC(PoketchSystem *poketchSys);
 static void ov25_0225420C(PoketchSystem *poketchSys);
 static BOOL ov25_02254228(PoketchSystem *poketchSys);
 static BOOL ov25_02254284(PoketchSystem *poketchSys);
-static void ov25_022542C8(PoketchSystem *poketchSys);
-static void ov25_022542D4(PoketchSystem *poketchSys);
+static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys);
+static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys);
 static void ov25_022542E4(u32 param0, u32 param1, u32 param2, void * param3);
 static BOOL ov25_022543EC(UnkStruct_ov25_02254560 * param0, u32 param1);
 static inline BOOL inline_ov25_0225446C(u32 param0, u32 param1);
-struct PoketchSystem * sub_0203D158(void);
 
 // the order of this array determines the app order in the poketch.
 static const struct {
@@ -112,9 +112,9 @@ static const struct {
     {POKETCH_APPID_POKEMONHISTORY,      FS_OVERLAY_ID(overlay54)}
 };
 
-static PoketchSystem * ov25_02253CE0 (void)
+static PoketchSystem *PoketchSystem_GetFromFieldSystem(void)
 {
-    return sub_0203D158();
+    return FieldSystem_PoketchSystem();
 }
 
 
@@ -220,30 +220,30 @@ static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
     return FALSE;
 }
 
-static void ov25_02253E20 (PoketchSystem * poketchSys)
+static void PoketchSystem_Shutdown (PoketchSystem *poketchSys)
 {
     SysTask_Done(poketchSys->unk_38);
 
-    ov25_022542C8(poketchSys);
+    PoketchSystem_ButtonShutdown(poketchSys);
     PoketchSystem_UnloadApp(poketchSys);
     ov25_02254754(poketchSys->unk_1C);
 }
 
+typedef void(*const PoketchEvent)(PoketchSystem *);
+static PoketchEvent sPoketchEvents[] = {
+    ov25_02253EA4,
+    ov25_02253F2C,
+    ov25_0225406C,
+    ov25_022540D8
+};
+
 static void PoketchSystem_MainTask(SysTask *task, void *system)
 {
-    typedef void(*const PoketchEvent)(PoketchSystem *);
-    static PoketchEvent sPoketchEvents[] = {
-        ov25_02253EA4,
-        ov25_02253F2C,
-        ov25_0225406C,
-        ov25_022540D8
-    };
-
     PoketchSystem *poketchSys = (PoketchSystem *)system;
 
     if (poketchSys->unk_00 < NELEMS(sPoketchEvents)) {
         if (poketchSys->unk_00 != 0) {
-            ov25_022542D4(poketchSys);
+            PoketchSystem_ButtonUpdate(poketchSys);
         }
 
         sPoketchEvents[poketchSys->unk_00](poketchSys);
@@ -251,7 +251,7 @@ static void PoketchSystem_MainTask(SysTask *task, void *system)
         GF_ASSERT(poketchSys->unk_00 == 4);
         *(poketchSys->poketchSysPtr) = NULL;
 
-        ov25_02253E20(poketchSys);
+        PoketchSystem_Shutdown(poketchSys);
         Heap_FreeToHeap(poketchSys);
         SysTask_Done(task);
         Heap_Destroy(7);
@@ -261,10 +261,10 @@ static void PoketchSystem_MainTask(SysTask *task, void *system)
 
 static void ov25_02253E94 (SysTask * param0, void * param1)
 {
-    PoketchSystem * v0 = param1;
+    PoketchSystem *poketchSys = param1;
 
-    v0->unk_04 = 0;
-    v0->pedometerUpdated = FALSE;
+    poketchSys->unk_04 = 0;
+    poketchSys->pedometerUpdated = FALSE;
 }
 
 static void ov25_02253E9C (PoketchSystem *poketchSys, u32 param1)
@@ -525,11 +525,11 @@ static BOOL ov25_02254228 (PoketchSystem *poketchSys)
 
 void ov25_02254238 (UnkFuncPtr_ov25_02254238 param0, UnkFuncPtr_ov25_02254238_1 param1)
 {
-    PoketchSystem * v0 = ov25_02253CE0();
+    PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    v0->unk_3C = param0;
-    v0->unk_40 = param1;
-    v0->unk_44 = NULL;
+    poketchSys->unk_3C = param0;
+    poketchSys->unk_40 = param1;
+    poketchSys->unk_44 = NULL;
 }
 
 void ov25_0225424C (PoketchSystem *poketchSys)
@@ -546,10 +546,10 @@ void ov25_02254260 (PoketchSystem *poketchSys)
 
 void ov25_02254274 (UnkFuncPtr_ov25_02254274 param0, void * param1)
 {
-    PoketchSystem * v0 = ov25_02253CE0();
+    PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    v0->unk_44 = param0;
-    v0->unk_48 = param1;
+    poketchSys->unk_44 = param0;
+    poketchSys->unk_48 = param1;
 }
 
 static BOOL ov25_02254284 (PoketchSystem *poketchSys)
@@ -560,10 +560,10 @@ static BOOL ov25_02254284 (PoketchSystem *poketchSys)
         {16, 175, 16, 207}
     };
 
-    poketchSys->unk_28 = PoketchButtonManager_New(v0, NELEMS(v0), ov25_022542E4, poketchSys, 7);
+    poketchSys->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov25_022542E4, poketchSys, 7);
 
-    if (poketchSys->unk_28 != NULL) {
-        PoketchButtonManager_SetButtonTimer(poketchSys->unk_28, 0, 0, 7);
+    if (poketchSys->buttonManager != NULL) {
+        PoketchButtonManager_SetButtonTimer(poketchSys->buttonManager, 0, 0, 7);
         poketchSys->unk_2C = 0xffffffff;
         poketchSys->unk_30 = 0xffffffff;
         return 1;
@@ -572,36 +572,36 @@ static BOOL ov25_02254284 (PoketchSystem *poketchSys)
     return 0;
 }
 
-static void ov25_022542C8 (PoketchSystem *poketchSys)
+static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys)
 {
-    PoketchButtonManager_Free(poketchSys->unk_28);
+    PoketchButtonManager_Free(poketchSys->buttonManager);
 }
 
-static void ov25_022542D4 (PoketchSystem *poketchSys)
+static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys)
 {
     poketchSys->unk_08 = 0;
-    PoketchButtonManager_Update(poketchSys->unk_28);
+    PoketchButtonManager_Update(poketchSys->buttonManager);
 }
 
 static void ov25_022542E4 (u32 param0, u32 param1, u32 param2, void * param3)
 {
-    PoketchSystem * v0 = (PoketchSystem *)param3;
+    PoketchSystem * poketchSys = (PoketchSystem *)param3;
 
-    if (ov25_0225450C(v0) == 0) {
+    if (ov25_0225450C(poketchSys) == 0) {
         switch (param2) {
         case 1:
-            v0->unk_03 = 1;
+            poketchSys->unk_03 = 1;
             break;
         case 0:
-            v0->unk_03 = 0;
+            poketchSys->unk_03 = 0;
             break;
         }
     } else {
-        v0->unk_03 = 0;
+        poketchSys->unk_03 = 0;
     }
 
     if (param0 == 2) {
-        if (ov25_0225450C(v0)) {
+        if (ov25_0225450C(poketchSys)) {
             if (param2 == 1) {
                 Sound_PlayEffect(1646);
             }
@@ -614,7 +614,7 @@ static void ov25_022542E4 (u32 param0, u32 param1, u32 param2, void * param3)
             v1 = (param0 == 0) ? 8 : 11;
             break;
         case 1:
-            if (ov25_0225450C(v0) || v0->unk_06) {
+            if (ov25_0225450C(poketchSys) || poketchSys->unk_06) {
                 v1 = (param0 == 0) ? 6 : 9;
                 param1 = 0;
             } else {
@@ -623,39 +623,39 @@ static void ov25_022542E4 (u32 param0, u32 param1, u32 param2, void * param3)
             break;
         }
 
-        if (v0->unk_2C != 0xffffffff) {
+        if (poketchSys->unk_2C != 0xffffffff) {
             u32 v2 = v1;
 
-            v1 = v0->unk_2C;
-            v0->unk_2C = v2;
+            v1 = poketchSys->unk_2C;
+            poketchSys->unk_2C = v2;
         }
 
         if (v1 != 0xffffffff) {
-            if (ov25_022543EC(v0->unk_1C, v1)) {
+            if (ov25_022543EC(poketchSys->unk_1C, v1)) {
                 if ((v1 == 6) || (v1 == 7) || (v1 == 9) || (v1 == 10)) {
-                    v0->unk_30 = v1;
+                    poketchSys->unk_30 = v1;
                 }
             }
         }
 
         switch (param1) {
         case 5:
-            PoketchButtonManager_ResetButtonState(v0->unk_28, 0);
+            PoketchButtonManager_ResetButtonState(poketchSys->buttonManager, 0);
             break;
         case 3:
-            if ((v0->unk_30 == 6) || (v0->unk_30 == 9)) {
+            if ((poketchSys->unk_30 == 6) || (poketchSys->unk_30 == 9)) {
                 param1 = 0;
             }
             break;
         case 2:
-            if ((v0->unk_30 == 7) || (v0->unk_30 == 10)) {
+            if ((poketchSys->unk_30 == 7) || (poketchSys->unk_30 == 10)) {
                 param1 = 3;
             }
             break;
         }
 
-        v0->unk_08 = param1;
-        v0->buttonDir = (param0 == 0) ? BUTTON_UP : BUTTON_DOWN;
+        poketchSys->unk_08 = param1;
+        poketchSys->buttonDir = (param0 == 0) ? BUTTON_UP : BUTTON_DOWN;
     }
 }
 
@@ -676,24 +676,24 @@ static BOOL ov25_022543EC (UnkStruct_ov25_02254560 * param0, u32 param1)
 
 UnkStruct_ov25_02254560 * ov25_02254418 (void)
 {
-    PoketchSystem * v0 = ov25_02253CE0();
-    return v0->unk_1C;
+    PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
+    return poketchSys->unk_1C;
 }
 
 void ov25_02254424 (u32 param0)
 {
-    PoketchSystem * v0 = ov25_02253CE0();
+    PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((v0->unk_05 == 0) && (ov25_0225450C(v0) == 0)) {
+    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
         Sound_PlayEffect(param0);
     }
 }
 
 void ov25_02254444 (u32 param0, u32 param1)
 {
-    PoketchSystem * v0 = ov25_02253CE0();
+    PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((v0->unk_05 == 0) && (ov25_0225450C(v0) == 0)) {
+    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
         sub_02005844(param0, param1);
     }
 }
@@ -709,9 +709,9 @@ static inline BOOL inline_ov25_0225446C (u32 param0, u32 param1)
 
 BOOL ov25_0225446C (u32 * param0, u32 * param1)
 {
-    PoketchSystem * v0 = ov25_02253CE0();
+    PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((v0->unk_05 == 0) && (ov25_0225450C(v0) == 0)) {
+    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
         if (sub_020227A4(param0, param1)) {
             return inline_ov25_0225446C(*param0, *param1);
         }
@@ -722,9 +722,9 @@ BOOL ov25_0225446C (u32 * param0, u32 * param1)
 
 BOOL ov25_022544BC (u32 * param0, u32 * param1)
 {
-    PoketchSystem * v0 = ov25_02253CE0();
+    PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((v0->unk_05 == 0) && (ov25_0225450C(v0) == 0)) {
+    if ((poketchSys->unk_05 == 0) && (ov25_0225450C(poketchSys) == 0)) {
         if (sub_020227C0(param0, param1)) {
             return inline_ov25_0225446C(*param0, *param1);
         }

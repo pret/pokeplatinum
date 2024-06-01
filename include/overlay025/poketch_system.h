@@ -41,7 +41,7 @@ struct PoketchSystem {
     UnkStruct_ov25_02254560 * unk_1C;
     UnkStruct_ov25_02254560_1 unk_20;
     void * unk_24;
-    PoketchButtonManager * unk_28;
+    PoketchButtonManager * buttonManager;
     u32 unk_2C;
     u32 unk_30;
     PoketchSystem ** poketchSysPtr;
