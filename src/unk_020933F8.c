@@ -1600,7 +1600,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
         {
             FieldEvents * v1;
 
-            v1 = SaveData_Events(param0->unk_1970);
+            v1 = SaveData_GetFieldEvents(param0->unk_1970);
 
             if ((param0->unk_00.unk_111 == 2) && (param0->unk_00.unk_110 >= 3) && (sub_02094790(param0) == 0)) {
                 if (sub_0206AAA8(v1, param0->unk_00.unk_10F) == 0) {

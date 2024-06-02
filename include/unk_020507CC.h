@@ -6,7 +6,7 @@
 
 int FieldEvents_SaveSize(void);
 void FieldEvents_Init(FieldEvents * param0);
-FieldEvents * SaveData_Events(SaveData * param0);
+FieldEvents * SaveData_GetFieldEvents(SaveData * param0);
 BOOL sub_020507F0(FieldEvents * param0, u16 param1);
 void sub_0205081C(FieldEvents * param0, u16 param1);
 void sub_02050844(FieldEvents * param0, u16 param1);

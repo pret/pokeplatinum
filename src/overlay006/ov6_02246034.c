@@ -44,10 +44,10 @@ void ov6_02246034 (FieldSystem * fieldSystem, BattleParams * param1)
 
         if (((param1->unk_14 == 0x1) && (v0 == 0))) {
             sub_0202D914(&v4);
-            sub_0206B688(SaveData_Events(fieldSystem->saveData), v2, 2);
+            sub_0206B688(SaveData_GetFieldEvents(fieldSystem->saveData), v2, 2);
         } else if (param1->unk_14 == 0x4) {
             sub_0202D914(&v4);
-            sub_0206B688(SaveData_Events(fieldSystem->saveData), v2, 1);
+            sub_0206B688(SaveData_GetFieldEvents(fieldSystem->saveData), v2, 1);
         } else {
             sub_0202D980(v4, 5, v0);
             sub_0202D980(v4, 7, v1);

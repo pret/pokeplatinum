@@ -111,7 +111,7 @@ void ov6_02242A94 (const u8 param0, UnkStruct_ov6_02242A8C * param1)
         v0 = sub_02039E30(param1->fieldSystem->unk_2C, v1, v2);
     }
 
-    Location_Init(&param1->unk_18, v0, -1, param1->unk_00[param0].unk_00, param1->unk_00[param0].unk_02, 0);
+    Location_Set(&param1->unk_18, v0, -1, param1->unk_00[param0].unk_00, param1->unk_00[param0].unk_02, 0);
 }
 
 Location * ov6_02242AEC (UnkStruct_ov6_02242A8C * param0)

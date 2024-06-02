@@ -108,7 +108,7 @@ u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F188(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
-void sub_0203F1C4(FieldSystem * fieldSystem);
+void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
 u16 sub_0203F254(u16 param0);
 BOOL sub_0203F278(u16 param0);
@@ -596,7 +596,7 @@ u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 param1)
 {
     FieldEvents * v0;
 
-    v0 = SaveData_Events(fieldSystem->saveData);
+    v0 = SaveData_GetFieldEvents(fieldSystem->saveData);
 
     if (param1 < 0x4000) {
         return NULL;
@@ -628,27 +628,27 @@ u16 sub_0203F164 (FieldSystem * fieldSystem, u16 param1)
 
 BOOL sub_0203F188 (FieldSystem * fieldSystem, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(fieldSystem->saveData), param1);
+    return sub_020507F0(SaveData_GetFieldEvents(fieldSystem->saveData), param1);
 }
 
 void sub_0203F19C (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_Events(fieldSystem->saveData), param1);
+    sub_0205081C(SaveData_GetFieldEvents(fieldSystem->saveData), param1);
     return;
 }
 
 void sub_0203F1B0 (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_Events(fieldSystem->saveData), param1);
+    sub_02050844(SaveData_GetFieldEvents(fieldSystem->saveData), param1);
     return;
 }
 
-void sub_0203F1C4 (FieldSystem * fieldSystem)
+void FieldSystem_ClearLocalFlags (FieldSystem * fieldSystem)
 {
     int v0;
     FieldEvents * v1;
 
-    v1 = SaveData_Events(fieldSystem->saveData);
+    v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
 
     memset(sub_02050870(v1, 1), 0, (64 / 8));
     memset(sub_020508B8(v1, (0 + 0x4000)), 0, 2 * 32);
@@ -660,7 +660,7 @@ void sub_0203F1FC (FieldSystem * fieldSystem)
 {
     FieldEvents * v0;
 
-    v0 = SaveData_Events(fieldSystem->saveData);
+    v0 = SaveData_GetFieldEvents(fieldSystem->saveData);
     memset(sub_02050870(v0, 2400 + 320), 0, 192 / 8);
 
     return;
@@ -703,18 +703,18 @@ BOOL sub_0203F28C (u16 param0)
 
 BOOL sub_0203F2A0 (FieldSystem * fieldSystem, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(fieldSystem->saveData), 1360 + param1);
+    return sub_020507F0(SaveData_GetFieldEvents(fieldSystem->saveData), 1360 + param1);
 }
 
 void sub_0203F2BC (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_Events(fieldSystem->saveData), 1360 + param1);
+    sub_0205081C(SaveData_GetFieldEvents(fieldSystem->saveData), 1360 + param1);
     return;
 }
 
 void sub_0203F2D8 (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_Events(fieldSystem->saveData), 1360 + param1);
+    sub_02050844(SaveData_GetFieldEvents(fieldSystem->saveData), 1360 + param1);
     return;
 }
 

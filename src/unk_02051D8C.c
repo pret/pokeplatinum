@@ -179,7 +179,7 @@ BattleParams * sub_02051F4C (int param0, const FieldSystem * fieldSystem)
     sub_0207D570(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
-    Pokemon_InitWith(v5, sub_0206B08C(SaveData_Events(fieldSystem->saveData)), 5, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, sub_0206B08C(SaveData_GetFieldEvents(fieldSystem->saveData)), 5, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[0], v5);
     Pokemon_InitWith(v5, 399, 2, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[1], v5);
@@ -257,7 +257,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     PokedexData * v3 = SaveData_Pokedex(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
     Options * v5 = SaveData_Options(param2);
-    UnkStruct_0203A790 * v6 = sub_0203A790(param2);
+    FieldStatus * v6 = SaveData_GetFieldStatus(param2);
 
     if (fieldSystem != NULL) {
         sub_0205281C(param0, fieldSystem);
@@ -283,7 +283,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     param0->unk_130 = MapHeader_GetMapLabelTextID(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
     param0->unk_140 = PokemonSummary_ShowContestData(param2);
-    param0->unk_144 = sub_0206ADFC(SaveData_Events(param2));
+    param0->unk_144 = sub_0206ADFC(SaveData_GetFieldEvents(param2));
     param0->unk_14C = sub_0203A74C(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;
@@ -444,7 +444,7 @@ void sub_020526E8 (const BattleParams * param0, FieldSystem * fieldSystem)
     Party * v1 = Party_GetFromSavedata(fieldSystem->saveData);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(fieldSystem->saveData);
     PokedexData * v3 = SaveData_Pokedex(fieldSystem->saveData);
-    u16 * v4 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+    u16 * v4 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     TrainerInfo_Copy(param0->unk_D0[0], v0);
     Party_cpy(param0->parties[0], v1);
@@ -522,7 +522,7 @@ static int sub_02052780 (const FieldSystem * fieldSystem, int param1)
 
 static void sub_0205281C (BattleParams * param0, const FieldSystem * fieldSystem)
 {
-    PlayerData * v0 = sub_0203A780(sub_0203A790(fieldSystem->saveData));
+    PlayerData * v0 = FieldStatus_GetPlayerData(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     param0->unk_128 = MapHeader_GetBattleBG(fieldSystem->location->mapId);
 

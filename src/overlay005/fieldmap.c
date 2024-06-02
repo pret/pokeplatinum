@@ -221,7 +221,7 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
         ov5_021D1968(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
-            u16 v3 = sub_0203A74C(sub_0203A790(fieldSystem->saveData));
+            u16 v3 = sub_0203A74C(SaveData_GetFieldStatus(fieldSystem->saveData));
             ov5_021D5F24(fieldSystem->unk_04->unk_0C, v3);
         }
 
@@ -300,7 +300,7 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
         sub_02061BF0(fieldSystem->mapObjMan);
         ov5_021ECC78(fieldSystem->mapObjMan);
 
-        sub_02062C30(fieldSystem->mapObjMan);
+        MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
         ov5_021DF500(fieldSystem->unk_40);
 
         ov5_021D1A70(fieldSystem->unk_34);
@@ -408,7 +408,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     u32 v0;
     u32 v1;
     int v2, v3;
-    UnkStruct_0203A790 * v4;
+    FieldStatus * v4;
 
     if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         return 0;
@@ -423,11 +423,11 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
         return 0;
     }
 
-    v4 = sub_0203A790(fieldSystem->saveData);
+    v4 = SaveData_GetFieldStatus(fieldSystem->saveData);
     {
         fieldSystem->location->mapId = v0;
 
-        sub_0203A3B0(fieldSystem, v0);
+        FieldSystem_LoadMapData(fieldSystem, v0);
         FieldSystem_MapChange_UpdateGameData(fieldSystem, 1);
     }
 
@@ -472,15 +472,15 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
 {
     u32 v0;
-    UnkStruct_0203A790 * v1;
+    FieldStatus * v1;
 
     v0 = fieldSystem->location->mapId;
-    v1 = sub_0203A790(fieldSystem->saveData);
+    v1 = SaveData_GetFieldStatus(fieldSystem->saveData);
 
     {
         fieldSystem->location->mapId = param1;
 
-        sub_0203A3B0(fieldSystem, param1);
+        FieldSystem_LoadMapData(fieldSystem, param1);
         FieldSystem_MapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
     }
 
@@ -540,7 +540,7 @@ static void ov5_021D13B4 (FieldSystem * fieldSystem)
         return;
     }
 
-    v0 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
+    v0 = sub_0203A76C(SaveData_GetFieldStatus(fieldSystem->saveData));
     v1 = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
     v2 = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
     v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
@@ -916,7 +916,7 @@ static void ov5_021D1968 (FieldSystem * fieldSystem)
     fieldSystem->unk_48 = ov5_021D57BC();
 
     {
-        int v0 = sub_0203A770(sub_0203A790(fieldSystem->saveData));
+        int v0 = FieldStatus_GetCameraType(SaveData_GetFieldStatus(fieldSystem->saveData));
         ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 

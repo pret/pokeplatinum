@@ -52,7 +52,7 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02050568 * v1 = TaskManager_Environment(taskMan);
-    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
 
     switch (v1->unk_08) {
     case 0:
@@ -72,7 +72,7 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
         {
             Location v3;
 
-            Location_Init(&v3, 172, -1, 847, 561, 1);
+            Location_Set(&v3, 172, -1, 847, 561, 1);
             sub_020539A0(taskMan, &v3);
         }
         v1->unk_08++;
@@ -108,7 +108,7 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
         {
             Location v4;
 
-            Location_Init(&v4, 164, -1, v1->unk_04, v1->unk_06, 0);
+            Location_Set(&v4, 164, -1, v1->unk_04, v1->unk_06, 0);
             sub_020539A0(taskMan, &v4);
         }
         v1->unk_08++;

@@ -152,8 +152,8 @@ BOOL ScrCmd_0E5 (ScriptContext * param0)
 
     v6 = 0;
 
-    if (sub_0206A984(SaveData_Events(param0->fieldSystem->saveData)) == 1) {
-        v6 = sub_0206B034(SaveData_Events(fieldSystem->saveData));
+    if (sub_0206A984(SaveData_GetFieldEvents(param0->fieldSystem->saveData)) == 1) {
+        v6 = sub_0206B034(SaveData_GetFieldEvents(fieldSystem->saveData));
     }
 
     sub_020515CC(param0->taskManager, v4, v5, v6, 11, v3);

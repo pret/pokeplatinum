@@ -123,12 +123,12 @@ static inline BOOL inline_02070950 (const UnkStruct_02070950 * param0, int param
 
 static inline BOOL inline_02070A24 (const UnkStruct_02070950 * param0)
 {
-    return sub_0206A984(SaveData_Events(param0->fieldSystem->saveData));
+    return sub_0206A984(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
 }
 
 static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 {
-    if ((sub_0206AE5C(SaveData_Events(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1)) {
+    if ((sub_0206AE5C(SaveData_GetFieldEvents(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_GetFieldEvents(param0->fieldSystem->saveData)) == 1)) {
         return 1;
     }
 
@@ -137,7 +137,7 @@ static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 
 static inline BOOL inline_020710A4 (const UnkStruct_02070950 * param0)
 {
-    if (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_GetFieldEvents(param0->fieldSystem->saveData)) == 1) {
         return 1;
     }
 
@@ -214,7 +214,7 @@ void sub_02070728 (FieldSystem * fieldSystem, UnkStruct_02070950 * param1)
         param1->unk_0C |= (1 << 6);
     }
 
-    switch (sub_0203A74C(sub_0203A790(fieldSystem->saveData))) {
+    switch (sub_0203A74C(SaveData_GetFieldStatus(fieldSystem->saveData))) {
     case 14:
         param1->unk_0C |= (1 << 4);
         break;

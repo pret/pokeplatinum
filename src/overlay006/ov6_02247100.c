@@ -144,7 +144,7 @@ static int ov6_02247244 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_02247288 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
+    FieldStatus * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
 
     if (param2->unk_08 == 2) {
         u16 v1;

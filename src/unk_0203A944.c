@@ -1846,7 +1846,7 @@ static const u8 Unk_020E98F4[] = {
 };
 
 
-int sub_0203A944 (FieldSystem * fieldSystem, int param1)
+int FieldSystem_GetWeather (FieldSystem * fieldSystem, int param1)
 {
     int v0;
 

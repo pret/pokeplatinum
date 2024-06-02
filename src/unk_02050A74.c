@@ -186,13 +186,13 @@ static BOOL sub_02050B30 (TaskManager * taskMan)
             return 1;
         }
 
-        if (sub_0206A984(SaveData_Events(fieldSystem->saveData))) {
+        if (sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 
         sub_020518B0(fieldSystem, v1->unk_10);
         sub_02051988(fieldSystem, v1->unk_10);
-        sub_0206B48C(SaveData_Events(fieldSystem->saveData), v1->unk_10->unk_18C);
+        sub_0206B48C(SaveData_GetFieldEvents(fieldSystem->saveData), v1->unk_10->unk_18C);
         sub_02055868(taskMan);
         (*v2)++;
         break;
@@ -342,7 +342,7 @@ static void sub_02050DFC (UnkStruct_02050DD4 * param0)
 
 void sub_02050E10 (FieldSystem * fieldSystem, BattleParams * param1)
 {
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData))) {
+    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData))) {
         UnkStruct_02050ACC * v0;
 
         v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
@@ -357,7 +357,7 @@ void sub_02050E10 (FieldSystem * fieldSystem, BattleParams * param1)
 
 void sub_02050E78 (FieldSystem * fieldSystem, TaskManager * param1, BattleParams * param2)
 {
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData))) {
+    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData))) {
         UnkStruct_02050ACC * v0;
 
         v0 = sub_02050ACC(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
@@ -404,7 +404,7 @@ static BOOL sub_02050EE0 (TaskManager * taskMan)
             return 0;
         }
 
-        if (sub_0206A984(SaveData_Events(fieldSystem->saveData))) {
+        if (sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 
@@ -459,7 +459,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
     v2 = FieldTask_GetState(taskMan);
-    v3 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+    v3 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     switch (*v2) {
     case 0:
@@ -491,7 +491,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
         if (((*v3) == 0) && (v1->unk_10->unk_14 != 0x4)) {
             Location * v6;
 
-            v6 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
+            v6 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
             sub_020539A0(taskMan, v6);
         }
 

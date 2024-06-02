@@ -121,7 +121,7 @@ void sub_020553DC ()
 
 void sub_020553F0 (FieldSystem * fieldSystem, u16 param1)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(fieldSystem->saveData));
+    u16 * v0 = sub_0203A748(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     *v0 = param1;
     return;
@@ -129,13 +129,13 @@ void sub_020553F0 (FieldSystem * fieldSystem, u16 param1)
 
 u16 sub_02055404 (FieldSystem * fieldSystem)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(fieldSystem->saveData));
+    u16 * v0 = sub_0203A748(SaveData_GetFieldStatus(fieldSystem->saveData));
     return *v0;
 }
 
-void sub_02055414 (FieldSystem * fieldSystem)
+void Sound_ClearSpecialBGM (FieldSystem * fieldSystem)
 {
-    u16 * v0 = sub_0203A748(sub_0203A790(fieldSystem->saveData));
+    u16 * v0 = sub_0203A748(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     *v0 = 0;
     return;
@@ -191,7 +191,7 @@ u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
         v0 = MapHeader_GetNightMusicID(param1);
     }
 
-    v1 = sub_0206AB68(SaveData_Events(fieldSystem->saveData), param1);
+    v1 = sub_0206AB68(SaveData_GetFieldEvents(fieldSystem->saveData), param1);
 
     if (v1 != 0) {
         v0 = v1;
@@ -209,8 +209,8 @@ u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
 static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
 {
     int v0, v1;
-    UnkStruct_0203A790 * v2 = sub_0203A790(fieldSystem->saveData);
-    Location * location = sub_0203A728(v2);
+    FieldStatus * v2 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    Location * location = FieldStatus_GetPrevLocation(v2);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);

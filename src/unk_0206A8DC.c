@@ -438,7 +438,7 @@ void sub_0206AECC (FieldEvents * param0)
     sub_0206A8E4(param0, (2400 + 26));
 }
 
-BOOL sub_0206AEDC (FieldEvents * param0)
+BOOL FieldEvents_CheckFlash (FieldEvents * param0)
 {
     return sub_0206A8EC(param0, (2400 + 26));
 }
@@ -453,7 +453,7 @@ void sub_0206AEFC (FieldEvents * param0)
     sub_0206A8E4(param0, (2400 + 27));
 }
 
-BOOL sub_0206AF0C (FieldEvents * param0)
+BOOL FieldEvents_CheckDefog (FieldEvents * param0)
 {
     return sub_0206A8EC(param0, (2400 + 27));
 }

@@ -218,7 +218,7 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 
     param1->fieldSystem = fieldSystem;
     param1->unk_00 = fieldSystem->location->mapId;
-    param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
+    param1->unk_04 = sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
@@ -254,7 +254,7 @@ static void sub_020684D0 (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1
 {
     param1->fieldSystem = fieldSystem;
     param1->unk_00 = fieldSystem->location->mapId;
-    param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
+    param1->unk_04 = sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
 
@@ -424,7 +424,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if ((sub_0206AE5C(SaveData_Events(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1)) {
+    if ((sub_0206AE5C(SaveData_GetFieldEvents(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_GetFieldEvents(param0->fieldSystem->saveData)) == 1)) {
         return -1;
     }
 
@@ -522,7 +522,7 @@ static BOOL sub_02068884 (TaskManager * param0)
 
 static u32 sub_02068948 (const UnkStruct_020684D0 * param0)
 {
-    FieldEvents * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_GetFieldEvents(param0->fieldSystem->saveData);
 
     if (param0->unk_04 == 1) {
         return 2;
@@ -1063,7 +1063,7 @@ static BOOL sub_02069120 (UnkStruct_02068870 * param0)
 
 static u32 sub_02069130 (const UnkStruct_020684D0 * param0)
 {
-    FieldEvents * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_GetFieldEvents(param0->fieldSystem->saveData);
 
     if (sub_0206A954(v0) == 0) {
         return -1;
@@ -1149,7 +1149,7 @@ BOOL sub_02069238 (FieldSystem * fieldSystem)
         return 0;
     }
 
-    if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         return 0;
     }
 

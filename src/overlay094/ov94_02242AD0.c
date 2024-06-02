@@ -1291,7 +1291,7 @@ static void ov94_02243BC4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
 
         if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
             if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-                FieldEvents * v2 = SaveData_Events(param0->unk_00->unk_20);
+                FieldEvents * v2 = SaveData_GetFieldEvents(param0->unk_00->unk_20);
 
                 if (sub_0206B5F8(v2) == 0) {
                     sub_0206B608(v2, 1);
@@ -1338,7 +1338,7 @@ static void ov94_02243CE4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
 
     if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            FieldEvents * v0 = SaveData_Events(param0->unk_00->unk_20);
+            FieldEvents * v0 = SaveData_GetFieldEvents(param0->unk_00->unk_20);
 
             if (sub_0206B5F8(v0) == 0) {
                 sub_0206B608(v0, 1);

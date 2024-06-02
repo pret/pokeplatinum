@@ -186,7 +186,7 @@ static void sub_0204BAAC (FieldSystem * fieldSystem, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(fieldSystem);
     TrainerInfo * v1 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
     Party * v3;
     Pokemon * v4;
     BOOL v5;
@@ -557,7 +557,7 @@ static void sub_0204C15C (FieldSystem * fieldSystem, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
-    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 454;
 
@@ -601,7 +601,7 @@ static void sub_0204C220 (FieldSystem * fieldSystem, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
-    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 452;
 
@@ -649,7 +649,7 @@ static void sub_0204C2F4 (FieldSystem * fieldSystem, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
-    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 467;
 
@@ -693,7 +693,7 @@ static void sub_0204C3B8 (FieldSystem * fieldSystem, void * param1)
 {
     UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
-    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 455;
 

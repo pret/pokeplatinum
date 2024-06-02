@@ -277,9 +277,9 @@ void FieldMenu_Init (FieldSystem * fieldSystem)
 {
     FieldMenu * menu = FieldMenu_Alloc();
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    } else if (sub_0206AE8C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -333,9 +333,9 @@ void sub_0203AB00 (FieldSystem * fieldSystem)
 
     menu->unk_228 = 0;
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    } else if (sub_0206AE8C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -372,11 +372,11 @@ static u32 sub_0203ABD0 (FieldSystem * fieldSystem)
         v0 |= 0x1;
     }
 
-    if (sub_0206B054(SaveData_Events(fieldSystem->saveData)) == 0) {
+    if (sub_0206B054(SaveData_GetFieldEvents(fieldSystem->saveData)) == 0) {
         v0 |= 0x2;
     }
 
-    if (sub_0206A938(SaveData_Events(fieldSystem->saveData)) == 0) {
+    if (sub_0206A938(SaveData_GetFieldEvents(fieldSystem->saveData)) == 0) {
         v0 |= 0x4;
     }
 
@@ -666,9 +666,9 @@ static void sub_0203B094 (TaskManager * taskMan)
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         v6 = 0;
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    } else if (sub_0206AE8C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         v6 = 1;
     } else {
         return;
@@ -695,7 +695,7 @@ static void sub_0203B094 (TaskManager * taskMan)
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
-        u16 * v7 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+        u16 * v7 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
@@ -722,7 +722,7 @@ static void sub_0203B200 (TaskManager * taskMan)
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
-    if ((sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 0) && (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 0)) {
+    if ((sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 0) && (sub_0206AE8C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 0)) {
         return;
     }
 
@@ -959,7 +959,7 @@ static BOOL FieldMenu_Pokedex (TaskManager * taskMan)
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
     v3 = SaveData_Pokedex(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v5 = SaveData_Events(fieldSystem->saveData);
+    v5 = SaveData_GetFieldEvents(fieldSystem->saveData);
 
     v2->unk_00 = v3;
     v2->unk_04 = v4;
@@ -1625,7 +1625,7 @@ static BOOL FieldMenu_SelectRetire (TaskManager * taskMan)
     BGL_DeleteWindow(&menu->unk_00);
     sub_0203B200(taskMan);
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         sub_0203E918(taskMan, 8821, NULL);
     } else {
         sub_0203E918(taskMan, 4, NULL);

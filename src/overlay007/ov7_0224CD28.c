@@ -197,7 +197,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_278 = SaveData_Options(fieldSystem->saveData);
     v0->unk_280 = sub_0202CD88(fieldSystem->saveData);
-    v0->unk_288 = SaveData_Events(fieldSystem->saveData);
+    v0->unk_288 = SaveData_GetFieldEvents(fieldSystem->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(fieldSystem);
     v0->unk_27C = fieldSystem->unk_9C;

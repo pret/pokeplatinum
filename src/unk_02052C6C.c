@@ -190,10 +190,10 @@ void sub_02052E58 (TaskManager * param0)
 
     fieldSystem = TaskManager_FieldSystem(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
-    v3 = SaveData_Events(fieldSystem->saveData);
+    v3 = SaveData_GetFieldEvents(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v1 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
-    v2 = sub_0203A72C(sub_0203A790(fieldSystem->saveData));
+    v1 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    v2 = sub_0203A72C(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     v5->unk_00 = sub_0206A954(v3);
     v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);

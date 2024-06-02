@@ -23,7 +23,7 @@ void FieldEvents_Init (FieldEvents * param0)
     memset(param0, 0, sizeof(FieldEvents));
 }
 
-FieldEvents * SaveData_Events (SaveData * param0)
+FieldEvents * SaveData_GetFieldEvents (SaveData * param0)
 {
     FieldEvents * v0;
 

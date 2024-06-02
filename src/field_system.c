@@ -175,7 +175,7 @@ static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
 
     fieldSystem->saveData = v0->unk_08;
     fieldSystem->unk_10 = NULL;
-    fieldSystem->location = sub_0203A720(sub_0203A790(fieldSystem->saveData));
+    fieldSystem->location = sub_0203A720(SaveData_GetFieldStatus(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
     sub_0203A378(fieldSystem, 11);

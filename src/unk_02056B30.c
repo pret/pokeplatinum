@@ -144,7 +144,7 @@ void sub_02056BDC (FieldSystem * fieldSystem, const int param1, const int param2
     v0->unk_00 = 0;
     v0->unk_04 = 0;
 
-    Location_Init(&v0->unk_08, param1, param2, param3, param4, param5);
+    Location_Set(&v0->unk_08, param1, param2, param3, param4, param5);
 
     v0->unk_20 = param6;
 
@@ -160,7 +160,7 @@ void sub_02056C18 (FieldSystem * fieldSystem, const int param1, const int param2
     v2->unk_00 = 0;
     v2->unk_04 = 0;
 
-    Location_Init(&v2->unk_08, param1, param2, param3, param4, param5);
+    Location_Set(&v2->unk_08, param1, param2, param3, param4, param5);
 
     v0 = fieldSystem->location->mapId;
     v1 = 0;

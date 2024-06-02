@@ -29,7 +29,7 @@ void sub_0203D190 (Location * param0)
 
 void sub_0203D1A8 (SaveData * param0)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(param0);
+    FieldStatus * v0 = SaveData_GetFieldStatus(param0);
     Location * v1 = sub_0203A720(v0);
 
     sub_0203D178(v1);

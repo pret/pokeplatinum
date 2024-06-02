@@ -345,7 +345,7 @@ void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
     memset(v0, 0, sizeof(UnkStruct_ov5_021DBA58));
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_08 = SaveData_Events(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetFieldEvents(fieldSystem->saveData);
     v0->unk_114 = param2;
     v0->unk_118 = param1;
 
@@ -531,7 +531,7 @@ static BOOL ov5_021DBB70 (u32 param0)
 
 BOOL ov5_021DBB94 (FieldSystem * fieldSystem)
 {
-    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_GetFieldEvents(fieldSystem->saveData);
     u16 v1 = sub_0206B0E8(v0);
     u16 v2 = sub_0206B108(v0);
 
@@ -549,7 +549,7 @@ BOOL ov5_021DBB94 (FieldSystem * fieldSystem)
         }
 
         if (v2 == 100) {
-            sub_0206B0D4(v0);
+            FieldEvents_ResetVSSeeker(v0);
             ov5_021DBC08(fieldSystem);
         }
     }
@@ -633,7 +633,7 @@ static BOOL ov5_021DBCD4 (UnkStruct_ov5_021DBA58 * param0)
 
 static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
 {
-    FieldEvents * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_GetFieldEvents(param0->fieldSystem->saveData);
     MapObject * v1;
     u16 v2;
     int v3, v4;
@@ -734,7 +734,7 @@ static u16 ov5_021DBDFC (FieldSystem * fieldSystem, u16 param1)
 
 static u16 ov5_021DBE48 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_GetFieldEvents(fieldSystem->saveData);
     u16 v1 = param2;
 
     switch (param2) {

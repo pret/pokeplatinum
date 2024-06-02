@@ -147,7 +147,7 @@ u32 sub_02062BF8(const MapObject * param0);
 FieldSystem * MapObject_FieldSystem(const MapObject * param0);
 int sub_02062C0C(const MapObject * param0);
 int sub_02062C18(const MapObject * param0);
-void sub_02062C30(MapObjectManager * param0);
+void MapObjectMan_StopAllMovement(MapObjectManager * param0);
 void sub_02062C3C(MapObjectManager * param0);
 void MapObjectMan_PauseAllMovement(MapObjectManager * param0);
 void MapObjectMan_UnpauseAllMovement(MapObjectManager * param0);

@@ -114,7 +114,7 @@ BOOL sub_0206B0C4 (FieldEvents * param0, u16 param1)
     return sub_0206AFE0(param0, (5 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B0D4 (FieldEvents * param0)
+void FieldEvents_ResetVSSeeker (FieldEvents * param0)
 {
     sub_0206A9D4(param0);
     sub_0206B118(param0, 0);
@@ -261,7 +261,7 @@ void sub_0206B2C8 (FieldEvents * param0)
 
 void sub_0206B2E4 (SaveData * param0, u16 param1)
 {
-    FieldEvents * v0 = SaveData_Events(param0);
+    FieldEvents * v0 = SaveData_GetFieldEvents(param0);
     u32 v1;
 
     v1 = sub_0202B428(sub_0202B4A0(param0));
@@ -282,7 +282,7 @@ BOOL sub_0206B324 (FieldEvents * param0, u16 param1)
 
 void sub_0206B334 (SaveData * param0)
 {
-    FieldEvents * v0 = SaveData_Events(param0);
+    FieldEvents * v0 = SaveData_GetFieldEvents(param0);
     u32 v1;
 
     v1 = (LCRNG_Next() % 98) + 2;
@@ -449,8 +449,8 @@ static u8 sub_0206B4A4 (FieldEvents * param0)
 void sub_0206B514 (SaveData * param0)
 {
     u32 v0;
-    FieldEvents * v1 = SaveData_Events(param0);
-    UnkStruct_0203A790 * v2 = sub_0203A790(param0);
+    FieldEvents * v1 = SaveData_GetFieldEvents(param0);
+    FieldStatus * v2 = SaveData_GetFieldStatus(param0);
     Location * location = sub_0203A720(v2);
 
     if ((location->mapId != 457) && (location->mapId != 464)) {

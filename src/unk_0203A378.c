@@ -54,7 +54,7 @@ void sub_0203A398 (FieldSystem * fieldSystem)
     Heap_FreeToHeap(fieldSystem->unk_14);
 }
 
-void sub_0203A3B0 (FieldSystem * fieldSystem, int param1)
+void FieldSystem_LoadMapData (FieldSystem * fieldSystem, int param1)
 {
     GF_ASSERT(fieldSystem->unk_14 != NULL);
 

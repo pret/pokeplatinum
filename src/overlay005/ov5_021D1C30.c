@@ -183,7 +183,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
         if (param0->unk_00_11 == 0) {
             BOOL v0 = sub_02054AB0(Party_GetFromSavedata(fieldSystem->saveData));
 
-            if (sub_0206A984(SaveData_Events(fieldSystem->saveData)) == 1) {
+            if (sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
                 v0 = 1;
             }
 
@@ -196,7 +196,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
     }
 
     if (param0->unk_00_6) {
-        sub_0206A9A4(SaveData_Events(fieldSystem->saveData));
+        sub_0206A9A4(SaveData_GetFieldEvents(fieldSystem->saveData));
 
         if (ov5_021D2884(fieldSystem) == 1) {
             return 1;
@@ -207,7 +207,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
         int v1 = 0;
         int v2 = sub_02061308(fieldSystem->playerAvatar, param0->unk_04, param0->unk_06);
 
-        if (inline_0204E650_2(SaveData_Events(fieldSystem->saveData))) {
+        if (inline_0204E650_2(SaveData_GetFieldEvents(fieldSystem->saveData))) {
             v1 |= 1 << 0;
         }
 
@@ -599,7 +599,7 @@ static BOOL ov5_021D249C (FieldSystem * fieldSystem)
 
     ov5_021D2C7C(fieldSystem, &v0, &v1);
 
-    if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
         if (sub_02056374(fieldSystem, v0, v1) == 1) {
             sub_02051450(fieldSystem, sub_0205639C(fieldSystem));
             return 1;
@@ -829,7 +829,7 @@ static BOOL ov5_021D2884 (FieldSystem * fieldSystem)
         ov5_021D2B54(fieldSystem);
     }
 
-    sub_0206B238(SaveData_Events(fieldSystem->saveData));
+    sub_0206B238(SaveData_GetFieldEvents(fieldSystem->saveData));
     return 0;
 }
 
@@ -935,7 +935,7 @@ static BOOL ov5_021D2B2C (FieldSystem * fieldSystem)
     FieldEvents * v1;
     BOOL v2 = 0;
 
-    v1 = SaveData_Events(fieldSystem->saveData);
+    v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
     v0 = sub_0206B44C(v1);
 
     v0++;
@@ -968,7 +968,7 @@ static void ov5_021D2B54 (FieldSystem * fieldSystem)
 static BOOL ov5_021D2B94 (FieldSystem * fieldSystem)
 {
     Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 * v1 = sub_0203A78C(sub_0203A790(fieldSystem->saveData));
+    u16 * v1 = sub_0203A78C(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     (*v1)++;
     (*v1) %= 4;
@@ -997,18 +997,18 @@ static BOOL ov5_021D2C14 (FieldSystem * fieldSystem)
     u16 * v0;
     u16 * v1;
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 0) {
+    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 0) {
         return 0;
     }
 
-    v0 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+    v0 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     if (*v0 == 0) {
         sub_0203E880(fieldSystem, 8802, NULL);
         return 1;
     }
 
-    v1 = sub_0203A788(sub_0203A790(fieldSystem->saveData));
+    v1 = sub_0203A788(SaveData_GetFieldStatus(fieldSystem->saveData));
     (*v1)++;
 
     if (*v1 >= 500) {
@@ -1090,20 +1090,20 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
 
     if (v0->unk_06 == 0x100) {
         GF_ASSERT(v0->unk_04 == 0xfff);
-        *param3 = *(sub_0203A730(sub_0203A790(fieldSystem->saveData)));
+        *param3 = *(sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData)));
     } else {
-        Location_Init(param3, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
+        Location_Set(param3, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
     }
 
-    Location * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
-    Location_Init(v2, fieldSystem->location->mapId, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    Location * v2 = FieldStatus_GetEntranceLocation(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location_Set(v2, fieldSystem->location->mapId, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
     return 1;
 }
 
 static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int param2, const int param3)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
+    FieldStatus * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
     Location * v1 = sub_0203A72C(v0);
 
     (*v1) = *(fieldSystem->location);

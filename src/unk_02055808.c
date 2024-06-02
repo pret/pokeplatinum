@@ -145,7 +145,7 @@ static BOOL sub_02055984 (TaskManager * param0)
     return 0;
 }
 
-void FieldTask_FadeIn (TaskManager * param0)
+void FieldTask_StartFadeIn (TaskManager * param0)
 {
     FieldTask_Start(param0, sub_02055984, NULL);
 }

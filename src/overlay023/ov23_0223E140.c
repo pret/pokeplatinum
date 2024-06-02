@@ -1687,7 +1687,7 @@ static void ov23_0223F70C (FieldSystem * fieldSystem)
     v0->fieldSystem = fieldSystem;
 
     ov5_021EF3FC(fieldSystem->unk_04->unk_1C);
-    sub_0206AA04(SaveData_Events(fieldSystem->saveData));
+    sub_0206AA04(SaveData_GetFieldEvents(fieldSystem->saveData));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
@@ -2619,7 +2619,7 @@ static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
                 if ((v2 >= 23) && ((28 + 1) > v2) || (v2 == 36) || (v2 == 37)) {
                     sub_02029644(v3, 1);
                     {
-                        FieldEvents * v5 = SaveData_Events(Unk_ov23_02257740->fieldSystem->saveData);
+                        FieldEvents * v5 = SaveData_GetFieldEvents(Unk_ov23_02257740->fieldSystem->saveData);
 
                         sub_0206B41C(v5, sub_0206B40C(v5) + 1);
                     }

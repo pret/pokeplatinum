@@ -75,7 +75,7 @@ static const int Unk_ov5_021F9CBC[] = {
 static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * fieldSystem)
 {
     SaveData * v0 = fieldSystem->saveData;
-    Location * location = sub_0203A720(sub_0203A790(v0));
+    Location * location = sub_0203A720(SaveData_GetFieldStatus(v0));
     PokedexData * v2 = SaveData_Pokedex(v0);
 
     param0->unk_04 = MapHeader_GetMapLabelTextID(location->mapId);

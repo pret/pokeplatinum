@@ -78,8 +78,8 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     int v1 = 0, v2 = 0, v3 = 0;
     int x, z, v6;
     UnkStruct_020556C4 * v7;
-    FieldEvents * v8 = SaveData_Events(fieldSystem->saveData);
-    UnkStruct_0203A790 * v9 = sub_0203A790(fieldSystem->saveData);
+    FieldEvents * v8 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    FieldStatus * v9 = SaveData_GetFieldStatus(fieldSystem->saveData);
     Location * v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
@@ -114,7 +114,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
 
     v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
     param1->unk_0C = TrainerInfo_Gender(v0);
-    v7 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
+    v7 = sub_0203A76C(SaveData_GetFieldStatus(fieldSystem->saveData));
     v2 = (v7->unk_00 - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {
@@ -157,7 +157,7 @@ static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1
     int v3;
     UnkStruct_0206B878 * v4;
     UnkUnion_0206B878 * v5;
-    FieldEvents * v6 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v6 = SaveData_GetFieldEvents(fieldSystem->saveData);
 
     FS_InitFile(&v0);
 

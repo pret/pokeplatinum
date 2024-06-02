@@ -108,7 +108,7 @@ static BOOL sub_0207DA28 (TaskManager * param0)
         break;
     case 3:
         if (sub_02039074(fieldSystem->saveData)) {
-            sub_0206AF5C(SaveData_Events(fieldSystem->saveData));
+            sub_0206AF5C(SaveData_GetFieldEvents(fieldSystem->saveData));
         }
 
         switch (v2->unk_00->unk_04) {

@@ -12,7 +12,7 @@ u16 sub_0206B064(FieldEvents * param0);
 u16 sub_0206B08C(FieldEvents * param0);
 u16 sub_0206B0B4(FieldEvents * param0);
 BOOL sub_0206B0C4(FieldEvents * param0, u16 param1);
-void sub_0206B0D4(FieldEvents * param0);
+void FieldEvents_ResetVSSeeker(FieldEvents * param0);
 u16 sub_0206B0E8(FieldEvents * param0);
 BOOL sub_0206B0F8(FieldEvents * param0, u16 param1);
 u16 sub_0206B108(FieldEvents * param0);

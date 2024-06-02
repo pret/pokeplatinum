@@ -40,12 +40,12 @@ BOOL ScrCmd_158 (ScriptContext * param0)
 
 BOOL ScrCmd_159 (ScriptContext * param0)
 {
-    UnkStruct_0203A790 * v0;
+    FieldStatus * v0;
     PlayerData * v1;
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = sub_0203A790(param0->fieldSystem->saveData);
-    v1 = sub_0203A780(v0);
+    v0 = SaveData_GetFieldStatus(param0->fieldSystem->saveData);
+    v1 = FieldStatus_GetPlayerData(v0);
     *v2 = PlayerData_HasRunningShoes(v1);
 
     return 0;
@@ -53,11 +53,11 @@ BOOL ScrCmd_159 (ScriptContext * param0)
 
 BOOL ScrCmd_15A (ScriptContext * param0)
 {
-    UnkStruct_0203A790 * v0;
+    FieldStatus * v0;
     PlayerData * v1;
 
-    v0 = sub_0203A790(param0->fieldSystem->saveData);
-    v1 = sub_0203A780(v0);
+    v0 = SaveData_GetFieldStatus(param0->fieldSystem->saveData);
+    v1 = FieldStatus_GetPlayerData(v0);
 
     PlayerData_SetRunningShoes(v1, 1);
     return 0;
@@ -88,7 +88,7 @@ BOOL ScrCmd_15E (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A938(SaveData_Events(param0->fieldSystem->saveData));
+    *v0 = sub_0206A938(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
@@ -120,7 +120,7 @@ BOOL ScrCmd_15D (ScriptContext * param0)
 
 BOOL ScrCmd_15F (ScriptContext * param0)
 {
-    sub_0206A92C(SaveData_Events(param0->fieldSystem->saveData));
+    sub_0206A92C(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
@@ -128,19 +128,19 @@ BOOL ScrCmd_160 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A984(SaveData_Events(param0->fieldSystem->saveData));
+    *v0 = sub_0206A984(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
 BOOL ScrCmd_161 (ScriptContext * param0)
 {
-    sub_0206A964(SaveData_Events(param0->fieldSystem->saveData));
+    sub_0206A964(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
 BOOL ScrCmd_162 (ScriptContext * param0)
 {
-    sub_0206A974(SaveData_Events(param0->fieldSystem->saveData));
+    sub_0206A974(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
@@ -148,19 +148,19 @@ BOOL ScrCmd_163 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A9B4(SaveData_Events(param0->fieldSystem->saveData));
+    *v0 = sub_0206A9B4(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
 BOOL ScrCmd_164 (ScriptContext * param0)
 {
-    sub_0206A994(SaveData_Events(param0->fieldSystem->saveData));
+    sub_0206A994(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
 BOOL ScrCmd_165 (ScriptContext * param0)
 {
-    sub_0206A9A4(SaveData_Events(param0->fieldSystem->saveData));
+    sub_0206A9A4(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
@@ -168,13 +168,13 @@ BOOL ScrCmd_166 (ScriptContext * param0)
 {
     u16 * v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206A954(SaveData_Events(param0->fieldSystem->saveData));
+    *v0 = sub_0206A954(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
 BOOL ScrCmd_167 (ScriptContext * param0)
 {
-    sub_0206A944(SaveData_Events(param0->fieldSystem->saveData));
+    sub_0206A944(SaveData_GetFieldEvents(param0->fieldSystem->saveData));
     return 0;
 }
 
@@ -182,7 +182,7 @@ BOOL ScrCmd_1CF (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    FieldEvents * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 
@@ -208,7 +208,7 @@ BOOL ScrCmd_1D0 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    FieldEvents * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 
@@ -221,7 +221,7 @@ BOOL ScrCmd_1D0 (ScriptContext * param0)
         break;
     case 2:
         v1 = ScriptContext_GetVarPointer(param0);
-        *v1 = sub_0206AEDC(v2);
+        *v1 = FieldEvents_CheckFlash(v2);
         break;
     default:
         GF_ASSERT(0);
@@ -234,7 +234,7 @@ BOOL ScrCmd_1D1 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    FieldEvents * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_GetFieldEvents(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 
@@ -247,7 +247,7 @@ BOOL ScrCmd_1D1 (ScriptContext * param0)
         break;
     case 2:
         v1 = ScriptContext_GetVarPointer(param0);
-        *v1 = sub_0206AF0C(v2);
+        *v1 = FieldEvents_CheckDefog(v2);
         break;
     default:
         GF_ASSERT(0);
