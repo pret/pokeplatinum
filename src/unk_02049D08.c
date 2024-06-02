@@ -654,7 +654,7 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
     sub_0204A5EC(param0, param1, 0, v0);
 }
 
-void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, UnkStruct_0202B628 * param2)
+void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * param2)
 {
     u32 v0 = 0;
     int v1;

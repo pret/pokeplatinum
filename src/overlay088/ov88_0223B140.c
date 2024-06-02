@@ -120,7 +120,7 @@ static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC * param
 static void ov88_0223CF68(int param0, GraphicElementData * param1, int param2);
 static int ov88_0223CFF4(u32 * param0, int * param1, GraphicElementData * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
 static int ov88_0223C800(int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3);
-static void ov88_0223E7F0(UnkStruct_0202B628 * param0, Pokemon * param1);
+static void ov88_0223E7F0(Journal * param0, Pokemon * param1);
 static void ov88_0223D140(ChatotCry * param0);
 static void ov88_0223E894(UnkStruct_02095E80 * param0);
 static void ov88_0223E8B4(UnkStruct_02095E80 * param0);
@@ -2540,7 +2540,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     Heap_FreeToHeap(v1);
 }
 
-static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, Pokemon * param1)
+static void ov88_0223E7F0 (Journal * param0, Pokemon * param1)
 {
     void * v0;
     TrainerInfo * v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);

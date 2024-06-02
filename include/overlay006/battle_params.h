@@ -38,7 +38,7 @@ typedef struct {
     UnkStruct_0206D140 * unk_10C;
     BattleParams_sub1 unk_110;
     UnkStruct_0202CD88 * unk_11C;
-    UnkStruct_0202B628 * unk_120;
+    Journal * unk_120;
     UnkStruct_02027F8C * unk_124;
     int unk_128;
     int unk_12C;

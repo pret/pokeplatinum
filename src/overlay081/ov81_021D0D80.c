@@ -90,7 +90,7 @@ int ov81_021D0D80 (OverlayManager * param0, int * param1)
     v0->unk_00 = sub_02018340(42);
 
     v0->unk_4C = v1;
-    v0->unk_44 = sub_0202B628(v1);
+    v0->unk_44 = SaveData_GetJournal(v1);
     v0->unk_48 = SaveData_GetTrainerInfo(v1);
 
     sub_0208C120(0, 42);

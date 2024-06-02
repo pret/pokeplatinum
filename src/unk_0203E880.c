@@ -121,7 +121,7 @@ u16 sub_0203F304(u16 param0);
 u8 sub_0203F3C8(u16 param0);
 static BOOL sub_0203F404(UnkStruct_0203EF60 * param0, u16 param1);
 void sub_0203F310(FieldSystem * fieldSystem);
-void sub_0203F598(FieldSystem * fieldSystem);
+void FieldSystem_InitNewGameScripts(FieldSystem * fieldSystem);
 void sub_0203F5A4(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
 static u16 sub_0203F610(const u8 * param0, u8 param1);
@@ -887,7 +887,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     return v0;
 }
 
-void sub_0203F598 (FieldSystem * fieldSystem)
+void FieldSystem_InitNewGameScripts (FieldSystem * fieldSystem)
 {
     sub_0203F5A4(fieldSystem, 9600);
     return;

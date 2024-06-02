@@ -6172,7 +6172,7 @@ static BOOL ScrCmd_1CC (ScriptContext * ctx)
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
     inline_02044528(SaveData_GetFieldEvents(fieldSystem->saveData));
-    fieldSystem->unk_9C = sub_0202B634(sub_0202B628(fieldSystem->saveData), 1);
+    fieldSystem->unk_9C = sub_0202B634(SaveData_GetJournal(fieldSystem->saveData), 1);
     sub_02053494(fieldSystem);
 
     return 0;

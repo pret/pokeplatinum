@@ -10,7 +10,7 @@ void sub_020531A0(FieldSystem * fieldSystem);
 void FieldSystem_MapChange_UpdateGameData(FieldSystem * fieldSystem, BOOL param1);
 void FieldSystem_MapChange_UpdateGameDataDistortionWorld(FieldSystem * fieldSystem, BOOL param1);
 void sub_02053494(FieldSystem * fieldSystem);
-void sub_020535CC(FieldSystem * fieldSystem);
+void FieldSystem_SetLoadMapFromNewGameTask(FieldSystem * fieldSystem);
 void sub_02053704(FieldSystem * fieldSystem);
 void sub_02053808(FieldSystem * fieldSystem);
 void sub_02053900(TaskManager * param0, const Location * param1);

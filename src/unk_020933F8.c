@@ -1580,7 +1580,7 @@ void sub_02094BB4 (UnkStruct_02095C48 * param0, int * param1, int * param2, int 
     }
 }
 
-void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, UnkStruct_0202B628 * param3)
+void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, Journal * param3)
 {
     int v0;
 
@@ -1673,10 +1673,10 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
 
         {
             void * v9;
-            UnkStruct_0202B628 * v10;
+            Journal * v10;
 
             v9 = sub_0202C1C0(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
-            v10 = sub_0202B628(param0->unk_1970);
+            v10 = SaveData_GetJournal(param0->unk_1970);
 
             sub_0202B758(param3, v9, 4);
         }

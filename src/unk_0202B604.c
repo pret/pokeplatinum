@@ -25,7 +25,7 @@ typedef struct UnkStruct_0202B628_t {
     UnkStruct_0202BE38 unk_14;
     UnkStruct_0202BF4C unk_18;
     u8 unk_1C[2][42];
-} UnkStruct_0202B628;
+} Journal;
 
 typedef struct {
     u32 unk_00;
@@ -38,13 +38,13 @@ typedef struct {
     u16 unk_06;
 } UnkStruct_020E5B50;
 
-static void sub_0202B7A0(UnkStruct_0202B628 * param0, UnkStruct_0202BC58 * param1);
-static void sub_0202B7E0(UnkStruct_0202B628 * param0, UnkStruct_0202BCC8 * param1);
-static void sub_0202B880(UnkStruct_0202B628 * param0, UnkStruct_0202BE38 * param1);
-static void sub_0202B88C(UnkStruct_0202B628 * param0, UnkStruct_0202BF4C * param1);
-static void sub_0202B898(UnkStruct_0202B628 * param0, UnkStruct_0202BFCC * param1);
+static void sub_0202B7A0(Journal * param0, UnkStruct_0202BC58 * param1);
+static void sub_0202B7E0(Journal * param0, UnkStruct_0202BCC8 * param1);
+static void sub_0202B880(Journal * param0, UnkStruct_0202BE38 * param1);
+static void sub_0202B88C(Journal * param0, UnkStruct_0202BF4C * param1);
+static void sub_0202B898(Journal * param0, UnkStruct_0202BFCC * param1);
 static u32 * sub_0202B91C(u32 * param0);
-static u8 * sub_0202B954(UnkStruct_0202B628 * param0);
+static u8 * sub_0202B954(Journal * param0);
 static void sub_0202B994(u32 * param0, UnkStruct_0202BCC8 * param1);
 static void sub_0202B9D0(u32 * param0, UnkStruct_0202BCC8 * param1);
 static void sub_0202B9F0(u32 * param0, UnkStruct_0202BCC8 * param1);
@@ -55,14 +55,14 @@ static void sub_0202BB40(u32 * param0, UnkStruct_0202BCC8 * param1);
 static void sub_0202BB88(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202BBC4(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202BBE0(u8 * param0, UnkStruct_0202BFCC * param1);
-static void sub_0202BC14(UnkStruct_0202B628 * param0, UnkStruct_0202BFCC * param1);
+static void sub_0202BC14(Journal * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202BC48(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202BF94(const u16 * param0, u16 * param1, u32 param2);
-static void sub_0202C2FC(UnkStruct_0202B628 * param0, UnkStruct_0202BC58 * param1);
-static void sub_0202C304(UnkStruct_0202B628 * param0, UnkStruct_0202BCC8 * param1);
-static void sub_0202C3B8(UnkStruct_0202B628 * param0, UnkStruct_0202BE38 * param1);
-static void sub_0202C3C4(UnkStruct_0202B628 * param0, UnkStruct_0202BF4C * param1);
-static void sub_0202C3D0(UnkStruct_0202B628 * param0, UnkStruct_0202BFCC * param1);
+static void sub_0202C2FC(Journal * param0, UnkStruct_0202BC58 * param1);
+static void sub_0202C304(Journal * param0, UnkStruct_0202BCC8 * param1);
+static void sub_0202C3B8(Journal * param0, UnkStruct_0202BE38 * param1);
+static void sub_0202C3C4(Journal * param0, UnkStruct_0202BF4C * param1);
+static void sub_0202C3D0(Journal * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202C474(u32 param0, UnkStruct_0202BCC8 * param1);
 static void sub_0202C47C(u32 param0, UnkStruct_0202BCC8 * param1);
 static void sub_0202C494(u32 param0, UnkStruct_0202BCC8 * param1);
@@ -119,25 +119,25 @@ static const UnkStruct_020E5B50 Unk_020E5B50[] = {
 
 int Journal_SaveSize (void)
 {
-    return sizeof(UnkStruct_0202B628) * 10;
+    return sizeof(Journal) * 10;
 }
 
-static void sub_0202B60C (UnkStruct_0202B628 * param0)
+static void sub_0202B60C (Journal * param0)
 {
-    memset(param0, 0, sizeof(UnkStruct_0202B628));
+    memset(param0, 0, sizeof(Journal));
 }
 
-void Journal_Init (UnkStruct_0202B628 * param0)
+void Journal_Init (Journal * param0)
 {
-    memset(param0, 0, sizeof(UnkStruct_0202B628) * 10);
+    memset(param0, 0, sizeof(Journal) * 10);
 }
 
-UnkStruct_0202B628 * sub_0202B628 (SaveData * param0)
+Journal * SaveData_GetJournal (SaveData * param0)
 {
     return SaveData_SaveTable(param0, 18);
 }
 
-UnkStruct_0202B628 * sub_0202B634 (UnkStruct_0202B628 * param0, BOOL param1)
+Journal * sub_0202B634 (Journal * param0, BOOL param1)
 {
     RTCDate v0;
     s32 v1;
@@ -159,7 +159,7 @@ UnkStruct_0202B628 * sub_0202B634 (UnkStruct_0202B628 * param0, BOOL param1)
     return &param0[0];
 }
 
-BOOL sub_0202B6A4 (UnkStruct_0202B628 * param0, BOOL param1)
+BOOL Journal_CheckOpenOnContinue (Journal * param0, BOOL param1)
 {
     RTCDate v0;
     RTCDate v1;
@@ -195,7 +195,7 @@ BOOL sub_0202B6A4 (UnkStruct_0202B628 * param0, BOOL param1)
     return 0;
 }
 
-void sub_0202B758 (UnkStruct_0202B628 * param0, void * param1, u8 param2)
+void sub_0202B758 (Journal * param0, void * param1, u8 param2)
 {
     if (param0 != NULL) {
         switch (param2) {
@@ -220,7 +220,7 @@ void sub_0202B758 (UnkStruct_0202B628 * param0, void * param1, u8 param2)
     Heap_FreeToHeap(param1);
 }
 
-static void sub_0202B7A0 (UnkStruct_0202B628 * param0, UnkStruct_0202BC58 * param1)
+static void sub_0202B7A0 (Journal * param0, UnkStruct_0202BC58 * param1)
 {
     if ((param0->unk_00.unk_00_0 == param1->unk_00_0) && (param0->unk_00.unk_00_7 == param1->unk_00_7) && (param0->unk_00.unk_00_14 == param1->unk_00_14) && (param0->unk_00.unk_00_11 == param1->unk_00_11)) {
         return;
@@ -229,7 +229,7 @@ static void sub_0202B7A0 (UnkStruct_0202B628 * param0, UnkStruct_0202BC58 * para
     param0->unk_00 = *param1;
 }
 
-static void sub_0202B7E0 (UnkStruct_0202B628 * param0, UnkStruct_0202BCC8 * param1)
+static void sub_0202B7E0 (Journal * param0, UnkStruct_0202BCC8 * param1)
 {
     switch (param1->unk_00) {
     case 1:
@@ -288,17 +288,17 @@ static void sub_0202B7E0 (UnkStruct_0202B628 * param0, UnkStruct_0202BCC8 * para
     }
 }
 
-static void sub_0202B880 (UnkStruct_0202B628 * param0, UnkStruct_0202BE38 * param1)
+static void sub_0202B880 (Journal * param0, UnkStruct_0202BE38 * param1)
 {
     param0->unk_14 = *param1;
 }
 
-static void sub_0202B88C (UnkStruct_0202B628 * param0, UnkStruct_0202BF4C * param1)
+static void sub_0202B88C (Journal * param0, UnkStruct_0202BF4C * param1)
 {
     param0->unk_18 = *param1;
 }
 
-static void sub_0202B898 (UnkStruct_0202B628 * param0, UnkStruct_0202BFCC * param1)
+static void sub_0202B898 (Journal * param0, UnkStruct_0202BFCC * param1)
 {
     u8 * v0 = sub_0202B954(param0);
 
@@ -364,7 +364,7 @@ static u32 * sub_0202B91C (u32 * param0)
     return &param0[v0];
 }
 
-static u8 * sub_0202B954 (UnkStruct_0202B628 * param0)
+static u8 * sub_0202B954 (Journal * param0)
 {
     u32 v0;
 
@@ -547,7 +547,7 @@ static void sub_0202BBE0 (u8 * param0, UnkStruct_0202BFCC * param1)
     sub_0202BF94(param1->unk_22, (u16 *)&param0[18], 12);
 }
 
-static void sub_0202BC14 (UnkStruct_0202B628 * param0, UnkStruct_0202BFCC * param1)
+static void sub_0202BC14 (Journal * param0, UnkStruct_0202BFCC * param1)
 {
     u32 v0;
     u8 * v1;
@@ -1061,7 +1061,7 @@ void * sub_0202C280 (int param0, u32 param1, u32 param2)
     return v0;
 }
 
-void sub_0202C2A4 (UnkStruct_0202B628 * param0, void * param1, u8 param2, u8 param3)
+void sub_0202C2A4 (Journal * param0, void * param1, u8 param2, u8 param3)
 {
     switch (param2) {
     case 0:
@@ -1082,12 +1082,12 @@ void sub_0202C2A4 (UnkStruct_0202B628 * param0, void * param1, u8 param2, u8 par
     }
 }
 
-static void sub_0202C2FC (UnkStruct_0202B628 * param0, UnkStruct_0202BC58 * param1)
+static void sub_0202C2FC (Journal * param0, UnkStruct_0202BC58 * param1)
 {
     *param1 = param0->unk_00;
 }
 
-static void sub_0202C304 (UnkStruct_0202B628 * param0, UnkStruct_0202BCC8 * param1)
+static void sub_0202C304 (Journal * param0, UnkStruct_0202BCC8 * param1)
 {
     u32 v0;
 
@@ -1148,17 +1148,17 @@ static void sub_0202C304 (UnkStruct_0202B628 * param0, UnkStruct_0202BCC8 * para
     }
 }
 
-static void sub_0202C3B8 (UnkStruct_0202B628 * param0, UnkStruct_0202BE38 * param1)
+static void sub_0202C3B8 (Journal * param0, UnkStruct_0202BE38 * param1)
 {
     *param1 = param0->unk_14;
 }
 
-static void sub_0202C3C4 (UnkStruct_0202B628 * param0, UnkStruct_0202BF4C * param1)
+static void sub_0202C3C4 (Journal * param0, UnkStruct_0202BF4C * param1)
 {
     *param1 = param0->unk_18;
 }
 
-static void sub_0202C3D0 (UnkStruct_0202B628 * param0, UnkStruct_0202BFCC * param1)
+static void sub_0202C3D0 (Journal * param0, UnkStruct_0202BFCC * param1)
 {
     u32 v0;
 
@@ -1279,7 +1279,7 @@ static void sub_0202C5AC (u8 * param0, UnkStruct_0202BFCC * param1)
     param1->unk_01_0 = param0[1];
 }
 
-void sub_0202C5C4 (TrainerInfo * param0, UnkStruct_0202B628 * param1, u32 param2, u32 param3, u32 param4)
+void sub_0202C5C4 (TrainerInfo * param0, Journal * param1, u32 param2, u32 param3, u32 param4)
 {
     void * v0;
     u32 v1;
@@ -1355,13 +1355,13 @@ static u8 sub_0202C6CC (TrainerInfo * param0, u32 param1)
     return 0xff;
 }
 
-void sub_0202C704 (UnkStruct_0202B628 * param0, u32 param1, u32 param2)
+void sub_0202C704 (Journal * param0, u32 param1, u32 param2)
 {
     void * v0 = sub_0202BD98((u16)param1, param2);
     sub_0202B758(param0, v0, 1);
 }
 
-void sub_0202C720 (UnkStruct_0202B628 * param0, u16 param1, u16 param2, u32 param3)
+void sub_0202C720 (Journal * param0, u16 param1, u16 param2, u32 param3)
 {
     void * v0;
     u8 v1;

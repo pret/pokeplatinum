@@ -73,7 +73,7 @@ void * sub_0209C1EC (FieldSystem * fieldSystem)
     v0->unk_08.unk_0C = fieldSystem->unk_80;
     v0->unk_08.unk_10 = SaveData_Options(fieldSystem->saveData);
     v0->unk_08.unk_14 = sub_0202CD88(fieldSystem->saveData);
-    v0->unk_08.unk_18 = sub_0202B628(fieldSystem->saveData);
+    v0->unk_08.unk_18 = SaveData_GetJournal(fieldSystem->saveData);
     v0->unk_08.unk_04 = Options_Frame(v0->unk_08.unk_10);
     v0->unk_08.fieldSystem = fieldSystem;
 

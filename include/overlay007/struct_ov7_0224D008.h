@@ -38,7 +38,7 @@ typedef struct {
     TrainerInfo * unk_270;
     void * unk_274;
     Options * unk_278;
-    UnkStruct_0202B628 * unk_27C;
+    Journal * unk_27C;
     UnkStruct_0202CD88 * unk_280;
     SaveData * unk_284;
     FieldEvents * unk_288;

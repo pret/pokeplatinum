@@ -75,7 +75,7 @@ static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
 static int FieldSystem_InitNewGame (OverlayManager * overlayMan, int * param1)
 {
     sFieldSystem = FieldSystem_Init(overlayMan);
-    sub_020535CC(sFieldSystem);
+    FieldSystem_SetLoadMapFromNewGameTask(sFieldSystem);
     return 1;
 }
 

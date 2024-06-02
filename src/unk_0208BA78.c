@@ -78,7 +78,7 @@ void sub_0208BA84 (UnkStruct_0208BA84 * param0, BOOL param1, int param2)
 
 static void sub_0208BA8C (SaveData * param0, int param1, u32 param2)
 {
-    UnkStruct_0202B628 * v0 = sub_0202B628(param0);
+    Journal * v0 = SaveData_GetJournal(param0);
     void * v1 = sub_0202C244(param1, param2);
 
     sub_0202B758(v0, v1, 4);

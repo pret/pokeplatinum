@@ -13,7 +13,7 @@
 typedef struct {
     BGL * unk_00;
     Window unk_04[4];
-    UnkStruct_0202B628 * unk_44;
+    Journal * unk_44;
     TrainerInfo * unk_48;
     SaveData * unk_4C;
     MessageLoader * unk_50;

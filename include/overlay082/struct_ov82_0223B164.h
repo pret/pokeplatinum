@@ -16,7 +16,7 @@ typedef struct {
     TrainerInfo * unk_10;
     UnkStruct_0207D3C0 * unk_14;
     Options * unk_18;
-    UnkStruct_0202B628 * unk_1C;
+    Journal * unk_1C;
     BOOL unk_20;
     BOOL unk_24;
 } UnkStruct_ov82_0223B164;

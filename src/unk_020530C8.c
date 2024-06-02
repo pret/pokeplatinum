@@ -480,10 +480,10 @@ static BOOL FieldTask_LoadMapFromNewGame (TaskManager * taskMan)
     return FALSE;
 }
 
-void sub_020535CC (FieldSystem * fieldSystem)
+void FieldSystem_SetLoadMapFromNewGameTask (FieldSystem * fieldSystem)
 {
     fieldSystem->unk_70 = 0;
-    sub_0203F598(fieldSystem);
+    FieldSystem_InitNewGameScripts(fieldSystem);
     FieldTask_Set(fieldSystem, FieldTask_LoadMapFromNewGame, NULL);
 }
 
@@ -497,13 +497,13 @@ static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
     case 0:
         sub_0202878C(fieldSystem->saveData);
 
-        if (sub_0202B6A4(sub_0202B628(fieldSystem->saveData), inline_020535E8(events))) {
+        if (Journal_CheckOpenOnContinue(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events))) {
             sub_0203D30C(fieldSystem, NULL);
             (*state) = 4;
             break;
         }
     case 1:
-        fieldSystem->unk_9C = sub_0202B634(sub_0202B628(fieldSystem->saveData), inline_020535E8(events));
+        fieldSystem->unk_9C = sub_0202B634(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events));
 
         if (sub_0206ADBC(events)) {
             FieldStatus * v3 = SaveData_GetFieldStatus(fieldSystem->saveData);
@@ -562,7 +562,7 @@ static BOOL sub_02053718 (TaskManager * taskMan)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         sub_0202878C(fieldSystem->saveData);
-        fieldSystem->unk_9C = sub_0202B634(sub_0202B628(fieldSystem->saveData), inline_020535E8(v2));
+        fieldSystem->unk_9C = sub_0202B634(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(v2));
         (*state)++;
         break;
     case 1:
