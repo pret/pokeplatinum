@@ -132,7 +132,7 @@ BOOL ScrCmd_0FB (ScriptContext * param0)
     Pokemon * v0;
     void ** v1 = sub_0203F098(param0->fieldSystem, 20);
     u16 v2 = ScriptContext_GetVar(param0);
-    u32 v3 = MapHeader_GetMapLabelTextID(param0->fieldSystem->unk_1C->unk_00);
+    u32 v3 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->unk_00);
 
     sub_02094C44(*v1, param0->fieldSystem->saveData, v3, param0->fieldSystem->unk_9C);
     sub_02093AD4(*v1);

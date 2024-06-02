@@ -110,7 +110,7 @@ void sub_02071B6C (FieldSystem * fieldSystem, const u8 param1)
         GF_ASSERT(0);
     }
 
-    if (fieldSystem->unk_1C->unk_0C == v2) {
+    if (fieldSystem->location->unk_0C == v2) {
         v1->unk_00 = 0;
     }
 }

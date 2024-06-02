@@ -162,7 +162,7 @@ void sub_02056C18 (FieldSystem * fieldSystem, const int param1, const int param2
 
     inline_02049FA8(&v2->unk_08, param1, param2, param3, param4, param5);
 
-    v0 = fieldSystem->unk_1C->unk_00;
+    v0 = fieldSystem->location->unk_00;
     v1 = 0;
 
     if (MapHeader_IsCave(v0)) {

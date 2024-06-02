@@ -80,7 +80,7 @@ void sub_0203A418 (FieldSystem * fieldSystem)
     GF_ASSERT(fieldSystem->unk_14 != NULL);
 
     if (v0 != 0) {
-        sub_02062068(fieldSystem->mapObjMan, fieldSystem->unk_1C->unk_00, v0, fieldSystem->unk_14->unk_14);
+        sub_02062068(fieldSystem->mapObjMan, fieldSystem->location->unk_00, v0, fieldSystem->unk_14->unk_14);
     }
 }
 

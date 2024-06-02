@@ -479,7 +479,7 @@ BOOL ov5_021F0488 (TaskManager * param0)
     case 3:
         v1->unk_0E--;
 
-        if (MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00)) {
+        if (MapHeader_HasWildEncounters(fieldSystem->location->unk_00)) {
             if (v1->unk_0E < 0) {
                 {
                     u8 v3;

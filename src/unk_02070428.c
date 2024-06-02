@@ -39,7 +39,7 @@ void sub_02070430 (FieldSystem * fieldSystem)
 
     inline_0204E650_1(SaveData_Events(fieldSystem->saveData));
 
-    sub_0203A8E8(fieldSystem, fieldSystem->unk_1C->unk_00);
+    sub_0203A8E8(fieldSystem, fieldSystem->location->unk_00);
     sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
 
     fieldSystem->unk_78.unk_00 = 0;
@@ -48,7 +48,7 @@ void sub_02070430 (FieldSystem * fieldSystem)
         UnkStruct_0202D7B0 * v0;
 
         v0 = sub_0202D834(fieldSystem->saveData);
-        sub_0206C404(v0, fieldSystem->unk_1C->unk_00);
+        sub_0206C404(v0, fieldSystem->location->unk_00);
         sub_0206C37C(v0);
     }
 }
@@ -68,7 +68,7 @@ void sub_02070494 (FieldSystem * fieldSystem)
 
     inline_0204E650_1(SaveData_Events(fieldSystem->saveData));
 
-    sub_0203A8E8(fieldSystem, fieldSystem->unk_1C->unk_00);
+    sub_0203A8E8(fieldSystem, fieldSystem->location->unk_00);
     sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
 
     fieldSystem->unk_78.unk_00 = 0;
@@ -77,10 +77,10 @@ void sub_02070494 (FieldSystem * fieldSystem)
         UnkStruct_0202D7B0 * v0;
 
         v0 = sub_0202D834(fieldSystem->saveData);
-        sub_0206C404(v0, fieldSystem->unk_1C->unk_00);
+        sub_0206C404(v0, fieldSystem->location->unk_00);
     }
 
-    if (!MapHeader_IsCave(fieldSystem->unk_1C->unk_00)) {
+    if (!MapHeader_IsCave(fieldSystem->location->unk_00)) {
         UnkStruct_020507E4 * v1 = SaveData_Events(fieldSystem->saveData);
 
         sub_0206AECC(v1);
@@ -90,18 +90,18 @@ void sub_02070494 (FieldSystem * fieldSystem)
     {
         PlayerData * v2 = sub_0203A780(sub_0203A790(fieldSystem->saveData));
 
-        if ((v2->unk_04 == 0x1) && (MapHeader_IsBikeAllowed(fieldSystem->unk_1C->unk_00) == 0)) {
+        if ((v2->unk_04 == 0x1) && (MapHeader_IsBikeAllowed(fieldSystem->location->unk_00) == 0)) {
             v2->unk_04 = 0x0;
         } else if (v2->unk_04 == 0x2) {
             v2->unk_04 = 0x0;
         }
     }
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00)) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00)) {
         UnkStruct_020556C4 * v3;
 
         v3 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
-        sub_020556E8(v3, fieldSystem->unk_1C->unk_08, fieldSystem->unk_1C->unk_0C);
+        sub_020556E8(v3, fieldSystem->location->unk_08, fieldSystem->location->unk_0C);
     }
 }
 
@@ -137,10 +137,10 @@ void sub_020705CC (FieldSystem * fieldSystem)
 
 static BOOL sub_020705DC (FieldSystem * fieldSystem)
 {
-    int v0 = sub_0203A87C(fieldSystem->unk_1C->unk_00);
+    int v0 = sub_0203A87C(fieldSystem->location->unk_00);
 
     if ((v0 != 0) && (sub_0203A920(fieldSystem, v0) == 0)) {
-        sub_0202C704(fieldSystem->unk_9C, fieldSystem->unk_1C->unk_00, 32);
+        sub_0202C704(fieldSystem->unk_9C, fieldSystem->location->unk_00, 32);
         return 1;
     }
 
@@ -151,9 +151,9 @@ static BOOL sub_02070610 (FieldSystem * fieldSystem)
 {
     Location * v0 = sub_0203A728(sub_0203A790(fieldSystem->saveData));
 
-    if (v0->unk_00 != fieldSystem->unk_1C->unk_00) {
+    if (v0->unk_00 != fieldSystem->location->unk_00) {
         sub_0202C5C4(
-            SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->unk_9C, fieldSystem->unk_1C->unk_00, v0->unk_00, 32);
+            SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->unk_9C, fieldSystem->location->unk_00, v0->unk_00, 32);
         return 1;
     }
 

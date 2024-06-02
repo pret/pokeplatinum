@@ -134,9 +134,9 @@ static inline void inline_ov47_0225621C_sub (FieldSystem * fieldSystem, int * pa
     UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
     Location * v1 = sub_0203A72C(v0);
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00)) {
-        *param1 = fieldSystem->unk_1C->unk_08;
-        *param2 = fieldSystem->unk_1C->unk_0C;
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00)) {
+        *param1 = fieldSystem->location->unk_08;
+        *param2 = fieldSystem->location->unk_0C;
     } else {
         *param1 = v1->unk_08;
         *param2 = v1->unk_0C;

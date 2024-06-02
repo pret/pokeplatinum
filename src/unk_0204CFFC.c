@@ -31,7 +31,7 @@
 
 BOOL ScrCmd_096 (ScriptContext * param0)
 {
-    int v0 = MapHeader_GetMapLabelTextID(param0->fieldSystem->unk_1C->unk_00);
+    int v0 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->unk_00);
     int v1 = 24;
     Party * v2;
     FieldSystem * fieldSystem = param0->fieldSystem;
@@ -306,7 +306,7 @@ BOOL ScrCmd_1BA (ScriptContext * param0)
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4;
-    u32 v5 = MapHeader_GetMapLabelTextID(param0->fieldSystem->unk_1C->unk_00);
+    u32 v5 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->unk_00);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
     v4 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);

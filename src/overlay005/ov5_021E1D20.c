@@ -233,10 +233,10 @@ static void ov5_021E2028 (FieldSystem * fieldSystem)
     sub_0203A7A8(fieldSystem);
     ov5_021EA714(fieldSystem, 4, 0);
 
-    fieldSystem->unk_1C->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
-    fieldSystem->unk_1C->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
-    fieldSystem->unk_1C->unk_04 = -1;
-    fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    fieldSystem->location->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
+    fieldSystem->location->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
+    fieldSystem->location->unk_04 = -1;
+    fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }
 
 void ov5_021E2064 (FieldSystem * fieldSystem)
@@ -246,7 +246,7 @@ void ov5_021E2064 (FieldSystem * fieldSystem)
         return;
     }
 
-    switch (fieldSystem->unk_1C->unk_00) {
+    switch (fieldSystem->location->unk_00) {
     case 466:
     case 332:
     case 333:

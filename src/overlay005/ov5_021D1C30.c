@@ -608,7 +608,7 @@ static BOOL ov5_021D249C (FieldSystem * fieldSystem)
         }
     }
 
-    if (MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00) && (ov6_02240D5C(fieldSystem) == 1)) {
+    if (MapHeader_HasWildEncounters(fieldSystem->location->unk_00) && (ov6_02240D5C(fieldSystem) == 1)) {
         return 1;
     }
 
@@ -955,7 +955,7 @@ static void ov5_021D2B54 (FieldSystem * fieldSystem)
     int v0, v1;
     Pokemon * v2;
     Party * v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 v4 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+    u16 v4 = MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00);
 
     v1 = Party_GetCurrentCount(v3);
 
@@ -977,7 +977,7 @@ static BOOL ov5_021D2B94 (FieldSystem * fieldSystem)
         return 0;
     }
 
-    switch (sub_02054B04(v0, MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00))) {
+    switch (sub_02054B04(v0, MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00))) {
     case 0:
         return 0;
     case 1:
@@ -1097,7 +1097,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
 
     {
         Location * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
-        inline_02049FA8(v2, fieldSystem->unk_1C->unk_00, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+        inline_02049FA8(v2, fieldSystem->location->unk_00, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
     return 1;
@@ -1108,7 +1108,7 @@ static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int
     UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
     Location * v1 = sub_0203A72C(v0);
 
-    (*v1) = *(fieldSystem->unk_1C);
+    (*v1) = *(fieldSystem->location);
     v1->unk_10 = param3;
     v1->unk_08 = param1;
     v1->unk_0C = param2;
@@ -1117,7 +1117,7 @@ static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int
         (v1->unk_0C)++;
     }
 
-    v1->unk_00 = fieldSystem->unk_1C->unk_00;
+    v1->unk_00 = fieldSystem->location->unk_00;
     v1->unk_04 = -1;
 }
 
@@ -1129,14 +1129,14 @@ static void ov5_021D2E14 (FieldSystem * fieldSystem)
     ov5_021D2C7C(fieldSystem, &v0, &v1);
 
     if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
-        if ((MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
+        if ((MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
             ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
     } else {
         ov5_021D2C98(fieldSystem, &v0, &v1);
 
         if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
-            if ((MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
+            if ((MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
                 ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
         }

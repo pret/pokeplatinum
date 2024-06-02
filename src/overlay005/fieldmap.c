@@ -225,7 +225,7 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
             ov5_021D5F24(fieldSystem->unk_04->unk_0C, v3);
         }
 
-        sub_020556A0(fieldSystem, fieldSystem->unk_1C->unk_00);
+        sub_020556A0(fieldSystem, fieldSystem->location->unk_00);
         sub_0203F5C0(fieldSystem, 3);
 
         fieldSystem->unk_04->unk_1C = ov5_021EF3A8(4);
@@ -278,9 +278,9 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
         sub_02068368(fieldSystem);
         ov5_021E9338(fieldSystem->unk_28);
 
-        fieldSystem->unk_1C->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
-        fieldSystem->unk_1C->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
-        fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        fieldSystem->location->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
+        fieldSystem->location->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
+        fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         ov5_021EF300(fieldSystem->unk_A0);
 
@@ -394,9 +394,9 @@ static BOOL ov5_021D119C (FieldSystem * fieldSystem)
     x = Player_GetXPos(fieldSystem->playerAvatar);
     y = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if ((x != fieldSystem->unk_1C->unk_08) || (y != fieldSystem->unk_1C->unk_0C)) {
-        fieldSystem->unk_1C->unk_08 = x;
-        fieldSystem->unk_1C->unk_0C = y;
+    if ((x != fieldSystem->location->unk_08) || (y != fieldSystem->location->unk_0C)) {
+        fieldSystem->location->unk_08 = x;
+        fieldSystem->location->unk_0C = y;
         return TRUE;
     } else {
         return FALSE;
@@ -417,7 +417,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     v2 = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
     v3 = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
     v0 = sub_02039E30(fieldSystem->unk_2C, v2, v3);
-    v1 = fieldSystem->unk_1C->unk_00;
+    v1 = fieldSystem->location->unk_00;
 
     if (v0 == v1) {
         return 0;
@@ -425,7 +425,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 
     v4 = sub_0203A790(fieldSystem->saveData);
     {
-        fieldSystem->unk_1C->unk_00 = v0;
+        fieldSystem->location->unk_00 = v0;
 
         sub_0203A3B0(fieldSystem, v0);
         sub_020531C0(fieldSystem, 1);
@@ -440,7 +440,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 
     {
         RadarChain_Clear(fieldSystem->chain);
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->unk_00), 1);
         sub_0203A418(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -474,11 +474,11 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
     u32 v0;
     UnkStruct_0203A790 * v1;
 
-    v0 = fieldSystem->unk_1C->unk_00;
+    v0 = fieldSystem->location->unk_00;
     v1 = sub_0203A790(fieldSystem->saveData);
 
     {
-        fieldSystem->unk_1C->unk_00 = param1;
+        fieldSystem->location->unk_00 = param1;
 
         sub_0203A3B0(fieldSystem, param1);
         sub_020532A8(fieldSystem, 1);
@@ -492,7 +492,7 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
     }
 
     {
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->unk_00), 1);
         sub_0203A418(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -536,7 +536,7 @@ static void ov5_021D13B4 (FieldSystem * fieldSystem)
     UnkStruct_020556C4 * v0;
     int v1, v2, v3;
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 0) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00) == 0) {
         return;
     }
 
@@ -811,10 +811,10 @@ static void ov5_021D1790 (FieldSystem * fieldSystem)
     {
         u16 v0, v1;
 
-        v0 = sub_0203A038(fieldSystem->unk_1C->unk_00);
+        v0 = sub_0203A038(fieldSystem->location->unk_00);
         fieldSystem->unk_30 = ov5_021EF76C(v0, fieldSystem->unk_50);
 
-        v1 = sub_0203A04C(fieldSystem->unk_1C->unk_00);
+        v1 = sub_0203A04C(fieldSystem->location->unk_00);
         GF_ASSERT(fieldSystem->unk_34 == NULL);
 
         fieldSystem->unk_34 = ov5_021D1A14(4, v1);
@@ -828,7 +828,7 @@ static void ov5_021D17EC (FieldSystem * fieldSystem)
     if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         int v0 = 0, v1 = 0, v2 = 0;
 
-        ov9_02251094(fieldSystem->unk_1C->unk_00, &v0, &v1, &v2);
+        ov9_02251094(fieldSystem->location->unk_00, &v0, &v1, &v2);
         ov5_021EA678(fieldSystem->unk_28, v0, v1, v2);
         ov5_021EA6A4(fieldSystem->unk_28, 1);
         ov5_021EA6D0(fieldSystem->unk_28, 1);
@@ -841,7 +841,7 @@ static void ov5_021D17EC (FieldSystem * fieldSystem)
         ov5_021E9630(fieldSystem->unk_28, ov5_021F0030, fieldSystem);
     }
 
-    ov5_021E9150(fieldSystem->unk_28, fieldSystem->unk_1C->unk_08, fieldSystem->unk_1C->unk_0C);
+    ov5_021E9150(fieldSystem->unk_28, fieldSystem->location->unk_08, fieldSystem->location->unk_0C);
 }
 
 static void ov5_021D1878 (FieldSystem * fieldSystem)

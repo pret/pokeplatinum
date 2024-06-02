@@ -309,13 +309,13 @@ void ov5_021DDAA4 (FieldSystem * fieldSystem)
     int v0;
     int v1;
 
-    if (MapHeader_GetMapLabelWindowID(fieldSystem->unk_1C->unk_00) == 0) {
+    if (MapHeader_GetMapLabelWindowID(fieldSystem->location->unk_00) == 0) {
         return;
     }
 
-    if (!sub_0203A288(fieldSystem->unk_1C->unk_00)) {
-        v0 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
-        v1 = MapHeader_GetMapLabelWindowID(fieldSystem->unk_1C->unk_00);
+    if (!sub_0203A288(fieldSystem->location->unk_00)) {
+        v0 = MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00);
+        v1 = MapHeader_GetMapLabelWindowID(fieldSystem->location->unk_00);
 
         if (v1 != 0) {
             v1--;

@@ -52,7 +52,7 @@ typedef struct FieldSystem_t {
     TaskManager * unk_10;
     UnkStruct_0203A3E8 * unk_14;
     int unk_18;
-    Location * unk_1C;
+    Location * location;
     int unk_20;
     UnkStruct_020203AC * unk_24;
     UnkStruct_ov5_021E8F60 * unk_28;

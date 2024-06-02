@@ -34,7 +34,7 @@ UnkStruct_ov104_02230BE4 * sub_0209BA18 (FieldSystem * fieldSystem, void * param
     v0->unk_20 = fieldSystem->unk_BC;
     v0->unk_14 = 0;
     v0->unk_18 = 0;
-    v0->unk_1C = fieldSystem->unk_1C->unk_00;
+    v0->unk_1C = fieldSystem->location->unk_00;
     v0->unk_24 = (((((((((((0 + 1) + 1) + 1) + 1) + 1) + 3) + 1) + 1) + 1) + 2) + 1);
     v0->fieldSystem = fieldSystem;
 

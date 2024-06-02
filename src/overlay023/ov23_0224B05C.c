@@ -973,7 +973,7 @@ static UnkStruct_ov23_0224BA48 * ov23_0224BCC4 (FieldSystem * fieldSystem, int p
         v0->unk_2B = param4;
         v0->unk_2C = param5;
 
-        GF_ASSERT(fieldSystem->unk_1C->unk_00 == 2);
+        GF_ASSERT(fieldSystem->location->unk_00 == 2);
 
         v0->unk_14 = 2;
         v0->unk_24 = param3;

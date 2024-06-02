@@ -521,7 +521,7 @@ u32 sub_0206C068 (SaveData * param0)
 
 BOOL sub_0206C0D0 (FieldSystem * fieldSystem)
 {
-    if (fieldSystem->unk_1C->unk_00 == SPECIES_ARCEUS) {
+    if (fieldSystem->location->unk_00 == SPECIES_ARCEUS) {
         return 1;
     }
 

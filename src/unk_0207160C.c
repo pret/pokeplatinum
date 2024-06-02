@@ -170,9 +170,9 @@ void sub_020716D4 (FieldSystem * fieldSystem)
     v1->unk_04 = 1;
     v1->unk_08 = 0;
 
-    switch (fieldSystem->unk_1C->unk_00) {
+    switch (fieldSystem->location->unk_00) {
     case 291:
-        if (fieldSystem->unk_1C->unk_0C == 26) {
+        if (fieldSystem->location->unk_0C == 26) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -181,7 +181,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_02 = 0;
         break;
     case 293:
-        if (fieldSystem->unk_1C->unk_0C == (32 * 1 + 16)) {
+        if (fieldSystem->location->unk_0C == (32 * 1 + 16)) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -190,7 +190,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_02 = 1;
         break;
     case 294:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -199,7 +199,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_02 = 2;
         break;
     case 176:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -210,7 +210,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 178:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -221,7 +221,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 180:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -232,7 +232,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 182:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->unk_0C == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -243,7 +243,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 184:
-        if (fieldSystem->unk_1C->unk_0C == 23) {
+        if (fieldSystem->location->unk_0C == 23) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -254,7 +254,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 185:
-        if (fieldSystem->unk_1C->unk_0C == 18) {
+        if (fieldSystem->location->unk_0C == 18) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;

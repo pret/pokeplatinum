@@ -182,7 +182,7 @@ static void sub_020530C8 (FieldSystem * fieldSystem)
 {
     BOOL v0;
 
-    switch (fieldSystem->unk_1C->unk_00) {
+    switch (fieldSystem->location->unk_00) {
     case 326:
     case 327:
     case 328:
@@ -211,19 +211,19 @@ static void sub_0205311C (FieldSystem * fieldSystem, const Location * param1)
     Location * location = sub_0203A728(v0);
 
     if (param1 != NULL) {
-        *location = *fieldSystem->unk_1C;
-        *(fieldSystem->unk_1C) = *param1;
+        *location = *fieldSystem->location;
+        *(fieldSystem->location) = *param1;
     }
 
-    sub_0203A3B0(fieldSystem, fieldSystem->unk_1C->unk_00);
+    sub_0203A3B0(fieldSystem, fieldSystem->location->unk_00);
 
-    if (fieldSystem->unk_1C->unk_04 != -1) {
+    if (fieldSystem->location->unk_04 != -1) {
         const UnkStruct_0203A55C * v2;
 
-        v2 = sub_0203A450(fieldSystem, fieldSystem->unk_1C->unk_04);
+        v2 = sub_0203A450(fieldSystem, fieldSystem->location->unk_04);
 
-        fieldSystem->unk_1C->unk_08 = v2->unk_00;
-        fieldSystem->unk_1C->unk_0C = v2->unk_02;
+        fieldSystem->location->unk_08 = v2->unk_00;
+        fieldSystem->location->unk_0C = v2->unk_02;
 
         if (v2->unk_06 == 0x100) {
             Location * v3, * v4;
@@ -243,7 +243,7 @@ void sub_020531A0 (FieldSystem * fieldSystem)
 
 void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
 {
-    int v0 = fieldSystem->unk_1C->unk_00;
+    int v0 = fieldSystem->location->unk_00;
     UnkStruct_0203A790 * v1 = sub_0203A790(fieldSystem->saveData);
 
     sub_02055414(fieldSystem);
@@ -303,7 +303,7 @@ void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
 
 void sub_020532A8 (FieldSystem * fieldSystem, BOOL param1)
 {
-    int v0 = fieldSystem->unk_1C->unk_00;
+    int v0 = fieldSystem->location->unk_00;
     UnkStruct_0203A790 * v1 = sub_0203A790(fieldSystem->saveData);
 
     sub_02055414(fieldSystem);
@@ -352,7 +352,7 @@ static void sub_02053320 (FieldSystem * fieldSystem)
     v2 = sub_0203A790(fieldSystem->saveData);
     v3 = sub_0203A780(v2);
 
-    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->unk_1C->unk_08, fieldSystem->unk_1C->unk_0C, fieldSystem->unk_1C->unk_10, v3->unk_04, v0, 0, v3);
+    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->unk_08, fieldSystem->location->unk_0C, fieldSystem->location->unk_10, v3->unk_04, v0, 0, v3);
 
     sub_0203A418(fieldSystem);
     sub_02062C30(fieldSystem->mapObjMan);
@@ -385,7 +385,7 @@ static void sub_020533CC (FieldSystem * fieldSystem)
 {
     sub_020530C8(fieldSystem);
     GF_ASSERT(fieldSystem->unk_5C == NULL);
-    sub_02039DC0(fieldSystem->unk_1C->unk_00, fieldSystem->unk_2C);
+    sub_02039DC0(fieldSystem->location->unk_00, fieldSystem->unk_2C);
 
     if (sub_0206B1F0(SaveData_Events(fieldSystem->saveData), 3)) {
         sub_02039FE0(fieldSystem->unk_2C);
@@ -427,7 +427,7 @@ void sub_02053494 (FieldSystem * fieldSystem)
     if (fieldSystem->unk_9C != NULL) {
         void * v0;
 
-        v0 = sub_0202BC58(fieldSystem->unk_1C->unk_00, 11);
+        v0 = sub_0202BC58(fieldSystem->location->unk_00, 11);
         sub_0202B758(fieldSystem->unk_9C, v0, 0);
     }
 }
@@ -444,13 +444,13 @@ static void sub_020534BC (FieldSystem * fieldSystem)
 
 static void sub_020534EC (Location * location, const FieldSystem * fieldSystem)
 {
-    inline_02049FA8(location, fieldSystem->unk_1C->unk_00, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1);
+    inline_02049FA8(location, fieldSystem->location->unk_00, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1);
 }
 
 static BOOL sub_02053518 (const FieldSystem * fieldSystem)
 {
-    if (MapHeader_IsPokemonCenter2F(fieldSystem->unk_1C->unk_00)
-        && (fieldSystem->unk_1C->unk_08 == 7) && (fieldSystem->unk_1C->unk_0C == 6)) {
+    if (MapHeader_IsPokemonCenter2F(fieldSystem->location->unk_00)
+        && (fieldSystem->location->unk_08 == 7) && (fieldSystem->location->unk_0C == 6)) {
         return 1;
     } else {
         return 0;
@@ -462,20 +462,20 @@ static void sub_02053540 (FieldSystem * fieldSystem)
     Location * v0 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
     UnkStruct_020507E4 * v1 = SaveData_Events(fieldSystem->saveData);
 
-    inline_02049FA8(v0, fieldSystem->unk_1C->unk_00, -1, 8, 2, 1);
+    inline_02049FA8(v0, fieldSystem->location->unk_00, -1, 8, 2, 1);
 }
 
 static BOOL sub_02053570 (TaskManager * taskMan)
 {
-    FieldSystem * v0 = TaskManager_FieldSystem(taskMan);
+    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     int * v1 = sub_02050A68(taskMan);
 
     switch (*v1) {
     case 0:
-        sub_0205311C(v0, v0->unk_1C);
-        sub_020533CC(v0);
-        sub_020531C0(v0, 0);
-        sub_02053320(v0);
+        sub_0205311C(fieldSystem, fieldSystem->location);
+        sub_020533CC(fieldSystem);
+        sub_020531C0(fieldSystem, 0);
+        sub_02053320(fieldSystem);
         (*v1)++;
         break;
     case 1:
@@ -615,7 +615,7 @@ void sub_02053808 (FieldSystem * fieldSystem)
     TaskManager * v0;
     UnkStruct_02053718 * v1;
 
-    if (MapHeader_IsUnionRoom(fieldSystem->unk_1C->unk_00)) {
+    if (MapHeader_IsUnionRoom(fieldSystem->location->unk_00)) {
         (void)0;
     } else if (sub_02053518(fieldSystem)) {
         UnkStruct_020507E4 * v2 = SaveData_Events(fieldSystem->saveData);

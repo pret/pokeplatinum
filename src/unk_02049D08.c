@@ -228,7 +228,7 @@ void sub_02049FA8 (FieldSystem * fieldSystem)
 {
     Location * v0 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
 
-    inline_02049FA8(v0, fieldSystem->unk_1C->unk_00, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
+    inline_02049FA8(v0, fieldSystem->location->unk_00, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
     sub_0206AD9C(SaveData_Events(fieldSystem->saveData));
 
     return;

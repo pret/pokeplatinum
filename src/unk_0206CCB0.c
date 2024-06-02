@@ -871,7 +871,7 @@ void sub_0206D4AC (FieldSystem * fieldSystem, u16 param1)
     UnkStruct_0206D4D4 * v1 = &v0.val5;
 
     v1->unk_00 = param1;
-    v1->unk_02 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+    v1->unk_02 = MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00);
 
     sub_0206CD70(fieldSystem, 2, 6, v1);
 }
@@ -922,7 +922,7 @@ void sub_0206D578 (FieldSystem * fieldSystem, Pokemon * param1)
     UnkStruct_0206D5B0 * v1 = &v0.val7;
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
-    v1->unk_06 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+    v1->unk_06 = MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00);
     sub_0206CD70(fieldSystem, 2, 8, v1);
 }
 
@@ -2172,7 +2172,7 @@ static BOOL sub_0206EA0C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * pa
 static int sub_0206EA10 (FieldSystem * fieldSystem, StringTemplate * param1, UnkStruct_ov6_022465F4 * param2)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
-    int v1 = fieldSystem->unk_1C->unk_00;
+    int v1 = fieldSystem->location->unk_00;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
         StringTemplate_SetPlayerName(param1, 0, v0);

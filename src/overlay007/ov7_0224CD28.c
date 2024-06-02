@@ -410,7 +410,7 @@ static u8 ov7_0224D250 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * para
         Strbuf_Free(param1->unk_298);
 
         if (param1->unk_2A9 == 0) {
-            if ((MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00) != 101) && (fieldSystem->unk_1C->unk_00 != 81) && (fieldSystem->unk_1C->unk_00 != 446)) {
+            if ((MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00) != 101) && (fieldSystem->location->unk_00 != 81) && (fieldSystem->location->unk_00 != 446)) {
                 if ((param1->unk_2A7 != 0) && (param1->unk_2A8 != 0)) {
                     v0 = sub_0202BD38(11);
                     sub_0202B758(param1->unk_27C, v0, 1);

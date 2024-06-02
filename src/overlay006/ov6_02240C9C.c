@@ -196,7 +196,7 @@ static void ov6_02240CC8 (FieldSystem * fieldSystem, const UnkStruct_ov6_0224263
     if (sub_0202D898(v1)) {
         v0 = sub_0202D814(v1, 2);
 
-        if (fieldSystem->unk_1C->unk_00 == ov6_02243218(v0)) {
+        if (fieldSystem->location->unk_00 == ov6_02243218(v0)) {
             (*param2) = param1->unk_40[0];
             (*param3) = param1->unk_40[1];
         }
@@ -208,7 +208,7 @@ static void ov6_02240D00 (FieldSystem * fieldSystem, const BOOL param1, int * pa
     int * v0;
     u16 v1, v2;
 
-    if (MapHeader_IsTrophyGarden(fieldSystem->unk_1C->unk_00)) {
+    if (MapHeader_IsTrophyGarden(fieldSystem->location->unk_00)) {
         sub_0202DA10(fieldSystem->saveData, &v1, &v2);
 
         if (param1) {
@@ -428,7 +428,7 @@ BOOL ov6_0224106C (FieldSystem * fieldSystem, const int param1, BattleParams ** 
     sub_02052314(*param2, fieldSystem);
     sub_0205285C(*param2);
 
-    if ((MapHeader_HasFeebasTiles(fieldSystem->unk_1C->unk_00)) && ov6_02247660(fieldSystem)) {
+    if ((MapHeader_HasFeebasTiles(fieldSystem->location->unk_00)) && ov6_02247660(fieldSystem)) {
         u8 v6;
         int v7;
         u8 v8, v9;
@@ -1594,7 +1594,7 @@ static void ov6_02242328 (FieldSystem * fieldSystem, const BOOL param1, BattlePa
 static void ov6_02242354 (FieldSystem * fieldSystem, const BOOL param1, const BOOL param2, UnkStruct_ov6_0224222C * param3)
 {
     if (param1) {
-        ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), param2, fieldSystem->unk_1C->unk_00, &param3[6].unk_00, &param3[7].unk_00);
+        ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), param2, fieldSystem->location->unk_00, &param3[6].unk_00, &param3[7].unk_00);
     }
 }
 
@@ -1653,7 +1653,7 @@ static BOOL ov6_02242440 (FieldSystem * fieldSystem, UnkStruct_0206C638 ** param
     for (v3 = 0; v3 < 6; v3++) {
         v4 = sub_0206C3C8(sub_0202D8C4(v0, v3));
 
-        if (sub_0202D8F8(v0, v3) && (v4 == fieldSystem->unk_1C->unk_00)) {
+        if (sub_0202D8F8(v0, v3) && (v4 == fieldSystem->location->unk_00)) {
             v1[v2] = sub_0202D924(v0, v3);
             v2++;
         }

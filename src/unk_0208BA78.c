@@ -325,9 +325,9 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
             sub_02005464(0);
             sub_02004234(0);
 
-            v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->unk_1C->unk_00);
+            v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->unk_00);
 
-            sub_02004224(sub_020554A4(param0->fieldSystem, param0->fieldSystem->unk_1C->unk_00));
+            sub_02004224(sub_020554A4(param0->fieldSystem, param0->fieldSystem->location->unk_00));
             sub_02004550(4, v1, 1);
         }
 
