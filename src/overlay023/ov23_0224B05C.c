@@ -44,7 +44,7 @@
 #include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02054D00.h"
 #include "unk_020573FC.h"
 #include "comm_player_manager.h"

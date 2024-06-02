@@ -52,7 +52,7 @@
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02054BD0.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
@@ -438,7 +438,7 @@ static void Location_SetToPlayerLocation (Location * location, const FieldSystem
     Location_Set(location, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1);
 }
 
-static BOOL sub_02053518 (const FieldSystem * fieldSystem)
+static BOOL FieldSystem_IsSavedInUnionRoom (const FieldSystem * fieldSystem)
 {
     if (MapHeader_IsPokemonCenter2F(fieldSystem->location->mapId)
         && (fieldSystem->location->x == 7) && (fieldSystem->location->z == 6)) {
@@ -448,7 +448,7 @@ static BOOL sub_02053518 (const FieldSystem * fieldSystem)
     }
 }
 
-static void sub_02053540 (FieldSystem * fieldSystem)
+static void FieldSystem_SetLocationToUnionRoomExit (FieldSystem * fieldSystem)
 {
     Location * v0 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
     FieldEvents * events = SaveData_GetFieldEvents(fieldSystem->saveData);
@@ -503,17 +503,17 @@ static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
             break;
         }
     case 1:
-        fieldSystem->unk_9C = sub_0202B634(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events));
+        fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events));
 
-        if (sub_0206ADBC(events)) {
-            FieldStatus * v3 = SaveData_GetFieldStatus(fieldSystem->saveData);
+        if (FieldEvents_CheckCommClub(events)) {
+            FieldStatus * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
 
-            if (sub_02053518(fieldSystem)) {
-                sub_02053540(fieldSystem);
+            if (FieldSystem_IsSavedInUnionRoom(fieldSystem)) {
+                FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
             }
 
-            sub_0206ADAC(events);
-            FieldSystem_MapChange_SetNewLocation(fieldSystem, sub_0203A730(v3));
+            FieldEvents_ResetCommClub(events);
+            FieldSystem_MapChange_SetNewLocation(fieldSystem, sub_0203A730(fieldStatus));
             sub_020533CC(fieldSystem);
             FieldSystem_MapChange_UpdateGameData(fieldSystem, 0);
             FieldSystem_MapChange_CreateObjects(fieldSystem);
@@ -544,13 +544,13 @@ static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
     return FALSE;
 }
 
-void sub_02053704 (FieldSystem * fieldSystem)
+void FieldSystem_SetLoadMapFromContinueGameTask (FieldSystem * fieldSystem)
 {
     fieldSystem->unk_70 = 0;
     FieldTask_Set(fieldSystem, FieldTask_LoadMapFromContinueGame, NULL);
 }
 
-static BOOL sub_02053718 (TaskManager * taskMan)
+static BOOL FieldTask_LoadMapFromError (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053718 * v1 = TaskManager_Environment(taskMan);
@@ -562,7 +562,7 @@ static BOOL sub_02053718 (TaskManager * taskMan)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         sub_0202878C(fieldSystem->saveData);
-        fieldSystem->unk_9C = sub_0202B634(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(v2));
+        fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(v2));
         (*state)++;
         break;
     case 1:
@@ -597,19 +597,19 @@ static BOOL sub_02053718 (TaskManager * taskMan)
     return 0;
 }
 
-void sub_02053808 (FieldSystem * fieldSystem)
+void FieldSystem_StartLoadMapFromErrorTask (FieldSystem * fieldSystem)
 {
     UnkStruct_02053718 * v1;
 
     if (MapHeader_IsUnionRoom(fieldSystem->location->mapId)) {
         
-    } else if (sub_02053518(fieldSystem)) {
-        FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    } else if (FieldSystem_IsSavedInUnionRoom(fieldSystem)) {
+        FieldEvents * events = SaveData_GetFieldEvents(fieldSystem->saveData);
 
-        sub_02053540(fieldSystem);
-        sub_0206AD9C(v2);
+        FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
+        sub_0206AD9C(events);
     } else {
-        sub_02053704(fieldSystem);
+        FieldSystem_SetLoadMapFromContinueGameTask(fieldSystem);
         return;
     }
 
@@ -618,7 +618,7 @@ void sub_02053808 (FieldSystem * fieldSystem)
 
     Location_Set(&v1->unk_04, 466, -1, 8, 14, 0);
     fieldSystem->unk_70 = 2;
-    FieldTask_Set(fieldSystem, sub_02053718, v1);
+    FieldTask_Set(fieldSystem, FieldTask_LoadMapFromError, v1);
 }
 
 static BOOL FieldTask_ChangeMap (TaskManager * taskMan)
@@ -649,13 +649,13 @@ static BOOL FieldTask_ChangeMap (TaskManager * taskMan)
         break;
     case 3:
         Heap_FreeToHeap(v1);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02053900 (TaskManager * taskMan, const Location * nextLocation)
+void FieldSystem_StartChangeMapTask (TaskManager * taskMan, const Location * nextLocation)
 {
     UnkStruct_02053900 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053900));
 
@@ -883,10 +883,8 @@ static void sub_02053C70 (TaskManager * taskMan)
         return;
     }
 
-    {
-        v1->unk_04 = ov6_02245CCC(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
-        FieldTask_Start(taskMan, sub_02053CB4, v1);
-    }
+    v1->unk_04 = ov6_02245CCC(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
+    FieldTask_Start(taskMan, sub_02053CB4, v1);
 }
 
 static BOOL sub_02053CB4 (TaskManager * taskMan)
@@ -1586,5 +1584,5 @@ void sub_02054864 (TaskManager * taskMan)
     Location * v1 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
 
     fieldSystem->unk_70 = 0;
-    sub_02053900(fieldSystem->unk_10, v1);
+    FieldSystem_StartChangeMapTask(fieldSystem->unk_10, v1);
 }

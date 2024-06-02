@@ -36,7 +36,7 @@
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_02050A74.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02054884.h"
 #include "unk_02054D00.h"
 #include "unk_020562F8.h"

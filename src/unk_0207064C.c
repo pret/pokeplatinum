@@ -11,7 +11,7 @@
 #include "heap.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "player_avatar.h"
 #include "unk_0207064C.h"
 #include "overlay006/ov6_02243258.h"

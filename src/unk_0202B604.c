@@ -137,7 +137,7 @@ Journal * SaveData_GetJournal (SaveData * param0)
     return SaveData_SaveTable(param0, 18);
 }
 
-Journal * sub_0202B634 (Journal * param0, BOOL param1)
+Journal * Journal_GetSavedPage (Journal * param0, BOOL param1)
 {
     RTCDate v0;
     s32 v1;

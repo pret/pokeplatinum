@@ -342,13 +342,13 @@ void sub_0206AD9C (FieldEvents * param0)
     return;
 }
 
-void sub_0206ADAC (FieldEvents * param0)
+void FieldEvents_ResetCommClub (FieldEvents * param0)
 {
     sub_0206A8E4(param0, (2400 + 6));
     return;
 }
 
-BOOL sub_0206ADBC (FieldEvents * param0)
+BOOL FieldEvents_CheckCommClub (FieldEvents * param0)
 {
     return sub_0206A8EC(param0, (2400 + 6));
 }

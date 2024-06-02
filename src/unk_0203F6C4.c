@@ -145,7 +145,7 @@
 #include "unk_02050A74.h"
 #include "unk_020528D0.h"
 #include "unk_02052C6C.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
 #include "unk_020559DC.h"
@@ -6172,7 +6172,7 @@ static BOOL ScrCmd_1CC (ScriptContext * ctx)
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
     inline_02044528(SaveData_GetFieldEvents(fieldSystem->saveData));
-    fieldSystem->unk_9C = sub_0202B634(SaveData_GetJournal(fieldSystem->saveData), 1);
+    fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
     sub_02053494(fieldSystem);
 
     return 0;

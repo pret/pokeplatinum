@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_020530C8_H
-#define POKEPLATINUM_UNK_020530C8_H
+#ifndef POKEPLATINUM_UNK_FIELD_MAP_CHANGE_H
+#define POKEPLATINUM_UNK_FIELD_MAP_CHANGE_H
 
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -11,9 +11,9 @@ void FieldSystem_MapChange_UpdateGameData(FieldSystem * fieldSystem, BOOL param1
 void FieldSystem_MapChange_UpdateGameDataDistortionWorld(FieldSystem * fieldSystem, BOOL param1);
 void sub_02053494(FieldSystem * fieldSystem);
 void FieldSystem_SetLoadMapFromNewGameTask(FieldSystem * fieldSystem);
-void sub_02053704(FieldSystem * fieldSystem);
-void sub_02053808(FieldSystem * fieldSystem);
-void sub_02053900(TaskManager * param0, const Location * param1);
+void FieldSystem_SetLoadMapFromContinueGameTask(FieldSystem * fieldSystem);
+void FieldSystem_StartLoadMapFromErrorTask(FieldSystem * fieldSystem);
+void FieldSystem_StartChangeMapTask(TaskManager * param0, const Location * param1);
 void sub_020539A0(TaskManager * param0, const Location * param1);
 void sub_020539E8(TaskManager * param0, int param1, int param2, int param3, int param4, int param5);
 void sub_02053A80(TaskManager * param0, int param1, int param2, int param3, int param4, int param5);
@@ -32,4 +32,4 @@ void sub_02054708(TaskManager * param0);
 void sub_02054800(TaskManager * param0, int param1, int param2, int param3, int param4, int param5);
 void sub_02054864(TaskManager * param0);
 
-#endif // POKEPLATINUM_UNK_020530C8_H
+#endif // POKEPLATINUM_UNK_FIELD_MAP_CHANGE_H

@@ -26,7 +26,7 @@
 #include "unk_0203A6DC.h"
 #include "field_system.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "comm_player_manager.h"
 #include "unk_0205F180.h"
 #include "pokeradar.h"
@@ -63,9 +63,9 @@ static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
     sFieldSystem = FieldSystem_Init(overlayMan);
 
     if (v0->unk_04) {
-        sub_02053808(sFieldSystem);
+        FieldSystem_StartLoadMapFromErrorTask(sFieldSystem);
     } else {
-        sub_02053704(sFieldSystem);
+        FieldSystem_SetLoadMapFromContinueGameTask(sFieldSystem);
     }
 
     v0->unk_04 = 0;

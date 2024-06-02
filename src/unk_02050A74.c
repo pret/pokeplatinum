@@ -36,7 +36,7 @@
 #include "enc_effects.h"
 #include "unk_02051D8C.h"
 #include "unk_020528D0.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_0205578C.h"
 #include "unk_02055808.h"
 #include "unk_020562F8.h"

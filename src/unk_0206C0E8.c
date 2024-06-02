@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
 #include "player_avatar.h"

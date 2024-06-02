@@ -48,7 +48,7 @@
 #include "unk_0202854C.h"
 #include "communication_system.h"
 #include "field_system.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "comm_player_manager.h"
 #include "player_avatar.h"
 #include "unk_0206A780.h"
