@@ -7,8 +7,8 @@
 #include "functypes/funcptr_02050904.h"
 
 void sub_020531A0(FieldSystem * fieldSystem);
-void sub_020531C0(FieldSystem * fieldSystem, BOOL param1);
-void sub_020532A8(FieldSystem * fieldSystem, BOOL param1);
+void FieldSystem_MapChange_UpdateGameData(FieldSystem * fieldSystem, BOOL param1);
+void FieldSystem_MapChange_UpdateGameDataDistortionWorld(FieldSystem * fieldSystem, BOOL param1);
 void sub_02053494(FieldSystem * fieldSystem);
 void sub_020535CC(FieldSystem * fieldSystem);
 void sub_02053704(FieldSystem * fieldSystem);

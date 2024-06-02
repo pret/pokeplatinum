@@ -219,7 +219,7 @@ void sub_02052E58 (TaskManager * param0)
     v6 = sub_0202CD88(fieldSystem->saveData);
 
     sub_0202CF28(v6, (((70 + 1)) + 2));
-    sub_02050944(param0, sub_02052CBC, v5);
+    FieldTask_Start(param0, sub_02052CBC, v5);
 }
 
 static void sub_02052F28 (FieldSystem * fieldSystem, UnkStruct_0205300C * param1)

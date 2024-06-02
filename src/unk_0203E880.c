@@ -133,7 +133,7 @@ void sub_0203E880 (FieldSystem * fieldSystem, u16 param1, MapObject * param2)
     UnkStruct_0203EF60 * v0 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v0, param1, param2, NULL);
-    sub_02050904(fieldSystem, sub_0203E950, v0);
+    FieldTask_Set(fieldSystem, sub_0203E950, v0);
 
     return;
 }
@@ -157,7 +157,7 @@ void sub_0203E8E0 (TaskManager * param0, u16 param1, MapObject * param2, void * 
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v1, param1, param2, param3);
-    sub_02050944(param0, sub_0203E950, v1);
+    FieldTask_Start(param0, sub_0203E950, v1);
 
     return;
 }
@@ -168,7 +168,7 @@ void sub_0203E918 (TaskManager * param0, u16 param1, MapObject * param2)
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v1, param1, param2, NULL);
-    sub_02050924(param0, sub_0203E950, v1);
+    FieldEvent_Change(param0, sub_0203E950, v1);
 
     return;
 }

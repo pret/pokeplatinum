@@ -43,7 +43,7 @@ static TaskManager * sub_020508D4 (FieldSystem * fieldSystem, UnkFuncPtr_0205090
     return v0;
 }
 
-TaskManager * sub_02050904 (FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2)
+TaskManager * FieldTask_Set (FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2)
 {
     TaskManager * v0;
 
@@ -55,7 +55,7 @@ TaskManager * sub_02050904 (FieldSystem * fieldSystem, UnkFuncPtr_02050904 param
     return v0;
 }
 
-void sub_02050924 (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
+void FieldEvent_Change (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
 {
     param0->unk_04 = param1;
     param0->unk_08 = 0;
@@ -68,7 +68,7 @@ void sub_02050924 (TaskManager * param0, UnkFuncPtr_02050904 param1, void * para
     }
 }
 
-TaskManager * sub_02050944 (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
+TaskManager * FieldTask_Start (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
 {
     TaskManager * v0;
 
@@ -166,7 +166,7 @@ void sub_02050A38 (TaskManager * param0, const OverlayManagerTemplate * param1, 
     v0->unk_04 = param1;
     v0->unk_08 = param2;
 
-    sub_02050944(param0, sub_020509F0, v0);
+    FieldTask_Start(param0, sub_020509F0, v0);
 }
 
 FieldSystem * TaskManager_FieldSystem (TaskManager * param0)

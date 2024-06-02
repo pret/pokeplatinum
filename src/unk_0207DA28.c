@@ -311,7 +311,7 @@ void sub_0207DDC0 (TaskManager * param0)
     UnkStruct_0207DE40 * v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 2;
-    sub_02050944(param0, sub_0207DA28, v0);
+    FieldTask_Start(param0, sub_0207DA28, v0);
 }
 
 void sub_0207DDE0 (TaskManager * param0, u16 * param1)
@@ -321,7 +321,7 @@ void sub_0207DDE0 (TaskManager * param0, u16 * param1)
     v0->unk_00->unk_04 = 1;
     v0->unk_08 = param1;
 
-    sub_02050944(param0, sub_0207DA28, v0);
+    FieldTask_Start(param0, sub_0207DA28, v0);
 }
 
 static void sub_0207DE04 (UnkStruct_0207DE40 * param0, FieldSystem * fieldSystem, u32 param2, u32 param3)

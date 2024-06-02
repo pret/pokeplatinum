@@ -283,7 +283,7 @@ void sub_02072204 (FieldSystem * fieldSystem)
     v0->unk_00 = 0;
     v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);
 
-    sub_02050944(fieldSystem->unk_10, sub_02072230, v0);
+    FieldTask_Start(fieldSystem->unk_10, sub_02072230, v0);
 }
 
 static BOOL sub_02072230 (TaskManager * param0)

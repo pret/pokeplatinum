@@ -179,7 +179,7 @@ void sub_0203A7A8 (FieldSystem * fieldSystem)
     MapObjectMan_SaveAll(fieldSystem, fieldSystem->mapObjMan, v0, 64);
 }
 
-void sub_0203A7C0 (FieldSystem * fieldSystem)
+void FieldSystem_LoadObjects (FieldSystem * fieldSystem)
 {
     MapObjectSave * v0;
 

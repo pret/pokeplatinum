@@ -35,7 +35,7 @@ void sub_020985E4 (TaskManager * param0, SaveData * param1)
     v0->unk_00 = 0;
     v0->unk_04 = v1;
 
-    sub_02050944(param0, sub_0209862C, v0);
+    FieldTask_Start(param0, sub_0209862C, v0);
 }
 
 BOOL sub_0209862C (TaskManager * param0)

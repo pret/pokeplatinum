@@ -1318,5 +1318,5 @@ void sub_020736D8 (TaskManager * param0)
     v1->unk_00 = 0;
     v1->unk_04 = 0;
 
-    sub_02050944(fieldSystem->unk_10, sub_02073694, v1);
+    FieldTask_Start(fieldSystem->unk_10, sub_02073694, v1);
 }

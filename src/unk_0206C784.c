@@ -126,7 +126,7 @@ void sub_0206C784 (FieldSystem * fieldSystem, const u8 param1, const u8 param2, 
         v0->unk_00 = 2;
     }
 
-    sub_02050944(fieldSystem->unk_10, sub_0206C964, v0);
+    FieldTask_Start(fieldSystem->unk_10, sub_0206C964, v0);
 }
 
 static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 * param2)
@@ -138,7 +138,7 @@ static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_
     v0->unk_04 = param2;
     v0->unk_00 = param1;
 
-    sub_02050944(fieldSystem->unk_10, sub_0206C8F8, v0);
+    FieldTask_Start(fieldSystem->unk_10, sub_0206C8F8, v0);
 }
 
 static BOOL sub_0206C8F8 (TaskManager * taskMan)
@@ -230,7 +230,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         break;
     case 6:
         sub_02055670(fieldSystem, v1->unk_18);
-        sub_020559CC(taskMan);
+        FieldTask_FadeIn(taskMan);
         v1->unk_00 = 7;
         break;
     case 7:

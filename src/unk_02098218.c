@@ -290,5 +290,5 @@ void sub_020985AC (TaskManager * param0, void * param1)
     v1 = (UnkStruct_0203E2FC *)param1;
     v0->unk_0C = *v1;
 
-    sub_02050944(param0, sub_0209843C, v0);
+    FieldTask_Start(param0, sub_0209843C, v0);
 }

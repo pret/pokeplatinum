@@ -795,7 +795,7 @@ static void ov23_02251C04 (SysTask * param0, void * param1)
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
             v2->unk_04 = 0;
-            sub_02050904(v0->fieldSystem, ov23_02251ACC, v2);
+            FieldTask_Set(v0->fieldSystem, ov23_02251ACC, v2);
         }
 
         ov23_02251BB4(param0, v0);

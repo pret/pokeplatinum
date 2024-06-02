@@ -99,5 +99,5 @@ void sub_0206C740 (TaskManager * param0, UnkStruct_ov6_02246204 * param1, int pa
     v0->unk_24 = Pokemon_New(param3);
     v0->unk_28 = Pokemon_New(param3);
 
-    sub_02050944(param0, sub_0206C680, v0);
+    FieldTask_Start(param0, sub_0206C680, v0);
 }

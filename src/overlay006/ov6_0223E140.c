@@ -540,7 +540,7 @@ void ov6_0223E384 (TaskManager * taskMan)
     v1->unk_00 = ov6_0223FDE4(4);
 
     ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->unk_24);
-    sub_02050944(taskMan, ov6_0223E33C, v1);
+    FieldTask_Start(taskMan, ov6_0223E33C, v1);
 }
 
 static void ov6_0223E3D8 (UnkStruct_ov6_0223E33C * param0)
@@ -629,7 +629,7 @@ void ov6_0223E4EC (TaskManager * param0)
     ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->unk_24);
 
     v1->unk_08 = ov6_0223FFF4(v1->unk_00);
-    sub_02050944(param0, ov6_0223E408, v1);
+    FieldTask_Start(param0, ov6_0223E408, v1);
 }
 
 static void ov6_0223E548 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)

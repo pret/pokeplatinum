@@ -437,7 +437,7 @@ void sub_020980DC (TaskManager * param0, SaveData * param1)
     v0->unk_0C = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 
-    sub_02050944(param0, sub_02097F38, v0);
+    FieldTask_Start(param0, sub_02097F38, v0);
 }
 
 typedef struct {

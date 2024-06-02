@@ -70,5 +70,5 @@ void ov5_021DDBC8 (TaskManager * param0)
     UnkStruct_ov5_021DDBC8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021DDBC8));
 
     v0->unk_00 = 0;
-    sub_02050944(param0, ov5_021DDAE4, v0);
+    FieldTask_Start(param0, ov5_021DDAE4, v0);
 }

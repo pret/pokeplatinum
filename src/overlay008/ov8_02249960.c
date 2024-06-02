@@ -370,13 +370,13 @@ void ov8_0224997C (FieldSystem * fieldSystem)
         v6->unk_00 = 0;
 
         if (v4 == 239) {
-            sub_02050944(fieldSystem->unk_10, ov8_02249CD8, v6);
+            FieldTask_Start(fieldSystem->unk_10, ov8_02249CD8, v6);
             v8->unk_00 = 2;
         } else if (v4 == 240) {
-            sub_02050944(fieldSystem->unk_10, ov8_02249B74, v6);
+            FieldTask_Start(fieldSystem->unk_10, ov8_02249B74, v6);
             v8->unk_00 = 1;
         } else if (v4 == 241) {
-            sub_02050944(fieldSystem->unk_10, ov8_02249A94, v6);
+            FieldTask_Start(fieldSystem->unk_10, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
             GF_ASSERT(FALSE);
@@ -771,10 +771,10 @@ void ov8_02249FB8 (FieldSystem * fieldSystem)
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
-            sub_02050944(fieldSystem->unk_10, ov8_0224A018, v0);
+            FieldTask_Start(fieldSystem->unk_10, ov8_0224A018, v0);
             v3->unk_00 = 1;
         } else {
-            sub_02050944(fieldSystem->unk_10, ov8_0224A0E8, v0);
+            FieldTask_Start(fieldSystem->unk_10, ov8_0224A0E8, v0);
             v3->unk_00 = 0;
         }
     }
@@ -1278,7 +1278,7 @@ static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        sub_02050904(param0->fieldSystem, ov8_0224A620, v2);
+        FieldTask_Set(param0->fieldSystem, ov8_0224A620, v2);
     } else if (v0 == 294) {
         if (v1) {
             param0->unk_F0 = 2;
@@ -1290,7 +1290,7 @@ static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        sub_02050904(param0->fieldSystem, ov8_0224A770, v2);
+        FieldTask_Set(param0->fieldSystem, ov8_0224A770, v2);
     } else {
         if (v1) {
             param0->unk_F0 = 1;
@@ -1303,7 +1303,7 @@ static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        sub_02050904(param0->fieldSystem, ov8_0224A4FC, v2);
+        FieldTask_Set(param0->fieldSystem, ov8_0224A4FC, v2);
     }
 }
 
@@ -2226,7 +2226,7 @@ void ov8_0224AD34 (FieldSystem * fieldSystem, const u8 param1)
         v1->unk_13 = v4;
 
         Sound_PlayEffect(1599);
-        sub_02050944(fieldSystem->unk_10, ov8_0224ADE8, v0);
+        FieldTask_Start(fieldSystem->unk_10, ov8_0224ADE8, v0);
     }
 }
 
@@ -3001,7 +3001,7 @@ BOOL ov8_0224B67C (FieldSystem * fieldSystem, Window * param1, MessageLoader * p
         v2->unk_14 = v1;
         v2->unk_18 = v3;
 
-        sub_02050944(fieldSystem->unk_10, ov8_0224B3D4, v2);
+        FieldTask_Start(fieldSystem->unk_10, ov8_0224B3D4, v2);
     }
 
     return 1;
@@ -3637,13 +3637,13 @@ static UnkStruct_ov8_0224C098 * ov8_0224BED8 (UnkStruct_ov8_0224B8D0 * param0, U
 static void ov8_0224BF0C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B8D0 * param1, UnkStruct_ov8_0224BCA8 * param2, int param3)
 {
     UnkStruct_ov8_0224C098 * v0 = ov8_0224BED8(param1, param2, param3);
-    sub_02050904(fieldSystem, ov8_0224BAF4, v0);
+    FieldTask_Set(fieldSystem, ov8_0224BAF4, v0);
 }
 
 static void ov8_0224BF2C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B8D0 * param1, UnkStruct_ov8_0224BCA8 * param2, int param3)
 {
     UnkStruct_ov8_0224C098 * v0 = ov8_0224BED8(param1, param2, param3);
-    sub_02050904(fieldSystem, ov8_0224BB78, v0);
+    FieldTask_Set(fieldSystem, ov8_0224BB78, v0);
 }
 
 BOOL ov8_0224BF4C (FieldSystem * fieldSystem)

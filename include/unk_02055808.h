@@ -8,6 +8,6 @@ void sub_02055868(TaskManager * param0);
 void sub_020558AC(TaskManager * param0);
 void sub_020558F0(TaskManager * param0);
 void sub_02055974(TaskManager * param0);
-void sub_020559CC(TaskManager * param0);
+void FieldTask_FadeIn(TaskManager * param0);
 
 #endif // POKEPLATINUM_UNK_02055808_H

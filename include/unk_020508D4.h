@@ -6,9 +6,9 @@
 #include "functypes/funcptr_02050904.h"
 #include "overlay_manager.h"
 
-TaskManager * sub_02050904(FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2);
-void sub_02050924(TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2);
-TaskManager * sub_02050944(TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2);
+TaskManager * FieldTask_Set(FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2);
+void FieldEvent_Change(TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2);
+TaskManager * FieldTask_Start(TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2);
 BOOL sub_02050958(FieldSystem * fieldSystem);
 BOOL sub_020509A4(FieldSystem * fieldSystem);
 BOOL sub_020509B4(FieldSystem * fieldSystem);

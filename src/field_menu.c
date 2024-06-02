@@ -293,7 +293,7 @@ void FieldMenu_Init (FieldSystem * fieldSystem)
         sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(fieldSystem, sub_0203AC44, menu);
+    FieldTask_Set(fieldSystem, sub_0203AC44, menu);
 }
 
 void sub_0203AA78 (FieldSystem * fieldSystem)
@@ -307,7 +307,7 @@ void sub_0203AA78 (FieldSystem * fieldSystem)
         sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(fieldSystem, sub_0203AC44, menu);
+    FieldTask_Set(fieldSystem, sub_0203AC44, menu);
 }
 
 void sub_0203AABC (FieldSystem * fieldSystem)
@@ -321,7 +321,7 @@ void sub_0203AABC (FieldSystem * fieldSystem)
         sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(fieldSystem, sub_0203AC44, menu);
+    FieldTask_Set(fieldSystem, sub_0203AC44, menu);
 }
 
 void sub_0203AB00 (FieldSystem * fieldSystem)
@@ -348,7 +348,7 @@ void sub_0203AB00 (FieldSystem * fieldSystem)
         menu->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
-    sub_02050924(fieldSystem->unk_10, sub_0203AC44, menu);
+    FieldEvent_Change(fieldSystem->unk_10, sub_0203AC44, menu);
 }
 
 static FieldMenu * FieldMenu_Alloc (void)
@@ -488,7 +488,7 @@ static BOOL sub_0203AC44 (TaskManager * taskMan)
         break;
     case FIELD_MENU_STATE_11:
         if (ScreenWipe_Done()) {
-            sub_02050924(taskMan, menu->unk_22C, menu->unk_25C);
+            FieldEvent_Change(taskMan, menu->unk_22C, menu->unk_25C);
             Heap_FreeToHeap(menu);
         }
         break;

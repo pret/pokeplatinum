@@ -37,7 +37,7 @@ void sub_0205749C (TaskManager * param0, BOOL param1)
     memset(v0, 0, sizeof(UnkStruct_0205749C));
 
     v0->unk_02 = param1;
-    sub_02050944(param0, sub_020574CC, v0);
+    FieldTask_Start(param0, sub_020574CC, v0);
 }
 
 static BOOL sub_020574CC (TaskManager * param0)

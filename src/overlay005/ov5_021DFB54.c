@@ -508,7 +508,7 @@ static void ov5_021DFF88 (int param0, FieldSystem * fieldSystem, PlayerAvatar * 
     v0->unk_10 = param3;
     v0->playerAvatar = playerAvatar;
 
-    sub_02050904(fieldSystem, ov5_021DFFBC, v0);
+    FieldTask_Set(fieldSystem, ov5_021DFFBC, v0);
     sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 54));
 }
 
@@ -587,7 +587,7 @@ static void ov5_021E00B0 (FieldSystem * fieldSystem, int param1, const UnkStruct
     v0->unk_24 = Player_MapObject(v0->playerAvatar);
     v0->unk_0C = *param2;
 
-    sub_02050944(fieldSystem->unk_10, ov5_021E0160, v0);
+    FieldTask_Start(fieldSystem->unk_10, ov5_021E0160, v0);
 }
 
 void ov5_021E00EC (TaskManager * taskMan, int param1, int param2)
@@ -747,7 +747,7 @@ static void ov5_021E0390 (int param0, FieldSystem * fieldSystem, PlayerAvatar * 
     v0->unk_10 = Player_MapObject(param2);
     v0->unk_14 = sub_0205EC04(param2);
 
-    sub_02050904(fieldSystem, ov5_021E03C8, v0);
+    FieldTask_Set(fieldSystem, ov5_021E03C8, v0);
 }
 
 static BOOL ov5_021E03C8 (TaskManager * param0)
@@ -845,7 +845,7 @@ static void ov5_021E0534 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar
     v0->fieldSystem = fieldSystem;
     v0->playerAvatar = playerAvatar;
 
-    sub_02050904(fieldSystem, ov5_021E0560, v0);
+    FieldTask_Set(fieldSystem, ov5_021E0560, v0);
     sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 55));
 }
 
@@ -973,7 +973,7 @@ static void ov5_021E06F8 (FieldSystem * fieldSystem, int param1, const UnkStruct
     v0->unk_14 = Player_MapObject(v0->playerAvatar);
     v0->unk_1C = *param2;
 
-    sub_02050944(fieldSystem->unk_10, ov5_021E07A0, v0);
+    FieldTask_Start(fieldSystem->unk_10, ov5_021E07A0, v0);
 }
 
 void ov5_021E0734 (TaskManager * param0, int param1, int param2)
@@ -1159,7 +1159,7 @@ static UnkStruct_ov5_021F9B10 * ov5_021E0948 (FieldSystem * fieldSystem, int par
 void ov5_021E097C (FieldSystem * fieldSystem, int param1)
 {
     UnkStruct_ov5_021F9B10 * v0 = ov5_021E0948(fieldSystem, param1, NULL);
-    sub_02050904(fieldSystem, ov5_021E09D4, v0);
+    FieldTask_Set(fieldSystem, ov5_021E09D4, v0);
 }
 
 void ov5_021E0998 (TaskManager * param0, int param1, int param2)
@@ -1172,7 +1172,7 @@ void ov5_021E0998 (TaskManager * param0, int param1, int param2)
 
     {
         UnkStruct_ov5_021F9B10 * v3 = ov5_021E0948(fieldSystem, param1, &v0);
-        sub_02050944(param0, ov5_021E09D4, v3);
+        FieldTask_Start(param0, ov5_021E09D4, v3);
     }
 }
 
@@ -1525,7 +1525,7 @@ static void ov5_021E0DE0 (FieldSystem * fieldSystem)
     v0->unk_08 = Player_MapObject(v0->playerAvatar);
     v0->unk_10 = PlayerAvatar_Gender(v0->playerAvatar);
 
-    sub_02050944(fieldSystem->unk_10, ov5_021E0E10, v0);
+    FieldTask_Start(fieldSystem->unk_10, ov5_021E0E10, v0);
 }
 
 static BOOL ov5_021E0E10 (TaskManager * param0)

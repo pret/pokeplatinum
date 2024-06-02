@@ -582,5 +582,5 @@ void ov7_0224BE7C (TaskManager * param0, u16 * param1)
     UnkStruct_ov7_0224B4E8 * v1 = ov7_0224BE10(fieldSystem);
 
     v1->unk_70 = param1;
-    sub_02050944(param0, ov7_0224BC74, v1);
+    FieldTask_Start(param0, ov7_0224BC74, v1);
 }

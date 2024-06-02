@@ -87,21 +87,19 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
-    {
-        int v11 = 10 - 1;
-        Location * location = sub_0203A720(v9);
+    int v11 = 10 - 1;
+    Location * location = sub_0203A720(v9);
 
-        v6 = location->mapId;
+    v6 = location->mapId;
 
-        while (v11 >= 0) {
-            if (v6 == Unk_020EFA98[v11][0]) {
-                x -= Unk_020EFA98[v11][1];
-                z -= Unk_020EFA98[v11][3];
-                break;
-            }
-
-            v11--;
+    while (v11 >= 0) {
+        if (v6 == Unk_020EFA98[v11][0]) {
+            x -= Unk_020EFA98[v11][1];
+            z -= Unk_020EFA98[v11][3];
+            break;
         }
+
+        v11--;
     }
     
     v6 = sub_02039E30(fieldSystem->unk_2C, x / 32, z / 32);

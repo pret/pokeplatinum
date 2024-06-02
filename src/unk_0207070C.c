@@ -710,7 +710,7 @@ static BOOL sub_02070F94 (TaskManager * param0)
     void * v2 = ov6_02247530(fieldSystem, v1->unk_00, 4);
 
     Heap_FreeToHeap(v1);
-    sub_02050924(param0, ov6_02247554, v2);
+    FieldEvent_Change(param0, ov6_02247554, v2);
 
     return 0;
 }
@@ -765,7 +765,7 @@ static BOOL sub_02071050 (TaskManager * param0)
     }
 
     Heap_FreeToHeap(v1);
-    sub_02050924(param0, ov6_022474AC, v2);
+    FieldEvent_Change(param0, ov6_022474AC, v2);
 
     return 0;
 }

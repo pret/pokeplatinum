@@ -216,7 +216,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     }
 
     ov7_0224CD28(v0, param2);
-    sub_02050944(param0, ov7_0224CEAC, v0);
+    FieldTask_Start(param0, ov7_0224CEAC, v0);
 }
 
 static u8 ov7_0224CE90 (FieldSystem * fieldSystem)
@@ -1555,7 +1555,7 @@ static void ov7_0224EC38 (TaskManager * param0)
     }
 
     sub_0203D1E4(fieldSystem, v1->unk_04);
-    sub_02050924(param0, sub_0209AC14, v1);
+    FieldEvent_Change(param0, sub_0209AC14, v1);
 
     v1->unk_297 = 16;
 }

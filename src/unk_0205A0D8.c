@@ -717,7 +717,7 @@ void sub_0205AB10 (FieldSystem * fieldSystem, UnkFuncPtr_0205AB10 * param1)
         break;
     }
 
-    sub_02050904(fieldSystem, sub_0205A324, v0);
+    FieldTask_Set(fieldSystem, sub_0205A324, v0);
 }
 
 static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
@@ -1101,7 +1101,7 @@ void sub_0205B2D4 (FieldSystem * fieldSystem)
             v4->unk_24 = v0;
             v4->unk_28 = 0;
 
-            sub_02050904(fieldSystem, sub_0205B140, v4);
+            FieldTask_Set(fieldSystem, sub_0205B140, v4);
             sub_0203D128();
             break;
         }

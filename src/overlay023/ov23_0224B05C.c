@@ -1739,7 +1739,7 @@ static void ov23_0224CAF0 (FieldSystem * fieldSystem, int param1, int param2, in
 
     if (v0) {
         v0->unk_2D = param5;
-        sub_02050904(fieldSystem, ov23_0224C790, v0);
+        FieldTask_Set(fieldSystem, ov23_0224C790, v0);
     }
 }
 

@@ -112,7 +112,7 @@ void sub_02056B30 (TaskManager * taskMan, int param1, int param2, int param3, u1
     v0->unk_1C = param7;
     v0->unk_00 = 0;
 
-    sub_02050944(taskMan, sub_02056B70, v0);
+    FieldTask_Start(taskMan, sub_02056B70, v0);
 }
 
 static BOOL sub_02056B70 (TaskManager * taskMan)
@@ -148,7 +148,7 @@ void sub_02056BDC (FieldSystem * fieldSystem, const int param1, const int param2
 
     v0->unk_20 = param6;
 
-    sub_02050904(fieldSystem, sub_02056CFC, v0);
+    FieldTask_Set(fieldSystem, sub_02056CFC, v0);
 }
 
 void sub_02056C18 (FieldSystem * fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5)
@@ -199,7 +199,7 @@ void sub_02056C18 (FieldSystem * fieldSystem, const int param1, const int param2
 
     v2->unk_20 = v1;
 
-    sub_02050904(fieldSystem, sub_02056CFC, v2);
+    FieldTask_Set(fieldSystem, sub_02056CFC, v2);
 }
 
 static BOOL sub_02056CFC (TaskManager * taskMan)
@@ -212,7 +212,7 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
     case 0:
         v1->unk_04 = 0;
         sub_02055644(fieldSystem, v2->mapId);
-        sub_02050944(taskMan, Unk_020EC560[v1->unk_20], v1);
+        FieldTask_Start(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
     case 1:
@@ -243,7 +243,7 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
         ov5_021DDAA4(fieldSystem);
 
         v1->unk_04 = 0;
-        sub_02050944(taskMan, Unk_020EC544[v1->unk_20], v1);
+        FieldTask_Start(taskMan, Unk_020EC544[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
     case 6:
@@ -391,7 +391,7 @@ static BOOL sub_02056FC0 (TaskManager * taskMan)
         UnkStruct_ov5_021D4E00 * v3;
 
         v3 = ov5_021D4E00();
-        sub_02050944(taskMan, ov5_021D4FA0, v3);
+        FieldTask_Start(taskMan, ov5_021D4FA0, v3);
         v1->unk_04++;
     }
     break;
@@ -414,7 +414,7 @@ static BOOL sub_02057008 (TaskManager * taskMan)
         UnkStruct_ov5_021D4E00 * v3;
 
         v3 = ov5_021D4E00();
-        sub_02050944(taskMan, ov5_021D4F14, v3);
+        FieldTask_Start(taskMan, ov5_021D4F14, v3);
         v1->unk_04++;
     }
     break;
@@ -447,7 +447,7 @@ static BOOL sub_02057050 (TaskManager * taskMan)
             UnkStruct_ov5_021D4E00 * v6;
 
             v6 = ov5_021D4E00();
-            sub_02050944(taskMan, ov5_021D5020, v6);
+            FieldTask_Start(taskMan, ov5_021D5020, v6);
             (v2->unk_04) = 3;
         }
     }
@@ -496,12 +496,12 @@ static BOOL sub_0205711C (TaskManager * taskMan)
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
             v2->unk_04 = 1;
-            sub_02050924(taskMan, sub_02057050, v2);
+            FieldEvent_Change(taskMan, sub_02057050, v2);
         } else {
             UnkStruct_ov5_021D4E00 * v6;
 
             v6 = ov5_021D4E00();
-            sub_02050944(taskMan, ov5_021D5150, v6);
+            FieldTask_Start(taskMan, ov5_021D5150, v6);
             (v2->unk_04)++;
         }
     }
@@ -603,7 +603,7 @@ static BOOL sub_020572B8 (TaskManager * taskMan)
         UnkStruct_ov5_021D4E00 * v3;
 
         v3 = ov5_021D4E00();
-        sub_02050944(taskMan, ov5_021D4E10, v3);
+        FieldTask_Start(taskMan, ov5_021D4E10, v3);
         v1->unk_04++;
     }
     break;

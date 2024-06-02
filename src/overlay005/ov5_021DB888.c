@@ -349,7 +349,7 @@ void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
     v0->unk_114 = param2;
     v0->unk_118 = param1;
 
-    sub_02050944(param0, ov5_021DB8D8, v0);
+    FieldTask_Start(param0, ov5_021DB8D8, v0);
     return;
 }
 

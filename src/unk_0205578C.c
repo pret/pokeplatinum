@@ -52,5 +52,5 @@ void sub_020557DC (TaskManager * param0, int param1, int param2)
     v0->unk_08 = param1;
     v0->unk_0C = param2;
 
-    sub_02050944(param0, sub_0205578C, v0);
+    FieldTask_Start(param0, sub_0205578C, v0);
 }

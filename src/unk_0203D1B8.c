@@ -528,7 +528,7 @@ void * sub_0203D50C (TaskManager * taskMan, int param1)
     v1->unk_14 = NULL;
     v0->unk_04 = v1;
 
-    sub_02050944(taskMan, sub_0203D444, v0);
+    FieldTask_Start(taskMan, sub_0203D444, v0);
 
     return v1;
 }
@@ -724,7 +724,7 @@ void sub_0203D80C (TaskManager * taskMan, u16 * param1, u16 * param2, u16 * para
         sub_020974F8(v0->unk_0C, *param2, *param3);
     }
 
-    sub_02050944(taskMan, sub_0203D764, v0);
+    FieldTask_Start(taskMan, sub_0203D764, v0);
 }
 
 void sub_0203D874 (FieldSystem * fieldSystem, UnkStruct_0209747C * param1)
@@ -937,7 +937,7 @@ void sub_0203DAC0 (TaskManager * param0, u16 * param1, SaveData * param2, u16 pa
     v0->unk_0C = sub_0203DA00(32, param2, param3, &v0->unk_08, param4);
     v0->unk_04 = param1;
 
-    sub_02050944(param0, sub_0203DA64, v0);
+    FieldTask_Start(param0, sub_0203DA64, v0);
 }
 
 BOOL sub_0203DB10 (FieldSystem * fieldSystem, void * param1)
@@ -1130,7 +1130,7 @@ void sub_0203DDDC (TaskManager * param0)
     UnkStruct_0203DBF0 * v0 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203DBF0));
 
     v0->unk_00 = 0;
-    sub_02050944(param0, sub_0203DBF0, v0);
+    FieldTask_Start(param0, sub_0203DBF0, v0);
 }
 
 
@@ -1314,7 +1314,7 @@ void sub_0203DFE8 (TaskManager * param0, int param1, int param2, int param3, int
         break;
     }
 
-    sub_02050944(param0, sub_0203DE98, v2);
+    FieldTask_Start(param0, sub_0203DE98, v2);
 }
 
 void sub_0203E09C (FieldSystem * fieldSystem, TrainerCard * param1)
@@ -1626,7 +1626,7 @@ void sub_0203E414 (TaskManager * param0, int param1)
     v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, param1);
 
     sub_0202CFEC(sub_0202CD88(fieldSystem->saveData), 5);
-    sub_02050944(param0, sub_0203E35C, v2);
+    FieldTask_Start(param0, sub_0203E35C, v2);
 }
 
 static u8 sub_0203E484 (SaveData * param0, u8 param1)
@@ -1674,7 +1674,7 @@ void sub_0203E518 (TaskManager * param0)
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_ov7_0224BEFC * v1 = ov7_0224BE9C(4, fieldSystem->saveData, fieldSystem->unk_08);
 
-    sub_02050944(param0, sub_0203E4F8, v1);
+    FieldTask_Start(param0, sub_0203E4F8, v1);
 }
 
 void * sub_0203E53C (FieldSystem * fieldSystem, int param1, int param2)

@@ -140,7 +140,7 @@ static void sub_02052914 (FieldSystem * fieldSystem, TaskManager * param1)
     }
 
     sub_0201A954(&v0->unk_0C);
-    sub_02050944(param1, sub_020529C4, v0);
+    FieldTask_Start(param1, sub_020529C4, v0);
 
     return;
 }
@@ -276,5 +276,5 @@ BOOL sub_02052B2C (TaskManager * param0)
 
 void sub_02052C5C (TaskManager * param0)
 {
-    sub_02050944(param0, sub_02052B2C, NULL);
+    FieldTask_Start(param0, sub_02052B2C, NULL);
 }

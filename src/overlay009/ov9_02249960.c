@@ -2353,7 +2353,7 @@ static void ov9_0224AA34 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0
         v0->unk_28.z = -v0->unk_28.z;
     }
 
-    sub_02050904(param0->fieldSystem, ov9_0224AAD4, param0);
+    FieldTask_Set(param0->fieldSystem, ov9_0224AAD4, param0);
 }
 
 static BOOL ov9_0224AAD4 (TaskManager * param0)
@@ -4926,7 +4926,7 @@ static void ov9_0224D078 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0D
     v0 = ov9_0224A578(param0, sizeof(UnkStruct_ov9_0224D078));
     v0->unk_64 = param1;
 
-    sub_02050904(param0->fieldSystem, ov9_0224D098, param0);
+    FieldTask_Set(param0->fieldSystem, ov9_0224D098, param0);
 }
 
 static BOOL ov9_0224D098 (TaskManager * param0)
@@ -6291,7 +6291,7 @@ static BOOL ov9_0224E434 (UnkStruct_ov9_02249B04 * param0, int param1, int param
 static void ov9_0224E498 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_02251438 * param1)
 {
     ov9_0224E350(param0, param1);
-    sub_02050904(param0->fieldSystem, ov9_0224E4BC, param0);
+    FieldTask_Set(param0->fieldSystem, ov9_0224E4BC, param0);
 }
 
 static void ov9_0224E4B0 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_02252044 * param1)

@@ -55,7 +55,7 @@ BOOL ov5_021F101C (TaskManager * param0)
         }
         break;
     case 4:
-        sub_02050944(param0, ov5_021F0488, v3->unk_04);
+        FieldTask_Start(param0, ov5_021F0488, v3->unk_04);
         (*v2)++;
         break;
     case 5:

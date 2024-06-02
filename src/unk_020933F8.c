@@ -165,10 +165,10 @@ void sub_020933F8 (TaskManager * param0, UnkStruct_02095C48 * param1)
     case 0:
     case 1:
     case 2:
-        sub_02050944(param0, sub_02093448, v0);
+        FieldTask_Start(param0, sub_02093448, v0);
         break;
     default:
-        sub_02050944(param0, sub_020935EC, v0);
+        FieldTask_Start(param0, sub_020935EC, v0);
         break;
     }
 }
