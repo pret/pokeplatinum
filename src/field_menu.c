@@ -952,7 +952,7 @@ static BOOL FieldMenu_Pokedex (TaskManager * taskMan)
     UnkStruct_ov21_021D0D80 * v2;
     PokedexData * v3;
     TrainerInfo * v4;
-    Events * v5;
+    FieldEvents * v5;
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);

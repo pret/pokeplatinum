@@ -806,7 +806,7 @@ BOOL ScrCmd_305 (ScriptContext * param0)
 
 BOOL ScrCmd_30F (ScriptContext * param0)
 {
-    Events * v0;
+    FieldEvents * v0;
     UnkStruct_0202CD88 * v1;
     FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v3 = ScriptContext_GetVar(param0);

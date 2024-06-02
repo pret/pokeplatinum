@@ -97,37 +97,37 @@ static BOOL ov6_02246A34 (FieldSystem * fieldSystem)
 
 static BOOL ov6_02246A38 (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 7);
 }
 
 static BOOL ov6_02246A4C (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 2);
 }
 
 static BOOL ov6_02246A60 (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 9);
 }
 
 static BOOL ov6_02246A74 (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 10);
 }
 
 static BOOL ov6_02246A88 (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 11);
 }
 
 static BOOL ov6_02246A9C (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 17);
 }
 
@@ -156,7 +156,7 @@ static BOOL ov6_02246AD8 (FieldSystem * fieldSystem)
 
 static BOOL ov6_02246AE8 (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return sub_0206A954(v0);
 }
 

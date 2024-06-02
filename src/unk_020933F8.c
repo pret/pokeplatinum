@@ -1598,7 +1598,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
 
     if (param0->unk_155 == 0) {
         {
-            Events * v1;
+            FieldEvents * v1;
 
             v1 = SaveData_Events(param0->unk_1970);
 

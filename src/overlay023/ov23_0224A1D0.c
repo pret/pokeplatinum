@@ -205,7 +205,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
 {
     CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
-    Events * v2 = SaveData_Events(commPlayerMan->fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_Events(commPlayerMan->fieldSystem->saveData);
 
     GF_ASSERT(v1->unk_01 < (7 + 1));
 

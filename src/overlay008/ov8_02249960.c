@@ -2451,13 +2451,13 @@ static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
 
 static void ov8_0224AEDC (FieldSystem * fieldSystem, u16 param1)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     sub_0206B46C(v0, param1);
 }
 
 static u32 ov8_0224AEF0 (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     return sub_0206B47C(v0);
 }
 

@@ -52,7 +52,7 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02050568 * v1 = TaskManager_Environment(taskMan);
-    Events * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
 
     switch (v1->unk_08) {
     case 0:

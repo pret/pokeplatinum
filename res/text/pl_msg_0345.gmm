@@ -527,7 +527,7 @@
 	</row>
 	<row id="pl_msg_00000345_00131" index="131">
 		<attribute name="window_context_name">used</attribute>
-		<language name="English">Early Plaza Events</language>
+		<language name="English">Early Plaza FieldEvents</language>
 	</row>
 	<row id="pl_msg_00000345_00132" index="132">
 		<attribute name="window_context_name">used</attribute>

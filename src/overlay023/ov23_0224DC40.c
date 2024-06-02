@@ -736,7 +736,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 22:
         ov23_0224E124(v0);
         {
-            Events * v2 = SaveData_Events(v0->fieldSystem->saveData);
+            FieldEvents * v2 = SaveData_Events(v0->fieldSystem->saveData);
             sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
         }
 

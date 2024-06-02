@@ -6450,7 +6450,7 @@ static BOOL ScrCmd_202 (ScriptContext * ctx)
     u16 * v0;
     u16 * v1;
     UnkStruct_0203A790 * v2 = sub_0203A790(ctx->fieldSystem->saveData);
-    Events * v3 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v3 = SaveData_Events(ctx->fieldSystem->saveData);
     TVBroadcast * v4 = SaveData_TVBroadcast(ctx->fieldSystem->saveData);
     int v5 = ScriptContext_ReadByte(ctx);
 
@@ -6531,7 +6531,7 @@ static BOOL ScrCmd_211 (ScriptContext * ctx)
 
 static BOOL ScrCmd_214 (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B354(v0);
@@ -7018,7 +7018,7 @@ static BOOL ScrCmd_264 (ScriptContext * ctx)
 
 static BOOL ScrCmd_265 (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
 
     sub_0206AE0C(v0);
     return 0;
@@ -7026,7 +7026,7 @@ static BOOL ScrCmd_265 (ScriptContext * ctx)
 
 static BOOL ScrCmd_266 (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
 
     sub_0206AE1C(v0);
     return 0;
@@ -7147,7 +7147,7 @@ static BOOL ScrCmd_26E (ScriptContext * ctx)
 
 static BOOL ScrCmd_26F (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
 
     sub_0206B364(v0, 0);
     return 0;
@@ -7157,7 +7157,7 @@ static BOOL ScrCmd_270 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u8 v1 = ScriptContext_ReadByte(ctx);
-    Events * v2 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_Events(ctx->fieldSystem->saveData);
 
     if (v1) {
         sub_0206B1B0(v2, v0);
@@ -7181,7 +7181,7 @@ static BOOL ScrCmd_273 (ScriptContext * ctx)
 static BOOL ScrCmd_275 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    Events * v1 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v1 = SaveData_Events(ctx->fieldSystem->saveData);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
     u32 v3;
 
@@ -7282,7 +7282,7 @@ static BOOL ScrCmd_27F (ScriptContext * ctx)
 static BOOL ScrCmd_27E (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    Events * v1 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v1 = SaveData_Events(ctx->fieldSystem->saveData);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
     u16 v3;
 
@@ -7416,7 +7416,7 @@ static BOOL ScrCmd_285 (ScriptContext * ctx)
 
 static BOOL ScrCmd_286 (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B3EC(v0);
@@ -7425,7 +7425,7 @@ static BOOL ScrCmd_286 (ScriptContext * ctx)
 
 static BOOL ScrCmd_287 (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B40C(v0);
@@ -7434,7 +7434,7 @@ static BOOL ScrCmd_287 (ScriptContext * ctx)
 
 static BOOL ScrCmd_288 (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B42C(v0);
@@ -7508,7 +7508,7 @@ static BOOL ScrCmd_28B (ScriptContext * ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
-    Events * v2 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_Events(ctx->fieldSystem->saveData);
 
     GF_ASSERT((v0 <= 4));
 
@@ -7632,7 +7632,7 @@ static BOOL ScrCmd_29E (ScriptContext * ctx)
 
 static BOOL ScrCmd_293 (ScriptContext * ctx)
 {
-    Events * v0 = SaveData_Events(ctx->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B374(v0);

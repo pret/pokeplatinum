@@ -169,37 +169,37 @@ static inline u16 ScriptContext_GetVar (ScriptContext * ctx)
     return sub_0203F150(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
-static inline void inline_0204E650 (Events * param0)
+static inline void inline_0204E650 (FieldEvents * param0)
 {
     sub_0206AEAC(param0, 1);
 }
 
-static inline void inline_0204E650_1 (Events * param0)
+static inline void inline_0204E650_1 (FieldEvents * param0)
 {
     sub_0206AEAC(param0, 0);
 }
 
-static inline BOOL inline_0204E650_2 (Events * param0)
+static inline BOOL inline_0204E650_2 (FieldEvents * param0)
 {
     return sub_0206AEAC(param0, 2);
 }
 
-static inline void inline_02044528 (Events * param0)
+static inline void inline_02044528 (FieldEvents * param0)
 {
     sub_0206AF2C(param0, 1);
 }
 
-static inline BOOL inline_020535E8 (Events * param0)
+static inline BOOL inline_020535E8 (FieldEvents * param0)
 {
     return sub_0206AF2C(param0, 2);
 }
 
-static inline void inline_0203A8E8 (Events * param0, u32 param1)
+static inline void inline_0203A8E8 (FieldEvents * param0, u32 param1)
 {
     sub_0206AF3C(param0, 1, param1);
 }
 
-static inline BOOL inline_0208BE68 (Events * param0, u32 param1)
+static inline BOOL inline_0208BE68 (FieldEvents * param0, u32 param1)
 {
     return sub_0206AF3C(param0, 2, param1);
 }

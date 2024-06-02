@@ -230,7 +230,7 @@ static void ov62_0223712C (UnkStruct_0208C06C * param0)
     int v6[5];
 
     {
-        Events * v7 = SaveData_Events(param0->unk_830);
+        FieldEvents * v7 = SaveData_Events(param0->unk_830);
 
         v6[0] = sub_0206B5C8(v7);
         v6[1] = sub_0206B588(v7);
@@ -326,7 +326,7 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     v9.priority = 20;
 
     {
-        Events * v10 = SaveData_Events(param0->unk_830);
+        FieldEvents * v10 = SaveData_Events(param0->unk_830);
 
         v3[0] = sub_0206B5C8(v10);
         v3[1] = sub_0206B588(v10);

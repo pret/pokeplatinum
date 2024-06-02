@@ -9,29 +9,29 @@
 typedef struct UnkStruct_020507E4_t {
     u16 unk_00[288];
     u8 unk_240[364];
-} Events;
+} FieldEvents;
 
 static u8 Unk_021C07F4[8] = {};
 
 int FieldEvents_SaveSize (void)
 {
-    return sizeof(Events);
+    return sizeof(FieldEvents);
 }
 
-void FieldEvents_Init (Events * param0)
+void FieldEvents_Init (FieldEvents * param0)
 {
-    memset(param0, 0, sizeof(Events));
+    memset(param0, 0, sizeof(FieldEvents));
 }
 
-Events * SaveData_Events (SaveData * param0)
+FieldEvents * SaveData_Events (SaveData * param0)
 {
-    Events * v0;
+    FieldEvents * v0;
 
-    v0 = (Events *)SaveData_SaveTable(param0, 4);
+    v0 = (FieldEvents *)SaveData_SaveTable(param0, 4);
     return v0;
 }
 
-BOOL sub_020507F0 (Events * param0, u16 param1)
+BOOL sub_020507F0 (FieldEvents * param0, u16 param1)
 {
     u8 * v0 = sub_02050870(param0, param1);
 
@@ -44,7 +44,7 @@ BOOL sub_020507F0 (Events * param0, u16 param1)
     return 0;
 }
 
-void sub_0205081C (Events * param0, u16 param1)
+void sub_0205081C (FieldEvents * param0, u16 param1)
 {
     u8 * v0 = sub_02050870(param0, param1);
 
@@ -57,7 +57,7 @@ void sub_0205081C (Events * param0, u16 param1)
     return;
 }
 
-void sub_02050844 (Events * param0, u16 param1)
+void sub_02050844 (FieldEvents * param0, u16 param1)
 {
     u8 * v0 = sub_02050870(param0, param1);
 
@@ -70,7 +70,7 @@ void sub_02050844 (Events * param0, u16 param1)
     return;
 }
 
-u8 * sub_02050870 (Events * param0, u16 param1)
+u8 * sub_02050870 (FieldEvents * param0, u16 param1)
 {
     if (param1 == 0) {
         return NULL;
@@ -89,7 +89,7 @@ u8 * sub_02050870 (Events * param0, u16 param1)
     }
 }
 
-u16 * sub_020508B8 (Events * param0, u16 param1)
+u16 * sub_020508B8 (FieldEvents * param0, u16 param1)
 {
     if ((param1 - 0x4000) >= 288) {
         GF_ASSERT(FALSE);

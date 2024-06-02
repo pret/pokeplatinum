@@ -41,7 +41,7 @@ typedef struct {
     UnkStruct_0202B628 * unk_27C;
     UnkStruct_0202CD88 * unk_280;
     SaveData * unk_284;
-    Events * unk_288;
+    FieldEvents * unk_288;
     BOOL unk_28C;
     u16 * unk_290;
     u8 unk_294;

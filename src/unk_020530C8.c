@@ -265,7 +265,7 @@ void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
         sub_02027F50(sub_02027860(fieldSystem->saveData));
     }
     
-    Events * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
     u16 v3 = sub_0203A944(fieldSystem, mapId);
 
     if (((v3 == 14) && (sub_0206AF0C(v2) == 1)) || ((v3 == 16) && (sub_0206AEDC(v2) == 1))) {
@@ -458,7 +458,7 @@ static BOOL sub_02053518 (const FieldSystem * fieldSystem)
 static void sub_02053540 (FieldSystem * fieldSystem)
 {
     Location * v0 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
-    Events * v1 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v1 = SaveData_Events(fieldSystem->saveData);
 
     Location_Init(v0, fieldSystem->location->mapId, -1, 8, 2, 1);
 }
@@ -499,7 +499,7 @@ void sub_020535CC (FieldSystem * fieldSystem)
 static BOOL sub_020535E8 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    Events * v1 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v1 = SaveData_Events(fieldSystem->saveData);
     int * v2 = sub_02050A68(taskMan);
 
     switch (*v2) {
@@ -565,7 +565,7 @@ static BOOL sub_02053718 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053718 * v1 = TaskManager_Environment(taskMan);
-    Events * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
     int * v3 = sub_02050A68(taskMan);
 
     switch (*v3) {
@@ -616,7 +616,7 @@ void sub_02053808 (FieldSystem * fieldSystem)
     if (MapHeader_IsUnionRoom(fieldSystem->location->mapId)) {
         (void)0;
     } else if (sub_02053518(fieldSystem)) {
-        Events * v2 = SaveData_Events(fieldSystem->saveData);
+        FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
 
         sub_02053540(fieldSystem);
         sub_0206AD9C(v2);

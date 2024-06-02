@@ -14,17 +14,17 @@
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 
-static BOOL sub_0206AFE0(Events * param0, u16 param1, u16 param2);
-static u16 sub_0206B010(Events * param0, u16 param1);
-BOOL sub_0206B044(Events * param0, u16 param1);
-u16 sub_0206B054(Events * param0);
-u16 sub_0206B064(Events * param0);
-u16 sub_0206B08C(Events * param0);
-void sub_0206B558(Events * param0, u16 param1);
+static BOOL sub_0206AFE0(FieldEvents * param0, u16 param1, u16 param2);
+static u16 sub_0206B010(FieldEvents * param0, u16 param1);
+BOOL sub_0206B044(FieldEvents * param0, u16 param1);
+u16 sub_0206B054(FieldEvents * param0);
+u16 sub_0206B064(FieldEvents * param0);
+u16 sub_0206B08C(FieldEvents * param0);
+void sub_0206B558(FieldEvents * param0, u16 param1);
 void sub_0206B514(SaveData * param0);
-static u8 sub_0206B4A4(Events * param0);
+static u8 sub_0206B4A4(FieldEvents * param0);
 
-static BOOL sub_0206AFE0 (Events * param0, u16 param1, u16 param2)
+static BOOL sub_0206AFE0 (FieldEvents * param0, u16 param1, u16 param2)
 {
     u16 * v0 = sub_020508B8(param0, param1);
 
@@ -41,7 +41,7 @@ static BOOL sub_0206AFE0 (Events * param0, u16 param1, u16 param2)
     return 1;
 }
 
-static u16 sub_0206B010 (Events * param0, u16 param1)
+static u16 sub_0206B010 (FieldEvents * param0, u16 param1)
 {
     u16 * v0 = sub_020508B8(param0, param1);
 
@@ -52,27 +52,27 @@ static u16 sub_0206B010 (Events * param0, u16 param1)
     return *v0;
 }
 
-BOOL sub_0206B024 (Events * param0, u16 param1)
+BOOL sub_0206B024 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (15 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B034 (Events * param0)
+u16 sub_0206B034 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (15 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B044 (Events * param0, u16 param1)
+BOOL sub_0206B044 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (0 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B054 (Events * param0)
+u16 sub_0206B054 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (0 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B064 (Events * param0)
+u16 sub_0206B064 (FieldEvents * param0)
 {
     u16 v0;
     u16 v1 = sub_0206B010(param0, (0 + (((0 + 0x4000) + 32) + 16)));
@@ -88,7 +88,7 @@ u16 sub_0206B064 (Events * param0)
     return v0;
 }
 
-u16 sub_0206B08C (Events * param0)
+u16 sub_0206B08C (FieldEvents * param0)
 {
     u16 v0;
     u16 v1 = sub_0206B010(param0, (0 + (((0 + 0x4000) + 32) + 16)));
@@ -104,39 +104,39 @@ u16 sub_0206B08C (Events * param0)
     return v0;
 }
 
-u16 sub_0206B0B4 (Events * param0)
+u16 sub_0206B0B4 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (5 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B0C4 (Events * param0, u16 param1)
+BOOL sub_0206B0C4 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (5 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B0D4 (Events * param0)
+void sub_0206B0D4 (FieldEvents * param0)
 {
     sub_0206A9D4(param0);
     sub_0206B118(param0, 0);
     return;
 }
 
-u16 sub_0206B0E8 (Events * param0)
+u16 sub_0206B0E8 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (3 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B0F8 (Events * param0, u16 param1)
+BOOL sub_0206B0F8 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (3 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B108 (Events * param0)
+u16 sub_0206B108 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (4 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B118 (Events * param0, u16 param1)
+BOOL sub_0206B118 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (4 + (((0 + 0x4000) + 32) + 16)), param1);
 }
@@ -151,12 +151,12 @@ static int sub_0206B128 (int param0)
     return v0[param0];
 }
 
-void sub_0206B144 (Events * param0, int param1)
+void sub_0206B144 (FieldEvents * param0, int param1)
 {
     sub_0206AFE0(param0, (19 + (((0 + 0x4000) + 32) + 16)) + param1, sub_0206B128(param1));
 }
 
-BOOL sub_0206B16C (Events * param0, int param1)
+BOOL sub_0206B16C (FieldEvents * param0, int param1)
 {
     if (sub_0206B010(param0, (19 + (((0 + 0x4000) + 32) + 16)) + param1) == sub_0206B128(param1)) {
         return 1;
@@ -175,17 +175,17 @@ static int sub_0206B194 (int param0)
     return v0[param0];
 }
 
-void sub_0206B1B0 (Events * param0, int param1)
+void sub_0206B1B0 (FieldEvents * param0, int param1)
 {
     sub_0206AFE0(param0, (6 + (((0 + 0x4000) + 32) + 16)) + param1, sub_0206B194(param1));
 }
 
-void sub_0206B1D8 (Events * param0, int param1)
+void sub_0206B1D8 (FieldEvents * param0, int param1)
 {
     sub_0206AFE0(param0, (6 + (((0 + 0x4000) + 32) + 16)) + param1, 0);
 }
 
-BOOL sub_0206B1F0 (Events * param0, int param1)
+BOOL sub_0206B1F0 (FieldEvents * param0, int param1)
 {
     if (sub_0206B010(param0, (6 + (((0 + 0x4000) + 32) + 16)) + param1) == sub_0206B194(param1)) {
         return 1;
@@ -194,17 +194,17 @@ BOOL sub_0206B1F0 (Events * param0, int param1)
     }
 }
 
-BOOL sub_0206B218 (Events * param0)
+BOOL sub_0206B218 (FieldEvents * param0)
 {
     return sub_0206AFE0(param0, (10 + (((0 + 0x4000) + 32) + 16)), 0);
 }
 
-u16 sub_0206B228 (Events * param0)
+u16 sub_0206B228 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (10 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B238 (Events * param0)
+BOOL sub_0206B238 (FieldEvents * param0)
 {
     u16 v0;
 
@@ -219,17 +219,17 @@ BOOL sub_0206B238 (Events * param0)
     return sub_0206AFE0(param0, (10 + (((0 + 0x4000) + 32) + 16)), v0);
 }
 
-u16 sub_0206B260 (Events * param0)
+u16 sub_0206B260 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (11 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B270 (Events * param0, u16 param1)
+BOOL sub_0206B270 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (11 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B280 (Events * param0, u32 param1)
+void sub_0206B280 (FieldEvents * param0, u32 param1)
 {
     u16 v0, v1;
 
@@ -239,7 +239,7 @@ void sub_0206B280 (Events * param0, u32 param1)
     sub_0206AFE0(param0, (12 + (((0 + 0x4000) + 32) + 16)), v1);
 }
 
-u32 sub_0206B2A4 (Events * param0)
+u32 sub_0206B2A4 (FieldEvents * param0)
 {
     u16 v0, v1;
 
@@ -249,7 +249,7 @@ u32 sub_0206B2A4 (Events * param0)
     return (v1 << 16) | v0;
 }
 
-void sub_0206B2C8 (Events * param0)
+void sub_0206B2C8 (FieldEvents * param0)
 {
     u16 v0, v1;
 
@@ -261,7 +261,7 @@ void sub_0206B2C8 (Events * param0)
 
 void sub_0206B2E4 (SaveData * param0, u16 param1)
 {
-    Events * v0 = SaveData_Events(param0);
+    FieldEvents * v0 = SaveData_Events(param0);
     u32 v1;
 
     v1 = sub_0202B428(sub_0202B4A0(param0));
@@ -270,26 +270,26 @@ void sub_0206B2E4 (SaveData * param0, u16 param1)
     sub_0206B280(v0, v1);
 }
 
-u16 sub_0206B314 (Events * param0)
+u16 sub_0206B314 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (17 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B324 (Events * param0, u16 param1)
+BOOL sub_0206B324 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (17 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
 void sub_0206B334 (SaveData * param0)
 {
-    Events * v0 = SaveData_Events(param0);
+    FieldEvents * v0 = SaveData_Events(param0);
     u32 v1;
 
     v1 = (LCRNG_Next() % 98) + 2;
     sub_0206B324(v0, v1);
 }
 
-u16 sub_0206B354 (Events * param0)
+u16 sub_0206B354 (FieldEvents * param0)
 {
     u16 v0;
 
@@ -297,12 +297,12 @@ u16 sub_0206B354 (Events * param0)
     return v0;
 }
 
-BOOL sub_0206B364 (Events * param0, u16 param1)
+BOOL sub_0206B364 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (14 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B374 (Events * param0)
+u16 sub_0206B374 (FieldEvents * param0)
 {
     u16 v0;
 
@@ -310,12 +310,12 @@ u16 sub_0206B374 (Events * param0)
     return v0;
 }
 
-BOOL sub_0206B384 (Events * param0, u16 param1)
+BOOL sub_0206B384 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (25 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B394 (Events * param0)
+u16 sub_0206B394 (FieldEvents * param0)
 {
     u16 v0;
 
@@ -323,12 +323,12 @@ u16 sub_0206B394 (Events * param0)
     return v0;
 }
 
-BOOL sub_0206B3A4 (Events * param0, u16 param1)
+BOOL sub_0206B3A4 (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (16 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-BOOL sub_0206B3B4 (Events * param0)
+BOOL sub_0206B3B4 (FieldEvents * param0)
 {
     u16 v0;
 
@@ -343,62 +343,62 @@ BOOL sub_0206B3B4 (Events * param0)
     return sub_0206AFE0(param0, (18 + (((0 + 0x4000) + 32) + 16)), v0);
 }
 
-u16 sub_0206B3DC (Events * param0)
+u16 sub_0206B3DC (FieldEvents * param0)
 {
     return sub_0206B010(param0, (18 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B3EC (Events * param0)
+u16 sub_0206B3EC (FieldEvents * param0)
 {
     return sub_0206B010(param0, (36 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B3FC (Events * param0, u16 param1)
+BOOL sub_0206B3FC (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (36 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B40C (Events * param0)
+u16 sub_0206B40C (FieldEvents * param0)
 {
     return sub_0206B010(param0, (23 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B41C (Events * param0, u16 param1)
+BOOL sub_0206B41C (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (23 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B42C (Events * param0)
+u16 sub_0206B42C (FieldEvents * param0)
 {
     return sub_0206B010(param0, (24 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B43C (Events * param0, u16 param1)
+BOOL sub_0206B43C (FieldEvents * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (24 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B44C (Events * param0)
+u16 sub_0206B44C (FieldEvents * param0)
 {
     return sub_0206B010(param0, (26 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B45C (Events * param0, u16 param1)
+void sub_0206B45C (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (26 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B46C (Events * param0, u16 param1)
+void sub_0206B46C (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (27 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B47C (Events * param0)
+u16 sub_0206B47C (FieldEvents * param0)
 {
     return sub_0206B010(param0, (27 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B48C (Events * param0, u16 param1)
+void sub_0206B48C (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (29 + (((0 + 0x4000) + 32) + 16)), (param1 + 1));
 }
@@ -415,7 +415,7 @@ static const u8 Unk_020EFA6C[] = {
     0xF
 };
 
-static u8 sub_0206B4A4 (Events * param0)
+static u8 sub_0206B4A4 (FieldEvents * param0)
 {
     int v0;
     u16 v1, v2, v3;
@@ -449,7 +449,7 @@ static u8 sub_0206B4A4 (Events * param0)
 void sub_0206B514 (SaveData * param0)
 {
     u32 v0;
-    Events * v1 = SaveData_Events(param0);
+    FieldEvents * v1 = SaveData_Events(param0);
     UnkStruct_0203A790 * v2 = sub_0203A790(param0);
     Location * location = sub_0203A720(v2);
 
@@ -462,93 +462,93 @@ void sub_0206B514 (SaveData * param0)
     return;
 }
 
-void sub_0206B558 (Events * param0, u16 param1)
+void sub_0206B558 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (30 + (((0 + 0x4000) + 32) + 16)), param1);
     sub_0206AFE0(param0, (42 + (((0 + 0x4000) + 32) + 16)), (LCRNG_Next() % 5));
 }
 
-u16 sub_0206B588 (Events * param0)
+u16 sub_0206B588 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (32 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B598 (Events * param0)
+u16 sub_0206B598 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (33 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5A8 (Events * param0)
+u16 sub_0206B5A8 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (34 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5B8 (Events * param0)
+u16 sub_0206B5B8 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (35 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5C8 (Events * param0)
+u16 sub_0206B5C8 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (31 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5D8 (Events * param0)
+u16 sub_0206B5D8 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (37 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B5E8 (Events * param0, u16 param1)
+void sub_0206B5E8 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (37 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B5F8 (Events * param0)
+u16 sub_0206B5F8 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (38 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B608 (Events * param0, u16 param1)
+void sub_0206B608 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (38 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B618 (Events * param0)
+u16 sub_0206B618 (FieldEvents * param0)
 {
     return sub_0206B010(param0, (39 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B628 (Events * param0, u16 param1)
+void sub_0206B628 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (39 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B638 (Events * param0, u16 param1)
+void sub_0206B638 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (40 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B648 (Events * param0, u16 param1)
+void sub_0206B648 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (41 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B658 (Events * param0, u16 param1)
+void sub_0206B658 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (46 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B668 (Events * param0, u16 param1)
+void sub_0206B668 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (47 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B678 (Events * param0, u16 param1)
+void sub_0206B678 (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (48 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B688 (Events * param0, u16 param1, u16 param2)
+void sub_0206B688 (FieldEvents * param0, u16 param1, u16 param2)
 {
     switch (param1) {
     case 481:
@@ -571,17 +571,17 @@ void sub_0206B688 (Events * param0, u16 param1, u16 param2)
     return;
 }
 
-u16 sub_0206B6DC (Events * param0)
+u16 sub_0206B6DC (FieldEvents * param0)
 {
     return sub_0206B010(param0, (43 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B6EC (Events * param0, u16 param1)
+void sub_0206B6EC (FieldEvents * param0, u16 param1)
 {
     sub_0206AFE0(param0, (43 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B6FC (Events * param0)
+u16 sub_0206B6FC (FieldEvents * param0)
 {
     return sub_0206B010(param0, (52 + (((0 + 0x4000) + 32) + 16)));
 }

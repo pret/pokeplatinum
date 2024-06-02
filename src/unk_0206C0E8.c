@@ -70,7 +70,7 @@ static BOOL sub_0206C120 (TaskManager * taskMan)
         break;
     case 2:
     {
-        Events * v2 = SaveData_Events(fieldSystem->saveData);
+        FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
 
         if (v1->unk_0D == 0) {
             sub_0206AE0C(v2);

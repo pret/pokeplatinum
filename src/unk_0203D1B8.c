@@ -1578,7 +1578,7 @@ BOOL sub_0203E348 (FieldSystem * fieldSystem, UnkStruct_0203E348 * param1)
 static BOOL sub_0203E35C (TaskManager * param0)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    Events * v1 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v1 = SaveData_Events(fieldSystem->saveData);
     UnkStruct_0203E35C * v2 = TaskManager_Environment(param0);
     int * v3 = sub_02050A68(param0);
     int v4;

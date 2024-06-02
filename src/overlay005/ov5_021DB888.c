@@ -34,7 +34,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     FieldSystem * fieldSystem;
-    Events * unk_08;
+    FieldEvents * unk_08;
     const UnkStruct_ov5_021F8E48 * unk_0C;
     MapObject * unk_10[64];
     u16 unk_110;
@@ -531,7 +531,7 @@ static BOOL ov5_021DBB70 (u32 param0)
 
 BOOL ov5_021DBB94 (FieldSystem * fieldSystem)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     u16 v1 = sub_0206B0E8(v0);
     u16 v2 = sub_0206B108(v0);
 
@@ -633,7 +633,7 @@ static BOOL ov5_021DBCD4 (UnkStruct_ov5_021DBA58 * param0)
 
 static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
 {
-    Events * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(param0->fieldSystem->saveData);
     MapObject * v1;
     u16 v2;
     int v3, v4;
@@ -734,7 +734,7 @@ static u16 ov5_021DBDFC (FieldSystem * fieldSystem, u16 param1)
 
 static u16 ov5_021DBE48 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    Events * v0 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * v0 = SaveData_Events(fieldSystem->saveData);
     u16 v1 = param2;
 
     switch (param2) {
