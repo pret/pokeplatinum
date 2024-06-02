@@ -203,7 +203,7 @@ static void ov6_0224732C (FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * pa
     void * v0;
 
     if (param1->unk_08 == 2) {
-        v0 = sub_0202BE00((28 - 19), fieldSystem->location->unk_00, 4);
+        v0 = sub_0202BE00((28 - 19), fieldSystem->location->mapId, 4);
     } else {
         return;
     }

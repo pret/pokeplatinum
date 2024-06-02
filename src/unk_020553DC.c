@@ -210,7 +210,7 @@ static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
 {
     int v0, v1;
     UnkStruct_0203A790 * v2 = sub_0203A790(fieldSystem->saveData);
-    Location * v3 = sub_0203A728(v2);
+    Location * location = sub_0203A728(v2);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
@@ -219,7 +219,7 @@ static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
         return 0;
     }
 
-    if ((v3->unk_00 == 80) || (v3->unk_00 == 351)) {
+    if ((location->mapId == 80) || (location->mapId == 351)) {
         if (v0 < 299) {
             return 0;
         }

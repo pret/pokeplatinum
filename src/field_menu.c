@@ -266,7 +266,7 @@ static const u8 Unk_020EA01C[] = {
 
 BOOL sub_0203A9C8 (FieldSystem * fieldSystem)
 {
-    if (MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00) == 0) {
+    if (MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) == 0) {
         return FALSE;
     }
 
@@ -380,7 +380,7 @@ static u32 sub_0203ABD0 (FieldSystem * fieldSystem)
         v0 |= 0x4;
     }
 
-    if (MapHeader_IsAmitySquare(fieldSystem->location->unk_00) == 1) {
+    if (MapHeader_IsAmitySquare(fieldSystem->location->mapId) == 1) {
         v0 |= 0x2;
         v0 |= 0x4;
     }
@@ -1195,7 +1195,7 @@ BOOL sub_0203B7C0 (TaskManager * taskMan)
     {
         UnkStruct_0203C7B8 * v15 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C7B8));
 
-        v15->unk_02 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->unk_00);
+        v15->unk_02 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
         v15->unk_01 = 0;
         v15->unk_00 = partyMan->unk_22;
         v15->unk_04 = partyMan->unk_38;
@@ -1997,7 +1997,7 @@ static void FieldMenu_Evolve (TaskManager * taskMan)
         Heap_Destroy(73);
         sub_020055D0(1141, 0);
         sub_02004234(0);
-        sub_020556A0(fieldSystem, fieldSystem->location->unk_00);
+        sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 
         menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
 

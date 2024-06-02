@@ -608,7 +608,7 @@ static BOOL ov5_021D249C (FieldSystem * fieldSystem)
         }
     }
 
-    if (MapHeader_HasWildEncounters(fieldSystem->location->unk_00) && (ov6_02240D5C(fieldSystem) == 1)) {
+    if (MapHeader_HasWildEncounters(fieldSystem->location->mapId) && (ov6_02240D5C(fieldSystem) == 1)) {
         return 1;
     }
 
@@ -622,7 +622,7 @@ static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CA
     int v2;
     int v3;
     u8 v4;
-    Location v5;
+    Location location;
 
     if (param1->unk_03 == -1) {
         return 0;
@@ -638,7 +638,7 @@ static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CA
         return 0;
     }
 
-    if (ov5_021D2D34(fieldSystem, v1, v2, &v5) && (param1->unk_03 != -1)) {
+    if (ov5_021D2D34(fieldSystem, v1, v2, &location) && (param1->unk_03 != -1)) {
         v4 = sub_02054F94(fieldSystem, v1, v2);
 
         if (sub_0205DAEC(v4)) {
@@ -648,7 +648,7 @@ static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CA
                 ov8_0224C62C(fieldSystem, v1, v2, &v6);
             }
 
-            sub_02056BDC(fieldSystem, v5.unk_00, v5.unk_04, 0, 0, v6, 1);
+            sub_02056BDC(fieldSystem, location.mapId, location.unk_04, 0, 0, v6, 1);
 
             return 1;
         }
@@ -680,7 +680,7 @@ static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CA
         }
     }
 
-    if (ov5_021D2D34(fieldSystem, v1, v2, &v5) == 0) {
+    if (ov5_021D2D34(fieldSystem, v1, v2, &location) == 0) {
         return 0;
     }
 
@@ -696,13 +696,13 @@ static BOOL ov5_021D2504 (FieldSystem * fieldSystem, const UnkStruct_ov5_021D1CA
         } else if (sub_0205DAF8(v4) || sub_0205DB28(v4)
                    || sub_0205DB04(v4) || sub_0205DB34(v4)
                    || sub_0205DB1C(v4) || sub_0205DB4C(v4)) {
-            sub_02056C18(fieldSystem, v5.unk_00, v5.unk_04, 0, 0, param1->unk_03);
+            sub_02056C18(fieldSystem, location.mapId, location.unk_04, 0, 0, param1->unk_03);
             return 1;
         } else {
             return 0;
         }
 
-        sub_02056BDC(fieldSystem, v5.unk_00, v5.unk_04, 0, 0, param1->unk_03, v7);
+        sub_02056BDC(fieldSystem, location.mapId, location.unk_04, 0, 0, param1->unk_03, v7);
     }
 
     return 1;
@@ -867,7 +867,7 @@ static BOOL ov5_021D29D8 (FieldSystem * fieldSystem, const int param1, const int
             return 0;
         }
 
-        sub_02056BDC(fieldSystem, v0.unk_00, v0.unk_04, 0, 0, v1, 2);
+        sub_02056BDC(fieldSystem, v0.mapId, v0.unk_04, 0, 0, v1, 2);
         return 1;
     } else if (sub_0205DC38(param3) == 1) {
         int v1 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
@@ -877,17 +877,17 @@ static BOOL ov5_021D29D8 (FieldSystem * fieldSystem, const int param1, const int
             return 0;
         }
 
-        sub_02056BDC(fieldSystem, v0.unk_00, v0.unk_04, 0, 0, v1, 2);
+        sub_02056BDC(fieldSystem, v0.mapId, v0.unk_04, 0, 0, v1, 2);
         return 1;
     }
 
     if (sub_0205DB10(param3) || sub_0205DB40(param3)) {
-        sub_02056C18(fieldSystem, v0.unk_00, v0.unk_04, 0, 0, 0);
+        sub_02056C18(fieldSystem, v0.mapId, v0.unk_04, 0, 0, 0);
         return 1;
     }
 
     if (sub_0205DEE4(param3)) {
-        sub_02053F58(fieldSystem, v0.unk_00, v0.unk_04);
+        sub_02053F58(fieldSystem, v0.mapId, v0.unk_04);
         return 1;
     }
 
@@ -955,7 +955,7 @@ static void ov5_021D2B54 (FieldSystem * fieldSystem)
     int v0, v1;
     Pokemon * v2;
     Party * v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 v4 = MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00);
+    u16 v4 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 
     v1 = Party_GetCurrentCount(v3);
 
@@ -977,7 +977,7 @@ static BOOL ov5_021D2B94 (FieldSystem * fieldSystem)
         return 0;
     }
 
-    switch (sub_02054B04(v0, MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00))) {
+    switch (sub_02054B04(v0, MapHeader_GetMapLabelTextID(fieldSystem->location->mapId))) {
     case 0:
         return 0;
     case 1:
@@ -1092,13 +1092,11 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
         GF_ASSERT(v0->unk_04 == 0xfff);
         *param3 = *(sub_0203A730(sub_0203A790(fieldSystem->saveData)));
     } else {
-        inline_02049FA8(param3, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
+        Location_Init(param3, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
     }
 
-    {
-        Location * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
-        inline_02049FA8(v2, fieldSystem->location->unk_00, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
-    }
+    Location * v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
+    Location_Init(v2, fieldSystem->location->mapId, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
     return 1;
 }
@@ -1117,7 +1115,7 @@ static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int
         (v1->unk_0C)++;
     }
 
-    v1->unk_00 = fieldSystem->location->unk_00;
+    v1->mapId = fieldSystem->location->mapId;
     v1->unk_04 = -1;
 }
 
@@ -1129,14 +1127,14 @@ static void ov5_021D2E14 (FieldSystem * fieldSystem)
     ov5_021D2C7C(fieldSystem, &v0, &v1);
 
     if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
-        if ((MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
+        if ((MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 1) && (MapHeader_IsOnMainMatrix(v2.mapId) == 0)) {
             ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
     } else {
         ov5_021D2C98(fieldSystem, &v0, &v1);
 
         if (ov5_021D2D34(fieldSystem, v0, v1, &v2)) {
-            if ((MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
+            if ((MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 1) && (MapHeader_IsOnMainMatrix(v2.mapId) == 0)) {
                 ov5_021D2DCC(fieldSystem, v0, v1, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
         }

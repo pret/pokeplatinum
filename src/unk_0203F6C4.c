@@ -3308,7 +3308,7 @@ static BOOL ScrCmd_064 (ScriptContext * ctx)
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    mapObj = sub_02061A74(fieldSystem->mapObjMan, v2, sub_0203A4B4(fieldSystem), fieldSystem->location->unk_00, sub_0203A4BC(fieldSystem));
+    mapObj = sub_02061A74(fieldSystem->mapObjMan, v2, sub_0203A4B4(fieldSystem), fieldSystem->location->mapId, sub_0203A4BC(fieldSystem));
 
     if (mapObj == NULL) {
         GF_ASSERT(FALSE);
@@ -3339,7 +3339,7 @@ static BOOL ScrCmd_066 (ScriptContext * ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     MapObject ** v2 = sub_0203F098(ctx->fieldSystem, 11);
 
-    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->unk_00);
+    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
     sub_020642F8(*v2);
     MapObject_SetHidden(*v2, 1);
@@ -3382,7 +3382,7 @@ static BOOL ScrCmd_308 (ScriptContext * ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     MapObject ** v2 = sub_0203F098(ctx->fieldSystem, 11);
 
-    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->unk_00);
+    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
     sub_020642F8(*v2);
     MapObject_SetHidden(*v2, 1);
@@ -4689,10 +4689,10 @@ static BOOL ScrCmd_204 (ScriptContext * ctx)
 static BOOL ScrCmd_200 (ScriptContext * ctx)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(ctx->fieldSystem->saveData);
-    Location * v1 = sub_0203A728(v0);
-    u16 * v2 = ScriptContext_GetVarPointer(ctx);
+    Location * location = sub_0203A728(v0);
+    u16 * mapId = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = v1->unk_00;
+    *mapId = location->mapId;
     return 0;
 }
 
@@ -4700,7 +4700,7 @@ static BOOL ScrCmd_201 (ScriptContext * ctx)
 {
     u16 * v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = ctx->fieldSystem->location->unk_00;
+    *v0 = ctx->fieldSystem->location->mapId;
     return 0;
 }
 
@@ -4824,7 +4824,7 @@ static BOOL ScrCmd_0C8 (ScriptContext * ctx)
         PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         sub_020553F0(ctx->fieldSystem, 0);
-        sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->unk_00), 1);
+        sub_02055554(ctx->fieldSystem, sub_02055428(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
     }
 
     return 0;
@@ -5002,25 +5002,25 @@ static BOOL ScrCmd_0F7 (ScriptContext * ctx)
 
 static BOOL ScrCmd_11B (ScriptContext * ctx)
 {
-    Location v0;
+    Location location;
 
-    v0.unk_00 = ScriptContext_GetVar(ctx);
-    v0.unk_04 = ScriptContext_GetVar(ctx);
-    v0.unk_08 = ScriptContext_GetVar(ctx);
-    v0.unk_0C = ScriptContext_GetVar(ctx);
-    v0.unk_10 = ScriptContext_GetVar(ctx);
+    location.mapId = ScriptContext_GetVar(ctx);
+    location.unk_04 = ScriptContext_GetVar(ctx);
+    location.unk_08 = ScriptContext_GetVar(ctx);
+    location.unk_0C = ScriptContext_GetVar(ctx);
+    location.unk_10 = ScriptContext_GetVar(ctx);
 
-    sub_0203A734(sub_0203A790(ctx->fieldSystem->saveData), &v0);
+    sub_0203A734(sub_0203A790(ctx->fieldSystem->saveData), &location);
     return 0;
 }
 
 static BOOL ScrCmd_11C (ScriptContext * ctx)
 {
-    Location * v0;
+    Location * location;
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0203A730(sub_0203A790(ctx->fieldSystem->saveData));
-    *v1 = ov5_021DCCC8(v0->unk_00);
+    location = sub_0203A730(sub_0203A790(ctx->fieldSystem->saveData));
+    *v1 = ov5_021DCCC8(location->mapId);
 
     return 0;
 }
@@ -7765,17 +7765,17 @@ static BOOL ScrCmd_2B2 (ScriptContext * ctx)
 
 static BOOL ScrCmd_2B5 (ScriptContext * ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 mapId = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
     UnkStruct_0203A790 * v3 = sub_0203A790(ctx->fieldSystem->saveData);
-    Location * v4 = sub_0203A72C(v3);
+    Location * location = sub_0203A72C(v3);
 
-    v4->unk_00 = v0;
-    v4->unk_08 = v1;
-    v4->unk_0C = v2;
-    v4->unk_04 = -1;
-    v4->unk_10 = 1;
+    location->mapId = mapId;
+    location->unk_08 = v1;
+    location->unk_0C = v2;
+    location->unk_04 = -1;
+    location->unk_10 = 1;
 
     return 0;
 }
@@ -7856,7 +7856,7 @@ static BOOL ScrCmd_2C4 (ScriptContext * ctx)
     v2->unk_04 = SaveData_Options(ctx->fieldSystem->saveData);
     v2->unk_24 = v1;
     v2->unk_08 = ctx->fieldSystem->saveData;
-    v2->unk_1C = ctx->fieldSystem->location->unk_00;
+    v2->unk_1C = ctx->fieldSystem->location->mapId;
     v2->unk_0C = ctx->fieldSystem->unk_9C;
     v2->unk_10 = ctx->fieldSystem->unk_98;
     v2->unk_20 = ctx->fieldSystem->unk_BC;

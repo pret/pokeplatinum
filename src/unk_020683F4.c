@@ -217,7 +217,7 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     }
 
     param1->fieldSystem = fieldSystem;
-    param1->unk_00 = fieldSystem->location->unk_00;
+    param1->unk_00 = fieldSystem->location->mapId;
     param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
@@ -253,7 +253,7 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 static void sub_020684D0 (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 {
     param1->fieldSystem = fieldSystem;
-    param1->unk_00 = fieldSystem->location->unk_00;
+    param1->unk_00 = fieldSystem->location->mapId;
     param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
@@ -495,7 +495,7 @@ static BOOL sub_02068884 (TaskManager * param0)
 
             sub_020553F0(fieldSystem, 0);
             sub_02055554(
-                fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->unk_00), 1);
+                fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
             sub_020553F0(fieldSystem, 1152);
             sub_02055554(fieldSystem, 1152, 1);

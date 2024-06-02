@@ -170,7 +170,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
     v1->unk_04 = 1;
     v1->unk_08 = 0;
 
-    switch (fieldSystem->location->unk_00) {
+    switch (fieldSystem->location->mapId) {
     case 291:
         if (fieldSystem->location->unk_0C == 26) {
             v1->unk_00 = 0;

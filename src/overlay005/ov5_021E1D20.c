@@ -75,10 +75,10 @@ static const int Unk_ov5_021F9CBC[] = {
 static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * fieldSystem)
 {
     SaveData * v0 = fieldSystem->saveData;
-    Location * v1 = sub_0203A720(sub_0203A790(v0));
+    Location * location = sub_0203A720(sub_0203A790(v0));
     PokedexData * v2 = SaveData_Pokedex(v0);
 
-    param0->unk_04 = MapHeader_GetMapLabelTextID(v1->unk_00);
+    param0->unk_04 = MapHeader_GetMapLabelTextID(location->mapId);
 
     if (sub_02027520(v2)) {
         param0->unk_00 = sub_02026E48(v2);
@@ -246,7 +246,7 @@ void ov5_021E2064 (FieldSystem * fieldSystem)
         return;
     }
 
-    switch (fieldSystem->location->unk_00) {
+    switch (fieldSystem->location->mapId) {
     case 466:
     case 332:
     case 333:

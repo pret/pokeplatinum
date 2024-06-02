@@ -2658,7 +2658,7 @@ static int ProcessItemApplication (GameWindowLayout * param0)
             StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
         } else if (fieldSystem != NULL) {
-            if (fieldSystem->location->unk_00 == 466) {
+            if (fieldSystem->location->mapId == 466) {
                 MessageLoader_GetStrbuf(param0->unk_69C, 204, param0->unk_6A8);
                 StringTemplate_SetItemName(param0->unk_6A0, 0, param0->unk_5A4->unk_24);
                 StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
@@ -2714,7 +2714,7 @@ static int UpdatePokemonWithItem (GameWindowLayout * param0, Pokemon * param1, i
     Pokemon_SetValue(param1, 6, &v0);
     Pokemon_SetArceusForm(param1);
 
-    if ((fieldSystem == NULL) || (fieldSystem->location->unk_00 < 573) || (fieldSystem->location->unk_00 > 583)) {
+    if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
         *param2 = Pokemon_SetGiratinaForm(param1);
     } else {
         *param2 = -1;

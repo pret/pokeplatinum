@@ -768,7 +768,7 @@ void sub_020515CC (TaskManager * taskMan, int param1, int param2, int param3, in
     v2 = sub_02051D8C(11, v0);
     sub_02052314(v2, fieldSystem);
 
-    if ((fieldSystem->location->unk_00 >= 573) && (fieldSystem->location->unk_00 <= 583)) {
+    if ((fieldSystem->location->mapId >= 573) && (fieldSystem->location->mapId <= 583)) {
         v2->unk_164 |= 0x80;
     }
 
@@ -999,7 +999,7 @@ static void sub_02051988 (FieldSystem * fieldSystem, BattleParams * param1)
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
         if (v2 == 0x1) {
-            sub_0202C720(fieldSystem->unk_9C, fieldSystem->location->unk_00, param1->trainerIDs[1], 11);
+            sub_0202C720(fieldSystem->unk_9C, fieldSystem->location->mapId, param1->trainerIDs[1], 11);
         }
     }
 }

@@ -120,7 +120,7 @@ void ov6_02246254 (FieldSystem * fieldSystem, UnkStruct_ov6_02246204 * param1, i
     v1 = Party_GetPokemonBySlotIndex(v0, param2);
     v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
-    ov6_0224630C(param1->unk_04, param1->unk_00, v3, param1->unk_0C, param1->unk_10, fieldSystem->location->unk_00);
+    ov6_0224630C(param1->unk_04, param1->unk_00, v3, param1->unk_0C, param1->unk_10, fieldSystem->location->mapId);
 
     Pokemon_Copy(v1, param4);
     Pokemon_Copy(param1->unk_04, param5);

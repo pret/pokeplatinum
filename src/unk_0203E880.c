@@ -421,10 +421,10 @@ static void sub_0203EF14 (FieldSystem * fieldSystem, ScriptContext * param1, int
 
 static void sub_0203EF38 (FieldSystem * fieldSystem, ScriptContext * param1)
 {
-    u8 * v0 = sub_0203F0FC(fieldSystem->location->unk_00);
+    u8 * v0 = sub_0203F0FC(fieldSystem->location->mapId);
 
     param1->scripts = (u8 *)v0;
-    param1->loader = MessageLoader_Init(1, 26, sub_0203F110(fieldSystem->location->unk_00), 11);
+    param1->loader = MessageLoader_Init(1, 26, sub_0203F110(fieldSystem->location->mapId), 11);
 
     return;
 }
@@ -750,17 +750,17 @@ void sub_0203F310 (FieldSystem * fieldSystem)
 
     v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
-    if (fieldSystem->location->unk_00 != Unk_02100AE0[v0][0]) {
+    if (fieldSystem->location->mapId != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(fieldSystem, (730 + Unk_02100AE0[v0][1]));
     }
 
     v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
-    if (fieldSystem->location->unk_00 != Unk_02100AE0[v0][0]) {
+    if (fieldSystem->location->mapId != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(fieldSystem, (730 + Unk_02100AE0[v0][1]));
     }
 
-    if (fieldSystem->location->unk_00 != 256) {
+    if (fieldSystem->location->mapId != 256) {
         v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
         sub_0203F1B0(fieldSystem, (730 + Unk_02100AD4[v0]));
 

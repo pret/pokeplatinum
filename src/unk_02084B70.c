@@ -809,7 +809,7 @@ static int sub_02085C50 (void * param0)
 
         v3 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
         fieldSystem = v0->unk_5A4->unk_1C;
-        v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->unk_00);
+        v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
         v0->unk_5A4->unk_38 = sub_02076B94(v0->unk_5A4->unk_00, v3, 0, v5, &v0->unk_5A4->unk_3C);
 
         if (v0->unk_5A4->unk_38 != 0) {
@@ -1274,5 +1274,5 @@ void sub_020868B0 (GameWindowLayout * param0)
 static u16 sub_02086930 (GameWindowLayout * param0)
 {
     FieldSystem * fieldSystem = param0->unk_5A4->unk_1C;
-    return (u16)MapHeader_GetMapLabelTextID(fieldSystem->location->unk_00);
+    return (u16)MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 }

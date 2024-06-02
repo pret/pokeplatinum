@@ -72,7 +72,7 @@ BOOL ScrCmd_051 (ScriptContext * param0)
 
 BOOL ScrCmd_052 (ScriptContext * param0)
 {
-    int v0 = param0->fieldSystem->location->unk_00;
+    int v0 = param0->fieldSystem->location->mapId;
     u16 v1 = sub_020554A4(param0->fieldSystem, v0);
 
     Sound_PlayBGM(v1);

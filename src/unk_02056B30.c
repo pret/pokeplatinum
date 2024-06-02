@@ -144,7 +144,7 @@ void sub_02056BDC (FieldSystem * fieldSystem, const int param1, const int param2
     v0->unk_00 = 0;
     v0->unk_04 = 0;
 
-    inline_02049FA8(&v0->unk_08, param1, param2, param3, param4, param5);
+    Location_Init(&v0->unk_08, param1, param2, param3, param4, param5);
 
     v0->unk_20 = param6;
 
@@ -160,9 +160,9 @@ void sub_02056C18 (FieldSystem * fieldSystem, const int param1, const int param2
     v2->unk_00 = 0;
     v2->unk_04 = 0;
 
-    inline_02049FA8(&v2->unk_08, param1, param2, param3, param4, param5);
+    Location_Init(&v2->unk_08, param1, param2, param3, param4, param5);
 
-    v0 = fieldSystem->location->unk_00;
+    v0 = fieldSystem->location->mapId;
     v1 = 0;
 
     if (MapHeader_IsCave(v0)) {
@@ -211,7 +211,7 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
     switch (v1->unk_00) {
     case 0:
         v1->unk_04 = 0;
-        sub_02055644(fieldSystem, v2->unk_00);
+        sub_02055644(fieldSystem, v2->mapId);
         sub_02050944(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
@@ -239,7 +239,7 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
             break;
         }
 
-        sub_02055670(fieldSystem, v2->unk_00);
+        sub_02055670(fieldSystem, v2->mapId);
         ov5_021DDAA4(fieldSystem);
 
         v1->unk_04 = 0;

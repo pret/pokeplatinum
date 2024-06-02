@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_02049FA8_H
 
 typedef struct {
-    int unk_00;
+    int mapId;
     int unk_04;
     int unk_08;
     int unk_0C;

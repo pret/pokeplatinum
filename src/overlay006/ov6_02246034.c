@@ -53,10 +53,10 @@ void ov6_02246034 (FieldSystem * fieldSystem, BattleParams * param1)
             sub_0202D980(v4, 7, v1);
         }
 
-        ov6_02246110(v3, fieldSystem->location->unk_00);
+        ov6_02246110(v3, fieldSystem->location->mapId);
     } else {
         if (inline_020564D0(100) < 30) {
-            ov6_02246110(v3, fieldSystem->location->unk_00);
+            ov6_02246110(v3, fieldSystem->location->mapId);
         }
     }
 }

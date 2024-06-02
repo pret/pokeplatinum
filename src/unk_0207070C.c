@@ -170,7 +170,7 @@ void sub_02070728 (FieldSystem * fieldSystem, UnkStruct_02070950 * param1)
     int v4;
 
     param1->fieldSystem = fieldSystem;
-    param1->unk_00 = fieldSystem->location->unk_00;
+    param1->unk_00 = fieldSystem->location->mapId;
     param1->unk_0C = 0;
 
     if (sub_0205F158(fieldSystem->playerAvatar) == 1) {
@@ -760,7 +760,7 @@ static BOOL sub_02071050 (TaskManager * param0)
     void * v2 = ov6_02247488(fieldSystem, v1->unk_00, 11);
 
     {
-        void * v3 = sub_0202BE00((29 - 19), fieldSystem->location->unk_00, 4);
+        void * v3 = sub_0202BE00((29 - 19), fieldSystem->location->mapId, 4);
         sub_0202B758(fieldSystem->unk_9C, v3, 1);
     }
 
@@ -801,7 +801,7 @@ static void sub_020710D4 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v1->unk_25C = v2;
     v1->state = FIELD_MENU_STATE_10;
 
-    v4 = sub_0202BE00((30 - 19), fieldSystem->location->unk_00, 11);
+    v4 = sub_0202BE00((30 - 19), fieldSystem->location->mapId, 11);
     sub_0202B758(fieldSystem->unk_9C, v4, 1);
 }
 

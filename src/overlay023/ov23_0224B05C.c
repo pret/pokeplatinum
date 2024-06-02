@@ -973,7 +973,7 @@ static UnkStruct_ov23_0224BA48 * ov23_0224BCC4 (FieldSystem * fieldSystem, int p
         v0->unk_2B = param4;
         v0->unk_2C = param5;
 
-        GF_ASSERT(fieldSystem->location->unk_00 == 2);
+        GF_ASSERT(fieldSystem->location->mapId == 2);
 
         v0->unk_14 = 2;
         v0->unk_24 = param3;
@@ -1608,7 +1608,7 @@ static BOOL ov23_0224C790 (TaskManager * param0)
         }
         break;
     case 4:
-        v2.unk_00 = v1->unk_14;
+        v2.mapId = v1->unk_14;
         v2.unk_04 = v1->unk_18;
         v2.unk_08 = v1->unk_1C;
         v2.unk_0C = v1->unk_20;

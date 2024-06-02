@@ -1555,7 +1555,7 @@ void sub_0203E2FC (FieldSystem * fieldSystem)
     v0.unk_00 = v2;
     v0.unk_04 = SaveData_Options(fieldSystem->saveData);
     v0.unk_08 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0.unk_0C = sub_02055428(fieldSystem, fieldSystem->location->unk_00);
+    v0.unk_0C = sub_02055428(fieldSystem, fieldSystem->location->mapId);
 
     sub_020985AC(fieldSystem->unk_10, &v0);
 }

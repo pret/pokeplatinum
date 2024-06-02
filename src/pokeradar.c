@@ -132,7 +132,7 @@ BOOL RadarSpawnPatches (FieldSystem *fieldSystem, const int param1, const int pa
 
     if (v7 == 0) {
         RadarChain_Clear(chain);
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->unk_00), 1);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
     } else {
         chain->active = TRUE;
     }
@@ -277,7 +277,7 @@ void sub_0206979C (FieldSystem *fieldSystem) {
 
     if (v3 == 4) {
         RadarChain_Clear(fieldSystem->chain);
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->unk_00), 1);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
     }
 }
 
@@ -306,7 +306,7 @@ static BOOL CheckTileIsGrass (FieldSystem *fieldSystem, const fx32 param1, const
         int v5 = v0 / 32;
         int v6 = v1 / 32;
         int v4 = sub_02039E30(fieldSystem->unk_2C, v5, v6);
-        if (fieldSystem->location->unk_00 != v4) {
+        if (fieldSystem->location->mapId != v4) {
             patch->active = FALSE;
             return FALSE;
         }

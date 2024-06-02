@@ -2655,7 +2655,7 @@ static void ov8_0224B18C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * pa
         param1->unk_04 = 1;
     }
 
-    param1->unk_20 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->unk_00);
+    param1->unk_20 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     sub_020642F8(param1->unk_20);
     MapObject_SetHidden(param1->unk_20, 1);
@@ -3140,7 +3140,7 @@ static MapObject * ov8_0224B7D8 (FieldSystem * fieldSystem, int param1, int para
 {
     MapObject * v0;
 
-    v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->unk_00);
+    v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     MapObject_SetId(v0, 0xfd);
     sub_020629B4(v0, param3, 0);
@@ -3709,7 +3709,7 @@ static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * pa
 
     v3->unk_10 = v0;
     v3->unk_14 = v1;
-    v3->unk_30 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->unk_00);
+    v3->unk_30 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     sub_020642F8(v3->unk_30);
     MapObject_SetHidden(v3->unk_30, 1);
@@ -3911,7 +3911,7 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
 
     {
         int v6 = 0;
-        int v7 = fieldSystem->location->unk_00;
+        int v7 = fieldSystem->location->mapId;
         const UnkStruct_ov8_0224C8D4 * v8 = Unk_ov8_0224C8D4;
 
         do {
@@ -4005,7 +4005,7 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
 
         if (v3 == 1) {
             v2 = 91;
-        } else if (param0->fieldSystem->location->unk_00 == 90) {
+        } else if (param0->fieldSystem->location->mapId == 90) {
             v2 = 119;
         }
 
@@ -4162,7 +4162,7 @@ BOOL ov8_0224C62C (FieldSystem * fieldSystem, int param1, int param2, int * para
 
             {
                 int v2 = 0;
-                int v3 = fieldSystem->location->unk_00;
+                int v3 = fieldSystem->location->mapId;
                 const UnkStruct_ov8_0224C8D4 * v4 = Unk_ov8_0224C8D4;
                 const UnkStruct_ov8_0224C7D0 * v5;
 

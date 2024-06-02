@@ -188,7 +188,7 @@ static void sub_020834B0 (GameWindowLayout * param0, int * param1)
         Pokemon_SetValue(v0, 6, &v4);
         Pokemon_SetArceusForm(v0);
 
-        if ((fieldSystem == NULL) || (fieldSystem->location->unk_00 < 573) || (fieldSystem->location->unk_00 > 583)) {
+        if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
             v1 = Pokemon_SetGiratinaForm(v0);
 
             if ((param0->unk_704[param0->unk_B11].unk_0C == 112) && (v1 == 0)) {

@@ -264,7 +264,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
     v0 = fieldSystem->unk_70;
 
-    if (fieldSystem->location->unk_00 == 326) {
+    if (fieldSystem->location->mapId == 326) {
         v0 = 0;
     }
 

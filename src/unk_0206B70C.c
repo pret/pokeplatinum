@@ -89,9 +89,9 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
 
     {
         int v11 = 10 - 1;
-        Location * v12 = sub_0203A720(v9);
+        Location * location = sub_0203A720(v9);
 
-        v6 = v12->unk_00;
+        v6 = location->mapId;
 
         while (v11 >= 0) {
             if (v6 == Unk_020EFA98[v11][0]) {
@@ -103,7 +103,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
             v11--;
         }
     }
-
+    
     v6 = sub_02039E30(fieldSystem->unk_2C, x / 32, z / 32);
 
     if (MapHeader_IsOnMainMatrix(v6)) {

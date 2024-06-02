@@ -173,7 +173,7 @@ static BOOL ov52_022562F8 (UnkStruct_ov52_0225621C * param0)
 
                 ov52_022567A4(param0->unk_14, 3);
 
-                if (sub_0203A2C8(fieldSystem->location->unk_00)) {
+                if (sub_0203A2C8(fieldSystem->location->mapId)) {
                     ov52_022562A4(param0, 3);
                 } else {
                     ov52_022562A4(param0, 2);

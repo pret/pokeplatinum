@@ -7307,7 +7307,7 @@ static MapObject * ov9_0224F0D4 (UnkStruct_ov9_02249B04 * param0, u32 param1, u1
 
 void ov9_0224F158 (FieldSystem * fieldSystem, u16 param1)
 {
-    u32 v0 = fieldSystem->location->unk_00;
+    u32 v0 = fieldSystem->location->mapId;
     UnkStruct_ov9_02249B04 * v1 = fieldSystem->unk_04->unk_24;
 
     ov9_0224F0D4(v1, v0, param1);
@@ -7317,7 +7317,7 @@ void ov9_0224F16C (FieldSystem * fieldSystem, u16 param1)
 {
     int v0 = 0;
     MapObject * v1;
-    u32 v2 = fieldSystem->location->unk_00;
+    u32 v2 = fieldSystem->location->mapId;
     MapObjectManager * v3 = fieldSystem->mapObjMan;
     UnkStruct_ov9_02249B04 * v4 = fieldSystem->unk_04->unk_24;
 
@@ -7393,7 +7393,7 @@ BOOL ov9_0224F240 (const MapObject * param0, int param1)
     FieldSystem * fieldSystem;
 
     fieldSystem = MapObject_FieldSystem(param0);
-    v3 = fieldSystem->location->unk_00;
+    v3 = fieldSystem->location->mapId;
     v0 = MapObject_GetXPos(param0);
     v1 = MapObject_GetZPos(param0);
     v0 += MapObject_GetDxFromDir(param1);
@@ -7409,7 +7409,7 @@ static BOOL ov9_0224F284 (const MapObject * param0, u32 * param1)
     FieldSystem * fieldSystem;
 
     fieldSystem = MapObject_FieldSystem(param0);
-    v2 = fieldSystem->location->unk_00;
+    v2 = fieldSystem->location->mapId;
     v0 = MapObject_GetXPos(param0);
     v1 = MapObject_GetZPos(param0);
 
@@ -9613,7 +9613,7 @@ void ov9_02251094 (int param0, int * param1, int * param2, int * param3)
 
 static u32 ov9_022510D0 (UnkStruct_ov9_02249B04 * param0)
 {
-    return param0->fieldSystem->location->unk_00;
+    return param0->fieldSystem->location->mapId;
 }
 
 static int ov9_022510D8 (u32 param0)

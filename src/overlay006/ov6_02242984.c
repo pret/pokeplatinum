@@ -47,7 +47,7 @@ int ov6_02242984 (FieldSystem * fieldSystem)
 
     v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
 
-    ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->location->unk_00, &v2[6], &v2[7]);
+    ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->location->mapId, &v2[6], &v2[7]);
     ov6_02240C9C(v3, &v2[2], &v2[3]);
     ov6_022477B8(v3, v1, &v2[8], &v2[9]);
 
@@ -77,7 +77,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * fieldSyst
         {
             v1->unk_00[5].unk_00 = Player_GetXPos(fieldSystem->playerAvatar);
             v1->unk_00[5].unk_02 = Player_GetZPos(fieldSystem->playerAvatar);
-            v1->unk_30 = fieldSystem->location->unk_00;
+            v1->unk_30 = fieldSystem->location->mapId;
         }
 
         Heap_FreeToHeap(v3);
@@ -111,7 +111,7 @@ void ov6_02242A94 (const u8 param0, UnkStruct_ov6_02242A8C * param1)
         v0 = sub_02039E30(param1->fieldSystem->unk_2C, v1, v2);
     }
 
-    inline_02049FA8(&param1->unk_18, v0, -1, param1->unk_00[param0].unk_00, param1->unk_00[param0].unk_02, 0);
+    Location_Init(&param1->unk_18, v0, -1, param1->unk_00[param0].unk_00, param1->unk_00[param0].unk_02, 0);
 }
 
 Location * ov6_02242AEC (UnkStruct_ov6_02242A8C * param0)

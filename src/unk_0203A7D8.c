@@ -60,26 +60,26 @@ int sub_0203A7EC (void)
     return 1;
 }
 
-void sub_0203A7F0 (int param0, Location * param1)
+void sub_0203A7F0 (int param0, Location * location)
 {
     param0 = sub_0203A7D8(param0);
 
-    param1->unk_00 = Unk_020E97B4[param0].unk_06;
-    param1->unk_04 = -1;
-    param1->unk_08 = Unk_020E97B4[param0].unk_08;
-    param1->unk_0C = Unk_020E97B4[param0].unk_0A;
-    param1->unk_10 = 1;
+    location->mapId = Unk_020E97B4[param0].unk_06;
+    location->unk_04 = -1;
+    location->unk_08 = Unk_020E97B4[param0].unk_08;
+    location->unk_0C = Unk_020E97B4[param0].unk_0A;
+    location->unk_10 = 1;
 }
 
-void sub_0203A824 (int param0, Location * param1)
+void sub_0203A824 (int param0, Location * location)
 {
     param0 = sub_0203A7D8(param0);
 
-    param1->unk_00 = Unk_020E97B4[param0].unk_00;
-    param1->unk_04 = -1;
-    param1->unk_08 = Unk_020E97B4[param0].unk_02;
-    param1->unk_0C = Unk_020E97B4[param0].unk_04;
-    param1->unk_10 = 0;
+    location->mapId = Unk_020E97B4[param0].unk_00;
+    location->unk_04 = -1;
+    location->unk_08 = Unk_020E97B4[param0].unk_02;
+    location->unk_0C = Unk_020E97B4[param0].unk_04;
+    location->unk_10 = 0;
 }
 
 int sub_0203A858 (int param0)

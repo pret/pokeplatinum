@@ -132,14 +132,14 @@ static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
 static inline void inline_ov47_0225621C_sub (FieldSystem * fieldSystem, int * param1, int * param2)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
-    Location * v1 = sub_0203A72C(v0);
+    Location * location = sub_0203A72C(v0);
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->location->unk_00)) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
         *param1 = fieldSystem->location->unk_08;
         *param2 = fieldSystem->location->unk_0C;
     } else {
-        *param1 = v1->unk_08;
-        *param2 = v1->unk_0C;
+        *param1 = location->unk_08;
+        *param2 = location->unk_0C;
     }
 }
 
@@ -150,13 +150,13 @@ static inline void inline_ov47_0225621C (FieldSystem * fieldSystem, int * param1
     *param2 /= 32;
 }
 
-static inline void inline_02049FA8 (Location * param0, int param1, int param2, int param3, int param4, int param5)
+static inline void Location_Init (Location * location, int mapId, int param2, int param3, int param4, int param5)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param2;
-    param0->unk_08 = param3;
-    param0->unk_0C = param4;
-    param0->unk_10 = param5;
+    location->mapId = mapId;
+    location->unk_04 = param2;
+    location->unk_08 = param3;
+    location->unk_0C = param4;
+    location->unk_10 = param5;
 }
 
 static inline u16 * ScriptContext_GetVarPointer (ScriptContext * ctx)

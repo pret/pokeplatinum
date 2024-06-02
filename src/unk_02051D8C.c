@@ -190,7 +190,7 @@ BattleParams * sub_02051F4C (int param0, const FieldSystem * fieldSystem)
     v4->unk_190 = NULL;
     v4->unk_11C = sub_0202CD88(fieldSystem->saveData);
     v4->unk_120 = fieldSystem->unk_9C;
-    v4->mapHeaderID = fieldSystem->location->unk_00;
+    v4->mapHeaderID = fieldSystem->location->mapId;
 
     sub_02052894(v4);
 
@@ -298,7 +298,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
 
 void sub_02052314 (BattleParams * param0, const FieldSystem * fieldSystem)
 {
-    sub_020521B8(param0, fieldSystem, fieldSystem->saveData, fieldSystem->location->unk_00, fieldSystem->unk_9C, fieldSystem->unk_98, fieldSystem->unk_BC);
+    sub_020521B8(param0, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->unk_9C, fieldSystem->unk_98, fieldSystem->unk_BC);
     sub_02052894(param0);
 }
 
@@ -349,7 +349,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * fieldSystem, int p
     param0->unk_11C = sub_0202CD88(fieldSystem->saveData);
     param0->unk_120 = fieldSystem->unk_9C;
     param0->unk_124 = sub_02027F8C(fieldSystem->saveData);
-    param0->mapHeaderID = fieldSystem->location->unk_00;
+    param0->mapHeaderID = fieldSystem->location->mapId;
     param0->unk_198 = fieldSystem->saveData;
 
     sub_02052894(param0);
@@ -417,7 +417,7 @@ void sub_020524E4 (BattleParams * param0, const FieldSystem * fieldSystem, const
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
     param0->unk_11C = sub_0202CD88(fieldSystem->saveData);
     param0->unk_120 = fieldSystem->unk_9C;
-    param0->mapHeaderID = fieldSystem->location->unk_00;
+    param0->mapHeaderID = fieldSystem->location->mapId;
     param0->unk_124 = sub_02027F8C(fieldSystem->saveData);
     param0->unk_198 = fieldSystem->saveData;
 
@@ -524,7 +524,7 @@ static void sub_0205281C (BattleParams * param0, const FieldSystem * fieldSystem
 {
     PlayerData * v0 = sub_0203A780(sub_0203A790(fieldSystem->saveData));
 
-    param0->unk_128 = MapHeader_GetBattleBG(fieldSystem->location->unk_00);
+    param0->unk_128 = MapHeader_GetBattleBG(fieldSystem->location->mapId);
 
     if (v0->unk_04 == 0x2) {
         param0->unk_128 = 1;

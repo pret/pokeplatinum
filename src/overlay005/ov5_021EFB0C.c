@@ -131,7 +131,7 @@ u16 ov5_021EFB94 (FieldSystem * fieldSystem)
     UnkStruct_0202D844 * v1;
     UnkStruct_0202D84C * v2;
 
-    v0 = ov5_021EFF10(fieldSystem->location->unk_00);
+    v0 = ov5_021EFF10(fieldSystem->location->mapId);
     GF_ASSERT(v0 != 21);
 
     v1 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
@@ -155,7 +155,7 @@ void ov5_021EFBDC (FieldSystem * fieldSystem)
     UnkStruct_0202D84C * v2;
     BOOL v3;
 
-    v0 = ov5_021EFF10(fieldSystem->location->unk_00);
+    v0 = ov5_021EFF10(fieldSystem->location->mapId);
     GF_ASSERT(v0 != 21);
 
     v1 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
@@ -199,7 +199,7 @@ void ov5_021EFC90 (FieldSystem * fieldSystem)
 {
     u8 v0;
 
-    v0 = ov5_021EFF10(fieldSystem->location->unk_00);
+    v0 = ov5_021EFF10(fieldSystem->location->mapId);
     GF_ASSERT(v0 != 21);
 
     if (fieldSystem->unk_A8->unk_00[v0].unk_04) {
@@ -464,7 +464,7 @@ int ov5_021EFFE4 (FieldSystem * fieldSystem)
 {
     u8 v0;
 
-    v0 = ov5_021EFF10(fieldSystem->location->unk_00);
+    v0 = ov5_021EFF10(fieldSystem->location->mapId);
     GF_ASSERT(v0 != 21);
 
     {
@@ -508,7 +508,7 @@ void ov5_021F0040 (FieldSystem * fieldSystem)
     UnkStruct_0202D84C * v1;
     u8 v2;
 
-    v2 = ov5_021EFF10(fieldSystem->location->unk_00);
+    v2 = ov5_021EFF10(fieldSystem->location->mapId);
     GF_ASSERT(v2 != 21);
 
     fieldSystem->unk_A8->unk_00[v2].unk_04 = 0;
