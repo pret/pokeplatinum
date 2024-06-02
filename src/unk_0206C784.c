@@ -145,7 +145,7 @@ static BOOL sub_0206C8F8 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206C8D4 * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -208,7 +208,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!ScreenWipe_Done() || (sub_02005684() != 0)) {
+        if (!ScreenWipe_Done() || (Sound_CheckFade() != 0)) {
             return 0;
         }
 
@@ -229,7 +229,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         v1->unk_00 = 6;
         break;
     case 6:
-        sub_02055670(fieldSystem, v1->unk_18);
+        Sound_PlayMapBgm(fieldSystem, v1->unk_18);
         FieldTask_FadeIn(taskMan);
         v1->unk_00 = 7;
         break;

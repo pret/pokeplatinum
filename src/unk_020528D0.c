@@ -213,7 +213,7 @@ BOOL sub_02052B2C (TaskManager * param0)
     int * v1;
 
     fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = sub_02050A68(param0);
+    v1 = FieldTask_GetState(param0);
 
     switch (*v1) {
     case 0:
@@ -240,7 +240,7 @@ BOOL sub_02052B2C (TaskManager * param0)
         (*v1)++;
         break;
     case 2:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             sub_020553DC();
             (*v1)++;
         }

@@ -309,7 +309,7 @@ static int ov77_021D0E3C (OverlayManager * param0, int * param1)
         v0->unk_238.unk_254 = 0;
         ov77_021D20E4(&v0->unk_238, v0->unk_04, v0->unk_00);
 
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             sub_020055D0(1173, 0);
             sub_0200F174(0, 0, 0, 0x7fff, 6, 1, v0->unk_00);
             *param1 = 6;

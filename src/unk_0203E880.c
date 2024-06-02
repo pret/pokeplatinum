@@ -168,7 +168,7 @@ void sub_0203E918 (TaskManager * param0, u16 param1, MapObject * param2)
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v1, param1, param2, NULL);
-    FieldEvent_Change(param0, sub_0203E950, v1);
+    FieldTask_Change(param0, sub_0203E950, v1);
 
     return;
 }

@@ -137,8 +137,8 @@ typedef struct {
     Location unk_08;
 } UnkStruct_02054538;
 
-static BOOL sub_02053878(TaskManager * taskMan);
-static BOOL sub_02053570(TaskManager * taskMan);
+static BOOL FieldTask_ChangeMap(TaskManager * taskMan);
+static BOOL FieldTask_LoadMapFromNewGame(TaskManager * taskMan);
 static void FieldSystem_MapChange_SetNewLocation(FieldSystem * fieldSystem, const Location * param1);
 static void sub_020533CC(FieldSystem * fieldSystem);
 static void sub_02053468(FieldSystem * fieldSystem);
@@ -456,10 +456,10 @@ static void sub_02053540 (FieldSystem * fieldSystem)
     Location_Init(v0, fieldSystem->location->mapId, -1, 8, 2, 1);
 }
 
-static BOOL sub_02053570 (TaskManager * taskMan)
+static BOOL FieldTask_LoadMapFromNewGame (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    int * state = sub_02050A68(taskMan);
+    int * state = FieldTask_GetState(taskMan);
 
     switch (*state) {
     case 0:
@@ -484,14 +484,14 @@ void sub_020535CC (FieldSystem * fieldSystem)
 {
     fieldSystem->unk_70 = 0;
     sub_0203F598(fieldSystem);
-    FieldTask_Set(fieldSystem, sub_02053570, NULL);
+    FieldTask_Set(fieldSystem, FieldTask_LoadMapFromNewGame, NULL);
 }
 
-static BOOL sub_020535E8 (TaskManager * taskMan)
+static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     FieldEvents * events = SaveData_Events(fieldSystem->saveData);
-    int * state = sub_02050A68(taskMan);
+    int * state = FieldTask_GetState(taskMan);
 
     switch (*state) {
     case 0:
@@ -547,7 +547,7 @@ static BOOL sub_020535E8 (TaskManager * taskMan)
 void sub_02053704 (FieldSystem * fieldSystem)
 {
     fieldSystem->unk_70 = 0;
-    FieldTask_Set(fieldSystem, sub_020535E8, NULL);
+    FieldTask_Set(fieldSystem, FieldTask_LoadMapFromContinueGame, NULL);
 }
 
 static BOOL sub_02053718 (TaskManager * taskMan)
@@ -555,7 +555,7 @@ static BOOL sub_02053718 (TaskManager * taskMan)
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053718 * v1 = TaskManager_Environment(taskMan);
     FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
-    int * state = sub_02050A68(taskMan);
+    int * state = FieldTask_GetState(taskMan);
 
     switch (*state) {
     case 0:
@@ -621,7 +621,7 @@ void sub_02053808 (FieldSystem * fieldSystem)
     FieldTask_Set(fieldSystem, sub_02053718, v1);
 }
 
-static BOOL sub_02053878 (TaskManager * taskMan)
+static BOOL FieldTask_ChangeMap (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053900 * v1 = TaskManager_Environment(taskMan);
@@ -630,7 +630,7 @@ static BOOL sub_02053878 (TaskManager * taskMan)
     switch (v1->unk_00) {
     case 0:
         Sound_PlayEffect(1539);
-        sub_02055644(fieldSystem, location->mapId);
+        Sound_TryFadeInBgm(fieldSystem, location->mapId);
         sub_02055974(taskMan);
         (v1->unk_00)++;
         break;
@@ -639,11 +639,11 @@ static BOOL sub_02053878 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 2:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, location->mapId);
+        Sound_PlayMapBgm(fieldSystem, location->mapId);
         FieldTask_FadeIn(taskMan);
         (v1->unk_00)++;
         break;
@@ -662,10 +662,10 @@ void sub_02053900 (TaskManager * taskMan, const Location * nextLocation)
     v0->unk_00 = 0;
     v0->unk_04 = *nextLocation;
 
-    FieldTask_Start(taskMan, sub_02053878, v0);
+    FieldTask_Start(taskMan, FieldTask_ChangeMap, v0);
 }
 
-static BOOL sub_02053930 (TaskManager * taskMan)
+static BOOL FieldTask_ChangeMapSub (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053A80 * v2 = TaskManager_Environment(taskMan);
@@ -705,7 +705,7 @@ void sub_020539A0 (TaskManager * taskMan, const Location * param1)
     v1->unk_00 = 0;
     v1->unk_04 = *param1;
 
-    FieldTask_Start(taskMan, sub_02053930, v1);
+    FieldTask_Start(taskMan, FieldTask_ChangeMapSub, v1);
 }
 
 void sub_020539E8 (TaskManager * taskMan, int param1, int param2, int param3, int param4, int param5)
@@ -716,7 +716,7 @@ void sub_020539E8 (TaskManager * taskMan, int param1, int param2, int param3, in
     sub_020539A0(taskMan, &location);
 }
 
-static BOOL sub_02053A04 (TaskManager * taskMan)
+static BOOL FieldTask_ChangeMapFull (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053A80 * v1 = TaskManager_Environment(taskMan);
@@ -724,7 +724,7 @@ static BOOL sub_02053A04 (TaskManager * taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02055644(fieldSystem, v2->mapId);
+        Sound_TryFadeInBgm(fieldSystem, v2->mapId);
         sub_02055820(taskMan);
         (v1->unk_00)++;
         break;
@@ -733,11 +733,11 @@ static BOOL sub_02053A04 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 2:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v2->mapId);
+        Sound_PlayMapBgm(fieldSystem, v2->mapId);
         sub_02055868(taskMan);
         (v1->unk_00)++;
         break;
@@ -756,7 +756,7 @@ void sub_02053A80 (TaskManager * taskMan, int mapId, int param2, int x, int z, i
     v0->unk_00 = 0;
 
     Location_Init(&v0->unk_04, mapId, param2, x, z, param5);
-    FieldTask_Start(taskMan, sub_02053A04, v0);
+    FieldTask_Start(taskMan, FieldTask_ChangeMapFull, v0);
 }
 
 void sub_02053AB4 (FieldSystem * fieldSystem, int param1, int param2, int param3, int param4, int param5)
@@ -765,15 +765,13 @@ void sub_02053AB4 (FieldSystem * fieldSystem, int param1, int param2, int param3
 
     Location_Init(&location, param1, param2, param3, param4, param5);
 
-    {
-        UnkStruct_02053AB4 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053AB4));
+    UnkStruct_02053AB4 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053AB4));
 
-        v1->unk_00 = 0;
-        v1->unk_04 = NULL;
-        v1->unk_08 = location;
+    v1->unk_00 = 0;
+    v1->unk_04 = NULL;
+    v1->unk_08 = location;
 
-        FieldTask_Set(fieldSystem, sub_02053B44, v1);
-    }
+    FieldTask_Set(fieldSystem, sub_02053B44, v1);
 }
 
 void sub_02053AFC (TaskManager * taskMan, int param1, int param2, int param3, int param4, int param5)
@@ -782,15 +780,13 @@ void sub_02053AFC (TaskManager * taskMan, int param1, int param2, int param3, in
 
     Location_Init(&location, param1, param2, param3, param4, param5);
 
-    {
-        UnkStruct_02053AB4 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053AB4));
+    UnkStruct_02053AB4 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053AB4));
 
-        v1->unk_00 = 0;
-        v1->unk_04 = NULL;
-        v1->unk_08 = location;
+    v1->unk_00 = 0;
+    v1->unk_04 = NULL;
+    v1->unk_08 = location;
 
-        FieldEvent_Change(taskMan, sub_02053B44, v1);
-    }
+    FieldTask_Change(taskMan, sub_02053B44, v1);
 }
 
 static BOOL sub_02053B44 (TaskManager * taskMan)
@@ -801,7 +797,7 @@ static BOOL sub_02053B44 (TaskManager * taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02055644(fieldSystem, v2->mapId);
+        Sound_TryFadeInBgm(fieldSystem, v2->mapId);
         sub_02053BD4(taskMan);
         (v1->unk_00)++;
         break;
@@ -811,11 +807,11 @@ static BOOL sub_02053B44 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 2:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v2->mapId);
+        Sound_PlayMapBgm(fieldSystem, v2->mapId);
         sub_0207056C(fieldSystem);
         sub_02053C10(taskMan);
         (v1->unk_00)++;
@@ -835,18 +831,18 @@ static void sub_02053BD4 (TaskManager * taskMan)
 
 static BOOL sub_02053BE4 (TaskManager * taskMan)
 {
-    int * v0 = sub_02050A68(taskMan);
+    int * state = FieldTask_GetState(taskMan);
 
-    switch (*v0) {
+    switch (*state) {
     case 0:
         sub_02055820(taskMan);
-        (*v0)++;
+        (*state)++;
         break;
     case 1:
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void sub_02053C10 (TaskManager * taskMan)
@@ -857,7 +853,7 @@ static void sub_02053C10 (TaskManager * taskMan)
 
 static BOOL sub_02053C28 (TaskManager * taskMan)
 {
-    int * v0 = sub_02050A68(taskMan);
+    int * v0 = FieldTask_GetState(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
     switch (*v0) {
@@ -914,7 +910,7 @@ void sub_02053CD4 (TaskManager * taskMan, const Location * param1, u32 param2)
     v0->unk_08 = NULL;
     v0->unk_0C = *param1;
 
-    FieldEvent_Change(taskMan, sub_02053D0C, v0);
+    FieldTask_Change(taskMan, sub_02053D0C, v0);
 }
 
 static BOOL sub_02053D0C (TaskManager * taskMan)
@@ -925,7 +921,7 @@ static BOOL sub_02053D0C (TaskManager * taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02055644(fieldSystem, v2->mapId);
+        Sound_TryFadeInBgm(fieldSystem, v2->mapId);
         sub_02053DB4(taskMan);
         (v1->unk_00)++;
         break;
@@ -935,11 +931,11 @@ static BOOL sub_02053D0C (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 2:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v2->mapId);
+        Sound_PlayMapBgm(fieldSystem, v2->mapId);
 
         if (v1->unk_04 == 2) {
             sub_02070588(fieldSystem);
@@ -967,7 +963,7 @@ static void sub_02053DB4 (TaskManager * taskMan)
 
 static BOOL sub_02053DC4 (TaskManager * taskMan)
 {
-    int * v0 = sub_02050A68(taskMan);
+    int * v0 = FieldTask_GetState(taskMan);
 
     switch (*v0) {
     case 0:
@@ -989,7 +985,7 @@ static void sub_02053DF0 (TaskManager * taskMan)
 
 static BOOL sub_02053E08 (TaskManager * taskMan)
 {
-    int * v0 = sub_02050A68(taskMan);
+    int * v0 = FieldTask_GetState(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053CD4 * v2 = TaskManager_Environment(taskMan);
 
@@ -1039,7 +1035,7 @@ static BOOL sub_02053E98 (TaskManager * taskMan)
         break;
     case 1:
         if (v1->unk_04) {
-            sub_02055644(fieldSystem, v2->mapId);
+            Sound_TryFadeInBgm(fieldSystem, v2->mapId);
             sub_02055820(taskMan);
             v1->unk_00++;
         }
@@ -1049,11 +1045,11 @@ static BOOL sub_02053E98 (TaskManager * taskMan)
         v1->unk_00++;
         break;
     case 3:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v2->mapId);
+        Sound_PlayMapBgm(fieldSystem, v2->mapId);
         sub_02055868(taskMan);
         v1->unk_00++;
         break;
@@ -1240,7 +1236,7 @@ BOOL sub_02054084 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 10:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
@@ -1307,7 +1303,7 @@ BOOL sub_0205430C (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 5:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
@@ -1330,7 +1326,7 @@ BOOL sub_0205430C (TaskManager * taskMan)
     return 0;
 }
 
-UnkFuncPtr_02050904 sub_02054428 (const FieldSystem * fieldSystem)
+FieldTask sub_02054428 (const FieldSystem * fieldSystem)
 {
     if (fieldSystem->unk_70 == 0) {
         return sub_02054084;
@@ -1409,12 +1405,12 @@ static BOOL sub_02054538 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02054538 * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
     Location * v3 = &v1->unk_08;
 
     switch (*v2) {
     case 0:
-        sub_02055644(fieldSystem, v3->mapId);
+        Sound_TryFadeInBgm(fieldSystem, v3->mapId);
         ov5_021E15A8(fieldSystem, 1, &v1->unk_04);
         (*v2)++;
         break;
@@ -1429,11 +1425,11 @@ static BOOL sub_02054538 (TaskManager * taskMan)
         (*v2)++;
         break;
     case 3:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v3->mapId);
+        Sound_PlayMapBgm(fieldSystem, v3->mapId);
         sub_02055868(taskMan);
         (*v2)++;
         break;
@@ -1469,12 +1465,12 @@ static BOOL sub_02054648 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02054538 * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
     Location * v3 = &v1->unk_08;
 
     switch (*v2) {
     case 0:
-        sub_02055644(fieldSystem, v3->mapId);
+        Sound_TryFadeInBgm(fieldSystem, v3->mapId);
         sub_020558AC(taskMan);
         (*v2)++;
         break;
@@ -1487,11 +1483,11 @@ static BOOL sub_02054648 (TaskManager * taskMan)
         (*v2)++;
         break;
     case 3:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v3->mapId);
+        Sound_PlayMapBgm(fieldSystem, v3->mapId);
         sub_02055868(taskMan);
         (*v2)++;
         break;
@@ -1540,7 +1536,7 @@ static BOOL sub_02054778 (TaskManager * taskMan)
     switch (v1->unk_00) {
     case 0:
         Sound_PlayEffect(1539);
-        sub_02055644(fieldSystem, v2->mapId);
+        Sound_TryFadeInBgm(fieldSystem, v2->mapId);
         sub_02055974(taskMan);
         (v1->unk_00)++;
         break;
@@ -1549,11 +1545,11 @@ static BOOL sub_02054778 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 2:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v2->mapId);
+        Sound_PlayMapBgm(fieldSystem, v2->mapId);
         sub_02055868(taskMan);
         (v1->unk_00)++;
         break;

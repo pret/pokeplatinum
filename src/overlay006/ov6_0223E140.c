@@ -570,7 +570,7 @@ static BOOL ov6_0223E408 (TaskManager * param0)
         v1->unk_0C++;
         break;
     case 1:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             v1->unk_0C++;
             v1->unk_04 = 16;
         }
@@ -605,7 +605,7 @@ static BOOL ov6_0223E408 (TaskManager * param0)
         v1->unk_0C++;
         break;
     case 6:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             v1->unk_0C++;
         }
         break;

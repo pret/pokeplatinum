@@ -211,7 +211,7 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
     switch (v1->unk_00) {
     case 0:
         v1->unk_04 = 0;
-        sub_02055644(fieldSystem, v2->mapId);
+        Sound_TryFadeInBgm(fieldSystem, v2->mapId);
         FieldTask_Start(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;
@@ -235,11 +235,11 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 5:
-        if (sub_02005684() != 0) {
+        if (Sound_CheckFade() != 0) {
             break;
         }
 
-        sub_02055670(fieldSystem, v2->mapId);
+        Sound_PlayMapBgm(fieldSystem, v2->mapId);
         ov5_021DDAA4(fieldSystem);
 
         v1->unk_04 = 0;
@@ -496,7 +496,7 @@ static BOOL sub_0205711C (TaskManager * taskMan)
         if (sub_0205DAEC(v4)) {
             MapObject_SetHidden(v5, 1);
             v2->unk_04 = 1;
-            FieldEvent_Change(taskMan, sub_02057050, v2);
+            FieldTask_Change(taskMan, sub_02057050, v2);
         } else {
             UnkStruct_ov5_021D4E00 * v6;
 

@@ -96,7 +96,7 @@ static BOOL sub_02052CBC (TaskManager * param0)
     FieldEvents * v1;
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205300C * v3 = TaskManager_Environment(param0);
-    int * v4 = sub_02050A68(param0);
+    int * v4 = FieldTask_GetState(param0);
     UnkStruct_0203E234 * v5 = &v3->unk_04;
 
     switch (*v4) {

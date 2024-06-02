@@ -348,7 +348,7 @@ void sub_0203AB00 (FieldSystem * fieldSystem)
         menu->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
-    FieldEvent_Change(fieldSystem->unk_10, sub_0203AC44, menu);
+    FieldTask_Change(fieldSystem->unk_10, sub_0203AC44, menu);
 }
 
 static FieldMenu * FieldMenu_Alloc (void)
@@ -488,7 +488,7 @@ static BOOL sub_0203AC44 (TaskManager * taskMan)
         break;
     case FIELD_MENU_STATE_11:
         if (ScreenWipe_Done()) {
-            FieldEvent_Change(taskMan, menu->unk_22C, menu->unk_25C);
+            FieldTask_Change(taskMan, menu->unk_22C, menu->unk_25C);
             Heap_FreeToHeap(menu);
         }
         break;
@@ -761,7 +761,7 @@ static BOOL FieldMenu_Select (TaskManager * taskMan)
         if (Unk_020EA05C[menu->unk_2C][1] == 0xfffffffe) {
             menu->state = FIELD_MENU_STATE_END;
         } else if (Unk_020EA05C[menu->unk_2C][1] != 0xffffffff) {
-            UnkFuncPtr_02050904 v3 = (UnkFuncPtr_02050904)Unk_020EA05C[menu->unk_2C][1];
+            FieldTask v3 = (FieldTask)Unk_020EA05C[menu->unk_2C][1];
 
             return v3(taskMan);
         }

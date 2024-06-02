@@ -29,7 +29,7 @@ void sub_020055D0(u16 param0, int param1);
 static void sub_020055F4(void);
 void sub_0200560C(int param0, int param1, int param2);
 void sub_0200564C(int param0, int param1);
-int sub_02005684(void);
+int Sound_CheckFade(void);
 int sub_02005690(u16 param0);
 void sub_0200569C(void);
 void sub_020056D4(void);
@@ -228,7 +228,7 @@ void sub_0200564C (int param0, int param1)
         return;
     }
 
-    if (sub_02005684() == 0) {
+    if (Sound_CheckFade() == 0) {
         v1 = sub_020040F0(v0);
 
         sub_02004A54(v1, param0, param1);
@@ -239,7 +239,7 @@ void sub_0200564C (int param0, int param1)
     return;
 }
 
-int sub_02005684 ()
+int Sound_CheckFade ()
 {
     u16 * v0 = sub_02003D5C(7);
     return *v0;

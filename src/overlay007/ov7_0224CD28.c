@@ -1555,7 +1555,7 @@ static void ov7_0224EC38 (TaskManager * param0)
     }
 
     sub_0203D1E4(fieldSystem, v1->unk_04);
-    FieldEvent_Change(param0, sub_0209AC14, v1);
+    FieldTask_Change(param0, sub_0209AC14, v1);
 
     v1->unk_297 = 16;
 }

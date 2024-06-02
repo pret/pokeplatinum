@@ -97,7 +97,7 @@ BOOL ScrCmd_054 (ScriptContext * param0)
 
 static BOOL sub_02048378 (ScriptContext * param0)
 {
-    if (sub_02005684() == 0) {
+    if (Sound_CheckFade() == 0) {
         return 1;
     }
 

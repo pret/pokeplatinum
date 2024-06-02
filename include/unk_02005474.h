@@ -7,7 +7,7 @@ BOOL sub_02005588(u8 param0, u16 param1);
 void sub_020055D0(u16 param0, int param1);
 void sub_0200560C(int param0, int param1, int param2);
 void sub_0200564C(int param0, int param1);
-int sub_02005684(void);
+int Sound_CheckFade(void);
 int sub_02005690(u16 param0);
 void sub_0200569C(void);
 void sub_020056D4(void);

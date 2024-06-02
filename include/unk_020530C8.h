@@ -25,7 +25,7 @@ void * sub_02053FAC(FieldSystem * fieldSystem);
 void sub_02054064(FieldSystem * fieldSystem);
 BOOL sub_02054084(TaskManager * param0);
 BOOL sub_0205430C(TaskManager * param0);
-UnkFuncPtr_02050904 sub_02054428(const FieldSystem * fieldSystem);
+FieldTask sub_02054428(const FieldSystem * fieldSystem);
 void sub_020544F0(TaskManager * param0, const Location * param1);
 void sub_020545EC(FieldSystem * fieldSystem);
 void sub_02054708(TaskManager * param0);

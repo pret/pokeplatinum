@@ -306,7 +306,7 @@ u16 sub_0205560C (int param0)
     return v1;
 }
 
-void sub_02055644 (FieldSystem * fieldSystem, int param1)
+void Sound_TryFadeInBgm (FieldSystem * fieldSystem, int param1)
 {
     if (sub_020041DC() == 1) {
         return;
@@ -319,7 +319,7 @@ void sub_02055644 (FieldSystem * fieldSystem, int param1)
     return;
 }
 
-void sub_02055670 (FieldSystem * fieldSystem, int param1)
+void Sound_PlayMapBgm (FieldSystem * fieldSystem, int param1)
 {
     u16 v0;
 

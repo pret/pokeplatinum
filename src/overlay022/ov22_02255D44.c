@@ -487,7 +487,7 @@ int ov22_022562EC (OverlayManager * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             (*param1)++;
         }
         break;

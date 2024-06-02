@@ -1557,7 +1557,7 @@ void sub_020053CC (int param0)
 
 static void sub_0200540C (void)
 {
-    if ((sub_02005684() == 0) && (sub_02004B34(sub_020040CC(0)) != -1) && (sub_020041FC() != 1150)) {
+    if ((Sound_CheckFade() == 0) && (sub_02004B34(sub_020040CC(0)) != -1) && (sub_020041FC() != 1150)) {
         sub_020056D4();
         sub_020049F4(1, 1);
     } else {

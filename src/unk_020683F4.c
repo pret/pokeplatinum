@@ -307,7 +307,7 @@ static BOOL sub_020685AC (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206851C * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
     MapObject * v3;
 
     switch (*v2) {
@@ -481,7 +481,7 @@ static BOOL sub_02068884 (TaskManager * param0)
     int * v1;
 
     fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = sub_02050A68(param0);
+    v1 = FieldTask_GetState(param0);
 
     switch (*v1) {
     case 0:
@@ -1046,7 +1046,7 @@ static BOOL sub_020690F0 (TaskManager * param0)
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     void * v1 = ov6_02247100(fieldSystem, 11);
 
-    FieldEvent_Change(param0, ov6_02247120, v1);
+    FieldTask_Change(param0, ov6_02247120, v1);
     return 0;
 }
 

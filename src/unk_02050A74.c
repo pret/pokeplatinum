@@ -80,7 +80,7 @@ static BOOL sub_02050A74 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     BattleParams * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -156,7 +156,7 @@ static BOOL sub_02050B30 (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -240,7 +240,7 @@ static BOOL sub_02050CA8 (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -285,7 +285,7 @@ static BOOL sub_02050D4C (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -361,12 +361,12 @@ void sub_02050E78 (FieldSystem * fieldSystem, TaskManager * param1, BattleParams
         UnkStruct_02050ACC * v0;
 
         v0 = sub_02050ACC(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
-        FieldEvent_Change(param1, sub_02051074, v0);
+        FieldTask_Change(param1, sub_02051074, v0);
     } else {
         UnkStruct_02050DD4 * v1;
 
         v1 = sub_02050DD4(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
-        FieldEvent_Change(param1, sub_02050EE0, v1);
+        FieldTask_Change(param1, sub_02050EE0, v1);
     }
 }
 
@@ -400,7 +400,7 @@ static BOOL sub_02050EE0 (TaskManager * taskMan)
         if (sub_02052868(v1->unk_10->unk_14) == 0) {
             sub_02050DFC(v1);
             RadarChain_Clear(fieldSystem->chain);
-            FieldEvent_Change(taskMan, sub_02052B2C, NULL);
+            FieldTask_Change(taskMan, sub_02052B2C, NULL);
             return 0;
         }
 
@@ -458,7 +458,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
     v3 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
 
     switch (*v2) {
@@ -614,7 +614,7 @@ static BOOL sub_0205136C (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -694,7 +694,7 @@ static BOOL sub_020514E8 (TaskManager * taskMan)
 {
     UnkStruct_02050ACC * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -858,7 +858,7 @@ static BOOL sub_02051790 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02050ACC * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:

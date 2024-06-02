@@ -141,17 +141,17 @@ static void sub_02003C64 (void)
     case 2:
         break;
     case 3:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             sub_02003D0C(2);
         }
         break;
     case 4:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             sub_02003D0C(2);
         }
         break;
     case 5:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
                 Sound_PlayBGM(v1->unk_BCD5A);
@@ -159,7 +159,7 @@ static void sub_02003C64 (void)
         }
         break;
     case 6:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
                 Sound_PlayBGM(v1->unk_BCD5A);

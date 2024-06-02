@@ -24,7 +24,7 @@ typedef struct {
     u32 unk_220;
     u32 unk_224;
     u32 unk_228;
-    UnkFuncPtr_02050904 unk_22C;
+    FieldTask unk_22C;
     UnkStruct_020684D0 unk_230;
     UnkStruct_02070950 unk_24C;
     void * unk_25C;

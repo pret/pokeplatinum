@@ -11,7 +11,7 @@
 
 typedef struct UnkStruct_020508D4_t {
     TaskManager * unk_00;
-    UnkFuncPtr_02050904 unk_04;
+    FieldTask unk_04;
     int unk_08;
     void * unk_0C;
     int unk_10;
@@ -26,7 +26,7 @@ typedef struct {
     void * unk_08;
 } UnkStruct_020509F0;
 
-static TaskManager * sub_020508D4 (FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2)
+static TaskManager * sub_020508D4 (FieldSystem * fieldSystem, FieldTask param1, void * param2)
 {
     TaskManager * v0;
 
@@ -43,7 +43,7 @@ static TaskManager * sub_020508D4 (FieldSystem * fieldSystem, UnkFuncPtr_0205090
     return v0;
 }
 
-TaskManager * FieldTask_Set (FieldSystem * fieldSystem, UnkFuncPtr_02050904 param1, void * param2)
+TaskManager * FieldTask_Set (FieldSystem * fieldSystem, FieldTask param1, void * param2)
 {
     TaskManager * v0;
 
@@ -55,7 +55,7 @@ TaskManager * FieldTask_Set (FieldSystem * fieldSystem, UnkFuncPtr_02050904 para
     return v0;
 }
 
-void FieldEvent_Change (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
+void FieldTask_Change (TaskManager * param0, FieldTask param1, void * param2)
 {
     param0->unk_04 = param1;
     param0->unk_08 = 0;
@@ -68,7 +68,7 @@ void FieldEvent_Change (TaskManager * param0, UnkFuncPtr_02050904 param1, void *
     }
 }
 
-TaskManager * FieldTask_Start (TaskManager * param0, UnkFuncPtr_02050904 param1, void * param2)
+TaskManager * FieldTask_Start (TaskManager * param0, FieldTask param1, void * param2)
 {
     TaskManager * v0;
 
@@ -179,7 +179,7 @@ void * TaskManager_Environment (TaskManager * param0)
     return param0->unk_0C;
 }
 
-int * sub_02050A68 (TaskManager * param0)
+int * FieldTask_GetState (TaskManager * param0)
 {
     return &param0->unk_08;
 }

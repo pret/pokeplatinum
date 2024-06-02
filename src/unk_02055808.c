@@ -100,7 +100,7 @@ void sub_020558F0 (TaskManager * param0)
 
 static BOOL sub_02055934 (TaskManager * param0)
 {
-    int * v0 = sub_02050A68(param0);
+    int * v0 = FieldTask_GetState(param0);
 
     switch (*v0) {
     case 0:
@@ -125,7 +125,7 @@ void sub_02055974 (TaskManager * param0)
 
 static BOOL sub_02055984 (TaskManager * param0)
 {
-    int * v0 = sub_02050A68(param0);
+    int * v0 = FieldTask_GetState(param0);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (*v0) {
