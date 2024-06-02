@@ -1610,8 +1610,8 @@ static BOOL ov23_0224C790 (TaskManager * param0)
     case 4:
         v2.mapId = v1->unk_14;
         v2.unk_04 = v1->unk_18;
-        v2.unk_08 = v1->unk_1C;
-        v2.unk_0C = v1->unk_20;
+        v2.x = v1->unk_1C;
+        v2.z = v1->unk_20;
         v2.unk_10 = v1->unk_24;
         sub_020544F0(param0, &v2);
         (v1->unk_0C)++;

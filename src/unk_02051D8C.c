@@ -466,7 +466,7 @@ void sub_02052754 (const BattleParams * param0, FieldSystem * fieldSystem)
 
 static int sub_02052780 (const FieldSystem * fieldSystem, int param1)
 {
-    u8 v0 = sub_02054F94(fieldSystem, fieldSystem->location->unk_08, fieldSystem->location->unk_0C);
+    u8 v0 = sub_02054F94(fieldSystem, fieldSystem->location->x, fieldSystem->location->z);
     static const v1[] = {
         0,
         7,

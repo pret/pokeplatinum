@@ -233,8 +233,8 @@ static void ov5_021E2028 (FieldSystem * fieldSystem)
     sub_0203A7A8(fieldSystem);
     ov5_021EA714(fieldSystem, 4, 0);
 
-    fieldSystem->location->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
-    fieldSystem->location->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
+    fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
+    fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
     fieldSystem->location->unk_04 = -1;
     fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }

@@ -135,11 +135,11 @@ static inline void inline_ov47_0225621C_sub (FieldSystem * fieldSystem, int * pa
     Location * location = sub_0203A72C(v0);
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
-        *param1 = fieldSystem->location->unk_08;
-        *param2 = fieldSystem->location->unk_0C;
+        *param1 = fieldSystem->location->x;
+        *param2 = fieldSystem->location->z;
     } else {
-        *param1 = location->unk_08;
-        *param2 = location->unk_0C;
+        *param1 = location->x;
+        *param2 = location->z;
     }
 }
 
@@ -154,8 +154,8 @@ static inline void Location_Init (Location * location, int mapId, int param2, in
 {
     location->mapId = mapId;
     location->unk_04 = param2;
-    location->unk_08 = param3;
-    location->unk_0C = param4;
+    location->x = param3;
+    location->z = param4;
     location->unk_10 = param5;
 }
 

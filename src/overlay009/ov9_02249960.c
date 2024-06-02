@@ -4851,8 +4851,8 @@ static int ov9_0224CEBC (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224CBD8
         ov5_021EA6A4(fieldSystem->unk_28, 1);
         ov5_021EA6D0(fieldSystem->unk_28, 1);
 
-        param1->unk_08 = fieldSystem->location->unk_08;
-        param1->unk_0A = fieldSystem->location->unk_0C;
+        param1->unk_08 = fieldSystem->location->x;
+        param1->unk_0A = fieldSystem->location->z;
 
         ov5_021EA58C(fieldSystem->unk_28, param1->unk_08, param1->unk_0A, param1->unk_10);
     }

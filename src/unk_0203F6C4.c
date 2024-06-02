@@ -5006,8 +5006,8 @@ static BOOL ScrCmd_11B (ScriptContext * ctx)
 
     location.mapId = ScriptContext_GetVar(ctx);
     location.unk_04 = ScriptContext_GetVar(ctx);
-    location.unk_08 = ScriptContext_GetVar(ctx);
-    location.unk_0C = ScriptContext_GetVar(ctx);
+    location.x = ScriptContext_GetVar(ctx);
+    location.z = ScriptContext_GetVar(ctx);
     location.unk_10 = ScriptContext_GetVar(ctx);
 
     sub_0203A734(sub_0203A790(ctx->fieldSystem->saveData), &location);
@@ -7352,8 +7352,8 @@ static BOOL ScrCmd_285 (ScriptContext * ctx)
     };
 
     v2 = 0;
-    v3 = fieldSystem->location->unk_08;
-    v4 = fieldSystem->location->unk_0C;
+    v3 = fieldSystem->location->x;
+    v4 = fieldSystem->location->z;
 
     if (v5 >= 3) {
         v2 = 270;
@@ -7772,8 +7772,8 @@ static BOOL ScrCmd_2B5 (ScriptContext * ctx)
     Location * location = sub_0203A72C(v3);
 
     location->mapId = mapId;
-    location->unk_08 = v1;
-    location->unk_0C = v2;
+    location->x = v1;
+    location->z = v2;
     location->unk_04 = -1;
     location->unk_10 = 1;
 

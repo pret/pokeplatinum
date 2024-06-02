@@ -66,8 +66,8 @@ void sub_0203A7F0 (int param0, Location * location)
 
     location->mapId = Unk_020E97B4[param0].unk_06;
     location->unk_04 = -1;
-    location->unk_08 = Unk_020E97B4[param0].unk_08;
-    location->unk_0C = Unk_020E97B4[param0].unk_0A;
+    location->x = Unk_020E97B4[param0].unk_08;
+    location->z = Unk_020E97B4[param0].unk_0A;
     location->unk_10 = 1;
 }
 
@@ -77,8 +77,8 @@ void sub_0203A824 (int param0, Location * location)
 
     location->mapId = Unk_020E97B4[param0].unk_00;
     location->unk_04 = -1;
-    location->unk_08 = Unk_020E97B4[param0].unk_02;
-    location->unk_0C = Unk_020E97B4[param0].unk_04;
+    location->x = Unk_020E97B4[param0].unk_02;
+    location->z = Unk_020E97B4[param0].unk_04;
     location->unk_10 = 0;
 }
 

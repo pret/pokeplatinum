@@ -278,8 +278,8 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
         sub_02068368(fieldSystem);
         ov5_021E9338(fieldSystem->unk_28);
 
-        fieldSystem->location->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
-        fieldSystem->location->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
+        fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
+        fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
         fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         ov5_021EF300(fieldSystem->unk_A0);
@@ -394,9 +394,9 @@ static BOOL ov5_021D119C (FieldSystem * fieldSystem)
     x = Player_GetXPos(fieldSystem->playerAvatar);
     y = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if ((x != fieldSystem->location->unk_08) || (y != fieldSystem->location->unk_0C)) {
-        fieldSystem->location->unk_08 = x;
-        fieldSystem->location->unk_0C = y;
+    if ((x != fieldSystem->location->x) || (y != fieldSystem->location->z)) {
+        fieldSystem->location->x = x;
+        fieldSystem->location->z = y;
         return TRUE;
     } else {
         return FALSE;
@@ -841,7 +841,7 @@ static void ov5_021D17EC (FieldSystem * fieldSystem)
         ov5_021E9630(fieldSystem->unk_28, ov5_021F0030, fieldSystem);
     }
 
-    ov5_021E9150(fieldSystem->unk_28, fieldSystem->location->unk_08, fieldSystem->location->unk_0C);
+    ov5_021E9150(fieldSystem->unk_28, fieldSystem->location->x, fieldSystem->location->z);
 }
 
 static void ov5_021D1878 (FieldSystem * fieldSystem)

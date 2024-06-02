@@ -65,7 +65,7 @@ BOOL sub_02070680 (TaskManager * param0)
         GF_ASSERT(v2 != 0);
 
         sub_0203A7F0(v2, &v3);
-        sub_02053AFC(param0, v3.mapId, -1, v3.unk_08, v3.unk_0C, 1);
+        sub_02053AFC(param0, v3.mapId, -1, v3.x, v3.z, 1);
 
         Heap_FreeToHeap(v1);
     }

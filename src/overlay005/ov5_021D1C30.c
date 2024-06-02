@@ -1108,11 +1108,11 @@ static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int
 
     (*v1) = *(fieldSystem->location);
     v1->unk_10 = param3;
-    v1->unk_08 = param1;
-    v1->unk_0C = param2;
+    v1->x = param1;
+    v1->z = param2;
 
     if (param3 == 0) {
-        (v1->unk_0C)++;
+        (v1->z)++;
     }
 
     v1->mapId = fieldSystem->location->mapId;

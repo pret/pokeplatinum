@@ -4,8 +4,8 @@
 typedef struct {
     int mapId;
     int unk_04;
-    int unk_08;
-    int unk_0C;
+    int x;
+    int z;
     int unk_10;
 } Location;
 

@@ -101,7 +101,7 @@ void sub_02070494 (FieldSystem * fieldSystem)
         UnkStruct_020556C4 * v3;
 
         v3 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
-        sub_020556E8(v3, fieldSystem->location->unk_08, fieldSystem->location->unk_0C);
+        sub_020556E8(v3, fieldSystem->location->x, fieldSystem->location->z);
     }
 }
 

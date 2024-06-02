@@ -142,7 +142,7 @@ static BOOL sub_02053570(TaskManager * taskMan);
 static void FieldSystem_MapChange_SetNewLocation(FieldSystem * fieldSystem, const Location * param1);
 static void sub_020533CC(FieldSystem * fieldSystem);
 static void sub_02053468(FieldSystem * fieldSystem);
-static void sub_02053320(FieldSystem * fieldSystem);
+static void FieldSystem_MapChange_CreatePlayerObject(FieldSystem * fieldSystem);
 static void sub_02053374(FieldSystem * fieldSystem);
 static void sub_020534BC(FieldSystem * fieldSystem);
 static BOOL sub_02053B44(TaskManager * taskMan);
@@ -222,8 +222,8 @@ static void FieldSystem_MapChange_SetNewLocation (FieldSystem * fieldSystem, con
 
         v2 = sub_0203A450(fieldSystem, fieldSystem->location->unk_04);
 
-        fieldSystem->location->unk_08 = v2->unk_00;
-        fieldSystem->location->unk_0C = v2->unk_02;
+        fieldSystem->location->x = v2->unk_00;
+        fieldSystem->location->z = v2->unk_02;
 
         if (v2->unk_06 == 0x100) {
             Location * v3, * v4;
@@ -265,10 +265,10 @@ void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
         sub_02027F50(sub_02027860(fieldSystem->saveData));
     }
     
-    FieldEvents * v2 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * events = SaveData_Events(fieldSystem->saveData);
     u16 v3 = sub_0203A944(fieldSystem, mapId);
 
-    if (((v3 == 14) && (sub_0206AF0C(v2) == 1)) || ((v3 == 16) && (sub_0206AEDC(v2) == 1))) {
+    if (((v3 == 14) && (sub_0206AF0C(events) == 1)) || ((v3 == 16) && (sub_0206AEDC(events) == 1))) {
         v3 = 0;
     }
 
@@ -284,9 +284,7 @@ void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
     }
 
     if (!param1) {
-        u16 v6;
-
-        v6 = sub_0203A858(mapId);
+        u16 v6 = sub_0203A858(mapId);
 
         if (v6 != 0) {
             sub_0203A764(v1, v6);
@@ -324,9 +322,7 @@ void sub_020532A8 (FieldSystem * fieldSystem, BOOL param1)
     }
 
     if (!param1) {
-        u16 v2;
-
-        v2 = sub_0203A858(mapId);
+        u16 v2 = sub_0203A858(mapId);
 
         if (v2 != 0) {
             sub_0203A764(v1, v2);
@@ -337,26 +333,26 @@ void sub_020532A8 (FieldSystem * fieldSystem, BOOL param1)
     fieldSystem->unk_78.unk_02 = 0;
 }
 
-static void sub_02053320 (FieldSystem * fieldSystem)
+static void FieldSystem_MapChange_CreateObjects (FieldSystem * fieldSystem)
 {
-    int v0;
+    int gender;
     int v1;
     UnkStruct_0203A790 * v2;
-    PlayerData * v3;
+    PlayerData * playerData;
 
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
 
-    v0 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
+    gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
     v2 = sub_0203A790(fieldSystem->saveData);
-    v3 = sub_0203A780(v2);
+    playerData = sub_0203A780(v2);
 
-    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->unk_08, fieldSystem->location->unk_0C, fieldSystem->location->unk_10, v3->unk_04, v0, 0, v3);
+    fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->unk_10, playerData->unk_04, gender, 0, playerData);
 
     sub_0203A418(fieldSystem);
     sub_02062C30(fieldSystem->mapObjMan);
 }
 
-static void sub_02053374 (FieldSystem * fieldSystem)
+static void FieldSystem_MapChange_DeleteObjects (FieldSystem * fieldSystem)
 {
     Player_Delete(fieldSystem->playerAvatar);
     MapObjectMan_DeleteAll(fieldSystem->mapObjMan);
@@ -368,13 +364,11 @@ static void sub_0205338C (FieldSystem * fieldSystem)
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
     sub_0203A7C0(fieldSystem);
 
-    {
-        UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
-        PlayerData * v1 = sub_0203A780(v0);
-        int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
+    UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
+    PlayerData * playerData = sub_0203A780(v0);
+    int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-        fieldSystem->playerAvatar = sub_0205E820(fieldSystem->mapObjMan, v1, v2);
-    }
+    fieldSystem->playerAvatar = sub_0205E820(fieldSystem->mapObjMan, playerData, v2);
 
     sub_02062C30(fieldSystem->mapObjMan);
 }
@@ -448,17 +442,17 @@ static void sub_020534EC (Location * location, const FieldSystem * fieldSystem)
 static BOOL sub_02053518 (const FieldSystem * fieldSystem)
 {
     if (MapHeader_IsPokemonCenter2F(fieldSystem->location->mapId)
-        && (fieldSystem->location->unk_08 == 7) && (fieldSystem->location->unk_0C == 6)) {
-        return 1;
+        && (fieldSystem->location->x == 7) && (fieldSystem->location->z == 6)) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
 static void sub_02053540 (FieldSystem * fieldSystem)
 {
     Location * v0 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
-    FieldEvents * v1 = SaveData_Events(fieldSystem->saveData);
+    FieldEvents * events = SaveData_Events(fieldSystem->saveData);
 
     Location_Init(v0, fieldSystem->location->mapId, -1, 8, 2, 1);
 }
@@ -473,7 +467,7 @@ static BOOL sub_02053570 (TaskManager * taskMan)
         FieldSystem_MapChange_SetNewLocation(fieldSystem, fieldSystem->location);
         sub_020533CC(fieldSystem);
         sub_020531C0(fieldSystem, 0);
-        sub_02053320(fieldSystem);
+        FieldSystem_MapChange_CreateObjects(fieldSystem);
         (*v1)++;
         break;
     case 1:
@@ -525,7 +519,7 @@ static BOOL sub_020535E8 (TaskManager * taskMan)
             FieldSystem_MapChange_SetNewLocation(fieldSystem, sub_0203A730(v3));
             sub_020533CC(fieldSystem);
             sub_020531C0(fieldSystem, 0);
-            sub_02053320(fieldSystem);
+            FieldSystem_MapChange_CreateObjects(fieldSystem);
         } else {
             FieldSystem_MapChange_SetNewLocation(fieldSystem, NULL);
             sub_020533CC(fieldSystem);
@@ -580,7 +574,7 @@ static BOOL sub_02053718 (TaskManager * taskMan)
         FieldSystem_MapChange_SetNewLocation(fieldSystem, &v1->unk_04);
         sub_020533CC(fieldSystem);
         sub_020531C0(fieldSystem, 0);
-        sub_02053320(fieldSystem);
+        FieldSystem_MapChange_CreateObjects(fieldSystem);
         sub_020534BC(fieldSystem);
         (*v3)++;
         break;
@@ -685,7 +679,7 @@ static BOOL sub_02053930 (TaskManager * taskMan)
 
     switch (v2->unk_00) {
     case 0:
-        sub_02053374(fieldSystem);
+        FieldSystem_MapChange_DeleteObjects(fieldSystem);
         sub_02053468(fieldSystem);
         (v2->unk_00)++;
         break;
@@ -697,7 +691,7 @@ static BOOL sub_02053930 (TaskManager * taskMan)
         (v2->unk_00)++;
         break;
     case 2:
-        sub_02053320(fieldSystem);
+        FieldSystem_MapChange_CreateObjects(fieldSystem);
         Heap_FreeToHeap(v2);
         return 1;
     }
@@ -1112,8 +1106,8 @@ void * sub_02053FAC (FieldSystem * fieldSystem)
     if (fieldSystem->unk_70 == 1) {
         v0->unk_08 = v1->mapId;
         v0->unk_0C = -1;
-        v0->unk_10 = v1->unk_08;
-        v0->unk_14 = v1->unk_0C;
+        v0->unk_10 = v1->x;
+        v0->unk_14 = v1->z;
     } else {
         sub_020534EC(v1, fieldSystem);
         v0->unk_08 = 2;
@@ -1123,8 +1117,8 @@ void * sub_02053FAC (FieldSystem * fieldSystem)
             int v2, v3;
             int v4, v5;
 
-            v4 = (v1->unk_08 / 32) - 1;
-            v5 = (v1->unk_0C / 32) - 6;
+            v4 = (v1->x / 32) - 1;
+            v5 = (v1->z / 32) - 6;
 
             GF_ASSERT(v4 >= 0);
             GF_ASSERT(v5 >= 0);
@@ -1385,7 +1379,7 @@ static BOOL sub_02054494 (TaskManager * taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02053374(fieldSystem);
+        FieldSystem_MapChange_DeleteObjects(fieldSystem);
         (v1->unk_00)++;
         break;
     case 1:
@@ -1394,7 +1388,7 @@ static BOOL sub_02054494 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 2:
-        sub_02053320(fieldSystem);
+        FieldSystem_MapChange_CreateObjects(fieldSystem);
         Heap_FreeToHeap(v1);
         return 1;
     }

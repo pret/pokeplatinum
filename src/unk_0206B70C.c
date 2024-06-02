@@ -110,8 +110,8 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
         param1->unk_00 = x;
         param1->unk_04 = z;
     } else {
-        param1->unk_00 = v10->unk_08;
-        param1->unk_04 = v10->unk_0C;
+        param1->unk_00 = v10->x;
+        param1->unk_04 = v10->z;
     }
 
     v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
