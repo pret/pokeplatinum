@@ -27,7 +27,7 @@
 
 BOOL ScrCmd_253 (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v0 = SaveData_Events(param0->fieldSystem->saveData);
     u16 v1 = ScriptContext_GetVar(param0);
 
     if (v1 == 0) {

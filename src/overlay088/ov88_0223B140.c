@@ -2503,7 +2503,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            UnkStruct_020507E4 * v2 = SaveData_Events(param4->unk_10);
+            Events * v2 = SaveData_Events(param4->unk_10);
 
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);

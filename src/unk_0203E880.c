@@ -594,7 +594,7 @@ static u32 sub_0203F110 (int param0)
 
 u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 param1)
 {
-    UnkStruct_020507E4 * v0;
+    Events * v0;
 
     v0 = SaveData_Events(fieldSystem->saveData);
 
@@ -646,7 +646,7 @@ void sub_0203F1B0 (FieldSystem * fieldSystem, u16 param1)
 void sub_0203F1C4 (FieldSystem * fieldSystem)
 {
     int v0;
-    UnkStruct_020507E4 * v1;
+    Events * v1;
 
     v1 = SaveData_Events(fieldSystem->saveData);
 
@@ -658,7 +658,7 @@ void sub_0203F1C4 (FieldSystem * fieldSystem)
 
 void sub_0203F1FC (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0;
+    Events * v0;
 
     v0 = SaveData_Events(fieldSystem->saveData);
     memset(sub_02050870(v0, 2400 + 320), 0, 192 / 8);

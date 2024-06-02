@@ -93,7 +93,7 @@ static void sub_02052C6C (FieldSystem * fieldSystem, BOOL param1)
 static BOOL sub_02052CBC (TaskManager * param0)
 {
     Location * v0;
-    UnkStruct_020507E4 * v1;
+    Events * v1;
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_0205300C * v3 = TaskManager_Environment(param0);
     int * v4 = sub_02050A68(param0);
@@ -182,7 +182,7 @@ void sub_02052E58 (TaskManager * param0)
 {
     FieldSystem * fieldSystem;
     Location * v1, * v2;
-    UnkStruct_020507E4 * v3;
+    Events * v3;
     TrainerInfo * v4;
     UnkStruct_0205300C * v5;
     UnkStruct_0202CD88 * v6;

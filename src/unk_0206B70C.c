@@ -78,7 +78,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     int v1 = 0, v2 = 0, v3 = 0;
     int x, z, v6;
     UnkStruct_020556C4 * v7;
-    UnkStruct_020507E4 * v8 = SaveData_Events(fieldSystem->saveData);
+    Events * v8 = SaveData_Events(fieldSystem->saveData);
     UnkStruct_0203A790 * v9 = sub_0203A790(fieldSystem->saveData);
     Location * v10 = sub_0203A72C(v9);
 
@@ -159,7 +159,7 @@ static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1
     int v3;
     UnkStruct_0206B878 * v4;
     UnkUnion_0206B878 * v5;
-    UnkStruct_020507E4 * v6 = SaveData_Events(fieldSystem->saveData);
+    Events * v6 = SaveData_Events(fieldSystem->saveData);
 
     FS_InitFile(&v0);
 

@@ -355,7 +355,7 @@ static BOOL ov48_02256478 (UnkStruct_ov48_0225621C * param0)
 
 static void ov48_022564E0 (UnkStruct_ov48_0225621C * param0, PoketchSystem * param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(PoketchSystem_SaveData(param1));
+    Events * v0 = SaveData_Events(PoketchSystem_SaveData(param1));
     int v1;
 
     for (v1 = 0; v1 < 4; v1++) {

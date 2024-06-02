@@ -2619,7 +2619,7 @@ static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
                 if ((v2 >= 23) && ((28 + 1) > v2) || (v2 == 36) || (v2 == 37)) {
                     sub_02029644(v3, 1);
                     {
-                        UnkStruct_020507E4 * v5 = SaveData_Events(Unk_ov23_02257740->fieldSystem->saveData);
+                        Events * v5 = SaveData_Events(Unk_ov23_02257740->fieldSystem->saveData);
 
                         sub_0206B41C(v5, sub_0206B40C(v5) + 1);
                     }

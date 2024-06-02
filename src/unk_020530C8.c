@@ -139,7 +139,7 @@ typedef struct {
 
 static BOOL sub_02053878(TaskManager * taskMan);
 static BOOL sub_02053570(TaskManager * taskMan);
-static void sub_0205311C(FieldSystem * fieldSystem, const Location * param1);
+static void FieldSystem_MapChange_SetNewLocation(FieldSystem * fieldSystem, const Location * param1);
 static void sub_020533CC(FieldSystem * fieldSystem);
 static void sub_02053468(FieldSystem * fieldSystem);
 static void sub_02053320(FieldSystem * fieldSystem);
@@ -180,7 +180,7 @@ static const UnkStruct_ov61_0222C884 Unk_020EC3A0 = {
 
 static void sub_020530C8 (FieldSystem * fieldSystem)
 {
-    BOOL v0;
+    BOOL inBattleTower;
 
     switch (fieldSystem->location->mapId) {
     case 326:
@@ -190,29 +190,29 @@ static void sub_020530C8 (FieldSystem * fieldSystem)
     case 330:
     case 331:
     case 493:
-        v0 = 1;
+        inBattleTower = TRUE;
         break;
     default:
-        v0 = 0;
+        inBattleTower = FALSE;
     }
 
-    if (!v0 && (fieldSystem->unk_70 == 4)) {
+    if (!inBattleTower && (fieldSystem->unk_70 == 4)) {
         fieldSystem->unk_70 = 0;
     }
 
-    if (v0) {
+    if (inBattleTower) {
         fieldSystem->unk_70 = 4;
     }
 }
 
-static void sub_0205311C (FieldSystem * fieldSystem, const Location * param1)
+static void FieldSystem_MapChange_SetNewLocation (FieldSystem * fieldSystem, const Location * nextLocation)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
     Location * location = sub_0203A728(v0);
 
-    if (param1 != NULL) {
+    if (nextLocation != NULL) {
         *location = *fieldSystem->location;
-        *(fieldSystem->location) = *param1;
+        *(fieldSystem->location) = *nextLocation;
     }
 
     sub_0203A3B0(fieldSystem, fieldSystem->location->mapId);
@@ -243,7 +243,7 @@ void sub_020531A0 (FieldSystem * fieldSystem)
 
 void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
 {
-    int v0 = fieldSystem->location->mapId;
+    int mapId = fieldSystem->location->mapId;
     UnkStruct_0203A790 * v1 = sub_0203A790(fieldSystem->saveData);
 
     sub_02055414(fieldSystem);
@@ -264,31 +264,29 @@ void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
     if (!param1) {
         sub_02027F50(sub_02027860(fieldSystem->saveData));
     }
+    
+    Events * v2 = SaveData_Events(fieldSystem->saveData);
+    u16 v3 = sub_0203A944(fieldSystem, mapId);
 
-    {
-        UnkStruct_020507E4 * v2 = SaveData_Events(fieldSystem->saveData);
-        u16 v3 = sub_0203A944(fieldSystem, v0);
-
-        if (((v3 == 14) && (sub_0206AF0C(v2) == 1)) || ((v3 == 16) && (sub_0206AEDC(v2) == 1))) {
-            v3 = 0;
-        }
-
-        sub_0203A754(v1, v3);
+    if (((v3 == 14) && (sub_0206AF0C(v2) == 1)) || ((v3 == 16) && (sub_0206AEDC(v2) == 1))) {
+        v3 = 0;
     }
+
+    sub_0203A754(v1, v3);
 
     if (param1) {
         int v4 = sub_0203A770(v1);
-        int v5 = MapHeader_GetCameraType(v0);
+        int v5 = MapHeader_GetCameraType(mapId);
 
         GF_ASSERT(v4 == v5);
     } else {
-        sub_0203A778(v1, MapHeader_GetCameraType(v0));
+        sub_0203A778(v1, MapHeader_GetCameraType(mapId));
     }
 
     if (!param1) {
         u16 v6;
 
-        v6 = sub_0203A858(v0);
+        v6 = sub_0203A858(mapId);
 
         if (v6 != 0) {
             sub_0203A764(v1, v6);
@@ -303,7 +301,7 @@ void sub_020531C0 (FieldSystem * fieldSystem, BOOL param1)
 
 void sub_020532A8 (FieldSystem * fieldSystem, BOOL param1)
 {
-    int v0 = fieldSystem->location->mapId;
+    int mapId = fieldSystem->location->mapId;
     UnkStruct_0203A790 * v1 = sub_0203A790(fieldSystem->saveData);
 
     sub_02055414(fieldSystem);
@@ -328,7 +326,7 @@ void sub_020532A8 (FieldSystem * fieldSystem, BOOL param1)
     if (!param1) {
         u16 v2;
 
-        v2 = sub_0203A858(v0);
+        v2 = sub_0203A858(mapId);
 
         if (v2 != 0) {
             sub_0203A764(v1, v2);
@@ -460,7 +458,7 @@ static BOOL sub_02053518 (const FieldSystem * fieldSystem)
 static void sub_02053540 (FieldSystem * fieldSystem)
 {
     Location * v0 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
-    UnkStruct_020507E4 * v1 = SaveData_Events(fieldSystem->saveData);
+    Events * v1 = SaveData_Events(fieldSystem->saveData);
 
     Location_Init(v0, fieldSystem->location->mapId, -1, 8, 2, 1);
 }
@@ -472,7 +470,7 @@ static BOOL sub_02053570 (TaskManager * taskMan)
 
     switch (*v1) {
     case 0:
-        sub_0205311C(fieldSystem, fieldSystem->location);
+        FieldSystem_MapChange_SetNewLocation(fieldSystem, fieldSystem->location);
         sub_020533CC(fieldSystem);
         sub_020531C0(fieldSystem, 0);
         sub_02053320(fieldSystem);
@@ -501,7 +499,7 @@ void sub_020535CC (FieldSystem * fieldSystem)
 static BOOL sub_020535E8 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_020507E4 * v1 = SaveData_Events(fieldSystem->saveData);
+    Events * v1 = SaveData_Events(fieldSystem->saveData);
     int * v2 = sub_02050A68(taskMan);
 
     switch (*v2) {
@@ -524,12 +522,12 @@ static BOOL sub_020535E8 (TaskManager * taskMan)
             }
 
             sub_0206ADAC(v1);
-            sub_0205311C(fieldSystem, sub_0203A730(v3));
+            FieldSystem_MapChange_SetNewLocation(fieldSystem, sub_0203A730(v3));
             sub_020533CC(fieldSystem);
             sub_020531C0(fieldSystem, 0);
             sub_02053320(fieldSystem);
         } else {
-            sub_0205311C(fieldSystem, NULL);
+            FieldSystem_MapChange_SetNewLocation(fieldSystem, NULL);
             sub_020533CC(fieldSystem);
             sub_020559DC(fieldSystem);
             sub_0205338C(fieldSystem);
@@ -567,7 +565,7 @@ static BOOL sub_02053718 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02053718 * v1 = TaskManager_Environment(taskMan);
-    UnkStruct_020507E4 * v2 = SaveData_Events(fieldSystem->saveData);
+    Events * v2 = SaveData_Events(fieldSystem->saveData);
     int * v3 = sub_02050A68(taskMan);
 
     switch (*v3) {
@@ -579,7 +577,7 @@ static BOOL sub_02053718 (TaskManager * taskMan)
         (*v3)++;
         break;
     case 1:
-        sub_0205311C(fieldSystem, &v1->unk_04);
+        FieldSystem_MapChange_SetNewLocation(fieldSystem, &v1->unk_04);
         sub_020533CC(fieldSystem);
         sub_020531C0(fieldSystem, 0);
         sub_02053320(fieldSystem);
@@ -618,7 +616,7 @@ void sub_02053808 (FieldSystem * fieldSystem)
     if (MapHeader_IsUnionRoom(fieldSystem->location->mapId)) {
         (void)0;
     } else if (sub_02053518(fieldSystem)) {
-        UnkStruct_020507E4 * v2 = SaveData_Events(fieldSystem->saveData);
+        Events * v2 = SaveData_Events(fieldSystem->saveData);
 
         sub_02053540(fieldSystem);
         sub_0206AD9C(v2);
@@ -692,7 +690,7 @@ static BOOL sub_02053930 (TaskManager * taskMan)
         (v2->unk_00)++;
         break;
     case 1:
-        sub_0205311C(fieldSystem, &v2->unk_04);
+        FieldSystem_MapChange_SetNewLocation(fieldSystem, &v2->unk_04);
         sub_020533CC(fieldSystem);
         sub_020531C0(fieldSystem, 0);
         RadarChain_Clear(fieldSystem->chain);
@@ -1391,7 +1389,7 @@ static BOOL sub_02054494 (TaskManager * taskMan)
         (v1->unk_00)++;
         break;
     case 1:
-        sub_0205311C(fieldSystem, &v1->unk_04);
+        FieldSystem_MapChange_SetNewLocation(fieldSystem, &v1->unk_04);
         sub_0203F5C0(fieldSystem, 2);
         (v1->unk_00)++;
         break;
@@ -1590,16 +1588,14 @@ void sub_02054800 (TaskManager * taskMan, int param1, int param2, int param3, in
 
     fieldSystem->unk_70 = 3;
 
-    {
-        UnkStruct_02053900 * v3 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053900));
+    UnkStruct_02053900 * v3 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053900));
 
-        Location_Init(&v0, param1, param2, param3, param4, param5);
+    Location_Init(&v0, param1, param2, param3, param4, param5);
 
-        v3->unk_00 = 0;
-        v3->unk_04 = v0;
+    v3->unk_00 = 0;
+    v3->unk_04 = v0;
 
-        sub_02050944(taskMan, sub_02054778, v3);
-    }
+    sub_02050944(taskMan, sub_02054778, v3);
 }
 
 void sub_02054864 (TaskManager * taskMan)

@@ -932,7 +932,7 @@ static BOOL ov5_021D2B20 (FieldSystem * fieldSystem)
 static BOOL ov5_021D2B2C (FieldSystem * fieldSystem)
 {
     u16 v0;
-    UnkStruct_020507E4 * v1;
+    Events * v1;
     BOOL v2 = 0;
 
     v1 = SaveData_Events(fieldSystem->saveData);

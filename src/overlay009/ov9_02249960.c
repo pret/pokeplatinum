@@ -1352,7 +1352,7 @@ static void ov9_02249CAC (UnkStruct_ov9_02249B04 * param0)
 static void ov9_02249CC4 (UnkStruct_ov9_02249B04 * param0)
 {
     UnkStruct_02071C5C * v0 = param0->unk_04;
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v1 = SaveData_Events(param0->fieldSystem->saveData);
 
     v0->unk_0C = 0;
 
@@ -2104,7 +2104,7 @@ BOOL ov9_0224A67C (FieldSystem * fieldSystem, int param1)
     switch (v1) {
     case 581:
         if (param1 == 0) {
-            UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSystem->saveData);
+            Events * v2 = SaveData_Events(v0->fieldSystem->saveData);
 
             if (sub_0206B5D8(v2) >= 10) {
                 int v3, v4, v5;
@@ -2162,7 +2162,7 @@ BOOL ov9_0224A71C (FieldSystem * fieldSystem)
 
         {
             u32 v6 = ov9_022510D0(v5);
-            UnkStruct_020507E4 * v7 = SaveData_Events(v5->fieldSystem->saveData);
+            Events * v7 = SaveData_Events(v5->fieldSystem->saveData);
 
             if ((v6 == 581) && (v4 == 0)) {
                 if (sub_0206B5D8(v7) >= 10) {
@@ -2191,7 +2191,7 @@ BOOL ov9_0224A800 (FieldSystem * fieldSystem, int param1)
     switch (v1) {
     case 581:
         if (param1 == 0) {
-            UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSystem->saveData);
+            Events * v2 = SaveData_Events(v0->fieldSystem->saveData);
 
             if (sub_0206B5D8(v2) >= 10) {
                 int v3, v4, v5;
@@ -2788,7 +2788,7 @@ static void ov9_0224B1B4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov5_021DF47
     param0->unk_1EC2 = 0;
 
     if (ov9_022510D0(param0) == 582) {
-        UnkStruct_020507E4 * v3 = SaveData_Events(param0->fieldSystem->saveData);
+        Events * v3 = SaveData_Events(param0->fieldSystem->saveData);
         u32 v4 = sub_0206B5D8(v3);
 
         if (v4 >= 10) {
@@ -4963,7 +4963,7 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
         param1->unk_06 = v2->unk_08;
 
         {
-            UnkStruct_020507E4 * v4 = SaveData_Events(param0->fieldSystem->saveData);
+            Events * v4 = SaveData_Events(param0->fieldSystem->saveData);
             u16 v5 = sub_0206B5D8(v4);
 
             if ((v0 == 573) && (v5 == 2)) {
@@ -5283,7 +5283,7 @@ static int ov9_0224D5E8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
         }
 
         if ((param1->unk_06 == 577) && (param1->unk_00 == 1) && (param1->unk_64->unk_04.unk_00 == 1)) {
-            UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+            Events * v1 = SaveData_Events(param0->fieldSystem->saveData);
 
             if (sub_0206B6DC(v1) == 0) {
                 param1->unk_04 = 6;
@@ -5342,7 +5342,7 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D6E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     if (sub_0206574C(param1->unk_6C) == 1) {
-        UnkStruct_020507E4 * v0;
+        Events * v0;
         MapObject * v1;
 
         sub_02065758(param1->unk_6C);
@@ -6085,7 +6085,7 @@ static int ov9_0224E1CC (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1->unk_00 = 0;
 
     if (v2->unk_08 == 1) {
-        UnkStruct_020507E4 * v5 = SaveData_Events(v2->unk_0C->fieldSystem->saveData);
+        Events * v5 = SaveData_Events(v2->unk_0C->fieldSystem->saveData);
 
         if (sub_0206AFD0(v5) == 0) {
             v1->unk_02 = 0;
@@ -6113,7 +6113,7 @@ static void ov9_0224E294 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     UnkStruct_ov9_0224E1CC * v0 = param1;
 
     if (v0->unk_00 == 1) {
-        UnkStruct_020507E4 * v1;
+        Events * v1;
 
         v1 = SaveData_Events(v0->unk_10.unk_0C->fieldSystem->saveData);
 
@@ -6264,7 +6264,7 @@ static const UnkStruct_ov9_02252044 * ov9_0224E410 (u32 param0)
 
 static BOOL ov9_0224E434 (UnkStruct_ov9_02249B04 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v0 = SaveData_Events(param0->fieldSystem->saveData);
     const UnkStruct_ov9_02252044 * v1 = ov9_0224E410(ov9_022510D0(param0));
 
     if (v1 != NULL) {
@@ -7161,7 +7161,7 @@ static BOOL ov9_0224EF30 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0
 {
     u16 v0 = param1->unk_00;
     u16 v1 = param1->unk_02;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v2 = SaveData_Events(param0->fieldSystem->saveData);
 
     if (v0 == 6) {
         if (param2 == 0) {
@@ -7657,7 +7657,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
             param0->unk_00, 8);
 
         if (v17 >= 3) {
-            UnkStruct_020507E4 * v18 = SaveData_Events(param0->fieldSystem->saveData);
+            Events * v18 = SaveData_Events(param0->fieldSystem->saveData);
 
             sub_0206AFC0(v18, 1);
         }
@@ -7788,7 +7788,7 @@ static void ov9_0224F724 (UnkStruct_ov9_02249B04 * param0)
     u32 v1 = ov9_022510D0(param0);
 
     if (v1 == 582) {
-        UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSystem->saveData);
+        Events * v2 = SaveData_Events(param0->fieldSystem->saveData);
 
         if (sub_0206B5D8(v2) == 13) {
             v0->unk_06 = 1;
@@ -8707,7 +8707,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_022512C0[2] = {
 static int ov9_022506D0 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
     const UnkStruct_ov9_022506D0 * v0 = param3;
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v1 = SaveData_Events(param0->fieldSystem->saveData);
 
     sub_0206B5E8(v1, v0->unk_00);
     return 2;
@@ -8720,7 +8720,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251238[1] = {
 static int ov9_022506EC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
     const UnkStruct_ov9_022506EC * v0 = param3;
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v1 = SaveData_Events(param0->fieldSystem->saveData);
 
     sub_0206AFB0(v1, 1, v0->unk_00);
     return 2;
@@ -9634,7 +9634,7 @@ static int ov9_022510D8 (u32 param0)
 
 static BOOL ov9_02251104 (UnkStruct_ov9_02249B04 * param0, u32 param1, u32 param2)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v0 = SaveData_Events(param0->fieldSystem->saveData);
 
     switch (param1) {
     case 0:
@@ -9685,7 +9685,7 @@ BOOL ov9_022511A0 (FieldSystem * fieldSystem, int param1, int param2, int param3
 
     if (ov9_022510D0(v0) == 582) {
         if ((param2 == 15) && (param1 == 15) && (param3 == 1)) {
-            UnkStruct_020507E4 * v1 = SaveData_Events(v0->fieldSystem->saveData);
+            Events * v1 = SaveData_Events(v0->fieldSystem->saveData);
             u32 v2 = sub_0206B5D8(v1);
 
             if (v2 == 14) {

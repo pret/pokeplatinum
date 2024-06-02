@@ -127,7 +127,7 @@ u8 sub_02071F28 (FieldSystem * fieldSystem)
     u8 v0;
     SaveData * v1;
     UnkStruct_0202CD88 * v2;
-    UnkStruct_020507E4 * v3;
+    Events * v3;
     SecretBaseRecord * v4;
     UnkStruct_0203068C * v5;
 

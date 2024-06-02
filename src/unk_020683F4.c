@@ -522,7 +522,7 @@ static BOOL sub_02068884 (TaskManager * param0)
 
 static u32 sub_02068948 (const UnkStruct_020684D0 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v0 = SaveData_Events(param0->fieldSystem->saveData);
 
     if (param0->unk_04 == 1) {
         return 2;
@@ -1063,7 +1063,7 @@ static BOOL sub_02069120 (UnkStruct_02068870 * param0)
 
 static u32 sub_02069130 (const UnkStruct_020684D0 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v0 = SaveData_Events(param0->fieldSystem->saveData);
 
     if (sub_0206A954(v0) == 0) {
         return -1;

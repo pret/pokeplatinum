@@ -2527,7 +2527,7 @@ static int sub_0206EBE8 (FieldSystem * fieldSystem)
     u8 v0[NELEMS(Unk_020EFD3C)];
     u8 v1[NELEMS(Unk_020F0074) / 2];
     int v2, v3;
-    UnkStruct_020507E4 * v4 = SaveData_Events(fieldSystem->saveData);
+    Events * v4 = SaveData_Events(fieldSystem->saveData);
 
     for (v2 = 0; v2 < NELEMS(Unk_020EFD3C); v2++) {
         v0[v2] = inline_0208BE68(v4, Unk_020EFD3C[v2]);
@@ -2570,7 +2570,7 @@ static int sub_0206EC90 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206ECFC (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
+    Events * v0 = SaveData_Events(fieldSystem->saveData);
     return inline_0208BE68(v0, 9);
 }
 

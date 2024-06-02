@@ -70,7 +70,7 @@ static BOOL sub_0206C120 (TaskManager * taskMan)
         break;
     case 2:
     {
-        UnkStruct_020507E4 * v2 = SaveData_Events(fieldSystem->saveData);
+        Events * v2 = SaveData_Events(fieldSystem->saveData);
 
         if (v1->unk_0D == 0) {
             sub_0206AE0C(v2);

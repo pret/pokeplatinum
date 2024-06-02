@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020507E4_DECL_H
 #define POKEPLATINUM_STRUCT_020507E4_DECL_H
 
-typedef struct UnkStruct_020507E4_t UnkStruct_020507E4;
+typedef struct UnkStruct_020507E4_t Events;
 
 #endif // POKEPLATINUM_STRUCT_020507E4_DECL_H

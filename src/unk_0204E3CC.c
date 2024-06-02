@@ -182,7 +182,7 @@ BOOL ScrCmd_1CF (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v2 = SaveData_Events(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 
@@ -208,7 +208,7 @@ BOOL ScrCmd_1D0 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v2 = SaveData_Events(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 
@@ -234,7 +234,7 @@ BOOL ScrCmd_1D1 (ScriptContext * param0)
 {
     u8 v0;
     u16 * v1;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    Events * v2 = SaveData_Events(param0->fieldSystem->saveData);
 
     v0 = ScriptContext_ReadByte(param0);
 

@@ -81,7 +81,7 @@ void sub_02070494 (FieldSystem * fieldSystem)
     }
 
     if (!MapHeader_IsCave(fieldSystem->location->mapId)) {
-        UnkStruct_020507E4 * v1 = SaveData_Events(fieldSystem->saveData);
+        Events * v1 = SaveData_Events(fieldSystem->saveData);
 
         sub_0206AECC(v1);
         sub_0206AEFC(v1);
@@ -124,7 +124,7 @@ void sub_020705A4 (FieldSystem * fieldSystem)
 
 void sub_020705B4 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
+    Events * v0 = SaveData_Events(fieldSystem->saveData);
 
     sub_0206A974(v0);
     sub_0206B024(v0, 0);
