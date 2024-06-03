@@ -232,6 +232,8 @@
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_022521F0.h"
 
+#include "constants/overworld_weather.h"
+
 #include <nitro/code16.h>
 
 typedef struct {
@@ -4751,7 +4753,7 @@ static BOOL ScrCmd_0C3 (ScriptContext * ctx)
 {
     FieldOverworldState * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
 
-    FieldStatus_SetWeather(v0, 0);
+    FieldStatus_SetWeather(v0, OVERWORLD_WEATHER_CLEAR);
     ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, sub_0203A74C(v0));
 
     return 1;
@@ -4761,7 +4763,7 @@ static BOOL ScrCmd_0C4 (ScriptContext * ctx)
 {
     FieldOverworldState * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
 
-    FieldStatus_SetWeather(v0, 0);
+    FieldStatus_SetWeather(v0, OVERWORLD_WEATHER_CLEAR);
     ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, sub_0203A74C(v0));
 
     return 1;

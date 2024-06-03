@@ -528,7 +528,7 @@ static void sub_02057EF8 (void * param0)
                 ov23_0224AF7C(netId);
             }
         } else if (sCommPlayerManager->isActive[netId]) {
-            if ((CommSys_CurNetId() == 0) && (sCommPlayerManager->isUnderground)) {
+            if (CommSys_CurNetId() == 0 && sCommPlayerManager->isUnderground) {
                 ov23_022436F0(netId);
                 ov23_02241648(netId);
             }
@@ -654,7 +654,7 @@ static BOOL CommPlayer_CheckCollision (int x, int z, int netIdTarget)
                 continue;
             }
 
-            if ((x == CommPlayer_GetXServer(netId)) && (z == CommPlayer_GetZServer(netId))) {
+            if (x == CommPlayer_GetXServer(netId) && z == CommPlayer_GetZServer(netId)) {
                 return TRUE;
             }
         }

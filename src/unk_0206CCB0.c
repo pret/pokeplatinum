@@ -69,6 +69,8 @@
 #include "overlay006/ov6_02246444.h"
 #include "overlay025/poketch_system.h"
 
+#include "constants/overworld_weather.h"
+
 static void sub_0206CD70(FieldSystem * fieldSystem, int param1, int param2, const void * param3);
 static void sub_0206CD7C(SaveData * param0, int param1, int param2, const void * param3);
 static u8 sub_0206DE4C(Pokemon * param0);
@@ -2123,14 +2125,14 @@ static u16 Unk_02100BA4[] = {
 
 static int sub_0206E940 (FieldSystem * fieldSystem, StringTemplate * param1, UnkStruct_ov6_022465F4 * param2)
 {
-    int v0, v1;
+    int v0, weather;
 
     v0 = Unk_02100BA4[inline_020564D0(NELEMS(Unk_02100BA4))];
-    v1 = FieldSystem_GetWeather(fieldSystem, v0);
+    weather = FieldSystem_GetWeather(fieldSystem, v0);
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
 
-    switch (v1) {
-    case 0:
+    switch (weather) {
+    case OVERWORLD_WEATHER_CLEAR:
         switch (inline_020564D0(4)) {
         case 0:
             return 1;
@@ -2141,21 +2143,21 @@ static int sub_0206E940 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
         case 3:
             return 4;
         }
-    case 1:
+    case OVERWORLD_WEATHER_CLOUDY:
         return 5;
-    case 2:
+    case OVERWORLD_WEATHER_RAINING:
         return 6;
-    case 3:
+    case OVERWORLD_WEATHER_HEAVY_RAIN:
         return 7;
-    case 5:
+    case OVERWORLD_WEATHER_SNOWING:
         return 8;
-    case 6:
+    case OVERWORLD_WEATHER_HEAVY_SNOW:
         return 9;
-    case 7:
+    case OVERWORLD_WEATHER_BLIZZARD:
         return 10;
-    case 4:
+    case OVERWORLD_WEATHER_THUNDERSTORM:
         return 11;
-    case 11:
+    case OVERWORLD_WEATHER_HAILING:
         return 12;
     default:
         GF_ASSERT(0);

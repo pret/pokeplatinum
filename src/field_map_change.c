@@ -77,6 +77,8 @@
 #include "overlay023/ov23_022499E4.h"
 #include "overlay023/ov23_0224B05C.h"
 
+#include "constants/overworld_weather.h"
+
 FS_EXTERN_OVERLAY(overlay23);
 
 typedef struct {
@@ -196,7 +198,7 @@ static void sub_020530C8 (FieldSystem * fieldSystem)
         inBattleTower = FALSE;
     }
 
-    if (!inBattleTower && (fieldSystem->unk_70 == 4)) {
+    if (!inBattleTower && fieldSystem->unk_70 == 4) {
         fieldSystem->unk_70 = 0;
     }
 
@@ -268,8 +270,8 @@ void FieldSystem_MapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWar
     FieldEvents * events = SaveData_GetFieldEvents(fieldSystem->saveData);
     u16 weather = FieldSystem_GetWeather(fieldSystem, mapId);
 
-    if (((weather == 14) && (FieldEvents_CheckDefog(events) == 1)) || ((weather == 16) && (FieldEvents_CheckFlash(events) == 1))) {
-        weather = 0;
+    if (((weather == OVERWORLD_WEATHER_FOG) && (FieldEvents_CheckDefog(events) == 1)) || ((weather == OVERWORLD_WEATHER_DARK_FLASH) && (FieldEvents_CheckFlash(events) == 1))) {
+        weather = OVERWORLD_WEATHER_CLEAR;
     }
 
     FieldStatus_SetWeather(fieldStatus, weather);
