@@ -886,9 +886,9 @@ int PlayerAvatar_DistortionWorldState (PlayerAvatar * const playerAvatar)
 
 BOOL sub_0205F158 (PlayerAvatar * const playerAvatar)
 {
-    int v0 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int distortionState = PlayerAvatar_DistortionWorldState(playerAvatar);
 
-    if ((v0 == 0) || (v0 == 1)) {
+    if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
         return FALSE;
     }
 
@@ -897,9 +897,11 @@ BOOL sub_0205F158 (PlayerAvatar * const playerAvatar)
 
 BOOL sub_0205F16C (PlayerAvatar * const playerAvatar)
 {
-    int v0 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int distortionState = PlayerAvatar_DistortionWorldState(playerAvatar);
 
-    if ((v0 == 0) || (v0 == 1) || (v0 == 2)) {
+    if (distortionState == AVATAR_DISTORTION_STATE_NONE 
+        || distortionState == AVATAR_DISTORTION_STATE_ACTIVE 
+        || distortionState == AVATAR_DISTORTION_STATE_FLOOR) {
         return TRUE;
     }
 

@@ -200,7 +200,7 @@ static void PlayerAvatar_RequestStateWalking (PlayerAvatar * playerAvatar)
     int v0;
     int v1 = 0x0;
 
-    if (PlayerAvatar_DistortionWorldState(playerAvatar) != 0) {
+    if (PlayerAvatar_DistortionWorldState(playerAvatar) != AVATAR_DISTORTION_STATE_NONE) {
         v1 = 0x18;
     } else {
         MapObject * mapObj = Player_MapObject(playerAvatar);
@@ -254,7 +254,7 @@ static void PlayerAvatar_RequestStateSurf (PlayerAvatar * playerAvatar)
     int v0, v1;
     MapObject * mapObj = Player_MapObject(playerAvatar);
     FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
-    int v4 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int distortionState = PlayerAvatar_DistortionWorldState(playerAvatar);
     UnkStruct_ov101_021D5D90 * v5 = sub_0205EC04(playerAvatar);
 
     if (v5 != NULL) {
@@ -269,11 +269,11 @@ static void PlayerAvatar_RequestStateSurf (PlayerAvatar * playerAvatar)
         v1 = PlayerAvatar_GetMoveDir(playerAvatar);
     }
 
-    if (v4 == 0) {
+    if (distortionState == AVATAR_DISTORTION_STATE_NONE) {
         v5 = ov5_021F261C(mapObj, 0, 0, v1, 1);
         v0 = PLAYER_STATE_SURFING;
     } else {
-        v5 = ov5_021F85BC(playerAvatar, 0, 0, 0, v1, 1, v4);
+        v5 = ov5_021F85BC(playerAvatar, 0, 0, 0, v1, 1, distortionState);
         v0 = 0x19;
     }
 
@@ -312,7 +312,7 @@ static void PlayerAvatar_RequestStatePoketch (PlayerAvatar * playerAvatar)
     int v0;
     int v1 = 0x14;
 
-    if (PlayerAvatar_DistortionWorldState(playerAvatar) != 0) {
+    if (PlayerAvatar_DistortionWorldState(playerAvatar) != AVATAR_DISTORTION_STATE_NONE) {
         v1 = 0x1b;
     } else {
         MapObject * mapObj = Player_MapObject(playerAvatar);
@@ -332,7 +332,7 @@ static void PlayerAvatar_RequestStateSave (PlayerAvatar * playerAvatar)
     int v0;
     int v1 = 0x15;
 
-    if (PlayerAvatar_DistortionWorldState(playerAvatar) != 0) {
+    if (PlayerAvatar_DistortionWorldState(playerAvatar) != AVATAR_DISTORTION_STATE_NONE) {
         v1 = 0x1a;
     } else {
         MapObject * mapObj = Player_MapObject(playerAvatar);
@@ -623,7 +623,7 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
 
     switch (v0->unk_00) {
     case 0:
-        if (PlayerAvatar_DistortionWorldState(v0->playerAvatar) == 0) {
+        if (PlayerAvatar_DistortionWorldState(v0->playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
             sub_020553F0(v0->fieldSystem, 0);
             sub_02055554(v0->fieldSystem, 1151, 1);
         }
@@ -642,7 +642,7 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
         break;
     case 2:
     {
-        if (PlayerAvatar_DistortionWorldState(v0->playerAvatar) == 0) {
+        if (PlayerAvatar_DistortionWorldState(v0->playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
             int v1 = Player_GetXPos(v0->playerAvatar) + sub_0206419C(v0->unk_04);
             int v2 = Player_GetZPos(v0->playerAvatar) + sub_020641A8(v0->unk_04);
 
@@ -651,10 +651,10 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
             int v3 = MapObject_GetXPos(v0->unk_24);
             int v4 = ((MapObject_GetYPos(v0->unk_24) / 2));
             int v5 = MapObject_GetZPos(v0->unk_24);
-            int v6 = PlayerAvatar_DistortionWorldState(v0->playerAvatar);
+            int distortionState = PlayerAvatar_DistortionWorldState(v0->playerAvatar);
 
             sub_02061674(v0->playerAvatar, v0->unk_04, &v3, &v4, &v5);
-            v0->unk_28 = ov5_021F85BC(v0->playerAvatar, v3, v4, v5, v0->unk_04, 0, v6);
+            v0->unk_28 = ov5_021F85BC(v0->playerAvatar, v3, v4, v5, v0->unk_04, 0, distortionState);
         }
 
         sub_0205EC00(v0->playerAvatar, v0->unk_28);
@@ -671,9 +671,9 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
             int v8[6] = {
                 0x34, 0x34, 0x34, 0x85, 0x89, 0x8d
             };
-            int v9 = PlayerAvatar_DistortionWorldState(v0->playerAvatar);
+            int distortionState = PlayerAvatar_DistortionWorldState(v0->playerAvatar);
 
-            v7 = sub_02065838(v0->unk_04, v8[v9]);
+            v7 = sub_02065838(v0->unk_04, v8[distortionState]);
             LocalMapObj_SetAnimationCode(v0->unk_24, v7);
             v0->unk_00++;
         }
@@ -685,7 +685,7 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
 
         sub_020656AC(v0->unk_24);
 
-        if (PlayerAvatar_DistortionWorldState(v0->playerAvatar) == 0) {
+        if (PlayerAvatar_DistortionWorldState(v0->playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
             int v10;
 
             ov5_021F2838(v0->unk_28, 1);
@@ -758,14 +758,13 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
     case 0:
         if (LocalMapObj_IsAnimationSet(v0->unk_10) == 1) {
             int v1;
-            int v2;
             int v3[6] = {
                 0x34, 0x34, 0x34, 0x85, 0x89, 0x8d
             };
 
-            v2 = PlayerAvatar_DistortionWorldState(v0->playerAvatar);
+            int distortionState = PlayerAvatar_DistortionWorldState(v0->playerAvatar);
 
-            if (v2 == 0) {
+            if (distortionState == AVATAR_DISTORTION_STATE_NONE) {
                 ov5_021F2838(v0->unk_14, 0);
                 v1 = Player_MoveStateFromGender(0x0, PlayerAvatar_Gender(v0->playerAvatar));
             } else {
@@ -775,7 +774,7 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
 
             PlayerAvatar_Redraw(v0->playerAvatar, v1);
 
-            v1 = sub_02065838(v0->unk_04, v3[v2]);
+            v1 = sub_02065838(v0->unk_04, v3[distortionState]);
             LocalMapObj_SetAnimationCode(v0->unk_10, v1);
             v0->unk_00++;
         }
@@ -1727,7 +1726,7 @@ static void PlayerAvatar_Redraw (PlayerAvatar * playerAvatar, int param1)
 {
     MapObject * v0 = Player_MapObject(playerAvatar);
 
-    if (PlayerAvatar_DistortionWorldState(playerAvatar) == 0) {
+    if (PlayerAvatar_DistortionWorldState(playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
         ov5_021EE3FC(v0, param1, NULL, NULL);
     } else {
         int v1;
