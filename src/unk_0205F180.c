@@ -860,14 +860,12 @@ static int sub_0205FCC0 (PlayerAvatar * playerAvatar, int param1)
 
     v0 = PlayerAvatar_GetDir(playerAvatar);
 
-    {
-        int distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
 
-        if (distortionState != AVATAR_DISTORTION_STATE_NONE 
-            && distortionState != AVATAR_DISTORTION_STATE_ACTIVE 
-            && distortionState != AVATAR_DISTORTION_STATE_FLOOR) {
-            v0 = PlayerAvatar_GetMoveDir(playerAvatar);
-        }
+    if (distortionState != AVATAR_DISTORTION_STATE_NONE 
+     && distortionState != AVATAR_DISTORTION_STATE_ACTIVE 
+     && distortionState != AVATAR_DISTORTION_STATE_FLOOR) {
+        v0 = PlayerAvatar_GetMoveDir(playerAvatar);
     }
 
     if ((v0 != param1) && (PlayerAvatar_MoveState(playerAvatar) != 1)) {
@@ -889,7 +887,7 @@ static void sub_0205FD20 (PlayerAvatar * playerAvatar, MapObject * param1, int p
 
 static void sub_0205FD40 (PlayerAvatar * playerAvatar, MapObject * param1, int param2, u16 param3, u16 param4)
 {
-    int distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_FLOOR:
@@ -1131,7 +1129,7 @@ static void sub_02060258 (PlayerAvatar * playerAvatar, MapObject * mapObj, int p
     int v0, v1;
     v1 = param2;
 
-    int distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_WEST_WALL:
@@ -2415,7 +2413,7 @@ static int PlayerAvatar_IsUnderCyclingRoad (PlayerAvatar * playerAvatar, u32 par
 void sub_02061674 (PlayerAvatar * playerAvatar, int param1, int * param2, int * param3, int * param4)
 {
     const UnkStruct_020EDB04 * v0;
-    int distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_NONE:

@@ -831,7 +831,7 @@ int sub_0205F08C (PlayerAvatar * playerAvatar)
     return sub_0205EBB0(playerAvatar, (1 << 7));
 }
 
-void PlayerAvatar_SetDistortionState (PlayerAvatar * playerAvatar, int state)
+void PlayerAvatar_SetDistortionState (PlayerAvatar * playerAvatar, enum AvatarDistortionState state)
 {
     sub_0205EBA4(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
 
@@ -858,9 +858,9 @@ void PlayerAvatar_SetDistortionState (PlayerAvatar * playerAvatar, int state)
     GF_ASSERT(0);
 }
 
-int PlayerAvatar_DistortionState (PlayerAvatar * const playerAvatar)
+enum AvatarDistortionState PlayerAvatar_DistortionState (PlayerAvatar * const playerAvatar)
 {
-    int state = AVATAR_DISTORTION_STATE_NONE;
+    enum AvatarDistortionState state = AVATAR_DISTORTION_STATE_NONE;
     u32 v1 = sub_0205EBB0(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
 
     switch (v1) {
@@ -884,11 +884,11 @@ int PlayerAvatar_DistortionState (PlayerAvatar * const playerAvatar)
     return state;
 }
 
-// these functions can be simplified, but they'll no longer match
+// these functions can be simplified, but preserving matching reduces clarity
 
 BOOL PlayerAvatar_DistortionGravityChanged (PlayerAvatar * const playerAvatar)
 {
-    int state = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState state = PlayerAvatar_DistortionState(playerAvatar);
 
     if (state == AVATAR_DISTORTION_STATE_NONE || state == AVATAR_DISTORTION_STATE_ACTIVE) {
         return FALSE;
@@ -899,11 +899,11 @@ BOOL PlayerAvatar_DistortionGravityChanged (PlayerAvatar * const playerAvatar)
 
 BOOL PlayerAvatar_DistortionStateOnFloor (PlayerAvatar * const playerAvatar)
 {
-    int state = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState state = PlayerAvatar_DistortionState(playerAvatar);
 
     if (state == AVATAR_DISTORTION_STATE_NONE 
-        || state == AVATAR_DISTORTION_STATE_ACTIVE 
-        || state == AVATAR_DISTORTION_STATE_FLOOR) {
+     || state == AVATAR_DISTORTION_STATE_ACTIVE 
+     || state == AVATAR_DISTORTION_STATE_FLOOR) {
         return TRUE;
     }
 

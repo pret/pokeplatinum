@@ -87,7 +87,7 @@ int Party_HasMonWithMove (Party *party, u16 moveID)
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
             continue;
         }
 
@@ -117,7 +117,7 @@ int Party_AliveMonsCount (const Party *party)
     return count;
 }
 
-Pokemon * Party_FirstBattler (const Party *party)
+Pokemon * Party_FindFirstEligibleBattler (const Party *party)
 {
     int i;
     int partyCount = Party_GetCurrentCount(party);
@@ -130,11 +130,11 @@ Pokemon * Party_FirstBattler (const Party *party)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 
-Pokemon * Party_FirstMon (const Party *party)
+Pokemon * Party_FindFirstHatchedMon (const Party *party)
 {
     u16 i;
     u16 partyCount = Party_GetCurrentCount(party);
@@ -142,7 +142,7 @@ Pokemon * Party_FirstMon (const Party *party)
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             return mon;
         }
     }
@@ -155,17 +155,17 @@ BOOL Party_HasTwoAliveMons (const Party *party)
     return Party_AliveMonsCount(party) >= 2;
 }
 
-void Party_SetChampionRibbons (Party *party)
+void Party_GiveChampionRibbons (Party *party)
 {
     int i;
-    u8 ribbonActive = 1;
+    u8 championRibbon = TRUE;
     int partyCount = Party_GetCurrentCount(party);
 
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
-            Pokemon_SetValue(mon, MON_DATA_SINNOH_CHAMP_RIBBON, &ribbonActive);
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            Pokemon_SetValue(mon, MON_DATA_SINNOH_CHAMP_RIBBON, &championRibbon);
         }
     }
 }
