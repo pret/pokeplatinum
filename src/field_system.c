@@ -14,7 +14,6 @@
 #include "struct_defs/struct_0203CC84.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay005/struct_ov5_021D1CAC.h"
 
 #include "unk_02000C88.h"
 #include "game_overlay.h"
@@ -33,7 +32,7 @@
 #include "unk_0207D3B8.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
-#include "overlay005/ov5_021D1C30.h"
+#include "overlay005/field_control.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"
@@ -250,7 +249,7 @@ BOOL FieldSystem_Run (FieldSystem * fieldSystem)
 void FieldSystem_Control (FieldSystem * fieldSystem)
 {
     int v0;
-    UnkStruct_ov5_021D1CAC v1;
+    FieldInput v1;
     BOOL v2 = 0;
 
     if (!fieldSystem->unk_00->unk_08 && fieldSystem->unk_68 && (sub_020509A4(fieldSystem) == 0)) {
@@ -259,7 +258,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
     if (v2) {
         sub_0205F490(fieldSystem->playerAvatar);
-        ov5_021D1CAC(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
+        FieldInput_Update(&v1, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
     }
 
     v0 = fieldSystem->unk_70;
@@ -272,7 +271,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     case 1:
         if (v2) {
             if (sub_02058C40()) {
-                if (ov5_021D213C(&v1, fieldSystem) == 1) {
+                if (FieldInput_Process_Underground(&v1, fieldSystem) == 1) {
                     
                 }
             }
@@ -283,7 +282,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     case 3:
         if (v2) {
             if (sub_02058C40()) {
-                if (ov5_021D219C(&v1, fieldSystem) == 1) {
+                if (FieldInput_Process_Colosseum(&v1, fieldSystem) == 1) {
                     v2 = 0;
                 }
             } else {
@@ -295,16 +294,16 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
         break;
     case 2:
         if (v2) {
-            if (ov5_021D2298(&v1, fieldSystem) == 1) {
+            if (FieldInput_Process_UnionRoom(&v1, fieldSystem) == 1) {
                 
             } else {
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.unk_04, v1.unk_06, 0);
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, 0);
             }
         }
         break;
     case 4:
         if (v2) {
-            if (ov5_021D2368(&v1, fieldSystem) == 1) {
+            if (FieldInput_Process_BattleTower(&v1, fieldSystem) == 1) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
@@ -322,14 +321,14 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
                         v3 = ov25_02253DD4(v4);
                     }
 
-                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.unk_04, v1.unk_06, v3);
+                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v3);
                 }
             }
         }
         break;
     default:
         if (v2) {
-            if (ov5_021D1DA4(&v1, fieldSystem) == 1) {
+            if (FieldInput_Process(&v1, fieldSystem) == 1) {
                 ov5_021DDA78(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 sub_0205F56C(fieldSystem->playerAvatar);
@@ -348,7 +347,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
                         v5 = ov25_02253DD4(v6);
                     }
 
-                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.unk_04, v1.unk_06, v5);
+                    PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v5);
                 }
             }
         }

@@ -1800,7 +1800,7 @@ static u32 ov17_02241004 (UnkStruct_ov17_02241004 * param0, int param1, int para
     if ((param0->unk_02 != v1) || (param0->unk_01 != v0)) {
         Sound_PlayEffect(1500);
     } else {
-        if (v2 & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+        if (v2 & PAD_KEY) {
             return 0;
         }
     }
