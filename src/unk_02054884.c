@@ -14,17 +14,14 @@
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
 
-BOOL sub_02054884 (Pokemon * param0)
+BOOL Pokemon_CanBattle (Pokemon *mon)
 {
-    if (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 0) {
-        return 0;
+    // this can be simplified further, but it won't match
+    if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
+        return FALSE;
     }
 
-    if (Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL)) {
-        return 0;
-    }
-
-    return 1;
+    return !Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 }
 
 BOOL sub_020548B0 (int param0, SaveData * param1, u16 param2, u8 param3, u16 param4, int param5, int param6)
@@ -80,60 +77,56 @@ void sub_02054988 (Party * param0, int param1, int param2, u16 param3)
     Pokemon_ResetMoveSlot(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
 }
 
-int sub_020549A0 (Party * param0, u16 param1)
+// In many of the functions below, C99-style iterator declaration doesn't match
+
+int Party_HasMonWithMove (Party *party, u16 moveID)
 {
-    int v0, v1;
-    Pokemon * v2;
+    int i;
+    int partyCount = Party_GetCurrentCount(party);
 
-    v1 = Party_GetCurrentCount(param0);
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = Party_GetPokemonBySlotIndex(param0, v0);
-
-        if (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 
-        if ((Pokemon_GetValue(v2, MON_DATA_MOVE1, NULL) == param1) || (Pokemon_GetValue(v2, MON_DATA_MOVE2, NULL) == param1) || (Pokemon_GetValue(v2, MON_DATA_MOVE3, NULL) == param1) || (Pokemon_GetValue(v2, MON_DATA_MOVE4, NULL) == param1)) {
-            return v0;
-            break;
+        if (Pokemon_GetValue(mon, MON_DATA_MOVE1, NULL) == moveID 
+            || Pokemon_GetValue(mon, MON_DATA_MOVE2, NULL) == moveID
+            || Pokemon_GetValue(mon, MON_DATA_MOVE3, NULL) == moveID
+            || Pokemon_GetValue(mon, MON_DATA_MOVE4, NULL) == moveID) {
+            return i;
         }
     }
 
-    return 0xff;
+    return PARTY_SLOT_NONE;
 }
 
-int sub_02054A10 (const Party * param0)
+int Party_AliveMonsCount (const Party *party)
 {
-    int v0, v1, v2;
-    Pokemon * v3;
+    int i;
+    int partyCount = Party_GetCurrentCount(party);
+    int count = 0;
 
-    v1 = Party_GetCurrentCount(param0);
-    v2 = 0;
-
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(param0, v0);
-
-        if (sub_02054884(v3)) {
-            v2++;
+    for (i = 0; i < partyCount; i++) {
+        if (Pokemon_CanBattle(Party_GetPokemonBySlotIndex(party, i))) {
+            count++;
         }
     }
 
-    return v2;
+    return count;
 }
 
-Pokemon * Party_FirstBattler (const Party * param0)
+Pokemon * Party_FirstBattler (const Party *party)
 {
-    int v0, v1;
-    Pokemon * v2;
+    int i;
+    int partyCount = Party_GetCurrentCount(party);
 
-    v1 = Party_GetCurrentCount(param0);
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = Party_GetPokemonBySlotIndex(param0, v0);
-
-        if (sub_02054884(v2)) {
-            return v2;
+        if (Pokemon_CanBattle(mon)) {
+            return mon;
         }
     }
 
@@ -141,18 +134,16 @@ Pokemon * Party_FirstBattler (const Party * param0)
     return NULL;
 }
 
-Pokemon * sub_02054A74 (const Party * param0)
+Pokemon * Party_FirstMon (const Party *party)
 {
-    u16 v0, v1;
-    Pokemon * v2;
+    u16 i;
+    u16 partyCount = Party_GetCurrentCount(party);
 
-    v1 = Party_GetCurrentCount(param0);
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = Party_GetPokemonBySlotIndex(param0, v0);
-
-        if (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0) {
-            return v2;
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
+            return mon;
         }
     }
 
@@ -161,22 +152,20 @@ Pokemon * sub_02054A74 (const Party * param0)
 
 BOOL Party_HasTwoAliveMons (const Party *party)
 {
-    return sub_02054A10(party) >= 2;
+    return Party_AliveMonsCount(party) >= 2;
 }
 
-void sub_02054AC4 (Party * param0)
+void Party_SetChampionRibbons (Party *party)
 {
-    int v0, v1;
-    u8 v2 = 1;
-    Pokemon * v3;
+    int i;
+    u8 ribbonActive = 1;
+    int partyCount = Party_GetCurrentCount(party);
 
-    v1 = Party_GetCurrentCount(param0);
+    for (i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(param0, v0);
-
-        if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            Pokemon_SetValue(v3, 25, &v2);
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
+            Pokemon_SetValue(mon, MON_DATA_SINNOH_CHAMP_RIBBON, &ribbonActive);
         }
     }
 }
@@ -193,7 +182,7 @@ int sub_02054B04 (Party * param0, u16 param1)
     for (v2 = 0; v2 < v3; v2++) {
         v4 = Party_GetPokemonBySlotIndex(param0, v2);
 
-        if (sub_02054884(v4)) {
+        if (Pokemon_CanBattle(v4)) {
             if (Pokemon_GetValue(v4, MON_DATA_STATUS_CONDITION, NULL) & (0x80 | 0x8)) {
                 u32 v5 = Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL);
 

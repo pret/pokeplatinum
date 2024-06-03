@@ -284,7 +284,7 @@ static void sub_0204922C (StringTemplate * param0, int param1, const u16 * param
 static void sub_02049268 (FieldSystem * fieldSystem, StringTemplate * param1)
 {
     Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
-    Pokemon * v1 = sub_02054A74(v0);
+    Pokemon * v1 = Party_FirstMon(v0);
 
     StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxPokemon(v1));
 }

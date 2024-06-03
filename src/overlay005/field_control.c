@@ -215,7 +215,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
-        if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 127) != 0xff) {
+        if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), 127) != PARTY_SLOT_NONE) {
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
@@ -692,7 +692,7 @@ u16 Field_TileBehaviorToScript (FieldSystem *fieldSystem, u8 behavior)
         u32 distortionBehavior = sub_02061760(fieldSystem->playerAvatar);
 
         if (ov5_021E0118(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
-            if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 57) != 0xff) {
+            if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), 57) != PARTY_SLOT_NONE) {
                 return 10004;
             }
         }
