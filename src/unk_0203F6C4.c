@@ -2372,7 +2372,7 @@ static BOOL sub_02040294 (ScriptContext * ctx)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+    if (gCoreSys.pressedKeys & PAD_KEY) {
         return 1;
     }
 

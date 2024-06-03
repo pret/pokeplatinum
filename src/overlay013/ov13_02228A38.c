@@ -93,7 +93,7 @@ static u8 ov13_02228ACC (UnkStruct_ov13_02228A50 * param0)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & ((PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT) | PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gCoreSys.pressedKeys & (PAD_KEY | PAD_BUTTON_B | PAD_BUTTON_A)) {
         param0->unk_08 = 1;
 
         ov16_0226DD7C(param0->unk_00, param0->unk_04[param0->unk_09].unk_00, param0->unk_04[param0->unk_09].unk_02, param0->unk_04[param0->unk_09].unk_01, param0->unk_04[param0->unk_09].unk_03);

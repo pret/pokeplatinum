@@ -13,6 +13,8 @@ enum ButtonMode {
     BUTTON_MODE_L_IS_A = 3,
 };
 
+#define PAD_KEY (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)
+
 typedef struct CoreSys {
     Callback mainCallback;
     void *mainCallbackData;

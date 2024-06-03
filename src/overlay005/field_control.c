@@ -57,6 +57,7 @@
 #include "unk_02071B10.h"
 #include "pokemon.h"
 #include "party.h"
+#include "core_sys.h"
 #include "constants/sdat.h"
 #include "overlay005/field_control.h"
 #include "overlay005/ov5_021DB888.h"
@@ -144,11 +145,11 @@ void FieldInput_Update (FieldInput *input, FieldSystem *fieldSystem, u16 pressed
             input->dummy1 = TRUE;
         }
 
-        if (heldKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+        if (heldKeys & PAD_KEY) {
             input->sign = TRUE;
         }
 
-        if (heldKeys & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+        if (heldKeys & PAD_KEY) {
             input->mapTransition = TRUE;
         }
     }
