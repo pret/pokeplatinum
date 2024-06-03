@@ -29,7 +29,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "overlay081/ov81_021D0D80.h"

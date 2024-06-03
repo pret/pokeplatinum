@@ -1103,7 +1103,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
 
 static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int param2, const int param3)
 {
-    FieldStatus * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
     Location * v1 = sub_0203A72C(v0);
 
     (*v1) = *(fieldSystem->location);

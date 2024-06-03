@@ -15,11 +15,11 @@
 #include "heap.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CBE4.h"
 #include "map_header.h"
 
-typedef struct UnkStruct_0202B628_t {
+typedef struct Journal_t {
     UnkStruct_0202BC58 unk_00;
     u32 unk_04[4];
     UnkStruct_0202BE38 unk_14;

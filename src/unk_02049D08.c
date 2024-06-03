@@ -5,7 +5,7 @@
 
 
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
@@ -27,7 +27,7 @@
 #include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"

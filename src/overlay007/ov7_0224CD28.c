@@ -44,7 +44,7 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "unk_0202854C.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"

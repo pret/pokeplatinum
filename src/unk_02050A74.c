@@ -23,7 +23,7 @@
 #include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_02026150.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "communication_information.h"

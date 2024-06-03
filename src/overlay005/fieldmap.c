@@ -408,7 +408,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     u32 v0;
     u32 v1;
     int v2, v3;
-    FieldStatus * v4;
+    FieldOverworldState * v4;
 
     if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         return 0;
@@ -472,7 +472,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
 {
     u32 v0;
-    FieldStatus * v1;
+    FieldOverworldState * v1;
 
     v0 = fieldSystem->location->mapId;
     v1 = SaveData_GetFieldStatus(fieldSystem->saveData);

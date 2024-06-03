@@ -49,7 +49,7 @@
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "game_options.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"

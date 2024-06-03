@@ -33,7 +33,7 @@ typedef struct UnkStruct_0203A790_t {
     u16 unk_98;
     u16 unk_9A;
     u16 unk_9C;
-} FieldStatus;
+} FieldOverworldState;
 
 typedef struct UnkStruct_0203A79C_t {
     MapObjectSave unk_00[64];
@@ -41,7 +41,7 @@ typedef struct UnkStruct_0203A79C_t {
 
 int FieldPlayerState_SaveSize (void)
 {
-    return sizeof(FieldStatus);
+    return sizeof(FieldOverworldState);
 }
 
 int FieldOWState_SaveSize (void)
@@ -54,9 +54,9 @@ void FieldOWState_Init (UnkStruct_0203A79C * param0)
     MI_CpuClear32(param0, sizeof(UnkStruct_0203A79C));
 }
 
-void FieldPlayerState_Init (FieldStatus * param0)
+void FieldPlayerState_Init (FieldOverworldState * param0)
 {
-    memset(param0, 0, sizeof(FieldStatus));
+    memset(param0, 0, sizeof(FieldOverworldState));
 
     sub_020556C4(&param0->unk_6C);
     PlayerData_Init(&param0->unk_8C);
@@ -64,100 +64,100 @@ void FieldPlayerState_Init (FieldStatus * param0)
     param0->unk_68 = sub_0203A7EC();
 }
 
-Location * sub_0203A720 (FieldStatus * param0)
+Location * sub_0203A720 (FieldOverworldState * param0)
 {
     return &param0->unk_00;
 }
 
-Location * FieldStatus_GetEntranceLocation (FieldStatus * param0)
+Location * FieldStatus_GetEntranceLocation (FieldOverworldState * param0)
 {
     return &param0->unk_14;
 }
 
-Location * FieldStatus_GetPrevLocation (FieldStatus * param0)
+Location * FieldStatus_GetPrevLocation (FieldOverworldState * param0)
 {
     return &param0->unk_28;
 }
 
-Location * sub_0203A72C (FieldStatus * param0)
+Location * sub_0203A72C (FieldOverworldState * param0)
 {
     return &param0->unk_50;
 }
 
-Location * sub_0203A730 (FieldStatus * param0)
+Location * sub_0203A730 (FieldOverworldState * param0)
 {
     return &param0->unk_3C;
 }
 
-void sub_0203A734 (FieldStatus * param0, Location * param1)
+void sub_0203A734 (FieldOverworldState * param0, Location * param1)
 {
     param0->unk_3C = *param1;
     return;
 }
 
-u16 * sub_0203A748 (FieldStatus * param0)
+u16 * sub_0203A748 (FieldOverworldState * param0)
 {
     return &param0->unk_64;
 }
 
-u16 sub_0203A74C (const FieldStatus * param0)
+u16 sub_0203A74C (const FieldOverworldState * param0)
 {
     return param0->unk_66;
 }
 
-void FieldStatus_SetWeather (FieldStatus * param0, u16 param1)
+void FieldStatus_SetWeather (FieldOverworldState * param0, u16 param1)
 {
     param0->unk_66 = param1;
 }
 
-u16 sub_0203A75C (const FieldStatus * param0)
+u16 sub_0203A75C (const FieldOverworldState * param0)
 {
     return param0->unk_68;
 }
 
-void FieldStatus_SetWarpId (FieldStatus * param0, u16 param1)
+void FieldStatus_SetWarpId (FieldOverworldState * param0, u16 param1)
 {
     param0->unk_68 = param1;
 }
 
-UnkStruct_020556C4 * sub_0203A76C (FieldStatus * param0)
+UnkStruct_020556C4 * sub_0203A76C (FieldOverworldState * param0)
 {
     return &param0->unk_6C;
 }
 
-int FieldStatus_GetCameraType (const FieldStatus * param0)
+int FieldStatus_GetCameraType (const FieldOverworldState * param0)
 {
     return param0->unk_6A;
 }
 
-void FieldStatus_SetCameraType (FieldStatus * param0, int param1)
+void FieldStatus_SetCameraType (FieldOverworldState * param0, int param1)
 {
     param0->unk_6A = param1;
 }
 
-PlayerData * FieldStatus_GetPlayerData (FieldStatus * param0)
+PlayerData * FieldStatus_GetPlayerData (FieldOverworldState * param0)
 {
     return &param0->unk_8C;
 }
 
-u16 * sub_0203A784 (FieldStatus * param0)
+u16 * sub_0203A784 (FieldOverworldState * param0)
 {
     return &param0->unk_98;
 }
 
-u16 * sub_0203A788 (FieldStatus * param0)
+u16 * sub_0203A788 (FieldOverworldState * param0)
 {
     return &param0->unk_96;
 }
 
-u16 * sub_0203A78C (FieldStatus * param0)
+u16 * sub_0203A78C (FieldOverworldState * param0)
 {
     return &param0->unk_94;
 }
 
-FieldStatus * SaveData_GetFieldStatus (SaveData * param0)
+FieldOverworldState * SaveData_GetFieldStatus (SaveData * param0)
 {
-    FieldStatus * v0;
+    FieldOverworldState * v0;
 
     v0 = SaveData_SaveTable(param0, 6);
     return v0;

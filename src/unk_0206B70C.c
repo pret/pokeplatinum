@@ -79,7 +79,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     int x, z, v6;
     UnkStruct_020556C4 * v7;
     FieldEvents * v8 = SaveData_GetFieldEvents(fieldSystem->saveData);
-    FieldStatus * v9 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * v9 = SaveData_GetFieldStatus(fieldSystem->saveData);
     Location * v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));

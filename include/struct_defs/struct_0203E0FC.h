@@ -6,7 +6,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "game_options.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"

@@ -450,7 +450,7 @@ void sub_0206B514 (SaveData * param0)
 {
     u32 v0;
     FieldEvents * v1 = SaveData_GetFieldEvents(param0);
-    FieldStatus * v2 = SaveData_GetFieldStatus(param0);
+    FieldOverworldState * v2 = SaveData_GetFieldStatus(param0);
     Location * location = sub_0203A720(v2);
 
     if ((location->mapId != 457) && (location->mapId != 464)) {

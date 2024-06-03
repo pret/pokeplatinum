@@ -7,7 +7,7 @@
 
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "pokemon.h"
@@ -257,7 +257,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     PokedexData * v3 = SaveData_Pokedex(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
     Options * v5 = SaveData_Options(param2);
-    FieldStatus * v6 = SaveData_GetFieldStatus(param2);
+    FieldOverworldState * v6 = SaveData_GetFieldStatus(param2);
 
     if (fieldSystem != NULL) {
         sub_0205281C(param0, fieldSystem);

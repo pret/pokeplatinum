@@ -28,7 +28,7 @@
 #include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B37C.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202C9F4.h"

@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02025E08.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202D7A8.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"

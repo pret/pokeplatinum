@@ -18,7 +18,7 @@
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "field_menu.h"

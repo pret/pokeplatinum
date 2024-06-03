@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "savedata.h"
 
 #include "field/field_system.h"

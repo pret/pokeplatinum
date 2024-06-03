@@ -225,7 +225,7 @@ BOOL sub_02052B2C (TaskManager * param0)
 
         {
             Location v2;
-            FieldStatus * v3 = SaveData_GetFieldStatus(fieldSystem->saveData);
+            FieldOverworldState * v3 = SaveData_GetFieldStatus(fieldSystem->saveData);
             u16 v4 = sub_0203A75C(v3);
 
             sub_0203A824(v4, &v2);

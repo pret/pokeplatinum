@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_FIELD_MAP_CHANGE_H
-#define POKEPLATINUM_UNK_FIELD_MAP_CHANGE_H
+#ifndef POKEPLATINUM_FIELD_MAP_CHANGE_H
+#define POKEPLATINUM_FIELD_MAP_CHANGE_H
 
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -32,4 +32,4 @@ void sub_02054708(TaskManager * param0);
 void sub_02054800(TaskManager * param0, int param1, int param2, int param3, int param4, int param5);
 void sub_02054864(TaskManager * param0);
 
-#endif // POKEPLATINUM_UNK_FIELD_MAP_CHANGE_H
+#endif // POKEPLATINUM_FIELD_MAP_CHANGE_H

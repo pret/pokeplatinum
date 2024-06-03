@@ -39,7 +39,7 @@
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "communication_system.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
@@ -207,7 +207,7 @@ static void sub_020530C8 (FieldSystem * fieldSystem)
 
 static void FieldSystem_MapChange_SetNewLocation (FieldSystem * fieldSystem, const Location * nextLocation)
 {
-    FieldStatus * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
     Location * location = FieldStatus_GetPrevLocation(fieldStatus);
 
     if (nextLocation != NULL) {
@@ -244,7 +244,7 @@ void sub_020531A0 (FieldSystem * fieldSystem)
 void FieldSystem_MapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWarp)
 {
     int mapId = fieldSystem->location->mapId;
-    FieldStatus * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
 
     Sound_ClearSpecialBGM(fieldSystem);
     FieldSystem_ClearLocalFlags(fieldSystem);
@@ -300,7 +300,7 @@ void FieldSystem_MapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWar
 void FieldSystem_MapChange_UpdateGameDataDistortionWorld (FieldSystem * fieldSystem, BOOL param1)
 {
     int mapId = fieldSystem->location->mapId;
-    FieldStatus * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
 
     Sound_ClearSpecialBGM(fieldSystem);
     FieldSystem_ClearLocalFlags(fieldSystem);
@@ -336,7 +336,7 @@ void FieldSystem_MapChange_UpdateGameDataDistortionWorld (FieldSystem * fieldSys
 static void FieldSystem_MapChange_CreateObjects (FieldSystem * fieldSystem)
 {
     int gender;
-    FieldStatus * fieldStatus;
+    FieldOverworldState * fieldStatus;
     PlayerData * playerData;
 
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
@@ -363,7 +363,7 @@ static void FieldSystem_MapChange_LoadObjects (FieldSystem * fieldSystem)
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
     FieldSystem_LoadObjects(fieldSystem);
 
-    FieldStatus * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
     PlayerData * playerData = FieldStatus_GetPlayerData(fieldStatus);
     int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
@@ -426,7 +426,7 @@ void sub_02053494 (FieldSystem * fieldSystem)
 static void sub_020534BC (FieldSystem * fieldSystem)
 {
     if (fieldSystem->unk_9C != NULL) {
-        FieldStatus * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
+        FieldOverworldState * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
         Location * location = sub_0203A730(v0);
         void * v2 = sub_0202BC58(location->mapId, 11);
         sub_0202B758(fieldSystem->unk_9C, v2, 0);
@@ -506,7 +506,7 @@ static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
         fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events));
 
         if (FieldEvents_CheckCommClub(events)) {
-            FieldStatus * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+            FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
 
             if (FieldSystem_IsSavedInUnionRoom(fieldSystem)) {
                 FieldSystem_SetLocationToUnionRoomExit(fieldSystem);

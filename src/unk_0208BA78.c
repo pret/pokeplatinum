@@ -4,7 +4,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "savedata.h"
 
@@ -22,7 +22,7 @@
 #include "game_overlay.h"
 #include "overlay_manager.h"
 #include "heap.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_020507CC.h"

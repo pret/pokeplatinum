@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02051D8C_H
 
 #include "trainer_info.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_defs/chatot_cry.h"
 #include "field/field_system_decl.h"
 #include "pokemon.h"

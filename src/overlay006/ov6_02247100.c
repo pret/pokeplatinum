@@ -14,7 +14,7 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
@@ -144,7 +144,7 @@ static int ov6_02247244 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_02247288 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    FieldStatus * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
 
     if (param2->unk_08 == 2) {
         u16 v1;

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0203DE34_H
 
 #include "game_options.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "savedata.h"

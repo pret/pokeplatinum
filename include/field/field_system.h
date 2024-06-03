@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_02039E30_decl.h"
 #include "struct_decls/struct_0203A3E8_decl.h"
 #include "field/field_system_sub1_decl.h"

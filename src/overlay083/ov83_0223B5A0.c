@@ -25,7 +25,7 @@
 #include "game_options.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "communication_information.h"
 #include "communication_system.h"

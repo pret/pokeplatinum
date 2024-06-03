@@ -40,7 +40,7 @@ BOOL ScrCmd_158 (ScriptContext * param0)
 
 BOOL ScrCmd_159 (ScriptContext * param0)
 {
-    FieldStatus * v0;
+    FieldOverworldState * v0;
     PlayerData * v1;
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
@@ -53,7 +53,7 @@ BOOL ScrCmd_159 (ScriptContext * param0)
 
 BOOL ScrCmd_15A (ScriptContext * param0)
 {
-    FieldStatus * v0;
+    FieldOverworldState * v0;
     PlayerData * v1;
 
     v0 = SaveData_GetFieldStatus(param0->fieldSystem->saveData);

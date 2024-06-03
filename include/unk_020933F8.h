@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_020933F8_H
 
 #include "string_template.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02095C48.h"

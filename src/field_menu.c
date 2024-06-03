@@ -60,7 +60,7 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"

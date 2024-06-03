@@ -92,7 +92,7 @@
 #include "unk_020298BC.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D7A8.h"
@@ -4688,7 +4688,7 @@ static BOOL ScrCmd_204 (ScriptContext * ctx)
 
 static BOOL ScrCmd_200 (ScriptContext * ctx)
 {
-    FieldStatus * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
     Location * location = FieldStatus_GetPrevLocation(v0);
     u16 * mapId = ScriptContext_GetVarPointer(ctx);
 
@@ -4749,7 +4749,7 @@ static BOOL ScrCmd_0C2 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0C3 (ScriptContext * ctx)
 {
-    FieldStatus * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
 
     FieldStatus_SetWeather(v0, 0);
     ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, sub_0203A74C(v0));
@@ -4759,7 +4759,7 @@ static BOOL ScrCmd_0C3 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0C4 (ScriptContext * ctx)
 {
-    FieldStatus * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
 
     FieldStatus_SetWeather(v0, 0);
     ov5_021D5F7C(ctx->fieldSystem->unk_04->unk_0C, sub_0203A74C(v0));
@@ -6449,7 +6449,7 @@ static BOOL ScrCmd_202 (ScriptContext * ctx)
 {
     u16 * v0;
     u16 * v1;
-    FieldStatus * v2 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
+    FieldOverworldState * v2 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
     FieldEvents * v3 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
     TVBroadcast * v4 = SaveData_TVBroadcast(ctx->fieldSystem->saveData);
     int v5 = ScriptContext_ReadByte(ctx);
@@ -7768,7 +7768,7 @@ static BOOL ScrCmd_2B5 (ScriptContext * ctx)
     u16 mapId = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
-    FieldStatus * v3 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
+    FieldOverworldState * v3 = SaveData_GetFieldStatus(ctx->fieldSystem->saveData);
     Location * location = sub_0203A72C(v3);
 
     location->mapId = mapId;

@@ -1,10 +1,11 @@
-#ifndef POKEPLATINUM_UNK_0202B604_H
-#define POKEPLATINUM_UNK_0202B604_H
+#ifndef POKEPLATINUM_JOURNAL_H
+#define POKEPLATINUM_JOURNAL_H
 
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202B628_decl.h"
 #include "savedata.h"
+
+typedef struct Journal_t Journal;
 
 int Journal_SaveSize(void);
 void Journal_Init(Journal * param0);
@@ -60,4 +61,4 @@ u32 sub_0202C6A4(u32 param0);
 void sub_0202C704(Journal * param0, u32 param1, u32 param2);
 void sub_0202C720(Journal * param0, u16 param1, u16 param2, u32 param3);
 
-#endif // POKEPLATINUM_UNK_0202B604_H
+#endif // POKEPLATINUM_JOURNAL_H

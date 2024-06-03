@@ -13,7 +13,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_defs/struct_0205AA50.h"

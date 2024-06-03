@@ -209,7 +209,7 @@ u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
 static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
 {
     int v0, v1;
-    FieldStatus * v2 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * v2 = SaveData_GetFieldStatus(fieldSystem->saveData);
     Location * location = FieldStatus_GetPrevLocation(v2);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);

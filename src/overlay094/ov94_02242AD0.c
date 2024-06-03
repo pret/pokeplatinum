@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202DA40_decl.h"
@@ -32,7 +32,7 @@
 #include "savedata/save_table.h"
 #include "savedata.h"
 #include "game_options.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CC64.h"
 #include "unk_0202CD50.h"
 #include "unk_0202DA40.h"
