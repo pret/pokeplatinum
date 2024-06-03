@@ -60,7 +60,7 @@
 #include "core_sys.h"
 #include "constants/sdat.h"
 #include "overlay005/field_control.h"
-#include "overlay005/ov5_021DB888.h"
+#include "overlay005/vs_seeker.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1154.h"
 #include "overlay005/ov5_021E622C.h"

@@ -196,7 +196,7 @@
 #include "unk_0209C194.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
-#include "overlay005/ov5_021DB888.h"
+#include "overlay005/vs_seeker.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/ov5_021DD42C.h"
 #include "overlay005/ov5_021DDAE4.h"

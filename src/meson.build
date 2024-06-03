@@ -373,7 +373,7 @@ pokeplatinum_c = files(
     'overlay005/ov5_021D5BC0.c',
     'overlay005/ov5_021D5CB0.c',
     'overlay005/ov5_021D5EB8.c',
-    'overlay005/ov5_021DB888.c',
+    'overlay005/vs_seeker.c',
     'overlay005/ov5_021DC018.c',
     'overlay005/ov5_021DD42C.c',
     'overlay005/ov5_021DD6FC.c',
