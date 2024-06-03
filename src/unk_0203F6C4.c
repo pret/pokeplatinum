@@ -4135,7 +4135,7 @@ static BOOL ScrCmd_20A (ScriptContext * ctx)
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     StringTemplate ** v1 = sub_0203F098(ctx->fieldSystem, 15);
 
-    ov5_021DB888(ctx->taskManager, *v1, sub_0203F118(ctx->fieldSystem, v0));
+    VsSeeker_Start(ctx->taskManager, *v1, sub_0203F118(ctx->fieldSystem, v0));
     return 1;
 }
 
