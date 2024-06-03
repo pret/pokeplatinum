@@ -280,7 +280,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             return TRUE;
         }
 
-        int distortionState = PlayerAvatar_DistortionWorldState(fieldSystem->playerAvatar);
+        int distortionState = PlayerAvatar_DistortionState(fieldSystem->playerAvatar);
 
         if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
             int event = sub_0203CA6C(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));

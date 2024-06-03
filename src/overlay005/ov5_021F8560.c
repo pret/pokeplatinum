@@ -170,7 +170,7 @@ static void ov5_021F86E4 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     }
 
     v0->unk_04 = MapObject_GetMoveDir(v1);
-    v0->unk_34 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    v0->unk_34 = PlayerAvatar_DistortionState(playerAvatar);
 
     GF_ASSERT(v0->unk_04 != -1);
 

@@ -211,7 +211,7 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     int v0, v1, v2;
     MapObject * v3;
 
-    if (sub_0205F158(fieldSystem->playerAvatar) == 1) {
+    if (PlayerAvatar_DistortionGravityChanged(fieldSystem->playerAvatar) == TRUE) {
         sub_020684D0(fieldSystem, param1);
         return;
     }

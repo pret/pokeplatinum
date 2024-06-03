@@ -173,7 +173,7 @@ void sub_02070728 (FieldSystem * fieldSystem, UnkStruct_02070950 * param1)
     param1->unk_00 = fieldSystem->unk_1C->unk_00;
     param1->unk_0C = 0;
 
-    if (sub_0205F158(fieldSystem->playerAvatar) == 1) {
+    if (PlayerAvatar_DistortionGravityChanged(fieldSystem->playerAvatar) == TRUE) {
         sub_02070838(fieldSystem, param1);
         return;
     }

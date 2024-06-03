@@ -207,7 +207,7 @@ int PlayerAvatar_GetMoveDir (PlayerAvatar * const playerAvatar)
 
 int sub_0205EAA0 (PlayerAvatar * const playerAvatar)
 {
-    if (sub_0205F16C(playerAvatar) == 1) {
+    if (PlayerAvatar_DistortionStateOnFloor(playerAvatar) == TRUE) {
         return PlayerAvatar_GetDir(playerAvatar);
     }
 
@@ -831,26 +831,26 @@ int sub_0205F08C (PlayerAvatar * playerAvatar)
     return sub_0205EBB0(playerAvatar, (1 << 7));
 }
 
-void sub_0205F098 (PlayerAvatar * playerAvatar, int param1)
+void PlayerAvatar_SetDistortionState (PlayerAvatar * playerAvatar, int state)
 {
     sub_0205EBA4(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
 
-    switch (param1) {
-    case 0:
+    switch (state) {
+    case AVATAR_DISTORTION_STATE_NONE:
         return;
-    case 1:
+    case AVATAR_DISTORTION_STATE_ACTIVE:
         sub_0205EB9C(playerAvatar, (1 << 8));
         return;
-    case 2:
+    case AVATAR_DISTORTION_STATE_FLOOR:
         sub_0205EB9C(playerAvatar, (1 << 9));
         return;
-    case 3:
+    case AVATAR_DISTORTION_STATE_WEST_WALL:
         sub_0205EB9C(playerAvatar, (1 << 10));
         return;
-    case 4:
+    case AVATAR_DISTORTION_STATE_EAST_WALL:
         sub_0205EB9C(playerAvatar, (1 << 11));
         return;
-    case 5:
+    case AVATAR_DISTORTION_STATE_CEILING:
         sub_0205EB9C(playerAvatar, (1 << 12));
         return;
     }
@@ -858,7 +858,7 @@ void sub_0205F098 (PlayerAvatar * playerAvatar, int param1)
     GF_ASSERT(0);
 }
 
-int PlayerAvatar_DistortionWorldState (PlayerAvatar * const playerAvatar)
+int PlayerAvatar_DistortionState (PlayerAvatar * const playerAvatar)
 {
     int state = AVATAR_DISTORTION_STATE_NONE;
     u32 v1 = sub_0205EBB0(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
@@ -884,24 +884,26 @@ int PlayerAvatar_DistortionWorldState (PlayerAvatar * const playerAvatar)
     return state;
 }
 
-BOOL sub_0205F158 (PlayerAvatar * const playerAvatar)
-{
-    int distortionState = PlayerAvatar_DistortionWorldState(playerAvatar);
+// these functions can be simplified, but they'll no longer match
 
-    if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
+BOOL PlayerAvatar_DistortionGravityChanged (PlayerAvatar * const playerAvatar)
+{
+    int state = PlayerAvatar_DistortionState(playerAvatar);
+
+    if (state == AVATAR_DISTORTION_STATE_NONE || state == AVATAR_DISTORTION_STATE_ACTIVE) {
         return FALSE;
     }
 
     return TRUE;
 }
 
-BOOL sub_0205F16C (PlayerAvatar * const playerAvatar)
+BOOL PlayerAvatar_DistortionStateOnFloor (PlayerAvatar * const playerAvatar)
 {
-    int distortionState = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int state = PlayerAvatar_DistortionState(playerAvatar);
 
-    if (distortionState == AVATAR_DISTORTION_STATE_NONE 
-        || distortionState == AVATAR_DISTORTION_STATE_ACTIVE 
-        || distortionState == AVATAR_DISTORTION_STATE_FLOOR) {
+    if (state == AVATAR_DISTORTION_STATE_NONE 
+        || state == AVATAR_DISTORTION_STATE_ACTIVE 
+        || state == AVATAR_DISTORTION_STATE_FLOOR) {
         return TRUE;
     }
 
