@@ -847,7 +847,7 @@ static BOOL Field_UpdateDaycare (FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateVsSeeker (FieldSystem *fieldSystem)
 {
-    ov5_021DBB94(fieldSystem);
+    VsSeeker_UpdateStepCount(fieldSystem);
     return FALSE;
 }
 

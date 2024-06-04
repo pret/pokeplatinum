@@ -7,8 +7,8 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 void VsSeeker_Start(TaskManager *param0, StringTemplate *template, u16 *outResult);
-BOOL ov5_021DBB94(FieldSystem * fieldSystem);
-u16 ov5_021DBD98(FieldSystem * fieldSystem, MapObject * param1, u16 param2);
-void ov5_021DBED4(FieldSystem * fieldSystem, MapObject * param1);
+BOOL VsSeeker_UpdateStepCount(FieldSystem * fieldSystem);
+u16 VsSeeker_GetRematchTrainerID(FieldSystem * fieldSystem, MapObject * param1, u16 param2);
+void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem * fieldSystem, MapObject * param1);
 
 #endif // POKEPLATINUM_VS_SEEKER_H

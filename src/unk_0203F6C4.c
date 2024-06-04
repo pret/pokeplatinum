@@ -3868,7 +3868,7 @@ static BOOL ScrCmd_09B (ScriptContext * ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 * v4 = ScriptContext_GetVarPointer(ctx);
 
-    *v4 = ov5_021DBD98(ctx->fieldSystem, *v2, v3);
+    *v4 = VsSeeker_GetRematchTrainerID(ctx->fieldSystem, *v2, v3);
     return 0;
 }
 
@@ -4145,7 +4145,7 @@ static BOOL ScrCmd_20B (ScriptContext * ctx)
 
     if (*v0 != NULL) {
         if ((sub_02071CB4(ctx->fieldSystem, 2) == 0) || (ov8_0224C5DC(ctx->fieldSystem, *v0) == 0)) {
-            ov5_021DBED4(ctx->fieldSystem, *v0);
+            VsSeeker_SetMoveCodeForFacingDirection(ctx->fieldSystem, *v0);
         }
     }
 

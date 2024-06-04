@@ -109,13 +109,13 @@ void Events_SetVsSeekerUsedFlag (VarsFlags * param0)
     return;
 }
 
-void sub_0206A9D4 (VarsFlags * param0)
+void Events_ClearVsSeekerUsedFlag (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 13));
     return;
 }
 
-BOOL sub_0206A9E4 (VarsFlags * param0)
+BOOL Events_GetVsSeekerUsedFlag (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 13));
 }
@@ -204,7 +204,7 @@ BOOL sub_0206AAA8 (VarsFlags * param0, int param1)
     return v0;
 }
 
-BOOL sub_0206AB00 (VarsFlags * param0, int param1)
+BOOL Events_HasUnlockedVsSeekerLevel (VarsFlags * param0, int param1)
 {
     int v0 = 0;
 
