@@ -884,8 +884,7 @@ enum AvatarDistortionState PlayerAvatar_DistortionState (PlayerAvatar * const pl
     return state;
 }
 
-// these functions can be simplified, but preserving matching reduces clarity
-
+// this function can be simplified, but preserving matching reduces clarity
 BOOL PlayerAvatar_DistortionGravityChanged (PlayerAvatar * const playerAvatar)
 {
     enum AvatarDistortionState state = PlayerAvatar_DistortionState(playerAvatar);
@@ -901,11 +900,7 @@ BOOL PlayerAvatar_DistortionStateOnFloor (PlayerAvatar * const playerAvatar)
 {
     enum AvatarDistortionState state = PlayerAvatar_DistortionState(playerAvatar);
 
-    if (state == AVATAR_DISTORTION_STATE_NONE 
-     || state == AVATAR_DISTORTION_STATE_ACTIVE 
-     || state == AVATAR_DISTORTION_STATE_FLOOR) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return state == AVATAR_DISTORTION_STATE_NONE 
+        || state == AVATAR_DISTORTION_STATE_ACTIVE 
+        || state == AVATAR_DISTORTION_STATE_FLOOR;
 }
