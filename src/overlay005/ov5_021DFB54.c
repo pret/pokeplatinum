@@ -15,7 +15,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 #include "overlay006/battle_params.h"
 
 #include "unk_02005474.h"
@@ -1451,7 +1451,7 @@ static int(*const Unk_ov5_021F9AFC[])(UnkStruct_ov5_021F9B10 *) = {
     ov5_021E0D40
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov5_021F9B9C[] = {
+static const MapObjectAnimCmd Unk_ov5_021F9B9C[] = {
     {0x1, 0x1},
     {0x3C, 0x2},
     {0x2, 0x1},
@@ -1479,7 +1479,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov5_021F9B9C[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov5_021F9C00[] = {
+static const MapObjectAnimCmd Unk_ov5_021F9C00[] = {
     {0x1, 0x1},
     {0x2, 0x1},
     {0x0, 0x1},

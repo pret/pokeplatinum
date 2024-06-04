@@ -58,7 +58,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
 #include "overlay005/struct_ov5_021DD42C.h"
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
@@ -239,7 +239,7 @@
 typedef struct {
     SysTask * unk_00;
     SysTask * unk_04;
-    UnkStruct_ov5_021F8E3C * unk_08;
+    MapObjectAnimCmd * unk_08;
     FieldSystem * fieldSystem;
 } UnkStruct_02040F28;
 
@@ -749,7 +749,7 @@ static BOOL ScrCmd_323(ScriptContext * ctx);
 static BOOL ScrCmd_328(ScriptContext * ctx);
 static BOOL ScrCmd_32B(ScriptContext * ctx);
 static BOOL sub_02040F0C(ScriptContext * ctx);
-static void sub_02040F28(FieldSystem * fieldSystem, SysTask * param1, UnkStruct_ov5_021F8E3C * param2);
+static void sub_02040F28(FieldSystem * fieldSystem, SysTask * param1, MapObjectAnimCmd * param2);
 static void sub_02040F5C(SysTask * param0, void * param1);
 static u32 sub_0204676C(SaveData * param0);
 
@@ -2978,7 +2978,7 @@ static BOOL ScrCmd_ApplyMovement (ScriptContext * ctx)
         return FALSE;
     }
 
-    SysTask * v1 = MapObject_StartAnimation(object, (UnkStruct_ov5_021F8E3C *)(ctx->scriptPtr + movementOffset));
+    SysTask * v1 = MapObject_StartAnimation(object, (MapObjectAnimCmd *)(ctx->scriptPtr + movementOffset));
     u8 * v2 = sub_0203F098(ctx->fieldSystem, 4);
     (*v2)++;
     sub_02040F28(ctx->fieldSystem, v1, NULL);
@@ -2996,7 +2996,7 @@ static BOOL ScrCmd_2A1 (ScriptContext * ctx)
     u16 v6 = ScriptContext_GetVar(ctx);
     u16 v7 = ScriptContext_GetVar(ctx);
     u16 v8, v9;
-    UnkStruct_ov5_021F8E3C * v10;
+    MapObjectAnimCmd * v10;
     int v11;
 
     v4 = sub_02040ED4(ctx->fieldSystem, v5);
@@ -3005,7 +3005,7 @@ static BOOL ScrCmd_2A1 (ScriptContext * ctx)
         GF_ASSERT(FALSE);
     }
 
-    v10 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8E3C) * 64);
+    v10 = Heap_AllocFromHeap(4, sizeof(MapObjectAnimCmd) * 64);
     v8 = MapObject_GetXPos(v4);
     v9 = MapObject_GetZPos(v4);
     v11 = 0;
@@ -3077,7 +3077,7 @@ static BOOL sub_02040F0C (ScriptContext * ctx)
     return 0;
 }
 
-static void sub_02040F28 (FieldSystem * fieldSystem, SysTask * param1, UnkStruct_ov5_021F8E3C * param2)
+static void sub_02040F28 (FieldSystem * fieldSystem, SysTask * param1, MapObjectAnimCmd * param2)
 {
     UnkStruct_02040F28 * v0 = NULL;
 

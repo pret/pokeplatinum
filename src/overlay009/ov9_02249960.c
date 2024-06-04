@@ -34,7 +34,7 @@
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -5297,24 +5297,24 @@ static int ov9_0224D5E8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     return 0;
 }
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02251378[] = {
+static const MapObjectAnimCmd Unk_ov9_02251378[] = {
     {0xf, 0x2},
     {0xC, 0x4},
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_0225136C[] = {
+static const MapObjectAnimCmd Unk_ov9_0225136C[] = {
     {0xf, 0x1},
     {0xC, 0x4},
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02251350[] = {
+static const MapObjectAnimCmd Unk_ov9_02251350[] = {
     {0xC, 0x4},
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C * const Unk_ov9_02251384[3] = {
+static const MapObjectAnimCmd * const Unk_ov9_02251384[3] = {
     Unk_ov9_02251378,
     Unk_ov9_0225136C,
     Unk_ov9_02251350
@@ -5324,7 +5324,7 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 {
     int v0;
     MapObject * v1;
-    const UnkStruct_ov5_021F8E3C * v2;
+    const MapObjectAnimCmd * v2;
 
     v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, (0x80 + 6));
     GF_ASSERT(v1 != NULL);
@@ -9060,7 +9060,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251CC0[6] = {
     ov9_02250A90
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02251E74[] = {
+static const MapObjectAnimCmd Unk_ov9_02251E74[] = {
     {0x42, 0x1},
     {0x7, 0x1},
     {0x7, 0x1},
@@ -9152,7 +9152,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251408[4] = {
     ov9_02250BAC
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252D80[] = {
+static const MapObjectAnimCmd Unk_ov9_02252D80[] = {
     {0x42, 0x1},
     {0xf, 0x2},
     {0x10, 0x2},
@@ -9173,7 +9173,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov9_02252D80[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252DC8[] = {
+static const MapObjectAnimCmd Unk_ov9_02252DC8[] = {
     {0x42, 0x1},
     {0xf, 0x2},
     {0x10, 0x1},
@@ -9195,7 +9195,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov9_02252DC8[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252E14[] = {
+static const MapObjectAnimCmd Unk_ov9_02252E14[] = {
     {0x42, 0x1},
     {0x3f, 0x2},
     {0x2, 0x1},
@@ -9218,7 +9218,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov9_02252E14[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252E64[] = {
+static const MapObjectAnimCmd Unk_ov9_02252E64[] = {
     {0x42, 0x1},
     {0x3f, 0x2},
     {0x2, 0x1},
@@ -9269,7 +9269,7 @@ static int ov9_02250C48 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 9) {
         int v2, v3, v4;
-        const UnkStruct_ov5_021F8E3C * v5, * v6;
+        const MapObjectAnimCmd * v5, * v6;
 
         ov9_02250F44(param0, &v2, &v3, &v4);
 

@@ -1,9 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_OV5_021F8E3C_H
-#define POKEPLATINUM_STRUCT_OV5_021F8E3C_H
-
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_ov5_021F8E3C;
-
-#endif // POKEPLATINUM_STRUCT_OV5_021F8E3C_H

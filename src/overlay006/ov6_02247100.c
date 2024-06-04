@@ -9,7 +9,7 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -44,9 +44,9 @@ int(*const Unk_ov6_022495CC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247
 int(*const Unk_ov6_022495BC[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *);
 int(*const Unk_ov6_022495F0[])(TaskManager *, FieldSystem *, UnkStruct_ov6_02247100 *);
 
-const UnkStruct_ov5_021F8E3C Unk_ov6_02249608[];
-const UnkStruct_ov5_021F8E3C Unk_ov6_022495DC[];
-const UnkStruct_ov5_021F8E3C Unk_ov6_0224966C[];
+const MapObjectAnimCmd Unk_ov6_02249608[];
+const MapObjectAnimCmd Unk_ov6_022495DC[];
+const MapObjectAnimCmd Unk_ov6_0224966C[];
 
 void * ov6_02247100 (FieldSystem * fieldSystem, u32 param1)
 {
@@ -384,7 +384,7 @@ static void * ov6_02247590 (u32 param0, u32 param1)
     return v0;
 }
 
-static const UnkStruct_ov5_021F8E3C Unk_ov6_02249608[] = {
+static const MapObjectAnimCmd Unk_ov6_02249608[] = {
     {0x1, 0x1},
     {0x3C, 0x2},
     {0x2, 0x1},
@@ -412,7 +412,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov6_02249608[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov6_022495DC[] = {
+static const MapObjectAnimCmd Unk_ov6_022495DC[] = {
     {0x0, 0x1},
     {0x3, 0x1},
     {0x1, 0x1},
@@ -420,7 +420,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov6_022495DC[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov6_0224966C[] = {
+static const MapObjectAnimCmd Unk_ov6_0224966C[] = {
     {0x1, 0x1},
     {0x2, 0x1},
     {0x0, 0x1},

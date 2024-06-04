@@ -13,7 +13,7 @@
 #include "struct_defs/struct_02027BF4.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 
 #include "heap.h"
 #include "unk_0201C970.h"
@@ -291,12 +291,12 @@ u32 sub_02055FC8 (const FieldSystem * fieldSystem, const MapObject * param1)
     return v0;
 }
 
-static const UnkStruct_ov5_021F8E3C Unk_020EC51C[] = {
+static const MapObjectAnimCmd Unk_020EC51C[] = {
     {0xA, 0x1},
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_020EC524[] = {
+static const MapObjectAnimCmd Unk_020EC524[] = {
     {0xB, 0x1},
     {0xfe, 0x0}
 };
@@ -378,7 +378,7 @@ static void sub_020560F8 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1
     }
 }
 
-static void sub_0205610C (FieldSystem * fieldSystem, UnkStruct_020562AC * param1, const UnkStruct_ov5_021F8E3C * param2)
+static void sub_0205610C (FieldSystem * fieldSystem, UnkStruct_020562AC * param1, const MapObjectAnimCmd * param2)
 {
     MapObject * v0 = Player_MapObject(fieldSystem->playerAvatar);
     param1->unk_0C = MapObject_StartAnimation(v0, param2);

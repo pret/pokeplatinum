@@ -9,7 +9,7 @@
 
 #include "constdata/const_020EE31C.h"
 
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
@@ -28,7 +28,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     MapObject * unk_0C;
-    const UnkStruct_ov5_021F8E3C * unk_10;
+    const MapObjectAnimCmd * unk_10;
 } UnkStruct_020EEE54;
 
 typedef struct {
@@ -190,7 +190,7 @@ void sub_020656DC (MapObject * mapObj)
     sub_02062BC0(mapObj, 0);
 }
 
-SysTask * MapObject_StartAnimation (MapObject * mapObj, const UnkStruct_ov5_021F8E3C * param1)
+SysTask * MapObject_StartAnimation (MapObject * mapObj, const MapObjectAnimCmd * param1)
 {
     SysTask * v0;
     UnkStruct_020EEE54 * v1;
@@ -266,7 +266,7 @@ static int sub_020657B0 (UnkStruct_020EEE54 * param0)
 
 static int sub_020657CC (UnkStruct_020EEE54 * param0)
 {
-    const UnkStruct_ov5_021F8E3C * v0;
+    const MapObjectAnimCmd * v0;
 
     v0 = param0->unk_10;
     LocalMapObj_SetAnimationCode(param0->unk_0C, v0->unk_00);
@@ -288,7 +288,7 @@ static int sub_020657E4 (UnkStruct_020EEE54 * param0)
 
 static int sub_02065800 (UnkStruct_020EEE54 * param0)
 {
-    const UnkStruct_ov5_021F8E3C * v0;
+    const MapObjectAnimCmd * v0;
 
     v0 = param0->unk_10;
     param0->unk_08++;
