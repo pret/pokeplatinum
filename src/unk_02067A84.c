@@ -127,7 +127,7 @@ static int sub_02067BA8 (FieldSystem * fieldSystem, MapObjectManager * param1, P
             v1 = sub_02067C80(v3, playerAvatar, &v2);
 
             if (v1 != -1) {
-                if (sub_0203F2A0(fieldSystem, sub_02067F14(v3)) == 0) {
+                if (Script_HasBeatenTrainer(fieldSystem, sub_02067F14(v3)) == 0) {
                     sub_02067C28(param4, v3, v1, v2);
                     return 1;
                 }
@@ -142,15 +142,15 @@ static void sub_02067C28 (UnkStruct_02067C28 * param0, MapObject * param1, int p
 {
     param0->unk_00 = param2;
     param0->unk_04 = param3;
-    param0->unk_08 = sub_02062960(param1);
-    param0->unk_0C = sub_0203F254(param0->unk_08);
-    param0->unk_10 = sub_0203F28C(param0->unk_0C);
+    param0->unk_08 = MapObject_GetEventID(param1);
+    param0->unk_0C = Script_GetTrainerIDFromEventID(param0->unk_08);
+    param0->unk_10 = Script_IsDoubleBattle(param0->unk_0C);
     param0->unk_14 = param1;
 }
 
 static int sub_02067C54 (const MapObject * param0)
 {
-    int v0 = sub_02062950(param0);
+    int v0 = MapObject_GetEventType(param0);
 
     switch (v0) {
     case 0x4:
@@ -349,8 +349,8 @@ static int sub_02067F14 (MapObject * mapObj)
 {
     int v0;
 
-    v0 = sub_02062960(mapObj);
-    return sub_0203F254(v0);
+    v0 = MapObject_GetEventID(mapObj);
+    return Script_GetTrainerIDFromEventID(v0);
 }
 
 int sub_02067F24 (MapObject * mapObj)
@@ -386,7 +386,7 @@ int sub_02067F88 (FieldSystem * fieldSystem, MapObject * param1)
     int v0 = sub_02067C54(param1);
 
     if ((v0 == 0x1) || (v0 == 0x2)) {
-        if (sub_0203F2A0(fieldSystem, sub_02067F14(param1)) == 0) {
+        if (Script_HasBeatenTrainer(fieldSystem, sub_02067F14(param1)) == 0) {
             return 1;
         }
     }
@@ -468,7 +468,7 @@ static int sub_02068088 (UnkStruct_020EF6D0 * param0)
 {
     MapObject * v0 = param0->unk_24;
 
-    if (sub_02062D1C(v0) == 1) {
+    if (MapObject_IsMoving(v0) == 1) {
         sub_02062DDC(v0);
     }
 
@@ -480,7 +480,7 @@ static int sub_020680A4 (UnkStruct_020EF6D0 * param0)
 {
     MapObject * v0 = param0->unk_24;
 
-    if (sub_02062D1C(v0) == 1) {
+    if (MapObject_IsMoving(v0) == 1) {
         return 0;
     }
 

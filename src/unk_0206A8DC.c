@@ -103,7 +103,7 @@ BOOL sub_0206A9B4 (VarsFlags * param0)
     return sub_0206A8EC(param0, (2400 + 5));
 }
 
-void sub_0206A9C4 (VarsFlags * param0)
+void Events_SetVsSeekerUsedFlag (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 13));
     return;

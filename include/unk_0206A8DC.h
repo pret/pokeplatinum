@@ -13,7 +13,7 @@ BOOL sub_0206A984(VarsFlags * param0);
 void sub_0206A994(VarsFlags * param0);
 void sub_0206A9A4(VarsFlags * param0);
 BOOL sub_0206A9B4(VarsFlags * param0);
-void sub_0206A9C4(VarsFlags * param0);
+void Events_SetVsSeekerUsedFlag(VarsFlags * param0);
 void sub_0206A9D4(VarsFlags * param0);
 BOOL sub_0206A9E4(VarsFlags * param0);
 void sub_0206A9F4(VarsFlags * param0);

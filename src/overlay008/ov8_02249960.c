@@ -4032,7 +4032,7 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
         v4 = MapObject_Id(v5);
         v6->unk_08 = sub_020629D8(v5, 0);
 
-        if ((v4 == 0xff) || ((sub_02062950(v5) == 0x1) && v6->unk_08)) {
+        if ((v4 == 0xff) || ((MapObject_GetEventType(v5) == 0x1) && v6->unk_08)) {
             v6->unk_00 = 1;
             v6->unk_04 = MapObject_Dir(v5);
             v6->unk_14 = v5;
@@ -4099,10 +4099,10 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
             v3 = sub_02067D58(v7, playerAvatar, v1, v2);
 
             if (v3 != -1) {
-                int v9 = sub_02062960(v7);
+                int v9 = MapObject_GetEventID(v7);
 
                 sub_0203E880(fieldSystem, 3928, v7);
-                sub_0203E8B0(fieldSystem, v7, v3, v1, v9, sub_0203F254(v9), 0, 0);
+                sub_0203E8B0(fieldSystem, v7, v3, v1, v9, Script_GetTrainerIDFromEventID(v9), 0, 0);
                 return 1;
             }
         }

@@ -1103,7 +1103,7 @@ static void sub_02065100 (UnkStruct_0206502C * param0)
 
 static int sub_02065124 (MapObject * mapObj, UnkStruct_0206502C * param1)
 {
-    if (sub_02062950(mapObj) == 0xa) {
+    if (MapObject_GetEventType(mapObj) == 0xa) {
         FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
         PlayerAvatar * playerAvatar = sub_0205EF3C(fieldSystem);
         int v2 = MapObject_Dir(mapObj);
@@ -1277,7 +1277,7 @@ static const int * sub_02065358 (int param0)
 
 static int sub_0206537C (MapObject * mapObj)
 {
-    int v0 = sub_02062950(mapObj);
+    int v0 = MapObject_GetEventType(mapObj);
 
     if ((v0 != 0x1) && (v0 != 0x2)) {
         return(-1);
@@ -1436,7 +1436,7 @@ static const int Unk_020EEAB0[2][4] = {
 
 static int sub_0206553C (MapObject * mapObj)
 {
-    int v0 = sub_02062950(mapObj);
+    int v0 = MapObject_GetEventType(mapObj);
 
     if ((v0 == 0x7) || (v0 == 0x8)) {
         return 1;
@@ -1447,7 +1447,7 @@ static int sub_0206553C (MapObject * mapObj)
 
 static void sub_02065550 (MapObject * mapObj, UnkStruct_02065550 * param1)
 {
-    if (sub_02062950(mapObj) == 0x7) {
+    if (MapObject_GetEventType(mapObj) == 0x7) {
         param1->unk_01 = 0;
     } else {
         param1->unk_01 = 1;

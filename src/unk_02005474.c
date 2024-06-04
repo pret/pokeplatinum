@@ -39,7 +39,7 @@ BOOL sub_02005728(u16 param0, int param1);
 void sub_020057A4(u16 param0, int param1);
 void sub_020057AC(int param0, int param1);
 void sub_020057BC(int param0);
-int sub_020057D4(u16 param0);
+int Sound_IsEffectPlaying(u16 param0);
 int sub_020057E0(void);
 void sub_020057FC(u16 param0, u16 param1, int param2);
 void sub_02005818(int param0);
@@ -363,7 +363,7 @@ void sub_020057BC (int param0)
     return;
 }
 
-int sub_020057D4 (u16 param0)
+int Sound_IsEffectPlaying (u16 param0)
 {
     return sub_02004B04(sub_02004B18(param0));
 }

@@ -486,9 +486,9 @@ static void MapObject_Save (FieldSystem * fieldSystem, MapObject * mapObj, MapOb
     mapObjSave->unk_10 = sub_02062918(mapObj);
     mapObjSave->unk_12 = sub_02062920(mapObj);
     mapObjSave->unk_09 = MapObject_GetMoveCode(mapObj);
-    mapObjSave->unk_14 = sub_02062950(mapObj);
+    mapObjSave->unk_14 = MapObject_GetEventType(mapObj);
     mapObjSave->unk_16 = sub_02062958(mapObj);
-    mapObjSave->unk_18 = sub_02062960(mapObj);
+    mapObjSave->unk_18 = MapObject_GetEventID(mapObj);
     mapObjSave->unk_0C = sub_02062968(mapObj);
     mapObjSave->unk_0D = MapObject_Dir(mapObj);
     mapObjSave->unk_0E = MapObject_GetMoveDir(mapObj);
@@ -988,7 +988,7 @@ static void sub_02062670 (MapObject * mapObj)
 
 int sub_020626B4 (const MapObject * mapObj)
 {
-    u16 v0 = (u16)sub_02062960(mapObj);
+    u16 v0 = (u16)MapObject_GetEventID(mapObj);
 
     if (v0 == 0xffff) {
         return 1;
@@ -1305,7 +1305,7 @@ void sub_0206294C (MapObject * mapObj, u32 param1)
     mapObj->unk_18 = param1;
 }
 
-u32 sub_02062950 (const MapObject * mapObj)
+u32 MapObject_GetEventType (const MapObject * mapObj)
 {
     return mapObj->unk_18;
 }
@@ -1325,7 +1325,7 @@ void sub_0206295C (MapObject * mapObj, u32 param1)
     mapObj->unk_20 = param1;
 }
 
-u32 sub_02062960 (const MapObject * mapObj)
+u32 MapObject_GetEventID (const MapObject * mapObj)
 {
     return mapObj->unk_20;
 }
@@ -1780,7 +1780,7 @@ void sub_02062D10 (MapObject * mapObj)
     MapObject_SetStatusFlagOff(mapObj, (1 << 1));
 }
 
-int sub_02062D1C (const MapObject * mapObj)
+int MapObject_IsMoving(const MapObject *mapObj)
 {
     return sub_020628D8(mapObj, (1 << 1));
 }

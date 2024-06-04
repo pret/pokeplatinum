@@ -381,7 +381,7 @@ static void sub_020560F8 (FieldSystem * fieldSystem, UnkStruct_020562AC * param1
 static void sub_0205610C (FieldSystem * fieldSystem, UnkStruct_020562AC * param1, const UnkStruct_ov5_021F8E3C * param2)
 {
     MapObject * v0 = Player_MapObject(fieldSystem->playerAvatar);
-    param1->unk_0C = sub_02065700(v0, param2);
+    param1->unk_0C = MapObject_StartAnimation(v0, param2);
 }
 
 static BOOL sub_02056124 (TaskManager * taskMan)
@@ -440,10 +440,10 @@ static BOOL sub_02056124 (TaskManager * taskMan)
         }
         break;
     case 3:
-        if (sub_0206574C(v1->unk_0C)) {
+        if (MapObject_HasAnimationEnded(v1->unk_0C)) {
             MapObject * v3;
 
-            sub_02065758(v1->unk_0C);
+            MapObject_FinishAnimation(v1->unk_0C);
             v3 = sub_020560A8(v0, v1);
 
             if ((v3 != NULL) && sub_020560E4(v3)) {

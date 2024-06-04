@@ -121,12 +121,12 @@ void FieldEvents_ResetVSSeeker (VarsFlags * param0)
     return;
 }
 
-u16 sub_0206B0E8 (VarsFlags * param0)
+u16 Events_GetVsSeekerBattery (VarsFlags * param0)
 {
     return sub_0206B010(param0, (3 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B0F8 (VarsFlags * param0, u16 param1)
+BOOL Events_SetVsSeekerBattery (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (3 + (((0 + 0x4000) + 32) + 16)), param1);
 }

@@ -1532,23 +1532,23 @@ static BOOL ov5_021E0E10 (TaskManager * param0)
 
     switch (v0->unk_0C) {
     case 0:
-        v0->unk_14 = sub_02065700(v0->unk_08, Unk_ov5_021F9B9C);
+        v0->unk_14 = MapObject_StartAnimation(v0->unk_08, Unk_ov5_021F9B9C);
         v0->unk_0C++;
         break;
     case 1:
-        if (sub_0206574C(v0->unk_14) == 1) {
+        if (MapObject_HasAnimationEnded(v0->unk_14) == 1) {
             int v1 = Player_MoveStateFromGender(0x12, v0->unk_10);
 
             PlayerAvatar_Redraw(v0->playerAvatar, v1);
-            sub_02065758(v0->unk_14);
+            MapObject_FinishAnimation(v0->unk_14);
 
-            v0->unk_14 = sub_02065700(v0->unk_08, Unk_ov5_021F9C00);
+            v0->unk_14 = MapObject_StartAnimation(v0->unk_08, Unk_ov5_021F9C00);
             v0->unk_0C++;
         }
         break;
     case 2:
-        if (sub_0206574C(v0->unk_14) == 1) {
-            sub_02065758(v0->unk_14);
+        if (MapObject_HasAnimationEnded(v0->unk_14) == 1) {
+            MapObject_FinishAnimation(v0->unk_14);
             ov5_021E1134(v0);
             return 1;
         }
@@ -1689,12 +1689,12 @@ void ov5_021E100C (SysTask * param0)
     ov5_021E0FC0(param0);
 }
 
-SysTask * ov5_021E1014 (FieldSystem * fieldSystem)
+SysTask * Player_SetStateVsSeeker (FieldSystem * fieldSystem)
 {
     return ov5_021E0F54(fieldSystem, (1 << 9));
 }
 
-void ov5_021E1020 (SysTask * param0)
+void Player_ResetVsSeekerState (SysTask * param0)
 {
     ov5_021E0FC0(param0);
 }

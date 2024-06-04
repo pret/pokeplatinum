@@ -606,7 +606,7 @@ static BOOL ov84_022400E0 (UnkStruct_0201D738 * param0, u16 param1)
         Sound_PlayEffect(1549);
         break;
     case 4:
-        return sub_020057D4(1549);
+        return Sound_IsEffectPlaying(1549);
     }
 
     return 0;

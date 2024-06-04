@@ -764,7 +764,7 @@ static BOOL ov111_021D1508 (UnkStruct_ov111_021D0F7C * param0)
                 ov111_021D2A68(param0, v1);
                 ov111_021D297C(param0, v1);
 
-                if (sub_020057D4(1358) == 0) {
+                if (Sound_IsEffectPlaying(1358) == 0) {
                     Sound_PlayEffect(1358);
                 }
             }

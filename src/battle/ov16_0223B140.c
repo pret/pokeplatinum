@@ -1620,7 +1620,7 @@ static void ov16_0223CF8C (SysTask * param0, void * param1)
     if (ov16_0223F450(v0)) {
         v7 = ov16_0223F47C(v0);
 
-        if (sub_020057D4(1796) == 0) {
+        if (Sound_IsEffectPlaying(1796) == 0) {
             if (--v7 == 0) {
                 Sound_PlayEffect(1796);
                 ov16_0223F48C(v0, 4);

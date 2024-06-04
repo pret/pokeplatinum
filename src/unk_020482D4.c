@@ -157,7 +157,7 @@ BOOL ScrCmd_04B (ScriptContext * param0)
 
 static BOOL sub_02048454 (ScriptContext * param0)
 {
-    if (sub_020057D4(param0->data[0]) == 0) {
+    if (Sound_IsEffectPlaying(param0->data[0]) == 0) {
         return 1;
     }
 

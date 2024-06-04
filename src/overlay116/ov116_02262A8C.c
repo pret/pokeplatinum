@@ -1075,7 +1075,7 @@ void ov116_02263BA0 (UnkStruct_ov116_02262A8C * param0)
             }
 
             if (v0 != 0) {
-                if (sub_020057D4(1394) == 0) {
+                if (Sound_IsEffectPlaying(1394) == 0) {
                     Sound_PlayEffect(1394);
                 }
 

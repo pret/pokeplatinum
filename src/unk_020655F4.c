@@ -190,7 +190,7 @@ void sub_020656DC (MapObject * mapObj)
     sub_02062BC0(mapObj, 0);
 }
 
-SysTask * sub_02065700 (MapObject * mapObj, const UnkStruct_ov5_021F8E3C * param1)
+SysTask * MapObject_StartAnimation (MapObject * mapObj, const UnkStruct_ov5_021F8E3C * param1)
 {
     SysTask * v0;
     UnkStruct_020EEE54 * v1;
@@ -214,7 +214,7 @@ SysTask * sub_02065700 (MapObject * mapObj, const UnkStruct_ov5_021F8E3C * param
     return v0;
 }
 
-int sub_0206574C (SysTask * task)
+int MapObject_HasAnimationEnded (SysTask * task)
 {
     UnkStruct_020EEE54 * v0;
 
@@ -222,7 +222,7 @@ int sub_0206574C (SysTask * task)
     return v0->unk_04;
 }
 
-void sub_02065758 (SysTask * task)
+void MapObject_FinishAnimation (SysTask * task)
 {
     UnkStruct_020EEE54 * v0;
 

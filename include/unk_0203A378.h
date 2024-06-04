@@ -18,7 +18,7 @@ const UnkStruct_0203A55C * sub_0203A450(const FieldSystem * fieldSystem, int par
 int sub_0203A468(const FieldSystem * fieldSystem, int param1, int param2);
 int sub_0203A4A4(const FieldSystem * fieldSystem);
 const UnkStruct_0203A4AC * sub_0203A4AC(const FieldSystem * fieldSystem);
-u32 sub_0203A4B4(const FieldSystem * fieldSystem);
+u32 FieldSystem_GetNpcCount(const FieldSystem * fieldSystem);
 const MapObjectHeader * sub_0203A4BC(const FieldSystem * fieldSystem);
 BOOL sub_0203A4C4(FieldSystem * fieldSystem, int param1, u16 param2, u16 param3);
 BOOL sub_0203A4FC(FieldSystem * fieldSystem, int param1, int param2);

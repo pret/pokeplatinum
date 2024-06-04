@@ -308,7 +308,7 @@ static int(*const Unk_020EF8EC[])(MapObject *, UnkStruct_02069F48 *) = {
 MapObject * sub_02069EB8 (MapObject * mapObj)
 {
     int v0 = 0;
-    int v1 = sub_02062950(mapObj);
+    int v1 = MapObject_GetEventType(mapObj);
     int v2 = sub_02062918(mapObj);
     u32 v3 = sub_02067F24(mapObj);
     const MapObjectManager * mapObjMan = MapObject_MapObjectManager(mapObj);
@@ -377,7 +377,7 @@ static int sub_02069FE8 (MapObject * mapObj, UnkStruct_02069F48 * param1)
     int v3 = MapObject_XPosPrev(v0);
     int v4 = MapObject_ZPosPrev(v0);
 
-    if (((v1 != v3) || (v2 != v4)) && ((sub_02062D1C(v0) == 1) || (MapObject_CheckStatus(v0, ((1 << 11) | (1 << 12) | (1 << 6))) == 0))) {
+    if (((v1 != v3) || (v2 != v4)) && ((MapObject_IsMoving(v0) == 1) || (MapObject_CheckStatus(v0, ((1 << 11) | (1 << 12) | (1 << 6))) == 0))) {
         return 1;
     }
 

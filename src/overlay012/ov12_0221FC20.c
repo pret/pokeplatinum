@@ -866,7 +866,7 @@ static BOOL ov12_022203A0 (UnkStruct_ov12_02220314 * param0)
 
     sub_02005818(param0->unk_14);
 
-    if (sub_020057D4(param0->unk_1A) == 0) {
+    if (Sound_IsEffectPlaying(param0->unk_1A) == 0) {
         if (v0 == 1) {
             (void)0;
         }

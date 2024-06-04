@@ -110,10 +110,10 @@ void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
 void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
-u16 sub_0203F254(u16 param0);
+u16 Script_GetTrainerIDFromEventID(u16 param0);
 BOOL sub_0203F278(u16 param0);
-BOOL sub_0203F28C(u16 param0);
-BOOL sub_0203F2A0(FieldSystem * fieldSystem, u16 param1);
+BOOL Script_IsDoubleBattle(u16 param0);
+BOOL Script_HasBeatenTrainer(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2BC(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2D8(FieldSystem * fieldSystem, u16 param1);
 u16 sub_0203F2F4(u16 param0);
@@ -672,12 +672,12 @@ void sub_0203F21C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3
     *(u16 *)sub_0203F098(fieldSystem, 44) = param4;
 }
 
-u16 sub_0203F254 (u16 param0)
+u16 Script_GetTrainerIDFromEventID(u16 eventID)
 {
-    if (param0 < 5000) {
-        return param0 - 3000 + 1;
+    if (eventID < 5000) {
+        return eventID - 3000 + 1;
     } else {
-        return param0 - 5000 + 1;
+        return eventID - 5000 + 1;
     }
 }
 
@@ -690,7 +690,7 @@ BOOL sub_0203F278 (u16 param0)
     }
 }
 
-BOOL sub_0203F28C (u16 param0)
+BOOL Script_IsDoubleBattle (u16 param0)
 {
     if (TrainerData_LoadParam(param0, 9) == 0x0) {
         return 0;
@@ -699,7 +699,7 @@ BOOL sub_0203F28C (u16 param0)
     return 1;
 }
 
-BOOL sub_0203F2A0 (FieldSystem * fieldSystem, u16 param1)
+BOOL Script_HasBeatenTrainer (FieldSystem * fieldSystem, u16 param1)
 {
     return sub_020507F0(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
 }

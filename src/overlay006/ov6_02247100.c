@@ -80,7 +80,7 @@ static int ov6_0224715C (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 {
     param2->unk_14 = ov5_021F0EB0(fieldSystem, 4);
     ov5_021F0F10(param2->unk_14, 1, ((FX32_ONE * -150)), 15);
-    param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_02249608);
+    param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_02249608);
     param2->unk_00++;
 
     switch (param2->unk_08) {
@@ -100,13 +100,13 @@ static int ov6_0224715C (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_022471C0 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    if (sub_0206574C(param2->unk_0C) == 0) {
+    if (MapObject_HasAnimationEnded(param2->unk_0C) == 0) {
         return 0;
     }
 
-    sub_02065758(param2->unk_0C);
+    MapObject_FinishAnimation(param2->unk_0C);
 
-    param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_022495DC);
+    param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     param2->unk_04++;
 
     if (param2->unk_04 < 8) {
@@ -125,16 +125,16 @@ static int ov6_022471C0 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_02247244 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    if (sub_0206574C(param2->unk_0C) == 1) {
-        sub_02065758(param2->unk_0C);
-        param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_022495DC);
+    if (MapObject_HasAnimationEnded(param2->unk_0C) == 1) {
+        MapObject_FinishAnimation(param2->unk_0C);
+        param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
     if (ScreenWipe_Done() == 0) {
         return 0;
     }
 
-    sub_02065758(param2->unk_0C);
+    MapObject_FinishAnimation(param2->unk_0C);
     ov5_021F0EFC(param2->unk_14);
 
     param2->unk_00++;
@@ -221,7 +221,7 @@ static int ov6_02247354 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
     param2->unk_14 = ov5_021F0EB0(fieldSystem, 4);
     ov5_021F0F10(param2->unk_14, 1, ((FX32_ONE * -150)), 1);
-    param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_022495DC);
+    param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     param2->unk_00++;
 
     return 0;
@@ -229,9 +229,9 @@ static int ov6_02247354 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_022473C8 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    if (sub_0206574C(param2->unk_0C) == 1) {
-        sub_02065758(param2->unk_0C);
-        param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_022495DC);
+    if (MapObject_HasAnimationEnded(param2->unk_0C) == 1) {
+        MapObject_FinishAnimation(param2->unk_0C);
+        param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
     if (ScreenWipe_Done() == 0) {
@@ -246,19 +246,19 @@ static int ov6_022473C8 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_0224740C (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    if (sub_0206574C(param2->unk_0C) == 0) {
+    if (MapObject_HasAnimationEnded(param2->unk_0C) == 0) {
         return 0;
     }
 
-    sub_02065758(param2->unk_0C);
+    MapObject_FinishAnimation(param2->unk_0C);
     param2->unk_04++;
 
     if (param2->unk_04 < 4) {
-        param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_022495DC);
+        param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
         return 0;
     }
 
-    param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_0224966C);
+    param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_0224966C);
     param2->unk_00++;
 
     return 0;
@@ -266,7 +266,7 @@ static int ov6_0224740C (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_02247458 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    if (sub_0206574C(param2->unk_0C) == 0) {
+    if (MapObject_HasAnimationEnded(param2->unk_0C) == 0) {
         return 0;
     }
 
@@ -275,7 +275,7 @@ static int ov6_02247458 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
     }
 
     ov5_021F0EFC(param2->unk_14);
-    sub_02065758(param2->unk_0C);
+    MapObject_FinishAnimation(param2->unk_0C);
 
     return 2;
 }
