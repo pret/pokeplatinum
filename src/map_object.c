@@ -55,7 +55,7 @@ typedef struct UnkStruct_02061AB4_t {
     u32 unk_0C;
     u32 unk_10;
     u32 unk_14;
-    u32 unk_18;
+    u32 eventType;
     u32 unk_1C;
     u32 unk_20;
     int unk_24;
@@ -1302,12 +1302,12 @@ u32 MapObject_GetMoveCode (const MapObject * mapObj)
 
 void sub_0206294C (MapObject * mapObj, u32 param1)
 {
-    mapObj->unk_18 = param1;
+    mapObj->eventType = param1;
 }
 
-u32 MapObject_GetEventType (const MapObject * mapObj)
+u32 MapObject_GetEventType(const MapObject * mapObj)
 {
-    return mapObj->unk_18;
+    return mapObj->eventType;
 }
 
 void sub_02062954 (MapObject * mapObj, u32 param1)

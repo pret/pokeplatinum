@@ -946,7 +946,7 @@ void ov23_022534A0 (FieldSystem * fieldSystem)
         const MapObjectHeader * v10;
         MapObject * v11;
 
-        v8 = FieldSystem_GetNpcCount(v4->fieldSystem);
+        v8 = FieldSystem_GetNPCCount(v4->fieldSystem);
         v10 = sub_0203A4BC(v4->fieldSystem);
 
         for (v9 = 0; v9 < v8; v9++) {
