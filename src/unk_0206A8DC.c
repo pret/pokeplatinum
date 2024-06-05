@@ -26,7 +26,7 @@ static void sub_0206A8E4 (VarsFlags * param0, u16 param1)
 
 static BOOL sub_0206A8EC (VarsFlags * param0, u16 param1)
 {
-    return sub_020507F0(param0, param1);
+    return VarsFlags_IsFlagOn(param0, param1);
 }
 
 static BOOL sub_0206A8F4 (VarsFlags * param0, int param1, u32 param2)

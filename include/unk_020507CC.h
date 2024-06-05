@@ -7,7 +7,7 @@
 int VarsFlags_Size(void);
 void VarsFlags_Init(VarsFlags * param0);
 VarsFlags * SaveData_GetVarsFlags(SaveData * param0);
-BOOL sub_020507F0(VarsFlags * param0, u16 param1);
+BOOL VarsFlags_IsFlagOn(VarsFlags * param0, u16 param1);
 void sub_0205081C(VarsFlags * param0, u16 param1);
 void sub_02050844(VarsFlags * param0, u16 param1);
 u8 * sub_02050870(VarsFlags * param0, u16 param1);

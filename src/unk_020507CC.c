@@ -28,17 +28,17 @@ VarsFlags * SaveData_GetVarsFlags (SaveData * saveData)
     return (VarsFlags *)SaveData_SaveTable(saveData, 4);
 }
 
-BOOL sub_020507F0 (VarsFlags * param0, u16 param1)
+BOOL VarsFlags_IsFlagOn (VarsFlags * param0, u16 flag)
 {
-    u8 * v0 = sub_02050870(param0, param1);
+    u8 * v0 = sub_02050870(param0, flag);
 
     if (v0 != NULL) {
-        if (*v0 & (1 << (param1 % 8))) {
-            return 1;
+        if (*v0 & (1 << (flag % 8))) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0205081C (VarsFlags * param0, u16 param1)
