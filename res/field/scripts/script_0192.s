@@ -12,28 +12,20 @@ _000A:
     ScrCmd_068
     GoToIfSet 178, _00D2
     ScrCmd_0EA 0x107
-    CheckFlag 0x964
-    CallIf 0, _00F0
-    CheckFlag 0x964
-    CallIf 1, _0104
+    CallIfUnset 0x964, _00F0
+    CallIfSet 0x964, _0104
     ScrCmd_034
-    CheckFlag 214
-    CallIf 0, _00A0
-    CheckFlag 214
-    CallIf 1, _00A8
+    CallIfUnset 214, _00A0
+    CallIfSet 214, _00A8
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _00CC
     SetFlag 178
     ScrCmd_049 0x61A
     ScrCmd_065 1
-    CheckFlag 214
-    CallIf 0, _00B0
-    CheckFlag 214
-    CallIf 1, _00BE
-    CheckFlag 0x964
-    CallIf 0, _0109
-    CheckFlag 0x964
-    CallIf 1, _010E
+    CallIfUnset 214, _00B0
+    CallIfSet 214, _00BE
+    CallIfUnset 0x964, _0109
+    CallIfSet 0x964, _010E
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
@@ -61,10 +53,8 @@ _00CC:
     End
 
 _00D2:
-    CheckFlag 0x964
-    CallIf 0, _0113
-    CheckFlag 0x964
-    CallIf 1, _0118
+    CallIfUnset 0x964, _0113
+    CallIfSet 0x964, _0118
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061

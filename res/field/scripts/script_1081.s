@@ -8,8 +8,7 @@
     .short 0xFD13
 
 _000E:
-    CheckFlag 254
-    CallIf 1, _001B
+    CallIfSet 254, _001B
     End
 
 _001B:

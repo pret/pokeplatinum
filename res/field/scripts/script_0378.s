@@ -48,18 +48,14 @@ _0075:
 
 _0091:
     ScrCmd_313 0
-    CompareVar 0x4004, 0
-    CallIf 1, _0664
-    CompareVar 0x4004, 1
-    CallIf 1, _0669
+    CallIfEq 0x4004, 0, _0664
+    CallIfEq 0x4004, 1, _0669
     GoTo _00B7
     End
 
 _00B7:
-    CompareVar 0x4004, 0
-    CallIf 1, _066E
-    CompareVar 0x4004, 1
-    CallIf 1, _0686
+    CallIfEq 0x4004, 0, _066E
+    CallIfEq 0x4004, 1, _0686
     ScrCmd_042 41, 2
     ScrCmd_042 42, 3
     ScrCmd_043
@@ -71,10 +67,8 @@ _00B7:
     End
 
 _0117:
-    CompareVar 0x4004, 0
-    CallIf 1, _069A
-    CompareVar 0x4004, 1
-    CallIf 1, _069F
+    CallIfEq 0x4004, 0, _069A
+    CallIfEq 0x4004, 1, _069F
     GoTo _00B7
     End
 
@@ -156,10 +150,8 @@ _028F:
     End
 
 _0297:
-    CompareVar 0x40BD, 0
-    CallIf 1, _043C
-    CompareVar 0x40BD, 1
-    CallIf 1, _043C
+    CallIfEq 0x40BD, 0, _043C
+    CallIfEq 0x40BD, 1, _043C
     SetVar 0x4000, 0
     ScrCmd_14E
     ScrCmd_014 0x7D6
@@ -236,8 +228,7 @@ _03D1:
     ScrCmd_136
     ScrCmd_135 138
     ScrCmd_02C 45
-    CompareVar 0x40BD, 2
-    CallIf 1, _043C
+    CallIfEq 0x40BD, 2, _043C
     Call _06CB
     GoTo _049D
     End
@@ -279,12 +270,9 @@ _0493:
     Return
 
 _049D:
-    CompareVar 0x40BD, 0
-    CallIf 1, _053D
-    CompareVar 0x40BD, 1
-    CallIf 1, _0558
-    CompareVar 0x40BD, 2
-    CallIf 1, _0573
+    CallIfEq 0x40BD, 0, _053D
+    CallIfEq 0x40BD, 1, _0558
+    CallIfEq 0x40BD, 2, _0573
     ScrCmd_049 0x603
     GoTo _04D0
     End
@@ -292,18 +280,14 @@ _049D:
 _04D0:
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
-    CompareVar 0x40BD, 0
-    CallIf 1, _0599
-    CompareVar 0x40BD, 1
-    CallIf 1, _05AD
-    CompareVar 0x40BD, 2
-    CallIf 1, _05C1
+    CallIfEq 0x40BD, 0, _0599
+    CallIfEq 0x40BD, 1, _05AD
+    CallIfEq 0x40BD, 2, _05C1
     ScrCmd_1E5 58
     ScrCmd_1CD 38, 0, 0, 0, 0
     ScrCmd_1F8
     ScrCmd_2C4 11
-    CompareVar 0x40BD, 2
-    CallIf 1, _0539
+    CallIfEq 0x40BD, 2, _0539
     ScrCmd_0A1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
@@ -478,14 +462,10 @@ _06DD:
     End
 
 _06EC:
-    CompareVar 0x40BD, 0
-    CallIf 1, _0728
-    CompareVar 0x40BD, 1
-    CallIf 1, _0728
-    CompareVar 0x4052, 1
-    CallIf 1, _072E
-    CompareVar 0x4052, 3
-    CallIf 1, _0745
+    CallIfEq 0x40BD, 0, _0728
+    CallIfEq 0x40BD, 1, _0728
+    CallIfEq 0x4052, 1, _072E
+    CallIfEq 0x4052, 3, _0745
     GoTo _0139
     End
 

@@ -9,10 +9,8 @@
 
 _000E:
     GoToIfEq 0x4106, 0, _0037
-    CompareVar 0x4106, 3
-    CallIf 1, _0073
-    CompareVar 0x4106, 1
-    CallIf 4, _007B
+    CallIfEq 0x4106, 3, _0073
+    CallIfGe 0x4106, 1, _007B
 _0035:
     End
 

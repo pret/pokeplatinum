@@ -121,25 +121,16 @@ _0178:
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
-    CompareVar 0x8004, 6
-    CallIf 1, _0634
+    CallIfEq 0x8004, 6, _0634
     ScrCmd_211 0
-    CompareVar 0x800C, 0
-    CallIf 1, _06D0
-    CompareVar 0x800C, 1
-    CallIf 1, _06DC
-    CompareVar 0x800C, 2
-    CallIf 1, _06D0
-    CompareVar 0x800C, 3
-    CallIf 1, _06DC
-    CompareVar 0x800C, 0
-    CallIf 1, _068A
-    CompareVar 0x800C, 1
-    CallIf 1, _0698
-    CompareVar 0x800C, 2
-    CallIf 1, _06A6
-    CompareVar 0x800C, 3
-    CallIf 1, _06B4
+    CallIfEq 0x800C, 0, _06D0
+    CallIfEq 0x800C, 1, _06DC
+    CallIfEq 0x800C, 2, _06D0
+    CallIfEq 0x800C, 3, _06DC
+    CallIfEq 0x800C, 0, _068A
+    CallIfEq 0x800C, 1, _0698
+    CallIfEq 0x800C, 2, _06A6
+    CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
     ScrCmd_061
     End
@@ -159,25 +150,16 @@ _0242:
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
-    CompareVar 0x8004, 6
-    CallIf 1, _0634
+    CallIfEq 0x8004, 6, _0634
     ScrCmd_211 0
-    CompareVar 0x800C, 0
-    CallIf 1, _06F4
-    CompareVar 0x800C, 1
-    CallIf 1, _06E8
-    CompareVar 0x800C, 2
-    CallIf 1, _06F4
-    CompareVar 0x800C, 3
-    CallIf 1, _06E8
-    CompareVar 0x800C, 0
-    CallIf 1, _068A
-    CompareVar 0x800C, 1
-    CallIf 1, _0698
-    CompareVar 0x800C, 2
-    CallIf 1, _06A6
-    CompareVar 0x800C, 3
-    CallIf 1, _06B4
+    CallIfEq 0x800C, 0, _06F4
+    CallIfEq 0x800C, 1, _06E8
+    CallIfEq 0x800C, 2, _06F4
+    CallIfEq 0x800C, 3, _06E8
+    CallIfEq 0x800C, 0, _068A
+    CallIfEq 0x800C, 1, _0698
+    CallIfEq 0x800C, 2, _06A6
+    CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
     ScrCmd_061
     End
@@ -197,25 +179,16 @@ _030C:
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
-    CompareVar 0x8004, 6
-    CallIf 1, _0634
+    CallIfEq 0x8004, 6, _0634
     ScrCmd_211 0
-    CompareVar 0x800C, 0
-    CallIf 1, _06D0
-    CompareVar 0x800C, 1
-    CallIf 1, _06DC
-    CompareVar 0x800C, 2
-    CallIf 1, _06D0
-    CompareVar 0x800C, 3
-    CallIf 1, _06DC
-    CompareVar 0x800C, 0
-    CallIf 1, _066E
-    CompareVar 0x800C, 1
-    CallIf 1, _067C
-    CompareVar 0x800C, 2
-    CallIf 1, _06A6
-    CompareVar 0x800C, 3
-    CallIf 1, _06B4
+    CallIfEq 0x800C, 0, _06D0
+    CallIfEq 0x800C, 1, _06DC
+    CallIfEq 0x800C, 2, _06D0
+    CallIfEq 0x800C, 3, _06DC
+    CallIfEq 0x800C, 0, _066E
+    CallIfEq 0x800C, 1, _067C
+    CallIfEq 0x800C, 2, _06A6
+    CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
     ScrCmd_061
     End
@@ -235,25 +208,16 @@ _03D6:
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
-    CompareVar 0x8004, 6
-    CallIf 1, _0634
+    CallIfEq 0x8004, 6, _0634
     ScrCmd_211 0
-    CompareVar 0x800C, 0
-    CallIf 1, _06F4
-    CompareVar 0x800C, 1
-    CallIf 1, _06E8
-    CompareVar 0x800C, 2
-    CallIf 1, _06F4
-    CompareVar 0x800C, 3
-    CallIf 1, _06E8
-    CompareVar 0x800C, 0
-    CallIf 1, _066E
-    CompareVar 0x800C, 1
-    CallIf 1, _067C
-    CompareVar 0x800C, 2
-    CallIf 1, _06A6
-    CompareVar 0x800C, 3
-    CallIf 1, _06B4
+    CallIfEq 0x800C, 0, _06F4
+    CallIfEq 0x800C, 1, _06E8
+    CallIfEq 0x800C, 2, _06F4
+    CallIfEq 0x800C, 3, _06E8
+    CallIfEq 0x800C, 0, _066E
+    CallIfEq 0x800C, 1, _067C
+    CallIfEq 0x800C, 2, _06A6
+    CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
     ScrCmd_061
     End
@@ -273,25 +237,16 @@ _04A0:
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
-    CompareVar 0x8004, 6
-    CallIf 1, _0634
+    CallIfEq 0x8004, 6, _0634
     ScrCmd_211 0
-    CompareVar 0x800C, 0
-    CallIf 1, _06D0
-    CompareVar 0x800C, 1
-    CallIf 1, _06DC
-    CompareVar 0x800C, 2
-    CallIf 1, _06D0
-    CompareVar 0x800C, 3
-    CallIf 1, _06DC
-    CompareVar 0x800C, 0
-    CallIf 1, _066E
-    CompareVar 0x800C, 1
-    CallIf 1, _067C
-    CompareVar 0x800C, 2
-    CallIf 1, _068A
-    CompareVar 0x800C, 3
-    CallIf 1, _0698
+    CallIfEq 0x800C, 0, _06D0
+    CallIfEq 0x800C, 1, _06DC
+    CallIfEq 0x800C, 2, _06D0
+    CallIfEq 0x800C, 3, _06DC
+    CallIfEq 0x800C, 0, _066E
+    CallIfEq 0x800C, 1, _067C
+    CallIfEq 0x800C, 2, _068A
+    CallIfEq 0x800C, 3, _0698
     ScrCmd_211 1
     ScrCmd_061
     End
@@ -311,25 +266,16 @@ _056A:
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
-    CompareVar 0x8004, 6
-    CallIf 1, _0634
+    CallIfEq 0x8004, 6, _0634
     ScrCmd_211 0
-    CompareVar 0x800C, 0
-    CallIf 1, _06F4
-    CompareVar 0x800C, 1
-    CallIf 1, _06E8
-    CompareVar 0x800C, 2
-    CallIf 1, _06F4
-    CompareVar 0x800C, 3
-    CallIf 1, _06E8
-    CompareVar 0x800C, 0
-    CallIf 1, _066E
-    CompareVar 0x800C, 1
-    CallIf 1, _067C
-    CompareVar 0x800C, 2
-    CallIf 1, _068A
-    CompareVar 0x800C, 3
-    CallIf 1, _0698
+    CallIfEq 0x800C, 0, _06F4
+    CallIfEq 0x800C, 1, _06E8
+    CallIfEq 0x800C, 2, _06F4
+    CallIfEq 0x800C, 3, _06E8
+    CallIfEq 0x800C, 0, _066E
+    CallIfEq 0x800C, 1, _067C
+    CallIfEq 0x800C, 2, _068A
+    CallIfEq 0x800C, 3, _0698
     ScrCmd_211 1
     ScrCmd_061
     End

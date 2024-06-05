@@ -11,8 +11,7 @@
 
 _0016:
     SetVar 0x4000, 0x409E
-    CompareVar 0x409E, 1
-    CallIf 4, _0031
+    CallIfGe 0x409E, 1, _0031
     Call _0037
     End
 
@@ -103,8 +102,7 @@ _00E6:
     ScrCmd_060
     ScrCmd_049 0x5DC
     ScrCmd_04B 0x5DC
-    CheckFlag 215
-    CallIf 0, _0174
+    CallIfUnset 215, _0174
     SetVar 0x409E, 2
     ScrCmd_04C 0x1E5, 0
     ScrCmd_02C 15
@@ -115,8 +113,7 @@ _00E6:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0168
     ScrCmd_0ED 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _017A
+    CallIfEq 0x800C, 0, _017A
     ScrCmd_2BC 0x800C
     GoToIfEq 0x800C, 1, _015D
     GoTo _0155

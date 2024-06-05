@@ -100,59 +100,39 @@ _00E0:
     ScrCmd_0CE 0
     ScrCmd_02C 6
     ScrCmd_034
-    CompareVar 0x4000, 0
-    CallIf 1, _0249
-    CompareVar 0x4000, 1
-    CallIf 1, _025D
-    CompareVar 0x4000, 2
-    CallIf 1, _0271
-    CompareVar 0x4000, 3
-    CallIf 1, _027D
+    CallIfEq 0x4000, 0, _0249
+    CallIfEq 0x4000, 1, _025D
+    CallIfEq 0x4000, 2, _0271
+    CallIfEq 0x4000, 3, _027D
     ScrCmd_0CD 1
     ScrCmd_02C 7
     ScrCmd_034
     ApplyMovement 0, _03E0
     WaitMovement
-    CompareVar 0x4000, 0
-    CallIf 1, _0291
-    CompareVar 0x4000, 1
-    CallIf 1, _02A5
-    CompareVar 0x4000, 2
-    CallIf 1, _02B9
-    CompareVar 0x4000, 3
-    CallIf 1, _02CD
+    CallIfEq 0x4000, 0, _0291
+    CallIfEq 0x4000, 1, _02A5
+    CallIfEq 0x4000, 2, _02B9
+    CallIfEq 0x4000, 3, _02CD
     ScrCmd_02C 8
     ScrCmd_034
-    CompareVar 0x4000, 0
-    CallIf 1, _02E1
-    CompareVar 0x4000, 1
-    CallIf 1, _02ED
-    CompareVar 0x4000, 2
-    CallIf 1, _02F9
-    CompareVar 0x4000, 3
-    CallIf 1, _0305
+    CallIfEq 0x4000, 0, _02E1
+    CallIfEq 0x4000, 1, _02ED
+    CallIfEq 0x4000, 2, _02F9
+    CallIfEq 0x4000, 3, _0305
     ScrCmd_0CE 0
     ScrCmd_02C 9
     ScrCmd_034
-    CompareVar 0x4000, 0
-    CallIf 1, _0311
-    CompareVar 0x4000, 1
-    CallIf 1, _031D
-    CompareVar 0x4000, 2
-    CallIf 1, _0329
-    CompareVar 0x4000, 3
-    CallIf 1, _0335
+    CallIfEq 0x4000, 0, _0311
+    CallIfEq 0x4000, 1, _031D
+    CallIfEq 0x4000, 2, _0329
+    CallIfEq 0x4000, 3, _0335
     ScrCmd_0CD 1
     ScrCmd_02C 10
     ScrCmd_034
-    CompareVar 0x4000, 0
-    CallIf 1, _0341
-    CompareVar 0x4000, 1
-    CallIf 1, _0355
-    CompareVar 0x4000, 2
-    CallIf 1, _0369
-    CompareVar 0x4000, 3
-    CallIf 1, _037D
+    CallIfEq 0x4000, 0, _0341
+    CallIfEq 0x4000, 1, _0355
+    CallIfEq 0x4000, 2, _0369
+    CallIfEq 0x4000, 3, _037D
     ScrCmd_049 0x603
     ScrCmd_065 0
     ScrCmd_014 0x7FB

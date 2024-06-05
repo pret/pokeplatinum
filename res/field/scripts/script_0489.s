@@ -11,8 +11,7 @@
 _0012:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 0x2E3
-    CallIf 1, _00E7
+    CallIfEq 0x8004, 0x2E3, _00E7
     ApplyMovement 4, _0188
     ApplyMovement 3, _0154
     ApplyMovement 0xFF, _0100

@@ -26,8 +26,7 @@ _004A:
     End
 
 _0068:
-    CompareVar 0x40DD, 0
-    CallIf 5, _007F
+    CallIfNe 0x40DD, 0, _007F
     ScrCmd_1B2 2
     ScrCmd_1B2 3
     End

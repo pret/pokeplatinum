@@ -22,8 +22,7 @@
     .short 0xFD13
 
 _0046:
-    CompareVar 0x40D5, 0
-    CallIf 5, _0055
+    CallIfNe 0x40D5, 0, _0055
     End
 
 _0055:
@@ -267,14 +266,10 @@ _02E4:
     End
 
 _0305:
-    CompareVar 0x8004, 1
-    CallIf 1, _037A
-    CompareVar 0x8004, 2
-    CallIf 1, _037A
-    CompareVar 0x8004, 3
-    CallIf 1, _037A
-    CompareVar 0x8004, 4
-    CallIf 1, _037F
+    CallIfEq 0x8004, 1, _037A
+    CallIfEq 0x8004, 2, _037A
+    CallIfEq 0x8004, 3, _037A
+    CallIfEq 0x8004, 4, _037F
     ScrCmd_040 30, 1, 0, 1, 0x800C
     ScrCmd_33A 1
     ScrCmd_042 13, 0

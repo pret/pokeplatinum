@@ -284,10 +284,8 @@ _03C7:
 _03D9:
     GoToIfUnset 0x111, _0108
     GoToIfUnset 0x973, _0159
-    CheckFlag 252
-    CallIf 1, _057A
-    CheckFlag 252
-    CallIf 0, _0443
+    CallIfSet 252, _057A
+    CallIfUnset 252, _0443
     SetVar 0x8004, 81
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
@@ -309,10 +307,8 @@ _0443:
 _0448:
     ScrCmd_24A 0x800C
     GoToIfLt 0x800C, 3, _00A7
-    CheckFlag 252
-    CallIf 1, _057A
-    CheckFlag 252
-    CallIf 0, _04A4
+    CallIfSet 252, _057A
+    CallIfUnset 252, _04A4
     SetVar 0x8004, 82
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
@@ -331,10 +327,8 @@ _04A4:
 _04A9:
     ScrCmd_24A 0x800C
     GoToIfLt 0x800C, 10, _00A7
-    CheckFlag 252
-    CallIf 1, _057A
-    CheckFlag 252
-    CallIf 0, _0505
+    CallIfSet 252, _057A
+    CallIfUnset 252, _0505
     SetVar 0x8004, 83
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
@@ -353,10 +347,8 @@ _0505:
 _050A:
     ScrCmd_24A 0x800C
     GoToIfLt 0x800C, 50, _00A7
-    CheckFlag 252
-    CallIf 1, _057A
-    CheckFlag 252
-    CallIf 0, _0566
+    CallIfSet 252, _057A
+    CallIfUnset 252, _0566
     SetVar 0x8004, 84
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C

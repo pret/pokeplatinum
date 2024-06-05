@@ -71,14 +71,10 @@ _00CB:
     ScrCmd_16D
     ScrCmd_02C 9
     ScrCmd_1BE 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _0110
-    CompareVar 0x800C, 1
-    CallIf 1, _0115
-    CompareVar 0x800C, 2
-    CallIf 1, _011A
-    CompareVar 0x800C, 3
-    CallIf 1, _011F
+    CallIfEq 0x800C, 0, _0110
+    CallIfEq 0x800C, 1, _0115
+    CallIfEq 0x800C, 2, _011A
+    CallIfEq 0x800C, 3, _011F
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
@@ -234,8 +230,7 @@ _02EF:
 
 _02F4:
     ScrCmd_1AE 0x800C, 0x8000
-    CompareVar 0x800C, 0
-    CallIf 5, _02EF
+    CallIfNe 0x800C, 0, _02EF
     Return
 
 _0309:

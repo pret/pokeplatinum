@@ -134,10 +134,8 @@ _01B6:
 _01CE:
     ScrCmd_198 0x400A, 0x800C
     GoToIfEq 0x800C, 0, _026D
-    CompareVar 0x4000, 0
-    CallIf 1, _0C50
-    CompareVar 0x4000, 1
-    CallIf 1, _0D36
+    CallIfEq 0x4000, 0, _0C50
+    CallIfEq 0x4000, 1, _0D36
     GoToIfEq 0x800C, 0, _026D
     ScrCmd_0D6 0, 0x400A
     GoToIfEq 0x400C, 0, _0229
@@ -187,10 +185,8 @@ _02BB:
 
 _02C9:
     ScrCmd_064 0x8002
-    CompareVar 0x8001, 1
-    CallIf 1, _032A
-    CompareVar 0x8001, 2
-    CallIf 1, _0338
+    CallIfEq 0x8001, 1, _032A
+    CallIfEq 0x8001, 2, _0338
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
     SetVar 0x4099, 1
@@ -306,10 +302,8 @@ _03C8:
 
 _03DC:
     ScrCmd_1B7 0x800C, 5
-    CompareVar 0x800C, 0
-    CallIf 1, _040A
-    CompareVar 0x800C, 0
-    CallIf 5, _0412
+    CallIfEq 0x800C, 0, _040A
+    CallIfNe 0x800C, 0, _0412
     ScrCmd_217 0x409C, 0x409A
     GoTo _041A
     End
@@ -580,18 +574,12 @@ _080E:
     ScrCmd_068
     ScrCmd_0D6 0, 0x409D
     ScrCmd_1B7 0x800C, 6
-    CompareVar 0x800C, 0
-    CallIf 1, _0884
-    CompareVar 0x800C, 1
-    CallIf 1, _0889
-    CompareVar 0x800C, 2
-    CallIf 1, _088E
-    CompareVar 0x800C, 3
-    CallIf 1, _0893
-    CompareVar 0x800C, 4
-    CallIf 1, _0898
-    CompareVar 0x800C, 5
-    CallIf 1, _089D
+    CallIfEq 0x800C, 0, _0884
+    CallIfEq 0x800C, 1, _0889
+    CallIfEq 0x800C, 2, _088E
+    CallIfEq 0x800C, 3, _0893
+    CallIfEq 0x800C, 4, _0898
+    CallIfEq 0x800C, 5, _089D
     GoToIfEq 0x400A, 0, _08A2
     GoTo _08B4
     End
@@ -1218,60 +1206,33 @@ _1305:
     ApplyMovement 5, _1758
     WaitMovement
     ScrCmd_049 0x632
-    CompareVar 0x8003, 1
-    CallIf 1, _14C2
-    CompareVar 0x8003, 2
-    CallIf 1, _14DA
-    CompareVar 0x8003, 3
-    CallIf 1, _14F2
-    CompareVar 0x8003, 4
-    CallIf 1, _150A
-    CompareVar 0x8003, 5
-    CallIf 1, _1522
-    CompareVar 0x8003, 6
-    CallIf 1, _153A
-    CompareVar 0x8003, 7
-    CallIf 1, _1552
-    CompareVar 0x8003, 8
-    CallIf 1, _156A
-    CompareVar 0x8003, 9
-    CallIf 1, _1582
-    CompareVar 0x8003, 10
-    CallIf 1, _159A
-    CompareVar 0x8003, 11
-    CallIf 1, _15B2
-    CompareVar 0x8003, 12
-    CallIf 1, _15CA
-    CompareVar 0x8003, 13
-    CallIf 1, _15E2
-    CompareVar 0x8003, 14
-    CallIf 1, _15FA
-    CompareVar 0x8003, 15
-    CallIf 1, _1612
-    CompareVar 0x8003, 16
-    CallIf 1, _162A
-    CompareVar 0x8003, 17
-    CallIf 1, _1642
-    CompareVar 0x8003, 18
-    CallIf 1, _165A
-    CompareVar 0x8003, 19
-    CallIf 1, _1672
-    CompareVar 0x8003, 20
-    CallIf 1, _168A
-    CompareVar 0x8003, 21
-    CallIf 1, _16A2
-    CompareVar 0x8003, 22
-    CallIf 1, _16BA
-    CompareVar 0x8003, 23
-    CallIf 1, _16D2
-    CompareVar 0x8003, 24
-    CallIf 1, _16EA
-    CompareVar 0x8003, 25
-    CallIf 1, _1702
-    CompareVar 0x8003, 26
-    CallIf 1, _171A
-    CompareVar 0x8003, 27
-    CallIf 1, _1732
+    CallIfEq 0x8003, 1, _14C2
+    CallIfEq 0x8003, 2, _14DA
+    CallIfEq 0x8003, 3, _14F2
+    CallIfEq 0x8003, 4, _150A
+    CallIfEq 0x8003, 5, _1522
+    CallIfEq 0x8003, 6, _153A
+    CallIfEq 0x8003, 7, _1552
+    CallIfEq 0x8003, 8, _156A
+    CallIfEq 0x8003, 9, _1582
+    CallIfEq 0x8003, 10, _159A
+    CallIfEq 0x8003, 11, _15B2
+    CallIfEq 0x8003, 12, _15CA
+    CallIfEq 0x8003, 13, _15E2
+    CallIfEq 0x8003, 14, _15FA
+    CallIfEq 0x8003, 15, _1612
+    CallIfEq 0x8003, 16, _162A
+    CallIfEq 0x8003, 17, _1642
+    CallIfEq 0x8003, 18, _165A
+    CallIfEq 0x8003, 19, _1672
+    CallIfEq 0x8003, 20, _168A
+    CallIfEq 0x8003, 21, _16A2
+    CallIfEq 0x8003, 22, _16BA
+    CallIfEq 0x8003, 23, _16D2
+    CallIfEq 0x8003, 24, _16EA
+    CallIfEq 0x8003, 25, _1702
+    CallIfEq 0x8003, 26, _171A
+    CallIfEq 0x8003, 27, _1732
     ApplyMovement 0xFF, _1764
     WaitMovement
     ScrCmd_0BC 6, 1, 1, 0

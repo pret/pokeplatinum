@@ -29,17 +29,12 @@
     .short 0xFD13
 
 _0062:
-    CompareVar 0x40D8, 1
-    CallIf 1, _00F1
-    CompareVar 0x40D8, 3
-    CallIf 1, _00F1
-    CompareVar 0x40D8, 0xFF
-    CallIf 1, _00F1
+    CallIfEq 0x40D8, 1, _00F1
+    CallIfEq 0x40D8, 3, _00F1
+    CallIfEq 0x40D8, 0xFF, _00F1
     ScrCmd_238 19, 0x4000
-    CompareVar 0x4000, 0
-    CallIf 1, _0144
-    CompareVar 0x4000, 0
-    CallIf 5, _014A
+    CallIfEq 0x4000, 0, _0144
+    CallIfNe 0x4000, 0, _014A
     ScrCmd_1E0 0x4000
     GoToIfNe 0x4000, 0, _00DF
     SetFlag 0x1E9
@@ -900,8 +895,7 @@ _0F05:
     GoToIfEq 0x8008, 5, _0F53
     GoToIfEq 0x8008, 4, _11BA
     ScrCmd_1DD 49, 0, 0x800C
-    CompareVar 0x800C, 1
-    CallIf 1, _0F73
+    CallIfEq 0x800C, 1, _0F73
     GoTo _0F53
     End
 
@@ -1008,10 +1002,8 @@ _10BC:
     End
 
 _10F5:
-    CompareVar 0x404F, 1
-    CallIf 1, _1135
-    CompareVar 0x404F, 3
-    CallIf 1, _114C
+    CallIfEq 0x404F, 1, _1135
+    CallIfEq 0x404F, 3, _114C
     ScrCmd_1DD 48, 0, 0x800C
     GoToIfEq 0x800C, 0, _10BC
     ScrCmd_02C 84
@@ -1278,10 +1270,8 @@ _13E0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0xFF
-    CallIf 0, _1492
-    CheckFlag 0xFF
-    CallIf 1, _1497
+    CallIfUnset 0xFF, _1492
+    CallIfSet 0xFF, _1497
     SetFlag 0xFF
     GoTo _140A
     End

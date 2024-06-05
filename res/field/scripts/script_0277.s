@@ -120,10 +120,8 @@ _010E:
     ClearFlag 0x19E
     ScrCmd_064 3
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 12
-    CallIf 1, _01BA
-    CompareVar 0x8004, 13
-    CallIf 1, _01C6
+    CallIfEq 0x8004, 12, _01BA
+    CallIfEq 0x8004, 13, _01C6
     ScrCmd_065 3
     ScrCmd_02C 7
     SetVar 0x8004, 0x1B6

@@ -51,8 +51,7 @@ _00AC:
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BB 0x4000, 0x800C
-    CompareVar 0x800C, 1
-    CallIf 5, _00E7
+    CallIfNe 0x800C, 1, _00E7
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
     ScrCmd_061

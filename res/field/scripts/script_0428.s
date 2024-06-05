@@ -12,8 +12,7 @@
     .short 0xFD13
 
 _001E:
-    CompareVar 0x4087, 2
-    CallIf 4, _005B
+    CallIfGe 0x4087, 2, _005B
     ScrCmd_14D 0x4000
     GoToIfEq 0x4000, 0, _004B
     GoToIfEq 0x4000, 1, _0053
@@ -185,10 +184,8 @@ _027C:
 _029C:
     ScrCmd_0CF 0
     ScrCmd_0CD 1
-    CheckFlag 0x115
-    CallIf 0, _02BE
-    CheckFlag 0x115
-    CallIf 1, _02C3
+    CallIfUnset 0x115, _02BE
+    CallIfSet 0x115, _02C3
     GoTo _02F4
 
 _02BE:
@@ -202,10 +199,8 @@ _02C3:
 _02C8:
     ScrCmd_0CF 0
     ScrCmd_0CD 1
-    CheckFlag 0x115
-    CallIf 0, _02EA
-    CheckFlag 0x115
-    CallIf 1, _02EF
+    CallIfUnset 0x115, _02EA
+    CallIfSet 0x115, _02EF
     GoTo _02F4
 
 _02EA:
@@ -387,10 +382,8 @@ _04C4:
     ScrCmd_0CD 0
     ScrCmd_1BD 0x8002
     ScrCmd_14D 0x8000
-    CompareVar 0x8000, 0
-    CallIf 1, _0653
-    CompareVar 0x8000, 1
-    CallIf 1, _0658
+    CallIfEq 0x8000, 0, _0653
+    CallIfEq 0x8000, 1, _0658
     ScrCmd_034
     ScrCmd_050 0x47E
     ScrCmd_308 189, 0x332
@@ -401,34 +394,22 @@ _04C4:
     ApplyMovement 0xFF, _06D0
     WaitMovement
     ScrCmd_003 15, 0x800C
-    CompareVar 0x8000, 0
-    CallIf 1, _065D
-    CompareVar 0x8000, 1
-    CallIf 1, _0662
+    CallIfEq 0x8000, 0, _065D
+    CallIfEq 0x8000, 1, _0662
     ScrCmd_034
     ScrCmd_003 15, 0x800C
     ScrCmd_052
-    CompareVar 0x8002, 0
-    CallIf 1, _05D1
-    CompareVar 0x8002, 1
-    CallIf 1, _05E5
-    CompareVar 0x8002, 2
-    CallIf 1, _05F9
-    CompareVar 0x8002, 3
-    CallIf 1, _0605
-    CompareVar 0x8000, 0
-    CallIf 1, _0667
-    CompareVar 0x8000, 1
-    CallIf 1, _066C
+    CallIfEq 0x8002, 0, _05D1
+    CallIfEq 0x8002, 1, _05E5
+    CallIfEq 0x8002, 2, _05F9
+    CallIfEq 0x8002, 3, _0605
+    CallIfEq 0x8000, 0, _0667
+    CallIfEq 0x8000, 1, _066C
     ScrCmd_034
-    CompareVar 0x8002, 0
-    CallIf 1, _0611
-    CompareVar 0x8002, 1
-    CallIf 1, _061D
-    CompareVar 0x8002, 2
-    CallIf 1, _0629
-    CompareVar 0x8002, 3
-    CallIf 1, _0635
+    CallIfEq 0x8002, 0, _0611
+    CallIfEq 0x8002, 1, _061D
+    CallIfEq 0x8002, 2, _0629
+    CallIfEq 0x8002, 3, _0635
     GoTo _0641
     End
 

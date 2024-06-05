@@ -111,25 +111,17 @@ _0108:
     GoTo _0229
 
 _0180:
-    CompareVar 0x8000, 0
-    CallIf 1, _0275
-    CompareVar 0x8000, 1
-    CallIf 1, _027F
-    CompareVar 0x8000, 2
-    CallIf 1, _0289
-    CompareVar 0x8000, 3
-    CallIf 1, _0293
+    CallIfEq 0x8000, 0, _0275
+    CallIfEq 0x8000, 1, _027F
+    CallIfEq 0x8000, 2, _0289
+    CallIfEq 0x8000, 3, _0293
     GoToIfEq 0x800C, 0, _023C
     ScrCmd_07D 0x8001, 1, 0x800C
     GoToIfEq 0x800C, 0, _0233
-    CompareVar 0x8000, 0
-    CallIf 1, _029D
-    CompareVar 0x8000, 1
-    CallIf 1, _02AB
-    CompareVar 0x8000, 2
-    CallIf 1, _02B9
-    CompareVar 0x8000, 3
-    CallIf 1, _02C7
+    CallIfEq 0x8000, 0, _029D
+    CallIfEq 0x8000, 1, _02AB
+    CallIfEq 0x8000, 2, _02B9
+    CallIfEq 0x8000, 3, _02C7
     ScrCmd_074
     ScrCmd_049 0x644
     ScrCmd_07B 0x8001, 1, 0x800C

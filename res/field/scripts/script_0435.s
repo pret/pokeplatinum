@@ -14,8 +14,7 @@ _0016:
     End
 
 _001C:
-    CheckFlag 0x994
-    CallIf 1, _009F
+    CallIfSet 0x994, _009F
     ScrCmd_200 0x4000
     GoToIfEq 0x4000, 80, _0047
     GoToIfEq 0x4000, 0x15F, _0047

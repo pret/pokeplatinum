@@ -11,8 +11,7 @@
 _0012:
     SetFlag 0x9C2
     SetFlag 0x2C8
-    CompareVar 0x4056, 1
-    CallIf 1, _0029
+    CallIfEq 0x4056, 1, _0029
     End
 
 _0029:

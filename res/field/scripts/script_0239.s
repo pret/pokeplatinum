@@ -44,8 +44,7 @@ _0077:
     GoToIfEq 0x800C, 0, _00E8
     SetVar 0x40C4, 1
     ScrCmd_2BC 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _00EE
+    CallIfEq 0x800C, 0, _00EE
     ScrCmd_061
     End
 

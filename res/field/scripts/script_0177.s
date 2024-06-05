@@ -54,14 +54,10 @@ _0067:
     ScrCmd_15B 6, 0x800C
     GoToIfEq 0x800C, 1, _00EC
     ScrCmd_1BD 0x8000
-    CompareVar 0x8000, 0
-    CallIf 1, _00C8
-    CompareVar 0x8000, 1
-    CallIf 1, _00C8
-    CompareVar 0x8000, 2
-    CallIf 1, _00D4
-    CompareVar 0x8000, 3
-    CallIf 1, _00E0
+    CallIfEq 0x8000, 0, _00C8
+    CallIfEq 0x8000, 1, _00C8
+    CallIfEq 0x8000, 2, _00D4
+    CallIfEq 0x8000, 3, _00E0
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_031

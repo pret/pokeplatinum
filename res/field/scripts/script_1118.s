@@ -780,10 +780,8 @@ _0BE3:
 
 _0BF3:
     ScrCmd_13A
-    CheckFlag 187
-    CallIf 1, _0C50
-    CheckFlag 187
-    CallIf 0, _0C55
+    CallIfSet 187, _0C50
+    CallIfUnset 187, _0C55
     SetFlag 187
     ScrCmd_040 31, 11, 0, 1, 0x800C
     ScrCmd_33A 1

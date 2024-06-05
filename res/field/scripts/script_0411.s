@@ -34,10 +34,8 @@ _003E:
 _004C:
     ScrCmd_0CD 0
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _0086
-    CompareVar 0x800C, 1
-    CallIf 1, _008B
+    CallIfEq 0x800C, 0, _0086
+    CallIfEq 0x800C, 1, _008B
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0090
     GoTo _009D
@@ -88,8 +86,7 @@ _00DF:
 _00E8:
     GoToIfUnset 0x9BA, _0104
     ScrCmd_1E8 0x800C
-    CompareVar 0x800C, 1
-    CallIf 1, _0120
+    CallIfEq 0x800C, 1, _0120
 _0104:
     ScrCmd_11E 0x8004
     ScrCmd_0D5 0, 0x8004

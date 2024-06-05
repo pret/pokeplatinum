@@ -12,12 +12,9 @@
     .short 0xFD13
 
 _001E:
-    CheckFlag 186
-    CallIf 1, _009D
-    CheckFlag 186
-    CallIf 0, _0087
-    CompareVar 0x4097, 0
-    CallIf 1, _0071
+    CallIfSet 186, _009D
+    CallIfUnset 186, _0087
+    CallIfEq 0x4097, 0, _0071
     ScrCmd_14D 0x4000
     GoToIfEq 0x4000, 0, _0061
     GoToIfEq 0x4000, 1, _0069

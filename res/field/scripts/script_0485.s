@@ -11,8 +11,7 @@
     .short 0xFD13
 
 _001A:
-    CompareVar 0x4057, 1
-    CallIf 1, _00AA
+    CallIfEq 0x4057, 1, _00AA
     GoToIfSet 0x12D, _0080
     ScrCmd_166 0x4000
     GoToIfEq 0x4000, 0, _0080
@@ -28,8 +27,7 @@ _0080:
 
 _0082:
     GoToIfSet 0x12D, _009A
-    CompareVar 0x408D, 1
-    CallIf 1, _009C
+    CallIfEq 0x408D, 1, _009C
 _009A:
     End
 
@@ -109,10 +107,8 @@ _0124:
     ScrCmd_0BC 6, 6, 1, 0x7FFF
     ScrCmd_0BD
     Call _02B8
-    CompareVar 0x4057, 2
-    CallIf 5, _01F0
-    CompareVar 0x4057, 2
-    CallIf 1, _01F5
+    CallIfNe 0x4057, 2, _01F0
+    CallIfEq 0x4057, 2, _01F5
     ScrCmd_031
     ScrCmd_034
     ScrCmd_333 127
@@ -196,8 +192,7 @@ _02B8:
     WaitMovement
     ScrCmd_04C 0x1EC, 0
     ScrCmd_04D
-    CompareVar 0x4057, 2
-    CallIf 1, _02AE
+    CallIfEq 0x4057, 2, _02AE
     ApplyMovement 3, _038C
     ApplyMovement 16, _03B0
     ApplyMovement 0xFF, _039C

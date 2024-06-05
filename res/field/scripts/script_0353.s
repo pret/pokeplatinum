@@ -87,8 +87,7 @@ _011E:
     ScrCmd_0CD 0
     ScrCmd_02C 3
     ScrCmd_134 12, 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _017F
+    CallIfEq 0x800C, 0, _017F
     ScrCmd_0CD 0
     ScrCmd_02C 5
     ScrCmd_034

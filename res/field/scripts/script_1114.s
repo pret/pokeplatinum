@@ -939,14 +939,10 @@ _0E86:
     ScrCmd_068
     ScrCmd_0E4 0x8004
     ScrCmd_2AD 0x8001, 0x800D
-    CompareVar 0x8001, 51
-    CallIf 1, _0FE7
-    CompareVar 0x8001, 52
-    CallIf 1, _0FE7
-    CompareVar 0x8001, 53
-    CallIf 1, _0FE7
-    CompareVar 0x8001, 54
-    CallIf 1, _0FE7
+    CallIfEq 0x8001, 51, _0FE7
+    CallIfEq 0x8001, 52, _0FE7
+    CallIfEq 0x8001, 53, _0FE7
+    CallIfEq 0x8001, 54, _0FE7
     GoToIfDefeated 0x8004, _0F40
     ScrCmd_0E9 0x800C
     GoToIfNe 0x800C, 1, _0F01
@@ -1025,14 +1021,10 @@ _0FE7:
     ApplyMovement 0x800D, _104C
     WaitMovement
     ScrCmd_1BD 0x8000
-    CompareVar 0x8000, 0
-    CallIf 1, _102B
-    CompareVar 0x8000, 1
-    CallIf 1, _1033
-    CompareVar 0x8000, 2
-    CallIf 1, _103B
-    CompareVar 0x8000, 3
-    CallIf 1, _1043
+    CallIfEq 0x8000, 0, _102B
+    CallIfEq 0x8000, 1, _1033
+    CallIfEq 0x8000, 2, _103B
+    CallIfEq 0x8000, 3, _1043
     Return
 
 _102B:

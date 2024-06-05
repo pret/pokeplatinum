@@ -25,12 +25,9 @@ _003B:
     GoTo _0164
 
 _006D:
-    CompareVar 0x4108, 0
-    CallIf 1, _00ED
-    CompareVar 0x4108, 1
-    CallIf 1, _00F5
-    CompareVar 0x4108, 2
-    CallIf 1, _00FD
+    CallIfEq 0x4108, 0, _00ED
+    CallIfEq 0x4108, 1, _00F5
+    CallIfEq 0x4108, 2, _00FD
     ScrCmd_0D0 1, 0x8003
     ScrCmd_0D1 2, 0x8004
     ScrCmd_02C 1
@@ -72,12 +69,9 @@ _0105:
     End
 
 _0114:
-    CompareVar 0x4108, 0
-    CallIf 1, _00ED
-    CompareVar 0x4108, 1
-    CallIf 1, _00F5
-    CompareVar 0x4108, 2
-    CallIf 1, _00FD
+    CallIfEq 0x4108, 0, _00ED
+    CallIfEq 0x4108, 1, _00F5
+    CallIfEq 0x4108, 2, _00FD
     ScrCmd_0D1 2, 0x8004
     ScrCmd_02C 3
     SetVar 0x8005, 1

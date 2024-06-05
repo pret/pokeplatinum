@@ -15,8 +15,7 @@ _001A:
 
 _001C:
     ScrCmd_069 0x4004, 0x4005
-    CompareVar 0x4005, 3
-    CallIf 3, _0037
+    CallIfLe 0x4005, 3, _0037
     SetVar 0x4003, 1
     End
 

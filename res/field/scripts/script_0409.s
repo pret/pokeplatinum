@@ -38,8 +38,7 @@ _0042:
 _008E:
     ScrCmd_02C 2
     ScrCmd_201 0x8004
-    CompareVar 0x8004, 203
-    CallIf 1, _014A
+    CallIfEq 0x8004, 203, _014A
     ScrCmd_031
     ScrCmd_034
     GoTo _066D
@@ -369,8 +368,7 @@ _05C3:
     ScrCmd_201 0x8004
     ScrCmd_1CD 23, 0x8004, 0, 0, 0
     ScrCmd_201 0x8004
-    CompareVar 0x8004, 0x169
-    CallIf 1, _0606
+    CallIfEq 0x8004, 0x169, _0606
     GoTo _0671
     End
 
@@ -390,8 +388,7 @@ _060C:
     ScrCmd_201 0x8004
     ScrCmd_1CD 23, 0x8004, 0, 0, 0
     ScrCmd_201 0x8004
-    CompareVar 0x8004, 0x169
-    CallIf 1, _0606
+    CallIfEq 0x8004, 0x169, _0606
     GoTo _0675
 
 _064C:

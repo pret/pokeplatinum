@@ -21,10 +21,8 @@ _0029:
 _0031:
     ScrCmd_060
     ScrCmd_0C8 0
-    CheckFlag 221
-    CallIf 0, _007D
-    CheckFlag 221
-    CallIf 1, _00B7
+    CallIfUnset 221, _007D
+    CallIfSet 221, _00B7
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
     ScrCmd_02C 1

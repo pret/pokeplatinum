@@ -43,10 +43,8 @@ _007E:
     GoTo _008E
 
 _008E:
-    CheckFlag 139
-    CallIf 0, _00D8
-    CheckFlag 139
-    CallIf 1, _00E0
+    CallIfUnset 139, _00D8
+    CallIfSet 139, _00E0
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
     ScrCmd_02C 1

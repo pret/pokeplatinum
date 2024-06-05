@@ -30,12 +30,9 @@
 _005E:
     SetVar 0x40C7, 0
     SetFlag 0x17E
-    CompareVar 0x407C, 5
-    CallIf 1, _074D
-    CompareVar 0x407C, 4
-    CallIf 1, _0721
-    CompareVar 0x407C, 4
-    CallIf 1, _0737
+    CallIfEq 0x407C, 5, _074D
+    CallIfEq 0x407C, 4, _0721
+    CallIfEq 0x407C, 4, _0737
     GoToIfSet 0x102, _009C
     End
 
@@ -110,12 +107,9 @@ _012F:
     ScrCmd_068
     GoToIfSet 0x128, _0189
     ScrCmd_0DE 0x800C
-    CompareVar 0x800C, 0x183
-    CallIf 1, _0194
-    CompareVar 0x800C, 0x186
-    CallIf 1, _019C
-    CompareVar 0x800C, 0x189
-    CallIf 1, _01A4
+    CallIfEq 0x800C, 0x183, _0194
+    CallIfEq 0x800C, 0x186, _019C
+    CallIfEq 0x800C, 0x189, _01A4
     ScrCmd_261 0, 0x8004
     ScrCmd_02C 37
     SetVar 0x8005, 1
@@ -887,12 +881,9 @@ _091C:
     WaitMovement
     ScrCmd_065 27
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 0x261
-    CallIf 1, _0981
-    CompareVar 0x8004, 0x263
-    CallIf 1, _098D
-    CompareVar 0x8004, 0x264
-    CallIf 1, _0981
+    CallIfEq 0x8004, 0x261, _0981
+    CallIfEq 0x8004, 0x263, _098D
+    CallIfEq 0x8004, 0x264, _0981
     SetFlag 0x20D
     SetVar 0x407C, 5
     SetFlag 0x102
@@ -925,10 +916,8 @@ _09A8:
     ScrCmd_068
     Call _086F
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 0x263
-    CallIf 1, _0A31
-    CompareVar 0x8004, 0x264
-    CallIf 1, _0A55
+    CallIfEq 0x8004, 0x263, _0A31
+    CallIfEq 0x8004, 0x264, _0A55
     Call _08D9
     ApplyMovement 0xFF, _0AC8
     ApplyMovement 27, _0B74
@@ -938,10 +927,8 @@ _09A8:
     Call _08FA
     ScrCmd_02C 23
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 0x263
-    CallIf 1, _0A79
-    CompareVar 0x8004, 0x264
-    CallIf 1, _0A8D
+    CallIfEq 0x8004, 0x263, _0A79
+    CallIfEq 0x8004, 0x264, _0A8D
     Call _091C
     ScrCmd_061
     End

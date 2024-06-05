@@ -62,10 +62,8 @@ _00DC:
 
 _00EC:
     ScrCmd_0CD 0
-    CheckFlag 223
-    CallIf 0, _0134
-    CheckFlag 223
-    CallIf 1, _0139
+    CallIfUnset 223, _0134
+    CallIfSet 223, _0139
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
     ScrCmd_02C 1

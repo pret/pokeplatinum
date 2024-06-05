@@ -23,8 +23,7 @@ _003A:
     ScrCmd_060
     ScrCmd_068
     SetVar 0x8007, 0
-    CheckFlag 136
-    CallIf 0, _006F
+    CallIfUnset 136, _006F
     GoToIfEq 0x4001, 0, _0077
     GoToIfEq 0x4001, 1, _0080
     End

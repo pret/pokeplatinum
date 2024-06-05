@@ -221,8 +221,7 @@ _0198:
     WaitMovement
     ScrCmd_065 8
     ScrCmd_22D 2, 0x800C
-    CompareVar 0x800C, 1
-    CallIf 1, _02E0
+    CallIfEq 0x800C, 1, _02E0
     SetVar 0x4081, 2
     Return
 
@@ -615,12 +614,9 @@ _0606:
     ScrCmd_02C 39
     ScrCmd_034
     Call _0646
-    CompareVar 0x8004, 1
-    CallIf 1, _0660
-    CompareVar 0x8004, 3
-    CallIf 1, _067A
-    CompareVar 0x8004, 2
-    CallIf 1, _0694
+    CallIfEq 0x8004, 1, _0660
+    CallIfEq 0x8004, 3, _067A
+    CallIfEq 0x8004, 2, _0694
     ScrCmd_23D 1, 0, 165, 0x164, 246
     ScrCmd_061
     End
@@ -695,14 +691,10 @@ _06F0:
     ApplyMovement 7, _07A0
     WaitMovement
     ScrCmd_1BD 0x8004
-    CompareVar 0x8004, 3
-    CallIf 1, _076E
-    CompareVar 0x8004, 2
-    CallIf 1, _077A
-    CompareVar 0x8004, 1
-    CallIf 1, _0786
-    CompareVar 0x8004, 0
-    CallIf 1, _0792
+    CallIfEq 0x8004, 3, _076E
+    CallIfEq 0x8004, 2, _077A
+    CallIfEq 0x8004, 1, _0786
+    CallIfEq 0x8004, 0, _0792
     ScrCmd_0CE 0
     ScrCmd_02C 4
     ScrCmd_03E 0x800C

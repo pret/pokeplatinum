@@ -12,8 +12,7 @@
 
 _001A:
     ScrCmd_069 0x4004, 0x4005
-    CompareVar 0x4005, 12
-    CallIf 4, _0035
+    CallIfGe 0x4005, 12, _0035
     SetVar 0x4003, 1
     End
 
@@ -22,8 +21,7 @@ _0035:
     Return
 
 _003B:
-    CheckFlag 0x10B
-    CallIf 1, _0048
+    CallIfSet 0x10B, _0048
     End
 
 _0048:

@@ -29,8 +29,7 @@ _0056:
     End
 
 _0074:
-    CompareVar 0x40DE, 0
-    CallIf 5, _0090
+    CallIfNe 0x40DE, 0, _0090
     GoToIfEq 0x40DE, 3, _009E
 _008E:
     End

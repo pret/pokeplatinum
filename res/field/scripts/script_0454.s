@@ -76,10 +76,8 @@ _00E5:
     End
 
 _00FF:
-    CheckFlag 0x166
-    CallIf 0, _045A
-    CheckFlag 0x166
-    CallIf 1, _0467
+    CallIfUnset 0x166, _045A
+    CallIfSet 0x166, _0467
     SetFlag 0x166
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0471
@@ -169,10 +167,8 @@ _00FF:
     ScrCmd_02C 7
     GoToIfNe 0x8005, 0x404C, _044C
     ScrCmd_1B7 0x8006, 2
-    CompareVar 0x8006, 0
-    CallIf 1, _03A1
-    CompareVar 0x8006, 1
-    CallIf 1, _03B7
+    CallIfEq 0x8006, 0, _03A1
+    CallIfEq 0x8006, 1, _03B7
     ScrCmd_034
     ApplyMovement 2, _03FC
     WaitMovement
@@ -180,30 +176,24 @@ _00FF:
     ScrCmd_064 4
     ApplyMovement 4, _0420
     WaitMovement
-    CompareVar 0x8006, 0
-    CallIf 1, _03CD
-    CompareVar 0x8006, 1
-    CallIf 1, _03D2
+    CallIfEq 0x8006, 0, _03CD
+    CallIfEq 0x8006, 1, _03D2
     ScrCmd_034
     ScrCmd_0E5 0x8007, 0
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0484
     SetTrainerFlag 0x37C
     SetTrainerFlag 0x37D
-    CompareVar 0x8006, 0
-    CallIf 1, _03D7
-    CompareVar 0x8006, 1
-    CallIf 1, _03DC
+    CallIfEq 0x8006, 0, _03D7
+    CallIfEq 0x8006, 1, _03DC
     ScrCmd_034
     ApplyMovement 4, _0414
     WaitMovement
     ScrCmd_065 4
     ApplyMovement 2, _0408
     WaitMovement
-    CompareVar 0x8006, 0
-    CallIf 1, _03E1
-    CompareVar 0x8006, 1
-    CallIf 1, _03E6
+    CallIfEq 0x8006, 0, _03E1
+    CallIfEq 0x8006, 1, _03E6
     GoTo _0396
     End
 

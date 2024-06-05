@@ -11,8 +11,7 @@ _000E:
     End
 
 _0010:
-    CompareVar 0x40DC, 0
-    CallIf 5, _001F
+    CallIfNe 0x40DC, 0, _001F
     End
 
 _001F:

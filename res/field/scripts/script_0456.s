@@ -197,10 +197,8 @@ _0270:
     ScrCmd_166 0x800C
     GoToIfEq 0x800C, 1, _02C8
     ScrCmd_1B7 0x800C, 2
-    CompareVar 0x800C, 0
-    CallIf 1, _02BE
-    CompareVar 0x800C, 1
-    CallIf 1, _02C3
+    CallIfEq 0x800C, 0, _02BE
+    CallIfEq 0x800C, 1, _02C3
     ScrCmd_031
     ScrCmd_034
     ApplyMovement 2, _01CC
@@ -218,10 +216,8 @@ _02C3:
 
 _02C8:
     ScrCmd_1B7 0x800C, 2
-    CompareVar 0x800C, 0
-    CallIf 1, _02FA
-    CompareVar 0x800C, 1
-    CallIf 1, _02FF
+    CallIfEq 0x800C, 0, _02FA
+    CallIfEq 0x800C, 1, _02FF
     ScrCmd_031
     ScrCmd_034
     ApplyMovement 2, _01CC

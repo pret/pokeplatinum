@@ -41,8 +41,7 @@ _0074:
     SetVar 0x8004, 1
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVar 0x800C, 1
-    CallIf 1, _00DB
+    CallIfEq 0x800C, 1, _00DB
     ScrCmd_02C 3
     ScrCmd_034
     ApplyMovement 0, _0110

@@ -4596,3 +4596,43 @@
     CheckTrainerFlag \trainerID
     GoToIf 1, \offset
     .endm
+
+    .macro CallIfLt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 0, \offset
+    .endm
+
+    .macro CallIfEq varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 1, \offset
+    .endm
+
+    .macro CallIfGt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 2, \offset
+    .endm
+
+    .macro CallIfLe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 3, \offset
+    .endm
+
+    .macro CallIfGe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 4, \offset
+    .endm
+
+    .macro CallIfNe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 5, \offset
+    .endm
+
+    .macro CallIfUnset flagID, offset
+    CheckFlag \flagID
+    CallIf 0, \offset
+    .endm
+
+    .macro CallIfSet flagID, offset
+    CheckFlag \flagID
+    CallIf 1, \offset
+    .endm

@@ -22,8 +22,7 @@ _0022:
     ApplyMovement 0xFF, _0194
     WaitMovement
     ScrCmd_069 0x4000, 0x4001
-    CompareVar 0x4000, 5
-    CallIf 1, _017D
+    CallIfEq 0x4000, 5, _017D
     ScrCmd_072 20, 2
     ScrCmd_02C 0
     ScrCmd_03E 0x800C

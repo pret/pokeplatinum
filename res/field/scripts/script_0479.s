@@ -588,92 +588,61 @@ _07AE:
 
 _07BE:
     ScrCmd_256 3, 0x800C
-    CompareVar 0x800C, 0xBB8
-    CallIf 0, _07FA
-    CompareVar 0x800C, 0xCE4
-    CallIf 0, _0870
-    CompareVar 0x800C, 0xDAC
-    CallIf 0, _08BF
-    CompareVar 0x800C, 0x2710
-    CallIf 0, _0928
+    CallIfLt 0x800C, 0xBB8, _07FA
+    CallIfLt 0x800C, 0xCE4, _0870
+    CallIfLt 0x800C, 0xDAC, _08BF
+    CallIfLt 0x800C, 0x2710, _0928
     Return
 
 _07FA:
     ScrCmd_1B7 0x8006, 8
-    CompareVar 0x8006, 0
-    CallIf 1, _09B6
-    CompareVar 0x8006, 1
-    CallIf 1, _09BE
-    CompareVar 0x8006, 2
-    CallIf 1, _09C6
-    CompareVar 0x8006, 3
-    CallIf 1, _09CE
-    CompareVar 0x8006, 4
-    CallIf 1, _09D6
-    CompareVar 0x8006, 5
-    CallIf 1, _09DE
-    CompareVar 0x8006, 6
-    CallIf 1, _09E6
-    CompareVar 0x8006, 7
-    CallIf 1, _09EE
+    CallIfEq 0x8006, 0, _09B6
+    CallIfEq 0x8006, 1, _09BE
+    CallIfEq 0x8006, 2, _09C6
+    CallIfEq 0x8006, 3, _09CE
+    CallIfEq 0x8006, 4, _09D6
+    CallIfEq 0x8006, 5, _09DE
+    CallIfEq 0x8006, 6, _09E6
+    CallIfEq 0x8006, 7, _09EE
     Call _0984
     Return
 
 _0870:
     ScrCmd_1B7 0x8006, 5
-    CompareVar 0x8006, 0
-    CallIf 1, _09F6
-    CompareVar 0x8006, 1
-    CallIf 1, _09FE
-    CompareVar 0x8006, 2
-    CallIf 1, _0A06
-    CompareVar 0x8006, 3
-    CallIf 1, _0A0E
-    CompareVar 0x8006, 4
-    CallIf 1, _0A16
+    CallIfEq 0x8006, 0, _09F6
+    CallIfEq 0x8006, 1, _09FE
+    CallIfEq 0x8006, 2, _0A06
+    CallIfEq 0x8006, 3, _0A0E
+    CallIfEq 0x8006, 4, _0A16
     Call _0984
     Return
 
 _08BF:
     ScrCmd_1B7 0x8006, 7
-    CompareVar 0x8006, 0
-    CallIf 1, _0A1E
-    CompareVar 0x8006, 1
-    CallIf 1, _0A26
-    CompareVar 0x8006, 2
-    CallIf 1, _0A2E
-    CompareVar 0x8006, 3
-    CallIf 1, _0A36
-    CompareVar 0x8006, 4
-    CallIf 1, _0A3E
-    CompareVar 0x8006, 5
-    CallIf 1, _0A46
-    CompareVar 0x8006, 6
-    CallIf 1, _0A4E
+    CallIfEq 0x8006, 0, _0A1E
+    CallIfEq 0x8006, 1, _0A26
+    CallIfEq 0x8006, 2, _0A2E
+    CallIfEq 0x8006, 3, _0A36
+    CallIfEq 0x8006, 4, _0A3E
+    CallIfEq 0x8006, 5, _0A46
+    CallIfEq 0x8006, 6, _0A4E
     Call _0984
     Return
 
 _0928:
     ScrCmd_1B7 0x8006, 6
-    CompareVar 0x8006, 0
-    CallIf 1, _0A56
-    CompareVar 0x8006, 1
-    CallIf 1, _0A5E
-    CompareVar 0x8006, 2
-    CallIf 1, _0A66
-    CompareVar 0x8006, 3
-    CallIf 1, _0A6E
-    CompareVar 0x8006, 4
-    CallIf 1, _0A76
-    CompareVar 0x8006, 5
-    CallIf 1, _0A7E
+    CallIfEq 0x8006, 0, _0A56
+    CallIfEq 0x8006, 1, _0A5E
+    CallIfEq 0x8006, 2, _0A66
+    CallIfEq 0x8006, 3, _0A6E
+    CallIfEq 0x8006, 4, _0A76
+    CallIfEq 0x8006, 5, _0A7E
     Call _0984
     Return
 
 _0984:
     ScrCmd_07D 0x8006, 1, 0x8007
-    CompareVar 0x8007, 0
-    CallIf 5, _09A1
+    CallIfNe 0x8007, 0, _09A1
     SetVar 0x800C, 0x2710
     Return
 

@@ -24,10 +24,8 @@
     .short 0xFD13
 
 _004E:
-    CompareVar 0x40A6, 2
-    CallIf 1, _0077
-    CompareVar 0x40A6, 3
-    CallIf 1, _0077
+    CallIfEq 0x40A6, 2, _0077
+    CallIfEq 0x40A6, 3, _0077
     GoToIfEq 0x407E, 0, _0083
     End
 
@@ -99,54 +97,34 @@ _017C:
     ApplyMovement 20, _04A0
     WaitMovement
     ScrCmd_02C 11
-    CompareVar 0x8004, 0x355
-    CallIf 1, _02BE
-    CompareVar 0x8004, 0x356
-    CallIf 1, _02CA
-    CompareVar 0x8004, 0x357
-    CallIf 1, _02D6
-    CompareVar 0x8004, 0x358
-    CallIf 1, _02E2
-    CompareVar 0x8004, 0x359
-    CallIf 1, _02EE
+    CallIfEq 0x8004, 0x355, _02BE
+    CallIfEq 0x8004, 0x356, _02CA
+    CallIfEq 0x8004, 0x357, _02D6
+    CallIfEq 0x8004, 0x358, _02E2
+    CallIfEq 0x8004, 0x359, _02EE
     ScrCmd_02C 12
     ScrCmd_034
-    CompareVar 0x8004, 0x355
-    CallIf 1, _02FA
-    CompareVar 0x8004, 0x356
-    CallIf 1, _030E
-    CompareVar 0x8004, 0x357
-    CallIf 1, _0322
-    CompareVar 0x8004, 0x358
-    CallIf 1, _032E
-    CompareVar 0x8004, 0x359
-    CallIf 1, _0342
+    CallIfEq 0x8004, 0x355, _02FA
+    CallIfEq 0x8004, 0x356, _030E
+    CallIfEq 0x8004, 0x357, _0322
+    CallIfEq 0x8004, 0x358, _032E
+    CallIfEq 0x8004, 0x359, _0342
     ScrCmd_065 20
-    CompareVar 0x8004, 0x355
-    CallIf 1, _0356
-    CompareVar 0x8004, 0x356
-    CallIf 1, _0362
-    CompareVar 0x8004, 0x357
-    CallIf 1, _036E
-    CompareVar 0x8004, 0x358
-    CallIf 1, _037A
-    CompareVar 0x8004, 0x359
-    CallIf 1, _0386
+    CallIfEq 0x8004, 0x355, _0356
+    CallIfEq 0x8004, 0x356, _0362
+    CallIfEq 0x8004, 0x357, _036E
+    CallIfEq 0x8004, 0x358, _037A
+    CallIfEq 0x8004, 0x359, _0386
     ApplyMovement 0xFF, _0528
     WaitMovement
     ScrCmd_02C 13
     Call _0577
     ScrCmd_034
-    CompareVar 0x8004, 0x355
-    CallIf 1, _0392
-    CompareVar 0x8004, 0x356
-    CallIf 1, _039E
-    CompareVar 0x8004, 0x357
-    CallIf 1, _03AA
-    CompareVar 0x8004, 0x358
-    CallIf 1, _03B6
-    CompareVar 0x8004, 0x359
-    CallIf 1, _03C2
+    CallIfEq 0x8004, 0x355, _0392
+    CallIfEq 0x8004, 0x356, _039E
+    CallIfEq 0x8004, 0x357, _03AA
+    CallIfEq 0x8004, 0x358, _03B6
+    CallIfEq 0x8004, 0x359, _03C2
     SetVar 0x407E, 3
     ScrCmd_061
     End

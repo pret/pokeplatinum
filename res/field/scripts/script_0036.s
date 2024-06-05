@@ -31,23 +31,15 @@
 
 _0066:
     SetFlag 0x1BD
-    CompareVar 0x40F8, 2
-    CallIf 1, _00F8
-    CompareVar 0x40F8, 3
-    CallIf 1, _0100
+    CallIfEq 0x40F8, 2, _00F8
+    CallIfEq 0x40F8, 3, _0100
     Call _0168
-    CompareVar 0x4000, 0
-    CallIf 1, _01E7
-    CompareVar 0x4000, 1
-    CallIf 1, _0116
-    CompareVar 0x4078, 1
-    CallIf 1, _0132
-    CompareVar 0x4078, 2
-    CallIf 1, _0132
-    CompareVar 0x4078, 4
-    CallIf 1, _011C
-    CompareVar 0x4078, 5
-    CallIf 1, _0158
+    CallIfEq 0x4000, 0, _01E7
+    CallIfEq 0x4000, 1, _0116
+    CallIfEq 0x4078, 1, _0132
+    CallIfEq 0x4078, 2, _0132
+    CallIfEq 0x4078, 4, _011C
+    CallIfEq 0x4078, 5, _0158
     ScrCmd_14D 0x4000
     GoToIfEq 0x4000, 0, _0148
     GoToIfEq 0x4000, 1, _0150
@@ -112,8 +104,7 @@ _01CA:
 
 _01D2:
     Call _0168
-    CompareVar 0x4000, 0
-    CallIf 1, _01E7
+    CallIfEq 0x4000, 0, _01E7
     End
 
 _01E7:
@@ -553,10 +544,8 @@ _0708:
     ScrCmd_02C 27
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 213, 0
-    CheckFlag 0x133
-    CallIf 1, _0790
-    CheckFlag 0x13C
-    CallIf 1, _078A
+    CallIfSet 0x133, _0790
+    CallIfSet 0x13C, _078A
     ScrCmd_042 218, 4
     ScrCmd_043
     GoToIfEq 0x800C, 0, _0796
@@ -576,36 +565,27 @@ _0790:
 
 _0796:
     Call _0852
-    CompareVar 0x8004, 1
-    CallIf 1, _0871
-    CompareVar 0x8004, 3
-    CallIf 1, _088B
-    CompareVar 0x8004, 0
-    CallIf 1, _08A5
+    CallIfEq 0x8004, 1, _0871
+    CallIfEq 0x8004, 3, _088B
+    CallIfEq 0x8004, 0, _08A5
     ScrCmd_23D 3, 3, 0x120, 100, 0x1F6
     ScrCmd_061
     End
 
 _07D1:
     Call _0852
-    CompareVar 0x8004, 1
-    CallIf 1, _0871
-    CompareVar 0x8004, 3
-    CallIf 1, _088B
-    CompareVar 0x8004, 0
-    CallIf 1, _08A5
+    CallIfEq 0x8004, 1, _0871
+    CallIfEq 0x8004, 3, _088B
+    CallIfEq 0x8004, 0, _08A5
     ScrCmd_23D 3, 2, 0x104, 39, 0x115
     ScrCmd_061
     End
 
 _080C:
     Call _0852
-    CompareVar 0x8004, 1
-    CallIf 1, _0871
-    CompareVar 0x8004, 3
-    CallIf 1, _088B
-    CompareVar 0x8004, 0
-    CallIf 1, _08A5
+    CallIfEq 0x8004, 1, _0871
+    CallIfEq 0x8004, 3, _088B
+    CallIfEq 0x8004, 0, _08A5
     ScrCmd_23D 3, 3, 0x140, 152, 0x115
     ScrCmd_061
     End

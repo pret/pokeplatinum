@@ -24,10 +24,8 @@ _002B:
     ScrCmd_0C8 0
     GoToIfGe 0x4091, 1, _0095
     ScrCmd_0CD 0
-    CheckFlag 224
-    CallIf 0, _008B
-    CheckFlag 224
-    CallIf 1, _0090
+    CallIfUnset 224, _008B
+    CallIfSet 224, _0090
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
     ScrCmd_02C 1

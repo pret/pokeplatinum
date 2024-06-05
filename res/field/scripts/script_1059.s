@@ -17,8 +17,7 @@
     .short 0xFD13
 
 _0032:
-    CompareVar 0x4071, 1
-    CallIf 1, _005F
+    CallIfEq 0x4071, 1, _005F
     ScrCmd_14D 0x4000
     GoToIfEq 0x4000, 0, _0075
     GoToIfEq 0x4000, 1, _007D

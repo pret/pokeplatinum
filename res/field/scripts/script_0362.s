@@ -10,8 +10,7 @@ _000A:
     SetFlag 0x9E4
     ScrCmd_270 1, 1
     ClearFlag 0x279
-    CheckFlag 0x158
-    CallIf 0, _0024
+    CallIfUnset 0x158, _0024
     End
 
 _0024:
@@ -34,12 +33,9 @@ _005D:
     ScrCmd_02C 1
     ScrCmd_034
     Call _00A8
-    CompareVar 0x8004, 1
-    CallIf 1, _00C2
-    CompareVar 0x8004, 2
-    CallIf 1, _00DC
-    CompareVar 0x8004, 0
-    CallIf 1, _00F6
+    CallIfEq 0x8004, 1, _00C2
+    CallIfEq 0x8004, 2, _00DC
+    CallIfEq 0x8004, 0, _00F6
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ScrCmd_061
     End

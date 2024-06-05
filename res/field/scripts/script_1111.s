@@ -58,10 +58,8 @@ _00CA:
 
 _0105:
     SetVar 0x40CE, -1
-    CompareVar 0x8004, 1
-    CallIf 1, _013D
-    CompareVar 0x8004, 0
-    CallIf 1, _0142
+    CallIfEq 0x8004, 1, _013D
+    CallIfEq 0x8004, 0, _0142
     ScrCmd_034
     ApplyMovement 0, _017C
     WaitMovement

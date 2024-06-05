@@ -314,8 +314,7 @@ _04B0:
 _04E2:
     ScrCmd_04F
     ScrCmd_2A7 0x8004, 0x800C
-    CompareVar 0x800C, 1
-    CallIf 1, _0667
+    CallIfEq 0x800C, 1, _0667
     ScrCmd_0CD 0
     ScrCmd_0D1 1, 0x8004
     ScrCmd_080 0x8004, 0x800C

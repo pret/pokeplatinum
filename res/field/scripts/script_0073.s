@@ -228,14 +228,10 @@ _02CF:
 
 _02DA:
     ScrCmd_1BD 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _0314
-    CompareVar 0x800C, 1
-    CallIf 1, _0322
-    CompareVar 0x800C, 2
-    CallIf 1, _0330
-    CompareVar 0x800C, 3
-    CallIf 1, _033E
+    CallIfEq 0x800C, 0, _0314
+    CallIfEq 0x800C, 1, _0322
+    CallIfEq 0x800C, 2, _0330
+    CallIfEq 0x800C, 3, _033E
     Return
 
 _0314:

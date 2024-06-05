@@ -60,10 +60,8 @@ _00E9:
     ScrCmd_11C 0x40CE
     ScrCmd_11B 11, 2, 18, 2, 1
     GoToIfEq 0x40CE, 3, _026C
-    CompareVar 0x40CE, 3
-    CallIf 2, _022D
-    CompareVar 0x40CE, 3
-    CallIf 0, _0238
+    CallIfGt 0x40CE, 3, _022D
+    CallIfLt 0x40CE, 3, _0238
     Call _0243
     SetVar 0x40CE, 3
     GoTo _0261
@@ -74,10 +72,8 @@ _013A:
     ScrCmd_11C 0x40CE
     ScrCmd_11B 12, 3, 18, 2, 1
     GoToIfEq 0x40CE, 2, _026C
-    CompareVar 0x40CE, 2
-    CallIf 2, _022D
-    CompareVar 0x40CE, 2
-    CallIf 0, _0238
+    CallIfGt 0x40CE, 2, _022D
+    CallIfLt 0x40CE, 2, _0238
     Call _0243
     SetVar 0x40CE, 2
     GoTo _0261
@@ -88,10 +84,8 @@ _018B:
     ScrCmd_11C 0x40CE
     ScrCmd_11B 13, 4, 18, 2, 1
     GoToIfEq 0x40CE, 1, _026C
-    CompareVar 0x40CE, 1
-    CallIf 2, _022D
-    CompareVar 0x40CE, 1
-    CallIf 0, _0238
+    CallIfGt 0x40CE, 1, _022D
+    CallIfLt 0x40CE, 1, _0238
     Call _0243
     SetVar 0x40CE, 1
     GoTo _0261
@@ -102,10 +96,8 @@ _01DC:
     ScrCmd_11C 0x40CE
     ScrCmd_11B 14, 1, 18, 2, 1
     GoToIfEq 0x40CE, 0, _026C
-    CompareVar 0x40CE, 0
-    CallIf 2, _022D
-    CompareVar 0x40CE, 0
-    CallIf 0, _0238
+    CallIfGt 0x40CE, 0, _022D
+    CallIfLt 0x40CE, 0, _0238
     Call _0243
     SetVar 0x40CE, 0
     GoTo _0261

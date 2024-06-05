@@ -138,21 +138,15 @@ _0183:
     Return
 
 _0191:
-    CompareVar 0x8000, 0
-    CallIf 1, _0149
-    CompareVar 0x8000, 1
-    CallIf 1, _0153
-    CompareVar 0x8000, 2
-    CallIf 1, _015D
+    CallIfEq 0x8000, 0, _0149
+    CallIfEq 0x8000, 1, _0153
+    CallIfEq 0x8000, 2, _015D
     GoToIfEq 0x800C, 0, _0277
     ScrCmd_07D 0x8001, 1, 0x800C
     GoToIfEq 0x800C, 0, _0280
-    CompareVar 0x8000, 0
-    CallIf 1, _0167
-    CompareVar 0x8000, 1
-    CallIf 1, _0175
-    CompareVar 0x8000, 2
-    CallIf 1, _0183
+    CallIfEq 0x8000, 0, _0167
+    CallIfEq 0x8000, 1, _0175
+    CallIfEq 0x8000, 2, _0183
     ScrCmd_074
     ScrCmd_0D1 0, 0x8001
     ScrCmd_049 0x617

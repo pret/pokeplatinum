@@ -40,10 +40,8 @@ _004D:
     ClearFlag 0x297
     ScrCmd_064 15
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 0x12E
-    CallIf 1, _00CA
-    CompareVar 0x8004, 0x12F
-    CallIf 1, _00D6
+    CallIfEq 0x8004, 0x12E, _00CA
+    CallIfEq 0x8004, 0x12F, _00D6
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_034
@@ -54,10 +52,8 @@ _004D:
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 0x12E
-    CallIf 1, _00E2
-    CompareVar 0x8004, 0x12F
-    CallIf 1, _00F6
+    CallIfEq 0x8004, 0x12E, _00E2
+    CallIfEq 0x8004, 0x12F, _00F6
     ScrCmd_065 15
     SetVar 0x40A8, 1
     SetFlag 0x298

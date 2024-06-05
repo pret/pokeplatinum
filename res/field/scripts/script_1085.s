@@ -12,8 +12,7 @@ _000C:
     ScrCmd_060
     ScrCmd_068
     GoToIfUnset 0x117, _00FE
-    CheckFlag 1
-    CallIf 0, _00F6
+    CallIfUnset 1, _00F6
     ScrCmd_1C0 0x800C, 201
     GoToIfEq 0x800C, 1, _0048
     ScrCmd_02C 0

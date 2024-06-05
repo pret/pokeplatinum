@@ -14,19 +14,15 @@ _000A:
     ScrCmd_0EA 0x105
     ScrCmd_02C 0
     ScrCmd_034
-    CheckFlag 214
-    CallIf 0, _007A
-    CheckFlag 214
-    CallIf 1, _0082
+    CallIfUnset 214, _007A
+    CallIfSet 214, _0082
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _00A6
     SetFlag 176
     ScrCmd_049 0x61A
     ScrCmd_065 2
-    CheckFlag 214
-    CallIf 0, _008A
-    CheckFlag 214
-    CallIf 1, _0098
+    CallIfUnset 214, _008A
+    CallIfSet 214, _0098
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034

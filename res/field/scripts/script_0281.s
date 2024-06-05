@@ -31,12 +31,9 @@ _0052:
 
 _005D:
     Call _00A3
-    CompareVar 0x8004, 1
-    CallIf 1, _00BD
-    CompareVar 0x8004, 3
-    CallIf 1, _00D7
-    CompareVar 0x8004, 0
-    CallIf 1, _00F1
+    CallIfEq 0x8004, 1, _00BD
+    CallIfEq 0x8004, 3, _00D7
+    CallIfEq 0x8004, 0, _00F1
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ScrCmd_061
     End

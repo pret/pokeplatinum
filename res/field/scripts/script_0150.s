@@ -25,10 +25,8 @@ _0039:
     GoToIfEq 0x800C, -2, _00D8
     GoToIfEq 0x800C, 0x4001, _00D8
     ScrCmd_2A6 0x800C, 0x8000, 0x8001
-    CompareVar 0x8000, 0x148
-    CallIf 0, _0100
-    CompareVar 0x8000, 0x148
-    CallIf 4, _010A
+    CallIfLt 0x8000, 0x148, _0100
+    CallIfGe 0x8000, 0x148, _010A
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0039
     ScrCmd_2A9 0x800C, 0x8001

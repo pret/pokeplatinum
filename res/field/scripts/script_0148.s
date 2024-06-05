@@ -159,8 +159,7 @@ _01CE:
     ScrCmd_1A3 0x8005
     ScrCmd_074
     ScrCmd_04B 0x644
-    CompareVar 0x4042, 0x2710
-    CallIf 0, _0700
+    CallIfLt 0x4042, 0x2710, _0700
     GoTo _0220
     End
 
@@ -325,8 +324,7 @@ _04CE:
 _0503:
     ScrCmd_049 0x644
     ScrCmd_074
-    CompareVar 0x4042, 0x2710
-    CallIf 0, _0700
+    CallIfLt 0x4042, 0x2710, _0700
     ScrCmd_02C 20
     GoTo _054D
     End

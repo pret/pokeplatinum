@@ -27,10 +27,8 @@ _003E:
     ScrCmd_02C 4
     ScrCmd_034
     Call _007C
-    CompareVar 0x8004, 1
-    CallIf 1, _0096
-    CompareVar 0x8004, 2
-    CallIf 1, _00B0
+    CallIfEq 0x8004, 1, _0096
+    CallIfEq 0x8004, 2, _00B0
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ScrCmd_061
     End

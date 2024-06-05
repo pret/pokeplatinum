@@ -81,24 +81,15 @@ _00B3:
     SetVar 0x400A, 0x2710
 _0137:
     ScrCmd_1B8 0x4001, 9
-    CompareVar 0x4001, 0
-    CallIf 1, _01D8
-    CompareVar 0x4001, 1
-    CallIf 1, _01F5
-    CompareVar 0x4001, 2
-    CallIf 1, _0212
-    CompareVar 0x4001, 3
-    CallIf 1, _022F
-    CompareVar 0x4001, 4
-    CallIf 1, _024C
-    CompareVar 0x4001, 5
-    CallIf 1, _0269
-    CompareVar 0x4001, 6
-    CallIf 1, _0286
-    CompareVar 0x4001, 7
-    CallIf 1, _02A3
-    CompareVar 0x4001, 8
-    CallIf 1, _02C0
+    CallIfEq 0x4001, 0, _01D8
+    CallIfEq 0x4001, 1, _01F5
+    CallIfEq 0x4001, 2, _0212
+    CallIfEq 0x4001, 3, _022F
+    CallIfEq 0x4001, 4, _024C
+    CallIfEq 0x4001, 5, _0269
+    CallIfEq 0x4001, 6, _0286
+    CallIfEq 0x4001, 7, _02A3
+    CallIfEq 0x4001, 8, _02C0
     SubVar 0x400A, 1
     GoToIfEq 0x400A, 0, _01D2
     GoToIfNe 0x4000, 0, _0137

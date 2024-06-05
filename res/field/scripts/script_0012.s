@@ -34,12 +34,9 @@ _0044:
     ScrCmd_068
     GoToIfSet 0x13D, _00A4
     ScrCmd_0DE 0x800C
-    CompareVar 0x800C, 0x183
-    CallIf 1, _00B4
-    CompareVar 0x800C, 0x186
-    CallIf 1, _00BC
-    CompareVar 0x800C, 0x189
-    CallIf 1, _00C4
+    CallIfEq 0x800C, 0x183, _00B4
+    CallIfEq 0x800C, 0x186, _00BC
+    CallIfEq 0x800C, 0x189, _00C4
     SetVar 0x410A, 0x8004
     ScrCmd_343 0, 0x8004
     ScrCmd_02C 1

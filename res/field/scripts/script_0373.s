@@ -78,8 +78,7 @@ _0151:
     End
 
 _015D:
-    CompareVar 0x40DF, 1
-    CallIf 1, _0179
+    CallIfEq 0x40DF, 1, _0179
     GoToIfEq 0x40DF, 2, _017F
     End
 

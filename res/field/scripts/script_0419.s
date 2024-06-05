@@ -25,8 +25,7 @@ _004C:
     End
 
 _0057:
-    CheckFlag 171
-    CallIf 0, _00DE
+    CallIfUnset 171, _00DE
     SetFlag 171
     SetFlag 1
     ScrCmd_02C 1
@@ -43,8 +42,7 @@ _0057:
     End
 
 _0095:
-    CheckFlag 172
-    CallIf 0, _00E4
+    CallIfUnset 172, _00E4
     SetFlag 172
     SetFlag 1
     ScrCmd_02C 2

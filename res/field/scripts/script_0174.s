@@ -239,8 +239,7 @@ _026B:
     End
 
 _0276:
-    CheckFlag 0x157
-    CallIf 0, _02A0
+    CallIfUnset 0x157, _02A0
     ScrCmd_02C 11
     ScrCmd_034
     Call _035C

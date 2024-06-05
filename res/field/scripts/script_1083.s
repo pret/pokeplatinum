@@ -49,30 +49,18 @@ _00AE:
     ScrCmd_0DA 0, 0x40E5, 0, 0
     ScrCmd_02C 4
     ScrCmd_1B7 0x800C, 12
-    CompareVar 0x800C, 0
-    CallIf 1, _0189
-    CompareVar 0x800C, 1
-    CallIf 1, _0191
-    CompareVar 0x800C, 2
-    CallIf 1, _0199
-    CompareVar 0x800C, 3
-    CallIf 1, _01A1
-    CompareVar 0x800C, 4
-    CallIf 1, _01A9
-    CompareVar 0x800C, 5
-    CallIf 1, _01B1
-    CompareVar 0x800C, 6
-    CallIf 1, _01B9
-    CompareVar 0x800C, 7
-    CallIf 1, _01C1
-    CompareVar 0x800C, 8
-    CallIf 1, _01C9
-    CompareVar 0x800C, 9
-    CallIf 1, _01D1
-    CompareVar 0x800C, 10
-    CallIf 1, _01D9
-    CompareVar 0x800C, 11
-    CallIf 1, _01E1
+    CallIfEq 0x800C, 0, _0189
+    CallIfEq 0x800C, 1, _0191
+    CallIfEq 0x800C, 2, _0199
+    CallIfEq 0x800C, 3, _01A1
+    CallIfEq 0x800C, 4, _01A9
+    CallIfEq 0x800C, 5, _01B1
+    CallIfEq 0x800C, 6, _01B9
+    CallIfEq 0x800C, 7, _01C1
+    CallIfEq 0x800C, 8, _01C9
+    CallIfEq 0x800C, 9, _01D1
+    CallIfEq 0x800C, 10, _01D9
+    CallIfEq 0x800C, 11, _01E1
     SetVar 0x8005, 3
     ScrCmd_07D 93, 1, 0x800C
     GoToIfNe 0x800C, 0, _01E9

@@ -26,8 +26,7 @@
     .short 0xFD13
 
 _0056:
-    CompareVar 0x40D5, 6
-    CallIf 1, _0065
+    CallIfEq 0x40D5, 6, _0065
     End
 
 _0065:

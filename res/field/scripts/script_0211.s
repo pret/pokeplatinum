@@ -103,10 +103,8 @@ _0172:
     ApplyMovement 0xFF, _02EC
     WaitMovement
     ScrCmd_2BE 0x800C
-    CompareVar 0x800C, 4
-    CallIf 4, _01BC
-    CompareVar 0x800C, 4
-    CallIf 0, _01B7
+    CallIfGe 0x800C, 4, _01BC
+    CallIfLt 0x800C, 4, _01B7
     Call _01C1
     GoToIfUnset 106, _0242
     GoTo _01E1
@@ -389,8 +387,7 @@ _0552:
 
 _0568:
     ScrCmd_18D
-    CheckFlag 31
-    CallIf 1, _05BE
+    CallIfSet 31, _05BE
     ScrCmd_12D 0x800C
     ScrCmd_18E
     Return
@@ -556,56 +553,31 @@ _0723:
     ScrCmd_04F
     ScrCmd_02C 26
     ScrCmd_133 0x8004
-    CompareVar 0x8004, 0
-    CallIf 1, _0882
-    CompareVar 0x8004, 1
-    CallIf 1, _0887
-    CompareVar 0x8004, 2
-    CallIf 1, _088C
-    CompareVar 0x8004, 3
-    CallIf 1, _0891
-    CompareVar 0x8004, 4
-    CallIf 1, _0896
-    CompareVar 0x8004, 5
-    CallIf 1, _089B
-    CompareVar 0x8004, 6
-    CallIf 1, _08A0
-    CompareVar 0x8004, 7
-    CallIf 1, _08A5
-    CompareVar 0x8004, 8
-    CallIf 1, _08AA
-    CompareVar 0x8004, 9
-    CallIf 1, _08AF
-    CompareVar 0x8004, 10
-    CallIf 1, _08B4
-    CompareVar 0x8004, 11
-    CallIf 1, _08B9
-    CompareVar 0x8004, 12
-    CallIf 1, _08BE
-    CompareVar 0x8004, 13
-    CallIf 1, _08C3
-    CompareVar 0x8004, 14
-    CallIf 1, _08C8
-    CompareVar 0x8004, 15
-    CallIf 1, _08CD
-    CompareVar 0x8004, 16
-    CallIf 1, _08D2
-    CompareVar 0x8004, 17
-    CallIf 1, _08D7
-    CompareVar 0x8004, 18
-    CallIf 1, _08DC
-    CompareVar 0x8004, 19
-    CallIf 1, _08E1
-    CompareVar 0x8004, 20
-    CallIf 1, _08E6
-    CompareVar 0x8004, 21
-    CallIf 1, _08EB
-    CompareVar 0x8004, 22
-    CallIf 1, _08F0
-    CompareVar 0x8004, 23
-    CallIf 1, _08F5
-    CompareVar 0x8004, 24
-    CallIf 1, _08FA
+    CallIfEq 0x8004, 0, _0882
+    CallIfEq 0x8004, 1, _0887
+    CallIfEq 0x8004, 2, _088C
+    CallIfEq 0x8004, 3, _0891
+    CallIfEq 0x8004, 4, _0896
+    CallIfEq 0x8004, 5, _089B
+    CallIfEq 0x8004, 6, _08A0
+    CallIfEq 0x8004, 7, _08A5
+    CallIfEq 0x8004, 8, _08AA
+    CallIfEq 0x8004, 9, _08AF
+    CallIfEq 0x8004, 10, _08B4
+    CallIfEq 0x8004, 11, _08B9
+    CallIfEq 0x8004, 12, _08BE
+    CallIfEq 0x8004, 13, _08C3
+    CallIfEq 0x8004, 14, _08C8
+    CallIfEq 0x8004, 15, _08CD
+    CallIfEq 0x8004, 16, _08D2
+    CallIfEq 0x8004, 17, _08D7
+    CallIfEq 0x8004, 18, _08DC
+    CallIfEq 0x8004, 19, _08E1
+    CallIfEq 0x8004, 20, _08E6
+    CallIfEq 0x8004, 21, _08EB
+    CallIfEq 0x8004, 22, _08F0
+    CallIfEq 0x8004, 23, _08F5
+    CallIfEq 0x8004, 24, _08FA
     Return
 
 _0882:
@@ -815,10 +787,8 @@ _09FF:
     Call _0356
     ScrCmd_07B 0x8004, 0x8005, 0x800C
     ScrCmd_080 0x8004, 0x800C
-    CompareVar 0x800C, 7
-    CallIf 1, _0A71
-    CompareVar 0x800C, 7
-    CallIf 5, _0A82
+    CallIfEq 0x800C, 7, _0A71
+    CallIfNe 0x800C, 7, _0A82
     ScrCmd_02C 30
     ScrCmd_031
     Return
@@ -832,10 +802,8 @@ _0A3E:
     Call _0356
     ScrCmd_07B 0x8004, 0x8005, 0x800C
     ScrCmd_080 0x8004, 0x800C
-    CompareVar 0x800C, 7
-    CallIf 1, _0A71
-    CompareVar 0x800C, 7
-    CallIf 5, _0A82
+    CallIfEq 0x800C, 7, _0A71
+    CallIfNe 0x800C, 7, _0A82
     ScrCmd_02C 126
     Return
 
@@ -859,8 +827,7 @@ _0A9F:
 _0AA8:
     ScrCmd_04F
     ScrCmd_2A7 0x8004, 0x800C
-    CompareVar 0x800C, 1
-    CallIf 1, _13C8
+    CallIfEq 0x800C, 1, _13C8
     ScrCmd_0CD 0
     GoToIfGt 0x8005, 1, _0AD8
     ScrCmd_0D1 1, 0x8004
@@ -958,16 +925,12 @@ _0C1C:
     ScrCmd_0CD 0
     ScrCmd_02C 33
     ScrCmd_040 1, 1, 0, 1, 0x8006
-    CheckFlag 0x97E
-    CallIf 0, _0C7B
-    CheckFlag 0x97E
-    CallIf 1, _0C81
+    CallIfUnset 0x97E, _0C7B
+    CallIfSet 0x97E, _0C81
     ScrCmd_042 60, 1
     ScrCmd_22D 2, 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _0C87
-    CompareVar 0x800C, 1
-    CallIf 1, _0C8D
+    CallIfEq 0x800C, 0, _0C87
+    CallIfEq 0x800C, 1, _0C8D
     GoToIfSet 0x964, _0C93
     GoToIfUnset 0x964, _0CDD
     End
@@ -1021,8 +984,7 @@ _0D2C:
     ScrCmd_046 66, 75, 1
     ScrCmd_046 67, 76, 2
     ScrCmd_046 68, 77, 3
-    CheckFlag 0x978
-    CallIf 1, _0D69
+    CallIfSet 0x978, _0D69
     ScrCmd_046 70, 79, 5
     Return
 
@@ -1217,10 +1179,8 @@ _0FCA:
     ScrCmd_14E
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    CheckFlag 144
-    CallIf 1, _1030
-    CheckFlag 144
-    CallIf 0, _1035
+    CallIfSet 144, _1030
+    CallIfUnset 144, _1035
     ScrCmd_031
     ScrCmd_034
     ScrCmd_061
@@ -1540,24 +1500,15 @@ _13BE:
 
 _13C8:
     AddVar 0x4115, 1
-    CompareVar 0x4115, 9
-    CallIf 4, _1445
-    CompareVar 0x4115, 1
-    CallIf 1, _144D
-    CompareVar 0x4115, 2
-    CallIf 1, _1452
-    CompareVar 0x4115, 3
-    CallIf 1, _1457
-    CompareVar 0x4115, 4
-    CallIf 1, _145C
-    CompareVar 0x4115, 5
-    CallIf 1, _1461
-    CompareVar 0x4115, 6
-    CallIf 1, _1466
-    CompareVar 0x4115, 7
-    CallIf 1, _146B
-    CompareVar 0x4115, 8
-    CallIf 1, _1470
+    CallIfGe 0x4115, 9, _1445
+    CallIfEq 0x4115, 1, _144D
+    CallIfEq 0x4115, 2, _1452
+    CallIfEq 0x4115, 3, _1457
+    CallIfEq 0x4115, 4, _145C
+    CallIfEq 0x4115, 5, _1461
+    CallIfEq 0x4115, 6, _1466
+    CallIfEq 0x4115, 7, _146B
+    CallIfEq 0x4115, 8, _1470
     Return
 
 _1445:
@@ -1656,10 +1607,8 @@ _157B:
 _1581:
     ScrCmd_051 0
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    CallIf 1, _15A7
-    CompareVar 0x800C, 1
-    CallIf 1, _15AD
+    CallIfEq 0x800C, 0, _15A7
+    CallIfEq 0x800C, 1, _15AD
     ScrCmd_015
     End
 

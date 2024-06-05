@@ -64,12 +64,9 @@ _0085:
     GoToIfEq 0x8000, 0, _01AB
     ScrCmd_0D5 0, 0x8000
     ScrCmd_02C 11
-    CompareVar 0x4001, 0
-    CallIf 5, _01B6
-    CompareVar 0x4003, 0
-    CallIf 5, _0200
-    CompareVar 0x4005, 0
-    CallIf 5, _024A
+    CallIfNe 0x4001, 0, _01B6
+    CallIfNe 0x4003, 0, _0200
+    CallIfNe 0x4005, 0, _024A
     ScrCmd_02C 5
     GoTo _0172
     End
@@ -103,12 +100,9 @@ _0172:
     End
 
 _017A:
-    CompareVar 0x4001, 0
-    CallIf 5, _01A3
-    CompareVar 0x4003, 0
-    CallIf 5, _01A3
-    CompareVar 0x4005, 0
-    CallIf 5, _01A3
+    CallIfNe 0x4001, 0, _01A3
+    CallIfNe 0x4003, 0, _01A3
+    CallIfNe 0x4005, 0, _01A3
     Return
 
 _01A3:

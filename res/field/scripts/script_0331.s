@@ -9,8 +9,7 @@
 _000A:
     GoToIfSet 0x11D, _0029
     ScrCmd_22D 2, 0x4000
-    CompareVar 0x4000, 1
-    CallIf 1, _002F
+    CallIfEq 0x4000, 1, _002F
     End
 
 _0029:

@@ -14,12 +14,9 @@
     .short 0xFD13
 
 _0026:
-    CompareVar 0x40F4, 1
-    CallIf 1, _004F
-    CompareVar 0x40A4, 4
-    CallIf 1, _005F
-    CompareVar 0x40A4, 6
-    CallIf 1, _0057
+    CallIfEq 0x40F4, 1, _004F
+    CallIfEq 0x40A4, 4, _005F
+    CallIfEq 0x40A4, 6, _0057
     End
 
 _004F:

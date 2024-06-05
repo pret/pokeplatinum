@@ -24,8 +24,7 @@ _0038:
 
 _0042:
     SetFlag 0x9E1
-    CheckFlag 142
-    CallIf 1, _0069
+    CallIfSet 142, _0069
     GoToIfUnset 0x15E, _002E
     GoToIfSet 0x15E, _0038
     End

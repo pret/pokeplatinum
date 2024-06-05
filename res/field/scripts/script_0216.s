@@ -16,12 +16,9 @@ _0022:
     End
 
 _0024:
-    CompareVar 0x40CF, 2
-    CallIf 1, _0082
-    CheckFlag 0x10F
-    CallIf 1, _00BB
-    CheckFlag 0x10F
-    CallIf 0, _00C5
+    CallIfEq 0x40CF, 2, _0082
+    CallIfSet 0x10F, _00BB
+    CallIfUnset 0x10F, _00C5
     GoToIfLt 0x4089, 2, _007C
     GoToIfSet 0xAA8, _007C
     ScrCmd_234 0x4000
@@ -41,10 +38,8 @@ _0082:
     Return
 
 _008A:
-    CheckFlag 0x10F
-    CallIf 1, _00BB
-    CheckFlag 0x10F
-    CallIf 0, _00C5
+    CallIfSet 0x10F, _00BB
+    CallIfUnset 0x10F, _00C5
     GoToIfSet 142, _00AD
     End
 

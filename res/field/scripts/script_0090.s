@@ -50,12 +50,9 @@ _009B:
     End
 
 _00B3:
-    CompareVar 0x405E, 3
-    CallIf 1, _00E5
-    CompareVar 0x405F, 3
-    CallIf 1, _00F0
-    CompareVar 0x4060, 3
-    CallIf 1, _00FB
+    CallIfEq 0x405E, 3, _00E5
+    CallIfEq 0x405F, 3, _00F0
+    CallIfEq 0x4060, 3, _00FB
     ScrCmd_02C 4
     GoTo _0150
     End
