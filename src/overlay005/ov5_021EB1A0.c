@@ -1559,12 +1559,12 @@ static void ov5_021EC6C0 (MapObject * mapObj, UnkStruct_020216E0 * param1)
 {
     int v0 = 1;
 
-    if (sub_020628D8(mapObj, (1 << 9)) == 1) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 9)) == 1) {
         v0 = 0;
     }
 
-    if (sub_020628D8(mapObj, (1 << 12)) == 1) {
-        if (sub_020628D8(mapObj, (1 << 13)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 12)) == 1) {
+        if (MapObject_GetStateFlag(mapObj, (1 << 13)) == 0) {
             v0 = 0;
         }
     }

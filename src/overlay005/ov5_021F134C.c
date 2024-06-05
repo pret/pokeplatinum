@@ -266,7 +266,7 @@ static void ov5_021F1604 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     v0->unk_0C = 0;
 
-    if (sub_020628D8(v1, (1 << 9) | (1 << 20)) == 1) {
+    if (MapObject_GetStateFlag(v1, (1 << 9) | (1 << 20)) == 1) {
         v0->unk_0C = 1;
         return;
     }
@@ -341,7 +341,7 @@ static void ov5_021F1718 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
     v0->unk_0C = 0;
 
-    if (sub_020628D8(v1, (1 << 9) | (1 << 20)) == 1) {
+    if (MapObject_GetStateFlag(v1, (1 << 9) | (1 << 20)) == 1) {
         v0->unk_0C = 1;
         return;
     }

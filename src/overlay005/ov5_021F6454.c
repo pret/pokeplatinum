@@ -995,7 +995,7 @@ BOOL ScrCmd_32D (ScriptContext * ctx)
         if (v7 != v6) {
             MapObject_SetStatusFlagOn(v7, (1 << 13));
 
-            if (sub_020628D8(v7, (1 << 12)) == 1) {
+            if (MapObject_GetStateFlag(v7, (1 << 12)) == 1) {
                 MapObject_PosVectorOut(v7, &v1);
                 v1.y = v0;
                 MapObject_SetPosVec(v7, &v1);

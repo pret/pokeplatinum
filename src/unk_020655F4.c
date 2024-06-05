@@ -122,15 +122,15 @@ static const fx32 Unk_020EECEC[3];
 
 int LocalMapObj_IsAnimationSet (const MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 0)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 0)) == 0) {
         return 0;
     }
 
-    if (sub_020628D8(mapObj, (1 << 1)) == 1) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 1)) == 1) {
         return 0;
     }
 
-    if ((sub_020628D8(mapObj, (1 << 4)) == 1) && (sub_020628D8(mapObj, (1 << 5)) == 0)) {
+    if ((MapObject_GetStateFlag(mapObj, (1 << 4)) == 1) && (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0)) {
         return 0;
     }
 
@@ -156,11 +156,11 @@ void sub_02065668 (MapObject * mapObj, int param1)
 
 int LocalMapObj_CheckAnimationFinished (const MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 4)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 4)) == 0) {
         return 1;
     }
 
-    if (sub_020628D8(mapObj, (1 << 5)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
         return 0;
     }
 
@@ -169,11 +169,11 @@ int LocalMapObj_CheckAnimationFinished (const MapObject * mapObj)
 
 int sub_020656AC (MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 4)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 4)) == 0) {
         return 1;
     }
 
-    if (sub_020628D8(mapObj, (1 << 5)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
         return 0;
     }
 
@@ -401,7 +401,7 @@ int sub_020658DC (MapObject * mapObj)
 {
     sub_020658B4(mapObj);
 
-    if (sub_020628D8(mapObj, (1 << 5)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
         return 0;
     }
 

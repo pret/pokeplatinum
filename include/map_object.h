@@ -67,7 +67,7 @@ u32 sub_020628B8(const MapObject * param0);
 void MapObject_SetStatusFlagOn(MapObject * param0, u32 param1);
 void MapObject_SetStatusFlagOff(MapObject * param0, u32 param1);
 u32 MapObject_CheckStatus(const MapObject * param0, u32 param1);
-u32 sub_020628D8(const MapObject * param0, u32 param1);
+u32 MapObject_GetStateFlag(const MapObject * param0, u32 param1);
 void sub_020628E8(MapObject * param0, u32 param1);
 u32 sub_020628EC(const MapObject * param0);
 void sub_020628F0(MapObject * param0, u32 param1);
