@@ -113,7 +113,7 @@ void sub_0203F1FC(FieldSystem * fieldSystem);
 u16 Script_GetTrainerIDFromEventID(u16 param0);
 BOOL sub_0203F278(u16 param0);
 BOOL Script_IsDoubleBattle(u16 param0);
-BOOL Script_HasBeatenTrainer(FieldSystem * fieldSystem, u16 param1);
+BOOL Script_IsTrainerDefeated(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2BC(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2D8(FieldSystem * fieldSystem, u16 param1);
 u16 sub_0203F2F4(u16 param0);
@@ -699,7 +699,7 @@ BOOL Script_IsDoubleBattle (u16 param0)
     return 1;
 }
 
-BOOL Script_HasBeatenTrainer (FieldSystem * fieldSystem, u16 param1)
+BOOL Script_IsTrainerDefeated (FieldSystem * fieldSystem, u16 param1)
 {
     return sub_020507F0(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
 }

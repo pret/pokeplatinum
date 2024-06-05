@@ -2046,7 +2046,7 @@ static BOOL ScrCmd_CheckTrainerFlag (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 trainerID = ScriptContext_GetVar(ctx);
-    ctx->comparisonResult = Script_HasBeatenTrainer(fieldSystem, trainerID);
+    ctx->comparisonResult = Script_IsTrainerDefeated(fieldSystem, trainerID);
     return FALSE;
 }
 

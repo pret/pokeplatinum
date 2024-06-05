@@ -669,7 +669,7 @@ static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
     for (int i = 0; i < vsSeeker->numVisibleTrainers; i++) {
         u16 trainerID = VsSeeker_GetTrainerIDFromMapObject(vsSeeker->trainers[i]);
 
-        if (Script_HasBeatenTrainer(vsSeeker->fieldSystem, trainerID) == FALSE) {
+        if (Script_IsTrainerDefeated(vsSeeker->fieldSystem, trainerID) == FALSE) {
             VsSeekerSystem_StartAnimation(vsSeeker, vsSeeker->trainers[i], sVsSeekerAnimSingleExclamationMark);
             anyAvailable = TRUE;
         } else {
@@ -742,7 +742,7 @@ static u16 VsSeeker_GetCurrentLevelForRematchData(FieldSystem *fieldSystem, u16 
         }
 
         if (rematchData[rematchDataIndex].trainerIDs[level] != VS_SEEKER_REMATCH_DATA_DUMMY) {
-            if (Script_HasBeatenTrainer(fieldSystem, rematchData[rematchDataIndex].trainerIDs[level]) == FALSE) {
+            if (Script_IsTrainerDefeated(fieldSystem, rematchData[rematchDataIndex].trainerIDs[level]) == FALSE) {
                 return level;
             }
         }

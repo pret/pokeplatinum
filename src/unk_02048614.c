@@ -330,7 +330,7 @@ BOOL ScrCmd_0F1 (ScriptContext * param0)
 
     v2 = sub_0203F098(fieldSystem, 10);
     v1 = (s32)ScriptContext_ReadWord(param0);
-    v0 = Script_HasBeatenTrainer(MapObject_FieldSystem(*v2), MapObject_Id(*v2));
+    v0 = Script_IsTrainerDefeated(MapObject_FieldSystem(*v2), MapObject_Id(*v2));
 
     if (v0 == 1) {
         ScriptContext_Jump(param0, (u8 *)(param0->scriptPtr + v1));

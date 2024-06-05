@@ -127,7 +127,7 @@ static int sub_02067BA8 (FieldSystem * fieldSystem, MapObjectManager * param1, P
             v1 = sub_02067C80(v3, playerAvatar, &v2);
 
             if (v1 != -1) {
-                if (Script_HasBeatenTrainer(fieldSystem, sub_02067F14(v3)) == 0) {
+                if (Script_IsTrainerDefeated(fieldSystem, sub_02067F14(v3)) == 0) {
                     sub_02067C28(param4, v3, v1, v2);
                     return 1;
                 }
@@ -386,7 +386,7 @@ int sub_02067F88 (FieldSystem * fieldSystem, MapObject * param1)
     int v0 = sub_02067C54(param1);
 
     if ((v0 == 0x1) || (v0 == 0x2)) {
-        if (Script_HasBeatenTrainer(fieldSystem, sub_02067F14(param1)) == 0) {
+        if (Script_IsTrainerDefeated(fieldSystem, sub_02067F14(param1)) == 0) {
             return 1;
         }
     }
