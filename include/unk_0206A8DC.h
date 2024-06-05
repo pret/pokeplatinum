@@ -24,7 +24,7 @@ void sub_0206AA30(VarsFlags * param0);
 void sub_0206AA40(VarsFlags * param0);
 void sub_0206AA50(VarsFlags * param0, int param1);
 BOOL sub_0206AAA8(VarsFlags * param0, int param1);
-BOOL Events_HasUnlockedVsSeekerLevel(VarsFlags * param0, int param1);
+BOOL VsSeeker_HasUnlockedLevel(VarsFlags * param0, int param1);
 u16 sub_0206AB68(VarsFlags * param0, int param1);
 void sub_0206AD9C(VarsFlags * param0);
 void CommClub_ResetAvailable(VarsFlags * param0);

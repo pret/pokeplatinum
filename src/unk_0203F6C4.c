@@ -3506,7 +3506,7 @@ static BOOL ScrCmd_06D (ScriptContext * ctx)
     mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
     v1 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_020633A8(mapObj, v1);
+    MapObject_SetMoveCode(mapObj, v1);
     return 0;
 }
 

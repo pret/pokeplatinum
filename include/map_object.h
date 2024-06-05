@@ -252,7 +252,7 @@ int sub_020631A0(const MapObjectHeader * param0);
 MapObject * sub_0206326C(const MapObjectManager * param0, int param1, int param2, int param3);
 void sub_020632D4(MapObject * param0, const VecFx32 * param1, int param2);
 void MapObject_SetPosDir(MapObject * param0, int param1, int param2, int param3, int param4);
-void sub_020633A8(MapObject * param0, u32 param1);
+void MapObject_SetMoveCode(MapObject * param0, u32 param1);
 void sub_020633C8(MapObject * param0, int param1);
 void sub_020633E0(MapObject * param0);
 void sub_020633E4(MapObject * param0);

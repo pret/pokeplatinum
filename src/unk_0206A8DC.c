@@ -202,7 +202,7 @@ BOOL sub_0206AAA8 (VarsFlags * param0, int param1)
     return v0;
 }
 
-BOOL Events_HasUnlockedVsSeekerLevel (VarsFlags * param0, int param1)
+BOOL VsSeeker_HasUnlockedLevel(VarsFlags * param0, int param1)
 {
     int v0 = 0;
 

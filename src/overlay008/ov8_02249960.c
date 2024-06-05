@@ -4128,7 +4128,7 @@ BOOL ov8_0224C5DC (FieldSystem * fieldSystem, void * param1)
         MapObject_SetZInitial(v1, MapObject_GetZPos(v1));
         sub_020629FC(v1, 2);
         sub_02062A04(v1, 2);
-        sub_020633A8(v1, 0x3);
+        MapObject_SetMoveCode(v1, 0x3);
 
         return 1;
     }

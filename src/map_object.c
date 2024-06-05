@@ -2534,7 +2534,7 @@ void MapObject_SetPosDir (MapObject * mapObj, int param1, int param2, int param3
     sub_020656DC(mapObj);
 }
 
-void sub_020633A8 (MapObject * mapObj, u32 param1)
+void MapObject_SetMoveCode (MapObject * mapObj, u32 param1)
 {
     sub_02062B28(mapObj);
     sub_02062944(mapObj, param1);

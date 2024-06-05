@@ -683,7 +683,7 @@ static int sub_02068308 (UnkStruct_020EF6D0 * param0)
     sub_020656AC(param0->unk_24);
 
     if ((sub_02071CB4(param0->fieldSystem, 2) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->unk_24) == 0)) {
-        sub_020633A8(param0->unk_24, 0x0);
+        MapObject_SetMoveCode(param0->unk_24, 0x0);
     }
 
     param0->unk_00 = 17;
