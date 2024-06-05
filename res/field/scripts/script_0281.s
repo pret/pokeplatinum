@@ -17,13 +17,11 @@ _0015:
     ScrCmd_068
     ScrCmd_1BD 0x8004
     ScrCmd_07E 0x1C5, 1, 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _0052
+    GoToIfEq 0x800C, 1, _0052
     ScrCmd_02C 1
     ScrCmd_03E 0x800C
     ScrCmd_034
-    CompareVar 0x800C, 0
-    GoToIf 1, _005D
+    GoToIfEq 0x800C, 0, _005D
     GoTo _0098
 
 _0052:

@@ -84,8 +84,7 @@ _00A9:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x129
-    GoToIf 1, _0109
+    GoToIfSet 0x129, _0109
     ScrCmd_0DE 0x800C
     CompareVar 0x800C, 0x183
     CallIf 1, _0119

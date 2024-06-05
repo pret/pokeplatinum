@@ -21,10 +21,8 @@ _002E:
     Call _0299
     Call _029E
     SetVar 0x8008, 0x8001
-    CompareVar 0x8008, 3
-    GoToIf 1, _031D
-    CompareVar 0x8008, -2
-    GoToIf 1, _031D
+    GoToIfEq 0x8008, 3, _031D
+    GoToIfEq 0x8008, -2, _031D
     Call _032B
     GoTo _002E
     End
@@ -40,10 +38,8 @@ _007C:
     Call _0299
     Call _029E
     SetVar 0x8008, 0x8001
-    CompareVar 0x8008, 3
-    GoToIf 1, _031D
-    CompareVar 0x8008, -2
-    GoToIf 1, _031D
+    GoToIfEq 0x8008, 3, _031D
+    GoToIfEq 0x8008, -2, _031D
     Call _032B
     GoTo _007C
     End
@@ -59,10 +55,8 @@ _00CA:
     Call _0299
     Call _029E
     SetVar 0x8008, 0x8001
-    CompareVar 0x8008, 3
-    GoToIf 1, _031D
-    CompareVar 0x8008, -2
-    GoToIf 1, _031D
+    GoToIfEq 0x8008, 3, _031D
+    GoToIfEq 0x8008, -2, _031D
     Call _032B
     GoTo _00CA
     End
@@ -78,13 +72,10 @@ _0118:
     Call _0299
     Call _029E
     SetVar 0x8008, 0x8001
-    CompareVar 0x8008, 3
-    GoToIf 1, _031D
-    CompareVar 0x8008, -2
-    GoToIf 1, _031D
+    GoToIfEq 0x8008, 3, _031D
+    GoToIfEq 0x8008, -2, _031D
     ScrCmd_2CC 1, 0x8001, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0174
+    GoToIfEq 0x800C, 0, _0174
     ScrCmd_2CC 2, 0x8001, 0x800C
     ScrCmd_0DA 0, 0x800C, 0, 0
     ScrCmd_02C 7
@@ -105,10 +96,8 @@ _017F:
 
 _0199:
     Call _02BD
-    CompareVar 0x8002, 9
-    GoToIf 1, _0118
-    CompareVar 0x8002, -2
-    GoToIf 1, _0118
+    GoToIfEq 0x8002, 9, _0118
+    GoToIfEq 0x8002, -2, _0118
     SetVar 0x8003, 0
     SetVar 0x8006, 0
     SetVar 0x8007, 0
@@ -117,8 +106,7 @@ _0199:
 
 _01D3:
     ScrCmd_2DE 0x8001, 0x8002, 0x8003, 0x8006, 0x8007
-    CompareVar 0x8003, -2
-    GoToIf 1, _0199
+    GoToIfEq 0x8003, -2, _0199
     Call _032B
     ScrCmd_02C 6
     GoTo _01D3
@@ -135,10 +123,8 @@ _0211:
     Call _0299
     Call _029E
     SetVar 0x8008, 0x8001
-    CompareVar 0x8008, 3
-    GoToIf 1, _031D
-    CompareVar 0x8008, -2
-    GoToIf 1, _031D
+    GoToIfEq 0x8008, 3, _031D
+    GoToIfEq 0x8008, -2, _031D
     Call _032B
     GoTo _0211
     End
@@ -154,10 +140,8 @@ _025F:
     Call _0299
     Call _029E
     SetVar 0x8008, 0x8001
-    CompareVar 0x8008, 3
-    GoToIf 1, _031D
-    CompareVar 0x8008, -2
-    GoToIf 1, _031D
+    GoToIfEq 0x8008, 3, _031D
+    GoToIfEq 0x8008, -2, _031D
     Call _032B
     GoTo _025F
     End

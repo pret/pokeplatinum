@@ -37,8 +37,7 @@ _0044:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CompareVar 0x40CF, 2
-    GoToIf 4, _0064
+    GoToIfGe 0x40CF, 2, _0064
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034

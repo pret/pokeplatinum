@@ -39,10 +39,8 @@ _0047:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _006F
-    CompareVar 0x800C, 1
-    GoToIf 1, _007A
+    GoToIfEq 0x800C, 0, _006F
+    GoToIfEq 0x800C, 1, _007A
     End
 
 _006F:

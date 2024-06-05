@@ -11,8 +11,7 @@
     .short 0xFD13
 
 _001A:
-    CompareVar 0x4094, 2
-    GoToIf 0, _0029
+    GoToIfLt 0x4094, 2, _0029
     End
 
 _0029:
@@ -136,8 +135,7 @@ _0154:
     ScrCmd_162
     ScrCmd_06D 14, 15
     ScrCmd_1BD 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0177
+    GoToIfEq 0x800C, 0, _0177
     GoTo _0191
     End
 

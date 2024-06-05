@@ -9,8 +9,7 @@
 
 _000E:
     ScrCmd_238 13, 0x4000
-    CompareVar 0x4000, 0
-    GoToIf 1, _0027
+    GoToIfEq 0x4000, 0, _0027
     ClearFlag 0x219
     End
 

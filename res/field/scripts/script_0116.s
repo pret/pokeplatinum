@@ -11,10 +11,8 @@ _0006:
     WaitMovement
     ScrCmd_11C 0x40CE
     SetVar 0x8008, 0x40CE
-    CompareVar 0x8008, 1
-    GoToIf 1, _0038
-    CompareVar 0x8008, 0
-    GoToIf 1, _006A
+    GoToIfEq 0x8008, 1, _0038
+    GoToIfEq 0x8008, 0, _006A
     End
 
 _0038:

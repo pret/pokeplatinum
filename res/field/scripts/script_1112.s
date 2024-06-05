@@ -55,8 +55,7 @@ _00B2:
     CallIf 1, _01EF
     CompareVar 0x4000, 1
     CallIf 1, _01F7
-    CheckFlag 0x9AC
-    GoToIf 1, _01ED
+    GoToIfSet 0x9AC, _01ED
     SetFlag 0x2A7
     SetFlag 0x2A8
     SetFlag 0x2A9
@@ -71,8 +70,7 @@ _00B2:
     SetFlag 0x2B7
     SetFlag 0x2B8
     SetFlag 0x2B9
-    CompareVar 0x404E, 0xFF
-    GoToIf 1, _01FF
+    GoToIfEq 0x404E, 0xFF, _01FF
     SetVar 0x400F, 0x404E
     CompareVar 0x404E, 0
     CallIf 1, _0201
@@ -129,8 +127,7 @@ _0207:
     Return
 
 _020D:
-    CheckFlag 0x9AB
-    GoToIf 0, _029A
+    GoToIfUnset 0x9AB, _029A
     ClearFlag 0x2A9
     Return
 
@@ -139,14 +136,12 @@ _021E:
     Return
 
 _0224:
-    CheckFlag 0x9AB
-    GoToIf 0, _029A
+    GoToIfUnset 0x9AB, _029A
     ClearFlag 0x2AC
     Return
 
 _0235:
-    CheckFlag 0x9AB
-    GoToIf 0, _029A
+    GoToIfUnset 0x9AB, _029A
     ClearFlag 0x2AE
     Return
 
@@ -154,8 +149,7 @@ _0246:
     Return
 
 _0248:
-    CheckFlag 0x9AB
-    GoToIf 0, _029A
+    GoToIfUnset 0x9AB, _029A
     ClearFlag 0x2B1
     Return
 
@@ -163,8 +157,7 @@ _0259:
     Return
 
 _025B:
-    CheckFlag 0x9AB
-    GoToIf 0, _029A
+    GoToIfUnset 0x9AB, _029A
     ClearFlag 0x2B4
     Return
 
@@ -518,8 +511,7 @@ _0645:
     Return
 
 _064A:
-    CompareVar 0x404E, 14
-    GoToIf 1, _0A50
+    GoToIfEq 0x404E, 14, _0A50
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
@@ -634,8 +626,7 @@ _0799:
     Return
 
 _079E:
-    CompareVar 0x404E, 14
-    GoToIf 1, _0A50
+    GoToIfEq 0x404E, 14, _0A50
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
@@ -673,8 +664,7 @@ _0810:
     Return
 
 _0815:
-    CompareVar 0x404E, 13
-    GoToIf 1, _088C
+    GoToIfEq 0x404E, 13, _088C
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
@@ -890,8 +880,7 @@ _0AC3:
     Return
 
 _0AC8:
-    CheckFlag 0x9A9
-    GoToIf 0, _0AB4
+    GoToIfUnset 0x9A9, _0AB4
     ScrCmd_02C 96
     Return
 
@@ -1093,8 +1082,7 @@ _0D03:
 _0D14:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 0x9A2
-    GoToIf 1, _0D63
+    GoToIfSet 0x9A2, _0D63
     ScrCmd_02C 107
     GoTo _0E5D
     End
@@ -1138,11 +1126,9 @@ _0D88:
     ScrCmd_003 1, 0x800C
     ScrCmd_1F9 0x8007
     ScrCmd_2FC 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _0DC2
+    GoToIfEq 0x800C, 1, _0DC2
     ScrCmd_1F9 0x8007
-    CompareVar 0x8007, 0x258
-    GoToIf 1, _0DC2
+    GoToIfEq 0x8007, 0x258, _0DC2
     GoTo _0D88
     End
 
@@ -1229,8 +1215,7 @@ _0E65:
     ScrCmd_045 1, 1, 0, 1, 0x8002
     ScrCmd_046 189, 0xFF, 0
     ScrCmd_047
-    CompareVar 0x8002, 0
-    GoToIf 5, _0EA7
+    GoToIfNe 0x8002, 0, _0EA7
     Call _0F7C
     ScrCmd_034
     Call _1092
@@ -1254,8 +1239,7 @@ _0EB4:
     ScrCmd_045 1, 1, 0, 1, 0x8002
     ScrCmd_046 189, 0xFF, 0
     ScrCmd_047
-    CompareVar 0x8002, 0
-    GoToIf 5, _1478
+    GoToIfNe 0x8002, 0, _1478
     Call _0F7C
     ScrCmd_034
     Call _1092
@@ -1343,16 +1327,13 @@ _1092:
     ScrCmd_0BE 0x1D0, 0, 10, 6, 1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    CompareVar 0x8002, 0
-    GoToIf 1, _1485
-    CompareVar 0x8002, 0
-    GoToIf 5, _1514
+    GoToIfEq 0x8002, 0, _1485
+    GoToIfNe 0x8002, 0, _1514
     End
 
 _10DA:
     Call _2209
-    CompareVar 0x404E, 0
-    GoToIf 1, _1103
+    GoToIfEq 0x404E, 0, _1103
     ScrCmd_186 1, 11, 11
     ScrCmd_188 1, 14
     ScrCmd_189 1, 0
@@ -1368,8 +1349,7 @@ _1103:
 
 _1121:
     Call _2209
-    CompareVar 0x404E, 1
-    GoToIf 1, _114A
+    GoToIfEq 0x404E, 1, _114A
     ScrCmd_186 0, 11, 11
     ScrCmd_188 0, 14
     ScrCmd_189 0, 0
@@ -1385,8 +1365,7 @@ _114A:
 
 _1168:
     Call _2209
-    CompareVar 0x404E, 2
-    GoToIf 1, _1199
+    GoToIfEq 0x404E, 2, _1199
     GoTo _1183
     End
 
@@ -1397,8 +1376,7 @@ _1183:
     Return
 
 _1199:
-    CheckFlag 0x9AB
-    GoToIf 0, _1183
+    GoToIfUnset 0x9AB, _1183
     ScrCmd_186 2, 10, 8
     ScrCmd_188 2, 14
     ScrCmd_189 2, 0
@@ -1408,8 +1386,7 @@ _1199:
 
 _11C2:
     Call _2209
-    CompareVar 0x404E, 5
-    GoToIf 1, _11F3
+    GoToIfEq 0x404E, 5, _11F3
     GoTo _11DD
     End
 
@@ -1420,8 +1397,7 @@ _11DD:
     Return
 
 _11F3:
-    CheckFlag 0x9AB
-    GoToIf 0, _11DD
+    GoToIfUnset 0x9AB, _11DD
     ScrCmd_186 5, 10, 8
     ScrCmd_188 5, 14
     ScrCmd_189 5, 0
@@ -1431,8 +1407,7 @@ _11F3:
 
 _121C:
     Call _2209
-    CompareVar 0x404E, 12
-    GoToIf 1, _1245
+    GoToIfEq 0x404E, 12, _1245
     ScrCmd_186 12, 11, 11
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
@@ -1480,10 +1455,8 @@ _12BF:
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _12FC
-    CompareVar 0x800C, 1
-    GoToIf 1, _1307
+    GoToIfEq 0x800C, 0, _12FC
+    GoToIfEq 0x800C, 1, _1307
     End
 
 _12FC:
@@ -1524,8 +1497,7 @@ _1332:
     Return
 
 _1367:
-    CheckFlag 0x9AB
-    GoToIf 0, _1374
+    GoToIfUnset 0x9AB, _1374
     Return
 
 _1374:
@@ -1552,8 +1524,7 @@ _1390:
     Return
 
 _13C5:
-    CheckFlag 0x9AB
-    GoToIf 0, _13D2
+    GoToIfUnset 0x9AB, _13D2
     Return
 
 _13D2:
@@ -1581,8 +1552,7 @@ _13EE:
     Return
 
 _1429:
-    CheckFlag 0x9AC
-    GoToIf 0, _1436
+    GoToIfUnset 0x9AC, _1436
     Return
 
 _1436:
@@ -1673,8 +1643,7 @@ _14FC:
 
 _1514:
     Call _18F8
-    CompareVar 0x800C, 1
-    GoToIf 1, _155E
+    GoToIfEq 0x800C, 1, _155E
     ScrCmd_02C 7
     GoTo _1532
     End
@@ -1750,8 +1719,7 @@ _1624:
     ScrCmd_0CD 1
     ScrCmd_02C 119
     Call _18F8
-    CompareVar 0x800C, 1
-    GoToIf 1, _1651
+    GoToIfEq 0x800C, 1, _1651
     GoTo _165C
     End
 
@@ -1808,14 +1776,11 @@ _1667:
     CallIf 1, _1F8F
     CompareVar 0x8002, 19
     CallIf 1, _1F9C
-    CompareVar 0x8002, -2
-    GoToIf 1, _18DE
-    CompareVar 0x8003, 0
-    GoToIf 1, _18C8
+    GoToIfEq 0x8002, -2, _18DE
+    GoToIfEq 0x8003, 0, _18C8
     ScrCmd_02C 121
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _18DE
+    GoToIfEq 0x800C, 1, _18DE
     CompareVar 0x8002, 0
     CallIf 1, _1FB1
     CompareVar 0x8002, 1
@@ -1856,8 +1821,7 @@ _1667:
     CallIf 1, _2065
     CompareVar 0x8002, 19
     CallIf 1, _206F
-    CompareVar 0x8003, 0
-    GoToIf 1, _18D3
+    GoToIfEq 0x8003, 0, _18D3
     Call _0F7C
     ScrCmd_034
     Call _1092
@@ -1890,46 +1854,26 @@ _18F0:
     End
 
 _18F8:
-    CheckFlag 0x997
-    GoToIf 0, _19DC
-    CheckFlag 0x998
-    GoToIf 0, _19DC
-    CheckFlag 0x999
-    GoToIf 0, _19DC
-    CheckFlag 0x99A
-    GoToIf 0, _19DC
-    CheckFlag 0x99B
-    GoToIf 0, _19DC
-    CheckFlag 0x99C
-    GoToIf 0, _19DC
-    CheckFlag 0x99D
-    GoToIf 0, _19DC
-    CheckFlag 0x99E
-    GoToIf 0, _19DC
-    CheckFlag 0x99F
-    GoToIf 0, _19DC
-    CheckFlag 0x9A0
-    GoToIf 0, _19DC
-    CheckFlag 0x9A1
-    GoToIf 0, _19DC
-    CheckFlag 0x9A2
-    GoToIf 0, _19DC
-    CheckFlag 0x9A3
-    GoToIf 0, _19DC
-    CheckFlag 0x9A4
-    GoToIf 0, _19DC
-    CheckFlag 0x9A5
-    GoToIf 0, _19DC
-    CheckFlag 0x9A6
-    GoToIf 0, _19DC
-    CheckFlag 0x9A7
-    GoToIf 0, _19DC
-    CheckFlag 0x9A8
-    GoToIf 0, _19DC
-    CheckFlag 0x9A9
-    GoToIf 0, _19DC
-    CheckFlag 0x9AA
-    GoToIf 0, _19DC
+    GoToIfUnset 0x997, _19DC
+    GoToIfUnset 0x998, _19DC
+    GoToIfUnset 0x999, _19DC
+    GoToIfUnset 0x99A, _19DC
+    GoToIfUnset 0x99B, _19DC
+    GoToIfUnset 0x99C, _19DC
+    GoToIfUnset 0x99D, _19DC
+    GoToIfUnset 0x99E, _19DC
+    GoToIfUnset 0x99F, _19DC
+    GoToIfUnset 0x9A0, _19DC
+    GoToIfUnset 0x9A1, _19DC
+    GoToIfUnset 0x9A2, _19DC
+    GoToIfUnset 0x9A3, _19DC
+    GoToIfUnset 0x9A4, _19DC
+    GoToIfUnset 0x9A5, _19DC
+    GoToIfUnset 0x9A6, _19DC
+    GoToIfUnset 0x9A7, _19DC
+    GoToIfUnset 0x9A8, _19DC
+    GoToIfUnset 0x9A9, _19DC
+    GoToIfUnset 0x9AA, _19DC
     SetVar 0x800C, 1
     Return
 
@@ -2026,8 +1970,7 @@ _1B2E:
     Return
 
 _1B4F:
-    CheckFlag 0x99F
-    GoToIf 0, _1D13
+    GoToIfUnset 0x99F, _1D13
     ScrCmd_2F5 0, 0x62D4, 1, 6
     CheckFlag 0x9A2
     CallIf 0, _1DF1
@@ -2037,8 +1980,7 @@ _1B4F:
 
 _1B7B:
     ScrCmd_30F 13, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _1D13
+    GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x249F0, 1, 6
     CheckFlag 0x9A3
     CallIf 0, _1E05
@@ -2048,8 +1990,7 @@ _1B7B:
 
 _1BAF:
     ScrCmd_30F 14, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _1D13
+    GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x249F0, 1, 6
     CheckFlag 0x9A4
     CallIf 0, _1E19
@@ -2059,8 +2000,7 @@ _1BAF:
 
 _1BE3:
     ScrCmd_30F 15, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _1D13
+    GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x23D0C, 1, 6
     CheckFlag 0x9A5
     CallIf 0, _1E2D
@@ -2070,8 +2010,7 @@ _1BE3:
 
 _1C17:
     ScrCmd_30F 16, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _1D13
+    GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x32C80, 1, 6
     CheckFlag 0x9A6
     CallIf 0, _1E41
@@ -2081,8 +2020,7 @@ _1C17:
 
 _1C4B:
     ScrCmd_30F 17, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _1D13
+    GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0xCB20, 1, 6
     CheckFlag 0x9A7
     CallIf 0, _1E55
@@ -2092,8 +2030,7 @@ _1C4B:
 
 _1C7F:
     ScrCmd_30F 18, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _1D13
+    GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x222E0, 1, 6
     CheckFlag 0x9A8
     CallIf 0, _1E69
@@ -2102,8 +2039,7 @@ _1C7F:
     Return
 
 _1CB3:
-    CheckFlag 0x9A6
-    GoToIf 0, _1D13
+    GoToIfUnset 0x9A6, _1D13
     ScrCmd_2F5 0, 0x1A5E0, 1, 6
     CheckFlag 0x9A9
     CallIf 0, _1E7D
@@ -2113,8 +2049,7 @@ _1CB3:
 
 _1CDF:
     ScrCmd_30F 20, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _1D13
+    GoToIfEq 0x800C, 0, _1D13
     ScrCmd_2F5 0, 0x1D4C0, 1, 6
     CheckFlag 0x9AA
     CallIf 0, _1E91
@@ -2286,103 +2221,83 @@ _1E9B:
     Return
 
 _1EA5:
-    CheckFlag 0x997
-    GoToIf 1, _1FA9
+    GoToIfSet 0x997, _1FA9
     Return
 
 _1EB2:
-    CheckFlag 0x998
-    GoToIf 1, _1FA9
+    GoToIfSet 0x998, _1FA9
     Return
 
 _1EBF:
-    CheckFlag 0x999
-    GoToIf 1, _1FA9
+    GoToIfSet 0x999, _1FA9
     Return
 
 _1ECC:
-    CheckFlag 0x99A
-    GoToIf 1, _1FA9
+    GoToIfSet 0x99A, _1FA9
     Return
 
 _1ED9:
-    CheckFlag 0x99B
-    GoToIf 1, _1FA9
+    GoToIfSet 0x99B, _1FA9
     Return
 
 _1EE6:
-    CheckFlag 0x99C
-    GoToIf 1, _1FA9
+    GoToIfSet 0x99C, _1FA9
     Return
 
 _1EF3:
-    CheckFlag 0x99D
-    GoToIf 1, _1FA9
+    GoToIfSet 0x99D, _1FA9
     Return
 
 _1F00:
-    CheckFlag 0x99E
-    GoToIf 1, _1FA9
+    GoToIfSet 0x99E, _1FA9
     Return
 
 _1F0D:
-    CheckFlag 0x99F
-    GoToIf 1, _1FA9
+    GoToIfSet 0x99F, _1FA9
     Return
 
 _1F1A:
-    CheckFlag 0x9A0
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A0, _1FA9
     Return
 
 _1F27:
-    CheckFlag 0x9A1
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A1, _1FA9
     Return
 
 _1F34:
-    CheckFlag 0x9A2
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A2, _1FA9
     Return
 
 _1F41:
-    CheckFlag 0x9A3
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A3, _1FA9
     Return
 
 _1F4E:
-    CheckFlag 0x9A4
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A4, _1FA9
     Return
 
 _1F5B:
-    CheckFlag 0x9A5
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A5, _1FA9
     Return
 
 _1F68:
-    CheckFlag 0x9A6
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A6, _1FA9
     Return
 
 _1F75:
-    CheckFlag 0x9A7
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A7, _1FA9
     Return
 
 _1F82:
-    CheckFlag 0x9A8
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A8, _1FA9
     Return
 
 _1F8F:
-    CheckFlag 0x9A9
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9A9, _1FA9
     Return
 
 _1F9C:
-    CheckFlag 0x9AA
-    GoToIf 1, _1FA9
+    GoToIfSet 0x9AA, _1FA9
     Return
 
 _1FA9:
@@ -2631,8 +2546,7 @@ _22D4:
     Return
 
 _22DA:
-    CheckFlag 0x9AB
-    GoToIf 0, _2395
+    GoToIfUnset 0x9AB, _2395
     ScrCmd_065 2
     Return
 
@@ -2641,44 +2555,37 @@ _22EB:
     Return
 
 _22F1:
-    CheckFlag 0x9AB
-    GoToIf 0, _2395
+    GoToIfUnset 0x9AB, _2395
     ScrCmd_065 4
     Return
 
 _2302:
-    CheckFlag 0x9AB
-    GoToIf 0, _2395
+    GoToIfUnset 0x9AB, _2395
     ScrCmd_065 5
     Return
 
 _2313:
-    CheckFlag 0x9AC
-    GoToIf 0, _2393
+    GoToIfUnset 0x9AC, _2393
     ScrCmd_065 6
     Return
 
 _2324:
-    CheckFlag 0x9AB
-    GoToIf 0, _2395
+    GoToIfUnset 0x9AB, _2395
     ScrCmd_065 7
     Return
 
 _2335:
-    CheckFlag 0x9AC
-    GoToIf 0, _2393
+    GoToIfUnset 0x9AC, _2393
     ScrCmd_065 9
     Return
 
 _2346:
-    CheckFlag 0x9AB
-    GoToIf 0, _2395
+    GoToIfUnset 0x9AB, _2395
     ScrCmd_065 8
     Return
 
 _2357:
-    CheckFlag 0x9AC
-    GoToIf 0, _2393
+    GoToIfUnset 0x9AC, _2393
     ScrCmd_065 10
     Return
 
@@ -2687,8 +2594,7 @@ _2368:
     Return
 
 _236E:
-    CheckFlag 0x9AC
-    GoToIf 0, _2393
+    GoToIfUnset 0x9AC, _2393
     ScrCmd_065 12
     Return
 

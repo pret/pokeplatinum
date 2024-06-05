@@ -20,8 +20,7 @@
     .short 0xFD13
 
 _003E:
-    CheckFlag 0x97D
-    GoToIf 1, _004B
+    GoToIfSet 0x97D, _004B
     End
 
 _004B:
@@ -36,28 +35,22 @@ _0059:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x97D
-    GoToIf 1, _0109
-    CheckFlag 173
-    GoToIf 1, _0114
+    GoToIfSet 0x97D, _0109
+    GoToIfSet 173, _0114
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_0E5 0x199, 0
     ScrCmd_0EC 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _011F
+    GoToIfEq 0x800C, 0, _011F
     SetFlag 173
     SetVar 0x410D, 1
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_1BD 0x8004
     SetVar 0x4002, 0x8004
-    CompareVar 0x8004, 0
-    GoToIf 1, _00D5
-    CompareVar 0x8004, 2
-    GoToIf 1, _00E5
-    CompareVar 0x8004, 3
-    GoToIf 1, _00F5
+    GoToIfEq 0x8004, 0, _00D5
+    GoToIfEq 0x8004, 2, _00E5
+    GoToIfEq 0x8004, 3, _00F5
     End
 
 _00D5:
@@ -119,8 +112,7 @@ _0140:
 _014C:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 0x97D
-    GoToIf 1, _0168
+    GoToIfSet 0x97D, _0168
     ScrCmd_02C 13
     ScrCmd_031
     ScrCmd_034
@@ -137,8 +129,7 @@ _0168:
 _0173:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 0x97D
-    GoToIf 1, _018F
+    GoToIfSet 0x97D, _018F
     ScrCmd_02C 14
     ScrCmd_031
     ScrCmd_034
@@ -155,8 +146,7 @@ _018F:
 _019A:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 0x97D
-    GoToIf 1, _01B6
+    GoToIfSet 0x97D, _01B6
     ScrCmd_02C 15
     ScrCmd_031
     ScrCmd_034
@@ -182,14 +172,11 @@ _01C5:
 _01C7:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 0x97D
-    GoToIf 1, _0347
+    GoToIfSet 0x97D, _0347
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _01FB
-    CompareVar 0x800C, 1
-    GoToIf 1, _0341
+    GoToIfEq 0x800C, 0, _01FB
+    GoToIfEq 0x800C, 1, _0341
     End
 
 _01FB:
@@ -215,12 +202,9 @@ _01FB:
     ScrCmd_065 2
     ScrCmd_065 1
     ScrCmd_065 3
-    CompareVar 0x4002, 0
-    GoToIf 1, _02C0
-    CompareVar 0x4002, 2
-    GoToIf 1, _02DA
-    CompareVar 0x4002, 3
-    GoToIf 1, _02F4
+    GoToIfEq 0x4002, 0, _02C0
+    GoToIfEq 0x4002, 2, _02DA
+    GoToIfEq 0x4002, 3, _02F4
     End
 
 _0296:
@@ -373,8 +357,7 @@ _03EA:
 _03FD:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 173
-    GoToIf 1, _0450
+    GoToIfSet 173, _0450
     ApplyMovement 4, _0470
     WaitMovement
     ScrCmd_02C 5

@@ -8,11 +8,9 @@
     .short 0xFD13
 
 _000E:
-    CompareVar 0x40DD, 0
-    GoToIf 1, _0048
+    GoToIfEq 0x40DD, 0, _0048
     ScrCmd_207 0x4000
-    CompareVar 0x4000, 1
-    GoToIf 1, _004A
+    GoToIfEq 0x4000, 1, _004A
     ScrCmd_1DD 55, 0, 0x4000
     SetVar 0x4020, 0x4000
     ScrCmd_1DD 55, 1, 0x4000

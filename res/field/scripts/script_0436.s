@@ -37,8 +37,7 @@ _003D:
 _0050:
     ScrCmd_060
     ScrCmd_0C7 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _0080
+    GoToIfEq 0x800C, 1, _0080
     ApplyMovement 0, _0090
     WaitMovement
     ScrCmd_02C 1
@@ -75,8 +74,7 @@ _00B0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x12B
-    GoToIf 1, _00E5
+    GoToIfSet 0x12B, _00E5
     SetVar 0x8004, 96
     ScrCmd_261 0, 0x8004
     ScrCmd_02C 3

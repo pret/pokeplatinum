@@ -7,18 +7,14 @@
     .short 0xFD13
 
 _000A:
-    CheckFlag 0x132
-    GoToIf 1, _0040
-    CheckFlag 0x132
-    GoToIf 0, _004A
+    GoToIfSet 0x132, _0040
+    GoToIfUnset 0x132, _004A
     End
 
 _0022:
     Call _0118
-    CheckFlag 0x132
-    GoToIf 1, _0040
-    CheckFlag 0x132
-    GoToIf 0, _004A
+    GoToIfSet 0x132, _0040
+    GoToIfUnset 0x132, _004A
     End
 
 _0040:
@@ -26,8 +22,7 @@ _0040:
     End
 
 _004A:
-    CompareVar 0x40AA, 2
-    GoToIf 4, _0069
+    GoToIfGe 0x40AA, 2, _0069
     GoTo _005F
     End
 
@@ -36,32 +31,23 @@ _005F:
     End
 
 _0069:
-    CheckFlag 0x145
-    GoToIf 0, _005F
-    CheckFlag 208
-    GoToIf 1, _00BC
-    CompareVar 0x40C4, 1
-    GoToIf 4, _00BC
+    GoToIfUnset 0x145, _005F
+    GoToIfSet 208, _00BC
+    GoToIfGe 0x40C4, 1, _00BC
     ScrCmd_07E 135, 1, 0x4001
-    CompareVar 0x4001, 1
-    GoToIf 1, _0104
+    GoToIfEq 0x4001, 1, _0104
     ScrCmd_32F 135, 0x4001
-    CompareVar 0x4001, 1
-    GoToIf 1, _0104
+    GoToIfEq 0x4001, 1, _0104
     GoTo _00BC
     End
 
 _00BC:
-    CheckFlag 209
-    GoToIf 1, _005F
-    CompareVar 0x40C5, 1
-    GoToIf 4, _005F
+    GoToIfSet 209, _005F
+    GoToIfGe 0x40C5, 1, _005F
     ScrCmd_07E 136, 1, 0x4001
-    CompareVar 0x4001, 1
-    GoToIf 1, _010E
+    GoToIfEq 0x4001, 1, _010E
     ScrCmd_32F 136, 0x4001
-    CompareVar 0x4001, 1
-    GoToIf 1, _010E
+    GoToIfEq 0x4001, 1, _010E
     GoTo _005F
     End
 

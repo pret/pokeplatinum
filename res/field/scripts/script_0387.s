@@ -17,10 +17,8 @@ _0022:
     End
 
 _0026:
-    CompareVar 0x4055, 7
-    GoToIf 1, _0080
-    CheckFlag 0x9AD
-    GoToIf 1, _0051
+    GoToIfEq 0x4055, 7, _0080
+    GoToIfSet 0x9AD, _0051
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068

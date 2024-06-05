@@ -15,10 +15,8 @@ _001E:
     CompareVar 0x4087, 2
     CallIf 4, _005B
     ScrCmd_14D 0x4000
-    CompareVar 0x4000, 0
-    GoToIf 1, _004B
-    CompareVar 0x4000, 1
-    GoToIf 1, _0053
+    GoToIfEq 0x4000, 0, _004B
+    GoToIfEq 0x4000, 1, _0053
     End
 
 _004B:
@@ -75,16 +73,11 @@ _00C7:
     ApplyMovement 0xFF, _04A0
     WaitMovement
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8005, 0x339
-    GoToIf 1, _0124
-    CompareVar 0x8005, 0x33A
-    GoToIf 1, _0134
-    CompareVar 0x8005, 0x33B
-    GoToIf 1, _0144
-    CompareVar 0x8005, 0x33C
-    GoToIf 1, _0154
-    CompareVar 0x8005, 0x33D
-    GoToIf 1, _0164
+    GoToIfEq 0x8005, 0x339, _0124
+    GoToIfEq 0x8005, 0x33A, _0134
+    GoToIfEq 0x8005, 0x33B, _0144
+    GoToIfEq 0x8005, 0x33C, _0154
+    GoToIfEq 0x8005, 0x33D, _0164
     End
 
 _0124:
@@ -113,13 +106,10 @@ _0164:
     GoTo _0174
 
 _0174:
-    CheckFlag 143
-    GoToIf 0, _027C
+    GoToIfUnset 143, _027C
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _019F
-    CompareVar 0x800C, 1
-    GoToIf 1, _01B2
+    GoToIfEq 0x800C, 0, _019F
+    GoToIfEq 0x800C, 1, _01B2
     End
 
 _019F:
@@ -145,10 +135,8 @@ _01C5:
     ApplyMovement 3, _0490
     WaitMovement
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0205
-    CompareVar 0x800C, 1
-    GoToIf 1, _0211
+    GoToIfEq 0x800C, 0, _0205
+    GoToIfEq 0x800C, 1, _0211
     End
 
 _0205:
@@ -166,10 +154,8 @@ _021D:
     SetVar 0x8005, 5
     ScrCmd_014 0x7FC
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _024D
-    CompareVar 0x800C, 1
-    GoToIf 1, _0259
+    GoToIfEq 0x800C, 0, _024D
+    GoToIfEq 0x800C, 1, _0259
     End
 
 _024D:
@@ -192,10 +178,8 @@ _0262:
 
 _027C:
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _029C
-    CompareVar 0x800C, 1
-    GoToIf 1, _02C8
+    GoToIfEq 0x800C, 0, _029C
+    GoToIfEq 0x800C, 1, _02C8
     End
 
 _029C:
@@ -234,16 +218,11 @@ _02EF:
 
 _02F4:
     ScrCmd_034
-    CompareVar 0x8005, 0x339
-    GoToIf 1, _0339
-    CompareVar 0x8005, 0x33A
-    GoToIf 1, _0351
-    CompareVar 0x8005, 0x33B
-    GoToIf 1, _0369
-    CompareVar 0x8005, 0x33C
-    GoToIf 1, _0381
-    CompareVar 0x8005, 0x33D
-    GoToIf 1, _0399
+    GoToIfEq 0x8005, 0x339, _0339
+    GoToIfEq 0x8005, 0x33A, _0351
+    GoToIfEq 0x8005, 0x33B, _0369
+    GoToIfEq 0x8005, 0x33C, _0381
+    GoToIfEq 0x8005, 0x33D, _0399
     End
 
 _0339:

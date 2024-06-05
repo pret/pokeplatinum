@@ -15,8 +15,7 @@
     .short 0xFD13
 
 _002A:
-    CompareVar 0x40F9, 0
-    GoToIf 1, _0039
+    GoToIfEq 0x40F9, 0, _0039
     End
 
 _0039:

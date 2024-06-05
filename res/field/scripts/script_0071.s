@@ -36,14 +36,12 @@ _0072:
     CompareVar 0x407A, 4
     CallIf 1, _00B5
     ScrCmd_07E 0x1C2, 1, 0x4000
-    CompareVar 0x4000, 1
-    GoToIf 1, _0096
+    GoToIfEq 0x4000, 1, _0096
     End
 
 _0096:
     ScrCmd_07E 0x1AC, 1, 0x4000
-    CompareVar 0x4000, 1
-    GoToIf 1, _00AD
+    GoToIfEq 0x4000, 1, _00AD
     End
 
 _00AD:
@@ -78,8 +76,7 @@ _00E5:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 129
-    GoToIf 1, _0103
+    GoToIfSet 129, _0103
     ScrCmd_02C 21
     ScrCmd_031
     ScrCmd_034
@@ -97,8 +94,7 @@ _010E:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 129
-    GoToIf 1, _012C
+    GoToIfSet 129, _012C
     ScrCmd_02C 23
     ScrCmd_031
     ScrCmd_034
@@ -163,23 +159,16 @@ _01A8:
 _01BF:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8005, 0x20A
-    GoToIf 1, _01FD
-    CompareVar 0x8005, 0x20B
-    GoToIf 1, _0256
-    CompareVar 0x8005, 0x20C
-    GoToIf 1, _0266
-    CompareVar 0x8005, 0x20D
-    GoToIf 1, _0276
+    GoToIfEq 0x8005, 0x20A, _01FD
+    GoToIfEq 0x8005, 0x20B, _0256
+    GoToIfEq 0x8005, 0x20C, _0266
+    GoToIfEq 0x8005, 0x20D, _0276
     End
 
 _01FD:
-    CompareVar 0x8004, 0x130
-    GoToIf 1, _0226
-    CompareVar 0x8004, 0x131
-    GoToIf 1, _0236
-    CompareVar 0x8004, 0x132
-    GoToIf 1, _0246
+    GoToIfEq 0x8004, 0x130, _0226
+    GoToIfEq 0x8004, 0x131, _0236
+    GoToIfEq 0x8004, 0x132, _0246
     End
 
 _0226:
@@ -234,23 +223,16 @@ _0286:
     ScrCmd_02C 8
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8005, 0x20A
-    GoToIf 1, _0322
-    CompareVar 0x8005, 0x20B
-    GoToIf 1, _03DD
-    CompareVar 0x8005, 0x20C
-    GoToIf 1, _03F7
-    CompareVar 0x8005, 0x20D
-    GoToIf 1, _0411
+    GoToIfEq 0x8005, 0x20A, _0322
+    GoToIfEq 0x8005, 0x20B, _03DD
+    GoToIfEq 0x8005, 0x20C, _03F7
+    GoToIfEq 0x8005, 0x20D, _0411
     End
 
 _0322:
-    CompareVar 0x8004, 0x130
-    GoToIf 1, _038F
-    CompareVar 0x8004, 0x131
-    GoToIf 1, _03A9
-    CompareVar 0x8004, 0x132
-    GoToIf 1, _03C3
+    GoToIfEq 0x8004, 0x130, _038F
+    GoToIfEq 0x8004, 0x131, _03A9
+    GoToIfEq 0x8004, 0x132, _03C3
     End
 
 _034B:
@@ -485,8 +467,7 @@ _056E:
     End
 
 _057F:
-    CheckFlag 121
-    GoToIf 1, _059D
+    GoToIfSet 121, _059D
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
@@ -672,10 +653,8 @@ _0770:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 130
-    GoToIf 0, _07A5
-    CompareVar 0x408C, 1
-    GoToIf 4, _07A5
+    GoToIfUnset 130, _07A5
+    GoToIfGe 0x408C, 1, _07A5
     ScrCmd_02C 34
     ScrCmd_031
     ScrCmd_034
@@ -845,12 +824,9 @@ _0954:
     ScrCmd_064 33
     ScrCmd_062 33
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8005, 0x20B
-    GoToIf 1, _099D
-    CompareVar 0x8005, 0x20C
-    GoToIf 1, _09B7
-    CompareVar 0x8005, 0x20D
-    GoToIf 1, _09D1
+    GoToIfEq 0x8005, 0x20B, _099D
+    GoToIfEq 0x8005, 0x20C, _09B7
+    GoToIfEq 0x8005, 0x20D, _09D1
     End
 
 _099D:
@@ -884,12 +860,9 @@ _09EB:
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8005, 0x20B
-    GoToIf 1, _0A32
-    CompareVar 0x8005, 0x20C
-    GoToIf 1, _0A5E
-    CompareVar 0x8005, 0x20D
-    GoToIf 1, _0A8A
+    GoToIfEq 0x8005, 0x20B, _0A32
+    GoToIfEq 0x8005, 0x20C, _0A5E
+    GoToIfEq 0x8005, 0x20D, _0A8A
     End
 
 _0A32:
@@ -1153,18 +1126,12 @@ _0D00:
     ScrCmd_189 12, 3
     ScrCmd_188 12, 17
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8005, 0x21C
-    GoToIf 1, _0D64
-    CompareVar 0x8005, 0x21D
-    GoToIf 1, _0D7A
-    CompareVar 0x8005, 0x21E
-    GoToIf 1, _0D90
-    CompareVar 0x8005, 0x21F
-    GoToIf 1, _0DA6
-    CompareVar 0x8005, 0x220
-    GoToIf 1, _0DBC
-    CompareVar 0x8005, 0x221
-    GoToIf 1, _0DD2
+    GoToIfEq 0x8005, 0x21C, _0D64
+    GoToIfEq 0x8005, 0x21D, _0D7A
+    GoToIfEq 0x8005, 0x21E, _0D90
+    GoToIfEq 0x8005, 0x21F, _0DA6
+    GoToIfEq 0x8005, 0x220, _0DBC
+    GoToIfEq 0x8005, 0x221, _0DD2
     End
 
 _0D64:
@@ -1216,11 +1183,9 @@ _0DF6:
     WaitMovement
     ScrCmd_02C 9
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _0E75
+    GoToIfEq 0x800C, 1, _0E75
     ScrCmd_177 0x800C
-    CompareVar 0x800C, 6
-    GoToIf 4, _0E67
+    GoToIfGe 0x800C, 6, _0E67
     Call _0E4B
     ApplyMovement 12, _0EA0
     WaitMovement
@@ -1276,29 +1241,22 @@ _0EB4:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CompareVar 0x407A, 4
-    GoToIf 1, _0ECD
+    GoToIfEq 0x407A, 4, _0ECD
     ScrCmd_061
     End
 
 _0ECD:
     ScrCmd_02C 14
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _0FAC
+    GoToIfEq 0x800C, 1, _0FAC
     ScrCmd_177 0x800C
-    CompareVar 0x800C, 6
-    GoToIf 4, _0F9E
+    GoToIfGe 0x800C, 6, _0F9E
     Call _0E4B
     ScrCmd_1BD 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0F32
-    CompareVar 0x800C, 1
-    GoToIf 1, _0F4C
-    CompareVar 0x800C, 2
-    GoToIf 1, _0F66
-    CompareVar 0x800C, 3
-    GoToIf 1, _0F78
+    GoToIfEq 0x800C, 0, _0F32
+    GoToIfEq 0x800C, 1, _0F4C
+    GoToIfEq 0x800C, 2, _0F66
+    GoToIfEq 0x800C, 3, _0F78
     End
 
 _0F32:
@@ -1364,18 +1322,12 @@ _0FCD:
 _0FDC:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8005, 0x21C
-    GoToIf 1, _1034
-    CompareVar 0x8005, 0x21D
-    GoToIf 1, _1046
-    CompareVar 0x8005, 0x21E
-    GoToIf 1, _1058
-    CompareVar 0x8005, 0x21F
-    GoToIf 1, _106A
-    CompareVar 0x8005, 0x220
-    GoToIf 1, _107C
-    CompareVar 0x8005, 0x221
-    GoToIf 1, _108E
+    GoToIfEq 0x8005, 0x21C, _1034
+    GoToIfEq 0x8005, 0x21D, _1046
+    GoToIfEq 0x8005, 0x21E, _1058
+    GoToIfEq 0x8005, 0x21F, _106A
+    GoToIfEq 0x8005, 0x220, _107C
+    GoToIfEq 0x8005, 0x221, _108E
     End
 
 _1034:

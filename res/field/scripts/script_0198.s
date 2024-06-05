@@ -22,10 +22,8 @@ _0006:
     WaitMovement
     ScrCmd_003 15, 0x800C
     ScrCmd_14D 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0074
-    CompareVar 0x800C, 1
-    GoToIf 1, _0080
+    GoToIfEq 0x800C, 0, _0074
+    GoToIfEq 0x800C, 1, _0080
     End
 
 _0074:
@@ -174,8 +172,7 @@ _0244:
     Return
 
 _024C:
-    CheckFlag 0x125
-    GoToIf 0, _0261
+    GoToIfUnset 0x125, _0261
     ClearFlag 0x1DD
     SetVar 0x409E, 1
 _0261:
@@ -183,8 +180,7 @@ _0261:
 
 _0263:
     ScrCmd_22D 2, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0279
+    GoToIfEq 0x800C, 0, _0279
     ClearFlag 0x243
 _0279:
     Return

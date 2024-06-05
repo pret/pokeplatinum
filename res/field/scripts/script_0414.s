@@ -9,10 +9,8 @@
     .short 0xFD13
 
 _0012:
-    CheckFlag 0x13E
-    GoToIf 0, _002A
-    CheckFlag 0x13E
-    GoToIf 1, _003C
+    GoToIfUnset 0x13E, _002A
+    GoToIfSet 0x13E, _003C
     End
 
 _002A:
@@ -26,10 +24,8 @@ _003C:
     End
 
 _004E:
-    CheckFlag 0x13E
-    GoToIf 0, _002A
-    CheckFlag 0x13E
-    GoToIf 1, _003C
+    GoToIfUnset 0x13E, _002A
+    GoToIfSet 0x13E, _003C
     End
 
 _0066:
@@ -41,18 +37,12 @@ _0066:
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVar 0x8004, 80
-    GoToIf 1, _00D8
-    CompareVar 0x8004, 81
-    GoToIf 1, _00D8
-    CompareVar 0x8004, 82
-    GoToIf 1, _00D8
-    CompareVar 0x8004, 83
-    GoToIf 1, _00D8
-    CompareVar 0x8004, 84
-    GoToIf 1, _00D8
-    CompareVar 0x8004, 85
-    GoToIf 1, _00D8
+    GoToIfEq 0x8004, 80, _00D8
+    GoToIfEq 0x8004, 81, _00D8
+    GoToIfEq 0x8004, 82, _00D8
+    GoToIfEq 0x8004, 83, _00D8
+    GoToIfEq 0x8004, 84, _00D8
+    GoToIfEq 0x8004, 85, _00D8
     End
 
 _00D8:

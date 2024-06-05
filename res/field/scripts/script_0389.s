@@ -17,8 +17,7 @@ _0022:
     End
 
 _0026:
-    CheckFlag 142
-    GoToIf 1, _0033
+    GoToIfSet 142, _0033
     End
 
 _0033:
@@ -32,8 +31,7 @@ _0041:
     ScrCmd_060
     ScrCmd_02C 13
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0061
+    GoToIfEq 0x800C, 0, _0061
     ScrCmd_034
     ScrCmd_061
     End
@@ -72,16 +70,11 @@ _00C4:
     ClearFlag 142
     ScrCmd_0EC 0x800C
     ScrCmd_314 0x800C
-    CompareVar 0x800C, 2
-    GoToIf 1, _0204
-    CompareVar 0x800C, 3
-    GoToIf 1, _0204
-    CompareVar 0x800C, 5
-    GoToIf 1, _014E
-    CompareVar 0x800C, 6
-    GoToIf 1, _014E
-    CompareVar 0x800C, 4
-    GoToIf 1, _016E
+    GoToIfEq 0x800C, 2, _0204
+    GoToIfEq 0x800C, 3, _0204
+    GoToIfEq 0x800C, 5, _014E
+    GoToIfEq 0x800C, 6, _014E
+    GoToIfEq 0x800C, 4, _016E
     ScrCmd_311 130
     ScrCmd_311 129
     ApplyMovement 129, _0250

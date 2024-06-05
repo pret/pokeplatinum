@@ -48,15 +48,13 @@ _0063:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 191
-    GoToIf 1, _00B7
+    GoToIfSet 191, _00B7
     ScrCmd_0D1 0, 217
     ScrCmd_02C 3
     SetVar 0x8004, 217
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _00AD
+    GoToIfEq 0x800C, 0, _00AD
     SetFlag 191
     ScrCmd_014 0x7E0
     ScrCmd_034

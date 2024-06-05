@@ -25,8 +25,7 @@ _000E:
     CheckFlag 214
     CallIf 1, _00FD
     ScrCmd_0EC 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0121
+    GoToIfEq 0x800C, 0, _0121
     ScrCmd_02C 1
     SetFlag 180
     CheckFlag 214

@@ -20,8 +20,7 @@ _0014:
     ScrCmd_02C 3
     ScrCmd_03E 0x800C
     ScrCmd_034
-    CompareVar 0x800C, 0
-    GoToIf 1, _003E
+    GoToIfEq 0x800C, 0, _003E
     GoTo _0071
 
 _003E:
@@ -101,8 +100,7 @@ _00FC:
     SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     ScrCmd_15B 5, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0140
+    GoToIfEq 0x800C, 0, _0140
     GoTo _0135
     End
 

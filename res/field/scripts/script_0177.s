@@ -52,8 +52,7 @@ _0067:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 6, 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _00EC
+    GoToIfEq 0x800C, 1, _00EC
     ScrCmd_1BD 0x8000
     CompareVar 0x8000, 0
     CallIf 1, _00C8

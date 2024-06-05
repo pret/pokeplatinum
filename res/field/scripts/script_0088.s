@@ -43,8 +43,7 @@ _004E:
 _0061:
     ScrCmd_060
     ScrCmd_0C7 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _0091
+    GoToIfEq 0x800C, 1, _0091
     ApplyMovement 1, _00A0
     WaitMovement
     ScrCmd_02C 1
@@ -81,13 +80,11 @@ _00C0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x10B
-    GoToIf 1, _0154
+    GoToIfSet 0x10B, _0154
     ScrCmd_0CD 0
     ScrCmd_0CF 1
     ScrCmd_14D 0x4000
-    CompareVar 0x4000, 0
-    GoToIf 1, _00F0
+    GoToIfEq 0x4000, 0, _00F0
     GoTo _00F9
 
 _00F0:
@@ -101,14 +98,12 @@ _00F9:
 _0102:
     ScrCmd_120 0x8004
     ScrCmd_0D5 1, 0x8004
-    CompareVar 0x8004, 35
-    GoToIf 0, _015F
+    GoToIfLt 0x8004, 35, _015F
     ScrCmd_02C 5
     SetVar 0x8004, 216
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _014A
+    GoToIfEq 0x800C, 0, _014A
     SetFlag 0x10B
     ScrCmd_014 0x7E0
     ScrCmd_034

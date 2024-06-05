@@ -11,10 +11,8 @@ _000E:
     CompareVar 0x406A, 0x122
     CallIf 5, _003B
     ScrCmd_32B 0x4001
-    CompareVar 0x4001, 0
-    GoToIf 1, _0063
-    CompareVar 0x4001, 1
-    GoToIf 1, _006D
+    GoToIfEq 0x4001, 0, _0063
+    GoToIfEq 0x4001, 1, _006D
     End
 
 _003B:
@@ -23,10 +21,8 @@ _003B:
 
 _0043:
     ScrCmd_32B 0x4001
-    CompareVar 0x4001, 0
-    GoToIf 1, _0063
-    CompareVar 0x4001, 1
-    GoToIf 1, _006D
+    GoToIfEq 0x4001, 0, _0063
+    GoToIfEq 0x4001, 1, _006D
     End
 
 _0063:

@@ -26,8 +26,7 @@ _000C:
     SetFlag 0x24F
     ScrCmd_065 0
     ScrCmd_21C 1
-    CompareVar 0x4058, 3
-    GoToIf 1, _0074
+    GoToIfEq 0x4058, 3, _0074
     ClearFlag 0x452
     ScrCmd_064 1
     SetFlag 0x11F

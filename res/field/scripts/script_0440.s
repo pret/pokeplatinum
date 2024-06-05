@@ -17,15 +17,13 @@ _001C:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0xAA0
-    GoToIf 1, _0067
+    GoToIfSet 0xAA0, _0067
     ScrCmd_02C 0
     ScrCmd_1B7 0x8004, 26
     AddVar 0x8004, 149
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0072
+    GoToIfEq 0x800C, 0, _0072
     SetFlag 0xAA0
     ScrCmd_014 0x7E0
     ScrCmd_034
@@ -49,17 +47,13 @@ _007C:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CompareVar 0x4000, 1
-    GoToIf 1, _00ED
+    GoToIfEq 0x4000, 1, _00ED
     ScrCmd_134 7, 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _00FD
+    GoToIfEq 0x800C, 1, _00FD
     ScrCmd_02C 2
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _00C7
-    CompareVar 0x800C, 1
-    GoToIf 1, _00E2
+    GoToIfEq 0x800C, 0, _00C7
+    GoToIfEq 0x800C, 1, _00E2
     End
 
 _00C7:
@@ -109,14 +103,10 @@ _0108:
     ScrCmd_043
     SetVar 0x8000, 0x800C
     SetVar 0x8008, 0x8000
-    CompareVar 0x8008, 0
-    GoToIf 1, _0245
-    CompareVar 0x8008, 1
-    GoToIf 1, _0251
-    CompareVar 0x8008, 2
-    GoToIf 1, _025D
-    CompareVar 0x8008, 3
-    GoToIf 1, _0269
+    GoToIfEq 0x8008, 0, _0245
+    GoToIfEq 0x8008, 1, _0251
+    GoToIfEq 0x8008, 2, _025D
+    GoToIfEq 0x8008, 3, _0269
     ScrCmd_02C 9
     GoTo _0229
 
@@ -129,11 +119,9 @@ _0180:
     CallIf 1, _0289
     CompareVar 0x8000, 3
     CallIf 1, _0293
-    CompareVar 0x800C, 0
-    GoToIf 1, _023C
+    GoToIfEq 0x800C, 0, _023C
     ScrCmd_07D 0x8001, 1, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0233
+    GoToIfEq 0x800C, 0, _0233
     CompareVar 0x8000, 0
     CallIf 1, _029D
     CompareVar 0x8000, 1
@@ -236,16 +224,11 @@ _02E8:
     ScrCmd_042 23, 4
     ScrCmd_043
     SetVar 0x8008, 0x800C
-    CompareVar 0x8008, 0
-    GoToIf 1, _035B
-    CompareVar 0x8008, 1
-    GoToIf 1, _0366
-    CompareVar 0x8008, 2
-    GoToIf 1, _0371
-    CompareVar 0x8008, 3
-    GoToIf 1, _037C
-    CompareVar 0x8008, 4
-    GoToIf 1, _0387
+    GoToIfEq 0x8008, 0, _035B
+    GoToIfEq 0x8008, 1, _0366
+    GoToIfEq 0x8008, 2, _0371
+    GoToIfEq 0x8008, 3, _037C
+    GoToIfEq 0x8008, 4, _0387
     GoTo _0387
     End
 

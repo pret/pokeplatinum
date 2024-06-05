@@ -4544,3 +4544,55 @@
     .byte \arg0
     .byte \arg1
     .endm
+
+
+
+    .macro GoToIfLt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 0, \offset
+    .endm
+
+    .macro GoToIfEq varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 1, \offset
+    .endm
+
+    .macro GoToIfGt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 2, \offset
+    .endm
+
+    .macro GoToIfLe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 3, \offset
+    .endm
+
+    .macro GoToIfGe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 4, \offset
+    .endm
+
+    .macro GoToIfNe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 5, \offset
+    .endm
+
+    .macro GoToIfUnset flagID, offset
+    CheckFlag \flagID
+    GoToIf 0, \offset
+    .endm
+
+    .macro GoToIfSet flagID, offset
+    CheckFlag \flagID
+    GoToIf 1, \offset
+    .endm
+
+    .macro GoToIfNotDefeated trainerID, offset
+    CheckTrainerFlag \trainerID
+    GoToIf 0, \offset
+    .endm
+
+    .macro GoToIfDefeated trainerID, offset
+    CheckTrainerFlag \trainerID
+    GoToIf 1, \offset
+    .endm

@@ -9,8 +9,7 @@
 _000A:
     ScrCmd_23E 0
     ScrCmd_23E 1, 0x40ED
-    CompareVar 0x40ED, 0
-    GoToIf 1, _002B
+    GoToIfEq 0x40ED, 0, _002B
     ClearFlag 0x20A
     ScrCmd_23E 7
     End
@@ -26,14 +25,11 @@ _0035:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_23E 1, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _00EE
+    GoToIfEq 0x800C, 0, _00EE
     ScrCmd_1B6 0x800C
     SetVar 0x8008, 0x800C
-    CompareVar 0x8008, 0
-    GoToIf 1, _007E
-    CompareVar 0x8008, 1
-    GoToIf 1, _008A
+    GoToIfEq 0x8008, 0, _007E
+    GoToIfEq 0x8008, 1, _008A
     GoTo _0096
 
 _007E:
@@ -53,8 +49,7 @@ _0096:
 
 _00A2:
     ScrCmd_23E 3, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _00D8
+    GoToIfEq 0x800C, 0, _00D8
     ScrCmd_04E 0x486
     ScrCmd_23E 5, 0x8005, 0x8006
     ScrCmd_1FB 0x8005, 0x8006

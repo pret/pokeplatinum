@@ -9,8 +9,7 @@ _0006:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 169
-    GoToIf 1, _002B
+    GoToIfSet 169, _002B
     SetFlag 169
     ScrCmd_0CE 0
     ScrCmd_02C 0

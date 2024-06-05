@@ -25,14 +25,12 @@ _002A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 213
-    GoToIf 1, _0071
+    GoToIfSet 213, _0071
     ScrCmd_02C 0
     SetVar 0x8004, 232
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _007C
+    GoToIfEq 0x800C, 0, _007C
     ScrCmd_014 0x7FC
     SetFlag 213
     GoTo _0071

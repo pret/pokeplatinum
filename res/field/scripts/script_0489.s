@@ -241,10 +241,8 @@ _0212:
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0243
-    CompareVar 0x800C, 1
-    GoToIf 1, _0238
+    GoToIfEq 0x800C, 0, _0243
+    GoToIfEq 0x800C, 1, _0238
     End
 
 _0238:

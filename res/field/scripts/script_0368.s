@@ -49,10 +49,8 @@ _00A6:
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_1DD 43, 0, 0x800C
-    CompareVar 0x800C, 4
-    GoToIf 1, _01F8
-    CompareVar 0x800C, 5
-    GoToIf 1, _01F8
+    GoToIfEq 0x800C, 4, _01F8
+    GoToIfEq 0x800C, 5, _01F8
     ScrCmd_1F8
     ScrCmd_2C4 5
     ScrCmd_0A1

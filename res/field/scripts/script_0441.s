@@ -15,16 +15,11 @@
 
 _0026:
     ScrCmd_1B6 0x4000
-    CompareVar 0x4000, 0
-    GoToIf 1, _006D
-    CompareVar 0x4000, 1
-    GoToIf 1, _007F
-    CompareVar 0x4000, 2
-    GoToIf 1, _007F
-    CompareVar 0x4000, 3
-    GoToIf 1, _007F
-    CompareVar 0x4000, 4
-    GoToIf 1, _007F
+    GoToIfEq 0x4000, 0, _006D
+    GoToIfEq 0x4000, 1, _007F
+    GoToIfEq 0x4000, 2, _007F
+    GoToIfEq 0x4000, 3, _007F
+    GoToIfEq 0x4000, 4, _007F
     End
 
 _006D:
@@ -54,15 +49,12 @@ _0091:
 _00A4:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CompareVar 0x408A, 1
-    GoToIf 1, _0102
+    GoToIfEq 0x408A, 1, _0102
     ScrCmd_07E 111, 1, 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _01BC
+    GoToIfEq 0x800C, 0, _01BC
     ScrCmd_02C 2
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _00E6
+    GoToIfEq 0x800C, 0, _00E6
     ScrCmd_034
     ScrCmd_061
     End
@@ -79,16 +71,11 @@ _00E6:
 
 _0102:
     ScrCmd_214 0x800C
-    CompareVar 0x800C, 32
-    GoToIf 4, _014D
-    CompareVar 0x800C, 29
-    GoToIf 4, _01B1
-    CompareVar 0x800C, 22
-    GoToIf 4, _01A6
-    CompareVar 0x800C, 15
-    GoToIf 4, _019B
-    CompareVar 0x800C, 8
-    GoToIf 4, _0190
+    GoToIfGe 0x800C, 32, _014D
+    GoToIfGe 0x800C, 29, _01B1
+    GoToIfGe 0x800C, 22, _01A6
+    GoToIfGe 0x800C, 15, _019B
+    GoToIfGe 0x800C, 8, _0190
     GoTo _0185
 
 _014D:
@@ -99,8 +86,7 @@ _014D:
     ScrCmd_034
     ScrCmd_124 0x1BA, 25
     ScrCmd_0EC 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _017F
+    GoToIfEq 0x800C, 0, _017F
     SetVar 0x408A, 0
     ScrCmd_26F
     End
@@ -159,24 +145,19 @@ _01C7:
     SetVar 0x8004, 0x1BE
     ScrCmd_33C 0, 0x8004
     ScrCmd_346 0
-    CheckFlag 162
-    GoToIf 1, _020B
+    GoToIfSet 162, _020B
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0254
-    CompareVar 0x800C, 1
-    GoToIf 1, _0249
+    GoToIfEq 0x800C, 0, _0254
+    GoToIfEq 0x800C, 1, _0249
     End
 
 _020B:
     ScrCmd_0D1 0, 0x8004
     ScrCmd_02C 12
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0233
-    CompareVar 0x800C, 1
-    GoToIf 1, _023E
+    GoToIfEq 0x800C, 0, _0233
+    GoToIfEq 0x800C, 1, _023E
     End
 
 _0233:

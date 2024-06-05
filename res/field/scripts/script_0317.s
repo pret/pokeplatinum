@@ -7,8 +7,7 @@
     .short 0xFD13
 
 _000A:
-    CheckFlag 142
-    GoToIf 1, _0017
+    GoToIfSet 142, _0017
     End
 
 _0017:
@@ -21,11 +20,9 @@ _0025:
     ScrCmd_060
     ScrCmd_049 0x5DC
     ScrCmd_04B 0x5DC
-    CheckFlag 0x11A
-    GoToIf 1, _0081
+    GoToIfSet 0x11A, _0081
     ScrCmd_26B 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _0073
+    GoToIfEq 0x800C, 0, _0073
     SetFlag 0x11A
     ScrCmd_0CD 0
     ScrCmd_02C 1
@@ -53,11 +50,9 @@ _0081:
     ScrCmd_2BD 0x1E6, 1
     ClearFlag 142
     ScrCmd_0EC 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _00D1
+    GoToIfEq 0x800C, 0, _00D1
     ScrCmd_2BC 0x800C
-    CompareVar 0x800C, 1
-    GoToIf 1, _00C6
+    GoToIfEq 0x800C, 1, _00C6
     SetFlag 0x11B
     ScrCmd_061
     End

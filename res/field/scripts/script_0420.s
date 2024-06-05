@@ -9,10 +9,8 @@
     .short 0xFD13
 
 _0012:
-    CheckFlag 186
-    GoToIf 0, _002A
-    CheckFlag 186
-    GoToIf 1, _003C
+    GoToIfUnset 186, _002A
+    GoToIfSet 186, _003C
     End
 
 _002A:
@@ -29,10 +27,8 @@ _004E:
     ScrCmd_15B 6, 0x4000
     CompareVar 0x4000, 1
     CallIf 1, _0079
-    CheckFlag 186
-    GoToIf 0, _002A
-    CheckFlag 186
-    GoToIf 1, _003C
+    GoToIfUnset 186, _002A
+    GoToIfSet 186, _003C
     End
 
 _0079:

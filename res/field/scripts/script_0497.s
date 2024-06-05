@@ -91,8 +91,7 @@ _012B:
     ScrCmd_02C 5
     ScrCmd_03E 0x800C
     ScrCmd_034
-    CompareVar 0x800C, 0
-    GoToIf 5, _0174
+    GoToIfNe 0x800C, 0, _0174
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_0BE 125, 0, 5, 2, 1
@@ -118,10 +117,8 @@ _0178:
     ScrCmd_042 192, 4
     ScrCmd_043
     ScrCmd_034
-    CompareVar 0x800C, 4
-    GoToIf 1, _06C2
-    CompareVar 0x800C, -2
-    GoToIf 1, _06C2
+    GoToIfEq 0x800C, 4, _06C2
+    GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
     CompareVar 0x8004, 6
@@ -158,10 +155,8 @@ _0242:
     ScrCmd_042 192, 4
     ScrCmd_043
     ScrCmd_034
-    CompareVar 0x800C, 4
-    GoToIf 1, _06C2
-    CompareVar 0x800C, -2
-    GoToIf 1, _06C2
+    GoToIfEq 0x800C, 4, _06C2
+    GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
     SetVar 0x8005, 0
     CompareVar 0x8004, 6
@@ -198,10 +193,8 @@ _030C:
     ScrCmd_042 192, 4
     ScrCmd_043
     ScrCmd_034
-    CompareVar 0x800C, 4
-    GoToIf 1, _06C2
-    CompareVar 0x800C, -2
-    GoToIf 1, _06C2
+    GoToIfEq 0x800C, 4, _06C2
+    GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
     CompareVar 0x8004, 6
@@ -238,10 +231,8 @@ _03D6:
     ScrCmd_042 192, 4
     ScrCmd_043
     ScrCmd_034
-    CompareVar 0x800C, 4
-    GoToIf 1, _06C2
-    CompareVar 0x800C, -2
-    GoToIf 1, _06C2
+    GoToIfEq 0x800C, 4, _06C2
+    GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
     SetVar 0x8005, 1
     CompareVar 0x8004, 6
@@ -278,10 +269,8 @@ _04A0:
     ScrCmd_042 192, 4
     ScrCmd_043
     ScrCmd_034
-    CompareVar 0x800C, 4
-    GoToIf 1, _06C2
-    CompareVar 0x800C, -2
-    GoToIf 1, _06C2
+    GoToIfEq 0x800C, 4, _06C2
+    GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
     CompareVar 0x8004, 6
@@ -318,10 +307,8 @@ _056A:
     ScrCmd_042 192, 4
     ScrCmd_043
     ScrCmd_034
-    CompareVar 0x800C, 4
-    GoToIf 1, _06C2
-    CompareVar 0x800C, -2
-    GoToIf 1, _06C2
+    GoToIfEq 0x800C, 4, _06C2
+    GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
     SetVar 0x8005, 2
     CompareVar 0x8004, 6

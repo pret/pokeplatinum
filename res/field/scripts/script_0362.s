@@ -15,8 +15,7 @@ _000A:
     End
 
 _0024:
-    CompareVar 0x40F8, 2
-    GoToIf 5, _0035
+    GoToIfNe 0x40F8, 2, _0035
     SetFlag 0x279
 _0035:
     Return
@@ -28,8 +27,7 @@ _0037:
     ScrCmd_1BD 0x8004
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    CompareVar 0x800C, 0
-    GoToIf 1, _005D
+    GoToIfEq 0x800C, 0, _005D
     GoTo _009D
 
 _005D:
