@@ -11,7 +11,7 @@
 _0012:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 0x2E3
+    CompareVar 0x8004, 0x2E3
     CallIf 1, _00E7
     ApplyMovement 4, _0188
     ApplyMovement 3, _0154
@@ -241,9 +241,9 @@ _0212:
     ScrCmd_0CD 0
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _0243
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _0238
     End
 

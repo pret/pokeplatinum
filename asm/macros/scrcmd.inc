@@ -98,16 +98,14 @@
     .long \arg1
     .endm
 
-    .macro CompareVarToValue varID, value
-    .short 17
+    .macro CompareVar varID, valueOrVarID
+    .if \valueOrVarID < 0x4000
+        .short 17 // CompareVarToValue
+    .else
+        .short 18 // CompareVarToVar
+    .endif
     .short \varID
-    .short \value
-    .endm
-
-    .macro CompareVarToVar varID0, varID1
-    .short 18
-    .short \varID0
-    .short \varID1
+    .short \valueOrVarID
     .endm
 
     .macro ScrCmd_013 arg0

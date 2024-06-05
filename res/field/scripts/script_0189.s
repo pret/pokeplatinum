@@ -11,7 +11,7 @@ _000E:
     SetVar 0x4000, 0
     ScrCmd_25B
     ScrCmd_25D 0x4001
-    CompareVarToValue 0x4001, 0
+    CompareVar 0x4001, 0
     GoToIf 1, _0029
     End
 

@@ -13,9 +13,9 @@
 
 _001E:
     ScrCmd_14D 0x4000
-    CompareVarToValue 0x4000, 0
+    CompareVar 0x4000, 0
     GoToIf 1, _003E
-    CompareVarToValue 0x4000, 1
+    CompareVar 0x4000, 1
     GoToIf 1, _0046
     End
 
@@ -50,7 +50,7 @@ _008E:
 
 _009C:
     ScrCmd_14D 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _00B3
     GoTo _00F1
 

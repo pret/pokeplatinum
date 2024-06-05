@@ -8,10 +8,10 @@
     .short 0xFD13
 
 _000E:
-    CompareVarToValue 0x40DD, 0
+    CompareVar 0x40DD, 0
     GoToIf 1, _0048
     ScrCmd_207 0x4000
-    CompareVarToValue 0x4000, 1
+    CompareVar 0x4000, 1
     GoToIf 1, _004A
     ScrCmd_1DD 55, 0, 0x4000
     SetVar 0x4020, 0x4000
@@ -28,7 +28,7 @@ _004A:
     End
 
 _0068:
-    CompareVarToValue 0x40DD, 0
+    CompareVar 0x40DD, 0
     CallIf 5, _007F
     ScrCmd_1B2 2
     ScrCmd_1B2 3

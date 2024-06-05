@@ -33,10 +33,10 @@ _002F:
     ScrCmd_2BD 0x1E0, 50
     ClearFlag 142
     ScrCmd_0EC 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _0085
     ScrCmd_2BC 0x800C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _007A
     SetFlag 0x127
     ScrCmd_061

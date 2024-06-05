@@ -11,7 +11,7 @@
 _0012:
     SetFlag 0x9C2
     SetFlag 0x2C8
-    CompareVarToValue 0x4056, 1
+    CompareVar 0x4056, 1
     CallIf 1, _0029
     End
 
@@ -53,17 +53,17 @@ _0073:
     SetVar 0x8004, 0x12A
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _0114
     ScrCmd_014 0x7FC
     ScrCmd_02C 5
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8005, 3
+    CompareVar 0x8005, 3
     GoToIf 1, _00CC
-    CompareVarToValue 0x8005, 4
+    CompareVar 0x8005, 4
     GoToIf 1, _00DE
-    CompareVarToValue 0x8005, 5
+    CompareVar 0x8005, 5
     GoToIf 1, _00F0
     End
 

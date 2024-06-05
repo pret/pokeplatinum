@@ -107,7 +107,7 @@ _00DF:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_07E 0x1B8, 1, 0x800C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _0107
     ScrCmd_02C 9
     ScrCmd_031
@@ -118,9 +118,9 @@ _00DF:
 _0107:
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _012A
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _015E
     End
 

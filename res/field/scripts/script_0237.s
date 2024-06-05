@@ -36,7 +36,7 @@ _0022:
     ScrCmd_003 30, 0x800C
 _0088:
     ScrCmd_20D 6, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _0088
     ScrCmd_065 1
     ApplyMovement 241, _0178
@@ -57,9 +57,9 @@ _0088:
 _00DA:
     ScrCmd_02C 6
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _00FD
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _0130
     End
 
@@ -125,9 +125,9 @@ _0184:
     ScrCmd_068
     ScrCmd_02C 6
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _00FD
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _01AF
     End
 

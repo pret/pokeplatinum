@@ -112,10 +112,10 @@ _0110:
 
 _0134:
     ScrCmd_07E 0x1D3, 1, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _01AA
     ScrCmd_28B 3, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _01AA
     CheckFlag 129
     GoToIf 0, _01AA

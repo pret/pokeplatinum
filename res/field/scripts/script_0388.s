@@ -56,13 +56,13 @@ _0096:
     ScrCmd_034
     ScrCmd_0E5 0x194, 0
     ScrCmd_0EC 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _01CE
     SetVar 0x4055, 10
     ScrCmd_02C 6
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 86
+    CompareVar 0x8004, 86
     GoToIf 1, _00E6
     ApplyMovement 0xFF, _0210
     GoTo _00EE
@@ -77,7 +77,7 @@ _00EE:
     ApplyMovement 128, _02BC
     WaitMovement
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8005, 74
+    CompareVar 0x8005, 74
     GoToIf 1, _012F
     ApplyMovement 0xFF, _0254
     GoTo _013F
@@ -89,7 +89,7 @@ _013F:
     ScrCmd_02C 7
     WaitMovement
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8005, 74
+    CompareVar 0x8005, 74
     GoToIf 1, _016D
     ApplyMovement 128, _02F8
     ApplyMovement 0xFF, _0274
@@ -109,7 +109,7 @@ _017D:
     ScrCmd_034
     ApplyMovement 128, _02C8
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8005, 74
+    CompareVar 0x8005, 74
     GoToIf 1, _01BB
     ApplyMovement 0xFF, _0220
     GoTo _01C3
@@ -132,7 +132,7 @@ _01CE:
 _01DA:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CompareVarToValue 0x4055, 10
+    CompareVar 0x4055, 10
     GoToIf 4, _01F8
     ScrCmd_02C 3
     ScrCmd_031

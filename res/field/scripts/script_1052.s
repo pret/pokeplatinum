@@ -14,11 +14,11 @@
     .short 0xFD13
 
 _0026:
-    CompareVarToValue 0x40F4, 1
+    CompareVar 0x40F4, 1
     CallIf 1, _004F
-    CompareVarToValue 0x40A4, 4
+    CompareVar 0x40A4, 4
     CallIf 1, _005F
-    CompareVarToValue 0x40A4, 6
+    CompareVar 0x40A4, 6
     CallIf 1, _0057
     End
 
@@ -40,7 +40,7 @@ _0067:
     ScrCmd_068
     CheckFlag 144
     GoToIf 1, _00A3
-    CompareVarToValue 0x4095, 1
+    CompareVar 0x4095, 1
     GoToIf 4, _00AE
     CheckFlag 234
     GoToIf 1, _00BC
@@ -81,19 +81,19 @@ _00CD:
     ApplyMovement 3, _03B0
     WaitMovement
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 108
+    CompareVar 0x8004, 108
     GoToIf 1, _0140
-    CompareVarToValue 0x8004, 109
+    CompareVar 0x8004, 109
     GoToIf 1, _0158
-    CompareVarToValue 0x8004, 110
+    CompareVar 0x8004, 110
     GoToIf 1, _0170
-    CompareVarToValue 0x8004, 111
+    CompareVar 0x8004, 111
     GoToIf 1, _0188
-    CompareVarToValue 0x8004, 112
+    CompareVar 0x8004, 112
     GoToIf 1, _01A0
-    CompareVarToValue 0x8004, 113
+    CompareVar 0x8004, 113
     GoToIf 1, _01B8
-    CompareVarToValue 0x8004, 114
+    CompareVar 0x8004, 114
     GoToIf 1, _01D0
     GoTo _01E8
 
@@ -150,19 +150,19 @@ _0200:
     ScrCmd_0CE 1
     ScrCmd_02C 3
     ScrCmd_034
-    CompareVarToValue 0x8004, 108
+    CompareVar 0x8004, 108
     GoToIf 1, _026C
-    CompareVarToValue 0x8004, 109
+    CompareVar 0x8004, 109
     GoToIf 1, _027C
-    CompareVarToValue 0x8004, 110
+    CompareVar 0x8004, 110
     GoToIf 1, _028C
-    CompareVarToValue 0x8004, 111
+    CompareVar 0x8004, 111
     GoToIf 1, _029C
-    CompareVarToValue 0x8004, 112
+    CompareVar 0x8004, 112
     GoToIf 1, _02AC
-    CompareVarToValue 0x8004, 113
+    CompareVar 0x8004, 113
     GoToIf 1, _02BC
-    CompareVarToValue 0x8004, 114
+    CompareVar 0x8004, 114
     GoToIf 1, _02CC
     GoTo _02DC
 
@@ -503,7 +503,7 @@ _05E7:
     ScrCmd_068
     CheckFlag 144
     GoToIf 1, _0612
-    CompareVarToValue 0x4095, 1
+    CompareVar 0x4095, 1
     GoToIf 4, _061D
     ScrCmd_02C 8
     ScrCmd_031

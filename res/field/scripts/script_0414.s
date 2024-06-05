@@ -41,17 +41,17 @@ _0066:
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 80
+    CompareVar 0x8004, 80
     GoToIf 1, _00D8
-    CompareVarToValue 0x8004, 81
+    CompareVar 0x8004, 81
     GoToIf 1, _00D8
-    CompareVarToValue 0x8004, 82
+    CompareVar 0x8004, 82
     GoToIf 1, _00D8
-    CompareVarToValue 0x8004, 83
+    CompareVar 0x8004, 83
     GoToIf 1, _00D8
-    CompareVarToValue 0x8004, 84
+    CompareVar 0x8004, 84
     GoToIf 1, _00D8
-    CompareVarToValue 0x8004, 85
+    CompareVar 0x8004, 85
     GoToIf 1, _00D8
     End
 

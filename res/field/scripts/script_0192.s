@@ -23,7 +23,7 @@ _000A:
     CheckFlag 214
     CallIf 1, _00A8
     ScrCmd_0EC 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _00CC
     SetFlag 178
     ScrCmd_049 0x61A

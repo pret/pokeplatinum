@@ -9,15 +9,15 @@ _0006:
     ScrCmd_060
     ScrCmd_1B7 0x8000, 5
     SetVar 0x8008, 0x8000
-    CompareVarToValue 0x8008, 0
+    CompareVar 0x8008, 0
     GoToIf 1, _0057
-    CompareVarToValue 0x8008, 1
+    CompareVar 0x8008, 1
     GoToIf 1, _0071
-    CompareVarToValue 0x8008, 2
+    CompareVar 0x8008, 2
     GoToIf 1, _008B
-    CompareVarToValue 0x8008, 3
+    CompareVar 0x8008, 3
     GoToIf 1, _00A5
-    CompareVarToValue 0x8008, 4
+    CompareVar 0x8008, 4
     GoToIf 1, _00BF
     End
 

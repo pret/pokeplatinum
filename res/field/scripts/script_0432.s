@@ -146,15 +146,15 @@ _014D:
 _015D:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8005, 0x293
+    CompareVar 0x8005, 0x293
     GoToIf 1, _01A8
-    CompareVarToValue 0x8005, 0x294
+    CompareVar 0x8005, 0x294
     GoToIf 1, _01C2
-    CompareVarToValue 0x8005, 0x295
+    CompareVar 0x8005, 0x295
     GoToIf 1, _01DC
-    CompareVarToValue 0x8005, 0x296
+    CompareVar 0x8005, 0x296
     GoToIf 1, _01E2
-    CompareVarToValue 0x8005, 0x297
+    CompareVar 0x8005, 0x297
     GoToIf 1, _01FC
     End
 

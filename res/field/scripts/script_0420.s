@@ -27,7 +27,7 @@ _003C:
 
 _004E:
     ScrCmd_15B 6, 0x4000
-    CompareVarToValue 0x4000, 1
+    CompareVar 0x4000, 1
     CallIf 1, _0079
     CheckFlag 186
     GoToIf 0, _002A

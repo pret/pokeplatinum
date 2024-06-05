@@ -11,7 +11,7 @@ _000A:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_22D 2, 0x800C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _002F
     ScrCmd_02C 0
     ScrCmd_031
@@ -31,15 +31,15 @@ _003A:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_22D 2, 0x800C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _009A
     GoTo _005A
 
 _005A:
     ScrCmd_14D 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _007A
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _0086
     End
 
@@ -79,9 +79,9 @@ _00C4:
     ScrCmd_0E2 1, 0x4001
     ScrCmd_0DA 2, 0x4000, 0, 1
     ScrCmd_14D 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _00FA
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _0103
     End
 

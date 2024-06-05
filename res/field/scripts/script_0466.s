@@ -10,11 +10,11 @@
 
 _0012:
     ScrCmd_284 0x4000
-    CompareVarToValue 0x4000, 26
+    CompareVar 0x4000, 26
     GoToIf 4, _003F
-    CompareVarToValue 0x4000, 10
+    CompareVar 0x4000, 10
     GoToIf 4, _0051
-    CompareVarToValue 0x4000, 10
+    CompareVar 0x4000, 10
     GoToIf 0, _0063
     End
 
@@ -35,11 +35,11 @@ _0063:
 
 _0075:
     ScrCmd_284 0x4000
-    CompareVarToValue 0x4000, 26
+    CompareVar 0x4000, 26
     GoToIf 4, _003F
-    CompareVarToValue 0x4000, 10
+    CompareVar 0x4000, 10
     GoToIf 4, _0051
-    CompareVarToValue 0x4000, 10
+    CompareVar 0x4000, 10
     GoToIf 0, _0063
     End
 

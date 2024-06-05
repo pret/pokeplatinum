@@ -31,15 +31,15 @@ _001D:
 
 _004A:
     ScrCmd_264 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _009C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _00A7
     ScrCmd_02C 4
     SetVar 0x8004, 215
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _00B2
     SetFlag 0x11C
     ScrCmd_014 0x7FC

@@ -17,7 +17,7 @@
     .short 0xFD13
 
 _0032:
-    CompareVarToValue 0x407F, 1
+    CompareVar 0x407F, 1
     GoToIf 4, _0041
     End
 
@@ -32,7 +32,7 @@ _0047:
     ScrCmd_02C 0
     ScrCmd_034
     ScrCmd_22D 2, 0x800C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _0088
     GoTo _0072
     End
@@ -69,7 +69,7 @@ _00B4:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_22D 2, 0x800C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _00DF
     GoTo _00D4
 
@@ -83,7 +83,7 @@ _00D4:
 _00DF:
     CheckFlag 0x964
     GoToIf 0, _00D4
-    CompareVarToValue 0x407F, 0
+    CompareVar 0x407F, 0
     GoToIf 1, _0102
     ScrCmd_02C 2
     ScrCmd_031
@@ -179,7 +179,7 @@ _01C0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CompareVarToValue 0x407F, 1
+    CompareVar 0x407F, 1
     GoToIf 4, _01E0
     ScrCmd_02C 7
     ScrCmd_031
@@ -228,9 +228,9 @@ _022A:
     GoToIf 0, _0260
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _0276
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _026B
     End
 

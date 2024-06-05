@@ -14,7 +14,7 @@
     .short 0xFD13
 
 _0026:
-    CompareVarToValue 0x406A, 0x118
+    CompareVar 0x406A, 0x118
     GoToIf 0, _0035
     End
 
@@ -26,18 +26,18 @@ _003D:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CompareVarToValue 0x406A, 0x122
+    CompareVar 0x406A, 0x122
     GoToIf 1, _00ED
-    CompareVarToValue 0x406A, 0x118
+    CompareVar 0x406A, 0x118
     GoToIf 1, _00F8
     CheckFlag 0x964
     GoToIf 0, _010F
     ScrCmd_32B 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _011A
-    CompareVarToValue 0x406A, 0x10E
+    CompareVar 0x406A, 0x10E
     GoToIf 1, _00AE
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 0, _011A
     ScrCmd_04B 0x5DC
     ScrCmd_29F 1
@@ -53,10 +53,10 @@ _00AE:
     ScrCmd_034
     ScrCmd_2BD 0x17A, 30
     ScrCmd_0EC 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _0109
     ScrCmd_2BC 0x800C
-    CompareVarToValue 0x800C, 1
+    CompareVar 0x800C, 1
     GoToIf 1, _00F8
     SetVar 0x406A, 0x122
     ScrCmd_061
@@ -96,49 +96,49 @@ _0125:
 
 _012D:
     SetVar 0x4001, 1
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020D
     GoTo _01EA
     End
 
 _0148:
     SetVar 0x4002, 1
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020D
     GoTo _01EA
     End
 
 _0163:
     SetVar 0x4003, 1
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020D
     GoTo _01EA
     End
 
 _017E:
     SetVar 0x4004, 1
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020D
     GoTo _01EA
     End
 
 _0199:
     SetVar 0x4005, 1
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020D
     GoTo _01EA
     End
 
 _01B4:
     SetVar 0x4006, 1
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020D
     GoTo _01EA
     End
 
 _01CF:
     SetVar 0x4007, 1
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020D
     GoTo _01EA
     End
@@ -147,7 +147,7 @@ _01EA:
     ScrCmd_060
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_32C 0x406A, 0x24E, 0x8004, 0x8005
-    CompareVarToValue 0x406A, 0x104
+    CompareVar 0x406A, 0x104
     GoToIf 4, _020F
     ScrCmd_061
     End

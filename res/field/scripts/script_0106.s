@@ -17,7 +17,7 @@ _000A:
     SetVar 0x8004, 253
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _0064
     SetFlag 140
     ScrCmd_014 0x7E0

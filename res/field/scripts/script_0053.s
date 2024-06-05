@@ -62,16 +62,16 @@ _0078:
     ScrCmd_043
     SetVar 0x8004, 0x800C
     SetVar 0x8008, 0x800C
-    CompareVarToValue 0x8008, 4
+    CompareVar 0x8008, 4
     GoToIf 1, _00E9
-    CompareVarToValue 0x8008, 0xFFFE
+    CompareVar 0x8008, -2
     GoToIf 1, _00E9
     ScrCmd_155 0x8004, 0x8005
     ScrCmd_344 0, 0x8005
     ScrCmd_346 0
     ScrCmd_02C 4
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 1, _00F4
     GoTo _0078
 

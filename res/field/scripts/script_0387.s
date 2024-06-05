@@ -17,7 +17,7 @@ _0022:
     End
 
 _0026:
-    CompareVarToValue 0x4055, 7
+    CompareVar 0x4055, 7
     GoToIf 1, _0080
     CheckFlag 0x9AD
     GoToIf 1, _0051

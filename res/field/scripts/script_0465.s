@@ -11,7 +11,7 @@ _000A:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_134 14, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 5, _003A
     ScrCmd_02C 0
     SetVar 0x8004, 14
@@ -33,7 +33,7 @@ _0045:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_134 14, 0x800C
-    CompareVarToValue 0x800C, 0
+    CompareVar 0x800C, 0
     GoToIf 5, _0071
     GoTo _0066
 

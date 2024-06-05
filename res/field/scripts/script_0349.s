@@ -12,9 +12,9 @@ _0006:
     WaitMovement
     ScrCmd_02C 0
     ScrCmd_034
-    CompareVarToValue 0x8005, 12
+    CompareVar 0x8005, 12
     CallIf 1, _01AD
-    CompareVarToValue 0x8005, 13
+    CompareVar 0x8005, 13
     CallIf 1, _01C1
     ScrCmd_066 0x8004, 0x8005
     ScrCmd_0BC 6, 3, 0, 0

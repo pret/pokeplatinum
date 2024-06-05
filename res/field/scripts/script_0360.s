@@ -22,25 +22,25 @@ _0006:
     ScrCmd_02C 1
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 14
+    CompareVar 0x8004, 14
     CallIf 1, _0136
-    CompareVarToValue 0x8004, 15
+    CompareVar 0x8004, 15
     CallIf 1, _0154
     ScrCmd_067
     ScrCmd_02C 2
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 14
+    CompareVar 0x8004, 14
     CallIf 1, _0168
-    CompareVarToValue 0x8004, 15
+    CompareVar 0x8004, 15
     CallIf 1, _0174
     ScrCmd_049 0x603
     ScrCmd_065 1
     ScrCmd_04B 0x603
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 14
+    CompareVar 0x8004, 14
     CallIf 1, _0180
-    CompareVarToValue 0x8004, 15
+    CompareVar 0x8004, 15
     CallIf 1, _018C
     ApplyMovement 2, _01CC
     WaitMovement
