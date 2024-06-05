@@ -38,7 +38,7 @@
 #include "unk_02030880.h"
 #include "unk_02030CE8.h"
 #include "unk_02030EA4.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_020507CC.h"
 #include "poketch_data.h"
 #include "unk_020797C8.h"
@@ -52,12 +52,12 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_BAG,                   SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Bag_SaveSize,               (SaveEntryInitFunc)Bag_Init               },
     { SAVE_TABLE_ENTRY_EVENTS,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldEvents_SaveSize,       (SaveEntryInitFunc)FieldEvents_Init       },
     { SAVE_TABLE_ENTRY_POKETCH,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poketch_SaveSize,           (SaveEntryInitFunc)Poketch_Init           },
-    { SAVE_TABLE_ENTRY_FIELD_PLAYER_STATE,    SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldPlayerState_SaveSize,  (SaveEntryInitFunc)FieldPlayerState_Init  },
+    { SAVE_TABLE_ENTRY_FIELD_PLAYER_STATE,    SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOverworldState_Size,  (SaveEntryInitFunc)FieldOverworldState_Init  },
     { SAVE_TABLE_ENTRY_POKEDEX,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Pokedex_SaveSize,           (SaveEntryInitFunc)Pokedex_Init           },
     { SAVE_TABLE_ENTRY_DAYCARE,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Daycare_SaveSize,           (SaveEntryInitFunc)Daycare_Init           },
     { SAVE_TABLE_ENTRY_PAL_PAD,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PalPad_SaveSize,            (SaveEntryInitFunc)PalPad_Init            },
     { SAVE_TABLE_ENTRY_MISC,                  SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MiscSaveBlock_SaveSize,     (SaveEntryInitFunc)MiscSaveBlock_Init     },
-    { SAVE_TABLE_ENTRY_FIELD_OVERWORLD_STATE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOWState_SaveSize,      (SaveEntryInitFunc)FieldOWState_Init      },
+    { SAVE_TABLE_ENTRY_FIELD_OVERWORLD_STATE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOverworldSave_Size,      (SaveEntryInitFunc)FieldOverworldSave_Init      },
     { SAVE_TABLE_ENTRY_UNDERGROUND,           SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Underground_SaveSize,       (SaveEntryInitFunc)Underground_Init       },
     { SAVE_TABLE_ENTRY_REGULATION_BATTLES,    SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RegulationBattles_SaveSize, (SaveEntryInitFunc)RegulationBattles_Init },
     { SAVE_TABLE_ENTRY_IMAGE_CLIPS,           SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClip_SaveSize,         (SaveEntryInitFunc)ImageClip_Init         },

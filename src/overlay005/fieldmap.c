@@ -49,7 +49,7 @@
 #include "unk_02039C80.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_020508D4.h"
@@ -221,7 +221,7 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
         ov5_021D1968(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
-            u16 v3 = sub_0203A74C(SaveData_GetFieldStatus(fieldSystem->saveData));
+            u16 v3 = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData));
             ov5_021D5F24(fieldSystem->unk_04->unk_0C, v3);
         }
 
@@ -423,7 +423,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
         return 0;
     }
 
-    v4 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    v4 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     {
         fieldSystem->location->mapId = v0;
 
@@ -445,7 +445,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
             ov5_021D5F7C(
-                fieldSystem->unk_04->unk_0C, sub_0203A74C(v4));
+                fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(v4));
         }
     }
 
@@ -475,7 +475,7 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
     FieldOverworldState * v1;
 
     v0 = fieldSystem->location->mapId;
-    v1 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    v1 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     {
         fieldSystem->location->mapId = param1;
@@ -496,7 +496,7 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
         sub_0203A418(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
-            ov5_021D5F7C(fieldSystem->unk_04->unk_0C, sub_0203A74C(v1));
+            ov5_021D5F7C(fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(v1));
         }
     }
 }
@@ -540,7 +540,7 @@ static void ov5_021D13B4 (FieldSystem * fieldSystem)
         return;
     }
 
-    v0 = sub_0203A76C(SaveData_GetFieldStatus(fieldSystem->saveData));
+    v0 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v1 = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
     v2 = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
     v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
@@ -916,7 +916,7 @@ static void ov5_021D1968 (FieldSystem * fieldSystem)
     fieldSystem->unk_48 = ov5_021D57BC();
 
     {
-        int v0 = FieldStatus_GetCameraType(SaveData_GetFieldStatus(fieldSystem->saveData));
+        int v0 = FieldOverworldState_GetCameraType(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 

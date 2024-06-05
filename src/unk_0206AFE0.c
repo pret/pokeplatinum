@@ -9,7 +9,7 @@
 
 #include "unk_0201D15C.h"
 #include "unk_0202B37C.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
@@ -450,7 +450,7 @@ void sub_0206B514 (SaveData * param0)
 {
     u32 v0;
     FieldEvents * v1 = SaveData_GetFieldEvents(param0);
-    FieldOverworldState * v2 = SaveData_GetFieldStatus(param0);
+    FieldOverworldState * v2 = SaveData_GetFieldOverworldState(param0);
     Location * location = sub_0203A720(v2);
 
     if ((location->mapId != 457) && (location->mapId != 464)) {

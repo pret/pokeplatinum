@@ -26,7 +26,7 @@
 #include "unk_0202D7A8.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_02050A74.h"
@@ -274,7 +274,7 @@ BOOL ov6_02240D5C (FieldSystem * fieldSystem)
             }
         }
 
-        v15 = ov6_0224226C(0, v15, &v14, sub_0203A74C(SaveData_GetFieldStatus(fieldSystem->saveData)), v1);
+        v15 = ov6_0224226C(0, v15, &v14, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), v1);
 
         ov6_02241ABC(fieldSystem, &v15);
         ov6_02241A90(v1, &v15);
@@ -414,7 +414,7 @@ BOOL ov6_0224106C (FieldSystem * fieldSystem, const int param1, BattleParams ** 
         v1 = Party_GetFromSavedata(fieldSystem->saveData);
         v0 = Party_GetPokemonBySlotIndex(v1, 0);
         ov6_02242634(fieldSystem, v0, NULL, &v4);
-        v5 = ov6_0224226C(1, v5, &v4, sub_0203A74C(SaveData_GetFieldStatus(fieldSystem->saveData)), v0);
+        v5 = ov6_0224226C(1, v5, &v4, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), v0);
 
         if (inline_020564D0(100) >= v5) {
             return 0;
@@ -653,7 +653,7 @@ BOOL ov6_022413E4 (FieldSystem * fieldSystem, BattleParams ** param1)
             }
         }
 
-        v14 = ov6_0224226C(0, v14, &v13, sub_0203A74C(SaveData_GetFieldStatus(fieldSystem->saveData)), v0);
+        v14 = ov6_0224226C(0, v14, &v13, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), v0);
 
         ov6_02241ABC(fieldSystem, &v14);
         ov6_02241A90(v0, &v14);
@@ -1586,7 +1586,7 @@ static void ov6_02242328 (FieldSystem * fieldSystem, const BOOL param1, BattlePa
     if (!param1) {
         (*param2) = sub_02051D8C(11, (0x0 | 0x0));
     } else {
-        u16 * v0 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
+        u16 * v0 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         (*param2) = sub_02051F24(11, *v0);
     }
 }

@@ -15,7 +15,7 @@
 #include "journal.h"
 #include "unk_0202D7A8.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "unk_020507CC.h"
 #include "unk_020556C4.h"
@@ -88,7 +88,7 @@ void FieldSystem_InitFlagsWarp (FieldSystem * fieldSystem)
     }
 
     {
-        PlayerData * v2 = FieldStatus_GetPlayerData(SaveData_GetFieldStatus(fieldSystem->saveData));
+        PlayerData * v2 = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
         if ((v2->unk_04 == 0x1) && (MapHeader_IsBikeAllowed(fieldSystem->location->mapId) == 0)) {
             v2->unk_04 = 0x0;
@@ -100,7 +100,7 @@ void FieldSystem_InitFlagsWarp (FieldSystem * fieldSystem)
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
         UnkStruct_020556C4 * v3;
 
-        v3 = sub_0203A76C(SaveData_GetFieldStatus(fieldSystem->saveData));
+        v3 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         sub_020556E8(v3, fieldSystem->location->x, fieldSystem->location->z);
     }
 }
@@ -149,7 +149,7 @@ static BOOL sub_020705DC (FieldSystem * fieldSystem)
 
 static BOOL sub_02070610 (FieldSystem * fieldSystem)
 {
-    Location * location = FieldStatus_GetPrevLocation(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * location = FieldOverworldState_GetPrevLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (location->mapId != fieldSystem->location->mapId) {
         sub_0202C5C4(SaveData_GetTrainerInfo(fieldSystem->saveData), fieldSystem->unk_9C, fieldSystem->location->mapId, location->mapId, 32);

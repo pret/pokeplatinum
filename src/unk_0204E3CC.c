@@ -13,7 +13,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0204E3CC.h"
 #include "unk_020507CC.h"
 #include "player_avatar.h"
@@ -44,8 +44,8 @@ BOOL ScrCmd_159 (ScriptContext * param0)
     PlayerData * v1;
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_GetFieldStatus(param0->fieldSystem->saveData);
-    v1 = FieldStatus_GetPlayerData(v0);
+    v0 = SaveData_GetFieldOverworldState(param0->fieldSystem->saveData);
+    v1 = FieldOverworldState_GetPlayerData(v0);
     *v2 = PlayerData_HasRunningShoes(v1);
 
     return 0;
@@ -56,8 +56,8 @@ BOOL ScrCmd_15A (ScriptContext * param0)
     FieldOverworldState * v0;
     PlayerData * v1;
 
-    v0 = SaveData_GetFieldStatus(param0->fieldSystem->saveData);
-    v1 = FieldStatus_GetPlayerData(v0);
+    v0 = SaveData_GetFieldOverworldState(param0->fieldSystem->saveData);
+    v1 = FieldOverworldState_GetPlayerData(v0);
 
     PlayerData_SetRunningShoes(v1, 1);
     return 0;

@@ -18,7 +18,7 @@
 #include "trainer_info.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
@@ -79,7 +79,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     int x, z, v6;
     UnkStruct_020556C4 * v7;
     FieldEvents * v8 = SaveData_GetFieldEvents(fieldSystem->saveData);
-    FieldOverworldState * v9 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * v9 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location * v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
@@ -114,7 +114,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
 
     v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
     param1->unk_0C = TrainerInfo_Gender(v0);
-    v7 = sub_0203A76C(SaveData_GetFieldStatus(fieldSystem->saveData));
+    v7 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v2 = (v7->unk_00 - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {

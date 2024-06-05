@@ -239,7 +239,7 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v2->mapId);
+        Sound_PlayMapBGM(fieldSystem, v2->mapId);
         ov5_021DDAA4(fieldSystem);
 
         v1->unk_04 = 0;

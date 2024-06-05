@@ -66,7 +66,7 @@
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_menu.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
@@ -695,7 +695,7 @@ static void sub_0203B094 (TaskManager * taskMan)
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
-        u16 * v7 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
+        u16 * v7 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {

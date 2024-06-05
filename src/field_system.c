@@ -23,7 +23,7 @@
 #include "communication_system.h"
 #include "unk_02039C80.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_020508D4.h"
 #include "field_map_change.h"
@@ -175,7 +175,7 @@ static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
 
     fieldSystem->saveData = v0->unk_08;
     fieldSystem->unk_10 = NULL;
-    fieldSystem->location = sub_0203A720(SaveData_GetFieldStatus(fieldSystem->saveData));
+    fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
     sub_0203A378(fieldSystem, 11);

@@ -11,7 +11,7 @@
 #include "unk_02005474.h"
 #include "rtc.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_020507CC.h"
 #include "unk_020553DC.h"
 #include "player_avatar.h"
@@ -121,7 +121,7 @@ void sub_020553DC ()
 
 void sub_020553F0 (FieldSystem * fieldSystem, u16 param1)
 {
-    u16 * v0 = sub_0203A748(SaveData_GetFieldStatus(fieldSystem->saveData));
+    u16 * v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *v0 = param1;
     return;
@@ -129,13 +129,13 @@ void sub_020553F0 (FieldSystem * fieldSystem, u16 param1)
 
 u16 sub_02055404 (FieldSystem * fieldSystem)
 {
-    u16 * v0 = sub_0203A748(SaveData_GetFieldStatus(fieldSystem->saveData));
+    u16 * v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     return *v0;
 }
 
 void Sound_ClearSpecialBGM (FieldSystem * fieldSystem)
 {
-    u16 * v0 = sub_0203A748(SaveData_GetFieldStatus(fieldSystem->saveData));
+    u16 * v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *v0 = 0;
     return;
@@ -209,8 +209,8 @@ u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
 static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
 {
     int v0, v1;
-    FieldOverworldState * v2 = SaveData_GetFieldStatus(fieldSystem->saveData);
-    Location * location = FieldStatus_GetPrevLocation(v2);
+    FieldOverworldState * v2 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location * location = FieldOverworldState_GetPrevLocation(v2);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
@@ -319,7 +319,7 @@ void Sound_TryFadeInBgm (FieldSystem * fieldSystem, int param1)
     return;
 }
 
-void Sound_PlayMapBgm (FieldSystem * fieldSystem, int param1)
+void Sound_PlayMapBGM (FieldSystem * fieldSystem, int param1)
 {
     u16 v0;
 

@@ -90,7 +90,7 @@
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "unk_020507CC.h"
@@ -760,7 +760,7 @@ void * sub_0203D8AC (FieldSystem * fieldSystem)
     UnkStruct_0203D8AC * v0;
     TrainerInfo * v1;
     int v2 = 0, v3 = 0;
-    sub_0203A76C(SaveData_GetFieldStatus(fieldSystem->saveData));
+    sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8AC));
 

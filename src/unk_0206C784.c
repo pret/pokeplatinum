@@ -229,7 +229,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         v1->unk_00 = 6;
         break;
     case 6:
-        Sound_PlayMapBgm(fieldSystem, v1->unk_18);
+        Sound_PlayMapBGM(fieldSystem, v1->unk_18);
         FieldTask_StartFadeIn(taskMan);
         v1->unk_00 = 7;
         break;

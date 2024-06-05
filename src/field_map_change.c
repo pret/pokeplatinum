@@ -44,7 +44,7 @@
 #include "unk_02039C80.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203A944.h"
 #include "field_system.h"
@@ -209,8 +209,8 @@ static void sub_020530C8 (FieldSystem * fieldSystem)
 
 static void FieldSystem_MapChange_SetNewLocation (FieldSystem * fieldSystem, const Location * nextLocation)
 {
-    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
-    Location * location = FieldStatus_GetPrevLocation(fieldStatus);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location * location = FieldOverworldState_GetPrevLocation(fieldStatus);
 
     if (nextLocation != NULL) {
         *location = *fieldSystem->location;
@@ -231,7 +231,7 @@ static void FieldSystem_MapChange_SetNewLocation (FieldSystem * fieldSystem, con
             Location * v3, * entrance;
 
             v3 = sub_0203A730(fieldStatus);
-            entrance = FieldStatus_GetEntranceLocation(fieldStatus);
+            entrance = FieldOverworldState_GetEntranceLocation(fieldStatus);
             *v3 = *entrance;
         }
     }
@@ -246,7 +246,7 @@ void sub_020531A0 (FieldSystem * fieldSystem)
 void FieldSystem_MapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWarp)
 {
     int mapId = fieldSystem->location->mapId;
-    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     Sound_ClearSpecialBGM(fieldSystem);
     FieldSystem_ClearLocalFlags(fieldSystem);
@@ -274,22 +274,22 @@ void FieldSystem_MapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWar
         weather = OVERWORLD_WEATHER_CLEAR;
     }
 
-    FieldStatus_SetWeather(fieldStatus, weather);
+    FieldOverworldState_SetWeather(fieldStatus, weather);
 
     if (noWarp) {
-        int cam1 = FieldStatus_GetCameraType(fieldStatus);
+        int cam1 = FieldOverworldState_GetCameraType(fieldStatus);
         int cam2 = MapHeader_GetCameraType(mapId);
 
         GF_ASSERT(cam1 == cam2);
     } else {
-        FieldStatus_SetCameraType(fieldStatus, MapHeader_GetCameraType(mapId));
+        FieldOverworldState_SetCameraType(fieldStatus, MapHeader_GetCameraType(mapId));
     }
 
     if (!noWarp) {
         u16 warpId = sub_0203A858(mapId);
 
         if (warpId != 0) {
-            FieldStatus_SetWarpId(fieldStatus, warpId);
+            FieldOverworldState_SetWarpId(fieldStatus, warpId);
         }
     }
 
@@ -302,7 +302,7 @@ void FieldSystem_MapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWar
 void FieldSystem_MapChange_UpdateGameDataDistortionWorld (FieldSystem * fieldSystem, BOOL param1)
 {
     int mapId = fieldSystem->location->mapId;
-    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     Sound_ClearSpecialBGM(fieldSystem);
     FieldSystem_ClearLocalFlags(fieldSystem);
@@ -327,7 +327,7 @@ void FieldSystem_MapChange_UpdateGameDataDistortionWorld (FieldSystem * fieldSys
         u16 v2 = sub_0203A858(mapId);
 
         if (v2 != 0) {
-            FieldStatus_SetWarpId(fieldStatus, v2);
+            FieldOverworldState_SetWarpId(fieldStatus, v2);
         }
     }
 
@@ -344,8 +344,8 @@ static void FieldSystem_MapChange_CreateObjects (FieldSystem * fieldSystem)
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
 
     gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
-    fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
-    playerData = FieldStatus_GetPlayerData(fieldStatus);
+    fieldStatus = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    playerData = FieldOverworldState_GetPlayerData(fieldStatus);
 
     fieldSystem->playerAvatar = PlayerAvatar_Init(fieldSystem->mapObjMan, fieldSystem->location->x, fieldSystem->location->z, fieldSystem->location->unk_10, playerData->unk_04, gender, 0, playerData);
 
@@ -365,8 +365,8 @@ static void FieldSystem_MapChange_LoadObjects (FieldSystem * fieldSystem)
     fieldSystem->mapObjMan = MapObjectMan_New(fieldSystem, 64, 5);
     FieldSystem_LoadObjects(fieldSystem);
 
-    FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
-    PlayerData * playerData = FieldStatus_GetPlayerData(fieldStatus);
+    FieldOverworldState * fieldStatus = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    PlayerData * playerData = FieldOverworldState_GetPlayerData(fieldStatus);
     int v2 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
     fieldSystem->playerAvatar = sub_0205E820(fieldSystem->mapObjMan, playerData, v2);
@@ -428,7 +428,7 @@ void sub_02053494 (FieldSystem * fieldSystem)
 static void sub_020534BC (FieldSystem * fieldSystem)
 {
     if (fieldSystem->unk_9C != NULL) {
-        FieldOverworldState * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
+        FieldOverworldState * v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
         Location * location = sub_0203A730(v0);
         void * v2 = sub_0202BC58(location->mapId, 11);
         sub_0202B758(fieldSystem->unk_9C, v2, 0);
@@ -440,7 +440,7 @@ static void Location_SetToPlayerLocation (Location * location, const FieldSystem
     Location_Set(location, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1);
 }
 
-static BOOL FieldSystem_IsSavedInUnionRoom (const FieldSystem * fieldSystem)
+static BOOL FieldSystem_IsSaveInUnionRoom (const FieldSystem * fieldSystem)
 {
     if (MapHeader_IsPokemonCenter2F(fieldSystem->location->mapId)
         && (fieldSystem->location->x == 7) && (fieldSystem->location->z == 6)) {
@@ -452,7 +452,7 @@ static BOOL FieldSystem_IsSavedInUnionRoom (const FieldSystem * fieldSystem)
 
 static void FieldSystem_SetLocationToUnionRoomExit (FieldSystem * fieldSystem)
 {
-    Location * v0 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v0 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     FieldEvents * events = SaveData_GetFieldEvents(fieldSystem->saveData);
 
     Location_Set(v0, fieldSystem->location->mapId, -1, 8, 2, 1);
@@ -508,9 +508,9 @@ static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
         fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events));
 
         if (FieldEvents_CheckCommClub(events)) {
-            FieldOverworldState * fieldStatus = SaveData_GetFieldStatus(fieldSystem->saveData);
+            FieldOverworldState * fieldStatus = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
-            if (FieldSystem_IsSavedInUnionRoom(fieldSystem)) {
+            if (FieldSystem_IsSaveInUnionRoom(fieldSystem)) {
                 FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
             }
 
@@ -605,7 +605,7 @@ void FieldSystem_StartLoadMapFromErrorTask (FieldSystem * fieldSystem)
 
     if (MapHeader_IsUnionRoom(fieldSystem->location->mapId)) {
         
-    } else if (FieldSystem_IsSavedInUnionRoom(fieldSystem)) {
+    } else if (FieldSystem_IsSaveInUnionRoom(fieldSystem)) {
         FieldEvents * events = SaveData_GetFieldEvents(fieldSystem->saveData);
 
         FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
@@ -645,7 +645,7 @@ static BOOL FieldTask_ChangeMap (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, location->mapId);
+        Sound_PlayMapBGM(fieldSystem, location->mapId);
         FieldTask_StartFadeIn(taskMan);
         (v1->unk_00)++;
         break;
@@ -739,7 +739,7 @@ static BOOL FieldTask_ChangeMapFull (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v2->mapId);
+        Sound_PlayMapBGM(fieldSystem, v2->mapId);
         sub_02055868(taskMan);
         (v1->unk_00)++;
         break;
@@ -813,7 +813,7 @@ static BOOL sub_02053B44 (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v2->mapId);
+        Sound_PlayMapBGM(fieldSystem, v2->mapId);
         sub_0207056C(fieldSystem);
         sub_02053C10(taskMan);
         (v1->unk_00)++;
@@ -935,7 +935,7 @@ static BOOL sub_02053D0C (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v2->mapId);
+        Sound_PlayMapBGM(fieldSystem, v2->mapId);
 
         if (v1->unk_04 == 2) {
             sub_02070588(fieldSystem);
@@ -1049,7 +1049,7 @@ static BOOL sub_02053E98 (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v2->mapId);
+        Sound_PlayMapBGM(fieldSystem, v2->mapId);
         sub_02055868(taskMan);
         v1->unk_00++;
         break;
@@ -1086,7 +1086,7 @@ void sub_02053F58 (FieldSystem * fieldSystem, int param1, int param2)
 void * sub_02053FAC (FieldSystem * fieldSystem)
 {
     UnkStruct_02053FAC * v0;
-    Location * v1 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v1 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053FAC));
     v0->unk_00 = 0;
@@ -1428,7 +1428,7 @@ static BOOL sub_02054538 (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v3->mapId);
+        Sound_PlayMapBGM(fieldSystem, v3->mapId);
         sub_02055868(taskMan);
         (*v2)++;
         break;
@@ -1446,7 +1446,7 @@ static BOOL sub_02054538 (TaskManager * taskMan)
 
 void sub_020545EC (FieldSystem * fieldSystem)
 {
-    Location * v0 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v0 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     UnkStruct_02054538 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02054538));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_02054538));
@@ -1486,7 +1486,7 @@ static BOOL sub_02054648 (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v3->mapId);
+        Sound_PlayMapBGM(fieldSystem, v3->mapId);
         sub_02055868(taskMan);
         (*state)++;
         break;
@@ -1511,7 +1511,7 @@ static BOOL sub_02054648 (TaskManager * taskMan)
 void sub_02054708 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    Location * v1 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v1 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     UnkStruct_02054538 * v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02054538));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_02054538));
@@ -1548,7 +1548,7 @@ static BOOL sub_02054778 (TaskManager * taskMan)
             break;
         }
 
-        Sound_PlayMapBgm(fieldSystem, v2->mapId);
+        Sound_PlayMapBGM(fieldSystem, v2->mapId);
         sub_02055868(taskMan);
         (v1->unk_00)++;
         break;
@@ -1564,7 +1564,7 @@ void sub_02054800 (TaskManager * taskMan, int param1, int param2, int param3, in
 {
     Location v0;
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    Location * v2 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v2 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     Location_SetToPlayerLocation(v2, fieldSystem);
 
@@ -1583,7 +1583,7 @@ void sub_02054800 (TaskManager * taskMan, int param1, int param2, int param3, in
 void sub_02054864 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    Location * v1 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v1 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     fieldSystem->unk_70 = 0;
     FieldSystem_StartChangeMapTask(fieldSystem->unk_10, v1);

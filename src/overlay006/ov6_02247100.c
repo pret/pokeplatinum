@@ -15,7 +15,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "journal.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
 #include "field_map_change.h"
@@ -144,13 +144,13 @@ static int ov6_02247244 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_02247288 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    FieldOverworldState * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     if (param2->unk_08 == 2) {
         u16 v1;
         Location v2;
 
-        v1 = sub_0203A75C(v0);
+        v1 = FieldOverworldState_GetWarpId(v0);
         sub_0203A7F0(v1, &v2);
         sub_02053CD4(taskMan, &v2, param2->unk_08);
     } else {

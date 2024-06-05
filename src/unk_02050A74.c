@@ -27,7 +27,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "communication_information.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
@@ -459,7 +459,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
     v2 = FieldTask_GetState(taskMan);
-    v3 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
+    v3 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     switch (*v2) {
     case 0:
@@ -491,7 +491,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
         if (((*v3) == 0) && (v1->unk_10->unk_14 != 0x4)) {
             Location * v6;
 
-            v6 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+            v6 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
             sub_020539A0(taskMan, v6);
         }
 

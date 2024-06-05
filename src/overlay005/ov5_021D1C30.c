@@ -30,7 +30,7 @@
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_menu.h"
 #include "unk_0203C954.h"
 #include "unk_0203E880.h"
@@ -968,7 +968,7 @@ static void ov5_021D2B54 (FieldSystem * fieldSystem)
 static BOOL ov5_021D2B94 (FieldSystem * fieldSystem)
 {
     Party * v0 = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 * v1 = sub_0203A78C(SaveData_GetFieldStatus(fieldSystem->saveData));
+    u16 * v1 = sub_0203A78C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     (*v1)++;
     (*v1) %= 4;
@@ -1001,14 +1001,14 @@ static BOOL ov5_021D2C14 (FieldSystem * fieldSystem)
         return 0;
     }
 
-    v0 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
+    v0 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (*v0 == 0) {
         sub_0203E880(fieldSystem, 8802, NULL);
         return 1;
     }
 
-    v1 = sub_0203A788(SaveData_GetFieldStatus(fieldSystem->saveData));
+    v1 = sub_0203A788(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     (*v1)++;
 
     if (*v1 >= 500) {
@@ -1090,12 +1090,12 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
 
     if (v0->unk_06 == 0x100) {
         GF_ASSERT(v0->unk_04 == 0xfff);
-        *param3 = *(sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData)));
+        *param3 = *(sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
         Location_Set(param3, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
     }
 
-    Location * v2 = FieldStatus_GetEntranceLocation(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v2 = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     Location_Set(v2, fieldSystem->location->mapId, v1, param1, param2, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
     return 1;
@@ -1103,7 +1103,7 @@ static BOOL ov5_021D2D34 (const FieldSystem * fieldSystem, int param1, int param
 
 static void ov5_021D2DCC (FieldSystem * fieldSystem, const int param1, const int param2, const int param3)
 {
-    FieldOverworldState * v0 = SaveData_GetFieldStatus(fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location * v1 = sub_0203A72C(v0);
 
     (*v1) = *(fieldSystem->location);

@@ -31,7 +31,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
@@ -225,8 +225,8 @@ BOOL sub_02052B2C (TaskManager * param0)
 
         {
             Location v2;
-            FieldOverworldState * v3 = SaveData_GetFieldStatus(fieldSystem->saveData);
-            u16 v4 = sub_0203A75C(v3);
+            FieldOverworldState * v3 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+            u16 v4 = FieldOverworldState_GetWarpId(v3);
 
             sub_0203A824(v4, &v2);
             sub_0203A7F0(v4, sub_0203A72C(v3));
@@ -259,7 +259,7 @@ BOOL sub_02052B2C (TaskManager * param0)
         sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
         if (sub_0203A7EC()
-            == sub_0203A75C(SaveData_GetFieldStatus(fieldSystem->saveData))) {
+            == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
             sub_0203E8E0(param0, 2020, NULL, NULL);
         } else {
             sub_0203E8E0(param0, 2021, NULL, NULL);

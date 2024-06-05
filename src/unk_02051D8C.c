@@ -45,7 +45,7 @@
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_020507CC.h"
 #include "unk_02051D8C.h"
 #include "unk_02054D00.h"
@@ -257,7 +257,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     PokedexData * v3 = SaveData_Pokedex(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
     Options * v5 = SaveData_Options(param2);
-    FieldOverworldState * v6 = SaveData_GetFieldStatus(param2);
+    FieldOverworldState * v6 = SaveData_GetFieldOverworldState(param2);
 
     if (fieldSystem != NULL) {
         sub_0205281C(param0, fieldSystem);
@@ -284,7 +284,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
     param0->unk_140 = PokemonSummary_ShowContestData(param2);
     param0->unk_144 = sub_0206ADFC(SaveData_GetFieldEvents(param2));
-    param0->unk_14C = sub_0203A74C(v6);
+    param0->unk_14C = FieldOverworldState_GetWeather(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;
     param0->unk_100 = SaveData_PoketchData(param2);
@@ -444,7 +444,7 @@ void sub_020526E8 (const BattleParams * param0, FieldSystem * fieldSystem)
     Party * v1 = Party_GetFromSavedata(fieldSystem->saveData);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(fieldSystem->saveData);
     PokedexData * v3 = SaveData_Pokedex(fieldSystem->saveData);
-    u16 * v4 = sub_0203A784(SaveData_GetFieldStatus(fieldSystem->saveData));
+    u16 * v4 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     TrainerInfo_Copy(param0->unk_D0[0], v0);
     Party_cpy(param0->parties[0], v1);
@@ -522,7 +522,7 @@ static int sub_02052780 (const FieldSystem * fieldSystem, int param1)
 
 static void sub_0205281C (BattleParams * param0, const FieldSystem * fieldSystem)
 {
-    PlayerData * v0 = FieldStatus_GetPlayerData(SaveData_GetFieldStatus(fieldSystem->saveData));
+    PlayerData * v0 = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     param0->unk_128 = MapHeader_GetBattleBG(fieldSystem->location->mapId);
 

@@ -38,7 +38,7 @@
 #include "unk_0202631C.h"
 #include "unk_0202CD50.h"
 #include "unk_0202DF8C.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203D178.h"
 #include "unk_0203D1B8.h"
 #include "unk_020507CC.h"
@@ -192,8 +192,8 @@ void sub_02052E58 (TaskManager * param0)
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
     v3 = SaveData_GetFieldEvents(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v1 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
-    v2 = sub_0203A72C(SaveData_GetFieldStatus(fieldSystem->saveData));
+    v1 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    v2 = sub_0203A72C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     v5->unk_00 = sub_0206A954(v3);
     v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);

@@ -20,7 +20,7 @@
 #include "trainer_info.h"
 #include "journal.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_menu.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
@@ -214,7 +214,7 @@ void sub_02070728 (FieldSystem * fieldSystem, UnkStruct_02070950 * param1)
         param1->unk_0C |= (1 << 6);
     }
 
-    switch (sub_0203A74C(SaveData_GetFieldStatus(fieldSystem->saveData))) {
+    switch (FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
     case 14:
         param1->unk_0C |= (1 << 4);
         break;

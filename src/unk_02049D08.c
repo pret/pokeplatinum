@@ -31,7 +31,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
 #include "unk_020507CC.h"
@@ -226,7 +226,7 @@ BOOL sub_02049FA0 (UnkStruct_0202D060 * param0)
 
 void sub_02049FA8 (FieldSystem * fieldSystem)
 {
-    Location * v0 = sub_0203A730(SaveData_GetFieldStatus(fieldSystem->saveData));
+    Location * v0 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     Location_Set(v0, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
     sub_0206AD9C(SaveData_GetFieldEvents(fieldSystem->saveData));
