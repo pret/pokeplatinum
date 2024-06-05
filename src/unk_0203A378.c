@@ -126,7 +126,7 @@ const UnkStruct_0203A4AC * sub_0203A4AC (const FieldSystem * fieldSystem)
     return fieldSystem->unk_14->unk_1C;
 }
 
-u32 FieldSystem_GetNpcCount (const FieldSystem * fieldSystem)
+u32 FieldSystem_GetNPCCount (const FieldSystem * fieldSystem)
 {
     return fieldSystem->unk_14->npcCount;
 }

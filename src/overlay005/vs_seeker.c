@@ -502,7 +502,7 @@ static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
     int trainerX, trainerZ;
     int numVisibleTrainers;
     int xMin, xMax, zMin, zMax;
-    u32 npcCount = FieldSystem_GetNpcCount(vsSeeker->fieldSystem);
+    u32 npcCount = FieldSystem_GetNPCCount(vsSeeker->fieldSystem);
 
     numVisibleTrainers = 0;
 
@@ -601,7 +601,7 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
 
 static void VsSeeker_ClearRematchMoveCode(FieldSystem *fieldSystem)
 {
-    u32 npcCount = FieldSystem_GetNpcCount(fieldSystem);
+    u32 npcCount = FieldSystem_GetNPCCount(fieldSystem);
 
     for (int i = 0; i < npcCount; i++) {
         MapObject *mapObj = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, i);
@@ -830,7 +830,7 @@ void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject 
 
 static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
 {
-    u32 npcCount = FieldSystem_GetNpcCount(fieldSystem);
+    u32 npcCount = FieldSystem_GetNPCCount(fieldSystem);
 
     BOOL anyMoving = FALSE;
 
@@ -859,7 +859,7 @@ static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem)
 static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem, MapObject *trainerObj, enum VsSeeker2v2TrainerSearchMode mode)
 {
     u32 secondTrainerEventID, secondTrainerID;
-    u32 npcCount = FieldSystem_GetNpcCount(fieldSystem);
+    u32 npcCount = FieldSystem_GetNPCCount(fieldSystem);
     u16 eventID = MapObject_GetEventID(trainerObj);
     u16 trainerID = Script_GetTrainerIDFromEventID(eventID);
 
