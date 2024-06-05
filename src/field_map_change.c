@@ -258,7 +258,7 @@ void FieldMapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWarp)
         FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
-    Events_ResetVsSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
+    VsSeeker_Reset(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     if (!noWarp) {
         sub_020559DC(fieldSystem);
@@ -314,7 +314,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld (FieldSystem * fieldSystem, BO
         FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
-    Events_ResetVsSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
+    VsSeeker_Reset(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     if (!param1) {
         sub_020559DC(fieldSystem);

@@ -114,29 +114,28 @@ BOOL sub_0206B0C4 (VarsFlags * param0, u16 param1)
     return sub_0206AFE0(param0, (5 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void Events_ResetVsSeeker (VarsFlags * param0)
+void VsSeeker_Reset(VarsFlags * param0)
 {
     VsSeeker_ClearUsedFlag(param0);
-    Events_SetVsSeekerActiveStepCount(param0, 0);
-    return;
+    VsSeeker_SetActiveStepCount(param0, 0);
 }
 
-u16 Events_GetVsSeekerBattery (VarsFlags * param0)
+u16 VsSeeker_GetBattery(VarsFlags * param0)
 {
     return sub_0206B010(param0, (3 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL Events_SetVsSeekerBattery (VarsFlags * param0, u16 param1)
+BOOL VsSeeker_SetBattery(VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (3 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 Events_GetVsSeekerActiveStepCount (VarsFlags * param0)
+u16 VsSeeker_GetActiveStepCount(VarsFlags * param0)
 {
     return sub_0206B010(param0, (4 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL Events_SetVsSeekerActiveStepCount (VarsFlags * param0, u16 param1)
+BOOL VsSeeker_SetActiveStepCount(VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (4 + (((0 + 0x4000) + 32) + 16)), param1);
 }

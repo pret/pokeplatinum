@@ -426,7 +426,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
     case VS_SEEKER_STATE_START:
         vsSeeker->playerStateTask = Player_SetStateVsSeeker(vsSeeker->fieldSystem);
         Sound_PlayEffect(SEQ_SE_DP_VS_SEEKER_BEEP);
-        Events_SetVsSeekerBattery(vsSeeker->events, 0);
+        VsSeeker_SetBattery(vsSeeker->events, 0);
         VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_WAIT_FOR_PLAYER_ANIM);
         break;
     case VS_SEEKER_STATE_WAIT_FOR_PLAYER_ANIM:
@@ -453,7 +453,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
         }
         break;
     case VS_SEEKER_STATE_NO_BATTERY:
-        missingBattery = (VS_SEEKER_MAX_BATTERY - Events_GetVsSeekerBattery(vsSeeker->events));
+        missingBattery = (VS_SEEKER_MAX_BATTERY - VsSeeker_GetBattery(vsSeeker->events));
 
         if ((missingBattery / 10) == 0) {
             numDigits = 1;
@@ -484,7 +484,7 @@ static void VsSeekerSystem_SetState(VsSeekerSystem *vsSeeker, enum VsSeekerState
 
 static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSeeker)
 {
-    if (Events_GetVsSeekerBattery(vsSeeker->events) == VS_SEEKER_MAX_BATTERY) {
+    if (VsSeeker_GetBattery(vsSeeker->events) == VS_SEEKER_MAX_BATTERY) {
         if (vsSeeker->numVisibleTrainers == 0) {
             return VS_SEEKER_USABILITY_NO_TRAINERS;
         }
@@ -573,24 +573,24 @@ static BOOL VsSeeker_IsMoveCodeHidden(u32 moveCode)
 BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
 {
     VarsFlags *events = SaveData_GetVarsFlags(fieldSystem->saveData);
-    u16 battery = Events_GetVsSeekerBattery(events);
-    u16 activeStepCount = Events_GetVsSeekerActiveStepCount(events);
+    u16 battery = VsSeeker_GetBattery(events);
+    u16 activeStepCount = VsSeeker_GetActiveStepCount(events);
 
     if (sub_0207D688(sub_0207D990(fieldSystem->saveData), 443, 1, 4) == 1) {
         if (battery < 100) {
             battery++;
-            Events_SetVsSeekerBattery(events, battery);
+            VsSeeker_SetBattery(events, battery);
         }
     }
 
     if (VsSeeker_GetUsedFlag(events) == TRUE) {
         if (activeStepCount < VS_SEEKER_MAX_NUM_ACTIVE_STEPS) {
             activeStepCount++;
-            Events_SetVsSeekerActiveStepCount(events, activeStepCount);
+            VsSeeker_SetActiveStepCount(events, activeStepCount);
         }
 
         if (activeStepCount == VS_SEEKER_MAX_NUM_ACTIVE_STEPS) {
-            Events_ResetVsSeeker(events);
+            VsSeeker_Reset(events);
             VsSeeker_ClearRematchMoveCode(fieldSystem);
         }
     }
