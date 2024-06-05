@@ -544,11 +544,11 @@ static void VsSeekerSystem_CollectViableNpcs(VsSeekerSystem *vsSeeker)
             trainerX = MapObject_GetXPos(mapObj);
             trainerZ = MapObject_GetZPos(mapObj);
 
-            if ((trainerX >= xMin) && (trainerX <= xMax) && (trainerZ >= zMin) && (trainerZ <= zMax)) {
-                if (VsSeeker_IsMoveCodeHidden(MapObject_GetMoveCode(mapObj)) == FALSE) {
-                    vsSeeker->trainers[numVisibleTrainers] = mapObj;
-                    numVisibleTrainers++;
-                }
+            if (trainerX >= xMin && trainerX <= xMax
+                && trainerZ >= zMin && trainerZ <= zMax
+                && VsSeeker_IsMoveCodeHidden(MapObject_GetMoveCode(mapObj)) == FALSE) {
+                vsSeeker->trainers[numVisibleTrainers] = mapObj;
+                numVisibleTrainers++;
             }
         }
     }
