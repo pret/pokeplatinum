@@ -39,10 +39,8 @@ _000A:
     WaitMovement
     ScrCmd_02C 4
     ScrCmd_14D 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _00B1
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _00BD
+    GoToIfEq 0x800C, 0, _00B1
+    GoToIfEq 0x800C, 1, _00BD
     End
 
 _00B1:

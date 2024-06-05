@@ -43,8 +43,7 @@ _004C:
 _005F:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 253
-    GoToIf 1, _0081
+    GoToIfSet 253, _0081
     SetFlag 253
     ScrCmd_068
     ScrCmd_02C 3

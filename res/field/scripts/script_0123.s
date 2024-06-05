@@ -30,14 +30,10 @@
 _005E:
     SetVar 0x40C7, 0
     SetFlag 0x17E
-    CompareVarToValue 0x407C, 5
-    CallIf 1, _074D
-    CompareVarToValue 0x407C, 4
-    CallIf 1, _0721
-    CompareVarToValue 0x407C, 4
-    CallIf 1, _0737
-    CheckFlag 0x102
-    GoToIf 1, _009C
+    CallIfEq 0x407C, 5, _074D
+    CallIfEq 0x407C, 4, _0721
+    CallIfEq 0x407C, 4, _0737
+    GoToIfSet 0x102, _009C
     End
 
 _009C:
@@ -91,8 +87,7 @@ _00FE:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 3, 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _0124
+    GoToIfEq 0x800C, 1, _0124
     ScrCmd_02C 33
     ScrCmd_031
     ScrCmd_034
@@ -110,15 +105,11 @@ _012F:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x128
-    GoToIf 1, _0189
+    GoToIfSet 0x128, _0189
     ScrCmd_0DE 0x800C
-    CompareVarToValue 0x800C, 0x183
-    CallIf 1, _0194
-    CompareVarToValue 0x800C, 0x186
-    CallIf 1, _019C
-    CompareVarToValue 0x800C, 0x189
-    CallIf 1, _01A4
+    CallIfEq 0x800C, 0x183, _0194
+    CallIfEq 0x800C, 0x186, _019C
+    CallIfEq 0x800C, 0x189, _01A4
     ScrCmd_261 0, 0x8004
     ScrCmd_02C 37
     SetVar 0x8005, 1
@@ -193,8 +184,7 @@ _01E5:
 _0204:
     ScrCmd_049 0x5DC
     ScrCmd_060
-    CheckFlag 0x102
-    GoToIf 1, _0220
+    GoToIfSet 0x102, _0220
     ScrCmd_02C 0
     ScrCmd_031
     ScrCmd_034
@@ -206,12 +196,9 @@ _0220:
     ScrCmd_02C 28
     ScrCmd_034
     ScrCmd_1BD 0x800C
-    CompareVarToValue 0x800C, 2
-    GoToIf 1, _025A
-    CompareVarToValue 0x800C, 3
-    GoToIf 1, _027A
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _0292
+    GoToIfEq 0x800C, 2, _025A
+    GoToIfEq 0x800C, 3, _027A
+    GoToIfEq 0x800C, 0, _0292
     GoTo _02B2
     End
 
@@ -524,10 +511,8 @@ _043E:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CompareVarToValue 0x407C, 5
-    GoToIf 4, _04AE
-    CompareVarToValue 0x407C, 4
-    GoToIf 4, _0471
+    GoToIfGe 0x407C, 5, _04AE
+    GoToIfGe 0x407C, 4, _0471
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 4
@@ -536,8 +521,7 @@ _043E:
 
 _0471:
     ScrCmd_1BD 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _0498
+    GoToIfEq 0x800C, 0, _0498
     ScrCmd_0CE 0
     ScrCmd_02C 16
     ScrCmd_034
@@ -592,10 +576,8 @@ _04C8:
     ApplyMovement 26, _05CC
     WaitMovement
     ScrCmd_0DE 0x800C
-    CompareVarToValue 0x800C, 0x183
-    GoToIf 1, _054B
-    CompareVarToValue 0x800C, 0x186
-    GoToIf 1, _0557
+    GoToIfEq 0x800C, 0x183, _054B
+    GoToIfEq 0x800C, 0x186, _0557
     GoTo _053F
 
 _053F:
@@ -612,8 +594,7 @@ _0557:
 
 _0563:
     ScrCmd_0EC 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _0597
+    GoToIfEq 0x800C, 0, _0597
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 6
@@ -900,12 +881,9 @@ _091C:
     WaitMovement
     ScrCmd_065 27
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 0x261
-    CallIf 1, _0981
-    CompareVarToValue 0x8004, 0x263
-    CallIf 1, _098D
-    CompareVarToValue 0x8004, 0x264
-    CallIf 1, _0981
+    CallIfEq 0x8004, 0x261, _0981
+    CallIfEq 0x8004, 0x263, _098D
+    CallIfEq 0x8004, 0x264, _0981
     SetFlag 0x20D
     SetVar 0x407C, 5
     SetFlag 0x102
@@ -938,10 +916,8 @@ _09A8:
     ScrCmd_068
     Call _086F
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 0x263
-    CallIf 1, _0A31
-    CompareVarToValue 0x8004, 0x264
-    CallIf 1, _0A55
+    CallIfEq 0x8004, 0x263, _0A31
+    CallIfEq 0x8004, 0x264, _0A55
     Call _08D9
     ApplyMovement 0xFF, _0AC8
     ApplyMovement 27, _0B74
@@ -951,10 +927,8 @@ _09A8:
     Call _08FA
     ScrCmd_02C 23
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8004, 0x263
-    CallIf 1, _0A79
-    CompareVarToValue 0x8004, 0x264
-    CallIf 1, _0A8D
+    CallIfEq 0x8004, 0x263, _0A79
+    CallIfEq 0x8004, 0x264, _0A8D
     Call _091C
     ScrCmd_061
     End
@@ -1168,12 +1142,10 @@ _0BE0:
 
 _0BF0:
     ScrCmd_060
-    CheckFlag 0x156
-    GoToIf 1, _0C1E
+    GoToIfSet 0x156, _0C1E
     SetVar 0x40C7, 1
     ScrCmd_1B7 0x800C, 100
-    CompareVarToValue 0x800C, 90
-    GoToIf 4, _0C22
+    GoToIfGe 0x800C, 90, _0C22
     GoTo _0C1E
     End
 

@@ -25,19 +25,13 @@ _0030:
     SetFlag 0x2BE
     SetFlag 0x2BF
     ScrCmd_28B 3, 0x4000
-    CompareVarToValue 0x4000, 0
-    GoToIf 1, _00A5
+    GoToIfEq 0x4000, 0, _00A5
     ScrCmd_302 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
-    CompareVarToValue 0x4000, 0
-    CallIf 1, _00CF
-    CompareVarToValue 0x4001, 0
-    CallIf 1, _00D5
-    CompareVarToValue 0x4002, 0
-    CallIf 1, _00DB
-    CompareVarToValue 0x4003, 0
-    CallIf 1, _00E1
-    CompareVarToValue 0x4004, 0
-    CallIf 1, _00E7
+    CallIfEq 0x4000, 0, _00CF
+    CallIfEq 0x4001, 0, _00D5
+    CallIfEq 0x4002, 0, _00DB
+    CallIfEq 0x4003, 0, _00E1
+    CallIfEq 0x4004, 0, _00E7
     End
 
 _00A5:
@@ -105,47 +99,31 @@ _013D:
 
 _0151:
     ScrCmd_1C0 0x800C, 0x1DF
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _06DE
+    GoToIfEq 0x800C, 0, _06DE
     ScrCmd_07E 0x1D3, 1, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _06DE
+    GoToIfEq 0x800C, 0, _06DE
     ScrCmd_28B 3, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _06DE
-    CompareVarToValue 0x8004, 1
-    CallIf 1, _06C5
-    CompareVarToValue 0x8004, 3
-    CallIf 1, _06CA
-    CompareVarToValue 0x8004, 2
-    CallIf 1, _06CF
-    CompareVarToValue 0x8004, 4
-    CallIf 1, _06D4
-    CompareVarToValue 0x8004, 5
-    CallIf 1, _06D9
+    GoToIfEq 0x800C, 0, _06DE
+    CallIfEq 0x8004, 1, _06C5
+    CallIfEq 0x8004, 3, _06CA
+    CallIfEq 0x8004, 2, _06CF
+    CallIfEq 0x8004, 4, _06D4
+    CallIfEq 0x8004, 5, _06D9
     ScrCmd_303 0x8003, 0x800C
-    CompareVarToValue 0x8003, 1
-    GoToIf 4, _0254
+    GoToIfGe 0x8003, 1, _0254
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _0740
+    GoToIfEq 0x800C, 1, _0740
     GoTo _01F8
     End
 
 _01F8:
-    CompareVarToValue 0x8004, 1
-    CallIf 1, _069D
-    CompareVarToValue 0x8004, 3
-    CallIf 1, _06A5
-    CompareVarToValue 0x8004, 2
-    CallIf 1, _06AD
-    CompareVarToValue 0x8004, 4
-    CallIf 1, _06B5
-    CompareVarToValue 0x8004, 5
-    CallIf 1, _06BD
+    CallIfEq 0x8004, 1, _069D
+    CallIfEq 0x8004, 3, _06A5
+    CallIfEq 0x8004, 2, _06AD
+    CallIfEq 0x8004, 4, _06B5
+    CallIfEq 0x8004, 5, _06BD
     ScrCmd_2CB 0x800C, 0x1DF
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _03F5
+    GoToIfEq 0x800C, 1, _03F5
     GoTo _0403
     End
 
@@ -157,18 +135,15 @@ _0254:
     ScrCmd_042 14, 2
     ScrCmd_043
     SetVar 0x8008, 0x800C
-    CompareVarToValue 0x8008, 0
-    GoToIf 1, _01F8
-    CompareVarToValue 0x8008, 2
-    GoToIf 1, _0295
+    GoToIfEq 0x8008, 0, _01F8
+    GoToIfEq 0x8008, 2, _0295
     GoTo _0740
     End
 
 _0295:
     ScrCmd_303 0x8003, 0x800C
     SetVar 0x8000, 0x800C
-    CompareVarToValue 0x8003, 2
-    GoToIf 4, _037B
+    GoToIfGe 0x8003, 2, _037B
     GoTo _02B6
     End
 
@@ -180,16 +155,11 @@ _02B6:
     ScrCmd_0BD
     ScrCmd_034
     ScrCmd_305 0x8000, 0x8004
-    CompareVarToValue 0x8004, 1
-    CallIf 1, _0349
-    CompareVarToValue 0x8004, 4
-    CallIf 1, _0367
-    CompareVarToValue 0x8004, 3
-    CallIf 1, _0353
-    CompareVarToValue 0x8004, 2
-    CallIf 1, _035D
-    CompareVarToValue 0x8004, 5
-    CallIf 1, _0371
+    CallIfEq 0x8004, 1, _0349
+    CallIfEq 0x8004, 4, _0367
+    CallIfEq 0x8004, 3, _0353
+    CallIfEq 0x8004, 2, _035D
+    CallIfEq 0x8004, 5, _0371
     GoTo _0325
     End
 
@@ -236,16 +206,12 @@ _037B:
     ScrCmd_0A1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    CompareVarToValue 0x8000, 0xFF
-    GoToIf 1, _03F3
+    GoToIfEq 0x8000, 0xFF, _03F3
     ScrCmd_198 0x8000, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _045D
-    CompareVarToValue 0x800C, 0x1DF
-    GoToIf 5, _0468
+    GoToIfEq 0x800C, 0, _045D
+    GoToIfNe 0x800C, 0x1DF, _0468
     ScrCmd_305 0x8000, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _03E8
+    GoToIfEq 0x800C, 0, _03E8
     GoTo _02B6
     End
 
@@ -272,13 +238,10 @@ _0403:
     ScrCmd_0A1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    CompareVarToValue 0x8000, 0xFF
-    GoToIf 1, _0740
+    GoToIfEq 0x8000, 0xFF, _0740
     ScrCmd_198 0x8000, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _045D
-    CompareVarToValue 0x800C, 0x1DF
-    GoToIf 5, _0468
+    GoToIfEq 0x800C, 0, _045D
+    GoToIfNe 0x800C, 0x1DF, _0468
     GoTo _0473
     End
 
@@ -294,24 +257,18 @@ _0468:
 
 _0473:
     ScrCmd_099 0x800C, 0x13B, 0x8000
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _04FD
+    GoToIfEq 0x800C, 1, _04FD
     ScrCmd_099 0x800C, 59, 0x8000
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _04FD
+    GoToIfEq 0x800C, 1, _04FD
     ScrCmd_099 0x800C, 56, 0x8000
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _04FD
+    GoToIfEq 0x800C, 1, _04FD
     ScrCmd_099 0x800C, 0x193, 0x8000
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _04FD
+    GoToIfEq 0x800C, 1, _04FD
     ScrCmd_099 0x800C, 0x1B5, 0x8000
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _04FD
+    GoToIfEq 0x800C, 1, _04FD
     ScrCmd_1C8 0x800C, 0x8000
     SetVar 0x8002, 0x800C
-    CompareVarToValue 0x800C, 4
-    GoToIf 1, _051B
+    GoToIfEq 0x800C, 4, _051B
     GoTo _050B
     End
 
@@ -331,8 +288,7 @@ _051B:
     ScrCmd_0D4 1, 0x8001
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _05FE
+    GoToIfEq 0x800C, 1, _05FE
     GoTo _0541
     End
 
@@ -345,14 +301,12 @@ _0541:
     ScrCmd_0A1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    CompareVarToValue 0x8002, 4
-    GoToIf 1, _05DD
+    GoToIfEq 0x8002, 4, _05DD
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     ScrCmd_0D4 1, 0x800C
     ScrCmd_02C 3
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _05FE
+    GoToIfEq 0x800C, 1, _05FE
     ScrCmd_0D6 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     ScrCmd_0D4 1, 0x800C
@@ -374,8 +328,7 @@ _05DD:
     ScrCmd_0D4 1, 0x8001
     ScrCmd_02C 1
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _0541
+    GoToIfEq 0x800C, 1, _0541
     GoTo _05FE
     End
 
@@ -391,18 +344,12 @@ _0613:
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_034
-    CompareVarToValue 0x8004, 1
-    CallIf 1, _067F
-    CompareVarToValue 0x8004, 4
-    CallIf 1, _0691
-    CompareVarToValue 0x8004, 3
-    CallIf 1, _0685
-    CompareVarToValue 0x8004, 2
-    CallIf 1, _068B
-    CompareVarToValue 0x8004, 5
-    CallIf 1, _0697
-    CheckFlag 119
-    GoToIf 0, _080C
+    CallIfEq 0x8004, 1, _067F
+    CallIfEq 0x8004, 4, _0691
+    CallIfEq 0x8004, 3, _0685
+    CallIfEq 0x8004, 2, _068B
+    CallIfEq 0x8004, 5, _0697
+    GoToIfUnset 119, _080C
     GoTo _0325
     End
 
@@ -467,16 +414,11 @@ _06D9:
     Return
 
 _06DE:
-    CompareVarToValue 0x8004, 1
-    CallIf 1, _0727
-    CompareVarToValue 0x8004, 3
-    CallIf 1, _072C
-    CompareVarToValue 0x8004, 2
-    CallIf 1, _0731
-    CompareVarToValue 0x8004, 4
-    CallIf 1, _0736
-    CompareVarToValue 0x8004, 5
-    CallIf 1, _073B
+    CallIfEq 0x8004, 1, _0727
+    CallIfEq 0x8004, 3, _072C
+    CallIfEq 0x8004, 2, _0731
+    CallIfEq 0x8004, 4, _0736
+    CallIfEq 0x8004, 5, _073B
     GoTo _07A2
     End
 
@@ -501,16 +443,11 @@ _073B:
     Return
 
 _0740:
-    CompareVarToValue 0x8004, 1
-    CallIf 1, _0789
-    CompareVarToValue 0x8004, 3
-    CallIf 1, _078E
-    CompareVarToValue 0x8004, 2
-    CallIf 1, _0793
-    CompareVarToValue 0x8004, 4
-    CallIf 1, _0798
-    CompareVarToValue 0x8004, 5
-    CallIf 1, _079D
+    CallIfEq 0x8004, 1, _0789
+    CallIfEq 0x8004, 3, _078E
+    CallIfEq 0x8004, 2, _0793
+    CallIfEq 0x8004, 4, _0798
+    CallIfEq 0x8004, 5, _079D
     GoTo _07A2
     End
 
@@ -553,16 +490,14 @@ _07BB:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_303 0x8003, 0x800C
-    CompareVarToValue 0x8003, 0
-    GoToIf 1, _0801
+    GoToIfEq 0x8003, 0, _0801
     ScrCmd_02C 13
     ScrCmd_041 31, 15, 0, 1, 0x800C
     ScrCmd_33A 1
     ScrCmd_042 14, 0
     ScrCmd_043
     SetVar 0x8008, 0x800C
-    CompareVarToValue 0x8008, 0
-    GoToIf 1, _0295
+    GoToIfEq 0x8008, 0, _0295
     ScrCmd_034
     ScrCmd_061
     End
@@ -593,10 +528,8 @@ _081E:
     ScrCmd_02C 35
     ScrCmd_034
     ScrCmd_069 0x8006, 0x8007
-    CompareVarToValue 0x8006, 10
-    CallIf 4, _08A8
-    CompareVarToValue 0x8006, 4
-    CallIf 3, _08AA
+    CallIfGe 0x8006, 10, _08A8
+    CallIfLe 0x8006, 4, _08AA
     ApplyMovement 6, _08DC
     WaitMovement
     ScrCmd_02C 36
@@ -686,40 +619,31 @@ _0908:
     ScrCmd_068
     ScrCmd_02C 38
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 39
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 40
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 41
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 42
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 43
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 44
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 45
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 46
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _09CF
+    GoToIfEq 0x800C, 1, _09CF
     ScrCmd_02C 47
     GoTo _09D5
     End

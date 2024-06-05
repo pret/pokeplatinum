@@ -98,16 +98,14 @@
     .long \arg1
     .endm
 
-    .macro CompareVarToValue varID, value
-    .short 17
+    .macro CompareVar varID, valueOrVarID
+    .if \valueOrVarID < 0x4000
+        .short 17 // CompareVarToValue
+    .else
+        .short 18 // CompareVarToVar
+    .endif
     .short \varID
-    .short \value
-    .endm
-
-    .macro CompareVarToVar varID0, varID1
-    .short 18
-    .short \varID0
-    .short \varID1
+    .short \valueOrVarID
     .endm
 
     .macro ScrCmd_013 arg0
@@ -4545,4 +4543,96 @@
     .short 839
     .byte \arg0
     .byte \arg1
+    .endm
+
+
+
+    .macro GoToIfLt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 0, \offset
+    .endm
+
+    .macro GoToIfEq varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 1, \offset
+    .endm
+
+    .macro GoToIfGt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 2, \offset
+    .endm
+
+    .macro GoToIfLe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 3, \offset
+    .endm
+
+    .macro GoToIfGe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 4, \offset
+    .endm
+
+    .macro GoToIfNe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 5, \offset
+    .endm
+
+    .macro GoToIfUnset flagID, offset
+    CheckFlag \flagID
+    GoToIf 0, \offset
+    .endm
+
+    .macro GoToIfSet flagID, offset
+    CheckFlag \flagID
+    GoToIf 1, \offset
+    .endm
+
+    .macro GoToIfNotDefeated trainerID, offset
+    CheckTrainerFlag \trainerID
+    GoToIf 0, \offset
+    .endm
+
+    .macro GoToIfDefeated trainerID, offset
+    CheckTrainerFlag \trainerID
+    GoToIf 1, \offset
+    .endm
+
+    .macro CallIfLt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 0, \offset
+    .endm
+
+    .macro CallIfEq varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 1, \offset
+    .endm
+
+    .macro CallIfGt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 2, \offset
+    .endm
+
+    .macro CallIfLe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 3, \offset
+    .endm
+
+    .macro CallIfGe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 4, \offset
+    .endm
+
+    .macro CallIfNe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 5, \offset
+    .endm
+
+    .macro CallIfUnset flagID, offset
+    CheckFlag \flagID
+    CallIf 0, \offset
+    .endm
+
+    .macro CallIfSet flagID, offset
+    CheckFlag \flagID
+    CallIf 1, \offset
     .endm

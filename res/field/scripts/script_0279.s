@@ -16,8 +16,7 @@ _0014:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_15B 0, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _003A
+    GoToIfEq 0x800C, 0, _003A
     ScrCmd_02C 2
     ScrCmd_031
     ScrCmd_034
@@ -25,8 +24,7 @@ _0014:
     End
 
 _003A:
-    CheckFlag 147
-    GoToIf 1, _0064
+    GoToIfSet 147, _0064
     ScrCmd_02C 0
     SetVar 0x8004, 0x1A9
     SetVar 0x8005, 1

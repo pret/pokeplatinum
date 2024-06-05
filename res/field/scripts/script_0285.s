@@ -11,8 +11,7 @@
     .short 0xFD13
 
 _001A:
-    CompareVarToValue 0x4094, 2
-    GoToIf 0, _0029
+    GoToIfLt 0x4094, 2, _0029
     End
 
 _0029:
@@ -22,10 +21,8 @@ _0029:
 _0031:
     ScrCmd_060
     ScrCmd_0C8 0
-    CheckFlag 221
-    CallIf 0, _007D
-    CheckFlag 221
-    CallIf 1, _00B7
+    CallIfUnset 221, _007D
+    CallIfSet 221, _00B7
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
     ScrCmd_02C 1
@@ -136,8 +133,7 @@ _0154:
     ScrCmd_162
     ScrCmd_06D 14, 15
     ScrCmd_1BD 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _0177
+    GoToIfEq 0x800C, 0, _0177
     GoTo _0191
     End
 

@@ -14,25 +14,18 @@ _000E:
     ApplyMovement 0xFF, _012C
     WaitMovement
     ScrCmd_0EA 0x10B
-    CheckFlag 0x964
-    CallIf 0, _00EB
-    CheckFlag 0x964
-    CallIf 1, _00F0
+    CallIfUnset 0x964, _00EB
+    CallIfSet 0x964, _00F0
     ScrCmd_034
     SetFlag 0x98B
-    CheckFlag 214
-    CallIf 0, _00F5
-    CheckFlag 214
-    CallIf 1, _00FD
+    CallIfUnset 214, _00F5
+    CallIfSet 214, _00FD
     ScrCmd_0EC 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _0121
+    GoToIfEq 0x800C, 0, _0121
     ScrCmd_02C 1
     SetFlag 180
-    CheckFlag 214
-    CallIf 0, _0105
-    CheckFlag 214
-    CallIf 1, _0113
+    CallIfUnset 214, _0105
+    CallIfSet 214, _0113
     ScrCmd_02C 2
     ScrCmd_034
     ApplyMovement 0, _0144

@@ -48,10 +48,8 @@ _0053:
     ScrCmd_068
     ScrCmd_02C 0
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _007E
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _0264
+    GoToIfEq 0x800C, 0, _007E
+    GoToIfEq 0x800C, 1, _0264
     End
 
 _007E:
@@ -64,27 +62,21 @@ _007E:
     ScrCmd_0A1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    CompareVarToValue 0x8000, 0xFF
-    GoToIf 1, _0264
+    GoToIfEq 0x8000, 0xFF, _0264
     ScrCmd_198 0x8000, 0x8001
-    CompareVarToValue 0x8001, 0
-    GoToIf 1, _0259
+    GoToIfEq 0x8001, 0, _0259
     ScrCmd_2E5 0x8000, 0, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _026F
+    GoToIfEq 0x800C, 0, _026F
     ScrCmd_0D6 0, 0x8000
     ScrCmd_02C 5
     ScrCmd_2E6 0x8000, 0, 0x800C
     SetVar 0x8003, 0x800C
-    CompareVarToValue 0x8003, 0xFFFE
-    GoToIf 1, _0264
+    GoToIfEq 0x8003, -2, _0264
     ScrCmd_2EA 0x8003, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _027A
+    GoToIfEq 0x800C, 0, _027A
     ScrCmd_1C8 0x800C, 0x8000
     SetVar 0x8002, 0x800C
-    CompareVarToValue 0x800C, 4
-    GoToIf 1, _012F
+    GoToIfEq 0x800C, 4, _012F
     GoTo _0224
     End
 
@@ -93,8 +85,7 @@ _012F:
     ScrCmd_0D4 1, 0x8003
     ScrCmd_02C 9
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _01E9
+    GoToIfEq 0x800C, 1, _01E9
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_034
@@ -103,14 +94,12 @@ _012F:
     ScrCmd_0A1
     ScrCmd_0BC 6, 1, 1, 0
     ScrCmd_0BD
-    CompareVarToValue 0x8002, 4
-    GoToIf 1, _01E9
+    GoToIfEq 0x8002, 4, _01E9
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     ScrCmd_0D4 1, 0x800C
     ScrCmd_02C 12
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _01E9
+    GoToIfEq 0x800C, 1, _01E9
     ScrCmd_0D6 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     ScrCmd_0D4 1, 0x800C
@@ -133,8 +122,7 @@ _01E9:
     ScrCmd_0D4 1, 0x8003
     ScrCmd_02C 10
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _020F
+    GoToIfEq 0x800C, 0, _020F
     GoTo _012F
     End
 
