@@ -96,7 +96,7 @@ int sub_0205F060(PlayerAvatar * playerAvatar);
 void sub_0205F074(PlayerAvatar * playerAvatar, int param1);
 int sub_0205F08C(PlayerAvatar * playerAvatar);
 void PlayerAvatar_SetDistortionState(PlayerAvatar * playerAvatar, enum AvatarDistortionState state);
-enum AvatarDistortionState PlayerAvatar_DistortionState(PlayerAvatar * const playerAvatar);
+enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar * const playerAvatar);
 BOOL PlayerAvatar_DistortionGravityChanged(PlayerAvatar * const playerAvatar);
 BOOL PlayerAvatar_DistortionStateOnFloor(PlayerAvatar * const playerAvatar);
 

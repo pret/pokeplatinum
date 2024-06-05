@@ -199,7 +199,7 @@ static int PlayerAvatar_CheckStartMoveInternal (PlayerAvatar * playerAvatar, int
         if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == TRUE) {
             v2 = sub_020611FC(playerAvatar, mapObj, dir);
 
-            if ((v2 & (~(1 << 7))) && PlayerAvatar_DistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
+            if ((v2 & (~(1 << 7))) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
                 FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
                 int xOut, x = MapObject_GetXPos(mapObj);
                 int yOut, y = MapObject_GetYPos(mapObj);
@@ -860,7 +860,7 @@ static int sub_0205FCC0 (PlayerAvatar * playerAvatar, int param1)
 
     v0 = PlayerAvatar_GetDir(playerAvatar);
 
-    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     if (distortionState != AVATAR_DISTORTION_STATE_NONE 
      && distortionState != AVATAR_DISTORTION_STATE_ACTIVE 
@@ -887,7 +887,7 @@ static void sub_0205FD20 (PlayerAvatar * playerAvatar, MapObject * param1, int p
 
 static void sub_0205FD40 (PlayerAvatar * playerAvatar, MapObject * param1, int param2, u16 param3, u16 param4)
 {
-    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_FLOOR:
@@ -1129,7 +1129,7 @@ static void sub_02060258 (PlayerAvatar * playerAvatar, MapObject * mapObj, int p
     int v0, v1;
     v1 = param2;
 
-    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_WEST_WALL:
@@ -2070,7 +2070,7 @@ static int sub_02061248 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     BOOL v0 = 0;
 
-    if ((param2 != -1) && PlayerAvatar_DistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
+    if ((param2 != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
 
         if (sub_02071CB4(fieldSystem, 9) == 1) {
@@ -2413,7 +2413,7 @@ static int PlayerAvatar_IsUnderCyclingRoad (PlayerAvatar * playerAvatar, u32 par
 void sub_02061674 (PlayerAvatar * playerAvatar, int param1, int * param2, int * param3, int * param4)
 {
     const UnkStruct_020EDB04 * v0;
-    enum AvatarDistortionState distortionState = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (distortionState) {
     case AVATAR_DISTORTION_STATE_NONE:

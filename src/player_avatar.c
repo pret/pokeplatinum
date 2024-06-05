@@ -858,7 +858,7 @@ void PlayerAvatar_SetDistortionState (PlayerAvatar * playerAvatar, enum AvatarDi
     GF_ASSERT(0);
 }
 
-enum AvatarDistortionState PlayerAvatar_DistortionState (PlayerAvatar * const playerAvatar)
+enum AvatarDistortionState PlayerAvatar_MapDistortionState (PlayerAvatar * const playerAvatar)
 {
     enum AvatarDistortionState state = AVATAR_DISTORTION_STATE_NONE;
     u32 v1 = sub_0205EBB0(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
@@ -887,7 +887,7 @@ enum AvatarDistortionState PlayerAvatar_DistortionState (PlayerAvatar * const pl
 // this function can be simplified, but preserving matching reduces clarity
 BOOL PlayerAvatar_DistortionGravityChanged (PlayerAvatar * const playerAvatar)
 {
-    enum AvatarDistortionState state = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState state = PlayerAvatar_MapDistortionState(playerAvatar);
 
     if (state == AVATAR_DISTORTION_STATE_NONE || state == AVATAR_DISTORTION_STATE_ACTIVE) {
         return FALSE;
@@ -898,7 +898,7 @@ BOOL PlayerAvatar_DistortionGravityChanged (PlayerAvatar * const playerAvatar)
 
 BOOL PlayerAvatar_DistortionStateOnFloor (PlayerAvatar * const playerAvatar)
 {
-    enum AvatarDistortionState state = PlayerAvatar_DistortionState(playerAvatar);
+    enum AvatarDistortionState state = PlayerAvatar_MapDistortionState(playerAvatar);
 
     return state == AVATAR_DISTORTION_STATE_NONE 
         || state == AVATAR_DISTORTION_STATE_ACTIVE 
