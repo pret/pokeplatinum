@@ -9,6 +9,8 @@
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
 
+#include "constants/sdat.h"
+
 #include "unk_02005474.h"
 #include "string_template.h"
 #include "unk_0200D9E8.h"
@@ -46,17 +48,18 @@
 #define VS_SEEKER_USE_RESULT_OK 0
 #define VS_SEEKER_USE_RESULT_NO_BATTERY 1
 #define VS_SEEKER_USE_RESULT_NO_TRAINERS 2
+#define VS_SEEKER_USE_RESULT_NO_TRAINERS_PICKED 3 // No trainers were picked for a rematch (e.g. all the random chances failed)
 
 #define VS_SEEKER_REMATCH_DATA_INDEX_NONE 0xFF
 
 enum VsSeekerUsability {
-    VS_SEEKER_USABILITY_NO_BATTERY,
+    VS_SEEKER_USABILITY_NO_BATTERY = 0,
     VS_SEEKER_USABILITY_NO_TRAINERS,
     VS_SEEKER_USABILITY_OK,
 };
 
 enum VsSeekerState {
-    VS_SEEKER_STATE_WAIT_FOR_NPCS,
+    VS_SEEKER_STATE_WAIT_FOR_NPCS = 0,
     VS_SEEKER_STATE_CHECK_USABILITY,
     VS_SEEKER_STATE_START,
     VS_SEEKER_STATE_WAIT_FOR_PLAYER_ANIM,
@@ -69,15 +72,15 @@ enum VsSeekerState {
 };
 
 enum VsSeeker2v2TrainerSearchMode {
-    VS_SEEKER_2V2_TRAINER_SEARCH_MODE_REMATCH_ANIM_CHECK,
+    VS_SEEKER_2V2_TRAINER_SEARCH_MODE_REMATCH_ANIM_CHECK = 0,
     VS_SEEKER_2V2_TRAINER_SEARCH_MODE_REMATCH_ANIM_SET,
 };
 
-typedef struct {
+typedef struct VsSeekerRematchData {
     u16 trainerIDs[VS_SEEKER_MAX_REMATCHES];
 } VsSeekerRematchData;
 
-typedef struct {
+typedef struct VsSeekerSystem {
     enum VsSeekerState state;
     FieldSystem *fieldSystem;
     VarsFlags *events;
@@ -90,7 +93,7 @@ typedef struct {
     SysTask *playerStateTask;
 } VsSeekerSystem;
 
-typedef struct {
+typedef struct VsSeekerAnimationTask {
     SysTask *trackingTask;
     SysTask *animationTask;
     VsSeekerSystem *vsSeeker;
@@ -414,15 +417,15 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
             VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_START);
         } else if (usability == VS_SEEKER_USABILITY_NO_BATTERY) {
             *vsSeeker->result = VS_SEEKER_USE_RESULT_NO_BATTERY;
-            VsSeekerSystem_SetState(vsSeeker, 7);
+            VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_NO_BATTERY);
         } else { // VS_SEEKER_USABILITY_NO_TRAINERS
             *vsSeeker->result = VS_SEEKER_USE_RESULT_NO_TRAINERS;
-            VsSeekerSystem_SetState(vsSeeker, 8);
+            VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_NO_TRAINERS);
         }
         break;
     case VS_SEEKER_STATE_START:
         vsSeeker->playerStateTask = Player_SetStateVsSeeker(vsSeeker->fieldSystem);
-        Sound_PlayEffect(1568);
+        Sound_PlayEffect(SEQ_SE_DP_VS_SEEKER_BEEP);
         Events_SetVsSeekerBattery(vsSeeker->events, 0);
         VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_WAIT_FOR_PLAYER_ANIM);
         break;
@@ -433,7 +436,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
         break;
     case VS_SEEKER_STATE_PICK_REMATCH_TRAINERS:
         if (VsSeekerSystem_PickRematchTrainers(vsSeeker) == FALSE) {
-            *vsSeeker->result = 3;
+            *vsSeeker->result = VS_SEEKER_USE_RESULT_NO_TRAINERS_PICKED;
         }
 
         VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_WAIT_FOR_REMATCH_ANIMS);
@@ -444,7 +447,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
         }
         break;
     case VS_SEEKER_STATE_WAIT_FOR_VS_SEEKER_SFX:
-        if (Sound_IsEffectPlaying(1568) == FALSE) {
+        if (Sound_IsEffectPlaying(SEQ_SE_DP_VS_SEEKER_BEEP) == FALSE) {
             Player_ResetVsSeekerState(vsSeeker->playerStateTask);
             VsSeekerSystem_SetState(vsSeeker, 9);
         }
@@ -580,7 +583,7 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
         }
     }
 
-    if (Events_GetVsSeekerUsedFlag(events) == TRUE) {
+    if (VsSeeker_GetUsedFlag(events) == TRUE) {
         if (activeStepCount < VS_SEEKER_MAX_NUM_ACTIVE_STEPS) {
             activeStepCount++;
             Events_SetVsSeekerActiveStepCount(events, activeStepCount);
@@ -682,7 +685,7 @@ static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
                 }
 
                 anyAvailable = TRUE;
-                Events_SetVsSeekerUsedFlag(events);
+                VsSeeker_SetUsedFlag(events);
             } else {
                 (void)0;
             }

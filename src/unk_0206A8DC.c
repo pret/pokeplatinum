@@ -103,19 +103,17 @@ BOOL sub_0206A9B4 (VarsFlags * param0)
     return sub_0206A8EC(param0, (2400 + 5));
 }
 
-void Events_SetVsSeekerUsedFlag (VarsFlags * param0)
+void VsSeeker_SetUsedFlag(VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 13));
-    return;
 }
 
-void Events_ClearVsSeekerUsedFlag (VarsFlags * param0)
+void VsSeeker_ClearUsedFlag(VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 13));
-    return;
 }
 
-BOOL Events_GetVsSeekerUsedFlag (VarsFlags * param0)
+BOOL VsSeeker_GetUsedFlag(VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 13));
 }

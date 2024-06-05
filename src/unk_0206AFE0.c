@@ -116,7 +116,7 @@ BOOL sub_0206B0C4 (VarsFlags * param0, u16 param1)
 
 void Events_ResetVsSeeker (VarsFlags * param0)
 {
-    Events_ClearVsSeekerUsedFlag(param0);
+    VsSeeker_ClearUsedFlag(param0);
     Events_SetVsSeekerActiveStepCount(param0, 0);
     return;
 }
