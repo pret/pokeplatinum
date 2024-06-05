@@ -4102,7 +4102,7 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
                 int v9 = MapObject_GetEventID(v7);
 
                 sub_0203E880(fieldSystem, 3928, v7);
-                sub_0203E8B0(fieldSystem, v7, v3, v1, v9, Script_GetTrainerIDFromEventID(v9), 0, 0);
+                sub_0203E8B0(fieldSystem, v7, v3, v1, v9, Script_GetTrainerID(v9), 0, 0);
                 return 1;
             }
         }

@@ -699,7 +699,7 @@ static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
 static u16 VsSeeker_GetTrainerIDFromMapObject(MapObject *trainerObj)
 {
     u32 eventID = MapObject_GetEventID(trainerObj);
-    return Script_GetTrainerIDFromEventID(eventID);
+    return Script_GetTrainerID(eventID);
 }
 
 u16 VsSeeker_GetRematchTrainerID(FieldSystem *fieldSystem, MapObject *trainerObj, u16 trainerID)
@@ -861,7 +861,7 @@ static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem
     u32 secondTrainerEventID, secondTrainerID;
     u32 npcCount = FieldSystem_GetNPCCount(fieldSystem);
     u16 eventID = MapObject_GetEventID(trainerObj);
-    u16 trainerID = Script_GetTrainerIDFromEventID(eventID);
+    u16 trainerID = Script_GetTrainerID(eventID);
 
     if (Script_IsDoubleBattle(trainerID) == FALSE) {
         return NULL;
@@ -891,7 +891,7 @@ static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem
         case 0x7:
         case 0x8:
             secondTrainerEventID = MapObject_GetEventID(mapObj);
-            secondTrainerID = Script_GetTrainerIDFromEventID(secondTrainerEventID);
+            secondTrainerID = Script_GetTrainerID(secondTrainerEventID);
 
             if ((eventID != secondTrainerEventID) && (trainerID == secondTrainerID)) {
                 return mapObj;

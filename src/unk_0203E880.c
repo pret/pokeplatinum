@@ -110,7 +110,7 @@ void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
 void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
-u16 Script_GetTrainerIDFromEventID(u16 param0);
+u16 Script_GetTrainerID(u16 param0);
 BOOL sub_0203F278(u16 param0);
 BOOL Script_IsDoubleBattle(u16 param0);
 BOOL Script_IsTrainerDefeated(FieldSystem * fieldSystem, u16 param1);
@@ -672,7 +672,7 @@ void sub_0203F21C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3
     *(u16 *)sub_0203F098(fieldSystem, 44) = param4;
 }
 
-u16 Script_GetTrainerIDFromEventID(u16 eventID)
+u16 Script_GetTrainerID(u16 eventID)
 {
     if (eventID < 5000) {
         return eventID - 3000 + 1;
