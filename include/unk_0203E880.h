@@ -27,7 +27,7 @@ void sub_0203F1FC(FieldSystem * fieldSystem);
 void sub_0203F21C(FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4);
 u16 Script_GetTrainerID(u16 param0);
 BOOL sub_0203F278(u16 param0);
-BOOL Script_IsDoubleBattle(u16 param0);
+BOOL Script_IsTrainerDoubleBattle(u16 param0);
 BOOL Script_IsTrainerDefeated(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2BC(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2D8(FieldSystem * fieldSystem, u16 param1);

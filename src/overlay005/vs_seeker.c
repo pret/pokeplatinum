@@ -859,7 +859,7 @@ static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem
     u16 eventID = MapObject_GetEventID(trainerObj);
     u16 trainerID = Script_GetTrainerID(eventID);
 
-    if (Script_IsDoubleBattle(trainerID) == FALSE) {
+    if (Script_IsTrainerDoubleBattle(trainerID) == FALSE) {
         return NULL;
     }
 

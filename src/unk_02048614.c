@@ -180,7 +180,7 @@ BOOL ScrCmd_0E7 (ScriptContext * param0)
     u16 * v7 = ScriptContext_GetVarPointer(param0);
     u16 * v8 = ScriptContext_GetVarPointer(param0);
 
-    v0 = Script_IsDoubleBattle(Script_GetTrainerID(*v5));
+    v0 = Script_IsTrainerDoubleBattle(Script_GetTrainerID(*v5));
 
     if (v0 == 0) {
         v2 = 0;
@@ -215,7 +215,7 @@ BOOL ScrCmd_0E8 (ScriptContext * param0)
     u16 * v7 = ScriptContext_GetVarPointer(param0);
     u16 * v8 = ScriptContext_GetVarPointer(param0);
 
-    v0 = Script_IsDoubleBattle(Script_GetTrainerID(*v5));
+    v0 = Script_IsTrainerDoubleBattle(Script_GetTrainerID(*v5));
 
     if (v0 == 0) {
         v2 = 17;
@@ -247,7 +247,7 @@ BOOL ScrCmd_0E9 (ScriptContext * param0)
     u16 * v0 = sub_0203F098(param0->fieldSystem, 8);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
-    *v1 = Script_IsDoubleBattle(Script_GetTrainerID(*v0));
+    *v1 = Script_IsTrainerDoubleBattle(Script_GetTrainerID(*v0));
     return 0;
 }
 

@@ -20,6 +20,7 @@
 #include "struct_defs/struct_0203F478.h"
 #include "struct_defs/struct_0205AA50.h"
 
+#include "constants/battle.h"
 #include "narc.h"
 #include "message.h"
 #include "string_template.h"
@@ -117,7 +118,7 @@ void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
 u16 Script_GetTrainerID(u16 param0);
 BOOL sub_0203F278(u16 param0);
-BOOL Script_IsDoubleBattle(u16 param0);
+BOOL Script_IsTrainerDoubleBattle(u16 param0);
 BOOL Script_IsTrainerDefeated(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2BC(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2D8(FieldSystem * fieldSystem, u16 param1);
@@ -695,13 +696,9 @@ BOOL sub_0203F278 (u16 param0)
     }
 }
 
-BOOL Script_IsDoubleBattle (u16 param0)
+BOOL Script_IsTrainerDoubleBattle(u16 trainerID)
 {
-    if (TrainerData_LoadParam(param0, 9) == 0x0) {
-        return 0;
-    }
-
-    return 1;
+    return TrainerData_LoadParam(trainerID, TRDATA_BATTLE_TYPE) != BATTLE_TYPE_SINGLES;
 }
 
 BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)

@@ -144,7 +144,7 @@ static void sub_02067C28 (UnkStruct_02067C28 * param0, MapObject * param1, int p
     param0->unk_04 = param3;
     param0->unk_08 = MapObject_GetEventID(param1);
     param0->unk_0C = Script_GetTrainerID(param0->unk_08);
-    param0->unk_10 = Script_IsDoubleBattle(param0->unk_0C);
+    param0->unk_10 = Script_IsTrainerDoubleBattle(param0->unk_0C);
     param0->unk_14 = param1;
 }
 
