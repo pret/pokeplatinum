@@ -29,13 +29,13 @@
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_menu.h"
 #include "unk_0203C954.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_02050A74.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02054884.h"
 #include "unk_02054D00.h"
 #include "unk_020562F8.h"
@@ -185,7 +185,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
     if (input->dummy5 == FALSE) {
         BOOL hasTwoAliveMons = Party_HasTwoAliveMons(Party_GetFromSavedata(fieldSystem->saveData));
 
-        if (sub_0206A984(SaveData_Events(fieldSystem->saveData)) == TRUE) {
+        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
             hasTwoAliveMons = TRUE;
         }
 
@@ -200,7 +200,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
     }
 
     if (input->movement) {
-        sub_0206A9A4(SaveData_Events(fieldSystem->saveData));
+        sub_0206A9A4(SaveData_GetVarsFlags(fieldSystem->saveData));
 
         if (Field_ProcessStep(fieldSystem) == TRUE) {
             return TRUE;
@@ -211,7 +211,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         int playerEvent = PLAYER_EVENT_NONE;
         int direction = sub_02061308(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
 
-        if (inline_0204E650_2(SaveData_Events(fieldSystem->saveData))) {
+        if (inline_0204E650_2(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
@@ -550,7 +550,7 @@ static BOOL Field_CheckWildEncounter (FieldSystem *fieldSystem)
 
     Field_PlayerPos(fieldSystem, &playerX, &playerZ);
 
-    if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == TRUE) {
+    if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         if (sub_02056374(fieldSystem, playerX, playerZ) == TRUE) {
             sub_02051450(fieldSystem, sub_0205639C(fieldSystem));
             return TRUE;
@@ -559,7 +559,7 @@ static BOOL Field_CheckWildEncounter (FieldSystem *fieldSystem)
         }
     }
 
-    return MapHeader_HasWildEncounters(fieldSystem->unk_1C->unk_00) && ov6_02240D5C(fieldSystem) == TRUE;
+    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && ov6_02240D5C(fieldSystem) == TRUE;
 }
 
 static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput *input)
@@ -592,7 +592,7 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
                 ov8_0224C62C(fieldSystem, playerX, playerZ, &v6);
             }
 
-            sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, v6, 1);
+            sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, v6, 1);
 
             return TRUE;
         }
@@ -639,14 +639,14 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
     } else if (sub_0205DAF8(tileBehavior) || sub_0205DB28(tileBehavior)
             || sub_0205DB04(tileBehavior) || sub_0205DB34(tileBehavior)
             || sub_0205DB1C(tileBehavior) || sub_0205DB4C(tileBehavior)) {
-        sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, input->transitionDir);
+        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, input->transitionDir);
         return TRUE;
     } else {
         return FALSE;
     }
 
     // these statements are unreachable, but required for matching
-    sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, input->transitionDir, transitionType);
+    sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, input->transitionDir, transitionType);
 
     return TRUE;
 }
@@ -764,7 +764,7 @@ static BOOL Field_ProcessStep (FieldSystem *fieldSystem)
         Field_CalculateFriendship(fieldSystem);
     }
 
-    sub_0206B238(SaveData_Events(fieldSystem->saveData));
+    sub_0206B238(SaveData_GetVarsFlags(fieldSystem->saveData));
     return FALSE;
 }
 
@@ -800,7 +800,7 @@ static BOOL Field_CheckTransition (FieldSystem *fieldSystem, const int playerX, 
             return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, playerDir, 2);
+        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, playerDir, 2);
         return TRUE;
     } else if (sub_0205DC38(curTileBehavior) == TRUE) {
         int playerDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
@@ -810,17 +810,17 @@ static BOOL Field_CheckTransition (FieldSystem *fieldSystem, const int playerX, 
             return FALSE;
         }
 
-        sub_02056BDC(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, playerDir, 2);
+        sub_02056BDC(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, playerDir, 2);
         return TRUE;
     }
 
     if (sub_0205DB10(curTileBehavior) || sub_0205DB40(curTileBehavior)) {
-        sub_02056C18(fieldSystem, nextMap.unk_00, nextMap.unk_04, 0, 0, 0);
+        sub_02056C18(fieldSystem, nextMap.mapId, nextMap.unk_04, 0, 0, 0);
         return TRUE;
     }
 
     if (sub_0205DEE4(curTileBehavior)) {
-        sub_02053F58(fieldSystem, nextMap.unk_00, nextMap.unk_04);
+        sub_02053F58(fieldSystem, nextMap.mapId, nextMap.unk_04);
         return TRUE;
     }
 
@@ -864,11 +864,11 @@ static BOOL Field_UpdateRepel (FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateFriendship (FieldSystem *fieldSystem)
 {
-    UnkStruct_020507E4 *events;
+    VarsFlags *vars;
     BOOL ret = FALSE;
 
-    events = SaveData_Events(fieldSystem->saveData);
-    u16 steps = sub_0206B44C(events);
+    vars = SaveData_GetVarsFlags(fieldSystem->saveData);
+    u16 steps = sub_0206B44C(vars);
 
     steps++;
 
@@ -877,7 +877,7 @@ static BOOL Field_UpdateFriendship (FieldSystem *fieldSystem)
         ret = TRUE;
     }
 
-    sub_0206B45C(events, steps);
+    sub_0206B45C(vars, steps);
 
     return ret;
 }
@@ -887,7 +887,7 @@ static void Field_CalculateFriendship (FieldSystem *fieldSystem)
     // C99-style declarations don't match
     int i, partyCount;
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+    u16 mapID = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 
     partyCount = Party_GetCurrentCount(party);
 
@@ -900,7 +900,7 @@ static void Field_CalculateFriendship (FieldSystem *fieldSystem)
 static BOOL Field_UpdatePoison (FieldSystem *fieldSystem)
 {
     Party *party = Party_GetFromSavedata(fieldSystem->saveData);
-    u16 *poisonSteps = sub_0203A78C(sub_0203A790(fieldSystem->saveData));
+    u16 *poisonSteps = sub_0203A78C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     (*poisonSteps)++;
     (*poisonSteps) %= 4;
@@ -909,7 +909,7 @@ static BOOL Field_UpdatePoison (FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    switch (sub_02054B04(party, MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00))) {
+    switch (sub_02054B04(party, MapHeader_GetMapLabelTextID(fieldSystem->location->mapId))) {
     case 0:
         return FALSE;
     case 1:
@@ -926,18 +926,18 @@ static BOOL Field_UpdatePoison (FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateSafari (FieldSystem *fieldSystem)
 {
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == FALSE) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
         return FALSE;
     }
 
-    u16 *balls = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+    u16 *balls = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (*balls == 0) {
         sub_0203E880(fieldSystem, 8802, NULL);
         return TRUE;
     }
 
-    u16 *steps = sub_0203A788(sub_0203A790(fieldSystem->saveData));
+    u16 *steps = sub_0203A788(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     (*steps)++;
 
     if (*steps >= 500) {
@@ -1015,32 +1015,32 @@ static BOOL Field_MapConnection (const FieldSystem *fieldSystem, int playerX, in
 
     if (v0->unk_06 == 0x100) {
         GF_ASSERT(v0->unk_04 == 0xfff);
-        *nextMap = *(sub_0203A730(sub_0203A790(fieldSystem->saveData)));
+        *nextMap = *(sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
-        inline_02049FA8(nextMap, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
+        Location_Set(nextMap, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
     }
 
-    Location *v2 = sub_0203A724(sub_0203A790(fieldSystem->saveData));
-    inline_02049FA8(v2, fieldSystem->unk_1C->unk_00, v1, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
+    Location *v2 = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    Location_Set(v2, fieldSystem->location->mapId, v1, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
     return TRUE;
 }
 
 static void Field_SetMapConnection (FieldSystem *fieldSystem, const int playerX, const int playerZ, const int playerDir)
 {
-    UnkStruct_0203A790 *v0 = sub_0203A790(fieldSystem->saveData);
+    FieldOverworldState *v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *nextMap = sub_0203A72C(v0);
 
-    (*nextMap) = *(fieldSystem->unk_1C);
+    (*nextMap) = *(fieldSystem->location);
     nextMap->unk_10 = playerDir;
-    nextMap->unk_08 = playerX;
-    nextMap->unk_0C = playerZ;
+    nextMap->x = playerX;
+    nextMap->z = playerZ;
 
     if (playerDir == DIR_NORTH) {
-        (nextMap->unk_0C)++;
+        (nextMap->z)++;
     }
 
-    nextMap->unk_00 = fieldSystem->unk_1C->unk_00;
+    nextMap->mapId = fieldSystem->location->mapId;
     nextMap->unk_04 = -1;
 }
 
@@ -1052,15 +1052,15 @@ static void Field_TrySetMapConnection (FieldSystem *fieldSystem)
     Location nextMap;
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap)) {
-        if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == TRUE && MapHeader_IsOnMainMatrix(nextMap.unk_00) == FALSE) {
+        if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == TRUE && MapHeader_IsOnMainMatrix(nextMap.mapId) == FALSE) {
             Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
     } else {
         Field_Step(fieldSystem, &playerX, &playerZ);
 
         if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap)
-            && MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == TRUE
-            && MapHeader_IsOnMainMatrix(nextMap.unk_00) == FALSE) {
+            && MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == TRUE
+            && MapHeader_IsOnMainMatrix(nextMap.mapId) == FALSE) {
 
             Field_SetMapConnection(fieldSystem, playerX, playerZ, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
         }
