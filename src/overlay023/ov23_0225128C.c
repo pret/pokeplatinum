@@ -650,7 +650,7 @@ static BOOL ov23_02251ACC (TaskManager * param0)
     case 5:
         if (ScreenWipe_Done()) {
             ov23_0224B2C8(fieldSystem);
-            sub_0206AA30(SaveData_GetFieldEvents(fieldSystem->saveData));
+            sub_0206AA30(SaveData_GetVarsFlags(fieldSystem->saveData));
             ov23_02251F94(fieldSystem);
             Heap_FreeToHeap(v1);
             return 1;

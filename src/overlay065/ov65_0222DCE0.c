@@ -402,7 +402,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov65_0223894C = {
 
 static BOOL ov65_0222DCE0 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(param0->unk_160), 53);
+    return inline_0208BE68(SaveData_GetVarsFlags(param0->unk_160), 53);
 }
 
 static BOOL ov65_0222DCF8 (UnkStruct_ov65_0222EBE0 * param0)

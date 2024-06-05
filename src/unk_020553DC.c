@@ -191,7 +191,7 @@ u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
         v0 = MapHeader_GetNightMusicID(param1);
     }
 
-    v1 = sub_0206AB68(SaveData_GetFieldEvents(fieldSystem->saveData), param1);
+    v1 = sub_0206AB68(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
 
     if (v1 != 0) {
         v0 = v1;

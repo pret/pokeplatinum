@@ -27,7 +27,7 @@
 
 BOOL ScrCmd_253 (ScriptContext * param0)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
     u16 v1 = ScriptContext_GetVar(param0);
 
     if (v1 == 0) {

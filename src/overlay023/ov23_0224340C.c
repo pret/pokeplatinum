@@ -1597,7 +1597,7 @@ void ov23_0224448C (int param0, int param1, void * param2, void * param3)
         }
 
         {
-            FieldEvents * v2 = SaveData_GetFieldEvents(Unk_ov23_02257764->fieldSystem->saveData);
+            VarsFlags * v2 = SaveData_GetVarsFlags(Unk_ov23_02257764->fieldSystem->saveData);
             sub_0206B43C(v2, sub_0206B42C(v2) + 1);
         }
 

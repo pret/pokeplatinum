@@ -70,7 +70,7 @@ static BOOL sub_0206C120 (TaskManager * taskMan)
         break;
     case 2:
     {
-        FieldEvents * v2 = SaveData_GetFieldEvents(fieldSystem->saveData);
+        VarsFlags * v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
         if (v1->unk_0D == 0) {
             sub_0206AE0C(v2);

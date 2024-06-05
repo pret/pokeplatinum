@@ -35,16 +35,16 @@ void sub_02070428 (FieldSystem * fieldSystem, BOOL param1)
 void FieldSystem_InitFlagsNoWarp (FieldSystem * fieldSystem)
 {
     sub_020705DC(fieldSystem);
-    sub_0206AF1C(SaveData_GetFieldEvents(fieldSystem->saveData), 0);
+    sub_0206AF1C(SaveData_GetVarsFlags(fieldSystem->saveData), 0);
 
-    inline_0204E650_1(SaveData_GetFieldEvents(fieldSystem->saveData));
+    inline_0204E650_1(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
     sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
 
     fieldSystem->unk_78.unk_00 = 0;
 
-    if (!sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData))) {
+    if (!sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_0202D7B0 * v0;
 
         v0 = sub_0202D834(fieldSystem->saveData);
@@ -63,10 +63,10 @@ void FieldSystem_InitFlagsWarp (FieldSystem * fieldSystem)
         sub_02070610(fieldSystem);
     }
 
-    sub_0206AF1C(SaveData_GetFieldEvents(fieldSystem->saveData), 0);
-    sub_0206AE9C(SaveData_GetFieldEvents(fieldSystem->saveData));
+    sub_0206AF1C(SaveData_GetVarsFlags(fieldSystem->saveData), 0);
+    sub_0206AE9C(SaveData_GetVarsFlags(fieldSystem->saveData));
 
-    inline_0204E650_1(SaveData_GetFieldEvents(fieldSystem->saveData));
+    inline_0204E650_1(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
     sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
@@ -81,7 +81,7 @@ void FieldSystem_InitFlagsWarp (FieldSystem * fieldSystem)
     }
 
     if (!MapHeader_IsCave(fieldSystem->location->mapId)) {
-        FieldEvents * v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
+        VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
         sub_0206AECC(v1);
         sub_0206AEFC(v1);
@@ -107,24 +107,24 @@ void FieldSystem_InitFlagsWarp (FieldSystem * fieldSystem)
 
 void sub_0207056C (FieldSystem * fieldSystem)
 {
-    sub_0206AE4C(SaveData_GetFieldEvents(fieldSystem->saveData));
+    sub_0206AE4C(SaveData_GetVarsFlags(fieldSystem->saveData));
     sub_0206C354(sub_0202D834(fieldSystem->saveData));
 }
 
 void sub_02070588 (FieldSystem * fieldSystem)
 {
-    sub_0206AE4C(SaveData_GetFieldEvents(fieldSystem->saveData));
+    sub_0206AE4C(SaveData_GetVarsFlags(fieldSystem->saveData));
     sub_0206C354(sub_0202D834(fieldSystem->saveData));
 }
 
 void sub_020705A4 (FieldSystem * fieldSystem)
 {
-    sub_0206AE4C(SaveData_GetFieldEvents(fieldSystem->saveData));
+    sub_0206AE4C(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
 void sub_020705B4 (FieldSystem * fieldSystem)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     sub_0206A974(v0);
     sub_0206B024(v0, 0);

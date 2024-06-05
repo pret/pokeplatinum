@@ -3139,7 +3139,7 @@ static BOOL ScrCmd_060 (ScriptContext * ctx)
             MapObject * v3 = sub_02062570(fieldSystem->mapObjMan, 0x30);
 
             if (v3) {
-                if ((sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) && (sub_02062D1C(v3) != 0)) {
+                if ((sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) && (sub_02062D1C(v3) != 0)) {
                     sub_02062DDC(v3);
                     ScriptContext_Pause(ctx, sub_020410CC);
                     return 1;
@@ -3254,7 +3254,7 @@ static BOOL ScrCmd_2B4 (ScriptContext * ctx)
     }
 
     if (v3) {
-        if ((sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) && (sub_02062D1C(v3) != 0)) {
+        if ((sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) && (sub_02062D1C(v3) != 0)) {
             inline_020410F4_2((1 << 1));
             sub_02062DDC(v3);
         }
@@ -4482,7 +4482,7 @@ static BOOL ScrCmd_0B5 (ScriptContext * ctx)
 
     v0 = (*v1);
 
-    sub_0206B044(SaveData_GetFieldEvents(ctx->fieldSystem->saveData), v0->species);
+    sub_0206B044(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), v0->species);
 
     Heap_FreeToHeap(*v1);
 
@@ -4880,7 +4880,7 @@ static BOOL ScrCmd_0DE (ScriptContext * ctx)
 {
     u16 * v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0206B054(SaveData_GetFieldEvents(ctx->fieldSystem->saveData));
+    *v0 = sub_0206B054(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return 0;
 }
 
@@ -5093,7 +5093,7 @@ static BOOL ScrCmd_123 (ScriptContext * ctx)
 
     if (v2 == 0) {
         v4 = sub_02026F58(v0);
-        *v3 = sub_0205E078(v4, inline_0208BE68(SaveData_GetFieldEvents(ctx->fieldSystem->saveData), 10));
+        *v3 = sub_0205E078(v4, inline_0208BE68(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), 10));
     } else {
         v4 = sub_02026F20(v0);
         *v3 = sub_0205E0E4(v4, TrainerInfo_Gender(v1));
@@ -6165,7 +6165,7 @@ static BOOL ScrCmd_1C5 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
-    sub_0206B0C4(SaveData_GetFieldEvents(fieldSystem->saveData), 0x8200);
+    sub_0206B0C4(SaveData_GetVarsFlags(fieldSystem->saveData), 0x8200);
     return 0;
 }
 
@@ -6173,7 +6173,7 @@ static BOOL ScrCmd_1CC (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
-    inline_02044528(SaveData_GetFieldEvents(fieldSystem->saveData));
+    inline_02044528(SaveData_GetVarsFlags(fieldSystem->saveData));
     fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), 1);
     sub_02053494(fieldSystem);
 
@@ -6452,7 +6452,7 @@ static BOOL ScrCmd_202 (ScriptContext * ctx)
     u16 * v0;
     u16 * v1;
     FieldOverworldState * v2 = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
-    FieldEvents * v3 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v3 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     TVBroadcast * v4 = SaveData_TVBroadcast(ctx->fieldSystem->saveData);
     int v5 = ScriptContext_ReadByte(ctx);
 
@@ -6533,7 +6533,7 @@ static BOOL ScrCmd_211 (ScriptContext * ctx)
 
 static BOOL ScrCmd_214 (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B354(v0);
@@ -6568,7 +6568,7 @@ static BOOL ScrCmd_219 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
 
-    sub_0206B270(SaveData_GetFieldEvents(ctx->fieldSystem->saveData), v0);
+    sub_0206B270(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), v0);
     return 0;
 }
 
@@ -6576,7 +6576,7 @@ static BOOL ScrCmd_21A (ScriptContext * ctx)
 {
     u16 * v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0206B260(SaveData_GetFieldEvents(ctx->fieldSystem->saveData));
+    *v0 = sub_0206B260(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return 0;
 }
 
@@ -7020,7 +7020,7 @@ static BOOL ScrCmd_264 (ScriptContext * ctx)
 
 static BOOL ScrCmd_265 (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     sub_0206AE0C(v0);
     return 0;
@@ -7028,7 +7028,7 @@ static BOOL ScrCmd_265 (ScriptContext * ctx)
 
 static BOOL ScrCmd_266 (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     sub_0206AE1C(v0);
     return 0;
@@ -7149,7 +7149,7 @@ static BOOL ScrCmd_26E (ScriptContext * ctx)
 
 static BOOL ScrCmd_26F (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     sub_0206B364(v0, 0);
     return 0;
@@ -7159,7 +7159,7 @@ static BOOL ScrCmd_270 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u8 v1 = ScriptContext_ReadByte(ctx);
-    FieldEvents * v2 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v2 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     if (v1) {
         sub_0206B1B0(v2, v0);
@@ -7183,7 +7183,7 @@ static BOOL ScrCmd_273 (ScriptContext * ctx)
 static BOOL ScrCmd_275 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    FieldEvents * v1 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
     u32 v3;
 
@@ -7202,7 +7202,7 @@ static BOOL ScrCmd_277 (ScriptContext * ctx)
 {
     u16 * v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0206B314(SaveData_GetFieldEvents(ctx->fieldSystem->saveData));
+    *v0 = sub_0206B314(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return 0;
 }
 
@@ -7284,7 +7284,7 @@ static BOOL ScrCmd_27F (ScriptContext * ctx)
 static BOOL ScrCmd_27E (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    FieldEvents * v1 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
     u16 v3;
 
@@ -7418,7 +7418,7 @@ static BOOL ScrCmd_285 (ScriptContext * ctx)
 
 static BOOL ScrCmd_286 (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B3EC(v0);
@@ -7427,7 +7427,7 @@ static BOOL ScrCmd_286 (ScriptContext * ctx)
 
 static BOOL ScrCmd_287 (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B40C(v0);
@@ -7436,7 +7436,7 @@ static BOOL ScrCmd_287 (ScriptContext * ctx)
 
 static BOOL ScrCmd_288 (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B42C(v0);
@@ -7510,7 +7510,7 @@ static BOOL ScrCmd_28B (ScriptContext * ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
-    FieldEvents * v2 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v2 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     GF_ASSERT((v0 <= 4));
 
@@ -7634,7 +7634,7 @@ static BOOL ScrCmd_29E (ScriptContext * ctx)
 
 static BOOL ScrCmd_293 (ScriptContext * ctx)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(ctx->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = sub_0206B374(v0);

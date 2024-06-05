@@ -50,7 +50,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_PLAYER,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Player_SaveSize,            (SaveEntryInitFunc)Player_Init            },
     { SAVE_TABLE_ENTRY_PARTY,                 SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Party_SaveSize,             (SaveEntryInitFunc)Party_Init             },
     { SAVE_TABLE_ENTRY_BAG,                   SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Bag_SaveSize,               (SaveEntryInitFunc)Bag_Init               },
-    { SAVE_TABLE_ENTRY_EVENTS,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldEvents_SaveSize,       (SaveEntryInitFunc)FieldEvents_Init       },
+    { SAVE_TABLE_ENTRY_EVENTS,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)VarsFlags_Size,       (SaveEntryInitFunc)VarsFlags_Init       },
     { SAVE_TABLE_ENTRY_POKETCH,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poketch_SaveSize,           (SaveEntryInitFunc)Poketch_Init           },
     { SAVE_TABLE_ENTRY_FIELD_PLAYER_STATE,    SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOverworldState_Size,  (SaveEntryInitFunc)FieldOverworldState_Init  },
     { SAVE_TABLE_ENTRY_POKEDEX,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Pokedex_SaveSize,           (SaveEntryInitFunc)Pokedex_Init           },

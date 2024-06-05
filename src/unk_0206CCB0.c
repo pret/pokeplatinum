@@ -1251,7 +1251,7 @@ static int sub_0206DB38 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206DB48 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 6);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 6);
 }
 
 void sub_0206DB5C (FieldSystem * fieldSystem, u8 param1)
@@ -1276,7 +1276,7 @@ static int sub_0206DB74 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206DB9C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 6);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 6);
 }
 
 void sub_0206DBB0 (SaveData * param0, u32 param1, Pokemon * param2, BOOL param3)
@@ -1315,7 +1315,7 @@ static BOOL sub_0206DC3C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * pa
         return 0;
     }
 
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206DC6C (FieldSystem * fieldSystem, u32 param1, Pokemon * param2)
@@ -1584,7 +1584,7 @@ static int sub_0206E018 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E04C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206E060 (SaveData * param0)
@@ -1614,7 +1614,7 @@ static int sub_0206E098 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E0CC (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 9);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 9);
 }
 
 void sub_0206E0E0 (FieldSystem * fieldSystem, u16 param1)
@@ -1648,7 +1648,7 @@ static int sub_0206E118 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E160 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206E174 (FieldSystem * fieldSystem, u16 param1)
@@ -1910,7 +1910,7 @@ static int sub_0206E5E4 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E654 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206E668 (FieldSystem * fieldSystem, u16 param1)
@@ -2039,7 +2039,7 @@ static int sub_0206E7AC (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E834 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 static const u8 Unk_020EFD34[] = {
@@ -2529,7 +2529,7 @@ static int sub_0206EBE8 (FieldSystem * fieldSystem)
     u8 v0[NELEMS(Unk_020EFD3C)];
     u8 v1[NELEMS(Unk_020F0074) / 2];
     int v2, v3;
-    FieldEvents * v4 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v4 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     for (v2 = 0; v2 < NELEMS(Unk_020EFD3C); v2++) {
         v0[v2] = inline_0208BE68(v4, Unk_020EFD3C[v2]);
@@ -2572,7 +2572,7 @@ static int sub_0206EC90 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206ECFC (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     return inline_0208BE68(v0, 9);
 }
 
@@ -2744,13 +2744,13 @@ static int sub_0206EF7C (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
     v0 = 0;
 
-    if (sub_0206A954(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
+    if (sub_0206A954(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v0 = (LCRNG_Next() % 8);
-    } else if (inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 11) == 1) {
+    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 11) == 1) {
         v0 = (LCRNG_Next() % 5);
-    } else if (inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 10) == 1) {
+    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 10) == 1) {
         v0 = (LCRNG_Next() % 4);
-    } else if (inline_0208BE68(SaveData_GetFieldEvents(fieldSystem->saveData), 18) == 1) {
+    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 18) == 1) {
         v0 = (LCRNG_Next() % 2);
     }
 

@@ -29,7 +29,7 @@ void ov5_021EA714 (FieldSystem * fieldSystem, int param1, u32 param2)
 void ov5_021EA728 (FieldSystem * fieldSystem)
 {
     PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
-    FieldEvents * v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {
@@ -44,7 +44,7 @@ void ov5_021EA728 (FieldSystem * fieldSystem)
 void ov5_021EA790 (FieldSystem * fieldSystem)
 {
     PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
-    FieldEvents * v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {
@@ -57,7 +57,7 @@ void ov5_021EA790 (FieldSystem * fieldSystem)
 u8 ov5_021EA7CC (FieldSystem * fieldSystem)
 {
     PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
-    FieldEvents * v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {

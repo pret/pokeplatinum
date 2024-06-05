@@ -1578,7 +1578,7 @@ BOOL sub_0203E348 (FieldSystem * fieldSystem, UnkStruct_0203E348 * param1)
 static BOOL sub_0203E35C (TaskManager * param0)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    FieldEvents * v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
     UnkStruct_0203E35C * v2 = TaskManager_Environment(param0);
     int * v3 = FieldTask_GetState(param0);
     int v4;
@@ -1788,7 +1788,7 @@ void * sub_0203E63C (int param0, FieldSystem * fieldSystem, u16 param2, u16 para
     v0->mode = 2;
     v0->ribbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->contest = EventFlag_VisitedContestHall(SaveData_GetFieldEvents(fieldSystem->saveData));
+    v0->contest = EventFlag_VisitedContestHall(SaveData_GetVarsFlags(fieldSystem->saveData));
     v0->chatotCry = NULL;
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA15C);

@@ -7,8 +7,8 @@
 #include "functypes/funcptr_02050904.h"
 
 void sub_020531A0(FieldSystem * fieldSystem);
-void FieldSystem_MapChange_UpdateGameData(FieldSystem * fieldSystem, BOOL param1);
-void FieldSystem_MapChange_UpdateGameDataDistortionWorld(FieldSystem * fieldSystem, BOOL param1);
+void FieldMapChange_UpdateGameData(FieldSystem * fieldSystem, BOOL param1);
+void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem * fieldSystem, BOOL param1);
 void sub_02053494(FieldSystem * fieldSystem);
 void FieldSystem_SetLoadMapFromNewGameTask(FieldSystem * fieldSystem);
 void FieldSystem_SetLoadMapFromContinueGameTask(FieldSystem * fieldSystem);

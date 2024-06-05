@@ -77,7 +77,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 
         sub_02055BF4(fieldSystem, &v4, &v6);
         sub_02055C10(fieldSystem, &v5, &v6);
-        sub_0207207C(sub_0206A954(SaveData_GetFieldEvents(fieldSystem->saveData)), v7, &v4, &v5, &v6, param1, param5);
+        sub_0207207C(sub_0206A954(SaveData_GetVarsFlags(fieldSystem->saveData)), v7, &v4, &v5, &v6, param1, param5);
     }
 
     {
@@ -127,13 +127,13 @@ u8 sub_02071F28 (FieldSystem * fieldSystem)
     u8 v0;
     SaveData * v1;
     UnkStruct_0202CD88 * v2;
-    FieldEvents * v3;
+    VarsFlags * v3;
     SecretBaseRecord * v4;
     UnkStruct_0203068C * v5;
 
     v1 = FieldSystem_SaveData(fieldSystem);
     v2 = sub_0202CD88(v1);
-    v3 = SaveData_GetFieldEvents(v1);
+    v3 = SaveData_GetVarsFlags(v1);
     v4 = SaveData_SecretBaseRecord(v1);
     v5 = sub_0203068C(v1);
     v0 = 0;

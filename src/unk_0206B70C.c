@@ -78,7 +78,7 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     int v1 = 0, v2 = 0, v3 = 0;
     int x, z, v6;
     UnkStruct_020556C4 * v7;
-    FieldEvents * v8 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
     FieldOverworldState * v9 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location * v10 = sub_0203A72C(v9);
 
@@ -157,7 +157,7 @@ static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1
     int v3;
     UnkStruct_0206B878 * v4;
     UnkUnion_0206B878 * v5;
-    FieldEvents * v6 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    VarsFlags * v6 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     FS_InitFile(&v0);
 

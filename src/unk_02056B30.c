@@ -211,7 +211,7 @@ static BOOL sub_02056CFC (TaskManager * taskMan)
     switch (v1->unk_00) {
     case 0:
         v1->unk_04 = 0;
-        Sound_TryFadeInBgm(fieldSystem, v2->mapId);
+        Sound_TryFadeInBGM(fieldSystem, v2->mapId);
         FieldTask_Start(taskMan, Unk_020EC560[v1->unk_20], v1);
         (v1->unk_00)++;
         break;

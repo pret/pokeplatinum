@@ -7,29 +7,29 @@
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
 
-static void sub_0206A8DC(FieldEvents * param0, u16 param1);
-static void sub_0206A8E4(FieldEvents * param0, u16 param1);
-static BOOL sub_0206A8EC(FieldEvents * param0, u16 param1);
-static BOOL sub_0206A8F4(FieldEvents * param0, int param1, u32 param2);
+static void sub_0206A8DC(VarsFlags * param0, u16 param1);
+static void sub_0206A8E4(VarsFlags * param0, u16 param1);
+static BOOL sub_0206A8EC(VarsFlags * param0, u16 param1);
+static BOOL sub_0206A8F4(VarsFlags * param0, int param1, u32 param2);
 
-static void sub_0206A8DC (FieldEvents * param0, u16 param1)
+static void sub_0206A8DC (VarsFlags * param0, u16 param1)
 {
     sub_0205081C(param0, param1);
     return;
 }
 
-static void sub_0206A8E4 (FieldEvents * param0, u16 param1)
+static void sub_0206A8E4 (VarsFlags * param0, u16 param1)
 {
     sub_02050844(param0, param1);
     return;
 }
 
-static BOOL sub_0206A8EC (FieldEvents * param0, u16 param1)
+static BOOL sub_0206A8EC (VarsFlags * param0, u16 param1)
 {
     return sub_020507F0(param0, param1);
 }
 
-static BOOL sub_0206A8F4 (FieldEvents * param0, int param1, u32 param2)
+static BOOL sub_0206A8F4 (VarsFlags * param0, int param1, u32 param2)
 {
     switch (param1) {
     case 1:
@@ -47,116 +47,116 @@ static BOOL sub_0206A8F4 (FieldEvents * param0, int param1, u32 param2)
     return 0;
 }
 
-void sub_0206A92C (FieldEvents * param0)
+void sub_0206A92C (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 0));
     return;
 }
 
-BOOL sub_0206A938 (FieldEvents * param0)
+BOOL sub_0206A938 (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 0));
 }
 
-void sub_0206A944 (FieldEvents * param0)
+void sub_0206A944 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 4));
     return;
 }
 
-BOOL sub_0206A954 (FieldEvents * param0)
+BOOL sub_0206A954 (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 4));
 }
 
-void sub_0206A964 (FieldEvents * param0)
+void sub_0206A964 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 1));
     return;
 }
 
-void sub_0206A974 (FieldEvents * param0)
+void sub_0206A974 (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 1));
     return;
 }
 
-BOOL sub_0206A984 (FieldEvents * param0)
+BOOL sub_0206A984 (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 1));
 }
 
-void sub_0206A994 (FieldEvents * param0)
+void sub_0206A994 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 5));
     return;
 }
 
-void sub_0206A9A4 (FieldEvents * param0)
+void sub_0206A9A4 (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 5));
     return;
 }
 
-BOOL sub_0206A9B4 (FieldEvents * param0)
+BOOL sub_0206A9B4 (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 5));
 }
 
-void sub_0206A9C4 (FieldEvents * param0)
+void sub_0206A9C4 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 13));
     return;
 }
 
-void sub_0206A9D4 (FieldEvents * param0)
+void sub_0206A9D4 (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 13));
     return;
 }
 
-BOOL sub_0206A9E4 (FieldEvents * param0)
+BOOL sub_0206A9E4 (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 13));
 }
 
-void sub_0206A9F4 (FieldEvents * param0)
+void sub_0206A9F4 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 14));
     return;
 }
 
-void sub_0206AA04 (FieldEvents * param0)
+void sub_0206AA04 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 15));
     return;
 }
 
-void sub_0206AA14 (FieldEvents * param0)
+void sub_0206AA14 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 16));
     return;
 }
 
-void sub_0206AA20 (FieldEvents * param0)
+void sub_0206AA20 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 17));
     return;
 }
 
-void sub_0206AA30 (FieldEvents * param0)
+void sub_0206AA30 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 18));
     return;
 }
 
-void sub_0206AA40 (FieldEvents * param0)
+void sub_0206AA40 (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 19));
     return;
 }
 
-void sub_0206AA50 (FieldEvents * param0, int param1)
+void sub_0206AA50 (VarsFlags * param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -179,7 +179,7 @@ void sub_0206AA50 (FieldEvents * param0, int param1)
     return;
 }
 
-BOOL sub_0206AAA8 (FieldEvents * param0, int param1)
+BOOL sub_0206AAA8 (VarsFlags * param0, int param1)
 {
     int v0;
 
@@ -204,7 +204,7 @@ BOOL sub_0206AAA8 (FieldEvents * param0, int param1)
     return v0;
 }
 
-BOOL sub_0206AB00 (FieldEvents * param0, int param1)
+BOOL sub_0206AB00 (VarsFlags * param0, int param1)
 {
     int v0 = 0;
 
@@ -229,7 +229,7 @@ BOOL sub_0206AB00 (FieldEvents * param0, int param1)
     return v0;
 }
 
-u16 sub_0206AB68 (FieldEvents * param0, int param1)
+u16 sub_0206AB68 (VarsFlags * param0, int param1)
 {
     u16 v0 = 0;
 
@@ -336,178 +336,178 @@ u16 sub_0206AB68 (FieldEvents * param0, int param1)
     return v0;
 }
 
-void sub_0206AD9C (FieldEvents * param0)
+void sub_0206AD9C (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 6));
     return;
 }
 
-void FieldEvents_ResetCommClub (FieldEvents * param0)
+void FieldEvents_ResetCommClub (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 6));
     return;
 }
 
-BOOL FieldEvents_CheckCommClub (FieldEvents * param0)
+BOOL FieldEvents_CheckCommClub (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 6));
 }
 
-BOOL EventFlag_VisitedContestHall (FieldEvents * param0)
+BOOL EventFlag_VisitedContestHall (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 24));
 }
 
-BOOL sub_0206ADDC (FieldEvents * param0)
+BOOL sub_0206ADDC (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 50));
 }
 
-BOOL sub_0206ADEC (FieldEvents * param0)
+BOOL sub_0206ADEC (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 29));
 }
 
-BOOL sub_0206ADFC (FieldEvents * param0)
+BOOL sub_0206ADFC (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 30));
 }
 
-void sub_0206AE0C (FieldEvents * param0)
+void sub_0206AE0C (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 28));
 }
 
-void sub_0206AE1C (FieldEvents * param0)
+void sub_0206AE1C (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 28));
 }
 
-BOOL sub_0206AE2C (FieldEvents * param0)
+BOOL sub_0206AE2C (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 28));
 }
 
-void sub_0206AE3C (FieldEvents * param0)
+void sub_0206AE3C (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 7));
 }
 
-void sub_0206AE4C (FieldEvents * param0)
+void sub_0206AE4C (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 7));
 }
 
-BOOL sub_0206AE5C (FieldEvents * param0)
+BOOL sub_0206AE5C (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 7));
 }
 
-void sub_0206AE6C (FieldEvents * param0)
+void sub_0206AE6C (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 25));
 }
 
-void sub_0206AE7C (FieldEvents * param0)
+void sub_0206AE7C (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 25));
 }
 
-BOOL sub_0206AE8C (FieldEvents * param0)
+BOOL sub_0206AE8C (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 25));
 }
 
-void sub_0206AE9C (FieldEvents * param0)
+void sub_0206AE9C (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 52));
 }
 
-BOOL sub_0206AEAC (FieldEvents * param0, int param1)
+BOOL sub_0206AEAC (VarsFlags * param0, int param1)
 {
     return sub_0206A8F4(param0, param1, (2400 + 2));
 }
 
-void sub_0206AEBC (FieldEvents * param0)
+void sub_0206AEBC (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 26));
 }
 
-void sub_0206AECC (FieldEvents * param0)
+void sub_0206AECC (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 26));
 }
 
-BOOL FieldEvents_CheckFlash (FieldEvents * param0)
+BOOL FieldEvents_CheckFlash (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 26));
 }
 
-void sub_0206AEEC (FieldEvents * param0)
+void sub_0206AEEC (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 27));
 }
 
-void sub_0206AEFC (FieldEvents * param0)
+void sub_0206AEFC (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 27));
 }
 
-BOOL FieldEvents_CheckDefog (FieldEvents * param0)
+BOOL FieldEvents_CheckDefog (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 27));
 }
 
-BOOL sub_0206AF1C (FieldEvents * param0, int param1)
+BOOL sub_0206AF1C (VarsFlags * param0, int param1)
 {
     return sub_0206A8F4(param0, param1, (2400 + 54));
 }
 
-BOOL sub_0206AF2C (FieldEvents * param0, int param1)
+BOOL sub_0206AF2C (VarsFlags * param0, int param1)
 {
     return sub_0206A8F4(param0, param1, (2400 + 3));
 }
 
-BOOL sub_0206AF3C (FieldEvents * param0, int param1, u32 param2)
+BOOL sub_0206AF3C (VarsFlags * param0, int param1, u32 param2)
 {
     GF_ASSERT(param2 < 69);
     return sub_0206A8F4(param0, param1, (2400 + 80) + param2);
 }
 
-void sub_0206AF5C (FieldEvents * param0)
+void sub_0206AF5C (VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 44));
 }
 
-BOOL sub_0206AF6C (FieldEvents * param0, int param1, int param2)
+BOOL sub_0206AF6C (VarsFlags * param0, int param1, int param2)
 {
     GF_ASSERT(param2 < 20);
     return sub_0206A8F4(param0, param1, (2400 + 55) + param2);
 }
 
-void sub_0206AF90 (FieldEvents * param0)
+void sub_0206AF90 (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 75));
     return;
 }
 
-void sub_0206AFA0 (FieldEvents * param0)
+void sub_0206AFA0 (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 76));
     return;
 }
 
-BOOL sub_0206AFB0 (FieldEvents * param0, int param1, int param2)
+BOOL sub_0206AFB0 (VarsFlags * param0, int param1, int param2)
 {
     return sub_0206A8F4(param0, param1, (2400 + 78) + param2);
 }
 
-BOOL sub_0206AFC0 (FieldEvents * param0, int param1)
+BOOL sub_0206AFC0 (VarsFlags * param0, int param1)
 {
     return sub_0206A8F4(param0, param1, (2400 + 77));
 }
 
-BOOL sub_0206AFD0 (FieldEvents * param0)
+BOOL sub_0206AFD0 (VarsFlags * param0)
 {
     return sub_0206A8F4(param0, 2, (2400 + 23));
 }

@@ -355,7 +355,7 @@ static BOOL ov48_02256478 (UnkStruct_ov48_0225621C * param0)
 
 static void ov48_022564E0 (UnkStruct_ov48_0225621C * param0, PoketchSystem * param1)
 {
-    FieldEvents * v0 = SaveData_GetFieldEvents(PoketchSystem_SaveData(param1));
+    VarsFlags * v0 = SaveData_GetVarsFlags(PoketchSystem_SaveData(param1));
     int v1;
 
     for (v1 = 0; v1 < 4; v1++) {

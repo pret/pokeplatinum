@@ -428,7 +428,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
         fieldSystem->location->mapId = v0;
 
         FieldSystem_LoadMapData(fieldSystem, v0);
-        FieldSystem_MapChange_UpdateGameData(fieldSystem, 1);
+        FieldMapChange_UpdateGameData(fieldSystem, 1);
     }
 
     {
@@ -481,7 +481,7 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
         fieldSystem->location->mapId = param1;
 
         FieldSystem_LoadMapData(fieldSystem, param1);
-        FieldSystem_MapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
+        FieldMapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
     }
 
     {

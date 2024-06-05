@@ -183,7 +183,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
         if (param0->unk_00_11 == 0) {
             BOOL v0 = sub_02054AB0(Party_GetFromSavedata(fieldSystem->saveData));
 
-            if (sub_0206A984(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
+            if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
                 v0 = 1;
             }
 
@@ -196,7 +196,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
     }
 
     if (param0->unk_00_6) {
-        sub_0206A9A4(SaveData_GetFieldEvents(fieldSystem->saveData));
+        sub_0206A9A4(SaveData_GetVarsFlags(fieldSystem->saveData));
 
         if (ov5_021D2884(fieldSystem) == 1) {
             return 1;
@@ -207,7 +207,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, FieldSystem * fieldSyst
         int v1 = 0;
         int v2 = sub_02061308(fieldSystem->playerAvatar, param0->unk_04, param0->unk_06);
 
-        if (inline_0204E650_2(SaveData_GetFieldEvents(fieldSystem->saveData))) {
+        if (inline_0204E650_2(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             v1 |= 1 << 0;
         }
 
@@ -599,7 +599,7 @@ static BOOL ov5_021D249C (FieldSystem * fieldSystem)
 
     ov5_021D2C7C(fieldSystem, &v0, &v1);
 
-    if (sub_0206AE8C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         if (sub_02056374(fieldSystem, v0, v1) == 1) {
             sub_02051450(fieldSystem, sub_0205639C(fieldSystem));
             return 1;
@@ -829,7 +829,7 @@ static BOOL ov5_021D2884 (FieldSystem * fieldSystem)
         ov5_021D2B54(fieldSystem);
     }
 
-    sub_0206B238(SaveData_GetFieldEvents(fieldSystem->saveData));
+    sub_0206B238(SaveData_GetVarsFlags(fieldSystem->saveData));
     return 0;
 }
 
@@ -932,10 +932,10 @@ static BOOL ov5_021D2B20 (FieldSystem * fieldSystem)
 static BOOL ov5_021D2B2C (FieldSystem * fieldSystem)
 {
     u16 v0;
-    FieldEvents * v1;
+    VarsFlags * v1;
     BOOL v2 = 0;
 
-    v1 = SaveData_GetFieldEvents(fieldSystem->saveData);
+    v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v0 = sub_0206B44C(v1);
 
     v0++;
@@ -997,7 +997,7 @@ static BOOL ov5_021D2C14 (FieldSystem * fieldSystem)
     u16 * v0;
     u16 * v1;
 
-    if (sub_0206AE5C(SaveData_GetFieldEvents(fieldSystem->saveData)) == 0) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
         return 0;
     }
 

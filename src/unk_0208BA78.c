@@ -413,9 +413,9 @@ const OverlayManagerTemplate * sub_0208BE5C (int param0)
 
 BOOL sub_0208BE68 (UnkStruct_0208C06C * param0)
 {
-    FieldEvents * v0;
+    VarsFlags * v0;
 
-    v0 = SaveData_GetFieldEvents(param0->unk_830);
+    v0 = SaveData_GetVarsFlags(param0->unk_830);
     return inline_0208BE68(v0, 53);
 }
 
