@@ -18,7 +18,7 @@
 
 struct UnkStruct_0203A3E8_t {
     u32 unk_00;
-    u32 unk_04;
+    u32 npcCount;
     u32 unk_08;
     u32 unk_0C;
     const UnkStruct_0203A594 * unk_10;
@@ -75,7 +75,7 @@ static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
 
 void sub_0203A418 (FieldSystem * fieldSystem)
 {
-    int v0 = fieldSystem->unk_14->unk_04;
+    int v0 = fieldSystem->unk_14->npcCount;
 
     GF_ASSERT(fieldSystem->unk_14 != NULL);
 
@@ -128,7 +128,7 @@ const UnkStruct_0203A4AC * sub_0203A4AC (const FieldSystem * fieldSystem)
 
 u32 FieldSystem_GetNpcCount (const FieldSystem * fieldSystem)
 {
-    return fieldSystem->unk_14->unk_04;
+    return fieldSystem->unk_14->npcCount;
 }
 
 const MapObjectHeader * sub_0203A4BC (const FieldSystem * fieldSystem)
@@ -140,7 +140,7 @@ BOOL sub_0203A4C4 (FieldSystem * fieldSystem, int param1, u16 param2, u16 param3
 {
     int v0;
     MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
-    u32 v2 = fieldSystem->unk_14->unk_04;
+    u32 v2 = fieldSystem->unk_14->npcCount;
 
     for (v0 = 0; v0 < v2; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -158,7 +158,7 @@ BOOL sub_0203A4FC (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
     MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
-    u32 v2 = fieldSystem->unk_14->unk_04;
+    u32 v2 = fieldSystem->unk_14->npcCount;
 
     for (v0 = 0; v0 < v2; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -175,7 +175,7 @@ BOOL sub_0203A52C (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
     MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
-    u32 v2 = fieldSystem->unk_14->unk_04;
+    u32 v2 = fieldSystem->unk_14->npcCount;
 
     for (v0 = 0; v0 < v2; v0++) {
         if (v1[v0].unk_00 == param1) {
@@ -239,16 +239,16 @@ static void sub_0203A5B0 (UnkStruct_0203A3E8 * param0)
     }
 
     v0 += sizeof(UnkStruct_0203A594) * param0->unk_00;
-    param0->unk_04 = *(u32 *)v0;
+    param0->npcCount = *(u32 *)v0;
     v0 += sizeof(u32);
 
-    if (param0->unk_04 != 0) {
+    if (param0->npcCount != 0) {
         param0->unk_14 = (const struct UnkStruct_020619DC_t *)v0;
     } else {
         param0->unk_14 = NULL;
     }
 
-    v0 += sizeof(struct UnkStruct_020619DC_t) * param0->unk_04;
+    v0 += sizeof(struct UnkStruct_020619DC_t) * param0->npcCount;
     param0->unk_08 = *(u32 *)v0;
     v0 += sizeof(u32);
 
@@ -316,7 +316,7 @@ BOOL sub_0203A6A4 (const FieldSystem * fieldSystem, u16 param1, u16 param2)
     const UnkStruct_0203A3E8 * v0 = fieldSystem->unk_14;
     u32 v1;
 
-    for (v1 = 0; v1 < v0->unk_04; v1++) {
+    for (v1 = 0; v1 < v0->npcCount; v1++) {
         if ((v0->unk_14[v1].unk_1A == param1) && (v0->unk_14[v1].unk_1C == param2)) {
             return 0;
         }
