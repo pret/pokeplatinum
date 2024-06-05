@@ -16,16 +16,11 @@
 
 _002A:
     ScrCmd_1B6 0x4000
-    CompareVarToValue 0x4000, 0
-    GoToIf 1, _0071
-    CompareVarToValue 0x4000, 1
-    GoToIf 1, _0071
-    CompareVarToValue 0x4000, 2
-    GoToIf 1, _0071
-    CompareVarToValue 0x4000, 3
-    GoToIf 1, _0093
-    CompareVarToValue 0x4000, 4
-    GoToIf 1, _0093
+    GoToIfEq 0x4000, 0, _0071
+    GoToIfEq 0x4000, 1, _0071
+    GoToIfEq 0x4000, 2, _0071
+    GoToIfEq 0x4000, 3, _0093
+    GoToIfEq 0x4000, 4, _0093
     End
 
 _0071:

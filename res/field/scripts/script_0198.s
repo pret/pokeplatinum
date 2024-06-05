@@ -12,20 +12,16 @@ _0006:
     ApplyMovement 1, _0134
     WaitMovement
     ScrCmd_28F 0x800C
-    CompareVarToValue 0x800C, 0
-    CallIf 1, _0111
-    CompareVarToValue 0x800C, 0
-    CallIf 5, _0119
+    CallIfEq 0x800C, 0, _0111
+    CallIfNe 0x800C, 0, _0119
     ScrCmd_034
     ApplyMovement 1, _0144
     ApplyMovement 0, _015C
     WaitMovement
     ScrCmd_003 15, 0x800C
     ScrCmd_14D 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _0074
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _0080
+    GoToIfEq 0x800C, 0, _0074
+    GoToIfEq 0x800C, 1, _0080
     End
 
 _0074:
@@ -48,10 +44,8 @@ _008C:
     ScrCmd_034
     SetFlag 0x982
     ScrCmd_22D 2, 0x800C
-    CompareVarToValue 0x800C, 1
-    CallIf 1, _010A
-    CompareVarToValue 0x40F4, 0
-    CallIf 1, _0102
+    CallIfEq 0x800C, 1, _010A
+    CallIfEq 0x40F4, 0, _0102
     ScrCmd_177 0x800C
     ScrCmd_25A 0x800C
     ScrCmd_0BC 6, 3, 0, 0
@@ -127,35 +121,21 @@ _0164:
 _0174:
     ClearFlag 0x1D1
     ClearFlag 0x98B
-    CheckFlag 208
-    CallIf 0, _023C
-    CheckFlag 209
-    CallIf 0, _0244
-    CheckFlag 0x120
-    CallIf 0, _024C
-    CheckFlag 0x11B
-    CallIf 0, _0263
-    CheckFlag 0x126
-    CallIf 0, _027B
-    CheckFlag 0x127
-    CallIf 0, _0281
-    CheckFlag 0x121
-    CallIf 0, _0287
-    CompareVarToValue 0x4059, 2
-    CallIf 1, _028D
-    CompareVarToValue 0x4058, 2
-    CallIf 1, _0299
-    CompareVarToValue 0x405E, 2
-    CallIf 1, _02A5
-    CompareVarToValue 0x405F, 2
-    CallIf 1, _02AD
-    CompareVarToValue 0x4060, 2
-    CallIf 1, _02B5
-    CompareVarToValue 0x410F, 0
-    CallIf 1, _0234
+    CallIfUnset 208, _023C
+    CallIfUnset 209, _0244
+    CallIfUnset 0x120, _024C
+    CallIfUnset 0x11B, _0263
+    CallIfUnset 0x126, _027B
+    CallIfUnset 0x127, _0281
+    CallIfUnset 0x121, _0287
+    CallIfEq 0x4059, 2, _028D
+    CallIfEq 0x4058, 2, _0299
+    CallIfEq 0x405E, 2, _02A5
+    CallIfEq 0x405F, 2, _02AD
+    CallIfEq 0x4060, 2, _02B5
+    CallIfEq 0x410F, 0, _0234
     ClearFlag 0x177
-    CheckFlag 185
-    CallIf 0, _02BD
+    CallIfUnset 185, _02BD
     ClearFlag 0x186
     ClearFlag 0x124
     SetFlag 0x2A0
@@ -174,8 +154,7 @@ _0244:
     Return
 
 _024C:
-    CheckFlag 0x125
-    GoToIf 0, _0261
+    GoToIfUnset 0x125, _0261
     ClearFlag 0x1DD
     SetVar 0x409E, 1
 _0261:
@@ -183,8 +162,7 @@ _0261:
 
 _0263:
     ScrCmd_22D 2, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _0279
+    GoToIfEq 0x800C, 0, _0279
     ClearFlag 0x243
 _0279:
     Return

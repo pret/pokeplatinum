@@ -96,7 +96,7 @@ int sub_0205F060(PlayerAvatar * playerAvatar);
 void sub_0205F074(PlayerAvatar * playerAvatar, int param1);
 int sub_0205F08C(PlayerAvatar * playerAvatar);
 void sub_0205F098(PlayerAvatar * playerAvatar, int param1);
-int sub_0205F108(PlayerAvatar * const playerAvatar);
+int PlayerAvatar_DistortionWorldState(PlayerAvatar * const playerAvatar);
 BOOL sub_0205F158(PlayerAvatar * const playerAvatar);
 BOOL sub_0205F16C(PlayerAvatar * const playerAvatar);
 

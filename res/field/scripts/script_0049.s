@@ -8,8 +8,7 @@
 
 _000A:
     ScrCmd_238 10, 0x4000
-    CompareVarToValue 0x4000, 0
-    GoToIf 1, _0023
+    GoToIfEq 0x4000, 0, _0023
     ClearFlag 0x216
     End
 

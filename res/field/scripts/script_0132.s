@@ -20,10 +20,8 @@ _001D:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x11C
-    GoToIf 1, _00BD
-    CheckFlag 120
-    GoToIf 1, _004A
+    GoToIfSet 0x11C, _00BD
+    GoToIfSet 120, _004A
     ScrCmd_02C 1
     SetFlag 120
     GoTo _00C8
@@ -31,16 +29,13 @@ _001D:
 
 _004A:
     ScrCmd_264 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _009C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _00A7
+    GoToIfEq 0x800C, 0, _009C
+    GoToIfEq 0x800C, 1, _00A7
     ScrCmd_02C 4
     SetVar 0x8004, 215
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _00B2
+    GoToIfEq 0x800C, 0, _00B2
     SetFlag 0x11C
     ScrCmd_014 0x7FC
     GoTo _00BD

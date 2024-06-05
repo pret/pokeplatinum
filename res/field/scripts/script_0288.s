@@ -8,8 +8,7 @@
     .short 0xFD13
 
 _000E:
-    CheckFlag 0x121
-    CallIf 1, _001B
+    CallIfSet 0x121, _001B
     End
 
 _001B:
@@ -71,8 +70,7 @@ _00C0:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CompareVarToValue 0x40AA, 3
-    GoToIf 4, _00E0
+    GoToIfGe 0x40AA, 3, _00E0
     ScrCmd_02C 3
     GoTo _00EB
     End

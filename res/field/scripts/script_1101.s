@@ -14,8 +14,7 @@
 
 _0022:
     SetFlag 200
-    CheckFlag 0xAB7
-    GoToIf 0, _0039
+    GoToIfUnset 0xAB7, _0039
     Call _0140
     End
 
@@ -27,22 +26,14 @@ _0039:
     ClearFlag 0x2A3
     ClearFlag 0x2A4
     ClearFlag 0x2A5
-    CompareVarToValue 0x4022, 0xFFF
-    CallIf 1, _00ED
-    CompareVarToValue 0x4023, 0xFFF
-    CallIf 1, _00F3
-    CompareVarToValue 0x4024, 0xFFF
-    CallIf 1, _00F9
-    CompareVarToValue 0x4024, 141
-    CallIf 1, _00FF
-    CompareVarToValue 0x4024, 142
-    CallIf 1, _010C
-    CompareVarToValue 0x4024, 143
-    CallIf 1, _0119
-    CompareVarToValue 0x4024, 144
-    CallIf 1, _0126
-    CompareVarToValue 0x4024, 145
-    CallIf 1, _0133
+    CallIfEq 0x4022, 0xFFF, _00ED
+    CallIfEq 0x4023, 0xFFF, _00F3
+    CallIfEq 0x4024, 0xFFF, _00F9
+    CallIfEq 0x4024, 141, _00FF
+    CallIfEq 0x4024, 142, _010C
+    CallIfEq 0x4024, 143, _0119
+    CallIfEq 0x4024, 144, _0126
+    CallIfEq 0x4024, 145, _0133
     ClearFlag 1
     ClearFlag 2
     ClearFlag 3
@@ -67,28 +58,23 @@ _00F9:
     Return
 
 _00FF:
-    CheckFlag 227
-    CallIf 0, _00F9
+    CallIfUnset 227, _00F9
     Return
 
 _010C:
-    CheckFlag 229
-    CallIf 0, _00F9
+    CallIfUnset 229, _00F9
     Return
 
 _0119:
-    CheckFlag 230
-    CallIf 0, _00F9
+    CallIfUnset 230, _00F9
     Return
 
 _0126:
-    CheckFlag 231
-    CallIf 0, _00F9
+    CallIfUnset 231, _00F9
     Return
 
 _0133:
-    CheckFlag 228
-    CallIf 0, _00F9
+    CallIfUnset 228, _00F9
     Return
 
 _0140:
@@ -102,8 +88,7 @@ _015A:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 215
-    GoToIf 1, _0178
+    GoToIfSet 215, _0178
     ScrCmd_02C 1
     ScrCmd_031
     ScrCmd_034
@@ -125,12 +110,9 @@ _0183:
     ScrCmd_02C 5
     ScrCmd_034
     ScrCmd_069 0x8004, 0x8005
-    CompareVarToValue 0x8005, 7
-    CallIf 1, _01D5
-    CompareVarToValue 0x8005, 8
-    CallIf 1, _01E9
-    CompareVarToValue 0x8005, 9
-    CallIf 1, _01FD
+    CallIfEq 0x8005, 7, _01D5
+    CallIfEq 0x8005, 8, _01E9
+    CallIfEq 0x8005, 9, _01FD
     ScrCmd_049 0x603
     ScrCmd_065 1
     SetFlag 231
@@ -229,21 +211,15 @@ _02B4:
     ScrCmd_068
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4021
-    CheckFlag 5
-    GoToIf 1, _034D
+    GoToIfSet 5, _034D
     Call _118A
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _034D
-    CheckFlag 1
-    CallIf 0, _036E
-    CheckFlag 1
-    CallIf 1, _0376
+    GoToIfEq 0x800C, 1, _034D
+    CallIfUnset 1, _036E
+    CallIfSet 1, _0376
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _0386
+    GoToIfEq 0x800C, 1, _0386
     Call _032F
-    CompareVarToValue 0x8000, 0
-    GoToIf 1, _0398
+    GoToIfEq 0x8000, 0, _0398
     SetFlag 5
     Call _1091
     GoTo _034D
@@ -260,8 +236,7 @@ _032F:
 
 _034D:
     Call _0571
-    CompareVarToValue 0x8001, 2
-    GoToIf 1, _039E
+    GoToIfEq 0x8001, 2, _039E
     Call _0AFC
     GoTo _037E
     End
@@ -292,10 +267,8 @@ _0398:
     End
 
 _039E:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _03C0
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _03C5
+    CallIfEq 0x4001, 126, _03C0
+    CallIfEq 0x4001, 132, _03C5
     GoTo _037E
     End
 
@@ -313,21 +286,15 @@ _03CA:
     ScrCmd_068
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4022
-    CheckFlag 6
-    GoToIf 1, _034D
+    GoToIfSet 6, _034D
     Call _118A
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _034D
-    CheckFlag 2
-    CallIf 0, _036E
-    CheckFlag 2
-    CallIf 1, _0376
+    GoToIfEq 0x800C, 1, _034D
+    CallIfUnset 2, _036E
+    CallIfSet 2, _0376
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _0445
+    GoToIfEq 0x800C, 1, _0445
     Call _032F
-    CompareVarToValue 0x8000, 0
-    GoToIf 1, _0398
+    GoToIfEq 0x8000, 0, _0398
     SetFlag 6
     Call _1091
     GoTo _034D
@@ -345,21 +312,15 @@ _0457:
     ScrCmd_068
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4023
-    CheckFlag 7
-    GoToIf 1, _034D
+    GoToIfSet 7, _034D
     Call _118A
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _034D
-    CheckFlag 3
-    CallIf 0, _036E
-    CheckFlag 3
-    CallIf 1, _0376
+    GoToIfEq 0x800C, 1, _034D
+    CallIfUnset 3, _036E
+    CallIfSet 3, _0376
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _04D2
+    GoToIfEq 0x800C, 1, _04D2
     Call _032F
-    CompareVarToValue 0x8000, 0
-    GoToIf 1, _0398
+    GoToIfEq 0x8000, 0, _0398
     SetFlag 7
     Call _1091
     GoTo _034D
@@ -377,21 +338,15 @@ _04E4:
     ScrCmd_068
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4024
-    CheckFlag 8
-    GoToIf 1, _034D
+    GoToIfSet 8, _034D
     Call _118A
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _034D
-    CheckFlag 4
-    CallIf 0, _036E
-    CheckFlag 4
-    CallIf 1, _0376
+    GoToIfEq 0x800C, 1, _034D
+    CallIfUnset 4, _036E
+    CallIfSet 4, _0376
     ScrCmd_03E 0x800C
-    CompareVarToValue 0x800C, 1
-    GoToIf 1, _055F
+    GoToIfEq 0x800C, 1, _055F
     Call _032F
-    CompareVarToValue 0x8000, 0
-    GoToIf 1, _0398
+    GoToIfEq 0x8000, 0, _0398
     SetFlag 8
     Call _1091
     GoTo _034D
@@ -405,29 +360,19 @@ _055F:
 
 _0571:
     SetVar 0x8001, 0
-    CompareVarToValue 0x4001, 126
-    GoToIf 1, _0593
-    CompareVarToValue 0x4001, 132
-    GoToIf 1, _0593
+    GoToIfEq 0x4001, 126, _0593
+    GoToIfEq 0x4001, 132, _0593
     Return
 
 _0593:
-    CompareVarToValue 0x4021, 126
-    CallIf 1, _05FD
-    CompareVarToValue 0x4022, 126
-    CallIf 1, _05FD
-    CompareVarToValue 0x4023, 126
-    CallIf 1, _05FD
-    CompareVarToValue 0x4024, 126
-    CallIf 1, _05FD
-    CompareVarToValue 0x4021, 132
-    CallIf 1, _05FD
-    CompareVarToValue 0x4022, 132
-    CallIf 1, _05FD
-    CompareVarToValue 0x4023, 132
-    CallIf 1, _05FD
-    CompareVarToValue 0x4024, 132
-    CallIf 1, _05FD
+    CallIfEq 0x4021, 126, _05FD
+    CallIfEq 0x4022, 126, _05FD
+    CallIfEq 0x4023, 126, _05FD
+    CallIfEq 0x4024, 126, _05FD
+    CallIfEq 0x4021, 132, _05FD
+    CallIfEq 0x4022, 132, _05FD
+    CallIfEq 0x4023, 132, _05FD
+    CallIfEq 0x4024, 132, _05FD
     Return
 
 _05FD:
@@ -435,32 +380,19 @@ _05FD:
     Return
 
 _0605:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _06B0
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _06B8
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _06C0
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _06C8
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _06D0
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _06D8
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _06E0
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _06E8
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _06F0
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _06F8
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0700
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0708
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0710
+    CallIfEq 0x4001, 126, _06B0
+    CallIfEq 0x4001, 127, _06B8
+    CallIfEq 0x4001, 128, _06C0
+    CallIfEq 0x4001, 129, _06C8
+    CallIfEq 0x4001, 130, _06D0
+    CallIfEq 0x4001, 131, _06D8
+    CallIfEq 0x4001, 132, _06E0
+    CallIfEq 0x4001, 133, _06E8
+    CallIfEq 0x4001, 141, _06F0
+    CallIfEq 0x4001, 142, _06F8
+    CallIfEq 0x4001, 143, _0700
+    CallIfEq 0x4001, 144, _0708
+    CallIfEq 0x4001, 145, _0710
     Return
 
 _06B0:
@@ -516,34 +448,20 @@ _0710:
     Return
 
 _0718:
-    CompareVarToValue 0x4061, 1
-    GoToIf 1, _0BF5
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _07D0
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _07D5
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _07DA
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _07DF
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _07E4
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _07E9
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _07EE
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _07F3
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _07F8
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _07FD
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0802
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0807
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _080C
+    GoToIfEq 0x4061, 1, _0BF5
+    CallIfEq 0x4001, 126, _07D0
+    CallIfEq 0x4001, 127, _07D5
+    CallIfEq 0x4001, 128, _07DA
+    CallIfEq 0x4001, 129, _07DF
+    CallIfEq 0x4001, 130, _07E4
+    CallIfEq 0x4001, 131, _07E9
+    CallIfEq 0x4001, 132, _07EE
+    CallIfEq 0x4001, 133, _07F3
+    CallIfEq 0x4001, 141, _07F8
+    CallIfEq 0x4001, 142, _07FD
+    CallIfEq 0x4001, 143, _0802
+    CallIfEq 0x4001, 144, _0807
+    CallIfEq 0x4001, 145, _080C
     Return
 
 _07D0:
@@ -599,34 +517,20 @@ _080C:
     Return
 
 _0811:
-    CompareVarToValue 0x4061, 1
-    GoToIf 1, _0CE1
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _08C9
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _08CE
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _08D3
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _08D8
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _08DD
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _08E2
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _08E7
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _08EC
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _08F1
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _08F6
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _08FB
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0900
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0905
+    GoToIfEq 0x4061, 1, _0CE1
+    CallIfEq 0x4001, 126, _08C9
+    CallIfEq 0x4001, 127, _08CE
+    CallIfEq 0x4001, 128, _08D3
+    CallIfEq 0x4001, 129, _08D8
+    CallIfEq 0x4001, 130, _08DD
+    CallIfEq 0x4001, 131, _08E2
+    CallIfEq 0x4001, 132, _08E7
+    CallIfEq 0x4001, 133, _08EC
+    CallIfEq 0x4001, 141, _08F1
+    CallIfEq 0x4001, 142, _08F6
+    CallIfEq 0x4001, 143, _08FB
+    CallIfEq 0x4001, 144, _0900
+    CallIfEq 0x4001, 145, _0905
     Return
 
 _08C9:
@@ -682,34 +586,20 @@ _0905:
     Return
 
 _090A:
-    CompareVarToValue 0x4061, 1
-    GoToIf 1, _0DCD
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _09C2
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _09C7
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _09CC
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _09D1
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _09D6
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _09DB
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _09E0
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _09E5
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _09EA
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _09EF
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _09F4
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _09F9
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _09FE
+    GoToIfEq 0x4061, 1, _0DCD
+    CallIfEq 0x4001, 126, _09C2
+    CallIfEq 0x4001, 127, _09C7
+    CallIfEq 0x4001, 128, _09CC
+    CallIfEq 0x4001, 129, _09D1
+    CallIfEq 0x4001, 130, _09D6
+    CallIfEq 0x4001, 131, _09DB
+    CallIfEq 0x4001, 132, _09E0
+    CallIfEq 0x4001, 133, _09E5
+    CallIfEq 0x4001, 141, _09EA
+    CallIfEq 0x4001, 142, _09EF
+    CallIfEq 0x4001, 143, _09F4
+    CallIfEq 0x4001, 144, _09F9
+    CallIfEq 0x4001, 145, _09FE
     Return
 
 _09C2:
@@ -765,34 +655,20 @@ _09FE:
     Return
 
 _0A03:
-    CompareVarToValue 0x4061, 1
-    GoToIf 1, _0EB9
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _0ABB
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _0AC0
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _0AC5
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _0ACA
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _0ACF
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _0AD4
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _0AD9
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _0ADE
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _0AE3
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _0AE8
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0AED
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0AF2
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0AF7
+    GoToIfEq 0x4061, 1, _0EB9
+    CallIfEq 0x4001, 126, _0ABB
+    CallIfEq 0x4001, 127, _0AC0
+    CallIfEq 0x4001, 128, _0AC5
+    CallIfEq 0x4001, 129, _0ACA
+    CallIfEq 0x4001, 130, _0ACF
+    CallIfEq 0x4001, 131, _0AD4
+    CallIfEq 0x4001, 132, _0AD9
+    CallIfEq 0x4001, 133, _0ADE
+    CallIfEq 0x4001, 141, _0AE3
+    CallIfEq 0x4001, 142, _0AE8
+    CallIfEq 0x4001, 143, _0AED
+    CallIfEq 0x4001, 144, _0AF2
+    CallIfEq 0x4001, 145, _0AF7
     Return
 
 _0ABB:
@@ -848,34 +724,20 @@ _0AF7:
     Return
 
 _0AFC:
-    CompareVarToValue 0x4061, 1
-    GoToIf 1, _0FA5
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _0BB4
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _0BB9
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _0BBE
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _0BC3
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _0BC8
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _0BCD
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _0BD2
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _0BD7
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _0BDC
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _0BE1
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0BE6
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0BEB
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0BF0
+    GoToIfEq 0x4061, 1, _0FA5
+    CallIfEq 0x4001, 126, _0BB4
+    CallIfEq 0x4001, 127, _0BB9
+    CallIfEq 0x4001, 128, _0BBE
+    CallIfEq 0x4001, 129, _0BC3
+    CallIfEq 0x4001, 130, _0BC8
+    CallIfEq 0x4001, 131, _0BCD
+    CallIfEq 0x4001, 132, _0BD2
+    CallIfEq 0x4001, 133, _0BD7
+    CallIfEq 0x4001, 141, _0BDC
+    CallIfEq 0x4001, 142, _0BE1
+    CallIfEq 0x4001, 143, _0BE6
+    CallIfEq 0x4001, 144, _0BEB
+    CallIfEq 0x4001, 145, _0BF0
     Return
 
 _0BB4:
@@ -931,32 +793,19 @@ _0BF0:
     Return
 
 _0BF5:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _0CA0
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _0CA5
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _0CAA
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _0CAF
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _0CB4
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _0CB9
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _0CBE
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _0CC3
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _0CC8
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _0CCD
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0CD2
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0CD7
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0CDC
+    CallIfEq 0x4001, 126, _0CA0
+    CallIfEq 0x4001, 127, _0CA5
+    CallIfEq 0x4001, 128, _0CAA
+    CallIfEq 0x4001, 129, _0CAF
+    CallIfEq 0x4001, 130, _0CB4
+    CallIfEq 0x4001, 131, _0CB9
+    CallIfEq 0x4001, 132, _0CBE
+    CallIfEq 0x4001, 133, _0CC3
+    CallIfEq 0x4001, 141, _0CC8
+    CallIfEq 0x4001, 142, _0CCD
+    CallIfEq 0x4001, 143, _0CD2
+    CallIfEq 0x4001, 144, _0CD7
+    CallIfEq 0x4001, 145, _0CDC
     Return
 
 _0CA0:
@@ -1012,32 +861,19 @@ _0CDC:
     Return
 
 _0CE1:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _0D8C
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _0D91
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _0D96
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _0D9B
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _0DA0
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _0DA5
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _0DAA
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _0DAF
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _0DB4
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _0DB9
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0DBE
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0DC3
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0DC8
+    CallIfEq 0x4001, 126, _0D8C
+    CallIfEq 0x4001, 127, _0D91
+    CallIfEq 0x4001, 128, _0D96
+    CallIfEq 0x4001, 129, _0D9B
+    CallIfEq 0x4001, 130, _0DA0
+    CallIfEq 0x4001, 131, _0DA5
+    CallIfEq 0x4001, 132, _0DAA
+    CallIfEq 0x4001, 133, _0DAF
+    CallIfEq 0x4001, 141, _0DB4
+    CallIfEq 0x4001, 142, _0DB9
+    CallIfEq 0x4001, 143, _0DBE
+    CallIfEq 0x4001, 144, _0DC3
+    CallIfEq 0x4001, 145, _0DC8
     Return
 
 _0D8C:
@@ -1093,32 +929,19 @@ _0DC8:
     Return
 
 _0DCD:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _0E78
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _0E7D
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _0E82
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _0E87
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _0E8C
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _0E91
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _0E96
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _0E9B
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _0EA0
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _0EA5
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0EAA
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0EAF
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0EB4
+    CallIfEq 0x4001, 126, _0E78
+    CallIfEq 0x4001, 127, _0E7D
+    CallIfEq 0x4001, 128, _0E82
+    CallIfEq 0x4001, 129, _0E87
+    CallIfEq 0x4001, 130, _0E8C
+    CallIfEq 0x4001, 131, _0E91
+    CallIfEq 0x4001, 132, _0E96
+    CallIfEq 0x4001, 133, _0E9B
+    CallIfEq 0x4001, 141, _0EA0
+    CallIfEq 0x4001, 142, _0EA5
+    CallIfEq 0x4001, 143, _0EAA
+    CallIfEq 0x4001, 144, _0EAF
+    CallIfEq 0x4001, 145, _0EB4
     Return
 
 _0E78:
@@ -1174,32 +997,19 @@ _0EB4:
     Return
 
 _0EB9:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _0F64
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _0F69
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _0F6E
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _0F73
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _0F78
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _0F7D
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _0F82
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _0F87
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _0F8C
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _0F91
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _0F96
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _0F9B
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _0FA0
+    CallIfEq 0x4001, 126, _0F64
+    CallIfEq 0x4001, 127, _0F69
+    CallIfEq 0x4001, 128, _0F6E
+    CallIfEq 0x4001, 129, _0F73
+    CallIfEq 0x4001, 130, _0F78
+    CallIfEq 0x4001, 131, _0F7D
+    CallIfEq 0x4001, 132, _0F82
+    CallIfEq 0x4001, 133, _0F87
+    CallIfEq 0x4001, 141, _0F8C
+    CallIfEq 0x4001, 142, _0F91
+    CallIfEq 0x4001, 143, _0F96
+    CallIfEq 0x4001, 144, _0F9B
+    CallIfEq 0x4001, 145, _0FA0
     Return
 
 _0F64:
@@ -1255,32 +1065,19 @@ _0FA0:
     Return
 
 _0FA5:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _1050
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _1055
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _105A
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _105F
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _1064
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _1069
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _106E
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _1073
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _1078
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _107D
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _1082
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _1087
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _108C
+    CallIfEq 0x4001, 126, _1050
+    CallIfEq 0x4001, 127, _1055
+    CallIfEq 0x4001, 128, _105A
+    CallIfEq 0x4001, 129, _105F
+    CallIfEq 0x4001, 130, _1064
+    CallIfEq 0x4001, 131, _1069
+    CallIfEq 0x4001, 132, _106E
+    CallIfEq 0x4001, 133, _1073
+    CallIfEq 0x4001, 141, _1078
+    CallIfEq 0x4001, 142, _107D
+    CallIfEq 0x4001, 143, _1082
+    CallIfEq 0x4001, 144, _1087
+    CallIfEq 0x4001, 145, _108C
     Return
 
 _1050:
@@ -1336,32 +1133,19 @@ _108C:
     Return
 
 _1091:
-    CompareVarToValue 0x4001, 126
-    CallIf 1, _113C
-    CompareVarToValue 0x4001, 127
-    CallIf 1, _1142
-    CompareVarToValue 0x4001, 128
-    CallIf 1, _1148
-    CompareVarToValue 0x4001, 129
-    CallIf 1, _114E
-    CompareVarToValue 0x4001, 130
-    CallIf 1, _1154
-    CompareVarToValue 0x4001, 131
-    CallIf 1, _115A
-    CompareVarToValue 0x4001, 132
-    CallIf 1, _1160
-    CompareVarToValue 0x4001, 133
-    CallIf 1, _1166
-    CompareVarToValue 0x4001, 141
-    CallIf 1, _116C
-    CompareVarToValue 0x4001, 142
-    CallIf 1, _1172
-    CompareVarToValue 0x4001, 143
-    CallIf 1, _1178
-    CompareVarToValue 0x4001, 144
-    CallIf 1, _117E
-    CompareVarToValue 0x4001, 145
-    CallIf 1, _1184
+    CallIfEq 0x4001, 126, _113C
+    CallIfEq 0x4001, 127, _1142
+    CallIfEq 0x4001, 128, _1148
+    CallIfEq 0x4001, 129, _114E
+    CallIfEq 0x4001, 130, _1154
+    CallIfEq 0x4001, 131, _115A
+    CallIfEq 0x4001, 132, _1160
+    CallIfEq 0x4001, 133, _1166
+    CallIfEq 0x4001, 141, _116C
+    CallIfEq 0x4001, 142, _1172
+    CallIfEq 0x4001, 143, _1178
+    CallIfEq 0x4001, 144, _117E
+    CallIfEq 0x4001, 145, _1184
     Return
 
 _113C:
@@ -1418,97 +1202,71 @@ _1184:
 
 _118A:
     SetVar 0x800C, 0
-    CompareVarToValue 0x4001, 126
-    GoToIf 1, _123B
-    CompareVarToValue 0x4001, 127
-    GoToIf 1, _1248
-    CompareVarToValue 0x4001, 128
-    GoToIf 1, _1255
-    CompareVarToValue 0x4001, 129
-    GoToIf 1, _1262
-    CompareVarToValue 0x4001, 130
-    GoToIf 1, _126F
-    CompareVarToValue 0x4001, 131
-    GoToIf 1, _127C
-    CompareVarToValue 0x4001, 132
-    GoToIf 1, _1289
-    CompareVarToValue 0x4001, 133
-    GoToIf 1, _1296
-    CompareVarToValue 0x4001, 141
-    GoToIf 1, _12A3
-    CompareVarToValue 0x4001, 142
-    GoToIf 1, _12B0
-    CompareVarToValue 0x4001, 143
-    GoToIf 1, _12BD
-    CompareVarToValue 0x4001, 144
-    GoToIf 1, _12CA
-    CompareVarToValue 0x4001, 145
-    GoToIf 1, _12D7
+    GoToIfEq 0x4001, 126, _123B
+    GoToIfEq 0x4001, 127, _1248
+    GoToIfEq 0x4001, 128, _1255
+    GoToIfEq 0x4001, 129, _1262
+    GoToIfEq 0x4001, 130, _126F
+    GoToIfEq 0x4001, 131, _127C
+    GoToIfEq 0x4001, 132, _1289
+    GoToIfEq 0x4001, 133, _1296
+    GoToIfEq 0x4001, 141, _12A3
+    GoToIfEq 0x4001, 142, _12B0
+    GoToIfEq 0x4001, 143, _12BD
+    GoToIfEq 0x4001, 144, _12CA
+    GoToIfEq 0x4001, 145, _12D7
     Return
 
 _123B:
-    CheckFlag 0xAB8
-    GoToIf 1, _12E4
+    GoToIfSet 0xAB8, _12E4
     Return
 
 _1248:
-    CheckFlag 0xAB9
-    GoToIf 1, _12E4
+    GoToIfSet 0xAB9, _12E4
     Return
 
 _1255:
-    CheckFlag 0xABA
-    GoToIf 1, _12E4
+    GoToIfSet 0xABA, _12E4
     Return
 
 _1262:
-    CheckFlag 0xABB
-    GoToIf 1, _12E4
+    GoToIfSet 0xABB, _12E4
     Return
 
 _126F:
-    CheckFlag 0xAC5
-    GoToIf 1, _12E4
+    GoToIfSet 0xAC5, _12E4
     Return
 
 _127C:
-    CheckFlag 0xAC6
-    GoToIf 1, _12E4
+    GoToIfSet 0xAC6, _12E4
     Return
 
 _1289:
-    CheckFlag 0xAC7
-    GoToIf 1, _12E4
+    GoToIfSet 0xAC7, _12E4
     Return
 
 _1296:
-    CheckFlag 0xAC8
-    GoToIf 1, _12E4
+    GoToIfSet 0xAC8, _12E4
     Return
 
 _12A3:
-    CheckFlag 0xAC9
-    GoToIf 1, _12E4
+    GoToIfSet 0xAC9, _12E4
     Return
 
 _12B0:
-    CheckFlag 0xACA
-    GoToIf 1, _12E4
+    GoToIfSet 0xACA, _12E4
     Return
 
 _12BD:
-    CheckFlag 0xACB
-    GoToIf 1, _12E4
+    GoToIfSet 0xACB, _12E4
     Return
 
 _12CA:
-    CheckFlag 0xACC
-    GoToIf 1, _12E4
+    GoToIfSet 0xACC, _12E4
     Return
 
 _12D7:
-    CheckFlag 0xACD
-    GoToIf 1, _12E4
+    GoToIfSet 0xACD, _12E4
     Return
 
 _12E4:

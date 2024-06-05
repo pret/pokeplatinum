@@ -20,13 +20,11 @@ _002A:
 
 _0032:
     ScrCmd_1B7 0x40C2, 3
-    CheckFlag 214
-    GoToIf 0, _0052
+    GoToIfUnset 214, _0052
     End
 
 _0045:
-    CheckFlag 214
-    GoToIf 0, _0052
+    GoToIfUnset 214, _0052
     End
 
 _0052:
@@ -67,8 +65,7 @@ _0095:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 215
-    GoToIf 1, _00B3
+    GoToIfSet 215, _00B3
     ScrCmd_02C 10
     ScrCmd_031
     ScrCmd_034
@@ -136,17 +133,13 @@ _0141:
     ScrCmd_060
     ScrCmd_068
     ScrCmd_234 0x4000
-    CompareVarToValue 0x4000, 0
-    GoToIf 1, _01BE
-    CompareVarToValue 0x4000, 6
-    GoToIf 1, _01BE
+    GoToIfEq 0x4000, 0, _01BE
+    GoToIfEq 0x4000, 6, _01BE
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     SetVar 0x8008, 0x40C2
-    CompareVarToValue 0x8008, 0
-    GoToIf 1, _0195
-    CompareVarToValue 0x8008, 1
-    GoToIf 1, _01A0
+    GoToIfEq 0x8008, 0, _0195
+    GoToIfEq 0x8008, 1, _01A0
     GoTo _01AB
     End
 
@@ -172,26 +165,21 @@ _01B6:
     End
 
 _01BE:
-    CheckFlag 0xAB2
-    GoToIf 1, _02CB
+    GoToIfSet 0xAB2, _02CB
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_02C 2
     ScrCmd_034
     ScrCmd_0DE 0x800C
-    CompareVarToValue 0x800C, 0x183
-    GoToIf 1, _0236
-    CompareVarToValue 0x800C, 0x186
-    GoToIf 1, _0272
+    GoToIfEq 0x800C, 0x183, _0236
+    GoToIfEq 0x800C, 0x186, _0272
     GoTo _01FA
     End
 
 _01FA:
     ScrCmd_28F 0x800C
-    CompareVarToValue 0x800C, 20
-    GoToIf 0, _021A
-    CompareVarToValue 0x800C, 20
-    GoToIf 4, _0228
+    GoToIfLt 0x800C, 20, _021A
+    GoToIfGe 0x800C, 20, _0228
     End
 
 _021A:
@@ -206,10 +194,8 @@ _0228:
 
 _0236:
     ScrCmd_28F 0x800C
-    CompareVarToValue 0x800C, 20
-    GoToIf 0, _0256
-    CompareVarToValue 0x800C, 20
-    GoToIf 4, _0264
+    GoToIfLt 0x800C, 20, _0256
+    GoToIfGe 0x800C, 20, _0264
     End
 
 _0256:
@@ -224,10 +210,8 @@ _0264:
 
 _0272:
     ScrCmd_28F 0x800C
-    CompareVarToValue 0x800C, 20
-    GoToIf 0, _0292
-    CompareVarToValue 0x800C, 20
-    GoToIf 4, _02A0
+    GoToIfLt 0x800C, 20, _0292
+    GoToIfGe 0x800C, 20, _02A0
     End
 
 _0292:
@@ -242,8 +226,7 @@ _02A0:
 
 _02AE:
     ScrCmd_0EC 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _02DC
+    GoToIfEq 0x800C, 0, _02DC
     SetFlag 0xAB2
     GoTo _02CB
     End

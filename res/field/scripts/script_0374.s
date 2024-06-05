@@ -45,8 +45,7 @@
 _009A:
     SetFlag 0x2CB
     ScrCmd_238 19, 0x4000
-    CompareVarToValue 0x4000, 0
-    GoToIf 1, _00D5
+    GoToIfEq 0x4000, 0, _00D5
     ScrCmd_329 0x4001, 0x4002, 0x4003, 0x4004
     ScrCmd_186 29, 0x4001, 0x4002
     ScrCmd_189 29, 0x4003

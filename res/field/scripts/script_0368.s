@@ -9,24 +9,16 @@
     .short 0xFD13
 
 _0012:
-    CompareVarToValue 0x40DB, 0
-    CallIf 5, _008A
+    CallIfNe 0x40DB, 0, _008A
     ScrCmd_1DD 43, 0, 0x400A
     Call _008E
-    CompareVarToValue 0x400A, 2
-    CallIf 1, _009E
-    CompareVarToValue 0x400A, 3
-    CallIf 1, _009E
-    CompareVarToValue 0x400A, 0
-    CallIf 1, _008E
-    CompareVarToValue 0x400A, 1
-    CallIf 1, _008E
-    CompareVarToValue 0x400A, 4
-    CallIf 1, _0096
-    CompareVarToValue 0x400A, 5
-    CallIf 1, _0096
-    CompareVarToValue 0x400A, 6
-    CallIf 1, _0096
+    CallIfEq 0x400A, 2, _009E
+    CallIfEq 0x400A, 3, _009E
+    CallIfEq 0x400A, 0, _008E
+    CallIfEq 0x400A, 1, _008E
+    CallIfEq 0x400A, 4, _0096
+    CallIfEq 0x400A, 5, _0096
+    CallIfEq 0x400A, 6, _0096
     End
 
 _008A:
@@ -49,10 +41,8 @@ _00A6:
     ScrCmd_0BC 6, 1, 0, 0
     ScrCmd_0BD
     ScrCmd_1DD 43, 0, 0x800C
-    CompareVarToValue 0x800C, 4
-    GoToIf 1, _01F8
-    CompareVarToValue 0x800C, 5
-    GoToIf 1, _01F8
+    GoToIfEq 0x800C, 4, _01F8
+    GoToIfEq 0x800C, 5, _01F8
     ScrCmd_1F8
     ScrCmd_2C4 5
     ScrCmd_0A1

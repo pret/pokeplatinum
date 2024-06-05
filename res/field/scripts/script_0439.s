@@ -45,14 +45,12 @@ _0070:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x13F
-    GoToIf 1, _00B5
+    GoToIfSet 0x13F, _00B5
     ScrCmd_02C 0
     SetVar 0x8004, 111
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
-    CompareVarToValue 0x800C, 0
-    GoToIf 1, _00C0
+    GoToIfEq 0x800C, 0, _00C0
     SetFlag 0x13F
     ScrCmd_014 0x7E0
     ScrCmd_034

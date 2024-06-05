@@ -84,15 +84,11 @@ _00A9:
     ScrCmd_049 0x5DC
     ScrCmd_060
     ScrCmd_068
-    CheckFlag 0x129
-    GoToIf 1, _0109
+    GoToIfSet 0x129, _0109
     ScrCmd_0DE 0x800C
-    CompareVarToValue 0x800C, 0x183
-    CallIf 1, _0119
-    CompareVarToValue 0x800C, 0x186
-    CallIf 1, _0121
-    CompareVarToValue 0x800C, 0x189
-    CallIf 1, _0129
+    CallIfEq 0x800C, 0x183, _0119
+    CallIfEq 0x800C, 0x186, _0121
+    CallIfEq 0x800C, 0x189, _0129
     SetVar 0x4107, 0x8004
     ScrCmd_343 0, 0x8004
     ScrCmd_02C 3

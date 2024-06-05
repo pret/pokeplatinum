@@ -10,21 +10,16 @@
 
 _0012:
     ScrCmd_32B 0x4004
-    CompareVarToValue 0x4004, 0
-    GoToIf 1, _0061
-    CompareVarToValue 0x4004, 1
-    GoToIf 1, _006B
+    GoToIfEq 0x4004, 0, _0061
+    GoToIfEq 0x4004, 1, _006B
     End
 
 _0032:
     ScrCmd_25B
-    CompareVarToValue 0x4069, 0x122
-    CallIf 5, _0079
+    CallIfNe 0x4069, 0x122, _0079
     ScrCmd_32B 0x4004
-    CompareVarToValue 0x4004, 0
-    GoToIf 1, _0061
-    CompareVarToValue 0x4004, 1
-    GoToIf 1, _006B
+    GoToIfEq 0x4004, 0, _0061
+    GoToIfEq 0x4004, 1, _006B
     End
 
 _0061:
