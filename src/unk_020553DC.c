@@ -306,7 +306,7 @@ u16 sub_0205560C (int param0)
     return v1;
 }
 
-void Sound_TryFadeInBgm (FieldSystem * fieldSystem, int param1)
+void Sound_TryFadeInBGM (FieldSystem * fieldSystem, int param1)
 {
     if (sub_020041DC() == 1) {
         return;
