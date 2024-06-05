@@ -37,6 +37,9 @@
 #include "map_object.h"
 #include "trainer_data.h"
 
+#define SINGLE_BATTLE_EVENT_ID_OFFSET 3000
+#define DOUBLE_BATTLE_EVENT_ID_OFFSET 5000
+
 typedef void (* UnkFuncPtr_0203E950)(FieldSystem *);
 
 typedef struct {
@@ -674,10 +677,10 @@ void sub_0203F21C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3
 
 u16 Script_GetTrainerID(u16 eventID)
 {
-    if (eventID < 5000) {
-        return eventID - 3000 + 1;
+    if (eventID < DOUBLE_BATTLE_EVENT_ID_OFFSET) {
+        return eventID - SINGLE_BATTLE_EVENT_ID_OFFSET + 1;
     } else {
-        return eventID - 5000 + 1;
+        return eventID - DOUBLE_BATTLE_EVENT_ID_OFFSET + 1;
     }
 }
 
