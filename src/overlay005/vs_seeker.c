@@ -96,9 +96,6 @@ typedef struct {
     VsSeekerSystem *vsSeeker;
 } VsSeekerAnimationTask;
 
-void VsSeeker_Start(TaskManager *taskMan, StringTemplate *template, u16 *outResult);
-u16 VsSeeker_GetRematchTrainerID(FieldSystem *fieldSystem, MapObject *trainerObj, u16 trainerID);
-BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem);
 static BOOL VsSeeker_IsMoveCodeHidden(u32 moveCode);
 static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan);
 static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSeeker);
@@ -118,7 +115,6 @@ static u16 VsSeeker_GetNextLowerRematchLevel(u16 rematchDataIndex, u16 level);
 static u16 VsSeeker_GetTrainerIDForRematchLevel(u16 rematchDataIndex, u16 level);
 static BOOL VsSeeker_IsTrainerDoingRematchAnimation(MapObject *trainerObj);
 static void VsSeeker_SetTrainerMoveCode(MapObject *trainerObj, u16 moveCode);
-void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject *trainerObj);
 static BOOL VsSeeker_WaitForNpcsToPause(FieldSystem *fieldSystem);
 static MapObject *VsSeeker_GetSecondDoubleBattleTrainer(FieldSystem *fieldSystem, MapObject *trainerObj, enum VsSeeker2v2TrainerSearchMode mode);
 
