@@ -72,7 +72,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         RTCTime v6;
         Playtime * v7;
 
-        v7 = sub_02025E5C(v2);
+        v7 = SaveData_GetPlaytime(v2);
 
         sub_02055BF4(fieldSystem, &v4, &v6);
         sub_02055C10(fieldSystem, &v5, &v6);

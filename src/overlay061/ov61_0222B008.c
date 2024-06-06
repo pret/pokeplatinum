@@ -241,7 +241,7 @@ int ov61_0222B2D8 (UnkStruct_ov62_022349A8 * param0, UnkStruct_02030A80 * param1
         return 0;
     }
 
-    v0 = sub_02025E5C(param0->unk_00);
+    v0 = SaveData_GetPlaytime(param0->unk_00);
     MI_CpuCopy8(v0, &param0->unk_190.unk_00_val3.unk_08, sizeof(UnkStruct_ov62_0223D518_sub1_sub1));
     ov61_0222AFCC(param0->unk_00, param1, &param0->unk_190.unk_00_val3.unk_00);
 

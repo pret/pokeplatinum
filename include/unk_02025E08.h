@@ -12,6 +12,6 @@ void Player_Init(UnkStruct_02025E0C * param0);
 TrainerInfo * SaveData_GetTrainerInfo(SaveData * param0);
 Options * SaveData_Options(SaveData * param0);
 u16 * sub_02025E50(SaveData * param0);
-Playtime * sub_02025E5C(SaveData * param0);
+Playtime * SaveData_GetPlaytime(SaveData * param0);
 
 #endif // POKEPLATINUM_UNK_02025E08_H

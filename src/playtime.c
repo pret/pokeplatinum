@@ -8,17 +8,15 @@
 #define PLAYTIME_MAX_MINUTES 59
 #define PLAYTIME_MAX_SECONDS 59
 
-void Playtime_Initialize(Playtime *param0)
+void Playtime_Initialize(Playtime *playtime)
 {
-    param0->hours = 0;
-    param0->minutes = 0;
-    param0->seconds = 0;
+    playtime->hours = 0;
+    playtime->minutes = 0;
+    playtime->seconds = 0;
 }
 
 void Playtime_Increase(Playtime *playtime, u32 seconds)
 {
-    // u32 hours, minutes, newSeconds;
-
     if (playtime->hours == PLAYTIME_MAX_HOURS 
         && playtime->minutes == PLAYTIME_MAX_MINUTES 
         && playtime->seconds == PLAYTIME_MAX_SECONDS) {

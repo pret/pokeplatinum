@@ -87,7 +87,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * f
     }
 
     param0->unk_08 = SaveData_GetTrainerInfo(v0);
-    param0->unk_0C = sub_02025E5C(v0);
+    param0->unk_0C = SaveData_GetPlaytime(v0);
 }
 
 static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E1D20 * param1)
