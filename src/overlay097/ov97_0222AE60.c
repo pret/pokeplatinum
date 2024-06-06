@@ -597,9 +597,9 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
 
     StringTemplate_SetPlayerName(v4, 0, v6->unk_0C);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 16, 16 * 1);
-    ov97_0222B590(v4, sub_0202CC58(v6->unk_10));
+    ov97_0222B590(v4, Playtime_GetHours(v6->unk_10));
 
-    StringTemplate_SetNumber(v4, 1, sub_0202CC5C(v6->unk_10), 2, 2, 1);
+    StringTemplate_SetNumber(v4, 1, Playtime_GetMinutes(v6->unk_10), 2, 2, 1);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 17, 16 * 2);
 
     StringTemplate_SetNumber(v4, 0, v6->unk_50, 1, 0, 1);

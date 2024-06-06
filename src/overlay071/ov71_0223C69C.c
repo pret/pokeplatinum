@@ -132,8 +132,8 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
             u32 v7;
 
             if (param1->unk_04_1) {
-                StringTemplate_SetNumber(v4, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
-                StringTemplate_SetNumber(v4, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
+                StringTemplate_SetNumber(v4, 0, Playtime_GetHours(param1->unk_18), 3, 1, 1);
+                StringTemplate_SetNumber(v4, 1, Playtime_GetMinutes(param1->unk_18), 2, 2, 1);
                 MessageLoader_GetStrbuf(v1, 16, v3);
             } else {
                 StringTemplate_SetNumber(v4, 0, param1->unk_2A, 3, 1, 1);
@@ -554,7 +554,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
 
     GF_ASSERT(param1->unk_18 != NULL);
 
-    v0 = sub_0202CC58(param1->unk_18);
+    v0 = Playtime_GetHours(param1->unk_18);
 
     if (v0 > 999) {
         v0 = 999;
@@ -569,8 +569,8 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
         Strbuf* v4 = Strbuf_Init(32, 25);
         StringTemplate * v5 = StringTemplate_New((1 + 1), 32, 25);
 
-        StringTemplate_SetNumber(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
-        StringTemplate_SetNumber(v5, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
+        StringTemplate_SetNumber(v5, 0, Playtime_GetHours(param1->unk_18), 3, 1, 1);
+        StringTemplate_SetNumber(v5, 1, Playtime_GetMinutes(param1->unk_18), 2, 2, 1);
         MessageLoader_GetStrbuf(v2, 16, v4);
         StringTemplate_Format(v5, v3, v4);
         v1 = (8 * 28) - sub_02002D7C(0, v3, 0);

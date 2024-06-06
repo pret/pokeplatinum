@@ -184,8 +184,8 @@ static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2,
 
 static void sub_0207207C (const u8 param0, const Playtime * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6)
 {
-    param6->unk_2A = sub_0202CC58(param1);
-    param6->unk_2E = sub_0202CC5C(param1);
+    param6->unk_2A = Playtime_GetHours(param1);
+    param6->unk_2E = Playtime_GetMinutes(param1);
     param6->unk_2F = param2->year;
     param6->unk_30 = param2->month;
     param6->unk_31 = param2->day;

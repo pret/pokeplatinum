@@ -33,7 +33,7 @@ void sub_02017458 (void)
         u64 v0 = sub_0202295C(sub_0202293C() - Unk_021BF670);
 
         if (v0 > Unk_021BF660) {
-            sub_0202CBF0(Unk_021BF65C, (v0 - Unk_021BF660));
+            Playtime_Increase(Unk_021BF65C, (v0 - Unk_021BF660));
             Unk_021BF660 = v0;
         }
     }

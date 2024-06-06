@@ -110,7 +110,7 @@ static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E
     }
 
     StringTemplate_SetNumber(strTemplate, 3, param1->unk_00, v0, v1, 1);
-    v2 = sub_0202CC58(param1->unk_0C);
+    v2 = Playtime_GetHours(param1->unk_0C);
 
     if (v2 >= 100) {
         v0 = 3;
@@ -124,7 +124,7 @@ static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E
     }
 
     StringTemplate_SetNumber(strTemplate, 4, v2, v0, v1, 1);
-    StringTemplate_SetNumber(strTemplate, 5, sub_0202CC5C(param1->unk_0C), 2, 2, 1);
+    StringTemplate_SetNumber(strTemplate, 5, Playtime_GetMinutes(param1->unk_0C), 2, 2, 1);
 }
 
 static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)

@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_PLAYTIME_H
 
 typedef struct Playtime {
-    u16 unk_00;
-    u8 unk_02;
-    u8 unk_03;
+    u16 hours;
+    u8 minutes;
+    u8 seconds;
 } Playtime;
 
 #endif // POKEPLATINUM_STRUCT_PLAYTIME_H

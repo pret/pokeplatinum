@@ -814,7 +814,7 @@ void * sub_0202BE4C (const Playtime * param0, u16 param1, u8 param2, u8 param3, 
     v0->unk_01_6 = param2;
     v0->unk_01_2 = param3;
 
-    v1 = sub_0202CC5C(param0) / 10;
+    v1 = Playtime_GetMinutes(param0) / 10;
 
     if ((v1 == 0) || (v1 == 2) || (v1 == 4)) {
         v0->unk_01_0 = 0;
@@ -839,7 +839,7 @@ void * sub_0202BECC (const Playtime * param0, u16 param1, u8 param2, u8 param3, 
     v0->unk_01_6 = param2;
     v0->unk_01_2 = param3;
 
-    v1 = sub_0202CC5C(param0) / 10;
+    v1 = Playtime_GetMinutes(param0) / 10;
 
     if ((v1 == 1) || (v1 == 3) || (v1 == 5)) {
         v0->unk_01_0 = 0;

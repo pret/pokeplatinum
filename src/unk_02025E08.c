@@ -32,7 +32,7 @@ void Player_Init (UnkStruct_02025E0C * param0)
     Options_Init(&param0->unk_00);
     TrainerInfo_Init(&param0->unk_04);
     Coins_Init(&param0->unk_24);
-    sub_0202CBE4(&param0->unk_26);
+    Playtime_Initialize(&param0->unk_26);
 }
 
 TrainerInfo * SaveData_GetTrainerInfo (SaveData * param0)

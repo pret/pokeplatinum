@@ -4,57 +4,63 @@
 
 #include "playtime.h"
 
-void sub_0202CBE4 (Playtime * param0)
+#define PLAYTIME_MAX_HOURS 999
+#define PLAYTIME_MAX_MINUTES 59
+#define PLAYTIME_MAX_SECONDS 59
+
+void Playtime_Initialize(Playtime *param0)
 {
-    param0->unk_00 = 0;
-    param0->unk_02 = 0;
-    param0->unk_03 = 0;
+    param0->hours = 0;
+    param0->minutes = 0;
+    param0->seconds = 0;
 }
 
-void sub_0202CBF0 (Playtime * param0, u32 param1)
+void Playtime_Increase(Playtime *playtime, u32 seconds)
 {
-    u32 v0, v1, v2;
+    // u32 hours, minutes, newSeconds;
 
-    if ((param0->unk_00 == 999) && (param0->unk_02 == 59) && (param0->unk_03 == 59)) {
+    if (playtime->hours == PLAYTIME_MAX_HOURS 
+        && playtime->minutes == PLAYTIME_MAX_MINUTES 
+        && playtime->seconds == PLAYTIME_MAX_SECONDS) {
         return;
     }
 
-    v0 = param0->unk_00;
-    v1 = param0->unk_02;
-    v2 = param0->unk_03 + param1;
+    u32 hours = playtime->hours;
+    u32 minutes = playtime->minutes;
+    u32 newSeconds = playtime->seconds + seconds;
 
-    if (v2 > 59) {
-        v1 = param0->unk_02 + (v2 / (59 + 1));
-        v2 %= (59 + 1);
+    if (newSeconds > PLAYTIME_MAX_SECONDS) {
+        minutes = playtime->minutes + newSeconds / (PLAYTIME_MAX_SECONDS + 1);
+        newSeconds %= PLAYTIME_MAX_SECONDS + 1;
 
-        if (v1 > 59) {
-            v0 = param0->unk_00 + (v1 / (59 + 1));
-            v1 %= (59 + 1);
+        if (minutes > PLAYTIME_MAX_MINUTES) {
+            hours = playtime->hours + minutes / (PLAYTIME_MAX_MINUTES + 1);
+            minutes %= PLAYTIME_MAX_MINUTES + 1;
 
-            if (v0 >= 999) {
-                v0 = 999;
-                v1 = 59;
-                v2 = 59;
+            if (hours >= PLAYTIME_MAX_HOURS) {
+                hours = PLAYTIME_MAX_HOURS;
+                minutes = PLAYTIME_MAX_MINUTES;
+                newSeconds = PLAYTIME_MAX_SECONDS;
             }
         }
     }
 
-    param0->unk_00 = v0;
-    param0->unk_02 = v1;
-    param0->unk_03 = v2;
+    playtime->hours = hours;
+    playtime->minutes = minutes;
+    playtime->seconds = newSeconds;
 }
 
-u16 sub_0202CC58 (const Playtime * param0)
+u16 Playtime_GetHours(const Playtime *playtime)
 {
-    return param0->unk_00;
+    return playtime->hours;
 }
 
-u8 sub_0202CC5C (const Playtime * param0)
+u8 Playtime_GetMinutes(const Playtime *playtime)
 {
-    return param0->unk_02;
+    return playtime->minutes;
 }
 
-u8 sub_0202CC60 (const Playtime * param0)
+u8 Playtime_GetSeconds(const Playtime *playtime)
 {
-    return param0->unk_03;
+    return playtime->seconds;
 }
