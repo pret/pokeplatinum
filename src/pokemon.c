@@ -3792,7 +3792,7 @@ u8 Party_GetMaxLevel(Party *party)
     for (int i = 0; i < currentPartyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             u8 monLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
             if (monLevel > result) {
@@ -3891,7 +3891,7 @@ void Pokemon_ApplyPokerus(Party *party)
             partySlot = LCRNG_Next() % currentPartyCount;
             mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
                 break;
             } else {
                 partySlot = currentPartyCount;

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0205E7D0_H
-#define POKEPLATINUM_UNK_0205E7D0_H
+#ifndef POKEPLATINUM_PLAYER_AVATAR_H
+#define POKEPLATINUM_PLAYER_AVATAR_H
 
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -95,9 +95,9 @@ void sub_0205F054(PlayerAvatar * playerAvatar);
 int sub_0205F060(PlayerAvatar * playerAvatar);
 void sub_0205F074(PlayerAvatar * playerAvatar, int param1);
 int sub_0205F08C(PlayerAvatar * playerAvatar);
-void sub_0205F098(PlayerAvatar * playerAvatar, int param1);
-int PlayerAvatar_DistortionWorldState(PlayerAvatar * const playerAvatar);
-BOOL sub_0205F158(PlayerAvatar * const playerAvatar);
-BOOL sub_0205F16C(PlayerAvatar * const playerAvatar);
+void PlayerAvatar_SetDistortionState(PlayerAvatar * playerAvatar, enum AvatarDistortionState state);
+enum AvatarDistortionState PlayerAvatar_MapDistortionState(PlayerAvatar * const playerAvatar);
+BOOL PlayerAvatar_DistortionGravityChanged(PlayerAvatar * const playerAvatar);
+BOOL PlayerAvatar_DistortionStateOnFloor(PlayerAvatar * const playerAvatar);
 
-#endif // POKEPLATINUM_UNK_0205E7D0_H
+#endif // POKEPLATINUM_PLAYER_AVATAR_H

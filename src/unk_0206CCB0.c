@@ -1066,11 +1066,11 @@ void sub_0206D7C4 (FieldSystem * fieldSystem)
 
     if (v2 == 0) {
         if ((v0 == 1) && (v1 == 0)) {
-            v6 = sub_02054A74(Party_GetFromSavedata(fieldSystem->saveData));
+            v6 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
             sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(fieldSystem, 2, 16, v9);
         } else if ((v0 == 0) && (v1 == 1)) {
-            v6 = sub_02054A74(Party_GetFromSavedata(fieldSystem->saveData));
+            v6 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
             sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(fieldSystem, 2, 16, v9);
         }
@@ -1655,7 +1655,7 @@ void sub_0206E174 (FieldSystem * fieldSystem, u16 param1)
     UnkStruct_0206E1C0 * v1 = &v0.val27;
     Pokemon * v2;
 
-    v2 = sub_02054A74(Party_GetFromSavedata(fieldSystem->saveData));
+    v2 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
 
     sub_0206CE38(v2, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0206CED0(32, v2, &v1->unk_05, v1->unk_06);

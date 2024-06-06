@@ -209,7 +209,7 @@ void sub_02052E58 (TaskManager * param0)
 
     v7 = Party_GetFromSavedata(fieldSystem->saveData);
 
-    sub_02054AC4(v7);
+    Party_GiveChampionRibbons(v7);
     sub_0203D178(v1);
     sub_0203D190(v2);
     sub_0206AD9C(v3);

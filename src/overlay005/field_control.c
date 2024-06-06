@@ -89,7 +89,7 @@ static BOOL Field_CheckSign(FieldSystem *fieldSystem);
 static BOOL Field_UpdateRepel(FieldSystem *fieldSystem);
 static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem);
 static void Field_CalculateFriendship(FieldSystem *fieldSystem);
-static void Field_PlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
+static void Field_GetPlayerPos(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
 static void Field_Step(const FieldSystem *fieldSystem, int *playerX, int *playerZ);
 static void Field_StepInDirection(const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ);
 static u8 Field_CurrentTileBehavior(const FieldSystem *fieldSystem);
@@ -215,7 +215,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
-        if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 127) != 0xff) {
+        if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), MOVE_WATERFALL) != PARTY_SLOT_NONE) {
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
@@ -280,7 +280,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             return TRUE;
         }
 
-        int distortionState = PlayerAvatar_DistortionWorldState(fieldSystem->playerAvatar);
+        enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(fieldSystem->playerAvatar);
 
         if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
             int event = sub_0203CA6C(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
@@ -548,7 +548,7 @@ static BOOL Field_CheckWildEncounter (FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
 
-    Field_PlayerPos(fieldSystem, &playerX, &playerZ);
+    Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
     if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == TRUE) {
         if (sub_02056374(fieldSystem, playerX, playerZ) == TRUE) {
@@ -598,7 +598,7 @@ static BOOL Field_CheckMapTransition (FieldSystem *fieldSystem, const FieldInput
         }
     }
 
-    Field_PlayerPos(fieldSystem, &playerX, &playerZ);
+    Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
     tileBehavior = sub_02054F94(fieldSystem, playerX, playerZ);
 
@@ -692,7 +692,7 @@ u16 Field_TileBehaviorToScript (FieldSystem *fieldSystem, u8 behavior)
         u32 distortionBehavior = sub_02061760(fieldSystem->playerAvatar);
 
         if (ov5_021E0118(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
-            if (sub_020549A0(Party_GetFromSavedata(fieldSystem->saveData), 57) != 0xff) {
+            if (Party_HasMonWithMove(Party_GetFromSavedata(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
                 return 10004;
             }
         }
@@ -948,7 +948,7 @@ static BOOL Field_UpdateSafari (FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static void Field_PlayerPos (const FieldSystem *fieldSystem, int *playerX, int *playerZ)
+static void Field_GetPlayerPos (const FieldSystem *fieldSystem, int *playerX, int *playerZ)
 {
     *playerX = Player_GetXPos(fieldSystem->playerAvatar);
     *playerZ = Player_GetZPos(fieldSystem->playerAvatar);
@@ -962,7 +962,7 @@ static void Field_Step (const FieldSystem *fieldSystem, int *playerX, int *playe
 
 static void Field_StepInDirection (const FieldSystem *fieldSystem, int playerDir, int *playerX, int *playerZ)
 {
-    Field_PlayerPos(fieldSystem, playerX, playerZ);
+    Field_GetPlayerPos(fieldSystem, playerX, playerZ);
 
     switch (playerDir) {
     case DIR_NORTH:
@@ -985,7 +985,7 @@ static void Field_StepInDirection (const FieldSystem *fieldSystem, int playerDir
 static u8 Field_CurrentTileBehavior (const FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
-    Field_PlayerPos(fieldSystem, &playerX, &playerZ);
+    Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
     return sub_02054F94(fieldSystem, playerX, playerZ);
 }
 
@@ -1047,7 +1047,7 @@ static void Field_SetMapConnection (FieldSystem *fieldSystem, const int playerX,
 static void Field_TrySetMapConnection (FieldSystem *fieldSystem)
 {
     int playerX, playerZ;
-    Field_PlayerPos(fieldSystem, &playerX, &playerZ);
+    Field_GetPlayerPos(fieldSystem, &playerX, &playerZ);
 
     Location nextMap;
 
