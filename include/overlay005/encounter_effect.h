@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV5_021DDBE8_H
-#define POKEPLATINUM_OV5_021DDBE8_H
+#ifndef POKEPLATINUM_ENCOUNTER_EFFECT_H
+#define POKEPLATINUM_ENCOUNTER_EFFECT_H
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -90,4 +90,4 @@ BOOL ov5_021DF1CC(void);
 BOOL ov5_021DF208(void);
 void ov5_021DF224(void);
 
-#endif // POKEPLATINUM_OV5_021DDBE8_H
+#endif // POKEPLATINUM_ENCOUNTER_EFFECT_H

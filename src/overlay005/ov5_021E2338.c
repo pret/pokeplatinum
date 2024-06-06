@@ -46,7 +46,7 @@
 #include "unk_0202419C.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "overlay005/ov5_021DDBE8.h"
+#include "overlay005/encounter_effect.h"
 #include "overlay005/ov5_021E22B0.h"
 #include "overlay005/ov5_021E2338.h"
 #include "overlay005/ov5_021EF3A8.h"

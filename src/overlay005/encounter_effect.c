@@ -56,7 +56,7 @@
 #include "unk_02054884.h"
 #include "pokemon.h"
 #include "overlay005/ov5_021D0D80.h"
-#include "overlay005/ov5_021DDBE8.h"
+#include "overlay005/encounter_effect.h"
 #include "overlay005/ov5_021E2338.h"
 #include "overlay005/ov5_021EF3A8.h"
 

@@ -7,7 +7,7 @@
 #include "unk_020041CC.h"
 #include "heap.h"
 #include "unk_020508D4.h"
-#include "overlay005/ov5_021DDBE8.h"
+#include "overlay005/encounter_effect.h"
 
 typedef struct {
     int unk_00;
