@@ -1689,12 +1689,12 @@ void ov5_021E100C (SysTask * param0)
     ov5_021E0FC0(param0);
 }
 
-SysTask * Player_SetStateVsSeeker (FieldSystem * fieldSystem)
+SysTask * FieldSystem_StartVsSeekerTask (FieldSystem * fieldSystem)
 {
     return ov5_021E0F54(fieldSystem, (1 << 9));
 }
 
-void Player_ResetVsSeekerState (SysTask * param0)
+void FieldSystem_EndVsSeekerTask (SysTask * param0)
 {
     ov5_021E0FC0(param0);
 }

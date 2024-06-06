@@ -424,7 +424,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
         }
         break;
     case VS_SEEKER_STATE_START:
-        vsSeeker->playerStateTask = Player_SetStateVsSeeker(vsSeeker->fieldSystem);
+        vsSeeker->playerStateTask = FieldSystem_StartVsSeekerTask(vsSeeker->fieldSystem);
         Sound_PlayEffect(SEQ_SE_DP_VS_SEEKER_BEEP);
         VsSeeker_SetBattery(vsSeeker->events, 0);
         VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_WAIT_FOR_PLAYER_ANIM);
@@ -448,7 +448,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
         break;
     case VS_SEEKER_STATE_WAIT_FOR_VS_SEEKER_SFX:
         if (Sound_IsEffectPlaying(SEQ_SE_DP_VS_SEEKER_BEEP) == FALSE) {
-            Player_ResetVsSeekerState(vsSeeker->playerStateTask);
+            FieldSystem_EndVsSeekerTask(vsSeeker->playerStateTask);
             VsSeekerSystem_SetState(vsSeeker, 9);
         }
         break;
