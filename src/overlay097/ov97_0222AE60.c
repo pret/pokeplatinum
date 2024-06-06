@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/struct_02025E5C_decl.h"
+#include "struct_decls/playtime_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "savedata.h"
@@ -52,7 +52,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_0202CBE4.h"
+#include "playtime.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
@@ -95,7 +95,7 @@ typedef struct {
     SaveData * unk_04;
     PokedexData * unk_08;
     TrainerInfo * unk_0C;
-    UnkStruct_02025E5C * unk_10;
+    Playtime * unk_10;
     MysteryGift * unk_14;
     int unk_18;
     int unk_1C;

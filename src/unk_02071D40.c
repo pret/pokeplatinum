@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E5C_decl.h"
+#include "struct_decls/playtime_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
@@ -21,7 +21,7 @@
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
-#include "unk_0202CBE4.h"
+#include "playtime.h"
 #include "unk_0202CD50.h"
 #include "unk_0203061C.h"
 #include "field_system.h"
@@ -40,7 +40,7 @@ typedef struct {
 
 static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard * param5);
 static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard * param7);
-static void sub_0207207C(const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
+static void sub_0207207C(const u8 param0, const Playtime * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
 static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5);
 static void sub_0207216C(TrainerInfo * param0, FieldSystem * fieldSystem, TrainerCard * param2);
 static BOOL sub_02072230(TaskManager * param0);
@@ -70,7 +70,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         RTCDate v4;
         RTCDate v5;
         RTCTime v6;
-        UnkStruct_02025E5C * v7;
+        Playtime * v7;
 
         v7 = sub_02025E5C(v2);
 
@@ -182,7 +182,7 @@ static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2,
     param7->unk_24 = param6;
 }
 
-static void sub_0207207C (const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6)
+static void sub_0207207C (const u8 param0, const Playtime * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6)
 {
     param6->unk_2A = sub_0202CC58(param1);
     param6->unk_2E = sub_0202CC5C(param1);

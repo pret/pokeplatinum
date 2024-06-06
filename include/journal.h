@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_JOURNAL_H
 #define POKEPLATINUM_JOURNAL_H
 
-#include "struct_decls/struct_02025E5C_decl.h"
+#include "struct_decls/playtime_decl.h"
 #include "trainer_info.h"
 #include "savedata.h"
 
@@ -36,8 +36,8 @@ void * sub_0202BE00(u8 param0, u16 param1, u32 param2);
 void * sub_0202BE14(u32 param0);
 void * sub_0202BE20(u32 param0);
 void * sub_0202BE2C(u32 param0, u32 param1);
-void * sub_0202BE4C(const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4);
-void * sub_0202BECC(const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4);
+void * sub_0202BE4C(const Playtime * param0, u16 param1, u8 param2, u8 param3, u32 param4);
+void * sub_0202BECC(const Playtime * param0, u16 param1, u8 param2, u8 param3, u32 param4);
 void * sub_0202BF4C(u16 param0, u16 param1, u32 param2);
 void * sub_0202BFCC(u16 * param0, u8 param1, u8 param2, u32 param3);
 void * sub_0202C00C(u16 * param0, u8 param1, u8 param2, u32 param3);

@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E5C_decl.h"
+#include "struct_decls/playtime_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "savedata.h"
@@ -27,7 +27,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_0202CBE4.h"
+#include "playtime.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "field_overworld_state.h"
@@ -39,7 +39,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     TrainerInfo * unk_08;
-    UnkStruct_02025E5C * unk_0C;
+    Playtime * unk_0C;
 } UnkStruct_ov5_021E1D20;
 
 struct UnkStruct_ov5_021E1FF4_t {

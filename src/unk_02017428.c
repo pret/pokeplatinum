@@ -1,24 +1,24 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E5C_decl.h"
+#include "struct_decls/playtime_decl.h"
 
 #include "unk_02017428.h"
 #include "unk_02022844.h"
-#include "unk_0202CBE4.h"
+#include "playtime.h"
 
 static BOOL Unk_021BF658 = 0;
 static u64 Unk_021BF668 = 0;
 static u64 Unk_021BF660 = 0;
 static u64 Unk_021BF670 = 0;
-static UnkStruct_02025E5C * Unk_021BF65C = NULL;
+static Playtime * Unk_021BF65C = NULL;
 
 void sub_02017428 (void)
 {
     Unk_021BF658 = 0;
 }
 
-void sub_02017434 (UnkStruct_02025E5C * param0)
+void sub_02017434 (Playtime * param0)
 {
     Unk_021BF658 = 1;
     Unk_021BF668 = 0;

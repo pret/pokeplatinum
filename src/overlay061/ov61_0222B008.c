@@ -5,7 +5,7 @@
 #include "core_sys.h"
 
 #include "strbuf.h"
-#include "struct_decls/struct_02025E5C_decl.h"
+#include "struct_decls/playtime_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
@@ -234,7 +234,7 @@ int ov61_0222B2B8 (UnkStruct_ov62_022349A8 * param0)
 
 int ov61_0222B2D8 (UnkStruct_ov62_022349A8 * param0, UnkStruct_02030A80 * param1, UnkStruct_ov61_0222B2D8 param2[])
 {
-    UnkStruct_02025E5C * v0;
+    Playtime * v0;
     int v1;
 
     if (ov61_0222BBBC(param0) == 0) {

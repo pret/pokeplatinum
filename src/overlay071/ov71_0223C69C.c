@@ -15,7 +15,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_0202CBE4.h"
+#include "playtime.h"
 #include "overlay071/ov71_0223C69C.h"
 
 static void ov71_0223CD64(Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
