@@ -41,7 +41,7 @@
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055C50.h"
@@ -217,8 +217,8 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     }
 
     param1->fieldSystem = fieldSystem;
-    param1->unk_00 = fieldSystem->unk_1C->unk_00;
-    param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
+    param1->unk_00 = fieldSystem->location->mapId;
+    param1->unk_04 = sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
@@ -253,8 +253,8 @@ void sub_0206842C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 static void sub_020684D0 (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 {
     param1->fieldSystem = fieldSystem;
-    param1->unk_00 = fieldSystem->unk_1C->unk_00;
-    param1->unk_04 = sub_0206A984(SaveData_Events(fieldSystem->saveData));
+    param1->unk_00 = fieldSystem->location->mapId;
+    param1->unk_04 = sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
 
@@ -300,14 +300,14 @@ static void sub_02068540 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 static void sub_02068584 (UnkStruct_02068870 * param0, u32 param1)
 {
     void * v0 = sub_0206851C(param1, param0->unk_28, 0, 0, 0);
-    sub_02050904(param0->fieldSystem, sub_020685AC, v0);
+    FieldTask_Set(param0->fieldSystem, sub_020685AC, v0);
 }
 
 static BOOL sub_020685AC (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206851C * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
     MapObject * v3;
 
     switch (*v2) {
@@ -404,7 +404,7 @@ static BOOL sub_02068750 (UnkStruct_02068870 * param0)
     void * v0 = sub_02053FAC(param0->fieldSystem);
 
     MapObjectMan_PauseAllMovement(param0->fieldSystem->mapObjMan);
-    sub_02050904(param0->fieldSystem, sub_02054084, v0);
+    FieldTask_Set(param0->fieldSystem, sub_02054084, v0);
 
     param0->fieldSystem->unk_90 = 0;
     return 0;
@@ -424,7 +424,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if ((sub_0206AE5C(SaveData_Events(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1)) {
+    if ((sub_0206AE5C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1)) {
         return -1;
     }
 
@@ -471,7 +471,7 @@ static void sub_0206883C (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
 static BOOL sub_02068870 (UnkStruct_02068870 * param0)
 {
-    sub_02050904(param0->fieldSystem, sub_02068884, NULL);
+    FieldTask_Set(param0->fieldSystem, sub_02068884, NULL);
     return 0;
 }
 
@@ -481,7 +481,7 @@ static BOOL sub_02068884 (TaskManager * param0)
     int * v1;
 
     fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = sub_02050A68(param0);
+    v1 = FieldTask_GetState(param0);
 
     switch (*v1) {
     case 0:
@@ -495,7 +495,7 @@ static BOOL sub_02068884 (TaskManager * param0)
 
             sub_020553F0(fieldSystem, 0);
             sub_02055554(
-                fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
+                fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
         } else {
             sub_020553F0(fieldSystem, 1152);
             sub_02055554(fieldSystem, 1152, 1);
@@ -522,7 +522,7 @@ static BOOL sub_02068884 (TaskManager * param0)
 
 static u32 sub_02068948 (const UnkStruct_020684D0 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     if (param0->unk_04 == 1) {
         return 2;
@@ -731,7 +731,7 @@ static BOOL sub_02068C38 (UnkStruct_02068870 * param0)
     int * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(int));
 
     *v0 = 0;
-    sub_02050904(param0->fieldSystem, RefreshRadarChain, v0);
+    FieldTask_Set(param0->fieldSystem, RefreshRadarChain, v0);
 
     return 0;
 }
@@ -854,7 +854,7 @@ static BOOL sub_02068DBC (UnkStruct_02068870 * param0)
 {
     void * v0 = ov5_021F08CC(param0->fieldSystem, 4, 0);
 
-    sub_02050904(param0->fieldSystem, ov5_021F08F8, v0);
+    FieldTask_Set(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
@@ -877,7 +877,7 @@ static BOOL sub_02068E18 (UnkStruct_02068870 * param0)
 {
     void * v0 = ov5_021F08CC(param0->fieldSystem, 4, 1);
 
-    sub_02050904(param0->fieldSystem, ov5_021F08F8, v0);
+    FieldTask_Set(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
@@ -900,7 +900,7 @@ static BOOL sub_02068E74 (UnkStruct_02068870 * param0)
 {
     void * v0 = ov5_021F08CC(param0->fieldSystem, 4, 2);
 
-    sub_02050904(param0->fieldSystem, ov5_021F08F8, v0);
+    FieldTask_Set(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
@@ -937,7 +937,7 @@ static BOOL sub_02068EFC (UnkStruct_02068870 * param0)
     v0->unk_10 = Strbuf_Init(128, 11);
 
     sub_0207CC10(param0->fieldSystem->saveData, v0->unk_10, sub_0207D3FC(sub_0207D990(param0->fieldSystem->saveData)), 11);
-    sub_02050904(param0->fieldSystem, sub_02068F48, v0);
+    FieldTask_Set(param0->fieldSystem, sub_02068F48, v0);
 
     return 0;
 }
@@ -1046,7 +1046,7 @@ static BOOL sub_020690F0 (TaskManager * param0)
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     void * v1 = ov6_02247100(fieldSystem, 11);
 
-    sub_02050924(param0, ov6_02247120, v1);
+    FieldTask_Change(param0, ov6_02247120, v1);
     return 0;
 }
 
@@ -1063,7 +1063,7 @@ static BOOL sub_02069120 (UnkStruct_02068870 * param0)
 
 static u32 sub_02069130 (const UnkStruct_020684D0 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     if (sub_0206A954(v0) == 0) {
         return -1;
@@ -1149,7 +1149,7 @@ BOOL sub_02069238 (FieldSystem * fieldSystem)
         return 0;
     }
 
-    if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         return 0;
     }
 
@@ -1199,7 +1199,7 @@ static void sub_020692E4 (UnkStruct_02068870 * param0, u32 param1)
     v0->unk_10 = Strbuf_Init(128, 11);
 
     sub_0207CD34(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0->unk_10, param0->unk_28, param1, 11);
-    sub_02050904(param0->fieldSystem, sub_02068F48, v0);
+    FieldTask_Set(param0->fieldSystem, sub_02068F48, v0);
 }
 
 static BOOL sub_0206932C (TaskManager * taskMan)
@@ -1260,5 +1260,5 @@ static BOOL sub_0206932C (TaskManager * taskMan)
 static void sub_020693F8 (UnkStruct_02068870 * param0, UnkFuncPtr_02068870 param1)
 {
     param0->unk_20 = param1;
-    sub_02050904(param0->fieldSystem, sub_0206932C, param0);
+    FieldTask_Set(param0->fieldSystem, sub_0206932C, param0);
 }

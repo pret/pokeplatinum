@@ -24,7 +24,7 @@ BOOL ov5_021F101C (TaskManager * param0)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
     UnkStruct_020711C8 * v1 = TaskManager_Environment(param0);
-    int * v2 = sub_02050A68(param0);
+    int * v2 = FieldTask_GetState(param0);
     UnkStruct_ov5_021F101C * v3 = v1->unk_04;
 
     switch (*v2) {
@@ -55,7 +55,7 @@ BOOL ov5_021F101C (TaskManager * param0)
         }
         break;
     case 4:
-        sub_02050944(param0, ov5_021F0488, v3->unk_04);
+        FieldTask_Start(param0, ov5_021F0488, v3->unk_04);
         (*v2)++;
         break;
     case 5:

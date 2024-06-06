@@ -835,7 +835,7 @@ void ov5_021D4D48 (FieldSystem * fieldSystem, const u8 param1)
     u8 * v0 = Heap_AllocFromHeapAtEnd(4, sizeof(u8));
 
     *v0 = param1;
-    sub_02050944(fieldSystem->unk_10, ov5_021D4BC8, v0);
+    FieldTask_Start(fieldSystem->unk_10, ov5_021D4BC8, v0);
 }
 
 void ov5_021D4D68 (FieldSystem * fieldSystem, const u8 param1)

@@ -251,7 +251,7 @@ void sub_0204F3D0 (TaskManager * param0, u16 param1, u16 * param2)
 
     CommFieldCmd_Init(v0);
 
-    sub_02050944(param0, sub_0204F414, v0);
+    FieldTask_Start(param0, sub_0204F414, v0);
     return;
 }
 
@@ -299,7 +299,7 @@ void sub_0204F470 (TaskManager * param0, void ** param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_08 = param1;
 
-    sub_02050944(fieldSystem->unk_10, sub_0204F4A4, v1);
+    FieldTask_Start(fieldSystem->unk_10, sub_0204F4A4, v1);
     return;
 }
 

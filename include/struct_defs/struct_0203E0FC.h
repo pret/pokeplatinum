@@ -6,7 +6,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "game_options.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
@@ -27,7 +27,7 @@ typedef struct {
     SaveData * unk_20;
     Options * unk_24;
     UnkStruct_0202CD88 * unk_28;
-    UnkStruct_0202B628 * unk_2C;
+    Journal * unk_2C;
     UnkStruct_0207D3C0 * unk_30;
     int unk_34;
     int unk_38;

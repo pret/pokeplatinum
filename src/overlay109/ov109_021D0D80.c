@@ -59,7 +59,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "communication_information.h"
 #include "communication_system.h"

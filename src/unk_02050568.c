@@ -20,7 +20,7 @@
 #include "unk_02050568.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
 #include "player_avatar.h"
@@ -45,14 +45,14 @@ void sub_02050568 (FieldSystem * fieldSystem)
     UnkStruct_02050568 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
-    sub_02050944(fieldSystem->unk_10, sub_020505A0, v0);
+    FieldTask_Start(fieldSystem->unk_10, sub_020505A0, v0);
 }
 
 static BOOL sub_020505A0 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02050568 * v1 = TaskManager_Environment(taskMan);
-    UnkStruct_020507E4 * v2 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     switch (v1->unk_08) {
     case 0:
@@ -72,7 +72,7 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
         {
             Location v3;
 
-            inline_02049FA8(&v3, 172, -1, 847, 561, 1);
+            Location_Set(&v3, 172, -1, 847, 561, 1);
             sub_020539A0(taskMan, &v3);
         }
         v1->unk_08++;
@@ -108,7 +108,7 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
         {
             Location v4;
 
-            inline_02049FA8(&v4, 164, -1, v1->unk_04, v1->unk_06, 0);
+            Location_Set(&v4, 164, -1, v1->unk_04, v1->unk_06, 0);
             sub_020539A0(taskMan, &v4);
         }
         v1->unk_08++;

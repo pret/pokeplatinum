@@ -96,7 +96,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, PoketchSystem * par
     param0->unk_04.unk_08 = 0;
 
     {
-        UnkStruct_020507E4 * v1 = SaveData_Events(PoketchSystem_SaveData(param1));
+        VarsFlags * v1 = SaveData_GetVarsFlags(PoketchSystem_SaveData(param1));
 
         for (v0 = 0; v0 < 4; v0++) {
             param0->unk_04.unk_2C[v0] = sub_0206B1F0(v1, v0);

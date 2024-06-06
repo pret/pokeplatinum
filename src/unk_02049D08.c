@@ -5,7 +5,7 @@
 
 
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
@@ -27,11 +27,11 @@
 #include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
 #include "unk_020507CC.h"
@@ -226,17 +226,17 @@ BOOL sub_02049FA0 (UnkStruct_0202D060 * param0)
 
 void sub_02049FA8 (FieldSystem * fieldSystem)
 {
-    Location * v0 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
+    Location * v0 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    inline_02049FA8(v0, fieldSystem->unk_1C->unk_00, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
-    sub_0206AD9C(SaveData_Events(fieldSystem->saveData));
+    Location_Set(v0, fieldSystem->location->mapId, -1, Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 0);
+    sub_0206AD9C(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     return;
 }
 
 void sub_02049FE8 (FieldSystem * fieldSystem)
 {
-    sub_0206ADAC(SaveData_Events(fieldSystem->saveData));
+    CommClub_ResetAvailable(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
 u16 sub_02049FF8 (SaveData * param0, u16 param1)
@@ -380,7 +380,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
         v5 = sub_0202CD88(param0);
 
         if (v3->unk_0F == 6) {
-            v2 = sub_0206B6FC(SaveData_Events(param0));
+            v2 = sub_0206B6FC(SaveData_GetVarsFlags(param0));
         } else {
             v2 = sub_0202D414(v3->unk_74, 8 + v3->unk_0F, 0);
         }
@@ -654,7 +654,7 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
     sub_0204A5EC(param0, param1, 0, v0);
 }
 
-void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, UnkStruct_0202B628 * param2)
+void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * param2)
 {
     u32 v0 = 0;
     int v1;

@@ -17,7 +17,7 @@
 #include "unk_02020020.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
@@ -126,7 +126,7 @@ void sub_0206C784 (FieldSystem * fieldSystem, const u8 param1, const u8 param2, 
         v0->unk_00 = 2;
     }
 
-    sub_02050944(fieldSystem->unk_10, sub_0206C964, v0);
+    FieldTask_Start(fieldSystem->unk_10, sub_0206C964, v0);
 }
 
 static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 * param2)
@@ -138,14 +138,14 @@ static void sub_0206C8D4 (FieldSystem * fieldSystem, const u8 param1, UnkStruct_
     v0->unk_04 = param2;
     v0->unk_00 = param1;
 
-    sub_02050944(fieldSystem->unk_10, sub_0206C8F8, v0);
+    FieldTask_Start(fieldSystem->unk_10, sub_0206C8F8, v0);
 }
 
 static BOOL sub_0206C8F8 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_0206C8D4 * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -208,7 +208,7 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!ScreenWipe_Done() || (sub_02005684() != 0)) {
+        if (!ScreenWipe_Done() || (Sound_CheckFade() != 0)) {
             return 0;
         }
 
@@ -229,8 +229,8 @@ static BOOL sub_0206C964 (TaskManager * taskMan)
         v1->unk_00 = 6;
         break;
     case 6:
-        sub_02055670(fieldSystem, v1->unk_18);
-        sub_020559CC(taskMan);
+        Sound_PlayMapBGM(fieldSystem, v1->unk_18);
+        FieldTask_StartFadeIn(taskMan);
         v1->unk_00 = 7;
         break;
     case 7:

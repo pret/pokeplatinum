@@ -233,19 +233,19 @@ static BOOL ov23_02254AD4 (TaskManager * param0)
         }
         break;
     case 3:
-        sub_02050944(param0, ov23_02254C84, v1);
+        FieldTask_Start(param0, ov23_02254C84, v1);
         break;
     case 4:
-        sub_02050944(param0, ov23_02254DF8, v1);
+        FieldTask_Start(param0, ov23_02254DF8, v1);
         break;
     case 5:
-        sub_02050944(param0, ov23_02255100, v1);
+        FieldTask_Start(param0, ov23_02255100, v1);
         break;
     case 6:
-        sub_02050944(param0, ov23_02255580, v1);
+        FieldTask_Start(param0, ov23_02255580, v1);
         break;
     case 7:
-        sub_02050944(param0, ov23_02255850, v1);
+        FieldTask_Start(param0, ov23_02255850, v1);
         break;
     case 8:
         if (Message_Printing(v1->unk_08) == 0) {
@@ -347,7 +347,7 @@ void ov23_02254D98 (FieldSystem * fieldSystem, TaskManager * param1)
     v0->unk_50C = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &Unk_ov23_02256B88);
     v0->unk_4FC = ov5_021D1C2C(v0->unk_50C);
 
-    sub_02050944(param1, ov23_02254AD4, v0);
+    FieldTask_Start(param1, ov23_02254AD4, v0);
 }
 
 static BOOL ov23_02254DF8 (TaskManager * param0)

@@ -22,10 +22,10 @@
 #include "communication_system.h"
 #include "unk_02039C80.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "comm_player_manager.h"
 #include "unk_0205F180.h"
 #include "pokeradar.h"
@@ -62,9 +62,9 @@ static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
     sFieldSystem = FieldSystem_Init(overlayMan);
 
     if (v0->unk_04) {
-        sub_02053808(sFieldSystem);
+        FieldSystem_StartLoadMapFromErrorTask(sFieldSystem);
     } else {
-        sub_02053704(sFieldSystem);
+        FieldSystem_SetLoadSavedGameMapTask(sFieldSystem);
     }
 
     v0->unk_04 = 0;
@@ -74,7 +74,7 @@ static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
 static int FieldSystem_InitNewGame (OverlayManager * overlayMan, int * param1)
 {
     sFieldSystem = FieldSystem_Init(overlayMan);
-    sub_020535CC(sFieldSystem);
+    FieldSystem_SetLoadNewGameSpawnTask(sFieldSystem);
     return 1;
 }
 
@@ -174,7 +174,7 @@ static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
 
     fieldSystem->saveData = v0->unk_08;
     fieldSystem->unk_10 = NULL;
-    fieldSystem->unk_1C = sub_0203A720(sub_0203A790(fieldSystem->saveData));
+    fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
     sub_0203A378(fieldSystem, 11);
@@ -192,16 +192,16 @@ static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
 
 static void sub_0203CE6C (OverlayManager * overlayMan)
 {
-    FieldSystem * v0 = OverlayManager_Data(overlayMan);
+    FieldSystem * fieldSystem = OverlayManager_Data(overlayMan);
 
-    sub_02039DE4(v0->unk_2C);
-    sub_0203A398(v0);
-    Heap_FreeToHeap(v0->unk_98);
-    RadarChain_Free(v0->chain);
-    sub_0209ACDC(v0->unk_B4);
-    sub_0209C388(v0->unk_BC);
+    sub_02039DE4(fieldSystem->unk_2C);
+    sub_0203A398(fieldSystem);
+    Heap_FreeToHeap(fieldSystem->unk_98);
+    RadarChain_Free(fieldSystem->chain);
+    sub_0209ACDC(fieldSystem->unk_B4);
+    sub_0209C388(fieldSystem->unk_BC);
 
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_FreeToHeap(fieldSystem->unk_00);
     OverlayManager_FreeData(overlayMan);
     Heap_Destroy(91);
     Heap_Destroy(11);
@@ -263,7 +263,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
     v0 = fieldSystem->unk_70;
 
-    if (fieldSystem->unk_1C->unk_00 == 326) {
+    if (fieldSystem->location->mapId == 326) {
         v0 = 0;
     }
 

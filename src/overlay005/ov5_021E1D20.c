@@ -30,7 +30,7 @@
 #include "unk_0202CBE4.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "player_avatar.h"
 #include "overlay005/ov5_021E1D20.h"
 #include "overlay005/ov5_021EA714.h"
@@ -75,10 +75,10 @@ static const int Unk_ov5_021F9CBC[] = {
 static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * fieldSystem)
 {
     SaveData * v0 = fieldSystem->saveData;
-    Location * v1 = sub_0203A720(sub_0203A790(v0));
+    Location * location = sub_0203A720(SaveData_GetFieldOverworldState(v0));
     PokedexData * v2 = SaveData_Pokedex(v0);
 
-    param0->unk_04 = MapHeader_GetMapLabelTextID(v1->unk_00);
+    param0->unk_04 = MapHeader_GetMapLabelTextID(location->mapId);
 
     if (sub_02027520(v2)) {
         param0->unk_00 = sub_02026E48(v2);
@@ -230,13 +230,13 @@ BOOL ov5_021E200C (FieldSystem * fieldSystem)
 
 static void ov5_021E2028 (FieldSystem * fieldSystem)
 {
-    sub_0203A7A8(fieldSystem);
+    FieldSystem_SaveObjects(fieldSystem);
     ov5_021EA714(fieldSystem, 4, 0);
 
-    fieldSystem->unk_1C->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
-    fieldSystem->unk_1C->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
-    fieldSystem->unk_1C->unk_04 = -1;
-    fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
+    fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
+    fieldSystem->location->unk_04 = -1;
+    fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }
 
 void ov5_021E2064 (FieldSystem * fieldSystem)
@@ -246,7 +246,7 @@ void ov5_021E2064 (FieldSystem * fieldSystem)
         return;
     }
 
-    switch (fieldSystem->unk_1C->unk_00) {
+    switch (fieldSystem->location->mapId) {
     case 466:
     case 332:
     case 333:

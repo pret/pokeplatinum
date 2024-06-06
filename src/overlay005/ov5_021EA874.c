@@ -485,9 +485,9 @@ void ov5_021EAF50 (FieldSystem * fieldSystem)
     v0->unk_48 = 0;
 
     if (v1 == NULL) {
-        sub_02050904(fieldSystem, ov5_021EADB4, v0);
+        FieldTask_Set(fieldSystem, ov5_021EADB4, v0);
     } else {
-        sub_02050944(v1, ov5_021EADB4, v0);
+        FieldTask_Start(v1, ov5_021EADB4, v0);
     }
 }
 

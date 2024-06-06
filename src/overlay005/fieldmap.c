@@ -49,11 +49,11 @@
 #include "unk_02039C80.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_020553DC.h"
 #include "unk_020556C4.h"
 #include "unk_020559DC.h"
@@ -221,11 +221,11 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
         ov5_021D1968(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
-            u16 v3 = sub_0203A74C(sub_0203A790(fieldSystem->saveData));
+            u16 v3 = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData));
             ov5_021D5F24(fieldSystem->unk_04->unk_0C, v3);
         }
 
-        sub_020556A0(fieldSystem, fieldSystem->unk_1C->unk_00);
+        sub_020556A0(fieldSystem, fieldSystem->location->mapId);
         sub_0203F5C0(fieldSystem, 3);
 
         fieldSystem->unk_04->unk_1C = ov5_021EF3A8(4);
@@ -278,9 +278,9 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
         sub_02068368(fieldSystem);
         ov5_021E9338(fieldSystem->unk_28);
 
-        fieldSystem->unk_1C->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
-        fieldSystem->unk_1C->unk_0C = Player_GetZPos(fieldSystem->playerAvatar);
-        fieldSystem->unk_1C->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+        fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
+        fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);
+        fieldSystem->location->unk_10 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
         ov5_021EF300(fieldSystem->unk_A0);
 
@@ -300,7 +300,7 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
         sub_02061BF0(fieldSystem->mapObjMan);
         ov5_021ECC78(fieldSystem->mapObjMan);
 
-        sub_02062C30(fieldSystem->mapObjMan);
+        MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
         ov5_021DF500(fieldSystem->unk_40);
 
         ov5_021D1A70(fieldSystem->unk_34);
@@ -394,9 +394,9 @@ static BOOL ov5_021D119C (FieldSystem * fieldSystem)
     x = Player_GetXPos(fieldSystem->playerAvatar);
     y = Player_GetZPos(fieldSystem->playerAvatar);
 
-    if ((x != fieldSystem->unk_1C->unk_08) || (y != fieldSystem->unk_1C->unk_0C)) {
-        fieldSystem->unk_1C->unk_08 = x;
-        fieldSystem->unk_1C->unk_0C = y;
+    if ((x != fieldSystem->location->x) || (y != fieldSystem->location->z)) {
+        fieldSystem->location->x = x;
+        fieldSystem->location->z = y;
         return TRUE;
     } else {
         return FALSE;
@@ -408,7 +408,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     u32 v0;
     u32 v1;
     int v2, v3;
-    UnkStruct_0203A790 * v4;
+    FieldOverworldState * v4;
 
     if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         return 0;
@@ -417,18 +417,18 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     v2 = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
     v3 = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
     v0 = sub_02039E30(fieldSystem->unk_2C, v2, v3);
-    v1 = fieldSystem->unk_1C->unk_00;
+    v1 = fieldSystem->location->mapId;
 
     if (v0 == v1) {
         return 0;
     }
 
-    v4 = sub_0203A790(fieldSystem->saveData);
+    v4 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     {
-        fieldSystem->unk_1C->unk_00 = v0;
+        fieldSystem->location->mapId = v0;
 
-        sub_0203A3B0(fieldSystem, v0);
-        sub_020531C0(fieldSystem, 1);
+        FieldSystem_LoadMapData(fieldSystem, v0);
+        FieldMapChange_UpdateGameData(fieldSystem, 1);
     }
 
     {
@@ -440,12 +440,12 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 
     {
         RadarChain_Clear(fieldSystem->chain);
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
         sub_0203A418(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
             ov5_021D5F7C(
-                fieldSystem->unk_04->unk_0C, sub_0203A74C(v4));
+                fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(v4));
         }
     }
 
@@ -472,16 +472,16 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
 {
     u32 v0;
-    UnkStruct_0203A790 * v1;
+    FieldOverworldState * v1;
 
-    v0 = fieldSystem->unk_1C->unk_00;
-    v1 = sub_0203A790(fieldSystem->saveData);
+    v0 = fieldSystem->location->mapId;
+    v1 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     {
-        fieldSystem->unk_1C->unk_00 = param1;
+        fieldSystem->location->mapId = param1;
 
-        sub_0203A3B0(fieldSystem, param1);
-        sub_020532A8(fieldSystem, 1);
+        FieldSystem_LoadMapData(fieldSystem, param1);
+        FieldMapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
     }
 
     {
@@ -492,11 +492,11 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
     }
 
     {
-        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->unk_1C->unk_00), 1);
+        sub_02055554(fieldSystem, sub_02055428(fieldSystem, fieldSystem->location->mapId), 1);
         sub_0203A418(fieldSystem);
 
         if (fieldSystem->unk_04->unk_0C != NULL) {
-            ov5_021D5F7C(fieldSystem->unk_04->unk_0C, sub_0203A74C(v1));
+            ov5_021D5F7C(fieldSystem->unk_04->unk_0C, FieldOverworldState_GetWeather(v1));
         }
     }
 }
@@ -536,11 +536,11 @@ static void ov5_021D13B4 (FieldSystem * fieldSystem)
     UnkStruct_020556C4 * v0;
     int v1, v2, v3;
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00) == 0) {
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 0) {
         return;
     }
 
-    v0 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
+    v0 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v1 = (Player_GetXPos(fieldSystem->playerAvatar) - ov5_021EA6AC(fieldSystem->unk_28)) / 32;
     v2 = (Player_GetZPos(fieldSystem->playerAvatar) - ov5_021EA6B4(fieldSystem->unk_28)) / 32;
     v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
@@ -811,10 +811,10 @@ static void ov5_021D1790 (FieldSystem * fieldSystem)
     {
         u16 v0, v1;
 
-        v0 = sub_0203A038(fieldSystem->unk_1C->unk_00);
+        v0 = sub_0203A038(fieldSystem->location->mapId);
         fieldSystem->unk_30 = ov5_021EF76C(v0, fieldSystem->unk_50);
 
-        v1 = sub_0203A04C(fieldSystem->unk_1C->unk_00);
+        v1 = sub_0203A04C(fieldSystem->location->mapId);
         GF_ASSERT(fieldSystem->unk_34 == NULL);
 
         fieldSystem->unk_34 = ov5_021D1A14(4, v1);
@@ -828,7 +828,7 @@ static void ov5_021D17EC (FieldSystem * fieldSystem)
     if (FieldMap_InDistortionWorld(fieldSystem) == 1) {
         int v0 = 0, v1 = 0, v2 = 0;
 
-        ov9_02251094(fieldSystem->unk_1C->unk_00, &v0, &v1, &v2);
+        ov9_02251094(fieldSystem->location->mapId, &v0, &v1, &v2);
         ov5_021EA678(fieldSystem->unk_28, v0, v1, v2);
         ov5_021EA6A4(fieldSystem->unk_28, 1);
         ov5_021EA6D0(fieldSystem->unk_28, 1);
@@ -841,7 +841,7 @@ static void ov5_021D17EC (FieldSystem * fieldSystem)
         ov5_021E9630(fieldSystem->unk_28, ov5_021F0030, fieldSystem);
     }
 
-    ov5_021E9150(fieldSystem->unk_28, fieldSystem->unk_1C->unk_08, fieldSystem->unk_1C->unk_0C);
+    ov5_021E9150(fieldSystem->unk_28, fieldSystem->location->x, fieldSystem->location->z);
 }
 
 static void ov5_021D1878 (FieldSystem * fieldSystem)
@@ -916,7 +916,7 @@ static void ov5_021D1968 (FieldSystem * fieldSystem)
     fieldSystem->unk_48 = ov5_021D57BC();
 
     {
-        int v0 = sub_0203A770(sub_0203A790(fieldSystem->saveData));
+        int v0 = FieldOverworldState_GetCameraType(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 

@@ -44,7 +44,7 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "unk_0202854C.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
@@ -197,7 +197,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_278 = SaveData_Options(fieldSystem->saveData);
     v0->unk_280 = sub_0202CD88(fieldSystem->saveData);
-    v0->unk_288 = SaveData_Events(fieldSystem->saveData);
+    v0->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(fieldSystem);
     v0->unk_27C = fieldSystem->unk_9C;
@@ -216,7 +216,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     }
 
     ov7_0224CD28(v0, param2);
-    sub_02050944(param0, ov7_0224CEAC, v0);
+    FieldTask_Start(param0, ov7_0224CEAC, v0);
 }
 
 static u8 ov7_0224CE90 (FieldSystem * fieldSystem)
@@ -410,7 +410,7 @@ static u8 ov7_0224D250 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * para
         Strbuf_Free(param1->unk_298);
 
         if (param1->unk_2A9 == 0) {
-            if ((MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00) != 101) && (fieldSystem->unk_1C->unk_00 != 81) && (fieldSystem->unk_1C->unk_00 != 446)) {
+            if ((MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101) && (fieldSystem->location->mapId != 81) && (fieldSystem->location->mapId != 446)) {
                 if ((param1->unk_2A7 != 0) && (param1->unk_2A8 != 0)) {
                     v0 = sub_0202BD38(11);
                     sub_0202B758(param1->unk_27C, v0, 1);
@@ -1555,7 +1555,7 @@ static void ov7_0224EC38 (TaskManager * param0)
     }
 
     sub_0203D1E4(fieldSystem, v1->unk_04);
-    sub_02050924(param0, sub_0209AC14, v1);
+    FieldTask_Change(param0, sub_0209AC14, v1);
 
     v1->unk_297 = 16;
 }

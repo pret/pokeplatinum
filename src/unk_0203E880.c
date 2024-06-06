@@ -108,7 +108,7 @@ u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F188(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
-void sub_0203F1C4(FieldSystem * fieldSystem);
+void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
 u16 sub_0203F254(u16 param0);
 BOOL sub_0203F278(u16 param0);
@@ -121,7 +121,7 @@ u16 sub_0203F304(u16 param0);
 u8 sub_0203F3C8(u16 param0);
 static BOOL sub_0203F404(UnkStruct_0203EF60 * param0, u16 param1);
 void sub_0203F310(FieldSystem * fieldSystem);
-void sub_0203F598(FieldSystem * fieldSystem);
+void FieldSystem_InitNewGameState(FieldSystem * fieldSystem);
 void sub_0203F5A4(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
 static u16 sub_0203F610(const u8 * param0, u8 param1);
@@ -133,7 +133,7 @@ void sub_0203E880 (FieldSystem * fieldSystem, u16 param1, MapObject * param2)
     UnkStruct_0203EF60 * v0 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v0, param1, param2, NULL);
-    sub_02050904(fieldSystem, sub_0203E950, v0);
+    FieldTask_Set(fieldSystem, sub_0203E950, v0);
 
     return;
 }
@@ -157,7 +157,7 @@ void sub_0203E8E0 (TaskManager * param0, u16 param1, MapObject * param2, void * 
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v1, param1, param2, param3);
-    sub_02050944(param0, sub_0203E950, v1);
+    FieldTask_Start(param0, sub_0203E950, v1);
 
     return;
 }
@@ -168,7 +168,7 @@ void sub_0203E918 (TaskManager * param0, u16 param1, MapObject * param2)
     UnkStruct_0203EF60 * v1 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v1, param1, param2, NULL);
-    sub_02050924(param0, sub_0203E950, v1);
+    FieldTask_Change(param0, sub_0203E950, v1);
 
     return;
 }
@@ -421,10 +421,10 @@ static void sub_0203EF14 (FieldSystem * fieldSystem, ScriptContext * param1, int
 
 static void sub_0203EF38 (FieldSystem * fieldSystem, ScriptContext * param1)
 {
-    u8 * v0 = sub_0203F0FC(fieldSystem->unk_1C->unk_00);
+    u8 * v0 = sub_0203F0FC(fieldSystem->location->mapId);
 
     param1->scripts = (u8 *)v0;
-    param1->loader = MessageLoader_Init(1, 26, sub_0203F110(fieldSystem->unk_1C->unk_00), 11);
+    param1->loader = MessageLoader_Init(1, 26, sub_0203F110(fieldSystem->location->mapId), 11);
 
     return;
 }
@@ -594,9 +594,7 @@ static u32 sub_0203F110 (int param0)
 
 u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 param1)
 {
-    UnkStruct_020507E4 * v0;
-
-    v0 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (param1 < 0x4000) {
         return NULL;
@@ -628,27 +626,27 @@ u16 sub_0203F164 (FieldSystem * fieldSystem, u16 param1)
 
 BOOL sub_0203F188 (FieldSystem * fieldSystem, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(fieldSystem->saveData), param1);
+    return sub_020507F0(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
 }
 
 void sub_0203F19C (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_Events(fieldSystem->saveData), param1);
+    sub_0205081C(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
     return;
 }
 
 void sub_0203F1B0 (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_Events(fieldSystem->saveData), param1);
+    sub_02050844(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
     return;
 }
 
-void sub_0203F1C4 (FieldSystem * fieldSystem)
+void FieldSystem_ClearLocalFlags (FieldSystem * fieldSystem)
 {
     int v0;
-    UnkStruct_020507E4 * v1;
+    VarsFlags * v1;
 
-    v1 = SaveData_Events(fieldSystem->saveData);
+    v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     memset(sub_02050870(v1, 1), 0, (64 / 8));
     memset(sub_020508B8(v1, (0 + 0x4000)), 0, 2 * 32);
@@ -658,9 +656,9 @@ void sub_0203F1C4 (FieldSystem * fieldSystem)
 
 void sub_0203F1FC (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0;
+    VarsFlags * v0;
 
-    v0 = SaveData_Events(fieldSystem->saveData);
+    v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     memset(sub_02050870(v0, 2400 + 320), 0, 192 / 8);
 
     return;
@@ -703,18 +701,18 @@ BOOL sub_0203F28C (u16 param0)
 
 BOOL sub_0203F2A0 (FieldSystem * fieldSystem, u16 param1)
 {
-    return sub_020507F0(SaveData_Events(fieldSystem->saveData), 1360 + param1);
+    return sub_020507F0(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
 }
 
 void sub_0203F2BC (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_Events(fieldSystem->saveData), 1360 + param1);
+    sub_0205081C(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
     return;
 }
 
 void sub_0203F2D8 (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_Events(fieldSystem->saveData), 1360 + param1);
+    sub_02050844(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
     return;
 }
 
@@ -750,17 +748,17 @@ void sub_0203F310 (FieldSystem * fieldSystem)
 
     v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
-    if (fieldSystem->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
+    if (fieldSystem->location->mapId != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(fieldSystem, (730 + Unk_02100AE0[v0][1]));
     }
 
     v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
-    if (fieldSystem->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
+    if (fieldSystem->location->mapId != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(fieldSystem, (730 + Unk_02100AE0[v0][1]));
     }
 
-    if (fieldSystem->unk_1C->unk_00 != 256) {
+    if (fieldSystem->location->mapId != 256) {
         v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
         sub_0203F1B0(fieldSystem, (730 + Unk_02100AD4[v0]));
 
@@ -887,7 +885,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     return v0;
 }
 
-void sub_0203F598 (FieldSystem * fieldSystem)
+void FieldSystem_InitNewGameState (FieldSystem * fieldSystem)
 {
     sub_0203F5A4(fieldSystem, 9600);
     return;
@@ -895,14 +893,13 @@ void sub_0203F598 (FieldSystem * fieldSystem)
 
 void sub_0203F5A4 (FieldSystem * fieldSystem, u16 param1)
 {
-    ScriptContext * v0 = sub_0203EAB8(fieldSystem, param1);
+    ScriptContext * ctx = sub_0203EAB8(fieldSystem, param1);
 
-    while (ScriptContext_Run(v0) == 1) {
+    while (ScriptContext_Run(ctx) == 1) {
         (void)0;
     }
 
-    sub_0203EA50(v0);
-    return;
+    sub_0203EA50(ctx);
 }
 
 BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)

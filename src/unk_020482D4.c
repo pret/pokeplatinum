@@ -72,7 +72,7 @@ BOOL ScrCmd_051 (ScriptContext * param0)
 
 BOOL ScrCmd_052 (ScriptContext * param0)
 {
-    int v0 = param0->fieldSystem->unk_1C->unk_00;
+    int v0 = param0->fieldSystem->location->mapId;
     u16 v1 = sub_020554A4(param0->fieldSystem, v0);
 
     Sound_PlayBGM(v1);
@@ -97,7 +97,7 @@ BOOL ScrCmd_054 (ScriptContext * param0)
 
 static BOOL sub_02048378 (ScriptContext * param0)
 {
-    if (sub_02005684() == 0) {
+    if (Sound_CheckFade() == 0) {
         return 1;
     }
 

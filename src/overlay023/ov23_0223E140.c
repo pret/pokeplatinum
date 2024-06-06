@@ -58,7 +58,7 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -1687,7 +1687,7 @@ static void ov23_0223F70C (FieldSystem * fieldSystem)
     v0->fieldSystem = fieldSystem;
 
     ov5_021EF3FC(fieldSystem->unk_04->unk_1C);
-    sub_0206AA04(SaveData_Events(fieldSystem->saveData));
+    sub_0206AA04(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
@@ -2619,7 +2619,7 @@ static BOOL ov23_02240A90 (UnkStruct_ov23_0223EE80 * param0)
                 if ((v2 >= 23) && ((28 + 1) > v2) || (v2 == 36) || (v2 == 37)) {
                     sub_02029644(v3, 1);
                     {
-                        UnkStruct_020507E4 * v5 = SaveData_Events(Unk_ov23_02257740->fieldSystem->saveData);
+                        VarsFlags * v5 = SaveData_GetVarsFlags(Unk_ov23_02257740->fieldSystem->saveData);
 
                         sub_0206B41C(v5, sub_0206B40C(v5) + 1);
                     }
@@ -3071,7 +3071,7 @@ static void ov23_022414D4 (void)
             continue;
         }
 
-        v2 = ov23_0223E8CC(sub_02058DF8(v1), sub_02058E4C(v1));
+        v2 = ov23_0223E8CC(CommPlayer_GetXServer(v1), CommPlayer_GetZServer(v1));
 
         if (v2 != -1) {
             v0 = &Unk_ov23_02257740->unk_26C[v2];

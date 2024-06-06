@@ -69,6 +69,8 @@
 #include "overlay006/ov6_02246444.h"
 #include "overlay025/poketch_system.h"
 
+#include "constants/overworld_weather.h"
+
 static void sub_0206CD70(FieldSystem * fieldSystem, int param1, int param2, const void * param3);
 static void sub_0206CD7C(SaveData * param0, int param1, int param2, const void * param3);
 static u8 sub_0206DE4C(Pokemon * param0);
@@ -871,7 +873,7 @@ void sub_0206D4AC (FieldSystem * fieldSystem, u16 param1)
     UnkStruct_0206D4D4 * v1 = &v0.val5;
 
     v1->unk_00 = param1;
-    v1->unk_02 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+    v1->unk_02 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 
     sub_0206CD70(fieldSystem, 2, 6, v1);
 }
@@ -922,7 +924,7 @@ void sub_0206D578 (FieldSystem * fieldSystem, Pokemon * param1)
     UnkStruct_0206D5B0 * v1 = &v0.val7;
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
-    v1->unk_06 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+    v1->unk_06 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
     sub_0206CD70(fieldSystem, 2, 8, v1);
 }
 
@@ -1249,7 +1251,7 @@ static int sub_0206DB38 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206DB48 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 6);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 6);
 }
 
 void sub_0206DB5C (FieldSystem * fieldSystem, u8 param1)
@@ -1274,7 +1276,7 @@ static int sub_0206DB74 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206DB9C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 6);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 6);
 }
 
 void sub_0206DBB0 (SaveData * param0, u32 param1, Pokemon * param2, BOOL param3)
@@ -1313,7 +1315,7 @@ static BOOL sub_0206DC3C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * pa
         return 0;
     }
 
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206DC6C (FieldSystem * fieldSystem, u32 param1, Pokemon * param2)
@@ -1582,7 +1584,7 @@ static int sub_0206E018 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E04C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206E060 (SaveData * param0)
@@ -1612,7 +1614,7 @@ static int sub_0206E098 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E0CC (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 9);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 9);
 }
 
 void sub_0206E0E0 (FieldSystem * fieldSystem, u16 param1)
@@ -1646,7 +1648,7 @@ static int sub_0206E118 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E160 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206E174 (FieldSystem * fieldSystem, u16 param1)
@@ -1908,7 +1910,7 @@ static int sub_0206E5E4 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E654 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 void sub_0206E668 (FieldSystem * fieldSystem, u16 param1)
@@ -2037,7 +2039,7 @@ static int sub_0206E7AC (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206E834 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), 17);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 17);
 }
 
 static const u8 Unk_020EFD34[] = {
@@ -2123,14 +2125,14 @@ static u16 Unk_02100BA4[] = {
 
 static int sub_0206E940 (FieldSystem * fieldSystem, StringTemplate * param1, UnkStruct_ov6_022465F4 * param2)
 {
-    int v0, v1;
+    int v0, weather;
 
     v0 = Unk_02100BA4[inline_020564D0(NELEMS(Unk_02100BA4))];
-    v1 = sub_0203A944(fieldSystem, v0);
+    weather = FieldSystem_GetWeather(fieldSystem, v0);
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
 
-    switch (v1) {
-    case 0:
+    switch (weather) {
+    case OVERWORLD_WEATHER_CLEAR:
         switch (inline_020564D0(4)) {
         case 0:
             return 1;
@@ -2141,21 +2143,21 @@ static int sub_0206E940 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
         case 3:
             return 4;
         }
-    case 1:
+    case OVERWORLD_WEATHER_CLOUDY:
         return 5;
-    case 2:
+    case OVERWORLD_WEATHER_RAINING:
         return 6;
-    case 3:
+    case OVERWORLD_WEATHER_HEAVY_RAIN:
         return 7;
-    case 5:
+    case OVERWORLD_WEATHER_SNOWING:
         return 8;
-    case 6:
+    case OVERWORLD_WEATHER_HEAVY_SNOW:
         return 9;
-    case 7:
+    case OVERWORLD_WEATHER_BLIZZARD:
         return 10;
-    case 4:
+    case OVERWORLD_WEATHER_THUNDERSTORM:
         return 11;
-    case 11:
+    case OVERWORLD_WEATHER_HAILING:
         return 12;
     default:
         GF_ASSERT(0);
@@ -2172,7 +2174,7 @@ static BOOL sub_0206EA0C (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * pa
 static int sub_0206EA10 (FieldSystem * fieldSystem, StringTemplate * param1, UnkStruct_ov6_022465F4 * param2)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
-    int v1 = fieldSystem->unk_1C->unk_00;
+    int v1 = fieldSystem->location->mapId;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
         StringTemplate_SetPlayerName(param1, 0, v0);
@@ -2527,7 +2529,7 @@ static int sub_0206EBE8 (FieldSystem * fieldSystem)
     u8 v0[NELEMS(Unk_020EFD3C)];
     u8 v1[NELEMS(Unk_020F0074) / 2];
     int v2, v3;
-    UnkStruct_020507E4 * v4 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v4 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     for (v2 = 0; v2 < NELEMS(Unk_020EFD3C); v2++) {
         v0[v2] = inline_0208BE68(v4, Unk_020EFD3C[v2]);
@@ -2570,7 +2572,7 @@ static int sub_0206EC90 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206ECFC (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     return inline_0208BE68(v0, 9);
 }
 
@@ -2742,13 +2744,13 @@ static int sub_0206EF7C (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
     v0 = 0;
 
-    if (sub_0206A954(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206A954(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v0 = (LCRNG_Next() % 8);
-    } else if (inline_0208BE68(SaveData_Events(fieldSystem->saveData), 11) == 1) {
+    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 11) == 1) {
         v0 = (LCRNG_Next() % 5);
-    } else if (inline_0208BE68(SaveData_Events(fieldSystem->saveData), 10) == 1) {
+    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 10) == 1) {
         v0 = (LCRNG_Next() % 4);
-    } else if (inline_0208BE68(SaveData_Events(fieldSystem->saveData), 18) == 1) {
+    } else if (inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), 18) == 1) {
         v0 = (LCRNG_Next() % 2);
     }
 

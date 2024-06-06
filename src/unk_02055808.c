@@ -32,7 +32,7 @@ void sub_02055820 (TaskManager * param0)
     }
 
     sub_0203CD44(fieldSystem);
-    sub_02050944(param0, sub_02055808, NULL);
+    FieldTask_Start(param0, sub_02055808, NULL);
 }
 
 static BOOL sub_02055850 (TaskManager * param0)
@@ -56,7 +56,7 @@ void sub_02055868 (TaskManager * param0)
     }
 
     sub_020509D4(fieldSystem);
-    sub_02050944(param0, sub_02055850, NULL);
+    FieldTask_Start(param0, sub_02055850, NULL);
 }
 
 static BOOL sub_02055898 (TaskManager * param0)
@@ -79,7 +79,7 @@ void sub_020558AC (TaskManager * param0)
 
     {
         sub_0200F174(0, 0, 0, 0x0, 6, 1, 4);
-        sub_02050944(param0, sub_02055898, NULL);
+        FieldTask_Start(param0, sub_02055898, NULL);
     }
 }
 
@@ -94,13 +94,13 @@ void sub_020558F0 (TaskManager * param0)
 
     {
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
-        sub_02050944(param0, sub_02055898, NULL);
+        FieldTask_Start(param0, sub_02055898, NULL);
     }
 }
 
 static BOOL sub_02055934 (TaskManager * param0)
 {
-    int * v0 = sub_02050A68(param0);
+    int * v0 = FieldTask_GetState(param0);
 
     switch (*v0) {
     case 0:
@@ -120,12 +120,12 @@ static BOOL sub_02055934 (TaskManager * param0)
 
 void sub_02055974 (TaskManager * param0)
 {
-    sub_02050944(param0, sub_02055934, NULL);
+    FieldTask_Start(param0, sub_02055934, NULL);
 }
 
 static BOOL sub_02055984 (TaskManager * param0)
 {
-    int * v0 = sub_02050A68(param0);
+    int * v0 = FieldTask_GetState(param0);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (*v0) {
@@ -145,7 +145,7 @@ static BOOL sub_02055984 (TaskManager * param0)
     return 0;
 }
 
-void sub_020559CC (TaskManager * param0)
+void FieldTask_StartFadeIn (TaskManager * param0)
 {
-    sub_02050944(param0, sub_02055984, NULL);
+    FieldTask_Start(param0, sub_02055984, NULL);
 }

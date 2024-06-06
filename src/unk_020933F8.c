@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -41,7 +41,7 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020298BC.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CC64.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F108.h"
@@ -165,10 +165,10 @@ void sub_020933F8 (TaskManager * param0, UnkStruct_02095C48 * param1)
     case 0:
     case 1:
     case 2:
-        sub_02050944(param0, sub_02093448, v0);
+        FieldTask_Start(param0, sub_02093448, v0);
         break;
     default:
-        sub_02050944(param0, sub_020935EC, v0);
+        FieldTask_Start(param0, sub_020935EC, v0);
         break;
     }
 }
@@ -1580,7 +1580,7 @@ void sub_02094BB4 (UnkStruct_02095C48 * param0, int * param1, int * param2, int 
     }
 }
 
-void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, UnkStruct_0202B628 * param3)
+void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, Journal * param3)
 {
     int v0;
 
@@ -1598,9 +1598,9 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
 
     if (param0->unk_155 == 0) {
         {
-            UnkStruct_020507E4 * v1;
+            VarsFlags * v1;
 
-            v1 = SaveData_Events(param0->unk_1970);
+            v1 = SaveData_GetVarsFlags(param0->unk_1970);
 
             if ((param0->unk_00.unk_111 == 2) && (param0->unk_00.unk_110 >= 3) && (sub_02094790(param0) == 0)) {
                 if (sub_0206AAA8(v1, param0->unk_00.unk_10F) == 0) {
@@ -1673,10 +1673,10 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
 
         {
             void * v9;
-            UnkStruct_0202B628 * v10;
+            Journal * v10;
 
             v9 = sub_0202C1C0(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
-            v10 = sub_0202B628(param0->unk_1970);
+            v10 = SaveData_GetJournal(param0->unk_1970);
 
             sub_0202B758(param3, v9, 4);
         }

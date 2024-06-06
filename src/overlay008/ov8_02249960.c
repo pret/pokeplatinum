@@ -370,13 +370,13 @@ void ov8_0224997C (FieldSystem * fieldSystem)
         v6->unk_00 = 0;
 
         if (v4 == 239) {
-            sub_02050944(fieldSystem->unk_10, ov8_02249CD8, v6);
+            FieldTask_Start(fieldSystem->unk_10, ov8_02249CD8, v6);
             v8->unk_00 = 2;
         } else if (v4 == 240) {
-            sub_02050944(fieldSystem->unk_10, ov8_02249B74, v6);
+            FieldTask_Start(fieldSystem->unk_10, ov8_02249B74, v6);
             v8->unk_00 = 1;
         } else if (v4 == 241) {
-            sub_02050944(fieldSystem->unk_10, ov8_02249A94, v6);
+            FieldTask_Start(fieldSystem->unk_10, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
             GF_ASSERT(FALSE);
@@ -771,10 +771,10 @@ void ov8_02249FB8 (FieldSystem * fieldSystem)
         PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v1);
 
         if (v1.y == (FX32_ONE * 16 * 0)) {
-            sub_02050944(fieldSystem->unk_10, ov8_0224A018, v0);
+            FieldTask_Start(fieldSystem->unk_10, ov8_0224A018, v0);
             v3->unk_00 = 1;
         } else {
-            sub_02050944(fieldSystem->unk_10, ov8_0224A0E8, v0);
+            FieldTask_Start(fieldSystem->unk_10, ov8_0224A0E8, v0);
             v3->unk_00 = 0;
         }
     }
@@ -1278,7 +1278,7 @@ static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        sub_02050904(param0->fieldSystem, ov8_0224A620, v2);
+        FieldTask_Set(param0->fieldSystem, ov8_0224A620, v2);
     } else if (v0 == 294) {
         if (v1) {
             param0->unk_F0 = 2;
@@ -1290,7 +1290,7 @@ static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        sub_02050904(param0->fieldSystem, ov8_0224A770, v2);
+        FieldTask_Set(param0->fieldSystem, ov8_0224A770, v2);
     } else {
         if (v1) {
             param0->unk_F0 = 1;
@@ -1303,7 +1303,7 @@ static void ov8_0224A254 (UnkStruct_ov8_0224A1E4 * param0, const u8 param1)
             param0->unk_40[param1] = Unk_ov8_0224CB68[param1].unk_07;
         }
 
-        sub_02050904(param0->fieldSystem, ov8_0224A4FC, v2);
+        FieldTask_Set(param0->fieldSystem, ov8_0224A4FC, v2);
     }
 }
 
@@ -2226,7 +2226,7 @@ void ov8_0224AD34 (FieldSystem * fieldSystem, const u8 param1)
         v1->unk_13 = v4;
 
         Sound_PlayEffect(1599);
-        sub_02050944(fieldSystem->unk_10, ov8_0224ADE8, v0);
+        FieldTask_Start(fieldSystem->unk_10, ov8_0224ADE8, v0);
     }
 }
 
@@ -2451,13 +2451,13 @@ static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
 
 static void ov8_0224AEDC (FieldSystem * fieldSystem, u16 param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     sub_0206B46C(v0, param1);
 }
 
 static u32 ov8_0224AEF0 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     return sub_0206B47C(v0);
 }
 
@@ -2655,7 +2655,7 @@ static void ov8_0224B18C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * pa
         param1->unk_04 = 1;
     }
 
-    param1->unk_20 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->unk_1C->unk_00);
+    param1->unk_20 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     sub_020642F8(param1->unk_20);
     MapObject_SetHidden(param1->unk_20, 1);
@@ -3001,7 +3001,7 @@ BOOL ov8_0224B67C (FieldSystem * fieldSystem, Window * param1, MessageLoader * p
         v2->unk_14 = v1;
         v2->unk_18 = v3;
 
-        sub_02050944(fieldSystem->unk_10, ov8_0224B3D4, v2);
+        FieldTask_Start(fieldSystem->unk_10, ov8_0224B3D4, v2);
     }
 
     return 1;
@@ -3140,7 +3140,7 @@ static MapObject * ov8_0224B7D8 (FieldSystem * fieldSystem, int param1, int para
 {
     MapObject * v0;
 
-    v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->unk_1C->unk_00);
+    v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     MapObject_SetId(v0, 0xfd);
     sub_020629B4(v0, param3, 0);
@@ -3302,8 +3302,8 @@ static u32 ov8_0224BA0C (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2
         break;
     }
 
-    param1 += sub_0206419C(param3);
-    param2 += sub_020641A8(param3);
+    param1 += MapObject_GetDxFromDir(param3);
+    param2 += MapObject_GetDyFromDir(param3);
 
     v2 = ov8_0224B9D8(param1, param2);
 
@@ -3330,8 +3330,8 @@ static u32 ov8_0224BAA0 (UnkStruct_ov8_0224B8D0 * param0, int param1, int param2
     }
 
     do {
-        param1 += sub_0206419C(param3);
-        param2 += sub_020641A8(param3);
+        param1 += MapObject_GetDxFromDir(param3);
+        param2 += MapObject_GetDyFromDir(param3);
         (*param4)++;
         v0 = ov8_0224BA0C(param0, param1, param2, param3);
     } while (v0 == 0);
@@ -3481,8 +3481,8 @@ static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
 
         param0->unk_14 = (((param0->unk_30) >> 4) / FX32_ONE);
 
-        v0->unk_08.unk_00 += sub_0206419C(param0->unk_08);
-        v0->unk_08.unk_04 += sub_020641A8(param0->unk_08);
+        v0->unk_08.unk_00 += MapObject_GetDxFromDir(param0->unk_08);
+        v0->unk_08.unk_04 += MapObject_GetDyFromDir(param0->unk_08);
 
         v1 = ov8_0224BA0C(param0->unk_3C, v0->unk_08.unk_00, v0->unk_08.unk_04, param0->unk_08);
 
@@ -3505,7 +3505,7 @@ static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
                     param0->unk_00 = 8;
                 }
             } else {
-                param0->unk_38 = ov8_0224B878(param0->unk_3C, v0->unk_08.unk_00 + sub_0206419C(param0->unk_08), v0->unk_08.unk_04 + sub_020641A8(param0->unk_08));
+                param0->unk_38 = ov8_0224B878(param0->unk_3C, v0->unk_08.unk_00 + MapObject_GetDxFromDir(param0->unk_08), v0->unk_08.unk_04 + MapObject_GetDyFromDir(param0->unk_08));
                 GF_ASSERT(param0->unk_38 != NULL);
                 param0->unk_04 = 0;
                 param0->unk_00 = 4;
@@ -3637,13 +3637,13 @@ static UnkStruct_ov8_0224C098 * ov8_0224BED8 (UnkStruct_ov8_0224B8D0 * param0, U
 static void ov8_0224BF0C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B8D0 * param1, UnkStruct_ov8_0224BCA8 * param2, int param3)
 {
     UnkStruct_ov8_0224C098 * v0 = ov8_0224BED8(param1, param2, param3);
-    sub_02050904(fieldSystem, ov8_0224BAF4, v0);
+    FieldTask_Set(fieldSystem, ov8_0224BAF4, v0);
 }
 
 static void ov8_0224BF2C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B8D0 * param1, UnkStruct_ov8_0224BCA8 * param2, int param3)
 {
     UnkStruct_ov8_0224C098 * v0 = ov8_0224BED8(param1, param2, param3);
-    sub_02050904(fieldSystem, ov8_0224BB78, v0);
+    FieldTask_Set(fieldSystem, ov8_0224BB78, v0);
 }
 
 BOOL ov8_0224BF4C (FieldSystem * fieldSystem)
@@ -3701,15 +3701,15 @@ static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * pa
     ov8_0224BAA0(param1->unk_3C, v0, v1, param3, &v3->unk_24);
     GF_ASSERT(v3->unk_24);
 
-    v3->unk_18 = v0 + (sub_0206419C(param3) * v3->unk_24);
-    v3->unk_1C = v1 + (sub_020641A8(param3) * v3->unk_24);
+    v3->unk_18 = v0 + (MapObject_GetDxFromDir(param3) * v3->unk_24);
+    v3->unk_1C = v1 + (MapObject_GetDyFromDir(param3) * v3->unk_24);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     v3->unk_10 = v0;
     v3->unk_14 = v1;
-    v3->unk_30 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->unk_1C->unk_00);
+    v3->unk_30 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     sub_020642F8(v3->unk_30);
     MapObject_SetHidden(v3->unk_30, 1);
@@ -3911,7 +3911,7 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
 
     {
         int v6 = 0;
-        int v7 = fieldSystem->unk_1C->unk_00;
+        int v7 = fieldSystem->location->mapId;
         const UnkStruct_ov8_0224C8D4 * v8 = Unk_ov8_0224C8D4;
 
         do {
@@ -4005,7 +4005,7 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
 
         if (v3 == 1) {
             v2 = 91;
-        } else if (param0->fieldSystem->unk_1C->unk_00 == 90) {
+        } else if (param0->fieldSystem->location->mapId == 90) {
             v2 = 119;
         }
 
@@ -4162,7 +4162,7 @@ BOOL ov8_0224C62C (FieldSystem * fieldSystem, int param1, int param2, int * para
 
             {
                 int v2 = 0;
-                int v3 = fieldSystem->unk_1C->unk_00;
+                int v3 = fieldSystem->location->mapId;
                 const UnkStruct_ov8_0224C8D4 * v4 = Unk_ov8_0224C8D4;
                 const UnkStruct_ov8_0224C7D0 * v5;
 

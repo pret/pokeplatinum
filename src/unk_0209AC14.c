@@ -60,7 +60,7 @@ static void sub_0209AC80 (TaskManager * param0)
 
     if (sub_020509DC(fieldSystem)) {
         ov5_021D1744(1);
-        sub_02050924(param0, ov7_0224CEAC, v1);
+        FieldTask_Change(param0, ov7_0224CEAC, v1);
         v1->unk_297 = 18;
     }
 }

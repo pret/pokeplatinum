@@ -166,7 +166,7 @@ void sub_02050224 (TaskManager * param0, u16 param1, u16 param2, u16 * param3)
     v0->unk_0C = param3;
 
     CommFieldCmd_Init(v0);
-    sub_02050944(param0, sub_02050264, v0);
+    FieldTask_Start(param0, sub_02050264, v0);
 }
 
 static BOOL sub_02050264 (TaskManager * param0)
@@ -212,7 +212,7 @@ void sub_020502E0 (TaskManager * param0, void ** param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_0C = param1;
 
-    sub_02050944(fieldSystem->unk_10, sub_02050314, v1);
+    FieldTask_Start(fieldSystem->unk_10, sub_02050314, v1);
     return;
 }
 

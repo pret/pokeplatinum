@@ -135,7 +135,7 @@ const OverlayManagerTemplate Unk_020F410C = {
 
 BOOL PokemonSummary_ShowContestData(SaveData * param0)
 {
-    return EventFlag_VisitedContestHall(SaveData_Events(param0));
+    return ContestHall_IsVisited(SaveData_GetVarsFlags(param0));
 }
 
 static int sub_0208C330 (OverlayManager * param0, int * param1)

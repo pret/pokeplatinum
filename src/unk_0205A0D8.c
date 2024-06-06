@@ -285,7 +285,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 3:
         if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
-            sub_02062C30(v0->fieldSystem->mapObjMan);
+            MapObjectMan_StopAllMovement(v0->fieldSystem->mapObjMan);
             v0->unk_08(1, v0->unk_50);
         } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
             v0->unk_34 = 4;
@@ -296,7 +296,7 @@ static BOOL sub_0205A324 (TaskManager * param0)
     case 4:
         if (CommTiming_IsSyncState(93)) {
             v0->unk_34 = 7;
-            sub_02062C30(v0->fieldSystem->mapObjMan);
+            MapObjectMan_StopAllMovement(v0->fieldSystem->mapObjMan);
             v0->unk_08(1, v0->unk_50);
         }
 
@@ -717,7 +717,7 @@ void sub_0205AB10 (FieldSystem * fieldSystem, UnkFuncPtr_0205AB10 * param1)
         break;
     }
 
-    sub_02050904(fieldSystem, sub_0205A324, v0);
+    FieldTask_Set(fieldSystem, sub_0205A324, v0);
 }
 
 static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
@@ -1101,7 +1101,7 @@ void sub_0205B2D4 (FieldSystem * fieldSystem)
             v4->unk_24 = v0;
             v4->unk_28 = 0;
 
-            sub_02050904(fieldSystem, sub_0205B140, v4);
+            FieldTask_Set(fieldSystem, sub_0205B140, v4);
             sub_0203D128();
             break;
         }

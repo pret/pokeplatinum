@@ -333,7 +333,7 @@ void sub_0205E318 (TaskManager * param0, MapObject * param1, u16 param2, u16 par
     v1->unk_10 = param3;
     v1->unk_00 = param1;
 
-    sub_02050944(fieldSystem->unk_10, sub_0205E268, v1);
+    FieldTask_Start(fieldSystem->unk_10, sub_0205E268, v1);
 }
 
 static BOOL sub_0205E3AC (TaskManager * param0)
@@ -368,7 +368,7 @@ void sub_0205E3F4 (TaskManager * param0, MapObject * param1, u16 param2, u16 par
     v1->unk_00 = param1;
     v1->unk_09 = 0;
 
-    sub_02050944(fieldSystem->unk_10, sub_0205E3AC, v1);
+    FieldTask_Start(fieldSystem->unk_10, sub_0205E3AC, v1);
 }
 
 int sub_0205E430 (u8 param0, u8 param1)

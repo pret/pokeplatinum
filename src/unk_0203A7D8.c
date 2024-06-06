@@ -60,26 +60,26 @@ int sub_0203A7EC (void)
     return 1;
 }
 
-void sub_0203A7F0 (int param0, Location * param1)
+void sub_0203A7F0 (int param0, Location * location)
 {
     param0 = sub_0203A7D8(param0);
 
-    param1->unk_00 = Unk_020E97B4[param0].unk_06;
-    param1->unk_04 = -1;
-    param1->unk_08 = Unk_020E97B4[param0].unk_08;
-    param1->unk_0C = Unk_020E97B4[param0].unk_0A;
-    param1->unk_10 = 1;
+    location->mapId = Unk_020E97B4[param0].unk_06;
+    location->unk_04 = -1;
+    location->x = Unk_020E97B4[param0].unk_08;
+    location->z = Unk_020E97B4[param0].unk_0A;
+    location->unk_10 = 1;
 }
 
-void sub_0203A824 (int param0, Location * param1)
+void sub_0203A824 (int param0, Location * location)
 {
     param0 = sub_0203A7D8(param0);
 
-    param1->unk_00 = Unk_020E97B4[param0].unk_00;
-    param1->unk_04 = -1;
-    param1->unk_08 = Unk_020E97B4[param0].unk_02;
-    param1->unk_0C = Unk_020E97B4[param0].unk_04;
-    param1->unk_10 = 0;
+    location->mapId = Unk_020E97B4[param0].unk_00;
+    location->unk_04 = -1;
+    location->x = Unk_020E97B4[param0].unk_02;
+    location->z = Unk_020E97B4[param0].unk_04;
+    location->unk_10 = 0;
 }
 
 int sub_0203A858 (int param0)
@@ -134,7 +134,7 @@ void sub_0203A8E8 (FieldSystem * fieldSystem, int param1)
 
     for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
         if ((Unk_020E97B4[v0].unk_06 == param1) && Unk_020E97B4[v0].unk_0D) {
-            inline_0203A8E8(SaveData_Events(fieldSystem->saveData), Unk_020E97B4[v0].unk_0E);
+            inline_0203A8E8(SaveData_GetVarsFlags(fieldSystem->saveData), Unk_020E97B4[v0].unk_0E);
             return;
         }
     }
@@ -143,5 +143,5 @@ void sub_0203A8E8 (FieldSystem * fieldSystem, int param1)
 BOOL sub_0203A920 (FieldSystem * fieldSystem, int param1)
 {
     int v0 = sub_0203A7D8(param1);
-    return inline_0208BE68(SaveData_Events(fieldSystem->saveData), Unk_020E97B4[v0].unk_0E);
+    return inline_0208BE68(SaveData_GetVarsFlags(fieldSystem->saveData), Unk_020E97B4[v0].unk_0E);
 }

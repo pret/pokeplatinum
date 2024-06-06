@@ -806,13 +806,13 @@ BOOL ScrCmd_305 (ScriptContext * param0)
 
 BOOL ScrCmd_30F (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0;
+    VarsFlags * v0;
     UnkStruct_0202CD88 * v1;
     FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_Events(fieldSystem->saveData);
+    v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v1 = sub_0202CD88(fieldSystem->saveData);
     *v4 = 1;
 

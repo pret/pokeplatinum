@@ -205,7 +205,7 @@ void ov23_0224A410 (int param0, int param1, void * param2, void * param3)
 {
     CommPlayerManager * commPlayerMan = CommPlayerMan_Get();
     UnkStruct_ov23_0224A348 * v1 = param2;
-    UnkStruct_020507E4 * v2 = SaveData_Events(commPlayerMan->fieldSystem->saveData);
+    VarsFlags * v2 = SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData);
 
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
@@ -473,7 +473,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             u8 v6 = sub_0202958C(v5);
 
             sub_020295C0(v5);
-            sub_0206AA40(SaveData_Events(commPlayerMan->fieldSystem->saveData));
+            sub_0206AA40(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
 
             if (commPlayerMan->unk_290[v1->unk_01]) {
                 sub_0206DAB8(commPlayerMan->fieldSystem, commPlayerMan->unk_290[v1->unk_01]);
@@ -723,8 +723,8 @@ void ov23_0224ADB0 (int param0, int param1, int param2, int param3)
     CommPlayerManager * v0 = CommPlayerMan_Get();
     CommPlayerLocation * v1 = &v0->playerLocationServer[param0];
 
-    v1->x = param1 + sub_0206419C(param3);
-    v1->z = param2 + sub_020641A8(param3);
+    v1->x = param1 + MapObject_GetDxFromDir(param3);
+    v1->z = param2 + MapObject_GetDyFromDir(param3);
     v1->dir = param3;
 }
 

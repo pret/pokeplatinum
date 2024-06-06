@@ -105,7 +105,7 @@ static void sub_02055AC0 (FieldSystem * fieldSystem, s32 param1)
     }
 
     {
-        UnkStruct_020507E4 * v1 = SaveData_Events(fieldSystem->saveData);
+        VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
         u16 v2 = sub_0206B260(v1);
 
         if (v2 > param1) {

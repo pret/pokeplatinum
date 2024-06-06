@@ -18,7 +18,7 @@ void ov6_02247F5C (FieldSystem * fieldSystem)
 {
     UnkStruct_ov5_021D3CE4 * v0;
 
-    if (!sub_0206ADEC(SaveData_Events(fieldSystem->saveData))) {
+    if (!sub_0206ADEC(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v0 = ov5_021D3DE4(496, 1, fieldSystem->unk_50);
         ov5_021D3F08(v0, 1);
         ov5_021D3E40(v0, 1);
@@ -34,7 +34,7 @@ void ov6_02247F5C (FieldSystem * fieldSystem)
 
 void ov6_02247FBC (FieldSystem * fieldSystem)
 {
-    sub_02050944(fieldSystem->unk_10, ov6_02247FD0, NULL);
+    FieldTask_Start(fieldSystem->unk_10, ov6_02247FD0, NULL);
 }
 
 static BOOL ov6_02247FD0 (TaskManager * param0)
@@ -43,7 +43,7 @@ static BOOL ov6_02247FD0 (TaskManager * param0)
     UnkStruct_ov5_021D3CE4 * v1;
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    v0 = sub_02050A68(param0);
+    v0 = FieldTask_GetState(param0);
 
     switch (*v0) {
     case 0:

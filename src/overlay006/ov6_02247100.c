@@ -14,11 +14,11 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_0202B604.h"
-#include "unk_0203A6DC.h"
+#include "journal.h"
+#include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "player_avatar.h"
 #include "unk_020655F4.h"
 #include "overlay005/ov5_021F0EB0.h"
@@ -144,13 +144,13 @@ static int ov6_02247244 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkSt
 
 static int ov6_02247288 (TaskManager * taskMan, FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * param2)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
+    FieldOverworldState * v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     if (param2->unk_08 == 2) {
         u16 v1;
         Location v2;
 
-        v1 = sub_0203A75C(v0);
+        v1 = FieldOverworldState_GetWarpId(v0);
         sub_0203A7F0(v1, &v2);
         sub_02053CD4(taskMan, &v2, param2->unk_08);
     } else {
@@ -203,7 +203,7 @@ static void ov6_0224732C (FieldSystem * fieldSystem, UnkStruct_ov6_02247100 * pa
     void * v0;
 
     if (param1->unk_08 == 2) {
-        v0 = sub_0202BE00((28 - 19), fieldSystem->unk_1C->unk_00, 4);
+        v0 = sub_0202BE00((28 - 19), fieldSystem->location->mapId, 4);
     } else {
         return;
     }

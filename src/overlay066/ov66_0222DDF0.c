@@ -12,7 +12,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
@@ -57,7 +57,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202C858.h"
 #include "unk_0202CD50.h"
 #include "unk_02030EA4.h"
@@ -1743,9 +1743,9 @@ void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     UnkStruct_ov66_0222E71C * v0;
     TrainerInfo * v1;
     void * v2;
-    UnkStruct_0202B628 * v3;
+    Journal * v3;
 
-    v3 = sub_0202B628(param0->unk_00);
+    v3 = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
@@ -1763,9 +1763,9 @@ void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     UnkStruct_ov66_0222E71C * v0;
     TrainerInfo * v1;
     void * v2;
-    UnkStruct_0202B628 * v3;
+    Journal * v3;
 
-    v3 = sub_0202B628(param0->unk_00);
+    v3 = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
@@ -1782,9 +1782,9 @@ void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 void ov66_0222EF94 (UnkStruct_ov66_0222DFF8 * param0, enum PlazaMinigame param1)
 {
     void * v0;
-    UnkStruct_0202B628 * v1;
+    Journal * v1;
 
-    v1 = sub_0202B628(param0->unk_00);
+    v1 = SaveData_GetJournal(param0->unk_00);
 
     switch (param1) {
     case UnkEnum_ov66_022324D0_00:
@@ -1815,9 +1815,9 @@ void ov66_0222EF94 (UnkStruct_ov66_0222DFF8 * param0, enum PlazaMinigame param1)
 void ov66_0222F000 (UnkStruct_ov66_0222DFF8 * param0)
 {
     void * v0;
-    UnkStruct_0202B628 * v1;
+    Journal * v1;
 
-    v1 = sub_0202B628(param0->unk_00);
+    v1 = SaveData_GetJournal(param0->unk_00);
     v0 = sub_0202C244(112, 28);
 
     sub_0202B758(v1, v0, 4);

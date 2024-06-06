@@ -101,7 +101,7 @@ void ov6_02247A0C (TaskManager * param0)
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
-    sub_02050944(param0, ov6_02247A34, v0);
+    FieldTask_Start(param0, ov6_02247A34, v0);
 }
 
 static BOOL ov6_02247A34 (TaskManager * param0)

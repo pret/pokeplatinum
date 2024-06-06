@@ -16,7 +16,7 @@
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "pokemon.h"
@@ -85,7 +85,7 @@
 #include "game_options.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202C858.h"
 #include "unk_0203061C.h"
 #include "unk_02030CE8.h"
@@ -402,7 +402,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov65_0223894C = {
 
 static BOOL ov65_0222DCE0 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    return inline_0208BE68(SaveData_Events(param0->unk_160), 53);
+    return inline_0208BE68(SaveData_GetVarsFlags(param0->unk_160), 53);
 }
 
 static BOOL ov65_0222DCF8 (UnkStruct_ov65_0222EBE0 * param0)
@@ -3850,9 +3850,9 @@ static BOOL ov65_02231A54 (void)
 static void ov65_02231A74 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 {
     void * v0;
-    UnkStruct_0202B628 * v1;
+    Journal * v1;
 
-    v1 = sub_0202B628(param0->unk_160);
+    v1 = SaveData_GetJournal(param0->unk_160);
     v0 = sub_0202C244(54, 29);
 
     sub_0202B758(v1, v0, 4);

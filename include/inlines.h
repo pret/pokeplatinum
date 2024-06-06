@@ -19,7 +19,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0206A8DC.h"
@@ -131,15 +131,15 @@ static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
 
 static inline void inline_ov47_0225621C_sub (FieldSystem * fieldSystem, int * param1, int * param2)
 {
-    UnkStruct_0203A790 * v0 = sub_0203A790(fieldSystem->saveData);
-    Location * v1 = sub_0203A72C(v0);
+    FieldOverworldState * v0 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location * location = sub_0203A72C(v0);
 
-    if (MapHeader_IsOnMainMatrix(fieldSystem->unk_1C->unk_00)) {
-        *param1 = fieldSystem->unk_1C->unk_08;
-        *param2 = fieldSystem->unk_1C->unk_0C;
+    if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
+        *param1 = fieldSystem->location->x;
+        *param2 = fieldSystem->location->z;
     } else {
-        *param1 = v1->unk_08;
-        *param2 = v1->unk_0C;
+        *param1 = location->x;
+        *param2 = location->z;
     }
 }
 
@@ -150,13 +150,13 @@ static inline void inline_ov47_0225621C (FieldSystem * fieldSystem, int * param1
     *param2 /= 32;
 }
 
-static inline void inline_02049FA8 (Location * param0, int param1, int param2, int param3, int param4, int param5)
+static inline void Location_Set (Location * location, int mapId, int param2, int param3, int param4, int param5)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param2;
-    param0->unk_08 = param3;
-    param0->unk_0C = param4;
-    param0->unk_10 = param5;
+    location->mapId = mapId;
+    location->unk_04 = param2;
+    location->x = param3;
+    location->z = param4;
+    location->unk_10 = param5;
 }
 
 static inline u16 * ScriptContext_GetVarPointer (ScriptContext * ctx)
@@ -169,37 +169,37 @@ static inline u16 ScriptContext_GetVar (ScriptContext * ctx)
     return sub_0203F150(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
-static inline void inline_0204E650 (UnkStruct_020507E4 * param0)
+static inline void inline_0204E650 (VarsFlags * param0)
 {
     sub_0206AEAC(param0, 1);
 }
 
-static inline void inline_0204E650_1 (UnkStruct_020507E4 * param0)
+static inline void inline_0204E650_1 (VarsFlags * param0)
 {
     sub_0206AEAC(param0, 0);
 }
 
-static inline BOOL inline_0204E650_2 (UnkStruct_020507E4 * param0)
+static inline BOOL inline_0204E650_2 (VarsFlags * param0)
 {
     return sub_0206AEAC(param0, 2);
 }
 
-static inline void inline_02044528 (UnkStruct_020507E4 * param0)
+static inline void inline_02044528 (VarsFlags * param0)
 {
     sub_0206AF2C(param0, 1);
 }
 
-static inline BOOL inline_020535E8 (UnkStruct_020507E4 * param0)
+static inline BOOL inline_020535E8 (VarsFlags * param0)
 {
     return sub_0206AF2C(param0, 2);
 }
 
-static inline void inline_0203A8E8 (UnkStruct_020507E4 * param0, u32 param1)
+static inline void inline_0203A8E8 (VarsFlags * param0, u32 param1)
 {
     sub_0206AF3C(param0, 1, param1);
 }
 
-static inline BOOL inline_0208BE68 (UnkStruct_020507E4 * param0, u32 param1)
+static inline BOOL inline_0208BE68 (VarsFlags * param0, u32 param1)
 {
     return sub_0206AF3C(param0, 2, param1);
 }

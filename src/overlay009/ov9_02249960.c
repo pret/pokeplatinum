@@ -1352,7 +1352,7 @@ static void ov9_02249CAC (UnkStruct_ov9_02249B04 * param0)
 static void ov9_02249CC4 (UnkStruct_ov9_02249B04 * param0)
 {
     UnkStruct_02071C5C * v0 = param0->unk_04;
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     v0->unk_0C = 0;
 
@@ -2104,7 +2104,7 @@ BOOL ov9_0224A67C (FieldSystem * fieldSystem, int param1)
     switch (v1) {
     case 581:
         if (param1 == 0) {
-            UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSystem->saveData);
+            VarsFlags * v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
 
             if (sub_0206B5D8(v2) >= 10) {
                 int v3, v4, v5;
@@ -2162,7 +2162,7 @@ BOOL ov9_0224A71C (FieldSystem * fieldSystem)
 
         {
             u32 v6 = ov9_022510D0(v5);
-            UnkStruct_020507E4 * v7 = SaveData_Events(v5->fieldSystem->saveData);
+            VarsFlags * v7 = SaveData_GetVarsFlags(v5->fieldSystem->saveData);
 
             if ((v6 == 581) && (v4 == 0)) {
                 if (sub_0206B5D8(v7) >= 10) {
@@ -2191,7 +2191,7 @@ BOOL ov9_0224A800 (FieldSystem * fieldSystem, int param1)
     switch (v1) {
     case 581:
         if (param1 == 0) {
-            UnkStruct_020507E4 * v2 = SaveData_Events(v0->fieldSystem->saveData);
+            VarsFlags * v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
 
             if (sub_0206B5D8(v2) >= 10) {
                 int v3, v4, v5;
@@ -2353,7 +2353,7 @@ static void ov9_0224AA34 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0
         v0->unk_28.z = -v0->unk_28.z;
     }
 
-    sub_02050904(param0->fieldSystem, ov9_0224AAD4, param0);
+    FieldTask_Set(param0->fieldSystem, ov9_0224AAD4, param0);
 }
 
 static BOOL ov9_0224AAD4 (TaskManager * param0)
@@ -2788,7 +2788,7 @@ static void ov9_0224B1B4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov5_021DF47
     param0->unk_1EC2 = 0;
 
     if (ov9_022510D0(param0) == 582) {
-        UnkStruct_020507E4 * v3 = SaveData_Events(param0->fieldSystem->saveData);
+        VarsFlags * v3 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
         u32 v4 = sub_0206B5D8(v3);
 
         if (v4 >= 10) {
@@ -4851,8 +4851,8 @@ static int ov9_0224CEBC (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224CBD8
         ov5_021EA6A4(fieldSystem->unk_28, 1);
         ov5_021EA6D0(fieldSystem->unk_28, 1);
 
-        param1->unk_08 = fieldSystem->unk_1C->unk_08;
-        param1->unk_0A = fieldSystem->unk_1C->unk_0C;
+        param1->unk_08 = fieldSystem->location->x;
+        param1->unk_0A = fieldSystem->location->z;
 
         ov5_021EA58C(fieldSystem->unk_28, param1->unk_08, param1->unk_0A, param1->unk_10);
     }
@@ -4926,7 +4926,7 @@ static void ov9_0224D078 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224E0D
     v0 = ov9_0224A578(param0, sizeof(UnkStruct_ov9_0224D078));
     v0->unk_64 = param1;
 
-    sub_02050904(param0->fieldSystem, ov9_0224D098, param0);
+    FieldTask_Set(param0->fieldSystem, ov9_0224D098, param0);
 }
 
 static BOOL ov9_0224D098 (TaskManager * param0)
@@ -4963,7 +4963,7 @@ static int ov9_0224D0C8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
         param1->unk_06 = v2->unk_08;
 
         {
-            UnkStruct_020507E4 * v4 = SaveData_Events(param0->fieldSystem->saveData);
+            VarsFlags * v4 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
             u16 v5 = sub_0206B5D8(v4);
 
             if ((v0 == 573) && (v5 == 2)) {
@@ -5283,7 +5283,7 @@ static int ov9_0224D5E8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
         }
 
         if ((param1->unk_06 == 577) && (param1->unk_00 == 1) && (param1->unk_64->unk_04.unk_00 == 1)) {
-            UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+            VarsFlags * v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
             if (sub_0206B6DC(v1) == 0) {
                 param1->unk_04 = 6;
@@ -5342,14 +5342,14 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 static int ov9_0224D6E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
     if (sub_0206574C(param1->unk_6C) == 1) {
-        UnkStruct_020507E4 * v0;
+        VarsFlags * v0;
         MapObject * v1;
 
         sub_02065758(param1->unk_6C);
         v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, (0x80 + 6));
 
         ov9_0224EE70(param0, v1);
-        v0 = SaveData_Events(param0->fieldSystem->saveData);
+        v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
         sub_0206B6EC(v0, 1);
         return 2;
@@ -6085,7 +6085,7 @@ static int ov9_0224E1CC (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1->unk_00 = 0;
 
     if (v2->unk_08 == 1) {
-        UnkStruct_020507E4 * v5 = SaveData_Events(v2->unk_0C->fieldSystem->saveData);
+        VarsFlags * v5 = SaveData_GetVarsFlags(v2->unk_0C->fieldSystem->saveData);
 
         if (sub_0206AFD0(v5) == 0) {
             v1->unk_02 = 0;
@@ -6113,9 +6113,9 @@ static void ov9_0224E294 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     UnkStruct_ov9_0224E1CC * v0 = param1;
 
     if (v0->unk_00 == 1) {
-        UnkStruct_020507E4 * v1;
+        VarsFlags * v1;
 
-        v1 = SaveData_Events(v0->unk_10.unk_0C->fieldSystem->saveData);
+        v1 = SaveData_GetVarsFlags(v0->unk_10.unk_0C->fieldSystem->saveData);
 
         if (sub_0206AFD0(v1) == 1) {
             v0->unk_01 = 0;
@@ -6264,7 +6264,7 @@ static const UnkStruct_ov9_02252044 * ov9_0224E410 (u32 param0)
 
 static BOOL ov9_0224E434 (UnkStruct_ov9_02249B04 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
     const UnkStruct_ov9_02252044 * v1 = ov9_0224E410(ov9_022510D0(param0));
 
     if (v1 != NULL) {
@@ -6291,7 +6291,7 @@ static BOOL ov9_0224E434 (UnkStruct_ov9_02249B04 * param0, int param1, int param
 static void ov9_0224E498 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_02251438 * param1)
 {
     ov9_0224E350(param0, param1);
-    sub_02050904(param0->fieldSystem, ov9_0224E4BC, param0);
+    FieldTask_Set(param0->fieldSystem, ov9_0224E4BC, param0);
 }
 
 static void ov9_0224E4B0 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_02252044 * param1)
@@ -7161,7 +7161,7 @@ static BOOL ov9_0224EF30 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0
 {
     u16 v0 = param1->unk_00;
     u16 v1 = param1->unk_02;
-    UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     if (v0 == 6) {
         if (param2 == 0) {
@@ -7307,7 +7307,7 @@ static MapObject * ov9_0224F0D4 (UnkStruct_ov9_02249B04 * param0, u32 param1, u1
 
 void ov9_0224F158 (FieldSystem * fieldSystem, u16 param1)
 {
-    u32 v0 = fieldSystem->unk_1C->unk_00;
+    u32 v0 = fieldSystem->location->mapId;
     UnkStruct_ov9_02249B04 * v1 = fieldSystem->unk_04->unk_24;
 
     ov9_0224F0D4(v1, v0, param1);
@@ -7317,7 +7317,7 @@ void ov9_0224F16C (FieldSystem * fieldSystem, u16 param1)
 {
     int v0 = 0;
     MapObject * v1;
-    u32 v2 = fieldSystem->unk_1C->unk_00;
+    u32 v2 = fieldSystem->location->mapId;
     MapObjectManager * v3 = fieldSystem->mapObjMan;
     UnkStruct_ov9_02249B04 * v4 = fieldSystem->unk_04->unk_24;
 
@@ -7393,11 +7393,11 @@ BOOL ov9_0224F240 (const MapObject * param0, int param1)
     FieldSystem * fieldSystem;
 
     fieldSystem = MapObject_FieldSystem(param0);
-    v3 = fieldSystem->unk_1C->unk_00;
+    v3 = fieldSystem->location->mapId;
     v0 = MapObject_GetXPos(param0);
     v1 = MapObject_GetZPos(param0);
-    v0 += sub_0206419C(param1);
-    v1 += sub_020641A8(param1);
+    v0 += MapObject_GetDxFromDir(param1);
+    v1 += MapObject_GetDyFromDir(param1);
 
     return ov9_0224F1F8(v3, v0, v1, &v2);
 }
@@ -7409,7 +7409,7 @@ static BOOL ov9_0224F284 (const MapObject * param0, u32 * param1)
     FieldSystem * fieldSystem;
 
     fieldSystem = MapObject_FieldSystem(param0);
-    v2 = fieldSystem->unk_1C->unk_00;
+    v2 = fieldSystem->location->mapId;
     v0 = MapObject_GetXPos(param0);
     v1 = MapObject_GetZPos(param0);
 
@@ -7573,9 +7573,9 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
                 int v9 = MapObject_GetYPos(v6);
                 int v10 = MapObject_GetZPos(v6);
 
-                v8 += sub_0206419C(v7);
+                v8 += MapObject_GetDxFromDir(v7);
                 v9 -= (2 * 2);
-                v10 += sub_020641A8(v7);
+                v10 += MapObject_GetDyFromDir(v7);
 
                 MapObject_SetX(v6, v8);
                 MapObject_SetY(v6, v9);
@@ -7657,7 +7657,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
             param0->unk_00, 8);
 
         if (v17 >= 3) {
-            UnkStruct_020507E4 * v18 = SaveData_Events(param0->fieldSystem->saveData);
+            VarsFlags * v18 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
             sub_0206AFC0(v18, 1);
         }
@@ -7788,7 +7788,7 @@ static void ov9_0224F724 (UnkStruct_ov9_02249B04 * param0)
     u32 v1 = ov9_022510D0(param0);
 
     if (v1 == 582) {
-        UnkStruct_020507E4 * v2 = SaveData_Events(param0->fieldSystem->saveData);
+        VarsFlags * v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
         if (sub_0206B5D8(v2) == 13) {
             v0->unk_06 = 1;
@@ -8707,7 +8707,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_022512C0[2] = {
 static int ov9_022506D0 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
     const UnkStruct_ov9_022506D0 * v0 = param3;
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     sub_0206B5E8(v1, v0->unk_00);
     return 2;
@@ -8720,7 +8720,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251238[1] = {
 static int ov9_022506EC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, u16 * param2, const void * param3)
 {
     const UnkStruct_ov9_022506EC * v0 = param3;
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     sub_0206AFB0(v1, 1, v0->unk_00);
     return 2;
@@ -9613,7 +9613,7 @@ void ov9_02251094 (int param0, int * param1, int * param2, int * param3)
 
 static u32 ov9_022510D0 (UnkStruct_ov9_02249B04 * param0)
 {
-    return param0->fieldSystem->unk_1C->unk_00;
+    return param0->fieldSystem->location->mapId;
 }
 
 static int ov9_022510D8 (u32 param0)
@@ -9634,7 +9634,7 @@ static int ov9_022510D8 (u32 param0)
 
 static BOOL ov9_02251104 (UnkStruct_ov9_02249B04 * param0, u32 param1, u32 param2)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     switch (param1) {
     case 0:
@@ -9685,7 +9685,7 @@ BOOL ov9_022511A0 (FieldSystem * fieldSystem, int param1, int param2, int param3
 
     if (ov9_022510D0(v0) == 582) {
         if ((param2 == 15) && (param1 == 15) && (param3 == 1)) {
-            UnkStruct_020507E4 * v1 = SaveData_Events(v0->fieldSystem->saveData);
+            VarsFlags * v1 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
             u32 v2 = sub_0206B5D8(v1);
 
             if (v2 == 14) {

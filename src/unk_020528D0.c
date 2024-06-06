@@ -31,13 +31,13 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_020508D4.h"
 #include "unk_020528D0.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
 #include "unk_02070428.h"
@@ -133,14 +133,14 @@ static void sub_02052914 (FieldSystem * fieldSystem, TaskManager * param1)
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
     StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem)));
 
-    if (fieldSystem->unk_1C->unk_00 == 414) {
+    if (fieldSystem->location->mapId == 414) {
         sub_02052AA4(v0, 4, 0, 0);
     } else {
         sub_02052AA4(v0, 3, 0, 0);
     }
 
     sub_0201A954(&v0->unk_0C);
-    sub_02050944(param1, sub_020529C4, v0);
+    FieldTask_Start(param1, sub_020529C4, v0);
 
     return;
 }
@@ -213,7 +213,7 @@ BOOL sub_02052B2C (TaskManager * param0)
     int * v1;
 
     fieldSystem = TaskManager_FieldSystem(param0);
-    v1 = sub_02050A68(param0);
+    v1 = FieldTask_GetState(param0);
 
     switch (*v1) {
     case 0:
@@ -225,8 +225,8 @@ BOOL sub_02052B2C (TaskManager * param0)
 
         {
             Location v2;
-            UnkStruct_0203A790 * v3 = sub_0203A790(fieldSystem->saveData);
-            u16 v4 = sub_0203A75C(v3);
+            FieldOverworldState * v3 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+            u16 v4 = FieldOverworldState_GetWarpId(v3);
 
             sub_0203A824(v4, &v2);
             sub_0203A7F0(v4, sub_0203A72C(v3));
@@ -240,7 +240,7 @@ BOOL sub_02052B2C (TaskManager * param0)
         (*v1)++;
         break;
     case 2:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             sub_020553DC();
             (*v1)++;
         }
@@ -259,7 +259,7 @@ BOOL sub_02052B2C (TaskManager * param0)
         sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
         if (sub_0203A7EC()
-            == sub_0203A75C(sub_0203A790(fieldSystem->saveData))) {
+            == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
             sub_0203E8E0(param0, 2020, NULL, NULL);
         } else {
             sub_0203E8E0(param0, 2021, NULL, NULL);
@@ -276,5 +276,5 @@ BOOL sub_02052B2C (TaskManager * param0)
 
 void sub_02052C5C (TaskManager * param0)
 {
-    sub_02050944(param0, sub_02052B2C, NULL);
+    FieldTask_Start(param0, sub_02052B2C, NULL);
 }

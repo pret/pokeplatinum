@@ -26,7 +26,7 @@
 #include "unk_0202D7A8.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_020507CC.h"
 #include "unk_02050A74.h"
@@ -196,7 +196,7 @@ static void ov6_02240CC8 (FieldSystem * fieldSystem, const UnkStruct_ov6_0224263
     if (sub_0202D898(v1)) {
         v0 = sub_0202D814(v1, 2);
 
-        if (fieldSystem->unk_1C->unk_00 == ov6_02243218(v0)) {
+        if (fieldSystem->location->mapId == ov6_02243218(v0)) {
             (*param2) = param1->unk_40[0];
             (*param3) = param1->unk_40[1];
         }
@@ -208,7 +208,7 @@ static void ov6_02240D00 (FieldSystem * fieldSystem, const BOOL param1, int * pa
     int * v0;
     u16 v1, v2;
 
-    if (MapHeader_IsTrophyGarden(fieldSystem->unk_1C->unk_00)) {
+    if (MapHeader_IsTrophyGarden(fieldSystem->location->mapId)) {
         sub_0202DA10(fieldSystem->saveData, &v1, &v2);
 
         if (param1) {
@@ -274,7 +274,7 @@ BOOL ov6_02240D5C (FieldSystem * fieldSystem)
             }
         }
 
-        v15 = ov6_0224226C(0, v15, &v14, sub_0203A74C(sub_0203A790(fieldSystem->saveData)), v1);
+        v15 = ov6_0224226C(0, v15, &v14, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), v1);
 
         ov6_02241ABC(fieldSystem, &v15);
         ov6_02241A90(v1, &v15);
@@ -299,7 +299,7 @@ BOOL ov6_02240D5C (FieldSystem * fieldSystem)
         return 0;
     }
 
-    if (!sub_0206A984(SaveData_Events(fieldSystem->saveData))) {
+    if (!sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v8 = 0;
     } else {
         v8 = 1;
@@ -324,7 +324,7 @@ BOOL ov6_02240D5C (FieldSystem * fieldSystem)
     }
 
     if (!v8) {
-        v9 = sub_0206AE5C(SaveData_Events(fieldSystem->saveData));
+        v9 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v9, &v0);
     } else {
         v0 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -355,7 +355,7 @@ BOOL ov6_02240D5C (FieldSystem * fieldSystem)
             v7 = ov6_02241674(fieldSystem, v1, v0, v12, v13, &v14, &v10);
         } else {
             {
-                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(fieldSystem->saveData));
+                v0->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
                 TrainerData_Encounter(v0, fieldSystem->saveData, 11);
             }
             v7 = ov6_0224174C(fieldSystem, v1, v0, v13, &v14);
@@ -414,21 +414,21 @@ BOOL ov6_0224106C (FieldSystem * fieldSystem, const int param1, BattleParams ** 
         v1 = Party_GetFromSavedata(fieldSystem->saveData);
         v0 = Party_GetPokemonBySlotIndex(v1, 0);
         ov6_02242634(fieldSystem, v0, NULL, &v4);
-        v5 = ov6_0224226C(1, v5, &v4, sub_0203A74C(sub_0203A790(fieldSystem->saveData)), v0);
+        v5 = ov6_0224226C(1, v5, &v4, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), v0);
 
         if (inline_020564D0(100) >= v5) {
             return 0;
         }
     }
 
-    v2 = sub_0206AE5C(SaveData_Events(fieldSystem->saveData));
+    v2 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     ov6_02242328(fieldSystem, v2, param2);
 
     sub_02052314(*param2, fieldSystem);
     sub_0205285C(*param2);
 
-    if ((MapHeader_HasFeebasTiles(fieldSystem->unk_1C->unk_00)) && ov6_02247660(fieldSystem)) {
+    if ((MapHeader_HasFeebasTiles(fieldSystem->location->mapId)) && ov6_02247660(fieldSystem)) {
         u8 v6;
         int v7;
         u8 v8, v9;
@@ -523,7 +523,7 @@ BOOL ov6_022411C8 (FieldSystem * fieldSystem, TaskManager * param1)
 
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
 
-    if (!sub_0206A984(SaveData_Events(fieldSystem->saveData))) {
+    if (!sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v6 = 0;
     } else {
         v6 = 1;
@@ -544,7 +544,7 @@ BOOL ov6_022411C8 (FieldSystem * fieldSystem, TaskManager * param1)
     }
 
     if (!v6) {
-        v7 = sub_0206AE5C(SaveData_Events(fieldSystem->saveData));
+        v7 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v7, &v0);
     } else {
         v0 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -575,7 +575,7 @@ BOOL ov6_022411C8 (FieldSystem * fieldSystem, TaskManager * param1)
             v8 = ov6_02241674(fieldSystem, v1, v0, v11, v12, &v13, &v9);
         } else {
             {
-                v0->trainerIDs[2] = sub_0206B034(SaveData_Events(fieldSystem->saveData));
+                v0->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
                 TrainerData_Encounter(v0, fieldSystem->saveData, 11);
             }
             v8 = ov6_0224174C(fieldSystem, v1, v0, v12, &v13);
@@ -653,7 +653,7 @@ BOOL ov6_022413E4 (FieldSystem * fieldSystem, BattleParams ** param1)
             }
         }
 
-        v14 = ov6_0224226C(0, v14, &v13, sub_0203A74C(sub_0203A790(fieldSystem->saveData)), v0);
+        v14 = ov6_0224226C(0, v14, &v13, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), v0);
 
         ov6_02241ABC(fieldSystem, &v14);
         ov6_02241A90(v0, &v14);
@@ -668,7 +668,7 @@ BOOL ov6_022413E4 (FieldSystem * fieldSystem, BattleParams ** param1)
     memset(&v9, 0, sizeof(UnkStruct_ov6_02241674));
     v9.unk_0C = 0;
 
-    if (!sub_0206A984(SaveData_Events(fieldSystem->saveData))) {
+    if (!sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v7 = 0;
     } else {
         v7 = 1;
@@ -692,7 +692,7 @@ BOOL ov6_022413E4 (FieldSystem * fieldSystem, BattleParams ** param1)
     }
 
     if (!v7) {
-        v8 = sub_0206AE5C(SaveData_Events(fieldSystem->saveData));
+        v8 = sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData));
         ov6_02242328(fieldSystem, v8, param1);
     } else {
         *param1 = sub_02051D8C(11, (0x2 | 0x8 | 0x40));
@@ -723,7 +723,7 @@ BOOL ov6_022413E4 (FieldSystem * fieldSystem, BattleParams ** param1)
             v6 = ov6_02241674(fieldSystem, v0, *param1, v11, v12, &v13, &v9);
         } else {
             {
-                (*param1)->trainerIDs[2] = sub_0206B034(SaveData_Events(fieldSystem->saveData));
+                (*param1)->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
                 TrainerData_Encounter(*param1, fieldSystem->saveData, 11);
             }
             v6 = ov6_0224174C(fieldSystem, v0, *param1, v12, &v13);
@@ -1586,7 +1586,7 @@ static void ov6_02242328 (FieldSystem * fieldSystem, const BOOL param1, BattlePa
     if (!param1) {
         (*param2) = sub_02051D8C(11, (0x0 | 0x0));
     } else {
-        u16 * v0 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+        u16 * v0 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         (*param2) = sub_02051F24(11, *v0);
     }
 }
@@ -1594,7 +1594,7 @@ static void ov6_02242328 (FieldSystem * fieldSystem, const BOOL param1, BattlePa
 static void ov6_02242354 (FieldSystem * fieldSystem, const BOOL param1, const BOOL param2, UnkStruct_ov6_0224222C * param3)
 {
     if (param1) {
-        ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), param2, fieldSystem->unk_1C->unk_00, &param3[6].unk_00, &param3[7].unk_00);
+        ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), param2, fieldSystem->location->mapId, &param3[6].unk_00, &param3[7].unk_00);
     }
 }
 
@@ -1653,7 +1653,7 @@ static BOOL ov6_02242440 (FieldSystem * fieldSystem, UnkStruct_0206C638 ** param
     for (v3 = 0; v3 < 6; v3++) {
         v4 = sub_0206C3C8(sub_0202D8C4(v0, v3));
 
-        if (sub_0202D8F8(v0, v3) && (v4 == fieldSystem->unk_1C->unk_00)) {
+        if (sub_0202D8F8(v0, v3) && (v4 == fieldSystem->location->mapId)) {
             v1[v2] = sub_0202D924(v0, v3);
             v2++;
         }

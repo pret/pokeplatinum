@@ -415,8 +415,8 @@ static int sub_0206489C (MapObject * mapObj, int param1)
 
     sub_020647A0(mapObj, &v2);
 
-    v0 = MapObject_GetXPos(mapObj) + sub_0206419C(param1);
-    v1 = MapObject_GetZPos(mapObj) + sub_020641A8(param1);
+    v0 = MapObject_GetXPos(mapObj) + MapObject_GetDxFromDir(param1);
+    v1 = MapObject_GetZPos(mapObj) + MapObject_GetDyFromDir(param1);
 
     if ((v2.unk_00 > v0) || (v2.unk_08 < v0)) {
         return 0;

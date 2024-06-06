@@ -26,7 +26,7 @@
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"

@@ -23,11 +23,11 @@
 #include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_02026150.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "communication_information.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
@@ -36,7 +36,7 @@
 #include "enc_effects.h"
 #include "unk_02051D8C.h"
 #include "unk_020528D0.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "unk_0205578C.h"
 #include "unk_02055808.h"
 #include "unk_020562F8.h"
@@ -80,7 +80,7 @@ static BOOL sub_02050A74 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     BattleParams * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -100,7 +100,7 @@ static BOOL sub_02050A74 (TaskManager * taskMan)
 
 void sub_02050ABC (TaskManager * taskMan, BattleParams * param1)
 {
-    sub_02050944(taskMan, sub_02050A74, param1);
+    FieldTask_Start(taskMan, sub_02050A74, param1);
 }
 
 static UnkStruct_02050ACC * sub_02050ACC (BattleParams * param0, int param1, int param2, int * param3)
@@ -156,7 +156,7 @@ static BOOL sub_02050B30 (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -186,13 +186,13 @@ static BOOL sub_02050B30 (TaskManager * taskMan)
             return 1;
         }
 
-        if (sub_0206A984(SaveData_Events(fieldSystem->saveData))) {
+        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 
         sub_020518B0(fieldSystem, v1->unk_10);
         sub_02051988(fieldSystem, v1->unk_10);
-        sub_0206B48C(SaveData_Events(fieldSystem->saveData), v1->unk_10->unk_18C);
+        sub_0206B48C(SaveData_GetVarsFlags(fieldSystem->saveData), v1->unk_10->unk_18C);
         sub_02055868(taskMan);
         (*v2)++;
         break;
@@ -215,7 +215,7 @@ static void sub_02050C4C (TaskManager * taskMan, BattleParams * param1, int para
     UnkStruct_02050ACC * v0;
 
     v0 = sub_02050ACC(param1, param2, param3, param4);
-    sub_02050944(taskMan, sub_02050B30, v0);
+    FieldTask_Start(taskMan, sub_02050B30, v0);
 }
 
 static void sub_02050C6C (int param0, FieldSystem * fieldSystem)
@@ -240,7 +240,7 @@ static BOOL sub_02050CA8 (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -285,7 +285,7 @@ static BOOL sub_02050D4C (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -342,31 +342,31 @@ static void sub_02050DFC (UnkStruct_02050DD4 * param0)
 
 void sub_02050E10 (FieldSystem * fieldSystem, BattleParams * param1)
 {
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData))) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC * v0;
 
         v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
-        sub_02050904(fieldSystem, sub_02051074, v0);
+        FieldTask_Set(fieldSystem, sub_02051074, v0);
     } else {
         UnkStruct_02050DD4 * v1;
 
         v1 = sub_02050DD4(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
-        sub_02050904(fieldSystem, sub_02050EE0, v1);
+        FieldTask_Set(fieldSystem, sub_02050EE0, v1);
     }
 }
 
 void sub_02050E78 (FieldSystem * fieldSystem, TaskManager * param1, BattleParams * param2)
 {
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData))) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         UnkStruct_02050ACC * v0;
 
         v0 = sub_02050ACC(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
-        sub_02050924(param1, sub_02051074, v0);
+        FieldTask_Change(param1, sub_02051074, v0);
     } else {
         UnkStruct_02050DD4 * v1;
 
         v1 = sub_02050DD4(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
-        sub_02050924(param1, sub_02050EE0, v1);
+        FieldTask_Change(param1, sub_02050EE0, v1);
     }
 }
 
@@ -400,11 +400,11 @@ static BOOL sub_02050EE0 (TaskManager * taskMan)
         if (sub_02052868(v1->unk_10->unk_14) == 0) {
             sub_02050DFC(v1);
             RadarChain_Clear(fieldSystem->chain);
-            sub_02050924(taskMan, sub_02052B2C, NULL);
+            FieldTask_Change(taskMan, sub_02052B2C, NULL);
             return 0;
         }
 
-        if (sub_0206A984(SaveData_Events(fieldSystem->saveData))) {
+        if (sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             HealAllPokemonInParty(Party_GetFromSavedata(fieldSystem->saveData));
         }
 
@@ -458,8 +458,8 @@ static BOOL sub_02051074 (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
-    v3 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+    v2 = FieldTask_GetState(taskMan);
+    v3 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     switch (*v2) {
     case 0:
@@ -491,7 +491,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
         if (((*v3) == 0) && (v1->unk_10->unk_14 != 0x4)) {
             Location * v6;
 
-            v6 = sub_0203A730(sub_0203A790(fieldSystem->saveData));
+            v6 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
             sub_020539A0(taskMan, v6);
         }
 
@@ -614,7 +614,7 @@ static BOOL sub_0205136C (TaskManager * taskMan)
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     v1 = TaskManager_Environment(taskMan);
-    v2 = sub_02050A68(taskMan);
+    v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -666,7 +666,7 @@ void sub_02051450 (FieldSystem * fieldSystem, BattleParams * param1)
     UnkStruct_02050ACC * v0;
 
     v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
-    sub_02050904(fieldSystem, sub_0205136C, v0);
+    FieldTask_Set(fieldSystem, sub_0205136C, v0);
 }
 
 void sub_02051480 (TaskManager * taskMan, int param1, int param2, int * param3)
@@ -694,7 +694,7 @@ static BOOL sub_020514E8 (TaskManager * taskMan)
 {
     UnkStruct_02050ACC * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
@@ -740,7 +740,7 @@ void sub_02051590 (TaskManager * taskMan)
     v1 = sub_02051F4C(11, fieldSystem);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
-    sub_02050944(taskMan, sub_020514E8, v0);
+    FieldTask_Start(taskMan, sub_020514E8, v0);
 }
 
 void sub_020515CC (TaskManager * taskMan, int param1, int param2, int param3, int param4, int * param5)
@@ -768,7 +768,7 @@ void sub_020515CC (TaskManager * taskMan, int param1, int param2, int param3, in
     v2 = sub_02051D8C(11, v0);
     sub_02052314(v2, fieldSystem);
 
-    if ((fieldSystem->unk_1C->unk_00 >= 573) && (fieldSystem->unk_1C->unk_00 <= 583)) {
+    if ((fieldSystem->location->mapId >= 573) && (fieldSystem->location->mapId <= 583)) {
         v2->unk_164 |= 0x80;
     }
 
@@ -791,7 +791,7 @@ void sub_0205167C (TaskManager * taskMan, const u8 * param1, int param2)
     sub_020526CC(v2, fieldSystem, param1);
 
     v1 = sub_02050ACC(v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), NULL);
-    sub_02050944(taskMan, sub_02050CA8, v1);
+    FieldTask_Start(taskMan, sub_02050CA8, v1);
 }
 
 static int sub_020516C8 (const BattleRegulation * param0, int param1)
@@ -851,18 +851,18 @@ void sub_020516F4 (TaskManager * taskMan, int param1, int param2, int param3)
     v1 = sub_02050ACC(v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), NULL);
     v1->unk_0C = param1;
 
-    sub_02050944(taskMan, sub_02050D4C, v1);
+    FieldTask_Start(taskMan, sub_02050D4C, v1);
 }
 
 static BOOL sub_02051790 (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     UnkStruct_02050ACC * v1 = TaskManager_Environment(taskMan);
-    int * v2 = sub_02050A68(taskMan);
+    int * v2 = FieldTask_GetState(taskMan);
 
     switch (*v2) {
     case 0:
-        sub_02050944(taskMan, sub_02050CA8, v1);
+        FieldTask_Start(taskMan, sub_02050CA8, v1);
         (*v2)++;
         break;
     case 1:
@@ -891,7 +891,7 @@ void sub_020517E8 (FieldSystem * fieldSystem, const u8 * param1, int param2)
     v1->unk_18A = sub_020516C8(fieldSystem->unk_B0, param2);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
-    sub_02050904(fieldSystem, sub_02051790, v0);
+    FieldTask_Set(fieldSystem, sub_02051790, v0);
 }
 
 void sub_0205184C (FieldSystem * fieldSystem, const Party * param1, int param2)
@@ -908,7 +908,7 @@ void sub_0205184C (FieldSystem * fieldSystem, const Party * param1, int param2)
     v1->unk_18A = sub_020516C8(fieldSystem->unk_B0, param2);
     v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
-    sub_02050904(fieldSystem, sub_02051790, v0);
+    FieldTask_Set(fieldSystem, sub_02051790, v0);
 }
 
 static void sub_020518B0 (FieldSystem * fieldSystem, BattleParams * param1)
@@ -999,7 +999,7 @@ static void sub_02051988 (FieldSystem * fieldSystem, BattleParams * param1)
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
         if (v2 == 0x1) {
-            sub_0202C720(fieldSystem->unk_9C, fieldSystem->unk_1C->unk_00, param1->trainerIDs[1], 11);
+            sub_0202C720(fieldSystem->unk_9C, fieldSystem->location->mapId, param1->trainerIDs[1], 11);
         }
     }
 }

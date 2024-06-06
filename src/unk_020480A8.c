@@ -22,7 +22,7 @@ static u8 sub_02048268(u16 param0, u16 param1);
 
 BOOL ScrCmd_24E (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
     u32 v2;
 
@@ -107,7 +107,7 @@ BOOL ScrCmd_24F (ScriptContext * param0)
 
 BOOL ScrCmd_250 (ScriptContext * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     sub_0206B2C8(v0);
     return 0;

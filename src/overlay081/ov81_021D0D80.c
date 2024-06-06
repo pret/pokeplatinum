@@ -29,7 +29,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "overlay081/ov81_021D0D80.h"
@@ -90,7 +90,7 @@ int ov81_021D0D80 (OverlayManager * param0, int * param1)
     v0->unk_00 = sub_02018340(42);
 
     v0->unk_4C = v1;
-    v0->unk_44 = sub_0202B628(v1);
+    v0->unk_44 = SaveData_GetJournal(v1);
     v0->unk_48 = SaveData_GetTrainerInfo(v1);
 
     sub_0208C120(0, 42);

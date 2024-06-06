@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay065/struct_ov65_02236744_decl.h"
@@ -62,7 +62,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "game_options.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
@@ -1619,10 +1619,10 @@ static BOOL ov65_02237A10 (UnkStruct_ov65_022367A8 * param0)
 static void ov65_02237A24 (UnkStruct_0207DE04 * param0, u32 param1)
 {
     void * v0;
-    UnkStruct_0202B628 * v1;
+    Journal * v1;
     UnkStruct_0207E060 * v2;
 
-    v1 = sub_0202B628(param0->unk_08);
+    v1 = SaveData_GetJournal(param0->unk_08);
     v0 = sub_0202C244(param1, 29);
 
     sub_0202B758(v1, v0, 4);

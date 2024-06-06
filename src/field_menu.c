@@ -60,13 +60,13 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_menu.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
@@ -266,7 +266,7 @@ static const u8 Unk_020EA01C[] = {
 
 BOOL sub_0203A9C8 (FieldSystem * fieldSystem)
 {
-    if (MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00) == 0) {
+    if (MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) == 0) {
         return FALSE;
     }
 
@@ -277,9 +277,9 @@ void FieldMenu_Init (FieldSystem * fieldSystem)
 {
     FieldMenu * menu = FieldMenu_Alloc();
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    } else if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -293,7 +293,7 @@ void FieldMenu_Init (FieldSystem * fieldSystem)
         sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(fieldSystem, sub_0203AC44, menu);
+    FieldTask_Set(fieldSystem, sub_0203AC44, menu);
 }
 
 void sub_0203AA78 (FieldSystem * fieldSystem)
@@ -307,7 +307,7 @@ void sub_0203AA78 (FieldSystem * fieldSystem)
         sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(fieldSystem, sub_0203AC44, menu);
+    FieldTask_Set(fieldSystem, sub_0203AC44, menu);
 }
 
 void sub_0203AABC (FieldSystem * fieldSystem)
@@ -321,7 +321,7 @@ void sub_0203AABC (FieldSystem * fieldSystem)
         sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
     }
 
-    sub_02050904(fieldSystem, sub_0203AC44, menu);
+    FieldTask_Set(fieldSystem, sub_0203AC44, menu);
 }
 
 void sub_0203AB00 (FieldSystem * fieldSystem)
@@ -333,9 +333,9 @@ void sub_0203AB00 (FieldSystem * fieldSystem)
 
     menu->unk_228 = 0;
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    } else if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         menu->unk_224 = sub_0203AC28(fieldSystem);
     } else if (sub_0206C0D0(fieldSystem) == 1) {
         menu->unk_224 = sub_0203AC2C(fieldSystem);
@@ -348,7 +348,7 @@ void sub_0203AB00 (FieldSystem * fieldSystem)
         menu->unk_224 = sub_0203ABD0(fieldSystem);
     }
 
-    sub_02050924(fieldSystem->unk_10, sub_0203AC44, menu);
+    FieldTask_Change(fieldSystem->unk_10, sub_0203AC44, menu);
 }
 
 static FieldMenu * FieldMenu_Alloc (void)
@@ -372,15 +372,15 @@ static u32 sub_0203ABD0 (FieldSystem * fieldSystem)
         v0 |= 0x1;
     }
 
-    if (sub_0206B054(SaveData_Events(fieldSystem->saveData)) == 0) {
+    if (sub_0206B054(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
         v0 |= 0x2;
     }
 
-    if (sub_0206A938(SaveData_Events(fieldSystem->saveData)) == 0) {
+    if (sub_0206A938(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
         v0 |= 0x4;
     }
 
-    if (MapHeader_IsAmitySquare(fieldSystem->unk_1C->unk_00) == 1) {
+    if (MapHeader_IsAmitySquare(fieldSystem->location->mapId) == 1) {
         v0 |= 0x2;
         v0 |= 0x4;
     }
@@ -488,7 +488,7 @@ static BOOL sub_0203AC44 (TaskManager * taskMan)
         break;
     case FIELD_MENU_STATE_11:
         if (ScreenWipe_Done()) {
-            sub_02050924(taskMan, menu->unk_22C, menu->unk_25C);
+            FieldTask_Change(taskMan, menu->unk_22C, menu->unk_25C);
             Heap_FreeToHeap(menu);
         }
         break;
@@ -666,9 +666,9 @@ static void sub_0203B094 (TaskManager * taskMan)
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v6 = 0;
-    } else if (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    } else if (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v6 = 1;
     } else {
         return;
@@ -695,7 +695,7 @@ static void sub_0203B094 (TaskManager * taskMan)
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
-        u16 * v7 = sub_0203A784(sub_0203A790(fieldSystem->saveData));
+        u16 * v7 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
         StringTemplate_SetNumber(v3, 0, *v7, 2, 0, 1);
     } else {
@@ -722,7 +722,7 @@ static void sub_0203B200 (TaskManager * taskMan)
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
 
-    if ((sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 0) && (sub_0206AE8C(SaveData_Events(fieldSystem->saveData)) == 0)) {
+    if ((sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) && (sub_0206AE8C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0)) {
         return;
     }
 
@@ -761,7 +761,7 @@ static BOOL FieldMenu_Select (TaskManager * taskMan)
         if (Unk_020EA05C[menu->unk_2C][1] == 0xfffffffe) {
             menu->state = FIELD_MENU_STATE_END;
         } else if (Unk_020EA05C[menu->unk_2C][1] != 0xffffffff) {
-            UnkFuncPtr_02050904 v3 = (UnkFuncPtr_02050904)Unk_020EA05C[menu->unk_2C][1];
+            FieldTask v3 = (FieldTask)Unk_020EA05C[menu->unk_2C][1];
 
             return v3(taskMan);
         }
@@ -952,14 +952,14 @@ static BOOL FieldMenu_Pokedex (TaskManager * taskMan)
     UnkStruct_ov21_021D0D80 * v2;
     PokedexData * v3;
     TrainerInfo * v4;
-    UnkStruct_020507E4 * v5;
+    VarsFlags * v5;
 
     fieldSystem = TaskManager_FieldSystem(taskMan);
     menu = TaskManager_Environment(taskMan);
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
     v3 = SaveData_Pokedex(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v5 = SaveData_Events(fieldSystem->saveData);
+    v5 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     v2->unk_00 = v3;
     v2->unk_04 = v4;
@@ -1195,7 +1195,7 @@ BOOL sub_0203B7C0 (TaskManager * taskMan)
     {
         UnkStruct_0203C7B8 * v15 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C7B8));
 
-        v15->unk_02 = MapHeader_GetMapEvolutionMethod(fieldSystem->unk_1C->unk_00);
+        v15->unk_02 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
         v15->unk_01 = 0;
         v15->unk_00 = partyMan->unk_22;
         v15->unk_04 = partyMan->unk_38;
@@ -1625,7 +1625,7 @@ static BOOL FieldMenu_SelectRetire (TaskManager * taskMan)
     BGL_DeleteWindow(&menu->unk_00);
     sub_0203B200(taskMan);
 
-    if (sub_0206AE5C(SaveData_Events(fieldSystem->saveData)) == 1) {
+    if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         sub_0203E918(taskMan, 8821, NULL);
     } else {
         sub_0203E918(taskMan, 4, NULL);
@@ -1997,7 +1997,7 @@ static void FieldMenu_Evolve (TaskManager * taskMan)
         Heap_Destroy(73);
         sub_020055D0(1141, 0);
         sub_02004234(0);
-        sub_020556A0(fieldSystem, fieldSystem->unk_1C->unk_00);
+        sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 
         menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
 

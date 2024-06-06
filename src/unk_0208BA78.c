@@ -4,7 +4,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "savedata.h"
 
@@ -22,7 +22,7 @@
 #include "game_overlay.h"
 #include "overlay_manager.h"
 #include "heap.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_020507CC.h"
@@ -78,7 +78,7 @@ void sub_0208BA84 (UnkStruct_0208BA84 * param0, BOOL param1, int param2)
 
 static void sub_0208BA8C (SaveData * param0, int param1, u32 param2)
 {
-    UnkStruct_0202B628 * v0 = sub_0202B628(param0);
+    Journal * v0 = SaveData_GetJournal(param0);
     void * v1 = sub_0202C244(param1, param2);
 
     sub_0202B758(v0, v1, 4);
@@ -325,9 +325,9 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
             sub_02005464(0);
             sub_02004234(0);
 
-            v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->unk_1C->unk_00);
+            v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->mapId);
 
-            sub_02004224(sub_020554A4(param0->fieldSystem, param0->fieldSystem->unk_1C->unk_00));
+            sub_02004224(sub_020554A4(param0->fieldSystem, param0->fieldSystem->location->mapId));
             sub_02004550(4, v1, 1);
         }
 
@@ -413,9 +413,9 @@ const OverlayManagerTemplate * sub_0208BE5C (int param0)
 
 BOOL sub_0208BE68 (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_020507E4 * v0;
+    VarsFlags * v0;
 
-    v0 = SaveData_Events(param0->unk_830);
+    v0 = SaveData_GetVarsFlags(param0->unk_830);
     return inline_0208BE68(v0, 53);
 }
 

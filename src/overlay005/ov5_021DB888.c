@@ -34,7 +34,7 @@ typedef struct {
 typedef struct {
     u32 unk_00;
     FieldSystem * fieldSystem;
-    UnkStruct_020507E4 * unk_08;
+    VarsFlags * unk_08;
     const UnkStruct_ov5_021F8E48 * unk_0C;
     MapObject * unk_10[64];
     u16 unk_110;
@@ -345,11 +345,11 @@ void ov5_021DB888 (TaskManager * param0, StringTemplate * param1, u16 * param2)
     memset(v0, 0, sizeof(UnkStruct_ov5_021DBA58));
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_08 = SaveData_Events(fieldSystem->saveData);
+    v0->unk_08 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v0->unk_114 = param2;
     v0->unk_118 = param1;
 
-    sub_02050944(param0, ov5_021DB8D8, v0);
+    FieldTask_Start(param0, ov5_021DB8D8, v0);
     return;
 }
 
@@ -531,7 +531,7 @@ static BOOL ov5_021DBB70 (u32 param0)
 
 BOOL ov5_021DBB94 (FieldSystem * fieldSystem)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 v1 = sub_0206B0E8(v0);
     u16 v2 = sub_0206B108(v0);
 
@@ -549,7 +549,7 @@ BOOL ov5_021DBB94 (FieldSystem * fieldSystem)
         }
 
         if (v2 == 100) {
-            sub_0206B0D4(v0);
+            FieldEvents_ResetVSSeeker(v0);
             ov5_021DBC08(fieldSystem);
         }
     }
@@ -633,7 +633,7 @@ static BOOL ov5_021DBCD4 (UnkStruct_ov5_021DBA58 * param0)
 
 static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0->fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
     MapObject * v1;
     u16 v2;
     int v3, v4;
@@ -734,7 +734,7 @@ static u16 ov5_021DBDFC (FieldSystem * fieldSystem, u16 param1)
 
 static u16 ov5_021DBE48 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 v1 = param2;
 
     switch (param2) {

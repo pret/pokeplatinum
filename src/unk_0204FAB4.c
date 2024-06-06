@@ -174,7 +174,7 @@ static void sub_0204FCF8 (TaskManager * param0, u16 param1, u16 param2, u16 * pa
     v0->unk_0C = param3;
 
     CommFieldCmd_Init(v0);
-    sub_02050944(param0, sub_0204FD38, v0);
+    FieldTask_Start(param0, sub_0204FD38, v0);
 
     return;
 }
@@ -222,7 +222,7 @@ static void sub_0204FDB4 (TaskManager * param0, void ** param1, u8 param2)
     v1->unk_04 = param2;
     v1->unk_0C = param1;
 
-    sub_02050944(fieldSystem->unk_10, sub_0204FDE8, v1);
+    FieldTask_Start(fieldSystem->unk_10, sub_0204FDE8, v1);
     return;
 }
 

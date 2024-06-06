@@ -13,7 +13,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
@@ -74,7 +74,7 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CC64.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D778.h"
@@ -120,7 +120,7 @@ static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC * param
 static void ov88_0223CF68(int param0, GraphicElementData * param1, int param2);
 static int ov88_0223CFF4(u32 * param0, int * param1, GraphicElementData * param2, UnkStruct_ov88_0223C8AC * param3, int param4);
 static int ov88_0223C800(int param0, Pokemon * param1, u8 * param2, ArchivedSprite * param3);
-static void ov88_0223E7F0(UnkStruct_0202B628 * param0, Pokemon * param1);
+static void ov88_0223E7F0(Journal * param0, Pokemon * param1);
 static void ov88_0223D140(ChatotCry * param0);
 static void ov88_0223E894(UnkStruct_02095E80 * param0);
 static void ov88_0223E8B4(UnkStruct_02095E80 * param0);
@@ -2503,7 +2503,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            UnkStruct_020507E4 * v2 = SaveData_Events(param4->unk_10);
+            VarsFlags * v2 = SaveData_GetVarsFlags(param4->unk_10);
 
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);
@@ -2540,7 +2540,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     Heap_FreeToHeap(v1);
 }
 
-static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, Pokemon * param1)
+static void ov88_0223E7F0 (Journal * param0, Pokemon * param1)
 {
     void * v0;
     TrainerInfo * v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);

@@ -11,7 +11,7 @@
 #include "heap.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
-#include "unk_020530C8.h"
+#include "field_map_change.h"
 #include "player_avatar.h"
 #include "unk_0207064C.h"
 #include "overlay006/ov6_02243258.h"
@@ -58,16 +58,14 @@ BOOL sub_02070680 (TaskManager * param0)
 
         ov6_02243FC8(v1->unk_14);
 
-        {
-            u16 v2;
-            Location v3;
+        u16 v2;
+        Location v3;
 
-            v2 = sub_0203A8A0(v1->unk_08, v1->unk_0A, v1->unk_0C);
-            GF_ASSERT(v2 != 0);
+        v2 = sub_0203A8A0(v1->unk_08, v1->unk_0A, v1->unk_0C);
+        GF_ASSERT(v2 != 0);
 
-            sub_0203A7F0(v2, &v3);
-            sub_02053AFC(param0, v3.unk_00, -1, v3.unk_08, v3.unk_0C, 1);
-        }
+        sub_0203A7F0(v2, &v3);
+        sub_02053AFC(param0, v3.mapId, -1, v3.x, v3.z, 1);
 
         Heap_FreeToHeap(v1);
     }

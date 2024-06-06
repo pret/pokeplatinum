@@ -173,7 +173,7 @@ static void ov5_021F8480 (UnkStruct_ov5_021F8480 * param0, const u32 param1)
 
 static BOOL ov5_021F8508 (FieldSystem * fieldSystem, u32 param1)
 {
-    return sub_0206AF6C(SaveData_Events(fieldSystem->saveData), 2, param1);
+    return sub_0206AF6C(SaveData_GetVarsFlags(fieldSystem->saveData), 2, param1);
 }
 
 static BOOL ov5_021F851C (int param0, int param1, const UnkStruct_ov5_0220192C * param2, FieldSystem * fieldSystem)

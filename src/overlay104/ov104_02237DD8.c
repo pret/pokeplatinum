@@ -174,7 +174,7 @@ UnkStruct_ov104_0223BFFC * ov104_02237DD8 (SaveData * param0, u16 param1, u8 par
         sub_02030494(v4);
 
         if (v9->unk_10 == 3) {
-            v5 = sub_0206B6FC(SaveData_Events(v9->unk_04));
+            v5 = sub_0206B6FC(SaveData_GetVarsFlags(v9->unk_04));
         } else {
             v5 = (u8)sub_02030600(v10, 8, v9->unk_10, 0, NULL);
         }

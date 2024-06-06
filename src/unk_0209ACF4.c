@@ -85,7 +85,7 @@ void sub_0209ACF4 (TaskManager * param0)
 
     v1->unk_54 = 0;
 
-    sub_02050944(param0, sub_0209AE14, v1);
+    FieldTask_Start(param0, sub_0209AE14, v1);
 }
 
 static void sub_0209AD84 (UnkStruct_0209AD84 * param0)

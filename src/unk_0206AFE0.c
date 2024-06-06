@@ -9,22 +9,22 @@
 
 #include "unk_0201D15C.h"
 #include "unk_0202B37C.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 
-static BOOL sub_0206AFE0(UnkStruct_020507E4 * param0, u16 param1, u16 param2);
-static u16 sub_0206B010(UnkStruct_020507E4 * param0, u16 param1);
-BOOL sub_0206B044(UnkStruct_020507E4 * param0, u16 param1);
-u16 sub_0206B054(UnkStruct_020507E4 * param0);
-u16 sub_0206B064(UnkStruct_020507E4 * param0);
-u16 sub_0206B08C(UnkStruct_020507E4 * param0);
-void sub_0206B558(UnkStruct_020507E4 * param0, u16 param1);
+static BOOL sub_0206AFE0(VarsFlags * param0, u16 param1, u16 param2);
+static u16 sub_0206B010(VarsFlags * param0, u16 param1);
+BOOL sub_0206B044(VarsFlags * param0, u16 param1);
+u16 sub_0206B054(VarsFlags * param0);
+u16 sub_0206B064(VarsFlags * param0);
+u16 sub_0206B08C(VarsFlags * param0);
+void sub_0206B558(VarsFlags * param0, u16 param1);
 void sub_0206B514(SaveData * param0);
-static u8 sub_0206B4A4(UnkStruct_020507E4 * param0);
+static u8 sub_0206B4A4(VarsFlags * param0);
 
-static BOOL sub_0206AFE0 (UnkStruct_020507E4 * param0, u16 param1, u16 param2)
+static BOOL sub_0206AFE0 (VarsFlags * param0, u16 param1, u16 param2)
 {
     u16 * v0 = sub_020508B8(param0, param1);
 
@@ -41,7 +41,7 @@ static BOOL sub_0206AFE0 (UnkStruct_020507E4 * param0, u16 param1, u16 param2)
     return 1;
 }
 
-static u16 sub_0206B010 (UnkStruct_020507E4 * param0, u16 param1)
+static u16 sub_0206B010 (VarsFlags * param0, u16 param1)
 {
     u16 * v0 = sub_020508B8(param0, param1);
 
@@ -52,27 +52,27 @@ static u16 sub_0206B010 (UnkStruct_020507E4 * param0, u16 param1)
     return *v0;
 }
 
-BOOL sub_0206B024 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B024 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (15 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B034 (UnkStruct_020507E4 * param0)
+u16 sub_0206B034 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (15 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B044 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B044 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (0 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B054 (UnkStruct_020507E4 * param0)
+u16 sub_0206B054 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (0 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B064 (UnkStruct_020507E4 * param0)
+u16 sub_0206B064 (VarsFlags * param0)
 {
     u16 v0;
     u16 v1 = sub_0206B010(param0, (0 + (((0 + 0x4000) + 32) + 16)));
@@ -88,7 +88,7 @@ u16 sub_0206B064 (UnkStruct_020507E4 * param0)
     return v0;
 }
 
-u16 sub_0206B08C (UnkStruct_020507E4 * param0)
+u16 sub_0206B08C (VarsFlags * param0)
 {
     u16 v0;
     u16 v1 = sub_0206B010(param0, (0 + (((0 + 0x4000) + 32) + 16)));
@@ -104,39 +104,39 @@ u16 sub_0206B08C (UnkStruct_020507E4 * param0)
     return v0;
 }
 
-u16 sub_0206B0B4 (UnkStruct_020507E4 * param0)
+u16 sub_0206B0B4 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (5 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B0C4 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B0C4 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (5 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B0D4 (UnkStruct_020507E4 * param0)
+void FieldEvents_ResetVSSeeker (VarsFlags * param0)
 {
     sub_0206A9D4(param0);
     sub_0206B118(param0, 0);
     return;
 }
 
-u16 sub_0206B0E8 (UnkStruct_020507E4 * param0)
+u16 sub_0206B0E8 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (3 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B0F8 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B0F8 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (3 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B108 (UnkStruct_020507E4 * param0)
+u16 sub_0206B108 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (4 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B118 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B118 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (4 + (((0 + 0x4000) + 32) + 16)), param1);
 }
@@ -151,12 +151,12 @@ static int sub_0206B128 (int param0)
     return v0[param0];
 }
 
-void sub_0206B144 (UnkStruct_020507E4 * param0, int param1)
+void sub_0206B144 (VarsFlags * param0, int param1)
 {
     sub_0206AFE0(param0, (19 + (((0 + 0x4000) + 32) + 16)) + param1, sub_0206B128(param1));
 }
 
-BOOL sub_0206B16C (UnkStruct_020507E4 * param0, int param1)
+BOOL sub_0206B16C (VarsFlags * param0, int param1)
 {
     if (sub_0206B010(param0, (19 + (((0 + 0x4000) + 32) + 16)) + param1) == sub_0206B128(param1)) {
         return 1;
@@ -175,17 +175,17 @@ static int sub_0206B194 (int param0)
     return v0[param0];
 }
 
-void sub_0206B1B0 (UnkStruct_020507E4 * param0, int param1)
+void sub_0206B1B0 (VarsFlags * param0, int param1)
 {
     sub_0206AFE0(param0, (6 + (((0 + 0x4000) + 32) + 16)) + param1, sub_0206B194(param1));
 }
 
-void sub_0206B1D8 (UnkStruct_020507E4 * param0, int param1)
+void sub_0206B1D8 (VarsFlags * param0, int param1)
 {
     sub_0206AFE0(param0, (6 + (((0 + 0x4000) + 32) + 16)) + param1, 0);
 }
 
-BOOL sub_0206B1F0 (UnkStruct_020507E4 * param0, int param1)
+BOOL sub_0206B1F0 (VarsFlags * param0, int param1)
 {
     if (sub_0206B010(param0, (6 + (((0 + 0x4000) + 32) + 16)) + param1) == sub_0206B194(param1)) {
         return 1;
@@ -194,17 +194,17 @@ BOOL sub_0206B1F0 (UnkStruct_020507E4 * param0, int param1)
     }
 }
 
-BOOL sub_0206B218 (UnkStruct_020507E4 * param0)
+BOOL sub_0206B218 (VarsFlags * param0)
 {
     return sub_0206AFE0(param0, (10 + (((0 + 0x4000) + 32) + 16)), 0);
 }
 
-u16 sub_0206B228 (UnkStruct_020507E4 * param0)
+u16 sub_0206B228 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (10 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B238 (UnkStruct_020507E4 * param0)
+BOOL sub_0206B238 (VarsFlags * param0)
 {
     u16 v0;
 
@@ -219,17 +219,17 @@ BOOL sub_0206B238 (UnkStruct_020507E4 * param0)
     return sub_0206AFE0(param0, (10 + (((0 + 0x4000) + 32) + 16)), v0);
 }
 
-u16 sub_0206B260 (UnkStruct_020507E4 * param0)
+u16 sub_0206B260 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (11 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B270 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B270 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (11 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B280 (UnkStruct_020507E4 * param0, u32 param1)
+void sub_0206B280 (VarsFlags * param0, u32 param1)
 {
     u16 v0, v1;
 
@@ -239,7 +239,7 @@ void sub_0206B280 (UnkStruct_020507E4 * param0, u32 param1)
     sub_0206AFE0(param0, (12 + (((0 + 0x4000) + 32) + 16)), v1);
 }
 
-u32 sub_0206B2A4 (UnkStruct_020507E4 * param0)
+u32 sub_0206B2A4 (VarsFlags * param0)
 {
     u16 v0, v1;
 
@@ -249,7 +249,7 @@ u32 sub_0206B2A4 (UnkStruct_020507E4 * param0)
     return (v1 << 16) | v0;
 }
 
-void sub_0206B2C8 (UnkStruct_020507E4 * param0)
+void sub_0206B2C8 (VarsFlags * param0)
 {
     u16 v0, v1;
 
@@ -261,7 +261,7 @@ void sub_0206B2C8 (UnkStruct_020507E4 * param0)
 
 void sub_0206B2E4 (SaveData * param0, u16 param1)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0);
     u32 v1;
 
     v1 = sub_0202B428(sub_0202B4A0(param0));
@@ -270,26 +270,26 @@ void sub_0206B2E4 (SaveData * param0, u16 param1)
     sub_0206B280(v0, v1);
 }
 
-u16 sub_0206B314 (UnkStruct_020507E4 * param0)
+u16 sub_0206B314 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (17 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B324 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B324 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (17 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
 void sub_0206B334 (SaveData * param0)
 {
-    UnkStruct_020507E4 * v0 = SaveData_Events(param0);
+    VarsFlags * v0 = SaveData_GetVarsFlags(param0);
     u32 v1;
 
     v1 = (LCRNG_Next() % 98) + 2;
     sub_0206B324(v0, v1);
 }
 
-u16 sub_0206B354 (UnkStruct_020507E4 * param0)
+u16 sub_0206B354 (VarsFlags * param0)
 {
     u16 v0;
 
@@ -297,12 +297,12 @@ u16 sub_0206B354 (UnkStruct_020507E4 * param0)
     return v0;
 }
 
-BOOL sub_0206B364 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B364 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (14 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B374 (UnkStruct_020507E4 * param0)
+u16 sub_0206B374 (VarsFlags * param0)
 {
     u16 v0;
 
@@ -310,12 +310,12 @@ u16 sub_0206B374 (UnkStruct_020507E4 * param0)
     return v0;
 }
 
-BOOL sub_0206B384 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B384 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (25 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B394 (UnkStruct_020507E4 * param0)
+u16 sub_0206B394 (VarsFlags * param0)
 {
     u16 v0;
 
@@ -323,12 +323,12 @@ u16 sub_0206B394 (UnkStruct_020507E4 * param0)
     return v0;
 }
 
-BOOL sub_0206B3A4 (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B3A4 (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (16 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-BOOL sub_0206B3B4 (UnkStruct_020507E4 * param0)
+BOOL sub_0206B3B4 (VarsFlags * param0)
 {
     u16 v0;
 
@@ -343,62 +343,62 @@ BOOL sub_0206B3B4 (UnkStruct_020507E4 * param0)
     return sub_0206AFE0(param0, (18 + (((0 + 0x4000) + 32) + 16)), v0);
 }
 
-u16 sub_0206B3DC (UnkStruct_020507E4 * param0)
+u16 sub_0206B3DC (VarsFlags * param0)
 {
     return sub_0206B010(param0, (18 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B3EC (UnkStruct_020507E4 * param0)
+u16 sub_0206B3EC (VarsFlags * param0)
 {
     return sub_0206B010(param0, (36 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B3FC (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B3FC (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (36 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B40C (UnkStruct_020507E4 * param0)
+u16 sub_0206B40C (VarsFlags * param0)
 {
     return sub_0206B010(param0, (23 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B41C (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B41C (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (23 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B42C (UnkStruct_020507E4 * param0)
+u16 sub_0206B42C (VarsFlags * param0)
 {
     return sub_0206B010(param0, (24 + (((0 + 0x4000) + 32) + 16)));
 }
 
-BOOL sub_0206B43C (UnkStruct_020507E4 * param0, u16 param1)
+BOOL sub_0206B43C (VarsFlags * param0, u16 param1)
 {
     return sub_0206AFE0(param0, (24 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B44C (UnkStruct_020507E4 * param0)
+u16 sub_0206B44C (VarsFlags * param0)
 {
     return sub_0206B010(param0, (26 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B45C (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B45C (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (26 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B46C (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B46C (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (27 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B47C (UnkStruct_020507E4 * param0)
+u16 sub_0206B47C (VarsFlags * param0)
 {
     return sub_0206B010(param0, (27 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B48C (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B48C (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (29 + (((0 + 0x4000) + 32) + 16)), (param1 + 1));
 }
@@ -415,7 +415,7 @@ static const u8 Unk_020EFA6C[] = {
     0xF
 };
 
-static u8 sub_0206B4A4 (UnkStruct_020507E4 * param0)
+static u8 sub_0206B4A4 (VarsFlags * param0)
 {
     int v0;
     u16 v1, v2, v3;
@@ -449,11 +449,11 @@ static u8 sub_0206B4A4 (UnkStruct_020507E4 * param0)
 void sub_0206B514 (SaveData * param0)
 {
     u32 v0;
-    UnkStruct_020507E4 * v1 = SaveData_Events(param0);
-    UnkStruct_0203A790 * v2 = sub_0203A790(param0);
-    Location * v3 = sub_0203A720(v2);
+    VarsFlags * v1 = SaveData_GetVarsFlags(param0);
+    FieldOverworldState * v2 = SaveData_GetFieldOverworldState(param0);
+    Location * location = sub_0203A720(v2);
 
-    if ((v3->unk_00 != 457) && (v3->unk_00 != 464)) {
+    if ((location->mapId != 457) && (location->mapId != 464)) {
         sub_0206AF90(v1);
         sub_0206AFA0(v1);
         sub_0206B558(v1, sub_0206B4A4(v1));
@@ -462,93 +462,93 @@ void sub_0206B514 (SaveData * param0)
     return;
 }
 
-void sub_0206B558 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B558 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (30 + (((0 + 0x4000) + 32) + 16)), param1);
     sub_0206AFE0(param0, (42 + (((0 + 0x4000) + 32) + 16)), (LCRNG_Next() % 5));
 }
 
-u16 sub_0206B588 (UnkStruct_020507E4 * param0)
+u16 sub_0206B588 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (32 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B598 (UnkStruct_020507E4 * param0)
+u16 sub_0206B598 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (33 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5A8 (UnkStruct_020507E4 * param0)
+u16 sub_0206B5A8 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (34 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5B8 (UnkStruct_020507E4 * param0)
+u16 sub_0206B5B8 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (35 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5C8 (UnkStruct_020507E4 * param0)
+u16 sub_0206B5C8 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (31 + (((0 + 0x4000) + 32) + 16)));
 }
 
-u16 sub_0206B5D8 (UnkStruct_020507E4 * param0)
+u16 sub_0206B5D8 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (37 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B5E8 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B5E8 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (37 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B5F8 (UnkStruct_020507E4 * param0)
+u16 sub_0206B5F8 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (38 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B608 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B608 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (38 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B618 (UnkStruct_020507E4 * param0)
+u16 sub_0206B618 (VarsFlags * param0)
 {
     return sub_0206B010(param0, (39 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B628 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B628 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (39 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B638 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B638 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (40 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B648 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B648 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (41 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B658 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B658 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (46 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B668 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B668 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (47 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B678 (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B678 (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (48 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B688 (UnkStruct_020507E4 * param0, u16 param1, u16 param2)
+void sub_0206B688 (VarsFlags * param0, u16 param1, u16 param2)
 {
     switch (param1) {
     case 481:
@@ -571,17 +571,17 @@ void sub_0206B688 (UnkStruct_020507E4 * param0, u16 param1, u16 param2)
     return;
 }
 
-u16 sub_0206B6DC (UnkStruct_020507E4 * param0)
+u16 sub_0206B6DC (VarsFlags * param0)
 {
     return sub_0206B010(param0, (43 + (((0 + 0x4000) + 32) + 16)));
 }
 
-void sub_0206B6EC (UnkStruct_020507E4 * param0, u16 param1)
+void sub_0206B6EC (VarsFlags * param0, u16 param1)
 {
     sub_0206AFE0(param0, (43 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-u16 sub_0206B6FC (UnkStruct_020507E4 * param0)
+u16 sub_0206B6FC (VarsFlags * param0)
 {
     return sub_0206B010(param0, (52 + (((0 + 0x4000) + 32) + 16)));
 }

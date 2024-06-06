@@ -218,7 +218,7 @@ static BOOL sub_0209843C (TaskManager * param0)
             Pokemon * v2 = v0->unk_0C.unk_00;
             TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
             int v4 = 6;
-            int v5 = MapHeader_GetMapLabelTextID(fieldSystem->unk_1C->unk_00);
+            int v5 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
             int v6 = 11;
             int v7 = 0;
 
@@ -290,5 +290,5 @@ void sub_020985AC (TaskManager * param0, void * param1)
     v1 = (UnkStruct_0203E2FC *)param1;
     v0->unk_0C = *v1;
 
-    sub_02050944(param0, sub_0209843C, v0);
+    FieldTask_Start(param0, sub_0209843C, v0);
 }

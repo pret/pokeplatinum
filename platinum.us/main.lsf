@@ -122,7 +122,7 @@ Static main
 	Object main.nef.p/src_unk_0202ACE0.c.o
 	Object main.nef.p/src_unk_0202B37C.c.o
 	Object main.nef.p/src_coins.c.o
-	Object main.nef.p/src_unk_0202B604.c.o
+	Object main.nef.p/src_journal.c.o
 	Object main.nef.p/src_unk_0202C7FC.c.o
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
@@ -171,7 +171,7 @@ Static main
 	Object main.nef.p/src_unk_02039C80.c.o
 	Object main.nef.p/src_map_header.c.o
 	Object main.nef.p/src_unk_0203A378.c.o
-	Object main.nef.p/src_unk_0203A6DC.c.o
+	Object main.nef.p/src_field_overworld_state.c.o
 	Object main.nef.p/src_unk_0203A7D8.c.o
 	Object main.nef.p/src_unk_0203A944.c.o
 	Object main.nef.p/src_field_menu.c.o
@@ -223,7 +223,7 @@ Static main
 	Object main.nef.p/src_unk_02051D8C.c.o
 	Object main.nef.p/src_unk_020528D0.c.o
 	Object main.nef.p/src_unk_02052C6C.c.o
-	Object main.nef.p/src_unk_020530C8.c.o
+	Object main.nef.p/src_field_map_change.c.o
 	Object main.nef.p/src_unk_02054884.c.o
 	Object main.nef.p/src_unk_02054BD0.c.o
 	Object main.nef.p/src_unk_02054D00.c.o

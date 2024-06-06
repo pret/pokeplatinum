@@ -117,7 +117,7 @@ BOOL sub_02068390 (FieldSystem * fieldSystem, const int param1, const int param2
 
 BOOL sub_020683D8 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, int param4)
 {
-    if (fieldSystem->unk_1C->unk_00 == 67) {
+    if (fieldSystem->location->mapId == 67) {
         if (ov8_0224B714(fieldSystem, param1, param2, param4)) {
             return 1;
         }

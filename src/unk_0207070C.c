@@ -18,9 +18,9 @@
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_menu.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
@@ -123,12 +123,12 @@ static inline BOOL inline_02070950 (const UnkStruct_02070950 * param0, int param
 
 static inline BOOL inline_02070A24 (const UnkStruct_02070950 * param0)
 {
-    return sub_0206A984(SaveData_Events(param0->fieldSystem->saveData));
+    return sub_0206A984(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
 }
 
 static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 {
-    if ((sub_0206AE5C(SaveData_Events(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1)) {
+    if ((sub_0206AE5C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) || (sub_0206AE8C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1)) {
         return 1;
     }
 
@@ -137,7 +137,7 @@ static inline BOOL inline_02070EEC (const UnkStruct_02070950 * param0)
 
 static inline BOOL inline_020710A4 (const UnkStruct_02070950 * param0)
 {
-    if (sub_0206AE8C(SaveData_Events(param0->fieldSystem->saveData)) == 1) {
+    if (sub_0206AE8C(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) {
         return 1;
     }
 
@@ -170,7 +170,7 @@ void sub_02070728 (FieldSystem * fieldSystem, UnkStruct_02070950 * param1)
     int v4;
 
     param1->fieldSystem = fieldSystem;
-    param1->unk_00 = fieldSystem->unk_1C->unk_00;
+    param1->unk_00 = fieldSystem->location->mapId;
     param1->unk_0C = 0;
 
     if (PlayerAvatar_DistortionGravityChanged(fieldSystem->playerAvatar) == TRUE) {
@@ -214,7 +214,7 @@ void sub_02070728 (FieldSystem * fieldSystem, UnkStruct_02070950 * param1)
         param1->unk_0C |= (1 << 6);
     }
 
-    switch (sub_0203A74C(sub_0203A790(fieldSystem->saveData))) {
+    switch (FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
     case 14:
         param1->unk_0C |= (1 << 4);
         break;
@@ -710,7 +710,7 @@ static BOOL sub_02070F94 (TaskManager * param0)
     void * v2 = ov6_02247530(fieldSystem, v1->unk_00, 4);
 
     Heap_FreeToHeap(v1);
-    sub_02050924(param0, ov6_02247554, v2);
+    FieldTask_Change(param0, ov6_02247554, v2);
 
     return 0;
 }
@@ -760,12 +760,12 @@ static BOOL sub_02071050 (TaskManager * param0)
     void * v2 = ov6_02247488(fieldSystem, v1->unk_00, 11);
 
     {
-        void * v3 = sub_0202BE00((29 - 19), fieldSystem->unk_1C->unk_00, 4);
+        void * v3 = sub_0202BE00((29 - 19), fieldSystem->location->mapId, 4);
         sub_0202B758(fieldSystem->unk_9C, v3, 1);
     }
 
     Heap_FreeToHeap(v1);
-    sub_02050924(param0, ov6_022474AC, v2);
+    FieldTask_Change(param0, ov6_022474AC, v2);
 
     return 0;
 }
@@ -801,7 +801,7 @@ static void sub_020710D4 (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     v1->unk_25C = v2;
     v1->state = FIELD_MENU_STATE_10;
 
-    v4 = sub_0202BE00((30 - 19), fieldSystem->unk_1C->unk_00, 11);
+    v4 = sub_0202BE00((30 - 19), fieldSystem->location->mapId, 11);
     sub_0202B758(fieldSystem->unk_9C, v4, 1);
 }
 

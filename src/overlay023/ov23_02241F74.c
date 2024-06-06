@@ -154,7 +154,7 @@ static void CommManUnderground_Init (CommManUnderground * param0, FieldSystem * 
         sCommManUnderground->unk_DC[v1] = NULL;
     }
 
-    sub_0206A9F4(SaveData_Events(sCommManUnderground->fieldSystem->saveData));
+    sub_0206A9F4(SaveData_GetVarsFlags(sCommManUnderground->fieldSystem->saveData));
     sCommManUnderground->unk_14 = SysTask_Start(ov23_02243310, NULL, 0);
     sub_02032110(ov23_022433F4);
 }
@@ -623,7 +623,7 @@ void ov23_022428D8 (int param0, int param1, void * param2, void * param3)
     v2.unk_00 = CommPlayer_AddXServer(param0);
     v2.unk_02 = CommPlayer_AddZServer(param0);
 
-    if ((sub_02058DF8(param0) == 0xffff) && (sub_02058E4C(param0) == 0xffff)) {
+    if ((CommPlayer_GetXServer(param0) == 0xffff) && (CommPlayer_GetZServer(param0) == 0xffff)) {
         return;
     }
 

@@ -22,7 +22,7 @@ u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F188(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
-void sub_0203F1C4(FieldSystem * fieldSystem);
+void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
 void sub_0203F21C(FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4);
 u16 sub_0203F254(u16 param0);
@@ -36,7 +36,7 @@ u16 sub_0203F304(u16 param0);
 void sub_0203F310(FieldSystem * fieldSystem);
 u8 sub_0203F3C8(u16 param0);
 UnkStruct_0203F478 * sub_0203F478(FieldSystem * fieldSystem, int param1);
-void sub_0203F598(FieldSystem * fieldSystem);
+void FieldSystem_InitNewGameState(FieldSystem * fieldSystem);
 void sub_0203F5A4(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
 

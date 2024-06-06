@@ -20,7 +20,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "map_header.h"
 #include "pokemon.h"
 #include "trainer_data.h"

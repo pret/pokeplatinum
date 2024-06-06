@@ -109,7 +109,7 @@ BOOL ScrCmd_0FA (ScriptContext * param0)
     v8.unk_00 = v5;
     v8.unk_01 = v4;
     v8.unk_02 = v6;
-    v8.unk_03 = sub_0206A954(SaveData_Events(param0->fieldSystem->saveData));
+    v8.unk_03 = sub_0206A954(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     v8.unk_04 = sub_02027474(SaveData_Pokedex(param0->fieldSystem->saveData));
     v8.unk_05 = v7;
     v8.unk_08 = v1;
@@ -132,7 +132,7 @@ BOOL ScrCmd_0FB (ScriptContext * param0)
     Pokemon * v0;
     void ** v1 = sub_0203F098(param0->fieldSystem, 20);
     u16 v2 = ScriptContext_GetVar(param0);
-    u32 v3 = MapHeader_GetMapLabelTextID(param0->fieldSystem->unk_1C->unk_00);
+    u32 v3 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->mapId);
 
     sub_02094C44(*v1, param0->fieldSystem->saveData, v3, param0->fieldSystem->unk_9C);
     sub_02093AD4(*v1);

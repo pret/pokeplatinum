@@ -13,7 +13,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -38,10 +38,10 @@ typedef struct {
     TrainerInfo * unk_270;
     void * unk_274;
     Options * unk_278;
-    UnkStruct_0202B628 * unk_27C;
+    Journal * unk_27C;
     UnkStruct_0202CD88 * unk_280;
     SaveData * unk_284;
-    UnkStruct_020507E4 * unk_288;
+    VarsFlags * unk_288;
     BOOL unk_28C;
     u16 * unk_290;
     u8 unk_294;

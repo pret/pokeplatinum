@@ -170,9 +170,9 @@ void sub_020716D4 (FieldSystem * fieldSystem)
     v1->unk_04 = 1;
     v1->unk_08 = 0;
 
-    switch (fieldSystem->unk_1C->unk_00) {
+    switch (fieldSystem->location->mapId) {
     case 291:
-        if (fieldSystem->unk_1C->unk_0C == 26) {
+        if (fieldSystem->location->z == 26) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -181,7 +181,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_02 = 0;
         break;
     case 293:
-        if (fieldSystem->unk_1C->unk_0C == (32 * 1 + 16)) {
+        if (fieldSystem->location->z == (32 * 1 + 16)) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -190,7 +190,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_02 = 1;
         break;
     case 294:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->z == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -199,7 +199,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_02 = 2;
         break;
     case 176:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->z == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -210,7 +210,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 178:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->z == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -221,7 +221,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 180:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->z == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -232,7 +232,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 182:
-        if (fieldSystem->unk_1C->unk_0C == 15) {
+        if (fieldSystem->location->z == 15) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -243,7 +243,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 184:
-        if (fieldSystem->unk_1C->unk_0C == 23) {
+        if (fieldSystem->location->z == 23) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -254,7 +254,7 @@ void sub_020716D4 (FieldSystem * fieldSystem)
         v1->unk_08 = 1;
         break;
     case 185:
-        if (fieldSystem->unk_1C->unk_0C == 18) {
+        if (fieldSystem->location->z == 18) {
             v1->unk_00 = 0;
         } else {
             v1->unk_00 = 1;
@@ -306,11 +306,11 @@ void sub_0207183C (FieldSystem * fieldSystem)
 
         if (v1->unk_00 == 0) {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[1];
-            sub_02050944(fieldSystem->unk_10, sub_020718D8, v2);
+            FieldTask_Start(fieldSystem->unk_10, sub_020718D8, v2);
             v1->unk_00 = 1;
         } else {
             v2->unk_04 = Unk_020F03F4[v1->unk_02].unk_00[0];
-            sub_02050944(fieldSystem->unk_10, sub_020719D8, v2);
+            FieldTask_Start(fieldSystem->unk_10, sub_020719D8, v2);
             v1->unk_00 = 0;
         }
     }

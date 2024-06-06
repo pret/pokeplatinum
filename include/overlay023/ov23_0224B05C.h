@@ -61,7 +61,7 @@ void ov23_0224D6AC(int param0, int param1, void * param2, void * param3);
 int ov23_0224D6F4(void);
 BOOL ov23_0224D7C8(int param0);
 BOOL ov23_0224D87C(int param0);
-void ov23_0224D898(int param0);
+void Underground_SecretBaseRemovePlayer(int param0);
 BOOL ov23_0224D9AC(int param0, BOOL param1);
 void ov23_0224DA8C(void);
 void ov23_0224DAB4(void);

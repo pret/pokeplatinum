@@ -439,7 +439,7 @@ static BOOL ov86_0223B40C (UnkStruct_ov86_0223B3C8 * param0)
         param0->unk_00++;
         break;
     case 1:
-        if (ScreenWipe_Done() && (sub_02005684() == 0)) {
+        if (ScreenWipe_Done() && (Sound_CheckFade() == 0)) {
             return 1;
         }
     }

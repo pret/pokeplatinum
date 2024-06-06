@@ -87,7 +87,7 @@ UnkStruct_ov104_0223ADA0 * ov104_022339B4 (SaveData * param0, u16 param1, u8 par
                 v6 = 104;
             }
 
-            v3 = sub_0206B6FC(SaveData_Events(v7->unk_4F8));
+            v3 = sub_0206B6FC(SaveData_GetVarsFlags(v7->unk_4F8));
         } else {
             v3 = (u8)sub_020300E0(v1, 10, (v7->unk_05 * 4) + v7->unk_04, NULL);
         }

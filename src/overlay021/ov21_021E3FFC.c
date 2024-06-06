@@ -302,7 +302,7 @@ static int ov21_021E41A8 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
             v4 = ov21_021E4518(v3, v2, v0, 1);
         }
 
-        if ((v4 == 1) && (sub_02005684() == 0)) {
+        if ((v4 == 1) && (Sound_CheckFade() == 0)) {
             sub_020049F4(1, 1);
             param1->unk_00++;
         }

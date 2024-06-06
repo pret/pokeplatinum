@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02049D08_H
 #define POKEPLATINUM_UNK_02049D08_H
 
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_0204AFC4.h"
@@ -30,7 +30,7 @@ void sub_0204A4C8(UnkStruct_0204AFC4 * param0, SaveData * param1);
 u16 sub_0204A578(UnkStruct_0204AFC4 * param0);
 BOOL sub_0204A57C(UnkStruct_0204AFC4 * param0);
 void sub_0204A660(UnkStruct_0204AFC4 * param0, SaveData * param1);
-void sub_0204A7A4(UnkStruct_0204AFC4 * param0, SaveData * param1, UnkStruct_0202B628 * param2);
+void sub_0204A7A4(UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * param2);
 void sub_0204A8C8(UnkStruct_0204AFC4 * param0);
 void sub_0204A97C(UnkStruct_0204AFC4 * param0);
 u16 sub_0204A9E0(UnkStruct_0204AFC4 * param0, u16 param1);

@@ -508,7 +508,7 @@ static void ov5_021DFF88 (int param0, FieldSystem * fieldSystem, PlayerAvatar * 
     v0->unk_10 = param3;
     v0->playerAvatar = playerAvatar;
 
-    sub_02050904(fieldSystem, ov5_021DFFBC, v0);
+    FieldTask_Set(fieldSystem, ov5_021DFFBC, v0);
     sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 54));
 }
 
@@ -587,7 +587,7 @@ static void ov5_021E00B0 (FieldSystem * fieldSystem, int param1, const UnkStruct
     v0->unk_24 = Player_MapObject(v0->playerAvatar);
     v0->unk_0C = *param2;
 
-    sub_02050944(fieldSystem->unk_10, ov5_021E0160, v0);
+    FieldTask_Start(fieldSystem->unk_10, ov5_021E0160, v0);
 }
 
 void ov5_021E00EC (TaskManager * taskMan, int param1, int param2)
@@ -643,9 +643,8 @@ static BOOL ov5_021E0160 (TaskManager * taskMan)
     case 2:
     {
         if (PlayerAvatar_MapDistortionState(v0->playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
-            int v1 = Player_GetXPos(v0->playerAvatar) + sub_0206419C(v0->unk_04);
-            int v2 = Player_GetZPos(v0->playerAvatar) + sub_020641A8(v0->unk_04);
-
+            int v1 = Player_GetXPos(v0->playerAvatar) + MapObject_GetDxFromDir(v0->unk_04);
+            int v2 = Player_GetZPos(v0->playerAvatar) + MapObject_GetDyFromDir(v0->unk_04);
             v0->unk_28 = ov5_021F261C(v0->unk_24, v1, v2, v0->unk_04, 0);
         } else {
             int v3 = MapObject_GetXPos(v0->unk_24);
@@ -747,7 +746,7 @@ static void ov5_021E0390 (int param0, FieldSystem * fieldSystem, PlayerAvatar * 
     v0->unk_10 = Player_MapObject(param2);
     v0->unk_14 = sub_0205EC04(param2);
 
-    sub_02050904(fieldSystem, ov5_021E03C8, v0);
+    FieldTask_Set(fieldSystem, ov5_021E03C8, v0);
 }
 
 static BOOL ov5_021E03C8 (TaskManager * param0)
@@ -792,7 +791,7 @@ static BOOL ov5_021E03C8 (TaskManager * param0)
 
         sub_0205EC00(v0->playerAvatar, NULL);
         PlayerAvatar_SetPlayerState(v0->playerAvatar, 0x0);
-        sub_02055554(v0->fieldSystem, sub_020554A4(v0->fieldSystem, v0->fieldSystem->unk_1C->unk_00), 1);
+        sub_02055554(v0->fieldSystem, sub_020554A4(v0->fieldSystem, v0->fieldSystem->location->mapId), 1);
         ov5_021E1134(v0);
         return 1;
     }
@@ -844,7 +843,7 @@ static void ov5_021E0534 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar
     v0->fieldSystem = fieldSystem;
     v0->playerAvatar = playerAvatar;
 
-    sub_02050904(fieldSystem, ov5_021E0560, v0);
+    FieldTask_Set(fieldSystem, ov5_021E0560, v0);
     sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 55));
 }
 
@@ -972,7 +971,7 @@ static void ov5_021E06F8 (FieldSystem * fieldSystem, int param1, const UnkStruct
     v0->unk_14 = Player_MapObject(v0->playerAvatar);
     v0->unk_1C = *param2;
 
-    sub_02050944(fieldSystem->unk_10, ov5_021E07A0, v0);
+    FieldTask_Start(fieldSystem->unk_10, ov5_021E07A0, v0);
 }
 
 void ov5_021E0734 (TaskManager * param0, int param1, int param2)
@@ -1040,8 +1039,8 @@ static int ov5_021E07E4 (UnkStruct_ov5_021F9B54 * param0)
 
 static int ov5_021E07FC (UnkStruct_ov5_021F9B54 * param0)
 {
-    int v0 = Player_GetXPos(param0->playerAvatar) + sub_0206419C(param0->unk_04);
-    int v1 = Player_GetZPos(param0->playerAvatar) + sub_020641A8(param0->unk_04);
+    int v0 = Player_GetXPos(param0->playerAvatar) + MapObject_GetDxFromDir(param0->unk_04);
+    int v1 = Player_GetZPos(param0->playerAvatar) + MapObject_GetDyFromDir(param0->unk_04);
 
     param0->unk_18 = ov5_021F28F4(param0->unk_14, v0, v1, param0->unk_04, 0);
     param0->unk_2C = ov6_0224892C(param0->fieldSystem);
@@ -1158,7 +1157,7 @@ static UnkStruct_ov5_021F9B10 * ov5_021E0948 (FieldSystem * fieldSystem, int par
 void ov5_021E097C (FieldSystem * fieldSystem, int param1)
 {
     UnkStruct_ov5_021F9B10 * v0 = ov5_021E0948(fieldSystem, param1, NULL);
-    sub_02050904(fieldSystem, ov5_021E09D4, v0);
+    FieldTask_Set(fieldSystem, ov5_021E09D4, v0);
 }
 
 void ov5_021E0998 (TaskManager * param0, int param1, int param2)
@@ -1171,7 +1170,7 @@ void ov5_021E0998 (TaskManager * param0, int param1, int param2)
 
     {
         UnkStruct_ov5_021F9B10 * v3 = ov5_021E0948(fieldSystem, param1, &v0);
-        sub_02050944(param0, ov5_021E09D4, v3);
+        FieldTask_Start(param0, ov5_021E09D4, v3);
     }
 }
 
@@ -1223,8 +1222,8 @@ static int ov5_021E0A68 (UnkStruct_ov5_021F9B10 * param0)
     int v0, v1;
     VecFx32 v2, v3;
 
-    v0 = MapObject_GetXPos(param0->unk_3C) + (sub_0206419C(0) << 1);
-    v1 = MapObject_GetZPos(param0->unk_3C) + (sub_020641A8(0) << 1);
+    v0 = MapObject_GetXPos(param0->unk_3C) + (MapObject_GetDxFromDir(0) << 1);
+    v1 = MapObject_GetZPos(param0->unk_3C) + (MapObject_GetDyFromDir(0) << 1);
 
     sub_02064450(v0, v1, &param0->unk_28);
     sub_020644A4(param0->fieldSystem, &param0->unk_28);
@@ -1348,8 +1347,8 @@ static int ov5_021E0C34 (UnkStruct_ov5_021F9B10 * param0)
     int v0, v1;
     VecFx32 v2, v3;
 
-    v0 = MapObject_GetXPos(param0->unk_3C) + (sub_0206419C(1) << 1);
-    v1 = MapObject_GetZPos(param0->unk_3C) + (sub_020641A8(1) << 1);
+    v0 = MapObject_GetXPos(param0->unk_3C) + (MapObject_GetDxFromDir(1) << 1);
+    v1 = MapObject_GetZPos(param0->unk_3C) + (MapObject_GetDyFromDir(1) << 1);
 
     sub_02064450(v0, v1, &param0->unk_28);
     sub_020644A4(param0->fieldSystem, &param0->unk_28);
@@ -1524,7 +1523,7 @@ static void ov5_021E0DE0 (FieldSystem * fieldSystem)
     v0->unk_08 = Player_MapObject(v0->playerAvatar);
     v0->unk_10 = PlayerAvatar_Gender(v0->playerAvatar);
 
-    sub_02050944(fieldSystem->unk_10, ov5_021E0E10, v0);
+    FieldTask_Start(fieldSystem->unk_10, ov5_021E0E10, v0);
 }
 
 static BOOL ov5_021E0E10 (TaskManager * param0)
@@ -1725,7 +1724,6 @@ static int ov5_021E1050 (UnkStruct_ov5_021E1050 * param0)
 static void PlayerAvatar_Redraw (PlayerAvatar * playerAvatar, int param1)
 {
     MapObject * v0 = Player_MapObject(playerAvatar);
-
     if (PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
         ov5_021EE3FC(v0, param1, NULL, NULL);
     } else {
@@ -1754,8 +1752,8 @@ static void ov5_021E10C0 (void * param0, const UnkStruct_020216E0 * param1)
 
 static MapObject * ov5_021E10D4 (PlayerAvatar * playerAvatar, int param1)
 {
-    int v0 = Player_GetXPos(playerAvatar) + sub_0206419C(param1);
-    int v1 = Player_GetZPos(playerAvatar) + sub_020641A8(param1);
+    int v0 = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(param1);
+    int v1 = Player_GetZPos(playerAvatar) + MapObject_GetDyFromDir(param1);
     const MapObjectManager * v2 = MapObject_MapObjectManager(Player_MapObject(playerAvatar));
     MapObject * v3 = sub_0206326C(v2, v0, v1, 0);
 

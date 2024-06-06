@@ -18,7 +18,7 @@
 #include "trainer_info.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
-#include "unk_0203A6DC.h"
+#include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
@@ -78,8 +78,8 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     int v1 = 0, v2 = 0, v3 = 0;
     int x, z, v6;
     UnkStruct_020556C4 * v7;
-    UnkStruct_020507E4 * v8 = SaveData_Events(fieldSystem->saveData);
-    UnkStruct_0203A790 * v9 = sub_0203A790(fieldSystem->saveData);
+    VarsFlags * v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    FieldOverworldState * v9 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location * v10 = sub_0203A72C(v9);
 
     memset(param1, 0, sizeof(UnkStruct_0203D8AC));
@@ -87,36 +87,34 @@ void sub_0206B70C (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1, int p
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);
 
-    {
-        int v11 = 10 - 1;
-        Location * v12 = sub_0203A720(v9);
+    int v11 = 10 - 1;
+    Location * location = sub_0203A720(v9);
 
-        v6 = v12->unk_00;
+    v6 = location->mapId;
 
-        while (v11 >= 0) {
-            if (v6 == Unk_020EFA98[v11][0]) {
-                x -= Unk_020EFA98[v11][1];
-                z -= Unk_020EFA98[v11][3];
-                break;
-            }
-
-            v11--;
+    while (v11 >= 0) {
+        if (v6 == Unk_020EFA98[v11][0]) {
+            x -= Unk_020EFA98[v11][1];
+            z -= Unk_020EFA98[v11][3];
+            break;
         }
-    }
 
+        v11--;
+    }
+    
     v6 = sub_02039E30(fieldSystem->unk_2C, x / 32, z / 32);
 
     if (MapHeader_IsOnMainMatrix(v6)) {
         param1->unk_00 = x;
         param1->unk_04 = z;
     } else {
-        param1->unk_00 = v10->unk_08;
-        param1->unk_04 = v10->unk_0C;
+        param1->unk_00 = v10->x;
+        param1->unk_04 = v10->z;
     }
 
     v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(fieldSystem));
     param1->unk_0C = TrainerInfo_Gender(v0);
-    v7 = sub_0203A76C(sub_0203A790(fieldSystem->saveData));
+    v7 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v2 = (v7->unk_00 - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {
@@ -159,7 +157,7 @@ static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1
     int v3;
     UnkStruct_0206B878 * v4;
     UnkUnion_0206B878 * v5;
-    UnkStruct_020507E4 * v6 = SaveData_Events(fieldSystem->saveData);
+    VarsFlags * v6 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     FS_InitFile(&v0);
 

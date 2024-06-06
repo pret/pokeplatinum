@@ -298,7 +298,7 @@ BOOL ScrCmd_0DB (ScriptContext * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->fieldSystem, 15);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = sub_0206B054(SaveData_Events(param0->fieldSystem->saveData));
+    u16 v2 = sub_0206B054(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -311,7 +311,7 @@ BOOL ScrCmd_0DC (ScriptContext * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->fieldSystem, 15);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = sub_0206B064(SaveData_Events(param0->fieldSystem->saveData));
+    u16 v2 = sub_0206B064(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -324,7 +324,7 @@ BOOL ScrCmd_0DD (ScriptContext * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->fieldSystem, 15);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = sub_0206B08C(SaveData_Events(param0->fieldSystem->saveData));
+    u16 v2 = sub_0206B08C(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     Strbuf* v3 = sub_02047998(v2, 4);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -558,7 +558,7 @@ BOOL ScrCmd_342 (ScriptContext * param0)
 {
     StringTemplate ** v0 = sub_0203F098(param0->fieldSystem, 15);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = sub_0206B08C(SaveData_Events(param0->fieldSystem->saveData));
+    u16 v2 = sub_0206B08C(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
 
     StringTemplate_SetSpeciesNameWithArticleByID(*v0, v1, v2);
     return 0;

@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202B628_decl.h"
+#include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202DA40_decl.h"
@@ -32,7 +32,7 @@
 #include "savedata/save_table.h"
 #include "savedata.h"
 #include "game_options.h"
-#include "unk_0202B604.h"
+#include "journal.h"
 #include "unk_0202CC64.h"
 #include "unk_0202CD50.h"
 #include "unk_0202DA40.h"
@@ -62,7 +62,7 @@ static void ov94_02242D38(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02242D74(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02242D84(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02242D98(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_02243E48(UnkStruct_0202B628 * param0, UnkStruct_ov94_0223BA88 * param1);
+static void ov94_02243E48(Journal * param0, UnkStruct_ov94_0223BA88 * param1);
 static void ov94_0224362C(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02243E2C(UnkStruct_0202C878 * param0, UnkStruct_ov94_0223BA88 * param1);
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, int param2);
@@ -1291,7 +1291,7 @@ static void ov94_02243BC4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
 
         if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
             if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-                UnkStruct_020507E4 * v2 = SaveData_Events(param0->unk_00->unk_20);
+                VarsFlags * v2 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
 
                 if (sub_0206B5F8(v2) == 0) {
                     sub_0206B608(v2, 1);
@@ -1338,7 +1338,7 @@ static void ov94_02243CE4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
 
     if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            UnkStruct_020507E4 * v0 = SaveData_Events(param0->unk_00->unk_20);
+            VarsFlags * v0 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
 
             if (sub_0206B5F8(v0) == 0) {
                 sub_0206B608(v0, 1);
@@ -1396,7 +1396,7 @@ static void ov94_02243E2C (UnkStruct_0202C878 * param0, UnkStruct_ov94_0223BA88 
     sub_02038FDC(param0, param1->unk_11E, param1->unk_11F, param1->unk_123);
 }
 
-static void ov94_02243E48 (UnkStruct_0202B628 * param0, UnkStruct_ov94_0223BA88 * param1)
+static void ov94_02243E48 (Journal * param0, UnkStruct_ov94_0223BA88 * param1)
 {
     void * v0;
     u16 v1[10 + 1];

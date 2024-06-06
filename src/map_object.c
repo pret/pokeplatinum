@@ -1691,7 +1691,7 @@ int sub_02062C18 (const MapObject * mapObj)
     return sub_02062958(mapObj);
 }
 
-void sub_02062C30 (MapObjectManager * mapObjMan)
+void MapObjectMan_StopAllMovement (MapObjectManager * mapObjMan)
 {
     sub_02062838(mapObjMan, (1 << 1) | (1 << 2));
 }

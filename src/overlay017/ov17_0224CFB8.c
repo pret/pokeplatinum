@@ -405,7 +405,7 @@ static void ov17_0224D41C (SysTask * param0, void * param1)
         v0->unk_10++;
         break;
     case 1:
-        if (sub_02005684() == 0) {
+        if (Sound_CheckFade() == 0) {
             v0->unk_10++;
         }
         break;
