@@ -141,11 +141,11 @@ typedef struct {
 } UnkStruct_02054538;
 
 static BOOL FieldTask_ChangeMap(TaskManager * taskMan);
-static BOOL FieldTask_LoadMapFromNewGame(TaskManager * taskMan);
+static BOOL FieldTask_LoadNewGameSpawn(TaskManager * taskMan);
 static void FieldMapChange_SetNewLocation(FieldSystem * fieldSystem, const Location * param1);
 static void sub_020533CC(FieldSystem * fieldSystem);
 static void sub_02053468(FieldSystem * fieldSystem);
-static void FieldSystem_MapChange_CreatePlayerObject(FieldSystem * fieldSystem);
+static void FieldMapChange_CreatePlayerObject(FieldSystem * fieldSystem);
 static void sub_02053374(FieldSystem * fieldSystem);
 static void sub_020534BC(FieldSystem * fieldSystem);
 static BOOL sub_02053B44(TaskManager * taskMan);
@@ -252,10 +252,10 @@ void FieldMapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWarp)
     Sound_ClearSpecialBGM(fieldSystem);
     FieldSystem_ClearLocalFlags(fieldSystem);
 
-    if (!noWarp) { 
+    if (!noWarp) {
         FieldSystem_InitFlagsWarp(fieldSystem);
     } else {
-        FieldSystem_InitFlagsNoWarp(fieldSystem);
+        FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
     FieldEvents_ResetVSSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
@@ -268,10 +268,10 @@ void FieldMapChange_UpdateGameData (FieldSystem * fieldSystem, BOOL noWarp)
         sub_02027F50(sub_02027860(fieldSystem->saveData));
     }
     
-    VarsFlags * events = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags * varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 weather = FieldSystem_GetWeather(fieldSystem, mapId);
 
-    if (((weather == OVERWORLD_WEATHER_FOG) && (FieldEvents_CheckDefog(events) == 1)) || ((weather == OVERWORLD_WEATHER_DARK_FLASH) && (FieldEvents_CheckFlash(events) == 1))) {
+    if ((weather == OVERWORLD_WEATHER_FOG && Overworld_IsDefogActive(varsFlags) == TRUE) || (weather == OVERWORLD_WEATHER_DARK_FLASH && Overworld_IsFlashActive(varsFlags) == TRUE)) {
         weather = OVERWORLD_WEATHER_CLEAR;
     }
 
@@ -311,7 +311,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld (FieldSystem * fieldSystem, BO
     if (!param1) {
         FieldSystem_InitFlagsWarp(fieldSystem);
     } else {
-        FieldSystem_InitFlagsNoWarp(fieldSystem);
+        FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
     FieldEvents_ResetVSSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
@@ -443,23 +443,20 @@ static void Location_SetToPlayerLocation (Location * location, const FieldSystem
 
 static BOOL FieldSystem_IsSaveInUnionRoom (const FieldSystem * fieldSystem)
 {
-    if (MapHeader_IsPokemonCenter2F(fieldSystem->location->mapId)
-        && (fieldSystem->location->x == 7) && (fieldSystem->location->z == 6)) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return MapHeader_IsPokemonCenter2F(fieldSystem->location->mapId)
+           && fieldSystem->location->x == 7
+           && fieldSystem->location->z == 6;
 }
 
 static void FieldSystem_SetLocationToUnionRoomExit (FieldSystem * fieldSystem)
 {
     Location * v0 = sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    VarsFlags * events = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags * varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Location_Set(v0, fieldSystem->location->mapId, -1, 8, 2, 1);
 }
 
-static BOOL FieldTask_LoadMapFromNewGame (TaskManager * taskMan)
+static BOOL FieldTask_LoadNewGameSpawn (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
     int * state = FieldTask_GetState(taskMan);
@@ -483,39 +480,39 @@ static BOOL FieldTask_LoadMapFromNewGame (TaskManager * taskMan)
     return FALSE;
 }
 
-void FieldSystem_SetLoadMapFromNewGameTask (FieldSystem * fieldSystem)
+void FieldSystem_SetLoadNewGameSpawnTask (FieldSystem * fieldSystem)
 {
     fieldSystem->unk_70 = 0;
-    FieldSystem_InitNewGameScripts(fieldSystem);
-    FieldTask_Set(fieldSystem, FieldTask_LoadMapFromNewGame, NULL);
+    FieldSystem_InitNewGameState(fieldSystem);
+    FieldTask_Set(fieldSystem, FieldTask_LoadNewGameSpawn, NULL);
 }
 
-static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
+static BOOL FieldTask_LoadSavedGameMap (TaskManager * taskMan)
 {
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    VarsFlags * events = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags * varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     int * state = FieldTask_GetState(taskMan);
 
     switch (*state) {
     case 0:
         sub_0202878C(fieldSystem->saveData);
 
-        if (Journal_CheckOpenOnContinue(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events))) {
+        if (Journal_CheckOpenOnContinue(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(varsFlags))) {
             sub_0203D30C(fieldSystem, NULL);
             (*state) = 4;
             break;
         }
     case 1:
-        fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(events));
+        fieldSystem->unk_9C = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), inline_020535E8(varsFlags));
 
-        if (FieldEvents_CheckCommClub(events)) {
+        if (CommClub_IsAvailable(varsFlags)) {
             FieldOverworldState * fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
             if (FieldSystem_IsSaveInUnionRoom(fieldSystem)) {
                 FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
             }
 
-            FieldEvents_ResetCommClub(events);
+            CommClub_ResetAvailable(varsFlags);
             FieldMapChange_SetNewLocation(fieldSystem, sub_0203A730(fieldState));
             sub_020533CC(fieldSystem);
             FieldMapChange_UpdateGameData(fieldSystem, 0);
@@ -547,10 +544,10 @@ static BOOL FieldTask_LoadMapFromContinueGame (TaskManager * taskMan)
     return FALSE;
 }
 
-void FieldSystem_SetLoadMapFromContinueGameTask (FieldSystem * fieldSystem)
+void FieldSystem_SetLoadSavedGameMapTask (FieldSystem * fieldSystem)
 {
     fieldSystem->unk_70 = 0;
-    FieldTask_Set(fieldSystem, FieldTask_LoadMapFromContinueGame, NULL);
+    FieldTask_Set(fieldSystem, FieldTask_LoadSavedGameMap, NULL);
 }
 
 static BOOL FieldTask_LoadMapFromError (TaskManager * taskMan)
@@ -604,16 +601,16 @@ void FieldSystem_StartLoadMapFromErrorTask (FieldSystem * fieldSystem)
 {
     UnkStruct_02053718 * v1;
 
-    if (MapHeader_IsUnionRoom(fieldSystem->location->mapId)) {
-        
-    } else if (FieldSystem_IsSaveInUnionRoom(fieldSystem)) {
-        VarsFlags * events = SaveData_GetVarsFlags(fieldSystem->saveData);
+    if (!MapHeader_IsUnionRoom(fieldSystem->location->mapId)) {
+        if (FieldSystem_IsSaveInUnionRoom(fieldSystem)) {
+            VarsFlags * varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-        FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
-        sub_0206AD9C(events);
-    } else {
-        FieldSystem_SetLoadMapFromContinueGameTask(fieldSystem);
-        return;
+            FieldSystem_SetLocationToUnionRoomExit(fieldSystem);
+            sub_0206AD9C(varsFlags);
+        } else {
+            FieldSystem_SetLoadSavedGameMapTask(fieldSystem);
+            return;
+        }
     }
 
     v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02053718));

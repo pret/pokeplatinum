@@ -32,7 +32,7 @@ void sub_02070428 (FieldSystem * fieldSystem, BOOL param1)
     fieldSystem->unk_B8 = param1;
 }
 
-void FieldSystem_InitFlagsNoWarp (FieldSystem * fieldSystem)
+void FieldSystem_InitFlagsOnMapChange (FieldSystem * fieldSystem)
 {
     sub_020705DC(fieldSystem);
     sub_0206AF1C(SaveData_GetVarsFlags(fieldSystem->saveData), 0);

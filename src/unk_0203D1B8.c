@@ -1788,7 +1788,7 @@ void * sub_0203E63C (int param0, FieldSystem * fieldSystem, u16 param2, u16 para
     v0->mode = 2;
     v0->ribbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->contest = EventFlag_VisitedContestHall(SaveData_GetVarsFlags(fieldSystem->saveData));
+    v0->contest = ContestHall_IsVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     v0->chatotCry = NULL;
 
     PokemonSummary_FlagVisiblePages(v0, Unk_020EA15C);

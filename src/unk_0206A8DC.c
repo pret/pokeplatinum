@@ -342,18 +342,18 @@ void sub_0206AD9C (VarsFlags * param0)
     return;
 }
 
-void FieldEvents_ResetCommClub (VarsFlags * param0)
+void CommClub_ResetAvailable (VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 6));
     return;
 }
 
-BOOL FieldEvents_CheckCommClub (VarsFlags * param0)
+BOOL CommClub_IsAvailable (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 6));
 }
 
-BOOL EventFlag_VisitedContestHall (VarsFlags * param0)
+BOOL ContestHall_IsVisited (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 24));
 }
@@ -438,7 +438,7 @@ void sub_0206AECC (VarsFlags * param0)
     sub_0206A8E4(param0, (2400 + 26));
 }
 
-BOOL FieldEvents_CheckFlash (VarsFlags * param0)
+BOOL Overworld_IsFlashActive (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 26));
 }
@@ -453,7 +453,7 @@ void sub_0206AEFC (VarsFlags * param0)
     sub_0206A8E4(param0, (2400 + 27));
 }
 
-BOOL FieldEvents_CheckDefog (VarsFlags * param0)
+BOOL Overworld_IsDefogActive (VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 27));
 }

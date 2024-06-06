@@ -121,7 +121,7 @@ u16 sub_0203F304(u16 param0);
 u8 sub_0203F3C8(u16 param0);
 static BOOL sub_0203F404(UnkStruct_0203EF60 * param0, u16 param1);
 void sub_0203F310(FieldSystem * fieldSystem);
-void FieldSystem_InitNewGameScripts(FieldSystem * fieldSystem);
+void FieldSystem_InitNewGameState(FieldSystem * fieldSystem);
 void sub_0203F5A4(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
 static u16 sub_0203F610(const u8 * param0, u8 param1);
@@ -594,9 +594,7 @@ static u32 sub_0203F110 (int param0)
 
 u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 param1)
 {
-    VarsFlags * v0;
-
-    v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (param1 < 0x4000) {
         return NULL;
@@ -887,7 +885,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     return v0;
 }
 
-void FieldSystem_InitNewGameScripts (FieldSystem * fieldSystem)
+void FieldSystem_InitNewGameState (FieldSystem * fieldSystem)
 {
     sub_0203F5A4(fieldSystem, 9600);
     return;
@@ -895,14 +893,13 @@ void FieldSystem_InitNewGameScripts (FieldSystem * fieldSystem)
 
 void sub_0203F5A4 (FieldSystem * fieldSystem, u16 param1)
 {
-    ScriptContext * v0 = sub_0203EAB8(fieldSystem, param1);
+    ScriptContext * ctx = sub_0203EAB8(fieldSystem, param1);
 
-    while (ScriptContext_Run(v0) == 1) {
+    while (ScriptContext_Run(ctx) == 1) {
         (void)0;
     }
 
-    sub_0203EA50(v0);
-    return;
+    sub_0203EA50(ctx);
 }
 
 BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)

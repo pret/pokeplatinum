@@ -64,7 +64,7 @@ static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
     if (v0->unk_04) {
         FieldSystem_StartLoadMapFromErrorTask(sFieldSystem);
     } else {
-        FieldSystem_SetLoadMapFromContinueGameTask(sFieldSystem);
+        FieldSystem_SetLoadSavedGameMapTask(sFieldSystem);
     }
 
     v0->unk_04 = 0;
@@ -74,7 +74,7 @@ static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
 static int FieldSystem_InitNewGame (OverlayManager * overlayMan, int * param1)
 {
     sFieldSystem = FieldSystem_Init(overlayMan);
-    FieldSystem_SetLoadMapFromNewGameTask(sFieldSystem);
+    FieldSystem_SetLoadNewGameSpawnTask(sFieldSystem);
     return 1;
 }
 

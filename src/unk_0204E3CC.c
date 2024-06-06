@@ -221,7 +221,7 @@ BOOL ScrCmd_1D0 (ScriptContext * param0)
         break;
     case 2:
         v1 = ScriptContext_GetVarPointer(param0);
-        *v1 = FieldEvents_CheckFlash(v2);
+        *v1 = Overworld_IsFlashActive(v2);
         break;
     default:
         GF_ASSERT(0);
@@ -247,7 +247,7 @@ BOOL ScrCmd_1D1 (ScriptContext * param0)
         break;
     case 2:
         v1 = ScriptContext_GetVarPointer(param0);
-        *v1 = FieldEvents_CheckDefog(v2);
+        *v1 = Overworld_IsDefogActive(v2);
         break;
     default:
         GF_ASSERT(0);

@@ -236,7 +236,7 @@ void sub_02049FA8 (FieldSystem * fieldSystem)
 
 void sub_02049FE8 (FieldSystem * fieldSystem)
 {
-    FieldEvents_ResetCommClub(SaveData_GetVarsFlags(fieldSystem->saveData));
+    CommClub_ResetAvailable(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
 u16 sub_02049FF8 (SaveData * param0, u16 param1)

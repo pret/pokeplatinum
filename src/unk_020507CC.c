@@ -23,12 +23,9 @@ void VarsFlags_Init (VarsFlags * param0)
     memset(param0, 0, sizeof(VarsFlags));
 }
 
-VarsFlags * SaveData_GetVarsFlags (SaveData * param0)
+VarsFlags * SaveData_GetVarsFlags (SaveData * saveData)
 {
-    VarsFlags * v0;
-
-    v0 = (VarsFlags *)SaveData_SaveTable(param0, 4);
-    return v0;
+    return (VarsFlags *)SaveData_SaveTable(saveData, 4);
 }
 
 BOOL sub_020507F0 (VarsFlags * param0, u16 param1)
