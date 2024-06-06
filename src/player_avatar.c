@@ -858,7 +858,7 @@ void sub_0205F098 (PlayerAvatar * playerAvatar, int param1)
     GF_ASSERT(0);
 }
 
-int PlayerAvatar_DistortionWorldState (PlayerAvatar * const playerAvatar)
+int PlayerAvatar_MapDistortionState (PlayerAvatar * const playerAvatar)
 {
     int state = AVATAR_DISTORTION_STATE_NONE;
     u32 v1 = sub_0205EBB0(playerAvatar, ((1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12)));
@@ -886,7 +886,7 @@ int PlayerAvatar_DistortionWorldState (PlayerAvatar * const playerAvatar)
 
 BOOL sub_0205F158 (PlayerAvatar * const playerAvatar)
 {
-    int v0 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int v0 = PlayerAvatar_MapDistortionState(playerAvatar);
 
     if ((v0 == 0) || (v0 == 1)) {
         return FALSE;
@@ -897,7 +897,7 @@ BOOL sub_0205F158 (PlayerAvatar * const playerAvatar)
 
 BOOL sub_0205F16C (PlayerAvatar * const playerAvatar)
 {
-    int v0 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int v0 = PlayerAvatar_MapDistortionState(playerAvatar);
 
     if ((v0 == 0) || (v0 == 1) || (v0 == 2)) {
         return TRUE;

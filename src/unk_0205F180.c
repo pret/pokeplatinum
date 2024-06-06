@@ -199,7 +199,7 @@ static int PlayerAvatar_CheckStartMoveInternal (PlayerAvatar * playerAvatar, int
         if (sub_0205F158(playerAvatar) == 1) {
             v2 = sub_020611FC(playerAvatar, mapObj, dir);
 
-            if ((v2 & (~(1 << 7))) && (PlayerAvatar_DistortionWorldState(playerAvatar) == 2)) {
+            if ((v2 & (~(1 << 7))) && (PlayerAvatar_MapDistortionState(playerAvatar) == 2)) {
                 FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
                 int xOut, x = MapObject_GetXPos(mapObj);
                 int yOut, y = MapObject_GetYPos(mapObj);
@@ -861,7 +861,7 @@ static int sub_0205FCC0 (PlayerAvatar * playerAvatar, int param1)
     v0 = PlayerAvatar_GetDir(playerAvatar);
 
     {
-        int v1 = PlayerAvatar_DistortionWorldState(playerAvatar);
+        int v1 = PlayerAvatar_MapDistortionState(playerAvatar);
 
         if ((v1 != 0) && (v1 != 1) && (v1 != 2)) {
             v0 = PlayerAvatar_GetMoveDir(playerAvatar);
@@ -887,7 +887,7 @@ static void sub_0205FD20 (PlayerAvatar * playerAvatar, MapObject * param1, int p
 
 static void sub_0205FD40 (PlayerAvatar * playerAvatar, MapObject * param1, int param2, u16 param3, u16 param4)
 {
-    int v0 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int v0 = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (v0) {
     case 2:
@@ -1130,7 +1130,7 @@ static void sub_02060258 (PlayerAvatar * playerAvatar, MapObject * mapObj, int p
     int v2;
 
     v1 = param2;
-    v2 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    v2 = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (v2) {
     case 3:
@@ -2077,7 +2077,7 @@ static int sub_02061248 (PlayerAvatar * playerAvatar, MapObject * mapObj, int pa
 {
     BOOL v0 = 0;
 
-    if ((param2 != -1) && (PlayerAvatar_DistortionWorldState(playerAvatar) == 2)) {
+    if ((param2 != -1) && (PlayerAvatar_MapDistortionState(playerAvatar) == 2)) {
         FieldSystem * fieldSystem = MapObject_FieldSystem(mapObj);
 
         if (sub_02071CB4(fieldSystem, 9) == 1) {
@@ -2420,7 +2420,7 @@ static int PlayerAvatar_IsUnderCyclingRoad (PlayerAvatar * playerAvatar, u32 par
 void sub_02061674 (PlayerAvatar * playerAvatar, int param1, int * param2, int * param3, int * param4)
 {
     const UnkStruct_020EDB04 * v0;
-    int v1 = PlayerAvatar_DistortionWorldState(playerAvatar);
+    int v1 = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (v1) {
     case 0:
