@@ -267,7 +267,7 @@ BOOL ov6_02240D5C (FieldSystem * fieldSystem)
             if (!sub_0202D9D8(sub_0202D834(fieldSystem->saveData))) {
                 Pokemon * v16;
 
-                v16 = Party_FirstBattler(v11);
+                v16 = Party_FindFirstEligibleBattler(v11);
 
                 v14.unk_04 = 1;
                 v14.unk_0C = Pokemon_GetValue(v16, MON_DATA_LEVEL, NULL);
@@ -646,7 +646,7 @@ BOOL ov6_022413E4 (FieldSystem * fieldSystem, BattleParams ** param1)
             if (!sub_0202D9D8(sub_0202D834(fieldSystem->saveData))) {
                 Pokemon * v15;
 
-                v15 = Party_FirstBattler(v10);
+                v15 = Party_FindFirstEligibleBattler(v10);
 
                 v13.unk_04 = 1;
                 v13.unk_0C = Pokemon_GetValue(v15, MON_DATA_LEVEL, NULL);

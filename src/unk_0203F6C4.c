@@ -4719,7 +4719,7 @@ static BOOL ScrCmd_0C0 (ScriptContext * ctx)
     {
         int v0;
 
-        if (sub_0205F16C(ctx->fieldSystem->playerAvatar) == 1) {
+        if (PlayerAvatar_DistortionStateOnFloor(ctx->fieldSystem->playerAvatar) == TRUE) {
             v0 = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
         } else {
             v0 = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);

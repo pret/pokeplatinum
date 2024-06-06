@@ -2255,7 +2255,7 @@ static void ov9_0224A8C0 (UnkStruct_ov9_02249B04 * param0)
         sub_02062E28(v8, 1);
     }
 
-    sub_0205F098(playerAvatar, v0);
+    PlayerAvatar_SetDistortionState(playerAvatar, v0);
 
     v5 = 0x0;
     v1 = sub_02062920(v8);
@@ -2305,7 +2305,7 @@ static void ov9_0224A9E8 (UnkStruct_ov9_02249B04 * param0)
 {
     PlayerAvatar * v0 = param0->fieldSystem->playerAvatar;
 
-    sub_0205F098(v0, 0);
+    PlayerAvatar_SetDistortionState(v0, AVATAR_DISTORTION_STATE_NONE);
     PlayerAvatar_ClearSpeed(v0);
 }
 
@@ -2427,7 +2427,7 @@ static BOOL ov9_0224AAD4 (TaskManager * param0)
             ov9_0224C3F8(v1, v2->unk_34.unk_26);
             v11 = ov9_022510D8(v2->unk_34.unk_24);
 
-            sub_0205F098(playerAvatar, v11);
+            PlayerAvatar_SetDistortionState(playerAvatar, v11);
             PlayerAvatar_ClearSpeed(playerAvatar);
 
             if (v2->unk_34.unk_26 < 0) {
@@ -6529,7 +6529,7 @@ static int ov9_0224E798 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
             ov9_0224C378(param0, v2, v3, v4, 4);
             v5 = ov9_0224C4B8(param0, v2, v3, v4);
             v5 = ov9_022510D8(v5);
-            sub_0205F098(playerAvatar, v5);
+            PlayerAvatar_SetDistortionState(playerAvatar, v5);
 
             if (v5 == 1) {
                 sub_02062E28(v1, 0);
@@ -8316,7 +8316,7 @@ static int ov9_0224FEDC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
-        sub_0205F098(param0->fieldSystem->playerAvatar, 1);
+        PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
         sub_02062E28(v2, 0);
 
         {
@@ -8634,7 +8634,7 @@ static int ov9_02250468 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);
         ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
-        sub_0205F098(param0->fieldSystem->playerAvatar, 5);
+        PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
         sub_02062E28(v2, 1);
 
         {
@@ -9620,16 +9620,16 @@ static int ov9_022510D8 (u32 param0)
 {
     switch (param0) {
     case 0:
-        return 2;
+        return AVATAR_DISTORTION_STATE_FLOOR;
     case 1:
-        return 3;
+        return AVATAR_DISTORTION_STATE_WEST_WALL;
     case 2:
-        return 4;
+        return AVATAR_DISTORTION_STATE_EAST_WALL;
     case 3:
-        return 5;
+        return AVATAR_DISTORTION_STATE_CEILING;
     }
 
-    return 1;
+    return AVATAR_DISTORTION_STATE_ACTIVE;
 }
 
 static BOOL ov9_02251104 (UnkStruct_ov9_02249B04 * param0, u32 param1, u32 param2)
