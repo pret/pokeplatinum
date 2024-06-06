@@ -136,8 +136,8 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
                 StringTemplate_SetNumber(v4, 1, Playtime_GetMinutes(param1->unk_18), 2, 2, 1);
                 MessageLoader_GetStrbuf(v1, 16, v3);
             } else {
-                StringTemplate_SetNumber(v4, 0, param1->unk_2A, 3, 1, 1);
-                StringTemplate_SetNumber(v4, 1, param1->unk_2E, 2, 2, 1);
+                StringTemplate_SetNumber(v4, 0, param1->playtimeHours, 3, 1, 1);
+                StringTemplate_SetNumber(v4, 1, param1->playtimeMinutes, 2, 2, 1);
                 MessageLoader_GetStrbuf(v1, 15, v3);
             }
 

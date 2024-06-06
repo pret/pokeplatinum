@@ -22,9 +22,9 @@ typedef struct {
     u32 unk_20;
     u32 unk_24;
     u16 unk_28;
-    u16 unk_2A;
+    u16 playtimeHours;
     u16 unk_2C;
-    u8 unk_2E;
+    u8 playtimeMinutes;
     u8 unk_2F;
     u8 unk_30;
     u8 unk_31;

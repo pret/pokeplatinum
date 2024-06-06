@@ -182,34 +182,34 @@ static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2,
     param7->unk_24 = param6;
 }
 
-static void sub_0207207C (const u8 param0, const Playtime * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6)
+static void sub_0207207C (const u8 param0, const Playtime *playtime, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * trainerCard)
 {
-    param6->unk_2A = Playtime_GetHours(param1);
-    param6->unk_2E = Playtime_GetMinutes(param1);
-    param6->unk_2F = param2->year;
-    param6->unk_30 = param2->month;
-    param6->unk_31 = param2->day;
+    trainerCard->playtimeHours = Playtime_GetHours(playtime);
+    trainerCard->playtimeMinutes = Playtime_GetMinutes(playtime);
+    trainerCard->unk_2F = param2->year;
+    trainerCard->unk_30 = param2->month;
+    trainerCard->unk_31 = param2->day;
 
     if (param0) {
-        param6->unk_32 = param3->year;
-        param6->unk_33 = param3->month;
-        param6->unk_34 = param3->day;
-        param6->unk_2C = param4->hour;
-        param6->unk_35 = param4->minute;
+        trainerCard->unk_32 = param3->year;
+        trainerCard->unk_33 = param3->month;
+        trainerCard->unk_34 = param3->day;
+        trainerCard->unk_2C = param4->hour;
+        trainerCard->unk_35 = param4->minute;
     } else {
-        param6->unk_32 = 0;
-        param6->unk_33 = 0;
-        param6->unk_34 = 0;
-        param6->unk_2C = 0;
-        param6->unk_35 = 0;
+        trainerCard->unk_32 = 0;
+        trainerCard->unk_33 = 0;
+        trainerCard->unk_34 = 0;
+        trainerCard->unk_2C = 0;
+        trainerCard->unk_35 = 0;
     }
 
-    param6->unk_04_1 = param5;
+    trainerCard->unk_04_1 = param5;
 
     if (param5) {
-        param6->unk_18 = param1;
+        trainerCard->unk_18 = playtime;
     } else {
-        param6->unk_18 = NULL;
+        trainerCard->unk_18 = NULL;
     }
 }
 
