@@ -26,7 +26,7 @@ static void sub_0206A8E4 (VarsFlags * param0, u16 param1)
 
 static BOOL sub_0206A8EC (VarsFlags * param0, u16 param1)
 {
-    return sub_020507F0(param0, param1);
+    return VarsFlags_IsFlagOn(param0, param1);
 }
 
 static BOOL sub_0206A8F4 (VarsFlags * param0, int param1, u32 param2)
@@ -103,19 +103,17 @@ BOOL sub_0206A9B4 (VarsFlags * param0)
     return sub_0206A8EC(param0, (2400 + 5));
 }
 
-void sub_0206A9C4 (VarsFlags * param0)
+void VsSeeker_SetUsedFlag(VarsFlags * param0)
 {
     sub_0206A8DC(param0, (2400 + 13));
-    return;
 }
 
-void sub_0206A9D4 (VarsFlags * param0)
+void VsSeeker_ClearUsedFlag(VarsFlags * param0)
 {
     sub_0206A8E4(param0, (2400 + 13));
-    return;
 }
 
-BOOL sub_0206A9E4 (VarsFlags * param0)
+BOOL VsSeeker_GetUsedFlag(VarsFlags * param0)
 {
     return sub_0206A8EC(param0, (2400 + 13));
 }
@@ -204,7 +202,7 @@ BOOL sub_0206AAA8 (VarsFlags * param0, int param1)
     return v0;
 }
 
-BOOL sub_0206AB00 (VarsFlags * param0, int param1)
+BOOL VsSeeker_HasUnlockedLevel(VarsFlags * param0, int param1)
 {
     int v0 = 0;
 

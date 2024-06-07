@@ -1528,12 +1528,12 @@ void ov5_021EDED8 (MapObject * param0, UnkStruct_020216E0 * param1)
 {
     int v0 = 1;
 
-    if (sub_020628D8(param0, (1 << 9)) == 1) {
+    if (MapObject_GetStateFlag(param0, (1 << 9)) == 1) {
         v0 = 0;
     }
 
-    if (sub_020628D8(param0, (1 << 12)) == 1) {
-        if (sub_020628D8(param0, (1 << 13)) == 0) {
+    if (MapObject_GetStateFlag(param0, (1 << 12)) == 1) {
+        if (MapObject_GetStateFlag(param0, (1 << 13)) == 0) {
             v0 = 0;
         }
     }
@@ -1864,7 +1864,7 @@ static void ov5_021EE2D0 (UnkStruct_ov5_021ED0A4 * param0, UnkStruct_ov5_021EE29
 
         ov5_021EDD78(param1->unk_04, 0);
 
-        if (sub_020628D8(param1->unk_04, (1 << 21)) == 1) {
+        if (MapObject_GetStateFlag(param1->unk_04, (1 << 21)) == 1) {
             sub_02062BA4(param1->unk_04);
         } else {
             sub_02062B68(param1->unk_04);

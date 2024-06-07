@@ -224,7 +224,7 @@ static BOOL ov6_02242C5C (TaskManager * taskMan)
 
         (v1->unk_05)++;
     case 2:
-        if (!sub_020057D4(1755)) {
+        if (!Sound_IsEffectPlaying(1755)) {
             (v1->unk_05)++;
         }
         break;

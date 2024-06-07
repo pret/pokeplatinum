@@ -2211,7 +2211,7 @@ static void ov23_02244EF8 (int param0, int param1, int param2, int param3, u8 * 
     }
 
     if (v7) {
-        if (!sub_020057D4(1577)) {
+        if (!Sound_IsEffectPlaying(1577)) {
             Sound_PlayEffect(1577);
         }
     }

@@ -680,7 +680,7 @@ static int ov117_0226334C (UnkStruct_ov117_022626B0 * param0)
             return 1;
         }
 
-        if ((param0->unk_23C != -1) && (param0->unk_210 > param0->unk_23C) && (sub_020057D4(1399) == 0)) {
+        if ((param0->unk_23C != -1) && (param0->unk_210 > param0->unk_23C) && (Sound_IsEffectPlaying(1399) == 0)) {
             Sound_PlayEffect(1399);
             param0->unk_274 = 1;
         }

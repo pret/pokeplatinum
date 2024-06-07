@@ -280,7 +280,7 @@ static void sub_0205C51C (UnkStruct_0205C22C * param0, MapObjectManager * param1
                 sub_02062DB4(v0, 0);
 
                 if ((param0->unk_0C[v1].unk_00 == 1) && (param0->unk_0C[v1].unk_09 == 0)) {
-                    sub_020633A8(v0, 0x3);
+                    MapObject_SetMoveCode(v0, 0x3);
                     sub_020629FC(v0, 1);
                     sub_02062A04(v0, 1);
                     param0->unk_0C[v1].unk_09 = 1;
@@ -394,7 +394,7 @@ static void sub_0205C788 (UnkStruct_0205C680 * param0, MapObject * param1)
 {
     LocalMapObj_SetAnimationCode(param1, 0x43);
     sub_02062DB4(param1, 1);
-    sub_020633A8(param1, 0x0);
+    MapObject_SetMoveCode(param1, 0x0);
     sub_0205C680(param0, 1);
 
     param0->unk_04 = 0;

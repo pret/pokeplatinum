@@ -905,7 +905,7 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         ov70_02262E88(param0, 21);
         break;
     case 18:
-        if (!((sub_020057D4(1448) == 0) && (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if (!((Sound_IsEffectPlaying(1448) == 0) && (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
             break;
         }
 

@@ -60,7 +60,7 @@
 #include "core_sys.h"
 #include "constants/sdat.h"
 #include "overlay005/field_control.h"
-#include "overlay005/ov5_021DB888.h"
+#include "overlay005/vs_seeker.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1154.h"
 #include "overlay005/ov5_021E622C.h"
@@ -271,8 +271,8 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            if (sub_02062950(object) != 0x9) {
-                sub_0203E880(fieldSystem, sub_02062960(object), object);
+            if (MapObject_GetEventType(object) != 0x9) {
+                sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
             } else {
                 sub_0203E880(fieldSystem, 0, object);
             }
@@ -346,7 +346,7 @@ static BOOL Field_CheckSign (FieldSystem *fieldSystem)
     MapObject *object;
 
     if (sub_0203CBE0(fieldSystem, &object) == TRUE) {
-        sub_0203E880(fieldSystem, sub_02062960(object), object);
+        sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
         return TRUE;
     }
 
@@ -411,7 +411,7 @@ BOOL FieldInput_Process_Colosseum (FieldInput *input, FieldSystem *fieldSystem)
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            sub_0203E880(fieldSystem, sub_02062960(object), object);
+            sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
             return TRUE;
         }
     }
@@ -467,7 +467,7 @@ BOOL FieldInput_Process_UnionRoom (const FieldInput *input, FieldSystem *fieldSy
             }
 
             sub_02036B84();
-            sub_0203E880(fieldSystem, sub_02062960(object), object);
+            sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
 
             return TRUE;
         }
@@ -503,8 +503,8 @@ int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldS
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
             
-            if (sub_02062950(object) != 0x9) {
-                sub_0203E880(fieldSystem, sub_02062960(object), object);
+            if (MapObject_GetEventType(object) != 0x9) {
+                sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
             } else {
                 sub_0203E880(fieldSystem, 0, object);
             }
@@ -847,7 +847,7 @@ static BOOL Field_UpdateDaycare (FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateVsSeeker (FieldSystem *fieldSystem)
 {
-    ov5_021DBB94(fieldSystem);
+    VsSeeker_UpdateStepCount(fieldSystem);
     return FALSE;
 }
 

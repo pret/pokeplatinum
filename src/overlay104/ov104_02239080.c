@@ -42,7 +42,7 @@ BOOL ov104_022390A0 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_022390C0 (UnkStruct_ov104_0222E930 * param0)
 {
-    if (sub_020057D4(param0->unk_78[0]) == 0) {
+    if (Sound_IsEffectPlaying(param0->unk_78[0]) == 0) {
         return 1;
     }
 

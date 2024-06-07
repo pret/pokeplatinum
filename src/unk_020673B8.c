@@ -70,20 +70,20 @@ int sub_020673C0 (MapObject * param0)
 
 static void sub_020673E4 (MapObject * param0)
 {
-    int v0 = sub_02062950(param0);
+    int v0 = MapObject_GetEventType(param0);
 
     Unk_020EF630[v0](param0);
 }
 
 static int sub_02067400 (MapObject * param0)
 {
-    int v0 = sub_02062950(param0);
+    int v0 = MapObject_GetEventType(param0);
     return Unk_020EF660[v0](param0);
 }
 
 static int sub_0206741C (MapObject * param0)
 {
-    int v0 = sub_02062950(param0);
+    int v0 = MapObject_GetEventType(param0);
     return Unk_020EF690[v0](param0);
 }
 
@@ -174,7 +174,7 @@ static int sub_020674C4 (MapObject * param0)
 
         v0->unk_00++;
     case 2:
-        if (sub_02062D1C(param0) == 1) {
+        if (MapObject_IsMoving(param0) == 1) {
             break;
         }
 
@@ -257,7 +257,7 @@ static void sub_0206762C (MapObject * param0)
     v1 = sub_02062A7C(param0, (sizeof(UnkStruct_0206762C)));
     v1->unk_03 = sub_020629D8(param0, 1);
 
-    v0 = sub_02062950(param0);
+    v0 = MapObject_GetEventType(param0);
 
     if (v0 == 0x5) {
         v0 = 0;
@@ -295,7 +295,7 @@ static int sub_02067658 (MapObject * param0)
 
         v0->unk_00++;
     case 2:
-        if (sub_02062D1C(param0) == 1) {
+        if (MapObject_IsMoving(param0) == 1) {
             break;
         }
 

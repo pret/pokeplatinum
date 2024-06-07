@@ -9,7 +9,7 @@
 
 #include "constdata/const_020EE31C.h"
 
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
@@ -28,7 +28,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     MapObject * unk_0C;
-    const UnkStruct_ov5_021F8E3C * unk_10;
+    const MapObjectAnimCmd * unk_10;
 } UnkStruct_020EEE54;
 
 typedef struct {
@@ -122,15 +122,15 @@ static const fx32 Unk_020EECEC[3];
 
 int LocalMapObj_IsAnimationSet (const MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 0)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 0)) == 0) {
         return 0;
     }
 
-    if (sub_020628D8(mapObj, (1 << 1)) == 1) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 1)) == 1) {
         return 0;
     }
 
-    if ((sub_020628D8(mapObj, (1 << 4)) == 1) && (sub_020628D8(mapObj, (1 << 5)) == 0)) {
+    if ((MapObject_GetStateFlag(mapObj, (1 << 4)) == 1) && (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0)) {
         return 0;
     }
 
@@ -156,11 +156,11 @@ void sub_02065668 (MapObject * mapObj, int param1)
 
 int LocalMapObj_CheckAnimationFinished (const MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 4)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 4)) == 0) {
         return 1;
     }
 
-    if (sub_020628D8(mapObj, (1 << 5)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
         return 0;
     }
 
@@ -169,11 +169,11 @@ int LocalMapObj_CheckAnimationFinished (const MapObject * mapObj)
 
 int sub_020656AC (MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 4)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 4)) == 0) {
         return 1;
     }
 
-    if (sub_020628D8(mapObj, (1 << 5)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
         return 0;
     }
 
@@ -190,7 +190,7 @@ void sub_020656DC (MapObject * mapObj)
     sub_02062BC0(mapObj, 0);
 }
 
-SysTask * sub_02065700 (MapObject * mapObj, const UnkStruct_ov5_021F8E3C * param1)
+SysTask * MapObject_StartAnimation (MapObject * mapObj, const MapObjectAnimCmd * param1)
 {
     SysTask * v0;
     UnkStruct_020EEE54 * v1;
@@ -214,7 +214,7 @@ SysTask * sub_02065700 (MapObject * mapObj, const UnkStruct_ov5_021F8E3C * param
     return v0;
 }
 
-int sub_0206574C (SysTask * task)
+int MapObject_HasAnimationEnded (SysTask * task)
 {
     UnkStruct_020EEE54 * v0;
 
@@ -222,7 +222,7 @@ int sub_0206574C (SysTask * task)
     return v0->unk_04;
 }
 
-void sub_02065758 (SysTask * task)
+void MapObject_FinishAnimation (SysTask * task)
 {
     UnkStruct_020EEE54 * v0;
 
@@ -266,7 +266,7 @@ static int sub_020657B0 (UnkStruct_020EEE54 * param0)
 
 static int sub_020657CC (UnkStruct_020EEE54 * param0)
 {
-    const UnkStruct_ov5_021F8E3C * v0;
+    const MapObjectAnimCmd * v0;
 
     v0 = param0->unk_10;
     LocalMapObj_SetAnimationCode(param0->unk_0C, v0->unk_00);
@@ -288,7 +288,7 @@ static int sub_020657E4 (UnkStruct_020EEE54 * param0)
 
 static int sub_02065800 (UnkStruct_020EEE54 * param0)
 {
-    const UnkStruct_ov5_021F8E3C * v0;
+    const MapObjectAnimCmd * v0;
 
     v0 = param0->unk_10;
     param0->unk_08++;
@@ -401,7 +401,7 @@ int sub_020658DC (MapObject * mapObj)
 {
     sub_020658B4(mapObj);
 
-    if (sub_020628D8(mapObj, (1 << 5)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 5)) == 0) {
         return 0;
     }
 

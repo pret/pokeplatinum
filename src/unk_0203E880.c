@@ -20,6 +20,7 @@
 #include "struct_defs/struct_0203F478.h"
 #include "struct_defs/struct_0205AA50.h"
 
+#include "constants/battle.h"
 #include "narc.h"
 #include "message.h"
 #include "string_template.h"
@@ -36,6 +37,11 @@
 #include "player_avatar.h"
 #include "map_object.h"
 #include "trainer_data.h"
+
+#define SINGLE_BATTLE_EVENT_ID_OFFSET 3000
+#define DOUBLE_BATTLE_EVENT_ID_OFFSET 5000
+
+#define TRAINER_DEFEATED_FLAG_OFFSET 1360
 
 typedef void (* UnkFuncPtr_0203E950)(FieldSystem *);
 
@@ -110,10 +116,7 @@ void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
 void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
-u16 sub_0203F254(u16 param0);
 BOOL sub_0203F278(u16 param0);
-BOOL sub_0203F28C(u16 param0);
-BOOL sub_0203F2A0(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2BC(FieldSystem * fieldSystem, u16 param1);
 void sub_0203F2D8(FieldSystem * fieldSystem, u16 param1);
 u16 sub_0203F2F4(u16 param0);
@@ -626,7 +629,7 @@ u16 sub_0203F164 (FieldSystem * fieldSystem, u16 param1)
 
 BOOL sub_0203F188 (FieldSystem * fieldSystem, u16 param1)
 {
-    return sub_020507F0(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
+    return VarsFlags_IsFlagOn(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
 }
 
 void sub_0203F19C (FieldSystem * fieldSystem, u16 param1)
@@ -672,12 +675,12 @@ void sub_0203F21C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3
     *(u16 *)sub_0203F098(fieldSystem, 44) = param4;
 }
 
-u16 sub_0203F254 (u16 param0)
+u16 Script_GetTrainerID(u16 eventID)
 {
-    if (param0 < 5000) {
-        return param0 - 3000 + 1;
+    if (eventID < DOUBLE_BATTLE_EVENT_ID_OFFSET) {
+        return eventID - SINGLE_BATTLE_EVENT_ID_OFFSET + 1;
     } else {
-        return param0 - 5000 + 1;
+        return eventID - DOUBLE_BATTLE_EVENT_ID_OFFSET + 1;
     }
 }
 
@@ -690,29 +693,25 @@ BOOL sub_0203F278 (u16 param0)
     }
 }
 
-BOOL sub_0203F28C (u16 param0)
+BOOL Script_IsTrainerDoubleBattle(u16 trainerID)
 {
-    if (TrainerData_LoadParam(param0, 9) == 0x0) {
-        return 0;
-    }
-
-    return 1;
+    return TrainerData_LoadParam(trainerID, TRDATA_BATTLE_TYPE) != BATTLE_TYPE_SINGLES;
 }
 
-BOOL sub_0203F2A0 (FieldSystem * fieldSystem, u16 param1)
+BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    return sub_020507F0(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
+    return VarsFlags_IsFlagOn(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + trainerID);
 }
 
-void sub_0203F2BC (FieldSystem * fieldSystem, u16 param1)
+void sub_0203F2BC (FieldSystem *fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
+    sub_0205081C(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
     return;
 }
 
-void sub_0203F2D8 (FieldSystem * fieldSystem, u16 param1)
+void sub_0203F2D8 (FieldSystem *fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_GetVarsFlags(fieldSystem->saveData), 1360 + param1);
+    sub_02050844(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
     return;
 }
 

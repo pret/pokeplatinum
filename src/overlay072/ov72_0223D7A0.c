@@ -1212,13 +1212,13 @@ static void ov72_0223EA18 (UnkStruct_ov72_0223DB98 * param0)
 static void ov72_0223EAD8 (UnkStruct_ov72_0223EAD8 * param0)
 {
     if ((param0->unk_00 == 0) && (param0->unk_01 == 0)) {
-        if (!sub_020057D4(1690)) {
+        if (!Sound_IsEffectPlaying(1690)) {
             Sound_PlayEffect(1690);
         }
     }
 
     if ((param0->unk_00 * param0->unk_02 < 0) || (param0->unk_01 * param0->unk_03 < 0)) {
-        if (!sub_020057D4(1690)) {
+        if (!Sound_IsEffectPlaying(1690)) {
             Sound_PlayEffect(1690);
         }
     }

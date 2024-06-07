@@ -6,7 +6,10 @@
 #include "savedata.h"
 #include "unk_020507CC.h"
 
-typedef struct UnkStruct_020507E4_t {
+#define GET_FLAG_BIT(idx, size) (1 << (idx % size))
+#define IS_FLAG_ON(chunk, idx) (*chunk & GET_FLAG_BIT(idx, 8 * sizeof(*chunk)))
+
+typedef struct VarsFlags {
     u16 unk_00[288];
     u8 unk_240[364];
 } VarsFlags;
@@ -28,17 +31,10 @@ VarsFlags * SaveData_GetVarsFlags (SaveData * saveData)
     return (VarsFlags *)SaveData_SaveTable(saveData, 4);
 }
 
-BOOL sub_020507F0 (VarsFlags * param0, u16 param1)
+BOOL VarsFlags_IsFlagOn(VarsFlags * varflags, u16 flag)
 {
-    u8 * v0 = sub_02050870(param0, param1);
-
-    if (v0 != NULL) {
-        if (*v0 & (1 << (param1 % 8))) {
-            return 1;
-        }
-    }
-
-    return 0;
+    u8 *chunk = sub_02050870(varflags, flag);
+    return chunk != NULL && IS_FLAG_ON(chunk, flag);
 }
 
 void sub_0205081C (VarsFlags * param0, u16 param1)

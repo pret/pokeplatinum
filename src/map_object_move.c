@@ -90,7 +90,7 @@ void MapObject_Move (MapObject * mapObj)
 
 static BOOL sub_02063478 (const MapObject * mapObj)
 {
-    if (sub_02062D1C(mapObj) == 1) {
+    if (MapObject_IsMoving(mapObj) == 1) {
         return TRUE;
     }
 

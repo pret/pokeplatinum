@@ -634,7 +634,7 @@ BOOL CommPlayer_CheckNPCCollision (int x, int z)
     int npcCnt, i;
     const MapObjectHeader * npcList;
 
-    npcCnt = sub_0203A4B4(sCommPlayerManager->fieldSystem);
+    npcCnt = FieldSystem_GetNPCCount(sCommPlayerManager->fieldSystem);
     npcList = sub_0203A4BC(sCommPlayerManager->fieldSystem);
 
     for (i = 0; i < npcCnt; i++) {

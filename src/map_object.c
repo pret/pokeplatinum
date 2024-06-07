@@ -55,7 +55,7 @@ typedef struct UnkStruct_02061AB4_t {
     u32 unk_0C;
     u32 unk_10;
     u32 unk_14;
-    u32 unk_18;
+    u32 eventType;
     u32 unk_1C;
     u32 unk_20;
     int unk_24;
@@ -188,7 +188,7 @@ void sub_0206184C (MapObjectManager * mapObjMan, int param1, int param2, int par
             switch (v0) {
             case 0:
                 if (sub_02062918(mapObj) != param2) {
-                    if (sub_020628D8(mapObj, (1 << 10)) == 0) {
+                    if (MapObject_GetStateFlag(mapObj, (1 << 10)) == 0) {
                         MapObject_Delete(mapObj);
                     }
                 }
@@ -486,9 +486,9 @@ static void MapObject_Save (FieldSystem * fieldSystem, MapObject * mapObj, MapOb
     mapObjSave->unk_10 = sub_02062918(mapObj);
     mapObjSave->unk_12 = sub_02062920(mapObj);
     mapObjSave->unk_09 = MapObject_GetMoveCode(mapObj);
-    mapObjSave->unk_14 = sub_02062950(mapObj);
+    mapObjSave->unk_14 = MapObject_GetEventType(mapObj);
     mapObjSave->unk_16 = sub_02062958(mapObj);
-    mapObjSave->unk_18 = sub_02062960(mapObj);
+    mapObjSave->unk_18 = MapObject_GetEventID(mapObj);
     mapObjSave->unk_0C = sub_02062968(mapObj);
     mapObjSave->unk_0D = MapObject_Dir(mapObj);
     mapObjSave->unk_0E = MapObject_GetMoveDir(mapObj);
@@ -863,7 +863,7 @@ MapObject * MapObjMan_LocalMapObjByIndex (const MapObjectManager * mapObjMan, in
     v1 = sub_02062870(mapObjMan);
 
     do {
-        if (sub_020628D8(v1, (1 << 0)) == 1) {
+        if (MapObject_GetStateFlag(v1, (1 << 0)) == 1) {
             if (sub_02062E94(v1) == 0) {
                 if (MapObject_Id(v1) == param1) {
                     return v1;
@@ -887,7 +887,7 @@ MapObject * sub_02062570 (const MapObjectManager * mapObjMan, int param1)
     v1 = sub_02062870(mapObjMan);
 
     do {
-        if (sub_020628D8(v1, (1 << 0)) == 1) {
+        if (MapObject_GetStateFlag(v1, (1 << 0)) == 1) {
             if (MapObject_GetMoveCode(v1) == param1) {
                 return v1;
             }
@@ -988,7 +988,7 @@ static void sub_02062670 (MapObject * mapObj)
 
 int sub_020626B4 (const MapObject * mapObj)
 {
-    u16 v0 = (u16)sub_02062960(mapObj);
+    u16 v0 = (u16)MapObject_GetEventID(mapObj);
 
     if (v0 == 0xffff) {
         return 1;
@@ -1029,7 +1029,7 @@ int sub_02062758 (const MapObject * mapObj, int param1)
 
 int sub_02062764 (const MapObject * mapObj, int param1, int param2)
 {
-    if (sub_020628D8(mapObj, (1 << 0)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 0)) == 0) {
         return 0;
     }
 
@@ -1052,7 +1052,7 @@ int sub_02062764 (const MapObject * mapObj, int param1, int param2)
 
 int sub_020627B4 (const MapObject * mapObj, int param1, int param2, int param3)
 {
-    if (sub_020628D8(mapObj, (1 << 0)) == 0) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 0)) == 0) {
         return 0;
     }
 
@@ -1215,7 +1215,7 @@ u32 MapObject_CheckStatus (const MapObject * mapObj, u32 param1)
     return mapObj->unk_00 & param1;
 }
 
-u32 sub_020628D8 (const MapObject * mapObj, u32 param1)
+u32 MapObject_GetStateFlag (const MapObject * mapObj, u32 param1)
 {
     if ((mapObj->unk_00 & param1)) {
         return 1;
@@ -1302,12 +1302,12 @@ u32 MapObject_GetMoveCode (const MapObject * mapObj)
 
 void sub_0206294C (MapObject * mapObj, u32 param1)
 {
-    mapObj->unk_18 = param1;
+    mapObj->eventType = param1;
 }
 
-u32 sub_02062950 (const MapObject * mapObj)
+u32 MapObject_GetEventType(const MapObject * mapObj)
 {
-    return mapObj->unk_18;
+    return mapObj->eventType;
 }
 
 void sub_02062954 (MapObject * mapObj, u32 param1)
@@ -1325,7 +1325,7 @@ void sub_0206295C (MapObject * mapObj, u32 param1)
     mapObj->unk_20 = param1;
 }
 
-u32 sub_02062960 (const MapObject * mapObj)
+u32 MapObject_GetEventID (const MapObject * mapObj)
 {
     return mapObj->unk_20;
 }
@@ -1767,7 +1767,7 @@ int sub_02062CE4 (const MapObjectManager * mapObjMan)
 
 int sub_02062CF8 (const MapObject * mapObj)
 {
-    return sub_020628D8(mapObj, (1 << 0));
+    return MapObject_GetStateFlag(mapObj, (1 << 0));
 }
 
 void sub_02062D04 (MapObject * mapObj)
@@ -1780,9 +1780,9 @@ void sub_02062D10 (MapObject * mapObj)
     MapObject_SetStatusFlagOff(mapObj, (1 << 1));
 }
 
-int sub_02062D1C (const MapObject * mapObj)
+int MapObject_IsMoving(const MapObject *mapObj)
 {
-    return sub_020628D8(mapObj, (1 << 1));
+    return MapObject_GetStateFlag(mapObj, (1 << 1));
 }
 
 void sub_02062D28 (MapObject * mapObj)
@@ -1802,12 +1802,12 @@ void sub_02062D40 (MapObject * mapObj)
 
 int sub_02062D4C (const MapObject * mapObj)
 {
-    return sub_020628D8(mapObj, (1 << 14));
+    return MapObject_GetStateFlag(mapObj, (1 << 14));
 }
 
 int sub_02062D58 (const MapObject * mapObj)
 {
-    return sub_020628D8(mapObj, (1 << 9));
+    return MapObject_GetStateFlag(mapObj, (1 << 9));
 }
 
 void MapObject_SetHidden (MapObject * mapObj, int param1)
@@ -1830,7 +1830,7 @@ void sub_02062D80 (MapObject * mapObj, int param1)
 
 int sub_02062D9C (MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 19)) == 1) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 19)) == 1) {
         return 0;
     }
 
@@ -1858,7 +1858,7 @@ void sub_02062DDC (MapObject * mapObj)
 
 int MapObject_IsMovementPaused (const MapObject * mapObj)
 {
-    if (sub_020628D8(mapObj, (1 << 6)) == 1) {
+    if (MapObject_GetStateFlag(mapObj, (1 << 6)) == 1) {
         return 1;
     }
 
@@ -2534,7 +2534,7 @@ void MapObject_SetPosDir (MapObject * mapObj, int param1, int param2, int param3
     sub_020656DC(mapObj);
 }
 
-void sub_020633A8 (MapObject * mapObj, u32 param1)
+void MapObject_SetMoveCode (MapObject * mapObj, u32 param1)
 {
     sub_02062B28(mapObj);
     sub_02062944(mapObj, param1);

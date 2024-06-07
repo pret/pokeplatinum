@@ -34,7 +34,7 @@
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
-#include "overlay005/struct_ov5_021F8E3C.h"
+#include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -5297,24 +5297,24 @@ static int ov9_0224D5E8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     return 0;
 }
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02251378[] = {
+static const MapObjectAnimCmd Unk_ov9_02251378[] = {
     {0xf, 0x2},
     {0xC, 0x4},
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_0225136C[] = {
+static const MapObjectAnimCmd Unk_ov9_0225136C[] = {
     {0xf, 0x1},
     {0xC, 0x4},
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02251350[] = {
+static const MapObjectAnimCmd Unk_ov9_02251350[] = {
     {0xC, 0x4},
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C * const Unk_ov9_02251384[3] = {
+static const MapObjectAnimCmd * const Unk_ov9_02251384[3] = {
     Unk_ov9_02251378,
     Unk_ov9_0225136C,
     Unk_ov9_02251350
@@ -5324,7 +5324,7 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 {
     int v0;
     MapObject * v1;
-    const UnkStruct_ov5_021F8E3C * v2;
+    const MapObjectAnimCmd * v2;
 
     v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, (0x80 + 6));
     GF_ASSERT(v1 != NULL);
@@ -5333,7 +5333,7 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
     GF_ASSERT((u32)(v0 - 88) < 3);
 
     v2 = Unk_ov9_02251384[v0 - 88];
-    param1->unk_6C = sub_02065700(v1, v2);
+    param1->unk_6C = MapObject_StartAnimation(v1, v2);
     param1->unk_04 = 7;
 
     return 0;
@@ -5341,11 +5341,11 @@ static int ov9_0224D69C (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078
 
 static int ov9_0224D6E0 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224D078 * param1)
 {
-    if (sub_0206574C(param1->unk_6C) == 1) {
+    if (MapObject_HasAnimationEnded(param1->unk_6C) == 1) {
         VarsFlags * v0;
         MapObject * v1;
 
-        sub_02065758(param1->unk_6C);
+        MapObject_FinishAnimation(param1->unk_6C);
         v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, (0x80 + 6));
 
         ov9_0224EE70(param0, v1);
@@ -9060,7 +9060,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251CC0[6] = {
     ov9_02250A90
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02251E74[] = {
+static const MapObjectAnimCmd Unk_ov9_02251E74[] = {
     {0x42, 0x1},
     {0x7, 0x1},
     {0x7, 0x1},
@@ -9098,7 +9098,7 @@ static int ov9_02250B30 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
     sub_020630AC(v0->unk_14, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 13) {
-        v0->unk_10 = sub_02065700(
+        v0->unk_10 = MapObject_StartAnimation(
             v0->unk_14, Unk_ov9_02251E74);
         *param2 = 2;
     }
@@ -9112,8 +9112,8 @@ static int ov9_02250B84 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     v0 = ov9_0224E39C(param0);
 
-    if (sub_0206574C(v0->unk_10) == 1) {
-        sub_02065758(v0->unk_10);
+    if (MapObject_HasAnimationEnded(v0->unk_10) == 1) {
+        MapObject_FinishAnimation(v0->unk_10);
         *param2 = 3;
         return 1;
     }
@@ -9152,7 +9152,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251408[4] = {
     ov9_02250BAC
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252D80[] = {
+static const MapObjectAnimCmd Unk_ov9_02252D80[] = {
     {0x42, 0x1},
     {0xf, 0x2},
     {0x10, 0x2},
@@ -9173,7 +9173,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov9_02252D80[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252DC8[] = {
+static const MapObjectAnimCmd Unk_ov9_02252DC8[] = {
     {0x42, 0x1},
     {0xf, 0x2},
     {0x10, 0x1},
@@ -9195,7 +9195,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov9_02252DC8[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252E14[] = {
+static const MapObjectAnimCmd Unk_ov9_02252E14[] = {
     {0x42, 0x1},
     {0x3f, 0x2},
     {0x2, 0x1},
@@ -9218,7 +9218,7 @@ static const UnkStruct_ov5_021F8E3C Unk_ov9_02252E14[] = {
     {0xfe, 0x0}
 };
 
-static const UnkStruct_ov5_021F8E3C Unk_ov9_02252E64[] = {
+static const MapObjectAnimCmd Unk_ov9_02252E64[] = {
     {0x42, 0x1},
     {0x3f, 0x2},
     {0x2, 0x1},
@@ -9269,7 +9269,7 @@ static int ov9_02250C48 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 9) {
         int v2, v3, v4;
-        const UnkStruct_ov5_021F8E3C * v5, * v6;
+        const MapObjectAnimCmd * v5, * v6;
 
         ov9_02250F44(param0, &v2, &v3, &v4);
 
@@ -9281,8 +9281,8 @@ static int ov9_02250C48 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
             v6 = Unk_ov9_02252DC8;
         }
 
-        v0->unk_10 = sub_02065700(v0->unk_18, v6);
-        v0->unk_14 = sub_02065700(Player_MapObject(param0->fieldSystem->playerAvatar), v5);
+        v0->unk_10 = MapObject_StartAnimation(v0->unk_18, v6);
+        v0->unk_14 = MapObject_StartAnimation(Player_MapObject(param0->fieldSystem->playerAvatar), v5);
         *param2 = 2;
     }
 
@@ -9295,9 +9295,9 @@ static int ov9_02250CD8 (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 
     v0 = ov9_0224E39C(param0);
 
-    if ((sub_0206574C(v0->unk_10) == 1) && (sub_0206574C(v0->unk_14) == 1)) {
-        sub_02065758(v0->unk_10);
-        sub_02065758(v0->unk_14);
+    if ((MapObject_HasAnimationEnded(v0->unk_10) == 1) && (MapObject_HasAnimationEnded(v0->unk_14) == 1)) {
+        MapObject_FinishAnimation(v0->unk_10);
+        MapObject_FinishAnimation(v0->unk_14);
         *param2 = 3;
         return 1;
     }
@@ -9699,7 +9699,7 @@ BOOL ov9_022511A0 (FieldSystem * fieldSystem, int param1, int param2, int param3
 
 static void ov9_022511E0 (u16 param0)
 {
-    if (sub_020057D4(param0) == 0) {
+    if (Sound_IsEffectPlaying(param0) == 0) {
         Sound_PlayEffect(param0);
     }
 }

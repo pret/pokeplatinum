@@ -609,7 +609,7 @@ int ov22_022562EC (OverlayManager * param0, int * param1)
         }
         break;
     case 19:
-        if (sub_020057D4(1664) == 1) {
+        if (Sound_IsEffectPlaying(1664) == 1) {
             break;
         }
 

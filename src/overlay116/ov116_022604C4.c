@@ -309,7 +309,7 @@ static void ov116_02260A2C (UnkStruct_ov116_02262A8C * param0, u32 param1, u32 p
             MTX_MultVec43(&v6, &param0->unk_308[0].unk_1B0, &param0->unk_1FB0);
         }
 
-        if (sub_020057D4(1394) == 0) {
+        if (Sound_IsEffectPlaying(1394) == 0) {
             Sound_PlayEffect(1394);
         }
 

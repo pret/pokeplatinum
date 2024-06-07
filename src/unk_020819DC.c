@@ -637,7 +637,7 @@ static BOOL sub_0208279C (UnkStruct_0201D738 * param0, u16 param1)
         sub_02006150(1155);
         break;
     case 5:
-        return sub_020057D4(1510);
+        return Sound_IsEffectPlaying(1510);
     }
 
     return 0;
