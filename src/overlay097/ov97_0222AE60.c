@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/playtime_decl.h"
+#include "playtime.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "savedata.h"
@@ -95,7 +95,7 @@ typedef struct {
     SaveData * unk_04;
     PokedexData * unk_08;
     TrainerInfo * unk_0C;
-    Playtime * unk_10;
+    PlayTime *playTime;
     MysteryGift * unk_14;
     int unk_18;
     int unk_1C;
@@ -597,9 +597,9 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
 
     StringTemplate_SetPlayerName(v4, 0, v6->unk_0C);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 16, 16 * 1);
-    ov97_0222B590(v4, Playtime_GetHours(v6->unk_10));
+    ov97_0222B590(v4, PlayTime_GetHours(v6->playTime));
 
-    StringTemplate_SetNumber(v4, 1, Playtime_GetMinutes(v6->unk_10), 2, 2, 1);
+    StringTemplate_SetNumber(v4, 1, PlayTime_GetMinutes(v6->playTime), 2, 2, 1);
     ov97_0222B53C(param2->unk_10, v5, v4, v7, 17, 16 * 2);
 
     StringTemplate_SetNumber(v4, 0, v6->unk_50, 1, 0, 1);
@@ -996,7 +996,7 @@ static int ov97_0222BD70 (OverlayManager * param0, int * param1)
     v0->unk_120 = FX32_ONE * 0;
     v0->unk_0C = SaveData_GetTrainerInfo(v0->unk_04);
     v0->unk_08 = SaveData_Pokedex(v0->unk_04);
-    v0->unk_10 = SaveData_GetPlaytime(v0->unk_04);
+    v0->playTime = SaveData_GetPlayTime(v0->unk_04);
     v0->unk_4C = sub_02027520(v0->unk_08);
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
     v0->unk_12C = 15;

@@ -994,9 +994,9 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         } else {
             {
                 v0->unk_71C = &v0->unk_710;
-                v0->unk_720.unk_08.unk_00 = Playtime_GetHours(SaveData_GetPlaytime(param0->unk_830));
-                v0->unk_720.unk_08.unk_02 = Playtime_GetMinutes(SaveData_GetPlaytime(param0->unk_830));
-                v0->unk_720.unk_08.unk_03 = Playtime_GetSeconds(SaveData_GetPlaytime(param0->unk_830));
+                v0->unk_720.unk_08.unk_00 = PlayTime_GetHours(SaveData_GetPlayTime(param0->unk_830));
+                v0->unk_720.unk_08.unk_02 = PlayTime_GetMinutes(SaveData_GetPlayTime(param0->unk_830));
+                v0->unk_720.unk_08.unk_03 = PlayTime_GetSeconds(SaveData_GetPlayTime(param0->unk_830));
                 v0->unk_720.unk_0C[0].unk_00 = v0->unk_71C->unk_00[0];
                 v0->unk_720.unk_0C[1].unk_00 = v0->unk_71C->unk_00[1];
                 v0->unk_720.unk_0C[2].unk_00 = v0->unk_71C->unk_00[2];

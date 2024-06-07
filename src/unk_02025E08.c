@@ -4,8 +4,6 @@
 #include "struct_decls/struct_02025E0C_decl.h"
 #include "savedata.h"
 
-#include "struct_defs/playtime.h"
-
 #include "savedata.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -17,7 +15,7 @@ struct UnkStruct_02025E0C_t {
     Options unk_00;
     TrainerInfo unk_04;
     u16 unk_24;
-    Playtime playtime;
+    PlayTime playtime;
 };
 
 int Player_SaveSize (void)
@@ -32,7 +30,7 @@ void Player_Init (UnkStruct_02025E0C * param0)
     Options_Init(&param0->unk_00);
     TrainerInfo_Init(&param0->unk_04);
     Coins_Init(&param0->unk_24);
-    Playtime_Initialize(&param0->playtime);
+    PlayTime_Init(&param0->playtime);
 }
 
 TrainerInfo * SaveData_GetTrainerInfo (SaveData * param0)
@@ -59,7 +57,7 @@ u16 * sub_02025E50 (SaveData * param0)
     return &v0->unk_24;
 }
 
-Playtime *SaveData_GetPlaytime(SaveData *savedata)
+PlayTime *SaveData_GetPlayTime(SaveData *savedata)
 {
     UnkStruct_02025E0C *player = SaveData_SaveTable(savedata, 1);
     return &player->playtime;

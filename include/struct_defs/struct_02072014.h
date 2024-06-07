@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02072014_H
 #define POKEPLATINUM_STRUCT_02072014_H
 
-#include "struct_decls/playtime_decl.h"
+#include "playtime.h"
 #include "struct_defs/struct_02072014_sub1.h"
 
 typedef struct {
@@ -17,7 +17,7 @@ typedef struct {
     u8 unk_05;
     u8 padding_06[2];
     u16 unk_08[8];
-    const Playtime * unk_18;
+    const PlayTime *playTime;
     u32 unk_1C;
     u32 unk_20;
     u32 unk_24;

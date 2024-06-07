@@ -1,38 +1,36 @@
 #include <nitro.h>
 
-#include "struct_defs/playtime.h"
-
 #include "playtime.h"
 
 #define PLAYTIME_MAX_HOURS 999
 #define PLAYTIME_MAX_MINUTES 59
 #define PLAYTIME_MAX_SECONDS 59
 
-void Playtime_Initialize(Playtime *playtime)
+void PlayTime_Init(PlayTime *playTime)
 {
-    playtime->hours = 0;
-    playtime->minutes = 0;
-    playtime->seconds = 0;
+    playTime->hours = 0;
+    playTime->minutes = 0;
+    playTime->seconds = 0;
 }
 
-void Playtime_Increase(Playtime *playtime, u32 seconds)
+void PlayTime_Increment(PlayTime *playTime, u32 seconds)
 {
-    if (playtime->hours == PLAYTIME_MAX_HOURS 
-        && playtime->minutes == PLAYTIME_MAX_MINUTES 
-        && playtime->seconds == PLAYTIME_MAX_SECONDS) {
+    if (playTime->hours == PLAYTIME_MAX_HOURS 
+        && playTime->minutes == PLAYTIME_MAX_MINUTES 
+        && playTime->seconds == PLAYTIME_MAX_SECONDS) {
         return;
     }
 
-    u32 hours = playtime->hours;
-    u32 minutes = playtime->minutes;
-    u32 newSeconds = playtime->seconds + seconds;
+    u32 hours = playTime->hours;
+    u32 minutes = playTime->minutes;
+    u32 newSeconds = playTime->seconds + seconds;
 
     if (newSeconds > PLAYTIME_MAX_SECONDS) {
-        minutes = playtime->minutes + newSeconds / (PLAYTIME_MAX_SECONDS + 1);
+        minutes = playTime->minutes + newSeconds / (PLAYTIME_MAX_SECONDS + 1);
         newSeconds %= PLAYTIME_MAX_SECONDS + 1;
 
         if (minutes > PLAYTIME_MAX_MINUTES) {
-            hours = playtime->hours + minutes / (PLAYTIME_MAX_MINUTES + 1);
+            hours = playTime->hours + minutes / (PLAYTIME_MAX_MINUTES + 1);
             minutes %= PLAYTIME_MAX_MINUTES + 1;
 
             if (hours >= PLAYTIME_MAX_HOURS) {
@@ -43,22 +41,22 @@ void Playtime_Increase(Playtime *playtime, u32 seconds)
         }
     }
 
-    playtime->hours = hours;
-    playtime->minutes = minutes;
-    playtime->seconds = newSeconds;
+    playTime->hours = hours;
+    playTime->minutes = minutes;
+    playTime->seconds = newSeconds;
 }
 
-u16 Playtime_GetHours(const Playtime *playtime)
+u16 PlayTime_GetHours(const PlayTime *playTime)
 {
-    return playtime->hours;
+    return playTime->hours;
 }
 
-u8 Playtime_GetMinutes(const Playtime *playtime)
+u8 PlayTime_GetMinutes(const PlayTime *playTime)
 {
-    return playtime->minutes;
+    return playTime->minutes;
 }
 
-u8 Playtime_GetSeconds(const Playtime *playtime)
+u8 PlayTime_GetSeconds(const PlayTime *playTime)
 {
-    return playtime->seconds;
+    return playTime->seconds;
 }

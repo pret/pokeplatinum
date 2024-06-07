@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/playtime_decl.h"
+#include "playtime.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
@@ -40,7 +40,7 @@ typedef struct {
 
 static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard * param5);
 static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, TrainerCard * param7);
-static void sub_0207207C(const u8 param0, const Playtime * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
+static void sub_0207207C(const u8 param0, const PlayTime *playTime, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * param6);
 static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, TrainerCard * param5);
 static void sub_0207216C(TrainerInfo * param0, FieldSystem * fieldSystem, TrainerCard * param2);
 static BOOL sub_02072230(TaskManager * param0);
@@ -70,9 +70,9 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         RTCDate v4;
         RTCDate v5;
         RTCTime v6;
-        Playtime * v7;
+        PlayTime * v7;
 
-        v7 = SaveData_GetPlaytime(v2);
+        v7 = SaveData_GetPlayTime(v2);
 
         sub_02055BF4(fieldSystem, &v4, &v6);
         sub_02055C10(fieldSystem, &v5, &v6);
@@ -182,10 +182,10 @@ static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2,
     param7->unk_24 = param6;
 }
 
-static void sub_0207207C (const u8 param0, const Playtime *playtime, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * trainerCard)
+static void sub_0207207C (const u8 param0, const PlayTime *playtime, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, TrainerCard * trainerCard)
 {
-    trainerCard->playtimeHours = Playtime_GetHours(playtime);
-    trainerCard->playtimeMinutes = Playtime_GetMinutes(playtime);
+    trainerCard->playtimeHours = PlayTime_GetHours(playtime);
+    trainerCard->playtimeMinutes = PlayTime_GetMinutes(playtime);
     trainerCard->unk_2F = param2->year;
     trainerCard->unk_30 = param2->month;
     trainerCard->unk_31 = param2->day;
@@ -207,9 +207,9 @@ static void sub_0207207C (const u8 param0, const Playtime *playtime, const RTCDa
     trainerCard->unk_04_1 = param5;
 
     if (param5) {
-        trainerCard->unk_18 = playtime;
+        trainerCard->playTime = playtime;
     } else {
-        trainerCard->unk_18 = NULL;
+        trainerCard->playTime = NULL;
     }
 }
 

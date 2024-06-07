@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/playtime_decl.h"
+#include "playtime.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "savedata.h"
@@ -39,7 +39,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     TrainerInfo * unk_08;
-    Playtime * unk_0C;
+    PlayTime *playTime;
 } UnkStruct_ov5_021E1D20;
 
 struct UnkStruct_ov5_021E1FF4_t {
@@ -87,7 +87,7 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const FieldSystem * f
     }
 
     param0->unk_08 = SaveData_GetTrainerInfo(v0);
-    param0->unk_0C = SaveData_GetPlaytime(v0);
+    param0->playTime = SaveData_GetPlayTime(v0);
 }
 
 static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E1D20 * param1)
@@ -110,7 +110,7 @@ static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E
     }
 
     StringTemplate_SetNumber(strTemplate, 3, param1->unk_00, v0, v1, 1);
-    v2 = Playtime_GetHours(param1->unk_0C);
+    v2 = PlayTime_GetHours(param1->playTime);
 
     if (v2 >= 100) {
         v0 = 3;
@@ -124,7 +124,7 @@ static void ov5_021E1D6C (StringTemplate * strTemplate, const UnkStruct_ov5_021E
     }
 
     StringTemplate_SetNumber(strTemplate, 4, v2, v0, v1, 1);
-    StringTemplate_SetNumber(strTemplate, 5, Playtime_GetMinutes(param1->unk_0C), 2, 2, 1);
+    StringTemplate_SetNumber(strTemplate, 5, PlayTime_GetMinutes(param1->playTime), 2, 2, 1);
 }
 
 static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)
