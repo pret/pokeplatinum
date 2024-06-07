@@ -1050,13 +1050,13 @@ SysTask * ov6_02243F88 (FieldSystem * fieldSystem, u32 param1, Pokemon * param2,
 
 int ov6_02243FBC (SysTask * param0)
 {
-    UnkStruct_ov6_02243FFC * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02243FFC * v0 = SysTask_GetParam(param0);
     return v0->unk_04;
 }
 
 void ov6_02243FC8 (SysTask * param0)
 {
-    UnkStruct_ov6_02243FFC * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02243FFC * v0 = SysTask_GetParam(param0);
 
     ov6_02243FFC(v0);
     SysTask_Done(param0);
@@ -2896,13 +2896,13 @@ SysTask * ov6_02245CCC (FieldSystem * fieldSystem, int param1)
 
 int ov6_02245CF0 (SysTask * param0)
 {
-    UnkStruct_ov6_02249270 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02249270 * v0 = SysTask_GetParam(param0);
     return v0->unk_04;
 }
 
 void ov6_02245CFC (SysTask * param0)
 {
-    UnkStruct_ov6_02249270 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02249270 * v0 = SysTask_GetParam(param0);
 
     Heap_FreeToHeap(v0);
     SysTask_Done(param0);

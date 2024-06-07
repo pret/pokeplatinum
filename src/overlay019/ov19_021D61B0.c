@@ -368,7 +368,7 @@ BOOL ov19_021D6600 (UnkStruct_ov19_021D61B0 * param0, u32 param1)
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param0->unk_08[v1] != NULL) {
-            v0 = sub_0201CED0(param0->unk_08[v1]);
+            v0 = SysTask_GetParam(param0->unk_08[v1]);
 
             if (v0->unk_00 == param1) {
                 return 0;

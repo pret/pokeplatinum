@@ -23,10 +23,11 @@
 #include "overlay005/struct_ov5_021DEC18_decl.h"
 #include "overlay005/struct_ov5_021DED04_decl.h"
 #include "overlay006/battle_params.h"
+#include "enc_effects.h"
 
 #include <nitro/fx/fx.h>
 
-void ov5_021DDBE8(int param0, FieldSystem * fieldSystem, BOOL * param2);
+void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem * fieldSystem, BOOL * param2);
 void ov5_021DDC28(UnkStruct_ov5_021DDC28 * param0, SysTask * param1);
 void ov5_021DDC44(int param0, u32 param1, u32 param2, BOOL * param3, u32 param4);
 BOOL ov5_021DDD7C(UnkStruct_ov5_021DDC28 * param0);

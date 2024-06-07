@@ -1566,7 +1566,7 @@ static void ov86_0223CA64 (SysTask * param0, void * param1)
 
 static void ov86_0223CAA0 (SysTask * param0, fx16 param1, fx32 param2)
 {
-    UnkStruct_ov86_0223C9B0 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov86_0223C9B0 * v0 = SysTask_GetParam(param0);
 
     if (v0->unk_83C < 8) {
         v0->unk_818[v0->unk_83C] = ov86_0223CAE4(v0, param1, param2, v0->unk_83C);
@@ -1669,7 +1669,7 @@ static void ov86_0223CB74 (SysTask * param0, void * param1)
 static void ov86_0223CD00 (SysTask * param0)
 {
     if (param0 != NULL) {
-        UnkStruct_ov86_0223C9B0 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov86_0223C9B0 * v0 = SysTask_GetParam(param0);
 
         G3_PushMtx();
         MI_SendGXCommand(3, v0->unk_14, v0->unk_814);
@@ -1685,10 +1685,10 @@ static void ov86_0223CD34 (SysTask * param0)
         UnkStruct_ov86_0223C9B0 * v0;
         int v1;
 
-        v0 = sub_0201CED0(param0);
+        v0 = SysTask_GetParam(param0);
 
         for (v1 = 0; v1 < v0->unk_83C; v1++) {
-            Heap_FreeToHeap(sub_0201CED0(v0->unk_818[v1]));
+            Heap_FreeToHeap(SysTask_GetParam(v0->unk_818[v1]));
         }
 
         Heap_FreeToHeap(v0);
@@ -1773,7 +1773,7 @@ static SysTask * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
 static void ov86_0223CF44 (SysTask * param0)
 {
     if (param0) {
-        Heap_FreeToHeap(sub_0201CED0(param0));
+        Heap_FreeToHeap(SysTask_GetParam(param0));
         SysTask_Done(param0);
     }
 }
@@ -1781,7 +1781,7 @@ static void ov86_0223CF44 (SysTask * param0)
 static void ov86_0223CF5C (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov86_0223CD94 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov86_0223CD94 * v0 = SysTask_GetParam(param0);
         v0->unk_00 = 1;
     }
 }
@@ -1871,7 +1871,7 @@ static void ov86_0223CF6C (SysTask * param0, void * param1)
 static void ov86_0223D220 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov86_0223CD94 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov86_0223CD94 * v0 = SysTask_GetParam(param0);
 
         if (v0->unk_04) {
             G3_PushMtx();

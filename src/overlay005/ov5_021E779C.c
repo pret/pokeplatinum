@@ -1836,7 +1836,7 @@ static void ov5_021E9640 (SysTask * param0)
 {
     UnkStruct_ov5_021E9640 * v0;
 
-    v0 = (UnkStruct_ov5_021E9640 *)sub_0201CED0(param0);
+    v0 = (UnkStruct_ov5_021E9640 *)SysTask_GetParam(param0);
     v0->unk_1C = 1;
 }
 

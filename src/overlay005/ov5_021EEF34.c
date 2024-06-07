@@ -299,7 +299,7 @@ void ov5_021EF23C (SysTask * param0)
 {
     UnkStruct_ov5_021EF05C * v0;
 
-    v0 = (UnkStruct_ov5_021EF05C *)sub_0201CED0(param0);
+    v0 = (UnkStruct_ov5_021EF05C *)SysTask_GetParam(param0);
     v0->unk_D8 = 1;
 }
 

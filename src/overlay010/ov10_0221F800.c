@@ -399,7 +399,7 @@ void ov10_0221F800 (UnkStruct_ov10_0221F800 * param0)
 {
     UnkStruct_ov10_0221FB28 * v0;
 
-    v0 = sub_0201CED0(sub_0200679C(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->unk_24));
+    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->unk_24));
     memset(v0, 0, sizeof(UnkStruct_ov10_0221FB28));
 
     v0->unk_00 = param0;

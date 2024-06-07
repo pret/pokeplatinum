@@ -80,9 +80,9 @@ void ov94_02243FA8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     {
         UnkStruct_ov94_02243FF0 * v0;
 
-        param0->unk_10EC = sub_0200679C(ov94_0224400C, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
+        param0->unk_10EC = SysTask_StartAndAllocateParam(ov94_0224400C, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
 
-        v0 = sub_0201CED0(param0->unk_10EC);
+        v0 = SysTask_GetParam(param0->unk_10EC);
         v0->unk_00 = 0;
         v0->unk_04 = -40;
         v0->unk_08 = param1;
@@ -146,9 +146,9 @@ void ov94_022440B8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     {
         UnkStruct_ov94_02243FF0 * v0;
 
-        param0->unk_10EC = sub_0200679C(ov94_022440FC, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
+        param0->unk_10EC = SysTask_StartAndAllocateParam(ov94_022440FC, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
 
-        v0 = sub_0201CED0(param0->unk_10EC);
+        v0 = SysTask_GetParam(param0->unk_10EC);
         v0->unk_00 = 0;
         v0->unk_04 = 130;
         v0->unk_08 = param1;

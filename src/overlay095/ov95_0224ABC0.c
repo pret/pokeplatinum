@@ -515,7 +515,7 @@ static void ov95_0224B1F8 (SysTask * param0, void * param1)
 static void ov95_0224B258 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_0224B1A8 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_0224B1A8 * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_1C) = NULL;
         ov95_022476C8(v0);
@@ -561,7 +561,7 @@ static void ov95_0224B2C8 (SysTask * param0, void * param1)
 static void ov95_0224B308 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_0224B274 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_0224B274 * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
 
@@ -608,7 +608,7 @@ static void ov95_0224B388 (SysTask * param0, void * param1)
 static void ov95_0224B3BC (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_0224B324 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_0224B324 * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
         Heap_FreeToHeap(v0);

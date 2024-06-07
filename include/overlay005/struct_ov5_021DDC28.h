@@ -10,10 +10,10 @@ typedef struct {
     int unk_08;
     void * unk_0C;
     FieldSystem * fieldSystem;
-    BOOL * unk_14;
+    BOOL * done;
     BOOL unk_18;
     BOOL unk_1C;
-    NARC * unk_20;
+    NARC * narc;
 } UnkStruct_ov5_021DDC28;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021DDC28_H

@@ -732,7 +732,7 @@ static void ov95_02248EC4 (SysTask * param0, void * param1)
 static void ov95_02248F94 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_02248E5C * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_02248E5C * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
         SysTask_Done(param0);
@@ -783,7 +783,7 @@ static void ov95_02249020 (SysTask * param0, void * param1)
 static void ov95_022490A4 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_02248FAC * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_02248FAC * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_168) = NULL;
         ov95_02248F94(v0->unk_16C);
@@ -997,19 +997,19 @@ static void ov95_022494A8 (SysTask * param0, void * param1)
 
 static BOOL ov95_022494F4 (SysTask * param0)
 {
-    UnkStruct_ov95_0224922C * v0 = sub_0201CED0(param0);
+    UnkStruct_ov95_0224922C * v0 = SysTask_GetParam(param0);
     return v0->unk_78;
 }
 
 static BOOL ov95_02249500 (SysTask * param0)
 {
-    UnkStruct_ov95_0224922C * v0 = sub_0201CED0(param0);
+    UnkStruct_ov95_0224922C * v0 = SysTask_GetParam(param0);
     return v0->unk_7C;
 }
 
 static void ov95_0224950C (SysTask * param0)
 {
-    UnkStruct_ov95_0224922C * v0 = sub_0201CED0(param0);
+    UnkStruct_ov95_0224922C * v0 = SysTask_GetParam(param0);
     UnkStruct_ov115_0226527C v1;
 
     v0->unk_78 = 0;

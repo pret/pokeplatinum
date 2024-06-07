@@ -56,13 +56,13 @@ SysTask * ov5_021F0EB0 (FieldSystem * fieldSystem, u32 param1)
 
 BOOL ov5_021F0EF0 (SysTask * param0)
 {
-    UnkStruct_ov5_021F0FB8 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov5_021F0FB8 * v0 = SysTask_GetParam(param0);
     return v0->unk_08;
 }
 
 void ov5_021F0EFC (SysTask * param0)
 {
-    UnkStruct_ov5_021F0FB8 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov5_021F0FB8 * v0 = SysTask_GetParam(param0);
 
     Heap_FreeToHeap(v0);
     SysTask_Done(param0);
@@ -70,7 +70,7 @@ void ov5_021F0EFC (SysTask * param0)
 
 void ov5_021F0F10 (SysTask * param0, int param1, fx32 param2, u32 param3)
 {
-    UnkStruct_ov5_021F0FB8 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov5_021F0FB8 * v0 = SysTask_GetParam(param0);
 
     v0->unk_04 = 0;
     v0->unk_08 = 0;

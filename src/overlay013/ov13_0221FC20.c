@@ -185,7 +185,7 @@ void ov13_0221FC20 (UnkStruct_ov13_0221FC20 * param0)
         param0->unk_11 = 0;
     }
 
-    v0 = sub_0201CED0(sub_0200679C(ov13_0221FCAC, sizeof(UnkStruct_ov13_022213F0), 0, param0->unk_0C));
+    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov13_0221FCAC, sizeof(UnkStruct_ov13_022213F0), 0, param0->unk_0C));
     memset(v0, 0, sizeof(UnkStruct_ov13_022213F0));
 
     v0->unk_00 = param0;

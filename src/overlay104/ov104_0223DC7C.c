@@ -191,8 +191,8 @@ void ov104_0223DC7C (int param0, BGL * param1, SpriteRenderer * param2, SpriteGf
     SysTask * v0;
     UnkStruct_ov104_0223DD30 * v1;
 
-    v0 = sub_0200679C(ov104_0223DDB4, sizeof(UnkStruct_ov104_0223DD30), 1000, 94);
-    v1 = sub_0201CED0(v0);
+    v0 = SysTask_StartAndAllocateParam(ov104_0223DDB4, sizeof(UnkStruct_ov104_0223DD30), 1000, 94);
+    v1 = SysTask_GetParam(v0);
 
     v1->unk_10 = param1;
     v1->unk_14 = param2;

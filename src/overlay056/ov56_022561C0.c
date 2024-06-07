@@ -237,8 +237,8 @@ UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * fieldSystem)
     UnkStruct_ov56_02256468 * v0;
     SysTask * v1;
 
-    v1 = sub_0200679C(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
-    v0 = sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
+    v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
     v0->unk_14 = fieldSystem->unk_08;

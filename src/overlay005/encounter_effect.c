@@ -3,6 +3,7 @@
 
 #include "constants/battle.h"
 
+#include "constants/heap.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -59,6 +60,7 @@
 #include "overlay005/encounter_effect.h"
 #include "overlay005/ov5_021E2338.h"
 #include "overlay005/ov5_021EF3A8.h"
+#include "enc_effects.h"
 
 typedef struct UnkStruct_ov5_021DE6BC_t {
     UnkStruct_ov5_021DDD80 unk_00;
@@ -68,7 +70,7 @@ typedef struct UnkStruct_ov5_021DE6BC_t {
     u8 unk_2D;
     u8 unk_2E;
     u8 unk_2F;
-};
+} UnkStruct_ov5_021DE6BC_t;
 
 typedef struct UnkStruct_ov5_021DE79C_t {
     UnkStruct_ov5_021DDD80 unk_00;
@@ -78,7 +80,7 @@ typedef struct UnkStruct_ov5_021DE79C_t {
     u8 unk_2D;
     u8 unk_2E;
     u8 unk_2F;
-};
+} UnkStruct_ov5_021DE79C_t;
 
 typedef struct UnkStruct_ov5_021DE928_t {
     Window * unk_00;
@@ -91,7 +93,7 @@ typedef struct UnkStruct_ov5_021DE928_t {
     u8 unk_C9;
     u8 unk_CA;
     u8 unk_CB[1];
-};
+} UnkStruct_ov5_021DE928_t;
 
 typedef struct UnkStruct_ov5_021DEA98_t {
     Window * unk_00;
@@ -99,15 +101,15 @@ typedef struct UnkStruct_ov5_021DEA98_t {
     u8 unk_18;
     u8 unk_19;
     u8 unk_1A[2];
-};
+} UnkStruct_ov5_021DEA98_t;
 
 typedef struct UnkStruct_ov5_021DEC18_t {
     UnkStruct_ov5_021DEA98 * unk_00[8];
     u8 unk_20;
     u8 unk_21[3];
-};
+} UnkStruct_ov5_021DEC18_t;
 
-typedef struct {
+typedef struct UnkStruct_ov5_021DDC44 {
     int unk_00;
     u32 unk_04;
     int unk_08;
@@ -187,7 +189,7 @@ static u32 ov5_021DF414(u32 param0, BOOL param1);
 static void include_ov5_021DDBE8_rodata(SysTask * dummy1, void * dummy2);
 void include_ov5_021DDBE8_rodata_funcptr(void);
 
-static const SysTaskFunc Unk_ov5_021F9A74[] = {
+static const SysTaskFunc sEncounterEffectTaskFuncs[] = {
     ov5_021E24A8,
     ov5_021E2338,
     ov5_021E261C,
@@ -245,19 +247,19 @@ static const u16 Unk_ov5_021F9A2C[8][2] = {
 
 static UnkStruct_ov5_02202120 * Unk_ov5_02202120 = NULL;
 
-void ov5_021DDBE8 (int param0, FieldSystem * fieldSystem, BOOL * param2)
+void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *done)
 {
-    SysTask * v0;
+    SysTask * effectTask;
     UnkStruct_ov5_021DDC28 * v1;
 
-    v0 = sub_0200679C(Unk_ov5_021F9A74[param0], sizeof(UnkStruct_ov5_021DDC28), 5, 4);
-    v1 = sub_0201CED0(v0);
+    effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(UnkStruct_ov5_021DDC28), 5, HEAP_ID_FIELD);
+    v1 = SysTask_GetParam(effectTask);
     v1->fieldSystem = fieldSystem;
-    v1->unk_14 = param2;
-    v1->unk_20 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 4);
+    v1->done = done;
+    v1->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 4);
 
-    if (v1->unk_14 != NULL) {
-        *(v1->unk_14) = 0;
+    if (v1->done != NULL) {
+        *(v1->done) = 0;
     }
 
     v1->unk_18 = 0;
@@ -265,7 +267,7 @@ void ov5_021DDBE8 (int param0, FieldSystem * fieldSystem, BOOL * param2)
 
 void ov5_021DDC28 (UnkStruct_ov5_021DDC28 * param0, SysTask * param1)
 {
-    NARC_dtor(param0->unk_20);
+    NARC_dtor(param0->narc);
     Heap_FreeToHeapExplicit(4, param0->unk_0C);
     sub_020067D0(param1);
 }

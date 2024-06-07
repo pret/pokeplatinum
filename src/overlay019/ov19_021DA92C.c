@@ -266,7 +266,7 @@ static void ov19_021DAC4C (UnkStruct_ov19_021DA9E0 * param0)
 static void ov19_021DAC90 (UnkStruct_ov19_021DA9E0 * param0)
 {
     if (param0->unk_4C) {
-        Heap_FreeToHeap(sub_0201CED0(param0->unk_4C));
+        Heap_FreeToHeap(SysTask_GetParam(param0->unk_4C));
         SysTask_Done(param0->unk_4C);
         param0->unk_4C = NULL;
     }
@@ -274,7 +274,7 @@ static void ov19_021DAC90 (UnkStruct_ov19_021DA9E0 * param0)
 
 static void ov19_021DACB0 (UnkStruct_ov19_021DA9E0 * param0)
 {
-    UnkStruct_ov19_021DAE2C * v0 = sub_0201CED0(param0->unk_4C);
+    UnkStruct_ov19_021DAE2C * v0 = SysTask_GetParam(param0->unk_4C);
 
     if (v0) {
         const UnkStruct_ov19_021D5BAC * v1 = ov19_021D5E70(param0->unk_10);
@@ -286,7 +286,7 @@ static void ov19_021DACB0 (UnkStruct_ov19_021DA9E0 * param0)
 
 static void ov19_021DACDC (UnkStruct_ov19_021DA9E0 * param0)
 {
-    UnkStruct_ov19_021DAE2C * v0 = sub_0201CED0(param0->unk_4C);
+    UnkStruct_ov19_021DAE2C * v0 = SysTask_GetParam(param0->unk_4C);
 
     if (v0) {
         v0->unk_00 = 4;

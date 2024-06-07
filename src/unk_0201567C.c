@@ -38,8 +38,8 @@ void * sub_0201567C (PaletteData * param0, u16 param1, u16 param2, u32 param3)
     SysTask * v1;
     u16 * v2;
 
-    v1 = sub_0200679C(sub_0201576C, sizeof(UnkStruct_020157E4), 0, param3);
-    v0 = (UnkStruct_020157E4 *)sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(sub_0201576C, sizeof(UnkStruct_020157E4), 0, param3);
+    v0 = (UnkStruct_020157E4 *)SysTask_GetParam(v1);
 
     if (param0 != NULL) {
         if (param1 == 0) {

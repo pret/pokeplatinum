@@ -165,19 +165,19 @@ SysTask * ov5_021F09B4 (FieldSystem * fieldSystem, int param1, BOOL param2)
 
 int ov5_021F09D8 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
+    UnkStruct_ov5_021F0D6C * v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
 int ov5_021F09E4 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
+    UnkStruct_ov5_021F0D6C * v0 = SysTask_GetParam(task);
     return v0->unk_08;
 }
 
 void ov5_021F09F0 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
+    UnkStruct_ov5_021F0D6C * v0 = SysTask_GetParam(task);
 
     Heap_FreeToHeap(v0);
     SysTask_Done(task);

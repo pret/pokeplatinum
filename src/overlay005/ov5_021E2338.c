@@ -153,8 +153,8 @@ void ov5_021E2338 (SysTask * param0, void * param1)
         G2_SetBG2Offset(0, 0);
         G2_SetBG3Offset(0, 0);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDF74(v1->unk_1C);
@@ -222,8 +222,8 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
         G2_SetBG2Offset(0, 0);
         G2_SetBG3Offset(0, 0);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDF74(v1->unk_1C);
@@ -282,8 +282,8 @@ void ov5_021E261C (SysTask * param0, void * param1)
         ov5_021E28CC(&v1->unk_00);
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDC28(v0, param0);
@@ -340,8 +340,8 @@ void ov5_021E2748 (SysTask * param0, void * param1)
         ov5_021E28CC(&v1->unk_00);
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDC28(v0, param0);
@@ -449,8 +449,8 @@ void ov5_021E2944 (SysTask * param0, void * param1)
     case 5:
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDC28(v0, param0);
@@ -502,8 +502,8 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
     case 5:
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDC28(v0, param0);
@@ -617,7 +617,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_48, 2, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_48, &v1->unk_1E8, 0, 1, 5, 7, 6, 600000);
+            v0->narc, &v1->unk_48, &v1->unk_1E8, 0, 1, 5, 7, 6, 600000);
 
         for (v4 = 0; v4 < 2; v4++) {
             v1->unk_21C[v4] = ov5_021DE62C(
@@ -734,8 +734,8 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
     case 7:
         sub_0200F370(0x0);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         {
@@ -777,7 +777,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_2C, 2, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_2C, &v1->unk_1CC, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 2, 4, 3, 600000);
 
         {
             int v4;
@@ -878,8 +878,8 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
     case 7:
         sub_0200F370(0x0);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         {
@@ -925,7 +925,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_50, 2, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_50, &v1->unk_1F0, 0, 1, 5, 7, 6, 600000);
+            v0->narc, &v1->unk_50, &v1->unk_1F0, 0, 1, 5, 7, 6, 600000);
 
         for (v5 = 0; v5 < 2; v5++) {
             v1->unk_224[v5] = ov5_021DE62C(
@@ -1047,8 +1047,8 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
     case 7:
         sub_0200F344(1, 0x0);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021E28CC(&v1->unk_40);
@@ -1096,7 +1096,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_00, 3, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
 
         for (v3 = 0; v3 < 3; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
@@ -1226,8 +1226,8 @@ void ov5_021E3560 (SysTask * param0, void * param1)
     case 7:
         sub_0200F370(0x0);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021E28CC(&v1->unk_274);
@@ -1305,7 +1305,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_5C, 1, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_5C, &v1->unk_1FC, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_5C, &v1->unk_1FC, 0, 1, 2, 4, 3, 600000);
 
         v1->unk_230 = ov5_021DE62C(
             &v1->unk_5C, &v1->unk_1FC, (128 * FX32_ONE), (-32 * FX32_ONE), 0, 0);
@@ -1395,8 +1395,8 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
 
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         sub_02021BD4(v1->unk_230);
@@ -1431,7 +1431,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_00, 3, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
 
         for (v4 = 0; v4 < 3; v4++) {
             v1->unk_1D4[v4] = ov5_021DE62C(
@@ -1575,8 +1575,8 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
     case 9:
         sub_0200F370(0x0);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         for (v4 = 0; v4 < 3; v4++) {
@@ -1655,7 +1655,7 @@ void ov5_021E4260 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_2C, 1, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_2C, &v1->unk_1CC, 0, 1, 5, 7, 6, 600000);
+            v0->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 5, 7, 6, 600000);
 
         v1->unk_200 = ov5_021DE62C(
             &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
@@ -1737,8 +1737,8 @@ void ov5_021E4260 (SysTask * param0, void * param1)
 
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         sub_02021BD4(v1->unk_200);
@@ -1770,7 +1770,7 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_00, 4, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
 
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
@@ -1853,8 +1853,8 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
 
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         for (v3 = 0; v3 < 4; v3++) {
@@ -1931,7 +1931,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_00, 6, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
+            v0->narc, &v1->unk_00, &v1->unk_1A0, 0, 1, 2, 4, 3, 600000);
 
         for (v3 = 0; v3 < 6; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
@@ -2020,8 +2020,8 @@ void ov5_021E4738 (SysTask * param0, void * param1)
 
         ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         for (v3 = 0; v3 < 6; v3++) {
@@ -2077,7 +2077,7 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
         ov5_021DE47C(&v1->unk_08, 1, 1);
 
         ov5_021DE4CC(
-            v0->unk_20, &v1->unk_08, &v1->unk_1A8, 1, 1, 8, 10, 9, 600000);
+            v0->narc, &v1->unk_08, &v1->unk_1A8, 1, 1, 8, 10, 9, 600000);
 
         v1->unk_1DC = ov5_021DE62C(
             &v1->unk_08, &v1->unk_1A8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
@@ -2164,8 +2164,8 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
 
         ov5_021DEC18(v1->unk_04);
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         sub_02021BD4(v1->unk_1DC);
@@ -2336,8 +2336,8 @@ void ov5_021E4E14 (SysTask * param0, void * param1)
 
         G2_BlendNone();
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDC28(v0, param0);
@@ -2444,8 +2444,8 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
 
         G2_BlendNone();
 
-        if (v0->unk_14 != NULL) {
-            *(v0->unk_14) = 1;
+        if (v0->done != NULL) {
+            *(v0->done) = 1;
         }
 
         ov5_021DDC28(v0, param0);
@@ -2655,7 +2655,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov5_021E52A8));
         v0 = param0->unk_0C;
 
-        sub_02007130(param0->unk_20, 11, 0, 2 * 0x20, 0x20, param1);
+        sub_02007130(param0->narc, 11, 0, 2 * 0x20, 0x20, param1);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         BGL_AddWindow(param0->fieldSystem->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
@@ -2667,10 +2667,10 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         ov5_021DE47C(&v0->unk_44, 8, 3);
 
         ov5_021DE4CC(
-            param0->unk_20, &v0->unk_44, &v0->unk_1E4[0], param2->unk_0C, 1, param2->unk_0D, param2->unk_0E, param2->unk_0F, 600000);
+            param0->narc, &v0->unk_44, &v0->unk_1E4[0], param2->unk_0C, 1, param2->unk_0D, param2->unk_0E, param2->unk_0F, 600000);
 
         ov5_021DE4CC(
-            param0->unk_20, &v0->unk_44, &v0->unk_1E4[1], 51, 1, 52, 53, 54, 600000 + 1);
+            param0->narc, &v0->unk_44, &v0->unk_1E4[1], 51, 1, 52, 53, 54, 600000 + 1);
 
         v0->unk_24C = ov5_021DE62C(
             &v0->unk_44, &v0->unk_1E4[0], (272 * FX32_ONE), (66 * FX32_ONE), 0, 0);
@@ -2700,7 +2700,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
     case 3:
 
         ov5_021DE3D0(
-            param0->unk_20, param2->unk_12, param2->unk_11, param2->unk_10, 0, 1, param0->fieldSystem->unk_08, 3);
+            param0->narc, param2->unk_12, param2->unk_11, param2->unk_10, 0, 1, param0->fieldSystem->unk_08, 3);
         v0->unk_2F0 = 1;
 
         ov5_021DED20(param0, v0->unk_40, 6, 8, 16, (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ));
@@ -2837,8 +2837,8 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
     case 15:
         sub_0200F344(1, 0x7fff);
 
-        if (param0->unk_14 != NULL) {
-            *(param0->unk_14) = 1;
+        if (param0->done != NULL) {
+            *(param0->done) = 1;
         }
 
         sub_02021BD4(v0->unk_24C);
@@ -2995,23 +2995,23 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
         if (ov5_021E5880(param0->fieldSystem) == 0) {
             ov5_021DE4CC(
-                param0->unk_20, &v0->unk_5C, &v0->unk_1FC[0], 147, 1, 148, 149, 150, 600000);
+                param0->narc, &v0->unk_5C, &v0->unk_1FC[0], 147, 1, 148, 149, 150, 600000);
 
             v0->unk_368 = 0;
         } else {
             ov5_021DE4CC(
-                param0->unk_20, &v0->unk_5C, &v0->unk_1FC[0], 151, 1, 152, 153, 154, 600000);
+                param0->narc, &v0->unk_5C, &v0->unk_1FC[0], 151, 1, 152, 153, 154, 600000);
             v0->unk_368 = 1;
         }
 
         ov5_021DE4CC(
-            param0->unk_20, &v0->unk_5C, &v0->unk_1FC[1], param2->unk_00, 1, param2->unk_00 + 1, param2->unk_00 + 2, param2->unk_00 + 3, 600000 + 1);
+            param0->narc, &v0->unk_5C, &v0->unk_1FC[1], param2->unk_00, 1, param2->unk_00 + 1, param2->unk_00 + 2, param2->unk_00 + 3, 600000 + 1);
 
         ov5_021DE4CC(
-            param0->unk_20, &v0->unk_5C, &v0->unk_1FC[2], param2->unk_02, 0xC, 40, 41, 42, 600000 + 2);
+            param0->narc, &v0->unk_5C, &v0->unk_1FC[2], param2->unk_02, 0xC, 40, 41, 42, 600000 + 2);
 
         ov5_021DE4CC(
-            param0->unk_20, &v0->unk_5C, &v0->unk_1FC[3], 51, 1, 52, 53, 54, 600000 + 3);
+            param0->narc, &v0->unk_5C, &v0->unk_1FC[3], 51, 1, 52, 53, 54, 600000 + 3);
 
         param0->unk_00++;
         break;
@@ -3076,7 +3076,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
     case 4:
         if (ov5_021DF054() == 1) {
-            ov5_021DF0CC(param0->unk_20, 107);
+            ov5_021DF0CC(param0->narc, 107);
 
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 0, 8);
             param0->unk_00++;
@@ -3108,7 +3108,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         {
             Strbuf* v9;
 
-            sub_02007130(param0->unk_20, 11, 0, 2 * 0x20, 0x20, param1);
+            sub_02007130(param0->narc, 11, 0, 2 * 0x20, 0x20, param1);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             BGL_AddWindow(param0->fieldSystem->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
@@ -3191,7 +3191,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
             sub_02021CC8(v0->unk_2CC[3], 1);
             sub_02021CE4(v0->unk_2CC[3], FX32_ONE * 2);
 
-            ov5_021DF0CC(param0->unk_20, 108);
+            ov5_021DF0CC(param0->narc, 108);
 
             param0->unk_00++;
         }
@@ -3315,8 +3315,8 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
     case 14:
         sub_0200F344(1, 0x7fff);
 
-        if (param0->unk_14 != NULL) {
-            *(param0->unk_14) = 1;
+        if (param0->done != NULL) {
+            *(param0->done) = 1;
         }
 
         ov5_021E519C(&v0->unk_2F4);

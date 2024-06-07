@@ -436,7 +436,7 @@ static void ov95_02247170 (UnkStruct_ov95_02247004 * param0)
 static void ov95_02247224 (UnkStruct_ov95_02247004 * param0, int param1)
 {
     if (param0->unk_C4[param1]) {
-        Heap_FreeToHeap(sub_0201CED0(param0->unk_C4[param1]));
+        Heap_FreeToHeap(SysTask_GetParam(param0->unk_C4[param1]));
         SysTask_Done(param0->unk_C4[param1]);
         param0->unk_C4[param1] = NULL;
         param0->unk_F4--;

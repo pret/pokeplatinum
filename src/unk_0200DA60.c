@@ -604,7 +604,7 @@ static void sub_0200EC9C (SysTask * param0, void * param1)
 
 static UnkStruct_0200ED50 * sub_0200ED14 (BGL * param0, u8 param1, u8 param2, u8 param3, u32 param4)
 {
-    UnkStruct_0200ED50 * v0 = sub_0201CED0(sub_0200679C(sub_0200EC9C, sizeof(UnkStruct_0200ED50), 0, param4));
+    UnkStruct_0200ED50 * v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(sub_0200EC9C, sizeof(UnkStruct_0200ED50), 0, param4));
 
     v0->unk_1D3 = 0;
     v0->unk_1CC = param0;

@@ -1661,7 +1661,7 @@ static void ov5_021E0FC0 (SysTask * param0)
     }
 
     {
-        UnkStruct_ov5_021E0FF0 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov5_021E0FF0 * v0 = SysTask_GetParam(param0);
         PlayerAvatar * playerAvatar = v0->playerAvatar;
         int v2 = Player_MoveStateFromGender(0x0, PlayerAvatar_Gender(playerAvatar));
 

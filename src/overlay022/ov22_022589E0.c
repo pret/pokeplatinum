@@ -428,8 +428,8 @@ static void ov22_02258F4C (UnkStruct_ov22_02258EE4 * param0, int param1, int par
     UnkStruct_ov22_02258FC0 * v1;
     int v2, v3;
 
-    v0 = sub_0200679C(ov22_02258FC0, sizeof(UnkStruct_ov22_02258FC0), 0, 13);
-    v1 = sub_0201CED0(v0);
+    v0 = SysTask_StartAndAllocateParam(ov22_02258FC0, sizeof(UnkStruct_ov22_02258FC0), 0, 13);
+    v1 = SysTask_GetParam(v0);
 
     v1->unk_00 = param0->unk_08;
     v1->unk_04 = param0->unk_10;
