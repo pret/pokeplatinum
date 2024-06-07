@@ -57,18 +57,26 @@
 #include "overlay005/ov5_021EF3A8.h"
 #include "enc_effects.h"
 
+enum ScreenFlashState {
+    SCREENFLASH_STATE_0,
+    SCREENFLASH_STATE_1,
+    SCREENFLASH_STATE_2,
+    SCREENFLASH_STATE_3,
+    SCREENFLASH_STATE_4,
+    SCREENFLASH_STATE_5,
+};
 
-typedef struct UnkStruct_ov5_021DDC44 {
-    int unk_00;
-    u32 unk_04;
+typedef struct ScreenFlash {
+    enum ScreenFlashState state;
+    u32 numFlashes;
     int unk_08;
-    int unk_0C;
+    enum Screen screen;
     u32 unk_10;
     u32 unk_14;
-    UnkStruct_ov5_021DDF24 unk_18;
-    UnkStruct_ov5_021DDF24 unk_30;
-    BOOL *unk_48;
-} UnkStruct_ov5_021DDC44;
+    BrightnessFadeTask unk_18;
+    BrightnessFadeTask unk_30;
+    BOOL *done;
+} ScreenFlash;
 
 typedef struct UnkStruct_ov5_02202120 {
     u16 unk_00;
@@ -85,7 +93,7 @@ typedef struct UnkStruct_ov5_02202120 {
 static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5);
 static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3);
 static void ov5_021DDF24(SysTask *param0, void *param1);
-static void ov5_021DDC88(SysTask *param0, void *param1);
+static void EncounterEffect_ExecuteFlash(SysTask *param0, void *param1);
 static void ov5_021DE028(SysTask *param0, void *param1);
 static void ov5_021DE088(SysTask *param0, void *param1);
 static void ov5_021DE14C(UnkStruct_ov5_021EF43C *param0, void *param1);
@@ -169,104 +177,104 @@ static UnkStruct_ov5_02202120 *Unk_ov5_02202120 = NULL;
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *done)
 {
     SysTask *effectTask;
-    EncounterEffect *v1;
+    EncounterEffect *encEffect;
 
     effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
-    v1 = SysTask_GetParam(effectTask);
-    v1->fieldSystem = fieldSystem;
-    v1->done = done;
-    v1->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 4);
+    encEffect = SysTask_GetParam(effectTask);
+    encEffect->fieldSystem = fieldSystem;
+    encEffect->done = done;
+    encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 4);
 
-    if (v1->done != NULL) {
-        *(v1->done) = 0;
+    if (encEffect->done != NULL) {
+        *(encEffect->done) = 0;
     }
 
-    v1->unk_18 = 0;
+    encEffect->unk_18 = 0;
 }
 
-void ov5_021DDC28(EncounterEffect *param0, SysTask *param1)
+void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 {
-    NARC_dtor(param0->narc);
-    Heap_FreeToHeapExplicit(4, param0->unk_0C);
-    sub_020067D0(param1);
+    NARC_dtor(encEffect->narc);
+    Heap_FreeToHeapExplicit(4, encEffect->unk_0C);
+    SysTask_FinishAndFreeParam(effectTask);
 }
 
-void ov5_021DDC44(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4)
+void EncounterEffect_Flash(enum Screen screen, u32 param1, u32 param2, BOOL *done, u32 numFlashes)
 {
     SysTask *v0;
-    UnkStruct_ov5_021DDC44 *v1;
+    ScreenFlash *screenFlash;
 
-    v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DDC44));
-    memset(v1, 0, sizeof(UnkStruct_ov5_021DDC44));
-    SysTask_Start(ov5_021DDC88, v1, 5);
+    screenFlash = Heap_AllocFromHeap(4, sizeof(ScreenFlash));
+    memset(screenFlash, 0, sizeof(ScreenFlash));
+    SysTask_Start(EncounterEffect_ExecuteFlash, screenFlash, 5);
 
-    v1->unk_48 = param3;
+    screenFlash->done = done;
 
-    if (v1->unk_48 != NULL) {
-        *(v1->unk_48) = 0;
+    if (screenFlash->done != NULL) {
+        *(screenFlash->done) = 0;
     }
 
-    v1->unk_0C = param0;
-    v1->unk_10 = param1;
-    v1->unk_14 = param2;
-    v1->unk_04 = param4;
+    screenFlash->screen = screen;
+    screenFlash->unk_10 = param1;
+    screenFlash->unk_14 = param2;
+    screenFlash->numFlashes = numFlashes;
 }
 
-static void ov5_021DDC88(SysTask *param0, void *param1)
+static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
 {
-    UnkStruct_ov5_021DDC44 *v0 = param1;
+    ScreenFlash *screenFlash = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        if (v0->unk_0C == 1) {
-            ov5_021DDEFC(&v0->unk_30, 0, v0->unk_14, 2, 8);
+    switch (screenFlash->state) {
+    case SCREENFLASH_STATE_0:
+        if (screenFlash->screen == SCREEN_TOP) {
+            BrightnessFadeTask_Init(&screenFlash->unk_30, 0, screenFlash->unk_14, 2, 8);
         } else {
-            if (v0->unk_0C == 2) {
-                ov5_021DDEFC(&v0->unk_30, 0, v0->unk_14, 1, 8);
+            if (screenFlash->screen == SCREEN_BOTTOM) {
+                BrightnessFadeTask_Init(&screenFlash->unk_30, 0, screenFlash->unk_14, 1, 8);
             }
         }
 
-        v0->unk_00++;
+        screenFlash->state++;
         break;
-    case 1:
-        ov5_021DDEFC(&v0->unk_18, 0, v0->unk_10, v0->unk_0C, 3);
-        v0->unk_00++;
+    case SCREENFLASH_STATE_1:
+        BrightnessFadeTask_Init(&screenFlash->unk_18, 0, screenFlash->unk_10, screenFlash->screen, 3);
+        screenFlash->state++;
         break;
-    case 2:
-        if (ov5_021DDF08(&v0->unk_18)) {
-            v0->unk_00++;
+    case SCREENFLASH_STATE_2:
+        if (ov5_021DDF08(&screenFlash->unk_18)) {
+            screenFlash->state++;
         }
         break;
-    case 3:
-        ov5_021DDEFC(&v0->unk_18, v0->unk_10, 0, v0->unk_0C, 3);
-        v0->unk_00++;
+    case SCREENFLASH_STATE_3:
+        BrightnessFadeTask_Init(&screenFlash->unk_18, screenFlash->unk_10, 0, screenFlash->screen, 3);
+        screenFlash->state++;
         break;
-    case 4:
-        if (ov5_021DDF08(&v0->unk_18)) {
-            v0->unk_08++;
+    case SCREENFLASH_STATE_4:
+        if (ov5_021DDF08(&screenFlash->unk_18)) {
+            screenFlash->unk_08++;
 
-            if (v0->unk_08 == v0->unk_04) {
-                v0->unk_00 = 5;
+            if (screenFlash->unk_08 == screenFlash->numFlashes) {
+                screenFlash->state = SCREENFLASH_STATE_5;
             } else {
-                v0->unk_00 = 1;
+                screenFlash->state = SCREENFLASH_STATE_1;
             }
         }
         break;
-    case 5:
-        v0->unk_00 = 0;
-        v0->unk_08 = 0;
+    case SCREENFLASH_STATE_5:
+        screenFlash->state = 0;
+        screenFlash->unk_08 = 0;
 
-        if (v0->unk_48 != NULL) {
-            *(v0->unk_48) = 1;
+        if (screenFlash->done != NULL) {
+            *(screenFlash->done) = 1;
         }
 
-        SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        SysTask_Done(task);
+        Heap_FreeToHeap(screenFlash);
 
         return;
     }
 
-    ov5_021DDF08(&v0->unk_30);
+    ov5_021DDF08(&screenFlash->unk_30);
 }
 
 BOOL ov5_021DDD7C(EncounterEffect *param0)
@@ -383,13 +391,13 @@ void ov5_021DDEDC(int param0, int param1)
     }
 }
 
-void ov5_021DDEFC(UnkStruct_ov5_021DDF24 *param0, int param1, int param2, int param3, int param4)
+void BrightnessFadeTask_Init(BrightnessFadeTask *brightnessFade, int param1, int param2, int param3, int param4)
 {
-    param0->unk_14 = param3;
-    ov5_021DDD80(&param0->unk_00, param1, param2, param4);
+    brightnessFade->screen = param3;
+    ov5_021DDD80(&brightnessFade->unk_00, param1, param2, param4);
 }
 
-BOOL ov5_021DDF08(UnkStruct_ov5_021DDF24 *param0)
+BOOL ov5_021DDF08(BrightnessFadeTask *param0)
 {
     BOOL v0;
 
@@ -401,9 +409,9 @@ BOOL ov5_021DDF08(UnkStruct_ov5_021DDF24 *param0)
 
 static void ov5_021DDF24(SysTask *param0, void *param1)
 {
-    UnkStruct_ov5_021DDF24 *v0 = param1;
+    BrightnessFadeTask *v0 = param1;
 
-    ov5_021DDEDC(v0->unk_14, v0->unk_00.unk_00);
+    ov5_021DDEDC(v0->screen, v0->unk_00.unk_00);
     SysTask_Done(param0);
 }
 

@@ -112,9 +112,14 @@ typedef struct UnkStruct_ov5_021DED04 {
     BOOL *unk_E4;
 } UnkStruct_ov5_021DED04;
 
+enum Screen {
+    SCREEN_TOP = 1,
+    SCREEN_BOTTOM,
+};
+
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *param2);
-void ov5_021DDC28(EncounterEffect *param0, SysTask *param1);
-void ov5_021DDC44(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4);
+void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask);
+void EncounterEffect_Flash(enum Screen screen, u32 param1, u32 param2, BOOL *done, u32 numFlashes);
 BOOL ov5_021DDD7C(EncounterEffect *param0);
 void ov5_021DDD80(UnkStruct_ov5_021DDD80 *param0, int param1, int param2, int param3);
 BOOL ov5_021DDD90(UnkStruct_ov5_021DDD80 *param0);
@@ -123,8 +128,8 @@ BOOL ov5_021DDDCC(UnkStruct_ov5_021DDDBC *param0);
 void ov5_021DDE14(UnkStruct_ov5_021DDE14 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
 BOOL ov5_021DDE74(UnkStruct_ov5_021DDE14 *param0);
 void ov5_021DDEDC(int param0, int param1);
-void ov5_021DDEFC(UnkStruct_ov5_021DDF24 *param0, int param1, int param2, int param3, int param4);
-BOOL ov5_021DDF08(UnkStruct_ov5_021DDF24 *param0);
+void BrightnessFadeTask_Init(BrightnessFadeTask *param0, int param1, int param2, int param3, int param4);
+BOOL ov5_021DDF08(BrightnessFadeTask *param0);
 UnkStruct_ov5_021DDF74 *ov5_021DDF38(void);
 void ov5_021DDF74(UnkStruct_ov5_021DDF74 *param0);
 void ov5_021DDF9C(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6);

@@ -5,6 +5,6 @@
 #include "functypes/sys_task_func.h"
 
 SysTask * SysTask_StartAndAllocateParam(SysTaskFunc func, int paramSize, u32 param2, const u32 heapID);
-void sub_020067D0(SysTask * param0);
+void SysTask_FinishAndFreeParam(SysTask * param0);
 
 #endif // POKEPLATINUM_UNK_0200679C_H

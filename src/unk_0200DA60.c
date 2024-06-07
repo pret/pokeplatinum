@@ -586,7 +586,7 @@ static void sub_0200EC9C (SysTask * param0, void * param1)
         sub_0200F12C(v0);
         sub_0200D0F4(v0->unk_1C8);
         ov5_021D375C(&v0->unk_00);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         return;
     case 2:
         v0->unk_1D3 = 3;

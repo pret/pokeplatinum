@@ -29,7 +29,7 @@ SysTask * SysTask_StartAndAllocateParam(SysTaskFunc param0, int paramSize, u32 p
     return SysTask_Start(param0, v0, param2);
 }
 
-void sub_020067D0 (SysTask * param0)
+void SysTask_FinishAndFreeParam (SysTask * param0)
 {
     void * v0;
 

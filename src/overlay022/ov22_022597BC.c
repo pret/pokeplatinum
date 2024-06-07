@@ -217,7 +217,7 @@ static void ov22_02259A4C (SysTask * param0, void * param1)
             *v0->unk_34 = 1;
         }
 
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
     }
 }
 

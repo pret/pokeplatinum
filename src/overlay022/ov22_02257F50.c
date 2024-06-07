@@ -697,7 +697,7 @@ static void ov22_022586C4 (SysTask * param0, void * param1)
         v0->unk_00->unk_00.unk_3C = 0;
 
         Heap_FreeToHeap(v0->unk_28);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
 
         return;
     default:

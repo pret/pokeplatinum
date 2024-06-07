@@ -1181,7 +1181,7 @@ static u8 ov10_02220A50 (SysTask * param0, UnkStruct_ov10_0221FB28 * param1)
     sub_02002F54(param1->unk_08);
 
     param1->unk_00->unk_2B = 1;
-    sub_020067D0(param0);
+    SysTask_FinishAndFreeParam(param0);
 
     return 1;
 }

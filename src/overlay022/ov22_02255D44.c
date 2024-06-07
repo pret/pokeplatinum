@@ -1048,7 +1048,7 @@ static void ov22_02256C70 (SysTask * param0, void * param1)
         break;
     case 9:
         *v0->unk_04 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     default:
         break;
@@ -1134,7 +1134,7 @@ static void ov22_02256DE0 (SysTask * param0, void * param1)
         break;
     case 9:
         *v0->unk_04 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     default:
         break;

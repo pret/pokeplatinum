@@ -577,7 +577,7 @@ static u8 ov13_02226CFC (SysTask * param0, UnkStruct_ov13_02227244 * param1)
     }
 
     param1->unk_00->unk_26 = 1;
-    sub_020067D0(param0);
+    SysTask_FinishAndFreeParam(param0);
 
     return 1;
 }

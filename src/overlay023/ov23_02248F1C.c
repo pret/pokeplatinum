@@ -194,7 +194,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         break;
     case 8:
         v0->fieldSystem->unk_6C = NULL;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 }

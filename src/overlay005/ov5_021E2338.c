@@ -107,7 +107,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 1:
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
     case 2:
@@ -153,7 +153,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
         }
 
         ov5_021DDF74(v1->unk_1C);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     default:
         break;
@@ -176,7 +176,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 1:
-        ov5_021DDC44(1, -16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, -16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
     case 2:
@@ -222,7 +222,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
         }
 
         ov5_021DDF74(v1->unk_1C);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     default:
         break;
@@ -244,7 +244,7 @@ void ov5_021E261C (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 1:
-        ov5_021DDC44(1, -16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, -16, -16, &v0->unk_04, 2);
         v1->unk_0C = 10;
         v0->unk_00++;
         break;
@@ -281,7 +281,7 @@ void ov5_021E261C (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         sub_0200F344(1, 0x0);
         break;
     }
@@ -302,7 +302,7 @@ void ov5_021E2748 (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 1:
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v1->unk_0C = 10;
         v0->unk_00++;
         break;
@@ -339,7 +339,7 @@ void ov5_021E2748 (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         sub_0200F344(1, 0x0);
         break;
     }
@@ -415,7 +415,7 @@ void ov5_021E2944 (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 1:
-        ov5_021DDC44(1, -16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, -16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
     case 2:
@@ -448,7 +448,7 @@ void ov5_021E2944 (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         sub_0200F344(1, 0x0);
         break;
     }
@@ -468,7 +468,7 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 1:
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
     case 2:
@@ -501,7 +501,7 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         sub_0200F344(1, 0x0);
         break;
     }
@@ -628,7 +628,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, -16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, -16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -743,7 +743,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         ov5_021DE5A4(&v1->unk_48, &v1->unk_1E8);
         ov5_021DE4AC(&v1->unk_48);
         ov5_021DDF74(v1->unk_44);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -791,7 +791,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -887,7 +887,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
         ov5_021DE4AC(&v1->unk_2C);
         ov5_021DE218(v1->unk_28);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -936,7 +936,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, -16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, -16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -1055,7 +1055,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
 
         ov5_021DE5A4(&v1->unk_50, &v1->unk_1F0);
         ov5_021DE4AC(&v1->unk_50);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         return;
     }
 
@@ -1121,7 +1121,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -1243,7 +1243,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         sub_02019690(3, 32, 0, 4);
         sub_02019EBC(v0->fieldSystem->unk_08, 3);
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         return;
     }
 
@@ -1312,7 +1312,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, -16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, -16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -1397,7 +1397,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         sub_02021BD4(v1->unk_230);
         ov5_021DE5A4(&v1->unk_5C, &v1->unk_1FC);
         ov5_021DE4AC(&v1->unk_5C);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -1455,7 +1455,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -1590,7 +1590,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         sub_02019690(3, 32, 0, 4);
         sub_02019EBC(v0->fieldSystem->unk_08, 3);
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -1663,7 +1663,7 @@ void ov5_021E4260 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -1739,7 +1739,7 @@ void ov5_021E4260 (SysTask * param0, void * param1)
         sub_02021BD4(v1->unk_200);
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
         ov5_021DE4AC(&v1->unk_2C);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -1780,7 +1780,7 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -1858,7 +1858,7 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
 
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
         ov5_021DE4AC(&v1->unk_00);
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -1941,7 +1941,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, -16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, -16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -2026,7 +2026,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
         ov5_021DE4AC(&v1->unk_00);
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -2100,7 +2100,7 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
 
     case 1:
 
-        ov5_021DDC44(1, 16, -16, &v0->unk_04, 2);
+        EncounterEffect_Flash(1, 16, -16, &v0->unk_04, 2);
         v0->unk_00++;
         break;
 
@@ -2176,7 +2176,7 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
 
         G2_SetOBJMosaicSize(0, 0);
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         break;
     }
 
@@ -2274,7 +2274,7 @@ void ov5_021E4E14 (SysTask * param0, void * param1)
         break;
 
     case 1:
-        ov5_021DDC44(1, 16, 16, &v0->unk_04, 1);
+        EncounterEffect_Flash(1, 16, 16, &v0->unk_04, 1);
 
         v0->unk_00++;
         break;
@@ -2335,7 +2335,7 @@ void ov5_021E4E14 (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         sub_0200F344(1, 0x7fff);
         break;
     }
@@ -2360,7 +2360,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
         break;
 
     case 1:
-        ov5_021DDC44(1, 16, 16, &v0->unk_04, 1);
+        EncounterEffect_Flash(1, 16, 16, &v0->unk_04, 1);
 
         v0->unk_00++;
         break;
@@ -2443,7 +2443,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
         sub_0200F344(1, 0x7fff);
         break;
     }
@@ -2681,7 +2681,7 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
     case 1:
 
-        ov5_021DDC44(1, 16, 16, &param0->unk_04, 1);
+        EncounterEffect_Flash(1, 16, 16, &param0->unk_04, 1);
         param0->unk_00++;
         break;
 
@@ -2874,7 +2874,7 @@ void ov5_021E5760 (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[0]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -2886,7 +2886,7 @@ void ov5_021E5784 (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[1]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -2898,7 +2898,7 @@ void ov5_021E57A8 (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[2]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -2910,7 +2910,7 @@ void ov5_021E57CC (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[3]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -2922,7 +2922,7 @@ void ov5_021E57F0 (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[4]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -2934,7 +2934,7 @@ void ov5_021E5814 (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[5]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -2946,7 +2946,7 @@ void ov5_021E5838 (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[6]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -2958,7 +2958,7 @@ void ov5_021E585C (SysTask * param0, void * param1)
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[7]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -3051,7 +3051,7 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
     case 2:
 
-        ov5_021DDC44(1, 16, 16, &param0->unk_04, 1);
+        EncounterEffect_Flash(1, 16, 16, &param0->unk_04, 1);
         param0->unk_08 = 0;
         param0->unk_00++;
         break;
@@ -3359,7 +3359,7 @@ void ov5_021E6178 (SysTask * param0, void * param1)
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[0]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -3371,7 +3371,7 @@ void ov5_021E619C (SysTask * param0, void * param1)
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[1]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -3383,7 +3383,7 @@ void ov5_021E61C0 (SysTask * param0, void * param1)
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[2]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -3395,7 +3395,7 @@ void ov5_021E61E4 (SysTask * param0, void * param1)
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[3]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }
 
@@ -3407,6 +3407,6 @@ void ov5_021E6208 (SysTask * param0, void * param1)
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[4]);
 
     if (v1 == 1) {
-        ov5_021DDC28(v0, param0);
+        EncounterEffect_Finish(v0, param0);
     }
 }

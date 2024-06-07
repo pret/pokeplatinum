@@ -474,7 +474,7 @@ static void ov22_02258FC0 (SysTask * param0, void * param1)
             ov22_02255360();
         }
 
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
     } else {
         ov22_022595F8(v0->unk_04, v1, v2);
     }

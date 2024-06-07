@@ -63,7 +63,7 @@ void ov5_021E20E8 (UnkStruct_ov5_021E20E8 ** param0, GXDispMode param1, GXBGMode
         break;
     }
 
-    sub_020067D0((*param0)->unk_34);
+    SysTask_FinishAndFreeParam((*param0)->unk_34);
     *param0 = NULL;
 }
 

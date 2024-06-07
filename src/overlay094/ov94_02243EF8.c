@@ -136,7 +136,7 @@ static void ov94_0224400C (SysTask * param0, void * param1)
     case 3:
         Sound_PlayEffect(1549);
         v1->unk_0C->unk_10F0 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 }
@@ -196,7 +196,7 @@ static void ov94_022440FC (SysTask * param0, void * param1)
         break;
     case 3:
         v1->unk_0C->unk_10F0 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 }

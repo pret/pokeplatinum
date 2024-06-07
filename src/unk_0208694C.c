@@ -1153,7 +1153,7 @@ static int sub_02086F3C (OverlayManager * param0, int * param1)
     Strbuf_Free(v0->unk_184);
 
     for (v2 = 0; v2 < 7; v2++) {
-        sub_020067D0(v0->unk_400[v2]);
+        SysTask_FinishAndFreeParam(v0->unk_400[v2]);
     }
 
     sub_0200A4E4(v0->unk_328[0][0]);
@@ -1741,7 +1741,7 @@ static void sub_02087CDC (SysTask * param0, void * param1)
     case 6:
         v1.x = v0->unk_08;
         sub_02021C50(v0->unk_00, &v1);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 
