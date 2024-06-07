@@ -8,18 +8,13 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "overlay005/struct_ov5_021DDF74_decl.h"
-#include "overlay005/struct_ov5_021DE374_decl.h"
-#include "overlay005/struct_ov5_021DE6BC_decl.h"
-#include "overlay005/struct_ov5_021DE928_decl.h"
-#include "overlay005/struct_ov5_021DEC18_decl.h"
-#include "overlay005/struct_ov5_021DED04_decl.h"
+#include "overlay005/encounter_effect.h"
 #include "overlay005/struct_ov5_021E2310_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay005/struct_ov5_021DDC28.h"
+#include "overlay005/encounter_effect.h"
 #include "overlay005/struct_ov5_021DDD80.h"
 #include "overlay005/struct_ov5_021DDDBC.h"
 #include "overlay005/struct_ov5_021DDE14.h"
@@ -98,7 +93,7 @@ static void ov5_021E290C(UnkStruct_ov5_021E2878 * param0, u32 param1);
 
 void ov5_021E2338 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E2338 * v1 = v0->unk_0C;
     fx32 v2;
     BOOL v3;
@@ -167,7 +162,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
 
 void ov5_021E24A8 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E24A8 * v1 = v0->unk_0C;
     fx32 v2;
     BOOL v3;
@@ -236,7 +231,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
 
 void ov5_021E261C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E261C * v1 = v0->unk_0C;
 
     switch (v0->unk_00) {
@@ -294,7 +289,7 @@ void ov5_021E261C (SysTask * param0, void * param1)
 
 void ov5_021E2748 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E2748 * v1 = v0->unk_0C;
 
     switch (v0->unk_00) {
@@ -408,7 +403,7 @@ static void ov5_021E290C (UnkStruct_ov5_021E2878 * param0, u32 param1)
 
 void ov5_021E2944 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E2944 * v1 = v0->unk_0C;
     fx32 v2;
 
@@ -461,7 +456,7 @@ void ov5_021E2944 (SysTask * param0, void * param1)
 
 void ov5_021E2A4C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E2A4C * v1 = v0->unk_0C;
     fx32 v2;
 
@@ -596,7 +591,7 @@ typedef struct {
 
 void ov5_021E2B54 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E2B54 * v1 = v0->unk_0C;
     BOOL v2;
     fx32 v3;
@@ -759,7 +754,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
 void ov5_021E2EB0 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E2EB0 * v1 = v0->unk_0C;
     BOOL v2;
     fx32 v3;
@@ -903,7 +898,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
 
 void ov5_021E31A4 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E31A4 * v1 = v0->unk_0C;
     BOOL v2;
     BOOL v3;
@@ -1075,7 +1070,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
 
 void ov5_021E3560 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E3560 * v1 = v0->unk_0C;
     BOOL v2;
     int v3;
@@ -1288,7 +1283,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
 
 void ov5_021E3AD0 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E3AD0 * v1 = v0->unk_0C;
     BOOL v2;
     fx32 v3;
@@ -1413,7 +1408,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
 
 void ov5_021E3D8C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E3D8C * v1 = v0->unk_0C;
     VecFx32 v2;
     BOOL v3;
@@ -1642,7 +1637,7 @@ typedef struct {
 
 void ov5_021E4260 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E4260 * v1 = v0->unk_0C;
     BOOL v2;
 
@@ -1755,7 +1750,7 @@ void ov5_021E4260 (SysTask * param0, void * param1)
 
 void ov5_021E44C0 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E44C0 * v1 = v0->unk_0C;
     BOOL v2;
     int v3;
@@ -1915,7 +1910,7 @@ typedef struct {
 
 void ov5_021E4738 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E4738 * v1 = v0->unk_0C;
     BOOL v2;
     int v3;
@@ -2064,7 +2059,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
 
 void ov5_021E4B3C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E4B3C * v1 = v0->unk_0C;
     BOOL v2;
 
@@ -2263,7 +2258,7 @@ static void ov5_021E4DE0 (FieldSystem * fieldSystem, const UnkStruct_ov5_021F9DD
 
 void ov5_021E4E14 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E4E14 * v1 = v0->unk_0C;
 
     switch (v0->unk_00) {
@@ -2348,7 +2343,7 @@ void ov5_021E4E14 (SysTask * param0, void * param1)
 
 void ov5_021E4F7C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     UnkStruct_ov5_021E4F7C * v1 = v0->unk_0C;
     BOOL v2;
 
@@ -2638,7 +2633,7 @@ static Strbuf* ov5_021E5240 (u32 param0, u32 param1)
     return v2;
 }
 
-static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const UnkStruct_ov5_021F9D34 * param2)
+static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_ov5_021F9D34 * param2)
 {
     UnkStruct_ov5_021E52A8 * v0 = param0->unk_0C;
     BOOL v1;
@@ -2873,7 +2868,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
 void ov5_021E5760 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[0]);
@@ -2885,7 +2880,7 @@ void ov5_021E5760 (SysTask * param0, void * param1)
 
 void ov5_021E5784 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[1]);
@@ -2897,7 +2892,7 @@ void ov5_021E5784 (SysTask * param0, void * param1)
 
 void ov5_021E57A8 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[2]);
@@ -2909,7 +2904,7 @@ void ov5_021E57A8 (SysTask * param0, void * param1)
 
 void ov5_021E57CC (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[3]);
@@ -2921,7 +2916,7 @@ void ov5_021E57CC (SysTask * param0, void * param1)
 
 void ov5_021E57F0 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[4]);
@@ -2933,7 +2928,7 @@ void ov5_021E57F0 (SysTask * param0, void * param1)
 
 void ov5_021E5814 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[5]);
@@ -2945,7 +2940,7 @@ void ov5_021E5814 (SysTask * param0, void * param1)
 
 void ov5_021E5838 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[6]);
@@ -2957,7 +2952,7 @@ void ov5_021E5838 (SysTask * param0, void * param1)
 
 void ov5_021E585C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E52A8(v0, 4, &Unk_ov5_021F9D34[7]);
@@ -2974,7 +2969,7 @@ static u32 ov5_021E5880 (FieldSystem * fieldSystem)
     return TrainerInfo_Gender(v0);
 }
 
-static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const UnkStruct_ov5_021F9D0C * param2)
+static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_ov5_021F9D0C * param2)
 {
     UnkStruct_ov5_021E5890 * v0 = param0->unk_0C;
     BOOL v1, v2;
@@ -3358,7 +3353,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
 void ov5_021E6178 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[0]);
@@ -3370,7 +3365,7 @@ void ov5_021E6178 (SysTask * param0, void * param1)
 
 void ov5_021E619C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[1]);
@@ -3382,7 +3377,7 @@ void ov5_021E619C (SysTask * param0, void * param1)
 
 void ov5_021E61C0 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[2]);
@@ -3394,7 +3389,7 @@ void ov5_021E61C0 (SysTask * param0, void * param1)
 
 void ov5_021E61E4 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[3]);
@@ -3406,7 +3401,7 @@ void ov5_021E61E4 (SysTask * param0, void * param1)
 
 void ov5_021E6208 (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021DDC28 * v0 = param1;
+    EncounterEffect * v0 = param1;
     BOOL v1;
 
     v1 = ov5_021E5890(v0, 4, &Unk_ov5_021F9D0C[4]);
