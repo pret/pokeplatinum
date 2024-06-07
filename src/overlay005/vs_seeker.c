@@ -83,7 +83,7 @@ typedef struct VsSeekerRematchData {
 typedef struct VsSeekerSystem {
     enum VsSeekerState state;
     FieldSystem *fieldSystem;
-    VarsFlags *events;
+    VarsFlags *varsFlags;
     const VsSeekerRematchData *rematchData;
     MapObject *trainers[64];
     u16 numVisibleTrainers;
@@ -388,7 +388,7 @@ void VsSeeker_Start(TaskManager *taskMan, StringTemplate *template, u16 *outResu
     memset(vsSeeker, 0, sizeof(VsSeekerSystem));
 
     vsSeeker->fieldSystem = fieldSystem;
-    vsSeeker->events = SaveData_GetVarsFlags(fieldSystem->saveData);
+    vsSeeker->varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     vsSeeker->result = outResult;
     vsSeeker->template = template;
 
@@ -426,7 +426,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
     case VS_SEEKER_STATE_START:
         vsSeeker->playerStateTask = FieldSystem_StartVsSeekerTask(vsSeeker->fieldSystem);
         Sound_PlayEffect(SEQ_SE_DP_VS_SEEKER_BEEP);
-        VsSeeker_SetBattery(vsSeeker->events, 0);
+        VsSeeker_SetBattery(vsSeeker->varsFlags, 0);
         VsSeekerSystem_SetState(vsSeeker, VS_SEEKER_STATE_WAIT_FOR_PLAYER_ANIM);
         break;
     case VS_SEEKER_STATE_WAIT_FOR_PLAYER_ANIM:
@@ -453,7 +453,7 @@ static BOOL VsSeeker_ExecuteTask(TaskManager *taskMan)
         }
         break;
     case VS_SEEKER_STATE_NO_BATTERY:
-        missingBattery = VS_SEEKER_MAX_BATTERY - VsSeeker_GetBattery(vsSeeker->events);
+        missingBattery = VS_SEEKER_MAX_BATTERY - VsSeeker_GetBattery(vsSeeker->varsFlags);
 
         if (missingBattery / 10 == 0) {
             numDigits = 1;
@@ -484,7 +484,7 @@ static void VsSeekerSystem_SetState(VsSeekerSystem *vsSeeker, enum VsSeekerState
 
 static enum VsSeekerUsability VsSeekerSystem_CheckUsability(VsSeekerSystem *vsSeeker)
 {
-    if (VsSeeker_GetBattery(vsSeeker->events) == VS_SEEKER_MAX_BATTERY) {
+    if (VsSeeker_GetBattery(vsSeeker->varsFlags) == VS_SEEKER_MAX_BATTERY) {
         if (vsSeeker->numVisibleTrainers == 0) {
             return VS_SEEKER_USABILITY_NO_TRAINERS;
         }
@@ -572,24 +572,24 @@ static BOOL VsSeeker_IsMoveCodeHidden(u32 moveCode)
 
 BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
 {
-    VarsFlags *events = SaveData_GetVarsFlags(fieldSystem->saveData);
-    u16 battery = VsSeeker_GetBattery(events);
-    u16 activeStepCount = VsSeeker_GetActiveStepCount(events);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    u16 battery = VsSeeker_GetBattery(varsFlags);
+    u16 activeStepCount = VsSeeker_GetActiveStepCount(varsFlags);
 
     if (sub_0207D688(sub_0207D990(fieldSystem->saveData), 443, 1, 4) == 1
         && battery < VS_SEEKER_MAX_BATTERY) {
         battery++;
-        VsSeeker_SetBattery(events, battery);
+        VsSeeker_SetBattery(varsFlags, battery);
     }
 
-    if (VsSeeker_GetUsedFlag(events) == TRUE) {
+    if (VsSeeker_GetUsedFlag(varsFlags) == TRUE) {
         if (activeStepCount < VS_SEEKER_MAX_NUM_ACTIVE_STEPS) {
             activeStepCount++;
-            VsSeeker_SetActiveStepCount(events, activeStepCount);
+            VsSeeker_SetActiveStepCount(varsFlags, activeStepCount);
         }
 
         if (activeStepCount == VS_SEEKER_MAX_NUM_ACTIVE_STEPS) {
-            VsSeeker_Reset(events);
+            VsSeeker_Reset(varsFlags);
             VsSeeker_ClearRematchMoveCode(fieldSystem);
         }
     }
@@ -659,7 +659,7 @@ static s32 VsSeekerSystem_GetNumActiveAnimations(VsSeekerSystem *vsSeeker)
 
 static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
 {
-    VarsFlags *events = SaveData_GetVarsFlags(vsSeeker->fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(vsSeeker->fieldSystem->saveData);
     BOOL anyAvailable = FALSE;
 
     for (int i = 0; i < vsSeeker->numVisibleTrainers; i++) {
@@ -682,7 +682,7 @@ static BOOL VsSeekerSystem_PickRematchTrainers(VsSeekerSystem *vsSeeker)
                 }
 
                 anyAvailable = TRUE;
-                VsSeeker_SetUsedFlag(events);
+                VsSeeker_SetUsedFlag(varsFlags);
             }
         }
     }
@@ -747,9 +747,9 @@ static u16 VsSeeker_GetCurrentLevelForRematchData(FieldSystem *fieldSystem, u16 
 
 static u16 VsSeeker_AdjustRematchLevel(FieldSystem *fieldSystem, u16 rematchDataIndex, u16 level)
 {
-    VarsFlags *events = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (level != 0 && VsSeeker_HasUnlockedLevel(events, level) == FALSE) {
+    if (level != 0 && VsSeeker_HasUnlockedLevel(varsFlags, level) == FALSE) {
         level = VsSeeker_GetNextLowerRematchLevel(rematchDataIndex, level);
     }
 

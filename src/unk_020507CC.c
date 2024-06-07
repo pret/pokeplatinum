@@ -9,7 +9,7 @@
 #define GET_FLAG_BIT(idx, size) (1 << (idx % size))
 #define IS_FLAG_ON(chunk, idx) (*chunk & GET_FLAG_BIT(idx, 8 * sizeof(*chunk)))
 
-typedef struct UnkStruct_020507E4_t {
+typedef struct VarsFlags {
     u16 unk_00[288];
     u8 unk_240[364];
 } VarsFlags;
