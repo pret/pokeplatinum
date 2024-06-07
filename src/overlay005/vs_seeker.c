@@ -728,14 +728,13 @@ static u16 VsSeeker_GetRematchDataIndexForTrainer(FieldSystem *fieldSystem, u16 
 static u16 VsSeeker_GetCurrentLevelForRematchData(FieldSystem *fieldSystem, u16 rematchDataIndex)
 {
     int level;
-    const VsSeekerRematchData *rematchData = gVsSeekerRematchData;
 
     for (level = 1; level < VS_SEEKER_MAX_REMATCHES; level++) {
-        if (rematchData[rematchDataIndex].trainerIDs[level] == VS_SEEKER_REMATCH_DATA_END) {
+        if (gVsSeekerRematchData[rematchDataIndex].trainerIDs[level] == VS_SEEKER_REMATCH_DATA_END) {
             return level - 1;
         }
 
-        u16 trainerID = rematchData[rematchDataIndex].trainerIDs[level];
+        u16 trainerID = gVsSeekerRematchData[rematchDataIndex].trainerIDs[level];
         if (trainerID != VS_SEEKER_REMATCH_DATA_DUMMY
             && Script_IsTrainerDefeated(fieldSystem, trainerID) == FALSE) {
             return level;
@@ -758,6 +757,7 @@ static u16 VsSeeker_AdjustRematchLevel(FieldSystem *fieldSystem, u16 rematchData
 
 static u16 VsSeeker_GetNextLowerRematchLevel(u16 rematchDataIndex, u16 level)
 {
+    // Declaration is needed to match.
     const VsSeekerRematchData *rematchData = gVsSeekerRematchData;
 
     for (u16 i = level - 1; i > 0; i--) {
