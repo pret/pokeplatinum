@@ -20,7 +20,7 @@
 #include "unk_0202CD50.h"
 #include "communication_system.h"
 #include "field_system.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_02054D00.h"
 #include "comm_player_manager.h"
 #include "unk_0206A8DC.h"

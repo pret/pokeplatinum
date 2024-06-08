@@ -6,7 +6,6 @@
 
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -32,7 +31,7 @@
 #include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0204B830.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_02054884.h"
 #include "poketch_data.h"
 #include "unk_0206AFE0.h"

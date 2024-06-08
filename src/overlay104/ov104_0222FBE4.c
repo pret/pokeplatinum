@@ -83,7 +83,7 @@
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "field_comm_manager.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
@@ -2060,7 +2060,7 @@ BOOL ov104_022310EC (UnkStruct_ov104_0222E930 * param0)
     u16 v2 = ov104_0222FC00(param0);
     UnkStruct_ov104_02230BE4 * v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    v0 = sub_020508B8(SaveData_GetVarsFlags(v3->unk_08), v1);
+    v0 = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->unk_08), v1);
     *v0 = v2;
 
     return 0;
@@ -2073,7 +2073,7 @@ BOOL ov104_02231118 (UnkStruct_ov104_0222E930 * param0)
     u16 * v2 = ov104_0222FBE4(param0);
     UnkStruct_ov104_02230BE4 * v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    v0 = sub_020508B8(SaveData_GetVarsFlags(v3->unk_08), v1);
+    v0 = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->unk_08), v1);
     *v2 = *v0;
 
     return 0;

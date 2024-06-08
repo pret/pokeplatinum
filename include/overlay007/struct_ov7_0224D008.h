@@ -15,7 +15,7 @@
 #include "game_options.h"
 #include "journal.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
+#include "vars_flags.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "savedata.h"
 #include "overlay005/struct_ov5_021D30A8.h"

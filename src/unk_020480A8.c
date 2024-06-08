@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
@@ -12,7 +11,7 @@
 
 #include "savedata/save_table.h"
 #include "unk_020480A8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"

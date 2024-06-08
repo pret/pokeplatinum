@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_0202DA40_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "pokemon.h"
 
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -41,7 +40,7 @@
 #include "unk_02038F8C.h"
 #include "unk_020393C8.h"
 #include "unk_02039814.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "pokemon.h"

@@ -16,7 +16,6 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "savedata.h"
 
 #include "struct_defs/struct_0200C738.h"
@@ -65,7 +64,7 @@
 #include "unk_020393C8.h"
 #include "unk_02039C80.h"
 #include "field_system.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "comm_player_manager.h"

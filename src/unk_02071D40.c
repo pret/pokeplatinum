@@ -8,7 +8,6 @@
 #include "struct_decls/struct_0202C844_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
 
@@ -27,7 +26,7 @@
 #include "unk_0203061C.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"

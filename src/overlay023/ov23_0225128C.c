@@ -38,7 +38,7 @@
 #include "unk_02033200.h"
 #include "communication_system.h"
 #include "field_system.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "comm_player_manager.h"
 #include "player_avatar.h"

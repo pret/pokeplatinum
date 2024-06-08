@@ -1,14 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020507E4_decl.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 
 #include "game_overlay.h"
 #include "unk_0200A784.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "poketch_data.h"
 #include "unk_0206A8DC.h"
 #include "overlay005/ov5_021EA714.h"

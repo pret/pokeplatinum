@@ -19,7 +19,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202FF4C.h"
 #include "unk_0203061C.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
 #include "pokemon.h"

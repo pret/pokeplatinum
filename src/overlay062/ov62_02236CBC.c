@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -28,7 +27,7 @@
 #include "touch_screen.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0208B284.h"
 #include "overlay062/ov62_0222F2C0.h"

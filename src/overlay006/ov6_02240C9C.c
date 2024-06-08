@@ -28,7 +28,7 @@
 #include "unk_0203A378.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_02050A74.h"
 #include "unk_02051D8C.h"
 #include "unk_02054884.h"

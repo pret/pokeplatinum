@@ -5,7 +5,6 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203EF60_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
@@ -32,7 +31,7 @@
 #include "field_menu.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "player_avatar.h"
 #include "map_object.h"
@@ -604,7 +603,7 @@ u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 param1)
     }
 
     if (param1 < 0x8000) {
-        return sub_020508B8(v0, param1);
+        return VarsFlags_GetVarAddress(v0, param1);
     }
 
     return sub_0203F098(fieldSystem, (41 + param1 - 0x8000));
@@ -629,18 +628,18 @@ u16 sub_0203F164 (FieldSystem * fieldSystem, u16 param1)
 
 BOOL sub_0203F188 (FieldSystem * fieldSystem, u16 param1)
 {
-    return VarsFlags_IsFlagOn(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
+    return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
 }
 
 void sub_0203F19C (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
+    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
     return;
 }
 
 void sub_0203F1B0 (FieldSystem * fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
+    VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
     return;
 }
 
@@ -651,8 +650,8 @@ void FieldSystem_ClearLocalFlags (FieldSystem * fieldSystem)
 
     v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    memset(sub_02050870(v1, 1), 0, (64 / 8));
-    memset(sub_020508B8(v1, (0 + 0x4000)), 0, 2 * 32);
+    memset(VarsFlags_GetFlagChunk(v1, 1), 0, (64 / 8));
+    memset(VarsFlags_GetVarAddress(v1, (0 + 0x4000)), 0, 2 * 32);
 
     return;
 }
@@ -662,7 +661,7 @@ void sub_0203F1FC (FieldSystem * fieldSystem)
     VarsFlags * v0;
 
     v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    memset(sub_02050870(v0, 2400 + 320), 0, 192 / 8);
+    memset(VarsFlags_GetFlagChunk(v0, 2400 + 320), 0, 192 / 8);
 
     return;
 }
@@ -700,18 +699,18 @@ BOOL Script_IsTrainerDoubleBattle(u16 trainerID)
 
 BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
 {
-    return VarsFlags_IsFlagOn(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + trainerID);
+    return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + trainerID);
 }
 
 void sub_0203F2BC (FieldSystem *fieldSystem, u16 param1)
 {
-    sub_0205081C(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
+    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
     return;
 }
 
 void sub_0203F2D8 (FieldSystem *fieldSystem, u16 param1)
 {
-    sub_02050844(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
+    VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
     return;
 }
 

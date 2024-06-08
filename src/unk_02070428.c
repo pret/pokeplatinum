@@ -3,8 +3,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_020507E4_decl.h"
-
 #include "struct_defs/struct_0202D7B0.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -17,7 +15,7 @@
 #include "map_header.h"
 #include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020556C4.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"

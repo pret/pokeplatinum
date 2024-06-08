@@ -25,7 +25,7 @@
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"

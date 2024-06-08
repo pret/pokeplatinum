@@ -34,7 +34,7 @@
 #include "field_overworld_state.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0205DFC4.h"
 #include "player_avatar.h"
 #include "unk_0206A8DC.h"

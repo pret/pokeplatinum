@@ -81,7 +81,7 @@
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0205C980.h"
 #include "pokemon.h"
 #include "unk_0207D3B8.h"

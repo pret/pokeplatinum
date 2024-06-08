@@ -5,7 +5,6 @@
 
 #include "trainer_info.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 
 #include "field/field_system.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -21,7 +20,7 @@
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "player_avatar.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"

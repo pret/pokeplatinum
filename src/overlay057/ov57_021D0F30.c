@@ -8,7 +8,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0203D178.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206A8DC.h"
 #include "overlay057/ov57_021D0F30.h"
 
