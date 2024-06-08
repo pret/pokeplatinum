@@ -9,7 +9,7 @@
     .byte 3
     .short 22, 0
     .byte 1
-    .long _0015-.-4
+    ScriptEntry _0015
     .byte 0
 
 _0015:

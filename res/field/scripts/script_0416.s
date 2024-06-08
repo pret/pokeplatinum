@@ -2,15 +2,15 @@
 
     .data
 
-    .long _0026-.-4
-    .long _0061-.-4
-    .long _009D-.-4
-    .long _060C-.-4
-    .long _0632-.-4
-    .long _061F-.-4
-    .long _06B8-.-4
-    .long _06CF-.-4
-    .long _06E2-.-4
+    ScriptEntry _0026
+    ScriptEntry _0061
+    ScriptEntry _009D
+    ScriptEntry _060C
+    ScriptEntry _0632
+    ScriptEntry _061F
+    ScriptEntry _06B8
+    ScriptEntry _06CF
+    ScriptEntry _06E2
     .short 0xFD13
 
 _0026:

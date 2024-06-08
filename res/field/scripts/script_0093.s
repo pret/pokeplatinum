@@ -2,38 +2,38 @@
 
     .data
 
-    .long _0082-.-4
-    .long _0084-.-4
-    .long _0097-.-4
-    .long _00AA-.-4
-    .long _00BD-.-4
-    .long _00D0-.-4
-    .long _00E3-.-4
-    .long _00F6-.-4
-    .long _0109-.-4
-    .long _011C-.-4
-    .long _013B-.-4
-    .long _02E4-.-4
-    .long _02F7-.-4
-    .long _030A-.-4
-    .long _031B-.-4
-    .long _0984-.-4
-    .long _0709-.-4
-    .long _071C-.-4
-    .long _072D-.-4
-    .long _0740-.-4
-    .long _0753-.-4
-    .long _08A4-.-4
-    .long _08BB-.-4
-    .long _08D0-.-4
-    .long _08E7-.-4
-    .long _08FE-.-4
-    .long _0915-.-4
-    .long _092C-.-4
-    .long _0943-.-4
-    .long _095A-.-4
-    .long _0971-.-4
-    .long _0997-.-4
+    ScriptEntry _0082
+    ScriptEntry _0084
+    ScriptEntry _0097
+    ScriptEntry _00AA
+    ScriptEntry _00BD
+    ScriptEntry _00D0
+    ScriptEntry _00E3
+    ScriptEntry _00F6
+    ScriptEntry _0109
+    ScriptEntry _011C
+    ScriptEntry _013B
+    ScriptEntry _02E4
+    ScriptEntry _02F7
+    ScriptEntry _030A
+    ScriptEntry _031B
+    ScriptEntry _0984
+    ScriptEntry _0709
+    ScriptEntry _071C
+    ScriptEntry _072D
+    ScriptEntry _0740
+    ScriptEntry _0753
+    ScriptEntry _08A4
+    ScriptEntry _08BB
+    ScriptEntry _08D0
+    ScriptEntry _08E7
+    ScriptEntry _08FE
+    ScriptEntry _0915
+    ScriptEntry _092C
+    ScriptEntry _0943
+    ScriptEntry _095A
+    ScriptEntry _0971
+    ScriptEntry _0997
     .short 0xFD13
 
 _0082:

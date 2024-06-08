@@ -2,15 +2,15 @@
 
     .data
 
-    .long _0024-.-4
-    .long _002A-.-4
-    .long _0192-.-4
-    .long _01A5-.-4
-    .long _01B8-.-4
-    .long _01CB-.-4
-    .long _01DE-.-4
-    .long _01F1-.-4
-    .long _01F1-.-4
+    ScriptEntry _0024
+    ScriptEntry _002A
+    ScriptEntry _0192
+    ScriptEntry _01A5
+    ScriptEntry _01B8
+    ScriptEntry _01CB
+    ScriptEntry _01DE
+    ScriptEntry _01F1
+    ScriptEntry _01F1
 
 _0024:
     GoTo _0044

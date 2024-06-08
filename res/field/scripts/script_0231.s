@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _0022-.-4
+    ScriptEntry _000A
+    ScriptEntry _0022
     .short 0xFD13
 
 _000A:

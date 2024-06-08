@@ -2,11 +2,11 @@
 
     .data
 
-    .long _0014-.-4
-    .long _012B-.-4
-    .long _0169-.-4
-    .long _0173-.-4
-    .long _01DC-.-4
+    ScriptEntry _0014
+    ScriptEntry _012B
+    ScriptEntry _0169
+    ScriptEntry _0173
+    ScriptEntry _01DC
 
 _0014:
     ScrCmd_049 0x5DC

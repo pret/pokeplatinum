@@ -2,21 +2,21 @@
 
     .data
 
-    .long _00DA-.-4
-    .long _00ED-.-4
-    .long _0100-.-4
-    .long _0130-.-4
-    .long _0143-.-4
-    .long _015A-.-4
-    .long _0171-.-4
-    .long _0184-.-4
-    .long _03D4-.-4
-    .long _043C-.-4
-    .long _049C-.-4
-    .long _04FC-.-4
-    .long _055C-.-4
-    .long _003E-.-4
-    .long _05BC-.-4
+    ScriptEntry _00DA
+    ScriptEntry _00ED
+    ScriptEntry _0100
+    ScriptEntry _0130
+    ScriptEntry _0143
+    ScriptEntry _015A
+    ScriptEntry _0171
+    ScriptEntry _0184
+    ScriptEntry _03D4
+    ScriptEntry _043C
+    ScriptEntry _049C
+    ScriptEntry _04FC
+    ScriptEntry _055C
+    ScriptEntry _003E
+    ScriptEntry _05BC
     .short 0xFD13
 
 _003E:

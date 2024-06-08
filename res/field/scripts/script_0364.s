@@ -2,18 +2,18 @@
 
     .data
 
-    .long _0032-.-4
-    .long _0308-.-4
-    .long _03AD-.-4
-    .long _03C4-.-4
-    .long _031B-.-4
-    .long _032C-.-4
-    .long _033D-.-4
-    .long _0350-.-4
-    .long _0361-.-4
-    .long _0374-.-4
-    .long _0387-.-4
-    .long _039A-.-4
+    ScriptEntry _0032
+    ScriptEntry _0308
+    ScriptEntry _03AD
+    ScriptEntry _03C4
+    ScriptEntry _031B
+    ScriptEntry _032C
+    ScriptEntry _033D
+    ScriptEntry _0350
+    ScriptEntry _0361
+    ScriptEntry _0374
+    ScriptEntry _0387
+    ScriptEntry _039A
     .short 0xFD13
 
 _0032:

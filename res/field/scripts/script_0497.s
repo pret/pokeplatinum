@@ -2,29 +2,29 @@
 
     .data
 
-    .long _005E-.-4
-    .long _0062-.-4
-    .long _00AF-.-4
-    .long _0178-.-4
-    .long _0242-.-4
-    .long _030C-.-4
-    .long _03D6-.-4
-    .long _04A0-.-4
-    .long _056A-.-4
-    .long _00A0-.-4
-    .long _0634-.-4
-    .long _063C-.-4
-    .long _0644-.-4
-    .long _0652-.-4
-    .long _0660-.-4
-    .long _066E-.-4
-    .long _067C-.-4
-    .long _068A-.-4
-    .long _0698-.-4
-    .long _06A6-.-4
-    .long _06B4-.-4
-    .long _012B-.-4
-    .long _00ED-.-4
+    ScriptEntry _005E
+    ScriptEntry _0062
+    ScriptEntry _00AF
+    ScriptEntry _0178
+    ScriptEntry _0242
+    ScriptEntry _030C
+    ScriptEntry _03D6
+    ScriptEntry _04A0
+    ScriptEntry _056A
+    ScriptEntry _00A0
+    ScriptEntry _0634
+    ScriptEntry _063C
+    ScriptEntry _0644
+    ScriptEntry _0652
+    ScriptEntry _0660
+    ScriptEntry _066E
+    ScriptEntry _067C
+    ScriptEntry _068A
+    ScriptEntry _0698
+    ScriptEntry _06A6
+    ScriptEntry _06B4
+    ScriptEntry _012B
+    ScriptEntry _00ED
     .short 0xFD13
 
 _005E:

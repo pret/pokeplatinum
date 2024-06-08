@@ -2,10 +2,10 @@
 
     .data
 
-    .long _0012-.-4
-    .long _0025-.-4
-    .long _0081-.-4
-    .long _0083-.-4
+    ScriptEntry _0012
+    ScriptEntry _0025
+    ScriptEntry _0081
+    ScriptEntry _0083
     .short 0xFD13
 
 _0012:

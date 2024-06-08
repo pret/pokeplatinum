@@ -2,38 +2,38 @@
 
     .data
 
-    .long _0082-.-4
-    .long _0C18-.-4
-    .long _0C2B-.-4
-    .long _0C3E-.-4
-    .long _0C51-.-4
-    .long _0C64-.-4
-    .long _0C77-.-4
-    .long _0CD1-.-4
-    .long _0CE4-.-4
-    .long _0CF7-.-4
-    .long _0D5C-.-4
-    .long _0D8D-.-4
-    .long _0DBE-.-4
-    .long _0FF0-.-4
-    .long _00F6-.-4
-    .long _05CC-.-4
-    .long _1003-.-4
-    .long _101A-.-4
-    .long _102F-.-4
-    .long _1046-.-4
-    .long _105D-.-4
-    .long _1074-.-4
-    .long _108B-.-4
-    .long _10A2-.-4
-    .long _10B9-.-4
-    .long _10E9-.-4
-    .long _1119-.-4
-    .long _1149-.-4
-    .long _1184-.-4
-    .long _0FB0-.-4
-    .long _1204-.-4
-    .long _123E-.-4
+    ScriptEntry _0082
+    ScriptEntry _0C18
+    ScriptEntry _0C2B
+    ScriptEntry _0C3E
+    ScriptEntry _0C51
+    ScriptEntry _0C64
+    ScriptEntry _0C77
+    ScriptEntry _0CD1
+    ScriptEntry _0CE4
+    ScriptEntry _0CF7
+    ScriptEntry _0D5C
+    ScriptEntry _0D8D
+    ScriptEntry _0DBE
+    ScriptEntry _0FF0
+    ScriptEntry _00F6
+    ScriptEntry _05CC
+    ScriptEntry _1003
+    ScriptEntry _101A
+    ScriptEntry _102F
+    ScriptEntry _1046
+    ScriptEntry _105D
+    ScriptEntry _1074
+    ScriptEntry _108B
+    ScriptEntry _10A2
+    ScriptEntry _10B9
+    ScriptEntry _10E9
+    ScriptEntry _1119
+    ScriptEntry _1149
+    ScriptEntry _1184
+    ScriptEntry _0FB0
+    ScriptEntry _1204
+    ScriptEntry _123E
     .short 0xFD13
 
 _0082:

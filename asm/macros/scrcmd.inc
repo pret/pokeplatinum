@@ -4636,3 +4636,7 @@
     CheckFlag \flagID
     CallIf 1, \offset
     .endm
+
+    .macro ScriptEntry name
+    .long \name-.-4
+    .endm
