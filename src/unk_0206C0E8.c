@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay006/struct_ov6_022426B8_decl.h"
@@ -15,7 +14,7 @@
 
 #include "unk_02005474.h"
 #include "heap.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "field_map_change.h"
 #include "unk_02055808.h"

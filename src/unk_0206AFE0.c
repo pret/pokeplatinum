@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "savedata.h"
 
 #include "struct_defs/struct_02049FA8.h"
@@ -10,7 +9,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0202B37C.h"
 #include "field_overworld_state.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 
@@ -26,7 +25,7 @@ static u8 sub_0206B4A4(VarsFlags * param0);
 
 static BOOL sub_0206AFE0 (VarsFlags * param0, u16 param1, u16 param2)
 {
-    u16 * v0 = sub_020508B8(param0, param1);
+    u16 * v0 = VarsFlags_GetVarAddress(param0, param1);
 
     if ((param1 < 0x4000) || (param1 > 0x8000)) {
         GF_ASSERT(FALSE);
@@ -43,7 +42,7 @@ static BOOL sub_0206AFE0 (VarsFlags * param0, u16 param1, u16 param2)
 
 static u16 sub_0206B010 (VarsFlags * param0, u16 param1)
 {
-    u16 * v0 = sub_020508B8(param0, param1);
+    u16 * v0 = VarsFlags_GetVarAddress(param0, param1);
 
     if (v0 == NULL) {
         return 0;

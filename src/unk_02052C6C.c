@@ -5,7 +5,6 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -41,7 +40,7 @@
 #include "field_overworld_state.h"
 #include "unk_0203D178.h"
 #include "unk_0203D1B8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_02052C6C.h"
 #include "unk_02054884.h"

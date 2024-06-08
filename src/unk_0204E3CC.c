@@ -5,7 +5,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 
 #include "field_script_context.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -15,7 +14,7 @@
 #include "unk_0202631C.h"
 #include "field_overworld_state.h"
 #include "unk_0204E3CC.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "player_avatar.h"
 #include "unk_0206A8DC.h"
 

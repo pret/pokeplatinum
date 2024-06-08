@@ -5,7 +5,6 @@
 
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 
 #include "field/field_system.h"
 
@@ -13,7 +12,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206A8DC.h"
 #include "overlay006/ov6_02246A30.h"
 

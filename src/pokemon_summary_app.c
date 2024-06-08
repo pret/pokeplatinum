@@ -43,7 +43,7 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "unk_020393C8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206A8DC.h"
 #include "pokemon.h"
 #include "move_table.h"

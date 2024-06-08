@@ -12,7 +12,7 @@
 #include "overlay006/battle_params.h"
 
 #include "unk_0202D7A8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206AFE0.h"
 #include "roaming_pokemon.h"
 #include "pokemon.h"

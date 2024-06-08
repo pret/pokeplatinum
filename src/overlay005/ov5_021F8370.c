@@ -13,7 +13,7 @@
 #include "unk_02027F50.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206A8DC.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021F8370.h"

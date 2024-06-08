@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02049FA8.h"
 
 #include "unk_0203A7D8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 
 typedef struct {
     u16 unk_00;

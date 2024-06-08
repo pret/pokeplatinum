@@ -6,7 +6,7 @@
 
 #include "field/field_system.h"
 
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_0206A8DC.h"
 #include "overlay005/ov5_021D37AC.h"

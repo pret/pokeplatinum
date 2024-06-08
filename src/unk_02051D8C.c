@@ -46,7 +46,7 @@
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "field_overworld_state.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_02051D8C.h"
 #include "unk_02054D00.h"
 #include "unk_020559DC.h"

@@ -205,7 +205,7 @@ pokeplatinum_c = files(
     'unk_0205003C.c',
     'unk_02050548.c',
     'unk_02050568.c',
-    'unk_020507CC.c',
+    'vars_flags.c',
     'unk_020508D4.c',
     'unk_02050A74.c',
     'unk_02051D8C.c',

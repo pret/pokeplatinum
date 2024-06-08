@@ -15,7 +15,6 @@
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
@@ -47,7 +46,7 @@
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "field_system.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_02054D00.h"
 #include "comm_player_manager.h"
 #include "player_avatar.h"

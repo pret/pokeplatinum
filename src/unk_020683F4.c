@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "strbuf.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021F0468_decl.h"
@@ -39,7 +38,7 @@
 #include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E880.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "field_map_change.h"
 #include "unk_02054D00.h"

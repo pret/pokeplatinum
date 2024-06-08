@@ -22,7 +22,7 @@
 #include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_020474B8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"

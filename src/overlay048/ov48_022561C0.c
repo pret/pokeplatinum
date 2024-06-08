@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02027854_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "overlay025/poketch_system.h"
 #include "overlay048/struct_ov48_0225650C_decl.h"
 
@@ -17,7 +16,7 @@
 #include "heap.h"
 #include "savedata_misc.h"
 #include "unk_02027B70.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206AFE0.h"
 #include "overlay048/ov48_0225650C.h"
 

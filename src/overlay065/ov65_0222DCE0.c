@@ -96,7 +96,7 @@
 #include "unk_020366A0.h"
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"

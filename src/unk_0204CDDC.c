@@ -7,7 +7,7 @@
 
 #include "unk_0201D15C.h"
 #include "unk_0204CDDC.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206AFE0.h"
 
 #include "constants/species.h"

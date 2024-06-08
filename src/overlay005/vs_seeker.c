@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -18,7 +17,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0203A378.h"
 #include "unk_0203E880.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "player_avatar.h"
 #include "map_object.h"

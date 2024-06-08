@@ -50,7 +50,7 @@
 #include "unk_0202D05C.h"
 #include "map_header.h"
 #include "unk_0203D1B8.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_020573FC.h"
 #include "unk_0205D8CC.h"

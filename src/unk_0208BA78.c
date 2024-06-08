@@ -5,7 +5,7 @@
 #include "inlines.h"
 
 #include "journal.h"
-#include "struct_decls/struct_020507E4_decl.h"
+#include "vars_flags.h"
 #include "savedata.h"
 
 #include "constdata/const_020EA358.h"
@@ -25,7 +25,7 @@
 #include "journal.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_02051D8C.h"
 #include "unk_020553DC.h"
 #include "unk_0207D3B8.h"

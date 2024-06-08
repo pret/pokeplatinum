@@ -15,7 +15,7 @@
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "field_system.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
 #include "unk_0206A8DC.h"

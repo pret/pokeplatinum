@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
+#include "vars_flags.h"
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"

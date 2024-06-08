@@ -6,7 +6,6 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
-#include "struct_decls/struct_020507E4_decl.h"
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02057B48.h"
@@ -24,7 +23,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "comm_player_manager.h"
 #include "player_avatar.h"
 #include "map_object_move.h"

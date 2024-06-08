@@ -12,7 +12,7 @@
 #include "rtc.h"
 #include "map_header.h"
 #include "field_overworld_state.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_020553DC.h"
 #include "player_avatar.h"
 #include "pokeradar.h"

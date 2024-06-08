@@ -1,10 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020507E4_decl.h"
-
 #include "rtc.h"
-#include "unk_020507CC.h"
+#include "vars_flags.h"
 #include "unk_0206A8DC.h"
 
 static void sub_0206A8DC(VarsFlags * param0, u16 param1);
@@ -14,19 +12,19 @@ static BOOL sub_0206A8F4(VarsFlags * param0, int param1, u32 param2);
 
 static void sub_0206A8DC (VarsFlags * param0, u16 param1)
 {
-    sub_0205081C(param0, param1);
+    VarsFlags_SetFlag(param0, param1);
     return;
 }
 
 static void sub_0206A8E4 (VarsFlags * param0, u16 param1)
 {
-    sub_02050844(param0, param1);
+    VarsFlags_ClearFlag(param0, param1);
     return;
 }
 
 static BOOL sub_0206A8EC (VarsFlags * param0, u16 param1)
 {
-    return VarsFlags_IsFlagOn(param0, param1);
+    return VarsFlags_CheckFlag(param0, param1);
 }
 
 static BOOL sub_0206A8F4 (VarsFlags * param0, int param1, u32 param2)

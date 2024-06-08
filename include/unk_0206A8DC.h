@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0206A8DC_H
 #define POKEPLATINUM_UNK_0206A8DC_H
 
-#include "struct_decls/struct_020507E4_decl.h"
+#include "vars_flags.h"
 
 void sub_0206A92C(VarsFlags * param0);
 BOOL sub_0206A938(VarsFlags * param0);
