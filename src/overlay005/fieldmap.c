@@ -20,7 +20,6 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_020556C4.h"
-#include "struct_defs/struct_020619DC.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
@@ -48,7 +47,7 @@
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
@@ -427,13 +426,13 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
     {
         fieldSystem->location->mapId = v0;
 
-        FieldSystem_LoadMapData(fieldSystem, v0);
+        MapHeaderData_Load(fieldSystem, v0);
         FieldMapChange_UpdateGameData(fieldSystem, 1);
     }
 
     {
-        int v5 = FieldSystem_GetNPCCount(fieldSystem);
-        const ObjectEvent * v6 = sub_0203A4BC(fieldSystem);
+        int v5 = MapHeaderData_GetNumObjectEvents(fieldSystem);
+        const ObjectEvent * v6 = MapHeaderData_GetObjectEvents(fieldSystem);
 
         sub_0206184C(fieldSystem->mapObjMan, v1, v0, v5, v6);
     }
@@ -480,13 +479,13 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
     {
         fieldSystem->location->mapId = param1;
 
-        FieldSystem_LoadMapData(fieldSystem, param1);
+        MapHeaderData_Load(fieldSystem, param1);
         FieldMapChange_UpdateGameDataDistortionWorld(fieldSystem, 1);
     }
 
     {
-        int v2 = FieldSystem_GetNPCCount(fieldSystem);
-        const ObjectEvent * v3 = sub_0203A4BC(fieldSystem);
+        int v2 = MapHeaderData_GetNumObjectEvents(fieldSystem);
+        const ObjectEvent * v3 = MapHeaderData_GetObjectEvents(fieldSystem);
 
         sub_0206184C(fieldSystem->mapObjMan, v0, param1, v2, v3);
     }

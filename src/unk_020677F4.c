@@ -11,6 +11,7 @@
 
 #include "unk_02020AEC.h"
 #include "unk_02055C50.h"
+#include "map_header_data.h"
 #include "map_object.h"
 #include "unk_020677F4.h"
 #include "overlay005/ov5_021ECC20.h"

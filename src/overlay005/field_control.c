@@ -11,7 +11,6 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "struct_defs/struct_0203A55C.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
@@ -27,7 +26,7 @@
 #include "communication_system.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_overworld_state.h"
 #include "field_menu.h"
 #include "unk_0203C954.h"
@@ -282,7 +281,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(fieldSystem->playerAvatar);
 
         if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
-            int event = sub_0203CA6C(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+            int event = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
             if (event != 0xffff) {
                 sub_0203E880(fieldSystem, event, NULL);
@@ -349,7 +348,7 @@ static BOOL Field_CheckSign (FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    int event = sub_0203CB80(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+    int event = sub_0203CB80(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
     
     if (event != 0xffff) {
         sub_0203E880(fieldSystem, event, NULL);
@@ -511,7 +510,7 @@ int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldS
             return TRUE;
         }
 
-        int v2 = sub_0203CA6C(fieldSystem, sub_0203A440(fieldSystem), sub_0203A448(fieldSystem));
+        int v2 = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
         
         if (v2 != 0xffff) {
             sub_0203E880(fieldSystem, v2, NULL);
@@ -769,7 +768,7 @@ static BOOL Field_ProcessStep (FieldSystem *fieldSystem)
 
 static BOOL Field_CheckCoordEvent (FieldSystem *fieldSystem)
 {
-    u16 event = sub_0203CC14(fieldSystem, sub_0203A4AC(fieldSystem), sub_0203A4A4(fieldSystem));
+    u16 event = sub_0203CC14(fieldSystem, MapHeaderData_GetCoordEvents(fieldSystem), MapHeaderData_GetNumCoordEvents(fieldSystem));
     
     if (event != 0xffff) {
         sub_0203E880(fieldSystem, event, NULL);
@@ -1000,13 +999,13 @@ static BOOL Field_MapConnection (const FieldSystem *fieldSystem, int playerX, in
     const WarpEvent *v0;
     int v1;
 
-    v1 = sub_0203A468(fieldSystem, playerX, playerZ);
+    v1 = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, playerX, playerZ);
 
     if (v1 == -1) {
         return FALSE;
     }
 
-    v0 = sub_0203A450(fieldSystem, v1);
+    v0 = MapHeaderData_GetWarpEventByIndex(fieldSystem, v1);
 
     if (v0 == NULL) {
         return FALSE;

@@ -11,7 +11,6 @@
 #include "savedata.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_020619DC.h"
 #include "overlay023/struct_ov23_02250CD4.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -32,7 +31,7 @@
 #include "unk_0202854C.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_system.h"
 #include "unk_020573FC.h"
 #include "comm_player_manager.h"
@@ -946,8 +945,8 @@ void ov23_022534A0 (FieldSystem * fieldSystem)
         const ObjectEvent * v10;
         MapObject * v11;
 
-        v8 = FieldSystem_GetNPCCount(v4->fieldSystem);
-        v10 = sub_0203A4BC(v4->fieldSystem);
+        v8 = MapHeaderData_GetNumObjectEvents(v4->fieldSystem);
+        v10 = MapHeaderData_GetObjectEvents(v4->fieldSystem);
 
         for (v9 = 0; v9 < v8; v9++) {
             if ((v10[v9].x == v1) && (v10[v9].z == v2)) {

@@ -3,7 +3,7 @@
 
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0203A594.h"
+#include "map_header_data.h"
 
 void sub_0203C9D4(FieldSystem * fieldSystem, MapObject ** param1);
 u8 sub_0203CA40(FieldSystem * fieldSystem, MapObject ** param1);

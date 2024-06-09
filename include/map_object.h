@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_UNK_02061804_H
 #define POKEPLATINUM_UNK_02061804_H
 
+#include "map_header_data.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sys_task.h"
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
-#include "struct_decls/struct_020619DC_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02061D3C.h"
 #include "functypes/funcptr_020EDF0C.h"

@@ -102,7 +102,7 @@
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_020393C8.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
@@ -3309,7 +3309,7 @@ static BOOL ScrCmd_064 (ScriptContext * ctx)
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    mapObj = sub_02061A74(fieldSystem->mapObjMan, v2, FieldSystem_GetNPCCount(fieldSystem), fieldSystem->location->mapId, sub_0203A4BC(fieldSystem));
+    mapObj = sub_02061A74(fieldSystem->mapObjMan, v2, MapHeaderData_GetNumObjectEvents(fieldSystem), fieldSystem->location->mapId, MapHeaderData_GetObjectEvents(fieldSystem));
 
     if (mapObj == NULL) {
         GF_ASSERT(FALSE);
@@ -5686,7 +5686,7 @@ static BOOL ScrCmd_186 (ScriptContext * ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    sub_0203A4C4(ctx->fieldSystem, v0, v1, v2);
+    MapHeaderData_SetObjectEventPos(ctx->fieldSystem, v0, v1, v2);
     return 0;
 }
 
@@ -5712,7 +5712,7 @@ static BOOL ScrCmd_188 (ScriptContext * ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0203A52C(ctx->fieldSystem, v0, v1);
+    MapHeaderData_SetObjectEventMovementType(ctx->fieldSystem, v0, v1);
     return 0;
 }
 
@@ -5721,7 +5721,7 @@ static BOOL ScrCmd_189 (ScriptContext * ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0203A4FC(ctx->fieldSystem, v0, v1);
+    MapHeaderData_SetObjectEventDir(ctx->fieldSystem, v0, v1);
     return 0;
 }
 
@@ -5731,7 +5731,7 @@ static BOOL ScrCmd_18A (ScriptContext * ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    sub_0203A55C(ctx->fieldSystem, v0, v1, v2);
+    MapHeaderData_SetWarpEventPos(ctx->fieldSystem, v0, v1, v2);
     return 0;
 }
 
@@ -5741,7 +5741,7 @@ static BOOL ScrCmd_18B (ScriptContext * ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    sub_0203A594(ctx->fieldSystem, v0, v1, v2);
+    MapHeaderData_SetBgEventPos(ctx->fieldSystem, v0, v1, v2);
     return 0;
 }
 
@@ -7409,7 +7409,7 @@ static BOOL ScrCmd_285 (ScriptContext * ctx)
             continue;
         }
 
-        sub_0203A574(ctx->fieldSystem, v1, v2);
+        MapHeaderData_SetWarpEventDestHeaderID(ctx->fieldSystem, v1, v2);
     }
 
     return 0;

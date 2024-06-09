@@ -15,6 +15,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201CCF0.h"
+#include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "unk_020655F4.h"

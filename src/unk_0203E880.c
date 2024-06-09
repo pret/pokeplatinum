@@ -14,7 +14,6 @@
 #include "constdata/const_020EAC58.h"
 #include "constdata/const_020EAB80.h"
 
-#include "struct_defs/struct_0203A594.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0203F478.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -27,7 +26,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "map_header.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_menu.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
@@ -828,7 +827,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     int v8, v9, v10, v11;
 
     v6 = 0;
-    v5 = sub_0203A448(fieldSystem);
+    v5 = MapHeaderData_GetNumBgEvents(fieldSystem);
     v5++;
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
 
@@ -839,7 +838,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
         return v0;
     }
 
-    v1 = sub_0203A440(fieldSystem);
+    v1 = MapHeaderData_GetBgEvents(fieldSystem);
 
     if (v1 == NULL) {
         v0[0].unk_04 = 0xff;
@@ -905,7 +904,7 @@ BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
     u16 v0;
     const u8 * v1;
 
-    v1 = sub_0203A68C(fieldSystem);
+    v1 = MapHeaderData_GetScripts(fieldSystem);
 
     if (v1 == NULL) {
         return 0;

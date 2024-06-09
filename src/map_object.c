@@ -10,7 +10,6 @@
 #include "constdata/const_020EE3A8.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_020619DC.h"
 #include "struct_defs/struct_02061D3C.h"
 #include "functypes/funcptr_020EDF0C.h"
 #include "struct_defs/struct_020EDF0C.h"
@@ -28,6 +27,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0203E880.h"
+#include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "unk_020655F4.h"

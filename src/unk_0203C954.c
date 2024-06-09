@@ -4,8 +4,6 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "struct_defs/struct_0203A4AC.h"
-#include "struct_defs/struct_0203A594.h"
 #include "field/field_system.h"
 
 #include "unk_0203C954.h"
@@ -13,6 +11,7 @@
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"
+#include "map_header_data.h"
 #include "map_object.h"
 
 static u8 sub_0203CB18(FieldSystem * fieldSystem, const BgEvent * param1);

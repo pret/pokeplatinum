@@ -16,7 +16,6 @@
 #include "field/field_system.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
-#include "struct_defs/struct_020619DC.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -27,7 +26,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_system.h"
 #include "unk_02054D00.h"
 #include "comm_player_manager.h"
@@ -634,8 +633,8 @@ BOOL CommPlayer_CheckNPCCollision (int x, int z)
     int npcCnt, i;
     const ObjectEvent * npcList;
 
-    npcCnt = FieldSystem_GetNPCCount(sCommPlayerManager->fieldSystem);
-    npcList = sub_0203A4BC(sCommPlayerManager->fieldSystem);
+    npcCnt = MapHeaderData_GetNumObjectEvents(sCommPlayerManager->fieldSystem);
+    npcList = MapHeaderData_GetObjectEvents(sCommPlayerManager->fieldSystem);
 
     for (i = 0; i < npcCnt; i++) {
         if ((npcList[i].x == x) && (npcList[i].z == z)) {

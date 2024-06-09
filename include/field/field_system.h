@@ -6,7 +6,6 @@
 #include "struct_defs/struct_0202610C.h"
 #include "journal.h"
 #include "struct_decls/struct_02039E30_decl.h"
-#include "struct_decls/struct_0203A3E8_decl.h"
 #include "field/field_system_sub1_decl.h"
 #include "field/field_system_sub2_decl.h"
 #include "field/field_system_sub3.h"
@@ -43,6 +42,7 @@
 #include "overlay023/struct_ov23_0224942C_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
+#include "map_header_data.h"
 
 typedef struct FieldSystem_t {
     FieldSystem_sub1 * unk_00;
@@ -50,7 +50,7 @@ typedef struct FieldSystem_t {
     BGL * unk_08;
     SaveData * saveData;
     TaskManager * unk_10;
-    UnkStruct_0203A3E8 * unk_14;
+    MapHeaderData * mapHeaderData;
     int unk_18;
     Location * location;
     int unk_20;

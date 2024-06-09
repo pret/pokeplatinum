@@ -3,7 +3,7 @@
 
 #include "overlay006/struct_ov6_02242634.h"
 
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "overlay006/ov6_02243218.h"
 
 static const u32 Unk_ov6_02249090[22] = {
@@ -42,7 +42,7 @@ void ov6_0224322C (const u32 param0, u16 * param1, u16 * param2)
     u32 v1;
 
     v1 = Unk_ov6_02249090[(param0 % 22)];
-    sub_0203A614(&v0, v1);
+    MapHeaderData_LoadWildEncounters(&v0, v1);
 
     (*param2) = v0.unk_40[0];
     (*param1) = v1;

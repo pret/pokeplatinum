@@ -41,7 +41,7 @@
 #include "trainer_info.h"
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_system.h"
 #include "unk_0203E880.h"
 #include "vars_flags.h"
@@ -3955,9 +3955,9 @@ void ov8_0224C198 (FieldSystem * fieldSystem)
 
             while (v12->unk_00 != 8) {
                 if (v12->unk_00 != v1->unk_02) {
-                    v11 = sub_0203A468(fieldSystem, v12->unk_04, v12->unk_06);
-                    sub_0203A574(fieldSystem, v11, 88);
-                    sub_0203A584(fieldSystem, v11, 1);
+                    v11 = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, v12->unk_04, v12->unk_06);
+                    MapHeaderData_SetWarpEventDestHeaderID(fieldSystem, v11, 88);
+                    MapHeaderData_SetWarpEventDestWarpID(fieldSystem, v11, 1);
                 }
 
                 v12++;
