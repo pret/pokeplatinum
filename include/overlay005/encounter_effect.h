@@ -127,9 +127,9 @@ void ov5_021DDDBC(UnkStruct_ov5_021DDDBC *param0, fx32 param1, fx32 param2, int 
 BOOL ov5_021DDDCC(UnkStruct_ov5_021DDDBC *param0);
 void ov5_021DDE14(UnkStruct_ov5_021DDE14 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
 BOOL ov5_021DDE74(UnkStruct_ov5_021DDE14 *param0);
-void BrightnessFadeTask_ApplyBrightnessToScreen(int param0, int param1);
+void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness);
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync);
-BOOL ov5_021DDF08(BrightnessFadeTask *param0);
+BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task);
 UnkStruct_ov5_021DDF74 *ov5_021DDF38(void);
 void ov5_021DDF74(UnkStruct_ov5_021DDF74 *param0);
 void ov5_021DDF9C(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6);

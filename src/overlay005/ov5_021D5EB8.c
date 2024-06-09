@@ -5426,8 +5426,8 @@ static void ov5_021DB614 (UnkStruct_ov5_021DB614 * param0, UnkStruct_ov5_021EF3B
     }
 
     param0->unk_14 = param1;
-    sub_0200DA3C(ov5_021DB7F8, param0, 120);
-    param0->unk_24 = sub_0200DA3C(ov5_021DB78C, param0, 1024);
+    CoreSys_ExecuteDuringVBlank(ov5_021DB7F8, param0, 120);
+    param0->unk_24 = CoreSys_ExecuteDuringVBlank(ov5_021DB78C, param0, 1024);
     param0->unk_28 = 0;
 }
 
@@ -5514,7 +5514,7 @@ static void ov5_021DB78C (SysTask * param0, void * param1)
 
 static void ov5_021DB7A4 (UnkStruct_ov5_021DB614 * param0)
 {
-    sub_0200DA3C(ov5_021DB7B8, param0, 128);
+    CoreSys_ExecuteDuringVBlank(ov5_021DB7B8, param0, 128);
 }
 
 static void ov5_021DB7B8 (SysTask * param0, void * param1)

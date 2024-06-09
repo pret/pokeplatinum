@@ -1907,7 +1907,7 @@ static void ov5_021EE320 (UnkStruct_ov5_021ED0A4 * param0, int param1, int param
     v5->unk_18 = SysTask_Start(ov5_021EE030, param0, v0 + 1);
     v5->unk_1C = SysTask_Start(ov5_021EE2C4, param0, v0 + 2);
     v5->unk_20 = sub_0200DA04(ov5_021EE1AC, param0, 0xff);
-    v5->unk_24 = sub_0200DA3C(ov5_021EE1E8, param0, 0xff);
+    v5->unk_24 = CoreSys_ExecuteDuringVBlank(ov5_021EE1E8, param0, 0xff);
 }
 
 static void ov5_021EE3C4 (UnkStruct_ov5_021ED0A4 * param0)
@@ -2056,7 +2056,7 @@ static UnkStruct_020216E0 * ov5_021EE454 (MapObject * param0, int param1, UnkFun
 
     {
         int v16 = sub_02062858(v8->unk_104);
-        SysTask * v17 = sub_0200DA3C(ov5_021EE698, v11, 0xff);
+        SysTask * v17 = CoreSys_ExecuteDuringVBlank(ov5_021EE698, v11, 0xff);
 
         GF_ASSERT(v17 != NULL);
         ov5_021EE698(v17, v11);

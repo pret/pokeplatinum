@@ -696,7 +696,7 @@ static void ov5_021DFA88 (UnkStruct_ov5_021DF47C * param0, u32 param1, UnkStruct
     v0->unk_08 = param2;
 
     sub_0200DA04(ov5_021DFAC0, v0, 0xff);
-    sub_0200DA3C(ov5_021DFADC, v0, 0xff);
+    CoreSys_ExecuteDuringVBlank(ov5_021DFADC, v0, 0xff);
 }
 
 static void ov5_021DFAC0 (SysTask * param0, void * param1)

@@ -1679,7 +1679,7 @@ static UnkStruct_ov114_0225D678 * ov114_0225D48C (const UnkStruct_ov114_0225C76C
     }
 
     v0->unk_650 = SysTask_Start(ov114_0225D688, v0, 0);
-    v0->unk_654 = sub_0200DA3C(ov114_0225DA0C, v0, 0);
+    v0->unk_654 = CoreSys_ExecuteDuringVBlank(ov114_0225DA0C, v0, 0);
 
     if (v0->unk_08.unk_0A) {
         ov4_021D1E74(param2);
@@ -2550,7 +2550,7 @@ static UnkStruct_ov114_0225E854 * ov114_0225E5A8 (const UnkStruct_ov114_0225C76C
         break;
     }
 
-    v0->unk_6AC = sub_0200DA3C(ov114_0225F124, v0, 0);
+    v0->unk_6AC = CoreSys_ExecuteDuringVBlank(ov114_0225F124, v0, 0);
 
     if (v0->unk_0C.unk_0A) {
         ov4_021D1E74(param3);
@@ -3787,7 +3787,7 @@ static void ov114_0225FC6C (UnkStruct_ov114_0225FAB8 * param0)
     }
 
     if (param0->unk_18C == NULL) {
-        param0->unk_18C = sub_0200DA3C(ov114_0225FCCC, param0, 0);
+        param0->unk_18C = CoreSys_ExecuteDuringVBlank(ov114_0225FCCC, param0, 0);
     }
 }
 

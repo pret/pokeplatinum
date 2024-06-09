@@ -415,12 +415,12 @@ static void ov6_0223E1D0 (BGL * param0)
 
 static void ov6_0223E234 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E25C, param0, 1024);
+    CoreSys_ExecuteDuringVBlank(ov6_0223E25C, param0, 1024);
 }
 
 static void ov6_0223E248 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E280, param0, 1024);
+    CoreSys_ExecuteDuringVBlank(ov6_0223E280, param0, 1024);
 }
 
 static void ov6_0223E25C (SysTask * param0, void * param1)
@@ -485,7 +485,7 @@ static UnkStruct_ov5_021E20E8 * ov6_0223E2BC (int param0, int param1)
 
 static void ov6_0223E2E8 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E2FC, param0, 1024);
+    CoreSys_ExecuteDuringVBlank(ov6_0223E2FC, param0, 1024);
 }
 
 static void ov6_0223E2FC (SysTask * param0, void * param1)
@@ -2009,7 +2009,7 @@ void ov6_02240000 (UnkStruct_ov6_02240000 * param0, u32 param1, u32 param2, u32 
 
     GX_SetMasterBrightness(param0->unk_00.unk_00);
 
-    param0->unk_20 = sub_0200DA3C(ov6_02240064, param0, 1024);
+    param0->unk_20 = CoreSys_ExecuteDuringVBlank(ov6_02240064, param0, 1024);
     Sound_PlayEffect(1748);
 }
 

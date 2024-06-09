@@ -872,7 +872,7 @@ static void ov12_02226490 (UnkStruct_ov12_02226490 * param0, void * param1, UnkF
     param0->unk_18 = param1;
     param0->unk_10 = param2;
     param0->unk_14 = param3;
-    param0->unk_04 = sub_0200DA3C(ov12_02226458, param0, 0);
+    param0->unk_04 = CoreSys_ExecuteDuringVBlank(ov12_02226458, param0, 0);
     param0->unk_00 = sub_0200DA04(ov12_02226474, param0, 0);
 }
 

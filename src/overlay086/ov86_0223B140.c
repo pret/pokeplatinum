@@ -925,7 +925,7 @@ static void ov86_0223BDC4 (UnkStruct_ov86_0223BDAC * param0, void * param1, SysT
 
 static void ov86_0223BDCC (UnkStruct_ov86_0223BDAC * param0)
 {
-    sub_0200DA3C(ov86_0223BDAC, param0, 0);
+    CoreSys_ExecuteDuringVBlank(ov86_0223BDAC, param0, 0);
 }
 
 static void ov86_0223BDE0 (UnkStruct_ov86_0223B3C8 * param0, int param1, int param2)

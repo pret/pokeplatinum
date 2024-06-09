@@ -537,7 +537,7 @@ void DeleteWaitDial (void * param0)
 {
     UnkStruct_0200E924 * v0 = param0;
 
-    sub_0200DA3C(sub_0200EB8C, v0, 0);
+    CoreSys_ExecuteDuringVBlank(sub_0200EB8C, v0, 0);
     v0->unk_488_0 = 1;
 }
 
@@ -545,7 +545,7 @@ void sub_0200EBC8 (void * param0)
 {
     UnkStruct_0200E924 * v0 = param0;
 
-    sub_0200DA3C(sub_0200EB8C, v0, 0);
+    CoreSys_ExecuteDuringVBlank(sub_0200EB8C, v0, 0);
     v0->unk_488_0 = 2;
 }
 

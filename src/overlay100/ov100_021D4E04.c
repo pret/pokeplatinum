@@ -112,7 +112,7 @@ UnkStruct_ov100_021D4F9C * ov100_021D4EBC (UnkStruct_ov100_021D4EBC * param0)
     v1->unk_00 = GX_GetBankForLCDC();
 
     ov100_021D503C(&v1->unk_04);
-    sub_0200DA3C(ov100_021D4FDC, v1, 0);
+    CoreSys_ExecuteDuringVBlank(ov100_021D4FDC, v1, 0);
 
     return v1;
 }

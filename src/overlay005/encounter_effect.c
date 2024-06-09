@@ -69,7 +69,7 @@ enum ScreenFlashState {
 typedef struct ScreenFlash {
     enum ScreenFlashState state;
     u32 numFlashes;
-    int unk_08;
+    int flashCounter;
     enum Screen screen;
     u32 screenFlashColor;
     u32 otherScreenFlashColor;
@@ -92,7 +92,7 @@ typedef struct UnkStruct_ov5_02202120 {
 
 static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5);
 static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3);
-static void ov5_021DDF24(SysTask *param0, void *param1);
+static void BrightnessFadeTask_SetBrightness(SysTask *param0, void *param1);
 static void EncounterEffect_ExecuteFlash(SysTask *task, void *param);
 static void ov5_021DE028(SysTask *param0, void *param1);
 static void ov5_021DE088(SysTask *param0, void *param1);
@@ -239,7 +239,7 @@ static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
         screenFlash->state++;
         break;
     case SCREENFLASH_STATE_WAIT_FOR_TARGET_SCREEN_FADE:
-        if (ov5_021DDF08(&screenFlash->screenFadeTask)) {
+        if (BrightnessFadeTask_Update(&screenFlash->screenFadeTask)) {
             screenFlash->state++;
         }
         break;
@@ -248,10 +248,10 @@ static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
         screenFlash->state++;
         break;
     case SCREENFLASH_STATE_WAIT_FOR_TARGET_SCREEN_FADE_RESET:
-        if (ov5_021DDF08(&screenFlash->screenFadeTask)) {
-            screenFlash->unk_08++;
+        if (BrightnessFadeTask_Update(&screenFlash->screenFadeTask)) {
+            screenFlash->flashCounter++;
 
-            if (screenFlash->unk_08 == screenFlash->numFlashes) {
+            if (screenFlash->flashCounter == screenFlash->numFlashes) {
                 screenFlash->state = SCREENFLASH_STATE_FINISH;
             } else {
                 screenFlash->state = SCREENFLASH_STATE_TARGET_INIT_SCREEN_FADE;
@@ -259,11 +259,11 @@ static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
         }
         break;
     case SCREENFLASH_STATE_FINISH:
-        screenFlash->state = 0;
-        screenFlash->unk_08 = 0;
+        screenFlash->state = SCREENFLASH_STATE_INIT_OTHER_SCREEN_FADE;
+        screenFlash->flashCounter = 0;
 
         if (screenFlash->done != NULL) {
-            *(screenFlash->done) = 1;
+            *(screenFlash->done) = TRUE;
         }
 
         SysTask_Done(task);
@@ -272,7 +272,7 @@ static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
         return;
     }
 
-    ov5_021DDF08(&screenFlash->otherScreenFadeTask);
+    BrightnessFadeTask_Update(&screenFlash->otherScreenFadeTask);
 }
 
 BOOL ov5_021DDD7C(EncounterEffect *param0)
@@ -291,20 +291,18 @@ void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start
 
 BOOL LinearInterpolationTaskS32_Update(LinearInterpolationTaskS32 *task)
 {
-    int v0;
+    int interpolated = task->delta *task->currentStep;
+    interpolated = interpolated / task->numSteps;
 
-    v0 = task->delta *task->currentStep;
-    v0 = v0 / task->numSteps;
+    task->currentValue = interpolated + task->startValue;
 
-    task->currentValue = v0 + task->startValue;
-
-    if ((task->currentStep + 1) <= task->numSteps) {
+    if (task->currentStep + 1 <= task->numSteps) {
         task->currentStep++;
-        return 0;
+        return FALSE;
     }
 
     task->currentStep = task->numSteps;
-    return 1;
+    return TRUE;
 }
 
 void ov5_021DDDBC(UnkStruct_ov5_021DDDBC *param0, fx32 param1, fx32 param2, int param3)
@@ -392,25 +390,23 @@ void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness)
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync)
 {
     task->screen = screen;
-    LinearInterpolationTaskS32_Init(&task->unk_00, startValue, endValue, sync);
+    LinearInterpolationTaskS32_Init(&task->interpolationTask, startValue, endValue, sync);
 }
 
-BOOL ov5_021DDF08(BrightnessFadeTask *param0)
+BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task)
 {
-    BOOL v0;
+    BOOL finished = LinearInterpolationTaskS32_Update(&task->interpolationTask);
+    CoreSys_ExecuteDuringVBlank(BrightnessFadeTask_SetBrightness, task, 10);
 
-    v0 = LinearInterpolationTaskS32_Update(&param0->unk_00);
-    sub_0200DA3C(ov5_021DDF24, param0, 10);
-
-    return v0;
+    return finished;
 }
 
-static void ov5_021DDF24(SysTask *param0, void *param1)
+static void BrightnessFadeTask_SetBrightness(SysTask *task, void *param)
 {
-    BrightnessFadeTask *v0 = param1;
+    BrightnessFadeTask *brightnessTask = param;
 
-    BrightnessFadeTask_ApplyBrightnessToScreen(v0->screen, v0->unk_00.currentValue);
-    SysTask_Done(param0);
+    BrightnessFadeTask_ApplyBrightnessToScreen(brightnessTask->screen, brightnessTask->interpolationTask.currentValue);
+    SysTask_Done(task);
 }
 
 UnkStruct_ov5_021DDF74 *ov5_021DDF38(void)
@@ -456,14 +452,14 @@ void ov5_021DDF9C(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 pa
         G2_SetWnd1Position(0, 0, 1 - param4, 192);
     }
 
-    sub_0200DA3C(ov5_021DE028, param1, 1024);
+    CoreSys_ExecuteDuringVBlank(ov5_021DE028, param1, 1024);
 }
 
 static void ov5_021DE028(SysTask *param0, void *param1)
 {
     UnkStruct_ov5_021DDF74 *v0 = param1;
 
-    v0->unk_28 = sub_0200DA3C(ov5_021DE088, v0, 1024);
+    v0->unk_28 = CoreSys_ExecuteDuringVBlank(ov5_021DE088, v0, 1024);
     v0->unk_24 = ov5_021EF418(v0->unk_20, ov5_021DE14C, v0);
 
     SysTask_Done(param0);
@@ -589,14 +585,14 @@ void ov5_021DE240(EncounterEffect *param0, UnkStruct_ov5_021DE374 *param1, u32 p
     G2_SetWnd0Position(0, 0, 255, 192);
     G2_SetWnd1Position(0, 0, 255, 192);
 
-    sub_0200DA3C(ov5_021DE2AC, param1, 1024);
+    CoreSys_ExecuteDuringVBlank(ov5_021DE2AC, param1, 1024);
 }
 
 static void ov5_021DE2AC(SysTask *param0, void *param1)
 {
     UnkStruct_ov5_021DE374 *v0 = param1;
 
-    v0->unk_40 = sub_0200DA3C(ov5_021DE2DC, v0, 1024);
+    v0->unk_40 = CoreSys_ExecuteDuringVBlank(ov5_021DE2DC, v0, 1024);
     v0->unk_3C = ov5_021EF418(v0->unk_38, ov5_021DE344, v0);
 
     SysTask_Done(param0);
@@ -1264,7 +1260,7 @@ void ov5_021DED20(EncounterEffect *param0, UnkStruct_ov5_021DED04 *param1, u32 p
     G2_SetWnd0Position(0, 0, 0, 192);
     GX_SetVisibleWnd(GX_WNDMASK_W0);
 
-    sub_0200DA3C(ov5_021DEDE8, param1, 1024);
+    CoreSys_ExecuteDuringVBlank(ov5_021DEDE8, param1, 1024);
 }
 
 static void ov5_021DEDE8(SysTask *param0, void *param1)
@@ -1272,7 +1268,7 @@ static void ov5_021DEDE8(SysTask *param0, void *param1)
     UnkStruct_ov5_021DED04 *v0 = param1;
 
     v0->unk_DC = ov5_021EF418(v0->unk_D8, ov5_021DEE50, v0);
-    v0->unk_E0 = sub_0200DA3C(ov5_021DEE24, v0, 1024);
+    v0->unk_E0 = CoreSys_ExecuteDuringVBlank(ov5_021DEE24, v0, 1024);
 
     SysTask_Done(param0);
 }
@@ -1391,7 +1387,7 @@ static void ov5_021DEF74(SysTask *param0, void *param1)
 
 void ov5_021DEF8C(int *param0)
 {
-    sub_0200DA3C(ov5_021DEF74, param0, 1024);
+    CoreSys_ExecuteDuringVBlank(ov5_021DEF74, param0, 1024);
 }
 
 void ov5_021DEFA0(FieldSystem *fieldSystem)
@@ -1413,7 +1409,7 @@ void ov5_021DEFA0(FieldSystem *fieldSystem)
     MI_CpuClearFast((void *)HW_LCDC_VRAM_C, HW_VRAM_C_SIZE);
     GX_SetCapture(GX_CAPTURE_SIZE_256x192, GX_CAPTURE_MODE_AB, GX_CAPTURE_SRCA_2D3D, GX_CAPTURE_SRCB_VRAM_0x00000, GX_CAPTURE_DEST_VRAM_C_0x00000, 4, 12);
 
-    sub_0200DA3C(ov5_021DF258, Unk_ov5_02202120, 1024);
+    CoreSys_ExecuteDuringVBlank(ov5_021DF258, Unk_ov5_02202120, 1024);
     SysTask_Start(ov5_021DF28C, Unk_ov5_02202120, 1024);
 }
 

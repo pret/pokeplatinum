@@ -306,7 +306,7 @@ UnkStruct_ov95_02247004 * ov95_02246F30 (BOOL * param0, int param1)
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
         G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
 
-        v0->unk_C0 = sub_0200DA3C(ov95_02247060, v0, 20);
+        v0->unk_C0 = CoreSys_ExecuteDuringVBlank(ov95_02247060, v0, 20);
 
         if (v0->unk_C0) {
             *(v0->unk_E4) = 1;

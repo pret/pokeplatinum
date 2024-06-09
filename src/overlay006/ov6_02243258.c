@@ -1620,7 +1620,7 @@ static void ov6_022446B8 (SysTask * param0, void * param1)
         }
 
         v1->unk_268++;
-        sub_0200DA3C(ov6_02244734, v1, 0x80);
+        CoreSys_ExecuteDuringVBlank(ov6_02244734, v1, 0x80);
 
         break;
     }
@@ -1667,7 +1667,7 @@ static void ov6_022447B4 (SysTask * param0, void * param1)
     switch (v0->unk_268) {
     case 0:
         sub_0200A3DC(v1);
-        sub_0200DA3C(ov6_022447EC, v0, 0x80);
+        CoreSys_ExecuteDuringVBlank(ov6_022447EC, v0, 0x80);
         v0->unk_268++;
         break;
     }

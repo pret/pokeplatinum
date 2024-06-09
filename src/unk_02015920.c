@@ -377,7 +377,7 @@ static void sub_02015DCC (u32 param0, u32 param1, BGL * param2, u32 param3, u32 
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(sub_02015E64, v0, 128);
+    CoreSys_ExecuteDuringVBlank(sub_02015E64, v0, 128);
 }
 
 static void sub_02015E1C (u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
@@ -392,7 +392,7 @@ static void sub_02015E1C (u32 param0, u32 param1, int param2, u32 param3, u32 pa
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(sub_02015EA0, v0, 128);
+    CoreSys_ExecuteDuringVBlank(sub_02015EA0, v0, 128);
 }
 
 static void sub_02015E64 (SysTask * param0, void * param1)

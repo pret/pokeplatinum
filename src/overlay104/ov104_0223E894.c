@@ -179,7 +179,7 @@ BOOL ov104_0223E9F8 (UnkStruct_ov104_0223E9EC * param0)
     BOOL v0;
 
     v0 = ov104_0223EA38(&param0->unk_00);
-    sub_0200DA3C(ov104_0223EA14, param0, 10);
+    CoreSys_ExecuteDuringVBlank(ov104_0223EA14, param0, 10);
 
     return v0;
 }
@@ -560,7 +560,7 @@ static void ov104_0223F110 (UnkStruct_ov104_0223F0D8 * param0, void * param1, Un
     param0->unk_18 = param1;
     param0->unk_10 = param2;
     param0->unk_14 = param3;
-    param0->unk_04 = sub_0200DA3C(ov104_0223F0D8, param0, 0);
+    param0->unk_04 = CoreSys_ExecuteDuringVBlank(ov104_0223F0D8, param0, 0);
     param0->unk_00 = sub_0200DA04(ov104_0223F0F4, param0, 0);
 }
 

@@ -241,7 +241,7 @@ static void ov22_02259B3C (u32 param0, u32 param1, BGL * param2, u32 param3, u32
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(ov22_02259BD4, v0, 128);
+    CoreSys_ExecuteDuringVBlank(ov22_02259BD4, v0, 128);
 }
 
 static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
@@ -256,7 +256,7 @@ static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 p
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(ov22_02259C10, v0, 128);
+    CoreSys_ExecuteDuringVBlank(ov22_02259C10, v0, 128);
 }
 
 static void ov22_02259BD4 (SysTask * param0, void * param1)

@@ -66,7 +66,7 @@ BOOL ov40_0225645C (UnkStruct_ov40_0225645C ** param0, const UnkStruct_ov40_0225
         v0->unk_04 = ov25_02254674();
         v0->unk_20 = ov25_02254664();
         v0->unk_88 = 0;
-        v0->unk_8C = sub_0200DA3C(ov40_022567E0, v0, 0);
+        v0->unk_8C = CoreSys_ExecuteDuringVBlank(ov40_022567E0, v0, 0);
 
         ov40_022564D4(v0, param1);
 

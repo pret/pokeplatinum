@@ -108,7 +108,7 @@ static UnkStruct_ov83_0223D584 * ov83_0223D584 (const CommCmdTable * param0, int
     v0->unk_190 = param0;
     v0->unk_194 = param1;
     v0->unk_198 = param2;
-    v0->unk_19C = sub_0200DA3C(ov83_0223D5CC, v0, 5000);
+    v0->unk_19C = CoreSys_ExecuteDuringVBlank(ov83_0223D5CC, v0, 5000);
 
     return v0;
 }

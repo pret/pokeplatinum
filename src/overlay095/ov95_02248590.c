@@ -230,7 +230,7 @@ void * ov95_02248590 (UnkStruct_ov95_02247628 * param0)
         v0->unk_D0 = 0;
         v0->unk_168 = 0;
 
-        sub_0200DA3C(ov95_02248E00, v0, 0);
+        CoreSys_ExecuteDuringVBlank(ov95_02248E00, v0, 0);
     }
 
     return v0;

@@ -216,7 +216,7 @@ void ov104_0223DC7C (int param0, BGL * param1, SpriteRenderer * param2, SpriteGf
 
     ov104_0223E5A8(v1, &Unk_ov104_0224191C[v1->unk_2C]);
 
-    v1->unk_34 = sub_0200DA3C(ov104_0223DD5C, v1, 1);
+    v1->unk_34 = CoreSys_ExecuteDuringVBlank(ov104_0223DD5C, v1, 1);
 }
 
 static void ov104_0223DD30 (UnkStruct_ov104_0223DD30 * param0, SysTask * param1)

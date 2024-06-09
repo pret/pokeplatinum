@@ -432,7 +432,7 @@ void sub_020144CC (UnkStruct_02014014 * param0, void * param1, int param2, int p
     if (param3 == 1) {
         sub_02014560(param0);
     } else {
-        sub_0200DA3C(sub_020145A0, param0, 5);
+        CoreSys_ExecuteDuringVBlank(sub_020145A0, param0, 5);
     }
 }
 
