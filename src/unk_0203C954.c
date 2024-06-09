@@ -206,17 +206,15 @@ u8 sub_0203CBE0 (FieldSystem * fieldSystem, MapObject ** param1)
 
 u16 sub_0203CC14 (FieldSystem * fieldSystem, void * param1, int param2)
 {
-    const UnkStruct_0203A4AC * v0;
-    int v1, v2;
     int v3;
 
-    v0 = (const UnkStruct_0203A4AC *)param1;
-    v1 = Player_GetXPos(fieldSystem->playerAvatar);
-    v2 = Player_GetZPos(fieldSystem->playerAvatar);
+    const CoordEvent * v0 = param1;
+    int v1 = Player_GetXPos(fieldSystem->playerAvatar);
+    int v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
     for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 >= v0[v3].unk_02) && (v1 < (v0[v3].unk_02 + v0[v3].unk_06)) && (v2 >= v0[v3].unk_04) && (v2 < (v0[v3].unk_04 + v0[v3].unk_08)) && (sub_0203F150(fieldSystem, v0[v3].unk_0E) == v0[v3].unk_0C)) {
-            return v0[v3].unk_00;
+        if ((v1 >= v0[v3].x) && (v1 < (v0[v3].x + v0[v3].width)) && (v2 >= v0[v3].z) && (v2 < (v0[v3].z + v0[v3].length)) && (sub_0203F150(fieldSystem, v0[v3].var) == v0[v3].value)) {
+            return v0[v3].script;
         }
     }
 

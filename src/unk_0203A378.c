@@ -24,7 +24,7 @@ struct UnkStruct_0203A3E8_t {
     const BgEvent * unk_10;
     const ObjectEvent * unk_14;
     const WarpEvent * unk_18;
-    const UnkStruct_0203A4AC * unk_1C;
+    const CoordEvent * unk_1C;
     u32 unk_20[512];
     u32 unk_820[64];
     UnkStruct_ov6_02242634 unk_920;
@@ -121,7 +121,7 @@ int sub_0203A4A4 (const FieldSystem * fieldSystem)
     return fieldSystem->unk_14->unk_0C;
 }
 
-const UnkStruct_0203A4AC * sub_0203A4AC (const FieldSystem * fieldSystem)
+const CoordEvent * sub_0203A4AC (const FieldSystem * fieldSystem)
 {
     return fieldSystem->unk_14->unk_1C;
 }
@@ -263,12 +263,12 @@ static void sub_0203A5B0 (UnkStruct_0203A3E8 * param0)
     v0 += sizeof(u32);
 
     if (param0->unk_0C != 0) {
-        param0->unk_1C = (const UnkStruct_0203A4AC *)v0;
+        param0->unk_1C = (const CoordEvent *)v0;
     } else {
         param0->unk_1C = NULL;
     }
 
-    v0 += sizeof(UnkStruct_0203A4AC) * param0->unk_0C;
+    v0 += sizeof(CoordEvent) * param0->unk_0C;
 }
 
 void sub_0203A614 (UnkStruct_ov6_02242634 * param0, int param1)

@@ -17,7 +17,7 @@ int sub_0203A448(const FieldSystem * fieldSystem);
 const WarpEvent * sub_0203A450(const FieldSystem * fieldSystem, int param1);
 int sub_0203A468(const FieldSystem * fieldSystem, int param1, int param2);
 int sub_0203A4A4(const FieldSystem * fieldSystem);
-const UnkStruct_0203A4AC * sub_0203A4AC(const FieldSystem * fieldSystem);
+const CoordEvent * sub_0203A4AC(const FieldSystem * fieldSystem);
 u32 FieldSystem_GetNPCCount(const FieldSystem * fieldSystem);
 const ObjectEvent * sub_0203A4BC(const FieldSystem * fieldSystem);
 BOOL sub_0203A4C4(FieldSystem * fieldSystem, int param1, u16 param2, u16 param3);
