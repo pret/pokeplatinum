@@ -82,8 +82,8 @@ typedef struct UnkStruct_ov5_021DEC18 {
 } UnkStruct_ov5_021DEC18;
 
 typedef struct UnkStruct_ov5_021DE374 {
-    UnkStruct_ov5_021DDE14 unk_00;
-    UnkStruct_ov5_021DDE14 unk_18;
+    QuadraticInterpolationTaskFX32 unk_00;
+    QuadraticInterpolationTaskFX32 unk_18;
     u32 unk_30;
     u32 unk_34;
     UnkStruct_ov5_021EF3BC *unk_38;
@@ -93,7 +93,7 @@ typedef struct UnkStruct_ov5_021DE374 {
 } UnkStruct_ov5_021DE374;
 
 typedef struct UnkStruct_ov5_021DDF74 {
-    UnkStruct_ov5_021DDE14 unk_00;
+    QuadraticInterpolationTaskFX32 unk_00;
     u32 unk_18;
     u32 unk_1C;
     UnkStruct_ov5_021EF3BC *unk_20;
@@ -123,10 +123,10 @@ void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherSc
 BOOL ov5_021DDD7C(EncounterEffect *param0);
 void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start, int end, int numSteps);
 BOOL LinearInterpolationTaskS32_Update(LinearInterpolationTaskS32 *task);
-void ov5_021DDDBC(UnkStruct_ov5_021DDDBC *param0, fx32 param1, fx32 param2, int param3);
-BOOL ov5_021DDDCC(UnkStruct_ov5_021DDDBC *param0);
-void ov5_021DDE14(UnkStruct_ov5_021DDE14 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
-BOOL ov5_021DDE74(UnkStruct_ov5_021DDE14 *param0);
+void LinearInterpolationTaskFX32_Init(LinearInterpolationTaskFX32 *task, fx32 startValue, fx32 endValue, int numSteps);
+BOOL LinearInterpolationTaskFX32_Update(LinearInterpolationTaskFX32 *task);
+void QuadraticInterpolationTaskFX32_Init(QuadraticInterpolationTaskFX32 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
+BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *param0);
 void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness);
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync);
 BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task);
@@ -144,7 +144,7 @@ void ov5_021DE4CC(NARC *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_02
 void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1);
 void ov5_021DE5D0(GraphicElementData *param0, u32 param1, u32 param2, u8 param3, u16 param4);
 GraphicElementData *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5);
-VecFx32 ov5_021DE660(fx32 param0, fx32 param1, fx32 param2);
+VecFx32 VecFx32_FromXYZ(fx32 param0, fx32 param1, fx32 param2);
 UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 param0);
 void ov5_021DE6BC(UnkStruct_ov5_021DE6BC *param0);
 void ov5_021DE6C4(UnkStruct_ov5_021DE6BC *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9);

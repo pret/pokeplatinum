@@ -48,13 +48,13 @@
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
-    UnkStruct_ov5_021DDE14 unk_04;
+    QuadraticInterpolationTaskFX32 unk_04;
     UnkStruct_ov5_021DDF74 * unk_1C;
 } UnkStruct_ov5_021E2338;
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
-    UnkStruct_ov5_021DDE14 unk_04;
+    QuadraticInterpolationTaskFX32 unk_04;
     UnkStruct_ov5_021DDF74 * unk_1C;
 } UnkStruct_ov5_021E24A8;
 
@@ -76,12 +76,12 @@ typedef struct {
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
-    UnkStruct_ov5_021DDE14 unk_04;
+    QuadraticInterpolationTaskFX32 unk_04;
 } UnkStruct_ov5_021E2944;
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
-    UnkStruct_ov5_021DDE14 unk_04;
+    QuadraticInterpolationTaskFX32 unk_04;
 } UnkStruct_ov5_021E2A4C;
 
 static SysTask * ov5_021E2878(UnkStruct_ov5_021E2878 * param0);
@@ -117,24 +117,24 @@ void ov5_021E2338 (SysTask * param0, void * param1)
             ov5_021DDF9C(v0, v1->unk_1C, 2, 6 + 1, 0, (-3 * FX32_ONE), (FX32_ONE * -12));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
-            ov5_021DDE14(&v1->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
         }
         break;
     case 3:
-        v3 = ov5_021DDE74(&v1->unk_04);
-        sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
+        v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
+        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
         if (v3 == 1) {
             v0->unk_00++;
             ov5_021DE058(v0, v1->unk_1C, 2, 6, (-3 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
-            ov5_021DDE14(&v1->unk_04, v2, v2 + (-FX32_ONE * 50), (-FX32_ONE * 255), 6);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 50), (-FX32_ONE * 255), 6);
         }
         break;
     case 4:
-        v3 = ov5_021DDE74(&v1->unk_04);
-        sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
+        v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
+        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
         if ((v3 == 1) && (ov5_021DDD7C(v0) == 1)) {
             v0->unk_00++;
@@ -186,24 +186,24 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
             ov5_021DDF9C(v0, v1->unk_1C, 5, 6 + 1, 0, (-2 * FX32_ONE), (FX32_ONE * -12));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
-            ov5_021DDE14(&v1->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
         }
         break;
     case 3:
-        v3 = ov5_021DDE74(&v1->unk_04);
-        sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
+        v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
+        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
         if ((v3 == 1)) {
             v0->unk_00++;
             ov5_021DE058(v0, v1->unk_1C, 5, 6, (-2 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
-            ov5_021DDE14(&v1->unk_04, v2, v2 + (-FX32_ONE * 30), (-FX32_ONE * 100), 6);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 30), (-FX32_ONE * 100), 6);
         }
         break;
     case 4:
-        v3 = ov5_021DDE74(&v1->unk_04);
-        sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
+        v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
+        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
         if ((v3 == 1) && (ov5_021DDD7C(v0) == 1)) {
             v0->unk_00++;
@@ -430,12 +430,12 @@ void ov5_021E2944 (SysTask * param0, void * param1)
         v1->unk_00 = v0->fieldSystem->unk_24;
         v2 = sub_02020A90(v1->unk_00);
 
-        ov5_021DDE14(&v1->unk_04, v2, v2 + (-FX32_ONE * 400), (-FX32_ONE * 2), 12);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 400), (-FX32_ONE * 2), 12);
         v0->unk_00++;
         break;
     case 4:
-        ov5_021DDE74(&v1->unk_04);
-        sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
+        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
         if (ScreenWipe_Done()) {
             v0->unk_00++;
@@ -483,12 +483,12 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
         v1->unk_00 = v0->fieldSystem->unk_24;
         v2 = sub_02020A90(v1->unk_00);
 
-        ov5_021DDE14(&v1->unk_04, v2, v2 + (-FX32_ONE * 800), (-FX32_ONE * 5), 12);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 800), (-FX32_ONE * 5), 12);
         v0->unk_00++;
         break;
     case 4:
-        ov5_021DDE74(&v1->unk_04);
-        sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
+        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
         if (ScreenWipe_Done()) {
             v0->unk_00++;
@@ -508,32 +508,32 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
 }
 
 typedef struct {
-    UnkStruct_ov5_021DDE14 unk_00;
+    QuadraticInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_18;
-    UnkStruct_ov5_021DDE14 unk_2C;
+    QuadraticInterpolationTaskFX32 unk_2C;
     UnkStruct_ov5_021DDF74 * unk_44;
     UnkStruct_ov5_021DE47C unk_48;
     UnkStruct_ov5_021DE5A4 unk_1E8;
     GraphicElementData * unk_21C[2];
     UnkStruct_020203AC * unk_224;
-    UnkStruct_ov5_021DDE14 unk_228;
+    QuadraticInterpolationTaskFX32 unk_228;
     s32 unk_240;
 } UnkStruct_ov5_021E2B54;
 
 typedef struct {
-    UnkStruct_ov5_021DDDBC unk_00;
+    LinearInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_14;
     UnkStruct_ov5_021DE374 * unk_28;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
     GraphicElementData * unk_200[2];
     UnkStruct_020203AC * unk_208;
-    UnkStruct_ov5_021DDE14 unk_20C;
+    QuadraticInterpolationTaskFX32 unk_20C;
     s32 unk_224;
 } UnkStruct_ov5_021E2EB0;
 
 typedef struct {
-    UnkStruct_ov5_021DDE14 unk_00;
+    QuadraticInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_18;
     LinearInterpolationTaskS32 unk_2C;
     UnkStruct_ov5_021E2878 unk_40;
@@ -542,7 +542,7 @@ typedef struct {
     UnkStruct_ov5_021DE5A4 unk_1F0;
     GraphicElementData * unk_224[2];
     UnkStruct_020203AC * unk_22C;
-    UnkStruct_ov5_021DDE14 unk_230;
+    QuadraticInterpolationTaskFX32 unk_230;
     s32 unk_248;
 } UnkStruct_ov5_021E31A4;
 
@@ -558,20 +558,20 @@ typedef struct {
     UnkStruct_ov5_021E2878 unk_274;
     BOOL unk_280;
     UnkStruct_020203AC * unk_284;
-    UnkStruct_ov5_021DDE14 unk_288;
+    QuadraticInterpolationTaskFX32 unk_288;
     s32 unk_2A0;
 } UnkStruct_ov5_021E3560;
 
 typedef struct {
-    UnkStruct_ov5_021DDE14 unk_00;
-    UnkStruct_ov5_021DDE14 unk_18;
-    UnkStruct_ov5_021DDE14 unk_30;
+    QuadraticInterpolationTaskFX32 unk_00;
+    QuadraticInterpolationTaskFX32 unk_18;
+    QuadraticInterpolationTaskFX32 unk_30;
     LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC;
     GraphicElementData * unk_230;
     UnkStruct_020203AC * unk_234;
-    UnkStruct_ov5_021DDE14 unk_238;
+    QuadraticInterpolationTaskFX32 unk_238;
     s32 unk_250;
 } UnkStruct_ov5_021E3AD0;
 
@@ -585,7 +585,7 @@ typedef struct {
     Window * unk_264;
     UnkStruct_ov5_021DE928 * unk_268;
     UnkStruct_020203AC * unk_26C;
-    UnkStruct_ov5_021DDE14 unk_270;
+    QuadraticInterpolationTaskFX32 unk_270;
     s16 unk_288;
 } UnkStruct_ov5_021E3D8C;
 
@@ -640,9 +640,9 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         break;
 
     case 3:
-        ov5_021DDE14(&v1->unk_00, (FX32_CONST(0.01f)), (FX32_CONST(1.0f)), 2, 10);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_00, (FX32_CONST(0.01f)), (FX32_CONST(1.0f)), 2, 10);
 
-        v5 = ov5_021DE660(v1->unk_00.unk_00, v1->unk_00.unk_00, v1->unk_00.unk_00);
+        v5 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
 
         for (v4 = 0; v4 < 2; v4++) {
             sub_02021CAC(
@@ -658,8 +658,8 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         break;
 
     case 4:
-        v2 = ov5_021DDE74(&v1->unk_00);
-        v5 = ov5_021DE660(v1->unk_00.unk_00, v1->unk_00.unk_00, v1->unk_00.unk_00);
+        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_00);
+        v5 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
 
         v6 = v1->unk_18.currentValue;
 
@@ -691,10 +691,10 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         SpriteActor_SetSpriteAnimActive(
             v1->unk_21C[1], 2);
 
-        ov5_021DDE14(&v1->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
 
         v3 = sub_02020A90(v1->unk_224);
-        ov5_021DDE14(&v1->unk_228, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 6);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_228, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 6);
 
         sub_02021C94(
             v1->unk_21C[0], 0xffff & 0);
@@ -706,10 +706,10 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
     case 6:
 
-        v2 = ov5_021DDE74(&v1->unk_2C);
+        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_2C);
         {
-            VecFx32 v7 = ov5_021DE660((128 * FX32_ONE) - v1->unk_2C.unk_00, (96 * FX32_ONE), 0);
-            VecFx32 v8 = ov5_021DE660((128 * FX32_ONE) + v1->unk_2C.unk_00, (96 * FX32_ONE), 0);
+            VecFx32 v7 = VecFx32_FromXYZ((128 * FX32_ONE) - v1->unk_2C.currentValue, (96 * FX32_ONE), 0);
+            VecFx32 v8 = VecFx32_FromXYZ((128 * FX32_ONE) + v1->unk_2C.currentValue, (96 * FX32_ONE), 0);
 
             sub_02021C50(
                 v1->unk_21C[0], &v7);
@@ -717,8 +717,8 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
                 v1->unk_21C[1], &v8);
         }
 
-        ov5_021DDE74(&v1->unk_228);
-        sub_02020A50(v1->unk_228.unk_00, v1->unk_224);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_228);
+        sub_02020A50(v1->unk_228.currentValue, v1->unk_224);
 
         if (ov5_021DDD7C(v0)) {
             v0->unk_00++;
@@ -803,15 +803,15 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         break;
 
     case 3:
-        ov5_021DDDBC(&v1->unk_00, (-192 * FX32_ONE), (192 * FX32_ONE), 8);
+        LinearInterpolationTaskFX32_Init(&v1->unk_00, (-192 * FX32_ONE), (192 * FX32_ONE), 8);
         sub_02021CAC(
             v1->unk_200[0], 1);
         sub_02021CAC(
             v1->unk_200[1], 1);
 
         {
-            VecFx32 v5 = ov5_021DE660((128 * FX32_ONE) - v1->unk_00.unk_00, (64 * FX32_ONE), 0);
-            VecFx32 v6 = ov5_021DE660((128 * FX32_ONE) + v1->unk_00.unk_00, (128 * FX32_ONE), 0);
+            VecFx32 v5 = VecFx32_FromXYZ((128 * FX32_ONE) - v1->unk_00.currentValue, (64 * FX32_ONE), 0);
+            VecFx32 v6 = VecFx32_FromXYZ((128 * FX32_ONE) + v1->unk_00.currentValue, (128 * FX32_ONE), 0);
 
             sub_02021C50(
                 v1->unk_200[0], &v5);
@@ -825,11 +825,11 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         break;
 
     case 4:
-        v2 = ov5_021DDDCC(&v1->unk_00);
+        v2 = LinearInterpolationTaskFX32_Update(&v1->unk_00);
 
         {
-            VecFx32 v7 = ov5_021DE660((128 * FX32_ONE) - v1->unk_00.unk_00, (64 * FX32_ONE), 0);
-            VecFx32 v8 = ov5_021DE660((128 * FX32_ONE) + v1->unk_00.unk_00, (128 * FX32_ONE), 0);
+            VecFx32 v7 = VecFx32_FromXYZ((128 * FX32_ONE) - v1->unk_00.currentValue, (64 * FX32_ONE), 0);
+            VecFx32 v8 = VecFx32_FromXYZ((128 * FX32_ONE) + v1->unk_00.currentValue, (128 * FX32_ONE), 0);
 
             sub_02021C50(
                 v1->unk_200[0], &v7);
@@ -854,15 +854,15 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         ov5_021DE240(v0, v1->unk_28, 8, (FX32_ONE * 1), (FX32_ONE * 1));
 
         v3 = sub_02020A90(v1->unk_208);
-        ov5_021DDE14(&v1->unk_20C, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_20C, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
         v0->unk_00++;
         break;
 
     case 6:
 
-        ov5_021DDE74(&v1->unk_20C);
-        sub_02020A50(v1->unk_20C.unk_00, v1->unk_208);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_20C);
+        sub_02020A50(v1->unk_20C.currentValue, v1->unk_208);
 
         if (ov5_021DDD7C(v0) == 1) {
             v0->unk_00++;
@@ -1001,10 +1001,10 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
 
     case 5:
 
-        ov5_021DDE14(&v1->unk_00, (FX32_CONST(1.0f)), (FX32_CONST(0.01f)), (FX32_CONST(0.1f)), 8);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_00, (FX32_CONST(1.0f)), (FX32_CONST(0.01f)), (FX32_CONST(0.1f)), 8);
 
         {
-            VecFx32 v7 = ov5_021DE660(v1->unk_00.unk_00, v1->unk_00.unk_00, v1->unk_00.unk_00);
+            VecFx32 v7 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
 
             for (v5 = 0; v5 < 2; v5++) {
                 sub_02021C70(
@@ -1013,16 +1013,16 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
         }
 
         v4 = sub_02020A90(v1->unk_22C);
-        ov5_021DDE14(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
         sub_0200F174(3, 24, 0, 0x0, 8, 1, 4);
         v0->unk_00++;
         break;
 
     case 6:
-        v2 = ov5_021DDE74(&v1->unk_00);
+        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_00);
         {
-            VecFx32 v8 = ov5_021DE660(v1->unk_00.unk_00, v1->unk_00.unk_00, v1->unk_00.unk_00);
+            VecFx32 v8 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
 
             for (v5 = 0; v5 < 2; v5++) {
                 sub_02021C70(
@@ -1030,8 +1030,8 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
             }
         }
 
-        ov5_021DDE74(&v1->unk_230);
-        sub_02020A50(v1->unk_230.unk_00, v1->unk_22C);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_230);
+        sub_02020A50(v1->unk_230.currentValue, v1->unk_22C);
 
         if ((v2 == 1) && (ScreenWipe_Done() == 1)) {
             v0->unk_00++;
@@ -1148,7 +1148,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         }
 
         v5 = sub_02020A90(v1->unk_284);
-        ov5_021DDE14(&v1->unk_288, v5, v5 + (-FX32_CONST(500)), (-FX32_CONST(10)), 16);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_288, v5, v5 + (-FX32_CONST(500)), (-FX32_CONST(10)), 16);
 
         LinearInterpolationTaskS32_Init(&v1->unk_21C[0], 0, (0xffff * 1), 6);
 
@@ -1156,7 +1156,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
 
         ov5_021DE6C4(v1->unk_258[0], 43, 43, 312, 0, 6, v1->unk_270, 86, 64, 15);
 
-        v4 = ov5_021DE660(
+        v4 = VecFx32_FromXYZ(
             43 * FX32_ONE, 231 * FX32_ONE, 0);
         sub_02021C50(v1->unk_1D4[0], &v4);
         sub_02021CAC(v1->unk_1D4[0], 1);
@@ -1177,7 +1177,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         LinearInterpolationTaskS32_Init(&v1->unk_21C[1], 0, (0xffff * -1), 6);
 
         ov5_021DE6C4(v1->unk_258[1], 215, 215, 312, 0, 6, v1->unk_270, 86, 64, 15);
-        v4 = ov5_021DE660(
+        v4 = VecFx32_FromXYZ(
             215 * FX32_ONE, 231 * FX32_ONE, 1);
         sub_02021C50(v1->unk_1D4[1], &v4);
         sub_02021CAC(v1->unk_1D4[1], 1);
@@ -1198,7 +1198,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         LinearInterpolationTaskS32_Init(&v1->unk_21C[2], 0, (0xffff * 1), 6);
 
         ov5_021DE6C4(v1->unk_258[2], 129, 129, 312, 0, 6, v1->unk_270, 86, 64, 15);
-        v4 = ov5_021DE660(
+        v4 = VecFx32_FromXYZ(
             129 * FX32_ONE, 231 * FX32_ONE, 2);
         sub_02021C50(v1->unk_1D4[2], &v4);
         sub_02021CAC(v1->unk_1D4[2], 1);
@@ -1209,8 +1209,8 @@ void ov5_021E3560 (SysTask * param0, void * param1)
 
     case 6:
 
-        ov5_021DDE74(&v1->unk_288);
-        sub_02020A50(v1->unk_288.unk_00, v1->unk_284);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_288);
+        sub_02020A50(v1->unk_288.currentValue, v1->unk_284);
 
         if ((v1->unk_264[0] == 0) && (v1->unk_264[1] == 0) && (v1->unk_264[2] == 0)) {
             v0->unk_00++;
@@ -1324,15 +1324,15 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         break;
 
     case 3:
-        ov5_021DDE14(&v1->unk_00, 0, (256 * FX32_ONE), (2 * FX32_ONE), 12);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_00, 0, (256 * FX32_ONE), (2 * FX32_ONE), 12);
         sub_02021CAC(
             v1->unk_230, 1);
 
-        ov5_021DDE14(&v1->unk_18, (FX32_CONST(0.10f)), (FX32_CONST(2.0f)), (FX32_CONST(0.0f)), 12);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_18, (FX32_CONST(0.10f)), (FX32_CONST(2.0f)), (FX32_CONST(0.0f)), 12);
 
-        ov5_021DDE14(&v1->unk_30, (FX32_CONST(0.10f)), (FX32_CONST(2.0f)), (FX32_CONST(0.0f)), 12);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_30, (FX32_CONST(0.10f)), (FX32_CONST(2.0f)), (FX32_CONST(0.0f)), 12);
 
-        v4 = ov5_021DE660(v1->unk_18.unk_00, v1->unk_30.unk_00, 0);
+        v4 = VecFx32_FromXYZ(v1->unk_18.currentValue, v1->unk_30.currentValue, 0);
         sub_02021C80(v1->unk_230, &v4, 2);
 
         LinearInterpolationTaskS32_Init(&v1->unk_48, 0, (0xffff * 1), 12);
@@ -1340,16 +1340,16 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         break;
 
     case 4:
-        v2 = ov5_021DDE74(&v1->unk_00);
+        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_00);
         {
-            VecFx32 v5 = ov5_021DE660((128 * FX32_ONE), (-32 * FX32_ONE) + (v1->unk_00.unk_00), 0);
+            VecFx32 v5 = VecFx32_FromXYZ((128 * FX32_ONE), (-32 * FX32_ONE) + (v1->unk_00.currentValue), 0);
 
             sub_02021C50(
                 v1->unk_230, &v5);
         }
-        ov5_021DDE74(&v1->unk_18);
-        ov5_021DDE74(&v1->unk_30);
-        v4 = ov5_021DE660(v1->unk_18.unk_00, v1->unk_30.unk_00, 0);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_18);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_30);
+        v4 = VecFx32_FromXYZ(v1->unk_18.currentValue, v1->unk_30.currentValue, 0);
         sub_02021C70(v1->unk_230, &v4);
 
         LinearInterpolationTaskS32_Update(&v1->unk_48);
@@ -1368,7 +1368,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         ov5_021EF3FC(v0->fieldSystem->unk_04->unk_1C);
 
         v3 = sub_02020A90(v1->unk_234);
-        ov5_021DDE14(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
 
         sub_0200F174(3, 18, 0, 0x0, 8, 1, 4);
         v0->unk_00++;
@@ -1376,8 +1376,8 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
 
     case 6:
 
-        ov5_021DDE74(&v1->unk_238);
-        sub_02020A50(v1->unk_238.unk_00, v1->unk_234);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_238);
+        sub_02020A50(v1->unk_238.currentValue, v1->unk_234);
 
         if (ScreenWipe_Done()) {
             v0->unk_00++;
@@ -1475,7 +1475,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         }
 
         LinearInterpolationTaskS32_Init(&v1->unk_1E0[0], -32, 224, 5);
-        v2 = ov5_021DE660(
+        v2 = VecFx32_FromXYZ(
             128 * FX32_ONE, -32 * FX32_ONE, 0);
         sub_02021C50(v1->unk_1D4[0], &v2);
         sub_02021CAC(
@@ -1497,7 +1497,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         }
 
         LinearInterpolationTaskS32_Init(&v1->unk_1E0[1], -32, 224, 5);
-        v2 = ov5_021DE660(
+        v2 = VecFx32_FromXYZ(
             208 * FX32_ONE, -32 * FX32_ONE, 0);
         sub_02021C50(v1->unk_1D4[1], &v2);
         sub_02021CAC(
@@ -1519,7 +1519,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         }
 
         LinearInterpolationTaskS32_Init(&v1->unk_1E0[2], -32, 224, 5);
-        v2 = ov5_021DE660(
+        v2 = VecFx32_FromXYZ(
             48 * FX32_ONE, -32 * FX32_ONE, 0);
         sub_02021C50(v1->unk_1D4[2], &v2);
         sub_02021CAC(
@@ -1549,7 +1549,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         ov5_021DE948(v1->unk_268, 1, 1, v1->unk_264, 15);
 
         v5 = sub_02020A90(v1->unk_26C);
-        ov5_021DDE14(&v1->unk_270, v5, v5 + (-FX32_CONST(1000)), (FX32_CONST(10)), 64);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_270, v5, v5 + (-FX32_CONST(1000)), (FX32_CONST(10)), 64);
 
         v0->unk_00++;
         break;
@@ -1558,8 +1558,8 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         v3 = ov5_021DE988(v1->unk_268);
         sub_0201A9A4(v1->unk_264);
 
-        ov5_021DDE74(&v1->unk_270);
-        sub_02020A50(v1->unk_270.unk_00, v1->unk_26C);
+        QuadraticInterpolationTaskFX32_Update(&v1->unk_270);
+        sub_02020A50(v1->unk_270.currentValue, v1->unk_26C);
 
         if (v3 == 1) {
             v0->unk_00++;
@@ -1621,7 +1621,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
 
 typedef struct {
     LinearInterpolationTaskS32 unk_00;
-    UnkStruct_ov5_021DDE14 unk_14;
+    QuadraticInterpolationTaskFX32 unk_14;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
     GraphicElementData * unk_200;
@@ -1632,7 +1632,7 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
     GraphicElementData * unk_1D4[4];
-    UnkStruct_ov5_021DDE14 unk_1E4[2];
+    QuadraticInterpolationTaskFX32 unk_1E4[2];
 } UnkStruct_ov5_021E44C0;
 
 void ov5_021E4260 (SysTask * param0, void * param1)
@@ -1696,12 +1696,12 @@ void ov5_021E4260 (SysTask * param0, void * param1)
         break;
 
     case 5:
-        ov5_021DDE14(&v1->unk_14, (FX32_CONST(1.0f)), (FX32_CONST(0.1f)), 1, 6);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_14, (FX32_CONST(1.0f)), (FX32_CONST(0.1f)), 1, 6);
 
         sub_02021CF8(
             v1->unk_200, 2);
         {
-            VecFx32 v3 = ov5_021DE660(v1->unk_14.unk_00, v1->unk_14.unk_00, v1->unk_14.unk_00);
+            VecFx32 v3 = VecFx32_FromXYZ(v1->unk_14.currentValue, v1->unk_14.currentValue, v1->unk_14.currentValue);
 
             sub_02021C70(
                 v1->unk_200, &v3);
@@ -1713,9 +1713,9 @@ void ov5_021E4260 (SysTask * param0, void * param1)
         break;
 
     case 6:
-        v2 = ov5_021DDE74(&v1->unk_14);
+        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_14);
         {
-            VecFx32 v4 = ov5_021DE660(v1->unk_14.unk_00, v1->unk_14.unk_00, v1->unk_14.unk_00);
+            VecFx32 v4 = VecFx32_FromXYZ(v1->unk_14.currentValue, v1->unk_14.currentValue, v1->unk_14.currentValue);
 
             sub_02021C70(
                 v1->unk_200, &v4);
@@ -1792,8 +1792,8 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
         break;
 
     case 3:
-        ov5_021DDE14(&v1->unk_1E4[0], 0, (128 * FX32_ONE), (FX32_CONST(0.1f)), 4);
-        ov5_021DDE14(&v1->unk_1E4[1], 0, (160 * FX32_ONE), (FX32_CONST(0.1f)), 4);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_1E4[0], 0, (128 * FX32_ONE), (FX32_CONST(0.1f)), 4);
+        QuadraticInterpolationTaskFX32_Init(&v1->unk_1E4[1], 0, (160 * FX32_ONE), (FX32_CONST(0.1f)), 4);
 
         for (v3 = 0; v3 < 4; v3++) {
             sub_02021CAC(v1->unk_1D4[v3], 1);
@@ -1804,23 +1804,23 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
 
     case 4:
         for (v3 = 0; v3 < 2; v3++) {
-            v2 = ov5_021DDE74(&v1->unk_1E4[v3]);
+            v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_1E4[v3]);
         }
 
-        v4 = ov5_021DE660(
-            (128 * FX32_ONE), (96 * FX32_ONE) - v1->unk_1E4[0].unk_00, 0);
+        v4 = VecFx32_FromXYZ(
+            (128 * FX32_ONE), (96 * FX32_ONE) - v1->unk_1E4[0].currentValue, 0);
         sub_02021C50(v1->unk_1D4[0], &v4);
 
-        v4 = ov5_021DE660(
-            (128 * FX32_ONE), (96 * FX32_ONE) + v1->unk_1E4[0].unk_00, 0);
+        v4 = VecFx32_FromXYZ(
+            (128 * FX32_ONE), (96 * FX32_ONE) + v1->unk_1E4[0].currentValue, 0);
         sub_02021C50(v1->unk_1D4[1], &v4);
 
-        v4 = ov5_021DE660(
-            (128 * FX32_ONE) - v1->unk_1E4[1].unk_00, (96 * FX32_ONE), 0);
+        v4 = VecFx32_FromXYZ(
+            (128 * FX32_ONE) - v1->unk_1E4[1].currentValue, (96 * FX32_ONE), 0);
         sub_02021C50(v1->unk_1D4[2], &v4);
 
-        v4 = ov5_021DE660(
-            (128 * FX32_ONE) + v1->unk_1E4[1].unk_00, (96 * FX32_ONE), 0);
+        v4 = VecFx32_FromXYZ(
+            (128 * FX32_ONE) + v1->unk_1E4[1].currentValue, (96 * FX32_ONE), 0);
         sub_02021C50(v1->unk_1D4[3], &v4);
 
         if (v2 == 1) {
@@ -1887,9 +1887,9 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
     GraphicElementData * unk_1D4[6];
-    UnkStruct_ov5_021DDE14 unk_1EC[6];
-    UnkStruct_ov5_021DDE14 unk_27C[6];
-    UnkStruct_ov5_021DDE14 unk_30C[6];
+    QuadraticInterpolationTaskFX32 unk_1EC[6];
+    QuadraticInterpolationTaskFX32 unk_27C[6];
+    QuadraticInterpolationTaskFX32 unk_30C[6];
     LinearInterpolationTaskS32 unk_39C[6];
     BOOL unk_414[6];
     s32 unk_42C;
@@ -1958,19 +1958,19 @@ void ov5_021E4738 (SysTask * param0, void * param1)
         v1->unk_430--;
 
         if (v1->unk_430 < 0) {
-            ov5_021DDE14(&v1->unk_27C[v1->unk_42C], Unk_ov5_021F9E94[v1->unk_42C][0], Unk_ov5_021F9E94[v1->unk_42C][1], Unk_ov5_021F9E94[v1->unk_42C][2], 8);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_27C[v1->unk_42C], Unk_ov5_021F9E94[v1->unk_42C][0], Unk_ov5_021F9E94[v1->unk_42C][1], Unk_ov5_021F9E94[v1->unk_42C][2], 8);
 
-            ov5_021DDE14(&v1->unk_30C[v1->unk_42C], Unk_ov5_021F9E94[v1->unk_42C][3], Unk_ov5_021F9E94[v1->unk_42C][4], Unk_ov5_021F9E94[v1->unk_42C][5], 8);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_30C[v1->unk_42C], Unk_ov5_021F9E94[v1->unk_42C][3], Unk_ov5_021F9E94[v1->unk_42C][4], Unk_ov5_021F9E94[v1->unk_42C][5], 8);
 
-            ov5_021DDE14(&v1->unk_1EC[v1->unk_42C], (FX32_CONST(2.0f)), (FX32_CONST(0.01f)), (-FX32_CONST(0.40f)), 8);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_1EC[v1->unk_42C], (FX32_CONST(2.0f)), (FX32_CONST(0.01f)), (-FX32_CONST(0.40f)), 8);
 
             LinearInterpolationTaskS32_Init(&v1->unk_39C[v1->unk_42C], 0, Unk_ov5_021F9E94[v1->unk_42C][7], 8);
 
             sub_02021CAC(v1->unk_1D4[v1->unk_42C], 1);
-            v4 = ov5_021DE660(
+            v4 = VecFx32_FromXYZ(
                 Unk_ov5_021F9E94[v1->unk_42C][0], Unk_ov5_021F9E94[v1->unk_42C][3], 0);
             sub_02021C50(v1->unk_1D4[v1->unk_42C], &v4);
-            v5 = ov5_021DE660(
+            v5 = VecFx32_FromXYZ(
                 (FX32_CONST(2.0f)), (FX32_CONST(2.0f)), 0);
             sub_02021C80(v1->unk_1D4[v1->unk_42C], &v5, 2);
 
@@ -2032,9 +2032,9 @@ void ov5_021E4738 (SysTask * param0, void * param1)
 
     for (v3 = 0; v3 < 6; v3++) {
         if (v1->unk_414[v3] == 1) {
-            v2 = ov5_021DDE74(&v1->unk_27C[v3]);
-            ov5_021DDE74(&v1->unk_30C[v3]);
-            ov5_021DDE74(&v1->unk_1EC[v3]);
+            v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_27C[v3]);
+            QuadraticInterpolationTaskFX32_Update(&v1->unk_30C[v3]);
+            QuadraticInterpolationTaskFX32_Update(&v1->unk_1EC[v3]);
             LinearInterpolationTaskS32_Update(&v1->unk_39C[v3]);
 
             if (v2) {
@@ -2042,11 +2042,11 @@ void ov5_021E4738 (SysTask * param0, void * param1)
                 sub_02021CAC(v1->unk_1D4[v3], 0);
             }
 
-            v4 = ov5_021DE660(
-                v1->unk_27C[v3].unk_00, v1->unk_30C[v3].unk_00, 0);
+            v4 = VecFx32_FromXYZ(
+                v1->unk_27C[v3].currentValue, v1->unk_30C[v3].currentValue, 0);
             sub_02021C50(v1->unk_1D4[v3], &v4);
-            v5 = ov5_021DE660(
-                v1->unk_1EC[v3].unk_00, v1->unk_1EC[v3].unk_00, 0);
+            v5 = VecFx32_FromXYZ(
+                v1->unk_1EC[v3].currentValue, v1->unk_1EC[v3].currentValue, 0);
             sub_02021C70(v1->unk_1D4[v3], &v5);
             sub_02021C94(v1->unk_1D4[v3], v1->unk_39C[v3].currentValue);
         }
@@ -2240,7 +2240,7 @@ typedef struct {
     UnkStruct_ov5_021E2310 * unk_00;
     UnkStruct_020203AC * unk_04;
     LinearInterpolationTaskS32 unk_08;
-    UnkStruct_ov5_021DDE14 unk_1C;
+    QuadraticInterpolationTaskFX32 unk_1C;
     s32 unk_34;
 } UnkStruct_ov5_021E4F7C;
 
@@ -2401,7 +2401,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
         if (v1->unk_34 < 0) {
             fx32 v4 = sub_02020A90(v0->fieldSystem->unk_24);
 
-            ov5_021DDE14(&v1->unk_1C, v4, v4 + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
+            QuadraticInterpolationTaskFX32_Init(&v1->unk_1C, v4, v4 + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
 
             v0->unk_00++;
         }
@@ -2409,8 +2409,8 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
         break;
 
     case 6:
-        v2 = ov5_021DDE74(&v1->unk_1C);
-        sub_02020A50(v1->unk_1C.unk_00, v0->fieldSystem->unk_24);
+        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_1C);
+        sub_02020A50(v1->unk_1C.currentValue, v0->fieldSystem->unk_24);
 
         if (v2 == 1) {
             v0->unk_00++;
@@ -2510,13 +2510,13 @@ typedef struct {
     s16 unk_00;
     s16 unk_02;
     GraphicElementData * unk_04[4];
-    UnkStruct_ov5_021DDDBC unk_14[4];
+    LinearInterpolationTaskFX32 unk_14[4];
 } UnkStruct_ov5_021E5128;
 
 typedef struct {
-    UnkStruct_ov5_021DDE14 unk_00;
+    QuadraticInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_18;
-    UnkStruct_ov5_021DDDBC unk_2C;
+    LinearInterpolationTaskFX32 unk_2C;
     UnkStruct_ov5_021DED04 * unk_40;
     UnkStruct_ov5_021DE47C unk_44;
     UnkStruct_ov5_021DE5A4 unk_1E4[2];
@@ -2531,9 +2531,9 @@ typedef struct {
 } UnkStruct_ov5_021E52A8;
 
 typedef struct {
-    UnkStruct_ov5_021DDE14 unk_00;
-    UnkStruct_ov5_021DDE14 unk_18;
-    UnkStruct_ov5_021DDE14 unk_30;
+    QuadraticInterpolationTaskFX32 unk_00;
+    QuadraticInterpolationTaskFX32 unk_18;
+    QuadraticInterpolationTaskFX32 unk_30;
     LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC[4];
@@ -2563,9 +2563,9 @@ static void ov5_021E5128 (UnkStruct_ov5_021E5128 * param0, UnkStruct_ov5_021DE47
             sub_02021CF8(param0->unk_04[v0], 2);
             SpriteActor_SetSpriteAnimActive(param0->unk_04[v0], 1);
 
-            ov5_021DDDBC(&param0->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
+            LinearInterpolationTaskFX32_Init(&param0->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
-            ov5_021DDDBC(&param0->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);
+            LinearInterpolationTaskFX32_Init(&param0->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);
         }
     }
 }
@@ -2597,10 +2597,10 @@ static BOOL ov5_021E51B4 (UnkStruct_ov5_021E5128 * param0)
     }
 
     for (v0 = 0; v0 < param0->unk_02; v0++) {
-        v1 = ov5_021DDDCC(&param0->unk_14[v0]);
+        v1 = LinearInterpolationTaskFX32_Update(&param0->unk_14[v0]);
 
-        v3 = ov5_021DE660(
-            param0->unk_14[v0].unk_00, param0->unk_14[v0].unk_00, param0->unk_14[v0].unk_00);
+        v3 = VecFx32_FromXYZ(
+            param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
         sub_02021C70(param0->unk_04[v0], &v3);
         sub_02021CAC(param0->unk_04[v0], 1);
 
@@ -2737,12 +2737,12 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
     case 6:
 
-        ov5_021DDE14(&v0->unk_00, (272 * FX32_ONE), param2->unk_00, (-64 * FX32_ONE), 4);
+        QuadraticInterpolationTaskFX32_Init(&v0->unk_00, (272 * FX32_ONE), param2->unk_00, (-64 * FX32_ONE), 4);
         sub_02021CAC(v0->unk_24C, 1);
         sub_02021E80(v0->unk_24C, 0);
 
-        v3 = ov5_021DE660(
-            v0->unk_00.unk_00, (66 * FX32_ONE), 0);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_00.currentValue, (66 * FX32_ONE), 0);
         sub_02021C50(v0->unk_24C, &v3);
 
         param0->unk_00++;
@@ -2750,9 +2750,9 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
     case 7:
 
-        v1 = ov5_021DDE74(&v0->unk_00);
-        v3 = ov5_021DE660(
-            v0->unk_00.unk_00, (66 * FX32_ONE), 0);
+        v1 = QuadraticInterpolationTaskFX32_Update(&v0->unk_00);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_00.currentValue, (66 * FX32_ONE), 0);
         sub_02021C50(v0->unk_24C, &v3);
 
         if (v1 == 1) {
@@ -2782,7 +2782,7 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 1);
 
-            sub_0201C63C(param0->fieldSystem->unk_08, 2, 0, -((v0->unk_00.unk_00 >> FX32_SHIFT) + -92));
+            sub_0201C63C(param0->fieldSystem->unk_08, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             BGL_SetPriority(2, 0);
             param0->unk_00++;
@@ -3013,7 +3013,7 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
     case 1:
 
-        v4 = ov5_021DE660(
+        v4 = VecFx32_FromXYZ(
             (FX32_CONST(2.0f)), (FX32_CONST(2.0f)), 0);
 
         for (v5 = 0; v5 < 4; v5++) {
@@ -3080,9 +3080,9 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
         break;
 
     case 5:
-        ov5_021DDE14(&v0->unk_00, (-128 * FX32_ONE), (56 * FX32_ONE), (80 * FX32_ONE), 6);
-        v3 = ov5_021DE660(
-            v0->unk_00.unk_00, (92 * FX32_ONE), 0);
+        QuadraticInterpolationTaskFX32_Init(&v0->unk_00, (-128 * FX32_ONE), (56 * FX32_ONE), (80 * FX32_ONE), 6);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_00.currentValue, (92 * FX32_ONE), 0);
         sub_02021C50(v0->unk_2CC[0], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
@@ -3090,9 +3090,9 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
         sub_02021CAC(v0->unk_2CC[0], 1);
         sub_02021CAC(v0->unk_2CC[2], 1);
 
-        ov5_021DDE14(&v0->unk_30, (384 * FX32_ONE), (200 * FX32_ONE), (-80 * FX32_ONE), 6);
-        v3 = ov5_021DE660(
-            v0->unk_30.unk_00, (92 * FX32_ONE), 0);
+        QuadraticInterpolationTaskFX32_Init(&v0->unk_30, (384 * FX32_ONE), (200 * FX32_ONE), (-80 * FX32_ONE), 6);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_30.currentValue, (92 * FX32_ONE), 0);
         sub_02021C50(v0->unk_2CC[1], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (-16 * FX32_ONE);
@@ -3133,18 +3133,18 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
             ov5_021E51B4(&v0->unk_2F4);
         }
 
-        v1 = ov5_021DDE74(&v0->unk_00);
-        v3 = ov5_021DE660(
-            v0->unk_00.unk_00, (92 * FX32_ONE), 0);
+        v1 = QuadraticInterpolationTaskFX32_Update(&v0->unk_00);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_00.currentValue, (92 * FX32_ONE), 0);
         v0->unk_2DC = v3;
         sub_02021C50(v0->unk_2CC[0], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
         sub_02021C50(v0->unk_2CC[2], &v3);
 
-        v1 = ov5_021DDE74(&v0->unk_30);
-        v3 = ov5_021DE660(
-            v0->unk_30.unk_00, (92 * FX32_ONE), 0);
+        v1 = QuadraticInterpolationTaskFX32_Update(&v0->unk_30);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_30.currentValue, (92 * FX32_ONE), 0);
         v0->unk_2E8 = v3;
         sub_02021C50(v0->unk_2CC[1], &v3);
         v3.y += (4 * FX32_ONE);
@@ -3221,8 +3221,8 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
             break;
         }
 
-        ov5_021DDE14(&v0->unk_00, 0, (-FX32_CONST(2)), 0, param2->unk_03);
-        ov5_021DDE14(&v0->unk_18, 0, (-FX32_CONST(2)), 0, param2->unk_03);
+        QuadraticInterpolationTaskFX32_Init(&v0->unk_00, 0, (-FX32_CONST(2)), 0, param2->unk_03);
+        QuadraticInterpolationTaskFX32_Init(&v0->unk_18, 0, (-FX32_CONST(2)), 0, param2->unk_03);
 
         param0->unk_04 = 0;
 
@@ -3233,15 +3233,15 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
         param0->unk_04++;
 
-        v1 = ov5_021DDE74(&v0->unk_00);
-        ov5_021DDE74(&v0->unk_18);
+        v1 = QuadraticInterpolationTaskFX32_Update(&v0->unk_00);
+        QuadraticInterpolationTaskFX32_Update(&v0->unk_18);
 
         if (((param0->unk_04 / 2) % 2) == 0) {
-            v3 = ov5_021DE660(
-                v0->unk_2DC.x + v0->unk_00.unk_00, v0->unk_2DC.y + v0->unk_18.unk_00, 0);
+            v3 = VecFx32_FromXYZ(
+                v0->unk_2DC.x + v0->unk_00.currentValue, v0->unk_2DC.y + v0->unk_18.currentValue, 0);
         } else {
-            v3 = ov5_021DE660(
-                v0->unk_2DC.x - v0->unk_00.unk_00, v0->unk_2DC.y - v0->unk_18.unk_00, 0);
+            v3 = VecFx32_FromXYZ(
+                v0->unk_2DC.x - v0->unk_00.currentValue, v0->unk_2DC.y - v0->unk_18.currentValue, 0);
         }
 
         if (v1) {
@@ -3254,11 +3254,11 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
         sub_02021C50(v0->unk_2CC[2], &v3);
 
         if (((param0->unk_04 / 2) % 2) == 0) {
-            v3 = ov5_021DE660(
-                v0->unk_2E8.x - v0->unk_00.unk_00, v0->unk_2E8.y - v0->unk_18.unk_00, 0);
+            v3 = VecFx32_FromXYZ(
+                v0->unk_2E8.x - v0->unk_00.currentValue, v0->unk_2E8.y - v0->unk_18.currentValue, 0);
         } else {
-            v3 = ov5_021DE660(
-                v0->unk_2E8.x + v0->unk_00.unk_00, v0->unk_2E8.y + v0->unk_18.unk_00, 0);
+            v3 = VecFx32_FromXYZ(
+                v0->unk_2E8.x + v0->unk_00.currentValue, v0->unk_2E8.y + v0->unk_18.currentValue, 0);
         }
 
         if (v1) {
@@ -3275,8 +3275,8 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
-            ov5_021DDE14(&v0->unk_00, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
-            ov5_021DDE14(&v0->unk_18, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
+            QuadraticInterpolationTaskFX32_Init(&v0->unk_00, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
+            QuadraticInterpolationTaskFX32_Init(&v0->unk_18, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
 
             sub_0200F174(3, 0, 0, 0x7fff, 8, 1, 4);
         }
@@ -3284,18 +3284,18 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
         break;
 
     case 13:
-        ov5_021DDE74(&v0->unk_00);
-        ov5_021DDE74(&v0->unk_18);
+        QuadraticInterpolationTaskFX32_Update(&v0->unk_00);
+        QuadraticInterpolationTaskFX32_Update(&v0->unk_18);
 
-        v3 = ov5_021DE660(
-            v0->unk_2DC.x - v0->unk_00.unk_00, v0->unk_2DC.y - v0->unk_18.unk_00, 0);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_2DC.x - v0->unk_00.currentValue, v0->unk_2DC.y - v0->unk_18.currentValue, 0);
         sub_02021C50(v0->unk_2CC[0], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
         sub_02021C50(v0->unk_2CC[2], &v3);
 
-        v3 = ov5_021DE660(
-            v0->unk_2E8.x + v0->unk_00.unk_00, v0->unk_2E8.y + v0->unk_18.unk_00, 0);
+        v3 = VecFx32_FromXYZ(
+            v0->unk_2E8.x + v0->unk_00.currentValue, v0->unk_2E8.y + v0->unk_18.currentValue, 0);
         sub_02021C50(v0->unk_2CC[1], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (-16 * FX32_ONE);

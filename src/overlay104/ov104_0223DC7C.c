@@ -96,22 +96,22 @@ typedef struct {
 } UnkStruct_ov104_0223DD30;
 
 typedef struct {
-    fx32 unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    int unk_0C;
-    int unk_10;
-} UnkStruct_ov5_021DDDBC;
+    fx32 currentValue;
+    fx32 startValue;
+    fx32 delta;
+    int currentStep;
+    int numSteps;
+} LinearInterpolationTaskFX32;
 
 typedef struct {
     s16 unk_00;
     s16 unk_02;
     CellActorData * unk_04[4];
-    UnkStruct_ov5_021DDDBC unk_14[4];
+    LinearInterpolationTaskFX32 unk_14[4];
 } UnkStruct_ov104_0223E48C;
 
 typedef struct {
-    UnkStruct_ov5_021DDDBC unk_00;
+    LinearInterpolationTaskFX32 unk_00;
     UnkStruct_ov104_0223E48C unk_14;
     s32 unk_78;
     UnkStruct_ov104_0223E3B8 unk_7C;
@@ -140,8 +140,8 @@ static void ov104_0223E3B8(UnkStruct_ov104_0223E3B8 * param0);
 static void ov104_0223E3FC(UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223E48C * param1, fx32 param2, fx32 param3, u32 param4);
 static void ov104_0223E48C(UnkStruct_ov104_0223E48C * param0);
 static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C * param0);
-static void ov104_0223E534(UnkStruct_ov5_021DDDBC * param0, fx32 param1, fx32 param2, int param3);
-static BOOL ov104_0223E544(UnkStruct_ov5_021DDDBC * param0);
+static void ov104_0223E534(LinearInterpolationTaskFX32 * param0, fx32 param1, fx32 param2, int param3);
+static BOOL ov104_0223E544(LinearInterpolationTaskFX32 * param0);
 static VecFx32 ov104_0223E58C(fx32 param0, fx32 param1, fx32 param2);
 static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 * param0, const UnkStruct_ov104_0224191C * param1);
 static void ov104_0223E6BC(SysTask * param0, void * param1);
@@ -568,7 +568,7 @@ static BOOL ov104_0223E4A4 (UnkStruct_ov104_0223E48C * param0)
 
     for (v0 = 0; v0 < param0->unk_02; v0++) {
         v1 = ov104_0223E544(&param0->unk_14[v0]);
-        v3 = ov104_0223E58C(param0->unk_14[v0].unk_00, param0->unk_14[v0].unk_00, param0->unk_14[v0].unk_00);
+        v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
         sub_02021C70(param0->unk_04[v0]->unk_00, &v3);
         sub_02021CAC(param0->unk_04[v0]->unk_00, 1);
@@ -581,30 +581,30 @@ static BOOL ov104_0223E4A4 (UnkStruct_ov104_0223E48C * param0)
     return v2;
 }
 
-static void ov104_0223E534 (UnkStruct_ov5_021DDDBC * param0, fx32 param1, fx32 param2, int param3)
+static void ov104_0223E534 (LinearInterpolationTaskFX32 * param0, fx32 param1, fx32 param2, int param3)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param1;
-    param0->unk_08 = param2 - param1;
-    param0->unk_10 = param3;
-    param0->unk_0C = 0;
+    param0->currentValue = param1;
+    param0->startValue = param1;
+    param0->delta = param2 - param1;
+    param0->numSteps = param3;
+    param0->currentStep = 0;
 }
 
-static BOOL ov104_0223E544 (UnkStruct_ov5_021DDDBC * param0)
+static BOOL ov104_0223E544 (LinearInterpolationTaskFX32 * param0)
 {
     fx32 v0;
 
-    v0 = FX_Mul(param0->unk_08, param0->unk_0C << FX32_SHIFT);
-    v0 = FX_Div(v0, param0->unk_10 << FX32_SHIFT);
+    v0 = FX_Mul(param0->delta, param0->currentStep << FX32_SHIFT);
+    v0 = FX_Div(v0, param0->numSteps << FX32_SHIFT);
 
-    param0->unk_00 = v0 + param0->unk_04;
+    param0->currentValue = v0 + param0->startValue;
 
-    if ((param0->unk_0C + 1) <= param0->unk_10) {
-        param0->unk_0C++;
+    if ((param0->currentStep + 1) <= param0->numSteps) {
+        param0->currentStep++;
         return 0;
     }
 
-    param0->unk_0C = param0->unk_10;
+    param0->currentStep = param0->numSteps;
     return 1;
 }
 

@@ -6,6 +6,7 @@
 #include "constants/heap.h"
 #include "inlines.h"
 
+#include "nitro/fx/fx.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -92,7 +93,7 @@ typedef struct UnkStruct_ov5_02202120 {
 
 static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5);
 static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3);
-static void BrightnessFadeTask_SetBrightness(SysTask *param0, void *param1);
+static void BrightnessFadeTask_SetBrightness(SysTask *task, void *param);
 static void EncounterEffect_ExecuteFlash(SysTask *task, void *param);
 static void ov5_021DE028(SysTask *param0, void *param1);
 static void ov5_021DE088(SysTask *param0, void *param1);
@@ -305,77 +306,68 @@ BOOL LinearInterpolationTaskS32_Update(LinearInterpolationTaskS32 *task)
     return TRUE;
 }
 
-void ov5_021DDDBC(UnkStruct_ov5_021DDDBC *param0, fx32 param1, fx32 param2, int param3)
+void LinearInterpolationTaskFX32_Init(LinearInterpolationTaskFX32 *task, fx32 startValue, fx32 endValue, int numSteps)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param1;
-    param0->unk_08 = param2 - param1;
-    param0->unk_10 = param3;
-    param0->unk_0C = 0;
+    task->currentValue = startValue;
+    task->startValue = startValue;
+    task->delta = endValue - startValue;
+    task->numSteps = numSteps;
+    task->currentStep = 0;
 }
 
-BOOL ov5_021DDDCC(UnkStruct_ov5_021DDDBC *param0)
+BOOL LinearInterpolationTaskFX32_Update(LinearInterpolationTaskFX32 *task)
 {
-    fx32 v0;
+    fx32 interpolated = FX_Mul(task->delta, task->currentStep << FX32_SHIFT);
+    interpolated = FX_Div(interpolated, task->numSteps << FX32_SHIFT);
 
-    v0 = FX_Mul(param0->unk_08, param0->unk_0C << FX32_SHIFT);
-    v0 = FX_Div(v0, param0->unk_10 << FX32_SHIFT);
+    task->currentValue = interpolated + task->startValue;
 
-    param0->unk_00 = v0 + param0->unk_04;
-
-    if ((param0->unk_0C + 1) <= param0->unk_10) {
-        param0->unk_0C++;
-        return 0;
+    if (task->currentStep + 1 <= task->numSteps) {
+        task->currentStep++;
+        return FALSE;
     }
 
-    param0->unk_0C = param0->unk_10;
-    return 1;
+    task->currentStep = task->numSteps;
+    return TRUE;
 }
 
-void ov5_021DDE14(UnkStruct_ov5_021DDE14 *param0, fx32 param1, fx32 param2, fx32 param3, int param4)
+void QuadraticInterpolationTaskFX32_Init(QuadraticInterpolationTaskFX32 *task, fx32 startValue, fx32 endValue, fx32 initialRate, int numSteps)
 {
-    fx32 v0;
-    fx32 v1;
-    fx32 v2;
-    fx32 v3;
+    fx32 distance = endValue - startValue;
+    fx32 tSquared = (numSteps * numSteps) << FX32_SHIFT;
+    fx32 v0t = FX_Mul(initialRate, numSteps * FX32_ONE);
+    v0t = distance - v0t;
+    v0t = FX_Mul(v0t, 2 * FX32_ONE);
+    fx32 quadraticCoeff = FX_Div(v0t, tSquared);
 
-    v2 = param2 - param1;
-    v0 = (param4 *param4) << FX32_SHIFT;
-    v1 = FX_Mul(param3, param4 *FX32_ONE);
-    v1 = v2 - v1;
-    v1 = FX_Mul(v1, 2 *FX32_ONE);
-    v3 = FX_Div(v1, v0);
-
-    param0->unk_00 = param1;
-    param0->unk_04 = param1;
-    param0->unk_08 = param3;
-    param0->unk_0C = v3;
-    param0->unk_10 = 0;
-    param0->unk_14 = param4;
+    task->currentValue = startValue;
+    task->startValue = startValue;
+    task->initialRate = initialRate;
+    task->quadraticCoeff = quadraticCoeff;
+    task->currentStep = 0;
+    task->numSteps = numSteps;
 }
 
-BOOL ov5_021DDE74(UnkStruct_ov5_021DDE14 *param0)
+BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *task)
 {
-    fx32 v0;
-    fx32 v1;
-    fx32 v2;
-    fx32 v3;
+    // Quadratic interpolation
+    // delta = linearTerm + ((quadraticCoeff * (currentStep^2)) / 2
+    // f(t) = f(0) + v0t + (1/2)at^2
+    fx32 linearTerm = FX_Mul(task->initialRate, task->currentStep << FX32_SHIFT);
+    fx32 stepSquared = (task->currentStep * task->currentStep) << FX32_SHIFT;
+    fx32 quadraticTerm = FX_Mul(task->quadraticCoeff, stepSquared);
+    quadraticTerm = FX_Div(quadraticTerm, 2 * FX32_ONE);
+    fx32 delta = linearTerm + quadraticTerm;
 
-    v3 = FX_Mul(param0->unk_08, param0->unk_10 << FX32_SHIFT);
-    v1 = (param0->unk_10 *param0->unk_10) << FX32_SHIFT;
-    v2 = FX_Mul(param0->unk_0C, v1);
-    v2 = FX_Div(v2, 2 *FX32_ONE);
-    v0 = v3 + v2;
+    task->currentValue = task->startValue + delta;
 
-    param0->unk_00 = param0->unk_04 + v0;
-
-    if ((param0->unk_10 + 1) <= param0->unk_14) {
-        param0->unk_10++;
-        return 0;
+    if (task->currentStep + 1 <= task->numSteps) {
+        task->currentStep++;
+        return FALSE;
     }
 
-    param0->unk_10 = param0->unk_14;
-    return 1;
+    task->currentStep = task->numSteps;
+    return TRUE;
 }
 
 void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness)
@@ -442,7 +434,7 @@ void ov5_021DDF9C(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 pa
     param1->unk_1C = 0;
     param1->unk_2C = &param0->unk_18;
 
-    ov5_021DDE14(&param1->unk_00, param4, param5, param6, param3);
+    QuadraticInterpolationTaskFX32_Init(&param1->unk_00, param4, param5, param6, param3);
 
     if (param4 >= 0) {
         G2_SetWnd0Position(0, 0, 255 - param4, 192);
@@ -472,7 +464,7 @@ void ov5_021DE058(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 pa
     param1->unk_18 = param2;
     param1->unk_1C = 0;
 
-    ov5_021DDE14(&param1->unk_00, param4, param5, param6, param3);
+    QuadraticInterpolationTaskFX32_Init(&param1->unk_00, param4, param5, param6, param3);
 }
 
 static void ov5_021DE088(SysTask *param0, void *param1)
@@ -482,11 +474,11 @@ static void ov5_021DE088(SysTask *param0, void *param1)
 
     switch (v0->unk_1C) {
     case 0:
-        if (ov5_021DDE74(&v0->unk_00)) {
+        if (QuadraticInterpolationTaskFX32_Update(&v0->unk_00)) {
             v0->unk_1C++;
         }
 
-        v1 = v0->unk_00.unk_00 >> FX32_SHIFT;
+        v1 = v0->unk_00.currentValue >> FX32_SHIFT;
 
         if (v1 >= 0) {
             G2_SetWnd0Position(0, 0, 255 - v1, 192);
@@ -526,9 +518,9 @@ static void ov5_021DE14C(UnkStruct_ov5_021EF43C *param0, void *param1)
     v1 = GX_GetVCount();
 
     if (((v1 / v0->unk_18) % 2) == 0) {
-        v2 = v0->unk_00.unk_00 >> FX32_SHIFT;
+        v2 = v0->unk_00.currentValue >> FX32_SHIFT;
     } else {
-        v2 = -v0->unk_00.unk_00 >> FX32_SHIFT;
+        v2 = -v0->unk_00.currentValue >> FX32_SHIFT;
     }
 
     G2_SetBG0Offset(v2, 0);
@@ -579,8 +571,8 @@ void ov5_021DE240(EncounterEffect *param0, UnkStruct_ov5_021DE374 *param1, u32 p
     param1->unk_34 = 0;
     param1->unk_44 = &param0->unk_18;
 
-    ov5_021DDE14(&param1->unk_00, 0, (255 *FX32_ONE), param3, param2);
-    ov5_021DDE14(&param1->unk_18, 0, (96 *FX32_ONE), param4, param2);
+    QuadraticInterpolationTaskFX32_Init(&param1->unk_00, 0, (255 *FX32_ONE), param3, param2);
+    QuadraticInterpolationTaskFX32_Init(&param1->unk_18, 0, (96 *FX32_ONE), param4, param2);
 
     G2_SetWnd0Position(0, 0, 255, 192);
     G2_SetWnd1Position(0, 0, 255, 192);
@@ -606,14 +598,14 @@ static void ov5_021DE2DC(SysTask *param0, void *param1)
 
     switch (v0->unk_34) {
     case 0:
-        ov5_021DDE74(&v0->unk_18);
+        QuadraticInterpolationTaskFX32_Update(&v0->unk_18);
 
-        if (ov5_021DDE74(&v0->unk_00)) {
+        if (QuadraticInterpolationTaskFX32_Update(&v0->unk_00)) {
             v0->unk_34++;
         }
 
-        v1 = v0->unk_00.unk_00 >> FX32_SHIFT;
-        v2 = v0->unk_18.unk_00 >> FX32_SHIFT;
+        v1 = v0->unk_00.currentValue >> FX32_SHIFT;
+        v2 = v0->unk_18.currentValue >> FX32_SHIFT;
         G2_SetWnd0Position(0, 0, 255 - v1, 96 - v2);
         G2_SetWnd1Position(v1, 96 + v2, 255, 192);
         break;
@@ -825,15 +817,9 @@ GraphicElementData *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_0
     return v1;
 }
 
-VecFx32 ov5_021DE660(fx32 param0, fx32 param1, fx32 param2)
+VecFx32 VecFx32_FromXYZ(fx32 x, fx32 y, fx32 z)
 {
-    VecFx32 v0;
-
-    v0.x = param0;
-    v0.y = param1;
-    v0.z = param2;
-
-    return v0;
+    return (VecFx32){ x, y, z };
 }
 
 static void ov5_021DE67C(GraphicElementData *param0, void *param1, u32 param2)
