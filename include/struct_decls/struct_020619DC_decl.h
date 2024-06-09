@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020619DC_DECL_H
 #define POKEPLATINUM_STRUCT_020619DC_DECL_H
 
-typedef struct UnkStruct_020619DC_t MapObjectHeader;
+typedef struct ObjectEvent ObjectEvent;
 
 #endif // POKEPLATINUM_STRUCT_020619DC_DECL_H

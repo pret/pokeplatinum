@@ -19,7 +19,7 @@ int sub_0203A468(const FieldSystem * fieldSystem, int param1, int param2);
 int sub_0203A4A4(const FieldSystem * fieldSystem);
 const UnkStruct_0203A4AC * sub_0203A4AC(const FieldSystem * fieldSystem);
 u32 FieldSystem_GetNPCCount(const FieldSystem * fieldSystem);
-const MapObjectHeader * sub_0203A4BC(const FieldSystem * fieldSystem);
+const ObjectEvent * sub_0203A4BC(const FieldSystem * fieldSystem);
 BOOL sub_0203A4C4(FieldSystem * fieldSystem, int param1, u16 param2, u16 param3);
 BOOL sub_0203A4FC(FieldSystem * fieldSystem, int param1, int param2);
 BOOL sub_0203A52C(FieldSystem * fieldSystem, int param1, int param2);

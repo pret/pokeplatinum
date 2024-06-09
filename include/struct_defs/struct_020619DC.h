@@ -1,22 +1,20 @@
 #ifndef POKEPLATINUM_STRUCT_020619DC_H
 #define POKEPLATINUM_STRUCT_020619DC_H
 
-typedef struct UnkStruct_020619DC_t {
-    unsigned short unk_00;
-    unsigned short unk_02;
-    unsigned short unk_04;
-    unsigned short unk_06;
-    unsigned short unk_08;
-    unsigned short unk_0A;
-    short unk_0C;
-    unsigned short unk_0E;
-    unsigned short unk_10;
-    unsigned short unk_12;
-    short unk_14;
-    short unk_18;
-    unsigned short unk_1A;
-    unsigned short unk_1C;
-    int unk_1E;
-} MapObjectHeader;
+typedef struct ObjectEvent {
+    u16 localID;
+    u16 graphicsID;
+    u16 movementType;
+    u16 trainerType;
+    u16 flag;
+    u16 script;
+    s16 dir;
+    u16 data[3];
+    s16 movementRangeX;
+    s16 movementRangeZ;
+    u16 x;
+    u16 z;
+    fx32 y;
+} ObjectEvent;
 
 #endif // POKEPLATINUM_STRUCT_020619DC_H

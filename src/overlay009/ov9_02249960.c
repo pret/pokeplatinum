@@ -495,7 +495,7 @@ typedef struct {
     u16 unk_02;
     u16 unk_04;
     u16 unk_06;
-    MapObjectHeader unk_08;
+    ObjectEvent unk_08;
 } UnkStruct_ov9_0224EF30;
 
 typedef struct {
@@ -7138,7 +7138,7 @@ static MapObject ** ov9_0224EEA0 (UnkStruct_ov9_02249B04 * param0)
     return NULL;
 }
 
-static MapObject * ov9_0224EECC (UnkStruct_ov9_02249B04 * param0, const MapObjectHeader * param1, u32 param2)
+static MapObject * ov9_0224EECC (UnkStruct_ov9_02249B04 * param0, const ObjectEvent * param1, u32 param2)
 {
     int v0 = 0;
     MapObject * v1;
@@ -7146,8 +7146,8 @@ static MapObject * ov9_0224EECC (UnkStruct_ov9_02249B04 * param0, const MapObjec
 
     while (sub_020625B0(v2, &v1, &v0, (1 << 0))) {
         if (sub_02062918(v1) == param2) {
-            if (MapObject_Id(v1) == param1->unk_00) {
-                GF_ASSERT(param1->unk_02 == sub_02062920(v1));
+            if (MapObject_Id(v1) == param1->localID) {
+                GF_ASSERT(param1->graphicsID == sub_02062920(v1));
                 return v1;
             }
         }
@@ -7186,7 +7186,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, 
 
         *param1 = v0;
     } else {
-        if ((ov9_0224EF30(param0, param2, param4) == 0) || (sub_0203F188(param0->fieldSystem, param2->unk_08.unk_08) != 0)) {
+        if ((ov9_0224EF30(param0, param2, param4) == 0) || (sub_0203F188(param0->fieldSystem, param2->unk_08.flag) != 0)) {
             return 0;
         }
 
@@ -7208,7 +7208,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, 
     if (v0 == NULL) {
         UnkStruct_020216E0 * v1;
 
-        MapObject_SetPosDir(*param1, param2->unk_08.unk_1A, (((param2->unk_08.unk_1E) >> 3) / FX32_ONE), param2->unk_08.unk_1C, param2->unk_08.unk_0C);
+        MapObject_SetPosDir(*param1, param2->unk_08.x, (((param2->unk_08.y) >> 3) / FX32_ONE), param2->unk_08.z, param2->unk_08.dir);
 
         v1 = ov5_021EB1A0(*param1);
 
@@ -7277,7 +7277,7 @@ static MapObject * ov9_0224F0D4 (UnkStruct_ov9_02249B04 * param0, u32 param1, u1
             const UnkStruct_ov9_0224EF30 ** v2 = v1->unk_04;
 
             while ((*v2) != NULL) {
-                if ((*v2)->unk_08.unk_00 == param2) {
+                if ((*v2)->unk_08.localID == param2) {
                     v0 = ov9_0224EEA0(param0);
                     ov9_0224EF64(param0, v0, *v2, param1, 1);
 

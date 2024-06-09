@@ -943,14 +943,14 @@ void ov23_022534A0 (FieldSystem * fieldSystem)
 
     {
         int v8, v9;
-        const MapObjectHeader * v10;
+        const ObjectEvent * v10;
         MapObject * v11;
 
         v8 = FieldSystem_GetNPCCount(v4->fieldSystem);
         v10 = sub_0203A4BC(v4->fieldSystem);
 
         for (v9 = 0; v9 < v8; v9++) {
-            if ((v10[v9].unk_1A == v1) && (v10[v9].unk_1C == v2)) {
+            if ((v10[v9].x == v1) && (v10[v9].z == v2)) {
                 v11 = MapObjMan_LocalMapObjByIndex(v4->fieldSystem->mapObjMan, v9);
                 MapObject_SetDir(v11, v3);
             }

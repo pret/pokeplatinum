@@ -433,7 +433,7 @@ static BOOL FieldMap_ChangeZone (FieldSystem * fieldSystem)
 
     {
         int v5 = FieldSystem_GetNPCCount(fieldSystem);
-        const MapObjectHeader * v6 = sub_0203A4BC(fieldSystem);
+        const ObjectEvent * v6 = sub_0203A4BC(fieldSystem);
 
         sub_0206184C(fieldSystem->mapObjMan, v1, v0, v5, v6);
     }
@@ -486,7 +486,7 @@ void ov5_021D12D0 (FieldSystem * fieldSystem, u32 param1)
 
     {
         int v2 = FieldSystem_GetNPCCount(fieldSystem);
-        const MapObjectHeader * v3 = sub_0203A4BC(fieldSystem);
+        const ObjectEvent * v3 = sub_0203A4BC(fieldSystem);
 
         sub_0206184C(fieldSystem->mapObjMan, v0, param1, v2, v3);
     }

@@ -632,13 +632,13 @@ static int CommPlayer_Direction (u16 unused, u16 keys)
 BOOL CommPlayer_CheckNPCCollision (int x, int z)
 {
     int npcCnt, i;
-    const MapObjectHeader * npcList;
+    const ObjectEvent * npcList;
 
     npcCnt = FieldSystem_GetNPCCount(sCommPlayerManager->fieldSystem);
     npcList = sub_0203A4BC(sCommPlayerManager->fieldSystem);
 
     for (i = 0; i < npcCnt; i++) {
-        if ((npcList[i].unk_1A == x) && (npcList[i].unk_1C == z)) {
+        if ((npcList[i].x == x) && (npcList[i].z == z)) {
             return 1;
         }
     }

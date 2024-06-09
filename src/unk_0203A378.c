@@ -22,7 +22,7 @@ struct UnkStruct_0203A3E8_t {
     u32 unk_08;
     u32 unk_0C;
     const BgEvent * unk_10;
-    const struct UnkStruct_020619DC_t * unk_14;
+    const ObjectEvent * unk_14;
     const UnkStruct_0203A55C * unk_18;
     const UnkStruct_0203A4AC * unk_1C;
     u32 unk_20[512];
@@ -131,7 +131,7 @@ u32 FieldSystem_GetNPCCount (const FieldSystem * fieldSystem)
     return fieldSystem->unk_14->npcCount;
 }
 
-const MapObjectHeader * sub_0203A4BC (const FieldSystem * fieldSystem)
+const ObjectEvent * sub_0203A4BC (const FieldSystem * fieldSystem)
 {
     return fieldSystem->unk_14->unk_14;
 }
@@ -139,13 +139,13 @@ const MapObjectHeader * sub_0203A4BC (const FieldSystem * fieldSystem)
 BOOL sub_0203A4C4 (FieldSystem * fieldSystem, int param1, u16 param2, u16 param3)
 {
     int v0;
-    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
+    ObjectEvent * v1 = (ObjectEvent *)fieldSystem->unk_14->unk_14;
     u32 v2 = fieldSystem->unk_14->npcCount;
 
     for (v0 = 0; v0 < v2; v0++) {
-        if (v1[v0].unk_00 == param1) {
-            v1[v0].unk_1A = param2;
-            v1[v0].unk_1C = param3;
+        if (v1[v0].localID == param1) {
+            v1[v0].x = param2;
+            v1[v0].z = param3;
             return 1;
         }
     }
@@ -157,12 +157,12 @@ BOOL sub_0203A4C4 (FieldSystem * fieldSystem, int param1, u16 param2, u16 param3
 BOOL sub_0203A4FC (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
-    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
+    ObjectEvent * v1 = (ObjectEvent *)fieldSystem->unk_14->unk_14;
     u32 v2 = fieldSystem->unk_14->npcCount;
 
     for (v0 = 0; v0 < v2; v0++) {
-        if (v1[v0].unk_00 == param1) {
-            v1[v0].unk_0C = param2;
+        if (v1[v0].localID == param1) {
+            v1[v0].dir = param2;
             return 1;
         }
     }
@@ -174,12 +174,12 @@ BOOL sub_0203A4FC (FieldSystem * fieldSystem, int param1, int param2)
 BOOL sub_0203A52C (FieldSystem * fieldSystem, int param1, int param2)
 {
     int v0;
-    MapObjectHeader * v1 = (MapObjectHeader *)fieldSystem->unk_14->unk_14;
+    ObjectEvent * v1 = (ObjectEvent *)fieldSystem->unk_14->unk_14;
     u32 v2 = fieldSystem->unk_14->npcCount;
 
     for (v0 = 0; v0 < v2; v0++) {
-        if (v1[v0].unk_00 == param1) {
-            v1[v0].unk_04 = param2;
+        if (v1[v0].localID == param1) {
+            v1[v0].movementType = param2;
             return 1;
         }
     }
@@ -243,12 +243,12 @@ static void sub_0203A5B0 (UnkStruct_0203A3E8 * param0)
     v0 += sizeof(u32);
 
     if (param0->npcCount != 0) {
-        param0->unk_14 = (const struct UnkStruct_020619DC_t *)v0;
+        param0->unk_14 = (const ObjectEvent *)v0;
     } else {
         param0->unk_14 = NULL;
     }
 
-    v0 += sizeof(struct UnkStruct_020619DC_t) * param0->npcCount;
+    v0 += sizeof(ObjectEvent) * param0->npcCount;
     param0->unk_08 = *(u32 *)v0;
     v0 += sizeof(u32);
 
@@ -317,7 +317,7 @@ BOOL sub_0203A6A4 (const FieldSystem * fieldSystem, u16 param1, u16 param2)
     u32 v1;
 
     for (v1 = 0; v1 < v0->npcCount; v1++) {
-        if ((v0->unk_14[v1].unk_1A == param1) && (v0->unk_14[v1].unk_1C == param2)) {
+        if ((v0->unk_14[v1].x == param1) && (v0->unk_14[v1].z == param2)) {
             return 0;
         }
     }
