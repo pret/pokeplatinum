@@ -228,9 +228,9 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
         sub_0203F5C0(fieldSystem, 3);
 
-        fieldSystem->unk_04->unk_1C = HBlankSystem_New(4);
-        HBlankSystem_Start(fieldSystem->unk_04->unk_1C);
-        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(4, fieldSystem->unk_04->unk_1C);
+        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(4);
+        HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
+        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(4, fieldSystem->unk_04->hBlankSystem);
         break;
     case 2:
         ov5_021D5BD8(fieldSystem);
@@ -324,7 +324,7 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
             }
 
             ov5_021EF4F8(fieldSystem->unk_04->unk_20);
-            HBlankSystem_Delete(fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Delete(fieldSystem->unk_04->hBlankSystem);
             sub_02055CBC(fieldSystem->unk_04->unk_18);
             ov5_021D57D8(&fieldSystem->unk_48);
             ov5_021D5894(&fieldSystem->unk_44);

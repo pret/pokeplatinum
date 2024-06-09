@@ -95,10 +95,10 @@ typedef struct ScreenSliceEffect {
     QuadraticInterpolationTaskFX32 interpolationTask;
     u32 pixelsPerSlice;
     u32 state;
-    HBlankSystem *unk_20;
-    HBlankTask *unk_24;
-    SysTask *unk_28;
-    BOOL *unk_2C;
+    HBlankSystem *hBlankSystem;
+    HBlankTask *hBlankTask;
+    SysTask *vBlankTask;
+    BOOL *done;
 } ScreenSliceEffect;
 
 typedef struct UnkStruct_ov5_021DED04 {

@@ -122,13 +122,13 @@ static BOOL sub_02056B70 (TaskManager * taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        HBlankSystem_Stop(fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->unk_1C);
         v1->unk_00++;
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            HBlankSystem_Start(fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
             Heap_FreeToHeap(v1);
             return 1;
         }

@@ -402,13 +402,13 @@ static BOOL sub_02047404 (ScriptContext * param0)
 
 BOOL ScrCmd_113 (ScriptContext * param0)
 {
-    HBlankSystem_Stop(param0->fieldSystem->unk_04->unk_1C);
+    HBlankSystem_Stop(param0->fieldSystem->unk_04->hBlankSystem);
     return 0;
 }
 
 BOOL ScrCmd_114 (ScriptContext * param0)
 {
-    HBlankSystem_Start(param0->fieldSystem->unk_04->unk_1C);
+    HBlankSystem_Start(param0->fieldSystem->unk_04->hBlankSystem);
     return 0;
 }
 

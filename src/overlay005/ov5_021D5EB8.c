@@ -5121,7 +5121,7 @@ static void ov5_021DB04C (SysTask * param0, void * param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->unk_1C);
+        ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->hBlankSystem);
         ov5_021DB6E0(&v1->unk_00, (FX32_CONST(256)), (FX32_CONST(32)), 128, 84, 30);
         v0->unk_BA2 = 1;
         break;
@@ -5138,7 +5138,7 @@ static void ov5_021DB04C (SysTask * param0, void * param1)
         break;
     case 3:
         if (v0->unk_BA6 == 5) {
-            ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->unk_1C);
+            ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->hBlankSystem);
             ov5_021DB6E0(&v1->unk_00, (FX32_CONST(32)), (FX32_CONST(256)), 128, 84, 30);
             v0->unk_BA2 = 4;
         }

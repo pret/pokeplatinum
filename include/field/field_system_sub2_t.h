@@ -18,7 +18,7 @@ struct FieldSystem_sub2_t {
     UnkStruct_ov5_021D5CB0 * unk_10;
     PoketchSystem * unk_14;
     UnkStruct_02055CBC * unk_18;
-    HBlankSystem * unk_1C;
+    HBlankSystem * hBlankSystem;
     UnkStruct_ov5_021EF4F8 * unk_20;
     void * unk_24;
 };

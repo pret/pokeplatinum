@@ -240,7 +240,7 @@ void ov5_021E261C (SysTask * param0, void * param1)
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E261C));
         v1 = v0->unk_0C;
         ov5_021E28B0(&v1->unk_00, 4);
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
         v0->unk_00++;
         break;
     case 1:
@@ -275,7 +275,7 @@ void ov5_021E261C (SysTask * param0, void * param1)
         break;
     case 6:
         ov5_021E28CC(&v1->unk_00);
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -298,7 +298,7 @@ void ov5_021E2748 (SysTask * param0, void * param1)
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2748));
         v1 = v0->unk_0C;
         ov5_021E28B0(&v1->unk_00, 4);
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
         v0->unk_00++;
         break;
     case 1:
@@ -333,7 +333,7 @@ void ov5_021E2748 (SysTask * param0, void * param1)
         break;
     case 6:
         ov5_021E28CC(&v1->unk_00);
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -424,7 +424,7 @@ void ov5_021E2944 (SysTask * param0, void * param1)
         }
         break;
     case 3:
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
         v1->unk_00 = v0->fieldSystem->unk_24;
@@ -442,7 +442,7 @@ void ov5_021E2944 (SysTask * param0, void * param1)
         }
         break;
     case 5:
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -477,7 +477,7 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
         }
         break;
     case 3:
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
         v1->unk_00 = v0->fieldSystem->unk_24;
@@ -495,7 +495,7 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
         }
         break;
     case 5:
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1365,7 +1365,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
 
     case 5:
 
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
         v3 = sub_02020A90(v1->unk_234);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
@@ -1388,7 +1388,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
     case 7:
         sub_0200F344(1, 0x0);
 
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1707,7 +1707,7 @@ void ov5_021E4260 (SysTask * param0, void * param1)
                 v1->unk_200, &v3);
         }
 
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 16, 0, 0x0, 6, 1, 4);
         v0->unk_00++;
         break;
@@ -1730,7 +1730,7 @@ void ov5_021E4260 (SysTask * param0, void * param1)
     case 7:
         sub_0200F344(1, 0x0);
 
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1831,7 +1831,7 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
 
     case 5:
 
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 34, 0, 0x0, 8, 1, 4);
         v0->unk_00++;
         break;
@@ -1846,7 +1846,7 @@ void ov5_021E44C0 (SysTask * param0, void * param1)
     case 7:
         sub_0200F344(1, 0x0);
 
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1997,7 +1997,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
 
     case 5:
 
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
         sub_0200F174(3, 34, 0, 0x0, 12, 1, 4);
         v0->unk_00++;
@@ -2013,7 +2013,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
     case 7:
         sub_0200F344(1, 0x0);
 
-        HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
