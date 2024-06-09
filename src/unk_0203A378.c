@@ -21,7 +21,7 @@ struct UnkStruct_0203A3E8_t {
     u32 npcCount;
     u32 unk_08;
     u32 unk_0C;
-    const UnkStruct_0203A594 * unk_10;
+    const BgEvent * unk_10;
     const struct UnkStruct_020619DC_t * unk_14;
     const UnkStruct_0203A55C * unk_18;
     const UnkStruct_0203A4AC * unk_1C;
@@ -70,7 +70,7 @@ static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
 
     v0 = MapHeader_GetEventsArchiveID(param1);
     GF_ASSERT(NARC_GetMemberSizeByIndexPair(NARC_INDEX_FIELDDATA__EVENTDATA__ZONE_EVENT, v0) < sizeof(param0->unk_20));
-    NARC_ReadWholeMemberByIndexPair(param0->unk_20, 32, v0);
+    NARC_ReadWholeMemberByIndexPair(param0->unk_20, NARC_INDEX_FIELDDATA__EVENTDATA__ZONE_EVENT, v0);
 }
 
 void sub_0203A418 (FieldSystem * fieldSystem)
@@ -84,7 +84,7 @@ void sub_0203A418 (FieldSystem * fieldSystem)
     }
 }
 
-const UnkStruct_0203A594 * sub_0203A440 (const FieldSystem * fieldSystem)
+const BgEvent * sub_0203A440 (const FieldSystem * fieldSystem)
 {
     return fieldSystem->unk_14->unk_10;
 }
@@ -216,11 +216,11 @@ BOOL sub_0203A584 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 
 BOOL sub_0203A594 (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3)
 {
-    UnkStruct_0203A594 * v0 = (UnkStruct_0203A594 *)sub_0203A440(fieldSystem);
+    BgEvent * v0 = sub_0203A440(fieldSystem);
 
     (v0) += param1;
-    v0->unk_04 = param2;
-    v0->unk_08 = param3;
+    v0->x = param2;
+    v0->z = param3;
 
     return 1;
 }
@@ -233,12 +233,12 @@ static void sub_0203A5B0 (UnkStruct_0203A3E8 * param0)
     v0 += sizeof(u32);
 
     if (param0->unk_00 != 0) {
-        param0->unk_10 = (const UnkStruct_0203A594 *)v0;
+        param0->unk_10 = (const BgEvent *)v0;
     } else {
         param0->unk_10 = NULL;
     }
 
-    v0 += sizeof(UnkStruct_0203A594) * param0->unk_00;
+    v0 += sizeof(BgEvent) * param0->unk_00;
     param0->npcCount = *(u32 *)v0;
     v0 += sizeof(u32);
 

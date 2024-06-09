@@ -823,7 +823,7 @@ static BOOL sub_0203F404 (UnkStruct_0203EF60 * param0, u16 param1)
 UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
 {
     UnkStruct_0203F478 * v0;
-    const UnkStruct_0203A594 * v1;
+    const BgEvent * v1;
     int v2, v3, v4, v5, v6, v7;
     int v8, v9, v10, v11;
 
@@ -864,12 +864,12 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     }
 
     for (v4 = 0; v4 < v5; v4++) {
-        if ((v1[v4].unk_02 == 2) && (sub_0203F188(fieldSystem, sub_0203F2F4(v1[v4].unk_00)) == 0)) {
-            if ((v1[v4].unk_04 >= v8) && (v1[v4].unk_04 <= v9) && (v1[v4].unk_08 >= v10) && (v1[v4].unk_08 <= v11)) {
-                v0[v6].unk_04 = sub_0203F3C8(v1[v4].unk_00);
-                v7 = (v2 - v1[v4].unk_04);
+        if ((v1[v4].type == 2) && (sub_0203F188(fieldSystem, sub_0203F2F4(v1[v4].script)) == 0)) {
+            if ((v1[v4].x >= v8) && (v1[v4].x <= v9) && (v1[v4].z >= v10) && (v1[v4].z <= v11)) {
+                v0[v6].unk_04 = sub_0203F3C8(v1[v4].script);
+                v7 = (v2 - v1[v4].x);
                 v0[v6].unk_00 = abs(7 - v7);
-                v7 = (v3 - v1[v4].unk_08);
+                v7 = (v3 - v1[v4].z);
                 v0[v6].unk_02 = abs(7 - v7);
                 v6++;
             }

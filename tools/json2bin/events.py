@@ -14,7 +14,8 @@ def parse_bg_events(bg_events: Sequence[Mapping], *args) -> bytes:
         bg_bytes.extend(j2b.parse_int(bg['x'], 4))
         bg_bytes.extend(j2b.parse_int(bg['z'], 4))
         bg_bytes.extend(j2b.parse_int(bg['y'], 4))
-        bg_bytes.extend(j2b.parse_int(bg['player_facing_dir'], 4))
+        bg_bytes.extend(j2b.parse_int(bg['player_facing_dir'], 2))
+        bg_bytes.extend(j2b.parse_int(0, 2))
     return bg_bytes
 
 def parse_object_events(obj_events: Sequence[Mapping], *args) -> bytes:
