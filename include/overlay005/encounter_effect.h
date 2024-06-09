@@ -35,8 +35,8 @@ typedef struct EncounterEffect {
 } EncounterEffect;
 
 typedef struct UnkStruct_ov5_021DE6BC {
-    UnkStruct_ov5_021DDD80 unk_00;
-    UnkStruct_ov5_021DDD80 unk_14;
+    LinearInterpolationTaskS32 unk_00;
+    LinearInterpolationTaskS32 unk_14;
     Window *unk_28;
     u8 unk_2C;
     u8 unk_2D;
@@ -45,8 +45,8 @@ typedef struct UnkStruct_ov5_021DE6BC {
 } UnkStruct_ov5_021DE6BC;
 
 typedef struct UnkStruct_ov5_021DE79C {
-    UnkStruct_ov5_021DDD80 unk_00;
-    UnkStruct_ov5_021DDD80 unk_14;
+    LinearInterpolationTaskS32 unk_00;
+    LinearInterpolationTaskS32 unk_14;
     Window *unk_28;
     u8 unk_2C;
     u8 unk_2D;
@@ -69,7 +69,7 @@ typedef struct UnkStruct_ov5_021DE928 {
 
 typedef struct UnkStruct_ov5_021DEA98 {
     Window *unk_00;
-    UnkStruct_ov5_021DDD80 unk_04;
+    LinearInterpolationTaskS32 unk_04;
     u8 unk_18;
     u8 unk_19;
     u8 unk_1A[2];
@@ -103,7 +103,7 @@ typedef struct UnkStruct_ov5_021DDF74 {
 } UnkStruct_ov5_021DDF74;
 
 typedef struct UnkStruct_ov5_021DED04 {
-    UnkStruct_ov5_021DDD80 unk_00;
+    LinearInterpolationTaskS32 unk_00;
     u32 unk_14;
     u8 unk_18[192];
     UnkStruct_ov5_021EF3BC *unk_D8;
@@ -119,16 +119,16 @@ enum Screen {
 
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *param2);
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask);
-void EncounterEffect_Flash(enum Screen screen, u32 param1, u32 param2, BOOL *done, u32 numFlashes);
+void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherScreenFlashColor, BOOL *done, u32 numFlashes);
 BOOL ov5_021DDD7C(EncounterEffect *param0);
-void ov5_021DDD80(UnkStruct_ov5_021DDD80 *param0, int param1, int param2, int param3);
-BOOL ov5_021DDD90(UnkStruct_ov5_021DDD80 *param0);
+void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start, int end, int numSteps);
+BOOL LinearInterpolationTaskS32_Update(LinearInterpolationTaskS32 *task);
 void ov5_021DDDBC(UnkStruct_ov5_021DDDBC *param0, fx32 param1, fx32 param2, int param3);
 BOOL ov5_021DDDCC(UnkStruct_ov5_021DDDBC *param0);
 void ov5_021DDE14(UnkStruct_ov5_021DDE14 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
 BOOL ov5_021DDE74(UnkStruct_ov5_021DDE14 *param0);
-void ov5_021DDEDC(int param0, int param1);
-void BrightnessFadeTask_Init(BrightnessFadeTask *param0, int param1, int param2, int param3, int param4);
+void BrightnessFadeTask_ApplyBrightnessToScreen(int param0, int param1);
+void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync);
 BOOL ov5_021DDF08(BrightnessFadeTask *param0);
 UnkStruct_ov5_021DDF74 *ov5_021DDF38(void);
 void ov5_021DDF74(UnkStruct_ov5_021DDF74 *param0);

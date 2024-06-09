@@ -4,7 +4,7 @@
 #include "overlay005/struct_ov5_021DDD80.h"
 
 typedef struct BrightnessFadeTask {
-    UnkStruct_ov5_021DDD80 unk_00;
+    LinearInterpolationTaskS32 unk_00;
     int screen;
 } BrightnessFadeTask;
 

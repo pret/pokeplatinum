@@ -509,7 +509,7 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
 
 typedef struct {
     UnkStruct_ov5_021DDE14 unk_00;
-    UnkStruct_ov5_021DDD80 unk_18;
+    LinearInterpolationTaskS32 unk_18;
     UnkStruct_ov5_021DDE14 unk_2C;
     UnkStruct_ov5_021DDF74 * unk_44;
     UnkStruct_ov5_021DE47C unk_48;
@@ -522,7 +522,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov5_021DDDBC unk_00;
-    UnkStruct_ov5_021DDD80 unk_14;
+    LinearInterpolationTaskS32 unk_14;
     UnkStruct_ov5_021DE374 * unk_28;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
@@ -534,8 +534,8 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov5_021DDE14 unk_00;
-    UnkStruct_ov5_021DDD80 unk_18;
-    UnkStruct_ov5_021DDD80 unk_2C;
+    LinearInterpolationTaskS32 unk_18;
+    LinearInterpolationTaskS32 unk_2C;
     UnkStruct_ov5_021E2878 unk_40;
     BOOL unk_4C;
     UnkStruct_ov5_021DE47C unk_50;
@@ -550,8 +550,8 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
     GraphicElementData * unk_1D4[3];
-    UnkStruct_ov5_021DDD80 unk_1E0[3];
-    UnkStruct_ov5_021DDD80 unk_21C[3];
+    LinearInterpolationTaskS32 unk_1E0[3];
+    LinearInterpolationTaskS32 unk_21C[3];
     UnkStruct_ov5_021DE6BC * unk_258[3];
     BOOL unk_264[3];
     Window * unk_270;
@@ -566,7 +566,7 @@ typedef struct {
     UnkStruct_ov5_021DDE14 unk_00;
     UnkStruct_ov5_021DDE14 unk_18;
     UnkStruct_ov5_021DDE14 unk_30;
-    UnkStruct_ov5_021DDD80 unk_48;
+    LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC;
     GraphicElementData * unk_230;
@@ -579,8 +579,8 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
     GraphicElementData * unk_1D4[3];
-    UnkStruct_ov5_021DDD80 unk_1E0[3];
-    UnkStruct_ov5_021DDD80 unk_21C[3];
+    LinearInterpolationTaskS32 unk_1E0[3];
+    LinearInterpolationTaskS32 unk_21C[3];
     BOOL unk_258[3];
     Window * unk_264;
     UnkStruct_ov5_021DE928 * unk_268;
@@ -653,7 +653,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
                 v1->unk_21C[v4], &v5);
         }
 
-        ov5_021DDD80(&v1->unk_18, 0, (0xffff * 1), 10);
+        LinearInterpolationTaskS32_Init(&v1->unk_18, 0, (0xffff * 1), 10);
         v0->unk_00++;
         break;
 
@@ -661,9 +661,9 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         v2 = ov5_021DDE74(&v1->unk_00);
         v5 = ov5_021DE660(v1->unk_00.unk_00, v1->unk_00.unk_00, v1->unk_00.unk_00);
 
-        v6 = v1->unk_18.unk_00;
+        v6 = v1->unk_18.currentValue;
 
-        ov5_021DDD90(&v1->unk_18);
+        LinearInterpolationTaskS32_Update(&v1->unk_18);
 
         for (v4 = 0; v4 < 2; v4++) {
             sub_02021C70(
@@ -671,10 +671,10 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         }
 
         sub_02021C94(
-            v1->unk_21C[0], 0xffff & v1->unk_18.unk_00);
+            v1->unk_21C[0], 0xffff & v1->unk_18.currentValue);
 
         sub_02021C94(
-            v1->unk_21C[1], 0xffff & (v1->unk_18.unk_00 - 0x100));
+            v1->unk_21C[1], 0xffff & (v1->unk_18.currentValue - 0x100));
 
         if (v2 == 1) {
             v0->unk_00++;
@@ -819,7 +819,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
                 v1->unk_200[1], &v6);
         }
 
-        ov5_021DDD80(&v1->unk_14, 0, (0xffff * 2), 8);
+        LinearInterpolationTaskS32_Init(&v1->unk_14, 0, (0xffff * 2), 8);
 
         v0->unk_00++;
         break;
@@ -837,11 +837,11 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
                 v1->unk_200[1], &v8);
         }
 
-        ov5_021DDD90(&v1->unk_14);
+        LinearInterpolationTaskS32_Update(&v1->unk_14);
         sub_02021C94(
-            v1->unk_200[0], v1->unk_14.unk_00);
+            v1->unk_200[0], v1->unk_14.currentValue);
         sub_02021C94(
-            v1->unk_200[1], -v1->unk_14.unk_00);
+            v1->unk_200[1], -v1->unk_14.currentValue);
 
         if (v2 == 1) {
             v0->unk_00++;
@@ -955,8 +955,8 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
         break;
 
     case 3:
-        ov5_021DDD80(&v1->unk_18, 0, 16, 8);
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_18.unk_00, 16 - v1->unk_18.unk_00);
+        LinearInterpolationTaskS32_Init(&v1->unk_18, 0, 16, 8);
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_18.currentValue, 16 - v1->unk_18.currentValue);
 
         for (v5 = 0; v5 < 2; v5++) {
             sub_02021CAC(
@@ -967,20 +967,20 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
             sub_02021FE0(v1->unk_224[v5], GX_OAM_MODE_XLU);
         }
 
-        ov5_021DDD80(&v1->unk_2C, 0, 0xffff, 8);
+        LinearInterpolationTaskS32_Init(&v1->unk_2C, 0, 0xffff, 8);
 
         v0->unk_00++;
         break;
 
     case 4:
-        v2 = ov5_021DDD90(&v1->unk_18);
-        G2_ChangeBlendAlpha(v1->unk_18.unk_00, 16 - v1->unk_18.unk_00);
+        v2 = LinearInterpolationTaskS32_Update(&v1->unk_18);
+        G2_ChangeBlendAlpha(v1->unk_18.currentValue, 16 - v1->unk_18.currentValue);
 
-        v6 = v1->unk_2C.unk_00;
-        v3 = ov5_021DDD90(&v1->unk_2C);
+        v6 = v1->unk_2C.currentValue;
+        v3 = LinearInterpolationTaskS32_Update(&v1->unk_2C);
 
         if (v3 == 0) {
-            sub_02021C94(v1->unk_224[0], 0xffff & v1->unk_2C.unk_00);
+            sub_02021C94(v1->unk_224[0], 0xffff & v1->unk_2C.currentValue);
             sub_02021C94(v1->unk_224[1], 0xffff & v6);
         } else {
             sub_02021C94(v1->unk_224[0], 0);
@@ -1150,9 +1150,9 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         v5 = sub_02020A90(v1->unk_284);
         ov5_021DDE14(&v1->unk_288, v5, v5 + (-FX32_CONST(500)), (-FX32_CONST(10)), 16);
 
-        ov5_021DDD80(&v1->unk_21C[0], 0, (0xffff * 1), 6);
+        LinearInterpolationTaskS32_Init(&v1->unk_21C[0], 0, (0xffff * 1), 6);
 
-        ov5_021DDD80(&v1->unk_1E0[0], 231, -32, 6);
+        LinearInterpolationTaskS32_Init(&v1->unk_1E0[0], 231, -32, 6);
 
         ov5_021DE6C4(v1->unk_258[0], 43, 43, 312, 0, 6, v1->unk_270, 86, 64, 15);
 
@@ -1172,9 +1172,9 @@ void ov5_021E3560 (SysTask * param0, void * param1)
             break;
         }
 
-        ov5_021DDD80(&v1->unk_1E0[1], 231, -32, 6);
+        LinearInterpolationTaskS32_Init(&v1->unk_1E0[1], 231, -32, 6);
 
-        ov5_021DDD80(&v1->unk_21C[1], 0, (0xffff * -1), 6);
+        LinearInterpolationTaskS32_Init(&v1->unk_21C[1], 0, (0xffff * -1), 6);
 
         ov5_021DE6C4(v1->unk_258[1], 215, 215, 312, 0, 6, v1->unk_270, 86, 64, 15);
         v4 = ov5_021DE660(
@@ -1193,9 +1193,9 @@ void ov5_021E3560 (SysTask * param0, void * param1)
             break;
         }
 
-        ov5_021DDD80(&v1->unk_1E0[2], 231, -32, 6);
+        LinearInterpolationTaskS32_Init(&v1->unk_1E0[2], 231, -32, 6);
 
-        ov5_021DDD80(&v1->unk_21C[2], 0, (0xffff * 1), 6);
+        LinearInterpolationTaskS32_Init(&v1->unk_21C[2], 0, (0xffff * 1), 6);
 
         ov5_021DE6C4(v1->unk_258[2], 129, 129, 312, 0, 6, v1->unk_270, 86, 64, 15);
         v4 = ov5_021DE660(
@@ -1262,14 +1262,14 @@ void ov5_021E3560 (SysTask * param0, void * param1)
                 v1->unk_264[v3] = 0;
             }
 
-            ov5_021DDD90(&v1->unk_1E0[v3]);
-            ov5_021DDD90(&v1->unk_21C[v3]);
+            LinearInterpolationTaskS32_Update(&v1->unk_1E0[v3]);
+            LinearInterpolationTaskS32_Update(&v1->unk_21C[v3]);
 
-            sub_02021C94(v1->unk_1D4[v3], v1->unk_21C[v3].unk_00);
+            sub_02021C94(v1->unk_1D4[v3], v1->unk_21C[v3].currentValue);
 
             v7 = sub_02021D28(v1->unk_1D4[v3]);
             v8 = *v7;
-            v8.y = v1->unk_1E0[v3].unk_00 * FX32_ONE;
+            v8.y = v1->unk_1E0[v3].currentValue * FX32_ONE;
             sub_02021C50(v1->unk_1D4[v3], &v8);
         }
     }
@@ -1335,7 +1335,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         v4 = ov5_021DE660(v1->unk_18.unk_00, v1->unk_30.unk_00, 0);
         sub_02021C80(v1->unk_230, &v4, 2);
 
-        ov5_021DDD80(&v1->unk_48, 0, (0xffff * 1), 12);
+        LinearInterpolationTaskS32_Init(&v1->unk_48, 0, (0xffff * 1), 12);
         v0->unk_00++;
         break;
 
@@ -1352,8 +1352,8 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         v4 = ov5_021DE660(v1->unk_18.unk_00, v1->unk_30.unk_00, 0);
         sub_02021C70(v1->unk_230, &v4);
 
-        ov5_021DDD90(&v1->unk_48);
-        sub_02021C94(v1->unk_230, v1->unk_48.unk_00);
+        LinearInterpolationTaskS32_Update(&v1->unk_48);
+        sub_02021C94(v1->unk_230, v1->unk_48.currentValue);
 
         if (v2 == 1) {
             sub_02021CAC(
@@ -1474,14 +1474,14 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
             break;
         }
 
-        ov5_021DDD80(&v1->unk_1E0[0], -32, 224, 5);
+        LinearInterpolationTaskS32_Init(&v1->unk_1E0[0], -32, 224, 5);
         v2 = ov5_021DE660(
             128 * FX32_ONE, -32 * FX32_ONE, 0);
         sub_02021C50(v1->unk_1D4[0], &v2);
         sub_02021CAC(
             v1->unk_1D4[0], 1);
 
-        ov5_021DDD80(&v1->unk_21C[0], 0, (0xffff * 1), 5);
+        LinearInterpolationTaskS32_Init(&v1->unk_21C[0], 0, (0xffff * 1), 5);
         sub_02021CF8(v1->unk_1D4[0], 2);
 
         v1->unk_258[0] = 1;
@@ -1496,14 +1496,14 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
             break;
         }
 
-        ov5_021DDD80(&v1->unk_1E0[1], -32, 224, 5);
+        LinearInterpolationTaskS32_Init(&v1->unk_1E0[1], -32, 224, 5);
         v2 = ov5_021DE660(
             208 * FX32_ONE, -32 * FX32_ONE, 0);
         sub_02021C50(v1->unk_1D4[1], &v2);
         sub_02021CAC(
             v1->unk_1D4[1], 1);
 
-        ov5_021DDD80(&v1->unk_21C[1], 0, (0xffff * -1), 5);
+        LinearInterpolationTaskS32_Init(&v1->unk_21C[1], 0, (0xffff * -1), 5);
 
         sub_02021CF8(v1->unk_1D4[1], 2);
         v1->unk_258[1] = 1;
@@ -1518,14 +1518,14 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
             break;
         }
 
-        ov5_021DDD80(&v1->unk_1E0[2], -32, 224, 5);
+        LinearInterpolationTaskS32_Init(&v1->unk_1E0[2], -32, 224, 5);
         v2 = ov5_021DE660(
             48 * FX32_ONE, -32 * FX32_ONE, 0);
         sub_02021C50(v1->unk_1D4[2], &v2);
         sub_02021CAC(
             v1->unk_1D4[2], 1);
 
-        ov5_021DDD80(&v1->unk_21C[2], 0, (0xffff * 1), 5);
+        LinearInterpolationTaskS32_Init(&v1->unk_21C[2], 0, (0xffff * 1), 5);
         sub_02021CF8(v1->unk_1D4[2], 2);
 
         v1->unk_258[2] = 1;
@@ -1599,8 +1599,8 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
             const VecFx32 * v7;
             VecFx32 v8;
 
-            v3 = ov5_021DDD90(&v1->unk_1E0[v4]);
-            ov5_021DDD90(&v1->unk_21C[v4]);
+            v3 = LinearInterpolationTaskS32_Update(&v1->unk_1E0[v4]);
+            LinearInterpolationTaskS32_Update(&v1->unk_21C[v4]);
 
             if (v3) {
                 v1->unk_258[v4] = 0;
@@ -1608,9 +1608,9 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
 
             v7 = sub_02021D28(v1->unk_1D4[v4]);
             v8 = *v7;
-            v8.y = v1->unk_1E0[v4].unk_00 * FX32_ONE;
+            v8.y = v1->unk_1E0[v4].currentValue * FX32_ONE;
             sub_02021C50(v1->unk_1D4[v4], &v8);
-            sub_02021C94(v1->unk_1D4[v4], (0xffff & v1->unk_21C[v4].unk_00));
+            sub_02021C94(v1->unk_1D4[v4], (0xffff & v1->unk_21C[v4].currentValue));
         }
     }
 
@@ -1620,7 +1620,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
 }
 
 typedef struct {
-    UnkStruct_ov5_021DDD80 unk_00;
+    LinearInterpolationTaskS32 unk_00;
     UnkStruct_ov5_021DDE14 unk_14;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
@@ -1675,8 +1675,8 @@ void ov5_021E4260 (SysTask * param0, void * param1)
         break;
 
     case 3:
-        ov5_021DDD80(&v1->unk_00, 0, 16, 12);
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_00.unk_00, 16 - v1->unk_00.unk_00);
+        LinearInterpolationTaskS32_Init(&v1->unk_00, 0, 16, 12);
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_00.currentValue, 16 - v1->unk_00.currentValue);
 
         sub_02021CAC(
             v1->unk_200, 1);
@@ -1684,8 +1684,8 @@ void ov5_021E4260 (SysTask * param0, void * param1)
         break;
 
     case 4:
-        v2 = ov5_021DDD90(&v1->unk_00);
-        G2_ChangeBlendAlpha(v1->unk_00.unk_00, 16 - v1->unk_00.unk_00);
+        v2 = LinearInterpolationTaskS32_Update(&v1->unk_00);
+        G2_ChangeBlendAlpha(v1->unk_00.currentValue, 16 - v1->unk_00.currentValue);
 
         if (v2 == 1) {
             G2_BlendNone();
@@ -1890,7 +1890,7 @@ typedef struct {
     UnkStruct_ov5_021DDE14 unk_1EC[6];
     UnkStruct_ov5_021DDE14 unk_27C[6];
     UnkStruct_ov5_021DDE14 unk_30C[6];
-    UnkStruct_ov5_021DDD80 unk_39C[6];
+    LinearInterpolationTaskS32 unk_39C[6];
     BOOL unk_414[6];
     s32 unk_42C;
     s32 unk_430;
@@ -1902,9 +1902,9 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_08;
     UnkStruct_ov5_021DE5A4 unk_1A8;
     GraphicElementData * unk_1DC;
-    UnkStruct_ov5_021DDD80 unk_1E0;
-    UnkStruct_ov5_021DDD80 unk_1F4;
-    UnkStruct_ov5_021DDD80 unk_208;
+    LinearInterpolationTaskS32 unk_1E0;
+    LinearInterpolationTaskS32 unk_1F4;
+    LinearInterpolationTaskS32 unk_208;
     s32 unk_21C;
 } UnkStruct_ov5_021E4B3C;
 
@@ -1964,7 +1964,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
 
             ov5_021DDE14(&v1->unk_1EC[v1->unk_42C], (FX32_CONST(2.0f)), (FX32_CONST(0.01f)), (-FX32_CONST(0.40f)), 8);
 
-            ov5_021DDD80(&v1->unk_39C[v1->unk_42C], 0, Unk_ov5_021F9E94[v1->unk_42C][7], 8);
+            LinearInterpolationTaskS32_Init(&v1->unk_39C[v1->unk_42C], 0, Unk_ov5_021F9E94[v1->unk_42C][7], 8);
 
             sub_02021CAC(v1->unk_1D4[v1->unk_42C], 1);
             v4 = ov5_021DE660(
@@ -2035,7 +2035,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
             v2 = ov5_021DDE74(&v1->unk_27C[v3]);
             ov5_021DDE74(&v1->unk_30C[v3]);
             ov5_021DDE74(&v1->unk_1EC[v3]);
-            ov5_021DDD90(&v1->unk_39C[v3]);
+            LinearInterpolationTaskS32_Update(&v1->unk_39C[v3]);
 
             if (v2) {
                 v1->unk_414[v3] = 0;
@@ -2048,7 +2048,7 @@ void ov5_021E4738 (SysTask * param0, void * param1)
             v5 = ov5_021DE660(
                 v1->unk_1EC[v3].unk_00, v1->unk_1EC[v3].unk_00, 0);
             sub_02021C70(v1->unk_1D4[v3], &v5);
-            sub_02021C94(v1->unk_1D4[v3], v1->unk_39C[v3].unk_00);
+            sub_02021C94(v1->unk_1D4[v3], v1->unk_39C[v3].currentValue);
         }
     }
 
@@ -2112,15 +2112,15 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
         break;
 
     case 3:
-        ov5_021DDD80(&v1->unk_1F4, 0, 16, 15);
+        LinearInterpolationTaskS32_Init(&v1->unk_1F4, 0, 16, 15);
         sub_02021CAC(v1->unk_1DC, 1);
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_1F4.unk_00, 16 - v1->unk_1F4.unk_00);
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_1F4.currentValue, 16 - v1->unk_1F4.currentValue);
         v0->unk_00++;
         break;
 
     case 4:
-        v2 = ov5_021DDD90(&v1->unk_1F4);
-        G2_ChangeBlendAlpha(v1->unk_1F4.unk_00, 16 - v1->unk_1F4.unk_00);
+        v2 = LinearInterpolationTaskS32_Update(&v1->unk_1F4);
+        G2_ChangeBlendAlpha(v1->unk_1F4.currentValue, 16 - v1->unk_1F4.currentValue);
 
         if (v2 == 1) {
             G2_BlendNone();
@@ -2138,14 +2138,14 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
             break;
         }
 
-        ov5_021DDD80(&v1->unk_1E0, 0, 14, 16);
+        LinearInterpolationTaskS32_Init(&v1->unk_1E0, 0, 14, 16);
         ov5_021DEC38(v1->unk_04, 16, v1->unk_00, 15);
         v0->unk_00++;
         break;
 
     case 6:
-        ov5_021DDD90(&v1->unk_1E0);
-        G2_SetOBJMosaicSize(v1->unk_1E0.unk_00, v1->unk_1E0.unk_00);
+        LinearInterpolationTaskS32_Update(&v1->unk_1E0);
+        G2_SetOBJMosaicSize(v1->unk_1E0.currentValue, v1->unk_1E0.currentValue);
 
         if (ov5_021DECB8(v1->unk_04)) {
             v0->unk_00++;
@@ -2239,7 +2239,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021E2310 * unk_00;
     UnkStruct_020203AC * unk_04;
-    UnkStruct_ov5_021DDD80 unk_08;
+    LinearInterpolationTaskS32 unk_08;
     UnkStruct_ov5_021DDE14 unk_1C;
     s32 unk_34;
 } UnkStruct_ov5_021E4F7C;
@@ -2378,15 +2378,15 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
         {
             u16 v3 = sub_02020A88(v0->fieldSystem->unk_24);
 
-            ov5_021DDD80(&v1->unk_08, v3, v3 + 0x100, 40);
+            LinearInterpolationTaskS32_Init(&v1->unk_08, v3, v3 + 0x100, 40);
         }
 
         v0->unk_00++;
         break;
 
     case 4:
-        v2 = ov5_021DDD90(&v1->unk_08);
-        sub_02020910(v1->unk_08.unk_00, v0->fieldSystem->unk_24);
+        v2 = LinearInterpolationTaskS32_Update(&v1->unk_08);
+        sub_02020910(v1->unk_08.currentValue, v0->fieldSystem->unk_24);
 
         if (v2 == 1) {
             v0->unk_00++;
@@ -2515,7 +2515,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov5_021DDE14 unk_00;
-    UnkStruct_ov5_021DDD80 unk_18;
+    LinearInterpolationTaskS32 unk_18;
     UnkStruct_ov5_021DDDBC unk_2C;
     UnkStruct_ov5_021DED04 * unk_40;
     UnkStruct_ov5_021DE47C unk_44;
@@ -2534,7 +2534,7 @@ typedef struct {
     UnkStruct_ov5_021DDE14 unk_00;
     UnkStruct_ov5_021DDE14 unk_18;
     UnkStruct_ov5_021DDE14 unk_30;
-    UnkStruct_ov5_021DDD80 unk_48;
+    LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC[4];
     GraphicElementData * unk_2CC[4];
@@ -2762,7 +2762,7 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
         break;
 
     case 8:
-        ov5_021DDD80(&v0->unk_18, 0, 16, 3);
+        LinearInterpolationTaskS32_Init(&v0->unk_18, 0, 16, 3);
         v0->unk_2F8 = 10;
         param0->unk_00++;
         break;
@@ -2774,8 +2774,8 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
             break;
         }
 
-        v1 = ov5_021DDD90(&v0->unk_18);
-        ov5_021DEF8C(&v0->unk_18.unk_00);
+        v1 = LinearInterpolationTaskS32_Update(&v0->unk_18);
+        ov5_021DEF8C(&v0->unk_18.currentValue);
 
         if (v1 == 1) {
             ov5_021DE5D0(v0->unk_24C, param1, param2->unk_08, 0, (GX_RGB(0, 0, 0)));
@@ -2791,13 +2791,13 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
         break;
 
     case 10:
-        ov5_021DDD80(&v0->unk_18, 16, 0, 3);
+        LinearInterpolationTaskS32_Init(&v0->unk_18, 16, 0, 3);
         param0->unk_00++;
         break;
 
     case 11:
-        v1 = ov5_021DDD90(&v0->unk_18);
-        ov5_021DEF8C(&v0->unk_18.unk_00);
+        v1 = LinearInterpolationTaskS32_Update(&v0->unk_18);
+        ov5_021DEF8C(&v0->unk_18.currentValue);
 
         if (v1 == 1) {
             param0->unk_00++;
@@ -3165,7 +3165,7 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
             break;
         }
 
-        ov5_021DDD80(&v0->unk_48, 0, 16, 3);
+        LinearInterpolationTaskS32_Init(&v0->unk_48, 0, 16, 3);
 
         ov5_021DF224();
 
@@ -3173,8 +3173,8 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
         break;
 
     case 8:
-        v1 = ov5_021DDD90(&v0->unk_48);
-        ov5_021DEF8C(&v0->unk_48.unk_00);
+        v1 = LinearInterpolationTaskS32_Update(&v0->unk_48);
+        ov5_021DEF8C(&v0->unk_48.currentValue);
 
         if (v1 == 1) {
             ov5_021DE5D0(v0->unk_2CC[0], param1, v0->unk_368, 0, (GX_RGB(0, 0, 0)));
@@ -3194,7 +3194,7 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
         break;
 
     case 9:
-        ov5_021DDD80(&v0->unk_48, 16, 0, 6);
+        LinearInterpolationTaskS32_Init(&v0->unk_48, 16, 0, 6);
 
         ov5_021DF17C(4);
         BGL_SetPriority(0, 1);
@@ -3203,8 +3203,8 @@ static BOOL ov5_021E5890 (EncounterEffect * param0, u32 param1, const UnkStruct_
         break;
 
     case 10:
-        v1 = ov5_021DDD90(&v0->unk_48);
-        ov5_021DEF8C(&v0->unk_48.unk_00);
+        v1 = LinearInterpolationTaskS32_Update(&v0->unk_48);
+        ov5_021DEF8C(&v0->unk_48.currentValue);
 
         if (v1 == 1) {
             param0->unk_00++;
