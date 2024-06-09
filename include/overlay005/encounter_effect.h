@@ -92,15 +92,15 @@ typedef struct UnkStruct_ov5_021DE374 {
     BOOL *unk_44;
 } UnkStruct_ov5_021DE374;
 
-typedef struct UnkStruct_ov5_021DDF74 {
-    QuadraticInterpolationTaskFX32 unk_00;
-    u32 unk_18;
-    u32 unk_1C;
+typedef struct ScreenSliceEffect {
+    QuadraticInterpolationTaskFX32 interpolationTask;
+    u32 pixelsPerSlice;
+    u32 state;
     UnkStruct_ov5_021EF3BC *unk_20;
     UnkStruct_ov5_021EF43C *unk_24;
     SysTask *unk_28;
     BOOL *unk_2C;
-} UnkStruct_ov5_021DDF74;
+} ScreenSliceEffect;
 
 typedef struct UnkStruct_ov5_021DED04 {
     LinearInterpolationTaskS32 unk_00;
@@ -130,10 +130,10 @@ BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *param
 void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness);
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync);
 BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task);
-UnkStruct_ov5_021DDF74 *ov5_021DDF38(void);
-void ov5_021DDF74(UnkStruct_ov5_021DDF74 *param0);
-void ov5_021DDF9C(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6);
-void ov5_021DE058(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6);
+ScreenSliceEffect *ScreenSliceEffect_Alloc(void);
+void ScreenSliceEffect_Delete(ScreenSliceEffect *param0);
+void EncounterEffect_ScreenSlice(EncounterEffect *encEffect, ScreenSliceEffect *screenSliceEfx, u8 pixelsPerSlice, u32 numSteps, fx32 startX, fx32 endX, fx32 initialSpeed);
+void ov5_021DE058(EncounterEffect *param0, ScreenSliceEffect *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6);
 UnkStruct_ov5_021DE374 *ov5_021DE1CC(void);
 void ov5_021DE218(UnkStruct_ov5_021DE374 *param0);
 void ov5_021DE240(EncounterEffect *param0, UnkStruct_ov5_021DE374 *param1, u32 param2, fx32 param3, fx32 param4);

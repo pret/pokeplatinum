@@ -49,13 +49,13 @@
 typedef struct {
     UnkStruct_020203AC * unk_00;
     QuadraticInterpolationTaskFX32 unk_04;
-    UnkStruct_ov5_021DDF74 * unk_1C;
+    ScreenSliceEffect * unk_1C;
 } UnkStruct_ov5_021E2338;
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
     QuadraticInterpolationTaskFX32 unk_04;
-    UnkStruct_ov5_021DDF74 * unk_1C;
+    ScreenSliceEffect * unk_1C;
 } UnkStruct_ov5_021E24A8;
 
 typedef struct {
@@ -103,7 +103,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
         v0->unk_0C = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2338));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2338));
         v1 = v0->unk_0C;
-        v1->unk_1C = ov5_021DDF38();
+        v1->unk_1C = ScreenSliceEffect_Alloc();
         v0->unk_00++;
         break;
     case 1:
@@ -114,7 +114,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
         if (v0->unk_04) {
             v0->unk_04 = 0;
             v0->unk_00++;
-            ov5_021DDF9C(v0, v1->unk_1C, 2, 6 + 1, 0, (-3 * FX32_ONE), (FX32_ONE * -12));
+            EncounterEffect_ScreenSlice(v0, v1->unk_1C, 2, 6 + 1, 0, (-3 * FX32_ONE), (FX32_ONE * -12));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
             QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
@@ -152,7 +152,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDF74(v1->unk_1C);
+        ScreenSliceEffect_Delete(v1->unk_1C);
         EncounterEffect_Finish(v0, param0);
         break;
     default:
@@ -172,7 +172,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
         v0->unk_0C = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E24A8));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E24A8));
         v1 = v0->unk_0C;
-        v1->unk_1C = ov5_021DDF38();
+        v1->unk_1C = ScreenSliceEffect_Alloc();
         v0->unk_00++;
         break;
     case 1:
@@ -183,7 +183,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
         if (v0->unk_04) {
             v0->unk_04 = 0;
             v0->unk_00++;
-            ov5_021DDF9C(v0, v1->unk_1C, 5, 6 + 1, 0, (-2 * FX32_ONE), (FX32_ONE * -12));
+            EncounterEffect_ScreenSlice(v0, v1->unk_1C, 5, 6 + 1, 0, (-2 * FX32_ONE), (FX32_ONE * -12));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
             QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
@@ -221,7 +221,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021DDF74(v1->unk_1C);
+        ScreenSliceEffect_Delete(v1->unk_1C);
         EncounterEffect_Finish(v0, param0);
         break;
     default:
@@ -511,7 +511,7 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_18;
     QuadraticInterpolationTaskFX32 unk_2C;
-    UnkStruct_ov5_021DDF74 * unk_44;
+    ScreenSliceEffect * unk_44;
     UnkStruct_ov5_021DE47C unk_48;
     UnkStruct_ov5_021DE5A4 unk_1E8;
     GraphicElementData * unk_21C[2];
@@ -607,7 +607,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
         v1->unk_224 = v0->fieldSystem->unk_24;
 
-        v1->unk_44 = ov5_021DDF38();
+        v1->unk_44 = ScreenSliceEffect_Alloc();
 
         ov5_021DE47C(&v1->unk_48, 2, 1);
 
@@ -684,7 +684,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
     case 5:
 
-        ov5_021DDF9C(v0, v1->unk_44, 96, 6, 0, (255 * FX32_ONE), (FX32_ONE * 10));
+        EncounterEffect_ScreenSlice(v0, v1->unk_44, 96, 6, 0, (255 * FX32_ONE), (FX32_ONE * 10));
 
         SpriteActor_SetSpriteAnimActive(
             v1->unk_21C[0], 1);
@@ -742,7 +742,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         }
         ov5_021DE5A4(&v1->unk_48, &v1->unk_1E8);
         ov5_021DE4AC(&v1->unk_48);
-        ov5_021DDF74(v1->unk_44);
+        ScreenSliceEffect_Delete(v1->unk_44);
         EncounterEffect_Finish(v0, param0);
         break;
     }

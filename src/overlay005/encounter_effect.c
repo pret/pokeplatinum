@@ -98,7 +98,7 @@ static void EncounterEffect_ExecuteFlash(SysTask *task, void *param);
 static void ov5_021DE028(SysTask *param0, void *param1);
 static void ov5_021DE088(SysTask *param0, void *param1);
 static void ov5_021DE14C(UnkStruct_ov5_021EF43C *param0, void *param1);
-static void ov5_021DE0F0(UnkStruct_ov5_021DDF74 *param0);
+static void ov5_021DE0F0(ScreenSliceEffect *param0);
 static void ov5_021DE2AC(SysTask *param0, void *param1);
 static void ov5_021DE2DC(SysTask *param0, void *param1);
 static void ov5_021DE344(UnkStruct_ov5_021EF43C *param0, void *param1);
@@ -401,84 +401,82 @@ static void BrightnessFadeTask_SetBrightness(SysTask *task, void *param)
     SysTask_Done(task);
 }
 
-UnkStruct_ov5_021DDF74 *ov5_021DDF38(void)
+ScreenSliceEffect *ScreenSliceEffect_Alloc(void)
 {
-    UnkStruct_ov5_021DDF74 *v0;
+    ScreenSliceEffect *efx = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ScreenSliceEffect));
+    memset(efx, 0, sizeof(ScreenSliceEffect));
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DDF74));
-    memset(v0, 0, sizeof(UnkStruct_ov5_021DDF74));
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_NONE, FALSE);
 
-    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-    G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_NONE, 0);
-
-    return v0;
+    return efx;
 }
 
-void ov5_021DDF74(UnkStruct_ov5_021DDF74 *param0)
+void ScreenSliceEffect_Delete(ScreenSliceEffect *efx)
 {
-    if (param0->unk_24 != NULL) {
-        ov5_021DE0F0(param0);
+    if (efx->unk_24 != NULL) {
+        ov5_021DE0F0(efx);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(efx);
 }
 
-void ov5_021DDF9C(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6)
+void EncounterEffect_ScreenSlice(EncounterEffect *encEffect, ScreenSliceEffect *screenSliceEfx, u8 pixelsPerSlice, u32 numSteps, fx32 startX, fx32 endX, fx32 initialSpeed)
 {
-    GF_ASSERT(param1->unk_24 == NULL);
+    GF_ASSERT(screenSliceEfx->unk_24 == NULL);
 
-    param0->unk_18 = 0;
-    param1->unk_20 = param0->fieldSystem->unk_04->unk_1C;
-    param1->unk_18 = param2;
-    param1->unk_1C = 0;
-    param1->unk_2C = &param0->unk_18;
+    encEffect->unk_18 = 0;
+    screenSliceEfx->unk_20 = encEffect->fieldSystem->unk_04->unk_1C;
+    screenSliceEfx->pixelsPerSlice = pixelsPerSlice;
+    screenSliceEfx->state = 0;
+    screenSliceEfx->unk_2C = &encEffect->unk_18;
 
-    QuadraticInterpolationTaskFX32_Init(&param1->unk_00, param4, param5, param6, param3);
+    QuadraticInterpolationTaskFX32_Init(&screenSliceEfx->interpolationTask, startX, endX, initialSpeed, numSteps);
 
-    if (param4 >= 0) {
-        G2_SetWnd0Position(0, 0, 255 - param4, 192);
-        G2_SetWnd1Position(0, 0, 1 + param4, 192);
+    if (startX >= 0) {
+        G2_SetWnd0Position(0, 0, 255 - startX, 192);
+        G2_SetWnd1Position(0, 0, 1 + startX, 192);
     } else {
-        G2_SetWnd0Position(0, 0, 255 + param4, 192);
-        G2_SetWnd1Position(0, 0, 1 - param4, 192);
+        G2_SetWnd0Position(0, 0, 255 + startX, 192);
+        G2_SetWnd1Position(0, 0, 1 - startX, 192);
     }
 
-    CoreSys_ExecuteDuringVBlank(ov5_021DE028, param1, 1024);
+    CoreSys_ExecuteDuringVBlank(ov5_021DE028, screenSliceEfx, 1024);
 }
 
-static void ov5_021DE028(SysTask *param0, void *param1)
+static void ov5_021DE028(SysTask *task, void *param)
 {
-    UnkStruct_ov5_021DDF74 *v0 = param1;
+    ScreenSliceEffect *screenSliceEfx = param;
 
-    v0->unk_28 = CoreSys_ExecuteDuringVBlank(ov5_021DE088, v0, 1024);
-    v0->unk_24 = ov5_021EF418(v0->unk_20, ov5_021DE14C, v0);
+    screenSliceEfx->unk_28 = CoreSys_ExecuteDuringVBlank(ov5_021DE088, screenSliceEfx, 1024);
+    screenSliceEfx->unk_24 = ov5_021EF418(screenSliceEfx->unk_20, ov5_021DE14C, screenSliceEfx);
 
-    SysTask_Done(param0);
+    SysTask_Done(task);
 }
 
-void ov5_021DE058(EncounterEffect *param0, UnkStruct_ov5_021DDF74 *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6)
+void ov5_021DE058(EncounterEffect *param0, ScreenSliceEffect *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6)
 {
     GF_ASSERT(ov5_021DDD7C(param0) == 0);
 
-    param1->unk_18 = param2;
-    param1->unk_1C = 0;
+    param1->pixelsPerSlice = param2;
+    param1->state = 0;
 
-    QuadraticInterpolationTaskFX32_Init(&param1->unk_00, param4, param5, param6, param3);
+    QuadraticInterpolationTaskFX32_Init(&param1->interpolationTask, param4, param5, param6, param3);
 }
 
 static void ov5_021DE088(SysTask *param0, void *param1)
 {
-    UnkStruct_ov5_021DDF74 *v0 = param1;
+    ScreenSliceEffect *v0 = param1;
     s32 v1;
 
-    switch (v0->unk_1C) {
+    switch (v0->state) {
     case 0:
-        if (QuadraticInterpolationTaskFX32_Update(&v0->unk_00)) {
-            v0->unk_1C++;
+        if (QuadraticInterpolationTaskFX32_Update(&v0->interpolationTask)) {
+            v0->state++;
         }
 
-        v1 = v0->unk_00.currentValue >> FX32_SHIFT;
+        v1 = v0->interpolationTask.currentValue >> FX32_SHIFT;
 
         if (v1 >= 0) {
             G2_SetWnd0Position(0, 0, 255 - v1, 192);
@@ -494,7 +492,7 @@ static void ov5_021DE088(SysTask *param0, void *param1)
     }
 }
 
-static void ov5_021DE0F0(UnkStruct_ov5_021DDF74 *param0)
+static void ov5_021DE0F0(ScreenSliceEffect *param0)
 {
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, 0);
@@ -511,16 +509,16 @@ static void ov5_021DE0F0(UnkStruct_ov5_021DDF74 *param0)
 
 static void ov5_021DE14C(UnkStruct_ov5_021EF43C *param0, void *param1)
 {
-    UnkStruct_ov5_021DDF74 *v0 = param1;
+    ScreenSliceEffect *v0 = param1;
     int v1;
     int v2;
 
     v1 = GX_GetVCount();
 
-    if (((v1 / v0->unk_18) % 2) == 0) {
-        v2 = v0->unk_00.currentValue >> FX32_SHIFT;
+    if (((v1 / v0->pixelsPerSlice) % 2) == 0) {
+        v2 = v0->interpolationTask.currentValue >> FX32_SHIFT;
     } else {
-        v2 = -v0->unk_00.currentValue >> FX32_SHIFT;
+        v2 = -v0->interpolationTask.currentValue >> FX32_SHIFT;
     }
 
     G2_SetBG0Offset(v2, 0);
