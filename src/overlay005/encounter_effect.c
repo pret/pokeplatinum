@@ -14,8 +14,6 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "pokemon.h"
-#include "overlay005/struct_ov5_021EF3BC_decl.h"
-#include "overlay005/struct_ov5_021EF43C_decl.h"
 
 #include "functypes/sys_task_func.h"
 #include "field/field_system.h"
@@ -55,7 +53,7 @@
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/encounter_effect.h"
 #include "overlay005/ov5_021E2338.h"
-#include "overlay005/ov5_021EF3A8.h"
+#include "overlay005/hblank_system.h"
 #include "enc_effects.h"
 
 enum ScreenFlashState {
@@ -97,15 +95,15 @@ static void BrightnessFadeTask_SetBrightness(SysTask *task, void *param);
 static void EncounterEffect_ExecuteFlash(SysTask *task, void *param);
 static void ov5_021DE028(SysTask *param0, void *param1);
 static void ov5_021DE088(SysTask *param0, void *param1);
-static void ov5_021DE14C(UnkStruct_ov5_021EF43C *param0, void *param1);
+static void ov5_021DE14C(HBlankTask *param0, void *param1);
 static void ov5_021DE0F0(ScreenSliceEffect *param0);
 static void ov5_021DE2AC(SysTask *param0, void *param1);
 static void ov5_021DE2DC(SysTask *param0, void *param1);
-static void ov5_021DE344(UnkStruct_ov5_021EF43C *param0, void *param1);
+static void ov5_021DE344(HBlankTask *param0, void *param1);
 static void ov5_021DE374(UnkStruct_ov5_021DE374 *param0);
 static void ov5_021DEDE8(SysTask *param0, void *param1);
 static void ov5_021DEE24(SysTask *param0, void *param1);
-static void ov5_021DEE50(UnkStruct_ov5_021EF43C *param0, void *param1);
+static void ov5_021DEE50(HBlankTask *param0, void *param1);
 static void ov5_021DEE84(UnkStruct_ov5_021DED04 *param0);
 static void ov5_021DE67C(GraphicElementData *param0, void *param1, u32 param2);
 static void ov5_021DF258(SysTask *param0, void *param1);
@@ -450,7 +448,7 @@ static void ov5_021DE028(SysTask *task, void *param)
     ScreenSliceEffect *screenSliceEfx = param;
 
     screenSliceEfx->unk_28 = CoreSys_ExecuteDuringVBlank(ov5_021DE088, screenSliceEfx, 1024);
-    screenSliceEfx->unk_24 = ov5_021EF418(screenSliceEfx->unk_20, ov5_021DE14C, screenSliceEfx);
+    screenSliceEfx->unk_24 = HBlankSystem_StartTask(screenSliceEfx->unk_20, ov5_021DE14C, screenSliceEfx);
 
     SysTask_Done(task);
 }
@@ -501,13 +499,13 @@ static void ov5_021DE0F0(ScreenSliceEffect *param0)
 
     *(param0->unk_2C) = 1;
 
-    ov5_021EF43C(param0->unk_24);
+    HBlankTask_Delete(param0->unk_24);
     param0->unk_24 = NULL;
     SysTask_Done(param0->unk_28);
     param0->unk_28 = NULL;
 }
 
-static void ov5_021DE14C(UnkStruct_ov5_021EF43C *param0, void *param1)
+static void ov5_021DE14C(HBlankTask *param0, void *param1)
 {
     ScreenSliceEffect *v0 = param1;
     int v1;
@@ -583,7 +581,7 @@ static void ov5_021DE2AC(SysTask *param0, void *param1)
     UnkStruct_ov5_021DE374 *v0 = param1;
 
     v0->unk_40 = CoreSys_ExecuteDuringVBlank(ov5_021DE2DC, v0, 1024);
-    v0->unk_3C = ov5_021EF418(v0->unk_38, ov5_021DE344, v0);
+    v0->unk_3C = HBlankSystem_StartTask(v0->unk_38, ov5_021DE344, v0);
 
     SysTask_Done(param0);
 }
@@ -613,7 +611,7 @@ static void ov5_021DE2DC(SysTask *param0, void *param1)
     }
 }
 
-static void ov5_021DE344(UnkStruct_ov5_021EF43C *param0, void *param1)
+static void ov5_021DE344(HBlankTask *param0, void *param1)
 {
     UnkStruct_ov5_021DE374 *v0 = param1;
     int v1;
@@ -638,7 +636,7 @@ static void ov5_021DE374(UnkStruct_ov5_021DE374 *param0)
 
     *(param0->unk_44) = 1;
 
-    ov5_021EF43C(param0->unk_3C);
+    HBlankTask_Delete(param0->unk_3C);
     param0->unk_3C = NULL;
     SysTask_Done(param0->unk_40);
     param0->unk_40 = NULL;
@@ -1251,7 +1249,7 @@ static void ov5_021DEDE8(SysTask *param0, void *param1)
 {
     UnkStruct_ov5_021DED04 *v0 = param1;
 
-    v0->unk_DC = ov5_021EF418(v0->unk_D8, ov5_021DEE50, v0);
+    v0->unk_DC = HBlankSystem_StartTask(v0->unk_D8, ov5_021DEE50, v0);
     v0->unk_E0 = CoreSys_ExecuteDuringVBlank(ov5_021DEE24, v0, 1024);
 
     SysTask_Done(param0);
@@ -1276,7 +1274,7 @@ static void ov5_021DEE24(SysTask *param0, void *param1)
     }
 }
 
-static void ov5_021DEE50(UnkStruct_ov5_021EF43C *param0, void *param1)
+static void ov5_021DEE50(HBlankTask *param0, void *param1)
 {
     UnkStruct_ov5_021DED04 *v0 = param1;
     int v1;
@@ -1300,7 +1298,7 @@ static void ov5_021DEE84(UnkStruct_ov5_021DED04 *param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
     *(param0->unk_E4) = 1;
-    ov5_021EF43C(param0->unk_DC);
+    HBlankTask_Delete(param0->unk_DC);
     param0->unk_DC = NULL;
     SysTask_Done(param0->unk_E0);
     param0->unk_E0 = NULL;

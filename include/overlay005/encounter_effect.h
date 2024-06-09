@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_ENCOUNTER_EFFECT_H
 #define POKEPLATINUM_ENCOUNTER_EFFECT_H
 
-#include "overlay005/struct_ov5_021EF3BC_decl.h"
-#include "overlay005/struct_ov5_021EF43C_decl.h"
+#include "overlay005/hblank_system.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
@@ -86,8 +85,8 @@ typedef struct UnkStruct_ov5_021DE374 {
     QuadraticInterpolationTaskFX32 unk_18;
     u32 unk_30;
     u32 unk_34;
-    UnkStruct_ov5_021EF3BC *unk_38;
-    UnkStruct_ov5_021EF43C *unk_3C;
+    HBlankSystem *unk_38;
+    HBlankTask *unk_3C;
     SysTask *unk_40;
     BOOL *unk_44;
 } UnkStruct_ov5_021DE374;
@@ -96,8 +95,8 @@ typedef struct ScreenSliceEffect {
     QuadraticInterpolationTaskFX32 interpolationTask;
     u32 pixelsPerSlice;
     u32 state;
-    UnkStruct_ov5_021EF3BC *unk_20;
-    UnkStruct_ov5_021EF43C *unk_24;
+    HBlankSystem *unk_20;
+    HBlankTask *unk_24;
     SysTask *unk_28;
     BOOL *unk_2C;
 } ScreenSliceEffect;
@@ -106,8 +105,8 @@ typedef struct UnkStruct_ov5_021DED04 {
     LinearInterpolationTaskS32 unk_00;
     u32 unk_14;
     u8 unk_18[192];
-    UnkStruct_ov5_021EF3BC *unk_D8;
-    UnkStruct_ov5_021EF43C *unk_DC;
+    HBlankSystem *unk_D8;
+    HBlankTask *unk_DC;
     SysTask *unk_E0;
     BOOL *unk_E4;
 } UnkStruct_ov5_021DED04;

@@ -32,7 +32,7 @@
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021DD6FC.h"
-#include "overlay005/ov5_021EF3A8.h"
+#include "overlay005/hblank_system.h"
 
 typedef struct {
     int unk_00;
@@ -122,13 +122,13 @@ static BOOL sub_02056B70 (TaskManager * taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        ov5_021EF3FC(fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(fieldSystem->unk_04->unk_1C);
         sub_0200F174(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->unk_1C);
         v1->unk_00++;
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            ov5_021EF3DC(fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Start(fieldSystem->unk_04->unk_1C);
             Heap_FreeToHeap(v1);
             return 1;
         }

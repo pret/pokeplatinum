@@ -25,7 +25,7 @@
 #include "unk_0206A8DC.h"
 #include "party.h"
 #include "unk_020933F8.h"
-#include "overlay005/ov5_021EF3A8.h"
+#include "overlay005/hblank_system.h"
 #include "overlay006/ov6_02247A0C.h"
 
 static BOOL sub_02046CE0(ScriptContext * param0);
@@ -402,13 +402,13 @@ static BOOL sub_02047404 (ScriptContext * param0)
 
 BOOL ScrCmd_113 (ScriptContext * param0)
 {
-    ov5_021EF3FC(param0->fieldSystem->unk_04->unk_1C);
+    HBlankSystem_Stop(param0->fieldSystem->unk_04->unk_1C);
     return 0;
 }
 
 BOOL ScrCmd_114 (ScriptContext * param0)
 {
-    ov5_021EF3DC(param0->fieldSystem->unk_04->unk_1C);
+    HBlankSystem_Start(param0->fieldSystem->unk_04->unk_1C);
     return 0;
 }
 

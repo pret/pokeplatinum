@@ -71,7 +71,7 @@
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
-#include "overlay005/ov5_021EF3A8.h"
+#include "overlay005/hblank_system.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_02241F74.h"
@@ -1587,7 +1587,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
             fieldSystem->unk_6C = ov23_02249404(fieldSystem);
             sub_02039734();
             sub_020594FC();
-            ov5_021EF3FC(v0->fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
             sub_0200F174(1, 17, 19, 0x0, 6, 1, 4);
             (v0->unk_00)++;
             break;
@@ -1597,8 +1597,8 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
         sub_0200F338(0);
 
         if (ScreenWipe_Done()) {
-            ov5_021EF3FC(v0->fieldSystem->unk_04->unk_1C);
-            ov5_021EF3DC(v0->fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Stop(v0->fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Start(v0->fieldSystem->unk_04->unk_1C);
 
             sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
             sub_0200DAA4(v0->fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
@@ -1685,7 +1685,7 @@ static void ov23_0223F70C (FieldSystem * fieldSystem)
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));
     v0->fieldSystem = fieldSystem;
 
-    ov5_021EF3FC(fieldSystem->unk_04->unk_1C);
+    HBlankSystem_Stop(fieldSystem->unk_04->unk_1C);
     sub_0206AA04(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);

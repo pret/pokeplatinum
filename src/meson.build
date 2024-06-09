@@ -404,7 +404,7 @@ pokeplatinum_c = files(
     'overlay005/ov5_021EEC68.c',
     'overlay005/ov5_021EEF34.c',
     'overlay005/ov5_021EF250.c',
-    'overlay005/ov5_021EF3A8.c',
+    'overlay005/hblank_system.c',
     'overlay005/ov5_021EF4BC.c',
     'overlay005/ov5_021EF75C.c',
     'overlay005/ov5_021EFB0C.c',
