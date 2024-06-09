@@ -220,14 +220,12 @@ static void FieldMapChange_SetNewLocation (FieldSystem * fieldSystem, const Loca
     FieldSystem_LoadMapData(fieldSystem, fieldSystem->location->mapId);
 
     if (fieldSystem->location->unk_04 != -1) {
-        const UnkStruct_0203A55C * v2;
+        const WarpEvent * v2 = sub_0203A450(fieldSystem, fieldSystem->location->unk_04);
 
-        v2 = sub_0203A450(fieldSystem, fieldSystem->location->unk_04);
+        fieldSystem->location->x = v2->x;
+        fieldSystem->location->z = v2->z;
 
-        fieldSystem->location->x = v2->unk_00;
-        fieldSystem->location->z = v2->unk_02;
-
-        if (v2->unk_06 == 0x100) {
+        if (v2->destWarpID == 0x100) {
             Location * v3, * entrance;
 
             v3 = sub_0203A730(fieldState);

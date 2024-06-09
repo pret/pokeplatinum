@@ -14,7 +14,7 @@ void FieldSystem_LoadMapData(FieldSystem * fieldSystem, int param1);
 void sub_0203A418(FieldSystem * fieldSystem);
 const BgEvent * sub_0203A440(const FieldSystem * fieldSystem);
 int sub_0203A448(const FieldSystem * fieldSystem);
-const UnkStruct_0203A55C * sub_0203A450(const FieldSystem * fieldSystem, int param1);
+const WarpEvent * sub_0203A450(const FieldSystem * fieldSystem, int param1);
 int sub_0203A468(const FieldSystem * fieldSystem, int param1, int param2);
 int sub_0203A4A4(const FieldSystem * fieldSystem);
 const UnkStruct_0203A4AC * sub_0203A4AC(const FieldSystem * fieldSystem);

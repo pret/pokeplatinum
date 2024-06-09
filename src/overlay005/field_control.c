@@ -997,7 +997,7 @@ static u8 Field_NextTileBehavior (const FieldSystem *fieldSystem)
 
 static BOOL Field_MapConnection (const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap)
 {
-    const UnkStruct_0203A55C *v0;
+    const WarpEvent *v0;
     int v1;
 
     v1 = sub_0203A468(fieldSystem, playerX, playerZ);
@@ -1012,11 +1012,11 @@ static BOOL Field_MapConnection (const FieldSystem *fieldSystem, int playerX, in
         return FALSE;
     }
 
-    if (v0->unk_06 == 0x100) {
-        GF_ASSERT(v0->unk_04 == 0xfff);
+    if (v0->destWarpID == 0x100) {
+        GF_ASSERT(v0->destHeaderID == 0xfff);
         *nextMap = *(sub_0203A730(SaveData_GetFieldOverworldState(fieldSystem->saveData)));
     } else {
-        Location_Set(nextMap, v0->unk_04, v0->unk_06, v0->unk_00, v0->unk_02, 1);
+        Location_Set(nextMap, v0->destHeaderID, v0->destWarpID, v0->x, v0->z, 1);
     }
 
     Location *v2 = FieldOverworldState_GetEntranceLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));

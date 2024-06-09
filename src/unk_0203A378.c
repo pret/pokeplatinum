@@ -23,7 +23,7 @@ struct UnkStruct_0203A3E8_t {
     u32 unk_0C;
     const BgEvent * unk_10;
     const ObjectEvent * unk_14;
-    const UnkStruct_0203A55C * unk_18;
+    const WarpEvent * unk_18;
     const UnkStruct_0203A4AC * unk_1C;
     u32 unk_20[512];
     u32 unk_820[64];
@@ -94,7 +94,7 @@ int sub_0203A448 (const FieldSystem * fieldSystem)
     return fieldSystem->unk_14->unk_00;
 }
 
-const UnkStruct_0203A55C * sub_0203A450 (const FieldSystem * fieldSystem, int param1)
+const WarpEvent * sub_0203A450 (const FieldSystem * fieldSystem, int param1)
 {
     if (param1 >= fieldSystem->unk_14->unk_08) {
         return NULL;
@@ -108,7 +108,7 @@ int sub_0203A468 (const FieldSystem * fieldSystem, int param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < fieldSystem->unk_14->unk_08; v0++) {
-        if ((fieldSystem->unk_14->unk_18[v0].unk_00 == param1) && (fieldSystem->unk_14->unk_18[v0].unk_02 == param2)) {
+        if ((fieldSystem->unk_14->unk_18[v0].x == param1) && (fieldSystem->unk_14->unk_18[v0].z == param2)) {
             return v0;
         }
     }
@@ -190,27 +190,27 @@ BOOL sub_0203A52C (FieldSystem * fieldSystem, int param1, int param2)
 
 BOOL sub_0203A55C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3)
 {
-    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)fieldSystem->unk_14->unk_18;
+    WarpEvent * v0 = fieldSystem->unk_14->unk_18;
 
-    v0[param1].unk_00 = param2;
-    v0[param1].unk_02 = param3;
+    v0[param1].x = param2;
+    v0[param1].z = param3;
 
     return 1;
 }
 
 BOOL sub_0203A574 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)fieldSystem->unk_14->unk_18;
+    WarpEvent * v0 = fieldSystem->unk_14->unk_18;
 
-    v0[param1].unk_04 = param2;
+    v0[param1].destHeaderID = param2;
     return 1;
 }
 
 BOOL sub_0203A584 (FieldSystem * fieldSystem, u16 param1, u16 param2)
 {
-    UnkStruct_0203A55C * v0 = (UnkStruct_0203A55C *)fieldSystem->unk_14->unk_18;
+    WarpEvent * v0 = fieldSystem->unk_14->unk_18;
 
-    v0[param1].unk_06 = param2;
+    v0[param1].destWarpID = param2;
     return 1;
 }
 
@@ -253,12 +253,12 @@ static void sub_0203A5B0 (UnkStruct_0203A3E8 * param0)
     v0 += sizeof(u32);
 
     if (param0->unk_08 != 0) {
-        param0->unk_18 = (const UnkStruct_0203A55C *)v0;
+        param0->unk_18 = (const WarpEvent *)v0;
     } else {
         param0->unk_18 = NULL;
     }
 
-    v0 += sizeof(UnkStruct_0203A55C) * param0->unk_08;
+    v0 += sizeof(WarpEvent) * param0->unk_08;
     param0->unk_0C = *(u32 *)v0;
     v0 += sizeof(u32);
 
