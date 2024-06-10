@@ -15,7 +15,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "playtime.h"
+#include "play_time.h"
 #include "overlay071/ov71_0223C69C.h"
 
 static void ov71_0223CD64(Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
@@ -136,8 +136,8 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
                 StringTemplate_SetNumber(v4, 1, PlayTime_GetMinutes(param1->playTime), 2, 2, 1);
                 MessageLoader_GetStrbuf(v1, 16, v3);
             } else {
-                StringTemplate_SetNumber(v4, 0, param1->playtimeHours, 3, 1, 1);
-                StringTemplate_SetNumber(v4, 1, param1->playtimeMinutes, 2, 2, 1);
+                StringTemplate_SetNumber(v4, 0, param1->playTimeHours, 3, 1, 1);
+                StringTemplate_SetNumber(v4, 1, param1->playTimeMinutes, 2, 2, 1);
                 MessageLoader_GetStrbuf(v1, 15, v3);
             }
 

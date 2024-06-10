@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0203E234_H
 #define POKEPLATINUM_STRUCT_0203E234_H
 
-#include "playtime.h"
+#include "play_time.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_party_decl.h"
 

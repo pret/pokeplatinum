@@ -15,7 +15,7 @@
 #include "savedata.h"
 #include "trainer_info.h"
 #include "journal.h"
-#include "playtime.h"
+#include "play_time.h"
 #include "map_header.h"
 
 typedef struct Journal_t {

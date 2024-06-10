@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02025E08_H
 
 #include "struct_decls/struct_02025E0C_decl.h"
-#include "playtime.h"
+#include "play_time.h"
 #include "trainer_info.h"
 #include "game_options.h"
 #include "savedata.h"

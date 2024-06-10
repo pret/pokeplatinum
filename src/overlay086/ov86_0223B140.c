@@ -53,7 +53,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "playtime.h"
+#include "play_time.h"
 #include "pokemon.h"
 #include "party.h"
 #include "overlay086/ov86_0223B140.h"

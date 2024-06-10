@@ -1,6 +1,6 @@
 #include <nitro.h>
 
-#include "playtime.h"
+#include "play_time.h"
 
 #define PLAYTIME_MAX_HOURS 999
 #define PLAYTIME_MAX_MINUTES 59

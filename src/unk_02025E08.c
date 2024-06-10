@@ -9,13 +9,13 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "coins.h"
-#include "playtime.h"
+#include "play_time.h"
 
 struct UnkStruct_02025E0C_t {
     Options unk_00;
     TrainerInfo unk_04;
     u16 unk_24;
-    PlayTime playtime;
+    PlayTime playTime;
 };
 
 int Player_SaveSize (void)
@@ -30,7 +30,7 @@ void Player_Init (UnkStruct_02025E0C * param0)
     Options_Init(&param0->unk_00);
     TrainerInfo_Init(&param0->unk_04);
     Coins_Init(&param0->unk_24);
-    PlayTime_Init(&param0->playtime);
+    PlayTime_Init(&param0->playTime);
 }
 
 TrainerInfo * SaveData_GetTrainerInfo (SaveData * param0)
@@ -59,6 +59,6 @@ u16 * sub_02025E50 (SaveData * param0)
 
 PlayTime *SaveData_GetPlayTime(SaveData *savedata)
 {
-    UnkStruct_02025E0C *player = SaveData_SaveTable(savedata, 1);
-    return &player->playtime;
+    UnkStruct_02025E0C *v0 = SaveData_SaveTable(savedata, 1);
+    return &v0->playTime;
 }

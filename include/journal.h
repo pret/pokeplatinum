@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_JOURNAL_H
 #define POKEPLATINUM_JOURNAL_H
 
-#include "playtime.h"
+#include "play_time.h"
 #include "trainer_info.h"
 #include "savedata.h"
 
