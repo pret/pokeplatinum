@@ -103,7 +103,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
         v0->unk_0C = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2338));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2338));
         v1 = v0->unk_0C;
-        v1->unk_1C = ScreenSliceEffect_Alloc();
+        v1->unk_1C = ScreenSliceEffect_New();
         v0->unk_00++;
         break;
     case 1:
@@ -126,7 +126,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
 
         if (v3 == 1) {
             v0->unk_00++;
-            ov5_021DE058(v0, v1->unk_1C, 2, 6, (-3 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
+            ScreenSliceEffect_Modify(v0, v1->unk_1C, 2, 6, (-3 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
             QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 50), (-FX32_ONE * 255), 6);
@@ -136,7 +136,7 @@ void ov5_021E2338 (SysTask * param0, void * param1)
         v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
         sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
-        if ((v3 == 1) && (ov5_021DDD7C(v0) == 1)) {
+        if ((v3 == 1) && (EncounterEffect_GetHBlankFlag(v0) == 1)) {
             v0->unk_00++;
         }
         break;
@@ -172,7 +172,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
         v0->unk_0C = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E24A8));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E24A8));
         v1 = v0->unk_0C;
-        v1->unk_1C = ScreenSliceEffect_Alloc();
+        v1->unk_1C = ScreenSliceEffect_New();
         v0->unk_00++;
         break;
     case 1:
@@ -195,7 +195,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
 
         if ((v3 == 1)) {
             v0->unk_00++;
-            ov5_021DE058(v0, v1->unk_1C, 5, 6, (-2 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
+            ScreenSliceEffect_Modify(v0, v1->unk_1C, 5, 6, (-2 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
             v1->unk_00 = v0->fieldSystem->unk_24;
             v2 = sub_02020A90(v1->unk_00);
             QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 30), (-FX32_ONE * 100), 6);
@@ -205,7 +205,7 @@ void ov5_021E24A8 (SysTask * param0, void * param1)
         v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
         sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
 
-        if ((v3 == 1) && (ov5_021DDD7C(v0) == 1)) {
+        if ((v3 == 1) && (EncounterEffect_GetHBlankFlag(v0) == 1)) {
             v0->unk_00++;
         }
         break;
@@ -523,7 +523,7 @@ typedef struct {
 typedef struct {
     LinearInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_14;
-    UnkStruct_ov5_021DE374 * unk_28;
+    ScreenSplitEffect * unk_28;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
     GraphicElementData * unk_200[2];
@@ -607,7 +607,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
         v1->unk_224 = v0->fieldSystem->unk_24;
 
-        v1->unk_44 = ScreenSliceEffect_Alloc();
+        v1->unk_44 = ScreenSliceEffect_New();
 
         ov5_021DE47C(&v1->unk_48, 2, 1);
 
@@ -720,7 +720,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         QuadraticInterpolationTaskFX32_Update(&v1->unk_228);
         sub_02020A50(v1->unk_228.currentValue, v1->unk_224);
 
-        if (ov5_021DDD7C(v0)) {
+        if (EncounterEffect_GetHBlankFlag(v0)) {
             v0->unk_00++;
         }
 
@@ -767,7 +767,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
 
         v1->unk_208 = v0->fieldSystem->unk_24;
 
-        v1->unk_28 = ov5_021DE1CC();
+        v1->unk_28 = ScreenSplitEffect_New();
 
         ov5_021DE47C(&v1->unk_2C, 2, 1);
 
@@ -851,7 +851,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
 
     case 5:
 
-        ov5_021DE240(v0, v1->unk_28, 8, (FX32_ONE * 1), (FX32_ONE * 1));
+        EncounterEffect_ScreenSplit(v0, v1->unk_28, 8, (FX32_ONE * 1), (FX32_ONE * 1));
 
         v3 = sub_02020A90(v1->unk_208);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_20C, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
@@ -864,7 +864,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         QuadraticInterpolationTaskFX32_Update(&v1->unk_20C);
         sub_02020A50(v1->unk_20C.currentValue, v1->unk_208);
 
-        if (ov5_021DDD7C(v0) == 1) {
+        if (EncounterEffect_GetHBlankFlag(v0) == 1) {
             v0->unk_00++;
         }
 
@@ -886,7 +886,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         }
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
         ov5_021DE4AC(&v1->unk_2C);
-        ov5_021DE218(v1->unk_28);
+        ScreenSplitEffect_Delete(v1->unk_28);
         EncounterEffect_Finish(v0, param0);
         break;
     }
@@ -2707,7 +2707,7 @@ static BOOL ov5_021E52A8 (EncounterEffect * param0, u32 param1, const UnkStruct_
 
     case 4:
 
-        if (ov5_021DDD7C(param0)) {
+        if (EncounterEffect_GetHBlankFlag(param0)) {
             param0->unk_00++;
 
             ov5_021DED04(v0->unk_40);

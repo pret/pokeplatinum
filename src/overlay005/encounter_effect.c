@@ -70,6 +70,11 @@ enum ScreenSliceEffectState {
     SCREENSLICE_STATE_FINISH,
 };
 
+enum ScreenSplitEffectState {
+    SCREENSPLIT_STATE_INTERPOLATE = 0,
+    SCREENSPLIT_STATE_FINISH,
+};
+
 typedef struct ScreenFlash {
     enum ScreenFlashState state;
     u32 numFlashes;
@@ -102,10 +107,10 @@ static void ScreenSliceEffect_CreateTasks(SysTask *param0, void *param1);
 static void ScreenSliceSystem_VBlankCallback(SysTask *param0, void *param1);
 static void ScreenSliceEffect_HBlankCallback(HBlankTask *param0, void *param1);
 static void ScreenSliceEffect_Finish(ScreenSliceEffect *param0);
-static void ov5_021DE2AC(SysTask *param0, void *param1);
-static void ov5_021DE2DC(SysTask *param0, void *param1);
-static void ov5_021DE344(HBlankTask *param0, void *param1);
-static void ov5_021DE374(UnkStruct_ov5_021DE374 *param0);
+static void ScreenSplitEffect_SetupTasks(SysTask *param0, void *param1);
+static void ScreenSplitEffect_VBlankCallback(SysTask *param0, void *param1);
+static void ScreenSplitEffect_HBlankCallback(HBlankTask *param0, void *param1);
+static void ScreenSplitEffect_Finish(ScreenSplitEffect *param0);
 static void ov5_021DEDE8(SysTask *param0, void *param1);
 static void ov5_021DEE24(SysTask *param0, void *param1);
 static void ov5_021DEE50(HBlankTask *param0, void *param1);
@@ -193,7 +198,7 @@ void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem,
         *(encEffect->done) = FALSE;
     }
 
-    encEffect->unk_18 = 0;
+    encEffect->hBlankFlag = FALSE;
 }
 
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
@@ -205,7 +210,6 @@ void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 
 void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherScreenFlashColor, BOOL *done, u32 numFlashes)
 {
-    SysTask *v0;
     ScreenFlash *screenFlash = Heap_AllocFromHeap(4, sizeof(ScreenFlash));
     memset(screenFlash, 0, sizeof(ScreenFlash));
     SysTask_Start(EncounterEffect_ExecuteFlash, screenFlash, 5);
@@ -279,9 +283,9 @@ static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
     BrightnessFadeTask_Update(&screenFlash->otherScreenFadeTask);
 }
 
-BOOL ov5_021DDD7C(EncounterEffect *param0)
+BOOL EncounterEffect_GetHBlankFlag(EncounterEffect *param0)
 {
-    return param0->unk_18;
+    return param0->hBlankFlag;
 }
 
 void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start, int end, int numSteps)
@@ -404,7 +408,7 @@ static void BrightnessFadeTask_SetBrightness(SysTask *task, void *param)
     SysTask_Done(task);
 }
 
-ScreenSliceEffect *ScreenSliceEffect_Alloc(void)
+ScreenSliceEffect *ScreenSliceEffect_New(void)
 {
     ScreenSliceEffect *efx = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ScreenSliceEffect));
     memset(efx, 0, sizeof(ScreenSliceEffect));
@@ -429,11 +433,11 @@ void EncounterEffect_ScreenSlice(EncounterEffect *encEffect, ScreenSliceEffect *
 {
     GF_ASSERT(screenSliceEfx->hBlankTask == NULL);
 
-    encEffect->unk_18 = 0;
+    encEffect->hBlankFlag = FALSE;
     screenSliceEfx->hBlankSystem = encEffect->fieldSystem->unk_04->hBlankSystem;
     screenSliceEfx->pixelsPerSlice = pixelsPerSlice;
-    screenSliceEfx->state = 0;
-    screenSliceEfx->done = &encEffect->unk_18;
+    screenSliceEfx->state = SCREENSLICE_STATE_INTERPOLATE;
+    screenSliceEfx->done = &encEffect->hBlankFlag;
 
     QuadraticInterpolationTaskFX32_Init(&screenSliceEfx->interpolationTask, startX, endX, initialSpeed, numSteps);
 
@@ -458,20 +462,19 @@ static void ScreenSliceEffect_CreateTasks(SysTask *task, void *param)
     SysTask_Done(task);
 }
 
-void ov5_021DE058(EncounterEffect *param0, ScreenSliceEffect *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6)
+void ScreenSliceEffect_Modify(EncounterEffect *encEffect, ScreenSliceEffect *screenSliceEfx, u8 pixelsPerSlice, u32 numSteps, fx32 startX, fx32 endX, fx32 initialSpeed)
 {
-    GF_ASSERT(ov5_021DDD7C(param0) == 0);
+    GF_ASSERT(EncounterEffect_GetHBlankFlag(encEffect) == FALSE);
 
-    param1->pixelsPerSlice = param2;
-    param1->state = 0;
+    screenSliceEfx->pixelsPerSlice = pixelsPerSlice;
+    screenSliceEfx->state = SCREENSLICE_STATE_INTERPOLATE;
 
-    QuadraticInterpolationTaskFX32_Init(&param1->interpolationTask, param4, param5, param6, param3);
+    QuadraticInterpolationTaskFX32_Init(&screenSliceEfx->interpolationTask, startX, endX, initialSpeed, numSteps);
 }
 
 static void ScreenSliceSystem_VBlankCallback(SysTask *task, void *param)
 {
     ScreenSliceEffect *screenSliceEfx = param;
-    s32 currentX;
 
     switch (screenSliceEfx->state) {
     case SCREENSLICE_STATE_INTERPOLATE:
@@ -479,7 +482,7 @@ static void ScreenSliceSystem_VBlankCallback(SysTask *task, void *param)
             screenSliceEfx->state++;
         }
 
-        currentX = screenSliceEfx->interpolationTask.currentValue >> FX32_SHIFT;
+        s32 currentX = screenSliceEfx->interpolationTask.currentValue >> FX32_SHIFT;
 
         if (currentX >= 0) {
             G2_SetWnd0Position(0, 0, 255 - currentX, 192);
@@ -538,113 +541,109 @@ static void ScreenSliceEffect_HBlankCallback(HBlankTask *task, void *param)
     }
 }
 
-UnkStruct_ov5_021DE374 *ov5_021DE1CC(void)
+ScreenSplitEffect *ScreenSplitEffect_New(void)
 {
-    UnkStruct_ov5_021DE374 *v0;
+    ScreenSplitEffect *screenSplitEfx = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ScreenSplitEffect));
+    memset(screenSplitEfx, 0, sizeof(ScreenSplitEffect));
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DE374));
-    memset(v0, 0, sizeof(UnkStruct_ov5_021DE374));
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, FALSE);
 
-    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-    G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, 0);
-
-    return v0;
+    return screenSplitEfx;
 }
 
-void ov5_021DE218(UnkStruct_ov5_021DE374 *param0)
+void ScreenSplitEffect_Delete(ScreenSplitEffect *screenSplitEfx)
 {
-    if (param0->unk_3C != NULL) {
-        ov5_021DE374(param0);
+    if (screenSplitEfx->hBlankTask != NULL) {
+        ScreenSplitEffect_Finish(screenSplitEfx);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(screenSplitEfx);
 }
 
-void ov5_021DE240(EncounterEffect *param0, UnkStruct_ov5_021DE374 *param1, u32 param2, fx32 param3, fx32 param4)
+void EncounterEffect_ScreenSplit(EncounterEffect *encEffect, ScreenSplitEffect *screenSplitEfx, u32 numSteps, fx32 initialSpeedX, fx32 initialSpeedY)
 {
-    GF_ASSERT(param1->unk_3C == NULL);
+    GF_ASSERT(screenSplitEfx->hBlankTask == NULL);
 
-    param0->unk_18 = 0;
-    param1->unk_38 = param0->fieldSystem->unk_04->hBlankSystem;
-    param1->unk_30 = 96;
-    param1->unk_34 = 0;
-    param1->unk_44 = &param0->unk_18;
+    encEffect->hBlankFlag = FALSE;
+    screenSplitEfx->hBlankSystem = encEffect->fieldSystem->unk_04->hBlankSystem;
+    screenSplitEfx->splitHeight = 96;
+    screenSplitEfx->state = SCREENSPLIT_STATE_INTERPOLATE;
+    screenSplitEfx->done = &encEffect->hBlankFlag;
 
-    QuadraticInterpolationTaskFX32_Init(&param1->unk_00, 0, (255 *FX32_ONE), param3, param2);
-    QuadraticInterpolationTaskFX32_Init(&param1->unk_18, 0, (96 *FX32_ONE), param4, param2);
+    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->xInterpolationTask, 0, (255 * FX32_ONE), initialSpeedX, numSteps);
+    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->yInterpolationTask, 0, (96 * FX32_ONE), initialSpeedY, numSteps);
 
     G2_SetWnd0Position(0, 0, 255, 192);
     G2_SetWnd1Position(0, 0, 255, 192);
 
-    CoreSys_ExecuteDuringVBlank(ov5_021DE2AC, param1, 1024);
+    CoreSys_ExecuteDuringVBlank(ScreenSplitEffect_SetupTasks, screenSplitEfx, 1024);
 }
 
-static void ov5_021DE2AC(SysTask *param0, void *param1)
+static void ScreenSplitEffect_SetupTasks(SysTask *task, void *param)
 {
-    UnkStruct_ov5_021DE374 *v0 = param1;
+    ScreenSplitEffect *screenSplitEfx = param;
 
-    v0->unk_40 = CoreSys_ExecuteDuringVBlank(ov5_021DE2DC, v0, 1024);
-    v0->unk_3C = HBlankSystem_StartTask(v0->unk_38, ov5_021DE344, v0);
+    screenSplitEfx->vBlankTask = CoreSys_ExecuteDuringVBlank(ScreenSplitEffect_VBlankCallback, screenSplitEfx, 1024);
+    screenSplitEfx->hBlankTask = HBlankSystem_StartTask(screenSplitEfx->hBlankSystem, ScreenSplitEffect_HBlankCallback, screenSplitEfx);
 
-    SysTask_Done(param0);
+    SysTask_Done(task);
 }
 
-static void ov5_021DE2DC(SysTask *param0, void *param1)
+static void ScreenSplitEffect_VBlankCallback(SysTask *task, void *param)
 {
-    UnkStruct_ov5_021DE374 *v0 = param1;
-    s32 v1;
-    s32 v2;
+    ScreenSplitEffect *screenSplitEfx = param;
 
-    switch (v0->unk_34) {
-    case 0:
-        QuadraticInterpolationTaskFX32_Update(&v0->unk_18);
+    switch (screenSplitEfx->state) {
+    case SCREENSPLIT_STATE_INTERPOLATE:
+        QuadraticInterpolationTaskFX32_Update(&screenSplitEfx->yInterpolationTask);
 
-        if (QuadraticInterpolationTaskFX32_Update(&v0->unk_00)) {
-            v0->unk_34++;
+        if (QuadraticInterpolationTaskFX32_Update(&screenSplitEfx->xInterpolationTask)) {
+            screenSplitEfx->state++;
         }
 
-        v1 = v0->unk_00.currentValue >> FX32_SHIFT;
-        v2 = v0->unk_18.currentValue >> FX32_SHIFT;
-        G2_SetWnd0Position(0, 0, 255 - v1, 96 - v2);
-        G2_SetWnd1Position(v1, 96 + v2, 255, 192);
+        s32 currentX = screenSplitEfx->xInterpolationTask.currentValue >> FX32_SHIFT;
+        s32 currentY = screenSplitEfx->yInterpolationTask.currentValue >> FX32_SHIFT;
+        G2_SetWnd0Position(0, 0, 255 - currentX, 96 - currentY);
+        G2_SetWnd1Position(currentX, 96 + currentY, 255, 192);
         break;
-    case 1:
-        ov5_021DE374(param1);
+    case SCREENSPLIT_STATE_FINISH:
+        ScreenSplitEffect_Finish(param);
         break;
     }
 }
 
-static void ov5_021DE344(HBlankTask *param0, void *param1)
+static void ScreenSplitEffect_HBlankCallback(HBlankTask *task, void *param)
 {
-    UnkStruct_ov5_021DE374 *v0 = param1;
-    int v1;
+    ScreenSplitEffect *screenSplitEfx = param;
+    int vCount;
     int v2;
     int v3;
 
-    v1 = GX_GetVCount();
+    vCount = GX_GetVCount();
 
-    if (v1 <= v0->unk_30) {
+    if (vCount <= screenSplitEfx->splitHeight) {
         GX_SetVisibleWnd(GX_WNDMASK_W0);
     } else {
         GX_SetVisibleWnd(GX_WNDMASK_W1);
     }
 }
 
-static void ov5_021DE374(UnkStruct_ov5_021DE374 *param0)
+static void ScreenSplitEffect_Finish(ScreenSplitEffect *screenSplitEfx)
 {
-    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, 0);
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, FALSE);
     G2_SetWnd0Position(0, 0, 0, 0);
     GX_SetVisibleWnd(GX_WNDMASK_W0);
 
-    *(param0->unk_44) = 1;
+    *(screenSplitEfx->done) = TRUE;
 
-    HBlankTask_Delete(param0->unk_3C);
-    param0->unk_3C = NULL;
-    SysTask_Done(param0->unk_40);
-    param0->unk_40 = NULL;
+    HBlankTask_Delete(screenSplitEfx->hBlankTask);
+    screenSplitEfx->hBlankTask = NULL;
+    SysTask_Done(screenSplitEfx->vBlankTask);
+    screenSplitEfx->vBlankTask = NULL;
 }
 
 void include_ov5_021DDBE8_rodata_funcptr(void)
@@ -1223,10 +1222,10 @@ void ov5_021DED20(EncounterEffect *param0, UnkStruct_ov5_021DED04 *param1, u32 p
 
     GF_ASSERT(param1->unk_E0 == NULL);
 
-    param0->unk_18 = 0;
+    param0->hBlankFlag = 0;
     param1->unk_D8 = param0->fieldSystem->unk_04->hBlankSystem;
     param1->unk_14 = 0;
-    param1->unk_E4 = &param0->unk_18;
+    param1->unk_E4 = &param0->hBlankFlag;
 
     LinearInterpolationTaskS32_Init(&param1->unk_00, 255, 0, param2);
 

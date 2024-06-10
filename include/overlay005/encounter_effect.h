@@ -28,7 +28,7 @@ typedef struct EncounterEffect {
     void *unk_0C;
     FieldSystem *fieldSystem;
     BOOL *done;
-    BOOL unk_18;
+    BOOL hBlankFlag;
     BOOL unk_1C;
     NARC *narc;
 } EncounterEffect;
@@ -80,16 +80,16 @@ typedef struct UnkStruct_ov5_021DEC18 {
     u8 unk_21[3];
 } UnkStruct_ov5_021DEC18;
 
-typedef struct UnkStruct_ov5_021DE374 {
-    QuadraticInterpolationTaskFX32 unk_00;
-    QuadraticInterpolationTaskFX32 unk_18;
-    u32 unk_30;
-    u32 unk_34;
-    HBlankSystem *unk_38;
-    HBlankTask *unk_3C;
-    SysTask *unk_40;
-    BOOL *unk_44;
-} UnkStruct_ov5_021DE374;
+typedef struct ScreenSplitEffect {
+    QuadraticInterpolationTaskFX32 xInterpolationTask;
+    QuadraticInterpolationTaskFX32 yInterpolationTask;
+    u32 splitHeight;
+    u32 state;
+    HBlankSystem *hBlankSystem;
+    HBlankTask *hBlankTask;
+    SysTask *vBlankTask;
+    BOOL *done;
+} ScreenSplitEffect;
 
 typedef struct ScreenSliceEffect {
     QuadraticInterpolationTaskFX32 interpolationTask;
@@ -119,7 +119,7 @@ enum Screen {
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *param2);
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask);
 void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherScreenFlashColor, BOOL *done, u32 numFlashes);
-BOOL ov5_021DDD7C(EncounterEffect *param0);
+BOOL EncounterEffect_GetHBlankFlag(EncounterEffect *param0);
 void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start, int end, int numSteps);
 BOOL LinearInterpolationTaskS32_Update(LinearInterpolationTaskS32 *task);
 void LinearInterpolationTaskFX32_Init(LinearInterpolationTaskFX32 *task, fx32 startValue, fx32 endValue, int numSteps);
@@ -129,13 +129,13 @@ BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *param
 void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness);
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync);
 BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task);
-ScreenSliceEffect *ScreenSliceEffect_Alloc(void);
-void ScreenSliceEffect_Delete(ScreenSliceEffect *param0);
+ScreenSliceEffect *ScreenSliceEffect_New(void);
+void ScreenSliceEffect_Delete(ScreenSliceEffect *efx);
 void EncounterEffect_ScreenSlice(EncounterEffect *encEffect, ScreenSliceEffect *screenSliceEfx, u8 pixelsPerSlice, u32 numSteps, fx32 startX, fx32 endX, fx32 initialSpeed);
-void ov5_021DE058(EncounterEffect *param0, ScreenSliceEffect *param1, u8 param2, u32 param3, int param4, int param5, fx32 param6);
-UnkStruct_ov5_021DE374 *ov5_021DE1CC(void);
-void ov5_021DE218(UnkStruct_ov5_021DE374 *param0);
-void ov5_021DE240(EncounterEffect *param0, UnkStruct_ov5_021DE374 *param1, u32 param2, fx32 param3, fx32 param4);
+void ScreenSliceEffect_Modify(EncounterEffect *encEffect, ScreenSliceEffect *screenSliceEfx, u8 pixelsPerSlice, u32 numSteps, fx32 startX, fx32 endX, fx32 initialSpeed);
+ScreenSplitEffect *ScreenSplitEffect_New(void);
+void ScreenSplitEffect_Delete(ScreenSplitEffect *screenSplitEfx);
+void EncounterEffect_ScreenSplit(EncounterEffect *encEffect, ScreenSplitEffect *screenSplitEfx, u32 numSteps, fx32 initialSpeedX, fx32 initialSpeedY);
 void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, BGL *param6, u32 param7);
 void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2);
 void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0);
