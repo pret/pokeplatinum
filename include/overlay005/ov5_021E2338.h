@@ -4,7 +4,7 @@
 #include "struct_decls/sys_task.h"
 
 void ov5_021E2338(SysTask * param0, void * param1);
-void ov5_021E24A8(SysTask * param0, void * param1);
+void EncounterEffect_TallGrass_LowerLevel(SysTask * param0, void * param1);
 void ov5_021E261C(SysTask * param0, void * param1);
 void ov5_021E2748(SysTask * param0, void * param1);
 void ov5_021E2944(SysTask * param0, void * param1);

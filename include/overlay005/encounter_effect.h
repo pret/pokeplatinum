@@ -22,10 +22,10 @@
 
 
 typedef struct EncounterEffect {
-    int unk_00;
-    int unk_04;
+    int state;
+    BOOL effectComplete;
     int unk_08;
-    void *unk_0C;
+    void *param;
     FieldSystem *fieldSystem;
     BOOL *done;
     BOOL hBlankFlag;

@@ -126,7 +126,7 @@ static void include_ov5_021DDBE8_rodata(SysTask *dummy1, void *dummy2);
 void include_ov5_021DDBE8_rodata_funcptr(void);
 
 static const SysTaskFunc sEncounterEffectTaskFuncs[] = {
-    ov5_021E24A8,
+    EncounterEffect_TallGrass_LowerLevel,
     ov5_021E2338,
     ov5_021E261C,
     ov5_021E2748,
@@ -204,7 +204,7 @@ void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem,
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 {
     NARC_dtor(encEffect->narc);
-    Heap_FreeToHeapExplicit(4, encEffect->unk_0C);
+    Heap_FreeToHeapExplicit(4, encEffect->param);
     SysTask_FinishAndFreeParam(effectTask);
 }
 
