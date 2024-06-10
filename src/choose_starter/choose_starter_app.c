@@ -1431,7 +1431,7 @@ static void ov78_021D219C (SysTask * param0, void * param1)
     v2.unk_04 = (((0 * 0xffff) / 360));
 
     sub_020209D4(&v2, v0->unk_30);
-    sub_02020A50(v0->unk_10.unk_00, v0->unk_30);
+    Camera_SetDistance(v0->unk_10.unk_00, v0->unk_30);
 
     v0->unk_34->z = v0->unk_20.unk_00;
     v0->unk_38++;

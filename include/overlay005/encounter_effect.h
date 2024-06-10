@@ -119,13 +119,13 @@ enum Screen {
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *param2);
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask);
 void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherScreenFlashColor, BOOL *done, u32 numFlashes);
-BOOL EncounterEffect_GetHBlankFlag(EncounterEffect *param0);
+BOOL EncounterEffect_GetHBlankFlag(EncounterEffect *encEffect);
 void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start, int end, int numSteps);
 BOOL LinearInterpolationTaskS32_Update(LinearInterpolationTaskS32 *task);
 void LinearInterpolationTaskFX32_Init(LinearInterpolationTaskFX32 *task, fx32 startValue, fx32 endValue, int numSteps);
 BOOL LinearInterpolationTaskFX32_Update(LinearInterpolationTaskFX32 *task);
-void QuadraticInterpolationTaskFX32_Init(QuadraticInterpolationTaskFX32 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
-BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *param0);
+void QuadraticInterpolationTaskFX32_Init(QuadraticInterpolationTaskFX32 *task, fx32 startValue, fx32 endValue, fx32 initialRate, int numSteps);
+BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *task);
 void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness);
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync);
 BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task);

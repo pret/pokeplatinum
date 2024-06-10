@@ -30,11 +30,11 @@ void sub_020209B0(const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * 
 void sub_020209D4(const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * param1);
 void sub_020209F8(const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * param1);
 void sub_02020A24(const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * param1);
-void sub_02020A50(const fx32 param0, UnkStruct_020203AC * param1);
+void Camera_SetDistance(const fx32 param0, UnkStruct_020203AC * param1);
 void sub_02020A5C(const VecFx32 * param0, UnkStruct_020203AC * param1);
 void sub_02020A78(const fx32 param0, UnkStruct_020203AC * param1);
 u16 sub_02020A88(UnkStruct_020203AC const * param0);
-fx32 sub_02020A90(UnkStruct_020203AC const * param0);
+fx32 Camera_GetDistance(UnkStruct_020203AC const * param0);
 UnkStruct_ov115_0226527C sub_02020A94(UnkStruct_020203AC const * param0);
 VecFx32 sub_02020AAC(UnkStruct_020203AC const * param0);
 VecFx32 sub_02020ABC(UnkStruct_020203AC const * param0);

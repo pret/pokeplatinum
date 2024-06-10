@@ -142,7 +142,7 @@ static void sub_0205075C (FieldSystem * fieldSystem)
     UnkStruct_ov115_0226527C v1;
 
     sub_02020910(0x8c1, fieldSystem->unk_24);
-    sub_02020A50(0xf81b8, fieldSystem->unk_24);
+    Camera_SetDistance(0xf81b8, fieldSystem->unk_24);
 
     v0.x = 0x350523d;
     v0.y = 0x15edb7;

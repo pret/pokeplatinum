@@ -1435,7 +1435,7 @@ static BOOL ov92_021D2460 (UnkStruct_ov92_021D1B24 * param0, int param1, int par
 
 static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
 {
-    fx32 v0 = sub_02020A90(param0->unk_BACC);
+    fx32 v0 = Camera_GetDistance(param0->unk_BACC);
     BOOL v1 = 0;
 
     switch (param0->unk_BAD8) {
@@ -1461,7 +1461,7 @@ static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
         break;
     }
 
-    sub_02020A50(v0, param0->unk_BACC);
+    Camera_SetDistance(v0, param0->unk_BACC);
 
     return v1;
 }

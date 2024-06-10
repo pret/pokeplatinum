@@ -1824,7 +1824,7 @@ static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_06) {
     case 0:
-        v0->unk_00 = sub_02020A90(param2);
+        v0->unk_00 = Camera_GetDistance(param2);
         v0->unk_06++;
         Sound_PlayEffect(1470);
     case 1:
@@ -1848,8 +1848,8 @@ static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         sub_02020A78((-(-FX32_ONE * 50) / 6), param2);
         v0->unk_04++;
 
-        if ((v0->unk_04 >= 6) || (sub_02020A90(param2) >= v0->unk_00)) {
-            sub_02020A50(v0->unk_00, param2);
+        if ((v0->unk_04 >= 6) || (Camera_GetDistance(param2) >= v0->unk_00)) {
+            Camera_SetDistance(v0->unk_00, param2);
             return 1;
         }
 
@@ -2082,7 +2082,7 @@ static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_06) {
     case 0:
-        v0->unk_00 = sub_02020A90(param2);
+        v0->unk_00 = Camera_GetDistance(param2);
         v0->unk_06++;
         Sound_PlayEffect(1470);
     case 1:
@@ -2106,8 +2106,8 @@ static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         sub_02020A78((-(FX32_ONE * 50) / 6), param2);
         v0->unk_04++;
 
-        if ((v0->unk_04 >= 6) || (sub_02020A90(param2) <= v0->unk_00)) {
-            sub_02020A50(v0->unk_00, param2);
+        if ((v0->unk_04 >= 6) || (Camera_GetDistance(param2) <= v0->unk_00)) {
+            Camera_SetDistance(v0->unk_00, param2);
             return 1;
         }
 

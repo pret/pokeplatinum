@@ -1678,7 +1678,7 @@ static void ov5_021D7028 (fx32 * param0, fx32 * param1, UnkStruct_ov5_021DB4B8 *
     v6 = (v0.z - param2->unk_B8C.z);
     v8 = FX_Div(FX32_CONST(4), FX32_CONST(3));
 
-    sub_0201E34C(sub_02020A88(param2->unk_00->fieldSystem->unk_24), sub_02020A90(param2->unk_00->fieldSystem->unk_24), v8, &v3, &v4);
+    sub_0201E34C(sub_02020A88(param2->unk_00->fieldSystem->unk_24), Camera_GetDistance(param2->unk_00->fieldSystem->unk_24), v8, &v3, &v4);
     v3 = FX_Div(v3, 256 * FX32_ONE);
 
     if (v6 <= 0) {

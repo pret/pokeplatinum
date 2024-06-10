@@ -1775,7 +1775,7 @@ static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         param0->unk_0C = 0x128000;
     }
 
-    sub_02020A50(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->unk_00);
 }
 
 static void ov69_0225DAEC (UnkStruct_ov69_0225DAEC * param0)
@@ -1830,7 +1830,7 @@ static BOOL ov69_0225DB2C (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         break;
     }
 
-    sub_02020A50(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->unk_00);
 
     return 0;
 }

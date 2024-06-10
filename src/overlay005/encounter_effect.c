@@ -127,9 +127,9 @@ void include_ov5_021DDBE8_rodata_funcptr(void);
 
 static const SysTaskFunc sEncounterEffectTaskFuncs[] = {
     EncounterEffect_TallGrass_LowerLevel,
-    ov5_021E2338,
-    ov5_021E261C,
-    ov5_021E2748,
+    EncounterEffect_TallGrass_HigherLevel,
+    EncounterEffect_Water_LowerLevel,
+    EncounterEffect_Water_HigherLevel,
     ov5_021E2944,
     ov5_021E2A4C,
     ov5_021E2B54,

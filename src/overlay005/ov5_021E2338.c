@@ -47,15 +47,39 @@
 #include "overlay005/ov5_021E2338.h"
 #include "overlay005/hblank_system.h"
 
-typedef struct {
-    UnkStruct_020203AC * unk_00;
-    QuadraticInterpolationTaskFX32 unk_04;
-    ScreenSliceEffect * unk_1C;
-} UnkStruct_ov5_021E2338;
+// EncounterEffect_TallGrass_HigherLevel
+#define TALL_GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE        2
+#define TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES    6
+#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_1         0
+#define TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_1           (FX32_ONE * -3)
+#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1     (FX32_ONE * -12)
+#define TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1         (FX32_ONE * 50)
+#define TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_1          (FX32_ONE * 30)
+#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_2         (FX32_ONE * -3)
+#define TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_2           (FX32_ONE * 255)
+#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2     (FX32_ONE * 30)
+#define TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2         (FX32_ONE * -50)
+#define TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_2          (FX32_ONE * -255)
 
-typedef struct {
-    UnkStruct_020203AC * unk_00;
-    QuadraticInterpolationTaskFX32 unk_04;
+// EncounterEffect_TallGrass_LowerLevel
+#define TALL_GRASS_LOWER_LEVEL_PIXELS_PER_SLICE         5
+#define TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES     6
+#define TALL_GRASS_LOWER_LEVEL_SLICE_START_X_1          0
+#define TALL_GRASS_LOWER_LEVEL_SLICE_END_X_1            (FX32_ONE * -2)
+#define TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_1      (FX32_ONE * -12)
+#define TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_1          (FX32_ONE * 50)
+#define TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_1           (FX32_ONE * 30)
+#define TALL_GRASS_LOWER_LEVEL_SLICE_START_X_2          (FX32_ONE * -2)
+#define TALL_GRASS_LOWER_LEVEL_SLICE_END_X_2            (FX32_ONE * 255)
+#define TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_2      (FX32_ONE * 30)
+#define TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_2          (FX32_ONE * -30)
+#define TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_2           (FX32_ONE * -100)
+
+// EncounterEffect_Water_LowerLevel
+
+typedef struct TallGrassEncounterEffect {
+    UnkStruct_020203AC * camera;
+    QuadraticInterpolationTaskFX32 camDistanceTask;
     ScreenSliceEffect * screenSliceEfx;
 } TallGrassEncounterEffect;
 
@@ -63,17 +87,12 @@ typedef struct {
     UnkStruct_02013BE0 * unk_00;
     SysTask * unk_04;
     u32 unk_08;
-} UnkStruct_ov5_021E2878;
+} ScreenShakeEffect;
 
-typedef struct {
-    UnkStruct_ov5_021E2878 unk_00;
-    s32 unk_0C;
-} UnkStruct_ov5_021E261C;
-
-typedef struct {
-    UnkStruct_ov5_021E2878 unk_00;
-    s32 unk_0C;
-} UnkStruct_ov5_021E2748;
+typedef struct WaterEncounterEffect {
+    ScreenShakeEffect screenShakeEfx;
+    s32 counter;
+} WaterEncounterEffect;
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
@@ -85,128 +104,87 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_04;
 } UnkStruct_ov5_021E2A4C;
 
-static SysTask * ov5_021E2878(UnkStruct_ov5_021E2878 * param0);
+static SysTask * ov5_021E2878(ScreenShakeEffect * param0);
 static void ov5_021E288C(SysTask * param0, void * param1);
-static void ov5_021E28B0(UnkStruct_ov5_021E2878 * param0, u32 param1);
-static void ov5_021E28CC(UnkStruct_ov5_021E2878 * param0);
-static void ov5_021E28E4(UnkStruct_ov5_021E2878 * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8);
-static void ov5_021E290C(UnkStruct_ov5_021E2878 * param0, u32 param1);
+static void ScreenShakeEffect_Init(ScreenShakeEffect * param0, u32 param1);
+static void ov5_021E28CC(ScreenShakeEffect * param0);
+static void ScreenShakeEffect_Start(ScreenShakeEffect * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8);
+static void ov5_021E290C(ScreenShakeEffect * param0, u32 param1);
 
-void ov5_021E2338 (SysTask * param0, void * param1)
-{
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E2338 *v1 = v0->param;
-    fx32 v2;
-    BOOL v3;
-
-    switch (v0->state) {
-    case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2338));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E2338));
-        v1 = v0->param;
-        v1->unk_1C = ScreenSliceEffect_New();
-        v0->state++;
-        break;
-    case 1:
-        EncounterEffect_Flash(1, 16, -16, &v0->effectComplete, 2);
-        v0->state++;
-        break;
-    case 2:
-        if (v0->effectComplete) {
-            v0->effectComplete = 0;
-            v0->state++;
-            EncounterEffect_ScreenSlice(v0, v1->unk_1C, 2, 6 + 1, 0, (-3 * FX32_ONE), (FX32_ONE * -12));
-            v1->unk_00 = v0->fieldSystem->unk_24;
-            v2 = sub_02020A90(v1->unk_00);
-            QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
-        }
-        break;
-    case 3:
-        v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
-        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
-
-        if (v3 == 1) {
-            v0->state++;
-            ScreenSliceEffect_Modify(v0, v1->unk_1C, 2, 6, (-3 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
-            v1->unk_00 = v0->fieldSystem->unk_24;
-            v2 = sub_02020A90(v1->unk_00);
-            QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 50), (-FX32_ONE * 255), 6);
-        }
-        break;
-    case 4:
-        v3 = QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
-        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
-
-        if ((v3 == 1) && (EncounterEffect_GetHBlankFlag(v0) == 1)) {
-            v0->state++;
-        }
-        break;
-    case 5:
-        sub_0200F370(0x0);
-
-        G2_SetBG0Offset(0, 0);
-        G2_SetBG1Offset(0, 0);
-        G2_SetBG2Offset(0, 0);
-        G2_SetBG3Offset(0, 0);
-
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
-        }
-
-        ScreenSliceEffect_Delete(v1->unk_1C);
-        EncounterEffect_Finish(v0, param0);
-        break;
-    default:
-        break;
-    }
-}
-
-void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
+void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
     TallGrassEncounterEffect *tallGrassEffect = encEffect->param;
-    fx32 v2;
-    BOOL v3;
+    fx32 distance;
+    BOOL done;
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(TallGrassEncounterEffect));
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(TallGrassEncounterEffect));
         memset(encEffect->param, 0, sizeof(TallGrassEncounterEffect));
         tallGrassEffect = encEffect->param;
         tallGrassEffect->screenSliceEfx = ScreenSliceEffect_New();
         encEffect->state++;
         break;
     case 1:
-        EncounterEffect_Flash(1, -16, -16, &encEffect->effectComplete, 2);
+        EncounterEffect_Flash(1, 16, -16, &encEffect->effectComplete, 2);
         encEffect->state++;
         break;
     case 2:
         if (encEffect->effectComplete) {
-            encEffect->effectComplete = FALSE;
+            encEffect->effectComplete = 0;
             encEffect->state++;
-            EncounterEffect_ScreenSlice(encEffect, tallGrassEffect->screenSliceEfx, 5, 6 + 1, 0, (-2 * FX32_ONE), (FX32_ONE * -12));
-            tallGrassEffect->unk_00 = encEffect->fieldSystem->unk_24;
-            v2 = sub_02020A90(tallGrassEffect->unk_00);
-            QuadraticInterpolationTaskFX32_Init(&tallGrassEffect->unk_04, v2, v2 + (FX32_ONE * 50), (FX32_ONE * 30), 6);
+            EncounterEffect_ScreenSlice(
+                encEffect, 
+                tallGrassEffect->screenSliceEfx, 
+                TALL_GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
+                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES + 1, 
+                TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_1, 
+                TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_1, 
+                TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1
+            );
+            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            distance = Camera_GetDistance(tallGrassEffect->camera);
+            QuadraticInterpolationTaskFX32_Init(
+                &tallGrassEffect->camDistanceTask, 
+                distance, 
+                distance + TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1, 
+                TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_1, 
+                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
+            );
         }
         break;
     case 3:
-        v3 = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->unk_04);
-        sub_02020A50(tallGrassEffect->unk_04.currentValue, tallGrassEffect->unk_00);
+        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
+        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
 
-        if ((v3 == 1)) {
+        if (done == TRUE) {
             encEffect->state++;
-            ScreenSliceEffect_Modify(encEffect, tallGrassEffect->screenSliceEfx, 5, 6, (-2 * FX32_ONE), (255 * FX32_ONE), (FX32_ONE * 30));
-            tallGrassEffect->unk_00 = encEffect->fieldSystem->unk_24;
-            v2 = sub_02020A90(tallGrassEffect->unk_00);
-            QuadraticInterpolationTaskFX32_Init(&tallGrassEffect->unk_04, v2, v2 + (-FX32_ONE * 30), (-FX32_ONE * 100), 6);
+            ScreenSliceEffect_Modify(
+                encEffect, 
+                tallGrassEffect->screenSliceEfx, 
+                TALL_GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
+                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES, 
+                TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_2, 
+                TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_2, 
+                TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2
+            );
+            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            distance = Camera_GetDistance(tallGrassEffect->camera);
+            QuadraticInterpolationTaskFX32_Init(
+                &tallGrassEffect->camDistanceTask, 
+                distance, 
+                distance + TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2, 
+                TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_2, 
+                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
+            );
         }
         break;
     case 4:
-        v3 = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->unk_04);
-        sub_02020A50(tallGrassEffect->unk_04.currentValue, tallGrassEffect->unk_00);
+        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
+        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
 
-        if ((v3 == 1) && (EncounterEffect_GetHBlankFlag(encEffect) == 1)) {
+        if (done == TRUE && EncounterEffect_GetHBlankFlag(encEffect) == TRUE) {
             encEffect->state++;
         }
         break;
@@ -230,130 +208,227 @@ void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void ov5_021E261C (SysTask * param0, void * param1)
+void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E261C * v1 = v0->param;
+    EncounterEffect *encEffect = param;
+    TallGrassEncounterEffect *tallGrassEffect = encEffect->param;
+    fx32 distance;
+    BOOL done;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E261C));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E261C));
-        v1 = v0->param;
-        ov5_021E28B0(&v1->unk_00, 4);
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        v0->state++;
+        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(TallGrassEncounterEffect));
+        memset(encEffect->param, 0, sizeof(TallGrassEncounterEffect));
+        tallGrassEffect = encEffect->param;
+        tallGrassEffect->screenSliceEfx = ScreenSliceEffect_New();
+        encEffect->state++;
         break;
     case 1:
-        EncounterEffect_Flash(1, -16, -16, &v0->effectComplete, 2);
-        v1->unk_0C = 10;
-        v0->state++;
+        EncounterEffect_Flash(1, -16, -16, &encEffect->effectComplete, 2);
+        encEffect->state++;
         break;
     case 2:
-        v1->unk_0C--;
-
-        if (v1->unk_0C < 0) {
-            v0->state++;
-            v1->unk_0C = 12;
-            ov5_021E28E4(&v1->unk_00, 0, 191, ((0xffff / 192) * 2), (FX32_CONST(12)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
+        if (encEffect->effectComplete) {
+            encEffect->effectComplete = FALSE;
+            encEffect->state++;
+            EncounterEffect_ScreenSlice(
+                encEffect, 
+                tallGrassEffect->screenSliceEfx, 
+                TALL_GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
+                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES + 1, 
+                TALL_GRASS_LOWER_LEVEL_SLICE_START_X_1, 
+                TALL_GRASS_LOWER_LEVEL_SLICE_END_X_1, 
+                TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_1
+            );
+            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            distance = Camera_GetDistance(tallGrassEffect->camera);
+            QuadraticInterpolationTaskFX32_Init(
+                &tallGrassEffect->camDistanceTask, 
+                distance, 
+                distance + TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_1, 
+                TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_1, 
+                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
+            );
         }
         break;
     case 3:
-        v1->unk_0C--;
+        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
+        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
 
-        if (v1->unk_0C < 0) {
-            v0->state++;
+        if (done == TRUE) {
+            encEffect->state++;
+            ScreenSliceEffect_Modify(
+                encEffect, 
+                tallGrassEffect->screenSliceEfx, 
+                TALL_GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
+                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES, 
+                TALL_GRASS_LOWER_LEVEL_SLICE_START_X_2, 
+                TALL_GRASS_LOWER_LEVEL_SLICE_END_X_2, 
+                TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_2
+            );
+            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            distance = Camera_GetDistance(tallGrassEffect->camera);
+            QuadraticInterpolationTaskFX32_Init(
+                &tallGrassEffect->camDistanceTask, 
+                distance, 
+                distance + TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_2, 
+                TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_2, 
+                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
+            );
+        }
+        break;
+    case 4:
+        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
+        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
+
+        if (done == TRUE && EncounterEffect_GetHBlankFlag(encEffect) == TRUE) {
+            encEffect->state++;
+        }
+        break;
+    case 5:
+        sub_0200F370(0x0);
+
+        G2_SetBG0Offset(0, 0);
+        G2_SetBG1Offset(0, 0);
+        G2_SetBG2Offset(0, 0);
+        G2_SetBG3Offset(0, 0);
+
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = TRUE;
+        }
+
+        ScreenSliceEffect_Delete(tallGrassEffect->screenSliceEfx);
+        EncounterEffect_Finish(encEffect, task);
+        break;
+    default:
+        break;
+    }
+}
+
+void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
+{
+    EncounterEffect *encEffect = param;
+    WaterEncounterEffect *waterEffect = encEffect->param;
+
+    switch (encEffect->state) {
+    case 0:
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(WaterEncounterEffect));
+        memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
+        waterEffect = encEffect->param;
+        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, 4);
+        HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
+        encEffect->state++;
+        break;
+    case 1:
+        EncounterEffect_Flash(1, -16, -16, &encEffect->effectComplete, 2);
+        waterEffect->counter = 10;
+        encEffect->state++;
+        break;
+    case 2:
+        waterEffect->counter--;
+
+        if (waterEffect->counter < 0) {
+            encEffect->state++;
+            waterEffect->counter = 12;
+            ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, ((0xffff / 192) * 2), (FX32_CONST(12)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
+        }
+        break;
+    case 3:
+        waterEffect->counter--;
+
+        if (waterEffect->counter < 0) {
+            encEffect->state++;
         }
         break;
     case 4:
         sub_0200F174(3, 30, 0, 0x0, 8, 1, 4);
-        v0->state++;
+        encEffect->state++;
         break;
     case 5:
         if (ScreenWipe_Done()) {
-            v0->state++;
+            encEffect->state++;
         }
         break;
     case 6:
-        ov5_021E28CC(&v1->unk_00);
-        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
+        ov5_021E28CC(&waterEffect->screenShakeEfx);
+        HBlankSystem_Start(encEffect->fieldSystem->unk_04->hBlankSystem);
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = TRUE;
         }
 
-        EncounterEffect_Finish(v0, param0);
+        EncounterEffect_Finish(encEffect, task);
         sub_0200F344(1, 0x0);
         break;
     }
 }
 
-void ov5_021E2748 (SysTask * param0, void * param1)
+void EncounterEffect_Water_HigherLevel (SysTask *task, void *param)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E2748 * v1 = v0->param;
+    EncounterEffect *encEffect = param;
+    WaterEncounterEffect *waterEffect = encEffect->param;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2748));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E2748));
-        v1 = v0->param;
-        ov5_021E28B0(&v1->unk_00, 4);
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        v0->state++;
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(WaterEncounterEffect));
+        memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
+        waterEffect = encEffect->param;
+        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, 4);
+        HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
+        encEffect->state++;
         break;
     case 1:
-        EncounterEffect_Flash(1, 16, -16, &v0->effectComplete, 2);
-        v1->unk_0C = 10;
-        v0->state++;
+        EncounterEffect_Flash(1, 16, -16, &encEffect->effectComplete, 2);
+        waterEffect->counter = 10;
+        encEffect->state++;
         break;
     case 2:
-        v1->unk_0C--;
+        waterEffect->counter--;
 
-        if (v1->unk_0C < 0) {
-            v0->state++;
-            v1->unk_0C = 12;
-            ov5_021E28E4(&v1->unk_00, 0, 191, ((0xffff / 192) * 3), (FX32_CONST(15)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
+        if (waterEffect->counter < 0) {
+            encEffect->state++;
+            waterEffect->counter = 12;
+            ScreenShakeEffect_Start(&waterEffect->screenShakeEfx, 0, 191, ((0xffff / 192) * 3), (FX32_CONST(15)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
         }
         break;
     case 3:
-        v1->unk_0C--;
+        waterEffect->counter--;
 
-        if (v1->unk_0C < 0) {
-            v0->state++;
+        if (waterEffect->counter < 0) {
+            encEffect->state++;
         }
         break;
     case 4:
         sub_0200F174(3, 30, 0, 0x0, 8, 1, 4);
-        v0->state++;
+        encEffect->state++;
         break;
     case 5:
         if (ScreenWipe_Done()) {
-            v0->state++;
+            encEffect->state++;
         }
         break;
     case 6:
-        ov5_021E28CC(&v1->unk_00);
-        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
+        ov5_021E28CC(&waterEffect->screenShakeEfx);
+        HBlankSystem_Start(encEffect->fieldSystem->unk_04->hBlankSystem);
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = 1;
         }
 
-        EncounterEffect_Finish(v0, param0);
+        EncounterEffect_Finish(encEffect, task);
         sub_0200F344(1, 0x0);
         break;
     }
 }
 
-static SysTask * ov5_021E2878 (UnkStruct_ov5_021E2878 * param0)
+static SysTask * ov5_021E2878 (ScreenShakeEffect * param0)
 {
     return sub_0200DA04(ov5_021E288C, param0, 1024);
 }
 
 static void ov5_021E288C (SysTask * param0, void * param1)
 {
-    UnkStruct_ov5_021E2878 * v0 = param1;
+    ScreenShakeEffect * v0 = param1;
 
     if (v0->unk_08 >= 2) {
         sub_02013DA4(v0->unk_00);
@@ -364,26 +439,26 @@ static void ov5_021E288C (SysTask * param0, void * param1)
     v0->unk_08++;
 }
 
-static void ov5_021E28B0 (UnkStruct_ov5_021E2878 * param0, u32 param1)
+static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, u32 heapID)
 {
-    param0->unk_00 = sub_02013BE0(param1);
-    param0->unk_08 = 0;
-    param0->unk_04 = ov5_021E2878(param0);
+    screenShake->unk_00 = sub_02013BE0(heapID);
+    screenShake->unk_08 = 0;
+    screenShake->unk_04 = ov5_021E2878(screenShake);
 }
 
-static void ov5_021E28CC (UnkStruct_ov5_021E2878 * param0)
+static void ov5_021E28CC (ScreenShakeEffect * param0)
 {
     SysTask_Done(param0->unk_04);
     sub_02013D38(param0->unk_00);
     sub_02013D74(param0->unk_00);
 }
 
-static void ov5_021E28E4 (UnkStruct_ov5_021E2878 * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8)
+static void ScreenShakeEffect_Start (ScreenShakeEffect * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8)
 {
     sub_02013C10(param0->unk_00, param1, param2, param3, param4, param5, param6, param7, param8);
 }
 
-static void ov5_021E290C (UnkStruct_ov5_021E2878 * param0, u32 param1)
+static void ov5_021E290C (ScreenShakeEffect * param0, u32 param1)
 {
     u32 * v0;
     int v1;
@@ -429,14 +504,14 @@ void ov5_021E2944 (SysTask * param0, void * param1)
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
         v1->unk_00 = v0->fieldSystem->unk_24;
-        v2 = sub_02020A90(v1->unk_00);
+        v2 = Camera_GetDistance(v1->unk_00);
 
         QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 400), (-FX32_ONE * 2), 12);
         v0->state++;
         break;
     case 4:
         QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
-        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
+        Camera_SetDistance(v1->unk_04.currentValue, v1->unk_00);
 
         if (ScreenWipe_Done()) {
             v0->state++;
@@ -482,14 +557,14 @@ void ov5_021E2A4C (SysTask * param0, void * param1)
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
         v1->unk_00 = v0->fieldSystem->unk_24;
-        v2 = sub_02020A90(v1->unk_00);
+        v2 = Camera_GetDistance(v1->unk_00);
 
         QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 800), (-FX32_ONE * 5), 12);
         v0->state++;
         break;
     case 4:
         QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
-        sub_02020A50(v1->unk_04.currentValue, v1->unk_00);
+        Camera_SetDistance(v1->unk_04.currentValue, v1->unk_00);
 
         if (ScreenWipe_Done()) {
             v0->state++;
@@ -537,7 +612,7 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_18;
     LinearInterpolationTaskS32 unk_2C;
-    UnkStruct_ov5_021E2878 unk_40;
+    ScreenShakeEffect unk_40;
     BOOL unk_4C;
     UnkStruct_ov5_021DE47C unk_50;
     UnkStruct_ov5_021DE5A4 unk_1F0;
@@ -556,7 +631,7 @@ typedef struct {
     UnkStruct_ov5_021DE6BC * unk_258[3];
     BOOL unk_264[3];
     Window * unk_270;
-    UnkStruct_ov5_021E2878 unk_274;
+    ScreenShakeEffect unk_274;
     BOOL unk_280;
     UnkStruct_020203AC * unk_284;
     QuadraticInterpolationTaskFX32 unk_288;
@@ -694,7 +769,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
 
         QuadraticInterpolationTaskFX32_Init(&v1->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
 
-        v3 = sub_02020A90(v1->unk_224);
+        v3 = Camera_GetDistance(v1->unk_224);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_228, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 6);
 
         sub_02021C94(
@@ -719,7 +794,7 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
         }
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_228);
-        sub_02020A50(v1->unk_228.currentValue, v1->unk_224);
+        Camera_SetDistance(v1->unk_228.currentValue, v1->unk_224);
 
         if (EncounterEffect_GetHBlankFlag(v0)) {
             v0->state++;
@@ -854,7 +929,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
 
         EncounterEffect_ScreenSplit(v0, v1->unk_28, 8, (FX32_ONE * 1), (FX32_ONE * 1));
 
-        v3 = sub_02020A90(v1->unk_208);
+        v3 = Camera_GetDistance(v1->unk_208);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_20C, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
         v0->state++;
@@ -863,7 +938,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
     case 6:
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_20C);
-        sub_02020A50(v1->unk_20C.currentValue, v1->unk_208);
+        Camera_SetDistance(v1->unk_20C.currentValue, v1->unk_208);
 
         if (EncounterEffect_GetHBlankFlag(v0) == 1) {
             v0->state++;
@@ -915,7 +990,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
 
         v1->unk_22C = v0->fieldSystem->unk_24;
 
-        ov5_021E28B0(&v1->unk_40, 4);
+        ScreenShakeEffect_Init(&v1->unk_40, 4);
         v1->unk_248 = 12;
 
         ov5_021DE47C(&v1->unk_50, 2, 1);
@@ -945,7 +1020,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
         v1->unk_248--;
 
         if (v1->unk_248 == 0) {
-            ov5_021E28E4(&v1->unk_40, 0, 191, ((0xffff / 192) * 2), (FX32_CONST(12)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
+            ScreenShakeEffect_Start(&v1->unk_40, 0, 191, ((0xffff / 192) * 2), (FX32_CONST(12)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
             v1->unk_4C = 1;
         }
 
@@ -1013,7 +1088,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
             }
         }
 
-        v4 = sub_02020A90(v1->unk_22C);
+        v4 = Camera_GetDistance(v1->unk_22C);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
         sub_0200F174(3, 24, 0, 0x0, 8, 1, 4);
@@ -1032,7 +1107,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
         }
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_230);
-        sub_02020A50(v1->unk_230.currentValue, v1->unk_22C);
+        Camera_SetDistance(v1->unk_230.currentValue, v1->unk_22C);
 
         if ((v2 == 1) && (ScreenWipe_Done() == 1)) {
             v0->state++;
@@ -1086,7 +1161,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
 
         v1->unk_284 = v0->fieldSystem->unk_24;
 
-        ov5_021E28B0(&v1->unk_274, 4);
+        ScreenShakeEffect_Init(&v1->unk_274, 4);
         v1->unk_2A0 = 14;
 
         ov5_021DE47C(&v1->unk_00, 3, 1);
@@ -1130,7 +1205,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         v1->unk_2A0--;
 
         if (v1->unk_2A0 == 0) {
-            ov5_021E28E4(&v1->unk_274, 0, 191, ((0xffff / 192) * 2), (FX32_CONST(12)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
+            ScreenShakeEffect_Start(&v1->unk_274, 0, 191, ((0xffff / 192) * 2), (FX32_CONST(12)), 800, REG_BG0HOFS_ADDR, 0, (5 - 1));
             v1->unk_280 = 1;
         }
 
@@ -1148,7 +1223,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
             break;
         }
 
-        v5 = sub_02020A90(v1->unk_284);
+        v5 = Camera_GetDistance(v1->unk_284);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_288, v5, v5 + (-FX32_CONST(500)), (-FX32_CONST(10)), 16);
 
         LinearInterpolationTaskS32_Init(&v1->unk_21C[0], 0, (0xffff * 1), 6);
@@ -1211,7 +1286,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
     case 6:
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_288);
-        sub_02020A50(v1->unk_288.currentValue, v1->unk_284);
+        Camera_SetDistance(v1->unk_288.currentValue, v1->unk_284);
 
         if ((v1->unk_264[0] == 0) && (v1->unk_264[1] == 0) && (v1->unk_264[2] == 0)) {
             v0->state++;
@@ -1368,7 +1443,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
-        v3 = sub_02020A90(v1->unk_234);
+        v3 = Camera_GetDistance(v1->unk_234);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
 
         sub_0200F174(3, 18, 0, 0x0, 8, 1, 4);
@@ -1378,7 +1453,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
     case 6:
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_238);
-        sub_02020A50(v1->unk_238.currentValue, v1->unk_234);
+        Camera_SetDistance(v1->unk_238.currentValue, v1->unk_234);
 
         if (ScreenWipe_Done()) {
             v0->state++;
@@ -1549,7 +1624,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
     case 7:
         ov5_021DE948(v1->unk_268, 1, 1, v1->unk_264, 15);
 
-        v5 = sub_02020A90(v1->unk_26C);
+        v5 = Camera_GetDistance(v1->unk_26C);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_270, v5, v5 + (-FX32_CONST(1000)), (FX32_CONST(10)), 64);
 
         v0->state++;
@@ -1560,7 +1635,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         sub_0201A9A4(v1->unk_264);
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_270);
-        sub_02020A50(v1->unk_270.currentValue, v1->unk_26C);
+        Camera_SetDistance(v1->unk_270.currentValue, v1->unk_26C);
 
         if (v3 == 1) {
             v0->state++;
@@ -2250,7 +2325,7 @@ static void ov5_021E4DE0 (FieldSystem * fieldSystem, const UnkStruct_ov5_021F9DD
     UnkStruct_ov115_0226527C v0;
 
     sub_02020910(param1->unk_08, fieldSystem->unk_24);
-    sub_02020A50(param1->unk_00, fieldSystem->unk_24);
+    Camera_SetDistance(param1->unk_00, fieldSystem->unk_24);
     v0.unk_00 = param1->unk_04;
     v0.unk_02 = param1->unk_06;
     v0.unk_04 = 0;
@@ -2400,7 +2475,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
         v1->unk_34--;
 
         if (v1->unk_34 < 0) {
-            fx32 v4 = sub_02020A90(v0->fieldSystem->unk_24);
+            fx32 v4 = Camera_GetDistance(v0->fieldSystem->unk_24);
 
             QuadraticInterpolationTaskFX32_Init(&v1->unk_1C, v4, v4 + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
 
@@ -2411,7 +2486,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
 
     case 6:
         v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_1C);
-        sub_02020A50(v1->unk_1C.currentValue, v0->fieldSystem->unk_24);
+        Camera_SetDistance(v1->unk_1C.currentValue, v0->fieldSystem->unk_24);
 
         if (v2 == 1) {
             v0->state++;

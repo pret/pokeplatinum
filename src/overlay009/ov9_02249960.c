@@ -1633,7 +1633,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
             0x29aec1, {-0x29fe, 0, 0}, 0, 0x5c1, 0
         };
 
-        sub_02020A50(v1.unk_00, v0->unk_00);
+        Camera_SetDistance(v1.unk_00, v0->unk_00);
         sub_020209D4(&v1.unk_04, v0->unk_00);
         sub_02020910(v1.unk_0E, v0->unk_00);
         sub_02020854(v1.unk_0C, v0->unk_00);

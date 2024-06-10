@@ -1184,7 +1184,7 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
         fx32 v4, v5;
 
         v1 = sub_02020A88(param0->unk_CC);
-        v2 = sub_02020A90(param0->unk_CC);
+        v2 = Camera_GetDistance(param0->unk_CC);
         v3 = FX32_ONE * 4 / 3;
 
         sub_0201E34C(v1, v2, v3, &v4, &v5);

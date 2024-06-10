@@ -482,7 +482,7 @@ void sub_02020A24 (const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC *
     sub_02020020(param1);
 }
 
-void sub_02020A50 (const fx32 param0, UnkStruct_020203AC * param1)
+void Camera_SetDistance (const fx32 param0, UnkStruct_020203AC * param1)
 {
     param1->unk_38 = param0;
     sub_02020020(param1);
@@ -505,7 +505,7 @@ u16 sub_02020A88 (UnkStruct_020203AC const * param0)
     return param0->unk_46;
 }
 
-fx32 sub_02020A90 (UnkStruct_020203AC const * param0)
+fx32 Camera_GetDistance (UnkStruct_020203AC const * param0)
 {
     return param0->unk_38;
 }
