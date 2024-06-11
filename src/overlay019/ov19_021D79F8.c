@@ -520,7 +520,7 @@ static void ov19_021D8274 (SysTask * param0, void * param1)
 
 static void ov19_021D8318 (UnkStruct_ov19_021D8318 * param0)
 {
-    param0->unk_A3 = (CoreSys_ExecuteDuringVBlank(ov19_021D8274, param0, 0) != NULL);
+    param0->unk_A3 = (CoreSys_ExecuteAfterVBlank(ov19_021D8274, param0, 0) != NULL);
 
     if (param0->unk_A3) {
         Unk_ov19_021E077C = 0;

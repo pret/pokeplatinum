@@ -395,7 +395,7 @@ void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endVa
 BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task)
 {
     BOOL finished = LinearInterpolationTaskS32_Update(&task->interpolationTask);
-    CoreSys_ExecuteDuringVBlank(BrightnessFadeTask_SetBrightness, task, 10);
+    CoreSys_ExecuteAfterVBlank(BrightnessFadeTask_SetBrightness, task, 10);
 
     return finished;
 }
@@ -449,14 +449,14 @@ void EncounterEffect_ScreenSlice(EncounterEffect *encEffect, ScreenSliceEffect *
         G2_SetWnd1Position(0, 0, 1 - startX, 192);
     }
 
-    CoreSys_ExecuteDuringVBlank(ScreenSliceEffect_CreateTasks, screenSliceEfx, 1024);
+    CoreSys_ExecuteAfterVBlank(ScreenSliceEffect_CreateTasks, screenSliceEfx, 1024);
 }
 
 static void ScreenSliceEffect_CreateTasks(SysTask *task, void *param)
 {
     ScreenSliceEffect *screenSliceEfx = param;
 
-    screenSliceEfx->vBlankTask = CoreSys_ExecuteDuringVBlank(ScreenSliceSystem_VBlankCallback, screenSliceEfx, 1024);
+    screenSliceEfx->vBlankTask = CoreSys_ExecuteAfterVBlank(ScreenSliceSystem_VBlankCallback, screenSliceEfx, 1024);
     screenSliceEfx->hBlankTask = HBlankSystem_StartTask(screenSliceEfx->hBlankSystem, ScreenSliceEffect_HBlankCallback, screenSliceEfx);
 
     SysTask_Done(task);
@@ -579,14 +579,14 @@ void EncounterEffect_ScreenSplit(EncounterEffect *encEffect, ScreenSplitEffect *
     G2_SetWnd0Position(0, 0, 255, 192);
     G2_SetWnd1Position(0, 0, 255, 192);
 
-    CoreSys_ExecuteDuringVBlank(ScreenSplitEffect_SetupTasks, screenSplitEfx, 1024);
+    CoreSys_ExecuteAfterVBlank(ScreenSplitEffect_SetupTasks, screenSplitEfx, 1024);
 }
 
 static void ScreenSplitEffect_SetupTasks(SysTask *task, void *param)
 {
     ScreenSplitEffect *screenSplitEfx = param;
 
-    screenSplitEfx->vBlankTask = CoreSys_ExecuteDuringVBlank(ScreenSplitEffect_VBlankCallback, screenSplitEfx, 1024);
+    screenSplitEfx->vBlankTask = CoreSys_ExecuteAfterVBlank(ScreenSplitEffect_VBlankCallback, screenSplitEfx, 1024);
     screenSplitEfx->hBlankTask = HBlankSystem_StartTask(screenSplitEfx->hBlankSystem, ScreenSplitEffect_HBlankCallback, screenSplitEfx);
 
     SysTask_Done(task);
@@ -1246,7 +1246,7 @@ void ov5_021DED20(EncounterEffect *param0, UnkStruct_ov5_021DED04 *param1, u32 p
     G2_SetWnd0Position(0, 0, 0, 192);
     GX_SetVisibleWnd(GX_WNDMASK_W0);
 
-    CoreSys_ExecuteDuringVBlank(ov5_021DEDE8, param1, 1024);
+    CoreSys_ExecuteAfterVBlank(ov5_021DEDE8, param1, 1024);
 }
 
 static void ov5_021DEDE8(SysTask *param0, void *param1)
@@ -1254,7 +1254,7 @@ static void ov5_021DEDE8(SysTask *param0, void *param1)
     UnkStruct_ov5_021DED04 *v0 = param1;
 
     v0->unk_DC = HBlankSystem_StartTask(v0->unk_D8, ov5_021DEE50, v0);
-    v0->unk_E0 = CoreSys_ExecuteDuringVBlank(ov5_021DEE24, v0, 1024);
+    v0->unk_E0 = CoreSys_ExecuteAfterVBlank(ov5_021DEE24, v0, 1024);
 
     SysTask_Done(param0);
 }
@@ -1373,7 +1373,7 @@ static void ov5_021DEF74(SysTask *param0, void *param1)
 
 void ov5_021DEF8C(int *param0)
 {
-    CoreSys_ExecuteDuringVBlank(ov5_021DEF74, param0, 1024);
+    CoreSys_ExecuteAfterVBlank(ov5_021DEF74, param0, 1024);
 }
 
 void ov5_021DEFA0(FieldSystem *fieldSystem)
@@ -1395,7 +1395,7 @@ void ov5_021DEFA0(FieldSystem *fieldSystem)
     MI_CpuClearFast((void *)HW_LCDC_VRAM_C, HW_VRAM_C_SIZE);
     GX_SetCapture(GX_CAPTURE_SIZE_256x192, GX_CAPTURE_MODE_AB, GX_CAPTURE_SRCA_2D3D, GX_CAPTURE_SRCB_VRAM_0x00000, GX_CAPTURE_DEST_VRAM_C_0x00000, 4, 12);
 
-    CoreSys_ExecuteDuringVBlank(ov5_021DF258, Unk_ov5_02202120, 1024);
+    CoreSys_ExecuteAfterVBlank(ov5_021DF258, Unk_ov5_02202120, 1024);
     SysTask_Start(ov5_021DF28C, Unk_ov5_02202120, 1024);
 }
 

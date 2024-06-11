@@ -648,7 +648,7 @@ static void ov16_0223B790 (OverlayManager * param0)
 
     v0->unk_1C = SysTask_Start(ov16_0223CF48, v0, 60000);
     v0->unk_20 = SysTask_Start(ov16_0223CF8C, v0, 50000);
-    v0->unk_24 = sub_0200DA04(ov16_0223D0C4, v0, 1200);
+    v0->unk_24 = CoreSys_ExecuteOnVBlank(ov16_0223D0C4, v0, 1200);
     v0->unk_2434 = -51;
 
     ov16_0223DD4C(v0);

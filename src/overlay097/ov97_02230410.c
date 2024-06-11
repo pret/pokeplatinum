@@ -871,7 +871,7 @@ static void ov97_022312B4 (UnkStruct_ov97_02230868 * param0, BOOL param1, fx32 p
     }
 
     if (v0->unk_C04 == NULL) {
-        v0->unk_C04 = sub_0200DA04(ov97_02231290, v0, 1024);
+        v0->unk_C04 = CoreSys_ExecuteOnVBlank(ov97_02231290, v0, 1024);
     }
 
     v0->unk_C10 = 1;

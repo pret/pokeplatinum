@@ -85,7 +85,7 @@ typedef struct TallGrassEncounterEffect {
 
 typedef struct {
     UnkStruct_02013BE0 * unk_00;
-    SysTask * unk_04;
+    SysTask * dmaTransferTask;
     u32 unk_08;
 } ScreenShakeEffect;
 
@@ -104,10 +104,10 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_04;
 } UnkStruct_ov5_021E2A4C;
 
-static SysTask * ov5_021E2878(ScreenShakeEffect * param0);
-static void ov5_021E288C(SysTask * param0, void * param1);
+static SysTask * ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect * param0);
+static void ScreenShakeEffect_DMATransfer(SysTask * param0, void * param1);
 static void ScreenShakeEffect_Init(ScreenShakeEffect * param0, u32 param1);
-static void ov5_021E28CC(ScreenShakeEffect * param0);
+static void ScreenShakeEffect_Finish(ScreenShakeEffect * param0);
 static void ScreenShakeEffect_Start(ScreenShakeEffect * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8);
 static void ov5_021E290C(ScreenShakeEffect * param0, u32 param1);
 
@@ -350,7 +350,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         }
         break;
     case 6:
-        ov5_021E28CC(&waterEffect->screenShakeEfx);
+        ScreenShakeEffect_Finish(&waterEffect->screenShakeEfx);
         HBlankSystem_Start(encEffect->fieldSystem->unk_04->hBlankSystem);
 
         if (encEffect->done != NULL) {
@@ -408,7 +408,7 @@ void EncounterEffect_Water_HigherLevel (SysTask *task, void *param)
         }
         break;
     case 6:
-        ov5_021E28CC(&waterEffect->screenShakeEfx);
+        ScreenShakeEffect_Finish(&waterEffect->screenShakeEfx);
         HBlankSystem_Start(encEffect->fieldSystem->unk_04->hBlankSystem);
 
         if (encEffect->done != NULL) {
@@ -421,50 +421,50 @@ void EncounterEffect_Water_HigherLevel (SysTask *task, void *param)
     }
 }
 
-static SysTask * ov5_021E2878 (ScreenShakeEffect * param0)
+static SysTask *ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShakeEfx)
 {
-    return sub_0200DA04(ov5_021E288C, param0, 1024);
+    return CoreSys_ExecuteOnVBlank(ScreenShakeEffect_DMATransfer, screenShakeEfx, 1024);
 }
 
-static void ov5_021E288C (SysTask * param0, void * param1)
+static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param)
 {
-    ScreenShakeEffect * v0 = param1;
+    ScreenShakeEffect *screenShakeEfx = param;
 
-    if (v0->unk_08 >= 2) {
-        sub_02013DA4(v0->unk_00);
-        v0->unk_08 = 0;
+    if (screenShakeEfx->unk_08 >= 2) {
+        sub_02013DA4(screenShakeEfx->unk_00);
+        screenShakeEfx->unk_08 = 0;
     }
 
-    sub_02013DDC(v0->unk_00);
-    v0->unk_08++;
+    sub_02013DDC(screenShakeEfx->unk_00);
+    screenShakeEfx->unk_08++;
 }
 
 static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, u32 heapID)
 {
     screenShake->unk_00 = sub_02013BE0(heapID);
     screenShake->unk_08 = 0;
-    screenShake->unk_04 = ov5_021E2878(screenShake);
+    screenShake->dmaTransferTask = ScreenShakeEffect_CreateDMATransferTask(screenShake);
 }
 
-static void ov5_021E28CC (ScreenShakeEffect * param0)
+static void ScreenShakeEffect_Finish (ScreenShakeEffect *screenShake)
 {
-    SysTask_Done(param0->unk_04);
-    sub_02013D38(param0->unk_00);
-    sub_02013D74(param0->unk_00);
+    SysTask_Done(screenShake->dmaTransferTask);
+    sub_02013D38(screenShake->unk_00);
+    sub_02013D74(screenShake->unk_00);
 }
 
-static void ScreenShakeEffect_Start (ScreenShakeEffect * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8)
+static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 sineRadius, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority)
 {
-    sub_02013C10(param0->unk_00, param1, param2, param3, param4, param5, param6, param7, param8);
+    sub_02013C10(screenShake->unk_00, startX, endX, angleIncrement, sineRadius, shakeSpeed, bg, defaultValue, priority);
 }
 
-static void ov5_021E290C (ScreenShakeEffect * param0, u32 param1)
+static void ov5_021E290C(ScreenShakeEffect *screenShake, u32 param1)
 {
     u32 * v0;
     int v1;
     s16 v2;
 
-    v0 = sub_02013D94(param0->unk_00);
+    v0 = sub_02013D94(screenShake->unk_00);
 
     for (v1 = 0; v1 < 192; v1++) {
         v2 = v0[v1] & 0xffff;
@@ -1122,7 +1122,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021E28CC(&v1->unk_40);
+        ScreenShakeEffect_Finish(&v1->unk_40);
         v1->unk_4C = 0;
 
         for (v5 = 0; v5 < 2; v5++) {
@@ -1301,7 +1301,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        ov5_021E28CC(&v1->unk_274);
+        ScreenShakeEffect_Finish(&v1->unk_274);
         v1->unk_280 = 0;
 
         for (v3 = 0; v3 < 3; v3++) {

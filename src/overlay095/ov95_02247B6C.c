@@ -524,7 +524,7 @@ static void ov95_02248364 (UnkStruct_ov95_02247C6C * param0, int param1, int par
         v0->unk_08 = param2 << 12;
         v0->unk_0C = (v0->unk_08 - v0->unk_04) / param3;
         v0->unk_10 = param3;
-        param0->unk_78 = sub_0200DA04(ov95_022483E4, v0, 0);
+        param0->unk_78 = CoreSys_ExecuteOnVBlank(ov95_022483E4, v0, 0);
 
         G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, param1);
     }

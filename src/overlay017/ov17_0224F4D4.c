@@ -219,7 +219,7 @@ int ov17_0224F4D4 (OverlayManager * param0, int * param1)
     sub_020959F4(v0->unk_00->unk_155);
     SetMainCallback(ov17_0224FA24, v0);
 
-    v0->unk_08 = sub_0200DA04(ov17_0224FAE4, v0, 10);
+    v0->unk_08 = CoreSys_ExecuteOnVBlank(ov17_0224FAE4, v0, 10);
     Sound_PlayEffect(1765);
 
     return 1;

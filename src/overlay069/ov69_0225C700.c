@@ -2407,7 +2407,7 @@ static void ov69_0225E478 (UnkStruct_ov69_0225E478 * param0)
     ov69_0225E504(param0, 0, 0);
     ov69_0225E51C(param0, 0, 0);
 
-    param0->unk_0C = CoreSys_ExecuteDuringVBlank(ov69_0225E534, param0, 0);
+    param0->unk_0C = CoreSys_ExecuteAfterVBlank(ov69_0225E534, param0, 0);
 }
 
 static void ov69_0225E4E8 (UnkStruct_ov69_0225E478 * param0)

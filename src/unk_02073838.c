@@ -76,7 +76,7 @@ static void sub_020738D8 (SysTask * param0, void * param1)
 void sub_020738EC (UnkStruct_02073838 * param0)
 {
     {
-        SysTask * v0 = sub_0200DA04(sub_020738D8, param0, 0xffff);
+        SysTask * v0 = CoreSys_ExecuteOnVBlank(sub_020738D8, param0, 0xffff);
         GF_ASSERT(v0 != NULL);
     }
 }

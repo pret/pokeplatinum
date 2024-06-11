@@ -197,7 +197,7 @@ static int ov95_022497F8 (UnkStruct_ov95_022497D8 * param0, int * param1)
 
     param0->unk_0C = 0;
 
-    CoreSys_ExecuteDuringVBlank(ov95_02249F38, param0, 0);
+    CoreSys_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
     sub_0200F174(0, 1, 1, 0x7fff, 3, 1, 58);
 
     return 1;

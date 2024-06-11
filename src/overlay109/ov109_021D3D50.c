@@ -222,7 +222,7 @@ int ov109_021D3D50 (OverlayManager * param0, int * param1)
         }
 
         sub_02039734();
-        v0->unk_30 = sub_0200DA04(ov109_021D4044, v0, 5);
+        v0->unk_30 = CoreSys_ExecuteOnVBlank(ov109_021D4044, v0, 5);
         NARC_dtor(v1);
         (*param1)++;
         break;

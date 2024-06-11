@@ -2450,7 +2450,7 @@ static void ov70_0225F940 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
     param0->unk_154 = param2;
     param0->unk_156 = param3;
 
-    CoreSys_ExecuteDuringVBlank(ov70_0225F95C, param0, 0);
+    CoreSys_ExecuteAfterVBlank(ov70_0225F95C, param0, 0);
 }
 
 static void ov70_0225F95C (SysTask * param0, void * param1)

@@ -42,7 +42,7 @@ static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC 
     inline_ov61_0222C3B0_sub_1(param0);
 
     param0->unk_04 = 1;
-    param0->unk_00 = sub_0200DA04(inline_ov61_0222C3B0_sub, param0, 20);
+    param0->unk_00 = CoreSys_ExecuteOnVBlank(inline_ov61_0222C3B0_sub, param0, 20);
 }
 
 static inline void inline_ov61_0222C160 (UnkStruct_ov61_0222C3B0 * param0)

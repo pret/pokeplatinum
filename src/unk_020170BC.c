@@ -260,6 +260,6 @@ static void sub_020173CC (UnkStruct_020170F4 * param0)
     param0->unk_0C = NNS_G3dGetTex(param0->unk_00);
 
     if (param0->unk_0C) {
-        CoreSys_ExecuteDuringVBlank(sub_020170F4, param0, 1024);
+        CoreSys_ExecuteAfterVBlank(sub_020170F4, param0, 1024);
     }
 }

@@ -1574,14 +1574,14 @@ static void ov6_0224464C (UnkStruct_ov6_02243FFC * param0)
 {
     param0->unk_268 = 0;
     param0->unk_26C = 0;
-    param0->unk_278 = sub_0200DA04(ov6_022446B8, param0, 0x80);
+    param0->unk_278 = CoreSys_ExecuteOnVBlank(ov6_022446B8, param0, 0x80);
 }
 
 static void ov6_02244674 (UnkStruct_ov6_02243FFC * param0)
 {
     param0->unk_268 = 0;
     param0->unk_26C = 0;
-    param0->unk_278 = sub_0200DA04(ov6_022447B4, param0, 0x80);
+    param0->unk_278 = CoreSys_ExecuteOnVBlank(ov6_022447B4, param0, 0x80);
 }
 
 static void ov6_0224469C (UnkStruct_ov6_02243FFC * param0)
@@ -1620,7 +1620,7 @@ static void ov6_022446B8 (SysTask * param0, void * param1)
         }
 
         v1->unk_268++;
-        CoreSys_ExecuteDuringVBlank(ov6_02244734, v1, 0x80);
+        CoreSys_ExecuteAfterVBlank(ov6_02244734, v1, 0x80);
 
         break;
     }
@@ -1667,7 +1667,7 @@ static void ov6_022447B4 (SysTask * param0, void * param1)
     switch (v0->unk_268) {
     case 0:
         sub_0200A3DC(v1);
-        CoreSys_ExecuteDuringVBlank(ov6_022447EC, v0, 0x80);
+        CoreSys_ExecuteAfterVBlank(ov6_022447EC, v0, 0x80);
         v0->unk_268++;
         break;
     }
@@ -2032,7 +2032,7 @@ static void ov6_02244F80 (UnkStruct_ov6_02243FFC * param0, fx32 param1, fx32 par
 static void ov6_02244F8C (UnkStruct_ov6_02243FFC * param0)
 {
     GF_ASSERT(param0->unk_27C == NULL);
-    param0->unk_27C = sub_0200DA04(ov6_02244FE4, param0, 0x81);
+    param0->unk_27C = CoreSys_ExecuteOnVBlank(ov6_02244FE4, param0, 0x81);
 }
 
 static void ov6_02244FB4 (UnkStruct_ov6_02243FFC * param0)

@@ -198,7 +198,7 @@ static BOOL CommSys_Init (BOOL shouldAlloc, int maxPacketSize)
     CommSys_Seed(&sCommunicationSystem->rand);
 
     if (!reinit) {
-        sCommunicationSystem->unk_57C = sub_0200DA04(sub_0203498C, NULL, 0);
+        sCommunicationSystem->unk_57C = CoreSys_ExecuteOnVBlank(sub_0203498C, NULL, 0);
     }
 
     sCommunicationSystem->wifiConnected = FALSE;

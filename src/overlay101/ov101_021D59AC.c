@@ -797,10 +797,10 @@ static void ov101_021D630C (UnkStruct_ov101_021D630C * param0, UnkEnum_ov101_021
     ov101_021D8288(v1->unk_450, v1->unk_438, v2->unk_08, 2);
     ov101_021D82F0(v1->unk_450, v1->unk_438, v2->unk_0C, 2);
 
-    v0 = sub_0200DA04(ov101_021D63BC, param0, 257);
+    v0 = CoreSys_ExecuteOnVBlank(ov101_021D63BC, param0, 257);
     GF_ASSERT(v0 != NULL);
 
-    v0 = CoreSys_ExecuteDuringVBlank(ov101_021D63E8, param0, 257);
+    v0 = CoreSys_ExecuteAfterVBlank(ov101_021D63E8, param0, 257);
     GF_ASSERT(v0 != NULL);
 }
 
@@ -965,10 +965,10 @@ static void ov101_021D65F4 (UnkStruct_ov101_021D65F4 * param0)
     ov101_021D8288(v1->unk_450, v1->unk_438, 45, 3);
     ov101_021D82F0(v1->unk_450, v1->unk_438, 46, 3);
 
-    v0 = sub_0200DA04(ov101_021D65A0, param0, 257);
+    v0 = CoreSys_ExecuteOnVBlank(ov101_021D65A0, param0, 257);
     GF_ASSERT(v0 != NULL);
 
-    v0 = CoreSys_ExecuteDuringVBlank(ov101_021D65CC, param0, 257);
+    v0 = CoreSys_ExecuteAfterVBlank(ov101_021D65CC, param0, 257);
     GF_ASSERT(v0 != NULL);
 }
 
@@ -1011,10 +1011,10 @@ static void ov101_021D66D0 (UnkStruct_ov101_021D66D0 * param0)
     ov101_021D8288(v1->unk_450, v1->unk_438, v2->unk_08, 4);
     ov101_021D82F0(v1->unk_450, v1->unk_438, v2->unk_0C, 4);
 
-    v0 = sub_0200DA04(ov101_021D667C, param0, 257);
+    v0 = CoreSys_ExecuteOnVBlank(ov101_021D667C, param0, 257);
     GF_ASSERT(v0 != NULL);
 
-    v0 = CoreSys_ExecuteDuringVBlank(ov101_021D66A8, param0, 257);
+    v0 = CoreSys_ExecuteAfterVBlank(ov101_021D66A8, param0, 257);
     GF_ASSERT(v0 != NULL);
 }
 
@@ -1423,9 +1423,9 @@ static void ov101_021D6D68 (UnkStruct_ov101_021D6D10 * param0)
     ov101_021D8288(v1->unk_450, v1->unk_438, 57, 5);
     ov101_021D82F0(v1->unk_450, v1->unk_438, 58, 5);
 
-    v0 = sub_0200DA04(ov101_021D6D10, param0, 257);
+    v0 = CoreSys_ExecuteOnVBlank(ov101_021D6D10, param0, 257);
     GF_ASSERT(v0 != NULL);
-    v0 = CoreSys_ExecuteDuringVBlank(ov101_021D6D3C, param0, 257);
+    v0 = CoreSys_ExecuteAfterVBlank(ov101_021D6D3C, param0, 257);
     GF_ASSERT(v0 != NULL);
 }
 
@@ -2472,9 +2472,9 @@ static void ov101_021D7D94 (UnkStruct_ov101_021D7D94 * param0)
         ov101_021D82F0(v1->unk_450, v1->unk_438, 19, 10);
     }
 
-    v0 = sub_0200DA04(ov101_021D7D4C, param0, 257);
+    v0 = CoreSys_ExecuteOnVBlank(ov101_021D7D4C, param0, 257);
     GF_ASSERT(v0 != NULL);
-    v0 = CoreSys_ExecuteDuringVBlank(ov101_021D7D6C, param0, 257);
+    v0 = CoreSys_ExecuteAfterVBlank(ov101_021D7D6C, param0, 257);
     GF_ASSERT(v0 != NULL);
 }
 

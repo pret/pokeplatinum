@@ -115,7 +115,7 @@ static int ov95_0224A020 (UnkStruct_ov95_02249FF8 * param0, int * param1)
             param0->unk_1C = ((UnkEnum_ov95_0224A020_01 - UnkEnum_ov95_0224A020_00) << 12) / UnkEnum_ov95_0224A020_04;
             param0->unk_08 = UnkEnum_ov95_0224A020_04;
             param0->unk_20 = 0;
-            sub_0200DA04(ov95_0224A0C4, param0, 0);
+            CoreSys_ExecuteOnVBlank(ov95_0224A0C4, param0, 0);
             (*param1)++;
         }
         break;

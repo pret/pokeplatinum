@@ -1546,7 +1546,7 @@ static void ov9_02249EDC (SysTask * param0, void * param1)
 static void ov9_02249EF0 (UnkStruct_ov9_02249B04 * param0)
 {
     GF_ASSERT(param0->unk_1EC4 == NULL);
-    param0->unk_1EC4 = sub_0200DA04(ov9_02249F3C, param0, 0x80);
+    param0->unk_1EC4 = CoreSys_ExecuteOnVBlank(ov9_02249F3C, param0, 0x80);
 }
 
 static void ov9_02249F18 (UnkStruct_ov9_02249B04 * param0)

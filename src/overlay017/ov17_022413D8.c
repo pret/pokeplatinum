@@ -1286,7 +1286,7 @@ static void ov17_02242720 (SysTask * param0, void * param1)
             ov17_0223BB14(v0->unk_00, 0, 1);
         }
 
-        CoreSys_ExecuteDuringVBlank(ov17_02242884, v0, 10);
+        CoreSys_ExecuteAfterVBlank(ov17_02242884, v0, 10);
         v0->unk_0C++;
         break;
     case 1:
@@ -1309,7 +1309,7 @@ static void ov17_02242720 (SysTask * param0, void * param1)
             ov17_0224262C(v0->unk_00, GX_OAM_MODE_XLU, 1);
         }
 
-        CoreSys_ExecuteDuringVBlank(ov17_02242884, v0, 10);
+        CoreSys_ExecuteAfterVBlank(ov17_02242884, v0, 10);
         v0->unk_0C++;
         break;
     case 3:

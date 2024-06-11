@@ -163,7 +163,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
 
 SysTask * ov20_021D2170 (SysTaskFunc param0, void * param1, int param2)
 {
-    return sub_0200DA04(param0, param1, param2);
+    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
 }
 
 static void ov20_021D2178 (SysTask * param0, void * param1)

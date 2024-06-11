@@ -210,7 +210,7 @@ void ov62_02230464 (UnkStruct_0208C06C * param0)
                 }
             }
 
-            param0->unk_6F8[v5].unk_08 = sub_0200DA04(ov62_02230C28, &param0->unk_6F8[v5], 5);
+            param0->unk_6F8[v5].unk_08 = CoreSys_ExecuteOnVBlank(ov62_02230C28, &param0->unk_6F8[v5], 5);
         }
         if (param0->unk_534.unk_1A4 != 0) {
             BOOL v9;

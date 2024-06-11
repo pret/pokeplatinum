@@ -59,7 +59,7 @@ static const u8 Unk_ov104_02241964[][6] = {
 
 static SysTask * ov100_021D4E04 (UnkStruct_ov100_021D4E3C * param0)
 {
-    return sub_0200DA04(ov100_021D4E18, param0, 1024);
+    return CoreSys_ExecuteOnVBlank(ov100_021D4E18, param0, 1024);
 }
 
 static void ov100_021D4E18 (SysTask * param0, void * param1)
@@ -112,7 +112,7 @@ UnkStruct_ov100_021D4F9C * ov100_021D4EBC (UnkStruct_ov100_021D4EBC * param0)
     v1->unk_00 = GX_GetBankForLCDC();
 
     ov100_021D503C(&v1->unk_04);
-    CoreSys_ExecuteDuringVBlank(ov100_021D4FDC, v1, 0);
+    CoreSys_ExecuteAfterVBlank(ov100_021D4FDC, v1, 0);
 
     return v1;
 }

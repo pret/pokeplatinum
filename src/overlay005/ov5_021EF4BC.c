@@ -66,8 +66,8 @@ void ov5_021EF518 (UnkStruct_ov5_021EF4F8 * param0)
 
     param0->unk_314 = HBlankSystem_StartTask(param0->unk_310, ov5_021EF6C0, param0);
     param0->unk_31C = SysTask_Start(ov5_021EF5A8, param0, 1024);
-    param0->unk_320 = sub_0200DA04(ov5_021EF6B0, param0, 1024);
-    param0->unk_324 = sub_0200DA04(ov5_021EF6E4, param0, 1024);
+    param0->unk_320 = CoreSys_ExecuteOnVBlank(ov5_021EF6B0, param0, 1024);
+    param0->unk_324 = CoreSys_ExecuteOnVBlank(ov5_021EF6E4, param0, 1024);
 
     memset(param0->unk_0C, 0, sizeof(u16) * 192);
     memset(param0->unk_18C, 0, sizeof(u16) * 192);

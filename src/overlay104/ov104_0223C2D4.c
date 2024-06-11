@@ -196,7 +196,7 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     sub_02002B20(0);
 
     SetMainCallback(ov104_0223C6EC, v0);
-    v0->unk_A0 = sub_0200DA04(ov104_0223C71C, v0, 10);
+    v0->unk_A0 = CoreSys_ExecuteOnVBlank(ov104_0223C71C, v0, 10);
     ov104_0222EB8C(v0, &v0->unk_90, v0->unk_C1);
     sub_02039734();
 
