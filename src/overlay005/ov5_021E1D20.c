@@ -4,7 +4,6 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "play_time.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "savedata.h"

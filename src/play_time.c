@@ -2,9 +2,11 @@
 
 #include "play_time.h"
 
+#define SECONDS_PER_MINUTE 60
+#define MINUTES_PER_HOUR 60
 #define PLAYTIME_MAX_HOURS 999
-#define PLAYTIME_MAX_MINUTES 59
-#define PLAYTIME_MAX_SECONDS 59
+#define PLAYTIME_MAX_MINUTES (MINUTES_PER_HOUR - 1)
+#define PLAYTIME_MAX_SECONDS (SECONDS_PER_MINUTE - 1)
 
 void PlayTime_Init(PlayTime *playTime)
 {
@@ -26,12 +28,12 @@ void PlayTime_Increment(PlayTime *playTime, u32 seconds)
     u32 newSeconds = playTime->seconds + seconds;
 
     if (newSeconds > PLAYTIME_MAX_SECONDS) {
-        minutes = playTime->minutes + newSeconds / (PLAYTIME_MAX_SECONDS + 1);
-        newSeconds %= PLAYTIME_MAX_SECONDS + 1;
+        minutes = playTime->minutes + newSeconds / SECONDS_PER_MINUTE;
+        newSeconds %= SECONDS_PER_MINUTE;
 
         if (minutes > PLAYTIME_MAX_MINUTES) {
-            hours = playTime->hours + minutes / (PLAYTIME_MAX_MINUTES + 1);
-            minutes %= PLAYTIME_MAX_MINUTES + 1;
+            hours = playTime->hours + minutes / MINUTES_PER_HOUR;
+            minutes %= MINUTES_PER_HOUR;
 
             if (hours >= PLAYTIME_MAX_HOURS) {
                 hours = PLAYTIME_MAX_HOURS;
