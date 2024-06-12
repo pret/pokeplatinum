@@ -75,7 +75,15 @@
 #define TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_2          (FX32_ONE * -30)
 #define TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_2           (FX32_ONE * -100)
 
-// EncounterEffect_Water_LowerLevel
+// EncounterEffect_Cave_LowerLevel
+#define CAVE_LOWER_LEVEL_INTERPOLATION_FRAMES           12
+#define CAVE_LOWER_LEVEL_CAMERA_OFFSET                  (FX32_ONE * -400)
+#define CAVE_LOWER_LEVEL_CAMERA_SPEED                   (FX32_ONE * -2)
+
+// EncounterEffect_Cave_HigherLevel
+#define CAVE_HIGHER_LEVEL_INTERPOLATION_FRAMES          12
+#define CAVE_HIGHER_LEVEL_CAMERA_OFFSET                 (FX32_ONE * -800)
+#define CAVE_HIGHER_LEVEL_CAMERA_SPEED                  (FX32_ONE * -5)
 
 typedef struct TallGrassEncounterEffect {
     UnkStruct_020203AC * camera;
@@ -94,15 +102,10 @@ typedef struct WaterEncounterEffect {
     s32 counter;
 } WaterEncounterEffect;
 
-typedef struct {
-    UnkStruct_020203AC * unk_00;
-    QuadraticInterpolationTaskFX32 unk_04;
-} UnkStruct_ov5_021E2944;
-
-typedef struct {
-    UnkStruct_020203AC * unk_00;
-    QuadraticInterpolationTaskFX32 unk_04;
-} UnkStruct_ov5_021E2A4C;
+typedef struct CaveEncounterEffect {
+    UnkStruct_020203AC * camera;
+    QuadraticInterpolationTaskFX32 camInterpolation;
+} CaveEncounterEffect;
 
 static SysTask * ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect * param0);
 static void ScreenShakeEffect_DMATransfer(SysTask * param0, void * param1);
@@ -363,7 +366,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Water_HigherLevel (SysTask *task, void *param)
+void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
     WaterEncounterEffect *waterEffect = encEffect->param;
@@ -412,7 +415,7 @@ void EncounterEffect_Water_HigherLevel (SysTask *task, void *param)
         HBlankSystem_Start(encEffect->fieldSystem->unk_04->hBlankSystem);
 
         if (encEffect->done != NULL) {
-            *(encEffect->done) = 1;
+            *(encEffect->done) = TRUE;
         }
 
         EncounterEffect_Finish(encEffect, task);
@@ -477,107 +480,119 @@ static void ov5_021E290C(ScreenShakeEffect *screenShake, u32 param1)
     }
 }
 
-void ov5_021E2944 (SysTask * param0, void * param1)
+void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E2944 * v1 = v0->param;
-    fx32 v2;
+    EncounterEffect *encEffect = param;
+    CaveEncounterEffect *caveEffect = encEffect->param;
+    fx32 distance;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2944));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E2944));
-        v1 = v0->param;
-        v0->state++;
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(CaveEncounterEffect));
+        memset(encEffect->param, 0, sizeof(CaveEncounterEffect));
+        caveEffect = encEffect->param;
+        encEffect->state++;
         break;
     case 1:
-        EncounterEffect_Flash(1, -16, -16, &v0->effectComplete, 2);
-        v0->state++;
+        EncounterEffect_Flash(1, -16, -16, &encEffect->effectComplete, 2);
+        encEffect->state++;
         break;
     case 2:
-        if (v0->effectComplete) {
-            v0->state++;
+        if (encEffect->effectComplete) {
+            encEffect->state++;
         }
         break;
     case 3:
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
+        HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
-        v1->unk_00 = v0->fieldSystem->unk_24;
-        v2 = Camera_GetDistance(v1->unk_00);
+        caveEffect->camera = encEffect->fieldSystem->unk_24;
+        distance = Camera_GetDistance(caveEffect->camera);
 
-        QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 400), (-FX32_ONE * 2), 12);
-        v0->state++;
+        QuadraticInterpolationTaskFX32_Init(
+            &caveEffect->camInterpolation, 
+            distance, 
+            distance + CAVE_LOWER_LEVEL_CAMERA_OFFSET, 
+            CAVE_LOWER_LEVEL_CAMERA_SPEED, 
+            CAVE_LOWER_LEVEL_INTERPOLATION_FRAMES
+        );
+        encEffect->state++;
         break;
     case 4:
-        QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
-        Camera_SetDistance(v1->unk_04.currentValue, v1->unk_00);
+        QuadraticInterpolationTaskFX32_Update(&caveEffect->camInterpolation);
+        Camera_SetDistance(caveEffect->camInterpolation.currentValue, caveEffect->camera);
 
         if (ScreenWipe_Done()) {
-            v0->state++;
+            encEffect->state++;
         }
         break;
     case 5:
-        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
+        HBlankSystem_Start(encEffect->fieldSystem->unk_04->hBlankSystem);
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = TRUE;
         }
 
-        EncounterEffect_Finish(v0, param0);
+        EncounterEffect_Finish(encEffect, task);
         sub_0200F344(1, 0x0);
         break;
     }
 }
 
-void ov5_021E2A4C (SysTask * param0, void * param1)
+void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E2A4C * v1 = v0->param;
-    fx32 v2;
+    EncounterEffect *encEffect = param;
+    CaveEncounterEffect *caveEffect = encEffect->param;
+    fx32 distance;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2A4C));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E2A4C));
-        v1 = v0->param;
-        v0->state++;
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(CaveEncounterEffect));
+        memset(encEffect->param, 0, sizeof(CaveEncounterEffect));
+        caveEffect = encEffect->param;
+        encEffect->state++;
         break;
     case 1:
-        EncounterEffect_Flash(1, 16, -16, &v0->effectComplete, 2);
-        v0->state++;
+        EncounterEffect_Flash(1, 16, -16, &encEffect->effectComplete, 2);
+        encEffect->state++;
         break;
     case 2:
-        if (v0->effectComplete) {
-            v0->state++;
+        if (encEffect->effectComplete) {
+            encEffect->state++;
         }
         break;
     case 3:
-        HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
+        HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
-        v1->unk_00 = v0->fieldSystem->unk_24;
-        v2 = Camera_GetDistance(v1->unk_00);
+        caveEffect->camera = encEffect->fieldSystem->unk_24;
+        distance = Camera_GetDistance(caveEffect->camera);
 
-        QuadraticInterpolationTaskFX32_Init(&v1->unk_04, v2, v2 + (-FX32_ONE * 800), (-FX32_ONE * 5), 12);
-        v0->state++;
+        QuadraticInterpolationTaskFX32_Init(
+            &caveEffect->camInterpolation, 
+            distance, 
+            distance + CAVE_HIGHER_LEVEL_CAMERA_OFFSET, 
+            CAVE_HIGHER_LEVEL_CAMERA_SPEED, 
+            CAVE_HIGHER_LEVEL_INTERPOLATION_FRAMES
+        );
+        encEffect->state++;
         break;
     case 4:
-        QuadraticInterpolationTaskFX32_Update(&v1->unk_04);
-        Camera_SetDistance(v1->unk_04.currentValue, v1->unk_00);
+        QuadraticInterpolationTaskFX32_Update(&caveEffect->camInterpolation);
+        Camera_SetDistance(caveEffect->camInterpolation.currentValue, caveEffect->camera);
 
         if (ScreenWipe_Done()) {
-            v0->state++;
+            encEffect->state++;
         }
         break;
     case 5:
-        HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
+        HBlankSystem_Start(encEffect->fieldSystem->unk_04->hBlankSystem);
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = TRUE;
         }
 
-        EncounterEffect_Finish(v0, param0);
+        EncounterEffect_Finish(encEffect, param);
         sub_0200F344(1, 0x0);
         break;
     }
