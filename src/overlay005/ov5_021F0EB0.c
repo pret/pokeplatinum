@@ -46,7 +46,7 @@ SysTask * ov5_021F0EB0 (FieldSystem * fieldSystem, u32 param1)
     v1->unk_00 = param1;
     v1->unk_0C = 0;
     v1->fieldSystem = fieldSystem;
-    v1->unk_30 = fieldSystem->unk_24;
+    v1->unk_30 = fieldSystem->camera;
     v1->unk_10 = Camera_GetDistance(v1->unk_30);
     v1->unk_20 = v1->unk_10;
 

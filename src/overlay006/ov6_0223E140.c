@@ -539,7 +539,7 @@ void ov6_0223E384 (TaskManager * taskMan)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->unk_24);
+    ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->camera);
     FieldTask_Start(taskMan, ov6_0223E33C, v1);
 }
 
@@ -626,7 +626,7 @@ void ov6_0223E4EC (TaskManager * param0)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->unk_24);
+    ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->camera);
 
     v1->unk_08 = ov6_0223FFF4(v1->unk_00);
     FieldTask_Start(param0, ov6_0223E408, v1);
@@ -896,37 +896,37 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     UnkStruct_ov115_0226527C v2;
 
 #if (GAME_VERSION == 10 || GAME_VERSION == 12)
-    sub_02020910(0x1701, fieldSystem->unk_24);
-    Camera_SetDistance(0xc8a55, fieldSystem->unk_24);
+    sub_02020910(0x1701, fieldSystem->camera);
+    Camera_SetDistance(0xc8a55, fieldSystem->camera);
     v1.x = 0x2280ef;
     v1.y = 0xca424;
     v1.z = 0x268c50;
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
     v2.unk_00 = 0x22a2;
     v2.unk_02 = 0xf800;
     v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->unk_24);
+    sub_020209D4(&v2, fieldSystem->camera);
 
-    sub_020206BC(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->unk_24);
+    sub_020206BC(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
 #elif (GAME_VERSION == 11)
-    sub_02020910(0x10c1, fieldSystem->unk_24);
-    Camera_SetDistance(0xD5052, fieldSystem->unk_24);
+    sub_02020910(0x10c1, fieldSystem->camera);
+    Camera_SetDistance(0xD5052, fieldSystem->camera);
     v1.x = 0x1bffbd;
     v1.y = 0xaa361;
     v1.z = 0x25dfdc;
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
     v2.unk_00 = 0x19a3;
     v2.unk_02 = 0x90c;
     v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->unk_24);
+    sub_020209D4(&v2, fieldSystem->camera);
 
-    sub_020206BC(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->unk_24);
+    sub_020206BC(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->camera);
 #endif
 
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = sub_02020AAC(fieldSystem->camera);
 
     ov6_02240A18(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240AEC(v0->unk_08, v1.x, v1.y, v1.z);
@@ -938,21 +938,21 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     VecFx32 v1;
     UnkStruct_ov115_0226527C v2;
 
-    sub_02020910(0xf81, fieldSystem->unk_24);
-    Camera_SetDistance(0x17e532, fieldSystem->unk_24);
+    sub_02020910(0xf81, fieldSystem->camera);
+    Camera_SetDistance(0x17e532, fieldSystem->camera);
 
     v1.x = 0xf99d58;
     v1.y = 0xc5502;
     v1.z = 0x28cf549;
 
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
 
     v2.unk_00 = 0x642;
     v2.unk_02 = 0xeda0;
     v2.unk_04 = 0;
 
-    sub_020209D4(&v2, fieldSystem->unk_24);
-    sub_020206BC(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->unk_24);
+    sub_020209D4(&v2, fieldSystem->camera);
+    sub_020206BC(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -960,7 +960,7 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = sub_02020AAC(fieldSystem->camera);
 
     ov6_02240A50(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B24(v0->unk_08, v1.x, v1.y, v1.z);
@@ -972,21 +972,21 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     VecFx32 v1;
     UnkStruct_ov115_0226527C v2;
 
-    sub_02020910(0x4c1, fieldSystem->unk_24);
-    Camera_SetDistance(0x26bec1, fieldSystem->unk_24);
+    sub_02020910(0x4c1, fieldSystem->camera);
+    Camera_SetDistance(0x26bec1, fieldSystem->camera);
 
     v1.x = 0x1df5dfd;
     v1.y = 0x73a0c;
     v1.z = 0x2b9f4a2;
 
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
 
     v2.unk_00 = 0x4c2;
     v2.unk_02 = 0xa40;
     v2.unk_04 = 0;
 
-    sub_020209D4(&v2, fieldSystem->unk_24);
-    sub_020206BC(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->unk_24);
+    sub_020209D4(&v2, fieldSystem->camera);
+    sub_020206BC(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -994,7 +994,7 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = sub_02020AAC(fieldSystem->camera);
 
     ov6_02240A8C(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B60(v0->unk_08, v1.x, v1.y, v1.z);
@@ -1618,7 +1618,7 @@ static void ov6_0223FAF8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
             break;
         }
 
-        v2 = sub_02020AAC(fieldSystem->unk_24);
+        v2 = sub_02020AAC(fieldSystem->camera);
         {
             int v4[] = {
                 504, 504, 435

@@ -125,6 +125,8 @@ static u32 ov5_021DF414(u32 param0, BOOL param1);
 static void include_ov5_021DDBE8_rodata(SysTask *dummy1, void *dummy2);
 void include_ov5_021DDBE8_rodata_funcptr(void);
 
+// "LowerLevel" means the level of the encountered Pokemon is lower
+// than the player's first Pokemon, and vice versa
 static const SysTaskFunc sEncounterEffectTaskFuncs[] = {
     EncounterEffect_TallGrass_LowerLevel,
     EncounterEffect_TallGrass_HigherLevel,
@@ -132,8 +134,8 @@ static const SysTaskFunc sEncounterEffectTaskFuncs[] = {
     EncounterEffect_Water_HigherLevel,
     EncounterEffect_Cave_LowerLevel,
     EncounterEffect_Cave_HigherLevel,
-    ov5_021E2B54,
-    ov5_021E2EB0,
+    EncounterEffect_Trainer_TallGrass_LowerLevel,
+    EncounterEffect_Trainer_TallGrass_HigherLevel,
     ov5_021E31A4,
     ov5_021E3560,
     ov5_021E3AD0,
@@ -192,7 +194,7 @@ void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem,
     encEffect = SysTask_GetParam(effectTask);
     encEffect->fieldSystem = fieldSystem;
     encEffect->done = done;
-    encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 4);
+    encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_FIELD);
 
     if (encEffect->done != NULL) {
         *(encEffect->done) = FALSE;

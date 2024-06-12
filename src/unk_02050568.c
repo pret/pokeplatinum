@@ -141,19 +141,19 @@ static void sub_0205075C (FieldSystem * fieldSystem)
     VecFx32 v0;
     UnkStruct_ov115_0226527C v1;
 
-    sub_02020910(0x8c1, fieldSystem->unk_24);
-    Camera_SetDistance(0xf81b8, fieldSystem->unk_24);
+    sub_02020910(0x8c1, fieldSystem->camera);
+    Camera_SetDistance(0xf81b8, fieldSystem->camera);
 
     v0.x = 0x350523d;
     v0.y = 0x15edb7;
     v0.z = 0x23da40e;
 
-    sub_02020ACC(&v0, fieldSystem->unk_24);
+    sub_02020ACC(&v0, fieldSystem->camera);
 
     v1.unk_00 = 0x823;
     v1.unk_02 = 0x520;
     v1.unk_04 = 0;
 
-    sub_020209D4(&v1, fieldSystem->unk_24);
-    sub_020206BC(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->unk_24);
+    sub_020209D4(&v1, fieldSystem->camera);
+    sub_020206BC(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
 }

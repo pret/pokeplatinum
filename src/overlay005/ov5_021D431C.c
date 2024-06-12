@@ -139,7 +139,7 @@ BOOL ov5_021D433C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
         v9 = ov5_021D4310(fieldSystem->unk_54, 1);
 
         if (v9 != 75) {
-            sub_020206B0(fieldSystem->unk_24);
+            sub_020206B0(fieldSystem->camera);
             param1->unk_20 = 1;
         }
 
@@ -230,7 +230,7 @@ BOOL ov5_021D433C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
     }
 
     if (param1->unk_20) {
-        ov5_021D4798(fieldSystem->unk_24, &param1->unk_1D);
+        ov5_021D4798(fieldSystem->camera, &param1->unk_1D);
     }
 
     return 0;
@@ -295,10 +295,10 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
             return 0;
         }
 
-        param1->unk_24 = sub_02020A88(fieldSystem->unk_24);
+        param1->unk_24 = sub_02020A88(fieldSystem->camera);
 
         if (v4 != 75) {
-            sub_0202094C(-96, fieldSystem->unk_24);
+            sub_0202094C(-96, fieldSystem->camera);
         }
 
         (param1->unk_00)++;
@@ -398,7 +398,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
 
         v16 = ov5_021D42F0(fieldSystem->unk_54, 1);
 
-        if (v16 && ScreenWipe_Done() && (param1->unk_24 == sub_02020A88(fieldSystem->unk_24))) {
+        if (v16 && ScreenWipe_Done() && (param1->unk_24 == sub_02020A88(fieldSystem->camera))) {
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 1);
             return 1;
         }
@@ -412,7 +412,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
     }
 
     if (param1->unk_20) {
-        ov5_021D47DC(fieldSystem->unk_24, &param1->unk_1D);
+        ov5_021D47DC(fieldSystem->camera, &param1->unk_1D);
     }
 
     return 0;
@@ -906,8 +906,8 @@ BOOL ov5_021D4E10 (TaskManager * param0)
         v2->unk_04 = 0;
 
         {
-            v2->unk_0C = sub_02020A88(fieldSystem->unk_24);
-            sub_0202094C(-96, fieldSystem->unk_24);
+            v2->unk_0C = sub_02020A88(fieldSystem->camera);
+            sub_0202094C(-96, fieldSystem->camera);
         }
 
         sub_0200F174(0, 1, 1, 0x7fff, 6, 1, 11);
@@ -928,7 +928,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(fieldSystem->unk_24))) {
+        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -936,7 +936,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
     }
 
     if (v2->unk_08) {
-        ov5_021D47DC(fieldSystem->unk_24, &v2->unk_04);
+        ov5_021D47DC(fieldSystem->camera, &v2->unk_04);
     }
 
     return 0;
@@ -975,7 +975,7 @@ BOOL ov5_021D4F14 (TaskManager * param0)
     }
 
     if (v1->unk_08) {
-        ov5_021D4798(fieldSystem->unk_24, &v1->unk_04);
+        ov5_021D4798(fieldSystem->camera, &v1->unk_04);
     }
 
     return 0;
@@ -1008,7 +1008,7 @@ BOOL ov5_021D4FA0 (TaskManager * param0)
     }
 
     if (v1->unk_08) {
-        ov5_021D4798(fieldSystem->unk_24, &v1->unk_04);
+        ov5_021D4798(fieldSystem->camera, &v1->unk_04);
     }
 
     return 0;
@@ -1041,8 +1041,8 @@ BOOL ov5_021D5020 (TaskManager * param0)
         v2->unk_04 = 0;
 
         {
-            v2->unk_0C = sub_02020A88(fieldSystem->unk_24);
-            sub_0202094C(-96, fieldSystem->unk_24);
+            v2->unk_0C = sub_02020A88(fieldSystem->camera);
+            sub_0202094C(-96, fieldSystem->camera);
         }
 
         switch (v3) {
@@ -1081,7 +1081,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(fieldSystem->unk_24))) {
+        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -1089,7 +1089,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
     }
 
     if (v2->unk_08) {
-        ov5_021D47DC(fieldSystem->unk_24, &v2->unk_04);
+        ov5_021D47DC(fieldSystem->camera, &v2->unk_04);
     }
 
     return 0;

@@ -1626,7 +1626,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     UnkStruct_ov9_02249F9C * v0 = &param0->unk_14;
 
     param0->fieldSystem->unk_20 = 1;
-    v0->unk_00 = param0->fieldSystem->unk_24;
+    v0->unk_00 = param0->fieldSystem->camera;
 
     {
         UnkStruct_ov9_02249FF4 v1 = {

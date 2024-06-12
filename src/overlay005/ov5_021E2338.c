@@ -146,7 +146,7 @@ void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
                 TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_1, 
                 TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            tallGrassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(tallGrassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
                 &tallGrassEffect->camDistanceTask, 
@@ -172,7 +172,7 @@ void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
                 TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_2, 
                 TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            tallGrassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(tallGrassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
                 &tallGrassEffect->camDistanceTask, 
@@ -243,7 +243,7 @@ void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
                 TALL_GRASS_LOWER_LEVEL_SLICE_END_X_1, 
                 TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_1
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            tallGrassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(tallGrassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
                 &tallGrassEffect->camDistanceTask, 
@@ -269,7 +269,7 @@ void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
                 TALL_GRASS_LOWER_LEVEL_SLICE_END_X_2, 
                 TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_2
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->unk_24;
+            tallGrassEffect->camera = encEffect->fieldSystem->camera;
             distance = Camera_GetDistance(tallGrassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
                 &tallGrassEffect->camDistanceTask, 
@@ -506,7 +506,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
-        caveEffect->camera = encEffect->fieldSystem->unk_24;
+        caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
 
         QuadraticInterpolationTaskFX32_Init(
@@ -565,7 +565,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(3, 16, 16, 0x0, 12, 1, 4);
 
-        caveEffect->camera = encEffect->fieldSystem->unk_24;
+        caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
 
         QuadraticInterpolationTaskFX32_Init(
@@ -598,18 +598,18 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
     }
 }
 
-typedef struct {
+typedef struct TrainerTallGrassEncounterEffect {
     QuadraticInterpolationTaskFX32 unk_00;
     LinearInterpolationTaskS32 unk_18;
     QuadraticInterpolationTaskFX32 unk_2C;
-    ScreenSliceEffect * unk_44;
+    ScreenSliceEffect * screenSliceEfx;
     UnkStruct_ov5_021DE47C unk_48;
     UnkStruct_ov5_021DE5A4 unk_1E8;
     GraphicElementData * unk_21C[2];
-    UnkStruct_020203AC * unk_224;
+    UnkStruct_020203AC * camera;
     QuadraticInterpolationTaskFX32 unk_228;
     s32 unk_240;
-} UnkStruct_ov5_021E2B54;
+} TrainerTallGrassEncounterEffect;
 
 typedef struct {
     LinearInterpolationTaskFX32 unk_00;
@@ -680,139 +680,137 @@ typedef struct {
     s16 unk_288;
 } UnkStruct_ov5_021E3D8C;
 
-void ov5_021E2B54 (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_TallGrass_LowerLevel(SysTask *task, void *param)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E2B54 * v1 = v0->param;
+    EncounterEffect *encEffect = param;
+    TrainerTallGrassEncounterEffect *tallGrassEffect = encEffect->param;
     BOOL v2;
     fx32 v3;
     int v4;
     VecFx32 v5;
     u16 v6;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2B54));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E2B54));
-        v1 = v0->param;
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(TrainerTallGrassEncounterEffect));
+        memset(encEffect->param, 0, sizeof(TrainerTallGrassEncounterEffect));
+        tallGrassEffect = encEffect->param;
 
-        v1->unk_224 = v0->fieldSystem->unk_24;
+        tallGrassEffect->camera = encEffect->fieldSystem->camera;
+        tallGrassEffect->screenSliceEfx = ScreenSliceEffect_New();
 
-        v1->unk_44 = ScreenSliceEffect_New();
-
-        ov5_021DE47C(&v1->unk_48, 2, 1);
+        ov5_021DE47C(&tallGrassEffect->unk_48, 2, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_48, &v1->unk_1E8, 0, 1, 5, 7, 6, 600000);
+            encEffect->narc, &tallGrassEffect->unk_48, &tallGrassEffect->unk_1E8, 0, 1, 5, 7, 6, 600000);
 
         for (v4 = 0; v4 < 2; v4++) {
-            v1->unk_21C[v4] = ov5_021DE62C(
-                &v1->unk_48, &v1->unk_1E8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-            sub_02021CAC(v1->unk_21C[v4], 0);
-            sub_02021F58(v1->unk_21C[v4], v4 * 2);
+            tallGrassEffect->unk_21C[v4] = ov5_021DE62C(
+                &tallGrassEffect->unk_48, &tallGrassEffect->unk_1E8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
+            sub_02021CAC(tallGrassEffect->unk_21C[v4], 0);
+            sub_02021F58(tallGrassEffect->unk_21C[v4], v4 * 2);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 1:
-
-        EncounterEffect_Flash(1, -16, -16, &v0->effectComplete, 2);
-        v0->state++;
+        EncounterEffect_Flash(1, -16, -16, &encEffect->effectComplete, 2);
+        encEffect->state++;
         break;
 
     case 2:
-        if (v0->effectComplete) {
-            v0->state++;
+        if (encEffect->effectComplete) {
+            encEffect->state++;
         }
 
         break;
 
     case 3:
-        QuadraticInterpolationTaskFX32_Init(&v1->unk_00, (FX32_CONST(0.01f)), (FX32_CONST(1.0f)), 2, 10);
+        QuadraticInterpolationTaskFX32_Init(&tallGrassEffect->unk_00, (FX32_CONST(0.01f)), (FX32_CONST(1.0f)), 2, 10);
 
-        v5 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
+        v5 = VecFx32_FromXYZ(tallGrassEffect->unk_00.currentValue, tallGrassEffect->unk_00.currentValue, tallGrassEffect->unk_00.currentValue);
 
         for (v4 = 0; v4 < 2; v4++) {
             sub_02021CAC(
-                v1->unk_21C[v4], 1);
+                tallGrassEffect->unk_21C[v4], 1);
             sub_02021CF8(
-                v1->unk_21C[v4], 2);
+                tallGrassEffect->unk_21C[v4], 2);
             sub_02021C70(
-                v1->unk_21C[v4], &v5);
+                tallGrassEffect->unk_21C[v4], &v5);
         }
 
-        LinearInterpolationTaskS32_Init(&v1->unk_18, 0, (0xffff * 1), 10);
-        v0->state++;
+        LinearInterpolationTaskS32_Init(&tallGrassEffect->unk_18, 0, (0xffff * 1), 10);
+        encEffect->state++;
         break;
 
     case 4:
-        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_00);
-        v5 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
+        v2 = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->unk_00);
+        v5 = VecFx32_FromXYZ(tallGrassEffect->unk_00.currentValue, tallGrassEffect->unk_00.currentValue, tallGrassEffect->unk_00.currentValue);
 
-        v6 = v1->unk_18.currentValue;
+        v6 = tallGrassEffect->unk_18.currentValue;
 
-        LinearInterpolationTaskS32_Update(&v1->unk_18);
+        LinearInterpolationTaskS32_Update(&tallGrassEffect->unk_18);
 
         for (v4 = 0; v4 < 2; v4++) {
             sub_02021C70(
-                v1->unk_21C[v4], &v5);
+                tallGrassEffect->unk_21C[v4], &v5);
         }
 
         sub_02021C94(
-            v1->unk_21C[0], 0xffff & v1->unk_18.currentValue);
+            tallGrassEffect->unk_21C[0], 0xffff & tallGrassEffect->unk_18.currentValue);
 
         sub_02021C94(
-            v1->unk_21C[1], 0xffff & (v1->unk_18.currentValue - 0x100));
+            tallGrassEffect->unk_21C[1], 0xffff & (tallGrassEffect->unk_18.currentValue - 0x100));
 
         if (v2 == 1) {
-            v0->state++;
+            encEffect->state++;
         }
 
         break;
 
     case 5:
 
-        EncounterEffect_ScreenSlice(v0, v1->unk_44, 96, 6, 0, (255 * FX32_ONE), (FX32_ONE * 10));
+        EncounterEffect_ScreenSlice(encEffect, tallGrassEffect->screenSliceEfx, 96, 6, 0, (255 * FX32_ONE), (FX32_ONE * 10));
 
         SpriteActor_SetSpriteAnimActive(
-            v1->unk_21C[0], 1);
+            tallGrassEffect->unk_21C[0], 1);
         SpriteActor_SetSpriteAnimActive(
-            v1->unk_21C[1], 2);
+            tallGrassEffect->unk_21C[1], 2);
 
-        QuadraticInterpolationTaskFX32_Init(&v1->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
+        QuadraticInterpolationTaskFX32_Init(&tallGrassEffect->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
 
-        v3 = Camera_GetDistance(v1->unk_224);
-        QuadraticInterpolationTaskFX32_Init(&v1->unk_228, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 6);
+        v3 = Camera_GetDistance(tallGrassEffect->camera);
+        QuadraticInterpolationTaskFX32_Init(&tallGrassEffect->unk_228, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 6);
 
         sub_02021C94(
-            v1->unk_21C[0], 0xffff & 0);
+            tallGrassEffect->unk_21C[0], 0xffff & 0);
         sub_02021C94(
-            v1->unk_21C[1], 0xffff & 0);
+            tallGrassEffect->unk_21C[1], 0xffff & 0);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 6:
 
-        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_2C);
+        v2 = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->unk_2C);
         {
-            VecFx32 v7 = VecFx32_FromXYZ((128 * FX32_ONE) - v1->unk_2C.currentValue, (96 * FX32_ONE), 0);
-            VecFx32 v8 = VecFx32_FromXYZ((128 * FX32_ONE) + v1->unk_2C.currentValue, (96 * FX32_ONE), 0);
+            VecFx32 v7 = VecFx32_FromXYZ((128 * FX32_ONE) - tallGrassEffect->unk_2C.currentValue, (96 * FX32_ONE), 0);
+            VecFx32 v8 = VecFx32_FromXYZ((128 * FX32_ONE) + tallGrassEffect->unk_2C.currentValue, (96 * FX32_ONE), 0);
 
             sub_02021C50(
-                v1->unk_21C[0], &v7);
+                tallGrassEffect->unk_21C[0], &v7);
             sub_02021C50(
-                v1->unk_21C[1], &v8);
+                tallGrassEffect->unk_21C[1], &v8);
         }
 
-        QuadraticInterpolationTaskFX32_Update(&v1->unk_228);
-        Camera_SetDistance(v1->unk_228.currentValue, v1->unk_224);
+        QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->unk_228);
+        Camera_SetDistance(tallGrassEffect->unk_228.currentValue, tallGrassEffect->camera);
 
-        if (EncounterEffect_GetHBlankFlag(v0)) {
-            v0->state++;
+        if (EncounterEffect_GetHBlankFlag(encEffect)) {
+            encEffect->state++;
         }
 
         break;
@@ -820,50 +818,50 @@ void ov5_021E2B54 (SysTask * param0, void * param1)
     case 7:
         sub_0200F370(0x0);
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = 1;
         }
 
         {
             int v9;
 
             for (v9 = 0; v9 < 2; v9++) {
-                sub_02021BD4(v1->unk_21C[v9]);
+                sub_02021BD4(tallGrassEffect->unk_21C[v9]);
             }
         }
-        ov5_021DE5A4(&v1->unk_48, &v1->unk_1E8);
-        ov5_021DE4AC(&v1->unk_48);
-        ScreenSliceEffect_Delete(v1->unk_44);
-        EncounterEffect_Finish(v0, param0);
+        ov5_021DE5A4(&tallGrassEffect->unk_48, &tallGrassEffect->unk_1E8);
+        ov5_021DE4AC(&tallGrassEffect->unk_48);
+        ScreenSliceEffect_Delete(tallGrassEffect->screenSliceEfx);
+        EncounterEffect_Finish(encEffect, task);
         break;
     }
 
-    if (v0->state != 7) {
-        sub_020219F8(v1->unk_48.unk_00);
+    if (encEffect->state != 7) {
+        sub_020219F8(tallGrassEffect->unk_48.unk_00);
     }
 }
 
-void ov5_021E2EB0 (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_TallGrass_HigherLevel (SysTask * param0, void * param1)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E2EB0 * v1 = v0->param;
+    EncounterEffect *encEffect = param1;
+    UnkStruct_ov5_021E2EB0 * v1 = encEffect->param;
     BOOL v2;
     fx32 v3;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2EB0));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E2EB0));
-        v1 = v0->param;
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2EB0));
+        memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E2EB0));
+        v1 = encEffect->param;
 
-        v1->unk_208 = v0->fieldSystem->unk_24;
+        v1->unk_208 = encEffect->fieldSystem->camera;
 
         v1->unk_28 = ScreenSplitEffect_New();
 
         ov5_021DE47C(&v1->unk_2C, 2, 1);
 
         ov5_021DE4CC(
-            v0->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 2, 4, 3, 600000);
+            encEffect->narc, &v1->unk_2C, &v1->unk_1CC, 0, 1, 2, 4, 3, 600000);
 
         {
             int v4;
@@ -877,18 +875,18 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         }
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 1:
 
-        EncounterEffect_Flash(1, 16, -16, &v0->effectComplete, 2);
-        v0->state++;
+        EncounterEffect_Flash(1, 16, -16, &encEffect->effectComplete, 2);
+        encEffect->state++;
         break;
 
     case 2:
-        if (v0->effectComplete) {
-            v0->state++;
+        if (encEffect->effectComplete) {
+            encEffect->state++;
         }
 
         break;
@@ -912,7 +910,7 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
 
         LinearInterpolationTaskS32_Init(&v1->unk_14, 0, (0xffff * 2), 8);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 4:
@@ -935,19 +933,19 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
             v1->unk_200[1], -v1->unk_14.currentValue);
 
         if (v2 == 1) {
-            v0->state++;
+            encEffect->state++;
         }
 
         break;
 
     case 5:
 
-        EncounterEffect_ScreenSplit(v0, v1->unk_28, 8, (FX32_ONE * 1), (FX32_ONE * 1));
+        EncounterEffect_ScreenSplit(encEffect, v1->unk_28, 8, (FX32_ONE * 1), (FX32_ONE * 1));
 
         v3 = Camera_GetDistance(v1->unk_208);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_20C, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 6:
@@ -955,8 +953,8 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         QuadraticInterpolationTaskFX32_Update(&v1->unk_20C);
         Camera_SetDistance(v1->unk_20C.currentValue, v1->unk_208);
 
-        if (EncounterEffect_GetHBlankFlag(v0) == 1) {
-            v0->state++;
+        if (EncounterEffect_GetHBlankFlag(encEffect) == 1) {
+            encEffect->state++;
         }
 
         break;
@@ -964,8 +962,8 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
     case 7:
         sub_0200F370(0x0);
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = 1;
         }
 
         {
@@ -978,11 +976,11 @@ void ov5_021E2EB0 (SysTask * param0, void * param1)
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
         ov5_021DE4AC(&v1->unk_2C);
         ScreenSplitEffect_Delete(v1->unk_28);
-        EncounterEffect_Finish(v0, param0);
+        EncounterEffect_Finish(encEffect, param0);
         break;
     }
 
-    if (v0->state != 7) {
+    if (encEffect->state != 7) {
         sub_020219F8(v1->unk_2C.unk_00);
     }
 }
@@ -1003,7 +1001,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E31A4));
         v1 = v0->param;
 
-        v1->unk_22C = v0->fieldSystem->unk_24;
+        v1->unk_22C = v0->fieldSystem->camera;
 
         ScreenShakeEffect_Init(&v1->unk_40, 4);
         v1->unk_248 = 12;
@@ -1174,7 +1172,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3560));
         v1 = v0->param;
 
-        v1->unk_284 = v0->fieldSystem->unk_24;
+        v1->unk_284 = v0->fieldSystem->camera;
 
         ScreenShakeEffect_Init(&v1->unk_274, 4);
         v1->unk_2A0 = 14;
@@ -1386,7 +1384,7 @@ void ov5_021E3AD0 (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3AD0));
         v1 = v0->param;
 
-        v1->unk_234 = v0->fieldSystem->unk_24;
+        v1->unk_234 = v0->fieldSystem->camera;
 
         ov5_021DE47C(&v1->unk_5C, 1, 1);
 
@@ -1512,7 +1510,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3D8C));
         v1 = v0->param;
 
-        v1->unk_26C = v0->fieldSystem->unk_24;
+        v1->unk_26C = v0->fieldSystem->camera;
 
         ov5_021DE47C(&v1->unk_00, 3, 1);
 
@@ -2339,12 +2337,12 @@ static void ov5_021E4DE0 (FieldSystem * fieldSystem, const UnkStruct_ov5_021F9DD
 {
     UnkStruct_ov115_0226527C v0;
 
-    sub_02020910(param1->unk_08, fieldSystem->unk_24);
-    Camera_SetDistance(param1->unk_00, fieldSystem->unk_24);
+    sub_02020910(param1->unk_08, fieldSystem->camera);
+    Camera_SetDistance(param1->unk_00, fieldSystem->camera);
     v0.unk_00 = param1->unk_04;
     v0.unk_02 = param1->unk_06;
     v0.unk_04 = 0;
-    sub_020209D4(&v0, fieldSystem->unk_24);
+    sub_020209D4(&v0, fieldSystem->camera);
 }
 
 void ov5_021E4E14 (SysTask * param0, void * param1)
@@ -2467,7 +2465,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
         v1->unk_00 = ov5_021E22B0(5, 13);
 
         {
-            u16 v3 = sub_02020A88(v0->fieldSystem->unk_24);
+            u16 v3 = sub_02020A88(v0->fieldSystem->camera);
 
             LinearInterpolationTaskS32_Init(&v1->unk_08, v3, v3 + 0x100, 40);
         }
@@ -2477,7 +2475,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
 
     case 4:
         v2 = LinearInterpolationTaskS32_Update(&v1->unk_08);
-        sub_02020910(v1->unk_08.currentValue, v0->fieldSystem->unk_24);
+        sub_02020910(v1->unk_08.currentValue, v0->fieldSystem->camera);
 
         if (v2 == 1) {
             v0->state++;
@@ -2490,7 +2488,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
         v1->unk_34--;
 
         if (v1->unk_34 < 0) {
-            fx32 v4 = Camera_GetDistance(v0->fieldSystem->unk_24);
+            fx32 v4 = Camera_GetDistance(v0->fieldSystem->camera);
 
             QuadraticInterpolationTaskFX32_Init(&v1->unk_1C, v4, v4 + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
 
@@ -2501,7 +2499,7 @@ void ov5_021E4F7C (SysTask * param0, void * param1)
 
     case 6:
         v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_1C);
-        Camera_SetDistance(v1->unk_1C.currentValue, v0->fieldSystem->unk_24);
+        Camera_SetDistance(v1->unk_1C.currentValue, v0->fieldSystem->camera);
 
         if (v2 == 1) {
             v0->state++;

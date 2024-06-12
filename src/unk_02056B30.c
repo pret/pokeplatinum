@@ -631,8 +631,8 @@ static void sub_02057300 (FieldSystem * fieldSystem)
     v1.y = sub_02054FBC(fieldSystem, v1.y, v1.x, v1.z, NULL);
 
     sub_0205ECB8(fieldSystem->playerAvatar, &v1, v0);
-    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
-    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
+    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
+    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
 }
 
 static void sub_02057368 (FieldSystem * fieldSystem)
@@ -661,6 +661,6 @@ static void sub_02057368 (FieldSystem * fieldSystem)
     v3.y = sub_02054FBC(fieldSystem, v3.y, v3.x, v3.z, NULL);
 
     sub_0205ECB8(fieldSystem->playerAvatar, &v3, v2);
-    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
-    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
+    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
+    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
 }

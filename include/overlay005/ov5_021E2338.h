@@ -3,14 +3,14 @@
 
 #include "struct_decls/sys_task.h"
 
-void EncounterEffect_TallGrass_HigherLevel(SysTask * param0, void * param1);
-void EncounterEffect_TallGrass_LowerLevel(SysTask * param0, void * param1);
-void EncounterEffect_Water_LowerLevel(SysTask * param0, void * param1);
-void EncounterEffect_Water_HigherLevel(SysTask * param0, void * param1);
-void EncounterEffect_Cave_LowerLevel(SysTask * param0, void * param1);
-void EncounterEffect_Cave_HigherLevel(SysTask * param0, void * param1);
-void ov5_021E2B54(SysTask * param0, void * param1);
-void ov5_021E2EB0(SysTask * param0, void * param1);
+void EncounterEffect_TallGrass_HigherLevel(SysTask *param0, void *param1);
+void EncounterEffect_TallGrass_LowerLevel(SysTask *param0, void *param1);
+void EncounterEffect_Water_LowerLevel(SysTask *param0, void *param1);
+void EncounterEffect_Water_HigherLevel(SysTask *param0, void *param1);
+void EncounterEffect_Cave_LowerLevel(SysTask *param0, void *param1);
+void EncounterEffect_Cave_HigherLevel(SysTask *param0, void *param1);
+void EncounterEffect_Trainer_TallGrass_LowerLevel(SysTask *param0, void *param1);
+void EncounterEffect_Trainer_TallGrass_HigherLevel(SysTask *param0, void *param1);
 void ov5_021E31A4(SysTask * param0, void * param1);
 void ov5_021E3560(SysTask * param0, void * param1);
 void ov5_021E3AD0(SysTask * param0, void * param1);

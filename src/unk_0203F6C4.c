@@ -3351,7 +3351,7 @@ static BOOL ScrCmd_066 (ScriptContext * ctx)
 
         v3 = MapObject_PosVector(*v2);
         ov5_021E931C(v3, ctx->fieldSystem->unk_28);
-        sub_02020690(v3, ctx->fieldSystem->unk_24);
+        sub_02020690(v3, ctx->fieldSystem->camera);
     }
 
     return 0;
@@ -3371,7 +3371,7 @@ static BOOL ScrCmd_067 (ScriptContext * ctx)
         v2 = MapObject_PosVector(v1);
 
         ov5_021E931C(v2, ctx->fieldSystem->unk_28);
-        sub_02020690(v2, ctx->fieldSystem->unk_24);
+        sub_02020690(v2, ctx->fieldSystem->camera);
     }
 
     return 0;
@@ -3480,7 +3480,7 @@ static BOOL ScrCmd_06B (ScriptContext * ctx)
     v3.z = FX32_CONST(v2);
 
     sub_020630AC(Player_MapObject(ctx->fieldSystem->playerAvatar), &v3);
-    sub_02020990(&v3, ctx->fieldSystem->unk_24);
+    sub_02020990(&v3, ctx->fieldSystem->camera);
 
     return 0;
 }
