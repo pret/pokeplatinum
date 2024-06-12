@@ -105,7 +105,7 @@ static int ov57_021D0DE0 (OverlayManager * param0, int * param1)
     SaveData * v0 = ((UnkStruct_0203CC84 *)OverlayManager_Args(param0))->unk_08;
 
     ov57_021D0EAC(77, v0, 1);
-    sub_02017434(sub_02025E5C(v0));
+    sub_02017434(SaveData_GetPlayTime(v0));
 
     return 1;
 }
@@ -139,7 +139,7 @@ static int ov57_021D0E34 (OverlayManager * param0, int * param1)
         Party_SetShayminLandForm(Party_GetFromSavedata(v0));
     }
 
-    sub_02017434(sub_02025E5C(v0));
+    sub_02017434(SaveData_GetPlayTime(v0));
     return 1;
 }
 

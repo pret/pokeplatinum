@@ -197,7 +197,7 @@ void sub_02052E58 (TaskManager * param0)
     v5->unk_00 = sub_0206A954(v3);
     v5->unk_04.unk_00 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v5->unk_04.unk_04 = Party_GetFromSavedata(fieldSystem->saveData);
-    v5->unk_04.unk_08 = sub_02025E5C(fieldSystem->saveData);
+    v5->unk_04.playTime = SaveData_GetPlayTime(fieldSystem->saveData);
     v5->unk_10.unk_00 = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
     v5->unk_10.unk_04 = sub_0206A954(v3);
     v5->unk_10.unk_08 = SaveData_Pokedex(fieldSystem->saveData);

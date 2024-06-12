@@ -53,7 +53,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "unk_0202CBE4.h"
+#include "play_time.h"
 #include "pokemon.h"
 #include "party.h"
 #include "overlay086/ov86_0223B140.h"
@@ -1433,8 +1433,8 @@ static void ov86_0223C72C (UnkStruct_ov86_0223B3C8 * param0)
     StringTemplate_SetPlayerName(param0->unk_1C44, 0, param0->unk_0C->unk_00);
 
     StringTemplate_SetNumber(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
-    StringTemplate_SetNumber(param0->unk_1C44, 2, sub_0202CC58(param0->unk_0C->unk_08), 3, 0, 1);
-    StringTemplate_SetNumber(param0->unk_1C44, 3, sub_0202CC5C(param0->unk_0C->unk_08), 2, 2, 1);
+    StringTemplate_SetNumber(param0->unk_1C44, 2, PlayTime_GetHours(param0->unk_0C->playTime), 3, 0, 1);
+    StringTemplate_SetNumber(param0->unk_1C44, 3, PlayTime_GetMinutes(param0->unk_0C->playTime), 2, 2, 1);
     MessageLoader_GetStrbuf(param0->unk_1C50, 13, param0->unk_1C4C);
     StringTemplate_Format(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
 

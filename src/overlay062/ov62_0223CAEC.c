@@ -33,7 +33,7 @@
 #include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_02025E08.h"
-#include "unk_0202CBE4.h"
+#include "play_time.h"
 #include "unk_0202CD50.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
@@ -994,9 +994,9 @@ static BOOL ov62_0223D744 (UnkStruct_0208C06C * param0)
         } else {
             {
                 v0->unk_71C = &v0->unk_710;
-                v0->unk_720.unk_08.unk_00 = sub_0202CC58(sub_02025E5C(param0->unk_830));
-                v0->unk_720.unk_08.unk_02 = sub_0202CC5C(sub_02025E5C(param0->unk_830));
-                v0->unk_720.unk_08.unk_03 = sub_0202CC60(sub_02025E5C(param0->unk_830));
+                v0->unk_720.unk_08.unk_00 = PlayTime_GetHours(SaveData_GetPlayTime(param0->unk_830));
+                v0->unk_720.unk_08.unk_02 = PlayTime_GetMinutes(SaveData_GetPlayTime(param0->unk_830));
+                v0->unk_720.unk_08.unk_03 = PlayTime_GetSeconds(SaveData_GetPlayTime(param0->unk_830));
                 v0->unk_720.unk_0C[0].unk_00 = v0->unk_71C->unk_00[0];
                 v0->unk_720.unk_0C[1].unk_00 = v0->unk_71C->unk_00[1];
                 v0->unk_720.unk_0C[2].unk_00 = v0->unk_71C->unk_00[2];

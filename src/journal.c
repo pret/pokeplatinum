@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E5C_decl.h"
 #include "trainer_info.h"
 #include "savedata.h"
 
@@ -16,7 +15,7 @@
 #include "savedata.h"
 #include "trainer_info.h"
 #include "journal.h"
-#include "unk_0202CBE4.h"
+#include "play_time.h"
 #include "map_header.h"
 
 typedef struct Journal_t {
@@ -802,7 +801,7 @@ static UnkStruct_0202BE38 * sub_0202BE38 (u32 param0)
     return v0;
 }
 
-void * sub_0202BE4C (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4)
+void * sub_0202BE4C (const PlayTime *playTime, u16 param1, u8 param2, u8 param3, u32 param4)
 {
     UnkStruct_0202BE38 * v0;
     u8 v1;
@@ -814,7 +813,7 @@ void * sub_0202BE4C (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u
     v0->unk_01_6 = param2;
     v0->unk_01_2 = param3;
 
-    v1 = sub_0202CC5C(param0) / 10;
+    v1 = PlayTime_GetMinutes(playTime) / 10;
 
     if ((v1 == 0) || (v1 == 2) || (v1 == 4)) {
         v0->unk_01_0 = 0;
@@ -827,7 +826,7 @@ void * sub_0202BE4C (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u
     return v0;
 }
 
-void * sub_0202BECC (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4)
+void * sub_0202BECC (const PlayTime *playTime, u16 param1, u8 param2, u8 param3, u32 param4)
 {
     UnkStruct_0202BE38 * v0;
     u8 v1;
@@ -839,7 +838,7 @@ void * sub_0202BECC (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u
     v0->unk_01_6 = param2;
     v0->unk_01_2 = param3;
 
-    v1 = sub_0202CC5C(param0) / 10;
+    v1 = PlayTime_GetMinutes(playTime) / 10;
 
     if ((v1 == 1) || (v1 == 3) || (v1 == 5)) {
         v0->unk_01_0 = 0;
