@@ -25,7 +25,7 @@
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
 #include "map_header.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "vars_flags.h"
@@ -258,7 +258,7 @@ BOOL ov6_02240D5C (FieldSystem * fieldSystem)
         }
 
         v11 = Party_GetFromSavedata(fieldSystem->saveData);
-        v12 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+        v12 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
         v1 = Party_GetPokemonBySlotIndex(v11, 0);
 
         ov6_02242634(fieldSystem, v1, v12, &v14);
@@ -447,7 +447,7 @@ BOOL ov6_0224106C (FieldSystem * fieldSystem, const int param1, BattleParams ** 
             u8 v11;
             UnkStruct_ov6_02242634 * v12;
 
-            v12 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+            v12 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
 
             switch (param1) {
             case 0:
@@ -513,7 +513,7 @@ BOOL ov6_022411C8 (FieldSystem * fieldSystem, TaskManager * param1)
     }
 
     v10 = Party_GetFromSavedata(fieldSystem->saveData);
-    v11 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+    v11 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
     v1 = Party_GetPokemonBySlotIndex(v10, 0);
 
     ov6_02242634(fieldSystem, v1, v11, &v13);
@@ -637,7 +637,7 @@ BOOL ov6_022413E4 (FieldSystem * fieldSystem, BattleParams ** param1)
         }
 
         v10 = Party_GetFromSavedata(fieldSystem->saveData);
-        v11 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+        v11 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
         v0 = Party_GetPokemonBySlotIndex(v10, 0);
 
         ov6_02242634(fieldSystem, v0, v11, &v13);
@@ -1445,7 +1445,7 @@ static int ov6_0224214C (FieldSystem * fieldSystem)
 {
     UnkStruct_ov6_02242634 * v0;
 
-    v0 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+    v0 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
     return v0->unk_00;
 }
 
@@ -1453,7 +1453,7 @@ static int ov6_02242158 (FieldSystem * fieldSystem)
 {
     UnkStruct_ov6_02242634 * v0;
 
-    v0 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+    v0 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
     return v0->unk_A8;
 }
 
@@ -1461,7 +1461,7 @@ static int ov6_02242164 (FieldSystem * fieldSystem, const int param1)
 {
     UnkStruct_ov6_02242634 * v0;
 
-    v0 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+    v0 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
 
     switch (param1) {
     case 0:

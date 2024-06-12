@@ -170,7 +170,7 @@ Static main
 	Object main.nef.p/src_unk_02039A64.c.o
 	Object main.nef.p/src_unk_02039C80.c.o
 	Object main.nef.p/src_map_header.c.o
-	Object main.nef.p/src_unk_0203A378.c.o
+	Object main.nef.p/src_map_header_data.c.o
 	Object main.nef.p/src_field_overworld_state.c.o
 	Object main.nef.p/src_unk_0203A7D8.c.o
 	Object main.nef.p/src_unk_0203A944.c.o

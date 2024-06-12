@@ -12,7 +12,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
 
-#include "struct_defs/struct_0203A55C.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 #include "functypes/funcptr_02050904.h"
@@ -42,7 +41,7 @@
 #include "communication_system.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203A944.h"
@@ -217,17 +216,15 @@ static void FieldMapChange_SetNewLocation (FieldSystem * fieldSystem, const Loca
         *(fieldSystem->location) = *nextLocation;
     }
 
-    FieldSystem_LoadMapData(fieldSystem, fieldSystem->location->mapId);
+    MapHeaderData_Load(fieldSystem, fieldSystem->location->mapId);
 
     if (fieldSystem->location->unk_04 != -1) {
-        const UnkStruct_0203A55C * v2;
+        const WarpEvent * v2 = MapHeaderData_GetWarpEventByIndex(fieldSystem, fieldSystem->location->unk_04);
 
-        v2 = sub_0203A450(fieldSystem, fieldSystem->location->unk_04);
+        fieldSystem->location->x = v2->x;
+        fieldSystem->location->z = v2->z;
 
-        fieldSystem->location->x = v2->unk_00;
-        fieldSystem->location->z = v2->unk_02;
-
-        if (v2->unk_06 == 0x100) {
+        if (v2->destWarpID == 0x100) {
             Location * v3, * entrance;
 
             v3 = sub_0203A730(fieldState);

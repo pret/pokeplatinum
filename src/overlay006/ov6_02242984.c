@@ -12,7 +12,7 @@
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_system.h"
 #include "player_avatar.h"
 #include "overlay006/ov6_02240C9C.h"
@@ -39,7 +39,7 @@ int ov6_02242984 (FieldSystem * fieldSystem)
     int v2[12];
     UnkStruct_ov6_02242634 * v3;
 
-    v3 = (UnkStruct_ov6_02242634 *)sub_0203A640(fieldSystem);
+    v3 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
 
     for (v0 = 0; v0 < 12; v0++) {
         v2[v0] = v3->unk_04[v0].unk_04;

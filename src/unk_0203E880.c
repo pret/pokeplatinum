@@ -14,7 +14,6 @@
 #include "constdata/const_020EAC58.h"
 #include "constdata/const_020EAB80.h"
 
-#include "struct_defs/struct_0203A594.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0203F478.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -27,7 +26,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "map_header.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_menu.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
@@ -823,12 +822,12 @@ static BOOL sub_0203F404 (UnkStruct_0203EF60 * param0, u16 param1)
 UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
 {
     UnkStruct_0203F478 * v0;
-    const UnkStruct_0203A594 * v1;
+    const BgEvent * v1;
     int v2, v3, v4, v5, v6, v7;
     int v8, v9, v10, v11;
 
     v6 = 0;
-    v5 = sub_0203A448(fieldSystem);
+    v5 = MapHeaderData_GetNumBgEvents(fieldSystem);
     v5++;
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
 
@@ -839,7 +838,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
         return v0;
     }
 
-    v1 = sub_0203A440(fieldSystem);
+    v1 = MapHeaderData_GetBgEvents(fieldSystem);
 
     if (v1 == NULL) {
         v0[0].unk_04 = 0xff;
@@ -864,12 +863,12 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     }
 
     for (v4 = 0; v4 < v5; v4++) {
-        if ((v1[v4].unk_02 == 2) && (sub_0203F188(fieldSystem, sub_0203F2F4(v1[v4].unk_00)) == 0)) {
-            if ((v1[v4].unk_04 >= v8) && (v1[v4].unk_04 <= v9) && (v1[v4].unk_08 >= v10) && (v1[v4].unk_08 <= v11)) {
-                v0[v6].unk_04 = sub_0203F3C8(v1[v4].unk_00);
-                v7 = (v2 - v1[v4].unk_04);
+        if ((v1[v4].type == 2) && (sub_0203F188(fieldSystem, sub_0203F2F4(v1[v4].script)) == 0)) {
+            if ((v1[v4].x >= v8) && (v1[v4].x <= v9) && (v1[v4].z >= v10) && (v1[v4].z <= v11)) {
+                v0[v6].unk_04 = sub_0203F3C8(v1[v4].script);
+                v7 = (v2 - v1[v4].x);
                 v0[v6].unk_00 = abs(7 - v7);
-                v7 = (v3 - v1[v4].unk_08);
+                v7 = (v3 - v1[v4].z);
                 v0[v6].unk_02 = abs(7 - v7);
                 v6++;
             }
@@ -905,7 +904,7 @@ BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
     u16 v0;
     const u8 * v1;
 
-    v1 = sub_0203A68C(fieldSystem);
+    v1 = MapHeaderData_GetScripts(fieldSystem);
 
     if (v1 == NULL) {
         return 0;

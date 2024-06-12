@@ -32,7 +32,7 @@
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "map_header.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_menu.h"
 #include "unk_0203C954.h"
 #include "field_system.h"
@@ -445,7 +445,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         v0 = Player_GetXPos(param0->fieldSystem->playerAvatar);
         v1 = Player_GetZPos(param0->fieldSystem->playerAvatar);
 
-        if (sub_0203A6A4(param0->fieldSystem, v0, v1) == 0) {
+        if (MapHeaderData_IsAnyObjectEventAtPos(param0->fieldSystem, v0, v1) == 0) {
             return -1;
         }
     }

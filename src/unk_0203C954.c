@@ -4,8 +4,6 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "struct_defs/struct_0203A4AC.h"
-#include "struct_defs/struct_0203A594.h"
 #include "field/field_system.h"
 
 #include "unk_0203C954.h"
@@ -13,10 +11,11 @@
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"
+#include "map_header_data.h"
 #include "map_object.h"
 
-static u8 sub_0203CB18(FieldSystem * fieldSystem, const UnkStruct_0203A594 * param1);
-static u8 sub_0203CAEC(FieldSystem * fieldSystem, const UnkStruct_0203A594 * param1);
+static u8 sub_0203CB18(FieldSystem * fieldSystem, const BgEvent * param1);
+static u8 sub_0203CAEC(FieldSystem * fieldSystem, const BgEvent * param1);
 
 static int sub_0203C954 (FieldSystem * fieldSystem, int * param1, int * param2)
 {
@@ -96,25 +95,23 @@ u8 sub_0203CA40 (FieldSystem * fieldSystem, MapObject ** param1)
     return 0;
 }
 
-u16 sub_0203CA6C (FieldSystem * fieldSystem, void * param1, int param2)
+u16 sub_0203CA6C (FieldSystem * fieldSystem, const BgEvent * param1, int param2)
 {
-    const UnkStruct_0203A594 * v0;
+    const BgEvent * v0 = param1;
     int v1, v2;
     int v3;
-
-    v0 = (const UnkStruct_0203A594 *)param1;
 
     sub_0203C954(fieldSystem, &v1, &v2);
 
     for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 == v0[v3].unk_04) && (v2 == v0[v3].unk_08)) {
-            if (v0[v3].unk_02 == 2) {
+        if ((v1 == v0[v3].x) && (v2 == v0[v3].z)) {
+            if (v0[v3].type == 2) {
                 if (sub_0203CAEC(fieldSystem, &v0[v3]) == 1) {
-                    return v0[v3].unk_00;
+                    return v0[v3].script;
                 }
             } else {
                 if (sub_0203CB18(fieldSystem, &v0[v3]) == 1) {
-                    return v0[v3].unk_00;
+                    return v0[v3].script;
                 }
             }
         }
@@ -123,43 +120,43 @@ u16 sub_0203CA6C (FieldSystem * fieldSystem, void * param1, int param2)
     return 0xffff;
 }
 
-static u8 sub_0203CAEC (FieldSystem * fieldSystem, const UnkStruct_0203A594 * param1)
+static u8 sub_0203CAEC (FieldSystem * fieldSystem, const BgEvent * param1)
 {
-    if (param1->unk_02 != 2) {
+    if (param1->type != 2) {
         return 0;
     }
 
-    if (sub_0203F188(fieldSystem, sub_0203F2F4(param1->unk_00)) == 1) {
+    if (sub_0203F188(fieldSystem, sub_0203F2F4(param1->script)) == 1) {
         return 0;
     }
 
     return 1;
 }
 
-static u8 sub_0203CB18 (FieldSystem * fieldSystem, const UnkStruct_0203A594 * param1)
+static u8 sub_0203CB18 (FieldSystem * fieldSystem, const BgEvent * param1)
 {
-    if (param1->unk_10 == 4) {
+    if (param1->playerFacingDir == 4) {
         return 1;
     }
 
     switch (PlayerAvatar_GetDir(fieldSystem->playerAvatar)) {
     case 0:
-        if ((param1->unk_10 == 0) || (param1->unk_10 == 6)) {
+        if ((param1->playerFacingDir == 0) || (param1->playerFacingDir == 6)) {
             return 1;
         }
         break;
     case 1:
-        if ((param1->unk_10 == 3) || (param1->unk_10 == 6)) {
+        if ((param1->playerFacingDir == 3) || (param1->playerFacingDir == 6)) {
             return 1;
         }
         break;
     case 2:
-        if ((param1->unk_10 == 2) || (param1->unk_10 == 5)) {
+        if ((param1->playerFacingDir == 2) || (param1->playerFacingDir == 5)) {
             return 1;
         }
         break;
     case 3:
-        if ((param1->unk_10 == 1) || (param1->unk_10 == 5)) {
+        if ((param1->playerFacingDir == 1) || (param1->playerFacingDir == 5)) {
             return 1;
         }
         break;
@@ -168,9 +165,8 @@ static u8 sub_0203CB18 (FieldSystem * fieldSystem, const UnkStruct_0203A594 * pa
     return 0;
 }
 
-u16 sub_0203CB80 (FieldSystem * fieldSystem, void * param1, int param2)
+u16 sub_0203CB80 (FieldSystem * fieldSystem, const BgEvent * param1, int param2)
 {
-    const UnkStruct_0203A594 * v0;
     int v1, v2;
     int v3;
 
@@ -178,12 +174,12 @@ u16 sub_0203CB80 (FieldSystem * fieldSystem, void * param1, int param2)
         return 0xffff;
     }
 
-    v0 = (const UnkStruct_0203A594 *)param1;
+    const BgEvent * v0 = param1;
     sub_0203C954(fieldSystem, &v1, &v2);
 
     for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 == v0[v3].unk_04) && (v2 == v0[v3].unk_08) && (v0[v3].unk_02 == 1)) {
-            return v0[v3].unk_00;
+        if ((v1 == v0[v3].x) && (v2 == v0[v3].z) && (v0[v3].type == 1)) {
+            return v0[v3].script;
         }
     }
 
@@ -209,17 +205,15 @@ u8 sub_0203CBE0 (FieldSystem * fieldSystem, MapObject ** param1)
 
 u16 sub_0203CC14 (FieldSystem * fieldSystem, void * param1, int param2)
 {
-    const UnkStruct_0203A4AC * v0;
-    int v1, v2;
     int v3;
 
-    v0 = (const UnkStruct_0203A4AC *)param1;
-    v1 = Player_GetXPos(fieldSystem->playerAvatar);
-    v2 = Player_GetZPos(fieldSystem->playerAvatar);
+    const CoordEvent * v0 = param1;
+    int v1 = Player_GetXPos(fieldSystem->playerAvatar);
+    int v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
     for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 >= v0[v3].unk_02) && (v1 < (v0[v3].unk_02 + v0[v3].unk_06)) && (v2 >= v0[v3].unk_04) && (v2 < (v0[v3].unk_04 + v0[v3].unk_08)) && (sub_0203F150(fieldSystem, v0[v3].unk_0E) == v0[v3].unk_0C)) {
-            return v0[v3].unk_00;
+        if ((v1 >= v0[v3].x) && (v1 < (v0[v3].x + v0[v3].width)) && (v2 >= v0[v3].z) && (v2 < (v0[v3].z + v0[v3].length)) && (sub_0203F150(fieldSystem, v0[v3].var) == v0[v3].value)) {
+            return v0[v3].script;
         }
     }
 

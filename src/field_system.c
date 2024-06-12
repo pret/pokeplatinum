@@ -21,7 +21,7 @@
 #include "heap.h"
 #include "communication_system.h"
 #include "unk_02039C80.h"
-#include "unk_0203A378.h"
+#include "map_header_data.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "unk_020508D4.h"
@@ -177,7 +177,7 @@ static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
     fieldSystem->location = sub_0203A720(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->unk_2C = sub_02039D6C();
 
-    sub_0203A378(fieldSystem, 11);
+    MapHeaderData_Init(fieldSystem, 11);
 
     fieldSystem->unk_98 = sub_0207D99C(11);
     fieldSystem->chain = RadarChain_Init(11);
@@ -195,7 +195,7 @@ static void sub_0203CE6C (OverlayManager * overlayMan)
     FieldSystem * fieldSystem = OverlayManager_Data(overlayMan);
 
     sub_02039DE4(fieldSystem->unk_2C);
-    sub_0203A398(fieldSystem);
+    MapHeaderData_Free(fieldSystem);
     Heap_FreeToHeap(fieldSystem->unk_98);
     RadarChain_Free(fieldSystem->chain);
     sub_0209ACDC(fieldSystem->unk_B4);
