@@ -195,44 +195,52 @@ static void MapHeaderData_ParseEvents (MapHeaderData * data)
     const u8 * events = (const u8 *)data->tmpEventsBuf;
 
     // bgEvents
-    data->numBgEvents = *(u32 *)events;
-    events += sizeof(u32);
-    if (data->numBgEvents != 0) {
-        data->bgEvents = (const BgEvent *)events;
-    } else {
-        data->bgEvents = NULL;
+    {
+        data->numBgEvents = *(u32 *)events;
+        events += sizeof(u32);
+        if (data->numBgEvents != 0) {
+            data->bgEvents = (const BgEvent *)events;
+        } else {
+            data->bgEvents = NULL;
+        }
+        events += sizeof(BgEvent) * data->numBgEvents;
     }
-    events += sizeof(BgEvent) * data->numBgEvents;
 
     // objectEvents
-    data->numObjectEvents = *(u32 *)events;
-    events += sizeof(u32);
-    if (data->numObjectEvents != 0) {
-        data->objectEvents = (const ObjectEvent *)events;
-    } else {
-        data->objectEvents = NULL;
+    {
+        data->numObjectEvents = *(u32 *)events;
+        events += sizeof(u32);
+        if (data->numObjectEvents != 0) {
+            data->objectEvents = (const ObjectEvent *)events;
+        } else {
+            data->objectEvents = NULL;
+        }
+        events += sizeof(ObjectEvent) * data->numObjectEvents;
     }
-    events += sizeof(ObjectEvent) * data->numObjectEvents;
 
     // warpEvents
-    data->numWarpEvents = *(u32 *)events;
-    events += sizeof(u32);
-    if (data->numWarpEvents != 0) {
-        data->warpEvents = (const WarpEvent *)events;
-    } else {
-        data->warpEvents = NULL;
+    {
+        data->numWarpEvents = *(u32 *)events;
+        events += sizeof(u32);
+        if (data->numWarpEvents != 0) {
+            data->warpEvents = (const WarpEvent *)events;
+        } else {
+            data->warpEvents = NULL;
+        }
+        events += sizeof(WarpEvent) * data->numWarpEvents;
     }
-    events += sizeof(WarpEvent) * data->numWarpEvents;
 
     // coordEvents
-    data->numCoordEvents = *(u32 *)events;
-    events += sizeof(u32);
-    if (data->numCoordEvents != 0) {
-        data->coordEvents = (const CoordEvent *)events;
-    } else {
-        data->coordEvents = NULL;
+    {
+        data->numCoordEvents = *(u32 *)events;
+        events += sizeof(u32);
+        if (data->numCoordEvents != 0) {
+            data->coordEvents = (const CoordEvent *)events;
+        } else {
+            data->coordEvents = NULL;
+        }
+        events += sizeof(CoordEvent) * data->numCoordEvents;
     }
-    events += sizeof(CoordEvent) * data->numCoordEvents;
 }
 
 void MapHeaderData_LoadWildEncounters (UnkStruct_ov6_02242634 * data, int headerID)
@@ -269,10 +277,10 @@ const u8 * MapHeaderData_GetScripts (const FieldSystem * fieldSystem)
 
 BOOL MapHeaderData_IsAnyObjectEventAtPos (const FieldSystem * fieldSystem, u16 x, u16 z)
 {
-    const MapHeaderData * v0 = fieldSystem->mapHeaderData;
+    const MapHeaderData * data = fieldSystem->mapHeaderData;
 
-    for (u32 i = 0; i < v0->numObjectEvents; i++) {
-        if (v0->objectEvents[i].x == x && v0->objectEvents[i].z == z) {
+    for (u32 i = 0; i < data->numObjectEvents; i++) {
+        if (data->objectEvents[i].x == x && data->objectEvents[i].z == z) {
             return FALSE;
         }
     }
