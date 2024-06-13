@@ -48,7 +48,7 @@ pokeplatinum_c = files(
     'unk_020131EC.c',
     'rtc.c',
     'unk_02013A04.c',
-    'unk_02013B10.c',
+    'screen_scroll_manager.c',
     'unk_02014000.c',
     'unk_020149F0.c',
     'unk_02014A84.c',

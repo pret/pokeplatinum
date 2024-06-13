@@ -5,8 +5,6 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_02013B10_decl.h"
-#include "struct_decls/struct_02013BE0_decl.h"
 #include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
@@ -21,7 +19,7 @@
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
-#include "unk_02013B10.h"
+#include "screen_scroll_manager.h"
 #include "heap.h"
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"

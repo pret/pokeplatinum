@@ -5,30 +5,8 @@
 #include "struct_decls/sys_task.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02013B10.h"
+#include "screen_scroll_manager.h"
 #include "heap.h"
-
-typedef struct BufferManager {
-    void *buffers[2];
-    u8 writeBuffer;
-    u8 mode;
-    u8 padding[2];
-} BufferManager;
-
-typedef struct ScreenScrollManager {
-    u32 buffer1[SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
-    u32 buffer2[SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
-    BufferManager *bufferManager;
-    SysTask *scrollTask;
-    BOOL unused;
-    s16 sineTable[SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
-    u8 start;
-    u8 end;
-    u32 offsetRegisterAddr;
-    u32 initValue;
-    s16 scrollPos;
-    s16 scrollSpeed;
-} ScreenScrollManager;
 
 static void ScreenScrollManager_StopDMA(void);
 static void ScreenScrollManager_StartDMA(const ScreenScrollManager *screenScrollMgr);
@@ -50,9 +28,7 @@ BufferManager *BufferManager_New(enum HeapId heapID, void *buffer1, void *buffer
 void BufferManager_Delete(BufferManager *bufferManager)
 {
     GF_ASSERT(bufferManager);
-
     Heap_FreeToHeap(bufferManager);
-    bufferManager = NULL;
 }
 
 void *BufferManager_GetWriteBuffer(const BufferManager *bufferManager)
@@ -153,15 +129,13 @@ void ScreenScrollManager_ScrollY(ScreenScrollManager *screenScrollMgr, u8 start,
 
 void ScreenScrollManager_Stop(ScreenScrollManager *screenScrollMgr)
 {
-    void *writeBuffer;
-
     GF_ASSERT(screenScrollMgr);
 
     if (screenScrollMgr->scrollTask) {
         SysTask_Done(screenScrollMgr->scrollTask);
         screenScrollMgr->scrollTask = NULL;
 
-        writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+        void *writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
         memset(writeBuffer, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
     }
 }
@@ -181,8 +155,6 @@ void *ScreenScrollManager_GetWriteBuffer(ScreenScrollManager *screenScrollMgr)
 
 void ScreenScrollManager_SwapBuffers(ScreenScrollManager *screenScrollMgr)
 {
-    void *writeBuffer;
-
     if (screenScrollMgr == NULL) {
         return;
     }
@@ -190,7 +162,7 @@ void ScreenScrollManager_SwapBuffers(ScreenScrollManager *screenScrollMgr)
     if (screenScrollMgr->scrollTask) {
         BufferManager_SwapBuffers(screenScrollMgr->bufferManager);
 
-        writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+        void *writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
         MI_CpuFill32(writeBuffer, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
     }
 }
@@ -209,10 +181,8 @@ void ScreenScrollManager_RestartDMA(ScreenScrollManager *screenScrollMgr)
 
 void ScreenScrollManager_CreateSineTable(s16 *dest, u32 entryCount, u16 angleIncrement, fx32 amplitude)
 {
-    int i;
     u16 angle = 0;
-
-    for (i = 0; i < entryCount; i++) {
+    for (int i = 0; i < entryCount; i++) {
         dest[i] = FX_Mul(FX_SinIdx(angle), amplitude) >> FX32_SHIFT;
         angle += angleIncrement;
     }
@@ -221,18 +191,12 @@ void ScreenScrollManager_CreateSineTable(s16 *dest, u32 entryCount, u16 angleInc
 static void ScreenScrollManager_UpdateScrollX(SysTask *task, void *param)
 {
     ScreenScrollManager *screenScrollMgr = param;
-    int i;
-    u32 *writeBuffer;
-    u8 scrollPos;
-    s16 xOff;
-    u16 yOff;
+    u32 *writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+    u8 scrollPos = screenScrollMgr->scrollPos / SCREEN_SCROLL_MANAGER_SCALING_FACTOR;
 
-    writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
-    scrollPos = screenScrollMgr->scrollPos / SCREEN_SCROLL_MANAGER_SCALING_FACTOR;
-
-    for (i = screenScrollMgr->start; i <= screenScrollMgr->end; i++) {
-        xOff = writeBuffer[i] & 0xffff;
-        yOff = writeBuffer[i] >> 16;
+    for (int i = screenScrollMgr->start; i <= screenScrollMgr->end; i++) {
+        s16 xOff = writeBuffer[i] & 0xffff;
+        u16 yOff = writeBuffer[i] >> 16;
 
         xOff += screenScrollMgr->sineTable[scrollPos];
         writeBuffer[i] = (yOff << 16) | (xOff & 0xffff);
@@ -243,28 +207,20 @@ static void ScreenScrollManager_UpdateScrollX(SysTask *task, void *param)
 
     if (screenScrollMgr->scrollPos >= SCREEN_SCROLL_MANAGER_MAX_SCROLL) {
         screenScrollMgr->scrollPos %= SCREEN_SCROLL_MANAGER_MAX_SCROLL;
-    } else {
-        if (screenScrollMgr->scrollPos < 0) {
-            screenScrollMgr->scrollPos += SCREEN_SCROLL_MANAGER_MAX_SCROLL;
-        }
+    } else if (screenScrollMgr->scrollPos < 0) {
+        screenScrollMgr->scrollPos += SCREEN_SCROLL_MANAGER_MAX_SCROLL;
     }
 }
 
 static void ScreenScrollManager_UpdateScrollY(SysTask *task, void *param)
 {
     ScreenScrollManager *screenScrollMgr = param;
-    int i;
-    u32 *writeBuffer;
-    u8 scrollPos;
-    s16 xOff;
-    u16 yOff;
+    u32 *writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+    u8 scrollPos = screenScrollMgr->scrollPos / SCREEN_SCROLL_MANAGER_SCALING_FACTOR;
 
-    writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
-    scrollPos = screenScrollMgr->scrollPos / SCREEN_SCROLL_MANAGER_SCALING_FACTOR;
-
-    for (i = screenScrollMgr->start; i <= screenScrollMgr->end; i++) {
-        xOff = writeBuffer[i] & 0xffff;
-        yOff = writeBuffer[i] >> 16;
+    for (int i = screenScrollMgr->start; i <= screenScrollMgr->end; i++) {
+        s16 xOff = writeBuffer[i] & 0xffff;
+        u16 yOff = writeBuffer[i] >> 16;
 
         yOff += screenScrollMgr->sineTable[(scrollPos + 180) % SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
         writeBuffer[i] = (yOff << 16) | (xOff & 0xffff);
@@ -275,10 +231,8 @@ static void ScreenScrollManager_UpdateScrollY(SysTask *task, void *param)
 
     if (screenScrollMgr->scrollPos >= SCREEN_SCROLL_MANAGER_MAX_SCROLL) {
         screenScrollMgr->scrollPos %= SCREEN_SCROLL_MANAGER_MAX_SCROLL;
-    } else {
-        if (screenScrollMgr->scrollPos < 0) {
-            screenScrollMgr->scrollPos += SCREEN_SCROLL_MANAGER_MAX_SCROLL;
-        }
+    } else if (screenScrollMgr->scrollPos < 0) {
+        screenScrollMgr->scrollPos += SCREEN_SCROLL_MANAGER_MAX_SCROLL;
     }
 }
 
@@ -289,10 +243,8 @@ void ScreenScrollManager_StopDMA(void)
 
 void ScreenScrollManager_StartDMA(const ScreenScrollManager *screenScrollManager)
 {
-    const void *readBuffer;
-
     GF_ASSERT(screenScrollManager);
-    readBuffer = BufferManager_GetReadBuffer(screenScrollManager->bufferManager);
+    const void *readBuffer = BufferManager_GetReadBuffer(screenScrollManager->bufferManager);
     DC_FlushRange(readBuffer, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
 
     BufferManager_StartDMA(readBuffer, (void *)screenScrollManager->offsetRegisterAddr, sizeof(u32), BUFFER_MANAGER_DMA_TYPE_32BIT);

@@ -1,12 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02013B10_decl.h"
 #include "struct_decls/sys_task.h"
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
-#include "unk_02013B10.h"
+#include "screen_scroll_manager.h"
 #include "heap.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/ov5_021EF4BC.h"

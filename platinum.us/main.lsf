@@ -52,7 +52,7 @@ Static main
 	Object main.nef.p/src_unk_020131EC.c.o
 	Object main.nef.p/src_rtc.c.o
 	Object main.nef.p/src_unk_02013A04.c.o
-	Object main.nef.p/src_unk_02013B10.c.o
+	Object main.nef.p/src_screen_scroll_manager.c.o
 	Object main.nef.p/src_unk_02014000.c.o
 	Object main.nef.p/src_unk_020149F0.c.o
 	Object main.nef.p/src_unk_02014A84.c.o

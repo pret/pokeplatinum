@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02013B10_decl.h"
 #include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -11,7 +10,7 @@
 #include "overlay104/struct_ov104_0223F1B4.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02013B10.h"
+#include "screen_scroll_manager.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "overlay104/ov104_0223E894.h"
