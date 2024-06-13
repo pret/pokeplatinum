@@ -8,7 +8,7 @@
 #include "constants/font.h"
 #include "constants/heap.h"
 
-#include "gmm/pl_msg_0368.h"
+#include "gmm/message_bank_unk_0368.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
