@@ -19,7 +19,7 @@ s_to_bin_gen = generator(make_script_bin_sh,
         '@INPUT@',
     ],
     depends: [
-        pl_msg_narc, # for GMM headers
+        message_banks_narc, # for GMM headers
         asm_consts_generators, # for ASM headers
         c_consts_generators, # for C headers
     ],

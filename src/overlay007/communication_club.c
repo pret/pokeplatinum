@@ -44,7 +44,7 @@
 
 #include "constants/sdat.h"
 #include "constants/communication/comm_type.h"
-#include "gmm/pl_msg_0353.h"
+#include "gmm/message_bank_unk_0353.h"
 
 typedef struct CommClubManager CommClubManager;
 typedef void (* CommClubManTaskFunc)(SysTask *, void *);

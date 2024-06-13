@@ -104,7 +104,7 @@
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/ov5_021E1D20.h"
 
-#include "gmm/pl_msg_0367.h"
+#include "gmm/message_bank_unk_0367.h"
 
 typedef enum FieldMenuPos {
     MENU_POS_POKEDEX,
