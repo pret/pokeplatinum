@@ -48,7 +48,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov12_02226504_t {
     UnkStruct_ov12_02226490 unk_00;
-    UnkStruct_02013B10 * unk_1C;
+    BufferManager * unk_1C;
     u32 unk_20[192];
     u32 unk_320[192];
     u32 unk_620;
@@ -56,7 +56,7 @@ typedef struct UnkStruct_ov12_02226504_t {
 
 typedef struct UnkStruct_ov12_0222660C_t {
     UnkStruct_ov12_02226490 unk_00;
-    UnkStruct_02013BE0 * unk_1C;
+    ScreenScrollManager * unk_1C;
 } UnkStruct_ov12_0222660C;
 
 typedef struct UnkStruct_ov12_022267D4_t {
@@ -849,7 +849,7 @@ static void ov12_02226458 (SysTask * param0, void * param1)
         v0->unk_0C = 1;
         v0->unk_10(v0->unk_18);
     } else {
-        sub_02013BA8();
+        BufferManager_StopDMA();
     }
 }
 
@@ -888,7 +888,7 @@ static void ov12_022264D0 (UnkStruct_ov12_02226490 * param0)
         SysTask_Done(param0->unk_00);
     }
 
-    sub_02013BA8();
+    BufferManager_StopDMA();
 }
 
 static void ov12_022264F4 (UnkStruct_ov12_02226490 * param0)
@@ -901,17 +901,17 @@ static void ov12_02226504 (UnkStruct_ov12_02226504 * param0)
 {
     const void * v0;
 
-    v0 = sub_02013B68(param0->unk_1C);
+    v0 = BufferManager_GetReadBuffer(param0->unk_1C);
 
-    sub_02013BA8();
-    sub_02013BB8(v0, (void *)param0->unk_620, 4, 1);
+    BufferManager_StopDMA();
+    BufferManager_StartDMA(v0, (void *)param0->unk_620, 4, 1);
 }
 
 static void ov12_02226528 (void * param0)
 {
     UnkStruct_ov12_02226504 * v0 = param0;
 
-    sub_02013B94(v0->unk_1C);
+    BufferManager_SwapBuffers(v0->unk_1C);
     ov12_02226504(v0);
 }
 
@@ -929,7 +929,7 @@ UnkStruct_ov12_02226504 * ov12_02226544 (u32 param0, u32 param1, int param2)
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
 
     GF_ASSERT(v0);
-    v0->unk_1C = sub_02013B10(param2, v0->unk_20, v0->unk_320);
+    v0->unk_1C = BufferManager_New(param2, v0->unk_20, v0->unk_320);
 
     GF_ASSERT(v0->unk_1C);
     v0->unk_620 = param0;
@@ -949,7 +949,7 @@ void ov12_022265C0 (UnkStruct_ov12_02226504 * param0)
     ov12_022264D0(&param0->unk_00);
 
     if (param0->unk_1C != NULL) {
-        sub_02013B40(param0->unk_1C);
+        BufferManager_Delete(param0->unk_1C);
     }
 
     Heap_FreeToHeap(param0);
@@ -958,7 +958,7 @@ void ov12_022265C0 (UnkStruct_ov12_02226504 * param0)
 void * ov12_022265E4 (const UnkStruct_ov12_02226504 * param0)
 {
     GF_ASSERT(param0);
-    return sub_02013B54(param0->unk_1C);
+    return BufferManager_GetWriteBuffer(param0->unk_1C);
 }
 
 void ov12_022265F8 (UnkStruct_ov12_02226504 * param0)
@@ -971,14 +971,14 @@ static void ov12_0222660C (void * param0)
 {
     UnkStruct_ov12_0222660C * v0 = param0;
 
-    sub_02013DA4(v0->unk_1C);
-    sub_02013DDC(v0->unk_1C);
+    ScreenScrollManager_SwapBuffers(v0->unk_1C);
+    ScreenScrollManager_RestartDMA(v0->unk_1C);
 }
 
 static void ov12_02226620 (void * param0)
 {
     UnkStruct_ov12_0222660C * v0 = param0;
-    sub_02013DDC(v0->unk_1C);
+    ScreenScrollManager_RestartDMA(v0->unk_1C);
 }
 
 UnkStruct_ov12_0222660C * ov12_0222662C (u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, int param8)
@@ -994,9 +994,9 @@ UnkStruct_ov12_0222660C * ov12_0222662C (u8 param0, u8 param1, u16 param2, fx32 
     memset(v0, 0, sizeof(UnkStruct_ov12_0222660C));
 
     v1 = ov12_022266F0(param5);
-    v0->unk_1C = sub_02013BE0(param8);
+    v0->unk_1C = ScreenScrollManager_New(param8);
 
-    sub_02013C10(v0->unk_1C, param0, param1, param2, param3, param4, v1, param7, param6);
+    ScreenScrollManager_ScrollX(v0->unk_1C, param0, param1, param2, param3, param4, v1, param7, param6);
     ov12_02226490(&v0->unk_00, v0, ov12_0222660C, ov12_02226620);
 
     return v0;
@@ -1009,7 +1009,7 @@ void ov12_0222669C (UnkStruct_ov12_0222660C * param0)
     ov12_022264D0(&param0->unk_00);
 
     if (param0->unk_1C) {
-        sub_02013D74(param0->unk_1C);
+        ScreenScrollManager_Delete(param0->unk_1C);
     }
 
     Heap_FreeToHeap(param0);
@@ -1018,7 +1018,7 @@ void ov12_0222669C (UnkStruct_ov12_0222660C * param0)
 void * ov12_022266C0 (const UnkStruct_ov12_0222660C * param0)
 {
     GF_ASSERT(param0);
-    return sub_02013D94(param0->unk_1C);
+    return ScreenScrollManager_GetWriteBuffer(param0->unk_1C);
 }
 
 void ov12_022266D4 (UnkStruct_ov12_0222660C * param0)

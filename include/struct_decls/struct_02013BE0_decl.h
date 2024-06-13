@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02013BE0_DECL_H
 #define POKEPLATINUM_STRUCT_02013BE0_DECL_H
 
-typedef struct UnkStruct_02013BE0_t UnkStruct_02013BE0;
+typedef struct ScreenScrollManager ScreenScrollManager;
 
 #endif // POKEPLATINUM_STRUCT_02013BE0_DECL_H

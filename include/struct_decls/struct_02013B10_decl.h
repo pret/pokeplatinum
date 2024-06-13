@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02013B10_DECL_H
 #define POKEPLATINUM_STRUCT_02013B10_DECL_H
 
-typedef struct UnkStruct_02013B10_t UnkStruct_02013B10;
+typedef struct BufferManager BufferManager;
 
 #endif // POKEPLATINUM_STRUCT_02013B10_DECL_H

@@ -70,7 +70,7 @@ FS_EXTERN_OVERLAY(overlay97);
 
 typedef struct {
     u16 unk_00[2][768];
-    UnkStruct_02013B10 * unk_C00;
+    BufferManager * unk_C00;
     SysTask * unk_C04;
     fx32 unk_C08;
     fx32 unk_C0C;
@@ -854,8 +854,8 @@ static void ov97_02231290 (SysTask * param0, void * param1)
 {
     UnkStruct_ov97_02231318 * v0 = (UnkStruct_ov97_02231318 *)param1;
 
-    sub_02013BA8();
-    sub_02013BB8(sub_02013B68(v0->unk_C00), (void *)REG_BG0HOFS_ADDR, sizeof(u32) * 2, 1);
+    BufferManager_StopDMA();
+    BufferManager_StartDMA(BufferManager_GetReadBuffer(v0->unk_C00), (void *)REG_BG0HOFS_ADDR, sizeof(u32) * 2, 1);
 }
 
 static void ov97_022312B4 (UnkStruct_ov97_02230868 * param0, BOOL param1, fx32 param2, fx32 param3)
@@ -867,7 +867,7 @@ static void ov97_022312B4 (UnkStruct_ov97_02230868 * param0, BOOL param1, fx32 p
     v0->unk_C0C = param3;
 
     if (v0->unk_C00 == NULL) {
-        v0->unk_C00 = sub_02013B10(87, v0->unk_00[0], v0->unk_00[1]);
+        v0->unk_C00 = BufferManager_New(87, v0->unk_00[0], v0->unk_00[1]);
     }
 
     if (v0->unk_C04 == NULL) {
@@ -882,7 +882,7 @@ static void ov97_02231318 (UnkStruct_ov97_02230868 * param0)
     UnkStruct_ov97_02231318 * v0 = &param0->unk_31F4;
 
     if (v0->unk_C00) {
-        sub_02013B40(v0->unk_C00);
+        BufferManager_Delete(v0->unk_C00);
     }
 
     if (v0->unk_C04) {
@@ -892,7 +892,7 @@ static void ov97_02231318 (UnkStruct_ov97_02230868 * param0)
     v0->unk_C00 = NULL;
     v0->unk_C04 = NULL;
 
-    sub_02013BA8();
+    BufferManager_StopDMA();
 }
 
 static BOOL ov97_02231354 (UnkStruct_ov97_02230868 * param0)
@@ -927,7 +927,7 @@ static BOOL ov97_02231354 (UnkStruct_ov97_02230868 * param0)
         }
     }
 
-    v2 = sub_02013B54(v3->unk_C00);
+    v2 = BufferManager_GetWriteBuffer(v3->unk_C00);
 
     for (v0 = 168 / 2; v0 < 168; v0++) {
         v1 = v4 / FX32_ONE;
@@ -947,7 +947,7 @@ static BOOL ov97_02231354 (UnkStruct_ov97_02230868 * param0)
     }
 
     DC_FlushRange(v2, sizeof(u16) * HW_LCD_HEIGHT * 4);
-    sub_02013B94(v3->unk_C00);
+    BufferManager_SwapBuffers(v3->unk_C00);
 
     return 0;
 }

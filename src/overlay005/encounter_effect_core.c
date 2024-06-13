@@ -92,7 +92,7 @@ typedef struct TallGrassEncounterEffect {
 } TallGrassEncounterEffect;
 
 typedef struct {
-    UnkStruct_02013BE0 * unk_00;
+    ScreenScrollManager * unk_00;
     SysTask * dmaTransferTask;
     u32 unk_08;
 } ScreenShakeEffect;
@@ -434,17 +434,17 @@ static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param)
     ScreenShakeEffect *screenShakeEfx = param;
 
     if (screenShakeEfx->unk_08 >= 2) {
-        sub_02013DA4(screenShakeEfx->unk_00);
+        ScreenScrollManager_SwapBuffers(screenShakeEfx->unk_00);
         screenShakeEfx->unk_08 = 0;
     }
 
-    sub_02013DDC(screenShakeEfx->unk_00);
+    ScreenScrollManager_RestartDMA(screenShakeEfx->unk_00);
     screenShakeEfx->unk_08++;
 }
 
 static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, u32 heapID)
 {
-    screenShake->unk_00 = sub_02013BE0(heapID);
+    screenShake->unk_00 = ScreenScrollManager_New(heapID);
     screenShake->unk_08 = 0;
     screenShake->dmaTransferTask = ScreenShakeEffect_CreateDMATransferTask(screenShake);
 }
@@ -452,13 +452,13 @@ static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, u32 heapID)
 static void ScreenShakeEffect_Finish (ScreenShakeEffect *screenShake)
 {
     SysTask_Done(screenShake->dmaTransferTask);
-    sub_02013D38(screenShake->unk_00);
-    sub_02013D74(screenShake->unk_00);
+    ScreenScrollManager_Stop(screenShake->unk_00);
+    ScreenScrollManager_Delete(screenShake->unk_00);
 }
 
 static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 sineRadius, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority)
 {
-    sub_02013C10(screenShake->unk_00, startX, endX, angleIncrement, sineRadius, shakeSpeed, bg, defaultValue, priority);
+    ScreenScrollManager_ScrollX(screenShake->unk_00, startX, endX, angleIncrement, sineRadius, shakeSpeed, bg, defaultValue, priority);
 }
 
 static void ov5_021E290C(ScreenShakeEffect *screenShake, u32 param1)
@@ -467,7 +467,7 @@ static void ov5_021E290C(ScreenShakeEffect *screenShake, u32 param1)
     int v1;
     s16 v2;
 
-    v0 = sub_02013D94(screenShake->unk_00);
+    v0 = ScreenScrollManager_GetWriteBuffer(screenShake->unk_00);
 
     for (v1 = 0; v1 < 192; v1++) {
         v2 = v0[v1] & 0xffff;

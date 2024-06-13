@@ -1,303 +1,299 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "struct_decls/sys_task.h"
 
 #include "unk_0200D9E8.h"
 #include "unk_02013B10.h"
 #include "heap.h"
 
-typedef struct UnkStruct_02013B10_t {
-    void * unk_00[2];
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A[2];
-} UnkStruct_02013B10;
+typedef struct BufferManager {
+    void *buffers[2];
+    u8 writeBuffer;
+    u8 mode;
+    u8 padding[2];
+} BufferManager;
 
-typedef struct UnkStruct_02013BE0_t {
-    u32 unk_00[192];
-    u32 unk_300[192];
-    UnkStruct_02013B10 * unk_600;
-    SysTask * unk_604;
-    BOOL unk_608;
-    s16 unk_60C[192];
-    u8 unk_78C;
-    u8 unk_78D;
-    u32 unk_790;
-    u32 unk_794;
-    s16 unk_798;
-    s16 unk_79A;
-} UnkStruct_02013BE0;
+typedef struct ScreenScrollManager {
+    u32 buffer1[SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
+    u32 buffer2[SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
+    BufferManager *bufferManager;
+    SysTask *scrollTask;
+    BOOL unused;
+    s16 sineTable[SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
+    u8 start;
+    u8 end;
+    u32 offsetRegisterAddr;
+    u32 initValue;
+    s16 scrollPos;
+    s16 scrollSpeed;
+} ScreenScrollManager;
 
-static void sub_02013FC8(void);
-static void sub_02013FD0(const UnkStruct_02013BE0 * param0);
-static void sub_02013E58(SysTask * param0, void * param1);
-static void sub_02013F04(SysTask * param0, void * param1);
+static void ScreenScrollManager_StopDMA(void);
+static void ScreenScrollManager_StartDMA(const ScreenScrollManager *screenScrollMgr);
+static void ScreenScrollManager_UpdateScrollX(SysTask *task, void *param);
+static void ScreenScrollManager_UpdateScrollY(SysTask *task, void *param);
 
-UnkStruct_02013B10 * sub_02013B10 (int param0, void * param1, void * param2)
+BufferManager *BufferManager_New(enum HeapId heapID, void *buffer1, void *buffer2)
 {
-    UnkStruct_02013B10 * v0;
+    BufferManager *bufferManager = Heap_AllocFromHeap(heapID, sizeof(BufferManager));
+    memset(bufferManager, 0, sizeof(BufferManager));
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02013B10));
-    memset(v0, 0, sizeof(UnkStruct_02013B10));
+    bufferManager->mode = BUFFER_MANAGER_MODE_DOUBLE;
+    bufferManager->buffers[0] = buffer1;
+    bufferManager->buffers[1] = buffer2;
 
-    v0->unk_09 = 1;
-    v0->unk_00[0] = param1;
-    v0->unk_00[1] = param2;
-
-    return v0;
+    return bufferManager;
 }
 
-void sub_02013B40 (UnkStruct_02013B10 * param0)
+void BufferManager_Delete(BufferManager *bufferManager)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(bufferManager);
 
-    Heap_FreeToHeap(param0);
-    param0 = NULL;
+    Heap_FreeToHeap(bufferManager);
+    bufferManager = NULL;
 }
 
-void * sub_02013B54 (const UnkStruct_02013B10 * param0)
+void *BufferManager_GetWriteBuffer(const BufferManager *bufferManager)
 {
-    GF_ASSERT(param0);
-    return param0->unk_00[param0->unk_08];
+    GF_ASSERT(bufferManager);
+    return bufferManager->buffers[bufferManager->writeBuffer];
 }
 
-const void * sub_02013B68 (const UnkStruct_02013B10 * param0)
+const void *BufferManager_GetReadBuffer(const BufferManager *bufferManager)
 {
-    GF_ASSERT(param0);
-    return param0->unk_00[param0->unk_08 ^ 1];
+    GF_ASSERT(bufferManager);
+    return bufferManager->buffers[bufferManager->writeBuffer ^ 1];
 }
 
-void sub_02013B80 (UnkStruct_02013B10 * param0, u8 param1)
+// mode can be either BUFFER_MANAGER_MODE_SINGLE or BUFFER_MANAGER_MODE_DOUBLE
+void BufferManager_SetMode(BufferManager *bufferManager, u8 mode)
 {
-    GF_ASSERT(param0);
-    param0->unk_09 = param1;
+    GF_ASSERT(bufferManager);
+    bufferManager->mode = mode;
 }
 
-void sub_02013B94 (UnkStruct_02013B10 * param0)
+void BufferManager_SwapBuffers(BufferManager *bufferManager)
 {
-    if (param0 == NULL) {
+    if (bufferManager == NULL) {
         return;
     }
 
-    if (param0->unk_09 == 0) {
+    if (bufferManager->mode == BUFFER_MANAGER_MODE_SINGLE) {
         return;
     }
 
-    param0->unk_08 ^= 1;
+    bufferManager->writeBuffer ^= 1;
 }
 
-void sub_02013BA8 (void)
+void BufferManager_StopDMA(void)
 {
     MI_StopDma(0);
     MI_WaitDma(0);
 }
 
-void sub_02013BB8 (const void * param0, void * param1, int param2, int param3)
+void BufferManager_StartDMA(const void *src, void *dst, int size, enum BufferManagerDMAType dmaType)
 {
-    if (param3 == 1) {
-        MI_HBlankDmaCopy32(0, param0, param1, param2);
+    if (dmaType == BUFFER_MANAGER_DMA_TYPE_32BIT) {
+        MI_HBlankDmaCopy32(0, src, dst, size);
     } else {
-        MI_HBlankDmaCopy16(0, param0, param1, param2);
+        MI_HBlankDmaCopy16(0, src, dst, size);
     }
 }
 
-UnkStruct_02013BE0 * sub_02013BE0 (int param0)
+ScreenScrollManager *ScreenScrollManager_New(enum HeapId heapID)
 {
-    UnkStruct_02013BE0 * v0;
+    ScreenScrollManager *screenScrollMgr = Heap_AllocFromHeap(heapID, sizeof(ScreenScrollManager));
+    memset(screenScrollMgr, 0, sizeof(ScreenScrollManager));
+    screenScrollMgr->bufferManager = BufferManager_New(heapID, screenScrollMgr->buffer1, screenScrollMgr->buffer2);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02013BE0));
-    memset(v0, 0, sizeof(UnkStruct_02013BE0));
-    v0->unk_600 = sub_02013B10(param0, v0->unk_00, v0->unk_300);
-
-    return v0;
+    return screenScrollMgr;
 }
 
-void sub_02013C10 (UnkStruct_02013BE0 * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8)
+void ScreenScrollManager_ScrollX(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_604 == NULL);
+    GF_ASSERT(screenScrollMgr);
+    GF_ASSERT(screenScrollMgr->scrollTask == NULL);
 
-    param0->unk_78C = param1;
-    param0->unk_78D = param2;
-    param0->unk_798 = 0;
-    param0->unk_79A = param5;
-    param0->unk_790 = param6;
-    param0->unk_794 = param7;
+    screenScrollMgr->start = start;
+    screenScrollMgr->end = end;
+    screenScrollMgr->scrollPos = 0;
+    screenScrollMgr->scrollSpeed = speed;
+    screenScrollMgr->offsetRegisterAddr = bg;
+    screenScrollMgr->initValue = initValue;
 
-    sub_02013DFC(param0->unk_60C, 192, param3, param4);
+    ScreenScrollManager_CreateSineTable(screenScrollMgr->sineTable, SCREEN_SCROLL_MANAGER_BUFFER_SIZE, angleIncrement, amplitude);
 
-    param0->unk_604 = SysTask_Start(sub_02013E58, param0, param8);
+    screenScrollMgr->scrollTask = SysTask_Start(ScreenScrollManager_UpdateScrollX, screenScrollMgr, priority);
 
-    MI_CpuFill32(param0->unk_00, param0->unk_794, sizeof(u32) * 192);
-    MI_CpuFill32(param0->unk_300, param0->unk_794, sizeof(u32) * 192);
+    MI_CpuFill32(screenScrollMgr->buffer1, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
+    MI_CpuFill32(screenScrollMgr->buffer2, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
 }
 
-void sub_02013CA4 (UnkStruct_02013BE0 * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8)
+void ScreenScrollManager_ScrollY(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_604 == NULL);
+    GF_ASSERT(screenScrollMgr);
+    GF_ASSERT(screenScrollMgr->scrollTask == NULL);
 
-    param0->unk_78C = param1;
-    param0->unk_78D = param2;
-    param0->unk_798 = 0;
-    param0->unk_79A = param5;
-    param0->unk_790 = param6;
-    param0->unk_794 = param7;
+    screenScrollMgr->start = start;
+    screenScrollMgr->end = end;
+    screenScrollMgr->scrollPos = 0;
+    screenScrollMgr->scrollSpeed = speed;
+    screenScrollMgr->offsetRegisterAddr = bg;
+    screenScrollMgr->initValue = initValue;
 
-    sub_02013DFC(param0->unk_60C, 192, param3, param4);
+    ScreenScrollManager_CreateSineTable(screenScrollMgr->sineTable, SCREEN_SCROLL_MANAGER_BUFFER_SIZE, angleIncrement, amplitude);
 
-    param0->unk_604 = SysTask_Start(sub_02013F04, param0, param8);
+    screenScrollMgr->scrollTask = SysTask_Start(ScreenScrollManager_UpdateScrollY, screenScrollMgr, priority);
 
-    MI_CpuFill32(param0->unk_00, param0->unk_794, sizeof(u32) * 192);
-    MI_CpuFill32(param0->unk_300, param0->unk_794, sizeof(u32) * 192);
+    MI_CpuFill32(screenScrollMgr->buffer1, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
+    MI_CpuFill32(screenScrollMgr->buffer2, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
 }
 
-void sub_02013D38 (UnkStruct_02013BE0 * param0)
+void ScreenScrollManager_Stop(ScreenScrollManager *screenScrollMgr)
 {
-    void * v0;
+    void *writeBuffer;
 
-    GF_ASSERT(param0);
+    GF_ASSERT(screenScrollMgr);
 
-    if (param0->unk_604) {
-        SysTask_Done(param0->unk_604);
-        param0->unk_604 = NULL;
+    if (screenScrollMgr->scrollTask) {
+        SysTask_Done(screenScrollMgr->scrollTask);
+        screenScrollMgr->scrollTask = NULL;
 
-        v0 = sub_02013B54(param0->unk_600);
-        memset(v0, param0->unk_794, sizeof(u32) * 192);
+        writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+        memset(writeBuffer, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
     }
 }
 
-void sub_02013D74 (UnkStruct_02013BE0 * param0)
+void ScreenScrollManager_Delete(ScreenScrollManager *screenScrollMgr)
 {
-    sub_02013D38(param0);
-    sub_02013FC8();
-    sub_02013B40(param0->unk_600);
-    Heap_FreeToHeap(param0);
+    ScreenScrollManager_Stop(screenScrollMgr);
+    ScreenScrollManager_StopDMA();
+    BufferManager_Delete(screenScrollMgr->bufferManager);
+    Heap_FreeToHeap(screenScrollMgr);
 }
 
-void * sub_02013D94 (UnkStruct_02013BE0 * param0)
+void *ScreenScrollManager_GetWriteBuffer(ScreenScrollManager *screenScrollMgr)
 {
-    return sub_02013B54(param0->unk_600);
+    return BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
 }
 
-void sub_02013DA4 (UnkStruct_02013BE0 * param0)
+void ScreenScrollManager_SwapBuffers(ScreenScrollManager *screenScrollMgr)
 {
-    void * v0;
+    void *writeBuffer;
 
-    if (param0 == NULL) {
+    if (screenScrollMgr == NULL) {
         return;
     }
 
-    if (param0->unk_604) {
-        sub_02013B94(param0->unk_600);
+    if (screenScrollMgr->scrollTask) {
+        BufferManager_SwapBuffers(screenScrollMgr->bufferManager);
 
-        v0 = sub_02013B54(param0->unk_600);
-        MI_CpuFill32(v0, param0->unk_794, sizeof(u32) * 192);
+        writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+        MI_CpuFill32(writeBuffer, screenScrollMgr->initValue, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
     }
 }
 
-void sub_02013DDC (UnkStruct_02013BE0 * param0)
+void ScreenScrollManager_RestartDMA(ScreenScrollManager *screenScrollMgr)
 {
-    if (param0 == NULL) {
+    if (screenScrollMgr == NULL) {
         return;
     }
 
-    if (param0->unk_604) {
-        sub_02013FC8();
-        sub_02013FD0(param0);
+    if (screenScrollMgr->scrollTask) {
+        ScreenScrollManager_StopDMA();
+        ScreenScrollManager_StartDMA(screenScrollMgr);
     }
 }
 
-void sub_02013DFC (s16 * param0, u32 param1, u16 param2, fx32 param3)
+void ScreenScrollManager_CreateSineTable(s16 *dest, u32 entryCount, u16 angleIncrement, fx32 amplitude)
 {
-    int v0;
-    u16 v1;
+    int i;
+    u16 angle = 0;
 
-    v1 = 0;
-
-    for (v0 = 0; v0 < param1; v0++) {
-        param0[v0] = FX_Mul(FX_SinIdx(v1), param3) >> FX32_SHIFT;
-        v1 += param2;
+    for (i = 0; i < entryCount; i++) {
+        dest[i] = FX_Mul(FX_SinIdx(angle), amplitude) >> FX32_SHIFT;
+        angle += angleIncrement;
     }
 }
 
-static void sub_02013E58 (SysTask * param0, void * param1)
+static void ScreenScrollManager_UpdateScrollX(SysTask *task, void *param)
 {
-    UnkStruct_02013BE0 * v0 = param1;
-    int v1;
-    u32 * v2;
-    u8 v3;
-    s16 v4;
-    u16 v5;
+    ScreenScrollManager *screenScrollMgr = param;
+    int i;
+    u32 *writeBuffer;
+    u8 scrollPos;
+    s16 xOff;
+    u16 yOff;
 
-    v2 = sub_02013B54(v0->unk_600);
-    v3 = v0->unk_798 / 100;
+    writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+    scrollPos = screenScrollMgr->scrollPos / SCREEN_SCROLL_MANAGER_SCALING_FACTOR;
 
-    for (v1 = v0->unk_78C; v1 <= v0->unk_78D; v1++) {
-        v4 = v2[v1] & 0xffff;
-        v5 = v2[v1] >> 16;
+    for (i = screenScrollMgr->start; i <= screenScrollMgr->end; i++) {
+        xOff = writeBuffer[i] & 0xffff;
+        yOff = writeBuffer[i] >> 16;
 
-        v4 += v0->unk_60C[v3];
-        v2[v1] = (v5 << 16) | (v4 & 0xffff);
-        v3 = (v3 + 1) % 192;
+        xOff += screenScrollMgr->sineTable[scrollPos];
+        writeBuffer[i] = (yOff << 16) | (xOff & 0xffff);
+        scrollPos = (scrollPos + 1) % SCREEN_SCROLL_MANAGER_BUFFER_SIZE;
     }
 
-    v0->unk_798 += v0->unk_79A;
+    screenScrollMgr->scrollPos += screenScrollMgr->scrollSpeed;
 
-    if (v0->unk_798 >= (192 * 100)) {
-        v0->unk_798 %= (192 * 100);
+    if (screenScrollMgr->scrollPos >= SCREEN_SCROLL_MANAGER_MAX_SCROLL) {
+        screenScrollMgr->scrollPos %= SCREEN_SCROLL_MANAGER_MAX_SCROLL;
     } else {
-        if (v0->unk_798 < 0) {
-            v0->unk_798 += (192 * 100);
+        if (screenScrollMgr->scrollPos < 0) {
+            screenScrollMgr->scrollPos += SCREEN_SCROLL_MANAGER_MAX_SCROLL;
         }
     }
 }
 
-static void sub_02013F04 (SysTask * param0, void * param1)
+static void ScreenScrollManager_UpdateScrollY(SysTask *task, void *param)
 {
-    UnkStruct_02013BE0 * v0 = param1;
-    int v1;
-    u32 * v2;
-    u8 v3;
-    s16 v4;
-    u16 v5;
+    ScreenScrollManager *screenScrollMgr = param;
+    int i;
+    u32 *writeBuffer;
+    u8 scrollPos;
+    s16 xOff;
+    u16 yOff;
 
-    v2 = sub_02013B54(v0->unk_600);
-    v3 = v0->unk_798 / 100;
+    writeBuffer = BufferManager_GetWriteBuffer(screenScrollMgr->bufferManager);
+    scrollPos = screenScrollMgr->scrollPos / SCREEN_SCROLL_MANAGER_SCALING_FACTOR;
 
-    for (v1 = v0->unk_78C; v1 <= v0->unk_78D; v1++) {
-        v4 = v2[v1] & 0xffff;
-        v5 = v2[v1] >> 16;
+    for (i = screenScrollMgr->start; i <= screenScrollMgr->end; i++) {
+        xOff = writeBuffer[i] & 0xffff;
+        yOff = writeBuffer[i] >> 16;
 
-        v5 += v0->unk_60C[(v3 + 180) % 192];
-        v2[v1] = (v5 << 16) | (v4 & 0xffff);
-        v3 = (v3 + 1) % 192;
+        yOff += screenScrollMgr->sineTable[(scrollPos + 180) % SCREEN_SCROLL_MANAGER_BUFFER_SIZE];
+        writeBuffer[i] = (yOff << 16) | (xOff & 0xffff);
+        scrollPos = (scrollPos + 1) % SCREEN_SCROLL_MANAGER_BUFFER_SIZE;
     }
 
-    v0->unk_798 += v0->unk_79A;
+    screenScrollMgr->scrollPos += screenScrollMgr->scrollSpeed;
 
-    if (v0->unk_798 >= (192 * 100)) {
-        v0->unk_798 %= (192 * 100);
+    if (screenScrollMgr->scrollPos >= SCREEN_SCROLL_MANAGER_MAX_SCROLL) {
+        screenScrollMgr->scrollPos %= SCREEN_SCROLL_MANAGER_MAX_SCROLL;
     } else {
-        if (v0->unk_798 < 0) {
-            v0->unk_798 += (192 * 100);
+        if (screenScrollMgr->scrollPos < 0) {
+            screenScrollMgr->scrollPos += SCREEN_SCROLL_MANAGER_MAX_SCROLL;
         }
     }
 }
 
-void sub_02013FC8 (void)
+void ScreenScrollManager_StopDMA(void)
 {
-    sub_02013BA8();
+    BufferManager_StopDMA();
 }
 
-void sub_02013FD0 (const UnkStruct_02013BE0 * param0)
+void ScreenScrollManager_StartDMA(const ScreenScrollManager *screenScrollManager)
 {
-    const void * v0;
+    const void *readBuffer;
 
-    GF_ASSERT(param0);
-    v0 = sub_02013B68(param0->unk_600);
-    DC_FlushRange(v0, sizeof(u32) * 192);
+    GF_ASSERT(screenScrollManager);
+    readBuffer = BufferManager_GetReadBuffer(screenScrollManager->bufferManager);
+    DC_FlushRange(readBuffer, sizeof(u32) * SCREEN_SCROLL_MANAGER_BUFFER_SIZE);
 
-    sub_02013BB8(v0, (void *)param0->unk_790, sizeof(u32), 1);
+    BufferManager_StartDMA(readBuffer, (void *)screenScrollManager->offsetRegisterAddr, sizeof(u32), BUFFER_MANAGER_DMA_TYPE_32BIT);
 }

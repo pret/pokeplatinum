@@ -163,7 +163,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov114_0225CEF0 * unk_00;
     s16 unk_04[2][192];
-    UnkStruct_02013B10 * unk_304;
+    BufferManager * unk_304;
 } UnkStruct_ov114_0225DFFC;
 
 typedef struct UnkStruct_ov114_0225D678_t {
@@ -2188,9 +2188,9 @@ static void ov114_0225DF7C (UnkStruct_ov114_0225DFFC * param0, UnkStruct_ov114_0
         MI_CpuFill16(&param0->unk_04[v0], -255, sizeof(s16) * 192);
     }
 
-    param0->unk_304 = sub_02013B10(param2, &param0->unk_04[0], &param0->unk_04[1]);
+    param0->unk_304 = BufferManager_New(param2, &param0->unk_04[0], &param0->unk_04[1]);
 
-    sub_02013B80(param0->unk_304, 0);
+    BufferManager_SetMode(param0->unk_304, 0);
     SetHBlankCallback(ov114_0225E0AC, param0);
 }
 
@@ -2198,7 +2198,7 @@ static void ov114_0225DFFC (UnkStruct_ov114_0225DFFC * param0)
 {
     if (param0->unk_304 != NULL) {
         SetHBlankCallback(NULL, NULL);
-        sub_02013B40(param0->unk_304);
+        BufferManager_Delete(param0->unk_304);
         param0->unk_304 = NULL;
     }
 }
@@ -2211,7 +2211,7 @@ static void ov114_0225E028 (UnkStruct_ov114_0225DFFC * param0, const UnkStruct_o
 
     GF_ASSERT(param0->unk_304 != NULL);
 
-    v0 = sub_02013B54(param0->unk_304);
+    v0 = BufferManager_GetWriteBuffer(param0->unk_304);
 
     for (v1 = 0; v1 < 6 * 8; v1++) {
         v2 = v1 - 1;
@@ -2224,7 +2224,7 @@ static void ov114_0225E028 (UnkStruct_ov114_0225DFFC * param0, const UnkStruct_o
         v0[v2] = param1->unk_1C.unk_00 >> FX32_SHIFT;
     }
 
-    sub_02013B80(param0->unk_304, 1);
+    BufferManager_SetMode(param0->unk_304, 1);
 }
 
 static void ov114_0225E08C (UnkStruct_ov114_0225DFFC * param0)
@@ -2233,8 +2233,8 @@ static void ov114_0225E08C (UnkStruct_ov114_0225DFFC * param0)
         return;
     }
 
-    sub_02013B94(param0->unk_304);
-    sub_02013B80(param0->unk_304, 0);
+    BufferManager_SwapBuffers(param0->unk_304);
+    BufferManager_SetMode(param0->unk_304, 0);
 }
 
 static void ov114_0225E0AC (void * param0)
@@ -2249,7 +2249,7 @@ static void ov114_0225E0AC (void * param0)
         return;
     }
 
-    v2 = sub_02013B68(v0->unk_304);
+    v2 = BufferManager_GetReadBuffer(v0->unk_304);
 
     if (GX_IsHBlank()) {
         sub_02019184(v0->unk_00->unk_00, 0, 0, v2[v1]);

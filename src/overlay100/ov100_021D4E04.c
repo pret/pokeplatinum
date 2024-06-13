@@ -33,7 +33,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov104_0223F174_t {
     UnkStruct_ov104_0223F174_sub1 unk_00;
-    UnkStruct_02013B10 * unk_1C;
+    BufferManager * unk_1C;
     u32 unk_20[192];
     u32 unk_320[192];
     u32 unk_620;
@@ -67,17 +67,17 @@ static void ov100_021D4E18 (SysTask * param0, void * param1)
     UnkStruct_ov100_021D4E3C * v0 = param1;
 
     if (v0->unk_08 >= 2) {
-        sub_02013DA4(v0->unk_00);
+        ScreenScrollManager_SwapBuffers(v0->unk_00);
         v0->unk_08 = 0;
     }
 
-    sub_02013DDC(v0->unk_00);
+    ScreenScrollManager_RestartDMA(v0->unk_00);
     v0->unk_08++;
 }
 
 void ov100_021D4E3C (UnkStruct_ov100_021D4E3C * param0, u32 param1)
 {
-    param0->unk_00 = sub_02013BE0(param1);
+    param0->unk_00 = ScreenScrollManager_New(param1);
     param0->unk_08 = 0;
     param0->unk_04 = ov100_021D4E04(param0);
 }
@@ -85,16 +85,16 @@ void ov100_021D4E3C (UnkStruct_ov100_021D4E3C * param0, u32 param1)
 void ov100_021D4E58 (UnkStruct_ov100_021D4E3C * param0)
 {
     SysTask_Done(param0->unk_04);
-    sub_02013D38(param0->unk_00);
-    sub_02013D74(param0->unk_00);
+    ScreenScrollManager_Stop(param0->unk_00);
+    ScreenScrollManager_Delete(param0->unk_00);
 }
 
 void ov100_021D4E70 (UnkStruct_ov100_021D4E3C * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8, int param9)
 {
     if (param9 == 0) {
-        sub_02013C10(param0->unk_00, param1, param2, param3, param4, param5, param6, param7, param8);
+        ScreenScrollManager_ScrollX(param0->unk_00, param1, param2, param3, param4, param5, param6, param7, param8);
     } else {
-        sub_02013CA4(param0->unk_00, param1, param2, param3, param4, param5, param6, param7, param8);
+        ScreenScrollManager_ScrollY(param0->unk_00, param1, param2, param3, param4, param5, param6, param7, param8);
     }
 }
 
