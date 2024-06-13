@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV5_021E2338_H
-#define POKEPLATINUM_OV5_021E2338_H
+#ifndef POKEPLATINUM_ENCOUNTER_EFFECT_CORE_H
+#define POKEPLATINUM_ENCOUNTER_EFFECT_CORE_H
 
 #include "struct_decls/sys_task.h"
 
@@ -35,4 +35,4 @@ void ov5_021E61C0(SysTask * param0, void * param1);
 void ov5_021E61E4(SysTask * param0, void * param1);
 void ov5_021E6208(SysTask * param0, void * param1);
 
-#endif // POKEPLATINUM_OV5_021E2338_H
+#endif // POKEPLATINUM_ENCOUNTER_EFFECT_CORE_H

@@ -44,7 +44,7 @@
 #include "trainer_info.h"
 #include "overlay005/encounter_effect.h"
 #include "overlay005/ov5_021E22B0.h"
-#include "overlay005/ov5_021E2338.h"
+#include "overlay005/encounter_effect_core.h"
 #include "overlay005/hblank_system.h"
 
 // EncounterEffect_TallGrass_HigherLevel
@@ -592,7 +592,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
             *(encEffect->done) = TRUE;
         }
 
-        EncounterEffect_Finish(encEffect, param);
+        EncounterEffect_Finish(encEffect, task);
         sub_0200F344(1, 0x0);
         break;
     }

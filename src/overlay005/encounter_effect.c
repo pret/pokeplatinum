@@ -4,7 +4,6 @@
 #include "constants/battle.h"
 
 #include "constants/heap.h"
-#include "inlines.h"
 
 #include "nitro/fx/fx.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -52,7 +51,7 @@
 #include "pokemon.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/encounter_effect.h"
-#include "overlay005/ov5_021E2338.h"
+#include "overlay005/encounter_effect_core.h"
 #include "overlay005/hblank_system.h"
 #include "enc_effects.h"
 
