@@ -2,11 +2,9 @@
 #define POKEPLATINUM_FIELD_ENCOUNTER_DATA_H
 
 typedef struct {
-    // Level
-    char unk_00;
+    char level;
     u8 padding_01[3];
-    // Species
-    int unk_04;
+    int species;
 } FieldEncounterData;
 
 #endif // POKEPLATINUM_FIELD_ENCOUNTER_DATA_H

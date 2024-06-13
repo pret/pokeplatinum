@@ -83,7 +83,7 @@ BOOL MapHeaderData_SetWarpEventPos(FieldSystem * fieldSystem, u16 index, u16 x, 
 BOOL MapHeaderData_SetWarpEventDestHeaderID(FieldSystem * fieldSystem, u16 index, u16 destHeaderID);
 BOOL MapHeaderData_SetWarpEventDestWarpID(FieldSystem * fieldSystem, u16 index, u16 destWarpID);
 BOOL MapHeaderData_SetBgEventPos(FieldSystem * fieldSystem, u16 index, u16 x, u16 z);
-void MapHeaderData_LoadWildEncounters(WildEncounterData * param0, int headerID);
+void MapHeaderData_LoadWildEncounters(WildEncounterData * encounterData, int headerID);
 const WildEncounterData * MapHeaderData_GetWildEncounters(const FieldSystem * fieldSystem);
 const u8 * MapHeaderData_GetScripts(const FieldSystem * fieldSystem);
 BOOL MapHeaderData_IsAnyObjectEventAtPos(const FieldSystem * fieldSystem, u16 x, u16 z);

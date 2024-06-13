@@ -37,19 +37,18 @@ int ov6_02242984 (FieldSystem * fieldSystem)
     u8 v0;
     BOOL v1;
     int v2[12];
-    WildEncounterData * v3;
 
-    v3 = (WildEncounterData *)MapHeaderData_GetWildEncounters(fieldSystem);
+    WildEncounterData * encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
 
     for (v0 = 0; v0 < 12; v0++) {
-        v2[v0] = v3->unk_04[v0].unk_04;
+        v2[v0] = encounterData->fieldEncounters[v0].species;
     }
 
     v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
 
     ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->location->mapId, &v2[6], &v2[7]);
-    ov6_02240C9C(v3, &v2[2], &v2[3]);
-    ov6_022477B8(v3, v1, &v2[8], &v2[9]);
+    ov6_02240C9C(encounterData, &v2[2], &v2[3]);
+    ov6_022477B8(encounterData, v1, &v2[8], &v2[9]);
 
     return v2[inline_020564D0(12)];
 }
