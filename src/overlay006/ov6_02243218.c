@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay006/struct_ov6_02242634.h"
+#include "overlay006/encounter_data.h"
 
 #include "map_header_data.h"
 #include "overlay006/ov6_02243218.h"
@@ -38,7 +38,7 @@ u32 ov6_02243218 (const u32 param0)
 
 void ov6_0224322C (const u32 param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_ov6_02242634 v0;
+    WildEncounterData v0;
     u32 v1;
 
     v1 = Unk_ov6_02249090[(param0 % 22)];

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "overlay006/struct_ov6_02242634.h"
+#include "overlay006/encounter_data.h"
 
 #include "narc.h"
 #include "heap.h"
@@ -243,9 +243,9 @@ static void MapHeaderData_ParseEvents (MapHeaderData * data)
     }
 }
 
-void MapHeaderData_LoadWildEncounters (UnkStruct_ov6_02242634 * data, int headerID)
+void MapHeaderData_LoadWildEncounters (WildEncounterData * data, int headerID)
 {
-    memset(data, 0, sizeof(UnkStruct_ov6_02242634));
+    memset(data, 0, sizeof(WildEncounterData));
     if (MapHeader_HasWildEncounters(headerID)) {
         int narcIndex = (GAME_VERSION == DIAMOND || GAME_VERSION == PLATINUM)
             ? NARC_INDEX_FIELDDATA__ENCOUNTDATA__PL_ENC_DATA
@@ -254,7 +254,7 @@ void MapHeaderData_LoadWildEncounters (UnkStruct_ov6_02242634 * data, int header
     }
 }
 
-const UnkStruct_ov6_02242634 * MapHeaderData_GetWildEncounters (const FieldSystem * fieldSystem)
+const WildEncounterData * MapHeaderData_GetWildEncounters (const FieldSystem * fieldSystem)
 {
     return &fieldSystem->mapHeaderData->wildEncounters;
 }

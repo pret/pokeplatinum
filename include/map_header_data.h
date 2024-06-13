@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 #include "field/field_system_decl.h"
-#include "overlay006/struct_ov6_02242634.h"
+#include "overlay006/encounter_data.h"
 
 typedef struct BgEvent {
     u16 script;
@@ -61,7 +61,7 @@ typedef struct MapHeaderData {
     const CoordEvent * coordEvents;
     u32 tmpEventsBuf[512];
     u32 scripts[64];
-    UnkStruct_ov6_02242634 wildEncounters;
+    WildEncounterData wildEncounters;
 } MapHeaderData;
 
 void MapHeaderData_Init(FieldSystem * fieldSystem, enum HeapId heapID);
@@ -83,8 +83,8 @@ BOOL MapHeaderData_SetWarpEventPos(FieldSystem * fieldSystem, u16 index, u16 x, 
 BOOL MapHeaderData_SetWarpEventDestHeaderID(FieldSystem * fieldSystem, u16 index, u16 destHeaderID);
 BOOL MapHeaderData_SetWarpEventDestWarpID(FieldSystem * fieldSystem, u16 index, u16 destWarpID);
 BOOL MapHeaderData_SetBgEventPos(FieldSystem * fieldSystem, u16 index, u16 x, u16 z);
-void MapHeaderData_LoadWildEncounters(UnkStruct_ov6_02242634 * param0, int headerID);
-const UnkStruct_ov6_02242634 * MapHeaderData_GetWildEncounters(const FieldSystem * fieldSystem);
+void MapHeaderData_LoadWildEncounters(WildEncounterData * param0, int headerID);
+const WildEncounterData * MapHeaderData_GetWildEncounters(const FieldSystem * fieldSystem);
 const u8 * MapHeaderData_GetScripts(const FieldSystem * fieldSystem);
 BOOL MapHeaderData_IsAnyObjectEventAtPos(const FieldSystem * fieldSystem, u16 x, u16 z);
 

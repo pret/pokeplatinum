@@ -4,9 +4,9 @@
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "overlay006/battle_params.h"
-#include "overlay006/struct_ov6_02242634.h"
+#include "overlay006/encounter_data.h"
 
-void ov6_02240C9C(const UnkStruct_ov6_02242634 * param0, int * param1, int * param2);
+void ov6_02240C9C(const WildEncounterData * param0, int * param1, int * param2);
 BOOL ov6_02240D5C(FieldSystem * fieldSystem);
 BOOL ov6_0224106C(FieldSystem * fieldSystem, const int param1, BattleParams ** param2);
 BOOL ov6_022411C8(FieldSystem * fieldSystem, TaskManager * param1);

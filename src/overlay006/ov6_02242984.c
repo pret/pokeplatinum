@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "overlay006/struct_ov6_02242634.h"
+#include "overlay006/encounter_data.h"
 
 #include "narc.h"
 #include "heap.h"
@@ -37,9 +37,9 @@ int ov6_02242984 (FieldSystem * fieldSystem)
     u8 v0;
     BOOL v1;
     int v2[12];
-    UnkStruct_ov6_02242634 * v3;
+    WildEncounterData * v3;
 
-    v3 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
+    v3 = (WildEncounterData *)MapHeaderData_GetWildEncounters(fieldSystem);
 
     for (v0 = 0; v0 < 12; v0++) {
         v2[v0] = v3->unk_04[v0].unk_04;
