@@ -90,10 +90,10 @@ typedef struct TallGrassEncounterEffect {
     ScreenSliceEffect * screenSliceEfx;
 } TallGrassEncounterEffect;
 
-typedef struct {
-    ScreenScrollManager * unk_00;
-    SysTask * dmaTransferTask;
-    u32 unk_08;
+typedef struct ScreenShakeEffect {
+    ScreenScrollManager *screenScrollMgr;
+    SysTask *dmaTransferTask;
+    u32 dmaCounter;
 } ScreenShakeEffect;
 
 typedef struct WaterEncounterEffect {
@@ -106,12 +106,12 @@ typedef struct CaveEncounterEffect {
     QuadraticInterpolationTaskFX32 camInterpolation;
 } CaveEncounterEffect;
 
-static SysTask * ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect * param0);
-static void ScreenShakeEffect_DMATransfer(SysTask * param0, void * param1);
-static void ScreenShakeEffect_Init(ScreenShakeEffect * param0, u32 param1);
-static void ScreenShakeEffect_Finish(ScreenShakeEffect * param0);
-static void ScreenShakeEffect_Start(ScreenShakeEffect * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8);
-static void ov5_021E290C(ScreenShakeEffect * param0, u32 param1);
+static SysTask * ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShake);
+static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param);
+static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapId heapID);
+static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake);
+static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority);
+static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval);
 
 void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
 {
@@ -432,49 +432,49 @@ static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param)
 {
     ScreenShakeEffect *screenShakeEfx = param;
 
-    if (screenShakeEfx->unk_08 >= 2) {
-        ScreenScrollManager_SwapBuffers(screenShakeEfx->unk_00);
-        screenShakeEfx->unk_08 = 0;
+    if (screenShakeEfx->dmaCounter >= 2) {
+        ScreenScrollManager_SwapBuffers(screenShakeEfx->screenScrollMgr);
+        screenShakeEfx->dmaCounter = 0;
     }
 
-    ScreenScrollManager_RestartDMA(screenShakeEfx->unk_00);
-    screenShakeEfx->unk_08++;
+    ScreenScrollManager_RestartDMA(screenShakeEfx->screenScrollMgr);
+    screenShakeEfx->dmaCounter++;
 }
 
-static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, u32 heapID)
+static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapId heapID)
 {
-    screenShake->unk_00 = ScreenScrollManager_New(heapID);
-    screenShake->unk_08 = 0;
+    screenShake->screenScrollMgr = ScreenScrollManager_New(heapID);
+    screenShake->dmaCounter = 0;
     screenShake->dmaTransferTask = ScreenShakeEffect_CreateDMATransferTask(screenShake);
 }
 
-static void ScreenShakeEffect_Finish (ScreenShakeEffect *screenShake)
+static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake)
 {
     SysTask_Done(screenShake->dmaTransferTask);
-    ScreenScrollManager_Stop(screenShake->unk_00);
-    ScreenScrollManager_Delete(screenShake->unk_00);
+    ScreenScrollManager_Stop(screenShake->screenScrollMgr);
+    ScreenScrollManager_Delete(screenShake->screenScrollMgr);
 }
 
-static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 sineRadius, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority)
+static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority)
 {
-    ScreenScrollManager_ScrollX(screenShake->unk_00, startX, endX, angleIncrement, sineRadius, shakeSpeed, bg, defaultValue, priority);
+    ScreenScrollManager_ScrollX(screenShake->screenScrollMgr, startX, endX, angleIncrement, amplitude, shakeSpeed, bg, defaultValue, priority);
 }
 
-static void ov5_021E290C(ScreenShakeEffect *screenShake, u32 param1)
+static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval)
 {
-    u32 * v0;
-    int v1;
-    s16 v2;
+    u32 * writeBuffer;
+    int i;
+    s16 xOff;
 
-    v0 = ScreenScrollManager_GetWriteBuffer(screenShake->unk_00);
+    writeBuffer = ScreenScrollManager_GetWriteBuffer(screenShake->screenScrollMgr);
 
-    for (v1 = 0; v1 < 192; v1++) {
-        v2 = v0[v1] & 0xffff;
+    for (i = 0; i < SCREEN_SCROLL_MANAGER_BUFFER_SIZE; i++) {
+        xOff = writeBuffer[i] & 0xffff;
 
-        if (((v1 / param1) % 2) == 0) {
-            v0[v1] = (v2 & 0xffff);
+        if (((i / interval) % 2) == 0) {
+            writeBuffer[i] = (xOff & 0xffff);
         } else {
-            v0[v1] = (-v2 & 0xffff);
+            writeBuffer[i] = (-xOff & 0xffff);
         }
     }
 }
@@ -1148,7 +1148,7 @@ void ov5_021E31A4 (SysTask * param0, void * param1)
     }
 
     if (v1->unk_4C == 1) {
-        ov5_021E290C(&v1->unk_40, 2);
+        ScreenShakeEffect_InvertBuffer(&v1->unk_40, 2);
     }
 
     if (v0->state != 7) {
@@ -1336,7 +1336,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
     }
 
     if (v1->unk_280 == 1) {
-        ov5_021E290C(&v1->unk_274, 2);
+        ScreenShakeEffect_InvertBuffer(&v1->unk_274, 2);
     }
 
     for (v3 = 0; v3 < 3; v3++) {
