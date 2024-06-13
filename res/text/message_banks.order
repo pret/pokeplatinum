@@ -1,4 +1,4 @@
-message_bank_unk_0000
+message_bank_moves_used_in_battle
 message_bank_unk_0001
 message_bank_unk_0002
 message_bank_unk_0003
@@ -366,7 +366,7 @@ message_bank_unk_0364
 message_bank_unk_0365
 message_bank_unk_0366
 message_bank_unk_0367
-message_bank_unk_0368
+message_bank_battle_strings
 message_bank_unk_0369
 message_bank_unk_0370
 message_bank_furniture_names

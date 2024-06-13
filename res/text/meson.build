@@ -1,5 +1,5 @@
 message_bank_files = files(
-    'message_bank_unk_0000.gmm',
+    'message_bank_moves_used_in_battle.gmm',
     'message_bank_unk_0001.gmm',
     'message_bank_unk_0002.gmm',
     'message_bank_unk_0003.gmm',
@@ -367,7 +367,7 @@ message_bank_files = files(
     'message_bank_unk_0365.gmm',
     'message_bank_unk_0366.gmm',
     'message_bank_unk_0367.gmm',
-    'message_bank_unk_0368.gmm',
+    'message_bank_battle_strings.gmm',
     'message_bank_unk_0369.gmm',
     'message_bank_unk_0370.gmm',
     'message_bank_furniture_names.gmm',

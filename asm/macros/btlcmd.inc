@@ -5,7 +5,7 @@
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/species.h"
-#include "gmm/message_bank_unk_0368.h"
+#include "gmm/message_bank_battle_strings.h"
 #include "battle/btlcmd.h"
 
     .include "consts/abilities.inc"
