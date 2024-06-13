@@ -1508,84 +1508,84 @@ static void DrawGauge (Healthbar * param0, u8 param1)
     }
 }
 
-static s32 UpdateGauge (s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5)
+static s32 UpdateGauge (s32 gaugeMax, s32 gaugeCur, s32 gaugeChange, s32 * gaugeTemp, u8 gaugeSize, u16 fillOffset)
 {
-    s32 v0;
-    s32 v1;
-    u8 v2;
-    s32 v3;
+    s32 gaugeUpdated;
+    s32 gaugeFinalValue;
+    u8 correctedSize;
+    s32 ratio;
 
-    v2 = param4 * 8;
+    correctedSize = gaugeSize * 8;
 
-    if (*param3 == -2147483648) {
-        if (param0 < v2) {
-            *param3 = param1 << 8;
+    if (*gaugeTemp == -2147483648) {
+        if (gaugeMax < correctedSize) {
+            *gaugeTemp = gaugeCur << 8;
         } else {
-            *param3 = param1;
+            *gaugeTemp = gaugeCur;
         }
     }
 
-    v0 = param1 - param2;
+    gaugeUpdated = gaugeCur - gaugeChange;
 
-    if (v0 < 0) {
-        v0 = 0;
-    } else if (v0 > param0) {
-        v0 = param0;
+    if (gaugeUpdated < 0) {
+        gaugeUpdated = 0;
+    } else if (gaugeUpdated > gaugeMax) {
+        gaugeUpdated = gaugeMax;
     }
 
-    if (param0 < v2) {
-        if ((v0 == (*param3 >> 8)) && ((*param3 & 0xff) == 0)) {
+    if (gaugeMax < correctedSize) {
+        if ((gaugeUpdated == (*gaugeTemp >> 8)) && ((*gaugeTemp & 0xff) == 0)) {
             return -1;
         }
     } else {
-        if (v0 == *param3) {
+        if (gaugeUpdated == *gaugeTemp) {
             return -1;
         }
     }
 
-    if (param0 < v2) {
-        v3 = param0 * 0x100 / v2;
+    if (gaugeMax < correctedSize) {
+        ratio = gaugeMax * 0x100 / correctedSize;
 
-        if (param2 < 0) {
-            *param3 += v3;
-            v1 = *param3 >> 8;
+        if (gaugeChange < 0) {
+            *gaugeTemp += ratio;
+            gaugeFinalValue = *gaugeTemp >> 8;
 
-            if (v1 >= v0) {
-                *param3 = v0 << 8;
-                v1 = v0;
+            if (gaugeFinalValue >= gaugeUpdated) {
+                *gaugeTemp = gaugeUpdated << 8;
+                gaugeFinalValue = gaugeUpdated;
             }
         } else {
-            *param3 -= v3;
-            v1 = *param3 >> 8;
+            *gaugeTemp -= ratio;
+            gaugeFinalValue = *gaugeTemp >> 8;
 
-            if ((*param3 & 0xff) > 0) {
-                v1++;
+            if ((*gaugeTemp & 0xff) > 0) {
+                gaugeFinalValue++;
             }
 
-            if (v1 <= v0) {
-                *param3 = v0 << 8;
-                v1 = v0;
+            if (gaugeFinalValue <= gaugeUpdated) {
+                *gaugeTemp = gaugeUpdated << 8;
+                gaugeFinalValue = gaugeUpdated;
             }
         }
     } else {
-        if (param2 < 0) {
-            *param3 += param5;
+        if (gaugeChange < 0) {
+            *gaugeTemp += fillOffset;
 
-            if (*param3 > v0) {
-                *param3 = v0;
+            if (*gaugeTemp > gaugeUpdated) {
+                *gaugeTemp = gaugeUpdated;
             }
         } else {
-            *param3 -= param5;
+            *gaugeTemp -= fillOffset;
 
-            if (*param3 < v0) {
-                *param3 = v0;
+            if (*gaugeTemp < gaugeUpdated) {
+                *gaugeTemp = gaugeUpdated;
             }
         }
 
-        v1 = *param3;
+        gaugeFinalValue = *gaugeTemp;
     }
 
-    return v1;
+    return gaugeFinalValue;
 }
 
 static u8 ov16_02268194 (s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5)
