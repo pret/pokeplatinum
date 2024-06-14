@@ -88,7 +88,7 @@ typedef struct {
 } UnkStruct_ov16_0226834C;
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
-static s32 UpdateGauge(s32 gaugeMax, s32 gaugeCur, s32 gaugeChange, s32 * gaugeTemp, u8 gaugeSize, u16 fillOffset);
+static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset);
 static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
@@ -1508,84 +1508,81 @@ static void DrawGauge (Healthbar * param0, u8 param1)
     }
 }
 
-static s32 UpdateGauge (s32 gaugeMax, s32 gaugeCur, s32 gaugeChange, s32 * gaugeTemp, u8 gaugeSize, u16 fillOffset)
+static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset)
 {
-    s32 gaugeUpdated;
-    s32 gaugeFinalValue;
-    u8 correctedSize;
-    s32 ratio;
+    s32 updated, final, ratio;
 
-    correctedSize = gaugeSize * 8;
+    u8 corrected = size * 8;
 
-    if (*gaugeTemp == -2147483648) {
-        if (gaugeMax < correctedSize) {
-            *gaugeTemp = gaugeCur << 8;
+    if (*temp == -2147483648) {
+        if (max < corrected) {
+            *temp = cur << 8;
         } else {
-            *gaugeTemp = gaugeCur;
+            *temp = cur;
         }
     }
 
-    gaugeUpdated = gaugeCur - gaugeChange;
+    updated = cur - diff;
 
-    if (gaugeUpdated < 0) {
-        gaugeUpdated = 0;
-    } else if (gaugeUpdated > gaugeMax) {
-        gaugeUpdated = gaugeMax;
+    if (updated < 0) {
+        updated = 0;
+    } else if (updated > max) {
+        updated = max;
     }
 
-    if (gaugeMax < correctedSize) {
-        if ((gaugeUpdated == (*gaugeTemp >> 8)) && ((*gaugeTemp & 0xff) == 0)) {
+    if (max < corrected) {
+        if ((updated == (*temp >> 8)) && ((*temp & 0xff) == 0)) {
             return -1;
         }
     } else {
-        if (gaugeUpdated == *gaugeTemp) {
+        if (updated == *temp) {
             return -1;
         }
     }
 
-    if (gaugeMax < correctedSize) {
-        ratio = gaugeMax * 0x100 / correctedSize;
+    if (max < corrected) {
+        ratio = max * 0x100 / corrected;
 
-        if (gaugeChange < 0) {
-            *gaugeTemp += ratio;
-            gaugeFinalValue = *gaugeTemp >> 8;
+        if (diff < 0) {
+            *temp += ratio;
+            final = *temp >> 8;
 
-            if (gaugeFinalValue >= gaugeUpdated) {
-                *gaugeTemp = gaugeUpdated << 8;
-                gaugeFinalValue = gaugeUpdated;
+            if (final >= updated) {
+                *temp = updated << 8;
+                final = updated;
             }
         } else {
-            *gaugeTemp -= ratio;
-            gaugeFinalValue = *gaugeTemp >> 8;
+            *temp -= ratio;
+            final = *temp >> 8;
 
-            if ((*gaugeTemp & 0xff) > 0) {
-                gaugeFinalValue++;
+            if ((*temp & 0xff) > 0) {
+                final++;
             }
 
-            if (gaugeFinalValue <= gaugeUpdated) {
-                *gaugeTemp = gaugeUpdated << 8;
-                gaugeFinalValue = gaugeUpdated;
+            if (final <= updated) {
+                *temp = updated << 8;
+                final = updated;
             }
         }
     } else {
-        if (gaugeChange < 0) {
-            *gaugeTemp += fillOffset;
+        if (diff < 0) {
+            *temp += fillOffset;
 
-            if (*gaugeTemp > gaugeUpdated) {
-                *gaugeTemp = gaugeUpdated;
+            if (*temp > updated) {
+                *temp = updated;
             }
         } else {
-            *gaugeTemp -= fillOffset;
+            *temp -= fillOffset;
 
-            if (*gaugeTemp < gaugeUpdated) {
-                *gaugeTemp = gaugeUpdated;
+            if (*temp < updated) {
+                *temp = updated;
             }
         }
 
-        gaugeFinalValue = *gaugeTemp;
+        final = *temp;
     }
 
-    return gaugeFinalValue;
+    return final;
 }
 
 static u8 ov16_02268194 (s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5)
