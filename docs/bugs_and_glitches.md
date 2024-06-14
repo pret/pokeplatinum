@@ -18,6 +18,7 @@ this is some code
 - [Battle Engine](#battle-engine)
   - [Acid Rain](#acid-rain)
   - [Fire Fang Always Bypasses Wonder Guard](#fire-fang-always-bypasses-wonder-guard)
+  - [Post-KO Switch-In AI Scoring Overflow](#post-ko-switch-in-ai-scoring-overflow)
 
 ## Battle Engine
 
@@ -114,4 +115,23 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
 
     return TRUE;
 }
+```
+
+### Post-KO Switch-In AI Scoring Overflow
+
+During score-evaluation for party members to replace a fainted Pokémon, the
+trainer AI can generate scores sufficiently high that will exceed the upper
+bound of its scoring memory. This results in incorrect party members being
+chosen as replacement battlers.
+
+This bug can apply in each stage of score-evaluation; it is most notable in
+its evaluation of stage 1, where the AI will treat a quad-effective match-up --
+for example, a Machamp (Fighting+Fighting) vs. a Bastiodon (Rock+Steel) --
+as having a score equivalent to 65 rather than 320.
+
+**Fix:** Edit the routine `BattleAI_PostKOSwitchIn` in [`src/battle/battle_lib.c`](https://github.com/pret/pokeplatinum/blob/05aee2e69edd4774823920cec395e29320036f26/src/battle/battle_lib.c#L7925):
+
+```diff
+-    u8 score, maxScore;
++    u32 score, maxScore;
 ```
