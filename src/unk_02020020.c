@@ -42,7 +42,7 @@ typedef struct UnkStruct_020203AC_t {
     UnkStruct_020203AC_sub1 unk_00;
     UnkStruct_020203AC_sub2 unk_14;
     fx32 unk_38;
-    UnkStruct_ov115_0226527C unk_3C;
+    CameraAngle unk_3C;
     u8 unk_44;
     u16 unk_46;
     VecFx32 unk_48;
@@ -59,10 +59,10 @@ static void sub_02020020 (UnkStruct_020203AC * param0)
 {
     u16 v0;
 
-    v0 = -param0->unk_3C.unk_00;
+    v0 = -param0->unk_3C.x;
 
-    param0->unk_14.unk_00.x = FX_Mul(FX_Mul(FX_SinIdx(param0->unk_3C.unk_02), param0->unk_38), FX_CosIdx(param0->unk_3C.unk_00));
-    param0->unk_14.unk_00.z = FX_Mul(FX_Mul(FX_CosIdx(param0->unk_3C.unk_02), param0->unk_38), FX_CosIdx(param0->unk_3C.unk_00));
+    param0->unk_14.unk_00.x = FX_Mul(FX_Mul(FX_SinIdx(param0->unk_3C.y), param0->unk_38), FX_CosIdx(param0->unk_3C.x));
+    param0->unk_14.unk_00.z = FX_Mul(FX_Mul(FX_CosIdx(param0->unk_3C.y), param0->unk_38), FX_CosIdx(param0->unk_3C.x));
     param0->unk_14.unk_00.y = FX_Mul(FX_SinIdx(v0), param0->unk_38);
 
     VEC_Add(&param0->unk_14.unk_00, &param0->unk_14.unk_0C, &param0->unk_14.unk_00);
@@ -72,10 +72,10 @@ static void sub_02020100 (UnkStruct_020203AC * param0)
 {
     u16 v0;
 
-    v0 = -param0->unk_3C.unk_00;
+    v0 = -param0->unk_3C.x;
 
-    param0->unk_14.unk_0C.x = -FX_Mul(FX_Mul(FX_SinIdx(param0->unk_3C.unk_02), param0->unk_38), FX_CosIdx(param0->unk_3C.unk_00));
-    param0->unk_14.unk_0C.z = -FX_Mul(FX_Mul(FX_CosIdx(param0->unk_3C.unk_02), param0->unk_38), FX_CosIdx(param0->unk_3C.unk_00));
+    param0->unk_14.unk_0C.x = -FX_Mul(FX_Mul(FX_SinIdx(param0->unk_3C.y), param0->unk_38), FX_CosIdx(param0->unk_3C.x));
+    param0->unk_14.unk_0C.z = -FX_Mul(FX_Mul(FX_CosIdx(param0->unk_3C.y), param0->unk_38), FX_CosIdx(param0->unk_3C.x));
     param0->unk_14.unk_0C.y = -FX_Mul(FX_SinIdx(v0), param0->unk_38);
 
     VEC_Add(&param0->unk_14.unk_0C, &param0->unk_14.unk_00, &param0->unk_14.unk_0C);
@@ -278,11 +278,11 @@ void sub_0202049C (void)
             VecFx32 v2 = Unk_021C0770->unk_14.unk_00;
             VecFx32 v3 = Unk_021C0770->unk_14.unk_18;
             const VecFx32 * v4 = Unk_021C0770->unk_54;
-            fx16 v5 = FX_CosIdx(Unk_021C0770->unk_3C.unk_00);
-            fx16 v6 = FX_SinIdx(Unk_021C0770->unk_3C.unk_02);
-            fx16 v7 = FX_CosIdx(Unk_021C0770->unk_3C.unk_02);
-            fx16 v8 = FX_SinIdx(Unk_021C0770->unk_3C.unk_04);
-            fx16 v9 = FX_CosIdx(Unk_021C0770->unk_3C.unk_04);
+            fx16 v5 = FX_CosIdx(Unk_021C0770->unk_3C.x);
+            fx16 v6 = FX_SinIdx(Unk_021C0770->unk_3C.y);
+            fx16 v7 = FX_CosIdx(Unk_021C0770->unk_3C.y);
+            fx16 v8 = FX_SinIdx(Unk_021C0770->unk_3C.z);
+            fx16 v9 = FX_CosIdx(Unk_021C0770->unk_3C.z);
 
             v2.z = FX_Mul(v7, Unk_021C0770->unk_38);
             v2.z = FX_Mul(v2.z, v5);
@@ -328,7 +328,7 @@ void sub_020206BC (const fx32 param0, const fx32 param1, UnkStruct_020203AC * pa
     sub_02020854(param2->unk_44, param2);
 }
 
-void sub_020206D0 (const VecFx32 * param0, const fx32 param1, const UnkStruct_ov115_0226527C * param2, const u16 param3, const u8 param4, const BOOL param5, UnkStruct_020203AC * param6)
+void sub_020206D0 (const VecFx32 * param0, const fx32 param1, const CameraAngle * param2, const u16 param3, const u8 param4, const BOOL param5, UnkStruct_020203AC * param6)
 {
     sub_020201E4(param3, param6);
 
@@ -348,7 +348,7 @@ void sub_020206D0 (const VecFx32 * param0, const fx32 param1, const UnkStruct_ov
     }
 }
 
-void sub_02020738 (const VecFx32 * param0, const fx32 param1, const UnkStruct_ov115_0226527C * param2, const u16 param3, const u8 param4, UnkStruct_020203AC * param5)
+void sub_02020738 (const VecFx32 * param0, const fx32 param1, const CameraAngle * param2, const u16 param3, const u8 param4, UnkStruct_020203AC * param5)
 {
     sub_020201E4(param3, param5);
 
@@ -384,7 +384,7 @@ void sub_02020784 (const VecFx32 * param0, const VecFx32 * param1, const u16 par
         v3 = v0;
         v3.y = 0;
 
-        param5->unk_3C.unk_02 = sub_0201E1A0(&v4, &v3);
+        param5->unk_3C.y = sub_0201E1A0(&v4, &v3);
 
         v4.x = FX32_ONE;
         v4.y = 0;
@@ -394,8 +394,8 @@ void sub_02020784 (const VecFx32 * param0, const VecFx32 * param1, const u16 par
         v3.z = v0.y;
         v3.y = 0;
 
-        param5->unk_3C.unk_00 = sub_0201E1A0(&v4, &v3);
-        param5->unk_3C.unk_04 = 0;
+        param5->unk_3C.x = sub_0201E1A0(&v4, &v3);
+        param5->unk_3C.z = 0;
     }
 
     sub_02020854(param3, param5);
@@ -428,7 +428,7 @@ void sub_02020854 (const u8 param0, UnkStruct_020203AC * param1)
     }
 }
 
-void sub_02020910 (const u16 param0, UnkStruct_020203AC * param1)
+void Camera_SetPerspective (const u16 param0, UnkStruct_020203AC * param1)
 {
     param1->unk_46 = param0;
     param1->unk_00.unk_00 = FX_SinIdx(param1->unk_46);
@@ -452,32 +452,32 @@ void sub_02020990 (const VecFx32 * param0, UnkStruct_020203AC * param1)
     VEC_Add(&param1->unk_14.unk_0C, param0, &param1->unk_14.unk_0C);
 }
 
-void sub_020209B0 (const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * param1)
+void sub_020209B0 (const CameraAngle * param0, UnkStruct_020203AC * param1)
 {
     param1->unk_3C = *param0;
     sub_02020100(param1);
 }
 
-void sub_020209D4 (const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * param1)
+void Camera_SetAngle (const CameraAngle * param0, UnkStruct_020203AC * param1)
 {
     param1->unk_3C = *param0;
     sub_02020020(param1);
 }
 
-void sub_020209F8 (const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * param1)
+void sub_020209F8 (const CameraAngle * param0, UnkStruct_020203AC * param1)
 {
-    param1->unk_3C.unk_00 += param0->unk_00;
-    param1->unk_3C.unk_02 += param0->unk_02;
-    param1->unk_3C.unk_04 += param0->unk_04;
+    param1->unk_3C.x += param0->x;
+    param1->unk_3C.y += param0->y;
+    param1->unk_3C.z += param0->z;
 
     sub_02020100(param1);
 }
 
-void sub_02020A24 (const UnkStruct_ov115_0226527C * param0, UnkStruct_020203AC * param1)
+void sub_02020A24 (const CameraAngle * param0, UnkStruct_020203AC * param1)
 {
-    param1->unk_3C.unk_00 += param0->unk_00;
-    param1->unk_3C.unk_02 += param0->unk_02;
-    param1->unk_3C.unk_04 += param0->unk_04;
+    param1->unk_3C.x += param0->x;
+    param1->unk_3C.y += param0->y;
+    param1->unk_3C.z += param0->z;
 
     sub_02020020(param1);
 }
@@ -510,7 +510,7 @@ fx32 Camera_GetDistance (UnkStruct_020203AC const * param0)
     return param0->unk_38;
 }
 
-UnkStruct_ov115_0226527C sub_02020A94 (UnkStruct_020203AC const * param0)
+CameraAngle sub_02020A94 (UnkStruct_020203AC const * param0)
 {
     return param0->unk_3C;
 }

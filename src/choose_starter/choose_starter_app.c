@@ -1076,16 +1076,16 @@ static void MakeCamera (ChooseStarterApp * param0, int param1)
 
 static void ov78_021D1B3C (UnkStruct_020203AC * param0, VecFx32 * param1)
 {
-    UnkStruct_ov115_0226527C v0;
+    CameraAngle v0;
     VecFx32 v1;
 
     param1->x = 0;
     param1->y = 0;
     param1->z = 0;
 
-    v0.unk_00 = (((-30 * 0xffff) / 360));
-    v0.unk_02 = (((0 * 0xffff) / 360));
-    v0.unk_04 = (((0 * 0xffff) / 360));
+    v0.x = (((-30 * 0xffff) / 360));
+    v0.y = (((0 * 0xffff) / 360));
+    v0.z = (((0 * 0xffff) / 360));
 
     sub_020206D0(param1, (300 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 1, param0);
 
@@ -1420,17 +1420,17 @@ static void ov78_021D219C (SysTask * param0, void * param1)
 {
     ChooseStarterCameraMovement * v0 = param1;
     BOOL v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
     v1 = ov78_021D2114(&v0->unk_00, v0->unk_38);
     ov78_021D2114(&v0->unk_10, v0->unk_38);
     ov78_021D2114(&v0->unk_20, v0->unk_38);
 
-    v2.unk_00 = v0->unk_00.unk_00;
-    v2.unk_02 = (((0 * 0xffff) / 360));
-    v2.unk_04 = (((0 * 0xffff) / 360));
+    v2.x = v0->unk_00.unk_00;
+    v2.y = (((0 * 0xffff) / 360));
+    v2.z = (((0 * 0xffff) / 360));
 
-    sub_020209D4(&v2, v0->unk_30);
+    Camera_SetAngle(&v2, v0->unk_30);
     Camera_SetDistance(v0->unk_10.unk_00, v0->unk_30);
 
     v0->unk_34->z = v0->unk_20.unk_00;

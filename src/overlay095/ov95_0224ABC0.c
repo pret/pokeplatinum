@@ -453,11 +453,11 @@ static void ov95_0224B084 (UnkStruct_ov95_0224AC64 * param0)
     param0->unk_24 = ov95_022478B4(param0->unk_20, 0, 93, 27, 0, UnkEnum_ov95_0224B084_00, 0, 1);
 
     {
-        static UnkStruct_ov115_0226527C v2;
+        static CameraAngle v2;
 
-        v2.unk_00 = 0;
-        v2.unk_02 = 0;
-        v2.unk_04 = 0;
+        v2.x = 0;
+        v2.y = 0;
+        v2.z = 0;
 
         ov95_02247AB0(param0->unk_20, &v2);
         ov95_02247AD0(param0->unk_20, 1);

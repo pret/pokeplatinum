@@ -9,7 +9,7 @@
 
 typedef struct {
     fx32 unk_00;
-    UnkStruct_ov115_0226527C unk_04;
+    CameraAngle unk_04;
     u8 unk_0C;
     u16 unk_0E;
     fx32 unk_10;

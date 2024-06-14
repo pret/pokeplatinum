@@ -4,7 +4,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 typedef struct {
-    UnkStruct_ov115_0226527C unk_00;
+    CameraAngle unk_00;
     fx32 unk_08;
     u8 unk_0C;
     u8 unk_0D;

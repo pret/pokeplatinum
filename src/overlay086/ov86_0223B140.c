@@ -86,7 +86,7 @@ typedef struct {
     u8 unk_310[6400];
     UnkStruct_020203AC * unk_1C10;
     VecFx32 unk_1C14;
-    UnkStruct_ov115_0226527C unk_1C20;
+    CameraAngle unk_1C20;
     SysTask * unk_1C28;
     SysTask * unk_1C2C;
     SysTask * unk_1C30;
@@ -761,9 +761,9 @@ static void ov86_0223B9A8 (UnkStruct_ov86_0223B3C8 * param0)
     param0->unk_1C14.x = 0;
     param0->unk_1C14.y = 0;
     param0->unk_1C14.z = 0;
-    param0->unk_1C20.unk_00 = ((0 * 0xffff) / 360);
-    param0->unk_1C20.unk_02 = ((0 * 0xffff) / 360);
-    param0->unk_1C20.unk_04 = ((0 * 0xffff) / 360);
+    param0->unk_1C20.x = ((0 * 0xffff) / 360);
+    param0->unk_1C20.y = ((0 * 0xffff) / 360);
+    param0->unk_1C20.z = ((0 * 0xffff) / 360);
 
     sub_020206D0(&(param0->unk_1C14), 20480, &(param0->unk_1C20), 4004, 0, 1, param0->unk_1C10);
 

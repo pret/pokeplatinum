@@ -799,7 +799,7 @@ static void ov77_021D1908 (UnkStruct_ov77_021D17B4 * param0)
 static void ov77_021D1984 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D1208 * param1)
 {
     VecFx32 v0 = {0, 0, 0};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0, 0};
+    CameraAngle v1 = {0, 0, 0, 0};
     int v2;
 
     if (param0->unk_29C == 1) {
@@ -818,9 +818,9 @@ static void ov77_021D1984 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
 
     if (param1->unk_210 >= 250) {
         v1 = sub_02020A94(param1->unk_A8);
-        v1.unk_00 = param1->unk_218;
+        v1.x = param1->unk_218;
 
-        sub_020209D4(&v1, param1->unk_A8);
+        Camera_SetAngle(&v1, param1->unk_A8);
 
         param1->unk_218 += param1->unk_214;
 
@@ -877,7 +877,7 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
         sub_020203D4(param0->unk_04.unk_A4);
     }
     {
-        static const UnkStruct_ov115_0226527C v0 = {
+        static const CameraAngle v0 = {
             (0x10000 - 0x1c7d),
             ((0 * 0xffff) / 360),
             ((0 * 0xffff) / 360),

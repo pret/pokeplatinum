@@ -17,7 +17,7 @@ typedef struct UnkStruct_ov70_02260AD4_t {
     VecFx32 unk_08;
 } UnkStruct_ov70_02260AD4;
 
-static const UnkStruct_ov115_0226527C Unk_ov70_0226D904 = {
+static const CameraAngle Unk_ov70_0226D904 = {
     0xFFFFFFFFFFFFD602,
     0x0,
     0x0

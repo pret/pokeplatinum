@@ -68,7 +68,7 @@ void ov79_021D385C (UnkStruct_ov79_021D3820 * param0)
 static void ov79_021D3870 (UnkStruct_ov79_021D3820 * param0, int param1)
 {
     VecFx32 v0 = {0, 0, 0x10000};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0};
+    CameraAngle v1 = {0, 0, 0};
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 

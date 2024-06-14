@@ -205,7 +205,7 @@ BOOL ov100_021D16C4 (void * param0)
 
 static void ov100_021D1758 (UnkStruct_020203AC * param0, VecFx32 * param1)
 {
-    UnkStruct_ov115_0226527C v0 = {1274, 0, 0};
+    CameraAngle v0 = {1274, 0, 0};
 
     sub_020206D0(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, param0);
     sub_02020854(0, param0);

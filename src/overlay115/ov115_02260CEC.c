@@ -1,3 +1,4 @@
+
 #include <nitro.h>
 #include <string.h>
 
@@ -3277,7 +3278,7 @@ static void ov115_02263C04 (UnkStruct_ov115_02261ADC * param0)
 
 static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_ov115_0226527C v0;
+    CameraAngle v0;
     VecFx32 v1;
     MtxFx33 v2;
 
@@ -3286,9 +3287,9 @@ static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 p
     param0->unk_1F8.y = 0;
     param0->unk_1F8.z = 0;
 
-    v0.unk_00 = 0xf112;
-    v0.unk_02 = Unk_ov115_02265C5C[param1 - 1][param2];
-    v0.unk_04 = (((0 * 0xffff) / 360));
+    v0.x = 0xf112;
+    v0.y = Unk_ov115_02265C5C[param1 - 1][param2];
+    v0.z = (((0 * 0xffff) / 360));
 
     sub_020206D0(&param0->unk_1F8, 0x1d9000, &v0, (((22 * 0xffff) / 360)), 0, 1, param0->unk_1F4);
 
@@ -4270,12 +4271,12 @@ static void ov115_02265274 (UnkStruct_ov115_02261ADC * param0, fx32 param1)
 
 static void ov115_0226527C (UnkStruct_ov115_02261ADC * param0, u16 param1)
 {
-    UnkStruct_ov115_0226527C v0;
+    CameraAngle v0;
 
     v0 = sub_02020A94(param0->unk_1F4);
-    v0.unk_00 = param1;
+    v0.x = param1;
 
-    sub_020209D4(&v0, param0->unk_1F4);
+    Camera_SetAngle(&v0, param0->unk_1F4);
 }
 
 static void ov115_022652A4 (UnkStruct_ov115_022653CC * param0, u8 param1)

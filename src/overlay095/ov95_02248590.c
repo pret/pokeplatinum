@@ -581,11 +581,11 @@ static void ov95_02248B84 (UnkStruct_ov95_02248688 * param0)
     param0->unk_D8 = ov95_022478B4(param0->unk_D4, 0, 93, 27, 0, -122880 + UnkEnum_ov95_02248B84_01, 0, 0);
 
     {
-        static UnkStruct_ov115_0226527C v2;
+        static CameraAngle v2;
 
-        v2.unk_00 = UnkEnum_ov95_02248B84_02;
-        v2.unk_02 = 0;
-        v2.unk_04 = 0;
+        v2.x = UnkEnum_ov95_02248B84_02;
+        v2.y = 0;
+        v2.z = 0;
 
         ov95_02247AB0(param0->unk_D4, &v2);
     }
@@ -1010,10 +1010,10 @@ static BOOL ov95_02249500 (SysTask * param0)
 static void ov95_0224950C (SysTask * param0)
 {
     UnkStruct_ov95_0224922C * v0 = SysTask_GetParam(param0);
-    UnkStruct_ov115_0226527C v1;
+    CameraAngle v1;
 
     v0->unk_78 = 0;
-    v1.unk_00 = v1.unk_02 = v1.unk_04 = 0;
+    v1.x = v1.y = v1.z = 0;
 
     ov95_02247AD0(v0->unk_04, 1);
     ov95_02247AB0(v0->unk_04, &v1);

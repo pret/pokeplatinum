@@ -1,3 +1,6 @@
+
+
+
 #include <nitro.h>
 #include <string.h>
 
@@ -174,7 +177,7 @@ void sub_020917B0 (PokemonSummaryApp * param0)
 void sub_020917E0 (PokemonSummaryApp * param0)
 {
     VecFx32 v0 = {0, 0, 0x10000};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0};
+    CameraAngle v1 = {0, 0, 0};
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 

@@ -893,23 +893,23 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
 #if (GAME_VERSION == 10 || GAME_VERSION == 12)
-    sub_02020910(0x1701, fieldSystem->camera);
+    Camera_SetPerspective(0x1701, fieldSystem->camera);
     Camera_SetDistance(0xc8a55, fieldSystem->camera);
     v1.x = 0x2280ef;
     v1.y = 0xca424;
     v1.z = 0x268c50;
     sub_02020ACC(&v1, fieldSystem->camera);
-    v2.unk_00 = 0x22a2;
-    v2.unk_02 = 0xf800;
-    v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->camera);
+    v2.x = 0x22a2;
+    v2.y = 0xf800;
+    v2.z = 0;
+    Camera_SetAngle(&v2, fieldSystem->camera);
 
     sub_020206BC(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
 #elif (GAME_VERSION == 11)
-    sub_02020910(0x10c1, fieldSystem->camera);
+    Camera_SetPerspective(0x10c1, fieldSystem->camera);
     Camera_SetDistance(0xD5052, fieldSystem->camera);
     v1.x = 0x1bffbd;
     v1.y = 0xaa361;
@@ -918,7 +918,7 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v2.unk_00 = 0x19a3;
     v2.unk_02 = 0x90c;
     v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->camera);
+    Camera_SetAngle(&v2, fieldSystem->camera);
 
     sub_020206BC(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->camera);
 #endif
@@ -936,9 +936,9 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
-    sub_02020910(0xf81, fieldSystem->camera);
+    Camera_SetPerspective(0xf81, fieldSystem->camera);
     Camera_SetDistance(0x17e532, fieldSystem->camera);
 
     v1.x = 0xf99d58;
@@ -947,11 +947,11 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 
     sub_02020ACC(&v1, fieldSystem->camera);
 
-    v2.unk_00 = 0x642;
-    v2.unk_02 = 0xeda0;
-    v2.unk_04 = 0;
+    v2.x = 0x642;
+    v2.y = 0xeda0;
+    v2.z = 0;
 
-    sub_020209D4(&v2, fieldSystem->camera);
+    Camera_SetAngle(&v2, fieldSystem->camera);
     sub_020206BC(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
@@ -970,9 +970,9 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
-    sub_02020910(0x4c1, fieldSystem->camera);
+    Camera_SetPerspective(0x4c1, fieldSystem->camera);
     Camera_SetDistance(0x26bec1, fieldSystem->camera);
 
     v1.x = 0x1df5dfd;
@@ -981,11 +981,11 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 
     sub_02020ACC(&v1, fieldSystem->camera);
 
-    v2.unk_00 = 0x4c2;
-    v2.unk_02 = 0xa40;
-    v2.unk_04 = 0;
+    v2.x = 0x4c2;
+    v2.y = 0xa40;
+    v2.z = 0;
 
-    sub_020209D4(&v2, fieldSystem->camera);
+    Camera_SetAngle(&v2, fieldSystem->camera);
     sub_020206BC(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 

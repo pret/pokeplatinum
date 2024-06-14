@@ -347,14 +347,14 @@ static void ov95_0224A690 (UnkStruct_ov95_0224A42C * param0)
     param0->unk_2C = ov95_022478B4(param0->unk_28, 0, 93, 27, 0, 0, 0, 0);
 
     {
-        UnkStruct_ov115_0226527C v2;
+        CameraAngle v2;
 
-        v2.unk_00 = UnkEnum_ov95_0224A690_00;
-        v2.unk_02 = 0;
-        v2.unk_04 = 0;
+        v2.x = UnkEnum_ov95_0224A690_00;
+        v2.y = 0;
+        v2.z = 0;
 
         ov95_02247AB0(param0->unk_28, &v2);
-        v2.unk_00 = UnkEnum_ov95_0224A690_01;
+        v2.x = UnkEnum_ov95_0224A690_01;
 
         ov95_02247AC0(param0->unk_28, &v2);
         ov95_02247AE0(param0->unk_28, ((22 * 0xffff) / 360) / 2);
@@ -583,11 +583,11 @@ static void ov95_0224AB50 (void * param0)
     }
 
     if (v0->unk_0C) {
-        UnkStruct_ov115_0226527C v1;
+        CameraAngle v1;
 
-        v1.unk_00 = -UnkEnum_ov95_0224A690_01;
-        v1.unk_02 = 0;
-        v1.unk_04 = 0;
+        v1.x = -UnkEnum_ov95_0224A690_01;
+        v1.y = 0;
+        v1.z = 0;
 
         sub_02019184(v0->unk_24, 3, 3, 256);
         sub_02019184(v0->unk_24, 7, 3, 0);

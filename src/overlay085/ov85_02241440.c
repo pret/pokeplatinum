@@ -916,7 +916,7 @@ static void ov85_0224202C (UnkStruct_ov85_022417E4 * param0)
 static void ov85_02242038 (UnkStruct_ov85_022417E4 * param0)
 {
     VecFx32 v0 = {0, 0, 0x10000};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0};
+    CameraAngle v1 = {0, 0, 0};
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 

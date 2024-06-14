@@ -133,31 +133,37 @@ static const SysTaskFunc sEncounterEffectTaskFuncs[] = {
     EncounterEffect_Water_HigherLevel,
     EncounterEffect_Cave_LowerLevel,
     EncounterEffect_Cave_HigherLevel,
+
     EncounterEffect_Trainer_TallGrass_LowerLevel,
     EncounterEffect_Trainer_TallGrass_HigherLevel,
-    ov5_021E31A4,
-    ov5_021E3560,
-    ov5_021E3AD0,
-    ov5_021E3D8C,
-    ov5_021E5760,
-    ov5_021E5784,
-    ov5_021E57A8,
-    ov5_021E57CC,
-    ov5_021E57F0,
-    ov5_021E5814,
-    ov5_021E5838,
-    ov5_021E585C,
-    ov5_021E6178,
-    ov5_021E619C,
-    ov5_021E61C0,
-    ov5_021E61E4,
-    ov5_021E6208,
-    ov5_021E4E14,
-    ov5_021E4F7C,
-    ov5_021E4738,
-    ov5_021E4B3C,
-    ov5_021E4260,
-    ov5_021E44C0
+    EncounterEffect_Trainer_Water_LowerLevel,
+    EncounterEffect_Trainer_Water_HigherLevel,
+    EncounterEffect_Trainer_Cave_LowerLevel,
+    EncounterEffect_Trainer_Cave_HigherLevel,
+
+    EncounterEffect_LeaderRoark,
+    EncounterEffect_LeaderGardenia,
+    EncounterEffect_LeaderWake,
+    EncounterEffect_LeaderMaylene,
+    EncounterEffect_LeaderFantina,
+    EncounterEffect_LeaderCandice,
+    EncounterEffect_LeaderByron,
+    EncounterEffect_LeaderVolkner,
+
+    EncounterEffect_EliteFourAaron,
+    EncounterEffect_EliteFourBertha,
+    EncounterEffect_EliteFourFlint,
+    EncounterEffect_EliteFourLucian,
+    EncounterEffect_ChampionCynthia,
+
+    EncounterEffect_Mythical,
+    EncounterEffect_Legendary,
+
+    EncounterEffect_GalacticGrunt,
+    EncounterEffect_GalacticBoss,
+
+    EncounterEffect_Frontier,
+    EncounterEffect_Double
 };
 
 static const u8 Unk_ov5_021F9988[8] = {

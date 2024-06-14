@@ -20,8 +20,8 @@ void ov95_022479AC(UnkStruct_ov95_02247958 * param0, int param1);
 void ov95_022479D4(UnkStruct_ov95_02247958 * param0, fx32 param1);
 BOOL ov95_022479DC(UnkStruct_ov95_02247958 * param0);
 void ov95_02247A90(UnkStruct_ov95_0224773C * param0, VecFx32 * param1);
-void ov95_02247AB0(UnkStruct_ov95_0224773C * param0, const UnkStruct_ov115_0226527C * param1);
-void ov95_02247AC0(UnkStruct_ov95_0224773C * param0, const UnkStruct_ov115_0226527C * param1);
+void ov95_02247AB0(UnkStruct_ov95_0224773C * param0, const CameraAngle * param1);
+void ov95_02247AC0(UnkStruct_ov95_0224773C * param0, const CameraAngle * param1);
 void ov95_02247AD0(UnkStruct_ov95_0224773C * param0, u8 param1);
 void ov95_02247AE0(UnkStruct_ov95_0224773C * param0, u16 param1);
 

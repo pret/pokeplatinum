@@ -187,7 +187,7 @@ static void ov113_0225E264(const Strbuf *param0, int param1, int * param2, int *
 static void ov113_0225E294(UnkStruct_ov113_0225DBCC * param0);
 static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC * param0, int param1);
 
-static const UnkStruct_ov115_0226527C Unk_ov113_022608B4 = {
+static const CameraAngle Unk_ov113_022608B4 = {
     0x0,
     0x0,
     0x0

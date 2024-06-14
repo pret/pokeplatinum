@@ -165,7 +165,7 @@ typedef struct {
     fx32 unk_00;
     u32 unk_04;
     VecFx32 unk_08;
-    UnkStruct_ov115_0226527C unk_14;
+    CameraAngle unk_14;
     UnkStruct_020203AC * unk_1C;
 } UnkStruct_ov109_021D28C4;
 
@@ -2185,9 +2185,9 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
         v0->unk_08.y = (FX32_ONE * 0);
         v0->unk_08.z = (FX32_ONE * 0);
 
-        v0->unk_14.unk_00 = ((((-32 * 0xffff) / 360)));
-        v0->unk_14.unk_02 = ((((0 * 0xffff) / 360)));
-        v0->unk_14.unk_04 = ((((0 * 0xffff) / 360)));
+        v0->unk_14.x = ((((-32 * 0xffff) / 360)));
+        v0->unk_14.y = ((((0 * 0xffff) / 360)));
+        v0->unk_14.z = ((((0 * 0xffff) / 360)));
 
         v0->unk_00 = (0x143 << FX32_SHIFT);
         v0->unk_04 = ((((6 * 0xffff) / 360)));

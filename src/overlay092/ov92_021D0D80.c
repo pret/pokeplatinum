@@ -107,7 +107,7 @@ typedef struct {
     VecFx32 unk_BAB4;
     VecFx32 unk_BAC0;
     UnkStruct_020203AC * unk_BACC;
-    UnkStruct_ov115_0226527C unk_BAD0;
+    CameraAngle unk_BAD0;
     u16 unk_BAD8;
     VecFx32 unk_BADC;
     int unk_BAE8;
