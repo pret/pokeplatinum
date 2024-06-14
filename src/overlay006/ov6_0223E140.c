@@ -896,7 +896,7 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     CameraAngle v2;
 
 #if (GAME_VERSION == 10 || GAME_VERSION == 12)
-    Camera_SetPerspective(0x1701, fieldSystem->camera);
+    Camera_SetFOV(0x1701, fieldSystem->camera);
     Camera_SetDistance(0xc8a55, fieldSystem->camera);
     v1.x = 0x2280ef;
     v1.y = 0xca424;
@@ -909,7 +909,7 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 
     sub_020206BC(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
 #elif (GAME_VERSION == 11)
-    Camera_SetPerspective(0x10c1, fieldSystem->camera);
+    Camera_SetFOV(0x10c1, fieldSystem->camera);
     Camera_SetDistance(0xD5052, fieldSystem->camera);
     v1.x = 0x1bffbd;
     v1.y = 0xaa361;
@@ -938,7 +938,7 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     VecFx32 v1;
     CameraAngle v2;
 
-    Camera_SetPerspective(0xf81, fieldSystem->camera);
+    Camera_SetFOV(0xf81, fieldSystem->camera);
     Camera_SetDistance(0x17e532, fieldSystem->camera);
 
     v1.x = 0xf99d58;
@@ -972,7 +972,7 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     VecFx32 v1;
     CameraAngle v2;
 
-    Camera_SetPerspective(0x4c1, fieldSystem->camera);
+    Camera_SetFOV(0x4c1, fieldSystem->camera);
     Camera_SetDistance(0x26bec1, fieldSystem->camera);
 
     v1.x = 0x1df5dfd;

@@ -249,7 +249,7 @@ void ov95_02247AD0 (UnkStruct_ov95_0224773C * param0, u8 param1)
 
 void ov95_02247AE0 (UnkStruct_ov95_0224773C * param0, u16 param1)
 {
-    Camera_SetPerspective(param1, param0->unk_00);
+    Camera_SetFOV(param1, param0->unk_00);
 }
 
 static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 param2, fx32 param3)

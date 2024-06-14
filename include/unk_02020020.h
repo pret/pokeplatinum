@@ -23,7 +23,7 @@ void sub_020206D0(const VecFx32 * param0, const fx32 param1, const CameraAngle *
 void sub_02020738(const VecFx32 * param0, const fx32 param1, const CameraAngle * param2, const u16 param3, const u8 param4, UnkStruct_020203AC * param5);
 void sub_02020784(const VecFx32 * param0, const VecFx32 * param1, const u16 param2, const u8 param3, const BOOL param4, UnkStruct_020203AC * param5);
 void sub_02020854(const u8 param0, UnkStruct_020203AC * param1);
-void Camera_SetPerspective(const u16 param0, UnkStruct_020203AC * param1);
+void Camera_SetFOV(const u16 param0, UnkStruct_020203AC * param1);
 void sub_0202094C(const u16 param0, UnkStruct_020203AC * param1);
 void sub_02020990(const VecFx32 * param0, UnkStruct_020203AC * param1);
 void sub_020209B0(const CameraAngle * param0, UnkStruct_020203AC * param1);

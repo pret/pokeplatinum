@@ -2275,204 +2275,205 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
 }
 
 typedef struct LegendaryEncounterCameraParam {
-    u32 unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
+    u32 distance;
+    u16 angleX;
+    u16 angleY;
+    u16 fov;
+    u16 frameDelay;
 } LegendaryEncounterCameraParam;
 
 static const LegendaryEncounterCameraParam sLegendaryEncounterCameraParams[16] = {
     {
-        0x29AEC1, 
-        0xD602, 
-        0x0, 
-        0x5C1, 
-        4,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD602, 
+        .angleY     = 0x0, 
+        .fov        = 0x5C1, 
+        .frameDelay = 4,
     }, 
     {
-        0x29AEC1, 
-        0xcf02, 
-        0xff00, 
-        0x601, 
-        4,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xcf02, 
+        .angleY     = 0xff00, 
+        .fov        = 0x601, 
+        .frameDelay = 4,
     }, 
     {
-        0x29AEC1, 
-        0xe602, 
-        0x1000, 
-        0x691, 
-        4,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xe602, 
+        .angleY     = 0x1000, 
+        .fov        = 0x691, 
+        .frameDelay = 4,
     }, 
     {
-        0x29AEC1, 
-        0xD602, 
-        0xa00, 
-        0x711, 
-        3,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD602, 
+        .angleY     = 0xa00, 
+        .fov        = 0x711, 
+        .frameDelay = 3,
     }, 
     {
-        0x29AEC1, 
-        0xe102, 
-        0xf000, 
-        0x780, 
-        3,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xe102, 
+        .angleY     = 0xf000, 
+        .fov        = 0x780, 
+        .frameDelay = 3,
     }, 
     {
-        0x29AEC1, 
-        0xc602, 
-        0x0, 
-        0x751, 
-        3,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xc602, 
+        .angleY     = 0x0, 
+        .fov        = 0x751, 
+        .frameDelay = 3,
     }, 
     {
-        0x29AEC1, 
-        0xe002, 
-        0xf000, 
-        0x800, 
-        3,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xe002, 
+        .angleY     = 0xf000, 
+        .fov        = 0x800, 
+        .frameDelay = 3,
     }, 
     {
-        0x29AEC1, 
-        0xD602, 
-        0, 
-        0x802, 
-        3,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD602, 
+        .angleY     = 0, 
+        .fov        = 0x802, 
+        .frameDelay = 3,
     }, 
     {
-        0x29AEC1, 
-        0xD002, 
-        0x1000, 
-        0x800, 
-        3,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD002, 
+        .angleY     = 0x1000, 
+        .fov        = 0x800, 
+        .frameDelay = 3,
     }, 
     {
-        0x29AEC1, 
-        0xD902, 
-        0xf500, 
-        0x751, 
-        3,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD902, 
+        .angleY     = 0xf500, 
+        .fov        = 0x751, 
+        .frameDelay = 3,
     }, 
     {
-        0x29AEC1, 
-        0xD002, 
-        0xa00, 
-        0x4C1, 
-        2,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD002, 
+        .angleY     = 0xa00, 
+        .fov        = 0x4C1, 
+        .frameDelay = 2,
     }, 
     {
-        0x29AEC1, 
-        0xe002, 
-        0xf000, 
-        0x3C1, 
-        2,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xe002, 
+        .angleY     = 0xf000, 
+        .fov        = 0x3C1, 
+        .frameDelay = 2,
     }, 
     {
-        0x29AEC1, 
-        0xD002, 
-        0xf000, 
-        0x650, 
-        1,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD002, 
+        .angleY     = 0xf000, 
+        .fov        = 0x650, 
+        .frameDelay = 1,
     }, 
     {
-        0x29AEC1, 
-        0xe002, 
-        0xa000, 
-        0x241, 
-        1,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xe002, 
+        .angleY     = 0xa000, 
+        .fov        = 0x241, 
+        .frameDelay = 1,
     }, 
     {
-        0x29AEC1, 
-        0xe1a2, 
-        0x500, 
-        0x500, 
-        1,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xe1a2, 
+        .angleY     = 0x500, 
+        .fov        = 0x500, 
+        .frameDelay = 1,
     }, 
     {
-        0x29AEC1, 
-        0xD602, 
-        0, 
-        0x241, 
-        1,
+        .distance   = 0x29AEC1, 
+        .angleX     = 0xD602, 
+        .angleY     = 0, 
+        .fov        = 0x241, 
+        .frameDelay = 1,
     },
 };
 
-typedef struct UnkStruct_ov5_021E4E14 {
-    UnkStruct_ov5_021E2310 * unk_00;
+typedef struct MythicalEncounterEffect {
+    FieldMotionBlur * motionBlur;
     UnkStruct_020203AC * unk_04;
-    u32 unk_08;
-    s32 unk_0C;
-} UnkStruct_ov5_021E4E14;
+    u32 cameraState;
+    s32 frameDelay;
+} MythicalEncounterEffect;
 
-typedef struct UnkStruct_ov5_021E4F7C {
-    UnkStruct_ov5_021E2310 * unk_00;
+typedef struct LegendaryEncounterEffect {
+    FieldMotionBlur * motionBlur;
     UnkStruct_020203AC * unk_04;
     LinearInterpolationTaskS32 unk_08;
     QuadraticInterpolationTaskFX32 unk_1C;
     s32 unk_34;
-} UnkStruct_ov5_021E4F7C;
+} LegendaryEncounterEffect;
 
 static void EncounterEffect_SetLegendaryEncounterCamera(FieldSystem *fieldSystem, const LegendaryEncounterCameraParam *param)
 {
+    Camera_SetFOV(param->fov, fieldSystem->camera);
+    Camera_SetDistance(param->distance, fieldSystem->camera);
+    
     CameraAngle angle;
-
-    Camera_SetPerspective(param->unk_08, fieldSystem->camera);
-    Camera_SetDistance(param->unk_00, fieldSystem->camera);
-    angle.x = param->unk_04;
-    angle.y = param->unk_06;
+    angle.x = param->angleX;
+    angle.y = param->angleY;
     angle.z = 0;
+    
     Camera_SetAngle(&angle, fieldSystem->camera);
 }
 
-void EncounterEffect_Mythical (SysTask * param0, void * param1)
+void EncounterEffect_Mythical(SysTask *task, void *param)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E4E14 * v1 = v0->param;
+    EncounterEffect *encEffect = param;
+    MythicalEncounterEffect *mythicalEffect = encEffect->param;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4E14));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4E14));
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(MythicalEncounterEffect));
+        memset(encEffect->param, 0, sizeof(MythicalEncounterEffect));
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 1:
-        EncounterEffect_Flash(1, 16, 16, &v0->effectComplete, 1);
+        EncounterEffect_Flash(1, 16, 16, &encEffect->effectComplete, 1);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 2:
-        if (v0->effectComplete) {
-            v0->state++;
+        if (encEffect->effectComplete) {
+            encEffect->state++;
         }
 
         break;
 
     case 3:
-        v1->unk_00 = ov5_021E22B0(3, 15);
-        v1->unk_08 = 0;
-        v1->unk_0C = sLegendaryEncounterCameraParams[v1->unk_08].unk_0A;
-        v0->state++;
+        mythicalEffect->motionBlur = FieldMotionBlur_Start(3, 15);
+        mythicalEffect->cameraState = 0;
+        mythicalEffect->frameDelay = sLegendaryEncounterCameraParams[mythicalEffect->cameraState].frameDelay;
+        encEffect->state++;
         break;
 
     case 4:
-        v1->unk_0C--;
+        mythicalEffect->frameDelay--;
 
-        if (v1->unk_0C < 0) {
-            EncounterEffect_SetLegendaryEncounterCamera(v0->fieldSystem, &sLegendaryEncounterCameraParams[v1->unk_08]);
+        if (mythicalEffect->frameDelay < 0) {
+            EncounterEffect_SetLegendaryEncounterCamera(encEffect->fieldSystem, &sLegendaryEncounterCameraParams[mythicalEffect->cameraState]);
 
-            v1->unk_08++;
+            mythicalEffect->cameraState++;
 
-            if (v1->unk_08 >= 16) {
-                v0->state++;
+            if (mythicalEffect->cameraState >= 16) {
+                encEffect->state++;
             } else {
-                v1->unk_0C = sLegendaryEncounterCameraParams[v1->unk_08].unk_0A;
+                mythicalEffect->frameDelay = sLegendaryEncounterCameraParams[mythicalEffect->cameraState].frameDelay;
             }
         }
 
@@ -2480,14 +2481,14 @@ void EncounterEffect_Mythical (SysTask * param0, void * param1)
 
     case 5:
         sub_0200F174(3, 0, 0, 0x7fff, 10, 1, 4);
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 6:
         if (ScreenWipe_Done()) {
-            v0->effectComplete = 0;
+            encEffect->effectComplete = FALSE;
 
-            v0->state++;
+            encEffect->state++;
         }
 
         break;
@@ -2495,107 +2496,107 @@ void EncounterEffect_Mythical (SysTask * param0, void * param1)
     case 7:
         sub_0200F344(1, 0x7fff);
 
-        ov5_021E2310(&v1->unk_00);
+        FieldMotionBlur_Stop(&mythicalEffect->motionBlur);
 
         G2_BlendNone();
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = 1;
         }
 
-        EncounterEffect_Finish(v0, param0);
+        EncounterEffect_Finish(encEffect, task);
         sub_0200F344(1, 0x7fff);
         break;
     }
 }
 
-void EncounterEffect_Legendary (SysTask * param0, void * param1)
+void EncounterEffect_Legendary(SysTask *task, void * param)
 {
-    EncounterEffect * v0 = param1;
-    UnkStruct_ov5_021E4F7C * v1 = v0->param;
+    EncounterEffect *encEffect = param;
+    LegendaryEncounterEffect *legendaryEffect = encEffect->param;
     BOOL v2;
 
-    switch (v0->state) {
+    switch (encEffect->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4F7C));
-        memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4F7C));
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(LegendaryEncounterEffect));
+        memset(encEffect->param, 0, sizeof(LegendaryEncounterEffect));
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 1:
-        EncounterEffect_Flash(1, 16, 16, &v0->effectComplete, 1);
+        EncounterEffect_Flash(1, 16, 16, &encEffect->effectComplete, 1);
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 2:
-        if (v0->effectComplete) {
-            v0->state++;
+        if (encEffect->effectComplete) {
+            encEffect->state++;
         }
 
         break;
 
     case 3:
-        v1->unk_00 = ov5_021E22B0(5, 13);
+        legendaryEffect->motionBlur = FieldMotionBlur_Start(5, 13);
 
         {
-            u16 v3 = sub_02020A88(v0->fieldSystem->camera);
+            u16 v3 = sub_02020A88(encEffect->fieldSystem->camera);
 
-            LinearInterpolationTaskS32_Init(&v1->unk_08, v3, v3 + 0x100, 40);
+            LinearInterpolationTaskS32_Init(&legendaryEffect->unk_08, v3, v3 + 0x100, 40);
         }
 
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 4:
-        v2 = LinearInterpolationTaskS32_Update(&v1->unk_08);
-        Camera_SetPerspective(v1->unk_08.currentValue, v0->fieldSystem->camera);
+        v2 = LinearInterpolationTaskS32_Update(&legendaryEffect->unk_08);
+        Camera_SetFOV(legendaryEffect->unk_08.currentValue, encEffect->fieldSystem->camera);
 
         if (v2 == 1) {
-            v0->state++;
-            v1->unk_34 = 5;
+            encEffect->state++;
+            legendaryEffect->unk_34 = 5;
         }
 
         break;
 
     case 5:
-        v1->unk_34--;
+        legendaryEffect->unk_34--;
 
-        if (v1->unk_34 < 0) {
-            fx32 v4 = Camera_GetDistance(v0->fieldSystem->camera);
+        if (legendaryEffect->unk_34 < 0) {
+            fx32 v4 = Camera_GetDistance(encEffect->fieldSystem->camera);
 
-            QuadraticInterpolationTaskFX32_Init(&v1->unk_1C, v4, v4 + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
+            QuadraticInterpolationTaskFX32_Init(&legendaryEffect->unk_1C, v4, v4 + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
 
-            v0->state++;
+            encEffect->state++;
         }
 
         break;
 
     case 6:
-        v2 = QuadraticInterpolationTaskFX32_Update(&v1->unk_1C);
-        Camera_SetDistance(v1->unk_1C.currentValue, v0->fieldSystem->camera);
+        v2 = QuadraticInterpolationTaskFX32_Update(&legendaryEffect->unk_1C);
+        Camera_SetDistance(legendaryEffect->unk_1C.currentValue, encEffect->fieldSystem->camera);
 
         if (v2 == 1) {
-            v0->state++;
+            encEffect->state++;
         }
 
         break;
 
     case 7:
         sub_0200F174(3, 0, 0, 0x7fff, 60, 1, 4);
-        v0->state++;
+        encEffect->state++;
         break;
 
     case 8:
         if (ScreenWipe_Done()) {
-            v0->effectComplete = 0;
+            encEffect->effectComplete = 0;
 
-            v0->state++;
+            encEffect->state++;
         }
 
         break;
@@ -2603,15 +2604,15 @@ void EncounterEffect_Legendary (SysTask * param0, void * param1)
     case 9:
         sub_0200F344(1, 0x7fff);
 
-        ov5_021E2310(&v1->unk_00);
+        FieldMotionBlur_Stop(&legendaryEffect->motionBlur);
 
         G2_BlendNone();
 
-        if (v0->done != NULL) {
-            *(v0->done) = 1;
+        if (encEffect->done != NULL) {
+            *(encEffect->done) = 1;
         }
 
-        EncounterEffect_Finish(v0, param0);
+        EncounterEffect_Finish(encEffect, task);
         sub_0200F344(1, 0x7fff);
         break;
     }

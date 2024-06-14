@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021E2310_DECL_H
 #define POKEPLATINUM_STRUCT_OV5_021E2310_DECL_H
 
-typedef struct UnkStruct_ov5_021E2310_t UnkStruct_ov5_021E2310;
+typedef struct FieldMotionBlur FieldMotionBlur;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021E2310_DECL_H

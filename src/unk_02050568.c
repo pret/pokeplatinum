@@ -142,7 +142,7 @@ static void sub_0205075C (FieldSystem * fieldSystem)
     VecFx32 v0;
     CameraAngle v1;
 
-    Camera_SetPerspective(0x8c1, fieldSystem->camera);
+    Camera_SetFOV(0x8c1, fieldSystem->camera);
     Camera_SetDistance(0xf81b8, fieldSystem->camera);
 
     v0.x = 0x350523d;

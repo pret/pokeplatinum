@@ -428,7 +428,7 @@ void sub_02020854 (const u8 param0, UnkStruct_020203AC * param1)
     }
 }
 
-void Camera_SetPerspective (const u16 param0, UnkStruct_020203AC * param1)
+void Camera_SetFOV (const u16 param0, UnkStruct_020203AC * param1)
 {
     param1->unk_46 = param0;
     param1->unk_00.unk_00 = FX_SinIdx(param1->unk_46);

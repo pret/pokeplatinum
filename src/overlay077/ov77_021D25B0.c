@@ -1746,7 +1746,7 @@ static void ov77_021D4044 (UnkStruct_ov77_021D37C0 * param0, int param1)
         VecFx32 v0 = {0, 0, FX32_ONE * 16 * 6};
 
         sub_020206D0(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.unk_04, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
-        Camera_SetPerspective(0x981, param0->unk_20.unk_08);
+        Camera_SetFOV(0x981, param0->unk_20.unk_08);
 
         {
             VecFx32 v1 = {0, (FX32_ONE * 16 * 5), 0};
@@ -2373,7 +2373,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
             if (v1 - 32 > 0x5c1) {
                 sub_0202094C(-32, param0->unk_20.unk_08);
             } else {
-                Camera_SetPerspective(0x5c1, param0->unk_20.unk_08);
+                Camera_SetFOV(0x5c1, param0->unk_20.unk_08);
             }
         }
 
