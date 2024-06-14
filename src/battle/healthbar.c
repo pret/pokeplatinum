@@ -88,7 +88,7 @@ typedef struct {
 } UnkStruct_ov16_0226834C;
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
-static s32 UpdateGauge(s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5);
+static s32 UpdateGauge(s32 gaugeMax, s32 gaugeCur, s32 gaugeChange, s32 * gaugeTemp, u8 gaugeSize, u16 fillOffset);
 static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
