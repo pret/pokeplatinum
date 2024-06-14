@@ -17,6 +17,7 @@ this is some code
 
 - [Battle Engine](#battle-engine)
   - [Acid Rain](#acid-rain)
+  - [Fire Fang Always Bypasses Wonder Guard](#fire-fang-always-bypasses-wonder-guard)
 
 ## Battle Engine
 
@@ -55,10 +56,10 @@ or Uproar is in effect.
   being flipped to `1`, which denotes in-game that all of the following weathers
   are active:
 
-    1. Hail (temporary)
-    2. Sun (temporary and permanent)
-    3. Sand (temporary and permanent)
-    4. Rain (temporary and permanent)
+  1. Hail (temporary)
+  2. Sun (temporary and permanent)
+  3. Sand (temporary and permanent)
+  4. Rain (temporary and permanent)
 
   Because the turn counter for temporary weather was never initialized, temporary
   weather states are functionally permanent. The visible result is that each of
@@ -66,7 +67,7 @@ or Uproar is in effect.
   trigger.
 </details>
 
-**Fix**: Edit [`res/battle/res/scripts/subscript_pursuit.s`](https://github.com/pret/pokeplatinum/blob/main/res/battle/scripts/subscripts/subscript_pursuit.s)
+**Fix:** Edit [`res/battle/res/scripts/subscript_pursuit.s`](https://github.com/pret/pokeplatinum/blob/main/res/battle/scripts/subscripts/subscript_pursuit.s)
 
 ```diff
      UpdateVar OPCODE_ADD, BTLVAR_FAINTED_MON, BATTLER_ENEMY_SLOT_1
@@ -77,4 +78,40 @@ or Uproar is in effect.
 +    UpdateVarFromVar OPCODE_SET, BTLVAR_FAINTED_MON, BTLVAR_SCRIPT_TEMP
      Call BATTLE_SUBSCRIPT_POP_ATTACKER_AND_DEFENDER
      UpdateVarFromVar OPCODE_GET, BTLVAR_MOVE_TEMP, BTLVAR_CURRENT_MOVE
+```
+
+### Fire Fang Always Bypasses Wonder Guard
+
+The routine `MoveIsOnDamagingTurn` in `src/battle/battle_lib.c` is used only
+by checks related to the ability Wonder Guard. The purpose of this routine
+in isolation is to determine if a two-stage move is on its damaging turn;
+functionally, this permits the execution of such moves while a Pokémon with
+Wonder Guard is on the field, even if the second turn would deal no damage.
+
+The effect for Fire Fang -- which is off-by-one from the effect for Shadow
+Force -- was mistakenly included in this routine.
+
+**Fix:** Edit the routine `MoveIsOnDamagingTurn` in [`src/battle/battle_lib.c`](https://github.com/pret/pokeplatinum/blob/main/src/battle/battle_lib.c#L7590):
+
+```diff
+static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
+{
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_BIDE:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
+    case BATTLE_EFFECT_CHARGE_TURN_DEF_UP:
+    case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
+    case BATTLE_EFFECT_FLY:
+    case BATTLE_EFFECT_DIVE:
+    case BATTLE_EFFECT_DIG:
+    case BATTLE_EFFECT_BOUNCE:
+-    case BATTLE_EFFECT_FLINCH_BURN_HIT: // BUG: Fire Fang Always Bypasses Wonder Guard (see docs/bugs_and_glitches.md)
++    case BATTLE_EFFECT_SHADOW_FORCE:
+        return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
+        break;
+    }
+
+    return TRUE;
+}
 ```
