@@ -500,7 +500,7 @@ void sub_02020A78 (const fx32 param0, UnkStruct_020203AC * param1)
     sub_02020020(param1);
 }
 
-u16 sub_02020A88 (UnkStruct_020203AC const * param0)
+u16 Camera_GetFOV (UnkStruct_020203AC const * param0)
 {
     return param0->unk_46;
 }

@@ -295,7 +295,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
             return 0;
         }
 
-        param1->unk_24 = sub_02020A88(fieldSystem->camera);
+        param1->unk_24 = Camera_GetFOV(fieldSystem->camera);
 
         if (v4 != 75) {
             sub_0202094C(-96, fieldSystem->camera);
@@ -398,7 +398,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
 
         v16 = ov5_021D42F0(fieldSystem->unk_54, 1);
 
-        if (v16 && ScreenWipe_Done() && (param1->unk_24 == sub_02020A88(fieldSystem->camera))) {
+        if (v16 && ScreenWipe_Done() && (param1->unk_24 == Camera_GetFOV(fieldSystem->camera))) {
             ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 1);
             return 1;
         }
@@ -438,7 +438,7 @@ static void ov5_021D4798 (UnkStruct_020203AC * param0, u8 * param1)
     {
         u16 v2;
 
-        v2 = sub_02020A88(param0);
+        v2 = Camera_GetFOV(param0);
 
         if ((u16)(v2 - v0) > 0x0) {
             sub_0202094C(-v0, param0);
@@ -468,7 +468,7 @@ static void ov5_021D47DC (UnkStruct_020203AC * param0, u8 * param1)
     {
         u16 v2;
 
-        v2 = sub_02020A88(param0);
+        v2 = Camera_GetFOV(param0);
 
         if ((u16)(v2 + v0) > 0x0) {
             sub_0202094C(v0, param0);
@@ -906,7 +906,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
         v2->unk_04 = 0;
 
         {
-            v2->unk_0C = sub_02020A88(fieldSystem->camera);
+            v2->unk_0C = Camera_GetFOV(fieldSystem->camera);
             sub_0202094C(-96, fieldSystem->camera);
         }
 
@@ -928,7 +928,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(fieldSystem->camera))) {
+        if (ScreenWipe_Done() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -1041,7 +1041,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
         v2->unk_04 = 0;
 
         {
-            v2->unk_0C = sub_02020A88(fieldSystem->camera);
+            v2->unk_0C = Camera_GetFOV(fieldSystem->camera);
             sub_0202094C(-96, fieldSystem->camera);
         }
 
@@ -1081,7 +1081,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
         }
         break;
     case 3:
-        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(fieldSystem->camera))) {
+        if (ScreenWipe_Done() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }

@@ -2368,7 +2368,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
     if (param1 < ((40 * 30 - 15) + 6)) {
         {
             u16 v1;
-            v1 = sub_02020A88(param0->unk_20.unk_08);
+            v1 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v1 - 32 > 0x5c1) {
                 sub_0202094C(-32, param0->unk_20.unk_08);
@@ -2441,7 +2441,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         if (param1 >= 1560) {
             u16 v9;
 
-            v9 = sub_02020A88(param0->unk_20.unk_08);
+            v9 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v9 + 24 < 0x4000) {
                 sub_0202094C(24, param0->unk_20.unk_08);

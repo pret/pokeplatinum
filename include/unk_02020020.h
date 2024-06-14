@@ -33,7 +33,7 @@ void sub_02020A24(const CameraAngle * param0, UnkStruct_020203AC * param1);
 void Camera_SetDistance(const fx32 param0, UnkStruct_020203AC * param1);
 void sub_02020A5C(const VecFx32 * param0, UnkStruct_020203AC * param1);
 void sub_02020A78(const fx32 param0, UnkStruct_020203AC * param1);
-u16 sub_02020A88(UnkStruct_020203AC const * param0);
+u16 Camera_GetFOV(UnkStruct_020203AC const * param0);
 fx32 Camera_GetDistance(UnkStruct_020203AC const * param0);
 CameraAngle sub_02020A94(UnkStruct_020203AC const * param0);
 VecFx32 sub_02020AAC(UnkStruct_020203AC const * param0);

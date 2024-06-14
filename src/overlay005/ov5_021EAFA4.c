@@ -95,7 +95,7 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, UnkStruct_020203AC * const p
     CameraAngle v0;
 
     v0 = sub_02020A94(param1);
-    param0->unk_00 = sub_02020A88(param1);
+    param0->unk_00 = Camera_GetFOV(param1);
 
     {
         fx32 v1;

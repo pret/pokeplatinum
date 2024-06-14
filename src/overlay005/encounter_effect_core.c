@@ -2398,18 +2398,18 @@ static const LegendaryEncounterCameraParam sLegendaryEncounterCameraParams[16] =
 };
 
 typedef struct MythicalEncounterEffect {
-    FieldMotionBlur * motionBlur;
-    UnkStruct_020203AC * unk_04;
+    FieldMotionBlur *motionBlur;
+    UnkStruct_020203AC *unused;
     u32 cameraState;
     s32 frameDelay;
 } MythicalEncounterEffect;
 
 typedef struct LegendaryEncounterEffect {
     FieldMotionBlur * motionBlur;
-    UnkStruct_020203AC * unk_04;
-    LinearInterpolationTaskS32 unk_08;
-    QuadraticInterpolationTaskFX32 unk_1C;
-    s32 unk_34;
+    UnkStruct_020203AC *unused;
+    LinearInterpolationTaskS32 fovInterpolation;
+    QuadraticInterpolationTaskFX32 distanceInterpolation;
+    s32 frameDelay;
 } LegendaryEncounterEffect;
 
 static void EncounterEffect_SetLegendaryEncounterCamera(FieldSystem *fieldSystem, const LegendaryEncounterCameraParam *param)
@@ -2438,13 +2438,11 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-
         encEffect->state++;
         break;
 
     case 1:
         EncounterEffect_Flash(1, 16, 16, &encEffect->effectComplete, 1);
-
         encEffect->state++;
         break;
 
@@ -2487,7 +2485,6 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
     case 6:
         if (ScreenWipe_Done()) {
             encEffect->effectComplete = FALSE;
-
             encEffect->state++;
         }
 
@@ -2501,7 +2498,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         G2_BlendNone();
 
         if (encEffect->done != NULL) {
-            *(encEffect->done) = 1;
+            *(encEffect->done) = TRUE;
         }
 
         EncounterEffect_Finish(encEffect, task);
@@ -2514,7 +2511,7 @@ void EncounterEffect_Legendary(SysTask *task, void * param)
 {
     EncounterEffect *encEffect = param;
     LegendaryEncounterEffect *legendaryEffect = encEffect->param;
-    BOOL v2;
+    BOOL done;
 
     switch (encEffect->state) {
     case 0:
@@ -2524,13 +2521,11 @@ void EncounterEffect_Legendary(SysTask *task, void * param)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-
         encEffect->state++;
         break;
 
     case 1:
         EncounterEffect_Flash(1, 16, 16, &encEffect->effectComplete, 1);
-
         encEffect->state++;
         break;
 
@@ -2545,32 +2540,30 @@ void EncounterEffect_Legendary(SysTask *task, void * param)
         legendaryEffect->motionBlur = FieldMotionBlur_Start(5, 13);
 
         {
-            u16 v3 = sub_02020A88(encEffect->fieldSystem->camera);
-
-            LinearInterpolationTaskS32_Init(&legendaryEffect->unk_08, v3, v3 + 0x100, 40);
+            u16 fov = Camera_GetFOV(encEffect->fieldSystem->camera);
+            LinearInterpolationTaskS32_Init(&legendaryEffect->fovInterpolation, fov, fov + 0x100, 40);
         }
 
         encEffect->state++;
         break;
 
     case 4:
-        v2 = LinearInterpolationTaskS32_Update(&legendaryEffect->unk_08);
-        Camera_SetFOV(legendaryEffect->unk_08.currentValue, encEffect->fieldSystem->camera);
+        done = LinearInterpolationTaskS32_Update(&legendaryEffect->fovInterpolation);
+        Camera_SetFOV(legendaryEffect->fovInterpolation.currentValue, encEffect->fieldSystem->camera);
 
-        if (v2 == 1) {
+        if (done == TRUE) {
             encEffect->state++;
-            legendaryEffect->unk_34 = 5;
+            legendaryEffect->frameDelay = 5;
         }
 
         break;
 
     case 5:
-        legendaryEffect->unk_34--;
+        legendaryEffect->frameDelay--;
 
-        if (legendaryEffect->unk_34 < 0) {
-            fx32 v4 = Camera_GetDistance(encEffect->fieldSystem->camera);
-
-            QuadraticInterpolationTaskFX32_Init(&legendaryEffect->unk_1C, v4, v4 + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
+        if (legendaryEffect->frameDelay < 0) {
+            fx32 distance = Camera_GetDistance(encEffect->fieldSystem->camera);
+            QuadraticInterpolationTaskFX32_Init(&legendaryEffect->distanceInterpolation, distance, distance + (-FX32_CONST(2350)), (FX32_CONST(0.5)), 8);
 
             encEffect->state++;
         }
@@ -2578,10 +2571,10 @@ void EncounterEffect_Legendary(SysTask *task, void * param)
         break;
 
     case 6:
-        v2 = QuadraticInterpolationTaskFX32_Update(&legendaryEffect->unk_1C);
-        Camera_SetDistance(legendaryEffect->unk_1C.currentValue, encEffect->fieldSystem->camera);
+        done = QuadraticInterpolationTaskFX32_Update(&legendaryEffect->distanceInterpolation);
+        Camera_SetDistance(legendaryEffect->distanceInterpolation.currentValue, encEffect->fieldSystem->camera);
 
-        if (v2 == 1) {
+        if (done == TRUE) {
             encEffect->state++;
         }
 
@@ -2594,8 +2587,7 @@ void EncounterEffect_Legendary(SysTask *task, void * param)
 
     case 8:
         if (ScreenWipe_Done()) {
-            encEffect->effectComplete = 0;
-
+            encEffect->effectComplete = FALSE;
             encEffect->state++;
         }
 
@@ -2609,7 +2601,7 @@ void EncounterEffect_Legendary(SysTask *task, void * param)
         G2_BlendNone();
 
         if (encEffect->done != NULL) {
-            *(encEffect->done) = 1;
+            *(encEffect->done) = TRUE;
         }
 
         EncounterEffect_Finish(encEffect, task);
@@ -2634,118 +2626,120 @@ typedef struct GymLeaderEncounterParam {
     u8 padding;
 } GymLeaderEncounterParam;
 
+#define GYM_LEADER(NAME) (TRAINER_CLASS_LEADER_##NAME - TRAINER_CLASS_LEADER_ROARK)
+
 static const GymLeaderEncounterParam sGymLeaderEncounterParams[8] = {
     {
-        214 * FX32_ONE, 
-        246, 
-        TRAINER_CLASS_LEADER_ROARK, 
-        1, 
-        55, 
-        56, 
-        57, 
-        58, 
-        15, 
-        16, 
-        17, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 246, 
+        .trainerClass   = TRAINER_CLASS_LEADER_ROARK, 
+        .unk_0A         = 1, 
+        .unk_0C         = 55, 
+        .unk_0D         = 56, 
+        .unk_0E         = 57, 
+        .unk_0F         = 58, 
+        .unk_10         = 15, 
+        .unk_11         = 16, 
+        .unk_12         = 17, 
+        .padding        = 0,
     }, 
     {
-        214 * FX32_ONE, 
-        315, 
-        TRAINER_CLASS_LEADER_GARDENIA, 
-        1, 
-        59, 
-        60, 
-        61, 
-        62, 
-        18, 
-        19, 
-        20, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 315, 
+        .trainerClass   = TRAINER_CLASS_LEADER_GARDENIA, 
+        .unk_0A         = 1, 
+        .unk_0C         = 59, 
+        .unk_0D         = 60, 
+        .unk_0E         = 61, 
+        .unk_0F         = 62, 
+        .unk_10         = 18, 
+        .unk_11         = 19, 
+        .unk_12         = 20, 
+        .padding        = 0,
     }, 
     {
-        214 * FX32_ONE, 
-        316, 
-        TRAINER_CLASS_LEADER_WAKE, 
-        0, 
-        63, 
-        64, 
-        65, 
-        66, 
-        21, 
-        22, 
-        23, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 316, 
+        .trainerClass   = TRAINER_CLASS_LEADER_WAKE, 
+        .unk_0A         = 0, 
+        .unk_0C         = 63, 
+        .unk_0D         = 64, 
+        .unk_0E         = 65, 
+        .unk_0F         = 66, 
+        .unk_10         = 21, 
+        .unk_11         = 22, 
+        .unk_12         = 23, 
+        .padding        = 0,
     }, 
     {
-        214 * FX32_ONE, 
-        317, 
-        TRAINER_CLASS_LEADER_MAYLENE, 
-        1, 
-        67, 
-        68, 
-        69, 
-        70, 
-        24, 
-        25, 
-        26, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 317, 
+        .trainerClass   = TRAINER_CLASS_LEADER_MAYLENE, 
+        .unk_0A         = 1, 
+        .unk_0C         = 67, 
+        .unk_0D         = 68, 
+        .unk_0E         = 69, 
+        .unk_0F         = 70, 
+        .unk_10         = 24, 
+        .unk_11         = 25, 
+        .unk_12         = 26, 
+        .padding        = 0,
     }, 
     {
-        214 * FX32_ONE, 
-        318, 
-        TRAINER_CLASS_LEADER_FANTINA, 
-        1, 
-        71, 
-        72, 
-        73, 
-        74, 
-        27, 
-        28, 
-        29, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 318, 
+        .trainerClass   = TRAINER_CLASS_LEADER_FANTINA, 
+        .unk_0A         = 1, 
+        .unk_0C         = 71, 
+        .unk_0D         = 72, 
+        .unk_0E         = 73, 
+        .unk_0F         = 74, 
+        .unk_10         = 27, 
+        .unk_11         = 28, 
+        .unk_12         = 29, 
+        .padding        = 0,
     }, 
     {
-        214 * FX32_ONE, 
-        319, 
-        TRAINER_CLASS_LEADER_CANDICE, 
-        1, 
-        75, 
-        76, 
-        77, 
-        78, 
-        30, 
-        31, 
-        32, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 319, 
+        .trainerClass   = TRAINER_CLASS_LEADER_CANDICE, 
+        .unk_0A         = 1, 
+        .unk_0C         = 75, 
+        .unk_0D         = 76, 
+        .unk_0E         = 77, 
+        .unk_0F         = 78, 
+        .unk_10         = 30, 
+        .unk_11         = 31, 
+        .unk_12         = 32, 
+        .padding        = 0,
     }, 
     {
-        214 * FX32_ONE, 
-        250, 
-        TRAINER_CLASS_LEADER_BYRON, 
-        1, 
-        79, 
-        80, 
-        81, 
-        82, 
-        33, 
-        34, 
-        35, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 250, 
+        .trainerClass   = TRAINER_CLASS_LEADER_BYRON, 
+        .unk_0A         = 1, 
+        .unk_0C         = 79, 
+        .unk_0D         = 80, 
+        .unk_0E         = 81, 
+        .unk_0F         = 82, 
+        .unk_10         = 33, 
+        .unk_11         = 34, 
+        .unk_12         = 35, 
+        .padding        = 0,
     }, 
     {
-        214 * FX32_ONE, 
-        320, 
-        TRAINER_CLASS_LEADER_VOLKNER, 
-        1, 
-        83, 
-        84, 
-        85, 
-        86, 
-        36, 
-        37, 
-        38, 
-        0,
+        .endX           = 214 * FX32_ONE, 
+        .trainerID      = 320, 
+        .trainerClass   = TRAINER_CLASS_LEADER_VOLKNER, 
+        .unk_0A         = 1, 
+        .unk_0C         = 83, 
+        .unk_0D         = 84, 
+        .unk_0E         = 85, 
+        .unk_0F         = 86, 
+        .unk_10         = 36, 
+        .unk_11         = 37, 
+        .unk_12         = 38, 
+        .padding        = 0,
     },
 };
 
@@ -2759,39 +2753,39 @@ typedef struct EliterFourChampionEncounterParam {
 
 static const EliterFourChampionEncounterParam sEliteFourChampionEncounterParams[5] = {
     {
-        87,
-        39,
-        32,
-        TRAINER_CLASS_ELITE_FOUR_AARON,
-        261
+        .unk_00         = 87,
+        .unk_02         = 39,
+        .facePanFrames  = 32,
+        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_AARON,
+        .trainerID      = 261
     }, 
     {
-        91,
-        43,
-        32,
-        TRAINER_CLASS_ELITE_FOUR_BERTHA,
-        262
+        .unk_00         = 91,
+        .unk_02         = 43,
+        .facePanFrames  = 32,
+        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_BERTHA,
+        .trainerID      = 262
     }, 
     {
-        95,
-        44,
-        32,
-        TRAINER_CLASS_ELITE_FOUR_FLINT,
-        263
+        .unk_00         = 95,
+        .unk_02         = 44,
+        .facePanFrames  = 32,
+        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_FLINT,
+        .trainerID      = 263
     }, 
     {
-        99,
-        45,
-        32,
-        TRAINER_CLASS_ELITE_FOUR_LUCIAN,
-        264
+        .unk_00         = 99,
+        .unk_02         = 45,
+        .facePanFrames  = 32,
+        .trainerClass   = TRAINER_CLASS_ELITE_FOUR_LUCIAN,
+        .trainerID      = 264
     }, 
     {
-        103,
-        46,
-        9,
-        TRAINER_CLASS_CHAMPION_CYNTHIA,
-        267
+        .unk_00         = 103,
+        .unk_02         = 46,
+        .facePanFrames  = 9,
+        .trainerClass   = TRAINER_CLASS_CHAMPION_CYNTHIA,
+        .trainerID      = 267
     },
 };
 
@@ -2922,7 +2916,7 @@ static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
     return result;
 }
 
-static BOOL EncounterEffect_GymLeader (EncounterEffect *encEffect, enum HeapId heapID, const GymLeaderEncounterParam *param)
+static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId heapID, const GymLeaderEncounterParam *param)
 {
     UnkStruct_ov5_021E52A8 * v0 = encEffect->param;
     BOOL v1;
