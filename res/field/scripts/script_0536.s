@@ -7,7 +7,7 @@
     .byte 4
     .short 24, 0
     .byte 1
-    .long _0010-.-4
+    ScriptEntry _0010
     .byte 0
 
 _0010:

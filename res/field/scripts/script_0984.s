@@ -3,7 +3,7 @@
     .data
 
     .byte 1
-    .long _0006-.-4
+    ScriptEntry _0006
     .byte 0
 
 _0006:

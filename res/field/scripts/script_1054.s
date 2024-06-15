@@ -2,32 +2,32 @@
 
     .data
 
-    .long _000E-.-4
-    .long _0090-.-4
-    .long _00A1-.-4
+    ScriptEntry _000E
+    ScriptEntry _0090
+    ScriptEntry _00A1
     .short 0xFD13
 
 _000E:
-    ScrCmd_060
+    LockAll
     ScrCmd_0CE 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 0, _0060
     WaitMovement
     ScrCmd_014 0x7FA
     ScrCmd_0CD 0
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ApplyMovement 0, _006C
     ApplyMovement 0xFF, _0080
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ScrCmd_065 0
     ScrCmd_014 0x7FB
     SetFlag 234
     SetVar 0x40A3, 1
     SetVar 0x4070, 2
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -52,22 +52,22 @@ _0080:
     EndMovement
 
 _0090:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00A1:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     ScrCmd_0CD 0
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

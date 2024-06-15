@@ -2,13 +2,13 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfSet 144, _00B0
     GoToIfGe 0x4095, 1, _0082
     GoToIfSet 110, _0090
@@ -21,52 +21,52 @@ _0006:
 _005C:
     ScrCmd_0CD 0
     ScrCmd_0CE 1
-    ScrCmd_02C 0
+    Message 0
     GoTo _007A
 
 _006B:
     ScrCmd_0CD 0
     ScrCmd_0CE 1
-    ScrCmd_02C 1
+    Message 1
     GoTo _007A
 
 _007A:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0082:
     ScrCmd_0CE 1
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0090:
     ScrCmd_0CE 1
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _009E:
     SetFlag 110
     ScrCmd_0CE 1
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00B0:
     ScrCmd_0CE 1
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

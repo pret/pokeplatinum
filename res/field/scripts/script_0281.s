@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _0015-.-4
+    ScriptEntry _000A
+    ScriptEntry _0015
     .short 0xFD13
 
 _000A:
@@ -12,21 +12,21 @@ _000A:
     End
 
 _0015:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_1BD 0x8004
     ScrCmd_07E 0x1C5, 1, 0x800C
     GoToIfEq 0x800C, 1, _0052
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_03E 0x800C
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 0, _005D
     GoTo _0098
 
 _0052:
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     GoTo _005D
 
 _005D:
@@ -35,20 +35,20 @@ _005D:
     CallIfEq 0x8004, 3, _00D7
     CallIfEq 0x8004, 0, _00F1
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0098:
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00A3:
     ApplyMovement 0, _010C
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ApplyMovement 0, _0118
     WaitMovement
     Return
@@ -56,7 +56,7 @@ _00A3:
 _00BD:
     ApplyMovement 0xFF, _0120
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ApplyMovement 0xFF, _0118
     WaitMovement
     Return
@@ -64,7 +64,7 @@ _00BD:
 _00D7:
     ApplyMovement 0xFF, _0130
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ApplyMovement 0xFF, _0118
     WaitMovement
     Return
@@ -72,7 +72,7 @@ _00D7:
 _00F1:
     ApplyMovement 0xFF, _013C
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ApplyMovement 0xFF, _0118
     WaitMovement
     Return

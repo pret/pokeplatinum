@@ -2,12 +2,12 @@
 
     .data
 
-    .long _001A-.-4
-    .long _00BE-.-4
-    .long _00E7-.-4
-    .long _018F-.-4
-    .long _0225-.-4
-    .long _0289-.-4
+    ScriptEntry _001A
+    ScriptEntry _00BE
+    ScriptEntry _00E7
+    ScriptEntry _018F
+    ScriptEntry _0225
+    ScriptEntry _0289
     .short 0xFD13
 
 _001A:
@@ -177,7 +177,7 @@ _0289:
     ScrCmd_1A0
     ApplyMovement 16, _02E4
     WaitMovement
-    ScrCmd_049 0x630
+    PlayFanfare 0x630
     ApplyMovement 16, _02F0
     WaitMovement
     ScrCmd_065 16

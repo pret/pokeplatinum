@@ -2,11 +2,11 @@
 
     .data
 
-    .long _0016-.-4
-    .long _001C-.-4
-    .long _00A4-.-4
-    .long _00B7-.-4
-    .long _00CE-.-4
+    ScriptEntry _0016
+    ScriptEntry _001C
+    ScriptEntry _00A4
+    ScriptEntry _00B7
+    ScriptEntry _00CE
     .short 0xFD13
 
 _0016:
@@ -44,13 +44,13 @@ _009F:
     Return
 
 _00A4:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00B7:

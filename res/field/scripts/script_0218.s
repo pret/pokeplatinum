@@ -2,10 +2,10 @@
 
     .data
 
-    .long _0012-.-4
-    .long _0058-.-4
-    .long _006F-.-4
-    .long _0018-.-4
+    ScriptEntry _0012
+    ScriptEntry _0058
+    ScriptEntry _006F
+    ScriptEntry _0018
     .short 0xFD13
 
 _0012:
@@ -13,25 +13,25 @@ _0012:
     End
 
 _0018:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfSet 0x12A, _004D
     SetVar 0x8004, 95
     ScrCmd_261 0, 0x8004
-    ScrCmd_02C 0
+    Message 0
     SetVar 0x8005, 1
     ScrCmd_014 0x7DF
     SetFlag 0x12A
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _004D:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0058:

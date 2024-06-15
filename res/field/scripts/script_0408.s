@@ -2,290 +2,290 @@
 
     .data
 
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
-    .long _0472-.-4
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
+    ScriptEntry _0472
     .short 0xFD13
 
 _0472:
@@ -299,7 +299,7 @@ _0472:
     End
 
 _04AC:
-    ScrCmd_034
+    CloseMessage
     End
 
 _04B0:
@@ -317,7 +317,7 @@ _04E2:
     CallIfEq 0x800C, 1, _0667
     ScrCmd_0CD 0
     ScrCmd_0D1 1, 0x8004
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 7, _0588
     GoToIfEq 0x8008, 0, _0575
@@ -330,57 +330,57 @@ _04E2:
     End
 
 _0575:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _0588:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _059B:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _05AE:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _05C1:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _05D4:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _05E7:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _05FA:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _060D
     End
 
 _060D:
     SetFlagFromVar 0x8006
-    ScrCmd_02C 9
-    ScrCmd_031
+    Message 9
+    WaitButtonPress
     SetVar 0x800C, 1
     GoTo _04AC
     End
@@ -389,21 +389,21 @@ _0624:
     ScrCmd_0CD 0
     ScrCmd_33C 1, 0x8004
     ScrCmd_0D3 2, 0x8004
-    ScrCmd_02C 6
+    Message 6
     GoTo _04E2
     End
 
 _063C:
     ScrCmd_0CD 0
     ScrCmd_33C 1, 0x8004
-    ScrCmd_02C 3
+    Message 3
     GoTo _04E2
     End
 
 _064F:
     ScrCmd_0D1 0, 0x8004
-    ScrCmd_02C 4
-    ScrCmd_031
+    Message 4
+    WaitButtonPress
     SetVar 0x800C, 0
     GoTo _04AC
     End

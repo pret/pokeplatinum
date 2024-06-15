@@ -2,22 +2,22 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfSet 0x131, _0105
     GoToIfSet 0x97E, _0033
     SetFlag 0x97E
-    ScrCmd_02C 0
+    Message 0
     GoTo _003E
     End
 
 _0033:
-    ScrCmd_02C 1
+    Message 1
     GoTo _003E
     End
 
@@ -30,30 +30,30 @@ _003E:
 _0057:
     ScrCmd_177 0x800C
     GoToIfEq 0x800C, 6, _00EF
-    ScrCmd_02C 2
+    Message 2
     ScrCmd_04E 0x486
     ScrCmd_0CD 0
-    ScrCmd_02C 3
+    Message 3
     ScrCmd_04F
     ScrCmd_096 133, 20, 0, 0x800C
     SetFlag 0x131
-    ScrCmd_02C 4
+    Message 4
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _00A8
     GoToIfEq 0x800C, 1, _00E9
     End
 
 _00A8:
-    ScrCmd_034
+    CloseMessage
     ScrCmd_177 0x4000
     SubVar 0x4000, 1
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BB 0x4000, 0x800C
     CallIfNe 0x800C, 1, _00E3
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
 _00E3:
@@ -61,38 +61,38 @@ _00E3:
     Return
 
 _00E9:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _00EF:
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00FA:
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0105:
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 1, _0122
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 7
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0122:
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 8
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

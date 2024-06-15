@@ -2,10 +2,10 @@
 
     .data
 
-    .long _0027-.-4
-    .long _0190-.-4
-    .long _02E4-.-4
-    .long _0012-.-4
+    ScriptEntry _0027
+    ScriptEntry _0190
+    ScriptEntry _02E4
+    ScriptEntry _0012
     .short 0xFD13
 
 _0012:
@@ -17,7 +17,7 @@ _001F:
     End
 
 _0027:
-    ScrCmd_060
+    LockAll
     ScrCmd_0C8 0
     ApplyMovement 28, _0140
     WaitMovement
@@ -66,25 +66,25 @@ _00EC:
     CallIfSet 223, _0139
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_04F
     SetFlag 223
     SetVar 0x4090, 1
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
+    Message 2
+    WaitButtonPress
+    CloseMessage
     SetVar 0x403F, 0x262
     ScrCmd_161
     ScrCmd_06D 28, 48
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0134:
-    ScrCmd_02C 0
+    Message 0
     Return
 
 _0139:
-    ScrCmd_02C 3
+    Message 3
     Return
 
     .balign 4, 0
@@ -129,12 +129,12 @@ _0184:
     EndMovement
 
 _0190:
-    ScrCmd_060
+    LockAll
     ApplyMovement 0xFF, _0274
     ApplyMovement 28, _02DC
     WaitMovement
-    ScrCmd_02C 4
-    ScrCmd_034
+    Message 4
+    CloseMessage
     SetVar 0x4090, 0
     ScrCmd_162
     ScrCmd_06D 28, 14
@@ -178,7 +178,7 @@ _025D:
     GoTo _026D
 
 _026D:
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -241,14 +241,14 @@ _02DC:
     EndMovement
 
 _02E4:
-    ScrCmd_060
+    LockAll
     ScrCmd_162
     ScrCmd_06D 28, 14
     ApplyMovement 0xFF, _03B4
     ApplyMovement 28, _03E0
     WaitMovement
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 5
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8004, 51, _0341
     GoToIfEq 0x8004, 52, _0359
@@ -284,7 +284,7 @@ _03A1:
     ScrCmd_065 28
     SetFlag 230
     SetVar 0x4090, 2
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

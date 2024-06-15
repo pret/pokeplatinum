@@ -2,72 +2,72 @@
 
     .data
 
-    .long _001E-.-4
-    .long _002C-.-4
-    .long _003A-.-4
-    .long _0048-.-4
-    .long _005B-.-4
-    .long _006E-.-4
-    .long _0081-.-4
+    ScriptEntry _001E
+    ScriptEntry _002C
+    ScriptEntry _003A
+    ScriptEntry _0048
+    ScriptEntry _005B
+    ScriptEntry _006E
+    ScriptEntry _0081
     .short 0xFD13
 
 _001E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     ScrCmd_1B5 0
-    ScrCmd_061
+    ReleaseAll
     End
 
 _002C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     ScrCmd_1B5 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _003A:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     ScrCmd_1B5 2
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0048:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _005B:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _006E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0081:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End

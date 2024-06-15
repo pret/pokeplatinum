@@ -2,97 +2,97 @@
 
     .data
 
-    .long _0026-.-4
-    .long _0037-.-4
-    .long _0048-.-4
-    .long _0059-.-4
-    .long _006A-.-4
-    .long _007B-.-4
-    .long _008C-.-4
-    .long _009D-.-4
-    .long _00AE-.-4
+    ScriptEntry _0026
+    ScriptEntry _0037
+    ScriptEntry _0048
+    ScriptEntry _0059
+    ScriptEntry _006A
+    ScriptEntry _007B
+    ScriptEntry _008C
+    ScriptEntry _009D
+    ScriptEntry _00AE
     .short 0xFD13
 
 _0026:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0037:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0048:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0059:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _006A:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _007B:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _008C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _009D:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 7
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00AE:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    PlayFanfare 0x5DC
+    LockAll
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0AA
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End

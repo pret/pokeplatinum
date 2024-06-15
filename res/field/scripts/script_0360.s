@@ -2,35 +2,35 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_060
+    LockAll
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0228
     WaitMovement
-    ScrCmd_003 15, 0x800C
+    WaitFrames 15, 0x800C
     ApplyMovement 2, _01C4
     WaitMovement
     ScrCmd_0CE 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 1, _01EC
     WaitMovement
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0136
     CallIfEq 0x8004, 15, _0154
     ScrCmd_067
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0168
     CallIfEq 0x8004, 15, _0174
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ScrCmd_065 1
     ScrCmd_04B 0x603
     ScrCmd_069 0x8004, 0x8005
@@ -39,21 +39,21 @@ _0006:
     ApplyMovement 2, _01CC
     WaitMovement
     ScrCmd_0CE 0
-    ScrCmd_02C 3
-    ScrCmd_034
+    Message 3
+    CloseMessage
     ApplyMovement 2, _01D4
     WaitMovement
-    ScrCmd_02C 4
-    ScrCmd_034
-    ScrCmd_003 30, 0x800C
+    Message 4
+    CloseMessage
+    WaitFrames 30, 0x800C
     ApplyMovement 2, _01CC
     WaitMovement
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 5
+    CloseMessage
     ApplyMovement 2, _01DC
     ApplyMovement 0xFF, _01B8
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ScrCmd_065 2
     ScrCmd_04B 0x603
     SetFlag 0x98F
@@ -65,7 +65,7 @@ _0006:
     SetFlag 0x28D
     SetFlag 0x28C
     ClearFlag 168
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0136:

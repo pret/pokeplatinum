@@ -2,10 +2,10 @@
 
     .data
 
-    .long _003B-.-4
-    .long _0056-.-4
-    .long _0012-.-4
-    .long _0056-.-4
+    ScriptEntry _003B
+    ScriptEntry _0056
+    ScriptEntry _0012
+    ScriptEntry _0056
     .short 0xFD13
 
 _0012:
@@ -30,7 +30,7 @@ _0048:
     End
 
 _0056:
-    ScrCmd_060
+    LockAll
     SetVar 0x4118, 0
     Call _00E9
     Call _0104
@@ -38,8 +38,8 @@ _0056:
     ScrCmd_04D
     Call _016F
     ScrCmd_04C 0x1ED, 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     SetFlag 142
     ScrCmd_2BD 0x1ED, 80
     ClearFlag 142
@@ -49,7 +49,7 @@ _0056:
     GoToIfEq 0x800C, 1, _00D0
     CallIfEq 0x4056, 0, _00C8
     SetFlag 0x11E
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00C8:
@@ -57,17 +57,17 @@ _00C8:
     Return
 
 _00D0:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
+    Message 1
+    WaitButtonPress
+    CloseMessage
     ClearFlag 0x24E
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00DF:
     ClearFlag 0x24E
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00E9:

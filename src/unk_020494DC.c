@@ -65,7 +65,7 @@ BOOL ScrCmd_1DD (ScriptContext * param0)
     v0 = ScriptContext_ReadHalfWord(param0);
     v1 = ScriptContext_GetVar(param0);
     v2 = ScriptContext_ReadHalfWord(param0);
-    v3 = sub_0203F118(param0->fieldSystem, v2);
+    v3 = FieldSystem_GetVar(param0->fieldSystem, v2);
     v6 = param0->fieldSystem->unk_AC;
 
     switch (v0) {
@@ -207,8 +207,8 @@ BOOL ScrCmd_1DE (ScriptContext * param0)
 
     v0 = ScriptContext_GetVar(param0);
     v1 = ScriptContext_GetVar(param0);
-    v2 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    v3 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    v2 = FieldSystem_GetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    v3 = FieldSystem_GetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
 
     *v2 = v4->unk_298[v0].unk_30[v1].unk_00_val1_0;
     *v3 = v4->unk_298[v0].unk_30[v1].unk_04[0];
@@ -222,7 +222,7 @@ BOOL ScrCmd_1DF (ScriptContext * param0)
     u16 * v3;
 
     v0 = ScriptContext_ReadHalfWord(param0);
-    v3 = sub_0203F118(param0->fieldSystem, v0);
+    v3 = FieldSystem_GetVar(param0->fieldSystem, v0);
     *v3 = sub_0206BDBC(param0->fieldSystem->saveData);
 
     return 0;
@@ -234,7 +234,7 @@ BOOL ScrCmd_1E0 (ScriptContext * param0)
     u16 * v3;
 
     v0 = ScriptContext_ReadHalfWord(param0);
-    v3 = sub_0203F118(param0->fieldSystem, v0);
+    v3 = FieldSystem_GetVar(param0->fieldSystem, v0);
     *v3 = sub_0206BF04(param0->fieldSystem->saveData);
 
     return 0;
@@ -312,7 +312,7 @@ static BOOL sub_02049A20 (ScriptContext * param0)
 {
     u8 v0;
     UnkStruct_0204AFC4 * v1 = param0->fieldSystem->unk_AC;
-    u16 * v2 = sub_0203F118(param0->fieldSystem, v1->unk_8DA);
+    u16 * v2 = FieldSystem_GetVar(param0->fieldSystem, v1->unk_8DA);
 
     if (v1->unk_8D5 == 1) {
         v0 = 1;
@@ -333,8 +333,8 @@ static BOOL sub_02049A20 (ScriptContext * param0)
 BOOL ScrCmd_1E3 (ScriptContext * param0)
 {
     UnkStruct_02049A68 v0;
-    u16 * v1 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    u16 * v2 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 * v1 = FieldSystem_GetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 * v2 = FieldSystem_GetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
 
     sub_0202D708(sub_0202D764(param0->fieldSystem->saveData), &v0);
 
@@ -346,7 +346,7 @@ BOOL ScrCmd_1E3 (ScriptContext * param0)
 
 BOOL ScrCmd_1E4 (ScriptContext * param0)
 {
-    u16 * v0 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 * v0 = FieldSystem_GetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
 
     *v0 = sub_0202D5F0(sub_0202D764(param0->fieldSystem->saveData));
     return 0;

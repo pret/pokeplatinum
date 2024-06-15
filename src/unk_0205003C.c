@@ -75,7 +75,7 @@ BOOL ScrCmd_2D9 (ScriptContext * param0)
     v3 = ScriptContext_ReadHalfWord(param0);
     v4 = ScriptContext_GetVar(param0);
     v5 = ScriptContext_ReadHalfWord(param0);
-    v6 = sub_0203F118(param0->fieldSystem, v5);
+    v6 = FieldSystem_GetVar(param0->fieldSystem, v5);
     v10 = sub_020304A0(param0->fieldSystem->saveData);
     v11 = sub_020305B8(param0->fieldSystem->saveData);
     v8 = sub_0203F098(param0->fieldSystem, 19);

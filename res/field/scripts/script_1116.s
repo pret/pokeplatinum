@@ -2,25 +2,25 @@
 
     .data
 
-    .long _004E-.-4
-    .long _005A-.-4
-    .long _0066-.-4
-    .long _0072-.-4
-    .long _007E-.-4
-    .long _008A-.-4
-    .long _0096-.-4
-    .long _00A2-.-4
-    .long _00AE-.-4
-    .long _00BA-.-4
-    .long _00C6-.-4
-    .long _00D2-.-4
-    .long _00DE-.-4
-    .long _00EA-.-4
-    .long _00F6-.-4
-    .long _0129-.-4
-    .long _0135-.-4
-    .long _0141-.-4
-    .long _014D-.-4
+    ScriptEntry _004E
+    ScriptEntry _005A
+    ScriptEntry _0066
+    ScriptEntry _0072
+    ScriptEntry _007E
+    ScriptEntry _008A
+    ScriptEntry _0096
+    ScriptEntry _00A2
+    ScriptEntry _00AE
+    ScriptEntry _00BA
+    ScriptEntry _00C6
+    ScriptEntry _00D2
+    ScriptEntry _00DE
+    ScriptEntry _00EA
+    ScriptEntry _00F6
+    ScriptEntry _0129
+    ScriptEntry _0135
+    ScriptEntry _0141
+    ScriptEntry _014D
     .short 0xFD13
 
 _004E:
@@ -103,12 +103,12 @@ _014D:
     GoTo _0159
 
 _0159:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_238 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _02A1
-    ScrCmd_02C 0
+    Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0190
     GoTo _02AE
@@ -118,13 +118,13 @@ _0190:
     ScrCmd_237 0, 0x8000, 0x8004, 0x8005
     ScrCmd_1FB 0x8004, 0x8005
     GoToIfEq 0x8000, 10, _01F0
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
-    ScrCmd_034
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    CloseMessage
     ScrCmd_243 0, 0x800C, 0x8004
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _02AE
     ScrCmd_237 1, 0x8000, 0x8004, 0x8005
     GoTo _02A1
@@ -156,20 +156,20 @@ _01F0:
     End
 
 _02A1:
-    ScrCmd_02C 2
-    ScrCmd_031
+    Message 2
+    WaitButtonPress
     GoTo _02BB
     End
 
 _02AE:
-    ScrCmd_02C 1
-    ScrCmd_031
+    Message 1
+    WaitButtonPress
     GoTo _02BB
     End
 
 _02BB:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

@@ -2,10 +2,10 @@
 
     .data
 
-    .long _0012-.-4
-    .long _0074-.-4
-    .long _0156-.-4
-    .long _0181-.-4
+    ScriptEntry _0012
+    ScriptEntry _0074
+    ScriptEntry _0156
+    ScriptEntry _0181
     .short 0xFD13
 
 _0012:
@@ -46,7 +46,7 @@ _009E:
     End
 
 _00BE:
-    ScrCmd_02C 2
+    Message 2
     ScrCmd_04E 0x48E
     ScrCmd_04F
     ScrCmd_14E
@@ -55,34 +55,34 @@ _00BE:
 _00CB:
     ScrCmd_1DD 43, 0, 0x800C
     GoToIfEq 0x800C, 3, _0114
-    ScrCmd_003 30, 0x800C
+    WaitFrames 30, 0x800C
     SetVar 0x40D8, 1
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 0x146, 0, 7, 6, 0
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
 _0114:
-    ScrCmd_003 30, 0x800C
+    WaitFrames 30, 0x800C
     SetVar 0x40D8, 1
     ScrCmd_136
     ScrCmd_135 6
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_136
     ScrCmd_135 8
     ScrCmd_150
     ScrCmd_0BE 0x146, 0, 7, 6, 0
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
 _0156:
-    ScrCmd_060
+    LockAll
     SetVar 0x40DE, 3
     Call _048D
     ScrCmd_1DD 43, 0, 0x800C
@@ -91,7 +91,7 @@ _0156:
     End
 
 _0181:
-    ScrCmd_060
+    LockAll
     SetVar 0x40DE, 3
     Call _048D
     Call _04A1
@@ -104,11 +104,11 @@ _019D:
     Call _0529
     ScrCmd_1FE 0
     ScrCmd_030
-    ScrCmd_034
+    CloseMessage
     Call _0535
     ScrCmd_1FE 1
     ScrCmd_030
-    ScrCmd_034
+    CloseMessage
     Call _0505
     ScrCmd_1DD 42, 0, 0
     ScrCmd_0EC 0x800C
@@ -120,12 +120,12 @@ _01DF:
     Call _04C5
     Call _0529
     ScrCmd_1FE 0
-    ScrCmd_003 30, 0x800C
-    ScrCmd_034
+    WaitFrames 30, 0x800C
+    CloseMessage
     Call _0535
     ScrCmd_1FE 1
-    ScrCmd_003 30, 0x800C
-    ScrCmd_034
+    WaitFrames 30, 0x800C
+    CloseMessage
     Call _0505
     ScrCmd_136
     ScrCmd_135 4
@@ -150,15 +150,15 @@ _025B:
     SetVar 0x40D8, 2
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
-    ScrCmd_02C 0
+    Message 0
     ScrCmd_18D
     ScrCmd_12D 0x800C
     ScrCmd_18E
-    ScrCmd_049 0x61B
+    PlayFanfare 0x61B
     ScrCmd_04B 0x61B
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
-    ScrCmd_034
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    CloseMessage
     ScrCmd_1DD 2, 0, 0
     End
 
@@ -182,14 +182,14 @@ _02B0:
 _02E8:
     ScrCmd_1DD 33, 0, 0x8004
     ScrCmd_0D5 0, 0x8004
-    ScrCmd_02C 3
+    Message 3
     ScrCmd_044 31, 11, 0, 0, 0x800C
     ScrCmd_33A 1
     ScrCmd_046 146, 0xFF, 0
     ScrCmd_046 147, 0xFF, 1
     ScrCmd_046 148, 0xFF, 2
     ScrCmd_047
-    ScrCmd_034
+    CloseMessage
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0354
     GoToIfEq 0x8008, 1, _0362
@@ -203,17 +203,17 @@ _0354:
     End
 
 _0362:
-    ScrCmd_02C 4
+    Message 4
     ScrCmd_03E 0x800C
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 0, _025B
     GoTo _02E8
     End
 
 _0380:
-    ScrCmd_02C 5
+    Message 5
     ScrCmd_03E 0x800C
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 0, _0296
     GoTo _02E8
     End
@@ -229,22 +229,22 @@ _039E:
 _03D6:
     ScrCmd_1DD 33, 0, 0x8004
     ScrCmd_0D5 0, 0x8004
-    ScrCmd_02C 3
+    Message 3
     ScrCmd_044 31, 13, 0, 0, 0x800C
     ScrCmd_33A 1
     ScrCmd_046 146, 0xFF, 0
     ScrCmd_046 148, 0xFF, 1
     ScrCmd_047
-    ScrCmd_034
+    CloseMessage
     SetVar 0x4000, 0
     GoToIfEq 0x800C, 1, _0452
 _0418:
-    ScrCmd_02C 12
+    Message 12
     ScrCmd_136
     ScrCmd_135 5
     ScrCmd_1E1 2, 0x4000, 0x800C
     ScrCmd_1E2 2, 0x4000
-    ScrCmd_034
+    CloseMessage
     SetVar 0x8008, 0x4000
     GoToIfEq 0x8008, 1, _0474
     Call _0589
@@ -252,7 +252,7 @@ _0418:
     End
 
 _0452:
-    ScrCmd_02C 5
+    Message 5
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _03D6
     SetVar 0x4000, 1
@@ -260,11 +260,11 @@ _0452:
     End
 
 _0474:
-    ScrCmd_02C 11
-    ScrCmd_003 30, 0x800C
+    Message 11
+    WaitFrames 30, 0x800C
     ScrCmd_136
     ScrCmd_135 7
-    ScrCmd_034
+    CloseMessage
     GoTo _0296
     End
 

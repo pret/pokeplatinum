@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _002E-.-4
+    ScriptEntry _000A
+    ScriptEntry _002E
     .short 0xFD13
 
 _000A:
@@ -18,13 +18,13 @@ _0022:
     End
 
 _002E:
-    ScrCmd_060
+    LockAll
     ApplyMovement 1, _004C
     WaitMovement
     SetFlag 0x27C
     ScrCmd_065 1
     SetVar 0x4111, 0
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

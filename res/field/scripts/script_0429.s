@@ -2,22 +2,22 @@
 
     .data
 
-    .long _001A-.-4
-    .long _002D-.-4
-    .long _0044-.-4
-    .long _005B-.-4
-    .long _0070-.-4
-    .long _0085-.-4
+    ScriptEntry _001A
+    ScriptEntry _002D
+    ScriptEntry _0044
+    ScriptEntry _005B
+    ScriptEntry _0070
+    ScriptEntry _0085
     .short 0xFD13
 
 _001A:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _002D:
@@ -53,7 +53,7 @@ _0070:
     End
 
 _0085:
-    ScrCmd_060
+    LockAll
     ApplyMovement 5, _0268
     WaitMovement
     ScrCmd_014 0x7FA
@@ -87,8 +87,8 @@ _0101:
 _0111:
     ScrCmd_0CE 0
     ScrCmd_0CD 1
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ScrCmd_0DE 0x800C
     GoToIfEq 0x800C, 0x183, _014C
     GoToIfEq 0x800C, 0x186, _0158
@@ -110,8 +110,8 @@ _0164:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0207
     ScrCmd_0CE 0
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _01B9
     GoToIfEq 0x8005, 0x2F6, _01C9
@@ -142,12 +142,12 @@ _01E9:
 _01F9:
     ScrCmd_065 5
     SetVar 0x4088, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0207:
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

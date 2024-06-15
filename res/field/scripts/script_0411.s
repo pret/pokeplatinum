@@ -2,32 +2,32 @@
 
     .data
 
-    .long _0012-.-4
-    .long _00AB-.-4
-    .long _004C-.-4
-    .long _009D-.-4
+    ScriptEntry _0012
+    ScriptEntry _00AB
+    ScriptEntry _004C
+    ScriptEntry _009D
     .short 0xFD13
 
 _0012:
     ScrCmd_0CD 0
-    ScrCmd_02C 0
+    Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0031
     GoTo _003E
     End
 
 _0031:
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     ScrCmd_015
     End
 
 _003E:
     Call _00E8
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     ScrCmd_015
     End
 
@@ -42,25 +42,25 @@ _004C:
     End
 
 _0086:
-    ScrCmd_02C 18
+    Message 18
     Return
 
 _008B:
-    ScrCmd_02C 19
+    Message 19
     Return
 
 _0090:
-    ScrCmd_02C 21
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 21
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     ScrCmd_015
     End
 
 _009D:
     Call _0126
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     ScrCmd_015
     End
 
@@ -76,11 +76,11 @@ _00B5:
     End
 
 _00D6:
-    ScrCmd_02C 43
+    Message 43
     GoTo _00E8
 
 _00DF:
-    ScrCmd_02C 44
+    Message 44
     GoTo _0126
 
 _00E8:
@@ -90,7 +90,7 @@ _00E8:
 _0104:
     ScrCmd_11E 0x8004
     ScrCmd_0D5 0, 0x8004
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_123 0, 0x800C
     ScrCmd_0CD 0
     ScrCmd_02D 0x800C
@@ -105,7 +105,7 @@ _0126:
     ScrCmd_121 0x8004
     ScrCmd_14D 0x8005
     ScrCmd_0D5 0, 0x8004
-    ScrCmd_02C 20
+    Message 20
     ScrCmd_123 1, 0x800C
     ScrCmd_0CD 0
     ScrCmd_02D 0x800C

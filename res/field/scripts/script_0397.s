@@ -2,14 +2,14 @@
 
     .data
 
-    .long _0022-.-4
-    .long _002E-.-4
-    .long _0054-.-4
-    .long _005C-.-4
-    .long _0078-.-4
-    .long _008A-.-4
-    .long _008C-.-4
-    .long _00A2-.-4
+    ScriptEntry _0022
+    ScriptEntry _002E
+    ScriptEntry _0054
+    ScriptEntry _005C
+    ScriptEntry _0078
+    ScriptEntry _008A
+    ScriptEntry _008C
+    ScriptEntry _00A2
     .short 0xFD13
 
 _0022:
@@ -50,17 +50,17 @@ _008A:
     End
 
 _008C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     SetVar 0x8005, 0
     GoTo _00B8
     End
 
 _00A2:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     SetVar 0x8005, 1
     GoTo _00B8
     End
@@ -98,14 +98,14 @@ _0175:
     End
 
 _017D:
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0188:
-    ScrCmd_02C 7
+    Message 7
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 17, 0
     ScrCmd_042 18, 1
@@ -127,7 +127,7 @@ _01D1:
     End
 
 _01DF:
-    ScrCmd_02C 8
+    Message 8
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0175
     GoTo _01FB
@@ -142,8 +142,8 @@ _01FB:
     End
 
 _0220:
-    ScrCmd_02C 9
-    ScrCmd_034
+    Message 9
+    CloseMessage
     CallIfEq 0x8005, 0, _024E
     CallIfEq 0x8005, 1, _0250
     CallIfEq 0x8005, 2, _0252
@@ -159,34 +159,34 @@ _0252:
     Return
 
 _0254:
-    ScrCmd_02C 0
+    Message 0
     Return
 
 _0259:
     Return
 
 _025B:
-    ScrCmd_02C 3
+    Message 3
     Return
 
 _0260:
-    ScrCmd_02C 1
+    Message 1
     Return
 
 _0265:
     Return
 
 _0267:
-    ScrCmd_02C 4
+    Message 4
     Return
 
 _026C:
-    ScrCmd_02C 2
+    Message 2
     Return
 
 _0271:
     Return
 
 _0273:
-    ScrCmd_02C 5
+    Message 5
     Return

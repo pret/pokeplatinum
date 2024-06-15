@@ -2,334 +2,334 @@
 
     .data
 
-    .long _0522-.-4
-    .long _0536-.-4
-    .long _054A-.-4
-    .long _055E-.-4
-    .long _0572-.-4
-    .long _0586-.-4
-    .long _059A-.-4
-    .long _05AE-.-4
-    .long _05C2-.-4
-    .long _05D6-.-4
-    .long _05EA-.-4
-    .long _05FE-.-4
-    .long _0612-.-4
-    .long _0626-.-4
-    .long _063A-.-4
-    .long _064E-.-4
-    .long _0662-.-4
-    .long _0676-.-4
-    .long _068A-.-4
-    .long _069E-.-4
-    .long _06B2-.-4
-    .long _06C6-.-4
-    .long _06DA-.-4
-    .long _06EE-.-4
-    .long _0702-.-4
-    .long _0716-.-4
-    .long _072A-.-4
-    .long _073E-.-4
-    .long _0752-.-4
-    .long _0766-.-4
-    .long _077A-.-4
-    .long _078E-.-4
-    .long _07A2-.-4
-    .long _07B6-.-4
-    .long _07CA-.-4
-    .long _07DE-.-4
-    .long _07F2-.-4
-    .long _0806-.-4
-    .long _081A-.-4
-    .long _082E-.-4
-    .long _0842-.-4
-    .long _0856-.-4
-    .long _086A-.-4
-    .long _087E-.-4
-    .long _0892-.-4
-    .long _08A6-.-4
-    .long _08BA-.-4
-    .long _08CE-.-4
-    .long _08E2-.-4
-    .long _08F6-.-4
-    .long _090A-.-4
-    .long _091E-.-4
-    .long _0932-.-4
-    .long _0946-.-4
-    .long _095A-.-4
-    .long _096E-.-4
-    .long _0982-.-4
-    .long _0996-.-4
-    .long _09AA-.-4
-    .long _09BE-.-4
-    .long _09D2-.-4
-    .long _09E6-.-4
-    .long _09FA-.-4
-    .long _0A0E-.-4
-    .long _0A22-.-4
-    .long _0A36-.-4
-    .long _0A4A-.-4
-    .long _0A5E-.-4
-    .long _0A72-.-4
-    .long _0A86-.-4
-    .long _0A9A-.-4
-    .long _0AAE-.-4
-    .long _0AC2-.-4
-    .long _0AD6-.-4
-    .long _0AEA-.-4
-    .long _0AFE-.-4
-    .long _0B12-.-4
-    .long _0B26-.-4
-    .long _0B3A-.-4
-    .long _0B4E-.-4
-    .long _0B62-.-4
-    .long _0B76-.-4
-    .long _0B8A-.-4
-    .long _0B9E-.-4
-    .long _0BB2-.-4
-    .long _0BC6-.-4
-    .long _0BDA-.-4
-    .long _0BEE-.-4
-    .long _0C02-.-4
-    .long _0C16-.-4
-    .long _0C2A-.-4
-    .long _0C3E-.-4
-    .long _0C52-.-4
-    .long _0C66-.-4
-    .long _0C7A-.-4
-    .long _0C8E-.-4
-    .long _0CA2-.-4
-    .long _0CB6-.-4
-    .long _0CCA-.-4
-    .long _0CDE-.-4
-    .long _0CF2-.-4
-    .long _0D06-.-4
-    .long _0D1A-.-4
-    .long _0D2E-.-4
-    .long _0D42-.-4
-    .long _0D56-.-4
-    .long _0D6A-.-4
-    .long _0D7E-.-4
-    .long _0D92-.-4
-    .long _0DA6-.-4
-    .long _0DBA-.-4
-    .long _0DCE-.-4
-    .long _0DE2-.-4
-    .long _0DF6-.-4
-    .long _0E0A-.-4
-    .long _0E1E-.-4
-    .long _0E32-.-4
-    .long _0E46-.-4
-    .long _0E5A-.-4
-    .long _0E6E-.-4
-    .long _0E82-.-4
-    .long _0E96-.-4
-    .long _0EAA-.-4
-    .long _0EBE-.-4
-    .long _0ED2-.-4
-    .long _0EE6-.-4
-    .long _0EFA-.-4
-    .long _0F0E-.-4
-    .long _0F22-.-4
-    .long _0F36-.-4
-    .long _0F4A-.-4
-    .long _0F5E-.-4
-    .long _0F72-.-4
-    .long _0F86-.-4
-    .long _0F9A-.-4
-    .long _0FAE-.-4
-    .long _0FC2-.-4
-    .long _0FD6-.-4
-    .long _0FEA-.-4
-    .long _0FFE-.-4
-    .long _1012-.-4
-    .long _1026-.-4
-    .long _103A-.-4
-    .long _104E-.-4
-    .long _1062-.-4
-    .long _1076-.-4
-    .long _108A-.-4
-    .long _109E-.-4
-    .long _10B2-.-4
-    .long _10C6-.-4
-    .long _10DA-.-4
-    .long _10EE-.-4
-    .long _1102-.-4
-    .long _1116-.-4
-    .long _112A-.-4
-    .long _113E-.-4
-    .long _1152-.-4
-    .long _1166-.-4
-    .long _117A-.-4
-    .long _118E-.-4
-    .long _11A2-.-4
-    .long _11B6-.-4
-    .long _11CA-.-4
-    .long _11DE-.-4
-    .long _11F2-.-4
-    .long _1206-.-4
-    .long _121A-.-4
-    .long _122E-.-4
-    .long _1242-.-4
-    .long _1256-.-4
-    .long _126A-.-4
-    .long _127E-.-4
-    .long _1292-.-4
-    .long _12A6-.-4
-    .long _12BA-.-4
-    .long _12CE-.-4
-    .long _12E2-.-4
-    .long _12F6-.-4
-    .long _130A-.-4
-    .long _131E-.-4
-    .long _1332-.-4
-    .long _1346-.-4
-    .long _135A-.-4
-    .long _136E-.-4
-    .long _1382-.-4
-    .long _1396-.-4
-    .long _13AA-.-4
-    .long _13BE-.-4
-    .long _13D2-.-4
-    .long _13E6-.-4
-    .long _13FA-.-4
-    .long _140E-.-4
-    .long _1422-.-4
-    .long _1436-.-4
-    .long _144A-.-4
-    .long _145E-.-4
-    .long _1472-.-4
-    .long _1486-.-4
-    .long _149A-.-4
-    .long _14AE-.-4
-    .long _14C2-.-4
-    .long _14D6-.-4
-    .long _14EA-.-4
-    .long _14FE-.-4
-    .long _1512-.-4
-    .long _1526-.-4
-    .long _153A-.-4
-    .long _154E-.-4
-    .long _1562-.-4
-    .long _1576-.-4
-    .long _158A-.-4
-    .long _159E-.-4
-    .long _15B2-.-4
-    .long _15C6-.-4
-    .long _15DA-.-4
-    .long _15EE-.-4
-    .long _1602-.-4
-    .long _1616-.-4
-    .long _162A-.-4
-    .long _163E-.-4
-    .long _1652-.-4
-    .long _1666-.-4
-    .long _167A-.-4
-    .long _168E-.-4
-    .long _16A2-.-4
-    .long _16B6-.-4
-    .long _16CA-.-4
-    .long _16DE-.-4
-    .long _16F2-.-4
-    .long _1706-.-4
-    .long _171A-.-4
-    .long _172E-.-4
-    .long _1742-.-4
-    .long _1756-.-4
-    .long _176A-.-4
-    .long _177E-.-4
-    .long _1792-.-4
-    .long _17A6-.-4
-    .long _17BA-.-4
-    .long _17CE-.-4
-    .long _17E2-.-4
-    .long _17F6-.-4
-    .long _180A-.-4
-    .long _181E-.-4
-    .long _1832-.-4
-    .long _1846-.-4
-    .long _185A-.-4
-    .long _186E-.-4
-    .long _1882-.-4
-    .long _1896-.-4
-    .long _18AA-.-4
-    .long _18BE-.-4
-    .long _18D2-.-4
-    .long _18E6-.-4
-    .long _18FA-.-4
-    .long _190E-.-4
-    .long _1922-.-4
-    .long _1936-.-4
-    .long _194A-.-4
-    .long _195E-.-4
-    .long _1972-.-4
-    .long _1986-.-4
-    .long _199A-.-4
-    .long _19AE-.-4
-    .long _19C2-.-4
-    .long _19D6-.-4
-    .long _19EA-.-4
-    .long _19FE-.-4
-    .long _1A12-.-4
-    .long _1A26-.-4
-    .long _1A3A-.-4
-    .long _1A4E-.-4
-    .long _1A62-.-4
-    .long _1A76-.-4
-    .long _1A8A-.-4
-    .long _1A9E-.-4
-    .long _1AB2-.-4
-    .long _1AC6-.-4
-    .long _1ADA-.-4
-    .long _1AEE-.-4
-    .long _1B02-.-4
-    .long _1B16-.-4
-    .long _1B2A-.-4
-    .long _1B3E-.-4
-    .long _1B52-.-4
-    .long _1B66-.-4
-    .long _1B7A-.-4
-    .long _1B8E-.-4
-    .long _1BA2-.-4
-    .long _1BB6-.-4
-    .long _1BCA-.-4
-    .long _1BDE-.-4
-    .long _1BF2-.-4
-    .long _1C06-.-4
-    .long _1C1A-.-4
-    .long _1C2E-.-4
-    .long _1C42-.-4
-    .long _1C56-.-4
-    .long _1C6A-.-4
-    .long _1C7E-.-4
-    .long _1C92-.-4
-    .long _1CA6-.-4
-    .long _1CBA-.-4
-    .long _1CCE-.-4
-    .long _1CE2-.-4
-    .long _1CF6-.-4
-    .long _1D0A-.-4
-    .long _1D1E-.-4
-    .long _1D32-.-4
-    .long _1D46-.-4
-    .long _1D5A-.-4
-    .long _1D6E-.-4
-    .long _1D82-.-4
-    .long _1D96-.-4
-    .long _1DAA-.-4
-    .long _1DBE-.-4
-    .long _1DD2-.-4
-    .long _1DE6-.-4
-    .long _1DFA-.-4
-    .long _1E0E-.-4
-    .long _1E22-.-4
-    .long _1E36-.-4
-    .long _1E4A-.-4
-    .long _1E5E-.-4
-    .long _1E72-.-4
-    .long _1E86-.-4
-    .long _1E9A-.-4
-    .long _1EAE-.-4
+    ScriptEntry _0522
+    ScriptEntry _0536
+    ScriptEntry _054A
+    ScriptEntry _055E
+    ScriptEntry _0572
+    ScriptEntry _0586
+    ScriptEntry _059A
+    ScriptEntry _05AE
+    ScriptEntry _05C2
+    ScriptEntry _05D6
+    ScriptEntry _05EA
+    ScriptEntry _05FE
+    ScriptEntry _0612
+    ScriptEntry _0626
+    ScriptEntry _063A
+    ScriptEntry _064E
+    ScriptEntry _0662
+    ScriptEntry _0676
+    ScriptEntry _068A
+    ScriptEntry _069E
+    ScriptEntry _06B2
+    ScriptEntry _06C6
+    ScriptEntry _06DA
+    ScriptEntry _06EE
+    ScriptEntry _0702
+    ScriptEntry _0716
+    ScriptEntry _072A
+    ScriptEntry _073E
+    ScriptEntry _0752
+    ScriptEntry _0766
+    ScriptEntry _077A
+    ScriptEntry _078E
+    ScriptEntry _07A2
+    ScriptEntry _07B6
+    ScriptEntry _07CA
+    ScriptEntry _07DE
+    ScriptEntry _07F2
+    ScriptEntry _0806
+    ScriptEntry _081A
+    ScriptEntry _082E
+    ScriptEntry _0842
+    ScriptEntry _0856
+    ScriptEntry _086A
+    ScriptEntry _087E
+    ScriptEntry _0892
+    ScriptEntry _08A6
+    ScriptEntry _08BA
+    ScriptEntry _08CE
+    ScriptEntry _08E2
+    ScriptEntry _08F6
+    ScriptEntry _090A
+    ScriptEntry _091E
+    ScriptEntry _0932
+    ScriptEntry _0946
+    ScriptEntry _095A
+    ScriptEntry _096E
+    ScriptEntry _0982
+    ScriptEntry _0996
+    ScriptEntry _09AA
+    ScriptEntry _09BE
+    ScriptEntry _09D2
+    ScriptEntry _09E6
+    ScriptEntry _09FA
+    ScriptEntry _0A0E
+    ScriptEntry _0A22
+    ScriptEntry _0A36
+    ScriptEntry _0A4A
+    ScriptEntry _0A5E
+    ScriptEntry _0A72
+    ScriptEntry _0A86
+    ScriptEntry _0A9A
+    ScriptEntry _0AAE
+    ScriptEntry _0AC2
+    ScriptEntry _0AD6
+    ScriptEntry _0AEA
+    ScriptEntry _0AFE
+    ScriptEntry _0B12
+    ScriptEntry _0B26
+    ScriptEntry _0B3A
+    ScriptEntry _0B4E
+    ScriptEntry _0B62
+    ScriptEntry _0B76
+    ScriptEntry _0B8A
+    ScriptEntry _0B9E
+    ScriptEntry _0BB2
+    ScriptEntry _0BC6
+    ScriptEntry _0BDA
+    ScriptEntry _0BEE
+    ScriptEntry _0C02
+    ScriptEntry _0C16
+    ScriptEntry _0C2A
+    ScriptEntry _0C3E
+    ScriptEntry _0C52
+    ScriptEntry _0C66
+    ScriptEntry _0C7A
+    ScriptEntry _0C8E
+    ScriptEntry _0CA2
+    ScriptEntry _0CB6
+    ScriptEntry _0CCA
+    ScriptEntry _0CDE
+    ScriptEntry _0CF2
+    ScriptEntry _0D06
+    ScriptEntry _0D1A
+    ScriptEntry _0D2E
+    ScriptEntry _0D42
+    ScriptEntry _0D56
+    ScriptEntry _0D6A
+    ScriptEntry _0D7E
+    ScriptEntry _0D92
+    ScriptEntry _0DA6
+    ScriptEntry _0DBA
+    ScriptEntry _0DCE
+    ScriptEntry _0DE2
+    ScriptEntry _0DF6
+    ScriptEntry _0E0A
+    ScriptEntry _0E1E
+    ScriptEntry _0E32
+    ScriptEntry _0E46
+    ScriptEntry _0E5A
+    ScriptEntry _0E6E
+    ScriptEntry _0E82
+    ScriptEntry _0E96
+    ScriptEntry _0EAA
+    ScriptEntry _0EBE
+    ScriptEntry _0ED2
+    ScriptEntry _0EE6
+    ScriptEntry _0EFA
+    ScriptEntry _0F0E
+    ScriptEntry _0F22
+    ScriptEntry _0F36
+    ScriptEntry _0F4A
+    ScriptEntry _0F5E
+    ScriptEntry _0F72
+    ScriptEntry _0F86
+    ScriptEntry _0F9A
+    ScriptEntry _0FAE
+    ScriptEntry _0FC2
+    ScriptEntry _0FD6
+    ScriptEntry _0FEA
+    ScriptEntry _0FFE
+    ScriptEntry _1012
+    ScriptEntry _1026
+    ScriptEntry _103A
+    ScriptEntry _104E
+    ScriptEntry _1062
+    ScriptEntry _1076
+    ScriptEntry _108A
+    ScriptEntry _109E
+    ScriptEntry _10B2
+    ScriptEntry _10C6
+    ScriptEntry _10DA
+    ScriptEntry _10EE
+    ScriptEntry _1102
+    ScriptEntry _1116
+    ScriptEntry _112A
+    ScriptEntry _113E
+    ScriptEntry _1152
+    ScriptEntry _1166
+    ScriptEntry _117A
+    ScriptEntry _118E
+    ScriptEntry _11A2
+    ScriptEntry _11B6
+    ScriptEntry _11CA
+    ScriptEntry _11DE
+    ScriptEntry _11F2
+    ScriptEntry _1206
+    ScriptEntry _121A
+    ScriptEntry _122E
+    ScriptEntry _1242
+    ScriptEntry _1256
+    ScriptEntry _126A
+    ScriptEntry _127E
+    ScriptEntry _1292
+    ScriptEntry _12A6
+    ScriptEntry _12BA
+    ScriptEntry _12CE
+    ScriptEntry _12E2
+    ScriptEntry _12F6
+    ScriptEntry _130A
+    ScriptEntry _131E
+    ScriptEntry _1332
+    ScriptEntry _1346
+    ScriptEntry _135A
+    ScriptEntry _136E
+    ScriptEntry _1382
+    ScriptEntry _1396
+    ScriptEntry _13AA
+    ScriptEntry _13BE
+    ScriptEntry _13D2
+    ScriptEntry _13E6
+    ScriptEntry _13FA
+    ScriptEntry _140E
+    ScriptEntry _1422
+    ScriptEntry _1436
+    ScriptEntry _144A
+    ScriptEntry _145E
+    ScriptEntry _1472
+    ScriptEntry _1486
+    ScriptEntry _149A
+    ScriptEntry _14AE
+    ScriptEntry _14C2
+    ScriptEntry _14D6
+    ScriptEntry _14EA
+    ScriptEntry _14FE
+    ScriptEntry _1512
+    ScriptEntry _1526
+    ScriptEntry _153A
+    ScriptEntry _154E
+    ScriptEntry _1562
+    ScriptEntry _1576
+    ScriptEntry _158A
+    ScriptEntry _159E
+    ScriptEntry _15B2
+    ScriptEntry _15C6
+    ScriptEntry _15DA
+    ScriptEntry _15EE
+    ScriptEntry _1602
+    ScriptEntry _1616
+    ScriptEntry _162A
+    ScriptEntry _163E
+    ScriptEntry _1652
+    ScriptEntry _1666
+    ScriptEntry _167A
+    ScriptEntry _168E
+    ScriptEntry _16A2
+    ScriptEntry _16B6
+    ScriptEntry _16CA
+    ScriptEntry _16DE
+    ScriptEntry _16F2
+    ScriptEntry _1706
+    ScriptEntry _171A
+    ScriptEntry _172E
+    ScriptEntry _1742
+    ScriptEntry _1756
+    ScriptEntry _176A
+    ScriptEntry _177E
+    ScriptEntry _1792
+    ScriptEntry _17A6
+    ScriptEntry _17BA
+    ScriptEntry _17CE
+    ScriptEntry _17E2
+    ScriptEntry _17F6
+    ScriptEntry _180A
+    ScriptEntry _181E
+    ScriptEntry _1832
+    ScriptEntry _1846
+    ScriptEntry _185A
+    ScriptEntry _186E
+    ScriptEntry _1882
+    ScriptEntry _1896
+    ScriptEntry _18AA
+    ScriptEntry _18BE
+    ScriptEntry _18D2
+    ScriptEntry _18E6
+    ScriptEntry _18FA
+    ScriptEntry _190E
+    ScriptEntry _1922
+    ScriptEntry _1936
+    ScriptEntry _194A
+    ScriptEntry _195E
+    ScriptEntry _1972
+    ScriptEntry _1986
+    ScriptEntry _199A
+    ScriptEntry _19AE
+    ScriptEntry _19C2
+    ScriptEntry _19D6
+    ScriptEntry _19EA
+    ScriptEntry _19FE
+    ScriptEntry _1A12
+    ScriptEntry _1A26
+    ScriptEntry _1A3A
+    ScriptEntry _1A4E
+    ScriptEntry _1A62
+    ScriptEntry _1A76
+    ScriptEntry _1A8A
+    ScriptEntry _1A9E
+    ScriptEntry _1AB2
+    ScriptEntry _1AC6
+    ScriptEntry _1ADA
+    ScriptEntry _1AEE
+    ScriptEntry _1B02
+    ScriptEntry _1B16
+    ScriptEntry _1B2A
+    ScriptEntry _1B3E
+    ScriptEntry _1B52
+    ScriptEntry _1B66
+    ScriptEntry _1B7A
+    ScriptEntry _1B8E
+    ScriptEntry _1BA2
+    ScriptEntry _1BB6
+    ScriptEntry _1BCA
+    ScriptEntry _1BDE
+    ScriptEntry _1BF2
+    ScriptEntry _1C06
+    ScriptEntry _1C1A
+    ScriptEntry _1C2E
+    ScriptEntry _1C42
+    ScriptEntry _1C56
+    ScriptEntry _1C6A
+    ScriptEntry _1C7E
+    ScriptEntry _1C92
+    ScriptEntry _1CA6
+    ScriptEntry _1CBA
+    ScriptEntry _1CCE
+    ScriptEntry _1CE2
+    ScriptEntry _1CF6
+    ScriptEntry _1D0A
+    ScriptEntry _1D1E
+    ScriptEntry _1D32
+    ScriptEntry _1D46
+    ScriptEntry _1D5A
+    ScriptEntry _1D6E
+    ScriptEntry _1D82
+    ScriptEntry _1D96
+    ScriptEntry _1DAA
+    ScriptEntry _1DBE
+    ScriptEntry _1DD2
+    ScriptEntry _1DE6
+    ScriptEntry _1DFA
+    ScriptEntry _1E0E
+    ScriptEntry _1E22
+    ScriptEntry _1E36
+    ScriptEntry _1E4A
+    ScriptEntry _1E5E
+    ScriptEntry _1E72
+    ScriptEntry _1E86
+    ScriptEntry _1E9A
+    ScriptEntry _1EAE
     .short 0xFD13
 
 _0522:
@@ -2295,9 +2295,9 @@ _1E9A:
     End
 
 _1EAE:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_04B 0x5DC
     SetVar 0x8004, 0x8008
     SetVar 0x8005, 0x8009
@@ -2307,8 +2307,8 @@ _1EAE:
     End
 
 _1EEA:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _1EF0:
@@ -2328,7 +2328,7 @@ _1F33:
     CallIfEq 0x800C, 1, _20C6
     ScrCmd_0CD 0
     ScrCmd_0D1 1, 0x8004
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 7, _1FD9
     GoToIfEq 0x8008, 0, _1FC6
@@ -2341,57 +2341,57 @@ _1F33:
     End
 
 _1FC6:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _1FD9:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _1FEC:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _1FFF:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _2012:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _2025:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _2038:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _204B:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _205E:
     ScrCmd_1CD 18, 0x8004, 0, 0, 0
-    ScrCmd_02C 9
-    ScrCmd_031
+    Message 9
+    WaitButtonPress
     SetVar 0x800C, 1
     GoTo _1EEA
     End
@@ -2400,21 +2400,21 @@ _207D:
     ScrCmd_0CD 0
     ScrCmd_33C 1, 0x8004
     ScrCmd_0D3 2, 0x8004
-    ScrCmd_02C 6
+    Message 6
     GoTo _1F33
     End
 
 _2095:
     ScrCmd_0CD 0
     ScrCmd_33C 1, 0x8004
-    ScrCmd_02C 3
+    Message 3
     GoTo _1F33
     End
 
 _20A8:
     ScrCmd_0D1 0, 0x8004
-    ScrCmd_02C 4
-    ScrCmd_031
+    Message 4
+    WaitButtonPress
     SetVar 0x800C, 0
     GoTo _1EEA
     End

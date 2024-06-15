@@ -2,35 +2,35 @@
 
     .data
 
-    .long _002E-.-4
-    .long _0030-.-4
-    .long _006C-.-4
-    .long _00B0-.-4
-    .long _00C3-.-4
-    .long _00D6-.-4
-    .long _00E9-.-4
-    .long _00FC-.-4
-    .long _0113-.-4
-    .long _012A-.-4
-    .long _0141-.-4
+    ScriptEntry _002E
+    ScriptEntry _0030
+    ScriptEntry _006C
+    ScriptEntry _00B0
+    ScriptEntry _00C3
+    ScriptEntry _00D6
+    ScriptEntry _00E9
+    ScriptEntry _00FC
+    ScriptEntry _0113
+    ScriptEntry _012A
+    ScriptEntry _0141
     .short 0xFD13
 
 _002E:
     End
 
 _0030:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     ApplyMovement 7, _005C
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 8, _0064
     WaitMovement
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -44,24 +44,24 @@ _0064:
     EndMovement
 
 _006C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfGe 0x40CF, 2, _0099
-    ScrCmd_02C 2
+    Message 2
     ApplyMovement 2, _00A4
     WaitMovement
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0099:
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -71,43 +71,43 @@ _00A4:
     EndMovement
 
 _00B0:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00C3:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00D6:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 7
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00E9:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 8
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00FC:
@@ -135,37 +135,37 @@ _012A:
     End
 
 _0141:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_31C 0x800C, 0x1EC
     GoToIfEq 0x800C, 0xFF, _019D
     ScrCmd_1C0 0x800C, 0x1EC
     GoToIfEq 0x800C, 0, _019D
     ScrCmd_07E 0x1D2, 1, 0x800C
     GoToIfNe 0x800C, 0, _01A8
-    ScrCmd_02C 9
+    Message 9
     SetVar 0x8004, 0x1D2
     SetVar 0x8005, 1
     ScrCmd_014 0x7E0
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _019D:
-    ScrCmd_02C 11
+    Message 11
     GoTo _01B3
     End
 
 _01A8:
-    ScrCmd_02C 10
+    Message 10
     GoTo _01B3
     End
 
 _01B3:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

@@ -2,13 +2,13 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_21D 0, 1, 0x800C
     GoToIfEq 0x800C, 0, _0070
     Call _0102
@@ -18,18 +18,18 @@ _0006:
 _003C:
     ScrCmd_21D 3, 1, 0
     ScrCmd_21D 2, 1, 1
-    ScrCmd_02C 0
+    Message 0
     GoTo _00A8
 
 _0055:
     ScrCmd_21D 3, 1, 0
     ScrCmd_21D 2, 1, 1
-    ScrCmd_02C 1
+    Message 1
     GoTo _008C
     End
 
 _0070:
-    ScrCmd_02C 2
+    Message 2
 _0073:
     Call _0102
     GoToIfEq 0x800C, 1, _00A8
@@ -92,34 +92,34 @@ _01C7:
 _01CF:
     ScrCmd_21D 0, 0, 0x800C
     GoToIfEq 0x800C, 0, _01F8
-    ScrCmd_02C 5
+    Message 5
     ScrCmd_03E 0x800C
     GoToIfNe 0x800C, 0, _03E5
 _01F8:
-    ScrCmd_02C 6
+    Message 6
     ScrCmd_030
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
-    ScrCmd_034
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    CloseMessage
     ScrCmd_21D 4, 0x800C
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 1, _03E5
     GoToIfEq 0x800C, 2, _0256
     ScrCmd_21D 6
     ScrCmd_21D 2, 0, 0
     ScrCmd_21D 3, 0, 1
-    ScrCmd_02C 7
-    ScrCmd_031
+    Message 7
+    WaitButtonPress
     GoTo _03EA
 
 _0256:
-    ScrCmd_02C 22
-    ScrCmd_031
+    Message 22
+    WaitButtonPress
     GoTo _03EA
 
 _0261:
-    ScrCmd_02C 3
+    Message 3
     ScrCmd_041 1, 1, 0, 1, 0x8004
     ScrCmd_21D 0, 0, 0x800C
     GoToIfEq 0x800C, 0, _02A2
@@ -162,25 +162,25 @@ _037A:
     GoToIfEq 0x8004, -2, _03E5
     ScrCmd_21D 2, 0x8004, 0
     ScrCmd_21D 3, 0x8004, 1
-    ScrCmd_02C 8
+    Message 8
     ScrCmd_03E 0x800C
     GoToIfNe 0x800C, 0, _0261
     ScrCmd_21D 5, 0x8004
     ScrCmd_0CD 0
     ScrCmd_21D 2, 0x8004, 1
-    ScrCmd_02C 9
-    ScrCmd_031
+    Message 9
+    WaitButtonPress
     GoTo _03EA
 
 _03DA:
-    ScrCmd_02C 10
+    Message 10
     ScrCmd_030
     GoTo _0073
 
 _03E5:
-    ScrCmd_02C 4
-    ScrCmd_031
+    Message 4
+    WaitButtonPress
 _03EA:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End

@@ -2,13 +2,13 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_11C 0x40CE
     SetVar 0x8008, 0x40CE
     GoToIfEq 0x8008, 0, _0068
@@ -46,7 +46,7 @@ _009A:
 
 _00A6:
     ScrCmd_11D 20, 1, 0x40CE, 0x40CE
-    ScrCmd_02C 0
+    Message 0
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 120, 0
     ScrCmd_042 119, 1
@@ -66,7 +66,7 @@ _00A6:
     GoTo _03F6
 
 _0131:
-    ScrCmd_003 1, 0x800C
+    WaitFrames 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 0x236, 1, 18, 2, 1
     GoToIfEq 0x40CE, 5, _03DF
@@ -77,7 +77,7 @@ _0131:
     GoTo _033F
 
 _0180:
-    ScrCmd_003 1, 0x800C
+    WaitFrames 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 137, 2, 18, 2, 1
     GoToIfEq 0x40CE, 4, _03DF
@@ -88,7 +88,7 @@ _0180:
     GoTo _033F
 
 _01CF:
-    ScrCmd_003 1, 0x800C
+    WaitFrames 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 138, 2, 18, 2, 1
     GoToIfEq 0x40CE, 3, _03DF
@@ -99,7 +99,7 @@ _01CF:
     GoTo _033F
 
 _021E:
-    ScrCmd_003 1, 0x800C
+    WaitFrames 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 139, 2, 18, 2, 1
     GoToIfEq 0x40CE, 2, _03DF
@@ -110,7 +110,7 @@ _021E:
     GoTo _033F
 
 _026D:
-    ScrCmd_003 1, 0x800C
+    WaitFrames 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 140, 2, 18, 2, 1
     GoToIfEq 0x40CE, 1, _03DF
@@ -121,7 +121,7 @@ _026D:
     GoTo _033F
 
 _02BC:
-    ScrCmd_003 1, 0x800C
+    WaitFrames 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 141, 1, 18, 2, 1
     GoToIfEq 0x40CE, 0, _03DF
@@ -132,18 +132,18 @@ _02BC:
     GoTo _033F
 
 _030B:
-    ScrCmd_02C 2
+    Message 2
     SetVar 0x8004, 0
     Return
 
 _0316:
-    ScrCmd_02C 3
+    Message 3
     SetVar 0x8004, 1
     Return
 
 _0321:
     SetVar 0x40CE, -1
-    ScrCmd_034
+    CloseMessage
     ApplyMovement 0, _0410
     WaitMovement
     ScrCmd_04B 0x5DC
@@ -161,57 +161,57 @@ _033F:
     End
 
 _0395:
-    ScrCmd_02C 9
+    Message 9
     GoTo _03D7
     End
 
 _03A0:
-    ScrCmd_02C 8
+    Message 8
     GoTo _03D7
     End
 
 _03AB:
-    ScrCmd_02C 7
+    Message 7
     GoTo _03D7
     End
 
 _03B6:
-    ScrCmd_02C 6
+    Message 6
     GoTo _03D7
     End
 
 _03C1:
-    ScrCmd_02C 5
+    Message 5
     GoTo _03D7
     End
 
 _03CC:
-    ScrCmd_02C 10
+    Message 10
     GoTo _03D7
     End
 
 _03D7:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _03DF:
     SetVar 0x40CE, -1
-    ScrCmd_003 1, 0x800C
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitFrames 1, 0x800C
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _03F6:
     SetVar 0x40CE, -1
-    ScrCmd_003 1, 0x800C
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitFrames 1, 0x800C
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

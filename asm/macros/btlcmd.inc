@@ -240,10 +240,10 @@
     .long \frames
     .endm
 
-    .macro PlaySound battler, sdat_id
+    .macro PlaySound battler, sdatID
     .long 31
     .long \battler
-    .long \sdat_id
+    .long \sdatID
     .endm
 
     .macro CompareVarToValue op, var, val, jump
@@ -1234,4 +1234,4 @@
     .long 222
     .endm
 
-    .endif // ASM_BATTLE_SCRIPT_INC
+    .endif ; ASM_BATTLE_SCRIPT_INC
