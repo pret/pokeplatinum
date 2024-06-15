@@ -7,7 +7,7 @@
 
 #include "overlay006/ov6_022477B8.h"
 
-void ov6_022477B8 (const WildEncounterData * encounterData, const BOOL param1, int * param2, int * param3)
+void ov6_022477B8 (const WildEncounters * encounterData, const BOOL param1, int * param2, int * param3)
 {
     if (!param1) {
         return;

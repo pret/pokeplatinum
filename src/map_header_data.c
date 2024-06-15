@@ -243,9 +243,9 @@ static void MapHeaderData_ParseEvents (MapHeaderData * data)
     }
 }
 
-void MapHeaderData_LoadWildEncounters (WildEncounterData * data, int headerID)
+void MapHeaderData_LoadWildEncounters (WildEncounters * data, int headerID)
 {
-    memset(data, 0, sizeof(WildEncounterData));
+    memset(data, 0, sizeof(WildEncounters));
     if (MapHeader_HasWildEncounters(headerID)) {
         int narcIndex = (GAME_VERSION == DIAMOND || GAME_VERSION == PLATINUM)
             ? NARC_INDEX_FIELDDATA__ENCOUNTDATA__PL_ENC_DATA
@@ -254,7 +254,7 @@ void MapHeaderData_LoadWildEncounters (WildEncounterData * data, int headerID)
     }
 }
 
-const WildEncounterData * MapHeaderData_GetWildEncounters (const FieldSystem * fieldSystem)
+const WildEncounters * MapHeaderData_GetWildEncounters (const FieldSystem * fieldSystem)
 {
     return &fieldSystem->mapHeaderData->wildEncounters;
 }

@@ -34,14 +34,13 @@ typedef struct UnkStruct_ov6_02242A8C_t {
 
 int ov6_02242984 (FieldSystem * fieldSystem)
 {
-    u8 v0;
     BOOL v1;
-    int v2[12];
+    int v2[MAX_GRASS_ENCOUNTERS];
 
-    WildEncounterData * encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
+    WildEncounters * encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
 
-    for (v0 = 0; v0 < 12; v0++) {
-        v2[v0] = encounterData->fieldEncounters[v0].species;
+    for (u8 i = 0; i < MAX_GRASS_ENCOUNTERS; i++) {
+        v2[i] = encounterData->grassEncounters.encounters[i].species;
     }
 
     v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
@@ -50,7 +49,7 @@ int ov6_02242984 (FieldSystem * fieldSystem)
     ov6_02240C9C(encounterData, &v2[2], &v2[3]);
     ov6_022477B8(encounterData, v1, &v2[8], &v2[9]);
 
-    return v2[inline_020564D0(12)];
+    return v2[inline_020564D0(MAX_GRASS_ENCOUNTERS)];
 }
 
 UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * fieldSystem)

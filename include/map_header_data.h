@@ -61,7 +61,7 @@ typedef struct MapHeaderData {
     const CoordEvent * coordEvents;
     u32 tmpEventsBuf[512];
     u32 scripts[64];
-    WildEncounterData wildEncounters;
+    WildEncounters wildEncounters;
 } MapHeaderData;
 
 void MapHeaderData_Init(FieldSystem * fieldSystem, enum HeapId heapID);
@@ -83,8 +83,8 @@ BOOL MapHeaderData_SetWarpEventPos(FieldSystem * fieldSystem, u16 index, u16 x, 
 BOOL MapHeaderData_SetWarpEventDestHeaderID(FieldSystem * fieldSystem, u16 index, u16 destHeaderID);
 BOOL MapHeaderData_SetWarpEventDestWarpID(FieldSystem * fieldSystem, u16 index, u16 destWarpID);
 BOOL MapHeaderData_SetBgEventPos(FieldSystem * fieldSystem, u16 index, u16 x, u16 z);
-void MapHeaderData_LoadWildEncounters(WildEncounterData * encounterData, int headerID);
-const WildEncounterData * MapHeaderData_GetWildEncounters(const FieldSystem * fieldSystem);
+void MapHeaderData_LoadWildEncounters(WildEncounters * encounterData, int headerID);
+const WildEncounters * MapHeaderData_GetWildEncounters(const FieldSystem * fieldSystem);
 const u8 * MapHeaderData_GetScripts(const FieldSystem * fieldSystem);
 BOOL MapHeaderData_IsAnyObjectEventAtPos(const FieldSystem * fieldSystem, u16 x, u16 z);
 

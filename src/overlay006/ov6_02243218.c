@@ -38,7 +38,7 @@ u32 ov6_02243218 (const u32 param0)
 
 void ov6_0224322C (const u32 param0, u16 * param1, u16 * param2)
 {
-    WildEncounterData encounterData;
+    WildEncounters encounterData;
     u32 v1;
 
     v1 = Unk_ov6_02249090[(param0 % 22)];
