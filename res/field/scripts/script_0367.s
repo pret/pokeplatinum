@@ -1310,7 +1310,7 @@ _149C:
     End
 
 _14A7:
-    ScrCmd_02D 0x8002
+    MessageVar 0x8002
     GoTo _14B3
     End
 

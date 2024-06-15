@@ -93,7 +93,7 @@ _0104:
     Message 1
     ScrCmd_123 0, 0x800C
     ScrCmd_0CD 0
-    ScrCmd_02D 0x800C
+    MessageVar 0x800C
     ScrCmd_030
     Return
 
@@ -108,7 +108,7 @@ _0126:
     Message 20
     ScrCmd_123 1, 0x800C
     ScrCmd_0CD 0
-    ScrCmd_02D 0x800C
+    MessageVar 0x800C
     ScrCmd_030
     Return
 

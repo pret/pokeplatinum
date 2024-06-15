@@ -245,7 +245,7 @@
     .byte \messageID
     .endm
 
-    .macro ScrCmd_02D arg0
+    .macro MessageVar arg0
     .short 45
     .short \arg0
     .endm

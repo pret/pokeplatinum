@@ -83,7 +83,7 @@ _00EE:
     GoToIfEq 0x800C, 1, _0141
     SetVar 0x8004, 0
 _0141:
-    ScrCmd_02D 0x8004
+    MessageVar 0x8004
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0172
     GoToIfEq 0x800C, 1, _0165

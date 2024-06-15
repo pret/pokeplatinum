@@ -452,7 +452,7 @@ _0508:
     SetVar 0x8005, 13
     SetVar 0x8006, 68
     Call _0109
-    ScrCmd_02D 0x8004
+    MessageVar 0x8004
     CloseMessage
     ScrCmd_054 0, 30
     ScrCmd_20D 0, 0x800C
