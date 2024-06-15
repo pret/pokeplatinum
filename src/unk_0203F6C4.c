@@ -3132,8 +3132,8 @@ static BOOL ScrCmd_LockAll (ScriptContext * ctx)
         MapObject *object = sub_02062570(fieldSystem->mapObjMan, 0x30);
 
         if (object 
-         && sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1 
-         && MapObject_IsMoving(object) != FALSE) {
+            && sub_0206A984(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1 
+            && MapObject_IsMoving(object) != FALSE) {
             
             sub_02062DDC(object);
             ScriptContext_Pause(ctx, sub_020410CC);
@@ -3394,8 +3394,7 @@ static BOOL ScrCmd_FacePlayer (ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
-    int dir = PlayerAvatar_GetDir(playerAvatar);
-    dir = Direction_GetOpposite(dir);
+    int dir = Direction_GetOpposite(PlayerAvatar_GetDir(playerAvatar));
     MapObject **object = sub_0203F098(fieldSystem, 10);
 
     if (*object == NULL) {

@@ -601,11 +601,11 @@ u16 * FieldSystem_GetVar (FieldSystem * fieldSystem, u16 varID)
         return NULL;
     }
 
-    if (varID < 0x8000) {
+    if (varID < SPECIAL_VARS_START) {
         return VarsFlags_GetVarAddress(varsFlags, varID);
     }
 
-    return sub_0203F098(fieldSystem, (41 + varID - 0x8000));
+    return sub_0203F098(fieldSystem, (41 + varID - SPECIAL_VARS_START));
 }
 
 u16 sub_0203F150 (FieldSystem * fieldSystem, u16 param1)
