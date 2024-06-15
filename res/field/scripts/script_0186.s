@@ -34,12 +34,12 @@ _0063:
     End
 
 _006D:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfSet 175, _00F7
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     ScrCmd_04E 0x489
     ScrCmd_04F
     ScrCmd_1BD 0x800C
@@ -65,17 +65,17 @@ _00D8:
 
 _00E8:
     SetFlag 175
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00F7:
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -97,27 +97,27 @@ _011C:
     EndMovement
 
 _0128:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_147 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _013E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_148 18
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0154:
-    ScrCmd_060
+    LockAll
     ClearFlag 0x21D
     ScrCmd_064 5
     ScrCmd_014 0x7FA
@@ -146,8 +146,8 @@ _01C1:
     ApplyMovement 0xFF, _02B8
     WaitMovement
     ScrCmd_0CE 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ScrCmd_0DE 0x800C
     GoToIfEq 0x800C, 0x183, _0203
     GoToIfEq 0x800C, 0x186, _020F
@@ -170,8 +170,8 @@ _021B:
     GoToIfEq 0x800C, 0, _02AC
     ScrCmd_0CE 0
     ScrCmd_0CD 1
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8004, 10, _0266
     GoToIfEq 0x8004, 11, _0276
@@ -194,17 +194,17 @@ _0286:
     GoTo _0296
 
 _0296:
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ScrCmd_065 5
     ScrCmd_04B 0x603
     SetVar 0x40EF, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _02AC:
     SetFlag 0x21D
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -251,23 +251,23 @@ _0300:
     EndMovement
 
 _0310:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0323:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0336:

@@ -25,7 +25,7 @@ _003F:
     End
 
 _0047:
-    ScrCmd_060
+    LockAll
     ScrCmd_0C8 0
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _006E
@@ -47,28 +47,28 @@ _008E:
     CallIfSet 139, _00E0
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_04F
     SetFlag 139
     SetVar 0x40B1, 1
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
+    Message 2
+    WaitButtonPress
+    CloseMessage
     SetVar 0x403F, 0x260
     ScrCmd_161
     ScrCmd_06D 0, 48
     ScrCmd_06C 0, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00D8:
     ScrCmd_0CD 0
-    ScrCmd_02C 0
+    Message 0
     Return
 
 _00E0:
     ScrCmd_0CD 0
-    ScrCmd_02C 3
+    Message 3
     Return
 
     .balign 4, 0
@@ -86,14 +86,14 @@ _00F4:
     EndMovement
 
 _0108:
-    ScrCmd_060
+    LockAll
     ScrCmd_162
     ScrCmd_06D 0, 15
     ScrCmd_06C 0, 0
     ApplyMovement 0, _0190
     WaitMovement
-    ScrCmd_02C 4
-    ScrCmd_034
+    Message 4
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _0148
     GoToIfEq 0x8004, 29, _0158
@@ -111,7 +111,7 @@ _0158:
 
 _0168:
     SetVar 0x40B1, 0
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -133,12 +133,12 @@ _0190:
     EndMovement
 
 _0198:
-    ScrCmd_060
+    LockAll
     ApplyMovement 0, _0300
     ApplyMovement 0xFF, _0368
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 5
+    Message 5
     SetVar 0x8004, 218
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
@@ -147,13 +147,13 @@ _0198:
     End
 
 _01DB:
-    ScrCmd_02C 6
+    Message 6
     ScrCmd_014 0x7E0
     GoTo _01EA
     End
 
 _01EA:
-    ScrCmd_034
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8005, 34, _023B
     GoToIfEq 0x8005, 35, _0253
@@ -202,17 +202,17 @@ _02B3:
 _02CB:
     ApplyMovement 0, _0354
     WaitMovement
-    ScrCmd_02C 7
-    ScrCmd_034
+    Message 7
+    CloseMessage
     ApplyMovement 0, _035C
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     ScrCmd_162
     ScrCmd_065 0
     ScrCmd_04B 0x603
     SetFlag 227
     SetVar 0x40B1, 2
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -323,39 +323,39 @@ _03D8:
     EndMovement
 
 _03EC:
-    ScrCmd_060
+    LockAll
     ScrCmd_0CD 0
-    ScrCmd_061
+    ReleaseAll
     End
 
 _03F5:
-    ScrCmd_060
+    LockAll
     ScrCmd_0CD 0
-    ScrCmd_061
+    ReleaseAll
     End
 
 _03FE:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 9
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0411:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 11
-    ScrCmd_034
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 11
+    CloseMessage
     ApplyMovement 24, _04BC
     WaitMovement
-    ScrCmd_02C 12
-    ScrCmd_068
-    ScrCmd_02C 13
-    ScrCmd_034
+    Message 12
+    FacePlayer
+    Message 13
+    CloseMessage
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _046C
     GoToIfEq 0x800C, 1, _047E
@@ -389,7 +389,7 @@ _04A2:
 
 _04B4:
     ScrCmd_065 24
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -427,23 +427,23 @@ _04F7:
     End
 
 _050C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 10
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 10
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _051D:
-    ScrCmd_060
+    LockAll
     SetVar 0x40CD, 2
     ApplyMovement 0, _053C
     WaitMovement
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 8
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

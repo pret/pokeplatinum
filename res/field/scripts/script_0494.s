@@ -10,65 +10,65 @@
     .short 0xFD13
 
 _0016:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0041
     GoToIfEq 0x800C, 1, _004C
     End
 
 _0041:
-    ScrCmd_02C 1
+    Message 1
     GoTo _0057
     End
 
 _004C:
-    ScrCmd_02C 2
+    Message 2
     GoTo _0057
     End
 
 _0057:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _005F:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0070:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0081:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0092:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

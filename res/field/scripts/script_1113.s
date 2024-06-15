@@ -8,15 +8,15 @@
     .short 0xFD13
 
 _000E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 0
+    WaitButtonPress
+    CloseMessage
     ApplyMovement 0, _002C
     WaitMovement
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -25,38 +25,38 @@ _002C:
     EndMovement
 
 _0034:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0047:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _006F
     GoToIfEq 0x800C, 1, _007A
     End
 
 _006F:
-    ScrCmd_02C 3
+    Message 3
     GoTo _0085
     End
 
 _007A:
-    ScrCmd_02C 4
+    Message 4
     GoTo _0085
     End
 
 _0085:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

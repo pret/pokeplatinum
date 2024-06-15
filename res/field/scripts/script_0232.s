@@ -6,15 +6,15 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 0
+    WaitButtonPress
+    CloseMessage
     ApplyMovement 16, _0024
     WaitMovement
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

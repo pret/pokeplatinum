@@ -11,9 +11,9 @@ _000A:
     End
 
 _0010:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_247 0x8002
     ScrCmd_0D0 0, 0x8002
     ScrCmd_0CD 1
@@ -21,23 +21,23 @@ _0010:
     ScrCmd_23A 0x8000, 0x8001, 0x8002
     GoToIfSet 249, _004B
     SetFlag 249
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     GoTo _0056
 
 _004B:
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     GoTo _0056
 
 _0056:
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
-    ScrCmd_003 40, 0x800C
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    WaitFrames 40, 0x800C
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     Call _008A
-    ScrCmd_003 20, 0x800C
+    WaitFrames 20, 0x800C
     ScrCmd_1E5 116
     GoTo _0150
 
@@ -183,163 +183,163 @@ _0396:
     GoTo _0511
 
 _03D6:
-    ScrCmd_02C 10
+    Message 10
     GoTo _05A5
 
 _03DF:
-    ScrCmd_02C 11
+    Message 11
     GoTo _05A5
 
 _03E8:
-    ScrCmd_02C 12
+    Message 12
     GoTo _05A5
 
 _03F1:
-    ScrCmd_02C 13
+    Message 13
     GoTo _05A5
 
 _03FA:
-    ScrCmd_02C 14
+    Message 14
     GoTo _053E
 
 _0403:
-    ScrCmd_02C 15
+    Message 15
     GoTo _05C4
 
 _040C:
-    ScrCmd_02C 16
+    Message 16
     GoTo _05C4
 
 _0415:
-    ScrCmd_02C 17
+    Message 17
     GoTo _05C4
 
 _041E:
-    ScrCmd_02C 18
+    Message 18
     GoTo _05C4
 
 _0427:
-    ScrCmd_02C 19
+    Message 19
     GoTo _0559
 
 _0430:
-    ScrCmd_02C 20
+    Message 20
     GoTo _05A5
 
 _0439:
-    ScrCmd_02C 21
+    Message 21
     GoTo _05A5
 
 _0442:
-    ScrCmd_02C 22
+    Message 22
     GoTo _05A5
 
 _044B:
-    ScrCmd_02C 23
+    Message 23
     GoTo _05A5
 
 _0454:
-    ScrCmd_02C 24
+    Message 24
     GoTo _053E
 
 _045D:
-    ScrCmd_02C 25
+    Message 25
     GoTo _05C4
 
 _0466:
-    ScrCmd_02C 26
+    Message 26
     GoTo _05C4
 
 _046F:
-    ScrCmd_02C 27
+    Message 27
     GoTo _05C4
 
 _0478:
-    ScrCmd_02C 28
+    Message 28
     GoTo _05C4
 
 _0481:
-    ScrCmd_02C 29
+    Message 29
     GoTo _0559
 
 _048A:
-    ScrCmd_02C 30
+    Message 30
     GoTo _05A5
 
 _0493:
-    ScrCmd_02C 31
+    Message 31
     GoTo _05A5
 
 _049C:
-    ScrCmd_02C 32
+    Message 32
     GoTo _05A5
 
 _04A5:
-    ScrCmd_02C 33
+    Message 33
     GoTo _05A5
 
 _04AE:
-    ScrCmd_02C 34
+    Message 34
     GoTo _053E
 
 _04B7:
-    ScrCmd_02C 35
+    Message 35
     GoTo _05C4
 
 _04C0:
-    ScrCmd_02C 36
+    Message 36
     GoTo _05C4
 
 _04C9:
-    ScrCmd_02C 37
+    Message 37
     GoTo _05C4
 
 _04D2:
-    ScrCmd_02C 38
+    Message 38
     GoTo _05C4
 
 _04DB:
-    ScrCmd_02C 39
+    Message 39
     GoTo _0559
 
 _04E4:
-    ScrCmd_02C 40
+    Message 40
     GoTo _05A5
 
 _04ED:
-    ScrCmd_02C 41
+    Message 41
     GoTo _05A5
 
 _04F6:
-    ScrCmd_02C 42
+    Message 42
     GoTo _05A5
 
 _04FF:
-    ScrCmd_02C 43
+    Message 43
     GoTo _05A5
 
 _0508:
-    ScrCmd_02C 44
+    Message 44
     GoTo _053E
 
 _0511:
-    ScrCmd_02C 45
+    Message 45
     GoTo _05C4
 
 _051A:
-    ScrCmd_02C 46
+    Message 46
     GoTo _05C4
 
 _0523:
-    ScrCmd_02C 47
+    Message 47
     GoTo _05C4
 
 _052C:
-    ScrCmd_02C 48
+    Message 48
     GoTo _05C4
 
 _0535:
-    ScrCmd_02C 49
+    Message 49
     GoTo _0559
 
 _053E:
@@ -353,7 +353,7 @@ _0559:
     GoTo _05C4
 
 _0574:
-    ScrCmd_02C 50
+    Message 50
     ScrCmd_1B9 0x800C, 0x8002
     GoToIfLt 0x800C, 0xFF, _05E3
     ScrCmd_230 0x800C, 0x8002, 69
@@ -361,84 +361,84 @@ _0574:
     GoTo _05E3
 
 _05A5:
-    ScrCmd_034
-    ScrCmd_003 20, 0x800C
+    CloseMessage
+    WaitFrames 20, 0x800C
     Call _00ED
-    ScrCmd_003 10, 0x800C
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitFrames 10, 0x800C
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _05C4:
-    ScrCmd_034
-    ScrCmd_003 20, 0x800C
+    CloseMessage
+    WaitFrames 20, 0x800C
     Call _00ED
-    ScrCmd_003 10, 0x800C
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitFrames 10, 0x800C
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _05E3:
-    ScrCmd_034
-    ScrCmd_003 20, 0x800C
+    CloseMessage
+    WaitFrames 20, 0x800C
     Call _00ED
-    ScrCmd_003 10, 0x800C
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitFrames 10, 0x800C
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0602:
-    ScrCmd_034
-    ScrCmd_003 20, 0x800C
+    CloseMessage
+    WaitFrames 20, 0x800C
     Call _00ED
-    ScrCmd_003 10, 0x800C
-    ScrCmd_02C 5
+    WaitFrames 10, 0x800C
+    Message 5
     ScrCmd_04E 0x483
-    ScrCmd_02C 8
+    Message 8
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
-    ScrCmd_02C 9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 9
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0633:
-    ScrCmd_034
-    ScrCmd_003 20, 0x800C
+    CloseMessage
+    WaitFrames 20, 0x800C
     Call _00ED
-    ScrCmd_003 10, 0x800C
-    ScrCmd_02C 6
+    WaitFrames 10, 0x800C
+    Message 6
     ScrCmd_04E 0x483
-    ScrCmd_02C 8
+    Message 8
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
-    ScrCmd_02C 9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 9
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0664:
-    ScrCmd_034
-    ScrCmd_003 20, 0x800C
+    CloseMessage
+    WaitFrames 20, 0x800C
     Call _00ED
-    ScrCmd_003 10, 0x800C
-    ScrCmd_02C 7
+    WaitFrames 10, 0x800C
+    Message 7
     ScrCmd_04E 0x483
-    ScrCmd_02C 8
+    Message 8
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
-    ScrCmd_02C 9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 9
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

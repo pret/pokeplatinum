@@ -13,7 +13,7 @@ BOOL ScrCmd_055(ScriptContext * param0);
 BOOL ScrCmd_056(ScriptContext * param0);
 BOOL ScrCmd_057(ScriptContext * param0);
 BOOL ScrCmd_058(ScriptContext * param0);
-BOOL ScrCmd_049(ScriptContext * param0);
+BOOL ScrCmd_PlayFanfare(ScriptContext * ctx);
 BOOL ScrCmd_04A(ScriptContext * param0);
 BOOL ScrCmd_04B(ScriptContext * param0);
 BOOL ScrCmd_04C(ScriptContext * param0);

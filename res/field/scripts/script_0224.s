@@ -9,26 +9,26 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0023:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 7
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0036:
-    ScrCmd_060
+    LockAll
     ScrCmd_069 0x8004, 0x8005
     SetVar 0x40A9, 2
     ScrCmd_186 5, 20, 25
@@ -42,13 +42,13 @@ _0036:
     CallIfEq 0x8005, 24, _0109
     CallIfEq 0x8005, 25, _011D
     CallIfEq 0x8005, 26, _0131
-    ScrCmd_02C 0
+    Message 0
     ApplyMovement 5, _0184
     WaitMovement
-    ScrCmd_02C 1
+    Message 1
     ApplyMovement 5, _018C
     WaitMovement
-    ScrCmd_02C 2
+    Message 2
     SetVar 0x8004, 68
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
@@ -56,26 +56,26 @@ _0036:
     ScrCmd_014 0x7FC
     Call _00E5
     ScrCmd_014 0x808
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00E5:
     SetFlag 0x160
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
+    Message 3
+    WaitButtonPress
+    CloseMessage
     Return
 
 _00F2:
     Call _0100
     ScrCmd_014 0x808
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0100:
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
+    Message 4
+    WaitButtonPress
+    CloseMessage
     Return
 
 _0109:
@@ -140,30 +140,30 @@ _0194:
     EndMovement
 
 _01A0:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfUnset 0x160, _01BE
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _01BE:
-    ScrCmd_02C 5
+    Message 5
     SetVar 0x8004, 68
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01F0
     ScrCmd_014 0x7FC
     Call _00E5
-    ScrCmd_061
+    ReleaseAll
     End
 
 _01F0:
     Call _0100
-    ScrCmd_061
+    ReleaseAll
     End
 
     .byte 0

@@ -19,7 +19,7 @@ _001F:
     Return
 
 _0025:
-    ScrCmd_060
+    LockAll
     Call _008E
     ScrCmd_1B7 0x800C, 4
     SetVar 0x8008, 0x800C
@@ -29,12 +29,12 @@ _0025:
     GoTo _00D6
 
 _0066:
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 0x14A, 0, 7, 6, 0
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
 _008E:

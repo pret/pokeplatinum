@@ -17,20 +17,20 @@ _001F:
     End
 
 _0025:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_15B 6, 0x800C
     GoToIfEq 0x800C, 1, _00F8
     ScrCmd_1CD 9, 167, 0, 0, 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ScrCmd_0E5 0x13F, 0
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _010E
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_0CD 0
-    ScrCmd_02C 2
+    Message 2
     ScrCmd_04E 0x489
     ScrCmd_04F
     ScrCmd_15C 6
@@ -43,7 +43,7 @@ _0025:
     SetTrainerFlag 0x33C
     ScrCmd_1CD 10, 167, 0x13F, 0, 0
     SetFlag 0x1BF
-    ScrCmd_02C 3
+    Message 3
     GoTo _00B0
 
 _00B0:
@@ -55,72 +55,72 @@ _00B0:
     SetFlag 158
     ScrCmd_0D1 0, 0x8004
     ScrCmd_0D3 1, 0x8004
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00EE:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _00F8:
     GoToIfUnset 158, _00B0
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _010E:
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0114:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_15B 6, 0x800C
     GoToIfEq 0x800C, 1, _013A
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _013A:
     ScrCmd_0CD 0
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 7
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0148:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     ScrCmd_15B 6, 0x800C
     GoToIfEq 0x800C, 1, _0172
     ScrCmd_0CE 0
     ScrCmd_0CE 1
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 8
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0172:
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_0CE 2
-    ScrCmd_02C 9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 9
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

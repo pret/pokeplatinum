@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_060
+    LockAll
     ApplyMovement 0xFF, _0124
     WaitMovement
     ApplyMovement 1, _0134
@@ -14,11 +14,11 @@ _0006:
     ScrCmd_28F 0x800C
     CallIfEq 0x800C, 0, _0111
     CallIfNe 0x800C, 0, _0119
-    ScrCmd_034
+    CloseMessage
     ApplyMovement 1, _0144
     ApplyMovement 0, _015C
     WaitMovement
-    ScrCmd_003 15, 0x800C
+    WaitFrames 15, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _0074
     GoToIfEq 0x800C, 1, _0080
@@ -26,37 +26,37 @@ _0006:
 
 _0074:
     ScrCmd_0CD 0
-    ScrCmd_02C 4
+    Message 4
     GoTo _008C
 
 _0080:
     ScrCmd_0CD 0
-    ScrCmd_02C 5
+    Message 5
     GoTo _008C
 
 _008C:
-    ScrCmd_034
+    CloseMessage
     ApplyMovement 0xFF, _012C
     ApplyMovement 1, _014C
     ApplyMovement 0, _0164
     WaitMovement
-    ScrCmd_02C 6
-    ScrCmd_034
+    Message 6
+    CloseMessage
     SetFlag 0x982
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _010A
     CallIfEq 0x40F4, 0, _0102
     ScrCmd_177 0x800C
     ScrCmd_25A 0x800C
-    ScrCmd_0BC 6, 3, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 3, 0, 0
+    WaitFadeScreen
     ScrCmd_260 24
     Call _0174
     ScrCmd_0B0
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
 _0102:
@@ -68,13 +68,13 @@ _010A:
     Return
 
 _0111:
-    ScrCmd_02C 0
-    ScrCmd_02C 2
+    Message 0
+    Message 2
     Return
 
 _0119:
-    ScrCmd_02C 1
-    ScrCmd_02C 3
+    Message 1
+    Message 3
     Return
 
     .balign 4, 0

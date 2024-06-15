@@ -16,33 +16,33 @@ _001B:
     Return
 
 _0021:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_134 8, 0x800C
     GoToIfEq 0x800C, 1, _0051
-    ScrCmd_02C 0
+    Message 0
     SetVar 0x8004, 8
     ScrCmd_014 0x7D9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0051:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _005C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

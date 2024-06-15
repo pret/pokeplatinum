@@ -18,14 +18,14 @@ _0022:
     End
 
 _002E:
-    ScrCmd_060
+    LockAll
     ApplyMovement 0xFF, _0054
     ApplyMovement 0, _0064
     WaitMovement
     SetFlag 0x27B
     ScrCmd_065 0
     SetVar 0x4110, 0
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

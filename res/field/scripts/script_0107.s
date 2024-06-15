@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_060
+    LockAll
     ApplyMovement 0xFF, _00B8
     WaitMovement
     ScrCmd_11C 0x40CE
@@ -18,21 +18,21 @@ _0006:
 _0038:
     SetVar 0x8004, 0
     Call _009C
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 104, 0, 18, 3, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     End
 
 _006A:
     SetVar 0x8004, 1
     Call _009C
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 103, 0, 18, 3, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     End
 
 _009C:
@@ -40,7 +40,7 @@ _009C:
     ScrCmd_23C 0x8004, 4
     ApplyMovement 0xFF, _00C4
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare 0x603
     Return
 
     .balign 4, 0

@@ -45,36 +45,36 @@ _0091:
     End
 
 _0093:
-    ScrCmd_060
-    ScrCmd_003 30, 0x800C
-    ScrCmd_02C 0
-    ScrCmd_034
+    LockAll
+    WaitFrames 30, 0x800C
+    Message 0
+    CloseMessage
     ApplyMovement 0, _0148
     ApplyMovement 0xFF, _0130
     WaitMovement
-    ScrCmd_003 15, 0x800C
+    WaitFrames 15, 0x800C
     ScrCmd_0CD 0
-    ScrCmd_02C 1
-    ScrCmd_034
-    ScrCmd_049 0x636
+    Message 1
+    CloseMessage
+    PlayFanfare 0x636
     SetFlag 0x13C
     SetFlag 0x241
     SetVar 0x40F8, 2
-    ScrCmd_0BC 6, 3, 0, 0
-    ScrCmd_0BD
-    ScrCmd_0BC 6, 3, 1, 0
-    ScrCmd_0BD
-    ScrCmd_0BC 6, 3, 0, 0
-    ScrCmd_0BD
-    ScrCmd_0BC 6, 3, 1, 0
-    ScrCmd_0BD
-    ScrCmd_0BC 6, 6, 0, 0
-    ScrCmd_0BD
-    ScrCmd_003 120, 0x800C
+    FadeScreen 6, 3, 0, 0
+    WaitFadeScreen
+    FadeScreen 6, 3, 1, 0
+    WaitFadeScreen
+    FadeScreen 6, 3, 0, 0
+    WaitFadeScreen
+    FadeScreen 6, 3, 1, 0
+    WaitFadeScreen
+    FadeScreen 6, 6, 0, 0
+    WaitFadeScreen
+    WaitFrames 120, 0x800C
     ScrCmd_0BE 0x140, 0, 152, 0x115, 1
-    ScrCmd_0BC 6, 6, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 6, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -96,16 +96,16 @@ _0148:
     EndMovement
 
 _0160:
-    ScrCmd_060
+    LockAll
     Call _0184
     ScrCmd_2B5 33, 58, 0x2CA
     ScrCmd_04E 0x48E
     ScrCmd_04F
     ScrCmd_0CD 0
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0184:

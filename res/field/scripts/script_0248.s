@@ -7,11 +7,11 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfSet 0xAB4, _00BC
-    ScrCmd_02C 0
+    Message 0
     ScrCmd_1B7 0x8004, 4
     SetVar 0x8008, 0x8004
     GoToIfEq 0x8008, 0, _005B
@@ -46,21 +46,21 @@ _0093:
     GoToIfEq 0x800C, 0, _00C7
     SetFlag 0xAB4
     ScrCmd_014 0x7E0
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _00BC:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00C7:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _00D1:

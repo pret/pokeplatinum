@@ -75,14 +75,14 @@ BOOL ScrCmd_07F (ScriptContext * param0)
     return 0;
 }
 
-BOOL ScrCmd_080 (ScriptContext * param0)
+BOOL ScrCmd_GetItemPocket (ScriptContext * ctx)
 {
-    FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 * v2 = ScriptContext_GetVarPointer(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 item = ScriptContext_GetVar(ctx);
+    u16 *pocket = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = (u16)Item_LoadParam(v1, 5, 11);
-    return 0;
+    *pocket = (u16)Item_LoadParam(item, ITEM_PARAM_FIELD_POCKET, 11);
+    return FALSE;
 }
 
 BOOL ScrCmd_081 (ScriptContext * param0)

@@ -18,20 +18,20 @@ _002A:
     End
 
 _002C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ApplyMovement 13, _0060
     WaitMovement
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     ApplyMovement 12, _0068
     WaitMovement
     Call _00B6
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -45,22 +45,22 @@ _0068:
     EndMovement
 
 _0070:
-    ScrCmd_060
+    LockAll
     ApplyMovement 13, _00BC
     WaitMovement
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     ApplyMovement 12, _00C4
     WaitMovement
-    ScrCmd_02C 3
-    ScrCmd_034
+    Message 3
+    CloseMessage
     ApplyMovement 13, _00CC
     ApplyMovement 0xFF, _00EC
     WaitMovement
     ApplyMovement 12, _00E4
     WaitMovement
     Call _00B6
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00B6:
@@ -98,42 +98,42 @@ _00EC:
     EndMovement
 
 _00F8:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _010B:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 6
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _011E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfSet 145, _0142
     Call _014D
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0142:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _014D:
@@ -143,7 +143,7 @@ _014D:
     Return
 
 _015D:
-    ScrCmd_060
+    LockAll
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8005, 0x293, _01A8
     GoToIfEq 0x8005, 0x294, _01C2
@@ -185,10 +185,10 @@ _01FC:
 
 _0216:
     Call _014D
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

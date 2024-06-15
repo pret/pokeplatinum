@@ -17,16 +17,16 @@ _0018:
     Return
 
 _0026:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     SetVar 0x8004, 0x410B
     SetVar 0x8005, 0x410C
     ScrCmd_0D5 0, 0x8004
     ScrCmd_0D5 1, 0x8005
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

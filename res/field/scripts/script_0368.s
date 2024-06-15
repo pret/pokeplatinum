@@ -38,8 +38,8 @@ _009E:
     Return
 
 _00A6:
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_1DD 43, 0, 0x800C
     GoToIfEq 0x800C, 4, _01F8
     GoToIfEq 0x800C, 5, _01F8
@@ -50,8 +50,8 @@ _00A6:
     End
 
 _00E9:
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_1F8
     ScrCmd_2C4 6
     ScrCmd_0A1
@@ -59,12 +59,12 @@ _00E9:
     End
 
 _010A:
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 0x1ED, 0, 8, 2, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
 _0132:
@@ -74,21 +74,21 @@ _0132:
     Return
 
 _0146:
-    ScrCmd_060
+    LockAll
     SetVar 0x4000, 0
     Call _0132
     GoTo _00A6
     End
 
 _015C:
-    ScrCmd_060
+    LockAll
     SetVar 0x4000, 0
     Call _0132
     GoTo _00E9
     End
 
 _0172:
-    ScrCmd_060
+    LockAll
     SetVar 0x4000, 1
     Call _0132
     GoTo _010A

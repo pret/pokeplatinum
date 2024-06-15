@@ -32,83 +32,83 @@ _005E:
     End
 
 _0062:
-    ScrCmd_060
-    ScrCmd_049 0x5F1
-    ScrCmd_02C 0
+    LockAll
+    PlayFanfare 0x5F1
+    Message 0
     ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 125, 0, 5, 2, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     SetVar 0x40DA, 2
     ScrCmd_202 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00A0:
-    ScrCmd_060
+    LockAll
     SetVar 0x40DA, 2
     ScrCmd_202 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00AF:
-    ScrCmd_060
-    ScrCmd_049 0x5F1
-    ScrCmd_02C 1
+    LockAll
+    PlayFanfare 0x5F1
+    Message 1
     ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 125, 0, 5, 2, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     SetVar 0x40DA, 2
     ScrCmd_202 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00ED:
-    ScrCmd_060
-    ScrCmd_049 0x5F1
-    ScrCmd_02C 2
+    LockAll
+    PlayFanfare 0x5F1
+    Message 2
     ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 125, 0, 5, 2, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     SetVar 0x40DA, 2
     ScrCmd_202 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _012B:
-    ScrCmd_060
-    ScrCmd_02C 5
+    LockAll
+    Message 5
     ScrCmd_03E 0x800C
-    ScrCmd_034
+    CloseMessage
     GoToIfNe 0x800C, 0, _0174
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 125, 0, 5, 2, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     SetVar 0x40DA, 2
     ScrCmd_202 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0174:
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0178:
-    ScrCmd_060
-    ScrCmd_02C 3
+    LockAll
+    Message 3
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 188, 0
     ScrCmd_042 189, 1
@@ -116,7 +116,7 @@ _0178:
     ScrCmd_042 191, 3
     ScrCmd_042 192, 4
     ScrCmd_043
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
@@ -132,12 +132,12 @@ _0178:
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0242:
-    ScrCmd_060
-    ScrCmd_02C 3
+    LockAll
+    Message 3
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 188, 0
     ScrCmd_042 189, 1
@@ -145,7 +145,7 @@ _0242:
     ScrCmd_042 191, 3
     ScrCmd_042 192, 4
     ScrCmd_043
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 0, 0x8004
@@ -161,12 +161,12 @@ _0242:
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _030C:
-    ScrCmd_060
-    ScrCmd_02C 3
+    LockAll
+    Message 3
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 186, 0
     ScrCmd_042 187, 1
@@ -174,7 +174,7 @@ _030C:
     ScrCmd_042 191, 3
     ScrCmd_042 192, 4
     ScrCmd_043
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
@@ -190,12 +190,12 @@ _030C:
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _03D6:
-    ScrCmd_060
-    ScrCmd_02C 3
+    LockAll
+    Message 3
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 186, 0
     ScrCmd_042 187, 1
@@ -203,7 +203,7 @@ _03D6:
     ScrCmd_042 191, 3
     ScrCmd_042 192, 4
     ScrCmd_043
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 1, 0x8004
@@ -219,12 +219,12 @@ _03D6:
     CallIfEq 0x800C, 2, _06A6
     CallIfEq 0x800C, 3, _06B4
     ScrCmd_211 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _04A0:
-    ScrCmd_060
-    ScrCmd_02C 3
+    LockAll
+    Message 3
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 186, 0
     ScrCmd_042 187, 1
@@ -232,7 +232,7 @@ _04A0:
     ScrCmd_042 189, 3
     ScrCmd_042 192, 4
     ScrCmd_043
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
@@ -248,12 +248,12 @@ _04A0:
     CallIfEq 0x800C, 2, _068A
     CallIfEq 0x800C, 3, _0698
     ScrCmd_211 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _056A:
-    ScrCmd_060
-    ScrCmd_02C 3
+    LockAll
+    Message 3
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 186, 0
     ScrCmd_042 187, 1
@@ -261,7 +261,7 @@ _056A:
     ScrCmd_042 189, 3
     ScrCmd_042 192, 4
     ScrCmd_043
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x800C, 4, _06C2
     GoToIfEq 0x800C, -2, _06C2
     ScrCmd_210 2, 0x8004
@@ -277,7 +277,7 @@ _056A:
     CallIfEq 0x800C, 2, _068A
     CallIfEq 0x800C, 3, _0698
     ScrCmd_211 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0634:
@@ -335,10 +335,10 @@ _06B4:
 
 _06C2:
     ScrCmd_0CD 0
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _06D0:

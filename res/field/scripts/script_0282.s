@@ -10,9 +10,9 @@ _000A:
     End
 
 _000C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_208 0x1E8, 1
     ScrCmd_030
     ScrCmd_209
@@ -29,15 +29,15 @@ _000C:
     ClearFlag 0x452
     ScrCmd_064 1
     SetFlag 0x11F
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0074:
     SetVar 0x4058, 0
-    ScrCmd_061
+    ReleaseAll
     End
 
 _007E:

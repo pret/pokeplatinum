@@ -9,15 +9,15 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     GoToIfSet 198, _0066
-    ScrCmd_02C 0
-    ScrCmd_034
-    ScrCmd_068
+    Message 0
+    CloseMessage
+    FacePlayer
     ApplyMovement 0x800D, _0080
     WaitMovement
-    ScrCmd_02C 1
+    Message 1
     SetVar 0x8004, 0x194
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
@@ -27,17 +27,17 @@ _0012:
     GoTo _0066
 
 _0066:
-    ScrCmd_068
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    FacePlayer
+    Message 2
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0073:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

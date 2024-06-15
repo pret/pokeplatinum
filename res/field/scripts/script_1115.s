@@ -6,11 +6,11 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     ScrCmd_1E5 48
     ScrCmd_235 0, 0x800C
-    ScrCmd_1F9 0x800C
+    DebugWatch 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _005C
     GoToIfEq 0x8008, 1, _0074
@@ -22,14 +22,14 @@ _0006:
 _005C:
     ScrCmd_235 4, 0x8004, 0x8005
     ScrCmd_1FB 0x8004, 0x8005
-    ScrCmd_031
+    WaitButtonPress
     GoTo _0129
     End
 
 _0074:
     ScrCmd_235 1, 2, 0x8004, 0x8005
     ScrCmd_1FB 0x8004, 0x8005
-    ScrCmd_031
+    WaitButtonPress
     ScrCmd_235 2
     GoTo _0129
     End
@@ -48,31 +48,31 @@ _00AA:
 
 _00C5:
     ScrCmd_235 1, 3, 0x8004, 0x8005
-    ScrCmd_1F9 0x8004
-    ScrCmd_1F9 0x8005
+    DebugWatch 0x8004
+    DebugWatch 0x8005
     ScrCmd_1FB 0x8004, 0x8005
     ScrCmd_235 2
-    ScrCmd_031
+    WaitButtonPress
     GoTo _0129
     End
 
 _00EB:
     ScrCmd_235 1, 1, 0x8004, 0x8005
-    ScrCmd_1F9 0x8004
-    ScrCmd_1F9 0x8005
+    DebugWatch 0x8004
+    DebugWatch 0x8005
     ScrCmd_1FB 0x8004, 0x8005
     ScrCmd_235 3, 0x8006, 0x8004, 0x8005
-    ScrCmd_1F9 0x8006
-    ScrCmd_1F9 0x8004
-    ScrCmd_1F9 0x8005
+    DebugWatch 0x8006
+    DebugWatch 0x8004
+    DebugWatch 0x8005
     ScrCmd_1FB 0x8004, 0x8005
-    ScrCmd_031
+    WaitButtonPress
     GoTo _0129
     End
 
 _0129:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

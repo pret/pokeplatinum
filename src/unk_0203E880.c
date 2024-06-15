@@ -593,19 +593,19 @@ static u32 sub_0203F110 (int param0)
     return MapHeader_GetMsgArchiveID(param0);
 }
 
-u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 param1)
+u16 * sub_0203F118 (FieldSystem * fieldSystem, u16 varID)
 {
-    VarsFlags * v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (param1 < 0x4000) {
+    if (varID < VARS_START) {
         return NULL;
     }
 
-    if (param1 < 0x8000) {
-        return VarsFlags_GetVarAddress(v0, param1);
+    if (varID < 0x8000) {
+        return VarsFlags_GetVarAddress(varsFlags, varID);
     }
 
-    return sub_0203F098(fieldSystem, (41 + param1 - 0x8000));
+    return sub_0203F098(fieldSystem, (41 + varID - 0x8000));
 }
 
 u16 sub_0203F150 (FieldSystem * fieldSystem, u16 param1)

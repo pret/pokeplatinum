@@ -6,47 +6,47 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_060
+    LockAll
     ScrCmd_069 0x8004, 0x8005
     ApplyMovement 3, _0234
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     CallIfEq 0x8005, 12, _01AD
     CallIfEq 0x8005, 13, _01C1
     ScrCmd_066 0x8004, 0x8005
-    ScrCmd_0BC 6, 3, 0, 0
+    FadeScreen 6, 3, 0, 0
     ApplyMovement 241, _01F8
     WaitMovement
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_003 15, 0x800C
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    WaitFrames 15, 0x800C
     ClearFlag 0x253
     ScrCmd_064 2
     ApplyMovement 2, _01D8
     WaitMovement
-    ScrCmd_049 0x60F
-    ScrCmd_003 30, 0x800C
-    ScrCmd_02C 1
-    ScrCmd_034
-    ScrCmd_049 0x60F
-    ScrCmd_003 30, 0x800C
-    ScrCmd_02C 2
-    ScrCmd_034
-    ScrCmd_003 30, 0x800C
-    ScrCmd_02C 3
-    ScrCmd_034
-    ScrCmd_049 0x60F
-    ScrCmd_003 15, 0x800C
-    ScrCmd_02C 4
-    ScrCmd_02C 5
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
+    PlayFanfare 0x60F
+    WaitFrames 30, 0x800C
+    Message 1
+    CloseMessage
+    PlayFanfare 0x60F
+    WaitFrames 30, 0x800C
+    Message 2
+    CloseMessage
+    WaitFrames 30, 0x800C
+    Message 3
+    CloseMessage
+    PlayFanfare 0x60F
+    WaitFrames 15, 0x800C
+    Message 4
+    Message 5
+    CloseMessage
+    WaitFrames 15, 0x800C
     ApplyMovement 2, _01E8
     WaitMovement
     ScrCmd_065 2
-    ScrCmd_0BC 6, 3, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 3, 0, 0
+    WaitFadeScreen
     ApplyMovement 241, _0204
     WaitMovement
     ScrCmd_067
@@ -87,17 +87,17 @@ _0006:
     ApplyMovement 3, _0248
     ApplyMovement 0xFF, _0224
     WaitMovement
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_003 15, 0x800C
-    ScrCmd_02C 6
-    ScrCmd_034
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    WaitFrames 15, 0x800C
+    Message 6
+    CloseMessage
     ApplyMovement 3, _0250
     ApplyMovement 0xFF, _022C
     WaitMovement
     ScrCmd_065 3
     SetVar 0x408E, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _01AD:

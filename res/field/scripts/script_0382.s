@@ -12,15 +12,15 @@ _000E:
     End
 
 _0012:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     GoToIfEq 0x4055, 5, _0084
     ScrCmd_317 0x8004, 0x8005, 0x8006
     GoToIfEq 0x8005, 232, _0059
     ApplyMovement 128, _00DC
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 128, _00E4
     WaitMovement
     GoTo _007A
@@ -28,14 +28,14 @@ _0012:
 _0059:
     ApplyMovement 128, _00F0
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 128, _00F8
     ApplyMovement 0xFF, _011C
     WaitMovement
 _007A:
     SetVar 0x4055, 5
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0084:
@@ -55,10 +55,10 @@ _00C6:
     ApplyMovement 128, _0114
     WaitMovement
 _00D0:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

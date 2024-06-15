@@ -2295,9 +2295,9 @@ _1E9A:
     End
 
 _1EAE:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_04B 0x5DC
     SetVar 0x8004, 0x8008
     SetVar 0x8005, 0x8009
@@ -2307,8 +2307,8 @@ _1EAE:
     End
 
 _1EEA:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _1EF0:
@@ -2328,7 +2328,7 @@ _1F33:
     CallIfEq 0x800C, 1, _20C6
     ScrCmd_0CD 0
     ScrCmd_0D1 1, 0x8004
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 7, _1FD9
     GoToIfEq 0x8008, 0, _1FC6
@@ -2341,57 +2341,57 @@ _1F33:
     End
 
 _1FC6:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _1FD9:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _1FEC:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _1FFF:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _2012:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _2025:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _2038:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _204B:
-    ScrCmd_080 0x8004, 0x800C
+    GetItemPocket 0x8004, 0x800C
     ScrCmd_0D2 2, 0x800C
     GoTo _205E
     End
 
 _205E:
     ScrCmd_1CD 18, 0x8004, 0, 0, 0
-    ScrCmd_02C 9
-    ScrCmd_031
+    Message 9
+    WaitButtonPress
     SetVar 0x800C, 1
     GoTo _1EEA
     End
@@ -2400,21 +2400,21 @@ _207D:
     ScrCmd_0CD 0
     ScrCmd_33C 1, 0x8004
     ScrCmd_0D3 2, 0x8004
-    ScrCmd_02C 6
+    Message 6
     GoTo _1F33
     End
 
 _2095:
     ScrCmd_0CD 0
     ScrCmd_33C 1, 0x8004
-    ScrCmd_02C 3
+    Message 3
     GoTo _1F33
     End
 
 _20A8:
     ScrCmd_0D1 0, 0x8004
-    ScrCmd_02C 4
-    ScrCmd_031
+    Message 4
+    WaitButtonPress
     SetVar 0x800C, 0
     GoTo _1EEA
     End

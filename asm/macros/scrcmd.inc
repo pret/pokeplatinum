@@ -13,11 +13,11 @@
     .macro End
     .short 2
     .endm
-
-    .macro ScrCmd_003 arg0, arg1
+    
+    .macro WaitFrames frames, countdown
     .short 3
-    .short \arg0
-    .short \arg1
+    .short \frames
+    .short \countdown
     .endm
 
     .macro ScrCmd_004 arg0, arg1
@@ -240,9 +240,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_02C arg0
+    .macro Message messageID
     .short 44
-    .byte \arg0
+    .byte \messageID
     .endm
 
     .macro ScrCmd_02D arg0
@@ -264,7 +264,7 @@
     .short 48
     .endm
 
-    .macro ScrCmd_031
+    .macro WaitButtonPress
     .short 49
     .endm
 
@@ -276,7 +276,7 @@
     .short 51
     .endm
 
-    .macro ScrCmd_034
+    .macro CloseMessage
     .short 52
     .endm
 
@@ -403,9 +403,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_049 arg0
+    .macro PlayFanfare sdatSeq
     .short 73
-    .short \arg0
+    .short \sdatSeq
     .endm
 
     .macro ScrCmd_04A arg0
@@ -515,11 +515,11 @@
     .short 95
     .endm
 
-    .macro ScrCmd_060
+    .macro LockAll
     .short 96
     .endm
 
-    .macro ScrCmd_061
+    .macro ReleaseAll
     .short 97
     .endm
 
@@ -553,7 +553,7 @@
     .short 103
     .endm
 
-    .macro ScrCmd_068
+    .macro FacePlayer
     .short 104
     .endm
 
@@ -686,10 +686,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_080 arg0, arg1
+    .macro GetItemPocket item, pocket
     .short 128
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \pocket
     .endm
 
     .macro ScrCmd_081
@@ -1019,15 +1019,15 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0BC arg0, arg1, arg2, arg3
+    .macro FadeScreen transition, frames, type, color
     .short 188
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \transition
+    .short \frames
+    .short \type
+    .short \color
     .endm
 
-    .macro ScrCmd_0BD
+    .macro WaitFadeScreen
     .short 189
     .endm
 
@@ -2309,9 +2309,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B6 arg0
+    .macro GetTimePeriod timePeriod
     .short 438
-    .short \arg0
+    .short \timePeriod
     .endm
 
     .macro ScrCmd_1B7 arg0, arg1
@@ -2693,10 +2693,11 @@
     .macro ScrCmd_1F8
     .short 504
     .endm
-
-    .macro ScrCmd_1F9 arg0
+    
+    // this is a dummy function that doesn't do anything
+    .macro DebugWatch dummy
     .short 505
-    .short \arg0
+    .short \dummy
     .endm
 
     .macro ScrCmd_1FA arg0, arg1
@@ -3732,7 +3733,8 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2B4
+    // this is unused, but the underlying function is called from LockAll
+    .macro LockLastTalked
     .short 692
     .endm
 

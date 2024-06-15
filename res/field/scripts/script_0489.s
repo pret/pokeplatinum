@@ -9,7 +9,7 @@
     .short 0xFD13
 
 _0012:
-    ScrCmd_060
+    LockAll
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8004, 0x2E3, _00E7
     ApplyMovement 4, _0188
@@ -17,24 +17,24 @@ _0012:
     ApplyMovement 0xFF, _0100
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 5
+    CloseMessage
     ApplyMovement 3, _0160
     WaitMovement
-    ScrCmd_003 15, 0x800C
+    WaitFrames 15, 0x800C
     ScrCmd_0CE 1
-    ScrCmd_02C 6
-    ScrCmd_034
+    Message 6
+    CloseMessage
     ApplyMovement 4, _0194
     WaitMovement
-    ScrCmd_02C 7
+    Message 7
     ScrCmd_0CE 1
-    ScrCmd_02C 8
+    Message 8
     ApplyMovement 4, _019C
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 9
-    ScrCmd_034
+    Message 9
+    CloseMessage
     ApplyMovement 4, _01B8
     ApplyMovement 0xFF, _012C
     ApplyMovement 3, _0168
@@ -43,17 +43,17 @@ _0012:
     ApplyMovement 3, _0170
     ApplyMovement 0xFF, _0108
     WaitMovement
-    ScrCmd_003 5, 0x800C
+    WaitFrames 5, 0x800C
     ScrCmd_0CE 1
-    ScrCmd_02C 10
-    ScrCmd_02C 11
-    ScrCmd_034
+    Message 10
+    Message 11
+    CloseMessage
     ApplyMovement 3, _0178
     ApplyMovement 0xFF, _0118
     WaitMovement
     ScrCmd_065 3
     SetVar 0x408B, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00E7:
@@ -219,17 +219,17 @@ _01CC:
     End
 
 _01E3:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _01F6:
-    ScrCmd_060
+    LockAll
     ApplyMovement 11, _0280
     ApplyMovement 0xFF, _026C
     WaitMovement
@@ -238,27 +238,27 @@ _01F6:
 
 _0212:
     ScrCmd_0CD 0
-    ScrCmd_02C 0
+    Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0243
     GoToIfEq 0x800C, 1, _0238
     End
 
 _0238:
-    ScrCmd_02C 3
+    Message 3
     GoTo _0212
     End
 
 _0243:
     ApplyMovement 11, _0290
     WaitMovement
-    ScrCmd_02C 1
+    Message 1
     ApplyMovement 11, _0298
     WaitMovement
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     SetVar 0x4119, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

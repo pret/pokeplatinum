@@ -7,23 +7,23 @@
     .short 0xFD13
 
 _000A:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_147 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0020:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_148 14
-    ScrCmd_061
+    ReleaseAll
     End
 
     .byte 0

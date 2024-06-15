@@ -7,15 +7,15 @@
     End
 
 _0008:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    Message 0
     GoTo _001B
     End
 
 _001B:
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_041 1, 1, 0, 1, 0x800C
     ScrCmd_042 9, 0
     ScrCmd_042 10, 1
@@ -30,48 +30,48 @@ _001B:
     End
 
 _006D:
-    ScrCmd_02C 33
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 33
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0078:
-    ScrCmd_02C 32
-    ScrCmd_031
+    Message 32
+    WaitButtonPress
     GoTo _001B
     End
 
 _0085:
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
-    ScrCmd_034
-    ScrCmd_061
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    CloseMessage
+    ReleaseAll
     Return
 
 _0097:
     ScrCmd_0A1
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     Return
 
 _00AF:
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 8
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00BA:
-    ScrCmd_02C 6
+    Message 6
     GoTo _006D
     End
 
 _00C5:
-    ScrCmd_02C 7
+    Message 7
     GoTo _006D
     End
 
@@ -81,7 +81,7 @@ _00D0:
     ScrCmd_1D8 0x800C
     GoToIfEq 0x800C, 1, _00BA
     GoToIfEq 0x800C, 2, _00C5
-    ScrCmd_003 30, 0x800C
+    WaitFrames 30, 0x800C
     Call _0085
     ScrCmd_1D7 0
     Call _0097
@@ -101,7 +101,7 @@ _0121:
     End
 
 _0173:
-    ScrCmd_02C 13
+    Message 13
     ScrCmd_040 30, 1, 0, 1, 0x800C
     ScrCmd_33A 1
     ScrCmd_042 13, 0
@@ -115,10 +115,10 @@ _0173:
     End
 
 _01B7:
-    ScrCmd_02C 2
+    Message 2
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0173
-    ScrCmd_034
+    CloseMessage
     ScrCmd_0F2 6, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _01F9
     GoToIfEq 0x800C, 3, _0203
@@ -136,10 +136,10 @@ _0203:
     End
 
 _020D:
-    ScrCmd_02C 2
+    Message 2
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0173
-    ScrCmd_034
+    CloseMessage
     ScrCmd_0F3 6, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _024F
     GoToIfEq 0x800C, 3, _0259
@@ -157,9 +157,9 @@ _0259:
     End
 
 _0263:
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    ReleaseAll
     ScrCmd_1D7 1
     ScrCmd_150
     Call _0097

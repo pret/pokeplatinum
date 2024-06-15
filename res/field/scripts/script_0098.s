@@ -22,9 +22,9 @@ _0027:
     End
 
 _0039:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _007B
     GoToIfEq 0x800C, 1, _008B
@@ -56,16 +56,16 @@ _00BB:
     ScrCmd_15B 4, 0x800C
     GoToIfEq 0x800C, 1, _01A0
     ScrCmd_1CD 9, 91, 0, 0, 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     SetFlag 142
     ScrCmd_0E5 0x13E, 0
     ClearFlag 142
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0248
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_0CD 0
-    ScrCmd_02C 2
+    Message 2
     ScrCmd_04E 0x489
     ScrCmd_04F
     ScrCmd_15C 4
@@ -82,7 +82,7 @@ _00BB:
     SetVar 0x407B, 1
     SetFlag 0x206
     ClearFlag 0x207
-    ScrCmd_02C 3
+    Message 3
     GoTo _0158
 
 _0158:
@@ -94,24 +94,24 @@ _0158:
     SetFlag 125
     ScrCmd_0D1 0, 0x8004
     ScrCmd_0D3 1, 0x8004
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0196:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _01A0:
     GoToIfUnset 125, _0158
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 5
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -165,7 +165,7 @@ _0224:
 _0248:
     ClearFlag 0x29C
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
     .byte 0

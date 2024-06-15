@@ -6,25 +6,25 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     ScrCmd_294 21, 1
     GoToIfSet 114, _0031
     SetFlag 114
     ScrCmd_0D5 0, 1
-    ScrCmd_02C 15
+    Message 15
     GoTo _0041
     End
 
 _0031:
     ScrCmd_0D5 0, 1
-    ScrCmd_02C 0
+    Message 0
     GoTo _0041
     End
 
 _0041:
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_041 30, 11, 0, 1, 0x800C
     ScrCmd_33A 1
     ScrCmd_042 2, 0
@@ -39,64 +39,64 @@ _0041:
 
 _0085:
     ScrCmd_0D5 2, 1
-    ScrCmd_02C 7
+    Message 7
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0152
     ScrCmd_29A 1, 0x800C
     GoToIfEq 0x800C, 0, _0147
     ScrCmd_299 1
     ScrCmd_296
-    ScrCmd_02C 10
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 10
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_295
-    ScrCmd_034
+    CloseMessage
     ScrCmd_2E2
     ScrCmd_2E4 0, 0x4000, 0x4001
     ScrCmd_2E4 1, 0x4002, 0x4003
     ScrCmd_2E4 2, 0x4004, 0x4005
     ScrCmd_2E3
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     SetVar 0x8000, 0
     Call _017A
     GoToIfEq 0x8000, 0, _01AB
     ScrCmd_0D5 0, 0x8000
-    ScrCmd_02C 11
+    Message 11
     CallIfNe 0x4001, 0, _01B6
     CallIfNe 0x4003, 0, _0200
     CallIfNe 0x4005, 0, _024A
-    ScrCmd_02C 5
+    Message 5
     GoTo _0172
     End
 
 _0147:
-    ScrCmd_02C 14
+    Message 14
     GoTo _0168
     End
 
 _0152:
-    ScrCmd_02C 5
+    Message 5
     GoTo _0168
     End
 
 _015D:
-    ScrCmd_02C 6
+    Message 6
     GoTo _0041
     End
 
 _0168:
-    ScrCmd_031
-    ScrCmd_034
+    WaitButtonPress
+    CloseMessage
     ScrCmd_295
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0172:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _017A:
@@ -110,7 +110,7 @@ _01A3:
     Return
 
 _01AB:
-    ScrCmd_02C 5
+    Message 5
     GoTo _0172
     End
 
@@ -126,7 +126,7 @@ _01D3:
     ScrCmd_07D 0x4000, 0x4001, 0x800C
     GoToIfEq 0x800C, 0, _0294
     ScrCmd_04E 0x486
-    ScrCmd_02C 13
+    Message 13
     ScrCmd_07B 0x4000, 0x4001, 0x800C
     ScrCmd_04F
     Return
@@ -143,7 +143,7 @@ _021D:
     ScrCmd_07D 0x4002, 0x4003, 0x800C
     GoToIfEq 0x800C, 0, _0294
     ScrCmd_04E 0x486
-    ScrCmd_02C 13
+    Message 13
     ScrCmd_07B 0x4002, 0x4003, 0x800C
     ScrCmd_04F
     Return
@@ -160,13 +160,13 @@ _0267:
     ScrCmd_07D 0x4004, 0x4005, 0x800C
     GoToIfEq 0x800C, 0, _0294
     ScrCmd_04E 0x486
-    ScrCmd_02C 13
+    Message 13
     ScrCmd_07B 0x4004, 0x4005, 0x800C
     ScrCmd_04F
     Return
 
 _0294:
-    ScrCmd_02C 12
+    Message 12
     Return
 
     .byte 0

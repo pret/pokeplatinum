@@ -17,20 +17,20 @@ _0016:
     End
 
 _001A:
-    ScrCmd_060
-    ScrCmd_049 0x624
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    LockAll
+    PlayFanfare 0x624
+    Message 1
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _002B:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 0
-    ScrCmd_049 0x637
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare 0x5DC
+    LockAll
+    Message 0
+    PlayFanfare 0x637
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End

@@ -37,16 +37,16 @@ _007F:
     Return
 
 _008D:
-    ScrCmd_060
+    LockAll
     Call _00C9
     Call _012B
     Call _014F
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 0x14B, 0, 7, 5, 0
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_061
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ReleaseAll
     End
 
 _00C9:

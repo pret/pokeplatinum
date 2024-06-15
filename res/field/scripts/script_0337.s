@@ -6,18 +6,18 @@
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare 0x5DC
+    LockAll
     GoToIfSet 0x149, _009C
     GoToIfSet 0xAB0, _009C
-    ScrCmd_1B6 0x800C
+    GetTimePeriod 0x800C
     GoToIfLt 0x800C, 3, _009C
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0096
     ScrCmd_0CD 0
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     ScrCmd_04C 0x1DF, 0
     ScrCmd_04D
     SetFlag 0xAB0
@@ -27,31 +27,31 @@ _0006:
     ScrCmd_2BC 0x800C
     GoToIfEq 0x800C, 1, _008B
     SetFlag 0x149
-    ScrCmd_061
+    ReleaseAll
     End
 
 _008B:
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0096:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _009C:
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00A7:
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
     .byte 0

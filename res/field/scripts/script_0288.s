@@ -16,23 +16,23 @@ _001B:
     Return
 
 _0021:
-    ScrCmd_060
+    LockAll
     ScrCmd_328 0
     ScrCmd_2B5 0x10A, 0x2FA, 0x2CA
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 0, _00A0
     WaitMovement
     ApplyMovement 0xFF, _0098
     WaitMovement
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ApplyMovement 0, _00B8
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
+    Message 2
+    WaitButtonPress
+    CloseMessage
     SetVar 0x40AA, 2
     SetVar 0x40A6, 2
     SetFlag 0x1C7
@@ -44,7 +44,7 @@ _0021:
     ClearFlag 0x292
     SetFlag 0x15E
     SetFlag 0x295
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -67,23 +67,23 @@ _00B8:
     EndMovement
 
 _00C0:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare 0x5DC
+    LockAll
+    FacePlayer
     GoToIfGe 0x40AA, 3, _00E0
-    ScrCmd_02C 3
+    Message 3
     GoTo _00EB
     End
 
 _00E0:
-    ScrCmd_02C 4
+    Message 4
     GoTo _00EB
     End
 
 _00EB:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitButtonPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0
