@@ -2096,7 +2096,7 @@ static BOOL BtlCmd_WaitButtonABTime(BattleSystem *battleSys, BattleContext *batt
  * from which of the DS's stereo speakers to pan the sound. Enemies will have
  * their sounds pan from the right, while allies will have their sounds pan from
  * the left.
- * 2. The SDAT sequence to play.
+ * 2. The SDAT ID to play.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -2106,9 +2106,9 @@ static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int battler = BattleScript_Read(battleCtx);
-    int sdatSeq = BattleScript_Read(battleCtx);
+    int sdatID = BattleScript_Read(battleCtx);
 
-    BattleIO_PlaySound(battleSys, battleCtx, sdatSeq, BattleScript_Battler(battleSys, battleCtx, battler));
+    BattleIO_PlaySound(battleSys, battleCtx, sdatID, BattleScript_Battler(battleSys, battleCtx, battler));
 
     return FALSE;
 }

@@ -307,12 +307,12 @@ BOOL sub_02005728 (u16 param0, int param1)
     return v0;
 }
 
-BOOL Sound_PlayEffect (u16 sdatSeq)
+BOOL Sound_PlayEffect (u16 sdatID)
 {
-    int v0 = sub_020040F0(sub_02004B18(sdatSeq));
-    int v1 = NNS_SndArcPlayerStartSeq(sub_020040CC(v0), sdatSeq);
+    int v0 = sub_020040F0(sub_02004B18(sdatID));
+    int v1 = NNS_SndArcPlayerStartSeq(sub_020040CC(v0), sdatID);
 
-    sub_02004AA0(sdatSeq, v0);
+    sub_02004AA0(sdatID, v0);
 
     return v1;
 }

@@ -403,9 +403,9 @@
     .byte \arg0
     .endm
 
-    .macro PlayFanfare sdatSeq
+    .macro PlayFanfare sdatID
     .short 73
-    .short \sdatSeq
+    .short \sdatID
     .endm
 
     .macro ScrCmd_04A arg0
