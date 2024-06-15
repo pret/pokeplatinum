@@ -16,7 +16,7 @@ ScriptContext * sub_0203EAB8(FieldSystem * fieldSystem, u16 param1);
 void * sub_0203EF60(UnkStruct_0203EF60 * param0, u32 param1);
 void * sub_0203F098(FieldSystem * fieldSystem, u32 param1);
 void sub_0203F0C0(FieldSystem * fieldSystem);
-u16 * sub_0203F118(FieldSystem * fieldSystem, u16 param1);
+u16 * FieldSystem_GetVar(FieldSystem * fieldSystem, u16 param1);
 u16 sub_0203F150(FieldSystem * fieldSystem, u16 param1);
 u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F188(FieldSystem * fieldSystem, u16 param1);

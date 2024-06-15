@@ -96,7 +96,7 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 * param0);
 BOOL ScrCmd_337 (ScriptContext * param0)
 {
     u16 v0 = sub_0203F150(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    u16 * v1 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 * v1 = FieldSystem_GetVar(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     PokedexData * v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
 
     *v1 = sub_02026FE8(v2, v0);
@@ -341,7 +341,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
     }
 
     v7 = MessageLoader_Init(0, 26, 647, 32);
-    v10 = ov5_021F7ED8(fieldSystem, 20, 1, 0, 1, sub_0203F118(fieldSystem, v16), *v13, sub_0203F098(param0->fieldSystem, 1), v7);
+    v10 = ov5_021F7ED8(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVar(fieldSystem, v16), *v13, sub_0203F098(param0->fieldSystem, 1), v7);
 
     for (v2 = 0; v2 < (NELEMS(sTeachableMoves)); v2++) {
         v12[v2] = 0;
@@ -404,7 +404,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
 static BOOL ov5_021F7DE8 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v1 = sub_0203F118(fieldSystem, param0->data[0]);
+    u16 * v1 = FieldSystem_GetVar(fieldSystem, param0->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;
