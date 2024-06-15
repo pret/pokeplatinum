@@ -10,7 +10,7 @@ _0006:
     LockAll
     GoToIfSet 0x149, _009C
     GoToIfSet 0xAB0, _009C
-    GetTimePeriod 0x800C
+    GetTimeOfDay 0x800C
     GoToIfLt 0x800C, 3, _009C
     Message 1
     ScrCmd_03E 0x800C

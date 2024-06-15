@@ -558,7 +558,7 @@ static BOOL ScrCmd_1B2(ScriptContext * ctx);
 static BOOL ScrCmd_1B3(ScriptContext * ctx);
 static BOOL ScrCmd_1B4(ScriptContext * ctx);
 static BOOL ScrCmd_1B5(ScriptContext * ctx);
-static BOOL ScrCmd_GetTimePeriod(ScriptContext * ctx);
+static BOOL ScrCmd_GetTimeOfDay(ScriptContext * ctx);
 static BOOL ScrCmd_1B7(ScriptContext * ctx);
 static BOOL ScrCmd_1B8(ScriptContext * ctx);
 static BOOL ScrCmd_1C1(ScriptContext * ctx);
@@ -1211,7 +1211,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1B3,
     ScrCmd_1B4,
     ScrCmd_1B5,
-    ScrCmd_GetTimePeriod,
+    ScrCmd_GetTimeOfDay,
     ScrCmd_1B7,
     ScrCmd_1B8,
     ScrCmd_1B9,
@@ -6062,10 +6062,10 @@ static BOOL ScrCmd_1B5 (ScriptContext * ctx)
     return 1;
 }
 
-static BOOL ScrCmd_GetTimePeriod (ScriptContext * ctx)
+static BOOL ScrCmd_GetTimeOfDay (ScriptContext * ctx)
 {
-    u16 *timePeriod = ScriptContext_GetVarPointer(ctx);
-    *timePeriod = sub_02055BA8(ctx->fieldSystem);
+    u16 *timeOfDay = ScriptContext_GetVarPointer(ctx);
+    *timeOfDay = sub_02055BA8(ctx->fieldSystem);
     return FALSE;
 }
 

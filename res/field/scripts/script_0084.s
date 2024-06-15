@@ -152,7 +152,7 @@ _01EF:
     PlayFanfare 0x5DC
     LockAll
     FacePlayer
-    GetTimePeriod 0x800C
+    GetTimeOfDay 0x800C
     GoToIfEq 0x800C, 4, _021B
     GoTo _0210
     End

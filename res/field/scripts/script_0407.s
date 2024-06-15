@@ -26,7 +26,7 @@ _0035:
     FacePlayer
     ScrCmd_23E 1, 0x800C
     GoToIfEq 0x800C, 0, _00EE
-    GetTimePeriod 0x800C
+    GetTimeOfDay 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _007E
     GoToIfEq 0x8008, 1, _008A

@@ -15,7 +15,7 @@
     .short 0xFD13
 
 _002A:
-    GetTimePeriod 0x4000
+    GetTimeOfDay 0x4000
     GoToIfEq 0x4000, 0, _0071
     GoToIfEq 0x4000, 1, _0071
     GoToIfEq 0x4000, 2, _0071

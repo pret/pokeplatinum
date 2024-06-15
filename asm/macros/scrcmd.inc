@@ -2309,9 +2309,9 @@
     .short \arg0
     .endm
 
-    .macro GetTimePeriod timePeriod
+    .macro GetTimeOfDay timeOfDay
     .short 438
-    .short \timePeriod
+    .short \timeOfDay
     .endm
 
     .macro ScrCmd_1B7 arg0, arg1

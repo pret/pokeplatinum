@@ -460,7 +460,7 @@ _0676:
 
 _0688:
     ScrCmd_0CD 0
-    GetTimePeriod 0x800C
+    GetTimeOfDay 0x800C
     CallIfEq 0x800C, 0, _06F8
     CallIfEq 0x800C, 1, _06FD
     CallIfEq 0x800C, 2, _0702
@@ -870,7 +870,7 @@ _0948:
     End
 
 _095E:
-    GetTimePeriod 0x800C
+    GetTimeOfDay 0x800C
     GoToIfEq 0x800C, 0, _09A5
     GoToIfEq 0x800C, 1, _09B6
     GoToIfEq 0x800C, 2, _09B6
