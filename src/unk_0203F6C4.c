@@ -298,7 +298,7 @@ static BOOL ScrCmd_1FE(ScriptContext * ctx);
 static BOOL ScrCmd_1FF(ScriptContext * ctx);
 static BOOL ScrCmd_26D(ScriptContext * ctx);
 static BOOL ScrCmd_Message(ScriptContext * ctx);
-static BOOL ScrCmd_02D(ScriptContext * ctx);
+static BOOL ScrCmd_MessageVar(ScriptContext * ctx);
 static BOOL ScrCmd_2C0(ScriptContext * ctx);
 static BOOL ScrCmd_02E(ScriptContext * ctx);
 static BOOL ScrCmd_02F(ScriptContext * ctx);
@@ -818,7 +818,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_02A,
     ScrCmd_02B,
     ScrCmd_Message,
-    ScrCmd_02D,
+    ScrCmd_MessageVar,
     ScrCmd_02E,
     ScrCmd_02F,
     ScrCmd_030,
@@ -2224,14 +2224,14 @@ static BOOL sub_02040014 (ScriptContext * ctx)
     return FieldMessage_FinishedPrinting(*v1);
 }
 
-static BOOL ScrCmd_02D (ScriptContext * ctx)
+static BOOL ScrCmd_MessageVar (ScriptContext * ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 messageID = ScriptContext_GetVar(ctx);
 
-    ov5_021DD444(ctx, ctx->loader, (u8)v0, 1, NULL);
+    ov5_021DD444(ctx, ctx->loader, (u8)messageID, 1, NULL);
     ScriptContext_Pause(ctx, sub_02040014);
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_2C0 (ScriptContext * ctx)

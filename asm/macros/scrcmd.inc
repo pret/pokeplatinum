@@ -245,9 +245,9 @@
     .byte \messageID
     .endm
 
-    .macro MessageVar arg0
+    .macro MessageVar messageVar
     .short 45
-    .short \arg0
+    .short \messageVar
     .endm
 
     .macro ScrCmd_02E arg0
@@ -686,10 +686,10 @@
     .short \arg1
     .endm
 
-    .macro GetItemPocket item, pocket
+    .macro GetItemPocket item, destVarID
     .short 128
     .short \item
-    .short \pocket
+    .short \destVarID
     .endm
 
     .macro ScrCmd_081
@@ -2309,9 +2309,9 @@
     .short \arg0
     .endm
 
-    .macro GetTimeOfDay timeOfDay
+    .macro GetTimeOfDay destVarID
     .short 438
-    .short \timeOfDay
+    .short \destVarID
     .endm
 
     .macro ScrCmd_1B7 arg0, arg1
