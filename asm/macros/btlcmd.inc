@@ -1234,4 +1234,4 @@
     .long 222
     .endm
 
-    .endif // ASM_BATTLE_SCRIPT_INC
+    .endif ; ASM_BATTLE_SCRIPT_INC
