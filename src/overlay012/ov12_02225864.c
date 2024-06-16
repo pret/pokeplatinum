@@ -20,6 +20,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "screen_scroll_manager.h"
+#include "buffer_manager.h"
 #include "heap.h"
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"

@@ -17,7 +17,7 @@
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"

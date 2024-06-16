@@ -13,6 +13,7 @@
 #include "unk_0200679C.h"
 #include "unk_0200D9E8.h"
 #include "screen_scroll_manager.h"
+#include "buffer_manager.h"
 #include "heap.h"
 #include "unk_0201CCF0.h"
 #include "overlay100/ov100_021D4E04.h"

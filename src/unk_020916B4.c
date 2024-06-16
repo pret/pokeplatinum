@@ -7,7 +7,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/struct_02091850.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_0200762C.h"
 #include "unk_02015F84.h"

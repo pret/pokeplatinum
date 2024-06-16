@@ -493,7 +493,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021E1B08.c.o
 	Object main.nef.p/src_overlay005_ov5_021E1D20.c.o
 	Object main.nef.p/src_overlay005_ov5_021E2098.c.o
-	Object main.nef.p/src_overlay005_ov5_021E22B0.c.o
+	Object main.nef.p/src_overlay005_field_motion_blur.c.o
 	Object main.nef.p/src_overlay005_encounter_effect_core.c.o
 	Object main.nef.p/src_overlay005_ov5_021E622C.c.o
 	Object main.nef.p/src_overlay005_ov5_021E779C.c.o

@@ -11,6 +11,7 @@
 
 #include "unk_0200D9E8.h"
 #include "screen_scroll_manager.h"
+#include "buffer_manager.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "overlay104/ov104_0223E894.h"

@@ -6,7 +6,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "overlay079/struct_ov79_021D3820.h"
 #include "overlay079/struct_ov79_021D38D0.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_0200762C.h"
 #include "gx_layers.h"

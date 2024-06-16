@@ -12,7 +12,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "heap.h"

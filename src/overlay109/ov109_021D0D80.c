@@ -32,7 +32,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"

@@ -5,7 +5,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
-#include "screen_scroll_manager.h"
+#include "buffer_manager.h"
 #include "heap.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/ov5_021EF4BC.h"

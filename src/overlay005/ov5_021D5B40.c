@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02020020.h"
 #include "overlay005/ov5_021D5B40.h"

@@ -2,18 +2,13 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "overlay005/struct_ov5_021E20E8_decl.h"
 
 #include "overlay005/struct_ov5_021E2098.h"
 
 #include "heap.h"
 #include "gx_layers.h"
 #include "overlay005/ov5_021E2098.h"
-#include "overlay005/ov5_021E22B0.h"
-
-typedef struct FieldMotionBlur {
-    UnkStruct_ov5_021E20E8 * unk_00;
-} FieldMotionBlur;
+#include "overlay005/field_motion_blur.h"
 
 FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
 {

@@ -4,7 +4,7 @@
 
 #include "data_02100844.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "heap.h"
 #include "unk_0201E190.h"

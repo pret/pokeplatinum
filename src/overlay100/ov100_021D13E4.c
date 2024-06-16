@@ -12,7 +12,7 @@
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay100/struct_ov100_021D4EBC.h"
 #include "struct_defs/sprite_template.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"

@@ -39,7 +39,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay101/struct_ov101_021D86B0.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "narc.h"

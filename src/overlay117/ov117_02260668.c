@@ -20,7 +20,7 @@
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 #include "overlay117/struct_ov117_02261280.h"
 #include "overlay117/struct_ov117_02261C2C.h"
 #include "overlay117/struct_ov117_02261F08.h"

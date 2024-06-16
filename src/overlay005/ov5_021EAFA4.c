@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020203AC_decl.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "heap.h"
 #include "unk_02020020.h"

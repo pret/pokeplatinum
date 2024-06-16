@@ -24,7 +24,7 @@
 #include "overlay113/struct_ov113_0226046C.h"
 #include "overlay113/struct_ov113_02260544.h"
 #include "overlay113/struct_ov113_02260818.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"

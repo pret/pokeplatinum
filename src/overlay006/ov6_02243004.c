@@ -4,7 +4,7 @@
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 
 #include "field/field_system.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02243004.h"

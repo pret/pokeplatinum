@@ -46,7 +46,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "screen_scroll_manager.h"
+#include "buffer_manager.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
 #include "heap.h"

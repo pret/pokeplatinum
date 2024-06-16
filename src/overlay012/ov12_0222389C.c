@@ -5,7 +5,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "spl.h"
 

@@ -7,7 +7,7 @@
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "narc.h"
 #include "unk_02006E3C.h"

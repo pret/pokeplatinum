@@ -12,7 +12,7 @@
 #include "struct_defs/struct_02017294.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002328.h"
 #include "unk_02005474.h"
