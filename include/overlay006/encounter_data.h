@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_WILD_ENCOUNTERS_H
 #define POKEPLATINUM_WILD_ENCOUNTERS_H
 
-#include "include/constants/wild_encounters.h"
+#include "constants/wild_encounters.h"
 
 typedef struct GrassEncounterData {
-    char level;
+    s8 level;
     u8 padding_01[3];
     int species;
 } GrassEncounterData;
@@ -15,8 +15,8 @@ typedef struct GrassEncounters {
 } GrassEncounters;
 
 typedef struct WaterEncounterData {
-    char maxLevel;
-    char minLevel;
+    s8 maxLevel;
+    s8 minLevel;
     u8 padding_02[2];
     int species;
 } WaterEncounterData;
