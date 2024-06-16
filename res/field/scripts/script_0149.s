@@ -26,7 +26,7 @@ _003B:
     ScrCmd_07E 0x1CF, 1, 0x800C
     GoToIfEq 0x800C, 1, _0063
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -43,7 +43,7 @@ _0086:
     ScrCmd_07C 0x1CF, 1, 0x800C
     ScrCmd_0CD 0
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_04B 0x5DC
     PlayFanfare 0x608
     ApplyMovement 2, _00C8
@@ -88,7 +88,7 @@ _00D8:
     SetVar 0x407C, 1
     SetVar 0x411F, 2
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -135,7 +135,7 @@ _0184:
     LockAll
     FacePlayer
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

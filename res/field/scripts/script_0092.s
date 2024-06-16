@@ -38,21 +38,21 @@ _007E:
 
 _009C:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00A7:
     Message 29
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00B2:
     Message 33
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _00B2:
 _00BD:
     SetFlag 0x111
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -68,7 +68,7 @@ _00BD:
 _00CC:
     SetFlag 0x111
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -76,7 +76,7 @@ _00CC:
 _00DB:
     SetFlag 0x111
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -84,7 +84,7 @@ _00DB:
 _00EA:
     SetFlag 0x111
     Message 16
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -92,7 +92,7 @@ _00EA:
 _00F9:
     SetFlag 0x111
     Message 20
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -103,49 +103,49 @@ _0108:
     CloseMessage
     Call _057F
     Message 25
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0122:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _012D:
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0138:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0143:
     Message 17
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _014E:
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0159:
     Message 26
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -178,7 +178,7 @@ _01DF:
     SetVar 0x8005, 1
     ScrCmd_014 0x7DD
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -199,7 +199,7 @@ _023D:
     SetVar 0x8005, 1
     ScrCmd_014 0x7DE
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -214,7 +214,7 @@ _029B:
     SetVar 0x8005, 1
     ScrCmd_014 0x7DD
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -238,7 +238,7 @@ _02D9:
     SetVar 0x8005, 1
     ScrCmd_014 0x7FE
     Message 19
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -252,7 +252,7 @@ _0347:
     Message 22
     Call _037F
     Message 23
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -295,7 +295,7 @@ _03D9:
     ClearFlag 0x111
     ClearFlag 252
     Message 28
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -367,7 +367,7 @@ _0566:
 _056B:
     SetFlag 252
     Message 34
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -440,7 +440,7 @@ _0634:
     LockAll
     FacePlayer
     Message 36
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -452,14 +452,14 @@ _0647:
     GoToIfSet 189, _0669
     SetFlag 189
     Message 38
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0669:
     Message 39
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -468,7 +468,7 @@ _0674:
     PlayFanfare 0x5DC
     LockAll
     Message 40
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -534,7 +534,7 @@ _0747:
     LockAll
     FacePlayer
     Message 37
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -20,7 +20,7 @@ _001A:
     LockAll
     PlayFanfare 0x624
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ _002B:
     LockAll
     Message 0
     PlayFanfare 0x637
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

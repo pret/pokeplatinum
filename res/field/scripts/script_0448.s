@@ -17,7 +17,7 @@ _0018:
     LockAll
     FacePlayer
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -88,7 +88,7 @@ _013E:
 
 _0143:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -96,7 +96,7 @@ _0143:
 
 _0150:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -104,7 +104,7 @@ _0150:
 
 _015D:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -116,14 +116,14 @@ _016A:
     FacePlayer
     GoToIfSet 0x107, _0188
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0188:
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

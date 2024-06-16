@@ -336,7 +336,7 @@ _06B4:
 _06C2:
     ScrCmd_0CD 0
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

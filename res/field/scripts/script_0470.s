@@ -27,14 +27,14 @@ _0039:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0066:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -44,7 +44,7 @@ _0071:
     LockAll
     FacePlayer
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -71,7 +71,7 @@ _00AD:
     WaitFadeScreen
     ScrCmd_0CD 0
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

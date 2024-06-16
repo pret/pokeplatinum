@@ -55,7 +55,7 @@ _0077:
 
 _00C2:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

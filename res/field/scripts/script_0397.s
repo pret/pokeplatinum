@@ -99,7 +99,7 @@ _0175:
 
 _017D:
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

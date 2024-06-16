@@ -59,7 +59,7 @@ _0070:
 
 _00B5:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

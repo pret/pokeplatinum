@@ -191,7 +191,7 @@ _03CC:
     End
 
 _03D7:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -200,7 +200,7 @@ _03DF:
     SetVar 0x40CE, -1
     WaitTime 1, 0x800C
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -209,7 +209,7 @@ _03F6:
     SetVar 0x40CE, -1
     WaitTime 1, 0x800C
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

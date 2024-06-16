@@ -31,7 +31,7 @@ _004C:
     PlayFanfare 0x5DC
     LockAll
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -40,7 +40,7 @@ _005D:
     PlayFanfare 0x5DC
     LockAll
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -52,7 +52,7 @@ _006E:
     ScrCmd_04C 35, 0
     Message 1
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -64,7 +64,7 @@ _008B:
     ScrCmd_04C 35, 0
     Message 2
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -76,7 +76,7 @@ _00A8:
     ScrCmd_04C 25, 0
     Message 3
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

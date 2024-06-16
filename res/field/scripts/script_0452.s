@@ -29,7 +29,7 @@ _0012:
 _0066:
     FacePlayer
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

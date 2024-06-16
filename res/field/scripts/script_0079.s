@@ -19,7 +19,7 @@ _0020:
     LockAll
     FacePlayer
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -29,7 +29,7 @@ _0033:
     LockAll
     FacePlayer
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -38,7 +38,7 @@ _0046:
     PlayFanfare 0x5DC
     LockAll
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -48,7 +48,7 @@ _0057:
     LockAll
     FacePlayer
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -131,7 +131,7 @@ _0134:
     FadeScreen 6, 1, 1, 0x7FFF
     WaitFadeScreen
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

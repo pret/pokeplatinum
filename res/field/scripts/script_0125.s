@@ -82,7 +82,7 @@ _010D:
     ScrCmd_0D1 0, 0x8004
     ScrCmd_0D3 1, 0x8004
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -96,7 +96,7 @@ _014B:
 _0155:
     GoToIfUnset 156, _010D
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -113,7 +113,7 @@ _0171:
     ScrCmd_15B 3, 0x800C
     GoToIfEq 0x800C, 1, _0197
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -121,7 +121,7 @@ _0171:
 _0197:
     ScrCmd_0CD 0
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -134,7 +134,7 @@ _01A5:
     ScrCmd_0CE 0
     ScrCmd_0CE 1
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ _01CF:
     ScrCmd_0CD 1
     ScrCmd_0CE 2
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

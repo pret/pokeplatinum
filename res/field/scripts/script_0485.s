@@ -53,7 +53,7 @@ _00B8:
     FacePlayer
     GoToIfSet 0x12D, _00D6
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -61,7 +61,7 @@ _00B8:
 _00D6:
     ScrCmd_272 1
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -109,7 +109,7 @@ _0124:
     Call _02B8
     CallIfNe 0x4057, 2, _01F0
     CallIfEq 0x4057, 2, _01F5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_333 127
     ScrCmd_055 10
@@ -149,7 +149,7 @@ _022D:
     LockAll
     FacePlayer
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -407,7 +407,7 @@ _057F:
     SetVar 0x4057, 2
     SetVar 0x4085, 2
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -462,7 +462,7 @@ _05F4:
     FacePlayer
     GoToIfSet 0x12D, _061C
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ApplyMovement 21, _0664
     WaitMovement
@@ -471,7 +471,7 @@ _05F4:
 
 _061C:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

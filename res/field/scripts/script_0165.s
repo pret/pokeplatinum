@@ -21,14 +21,14 @@ _004C:
     SetFlag 247
     SetFlag 0xAA7
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _005F:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -86,7 +86,7 @@ _010E:
 
 _012B:
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -94,7 +94,7 @@ _012B:
 _0136:
     ScrCmd_0D0 1, 0x8002
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -237,7 +237,7 @@ _0396:
 
 _03EA:
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

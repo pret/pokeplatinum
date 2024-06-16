@@ -94,7 +94,7 @@ _0148:
     Return
 
 _0150:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

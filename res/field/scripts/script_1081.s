@@ -24,14 +24,14 @@ _0021:
     Message 0
     SetVar 0x8004, 8
     ScrCmd_014 0x7D9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0051:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -40,7 +40,7 @@ _005C:
     PlayFanfare 0x5DC
     LockAll
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

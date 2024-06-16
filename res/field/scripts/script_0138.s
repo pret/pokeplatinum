@@ -18,7 +18,7 @@ _001A:
     FacePlayer
     ScrCmd_0D3 0, 0x1A6
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -28,7 +28,7 @@ _0032:
     LockAll
     FacePlayer
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

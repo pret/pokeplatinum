@@ -50,7 +50,7 @@ _00BC:
     SetFlag 0x241
     GoToIfEq 0x40F8, 2, _00E3
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

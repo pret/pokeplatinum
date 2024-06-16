@@ -52,7 +52,7 @@ _0086:
 _00C6:
     SetVar 0x40D4, 1
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -79,7 +79,7 @@ _00F4:
 
 _0118:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -159,14 +159,14 @@ _0245:
 
 _0261:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _026C:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -315,7 +315,7 @@ _0424:
 
 _0430:
     ScrCmd_014 0x2338
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -373,7 +373,7 @@ _0508:
     End
 
 _0513:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

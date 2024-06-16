@@ -29,7 +29,7 @@ _0018:
 
 _004D:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -30,7 +30,7 @@ _000C:
     ScrCmd_064 1
     SetFlag 0x11F
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

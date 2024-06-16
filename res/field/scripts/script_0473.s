@@ -30,7 +30,7 @@ _004F:
 
 _0059:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

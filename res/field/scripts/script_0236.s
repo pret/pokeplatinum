@@ -128,7 +128,7 @@ _01A6:
     GoToIfEq 0x800C, 0, _01DB
     SetVar 0x4098, 1
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -176,7 +176,7 @@ _0210:
     LockAll
     FacePlayer
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -186,7 +186,7 @@ _0223:
     LockAll
     FacePlayer
     Message 44
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -196,7 +196,7 @@ _0236:
     LockAll
     FacePlayer
     Message 43
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

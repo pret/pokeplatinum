@@ -59,7 +59,7 @@ _00EE:
 
 _00F4:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _0101
     End
 

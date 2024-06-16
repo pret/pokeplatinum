@@ -31,7 +31,7 @@ _0021:
     WaitMovement
     ScrCmd_0CD 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x40AA, 2
     SetVar 0x40A6, 2
@@ -81,7 +81,7 @@ _00E0:
     End
 
 _00EB:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

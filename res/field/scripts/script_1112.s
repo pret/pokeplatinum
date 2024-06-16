@@ -789,7 +789,7 @@ _0AE0:
     EndMovement
 
 _0AEC:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1095,7 +1095,7 @@ _0E4C:
     End
 
 _0E5D:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1117,7 +1117,7 @@ _0E65:
 
 _0EA7:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -1449,7 +1449,7 @@ _1468:
 
 _1478:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -1658,7 +1658,7 @@ _18DE:
     End
 
 _18E6:
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _18F0
     End
 

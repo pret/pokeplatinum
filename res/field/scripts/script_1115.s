@@ -22,14 +22,14 @@ _0006:
 _005C:
     ScrCmd_235 4, 0x8004, 0x8005
     ScrCmd_1FB 0x8004, 0x8005
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _0129
     End
 
 _0074:
     ScrCmd_235 1, 2, 0x8004, 0x8005
     ScrCmd_1FB 0x8004, 0x8005
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_235 2
     GoTo _0129
     End
@@ -52,7 +52,7 @@ _00C5:
     DebugWatch 0x8005
     ScrCmd_1FB 0x8004, 0x8005
     ScrCmd_235 2
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _0129
     End
 
@@ -66,7 +66,7 @@ _00EB:
     DebugWatch 0x8004
     DebugWatch 0x8005
     ScrCmd_1FB 0x8004, 0x8005
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _0129
     End
 

@@ -87,7 +87,7 @@ _0110:
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _014F
     CallIfEq 0x800C, 0, _0158
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
 _014B:
     ReleaseAll
@@ -135,7 +135,7 @@ _017C:
     ScrCmd_04E 0x486
     ScrCmd_04F
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x40A4, 4
     ReleaseAll
@@ -180,7 +180,7 @@ _0214:
     ScrCmd_0CD 0
     ScrCmd_0CE 1
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -249,7 +249,7 @@ _0345:
     End
 
 _0356:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -257,7 +257,7 @@ _0356:
 _035E:
     ScrCmd_0CD 0
     Message 28
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -499,7 +499,7 @@ _070C:
 
 _0711:
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -570,7 +570,7 @@ _0711:
 _075A:
     ScrCmd_0CE 0
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -579,7 +579,7 @@ _0768:
     SetFlag 248
     ScrCmd_0CD 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -587,7 +587,7 @@ _0768:
 _077A:
     ScrCmd_0CE 0
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -812,7 +812,7 @@ _0904:
     SetVar 0x40A4, 2
     ScrCmd_0CD 0
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -864,7 +864,7 @@ _0948:
     LockAll
     FacePlayer
     Message 26
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -882,7 +882,7 @@ _09A5:
     PlayFanfare 0x5DC
     LockAll
     Message 29
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -891,7 +891,7 @@ _09B6:
     PlayFanfare 0x5DC
     LockAll
     Message 30
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -900,7 +900,7 @@ _09C7:
     PlayFanfare 0x5DC
     LockAll
     Message 31
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -909,7 +909,7 @@ _09D8:
     PlayFanfare 0x5DC
     LockAll
     Message 32
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -918,7 +918,7 @@ _09E9:
     PlayFanfare 0x5DC
     LockAll
     Message 33
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -927,7 +927,7 @@ _09FA:
     PlayFanfare 0x5DC
     LockAll
     Message 34
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

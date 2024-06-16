@@ -17,14 +17,14 @@ _0010:
     ScrCmd_284 0x800C
     GoToIfGe 0x800C, 10, _0034
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0034:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

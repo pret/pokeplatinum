@@ -18,7 +18,7 @@ _0012:
 
 _0031:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     ScrCmd_015
@@ -51,7 +51,7 @@ _008B:
 
 _0090:
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     ScrCmd_015

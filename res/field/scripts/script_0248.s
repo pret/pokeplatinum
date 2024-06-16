@@ -52,7 +52,7 @@ _0093:
 
 _00BC:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

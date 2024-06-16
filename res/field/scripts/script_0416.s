@@ -475,7 +475,7 @@ _060C:
     LockAll
     FacePlayer
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -485,7 +485,7 @@ _061F:
     LockAll
     FacePlayer
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -497,7 +497,7 @@ _0632:
     ScrCmd_07E 0x1C3, 1, 0x800C
     GoToIfEq 0x800C, 1, _065A
     Message 18
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -545,7 +545,7 @@ _06CF:
     LockAll
     FacePlayer
     Message 17
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

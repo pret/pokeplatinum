@@ -129,7 +129,7 @@ _0194:
     ApplyMovement 129, _0264
     WaitMovement
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ _020A:
     LockAll
     FacePlayer
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

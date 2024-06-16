@@ -30,7 +30,7 @@ _0057:
     End
 
 _0062:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -49,7 +49,7 @@ _0078:
     ScrCmd_0CE 0
     ScrCmd_0CE 1
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -59,7 +59,7 @@ _00A2:
     ScrCmd_0CD 1
     ScrCmd_0CE 2
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -80,7 +80,7 @@ _011A:
     End
 
 _0125:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ _020F:
     ScrCmd_29F 1
     SetVar 0x406B, 0x10E
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

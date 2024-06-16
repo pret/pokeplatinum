@@ -165,7 +165,7 @@ _0275:
     GoToIfEq 0x800C, 0, _02DD
 _02D2:
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -193,7 +193,7 @@ _02FE:
     GoToIfEq 0x800C, 0, _0341
 _0336:
     Message 16
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -221,7 +221,7 @@ _0365:
     GoToIfEq 0x800C, 0, _03A5
 _039A:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -248,7 +248,7 @@ _03C6:
     GoToIfEq 0x800C, 0, _0406
 _03FB:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -275,7 +275,7 @@ _0427:
     GoToIfEq 0x800C, 0, _0467
 _045C:
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

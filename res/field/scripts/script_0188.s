@@ -24,7 +24,7 @@ _000A:
     CallIfUnset 214, _008A
     CallIfSet 214, _0098
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -52,7 +52,7 @@ _00A6:
 
 _00AC:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

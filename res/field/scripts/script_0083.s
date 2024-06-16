@@ -472,7 +472,7 @@ _079D:
     Return
 
 _07A2:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -481,7 +481,7 @@ _07AA:
     PlayFanfare 0x5DC
     LockAll
     Message 34
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -504,7 +504,7 @@ _07BB:
 
 _0801:
     Message 18
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -654,7 +654,7 @@ _09CF:
     End
 
 _09D5:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

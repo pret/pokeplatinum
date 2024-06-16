@@ -13,14 +13,14 @@ _000A:
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 1, _002F
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _002F:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -50,7 +50,7 @@ _0086:
     GoTo _0092
 
 _0092:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -62,7 +62,7 @@ _009A:
     ScrCmd_21B
     ScrCmd_0CD 0
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -87,7 +87,7 @@ _0103:
     GoTo _010F
 
 _010F:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -53,7 +53,7 @@ _007D:
 
 _00C8:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ClearFlag 0x251
     ReleaseAll

@@ -14,7 +14,7 @@ _000A:
     ScrCmd_212 0x8004, 0x800C
     ScrCmd_17C 0, 0x8004
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -24,7 +24,7 @@ _002C:
     LockAll
     FacePlayer
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

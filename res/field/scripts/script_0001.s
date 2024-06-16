@@ -17,7 +17,7 @@ _0026:
     PlayFanfare 0x5DC
     LockAll
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -26,7 +26,7 @@ _0037:
     PlayFanfare 0x5DC
     LockAll
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -35,7 +35,7 @@ _0048:
     PlayFanfare 0x5DC
     LockAll
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -44,7 +44,7 @@ _0059:
     PlayFanfare 0x5DC
     LockAll
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -53,7 +53,7 @@ _006A:
     PlayFanfare 0x5DC
     LockAll
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -62,7 +62,7 @@ _007B:
     PlayFanfare 0x5DC
     LockAll
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -71,7 +71,7 @@ _008C:
     PlayFanfare 0x5DC
     LockAll
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -80,7 +80,7 @@ _009D:
     PlayFanfare 0x5DC
     LockAll
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

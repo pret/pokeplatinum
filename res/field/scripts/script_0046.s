@@ -61,7 +61,7 @@ _0105:
     Message 8
     ScrCmd_04E 0x48D
     ScrCmd_04F
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     End
 
@@ -77,7 +77,7 @@ _0125:
 
 _0130:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

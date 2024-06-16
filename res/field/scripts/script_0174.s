@@ -71,7 +71,7 @@ _00B4:
 
 _00D4:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -80,7 +80,7 @@ _00DF:
     GoToIfUnset 0x964, _00D4
     GoToIfEq 0x407F, 0, _0102
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -110,7 +110,7 @@ _011B:
     WaitMovement
     SetVar 0x407F, 1
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -134,7 +134,7 @@ _0174:
     LockAll
     FacePlayer
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -144,7 +144,7 @@ _0187:
     LockAll
     FacePlayer
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -154,7 +154,7 @@ _019A:
     LockAll
     FacePlayer
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -164,7 +164,7 @@ _01AD:
     LockAll
     FacePlayer
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -175,14 +175,14 @@ _01C0:
     FacePlayer
     GoToIfGe 0x407F, 1, _01E0
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01E0:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -192,7 +192,7 @@ _01EB:
     LockAll
     FacePlayer
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -226,14 +226,14 @@ _022A:
 
 _0260:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _026B:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -141,7 +141,7 @@ _01AD:
     Message 12
 _01B0:
     SetFlag 160
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -220,7 +220,7 @@ _0293:
 
 _02C8:
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_073
     CloseMessage
     ReleaseAll
@@ -228,7 +228,7 @@ _02C8:
 
 _02D5:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_073
     CloseMessage
     ReleaseAll
@@ -236,7 +236,7 @@ _02D5:
 
 _02E2:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_073
     CloseMessage
     ReleaseAll

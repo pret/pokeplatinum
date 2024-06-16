@@ -43,14 +43,14 @@ _0032:
 
 _00B3:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00BE:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -58,7 +58,7 @@ _00BE:
 _00C9:
     ScrCmd_0D6 0, 0x8005
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -78,7 +78,7 @@ _00D9:
     ScrCmd_1E5 49
     ScrCmd_0D6 0, 0x8005
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -86,7 +86,7 @@ _00D9:
 _0129:
     ScrCmd_0D6 0, 0x8005
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -121,7 +121,7 @@ _0168:
     ScrCmd_22A
     SetFlag 134
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -129,21 +129,21 @@ _0168:
 _01CC:
     ScrCmd_22A
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01D9:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01E4:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -159,14 +159,14 @@ _01EF:
 
 _0210:
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _021B:
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

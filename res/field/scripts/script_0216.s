@@ -105,7 +105,7 @@ _0150:
     LockAll
     GoToIfSet 159, _016C
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -119,7 +119,7 @@ _016C:
     Call _00BB
     ScrCmd_18A 0, 243, 0x28E
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

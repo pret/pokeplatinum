@@ -168,7 +168,7 @@ _0198:
     ScrCmd_04C 35, 0
     Message 2
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -181,7 +181,7 @@ _01B7:
     ScrCmd_04C 0x1AB, 0
     Message 5
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -192,14 +192,14 @@ _01D6:
     FacePlayer
     GoToIfSet 129, _01F4
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01F4:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -208,7 +208,7 @@ _01FF:
     PlayFanfare 0x5DC
     LockAll
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

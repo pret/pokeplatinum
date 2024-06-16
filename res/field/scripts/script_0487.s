@@ -21,7 +21,7 @@ _0006:
 
 _004B:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

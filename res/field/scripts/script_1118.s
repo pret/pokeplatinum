@@ -759,7 +759,7 @@ _0BC0:
     LockAll
     FacePlayer
     Message 207
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

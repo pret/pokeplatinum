@@ -157,13 +157,13 @@ _01F0:
 
 _02A1:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _02BB
     End
 
 _02AE:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _02BB
     End
 

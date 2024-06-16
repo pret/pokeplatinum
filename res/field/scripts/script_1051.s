@@ -22,7 +22,7 @@ _0027:
 _003A:
     CallIfEq 0x8004, 0, _005C
     CallIfEq 0x8004, 1, _0064
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -193,7 +193,7 @@ _037C:
     End
 
 _03A1:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

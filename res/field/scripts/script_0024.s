@@ -13,7 +13,7 @@ _0012:
     LockAll
     FacePlayer
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -26,7 +26,7 @@ _0025:
     ScrCmd_04C 25, 0
     Message 1
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -39,7 +39,7 @@ _0044:
     ScrCmd_04C 0x1A1, 0
     Message 2
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -69,7 +69,7 @@ _00AD:
 
 _00B7:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

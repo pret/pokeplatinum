@@ -65,7 +65,7 @@ _0070:
     WaitTime 30, 0x800C
     ScrCmd_322
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ApplyMovement 0xFF, _0174
     ApplyMovement 128, _01C4
@@ -92,7 +92,7 @@ _012A:
     LockAll
     FacePlayer
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

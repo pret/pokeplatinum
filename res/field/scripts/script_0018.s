@@ -124,7 +124,7 @@ _0243:
 
 _0261:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -133,7 +133,7 @@ _026C:
     SetVar 0x40CE, -1
     WaitTime 1, 0x800C
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -142,7 +142,7 @@ _0283:
     SetVar 0x40CE, -1
     WaitTime 1, 0x800C
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

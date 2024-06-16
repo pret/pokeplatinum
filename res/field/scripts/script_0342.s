@@ -32,7 +32,7 @@ _003E:
     WaitFadeScreen
     ScrCmd_0CD 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -46,7 +46,7 @@ _007A:
     PlayFanfare 0x5DC
     LockAll
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -55,7 +55,7 @@ _008B:
     PlayFanfare 0x5DC
     LockAll
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -64,7 +64,7 @@ _009C:
     PlayFanfare 0x5DC
     LockAll
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -73,7 +73,7 @@ _00AD:
     PlayFanfare 0x5DC
     LockAll
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -82,7 +82,7 @@ _00BE:
     PlayFanfare 0x5DC
     LockAll
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ _010A:
     End
 
 _0118:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

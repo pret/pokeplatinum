@@ -30,7 +30,7 @@ _004C:
     End
 
 _0057:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -39,7 +39,7 @@ _005F:
     PlayFanfare 0x5DC
     LockAll
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -48,7 +48,7 @@ _0070:
     PlayFanfare 0x5DC
     LockAll
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -57,7 +57,7 @@ _0081:
     PlayFanfare 0x5DC
     LockAll
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -66,7 +66,7 @@ _0092:
     PlayFanfare 0x5DC
     LockAll
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

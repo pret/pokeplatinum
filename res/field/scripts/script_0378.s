@@ -79,7 +79,7 @@ _0139:
 _0141:
     SetVar 0x40BC, 0
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -535,7 +535,7 @@ _0788:
     LockAll
     FacePlayer
     Message 46
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -545,7 +545,7 @@ _079B:
     LockAll
     FacePlayer
     Message 47
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -555,7 +555,7 @@ _07AE:
     LockAll
     FacePlayer
     Message 48
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -565,7 +565,7 @@ _07C1:
     LockAll
     FacePlayer
     Message 49
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -575,7 +575,7 @@ _07D4:
     LockAll
     FacePlayer
     Message 50
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -585,7 +585,7 @@ _07E7:
     LockAll
     FacePlayer
     Message 51
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -595,7 +595,7 @@ _07FA:
     LockAll
     FacePlayer
     Message 52
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

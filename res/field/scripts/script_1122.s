@@ -21,7 +21,7 @@ _0014:
     ScrCmd_22B
     SetFlag 246
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -51,7 +51,7 @@ _0060:
     ScrCmd_22A
     SetFlag 245
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -59,21 +59,21 @@ _0060:
 _00C4:
     ScrCmd_22A
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00D1:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00DC:
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -82,7 +82,7 @@ _00E7:
     PlayFanfare 0x5DC
     LockAll
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

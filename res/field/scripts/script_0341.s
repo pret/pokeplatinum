@@ -22,14 +22,14 @@ _0028:
     FacePlayer
     GoToIfSet 0x15E, _0046
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0046:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -40,14 +40,14 @@ _0051:
     FacePlayer
     GoToIfSet 0x15E, _006F
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _006F:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -58,14 +58,14 @@ _007A:
     FacePlayer
     GoToIfSet 0x15E, _0098
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0098:
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -76,14 +76,14 @@ _00A3:
     FacePlayer
     GoToIfSet 0x15E, _00C1
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00C1:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -93,7 +93,7 @@ _00CC:
     LockAll
     FacePlayer
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -105,7 +105,7 @@ _00DF:
     ScrCmd_07E 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _0107
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -120,7 +120,7 @@ _0107:
 _012A:
     ScrCmd_0CD 0
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_04B 0x5DC
     PlayFanfare 0x608
     ApplyMovement 5, _0164
@@ -152,7 +152,7 @@ _0174:
     PlayFanfare 0x5DC
     LockAll
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

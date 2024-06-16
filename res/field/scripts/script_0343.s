@@ -12,7 +12,7 @@ _000E:
     LockAll
     FacePlayer
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -24,7 +24,7 @@ _0021:
     ScrCmd_07E 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _0049
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -39,7 +39,7 @@ _0049:
 _006C:
     ScrCmd_0CD 0
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_04B 0x5DC
     PlayFanfare 0x608
     ApplyMovement 5, _00A8
@@ -71,7 +71,7 @@ _00B8:
     PlayFanfare 0x5DC
     LockAll
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

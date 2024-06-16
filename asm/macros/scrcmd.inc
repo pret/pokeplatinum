@@ -264,7 +264,7 @@
     .short 48
     .endm
 
-    .macro WaitButtonPress
+    .macro WaitABXPadPress
     .short 49
     .endm
 

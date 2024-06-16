@@ -37,7 +37,7 @@ _0038:
     Message 3
     Call _0095
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -71,7 +71,7 @@ _0095:
 
 _0103:
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -127,7 +127,7 @@ _018A:
     End
 
 _0195:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -153,7 +153,7 @@ _01D3:
     End
 
 _01DE:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -179,7 +179,7 @@ _021C:
     End
 
 _0227:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -205,7 +205,7 @@ _0265:
     End
 
 _0270:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -231,7 +231,7 @@ _02AE:
     End
 
 _02B9:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -283,7 +283,7 @@ _0358:
     LockAll
     FacePlayer
     Message 32
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -293,7 +293,7 @@ _036B:
     LockAll
     FacePlayer
     Message 33
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -303,7 +303,7 @@ _037E:
     LockAll
     FacePlayer
     Message 34
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -313,7 +313,7 @@ _0391:
     LockAll
     FacePlayer
     Message 35
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

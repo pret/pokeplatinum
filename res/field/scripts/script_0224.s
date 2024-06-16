@@ -12,7 +12,7 @@ _0012:
     PlayFanfare 0x5DC
     LockAll
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -22,7 +22,7 @@ _0023:
     LockAll
     FacePlayer
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -62,7 +62,7 @@ _0036:
 _00E5:
     SetFlag 0x160
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -74,7 +74,7 @@ _00F2:
 
 _0100:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -145,7 +145,7 @@ _01A0:
     FacePlayer
     GoToIfUnset 0x160, _01BE
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

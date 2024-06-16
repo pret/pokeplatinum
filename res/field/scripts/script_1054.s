@@ -55,7 +55,7 @@ _0090:
     PlayFanfare 0x5DC
     LockAll
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -65,7 +65,7 @@ _00A1:
     LockAll
     ScrCmd_0CD 0
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -22,7 +22,7 @@ _002A:
     PlayFanfare 0x5DC
     LockAll
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -31,7 +31,7 @@ _0046:
     PlayFanfare 0x5DC
     LockAll
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

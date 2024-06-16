@@ -10,7 +10,7 @@ _000A:
     LockAll
     ScrCmd_0D5 0, 0x8000
     Message 106
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -18,7 +18,7 @@ _000A:
 _001C:
     LockAll
     Message 107
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

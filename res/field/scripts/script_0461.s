@@ -366,7 +366,7 @@ _05A5:
     Call _00ED
     WaitTime 10, 0x800C
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -377,7 +377,7 @@ _05C4:
     Call _00ED
     WaitTime 10, 0x800C
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -388,7 +388,7 @@ _05E3:
     Call _00ED
     WaitTime 10, 0x800C
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -404,7 +404,7 @@ _0602:
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -420,7 +420,7 @@ _0633:
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -436,7 +436,7 @@ _0664:
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -9,7 +9,7 @@ _0006:
     PlayFanfare 0x5DC
     LockAll
     ScrCmd_26D 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -112,7 +112,7 @@ _0186:
 
 _01CB:
     Message 29
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -168,7 +168,7 @@ _0259:
 
 _0299:
     Message 34
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -179,7 +179,7 @@ _02A4:
 
 _02AD:
     Message 37
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -292,7 +292,7 @@ _0400:
     LockAll
     FacePlayer
     Message 57
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -308,21 +308,21 @@ _0413:
 
 _043E:
     Message 52
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0449:
     Message 53
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0454:
     Message 54
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -333,7 +333,7 @@ _045F:
     LockAll
     FacePlayer
     Message 55
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -343,7 +343,7 @@ _0475:
     LockAll
     FacePlayer
     Message 56
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -353,7 +353,7 @@ _0488:
     LockAll
     FacePlayer
     Message 65
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -364,7 +364,7 @@ _049B:
     LockAll
     FacePlayer
     Message 57
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -453,7 +453,7 @@ _057C:
     Message 11
     SetVar 0x8004, 20
     ScrCmd_014 0x7D9
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x400A, 1
     CloseMessage
     ReleaseAll
@@ -466,7 +466,7 @@ _05FB:
     Message 14
     SetVar 0x8004, 21
     ScrCmd_014 0x7D9
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x400A, 2
     CloseMessage
     ReleaseAll
@@ -475,7 +475,7 @@ _05FB:
 _062C:
     ScrCmd_0D7 0, 20
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -483,21 +483,21 @@ _062C:
 _063C:
     ScrCmd_0D7 0, 21
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _064C:
     Message 19
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0657:
     Message 20
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -518,14 +518,14 @@ _0662:
 
 _06C4:
     Message 66
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _06CF:
     Message 72
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -79,7 +79,7 @@ _0112:
     End
 
 _0120:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -89,7 +89,7 @@ _0128:
     ScrCmd_0CD 0
     ScrCmd_0CE 1
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -117,7 +117,7 @@ _0175:
     End
 
 _0183:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -141,7 +141,7 @@ _01B2:
     End
 
 _01C0:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -174,7 +174,7 @@ _0203:
 
 _0211:
     SetVar 0x4097, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -222,7 +222,7 @@ _0230:
     SetVar 0x40D3, 1
     ScrCmd_0CE 0
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -271,7 +271,7 @@ _030C:
     PlayFanfare 0x5DC
     LockAll
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -106,7 +106,7 @@ _012C:
     ScrCmd_07E 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _0154
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -121,7 +121,7 @@ _0154:
 _0177:
     ScrCmd_0CD 0
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_04B 0x5DC
     PlayFanfare 0x608
     ApplyMovement 1, _01B4
@@ -153,7 +153,7 @@ _01C4:
     PlayFanfare 0x5DC
     LockAll
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

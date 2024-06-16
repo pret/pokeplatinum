@@ -300,7 +300,7 @@ _07C4:
     End
 
 _081A:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

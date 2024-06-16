@@ -14,7 +14,7 @@ _0010:
     PlayFanfare 0x5DC
     LockAll
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

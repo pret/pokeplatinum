@@ -12,7 +12,7 @@ _0012:
     PlayFanfare 0x5DC
     LockAll
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ _003A:
     LockAll
     FacePlayer
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

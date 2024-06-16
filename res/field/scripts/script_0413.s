@@ -37,7 +37,7 @@ _00A6:
     ScrCmd_33C 0, 0x8000
     ScrCmd_346 0
     Message 31
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _00B9:
@@ -50,7 +50,7 @@ _00B9:
 _00DC:
     ScrCmd_17B 0, 0x8000, 0x8001
     Message 32
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _00EE:
@@ -63,7 +63,7 @@ _00EE:
 _0111:
     ScrCmd_17B 0, 0x8000, 0x8001
     Message 33
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _0123:
@@ -76,7 +76,7 @@ _0123:
 _0146:
     ScrCmd_17B 0, 0x8000, 0x8001
     Message 34
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _0158:
@@ -114,7 +114,7 @@ _01F2:
     CloseMessage
     ScrCmd_184 0
     Message 20
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_184 1
     GoTo _053A
 
@@ -157,7 +157,7 @@ _02B9:
     GetItemPocket 0x8000, 0x800C
     ScrCmd_0D2 3, 0x800C
     Message 27
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _02CF:
@@ -169,7 +169,7 @@ _02E7:
     ScrCmd_33D 0, 0x8000
 _02EC:
     Message 26
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _02F7:
@@ -188,7 +188,7 @@ _032E:
     ScrCmd_33D 1, 0x8000
     Message 24
 _0336:
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _033E:
@@ -261,7 +261,7 @@ _049D:
 _04CA:
     ScrCmd_0D1 0, 0x8005
     Message 30
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _04DA:
@@ -280,7 +280,7 @@ _04EE:
     GoToIfEq 0x800C, 0, _053C
     ScrCmd_0D1 0, 0x800C
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_07C 0x800C, 1, 0x8004
     ScrCmd_183 0x800C
     GoTo _053A
@@ -293,14 +293,14 @@ _053C:
 
 _0540:
     Message 28
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _054B:
     ScrCmd_17F 0x800C
     ScrCmd_0D1 0, 0x800C
     Message 29
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _053A
 
 _055F:
@@ -309,7 +309,7 @@ _055F:
     FacePlayer
     ScrCmd_0D1 0, 0x8000
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_07C 0x8000, 1, 0x8004
     ScrCmd_183 0x8000
@@ -320,7 +320,7 @@ _0583:
     LockAll
     ScrCmd_184 0
     Message 20
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_184 1
     CloseMessage
     ReleaseAll

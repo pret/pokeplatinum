@@ -30,7 +30,7 @@ _0031:
     SetFlag 221
     SetVar 0x4094, 1
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x263
     ScrCmd_161
@@ -201,7 +201,7 @@ _021C:
     LockAll
     FacePlayer
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -211,7 +211,7 @@ _022F:
     LockAll
     FacePlayer
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

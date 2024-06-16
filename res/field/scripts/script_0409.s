@@ -39,7 +39,7 @@ _008E:
     Message 2
     ScrCmd_201 0x8004
     CallIfEq 0x8004, 203, _014A
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _066D
     End
@@ -142,7 +142,7 @@ _0223:
 
 _0275:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _066D
     End
@@ -199,7 +199,7 @@ _0314:
 
 _0372:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _066D
     End
@@ -213,7 +213,7 @@ _0381:
     ScrCmd_0C5 0x8004
     CloseMessage
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_201 0x8004
     ScrCmd_1CD 22, 0x8004, 0, 0, 0
@@ -222,7 +222,7 @@ _0381:
 
 _03BD:
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _066D
     End
@@ -237,7 +237,7 @@ _03CC:
     CloseMessage
     ScrCmd_0C5 0x8000
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_201 0x8004
     ScrCmd_1CD 22, 0x8004, 0, 0, 0
@@ -261,14 +261,14 @@ _040E:
 
 _0469:
     Message 20
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _0671
     End
 
 _0478:
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _0671
     End
@@ -310,7 +310,7 @@ _04DD:
 
 _0512:
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _0671
 
@@ -353,7 +353,7 @@ _057D:
 
 _05B4:
     Message 17
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _0671
     End
@@ -430,7 +430,7 @@ _0679:
 
 _06C3:
     Message 24
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     GoTo _0671
     End

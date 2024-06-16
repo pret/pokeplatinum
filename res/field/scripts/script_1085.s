@@ -16,7 +16,7 @@ _000C:
     ScrCmd_1C0 0x800C, 201
     GoToIfEq 0x800C, 1, _0048
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -51,14 +51,14 @@ _00DB:
     ScrCmd_2B3 0, 0x8007
 _00E0:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00EB:
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -69,7 +69,7 @@ _00F6:
 
 _00FE:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -86,14 +86,14 @@ _0109:
     SetFlag 0x117
     Call _014F
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0144:
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

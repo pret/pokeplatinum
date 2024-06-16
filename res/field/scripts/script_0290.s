@@ -24,7 +24,7 @@ _0026:
     ScrCmd_0D5 0, 0x8004
     ScrCmd_0D5 1, 0x8005
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

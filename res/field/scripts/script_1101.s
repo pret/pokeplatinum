@@ -90,14 +90,14 @@ _015A:
     FacePlayer
     GoToIfSet 215, _0178
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0178:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -189,7 +189,7 @@ _0278:
     ApplyMovement 0xFF, _02A8
     WaitMovement
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -250,7 +250,7 @@ _0376:
     Return
 
 _037E:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

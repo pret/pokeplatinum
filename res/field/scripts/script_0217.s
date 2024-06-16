@@ -61,7 +61,7 @@ _00AC:
     LockAll
     FacePlayer
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -184,7 +184,7 @@ _0285:
 _0297:
     Message 9
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x411E, 1
     ClearFlag 0x1FA
@@ -290,14 +290,14 @@ _037C:
     FacePlayer
     GoToIfGe 0x40CF, 3, _039C
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _039C:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -308,14 +308,14 @@ _03A7:
     FacePlayer
     GoToIfGe 0x40CF, 3, _03C7
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _03C7:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -342,7 +342,7 @@ _0400:
     End
 
 _040B:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

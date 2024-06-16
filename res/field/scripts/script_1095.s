@@ -18,7 +18,7 @@ _0027:
     GoToIfUnset 167, _0040
     ScrCmd_0CD 0
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -475,7 +475,7 @@ _0538:
 
 _057A:
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -484,7 +484,7 @@ _0585:
     PlayFanfare 0x5DC
     LockAll
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

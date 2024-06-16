@@ -459,7 +459,7 @@ _077E:
 _0784:
     Message 2
 _0787:
-    WaitButtonPress
+    WaitABXPadPress
 _0789:
     CloseMessage
     Call _07B5
@@ -1159,7 +1159,7 @@ _12CE:
 
 _12F9:
     Message 111
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1179,7 +1179,7 @@ _1328:
     LockAll
     FacePlayer
     Message 74
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1189,7 +1189,7 @@ _133B:
     LockAll
     FacePlayer
     Message 75
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1199,7 +1199,7 @@ _134E:
     LockAll
     FacePlayer
     Message 76
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1209,7 +1209,7 @@ _1361:
     LockAll
     FacePlayer
     Message 77
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1219,7 +1219,7 @@ _1374:
     LockAll
     FacePlayer
     Message 78
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1229,7 +1229,7 @@ _1387:
     LockAll
     FacePlayer
     Message 79
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1239,7 +1239,7 @@ _139A:
     LockAll
     FacePlayer
     Message 80
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1255,7 +1255,7 @@ _13AF:
     ScrCmd_04C 25, 0
     Message 81
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1362,14 +1362,14 @@ _1536:
     End
 
 _1541:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _1549:
     Message 116
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

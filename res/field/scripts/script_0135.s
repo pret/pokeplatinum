@@ -18,7 +18,7 @@ _000E:
     GoToIfUnset 0x143, _005C
     GoToIfUnset 0x144, _005C
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -37,14 +37,14 @@ _005C:
     Call _02DC
     GoToIfEq 0x800C, 1, _01DB
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00CC:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _00D7:
     ScrCmd_014 0x7FC
     SetFlag 0x140
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -76,7 +76,7 @@ _0118:
     ScrCmd_014 0x7FC
     SetFlag 0x141
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -92,7 +92,7 @@ _0159:
     ScrCmd_014 0x7FC
     SetFlag 0x142
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -108,7 +108,7 @@ _019A:
     ScrCmd_014 0x7FC
     SetFlag 0x143
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -124,7 +124,7 @@ _01DB:
     ScrCmd_014 0x7FC
     SetFlag 0x144
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -189,7 +189,7 @@ _030C:
     LockAll
     FacePlayer
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -202,7 +202,7 @@ _031F:
     ScrCmd_04C 0x1A1, 0
     Message 12
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

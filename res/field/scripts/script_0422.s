@@ -17,7 +17,7 @@ _001A:
     GoToIfGe 0x4086, 3, _003D
     ScrCmd_0CD 1
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ _003D:
     GoToIfEq 0x40CA, 1, _00DD
     ScrCmd_0CE 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
 
     .byte 2
@@ -53,7 +53,7 @@ _003D:
 _009C:
     ScrCmd_0CE 0
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -61,14 +61,14 @@ _009C:
 _00AA:
     ScrCmd_0CE 0
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
 _00BA:
     ScrCmd_0CE 0
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
@@ -76,14 +76,14 @@ _00CA:
     ScrCmd_0CE 0
     ScrCmd_0DC 1
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
 _00DD:
     ScrCmd_0CE 0
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
@@ -105,7 +105,7 @@ _00F9:
 
 _0126:
     ScrCmd_0CE 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -116,7 +116,7 @@ _0131:
     End
 
 _013C:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     AddVar 0x40CB, 1
     ReleaseAll
@@ -141,14 +141,14 @@ _017A:
 _0185:
     ScrCmd_0CD 0
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0193:
     AddVar 0x40E8, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -177,14 +177,14 @@ _01E9:
 
 _01F4:
     Message 45
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01FF:
     AddVar 0x40E1, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -208,14 +208,14 @@ _023D:
 _0248:
     ScrCmd_0CD 0
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0256:
     AddVar 0x40E2, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -233,14 +233,14 @@ _0266:
 
 _0289:
     Message 39
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0294:
     AddVar 0x40E4, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

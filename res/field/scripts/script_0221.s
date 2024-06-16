@@ -56,7 +56,7 @@ _00E1:
     End
 
 _00EC:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -112,7 +112,7 @@ _019E:
 _01E5:
     Message 6
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

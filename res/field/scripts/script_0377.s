@@ -211,7 +211,7 @@ _034D:
 _0355:
     SetVar 0x40BA, 0
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -662,7 +662,7 @@ _0998:
     LockAll
     FacePlayer
     Message 59
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -672,7 +672,7 @@ _09AB:
     LockAll
     FacePlayer
     Message 60
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -682,7 +682,7 @@ _09BE:
     LockAll
     FacePlayer
     Message 61
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -695,7 +695,7 @@ _09D1:
     ScrCmd_04C 0x1A1, 0
     Message 62
     ScrCmd_04D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -705,7 +705,7 @@ _09F0:
     LockAll
     FacePlayer
     Message 63
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -715,7 +715,7 @@ _0A03:
     LockAll
     FacePlayer
     Message 64
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -725,7 +725,7 @@ _0A16:
     LockAll
     FacePlayer
     Message 65
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -735,7 +735,7 @@ _0A29:
     LockAll
     FacePlayer
     Message 66
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -745,7 +745,7 @@ _0A3C:
     LockAll
     FacePlayer
     Message 67
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -793,7 +793,7 @@ _0AD7:
     End
 
 _0AE6:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -869,7 +869,7 @@ _0BEE:
     End
 
 _0BF9:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -945,7 +945,7 @@ _0D01:
     End
 
 _0D0C:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -989,7 +989,7 @@ _0D94:
     End
 
 _0D9F:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

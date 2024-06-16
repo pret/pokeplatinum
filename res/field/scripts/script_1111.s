@@ -77,7 +77,7 @@ _0142:
 
 _0147:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -93,7 +93,7 @@ _0164:
     SetVar 0x40CE, -1
     WaitTime 1, 0x800C
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

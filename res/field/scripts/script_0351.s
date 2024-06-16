@@ -633,7 +633,7 @@ _0418:
     SetFlag 184
     ScrCmd_0CD 0
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -641,7 +641,7 @@ _0418:
 _043D:
     ScrCmd_0CD 0
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -665,7 +665,7 @@ _0476:
     GoTo _0482
 
 _0482:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

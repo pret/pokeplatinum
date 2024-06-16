@@ -29,7 +29,7 @@ _004B:
 
 _0055:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

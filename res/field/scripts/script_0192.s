@@ -26,7 +26,7 @@ _000A:
     CallIfSet 214, _00BE
     CallIfUnset 0x964, _0109
     CallIfSet 0x964, _010E
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -55,7 +55,7 @@ _00CC:
 _00D2:
     CallIfUnset 0x964, _0113
     CallIfSet 0x964, _0118
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

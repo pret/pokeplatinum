@@ -56,7 +56,7 @@ _00C6:
     WaitMovement
 _00D0:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

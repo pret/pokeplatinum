@@ -13,7 +13,7 @@ _0006:
     SetFlag 169
     ScrCmd_0CE 0
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -21,7 +21,7 @@ _0006:
 _002B:
     ScrCmd_0CE 0
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

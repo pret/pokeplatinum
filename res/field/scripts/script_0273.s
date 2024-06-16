@@ -142,14 +142,14 @@ _0170:
     GoToIfEq 0x800C, 1, _01A5
     ScrCmd_0CD 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x800C, 0
     Return
 
 _01A5:
     ScrCmd_0CD 0
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x800C, 0
     Return
 

@@ -2391,7 +2391,7 @@ _204B:
 _205E:
     ScrCmd_1CD 18, 0x8004, 0, 0, 0
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x800C, 1
     GoTo _1EEA
     End
@@ -2414,7 +2414,7 @@ _2095:
 _20A8:
     ScrCmd_0D1 0, 0x8004
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x800C, 0
     GoTo _1EEA
     End

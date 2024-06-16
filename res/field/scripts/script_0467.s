@@ -30,14 +30,14 @@ _0068:
     ScrCmd_284 0x4000
     GoToIfGe 0x4000, 26, _008C
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _008C:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

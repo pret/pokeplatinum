@@ -20,7 +20,7 @@ _0012:
     ApplyMovement 0, _004C
     WaitMovement
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -40,7 +40,7 @@ _0054:
     LockAll
     FacePlayer
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -50,7 +50,7 @@ _0067:
     LockAll
     FacePlayer
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -94,28 +94,28 @@ _0131:
 
 _0150:
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _015B:
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0166:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0171:
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_2AC
     CloseMessage
     ReleaseAll

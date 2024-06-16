@@ -103,7 +103,7 @@ _0160:
     ScrCmd_04F
     ScrCmd_0CD 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

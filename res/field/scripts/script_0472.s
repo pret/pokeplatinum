@@ -13,14 +13,14 @@ _0006:
     ScrCmd_07E 0x1AB, 1, 0x800C
     GoToIfEq 0x800C, 1, _0044
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0039:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

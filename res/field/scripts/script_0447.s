@@ -37,7 +37,7 @@ _0079:
     ScrCmd_07E 0x1D0, 1, 0x800C
     GoToIfEq 0x800C, 1, _00A1
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -250,7 +250,7 @@ _030C:
     LockAll
     FacePlayer
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -271,7 +271,7 @@ _031F:
 
 _0364:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -303,7 +303,7 @@ _03A7:
     LockAll
     FacePlayer
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -49,7 +49,7 @@ _0064:
     SetFlag 225
     SetVar 0x4092, 1
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x261
     ScrCmd_161
@@ -265,7 +265,7 @@ _031C:
     ClearFlag 226
     Call _0371
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -273,7 +273,7 @@ _0353:
     SetFlag 226
     SetVar 0x4092, 2
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -481,14 +481,14 @@ _04E0:
 
 _04EB:
     Message 22
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _04F6:
     AddVar 0x40E3, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -501,7 +501,7 @@ _0504:
 
 _0513:
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

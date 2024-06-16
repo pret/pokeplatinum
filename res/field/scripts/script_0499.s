@@ -87,14 +87,14 @@ _015D:
     End
 
 _0168:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_295
     ReleaseAll
     End
 
 _0172:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

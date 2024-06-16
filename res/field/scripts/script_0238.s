@@ -58,7 +58,7 @@ _00C8:
 
 _00D0:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ClearFlag 0x24E
     ReleaseAll

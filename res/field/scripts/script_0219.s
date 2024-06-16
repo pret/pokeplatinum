@@ -52,7 +52,7 @@ _008E:
     SetFlag 139
     SetVar 0x40B1, 1
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x260
     ScrCmd_161
@@ -339,7 +339,7 @@ _03FE:
     LockAll
     FacePlayer
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -430,7 +430,7 @@ _050C:
     PlayFanfare 0x5DC
     LockAll
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -441,7 +441,7 @@ _051D:
     ApplyMovement 0, _053C
     WaitMovement
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
