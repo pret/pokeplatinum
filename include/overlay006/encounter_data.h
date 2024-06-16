@@ -4,7 +4,7 @@
 #include "include/constants/wild_encounters.h"
 
 typedef struct GrassEncounterData {
-    u8 level;
+    char level;
     u8 padding_01[3];
     int species;
 } GrassEncounterData;
@@ -15,8 +15,8 @@ typedef struct GrassEncounters {
 } GrassEncounters;
 
 typedef struct WaterEncounterData {
-    u8 maxLevel;
-    u8 minLevel;
+    char maxLevel;
+    char minLevel;
     u8 padding_02[2];
     int species;
 } WaterEncounterData;
