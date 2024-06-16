@@ -2695,7 +2695,7 @@
     .endm
     
     ; this is a dummy function that doesn't do anything
-    .macro DebugWatch dummy
+    .macro Dummy1 dummy
     .short 505
     .short \dummy
     .endm

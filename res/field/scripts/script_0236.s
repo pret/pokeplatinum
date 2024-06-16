@@ -47,7 +47,7 @@ _00C5:
     Return
 
 _00C7:
-    DebugWatch 0x4098
+    Dummy1 0x4098
     GoToIfEq 0x4098, 0, _0101
     GoToIfEq 0x4098, 1, _0101
     GoToIfEq 0x4098, 2, _0101

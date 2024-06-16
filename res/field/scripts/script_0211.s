@@ -76,7 +76,7 @@ _00EE:
     GoToIfGe 0x800C, 4, _027A
     SetVar 0x8004, 0
     GetTimeOfDay 0x800C
-    DebugWatch 0x800C
+    Dummy1 0x800C
     SetVar 0x8004, 120
     GoToIfEq 0x800C, 0, _0141
     SetVar 0x8004, 121

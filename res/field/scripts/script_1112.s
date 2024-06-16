@@ -1017,10 +1017,10 @@ _0D6E:
 _0D88:
     AddVar 0x8007, 1
     WaitTime 1, 0x800C
-    DebugWatch 0x8007
+    Dummy1 0x8007
     ScrCmd_2FC 0x800C
     GoToIfEq 0x800C, 1, _0DC2
-    DebugWatch 0x8007
+    Dummy1 0x8007
     GoToIfEq 0x8007, 0x258, _0DC2
     GoTo _0D88
     End

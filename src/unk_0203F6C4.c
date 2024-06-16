@@ -589,7 +589,7 @@ static BOOL ScrCmd_1E6(ScriptContext * ctx);
 static BOOL ScrCmd_1E7(ScriptContext * ctx);
 static BOOL ScrCmd_334(ScriptContext * ctx);
 static BOOL ScrCmd_335(ScriptContext * ctx);
-static BOOL ScrCmd_DebugWatch(ScriptContext * ctx);
+static BOOL ScrCmd_Dummy1(ScriptContext * ctx);
 static BOOL ScrCmd_200(ScriptContext * ctx);
 static BOOL ScrCmd_201(ScriptContext * ctx);
 static BOOL ScrCmd_202(ScriptContext * ctx);
@@ -1278,7 +1278,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1F6,
     ScrCmd_1F7,
     ScrCmd_1F8,
-    ScrCmd_DebugWatch,
+    ScrCmd_Dummy1,
     ScrCmd_1FA,
     ScrCmd_1FB,
     ScrCmd_1FC,
@@ -1658,7 +1658,7 @@ static BOOL ScriptContext_DecrementTimer (ScriptContext * ctx)
     return *frames == 0;
 }
 
-static BOOL ScrCmd_DebugWatch (ScriptContext *ctx)
+static BOOL ScrCmd_Dummy1 (ScriptContext *ctx)
 {
     u16 dummy = ScriptContext_GetVar(ctx);
     return FALSE;
