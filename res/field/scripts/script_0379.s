@@ -303,7 +303,7 @@ _0545:
 
 _0549:
     Message 32
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _05F0
     ApplyMovement 0x800D, _0610
@@ -312,7 +312,7 @@ _0549:
 
 _0564:
     Message 32
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _05F0
     ApplyMovement 0x800D, _0610

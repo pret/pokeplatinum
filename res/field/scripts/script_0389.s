@@ -154,7 +154,7 @@ _021D:
     ScrCmd_04C 0x1E7, 0
     Message 0
     ScrCmd_04D
-    ScrCmd_032
+    WaitABPadPress
     CloseMessage
     ReleaseAll
     End
@@ -163,7 +163,7 @@ _0232:
     LockAll
     ScrCmd_0CD 0
     Message 1
-    ScrCmd_032
+    WaitABPadPress
     CloseMessage
     ReleaseAll
     End

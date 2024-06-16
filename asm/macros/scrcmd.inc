@@ -260,7 +260,7 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_030
+    .macro WaitABPress
     .short 48
     .endm
 
@@ -268,7 +268,7 @@
     .short 49
     .endm
 
-    .macro ScrCmd_032
+    .macro WaitABPadPress
     .short 50
     .endm
 
@@ -2112,9 +2112,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_190 arg0
+    .macro WaitABPressTime frames
     .short 400
-    .short \arg0
+    .short \frames
     .endm
 
     .macro ScrCmd_191

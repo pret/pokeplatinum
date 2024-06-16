@@ -306,7 +306,7 @@ _040F:
 _043B:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_030
+    WaitABPress
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     End
@@ -314,7 +314,7 @@ _043B:
 _0457:
     ScrCmd_0CD 0
     Message 11
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ScrCmd_054 0, 10
     FadeScreen 6, 1, 0, 0
@@ -332,7 +332,7 @@ _0479:
 
 _048B:
     Message 20
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     End
 
@@ -358,7 +358,7 @@ _04A8:
 
 _04FC:
     Message 20
-    ScrCmd_030
+    WaitABPress
     SetVar 0x800C, 0
     Return
 
@@ -398,7 +398,7 @@ _057D:
     Message 16
     PlayFanfare 0x61B
     ScrCmd_04B 0x61B
-    ScrCmd_190 30
+    WaitABPressTime 30
     ScrCmd_2C2
     Return
 
@@ -409,7 +409,7 @@ _05A0:
 
 _05AA:
     Message 18
-    ScrCmd_030
+    WaitABPress
     ScrCmd_2C2
     Return
 
@@ -1456,7 +1456,7 @@ _1361:
     PlayFanfare 0x5DC
     LockAll
     Message 76
-    ScrCmd_030
+    WaitABPress
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -1470,7 +1470,7 @@ _138C:
     PlayFanfare 0x5DC
     LockAll
     Message 79
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ReleaseAll
     End
@@ -1692,7 +1692,7 @@ _1672:
     SetVar 0x8003, 0x800C
     GoToIfEq 0x8003, -2, _16A4
     ScrCmd_2EC 21, 1, 0x8003, 0x800C
-    ScrCmd_030
+    WaitABPress
     ScrCmd_2ED
     GoTo _16A4
     End

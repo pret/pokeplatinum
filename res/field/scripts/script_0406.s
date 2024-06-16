@@ -97,7 +97,7 @@ _01CF:
     GoToIfNe 0x800C, 0, _03E5
 _01F8:
     Message 6
-    ScrCmd_030
+    WaitABPress
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -174,7 +174,7 @@ _037A:
 
 _03DA:
     Message 10
-    ScrCmd_030
+    WaitABPress
     GoTo _0073
 
 _03E5:

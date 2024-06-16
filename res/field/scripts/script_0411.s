@@ -94,7 +94,7 @@ _0104:
     ScrCmd_123 0, 0x800C
     ScrCmd_0CD 0
     MessageVar 0x800C
-    ScrCmd_030
+    WaitABPress
     Return
 
 _0120:
@@ -109,7 +109,7 @@ _0126:
     ScrCmd_123 1, 0x800C
     ScrCmd_0CD 0
     MessageVar 0x800C
-    ScrCmd_030
+    WaitABPress
     Return
 
     .byte 0

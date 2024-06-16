@@ -15,7 +15,7 @@ _0010:
     LockAll
     FacePlayer
     ScrCmd_208 0x1E1, 0
-    ScrCmd_030
+    WaitABPress
     ScrCmd_209
     ScrCmd_04C 0x1E1, 0
     Message 0

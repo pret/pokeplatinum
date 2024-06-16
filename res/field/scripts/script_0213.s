@@ -360,7 +360,7 @@ _046A:
     SetVar 0x40D5, 1
     SetFlag 0x966
     ScrCmd_02E 52
-    ScrCmd_190 45
+    WaitABPressTime 45
     ScrCmd_135 96
     CloseMessage
     ScrCmd_168 0, 0, 13, 5, 77

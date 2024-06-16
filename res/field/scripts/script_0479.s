@@ -245,7 +245,7 @@ _0370:
 
 _039E:
     Message 43
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     GoTo _03BD
 
@@ -253,7 +253,7 @@ _03AB:
     ScrCmd_255
     Message 42
     Message 44
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     GoTo _03BD
 

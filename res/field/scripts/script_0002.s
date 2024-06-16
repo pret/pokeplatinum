@@ -759,7 +759,7 @@ _0954:
     FacePlayer
     GoToIfSet 243, _097F
     Call _0821
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 31, _09D4
     WaitMovement
@@ -768,7 +768,7 @@ _0954:
 
 _097F:
     Message 35
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 31, _09D4
     WaitMovement

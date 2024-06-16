@@ -43,7 +43,7 @@ _006F:
     WaitMovement
     Message 2
     Message 4
-    ScrCmd_032
+    WaitABPadPress
     CloseMessage
     ReleaseAll
     End

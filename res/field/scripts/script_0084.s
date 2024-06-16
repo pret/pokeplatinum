@@ -19,7 +19,7 @@ _000E:
 
 _0032:
     Message 1
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -65,7 +65,7 @@ _00C9:
 
 _00D9:
     Message 3
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     SetVar 0x800C, 0
     FadeScreen 6, 1, 0, 0

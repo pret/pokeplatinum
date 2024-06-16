@@ -103,11 +103,11 @@ _019D:
     Call _04C5
     Call _0529
     ScrCmd_1FE 0
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     Call _0535
     ScrCmd_1FE 1
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     Call _0505
     ScrCmd_1DD 42, 0, 0

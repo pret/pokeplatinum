@@ -184,7 +184,7 @@ _0351:
     GoToIfEq 0x800C, 7, _06B8
     ScrCmd_13F 1, 0x800C
     MessageVar 0x800C
-    ScrCmd_190 30
+    WaitABPressTime 30
     ScrCmd_135 4
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -205,7 +205,7 @@ _03B1:
     GoToIfEq 0x800C, 7, _0718
     ScrCmd_13F 1, 0x800C
     MessageVar 0x800C
-    ScrCmd_190 30
+    WaitABPressTime 30
     ScrCmd_135 5
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -230,7 +230,7 @@ _0433:
     GoToIfEq 0x800C, 7, _075E
     ScrCmd_13F 1, 0x800C
     MessageVar 0x800C
-    ScrCmd_190 30
+    WaitABPressTime 30
     ScrCmd_135 6
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -270,7 +270,7 @@ _0497:
     ScrCmd_13A
     ScrCmd_13F 0, 0x800C
     MessageVar 0x800C
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ScrCmd_13B
     ReleaseAll
@@ -505,7 +505,7 @@ _07BA:
     PlayFanfare 0x5E4
     ScrCmd_13C 1
     ScrCmd_2C0 7
-    ScrCmd_190 30
+    WaitABPressTime 30
     GoTo _07D4
     End
 

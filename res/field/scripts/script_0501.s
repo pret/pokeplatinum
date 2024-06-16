@@ -50,7 +50,7 @@ _009F:
     Message 5
     ScrCmd_04E 0x486
     ScrCmd_04F
-    ScrCmd_030
+    WaitABPress
     Message 6
     WaitABXPadPress
     CloseMessage

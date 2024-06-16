@@ -35,7 +35,7 @@ _0062:
     LockAll
     PlayFanfare 0x5F1
     Message 0
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -58,7 +58,7 @@ _00AF:
     LockAll
     PlayFanfare 0x5F1
     Message 1
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -74,7 +74,7 @@ _00ED:
     LockAll
     PlayFanfare 0x5F1
     Message 2
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

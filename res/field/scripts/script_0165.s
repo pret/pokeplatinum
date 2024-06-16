@@ -111,7 +111,7 @@ _0146:
 
 _019E:
     Message 20
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -129,7 +129,7 @@ _019E:
 
 _01F2:
     Message 2
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -147,7 +147,7 @@ _01F2:
 
 _0246:
     Message 10
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -165,7 +165,7 @@ _0246:
 
 _029A:
     Message 12
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -183,7 +183,7 @@ _029A:
 
 _02EE:
     Message 14
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -201,7 +201,7 @@ _02EE:
 
 _0342:
     Message 16
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -219,7 +219,7 @@ _0342:
 
 _0396:
     Message 18
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

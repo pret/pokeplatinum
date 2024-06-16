@@ -308,7 +308,7 @@ _03C2:
     ScrCmd_337 0x1EA, 0x800C
     GoToIfEq 0x800C, 1, _03FC
     ScrCmd_208 0x1EA, 0
-    ScrCmd_030
+    WaitABPress
     ScrCmd_209
     SetFlag 251
     Message 21

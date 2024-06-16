@@ -89,7 +89,7 @@ _015D:
     ScrCmd_1DD 40, 0, 0
     Call _045C
     ScrCmd_1FE 0
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     Call _047E
     ScrCmd_1DD 42, 0, 0

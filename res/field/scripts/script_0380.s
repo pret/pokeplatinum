@@ -82,7 +82,7 @@ _0070:
 _011D:
     LockAll
     Message 5
-    ScrCmd_032
+    WaitABPadPress
     CloseMessage
     ReleaseAll
     End

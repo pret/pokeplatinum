@@ -419,7 +419,7 @@ _072C:
 
 _0730:
     Message 9
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _07D4
     ApplyMovement 0x800D, _07FC
@@ -428,7 +428,7 @@ _0730:
 
 _074B:
     Message 9
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _07D4
     ApplyMovement 0x800D, _07FC

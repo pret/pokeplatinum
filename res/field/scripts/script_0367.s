@@ -133,7 +133,7 @@ _01C6:
     End
 
 _020B:
-    ScrCmd_030
+    WaitABPress
     GoToIfEq 0x4001, 1, _0220
     CloseMessage
     ReleaseAll
@@ -273,7 +273,7 @@ _045C:
     ScrCmd_1DD 57, 0, 0x800C
     ScrCmd_1DD 52, 0, 0
     Message 11
-    ScrCmd_030
+    WaitABPress
     GoTo _05EC
     End
 
@@ -316,7 +316,7 @@ _04EC:
     ScrCmd_1DD 5, 0, 0
     Call _0734
     Message 11
-    ScrCmd_030
+    WaitABPress
     GoTo _05EC
     End
 
@@ -327,7 +327,7 @@ _0548:
     ScrCmd_1DD 51, 0, 0x800C
     SetVar 0x4009, 0x800C
     Message 32
-    ScrCmd_030
+    WaitABPress
     GoTo _05EC
     End
 
@@ -619,7 +619,7 @@ _09FB:
     ScrCmd_1DC
     Message 56
     Call _0734
-    ScrCmd_190 30
+    WaitABPressTime 30
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -638,7 +638,7 @@ _0A5A:
     ScrCmd_0D5 0, 0x8004
     ScrCmd_280 1, 0x8005, 2, 3
     Message 52
-    ScrCmd_030
+    WaitABPress
     GoTo _0789
     End
 

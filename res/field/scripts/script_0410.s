@@ -53,7 +53,7 @@ _00BF:
 
 _00D9:
     Message 0
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _0184
     ApplyMovement 0, _0240

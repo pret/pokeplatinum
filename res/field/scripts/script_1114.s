@@ -1012,7 +1012,7 @@ _0FCB:
     ScrCmd_033
     ScrCmd_0E7 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8002
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ReleaseAll
     End

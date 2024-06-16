@@ -252,7 +252,7 @@ _042A:
 
 _042E:
     Message 9
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _04C8
     ApplyMovement 0x800D, _04F0
@@ -261,7 +261,7 @@ _042E:
 
 _0449:
     Message 9
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _04C8
     ApplyMovement 0x800D, _04F0
