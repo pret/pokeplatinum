@@ -178,7 +178,7 @@ _0198:
     ScrCmd_064 26
     ScrCmd_04A 0x5DC
     PlayFanfare 0x602
-    ScrCmd_02B 13
+    MessageInstant 13
     ApplyMovement 26, _03B4
     ApplyMovement 7, _0380
     ApplyMovement 0xFF, _0408

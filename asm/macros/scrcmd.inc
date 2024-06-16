@@ -235,9 +235,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_02B arg0
+    .macro MessageInstant messageID
     .short 43
-    .byte \arg0
+    .byte \messageID
     .endm
 
     .macro Message messageID

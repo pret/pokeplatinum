@@ -101,7 +101,7 @@ _019F:
     ScrCmd_0AD
     ScrCmd_0A1
     Call _0BB2
-    ScrCmd_02B 16
+    MessageInstant 16
     GoTo _00D0
     End
 

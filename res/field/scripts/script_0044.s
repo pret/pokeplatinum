@@ -130,7 +130,7 @@ _0184:
     ScrCmd_0CD 0
     Message 18
     ScrCmd_04B 0x5DC
-    ScrCmd_02B 19
+    MessageInstant 19
     ScrCmd_29F 1
     Message 20
     ScrCmd_0CE 0

@@ -1040,7 +1040,7 @@ _0E0E:
 _0E21:
     ScrCmd_30B
     ScrCmd_0CD 0
-    ScrCmd_02B 33
+    MessageInstant 33
     Call _0D2C
     Call _0C06
     FadeScreen 6, 1, 1, 0
@@ -1101,7 +1101,7 @@ _0F01:
 
 _0F0A:
     ScrCmd_0CD 0
-    ScrCmd_02B 33
+    MessageInstant 33
     Call _0E61
     Call _0C06
     FadeScreen 6, 1, 1, 0

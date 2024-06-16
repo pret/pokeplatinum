@@ -17,18 +17,18 @@ _001A:
 _0020:
     PlayFanfare 0x5DC
     LockAll
-    ScrCmd_02B 9
+    MessageInstant 9
     WaitTime 30, 0x800C
-    ScrCmd_02B 10
+    MessageInstant 10
     PlayFanfare 0x5DD
     WaitTime 30, 0x800C
-    ScrCmd_02B 11
+    MessageInstant 11
     PlayFanfare 0x5DD
     WaitTime 30, 0x800C
-    ScrCmd_02B 12
+    MessageInstant 12
     PlayFanfare 0x5DD
     WaitTime 30, 0x800C
-    ScrCmd_02B 13
+    MessageInstant 13
     PlayFanfare 0x643
     WaitTime 30, 0x800C
     ScrCmd_253 0
