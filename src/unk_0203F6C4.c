@@ -289,7 +289,7 @@ static BOOL ScrCmd_SubVar(ScriptContext * ctx);
 static BOOL ScrCmd_SetVarFromValue(ScriptContext * ctx);
 static BOOL ScrCmd_SetVarFromVar(ScriptContext * ctx);
 static BOOL ScrCmd_02A(ScriptContext * ctx);
-static BOOL ScrCmd_02B(ScriptContext * ctx);
+static BOOL ScrCmd_MessageInstant(ScriptContext * ctx);
 static BOOL ScrCmd_1FA(ScriptContext * ctx);
 static BOOL ScrCmd_1FB(ScriptContext * ctx);
 static BOOL ScrCmd_1FC(ScriptContext * ctx);
@@ -816,7 +816,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetVarFromValue,
     ScrCmd_SetVarFromVar,
     ScrCmd_02A,
-    ScrCmd_02B,
+    ScrCmd_MessageInstant,
     ScrCmd_Message,
     ScrCmd_MessageVar,
     ScrCmd_02E,
@@ -2084,12 +2084,12 @@ static BOOL ScrCmd_02A (ScriptContext * ctx)
     return 0;
 }
 
-static BOOL ScrCmd_02B (ScriptContext * ctx)
+static BOOL ScrCmd_MessageInstant (ScriptContext * ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 messageID = ScriptContext_ReadByte(ctx);
 
-    ov5_021DD498(ctx, ctx->loader, v0);
-    return 0;
+    ov5_021DD498(ctx, ctx->loader, messageID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_1FA (ScriptContext * ctx)
