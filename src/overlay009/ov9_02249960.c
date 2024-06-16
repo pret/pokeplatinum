@@ -1634,7 +1634,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
         };
 
         Camera_SetDistance(v1.unk_00, v0->unk_00);
-        Camera_SetAngle(&v1.unk_04, v0->unk_00);
+        Camera_SetAngle(&v1.cameraAngle, v0->unk_00);
         Camera_SetFOV(v1.unk_0E, v0->unk_00);
         sub_02020854(v1.unk_0C, v0->unk_00);
     }

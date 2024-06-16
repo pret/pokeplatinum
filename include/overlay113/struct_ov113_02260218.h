@@ -4,7 +4,7 @@
 #include "overlay115/camera_angle.h"
 
 typedef struct {
-    CameraAngle unk_00;
+    CameraAngle cameraAngle;
     fx32 unk_08;
     u8 unk_0C;
     u8 unk_0D;

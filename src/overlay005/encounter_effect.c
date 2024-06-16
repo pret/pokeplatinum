@@ -101,7 +101,7 @@ typedef struct UnkStruct_ov5_02202120 {
 static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5);
 static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3);
 static void BrightnessFadeTask_SetBrightness(SysTask *task, void *param);
-static void EncounterEffect_ExecuteFlash(SysTask *task, void *param);
+static void EncounterEffect_FlashTask(SysTask *task, void *param);
 static void ScreenSliceEffect_CreateTasks(SysTask *param0, void *param1);
 static void ScreenSliceSystem_VBlankCallback(SysTask *param0, void *param1);
 static void ScreenSliceEffect_HBlankCallback(HBlankTask *param0, void *param1);
@@ -121,21 +121,21 @@ static void ov5_021DF30C(FieldSystem *fieldSystem);
 static void ov5_021DF3D4(FieldSystem *fieldSystem);
 static u32 ov5_021DF3E8(u32 param0, BOOL param1);
 static u32 ov5_021DF414(u32 param0, BOOL param1);
-static void include_ov5_021DDBE8_rodata(SysTask *dummy1, void *dummy2);
-void include_ov5_021DDBE8_rodata_funcptr(void);
+static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2);
+void EncounterEffect_Unused(void);
 
 // "LowerLevel" means the level of the encountered Pokemon is lower
 // than the player's first Pokemon, and vice versa
 static const SysTaskFunc sEncounterEffectTaskFuncs[] = {
-    EncounterEffect_TallGrass_LowerLevel,
-    EncounterEffect_TallGrass_HigherLevel,
+    EncounterEffect_Grass_LowerLevel,
+    EncounterEffect_Grass_HigherLevel,
     EncounterEffect_Water_LowerLevel,
     EncounterEffect_Water_HigherLevel,
     EncounterEffect_Cave_LowerLevel,
     EncounterEffect_Cave_HigherLevel,
 
-    EncounterEffect_Trainer_TallGrass_LowerLevel,
-    EncounterEffect_Trainer_TallGrass_HigherLevel,
+    EncounterEffect_Trainer_Grass_LowerLevel,
+    EncounterEffect_Trainer_Grass_HigherLevel,
     EncounterEffect_Trainer_Water_LowerLevel,
     EncounterEffect_Trainer_Water_HigherLevel,
     EncounterEffect_Trainer_Cave_LowerLevel,
@@ -219,7 +219,7 @@ void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherSc
 {
     ScreenFlash *screenFlash = Heap_AllocFromHeap(4, sizeof(ScreenFlash));
     memset(screenFlash, 0, sizeof(ScreenFlash));
-    SysTask_Start(EncounterEffect_ExecuteFlash, screenFlash, 5);
+    SysTask_Start(EncounterEffect_FlashTask, screenFlash, 5);
 
     screenFlash->done = done;
 
@@ -233,7 +233,7 @@ void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherSc
     screenFlash->numFlashes = numFlashes;
 }
 
-static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
+static void EncounterEffect_FlashTask(SysTask *task, void *param)
 {
     ScreenFlash *screenFlash = param;
 
@@ -290,9 +290,9 @@ static void EncounterEffect_ExecuteFlash(SysTask *task, void *param)
     BrightnessFadeTask_Update(&screenFlash->otherScreenFadeTask);
 }
 
-BOOL EncounterEffect_GetHBlankFlag(EncounterEffect *param0)
+BOOL EncounterEffect_GetHBlankFlag(EncounterEffect *encEffect)
 {
-    return param0->hBlankFlag;
+    return encEffect->hBlankFlag;
 }
 
 void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start, int end, int numSteps)
@@ -306,8 +306,7 @@ void LinearInterpolationTaskS32_Init(LinearInterpolationTaskS32 *task, int start
 
 BOOL LinearInterpolationTaskS32_Update(LinearInterpolationTaskS32 *task)
 {
-    int interpolated = task->delta *task->currentStep;
-    interpolated = interpolated / task->numSteps;
+    int interpolated = (task->delta * task->currentStep) / task->numSteps;
 
     task->currentValue = interpolated + task->startValue;
 
@@ -384,13 +383,11 @@ BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *task)
     return TRUE;
 }
 
-void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness)
+void BrightnessFadeTask_ApplyBrightnessToScreen(enum Screen screen, int brightness)
 {
-    if (screen == 1) {
-        GX_SetMasterBrightness(brightness);
-    } else {
-        GXS_SetMasterBrightness(brightness);
-    }
+    screen == SCREEN_TOP 
+        ? GX_SetMasterBrightness(brightness) 
+        : GXS_SetMasterBrightness(brightness);
 }
 
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync)
@@ -653,12 +650,12 @@ static void ScreenSplitEffect_Finish(ScreenSplitEffect *screenSplitEfx)
     screenSplitEfx->vBlankTask = NULL;
 }
 
-void include_ov5_021DDBE8_rodata_funcptr(void)
+void EncounterEffect_Unused(void)
 {
-    SysTaskFunc dummy = include_ov5_021DDBE8_rodata;
+    SysTaskFunc dummy = EncounterEffect_UnusedTask;
 }
 
-static void include_ov5_021DDBE8_rodata(SysTask *dummy1, void *dummy2)
+static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {

@@ -114,9 +114,9 @@ void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
 
     v0 = sub_02020A94(param0->unk_00);
 
-    param0->unk_4C.x = v0.x + ((65535 / 360) * param0->unk_0C);
-    param0->unk_4C.y = v0.y + ((65535 / 360) * param0->unk_10);
-    param0->unk_4C.z = v0.z + ((65535 / 360) * param0->unk_14);
+    param0->cameraAngle.x = v0.x + ((65535 / 360) * param0->unk_0C);
+    param0->cameraAngle.y = v0.y + ((65535 / 360) * param0->unk_10);
+    param0->cameraAngle.z = v0.z + ((65535 / 360) * param0->unk_14);
 }
 
 BOOL ov100_021D4920 (UnkStruct_ov100_021D4890 * param0)
@@ -129,9 +129,9 @@ BOOL ov100_021D4920 (UnkStruct_ov100_021D4890 * param0)
     }
 
     if ((--param0->unk_24[0]) == 0) {
-        v1.x = param0->unk_4C.x;
-        v1.y = param0->unk_4C.y;
-        v1.z = param0->unk_4C.z;
+        v1.x = param0->cameraAngle.x;
+        v1.y = param0->cameraAngle.y;
+        v1.z = param0->cameraAngle.z;
         v0 = 1;
     } else {
         v1.x += (param0->unk_24[1]);

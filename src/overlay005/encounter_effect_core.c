@@ -47,33 +47,33 @@
 #include "overlay005/encounter_effect_core.h"
 #include "overlay005/hblank_system.h"
 
-// EncounterEffect_TallGrass_HigherLevel
-#define TALL_GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE        2
-#define TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES    6
-#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_1         0
-#define TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_1           (FX32_ONE * -3)
-#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1     (FX32_ONE * -12)
-#define TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1         (FX32_ONE * 50)
-#define TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_1          (FX32_ONE * 30)
-#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_2         (FX32_ONE * -3)
-#define TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_2           (FX32_ONE * 255)
-#define TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2     (FX32_ONE * 30)
-#define TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2         (FX32_ONE * -50)
-#define TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_2          (FX32_ONE * -255)
+// EncounterEffect_Grass_HigherLevel
+#define GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE        2
+#define GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES    6
+#define GRASS_HIGHER_LEVEL_SLICE_START_X_1         0
+#define GRASS_HIGHER_LEVEL_SLICE_END_X_1           (FX32_ONE * -3)
+#define GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1     (FX32_ONE * -12)
+#define GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1         (FX32_ONE * 50)
+#define GRASS_HIGHER_LEVEL_CAMERA_SPEED_1          (FX32_ONE * 30)
+#define GRASS_HIGHER_LEVEL_SLICE_START_X_2         (FX32_ONE * -3)
+#define GRASS_HIGHER_LEVEL_SLICE_END_X_2           (FX32_ONE * 255)
+#define GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2     (FX32_ONE * 30)
+#define GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2         (FX32_ONE * -50)
+#define GRASS_HIGHER_LEVEL_CAMERA_SPEED_2          (FX32_ONE * -255)
 
-// EncounterEffect_TallGrass_LowerLevel
-#define TALL_GRASS_LOWER_LEVEL_PIXELS_PER_SLICE         5
-#define TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES     6
-#define TALL_GRASS_LOWER_LEVEL_SLICE_START_X_1          0
-#define TALL_GRASS_LOWER_LEVEL_SLICE_END_X_1            (FX32_ONE * -2)
-#define TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_1      (FX32_ONE * -12)
-#define TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_1          (FX32_ONE * 50)
-#define TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_1           (FX32_ONE * 30)
-#define TALL_GRASS_LOWER_LEVEL_SLICE_START_X_2          (FX32_ONE * -2)
-#define TALL_GRASS_LOWER_LEVEL_SLICE_END_X_2            (FX32_ONE * 255)
-#define TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_2      (FX32_ONE * 30)
-#define TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_2          (FX32_ONE * -30)
-#define TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_2           (FX32_ONE * -100)
+// EncounterEffect_Grass_LowerLevel
+#define GRASS_LOWER_LEVEL_PIXELS_PER_SLICE         5
+#define GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES     6
+#define GRASS_LOWER_LEVEL_SLICE_START_X_1          0
+#define GRASS_LOWER_LEVEL_SLICE_END_X_1            (FX32_ONE * -2)
+#define GRASS_LOWER_LEVEL_SLICE_START_SPEED_1      (FX32_ONE * -12)
+#define GRASS_LOWER_LEVEL_CAMERA_OFFSET_1          (FX32_ONE * 50)
+#define GRASS_LOWER_LEVEL_CAMERA_SPEED_1           (FX32_ONE * 30)
+#define GRASS_LOWER_LEVEL_SLICE_START_X_2          (FX32_ONE * -2)
+#define GRASS_LOWER_LEVEL_SLICE_END_X_2            (FX32_ONE * 255)
+#define GRASS_LOWER_LEVEL_SLICE_START_SPEED_2      (FX32_ONE * 30)
+#define GRASS_LOWER_LEVEL_CAMERA_OFFSET_2          (FX32_ONE * -30)
+#define GRASS_LOWER_LEVEL_CAMERA_SPEED_2           (FX32_ONE * -100)
 
 // EncounterEffect_Cave_LowerLevel
 #define CAVE_LOWER_LEVEL_INTERPOLATION_FRAMES           12
@@ -85,11 +85,11 @@
 #define CAVE_HIGHER_LEVEL_CAMERA_OFFSET                 (FX32_ONE * -800)
 #define CAVE_HIGHER_LEVEL_CAMERA_SPEED                  (FX32_ONE * -5)
 
-typedef struct TallGrassEncounterEffect {
+typedef struct GrassEncounterEffect {
     UnkStruct_020203AC * camera;
     QuadraticInterpolationTaskFX32 camDistanceTask;
     ScreenSliceEffect * screenSliceEfx;
-} TallGrassEncounterEffect;
+} GrassEncounterEffect;
 
 typedef struct ScreenShakeEffect {
     ScreenScrollManager *screenScrollMgr;
@@ -114,19 +114,19 @@ static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake);
 static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority);
 static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval);
 
-void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
+void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    TallGrassEncounterEffect *tallGrassEffect = encEffect->param;
+    GrassEncounterEffect *grassEffect = encEffect->param;
     fx32 distance;
     BOOL done;
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(4, sizeof(TallGrassEncounterEffect));
-        memset(encEffect->param, 0, sizeof(TallGrassEncounterEffect));
-        tallGrassEffect = encEffect->param;
-        tallGrassEffect->screenSliceEfx = ScreenSliceEffect_New();
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(GrassEncounterEffect));
+        memset(encEffect->param, 0, sizeof(GrassEncounterEffect));
+        grassEffect = encEffect->param;
+        grassEffect->screenSliceEfx = ScreenSliceEffect_New();
         encEffect->state++;
         break;
     case 1:
@@ -139,53 +139,53 @@ void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
             encEffect->state++;
             EncounterEffect_ScreenSlice(
                 encEffect, 
-                tallGrassEffect->screenSliceEfx, 
-                TALL_GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
-                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES + 1, 
-                TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_1, 
-                TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_1, 
-                TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1
+                grassEffect->screenSliceEfx, 
+                GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES + 1, 
+                GRASS_HIGHER_LEVEL_SLICE_START_X_1, 
+                GRASS_HIGHER_LEVEL_SLICE_END_X_1, 
+                GRASS_HIGHER_LEVEL_SLICE_START_SPEED_1
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->camera;
-            distance = Camera_GetDistance(tallGrassEffect->camera);
+            grassEffect->camera = encEffect->fieldSystem->camera;
+            distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &tallGrassEffect->camDistanceTask, 
+                &grassEffect->camDistanceTask, 
                 distance, 
-                distance + TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1, 
-                TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_1, 
-                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
+                distance + GRASS_HIGHER_LEVEL_CAMERA_OFFSET_1, 
+                GRASS_HIGHER_LEVEL_CAMERA_SPEED_1, 
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
             );
         }
         break;
     case 3:
-        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
-        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
+        done = QuadraticInterpolationTaskFX32_Update(&grassEffect->camDistanceTask);
+        Camera_SetDistance(grassEffect->camDistanceTask.currentValue, grassEffect->camera);
 
         if (done == TRUE) {
             encEffect->state++;
             ScreenSliceEffect_Modify(
                 encEffect, 
-                tallGrassEffect->screenSliceEfx, 
-                TALL_GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
-                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES, 
-                TALL_GRASS_HIGHER_LEVEL_SLICE_START_X_2, 
-                TALL_GRASS_HIGHER_LEVEL_SLICE_END_X_2, 
-                TALL_GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2
+                grassEffect->screenSliceEfx, 
+                GRASS_HIGHER_LEVEL_PIXELS_PER_SLICE, 
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES, 
+                GRASS_HIGHER_LEVEL_SLICE_START_X_2, 
+                GRASS_HIGHER_LEVEL_SLICE_END_X_2, 
+                GRASS_HIGHER_LEVEL_SLICE_START_SPEED_2
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->camera;
-            distance = Camera_GetDistance(tallGrassEffect->camera);
+            grassEffect->camera = encEffect->fieldSystem->camera;
+            distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &tallGrassEffect->camDistanceTask, 
+                &grassEffect->camDistanceTask, 
                 distance, 
-                distance + TALL_GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2, 
-                TALL_GRASS_HIGHER_LEVEL_CAMERA_SPEED_2, 
-                TALL_GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
+                distance + GRASS_HIGHER_LEVEL_CAMERA_OFFSET_2, 
+                GRASS_HIGHER_LEVEL_CAMERA_SPEED_2, 
+                GRASS_HIGHER_LEVEL_INTERPOLATION_FRAMES
             );
         }
         break;
     case 4:
-        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
-        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
+        done = QuadraticInterpolationTaskFX32_Update(&grassEffect->camDistanceTask);
+        Camera_SetDistance(grassEffect->camDistanceTask.currentValue, grassEffect->camera);
 
         if (done == TRUE && EncounterEffect_GetHBlankFlag(encEffect) == TRUE) {
             encEffect->state++;
@@ -203,7 +203,7 @@ void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
             *(encEffect->done) = 1;
         }
 
-        ScreenSliceEffect_Delete(tallGrassEffect->screenSliceEfx);
+        ScreenSliceEffect_Delete(grassEffect->screenSliceEfx);
         EncounterEffect_Finish(encEffect, task);
         break;
     default:
@@ -211,19 +211,19 @@ void EncounterEffect_TallGrass_HigherLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
+void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    TallGrassEncounterEffect *tallGrassEffect = encEffect->param;
+    GrassEncounterEffect *grassEffect = encEffect->param;
     fx32 distance;
     BOOL done;
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(TallGrassEncounterEffect));
-        memset(encEffect->param, 0, sizeof(TallGrassEncounterEffect));
-        tallGrassEffect = encEffect->param;
-        tallGrassEffect->screenSliceEfx = ScreenSliceEffect_New();
+        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(GrassEncounterEffect));
+        memset(encEffect->param, 0, sizeof(GrassEncounterEffect));
+        grassEffect = encEffect->param;
+        grassEffect->screenSliceEfx = ScreenSliceEffect_New();
         encEffect->state++;
         break;
     case 1:
@@ -236,53 +236,53 @@ void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
             encEffect->state++;
             EncounterEffect_ScreenSlice(
                 encEffect, 
-                tallGrassEffect->screenSliceEfx, 
-                TALL_GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
-                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES + 1, 
-                TALL_GRASS_LOWER_LEVEL_SLICE_START_X_1, 
-                TALL_GRASS_LOWER_LEVEL_SLICE_END_X_1, 
-                TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_1
+                grassEffect->screenSliceEfx, 
+                GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES + 1, 
+                GRASS_LOWER_LEVEL_SLICE_START_X_1, 
+                GRASS_LOWER_LEVEL_SLICE_END_X_1, 
+                GRASS_LOWER_LEVEL_SLICE_START_SPEED_1
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->camera;
-            distance = Camera_GetDistance(tallGrassEffect->camera);
+            grassEffect->camera = encEffect->fieldSystem->camera;
+            distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &tallGrassEffect->camDistanceTask, 
+                &grassEffect->camDistanceTask, 
                 distance, 
-                distance + TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_1, 
-                TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_1, 
-                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
+                distance + GRASS_LOWER_LEVEL_CAMERA_OFFSET_1, 
+                GRASS_LOWER_LEVEL_CAMERA_SPEED_1, 
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
             );
         }
         break;
     case 3:
-        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
-        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
+        done = QuadraticInterpolationTaskFX32_Update(&grassEffect->camDistanceTask);
+        Camera_SetDistance(grassEffect->camDistanceTask.currentValue, grassEffect->camera);
 
         if (done == TRUE) {
             encEffect->state++;
             ScreenSliceEffect_Modify(
                 encEffect, 
-                tallGrassEffect->screenSliceEfx, 
-                TALL_GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
-                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES, 
-                TALL_GRASS_LOWER_LEVEL_SLICE_START_X_2, 
-                TALL_GRASS_LOWER_LEVEL_SLICE_END_X_2, 
-                TALL_GRASS_LOWER_LEVEL_SLICE_START_SPEED_2
+                grassEffect->screenSliceEfx, 
+                GRASS_LOWER_LEVEL_PIXELS_PER_SLICE, 
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES, 
+                GRASS_LOWER_LEVEL_SLICE_START_X_2, 
+                GRASS_LOWER_LEVEL_SLICE_END_X_2, 
+                GRASS_LOWER_LEVEL_SLICE_START_SPEED_2
             );
-            tallGrassEffect->camera = encEffect->fieldSystem->camera;
-            distance = Camera_GetDistance(tallGrassEffect->camera);
+            grassEffect->camera = encEffect->fieldSystem->camera;
+            distance = Camera_GetDistance(grassEffect->camera);
             QuadraticInterpolationTaskFX32_Init(
-                &tallGrassEffect->camDistanceTask, 
+                &grassEffect->camDistanceTask, 
                 distance, 
-                distance + TALL_GRASS_LOWER_LEVEL_CAMERA_OFFSET_2, 
-                TALL_GRASS_LOWER_LEVEL_CAMERA_SPEED_2, 
-                TALL_GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
+                distance + GRASS_LOWER_LEVEL_CAMERA_OFFSET_2, 
+                GRASS_LOWER_LEVEL_CAMERA_SPEED_2, 
+                GRASS_LOWER_LEVEL_INTERPOLATION_FRAMES
             );
         }
         break;
     case 4:
-        done = QuadraticInterpolationTaskFX32_Update(&tallGrassEffect->camDistanceTask);
-        Camera_SetDistance(tallGrassEffect->camDistanceTask.currentValue, tallGrassEffect->camera);
+        done = QuadraticInterpolationTaskFX32_Update(&grassEffect->camDistanceTask);
+        Camera_SetDistance(grassEffect->camDistanceTask.currentValue, grassEffect->camera);
 
         if (done == TRUE && EncounterEffect_GetHBlankFlag(encEffect) == TRUE) {
             encEffect->state++;
@@ -300,7 +300,7 @@ void EncounterEffect_TallGrass_LowerLevel(SysTask *task, void *param)
             *(encEffect->done) = TRUE;
         }
 
-        ScreenSliceEffect_Delete(tallGrassEffect->screenSliceEfx);
+        ScreenSliceEffect_Delete(grassEffect->screenSliceEfx);
         EncounterEffect_Finish(encEffect, task);
         break;
     default:
@@ -594,7 +594,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
     }
 }
 
-typedef struct TrainerTallGrassEncounterEffect {
+typedef struct TrainerGrassEncounterEffect {
     QuadraticInterpolationTaskFX32 pokeballScale;
     LinearInterpolationTaskS32 pokeballRotation;
     QuadraticInterpolationTaskFX32 unk_2C;
@@ -605,7 +605,7 @@ typedef struct TrainerTallGrassEncounterEffect {
     UnkStruct_020203AC * camera;
     QuadraticInterpolationTaskFX32 unk_228;
     s32 unk_240;
-} TrainerTallGrassEncounterEffect;
+} TrainerGrassEncounterEffect;
 
 typedef struct {
     LinearInterpolationTaskFX32 unk_00;
@@ -676,10 +676,10 @@ typedef struct {
     s16 unk_288;
 } UnkStruct_ov5_021E3D8C;
 
-void EncounterEffect_Trainer_TallGrass_LowerLevel(SysTask *task, void *param)
+void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    TrainerTallGrassEncounterEffect *trainerEffect = encEffect->param;
+    TrainerGrassEncounterEffect *trainerEffect = encEffect->param;
     BOOL done;
     fx32 v3;
     int i;
@@ -688,8 +688,8 @@ void EncounterEffect_Trainer_TallGrass_LowerLevel(SysTask *task, void *param)
     
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(4, sizeof(TrainerTallGrassEncounterEffect));
-        memset(encEffect->param, 0, sizeof(TrainerTallGrassEncounterEffect));
+        encEffect->param = Heap_AllocFromHeap(4, sizeof(TrainerGrassEncounterEffect));
+        memset(encEffect->param, 0, sizeof(TrainerGrassEncounterEffect));
         trainerEffect = encEffect->param;
 
         trainerEffect->camera = encEffect->fieldSystem->camera;
@@ -841,7 +841,7 @@ void EncounterEffect_Trainer_TallGrass_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Trainer_TallGrass_HigherLevel (SysTask * param0, void * param1)
+void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
 {
     EncounterEffect *encEffect = param1;
     UnkStruct_ov5_021E2EB0 * v1 = encEffect->param;

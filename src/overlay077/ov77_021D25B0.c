@@ -1745,7 +1745,7 @@ static void ov77_021D4044 (UnkStruct_ov77_021D37C0 * param0, int param1)
     {
         VecFx32 v0 = {0, 0, FX32_ONE * 16 * 6};
 
-        sub_020206D0(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.unk_04, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        sub_020206D0(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
         Camera_SetFOV(0x981, param0->unk_20.unk_08);
 
         {
@@ -2381,7 +2381,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         sub_02020990(&v0, param0->unk_20.unk_08);
     } else if (param1 == ((40 * 30 - 15) + 6)) {
         VecFx32 v2 = {-(FX32_ONE * 16 * 4), 0, -FX32_ONE * 16 * 3};
-        sub_020206D0(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.unk_04, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        sub_020206D0(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
 
         {
             VecFx32 v3 = {0, (FX32_ONE * 16 * 5), 0};
@@ -2417,7 +2417,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         sub_0201C63C(param0->unk_10, 1, 1, 4);
     } else if (param1 == ((47 * 30 - 15) + 6)) {
         VecFx32 v6 = {FX32_ONE * 16 * 30, 0, FX32_ONE * 0 - 0x70000};
-        sub_020206D0(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.unk_04, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        sub_020206D0(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
         {
             VecFx32 v7 = {0, (FX32_ONE * 16 * 5), 0};
             sub_02020990(&v7, param0->unk_20.unk_08);

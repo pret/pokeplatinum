@@ -9,7 +9,7 @@
 
 typedef struct {
     fx32 unk_00;
-    CameraAngle unk_04;
+    CameraAngle cameraAngle;
     u8 unk_0C;
     u16 unk_0E;
     fx32 unk_10;
@@ -210,7 +210,7 @@ void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * fieldSystem, const int 
 
     fieldSystem->camera = sub_020203AC(4);
 
-    sub_020206D0(v0, v1->unk_00, &v1->unk_04, v1->unk_0E, v1->unk_0C, 1, fieldSystem->camera);
+    sub_020206D0(v0, v1->unk_00, &v1->cameraAngle, v1->unk_0E, v1->unk_0C, 1, fieldSystem->camera);
     sub_020203D4(fieldSystem->camera);
     sub_020206BC(v1->unk_10, v1->unk_14, fieldSystem->camera);
 

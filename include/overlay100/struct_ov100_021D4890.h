@@ -18,7 +18,7 @@ typedef struct {
     fx32 unk_20;
     s32 unk_24[5];
     fx32 unk_38[5];
-    CameraAngle unk_4C;
+    CameraAngle cameraAngle;
 } UnkStruct_ov100_021D4890;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D4890_H

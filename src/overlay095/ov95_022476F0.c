@@ -33,7 +33,7 @@ struct UnkStruct_ov95_02247958_t {
 struct UnkStruct_ov95_0224773C_t {
     UnkStruct_020203AC * unk_00;
     VecFx32 unk_04;
-    CameraAngle unk_10;
+    CameraAngle cameraAngle;
     UnkStruct_ov95_02247958 * unk_18;
     u32 unk_1C;
 };
@@ -232,14 +232,14 @@ void ov95_02247A90 (UnkStruct_ov95_0224773C * param0, VecFx32 * param1)
     *param1 = sub_02020ABC(param0->unk_00);
 }
 
-void ov95_02247AB0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * param1)
+void ov95_02247AB0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    Camera_SetAngle(param1, param0->unk_00);
+    Camera_SetAngle(cameraAngle, param0->unk_00);
 }
 
-void ov95_02247AC0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * param1)
+void ov95_02247AC0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    sub_020209F8(param1, param0->unk_00);
+    sub_020209F8(cameraAngle, param0->unk_00);
 }
 
 void ov95_02247AD0 (UnkStruct_ov95_0224773C * param0, u8 param1)
@@ -261,11 +261,11 @@ static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 p
     param0->unk_04.x = param1;
     param0->unk_04.y = param2;
     param0->unk_04.z = param3;
-    param0->unk_10.x = ((0 * 0xffff) / 360);
-    param0->unk_10.y = ((0 * 0xffff) / 360);
-    param0->unk_10.z = ((0 * 0xffff) / 360);
+    param0->cameraAngle.x = ((0 * 0xffff) / 360);
+    param0->cameraAngle.y = ((0 * 0xffff) / 360);
+    param0->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    sub_020206D0(&(param0->unk_04), 1228800, &(param0->unk_10), 4004, 0, 1, param0->unk_00);
+    sub_020206D0(&(param0->unk_04), 1228800, &(param0->cameraAngle), 4004, 0, 1, param0->unk_00);
 
     v1.x = 0;
     v1.y = FX32_ONE;

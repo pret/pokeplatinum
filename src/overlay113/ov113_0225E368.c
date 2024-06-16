@@ -1915,8 +1915,8 @@ static BOOL ov113_0225FF8C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_0E) {
     case 0:
-        v0->unk_00 = sub_02020A94(param2);
-        v0->unk_08 = v0->unk_00.y;
+        v0->cameraAngle = sub_02020A94(param2);
+        v0->unk_08 = v0->cameraAngle.y;
         v0->unk_0E++;
         Sound_PlayEffect(1470);
     case 1:
@@ -1924,7 +1924,7 @@ static BOOL ov113_0225FF8C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_08 += (-0x2000 / 2);
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 <= v0->unk_00.y - 0x2000) {
+        if (v0->unk_08 <= v0->cameraAngle.y - 0x2000) {
             v0->unk_0E++;
         }
         break;
@@ -1941,8 +1941,8 @@ static BOOL ov113_0225FF8C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 >= v0->unk_00.y) {
-            Camera_SetAngle(&v0->unk_00, param2);
+        if (v0->unk_08 >= v0->cameraAngle.y) {
+            Camera_SetAngle(&v0->cameraAngle, param2);
             return 1;
         }
         break;
@@ -1958,8 +1958,8 @@ static BOOL ov113_02260064 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_0E) {
     case 0:
-        v0->unk_00 = sub_02020A94(param2);
-        v0->unk_08 = v0->unk_00.y;
+        v0->cameraAngle = sub_02020A94(param2);
+        v0->unk_08 = v0->cameraAngle.y;
         v0->unk_0E++;
         Sound_PlayEffect(1470);
     case 1:
@@ -1967,7 +1967,7 @@ static BOOL ov113_02260064 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_08 += (0x2000 / 2);
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 >= v0->unk_00.y + 0x2000) {
+        if (v0->unk_08 >= v0->cameraAngle.y + 0x2000) {
             v0->unk_0E++;
         }
         break;
@@ -1984,8 +1984,8 @@ static BOOL ov113_02260064 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 <= v0->unk_00.y) {
-            Camera_SetAngle(&v0->unk_00, param2);
+        if (v0->unk_08 <= v0->cameraAngle.y) {
+            Camera_SetAngle(&v0->cameraAngle, param2);
             return 1;
         }
         break;
@@ -2001,8 +2001,8 @@ static BOOL ov113_0226013C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_0E) {
     case 0:
-        v0->unk_00 = sub_02020A94(param2);
-        v0->unk_08 = v0->unk_00.x;
+        v0->cameraAngle = sub_02020A94(param2);
+        v0->unk_08 = v0->cameraAngle.x;
         Sound_PlayEffect(1470);
         v0->unk_0E++;
     case 1:
@@ -2011,7 +2011,7 @@ static BOOL ov113_0226013C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 >= v0->unk_00.x + 0x2000) {
+        if (v0->unk_08 >= v0->cameraAngle.x + 0x2000) {
             v0->unk_0E++;
         }
 
@@ -2029,8 +2029,8 @@ static BOOL ov113_0226013C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 <= v0->unk_00.x) {
-            Camera_SetAngle(&v0->unk_00, param2);
+        if (v0->unk_08 <= v0->cameraAngle.x) {
+            Camera_SetAngle(&v0->cameraAngle, param2);
             return 1;
         }
 
@@ -2048,7 +2048,7 @@ static BOOL ov113_02260218 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_0D) {
     case 0:
-        v0->unk_00 = sub_02020A94(param2);
+        v0->cameraAngle = sub_02020A94(param2);
         v0->unk_0D++;
         Sound_PlayEffect(1470);
     case 1:
@@ -2065,7 +2065,7 @@ static BOOL ov113_02260218 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         }
 
         v1 = FX_Mul(sub_0201D2B8(v0->unk_08), 0x1000);
-        v2 = v0->unk_00;
+        v2 = v0->cameraAngle;
         v2.y = v1;
         sub_020209B0(&v2, param2);
         break;
@@ -2202,8 +2202,8 @@ static BOOL ov113_02260544 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_0E) {
     case 0:
-        v0->unk_00 = sub_02020A94(param2);
-        v0->unk_08 = v0->unk_00.x;
+        v0->cameraAngle = sub_02020A94(param2);
+        v0->unk_08 = v0->cameraAngle.x;
         v0->unk_0E++;
 
         Sound_PlayEffect(1470);
@@ -2213,7 +2213,7 @@ static BOOL ov113_02260544 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 <= v0->unk_00.x - 0x2000) {
+        if (v0->unk_08 <= v0->cameraAngle.x - 0x2000) {
             v0->unk_0E++;
         }
         break;
@@ -2230,8 +2230,8 @@ static BOOL ov113_02260544 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020A24(&v1, param2);
 
-        if (v0->unk_08 >= v0->unk_00.x) {
-            Camera_SetAngle(&v0->unk_00, param2);
+        if (v0->unk_08 >= v0->cameraAngle.x) {
+            Camera_SetAngle(&v0->cameraAngle, param2);
             return 1;
         }
 

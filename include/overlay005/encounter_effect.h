@@ -126,7 +126,7 @@ void LinearInterpolationTaskFX32_Init(LinearInterpolationTaskFX32 *task, fx32 st
 BOOL LinearInterpolationTaskFX32_Update(LinearInterpolationTaskFX32 *task);
 void QuadraticInterpolationTaskFX32_Init(QuadraticInterpolationTaskFX32 *task, fx32 startValue, fx32 endValue, fx32 initialRate, int numSteps);
 BOOL QuadraticInterpolationTaskFX32_Update(QuadraticInterpolationTaskFX32 *task);
-void BrightnessFadeTask_ApplyBrightnessToScreen(int screen, int brightness);
+void BrightnessFadeTask_ApplyBrightnessToScreen(enum Screen screen, int brightness);
 void BrightnessFadeTask_Init(BrightnessFadeTask *task, s32 startValue, s32 endValue, s32 screen, s32 sync);
 BOOL BrightnessFadeTask_Update(BrightnessFadeTask *task);
 ScreenSliceEffect *ScreenSliceEffect_New(void);

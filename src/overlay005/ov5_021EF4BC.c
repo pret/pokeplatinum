@@ -16,7 +16,7 @@ typedef struct UnkStruct_ov5_021EF4F8_t {
     int unk_08;
     u16 unk_0C[192];
     u16 unk_18C[192];
-    BufferManager * unk_30C;
+    BufferManager * bufferManager;
     HBlankSystem * unk_310;
     HBlankTask * unk_314;
     BOOL unk_318;
@@ -43,7 +43,7 @@ UnkStruct_ov5_021EF4F8 * ov5_021EF4BC (u32 param0, HBlankSystem * param1)
     memset(v0, 0, sizeof(UnkStruct_ov5_021EF4F8));
 
     v0->unk_00 = 0;
-    v0->unk_30C = BufferManager_New(param0, v0->unk_0C, v0->unk_18C);
+    v0->bufferManager = BufferManager_New(param0, v0->unk_0C, v0->unk_18C);
     v0->unk_310 = param1;
 
     return v0;
@@ -55,7 +55,7 @@ void ov5_021EF4F8 (UnkStruct_ov5_021EF4F8 * param0)
         ov5_021EF710(param0);
     }
 
-    BufferManager_Delete(param0->unk_30C);
+    BufferManager_Delete(param0->bufferManager);
     Heap_FreeToHeap(param0);
 }
 
@@ -89,7 +89,7 @@ static void ov5_021EF5A8 (SysTask * param0, void * param1)
         break;
     case 1:
         v0->unk_04--;
-        v1 = BufferManager_GetWriteBuffer(v0->unk_30C);
+        v1 = BufferManager_GetWriteBuffer(v0->bufferManager);
 
         ov5_021EF66C(v1, 3 - v0->unk_04, 3);
 
@@ -100,7 +100,7 @@ static void ov5_021EF5A8 (SysTask * param0, void * param1)
         break;
     case 2:
         v0->unk_04--;
-        v1 = BufferManager_GetWriteBuffer(v0->unk_30C);
+        v1 = BufferManager_GetWriteBuffer(v0->bufferManager);
 
         ov5_021EF66C(v1, v0->unk_04, 3);
 
@@ -121,7 +121,7 @@ static void ov5_021EF634 (UnkStruct_ov5_021EF4F8 * param0)
     int v1;
 
     v1 = GX_GetVCount();
-    v0 = BufferManager_GetReadBuffer(param0->unk_30C);
+    v0 = BufferManager_GetReadBuffer(param0->bufferManager);
 
     if (v1 < 192) {
         v1++;
@@ -190,7 +190,7 @@ static void ov5_021EF6E4 (SysTask * param0, void * param1)
 static void ov5_021EF6F0 (UnkStruct_ov5_021EF4F8 * param0)
 {
     if (param0->unk_00 == 1) {
-        BufferManager_SwapBuffers(param0->unk_30C);
+        BufferManager_SwapBuffers(param0->bufferManager);
         param0->unk_318 = 1;
     }
 }

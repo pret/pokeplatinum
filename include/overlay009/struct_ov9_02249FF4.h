@@ -5,7 +5,7 @@
 
 typedef struct {
     fx32 unk_00;
-    CameraAngle unk_04;
+    CameraAngle cameraAngle;
     u8 unk_0C;
     u16 unk_0E;
     u8 padding_0F;

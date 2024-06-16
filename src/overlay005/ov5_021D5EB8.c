@@ -227,7 +227,7 @@ typedef struct {
     UnkStruct_ov5_021D6538 unk_04;
     HBlankSystem * unk_14;
     HBlankTask * unk_18;
-    BufferManager * unk_1C[2];
+    BufferManager * bufferManagers[2];
     SysTask * unk_24;
     u32 unk_28;
     u16 unk_2C[4][192];
@@ -5353,8 +5353,8 @@ static void ov5_021DB500 (UnkStruct_ov5_021DB614 * param0)
     u16 * v3;
     u16 * v4;
 
-    v3 = BufferManager_GetWriteBuffer(param0->unk_1C[0]);
-    v4 = BufferManager_GetWriteBuffer(param0->unk_1C[1]);
+    v3 = BufferManager_GetWriteBuffer(param0->bufferManagers[0]);
+    v4 = BufferManager_GetWriteBuffer(param0->bufferManagers[1]);
 
     for (v0 = 0; v0 < 192; v0++) {
         if (v0 <= param0->unk_02) {
@@ -5414,8 +5414,8 @@ static void ov5_021DB614 (UnkStruct_ov5_021DB614 * param0, HBlankSystem * param1
 
     memset(param0, 0, sizeof(UnkStruct_ov5_021DB614));
 
-    param0->unk_1C[0] = BufferManager_New(4, param0->unk_2C[0], param0->unk_2C[1]);
-    param0->unk_1C[1] = BufferManager_New(4, param0->unk_2C[2], param0->unk_2C[3]);
+    param0->bufferManagers[0] = BufferManager_New(4, param0->unk_2C[0], param0->unk_2C[1]);
+    param0->bufferManagers[1] = BufferManager_New(4, param0->unk_2C[2], param0->unk_2C[3]);
 
     for (v0 = 0; v0 < 192; v0++) {
         param0->unk_2C[2][v0] = 255;
@@ -5436,8 +5436,8 @@ static void ov5_021DB690 (UnkStruct_ov5_021DB614 * param0)
     HBlankTask_Delete(param0->unk_18);
 
     SysTask_Done(param0->unk_24);
-    BufferManager_Delete(param0->unk_1C[0]);
-    BufferManager_Delete(param0->unk_1C[1]);
+    BufferManager_Delete(param0->bufferManagers[0]);
+    BufferManager_Delete(param0->bufferManagers[1]);
 
     memset(param0, 0, sizeof(UnkStruct_ov5_021DB614));
 }
@@ -5483,7 +5483,7 @@ static void ov5_021DB72C (HBlankTask * param0, void * param1)
     v2 = GX_GetVCount();
 
     for (v3 = 0; v3 < 2; v3++) {
-        v1[v3] = BufferManager_GetReadBuffer(v0->unk_1C[v3]);
+        v1[v3] = BufferManager_GetReadBuffer(v0->bufferManagers[v3]);
     }
 
     if (v2 < 192) {
@@ -5505,7 +5505,7 @@ static void ov5_021DB78C (SysTask * param0, void * param1)
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
-        BufferManager_SwapBuffers(v0->unk_1C[v1]);
+        BufferManager_SwapBuffers(v0->bufferManagers[v1]);
     }
 }
 
@@ -5527,8 +5527,8 @@ static void ov5_021DB7CC (UnkStruct_ov5_021DB614 * param0)
     int v2;
 
     for (v2 = 0; v2 < 2; v2++) {
-        v0 = BufferManager_GetReadBuffer(param0->unk_1C[v2]);
-        v1 = BufferManager_GetWriteBuffer(param0->unk_1C[v2]);
+        v0 = BufferManager_GetReadBuffer(param0->bufferManagers[v2]);
+        v1 = BufferManager_GetWriteBuffer(param0->bufferManagers[v2]);
 
         memcpy(v1, v0, sizeof(u16) * 192);
     }
