@@ -108,7 +108,7 @@
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
-#include "unk_0203F6C4.h"
+#include "scrcmd.h"
 #include "unk_02046AD4.h"
 #include "unk_02046C7C.h"
 #include "unk_020474B8.h"
