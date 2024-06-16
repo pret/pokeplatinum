@@ -33,7 +33,7 @@ _0032:
     ScrCmd_0CD 1
     Message 0
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ApplyMovement 11, _02D0
     WaitMovement
     Message 1
@@ -62,7 +62,7 @@ _0032:
     ScrCmd_0CD 1
     Message 4
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CallIfLt 0x409E, 1, _019E
     CallIfGe 0x409E, 1, _01A3
     CloseMessage

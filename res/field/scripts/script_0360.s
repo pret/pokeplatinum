@@ -11,7 +11,7 @@ _0006:
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0228
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 2, _01C4
     WaitMovement
     ScrCmd_0CE 0
@@ -45,7 +45,7 @@ _0006:
     WaitMovement
     Message 4
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ApplyMovement 2, _01CC
     WaitMovement
     Message 5

@@ -397,7 +397,7 @@ _04D0:
     WaitMovement
     PlayFanfare 0x602
     Message 0
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_014 0x7FA
     ApplyMovement 2, _059C
     WaitMovement
@@ -408,7 +408,7 @@ _04D0:
     ApplyMovement 0xFF, _0570
     ApplyMovement 2, _05B0
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_0CE 0
     Message 2
     CloseMessage

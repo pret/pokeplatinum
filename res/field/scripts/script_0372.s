@@ -55,7 +55,7 @@ _00BE:
 _00CB:
     ScrCmd_1DD 43, 0, 0x800C
     GoToIfEq 0x800C, 3, _0114
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     SetVar 0x40D8, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -66,7 +66,7 @@ _00CB:
     End
 
 _0114:
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     SetVar 0x40D8, 1
     ScrCmd_136
     ScrCmd_135 6
@@ -120,11 +120,11 @@ _01DF:
     Call _04C5
     Call _0529
     ScrCmd_1FE 0
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     Call _0535
     ScrCmd_1FE 1
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     Call _0505
     ScrCmd_136
@@ -261,7 +261,7 @@ _0452:
 
 _0474:
     Message 11
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_136
     ScrCmd_135 7
     CloseMessage

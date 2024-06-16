@@ -188,7 +188,7 @@ _01FB:
     ClearFlag 0x295
     SetFlag 0x97D
     ScrCmd_25F
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ApplyMovement 2, _036C
     ApplyMovement 1, _0374
     ApplyMovement 3, _037C
@@ -211,12 +211,12 @@ _0296:
     ScrCmd_065 2
     ScrCmd_065 1
     ScrCmd_065 3
-    WaitFrames 2, 0x800C
+    WaitTime 2, 0x800C
     ClearFlag 0x236
     ScrCmd_064 2
     ScrCmd_064 1
     ScrCmd_064 3
-    WaitFrames 2, 0x800C
+    WaitTime 2, 0x800C
     Return
 
 _02C0:
@@ -364,11 +364,11 @@ _03FD:
     CloseMessage
     ApplyMovement 0, _0460
     WaitMovement
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Message 6
     Message 7
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ApplyMovement 0, _0468
     WaitMovement
     Message 8

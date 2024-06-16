@@ -886,7 +886,7 @@ _0AB6:
     WaitMovement
     Message 3
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 32, _0CE4
     ApplyMovement 241, _0CDC
     WaitMovement
@@ -898,7 +898,7 @@ _0AB6:
     ApplyMovement 0xFF, _0CAC
     WaitMovement
     ScrCmd_065 32
-    WaitFrames 35, 0x800C
+    WaitTime 35, 0x800C
     ApplyMovement 33, _0BD4
     ApplyMovement 0xFF, _0CC0
     WaitMovement

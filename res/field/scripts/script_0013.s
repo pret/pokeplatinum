@@ -16,7 +16,7 @@ _0012:
     WaitMovement
     Message 0
     CloseMessage
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     ApplyMovement 0, _004C
     WaitMovement
     Message 1

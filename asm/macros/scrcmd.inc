@@ -14,7 +14,7 @@
     .short 2
     .endm
     
-    .macro WaitFrames frames, countdown
+    .macro WaitTime frames, countdown
     .short 3
     .short \frames
     .short \countdown

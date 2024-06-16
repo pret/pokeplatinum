@@ -37,7 +37,7 @@ _0022:
     ScrCmd_065 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_1BD 0x8004
     GoToIfEq 0x8004, 0, _00A4
     GoToIfEq 0x8004, 2, _00BE

@@ -167,7 +167,7 @@ _02DF:
     LockAll
     ApplyMovement 0xFF, _212C
     WaitMovement
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Message 1
     CloseMessage
     ReleaseAll

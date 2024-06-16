@@ -318,7 +318,7 @@ _0558:
 
 _0573:
     ScrCmd_02E 32
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_136
     ScrCmd_135 137
     CloseMessage

@@ -279,7 +279,7 @@ _03C8:
     CloseMessage
     ApplyMovement 12, _0490
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _045E
     GoTo _046A

@@ -467,16 +467,16 @@ _05D7:
     CloseMessage
     ApplyMovement 18, _0668
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 18, _0670
     WaitMovement
     Message 1
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 18, _0678
     WaitMovement
     ScrCmd_065 18
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     ScrCmd_186 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
     ScrCmd_189 18, 1
@@ -697,7 +697,7 @@ _0850:
 _086E:
     Message 3
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _08A6
     GoToIfEq 0x800C, 2, _08BE

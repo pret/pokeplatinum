@@ -70,7 +70,7 @@ _006A:
     ScrCmd_065 4
     SetFlag 113
     SetVar 0x411D, 1
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 1
     ApplyMovement 5, _0110
     WaitMovement

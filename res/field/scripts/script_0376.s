@@ -270,7 +270,7 @@ _0449:
 
 _0464:
     ScrCmd_02E 9
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_136
     ScrCmd_135 169
     CloseMessage

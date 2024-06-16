@@ -62,7 +62,7 @@ _0070:
     ApplyMovement 0xFF, _0160
     ApplyMovement 128, _01B4
     WaitMovement
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_322
     Message 3
     WaitButtonPress

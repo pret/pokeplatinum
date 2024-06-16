@@ -116,7 +116,7 @@ _0158:
     ScrCmd_04E 0x48E
     ScrCmd_04F
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Call _01FC
     Message 5
     Call _0256
@@ -148,7 +148,7 @@ _01FC:
     ScrCmd_04B 0x603
     ClearFlag 0x25B
     ScrCmd_064 2
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     ApplyMovement 1, _0294
     ApplyMovement 0, _0294
     ApplyMovement 0xFF, _0294

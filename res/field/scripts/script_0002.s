@@ -119,7 +119,7 @@ _018D:
     Call _03C0
     Message 23
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_0CD 0
     Call _041B
     Message 24
@@ -161,7 +161,7 @@ _0224:
     Call _03C0
     Message 26
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_0CD 0
     Call _041B
     Message 27
@@ -976,7 +976,7 @@ _0C7C:
     Call _0CF0
     Message 79
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 30, _0DC8
     WaitMovement
     ScrCmd_065 30

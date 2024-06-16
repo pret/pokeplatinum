@@ -63,7 +63,7 @@ _00D8:
 _00E3:
     Message 2
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     FadeScreen 6, 3, 1, 0
@@ -74,7 +74,7 @@ _00E3:
     WaitFadeScreen
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
-    WaitFrames 120, 0x800C
+    WaitTime 120, 0x800C
     ScrCmd_0BE 43, 0, 8, 6, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen

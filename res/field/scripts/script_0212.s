@@ -676,7 +676,7 @@ _0947:
     ScrCmd_112
     ScrCmd_0F8 21
     ScrCmd_0F9 21
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     ScrCmd_0FD 2, 0
     ScrCmd_02F 72
     ScrCmd_10B 2, 0x800C
@@ -702,7 +702,7 @@ _0947:
     ScrCmd_0F8 4
     ScrCmd_0F9 4
     PlayFanfare 0x645
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_113
     FadeScreen 6, 1, 20, 0
     WaitFadeScreen
@@ -738,7 +738,7 @@ _0B1B:
     ApplyMovement 0, _0E64
     ApplyMovement 5, _0E54
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_04E 0x483
     ScrCmd_04F
     ApplyMovement 0, _0E6C
@@ -753,11 +753,11 @@ _0B50:
     ScrCmd_10B 0x800C, 0x800C
     Call _0C47
     ScrCmd_112
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_0F8 24
     ScrCmd_0F9 24
     ScrCmd_2BB
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_2B1
     ScrCmd_113
     FadeScreen 6, 1, 20, 0
@@ -814,7 +814,7 @@ _0C8E:
 
 _0C98:
     PlayFanfare 0x646
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     PlayFanfare 0x646
     ScrCmd_04B 0x646
     Return
@@ -823,31 +823,31 @@ _0CAC:
     PlayFanfare 0x646
     ScrCmd_04B 0x646
     PlayFanfare 0x646
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     PlayFanfare 0x646
     ScrCmd_04B 0x646
     Return
 
 _0CC8:
     PlayFanfare 0x646
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     PlayFanfare 0x646
     ScrCmd_04B 0x646
     PlayFanfare 0x646
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     PlayFanfare 0x646
     ScrCmd_04B 0x646
     Return
 
 _0CEE:
     PlayFanfare 0x646
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     PlayFanfare 0x646
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     PlayFanfare 0x646
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     PlayFanfare 0x646
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     PlayFanfare 0x646
     ScrCmd_04B 0x646
     Return

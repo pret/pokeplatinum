@@ -142,7 +142,7 @@ _013B:
     GoToIfEq 0x800C, 1, _01B2
     Message 15
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_1BD 0x8004
     GoToIfEq 0x8004, 0, _01BD
     GoToIfEq 0x8004, 1, _01D7

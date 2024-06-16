@@ -41,10 +41,10 @@ _0044:
     Message 0
     CloseMessage
     ScrCmd_29E 2, 0x8005
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_065 1
 _0059:
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _0059
     FacePlayer
     Message 1

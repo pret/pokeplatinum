@@ -75,7 +75,7 @@ _00CA:
     ScrCmd_065 28
     ScrCmd_065 26
     ScrCmd_065 19
-    WaitFrames 45, 0x800C
+    WaitTime 45, 0x800C
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _015B
     GoToIfEq 0x8004, 0x231, _016F

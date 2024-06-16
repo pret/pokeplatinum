@@ -18,19 +18,19 @@ _0020:
     PlayFanfare 0x5DC
     LockAll
     ScrCmd_02B 9
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_02B 10
     PlayFanfare 0x5DD
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_02B 11
     PlayFanfare 0x5DD
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_02B 12
     PlayFanfare 0x5DD
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_02B 13
     PlayFanfare 0x643
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_253 0
     SetVar 0x40F3, 1
     SetFlag 0x995

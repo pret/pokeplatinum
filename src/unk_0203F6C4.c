@@ -245,7 +245,7 @@ typedef struct {
 static BOOL ScrCmd_Noop(ScriptContext * ctx);
 static BOOL ScrCmd_Dummy(ScriptContext * ctx);
 static BOOL ScrCmd_End(ScriptContext * ctx);
-static BOOL ScrCmd_WaitFrames(ScriptContext * ctx);
+static BOOL ScrCmd_WaitTime(ScriptContext * ctx);
 static BOOL ScriptContext_DecrementTimer(ScriptContext * ctx);
 static BOOL ScrCmd_004(ScriptContext * ctx);
 static BOOL ScrCmd_005(ScriptContext * ctx);
@@ -776,7 +776,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Noop,
     ScrCmd_Dummy,
     ScrCmd_End,
-    ScrCmd_WaitFrames,
+    ScrCmd_WaitTime,
     ScrCmd_004,
     ScrCmd_005,
     ScrCmd_006,
@@ -1633,7 +1633,7 @@ static BOOL ScrCmd_End (ScriptContext * ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_WaitFrames (ScriptContext * ctx)
+static BOOL ScrCmd_WaitTime (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 frames = ScriptContext_ReadHalfWord(ctx);

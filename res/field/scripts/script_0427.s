@@ -109,7 +109,7 @@ _016F:
     WaitMovement
     Message 4
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 2, _0728
     ApplyMovement 0xFF, _0878
     WaitMovement
@@ -139,7 +139,7 @@ _016F:
     WaitMovement
     Message 10
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ApplyMovement 5, _07D0
     WaitMovement
     Message 11
@@ -204,7 +204,7 @@ _030B:
     CloseMessage
     ApplyMovement 5, _07D8
     WaitMovement
-    WaitFrames 25, 0x800C
+    WaitTime 25, 0x800C
     ClearFlag 0x179
     ScrCmd_064 6
     ScrCmd_062 6
@@ -223,7 +223,7 @@ _036E:
     WaitMovement
     ClearFlag 0x17D
     ScrCmd_064 12
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 23
     Message 26
     ApplyMovement 6, _08D0
@@ -239,7 +239,7 @@ _03A6:
     WaitMovement
     ClearFlag 0x17D
     ScrCmd_064 12
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 25
     Message 27
     ApplyMovement 6, _08D0
@@ -253,7 +253,7 @@ _03DE:
     CloseMessage
     ApplyMovement 5, _07F0
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 31
     ApplyMovement 2, _0778
     WaitMovement
@@ -336,7 +336,7 @@ _0512:
     ScrCmd_0CE 0
     Message 43
     CloseMessage
-    WaitFrames 40, 0x800C
+    WaitTime 40, 0x800C
     ApplyMovement 2, _07A8
     ApplyMovement 0xFF, _08BC
     WaitMovement
@@ -400,7 +400,7 @@ _0618:
     CloseMessage
     SetVar 0x4086, 2
     SetVar 0x40A4, 3
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     ScrCmd_14E
@@ -1079,7 +1079,7 @@ _0CF1:
     SetFlag 0x195
     SetVar 0x4082, 4
     SetFlag 0x196
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x19E, 0, 2, 6, 0

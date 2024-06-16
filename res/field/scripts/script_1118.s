@@ -93,7 +93,7 @@ _019F:
     ScrCmd_139 5
     ScrCmd_13F 1, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -118,7 +118,7 @@ _0219:
     ScrCmd_139 7
     ScrCmd_13F 1, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 3
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -148,7 +148,7 @@ _02A4:
     ScrCmd_139 6
     ScrCmd_13F 1, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 2
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -260,7 +260,7 @@ _0476:
 
 _0486:
     Message 38
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     ScrCmd_13B
     ReleaseAll
@@ -288,7 +288,7 @@ _04AD:
     GoToIfEq 0x800C, 2, _0486
     ScrCmd_13F 13, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -301,7 +301,7 @@ _04AD:
 _0522:
     ScrCmd_13F 16, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_13B
     CloseMessage
     ReleaseAll
@@ -319,7 +319,7 @@ _053A:
     GoToIfEq 0x800C, 2, _0486
     ScrCmd_13F 14, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -345,7 +345,7 @@ _05AF:
     GoToIfEq 0x800C, 2, _0486
     ScrCmd_13F 15, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -358,7 +358,7 @@ _05AF:
 _0646:
     ScrCmd_13F 17, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     ScrCmd_13B
     ReleaseAll
@@ -367,7 +367,7 @@ _0646:
 _065E:
     ScrCmd_13F 18, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     ReleaseAll
     End
@@ -375,7 +375,7 @@ _065E:
 _0674:
     ScrCmd_13F 26, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     ReleaseAll
     End
@@ -383,7 +383,7 @@ _0674:
 _068A:
     ScrCmd_13F 21, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     CloseMessage
     ReleaseAll
     End
@@ -391,28 +391,28 @@ _068A:
 _06A0:
     ScrCmd_13F 3, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _07AE
     End
 
 _06B8:
     ScrCmd_13F 4, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _07AE
     End
 
 _06D0:
     ScrCmd_13F 5, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _07AE
     End
 
 _06E8:
     ScrCmd_13F 6, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _07AE
 
     .byte 2
@@ -445,7 +445,7 @@ _06E8:
 _0718:
     ScrCmd_13F 8, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _07AE
     End
 
@@ -469,14 +469,14 @@ _0753:
 _075E:
     ScrCmd_13F 8, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _07AE
     End
 
 _0776:
     ScrCmd_13F 23, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 101
     CloseMessage
     ScrCmd_13E
@@ -486,7 +486,7 @@ _0776:
 _0792:
     ScrCmd_13F 24, 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 101
     CloseMessage
     ScrCmd_13E
@@ -535,7 +535,7 @@ _0853:
     GoToIfEq 0x800C, 7, _0B58
     ScrCmd_2AF 0x800C
     MessageVar 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 1
     CloseMessage
     ScrCmd_139 5
@@ -564,7 +564,7 @@ _08C7:
     ScrCmd_144 0x800C
     GoToIfEq 0x800C, 7, _0B78
     Message 27
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 3
     CloseMessage
     ScrCmd_139 7
@@ -600,7 +600,7 @@ _095C:
     ScrCmd_144 0x800C
     GoToIfEq 0x800C, 7, _0B78
     Message 22
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 2
     CloseMessage
     ScrCmd_139 6
@@ -643,7 +643,7 @@ _0A28:
     ScrCmd_144 0x800C
     GoToIfEq 0x800C, 7, _0B78
     Message 31
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 5
     CloseMessage
     ScrCmd_139 2
@@ -666,7 +666,7 @@ _0A82:
     ScrCmd_144 0x800C
     GoToIfEq 0x800C, 7, _0B78
     Message 34
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 6
     CloseMessage
     ScrCmd_139 13
@@ -687,7 +687,7 @@ _0AED:
     ScrCmd_144 0x800C
     GoToIfEq 0x800C, 7, _0B78
     Message 19
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_135 4
     CloseMessage
     ScrCmd_139 1
@@ -713,19 +713,19 @@ _0B58:
 _0B63:
     ScrCmd_139 11
     Message 25
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _0B9A
     End
 
 _0B78:
     Message 8
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _0B9A
     End
 
 _0B89:
     Message 10
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _0B9A
     End
 

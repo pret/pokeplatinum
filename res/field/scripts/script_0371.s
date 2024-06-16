@@ -43,7 +43,7 @@ _0070:
     Return
 
 _007D:
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     SetVar 0x40D8, 1
     ScrCmd_1DD 43, 0, 0x800C
     SetVar 0x8008, 0x800C

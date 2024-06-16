@@ -177,7 +177,7 @@ _0201:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    WaitFrames 120, 0x800C
+    WaitTime 120, 0x800C
     ScrCmd_168 7, 20, 19, 14, 77
     ScrCmd_16B 77
     ScrCmd_169 77

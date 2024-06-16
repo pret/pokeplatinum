@@ -196,7 +196,7 @@ _02BC:
     WaitMovement
     ApplyMovement 0xFF, _04BC
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _02FC
     GoTo _0316
@@ -225,7 +225,7 @@ _0330:
     ApplyMovement 0, _047C
     ApplyMovement 0xFF, _04B4
     WaitMovement
-    WaitFrames 35, 0x800C
+    WaitTime 35, 0x800C
     SetFlag 0x993
     ScrCmd_050 0x44A
     Message 9
@@ -256,7 +256,7 @@ _0394:
     CloseMessage
     ApplyMovement 3, _04A0
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _03DA
     GoTo _03E8
@@ -566,7 +566,7 @@ _0677:
     CloseMessage
     ApplyMovement 0, _080C
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 34
     CloseMessage
     ApplyMovement 4, _088C
@@ -593,7 +593,7 @@ _0677:
     ScrCmd_065 4
     Message 42
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0xFF, _0878
     WaitMovement
     ScrCmd_0CD 0

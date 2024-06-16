@@ -22,29 +22,29 @@ _0010:
     CloseMessage
     SetFlag 0x1DF
     ScrCmd_065 0
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     ClearFlag 0x1DF
     ScrCmd_064 0
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     SetFlag 0x1DF
     ScrCmd_065 0
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     ClearFlag 0x1DF
     ScrCmd_064 0
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     SetFlag 0x1DF
     ScrCmd_065 0
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     ClearFlag 0x1DF
     ScrCmd_064 0
-    WaitFrames 8, 0x800C
+    WaitTime 8, 0x800C
     SetFlag 0x1DF
     ScrCmd_065 0
     ScrCmd_21C 0
     Message 1
     CloseMessage
     GoToIfEq 0x4059, 3, _0184
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _00DE
     GoToIfEq 0x800C, 1, _00EE

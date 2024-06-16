@@ -74,7 +74,7 @@ _0104:
     ScrCmd_04F
     Message 10
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0xFF, _01C8
     ApplyMovement 5, _01B0
     WaitMovement
@@ -401,7 +401,7 @@ _04A4:
     PlayFanfare 0x5DC
     LockAll
     FacePlayer
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _052B
     GoToIfEq 0x800C, 1, _053D

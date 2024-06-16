@@ -106,14 +106,14 @@ _012F:
     Message 13
     PlayFanfare 0x5E6
     ScrCmd_04B 0x5E6
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 14
-    WaitFrames 32, 0x800C
+    WaitTime 32, 0x800C
     ScrCmd_04E 0x483
     ScrCmd_0D4 1, 0x8003
     Message 15
     ScrCmd_04F
-    WaitFrames 16, 0x800C
+    WaitTime 16, 0x800C
     GoTo _0245
     End
 
@@ -139,7 +139,7 @@ _0224:
     Message 8
     ScrCmd_04E 0x483
     ScrCmd_04F
-    WaitFrames 16, 0x800C
+    WaitTime 16, 0x800C
     GoTo _0245
     End
 

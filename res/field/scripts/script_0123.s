@@ -840,7 +840,7 @@ _086F:
     ApplyMovement 26, _0AF0
     WaitMovement
     PlayFanfare 0x65B
-    WaitFrames 4, 0x800C
+    WaitTime 4, 0x800C
     Message 19
     ScrCmd_04B 0x5DC
     ScrCmd_29F 1
@@ -1161,7 +1161,7 @@ _0C22:
     WaitMovement
     ScrCmd_04C 0x1C5, 0
     ScrCmd_04D
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ApplyMovement 28, _0C70
     WaitMovement
     PlayFanfare 0x603

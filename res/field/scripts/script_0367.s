@@ -857,7 +857,7 @@ _0E58:
     Call _0734
     ScrCmd_330
     Message 32
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_136
     ScrCmd_135 3
     GoTo _05EC

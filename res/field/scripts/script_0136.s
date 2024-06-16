@@ -109,7 +109,7 @@ _00F6:
     CallIfEq 0x8004, 0x2AB, _03B9
     CallIfEq 0x8004, 0x2AC, _03D5
     ScrCmd_065 25
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ScrCmd_14D 0x8004
     CallIfEq 0x8004, 0, _02A7
     CallIfEq 0x8004, 1, _02C4
@@ -138,7 +138,7 @@ _02A7:
     ScrCmd_0CD 0
     Message 7
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0xFF, _052C
     WaitMovement
     Message 8
@@ -148,7 +148,7 @@ _02C4:
     ScrCmd_0CD 0
     Message 9
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0xFF, _052C
     WaitMovement
     Message 10
@@ -516,7 +516,7 @@ _0656:
     CallIfEq 0x8005, 0x255, _09E7
     Message 17
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09F3
     CallIfEq 0x8005, 0x255, _09FF
@@ -534,13 +534,13 @@ _0656:
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _0A4B
     CallIfEq 0x8005, 0x255, _0A5F
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_0CD 0
     ScrCmd_14D 0x8004
     CallIfEq 0x8004, 0, _0A2D
     CallIfEq 0x8004, 1, _0A32
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ClearFlag 0x28A
     ScrCmd_186 26, 0x2B4, 0x25E
     ScrCmd_064 26

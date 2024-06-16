@@ -23,7 +23,7 @@ _002F:
 
 _003F:
     LockAll
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ScrCmd_22F 0x8004
     GoToIfLt 0x8004, 10, _0078
     SetVar 0x40A7, 1
@@ -39,7 +39,7 @@ _003F:
 _0078:
     Message 0
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x1C9, 0, 0x338, 0x1C6, 1

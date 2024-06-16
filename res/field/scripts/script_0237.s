@@ -33,7 +33,7 @@ _0022:
     Message 0
     CloseMessage
     ScrCmd_20D 4, 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
 _0088:
     ScrCmd_20D 6, 0x800C
     GoToIfEq 0x800C, 0, _0088

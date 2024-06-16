@@ -113,7 +113,7 @@ _01C3:
     SetVar 0x4074, 1
     Message 11
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_065 1
@@ -509,7 +509,7 @@ _0596:
     ApplyMovement 2, _07F0
     ApplyMovement 0xFF, _0858
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 18
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0713

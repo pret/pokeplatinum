@@ -40,7 +40,7 @@ _0064:
     ScrCmd_0CE 1
     Message 0
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0, _00CC
     WaitMovement
     SetVar 0x40A4, 1
@@ -117,16 +117,16 @@ _0170:
 
 _017C:
     LockAll
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ApplyMovement 0, _01D4
     ApplyMovement 0xFF, _01F8
     WaitMovement
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     Message 6
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_0CD 0
     Message 7
     ScrCmd_15A

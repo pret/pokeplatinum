@@ -49,10 +49,10 @@ _006F:
     ScrCmd_066 46, 53
     ApplyMovement 241, _01B4
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 1
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ApplyMovement 4, _01E0
     ApplyMovement 241, _01C0
     WaitMovement
@@ -66,7 +66,7 @@ _006F:
     WaitMovement
     PlayFanfare 0x603
     ScrCmd_065 4
-    WaitFrames 50, 0x800C
+    WaitTime 50, 0x800C
     ApplyMovement 0xFF, _0378
     ApplyMovement 5, _02AC
     WaitMovement
@@ -76,7 +76,7 @@ _006F:
     ApplyMovement 5, _02B8
     ApplyMovement 0xFF, _0380
     WaitMovement
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_0CD 1
     Message 4
     ScrCmd_04C 0x1E1, 0
@@ -86,7 +86,7 @@ _006F:
     ApplyMovement 5, _02C0
     ApplyMovement 0xFF, _0388
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 5, _02F0
     WaitMovement
     ScrCmd_0CE 0
@@ -95,7 +95,7 @@ _006F:
     CloseMessage
     ApplyMovement 5, _02E8
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_0CD 1
     Message 7
     CloseMessage

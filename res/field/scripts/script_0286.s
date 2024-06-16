@@ -207,7 +207,7 @@ _019C:
     WaitMovement
     Message 4
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 5
     CloseMessage
     ScrCmd_065 0
@@ -230,7 +230,7 @@ _019C:
     WaitMovement
     Message 9
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 9, _0454
     ApplyMovement 10, _045C
     WaitMovement

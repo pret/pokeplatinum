@@ -73,7 +73,7 @@ _00D3:
     FacePlayer
     ApplyMovement 1, _013C
     WaitMovement
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 1
     CloseMessage
     ScrCmd_0E5 0x198, 0

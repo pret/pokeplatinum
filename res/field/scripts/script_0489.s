@@ -21,7 +21,7 @@ _0012:
     CloseMessage
     ApplyMovement 3, _0160
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_0CE 1
     Message 6
     CloseMessage
@@ -43,7 +43,7 @@ _0012:
     ApplyMovement 3, _0170
     ApplyMovement 0xFF, _0108
     WaitMovement
-    WaitFrames 5, 0x800C
+    WaitTime 5, 0x800C
     ScrCmd_0CE 1
     Message 10
     Message 11

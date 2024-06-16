@@ -437,7 +437,7 @@ _074B:
 
 _0766:
     ScrCmd_02E 9
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_136
     ScrCmd_135 109
     CloseMessage

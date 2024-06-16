@@ -98,7 +98,7 @@ _0111:
     End
 
 _011B:
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ClearFlag 0x1F3
     ScrCmd_064 7
     ApplyMovement 7, _016C
@@ -261,7 +261,7 @@ _02A0:
     CloseMessage
     ApplyMovement 10, _0334
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 16
     CloseMessage
     ApplyMovement 10, _033C

@@ -1010,13 +1010,13 @@ _0D6E:
     ScrCmd_2FA 0x8004
     ScrCmd_2F8
     SetVar 0x8007, 0
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     GoTo _0D88
     End
 
 _0D88:
     AddVar 0x8007, 1
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     DebugWatch 0x8007
     ScrCmd_2FC 0x800C
     GoToIfEq 0x800C, 1, _0DC2

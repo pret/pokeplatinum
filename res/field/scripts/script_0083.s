@@ -313,14 +313,14 @@ _0541:
     Message 4
     PlayFanfare 0x5E6
     ScrCmd_04B 0x5E6
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 5
-    WaitFrames 32, 0x800C
+    WaitTime 32, 0x800C
     ScrCmd_04E 0x483
     ScrCmd_0D4 1, 0x8001
     Message 6
     ScrCmd_04F
-    WaitFrames 16, 0x800C
+    WaitTime 16, 0x800C
     GoTo _0613
     End
 

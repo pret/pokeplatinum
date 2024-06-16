@@ -96,14 +96,14 @@ _0124:
     CloseMessage
     GoToIfEq 0x800C, 1, _0124
     Call _029A
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_054 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     ScrCmd_270 3, 1
     ScrCmd_333 0
     ScrCmd_0BE 0x18F, 0, 0x38C, 0x1EC, 0
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
     Call _02B8
@@ -131,7 +131,7 @@ _01F5:
     WaitMovement
     ApplyMovement 0xFF, _0438
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 11
     Return
 

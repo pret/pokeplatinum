@@ -33,11 +33,11 @@ _004B:
 _0056:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    WaitFrames 40, 0x800C
+    WaitTime 40, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _008A
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ScrCmd_1E5 116
     GoTo _0150
 
@@ -362,9 +362,9 @@ _0574:
 
 _05A5:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 2
     WaitButtonPress
     CloseMessage
@@ -373,9 +373,9 @@ _05A5:
 
 _05C4:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 3
     WaitButtonPress
     CloseMessage
@@ -384,9 +384,9 @@ _05C4:
 
 _05E3:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 4
     WaitButtonPress
     CloseMessage
@@ -395,9 +395,9 @@ _05E3:
 
 _0602:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 5
     ScrCmd_04E 0x483
     Message 8
@@ -411,9 +411,9 @@ _0602:
 
 _0633:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 6
     ScrCmd_04E 0x483
     Message 8
@@ -427,9 +427,9 @@ _0633:
 
 _0664:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 7
     ScrCmd_04E 0x483
     Message 8

@@ -46,7 +46,7 @@ _004C:
     Message 1
     Message 2
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _0092
     GoToIfEq 0x800C, 2, _00AA

@@ -380,7 +380,7 @@ _0526:
 
 _0552:
     ScrCmd_258
-    WaitFrames 2, 0x800C
+    WaitTime 2, 0x800C
     Call _0568
     ScrCmd_259
     GoTo _057D
@@ -520,7 +520,7 @@ _06D5:
     ScrCmd_07C 94, 1, 0x800C
     ScrCmd_260 1
     ScrCmd_127
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 51
     WaitButtonPress
     CloseMessage
@@ -1577,9 +1577,9 @@ _14AC:
     ScrCmd_0CD 0
     Message 123
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_050 0x447
-    WaitFrames 0x21C, 0x800C
+    WaitTime 0x21C, 0x800C
     ScrCmd_069 0x8004, 0x8005
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen

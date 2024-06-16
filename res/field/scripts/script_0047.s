@@ -46,13 +46,13 @@ _0091:
 
 _0093:
     LockAll
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 0
     CloseMessage
     ApplyMovement 0, _0148
     ApplyMovement 0xFF, _0130
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_0CD 0
     Message 1
     CloseMessage
@@ -70,7 +70,7 @@ _0093:
     WaitFadeScreen
     FadeScreen 6, 6, 0, 0
     WaitFadeScreen
-    WaitFrames 120, 0x800C
+    WaitTime 120, 0x800C
     ScrCmd_0BE 0x140, 0, 152, 0x115, 1
     FadeScreen 6, 6, 1, 0
     WaitFadeScreen

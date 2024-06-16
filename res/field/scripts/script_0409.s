@@ -52,12 +52,12 @@ _00AE:
     CloseMessage
     ScrCmd_0C5 0x8004
     ScrCmd_29E 0, 0x8005
-    WaitFrames 7, 0x800C
+    WaitTime 7, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
     ScrCmd_1CD 19, 0x8004, 0, 0, 0
 _00E8:
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _00E8
     GoTo _066D
     End
@@ -69,12 +69,12 @@ _0103:
     CloseMessage
     ScrCmd_0C5 0x8000
     ScrCmd_29E 0, 0x8005
-    WaitFrames 7, 0x800C
+    WaitTime 7, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
     ScrCmd_1CD 19, 0x8004, 0, 0, 0
 _0133:
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _0133
     ReleaseAll
     End
@@ -153,12 +153,12 @@ _0284:
     CloseMessage
     ScrCmd_0C5 0x8004
     ScrCmd_29E 1, 0x8005
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
     ScrCmd_1CD 24, 0x8004, 0, 0, 0
 _02B2:
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _02B2
     GoTo _066D
     End
@@ -170,12 +170,12 @@ _02CD:
     CloseMessage
     ScrCmd_0C5 0x8000
     ScrCmd_29E 1, 0x8005
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_065 0x800D
     ScrCmd_201 0x8004
     ScrCmd_1CD 24, 0x8004, 0, 0, 0
 _02FD:
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _02FD
     ReleaseAll
     End
@@ -399,7 +399,7 @@ _064C:
     ScrCmd_0C5 0x8000
     ScrCmd_1D0 1
     ScrCmd_0C3
-    WaitFrames 42, 0x800C
+    WaitTime 42, 0x800C
     GoTo _0675
 
 _066D:

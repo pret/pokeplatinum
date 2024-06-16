@@ -249,7 +249,7 @@ _0294:
     WaitMovement
     SetVar 0x4074, 2
     SetFlag 0x299
-    WaitFrames 12, 0x800C
+    WaitTime 12, 0x800C
     Message 11
     WaitButtonPress
     CloseMessage

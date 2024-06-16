@@ -474,7 +474,7 @@ _057C:
     ScrCmd_169 77
     ScrCmd_16A 77
     ScrCmd_065 14
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _0610
     GoToIfEq 0x800C, 1, _061D

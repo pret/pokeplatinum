@@ -148,7 +148,7 @@ _01E3:
     ScrCmd_077
     ScrCmd_04B 0x5D5
     Message 3
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _01A4
 
 _0240:
@@ -167,7 +167,7 @@ _0240:
     ScrCmd_077
     ScrCmd_04B 0x5D5
     Message 3
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     GoTo _01A4
 
 _029D:

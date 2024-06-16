@@ -1200,7 +1200,7 @@ _1305:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     LockAll
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     ScrCmd_32D
     ScrCmd_338
     ApplyMovement 5, _1758
@@ -1244,7 +1244,7 @@ _1305:
     WaitMovement
     ScrCmd_32E
     ScrCmd_339
-    WaitFrames 2, 0x800C
+    WaitTime 2, 0x800C
     End
 
 _14C2:

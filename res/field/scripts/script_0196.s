@@ -34,9 +34,9 @@ _000E:
     WaitMovement
     ApplyMovement 0, _0150
     WaitMovement
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_25C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     SetFlag 0x23A
     SetFlag 0x23B
     ApplyMovement 0xFF, _013C

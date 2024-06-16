@@ -456,9 +456,9 @@ _0508:
     CloseMessage
     ScrCmd_054 0, 30
     ScrCmd_20D 0, 0x800C
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     PlayFanfare 0x5C8
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ScrCmd_050 0x478
     ScrCmd_05D
     GoTo _0567

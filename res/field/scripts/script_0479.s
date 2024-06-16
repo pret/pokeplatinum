@@ -398,7 +398,7 @@ _04F6:
     ScrCmd_014 0x7D9
     Message 4
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0xFF, _0570
     WaitMovement
     ApplyMovement 1, _0564

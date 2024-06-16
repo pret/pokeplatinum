@@ -37,7 +37,7 @@ _0014:
     GoToIfEq 0x800C, 0, _0150
     Message 3
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0, _0174
     ApplyMovement 4, _01F4
     WaitMovement

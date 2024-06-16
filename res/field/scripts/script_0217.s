@@ -95,7 +95,7 @@ _0107:
     CloseMessage
     ApplyMovement 7, _0374
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 4
     ApplyMovement 1, _0364
     WaitMovement

@@ -43,7 +43,7 @@ _0062:
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0340
     WaitMovement
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     Message 1
@@ -57,7 +57,7 @@ _0062:
     CloseMessage
     ApplyMovement 4, _035C
     WaitMovement
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_0CD 0
     Message 4
     CloseMessage
@@ -152,7 +152,7 @@ _0184:
     WaitFadeScreen
     Message 22
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 4, _03B4
     WaitMovement
     ScrCmd_0CE 0
