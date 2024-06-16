@@ -303,8 +303,8 @@ static BOOL ScrCmd_2C0(ScriptContext * ctx);
 static BOOL ScrCmd_02E(ScriptContext * ctx);
 static BOOL ScrCmd_02F(ScriptContext * ctx);
 static BOOL sub_02040014(ScriptContext * ctx);
-static BOOL ScrCmd_030(ScriptContext * ctx);
-static BOOL sub_02040190(ScriptContext * ctx);
+static BOOL ScrCmd_WaitABPress(ScriptContext * ctx);
+static BOOL ScriptContext_CheckABPress(ScriptContext * ctx);
 static BOOL ScrCmd_WaitABXPadPress(ScriptContext * ctx);
 static BOOL ScriptContext_CheckABXPadPress(ScriptContext * ctx);
 static BOOL ScrCmd_032(ScriptContext * ctx);
@@ -821,7 +821,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_MessageVar,
     ScrCmd_02E,
     ScrCmd_02F,
-    ScrCmd_030,
+    ScrCmd_WaitABPress,
     ScrCmd_WaitABXPadPress,
     ScrCmd_032,
     ScrCmd_033,
@@ -2291,19 +2291,16 @@ static BOOL ScrCmd_02F (ScriptContext * ctx)
     return 1;
 }
 
-static BOOL ScrCmd_030 (ScriptContext * ctx)
+static BOOL ScrCmd_WaitABPress (ScriptContext * ctx)
 {
-    ScriptContext_Pause(ctx, sub_02040190);
-    return 1;
+    ScriptContext_Pause(ctx, ScriptContext_CheckABPress);
+    return TRUE;
 }
 
-static BOOL sub_02040190 (ScriptContext * ctx)
+static BOOL ScriptContext_CheckABPress (ScriptContext * ctx)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        return 1;
-    }
-
-    return 0;
+    // this doesn't match using == TRUE or leaving off a comparison entirely
+    return (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) != FALSE; 
 }
 
 static BOOL ScrCmd_190 (ScriptContext * ctx)
