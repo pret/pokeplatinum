@@ -1531,7 +1531,7 @@ static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fil
     }
 
     if (max < corrected) {
-        if ((updated == (*temp >> 8)) && ((*temp & 0xff) == 0)) {
+        if (updated == (*temp >> 8) && (*temp & 0xff) == 0) {
             return -1;
         }
     } else {
