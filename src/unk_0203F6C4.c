@@ -307,8 +307,8 @@ static BOOL ScrCmd_WaitABPress(ScriptContext * ctx);
 static BOOL ScriptContext_CheckABPress(ScriptContext * ctx);
 static BOOL ScrCmd_WaitABXPadPress(ScriptContext * ctx);
 static BOOL ScriptContext_CheckABXPadPress(ScriptContext * ctx);
-static BOOL ScrCmd_032(ScriptContext * ctx);
-static BOOL sub_02040294(ScriptContext * ctx);
+static BOOL ScrCmd_WaitABPadPress(ScriptContext * ctx);
+static BOOL ScriptContext_CheckABPadPress(ScriptContext * ctx);
 static BOOL ScrCmd_033(ScriptContext * ctx);
 static BOOL ScrCmd_CloseMessage(ScriptContext * ctx);
 static BOOL ScrCmd_035(ScriptContext * ctx);
@@ -532,8 +532,8 @@ static BOOL ScrCmd_179(ScriptContext * ctx);
 static BOOL ScrCmd_17A(ScriptContext * ctx);
 static BOOL ScrCmd_18D(ScriptContext * ctx);
 static BOOL ScrCmd_18E(ScriptContext * ctx);
-static BOOL ScrCmd_190(ScriptContext * ctx);
-static BOOL sub_020401D0(ScriptContext * ctx);
+static BOOL ScrCmd_WaitABPressTime(ScriptContext * ctx);
+static BOOL ScriptContext_DecrementABPressTimer(ScriptContext * ctx);
 static BOOL ScrCmd_191(ScriptContext * ctx);
 static BOOL ScrCmd_193(ScriptContext * ctx);
 static BOOL ScrCmd_2D0(ScriptContext * ctx);
@@ -823,7 +823,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_02F,
     ScrCmd_WaitABPress,
     ScrCmd_WaitABXPadPress,
-    ScrCmd_032,
+    ScrCmd_WaitABPadPress,
     ScrCmd_033,
     ScrCmd_CloseMessage,
     ScrCmd_035,
@@ -1173,7 +1173,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_18D,
     ScrCmd_18E,
     ScrCmd_18F,
-    ScrCmd_190,
+    ScrCmd_WaitABPressTime,
     ScrCmd_191,
     ScrCmd_192,
     ScrCmd_193,
@@ -2303,26 +2303,22 @@ static BOOL ScriptContext_CheckABPress (ScriptContext * ctx)
     return (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) != FALSE; 
 }
 
-static BOOL ScrCmd_190 (ScriptContext * ctx)
+static BOOL ScrCmd_WaitABPressTime (ScriptContext * ctx)
 {
     ctx->data[0] = ScriptContext_GetVar(ctx);
-    ScriptContext_Pause(ctx, sub_020401D0);
-    return 1;
+    ScriptContext_Pause(ctx, ScriptContext_DecrementABPressTimer);
+    return TRUE;
 }
 
-static BOOL sub_020401D0 (ScriptContext * ctx)
+static BOOL ScriptContext_DecrementABPressTimer (ScriptContext * ctx)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        return 1;
+        return TRUE;
     }
 
     ctx->data[0]--;
 
-    if (ctx->data[0] == 0) {
-        return 1;
-    }
-
-    return 0;
+    return ctx->data[0] == 0;
 }
 
 static BOOL ScrCmd_WaitABXPadPress (ScriptContext * ctx)
@@ -2354,23 +2350,19 @@ static BOOL ScriptContext_CheckABXPadPress (ScriptContext * ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_032 (ScriptContext * ctx)
+static BOOL ScrCmd_WaitABPadPress (ScriptContext * ctx)
 {
-    ScriptContext_Pause(ctx, sub_02040294);
-    return 1;
+    ScriptContext_Pause(ctx, ScriptContext_CheckABPadPress);
+    return TRUE;
 }
 
-static BOOL sub_02040294 (ScriptContext * ctx)
+static BOOL ScriptContext_CheckABPadPress (ScriptContext * ctx)
 {
+    // this function doesn't match simplified further, using == TRUE, or leaving off a comparison entirely
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        return 1;
+        return TRUE;
     }
-
-    if (gCoreSys.pressedKeys & PAD_KEY) {
-        return 1;
-    }
-
-    return 0;
+    return (gCoreSys.pressedKeys & PAD_KEY) != FALSE; 
 }
 
 static BOOL ScrCmd_033 (ScriptContext * ctx)
