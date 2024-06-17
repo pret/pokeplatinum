@@ -52,7 +52,7 @@ void include_unk_ov6_02248F30();
 typedef struct {
     FieldSystem * fieldSystem;
     UnkStruct_02099F80 unk_04;
-    MotionBlur * unk_2C;
+    MotionBlur * motionBlur;
     int unk_30;
     int unk_34;
     u32 unk_38;
@@ -325,7 +325,7 @@ static void ov6_0223E140 (UnkStruct_ov6_0223E140 * param0)
         param0->unk_38++;
         break;
     case 1:
-        param0->unk_2C = ov6_0223E2BC(param0->unk_30, param0->unk_34);
+        param0->motionBlur = ov6_0223E2BC(param0->unk_30, param0->unk_34);
         param0->unk_38++;
         break;
     case 2:
@@ -455,10 +455,10 @@ static void ov6_0223E2AC (BGL * param0)
 
 static MotionBlur * ov6_0223E2BC (int param0, int param1)
 {
-    MotionBlur * v0;
+    MotionBlur * motionBlur;
 
     {
-        MotionBlurParams v1 = {
+        MotionBlurParams motionBlurParams = {
             GX_DISPMODE_VRAM_C,
             GX_BGMODE_0,
             GX_BG0_AS_3D,
@@ -472,13 +472,13 @@ static MotionBlur * ov6_0223E2BC (int param0, int param1)
             4
         };
 
-        v1.blendCoeffA = param0;
-        v1.blendCoeffB = param1;
+        motionBlurParams.blendCoeffA = param0;
+        motionBlurParams.blendCoeffB = param1;
 
-        v0 = MotionBlur_New(&v1);
+        motionBlur = MotionBlur_New(&motionBlurParams);
     }
 
-    return v0;
+    return motionBlur;
 }
 
 static void ov6_0223E2E8 (UnkStruct_ov6_0223E140 * param0)
@@ -490,7 +490,7 @@ static void ov6_0223E2FC (SysTask * param0, void * param1)
 {
     UnkStruct_ov6_0223E140 * v0 = param1;
 
-    MotionBlur_Delete(&v0->unk_2C, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
+    MotionBlur_Delete(&v0->motionBlur, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     SysTask_Done(param0);
 }
 

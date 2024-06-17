@@ -4,7 +4,7 @@
 #include "overlay005/motion_blur.h"
 
 typedef struct FieldMotionBlur {
-    MotionBlur * unk_00;
+    MotionBlur *motionBlur;
 } FieldMotionBlur;
 
 FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB);
