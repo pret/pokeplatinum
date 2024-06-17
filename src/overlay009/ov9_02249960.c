@@ -288,7 +288,7 @@ typedef struct {
 } UnkStruct_ov9_0224A0DC;
 
 typedef struct {
-    UnkStruct_020203AC * unk_00;
+    Camera * unk_00;
     CameraAngle unk_04;
     CameraAngle unk_0C;
     CameraAngle unk_14;

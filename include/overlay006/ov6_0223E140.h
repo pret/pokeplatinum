@@ -27,7 +27,7 @@ void ov6_0223FCE8(UnkStruct_ov5_021D1BEC * param0);
 u32 ov6_0223FCF4(UnkStruct_ov5_021D1BEC * param0);
 UnkStruct_ov6_0223FDE4 * ov6_0223FDE4(u32 param0);
 void ov6_0223FE08(UnkStruct_ov6_0223FDE4 * param0);
-void ov6_0223FE1C(UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u32 param3, u32 param4, UnkStruct_020203AC * param5);
+void ov6_0223FE1C(UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u32 param3, u32 param4, Camera * param5);
 void ov6_0223FE9C(UnkStruct_ov6_0223FDE4 * param0);
 BOOL ov6_0223FF6C(UnkStruct_ov6_0223FDE4 * param0);
 u32 ov6_0223FFF4(const UnkStruct_ov6_0223FDE4 * param0);

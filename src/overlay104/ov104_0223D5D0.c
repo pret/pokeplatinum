@@ -50,7 +50,7 @@ UnkStruct_02014014 * ov104_0223D614 (UnkStruct_ov104_0223D5F0 * param0, int para
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    UnkStruct_020203AC * v2;
+    Camera * v2;
     void * v3;
 
     GF_ASSERT(param0->unk_00[param1] == NULL);

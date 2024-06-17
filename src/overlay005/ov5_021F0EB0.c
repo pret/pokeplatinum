@@ -25,7 +25,7 @@ typedef struct {
     u32 unk_24;
     fx32 unk_28;
     FieldSystem * fieldSystem;
-    UnkStruct_020203AC * unk_30;
+    Camera * unk_30;
 } UnkStruct_ov5_021F0FB8;
 
 static void ov5_021F0F2C(SysTask * param0, void * param1);

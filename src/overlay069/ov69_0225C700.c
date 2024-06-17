@@ -146,7 +146,7 @@ typedef struct {
 } UnkStruct_ov69_0225CA7C;
 
 typedef struct {
-    UnkStruct_020203AC * unk_00;
+    Camera * unk_00;
     CameraAngle unk_04;
     fx32 unk_0C;
     u16 unk_10;
@@ -1760,12 +1760,12 @@ static u32 ov69_0225DA70 (const UnkStruct_ov69_0225CA7C * param0)
 
 static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225DA74 param1, u32 param2)
 {
-    param0->unk_00 = sub_020203AC(param2);
+    param0->unk_00 = Camera_Alloc(param2);
 
     sub_02020784(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->unk_00);
     sub_020206BC(0, (FX32_ONE * 100), param0->unk_00);
     sub_02020854(0, param0->unk_00);
-    sub_020203D4(param0->unk_00);
+    Camera_SetAsActive(param0->unk_00);
 
     if (param1.unk_00_0 == 0) {
         param0->unk_10 = 1;
@@ -1780,7 +1780,7 @@ static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
 
 static void ov69_0225DAEC (UnkStruct_ov69_0225DAEC * param0)
 {
-    sub_020203B8(param0->unk_00);
+    Camera_Delete(param0->unk_00);
 }
 
 static void ov69_0225DAF8 (const UnkStruct_ov69_0225DAEC * param0)

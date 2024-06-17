@@ -1748,7 +1748,7 @@ static void ov10_022216E0 (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
 {
-    UnkStruct_020203AC * v0;
+    Camera * v0;
     void * v1;
 
     param0->unk_B4C = sub_02024220(param0->unk_00->unk_24, 0, 4, 0, 2, NULL);

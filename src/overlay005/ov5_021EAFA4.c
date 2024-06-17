@@ -16,7 +16,7 @@ typedef struct UnkStruct_ov5_021EB0E0_t {
     VecFx32 unk_10;
     fx32 unk_1C;
     MtxFx43 unk_20;
-    UnkStruct_020203AC * unk_50;
+    Camera * unk_50;
     VecFx32 unk_54;
 } UnkStruct_ov5_021EB0E0;
 
@@ -80,7 +80,7 @@ VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_02
     }
 }
 
-UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (UnkStruct_020203AC * const param0)
+UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (Camera * const param0)
 {
     UnkStruct_ov5_021EB0E0 * v0;
 
@@ -90,7 +90,7 @@ UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (UnkStruct_020203AC * const param0)
     return v0;
 }
 
-void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, UnkStruct_020203AC * const param1)
+void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
 {
     CameraAngle v0;
 

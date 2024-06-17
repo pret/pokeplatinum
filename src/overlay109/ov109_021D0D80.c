@@ -166,7 +166,7 @@ typedef struct {
     u32 unk_04;
     VecFx32 unk_08;
     CameraAngle cameraAngle;
-    UnkStruct_020203AC * unk_1C;
+    Camera * unk_1C;
 } UnkStruct_ov109_021D28C4;
 
 typedef struct {
@@ -2176,7 +2176,7 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
 {
     UnkStruct_ov109_021D28C4 * v0 = &param0->unk_D0C;
 
-    v0->unk_1C = sub_020203AC(95);
+    v0->unk_1C = Camera_Alloc(95);
 
     {
         VecFx32 v1;
@@ -2199,14 +2199,14 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
         v1.z = 0;
 
         sub_02020680(&v1, v0->unk_1C);
-        sub_020203D4(v0->unk_1C);
+        Camera_SetAsActive(v0->unk_1C);
     }
 }
 
 static void ov109_021D293C (UnkStruct_ov109_021D0F70 * param0)
 {
     UnkStruct_ov109_021D28C4 * v0 = &param0->unk_D0C;
-    sub_020203B8(v0->unk_1C);
+    Camera_Delete(v0->unk_1C);
 }
 
 static void ov109_021D294C (UnkStruct_ov109_021D0F70 * param0)

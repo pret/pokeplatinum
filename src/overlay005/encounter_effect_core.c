@@ -85,7 +85,7 @@
 #define CAVE_HIGHER_LEVEL_CAMERA_SPEED                  (FX32_ONE * -5)
 
 typedef struct GrassEncounterEffect {
-    UnkStruct_020203AC * camera;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 camDistanceTask;
     ScreenSliceEffect * screenSliceEfx;
 } GrassEncounterEffect;
@@ -102,7 +102,7 @@ typedef struct WaterEncounterEffect {
 } WaterEncounterEffect;
 
 typedef struct CaveEncounterEffect {
-    UnkStruct_020203AC * camera;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 camInterpolation;
 } CaveEncounterEffect;
 
@@ -601,7 +601,7 @@ typedef struct TrainerGrassEncounterEffect {
     UnkStruct_ov5_021DE47C unk_48;
     UnkStruct_ov5_021DE5A4 unk_1E8;
     GraphicElementData * pokeballSprites[2];
-    UnkStruct_020203AC * camera;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 unk_228;
     s32 unk_240;
 } TrainerGrassEncounterEffect;
@@ -613,7 +613,7 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
     GraphicElementData * unk_200[2];
-    UnkStruct_020203AC * unk_208;
+    Camera * unk_208;
     QuadraticInterpolationTaskFX32 unk_20C;
     s32 unk_224;
 } UnkStruct_ov5_021E2EB0;
@@ -627,7 +627,7 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_50;
     UnkStruct_ov5_021DE5A4 unk_1F0;
     GraphicElementData * unk_224[2];
-    UnkStruct_020203AC * unk_22C;
+    Camera * unk_22C;
     QuadraticInterpolationTaskFX32 unk_230;
     s32 unk_248;
 } UnkStruct_ov5_021E31A4;
@@ -643,7 +643,7 @@ typedef struct {
     Window * unk_270;
     ScreenShakeEffect unk_274;
     BOOL unk_280;
-    UnkStruct_020203AC * unk_284;
+    Camera * unk_284;
     QuadraticInterpolationTaskFX32 unk_288;
     s32 unk_2A0;
 } UnkStruct_ov5_021E3560;
@@ -656,7 +656,7 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC;
     GraphicElementData * unk_230;
-    UnkStruct_020203AC * unk_234;
+    Camera * unk_234;
     QuadraticInterpolationTaskFX32 unk_238;
     s32 unk_250;
 } UnkStruct_ov5_021E3AD0;
@@ -670,7 +670,7 @@ typedef struct {
     BOOL unk_258[3];
     Window * unk_264;
     UnkStruct_ov5_021DE928 * unk_268;
-    UnkStruct_020203AC * unk_26C;
+    Camera * unk_26C;
     QuadraticInterpolationTaskFX32 unk_270;
     s16 unk_288;
 } UnkStruct_ov5_021E3D8C;
@@ -2398,14 +2398,14 @@ static const LegendaryEncounterCameraParam sLegendaryEncounterCameraParams[16] =
 
 typedef struct MythicalEncounterEffect {
     FieldMotionBlur *motionBlur;
-    UnkStruct_020203AC *unused;
+    Camera *unused;
     u32 cameraState;
     s32 frameDelay;
 } MythicalEncounterEffect;
 
 typedef struct LegendaryEncounterEffect {
     FieldMotionBlur * motionBlur;
-    UnkStruct_020203AC *unused;
+    Camera *unused;
     LinearInterpolationTaskS32 fovInterpolation;
     QuadraticInterpolationTaskFX32 distanceInterpolation;
     s32 frameDelay;

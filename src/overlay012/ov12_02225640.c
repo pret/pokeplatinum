@@ -44,7 +44,7 @@ static void ov12_02225640 (UnkStruct_ov12_02225640 * param0, int param1[])
 
 static BOOL ov12_0222564C (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
-    UnkStruct_020203AC * v0;
+    Camera * v0;
     CameraAngle v1 = {0, 0, 0};
 
     v0 = sub_02014784(param1->unk_04);
@@ -55,7 +55,7 @@ static BOOL ov12_0222564C (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 
 static BOOL ov12_02225670 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
-    UnkStruct_020203AC * v0;
+    Camera * v0;
     CameraAngle v1 = {(0x1000 * 2), (0x1000 * 2), 0};
 
     v0 = sub_02014784(param1->unk_04);
@@ -70,7 +70,7 @@ static BOOL ov12_022256AC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 {
     int v0[4];
     CameraAngle v1 = {0, 0, 0, 0};
-    UnkStruct_020203AC * v2;
+    Camera * v2;
 
     ov12_02225640(param1, v0);
 
@@ -86,7 +86,7 @@ static BOOL ov12_022256AC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 
 static BOOL ov12_022256E8 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
-    UnkStruct_020203AC * v0;
+    Camera * v0;
     CameraAngle v1 = {-(0x1000 * 3), (0x1000 * 2), 0x1000};
 
     v0 = sub_02014784(param1->unk_04);
@@ -99,7 +99,7 @@ static BOOL ov12_022256E8 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 
 static BOOL ov12_02225724 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
-    UnkStruct_020203AC * v0;
+    Camera * v0;
     CameraAngle v1 = {49664, 5952, 4096};
     CameraAngle v2 = {9248, 3744, 0};
 
@@ -117,7 +117,7 @@ static BOOL ov12_02225724 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 
 static BOOL ov12_02225784 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
-    UnkStruct_020203AC * v0;
+    Camera * v0;
     CameraAngle v1 = {49664, 5952, 4096};
 
     v0 = sub_02014784(param1->unk_04);
@@ -130,7 +130,7 @@ static BOOL ov12_02225784 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 
 static BOOL ov12_022257C0 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
-    UnkStruct_020203AC * v0;
+    Camera * v0;
     CameraAngle v1 = {0, 0, -6000};
 
     v0 = sub_02014784(param1->unk_04);
@@ -144,7 +144,7 @@ static BOOL ov12_022257C0 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 static BOOL ov12_022257FC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
     VecFx32 v0;
-    UnkStruct_020203AC * v1;
+    Camera * v1;
 
     v1 = sub_02014784(param1->unk_04);
 
@@ -157,7 +157,7 @@ static BOOL ov12_022257FC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 static BOOL ov12_02225824 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
 {
     VecFx32 v0;
-    UnkStruct_020203AC * v1;
+    Camera * v1;
 
     v1 = sub_02014784(param1->unk_04);
 

@@ -17,7 +17,7 @@ UnkStruct_02014014 * ov11_0221F840 (int param0)
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    UnkStruct_020203AC * v2;
+    Camera * v2;
 
     v1 = Heap_AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, param0);
@@ -34,7 +34,7 @@ UnkStruct_02014014 * ov11_0221F888 (int param0)
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    UnkStruct_020203AC * v2;
+    Camera * v2;
 
     v1 = Heap_AllocFromHeap(param0, 0x4200);
 

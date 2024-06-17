@@ -36,7 +36,7 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 * param0);
 static void ov100_021D1A24(UnkStruct_ov100_021D1808 * param0);
 static void ov100_021D1A54(UnkStruct_ov100_021D1808 * param0);
 static void ov100_021D17B4(UnkStruct_ov100_021D1808 * param0);
-static void ov100_021D1758(UnkStruct_020203AC * param0, VecFx32 * param1);
+static void ov100_021D1758(Camera * param0, VecFx32 * param1);
 
 void * ov100_021D13E4 (UnkStruct_ov100_021D4DD8 * param0)
 {
@@ -203,13 +203,13 @@ BOOL ov100_021D16C4 (void * param0)
     return 1;
 }
 
-static void ov100_021D1758 (UnkStruct_020203AC * param0, VecFx32 * param1)
+static void ov100_021D1758 (Camera * param0, VecFx32 * param1)
 {
     CameraAngle v0 = {1274, 0, 0};
 
     sub_020206D0(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, param0);
     sub_02020854(0, param0);
-    sub_020203D4(param0);
+    Camera_SetAsActive(param0);
     sub_020206BC(FX32_CONST(0.1), FX32_CONST(2048), param0);
 }
 

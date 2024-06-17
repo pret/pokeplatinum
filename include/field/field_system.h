@@ -54,7 +54,7 @@ typedef struct FieldSystem_t {
     int unk_18;
     Location * location;
     int unk_20;
-    UnkStruct_020203AC * camera;
+    Camera * camera;
     UnkStruct_ov5_021E8F60 * unk_28;
     UnkStruct_02039E30 * unk_2C;
     UnkStruct_ov5_021EF76C * unk_30;

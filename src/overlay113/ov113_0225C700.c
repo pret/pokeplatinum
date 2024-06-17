@@ -120,7 +120,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     Window unk_B4;
     Strbuf* unk_C4;
     u8 unk_C8;
-    UnkStruct_020203AC * unk_CC;
+    Camera * unk_CC;
     fx32 unk_D0;
     fx32 unk_D4;
     UnkStruct_ov113_0225DBCC_sub1 unk_D8;
@@ -1172,11 +1172,11 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
 {
     VecFx32 v0 = {0, (-FX32_ONE * 8), 0};
 
-    param0->unk_CC = sub_020203AC(118);
+    param0->unk_CC = Camera_Alloc(118);
 
     sub_020206D0(&v0, 0x7c000, &Unk_ov113_022608B4, (((22 * 0xffff) / 360)), 0, 0, param0->unk_CC);
     sub_020206BC((FX32_ONE), (FX32_ONE * 900), param0->unk_CC);
-    sub_020203D4(param0->unk_CC);
+    Camera_SetAsActive(param0->unk_CC);
 
     {
         u16 v1;
@@ -1196,7 +1196,7 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
 
 static void ov113_0225DA9C (UnkStruct_ov113_0225DBCC * param0)
 {
-    sub_020203B8(param0->unk_CC);
+    Camera_Delete(param0->unk_CC);
 }
 
 static void ov113_0225DAA8 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
@@ -1237,7 +1237,7 @@ static void ov113_0225DB08 (UnkStruct_ov113_0225DBCC * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    sub_020203D4(param0->unk_CC);
+    Camera_SetAsActive(param0->unk_CC);
     sub_02020854(0, param0->unk_CC);
     sub_020203EC();
 

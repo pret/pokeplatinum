@@ -32,7 +32,7 @@
 
 typedef struct {
     GenericPointerData * unk_00;
-    UnkStruct_020203AC * unk_04;
+    Camera * unk_04;
     SysTask * unk_08;
     int unk_0C;
     int unk_10;
@@ -218,7 +218,7 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
         };
         VecFx32 v1 = {0, 0, 0};
 
-        param0->unk_04 = sub_020203AC(30);
+        param0->unk_04 = Camera_Alloc(30);
 
         sub_020206D0(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04);
         sub_020206BC(0, (FX32_ONE * 300), param0->unk_04);
@@ -232,13 +232,13 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
             Camera_SetAngle(&v2, param0->unk_04);
         }
 
-        sub_020203D4(param0->unk_04);
+        Camera_SetAsActive(param0->unk_04);
     }
 }
 
 static void ov121_021D1068 (UnkStruct_ov121_021D0FF4 * param0)
 {
-    sub_020203B8(param0->unk_04);
+    Camera_Delete(param0->unk_04);
 }
 
 static void ov121_021D1074 (UnkStruct_ov121_021D0FF4 * param0)
@@ -301,7 +301,7 @@ static void ov121_021D11A8 (UnkStruct_ov121_021D0FF4 * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    sub_020203D4(param0->unk_04);
+    Camera_SetAsActive(param0->unk_04);
     sub_02020854(0, param0->unk_04);
     sub_020203EC();
 

@@ -833,7 +833,7 @@ static void ov17_0223E774 (UnkStruct_ov17_0224DF54 * param0)
 static void ov17_0223E778 (UnkStruct_ov17_0224DF54 * param0)
 {
     void * v0;
-    UnkStruct_020203AC * v1;
+    Camera * v1;
     void * v2;
 
     GF_ASSERT(param0->unk_0C == NULL);

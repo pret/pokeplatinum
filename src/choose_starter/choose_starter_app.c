@@ -159,7 +159,7 @@ typedef struct ChooseStarterCameraMovement {
     ChooseStarterMovement unk_00;
     ChooseStarterMovement unk_10;
     ChooseStarterMovement unk_20;
-    UnkStruct_020203AC * unk_30;
+    Camera * unk_30;
     VecFx32 * unk_34;
     s32 unk_38;
     BOOL unk_3C;
@@ -231,7 +231,7 @@ typedef struct ChooseStarterApp {
     StarterPreviewGraphics unk_274;
     NNSFndAllocator unk_2B4;
     ChooseStarter3DGraphics unk_2C4[6];
-    UnkStruct_020203AC * unk_648;
+    Camera * unk_648;
     VecFx32 unk_64C;
     ChooseStarterCursor unk_658;
     GXRgb edgeMarkings[8];
@@ -276,7 +276,7 @@ static void ov78_021D1518(ChooseStarterApp * param0);
 static void MakeCellActors(ChooseStarterApp * param0, int param1);
 static void ov78_021D1594(ChooseStarterApp * param0);
 static void MakeCamera(ChooseStarterApp * param0, int param1);
-static void ov78_021D1B3C(UnkStruct_020203AC * param0, VecFx32 * param1);
+static void ov78_021D1B3C(Camera * param0, VecFx32 * param1);
 static void ov78_021D1B90(ChooseStarterApp * param0);
 static void Make3DObjects(ChooseStarterApp * param0, int param1);
 static void ov78_021D1908(ChooseStarterApp * param0);
@@ -327,7 +327,7 @@ static void ov78_021D2108(ChooseStarterMovement * param0, s32 param1, s32 param2
 static BOOL ov78_021D2114(ChooseStarterMovement * param0, s32 param1);
 static void ov78_021D235C(ChooseStarterRotation * param0, fx32 param1, int param2);
 static void ov78_021D2368(ChooseStarterRotation * param0);
-static void ov78_021D213C(ChooseStarterCameraMovement * param0, UnkStruct_020203AC * param1, VecFx32 * param2);
+static void ov78_021D213C(ChooseStarterCameraMovement * param0, Camera * param1, VecFx32 * param2);
 static void ov78_021D219C(SysTask * param0, void * param1);
 static BOOL ov78_021D2200(ChooseStarterCameraMovement * param0);
 static void StartCursorMovement(ChooseStarterCursor * param0);
@@ -1070,11 +1070,11 @@ static void DrawScene (ChooseStarterApp * param0)
 
 static void MakeCamera (ChooseStarterApp * param0, int param1)
 {
-    param0->unk_648 = sub_020203AC(param1);
+    param0->unk_648 = Camera_Alloc(param1);
     ov78_021D1B3C(param0->unk_648, &param0->unk_64C);
 }
 
-static void ov78_021D1B3C (UnkStruct_020203AC * param0, VecFx32 * param1)
+static void ov78_021D1B3C (Camera * param0, VecFx32 * param1)
 {
     CameraAngle v0;
     VecFx32 v1;
@@ -1094,12 +1094,12 @@ static void ov78_021D1B3C (UnkStruct_020203AC * param0, VecFx32 * param1)
     v1.z = 0;
 
     sub_02020680(&v1, param0);
-    sub_020203D4(param0);
+    Camera_SetAsActive(param0);
 }
 
 static void ov78_021D1B90 (ChooseStarterApp * param0)
 {
-    sub_020203B8(param0->unk_648);
+    Camera_Delete(param0->unk_648);
 }
 
 static void MakeSelectionMatrix (ChooseStarterApp * param0)
@@ -1400,7 +1400,7 @@ static BOOL ov78_021D2114 (ChooseStarterMovement * param0, s32 param1)
     return v1;
 }
 
-static void ov78_021D213C (ChooseStarterCameraMovement * param0, UnkStruct_020203AC * param1, VecFx32 * param2)
+static void ov78_021D213C (ChooseStarterCameraMovement * param0, Camera * param1, VecFx32 * param2)
 {
     GF_ASSERT(param0->unk_40 == NULL);
 

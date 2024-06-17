@@ -77,7 +77,7 @@ typedef struct PokemonSummaryAppData {
 } PokemonSummaryAppData;
 
 typedef struct PokemonSummaryAppSpriteData {
-    UnkStruct_020203AC * unk_00;
+    Camera * unk_00;
     void *spriteManager;
     SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;

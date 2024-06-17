@@ -696,7 +696,7 @@ static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    sub_020203D4(param0->unk_28);
+    Camera_SetAsActive(param0->unk_28);
     sub_02020854(0, param0->unk_28);
     sub_020203EC();
 
@@ -759,18 +759,18 @@ static void ov99_021D1918 (UnkStruct_ov99_021D2CB0 * param0)
     VecFx32 v1 = {-31712, -142304, 496744};
     VecFx32 v2 = {-31712, -67780, -5704};
 
-    param0->unk_28 = sub_020203AC(75);
+    param0->unk_28 = Camera_Alloc(75);
 
     sub_020206D0(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->unk_28);
     sub_02020ADC(&v1, param0->unk_28);
     sub_02020ACC(&v2, param0->unk_28);
     sub_020206BC((FX32_ONE), (FX32_ONE * 900), param0->unk_28);
-    sub_020203D4(param0->unk_28);
+    Camera_SetAsActive(param0->unk_28);
 }
 
 static void ov99_021D19A0 (UnkStruct_ov99_021D2CB0 * param0)
 {
-    sub_020203B8(param0->unk_28);
+    Camera_Delete(param0->unk_28);
 }
 
 static GenericPointerData * ov99_021D19AC (int param0)

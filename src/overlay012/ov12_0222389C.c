@@ -103,7 +103,7 @@ void ov12_022238E0 (UnkSPLStruct6 * param0)
 
     {
         CameraAngle v11;
-        UnkStruct_020203AC * v12;
+        Camera * v12;
 
         v12 = sub_02014784(v1);
 

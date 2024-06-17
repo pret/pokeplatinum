@@ -45,8 +45,8 @@ typedef struct UnkStruct_ov5_021D4E00_t {
     u16 unk_0C;
 } UnkStruct_ov5_021D4E00;
 
-static void ov5_021D4798(UnkStruct_020203AC * param0, u8 * param1);
-static void ov5_021D47DC(UnkStruct_020203AC * param0, u8 * param1);
+static void ov5_021D4798(Camera * param0, u8 * param1);
+static void ov5_021D47DC(Camera * param0, u8 * param1);
 static u8 ov5_021D481C(const int param0);
 
 UnkStruct_ov5_021D432C * ov5_021D431C (void)
@@ -418,7 +418,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
     return 0;
 }
 
-static void ov5_021D4798 (UnkStruct_020203AC * param0, u8 * param1)
+static void ov5_021D4798 (Camera * param0, u8 * param1)
 {
     u8 v0;
     u16 v1;
@@ -448,7 +448,7 @@ static void ov5_021D4798 (UnkStruct_020203AC * param0, u8 * param1)
     }
 }
 
-static void ov5_021D47DC (UnkStruct_020203AC * param0, u8 * param1)
+static void ov5_021D47DC (Camera * param0, u8 * param1)
 {
     u8 v0;
     u16 v1;

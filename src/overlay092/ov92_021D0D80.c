@@ -106,7 +106,7 @@ typedef struct {
     VecFx32 unk_BAA8;
     VecFx32 unk_BAB4;
     VecFx32 unk_BAC0;
-    UnkStruct_020203AC * unk_BACC;
+    Camera * unk_BACC;
     CameraAngle unk_BAD0;
     u16 unk_BAD8;
     VecFx32 unk_BADC;
@@ -357,7 +357,7 @@ int ov92_021D0D80 (OverlayManager * param0, int * param1)
     sub_0201D710();
 
     v0->unk_B870 = StringTemplate_New(8, 64, v0->unk_00);
-    v0->unk_BACC = sub_020203AC(v0->unk_00);
+    v0->unk_BACC = Camera_Alloc(v0->unk_00);
     v0->unk_BAE8 = 0;
 
     gCoreSys.unk_65 = 1;
@@ -705,7 +705,7 @@ int ov92_021D1478 (OverlayManager * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    sub_020203B8(v0->unk_BACC);
+    Camera_Delete(v0->unk_BACC);
     StringTemplate_Free(v0->unk_B870);
     sub_0201CBA0();
     Heap_FreeToHeap(v0->unk_B810);
@@ -1286,7 +1286,7 @@ static void ov92_021D22B0 (UnkStruct_ov92_021D1B24 * param0)
     sub_02020784(&v0, &v1, 0x5c1, 0, 0, param0->unk_BACC);
     sub_020206BC(0, (FX32_ONE * 100), param0->unk_BACC);
     sub_02020854(0, param0->unk_BACC);
-    sub_020203D4(param0->unk_BACC);
+    Camera_SetAsActive(param0->unk_BACC);
 
     if (param0->unk_BAF4 == 0) {
         param0->unk_BAD8 = 1;

@@ -304,7 +304,7 @@ typedef struct {
     UnkStruct_ov19_021DA864 unk_1BC;
     UnkStruct_02009DC8 * unk_1E0[4];
     UnkStruct_02012744 * unk_1F0;
-    UnkStruct_020203AC * unk_1F4;
+    Camera * unk_1F4;
     VecFx32 unk_1F8;
     UnkStruct_ov115_02264FA0 unk_204;
     UnkStruct_ov115_02261574 unk_3E8;
@@ -3282,7 +3282,7 @@ static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 p
     VecFx32 v1;
     MtxFx33 v2;
 
-    param0->unk_1F4 = sub_020203AC(param3);
+    param0->unk_1F4 = Camera_Alloc(param3);
     param0->unk_1F8.x = 0;
     param0->unk_1F8.y = 0;
     param0->unk_1F8.z = 0;
@@ -3298,13 +3298,13 @@ static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 p
     v1.z = 0;
 
     sub_02020680(&v1, param0->unk_1F4);
-    sub_020203D4(param0->unk_1F4);
+    Camera_SetAsActive(param0->unk_1F4);
     sub_020206BC((FX32_CONST(200)), (FX32_CONST(1000)), param0->unk_1F4);
 }
 
 static void ov115_02263CC0 (UnkStruct_ov115_02261ADC * param0)
 {
-    sub_020203B8(param0->unk_1F4);
+    Camera_Delete(param0->unk_1F4);
 }
 
 static void ov115_02263CD0 (UnkStruct_ov115_02261ADC * param0)

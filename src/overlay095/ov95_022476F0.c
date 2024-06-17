@@ -31,7 +31,7 @@ struct UnkStruct_ov95_02247958_t {
 };
 
 struct UnkStruct_ov95_0224773C_t {
-    UnkStruct_020203AC * unk_00;
+    Camera * unk_00;
     VecFx32 unk_04;
     CameraAngle cameraAngle;
     UnkStruct_ov95_02247958 * unk_18;
@@ -257,7 +257,7 @@ static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 p
     CameraAngle v0;
     VecFx32 v1;
 
-    param0->unk_00 = sub_020203AC(58);
+    param0->unk_00 = Camera_Alloc(58);
     param0->unk_04.x = param1;
     param0->unk_04.y = param2;
     param0->unk_04.z = param3;
@@ -272,12 +272,12 @@ static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 p
     v1.z = 0;
 
     sub_02020680(&v1, param0->unk_00);
-    sub_020203D4(param0->unk_00);
+    Camera_SetAsActive(param0->unk_00);
     sub_020206BC((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->unk_00);
 }
 
 static void ov95_02247B5C (UnkStruct_ov95_0224773C * param0)
 {
-    sub_020203E0();
-    sub_020203B8(param0->unk_00);
+    Camera_ClearActive();
+    Camera_Delete(param0->unk_00);
 }

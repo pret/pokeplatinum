@@ -53,7 +53,7 @@ typedef struct {
 typedef struct {
     void * unk_00;
     NNSG3dResTex * unk_04;
-    UnkStruct_020203AC * unk_08;
+    Camera * unk_08;
     UnkStruct_ov77_021D37C0_sub1_sub1 unk_0C[6];
     int unk_21C;
 } UnkStruct_ov77_021D37C0_sub1;
@@ -877,7 +877,7 @@ static void ov77_021D2B38 (void * param0)
         v2->unk_25B = 0;
 
         sub_02020854(0, v2->unk_20.unk_08);
-        sub_020203D4(v2->unk_20.unk_08);
+        Camera_SetAsActive(v2->unk_20.unk_08);
     }
 
     if (v1->unk_0C != NULL) {
@@ -1374,8 +1374,8 @@ static void ov77_021D35B8 (UnkStruct_ov77_021D2E9C * param0)
     int v0;
 
     if (param0->unk_34.unk_04 || param0->unk_34.unk_05) {
-        sub_020203E0();
-        sub_020203B8(param0->unk_34.unk_20.unk_08);
+        Camera_ClearActive();
+        Camera_Delete(param0->unk_34.unk_20.unk_08);
 
         for (v0 = 0; v0 < param0->unk_34.unk_20.unk_21C; v0++) {
             Heap_FreeToHeap(param0->unk_34.unk_20.unk_0C[v0].unk_54);
@@ -1740,7 +1740,7 @@ static void ov77_021D3F24 (UnkStruct_ov77_021D37C0 * param0, int param1, int par
 
 static void ov77_021D4044 (UnkStruct_ov77_021D37C0 * param0, int param1)
 {
-    param0->unk_20.unk_08 = sub_020203AC(76);
+    param0->unk_20.unk_08 = Camera_Alloc(76);
 
     {
         VecFx32 v0 = {0, 0, FX32_ONE * 16 * 6};
@@ -1753,7 +1753,7 @@ static void ov77_021D4044 (UnkStruct_ov77_021D37C0 * param0, int param1)
             sub_02020990(&v1, param0->unk_20.unk_08);
         }
 
-        sub_020203D4(param0->unk_20.unk_08);
+        Camera_SetAsActive(param0->unk_20.unk_08);
     }
 }
 

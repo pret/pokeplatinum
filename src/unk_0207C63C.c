@@ -137,7 +137,7 @@ static UnkStruct_02014014 * sub_0207C7CC (int param0)
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    UnkStruct_020203AC * v2;
+    Camera * v2;
 
     v1 = Heap_AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, param0);

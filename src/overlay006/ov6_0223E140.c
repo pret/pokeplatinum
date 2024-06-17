@@ -76,7 +76,7 @@ typedef struct {
     s32 unk_04;
     UnkStruct_ov6_0223FDE4 * unk_08;
     UnkStruct_ov6_02240000 * unk_0C;
-    UnkStruct_020203AC * unk_10;
+    Camera * unk_10;
 } UnkStruct_ov6_0223E548_sub1;
 
 typedef struct {
@@ -145,8 +145,8 @@ typedef struct {
 } UnkStruct_ov6_0223EA98;
 
 typedef struct UnkStruct_ov6_0223FDE4_t {
-    UnkStruct_020203AC * unk_00;
-    UnkStruct_020203AC * unk_04;
+    Camera * unk_00;
+    Camera * unk_04;
     UnkStruct_ov6_0223FD0C unk_08;
     UnkStruct_ov6_0223FD0C unk_18;
     VecFx32 unk_28;
@@ -1846,7 +1846,7 @@ UnkStruct_ov6_0223FDE4 * ov6_0223FDE4 (u32 param0)
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_0223FDE4));
     memset(v0, 0, sizeof(UnkStruct_ov6_0223FDE4));
-    v0->unk_00 = sub_020203AC(param0);
+    v0->unk_00 = Camera_Alloc(param0);
     v0->unk_40 = 5;
 
     return v0;
@@ -1854,20 +1854,20 @@ UnkStruct_ov6_0223FDE4 * ov6_0223FDE4 (u32 param0)
 
 void ov6_0223FE08 (UnkStruct_ov6_0223FDE4 * param0)
 {
-    sub_020203B8(param0->unk_00);
+    Camera_Delete(param0->unk_00);
     Heap_FreeToHeap(param0);
 }
 
-void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u32 param3, u32 param4, UnkStruct_020203AC * param5)
+void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u32 param3, u32 param4, Camera * param5)
 {
     ov6_0223FF7C(param0);
-    sub_020203C0(param5, param0->unk_00);
+    Camera_Copy(param5, param0->unk_00);
 
     param0->unk_28 = sub_02020AAC(param5);
     param0->unk_34 = param0->unk_28;
 
     sub_02020690(&param0->unk_28, param0->unk_00);
-    sub_020203D4(param0->unk_00);
+    Camera_SetAsActive(param0->unk_00);
 
     param0->unk_04 = param5;
 
@@ -1927,7 +1927,7 @@ void ov6_0223FE9C (UnkStruct_ov6_0223FDE4 * param0)
         }
         break;
     case 4:
-        sub_020203D4(param0->unk_04);
+        Camera_SetAsActive(param0->unk_04);
         param0->unk_40++;
         break;
     case 5:

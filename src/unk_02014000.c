@@ -38,7 +38,7 @@ typedef struct UnkStruct_02014014_t {
     void * unk_14;
     UnkFuncPtr_02014014 unk_18;
     UnkFuncPtr_02014014 unk_1C;
-    UnkStruct_020203AC * unk_20;
+    Camera * unk_20;
     VecFx32 unk_24;
     u16 unk_30;
     VecFx32 unk_34;
@@ -163,7 +163,7 @@ UnkStruct_02014014 * sub_02014014 (UnkFuncPtr_02014014 param0, UnkFuncPtr_020140
     Unk_021BF618[v1] = v0;
 
     if (param4 == 1) {
-        v0->unk_20 = sub_020203AC(param5);
+        v0->unk_20 = Camera_Alloc(param5);
         {
             VEC_Set(&v0->unk_24, 0, 0, 0);
             v0->unk_30 = 8192;
@@ -175,7 +175,7 @@ UnkStruct_02014014 * sub_02014014 (UnkFuncPtr_02014014 param0, UnkFuncPtr_020140
                          v0->unk_20
                          );
             v0->unk_DB = 0;
-            sub_020203D4(v0->unk_20);
+            Camera_SetAsActive(v0->unk_20);
         }
     }
 
@@ -232,7 +232,7 @@ void sub_0201411C (UnkStruct_02014014 * param0)
     }
 
     if (param0->unk_20 != NULL) {
-        sub_020203B8(param0->unk_20);
+        Camera_Delete(param0->unk_20);
     }
 
     Heap_FreeToHeap(param0);
@@ -511,7 +511,7 @@ void sub_02014638 (UnkStruct_02014014 * param0)
 
     if (param0->unk_20 != NULL) {
         sub_02020854(param0->unk_DB, param0->unk_20);
-        sub_020203D4(param0->unk_20);
+        Camera_SetAsActive(param0->unk_20);
         sub_020203EC();
     }
 
@@ -521,7 +521,7 @@ void sub_02014638 (UnkStruct_02014014 * param0)
     SPL_0209C5E0(param0->unk_00, v0);
 
     if (param0->unk_20 != NULL) {
-        sub_020203E0();
+        Camera_ClearActive();
     }
 
     NNS_G3dGlbFlush();
@@ -636,7 +636,7 @@ void sub_02014770 (VecFx32 * param0)
     *param0 = Unk_020E5430;
 }
 
-UnkStruct_020203AC * sub_02014784 (UnkStruct_02014014 * param0)
+Camera * sub_02014784 (UnkStruct_02014014 * param0)
 {
     return param0->unk_20;
 }

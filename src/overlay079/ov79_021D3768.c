@@ -61,7 +61,7 @@ void ov79_021D3820 (UnkStruct_ov79_021D3820 * param0)
 
 void ov79_021D385C (UnkStruct_ov79_021D3820 * param0)
 {
-    sub_020203B8(param0->unk_00);
+    Camera_Delete(param0->unk_00);
     sub_02007B6C(param0->unk_04);
 }
 
@@ -72,12 +72,12 @@ static void ov79_021D3870 (UnkStruct_ov79_021D3820 * param0, int param1)
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
-    param0->unk_00 = sub_020203AC(param1);
+    param0->unk_00 = Camera_Alloc(param1);
 
     sub_02020738(&v0, v2, &v1, v3, 1, param0->unk_00);
     sub_020206BC(0, FX32_CONST(100), param0->unk_00);
     sub_020206B0(param0->unk_00);
-    sub_020203D4(param0->unk_00);
+    Camera_SetAsActive(param0->unk_00);
 }
 
 static void ov79_021D38D0 (UnkStruct_ov79_021D3820 * param0, UnkStruct_ov79_021D38D0 * param1, int param2)

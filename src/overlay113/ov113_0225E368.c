@@ -53,7 +53,7 @@ __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {
 typedef int (* UnkFuncPtr_ov113_02260CAC)(UnkStruct_ov113_0225EB20 *, UnkStruct_ov113_0225E6B8 *);
 typedef void (* UnkFuncPtr_ov113_02260CAC_1)(UnkStruct_ov113_0225EB20 *, UnkStruct_ov113_0225E6B8 *);
 typedef BOOL (* UnkFuncPtr_ov113_02260CAC_2)(UnkStruct_ov113_0225EB20 *, UnkStruct_ov113_0225E6B8 *, UnkStruct_ov113_0225E6B8 *);
-typedef BOOL (* UnkFuncPtr_ov113_02260C0C)(UnkStruct_ov113_0225EB20 *, UnkStruct_ov113_0225EB20_sub1 *, UnkStruct_020203AC *);
+typedef BOOL (* UnkFuncPtr_ov113_02260C0C)(UnkStruct_ov113_0225EB20 *, UnkStruct_ov113_0225EB20_sub1 *, Camera *);
 
 typedef struct {
     UnkFuncPtr_ov113_02260CAC unk_00;
@@ -226,16 +226,16 @@ static BOOL ov113_0225F874(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_02
 static BOOL ov113_0225FA84(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225E6B8 * param1, UnkStruct_ov113_0225E6B8 * param2);
 static BOOL ov113_0225FCA4(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225E6B8 * param1, UnkStruct_ov113_0225E6B8 * param2);
 static BOOL ov113_0225FD64(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225E6B8 * param1, UnkStruct_ov113_0225E6B8 * param2);
-static BOOL ov113_0225FE30(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_0225FEE0(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_0225FF8C(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_02260064(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_0226013C(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_02260218(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_022602E4(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_02260394(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_0226046C(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
-static BOOL ov113_02260544(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2);
+static BOOL ov113_0225FE30(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_0225FEE0(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_0225FF8C(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_02260064(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_0226013C(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_02260218(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_022602E4(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_02260394(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_0226046C(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
+static BOOL ov113_02260544(UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2);
 
 static const struct {
     fx32 unk_00;
@@ -399,7 +399,7 @@ BOOL ov113_0225E398 (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0225EB20
     return 0;
 }
 
-void ov113_0225E3F0 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_020203AC * param1, int param2, int param3)
+void ov113_0225E3F0 (UnkStruct_ov113_0225EB20 * param0, Camera * param1, int param2, int param3)
 {
     int v0;
     UnkStruct_ov113_0225E6B8 * v1;
@@ -1818,7 +1818,7 @@ static BOOL ov113_0225FD80 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_0225FE30 * v0 = &param1->unk_00;
 
@@ -1859,7 +1859,7 @@ static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_0225FEE0 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_0225FEE0 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_0225FEE0 * v0 = &param1->unk_08;
     fx32 v1;
@@ -1908,7 +1908,7 @@ static BOOL ov113_0225FEE0 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_0225FF8C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_0225FF8C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_0225FF8C * v0 = &param1->unk_18;
     CameraAngle v1 = {0, 0, 0, 0};
@@ -1951,7 +1951,7 @@ static BOOL ov113_0225FF8C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_02260064 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_02260064 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_02260064 * v0 = &param1->unk_28;
     CameraAngle v1 = {0, 0, 0, 0};
@@ -1994,7 +1994,7 @@ static BOOL ov113_02260064 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_0226013C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_0226013C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_0226013C * v0 = &param1->unk_38;
     CameraAngle v1 = {0, 0, 0, 0};
@@ -2040,7 +2040,7 @@ static BOOL ov113_0226013C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_02260218 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_02260218 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_02260218 * v0 = &param1->unk_48;
     fx32 v1;
@@ -2076,7 +2076,7 @@ static BOOL ov113_02260218 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_022602E4 * v0 = &param1->unk_58;
 
@@ -2117,7 +2117,7 @@ static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_02260394 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_02260394 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_02260394 * v0 = &param1->unk_60;
     VecFx32 v1 = {0, 0, 0};
@@ -2156,7 +2156,7 @@ static BOOL ov113_02260394 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_0226046C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_0226046C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_0226046C * v0 = &param1->unk_80;
     VecFx32 v1 = {0, 0, 0};
@@ -2195,7 +2195,7 @@ static BOOL ov113_0226046C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     return 0;
 }
 
-static BOOL ov113_02260544 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, UnkStruct_020203AC * param2)
+static BOOL ov113_02260544 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225EB20_sub1 * param1, Camera * param2)
 {
     UnkStruct_ov113_02260544 * v0 = &param1->unk_A0;
     CameraAngle v1 = {0, 0, 0, 0};

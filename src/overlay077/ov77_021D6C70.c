@@ -113,7 +113,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 {
     u8 v0;
     ArchivedSprite v1;
-    UnkStruct_020203AC * v2;
+    Camera * v2;
     void * v3;
     int v4[3] = {389, 392, 395};
     int v5[3];

@@ -22,7 +22,7 @@
 #include "overlay093/ov93_021D0D80.h"
 
 typedef struct {
-    UnkStruct_020203AC * unk_00;
+    Camera * unk_00;
     NNSG3dRenderObj unk_04;
     NNSG3dResMdl * unk_58;
     NNSG3dResFileHeader * unk_5C;
@@ -95,7 +95,7 @@ int ov93_021D0D80 (OverlayManager * param0, int * param1)
 
     v1->unk_9C = v2->unk_00;
     v1->unk_9D = 0;
-    v1->unk_00 = sub_020203AC(72);
+    v1->unk_00 = Camera_Alloc(72);
 
     ov93_021D0FA8();
     ov93_021D102C(v1);
@@ -104,7 +104,7 @@ int ov93_021D0D80 (OverlayManager * param0, int * param1)
         VecFx32 v3 = {0, 0, 0};
 
         sub_020206D0(&v3, Unk_ov93_021D14B8.unk_00, &Unk_ov93_021D14B8.cameraAngle, Unk_ov93_021D14B8.unk_0E, Unk_ov93_021D14B8.unk_0C, 0, v1->unk_00);
-        sub_020203D4(v1->unk_00);
+        Camera_SetAsActive(v1->unk_00);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -191,7 +191,7 @@ int ov93_021D0F58 (OverlayManager * param0, int * param1)
     }
 
     Heap_FreeToHeap(v1->unk_5C);
-    sub_020203B8(v1->unk_00);
+    Camera_Delete(v1->unk_00);
     OverlayManager_FreeData(param0);
     sub_0201CBA0();
     Heap_Destroy(72);

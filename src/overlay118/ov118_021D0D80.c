@@ -191,7 +191,7 @@ static void ov118_021D0FB8 (GameWindowLayout * param0)
 static void ov118_021D0FDC (OverlayMetadata * param0)
 {
     void * v0;
-    UnkStruct_020203AC * v1;
+    Camera * v1;
 
     sub_02014000();
 

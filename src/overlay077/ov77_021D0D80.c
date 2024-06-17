@@ -64,8 +64,8 @@ typedef struct {
     VecFx32 unk_80;
     VecFx32 unk_8C;
     VecFx32 unk_98;
-    UnkStruct_020203AC * unk_A4;
-    UnkStruct_020203AC * unk_A8;
+    Camera * unk_A4;
+    Camera * unk_A8;
     int unk_AC;
     UnkStruct_02017294 unk_B0;
     UnkStruct_02017248 unk_128;
@@ -155,7 +155,7 @@ static void ov77_021D1300(UnkStruct_ov77_021D1208 * param0, int param1);
 static void ov77_021D1514(UnkStruct_ov77_021D1208 * param0);
 static void ov77_021D1704(UnkStruct_ov77_021D1208 * param0);
 static void ov77_021D1984(UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D1208 * param1);
-static void ov77_021D25AC(UnkStruct_020203AC * param0);
+static void ov77_021D25AC(Camera * param0);
 static void ov77_021D2214(BGL * param0, int param1, UnkStruct_ov77_021D1568 * param2);
 static void ov77_021D2428(BGL * param0, int param1, UnkStruct_ov77_021D1568 * param2);
 static void ov77_021D24C8(UnkStruct_ov77_021D1568 * param0);
@@ -531,10 +531,10 @@ static void ov77_021D1568 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
     if ((param0->unk_29C == 0) && (param0->unk_2A0 == 1)) {
         ov77_021D25AC(param1->unk_A8);
         sub_02020854(0, param1->unk_A8);
-        sub_020203D4(param1->unk_A8);
+        Camera_SetAsActive(param1->unk_A8);
     } else {
         sub_02020854(0, param1->unk_A4);
-        sub_020203D4(param1->unk_A4);
+        Camera_SetAsActive(param1->unk_A4);
     }
 
     {
@@ -869,12 +869,12 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
         param0->unk_248.x = param0->unk_258.x;
         param0->unk_248.y = param0->unk_258.y;
         param0->unk_248.z = param0->unk_258.z;
-        param0->unk_04.unk_A4 = sub_020203AC(param2);
+        param0->unk_04.unk_A4 = Camera_Alloc(param2);
 
         sub_02020784(&param0->unk_23C, &param0->unk_248, 0xb60, 0, 0, param0->unk_04.unk_A4);
         sub_020206BC(0, (FX32_ONE * 300), param0->unk_04.unk_A4);
         sub_02020854(0, param0->unk_04.unk_A4);
-        sub_020203D4(param0->unk_04.unk_A4);
+        Camera_SetAsActive(param0->unk_04.unk_A4);
     }
     {
         static const CameraAngle v0 = {
@@ -884,7 +884,7 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
         };
         VecFx32 v1 = {0, 0, 0};
 
-        param0->unk_04.unk_A8 = sub_020203AC(param2);
+        param0->unk_04.unk_A8 = Camera_Alloc(param2);
 
         sub_020206D0(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04.unk_A8);
         sub_020206BC(0, (FX32_ONE * 300), param0->unk_04.unk_A8);
@@ -894,7 +894,7 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
             sub_02020990(&v2, param0->unk_04.unk_A8);
         }
 
-        sub_020203D4(param0->unk_04.unk_A8);
+        Camera_SetAsActive(param0->unk_04.unk_A8);
     }
     {
         NNS_G3dGlbLightVector(0, param0->unk_288.x, param0->unk_288.y, param0->unk_288.z);
@@ -1203,8 +1203,8 @@ static BOOL ov77_021D20E4 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
 
 static BOOL ov77_021D21C0 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int param2)
 {
-    sub_020203B8(param0->unk_04.unk_A4);
-    sub_020203B8(param0->unk_04.unk_A8);
+    Camera_Delete(param0->unk_04.unk_A4);
+    Camera_Delete(param0->unk_04.unk_A8);
 
     ov77_021D14E4(&param0->unk_04);
     ov77_021D2428(param1, param2, param0);
@@ -1362,7 +1362,7 @@ static void ov77_021D24C8 (UnkStruct_ov77_021D1568 * param0)
     }
 }
 
-static void ov77_021D25AC (UnkStruct_020203AC * param0)
+static void ov77_021D25AC (Camera * param0)
 {
     return;
 }

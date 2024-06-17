@@ -447,10 +447,10 @@ static void ov7_0224D388 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * pa
     ov7_0224D21C(param1);
     ov7_0224D3E8(param1);
 
-    param1->unk_90 = sub_020203AC(11);
+    param1->unk_90 = Camera_Alloc(11);
 
-    sub_020203C0(fieldSystem->camera, param1->unk_90);
-    sub_020203D4(param1->unk_90);
+    Camera_Copy(fieldSystem->camera, param1->unk_90);
+    Camera_SetAsActive(param1->unk_90);
 
     param1->unk_2A5 = 0;
 }
@@ -1393,9 +1393,9 @@ static u8 ov7_0224E950 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * para
 
     param1->unk_2A5 = 0;
 
-    sub_020203C0(param1->unk_90, fieldSystem->camera);
-    sub_020203B8(param1->unk_90);
-    sub_020203D4(fieldSystem->camera);
+    Camera_Copy(param1->unk_90, fieldSystem->camera);
+    Camera_Delete(param1->unk_90);
+    Camera_SetAsActive(fieldSystem->camera);
 
     ov7_0224EB14(param1);
 
