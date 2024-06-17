@@ -472,10 +472,10 @@ static MotionBlur * ov6_0223E2BC (int param0, int param1)
             4
         };
 
-        v1.unk_20 = param0;
-        v1.unk_24 = param1;
+        v1.blendCoeffA = param0;
+        v1.blendCoeffB = param1;
 
-        v0 = ov5_021E2098(&v1);
+        v0 = MotionBlur_New(&v1);
     }
 
     return v0;
@@ -490,7 +490,7 @@ static void ov6_0223E2FC (SysTask * param0, void * param1)
 {
     UnkStruct_ov6_0223E140 * v0 = param1;
 
-    ov5_021E20E8(&v0->unk_2C, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
+    MotionBlur_Delete(&v0->unk_2C, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     SysTask_Done(param0);
 }
 

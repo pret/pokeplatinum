@@ -3,43 +3,40 @@
 
 #include "struct_decls/sys_task.h"
 
-
 #include "unk_0200679C.h"
 #include "unk_0200D9E8.h"
 #include "unk_0201CCF0.h"
 #include "overlay005/motion_blur.h"
 
+#define MOTION_BLUR_INIT_BLEND_COEFF_A 16
+#define MOTION_BLUR_INIT_BLEND_COEFF_B 0
 
+static void MotionBlur_VBlankInit(SysTask *task, void *param);
+static void MotionBlur_SetCapture(SysTask *task, void *param);
+static void MotionBlur_Init(MotionBlurParams *params);
 
-static void ov5_021E21B8(SysTask * param0, void * param1);
-static void ov5_021E2178(SysTask * param0, void * param1);
-static void ov5_021E2218(MotionBlurParams * param0);
-
-MotionBlur *ov5_021E2098 (MotionBlurParams * param0)
+MotionBlur *MotionBlur_New(MotionBlurParams *params)
 {
-    SysTask * v0;
-    MotionBlur * v1;
+    SysTask *task = SysTask_StartAndAllocateParam(MotionBlur_SetCapture, sizeof(MotionBlur), 5, params->heapID);
+    MotionBlur *motionBlur = SysTask_GetParam(task);
 
-    v0 = SysTask_StartAndAllocateParam(ov5_021E2178, sizeof(MotionBlur), 5, param0->unk_28);
-    v1 = SysTask_GetParam(v0);
+    motionBlur->params = *params;
+    motionBlur->task = task;
+    motionBlur->initialized = FALSE;
+    motionBlur->lcdcVRamBank = GX_GetBankForLCDC();
 
-    v1->unk_04 = *param0;
-    v1->unk_34 = v0;
-    v1->unk_30 = 0;
-    v1->unk_00 = GX_GetBankForLCDC();
+    MotionBlur_Init(&motionBlur->params);
+    CoreSys_ExecuteAfterVBlank(MotionBlur_VBlankInit, motionBlur, 0);
 
-    ov5_021E2218(&v1->unk_04);
-    CoreSys_ExecuteAfterVBlank(ov5_021E21B8, v1, 0);
-
-    return v1;
+    return motionBlur;
 }
 
-void ov5_021E20E8 (MotionBlur ** param0, GXDispMode param1, GXBGMode param2, GXBG0As param3)
+void MotionBlur_Delete(MotionBlur **motionBlur, GXDispMode displayMode, GXBGMode bgMode, GXBG0As bg0Mode)
 {
-    GX_SetGraphicsMode(param1, param2, param3);
-    GX_SetBankForLCDC((*param0)->unk_00);
+    GX_SetGraphicsMode(displayMode, bgMode, bg0Mode);
+    GX_SetBankForLCDC((*motionBlur)->lcdcVRamBank);
 
-    switch ((*param0)->unk_04.unk_00) {
+    switch ((*motionBlur)->params.displayMode) {
     case GX_DISPMODE_VRAM_A:
         MI_CpuClearFast((void *)HW_LCDC_VRAM_A, HW_VRAM_A_SIZE);
         break;
@@ -57,24 +54,32 @@ void ov5_021E20E8 (MotionBlur ** param0, GXDispMode param1, GXBGMode param2, GXB
         break;
     }
 
-    SysTask_FinishAndFreeParam((*param0)->unk_34);
-    *param0 = NULL;
+    SysTask_FinishAndFreeParam((*motionBlur)->task);
+    *motionBlur = NULL;
 }
 
-static void ov5_021E2178 (SysTask * param0, void * param1)
+static void MotionBlur_SetCapture(SysTask *task, void *param)
 {
-    MotionBlur * v0 = param1;
+    MotionBlur *motionBlur = param;
 
-    if (v0->unk_30) {
-        GX_SetCapture(v0->unk_04.unk_0C, v0->unk_04.unk_10, v0->unk_04.unk_14, v0->unk_04.unk_18, v0->unk_04.unk_1C, v0->unk_04.unk_20, v0->unk_04.unk_24);
+    if (motionBlur->initialized) {
+        GX_SetCapture(
+            motionBlur->params.captureSize, 
+            motionBlur->params.captureMode, 
+            motionBlur->params.captureSourceA, 
+            motionBlur->params.captureSourceB, 
+            motionBlur->params.captureDestination, 
+            motionBlur->params.blendCoeffA, 
+            motionBlur->params.blendCoeffB
+        );
     }
 }
 
-static void ov5_021E21B8 (SysTask * param0, void * param1)
+static void MotionBlur_VBlankInit(SysTask *task, void *param)
 {
-    MotionBlur * v0 = (MotionBlur *)param1;
+    MotionBlur *motionBlur = (MotionBlur *)param;
 
-    switch (v0->unk_04.unk_00) {
+    switch (motionBlur->params.displayMode) {
     case GX_DISPMODE_VRAM_A:
         GX_SetBankForLCDC(GX_VRAM_LCDC_A);
         break;
@@ -92,14 +97,14 @@ static void ov5_021E21B8 (SysTask * param0, void * param1)
         break;
     }
 
-    GX_SetGraphicsMode(v0->unk_04.unk_00, v0->unk_04.unk_04, v0->unk_04.unk_08);
-    v0->unk_30 = 1;
-    SysTask_Done(param0);
+    GX_SetGraphicsMode(motionBlur->params.displayMode, motionBlur->params.bgMode, motionBlur->params.bg0Mode);
+    motionBlur->initialized = TRUE;
+    SysTask_Done(task);
 }
 
-static void ov5_021E2218 (MotionBlurParams * param0)
+static void MotionBlur_Init(MotionBlurParams *params)
 {
-    switch (param0->unk_00) {
+    switch (params->displayMode) {
     case GX_DISPMODE_VRAM_A:
         MI_CpuClearFast((void *)HW_LCDC_VRAM_A, HW_VRAM_A_SIZE);
         break;
@@ -116,5 +121,13 @@ static void ov5_021E2218 (MotionBlurParams * param0)
         break;
     }
 
-    GX_SetCapture(param0->unk_0C, param0->unk_10, param0->unk_14, param0->unk_18, param0->unk_1C, 16, 0);
+    GX_SetCapture(
+        params->captureSize, 
+        params->captureMode, 
+        params->captureSourceA, 
+        params->captureSourceB, 
+        params->captureDestination, 
+        MOTION_BLUR_INIT_BLEND_COEFF_A,
+        MOTION_BLUR_INIT_BLEND_COEFF_B
+    );
 }

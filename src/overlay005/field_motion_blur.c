@@ -36,10 +36,10 @@ FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
             4
         };
 
-        v1.unk_20 = coeffA;
-        v1.unk_24 = coeffB;
+        v1.blendCoeffA = coeffA;
+        v1.blendCoeffB = coeffB;
 
-        fieldMotionBlur->unk_00 = ov5_021E2098(&v1);
+        fieldMotionBlur->unk_00 = MotionBlur_New(&v1);
     }
 
     return fieldMotionBlur;
@@ -47,7 +47,7 @@ FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
 
 void FieldMotionBlur_Stop(FieldMotionBlur **fieldMotionBlur)
 {
-    ov5_021E20E8(&(*fieldMotionBlur)->unk_00, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
+    MotionBlur_Delete(&(*fieldMotionBlur)->unk_00, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     GX_SetBankForBG(GX_VRAM_BG_128_C);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
     Heap_FreeToHeapExplicit(4, *fieldMotionBlur);
