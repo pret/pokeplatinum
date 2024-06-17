@@ -6,19 +6,24 @@
 
 #include <nitro/fx/fx.h>
 
-typedef struct {
-    VecFx32 unk_00;
-    VecFx32 unk_0C;
-    VecFx32 unk_18;
-} Camera_sub2;
+enum CameraProjection {
+    CAMERA_PROJECTION_PERSPECTIVE = 0,
+    CAMERA_PROJECTION_ORTHOGRAPHIC,
+};
 
 typedef struct {
-    fx32 unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-} Camera_sub1;
+    VecFx32 position;
+    VecFx32 target;
+    VecFx32 up;
+} CameraLookAt;
+
+typedef struct {
+    fx32 sinFovY;
+    fx32 cosFovY;
+    fx32 aspectRatio;
+    fx32 nearClip;
+    fx32 farClip;
+} CameraPerspectiveProjection;
 
 typedef struct {
     int unk_00;
@@ -33,17 +38,17 @@ typedef struct {
 } UnkStruct_02020304;
 
 typedef struct Camera {
-    Camera_sub1 unk_00;
-    Camera_sub2 unk_14;
-    fx32 unk_38;
+    CameraPerspectiveProjection perspective;
+    CameraLookAt lookAt;
+    fx32 distance;
     CameraAngle cameraAngle;
-    u8 unk_44;
-    u16 unk_46;
-    VecFx32 unk_48;
-    const VecFx32 * unk_54;
-    BOOL unk_58;
-    BOOL unk_5C;
-    BOOL unk_60;
+    u8 projection;
+    u16 fovY;
+    VecFx32 prevTargetPos;
+    const VecFx32 * targetPos;
+    BOOL trackTargetX;
+    BOOL trackTargetY;
+    BOOL trackTargetZ;
     UnkStruct_02020304 * unk_64;
 } Camera;
 
@@ -54,26 +59,26 @@ void Camera_Delete(Camera *camera);
 void Camera_Copy(Camera const *src, Camera *dst);
 void Camera_SetAsActive(Camera *camera);
 void Camera_ClearActive(void);
-void sub_020203EC();
+void Camera_ComputeViewMatrix();
 void sub_0202049C(void);
-void sub_02020680(const VecFx32 * param0, Camera *camera);
-void sub_02020690(const VecFx32 * param0, Camera *camera);
-void sub_020206B0(Camera *camera);
-void sub_020206BC(const fx32 param0, const fx32 param1, Camera *camera);
+void Camera_SetUp (const VecFx32 *up, Camera *camera);
+void Camera_TrackTarget(const VecFx32 *target, Camera *camera);
+void Camera_ReleaseTarget(Camera *camera);
+void Camera_SetClipping(const fx32 nearClip, const fx32 farClip, Camera *camera);
 void sub_020206D0(const VecFx32 * param0, const fx32 param1, const CameraAngle * cameraAngle, const u16 param3, const u8 param4, const BOOL param5, Camera *camera);
 void sub_02020738(const VecFx32 * param0, const fx32 param1, const CameraAngle * cameraAngle, const u16 param3, const u8 param4, Camera *camera);
 void sub_02020784(const VecFx32 * param0, const VecFx32 * param1, const u16 param2, const u8 param3, const BOOL param4, Camera *camera);
-void sub_02020854(const u8 param0, Camera *camera);
-void Camera_SetFOV(const u16 param0, Camera *camera);
-void sub_0202094C(const u16 param0, Camera *camera);
-void sub_02020990(const VecFx32 * param0, Camera *camera);
+void Camera_ComputeProjectionMatrix(const u8 projection, Camera *camera);
+void Camera_SetFOV(const u16 fovY, Camera *camera);
+void Camera_IncreaseFOV(const u16 amount, Camera *camera);
+void Camera_Move(const VecFx32 *delta, Camera *camera);
 void sub_020209B0(const CameraAngle * cameraAngle, Camera *camera);
 void Camera_SetAngle(const CameraAngle * cameraAngle, Camera *camera);
 void sub_020209F8(const CameraAngle * cameraAngle, Camera *camera);
 void sub_02020A24(const CameraAngle * cameraAngle, Camera *camera);
-void Camera_SetDistance(const fx32 param0, Camera *camera);
+void Camera_SetDistance(const fx32 distance, Camera *camera);
 void sub_02020A5C(const VecFx32 * param0, Camera *camera);
-void sub_02020A78(const fx32 param0, Camera *camera);
+void Camera_IncreaseDistance(const fx32 amount, Camera *camera);
 u16 Camera_GetFOV(Camera const * param0);
 fx32 Camera_GetDistance(Camera const * param0);
 CameraAngle sub_02020A94(Camera const * param0);

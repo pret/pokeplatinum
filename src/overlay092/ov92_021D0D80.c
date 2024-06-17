@@ -1284,8 +1284,8 @@ static void ov92_021D22B0 (UnkStruct_ov92_021D1B24 * param0)
     VecFx32 v1 = {0, 0, 0x128000};
 
     sub_02020784(&v0, &v1, 0x5c1, 0, 0, param0->unk_BACC);
-    sub_020206BC(0, (FX32_ONE * 100), param0->unk_BACC);
-    sub_02020854(0, param0->unk_BACC);
+    Camera_SetClipping(0, (FX32_ONE * 100), param0->unk_BACC);
+    Camera_ComputeProjectionMatrix(0, param0->unk_BACC);
     Camera_SetAsActive(param0->unk_BACC);
 
     if (param0->unk_BAF4 == 0) {
@@ -1480,7 +1480,7 @@ static void ov92_021D26D0 (UnkStruct_ov92_021D1B24 * param0)
         break;
     case 1:
         sub_020241B4();
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
 
         {
             ov92_021D2370(&v0, &param0->unk_BAB4);

@@ -1828,7 +1828,7 @@ static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_06++;
         Sound_PlayEffect(1470);
     case 1:
-        sub_02020A78(((-FX32_ONE * 50) / 30), param2);
+        Camera_IncreaseDistance(((-FX32_ONE * 50) / 30), param2);
         v0->unk_04++;
 
         if (v0->unk_04 >= 30) {
@@ -1845,7 +1845,7 @@ static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         }
         break;
     case 3:
-        sub_02020A78((-(-FX32_ONE * 50) / 6), param2);
+        Camera_IncreaseDistance((-(-FX32_ONE * 50) / 6), param2);
         v0->unk_04++;
 
         if ((v0->unk_04 >= 6) || (Camera_GetDistance(param2) >= v0->unk_00)) {
@@ -1899,7 +1899,7 @@ static BOOL ov113_0225FEE0 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
             }
         }
 
-        sub_02020680(&v0->unk_00, param2);
+        Camera_SetUp(&v0->unk_00, param2);
         break;
     default:
         return 1;
@@ -2086,7 +2086,7 @@ static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_06++;
         Sound_PlayEffect(1470);
     case 1:
-        sub_02020A78(((FX32_ONE * 50) / 30), param2);
+        Camera_IncreaseDistance(((FX32_ONE * 50) / 30), param2);
         v0->unk_04++;
 
         if (v0->unk_04 >= 30) {
@@ -2103,7 +2103,7 @@ static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         }
         break;
     case 3:
-        sub_02020A78((-(FX32_ONE * 50) / 6), param2);
+        Camera_IncreaseDistance((-(FX32_ONE * 50) / 6), param2);
         v0->unk_04++;
 
         if ((v0->unk_04 >= 6) || (Camera_GetDistance(param2) <= v0->unk_00)) {
@@ -2147,7 +2147,7 @@ static BOOL ov113_02260394 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020ACC(&v0->unk_00, param2);
         sub_02020ADC(&v0->unk_0C, param2);
-        sub_02020990(&v1, param2);
+        Camera_Move(&v1, param2);
         break;
     default:
         return 1;
@@ -2186,7 +2186,7 @@ static BOOL ov113_0226046C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
         sub_02020ACC(&v0->unk_00, param2);
         sub_02020ADC(&v0->unk_0C, param2);
-        sub_02020990(&v1, param2);
+        Camera_Move(&v1, param2);
         break;
     default:
         return 1;

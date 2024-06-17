@@ -876,7 +876,7 @@ static void ov77_021D2B38 (void * param0)
 
         v2->unk_25B = 0;
 
-        sub_02020854(0, v2->unk_20.unk_08);
+        Camera_ComputeProjectionMatrix(0, v2->unk_20.unk_08);
         Camera_SetAsActive(v2->unk_20.unk_08);
     }
 
@@ -1750,7 +1750,7 @@ static void ov77_021D4044 (UnkStruct_ov77_021D37C0 * param0, int param1)
 
         {
             VecFx32 v1 = {0, (FX32_ONE * 16 * 5), 0};
-            sub_02020990(&v1, param0->unk_20.unk_08);
+            Camera_Move(&v1, param0->unk_20.unk_08);
         }
 
         Camera_SetAsActive(param0->unk_20.unk_08);
@@ -1823,7 +1823,7 @@ static void ov77_021D4188 (UnkStruct_ov77_021D37C0 * param0)
     NNS_G3dGeFlushBuffer();
 
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     if (param0->unk_25C == 1) {
         for (v0 = 0; v0 < param0->unk_20.unk_21C; v0++) {
@@ -2371,21 +2371,21 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
             v1 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v1 - 32 > 0x5c1) {
-                sub_0202094C(-32, param0->unk_20.unk_08);
+                Camera_IncreaseFOV(-32, param0->unk_20.unk_08);
             } else {
                 Camera_SetFOV(0x5c1, param0->unk_20.unk_08);
             }
         }
 
         v0.z -= FX32_ONE * 2;
-        sub_02020990(&v0, param0->unk_20.unk_08);
+        Camera_Move(&v0, param0->unk_20.unk_08);
     } else if (param1 == ((40 * 30 - 15) + 6)) {
         VecFx32 v2 = {-(FX32_ONE * 16 * 4), 0, -FX32_ONE * 16 * 3};
         sub_020206D0(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
 
         {
             VecFx32 v3 = {0, (FX32_ONE * 16 * 5), 0};
-            sub_02020990(&v3, param0->unk_20.unk_08);
+            Camera_Move(&v3, param0->unk_20.unk_08);
         }
 
         {
@@ -2413,14 +2413,14 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         }
     } else if (param1 < ((47 * 30 - 15) + 6)) {
         v0.x += FX32_ONE * 4;
-        sub_02020990(&v0, param0->unk_20.unk_08);
+        Camera_Move(&v0, param0->unk_20.unk_08);
         sub_0201C63C(param0->unk_10, 1, 1, 4);
     } else if (param1 == ((47 * 30 - 15) + 6)) {
         VecFx32 v6 = {FX32_ONE * 16 * 30, 0, FX32_ONE * 0 - 0x70000};
         sub_020206D0(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
         {
             VecFx32 v7 = {0, (FX32_ONE * 16 * 5), 0};
-            sub_02020990(&v7, param0->unk_20.unk_08);
+            Camera_Move(&v7, param0->unk_20.unk_08);
         }
 
         {
@@ -2444,12 +2444,12 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
             v9 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v9 + 24 < 0x4000) {
-                sub_0202094C(24, param0->unk_20.unk_08);
+                Camera_IncreaseFOV(24, param0->unk_20.unk_08);
             }
         }
 
         v0.x += -0x2000;
-        sub_02020990(&v0, param0->unk_20.unk_08);
+        Camera_Move(&v0, param0->unk_20.unk_08);
     }
 }
 

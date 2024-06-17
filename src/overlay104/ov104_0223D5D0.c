@@ -59,7 +59,7 @@ UnkStruct_02014014 * ov104_0223D614 (UnkStruct_ov104_0223D5F0 * param0, int para
     v0 = sub_02014014(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->unk_20);
     v2 = sub_02014784(v0);
 
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v2);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v2);
     sub_02014788(v0, param3);
 
     v3 = sub_020144C4(157, param2, param0->unk_20);

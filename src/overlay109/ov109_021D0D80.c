@@ -1592,7 +1592,7 @@ static void ov109_021D1C68 (UnkStruct_ov109_021D0F70 * param0)
 static void ov109_021D1C90 (UnkStruct_ov109_021D0F70 * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(31, 31, 31));
@@ -2198,7 +2198,7 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
         v1.y = FX32_ONE;
         v1.z = 0;
 
-        sub_02020680(&v1, v0->unk_1C);
+        Camera_SetUp(&v1, v0->unk_1C);
         Camera_SetAsActive(v0->unk_1C);
     }
 }

@@ -1058,7 +1058,7 @@ static void DrawScene (ChooseStarterApp * param0)
     NNS_G3dGePushMtx();
 
     {
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
         ov78_021D192C(param0);
     }
 
@@ -1093,7 +1093,7 @@ static void ov78_021D1B3C (Camera * param0, VecFx32 * param1)
     v1.y = FX32_ONE;
     v1.z = 0;
 
-    sub_02020680(&v1, param0);
+    Camera_SetUp(&v1, param0);
     Camera_SetAsActive(param0);
 }
 

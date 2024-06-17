@@ -450,7 +450,7 @@ static UnkStruct_02014014 * ov119_021D13EC (int param0)
     v2 = sub_02014784(v0);
 
     if (v2 != NULL) {
-        sub_020206BC((FX32_ONE), (FX32_ONE * 900), v2);
+        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v2);
     }
 
     return v0;

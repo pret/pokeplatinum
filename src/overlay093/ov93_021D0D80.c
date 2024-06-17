@@ -173,7 +173,7 @@ int ov93_021D0E70 (OverlayManager * param0, int * param1)
     }
 
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
     sub_0201CA74(&v5->unk_04, &v4, &v2, &v3);
     sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 

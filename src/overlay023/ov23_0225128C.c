@@ -608,7 +608,7 @@ static void ov23_02251A84 (BOOL param0, FieldSystem * fieldSystem)
         v0.z = -v0.z;
     }
 
-    sub_02020990(&v0, fieldSystem->camera);
+    Camera_Move(&v0, fieldSystem->camera);
 }
 
 static BOOL ov23_02251ACC (TaskManager * param0)

@@ -950,7 +950,7 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v2.z = 0;
 
     Camera_SetAngle(&v2, fieldSystem->camera);
-    sub_020206BC(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
+    Camera_SetClipping(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -984,7 +984,7 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v2.z = 0;
 
     Camera_SetAngle(&v2, fieldSystem->camera);
-    sub_020206BC(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
+    Camera_SetClipping(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -1866,7 +1866,7 @@ void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u3
     param0->unk_28 = sub_02020AAC(param5);
     param0->unk_34 = param0->unk_28;
 
-    sub_02020690(&param0->unk_28, param0->unk_00);
+    Camera_TrackTarget(&param0->unk_28, param0->unk_00);
     Camera_SetAsActive(param0->unk_00);
 
     param0->unk_04 = param5;

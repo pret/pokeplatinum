@@ -697,8 +697,8 @@ static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)
 
     sub_020241B4();
     Camera_SetAsActive(param0->unk_28);
-    sub_02020854(0, param0->unk_28);
-    sub_020203EC();
+    Camera_ComputeProjectionMatrix(0, param0->unk_28);
+    Camera_ComputeViewMatrix();
 
     switch (param0->unk_1101) {
     case 0:
@@ -764,7 +764,7 @@ static void ov99_021D1918 (UnkStruct_ov99_021D2CB0 * param0)
     sub_020206D0(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->unk_28);
     sub_02020ADC(&v1, param0->unk_28);
     sub_02020ACC(&v2, param0->unk_28);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), param0->unk_28);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_28);
     Camera_SetAsActive(param0->unk_28);
 }
 

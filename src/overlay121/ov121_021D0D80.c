@@ -221,7 +221,7 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
         param0->unk_04 = Camera_Alloc(30);
 
         sub_020206D0(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04);
-        sub_020206BC(0, (FX32_ONE * 300), param0->unk_04);
+        Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04);
 
         {
             CameraAngle v2 = {0, 0, 0, 0};
@@ -302,8 +302,8 @@ static void ov121_021D11A8 (UnkStruct_ov121_021D0FF4 * param0)
 
     sub_020241B4();
     Camera_SetAsActive(param0->unk_04);
-    sub_02020854(0, param0->unk_04);
-    sub_020203EC();
+    Camera_ComputeProjectionMatrix(0, param0->unk_04);
+    Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(28, 28, 28));
@@ -360,7 +360,7 @@ static void ov121_021D1318 (UnkStruct_ov121_021D0FF4 * param0)
     CameraAngle v1 = {0, 0, 0, 0};
     int v2;
 
-    sub_0202094C(-(param0->unk_D4 >> 8), param0->unk_04);
+    Camera_IncreaseFOV(-(param0->unk_D4 >> 8), param0->unk_04);
     param0->unk_D4 -= 0x80;
 
     if (param0->unk_D4 < (16 << 8)) {

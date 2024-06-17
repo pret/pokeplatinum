@@ -84,7 +84,7 @@ void ov95_02247770 (UnkStruct_ov95_0224773C * param0)
     {
         int v0;
 
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
 
         for (v0 = 0; v0 < param0->unk_1C; v0++) {
             if (param0->unk_18[v0].unk_64) {
@@ -219,7 +219,7 @@ BOOL ov95_022479DC (UnkStruct_ov95_02247958 * param0)
 
     NNS_G3dGePushMtx();
 
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
     v1 = sub_0201CED8(param0->unk_5C, &param0->unk_68, &v0, &param0->unk_74);
 
     NNS_G3dGePopMtx(1);
@@ -244,7 +244,7 @@ void ov95_02247AC0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * camera
 
 void ov95_02247AD0 (UnkStruct_ov95_0224773C * param0, u8 param1)
 {
-    sub_02020854(param1, param0->unk_00);
+    Camera_ComputeProjectionMatrix(param1, param0->unk_00);
 }
 
 void ov95_02247AE0 (UnkStruct_ov95_0224773C * param0, u16 param1)
@@ -271,9 +271,9 @@ static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 p
     v1.y = FX32_ONE;
     v1.z = 0;
 
-    sub_02020680(&v1, param0->unk_00);
+    Camera_SetUp(&v1, param0->unk_00);
     Camera_SetAsActive(param0->unk_00);
-    sub_020206BC((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->unk_00);
+    Camera_SetClipping((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->unk_00);
 }
 
 static void ov95_02247B5C (UnkStruct_ov95_0224773C * param0)

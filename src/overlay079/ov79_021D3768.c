@@ -45,7 +45,7 @@ void ov79_021D3768 (UnkStruct_ov79_021D3820 * param0, UnkStruct_ov79_021D38D0 * 
 void ov79_021D3820 (UnkStruct_ov79_021D3820 * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     G3_MtxMode(GX_MTXMODE_PROJECTION);
     G3_Identity();
@@ -75,8 +75,8 @@ static void ov79_021D3870 (UnkStruct_ov79_021D3820 * param0, int param1)
     param0->unk_00 = Camera_Alloc(param1);
 
     sub_02020738(&v0, v2, &v1, v3, 1, param0->unk_00);
-    sub_020206BC(0, FX32_CONST(100), param0->unk_00);
-    sub_020206B0(param0->unk_00);
+    Camera_SetClipping(0, FX32_CONST(100), param0->unk_00);
+    Camera_ReleaseTarget(param0->unk_00);
     Camera_SetAsActive(param0->unk_00);
 }
 

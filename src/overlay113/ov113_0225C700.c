@@ -1175,7 +1175,7 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
     param0->unk_CC = Camera_Alloc(118);
 
     sub_020206D0(&v0, 0x7c000, &Unk_ov113_022608B4, (((22 * 0xffff) / 360)), 0, 0, param0->unk_CC);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), param0->unk_CC);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_CC);
     Camera_SetAsActive(param0->unk_CC);
 
     {
@@ -1238,8 +1238,8 @@ static void ov113_0225DB08 (UnkStruct_ov113_0225DBCC * param0)
 
     sub_020241B4();
     Camera_SetAsActive(param0->unk_CC);
-    sub_02020854(0, param0->unk_CC);
-    sub_020203EC();
+    Camera_ComputeProjectionMatrix(0, param0->unk_CC);
+    Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(28, 28, 28));

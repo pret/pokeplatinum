@@ -1452,7 +1452,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     sub_02014788(Unk_ov5_02202120->unk_08, 1);
 
     v1 = sub_02014784(Unk_ov5_02202120->unk_08);
-    sub_020206BC(FX32_ONE, FX32_ONE *900, v1);
+    Camera_SetClipping(FX32_ONE, FX32_ONE *900, v1);
 
     v0 = sub_0200723C(param0, param1, 0, 4, 0);
     sub_020144CC(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);

@@ -147,7 +147,7 @@ void sub_02091750 (PokemonSummaryApp * param0)
 {
     if (param0->page == 4) {
         sub_020241B4();
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
 
         G3_MtxMode(GX_MTXMODE_PROJECTION);
         G3_Identity();
@@ -184,8 +184,8 @@ void sub_020917E0 (PokemonSummaryApp * param0)
     param0->monSpriteData.unk_00 = Camera_Alloc(19);
 
     sub_02020738(&v0, v2, &v1, v3, 1, param0->monSpriteData.unk_00);
-    sub_020206BC(0, FX32_CONST(100), param0->monSpriteData.unk_00);
-    sub_020206B0(param0->monSpriteData.unk_00);
+    Camera_SetClipping(0, FX32_CONST(100), param0->monSpriteData.unk_00);
+    Camera_ReleaseTarget(param0->monSpriteData.unk_00);
     Camera_SetAsActive(param0->monSpriteData.unk_00);
 }
 

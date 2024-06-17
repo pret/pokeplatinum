@@ -116,7 +116,7 @@ void ov116_0226192C (UnkStruct_ov116_0226501C * param0)
 void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     inline_ov116_02261940_1();
 
@@ -199,7 +199,7 @@ void ov116_02261C88 (UnkStruct_ov116_0226139C * param0)
     VecFx32 v1 = {0, 0, (FX32_ONE * 160)};
 
     sub_02020784(&v0, &v1, 0xb60, 0, 0, param0->unk_48.unk_1C);
-    sub_020206BC((FX32_ONE * -1000), (FX32_ONE * 1000), param0->unk_48.unk_1C);
+    Camera_SetClipping((FX32_ONE * -1000), (FX32_ONE * 1000), param0->unk_48.unk_1C);
     Camera_SetAsActive(param0->unk_48.unk_1C);
 }
 

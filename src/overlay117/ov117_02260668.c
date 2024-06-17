@@ -553,13 +553,13 @@ static void ov117_02260EC0 (UnkStruct_ov117_02261280 * param0)
     param0->unk_9C = Camera_Alloc(110);
 
     sub_020206D0(&v0, (0x7b << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_9C);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), param0->unk_9C);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_9C);
     Camera_SetAsActive(param0->unk_9C);
 
     param0->unk_A0 = Camera_Alloc(110);
 
     sub_020206D0(&v0, (80 << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_A0);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), param0->unk_A0);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_A0);
 }
 
 static void ov117_02260F64 (UnkStruct_ov117_02261280 * param0)
@@ -596,8 +596,8 @@ static void ov117_02260F7C (SysTask * param0, void * param1)
     {
         sub_020241B4();
         Camera_SetAsActive(v0->unk_9C);
-        sub_02020854(1, v0->unk_9C);
-        sub_020203EC();
+        Camera_ComputeProjectionMatrix(1, v0->unk_9C);
+        Camera_ComputeViewMatrix();
 
         NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
         NNS_G3dGlbLightColor(0, GX_RGB(28, 28, 28));
@@ -932,7 +932,7 @@ static void ov117_02261574 (UnkStruct_ov117_02261280 * param0)
     param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, 110);
     v1 = sub_02014784(param0->unk_A4);
 
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v1);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v1);
     v2 = sub_020144C4(190, 0, 110);
     sub_020144CC(param0->unk_A4, v2, (1 << 1) | (1 << 3), 1);
 }

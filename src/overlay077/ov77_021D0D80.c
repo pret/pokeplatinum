@@ -530,10 +530,10 @@ static void ov77_021D1568 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
 
     if ((param0->unk_29C == 0) && (param0->unk_2A0 == 1)) {
         ov77_021D25AC(param1->unk_A8);
-        sub_02020854(0, param1->unk_A8);
+        Camera_ComputeProjectionMatrix(0, param1->unk_A8);
         Camera_SetAsActive(param1->unk_A8);
     } else {
-        sub_02020854(0, param1->unk_A4);
+        Camera_ComputeProjectionMatrix(0, param1->unk_A4);
         Camera_SetAsActive(param1->unk_A4);
     }
 
@@ -559,7 +559,7 @@ static void ov77_021D1568 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
         break;
     case 2:
         sub_020241B4();
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
         sub_0201E268(&v0, &param1->unk_98);
 
         if (param0->unk_29C == 0) {
@@ -808,7 +808,7 @@ static void ov77_021D1984 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
 
     if (param1->unk_210 < 60) {
         v0.z = -0xa00;
-        sub_02020990(&v0, param1->unk_A8);
+        Camera_Move(&v0, param1->unk_A8);
     }
 
     if (param1->unk_210 == 75) {
@@ -827,7 +827,7 @@ static void ov77_021D1984 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
         if (param1->unk_218 < ((0x10000 - 0x3fef))) {
             param1->unk_218 = (0x10000 - 0x3fef);
 
-            sub_0202094C(-(param1->unk_220 >> 8), param1->unk_A8);
+            Camera_IncreaseFOV(-(param1->unk_220 >> 8), param1->unk_A8);
             param1->unk_220 -= 0x280;
 
             if (param1->unk_220 < (16 << 8)) {
@@ -872,8 +872,8 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
         param0->unk_04.unk_A4 = Camera_Alloc(param2);
 
         sub_02020784(&param0->unk_23C, &param0->unk_248, 0xb60, 0, 0, param0->unk_04.unk_A4);
-        sub_020206BC(0, (FX32_ONE * 300), param0->unk_04.unk_A4);
-        sub_02020854(0, param0->unk_04.unk_A4);
+        Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04.unk_A4);
+        Camera_ComputeProjectionMatrix(0, param0->unk_04.unk_A4);
         Camera_SetAsActive(param0->unk_04.unk_A4);
     }
     {
@@ -887,11 +887,11 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
         param0->unk_04.unk_A8 = Camera_Alloc(param2);
 
         sub_020206D0(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04.unk_A8);
-        sub_020206BC(0, (FX32_ONE * 300), param0->unk_04.unk_A8);
+        Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04.unk_A8);
 
         {
             VecFx32 v2 = {0, 0, (0xa00 * 60)};
-            sub_02020990(&v2, param0->unk_04.unk_A8);
+            Camera_Move(&v2, param0->unk_04.unk_A8);
         }
 
         Camera_SetAsActive(param0->unk_04.unk_A8);

@@ -842,7 +842,7 @@ static void ov17_0223E778 (UnkStruct_ov17_0224DF54 * param0)
     param0->unk_0C = sub_02014014(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, 23);
 
     v1 = sub_02014784(param0->unk_0C);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v1);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v1);
 
     v2 = sub_020144C4(61, 3, 23);
     sub_020144CC(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);

@@ -67,7 +67,7 @@ static void ov100_021D1C44 (Camera * param0, VecFx32 * param1)
 
     sub_020206D0(param1, 0x13c805, &v0, 0xc01, 0, 1, param0);
     Camera_SetAsActive(param0);
-    sub_020206BC(FX32_ONE * 10, FX32_ONE * 1008, param0);
+    Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, param0);
 }
 
 static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
@@ -734,7 +734,7 @@ BOOL ov100_021D2C8C (void * param0)
 static void ov100_021D2E0C (UnkStruct_ov100_021D1C98 * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     ov100_021D47A0(param0->unk_1EBC);
     ov100_021D4844(param0->unk_1EBC);

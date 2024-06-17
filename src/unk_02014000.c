@@ -510,9 +510,9 @@ void sub_02014638 (UnkStruct_02014014 * param0)
     const MtxFx43 * v0;
 
     if (param0->unk_20 != NULL) {
-        sub_02020854(param0->unk_DB, param0->unk_20);
+        Camera_ComputeProjectionMatrix(param0->unk_DB, param0->unk_20);
         Camera_SetAsActive(param0->unk_20);
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
     }
 
     NNS_G3dGlbFlush();
@@ -623,7 +623,7 @@ void sub_02014734 (UnkStruct_02014014 * param0, VecFx32 * param1)
 void sub_02014744 (UnkStruct_02014014 * param0, const VecFx32 * param1)
 {
     param0->unk_40 = *param1;
-    sub_02020680(param1, param0->unk_20);
+    Camera_SetUp(param1, param0->unk_20);
 }
 
 void * sub_02014764 (void)

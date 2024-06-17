@@ -34,7 +34,7 @@ UnkStruct_ov70_02260AD4 * ov70_02260A70 (u32 param0)
 
     sub_020206D0(&v0->unk_08, 0x29aec1, &Unk_ov70_0226D904, 0x5c1, 0, 1, v0->unk_00);
     Camera_SetAsActive(v0->unk_00);
-    sub_020206BC((FX32_CONST(150)), (FX32_CONST(900)), v0->unk_00);
+    Camera_SetClipping((FX32_CONST(150)), (FX32_CONST(900)), v0->unk_00);
 
     return v0;
 }
@@ -55,7 +55,7 @@ void ov70_02260AEC (UnkStruct_ov70_02260AD4 * param0)
         param0->unk_08.z += (-FX32_CONST(32));
     }
 
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 }
 
 void ov70_02260B18 (UnkStruct_ov70_02260AD4 * param0, fx32 param1, fx32 param2, fx32 param3)

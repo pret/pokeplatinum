@@ -771,9 +771,9 @@ static void ov86_0223B9A8 (UnkStruct_ov86_0223B3C8 * param0)
     v0.y = FX32_ONE;
     v0.z = 0;
 
-    sub_02020680(&v0, param0->unk_1C10);
+    Camera_SetUp(&v0, param0->unk_1C10);
     Camera_SetAsActive(param0->unk_1C10);
-    sub_020206BC((1 << FX32_SHIFT), (500 << FX32_SHIFT), param0->unk_1C10);
+    Camera_SetClipping((1 << FX32_SHIFT), (500 << FX32_SHIFT), param0->unk_1C10);
 }
 
 static void ov86_0223BA34 (UnkStruct_ov86_0223B3C8 * param0)

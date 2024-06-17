@@ -139,7 +139,7 @@ BOOL ov5_021D433C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
         v9 = ov5_021D4310(fieldSystem->unk_54, 1);
 
         if (v9 != 75) {
-            sub_020206B0(fieldSystem->camera);
+            Camera_ReleaseTarget(fieldSystem->camera);
             param1->unk_20 = 1;
         }
 
@@ -298,7 +298,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
         param1->unk_24 = Camera_GetFOV(fieldSystem->camera);
 
         if (v4 != 75) {
-            sub_0202094C(-96, fieldSystem->camera);
+            Camera_IncreaseFOV(-96, fieldSystem->camera);
         }
 
         (param1->unk_00)++;
@@ -441,7 +441,7 @@ static void ov5_021D4798 (Camera * param0, u8 * param1)
         v2 = Camera_GetFOV(param0);
 
         if ((u16)(v2 - v0) > 0x0) {
-            sub_0202094C(-v0, param0);
+            Camera_IncreaseFOV(-v0, param0);
         }
 
         (*param1)++;
@@ -471,7 +471,7 @@ static void ov5_021D47DC (Camera * param0, u8 * param1)
         v2 = Camera_GetFOV(param0);
 
         if ((u16)(v2 + v0) > 0x0) {
-            sub_0202094C(v0, param0);
+            Camera_IncreaseFOV(v0, param0);
         }
 
         (*param1)++;
@@ -907,7 +907,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
 
         {
             v2->unk_0C = Camera_GetFOV(fieldSystem->camera);
-            sub_0202094C(-96, fieldSystem->camera);
+            Camera_IncreaseFOV(-96, fieldSystem->camera);
         }
 
         sub_0200F174(0, 1, 1, 0x7fff, 6, 1, 11);
@@ -1042,7 +1042,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
 
         {
             v2->unk_0C = Camera_GetFOV(fieldSystem->camera);
-            sub_0202094C(-96, fieldSystem->camera);
+            Camera_IncreaseFOV(-96, fieldSystem->camera);
         }
 
         switch (v3) {

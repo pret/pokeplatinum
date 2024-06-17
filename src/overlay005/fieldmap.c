@@ -723,7 +723,7 @@ static void ov5_021D15F4 (FieldSystem * fieldSystem)
 
         sub_0202049C();
     } else {
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
     }
 
     sub_0206979C(fieldSystem);

@@ -156,5 +156,5 @@ static void sub_0205075C (FieldSystem * fieldSystem)
     v1.z = 0;
 
     Camera_SetAngle(&v1, fieldSystem->camera);
-    sub_020206BC(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
+    Camera_SetClipping(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
 }

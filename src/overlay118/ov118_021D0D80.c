@@ -199,7 +199,7 @@ static void ov118_021D0FDC (OverlayMetadata * param0)
     param0->unk_18 = sub_02014014(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, 12);
     v1 = sub_02014784(param0->unk_18);
 
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v1);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v1);
 }
 
 static void ov118_021D1028 (OverlayMetadata * param0)

@@ -3297,9 +3297,9 @@ static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 p
     v1.y = (FX32_ONE);
     v1.z = 0;
 
-    sub_02020680(&v1, param0->unk_1F4);
+    Camera_SetUp(&v1, param0->unk_1F4);
     Camera_SetAsActive(param0->unk_1F4);
-    sub_020206BC((FX32_CONST(200)), (FX32_CONST(1000)), param0->unk_1F4);
+    Camera_SetClipping((FX32_CONST(200)), (FX32_CONST(1000)), param0->unk_1F4);
 }
 
 static void ov115_02263CC0 (UnkStruct_ov115_02261ADC * param0)
@@ -3309,7 +3309,7 @@ static void ov115_02263CC0 (UnkStruct_ov115_02261ADC * param0)
 
 static void ov115_02263CD0 (UnkStruct_ov115_02261ADC * param0)
 {
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 }
 
 static void ov115_02263CD8 (UnkStruct_ov115_02261ADC * param0, NARC * param1, u32 param2, u32 param3)

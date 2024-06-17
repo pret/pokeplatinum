@@ -540,7 +540,7 @@ static u8 ov7_0224D620 (UnkStruct_ov7_0224D008 * param0)
     if (param0->unk_2A5 != param0->unk_2A6) {
         VecFx32 v0 = {8 * FX32_ONE, 0, 0};
 
-        sub_02020990(&v0, param0->unk_90);
+        Camera_Move(&v0, param0->unk_90);
         param0->unk_2A5++;
         return 3;
     }
@@ -1386,7 +1386,7 @@ static u8 ov7_0224E950 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * para
     if (param1->unk_2A5 != param1->unk_2A6) {
         VecFx32 v0 = {-8 * FX32_ONE, 0, 0};
 
-        sub_02020990(&v0, param1->unk_90);
+        Camera_Move(&v0, param1->unk_90);
         param1->unk_2A5++;
         return 12;
     }

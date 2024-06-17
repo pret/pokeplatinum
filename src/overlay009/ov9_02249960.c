@@ -1636,10 +1636,10 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
         Camera_SetDistance(v1.unk_00, v0->unk_00);
         Camera_SetAngle(&v1.cameraAngle, v0->unk_00);
         Camera_SetFOV(v1.unk_0E, v0->unk_00);
-        sub_02020854(v1.unk_0C, v0->unk_00);
+        Camera_ComputeProjectionMatrix(v1.unk_0C, v0->unk_00);
     }
 
-    sub_020206BC((FX32_ONE * 150), (FX32_ONE * 1700), v0->unk_00);
+    Camera_SetClipping((FX32_ONE * 150), (FX32_ONE * 1700), v0->unk_00);
 
     v0->unk_04.x = -0x29fe;
     v0->unk_04.y = 0x0;
@@ -1657,7 +1657,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     }
 
     if (ov9_022510D0(param0) != 582) {
-        sub_0202094C(0x681 - 0x5c1, v0->unk_00);
+        Camera_IncreaseFOV(0x681 - 0x5c1, v0->unk_00);
     }
 
     v0->unk_3C = SysTask_Start(ov9_0224A0DC, param0, 0);
