@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "overlay006/encounter_data.h"
+#include "overlay006/wild_encounters.h"
 
 #include "narc.h"
 #include "heap.h"

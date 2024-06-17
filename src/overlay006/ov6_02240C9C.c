@@ -13,7 +13,7 @@
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_0206C638.h"
 #include "overlay006/battle_params.h"
-#include "overlay006/encounter_data.h"
+#include "overlay006/wild_encounters.h"
 
 #include "narc.h"
 #include "rtc.h"

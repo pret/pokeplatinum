@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 #include "field/field_system_decl.h"
-#include "overlay006/encounter_data.h"
+#include "overlay006/wild_encounters.h"
 
 typedef struct BgEvent {
     u16 script;

@@ -3,7 +3,7 @@
 
 #include "core_sys.h"
 
-#include "overlay006/encounter_data.h"
+#include "overlay006/wild_encounters.h"
 
 #include "overlay006/ov6_022477B8.h"
 

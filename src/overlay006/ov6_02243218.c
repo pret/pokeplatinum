@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay006/encounter_data.h"
+#include "overlay006/wild_encounters.h"
 
 #include "map_header_data.h"
 #include "overlay006/ov6_02243218.h"

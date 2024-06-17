@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "overlay006/encounter_data.h"
+#include "overlay006/wild_encounters.h"
 
 #include "narc.h"
 #include "heap.h"

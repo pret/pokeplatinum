@@ -4,7 +4,7 @@
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "overlay006/battle_params.h"
-#include "overlay006/encounter_data.h"
+#include "overlay006/wild_encounters.h"
 
 void ov6_02240C9C(const WildEncounters * encounterData, int * param1, int * param2);
 BOOL ov6_02240D5C(FieldSystem * fieldSystem);
