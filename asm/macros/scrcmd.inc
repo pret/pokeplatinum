@@ -13,11 +13,11 @@
     .macro End
     .short 2
     .endm
-    
-    .macro WaitTime frames, countdown
+
+    .macro WaitTime frames, countdownVarID
     .short 3
     .short \frames
-    .short \countdown
+    .short \countdownVarID
     .endm
 
     .macro ScrCmd_004 arg0, arg1

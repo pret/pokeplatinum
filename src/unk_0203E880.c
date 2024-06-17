@@ -106,7 +106,7 @@ void sub_0203F0C0(FieldSystem * fieldSystem);
 static void sub_0203F0E4(ScriptContext * param0, u16 param1);
 static void * sub_0203F0FC(int param0);
 static u32 sub_0203F110(int param0);
-u16 * FieldSystem_GetVar(FieldSystem * fieldSystem, u16 varID);
+u16 * FieldSystem_GetVarPointer(FieldSystem * fieldSystem, u16 varID);
 u16 sub_0203F150(FieldSystem * fieldSystem, u16 param1);
 u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
 BOOL sub_0203F188(FieldSystem * fieldSystem, u16 param1);
@@ -593,7 +593,7 @@ static u32 sub_0203F110 (int param0)
     return MapHeader_GetMsgArchiveID(param0);
 }
 
-u16 * FieldSystem_GetVar (FieldSystem * fieldSystem, u16 varID)
+u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
@@ -610,7 +610,7 @@ u16 * FieldSystem_GetVar (FieldSystem * fieldSystem, u16 varID)
 
 u16 sub_0203F150 (FieldSystem * fieldSystem, u16 param1)
 {
-    u16 * v0 = FieldSystem_GetVar(fieldSystem, param1);
+    u16 * v0 = FieldSystem_GetVarPointer(fieldSystem, param1);
 
     if (v0 == NULL) {
         return param1;

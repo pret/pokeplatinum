@@ -148,7 +148,7 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
     ctx->data[0] = v13;
 
     v6 = MessageLoader_Init(0, 26, 412, 32);
-    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVar(fieldSystem, v13), *v10, sub_0203F098(ctx->fieldSystem, 1), v6, FieldSystem_GetVar(fieldSystem, v14), FieldSystem_GetVar(fieldSystem, v15));
+    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, sub_0203F098(ctx->fieldSystem, 1), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
     v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
 
     if (v0 == 1) {
@@ -188,7 +188,7 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
 static BOOL ov5_021F65D4 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;

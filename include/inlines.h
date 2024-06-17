@@ -161,7 +161,7 @@ static inline void Location_Set (Location * location, int mapId, int param2, int
 
 static inline u16 * ScriptContext_GetVarPointer (ScriptContext * ctx)
 {
-    return FieldSystem_GetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    return FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
 static inline u16 ScriptContext_GetVar (ScriptContext * ctx)

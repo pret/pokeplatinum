@@ -1638,7 +1638,7 @@ static BOOL ScrCmd_WaitTime (ScriptContext * ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 frames = ScriptContext_ReadHalfWord(ctx);
     u16 countdownVar = ScriptContext_ReadHalfWord(ctx);
-    u16 *countdown = FieldSystem_GetVar(fieldSystem, countdownVar);
+    u16 *countdown = FieldSystem_GetVarPointer(fieldSystem, countdownVar);
 
     *countdown = frames;
 
@@ -1651,7 +1651,7 @@ static BOOL ScrCmd_WaitTime (ScriptContext * ctx)
 static BOOL ScriptContext_DecrementTimer (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *frames = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 *frames = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     (*frames)--;
 
@@ -2579,7 +2579,7 @@ static BOOL sub_02040670 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u8 * v1 = sub_0203F098(fieldSystem, 3);
-    u16 * v2 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
     u8 v3 = ov5_021E1B54(fieldSystem->unk_64);
     int v4 = 0xffff;
 
@@ -2627,7 +2627,7 @@ static BOOL ScrCmd_03B (ScriptContext * ctx)
 static BOOL sub_02040730 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
     int v2 = 0xffff;
 
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
@@ -2688,7 +2688,7 @@ static BOOL sub_02040824 (ScriptContext * ctx)
     u32 v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
     UIControlData ** v2 = sub_0203F098(fieldSystem, 2);
-    u16 * v3 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v3 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     v0 = sub_02002114(*v2, 4);
 
@@ -2737,7 +2737,7 @@ static BOOL ScrCmd_040 (ScriptContext * ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVar(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), NULL);
+    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), NULL);
     ctx->data[0] = v7;
 
     return 1;
@@ -2754,7 +2754,7 @@ static BOOL ScrCmd_041 (ScriptContext * ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVar(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), ctx->loader);
+    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), ctx->loader);
     ctx->data[0] = v7;
 
     return 1;
@@ -2800,7 +2800,7 @@ static BOOL ScrCmd_043 (ScriptContext * ctx)
 static BOOL sub_02040A50 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;
@@ -2823,7 +2823,7 @@ static BOOL ScrCmd_2B9 (ScriptContext * ctx)
 static BOOL sub_02040A9C (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
     UnkStruct_ov5_021DC1A4 ** v2 = sub_0203F098(fieldSystem, 0);
 
     if (*v1 == 0xeeee) {
@@ -2850,7 +2850,7 @@ static BOOL ScrCmd_044 (ScriptContext * ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVar(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), NULL);
+    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), NULL);
     ctx->data[0] = v7;
 
     return 1;
@@ -2867,7 +2867,7 @@ static BOOL ScrCmd_045 (ScriptContext * ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVar(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), ctx->loader);
+    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), ctx->loader);
     ctx->data[0] = v7;
 
     return 1;
@@ -4086,7 +4086,7 @@ static BOOL sub_02041FF8 (ScriptContext * ctx)
 {
     u8 * v0;
     void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
-    u16 * v2 = FieldSystem_GetVar(ctx->fieldSystem, ctx->data[0]);
+    u16 * v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
     v0 = *v1;
 
@@ -4102,7 +4102,7 @@ static BOOL ScrCmd_20A (ScriptContext * ctx)
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     StringTemplate ** v1 = sub_0203F098(ctx->fieldSystem, 15);
 
-    VsSeeker_Start(ctx->taskManager, *v1, FieldSystem_GetVar(ctx->fieldSystem, v0));
+    VsSeeker_Start(ctx->taskManager, *v1, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
     return 1;
 }
 
@@ -4283,7 +4283,7 @@ static BOOL ScrCmd_1D7 (ScriptContext * ctx)
 
 static BOOL ScrCmd_1D8 (ScriptContext * ctx)
 {
-    u16 * v0 = FieldSystem_GetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 * v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
     if (!sub_0207D69C(sub_0207D990(ctx->fieldSystem->saveData), 4)) {
         *v0 = 1;
@@ -4422,7 +4422,7 @@ static BOOL ScrCmd_0B3 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0207DDE0(ctx->taskManager, FieldSystem_GetVar(ctx->fieldSystem, v0));
+    sub_0207DDE0(ctx->taskManager, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
     return 1;
 }
 
@@ -4885,7 +4885,7 @@ static BOOL sub_02042F74 (ScriptContext * ctx)
 {
     u32 v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v2 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     v0 = ov7_0224B460();
 
@@ -4916,7 +4916,7 @@ static BOOL sub_0204300C (ScriptContext * ctx)
 {
     u32 v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v2 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     v0 = CommClub_CheckWindowOpenClient();
 
@@ -5411,7 +5411,7 @@ static BOOL sub_02043938 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u32 v1 = sub_0205B8D8(fieldSystem->unk_7C);
-    u16 * v2 = FieldSystem_GetVar(fieldSystem, ctx->data[0]);
+    u16 * v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     if (v1 == 0) {
         return 0;
@@ -5467,7 +5467,7 @@ static BOOL ScrCmd_144 (ScriptContext * ctx)
 
 static BOOL sub_020439F4 (ScriptContext * ctx)
 {
-    u16 * v0 = FieldSystem_GetVar(ctx->fieldSystem, ctx->data[0]);
+    u16 * v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
     u32 v1 = sub_0205B8DC(ctx->fieldSystem->unk_7C);
 
     if (v1 >= 1) {
@@ -5493,7 +5493,7 @@ static BOOL ScrCmd_145 (ScriptContext * ctx)
 
 static BOOL sub_02043A4C (ScriptContext * ctx)
 {
-    u16 * v0 = FieldSystem_GetVar(ctx->fieldSystem, ctx->data[0]);
+    u16 * v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
     u32 v1 = sub_0205B91C(ctx->fieldSystem->unk_7C);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
@@ -5940,7 +5940,7 @@ static BOOL ScrCmd_19E (ScriptContext * ctx)
 static BOOL sub_020441C8 (ScriptContext * ctx)
 {
     void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
-    u16 * v1 = FieldSystem_GetVar(ctx->fieldSystem, ctx->data[0]);
+    u16 * v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
     *v1 = ov23_02252C70((*v0));
 
@@ -6356,8 +6356,8 @@ static BOOL ScrCmd_1E6 (ScriptContext * ctx)
     u16 v4 = ScriptContext_ReadHalfWord(ctx);
     u16 v5 = ScriptContext_ReadHalfWord(ctx);
 
-    v1 = FieldSystem_GetVar(ctx->fieldSystem, v4);
-    v2 = FieldSystem_GetVar(ctx->fieldSystem, v5);
+    v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, v4);
+    v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, v5);
     v0 = sub_0202CFB8(sub_0202CD88(ctx->fieldSystem->saveData), v3);
     *v1 = ((v0 & 0xFFFF0000) >> 16);
     *v2 = (v0 & 0xFFFF);
@@ -6667,7 +6667,7 @@ static BOOL ScrCmd_239 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
-    ov7_0224BE7C(ctx->taskManager, FieldSystem_GetVar(ctx->fieldSystem, v0));
+    ov7_0224BE7C(ctx->taskManager, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
     return 1;
 }
 
@@ -7050,7 +7050,7 @@ static BOOL ScrCmd_26A (ScriptContext * ctx)
 
 static BOOL ScrCmd_26B (ScriptContext * ctx)
 {
-    u16 * v0 = FieldSystem_GetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 * v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
     *v0 = HasAllLegendaryTitansInParty(ctx->fieldSystem->saveData);
     return 0;
@@ -8111,7 +8111,7 @@ static BOOL ScrCmd_2F6 (ScriptContext * ctx)
 static BOOL ScrCmd_2F7 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 * v1 = FieldSystem_GetVar(ctx->fieldSystem, v0);
+    u16 * v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
 
     if (sub_02039074(ctx->fieldSystem->saveData)) {
         sub_0205749C(ctx->taskManager, *v1);
