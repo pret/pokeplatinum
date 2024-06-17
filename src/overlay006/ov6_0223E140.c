@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay005/struct_ov5_021E20E8_decl.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -21,7 +20,6 @@
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay005/struct_ov5_021D52F4.h"
-#include "overlay005/struct_ov5_021E2098.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay006/funcptr_ov6_0223E6EC.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
@@ -46,7 +44,7 @@
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D521C.h"
-#include "overlay005/ov5_021E2098.h"
+#include "overlay005/motion_blur.h"
 #include "overlay006/ov6_0223E140.h"
 
 void include_unk_ov6_02248F30();
@@ -54,7 +52,7 @@ void include_unk_ov6_02248F30();
 typedef struct {
     FieldSystem * fieldSystem;
     UnkStruct_02099F80 unk_04;
-    UnkStruct_ov5_021E20E8 * unk_2C;
+    MotionBlur * unk_2C;
     int unk_30;
     int unk_34;
     u32 unk_38;
@@ -267,7 +265,7 @@ static void ov6_0223E1B0(void);
 static void ov6_0223E1D0(BGL * param0);
 static void ov6_0223E2AC(BGL * param0);
 static void ov6_0223E2A4(BGL * param0);
-static UnkStruct_ov5_021E20E8 * ov6_0223E2BC(int param0, int param1);
+static MotionBlur * ov6_0223E2BC(int param0, int param1);
 static void ov6_0223E2E8(UnkStruct_ov6_0223E140 * param0);
 static void ov6_0223E234(UnkStruct_ov6_0223E140 * param0);
 static void ov6_0223E248(UnkStruct_ov6_0223E140 * param0);
@@ -455,12 +453,12 @@ static void ov6_0223E2AC (BGL * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
-static UnkStruct_ov5_021E20E8 * ov6_0223E2BC (int param0, int param1)
+static MotionBlur * ov6_0223E2BC (int param0, int param1)
 {
-    UnkStruct_ov5_021E20E8 * v0;
+    MotionBlur * v0;
 
     {
-        UnkStruct_ov5_021E2098 v1 = {
+        MotionBlurParams v1 = {
             GX_DISPMODE_VRAM_C,
             GX_BGMODE_0,
             GX_BG0_AS_3D,

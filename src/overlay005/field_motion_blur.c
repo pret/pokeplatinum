@@ -3,11 +3,9 @@
 
 #include "constants/heap.h"
 
-#include "overlay005/struct_ov5_021E2098.h"
-
 #include "heap.h"
 #include "gx_layers.h"
-#include "overlay005/ov5_021E2098.h"
+#include "overlay005/motion_blur.h"
 #include "overlay005/field_motion_blur.h"
 
 FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
@@ -24,7 +22,7 @@ FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
     MI_CpuClear32(fieldMotionBlur, sizeof(FieldMotionBlur));
 
     {
-        UnkStruct_ov5_021E2098 v1 = {
+        MotionBlurParams v1 = {
             GX_DISPMODE_VRAM_C,
             GX_BGMODE_0,
             GX_BG0_AS_3D,
