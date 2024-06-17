@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "overlay100/struct_ov100_021D3084.h"
 #include "overlay100/struct_ov100_021D36CC.h"
@@ -25,7 +25,7 @@
 #include "unk_020170BC.h"
 #include "heap.h"
 #include "unk_0201D670.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "trainer_info.h"
 #include "overlay100/ov100_021D2F0C.h"

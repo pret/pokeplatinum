@@ -4,7 +4,7 @@
 #include "field/field_system.h"
 #include "overlay115/camera_angle.h"
 
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay005/ov5_021D5B40.h"
 
 typedef struct {

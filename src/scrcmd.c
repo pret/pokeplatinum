@@ -77,7 +77,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "savedata.h"

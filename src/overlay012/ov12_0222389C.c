@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "overlay115/camera_angle.h"
@@ -10,7 +10,7 @@
 #include "spl.h"
 
 #include "unk_02014000.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_0222389C.h"
 #include "overlay012/ov12_02235254.h"

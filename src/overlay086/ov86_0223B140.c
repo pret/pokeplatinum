@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 
@@ -49,7 +49,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"

@@ -4,7 +4,7 @@
 #include "functypes/funcptr_02014014.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "functypes/funcptr_020146F4.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "spl.h"
 #include <nnsys.h>

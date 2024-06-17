@@ -22,7 +22,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"

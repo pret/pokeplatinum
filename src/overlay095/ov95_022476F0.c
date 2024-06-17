@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay095/ov95_022476F0.h"
 
 struct UnkStruct_ov95_02247958_t {

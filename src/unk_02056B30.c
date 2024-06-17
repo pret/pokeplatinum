@@ -17,7 +17,7 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "map_header.h"
 #include "unk_020508D4.h"
 #include "field_map_change.h"

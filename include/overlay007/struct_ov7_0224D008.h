@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"

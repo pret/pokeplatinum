@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_defs/struct_0207C690.h"
 #include "overlay116/struct_ov116_022649E4_sub1.h"
 

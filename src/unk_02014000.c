@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "functypes/funcptr_02014014.h"
 #include "struct_defs/struct_02014560.h"
@@ -19,7 +19,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_02014000.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 
 enum {
     EMIT_MAX = 20,

@@ -28,7 +28,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02024220.h"
 #include "game_options.h"
 #include "overlay100/ov100_021D0D80.h"

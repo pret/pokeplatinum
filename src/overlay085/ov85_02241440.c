@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "struct_decls/struct_berry_data_decl.h"
 
@@ -33,7 +33,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"

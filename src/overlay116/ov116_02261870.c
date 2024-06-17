@@ -30,7 +30,7 @@
 #include "unk_020170BC.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "trainer_info.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021EAFA4_H
 #define POKEPLATINUM_OV5_021EAFA4_H
 
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 
 #include <nitro/fx/fx.h>

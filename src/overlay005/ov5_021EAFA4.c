@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "overlay115/camera_angle.h"
 
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay005/ov5_021EAFA4.h"
 
 typedef struct UnkStruct_ov5_021EB0E0_t {

@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV100_021D4890_H
 #define POKEPLATINUM_STRUCT_OV100_021D4890_H
 
-#include "struct_decls/struct_020203AC_decl.h"
 #include "overlay115/camera_angle.h"
+#include "camera.h"
 
 #include <nitro/fx/fx.h>
 

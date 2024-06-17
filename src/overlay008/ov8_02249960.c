@@ -36,7 +36,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"

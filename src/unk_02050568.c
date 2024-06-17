@@ -16,7 +16,7 @@
 
 #include "unk_02005474.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02050568.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"

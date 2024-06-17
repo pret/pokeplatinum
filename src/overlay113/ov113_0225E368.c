@@ -4,7 +4,7 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "overlay113/struct_ov113_0225DBCC_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -33,7 +33,7 @@
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201D15C.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "pokemon.h"
 #include "overlay113/ov113_0225E368.h"
 #include "overlay113/ov113_02260620.h"

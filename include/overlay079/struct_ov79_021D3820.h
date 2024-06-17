@@ -3,7 +3,7 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 typedef struct {
     UnkStruct_020203AC * unk_00;

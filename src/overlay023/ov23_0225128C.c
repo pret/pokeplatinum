@@ -30,7 +30,7 @@
 #include "unk_02013A04.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202854C.h"

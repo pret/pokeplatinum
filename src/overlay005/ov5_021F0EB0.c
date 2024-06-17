@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "field/field_system.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201CCF0.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay005/ov5_021F0EB0.h"
 
 typedef struct {

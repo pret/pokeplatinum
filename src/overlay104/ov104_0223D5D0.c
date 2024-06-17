@@ -2,11 +2,11 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "unk_02014000.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "overlay104/ov104_0223D5D0.h"
 

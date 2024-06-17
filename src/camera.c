@@ -8,50 +8,9 @@
 
 #include "heap.h"
 #include "unk_0201E190.h"
-#include "unk_02020020.h"
+#include "camera.h"
 
 GXBufferMode Unk_02100844 = GX_BUFFERMODE_W;
-
-typedef struct {
-    VecFx32 unk_00;
-    VecFx32 unk_0C;
-    VecFx32 unk_18;
-} UnkStruct_020203AC_sub2;
-
-typedef struct {
-    fx32 unk_00;
-    fx32 unk_04;
-    fx32 unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-} UnkStruct_020203AC_sub1;
-
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    BOOL unk_10;
-    BOOL unk_14;
-    BOOL unk_18;
-    BOOL unk_1C;
-    VecFx32 * unk_20;
-} UnkStruct_02020304;
-
-typedef struct UnkStruct_020203AC_t {
-    UnkStruct_020203AC_sub1 unk_00;
-    UnkStruct_020203AC_sub2 unk_14;
-    fx32 unk_38;
-    CameraAngle cameraAngle;
-    u8 unk_44;
-    u16 unk_46;
-    VecFx32 unk_48;
-    const VecFx32 * unk_54;
-    BOOL unk_58;
-    BOOL unk_5C;
-    BOOL unk_60;
-    UnkStruct_02020304 * unk_64;
-} UnkStruct_020203AC;
 
 static UnkStruct_020203AC * Unk_021C0770 = NULL;
 

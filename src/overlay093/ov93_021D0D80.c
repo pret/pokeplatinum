@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "struct_defs/struct_0206C8D4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
 #include "overlay093/ov93_021D0D80.h"

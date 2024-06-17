@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021D3CE4_decl.h"
@@ -13,7 +13,7 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_02056B30.h"

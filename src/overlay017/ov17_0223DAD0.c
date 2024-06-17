@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "overlay017/struct_ov17_0223E838.h"
@@ -43,7 +43,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "unk_020366A0.h"

@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -54,7 +54,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"

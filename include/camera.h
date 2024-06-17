@@ -1,10 +1,50 @@
-#ifndef POKEPLATINUM_UNK_02020020_H
-#define POKEPLATINUM_UNK_02020020_H
+#ifndef POKEPLATINUM_CAMERA_H
+#define POKEPLATINUM_CAMERA_H
 
-#include "struct_decls/struct_020203AC_decl.h"
 #include "overlay115/camera_angle.h"
 
 #include <nitro/fx/fx.h>
+
+typedef struct {
+    VecFx32 unk_00;
+    VecFx32 unk_0C;
+    VecFx32 unk_18;
+} UnkStruct_020203AC_sub2;
+
+typedef struct {
+    fx32 unk_00;
+    fx32 unk_04;
+    fx32 unk_08;
+    fx32 unk_0C;
+    fx32 unk_10;
+} UnkStruct_020203AC_sub1;
+
+typedef struct {
+    int unk_00;
+    int unk_04;
+    int unk_08;
+    int unk_0C;
+    BOOL unk_10;
+    BOOL unk_14;
+    BOOL unk_18;
+    BOOL unk_1C;
+    VecFx32 * unk_20;
+} UnkStruct_02020304;
+
+typedef struct UnkStruct_020203AC_t {
+    UnkStruct_020203AC_sub1 unk_00;
+    UnkStruct_020203AC_sub2 unk_14;
+    fx32 unk_38;
+    CameraAngle cameraAngle;
+    u8 unk_44;
+    u16 unk_46;
+    VecFx32 unk_48;
+    const VecFx32 * unk_54;
+    BOOL unk_58;
+    BOOL unk_5C;
+    BOOL unk_60;
+    UnkStruct_02020304 * unk_64;
+} UnkStruct_020203AC;
 
 void sub_02020304(const int param0, const int param1, const int param2, const int param3, UnkStruct_020203AC * param4);
 void sub_02020390(UnkStruct_020203AC * param0);
@@ -41,4 +81,4 @@ VecFx32 sub_02020ABC(UnkStruct_020203AC const * param0);
 void sub_02020ACC(const VecFx32 * param0, UnkStruct_020203AC * param1);
 void sub_02020ADC(const VecFx32 * param0, UnkStruct_020203AC * param1);
 
-#endif // POKEPLATINUM_UNK_02020020_H
+#endif // POKEPLATINUM_CAMERA_H

@@ -40,7 +40,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "savedata_misc.h"

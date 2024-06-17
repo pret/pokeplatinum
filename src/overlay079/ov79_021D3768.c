@@ -10,7 +10,7 @@
 
 #include "unk_0200762C.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "pokemon.h"
 #include "overlay079/ov79_021D3768.h"

@@ -33,7 +33,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02024220.h"
 #include "communication_information.h"
 #include "communication_system.h"

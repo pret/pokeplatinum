@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
 
 #include "overlay115/camera_angle.h"
 
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay070/ov70_0225C9B4.h"
 #include "overlay070/ov70_02260A70.h"
 
