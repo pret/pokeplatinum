@@ -265,7 +265,7 @@ static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 p
     param0->cameraAngle.y = ((0 * 0xffff) / 360);
     param0->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    sub_020206D0(&(param0->unk_04), 1228800, &(param0->cameraAngle), 4004, 0, 1, param0->unk_00);
+    Camera_InitWithTarget(&(param0->unk_04), 1228800, &(param0->cameraAngle), 4004, 0, 1, param0->unk_00);
 
     v1.x = 0;
     v1.y = FX32_ONE;

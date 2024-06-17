@@ -765,7 +765,7 @@ static void ov86_0223B9A8 (UnkStruct_ov86_0223B3C8 * param0)
     param0->cameraAngle.y = ((0 * 0xffff) / 360);
     param0->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    sub_020206D0(&(param0->unk_1C14), 20480, &(param0->cameraAngle), 4004, 0, 1, param0->unk_1C10);
+    Camera_InitWithTarget(&(param0->unk_1C14), 20480, &(param0->cameraAngle), 4004, 0, 1, param0->unk_1C10);
 
     v0.x = 0;
     v0.y = FX32_ONE;

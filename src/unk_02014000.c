@@ -168,7 +168,7 @@ UnkStruct_02014014 * sub_02014014 (UnkFuncPtr_02014014 param0, UnkFuncPtr_020140
             VEC_Set(&v0->unk_24, 0, 0, 0);
             v0->unk_30 = 8192;
 
-            sub_02020784(&Unk_020E543C, &Unk_020E5448,
+            Camera_InitWithTargetAndPosition(&Unk_020E543C, &Unk_020E5448,
                          v0->unk_30,
                          0,
                          0,

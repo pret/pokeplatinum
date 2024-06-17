@@ -1174,7 +1174,7 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
 
     param0->unk_CC = Camera_Alloc(118);
 
-    sub_020206D0(&v0, 0x7c000, &Unk_ov113_022608B4, (((22 * 0xffff) / 360)), 0, 0, param0->unk_CC);
+    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov113_022608B4, (((22 * 0xffff) / 360)), 0, 0, param0->unk_CC);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_CC);
     Camera_SetAsActive(param0->unk_CC);
 

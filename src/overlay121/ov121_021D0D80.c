@@ -220,7 +220,7 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
 
         param0->unk_04 = Camera_Alloc(30);
 
-        sub_020206D0(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04);
+        Camera_InitWithTarget(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04);
         Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04);
 
         {

@@ -761,7 +761,7 @@ static void ov99_021D1918 (UnkStruct_ov99_021D2CB0 * param0)
 
     param0->unk_28 = Camera_Alloc(75);
 
-    sub_020206D0(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->unk_28);
+    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->unk_28);
     sub_02020ADC(&v1, param0->unk_28);
     sub_02020ACC(&v2, param0->unk_28);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_28);

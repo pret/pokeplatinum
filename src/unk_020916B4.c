@@ -183,7 +183,7 @@ void sub_020917E0 (PokemonSummaryApp * param0)
 
     param0->monSpriteData.unk_00 = Camera_Alloc(19);
 
-    sub_02020738(&v0, v2, &v1, v3, 1, param0->monSpriteData.unk_00);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->monSpriteData.unk_00);
     Camera_SetClipping(0, FX32_CONST(100), param0->monSpriteData.unk_00);
     Camera_ReleaseTarget(param0->monSpriteData.unk_00);
     Camera_SetAsActive(param0->monSpriteData.unk_00);

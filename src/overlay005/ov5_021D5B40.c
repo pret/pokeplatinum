@@ -210,7 +210,7 @@ void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * fieldSystem, const int 
 
     fieldSystem->camera = Camera_Alloc(4);
 
-    sub_020206D0(v0, v1->unk_00, &v1->cameraAngle, v1->unk_0E, v1->unk_0C, 1, fieldSystem->camera);
+    Camera_InitWithTarget(v0, v1->unk_00, &v1->cameraAngle, v1->unk_0E, v1->unk_0C, 1, fieldSystem->camera);
     Camera_SetAsActive(fieldSystem->camera);
     Camera_SetClipping(v1->unk_10, v1->unk_14, fieldSystem->camera);
 

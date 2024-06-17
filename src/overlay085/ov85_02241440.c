@@ -922,7 +922,7 @@ static void ov85_02242038 (UnkStruct_ov85_022417E4 * param0)
 
     param0->unk_D0 = Camera_Alloc(36);
 
-    sub_02020738(&v0, v2, &v1, v3, 1, param0->unk_D0);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->unk_D0);
     Camera_SetClipping(0, FX32_CONST(100), param0->unk_D0);
     Camera_ReleaseTarget(param0->unk_D0);
     Camera_SetAsActive(param0->unk_D0);

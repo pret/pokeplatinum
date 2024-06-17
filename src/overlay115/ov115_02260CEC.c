@@ -3291,7 +3291,7 @@ static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 p
     v0.y = Unk_ov115_02265C5C[param1 - 1][param2];
     v0.z = (((0 * 0xffff) / 360));
 
-    sub_020206D0(&param0->unk_1F8, 0x1d9000, &v0, (((22 * 0xffff) / 360)), 0, 1, param0->unk_1F4);
+    Camera_InitWithTarget(&param0->unk_1F8, 0x1d9000, &v0, (((22 * 0xffff) / 360)), 0, 1, param0->unk_1F4);
 
     v1.x = 0;
     v1.y = (FX32_ONE);

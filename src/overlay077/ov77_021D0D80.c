@@ -871,7 +871,7 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
         param0->unk_248.z = param0->unk_258.z;
         param0->unk_04.unk_A4 = Camera_Alloc(param2);
 
-        sub_02020784(&param0->unk_23C, &param0->unk_248, 0xb60, 0, 0, param0->unk_04.unk_A4);
+        Camera_InitWithTargetAndPosition(&param0->unk_23C, &param0->unk_248, 0xb60, 0, 0, param0->unk_04.unk_A4);
         Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04.unk_A4);
         Camera_ComputeProjectionMatrix(0, param0->unk_04.unk_A4);
         Camera_SetAsActive(param0->unk_04.unk_A4);
@@ -886,7 +886,7 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
 
         param0->unk_04.unk_A8 = Camera_Alloc(param2);
 
-        sub_020206D0(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04.unk_A8);
+        Camera_InitWithTarget(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04.unk_A8);
         Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04.unk_A8);
 
         {

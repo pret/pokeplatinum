@@ -10,6 +10,10 @@
 #include "unk_0201E190.h"
 #include "camera.h"
 
+#define CAMERA_DEFAULT_ASPECT_RATIO     (FX32_ONE * 4 / 3)
+#define CAMERA_DEFAULT_NEAR_CLIP        (FX32_ONE * 150)
+#define CAMERA_DEFAULT_FAR_CLIP         (FX32_ONE * 900)
+
 GXBufferMode Unk_02100844 = GX_BUFFERMODE_W;
 
 static Camera *sActiveCamera = NULL;
@@ -40,22 +44,22 @@ static void sub_02020100 (Camera * param0)
     VEC_Add(&param0->lookAt.target, &param0->lookAt.position, &param0->lookAt.target);
 }
 
-static void sub_020201E4 (const u16 param0, Camera * param1)
+static void Camera_Init(const u16 fovY, Camera *camera)
 {
-    param1->fovY = param0;
-    param1->perspective.sinFovY = FX_SinIdx(param0);
-    param1->perspective.cosFovY = FX_CosIdx(param0);
-    param1->perspective.aspectRatio = FX32_ONE * 4 / 3;
-    param1->perspective.nearClip = FX32_ONE * 150;
-    param1->perspective.farClip = FX32_ONE * 900;
-    param1->lookAt.up.x = 0;
-    param1->lookAt.up.y = FX32_ONE;
-    param1->lookAt.up.z = 0;
-    param1->targetPos = NULL;
-    param1->trackTargetX = 0;
-    param1->trackTargetY = 0;
-    param1->trackTargetZ = 0;
-    param1->unk_64 = NULL;
+    camera->fovY = fovY;
+    camera->perspective.sinFovY = FX_SinIdx(fovY);
+    camera->perspective.cosFovY = FX_CosIdx(fovY);
+    camera->perspective.aspectRatio = CAMERA_DEFAULT_ASPECT_RATIO;
+    camera->perspective.nearClip = CAMERA_DEFAULT_NEAR_CLIP;
+    camera->perspective.farClip = CAMERA_DEFAULT_FAR_CLIP;
+    camera->lookAt.up.x = 0;
+    camera->lookAt.up.y = FX32_ONE;
+    camera->lookAt.up.z = 0;
+    camera->targetPos = NULL;
+    camera->trackTargetX = FALSE;
+    camera->trackTargetY = FALSE;
+    camera->trackTargetZ = FALSE;
+    camera->unk_64 = NULL;
 }
 
 static void Camera_AdjustDeltaPos(Camera const *camera, VecFx32 *deltaPos)
@@ -254,7 +258,7 @@ void sub_0202049C (void)
     }
 }
 
-void Camera_SetUp (const VecFx32 *up, Camera *camera)
+void Camera_SetUp(const VecFx32 *up, Camera *camera)
 {
     camera->lookAt.up = *up;
 }
@@ -284,48 +288,48 @@ void Camera_SetClipping(const fx32 nearClip, const fx32 farClip, Camera *camera)
     Camera_ComputeProjectionMatrix(camera->projection, camera);
 }
 
-void sub_020206D0 (const VecFx32 * param0, const fx32 param1, const CameraAngle * cameraAngle, const u16 param3, const u8 param4, const BOOL param5, Camera * param6)
+void Camera_InitWithTarget(const VecFx32 *target, const fx32 distance, const CameraAngle *angle, const u16 fovY, const u8 projection, const BOOL trackTarget, Camera *camera)
 {
-    sub_020201E4(param3, param6);
+    Camera_Init(fovY, camera);
 
-    param6->lookAt.target = *param0;
-    param6->distance = param1;
-    param6->cameraAngle = *cameraAngle;
+    camera->lookAt.target = *target;
+    camera->distance = distance;
+    camera->cameraAngle = *angle;
 
-    sub_02020020(param6);
-    Camera_ComputeProjectionMatrix(param4, param6);
+    sub_02020020(camera);
+    Camera_ComputeProjectionMatrix(projection, camera);
 
-    if (param5) {
-        param6->targetPos = param0;
-        param6->prevTargetPos = *param0;
-        param6->trackTargetX = 1;
-        param6->trackTargetY = 1;
-        param6->trackTargetZ = 1;
+    if (trackTarget) {
+        camera->targetPos = target;
+        camera->prevTargetPos = *target;
+        camera->trackTargetX = TRUE;
+        camera->trackTargetY = TRUE;
+        camera->trackTargetZ = TRUE;
     }
 }
 
-void sub_02020738 (const VecFx32 * param0, const fx32 param1, const CameraAngle * cameraAngle, const u16 param3, const u8 param4, Camera * param5)
+void Camera_InitWithPosition(const VecFx32 *position, const fx32 distance, const CameraAngle *angle, const u16 fovY, const u8 projection, Camera *camera)
 {
-    sub_020201E4(param3, param5);
+    Camera_Init(fovY, camera);
 
-    param5->lookAt.position = *param0;
-    param5->distance = param1;
-    param5->cameraAngle = *cameraAngle;
+    camera->lookAt.position = *position;
+    camera->distance = distance;
+    camera->cameraAngle = *angle;
 
-    sub_02020100(param5);
-    Camera_ComputeProjectionMatrix(param4, param5);
+    sub_02020100(camera);
+    Camera_ComputeProjectionMatrix(projection, camera);
 }
 
-void sub_02020784 (const VecFx32 * param0, const VecFx32 * param1, const u16 param2, const u8 param3, const BOOL param4, Camera * param5)
+void Camera_InitWithTargetAndPosition(const VecFx32 *target, const VecFx32 *position, const u16 fovY, const u8 projection, const BOOL trackTarget, Camera *camera)
 {
-    VecFx32 v0;
+    VecFx32 distanceVector;
 
-    sub_020201E4(param2, param5);
+    Camera_Init(fovY, camera);
 
-    param5->lookAt.target = *param0;
-    param5->lookAt.position = *param1;
-    VEC_Subtract(param1, param0, &v0);
-    param5->distance = VEC_Mag(&v0);
+    camera->lookAt.target = *target;
+    camera->lookAt.position = *position;
+    VEC_Subtract(position, target, &distanceVector);
+    camera->distance = VEC_Mag(&distanceVector);
 
     {
         VecFx32 v1 = {0, 0, 0};
@@ -337,31 +341,31 @@ void sub_02020784 (const VecFx32 * param0, const VecFx32 * param1, const u16 par
         v4.y = 0;
         v4.z = FX32_ONE;
 
-        v3 = v0;
+        v3 = distanceVector;
         v3.y = 0;
 
-        param5->cameraAngle.y = sub_0201E1A0(&v4, &v3);
+        camera->cameraAngle.y = sub_0201E1A0(&v4, &v3);
 
         v4.x = FX32_ONE;
         v4.y = 0;
         v4.z = 0;
 
-        v3.x = v0.z;
-        v3.z = v0.y;
+        v3.x = distanceVector.z;
+        v3.z = distanceVector.y;
         v3.y = 0;
 
-        param5->cameraAngle.x = sub_0201E1A0(&v4, &v3);
-        param5->cameraAngle.z = 0;
+        camera->cameraAngle.x = sub_0201E1A0(&v4, &v3);
+        camera->cameraAngle.z = 0;
     }
 
-    Camera_ComputeProjectionMatrix(param3, param5);
+    Camera_ComputeProjectionMatrix(projection, camera);
 
-    if (param4) {
-        param5->targetPos = param0;
-        param5->prevTargetPos = *param0;
-        param5->trackTargetX = 1;
-        param5->trackTargetY = 1;
-        param5->trackTargetZ = 1;
+    if (trackTarget) {
+        camera->targetPos = target;
+        camera->prevTargetPos = *target;
+        camera->trackTargetX = TRUE;
+        camera->trackTargetY = TRUE;
+        camera->trackTargetZ = TRUE;
     }
 }
 

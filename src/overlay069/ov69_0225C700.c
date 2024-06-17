@@ -1762,7 +1762,7 @@ static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
 {
     param0->unk_00 = Camera_Alloc(param2);
 
-    sub_02020784(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->unk_00);
+    Camera_InitWithTargetAndPosition(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->unk_00);
     Camera_SetClipping(0, (FX32_ONE * 100), param0->unk_00);
     Camera_ComputeProjectionMatrix(0, param0->unk_00);
     Camera_SetAsActive(param0->unk_00);

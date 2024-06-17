@@ -207,7 +207,7 @@ static void ov100_021D1758 (Camera * param0, VecFx32 * param1)
 {
     CameraAngle v0 = {1274, 0, 0};
 
-    sub_020206D0(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, param0);
+    Camera_InitWithTarget(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, param0);
     Camera_ComputeProjectionMatrix(0, param0);
     Camera_SetAsActive(param0);
     Camera_SetClipping(FX32_CONST(0.1), FX32_CONST(2048), param0);

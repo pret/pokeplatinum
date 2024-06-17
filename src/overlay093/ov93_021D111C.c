@@ -104,7 +104,7 @@ int ov93_021D111C (OverlayManager * param0, int * param1)
     {
         VecFx32 v3 = {0, 0, 0};
 
-        sub_020206D0(&v3, Unk_ov93_021D1534.unk_00, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.unk_0E, Unk_ov93_021D1534.unk_0C, 0, v1->unk_00);
+        Camera_InitWithTarget(&v3, Unk_ov93_021D1534.unk_00, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.unk_0E, Unk_ov93_021D1534.unk_0C, 0, v1->unk_00);
         Camera_SetAsActive(v1->unk_00);
     }
 

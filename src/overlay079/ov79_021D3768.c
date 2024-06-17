@@ -74,7 +74,7 @@ static void ov79_021D3870 (UnkStruct_ov79_021D3820 * param0, int param1)
 
     param0->unk_00 = Camera_Alloc(param1);
 
-    sub_02020738(&v0, v2, &v1, v3, 1, param0->unk_00);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->unk_00);
     Camera_SetClipping(0, FX32_CONST(100), param0->unk_00);
     Camera_ReleaseTarget(param0->unk_00);
     Camera_SetAsActive(param0->unk_00);

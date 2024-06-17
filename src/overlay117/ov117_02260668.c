@@ -552,13 +552,13 @@ static void ov117_02260EC0 (UnkStruct_ov117_02261280 * param0)
 
     param0->unk_9C = Camera_Alloc(110);
 
-    sub_020206D0(&v0, (0x7b << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_9C);
+    Camera_InitWithTarget(&v0, (0x7b << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_9C);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_9C);
     Camera_SetAsActive(param0->unk_9C);
 
     param0->unk_A0 = Camera_Alloc(110);
 
-    sub_020206D0(&v0, (80 << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_A0);
+    Camera_InitWithTarget(&v0, (80 << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_A0);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_A0);
 }
 

@@ -1087,7 +1087,7 @@ static void ov78_021D1B3C (Camera * param0, VecFx32 * param1)
     v0.y = (((0 * 0xffff) / 360));
     v0.z = (((0 * 0xffff) / 360));
 
-    sub_020206D0(param1, (300 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 1, param0);
+    Camera_InitWithTarget(param1, (300 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 1, param0);
 
     v1.x = 0;
     v1.y = FX32_ONE;
