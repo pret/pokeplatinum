@@ -170,7 +170,7 @@ static void ov48_022564E0(UnkStruct_ov48_0225621C * param0, PoketchSystem * para
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov48_022561D4, ov48_022562F0);
+    PoketchSystem_SetAppFunctions(ov48_022561D4, ov48_022562F0);
 }
 
 static BOOL ov48_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -230,7 +230,7 @@ static void ov48_022562BC (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov48_022562A8(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_AC);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_AC);
         }
     } else {
     }
@@ -261,7 +261,7 @@ static BOOL ov48_0225630C (UnkStruct_ov48_0225621C * param0)
         break;
     case 1:
         if (ov48_0225657C(param0->unk_A8, 0)) {
-            ov25_0225424C(param0->unk_AC);
+            PoketchSystem_NotifyAppLoaded(param0->unk_AC);
             ov48_022562F8(param0, 1);
         }
         break;
@@ -282,7 +282,7 @@ static BOOL ov48_02256358 (UnkStruct_ov48_0225621C * param0)
     if (ov48_0225657C(param0->unk_A8, 2)) {
         u32 v0, v1;
 
-        if (ov25_022544BC(&v0, &v1)) {
+        if (PoketchSystem_TappedDisplay(&v0, &v1)) {
             if (((u32)(v0 - 16) < (u32)192) & ((u32)(v1 - 16) < (u32)192)) {
                 param0->unk_04.unk_08 = ov48_02256408(param0);
                 ov48_02256558(param0->unk_A8, 2);
@@ -337,7 +337,7 @@ static BOOL ov48_02256478 (UnkStruct_ov48_0225621C * param0)
 {
     BOOL v0 = 0;
 
-    if (ov25_02254534(param0->unk_AC)) {
+    if (PoketchSystem_PlayerMoved(param0->unk_AC)) {
         int v1, v2;
 
         inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->unk_AC), &v1, &v2);

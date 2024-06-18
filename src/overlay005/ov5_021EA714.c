@@ -46,7 +46,7 @@ void ov5_021EA790 (FieldSystem * fieldSystem)
 
     if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {
-        ov25_02253D5C(fieldSystem->unk_04->unk_14);
+        PoketchSystem_StartShutdown(fieldSystem->unk_04->unk_14);
     } else {
         ov24_02253DA4(fieldSystem->unk_08);
     }
@@ -59,7 +59,7 @@ u8 ov5_021EA7CC (FieldSystem * fieldSystem)
 
     if (PoketchData_IsEnabled(v0)
         && (sub_0206AE2C(v1) == 0)) {
-        if (ov25_02253D70(fieldSystem->unk_04->unk_14)) {
+        if (PoketchSystem_IsSystemShutdown(fieldSystem->unk_04->unk_14)) {
             fieldSystem->unk_04->unk_14 = NULL;
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay25));
             return 1;
