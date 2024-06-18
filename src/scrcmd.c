@@ -1637,12 +1637,12 @@ static BOOL ScrCmd_WaitTime (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 frames = ScriptContext_ReadHalfWord(ctx);
-    u16 countdownVar = ScriptContext_ReadHalfWord(ctx);
-    u16 *countdown = FieldSystem_GetVarPointer(fieldSystem, countdownVar);
+    u16 countdownVarID = ScriptContext_ReadHalfWord(ctx);
+    u16 *countdownVar = FieldSystem_GetVarPointer(fieldSystem, countdownVarID);
 
-    *countdown = frames;
+    *countdownVar = frames;
 
-    ctx->data[0] = countdownVar;
+    ctx->data[0] = countdownVarID;
 
     ScriptContext_Pause(ctx, ScriptContext_DecrementTimer);
     return TRUE;
