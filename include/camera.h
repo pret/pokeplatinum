@@ -6,6 +6,11 @@
 
 #include <nitro/fx/fx.h>
 
+#define CAMERA_DELAY_NONE   0
+#define CAMERA_DELAY_X      1
+#define CAMERA_DELAY_Y      2
+#define CAMERA_DELAY_Z      4
+
 enum CameraProjection {
     CAMERA_PROJECTION_PERSPECTIVE = 0,
     CAMERA_PROJECTION_ORTHOGRAPHIC,
@@ -25,17 +30,17 @@ typedef struct CameraPerspectiveProjection {
     fx32 farClip;
 } CameraPerspectiveProjection;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    BOOL unk_10;
-    BOOL unk_14;
-    BOOL unk_18;
-    BOOL unk_1C;
-    VecFx32 * unk_20;
-} UnkStruct_02020304;
+typedef struct CameraPositionHistory {
+    int historySize;
+    int currentHistoryIndex;
+    int nextHistoryIndex;
+    int delay;
+    BOOL delayReached;
+    BOOL delayX;
+    BOOL delayY;
+    BOOL delayZ;
+    VecFx32 *positions;
+} CameraPositionHistory;
 
 typedef struct Camera {
     CameraPerspectiveProjection perspective;
@@ -49,18 +54,18 @@ typedef struct Camera {
     BOOL trackTargetX;
     BOOL trackTargetY;
     BOOL trackTargetZ;
-    UnkStruct_02020304 * unk_64;
+    CameraPositionHistory * history;
 } Camera;
 
-void sub_02020304(const int param0, const int param1, const int param2, const int param3, Camera *camera);
-void sub_02020390(Camera *camera);
+void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId heapID, Camera *camera);
+void Camera_DeleteHistory(Camera *camera);
 Camera *Camera_Alloc(const enum HeapId heapID);
 void Camera_Delete(Camera *camera);
 void Camera_Copy(Camera const *src, Camera *dst);
 void Camera_SetAsActive(Camera *camera);
 void Camera_ClearActive(void);
-void Camera_ComputeViewMatrix();
-void sub_0202049C(void);
+void Camera_ComputeViewMatrix(void);
+void Camera_ComputeViewMatrixWithRoll(void); // Calculates the view matrix with respect to the camera's Z rotation
 void Camera_SetUp (const VecFx32 *up, Camera *camera);
 void Camera_TrackTarget(const VecFx32 *target, Camera *camera);
 void Camera_ReleaseTarget(Camera *camera);

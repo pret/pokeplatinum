@@ -53,7 +53,7 @@ static void Camera_Init(const u16 fovY, Camera *camera)
     camera->trackTargetX = FALSE;
     camera->trackTargetY = FALSE;
     camera->trackTargetZ = FALSE;
-    camera->unk_64 = NULL;
+    camera->history = NULL;
 }
 
 static void Camera_AdjustDeltaPos(Camera const *camera, VecFx32 *deltaPos)
@@ -71,95 +71,90 @@ static void Camera_AdjustDeltaPos(Camera const *camera, VecFx32 *deltaPos)
     }
 }
 
-static void sub_02020250 (Camera const * param0, const VecFx32 * param1, VecFx32 * param2)
+static void Camera_UpdateHistory(Camera const *camera, const VecFx32 *inPos, VecFx32 *outPos)
 {
-    int * v0;
-    int * v1;
-
-    if (param0->unk_64 == NULL) {
-        (*param2) = (*param1);
+    if (camera->history == NULL) {
+        *outPos = *inPos;
     } else {
-        v0 = &param0->unk_64->unk_04;
-        v1 = &param0->unk_64->unk_08;
+        int *curHistoryIndex = &camera->history->currentHistoryIndex;
+        int *nextHistoryIndex = &camera->history->nextHistoryIndex;
 
-        if (!param0->unk_64->unk_10) {
-            (*param2) = (*param1);
+        if (!camera->history->delayReached) {
+            *outPos = *inPos;
 
-            if (*v0 == param0->unk_64->unk_0C) {
-                param0->unk_64->unk_10 = 1;
+            if (*curHistoryIndex == camera->history->delay) {
+                camera->history->delayReached = TRUE;
             }
         } else {
-            (*param2) = param0->unk_64->unk_20[(*v0)];
+            *outPos = camera->history->positions[*curHistoryIndex];
         }
 
-        (*v0) = ((*v0) + 1) % param0->unk_64->unk_00;
-        param0->unk_64->unk_20[(*v1)] = (*param1);
-        (*v1) = ((*v1) + 1) % param0->unk_64->unk_00;
+        *curHistoryIndex = (*curHistoryIndex + 1) % camera->history->historySize;
 
-        if (!param0->unk_64->unk_14) {
-            param2->x = param1->x;
+        camera->history->positions[*nextHistoryIndex] = *inPos;
+        *nextHistoryIndex = (*nextHistoryIndex + 1) % camera->history->historySize;
+
+        if (!camera->history->delayX) {
+            outPos->x = inPos->x;
         }
 
-        if (!param0->unk_64->unk_18) {
-            param2->y = param1->y;
+        if (!camera->history->delayY) {
+            outPos->y = inPos->y;
         }
 
-        if (!param0->unk_64->unk_1C) {
-            param2->z = param1->z;
+        if (!camera->history->delayZ) {
+            outPos->z = inPos->z;
         }
     }
 }
 
-void sub_02020304 (const int param0, const int param1, const int param2, const int param3, Camera * param4)
+void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId heapID, Camera *camera)
 {
-    int v0;
-    UnkStruct_02020304 * v1;
-
-    if (param4->targetPos == NULL) {
+    if (camera->targetPos == NULL) {
         return;
     }
 
-    GF_ASSERT((param1 + 1 <= param0));
+    GF_ASSERT(delay + 1 <= historySize);
 
-    v1 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_02020304));
-    v1->unk_20 = Heap_AllocFromHeap(param3, sizeof(VecFx32) * param0);
+    CameraPositionHistory *history = Heap_AllocFromHeap(heapID, sizeof(CameraPositionHistory));
+    history->positions = Heap_AllocFromHeap(heapID, sizeof(VecFx32) * historySize);
 
-    for (v0 = 0; v0 < param0; v0++) {
-        v1->unk_20[v0].x = 0;
-        v1->unk_20[v0].y = 0;
-        v1->unk_20[v0].z = 0;
+    for (int i = 0; i < historySize; i++) {
+        history->positions[i].x = 0;
+        history->positions[i].y = 0;
+        history->positions[i].z = 0;
     }
 
-    v1->unk_00 = param0;
-    v1->unk_04 = 0;
-    v1->unk_08 = 0 + param1;
-    v1->unk_0C = param1;
-    v1->unk_10 = 0;
-    v1->unk_14 = 0;
-    v1->unk_18 = 0;
-    v1->unk_1C = 0;
+    history->historySize = historySize;
+    history->currentHistoryIndex = 0;
+    history->nextHistoryIndex = 0 + delay;
+    history->delay = delay;
+    history->delayReached = FALSE;
+    history->delayX = FALSE;
+    history->delayY = FALSE;
+    history->delayZ = FALSE;
 
-    if (param2 & 1) {
-        v1->unk_14 = 1;
+    if (delayMask & CAMERA_DELAY_X) {
+        history->delayX = TRUE;
     }
 
-    if (param2 & 2) {
-        v1->unk_18 = 1;
+    if (delayMask & CAMERA_DELAY_Y) {
+        history->delayY = TRUE;
     }
 
-    if (param2 & 4) {
-        v1->unk_1C = 1;
+    if (delayMask & CAMERA_DELAY_Z) {
+        history->delayZ = TRUE;
     }
 
-    param4->unk_64 = v1;
+    camera->history = history;
 }
 
-void sub_02020390 (Camera * param0)
+void Camera_DeleteHistory(Camera *camera)
 {
-    if (param0->unk_64 != NULL) {
-        Heap_FreeToHeap(param0->unk_64->unk_20);
-        Heap_FreeToHeap(param0->unk_64);
-        param0->unk_64 = NULL;
+    if (camera->history != NULL) {
+        Heap_FreeToHeap(camera->history->positions);
+        Heap_FreeToHeap(camera->history);
+        camera->history = NULL;
     }
 }
 
@@ -196,13 +191,13 @@ void Camera_ComputeViewMatrix(void)
 
     if (sActiveCamera->targetPos != NULL) {
         VecFx32 targetPosDelta;
-        VecFx32 v1;
+        VecFx32 resultPos;
 
         VEC_Subtract(sActiveCamera->targetPos, &sActiveCamera->prevTargetPos, &targetPosDelta);
 
         Camera_AdjustDeltaPos(sActiveCamera, &targetPosDelta);
-        sub_02020250(sActiveCamera, &targetPosDelta, &v1);
-        Camera_Move(&v1, sActiveCamera);
+        Camera_UpdateHistory(sActiveCamera, &targetPosDelta, &resultPos);
+        Camera_Move(&resultPos, sActiveCamera);
 
         sActiveCamera->prevTargetPos = *sActiveCamera->targetPos;
     }
@@ -210,7 +205,7 @@ void Camera_ComputeViewMatrix(void)
     NNS_G3dGlbLookAt(&sActiveCamera->lookAt.position, &sActiveCamera->lookAt.up, &sActiveCamera->lookAt.target);
 }
 
-void sub_0202049C (void)
+void Camera_ComputeViewMatrixWithRoll(void)
 {
     if (sActiveCamera == NULL) {
         return;
@@ -223,7 +218,7 @@ void sub_0202049C (void)
         VEC_Subtract(sActiveCamera->targetPos, &sActiveCamera->prevTargetPos, &v0);
 
         Camera_AdjustDeltaPos(sActiveCamera, &v0);
-        sub_02020250(sActiveCamera, &v0, &v1);
+        Camera_UpdateHistory(sActiveCamera, &v0, &v1);
         Camera_Move(&v1, sActiveCamera);
 
         sActiveCamera->prevTargetPos = *sActiveCamera->targetPos;
@@ -232,18 +227,20 @@ void sub_0202049C (void)
             VecFx32 cameraPos = sActiveCamera->lookAt.position;
             VecFx32 cameraUp = sActiveCamera->lookAt.up;
             const VecFx32 * targetPos = sActiveCamera->targetPos;
-            fx16 v5 = FX_CosIdx(sActiveCamera->angle.x);
-            fx16 v6 = FX_SinIdx(sActiveCamera->angle.y);
-            fx16 v7 = FX_CosIdx(sActiveCamera->angle.y);
-            fx16 v8 = FX_SinIdx(sActiveCamera->angle.z);
-            fx16 v9 = FX_CosIdx(sActiveCamera->angle.z);
+            fx16 cosPitch = FX_CosIdx(sActiveCamera->angle.x);
+            fx16 sinYaw = FX_SinIdx(sActiveCamera->angle.y);
+            fx16 cosYaw = FX_CosIdx(sActiveCamera->angle.y);
+            fx16 sinRoll = FX_SinIdx(sActiveCamera->angle.z);
+            fx16 cosRoll = FX_CosIdx(sActiveCamera->angle.z);
 
-            cameraPos.z = FX_Mul(v7, sActiveCamera->distance);
-            cameraPos.z = FX_Mul(cameraPos.z, v5);
+            // zPos = cos(yaw) * cos(pitch) * distance + target.z
+            // up = <sin(roll) * cos(yaw), cos(roll), -sin(roll) * sin(yaw)>
+            cameraPos.z = FX_Mul(cosYaw, sActiveCamera->distance);
+            cameraPos.z = FX_Mul(cameraPos.z, cosPitch);
             cameraPos.z += targetPos->z;
-            cameraUp.x += FX_Mul(v8, v7);
-            cameraUp.y += v9;
-            cameraUp.z += -FX_Mul(v8, v6);
+            cameraUp.x += FX_Mul(sinRoll, cosYaw);
+            cameraUp.y += cosRoll;
+            cameraUp.z += -FX_Mul(sinRoll, sinYaw);
 
             NNS_G3dGlbLookAt(&cameraPos, &cameraUp, targetPos);
         }

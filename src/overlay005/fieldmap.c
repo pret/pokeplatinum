@@ -721,7 +721,7 @@ static void ov5_021D15F4 (FieldSystem * fieldSystem)
             ov9_02249F9C(fieldSystem);
         }
 
-        sub_0202049C();
+        Camera_ComputeViewMatrixWithRoll();
     } else {
         Camera_ComputeViewMatrix();
     }

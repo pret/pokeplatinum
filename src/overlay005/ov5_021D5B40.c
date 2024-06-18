@@ -215,13 +215,13 @@ void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * fieldSystem, const int 
     Camera_SetClipping(v1->unk_10, v1->unk_14, fieldSystem->camera);
 
     if (param3) {
-        sub_02020304((6 + 1), 6, 2, 4, fieldSystem->camera);
+        Camera_InitHistory((6 + 1), 6, 2, 4, fieldSystem->camera);
     }
 }
 
 void ov5_021D5BA8 (FieldSystem * fieldSystem)
 {
     Camera_ClearActive();
-    sub_02020390(fieldSystem->camera);
+    Camera_DeleteHistory(fieldSystem->camera);
     Camera_Delete(fieldSystem->camera);
 }
