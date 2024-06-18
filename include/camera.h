@@ -41,7 +41,7 @@ typedef struct Camera {
     CameraPerspectiveProjection perspective;
     CameraLookAt lookAt;
     fx32 distance;
-    CameraAngle cameraAngle;
+    CameraAngle angle;
     u8 projection;
     u16 fovY;
     VecFx32 prevTargetPos;
