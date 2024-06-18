@@ -15,6 +15,24 @@
 
 #define POKETCH_PEDOMETER_MAX 99999
 
+#define POKETCH_SCREEN_MINX 16
+#define POKETCH_SCREEN_MAXX 207
+
+#define POKETCH_SCREEN_MINY 16
+#define POKETCH_SCREEN_MAXY 175
+
+#define POKETCH_BUTTON_TOP_MINX 224
+#define POKETCH_BUTTON_TOP_MAXX 255
+
+#define POKETCH_BUTTON_TOP_MINY 32
+#define POKETCH_BUTTON_TOP_MAXY 96
+
+#define POKETCH_BUTTON_BOTTOM_MINX 224
+#define POKETCH_BUTTON_BOTTOM_MAXX 255
+
+#define POKETCH_BUTTON_BOTTOM_MINY 96
+#define POKETCH_BUTTON_BOTTOM_MAXY 160
+
 enum ButtonDir {
     BUTTON_UP,
     BUTTON_DOWN,
@@ -52,13 +70,6 @@ enum PoketchFieldEventID {
     
     POKETCH_FIELDEVENT_SAVE = 4,
     POKETCH_FIELDEVENT_PEDOMETER,
-};
-
-enum PoketchScreenCoordinates {
-    POKETCH_SCREEN_MINX = 16,
-    POKETCH_SCREEN_MINY = 16,
-    POKETCH_SCREEN_MAXX = 207,
-    POKETCH_SCREEN_MAXY = 175,
 };
 
 typedef struct PoketchSystem PoketchSystem;
@@ -100,15 +111,15 @@ struct PoketchSystem {
 
     SaveData *saveData;
     PoketchData *poketchData;
-    FieldSystem *fieldSys;
+    FieldSystem *fieldSystem;
     enum ButtonDir buttonDir;
 };
 
-void PoketchSystem_Create(FieldSystem *fieldSys, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
+void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
 void PoketchSystem_StartShutdown(PoketchSystem *poketchSys);
 BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys);
-void PoketchSystem_SendFieldEvent(PoketchSystem *poketchSys, enum PoketchFieldEventID eventID, u32);
-BOOL PoketchSystem_CheckTouch(PoketchSystem *poketchSys);
+void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchFieldEventID eventID, u32);
+BOOL PoketchSystem_IsTapped(PoketchSystem *poketchSys);
 enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys);
 void PoketchSystem_SetAppFunctions(PoketchAppInitFunction initFunction, PoketchAppShutdownFunction shutdownFunction);
 void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
@@ -123,9 +134,9 @@ BOOL ov25_0225450C(const PoketchSystem *poketchSys);
 void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager * param1);
 BOOL PoketchSystem_PlayerMoved(const PoketchSystem *poketchSys);
 BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys);
-FieldSystem * PoketchSystem_FieldSystem(const PoketchSystem *poketchSys);
-PoketchData * PoketchSystem_PoketchData(const PoketchSystem *poketchSys);
-SaveData * PoketchSystem_SaveData(const PoketchSystem *poketchSys);
-int PoketchSystem_BorderColor(const PoketchSystem *poketchSys);
+FieldSystem * PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys);
+PoketchData * PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys);
+SaveData * PoketchSystem_GetSaveData(const PoketchSystem *poketchSys);
+int PoketchSystem_GetBorderColor(const PoketchSystem *poketchSys);
 
 #endif // POKEPLATINUM_POKETCHSYSTEM_H

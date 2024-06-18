@@ -48,7 +48,7 @@ int ov19_021D60A8 (UnkStruct_ov19_021D6104 * param0)
         v0 = 1;
         v1 = (param0->unk_1C == 0);
 
-        if (TouchScreen_TouchLocation(&v2, &v3)) {
+        if (TouchScreen_HoldLocation(&v2, &v3)) {
             param0->unk_14 = v2;
             param0->unk_18 = v3;
         }

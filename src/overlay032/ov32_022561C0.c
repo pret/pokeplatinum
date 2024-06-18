@@ -71,7 +71,7 @@ static BOOL ov32_0225621C (UnkStruct_ov32_0225621C * param0, PoketchSystem * par
         param0->unk_01 = 0;
         param0->unk_02 = 0;
 
-        ov32_022563C8(&param0->unk_04, Party_GetFromSavedata(PoketchSystem_SaveData(param1)));
+        ov32_022563C8(&param0->unk_04, Party_GetFromSavedata(PoketchSystem_GetSaveData(param1)));
 
         param0->unk_04.unk_64 = 0;
         param0->unk_04.unk_66 = 0;
@@ -162,7 +162,7 @@ static BOOL ov32_02256308 (UnkStruct_ov32_0225621C * param0)
                 u32 v0 = ov32_02256B78(param0->unk_04.unk_68, param0->unk_04.unk_6C, param0->unk_04.unk_00);
 
                 if (v0 >= param0->unk_04.unk_00) {
-                    ov32_022563C8(&param0->unk_04, Party_GetFromSavedata(PoketchSystem_SaveData(param0->unk_78)));
+                    ov32_022563C8(&param0->unk_04, Party_GetFromSavedata(PoketchSystem_GetSaveData(param0->unk_78)));
                     ov32_02256538(param0->unk_74, 2);
                 }
             }

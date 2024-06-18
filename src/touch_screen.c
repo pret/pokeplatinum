@@ -139,7 +139,7 @@ BOOL TouchScreen_Tapped(void)
     return gCoreSys.touchPressed;
 }
 
-BOOL TouchScreen_TouchLocation(u32 *x, u32 *y)
+BOOL TouchScreen_HoldLocation(u32 *x, u32 *y)
 {
     if (gCoreSys.touchHeld) {
         *x = gCoreSys.touchX;

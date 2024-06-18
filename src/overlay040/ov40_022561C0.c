@@ -70,7 +70,7 @@ static BOOL ov40_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov40_0225621C (UnkStruct_ov40_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    param0->unk_30 = sub_02026310(PoketchSystem_SaveData(param1));
+    param0->unk_30 = sub_02026310(PoketchSystem_GetSaveData(param1));
 
     ov40_022563D0(&param0->unk_04, param0->unk_30);
 

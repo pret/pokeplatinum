@@ -143,7 +143,7 @@ static BOOL ov54_0225621C (UnkStruct_ov54_0225621C * param0, PoketchSystem * par
     PoketchData * v1;
     int v2;
 
-    v1 = PoketchSystem_PoketchData(param1);
+    v1 = PoketchSystem_GetPoketchData(param1);
     param0->unk_04.unk_90 = PoketchData_PokemonHistorySize(v1);
 
     for (v2 = 0; v2 < param0->unk_04.unk_90; v2++) {

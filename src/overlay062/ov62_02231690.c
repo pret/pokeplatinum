@@ -2462,7 +2462,7 @@ void ov62_02233664 (UnkStruct_ov62_0223359C * param0)
     BOOL v3;
     BOOL v4 = 0;
 
-    v3 = TouchScreen_TouchLocation(&v0, &v1);
+    v3 = TouchScreen_HoldLocation(&v0, &v1);
 
     if (param0->unk_14) {
         sub_0200D33C(param0->unk_18[0]);

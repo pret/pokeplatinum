@@ -74,7 +74,7 @@ static BOOL ov36_0225621C (UnkStruct_ov36_0225621C * param0, PoketchSystem * par
     };
 
     param0->unk_10 = param1;
-    param0->unk_1C = PoketchSystem_PoketchData(param1);
+    param0->unk_1C = PoketchSystem_GetPoketchData(param1);
     param0->unk_04.unk_04 = 1;
     param0->unk_04.unk_00 = PoketchData_StepCount(param0->unk_1C);
 

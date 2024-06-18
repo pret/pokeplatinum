@@ -39,7 +39,7 @@ BOOL TouchScreen_Touched(void);
  * @return TRUE if the touch screen is tapped, FALSE otherwise.
  */
 BOOL TouchScreen_Tapped(void);
-BOOL TouchScreen_TouchLocation(u32 *x, u32 *y);
+BOOL TouchScreen_HoldLocation(u32 *x, u32 *y);
 BOOL TouchScreen_TapLocation(u32 *x, u32 *y);
 int sub_020227DC(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
 BOOL sub_02022830(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);

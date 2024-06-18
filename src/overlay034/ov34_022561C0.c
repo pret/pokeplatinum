@@ -216,7 +216,7 @@ static void ov34_02256428 (UnkStruct_ov34_0225621C * param0, int param1, int par
     static const fx32 v0[] = {
         8 << FX32_SHIFT, 24 << FX32_SHIFT, 48 << FX32_SHIFT,
     };
-    UnkStruct_0203F478 * v1 = sub_0203F478(PoketchSystem_FieldSystem(param0->unk_4C), 8);
+    UnkStruct_0203F478 * v1 = sub_0203F478(PoketchSystem_GetFieldSystem(param0->unk_4C), 8);
     UnkStruct_ov34_02256540_1 * v2 = &(param0->unk_04);
 
     v2->unk_08 = 0;

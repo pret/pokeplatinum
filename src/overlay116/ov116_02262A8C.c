@@ -1008,7 +1008,7 @@ void ov116_02263BA0 (UnkStruct_ov116_02262A8C * param0)
         u32 v0, v1;
         s16 v2, v3;
         BOOL v4;
-        BOOL v5 = TouchScreen_TouchLocation(&v0, &v1);
+        BOOL v5 = TouchScreen_HoldLocation(&v0, &v1);
         TouchScreenHitTable * v6;
         int v7;
 

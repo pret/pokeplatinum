@@ -324,7 +324,7 @@ static void ov25_02254820 (SysTask * param0, void * param1)
 
     sub_02006E3C(12, 14, v2->unk_1F8, 4, 64, 0, 1, 7);
     sub_02006E60(12, 15, v2->unk_1F8, 4, 0, 0, 1, 7);
-    sub_02006E9C(12, 13, 4, PoketchSystem_BorderColor(v2->unk_1FC) * 0x20, 15 * 0x20, 0x20, 7);
+    sub_02006E9C(12, 13, 4, PoketchSystem_GetBorderColor(v2->unk_1FC) * 0x20, 15 * 0x20, 0x20, 7);
 
     sub_02019CB8(v2->unk_1F8, 5, 64 + 164, 0, 0, 32, 24, 15);
     sub_02019448(v2->unk_1F8, 5);

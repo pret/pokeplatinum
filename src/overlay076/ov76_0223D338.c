@@ -1166,7 +1166,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
         BOOL v14;
 
         v13 = param0->unk_D4.unk_00;
-        v14 = TouchScreen_TouchLocation(&v11, &v12);
+        v14 = TouchScreen_HoldLocation(&v11, &v12);
 
         if (v14) {
             int v15;
