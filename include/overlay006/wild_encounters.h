@@ -3,27 +3,27 @@
 
 #include "constants/wild_encounters.h"
 
-typedef struct GrassEncounterData {
+typedef struct GrassEncounter {
     s8 level;
     u8 padding_01[3];
     int species;
-} GrassEncounterData;
+} GrassEncounter;
 
 typedef struct GrassEncounters {
     int encounterRate;
-    GrassEncounterData encounters[MAX_GRASS_ENCOUNTERS];
+    GrassEncounter encounters[MAX_GRASS_ENCOUNTERS];
 } GrassEncounters;
 
-typedef struct WaterEncounterData {
+typedef struct WaterEncounter {
     s8 maxLevel;
     s8 minLevel;
     u8 padding_02[2];
     int species;
-} WaterEncounterData;
 
+} WaterEncounter;
 typedef struct WaterEncounters {
     int encounterRate;
-    WaterEncounterData encounters[MAX_WATER_ENCOUNTERS];
+    WaterEncounter encounters[MAX_WATER_ENCOUNTERS];
 } WaterEncounters;
 
 typedef struct WildEncounters {

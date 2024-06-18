@@ -436,25 +436,25 @@ BOOL ov6_0224106C (FieldSystem * fieldSystem, const int fishingRodType, BattlePa
         }
     } else {
         {
-            WaterEncounterData * v10;
+            WaterEncounter * fishingEncounters;
             WildEncounters * encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
 
             switch (fishingRodType) {
-            case 0:
-                v10 = encounterData->oldRodEncounters.encounters;
+            case FISHING_TYPE_OLD_ROD:
+                fishingEncounters = encounterData->oldRodEncounters.encounters;
                 break;
-            case 1:
-                v10 = encounterData->goodRodEncounters.encounters;
+            case FISHING_TYPE_GOOD_ROD:
+                fishingEncounters = encounterData->goodRodEncounters.encounters;
                 break;
-            case 2:
-                v10 = encounterData->superRodEncounters.encounters;
+            case FISHING_TYPE_SUPER_ROD:
+                fishingEncounters = encounterData->superRodEncounters.encounters;
                 break;
             }
 
             for (u8 i = 0; i < MAX_WATER_ENCOUNTERS; i++) {
-                v3[i].species = v10[i].species;
-                v3[i].maxLevel = v10[i].maxLevel;
-                v3[i].minLevel = v10[i].minLevel;
+                v3[i].species = fishingEncounters[i].species;
+                v3[i].maxLevel = fishingEncounters[i].maxLevel;
+                v3[i].minLevel = fishingEncounters[i].minLevel;
             }
         }
     }
