@@ -12,7 +12,40 @@ env:
   CALCROM_WEBHOOK_URL: "${{ secrets.WEBHOOKURL }}"
 
 jobs:
+  changes:
+    runs-on: ubuntu-22.04
+    permissions:
+      pull-requests: read
+    outputs:
+      rom: ${{ steps.filter.outputs.rom }}
+      tools: ${{ steps.filter.outputs.tools }}
+      docs: ${{ steps.filter.outputs.docs }}
+      actions: ${{ steps.filter.outputs.actions }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            rom:
+              - 'include/**'
+              - 'src/**'
+              - 'asm/**'
+              - 'consts/**'
+              - 'lib/**'
+              - 'meson/**'
+              - 'platinum.us/**'
+              - '*.sh'
+            docs:
+              - 'docs/**'
+            tools:
+              - 'subprojects/**'
+              - 'tools/**'
+            actions:
+              - '.github/**'
+
   build:
+    needs: changes
+    if: ${{ needs.changes.outputs.rom == 'true' || needs.changes.outputs.tools == 'true' || needs.changes.outputs.actions == 'true' }}
     runs-on: ubuntu-22.04
 
     steps:
@@ -55,21 +88,21 @@ jobs:
           name: pokeplatinum-failure-${{ github.run_id }}
           path: failure.tar.gz
           retention-days: 1
-      
+
       - name: Checkout xMAP
         if: ${{ github.event_name == 'push' }}
         uses: actions/checkout@v4
         with:
           path: 'xmap'
           ref: 'xmap'
-      
+
       - name: Move xMAP
         if: ${{ github.event_name == 'push' }}
         run: |
           mkdir -p xmap
           cp /var/tmp/pokeplatinum/*.xMAP xmap/platinumus.xMAP
           echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
-      
+
       - name: Update xMAP
         if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
