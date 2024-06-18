@@ -36,7 +36,7 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 * param0);
 static void ov100_021D1A24(UnkStruct_ov100_021D1808 * param0);
 static void ov100_021D1A54(UnkStruct_ov100_021D1808 * param0);
 static void ov100_021D17B4(UnkStruct_ov100_021D1808 * param0);
-static void ov100_021D1758(Camera * param0, VecFx32 * param1);
+static void ov100_021D1758(Camera * camera, VecFx32 * param1);
 
 void * ov100_021D13E4 (UnkStruct_ov100_021D4DD8 * param0)
 {
@@ -70,7 +70,7 @@ void * ov100_021D13E4 (UnkStruct_ov100_021D4DD8 * param0)
         };
     }
 
-    ov100_021D1758(v0->unk_7C4->unk_18, &v0->unk_7C4->unk_44);
+    ov100_021D1758(v0->unk_7C4->camera, &v0->unk_7C4->unk_44);
     v0->unk_7C4->unk_44.y += FX32_CONST(25);
 
     G2S_BlendNone();
@@ -203,14 +203,14 @@ BOOL ov100_021D16C4 (void * param0)
     return 1;
 }
 
-static void ov100_021D1758 (Camera * param0, VecFx32 * param1)
+static void ov100_021D1758 (Camera * camera, VecFx32 * param1)
 {
     CameraAngle v0 = {1274, 0, 0};
 
-    Camera_InitWithTarget(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, param0);
-    Camera_ComputeProjectionMatrix(0, param0);
-    Camera_SetAsActive(param0);
-    Camera_SetClipping(FX32_CONST(0.1), FX32_CONST(2048), param0);
+    Camera_InitWithTarget(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, camera);
+    Camera_ComputeProjectionMatrix(0, camera);
+    Camera_SetAsActive(camera);
+    Camera_SetClipping(FX32_CONST(0.1), FX32_CONST(2048), camera);
 }
 
 static void ov100_021D17B4 (UnkStruct_ov100_021D1808 * param0)

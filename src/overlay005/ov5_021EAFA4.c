@@ -16,7 +16,7 @@ typedef struct UnkStruct_ov5_021EB0E0_t {
     VecFx32 unk_10;
     fx32 unk_1C;
     MtxFx43 unk_20;
-    Camera * unk_50;
+    Camera * camera;
     VecFx32 unk_54;
 } UnkStruct_ov5_021EB0E0;
 
@@ -29,7 +29,7 @@ VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_02
     u16 v6, v7;
 
     v3.y = 0;
-    v2 = Camera_GetTarget(param2->unk_50);
+    v2 = Camera_GetTarget(param2->camera);
 
     {
         MtxFx43 v8;
@@ -119,7 +119,7 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
     }
 
     MTX_RotX43(&param0->unk_20, FX_SinIdx(v0.x), FX_CosIdx(v0.x));
-    param0->unk_50 = param1;
+    param0->camera = param1;
 }
 
 void ov5_021EB184 (UnkStruct_ov5_021EB0E0 ** param0)

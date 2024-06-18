@@ -443,14 +443,14 @@ static UnkStruct_02014014 * ov119_021D13EC (int param0)
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    Camera * v2;
+    Camera * camera;
 
     v1 = Heap_AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, param0);
-    v2 = sub_02014784(v0);
+    camera = sub_02014784(v0);
 
-    if (v2 != NULL) {
-        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v2);
+    if (camera != NULL) {
+        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     }
 
     return v0;

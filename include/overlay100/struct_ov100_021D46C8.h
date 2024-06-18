@@ -25,7 +25,7 @@ typedef struct {
     BGL * unk_0C;
     PaletteData * unk_10;
     GenericPointerData * unk_14;
-    Camera * unk_18;
+    Camera * camera;
     NNSFndAllocator unk_1C;
     MessageLoader * unk_2C;
     Window unk_30;

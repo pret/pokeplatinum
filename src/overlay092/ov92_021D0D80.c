@@ -106,7 +106,7 @@ typedef struct {
     VecFx32 unk_BAA8;
     VecFx32 unk_BAB4;
     VecFx32 unk_BAC0;
-    Camera * unk_BACC;
+    Camera * camera;
     CameraAngle unk_BAD0;
     u16 unk_BAD8;
     VecFx32 unk_BADC;
@@ -357,7 +357,7 @@ int ov92_021D0D80 (OverlayManager * param0, int * param1)
     sub_0201D710();
 
     v0->unk_B870 = StringTemplate_New(8, 64, v0->unk_00);
-    v0->unk_BACC = Camera_Alloc(v0->unk_00);
+    v0->camera = Camera_Alloc(v0->unk_00);
     v0->unk_BAE8 = 0;
 
     gCoreSys.unk_65 = 1;
@@ -705,7 +705,7 @@ int ov92_021D1478 (OverlayManager * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    Camera_Delete(v0->unk_BACC);
+    Camera_Delete(v0->camera);
     StringTemplate_Free(v0->unk_B870);
     sub_0201CBA0();
     Heap_FreeToHeap(v0->unk_B810);
@@ -1283,10 +1283,10 @@ static void ov92_021D22B0 (UnkStruct_ov92_021D1B24 * param0)
     VecFx32 v0 = {0, 0, 0};
     VecFx32 v1 = {0, 0, 0x128000};
 
-    Camera_InitWithTargetAndPosition(&v0, &v1, 0x5c1, 0, 0, param0->unk_BACC);
-    Camera_SetClipping(0, (FX32_ONE * 100), param0->unk_BACC);
-    Camera_ComputeProjectionMatrix(0, param0->unk_BACC);
-    Camera_SetAsActive(param0->unk_BACC);
+    Camera_InitWithTargetAndPosition(&v0, &v1, 0x5c1, 0, 0, param0->camera);
+    Camera_SetClipping(0, (FX32_ONE * 100), param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
+    Camera_SetAsActive(param0->camera);
 
     if (param0->unk_BAF4 == 0) {
         param0->unk_BAD8 = 1;
@@ -1435,7 +1435,7 @@ static BOOL ov92_021D2460 (UnkStruct_ov92_021D1B24 * param0, int param1, int par
 
 static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
 {
-    fx32 v0 = Camera_GetDistance(param0->unk_BACC);
+    fx32 v0 = Camera_GetDistance(param0->camera);
     BOOL v1 = 0;
 
     switch (param0->unk_BAD8) {
@@ -1461,7 +1461,7 @@ static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
         break;
     }
 
-    Camera_SetDistance(v0, param0->unk_BACC);
+    Camera_SetDistance(v0, param0->camera);
 
     return v1;
 }

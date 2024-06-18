@@ -191,15 +191,15 @@ static void ov118_021D0FB8 (GameWindowLayout * param0)
 static void ov118_021D0FDC (OverlayMetadata * param0)
 {
     void * v0;
-    Camera * v1;
+    Camera * camera;
 
     sub_02014000();
 
     v0 = Heap_AllocFromHeap(12, 0x4800);
     param0->unk_18 = sub_02014014(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, 12);
-    v1 = sub_02014784(param0->unk_18);
+    camera = sub_02014784(param0->unk_18);
 
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v1);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 }
 
 static void ov118_021D1028 (OverlayMetadata * param0)

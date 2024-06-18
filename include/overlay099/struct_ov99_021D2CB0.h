@@ -31,7 +31,7 @@ typedef struct {
     SpriteGfxHandler * unk_1C;
     MessageLoader * unk_20;
     Window * unk_24;
-    Camera * unk_28;
+    Camera * camera;
     UnkStruct_020170F4 unk_2C[4];
     UnkStruct_02017294 unk_6C[2][16];
     UnkStruct_ov99_021D2CB0_sub1 unk_F6C;

@@ -613,7 +613,7 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
     GraphicElementData * unk_200[2];
-    Camera * unk_208;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 unk_20C;
     s32 unk_224;
 } UnkStruct_ov5_021E2EB0;
@@ -627,7 +627,7 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_50;
     UnkStruct_ov5_021DE5A4 unk_1F0;
     GraphicElementData * unk_224[2];
-    Camera * unk_22C;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 unk_230;
     s32 unk_248;
 } UnkStruct_ov5_021E31A4;
@@ -643,7 +643,7 @@ typedef struct {
     Window * unk_270;
     ScreenShakeEffect unk_274;
     BOOL unk_280;
-    Camera * unk_284;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 unk_288;
     s32 unk_2A0;
 } UnkStruct_ov5_021E3560;
@@ -656,7 +656,7 @@ typedef struct {
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC;
     GraphicElementData * unk_230;
-    Camera * unk_234;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 unk_238;
     s32 unk_250;
 } UnkStruct_ov5_021E3AD0;
@@ -670,7 +670,7 @@ typedef struct {
     BOOL unk_258[3];
     Window * unk_264;
     UnkStruct_ov5_021DE928 * unk_268;
-    Camera * unk_26C;
+    Camera * camera;
     QuadraticInterpolationTaskFX32 unk_270;
     s16 unk_288;
 } UnkStruct_ov5_021E3D8C;
@@ -853,7 +853,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E2EB0));
         v1 = encEffect->param;
 
-        v1->unk_208 = encEffect->fieldSystem->camera;
+        v1->camera = encEffect->fieldSystem->camera;
 
         v1->unk_28 = ScreenSplitEffect_New();
 
@@ -941,7 +941,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
 
         EncounterEffect_ScreenSplit(encEffect, v1->unk_28, 8, (FX32_ONE * 1), (FX32_ONE * 1));
 
-        v3 = Camera_GetDistance(v1->unk_208);
+        v3 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_20C, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
         encEffect->state++;
@@ -950,7 +950,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
     case 6:
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_20C);
-        Camera_SetDistance(v1->unk_20C.currentValue, v1->unk_208);
+        Camera_SetDistance(v1->unk_20C.currentValue, v1->camera);
 
         if (EncounterEffect_GetHBlankFlag(encEffect) == 1) {
             encEffect->state++;
@@ -1000,7 +1000,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E31A4));
         v1 = v0->param;
 
-        v1->unk_22C = v0->fieldSystem->camera;
+        v1->camera = v0->fieldSystem->camera;
 
         ScreenShakeEffect_Init(&v1->unk_40, 4);
         v1->unk_248 = 12;
@@ -1100,7 +1100,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
             }
         }
 
-        v4 = Camera_GetDistance(v1->unk_22C);
+        v4 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
         sub_0200F174(3, 24, 0, 0x0, 8, 1, 4);
@@ -1119,7 +1119,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
         }
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_230);
-        Camera_SetDistance(v1->unk_230.currentValue, v1->unk_22C);
+        Camera_SetDistance(v1->unk_230.currentValue, v1->camera);
 
         if ((v2 == 1) && (ScreenWipe_Done() == 1)) {
             v0->state++;
@@ -1171,7 +1171,7 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3560));
         v1 = v0->param;
 
-        v1->unk_284 = v0->fieldSystem->camera;
+        v1->camera = v0->fieldSystem->camera;
 
         ScreenShakeEffect_Init(&v1->unk_274, 4);
         v1->unk_2A0 = 14;
@@ -1235,7 +1235,7 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
             break;
         }
 
-        v5 = Camera_GetDistance(v1->unk_284);
+        v5 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_288, v5, v5 + (-FX32_CONST(500)), (-FX32_CONST(10)), 16);
 
         LinearInterpolationTaskS32_Init(&v1->unk_21C[0], 0, (0xffff * 1), 6);
@@ -1298,7 +1298,7 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
     case 6:
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_288);
-        Camera_SetDistance(v1->unk_288.currentValue, v1->unk_284);
+        Camera_SetDistance(v1->unk_288.currentValue, v1->camera);
 
         if ((v1->unk_264[0] == 0) && (v1->unk_264[1] == 0) && (v1->unk_264[2] == 0)) {
             v0->state++;
@@ -1383,7 +1383,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3AD0));
         v1 = v0->param;
 
-        v1->unk_234 = v0->fieldSystem->camera;
+        v1->camera = v0->fieldSystem->camera;
 
         ov5_021DE47C(&v1->unk_5C, 1, 1);
 
@@ -1455,7 +1455,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
-        v3 = Camera_GetDistance(v1->unk_234);
+        v3 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
 
         sub_0200F174(3, 18, 0, 0x0, 8, 1, 4);
@@ -1465,7 +1465,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
     case 6:
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_238);
-        Camera_SetDistance(v1->unk_238.currentValue, v1->unk_234);
+        Camera_SetDistance(v1->unk_238.currentValue, v1->camera);
 
         if (ScreenWipe_Done()) {
             v0->state++;
@@ -1509,7 +1509,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3D8C));
         v1 = v0->param;
 
-        v1->unk_26C = v0->fieldSystem->camera;
+        v1->camera = v0->fieldSystem->camera;
 
         ov5_021DE47C(&v1->unk_00, 3, 1);
 
@@ -1636,7 +1636,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
     case 7:
         ov5_021DE948(v1->unk_268, 1, 1, v1->unk_264, 15);
 
-        v5 = Camera_GetDistance(v1->unk_26C);
+        v5 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_270, v5, v5 + (-FX32_CONST(1000)), (FX32_CONST(10)), 64);
 
         v0->state++;
@@ -1647,7 +1647,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         sub_0201A9A4(v1->unk_264);
 
         QuadraticInterpolationTaskFX32_Update(&v1->unk_270);
-        Camera_SetDistance(v1->unk_270.currentValue, v1->unk_26C);
+        Camera_SetDistance(v1->unk_270.currentValue, v1->camera);
 
         if (v3 == 1) {
             v0->state++;

@@ -447,10 +447,10 @@ static void ov7_0224D388 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * pa
     ov7_0224D21C(param1);
     ov7_0224D3E8(param1);
 
-    param1->unk_90 = Camera_Alloc(11);
+    param1->camera = Camera_Alloc(11);
 
-    Camera_Copy(fieldSystem->camera, param1->unk_90);
-    Camera_SetAsActive(param1->unk_90);
+    Camera_Copy(fieldSystem->camera, param1->camera);
+    Camera_SetAsActive(param1->camera);
 
     param1->unk_2A5 = 0;
 }
@@ -540,7 +540,7 @@ static u8 ov7_0224D620 (UnkStruct_ov7_0224D008 * param0)
     if (param0->unk_2A5 != param0->unk_2A6) {
         VecFx32 v0 = {8 * FX32_ONE, 0, 0};
 
-        Camera_Move(&v0, param0->unk_90);
+        Camera_Move(&v0, param0->camera);
         param0->unk_2A5++;
         return 3;
     }
@@ -1386,15 +1386,15 @@ static u8 ov7_0224E950 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * para
     if (param1->unk_2A5 != param1->unk_2A6) {
         VecFx32 v0 = {-8 * FX32_ONE, 0, 0};
 
-        Camera_Move(&v0, param1->unk_90);
+        Camera_Move(&v0, param1->camera);
         param1->unk_2A5++;
         return 12;
     }
 
     param1->unk_2A5 = 0;
 
-    Camera_Copy(param1->unk_90, fieldSystem->camera);
-    Camera_Delete(param1->unk_90);
+    Camera_Copy(param1->camera, fieldSystem->camera);
+    Camera_Delete(param1->camera);
     Camera_SetAsActive(fieldSystem->camera);
 
     ov7_0224EB14(param1);

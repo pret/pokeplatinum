@@ -120,7 +120,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     Window unk_B4;
     Strbuf* unk_C4;
     u8 unk_C8;
-    Camera * unk_CC;
+    Camera * camera;
     fx32 unk_D0;
     fx32 unk_D4;
     UnkStruct_ov113_0225DBCC_sub1 unk_D8;
@@ -469,7 +469,7 @@ int ov113_0225CA04 (OverlayManager * param0, int * param1)
 {
     UnkStruct_ov113_0225DBCC * v0 = OverlayManager_Data(param0);
 
-    ov113_0225E3F0(&v0->unk_194, v0->unk_CC, v0->unk_9BC, v0->unk_00->unk_04);
+    ov113_0225E3F0(&v0->unk_194, v0->camera, v0->unk_9BC, v0->unk_00->unk_04);
 
     switch (*param1) {
     case 0:
@@ -1172,19 +1172,19 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
 {
     VecFx32 v0 = {0, (-FX32_ONE * 8), 0};
 
-    param0->unk_CC = Camera_Alloc(118);
+    param0->camera = Camera_Alloc(118);
 
-    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov113_022608B4, (((22 * 0xffff) / 360)), 0, 0, param0->unk_CC);
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_CC);
-    Camera_SetAsActive(param0->unk_CC);
+    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov113_022608B4, (((22 * 0xffff) / 360)), 0, 0, param0->camera);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->camera);
+    Camera_SetAsActive(param0->camera);
 
     {
         u16 v1;
         fx32 v2, v3;
         fx32 v4, v5;
 
-        v1 = Camera_GetFOV(param0->unk_CC);
-        v2 = Camera_GetDistance(param0->unk_CC);
+        v1 = Camera_GetFOV(param0->camera);
+        v2 = Camera_GetDistance(param0->camera);
         v3 = FX32_ONE * 4 / 3;
 
         sub_0201E34C(v1, v2, v3, &v4, &v5);
@@ -1196,7 +1196,7 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
 
 static void ov113_0225DA9C (UnkStruct_ov113_0225DBCC * param0)
 {
-    Camera_Delete(param0->unk_CC);
+    Camera_Delete(param0->camera);
 }
 
 static void ov113_0225DAA8 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
@@ -1237,8 +1237,8 @@ static void ov113_0225DB08 (UnkStruct_ov113_0225DBCC * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    Camera_SetAsActive(param0->unk_CC);
-    Camera_ComputeProjectionMatrix(0, param0->unk_CC);
+    Camera_SetAsActive(param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
     Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);

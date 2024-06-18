@@ -288,7 +288,7 @@ typedef struct {
 } UnkStruct_ov9_0224A0DC;
 
 typedef struct {
-    Camera * unk_00;
+    Camera * camera;
     CameraAngle unk_04;
     CameraAngle unk_0C;
     CameraAngle unk_14;
@@ -1603,7 +1603,7 @@ void ov9_02249F9C (FieldSystem * fieldSystem)
     v0.y = v2->unk_04.y + v2->unk_0C.y;
     v0.z = v2->unk_04.z + v2->unk_0C.z;
 
-    Camera_SetAngleAroundTarget(&v0, v2->unk_00);
+    Camera_SetAngleAroundTarget(&v0, v2->camera);
 }
 
 void ov9_02249FD0 (FieldSystem * fieldSystem)
@@ -1626,20 +1626,20 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     UnkStruct_ov9_02249F9C * v0 = &param0->unk_14;
 
     param0->fieldSystem->unk_20 = 1;
-    v0->unk_00 = param0->fieldSystem->camera;
+    v0->camera = param0->fieldSystem->camera;
 
     {
         UnkStruct_ov9_02249FF4 v1 = {
             0x29aec1, {-0x29fe, 0, 0}, 0, 0x5c1, 0
         };
 
-        Camera_SetDistance(v1.unk_00, v0->unk_00);
-        Camera_SetAngleAroundTarget(&v1.cameraAngle, v0->unk_00);
-        Camera_SetFOV(v1.unk_0E, v0->unk_00);
-        Camera_ComputeProjectionMatrix(v1.unk_0C, v0->unk_00);
+        Camera_SetDistance(v1.unk_00, v0->camera);
+        Camera_SetAngleAroundTarget(&v1.cameraAngle, v0->camera);
+        Camera_SetFOV(v1.unk_0E, v0->camera);
+        Camera_ComputeProjectionMatrix(v1.unk_0C, v0->camera);
     }
 
-    Camera_SetClipping((FX32_ONE * 150), (FX32_ONE * 1700), v0->unk_00);
+    Camera_SetClipping((FX32_ONE * 150), (FX32_ONE * 1700), v0->camera);
 
     v0->unk_04.x = -0x29fe;
     v0->unk_04.y = 0x0;
@@ -1657,7 +1657,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     }
 
     if (ov9_022510D0(param0) != 582) {
-        Camera_AdjustFOV(0x681 - 0x5c1, v0->unk_00);
+        Camera_AdjustFOV(0x681 - 0x5c1, v0->camera);
     }
 
     v0->unk_3C = SysTask_Start(ov9_0224A0DC, param0, 0);

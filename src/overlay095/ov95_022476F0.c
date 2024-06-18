@@ -31,7 +31,7 @@ struct UnkStruct_ov95_02247958_t {
 };
 
 struct UnkStruct_ov95_0224773C_t {
-    Camera * unk_00;
+    Camera * camera;
     VecFx32 unk_04;
     CameraAngle cameraAngle;
     UnkStruct_ov95_02247958 * unk_18;
@@ -229,27 +229,27 @@ BOOL ov95_022479DC (UnkStruct_ov95_02247958 * param0)
 
 void ov95_02247A90 (UnkStruct_ov95_0224773C * param0, VecFx32 * param1)
 {
-    *param1 = Camera_GetPosition(param0->unk_00);
+    *param1 = Camera_GetPosition(param0->camera);
 }
 
 void ov95_02247AB0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    Camera_SetAngleAroundTarget(cameraAngle, param0->unk_00);
+    Camera_SetAngleAroundTarget(cameraAngle, param0->camera);
 }
 
 void ov95_02247AC0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    Camera_AdjustAngleAroundSelf(cameraAngle, param0->unk_00);
+    Camera_AdjustAngleAroundSelf(cameraAngle, param0->camera);
 }
 
 void ov95_02247AD0 (UnkStruct_ov95_0224773C * param0, u8 param1)
 {
-    Camera_ComputeProjectionMatrix(param1, param0->unk_00);
+    Camera_ComputeProjectionMatrix(param1, param0->camera);
 }
 
 void ov95_02247AE0 (UnkStruct_ov95_0224773C * param0, u16 param1)
 {
-    Camera_SetFOV(param1, param0->unk_00);
+    Camera_SetFOV(param1, param0->camera);
 }
 
 static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 param2, fx32 param3)
@@ -257,7 +257,7 @@ static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 p
     CameraAngle v0;
     VecFx32 v1;
 
-    param0->unk_00 = Camera_Alloc(58);
+    param0->camera = Camera_Alloc(58);
     param0->unk_04.x = param1;
     param0->unk_04.y = param2;
     param0->unk_04.z = param3;
@@ -265,19 +265,19 @@ static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 p
     param0->cameraAngle.y = ((0 * 0xffff) / 360);
     param0->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    Camera_InitWithTarget(&(param0->unk_04), 1228800, &(param0->cameraAngle), 4004, 0, 1, param0->unk_00);
+    Camera_InitWithTarget(&(param0->unk_04), 1228800, &(param0->cameraAngle), 4004, 0, 1, param0->camera);
 
     v1.x = 0;
     v1.y = FX32_ONE;
     v1.z = 0;
 
-    Camera_SetUp(&v1, param0->unk_00);
-    Camera_SetAsActive(param0->unk_00);
-    Camera_SetClipping((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->unk_00);
+    Camera_SetUp(&v1, param0->camera);
+    Camera_SetAsActive(param0->camera);
+    Camera_SetClipping((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->camera);
 }
 
 static void ov95_02247B5C (UnkStruct_ov95_0224773C * param0)
 {
     Camera_ClearActive();
-    Camera_Delete(param0->unk_00);
+    Camera_Delete(param0->camera);
 }

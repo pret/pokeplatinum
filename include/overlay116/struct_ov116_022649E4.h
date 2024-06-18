@@ -20,7 +20,7 @@ typedef struct {
     BGL * unk_10;
     PaletteData * unk_14;
     GenericPointerData * unk_18;
-    Camera * unk_1C;
+    Camera * camera;
     u8 padding_20[4];
     NNSFndAllocator unk_24;
     UnkStruct_ov116_022649E4_sub1 unk_2C;

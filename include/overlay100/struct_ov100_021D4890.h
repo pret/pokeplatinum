@@ -7,7 +7,7 @@
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    Camera * unk_00;
+    Camera * camera;
     VecFx32 * unk_04;
     int unk_08;
     s32 unk_0C;

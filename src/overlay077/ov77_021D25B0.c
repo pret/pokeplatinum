@@ -53,7 +53,7 @@ typedef struct {
 typedef struct {
     void * unk_00;
     NNSG3dResTex * unk_04;
-    Camera * unk_08;
+    Camera * camera;
     UnkStruct_ov77_021D37C0_sub1_sub1 unk_0C[6];
     int unk_21C;
 } UnkStruct_ov77_021D37C0_sub1;
@@ -876,8 +876,8 @@ static void ov77_021D2B38 (void * param0)
 
         v2->unk_25B = 0;
 
-        Camera_ComputeProjectionMatrix(0, v2->unk_20.unk_08);
-        Camera_SetAsActive(v2->unk_20.unk_08);
+        Camera_ComputeProjectionMatrix(0, v2->unk_20.camera);
+        Camera_SetAsActive(v2->unk_20.camera);
     }
 
     if (v1->unk_0C != NULL) {
@@ -1375,7 +1375,7 @@ static void ov77_021D35B8 (UnkStruct_ov77_021D2E9C * param0)
 
     if (param0->unk_34.unk_04 || param0->unk_34.unk_05) {
         Camera_ClearActive();
-        Camera_Delete(param0->unk_34.unk_20.unk_08);
+        Camera_Delete(param0->unk_34.unk_20.camera);
 
         for (v0 = 0; v0 < param0->unk_34.unk_20.unk_21C; v0++) {
             Heap_FreeToHeap(param0->unk_34.unk_20.unk_0C[v0].unk_54);
@@ -1740,20 +1740,20 @@ static void ov77_021D3F24 (UnkStruct_ov77_021D37C0 * param0, int param1, int par
 
 static void ov77_021D4044 (UnkStruct_ov77_021D37C0 * param0, int param1)
 {
-    param0->unk_20.unk_08 = Camera_Alloc(76);
+    param0->unk_20.camera = Camera_Alloc(76);
 
     {
         VecFx32 v0 = {0, 0, FX32_ONE * 16 * 6};
 
-        Camera_InitWithTarget(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
-        Camera_SetFOV(0x981, param0->unk_20.unk_08);
+        Camera_InitWithTarget(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.camera);
+        Camera_SetFOV(0x981, param0->unk_20.camera);
 
         {
             VecFx32 v1 = {0, (FX32_ONE * 16 * 5), 0};
-            Camera_Move(&v1, param0->unk_20.unk_08);
+            Camera_Move(&v1, param0->unk_20.camera);
         }
 
-        Camera_SetAsActive(param0->unk_20.unk_08);
+        Camera_SetAsActive(param0->unk_20.camera);
     }
 }
 
@@ -2368,24 +2368,24 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
     if (param1 < ((40 * 30 - 15) + 6)) {
         {
             u16 v1;
-            v1 = Camera_GetFOV(param0->unk_20.unk_08);
+            v1 = Camera_GetFOV(param0->unk_20.camera);
 
             if (v1 - 32 > 0x5c1) {
-                Camera_AdjustFOV(-32, param0->unk_20.unk_08);
+                Camera_AdjustFOV(-32, param0->unk_20.camera);
             } else {
-                Camera_SetFOV(0x5c1, param0->unk_20.unk_08);
+                Camera_SetFOV(0x5c1, param0->unk_20.camera);
             }
         }
 
         v0.z -= FX32_ONE * 2;
-        Camera_Move(&v0, param0->unk_20.unk_08);
+        Camera_Move(&v0, param0->unk_20.camera);
     } else if (param1 == ((40 * 30 - 15) + 6)) {
         VecFx32 v2 = {-(FX32_ONE * 16 * 4), 0, -FX32_ONE * 16 * 3};
-        Camera_InitWithTarget(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        Camera_InitWithTarget(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.camera);
 
         {
             VecFx32 v3 = {0, (FX32_ONE * 16 * 5), 0};
-            Camera_Move(&v3, param0->unk_20.unk_08);
+            Camera_Move(&v3, param0->unk_20.camera);
         }
 
         {
@@ -2413,19 +2413,19 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         }
     } else if (param1 < ((47 * 30 - 15) + 6)) {
         v0.x += FX32_ONE * 4;
-        Camera_Move(&v0, param0->unk_20.unk_08);
+        Camera_Move(&v0, param0->unk_20.camera);
         sub_0201C63C(param0->unk_10, 1, 1, 4);
     } else if (param1 == ((47 * 30 - 15) + 6)) {
         VecFx32 v6 = {FX32_ONE * 16 * 30, 0, FX32_ONE * 0 - 0x70000};
-        Camera_InitWithTarget(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        Camera_InitWithTarget(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.camera);
         {
             VecFx32 v7 = {0, (FX32_ONE * 16 * 5), 0};
-            Camera_Move(&v7, param0->unk_20.unk_08);
+            Camera_Move(&v7, param0->unk_20.camera);
         }
 
         {
             CameraAngle v8 = {0, 0x680, 0, 0};
-            Camera_AdjustAngleAroundSelf(&v8, param0->unk_20.unk_08);
+            Camera_AdjustAngleAroundSelf(&v8, param0->unk_20.camera);
         }
 
         {
@@ -2441,15 +2441,15 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         if (param1 >= 1560) {
             u16 v9;
 
-            v9 = Camera_GetFOV(param0->unk_20.unk_08);
+            v9 = Camera_GetFOV(param0->unk_20.camera);
 
             if (v9 + 24 < 0x4000) {
-                Camera_AdjustFOV(24, param0->unk_20.unk_08);
+                Camera_AdjustFOV(24, param0->unk_20.camera);
             }
         }
 
         v0.x += -0x2000;
-        Camera_Move(&v0, param0->unk_20.unk_08);
+        Camera_Move(&v0, param0->unk_20.camera);
     }
 }
 

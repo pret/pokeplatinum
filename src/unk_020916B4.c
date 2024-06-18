@@ -168,7 +168,7 @@ void sub_02091750 (PokemonSummaryApp * param0)
 
 void sub_020917B0 (PokemonSummaryApp * param0)
 {
-    Camera_Delete(param0->monSpriteData.unk_00);
+    Camera_Delete(param0->monSpriteData.camera);
     sub_02016114(param0->monSpriteData.animationSys, 0);
     sub_02015FB8(param0->monSpriteData.animationSys);
     sub_02007B6C(param0->monSpriteData.spriteManager);
@@ -181,12 +181,12 @@ void sub_020917E0 (PokemonSummaryApp * param0)
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
-    param0->monSpriteData.unk_00 = Camera_Alloc(19);
+    param0->monSpriteData.camera = Camera_Alloc(19);
 
-    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->monSpriteData.unk_00);
-    Camera_SetClipping(0, FX32_CONST(100), param0->monSpriteData.unk_00);
-    Camera_ReleaseTarget(param0->monSpriteData.unk_00);
-    Camera_SetAsActive(param0->monSpriteData.unk_00);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->monSpriteData.camera);
+    Camera_SetClipping(0, FX32_CONST(100), param0->monSpriteData.camera);
+    Camera_ReleaseTarget(param0->monSpriteData.camera);
+    Camera_SetAsActive(param0->monSpriteData.camera);
 }
 
 static void sub_02091850 (UnkStruct_02091850 * param0)

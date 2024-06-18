@@ -146,7 +146,7 @@ typedef struct {
 } UnkStruct_ov69_0225CA7C;
 
 typedef struct {
-    Camera * unk_00;
+    Camera * camera;
     CameraAngle unk_04;
     fx32 unk_0C;
     u16 unk_10;
@@ -1760,12 +1760,12 @@ static u32 ov69_0225DA70 (const UnkStruct_ov69_0225CA7C * param0)
 
 static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225DA74 param1, u32 param2)
 {
-    param0->unk_00 = Camera_Alloc(param2);
+    param0->camera = Camera_Alloc(param2);
 
-    Camera_InitWithTargetAndPosition(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->unk_00);
-    Camera_SetClipping(0, (FX32_ONE * 100), param0->unk_00);
-    Camera_ComputeProjectionMatrix(0, param0->unk_00);
-    Camera_SetAsActive(param0->unk_00);
+    Camera_InitWithTargetAndPosition(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->camera);
+    Camera_SetClipping(0, (FX32_ONE * 100), param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
+    Camera_SetAsActive(param0->camera);
 
     if (param1.unk_00_0 == 0) {
         param0->unk_10 = 1;
@@ -1775,12 +1775,12 @@ static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         param0->unk_0C = 0x128000;
     }
 
-    Camera_SetDistance(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->camera);
 }
 
 static void ov69_0225DAEC (UnkStruct_ov69_0225DAEC * param0)
 {
-    Camera_Delete(param0->unk_00);
+    Camera_Delete(param0->camera);
 }
 
 static void ov69_0225DAF8 (const UnkStruct_ov69_0225DAEC * param0)
@@ -1830,7 +1830,7 @@ static BOOL ov69_0225DB2C (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         break;
     }
 
-    Camera_SetDistance(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->camera);
 
     return 0;
 }

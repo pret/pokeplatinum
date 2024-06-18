@@ -103,21 +103,21 @@ void ov12_022238E0 (UnkSPLStruct6 * param0)
 
     {
         CameraAngle v11;
-        Camera * v12;
+        Camera * camera;
 
-        v12 = sub_02014784(v1);
+        camera = sub_02014784(v1);
 
         switch (v2) {
         case 2:
         default:
-            v11 = Camera_GetAngle(v12);
-            Camera_SetAngleAroundTarget(&v11, v12);
+            v11 = Camera_GetAngle(camera);
+            Camera_SetAngleAroundTarget(&v11, camera);
             break;
         case 3:
-            v11 = Camera_GetAngle(v12);
+            v11 = Camera_GetAngle(camera);
             v11.x += 65536 / 2;
             v11.y += 65536 / 2;
-            Camera_SetAngleAroundTarget(&v11, v12);
+            Camera_SetAngleAroundTarget(&v11, camera);
             break;
         }
     }

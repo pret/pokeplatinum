@@ -53,8 +53,8 @@ typedef struct UnkStruct_ov117_02261280_t {
     UnkStruct_02012744 * unk_90;
     SysTask * unk_94;
     GenericPointerData * unk_98;
-    Camera * unk_9C;
-    Camera * unk_A0;
+    Camera * camera1;
+    Camera * camera2;
     UnkStruct_02014014 * unk_A4;
     NNSFndAllocator unk_A8;
     UnkStruct_ov117_02262664 unk_B8;

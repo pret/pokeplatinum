@@ -38,7 +38,7 @@ typedef struct UnkStruct_02014014_t {
     void * unk_14;
     UnkFuncPtr_02014014 unk_18;
     UnkFuncPtr_02014014 unk_1C;
-    Camera * unk_20;
+    Camera * camera;
     VecFx32 unk_24;
     u16 unk_30;
     VecFx32 unk_34;
@@ -163,7 +163,7 @@ UnkStruct_02014014 * sub_02014014 (UnkFuncPtr_02014014 param0, UnkFuncPtr_020140
     Unk_021BF618[v1] = v0;
 
     if (param4 == 1) {
-        v0->unk_20 = Camera_Alloc(param5);
+        v0->camera = Camera_Alloc(param5);
         {
             VEC_Set(&v0->unk_24, 0, 0, 0);
             v0->unk_30 = 8192;
@@ -172,10 +172,10 @@ UnkStruct_02014014 * sub_02014014 (UnkFuncPtr_02014014 param0, UnkFuncPtr_020140
                          v0->unk_30,
                          0,
                          0,
-                         v0->unk_20
+                         v0->camera
                          );
             v0->unk_DB = 0;
-            Camera_SetAsActive(v0->unk_20);
+            Camera_SetAsActive(v0->camera);
         }
     }
 
@@ -231,8 +231,8 @@ void sub_0201411C (UnkStruct_02014014 * param0)
         }
     }
 
-    if (param0->unk_20 != NULL) {
-        Camera_Delete(param0->unk_20);
+    if (param0->camera != NULL) {
+        Camera_Delete(param0->camera);
     }
 
     Heap_FreeToHeap(param0);
@@ -509,9 +509,9 @@ void sub_02014638 (UnkStruct_02014014 * param0)
 {
     const MtxFx43 * v0;
 
-    if (param0->unk_20 != NULL) {
-        Camera_ComputeProjectionMatrix(param0->unk_DB, param0->unk_20);
-        Camera_SetAsActive(param0->unk_20);
+    if (param0->camera != NULL) {
+        Camera_ComputeProjectionMatrix(param0->unk_DB, param0->camera);
+        Camera_SetAsActive(param0->camera);
         Camera_ComputeViewMatrix();
     }
 
@@ -520,7 +520,7 @@ void sub_02014638 (UnkStruct_02014014 * param0)
     v0 = NNS_G3dGlbGetCameraMtx();
     SPL_0209C5E0(param0->unk_00, v0);
 
-    if (param0->unk_20 != NULL) {
+    if (param0->camera != NULL) {
         Camera_ClearActive();
     }
 
@@ -623,7 +623,7 @@ void sub_02014734 (UnkStruct_02014014 * param0, VecFx32 * param1)
 void sub_02014744 (UnkStruct_02014014 * param0, const VecFx32 * param1)
 {
     param0->unk_40 = *param1;
-    Camera_SetUp(param1, param0->unk_20);
+    Camera_SetUp(param1, param0->camera);
 }
 
 void * sub_02014764 (void)
@@ -638,7 +638,7 @@ void sub_02014770 (VecFx32 * param0)
 
 Camera * sub_02014784 (UnkStruct_02014014 * param0)
 {
-    return param0->unk_20;
+    return param0->camera;
 }
 
 void sub_02014788 (UnkStruct_02014014 * param0, int param1)

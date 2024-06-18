@@ -31,7 +31,7 @@ typedef struct {
     ResourceMetadata * unk_84;
     MessageLoader * unk_88;
     StringTemplate * unk_8C;
-    Camera * unk_90;
+    Camera * camera;
     UnkStruct_ov5_021D30A8 unk_94;
     GraphicElementData * unk_25C[4];
     u16 unk_26C[2];

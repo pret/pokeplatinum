@@ -114,7 +114,7 @@ BOOL ov117_02261E38(UnkStruct_ov117_02261280 * param0, int param1);
 void ov117_02261F08(UnkStruct_ov117_02261280 * param0, int param1, int param2);
 void ov117_02261F3C(UnkStruct_ov117_02261280 * param0);
 void ov117_02261FA4(UnkStruct_ov117_02261280 * param0);
-static void ov117_022626AC(Camera * param0);
+static void ov117_022626AC(Camera * camera);
 static u32 ov117_02261644(u32 param0, BOOL param1);
 static u32 ov117_02261668(u32 param0, BOOL param1);
 
@@ -425,7 +425,7 @@ int ov117_0226098C (OverlayManager * param0, int * param1)
         break;
     }
 
-    ov117_022626AC(v0->unk_9C);
+    ov117_022626AC(v0->camera1);
     v0->unk_3D50++;
 
     return 0;
@@ -550,22 +550,22 @@ static void ov117_02260EC0 (UnkStruct_ov117_02261280 * param0)
     VecFx32 v0 = {0, 0x1881e, 0};
     VecFx32 v1 = {0, 0x1881e, (FX32_ONE * 5)};
 
-    param0->unk_9C = Camera_Alloc(110);
+    param0->camera1 = Camera_Alloc(110);
 
-    Camera_InitWithTarget(&v0, (0x7b << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_9C);
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_9C);
-    Camera_SetAsActive(param0->unk_9C);
+    Camera_InitWithTarget(&v0, (0x7b << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->camera1);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->camera1);
+    Camera_SetAsActive(param0->camera1);
 
-    param0->unk_A0 = Camera_Alloc(110);
+    param0->camera2 = Camera_Alloc(110);
 
-    Camera_InitWithTarget(&v0, (80 << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->unk_A0);
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_A0);
+    Camera_InitWithTarget(&v0, (80 << FX32_SHIFT), &Unk_ov117_02266918, (((22 * 0xffff) / 360)), 1, 0, param0->camera2);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->camera2);
 }
 
 static void ov117_02260F64 (UnkStruct_ov117_02261280 * param0)
 {
-    Camera_Delete(param0->unk_9C);
-    Camera_Delete(param0->unk_A0);
+    Camera_Delete(param0->camera1);
+    Camera_Delete(param0->camera2);
 }
 
 static void ov117_02260F7C (SysTask * param0, void * param1)
@@ -595,8 +595,8 @@ static void ov117_02260F7C (SysTask * param0, void * param1)
 
     {
         sub_020241B4();
-        Camera_SetAsActive(v0->unk_9C);
-        Camera_ComputeProjectionMatrix(1, v0->unk_9C);
+        Camera_SetAsActive(v0->camera1);
+        Camera_ComputeProjectionMatrix(1, v0->camera1);
         Camera_ComputeViewMatrix();
 
         NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
@@ -923,16 +923,16 @@ static void ov117_022614AC (UnkStruct_ov117_02261280 * param0, int param1)
 static void ov117_02261574 (UnkStruct_ov117_02261280 * param0)
 {
     void * v0;
-    Camera * v1;
+    Camera * camera;
     void * v2;
 
     sub_02014000();
 
     v0 = Heap_AllocFromHeap(110, 0x4800);
     param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, 110);
-    v1 = sub_02014784(param0->unk_A4);
+    camera = sub_02014784(param0->unk_A4);
 
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v1);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     v2 = sub_020144C4(190, 0, 110);
     sub_020144CC(param0->unk_A4, v2, (1 << 1) | (1 << 3), 1);
 }
@@ -1953,7 +1953,7 @@ static BOOL ov117_02262664 (UnkStruct_ov117_02261280 * param0)
     return 0;
 }
 
-static void ov117_022626AC (Camera * param0)
+static void ov117_022626AC (Camera * camera)
 {
     return;
 }

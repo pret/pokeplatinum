@@ -1748,7 +1748,7 @@ static void ov10_022216E0 (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
 {
-    Camera * v0;
+    Camera * camera;
     void * v1;
 
     param0->unk_B4C = sub_02024220(param0->unk_00->unk_24, 0, 4, 0, 2, NULL);
@@ -1759,8 +1759,8 @@ static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
     param0->unk_B54 = Heap_AllocFromHeap(param0->unk_00->unk_24, 0x4800);
     param0->unk_B50 = sub_02014014(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->unk_24);
 
-    v0 = sub_02014784(param0->unk_B50);
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v0);
+    camera = sub_02014784(param0->unk_B50);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v1 = sub_020144C4(61, 2, param0->unk_00->unk_24);
     sub_020144CC(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);

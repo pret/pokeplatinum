@@ -6,7 +6,7 @@
 #include "camera.h"
 
 typedef struct {
-    Camera * unk_00;
+    Camera * camera;
     void * unk_04;
     ArchivedSprite unk_08;
     Sprite * unk_18;

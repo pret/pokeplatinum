@@ -696,8 +696,8 @@ static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    Camera_SetAsActive(param0->unk_28);
-    Camera_ComputeProjectionMatrix(0, param0->unk_28);
+    Camera_SetAsActive(param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
     Camera_ComputeViewMatrix();
 
     switch (param0->unk_1101) {
@@ -759,18 +759,18 @@ static void ov99_021D1918 (UnkStruct_ov99_021D2CB0 * param0)
     VecFx32 v1 = {-31712, -142304, 496744};
     VecFx32 v2 = {-31712, -67780, -5704};
 
-    param0->unk_28 = Camera_Alloc(75);
+    param0->camera = Camera_Alloc(75);
 
-    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->unk_28);
-    Camera_SetPosition(&v1, param0->unk_28);
-    Camera_SetTarget(&v2, param0->unk_28);
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->unk_28);
-    Camera_SetAsActive(param0->unk_28);
+    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->camera);
+    Camera_SetPosition(&v1, param0->camera);
+    Camera_SetTarget(&v2, param0->camera);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->camera);
+    Camera_SetAsActive(param0->camera);
 }
 
 static void ov99_021D19A0 (UnkStruct_ov99_021D2CB0 * param0)
 {
-    Camera_Delete(param0->unk_28);
+    Camera_Delete(param0->camera);
 }
 
 static GenericPointerData * ov99_021D19AC (int param0)

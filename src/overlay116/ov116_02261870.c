@@ -198,9 +198,9 @@ void ov116_02261C88 (UnkStruct_ov116_0226139C * param0)
     VecFx32 v0 = {0, 0, 0};
     VecFx32 v1 = {0, 0, (FX32_ONE * 160)};
 
-    Camera_InitWithTargetAndPosition(&v0, &v1, 0xb60, 0, 0, param0->unk_48.unk_1C);
-    Camera_SetClipping((FX32_ONE * -1000), (FX32_ONE * 1000), param0->unk_48.unk_1C);
-    Camera_SetAsActive(param0->unk_48.unk_1C);
+    Camera_InitWithTargetAndPosition(&v0, &v1, 0xb60, 0, 0, param0->unk_48.camera);
+    Camera_SetClipping((FX32_ONE * -1000), (FX32_ONE * 1000), param0->unk_48.camera);
+    Camera_SetAsActive(param0->unk_48.camera);
 }
 
 static void ov116_02261CD8 (SpriteTemplate * param0, s16 param1, s16 param2, int param3, int param4, int param5)

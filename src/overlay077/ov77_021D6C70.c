@@ -113,7 +113,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 {
     u8 v0;
     ArchivedSprite v1;
-    Camera * v2;
+    Camera * camera;
     void * v3;
     int v4[3] = {389, 392, 395};
     int v5[3];
@@ -156,9 +156,9 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 
     param0->unk_14 = Heap_AllocFromHeap(76, 0x4800);
     param0->unk_18 = sub_02014014(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, 76);
-    v2 = sub_02014784(param0->unk_18);
+    camera = sub_02014784(param0->unk_18);
 
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), v2);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v3 = sub_020144C4(61, 4, 76);
     sub_020144CC(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);

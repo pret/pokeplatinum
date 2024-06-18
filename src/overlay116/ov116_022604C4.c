@@ -770,7 +770,7 @@ static void ov116_022612CC (UnkStruct_ov116_0226139C * param0)
     param0->unk_48.unk_10 = sub_02018340(106);
     param0->unk_48.unk_14 = sub_02002F38(106);
     param0->unk_48.unk_18 = sub_02024220(106, 0, 1, 0, 4, NULL);
-    param0->unk_48.unk_1C = Camera_Alloc(106);
+    param0->unk_48.camera = Camera_Alloc(106);
 
     ov116_02261C88(param0);
 
@@ -831,7 +831,7 @@ void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
     NARC_dtor(param0->unk_48.unk_00);
     NARC_dtor(param0->unk_48.unk_04);
     sub_020242C4(param0->unk_48.unk_18);
-    Camera_Delete(param0->unk_48.unk_1C);
+    Camera_Delete(param0->unk_48.camera);
     sub_0200D0B0(param0->unk_48.unk_08, param0->unk_48.unk_0C);
     sub_0200C8D4(param0->unk_48.unk_08);
 

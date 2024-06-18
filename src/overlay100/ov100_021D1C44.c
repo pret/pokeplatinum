@@ -38,7 +38,7 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 * param0);
 static void ov100_021D2324(UnkStruct_ov100_021D1C98 * param0);
 static void ov100_021D2250(UnkStruct_ov100_021D1C98 * param0);
 static void ov100_021D2E0C(UnkStruct_ov100_021D1C98 * param0);
-static void ov100_021D1C44(Camera * param0, VecFx32 * param1);
+static void ov100_021D1C44(Camera * camera, VecFx32 * param1);
 
 static UnkStruct_ov100_021D54D0 Unk_ov100_021D54D0[] = {
     {0x6, 0x4, 0x0},
@@ -61,13 +61,13 @@ static UnkStruct_ov100_021D54D0 Unk_ov100_021D54A0[] = {
     {0x0, 0x1}
 };
 
-static void ov100_021D1C44 (Camera * param0, VecFx32 * param1)
+static void ov100_021D1C44 (Camera * camera, VecFx32 * param1)
 {
     CameraAngle v0 = {-0x29fe, 0, 0};
 
-    Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, param0);
-    Camera_SetAsActive(param0);
-    Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, param0);
+    Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, camera);
+    Camera_SetAsActive(camera);
+    Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, camera);
 }
 
 static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
@@ -285,7 +285,7 @@ void * ov100_021D2340 (UnkStruct_ov100_021D4DD8 * param0)
         }
     }
 
-    ov100_021D1C44(v0->unk_1EBC->unk_18, &v0->unk_1EBC->unk_44);
+    ov100_021D1C44(v0->unk_1EBC->camera, &v0->unk_1EBC->unk_44);
     v0->unk_1EBC->unk_44.y = FX32_CONST(0);
 
     ov100_021D4DC8(1);
@@ -317,7 +317,7 @@ BOOL ov100_021D2428 (void * param0)
         v0->unk_1EBC->unk_58.unk_10 = 0;
         v0->unk_1EBC->unk_58.unk_14 = 0;
         v0->unk_1EBC->unk_58.unk_08 = 60;
-        v0->unk_1EBC->unk_58.unk_00 = v0->unk_1EBC->unk_18;
+        v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
         v0->unk_1EBC->unk_58.unk_18 = 0;
         v0->unk_1EBC->unk_58.unk_1C = 0;
         v0->unk_1EBC->unk_58.unk_20 = 0;
@@ -347,7 +347,7 @@ BOOL ov100_021D2428 (void * param0)
         v0->unk_1EBC->unk_58.unk_10 = 0;
         v0->unk_1EBC->unk_58.unk_14 = 0;
         v0->unk_1EBC->unk_58.unk_08 = 60;
-        v0->unk_1EBC->unk_58.unk_00 = v0->unk_1EBC->unk_18;
+        v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
         v0->unk_1EBC->unk_58.unk_18 = 0;
         v0->unk_1EBC->unk_58.unk_1C = 0;
         v0->unk_1EBC->unk_58.unk_20 = FX32_CONST(70);
@@ -435,7 +435,7 @@ BOOL ov100_021D2428 (void * param0)
             v0->unk_1EBC->unk_58.unk_10 = 0;
             v0->unk_1EBC->unk_58.unk_14 = 0;
             v0->unk_1EBC->unk_58.unk_08 = 90;
-            v0->unk_1EBC->unk_58.unk_00 = v0->unk_1EBC->unk_18;
+            v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
             v0->unk_1EBC->unk_58.unk_18 = 0;
             v0->unk_1EBC->unk_58.unk_1C = 0;
             v0->unk_1EBC->unk_58.unk_20 = -FX32_CONST(80);

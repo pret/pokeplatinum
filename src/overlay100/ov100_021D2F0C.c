@@ -35,7 +35,7 @@
 static void ov100_021D3084(UnkStruct_ov100_021D3084 * param0);
 static void ov100_021D3400(UnkStruct_ov100_021D3084 * param0);
 static void ov100_021D34C0(UnkStruct_ov100_021D3084 * param0);
-static void ov100_021D3504(Camera * param0, VecFx32 * param1);
+static void ov100_021D3504(Camera * camera, VecFx32 * param1);
 static void ov100_021D3558(UnkStruct_ov100_021D3084 * param0);
 void * ov100_021D3620(UnkStruct_ov100_021D4DD8 * param0);
 BOOL ov100_021D39E4(void * param0);
@@ -204,13 +204,13 @@ static void ov100_021D34C0 (UnkStruct_ov100_021D3084 * param0)
     param0->unk_0C.unk_10DC[1].unk_174 = 0;
 }
 
-static void ov100_021D3504 (Camera * param0, VecFx32 * param1)
+static void ov100_021D3504 (Camera * camera, VecFx32 * param1)
 {
     CameraAngle v0 = {-0x29fe, 0, 0};
 
-    Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, param0);
-    Camera_SetAsActive(param0);
-    Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, param0);
+    Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, camera);
+    Camera_SetAsActive(camera);
+    Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, camera);
 }
 
 static void ov100_021D3558 (UnkStruct_ov100_021D3084 * param0)
@@ -279,7 +279,7 @@ void * ov100_021D3620 (UnkStruct_ov100_021D4DD8 * param0)
 
     v0->unk_1D28->unk_44.z = FX32_CONST(34);
 
-    ov100_021D3504(v0->unk_1D28->unk_18, &v0->unk_1D28->unk_44);
+    ov100_021D3504(v0->unk_1D28->camera, &v0->unk_1D28->unk_44);
     sub_02004550(63, 0, 0);
 
     return v0;
@@ -419,7 +419,7 @@ BOOL ov100_021D39E4 (void * param0)
         v0->unk_1D28->unk_58.unk_10 = 0;
         v0->unk_1D28->unk_58.unk_14 = 0;
         v0->unk_1D28->unk_58.unk_08 = 60;
-        v0->unk_1D28->unk_58.unk_00 = v0->unk_1D28->unk_18;
+        v0->unk_1D28->unk_58.camera = v0->unk_1D28->camera;
         v0->unk_1D28->unk_58.unk_18 = 0;
         v0->unk_1D28->unk_58.unk_1C = 0;
         v0->unk_1D28->unk_58.unk_20 = -FX32_CONST(80 - 34);

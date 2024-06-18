@@ -1262,7 +1262,7 @@ static void ov23_0223EC34 (BGL * param0)
 static void ov23_0223ED68 (int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
 {
     void * v0;
-    Camera * v1;
+    Camera * camera;
     void * v2;
     VecFx32 v3;
 
@@ -1304,7 +1304,7 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     int v0;
     BGL * v1;
     void * v2;
-    Camera * v3;
+    Camera * camera;
     void * v4;
     int v5;
 
@@ -1350,7 +1350,7 @@ static void ov23_0223EF98 (void)
     int v0;
     BGL * v1;
     void * v2;
-    Camera * v3;
+    Camera * camera;
     void * v4;
     int v5;
 

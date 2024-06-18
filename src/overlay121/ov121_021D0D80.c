@@ -32,7 +32,7 @@
 
 typedef struct {
     GenericPointerData * unk_00;
-    Camera * unk_04;
+    Camera * camera;
     SysTask * unk_08;
     int unk_0C;
     int unk_10;
@@ -218,27 +218,27 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
         };
         VecFx32 v1 = {0, 0, 0};
 
-        param0->unk_04 = Camera_Alloc(30);
+        param0->camera = Camera_Alloc(30);
 
-        Camera_InitWithTarget(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04);
-        Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04);
+        Camera_InitWithTarget(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->camera);
+        Camera_SetClipping(0, (FX32_ONE * 300), param0->camera);
 
         {
             CameraAngle v2 = {0, 0, 0, 0};
 
-            v2 = Camera_GetAngle(param0->unk_04);
+            v2 = Camera_GetAngle(param0->camera);
             v2.x = (0x10000 - 0x3fef);
 
-            Camera_SetAngleAroundTarget(&v2, param0->unk_04);
+            Camera_SetAngleAroundTarget(&v2, param0->camera);
         }
 
-        Camera_SetAsActive(param0->unk_04);
+        Camera_SetAsActive(param0->camera);
     }
 }
 
 static void ov121_021D1068 (UnkStruct_ov121_021D0FF4 * param0)
 {
-    Camera_Delete(param0->unk_04);
+    Camera_Delete(param0->camera);
 }
 
 static void ov121_021D1074 (UnkStruct_ov121_021D0FF4 * param0)
@@ -301,8 +301,8 @@ static void ov121_021D11A8 (UnkStruct_ov121_021D0FF4 * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    Camera_SetAsActive(param0->unk_04);
-    Camera_ComputeProjectionMatrix(0, param0->unk_04);
+    Camera_SetAsActive(param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
     Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
@@ -360,7 +360,7 @@ static void ov121_021D1318 (UnkStruct_ov121_021D0FF4 * param0)
     CameraAngle v1 = {0, 0, 0, 0};
     int v2;
 
-    Camera_AdjustFOV(-(param0->unk_D4 >> 8), param0->unk_04);
+    Camera_AdjustFOV(-(param0->unk_D4 >> 8), param0->camera);
     param0->unk_D4 -= 0x80;
 
     if (param0->unk_D4 < (16 << 8)) {

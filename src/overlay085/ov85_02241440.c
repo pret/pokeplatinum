@@ -55,7 +55,7 @@ typedef struct {
     MessageLoader * unk_C4;
     StringTemplate * unk_C8;
     UnkStruct_0200C440 * unk_CC;
-    Camera * unk_D0;
+    Camera * camera;
     UnkStruct_ov85_022420A8 unk_D4[4];
     UnkStruct_ov85_022420A8 unk_134[4];
     UnkStruct_ov85_022420A8 unk_194[4];
@@ -910,7 +910,7 @@ static void ov85_02241FF0 (UnkStruct_ov85_022417E4 * param0)
 
 static void ov85_0224202C (UnkStruct_ov85_022417E4 * param0)
 {
-    Camera_Delete(param0->unk_D0);
+    Camera_Delete(param0->camera);
 }
 
 static void ov85_02242038 (UnkStruct_ov85_022417E4 * param0)
@@ -920,12 +920,12 @@ static void ov85_02242038 (UnkStruct_ov85_022417E4 * param0)
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
-    param0->unk_D0 = Camera_Alloc(36);
+    param0->camera = Camera_Alloc(36);
 
-    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->unk_D0);
-    Camera_SetClipping(0, FX32_CONST(100), param0->unk_D0);
-    Camera_ReleaseTarget(param0->unk_D0);
-    Camera_SetAsActive(param0->unk_D0);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->camera);
+    Camera_SetClipping(0, FX32_CONST(100), param0->camera);
+    Camera_ReleaseTarget(param0->camera);
+    Camera_SetAsActive(param0->camera);
 }
 
 static void ov85_022420A8 (UnkStruct_ov85_022420A8 * param0)

@@ -3357,7 +3357,7 @@ static void ov23_02246548 (int param0)
 static void ov23_02246574 (int param0, UnkStruct_ov23_02245ED4 * param1, int param2)
 {
     void * v0;
-    Camera * v1;
+    Camera * camera;
     void * v2;
     VecFx32 v3;
     fx32 v4, v5;
@@ -3701,7 +3701,7 @@ static void ov23_02246D44 (UnkStruct_ov23_022468DC * param0)
 static void ov23_02246E90 (int param0, UnkStruct_ov23_022468DC * param1)
 {
     void * v0;
-    Camera * v1;
+    Camera * camera;
     void * v2;
     VecFx32 v3;
     fx32 v4;
