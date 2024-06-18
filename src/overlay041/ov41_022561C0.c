@@ -283,7 +283,7 @@ static BOOL ov41_02256564 (UnkStruct_ov41_02256220 * param0)
 {
     u32 v0, v1;
 
-    if (PoketchSystem_IsTouchingDisplay(&v0, &v1)) {
+    if (PoketchSystem_IsHoldingDisplay(&v0, &v1)) {
         if (((u32)(v0 - 16) < (u32)(171 - 16)) & ((u32)(v1 - 16) < (u32)(165 - 16))) {
             v0 = (v0 - 16) >> 1;
             v1 = (v1 - 16) >> 1;
@@ -304,7 +304,7 @@ static BOOL ov41_022565C4 (UnkStruct_ov41_02256220 * param0)
 {
     u32 v0, v1;
 
-    if (PoketchSystem_IsTouchingDisplay(&v0, &v1)) {
+    if (PoketchSystem_IsHoldingDisplay(&v0, &v1)) {
         if (((u32)(v0 - 16) < (u32)(171 - 16)) & ((u32)(v1 - 16) < (u32)(165 - 16))) {
             v0 = (v0 - 16) >> 1;
             v1 = (v1 - 16) >> 1;

@@ -153,7 +153,7 @@ static BOOL ov32_02256308 (UnkStruct_ov32_0225621C * param0)
     }
 
     if (ov32_0225655C(param0->unk_74, 2)) {
-        param0->unk_04.unk_64 = PoketchSystem_IsTouchingDisplay(&(param0->unk_04.unk_68), &(param0->unk_04.unk_6C));
+        param0->unk_04.unk_64 = PoketchSystem_IsHoldingDisplay(&(param0->unk_04.unk_68), &(param0->unk_04.unk_6C));
 
         if (param0->unk_04.unk_64) {
             param0->unk_04.unk_66 = TouchScreen_Tapped();

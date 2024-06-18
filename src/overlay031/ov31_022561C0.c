@@ -254,7 +254,7 @@ static BOOL ov31_0225646C (UnkStruct_ov31_02256228 * param0)
     if (ov31_022565B4(param0->unk_1EC, 1)) {
         u32 v0, v1;
 
-        if (PoketchSystem_IsTouchingDisplay(&v0, &v1)) {
+        if (PoketchSystem_IsHoldingDisplay(&v0, &v1)) {
             if ((v0 >= 16) && (v1 >= 16)) {
                 v0 = (v0 - 16) / 8;
                 v1 = (v1 - 16) / 8;

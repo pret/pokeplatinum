@@ -128,7 +128,7 @@ void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *sa
 UnkStruct_ov25_02254560 * ov25_02254418(void);
 void PoketchSystem_PlaySoundEffect(u32 soundID);
 void ov25_02254444(u32 param0, u32 param1);
-BOOL PoketchSystem_IsTouchingDisplay(u32 *x, u32 *y);
+BOOL PoketchSystem_IsHoldingDisplay(u32 *x, u32 *y);
 BOOL PoketchSystem_TappedDisplay(u32 *x, u32 *y);
 BOOL ov25_0225450C(const PoketchSystem *poketchSys);
 void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager * param1);

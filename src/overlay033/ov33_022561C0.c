@@ -210,7 +210,7 @@ static BOOL ov33_022563D0 (UnkStruct_ov33_0225621C * param0)
         return 0;
     }
 
-    param0->unk_04.unk_4C = PoketchSystem_IsTouchingDisplay(&param0->unk_04.unk_50, &param0->unk_04.unk_54);
+    param0->unk_04.unk_4C = PoketchSystem_IsHoldingDisplay(&param0->unk_04.unk_50, &param0->unk_04.unk_54);
 
     if (param0->unk_04.unk_4C) {
         if (((u32)(param0->unk_04.unk_50 - 16) < (u32)(207 - 16)) & ((u32)(param0->unk_04.unk_54 - 16) < (u32)(175 - 16))) {

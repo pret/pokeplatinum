@@ -700,7 +700,7 @@ static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y)
     return FALSE;
 }
 
-BOOL PoketchSystem_IsTouchingDisplay(u32 *x, u32 *y)
+BOOL PoketchSystem_IsHoldingDisplay(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 

@@ -242,7 +242,7 @@ static BOOL ov47_022564A8 (UnkStruct_ov47_0225621C * param0)
 
     param0->unk_04.unk_08 = ov47_02256584(param0);
 
-    if (PoketchSystem_IsTouchingDisplay(&v0, &v1)) {
+    if (PoketchSystem_IsHoldingDisplay(&v0, &v1)) {
         param0->unk_04.unk_0C[param0->unk_04.unk_24].unk_00 = v0;
         param0->unk_04.unk_0C[param0->unk_04.unk_24].unk_01 = v1;
     } else {
