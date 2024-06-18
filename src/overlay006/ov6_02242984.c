@@ -34,7 +34,6 @@ typedef struct UnkStruct_ov6_02242A8C_t {
 
 int ov6_02242984 (FieldSystem * fieldSystem)
 {
-    BOOL v1;
     int v2[MAX_GRASS_ENCOUNTERS];
 
     WildEncounters * encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
@@ -43,7 +42,7 @@ int ov6_02242984 (FieldSystem * fieldSystem)
         v2[i] = encounterData->grassEncounters.encounters[i].species;
     }
 
-    v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
+    BOOL v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
 
     ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->location->mapId, &v2[6], &v2[7]);
     WildEncounters_ReplaceTimedEncounters(encounterData, &v2[2], &v2[3]);
