@@ -7,7 +7,7 @@
     .short 0xFD13
 
 _000A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 244, _0028
@@ -25,7 +25,7 @@ _0028:
     End
 
 _0033:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 244, _00DC

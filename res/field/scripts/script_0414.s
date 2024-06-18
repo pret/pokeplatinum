@@ -54,7 +54,7 @@ _00D8:
 _00F0:
     SetVar 0x4082, 1
     ReleaseAll
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x137, 0, 46, 54, 0

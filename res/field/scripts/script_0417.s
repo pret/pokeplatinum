@@ -179,7 +179,7 @@ _02DF:
     End
 
 _031E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -189,7 +189,7 @@ _031E:
     End
 
 _0331:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x218
     GoToIfDefeated 0x218, _046C
@@ -311,7 +311,7 @@ _04CF:
     Return
 
 _04DB:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x227
     GoToIfDefeated 0x227, _0616
@@ -433,7 +433,7 @@ _0679:
     Return
 
 _0685:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x221
     GoToIfDefeated 0x221, _07C0
@@ -555,7 +555,7 @@ _0823:
     Return
 
 _082F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x222
     GoToIfDefeated 0x222, _096A
@@ -677,7 +677,7 @@ _09CD:
     Return
 
 _09D9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x21E
     GoToIfDefeated 0x21E, _0B14
@@ -799,7 +799,7 @@ _0B77:
     Return
 
 _0B83:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x21F
     GoToIfDefeated 0x21F, _0CBE
@@ -921,7 +921,7 @@ _0D21:
     Return
 
 _0D2D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x21B
     GoToIfDefeated 0x21B, _0E68
@@ -1043,7 +1043,7 @@ _0ECB:
     Return
 
 _0ED7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x217
     GoToIfDefeated 0x217, _1012
@@ -1165,7 +1165,7 @@ _1075:
     Return
 
 _1081:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x224
     GoToIfDefeated 0x224, _11BC
@@ -1287,7 +1287,7 @@ _121F:
     Return
 
 _122B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x21C
     GoToIfDefeated 0x21C, _1366
@@ -1409,7 +1409,7 @@ _13C9:
     Return
 
 _13D5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x228
     GoToIfDefeated 0x228, _1510
@@ -1531,7 +1531,7 @@ _1573:
     Return
 
 _157F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x220
     GoToIfDefeated 0x220, _16BA
@@ -1653,7 +1653,7 @@ _171D:
     Return
 
 _1729:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x21A
     GoToIfDefeated 0x21A, _1864
@@ -1775,7 +1775,7 @@ _18C7:
     Return
 
 _18D3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x223
     GoToIfDefeated 0x223, _1A0E
@@ -1897,7 +1897,7 @@ _1A71:
     Return
 
 _1A7D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x21D
     GoToIfDefeated 0x21D, _1BB8
@@ -2019,7 +2019,7 @@ _1C1B:
     Return
 
 _1C27:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x226
     GoToIfDefeated 0x226, _1D62
@@ -2141,7 +2141,7 @@ _1DC5:
     Return
 
 _1DD1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x225
     GoToIfDefeated 0x225, _1F0C
@@ -2263,7 +2263,7 @@ _1F6F:
     Return
 
 _1F7B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckTrainerFlag 0x219
     GoToIfDefeated 0x219, _20B6

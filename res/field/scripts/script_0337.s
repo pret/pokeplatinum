@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 0x149, _009C
     GoToIfSet 0xAB0, _009C

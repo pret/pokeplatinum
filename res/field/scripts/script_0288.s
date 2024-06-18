@@ -67,7 +67,7 @@ _00B8:
     EndMovement
 
 _00C0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40AA, 3, _00E0

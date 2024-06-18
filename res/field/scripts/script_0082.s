@@ -20,7 +20,7 @@ _001A:
     .byte 0
 
 _0022:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement 2, _013C
@@ -161,7 +161,7 @@ _0174:
     .byte 0
 
 _0198:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -174,7 +174,7 @@ _0198:
     End
 
 _01B7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -187,7 +187,7 @@ _01B7:
     End
 
 _01D6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 129, _01F4
@@ -205,7 +205,7 @@ _01F4:
     End
 
 _01FF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
     WaitABXPadPress

@@ -19,7 +19,7 @@ _002A:
     GoTo _0030
 
 _0030:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -29,7 +29,7 @@ _0030:
     End
 
 _0044:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -354,7 +354,7 @@ _0044:
     .byte 0
 
 _0192:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -364,7 +364,7 @@ _0192:
     End
 
 _01A5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -374,7 +374,7 @@ _01A5:
     End
 
 _01B8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -384,7 +384,7 @@ _01B8:
     End
 
 _01CB:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
@@ -394,7 +394,7 @@ _01CB:
     End
 
 _01DE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 14
@@ -404,7 +404,7 @@ _01DE:
     End
 
 _01F1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 11
     Message 12

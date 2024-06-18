@@ -21,7 +21,7 @@ _0032:
     End
 
 _0038:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -220,7 +220,7 @@ _0264:
     EndMovement
 
 _026C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 166, _0289
@@ -278,7 +278,7 @@ _02FC:
     EndMovement
 
 _0304:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -288,7 +288,7 @@ _0304:
     End
 
 _0317:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 12
@@ -298,7 +298,7 @@ _0317:
     End
 
 _032A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 14
@@ -308,7 +308,7 @@ _032A:
     End
 
 _033D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
@@ -326,7 +326,7 @@ _0350:
     End
 
 _0367:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 16
     WaitABXPadPress
@@ -335,7 +335,7 @@ _0367:
     End
 
 _0378:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 17
     WaitABXPadPress

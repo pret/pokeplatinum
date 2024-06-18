@@ -13,7 +13,7 @@ _0018:
     End
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_247 0x8000
@@ -52,7 +52,7 @@ _0086:
     End
 
 _0096:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -62,7 +62,7 @@ _0096:
     End
 
 _00A9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_07E 0x1B2, 1, 0x800C
@@ -122,7 +122,7 @@ _016F:
     Return
 
 _0175:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -148,7 +148,7 @@ _01C9:
     End
 
 _01D4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 12

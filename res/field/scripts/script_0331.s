@@ -21,7 +21,7 @@ _002F:
     Return
 
 _0035:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -49,7 +49,7 @@ _00A8:
 _00B2:
     ApplyMovement 0, _00F0
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
     ScrCmd_04B 0x603
     ScrCmd_04A 0x603
@@ -59,7 +59,7 @@ _00B2:
 _00D0:
     ApplyMovement 0, _00FC
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
     ScrCmd_04B 0x603
     ScrCmd_04A 0x603

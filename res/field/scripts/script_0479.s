@@ -40,7 +40,7 @@ _0074:
     Return
 
 _007E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_14D 0x800C
@@ -157,7 +157,7 @@ _0259:
     WaitMovement
     ApplyMovement 0xFF, _02CC
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 251, 0, 24, 47, 0
@@ -288,7 +288,7 @@ _03F8:
     EndMovement
 
 _0400:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 57
@@ -298,7 +298,7 @@ _0400:
     End
 
 _0413:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0CD 0
@@ -329,7 +329,7 @@ _0454:
 
 _045F:
     ScrCmd_0CD 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 55
@@ -339,7 +339,7 @@ _045F:
     End
 
 _0475:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 56
@@ -349,7 +349,7 @@ _0475:
     End
 
 _0488:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 65
@@ -360,7 +360,7 @@ _0488:
 
 _049B:
     Call _005D
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 57
@@ -403,7 +403,7 @@ _04F6:
     WaitMovement
     ApplyMovement 1, _0564
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
     ScrCmd_04B 0x603
     SetVar 0x40C6, 1
@@ -436,7 +436,7 @@ _0570:
     EndMovement
 
 _057C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq 0x400A, 1, _062C
@@ -503,7 +503,7 @@ _0657:
     End
 
 _0662:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq 0x4009, 1, _06CF

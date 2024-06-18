@@ -28,7 +28,7 @@ _0075:
     Return
 
 _0077:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfGe 0x40C5, 1, _00F4
     GoToIfSet 209, _00F4

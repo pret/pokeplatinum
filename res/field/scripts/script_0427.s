@@ -1175,7 +1175,7 @@ _0DDC:
     EndMovement
 
 _0DF4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 54
@@ -1185,7 +1185,7 @@ _0DF4:
     End
 
 _0E07:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 57
@@ -1195,7 +1195,7 @@ _0E07:
     End
 
 _0E1A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 144, _0E3E
@@ -1213,7 +1213,7 @@ _0E3E:
     GoTo _0E36
 
 _0E47:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 108, _0E8C
@@ -1242,7 +1242,7 @@ _0E97:
     End
 
 _0EA1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 32

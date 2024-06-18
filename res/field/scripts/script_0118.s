@@ -36,7 +36,7 @@ _0066:
     End
 
 _0070:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -46,7 +46,7 @@ _0070:
     End
 
 _0083:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -56,7 +56,7 @@ _0083:
     End
 
 _0096:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
@@ -66,7 +66,7 @@ _0096:
     End
 
 _00A9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 3

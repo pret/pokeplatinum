@@ -23,7 +23,7 @@ _0026:
     End
 
 _002A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_140 0x800C
@@ -502,7 +502,7 @@ _07AE:
 
 _07BA:
     LockAll
-    PlayFanfare 0x5E4
+    PlayFanfare SEQ_SE_DP_BUTTON9
     ScrCmd_13C 1
     ScrCmd_2C0 7
     WaitABPressTime 30
@@ -755,7 +755,7 @@ _0BB2:
     Return
 
 _0BC0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 207
@@ -765,14 +765,14 @@ _0BC0:
     End
 
 _0BD3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoTo _0497
     End
 
 _0BE3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoTo _0BF3

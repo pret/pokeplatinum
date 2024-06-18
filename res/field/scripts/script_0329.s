@@ -450,7 +450,7 @@ _0466:
     End
 
 _0468:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 226, _0504

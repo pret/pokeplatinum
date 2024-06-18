@@ -41,7 +41,7 @@ _002F:
     ApplyMovement 6, _00D4
     ApplyMovement 7, _0108
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 6
     ScrCmd_065 7
     ScrCmd_04B 0x603

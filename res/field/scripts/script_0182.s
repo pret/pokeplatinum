@@ -24,7 +24,7 @@ _0025:
     End
 
 _003C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
     WaitABXPadPress

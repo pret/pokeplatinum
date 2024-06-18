@@ -18,7 +18,7 @@ _0016:
 
 _001A:
     LockAll
-    PlayFanfare 0x624
+    PlayFanfare SEQ_SE_DP_UG_020
     Message 1
     WaitABXPadPress
     CloseMessage
@@ -26,10 +26,10 @@ _001A:
     End
 
 _002B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
-    PlayFanfare 0x637
+    PlayFanfare SEQ_SE_DP_MAZYO4
     WaitABXPadPress
     CloseMessage
     ReleaseAll

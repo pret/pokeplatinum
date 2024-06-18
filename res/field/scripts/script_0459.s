@@ -37,7 +37,7 @@ _0062:
     Return
 
 _0078:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 0x118, _0133
     Message 0
@@ -144,7 +144,7 @@ _019A:
     End
 
 _0261:
-    PlayFanfare 0x639
+    PlayFanfare SEQ_SE_DP_T_AME
     Return
 
 _0267:
@@ -314,7 +314,7 @@ _03F0:
     EndMovement
 
 _03FC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -324,7 +324,7 @@ _03FC:
     End
 
 _040F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -334,7 +334,7 @@ _040F:
     End
 
 _0422:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7

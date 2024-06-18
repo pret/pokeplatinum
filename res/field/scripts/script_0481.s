@@ -32,7 +32,7 @@ _0073:
     End
 
 _007D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 206, _00C2
@@ -59,7 +59,7 @@ _00CD:
     End
 
 _00D7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
@@ -101,7 +101,7 @@ _012F:
     End
 
 _0146:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 3

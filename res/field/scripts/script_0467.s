@@ -24,7 +24,7 @@ _0062:
     End
 
 _0068:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_284 0x4000

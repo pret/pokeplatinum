@@ -219,7 +219,7 @@ _01CC:
     End
 
 _01E3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4

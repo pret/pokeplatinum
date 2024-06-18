@@ -8,7 +8,7 @@
     .short 0xFD13
 
 _000E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_247 0x8000
@@ -185,7 +185,7 @@ _0304:
     Return
 
 _030C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -195,7 +195,7 @@ _030C:
     End
 
 _031F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC

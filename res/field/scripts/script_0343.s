@@ -8,7 +8,7 @@
     .short 0xFD13
 
 _000E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -18,7 +18,7 @@ _000E:
     End
 
 _0021:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_07E 0x1B8, 1, 0x800C
@@ -41,7 +41,7 @@ _006C:
     Message 3
     WaitABXPadPress
     ScrCmd_04B 0x5DC
-    PlayFanfare 0x608
+    PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 5, _00A8
     ApplyMovement 6, _00B0
     WaitMovement
@@ -68,7 +68,7 @@ _00B0:
     EndMovement
 
 _00B8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 4
     WaitABXPadPress

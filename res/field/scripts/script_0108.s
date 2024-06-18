@@ -21,7 +21,7 @@ _0033:
     End
 
 _0039:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 141, _0083
@@ -52,7 +52,7 @@ _008E:
     End
 
 _0098:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_247 0x8000
@@ -118,7 +118,7 @@ _014A:
     End
 
 _0155:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -131,7 +131,7 @@ _0155:
     End
 
 _0174:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -144,7 +144,7 @@ _0174:
     End
 
 _0193:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC

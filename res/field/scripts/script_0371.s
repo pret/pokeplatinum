@@ -28,7 +28,7 @@ _004A:
 
 _0058:
     SetVar 0x40D9, 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _015D
@@ -115,7 +115,7 @@ _01AC:
     ScrCmd_18D
     ScrCmd_12D 0x800C
     ScrCmd_18E
-    PlayFanfare 0x61B
+    PlayFanfare SEQ_SE_DP_SAVE
     ScrCmd_04B 0x61B
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

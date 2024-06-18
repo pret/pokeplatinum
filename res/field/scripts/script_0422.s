@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x4086, 3, _003D
@@ -94,7 +94,7 @@ _00ED:
     End
 
 _00F9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40CB, 2, _0126
@@ -123,7 +123,7 @@ _013C:
     End
 
 _014A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E8, 2, _0185
@@ -154,7 +154,7 @@ _0193:
     End
 
 _01A1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E1, 3, _01F4
@@ -190,7 +190,7 @@ _01FF:
     End
 
 _020D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E2, 2, _0248
@@ -222,7 +222,7 @@ _0256:
     End
 
 _0266:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E4, 1, _0289

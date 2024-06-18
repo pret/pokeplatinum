@@ -13,7 +13,7 @@ _000E:
     End
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0D3 0, 0x1A6
@@ -24,7 +24,7 @@ _001A:
     End
 
 _0032:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1

@@ -33,7 +33,7 @@ _005E:
 
 _0062:
     LockAll
-    PlayFanfare 0x5F1
+    PlayFanfare SEQ_SE_DP_PINPON
     Message 0
     WaitABPress
     CloseMessage
@@ -56,7 +56,7 @@ _00A0:
 
 _00AF:
     LockAll
-    PlayFanfare 0x5F1
+    PlayFanfare SEQ_SE_DP_PINPON
     Message 1
     WaitABPress
     CloseMessage
@@ -72,7 +72,7 @@ _00AF:
 
 _00ED:
     LockAll
-    PlayFanfare 0x5F1
+    PlayFanfare SEQ_SE_DP_PINPON
     Message 2
     WaitABPress
     CloseMessage

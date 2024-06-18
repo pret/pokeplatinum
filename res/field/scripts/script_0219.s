@@ -206,7 +206,7 @@ _02CB:
     CloseMessage
     ApplyMovement 0, _035C
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_162
     ScrCmd_065 0
     ScrCmd_04B 0x603
@@ -335,7 +335,7 @@ _03F5:
     End
 
 _03FE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -345,7 +345,7 @@ _03FE:
     End
 
 _0411:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -427,7 +427,7 @@ _04F7:
     End
 
 _050C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 10
     WaitABXPadPress

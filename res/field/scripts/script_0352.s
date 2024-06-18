@@ -54,7 +54,7 @@ _00C7:
     End
 
 _00CB:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 186, _0128
     ApplyMovement 5, _01C8
@@ -95,7 +95,7 @@ _0128:
     End
 
 _013B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 186, _018B
@@ -187,7 +187,7 @@ _0220:
     EndMovement
 
 _0230:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ApplyMovement 6, _02F4
@@ -268,7 +268,7 @@ _0304:
     EndMovement
 
 _030C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
     WaitABXPadPress

@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x4095, 1, _002F

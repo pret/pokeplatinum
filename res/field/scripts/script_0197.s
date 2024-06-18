@@ -60,7 +60,7 @@ _00C9:
     ApplyMovement 1, _0120
     ApplyMovement 0xFF, _0198
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 187, 0, 8, 15, 0

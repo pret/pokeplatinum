@@ -10,7 +10,7 @@
     .short 0xFD13
 
 _0016:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_072 20, 2
     Message 0
@@ -26,7 +26,7 @@ _003E:
     GoToIfEq 0x800C, 0, _006B
     ScrCmd_070 100
     ScrCmd_074
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
     ScrCmd_073
     ScrCmd_206
@@ -42,7 +42,7 @@ _006B:
     End
 
 _0078:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
@@ -52,7 +52,7 @@ _0078:
     End
 
 _008B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 3
@@ -62,7 +62,7 @@ _008B:
     End
 
 _009E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
@@ -72,7 +72,7 @@ _009E:
     End
 
 _00B1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5

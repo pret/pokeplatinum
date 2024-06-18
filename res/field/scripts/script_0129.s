@@ -39,7 +39,7 @@ _008C:
     Message 1
     ScrCmd_071 0x800C, 0x1F4
     GoToIfEq 0x800C, 0, _0141
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_070 0x1F4
     ScrCmd_074
     Message 2
@@ -67,7 +67,7 @@ _0102:
     SetVar 0x40DA, 1
     ScrCmd_202 0
     ScrCmd_11B 125, 2, 5, 2, 1
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x1FD, 0, 68, 116, 0
@@ -207,7 +207,7 @@ _0298:
     End
 
 _02BF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 12
@@ -231,7 +231,7 @@ _02F5:
     End
 
 _0300:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 163, _031E

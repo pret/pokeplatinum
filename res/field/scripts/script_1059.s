@@ -171,7 +171,7 @@ _02B5:
     WaitMovement
     ApplyMovement 3, _055C
     WaitMovement
-    PlayFanfare 0x602
+    PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 4
     ApplyMovement 3, _0564
     WaitMovement
@@ -677,7 +677,7 @@ _0830:
     EndMovement
 
 _0840:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 21
@@ -687,7 +687,7 @@ _0840:
     End
 
 _0853:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 22
@@ -697,7 +697,7 @@ _0853:
     End
 
 _0866:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
@@ -707,7 +707,7 @@ _0866:
     End
 
 _0879:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 24

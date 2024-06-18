@@ -68,7 +68,7 @@ _00D8:
     EndMovement
 
 _00F4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -111,7 +111,7 @@ _0163:
     End
 
 _01A3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_2B7 0x800C
@@ -338,7 +338,7 @@ _043C:
     End
 
 _048E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_323 0x800C

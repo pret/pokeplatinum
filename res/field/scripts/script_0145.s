@@ -12,7 +12,7 @@
     .short 0xFD13
 
 _001E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_27E 0x800C
@@ -75,7 +75,7 @@ _00E3:
     End
 
 _00EE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
@@ -85,7 +85,7 @@ _00EE:
     End
 
 _0101:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -95,7 +95,7 @@ _0101:
     End
 
 _0114:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -105,7 +105,7 @@ _0114:
     End
 
 _0127:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_014 0x7E3
@@ -115,7 +115,7 @@ _0127:
     End
 
 _013D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_014 0x7E3
@@ -125,7 +125,7 @@ _013D:
     End
 
 _0153:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 10
     WaitABXPadPress

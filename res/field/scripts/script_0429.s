@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2

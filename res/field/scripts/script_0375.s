@@ -43,7 +43,7 @@ _0038:
     End
 
 _007C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
@@ -107,7 +107,7 @@ _0146:
     End
 
 _0154:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 17
@@ -133,7 +133,7 @@ _0195:
     End
 
 _019D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 20
@@ -159,7 +159,7 @@ _01DE:
     End
 
 _01E6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
@@ -185,7 +185,7 @@ _0227:
     End
 
 _022F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 26
@@ -211,7 +211,7 @@ _0270:
     End
 
 _0278:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 29
@@ -279,7 +279,7 @@ _034C:
     EndMovement
 
 _0358:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 32
@@ -289,7 +289,7 @@ _0358:
     End
 
 _036B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 33
@@ -299,7 +299,7 @@ _036B:
     End
 
 _037E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 34
@@ -309,7 +309,7 @@ _037E:
     End
 
 _0391:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 35

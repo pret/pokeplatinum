@@ -34,7 +34,7 @@ _006B:
 
 _0079:
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_04B 0x5DC
     Message 0
     CloseMessage

@@ -69,7 +69,7 @@ _00EC:
     End
 
 _00EE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_2BE 0x800C
@@ -396,7 +396,7 @@ _057D:
     GoToIfEq 0x800C, 0, _05AA
     ScrCmd_0CD 0
     Message 16
-    PlayFanfare 0x61B
+    PlayFanfare SEQ_SE_DP_SAVE
     ScrCmd_04B 0x61B
     WaitABPressTime 30
     ScrCmd_2C2
@@ -435,7 +435,7 @@ _05D1:
     End
 
 _05EA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_07E 94, 1, 0x800C
     GoToIfNe 0x800C, 0, _0632
@@ -903,7 +903,7 @@ _0BE7:
 
 _0BEE:
     LockAll
-    PlayFanfare 0x60C
+    PlayFanfare SEQ_SE_DP_PC_ON
     Call _0C06
     ScrCmd_0CD 0
     Message 32
@@ -972,7 +972,7 @@ _0CDD:
     GoTo _0F70
 
 _0D16:
-    PlayFanfare 0x60D
+    PlayFanfare SEQ_SE_DP_PC_LOGIN
     ScrCmd_0CD 0
     Message 34
     Call _0D2C
@@ -1047,7 +1047,7 @@ _0E21:
     GoTo _0D73
 
 _0E45:
-    PlayFanfare 0x60D
+    PlayFanfare SEQ_SE_DP_PC_LOGIN
     ScrCmd_0CD 0
     Message 35
     GoTo _0E55
@@ -1108,7 +1108,7 @@ _0F0A:
     GoTo _0E83
 
 _0F2C:
-    PlayFanfare 0x60D
+    PlayFanfare SEQ_SE_DP_PC_LOGIN
     CloseMessage
     ScrCmd_336 0x800C
     GoToIfEq 0x800C, 1, _0F59
@@ -1123,13 +1123,13 @@ _0F59:
     GoTo _0C1C
 
 _0F62:
-    PlayFanfare 0x60D
+    PlayFanfare SEQ_SE_DP_PC_LOGIN
     ScrCmd_014 0x26DF
     GoTo _0C1C
 
 _0F70:
     CloseMessage
-    PlayFanfare 0x60E
+    PlayFanfare SEQ_SE_DP_PC_LOGOFF
     Call _0C11
     ReleaseAll
     End
@@ -1369,7 +1369,7 @@ _1280:
     End
 
 _1282:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -1381,7 +1381,7 @@ _1282:
     End
 
 _12A8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_20C
@@ -1391,7 +1391,7 @@ _12A8:
     End
 
 _12BA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 67
@@ -1401,7 +1401,7 @@ _12BA:
     End
 
 _12CD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 70
@@ -1411,7 +1411,7 @@ _12CD:
     End
 
 _12E0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 71
@@ -1424,7 +1424,7 @@ _12F3:
     ScrCmd_07E 0x1C2, 1, 0x800C
     GoToIfEq 0x800C, 0, _135F
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_0C7 0x800C
     GoToIfEq 0x800C, 1, _133C
     Message 73
@@ -1453,7 +1453,7 @@ _135F:
     End
 
 _1361:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 76
     WaitABPress
@@ -1467,7 +1467,7 @@ _1361:
     End
 
 _138C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 79
     WaitABPress
@@ -1476,7 +1476,7 @@ _138C:
     End
 
 _139D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0A5
@@ -1484,7 +1484,7 @@ _139D:
     End
 
 _13AB:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 82
@@ -1666,21 +1666,21 @@ _1624:
     End
 
 _1636:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8004, 0
     GoTo _1672
     End
 
 _164A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8004, 1
     GoTo _1672
     End
 
 _165E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8004, 2
     GoTo _1672

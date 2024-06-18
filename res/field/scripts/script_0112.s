@@ -7,7 +7,7 @@
     .short 0xFD13
 
 _000A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -65,7 +65,7 @@ _00CF:
     CallIfEq 0x8005, 7, _01A2
     CallIfEq 0x8005, 8, _01AE
     CallIfEq 0x8005, 9, _01BA
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
     ScrCmd_04B 0x603
     SetVar 0x407B, 2

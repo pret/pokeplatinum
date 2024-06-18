@@ -12,7 +12,7 @@ _000E:
     End
 
 _0014:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 245, _00DC
@@ -79,7 +79,7 @@ _00DC:
     End
 
 _00E7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 7
     WaitABXPadPress

@@ -12,7 +12,7 @@ _000E:
     End
 
 _0012:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfEq 0x4055, 5, _0084
     ScrCmd_317 0x8004, 0x8005, 0x8006

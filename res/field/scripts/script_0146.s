@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -21,7 +21,7 @@ _001A:
     End
 
 _002D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -31,7 +31,7 @@ _002D:
     End
 
 _0040:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x105, _0087
@@ -59,7 +59,7 @@ _0092:
     End
 
 _009C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
@@ -69,7 +69,7 @@ _009C:
     End
 
 _00AF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 5
     WaitABXPadPress
@@ -78,7 +78,7 @@ _00AF:
     End
 
 _00C0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
     ScrCmd_072 20, 2
@@ -149,7 +149,7 @@ _0191:
     CallIfEq 0x8000, 2, _0183
     ScrCmd_074
     ScrCmd_0D1 0, 0x8001
-    PlayFanfare 0x617
+    PlayFanfare SEQ_SE_DP_JIHANKI
     ScrCmd_0D1 0, 0x8001
     Message 7
     SetVar 0x8004, 0x8001
@@ -159,7 +159,7 @@ _0191:
     GoToIfNe 0x800C, 0, _026E
     ScrCmd_07D 0x8001, 1, 0x800C
     GoToIfEq 0x800C, 0, _0280
-    PlayFanfare 0x617
+    PlayFanfare SEQ_SE_DP_JIHANKI
     ScrCmd_0D1 0, 0x8001
     Message 8
     SetVar 0x8004, 0x8001

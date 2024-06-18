@@ -36,7 +36,7 @@ _0069:
     Return
 
 _0077:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04C 0x1E2, 0
@@ -66,7 +66,7 @@ _00CD:
     End
 
 _00D3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
     CloseMessage

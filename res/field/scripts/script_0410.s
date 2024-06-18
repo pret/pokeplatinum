@@ -58,7 +58,7 @@ _00D9:
     ApplyMovement 0xFF, _0184
     ApplyMovement 0, _0240
     WaitMovement
-    PlayFanfare 0x64F
+    PlayFanfare SEQ_SE_DP_TELE2
     ApplyMovement 0xFF, _01E8
     WaitMovement
     FadeScreen 6, 1, 0, 0

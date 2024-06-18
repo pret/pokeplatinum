@@ -21,7 +21,7 @@
     .short 0xFD13
 
 _0042:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_09A 0x800C, 15
@@ -125,7 +125,7 @@ _0221:
     Return
 
 _0223:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_09A 0x800C, 249
@@ -181,7 +181,7 @@ _02FD:
     End
 
 _0314:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_1CF 2, 0x800C
@@ -244,7 +244,7 @@ _03CC:
     GoTo _0675
 
 _040E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_09A 0x800C, 0x1AF
     GoToIfEq 0x800C, 6, _0469
@@ -297,7 +297,7 @@ _04B9:
     End
 
 _04DD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_160 0x800C
     GoToIfEq 0x800C, 1, _0512
@@ -340,7 +340,7 @@ _0551:
     End
 
 _057D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_09A 0x800C, 0x1B0
     GoToIfEq 0x800C, 6, _05B4
@@ -383,7 +383,7 @@ _060C:
     CloseMessage
     ScrCmd_0C5 0x8000
     ScrCmd_1D1 1
-    PlayFanfare 0x64C
+    PlayFanfare SEQ_SE_DP_FBRADE
     ScrCmd_0C4
     ScrCmd_201 0x8004
     ScrCmd_1CD 23, 0x8004, 0, 0, 0
@@ -415,7 +415,7 @@ _0675:
     End
 
 _0679:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_09A 0x800C, 127
     GoToIfEq 0x800C, 6, _06C3

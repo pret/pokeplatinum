@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40B6, 9, _00B2
@@ -436,7 +436,7 @@ _0620:
     EndMovement
 
 _0634:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 36
@@ -446,7 +446,7 @@ _0634:
     End
 
 _0647:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 189, _0669
@@ -465,7 +465,7 @@ _0669:
     End
 
 _0674:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 40
     WaitABXPadPress
@@ -474,7 +474,7 @@ _0674:
     End
 
 _0685:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 41
     GoTo _0696
@@ -530,7 +530,7 @@ _0741:
     End
 
 _0747:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 37

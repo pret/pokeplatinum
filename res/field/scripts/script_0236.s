@@ -172,7 +172,7 @@ _0204:
     EndMovement
 
 _0210:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
@@ -182,7 +182,7 @@ _0210:
     End
 
 _0223:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 44
@@ -192,7 +192,7 @@ _0223:
     End
 
 _0236:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 43
@@ -457,7 +457,7 @@ _0508:
     ScrCmd_054 0, 30
     ScrCmd_20D 0, 0x800C
     WaitTime 10, 0x800C
-    PlayFanfare 0x5C8
+    PlayFanfare SEQ_SE_PL_KUSARI
     WaitTime 20, 0x800C
     ScrCmd_050 0x478
     ScrCmd_05D

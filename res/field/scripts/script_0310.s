@@ -34,7 +34,7 @@ _006F:
     End
 
 _007D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04C 0x1EC, 0

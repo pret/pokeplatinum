@@ -32,7 +32,7 @@ _005F:
     End
 
 _0065:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x4003, 0
@@ -41,7 +41,7 @@ _0065:
     End
 
 _0081:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x4003, 0
@@ -276,7 +276,7 @@ _04A9:
     CallIfEq 0x40BE, 0, _0549
     CallIfEq 0x40BE, 1, _0564
     CallIfEq 0x40BE, 2, _057F
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _04DC
     End
 
@@ -456,7 +456,7 @@ _06DF:
     ScrCmd_18D
     ScrCmd_12D 0x800C
     ScrCmd_18E
-    PlayFanfare 0x61B
+    PlayFanfare SEQ_SE_DP_SAVE
     ScrCmd_04B 0x61B
     Return
 
@@ -536,7 +536,7 @@ _0774:
     .byte 0
 
 _079C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 46
@@ -546,7 +546,7 @@ _079C:
     End
 
 _07AF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 47
@@ -556,7 +556,7 @@ _07AF:
     End
 
 _07C2:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 48
@@ -566,7 +566,7 @@ _07C2:
     End
 
 _07D5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 49
@@ -576,7 +576,7 @@ _07D5:
     End
 
 _07E8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 50
@@ -586,7 +586,7 @@ _07E8:
     End
 
 _07FB:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 51
@@ -596,7 +596,7 @@ _07FB:
     End
 
 _080E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 52
@@ -606,7 +606,7 @@ _080E:
     End
 
 _0821:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 53
@@ -616,7 +616,7 @@ _0821:
     End
 
 _0834:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 54
     WaitABXPadPress
@@ -625,7 +625,7 @@ _0834:
     End
 
 _0845:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 55
     WaitABXPadPress

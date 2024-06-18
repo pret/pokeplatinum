@@ -56,7 +56,7 @@ _0093:
     ScrCmd_0CD 0
     Message 1
     CloseMessage
-    PlayFanfare 0x636
+    PlayFanfare SEQ_SE_DP_MAZYO2
     SetFlag 0x13C
     SetFlag 0x241
     SetVar 0x40F8, 2

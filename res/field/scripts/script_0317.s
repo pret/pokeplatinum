@@ -18,7 +18,7 @@ _0017:
 
 _0025:
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_04B 0x5DC
     GoToIfSet 0x11A, _0081
     ScrCmd_26B 0x800C

@@ -30,7 +30,7 @@ _0006:
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0168
     CallIfEq 0x8004, 15, _0174
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
     ScrCmd_04B 0x603
     ScrCmd_069 0x8004, 0x8005
@@ -53,7 +53,7 @@ _0006:
     ApplyMovement 2, _01DC
     ApplyMovement 0xFF, _01B8
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 2
     ScrCmd_04B 0x603
     SetFlag 0x98F

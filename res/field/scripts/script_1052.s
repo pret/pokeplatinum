@@ -32,7 +32,7 @@ _005F:
     Return
 
 _0067:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 144, _00A3
@@ -395,7 +395,7 @@ _04D0:
     ApplyMovement 2, _05A4
     ApplyMovement 0xFF, _0588
     WaitMovement
-    PlayFanfare 0x602
+    PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
     WaitTime 30, 0x800C
     ScrCmd_014 0x7FA
@@ -468,7 +468,7 @@ _05C8:
     EndMovement
 
 _05D4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -478,7 +478,7 @@ _05D4:
     End
 
 _05E7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 144, _0612

@@ -49,7 +49,7 @@ _006F:
     End
 
 _0096:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -125,7 +125,7 @@ _01CE:
     End
 
 _01DA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfGe 0x4055, 10, _01F8
     Message 3

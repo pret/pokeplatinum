@@ -10,7 +10,7 @@ _000A:
     End
 
 _000C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_208 0x1E8, 1

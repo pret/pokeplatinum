@@ -48,7 +48,7 @@ _00A5:
     GoToIfEq 0x8008, 1, _00E5
     GoToIfEq 0x8008, 2, _00E5
     GoToIfEq 0x8008, 3, _00F8
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -58,7 +58,7 @@ _00A5:
     End
 
 _00E5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -68,7 +68,7 @@ _00E5:
     End
 
 _00F8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -81,7 +81,7 @@ _010B:
     GoToIfEq 0x4106, 1, _0158
     GoToIfEq 0x4106, 2, _0158
     GoToIfEq 0x4106, 3, _0145
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -91,7 +91,7 @@ _010B:
     End
 
 _0145:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
@@ -105,7 +105,7 @@ _0158:
     GoToIfUnset 0x11F, _01D9
     ScrCmd_07E 0x1C5, 1, 0x800C
     GoToIfEq 0x800C, 0, _01D9
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetFlag 0x12C
     SetVar 0x4106, 3
@@ -129,7 +129,7 @@ _0158:
     End
 
 _01D9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 1
     WaitABXPadPress
@@ -144,7 +144,7 @@ _01EA:
     End
 
 _01FC:
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04B 0x603
     ClearFlag 0x25B
     ScrCmd_064 2
@@ -179,7 +179,7 @@ _026E:
     WaitMovement
     SetFlag 0x25B
     ScrCmd_065 2
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04B 0x603
     Return
 

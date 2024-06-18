@@ -17,7 +17,7 @@ _0018:
     Return
 
 _0026:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8004, 0x410B
     SetVar 0x8005, 0x410C

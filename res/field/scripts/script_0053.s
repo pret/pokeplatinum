@@ -17,7 +17,7 @@ _001E:
     End
 
 _002A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -27,7 +27,7 @@ _002A:
     End
 
 _003D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -37,7 +37,7 @@ _003D:
     End
 
 _0050:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 112, _006C
@@ -87,7 +87,7 @@ _00F4:
     GoTo _00E9
 
 _0110:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x964, _012E
@@ -105,7 +105,7 @@ _012E:
     End
 
 _0139:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -115,7 +115,7 @@ _0139:
     End
 
 _014C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11

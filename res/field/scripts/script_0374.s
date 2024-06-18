@@ -58,7 +58,7 @@ _00D5:
     End
 
 _00DB:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -68,7 +68,7 @@ _00DB:
     End
 
 _00EE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -78,7 +78,7 @@ _00EE:
     End
 
 _0101:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
@@ -88,7 +88,7 @@ _0101:
     End
 
 _0114:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 3
@@ -98,7 +98,7 @@ _0114:
     End
 
 _0127:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
@@ -108,7 +108,7 @@ _0127:
     End
 
 _013A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -118,7 +118,7 @@ _013A:
     End
 
 _014D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -128,7 +128,7 @@ _014D:
     End
 
 _0160:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
@@ -138,7 +138,7 @@ _0160:
     End
 
 _0173:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -148,7 +148,7 @@ _0173:
     End
 
 _0186:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -158,7 +158,7 @@ _0186:
     End
 
 _0199:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -168,7 +168,7 @@ _0199:
     End
 
 _01AC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -178,7 +178,7 @@ _01AC:
     End
 
 _01BF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 12
@@ -188,7 +188,7 @@ _01BF:
     End
 
 _01D2:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
@@ -198,7 +198,7 @@ _01D2:
     End
 
 _01E5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 14
@@ -208,7 +208,7 @@ _01E5:
     End
 
 _01F8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -218,7 +218,7 @@ _01F8:
     End
 
 _020B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 16
@@ -228,7 +228,7 @@ _020B:
     End
 
 _021E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 17
@@ -238,7 +238,7 @@ _021E:
     End
 
 _0231:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 18
@@ -248,7 +248,7 @@ _0231:
     End
 
 _0244:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 19
@@ -258,7 +258,7 @@ _0244:
     End
 
 _0257:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 20
@@ -268,7 +268,7 @@ _0257:
     End
 
 _026A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 21
@@ -278,7 +278,7 @@ _026A:
     End
 
 _027E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FadeScreen 6, 1, 0, 0
@@ -291,7 +291,7 @@ _027E:
     End
 
 _02A6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
@@ -341,7 +341,7 @@ _0316:
     End
 
 _032D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 29
     WaitABXPadPress
@@ -350,7 +350,7 @@ _032D:
     End
 
 _033E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 30
     WaitABXPadPress
@@ -359,7 +359,7 @@ _033E:
     End
 
 _034F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 31
     WaitABXPadPress
@@ -371,7 +371,7 @@ _0360:
     LockAll
     ApplyMovement 0xFF, _0398
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x233, 0, 25, 9, 2
@@ -388,7 +388,7 @@ _03A0:
     LockAll
     ApplyMovement 0xFF, _03D8
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x234, 0, 21, 9, 2
@@ -405,7 +405,7 @@ _03E0:
     LockAll
     ApplyMovement 0xFF, _0418
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x235, 0, 1, 6, 3
@@ -422,7 +422,7 @@ _0420:
     LockAll
     ApplyMovement 0xFF, _0458
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x232, 0, 1, 7, 3

@@ -32,7 +32,7 @@ _0052:
     End
 
 _005C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
@@ -42,7 +42,7 @@ _005C:
     End
 
 _006F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -52,7 +52,7 @@ _006F:
     End
 
 _0082:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -62,7 +62,7 @@ _0082:
     End
 
 _0095:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 215, _00B3
@@ -88,7 +88,7 @@ _00BE:
     End
 
 _00D5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0CD 0
@@ -120,7 +120,7 @@ _0124:
     EndMovement
 
 _0130:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 1
     WaitABXPadPress
@@ -129,7 +129,7 @@ _0130:
     End
 
 _0141:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_234 0x4000

@@ -10,7 +10,7 @@
     .short 0xFD13
 
 _0016:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 130, _0052
@@ -32,7 +32,7 @@ _0052:
     End
 
 _005D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -45,7 +45,7 @@ _005D:
     End
 
 _007C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 129, _009A
@@ -63,7 +63,7 @@ _009A:
     End
 
 _00A5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 5
     WaitABXPadPress
@@ -72,7 +72,7 @@ _00A5:
     End
 
 _00B6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
     WaitABXPadPress

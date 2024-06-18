@@ -58,7 +58,7 @@ _00AC:
 
 _00C0:
     ScrCmd_0CD 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
@@ -68,7 +68,7 @@ _00C0:
     End
 
 _00D6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_247 0x8000
@@ -92,7 +92,7 @@ _012F:
     ScrCmd_334 35, 0x2710
     ScrCmd_070 0x2710
     ScrCmd_074
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
     Message 7
     Message 8
@@ -113,7 +113,7 @@ _018A:
     ScrCmd_335 35, 0x186A0
     ScrCmd_070 0x186A0
     ScrCmd_074
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
     Message 9
     Message 10
@@ -134,7 +134,7 @@ _01E7:
     ScrCmd_335 35, 0xF423F
     ScrCmd_070 0xF423F
     ScrCmd_074
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
     Message 11
     Message 12
@@ -169,7 +169,7 @@ _025C:
     End
 
 _0269:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -179,7 +179,7 @@ _0269:
     End
 
 _027C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_14D 0x800C
@@ -202,7 +202,7 @@ _02AF:
     End
 
 _02BA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -215,7 +215,7 @@ _02BA:
     End
 
 _02D9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC

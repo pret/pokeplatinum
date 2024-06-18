@@ -53,7 +53,7 @@ _0014:
     ApplyMovement 0, _0190
     ApplyMovement 0xFF, _01A4
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04B 0x603
     ApplyMovement 4, _01DC
     WaitMovement
@@ -61,7 +61,7 @@ _0014:
     CloseMessage
     ApplyMovement 4, _01E4
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04B 0x603
     ApplyMovement 14, _0200
     ApplyMovement 0xFF, _01B4

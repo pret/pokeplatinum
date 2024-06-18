@@ -29,7 +29,7 @@ _0032:
     ApplyMovement 11, _02C8
     ApplyMovement 0xFF, _0290
     WaitMovement
-    PlayFanfare 0x602
+    PlayFanfare SEQ_SE_DP_WALL_HIT2
     ScrCmd_0CD 1
     Message 0
     CloseMessage
@@ -57,7 +57,7 @@ _0032:
     ApplyMovement 12, _02C8
     ApplyMovement 0xFF, _0290
     WaitMovement
-    PlayFanfare 0x602
+    PlayFanfare SEQ_SE_DP_WALL_HIT2
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     Message 4
@@ -210,7 +210,7 @@ _02FC:
     EndMovement
 
 _0308:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -220,7 +220,7 @@ _0308:
     End
 
 _031B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 9
     WaitABXPadPress
@@ -229,7 +229,7 @@ _031B:
     End
 
 _032C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 10
     WaitABXPadPress
@@ -238,7 +238,7 @@ _032C:
     End
 
 _033D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -248,7 +248,7 @@ _033D:
     End
 
 _0350:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 12
     WaitABXPadPress
@@ -257,7 +257,7 @@ _0350:
     End
 
 _0361:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
@@ -267,7 +267,7 @@ _0361:
     End
 
 _0374:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 14
@@ -277,7 +277,7 @@ _0374:
     End
 
 _0387:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -287,7 +287,7 @@ _0387:
     End
 
 _039A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 16

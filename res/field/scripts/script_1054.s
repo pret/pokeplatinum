@@ -21,7 +21,7 @@ _000E:
     ApplyMovement 0, _006C
     ApplyMovement 0xFF, _0080
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
     ScrCmd_014 0x7FB
     SetFlag 234
@@ -52,7 +52,7 @@ _0080:
     EndMovement
 
 _0090:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
     WaitABXPadPress
@@ -61,7 +61,7 @@ _0090:
     End
 
 _00A1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_0CD 0
     Message 3

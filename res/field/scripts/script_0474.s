@@ -28,7 +28,7 @@ _0035:
     End
 
 _004C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
     WaitABXPadPress
@@ -37,7 +37,7 @@ _004C:
     End
 
 _005D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 4
     WaitABXPadPress
@@ -46,7 +46,7 @@ _005D:
     End
 
 _006E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_04B 0x5DC
     ScrCmd_04C 35, 0
@@ -58,7 +58,7 @@ _006E:
     End
 
 _008B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_04B 0x5DC
     ScrCmd_04C 35, 0
@@ -70,7 +70,7 @@ _008B:
     End
 
 _00A8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_04B 0x5DC
     ScrCmd_04C 25, 0

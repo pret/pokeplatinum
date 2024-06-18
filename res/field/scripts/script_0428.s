@@ -33,7 +33,7 @@ _005B:
     Return
 
 _0071:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -376,7 +376,7 @@ _04BC:
     EndMovement
 
 _04C4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0CD 0

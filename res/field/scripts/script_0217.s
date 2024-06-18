@@ -57,7 +57,7 @@ _00A0:
     EndMovement
 
 _00AC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -285,7 +285,7 @@ _0374:
     EndMovement
 
 _037C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40CF, 3, _039C
@@ -303,7 +303,7 @@ _039C:
     End
 
 _03A7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40CF, 3, _03C7
@@ -329,7 +329,7 @@ _03DA:
     End
 
 _03E2:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfGe 0x40AA, 2, _0400
     Message 14

@@ -7,7 +7,7 @@
     End
 
 _0008:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -51,7 +51,7 @@ _0085:
 
 _0097:
     ScrCmd_0A1
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FadeScreen 6, 1, 1, 0

@@ -18,7 +18,7 @@ _001D:
     End
 
 _0022:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_15B 7, 0x800C
@@ -38,7 +38,7 @@ _0048:
     End
 
 _0056:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_15B 7, 0x800C
     GoToIfEq 0x800C, 1, _007A

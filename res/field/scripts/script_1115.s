@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_1E5 48
     ScrCmd_235 0, 0x800C

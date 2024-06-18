@@ -19,7 +19,7 @@ _0029:
     Return
 
 _002F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -29,7 +29,7 @@ _002F:
     End
 
 _0042:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -39,7 +39,7 @@ _0042:
     End
 
 _0055:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 165, _012B
@@ -80,7 +80,7 @@ _00F0:
     End
 
 _0102:
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 3
     SetVar 0x4056, 2
     ReleaseAll

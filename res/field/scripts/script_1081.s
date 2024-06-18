@@ -16,7 +16,7 @@ _001B:
     Return
 
 _0021:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_134 8, 0x800C
@@ -37,7 +37,7 @@ _0051:
     End
 
 _005C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
     WaitABXPadPress

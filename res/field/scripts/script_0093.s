@@ -40,7 +40,7 @@ _0082:
     End
 
 _0084:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -50,7 +50,7 @@ _0084:
     End
 
 _0097:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
@@ -60,7 +60,7 @@ _0097:
     End
 
 _00AA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
@@ -70,7 +70,7 @@ _00AA:
     End
 
 _00BD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -80,7 +80,7 @@ _00BD:
     End
 
 _00D0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -90,7 +90,7 @@ _00D0:
     End
 
 _00E3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -100,7 +100,7 @@ _00E3:
     End
 
 _00F6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
@@ -110,7 +110,7 @@ _00F6:
     End
 
 _0109:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 21
@@ -120,7 +120,7 @@ _0109:
     End
 
 _011C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -133,7 +133,7 @@ _011C:
     End
 
 _013B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 1, _01A7
@@ -273,7 +273,7 @@ _02C4:
     EndMovement
 
 _02E4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 19
@@ -283,7 +283,7 @@ _02E4:
     End
 
 _02F7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 12
@@ -293,7 +293,7 @@ _02F7:
     End
 
 _030A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 20
     WaitABXPadPress
@@ -302,7 +302,7 @@ _030A:
     End
 
 _031B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 24
@@ -505,7 +505,7 @@ _06FE:
     End
 
 _0709:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 47
@@ -515,7 +515,7 @@ _0709:
     End
 
 _071C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 48
     WaitABXPadPress
@@ -524,7 +524,7 @@ _071C:
     End
 
 _072D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 49
@@ -534,7 +534,7 @@ _072D:
     End
 
 _0740:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 50
@@ -712,7 +712,7 @@ _095A:
     End
 
 _0971:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 3
@@ -722,7 +722,7 @@ _0971:
     End
 
 _0984:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -732,7 +732,7 @@ _0984:
     End
 
 _0997:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 51

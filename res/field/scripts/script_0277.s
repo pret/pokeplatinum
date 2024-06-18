@@ -166,7 +166,7 @@ _01D8:
     End
 
 _01DA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -210,7 +210,7 @@ _0293:
     GoToIfEq 0x800C, 0, _02D5
     ScrCmd_1A3 0x8006
     ScrCmd_074
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
     ScrCmd_014 0x7E0
     ScrCmd_073
@@ -251,7 +251,7 @@ _02EF:
     End
 
 _0306:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x8004, 0x1B6

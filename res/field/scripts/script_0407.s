@@ -21,7 +21,7 @@ _002B:
 
 _0035:
     ScrCmd_23E 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_23E 1, 0x800C

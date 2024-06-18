@@ -29,7 +29,7 @@ _0053:
     End
 
 _0059:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x4003, 0
@@ -38,7 +38,7 @@ _0059:
     End
 
 _0075:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x4003, 0
@@ -273,7 +273,7 @@ _049D:
     CallIfEq 0x40BD, 0, _053D
     CallIfEq 0x40BD, 1, _0558
     CallIfEq 0x40BD, 2, _0573
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _04D0
     End
 
@@ -451,7 +451,7 @@ _06CB:
     ScrCmd_18D
     ScrCmd_12D 0x800C
     ScrCmd_18E
-    PlayFanfare 0x61B
+    PlayFanfare SEQ_SE_DP_SAVE
     ScrCmd_04B 0x61B
     Return
 
@@ -531,7 +531,7 @@ _0760:
     .byte 0
 
 _0788:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 46
@@ -541,7 +541,7 @@ _0788:
     End
 
 _079B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 47
@@ -551,7 +551,7 @@ _079B:
     End
 
 _07AE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 48
@@ -561,7 +561,7 @@ _07AE:
     End
 
 _07C1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 49
@@ -571,7 +571,7 @@ _07C1:
     End
 
 _07D4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 50
@@ -581,7 +581,7 @@ _07D4:
     End
 
 _07E7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 51
@@ -591,7 +591,7 @@ _07E7:
     End
 
 _07FA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 52

@@ -58,7 +58,7 @@ _00C5:
     Return
 
 _00CF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -101,7 +101,7 @@ _0144:
     EndMovement
 
 _0150:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 159, _016C
     Message 5
@@ -138,7 +138,7 @@ _01A8:
     End
 
 _01BF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04C 0x1A9, 0

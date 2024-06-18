@@ -20,7 +20,7 @@ _0035:
     Return
 
 _0037:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_1BD 0x8004
@@ -50,7 +50,7 @@ _009D:
 _00A8:
     ApplyMovement 0, _0110
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0, _011C
     WaitMovement
     Return
@@ -58,7 +58,7 @@ _00A8:
 _00C2:
     ApplyMovement 0xFF, _0124
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _011C
     WaitMovement
     Return
@@ -66,7 +66,7 @@ _00C2:
 _00DC:
     ApplyMovement 0xFF, _0134
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _011C
     WaitMovement
     Return
@@ -74,7 +74,7 @@ _00DC:
 _00F6:
     ApplyMovement 0xFF, _0140
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _011C
     WaitMovement
     Return

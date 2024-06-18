@@ -177,7 +177,7 @@ _0289:
     ScrCmd_1A0
     ApplyMovement 16, _02E4
     WaitMovement
-    PlayFanfare 0x630
+    PlayFanfare SEQ_SE_DP_PYUU2
     ApplyMovement 16, _02F0
     WaitMovement
     ScrCmd_065 16

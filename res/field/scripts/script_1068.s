@@ -19,7 +19,7 @@ _002E:
     End
 
 _0030:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ApplyMovement 7, _005C
     WaitMovement
@@ -44,7 +44,7 @@ _0064:
     EndMovement
 
 _006C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40CF, 2, _0099
@@ -71,7 +71,7 @@ _00A4:
     EndMovement
 
 _00B0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -81,7 +81,7 @@ _00B0:
     End
 
 _00C3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -91,7 +91,7 @@ _00C3:
     End
 
 _00D6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
@@ -101,7 +101,7 @@ _00D6:
     End
 
 _00E9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
@@ -135,7 +135,7 @@ _012A:
     End
 
 _0141:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_31C 0x800C, 0x1EC

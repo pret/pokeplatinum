@@ -16,7 +16,7 @@ _000E:
     End
 
 _0025:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
@@ -26,7 +26,7 @@ _0025:
     End
 
 _0038:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2

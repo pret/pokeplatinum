@@ -31,7 +31,7 @@ _006F:
     End
 
 _0079:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_07E 0x1D0, 1, 0x800C
@@ -246,7 +246,7 @@ _02DC:
     .byte 0
 
 _030C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -256,7 +256,7 @@ _030C:
     End
 
 _031F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 199, _0364
@@ -299,7 +299,7 @@ _0390:
     End
 
 _03A7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9

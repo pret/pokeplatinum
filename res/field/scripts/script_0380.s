@@ -14,7 +14,7 @@ _0016:
     End
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 7
     ScrCmd_03E 0x800C
@@ -27,7 +27,7 @@ _003A:
     ScrCmd_0CD 0
     Message 8
     CloseMessage
-    PlayFanfare 0x5D2
+    PlayFanfare SEQ_SE_PL_SYUWA
     ScrCmd_328 0
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -88,7 +88,7 @@ _011D:
     End
 
 _012A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6

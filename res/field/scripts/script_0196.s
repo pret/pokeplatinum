@@ -41,7 +41,7 @@ _000E:
     SetFlag 0x23B
     ApplyMovement 0xFF, _013C
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 186, 0, 5, 23, 0

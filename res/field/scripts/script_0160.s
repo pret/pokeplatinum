@@ -22,7 +22,7 @@ _0022:
     End
 
 _0027:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_15B 7, 0x800C

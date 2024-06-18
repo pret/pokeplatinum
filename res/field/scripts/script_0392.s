@@ -22,7 +22,7 @@ _0035:
     End
 
 _003D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq 0x4069, 0x122, _00ED

@@ -18,7 +18,7 @@ _0023:
     End
 
 _002B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0C8 0

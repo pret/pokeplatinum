@@ -79,7 +79,7 @@ _0100:
     EndMovement
 
 _0108:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_2B7 0x800C
@@ -421,7 +421,7 @@ _0538:
     EndMovement
 
 _0544:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_2B7 0x800C
@@ -519,7 +519,7 @@ _06A0:
     End
 
 _06B4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetFlag 170

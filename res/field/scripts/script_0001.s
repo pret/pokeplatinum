@@ -14,7 +14,7 @@
     .short 0xFD13
 
 _0026:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
     WaitABXPadPress
@@ -23,7 +23,7 @@ _0026:
     End
 
 _0037:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 1
     WaitABXPadPress
@@ -32,7 +32,7 @@ _0037:
     End
 
 _0048:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
     WaitABXPadPress
@@ -41,7 +41,7 @@ _0048:
     End
 
 _0059:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 3
     WaitABXPadPress
@@ -50,7 +50,7 @@ _0059:
     End
 
 _006A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 4
     WaitABXPadPress
@@ -59,7 +59,7 @@ _006A:
     End
 
 _007B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 5
     WaitABXPadPress
@@ -68,7 +68,7 @@ _007B:
     End
 
 _008C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
     WaitABXPadPress
@@ -77,7 +77,7 @@ _008C:
     End
 
 _009D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 7
     WaitABXPadPress
@@ -86,7 +86,7 @@ _009D:
     End
 
 _00AE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

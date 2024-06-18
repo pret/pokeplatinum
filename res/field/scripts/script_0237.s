@@ -117,7 +117,7 @@ _0178:
     EndMovement
 
 _0184:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -134,7 +134,7 @@ _01AF:
     End
 
 _01BA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -144,7 +144,7 @@ _01BA:
     End
 
 _01CD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
@@ -154,7 +154,7 @@ _01CD:
     End
 
 _01E0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -164,7 +164,7 @@ _01E0:
     End
 
 _01F3:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
@@ -174,7 +174,7 @@ _01F3:
     End
 
 _0206:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 18
     WaitABXPadPress
@@ -183,7 +183,7 @@ _0206:
     End
 
 _0217:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 19
     WaitABXPadPress

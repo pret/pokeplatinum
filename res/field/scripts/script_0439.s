@@ -42,7 +42,7 @@ _005B:
     End
 
 _0070:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x13F, _00B5

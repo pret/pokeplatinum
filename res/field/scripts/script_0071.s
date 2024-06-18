@@ -52,7 +52,7 @@ _00B5:
     Return
 
 _00BF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 25
@@ -62,7 +62,7 @@ _00BF:
     End
 
 _00D2:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 26
@@ -72,7 +72,7 @@ _00D2:
     End
 
 _00E5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 129, _0103
@@ -90,7 +90,7 @@ _0103:
     End
 
 _010E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 129, _012C
@@ -393,7 +393,7 @@ _04F0:
     EndMovement
 
 _04FC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 18
@@ -403,7 +403,7 @@ _04FC:
     End
 
 _050F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 19
@@ -413,7 +413,7 @@ _050F:
     End
 
 _0522:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 20
@@ -423,7 +423,7 @@ _0522:
     End
 
 _0535:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 27
@@ -433,7 +433,7 @@ _0535:
     End
 
 _0548:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 28
@@ -443,7 +443,7 @@ _0548:
     End
 
 _055B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 29
@@ -453,7 +453,7 @@ _055B:
     End
 
 _056E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 42
     WaitABXPadPress
@@ -463,7 +463,7 @@ _056E:
 
 _057F:
     GoToIfSet 121, _059D
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 31
@@ -473,7 +473,7 @@ _057F:
     End
 
 _059D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 32
@@ -635,7 +635,7 @@ _0768:
     EndMovement
 
 _0770:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfUnset 130, _07A5
@@ -764,7 +764,7 @@ _08EC:
     EndMovement
 
 _08FC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0CE 0
@@ -830,7 +830,7 @@ _09D1:
     End
 
 _09EB:
-    PlayFanfare 0x602
+    PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
     CloseMessage
     ScrCmd_014 0x7FA
@@ -1217,7 +1217,7 @@ _0EAC:
     EndMovement
 
 _0EB4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfEq 0x407A, 4, _0ECD

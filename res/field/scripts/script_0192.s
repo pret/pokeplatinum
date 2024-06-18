@@ -7,7 +7,7 @@
     .short 0xFD13
 
 _000A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 178, _00D2
@@ -20,7 +20,7 @@ _000A:
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _00CC
     SetFlag 178
-    PlayFanfare 0x61A
+    PlayFanfare SEQ_SE_DP_KI_GASYAN
     ScrCmd_065 1
     CallIfUnset 214, _00B0
     CallIfSet 214, _00BE
@@ -101,7 +101,7 @@ _0138:
     LockAll
     ApplyMovement 0xFF, _015C
     WaitMovement
-    PlayFanfare 0x61A
+    PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag 0x284
     ScrCmd_064 2
     SetVar 0x4001, 1

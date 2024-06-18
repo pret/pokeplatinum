@@ -176,7 +176,7 @@ _0184:
     ScrCmd_04A 0x5DC
     ApplyMovement 2, _0308
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 2
     ScrCmd_04A 0x603
     SetVar 0x4078, 4
@@ -333,7 +333,7 @@ _03E0:
     EndMovement
 
 _03E8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 168, _0406
@@ -351,7 +351,7 @@ _0406:
     End
 
 _0411:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 168, _042F
@@ -369,7 +369,7 @@ _042F:
     End
 
 _043A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 30
     ScrCmd_03E 0x800C
@@ -393,7 +393,7 @@ _0471:
     End
 
 _047C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 33
     ScrCmd_03E 0x800C
@@ -417,7 +417,7 @@ _04B3:
     End
 
 _04BE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 36
     ScrCmd_03E 0x800C
@@ -441,7 +441,7 @@ _04F5:
     End
 
 _0500:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 39
     ScrCmd_03E 0x800C
@@ -471,7 +471,7 @@ _0537:
     End
 
 _056A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 44
     ScrCmd_03E 0x800C
@@ -501,7 +501,7 @@ _05A1:
     End
 
 _05D4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 49
     ScrCmd_03E 0x800C
@@ -525,7 +525,7 @@ _060B:
     End
 
 _0616:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 52
     Message 53
@@ -571,7 +571,7 @@ _0694:
     End
 
 _06A2:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 58
     WaitABXPadPress

@@ -21,7 +21,7 @@
     .short 0xFD13
 
 _0042:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -31,7 +31,7 @@ _0042:
     End
 
 _0055:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 1, _03D8
@@ -283,7 +283,7 @@ _04B6:
     End
 
 _04C1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
@@ -293,7 +293,7 @@ _04C1:
     End
 
 _04D4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 14
@@ -303,7 +303,7 @@ _04D4:
     End
 
 _04E7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
@@ -313,7 +313,7 @@ _04E7:
     End
 
 _04FA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 19
     WaitABXPadPress
@@ -322,7 +322,7 @@ _04FA:
     End
 
 _050B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 20
     WaitABXPadPress
@@ -331,7 +331,7 @@ _050B:
     End
 
 _051C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 21
     WaitABXPadPress
@@ -340,7 +340,7 @@ _051C:
     End
 
 _052D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 22
     WaitABXPadPress
@@ -349,7 +349,7 @@ _052D:
     End
 
 _053E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 23
     WaitABXPadPress
@@ -358,7 +358,7 @@ _053E:
     End
 
 _054F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 24
     WaitABXPadPress
@@ -367,7 +367,7 @@ _054F:
     End
 
 _0560:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 25
     WaitABXPadPress
@@ -376,7 +376,7 @@ _0560:
     End
 
 _0571:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 26
     WaitABXPadPress
@@ -385,7 +385,7 @@ _0571:
     End
 
 _0582:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 16
@@ -395,7 +395,7 @@ _0582:
     End
 
 _0595:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 17
@@ -405,7 +405,7 @@ _0595:
     End
 
 _05A8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 18

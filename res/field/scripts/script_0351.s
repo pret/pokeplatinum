@@ -64,7 +64,7 @@ _006F:
     WaitMovement
     ApplyMovement 4, _01F0
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 4
     WaitTime 50, 0x800C
     ApplyMovement 0xFF, _0378
@@ -104,7 +104,7 @@ _006F:
     WaitMovement
     SetFlag 0x196
     ScrCmd_065 5
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _01A1
     End
 
@@ -626,7 +626,7 @@ _039C:
     .byte 0
 
 _0418:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 184, _043D
@@ -647,7 +647,7 @@ _043D:
     End
 
 _044B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_14D 0x800C

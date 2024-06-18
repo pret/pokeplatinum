@@ -11,7 +11,7 @@ _000A:
     End
 
 _0010:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x100, _0041

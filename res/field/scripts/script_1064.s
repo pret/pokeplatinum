@@ -36,7 +36,7 @@ _005A:
     Return
 
 _008C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _08A0
@@ -388,7 +388,7 @@ _04E8:
     EndMovement
 
 _04F0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _08A0
@@ -418,7 +418,7 @@ _0539:
     End
 
 _0544:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _08A0
@@ -449,7 +449,7 @@ _0592:
     End
 
 _0594:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 23
     WaitABXPadPress
@@ -458,7 +458,7 @@ _0594:
     End
 
 _05A5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 24
     WaitABXPadPress
@@ -467,7 +467,7 @@ _05A5:
     End
 
 _05B6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 25
     WaitABXPadPress
@@ -476,7 +476,7 @@ _05B6:
     End
 
 _05C7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 26
     WaitABXPadPress
@@ -486,7 +486,7 @@ _05C7:
 
 _05D8:
     ScrCmd_0CD 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 46
     WaitABXPadPress
@@ -495,7 +495,7 @@ _05D8:
     End
 
 _05EC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 47
     WaitABXPadPress
@@ -504,7 +504,7 @@ _05EC:
     End
 
 _05FD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 48
     WaitABXPadPress

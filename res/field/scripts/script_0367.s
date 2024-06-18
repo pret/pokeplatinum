@@ -114,7 +114,7 @@ _0192:
     Return
 
 _01AC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x4001, 0
@@ -177,7 +177,7 @@ _0272:
 
 _028A:
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_1DA
     Message 0
     GoTo _029D
@@ -439,7 +439,7 @@ _0734:
     ScrCmd_18D
     ScrCmd_12D 0x800C
     ScrCmd_18E
-    PlayFanfare 0x61B
+    PlayFanfare SEQ_SE_DP_SAVE
     ScrCmd_04B 0x61B
     Return
 
@@ -492,7 +492,7 @@ _07B9:
 
 _07E5:
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_1DA
     ScrCmd_1DD 12, 0, 0x800C
     GoToIfEq 0x800C, 1, _0922
@@ -659,7 +659,7 @@ _0AC3:
 
 _0ACF:
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_1DA
     Message 20
     GoTo _0AE2
@@ -1124,7 +1124,7 @@ _1278:
     EndMovement
 
 _1280:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 0
     SetVar 0x8001, 0
@@ -1132,7 +1132,7 @@ _1280:
     End
 
 _129A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 0
     SetVar 0x8001, 1
@@ -1140,7 +1140,7 @@ _129A:
     End
 
 _12B4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 0
     SetVar 0x8001, 2
@@ -1148,7 +1148,7 @@ _12B4:
     End
 
 _12CE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_1E4 0x800C
     GoToIfEq 0x800C, 0, _12F9
@@ -1175,7 +1175,7 @@ _1304:
     Return
 
 _1328:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 74
@@ -1185,7 +1185,7 @@ _1328:
     End
 
 _133B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 75
@@ -1195,7 +1195,7 @@ _133B:
     End
 
 _134E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 76
@@ -1205,7 +1205,7 @@ _134E:
     End
 
 _1361:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 77
@@ -1215,7 +1215,7 @@ _1361:
     End
 
 _1374:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 78
@@ -1225,7 +1225,7 @@ _1374:
     End
 
 _1387:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 79
@@ -1235,7 +1235,7 @@ _1387:
     End
 
 _139A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 80
@@ -1248,7 +1248,7 @@ _13AD:
     End
 
 _13AF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04B 0x5DC
@@ -1267,7 +1267,7 @@ _13CE:
     End
 
 _13E0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     CallIfUnset 0xFF, _1492

@@ -146,7 +146,7 @@ _038C:
     Return
 
 _0398:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x8004, 0
@@ -162,7 +162,7 @@ _0398:
     End
 
 _040F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x8004, 1

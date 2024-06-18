@@ -25,18 +25,18 @@ _0006:
     ScrCmd_064 2
     ApplyMovement 2, _01D8
     WaitMovement
-    PlayFanfare 0x60F
+    PlayFanfare SEQ_SE_DP_DENDOU
     WaitTime 30, 0x800C
     Message 1
     CloseMessage
-    PlayFanfare 0x60F
+    PlayFanfare SEQ_SE_DP_DENDOU
     WaitTime 30, 0x800C
     Message 2
     CloseMessage
     WaitTime 30, 0x800C
     Message 3
     CloseMessage
-    PlayFanfare 0x60F
+    PlayFanfare SEQ_SE_DP_DENDOU
     WaitTime 15, 0x800C
     Message 4
     Message 5

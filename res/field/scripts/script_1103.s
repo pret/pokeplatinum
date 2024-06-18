@@ -8,7 +8,7 @@
     .short 0xFD13
 
 _000E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 17
@@ -18,7 +18,7 @@ _000E:
     End
 
 _0021:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -79,7 +79,7 @@ _00FD:
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     ScrCmd_0D4 1, 0x800C
     Message 13
-    PlayFanfare 0x5E6
+    PlayFanfare SEQ_SE_DP_KON
     ScrCmd_04B 0x5E6
     WaitTime 30, 0x800C
     Message 14
@@ -153,7 +153,7 @@ _0248:
     End
 
 _0253:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 18
     WaitABXPadPress

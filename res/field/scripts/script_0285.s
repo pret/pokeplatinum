@@ -160,7 +160,7 @@ _01AB:
     ApplyMovement 14, _0214
     WaitMovement
     ScrCmd_04B 0x5DC
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 14
     ScrCmd_04B 0x603
     SetVar 0x4094, 2
@@ -197,7 +197,7 @@ _0214:
     EndMovement
 
 _021C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
@@ -207,7 +207,7 @@ _021C:
     End
 
 _022F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
