@@ -6,7 +6,7 @@
 #include "overlay006/battle_params.h"
 #include "overlay006/wild_encounters.h"
 
-void ov6_02240C9C(const WildEncounters * encounterData, int * param1, int * param2);
+void WildEncounters_ReplaceTimedEncounters(const WildEncounters * encounterData, int * param1, int * param2);
 BOOL ov6_02240D5C(FieldSystem * fieldSystem);
 BOOL ov6_0224106C(FieldSystem * fieldSystem, const int param1, BattleParams ** param2);
 BOOL ov6_022411C8(FieldSystem * fieldSystem, TaskManager * param1);
