@@ -74,9 +74,9 @@ typedef struct {
     u8 unk_11;
 } UnkStruct_ov6_022422D0;
 
-typedef struct {
-    int unk_00;
-    const u8 * unk_04;
+typedef struct UnkStruct_ov6_02248FF0 {
+    int numberForms;
+    const u8 * forms;
 } UnkStruct_ov6_02248FF0;
 
 static BOOL ov6_022417C8(FieldSystem * fieldSystem, const u32 param1, const u8 param2);
@@ -107,7 +107,7 @@ static void ov6_02242634(FieldSystem * fieldSystem, Pokemon * param1, WildEncoun
 static void ov6_02241A90(Pokemon * param0, u8 * param1);
 static void ov6_02241ABC(FieldSystem * fieldSystem, u8 * param1);
 
-static const u8 Unk_ov6_02248FDC[] = {
+static const u8 UnownMostForms[] = {
     0x0,
     0x1,
     0x2,
@@ -130,44 +130,44 @@ static const u8 Unk_ov6_02248FDC[] = {
     0x19
 };
 
-static const u8 Unk_ov6_02248FC0[] = {
+static const u8 UnownOnlyF[] = {
     0x5
 };
 
-static const u8 Unk_ov6_02248FD4[] = {
+static const u8 UnownOnlyR[] = {
     0x11
 };
 
-static const u8 Unk_ov6_02248FD0[] = {
+static const u8 UnownOnlyI[] = {
     0x8
 };
 
-static const u8 Unk_ov6_02248FCC[] = {
+static const u8 UnownOnlyN[] = {
     0xD
 };
 
-static const u8 Unk_ov6_02248FC8[] = {
+static const u8 UnownOnlyE[] = {
     0x4
 };
 
-static const u8 Unk_ov6_02248FC4[] = {
+static const u8 UnownOnlyD[] = {
     0x3
 };
 
-static const u8 Unk_ov6_02248FD8[] = {
+static const u8 UnownOnlyExcQue[] = {
     0x1A,
     0x1B
 };
 
-static const UnkStruct_ov6_02248FF0 Unk_ov6_02248FF0[] = {
-    {0x14, Unk_ov6_02248FDC},
-    {0x1, Unk_ov6_02248FC0},
-    {0x1, Unk_ov6_02248FD4},
-    {0x1, Unk_ov6_02248FD0},
-    {0x1, Unk_ov6_02248FCC},
-    {0x1, Unk_ov6_02248FC8},
-    {0x1, Unk_ov6_02248FC4},
-    {0x2, Unk_ov6_02248FD8}
+static const UnkStruct_ov6_02248FF0 WildEncounters_UnownTables[] = {
+    {0x14, UnownMostForms},
+    {0x1, UnownOnlyF},
+    {0x1, UnownOnlyR},
+    {0x1, UnownOnlyI},
+    {0x1, UnownOnlyN},
+    {0x1, UnownOnlyE},
+    {0x1, UnownOnlyD},
+    {0x2, UnownOnlyExcQue}
 };
 
 void ov6_02240C9C (const WildEncounters * encounterData, int * param1, int * param2)
@@ -1695,9 +1695,8 @@ static BOOL ov6_02242514 (const int param0, const UnkStruct_ov6_022422D0 * param
         } else if (v3 == 201) {
             u8 v4;
 
-            v1 = 1;
-            v4 = Unk_ov6_02248FF0[param1->unk_11].unk_00;
-            v2 = Unk_ov6_02248FF0[param1->unk_11].unk_04[LCRNG_Next() % v4];
+            u8 availableUnownForms = WildEncounters_UnownTables[param1->unownTableID].numberForms;
+            form = WildEncounters_UnownTables[param1->unownTableID].forms[LCRNG_Next() % availableUnownForms];
         }
 
         if (v1) {
