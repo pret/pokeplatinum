@@ -1,10 +1,13 @@
+
+
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_summary_app.h"
 #include "struct_defs/struct_02091850.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_0200762C.h"
 #include "unk_02015F84.h"
@@ -174,7 +177,7 @@ void sub_020917B0 (PokemonSummaryApp * param0)
 void sub_020917E0 (PokemonSummaryApp * param0)
 {
     VecFx32 v0 = {0, 0, 0x10000};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0};
+    CameraAngle v1 = {0, 0, 0};
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 

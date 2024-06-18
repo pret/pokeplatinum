@@ -17,7 +17,7 @@
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
@@ -1745,8 +1745,8 @@ static void ov77_021D4044 (UnkStruct_ov77_021D37C0 * param0, int param1)
     {
         VecFx32 v0 = {0, 0, FX32_ONE * 16 * 6};
 
-        sub_020206D0(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.unk_04, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
-        sub_02020910(0x981, param0->unk_20.unk_08);
+        sub_020206D0(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        Camera_SetFOV(0x981, param0->unk_20.unk_08);
 
         {
             VecFx32 v1 = {0, (FX32_ONE * 16 * 5), 0};
@@ -2368,12 +2368,12 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
     if (param1 < ((40 * 30 - 15) + 6)) {
         {
             u16 v1;
-            v1 = sub_02020A88(param0->unk_20.unk_08);
+            v1 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v1 - 32 > 0x5c1) {
                 sub_0202094C(-32, param0->unk_20.unk_08);
             } else {
-                sub_02020910(0x5c1, param0->unk_20.unk_08);
+                Camera_SetFOV(0x5c1, param0->unk_20.unk_08);
             }
         }
 
@@ -2381,7 +2381,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         sub_02020990(&v0, param0->unk_20.unk_08);
     } else if (param1 == ((40 * 30 - 15) + 6)) {
         VecFx32 v2 = {-(FX32_ONE * 16 * 4), 0, -FX32_ONE * 16 * 3};
-        sub_020206D0(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.unk_04, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        sub_020206D0(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
 
         {
             VecFx32 v3 = {0, (FX32_ONE * 16 * 5), 0};
@@ -2417,14 +2417,14 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         sub_0201C63C(param0->unk_10, 1, 1, 4);
     } else if (param1 == ((47 * 30 - 15) + 6)) {
         VecFx32 v6 = {FX32_ONE * 16 * 30, 0, FX32_ONE * 0 - 0x70000};
-        sub_020206D0(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.unk_04, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
+        sub_020206D0(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.unk_08);
         {
             VecFx32 v7 = {0, (FX32_ONE * 16 * 5), 0};
             sub_02020990(&v7, param0->unk_20.unk_08);
         }
 
         {
-            UnkStruct_ov115_0226527C v8 = {0, 0x680, 0, 0};
+            CameraAngle v8 = {0, 0x680, 0, 0};
             sub_020209F8(&v8, param0->unk_20.unk_08);
         }
 
@@ -2441,7 +2441,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
         if (param1 >= 1560) {
             u16 v9;
 
-            v9 = sub_02020A88(param0->unk_20.unk_08);
+            v9 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v9 + 24 < 0x4000) {
                 sub_0202094C(24, param0->unk_20.unk_08);

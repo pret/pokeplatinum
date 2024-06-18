@@ -765,7 +765,7 @@ void sub_02005F24 ()
     SysTask ** v1 = sub_02003D5C(35);
 
     if (*v1 != NULL) {
-        v0 = sub_0201CED0(*v1);
+        v0 = SysTask_GetParam(*v1);
         SysTask_Done(*v1);
         Heap_FreeToHeap(v0);
     }

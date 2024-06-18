@@ -685,10 +685,10 @@ void ov17_0223F9C4 (UnkStruct_ov17_0223F7E4 * param0, int param1, int param2, vo
 
     if ((v0->unk_00 != 0xffff) && ((param2 == 1) || (v0->unk_00 != v1->unk_00))) {
         param0->unk_2C0 = sub_02006F50(45, v0->unk_00, 1, &param0->unk_2C4, 21);
-        sub_0200DA3C(ov17_022411E4, param0, 10);
+        CoreSys_ExecuteAfterVBlank(ov17_022411E4, param0, 10);
     }
 
-    sub_0200DA3C(ov17_02241220, param0, 10);
+    CoreSys_ExecuteAfterVBlank(ov17_02241220, param0, 10);
 }
 
 int ov17_0223FAF8 (UnkStruct_ov17_0223F7E4 * param0)

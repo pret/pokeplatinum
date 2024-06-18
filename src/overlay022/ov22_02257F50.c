@@ -610,8 +610,8 @@ static void ov22_0225864C (UnkStruct_ov22_02257F50 * param0, int param1, int par
     SysTask * v0;
     UnkStruct_ov22_022586C4 * v1;
 
-    v0 = sub_0200679C(ov22_022586C4, sizeof(UnkStruct_ov22_022586C4), 0, 13);
-    v1 = sub_0201CED0(v0);
+    v0 = SysTask_StartAndAllocateParam(ov22_022586C4, sizeof(UnkStruct_ov22_022586C4), 0, 13);
+    v1 = SysTask_GetParam(v0);
 
     v1->unk_00 = param0;
     v1->unk_04 = param1;
@@ -697,7 +697,7 @@ static void ov22_022586C4 (SysTask * param0, void * param1)
         v0->unk_00->unk_00.unk_3C = 0;
 
         Heap_FreeToHeap(v0->unk_28);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
 
         return;
     default:

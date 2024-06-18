@@ -22,7 +22,7 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -107,7 +107,7 @@ typedef struct {
     VecFx32 unk_BAB4;
     VecFx32 unk_BAC0;
     UnkStruct_020203AC * unk_BACC;
-    UnkStruct_ov115_0226527C unk_BAD0;
+    CameraAngle unk_BAD0;
     u16 unk_BAD8;
     VecFx32 unk_BADC;
     int unk_BAE8;
@@ -1435,7 +1435,7 @@ static BOOL ov92_021D2460 (UnkStruct_ov92_021D1B24 * param0, int param1, int par
 
 static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
 {
-    fx32 v0 = sub_02020A90(param0->unk_BACC);
+    fx32 v0 = Camera_GetDistance(param0->unk_BACC);
     BOOL v1 = 0;
 
     switch (param0->unk_BAD8) {
@@ -1461,7 +1461,7 @@ static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
         break;
     }
 
-    sub_02020A50(v0, param0->unk_BACC);
+    Camera_SetDistance(v0, param0->unk_BACC);
 
     return v1;
 }

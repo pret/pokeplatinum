@@ -1050,13 +1050,13 @@ SysTask * ov6_02243F88 (FieldSystem * fieldSystem, u32 param1, Pokemon * param2,
 
 int ov6_02243FBC (SysTask * param0)
 {
-    UnkStruct_ov6_02243FFC * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02243FFC * v0 = SysTask_GetParam(param0);
     return v0->unk_04;
 }
 
 void ov6_02243FC8 (SysTask * param0)
 {
-    UnkStruct_ov6_02243FFC * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02243FFC * v0 = SysTask_GetParam(param0);
 
     ov6_02243FFC(v0);
     SysTask_Done(param0);
@@ -1574,14 +1574,14 @@ static void ov6_0224464C (UnkStruct_ov6_02243FFC * param0)
 {
     param0->unk_268 = 0;
     param0->unk_26C = 0;
-    param0->unk_278 = sub_0200DA04(ov6_022446B8, param0, 0x80);
+    param0->unk_278 = CoreSys_ExecuteOnVBlank(ov6_022446B8, param0, 0x80);
 }
 
 static void ov6_02244674 (UnkStruct_ov6_02243FFC * param0)
 {
     param0->unk_268 = 0;
     param0->unk_26C = 0;
-    param0->unk_278 = sub_0200DA04(ov6_022447B4, param0, 0x80);
+    param0->unk_278 = CoreSys_ExecuteOnVBlank(ov6_022447B4, param0, 0x80);
 }
 
 static void ov6_0224469C (UnkStruct_ov6_02243FFC * param0)
@@ -1620,7 +1620,7 @@ static void ov6_022446B8 (SysTask * param0, void * param1)
         }
 
         v1->unk_268++;
-        sub_0200DA3C(ov6_02244734, v1, 0x80);
+        CoreSys_ExecuteAfterVBlank(ov6_02244734, v1, 0x80);
 
         break;
     }
@@ -1667,7 +1667,7 @@ static void ov6_022447B4 (SysTask * param0, void * param1)
     switch (v0->unk_268) {
     case 0:
         sub_0200A3DC(v1);
-        sub_0200DA3C(ov6_022447EC, v0, 0x80);
+        CoreSys_ExecuteAfterVBlank(ov6_022447EC, v0, 0x80);
         v0->unk_268++;
         break;
     }
@@ -2032,7 +2032,7 @@ static void ov6_02244F80 (UnkStruct_ov6_02243FFC * param0, fx32 param1, fx32 par
 static void ov6_02244F8C (UnkStruct_ov6_02243FFC * param0)
 {
     GF_ASSERT(param0->unk_27C == NULL);
-    param0->unk_27C = sub_0200DA04(ov6_02244FE4, param0, 0x81);
+    param0->unk_27C = CoreSys_ExecuteOnVBlank(ov6_02244FE4, param0, 0x81);
 }
 
 static void ov6_02244FB4 (UnkStruct_ov6_02243FFC * param0)
@@ -2896,13 +2896,13 @@ SysTask * ov6_02245CCC (FieldSystem * fieldSystem, int param1)
 
 int ov6_02245CF0 (SysTask * param0)
 {
-    UnkStruct_ov6_02249270 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02249270 * v0 = SysTask_GetParam(param0);
     return v0->unk_04;
 }
 
 void ov6_02245CFC (SysTask * param0)
 {
-    UnkStruct_ov6_02249270 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov6_02249270 * v0 = SysTask_GetParam(param0);
 
     Heap_FreeToHeap(v0);
     SysTask_Done(param0);

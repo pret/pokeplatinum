@@ -219,7 +219,7 @@ int MapObject_HasAnimationEnded (SysTask * task)
 {
     UnkStruct_020EEE54 * v0;
 
-    v0 = sub_0201CED0(task);
+    v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
@@ -227,7 +227,7 @@ void MapObject_FinishAnimation (SysTask * task)
 {
     UnkStruct_020EEE54 * v0;
 
-    v0 = sub_0201CED0(task);
+    v0 = SysTask_GetParam(task);
 
     GF_ASSERT(LocalMapObj_CheckAnimationFinished(v0->unk_0C) == 1);
 

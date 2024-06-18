@@ -465,7 +465,7 @@ void * sub_0200E7FC (Window * param0, u32 param1)
     v0->unk_487_0 = 0;
     v0->unk_488_0 = 0;
 
-    sub_0200DA04(sub_0200EB20, v0, 0);
+    CoreSys_ExecuteOnVBlank(sub_0200EB20, v0, 0);
     sub_0200E924(v0, 1);
 
     return v0;
@@ -537,7 +537,7 @@ void DeleteWaitDial (void * param0)
 {
     UnkStruct_0200E924 * v0 = param0;
 
-    sub_0200DA3C(sub_0200EB8C, v0, 0);
+    CoreSys_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
     v0->unk_488_0 = 1;
 }
 
@@ -545,7 +545,7 @@ void sub_0200EBC8 (void * param0)
 {
     UnkStruct_0200E924 * v0 = param0;
 
-    sub_0200DA3C(sub_0200EB8C, v0, 0);
+    CoreSys_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
     v0->unk_488_0 = 2;
 }
 
@@ -586,7 +586,7 @@ static void sub_0200EC9C (SysTask * param0, void * param1)
         sub_0200F12C(v0);
         sub_0200D0F4(v0->unk_1C8);
         ov5_021D375C(&v0->unk_00);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         return;
     case 2:
         v0->unk_1D3 = 3;
@@ -604,7 +604,7 @@ static void sub_0200EC9C (SysTask * param0, void * param1)
 
 static UnkStruct_0200ED50 * sub_0200ED14 (BGL * param0, u8 param1, u8 param2, u8 param3, u32 param4)
 {
-    UnkStruct_0200ED50 * v0 = sub_0201CED0(sub_0200679C(sub_0200EC9C, sizeof(UnkStruct_0200ED50), 0, param4));
+    UnkStruct_0200ED50 * v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(sub_0200EC9C, sizeof(UnkStruct_0200ED50), 0, param4));
 
     v0->unk_1D3 = 0;
     v0->unk_1CC = param0;

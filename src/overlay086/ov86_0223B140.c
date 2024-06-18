@@ -26,7 +26,7 @@
 #include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
@@ -86,7 +86,7 @@ typedef struct {
     u8 unk_310[6400];
     UnkStruct_020203AC * unk_1C10;
     VecFx32 unk_1C14;
-    UnkStruct_ov115_0226527C unk_1C20;
+    CameraAngle cameraAngle;
     SysTask * unk_1C28;
     SysTask * unk_1C2C;
     SysTask * unk_1C30;
@@ -615,7 +615,7 @@ static void ov86_0223B6CC (SysTask * param0, void * param1)
 
 static SysTask * ov86_0223B744 (SysTaskFunc param0, void * param1, int param2)
 {
-    return sub_0200DA04(param0, param1, param2);
+    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
 }
 
 static void ov86_0223B74C (UnkStruct_ov86_0223B3C8 * param0)
@@ -761,11 +761,11 @@ static void ov86_0223B9A8 (UnkStruct_ov86_0223B3C8 * param0)
     param0->unk_1C14.x = 0;
     param0->unk_1C14.y = 0;
     param0->unk_1C14.z = 0;
-    param0->unk_1C20.unk_00 = ((0 * 0xffff) / 360);
-    param0->unk_1C20.unk_02 = ((0 * 0xffff) / 360);
-    param0->unk_1C20.unk_04 = ((0 * 0xffff) / 360);
+    param0->cameraAngle.x = ((0 * 0xffff) / 360);
+    param0->cameraAngle.y = ((0 * 0xffff) / 360);
+    param0->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    sub_020206D0(&(param0->unk_1C14), 20480, &(param0->unk_1C20), 4004, 0, 1, param0->unk_1C10);
+    sub_020206D0(&(param0->unk_1C14), 20480, &(param0->cameraAngle), 4004, 0, 1, param0->unk_1C10);
 
     v0.x = 0;
     v0.y = FX32_ONE;
@@ -925,7 +925,7 @@ static void ov86_0223BDC4 (UnkStruct_ov86_0223BDAC * param0, void * param1, SysT
 
 static void ov86_0223BDCC (UnkStruct_ov86_0223BDAC * param0)
 {
-    sub_0200DA3C(ov86_0223BDAC, param0, 0);
+    CoreSys_ExecuteAfterVBlank(ov86_0223BDAC, param0, 0);
 }
 
 static void ov86_0223BDE0 (UnkStruct_ov86_0223B3C8 * param0, int param1, int param2)
@@ -1566,7 +1566,7 @@ static void ov86_0223CA64 (SysTask * param0, void * param1)
 
 static void ov86_0223CAA0 (SysTask * param0, fx16 param1, fx32 param2)
 {
-    UnkStruct_ov86_0223C9B0 * v0 = sub_0201CED0(param0);
+    UnkStruct_ov86_0223C9B0 * v0 = SysTask_GetParam(param0);
 
     if (v0->unk_83C < 8) {
         v0->unk_818[v0->unk_83C] = ov86_0223CAE4(v0, param1, param2, v0->unk_83C);
@@ -1669,7 +1669,7 @@ static void ov86_0223CB74 (SysTask * param0, void * param1)
 static void ov86_0223CD00 (SysTask * param0)
 {
     if (param0 != NULL) {
-        UnkStruct_ov86_0223C9B0 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov86_0223C9B0 * v0 = SysTask_GetParam(param0);
 
         G3_PushMtx();
         MI_SendGXCommand(3, v0->unk_14, v0->unk_814);
@@ -1685,10 +1685,10 @@ static void ov86_0223CD34 (SysTask * param0)
         UnkStruct_ov86_0223C9B0 * v0;
         int v1;
 
-        v0 = sub_0201CED0(param0);
+        v0 = SysTask_GetParam(param0);
 
         for (v1 = 0; v1 < v0->unk_83C; v1++) {
-            Heap_FreeToHeap(sub_0201CED0(v0->unk_818[v1]));
+            Heap_FreeToHeap(SysTask_GetParam(v0->unk_818[v1]));
         }
 
         Heap_FreeToHeap(v0);
@@ -1773,7 +1773,7 @@ static SysTask * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
 static void ov86_0223CF44 (SysTask * param0)
 {
     if (param0) {
-        Heap_FreeToHeap(sub_0201CED0(param0));
+        Heap_FreeToHeap(SysTask_GetParam(param0));
         SysTask_Done(param0);
     }
 }
@@ -1781,7 +1781,7 @@ static void ov86_0223CF44 (SysTask * param0)
 static void ov86_0223CF5C (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov86_0223CD94 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov86_0223CD94 * v0 = SysTask_GetParam(param0);
         v0->unk_00 = 1;
     }
 }
@@ -1871,7 +1871,7 @@ static void ov86_0223CF6C (SysTask * param0, void * param1)
 static void ov86_0223D220 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov86_0223CD94 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov86_0223CD94 * v0 = SysTask_GetParam(param0);
 
         if (v0->unk_04) {
             G3_PushMtx();

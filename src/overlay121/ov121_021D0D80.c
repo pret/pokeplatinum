@@ -12,7 +12,7 @@
 #include "struct_defs/struct_02017294.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002328.h"
 #include "unk_02005474.h"
@@ -211,7 +211,7 @@ static void ov121_021D0F94 (void)
 static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
 {
     {
-        static const UnkStruct_ov115_0226527C v0 = {
+        static const CameraAngle v0 = {
             (0x10000 - 0x1c7d),
             ((0 * 0xffff) / 360),
             ((0 * 0xffff) / 360),
@@ -224,12 +224,12 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
         sub_020206BC(0, (FX32_ONE * 300), param0->unk_04);
 
         {
-            UnkStruct_ov115_0226527C v2 = {0, 0, 0, 0};
+            CameraAngle v2 = {0, 0, 0, 0};
 
             v2 = sub_02020A94(param0->unk_04);
-            v2.unk_00 = (0x10000 - 0x3fef);
+            v2.x = (0x10000 - 0x3fef);
 
-            sub_020209D4(&v2, param0->unk_04);
+            Camera_SetAngle(&v2, param0->unk_04);
         }
 
         sub_020203D4(param0->unk_04);
@@ -357,7 +357,7 @@ static void ov121_021D1310 (GenericPointerData * param0)
 static void ov121_021D1318 (UnkStruct_ov121_021D0FF4 * param0)
 {
     VecFx32 v0 = {0, 0, 0};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0, 0};
+    CameraAngle v1 = {0, 0, 0, 0};
     int v2;
 
     sub_0202094C(-(param0->unk_D4 >> 8), param0->unk_04);

@@ -14,7 +14,7 @@
 #include "overlay100/struct_ov100_021D37F4.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay100/struct_ov100_021D4EBC.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -206,7 +206,7 @@ static void ov100_021D34C0 (UnkStruct_ov100_021D3084 * param0)
 
 static void ov100_021D3504 (UnkStruct_020203AC * param0, VecFx32 * param1)
 {
-    UnkStruct_ov115_0226527C v0 = {-0x29fe, 0, 0};
+    CameraAngle v0 = {-0x29fe, 0, 0};
 
     sub_020206D0(param1, 0x13c805, &v0, 0xc01, 0, 1, param0);
     sub_020203D4(param0);

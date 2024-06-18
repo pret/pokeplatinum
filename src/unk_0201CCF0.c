@@ -10,7 +10,7 @@ typedef struct SysTask {
     SysTask * unk_04;
     SysTask * unk_08;
     u32 unk_0C;
-    void * unk_10;
+    void * param;
     SysTaskFunc unk_14;
     u32 unk_18;
 } SysTask;
@@ -37,7 +37,7 @@ static void sub_0201CCF0 (UnkStruct_0201CD88 * param0, SysTask * param1)
     param1->unk_00 = param0;
     param1->unk_04 = param1->unk_08 = &(param0->unk_04);
     param1->unk_0C = 0;
-    param1->unk_10 = NULL;
+    param1->param = NULL;
     param1->unk_14 = NULL;
 }
 
@@ -76,7 +76,7 @@ static int sub_0201CD54 (UnkStruct_0201CD88 * param0, SysTask * param1)
     (param1)->unk_00 = (param0);
     (param1)->unk_04 = (param1)->unk_08 = &(param0->unk_04);
     (param1)->unk_0C = 0;
-    (param1)->unk_10 = NULL;
+    (param1)->param = NULL;
     (param1)->unk_14 = NULL;
 
     param0->unk_02--;
@@ -115,7 +115,7 @@ void sub_0201CDB4 (UnkStruct_0201CD88 * param0)
     (&param0->unk_04)->unk_00 = param0;
     (&param0->unk_04)->unk_04 = (&param0->unk_04)->unk_08 = &(param0->unk_04);
     (&param0->unk_04)->unk_0C = 0;
-    (&param0->unk_04)->unk_10 = NULL;
+    (&param0->unk_04)->param = NULL;
     (&param0->unk_04)->unk_14 = NULL;
 
     param0->unk_2C = param0->unk_04.unk_08;
@@ -134,7 +134,7 @@ void sub_0201CDD4 (UnkStruct_0201CD88 * param0)
 
         if (param0->unk_2C->unk_18 == 0) {
             if (param0->unk_2C->unk_14 != NULL) {
-                param0->unk_2C->unk_14(param0->unk_2C, param0->unk_2C->unk_10);
+                param0->unk_2C->unk_14(param0->unk_2C, param0->unk_2C->param);
             }
         } else {
             param0->unk_2C->unk_18 = 0;
@@ -169,7 +169,7 @@ static SysTask * sub_0201CE28 (UnkStruct_0201CD88 * param0, SysTaskFunc param1, 
     }
 
     v0->unk_0C = param3;
-    v0->unk_10 = param2;
+    v0->param = param2;
     v0->unk_14 = param1;
 
     if (param0->unk_2C->unk_14 != NULL) {
@@ -227,9 +227,9 @@ void sub_0201CECC (SysTask * param0, SysTaskFunc param1)
     param0->unk_14 = param1;
 }
 
-void * sub_0201CED0 (SysTask * param0)
+void * SysTask_GetParam (SysTask * param0)
 {
-    return param0->unk_10;
+    return param0->param;
 }
 
 u32 sub_0201CED4 (SysTask * param0)

@@ -63,7 +63,7 @@ static void sub_0201D6B0 (u8 param0)
     GF_ASSERT(Unk_021C04E0[param0] != NULL);
 
     if ((param0 < 8) && (Unk_021C04E0[param0] != NULL)) {
-        UnkStruct_0201D834 * v0 = sub_0201CED0(Unk_021C04E0[param0]);
+        UnkStruct_0201D834 * v0 = SysTask_GetParam(Unk_021C04E0[param0]);
 
         if (v0) {
             sub_0201DBD8(v0);

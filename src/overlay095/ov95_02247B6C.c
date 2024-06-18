@@ -524,7 +524,7 @@ static void ov95_02248364 (UnkStruct_ov95_02247C6C * param0, int param1, int par
         v0->unk_08 = param2 << 12;
         v0->unk_0C = (v0->unk_08 - v0->unk_04) / param3;
         v0->unk_10 = param3;
-        param0->unk_78 = sub_0200DA04(ov95_022483E4, v0, 0);
+        param0->unk_78 = CoreSys_ExecuteOnVBlank(ov95_022483E4, v0, 0);
 
         G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, param1);
     }
@@ -538,7 +538,7 @@ static BOOL ov95_022483B4 (UnkStruct_ov95_02247C6C * param0)
 static void ov95_022483C4 (UnkStruct_ov95_02247C6C * param0)
 {
     if (param0->unk_78) {
-        ov95_022476C8(sub_0201CED0(param0->unk_78));
+        ov95_022476C8(SysTask_GetParam(param0->unk_78));
         SysTask_Done(param0->unk_78);
         param0->unk_78 = NULL;
     }
@@ -589,7 +589,7 @@ static BOOL ov95_0224846C (UnkStruct_ov95_02247C6C * param0)
 static int ov95_0224847C (UnkStruct_ov95_02247C6C * param0)
 {
     if (param0->unk_7C) {
-        UnkStruct_ov95_02248420 * v0 = sub_0201CED0(param0->unk_7C);
+        UnkStruct_ov95_02248420 * v0 = SysTask_GetParam(param0->unk_7C);
         return v0->unk_20;
     }
 
@@ -599,7 +599,7 @@ static int ov95_0224847C (UnkStruct_ov95_02247C6C * param0)
 static void ov95_02248490 (UnkStruct_ov95_02247C6C * param0)
 {
     if (param0->unk_7C) {
-        Heap_FreeToHeap(sub_0201CED0(param0->unk_7C));
+        Heap_FreeToHeap(SysTask_GetParam(param0->unk_7C));
         SysTask_Done(param0->unk_7C);
         param0->unk_7C = NULL;
     }

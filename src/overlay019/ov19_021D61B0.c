@@ -368,7 +368,7 @@ BOOL ov19_021D6600 (UnkStruct_ov19_021D61B0 * param0, u32 param1)
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param0->unk_08[v1] != NULL) {
-            v0 = sub_0201CED0(param0->unk_08[v1]);
+            v0 = SysTask_GetParam(param0->unk_08[v1]);
 
             if (v0->unk_00 == param1) {
                 return 0;
@@ -1875,7 +1875,7 @@ static int ov19_021D77A4 (u32 param0, u32 param1)
 
 SysTask * ov19_021D77C8 (SysTaskFunc param0, void * param1, u32 param2)
 {
-    return sub_0200DA04(param0, param1, param2);
+    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
 }
 
 NNSG2dImagePaletteProxy * ov19_021D77D0 (UnkStruct_ov19_021D61B0 * param0)

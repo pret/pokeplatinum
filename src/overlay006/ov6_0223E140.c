@@ -26,7 +26,7 @@
 #include "overlay006/funcptr_ov6_0223E6EC.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "narc.h"
@@ -415,12 +415,12 @@ static void ov6_0223E1D0 (BGL * param0)
 
 static void ov6_0223E234 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E25C, param0, 1024);
+    CoreSys_ExecuteAfterVBlank(ov6_0223E25C, param0, 1024);
 }
 
 static void ov6_0223E248 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E280, param0, 1024);
+    CoreSys_ExecuteAfterVBlank(ov6_0223E280, param0, 1024);
 }
 
 static void ov6_0223E25C (SysTask * param0, void * param1)
@@ -485,7 +485,7 @@ static UnkStruct_ov5_021E20E8 * ov6_0223E2BC (int param0, int param1)
 
 static void ov6_0223E2E8 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E2FC, param0, 1024);
+    CoreSys_ExecuteAfterVBlank(ov6_0223E2FC, param0, 1024);
 }
 
 static void ov6_0223E2FC (SysTask * param0, void * param1)
@@ -539,7 +539,7 @@ void ov6_0223E384 (TaskManager * taskMan)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->unk_24);
+    ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->camera);
     FieldTask_Start(taskMan, ov6_0223E33C, v1);
 }
 
@@ -626,7 +626,7 @@ void ov6_0223E4EC (TaskManager * param0)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->unk_24);
+    ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->camera);
 
     v1->unk_08 = ov6_0223FFF4(v1->unk_00);
     FieldTask_Start(param0, ov6_0223E408, v1);
@@ -893,40 +893,40 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
 #if (GAME_VERSION == 10 || GAME_VERSION == 12)
-    sub_02020910(0x1701, fieldSystem->unk_24);
-    sub_02020A50(0xc8a55, fieldSystem->unk_24);
+    Camera_SetFOV(0x1701, fieldSystem->camera);
+    Camera_SetDistance(0xc8a55, fieldSystem->camera);
     v1.x = 0x2280ef;
     v1.y = 0xca424;
     v1.z = 0x268c50;
-    sub_02020ACC(&v1, fieldSystem->unk_24);
-    v2.unk_00 = 0x22a2;
-    v2.unk_02 = 0xf800;
-    v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
+    v2.x = 0x22a2;
+    v2.y = 0xf800;
+    v2.z = 0;
+    Camera_SetAngle(&v2, fieldSystem->camera);
 
-    sub_020206BC(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->unk_24);
+    sub_020206BC(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
 #elif (GAME_VERSION == 11)
-    sub_02020910(0x10c1, fieldSystem->unk_24);
-    sub_02020A50(0xD5052, fieldSystem->unk_24);
+    Camera_SetFOV(0x10c1, fieldSystem->camera);
+    Camera_SetDistance(0xD5052, fieldSystem->camera);
     v1.x = 0x1bffbd;
     v1.y = 0xaa361;
     v1.z = 0x25dfdc;
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
     v2.unk_00 = 0x19a3;
     v2.unk_02 = 0x90c;
     v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->unk_24);
+    Camera_SetAngle(&v2, fieldSystem->camera);
 
-    sub_020206BC(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->unk_24);
+    sub_020206BC(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->camera);
 #endif
 
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = sub_02020AAC(fieldSystem->camera);
 
     ov6_02240A18(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240AEC(v0->unk_08, v1.x, v1.y, v1.z);
@@ -936,23 +936,23 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
-    sub_02020910(0xf81, fieldSystem->unk_24);
-    sub_02020A50(0x17e532, fieldSystem->unk_24);
+    Camera_SetFOV(0xf81, fieldSystem->camera);
+    Camera_SetDistance(0x17e532, fieldSystem->camera);
 
     v1.x = 0xf99d58;
     v1.y = 0xc5502;
     v1.z = 0x28cf549;
 
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
 
-    v2.unk_00 = 0x642;
-    v2.unk_02 = 0xeda0;
-    v2.unk_04 = 0;
+    v2.x = 0x642;
+    v2.y = 0xeda0;
+    v2.z = 0;
 
-    sub_020209D4(&v2, fieldSystem->unk_24);
-    sub_020206BC(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->unk_24);
+    Camera_SetAngle(&v2, fieldSystem->camera);
+    sub_020206BC(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -960,7 +960,7 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = sub_02020AAC(fieldSystem->camera);
 
     ov6_02240A50(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B24(v0->unk_08, v1.x, v1.y, v1.z);
@@ -970,23 +970,23 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
-    sub_02020910(0x4c1, fieldSystem->unk_24);
-    sub_02020A50(0x26bec1, fieldSystem->unk_24);
+    Camera_SetFOV(0x4c1, fieldSystem->camera);
+    Camera_SetDistance(0x26bec1, fieldSystem->camera);
 
     v1.x = 0x1df5dfd;
     v1.y = 0x73a0c;
     v1.z = 0x2b9f4a2;
 
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    sub_02020ACC(&v1, fieldSystem->camera);
 
-    v2.unk_00 = 0x4c2;
-    v2.unk_02 = 0xa40;
-    v2.unk_04 = 0;
+    v2.x = 0x4c2;
+    v2.y = 0xa40;
+    v2.z = 0;
 
-    sub_020209D4(&v2, fieldSystem->unk_24);
-    sub_020206BC(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->unk_24);
+    Camera_SetAngle(&v2, fieldSystem->camera);
+    sub_020206BC(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -994,7 +994,7 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = sub_02020AAC(fieldSystem->camera);
 
     ov6_02240A8C(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B60(v0->unk_08, v1.x, v1.y, v1.z);
@@ -1618,7 +1618,7 @@ static void ov6_0223FAF8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
             break;
         }
 
-        v2 = sub_02020AAC(fieldSystem->unk_24);
+        v2 = sub_02020AAC(fieldSystem->camera);
         {
             int v4[] = {
                 504, 504, 435
@@ -2009,7 +2009,7 @@ void ov6_02240000 (UnkStruct_ov6_02240000 * param0, u32 param1, u32 param2, u32 
 
     GX_SetMasterBrightness(param0->unk_00.unk_00);
 
-    param0->unk_20 = sub_0200DA3C(ov6_02240064, param0, 1024);
+    param0->unk_20 = CoreSys_ExecuteAfterVBlank(ov6_02240064, param0, 1024);
     Sound_PlayEffect(1748);
 }
 

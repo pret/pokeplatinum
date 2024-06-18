@@ -7,7 +7,7 @@
 #include "unk_020041CC.h"
 #include "heap.h"
 #include "unk_020508D4.h"
-#include "overlay005/ov5_021DDBE8.h"
+#include "overlay005/encounter_effect.h"
 
 typedef struct {
     int unk_00;
@@ -28,7 +28,7 @@ static BOOL sub_0205578C (TaskManager * param0)
 
     switch (v1->unk_00) {
     case 0:
-        ov5_021DDBE8(v1->unk_08, fieldSystem, &v1->unk_04);
+        EncounterEffect_Start(v1->unk_08, fieldSystem, &v1->unk_04);
         sub_02004550(5, v1->unk_0C, 1);
         v1->unk_00++;
         break;

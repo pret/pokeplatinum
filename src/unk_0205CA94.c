@@ -402,8 +402,8 @@ UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, FieldSystem * fieldSystem, 
     int v2;
     TrainerInfo * v3;
 
-    v1 = sub_0200679C(func, sizeof(UnkStruct_0205D274), 5, 4);
-    v0 = sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(func, sizeof(UnkStruct_0205D274), 5, 4);
+    v0 = SysTask_GetParam(v1);
     v3 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v2 = TrainerInfo_Gender(v3);
 
@@ -415,7 +415,7 @@ UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, FieldSystem * fieldSystem, 
 void sub_0205D080 (SysTask * param0, UnkStruct_0205D274 * param1)
 {
     sub_0205D0AC(&param1->unk_04);
-    sub_020067D0(param0);
+    SysTask_FinishAndFreeParam(param0);
 }
 
 void sub_0205D094 (UnkStruct_0205D094 * param0, int param1, u32 param2)

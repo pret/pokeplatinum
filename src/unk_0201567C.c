@@ -38,8 +38,8 @@ void * sub_0201567C (PaletteData * param0, u16 param1, u16 param2, u32 param3)
     SysTask * v1;
     u16 * v2;
 
-    v1 = sub_0200679C(sub_0201576C, sizeof(UnkStruct_020157E4), 0, param3);
-    v0 = (UnkStruct_020157E4 *)sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(sub_0201576C, sizeof(UnkStruct_020157E4), 0, param3);
+    v0 = (UnkStruct_020157E4 *)SysTask_GetParam(v1);
 
     if (param0 != NULL) {
         if (param1 == 0) {
@@ -91,7 +91,7 @@ void sub_02015738 (void * param0, u8 param1)
 void sub_02015760 (void * param0)
 {
     UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param0;
-    sub_020067D0(v0->unk_00);
+    SysTask_FinishAndFreeParam(v0->unk_00);
 }
 
 static void sub_0201576C (SysTask * param0, void * param1)
@@ -118,7 +118,7 @@ static void sub_0201576C (SysTask * param0, void * param1)
         break;
     case 3:
         v0->unk_04(v0, v0->unk_0C);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
     }
 }
 

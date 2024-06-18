@@ -112,7 +112,7 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
 {
     UnkStruct_ov13_02227244 * v0;
 
-    v0 = sub_0201CED0(sub_0200679C(ov13_02226590, sizeof(UnkStruct_ov13_02227244), 100, param0->unk_0C));
+    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov13_02226590, sizeof(UnkStruct_ov13_02227244), 100, param0->unk_0C));
     memset(v0, 0, sizeof(UnkStruct_ov13_02227244));
 
     v0->unk_00 = param0;
@@ -577,7 +577,7 @@ static u8 ov13_02226CFC (SysTask * param0, UnkStruct_ov13_02227244 * param1)
     }
 
     param1->unk_00->unk_26 = 1;
-    sub_020067D0(param0);
+    SysTask_FinishAndFreeParam(param0);
 
     return 1;
 }

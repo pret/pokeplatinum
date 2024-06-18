@@ -32,7 +32,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
@@ -165,7 +165,7 @@ typedef struct {
     fx32 unk_00;
     u32 unk_04;
     VecFx32 unk_08;
-    UnkStruct_ov115_0226527C unk_14;
+    CameraAngle cameraAngle;
     UnkStruct_020203AC * unk_1C;
 } UnkStruct_ov109_021D28C4;
 
@@ -2185,14 +2185,14 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
         v0->unk_08.y = (FX32_ONE * 0);
         v0->unk_08.z = (FX32_ONE * 0);
 
-        v0->unk_14.unk_00 = ((((-32 * 0xffff) / 360)));
-        v0->unk_14.unk_02 = ((((0 * 0xffff) / 360)));
-        v0->unk_14.unk_04 = ((((0 * 0xffff) / 360)));
+        v0->cameraAngle.x = ((((-32 * 0xffff) / 360)));
+        v0->cameraAngle.y = ((((0 * 0xffff) / 360)));
+        v0->cameraAngle.z = ((((0 * 0xffff) / 360)));
 
         v0->unk_00 = (0x143 << FX32_SHIFT);
         v0->unk_04 = ((((6 * 0xffff) / 360)));
 
-        sub_020206D0(&v0->unk_08, v0->unk_00, &v0->unk_14, v0->unk_04, 0, 1, v0->unk_1C);
+        sub_020206D0(&v0->unk_08, v0->unk_00, &v0->cameraAngle, v0->unk_04, 0, 1, v0->unk_1C);
 
         v1.x = 0;
         v1.y = FX32_ONE;

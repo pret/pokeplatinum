@@ -660,7 +660,7 @@ void ov23_022434BC (void * param0, FieldSystem * fieldSystem)
         Unk_ov23_02257764->unk_B68[v0] = 0xff;
     }
 
-    fieldSystem->unk_8C = ov5_021EB0C8(fieldSystem->unk_24);
+    fieldSystem->unk_8C = ov5_021EB0C8(fieldSystem->camera);
 
     ov23_02243754();
     ov23_0224340C();
@@ -697,7 +697,7 @@ void ov23_022435A8 (void)
 {
     int v0;
 
-    Unk_ov23_02257764->fieldSystem->unk_8C = ov5_021EB0C8(Unk_ov23_02257764->fieldSystem->unk_24);
+    Unk_ov23_02257764->fieldSystem->unk_8C = ov5_021EB0C8(Unk_ov23_02257764->fieldSystem->camera);
     Unk_ov23_02257764->unk_BAA = 0;
 
     ov23_0224340C();

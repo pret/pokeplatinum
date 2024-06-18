@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020203AC_decl.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "heap.h"
 #include "unk_02020020.h"
@@ -92,10 +92,10 @@ UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (UnkStruct_020203AC * const param0)
 
 void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, UnkStruct_020203AC * const param1)
 {
-    UnkStruct_ov115_0226527C v0;
+    CameraAngle v0;
 
     v0 = sub_02020A94(param1);
-    param0->unk_00 = sub_02020A88(param1);
+    param0->unk_00 = Camera_GetFOV(param1);
 
     {
         fx32 v1;
@@ -118,7 +118,7 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, UnkStruct_020203AC * const p
         param0->unk_1C = VEC_DotProduct(&v2, &param0->unk_04);
     }
 
-    MTX_RotX43(&param0->unk_20, FX_SinIdx(v0.unk_00), FX_CosIdx(v0.unk_00));
+    MTX_RotX43(&param0->unk_20, FX_SinIdx(v0.x), FX_CosIdx(v0.x));
     param0->unk_50 = param1;
 }
 

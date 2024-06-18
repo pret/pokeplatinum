@@ -128,8 +128,8 @@ void ov22_022598F4 (UnkStruct_ov22_022597BC * param0, UnkStruct_ov22_022599A0 * 
     UnkStruct_ov22_022598F4 * v0;
     SysTask * v1;
 
-    v1 = sub_0200679C(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, 13);
-    v0 = sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, 13);
+    v0 = SysTask_GetParam(v1);
 
     v0->unk_00 = param0;
     v0->unk_04 = *param1;
@@ -217,7 +217,7 @@ static void ov22_02259A4C (SysTask * param0, void * param1)
             *v0->unk_34 = 1;
         }
 
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
     }
 }
 
@@ -241,7 +241,7 @@ static void ov22_02259B3C (u32 param0, u32 param1, BGL * param2, u32 param3, u32
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(ov22_02259BD4, v0, 128);
+    CoreSys_ExecuteAfterVBlank(ov22_02259BD4, v0, 128);
 }
 
 static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
@@ -256,7 +256,7 @@ static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 p
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(ov22_02259C10, v0, 128);
+    CoreSys_ExecuteAfterVBlank(ov22_02259C10, v0, 128);
 }
 
 static void ov22_02259BD4 (SysTask * param0, void * param1)

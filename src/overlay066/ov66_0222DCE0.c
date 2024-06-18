@@ -56,7 +56,7 @@ int ov66_0222DCE0 (OverlayManager * param0, int * param1)
     SetMainCallback(NULL, NULL);
     DisableHBlank();
 
-    v0->unk_0C = sub_0200DA3C(ov66_0222DDDC, v0, 0);
+    v0->unk_0C = CoreSys_ExecuteAfterVBlank(ov66_0222DDDC, v0, 0);
 
     ov66_02230CAC(v0->unk_08);
 

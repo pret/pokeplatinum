@@ -306,7 +306,7 @@ UnkStruct_ov99_021D3E78 * ov99_021D3E78 (BGL * param0, int param1, int param2, i
 
         v0->unk_28 = sub_0201A778(75, 1);
         BGL_AddWindow(param0, v0->unk_28, param2, 0, 0, 32, 2, param3, 0);
-        v0->unk_34 = sub_0200DA3C(ov99_021D4104, v0, 0);
+        v0->unk_34 = CoreSys_ExecuteAfterVBlank(ov99_021D4104, v0, 0);
     }
 
     return v0;

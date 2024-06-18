@@ -105,8 +105,8 @@ void sub_0206C784 (FieldSystem * fieldSystem, const u8 param1, const u8 param2, 
             v0->unk_7C = (FX32_ONE / 4);
 
             PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v0->unk_24);
-            sub_020206B0(fieldSystem->unk_24);
-            sub_02020690(&v0->unk_24, fieldSystem->unk_24);
+            sub_020206B0(fieldSystem->camera);
+            sub_02020690(&v0->unk_24, fieldSystem->camera);
 
             if (v0->unk_10 != 0xffffffff) {
                 v0->unk_02 = 0;

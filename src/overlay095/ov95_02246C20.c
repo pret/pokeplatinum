@@ -306,7 +306,7 @@ UnkStruct_ov95_02247004 * ov95_02246F30 (BOOL * param0, int param1)
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
         G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
 
-        v0->unk_C0 = sub_0200DA3C(ov95_02247060, v0, 20);
+        v0->unk_C0 = CoreSys_ExecuteAfterVBlank(ov95_02247060, v0, 20);
 
         if (v0->unk_C0) {
             *(v0->unk_E4) = 1;
@@ -436,7 +436,7 @@ static void ov95_02247170 (UnkStruct_ov95_02247004 * param0)
 static void ov95_02247224 (UnkStruct_ov95_02247004 * param0, int param1)
 {
     if (param0->unk_C4[param1]) {
-        Heap_FreeToHeap(sub_0201CED0(param0->unk_C4[param1]));
+        Heap_FreeToHeap(SysTask_GetParam(param0->unk_C4[param1]));
         SysTask_Done(param0->unk_C4[param1]);
         param0->unk_C4[param1] = NULL;
         param0->unk_F4--;
@@ -487,7 +487,7 @@ UnkStruct_ov95_022472C4 * ov95_022472C4 (BGL * param0, fx32 param1, fx32 param2,
         v0->unk_04 = param6;
         *param6 = 0;
 
-        v0->unk_20 = sub_0200DA04(ov95_0224732C, v0, 0);
+        v0->unk_20 = CoreSys_ExecuteOnVBlank(ov95_0224732C, v0, 0);
 
         if (v0->unk_20) {
             (void)0;

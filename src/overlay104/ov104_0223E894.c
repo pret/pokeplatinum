@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02013B10_decl.h"
 #include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -11,7 +10,8 @@
 #include "overlay104/struct_ov104_0223F1B4.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02013B10.h"
+#include "screen_scroll_manager.h"
+#include "buffer_manager.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "overlay104/ov104_0223E894.h"
@@ -68,7 +68,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov104_0223F174_t {
     UnkStruct_ov104_0223F0D8 unk_00;
-    UnkStruct_02013B10 * unk_1C;
+    BufferManager * bufferManager;
     UnkStruct_ov104_0223F1B4 unk_20[192];
     UnkStruct_ov104_0223F1B4 unk_1820[192];
     u32 unk_3020;
@@ -179,7 +179,7 @@ BOOL ov104_0223E9F8 (UnkStruct_ov104_0223E9EC * param0)
     BOOL v0;
 
     v0 = ov104_0223EA38(&param0->unk_00);
-    sub_0200DA3C(ov104_0223EA14, param0, 10);
+    CoreSys_ExecuteAfterVBlank(ov104_0223EA14, param0, 10);
 
     return v0;
 }
@@ -499,7 +499,7 @@ BOOL ov104_0223EE44 (UnkStruct_ov104_0223EBD0 * param0)
 
 static SysTask * ov104_0223F05C (UnkStruct_ov104_0223F094 * param0)
 {
-    return sub_0200DA04(ov104_0223F070, param0, 1024);
+    return CoreSys_ExecuteOnVBlank(ov104_0223F070, param0, 1024);
 }
 
 static void ov104_0223F070 (SysTask * param0, void * param1)
@@ -507,24 +507,24 @@ static void ov104_0223F070 (SysTask * param0, void * param1)
     UnkStruct_ov104_0223F094 * v0 = param1;
 
     if (v0->unk_08 >= 2) {
-        sub_02013DA4(v0->unk_00);
+        ScreenScrollManager_SwapBuffers(v0->screenScrollMgr);
         v0->unk_08 = 0;
     }
 
-    sub_02013DDC(v0->unk_00);
+    ScreenScrollManager_RestartDMA(v0->screenScrollMgr);
     v0->unk_08++;
 }
 
 void ov104_0223F094 (UnkStruct_ov104_0223F094 * param0, u32 param1)
 {
-    param0->unk_00 = sub_02013BE0(param1);
+    param0->screenScrollMgr = ScreenScrollManager_New(param1);
     param0->unk_08 = 0;
     param0->unk_04 = ov104_0223F05C(param0);
 }
 
 void ov104_0223F0B0 (UnkStruct_ov104_0223F094 * param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8)
 {
-    sub_02013C10(param0->unk_00, param1, param2, param3, param4, param5, param6, param7, param8);
+    ScreenScrollManager_ScrollX(param0->screenScrollMgr, param1, param2, param3, param4, param5, param6, param7, param8);
 }
 
 static void ov104_0223F0D8 (SysTask * param0, void * param1)
@@ -536,7 +536,7 @@ static void ov104_0223F0D8 (SysTask * param0, void * param1)
 
         v0->unk_10(v0->unk_18);
     } else {
-        sub_02013BA8();
+        BufferManager_StopDMA();
     }
 }
 
@@ -560,8 +560,8 @@ static void ov104_0223F110 (UnkStruct_ov104_0223F0D8 * param0, void * param1, Un
     param0->unk_18 = param1;
     param0->unk_10 = param2;
     param0->unk_14 = param3;
-    param0->unk_04 = sub_0200DA3C(ov104_0223F0D8, param0, 0);
-    param0->unk_00 = sub_0200DA04(ov104_0223F0F4, param0, 0);
+    param0->unk_04 = CoreSys_ExecuteAfterVBlank(ov104_0223F0D8, param0, 0);
+    param0->unk_00 = CoreSys_ExecuteOnVBlank(ov104_0223F0F4, param0, 0);
 }
 
 static void ov104_0223F150 (UnkStruct_ov104_0223F0D8 * param0)
@@ -576,24 +576,24 @@ static void ov104_0223F150 (UnkStruct_ov104_0223F0D8 * param0)
         SysTask_Done(param0->unk_00);
     }
 
-    sub_02013BA8();
+    BufferManager_StopDMA();
 }
 
 static void ov104_0223F174 (UnkStruct_ov104_0223F174 * param0)
 {
     const void * v0;
 
-    v0 = sub_02013B68(param0->unk_1C);
+    v0 = BufferManager_GetReadBuffer(param0->bufferManager);
 
-    sub_02013BA8();
-    sub_02013BB8(v0, (void *)param0->unk_3020, (sizeof(UnkStruct_ov104_0223F1B4)), 1);
+    BufferManager_StopDMA();
+    BufferManager_StartDMA(v0, (void *)param0->unk_3020, (sizeof(UnkStruct_ov104_0223F1B4)), 1);
 }
 
 static void ov104_0223F198 (void * param0)
 {
     UnkStruct_ov104_0223F174 * v0 = param0;
 
-    sub_02013B94(v0->unk_1C);
+    BufferManager_SwapBuffers(v0->bufferManager);
     ov104_0223F174(v0);
 }
 
@@ -612,9 +612,9 @@ UnkStruct_ov104_0223F174 * ov104_0223F1B4 (u32 param0, UnkStruct_ov104_0223F1B4 
     memset(v0, 0, sizeof(UnkStruct_ov104_0223F174));
 
     GF_ASSERT(v0);
-    v0->unk_1C = sub_02013B10(param2, v0->unk_20, v0->unk_1820);
+    v0->bufferManager = BufferManager_New(param2, v0->unk_20, v0->unk_1820);
 
-    GF_ASSERT(v0->unk_1C);
+    GF_ASSERT(v0->bufferManager);
     v0->unk_3020 = param0;
 
     for (v1 = 0; v1 < 192; v1++) {
@@ -632,8 +632,8 @@ void ov104_0223F258 (UnkStruct_ov104_0223F174 * param0)
 
     ov104_0223F150(&param0->unk_00);
 
-    if (param0->unk_1C != NULL) {
-        sub_02013B40(param0->unk_1C);
+    if (param0->bufferManager != NULL) {
+        BufferManager_Delete(param0->bufferManager);
     }
 
     Heap_FreeToHeap(param0);
@@ -643,5 +643,5 @@ void * ov104_0223F27C (const UnkStruct_ov104_0223F174 * param0)
 {
     GF_ASSERT(param0);
 
-    return sub_02013B54(param0->unk_1C);
+    return BufferManager_GetWriteBuffer(param0->bufferManager);
 }

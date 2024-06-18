@@ -34,7 +34,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay092/struct_ov92_021D1530.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
@@ -147,7 +147,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
-    UnkStruct_ov115_0226527C unk_04;
+    CameraAngle unk_04;
     fx32 unk_0C;
     u16 unk_10;
     u16 unk_12;
@@ -1775,7 +1775,7 @@ static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         param0->unk_0C = 0x128000;
     }
 
-    sub_02020A50(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->unk_00);
 }
 
 static void ov69_0225DAEC (UnkStruct_ov69_0225DAEC * param0)
@@ -1830,7 +1830,7 @@ static BOOL ov69_0225DB2C (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         break;
     }
 
-    sub_02020A50(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->unk_00);
 
     return 0;
 }
@@ -2407,7 +2407,7 @@ static void ov69_0225E478 (UnkStruct_ov69_0225E478 * param0)
     ov69_0225E504(param0, 0, 0);
     ov69_0225E51C(param0, 0, 0);
 
-    param0->unk_0C = sub_0200DA3C(ov69_0225E534, param0, 0);
+    param0->unk_0C = CoreSys_ExecuteAfterVBlank(ov69_0225E534, param0, 0);
 }
 
 static void ov69_0225E4E8 (UnkStruct_ov69_0225E478 * param0)

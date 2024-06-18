@@ -16,7 +16,7 @@
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -42,7 +42,7 @@
 #include "overlay099/ov99_021D1A54.h"
 #include "overlay099/ov99_021D3E78.h"
 
-static const UnkStruct_ov115_0226527C Unk_ov99_021D46CC = {
+static const CameraAngle Unk_ov99_021D46CC = {
     ((0 * 0xffff) / 360),
     ((0 * 0xffff) / 360),
     ((0 * 0xffff) / 360)

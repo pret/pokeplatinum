@@ -45,7 +45,7 @@ UnkStruct_020393C8 * sub_020393C8 (u32 param0, u32 param1, int param2, int param
 
     v0 = (UnkStruct_020393C8 *)Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_020393C8));
 
-    v0->unk_18 = sub_0200DA3C(sub_02039428, v0, 5);
+    v0->unk_18 = CoreSys_ExecuteAfterVBlank(sub_02039428, v0, 5);
     v0->unk_0C = param2;
     v0->unk_0E = param3;
     v0->unk_00 = 0;

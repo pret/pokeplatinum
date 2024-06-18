@@ -1,3 +1,4 @@
+
 #include <nitro.h>
 #include <string.h>
 
@@ -19,7 +20,7 @@
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 #include "overlay117/struct_ov117_02261280.h"
 #include "overlay117/struct_ov117_02261C2C.h"
 #include "overlay117/struct_ov117_02261F08.h"
@@ -117,7 +118,7 @@ static void ov117_022626AC(UnkStruct_020203AC * param0);
 static u32 ov117_02261644(u32 param0, BOOL param1);
 static u32 ov117_02261668(u32 param0, BOOL param1);
 
-static const UnkStruct_ov115_0226527C Unk_ov117_02266918 = {
+static const CameraAngle Unk_ov117_02266918 = {
     0x0,
     0x0,
     0x0

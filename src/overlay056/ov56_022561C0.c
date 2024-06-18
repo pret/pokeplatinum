@@ -237,8 +237,8 @@ UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * fieldSystem)
     UnkStruct_ov56_02256468 * v0;
     SysTask * v1;
 
-    v1 = sub_0200679C(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
-    v0 = sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
+    v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
     v0->unk_14 = fieldSystem->unk_08;
@@ -276,7 +276,7 @@ void ov56_02256468 (UnkStruct_ov56_02256468 * param0)
         ov56_022564E4(v0);
 
         Heap_FreeToHeap(param0->unk_20);
-        sub_020067D0(param0->unk_2F8);
+        SysTask_FinishAndFreeParam(param0->unk_2F8);
     } else {
         GF_ASSERT(0);
     }

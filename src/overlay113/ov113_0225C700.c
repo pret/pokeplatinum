@@ -44,7 +44,7 @@
 #include "overlay113/struct_ov113_0225EB20.h"
 #include "overlay113/struct_ov113_022607EC.h"
 #include "overlay113/struct_ov113_02260818.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
@@ -187,7 +187,7 @@ static void ov113_0225E264(const Strbuf *param0, int param1, int * param2, int *
 static void ov113_0225E294(UnkStruct_ov113_0225DBCC * param0);
 static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC * param0, int param1);
 
-static const UnkStruct_ov115_0226527C Unk_ov113_022608B4 = {
+static const CameraAngle Unk_ov113_022608B4 = {
     0x0,
     0x0,
     0x0
@@ -1183,8 +1183,8 @@ static void ov113_0225D9FC (UnkStruct_ov113_0225DBCC * param0)
         fx32 v2, v3;
         fx32 v4, v5;
 
-        v1 = sub_02020A88(param0->unk_CC);
-        v2 = sub_02020A90(param0->unk_CC);
+        v1 = Camera_GetFOV(param0->unk_CC);
+        v2 = Camera_GetDistance(param0->unk_CC);
         v3 = FX32_ONE * 4 / 3;
 
         sub_0201E34C(v1, v2, v3, &v4, &v5);

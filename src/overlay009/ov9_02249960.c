@@ -38,7 +38,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay101/struct_ov101_021D86B0.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "narc.h"
@@ -289,9 +289,9 @@ typedef struct {
 
 typedef struct {
     UnkStruct_020203AC * unk_00;
-    UnkStruct_ov115_0226527C unk_04;
-    UnkStruct_ov115_0226527C unk_0C;
-    UnkStruct_ov115_0226527C unk_14;
+    CameraAngle unk_04;
+    CameraAngle unk_0C;
+    CameraAngle unk_14;
     UnkStruct_ov9_0224A0DC unk_1C;
     SysTask * unk_3C;
 } UnkStruct_ov9_02249F9C;
@@ -1546,7 +1546,7 @@ static void ov9_02249EDC (SysTask * param0, void * param1)
 static void ov9_02249EF0 (UnkStruct_ov9_02249B04 * param0)
 {
     GF_ASSERT(param0->unk_1EC4 == NULL);
-    param0->unk_1EC4 = sub_0200DA04(ov9_02249F3C, param0, 0x80);
+    param0->unk_1EC4 = CoreSys_ExecuteOnVBlank(ov9_02249F3C, param0, 0x80);
 }
 
 static void ov9_02249F18 (UnkStruct_ov9_02249B04 * param0)
@@ -1595,15 +1595,15 @@ static void ov9_02249F98 (UnkStruct_ov9_02249B04 * param0)
 
 void ov9_02249F9C (FieldSystem * fieldSystem)
 {
-    UnkStruct_ov115_0226527C v0;
+    CameraAngle v0;
     UnkStruct_ov9_02249B04 * v1 = fieldSystem->unk_04->unk_24;
     UnkStruct_ov9_02249F9C * v2 = &v1->unk_14;
 
-    v0.unk_00 = v2->unk_04.unk_00 + v2->unk_0C.unk_00;
-    v0.unk_02 = v2->unk_04.unk_02 + v2->unk_0C.unk_02;
-    v0.unk_04 = v2->unk_04.unk_04 + v2->unk_0C.unk_04;
+    v0.x = v2->unk_04.x + v2->unk_0C.x;
+    v0.y = v2->unk_04.y + v2->unk_0C.y;
+    v0.z = v2->unk_04.z + v2->unk_0C.z;
 
-    sub_020209D4(&v0, v2->unk_00);
+    Camera_SetAngle(&v0, v2->unk_00);
 }
 
 void ov9_02249FD0 (FieldSystem * fieldSystem)
@@ -1626,33 +1626,33 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     UnkStruct_ov9_02249F9C * v0 = &param0->unk_14;
 
     param0->fieldSystem->unk_20 = 1;
-    v0->unk_00 = param0->fieldSystem->unk_24;
+    v0->unk_00 = param0->fieldSystem->camera;
 
     {
         UnkStruct_ov9_02249FF4 v1 = {
             0x29aec1, {-0x29fe, 0, 0}, 0, 0x5c1, 0
         };
 
-        sub_02020A50(v1.unk_00, v0->unk_00);
-        sub_020209D4(&v1.unk_04, v0->unk_00);
-        sub_02020910(v1.unk_0E, v0->unk_00);
+        Camera_SetDistance(v1.unk_00, v0->unk_00);
+        Camera_SetAngle(&v1.cameraAngle, v0->unk_00);
+        Camera_SetFOV(v1.unk_0E, v0->unk_00);
         sub_02020854(v1.unk_0C, v0->unk_00);
     }
 
     sub_020206BC((FX32_ONE * 150), (FX32_ONE * 1700), v0->unk_00);
 
-    v0->unk_04.unk_00 = -0x29fe;
-    v0->unk_04.unk_02 = 0x0;
-    v0->unk_04.unk_04 = 0x0;
+    v0->unk_04.x = -0x29fe;
+    v0->unk_04.y = 0x0;
+    v0->unk_04.z = 0x0;
 
     if (ov9_02249D38(param0) == 1) {
         u16 v2, v3, v4;
 
         ov9_02249D24(param0, &v2, &v3, &v4);
 
-        v0->unk_14.unk_00 = ((v2) * 0x100);
-        v0->unk_14.unk_02 = ((v3) * 0x100);
-        v0->unk_14.unk_04 = ((v4) * 0x100);
+        v0->unk_14.x = ((v2) * 0x100);
+        v0->unk_14.y = ((v3) * 0x100);
+        v0->unk_14.z = ((v4) * 0x100);
         v0->unk_0C = v0->unk_14;
     }
 
@@ -1695,9 +1695,9 @@ static void ov9_0224A0DC (SysTask * param0, void * param1)
     v2->unk_08.x += v2->unk_14.x;
     v2->unk_08.y += v2->unk_14.y;
     v2->unk_08.z += v2->unk_14.z;
-    v1->unk_0C.unk_00 = ((v2->unk_08.x) / FX32_ONE);
-    v1->unk_0C.unk_02 = ((v2->unk_08.y) / FX32_ONE);
-    v1->unk_0C.unk_04 = ((v2->unk_08.z) / FX32_ONE);
+    v1->unk_0C.x = ((v2->unk_08.x) / FX32_ONE);
+    v1->unk_0C.y = ((v2->unk_08.y) / FX32_ONE);
+    v1->unk_0C.z = ((v2->unk_08.z) / FX32_ONE);
 }
 
 static BOOL ov9_0224A148 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0224A8A0 * param1)
@@ -1707,31 +1707,31 @@ static BOOL ov9_0224A148 (UnkStruct_ov9_02249B04 * param0, const UnkStruct_ov9_0
 
     ov9_02249D18(param0, param1->unk_0C, param1->unk_0E, param1->unk_10);
 
-    v0->unk_14.unk_00 = ((param1->unk_0C) * 0x100);
-    v0->unk_14.unk_02 = ((param1->unk_0E) * 0x100);
-    v0->unk_14.unk_04 = ((param1->unk_10) * 0x100);
+    v0->unk_14.x = ((param1->unk_0C) * 0x100);
+    v0->unk_14.y = ((param1->unk_0E) * 0x100);
+    v0->unk_14.z = ((param1->unk_10) * 0x100);
 
-    if ((v0->unk_0C.unk_00 == v0->unk_14.unk_00) && (v0->unk_0C.unk_02 == v0->unk_14.unk_02) && (v0->unk_0C.unk_04 == v0->unk_14.unk_04)) {
+    if ((v0->unk_0C.x == v0->unk_14.x) && (v0->unk_0C.y == v0->unk_14.y) && (v0->unk_0C.z == v0->unk_14.z)) {
         v1->unk_00 = 0;
         return 0;
     }
 
     v1->unk_00 = 1;
     v1->unk_04 = param1->unk_14;
-    v1->unk_08.x = (FX32_ONE * (v0->unk_0C.unk_00));
-    v1->unk_08.y = (FX32_ONE * (v0->unk_0C.unk_02));
-    v1->unk_08.z = (FX32_ONE * (v0->unk_0C.unk_04));
+    v1->unk_08.x = (FX32_ONE * (v0->unk_0C.x));
+    v1->unk_08.y = (FX32_ONE * (v0->unk_0C.y));
+    v1->unk_08.z = (FX32_ONE * (v0->unk_0C.z));
 
     {
         int v2;
 
-        v2 = ov9_02250EB0(v0->unk_0C.unk_00, v0->unk_14.unk_00);
+        v2 = ov9_02250EB0(v0->unk_0C.x, v0->unk_14.x);
         v1->unk_14.x = (FX32_ONE * (v2)) / param1->unk_14;
 
-        v2 = ov9_02250EB0(v0->unk_0C.unk_02, v0->unk_14.unk_02);
+        v2 = ov9_02250EB0(v0->unk_0C.y, v0->unk_14.y);
         v1->unk_14.y = (FX32_ONE * (v2)) / param1->unk_14;
 
-        v2 = ov9_02250EB0(v0->unk_0C.unk_04, v0->unk_14.unk_04);
+        v2 = ov9_02250EB0(v0->unk_0C.z, v0->unk_14.z);
         v1->unk_14.z = (FX32_ONE * (v2)) / param1->unk_14;
     }
 

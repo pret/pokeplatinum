@@ -459,7 +459,7 @@ void sub_0200F6D8 (UnkStruct_0200F600 * param0, void * param1, UnkFuncPtr_0200F6
     v0->unk_08 = param2;
     v0->unk_0C = param3;
 
-    sub_0200DA3C(sub_0200F728, v0, 1024);
+    CoreSys_ExecuteAfterVBlank(sub_0200F728, v0, 1024);
 }
 
 void sub_0200F704 (UnkStruct_0200F600 * param0, int param1, int param2)
@@ -469,7 +469,7 @@ void sub_0200F704 (UnkStruct_0200F600 * param0, int param1, int param2)
     v0->unk_00 = param0;
     v0->unk_04 = param1;
 
-    sub_0200DA3C(sub_0200F748, v0, 1024);
+    CoreSys_ExecuteAfterVBlank(sub_0200F748, v0, 1024);
 }
 
 static void sub_0200F728 (SysTask * param0, void * param1)
@@ -532,7 +532,7 @@ static void sub_0200F7A0 (SysTask * param0, void * param1)
 static void sub_0200F7B4 (UnkStruct_0200F7A0 * param0)
 {
     if ((param0->unk_28 == 0) && ((param0->unk_24 == 0x7fff) || (param0->unk_24 == 0x0)) && (param0->unk_2C == 0)) {
-        sub_0200DA3C(sub_0200F7A0, param0, 1024);
+        CoreSys_ExecuteAfterVBlank(sub_0200F7A0, param0, 1024);
     }
 }
 

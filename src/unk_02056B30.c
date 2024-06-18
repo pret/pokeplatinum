@@ -32,7 +32,7 @@
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021DD6FC.h"
-#include "overlay005/ov5_021EF3A8.h"
+#include "overlay005/hblank_system.h"
 
 typedef struct {
     int unk_00;
@@ -122,13 +122,13 @@ static BOOL sub_02056B70 (TaskManager * taskMan)
 
     switch (v1->unk_00) {
     case 0:
-        ov5_021EF3FC(fieldSystem->unk_04->unk_1C);
+        HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
         sub_0200F174(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->unk_1C);
         v1->unk_00++;
         break;
     case 1:
         if (ScreenWipe_Done()) {
-            ov5_021EF3DC(fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -631,8 +631,8 @@ static void sub_02057300 (FieldSystem * fieldSystem)
     v1.y = sub_02054FBC(fieldSystem, v1.y, v1.x, v1.z, NULL);
 
     sub_0205ECB8(fieldSystem->playerAvatar, &v1, v0);
-    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
-    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
+    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
+    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
 }
 
 static void sub_02057368 (FieldSystem * fieldSystem)
@@ -661,6 +661,6 @@ static void sub_02057368 (FieldSystem * fieldSystem)
     v3.y = sub_02054FBC(fieldSystem, v3.y, v3.x, v3.z, NULL);
 
     sub_0205ECB8(fieldSystem->playerAvatar, &v3, v2);
-    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
-    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->unk_24);
+    sub_02020A5C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
+    sub_02020690(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
 }

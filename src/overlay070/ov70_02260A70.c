@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "heap.h"
 #include "unk_02020020.h"
@@ -17,7 +17,7 @@ typedef struct UnkStruct_ov70_02260AD4_t {
     VecFx32 unk_08;
 } UnkStruct_ov70_02260AD4;
 
-static const UnkStruct_ov115_0226527C Unk_ov70_0226D904 = {
+static const CameraAngle Unk_ov70_0226D904 = {
     0xFFFFFFFFFFFFD602,
     0x0,
     0x0

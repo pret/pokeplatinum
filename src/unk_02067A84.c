@@ -439,7 +439,7 @@ static int sub_02068048 (SysTask * task)
 {
     UnkStruct_020EF6D0 * v0;
 
-    v0 = sub_0201CED0(task);
+    v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
@@ -447,7 +447,7 @@ static void sub_02068054 (SysTask * task)
 {
     UnkStruct_020EF6D0 * v0;
 
-    v0 = sub_0201CED0(task);
+    v0 = SysTask_GetParam(task);
 
     Heap_FreeToHeapExplicit(4, v0);
     SysTask_Done(task);

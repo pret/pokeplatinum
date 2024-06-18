@@ -103,7 +103,7 @@ int ov93_021D0D80 (OverlayManager * param0, int * param1)
     {
         VecFx32 v3 = {0, 0, 0};
 
-        sub_020206D0(&v3, Unk_ov93_021D14B8.unk_00, &Unk_ov93_021D14B8.unk_04, Unk_ov93_021D14B8.unk_0E, Unk_ov93_021D14B8.unk_0C, 0, v1->unk_00);
+        sub_020206D0(&v3, Unk_ov93_021D14B8.unk_00, &Unk_ov93_021D14B8.cameraAngle, Unk_ov93_021D14B8.unk_0E, Unk_ov93_021D14B8.unk_0C, 0, v1->unk_00);
         sub_020203D4(v1->unk_00);
     }
 

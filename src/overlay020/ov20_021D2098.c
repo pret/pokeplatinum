@@ -163,7 +163,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
 
 SysTask * ov20_021D2170 (SysTaskFunc param0, void * param1, int param2)
 {
-    return sub_0200DA04(param0, param1, param2);
+    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
 }
 
 static void ov20_021D2178 (SysTask * param0, void * param1)
@@ -259,7 +259,7 @@ BOOL ov20_021D2210 (UnkStruct_ov20_021D2128 * param0, int param1)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_08[v0] != NULL) {
-            UnkStruct_ov20_021D2238 * v1 = sub_0201CED0(param0->unk_08[v0]);
+            UnkStruct_ov20_021D2238 * v1 = SysTask_GetParam(param0->unk_08[v0]);
 
             if (v1->unk_0C == param1) {
                 return 0;

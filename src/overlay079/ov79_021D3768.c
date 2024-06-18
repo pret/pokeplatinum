@@ -6,7 +6,7 @@
 #include "struct_defs/archived_sprite.h"
 #include "overlay079/struct_ov79_021D3820.h"
 #include "overlay079/struct_ov79_021D38D0.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_0200762C.h"
 #include "gx_layers.h"
@@ -68,7 +68,7 @@ void ov79_021D385C (UnkStruct_ov79_021D3820 * param0)
 static void ov79_021D3870 (UnkStruct_ov79_021D3820 * param0, int param1)
 {
     VecFx32 v0 = {0, 0, 0x10000};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0};
+    CameraAngle v1 = {0, 0, 0};
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 

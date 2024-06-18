@@ -977,8 +977,8 @@ static void ov22_02256C48 (UnkStruct_ov22_02255D44 * param0, BOOL * param1)
     SysTask * v0;
     UnkStruct_ov22_02256C48 * v1;
 
-    v0 = sub_0200679C(ov22_02256C70, sizeof(UnkStruct_ov22_02256C48), 10, 13);
-    v1 = sub_0201CED0(v0);
+    v0 = SysTask_StartAndAllocateParam(ov22_02256C70, sizeof(UnkStruct_ov22_02256C48), 10, 13);
+    v1 = SysTask_GetParam(v0);
     v1->unk_00 = param0;
     v1->unk_04 = param1;
     v1->unk_08 = 0;
@@ -1048,7 +1048,7 @@ static void ov22_02256C70 (SysTask * param0, void * param1)
         break;
     case 9:
         *v0->unk_04 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     default:
         break;
@@ -1060,8 +1060,8 @@ static void ov22_02256DB8 (UnkStruct_ov22_02255D44 * param0, BOOL * param1)
     SysTask * v0;
     UnkStruct_ov22_02256C48 * v1;
 
-    v0 = sub_0200679C(ov22_02256DE0, sizeof(UnkStruct_ov22_02256C48), 10, 13);
-    v1 = sub_0201CED0(v0);
+    v0 = SysTask_StartAndAllocateParam(ov22_02256DE0, sizeof(UnkStruct_ov22_02256C48), 10, 13);
+    v1 = SysTask_GetParam(v0);
 
     v1->unk_00 = param0;
     v1->unk_04 = param1;
@@ -1134,7 +1134,7 @@ static void ov22_02256DE0 (SysTask * param0, void * param1)
         break;
     case 9:
         *v0->unk_04 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     default:
         break;
