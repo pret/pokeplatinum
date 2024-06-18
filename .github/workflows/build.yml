@@ -12,27 +12,18 @@ env:
   CALCROM_WEBHOOK_URL: "${{ secrets.WEBHOOKURL }}"
 
 jobs:
-  build:
-    if: ${{ needs.changes.outputs.rom == 'true' || needs.changes.outputs.tools == 'true' || needs.changes.outputs.actions == 'true' }}
+  changes:
     runs-on: ubuntu-22.04
-
+    permissions:
+      pull-requests: read
+    outputs:
+      rom: ${{ steps.filter.outputs.rom }}
+      tools: ${{ steps.filter.outputs.tools }}
+      docs: ${{ steps.filter.outputs.docs }}
+      actions: ${{ steps.filter.outputs.actions }}
     steps:
-      - name: Install Software
-        run: |
-          sudo mkdir -pm755 /etc/apt/keyrings
-          sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
-          sudo dpkg --add-architecture i386
-          sudo apt-get update -y
-          sudo apt-get install -y --install-recommends python3-pip ninja-build winehq-stable binutils-arm-none-eabi
-          pip install --user meson pyelftools
-
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-
-      - name: Determine Changed Files
+      - uses: dorny/paths-filter@v3
         id: filter
-        uses: dorny/paths-filter@v3
         with:
           filters: |
             rom:
@@ -52,16 +43,33 @@ jobs:
             actions:
               - '.github/**'
 
+  build:
+    needs: changes
+    if: ${{ needs.changes.outputs.rom == 'true' || needs.changes.outputs.tools == 'true' || needs.changes.outputs.actions == 'true' }}
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Install Software
+        run: |
+          sudo mkdir -pm755 /etc/apt/keyrings
+          sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -y
+          sudo apt-get install -y --install-recommends python3-pip ninja-build winehq-stable binutils-arm-none-eabi
+          pip install --user meson pyelftools
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
       - name: Configure Repo
-        if: ${{ steps.filter.outputs.rom == 'true' || steps.filter.outputs.tools == 'true' || steps.filter.outputs.actions == 'true' }}
         run: ./config.sh /var/tmp/pokeplatinum
 
       - name: Build Repo
-        if: ${{ steps.filter.outputs.rom == 'true' || steps.filter.outputs.tools == 'true' || steps.filter.outputs.actions == 'true' }}
         run: meson test -C /var/tmp/pokeplatinum
 
       - name: Webhook
-        if: ${{ github.event_name == 'push' && (steps.filter.outputs.rom == 'true' || steps.filter.outputs.tools == 'true' || steps.filter.outputs.actions == 'true') }}
+        if: ${{ github.event_name == 'push' }}
         env:
           arm9name: /var/tmp/pokeplatinum/
         run: |
@@ -82,21 +90,21 @@ jobs:
           retention-days: 1
 
       - name: Checkout xMAP
-        if: ${{ github.event_name == 'push' && (steps.filter.outputs.rom == 'true' || steps.filter.outputs.tools == 'true' || steps.filter.outputs.actions == 'true') }}
+        if: ${{ github.event_name == 'push' }}
         uses: actions/checkout@v4
         with:
           path: 'xmap'
           ref: 'xmap'
 
       - name: Move xMAP
-        if: ${{ github.event_name == 'push' && (steps.filter.outputs.rom == 'true' || steps.filter.outputs.tools == 'true' || steps.filter.outputs.actions == 'true') }}
+        if: ${{ github.event_name == 'push' }}
         run: |
           mkdir -p xmap
           cp /var/tmp/pokeplatinum/*.xMAP xmap/platinumus.xMAP
           echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
 
       - name: Update xMAP
-        if: ${{ github.event_name == 'push' && (steps.filter.outputs.rom == 'true' || steps.filter.outputs.tools == 'true' || steps.filter.outputs.actions == 'true') }}
+        if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
         with:
           cwd: "./xmap"
