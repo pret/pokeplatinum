@@ -196,7 +196,7 @@ static BOOL ov48_0225621C (UnkStruct_ov48_0225621C * param0, PoketchSystem * par
     param0->unk_AC = param1;
     param0->unk_04.unk_08 = ov48_02256408(param0);
 
-    inline_ov47_0225621C(PoketchSystem_FieldSystem(param0->unk_AC), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
+    inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->unk_AC), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
 
     ov48_022564E0(param0, param1);
 
@@ -312,7 +312,7 @@ static BOOL ov48_022563D0 (UnkStruct_ov48_0225621C * param0)
 
 static int ov48_02256408 (UnkStruct_ov48_0225621C * param0)
 {
-    UnkStruct_02027854 * v0 = sub_02027854(PoketchSystem_SaveData(param0->unk_AC));
+    UnkStruct_02027854 * v0 = sub_02027854(PoketchSystem_GetSaveData(param0->unk_AC));
     int v1, v2;
 
     for (v1 = 0, v2 = 0; v1 < (NELEMS(Unk_ov48_02256A38)); v1++) {
@@ -340,7 +340,7 @@ static BOOL ov48_02256478 (UnkStruct_ov48_0225621C * param0)
     if (ov25_02254534(param0->unk_AC)) {
         int v1, v2;
 
-        inline_ov47_0225621C(PoketchSystem_FieldSystem(param0->unk_AC), &v1, &v2);
+        inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->unk_AC), &v1, &v2);
 
         if ((v1 != param0->unk_04.unk_00) || (v2 != param0->unk_04.unk_04)) {
             param0->unk_04.unk_00 = v1;
@@ -354,7 +354,7 @@ static BOOL ov48_02256478 (UnkStruct_ov48_0225621C * param0)
 
 static void ov48_022564E0 (UnkStruct_ov48_0225621C * param0, PoketchSystem * param1)
 {
-    VarsFlags * v0 = SaveData_GetVarsFlags(PoketchSystem_SaveData(param1));
+    VarsFlags * v0 = SaveData_GetVarsFlags(PoketchSystem_GetSaveData(param1));
     int v1;
 
     for (v1 = 0; v1 < 4; v1++) {

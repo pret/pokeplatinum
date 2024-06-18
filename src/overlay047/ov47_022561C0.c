@@ -76,7 +76,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, PoketchSystem * par
 {
     int v0;
 
-    param0->unk_78 = PoketchSystem_PoketchData(param1);
+    param0->unk_78 = PoketchSystem_GetPoketchData(param1);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_04.unk_0C[v0].unk_03 = 1;
@@ -95,7 +95,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, PoketchSystem * par
     param0->unk_04.unk_08 = 0;
 
     {
-        VarsFlags * v1 = SaveData_GetVarsFlags(PoketchSystem_SaveData(param1));
+        VarsFlags * v1 = SaveData_GetVarsFlags(PoketchSystem_GetSaveData(param1));
 
         for (v0 = 0; v0 < 4; v0++) {
             param0->unk_04.unk_2C[v0] = sub_0206B1F0(v1, v0);
@@ -103,7 +103,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, PoketchSystem * par
     }
 
     {
-        UnkStruct_0202D7B0 * v2 = sub_0202D834(PoketchSystem_SaveData(param1));
+        UnkStruct_0202D7B0 * v2 = sub_0202D834(PoketchSystem_GetSaveData(param1));
 
         for (v0 = 0; v0 < 6; v0++) {
             param0->unk_7C[v0] = sub_0202D924(v2, v0);
@@ -112,7 +112,7 @@ static BOOL ov47_0225621C (UnkStruct_ov47_0225621C * param0, PoketchSystem * par
         }
     }
 
-    inline_ov47_0225621C(PoketchSystem_FieldSystem(param1), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
+    inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param1), &(param0->unk_04.unk_00), &(param0->unk_04.unk_04));
 
     if (ov47_02256634(&(param0->unk_70), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -302,7 +302,7 @@ static BOOL ov47_02256584 (UnkStruct_ov47_0225621C * param0)
     if (ov25_02254534(param0->unk_74)) {
         int v1, v2;
 
-        inline_ov47_0225621C(PoketchSystem_FieldSystem(param0->unk_74), &v1, &v2);
+        inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->unk_74), &v1, &v2);
 
         if ((v1 != param0->unk_04.unk_00) || (v2 != param0->unk_04.unk_04)) {
             param0->unk_04.unk_00 = v1;
