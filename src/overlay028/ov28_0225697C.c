@@ -43,7 +43,7 @@ static void ov28_02256D90(BGL * param0, const UnkStruct_ov28_0225697C_1 * param1
 static void ov28_02256DCC(BGL * param0);
 static void ov28_02256DF0(SysTask * param0, void * param1);
 static void ov28_02256E0C(BGL * param0, const u16 * param1);
-struct PoketchSystem * FieldSystem_PoketchSystem(void);
+struct PoketchSystem * FieldSystem_GetPoketchSystem(void);
 
 static const u16 Unk_ov28_022578F8[32] = {
     0xFB,

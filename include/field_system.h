@@ -15,7 +15,7 @@ BOOL sub_0203CD74(FieldSystem * fieldSystem);
 void sub_0203CD84(FieldSystem * fieldSystem, const OverlayManagerTemplate * param1, void * param2);
 void sub_0203D128(void);
 void sub_0203D140(void);
-PoketchSystem * FieldSystem_PoketchSystem(void);
+PoketchSystem * FieldSystem_GetPoketchSystem(void);
 BGL * sub_0203D170(void * param0);
 SaveData * FieldSystem_SaveData(void * param0);
 

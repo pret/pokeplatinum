@@ -87,7 +87,7 @@ static void ov25_02254F40(UnkStruct_ov25_02254DD8 * param0);
 static void ov25_02254F68(SysTask * param0, void * param1);
 static void ov25_02255004(SysTask * param0, void * param1);
 static void ov25_02255064(SysTask * param0, void * param1);
-struct PoketchSystem * sub_0203D158(void);
+struct PoketchSystem * FieldSystem_GetPoketchSystem(void);
 SysTask * CoreSys_ExecuteAfterVBlank(SysTaskFunc param0, void * param1, u32 param2);
 
 BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem * param3)

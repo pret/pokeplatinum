@@ -116,7 +116,7 @@ static const struct {
 
 static PoketchSystem* PoketchSystem_GetFromFieldSystem(void)
 {
-    return FieldSystem_PoketchSystem();
+    return FieldSystem_GetPoketchSystem();
 }
 
 

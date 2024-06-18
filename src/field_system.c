@@ -315,7 +315,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
                 {
                     BOOL v3 = 0;
-                    PoketchSystem * v4 = sub_0203D158();
+                    PoketchSystem * v4 = FieldSystem_GetPoketchSystem();
 
                     if (v4 != NULL) {
                         v3 = PoketchSystem_IsTapped(v4);
@@ -341,7 +341,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
                 {
                     BOOL v5 = 0;
-                    PoketchSystem * v6 = sub_0203D158();
+                    PoketchSystem * v6 = FieldSystem_GetPoketchSystem();
 
                     if (v6 != NULL) {
                         v5 = PoketchSystem_IsTapped(v6);
@@ -367,7 +367,7 @@ void sub_0203D140 (void)
     CommSys_EnableSendMovementData();
 }
 
-struct PoketchSystem * sub_0203D158 (void)
+struct PoketchSystem * FieldSystem_GetPoketchSystem (void)
 {
     if (sFieldSystem->unk_04 == NULL) {
         return NULL;
