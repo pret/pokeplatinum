@@ -29,7 +29,7 @@
 #include "overlay006/ov6_022430C4.h"
 
 #include "constants/battle.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 
 typedef struct {
     int unk_00;

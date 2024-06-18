@@ -1,4 +1,5 @@
     .include "macros/movement.inc"
+    .include "consts/sdat.inc"
 
     .option alignment off
 

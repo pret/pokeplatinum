@@ -8,7 +8,7 @@
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
 
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 
 #include "unk_02005474.h"
 #include "string_template.h"
