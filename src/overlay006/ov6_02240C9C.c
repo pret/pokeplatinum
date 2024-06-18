@@ -990,7 +990,7 @@ static u8 ov6_022419EC (const int fishingRodType)
     v0 = inline_020564D0(100);
 
     switch (fishingRodType) {
-    case 0:
+    case FISHING_TYPE_OLD_ROD:
         if (v0 < 60) {
             v1 = 0;
         } else if (v0 < 90) {
@@ -1003,7 +1003,7 @@ static u8 ov6_022419EC (const int fishingRodType)
             v1 = 4;
         }
         break;
-    case 1:
+    case FISHING_TYPE_GOOD_ROD:
         if (v0 < 40) {
             v1 = 0;
         } else if (v0 < 80) {
@@ -1016,7 +1016,7 @@ static u8 ov6_022419EC (const int fishingRodType)
             v1 = 4;
         }
         break;
-    case 2:
+    case FISHING_TYPE_SUPER_ROD:
         if (v0 < 40) {
             v1 = 0;
         } else if (v0 < 80) {
@@ -1444,11 +1444,11 @@ static int ov6_02242164 (FieldSystem * fieldSystem, const int fishingRodType)
     WildEncounters * encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
 
     switch (fishingRodType) {
-    case 0:
+    case FISHING_TYPE_OLD_ROD:
         return encounterData->oldRodEncounters.encounterRate;
-    case 1:
+    case FISHING_TYPE_GOOD_ROD:
         return encounterData->goodRodEncounters.encounterRate;
-    case 2:
+    case FISHING_TYPE_SUPER_ROD:
         return encounterData->superRodEncounters.encounterRate;
     default:
         GF_ASSERT(FALSE);
