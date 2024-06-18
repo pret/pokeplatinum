@@ -3,6 +3,6 @@
 
 #include <nitro/gx.h>
 
-extern GXBufferMode Unk_02100844;
+extern GXBufferMode sBufferMode;
 
 #endif

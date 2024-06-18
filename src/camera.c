@@ -14,34 +14,28 @@
 #define CAMERA_DEFAULT_NEAR_CLIP        (FX32_ONE * 150)
 #define CAMERA_DEFAULT_FAR_CLIP         (FX32_ONE * 900)
 
-GXBufferMode Unk_02100844 = GX_BUFFERMODE_W;
+GXBufferMode sBufferMode = GX_BUFFERMODE_W;
 
 static Camera *sActiveCamera = NULL;
 
-static void sub_02020020 (Camera * param0)
+static void Camera_AdjustPositionAroundTarget(Camera *camera)
 {
-    u16 v0;
+    u16 angleX = -camera->angle.x;
+    camera->lookAt.position.x = FX_Mul(FX_Mul(FX_SinIdx(camera->angle.y), camera->distance), FX_CosIdx(camera->angle.x));
+    camera->lookAt.position.z = FX_Mul(FX_Mul(FX_CosIdx(camera->angle.y), camera->distance), FX_CosIdx(camera->angle.x));
+    camera->lookAt.position.y = FX_Mul(FX_SinIdx(angleX), camera->distance);
 
-    v0 = -param0->angle.x;
-
-    param0->lookAt.position.x = FX_Mul(FX_Mul(FX_SinIdx(param0->angle.y), param0->distance), FX_CosIdx(param0->angle.x));
-    param0->lookAt.position.z = FX_Mul(FX_Mul(FX_CosIdx(param0->angle.y), param0->distance), FX_CosIdx(param0->angle.x));
-    param0->lookAt.position.y = FX_Mul(FX_SinIdx(v0), param0->distance);
-
-    VEC_Add(&param0->lookAt.position, &param0->lookAt.target, &param0->lookAt.position);
+    VEC_Add(&camera->lookAt.position, &camera->lookAt.target, &camera->lookAt.position);
 }
 
-static void sub_02020100 (Camera * param0)
+static void Camera_AdjustTargetFromAngle(Camera *camera)
 {
-    u16 v0;
+    u16 angleX = -camera->angle.x;
+    camera->lookAt.target.x = -FX_Mul(FX_Mul(FX_SinIdx(camera->angle.y), camera->distance), FX_CosIdx(camera->angle.x));
+    camera->lookAt.target.z = -FX_Mul(FX_Mul(FX_CosIdx(camera->angle.y), camera->distance), FX_CosIdx(camera->angle.x));
+    camera->lookAt.target.y = -FX_Mul(FX_SinIdx(angleX), camera->distance);
 
-    v0 = -param0->angle.x;
-
-    param0->lookAt.target.x = -FX_Mul(FX_Mul(FX_SinIdx(param0->angle.y), param0->distance), FX_CosIdx(param0->angle.x));
-    param0->lookAt.target.z = -FX_Mul(FX_Mul(FX_CosIdx(param0->angle.y), param0->distance), FX_CosIdx(param0->angle.x));
-    param0->lookAt.target.y = -FX_Mul(FX_SinIdx(v0), param0->distance);
-
-    VEC_Add(&param0->lookAt.target, &param0->lookAt.position, &param0->lookAt.target);
+    VEC_Add(&camera->lookAt.target, &camera->lookAt.position, &camera->lookAt.target);
 }
 
 static void Camera_Init(const u16 fovY, Camera *camera)
@@ -296,7 +290,7 @@ void Camera_InitWithTarget(const VecFx32 *target, const fx32 distance, const Cam
     camera->distance = distance;
     camera->angle = *angle;
 
-    sub_02020020(camera);
+    Camera_AdjustPositionAroundTarget(camera);
     Camera_ComputeProjectionMatrix(projection, camera);
 
     if (trackTarget) {
@@ -316,7 +310,7 @@ void Camera_InitWithPosition(const VecFx32 *position, const fx32 distance, const
     camera->distance = distance;
     camera->angle = *angle;
 
-    sub_02020100(camera);
+    Camera_AdjustTargetFromAngle(camera);
     Camera_ComputeProjectionMatrix(projection, camera);
 }
 
@@ -382,7 +376,7 @@ void Camera_ComputeProjectionMatrix(const u8 projection, Camera *camera)
         );
 
         camera->projection = CAMERA_PROJECTION_PERSPECTIVE;
-        Unk_02100844 = GX_BUFFERMODE_Z;
+        sBufferMode = GX_BUFFERMODE_Z;
     } else {
         fx32 top = FX_Mul(FX_Div(camera->perspective.sinFovY, camera->perspective.cosFovY), camera->distance);
         fx32 right = FX_Mul(top, camera->perspective.aspectRatio);
@@ -390,7 +384,7 @@ void Camera_ComputeProjectionMatrix(const u8 projection, Camera *camera)
         NNS_G3dGlbOrtho(top, -top, -right, right, camera->perspective.nearClip, camera->perspective.farClip);
 
         camera->projection = CAMERA_PROJECTION_ORTHOGRAPHIC;
-        Unk_02100844 = GX_BUFFERMODE_Z;
+        sBufferMode = GX_BUFFERMODE_Z;
     }
 }
 
@@ -403,7 +397,7 @@ void Camera_SetFOV(const u16 fovY, Camera *camera)
     Camera_ComputeProjectionMatrix(camera->projection, camera);
 }
 
-void Camera_IncreaseFOV(const u16 amount, Camera *camera)
+void Camera_AdjustFOV(const u16 amount, Camera *camera)
 {
     camera->fovY += amount;
     camera->perspective.sinFovY = FX_SinIdx(camera->fovY);
@@ -418,85 +412,85 @@ void Camera_Move(const VecFx32 *delta, Camera *camera)
     VEC_Add(&camera->lookAt.target, delta, &camera->lookAt.target);
 }
 
-void sub_020209B0 (const CameraAngle * cameraAngle, Camera * param1)
+void Camera_SetAngleAroundSelf(const CameraAngle *angle, Camera *camera)
 {
-    param1->angle = *cameraAngle;
-    sub_02020100(param1);
+    camera->angle = *angle;
+    Camera_AdjustTargetFromAngle(camera);
 }
 
-void Camera_SetAngle (const CameraAngle * angle, Camera * param1)
+void Camera_SetAngleAroundTarget(const CameraAngle *angle, Camera *camera)
 {
-    param1->angle = *angle;
-    sub_02020020(param1);
+    camera->angle = *angle;
+    Camera_AdjustPositionAroundTarget(camera);
 }
 
-void sub_020209F8 (const CameraAngle * cameraAngle, Camera * param1)
+void Camera_AdjustAngleAroundSelf(const CameraAngle *amount, Camera *camera)
 {
-    param1->angle.x += cameraAngle->x;
-    param1->angle.y += cameraAngle->y;
-    param1->angle.z += cameraAngle->z;
+    camera->angle.x += amount->x;
+    camera->angle.y += amount->y;
+    camera->angle.z += amount->z;
 
-    sub_02020100(param1);
+    Camera_AdjustTargetFromAngle(camera);
 }
 
-void sub_02020A24 (const CameraAngle * cameraAngle, Camera * param1)
+void Camera_AdjustAngleAroundTarget(const CameraAngle *amount, Camera *camera)
 {
-    param1->angle.x += cameraAngle->x;
-    param1->angle.y += cameraAngle->y;
-    param1->angle.z += cameraAngle->z;
+    camera->angle.x += amount->x;
+    camera->angle.y += amount->y;
+    camera->angle.z += amount->z;
 
-    sub_02020020(param1);
+    Camera_AdjustPositionAroundTarget(camera);
 }
 
 void Camera_SetDistance(const fx32 distance, Camera *camera)
 {
     camera->distance = distance;
-    sub_02020020(camera);
+    Camera_AdjustPositionAroundTarget(camera);
 }
 
-void sub_02020A5C (const VecFx32 * param0, Camera * param1)
+void Camera_SetTargetAndUpdatePosition(const VecFx32 *target, Camera *camera)
 {
-    param1->lookAt.target = (*param0);
-    sub_02020020(param1);
+    camera->lookAt.target = *target;
+    Camera_AdjustPositionAroundTarget(camera);
 }
 
-void Camera_IncreaseDistance(const fx32 amount, Camera *camera)
+void Camera_AdjustDistance(const fx32 amount, Camera *camera)
 {
     camera->distance += amount;
-    sub_02020020(camera);
+    Camera_AdjustPositionAroundTarget(camera);
 }
 
-u16 Camera_GetFOV (Camera const * param0)
+u16 Camera_GetFOV(Camera const *camera)
 {
-    return param0->fovY;
+    return camera->fovY;
 }
 
-fx32 Camera_GetDistance (Camera const * param0)
+fx32 Camera_GetDistance(Camera const *camera)
 {
-    return param0->distance;
+    return camera->distance;
 }
 
-CameraAngle sub_02020A94 (Camera const * param0)
+CameraAngle Camera_GetAngle(Camera const *camera)
 {
-    return param0->angle;
+    return camera->angle;
 }
 
-VecFx32 sub_02020AAC (Camera const * param0)
+VecFx32 Camera_GetTarget(Camera const *camera)
 {
-    return param0->lookAt.target;
+    return camera->lookAt.target;
 }
 
-VecFx32 sub_02020ABC (Camera const * param0)
+VecFx32 Camera_GetPosition(Camera const *camera)
 {
-    return param0->lookAt.position;
+    return camera->lookAt.position;
 }
 
-void sub_02020ACC (const VecFx32 * param0, Camera * param1)
+void Camera_SetTarget(const VecFx32 *target, Camera *camera)
 {
-    param1->lookAt.target = *param0;
+    camera->lookAt.target = *target;
 }
 
-void sub_02020ADC (const VecFx32 * param0, Camera * param1)
+void Camera_SetPosition(const VecFx32 *position, Camera *camera)
 {
-    param1->lookAt.position = *param0;
+    camera->lookAt.position = *position;
 }

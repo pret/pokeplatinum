@@ -817,17 +817,17 @@ static void ov77_021D1984 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
     }
 
     if (param1->unk_210 >= 250) {
-        v1 = sub_02020A94(param1->unk_A8);
+        v1 = Camera_GetAngle(param1->unk_A8);
         v1.x = param1->unk_218;
 
-        Camera_SetAngle(&v1, param1->unk_A8);
+        Camera_SetAngleAroundTarget(&v1, param1->unk_A8);
 
         param1->unk_218 += param1->unk_214;
 
         if (param1->unk_218 < ((0x10000 - 0x3fef))) {
             param1->unk_218 = (0x10000 - 0x3fef);
 
-            Camera_IncreaseFOV(-(param1->unk_220 >> 8), param1->unk_A8);
+            Camera_AdjustFOV(-(param1->unk_220 >> 8), param1->unk_A8);
             param1->unk_220 -= 0x280;
 
             if (param1->unk_220 < (16 << 8)) {
@@ -1109,8 +1109,8 @@ static BOOL ov77_021D1DF0 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
     case 9:
     {
         ov77_021D1C10(param0);
-        sub_02020ACC(&param0->unk_23C, param0->unk_04.unk_A4);
-        sub_02020ADC(&param0->unk_248, param0->unk_04.unk_A4);
+        Camera_SetTarget(&param0->unk_23C, param0->unk_04.unk_A4);
+        Camera_SetPosition(&param0->unk_248, param0->unk_04.unk_A4);
 
         param0->unk_2A4++;
 
@@ -1151,8 +1151,8 @@ static BOOL ov77_021D20E4 (UnkStruct_ov77_021D1568 * param0, BGL * param1, int p
 
     switch (param0->unk_00) {
     case 0:
-        sub_02020ACC(&param0->unk_27C, param0->unk_04.unk_A4);
-        sub_02020ADC(&param0->unk_264, param0->unk_04.unk_A4);
+        Camera_SetTarget(&param0->unk_27C, param0->unk_04.unk_A4);
+        Camera_SetPosition(&param0->unk_264, param0->unk_04.unk_A4);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);

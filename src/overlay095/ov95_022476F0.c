@@ -229,17 +229,17 @@ BOOL ov95_022479DC (UnkStruct_ov95_02247958 * param0)
 
 void ov95_02247A90 (UnkStruct_ov95_0224773C * param0, VecFx32 * param1)
 {
-    *param1 = sub_02020ABC(param0->unk_00);
+    *param1 = Camera_GetPosition(param0->unk_00);
 }
 
 void ov95_02247AB0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    Camera_SetAngle(cameraAngle, param0->unk_00);
+    Camera_SetAngleAroundTarget(cameraAngle, param0->unk_00);
 }
 
 void ov95_02247AC0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    sub_020209F8(cameraAngle, param0->unk_00);
+    Camera_AdjustAngleAroundSelf(cameraAngle, param0->unk_00);
 }
 
 void ov95_02247AD0 (UnkStruct_ov95_0224773C * param0, u8 param1)

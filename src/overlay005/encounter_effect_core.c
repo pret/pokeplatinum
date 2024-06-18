@@ -2421,7 +2421,7 @@ static void EncounterEffect_SetLegendaryEncounterCamera(FieldSystem *fieldSystem
     angle.y = param->angleY;
     angle.z = 0;
     
-    Camera_SetAngle(&angle, fieldSystem->camera);
+    Camera_SetAngleAroundTarget(&angle, fieldSystem->camera);
 }
 
 void EncounterEffect_Mythical(SysTask *task, void *param)

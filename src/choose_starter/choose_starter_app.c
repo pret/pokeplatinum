@@ -1430,7 +1430,7 @@ static void ov78_021D219C (SysTask * param0, void * param1)
     v2.y = (((0 * 0xffff) / 360));
     v2.z = (((0 * 0xffff) / 360));
 
-    Camera_SetAngle(&v2, v0->unk_30);
+    Camera_SetAngleAroundTarget(&v2, v0->unk_30);
     Camera_SetDistance(v0->unk_10.unk_00, v0->unk_30);
 
     v0->unk_34->z = v0->unk_20.unk_00;

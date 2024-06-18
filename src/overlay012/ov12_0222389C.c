@@ -110,14 +110,14 @@ void ov12_022238E0 (UnkSPLStruct6 * param0)
         switch (v2) {
         case 2:
         default:
-            v11 = sub_02020A94(v12);
-            Camera_SetAngle(&v11, v12);
+            v11 = Camera_GetAngle(v12);
+            Camera_SetAngleAroundTarget(&v11, v12);
             break;
         case 3:
-            v11 = sub_02020A94(v12);
+            v11 = Camera_GetAngle(v12);
             v11.x += 65536 / 2;
             v11.y += 65536 / 2;
-            Camera_SetAngle(&v11, v12);
+            Camera_SetAngleAroundTarget(&v11, v12);
             break;
         }
     }

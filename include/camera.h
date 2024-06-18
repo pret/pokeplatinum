@@ -11,13 +11,13 @@ enum CameraProjection {
     CAMERA_PROJECTION_ORTHOGRAPHIC,
 };
 
-typedef struct {
+typedef struct CameraLookAt {
     VecFx32 position;
     VecFx32 target;
     VecFx32 up;
 } CameraLookAt;
 
-typedef struct {
+typedef struct CameraPerspectiveProjection {
     fx32 sinFovY;
     fx32 cosFovY;
     fx32 aspectRatio;
@@ -70,21 +70,21 @@ void Camera_InitWithPosition(const VecFx32 * param0, const fx32 param1, const Ca
 void Camera_InitWithTargetAndPosition(const VecFx32 * param0, const VecFx32 * param1, const u16 param2, const u8 param3, const BOOL param4, Camera *camera);
 void Camera_ComputeProjectionMatrix(const u8 projection, Camera *camera);
 void Camera_SetFOV(const u16 fovY, Camera *camera);
-void Camera_IncreaseFOV(const u16 amount, Camera *camera);
+void Camera_AdjustFOV(const u16 amount, Camera *camera);
 void Camera_Move(const VecFx32 *delta, Camera *camera);
-void sub_020209B0(const CameraAngle * cameraAngle, Camera *camera);
-void Camera_SetAngle(const CameraAngle * cameraAngle, Camera *camera);
-void sub_020209F8(const CameraAngle * cameraAngle, Camera *camera);
-void sub_02020A24(const CameraAngle * cameraAngle, Camera *camera);
+void Camera_SetAngleAroundSelf(const CameraAngle * cameraAngle, Camera *camera);
+void Camera_SetAngleAroundTarget(const CameraAngle * cameraAngle, Camera *camera);
+void Camera_AdjustAngleAroundSelf(const CameraAngle * cameraAngle, Camera *camera);
+void Camera_AdjustAngleAroundTarget(const CameraAngle * cameraAngle, Camera *camera);
 void Camera_SetDistance(const fx32 distance, Camera *camera);
-void sub_02020A5C(const VecFx32 * param0, Camera *camera);
-void Camera_IncreaseDistance(const fx32 amount, Camera *camera);
+void Camera_SetTargetAndUpdatePosition(const VecFx32 * param0, Camera *camera);
+void Camera_AdjustDistance(const fx32 amount, Camera *camera);
 u16 Camera_GetFOV(Camera const * param0);
 fx32 Camera_GetDistance(Camera const * param0);
-CameraAngle sub_02020A94(Camera const * param0);
-VecFx32 sub_02020AAC(Camera const * param0);
-VecFx32 sub_02020ABC(Camera const * param0);
-void sub_02020ACC(const VecFx32 * param0, Camera *camera);
-void sub_02020ADC(const VecFx32 * param0, Camera *camera);
+CameraAngle Camera_GetAngle(Camera const * param0);
+VecFx32 Camera_GetTarget(Camera const * param0);
+VecFx32 Camera_GetPosition(Camera const * param0);
+void Camera_SetTarget(const VecFx32 * param0, Camera *camera);
+void Camera_SetPosition(const VecFx32 * param0, Camera *camera);
 
 #endif // POKEPLATINUM_CAMERA_H

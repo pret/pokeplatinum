@@ -899,11 +899,11 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v1.x = 0x2280ef;
     v1.y = 0xca424;
     v1.z = 0x268c50;
-    sub_02020ACC(&v1, fieldSystem->camera);
+    Camera_SetTarget(&v1, fieldSystem->camera);
     v2.x = 0x22a2;
     v2.y = 0xf800;
     v2.z = 0;
-    Camera_SetAngle(&v2, fieldSystem->camera);
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
 
     Camera_SetClipping(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
 #elif (GAME_VERSION == 11)
@@ -912,11 +912,11 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v1.x = 0x1bffbd;
     v1.y = 0xaa361;
     v1.z = 0x25dfdc;
-    sub_02020ACC(&v1, fieldSystem->camera);
+    Camera_SetTarget(&v1, fieldSystem->camera);
     v2.unk_00 = 0x19a3;
     v2.unk_02 = 0x90c;
     v2.unk_04 = 0;
-    Camera_SetAngle(&v2, fieldSystem->camera);
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
 
     Camera_SetClipping(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->camera);
 #endif
@@ -924,7 +924,7 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->camera);
+    v1 = Camera_GetTarget(fieldSystem->camera);
 
     ov6_02240A18(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240AEC(v0->unk_08, v1.x, v1.y, v1.z);
@@ -943,13 +943,13 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v1.y = 0xc5502;
     v1.z = 0x28cf549;
 
-    sub_02020ACC(&v1, fieldSystem->camera);
+    Camera_SetTarget(&v1, fieldSystem->camera);
 
     v2.x = 0x642;
     v2.y = 0xeda0;
     v2.z = 0;
 
-    Camera_SetAngle(&v2, fieldSystem->camera);
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
     Camera_SetClipping(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
@@ -958,7 +958,7 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->camera);
+    v1 = Camera_GetTarget(fieldSystem->camera);
 
     ov6_02240A50(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B24(v0->unk_08, v1.x, v1.y, v1.z);
@@ -977,13 +977,13 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v1.y = 0x73a0c;
     v1.z = 0x2b9f4a2;
 
-    sub_02020ACC(&v1, fieldSystem->camera);
+    Camera_SetTarget(&v1, fieldSystem->camera);
 
     v2.x = 0x4c2;
     v2.y = 0xa40;
     v2.z = 0;
 
-    Camera_SetAngle(&v2, fieldSystem->camera);
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
     Camera_SetClipping(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
@@ -992,7 +992,7 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->camera);
+    v1 = Camera_GetTarget(fieldSystem->camera);
 
     ov6_02240A8C(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B60(v0->unk_08, v1.x, v1.y, v1.z);
@@ -1616,7 +1616,7 @@ static void ov6_0223FAF8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
             break;
         }
 
-        v2 = sub_02020AAC(fieldSystem->camera);
+        v2 = Camera_GetTarget(fieldSystem->camera);
         {
             int v4[] = {
                 504, 504, 435
@@ -1863,7 +1863,7 @@ void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u3
     ov6_0223FF7C(param0);
     Camera_Copy(param5, param0->unk_00);
 
-    param0->unk_28 = sub_02020AAC(param5);
+    param0->unk_28 = Camera_GetTarget(param5);
     param0->unk_34 = param0->unk_28;
 
     Camera_TrackTarget(&param0->unk_28, param0->unk_00);

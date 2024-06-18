@@ -2371,7 +2371,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
             v1 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v1 - 32 > 0x5c1) {
-                Camera_IncreaseFOV(-32, param0->unk_20.unk_08);
+                Camera_AdjustFOV(-32, param0->unk_20.unk_08);
             } else {
                 Camera_SetFOV(0x5c1, param0->unk_20.unk_08);
             }
@@ -2425,7 +2425,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
 
         {
             CameraAngle v8 = {0, 0x680, 0, 0};
-            sub_020209F8(&v8, param0->unk_20.unk_08);
+            Camera_AdjustAngleAroundSelf(&v8, param0->unk_20.unk_08);
         }
 
         {
@@ -2444,7 +2444,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
             v9 = Camera_GetFOV(param0->unk_20.unk_08);
 
             if (v9 + 24 < 0x4000) {
-                Camera_IncreaseFOV(24, param0->unk_20.unk_08);
+                Camera_AdjustFOV(24, param0->unk_20.unk_08);
             }
         }
 

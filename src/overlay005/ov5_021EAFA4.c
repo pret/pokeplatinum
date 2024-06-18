@@ -29,7 +29,7 @@ VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_02
     u16 v6, v7;
 
     v3.y = 0;
-    v2 = sub_02020AAC(param2->unk_50);
+    v2 = Camera_GetTarget(param2->unk_50);
 
     {
         MtxFx43 v8;
@@ -94,7 +94,7 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
 {
     CameraAngle v0;
 
-    v0 = sub_02020A94(param1);
+    v0 = Camera_GetAngle(param1);
     param0->unk_00 = Camera_GetFOV(param1);
 
     {
@@ -109,8 +109,8 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
         VecFx32 v2 = {0, FX32_ONE, 0};
         VecFx32 v3, v4;
 
-        v3 = sub_02020ABC(param1);
-        v4 = sub_02020AAC(param1);
+        v3 = Camera_GetPosition(param1);
+        v4 = Camera_GetTarget(param1);
 
         VEC_Subtract(&v3, &v4, &param0->unk_04);
 

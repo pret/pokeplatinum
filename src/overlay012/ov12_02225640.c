@@ -48,7 +48,7 @@ static BOOL ov12_0222564C (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     CameraAngle v1 = {0, 0, 0};
 
     v0 = sub_02014784(param1->unk_04);
-    Camera_SetAngle(&v1, v0);
+    Camera_SetAngleAroundTarget(&v1, v0);
 
     return 1;
 }
@@ -61,7 +61,7 @@ static BOOL ov12_02225670 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     v0 = sub_02014784(param1->unk_04);
 
     sub_02014788(param1->unk_04, 1);
-    Camera_SetAngle(&v1, v0);
+    Camera_SetAngleAroundTarget(&v1, v0);
 
     return 1;
 }
@@ -80,7 +80,7 @@ static BOOL ov12_022256AC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
 
     v2 = sub_02014784(param1->unk_04);
 
-    Camera_SetAngle(&v1, v2);
+    Camera_SetAngleAroundTarget(&v1, v2);
     return 1;
 }
 
@@ -92,7 +92,7 @@ static BOOL ov12_022256E8 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     v0 = sub_02014784(param1->unk_04);
 
     sub_02014788(param1->unk_04, 1);
-    Camera_SetAngle(&v1, v0);
+    Camera_SetAngleAroundTarget(&v1, v0);
 
     return 1;
 }
@@ -107,9 +107,9 @@ static BOOL ov12_02225724 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     sub_02014788(param1->unk_04, 1);
 
     if (ov12_0221FDD4(param1->unk_00) == 1) {
-        Camera_SetAngle(&v1, v0);
+        Camera_SetAngleAroundTarget(&v1, v0);
     } else {
-        Camera_SetAngle(&v2, v0);
+        Camera_SetAngleAroundTarget(&v2, v0);
     }
 
     return 1;
@@ -123,7 +123,7 @@ static BOOL ov12_02225784 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     v0 = sub_02014784(param1->unk_04);
 
     sub_02014788(param1->unk_04, 1);
-    Camera_SetAngle(&v1, v0);
+    Camera_SetAngleAroundTarget(&v1, v0);
 
     return 1;
 }
@@ -136,7 +136,7 @@ static BOOL ov12_022257C0 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     v0 = sub_02014784(param1->unk_04);
 
     sub_02014788(param1->unk_04, 1);
-    Camera_SetAngle(&v1, v0);
+    Camera_SetAngleAroundTarget(&v1, v0);
 
     return 1;
 }
@@ -149,7 +149,7 @@ static BOOL ov12_022257FC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     v1 = sub_02014784(param1->unk_04);
 
     ov12_022356E8(param1->unk_00, param1->unk_24, &v0);
-    sub_02020ACC(&v0, v1);
+    Camera_SetTarget(&v0, v1);
 
     return 1;
 }
@@ -162,7 +162,7 @@ static BOOL ov12_02225824 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     v1 = sub_02014784(param1->unk_04);
 
     ov12_022356E8(param1->unk_00, param1->unk_28, &v0);
-    sub_02020ACC(&v0, v1);
+    Camera_SetTarget(&v0, v1);
 
     return 1;
 }

@@ -4273,10 +4273,10 @@ static void ov115_0226527C (UnkStruct_ov115_02261ADC * param0, u16 param1)
 {
     CameraAngle v0;
 
-    v0 = sub_02020A94(param0->unk_1F4);
+    v0 = Camera_GetAngle(param0->unk_1F4);
     v0.x = param1;
 
-    Camera_SetAngle(&v0, param0->unk_1F4);
+    Camera_SetAngleAroundTarget(&v0, param0->unk_1F4);
 }
 
 static void ov115_022652A4 (UnkStruct_ov115_022653CC * param0, u8 param1)

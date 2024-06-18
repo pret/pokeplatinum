@@ -1603,7 +1603,7 @@ void ov9_02249F9C (FieldSystem * fieldSystem)
     v0.y = v2->unk_04.y + v2->unk_0C.y;
     v0.z = v2->unk_04.z + v2->unk_0C.z;
 
-    Camera_SetAngle(&v0, v2->unk_00);
+    Camera_SetAngleAroundTarget(&v0, v2->unk_00);
 }
 
 void ov9_02249FD0 (FieldSystem * fieldSystem)
@@ -1634,7 +1634,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
         };
 
         Camera_SetDistance(v1.unk_00, v0->unk_00);
-        Camera_SetAngle(&v1.cameraAngle, v0->unk_00);
+        Camera_SetAngleAroundTarget(&v1.cameraAngle, v0->unk_00);
         Camera_SetFOV(v1.unk_0E, v0->unk_00);
         Camera_ComputeProjectionMatrix(v1.unk_0C, v0->unk_00);
     }
@@ -1657,7 +1657,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     }
 
     if (ov9_022510D0(param0) != 582) {
-        Camera_IncreaseFOV(0x681 - 0x5c1, v0->unk_00);
+        Camera_AdjustFOV(0x681 - 0x5c1, v0->unk_00);
     }
 
     v0->unk_3C = SysTask_Start(ov9_0224A0DC, param0, 0);

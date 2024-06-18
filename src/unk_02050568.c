@@ -149,12 +149,12 @@ static void sub_0205075C (FieldSystem * fieldSystem)
     v0.y = 0x15edb7;
     v0.z = 0x23da40e;
 
-    sub_02020ACC(&v0, fieldSystem->camera);
+    Camera_SetTarget(&v0, fieldSystem->camera);
 
     v1.x = 0x823;
     v1.y = 0x520;
     v1.z = 0;
 
-    Camera_SetAngle(&v1, fieldSystem->camera);
+    Camera_SetAngleAroundTarget(&v1, fieldSystem->camera);
     Camera_SetClipping(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
 }

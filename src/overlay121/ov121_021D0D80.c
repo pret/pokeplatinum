@@ -226,10 +226,10 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
         {
             CameraAngle v2 = {0, 0, 0, 0};
 
-            v2 = sub_02020A94(param0->unk_04);
+            v2 = Camera_GetAngle(param0->unk_04);
             v2.x = (0x10000 - 0x3fef);
 
-            Camera_SetAngle(&v2, param0->unk_04);
+            Camera_SetAngleAroundTarget(&v2, param0->unk_04);
         }
 
         Camera_SetAsActive(param0->unk_04);
@@ -360,7 +360,7 @@ static void ov121_021D1318 (UnkStruct_ov121_021D0FF4 * param0)
     CameraAngle v1 = {0, 0, 0, 0};
     int v2;
 
-    Camera_IncreaseFOV(-(param0->unk_D4 >> 8), param0->unk_04);
+    Camera_AdjustFOV(-(param0->unk_D4 >> 8), param0->unk_04);
     param0->unk_D4 -= 0x80;
 
     if (param0->unk_D4 < (16 << 8)) {
