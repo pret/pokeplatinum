@@ -1083,7 +1083,7 @@ void ov12_022303D0 (UnkStruct_ov12_0221FCDC * param0)
         v0->unk_16 = 192;
     }
 
-    v0->unk_18 = ov12_0222662C(v0->unk_14, v0->unk_16, (((5 * 0xffff) / 360)), (8 * FX32_ONE) * v1, 80, ov12_022233EC(param0, 1), sub_0201CED4(v2) + 1, ov12_022266E8(v0->unk_10, v0->unk_12), ov12_0221FDE4(param0));
+    v0->unk_18 = ov12_0222662C(v0->unk_14, v0->unk_16, (((5 * 0xffff) / 360)), (8 * FX32_ONE) * v1, 80, ov12_022233EC(param0, 1), SysTask_GetPriority(v2) + 1, ov12_022266E8(v0->unk_10, v0->unk_12), ov12_0221FDE4(param0));
     ov12_02225BC8(&v0->unk_1C, 0, 80, 0, 40, 24);
     v0->unk_1C.unk_04[1] *= v1;
 

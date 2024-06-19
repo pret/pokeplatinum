@@ -780,7 +780,7 @@ static void ov79_021D2C50 (SysTask * param0, void * param1)
     sub_02021CAC(v1->unk_C4, 1);
     sub_02021CF8(v1->unk_C4, 1);
     sub_02021C70(v1->unk_C4, &v2->unk_24);
-    sub_0201CECC(param0, ov79_021D2CEC);
+    SysTask_SetCallback(param0, ov79_021D2CEC);
 }
 
 static void ov79_021D2CEC (SysTask * param0, void * param1)
@@ -825,7 +825,7 @@ static void ov79_021D2D7C (SysTask * param0, void * param1)
     v2->unk_4C = FX_Div(FX32_CONST(1), FX32_CONST(v0->unk_04));
 
     sub_02021C50(v1->unk_C4, &v2->unk_00);
-    sub_0201CECC(param0, ov79_021D2E74);
+    SysTask_SetCallback(param0, ov79_021D2E74);
 }
 
 static void ov79_021D2E74 (SysTask * param0, void * param1)
@@ -875,7 +875,7 @@ static void ov79_021D2F4C (SysTask * param0, void * param1)
 
     sub_02007DEC(v1->unk_C8, 12, 0x1000 >> 4);
     sub_02007DEC(v1->unk_C8, 13, 0x1000 >> 4);
-    sub_0201CECC(param0, ov79_021D2FE0);
+    SysTask_SetCallback(param0, ov79_021D2FE0);
 }
 
 static void ov79_021D2FE0 (SysTask * param0, void * param1)
@@ -920,7 +920,7 @@ static void ov79_021D3094 (SysTask * param0, void * param1)
     ov79_021D2268(&v2->unk_18, &v3, FX32_CONST(v0->unk_04));
     sub_02007DEC(v1->unk_C8, 0, v2->unk_00.x >> 12);
     sub_02007DEC(v1->unk_C8, 1, v2->unk_00.y >> 12);
-    sub_0201CECC(param0, ov79_021D312C);
+    SysTask_SetCallback(param0, ov79_021D312C);
 }
 
 static void ov79_021D312C (SysTask * param0, void * param1)
@@ -960,7 +960,7 @@ static void ov79_021D312C (SysTask * param0, void * param1)
     sub_02007DEC(v1->unk_C8, 4, 0);
     v2->unk_50 = 0;
 
-    sub_0201CECC(param0, ov79_021D326C);
+    SysTask_SetCallback(param0, ov79_021D326C);
 }
 
 static void ov79_021D326C (SysTask * param0, void * param1)
@@ -995,7 +995,7 @@ static void ov79_021D3290 (SysTask * param0, void * param1)
 
     sub_02007DEC(v1->unk_C8, 12, 0x1800 >> 4);
     sub_02007DEC(v1->unk_C8, 13, 0x1800 >> 4);
-    sub_0201CECC(param0, ov79_021D3324);
+    SysTask_SetCallback(param0, ov79_021D3324);
 }
 
 static void ov79_021D3324 (SysTask * param0, void * param1)
@@ -1044,7 +1044,7 @@ static void ov79_021D33DC (SysTask * param0, void * param1)
 
     sub_02007DEC(v1->unk_C8, 0, v2->unk_00.x >> 12);
     sub_02007DEC(v1->unk_C8, 1, v2->unk_00.y >> 12);
-    sub_0201CECC(param0, ov79_021D34A8);
+    SysTask_SetCallback(param0, ov79_021D34A8);
 }
 
 static void ov79_021D34A8 (SysTask * param0, void * param1)
@@ -1075,7 +1075,7 @@ static void ov79_021D34A8 (SysTask * param0, void * param1)
     }
 
     sub_02007DEC(v1->unk_C8, 4, 0);
-    sub_0201CECC(param0, ov79_021D35B0);
+    SysTask_SetCallback(param0, ov79_021D35B0);
 }
 
 static void ov79_021D35B0 (SysTask * param0, void * param1)
@@ -1088,10 +1088,10 @@ static void ov79_021D35B0 (SysTask * param0, void * param1)
 
     switch (v0->unk_14->unk_08) {
     case 0:
-        sub_0201CECC(param0, ov79_021D35EC);
+        SysTask_SetCallback(param0, ov79_021D35EC);
         break;
     case 1:
-        sub_0201CECC(param0, ov79_021D36CC);
+        SysTask_SetCallback(param0, ov79_021D36CC);
         break;
     default:
         ov79_021D29E4(v0);
@@ -1108,7 +1108,7 @@ static void ov79_021D35EC (SysTask * param0, void * param1)
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov79_021D2C50));
     v0->unk_04 = 3;
-    sub_0201CECC(param0, ov79_021D3610);
+    SysTask_SetCallback(param0, ov79_021D3610);
 }
 
 static void ov79_021D3610 (SysTask * param0, void * param1)
@@ -1150,7 +1150,7 @@ static void ov79_021D36CC (SysTask * param0, void * param1)
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov79_021D2C50));
     v0->unk_04 = 32;
-    sub_0201CECC(param0, ov79_021D36F0);
+    SysTask_SetCallback(param0, ov79_021D36F0);
 }
 
 static void ov79_021D36F0 (SysTask * param0, void * param1)

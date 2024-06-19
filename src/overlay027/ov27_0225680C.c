@@ -333,7 +333,7 @@ static void ov27_02256B80 (SysTask * param0, void * param1)
 
     const UnkStruct_ov27_0225680C_1 * v1 = ov25_02255240(param1);
 
-    sub_0201CECC(param0, v0[v1->unk_18]);
+    SysTask_SetCallback(param0, v0[v1->unk_18]);
     v0[v1->unk_18](param0, param1);
 }
 

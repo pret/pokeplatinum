@@ -27,7 +27,7 @@ void sub_02017728 (void)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 
     MI_WaitDma(GX_DEFAULT_DMAID);
-    sub_0201CDD4(gCoreSys.unk_1C);
+    SysTaskManager_ExecuteTasks(gCoreSys.unk_1C);
 
     gCoreSys.unk_30++;
 }

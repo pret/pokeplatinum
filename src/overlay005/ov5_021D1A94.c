@@ -69,7 +69,7 @@ void ov5_021D1AE4 (UnkStruct_ov5_021D1A94 * param0)
 
 void ov5_021D1B18 (UnkStruct_ov5_021D1A94 * param0)
 {
-    sub_0201CDD4(param0->unk_10);
+    SysTaskManager_ExecuteTasks(param0->unk_10);
 }
 
 static void ov5_021D1B24 (SysTask * param0, void * param1)
@@ -102,7 +102,7 @@ UnkStruct_ov5_021D1BEC * ov5_021D1B6C (UnkStruct_ov5_021D1A94 * param0, const Un
     for (v1 = param0->unk_0C, v0 = 0; v0 < param0->unk_08; v1++, v0++) {
         if (v1->unk_04 == NULL) {
             v1->unk_04 = SysTask_Start(ov5_021D1B24, v1, param1->unk_00);
-            v1->unk_08 = sub_0201CE14(param0->unk_10, ov5_021D1B48, v1, param1->unk_00);
+            v1->unk_08 = SysTaskManager_AddTask(param0->unk_10, ov5_021D1B48, v1, param1->unk_00);
             v1->unk_00 = param0;
             v1->unk_0C = param1;
 

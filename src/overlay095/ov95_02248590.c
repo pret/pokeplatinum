@@ -966,7 +966,7 @@ static void ov95_02249424 (SysTask * param0, void * param1)
             ov95_02249268(v0, 0x4000, 0x4000, 60);
             ov95_022492A4(v0, 0, -0x800, 30);
             v0->unk_7C = 1;
-            sub_0201CECC(param0, ov95_022494A8);
+            SysTask_SetCallback(param0, ov95_022494A8);
         }
     }
 
@@ -1029,7 +1029,7 @@ static void ov95_0224950C (SysTask * param0)
     ov95_022479D4(v0->unk_00, UnkEnum_ov95_0224950C_03);
     ov95_022479A8(v0->unk_00, 1);
 
-    sub_0201CECC(param0, ov95_0224959C);
+    SysTask_SetCallback(param0, ov95_0224959C);
 }
 
 static void ov95_0224959C (SysTask * param0, void * param1)
@@ -1043,7 +1043,7 @@ static void ov95_0224959C (SysTask * param0, void * param1)
         v0->unk_14.y = v0->unk_28;
 
         if (--(v0->unk_80) == 0) {
-            sub_0201CECC(param0, ov95_022495F8);
+            SysTask_SetCallback(param0, ov95_022495F8);
         }
     }
 
@@ -1060,7 +1060,7 @@ static void ov95_022495F8 (SysTask * param0, void * param1)
     if (++(v0->unk_80) > UnkEnum_ov95_022495F8_00) {
         v0->unk_2C = (UnkEnum_ov95_022495F8_01 - v0->unk_28) / UnkEnum_ov95_022495F8_02;
         v0->unk_80 = UnkEnum_ov95_022495F8_02;
-        sub_0201CECC(param0, ov95_02249658);
+        SysTask_SetCallback(param0, ov95_02249658);
     }
 
     ov95_02247968(v0->unk_00, &(v0->unk_14));
@@ -1078,7 +1078,7 @@ static void ov95_02249658 (SysTask * param0, void * param1)
         v0->unk_14.y = v0->unk_28;
 
         if (--(v0->unk_80) == 0) {
-            sub_0201CECC(param0, ov95_022496B4);
+            SysTask_SetCallback(param0, ov95_022496B4);
         }
     }
 
@@ -1094,7 +1094,7 @@ static void ov95_022496B4 (SysTask * param0, void * param1)
 
     if (++(v0->unk_80) > UnkEnum_ov95_022496B4_00) {
         v0->unk_2C = UnkEnum_ov95_022496B4_01;
-        sub_0201CECC(param0, ov95_02249700);
+        SysTask_SetCallback(param0, ov95_02249700);
     }
 
     ov95_02247968(v0->unk_00, &(v0->unk_14));
