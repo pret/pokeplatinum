@@ -128,7 +128,7 @@ TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
  * @return The trainer info for the requested battler.
  */
 TrainerInfo* BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
-UnkStruct_0207D3C0 * BattleSystem_Bag(BattleSystem * param0);
+Bag * BattleSystem_Bag(BattleSystem * param0);
 UnkStruct_0207D99C * BattleSystem_BagCursor(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
 

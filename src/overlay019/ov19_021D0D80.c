@@ -2619,7 +2619,7 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         break;
     case 1:
         if (ov19_021D6600(param0->unk_114, 3)) {
-            UnkStruct_0207D3C0 * v2;
+            Bag * v2;
 
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(10);

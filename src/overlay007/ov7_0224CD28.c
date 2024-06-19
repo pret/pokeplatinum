@@ -1545,7 +1545,7 @@ static void ov7_0224EC38 (TaskManager * param0)
     ov7_0224D21C(v1);
 
     {
-        UnkStruct_0207D3C0 * v2;
+        Bag * v2;
 
         v2 = sub_0207D990(fieldSystem->saveData);
         v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);

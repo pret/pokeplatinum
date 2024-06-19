@@ -14,7 +14,7 @@ typedef struct {
     UnkStruct_0202AB28 * unk_08;
     SaveData * unk_0C;
     TrainerInfo * unk_10;
-    UnkStruct_0207D3C0 * unk_14;
+    Bag * unk_14;
     Options * unk_18;
     Journal * unk_1C;
     BOOL unk_20;

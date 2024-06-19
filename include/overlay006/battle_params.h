@@ -26,7 +26,7 @@ typedef struct {
     int trainerIDs[4];
     TrainerData trainerData[4];
     TrainerInfo * unk_D0[4];
-    UnkStruct_0207D3C0 * unk_E0;
+    Bag * unk_E0;
     UnkStruct_0207D99C * unk_E4;
     PokedexData * unk_E8;
     PCBoxes * unk_EC;

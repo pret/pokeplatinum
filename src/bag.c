@@ -12,44 +12,44 @@
 #include "item.h"
 #include "bag.h"
 
-static u32 sub_0207D40C(UnkStruct_0207D3C0 * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4);
+static u32 sub_0207D40C(Bag * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4);
 
 int Bag_SaveSize (void)
 {
-    return sizeof(UnkStruct_0207D3C0);
+    return sizeof(Bag);
 }
 
-UnkStruct_0207D3C0 * sub_0207D3C0 (int param0)
+Bag * sub_0207D3C0 (int param0)
 {
-    UnkStruct_0207D3C0 * v0;
+    Bag * v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0207D3C0));
+    v0 = Heap_AllocFromHeap(param0, sizeof(Bag));
     Bag_Init(v0);
 
     return v0;
 }
 
-void Bag_Init (UnkStruct_0207D3C0 * param0)
+void Bag_Init (Bag * param0)
 {
-    MI_CpuClear16(param0, sizeof(UnkStruct_0207D3C0));
+    MI_CpuClear16(param0, sizeof(Bag));
 }
 
-void sub_0207D3EC (const UnkStruct_0207D3C0 * param0, UnkStruct_0207D3C0 * param1)
+void sub_0207D3EC (const Bag * param0, Bag * param1)
 {
-    MI_CpuCopy8(param0, param1, sizeof(UnkStruct_0207D3C0));
+    MI_CpuCopy8(param0, param1, sizeof(Bag));
 }
 
-u32 sub_0207D3FC (const UnkStruct_0207D3C0 * param0)
+u32 sub_0207D3FC (const Bag * param0)
 {
     return param0->unk_770;
 }
 
-void sub_0207D404 (UnkStruct_0207D3C0 * param0, u32 param1)
+void sub_0207D404 (Bag * param0, u32 param1)
 {
     param0->unk_770 = param1;
 }
 
-static u32 sub_0207D40C (UnkStruct_0207D3C0 * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4)
+static u32 sub_0207D40C (Bag * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4)
 {
     u32 v0 = Item_LoadParam(param1, 5, param4);
 
@@ -119,7 +119,7 @@ static BagItem * sub_0207D4B4 (BagItem * param0, u32 param1, u16 param2, u16 par
     return &param0[v1];
 }
 
-static BagItem * sub_0207D518 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+static BagItem * sub_0207D518 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
     BagItem * v0;
     u32 v1;
@@ -134,7 +134,7 @@ static BagItem * sub_0207D518 (UnkStruct_0207D3C0 * param0, u16 param1, u16 para
     return sub_0207D4B4(v0, v1, param1, param2, 999);
 }
 
-BOOL sub_0207D55C (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+BOOL sub_0207D55C (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
     if (sub_0207D518(param0, param1, param2, param3) == NULL) {
         return 0;
@@ -143,7 +143,7 @@ BOOL sub_0207D55C (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 para
     return 1;
 }
 
-BOOL sub_0207D570 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
     BagItem * v0 = sub_0207D518(param0, param1, param2, param3);
 
@@ -185,7 +185,7 @@ static BagItem * sub_0207D5B8 (BagItem * param0, u32 param1, u16 param2, u16 par
     return NULL;
 }
 
-static BagItem * sub_0207D5E8 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+static BagItem * sub_0207D5E8 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
     BagItem * v0;
     u32 v1;
@@ -194,7 +194,7 @@ static BagItem * sub_0207D5E8 (UnkStruct_0207D3C0 * param0, u16 param1, u16 para
     return sub_0207D5B8(v0, v1, param1, param2);
 }
 
-BOOL Bag_SubtractItem (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+BOOL Bag_SubtractItem (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
     BagItem * v0 = sub_0207D5E8(param0, param1, param2, param3);
 
@@ -237,7 +237,7 @@ BOOL sub_0207D658 (BagItem * param0, u32 param1, u16 param2, u16 param3, u32 par
     return 1;
 }
 
-BOOL sub_0207D688 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+BOOL sub_0207D688 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
     if (sub_0207D5E8(param0, param1, param2, param3) == NULL) {
         return 0;
@@ -246,7 +246,7 @@ BOOL sub_0207D688 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 para
     return 1;
 }
 
-BOOL sub_0207D69C (UnkStruct_0207D3C0 * param0, u32 param1)
+BOOL sub_0207D69C (Bag * param0, u32 param1)
 {
     BagItem * v0;
     u32 v1;
@@ -298,7 +298,7 @@ BOOL sub_0207D69C (UnkStruct_0207D3C0 * param0, u32 param1)
     return 0;
 }
 
-u16 sub_0207D730 (UnkStruct_0207D3C0 * param0, u16 param1, u32 param2)
+u16 sub_0207D730 (Bag * param0, u16 param1, u32 param2)
 {
     BagItem * v0 = sub_0207D5E8(param0, param1, 1, param2);
 
@@ -356,7 +356,7 @@ void sub_0207D7CC (BagItem * param0, const u32 param1)
     }
 }
 
-void * sub_0207D824 (UnkStruct_0207D3C0 * param0, const u8 * param1, u32 param2)
+void * sub_0207D824 (Bag * param0, const u8 * param1, u32 param2)
 {
     UnkStruct_0207CB08 * v0;
     int v1;
@@ -395,7 +395,7 @@ void * sub_0207D824 (UnkStruct_0207D3C0 * param0, const u8 * param1, u32 param2)
     return v0;
 }
 
-BagItem * sub_0207D910 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2)
+BagItem * sub_0207D910 (Bag * param0, u16 param1, u16 param2)
 {
     BagItem * v0;
     u16 v1;
@@ -442,11 +442,11 @@ BagItem * sub_0207D910 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2)
     return &v0[param2];
 }
 
-UnkStruct_0207D3C0 * sub_0207D990 (SaveData * param0)
+Bag * sub_0207D990 (SaveData * param0)
 {
-    UnkStruct_0207D3C0 * v0;
+    Bag * v0;
 
-    v0 = (UnkStruct_0207D3C0 *)SaveData_SaveTable(param0, 3);
+    v0 = (Bag *)SaveData_SaveTable(param0, 3);
     return v0;
 }
 

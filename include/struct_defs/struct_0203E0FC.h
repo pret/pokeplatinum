@@ -28,7 +28,7 @@ typedef struct {
     Options * unk_24;
     UnkStruct_0202CD88 * unk_28;
     Journal * unk_2C;
-    UnkStruct_0207D3C0 * unk_30;
+    Bag * unk_30;
     int unk_34;
     int unk_38;
     int unk_3C;

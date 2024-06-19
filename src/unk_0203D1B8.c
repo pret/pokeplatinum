@@ -295,7 +295,7 @@ void sub_0203D1E4 (FieldSystem * fieldSystem, void * param1)
 
 void * sub_0203D20C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
 {
-    UnkStruct_0207D3C0 * v0;
+    Bag * v0;
     void * v1;
 
     v0 = sub_0207D990(fieldSystem->saveData);
@@ -320,7 +320,7 @@ void * sub_0203D264 (FieldSystem * fieldSystem, int param1)
     static const u8 * v1;
     static const u8 v2[] = {4, 0xff};
     static const u8 v3[] = {0, 0xff};
-    UnkStruct_0207D3C0 * v4 = sub_0207D990(fieldSystem->saveData);
+    Bag * v4 = sub_0207D990(fieldSystem->saveData);
 
     switch (param1) {
     case 0:

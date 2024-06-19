@@ -1157,7 +1157,7 @@ BOOL sub_0203B7C0 (TaskManager * taskMan)
     break;
     case 3:
     {
-        UnkStruct_0207D3C0 * v11;
+        Bag * v11;
         void * v12;
         u32 * v13;
 
@@ -1698,7 +1698,7 @@ static void sub_0203C2D8 (TaskManager * taskMan, u16 param1)
 {
     FieldSystem * fieldSystem;
     FieldMenu * menu;
-    UnkStruct_0207D3C0 * v2;
+    Bag * v2;
     u8 v3;
     u8 v4, v5, v6;
 

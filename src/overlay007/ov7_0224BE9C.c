@@ -128,7 +128,7 @@ typedef struct {
     BGL * unk_04;
     UnkStruct_ov7_0224C620 * unk_08;
     const UnkStruct_ov7_0224F1B4 * unk_0C;
-    UnkStruct_0207D3C0 * unk_10;
+    Bag * unk_10;
 } UnkStruct_ov7_0224CBE4;
 
 typedef struct UnkStruct_ov7_0224BEFC_t {
@@ -136,7 +136,7 @@ typedef struct UnkStruct_ov7_0224BEFC_t {
     u32 unk_04;
     SaveData * unk_08;
     UnkStruct_02029D04 * unk_0C;
-    UnkStruct_0207D3C0 * unk_10;
+    Bag * unk_10;
     BGL * unk_14;
     u32 unk_18;
     GraphicElementManager * unk_1C;
@@ -176,12 +176,12 @@ static void ov7_0224CB70(UnkStruct_ov7_0224C768 * param0);
 static void ov7_0224CC44(UnkStruct_ov7_0224CC44 * param0, BGL * param1, u32 param2);
 static void ov7_0224CC6C(UnkStruct_ov7_0224CC44 * param0);
 static u32 ov7_0224CC78(UnkStruct_ov7_0224CC44 * param0);
-static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 * param0, UnkStruct_ov7_0224C620 * param1, const UnkStruct_ov7_0224F1B4 * param2, UnkStruct_0207D3C0 * param3, u32 param4, BGL * param5);
+static void ov7_0224CBD0(UnkStruct_ov7_0224CBE4 * param0, UnkStruct_ov7_0224C620 * param1, const UnkStruct_ov7_0224F1B4 * param2, Bag * param3, u32 param4, BGL * param5);
 static void ov7_0224CBE4(void * param0, u32 param1);
 static BOOL ov7_0224CC88(const UnkStruct_02029D04 * param0, const UnkStruct_ov7_0224F1B4 * param1, u32 param2);
-static BOOL ov7_0224CCB8(UnkStruct_0207D3C0 * param0, const UnkStruct_ov7_0224F1B4 * param1, u32 param2, u32 param3);
+static BOOL ov7_0224CCB8(Bag * param0, const UnkStruct_ov7_0224F1B4 * param1, u32 param2, u32 param3);
 static BOOL ov7_0224CCE4(const UnkStruct_02029D04 * param0, const UnkStruct_ov7_0224F1B4 * param1, u32 param2);
-static void ov7_0224CCF4(UnkStruct_02029D04 * param0, UnkStruct_0207D3C0 * param1, const UnkStruct_ov7_0224F1B4 * param2, u32 param3, u32 param4);
+static void ov7_0224CCF4(UnkStruct_02029D04 * param0, Bag * param1, const UnkStruct_ov7_0224F1B4 * param2, u32 param3, u32 param4);
 
 UnkStruct_ov7_0224BEFC * ov7_0224BE9C (u32 param0, SaveData * param1, BGL * param2)
 {
@@ -775,7 +775,7 @@ static void ov7_0224CB70 (UnkStruct_ov7_0224C768 * param0)
     }
 }
 
-static void ov7_0224CBD0 (UnkStruct_ov7_0224CBE4 * param0, UnkStruct_ov7_0224C620 * param1, const UnkStruct_ov7_0224F1B4 * param2, UnkStruct_0207D3C0 * param3, u32 param4, BGL * param5)
+static void ov7_0224CBD0 (UnkStruct_ov7_0224CBE4 * param0, UnkStruct_ov7_0224C620 * param1, const UnkStruct_ov7_0224F1B4 * param2, Bag * param3, u32 param4, BGL * param5)
 {
     param0->unk_04 = param5;
     param0->unk_08 = param1;
@@ -849,7 +849,7 @@ static BOOL ov7_0224CC88 (const UnkStruct_02029D04 * param0, const UnkStruct_ov7
     return 1;
 }
 
-static BOOL ov7_0224CCB8 (UnkStruct_0207D3C0 * param0, const UnkStruct_ov7_0224F1B4 * param1, u32 param2, u32 param3)
+static BOOL ov7_0224CCB8 (Bag * param0, const UnkStruct_ov7_0224F1B4 * param1, u32 param2, u32 param3)
 {
     u32 v0;
 
@@ -867,7 +867,7 @@ static BOOL ov7_0224CCE4 (const UnkStruct_02029D04 * param0, const UnkStruct_ov7
     return sub_02029D50(param0, param1[param2].unk_00, 1);
 }
 
-static void ov7_0224CCF4 (UnkStruct_02029D04 * param0, UnkStruct_0207D3C0 * param1, const UnkStruct_ov7_0224F1B4 * param2, u32 param3, u32 param4)
+static void ov7_0224CCF4 (UnkStruct_02029D04 * param0, Bag * param1, const UnkStruct_ov7_0224F1B4 * param2, u32 param3, u32 param4)
 {
     u32 v0 = param2[param3].unk_00;
     u32 v1 = param2[param3].unk_04 + 149;

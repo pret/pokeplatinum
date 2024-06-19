@@ -121,7 +121,7 @@ typedef struct {
     UnkStruct_0206A844 * unk_1A4;
     UnkStruct_02097728 * unk_1A8;
     UnkStruct_02028430 * unk_1AC;
-    UnkStruct_0207D3C0 * unk_1B0;
+    Bag * unk_1B0;
     PartyManagementData * unk_1B4;
 } UnkStruct_02072334;
 

@@ -59,7 +59,7 @@ struct BattleSystem {
     BattlerData *battlers[MAX_BATTLERS];
     int maxBattlers;
     TrainerInfo *trainerInfo[4];
-    UnkStruct_0207D3C0 * unk_58;
+    Bag * unk_58;
     UnkStruct_0207D99C * unk_5C;
     PokedexData *pokedex;
     PCBoxes *pcBoxes;

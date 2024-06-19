@@ -130,7 +130,7 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
-    UnkStruct_0207D3C0 * v5;
+    Bag * v5;
     u16 v6 = ScriptContext_GetVar(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
 
@@ -185,7 +185,7 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
-    UnkStruct_0207D3C0 * v5;
+    Bag * v5;
     u16 v6 = ScriptContext_GetVar(param0);
 
     v5 = sub_0207D990(param0->fieldSystem->saveData);
