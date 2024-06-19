@@ -32,11 +32,11 @@ typedef struct SysTaskManager {
     SysTask *nextTask;      // The task that will be executed next
 } SysTaskManager;
 
-static void SysTaskManager_InitTask(SysTaskManager * param0, SysTask * param1);
-static void SysTaskManager_InitTasks(SysTaskManager * param0);
-static SysTask * SysTaskManager_AllocTask(SysTaskManager * param0);
-static BOOL SysTaskManager_FreeTask(SysTaskManager * param0, SysTask * param1);
-static SysTask * SysTaskManager_InternalAddTask(SysTaskManager * param0, SysTaskFunc param1, void * param2, u32 param3);
+static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task);
+static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr);
+static SysTask *SysTaskManager_AllocTask(SysTaskManager *sysTaskMgr);
+static BOOL SysTaskManager_FreeTask(SysTaskManager *sysTaskMgr, SysTask *task);
+static SysTask *SysTaskManager_InternalAddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback, void *param, u32 priority);
 
 static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task)
 {
