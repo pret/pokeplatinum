@@ -7,15 +7,25 @@
 #include "savedata.h"
 #include "constants/heap.h"
 
+#define ITEM_POCKET_SIZE        165
+#define KEY_ITEM_POCKET_SIZE    50
+#define TMHM_POCKET_SIZE        100
+#define MAIL_POCKET_SIZE        12
+#define MEDICINE_POCKET_SIZE    40
+#define BERRY_POCKET_SIZE       64
+#define POKEBALL_POCKET_SIZE    15
+#define BATTLE_ITEM_POCKET_SIZE 30
+
+
 typedef struct Bag {
-    BagItem unk_00[165];
-    BagItem unk_294[50];
-    BagItem unk_35C[100];
-    BagItem unk_4EC[12];
-    BagItem unk_51C[40];
-    BagItem unk_5BC[64];
-    BagItem unk_6BC[15];
-    BagItem unk_6F8[30];
+    BagItem items[ITEM_POCKET_SIZE];
+    BagItem keyItems[KEY_ITEM_POCKET_SIZE];
+    BagItem tmHms[TMHM_POCKET_SIZE];
+    BagItem mail[MAIL_POCKET_SIZE];
+    BagItem medicine[MEDICINE_POCKET_SIZE];
+    BagItem berries[BERRY_POCKET_SIZE];
+    BagItem pokeballs[POKEBALL_POCKET_SIZE];
+    BagItem battleItems[BATTLE_ITEM_POCKET_SIZE];
     u32 unk_770;
 } Bag;
 

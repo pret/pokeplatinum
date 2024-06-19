@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "savedata.h"
 
@@ -12,7 +13,12 @@
 #include "item.h"
 #include "bag.h"
 
-static u32 sub_0207D40C(Bag * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4);
+#define BAG_SLOT_INVALID    ((u32)(-1))
+
+#define BAG_MAX_ITEMS       999
+#define BAG_MAX_TMHMS       99
+
+static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, u32 heapID);
 
 int Bag_SaveSize(void)
 {
@@ -47,94 +53,88 @@ void sub_0207D404 (Bag * param0, u32 param1)
     param0->unk_770 = param1;
 }
 
-static u32 sub_0207D40C (Bag * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4)
+static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, u32 heapID)
 {
-    u32 v0 = Item_LoadParam(param1, 5, param4);
+    u32 pocket = Item_LoadParam(item, ITEM_PARAM_FIELD_POCKET, heapID);
 
-    switch (v0) {
-    case 7:
-        *param2 = param0->unk_294;
-        *param3 = 50;
+    switch (pocket) {
+    case POCKET_KEY_ITEMS:
+        *outPocket = bag->keyItems;
+        *outMax = 50;
         break;
-    case 0:
-        *param2 = param0->unk_00;
-        *param3 = 165;
+    case POCKET_ITEMS:
+        *outPocket = bag->items;
+        *outMax = 165;
         break;
-    case 4:
-        *param2 = param0->unk_5BC;
-        *param3 = 64;
+    case POCKET_BERRIES:
+        *outPocket = bag->berries;
+        *outMax = 64;
         break;
-    case 1:
-        *param2 = param0->unk_51C;
-        *param3 = 40;
+    case POCKET_MEDICINE:
+        *outPocket = bag->medicine;
+        *outMax = 40;
         break;
-    case 2:
-        *param2 = param0->unk_6BC;
-        *param3 = 15;
+    case POCKET_BALLS:
+        *outPocket = bag->pokeballs;
+        *outMax = 15;
         break;
-    case 6:
-        *param2 = param0->unk_6F8;
-        *param3 = 30;
+    case POCKET_BATTLE_ITEMS:
+        *outPocket = bag->battleItems;
+        *outMax = 30;
         break;
-    case 5:
-        *param2 = param0->unk_4EC;
-        *param3 = 12;
+    case POCKET_MAIL:
+        *outPocket = bag->mail;
+        *outMax = 12;
         break;
-    case 3:
-        *param2 = param0->unk_35C;
-        *param3 = 100;
+    case POCKET_TMHMS:
+        *outPocket = bag->tmHms;
+        *outMax = 100;
         break;
     }
 
-    return v0;
+    return pocket;
 }
 
-static BagItem * sub_0207D4B4 (BagItem * param0, u32 param1, u16 param2, u16 param3, u16 param4)
+static BagItem *Pocket_FindSlotToAddItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, u16 max)
 {
-    u32 v0;
-    u32 v1 = 0xffffffff;
+    u32 i; // Required for matching
+    u32 slot = BAG_SLOT_INVALID;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].item == param2) {
-            if ((param0[v0].quantity + param3) > param4) {
+    for (i = 0; i < pocketSize; i++) {
+        if (pocket[i].item == item) {
+            if (pocket[i].quantity + count > max) {
                 return NULL;
             }
 
-            return &param0[v0];
+            return &pocket[i];
         }
 
-        if (v1 == 0xffffffff) {
-            if ((param0[v0].item == 0) && (param0[v0].quantity == 0)) {
-                v1 = v0;
+        if (slot == BAG_SLOT_INVALID) {
+            if (pocket[i].item == ITEM_NONE && pocket[i].quantity == 0) {
+                slot = i;
             }
         }
     }
 
-    if (v1 == 0xffffffff) {
-        return NULL;
-    }
-
-    return &param0[v1];
+    return slot == BAG_SLOT_INVALID ? NULL : &pocket[slot];
 }
 
-static BagItem * sub_0207D518 (Bag * param0, u16 param1, u16 param2, u32 param3)
+static BagItem *Bag_FindSlotToAddItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
 {
-    BagItem * v0;
-    u32 v1;
-    u32 v2;
-
-    v2 = sub_0207D40C(param0, param1, &v0, &v1, param3);
-
-    if (v2 == 3) {
-        return sub_0207D4B4(v0, v1, param1, param2, 99);
+    BagItem *pocketItems;
+    u32 pocketSize;
+    
+    u32 pocket = Bag_GetPocketForItem(bag, item, &pocketItems, &pocketSize, heapID);
+    if (pocket == POCKET_TMHMS) {
+        return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, count, BAG_MAX_TMHMS);
     }
 
-    return sub_0207D4B4(v0, v1, param1, param2, 999);
+    return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, count, BAG_MAX_ITEMS);
 }
 
 BOOL sub_0207D55C (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    if (sub_0207D518(param0, param1, param2, param3) == NULL) {
+    if (Bag_FindSlotToAddItem(param0, param1, param2, param3) == NULL) {
         return 0;
     }
 
@@ -143,7 +143,7 @@ BOOL sub_0207D55C (Bag * param0, u16 param1, u16 param2, u32 param3)
 
 BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    BagItem * v0 = sub_0207D518(param0, param1, param2, param3);
+    BagItem * v0 = Bag_FindSlotToAddItem(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
@@ -156,7 +156,7 @@ BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
         u32 v1;
         u32 v2;
 
-        v1 = sub_0207D40C(param0, param1, &v0, &v2, param3);
+        v1 = Bag_GetPocketForItem(param0, param1, &v0, &v2, param3);
 
         if ((v1 == 4) || (v1 == 3)) {
             sub_0207D7CC(v0, v2);
@@ -166,35 +166,29 @@ BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
     return 1;
 }
 
-static BagItem * sub_0207D5B8 (BagItem * param0, u32 param1, u16 param2, u16 param3)
+static BagItem *Pocket_FindSlotToRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].item == param2) {
-            if (param0[v0].quantity >= param3) {
-                return &param0[v0];
-            } else {
-                return NULL;
-            }
+    for (u32 i = 0; i < pocketSize; i++) {
+        if (pocket[i].item == item) {
+            return pocket[i].quantity >= count ? &pocket[i] : NULL;
         }
     }
 
     return NULL;
 }
 
-static BagItem * sub_0207D5E8 (Bag * param0, u16 param1, u16 param2, u32 param3)
+static BagItem *Bag_FindSlotToRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
 {
-    BagItem * v0;
-    u32 v1;
+    BagItem *pocket;
+    u32 pocketSize;
 
-    sub_0207D40C(param0, param1, &v0, &v1, param3);
-    return sub_0207D5B8(v0, v1, param1, param2);
+    Bag_GetPocketForItem(bag, item, &pocket, &pocketSize, heapID);
+    return Pocket_FindSlotToRemoveItem(pocket, pocketSize, item, count);
 }
 
 BOOL Bag_SubtractItem (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    BagItem * v0 = sub_0207D5E8(param0, param1, param2, param3);
+    BagItem * v0 = Bag_FindSlotToRemoveItem(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
@@ -209,7 +203,7 @@ BOOL Bag_SubtractItem (Bag * param0, u16 param1, u16 param2, u32 param3)
     {
         u32 v1;
 
-        sub_0207D40C(param0, param1, &v0, &v1, param3);
+        Bag_GetPocketForItem(param0, param1, &v0, &v1, param3);
         sub_0207D780(v0, v1);
     }
 
@@ -218,7 +212,7 @@ BOOL Bag_SubtractItem (Bag * param0, u16 param1, u16 param2, u32 param3)
 
 BOOL sub_0207D658 (BagItem * param0, u32 param1, u16 param2, u16 param3, u32 param4)
 {
-    BagItem * v0 = sub_0207D5B8(param0, param1, param2, param3);
+    BagItem * v0 = Pocket_FindSlotToRemoveItem(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
@@ -237,7 +231,7 @@ BOOL sub_0207D658 (BagItem * param0, u32 param1, u16 param2, u16 param3, u32 par
 
 BOOL sub_0207D688 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    if (sub_0207D5E8(param0, param1, param2, param3) == NULL) {
+    if (Bag_FindSlotToRemoveItem(param0, param1, param2, param3) == NULL) {
         return 0;
     }
 
@@ -252,35 +246,35 @@ BOOL sub_0207D69C (Bag * param0, u32 param1)
 
     switch (param1) {
     case 7:
-        v0 = param0->unk_294;
+        v0 = param0->keyItems;
         v1 = 50;
         break;
     case 0:
-        v0 = param0->unk_00;
+        v0 = param0->items;
         v1 = 165;
         break;
     case 4:
-        v0 = param0->unk_5BC;
+        v0 = param0->berries;
         v1 = 64;
         break;
     case 1:
-        v0 = param0->unk_51C;
+        v0 = param0->medicine;
         v1 = 40;
         break;
     case 2:
-        v0 = param0->unk_6BC;
+        v0 = param0->pokeballs;
         v1 = 15;
         break;
     case 6:
-        v0 = param0->unk_6F8;
+        v0 = param0->battleItems;
         v1 = 30;
         break;
     case 5:
-        v0 = param0->unk_4EC;
+        v0 = param0->mail;
         v1 = 12;
         break;
     case 3:
-        v0 = param0->unk_35C;
+        v0 = param0->tmHms;
         v1 = 100;
         break;
     default:
@@ -298,7 +292,7 @@ BOOL sub_0207D69C (Bag * param0, u32 param1)
 
 u16 sub_0207D730 (Bag * param0, u16 param1, u32 param2)
 {
-    BagItem * v0 = sub_0207D5E8(param0, param1, 1, param2);
+    BagItem * v0 = Bag_FindSlotToRemoveItem(param0, param1, 1, param2);
 
     if (v0 == NULL) {
         return 0;
@@ -309,7 +303,7 @@ u16 sub_0207D730 (Bag * param0, u16 param1, u32 param2)
 
 u16 sub_0207D748 (BagItem * param0, u32 param1, u16 param2, u32 param3)
 {
-    BagItem * v0 = sub_0207D5B8(param0, param1, param2, 1);
+    BagItem * v0 = Pocket_FindSlotToRemoveItem(param0, param1, param2, 1);
 
     if (v0 == NULL) {
         return 0;
@@ -318,14 +312,11 @@ u16 sub_0207D748 (BagItem * param0, u32 param1, u16 param2, u32 param3)
     return v0->quantity;
 }
 
-static void sub_0207D75C (BagItem * param0, BagItem * param1)
+static void BagItem_Swap(BagItem *a, BagItem *b)
 {
-    BagItem v0;
-
-    v0 = *param0;
-
-    *param0 = *param1;
-    *param1 = v0;
+    BagItem temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 void sub_0207D780 (BagItem * param0, const u32 param1)
@@ -335,7 +326,7 @@ void sub_0207D780 (BagItem * param0, const u32 param1)
     for (v0 = 0; v0 < param1 - 1; v0++) {
         for (v1 = v0 + 1; v1 < param1; v1++) {
             if (param0[v0].quantity == 0) {
-                sub_0207D75C(&param0[v0], &param0[v1]);
+                BagItem_Swap(&param0[v0], &param0[v1]);
             }
         }
     }
@@ -348,7 +339,7 @@ void sub_0207D7CC (BagItem * param0, const u32 param1)
     for (v0 = 0; v0 < param1 - 1; v0++) {
         for (v1 = v0 + 1; v1 < param1; v1++) {
             if ((param0[v0].quantity == 0) || ((param0[v1].quantity != 0) && (param0[v0].item > param0[v1].item))) {
-                sub_0207D75C(&param0[v0], &param0[v1]);
+                BagItem_Swap(&param0[v0], &param0[v1]);
             }
         }
     }
@@ -364,28 +355,28 @@ void * sub_0207D824 (Bag * param0, const u8 * param1, u32 param2)
     for (v1 = 0; param1[v1] != 0xff; v1++) {
         switch (param1[v1]) {
         case 7:
-            sub_0207CB48(v0, param0->unk_294, 7, v1);
+            sub_0207CB48(v0, param0->keyItems, 7, v1);
             break;
         case 0:
-            sub_0207CB48(v0, param0->unk_00, 0, v1);
+            sub_0207CB48(v0, param0->items, 0, v1);
             break;
         case 4:
-            sub_0207CB48(v0, param0->unk_5BC, 4, v1);
+            sub_0207CB48(v0, param0->berries, 4, v1);
             break;
         case 1:
-            sub_0207CB48(v0, param0->unk_51C, 1, v1);
+            sub_0207CB48(v0, param0->medicine, 1, v1);
             break;
         case 2:
-            sub_0207CB48(v0, param0->unk_6BC, 2, v1);
+            sub_0207CB48(v0, param0->pokeballs, 2, v1);
             break;
         case 6:
-            sub_0207CB48(v0, param0->unk_6F8, 6, v1);
+            sub_0207CB48(v0, param0->battleItems, 6, v1);
             break;
         case 5:
-            sub_0207CB48(v0, param0->unk_4EC, 5, v1);
+            sub_0207CB48(v0, param0->mail, 5, v1);
             break;
         case 3:
-            sub_0207CB48(v0, param0->unk_35C, 3, v1);
+            sub_0207CB48(v0, param0->tmHms, 3, v1);
             break;
         }
     }
@@ -400,35 +391,35 @@ BagItem * sub_0207D910 (Bag * param0, u16 param1, u16 param2)
 
     switch (param1) {
     case 7:
-        v0 = param0->unk_294;
+        v0 = param0->keyItems;
         v1 = 50;
         break;
     case 0:
-        v0 = param0->unk_00;
+        v0 = param0->items;
         v1 = 165;
         break;
     case 4:
-        v0 = param0->unk_5BC;
+        v0 = param0->berries;
         v1 = 64;
         break;
     case 1:
-        v0 = param0->unk_51C;
+        v0 = param0->medicine;
         v1 = 40;
         break;
     case 2:
-        v0 = param0->unk_6BC;
+        v0 = param0->pokeballs;
         v1 = 15;
         break;
     case 6:
-        v0 = param0->unk_6F8;
+        v0 = param0->battleItems;
         v1 = 30;
         break;
     case 5:
-        v0 = param0->unk_4EC;
+        v0 = param0->mail;
         v1 = 12;
         break;
     case 3:
-        v0 = param0->unk_35C;
+        v0 = param0->tmHms;
         v1 = 100;
         break;
     }
