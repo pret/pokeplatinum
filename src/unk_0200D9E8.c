@@ -10,27 +10,27 @@
 #include "unk_0200D9E8.h"
 #include "sys_task_manager.h"
 
-SysTask * SysTask_Start (SysTaskFunc param0, void * param1, u32 param2)
+SysTask *SysTask_Start(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.unk_18, param0, param1, param2);
+    return SysTaskManager_AddTask(gCoreSys.mainTaskMgr, callback, param, priority);
 }
 
-SysTask * CoreSys_ExecuteOnVBlank (SysTaskFunc param0, void * param1, u32 param2)
+SysTask *CoreSys_ExecuteOnVBlank(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.unk_1C, param0, param1, param2);
+    return SysTaskManager_AddTask(gCoreSys.vBlankTaskMgr, callback, param, priority);
 }
 
-SysTask * sub_0200DA20 (SysTaskFunc param0, void * param1, u32 param2)
+SysTask *sub_0200DA20(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.unk_24, param0, param1, param2);
+    return SysTaskManager_AddTask(gCoreSys.unk_24, callback, param, priority);
 }
 
-SysTask * CoreSys_ExecuteAfterVBlank (SysTaskFunc param0, void * param1, u32 param2)
+SysTask *CoreSys_ExecuteAfterVBlank(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.unk_20, param0, param1, param2);
+    return SysTaskManager_AddTask(gCoreSys.postVBlankTaskMgr, callback, param, priority);
 }
 
-void SysTask_Done (SysTask * param0)
+void SysTask_Done(SysTask *task)
 {
-    SysTask_Delete(param0);
+    SysTask_Delete(task);
 }

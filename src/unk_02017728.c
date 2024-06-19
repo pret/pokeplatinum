@@ -27,7 +27,7 @@ void sub_02017728 (void)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 
     MI_WaitDma(GX_DEFAULT_DMAID);
-    SysTaskManager_ExecuteTasks(gCoreSys.unk_1C);
+    SysTaskManager_ExecuteTasks(gCoreSys.vBlankTaskMgr);
 
     gCoreSys.unk_30++;
 }
@@ -146,9 +146,9 @@ void sub_0201789C (void)
     OS_InitTick();
     sub_02017850();
 
-    gCoreSys.unk_18 = SysTaskManager_Init(160, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(160), 4));
-    gCoreSys.unk_1C = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
-    gCoreSys.unk_20 = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gCoreSys.mainTaskMgr = SysTaskManager_Init(160, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(160), 4));
+    gCoreSys.vBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gCoreSys.postVBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
     gCoreSys.unk_24 = SysTaskManager_Init(4, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(4), 4));
 
     GX_DispOff();

@@ -133,7 +133,7 @@ void NitroMain (void)
         if (CommSys_Update()) {
             CheckHeapCanary();
             sub_02000E54();
-            SysTaskManager_ExecuteTasks(gCoreSys.unk_18);
+            SysTaskManager_ExecuteTasks(gCoreSys.mainTaskMgr);
             SysTaskManager_ExecuteTasks(gCoreSys.unk_24);
 
             if (!gCoreSys.unk_30) {
@@ -160,7 +160,7 @@ void NitroMain (void)
         }
 
         UpdateSound();
-        SysTaskManager_ExecuteTasks(gCoreSys.unk_20);
+        SysTaskManager_ExecuteTasks(gCoreSys.postVBlankTaskMgr);
     }
 }
 
