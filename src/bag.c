@@ -10,39 +10,7 @@
 #include "savedata.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
-
-typedef struct UnkStruct_0207D3C0_t {
-    BagItem unk_00[165];
-    BagItem unk_294[50];
-    BagItem unk_35C[100];
-    BagItem unk_4EC[12];
-    BagItem unk_51C[40];
-    BagItem unk_5BC[64];
-    BagItem unk_6BC[15];
-    BagItem unk_6F8[30];
-    u32 unk_770;
-} UnkStruct_0207D3C0;
-
-typedef struct {
-    u8 unk_00[8];
-    u8 unk_08[8];
-    u16 unk_10;
-    u16 unk_12;
-} UnkStruct_0207D99C_sub1;
-
-typedef struct {
-    u8 unk_00[5];
-    u8 unk_05[5];
-    u16 unk_0A;
-    u16 unk_0C;
-    u16 unk_0E;
-} UnkStruct_0207D99C_sub2;
-
-typedef struct UnkStruct_0207D99C_t {
-    UnkStruct_0207D99C_sub1 unk_00;
-    UnkStruct_0207D99C_sub2 unk_14;
-} UnkStruct_0207D99C;
+#include "bag.h"
 
 static u32 sub_0207D40C(UnkStruct_0207D3C0 * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4);
 

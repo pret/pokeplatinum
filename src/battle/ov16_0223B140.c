@@ -78,7 +78,7 @@
 #include "party.h"
 #include "unk_0207A6DC.h"
 #include "unk_0207AE68.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C098.h"
 #include "flags.h"
 #include "overlay010/ov10_0221F800.h"

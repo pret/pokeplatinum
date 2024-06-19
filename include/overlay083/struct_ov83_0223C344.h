@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV83_0223C344_H
 
 #include "overlay_manager.h"
-#include "struct_decls/struct_0207D99C_decl.h"
+#include "bag.h"
 #include "overlay082/struct_ov82_0223B164.h"
 
 typedef struct {

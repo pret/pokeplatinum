@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -59,7 +58,7 @@
 #include "unk_0206CCB0.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "unk_0209AC14.h"

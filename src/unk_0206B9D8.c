@@ -36,7 +36,7 @@
 #include "unk_0206B9D8.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 
 typedef struct {

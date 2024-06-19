@@ -17,7 +17,7 @@
 #include "game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
 #include "overlay084/struct_ov84_0223C920.h"
 

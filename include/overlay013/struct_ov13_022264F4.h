@@ -3,7 +3,7 @@
 
 #include "trainer_info.h"
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 
 typedef struct {
     BattleSystem * unk_00;

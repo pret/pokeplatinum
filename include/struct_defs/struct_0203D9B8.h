@@ -5,7 +5,7 @@
 #include "game_options.h"
 #include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "struct_defs/struct_020989DC.h"
 
 typedef struct {

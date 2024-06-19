@@ -24,7 +24,7 @@
 #include "map_object.h"
 #include "pokeradar.h"
 #include "unk_020711EC.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021F2D20.h"
 #include "overlay006/ov6_022430C4.h"
 

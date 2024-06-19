@@ -61,7 +61,7 @@
 #include "constants/species.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020923C0.h"
 #include "unk_02094EDC.h"
 #include "overlay006/ov6_02243218.h"

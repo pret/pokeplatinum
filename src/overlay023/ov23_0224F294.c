@@ -11,7 +11,6 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -52,7 +51,7 @@
 #include "comm_player_manager.h"
 #include "player_avatar.h"
 #include "unk_0206A780.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022416A8.h"

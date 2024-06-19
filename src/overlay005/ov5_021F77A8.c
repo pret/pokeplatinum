@@ -9,7 +9,7 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021F7ED8_decl.h"
 
@@ -36,7 +36,7 @@
 #include "constants/forms.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/ov5_021F77A8.h"
 

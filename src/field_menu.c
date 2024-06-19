@@ -12,7 +12,6 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 
 #include "constdata/const_020EA02C.h"
@@ -94,7 +93,7 @@
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 #include "unk_020972FC.h"
 #include "unk_0209747C.h"

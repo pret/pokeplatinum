@@ -25,7 +25,7 @@
 #include "poffin.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 #include "unk_020989DC.h"
 #include "overlay079/ov79_021D0D80.h"

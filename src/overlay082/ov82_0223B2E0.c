@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "overlay084/const_ov84_02241130.h"
 
@@ -12,7 +11,7 @@
 #include "heap.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020972FC.h"
 #include "overlay082/ov82_0223B140.h"
 #include "overlay082/ov82_0223B2E0.h"

@@ -9,7 +9,7 @@
 #include "unk_0204E75C.h"
 #include "unk_0205DFC4.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 
 BOOL ScrCmd_07B (ScriptContext * param0)
 {

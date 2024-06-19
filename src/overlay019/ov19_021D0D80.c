@@ -16,7 +16,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 #include "savedata.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -62,7 +61,7 @@
 #include "unk_0207A274.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208694C.h"
 #include "pokemon_summary_app.h"
 #include "overlay019/ov19_021D0D80.h"

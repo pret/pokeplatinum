@@ -12,8 +12,6 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_decls/struct_0207D99C_decl.h"
 #include "savedata.h"
 
 #include "struct_defs/struct_0202610C.h"
@@ -58,7 +56,7 @@
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 
 static void sub_0205281C(BattleParams * param0, const FieldSystem * fieldSystem);

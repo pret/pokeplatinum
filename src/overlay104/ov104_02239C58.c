@@ -18,7 +18,7 @@
 #include "unk_0202D778.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"

@@ -5,7 +5,7 @@
 #include "overlay013/struct_ov13_02227244.h"
 
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay013/ov13_02227A4C.h"
 
 u8 ov13_02227A4C (UnkStruct_ov13_02227244 * param0)

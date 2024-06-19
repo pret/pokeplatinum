@@ -15,7 +15,6 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 #include "savedata.h"
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 
@@ -47,7 +46,7 @@
 #include "game_options.h"
 #include "unk_020298BC.h"
 #include "unk_0205D8CC.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay007/ov7_0224BE9C.h"
 
 

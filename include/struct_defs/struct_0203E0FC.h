@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "savedata.h"
 
 typedef struct {

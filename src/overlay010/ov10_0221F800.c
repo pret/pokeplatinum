@@ -74,7 +74,7 @@
 #include "pokemon_icon.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "pokemon_summary_app.h"

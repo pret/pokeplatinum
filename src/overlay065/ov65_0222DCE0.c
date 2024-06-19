@@ -99,7 +99,7 @@
 #include "vars_flags.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207DFAC.h"
 #include "unk_02099550.h"
 #include "unk_0209C390.h"

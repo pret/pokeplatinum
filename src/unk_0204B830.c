@@ -8,7 +8,6 @@
 #include "trainer_info.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
 #include "field/field_system.h"
@@ -37,7 +36,7 @@
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020923C0.h"
 #include "unk_02092494.h"
 

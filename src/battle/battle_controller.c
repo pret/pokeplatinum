@@ -38,7 +38,7 @@
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "flags.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"

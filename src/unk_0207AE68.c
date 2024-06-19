@@ -11,7 +11,6 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -63,7 +62,7 @@
 #include "party.h"
 #include "unk_0207AE68.h"
 #include "unk_0207C63C.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 
 UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, PoketchData * param8, int param9, int param10, int param11);

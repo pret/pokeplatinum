@@ -42,7 +42,7 @@
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_02097B18.h"
 #include "overlay076/ov76_0223B140.h"
 #include "overlay076/ov76_0223B870.h"

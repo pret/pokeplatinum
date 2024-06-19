@@ -29,7 +29,7 @@
 #include "comm_player_manager.h"
 #include "unk_0205F180.h"
 #include "pokeradar.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
 #include "overlay005/field_control.h"

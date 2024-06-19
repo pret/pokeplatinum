@@ -14,7 +14,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 #include "savedata.h"
 
 #include "constdata/const_020F1E88.h"
@@ -55,7 +54,7 @@
 #include "unk_0206A780.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_02097624.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D431C.h"

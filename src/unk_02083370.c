@@ -27,7 +27,7 @@
 #include "unk_0207070C.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"

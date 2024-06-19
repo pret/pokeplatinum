@@ -7,7 +7,7 @@
 #include "field_script_context.h"
 
 #include "unk_0204E240.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 
 const u16 Unk_020EBFFC[7][2] = {
     {0x67, 0x8E},
