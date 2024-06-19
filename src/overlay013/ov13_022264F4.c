@@ -841,6 +841,6 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02227260 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
-    Bag_SubtractItem(BattleSystem_Bag(param0), param1, 1, param3);
+    Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
     Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);
 }

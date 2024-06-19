@@ -811,7 +811,7 @@ static void sub_02068CF0 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v1->unk_25C = v2;
     v1->state = FIELD_MENU_STATE_10;
 
-    Bag_SubtractItem(sub_0207D990(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(sub_0207D990(fieldSystem->saveData), param0->unk_04, 1, 11);
 }
 
 static void sub_02068D48 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 * param1)
@@ -1024,7 +1024,7 @@ static void sub_02069080 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     menu->unk_25C = NULL;
     menu->state = FIELD_MENU_STATE_10;
 
-    Bag_SubtractItem(sub_0207D990(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(sub_0207D990(fieldSystem->saveData), param0->unk_04, 1, 11);
 }
 
 static u32 sub_020690C4 (const UnkStruct_020684D0 * param0)

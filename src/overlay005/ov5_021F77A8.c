@@ -155,25 +155,25 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
     *v7 = 1;
 
     if (v1) {
-        if (sub_0207D688(v5, 72, v1, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 72, v1, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v2) {
-        if (sub_0207D688(v5, 73, v2, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 73, v2, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v3) {
-        if (sub_0207D688(v5, 74, v3, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 74, v3, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v4) {
-        if (sub_0207D688(v5, 75, v4, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 75, v4, 32) == 0) {
             *v7 = 0;
         }
     }
@@ -204,10 +204,10 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
         GF_ASSERT(0);
     }
 
-    Bag_SubtractItem(v5, 72, v1, 32);
-    Bag_SubtractItem(v5, 73, v2, 32);
-    Bag_SubtractItem(v5, 74, v3, 32);
-    Bag_SubtractItem(v5, 75, v4, 32);
+    Bag_TryRemoveItem(v5, 72, v1, 32);
+    Bag_TryRemoveItem(v5, 73, v2, 32);
+    Bag_TryRemoveItem(v5, 74, v3, 32);
+    Bag_TryRemoveItem(v5, 75, v4, 32);
 
     return 0;
 }

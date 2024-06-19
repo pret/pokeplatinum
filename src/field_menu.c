@@ -1713,7 +1713,7 @@ static void sub_0203C2D8 (TaskManager * taskMan, u16 param1)
     for (v3 = 0; v3 < 64; v3++) {
         param1 = Item_ForBerryNumber(v3);
 
-        if (sub_0207D688(v2, param1, 1, 11) == 1) {
+        if (Bag_CanRemoveItem(v2, param1, 1, 11) == 1) {
             sub_02097320(menu->unk_25C, param1, 0);
             v6++;
         }

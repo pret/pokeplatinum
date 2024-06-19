@@ -985,10 +985,10 @@ static BOOL sub_02073060 (UnkStruct_02072334 * param0)
     BOOL v1;
 
     v0 = &(param0->unk_1C[param0->unk_18]);
-    v1 = sub_0207D55C(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+    v1 = Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
 
     if (v1) {
-        sub_0207D570(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+        Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
     }
 
     sub_02028470(param0->unk_1AC, 0, param0->unk_18);
@@ -1016,8 +1016,8 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
 
     if (param2) {
-        if (sub_0207D55C(param0->unk_1B0, v0->unk_06, 1, param0->unk_00)) {
-            sub_0207D570(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+        if (Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00)) {
+            Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
         }
     }
 

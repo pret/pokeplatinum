@@ -1008,9 +1008,9 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
     BOOL v1;
 
     if (param0->unk_2A9 == 0) {
-        v1 = sub_0207D55C(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
     } else if (param0->unk_2A9 == 3) {
-        v1 = sub_0207D55C(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
     } else if (param0->unk_2A9 == 1) {
         if (sub_020289A0(param0->unk_274) == 200) {
             v1 = 0;
@@ -1186,10 +1186,10 @@ static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
     }
 
     if (param0->unk_2A9 == 0) {
-        sub_0207D570(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
         sub_0206D504(param0->unk_284, param0->unk_2AA, param0->unk_2AC);
     } else if (param0->unk_2A9 == 3) {
-        sub_0207D570(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
     } else if (param0->unk_2A9 == 1) {
         sub_0202895C(param0->unk_274, param0->unk_2AA);
     } else {
@@ -1229,7 +1229,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
         }
 
         if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
-            if (sub_0207D570(param0->unk_274, 12, 1, 11) == 1) {
+            if (Bag_TryAddItem(param0->unk_274, 12, 1, 11) == 1) {
                 Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 10);
 
                 StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);

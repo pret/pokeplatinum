@@ -14,7 +14,7 @@ u8 ov13_02227A4C (UnkStruct_ov13_02227244 * param0)
         return 0;
     }
 
-    if (sub_0207D688(param0->unk_00->unk_08, param0->unk_00->unk_20, 1, param0->unk_00->unk_0C) == 0) {
+    if (Bag_CanRemoveItem(param0->unk_00->unk_08, param0->unk_00->unk_20, 1, param0->unk_00->unk_0C) == 0) {
         param0->unk_00->unk_20 = 0;
         param0->unk_00->unk_1F = 0;
         return 0;

@@ -1958,7 +1958,7 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
             nextSeq = subscript_throw_pokeball;
             if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) == FALSE) {
-                Bag_SubtractItem(BattleSystem_Bag(battleSys), used->item, 1, HEAP_ID_BATTLE);
+                Bag_TryRemoveItem(BattleSystem_Bag(battleSys), used->item, 1, HEAP_ID_BATTLE);
                 Bag_SetLastItemUsed(BattleSystem_BagCursor(battleSys), used->item, used->pocket);
             }
 

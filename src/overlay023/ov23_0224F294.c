@@ -1332,7 +1332,7 @@ static BOOL ov23_022507D8 (SysTask * param0, void * param1)
 
             Sound_PlayEffect(1500);
 
-            if (sub_0207D570(v4, v3, 1, 4)) {
+            if (Bag_TryAddItem(v4, v3, 1, 4)) {
                 sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
                 ov23_022541A0(ov23_0224219C(), 0, Unk_ov23_022577B8->unk_05);
 

@@ -151,7 +151,7 @@ static int ov82_0223B3DC (UnkStruct_ov83_0223C344 * param0)
         break;
     }
 
-    v1 = Bag_SubtractItem(param0->unk_10->unk_14, param0->unk_08, 1, param0->unk_00);
+    v1 = Bag_TryRemoveItem(param0->unk_10->unk_14, param0->unk_08, 1, param0->unk_00);
     GF_ASSERT(v1);
 
     return 4;
@@ -177,7 +177,7 @@ static int ov82_0223B470 (UnkStruct_ov83_0223C344 * param0)
     for (v0 = 0; v0 < 64; v0++) {
         v4 = Item_ForBerryNumber(v0);
 
-        if (sub_0207D688(v5, v4, 1, param0->unk_00) == 1) {
+        if (Bag_CanRemoveItem(v5, v4, 1, param0->unk_00) == 1) {
             sub_02097320(param0->unk_18, v4, 0);
             v3++;
         }

@@ -473,7 +473,7 @@ int GetChainCount (FieldSystem *fieldSystem) {
 void RadarChargeStep (FieldSystem *fieldSystem) {
     u8 *v0;
 
-    if (sub_0207D688(sub_0207D990(fieldSystem->saveData), 431, 1, 4) == 1) {
+    if (Bag_CanRemoveItem(sub_0207D990(fieldSystem->saveData), 431, 1, 4) == 1) {
         v0 = sub_0202D9C4(sub_0202D834(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;

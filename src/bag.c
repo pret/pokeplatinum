@@ -1,7 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/items.h"
+#include "consts/items.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "savedata.h"
 
@@ -18,7 +20,7 @@
 #define BAG_MAX_ITEMS       999
 #define BAG_MAX_TMHMS       99
 
-static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, u32 heapID);
+static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapId heapID);
 
 int Bag_SaveSize(void)
 {
@@ -53,7 +55,7 @@ void sub_0207D404 (Bag * param0, u32 param1)
     param0->unk_770 = param1;
 }
 
-static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, u32 heapID)
+static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapId heapID)
 {
     u32 pocket = Item_LoadParam(item, ITEM_PARAM_FIELD_POCKET, heapID);
 
@@ -132,38 +134,28 @@ static BagItem *Bag_FindSlotToAddItem(Bag *bag, u16 item, u16 count, enum HeapId
     return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, count, BAG_MAX_ITEMS);
 }
 
-BOOL sub_0207D55C (Bag * param0, u16 param1, u16 param2, u32 param3)
+BOOL Bag_CanFitItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
 {
-    if (Bag_FindSlotToAddItem(param0, param1, param2, param3) == NULL) {
-        return 0;
-    }
-
-    return 1;
+    return Bag_FindSlotToAddItem(bag, item, count, heapID) != NULL;
 }
 
-BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
+BOOL Bag_TryAddItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
 {
-    BagItem * v0 = Bag_FindSlotToAddItem(param0, param1, param2, param3);
-
-    if (v0 == NULL) {
-        return 0;
+    BagItem *slot = Bag_FindSlotToAddItem(bag, item, count, heapID);
+    if (slot == NULL) {
+        return FALSE;
     }
 
-    v0->item = param1;
-    v0->quantity += param2;
+    slot->item = item;
+    slot->quantity += count;
 
-    {
-        u32 v1;
-        u32 v2;
-
-        v1 = Bag_GetPocketForItem(param0, param1, &v0, &v2, param3);
-
-        if ((v1 == 4) || (v1 == 3)) {
-            sub_0207D7CC(v0, v2);
-        }
+    u32 pocketSize;
+    u32 pocket = Bag_GetPocketForItem(bag, item, &slot, &pocketSize, heapID);
+    if (pocket == POCKET_BERRIES || pocket == POCKET_TMHMS) {
+        Pocket_Sort(slot, pocketSize);
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BagItem *Pocket_FindSlotToRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count)
@@ -186,56 +178,47 @@ static BagItem *Bag_FindSlotToRemoveItem(Bag *bag, u16 item, u16 count, enum Hea
     return Pocket_FindSlotToRemoveItem(pocket, pocketSize, item, count);
 }
 
-BOOL Bag_SubtractItem (Bag * param0, u16 param1, u16 param2, u32 param3)
+BOOL Bag_TryRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
 {
-    BagItem * v0 = Bag_FindSlotToRemoveItem(param0, param1, param2, param3);
-
-    if (v0 == NULL) {
-        return 0;
+    BagItem *slot = Bag_FindSlotToRemoveItem(bag, item, count, heapID);
+    if (slot == NULL) {
+        return FALSE;
     }
 
-    v0->quantity -= param2;
+    slot->quantity -= count;
 
-    if (v0->quantity == 0) {
-        v0->item = 0;
+    if (slot->quantity == 0) {
+        slot->item = ITEM_NONE;
     }
 
-    {
-        u32 v1;
+    u32 pocketSize;
+    Bag_GetPocketForItem(bag, item, &slot, &pocketSize, heapID);
+    Pocket_SortEmpty(slot, pocketSize);
 
-        Bag_GetPocketForItem(param0, param1, &v0, &v1, param3);
-        sub_0207D780(v0, v1);
-    }
-
-    return 1;
+    return TRUE;
 }
 
-BOOL sub_0207D658 (BagItem * param0, u32 param1, u16 param2, u16 param3, u32 param4)
+BOOL Pocket_TryRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, enum HeapId heapID)
 {
-    BagItem * v0 = Pocket_FindSlotToRemoveItem(param0, param1, param2, param3);
-
-    if (v0 == NULL) {
-        return 0;
+    BagItem *slot = Pocket_FindSlotToRemoveItem(pocket, pocketSize, item, count);
+    if (slot == NULL) {
+        return FALSE;
     }
 
-    v0->quantity -= param3;
+    slot->quantity -= count;
 
-    if (v0->quantity == 0) {
-        v0->item = 0;
+    if (slot->quantity == 0) {
+        slot->item = ITEM_NONE;
     }
 
-    sub_0207D780(param0, param1);
+    Pocket_SortEmpty(pocket, pocketSize);
 
-    return 1;
+    return TRUE;
 }
 
-BOOL sub_0207D688 (Bag * param0, u16 param1, u16 param2, u32 param3)
+BOOL Bag_CanRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
 {
-    if (Bag_FindSlotToRemoveItem(param0, param1, param2, param3) == NULL) {
-        return 0;
-    }
-
-    return 1;
+    return Bag_FindSlotToRemoveItem(bag, item, count, heapID) != NULL;
 }
 
 BOOL sub_0207D69C (Bag * param0, u32 param1)
@@ -319,27 +302,23 @@ static void BagItem_Swap(BagItem *a, BagItem *b)
     *b = temp;
 }
 
-void sub_0207D780 (BagItem * param0, const u32 param1)
+void Pocket_SortEmpty(BagItem *pocket, const u32 size)
 {
-    u32 v0, v1;
-
-    for (v0 = 0; v0 < param1 - 1; v0++) {
-        for (v1 = v0 + 1; v1 < param1; v1++) {
-            if (param0[v0].quantity == 0) {
-                BagItem_Swap(&param0[v0], &param0[v1]);
+    for (u32 i = 0; i < size - 1; i++) {
+        for (u32 j = i + 1; j < size; j++) {
+            if (pocket[i].quantity == 0) {
+                BagItem_Swap(&pocket[i], &pocket[j]);
             }
         }
     }
 }
 
-void sub_0207D7CC (BagItem * param0, const u32 param1)
+void Pocket_Sort(BagItem *pocket, const u32 size)
 {
-    u32 v0, v1;
-
-    for (v0 = 0; v0 < param1 - 1; v0++) {
-        for (v1 = v0 + 1; v1 < param1; v1++) {
-            if ((param0[v0].quantity == 0) || ((param0[v1].quantity != 0) && (param0[v0].item > param0[v1].item))) {
-                BagItem_Swap(&param0[v0], &param0[v1]);
+    for (u32 i = 0; i < size - 1; i++) {
+        for (u32 j = i + 1; j < size; j++) {
+            if (pocket[i].quantity == 0 || (pocket[j].quantity != 0 && pocket[i].item > pocket[j].item)) {
+                BagItem_Swap(&pocket[i], &pocket[j]);
             }
         }
     }

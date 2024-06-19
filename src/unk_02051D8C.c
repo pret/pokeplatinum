@@ -174,7 +174,7 @@ BattleParams * sub_02051F4C (int param0, const FieldSystem * fieldSystem)
     Options_Copy(v1, v4->unk_108);
 
     v4->unk_138 = sub_02055BA8(fieldSystem);
-    sub_0207D570(v4->unk_E0, 4, 20, param0);
+    Bag_TryAddItem(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
     Pokemon_InitWith(v5, sub_0206B08C(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, 0, 0, 2, 0);

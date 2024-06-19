@@ -55,16 +55,16 @@ void Bag_Init(Bag *bag);
 void Bag_Copy(const Bag *src, Bag *dst);
 u32 sub_0207D3FC(const Bag * param0);
 void sub_0207D404(Bag * param0, u32 param1);
-BOOL sub_0207D55C(Bag * param0, u16 param1, u16 param2, u32 param3);
-BOOL sub_0207D570(Bag * param0, u16 param1, u16 param2, u32 param3);
-BOOL Bag_SubtractItem(Bag * param0, u16 param1, u16 param2, u32 param3);
-BOOL sub_0207D658(BagItem * param0, u32 param1, u16 param2, u16 param3, u32 param4);
-BOOL sub_0207D688(Bag * param0, u16 param1, u16 param2, u32 param3);
+BOOL Bag_CanFitItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
+BOOL Bag_TryAddItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
+BOOL Bag_TryRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
+BOOL Pocket_TryRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, enum HeapId heapID);
+BOOL Bag_CanRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
 BOOL sub_0207D69C(Bag * param0, u32 param1);
 u16 sub_0207D730(Bag * param0, u16 param1, u32 param2);
 u16 sub_0207D748(BagItem * param0, u32 param1, u16 param2, u32 param3);
-void sub_0207D780(BagItem * param0, const u32 param1);
-void sub_0207D7CC(BagItem * param0, const u32 param1);
+void Pocket_SortEmpty(BagItem *pocket, const u32 size); // Moves empty slots to the end of the pocket
+void Pocket_Sort(BagItem *pocket, const u32 size); // Same as Pocket_SortEmpty, but also sorts by item ID
 void * sub_0207D824(Bag * param0, const u8 * param1, u32 param2);
 BagItem * sub_0207D910(Bag * param0, u16 param1, u16 param2);
 Bag * sub_0207D990(SaveData * param0);
