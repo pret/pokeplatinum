@@ -14,7 +14,7 @@
 #define CAMERA_DEFAULT_NEAR_CLIP        (FX32_ONE * 150)
 #define CAMERA_DEFAULT_FAR_CLIP         (FX32_ONE * 900)
 
-GXBufferMode sBufferMode = GX_BUFFERMODE_W;
+GXBufferMode gBufferMode = GX_BUFFERMODE_W;
 
 static Camera *sActiveCamera = NULL;
 
@@ -373,7 +373,7 @@ void Camera_ComputeProjectionMatrix(const u8 projection, Camera *camera)
         );
 
         camera->projection = CAMERA_PROJECTION_PERSPECTIVE;
-        sBufferMode = GX_BUFFERMODE_Z;
+        gBufferMode = GX_BUFFERMODE_Z;
     } else {
         fx32 top = FX_Mul(FX_Div(camera->perspective.sinFovY, camera->perspective.cosFovY), camera->distance);
         fx32 right = FX_Mul(top, camera->perspective.aspectRatio);
@@ -381,7 +381,7 @@ void Camera_ComputeProjectionMatrix(const u8 projection, Camera *camera)
         NNS_G3dGlbOrtho(top, -top, -right, right, camera->perspective.nearClip, camera->perspective.farClip);
 
         camera->projection = CAMERA_PROJECTION_ORTHOGRAPHIC;
-        sBufferMode = GX_BUFFERMODE_Z;
+        gBufferMode = GX_BUFFERMODE_Z;
     }
 }
 
