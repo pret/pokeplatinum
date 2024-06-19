@@ -89,7 +89,7 @@ typedef struct {
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
 static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset);
-static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5);
+static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
 static void DrawGauge(Healthbar * param0, u8 param1);
@@ -1453,7 +1453,7 @@ static void DrawGauge (Healthbar * param0, u8 param1)
 
     switch (param1) {
     case 0:
-        v4 = ov16_02268194(param0->maxHP, param0->curHP, param0->damage, &param0->hpTemp, v1, 6);
+        v4 = FillCells(param0->maxHP, param0->curHP, param0->damage, &param0->hpTemp, v1, 6);
 
         {
             int v10;
@@ -1486,7 +1486,7 @@ static void DrawGauge (Healthbar * param0, u8 param1)
         }
         break;
     case 1:
-        ov16_02268194(param0->maxExp, param0->curExp, param0->expReward, &param0->expTemp, v1, 12);
+        FillCells(param0->maxExp, param0->curExp, param0->expReward, &param0->expTemp, v1, 12);
         v5 = param0->unk_48;
 
         if (v5 == 100) {
@@ -1508,6 +1508,17 @@ static void DrawGauge (Healthbar * param0, u8 param1)
     }
 }
 
+/**
+ * @brief Update the pixels of a gauge based on the calculated
+ * change in the current value of a gauge.
+ * 
+ * @param cur       Current value of the gauge
+ * @param diff      Change to be applied to the current value
+ * @param max       Max value of the gauge
+ * @param size      Size of the gauge, in squares of fill
+ * @param temp      Temporary value stored in the gauge
+ * @return          Number of pixels to be filled
+ */
 static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset)
 {
     s32 updated, final, ratio;
@@ -1585,51 +1596,48 @@ static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fil
     return final;
 }
 
-static u8 ov16_02268194 (s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5)
+static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size) //UpdateGaugeCells, FillCells
 {
-    int v0;
-    u32 v1;
-    u32 v2, v3;
-    s32 v4;
+    int cell;
+    u32 corrected, pixels, final;
+    s32 updated = cur - diff;
 
-    v4 = param1 - param2;
-
-    if (v4 < 0) {
-        v4 = 0;
-    } else if (v4 > param0) {
-        v4 = param0;
+    if (updated < 0) {
+        updated = 0;
+    } else if (updated > max) {
+        updated = max;
     }
 
-    v1 = 8 * param5;
+    corrected = 8 * size;
 
-    for (v0 = 0; v0 < param5; v0++) {
-        param4[v0] = 0;
+    for (cell = 0; cell < size; cell++) {
+        cells[cell] = 0;
     }
-
-    if (param0 < v1) {
-        v2 = (*param3 * v1 / param0) >> 8;
+    
+    if (max < corrected) {
+        pixels = (*temp * corrected / max) >> 8;
     } else {
-        v2 = *param3 * v1 / param0;
+        pixels = *temp * corrected / max;
     }
 
-    v3 = v2;
+    final = pixels;
 
-    if ((v2 == 0) && (v4 > 0)) {
-        param4[0] = 1;
-        v3 = 1;
+    if ((pixels == 0) && (updated > 0)) {
+        cells[0] = 1;
+        final = 1;
     } else {
-        for (v0 = 0; v0 < param5; v0++) {
-            if (v2 >= 8) {
-                param4[v0] = 8;
-                v2 -= 8;
+        for (cell = 0; cell < size; cell++) {
+            if (pixels >= 8) {
+                cells[cell] = 8;
+                pixels -= 8;
             } else {
-                param4[v0] = v2;
+                cells[cell] = pixels;
                 break;
             }
         }
     }
 
-    return v3;
+    return final;
 }
 
 /**
