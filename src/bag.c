@@ -14,29 +14,27 @@
 
 static u32 sub_0207D40C(Bag * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4);
 
-int Bag_SaveSize (void)
+int Bag_SaveSize(void)
 {
     return sizeof(Bag);
 }
 
-Bag * sub_0207D3C0 (int param0)
+Bag *Bag_New(enum HeapId heapID)
 {
-    Bag * v0;
+    Bag *bag = Heap_AllocFromHeap(heapID, sizeof(Bag));
+    Bag_Init(bag);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(Bag));
-    Bag_Init(v0);
-
-    return v0;
+    return bag;
 }
 
-void Bag_Init (Bag * param0)
+void Bag_Init(Bag *bag)
 {
-    MI_CpuClear16(param0, sizeof(Bag));
+    MI_CpuClear16(bag, sizeof(Bag));
 }
 
-void sub_0207D3EC (const Bag * param0, Bag * param1)
+void Bag_Copy(const Bag *src, Bag *dst)
 {
-    MI_CpuCopy8(param0, param1, sizeof(Bag));
+    MI_CpuCopy8(src, dst, sizeof(Bag));
 }
 
 u32 sub_0207D3FC (const Bag * param0)

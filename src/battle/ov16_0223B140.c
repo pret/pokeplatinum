@@ -737,7 +737,7 @@ static void ov16_0223BCB4 (OverlayManager * param0)
     }
 
     sub_02015760(v0->unk_1AC);
-    sub_0207D3EC(v0->unk_58, v1->unk_E0);
+    Bag_Copy(v0->unk_58, v1->unk_E0);
     Heap_FreeToHeap(v0->unk_58);
     sub_02026338(v0->pokedex, v1->unk_E8);
     Heap_FreeToHeap(v0->pokedex);
@@ -1089,9 +1089,9 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_2444 = param1->unk_174;
     param0->unk_2448 = param1->unk_174;
     param0->battleStatusMask = param1->unk_164;
-    param0->unk_58 = sub_0207D3C0(5);
+    param0->unk_58 = Bag_New(5);
 
-    sub_0207D3EC(param1->unk_E0, param0->unk_58);
+    Bag_Copy(param1->unk_E0, param0->unk_58);
     param0->pokedex = sub_02026324(5);
     sub_02026338(param1->unk_E8, param0->pokedex);
 

@@ -100,7 +100,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
         v1->unk_F0[v0] = AllocateAndInitializeChatotCryData(param0);
     }
 
-    v1->unk_E0 = sub_0207D3C0(param0);
+    v1->unk_E0 = Bag_New(param0);
     v1->unk_E8 = sub_02026324(param0);
     v1->unk_108 = Options_New(param0);
     v1->unk_10C = sub_0206D140(param0);
@@ -272,7 +272,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
 
     sub_02052184(param0, v0, 0);
     sub_02052164(param0, v1, 0);
-    sub_0207D3EC(v2, param0->unk_E0);
+    Bag_Copy(v2, param0->unk_E0);
     sub_02026338(v3, param0->unk_E8);
     Options_Copy(v5, param0->unk_108);
     sub_020521A4(param0, v4, 0);
@@ -333,7 +333,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * fieldSystem, int p
     }
 
     Heap_FreeToHeap(v8);
-    sub_0207D3EC(v4, param0->unk_E0);
+    Bag_Copy(v4, param0->unk_E0);
     sub_02026338(v5, param0->unk_E8);
     Options_Copy(v7, param0->unk_108);
     sub_020521A4(param0, v6, 0);
@@ -403,7 +403,7 @@ void sub_020524E4 (BattleParams * param0, const FieldSystem * fieldSystem, const
         }
     }
 
-    sub_0207D3EC(v1, param0->unk_E0);
+    Bag_Copy(v1, param0->unk_E0);
     sub_02026338(v2, param0->unk_E8);
     Options_Copy(v4, param0->unk_108);
     sub_020521A4(param0, v3, 0);
@@ -446,7 +446,7 @@ void sub_020526E8 (const BattleParams * param0, FieldSystem * fieldSystem)
 
     TrainerInfo_Copy(param0->unk_D0[0], v0);
     Party_cpy(param0->parties[0], v1);
-    sub_0207D3EC(param0->unk_E0, v2);
+    Bag_Copy(param0->unk_E0, v2);
     sub_02026338(param0->unk_E8, v3);
 
     *v4 = param0->unk_168;

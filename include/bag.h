@@ -5,6 +5,7 @@
 #include "bag.h"
 #include "bag.h"
 #include "savedata.h"
+#include "constants/heap.h"
 
 typedef struct Bag {
     BagItem unk_00[165];
@@ -39,9 +40,9 @@ typedef struct UnkStruct_0207D99C_t {
 } UnkStruct_0207D99C;
 
 int Bag_SaveSize(void);
-Bag * sub_0207D3C0(int param0);
-void Bag_Init(Bag * param0);
-void sub_0207D3EC(const Bag * param0, Bag * param1);
+Bag *Bag_New(enum HeapId heapID);
+void Bag_Init(Bag *bag);
+void Bag_Copy(const Bag *src, Bag *dst);
 u32 sub_0207D3FC(const Bag * param0);
 void sub_0207D404(Bag * param0, u32 param1);
 BOOL sub_0207D55C(Bag * param0, u16 param1, u16 param2, u32 param3);
