@@ -8,7 +8,7 @@
 #include "unk_0200679C.h"
 #include "unk_0201567C.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_020241F0.h"
 
 typedef void (* UnkFuncPtr_020157E4)(void *, u16 *);

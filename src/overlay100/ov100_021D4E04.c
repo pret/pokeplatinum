@@ -15,7 +15,7 @@
 #include "screen_scroll_manager.h"
 #include "buffer_manager.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay100/ov100_021D4E04.h"
 #include "overlay104/ov104_0223E894.h"
 

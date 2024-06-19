@@ -70,7 +70,7 @@ Static main
 	Object main.nef.p/src_heap.c.o
 	Object main.nef.p/src_unk_02018340.c.o
 	Object main.nef.p/src_unk_0201C970.c.o
-	Object main.nef.p/src_unk_0201CCF0.c.o
+	Object main.nef.p/src_sys_task_manager.c.o
 	Object main.nef.p/src_unk_0201CED8.c.o
 	Object main.nef.p/src_charcode.c.o
 	Object main.nef.p/src_unk_0201D15C.c.o

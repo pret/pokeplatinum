@@ -5,7 +5,7 @@
 
 #include "unk_0200679C.h"
 #include "unk_0200D9E8.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay005/motion_blur.h"
 
 #define MOTION_BLUR_INIT_BLEND_COEFF_A 16

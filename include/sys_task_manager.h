@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0201CCF0_H
-#define POKEPLATINUM_UNK_0201CCF0_H
+#ifndef POKEPLATINUM_SYS_TASK_MANAGER_H
+#define POKEPLATINUM_SYS_TASK_MANAGER_H
 
 #include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0201CD88_decl.h"
@@ -15,4 +15,4 @@ void sub_0201CECC(SysTask * param0, SysTaskFunc param1);
 void * SysTask_GetParam(SysTask * param0);
 u32 sub_0201CED4(SysTask * param0);
 
-#endif // POKEPLATINUM_UNK_0201CCF0_H
+#endif // POKEPLATINUM_SYS_TASK_MANAGER_H

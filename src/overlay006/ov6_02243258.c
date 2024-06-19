@@ -30,7 +30,7 @@
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"

@@ -12,7 +12,7 @@
 #include "narc.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay005/ov5_021EEF34.h"
 
 typedef struct {

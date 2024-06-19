@@ -65,7 +65,7 @@ pokeplatinum_c = files(
     'unk_02017728.c',
     'unk_02018340.c',
     'unk_0201C970.c',
-    'unk_0201CCF0.c',
+    'sys_task_manager.c',
     'unk_0201CED8.c',
     'charcode.c',
     'unk_0201D15C.c',

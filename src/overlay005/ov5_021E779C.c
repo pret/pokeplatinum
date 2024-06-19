@@ -19,7 +19,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_0201C970.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_020366A0.h"
 #include "unk_02039C80.h"
 #include "overlay005/ov5_021D521C.h"

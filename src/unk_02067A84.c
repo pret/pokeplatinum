@@ -11,7 +11,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0203E880.h"
 #include "player_avatar.h"
 #include "map_object.h"

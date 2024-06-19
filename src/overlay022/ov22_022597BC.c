@@ -14,7 +14,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay022/ov22_022597BC.h"
 
 typedef struct {

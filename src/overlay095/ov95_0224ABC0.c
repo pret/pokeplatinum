@@ -21,7 +21,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "overlay095/ov95_02246C20.h"

@@ -8,7 +8,7 @@
 #include "unk_0200679C.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 
 SysTask * SysTask_StartAndAllocateParam(SysTaskFunc param0, int paramSize, u32 param2, const u32 heapID)
 {
