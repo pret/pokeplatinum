@@ -174,7 +174,7 @@ int ov93_021D120C (OverlayManager * param0, int * param1)
     sub_020241B4();
     Camera_ComputeViewMatrix();
     sub_0201CA74(&v5->unk_04, &v4, &v2, &v3);
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 
     return 0;
 }

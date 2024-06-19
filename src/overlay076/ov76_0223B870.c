@@ -445,7 +445,7 @@ void ov76_0223BF50 (void)
     }
 
     sub_020146C0();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 void ov76_0223BF74 (BGL * param0, Window * param1, int param2, UnkStruct_ov76_0223DE00 * param3, int param4)

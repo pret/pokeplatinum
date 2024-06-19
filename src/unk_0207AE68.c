@@ -179,7 +179,7 @@ static void sub_0207B0A0 (SysTask * param0, void * param1)
     sub_0207B180(v0);
     sub_02007768(v0->unk_18);
     sub_0207C770();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     if (v0->unk_67) {
         SysTask_Done(param0);

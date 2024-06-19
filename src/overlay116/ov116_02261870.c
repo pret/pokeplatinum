@@ -175,7 +175,7 @@ void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
         }
     }
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
     sub_0200C7EC(param0->unk_48.unk_0C);
 }
 

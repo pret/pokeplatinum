@@ -199,7 +199,7 @@ static void ov95_02247C6C (UnkStruct_ov95_02247C6C * param0)
     NNS_G3dGePopMtx(1);
 
     ov95_02247770(param0->unk_70);
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
 static int ov95_02247CB4 (UnkStruct_ov95_02247C6C * param0, int * param1)

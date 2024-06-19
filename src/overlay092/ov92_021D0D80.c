@@ -1474,7 +1474,7 @@ static void ov92_021D26D0 (UnkStruct_ov92_021D1B24 * param0)
         break;
     case 2:
         sub_020241B4();
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
         param0->unk_BAE8 = 0;
         break;
     case 1:
@@ -1504,7 +1504,7 @@ static void ov92_021D26D0 (UnkStruct_ov92_021D1B24 * param0)
             }
         }
 
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
         break;
     }
 }

@@ -240,7 +240,7 @@ static void ov100_021D3558 (UnkStruct_ov100_021D3084 * param0)
     ov100_021D49B4(&param0->unk_0C.unk_16FC[2]);
     ov100_021D49B4(&param0->unk_0C.unk_16FC[3]);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }
 
 void * ov100_021D3620 (UnkStruct_ov100_021D4DD8 * param0)

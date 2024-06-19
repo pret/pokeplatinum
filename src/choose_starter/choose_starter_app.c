@@ -1063,7 +1063,7 @@ static void DrawScene (ChooseStarterApp * param0)
 
     NNS_G3dGePopMtx(1);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     sub_020219F8(param0->unk_248);
 }
 

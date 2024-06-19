@@ -1720,6 +1720,6 @@ Overlay overlay120
 Overlay overlay121
 {
 	After main
-	Object main.nef.p/src_overlay121_ov121_021D0D80.c.o
+	Object main.nef.p/src_overlay121_DWWarp.c.o
 }
 

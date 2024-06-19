@@ -140,7 +140,7 @@ void ov22_02255180 (UnkStruct_ov22_0225A0E4 * param0)
         sub_02007768(param0->unk_20);
     }
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     ov22_02255AC0(param0);
 }
 

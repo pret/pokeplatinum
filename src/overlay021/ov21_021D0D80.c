@@ -399,7 +399,7 @@ BOOL ov21_021D10B8 (UnkStruct_ov21_021D0F60 * param0)
 
     sub_020241B4();
     ov21_021D2124(&param0->unk_177C);
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 
     param0->unk_1A68 = 0;
     param0->unk_1A6C = 0;

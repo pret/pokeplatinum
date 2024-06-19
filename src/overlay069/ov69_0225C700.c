@@ -1154,7 +1154,7 @@ static void ov69_0225CF50 (UnkStruct_ov69_0225CE64 * param0)
     ov69_0225D854(&param0->unk_288, &param0->unk_1DC);
     ov69_0225D384(&param0->unk_20);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }
 
 static void ov69_0225CF90 (void * param0)

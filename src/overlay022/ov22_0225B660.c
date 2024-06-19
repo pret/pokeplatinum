@@ -121,7 +121,7 @@ int ov22_0225B738 (OverlayManager * param0, int * param1)
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
         ov22_0225AFF8(v0->unk_10);
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 
     ov22_0225562C(&v0->unk_14);

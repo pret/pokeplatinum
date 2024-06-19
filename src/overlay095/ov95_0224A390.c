@@ -579,7 +579,7 @@ static void ov95_0224AB50 (void * param0)
     if (v0->unk_28) {
         G3X_Reset();
         ov95_02247770(v0->unk_28);
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 
     if (v0->unk_0C) {

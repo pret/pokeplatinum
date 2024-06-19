@@ -151,7 +151,7 @@
 #include "overlay110/ov110_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "overlay120/ov120_021D0D80.h"
-#include "overlay121/ov121_021D0D80.h"
+#include "overlay121/DWWarp.h"
 
 FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(overlay19);
@@ -1835,9 +1835,9 @@ void sub_0203E704 (FieldSystem * fieldSystem)
 
 
 static const OverlayManagerTemplate Unk_020EA368 = {
-    ov121_021D0D80,
-    ov121_021D0E7C,
-    ov121_021D0F14,
+    DWWarp_Init,
+    DWWarp_Main,
+    DWWarp_Exit,
     FS_OVERLAY_ID(overlay121)
 };
 

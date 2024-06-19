@@ -3608,7 +3608,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             sub_020241B4();
             ov5_021DF1CC();
             ov5_021DF070();
-            sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+            G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
         }
     }
 

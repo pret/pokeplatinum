@@ -272,7 +272,7 @@ void ov119_021D1004 (void)
     }
 
     sub_020146C0();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 void ov119_021D1028 (void)

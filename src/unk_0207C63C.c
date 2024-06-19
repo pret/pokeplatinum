@@ -105,7 +105,7 @@ void sub_0207C770 (void)
     }
 
     sub_020146C0();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 static u32 sub_0207C794 (u32 param0, BOOL param1)
