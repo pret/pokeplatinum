@@ -6,135 +6,130 @@
 #include "sys_task_manager.h"
 
 typedef struct SysTask {
-    UnkStruct_0201CD88 * unk_00;
-    SysTask * unk_04;
-    SysTask * unk_08;
-    u32 unk_0C;
+    SysTaskManager * manager;
+    SysTask * prevTask;
+    SysTask * nextTask;
+    u32 priority;
     void * param;
-    SysTaskFunc unk_14;
+    SysTaskFunc callback;
     u32 unk_18;
 } SysTask;
 
-typedef struct UnkStruct_0201CD88_t {
-    u16 unk_00;
+typedef struct SysTaskManager {
+    u16 maxTasks;
     u16 unk_02;
-    SysTask unk_04;
-    SysTask ** unk_20;
-    SysTask * unk_24;
+    SysTask firstTask;
+    SysTask ** taskStack;
+    SysTask * tasks;
     BOOL unk_28;
     SysTask * unk_2C;
     SysTask * unk_30;
-} UnkStruct_0201CD88;
+} SysTaskManager;
 
-static void sub_0201CCF0(UnkStruct_0201CD88 * param0, SysTask * param1);
-static void sub_0201CD04(UnkStruct_0201CD88 * param0);
-static SysTask * sub_0201CD38(UnkStruct_0201CD88 * param0);
-static int sub_0201CD54(UnkStruct_0201CD88 * param0, SysTask * param1);
-static SysTask * sub_0201CE28(UnkStruct_0201CD88 * param0, SysTaskFunc param1, void * param2, u32 param3);
+static void SysTaskManager_InitTask(SysTaskManager * param0, SysTask * param1);
+static void SysTaskManager_InitTasks(SysTaskManager * param0);
+static SysTask * sub_0201CD38(SysTaskManager * param0);
+static int sub_0201CD54(SysTaskManager * param0, SysTask * param1);
+static SysTask * sub_0201CE28(SysTaskManager * param0, SysTaskFunc param1, void * param2, u32 param3);
 
-static void sub_0201CCF0 (UnkStruct_0201CD88 * param0, SysTask * param1)
+static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task)
 {
-    param1->unk_00 = param0;
-    param1->unk_04 = param1->unk_08 = &(param0->unk_04);
-    param1->unk_0C = 0;
-    param1->param = NULL;
-    param1->unk_14 = NULL;
+    task->manager = sysTaskMgr;
+    task->prevTask = task->nextTask = &sysTaskMgr->firstTask;
+    task->priority = 0;
+    task->param = NULL;
+    task->callback = NULL;
 }
 
-static void sub_0201CD04 (UnkStruct_0201CD88 * param0)
+static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        sub_0201CCF0(param0, &(param0->unk_24[v0]));
-        param0->unk_20[v0] = param0->unk_24 + v0;
+    for (int i = 0; i < sysTaskMgr->maxTasks; i++) {
+        SysTaskManager_InitTask(sysTaskMgr, &sysTaskMgr->tasks[i]);
+        sysTaskMgr->taskStack[i] = &sysTaskMgr->tasks[i];
     }
 
-    param0->unk_02 = 0;
+    sysTaskMgr->unk_02 = 0;
 }
 
-static SysTask * sub_0201CD38 (UnkStruct_0201CD88 * param0)
+static SysTask * sub_0201CD38 (SysTaskManager * param0)
 {
     SysTask * v0;
 
-    if (param0->unk_02 == param0->unk_00) {
+    if (param0->unk_02 == param0->maxTasks) {
         return NULL;
     }
 
-    v0 = param0->unk_20[param0->unk_02];
+    v0 = param0->taskStack[param0->unk_02];
     param0->unk_02++;
 
     return v0;
 }
 
-static int sub_0201CD54 (UnkStruct_0201CD88 * param0, SysTask * param1)
+static int sub_0201CD54 (SysTaskManager * param0, SysTask * param1)
 {
     if (param0->unk_02 == 0) {
         return 0;
     }
 
-    (param1)->unk_00 = (param0);
-    (param1)->unk_04 = (param1)->unk_08 = &(param0->unk_04);
-    (param1)->unk_0C = 0;
+    (param1)->manager = (param0);
+    (param1)->prevTask = (param1)->nextTask = &(param0->firstTask);
+    (param1)->priority = 0;
     (param1)->param = NULL;
-    (param1)->unk_14 = NULL;
+    (param1)->callback = NULL;
 
     param0->unk_02--;
-    param0->unk_20[param0->unk_02] = param1;
+    param0->taskStack[param0->unk_02] = param1;
 
     return 1;
 }
 
-u32 sub_0201CD80 (u32 param0)
+u32 SysTaskManager_GetRequiredSize(u32 maxTasks)
 {
-    return sizeof(UnkStruct_0201CD88) + (sizeof(SysTask *) + sizeof(SysTask)) * param0;
+    return sizeof(SysTaskManager) + (sizeof(SysTask *) + sizeof(SysTask)) * maxTasks;
 }
 
-UnkStruct_0201CD88 * sub_0201CD88 (u32 param0, void * param1)
+SysTaskManager *SysTaskManager_Init(u32 maxTasks, void *memory)
 {
-    UnkStruct_0201CD88 * v0;
+    GF_ASSERT(memory);
+    SysTaskManager *sysTaskMgr = memory;
 
-    GF_ASSERT(param1);
+    sysTaskMgr->taskStack = (SysTask **)((u8 *)(sysTaskMgr) + sizeof(SysTaskManager));
+    sysTaskMgr->tasks = (SysTask *)((u8 *)(sysTaskMgr->taskStack) + sizeof(SysTask *) * maxTasks);
+    sysTaskMgr->maxTasks = maxTasks;
+    sysTaskMgr->unk_02 = 0;
+    sysTaskMgr->unk_28 = 0;
 
-    v0 = param1;
-
-    v0->unk_20 = (SysTask **)((u8 *)(v0) + sizeof(UnkStruct_0201CD88));
-    v0->unk_24 = (SysTask *)((u8 *)(v0->unk_20) + sizeof(SysTask *) * param0);
-    v0->unk_00 = param0;
-    v0->unk_02 = 0;
-    v0->unk_28 = 0;
-
-    sub_0201CDB4(v0);
-    return v0;
+    SysTaskManager_InternalInit(sysTaskMgr);
+    return sysTaskMgr;
 }
 
-void sub_0201CDB4 (UnkStruct_0201CD88 * param0)
+void SysTaskManager_InternalInit(SysTaskManager *sysTaskMgr)
 {
-    sub_0201CD04(param0);
+    SysTaskManager_InitTasks(sysTaskMgr);
 
-    (&param0->unk_04)->unk_00 = param0;
-    (&param0->unk_04)->unk_04 = (&param0->unk_04)->unk_08 = &(param0->unk_04);
-    (&param0->unk_04)->unk_0C = 0;
-    (&param0->unk_04)->param = NULL;
-    (&param0->unk_04)->unk_14 = NULL;
+    sysTaskMgr->firstTask.manager = sysTaskMgr;
+    sysTaskMgr->firstTask.prevTask = sysTaskMgr->firstTask.nextTask = &sysTaskMgr->firstTask;
+    sysTaskMgr->firstTask.priority = 0;
+    sysTaskMgr->firstTask.param = NULL;
+    sysTaskMgr->firstTask.callback = NULL;
 
-    param0->unk_2C = param0->unk_04.unk_08;
+    sysTaskMgr->unk_2C = sysTaskMgr->firstTask.nextTask;
 }
 
-void sub_0201CDD4 (UnkStruct_0201CD88 * param0)
+void sub_0201CDD4 (SysTaskManager * param0)
 {
     if (param0->unk_28) {
         return;
     }
 
-    param0->unk_2C = param0->unk_04.unk_08;
+    param0->unk_2C = param0->firstTask.nextTask;
 
-    while (param0->unk_2C != &(param0->unk_04)) {
-        param0->unk_30 = param0->unk_2C->unk_08;
+    while (param0->unk_2C != &(param0->firstTask)) {
+        param0->unk_30 = param0->unk_2C->nextTask;
 
         if (param0->unk_2C->unk_18 == 0) {
-            if (param0->unk_2C->unk_14 != NULL) {
-                param0->unk_2C->unk_14(param0->unk_2C, param0->unk_2C->param);
+            if (param0->unk_2C->callback != NULL) {
+                param0->unk_2C->callback(param0->unk_2C, param0->unk_2C->param);
             }
         } else {
             param0->unk_2C->unk_18 = 0;
@@ -143,10 +138,10 @@ void sub_0201CDD4 (UnkStruct_0201CD88 * param0)
         param0->unk_2C = param0->unk_30;
     }
 
-    param0->unk_2C->unk_14 = NULL;
+    param0->unk_2C->callback = NULL;
 }
 
-SysTask * sub_0201CE14 (UnkStruct_0201CD88 * param0, SysTaskFunc param1, void * param2, u32 param3)
+SysTask * sub_0201CE14 (SysTaskManager * param0, SysTaskFunc param1, void * param2, u32 param3)
 {
     SysTask * v0;
 
@@ -157,7 +152,7 @@ SysTask * sub_0201CE14 (UnkStruct_0201CD88 * param0, SysTaskFunc param1, void * 
     return v0;
 }
 
-static SysTask * sub_0201CE28 (UnkStruct_0201CD88 * param0, SysTaskFunc param1, void * param2, u32 param3)
+static SysTask * sub_0201CE28 (SysTaskManager * param0, SysTaskFunc param1, void * param2, u32 param3)
 {
     SysTask * v0;
     SysTask * v1;
@@ -168,12 +163,12 @@ static SysTask * sub_0201CE28 (UnkStruct_0201CD88 * param0, SysTaskFunc param1, 
         return NULL;
     }
 
-    v0->unk_0C = param3;
+    v0->priority = param3;
     v0->param = param2;
-    v0->unk_14 = param1;
+    v0->callback = param1;
 
-    if (param0->unk_2C->unk_14 != NULL) {
-        if (param0->unk_2C->unk_0C <= param3) {
+    if (param0->unk_2C->callback != NULL) {
+        if (param0->unk_2C->priority <= param3) {
             v0->unk_18 = 1;
         } else {
             v0->unk_18 = 0;
@@ -182,12 +177,12 @@ static SysTask * sub_0201CE28 (UnkStruct_0201CD88 * param0, SysTaskFunc param1, 
         v0->unk_18 = 0;
     }
 
-    for (v1 = param0->unk_04.unk_08; v1 != &(param0->unk_04); v1 = v1->unk_08) {
-        if (v1->unk_0C > v0->unk_0C) {
-            v0->unk_04 = v1->unk_04;
-            v0->unk_08 = v1;
-            v1->unk_04->unk_08 = v0;
-            v1->unk_04 = v0;
+    for (v1 = param0->firstTask.nextTask; v1 != &(param0->firstTask); v1 = v1->nextTask) {
+        if (v1->priority > v0->priority) {
+            v0->prevTask = v1->prevTask;
+            v0->nextTask = v1;
+            v1->prevTask->nextTask = v0;
+            v1->prevTask = v0;
 
             if (v1 == param0->unk_30) {
                 param0->unk_30 = v0;
@@ -197,34 +192,34 @@ static SysTask * sub_0201CE28 (UnkStruct_0201CD88 * param0, SysTaskFunc param1, 
         }
     }
 
-    if (param0->unk_30 == &(param0->unk_04)) {
+    if (param0->unk_30 == &(param0->firstTask)) {
         param0->unk_30 = v0;
     }
 
-    v0->unk_04 = param0->unk_04.unk_04;
-    v0->unk_08 = &(param0->unk_04);
+    v0->prevTask = param0->firstTask.prevTask;
+    v0->nextTask = &(param0->firstTask);
 
-    param0->unk_04.unk_04->unk_08 = v0;
-    param0->unk_04.unk_04 = v0;
+    param0->firstTask.prevTask->nextTask = v0;
+    param0->firstTask.prevTask = v0;
 
     return v0;
 }
 
 void sub_0201CEA8 (SysTask * param0)
 {
-    if (param0->unk_00->unk_30 == param0) {
-        param0->unk_00->unk_30 = param0->unk_08;
+    if (param0->manager->unk_30 == param0) {
+        param0->manager->unk_30 = param0->nextTask;
     }
 
-    param0->unk_04->unk_08 = param0->unk_08;
-    param0->unk_08->unk_04 = param0->unk_04;
+    param0->prevTask->nextTask = param0->nextTask;
+    param0->nextTask->prevTask = param0->prevTask;
 
-    sub_0201CD54(param0->unk_00, param0);
+    sub_0201CD54(param0->manager, param0);
 }
 
 void sub_0201CECC (SysTask * param0, SysTaskFunc param1)
 {
-    param0->unk_14 = param1;
+    param0->callback = param1;
 }
 
 void * SysTask_GetParam (SysTask * param0)
@@ -234,5 +229,5 @@ void * SysTask_GetParam (SysTask * param0)
 
 u32 sub_0201CED4 (SysTask * param0)
 {
-    return param0->unk_0C;
+    return param0->priority;
 }

@@ -146,10 +146,10 @@ void sub_0201789C (void)
     OS_InitTick();
     sub_02017850();
 
-    gCoreSys.unk_18 = sub_0201CD88(160, OS_AllocFromMainArenaLo(sub_0201CD80(160), 4));
-    gCoreSys.unk_1C = sub_0201CD88(32, OS_AllocFromMainArenaLo(sub_0201CD80(32), 4));
-    gCoreSys.unk_20 = sub_0201CD88(32, OS_AllocFromMainArenaLo(sub_0201CD80(32), 4));
-    gCoreSys.unk_24 = sub_0201CD88(4, OS_AllocFromMainArenaLo(sub_0201CD80(4), 4));
+    gCoreSys.unk_18 = SysTaskManager_Init(160, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(160), 4));
+    gCoreSys.unk_1C = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gCoreSys.unk_20 = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gCoreSys.unk_24 = SysTaskManager_Init(4, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(4), 4));
 
     GX_DispOff();
     GXS_DispOff();

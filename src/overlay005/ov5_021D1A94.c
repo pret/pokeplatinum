@@ -21,7 +21,7 @@ struct UnkStruct_ov5_021D1A94_t {
     int unk_04;
     int unk_08;
     UnkStruct_ov5_021D1BEC * unk_0C;
-    UnkStruct_0201CD88 * unk_10;
+    SysTaskManager * unk_10;
 };
 
 struct UnkStruct_ov5_021D1BEC_t {
@@ -46,10 +46,10 @@ UnkStruct_ov5_021D1A94 * ov5_021D1A94 (FieldSystem * fieldSystem, int param1, in
 
     MI_CpuClear32(v0->unk_0C, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
-    v1 = sub_0201CD80(param2);
+    v1 = SysTaskManager_GetRequiredSize(param2);
 
     v0->unk_10 = Heap_AllocFromHeap(param1, v1);
-    v0->unk_10 = sub_0201CD88(param2, v0->unk_10);
+    v0->unk_10 = SysTaskManager_Init(param2, v0->unk_10);
 
     return v0;
 }

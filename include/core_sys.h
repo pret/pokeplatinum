@@ -22,10 +22,10 @@ typedef struct CoreSys {
     void *hblankCallbackData;
     UnkFuncPtr_ov23_022537D4 unk_10;
     UnkFuncPtr_ov23_022537D4 unk_14;
-    UnkStruct_0201CD88 * unk_18;
-    UnkStruct_0201CD88 * unk_1C;
-    UnkStruct_0201CD88 * unk_20;
-    UnkStruct_0201CD88 * unk_24;
+    SysTaskManager * unk_18;
+    SysTaskManager * unk_1C;
+    SysTaskManager * unk_20;
+    SysTaskManager * unk_24;
     u32 * unk_28;
     u32 frameCounter;
     u32 unk_30;
