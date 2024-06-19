@@ -78,7 +78,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem,
 
     v2->unk_0C = SaveData_Options(v1);
     v2->unk_00 = Party_GetFromSavedata(v1);
-    v2->unk_04 = sub_0207D990(v1);
+    v2->unk_04 = SaveData_GetBag(v1);
     v2->unk_21 = 0;
     v2->unk_20 = param0->unk_08;
     v2->unk_32_0 = param0->unk_0A;

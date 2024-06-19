@@ -1165,7 +1165,7 @@ BOOL sub_0203B7C0 (TaskManager * taskMan)
         *v13 = partyMan->unk_22;
         menu->unk_260 = (void *)v13;
 
-        v11 = sub_0207D990(fieldSystem->saveData);
+        v11 = SaveData_GetBag(fieldSystem->saveData);
         v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         menu->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
 
@@ -1326,7 +1326,7 @@ static BOOL sub_0203BC5C (TaskManager * taskMan)
         memset(v6, 0, sizeof(PartyManagementData));
 
         v6->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-        v6->unk_04 = sub_0207D990(fieldSystem->saveData);
+        v6->unk_04 = SaveData_GetBag(fieldSystem->saveData);
         v6->unk_08 = sub_02028430(fieldSystem->saveData);
         v6->unk_0C = SaveData_Options(fieldSystem->saveData);
         v6->unk_18 = &menu->unk_24C;
@@ -1369,7 +1369,7 @@ static BOOL sub_0203BC5C (TaskManager * taskMan)
             memset(v13, 0, sizeof(PartyManagementData));
 
             v13->unk_00 = v7;
-            v13->unk_04 = sub_0207D990(fieldSystem->saveData);
+            v13->unk_04 = SaveData_GetBag(fieldSystem->saveData);
             v13->unk_08 = sub_02028430(fieldSystem->saveData);
             v13->unk_0C = SaveData_Options(fieldSystem->saveData);
             v13->unk_18 = &menu->unk_24C;
@@ -1658,7 +1658,7 @@ static BOOL sub_0203C1C8 (TaskManager * taskMan)
         memset(v3, 0, sizeof(PartyManagementData));
 
         v3->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-        v3->unk_04 = sub_0207D990(fieldSystem->saveData);
+        v3->unk_04 = SaveData_GetBag(fieldSystem->saveData);
         v3->unk_08 = sub_02028430(fieldSystem->saveData);
         v3->unk_0C = SaveData_Options(fieldSystem->saveData);
         v3->unk_18 = &menu->unk_24C;
@@ -1706,7 +1706,7 @@ static void sub_0203C2D8 (TaskManager * taskMan, u16 param1)
     menu = TaskManager_Environment(taskMan);
 
     menu->unk_25C = sub_020972FC(11);
-    v2 = sub_0207D990(fieldSystem->saveData);
+    v2 = SaveData_GetBag(fieldSystem->saveData);
     sub_02097320(menu->unk_25C, param1, 1);
     v6 = 0;
 
@@ -1882,7 +1882,7 @@ static void sub_0203C668 (FieldSystem * fieldSystem, FieldMenu * param1, u8 para
 
     memset(partyMan, 0, sizeof(PartyManagementData));
     partyMan->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    partyMan->unk_04 = sub_0207D990(fieldSystem->saveData);
+    partyMan->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     partyMan->unk_08 = sub_02028430(fieldSystem->saveData);
     partyMan->unk_0C = SaveData_Options(fieldSystem->saveData);
     partyMan->unk_18 = &param1->unk_24C;
@@ -1964,9 +1964,9 @@ static void FieldMenu_EvolveInit (TaskManager * taskMan)
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), sub_0207D990(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, 0x1, 73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), sub_0207D990(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v2->unk_08, NULL, 73);
     }
 
     {

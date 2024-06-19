@@ -193,7 +193,7 @@ UnkStruct_ov7_0224BEFC * ov7_0224BE9C (u32 param0, SaveData * param1, BGL * para
     v0->unk_14 = param2;
     v0->unk_08 = param1;
     v0->unk_0C = sub_02029D04(sub_0202A750(v0->unk_08));
-    v0->unk_10 = sub_0207D990(param1);
+    v0->unk_10 = SaveData_GetBag(param1);
     v0->unk_1AC = MessageLoader_Init(0, 26, 572, v0->unk_18);
 
     ov7_0224C338(v0);
@@ -790,7 +790,7 @@ static void ov7_0224CBE4 (void * param0, u32 param1)
     u32 v1;
 
     if (param1 < 22) {
-        v1 = sub_0207D730(v0->unk_10, v0->unk_0C[param1].unk_04 + 149, v0->unk_00);
+        v1 = Bag_GetItemQuantity(v0->unk_10, v0->unk_0C[param1].unk_04 + 149, v0->unk_00);
         ov7_0224C6DC(v0->unk_08, v0->unk_0C[param1].unk_04, v0->unk_0C[param1].unk_08, v1);
     } else {
         sub_02019CB8(v0->unk_04, 3, 0, 1 - 1, 11 - 1, 14 + 2, 6 + 2, 17);
@@ -853,7 +853,7 @@ static BOOL ov7_0224CCB8 (Bag * param0, const UnkStruct_ov7_0224F1B4 * param1, u
 {
     u32 v0;
 
-    v0 = sub_0207D730(param0, param1[param2].unk_04 + 149, param3);
+    v0 = Bag_GetItemQuantity(param0, param1[param2].unk_04 + 149, param3);
 
     if (v0 >= param1[param2].unk_08) {
         return 1;

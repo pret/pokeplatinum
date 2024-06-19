@@ -26,7 +26,7 @@ typedef struct Bag {
     BagItem berries[BERRY_POCKET_SIZE];
     BagItem pokeballs[POKEBALL_POCKET_SIZE];
     BagItem battleItems[BATTLE_ITEM_POCKET_SIZE];
-    u32 unk_770;
+    u32 registeredItem;
 } Bag;
 
 typedef struct {
@@ -53,21 +53,21 @@ int Bag_SaveSize(void);
 Bag *Bag_New(enum HeapId heapID);
 void Bag_Init(Bag *bag);
 void Bag_Copy(const Bag *src, Bag *dst);
-u32 sub_0207D3FC(const Bag * param0);
-void sub_0207D404(Bag * param0, u32 param1);
+u32 Bag_GetRegisteredItem(const Bag *bag);
+void Bag_RegisterItem(Bag *bag, u32 item);
 BOOL Bag_CanFitItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
 BOOL Bag_TryAddItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
 BOOL Bag_TryRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
 BOOL Pocket_TryRemoveItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, enum HeapId heapID);
 BOOL Bag_CanRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID);
-BOOL sub_0207D69C(Bag * param0, u32 param1);
-u16 sub_0207D730(Bag * param0, u16 param1, u32 param2);
-u16 sub_0207D748(BagItem * param0, u32 param1, u16 param2, u32 param3);
+BOOL Bag_HasItemsInPocket(Bag *bag, u32 pocketID);
+u16 Bag_GetItemQuantity(Bag *bag, u16 item, enum HeapId heapID);
+u16 Pocket_GetItemQuantity(BagItem *pocket, u32 pocketSize, u16 item, enum HeapId heapID);
 void Pocket_SortEmpty(BagItem *pocket, const u32 size); // Moves empty slots to the end of the pocket
 void Pocket_Sort(BagItem *pocket, const u32 size); // Same as Pocket_SortEmpty, but also sorts by item ID
-void * sub_0207D824(Bag * param0, const u8 * param1, u32 param2);
-BagItem * sub_0207D910(Bag * param0, u16 param1, u16 param2);
-Bag * sub_0207D990(SaveData * param0);
+void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID);
+BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot);
+Bag *SaveData_GetBag(SaveData *saveData);
 UnkStruct_0207D99C * sub_0207D99C(u32 param0);
 void sub_0207D9B4(UnkStruct_0207D99C * param0, u32 param1, u8 * param2, u8 * param3);
 u16 sub_0207D9C4(UnkStruct_0207D99C * param0);

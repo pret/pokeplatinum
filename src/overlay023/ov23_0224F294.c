@@ -1328,7 +1328,7 @@ static BOOL ov23_022507D8 (SysTask * param0, void * param1)
 
         if (v1 == 3) {
             int v3 = sub_02028938(Unk_ov23_022577B8->unk_05);
-            Bag * v4 = sub_0207D990(v0->fieldSystem->saveData);
+            Bag * v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
             Sound_PlayEffect(1500);
 

@@ -575,7 +575,7 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
     u16 battery = VsSeeker_GetBattery(varsFlags);
     u16 activeStepCount = VsSeeker_GetActiveStepCount(varsFlags);
 
-    if (Bag_CanRemoveItem(sub_0207D990(fieldSystem->saveData), 443, 1, 4) == 1
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 443, 1, 4) == 1
         && battery < VS_SEEKER_MAX_BATTERY) {
         battery++;
         VsSeeker_SetBattery(varsFlags, battery);

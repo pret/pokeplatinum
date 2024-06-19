@@ -205,9 +205,9 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
     if (v0->unk_2A9 == 0) {
-        v0->unk_274 = sub_0207D990(fieldSystem->saveData);
+        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
     } else if (v0->unk_2A9 == 3) {
-        v0->unk_274 = sub_0207D990(fieldSystem->saveData);
+        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
     } else if (v0->unk_2A9 == 1) {
         v0->unk_274 = sub_020298B0(fieldSystem->saveData);
     } else {
@@ -939,9 +939,9 @@ static void ov7_0224DED4 (UnkStruct_ov7_0224D008 * param0)
     u16 v2;
 
     if (param0->unk_2A9 == 0) {
-        v2 = sub_0207D730(param0->unk_274, param0->unk_2AA, 11);
+        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
     } else if (param0->unk_2A9 == 3) {
-        v2 = sub_0207D730(param0->unk_274, param0->unk_2AA, 11);
+        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
     } else if (param0->unk_2A9 == 2) {
         v2 = sub_0202CBC8(param0->unk_274, param0->unk_2AA);
     } else {
@@ -1547,7 +1547,7 @@ static void ov7_0224EC38 (TaskManager * param0)
     {
         Bag * v2;
 
-        v2 = sub_0207D990(fieldSystem->saveData);
+        v2 = SaveData_GetBag(fieldSystem->saveData);
         v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);
 
         sub_0207CB2C(v1->unk_04, fieldSystem->saveData, 2, fieldSystem->unk_98);

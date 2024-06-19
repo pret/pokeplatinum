@@ -134,7 +134,7 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
     u16 v6 = ScriptContext_GetVar(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
 
-    v5 = sub_0207D990(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -188,7 +188,7 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
     Bag * v5;
     u16 v6 = ScriptContext_GetVar(param0);
 
-    v5 = sub_0207D990(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {

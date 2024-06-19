@@ -54,7 +54,7 @@ void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
         v2 = 0;
 
         while (TRUE) {
-            v0 = sub_0207D910(param0->unk_00->unk_08, v1, v2);
+            v0 = Bag_GetItemSlot(param0->unk_00->unk_08, v1, v2);
 
             if (v0 == NULL) {
                 break;

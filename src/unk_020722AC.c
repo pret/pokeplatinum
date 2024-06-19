@@ -611,7 +611,7 @@ static void sub_02072878 (SysTask * param0, void * param1)
 
         sub_020734F4(v4, 1);
 
-        if (sub_0207D730(v4->unk_1B0, v4->unk_1C[v4->unk_18].unk_06, v4->unk_00) > 0) {
+        if (Bag_GetItemQuantity(v4->unk_1B0, v4->unk_1C[v4->unk_18].unk_06, v4->unk_00) > 0) {
             v4->unk_13B_6 = 1;
         } else {
             v4->unk_13B_6 = 0;
@@ -925,7 +925,7 @@ static void sub_02072F30 (UnkStruct_02072334 * param0, SaveData * param1, int pa
     v5 = sub_02028430(param1);
 
     param0->unk_1AC = v5;
-    param0->unk_1B0 = sub_0207D990(param1);
+    param0->unk_1B0 = SaveData_GetBag(param1);
 
     v6 = sub_0202818C(param2);
 
@@ -1224,7 +1224,7 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
         v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
-        v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->fieldSystem));
+        v0->unk_04 = SaveData_GetBag(FieldSystem_SaveData(param0->fieldSystem));
         v0->unk_0C = SaveData_Options(FieldSystem_SaveData(param0->fieldSystem));
         v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
         v0->unk_21 = 0;

@@ -298,7 +298,7 @@ void * sub_0203D20C (FieldSystem * fieldSystem, UnkStruct_020684D0 * param1)
     Bag * v0;
     void * v1;
 
-    v0 = sub_0207D990(fieldSystem->saveData);
+    v0 = SaveData_GetBag(fieldSystem->saveData);
     v1 = sub_0207D824(v0, Unk_020EA164, 11);
 
     sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->unk_98);
@@ -320,7 +320,7 @@ void * sub_0203D264 (FieldSystem * fieldSystem, int param1)
     static const u8 * v1;
     static const u8 v2[] = {4, 0xff};
     static const u8 v3[] = {0, 0xff};
-    Bag * v4 = sub_0207D990(fieldSystem->saveData);
+    Bag * v4 = SaveData_GetBag(fieldSystem->saveData);
 
     switch (param1) {
     case 0:
@@ -394,7 +394,7 @@ static PartyManagementData * sub_0203D344 (int param0, FieldSystem * fieldSystem
     MI_CpuClearFast(v0, sizeof(PartyManagementData));
 
     v0->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    v0->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v0->unk_08 = sub_02028430(fieldSystem->saveData);
     v0->unk_0C = SaveData_Options(fieldSystem->saveData);
     v0->unk_21 = param2;
@@ -1090,7 +1090,7 @@ BOOL sub_0203DBF0 (TaskManager * param0)
 
         if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), sub_0207D990(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
+            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_Options(fieldSystem->saveData), PokemonSummary_ShowContestData(fieldSystem->saveData), SaveData_Pokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), sub_0202CD88(fieldSystem->saveData), SaveData_PoketchData(fieldSystem->saveData), v5, 0x4, 26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
@@ -1404,7 +1404,7 @@ void sub_0203E0FC (FieldSystem * fieldSystem, int param1)
     v0->unk_20 = fieldSystem->saveData;
     v0->unk_34 = sub_0207A274(fieldSystem->saveData);
     v0->unk_38 = sub_02039058(v0->unk_14);
-    v0->unk_30 = sub_0207D990(fieldSystem->saveData);
+    v0->unk_30 = SaveData_GetBag(fieldSystem->saveData);
     v0->unk_40 = param1;
 
     sub_0203CD84(fieldSystem, &v1, v0);
@@ -1727,7 +1727,7 @@ PartyManagementData * sub_0203E598 (FieldSystem * fieldSystem, int param1, int p
     memset(v0, 0, sizeof(PartyManagementData));
 
     v0->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    v0->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v0->unk_08 = sub_02028430(fieldSystem->saveData);
     v0->unk_0C = SaveData_Options(fieldSystem->saveData);
     v0->unk_10 = SaveData_TVBroadcast(fieldSystem->saveData);

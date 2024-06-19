@@ -250,7 +250,7 @@ static int sub_0205037C (UnkStruct_0205037C * param0, FieldSystem * fieldSystem,
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
     v1->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    v1->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v1->unk_08 = sub_02028430(fieldSystem->saveData);
     v1->unk_0C = SaveData_Options(fieldSystem->saveData);
     v1->unk_21 = 0;

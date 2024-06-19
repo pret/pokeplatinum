@@ -45,14 +45,14 @@ void Bag_Copy(const Bag *src, Bag *dst)
     MI_CpuCopy8(src, dst, sizeof(Bag));
 }
 
-u32 sub_0207D3FC (const Bag * param0)
+u32 Bag_GetRegisteredItem(const Bag *bag)
 {
-    return param0->unk_770;
+    return bag->registeredItem;
 }
 
-void sub_0207D404 (Bag * param0, u32 param1)
+void Bag_RegisterItem(Bag *bag, u32 item)
 {
-    param0->unk_770 = param1;
+    bag->registeredItem = item;
 }
 
 static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *outMax, enum HeapId heapID)
@@ -221,78 +221,75 @@ BOOL Bag_CanRemoveItem(Bag *bag, u16 item, u16 count, enum HeapId heapID)
     return Bag_FindSlotToRemoveItem(bag, item, count, heapID) != NULL;
 }
 
-BOOL sub_0207D69C (Bag * param0, u32 param1)
+BOOL Bag_HasItemsInPocket(Bag *bag, u32 pocketID)
 {
-    BagItem * v0;
-    u32 v1;
-    u32 v2;
+    BagItem *pocket;
+    u32 pocketSize;
 
-    switch (param1) {
-    case 7:
-        v0 = param0->keyItems;
-        v1 = 50;
+    switch (pocketID) {
+    case POCKET_KEY_ITEMS:
+        pocket = bag->keyItems;
+        pocketSize = KEY_ITEM_POCKET_SIZE;
         break;
-    case 0:
-        v0 = param0->items;
-        v1 = 165;
+    case POCKET_ITEMS:
+        pocket = bag->items;
+        pocketSize = ITEM_POCKET_SIZE;
         break;
-    case 4:
-        v0 = param0->berries;
-        v1 = 64;
+    case POCKET_BERRIES:
+        pocket = bag->berries;
+        pocketSize = BERRY_POCKET_SIZE;
         break;
-    case 1:
-        v0 = param0->medicine;
-        v1 = 40;
+    case POCKET_MEDICINE:
+        pocket = bag->medicine;
+        pocketSize = MEDICINE_POCKET_SIZE;
         break;
-    case 2:
-        v0 = param0->pokeballs;
-        v1 = 15;
+    case POCKET_BALLS:
+        pocket = bag->pokeballs;
+        pocketSize = POKEBALL_POCKET_SIZE;
         break;
-    case 6:
-        v0 = param0->battleItems;
-        v1 = 30;
+    case POCKET_BATTLE_ITEMS:
+        pocket = bag->battleItems;
+        pocketSize = BATTLE_ITEM_POCKET_SIZE;
         break;
-    case 5:
-        v0 = param0->mail;
-        v1 = 12;
+    case POCKET_MAIL:
+        pocket = bag->mail;
+        pocketSize = MAIL_POCKET_SIZE;
         break;
-    case 3:
-        v0 = param0->tmHms;
-        v1 = 100;
+    case POCKET_TMHMS:
+        pocket = bag->tmHms;
+        pocketSize = TMHM_POCKET_SIZE;
         break;
     default:
         return 0;
     }
 
-    for (v2 = 0; v2 < v1; v2++) {
-        if (v0[v2].item != 0) {
-            return 1;
+    for (u32 i = 0; i < pocketSize; i++) {
+        if (pocket[i].item != ITEM_NONE) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-u16 sub_0207D730 (Bag * param0, u16 param1, u32 param2)
+u16 Bag_GetItemQuantity(Bag *bag, u16 item, enum HeapId heapID)
 {
-    BagItem * v0 = Bag_FindSlotToRemoveItem(param0, param1, 1, param2);
-
-    if (v0 == NULL) {
+    BagItem *slot = Bag_FindSlotToRemoveItem(bag, item, 1, heapID);
+    if (slot == NULL) {
         return 0;
     }
 
-    return v0->quantity;
+    return slot->quantity;
 }
 
-u16 sub_0207D748 (BagItem * param0, u32 param1, u16 param2, u32 param3)
+u16 Pocket_GetItemQuantity(BagItem *pocket, u32 pocketSize, u16 item, enum HeapId heapID)
 {
-    BagItem * v0 = Pocket_FindSlotToRemoveItem(param0, param1, param2, 1);
-
-    if (v0 == NULL) {
+    BagItem *slot = Pocket_FindSlotToRemoveItem(pocket, pocketSize, item, 1);
+    if (slot == NULL) {
         return 0;
     }
 
-    return v0->quantity;
+    return slot->quantity;
 }
 
 static void BagItem_Swap(BagItem *a, BagItem *b)
@@ -324,38 +321,38 @@ void Pocket_Sort(BagItem *pocket, const u32 size)
     }
 }
 
-void * sub_0207D824 (Bag * param0, const u8 * param1, u32 param2)
+void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID)
 {
     UnkStruct_0207CB08 * v0;
-    int v1;
+    int i;
 
-    v0 = sub_0207CB08(param2);
+    v0 = sub_0207CB08(heapID);
 
-    for (v1 = 0; param1[v1] != 0xff; v1++) {
-        switch (param1[v1]) {
-        case 7:
-            sub_0207CB48(v0, param0->keyItems, 7, v1);
+    for (i = 0; pockets[i] != 0xff; i++) {
+        switch (pockets[i]) {
+        case POCKET_KEY_ITEMS:
+            sub_0207CB48(v0, bag->keyItems, POCKET_KEY_ITEMS, i);
             break;
-        case 0:
-            sub_0207CB48(v0, param0->items, 0, v1);
+        case POCKET_ITEMS:
+            sub_0207CB48(v0, bag->items, POCKET_ITEMS, i);
             break;
-        case 4:
-            sub_0207CB48(v0, param0->berries, 4, v1);
+        case POCKET_BERRIES:
+            sub_0207CB48(v0, bag->berries, POCKET_BERRIES, i);
             break;
-        case 1:
-            sub_0207CB48(v0, param0->medicine, 1, v1);
+        case POCKET_MEDICINE:
+            sub_0207CB48(v0, bag->medicine, POCKET_MEDICINE, i);
             break;
-        case 2:
-            sub_0207CB48(v0, param0->pokeballs, 2, v1);
+        case POCKET_BALLS:
+            sub_0207CB48(v0, bag->pokeballs, POCKET_BALLS, i);
             break;
-        case 6:
-            sub_0207CB48(v0, param0->battleItems, 6, v1);
+        case POCKET_BATTLE_ITEMS:
+            sub_0207CB48(v0, bag->battleItems, POCKET_BATTLE_ITEMS, i);
             break;
-        case 5:
-            sub_0207CB48(v0, param0->mail, 5, v1);
+        case POCKET_MAIL:
+            sub_0207CB48(v0, bag->mail, POCKET_MAIL, i);
             break;
-        case 3:
-            sub_0207CB48(v0, param0->tmHms, 3, v1);
+        case POCKET_TMHMS:
+            sub_0207CB48(v0, bag->tmHms, POCKET_TMHMS, i);
             break;
         }
     }
@@ -363,59 +360,52 @@ void * sub_0207D824 (Bag * param0, const u8 * param1, u32 param2)
     return v0;
 }
 
-BagItem * sub_0207D910 (Bag * param0, u16 param1, u16 param2)
+BagItem *Bag_GetItemSlot(Bag *bag, u16 pocketID, u16 slot)
 {
-    BagItem * v0;
-    u16 v1;
+    BagItem *pocket;
+    u16 pocketSize;
 
-    switch (param1) {
-    case 7:
-        v0 = param0->keyItems;
-        v1 = 50;
+    switch (pocketID) {
+    case POCKET_KEY_ITEMS:
+        pocket = bag->keyItems;
+        pocketSize = KEY_ITEM_POCKET_SIZE;
         break;
-    case 0:
-        v0 = param0->items;
-        v1 = 165;
+    case POCKET_ITEMS:
+        pocket = bag->items;
+        pocketSize = ITEM_POCKET_SIZE;
         break;
-    case 4:
-        v0 = param0->berries;
-        v1 = 64;
+    case POCKET_BERRIES:
+        pocket = bag->berries;
+        pocketSize = BERRY_POCKET_SIZE;
         break;
-    case 1:
-        v0 = param0->medicine;
-        v1 = 40;
+    case POCKET_MEDICINE:
+        pocket = bag->medicine;
+        pocketSize = MEDICINE_POCKET_SIZE;
         break;
-    case 2:
-        v0 = param0->pokeballs;
-        v1 = 15;
+    case POCKET_BALLS:
+        pocket = bag->pokeballs;
+        pocketSize = POKEBALL_POCKET_SIZE;
         break;
-    case 6:
-        v0 = param0->battleItems;
-        v1 = 30;
+    case POCKET_BATTLE_ITEMS:
+        pocket = bag->battleItems;
+        pocketSize = BATTLE_ITEM_POCKET_SIZE;
         break;
-    case 5:
-        v0 = param0->mail;
-        v1 = 12;
+    case POCKET_MAIL:
+        pocket = bag->mail;
+        pocketSize = MAIL_POCKET_SIZE;
         break;
-    case 3:
-        v0 = param0->tmHms;
-        v1 = 100;
+    case POCKET_TMHMS:
+        pocket = bag->tmHms;
+        pocketSize = TMHM_POCKET_SIZE;
         break;
     }
 
-    if (param2 >= v1) {
-        return NULL;
-    }
-
-    return &v0[param2];
+    return slot >= pocketSize ? NULL : &pocket[slot];
 }
 
-Bag * sub_0207D990 (SaveData * param0)
+Bag *SaveData_GetBag(SaveData *saveData)
 {
-    Bag * v0;
-
-    v0 = (Bag *)SaveData_SaveTable(param0, 3);
-    return v0;
+    return SaveData_SaveTable(saveData, 3);
 }
 
 UnkStruct_0207D99C * sub_0207D99C (u32 param0)

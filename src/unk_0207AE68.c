@@ -695,7 +695,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
     switch (param0->unk_78) {
     case 13:
     case 14:
-        if (sub_0207D730(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
+        if (Bag_GetItemQuantity(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
                 Pokemon * v1;
                 int v2;

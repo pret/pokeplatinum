@@ -2029,7 +2029,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
         return 0;
     }
 
-    if (Bag_CanRemoveItem(sub_0207D990(param0->unk_04), 437, 1, 26) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(param0->unk_04), 437, 1, 26) == 1) {
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 57);

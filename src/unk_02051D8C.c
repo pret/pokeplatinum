@@ -251,7 +251,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(param2);
     Party * v1 = Party_GetFromSavedata(param2);
-    Bag * v2 = sub_0207D990(param2);
+    Bag * v2 = SaveData_GetBag(param2);
     PokedexData * v3 = SaveData_Pokedex(param2);
     ChatotCry * v4 = GetChatotCryDataFromSave(param2);
     Options * v5 = SaveData_Options(param2);
@@ -306,7 +306,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * fieldSystem, int p
     u32 v1;
     TrainerInfo * v2 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party * v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    Bag * v4 = sub_0207D990(fieldSystem->saveData);
+    Bag * v4 = SaveData_GetBag(fieldSystem->saveData);
     PokedexData * v5 = SaveData_Pokedex(fieldSystem->saveData);
     ChatotCry * v6 = GetChatotCryDataFromSave(fieldSystem->saveData);
     Options * v7 = SaveData_Options(fieldSystem->saveData);
@@ -356,7 +356,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * fieldSystem, int p
 void sub_020524E4 (BattleParams * param0, const FieldSystem * fieldSystem, const Party * param2, const u8 * param3)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    Bag * v1 = sub_0207D990(fieldSystem->saveData);
+    Bag * v1 = SaveData_GetBag(fieldSystem->saveData);
     PokedexData * v2 = SaveData_Pokedex(fieldSystem->saveData);
     ChatotCry * v3 = GetChatotCryDataFromSave(fieldSystem->saveData);
     Options * v4 = SaveData_Options(fieldSystem->saveData);
@@ -440,7 +440,7 @@ void sub_020526E8 (const BattleParams * param0, FieldSystem * fieldSystem)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party * v1 = Party_GetFromSavedata(fieldSystem->saveData);
-    Bag * v2 = sub_0207D990(fieldSystem->saveData);
+    Bag * v2 = SaveData_GetBag(fieldSystem->saveData);
     PokedexData * v3 = SaveData_Pokedex(fieldSystem->saveData);
     u16 * v4 = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
@@ -456,7 +456,7 @@ void sub_02052754 (const BattleParams * param0, FieldSystem * fieldSystem)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party * v1 = Party_GetFromSavedata(fieldSystem->saveData);
-    Bag * v2 = sub_0207D990(fieldSystem->saveData);
+    Bag * v2 = SaveData_GetBag(fieldSystem->saveData);
     PokedexData * v3 = SaveData_Pokedex(fieldSystem->saveData);
 
     sub_02026338(param0->unk_E8, v3);

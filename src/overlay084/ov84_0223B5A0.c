@@ -603,7 +603,7 @@ int ov84_0223B900 (OverlayManager * param0, int * param1)
 
 static void ov84_0223B9AC (UnkStruct_ov84_0223B5A0 * param0)
 {
-    param0->unk_C8 = sub_0207D990(param0->unk_C4->unk_00);
+    param0->unk_C8 = SaveData_GetBag(param0->unk_C4->unk_00);
     param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->unk_00);
     param0->unk_D0 = SaveData_Options(param0->unk_C4->unk_00);
 }
@@ -1151,7 +1151,7 @@ static void ov84_0223C3B8 (BmpList * param0, u32 param1, u8 param2)
 
     if (v1->unk_08 == 7) {
         if ((param1 != 0xfffffffd) && (param1 != 0xfffffffe)) {
-            if (sub_0207D3FC(v0->unk_C8) == v1->unk_00[param1].item) {
+            if (Bag_GetRegisteredItem(v0->unk_C8) == v1->unk_00[param1].item) {
                 ov84_0223FA44(v0, param2);
             }
         }
@@ -2020,7 +2020,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
             }
         }
         if (Item_Get(v0, 4) != 0) {
-            if (sub_0207D3FC(param0->unk_C8) == param0->unk_C4->unk_66) {
+            if (Bag_GetRegisteredItem(param0->unk_C8) == param0->unk_C4->unk_66) {
                 v3[v1] = 7;
             } else {
                 v3[v1] = 6;
@@ -2390,7 +2390,7 @@ static int ov84_0223DEB8 (UnkStruct_ov84_0223B5A0 * param0)
 {
     ov84_0223FD84(param0);
     param0->unk_488 = 1;
-    if (sub_0207D748(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
+    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
         ov84_0223FFF0(param0);
         return 8;
     }
@@ -2543,7 +2543,7 @@ static int ov84_0223E18C (UnkStruct_ov84_0223B5A0 * param0)
 
 static int ov84_0223E1E4 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    sub_0207D404(param0->unk_C8, param0->unk_C4->unk_66);
+    Bag_RegisterItem(param0->unk_C8, param0->unk_C4->unk_66);
     sub_020013AC(param0->unk_15C);
     ov84_0223FD84(param0);
     sub_0201A9A4(&param0->unk_04[1]);
@@ -2554,7 +2554,7 @@ static int ov84_0223E1E4 (UnkStruct_ov84_0223B5A0 * param0)
 
 static int ov84_0223E220 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    sub_0207D404(param0->unk_C8, 0);
+    Bag_RegisterItem(param0->unk_C8, 0);
     sub_020013AC(param0->unk_15C);
     ov84_0223FD84(param0);
     sub_0201A9A4(&param0->unk_04[1]);
@@ -2677,7 +2677,7 @@ static int ov84_0223E3BC (UnkStruct_ov84_0223B5A0 * param0)
             param0->unk_488 = 1;
             param0->unk_48C >>= 1;
 
-            if (sub_0207D748(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
+            if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 76);
                 StringTemplate_SetNumber(param0->unk_118, 0, param0->unk_488 * param0->unk_48C, 6, 0, 1);
                 StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
