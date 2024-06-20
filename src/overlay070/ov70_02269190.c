@@ -1034,7 +1034,7 @@ static void ov70_02269828 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
     param1->unk_87C[param2] = param3;
 
-    sub_02017258(&param1->unk_0C[param2], &param0->unk_10550[param3->unk_00]);
+    Easy3DObject_Init(&param1->unk_0C[param2], &param0->unk_10550[param3->unk_00]);
 }
 
 static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1, u32 param2)
@@ -1047,7 +1047,7 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
     GF_ASSERT(param1->unk_87C[param2] != NULL);
 
-    if (sub_0201734C(&param1->unk_0C[param2]) == 0) {
+    if (Easy3DObject_GetVisibility(&param1->unk_0C[param2]) == 0) {
         return;
     }
 
@@ -1063,7 +1063,7 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     for (v4 = 0; v4 < 2; v4++) {
         if (param1->unk_87C[param2]->unk_02[v4] != 17) {
             v3 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[v4]];
-            sub_0201727C(&param1->unk_0C[param2], v3);
+            Easy3DObject_AddAnim(&param1->unk_0C[param2], v3);
             Easy3DAnim_SetFrame(v3, param1->unk_8C4[param2][v4]);
         } else {
             break;
@@ -1071,12 +1071,12 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     }
 
     NNS_G3dMdlSetMdlPolygonIDAll(v2->model, param1->unk_04);
-    sub_02017294(&param1->unk_0C[param2]);
+    Easy3DObject_Draw(&param1->unk_0C[param2]);
 
     for (v4 = 0; v4 < 2; v4++) {
         if (param1->unk_87C[param2]->unk_02[v4] != 17) {
             v3 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[v4]];
-            sub_02017288(&param1->unk_0C[param2], v3);
+            Easy3DObject_RemoveAnim(&param1->unk_0C[param2], v3);
         } else {
             break;
         }
@@ -1200,8 +1200,8 @@ static void ov70_02269B58 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         v1.z += (FX32_CONST(0));
         v1.y += (FX32_CONST(8)) + (FX_Mul(FX32_ONE * v0, (FX32_CONST(0))));
 
-        sub_02017350(&param1->unk_0C[v0], v1.x, v1.y, v1.z);
-        sub_02017348(&param1->unk_0C[v0], 0);
+        Easy3DObject_SetPosition(&param1->unk_0C[v0], v1.x, v1.y, v1.z);
+        Easy3DObject_SetVisibility(&param1->unk_0C[v0], 0);
     }
 
     param1->unk_954.val5.unk_00 = 0xff;
@@ -1214,7 +1214,7 @@ static void ov70_02269BB8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
     ov70_02269828(param0, param1, 1, &Unk_ov70_0226E5A4[9]);
     ov70_02269828(param0, param1, 0, &Unk_ov70_0226E5A4[12]);
-    sub_02017348(&param1->unk_0C[1], 0);
+    Easy3DObject_SetVisibility(&param1->unk_0C[1], 0);
     ov70_0225D054(param1->unk_08, &v0);
 
     v0.y += (FX32_CONST(16));
@@ -1230,31 +1230,31 @@ static void ov70_02269BB8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     case 0:
         v0.z -= (FX32_CONST(28));
         v1.z -= (FX32_CONST(14));
-        sub_02017388(&param1->unk_0C[1], ((270 * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], ((270 * 0xffff) / 360), 1);
         break;
     case 1:
         v0.z += (FX32_CONST(24));
         v1.z += (FX32_CONST(11));
-        sub_02017388(&param1->unk_0C[1], ((90 * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], ((90 * 0xffff) / 360), 1);
         break;
     case 2:
         v0.x -= (FX32_CONST(23));
         v1.x -= (FX32_CONST(7));
         v1.z += (FX32_CONST(8));
-        sub_02017388(&param1->unk_0C[1], ((0 * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], ((0 * 0xffff) / 360), 1);
         break;
     case 3:
         v0.x += (FX32_CONST(23));
         v1.x += (FX32_CONST(7));
         v1.z += (FX32_CONST(8));
-        sub_02017388(&param1->unk_0C[1], ((180 * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], ((180 * 0xffff) / 360), 1);
         break;
     default:
         break;
     }
 
-    sub_02017350(&param1->unk_0C[1], v0.x, v0.y, v0.z);
-    sub_02017350(&param1->unk_0C[0], v1.x, v1.y, v1.z);
+    Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x, v0.y, v0.z);
+    Easy3DObject_SetPosition(&param1->unk_0C[0], v1.x, v1.y, v1.z);
 }
 
 static void ov70_02269CFC (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1)
@@ -1265,7 +1265,7 @@ static void ov70_02269CFC (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     ov70_02269828(param0, param1, 1, &Unk_ov70_0226E5A4[9]);
     ov70_02269828(param0, param1, 0, &Unk_ov70_0226E5A4[12]);
     ov70_02269828(param0, param1, 2, &Unk_ov70_0226E5A4[10]);
-    sub_02017348(&param1->unk_0C[1], 0);
+    Easy3DObject_SetVisibility(&param1->unk_0C[1], 0);
     ov70_0225D054(param1->unk_08, &v0);
 
     v0.y += (FX32_CONST(16));
@@ -1282,45 +1282,45 @@ static void ov70_02269CFC (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     case 0:
         v0.z -= (FX32_CONST(28));
         v1.z -= (FX32_CONST(14));
-        sub_02017388(&param1->unk_0C[1], (((270 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((270 + 40) * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x + (FX32_CONST(8)), v0.y, v0.z);
-        sub_02017350(&param1->unk_0C[2], v0.x - (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((270 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((270 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x + (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x - (FX32_CONST(8)), v0.y, v0.z);
         break;
     case 1:
         v0.z += (FX32_CONST(24));
         v1.z += (FX32_CONST(11));
 
-        sub_02017388(&param1->unk_0C[1], (((90 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((90 + 40) * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x - (FX32_CONST(8)), v0.y, v0.z);
-        sub_02017350(&param1->unk_0C[2], v0.x + (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((90 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((90 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x - (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x + (FX32_CONST(8)), v0.y, v0.z);
         break;
     case 2:
         v0.x -= (FX32_CONST(23));
         v1.x -= (FX32_CONST(7));
         v1.z += (FX32_CONST(8));
 
-        sub_02017388(&param1->unk_0C[1], (((0 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((0 + 40) * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x, v0.y, v0.z - (FX32_CONST(8)));
-        sub_02017350(&param1->unk_0C[2], v0.x, v0.y, v0.z + (FX32_CONST(8)));
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((0 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((0 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x, v0.y, v0.z - (FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x, v0.y, v0.z + (FX32_CONST(8)));
         break;
     case 3:
         v0.x += (FX32_CONST(23));
         v1.x += (FX32_CONST(7));
         v1.z += (FX32_CONST(8));
 
-        sub_02017388(&param1->unk_0C[1], (((180 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((180 + 40) * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x, v0.y, v0.z + (FX32_CONST(8)));
-        sub_02017350(&param1->unk_0C[2], v0.x, v0.y, v0.z - (FX32_CONST(8)));
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((180 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((180 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x, v0.y, v0.z + (FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x, v0.y, v0.z - (FX32_CONST(8)));
         break;
     default:
         break;
     }
 
-    sub_02017350(&param1->unk_0C[0], v1.x, v1.y, v1.z);
+    Easy3DObject_SetPosition(&param1->unk_0C[0], v1.x, v1.y, v1.z);
 }
 
 static void ov70_02269F30 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1)
@@ -1333,7 +1333,7 @@ static void ov70_02269F30 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     ov70_02269828(param0, param1, 2, &Unk_ov70_0226E5A4[10]);
     ov70_02269828(param0, param1, 3, &Unk_ov70_0226E5A4[11]);
 
-    sub_02017348(&param1->unk_0C[1], 0);
+    Easy3DObject_SetVisibility(&param1->unk_0C[1], 0);
 
     param1->unk_954.val2.unk_04[0] = 8;
     param1->unk_954.val2.unk_04[1] = 8;
@@ -1352,53 +1352,53 @@ static void ov70_02269F30 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         v0.z -= (FX32_CONST(28));
         v1.z -= (FX32_CONST(14));
 
-        sub_02017388(&param1->unk_0C[1], (((270 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((270 + 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[3], ((270 * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x + (FX32_CONST(8)), v0.y, v0.z);
-        sub_02017350(&param1->unk_0C[2], v0.x - (FX32_CONST(8)), v0.y, v0.z);
-        sub_02017350(&param1->unk_0C[3], v0.x, v0.y, v0.z);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((270 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((270 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[3], ((270 * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x + (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x - (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetPosition(&param1->unk_0C[3], v0.x, v0.y, v0.z);
         break;
     case 1:
         v0.z += (FX32_CONST(24));
         v1.z += (FX32_CONST(11));
 
-        sub_02017388(&param1->unk_0C[1], (((90 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((90 + 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[3], ((90 * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x - (FX32_CONST(8)), v0.y, v0.z);
-        sub_02017350(&param1->unk_0C[2], v0.x + (FX32_CONST(8)), v0.y, v0.z);
-        sub_02017350(&param1->unk_0C[3], v0.x, v0.y, v0.z);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((90 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((90 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[3], ((90 * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x - (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x + (FX32_CONST(8)), v0.y, v0.z);
+        Easy3DObject_SetPosition(&param1->unk_0C[3], v0.x, v0.y, v0.z);
         break;
     case 2:
         v0.x -= (FX32_CONST(23));
         v1.x -= (FX32_CONST(7));
         v1.z += (FX32_CONST(8));
 
-        sub_02017388(&param1->unk_0C[1], (((0 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((0 + 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[3], ((0 * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x, v0.y, v0.z - (FX32_CONST(8)));
-        sub_02017350(&param1->unk_0C[2], v0.x, v0.y, v0.z + (FX32_CONST(8)));
-        sub_02017350(&param1->unk_0C[3], v0.x, v0.y, v0.z);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((0 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((0 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[3], ((0 * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x, v0.y, v0.z - (FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x, v0.y, v0.z + (FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param1->unk_0C[3], v0.x, v0.y, v0.z);
         break;
     case 3:
         v0.x += (FX32_CONST(23));
         v1.x += (FX32_CONST(7));
         v1.z += (FX32_CONST(8));
 
-        sub_02017388(&param1->unk_0C[1], (((180 - 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[2], (((180 + 40) * 0xffff) / 360), 1);
-        sub_02017388(&param1->unk_0C[3], ((180 * 0xffff) / 360), 1);
-        sub_02017350(&param1->unk_0C[1], v0.x, v0.y, v0.z + (FX32_CONST(8)));
-        sub_02017350(&param1->unk_0C[2], v0.x, v0.y, v0.z - (FX32_CONST(8)));
-        sub_02017350(&param1->unk_0C[3], v0.x, v0.y, v0.z);
+        Easy3DObject_SetRotation(&param1->unk_0C[1], (((180 - 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[2], (((180 + 40) * 0xffff) / 360), 1);
+        Easy3DObject_SetRotation(&param1->unk_0C[3], ((180 * 0xffff) / 360), 1);
+        Easy3DObject_SetPosition(&param1->unk_0C[1], v0.x, v0.y, v0.z + (FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param1->unk_0C[2], v0.x, v0.y, v0.z - (FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param1->unk_0C[3], v0.x, v0.y, v0.z);
         break;
     default:
         break;
     }
 
-    sub_02017350(&param1->unk_0C[0], v1.x, v1.y, v1.z);
+    Easy3DObject_SetPosition(&param1->unk_0C[0], v1.x, v1.y, v1.z);
 }
 
 static void ov70_0226A1FC (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1)
@@ -1552,7 +1552,7 @@ static BOOL ov70_0226A520 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         v3 = v0 % 3;
 
         if (v3 < param1->unk_954.val4.unk_00) {
-            sub_02017348(&param1->unk_0C[v3], 1);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v3], 1);
         }
     }
 
@@ -1561,11 +1561,11 @@ static BOOL ov70_0226A520 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     v1 = 1;
 
     for (v0 = 0; v0 < param1->unk_954.val4.unk_00; v0++) {
-        if (sub_0201734C(&param1->unk_0C[v0]) == 1) {
+        if (Easy3DObject_GetVisibility(&param1->unk_0C[v0]) == 1) {
             v1 = ov70_022699D0(param0, param1, v0, 0);
 
             if (v1) {
-                sub_02017348(&param1->unk_0C[v0], 0);
+                Easy3DObject_SetVisibility(&param1->unk_0C[v0], 0);
                 ov70_02269A90(param0, param1, v0, 0, 0);
             }
         }
@@ -1606,10 +1606,10 @@ static BOOL ov70_0226A614 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
         if (param1->unk_954.val6.unk_02 > v0) {
             if (v0 > 0) {
-                sub_02017348(&param1->unk_0C[v0 - 1], 0);
+                Easy3DObject_SetVisibility(&param1->unk_0C[v0 - 1], 0);
             }
 
-            sub_02017348(&param1->unk_0C[v0], 1);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v0], 1);
         }
     }
 
@@ -1620,7 +1620,7 @@ static BOOL ov70_0226A614 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     v2 = 0;
 
     for (v1 = 0; v1 < param1->unk_954.val6.unk_02; v1++) {
-        if (sub_0201734C(&param1->unk_0C[v1])) {
+        if (Easy3DObject_GetVisibility(&param1->unk_0C[v1])) {
             if (v1 == param1->unk_954.val6.unk_02 - 1) {
                 v2 = ov70_022699D0(param0, param1, v1, 0);
             } else {
@@ -1642,11 +1642,11 @@ static BOOL ov70_0226A6C8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
     if (param1->unk_954.val2.unk_00 > 0) {
         param1->unk_954.val2.unk_00--;
-        sub_02017348(&param1->unk_0C[0], 0);
+        Easy3DObject_SetVisibility(&param1->unk_0C[0], 0);
     } else {
         if (param1->unk_02 < 3) {
             if (ov70_02269810(param1, param1->unk_02 + 1) == 1) {
-                sub_02017348(&param1->unk_0C[0], 1);
+                Easy3DObject_SetVisibility(&param1->unk_0C[0], 1);
                 v0 = ov70_022699D0(param0, param1, 0, 0);
 
                 if (v0 == 1) {
@@ -1656,7 +1656,7 @@ static BOOL ov70_0226A6C8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
                     if (param1->unk_02 < 3) {
                         ov70_02269A90(param0, param1, 0, 0, 0);
                     } else {
-                        sub_02017348(&param1->unk_0C[0], 0);
+                        Easy3DObject_SetVisibility(&param1->unk_0C[0], 0);
                     }
                 }
             }
@@ -1668,7 +1668,7 @@ static BOOL ov70_0226A6C8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     for (v2 = 1; v2 <= 3; v2++) {
         if (ov70_02269810(param1, v2) == 1) {
             if (param1->unk_02 > (v2 - 1)) {
-                sub_02017348(&param1->unk_0C[v2], 1);
+                Easy3DObject_SetVisibility(&param1->unk_0C[v2], 1);
                 v0 = ov70_02269A3C(param0, param1, v2, 0, FX32_CONST(2.50f));
 
                 if (v0 == 0) {
@@ -1680,7 +1680,7 @@ static BOOL ov70_0226A6C8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
                     v4 = v2 - 1;
 
                     if (param1->unk_954.val2.unk_04[v4] == 0) {
-                        sub_02017348(&param1->unk_0C[v2], 0);
+                        Easy3DObject_SetVisibility(&param1->unk_0C[v2], 0);
                         NNS_G3dMdlSetMdlAlphaAll(param0->unk_10550[param1->unk_87C[v2]->unk_00].model, 31);
                     } else {
                         param1->unk_954.val2.unk_04[v4]--;
@@ -1741,18 +1741,18 @@ static BOOL ov70_0226A858 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         v1 += param1->unk_954.val3.unk_01 * 4;
 
         for (v2 = param1->unk_954.val3.unk_03; v2 < v1; v2++) {
-            sub_02017348(&param1->unk_0C[v2], 1);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v2], 1);
         }
 
         param1->unk_954.val3.unk_03 = v1;
     }
 
     for (v2 = 0; v2 < param1->unk_954.val3.unk_03; v2++) {
-        if (sub_0201734C(&param1->unk_0C[v2]) == 1) {
+        if (Easy3DObject_GetVisibility(&param1->unk_0C[v2]) == 1) {
             v0 = ov70_0226B8C4(param0, param1, v2);
 
             if (v0 == 1) {
-                sub_02017348(&param1->unk_0C[v2], 0);
+                Easy3DObject_SetVisibility(&param1->unk_0C[v2], 0);
             }
         }
     }
@@ -2008,7 +2008,7 @@ static void ov70_0226ADBC (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     param1->unk_954.val1.unk_00 = 0;
 
     for (v2 = 0; v2 < param1->unk_954.val1.unk_01; v2++) {
-        sub_02017358(&param1->unk_0C[v2], &v0.x, &v0.y, &v0.z);
+        Easy3DObject_GetPosition(&param1->unk_0C[v2], &v0.x, &v0.y, &v0.z);
         v3 = param1->unk_954.val1.unk_0C[v2];
 
         switch (v3) {
@@ -2159,13 +2159,13 @@ static BOOL ov70_0226AF7C (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
             if (v7 == 0) {
                 ov70_022694D0(&param1->unk_954.val1.unk_14[v0]);
-                sub_02017358(&param1->unk_0C[v0], &v8.x, &v8.y, &v8.z);
+                Easy3DObject_GetPosition(&param1->unk_0C[v0], &v8.x, &v8.y, &v8.z);
                 ov70_02269488(&param1->unk_954.val1.unk_38[v0], &v8.x, &v8.y, &v8.z);
                 ov70_02269508(&param1->unk_954.val1.unk_14[v0], &v9);
 
                 v8.x += v9;
 
-                sub_02017350(&param1->unk_0C[v0], v8.x, v8.y, v8.z);
+                Easy3DObject_SetPosition(&param1->unk_0C[v0], v8.x, v8.y, v8.z);
             } else {
                 v10 = ov70_0226B714(param0, param1, v0, 4);
 
@@ -2262,17 +2262,17 @@ static void ov70_0226B324 (UnkStruct_ov70_02269800 * param0)
 
     switch (param0->unk_954.val1.unk_01) {
     case 1:
-        sub_02017350(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E328[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[2].unk_02), v0.z + (FX32_CONST(1)));
+        Easy3DObject_SetPosition(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E328[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[2].unk_02), v0.z + (FX32_CONST(1)));
         break;
     case 2:
-        sub_02017350(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E328[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[0].unk_02), v0.z + (FX32_CONST(1)));
-        sub_02017350(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E328[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[1].unk_02), v0.z + (FX32_CONST(1)));
+        Easy3DObject_SetPosition(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E328[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[0].unk_02), v0.z + (FX32_CONST(1)));
+        Easy3DObject_SetPosition(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E328[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[1].unk_02), v0.z + (FX32_CONST(1)));
         break;
     default:
     case 3:
-        sub_02017350(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E328[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[2].unk_02), v0.z + (FX32_CONST(1)));
-        sub_02017350(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E328[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[0].unk_02), v0.z + (FX32_CONST(1)));
-        sub_02017350(&param0->unk_0C[2], v0.x + FX32_CONST(Unk_ov70_0226E328[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[1].unk_02), v0.z + (FX32_CONST(1)));
+        Easy3DObject_SetPosition(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E328[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[2].unk_02), v0.z + (FX32_CONST(1)));
+        Easy3DObject_SetPosition(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E328[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[0].unk_02), v0.z + (FX32_CONST(1)));
+        Easy3DObject_SetPosition(&param0->unk_0C[2], v0.x + FX32_CONST(Unk_ov70_0226E328[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E328[1].unk_02), v0.z + (FX32_CONST(1)));
         break;
     }
 }
@@ -2285,17 +2285,17 @@ static void ov70_0226B51C (UnkStruct_ov70_02269800 * param0)
 
     switch (param0->unk_954.val1.unk_01) {
     case 1:
-        sub_02017350(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E340[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[2].unk_02), v0.z + (-FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E340[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[2].unk_02), v0.z + (-FX32_CONST(8)));
         break;
     case 2:
-        sub_02017350(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E340[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[0].unk_02), v0.z + (-FX32_CONST(8)));
-        sub_02017350(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E340[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[1].unk_02), v0.z + (-FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E340[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[0].unk_02), v0.z + (-FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E340[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[1].unk_02), v0.z + (-FX32_CONST(8)));
         break;
     default:
     case 3:
-        sub_02017350(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E340[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[2].unk_02), v0.z + (-FX32_CONST(8)));
-        sub_02017350(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E340[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[0].unk_02), v0.z + (-FX32_CONST(8)));
-        sub_02017350(&param0->unk_0C[2], v0.x + FX32_CONST(Unk_ov70_0226E340[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[1].unk_02), v0.z + (-FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param0->unk_0C[0], v0.x + FX32_CONST(Unk_ov70_0226E340[2].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[2].unk_02), v0.z + (-FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param0->unk_0C[1], v0.x + FX32_CONST(Unk_ov70_0226E340[0].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[0].unk_02), v0.z + (-FX32_CONST(8)));
+        Easy3DObject_SetPosition(&param0->unk_0C[2], v0.x + FX32_CONST(Unk_ov70_0226E340[1].unk_00), v0.y + FX32_CONST(Unk_ov70_0226E340[1].unk_02), v0.z + (-FX32_CONST(8)));
         break;
     }
 }
@@ -2328,7 +2328,7 @@ static void ov70_0226B744 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
             if (v1 != 4) {
                 v0 = (v1 * (FX32_ONE * 2));
             } else {
-                sub_02017348(&param1->unk_0C[param2], 0);
+                Easy3DObject_SetVisibility(&param1->unk_0C[param2], 0);
             }
         }
 
@@ -2363,8 +2363,8 @@ static void ov70_0226B7B0 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
             ov70_02269828(param0, param1, v5, &Unk_ov70_0226E5A4[v6]);
             VEC_Add(&v2, &Unk_ov70_0226E370[v1], &v3);
             VEC_Add(&v3, &Unk_ov70_0226E3A0[v1], &v4);
-            sub_02017350(&param1->unk_0C[v5], v3.x, v3.y, v3.z);
-            sub_02017348(&param1->unk_0C[v5], 0);
+            Easy3DObject_SetPosition(&param1->unk_0C[v5], v3.x, v3.y, v3.z);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v5], 0);
             param1->unk_954.val3.unk_04[v5] = 0;
             ov70_022692B4(&param1->unk_954.val3.unk_14[v5], v3.x, v4.x, v3.y, v4.y, v3.z, v4.z, 14);
         }
@@ -2386,7 +2386,7 @@ static BOOL ov70_0226B8C4 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     v0 = ov70_022692DC(&param1->unk_954.val3.unk_14[param2], param1->unk_954.val3.unk_04[param2]);
 
     ov70_02269488(&param1->unk_954.val3.unk_14[param2], &v1.x, &v1.y, &v1.z);
-    sub_02017350(&param1->unk_0C[param2], v1.x, v1.y, v1.z);
+    Easy3DObject_SetPosition(&param1->unk_0C[param2], v1.x, v1.y, v1.z);
     ov70_022699BC(param0, param1, param2, 0);
 
     return v0;
@@ -2404,8 +2404,8 @@ static void ov70_0226B92C (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         v1.y += (FX32_CONST(8));
         v1.z += (FX32_CONST(6));
 
-        sub_02017350(&param1->unk_0C[v0], v1.x, v1.y, v1.z);
-        sub_02017348(&param1->unk_0C[v0], 0);
+        Easy3DObject_SetPosition(&param1->unk_0C[v0], v1.x, v1.y, v1.z);
+        Easy3DObject_SetVisibility(&param1->unk_0C[v0], 0);
     }
 
     param1->unk_954.val4.unk_00 = param2;
@@ -2424,7 +2424,7 @@ static BOOL ov70_0226B998 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
         if (v1 > 0) {
             v2 = Unk_ov70_0226E514[param2][v1 - 1];
-            sub_02017348(&param1->unk_0C[v2.unk_00], 0);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v2.unk_00], 0);
         }
 
         v2 = Unk_ov70_0226E514[param2][v1];
@@ -2432,9 +2432,9 @@ static BOOL ov70_0226B998 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         if (0 != v2.unk_02) {
             ov70_02269A90(param0, param1, v2.unk_00, 0, FX32_CONST(v2.unk_02));
             ov70_02269A90(param0, param1, v2.unk_00, 1, FX32_CONST(v2.unk_02));
-            sub_02017348(&param1->unk_0C[v2.unk_00], 1);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v2.unk_00], 1);
         } else {
-            sub_02017348(&param1->unk_0C[v2.unk_00], 0);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v2.unk_00], 0);
         }
     }
 
@@ -2460,8 +2460,8 @@ static void ov70_0226BAC8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
         v1.y += (FX32_CONST(8));
 
-        sub_02017350(&param1->unk_0C[v0], v1.x, v1.y, v1.z);
-        sub_02017348(&param1->unk_0C[v0], 0);
+        Easy3DObject_SetPosition(&param1->unk_0C[v0], v1.x, v1.y, v1.z);
+        Easy3DObject_SetVisibility(&param1->unk_0C[v0], 0);
     }
 
     param1->unk_954.val6.unk_00 = 0xff;
@@ -2481,7 +2481,7 @@ static void ov70_0226BB34 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
     for (v1 = 0; v1 < 2; v1++) {
         ov70_02269828(param0, param1, 16 + v1, &Unk_ov70_0226E5A4[37 + v1]);
-        sub_02017350(&param1->unk_0C[v1 + 16], v0.x + (v1 * (FX32_CONST(24))), v0.y, v0.z);
+        Easy3DObject_SetPosition(&param1->unk_0C[v1 + 16], v0.x + (v1 * (FX32_CONST(24))), v0.y, v0.z);
     }
 }
 
@@ -2493,7 +2493,7 @@ static void ov70_0226BBA8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     param1->unk_954.val7.unk_3BA = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02017348(&param1->unk_0C[v0 + 16], 1);
+        Easy3DObject_SetVisibility(&param1->unk_0C[v0 + 16], 1);
     }
 }
 
@@ -2515,7 +2515,7 @@ static void ov70_0226BBDC (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         if (param1->unk_954.val7.unk_3BA < 13) {
             ov70_022699BC(param0, param1, v0 + 16, 0);
         } else {
-            sub_02017348(&param1->unk_0C[v0 + 16], 0);
+            Easy3DObject_SetVisibility(&param1->unk_0C[v0 + 16], 0);
         }
     }
 }
@@ -2590,7 +2590,7 @@ static void ov70_0226BDA0 (UnkStruct_ov70_0226BD64 * param0, u32 param1)
     };
 
     for (v0 = 0; v0 < param1; v0++) {
-        sub_02017348(param0->unk_D8[v0], 1);
+        Easy3DObject_SetVisibility(param0->unk_D8[v0], 1);
     }
 
     param0->unk_00 = 0;
@@ -2619,7 +2619,7 @@ static BOOL ov70_0226BDE8 (UnkStruct_ov70_0226BD64 * param0)
 
     if (v1 == 1) {
         for (v0 = 0; v0 < param0->unk_04; v0++) {
-            sub_02017348(param0->unk_D8[v0], 0);
+            Easy3DObject_SetVisibility(param0->unk_D8[v0], 0);
         }
 
         param0->unk_06 = 0;
@@ -2671,7 +2671,7 @@ static void ov70_0226BE3C (UnkStruct_ov70_0226BD64 * param0, const UnkStruct_ov7
 
         ov70_022692B4(&param0->unk_08[v0], v1.x, v2.x, v1.y, v2.y, v1.z, v2.z, 18);
         ov70_0226949C(&param0->unk_A8[v0], v3, (((18 * 0xffff) / 360)), (FX32_CONST(6)));
-        sub_02017350(param0->unk_D8[v0], v1.x, v1.y, v1.z);
+        Easy3DObject_SetPosition(param0->unk_D8[v0], v1.x, v1.y, v1.z);
     }
 }
 
@@ -2692,7 +2692,7 @@ static BOOL ov70_0226BF5C (UnkStruct_ov70_0226BD64 * param0)
 
         v2.x += v3;
 
-        sub_02017350(param0->unk_D8[v0], v2.x, v2.y, v2.z);
+        Easy3DObject_SetPosition(param0->unk_D8[v0], v2.x, v2.y, v2.z);
     }
 
     return v1;
@@ -2767,7 +2767,7 @@ static BOOL ov70_0226C0D8 (UnkStruct_ov70_0226BD64 * param0)
 
         v2.y += v3;
 
-        sub_02017350(param0->unk_D8[v0], v2.x, v2.y, v2.z);
+        Easy3DObject_SetPosition(param0->unk_D8[v0], v2.x, v2.y, v2.z);
     }
 
     if (param0->unk_00 >= (14 + 8)) {
@@ -2804,7 +2804,7 @@ static BOOL ov70_0226C1DC (UnkStruct_ov70_0226BD64 * param0)
         v1 = ov70_022692DC(&param0->unk_08[v0], param0->unk_00);
 
         ov70_02269488(&param0->unk_08[v0], &v2.x, &v2.y, &v2.z);
-        sub_02017350(param0->unk_D8[v0], v2.x, v2.y, v2.z);
+        Easy3DObject_SetPosition(param0->unk_D8[v0], v2.x, v2.y, v2.z);
 
         if (v1 == 1) {
             if (param0->unk_07 == 0) {
@@ -2855,5 +2855,5 @@ static void ov70_0226C2A4 (UnkStruct_ov70_0226BD64 * param0, u32 param1, const V
     }
 
     ov70_022692B4(&param0->unk_08[param1], param2->x, v0.x, param2->y, v0.y, param2->z, v0.z, param7);
-    sub_02017350(param0->unk_D8[param1], param2->x, param2->y, param2->z);
+    Easy3DObject_SetPosition(param0->unk_D8[param1], param2->x, param2->y, param2->z);
 }

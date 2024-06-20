@@ -7,6 +7,13 @@
 #include <nnsys.h>
 #include <nitro/fx/fx.h>
 
+enum RotationAxis {
+    ROTATION_AXIS_X = 0,
+    ROTATION_AXIS_Y,
+    ROTATION_AXIS_Z,
+    ROTATION_AXIS_COUNT
+};
+
 typedef struct Easy3DModel {
     void *data;
     NNSG3dResMdlSet *set;
@@ -23,11 +30,11 @@ typedef struct Easy3DAnim {
 } Easy3DAnim;
 
 typedef struct Easy3DObject {
-    NNSG3dRenderObj unk_00;
-    VecFx32 unk_54;
-    VecFx32 unk_60;
-    BOOL unk_6C;
-    u16 unk_70[3];
+    NNSG3dRenderObj renderObj;
+    VecFx32 position;
+    VecFx32 scale;
+    BOOL visible;
+    u16 rotation[ROTATION_AXIS_COUNT];
     u8 padding_76[2];
 } Easy3DObject;
 
@@ -44,18 +51,18 @@ void Easy3DAnim_SetFrame(Easy3DAnim *anim, fx32 frame);
 fx32 Easy3DAnim_GetFrame(const Easy3DAnim *anim);
 fx32 Easy3DAnim_GetFrameCount(const Easy3DAnim *anim);
 
-void sub_02017258(Easy3DObject * param0, Easy3DModel * param1);
-void sub_0201727C(Easy3DObject * param0, Easy3DAnim * param1);
-void sub_02017288(Easy3DObject * param0, Easy3DAnim * param1);
-void sub_02017294(Easy3DObject * param0);
-void sub_02017330(Easy3DObject * param0, const MtxFx33 * param1);
-void sub_02017348(Easy3DObject * param0, BOOL param1);
-BOOL sub_0201734C(const Easy3DObject * param0);
-void sub_02017350(Easy3DObject * param0, fx32 param1, fx32 param2, fx32 param3);
-void sub_02017358(const Easy3DObject * param0, fx32 * param1, fx32 * param2, fx32 * param3);
-void sub_0201736C(Easy3DObject * param0, fx32 param1, fx32 param2, fx32 param3);
-void sub_02017374(const Easy3DObject * param0, fx32 * param1, fx32 * param2, fx32 * param3);
-void sub_02017388(Easy3DObject * param0, u16 param1, u32 param2);
-u16 sub_02017394(const Easy3DObject * param0, u32 param1);
+void Easy3DObject_Init(Easy3DObject *obj, Easy3DModel *model);
+void Easy3DObject_AddAnim(Easy3DObject *obj, Easy3DAnim *anim);
+void Easy3DObject_RemoveAnim(Easy3DObject *obj, Easy3DAnim *anim);
+void Easy3DObject_Draw(Easy3DObject *obj);
+void Easy3DObject_DrawRotated(Easy3DObject *obj, const MtxFx33 *rotation);
+void Easy3DObject_SetVisibility(Easy3DObject *obj, BOOL visible);
+BOOL Easy3DObject_GetVisibility(const Easy3DObject *obj);
+void Easy3DObject_SetPosition(Easy3DObject *obj, fx32 x, fx32 y, fx32 z);
+void Easy3DObject_GetPosition(const Easy3DObject *obj, fx32 *outX, fx32 *outY, fx32 *outZ);
+void Easy3DObject_SetScale(Easy3DObject *obj, fx32 x, fx32 y, fx32 z);
+void Easy3DObject_GetScale(const Easy3DObject *obj, fx32 *outX, fx32 *outY, fx32 *outZ);
+void Easy3DObject_SetRotation(Easy3DObject *obj, u16 angle, enum RotationAxis axis);
+u16 Easy3DObject_GetRotation(const Easy3DObject *obj, enum RotationAxis axis);
 
 #endif // POKEPLATINUM_EASY3D_OBJECT_H

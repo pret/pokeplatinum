@@ -110,11 +110,11 @@ void ov100_021D45A4 (UnkStruct_ov100_021D49B4 * param0)
             case 1:
             case 2:
             case 9:
-                param0->unk_00.unk_54.z -= v1[param0->unk_180].unk_08;
+                param0->unk_00.position.z -= v1[param0->unk_180].unk_08;
                 break;
             case 4:
             case 3:
-                param0->unk_00.unk_54.x += v1[param0->unk_180].unk_08;
+                param0->unk_00.position.x += v1[param0->unk_180].unk_08;
                 break;
             }
         }

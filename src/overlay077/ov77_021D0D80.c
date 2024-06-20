@@ -458,14 +458,14 @@ static void ov77_021D1300 (UnkStruct_ov77_021D1208 * param0, int param1)
         Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, 20, param1, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_13C, 0);
 
-        sub_02017258(&param0->unk_B0, &param0->unk_150);
+        Easy3DObject_Init(&param0->unk_B0, &param0->unk_150);
 
-        sub_02017350(&param0->unk_B0, 0, 0, 0);
-        sub_0201736C(&param0->unk_B0, (FX32_ONE), (FX32_ONE), (FX32_ONE));
-        sub_02017348(&param0->unk_B0, 1);
+        Easy3DObject_SetPosition(&param0->unk_B0, 0, 0, 0);
+        Easy3DObject_SetScale(&param0->unk_B0, (FX32_ONE), (FX32_ONE), (FX32_ONE));
+        Easy3DObject_SetVisibility(&param0->unk_B0, 1);
 
-        sub_0201727C(&param0->unk_B0, &param0->unk_128);
-        sub_0201727C(&param0->unk_B0, &param0->unk_13C);
+        Easy3DObject_AddAnim(&param0->unk_B0, &param0->unk_128);
+        Easy3DObject_AddAnim(&param0->unk_B0, &param0->unk_13C);
     }
 
     {
@@ -479,14 +479,14 @@ static void ov77_021D1300 (UnkStruct_ov77_021D1208 * param0, int param1)
         Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, 17, param1, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_1EC, 0);
 
-        sub_02017258(&param0->unk_160, &param0->unk_200);
+        Easy3DObject_Init(&param0->unk_160, &param0->unk_200);
 
-        sub_02017350(&param0->unk_160, 0, 0, 0);
-        sub_0201736C(&param0->unk_160, (FX32_ONE), (FX32_ONE), (FX32_ONE));
-        sub_02017348(&param0->unk_160, 1);
+        Easy3DObject_SetPosition(&param0->unk_160, 0, 0, 0);
+        Easy3DObject_SetScale(&param0->unk_160, (FX32_ONE), (FX32_ONE), (FX32_ONE));
+        Easy3DObject_SetVisibility(&param0->unk_160, 1);
 
-        sub_0201727C(&param0->unk_160, &param0->unk_1D8);
-        sub_0201727C(&param0->unk_160, &param0->unk_1EC);
+        Easy3DObject_AddAnim(&param0->unk_160, &param0->unk_1D8);
+        Easy3DObject_AddAnim(&param0->unk_160, &param0->unk_1EC);
     }
 
     NARC_dtor(v0);
@@ -618,12 +618,12 @@ static void ov77_021D1704 (UnkStruct_ov77_021D1208 * param0)
     NNS_G3dGePushMtx();
 
     {
-        sub_02017294(&param0->unk_160);
+        Easy3DObject_Draw(&param0->unk_160);
 
         if ((param0->unk_224 != 2) || (param0->unk_225 != 2)) {
-            sub_02017294(&param0->unk_B0);
+            Easy3DObject_Draw(&param0->unk_B0);
         } else {
-            sub_02017348(&param0->unk_B0, 0);
+            Easy3DObject_SetVisibility(&param0->unk_B0, 0);
         }
     }
 

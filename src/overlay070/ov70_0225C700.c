@@ -72,12 +72,12 @@ BOOL ov70_0225C7A0 (const Easy3DModel * param0, const Easy3DObject * param1)
     u32 v5;
     u32 v6;
 
-    sub_02017358(param1, &v0.x, &v0.y, &v0.z);
-    sub_02017374(param1, &v1.x, &v1.y, &v1.z);
+    Easy3DObject_GetPosition(param1, &v0.x, &v0.y, &v0.z);
+    Easy3DObject_GetScale(param1, &v1.x, &v1.y, &v1.z);
 
-    v4 = sub_02017394(param1, 0);
-    v5 = sub_02017394(param1, 1);
-    v6 = sub_02017394(param1, 2);
+    v4 = Easy3DObject_GetRotation(param1, 0);
+    v5 = Easy3DObject_GetRotation(param1, 1);
+    v6 = Easy3DObject_GetRotation(param1, 2);
 
     MTX_Identity33(&v2);
     MTX_RotX33(&v3, FX_SinIdx(v4), FX_CosIdx(v4));

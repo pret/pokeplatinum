@@ -745,7 +745,7 @@ static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)
 
         for (v3 = 0; v3 < 2; v3++) {
             for (v4 = 0; v4 < 16; v4++) {
-                sub_02017294(&param0->unk_6C[v3][v4]);
+                Easy3DObject_Draw(&param0->unk_6C[v3][v4]);
             }
         }
     }

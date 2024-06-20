@@ -257,14 +257,14 @@ static void DWWarp_InitModel (DistortionWorldWarp * warp)
 
     Easy3DAnim_LoadFrom(&warp->animationAnimation2, &warp->animationModel, narc, 17, HEAP_ID_DISTORTION_WORLD_WARP, &warp->allocator);
     Easy3DAnim_SetFrame(&warp->animationAnimation2, 0);
-    sub_02017258(&warp->animationObj, &warp->animationModel);
+    Easy3DObject_Init(&warp->animationObj, &warp->animationModel);
 
-    sub_02017350(&warp->animationObj, 0, 0, 0);
-    sub_0201736C(&warp->animationObj, FX32_ONE, FX32_ONE, FX32_ONE);
-    sub_02017348(&warp->animationObj, 1);
+    Easy3DObject_SetPosition(&warp->animationObj, 0, 0, 0);
+    Easy3DObject_SetScale(&warp->animationObj, FX32_ONE, FX32_ONE, FX32_ONE);
+    Easy3DObject_SetVisibility(&warp->animationObj, TRUE);
 
-    sub_0201727C(&warp->animationObj, &warp->animationAnimation);
-    sub_0201727C(&warp->animationObj, &warp->animationAnimation2);
+    Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation);
+    Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation2);
 
     NARC_dtor(narc);
 
@@ -314,7 +314,7 @@ static void Model3D_Update (DistortionWorldWarp * warp)
 
     NNS_G3dGePushMtx();
 
-    sub_02017294(&warp->animationObj);
+    Easy3DObject_Draw(&warp->animationObj);
     NNS_G3dGePopMtx(1);
 }
 

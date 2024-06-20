@@ -142,98 +142,98 @@ fx32 Easy3DAnim_GetFrameCount(const Easy3DAnim *anim)
     return NNS_G3dAnmObjGetNumFrame(anim->animObj);
 }
 
-void sub_02017258 (Easy3DObject * param0, Easy3DModel * param1)
+void Easy3DObject_Init(Easy3DObject *obj, Easy3DModel *model)
 {
-    memset(param0, 0, sizeof(Easy3DObject));
-    NNS_G3dRenderObjInit(&param0->unk_00, param1->model);
+    memset(obj, 0, sizeof(Easy3DObject));
+    NNS_G3dRenderObjInit(&obj->renderObj, model->model);
 
-    param0->unk_6C = 1;
-    param0->unk_60.x = FX32_ONE;
-    param0->unk_60.y = FX32_ONE;
-    param0->unk_60.z = FX32_ONE;
+    obj->visible = TRUE;
+    obj->scale.x = FX32_ONE;
+    obj->scale.y = FX32_ONE;
+    obj->scale.z = FX32_ONE;
 }
 
-void sub_0201727C (Easy3DObject * param0, Easy3DAnim * param1)
+void Easy3DObject_AddAnim(Easy3DObject *obj, Easy3DAnim *anim)
 {
-    NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param1->animObj);
+    NNS_G3dRenderObjAddAnmObj(&obj->renderObj, anim->animObj);
 }
 
-void sub_02017288 (Easy3DObject * param0, Easy3DAnim * param1)
+void Easy3DObject_RemoveAnim(Easy3DObject *obj, Easy3DAnim *anim)
 {
-    NNS_G3dRenderObjRemoveAnmObj(&param0->unk_00, param1->animObj);
+    NNS_G3dRenderObjRemoveAnmObj(&obj->renderObj, anim->animObj);
 }
 
-void sub_02017294 (Easy3DObject * param0)
+void Easy3DObject_Draw(Easy3DObject *obj)
 {
-    MtxFx33 v0;
-    MtxFx33 v1;
+    MtxFx33 rotation;
+    MtxFx33 temp;
 
-    if (param0->unk_6C) {
-        MTX_Identity33(&v0);
-        MTX_RotX33(&v1, FX_SinIdx(param0->unk_70[0]), FX_CosIdx(param0->unk_70[0]));
-        MTX_Concat33(&v1, &v0, &v0);
-        MTX_RotZ33(&v1, FX_SinIdx(param0->unk_70[2]), FX_CosIdx(param0->unk_70[2]));
-        MTX_Concat33(&v1, &v0, &v0);
-        MTX_RotY33(&v1, FX_SinIdx(param0->unk_70[1]), FX_CosIdx(param0->unk_70[1]));
-        MTX_Concat33(&v1, &v0, &v0);
+    if (obj->visible) {
+        MTX_Identity33(&rotation);
+        MTX_RotX33(&temp, FX_SinIdx(obj->rotation[ROTATION_AXIS_X]), FX_CosIdx(obj->rotation[ROTATION_AXIS_X]));
+        MTX_Concat33(&temp, &rotation, &rotation);
+        MTX_RotZ33(&temp, FX_SinIdx(obj->rotation[ROTATION_AXIS_Z]), FX_CosIdx(obj->rotation[ROTATION_AXIS_Z]));
+        MTX_Concat33(&temp, &rotation, &rotation);
+        MTX_RotY33(&temp, FX_SinIdx(obj->rotation[ROTATION_AXIS_Y]), FX_CosIdx(obj->rotation[ROTATION_AXIS_Y]));
+        MTX_Concat33(&temp, &rotation, &rotation);
 
-        Easy3D_DrawRenderObj(&param0->unk_00, &param0->unk_54, &v0, &param0->unk_60);
+        Easy3D_DrawRenderObj(&obj->renderObj, &obj->position, &rotation, &obj->scale);
     }
 }
 
-void sub_02017330 (Easy3DObject * param0, const MtxFx33 * param1)
+void Easy3DObject_DrawRotated(Easy3DObject *obj, const MtxFx33 *rotation)
 {
-    if (param0->unk_6C) {
-        Easy3D_DrawRenderObj(&param0->unk_00, &param0->unk_54, (MtxFx33 *)param1, &param0->unk_60);
+    if (obj->visible) {
+        Easy3D_DrawRenderObj(&obj->renderObj, &obj->position, (MtxFx33 *)rotation, &obj->scale);
     }
 }
 
-void sub_02017348 (Easy3DObject * param0, BOOL param1)
+void Easy3DObject_SetVisibility(Easy3DObject *obj, BOOL visible)
 {
-    param0->unk_6C = param1;
+    obj->visible = visible;
 }
 
-BOOL sub_0201734C (const Easy3DObject * param0)
+BOOL Easy3DObject_GetVisibility(const Easy3DObject *obj)
 {
-    return param0->unk_6C;
+    return obj->visible;
 }
 
-void sub_02017350 (Easy3DObject * param0, fx32 param1, fx32 param2, fx32 param3)
+void Easy3DObject_SetPosition(Easy3DObject *obj, fx32 x, fx32 y, fx32 z)
 {
-    param0->unk_54.x = param1;
-    param0->unk_54.y = param2;
-    param0->unk_54.z = param3;
+    obj->position.x = x;
+    obj->position.y = y;
+    obj->position.z = z;
 }
 
-void sub_02017358 (const Easy3DObject * param0, fx32 * param1, fx32 * param2, fx32 * param3)
+void Easy3DObject_GetPosition(const Easy3DObject *obj, fx32 *outX, fx32 *outY, fx32 *outZ)
 {
-    *param1 = param0->unk_54.x;
-    *param2 = param0->unk_54.y;
-    *param3 = param0->unk_54.z;
+    *outX = obj->position.x;
+    *outY = obj->position.y;
+    *outZ = obj->position.z;
 }
 
-void sub_0201736C (Easy3DObject * param0, fx32 param1, fx32 param2, fx32 param3)
+void Easy3DObject_SetScale(Easy3DObject *obj, fx32 x, fx32 y, fx32 z)
 {
-    param0->unk_60.x = param1;
-    param0->unk_60.y = param2;
-    param0->unk_60.z = param3;
+    obj->scale.x = x;
+    obj->scale.y = y;
+    obj->scale.z = z;
 }
 
-void sub_02017374 (const Easy3DObject * param0, fx32 * param1, fx32 * param2, fx32 * param3)
+void Easy3DObject_GetScale(const Easy3DObject *obj, fx32 *outX, fx32 *outY, fx32 *outZ)
 {
-    *param1 = param0->unk_60.x;
-    *param2 = param0->unk_60.y;
-    *param3 = param0->unk_60.z;
+    *outX = obj->scale.x;
+    *outY = obj->scale.y;
+    *outZ = obj->scale.z;
 }
 
-void sub_02017388 (Easy3DObject * param0, u16 param1, u32 param2)
+void Easy3DObject_SetRotation(Easy3DObject *obj, u16 angle, enum RotationAxis axis)
 {
-    param0->unk_70[param2] = param1;
+    obj->rotation[axis] = angle;
 }
 
-u16 sub_02017394 (const Easy3DObject * param0, u32 param1)
+u16 Easy3DObject_GetRotation(const Easy3DObject *obj, enum RotationAxis axis)
 {
-    return param0->unk_70[param1];
+    return obj->rotation[axis];
 }
 
 static void Easy3DAnim_LoadInternal(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator)
