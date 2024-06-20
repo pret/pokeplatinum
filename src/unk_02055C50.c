@@ -16,7 +16,7 @@
 #include "overlay005/map_object_anim_cmd.h"
 
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201CED8.h"
 #include "savedata_misc.h"
 #include "unk_02027B70.h"

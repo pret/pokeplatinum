@@ -17,7 +17,7 @@
 #include "sys_task.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "sys_task_manager.h"
 #include "unk_020366A0.h"
 #include "unk_02039C80.h"

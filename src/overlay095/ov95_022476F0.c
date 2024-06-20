@@ -11,7 +11,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201CED8.h"
 #include "camera.h"
 #include "overlay095/ov95_022476F0.h"

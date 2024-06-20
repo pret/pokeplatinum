@@ -12,7 +12,7 @@
 #include "sys_task.h"
 #include "unk_020170BC.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 
 static void sub_020170F4(SysTask * param0, void * param1);
 static void sub_020173A0(UnkStruct_02017248 * param0, const UnkStruct_020170F4 * param1, void * param2, NNSFndAllocator * param3);

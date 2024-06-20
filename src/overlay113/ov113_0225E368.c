@@ -30,7 +30,7 @@
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201D15C.h"
 #include "camera.h"
 #include "pokemon.h"

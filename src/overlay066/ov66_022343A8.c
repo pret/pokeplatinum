@@ -24,7 +24,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
 #include "unk_0202298C.h"

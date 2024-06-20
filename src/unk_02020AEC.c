@@ -13,7 +13,7 @@
 #include "overlay005/struct_ov5_021EDDAC.h"
 
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201DD00.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"

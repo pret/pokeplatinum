@@ -13,7 +13,7 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "gx_layers.h"
 #include "camera.h"
 #include "unk_0202419C.h"

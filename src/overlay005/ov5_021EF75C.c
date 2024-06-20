@@ -7,7 +7,7 @@
 
 #include "narc.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D56BC.h"
 #include "overlay005/ov5_021EF75C.h"

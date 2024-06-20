@@ -16,7 +16,7 @@
 #include "narc.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_022626B0.h"
 #include "overlay117/ov117_02263AF0.h"

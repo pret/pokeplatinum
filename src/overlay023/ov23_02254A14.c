@@ -20,7 +20,7 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201D670.h"
 #include "unk_0202854C.h"
 #include "unk_020508D4.h"

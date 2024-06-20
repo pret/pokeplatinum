@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0207C690.h"
 
 #include "unk_02017728.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "gx_layers.h"
 #include "unk_02024220.h"
 

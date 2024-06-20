@@ -12,7 +12,7 @@
 #include "unk_02006E3C.h"
 #include "sys_task.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201E190.h"
 #include "unk_02073838.h"
 

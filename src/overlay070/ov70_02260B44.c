@@ -14,7 +14,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201D15C.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay070/ov70_0225C700.h"

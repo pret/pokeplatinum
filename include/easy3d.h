@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_UNK_0201C970_H
 #define POKEPLATINUM_UNK_0201C970_H
 
-
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
