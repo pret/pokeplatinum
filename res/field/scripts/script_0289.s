@@ -19,19 +19,19 @@ _001C:
 
 _002A:
     GoToIfSet 0x121, _0046
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0046:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

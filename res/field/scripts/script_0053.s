@@ -17,27 +17,27 @@ _001E:
     End
 
 _002A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _003D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0050:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 112, _006C
@@ -73,7 +73,7 @@ _0078:
 
 _00E9:
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -87,39 +87,39 @@ _00F4:
     GoTo _00E9
 
 _0110:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x964, _012E
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _012E:
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0139:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _014C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

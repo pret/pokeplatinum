@@ -12,7 +12,7 @@ _000A:
     End
 
 _0015:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_1BD 0x8004
@@ -40,7 +40,7 @@ _005D:
 
 _0098:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -48,7 +48,7 @@ _0098:
 _00A3:
     ApplyMovement 0, _010C
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0, _0118
     WaitMovement
     Return
@@ -56,7 +56,7 @@ _00A3:
 _00BD:
     ApplyMovement 0xFF, _0120
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _0118
     WaitMovement
     Return
@@ -64,7 +64,7 @@ _00BD:
 _00D7:
     ApplyMovement 0xFF, _0130
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _0118
     WaitMovement
     Return
@@ -72,7 +72,7 @@ _00D7:
 _00F1:
     ApplyMovement 0xFF, _013C
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 0xFF, _0118
     WaitMovement
     Return

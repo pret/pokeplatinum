@@ -7,7 +7,7 @@
 
 _0006:
     LockAll
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     SetVar 0x8005, 0x8000
     ScrCmd_28C 0x8000
     ScrCmd_059 0x800C
@@ -27,14 +27,14 @@ _0054:
     Message 1
     ScrCmd_05A 0x800C
     SetVar 0x8004, 0x800C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_055 10
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     GoToIfEq 0x8004, 0, _00BA
     ScrCmd_05B
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     ScrCmd_05C
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     ScrCmd_28D
     ScrCmd_0D6 0, 0x8005
     Message 2

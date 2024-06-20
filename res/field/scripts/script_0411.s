@@ -18,7 +18,7 @@ _0012:
 
 _0031:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     ScrCmd_015
@@ -51,7 +51,7 @@ _008B:
 
 _0090:
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     ScrCmd_015
@@ -93,8 +93,8 @@ _0104:
     Message 1
     ScrCmd_123 0, 0x800C
     ScrCmd_0CD 0
-    ScrCmd_02D 0x800C
-    ScrCmd_030
+    MessageVar 0x800C
+    WaitABPress
     Return
 
 _0120:
@@ -108,8 +108,8 @@ _0126:
     Message 20
     ScrCmd_123 1, 0x800C
     ScrCmd_0CD 0
-    ScrCmd_02D 0x800C
-    ScrCmd_030
+    MessageVar 0x800C
+    WaitABPress
     Return
 
     .byte 0

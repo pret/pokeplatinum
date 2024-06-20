@@ -32,7 +32,7 @@ _0055:
     End
 
 _0059:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x97D, _0109
@@ -74,14 +74,14 @@ _0105:
 
 _0109:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0114:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -110,52 +110,52 @@ _0140:
     EndMovement
 
 _014C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 0x97D, _0168
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0168:
     Message 16
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0173:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 0x97D, _018F
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _018F:
     Message 17
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _019A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 0x97D, _01B6
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01B6:
     Message 18
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -170,7 +170,7 @@ _01C5:
     End
 
 _01C7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 0x97D, _0347
     Message 10
@@ -181,14 +181,14 @@ _01C7:
 
 _01FB:
     SetVar 0x410D, 0
-    PlayFanfare 0x5E5
+    PlayFanfare SEQ_SE_DP_BUTTON3
     ScrCmd_0CD 0
     Message 11
     CloseMessage
     ClearFlag 0x295
     SetFlag 0x97D
     ScrCmd_25F
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ApplyMovement 2, _036C
     ApplyMovement 1, _0374
     ApplyMovement 3, _037C
@@ -211,12 +211,12 @@ _0296:
     ScrCmd_065 2
     ScrCmd_065 1
     ScrCmd_065 3
-    WaitFrames 2, 0x800C
+    WaitTime 2, 0x800C
     ClearFlag 0x236
     ScrCmd_064 2
     ScrCmd_064 1
     ScrCmd_064 3
-    WaitFrames 2, 0x800C
+    WaitTime 2, 0x800C
     Return
 
 _02C0:
@@ -261,7 +261,7 @@ _0341:
 
 _0347:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -325,37 +325,37 @@ _03BC:
     EndMovement
 
 _03C4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _03D7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _03EA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _03FD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfSet 173, _0450
     ApplyMovement 4, _0470
@@ -364,15 +364,15 @@ _03FD:
     CloseMessage
     ApplyMovement 0, _0460
     WaitMovement
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Message 6
     Message 7
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ApplyMovement 0, _0468
     WaitMovement
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -380,7 +380,7 @@ _03FD:
 _0450:
     FacePlayer
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

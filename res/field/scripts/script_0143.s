@@ -13,7 +13,7 @@
     .short 0xFD13
 
 _0022:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_27E 0x800C
@@ -42,71 +42,71 @@ _0063:
 
 _00BB:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00C6:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00D1:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00DC:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00E7:
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00F2:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0105:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0118:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _012B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_134 10, 0x800C
@@ -117,21 +117,21 @@ _012B:
     Message 11
     SetVar 0x8004, 10
     ScrCmd_014 0x7D9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _016F:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _017A:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -157,7 +157,7 @@ _017A:
     .byte 0
 
 _0198:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_014 0x7E3
@@ -167,7 +167,7 @@ _0198:
     End
 
 _01AE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_014 0x7E3
@@ -177,10 +177,10 @@ _01AE:
     End
 
 _01C4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

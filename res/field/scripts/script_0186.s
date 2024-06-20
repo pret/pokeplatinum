@@ -34,7 +34,7 @@ _0063:
     End
 
 _006D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 175, _00F7
@@ -66,14 +66,14 @@ _00D8:
 _00E8:
     SetFlag 175
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00F7:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -97,7 +97,7 @@ _011C:
     EndMovement
 
 _0128:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_014 0x7E3
@@ -107,7 +107,7 @@ _0128:
     End
 
 _013E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_014 0x7E3
@@ -194,7 +194,7 @@ _0286:
     GoTo _0296
 
 _0296:
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 5
     ScrCmd_04B 0x603
     SetVar 0x40EF, 1
@@ -251,21 +251,21 @@ _0300:
     EndMovement
 
 _0310:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0323:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

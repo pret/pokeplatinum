@@ -380,7 +380,7 @@ _05FA:
 _060D:
     SetFlagFromVar 0x8006
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x800C, 1
     GoTo _04AC
     End
@@ -403,7 +403,7 @@ _063C:
 _064F:
     ScrCmd_0D1 0, 0x8004
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     SetVar 0x800C, 0
     GoTo _04AC
     End

@@ -934,7 +934,7 @@
     .short 0xFD13
 
 _0E86:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0E4 0x8004
@@ -979,7 +979,7 @@ _0F5B:
     ScrCmd_033
     ScrCmd_0E7 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8001
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -1012,7 +1012,7 @@ _0FCB:
     ScrCmd_033
     ScrCmd_0E7 0x8000, 0x8001, 0x8002
     ScrCmd_0E6 0x8004, 0x8002
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ReleaseAll
     End

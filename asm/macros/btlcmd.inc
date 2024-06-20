@@ -1207,9 +1207,9 @@
     .long (\jump_not_over)-.) / 4 - 1
     .endm
 
-    .macro WaitTime delay
+    .macro WaitTime frames
     .long 218
-    .long \delay
+    .long \frames
     .endm
 
     .macro CheckCurMoveIsType type, jump

@@ -100,13 +100,13 @@ _0124:
     EndMovement
 
 _012C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_07E 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _0154
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -121,9 +121,9 @@ _0154:
 _0177:
     ScrCmd_0CD 0
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_04B 0x5DC
-    PlayFanfare 0x608
+    PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 1, _01B4
     ApplyMovement 2, _01BC
     WaitMovement
@@ -150,16 +150,16 @@ _01BC:
     EndMovement
 
 _01C4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01D5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 9
     GoTo _01E6

@@ -36,7 +36,7 @@ _005A:
     Return
 
 _008C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _08A0
@@ -58,7 +58,7 @@ _00E5:
     GoToIfGe 0x4071, 2, _0100
     ScrCmd_0CD 0
     Message 18
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -70,7 +70,7 @@ _0100:
 _0106:
     ScrCmd_0CD 0
     Message 55
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -104,7 +104,7 @@ _016A:
     ScrCmd_11E 0x800C
     ScrCmd_0D5 1, 0x800C
     Message 54
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetFlag 0x27D
     SetVar 0x4112, 1
@@ -196,7 +196,7 @@ _02BC:
     WaitMovement
     ApplyMovement 0xFF, _04BC
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _02FC
     GoTo _0316
@@ -225,7 +225,7 @@ _0330:
     ApplyMovement 0, _047C
     ApplyMovement 0xFF, _04B4
     WaitMovement
-    WaitFrames 35, 0x800C
+    WaitTime 35, 0x800C
     SetFlag 0x993
     ScrCmd_050 0x44A
     Message 9
@@ -256,7 +256,7 @@ _0394:
     CloseMessage
     ApplyMovement 3, _04A0
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _03DA
     GoTo _03E8
@@ -388,7 +388,7 @@ _04E8:
     EndMovement
 
 _04F0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _08A0
@@ -397,7 +397,7 @@ _04F0:
     GoToIfEq 0x800C, 1, _052B
     ScrCmd_0CF 0
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -405,20 +405,20 @@ _04F0:
 _052B:
     ScrCmd_0CF 0
     Message 49
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0539:
     Message 59
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0544:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _08A0
@@ -426,21 +426,21 @@ _0544:
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 1, _057C
     Message 22
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _057C:
     Message 50
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0587:
     Message 60
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -449,65 +449,65 @@ _0592:
     End
 
 _0594:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 23
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05A5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 24
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05B6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 25
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05C7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 26
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05D8:
     ScrCmd_0CD 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 46
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05EC:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 47
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05FD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 48
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -534,7 +534,7 @@ _0631:
 
 _0650:
     Message 29
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -566,7 +566,7 @@ _0677:
     CloseMessage
     ApplyMovement 0, _080C
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 34
     CloseMessage
     ApplyMovement 4, _088C
@@ -593,7 +593,7 @@ _0677:
     ScrCmd_065 4
     Message 42
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 0xFF, _0878
     WaitMovement
     ScrCmd_0CD 0
@@ -602,7 +602,7 @@ _0677:
     SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     Message 44
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -624,7 +624,7 @@ _07A9:
 
 _07AE:
     Message 45
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

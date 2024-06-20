@@ -259,7 +259,7 @@ static BOOL sub_0206BC94 (TaskManager * param0)
         v2->unk_04 = sub_0206BC70(v2, fieldSystem);
         break;
     case 2:
-        v0 = FieldSystem_GetVar(fieldSystem, v2->unk_10);
+        v0 = FieldSystem_GetVarPointer(fieldSystem, v2->unk_10);
         *v0 = v2->unk_00;
         Heap_FreeToHeap(v2);
         return 1;
@@ -295,7 +295,7 @@ static BOOL sub_0206BD1C (TaskManager * param0)
         return 0;
     }
 
-    v0 = FieldSystem_GetVar(fieldSystem, v3->unk_02);
+    v0 = FieldSystem_GetVarPointer(fieldSystem, v3->unk_02);
 
     switch (v3->unk_00) {
     case 0:

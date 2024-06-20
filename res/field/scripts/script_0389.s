@@ -27,7 +27,7 @@ _0033:
     End
 
 _0041:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 13
     ScrCmd_03E 0x800C
@@ -42,7 +42,7 @@ _0061:
     CloseMessage
     ScrCmd_270 2, 1
     SetVar 0x40AA, 1
-    PlayFanfare 0x5D2
+    PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 0x10B, 0, 32, 17, 1
@@ -59,7 +59,7 @@ _009E:
     End
 
 _00C4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_04C 0x1E7, 0
     Message 2
@@ -129,7 +129,7 @@ _0194:
     ApplyMovement 129, _0264
     WaitMovement
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -140,11 +140,11 @@ _0204:
     End
 
 _020A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -154,7 +154,7 @@ _021D:
     ScrCmd_04C 0x1E7, 0
     Message 0
     ScrCmd_04D
-    ScrCmd_032
+    WaitABPadPress
     CloseMessage
     ReleaseAll
     End
@@ -163,7 +163,7 @@ _0232:
     LockAll
     ScrCmd_0CD 0
     Message 1
-    ScrCmd_032
+    WaitABPadPress
     CloseMessage
     ReleaseAll
     End

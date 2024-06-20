@@ -71,7 +71,7 @@ _00EC:
     SetFlag 223
     SetVar 0x4090, 1
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x403F, 0x262
     ScrCmd_161

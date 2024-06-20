@@ -31,7 +31,7 @@ _0047:
     CloseMessage
     ScrCmd_22C
     Call _00E8
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x21C
     ScrCmd_065 1
     SetVar 0x4105, 1
@@ -177,11 +177,11 @@ _01FC:
     EndMovement
 
 _0208:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

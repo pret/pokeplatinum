@@ -8,33 +8,33 @@
     .short 0xFD13
 
 _000E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0021:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0034:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_07E 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _005C
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -49,9 +49,9 @@ _005C:
 _007F:
     ScrCmd_0CD 0
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_04B 0x5DC
-    PlayFanfare 0x608
+    PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 6, _00BC
     ApplyMovement 7, _00C4
     WaitMovement

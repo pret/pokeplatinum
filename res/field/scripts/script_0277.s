@@ -141,7 +141,7 @@ _01AD:
     Message 12
 _01B0:
     SetFlag 160
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -166,7 +166,7 @@ _01D8:
     End
 
 _01DA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 10
@@ -210,7 +210,7 @@ _0293:
     GoToIfEq 0x800C, 0, _02D5
     ScrCmd_1A3 0x8006
     ScrCmd_074
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
     ScrCmd_014 0x7E0
     ScrCmd_073
@@ -220,7 +220,7 @@ _0293:
 
 _02C8:
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_073
     CloseMessage
     ReleaseAll
@@ -228,7 +228,7 @@ _02C8:
 
 _02D5:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_073
     CloseMessage
     ReleaseAll
@@ -236,7 +236,7 @@ _02D5:
 
 _02E2:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_073
     CloseMessage
     ReleaseAll
@@ -251,7 +251,7 @@ _02EF:
     End
 
 _0306:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x8004, 0x1B6

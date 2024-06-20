@@ -25,7 +25,7 @@ _0029:
 
 _0037:
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_04B 0x5DC
     ScrCmd_04C 0x1E7, 0
     Message 0
@@ -48,7 +48,7 @@ _0084:
 
 _0090:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _009B:
     End
 
 _00A5:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfEq 0x410C, 3, _00F4
     GoToIfLt 0x410C, 15, _0100
@@ -90,16 +90,16 @@ _010C:
     End
 
 _0116:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0127:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
     ScrCmd_03E 0x800C
@@ -111,7 +111,7 @@ _0149:
     ScrCmd_0CD 0
     Message 3
     CloseMessage
-    PlayFanfare 0x5D2
+    PlayFanfare SEQ_SE_PL_SYUWA
     ScrCmd_328 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

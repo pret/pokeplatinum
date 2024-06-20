@@ -103,7 +103,7 @@ _014D:
     GoTo _0159
 
 _0159:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_238 0x8000, 0x800C
@@ -157,13 +157,13 @@ _01F0:
 
 _02A1:
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _02BB
     End
 
 _02AE:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _02BB
     End
 

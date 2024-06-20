@@ -28,7 +28,7 @@ _004A:
 
 _0058:
     SetVar 0x40D9, 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Call _015D
@@ -43,7 +43,7 @@ _0070:
     Return
 
 _007D:
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     SetVar 0x40D8, 1
     ScrCmd_1DD 43, 0, 0x800C
     SetVar 0x8008, 0x800C
@@ -89,7 +89,7 @@ _015D:
     ScrCmd_1DD 40, 0, 0
     Call _045C
     ScrCmd_1FE 0
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     Call _047E
     ScrCmd_1DD 42, 0, 0
@@ -115,7 +115,7 @@ _01AC:
     ScrCmd_18D
     ScrCmd_12D 0x800C
     ScrCmd_18E
-    PlayFanfare 0x61B
+    PlayFanfare SEQ_SE_DP_SAVE
     ScrCmd_04B 0x61B
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

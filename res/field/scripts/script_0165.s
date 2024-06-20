@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0xAA4, _006A
@@ -21,14 +21,14 @@ _004C:
     SetFlag 247
     SetFlag 0xAA7
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _005F:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -86,7 +86,7 @@ _010E:
 
 _012B:
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -94,7 +94,7 @@ _012B:
 _0136:
     ScrCmd_0D0 1, 0x8002
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -111,7 +111,7 @@ _0146:
 
 _019E:
     Message 20
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -129,7 +129,7 @@ _019E:
 
 _01F2:
     Message 2
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -147,7 +147,7 @@ _01F2:
 
 _0246:
     Message 10
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -165,7 +165,7 @@ _0246:
 
 _029A:
     Message 12
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -183,7 +183,7 @@ _029A:
 
 _02EE:
     Message 14
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -201,7 +201,7 @@ _02EE:
 
 _0342:
     Message 16
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -219,7 +219,7 @@ _0342:
 
 _0396:
     Message 18
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -237,7 +237,7 @@ _0396:
 
 _03EA:
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -49,7 +49,7 @@ _009A:
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _00E8
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     Message 0

@@ -9,27 +9,27 @@
     .short 0xFD13
 
 _0012:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0025:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0038:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_0CD 0
     Message 3
@@ -39,14 +39,14 @@ _0038:
     End
 
 _004C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
     Message 1
     Message 2
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _0092
     GoToIfEq 0x800C, 2, _00AA

@@ -79,7 +79,7 @@ _0100:
     EndMovement
 
 _0108:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_2B7 0x800C
@@ -116,7 +116,7 @@ _01C8:
 
 _01D3:
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -142,7 +142,7 @@ _01F2:
 
 _020F:
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -155,7 +155,7 @@ _021A:
 
 _0237:
     Message 126
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -168,7 +168,7 @@ _0242:
 
 _025F:
     Message 125
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -310,7 +310,7 @@ _03D3:
 _03DD:
     ScrCmd_150
     Message 16
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -318,7 +318,7 @@ _03DD:
 _03EA:
     ScrCmd_150
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -343,7 +343,7 @@ _0446:
 _0450:
     ScrCmd_150
     Message 16
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -351,7 +351,7 @@ _0450:
 _045D:
     ScrCmd_150
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -360,7 +360,7 @@ _046A:
     SetVar 0x40D5, 1
     SetFlag 0x966
     ScrCmd_02E 52
-    ScrCmd_190 45
+    WaitABPressTime 45
     ScrCmd_135 96
     CloseMessage
     ScrCmd_168 0, 0, 13, 5, 77
@@ -421,7 +421,7 @@ _0538:
     EndMovement
 
 _0544:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_2B7 0x800C
@@ -519,7 +519,7 @@ _06A0:
     End
 
 _06B4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetFlag 170
@@ -559,14 +559,14 @@ _0724:
 
 _074A:
     Message 104
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0755:
     Call _076D
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -33,9 +33,9 @@ _005E:
 
 _0062:
     LockAll
-    PlayFanfare 0x5F1
+    PlayFanfare SEQ_SE_DP_PINPON
     Message 0
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -56,9 +56,9 @@ _00A0:
 
 _00AF:
     LockAll
-    PlayFanfare 0x5F1
+    PlayFanfare SEQ_SE_DP_PINPON
     Message 1
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -72,9 +72,9 @@ _00AF:
 
 _00ED:
     LockAll
-    PlayFanfare 0x5F1
+    PlayFanfare SEQ_SE_DP_PINPON
     Message 2
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -336,7 +336,7 @@ _06B4:
 _06C2:
     ScrCmd_0CD 0
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -34,7 +34,7 @@ _006F:
     End
 
 _007D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_04C 0x1EC, 0
@@ -53,7 +53,7 @@ _007D:
 
 _00C8:
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ClearFlag 0x251
     ReleaseAll

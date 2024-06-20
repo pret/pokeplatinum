@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_21D 0, 1, 0x800C
@@ -97,7 +97,7 @@ _01CF:
     GoToIfNe 0x800C, 0, _03E5
 _01F8:
     Message 6
-    ScrCmd_030
+    WaitABPress
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -110,12 +110,12 @@ _01F8:
     ScrCmd_21D 2, 0, 0
     ScrCmd_21D 3, 0, 1
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _03EA
 
 _0256:
     Message 22
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _03EA
 
 _0261:
@@ -169,17 +169,17 @@ _037A:
     ScrCmd_0CD 0
     ScrCmd_21D 2, 0x8004, 1
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _03EA
 
 _03DA:
     Message 10
-    ScrCmd_030
+    WaitABPress
     GoTo _0073
 
 _03E5:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
 _03EA:
     CloseMessage
     ReleaseAll

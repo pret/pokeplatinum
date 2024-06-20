@@ -56,7 +56,7 @@
 #include "pokemon.h"
 #include "party.h"
 #include "core_sys.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "overlay005/field_control.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay005/ov5_021DFB54.h"

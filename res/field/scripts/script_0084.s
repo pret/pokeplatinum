@@ -8,7 +8,7 @@
     .short 0xFD13
 
 _000E:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -19,7 +19,7 @@ _000E:
 
 _0032:
     Message 1
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -43,14 +43,14 @@ _0032:
 
 _00B3:
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00BE:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -58,14 +58,14 @@ _00BE:
 _00C9:
     ScrCmd_0D6 0, 0x8005
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00D9:
     Message 3
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     SetVar 0x800C, 0
     FadeScreen 6, 1, 0, 0
@@ -78,7 +78,7 @@ _00D9:
     ScrCmd_1E5 49
     ScrCmd_0D6 0, 0x8005
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -86,13 +86,13 @@ _00D9:
 _0129:
     ScrCmd_0D6 0, 0x8005
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0139:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 134, _01E4
@@ -121,7 +121,7 @@ _0168:
     ScrCmd_22A
     SetFlag 134
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -129,27 +129,27 @@ _0168:
 _01CC:
     ScrCmd_22A
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01D9:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01E4:
     Message 13
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01EF:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GetTimeOfDay 0x800C
@@ -159,14 +159,14 @@ _01EF:
 
 _0210:
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _021B:
     Message 15
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

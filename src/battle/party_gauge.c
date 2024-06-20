@@ -7,7 +7,7 @@
 
 #include "constants/heap.h"
 #include "constants/palette.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"

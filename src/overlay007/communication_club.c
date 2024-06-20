@@ -42,7 +42,7 @@
 #include "unk_0205D8CC.h"
 #include "overlay007/communication_club.h"
 
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "constants/communication/comm_type.h"
 #include "gmm/message_bank_unk_0353.h"
 

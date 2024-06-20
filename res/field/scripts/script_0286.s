@@ -89,18 +89,18 @@ _00B4:
 
 _00D0:
     ScrCmd_0CD 1
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 18
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00E6:
     LockAll
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_04B 0x5DC
     CallIfUnset 215, _0174
     SetVar 0x409E, 2
@@ -126,7 +126,7 @@ _0155:
 
 _015D:
     Message 16
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -179,7 +179,7 @@ _019C:
     Message 0
     CloseMessage
     ScrCmd_04B 0x5DC
-    PlayFanfare 0x65C
+    PlayFanfare SEQ_SE_DP_FW089
     ScrCmd_29F 0
     ScrCmd_04A 0x65C
     ApplyMovement 2, _03A4
@@ -207,7 +207,7 @@ _019C:
     WaitMovement
     Message 4
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 5
     CloseMessage
     ScrCmd_065 0
@@ -230,7 +230,7 @@ _019C:
     WaitMovement
     Message 9
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 9, _0454
     ApplyMovement 10, _045C
     WaitMovement

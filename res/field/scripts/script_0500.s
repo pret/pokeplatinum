@@ -11,7 +11,7 @@
     .short 0xFD13
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 1
     GoTo _002E
@@ -28,7 +28,7 @@ _002E:
     End
 
 _0068:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 1
     GoTo _007C
@@ -45,7 +45,7 @@ _007C:
     End
 
 _00B6:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 2
     GoTo _00CA
@@ -62,7 +62,7 @@ _00CA:
     End
 
 _0104:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 5
     GoTo _0118
@@ -113,7 +113,7 @@ _01D3:
     End
 
 _01FD:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 4
     GoTo _0211
@@ -130,7 +130,7 @@ _0211:
     End
 
 _024B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar 0x8000, 6
     GoTo _025F

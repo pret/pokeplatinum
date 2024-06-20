@@ -9,20 +9,20 @@
     .short 0xFD13
 
 _0012:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0023:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -62,7 +62,7 @@ _0036:
 _00E5:
     SetFlag 0x160
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -74,7 +74,7 @@ _00F2:
 
 _0100:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     Return
 
@@ -140,12 +140,12 @@ _0194:
     EndMovement
 
 _01A0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfUnset 0x160, _01BE
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

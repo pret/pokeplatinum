@@ -31,13 +31,13 @@ _006F:
     End
 
 _0079:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_07E 0x1D0, 1, 0x800C
     GoToIfEq 0x800C, 1, _00A1
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -75,7 +75,7 @@ _00CA:
     ScrCmd_065 28
     ScrCmd_065 26
     ScrCmd_065 19
-    WaitFrames 45, 0x800C
+    WaitTime 45, 0x800C
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _015B
     GoToIfEq 0x8004, 0x231, _016F
@@ -246,17 +246,17 @@ _02DC:
     .byte 0
 
 _030C:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _031F:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 199, _0364
@@ -271,7 +271,7 @@ _031F:
 
 _0364:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -299,11 +299,11 @@ _0390:
     End
 
 _03A7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

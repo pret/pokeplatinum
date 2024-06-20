@@ -9,7 +9,7 @@
 #include "constants/items.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
 

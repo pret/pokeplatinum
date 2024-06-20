@@ -11,13 +11,13 @@
     .short 0xFD13
 
 _001A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x4086, 3, _003D
     ScrCmd_0CD 1
     Message 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ _003D:
     GoToIfEq 0x40CA, 1, _00DD
     ScrCmd_0CE 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
 
     .byte 2
@@ -53,7 +53,7 @@ _003D:
 _009C:
     ScrCmd_0CE 0
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -61,14 +61,14 @@ _009C:
 _00AA:
     ScrCmd_0CE 0
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
 _00BA:
     ScrCmd_0CE 0
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
@@ -76,14 +76,14 @@ _00CA:
     ScrCmd_0CE 0
     ScrCmd_0DC 1
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
 _00DD:
     ScrCmd_0CE 0
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00ED
     End
 
@@ -94,7 +94,7 @@ _00ED:
     End
 
 _00F9:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40CB, 2, _0126
@@ -105,7 +105,7 @@ _00F9:
 
 _0126:
     ScrCmd_0CE 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -116,14 +116,14 @@ _0131:
     End
 
 _013C:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     AddVar 0x40CB, 1
     ReleaseAll
     End
 
 _014A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E8, 2, _0185
@@ -141,20 +141,20 @@ _017A:
 _0185:
     ScrCmd_0CD 0
     Message 14
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0193:
     AddVar 0x40E8, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01A1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E1, 3, _01F4
@@ -177,20 +177,20 @@ _01E9:
 
 _01F4:
     Message 45
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01FF:
     AddVar 0x40E1, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _020D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E2, 2, _0248
@@ -208,21 +208,21 @@ _023D:
 _0248:
     ScrCmd_0CD 0
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0256:
     AddVar 0x40E2, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
     End
 
 _0266:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40E4, 1, _0289
@@ -233,14 +233,14 @@ _0266:
 
 _0289:
     Message 39
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0294:
     AddVar 0x40E4, 1
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -7,7 +7,7 @@
     .short 0xFD13
 
 _000A:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_16D
@@ -16,7 +16,7 @@ _000A:
     GoToIfEq 0x800C, 2, _00BE
     GoToIfEq 0x800C, 3, _00CB
     Message 0
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -29,7 +29,7 @@ _004A:
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0083
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ClearFlag 115
     ScrCmd_1A8
@@ -40,7 +40,7 @@ _0083:
     ScrCmd_177 0x800C
     GoToIfNe 0x800C, 6, _009F
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -50,9 +50,9 @@ _009F:
     Message 5
     ScrCmd_04E 0x486
     ScrCmd_04F
-    ScrCmd_030
+    WaitABPress
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_1A9
     ClearFlag 115
@@ -62,7 +62,7 @@ _009F:
 _00BE:
     ScrCmd_16D
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -75,7 +75,7 @@ _00CB:
     CallIfEq 0x800C, 1, _0115
     CallIfEq 0x800C, 2, _011A
     CallIfEq 0x800C, 3, _011F
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -97,7 +97,7 @@ _011F:
     Return
 
 _0124:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_072 20, 2
@@ -109,7 +109,7 @@ _0124:
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _017E
     Message 20
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -162,7 +162,7 @@ _025F:
 _0270:
     ScrCmd_04C 0x8001, 0
     Message 36
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_04D
     ScrCmd_073
@@ -171,7 +171,7 @@ _0270:
 
 _0285:
     Message 35
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -179,7 +179,7 @@ _0285:
 
 _0292:
     Message 23
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -194,7 +194,7 @@ _029F:
 
 _02BB:
     Message 31
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -202,7 +202,7 @@ _02BB:
 
 _02C8:
     Message 33
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -210,7 +210,7 @@ _02C8:
 
 _02D5:
     Message 34
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -218,7 +218,7 @@ _02D5:
 
 _02E2:
     Message 19
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -274,7 +274,7 @@ _03DE:
     ScrCmd_1AB 0x800C, 0x8004
     GoToIfEq 0x800C, 1, _03FE
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -286,7 +286,7 @@ _03FE:
     ScrCmd_1A4 0x8002, 0x8001
     ScrCmd_1A3 0x8004
     ScrCmd_074
-    PlayFanfare 0x644
+    PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
     Message 29
     ScrCmd_04C 0x8002, 0
@@ -305,7 +305,7 @@ _0444:
 
 _045E:
     Message 26
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -337,7 +337,7 @@ _04A0:
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0346
     Message 23
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_073
     ReleaseAll

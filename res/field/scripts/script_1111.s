@@ -6,7 +6,7 @@
     .short 0xFD13
 
 _0006:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_11C 0x40CE
@@ -37,7 +37,7 @@ _0048:
     GoTo _0152
 
 _008F:
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 0x1CE, 0, 18, 2, 1
     GoToIfEq 0x40CE, 0, _0164
@@ -47,7 +47,7 @@ _008F:
     GoTo _0147
 
 _00CA:
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     ScrCmd_11C 0x40CE
     ScrCmd_11B 0x1CD, 1, 18, 2, 1
     GoToIfEq 0x40CE, 1, _0164
@@ -77,23 +77,23 @@ _0142:
 
 _0147:
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0152:
     SetVar 0x40CE, -1
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     CloseMessage
     ReleaseAll
     End
 
 _0164:
     SetVar 0x40CE, -1
-    WaitFrames 1, 0x800C
+    WaitTime 1, 0x800C
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

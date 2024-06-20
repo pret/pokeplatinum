@@ -21,7 +21,7 @@ _002B:
 
 _0035:
     ScrCmd_23E 0
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_23E 1, 0x800C
@@ -55,19 +55,19 @@ _00A2:
     ScrCmd_1FB 0x8005, 0x8006
     ScrCmd_04F
     Message 18
-    WaitButtonPress
+    WaitABXPadPress
     ScrCmd_23E 4
     GoTo _0103
 
 _00D8:
     ScrCmd_23E 6, 0x8005, 0x8006
     ScrCmd_1FB 0x8005, 0x8006
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00F9
 
 _00EE:
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _00F9
 
 _00F9:

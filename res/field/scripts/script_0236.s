@@ -47,7 +47,7 @@ _00C5:
     Return
 
 _00C7:
-    DebugWatch 0x4098
+    Dummy1 0x4098
     GoToIfEq 0x4098, 0, _0101
     GoToIfEq 0x4098, 1, _0101
     GoToIfEq 0x4098, 2, _0101
@@ -128,7 +128,7 @@ _01A6:
     GoToIfEq 0x800C, 0, _01DB
     SetVar 0x4098, 1
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -172,31 +172,31 @@ _0204:
     EndMovement
 
 _0210:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0223:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 44
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0236:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 43
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -452,13 +452,13 @@ _0508:
     SetVar 0x8005, 13
     SetVar 0x8006, 68
     Call _0109
-    ScrCmd_02D 0x8004
+    MessageVar 0x8004
     CloseMessage
     ScrCmd_054 0, 30
     ScrCmd_20D 0, 0x800C
-    WaitFrames 10, 0x800C
-    PlayFanfare 0x5C8
-    WaitFrames 20, 0x800C
+    WaitTime 10, 0x800C
+    PlayFanfare SEQ_SE_PL_KUSARI
+    WaitTime 20, 0x800C
     ScrCmd_050 0x478
     ScrCmd_05D
     GoTo _0567

@@ -40,7 +40,7 @@ _009C:
     ScrCmd_23C 0x8004, 4
     ApplyMovement 0xFF, _00C4
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     Return
 
     .balign 4, 0

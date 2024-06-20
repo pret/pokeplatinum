@@ -27,12 +27,12 @@ _0050:
     GoTo _0068
 
 _0059:
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 2
     GoTo _0068
 
 _0068:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

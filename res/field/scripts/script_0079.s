@@ -15,40 +15,40 @@ _001E:
     End
 
 _0020:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0033:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0046:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0057:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -70,7 +70,7 @@ _006A:
     ScrCmd_065 4
     SetFlag 113
     SetVar 0x411D, 1
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 1
     ApplyMovement 5, _0110
     WaitMovement
@@ -116,14 +116,14 @@ _0134:
     ScrCmd_28B 3, 0x800C
     GoToIfEq 0x800C, 0, _01AA
     GoToIfUnset 129, _01AA
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_0CD 0
     ScrCmd_0D1 1, 0x1D3
     Message 6
     CloseMessage
-    PlayFanfare 0x5FB
+    PlayFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 0, 0x7FFF
     WaitFadeScreen
     ScrCmd_065 6
@@ -131,7 +131,7 @@ _0134:
     FadeScreen 6, 1, 1, 0x7FFF
     WaitFadeScreen
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

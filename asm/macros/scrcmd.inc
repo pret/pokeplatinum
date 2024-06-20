@@ -1,4 +1,5 @@
     .include "macros/movement.inc"
+    .include "consts/sdat.inc"
 
     .option alignment off
 
@@ -13,11 +14,11 @@
     .macro End
     .short 2
     .endm
-    
-    .macro WaitFrames frames, countdown
+
+    .macro WaitTime frames, countdownVarID
     .short 3
     .short \frames
-    .short \countdown
+    .short \countdownVarID
     .endm
 
     .macro ScrCmd_004 arg0, arg1
@@ -235,9 +236,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_02B arg0
+    .macro MessageInstant messageID
     .short 43
-    .byte \arg0
+    .byte \messageID
     .endm
 
     .macro Message messageID
@@ -245,9 +246,9 @@
     .byte \messageID
     .endm
 
-    .macro ScrCmd_02D arg0
+    .macro MessageVar messageVar
     .short 45
-    .short \arg0
+    .short \messageVar
     .endm
 
     .macro ScrCmd_02E arg0
@@ -260,15 +261,15 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_030
+    .macro WaitABPress
     .short 48
     .endm
 
-    .macro WaitButtonPress
+    .macro WaitABXPadPress
     .short 49
     .endm
 
-    .macro ScrCmd_032
+    .macro WaitABPadPress
     .short 50
     .endm
 
@@ -686,10 +687,10 @@
     .short \arg1
     .endm
 
-    .macro GetItemPocket item, pocket
+    .macro GetItemPocket item, destVarID
     .short 128
     .short \item
-    .short \pocket
+    .short \destVarID
     .endm
 
     .macro ScrCmd_081
@@ -2112,9 +2113,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_190 arg0
+    .macro WaitABPressTime frames
     .short 400
-    .short \arg0
+    .short \frames
     .endm
 
     .macro ScrCmd_191
@@ -2309,9 +2310,9 @@
     .short \arg0
     .endm
 
-    .macro GetTimeOfDay timeOfDay
+    .macro GetTimeOfDay destVarID
     .short 438
-    .short \timeOfDay
+    .short \destVarID
     .endm
 
     .macro ScrCmd_1B7 arg0, arg1
@@ -2695,7 +2696,7 @@
     .endm
     
     ; this is a dummy function that doesn't do anything
-    .macro DebugWatch dummy
+    .macro Dummy1 dummy
     .short 505
     .short \dummy
     .endm

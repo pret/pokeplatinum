@@ -22,7 +22,7 @@ _0027:
     End
 
 _0039:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_1BD 0x800C
@@ -95,7 +95,7 @@ _0158:
     ScrCmd_0D1 0, 0x8004
     ScrCmd_0D3 1, 0x8004
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -109,7 +109,7 @@ _0196:
 _01A0:
     GoToIfUnset 125, _0158
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

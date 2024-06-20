@@ -20,28 +20,28 @@ _0006:
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ClearFlag 0x253
     ScrCmd_064 2
     ApplyMovement 2, _01D8
     WaitMovement
-    PlayFanfare 0x60F
-    WaitFrames 30, 0x800C
+    PlayFanfare SEQ_SE_DP_DENDOU
+    WaitTime 30, 0x800C
     Message 1
     CloseMessage
-    PlayFanfare 0x60F
-    WaitFrames 30, 0x800C
+    PlayFanfare SEQ_SE_DP_DENDOU
+    WaitTime 30, 0x800C
     Message 2
     CloseMessage
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Message 3
     CloseMessage
-    PlayFanfare 0x60F
-    WaitFrames 15, 0x800C
+    PlayFanfare SEQ_SE_DP_DENDOU
+    WaitTime 15, 0x800C
     Message 4
     Message 5
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 2, _01E8
     WaitMovement
     ScrCmd_065 2
@@ -89,7 +89,7 @@ _0006:
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 6
     CloseMessage
     ApplyMovement 3, _0250

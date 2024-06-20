@@ -34,14 +34,14 @@ _000E:
     WaitMovement
     ApplyMovement 0, _0150
     WaitMovement
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_25C
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     SetFlag 0x23A
     SetFlag 0x23B
     ApplyMovement 0xFF, _013C
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0BE 186, 0, 5, 23, 0

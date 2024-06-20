@@ -16,7 +16,7 @@ _002F:
     End
 
 _0031:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x964, _004F
@@ -30,7 +30,7 @@ _004F:
     End
 
 _005A:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

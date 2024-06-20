@@ -7,7 +7,7 @@
     End
 
 _0008:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
@@ -31,14 +31,14 @@ _001B:
 
 _006D:
     Message 33
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0078:
     Message 32
-    WaitButtonPress
+    WaitABXPadPress
     GoTo _001B
     End
 
@@ -51,7 +51,7 @@ _0085:
 
 _0097:
     ScrCmd_0A1
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     FadeScreen 6, 1, 1, 0
@@ -60,7 +60,7 @@ _0097:
 
 _00AF:
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -81,7 +81,7 @@ _00D0:
     ScrCmd_1D8 0x800C
     GoToIfEq 0x800C, 1, _00BA
     GoToIfEq 0x800C, 2, _00C5
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     Call _0085
     ScrCmd_1D7 0
     Call _0097

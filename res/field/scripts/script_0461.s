@@ -11,7 +11,7 @@ _000A:
     End
 
 _0010:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     ScrCmd_247 0x8002
@@ -33,11 +33,11 @@ _004B:
 _0056:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    WaitFrames 40, 0x800C
+    WaitTime 40, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _008A
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     ScrCmd_1E5 116
     GoTo _0150
 
@@ -362,81 +362,81 @@ _0574:
 
 _05A5:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05C4:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _05E3:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 4
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0602:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 5
     ScrCmd_04E 0x483
     Message 8
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0633:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 6
     ScrCmd_04E 0x483
     Message 8
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0664:
     CloseMessage
-    WaitFrames 20, 0x800C
+    WaitTime 20, 0x800C
     Call _00ED
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     Message 7
     ScrCmd_04E 0x483
     Message 8
     ScrCmd_04F
     ScrCmd_231 0x8002, 69
     Message 9
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

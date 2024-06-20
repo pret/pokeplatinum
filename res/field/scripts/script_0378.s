@@ -29,7 +29,7 @@ _0053:
     End
 
 _0059:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x4003, 0
@@ -38,7 +38,7 @@ _0059:
     End
 
 _0075:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x4003, 0
@@ -79,7 +79,7 @@ _0139:
 _0141:
     SetVar 0x40BC, 0
     Message 6
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -273,7 +273,7 @@ _049D:
     CallIfEq 0x40BD, 0, _053D
     CallIfEq 0x40BD, 1, _0558
     CallIfEq 0x40BD, 2, _0573
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _04D0
     End
 
@@ -300,7 +300,7 @@ _0539:
 
 _053D:
     Message 32
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _05E4
     ApplyMovement 0x800D, _0604
@@ -309,7 +309,7 @@ _053D:
 
 _0558:
     Message 32
-    ScrCmd_030
+    WaitABPress
     CloseMessage
     ApplyMovement 0xFF, _05E4
     ApplyMovement 0x800D, _0604
@@ -318,7 +318,7 @@ _0558:
 
 _0573:
     ScrCmd_02E 32
-    WaitFrames 10, 0x800C
+    WaitTime 10, 0x800C
     ScrCmd_136
     ScrCmd_135 137
     CloseMessage
@@ -451,7 +451,7 @@ _06CB:
     ScrCmd_18D
     ScrCmd_12D 0x800C
     ScrCmd_18E
-    PlayFanfare 0x61B
+    PlayFanfare SEQ_SE_DP_SAVE
     ScrCmd_04B 0x61B
     Return
 
@@ -531,71 +531,71 @@ _0760:
     .byte 0
 
 _0788:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 46
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _079B:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 47
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _07AE:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 48
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _07C1:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 49
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _07D4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 50
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _07E7:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 51
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _07FA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 52
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

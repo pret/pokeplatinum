@@ -48,12 +48,12 @@ _00AA:
     Return
 
 _00B8:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x12D, _00D6
     Message 7
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -61,14 +61,14 @@ _00B8:
 _00D6:
     ScrCmd_272 1
     Message 8
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _00E4:
     GoToIfSet 0x12D, _022D
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar 0x408D, 1
@@ -96,20 +96,20 @@ _0124:
     CloseMessage
     GoToIfEq 0x800C, 1, _0124
     Call _029A
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ScrCmd_054 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
     ScrCmd_270 3, 1
     ScrCmd_333 0
     ScrCmd_0BE 0x18F, 0, 0x38C, 0x1EC, 0
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
     Call _02B8
     CallIfNe 0x4057, 2, _01F0
     CallIfEq 0x4057, 2, _01F5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ScrCmd_333 127
     ScrCmd_055 10
@@ -131,7 +131,7 @@ _01F5:
     WaitMovement
     ApplyMovement 0xFF, _0438
     WaitMovement
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 11
     Return
 
@@ -145,11 +145,11 @@ _0222:
     GoTo _0124
 
 _022D:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -407,7 +407,7 @@ _057F:
     SetVar 0x4057, 2
     SetVar 0x4085, 2
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
@@ -457,12 +457,12 @@ _05EC:
     EndMovement
 
 _05F4:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfSet 0x12D, _061C
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ApplyMovement 21, _0664
     WaitMovement
@@ -471,7 +471,7 @@ _05F4:
 
 _061C:
     Message 12
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

@@ -41,7 +41,7 @@ _002F:
     ApplyMovement 6, _00D4
     ApplyMovement 7, _0108
     WaitMovement
-    PlayFanfare 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 6
     ScrCmd_065 7
     ScrCmd_04B 0x603
@@ -113,7 +113,7 @@ _0118:
     LockAll
     Message 3
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     Message 4
     ApplyMovement 5, _01F0
     WaitMovement
@@ -126,7 +126,7 @@ _0118:
     ScrCmd_0CD 0
     Message 6
     CloseMessage
-    WaitFrames 15, 0x800C
+    WaitTime 15, 0x800C
     ApplyMovement 5, _0204
     ApplyMovement 4, _01DC
     WaitMovement

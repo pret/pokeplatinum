@@ -31,7 +31,7 @@ _0021:
     WaitMovement
     ScrCmd_0CD 0
     Message 2
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     SetVar 0x40AA, 2
     SetVar 0x40A6, 2
@@ -67,7 +67,7 @@ _00B8:
     EndMovement
 
 _00C0:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     GoToIfGe 0x40AA, 3, _00E0
@@ -81,7 +81,7 @@ _00E0:
     End
 
 _00EB:
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

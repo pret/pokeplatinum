@@ -43,13 +43,13 @@ _006F:
     WaitMovement
     Message 2
     Message 4
-    ScrCmd_032
+    WaitABPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0096:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 5
@@ -114,7 +114,7 @@ _01BB:
 _01C3:
     WaitMovement
     Message 10
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     End
 
@@ -125,18 +125,18 @@ _01CE:
     End
 
 _01DA:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     GoToIfGe 0x4055, 10, _01F8
     Message 3
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _01F8:
     Message 11
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End

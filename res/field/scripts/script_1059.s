@@ -171,7 +171,7 @@ _02B5:
     WaitMovement
     ApplyMovement 3, _055C
     WaitMovement
-    PlayFanfare 0x602
+    PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 4
     ApplyMovement 3, _0564
     WaitMovement
@@ -474,7 +474,7 @@ _057C:
     ScrCmd_169 77
     ScrCmd_16A 77
     ScrCmd_065 14
-    WaitFrames 30, 0x800C
+    WaitTime 30, 0x800C
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _0610
     GoToIfEq 0x800C, 1, _061D
@@ -677,41 +677,41 @@ _0830:
     EndMovement
 
 _0840:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 21
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0853:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 22
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0866:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 23
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0879:
-    PlayFanfare 0x5DC
+    PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 24
-    WaitButtonPress
+    WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
