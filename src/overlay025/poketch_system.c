@@ -166,7 +166,7 @@ void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchFieldEventID
     case POKETCH_FIELDEVENT_SLEEP:
         break;
     case POKETCH_FIELDEVENT_PLAYERMOVED:
-        poketchSys->playerMoved = TRUE;
+        poketchSys->playerMoving = TRUE;
         break;
     case POKETCH_FIELDEVENT_PEDOMETER:{
         u32 step_count = PoketchData_StepCount(poketchSys->poketchData);
@@ -203,7 +203,7 @@ static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
         poketchSys->systemState = POKETCHSYSTEM_INIT;
         poketchSys->subState = 0;
         poketchSys->touchingScreen = FALSE;
-        poketchSys->playerMoved = 0;
+        poketchSys->playerMoving = 0;
         poketchSys->pedometerUpdated = FALSE;
         poketchSys->appChanging = FALSE;
         poketchSys->unk_06 = 0;
@@ -263,7 +263,7 @@ static void PoketchSystem_PostRender(SysTask *, void *system)
 {
     PoketchSystem *poketchSys = system;
 
-    poketchSys->playerMoved = FALSE;
+    poketchSys->playerMoving = FALSE;
     poketchSys->pedometerUpdated = FALSE;
 }
 
@@ -323,7 +323,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         }
         break;
     case 1:
-        if ((poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP) || (poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0)) {
+        if (poketchSys->buttonState == BUTTON_MANAGER_STATE_TAP || poketchSys->buttonState == BUTTON_MANAGER_STATE_TIMER0) {
             poketchSys->skipApp = TRUE;
         }
 
@@ -512,11 +512,7 @@ static void PoketchSystem_ShutdownApp(PoketchSystem *poketchSys)
 
 static BOOL PoketchSystem_IsAppShutdown(PoketchSystem *poketchSys)
 {
-    if (poketchSys->appState == POKETCH_APP_STATE_NONE) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return poketchSys->appState == POKETCH_APP_STATE_NONE;
 }
 
 void PoketchSystem_SetAppFunctions(PoketchAppInitFunction appInit, PoketchAppShutdownFunction appShutdown)
@@ -549,17 +545,17 @@ void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *sa
 }
 
 static const TouchScreenHitTable sMainPoketchButtons[] = {
-    {POKETCH_BUTTON_TOP_MINY,    POKETCH_BUTTON_TOP_MAXY,    POKETCH_BUTTON_TOP_MINX,    POKETCH_BUTTON_TOP_MAXX},      // Top button
-    {POKETCH_BUTTON_BOTTOM_MINY, POKETCH_BUTTON_BOTTOM_MAXY, POKETCH_BUTTON_BOTTOM_MINX, POKETCH_BUTTON_BOTTOM_MAXX},   // Bottom Button
-    {POKETCH_SCREEN_MINY,        POKETCH_SCREEN_MAXY,        POKETCH_SCREEN_MINX,        POKETCH_SCREEN_MAXX}           // Screen
+    [POKETCHSYSTEM_MAINBUTTON_UP]     = {POKETCH_BUTTON_TOP_MINY,    POKETCH_BUTTON_TOP_MAXY,    POKETCH_BUTTON_TOP_MINX,    POKETCH_BUTTON_TOP_MAXX},      // Top button
+    [POKETCHSYSTEM_MAINBUTTON_DOWN]   = {POKETCH_BUTTON_BOTTOM_MINY, POKETCH_BUTTON_BOTTOM_MAXY, POKETCH_BUTTON_BOTTOM_MINX, POKETCH_BUTTON_BOTTOM_MAXX},   // Bottom Button
+    [POKETCHSYSTEM_MAINBUTTON_SCREEN] = {POKETCH_SCREEN_MINY,        POKETCH_SCREEN_MAXY,        POKETCH_SCREEN_MINX,        POKETCH_SCREEN_MAXX}           // Screen
 };
 
 static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
 {
-    poketchSys->buttonManager = PoketchButtonManager_New(sMainPoketchButtons, NELEMS(sMainPoketchButtons), PoketchSystem_OnButtonEvent, poketchSys, 7);
+    poketchSys->buttonManager = PoketchButtonManager_New(sMainPoketchButtons, NELEMS(sMainPoketchButtons), PoketchSystem_OnButtonEvent, poketchSys, HEAP_ID_POKETCH_MAIN);
 
     if (poketchSys->buttonManager != NULL) {
-        PoketchButtonManager_SetButtonTimer(poketchSys->buttonManager, 0, 0, 7);
+        PoketchButtonManager_SetButtonTimer(poketchSys->buttonManager, POKETCHSYSTEM_MAINBUTTON_UP, 0, 7);
         poketchSys->unk_2C = 0xffffffff;
         poketchSys->unk_30 = 0xffffffff;
         return TRUE;
@@ -597,10 +593,8 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 
     if (buttonID == POKETCHSYSTEM_MAINBUTTON_SCREEN) {
-        if (ov25_0225450C(poketchSys)) {
-            if (touchEvent == BUTTON_TOUCH_RELEASED) {
-                Sound_PlayEffect(SEQ_SE_DP_BEEP);
-            }
+        if (ov25_0225450C(poketchSys) && touchEvent == BUTTON_TOUCH_RELEASED) {
+            Sound_PlayEffect(SEQ_SE_DP_BEEP);
         }
     } else {
         u32 v1 = 0xffffffff;
@@ -639,12 +633,12 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
             PoketchButtonManager_ResetButtonState(poketchSys->buttonManager, 0);
             break;
         case BUTTON_MANAGER_STATE_TAP:
-            if ((poketchSys->unk_30 == 6) || (poketchSys->unk_30 == 9)) {
+            if (poketchSys->unk_30 == 6 || poketchSys->unk_30 == 9) {
                 buttonEvent = BUTTON_MANAGER_STATE_NULL;
             }
             break;
         case BUTTON_MANAGER_STATE_SLIDEOUT:
-            if ((poketchSys->unk_30 == 7) || (poketchSys->unk_30 == 10)) {
+            if (poketchSys->unk_30 == 7 || poketchSys->unk_30 == 10) {
                 buttonEvent = BUTTON_MANAGER_STATE_TAP;
             }
             break;
@@ -700,25 +694,25 @@ static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y)
     return FALSE;
 }
 
-BOOL PoketchSystem_IsHoldingDisplay(u32 *x, u32 *y)
+BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == 0)) {
-        if (TouchScreen_HoldLocation(x, y)) {
-            return PoketchSystem_InsideScreenBounds(*x, *y);
-        }
+    if (poketchSys->appChanging == FALSE
+        && ov25_0225450C(poketchSys) == 0
+        && TouchScreen_GetHoldState(x, y)) {
+        return PoketchSystem_InsideScreenBounds(*x, *y);
     }
 
     return FALSE;
 }
 
-BOOL PoketchSystem_TappedDisplay(u32 *x, u32 *y)
+BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == 0)) {
-        if (TouchScreen_TapLocation(x, y)) {
+        if (TouchScreen_GetTapState(x, y)) {
             return PoketchSystem_InsideScreenBounds(*x, *y);
         }
     }
@@ -738,9 +732,9 @@ void ov25_02254518 (const PoketchSystem *poketchSys, PoketchButtonManager *butto
     }
 }
 
-BOOL PoketchSystem_PlayerMoved(const PoketchSystem *poketchSys)
+BOOL PoketchSystem_IsPlayerMoving(const PoketchSystem *poketchSys)
 {
-    return poketchSys->playerMoved;
+    return poketchSys->playerMoving;
 }
 
 BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys)

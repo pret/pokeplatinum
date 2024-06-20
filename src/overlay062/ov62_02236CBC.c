@@ -676,7 +676,7 @@ static BOOL ov62_02237AC0 (UnkStruct_0208C06C * param0)
         u32 v1, v2;
         BOOL v3 = 0;
 
-        v3 = TouchScreen_TapLocation(&v1, &v2);
+        v3 = TouchScreen_GetTapState(&v1, &v2);
 
         if (v3) {
             if ((v1 > 10 * 8) && (v1 < 22 * 8) && (v2 > 19 * 8) && (v2 < 22 * 8)) {

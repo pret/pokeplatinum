@@ -204,7 +204,7 @@ static BOOL ov47_02256414 (UnkStruct_ov47_0225621C * param0)
     param0->unk_04.unk_08 = ov47_02256584(param0);
     param0->unk_04.unk_28 = 0;
 
-    if (PoketchSystem_TappedDisplay(&v0, &v1)) {
+    if (PoketchSystem_GetDisplayTappedCoords(&v0, &v1)) {
         int v2, v3, v4, v5;
 
         for (v2 = 0; v2 < 6; v2++) {
@@ -242,7 +242,7 @@ static BOOL ov47_022564A8 (UnkStruct_ov47_0225621C * param0)
 
     param0->unk_04.unk_08 = ov47_02256584(param0);
 
-    if (PoketchSystem_IsHoldingDisplay(&v0, &v1)) {
+    if (PoketchSystem_GetDisplayHeldCoords(&v0, &v1)) {
         param0->unk_04.unk_0C[param0->unk_04.unk_24].unk_00 = v0;
         param0->unk_04.unk_0C[param0->unk_04.unk_24].unk_01 = v1;
     } else {
@@ -299,7 +299,7 @@ static BOOL ov47_02256584 (UnkStruct_ov47_0225621C * param0)
 {
     BOOL v0 = 0;
 
-    if (PoketchSystem_PlayerMoved(param0->unk_74)) {
+    if (PoketchSystem_IsPlayerMoving(param0->unk_74)) {
         int v1, v2;
 
         inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->unk_74), &v1, &v2);

@@ -282,7 +282,7 @@ static BOOL ov48_02256358 (UnkStruct_ov48_0225621C * param0)
     if (ov48_0225657C(param0->unk_A8, 2)) {
         u32 v0, v1;
 
-        if (PoketchSystem_TappedDisplay(&v0, &v1)) {
+        if (PoketchSystem_GetDisplayTappedCoords(&v0, &v1)) {
             if (((u32)(v0 - 16) < (u32)192) & ((u32)(v1 - 16) < (u32)192)) {
                 param0->unk_04.unk_08 = ov48_02256408(param0);
                 ov48_02256558(param0->unk_A8, 2);
@@ -337,7 +337,7 @@ static BOOL ov48_02256478 (UnkStruct_ov48_0225621C * param0)
 {
     BOOL v0 = 0;
 
-    if (PoketchSystem_PlayerMoved(param0->unk_AC)) {
+    if (PoketchSystem_IsPlayerMoving(param0->unk_AC)) {
         int v1, v2;
 
         inline_ov47_0225621C(PoketchSystem_GetFieldSystem(param0->unk_AC), &v1, &v2);

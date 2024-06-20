@@ -39,13 +39,13 @@ enum ButtonDir {
 };
 
 enum PoketchMainButton {
-    POKETCHSYSTEM_MAINBUTTON_UP,
-    // POKETCHSYSTEM_MAINBUTTON_DOWN,
-    POKETCHSYSTEM_MAINBUTTON_SCREEN = 2,
+    POKETCHSYSTEM_MAINBUTTON_UP = 0,
+    POKETCHSYSTEM_MAINBUTTON_DOWN,
+    POKETCHSYSTEM_MAINBUTTON_SCREEN,
 };
 
 enum PoketchSystemState {
-    POKETCHSYSTEM_INIT,
+    POKETCHSYSTEM_INIT = 0,
     POKETCHSYSTEM_UPDATE,
     POKETCHSYSTEM_CHANGEAPP,
     POKETCHSYSTEM_SHUTDOWN,
@@ -53,14 +53,14 @@ enum PoketchSystemState {
 };
 
 enum PoketchAppState {
-    POKETCH_APP_STATE_NONE,
+    POKETCH_APP_STATE_NONE = 0,
     POKETCH_APP_STATE_INIT,
     POKETCH_APP_STATE_UPDATE,
     POKETCH_APP_STATE_SHUTDOWN
 };
 
 enum PoketchBorderColor {
-    POKETCH_BORDER_PINK,
+    POKETCH_BORDER_PINK = 0,
     POKETCH_BORDER_BLUE
 };
 
@@ -74,16 +74,16 @@ enum PoketchFieldEventID {
 
 typedef struct PoketchSystem PoketchSystem;
 
-typedef BOOL (* PoketchAppInitFunction)(void **, PoketchSystem *, BGL *, u32);
-typedef void (* PoketchAppShutdownFunction)(void *);
-typedef void (* PoketchAppSaveFunction)(void *);
+typedef BOOL (* PoketchAppInitFunction)(void **app, PoketchSystem *poketchSys, BGL *bgl, u32 appID);
+typedef void (* PoketchAppShutdownFunction)(void *app);
+typedef void (* PoketchAppSaveFunction)(void *app);
 
 struct PoketchSystem {
     u8 systemState;
     u8 subState; // each systemState has its own sub-state machine, they all share this variable
     u8 appState;
     u8 touchingScreen;
-    u8 playerMoved;
+    u8 playerMoving;
     u8 appChanging;
     u8 unk_06;
     u8 pedometerUpdated;
@@ -128,11 +128,11 @@ void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *sa
 UnkStruct_ov25_02254560 * ov25_02254418(void);
 void PoketchSystem_PlaySoundEffect(u32 soundID);
 void ov25_02254444(u32 param0, u32 param1);
-BOOL PoketchSystem_IsHoldingDisplay(u32 *x, u32 *y);
-BOOL PoketchSystem_TappedDisplay(u32 *x, u32 *y);
+BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y);
+BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y);
 BOOL ov25_0225450C(const PoketchSystem *poketchSys);
 void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager * param1);
-BOOL PoketchSystem_PlayerMoved(const PoketchSystem *poketchSys);
+BOOL PoketchSystem_IsPlayerMoving(const PoketchSystem *poketchSys);
 BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys);
 FieldSystem * PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys);
 PoketchData * PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys);

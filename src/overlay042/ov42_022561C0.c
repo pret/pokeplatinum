@@ -187,7 +187,7 @@ static BOOL ov42_02256398 (void)
 {
     u32 x, y;
 
-    if (PoketchSystem_TappedDisplay(&x, &y)) {
+    if (PoketchSystem_GetDisplayTappedCoords(&x, &y)) {
         x = (112 - x) * (112 - x);
         y = (144 - y) * (144 - y);
 

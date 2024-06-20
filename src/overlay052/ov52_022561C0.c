@@ -245,7 +245,7 @@ static BOOL ov52_02256430 (UnkStruct_ov52_0225621C * param0)
         return 1;
     }
 
-    if (PoketchSystem_PlayerMoved(param0->unk_18)) {
+    if (PoketchSystem_IsPlayerMoving(param0->unk_18)) {
         return 1;
     }
 
@@ -331,7 +331,7 @@ static BOOL ov52_02256554 (UnkStruct_ov52_0225621C * param0)
     if (ov25_0225450C(param0->unk_18) == 0) {
         u32 v0, v1;
 
-        if (TouchScreen_TapLocation(&v0, &v1)) {
+        if (TouchScreen_GetTapState(&v0, &v1)) {
             if (((u32)(v0 - 16) < (u32)(207 - 16)) & ((u32)(v1 - 16) < (u32)(175 - 16))) {
                 return 1;
             }
