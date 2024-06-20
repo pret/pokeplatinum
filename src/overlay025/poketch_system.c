@@ -150,8 +150,8 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
 
 void PoketchSystem_StartShutdown (PoketchSystem *poketchSys)
 {
-    if (poketchSys->systemState != POKETCHSYSTEM_SHUTDOWN && poketchSys->systemState != POKETCHSYSTEM_UNLOAD) {
-        PoketchSystem_SetState(poketchSys, POKETCHSYSTEM_SHUTDOWN);
+    if (poketchSys->systemState != POKETCH_SYSTEM_SHUTDOWN && poketchSys->systemState != POKETCH_SYSTEM_UNLOAD) {
+        PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_SHUTDOWN);
     }
 }
 
@@ -160,12 +160,12 @@ BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys)
     return poketchSys == NULL;
 }
 
-void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchFieldEventID eventID, u32)
+void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID eventID, u32)
 {
     switch (eventID) {
     case POKETCH_FIELDEVENT_SLEEP:
         break;
-    case POKETCH_FIELDEVENT_PLAYERMOVED:
+    case POKETCH_FIELDEVENT_PLAYER_MOVED:
         poketchSys->playerMoving = TRUE;
         break;
     case POKETCH_FIELDEVENT_PEDOMETER:{
@@ -200,7 +200,7 @@ enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys)
 static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
 {
     if (ov25_02254560(&(poketchSys->unk_1C), &(poketchSys->unk_20), poketchSys->oamManager, poketchSys)) {
-        poketchSys->systemState = POKETCHSYSTEM_INIT;
+        poketchSys->systemState = POKETCH_SYSTEM_INIT;
         poketchSys->subState = 0;
         poketchSys->touchingScreen = FALSE;
         poketchSys->playerMoving = 0;
@@ -220,7 +220,7 @@ static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
     return FALSE;
 }
 
-static void PoketchSystem_Shutdown (PoketchSystem *poketchSys)
+static void PoketchSystem_Shutdown(PoketchSystem *poketchSys)
 {
     SysTask_Done(poketchSys->unk_38);
 
@@ -242,13 +242,13 @@ static void PoketchSystem_MainTask(SysTask *task, void *system)
     PoketchSystem *poketchSys = (PoketchSystem *)system;
 
     if (poketchSys->systemState < NELEMS(sPoketchEvents)) {
-        if (poketchSys->systemState != POKETCHSYSTEM_INIT) {
+        if (poketchSys->systemState != POKETCH_SYSTEM_INIT) {
             PoketchSystem_ButtonUpdate(poketchSys);
         }
 
         sPoketchEvents[poketchSys->systemState](poketchSys);
     } else {
-        GF_ASSERT(poketchSys->systemState == POKETCHSYSTEM_UNLOAD);
+        GF_ASSERT(poketchSys->systemState == POKETCH_SYSTEM_UNLOAD);
         *(poketchSys->poketchSysPtr) = NULL;
 
         PoketchSystem_Shutdown(poketchSys);
@@ -299,7 +299,7 @@ static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
         poketchSys->subState++;
     case 3:
         if (ov25_022547F4(poketchSys->unk_1C, 1)) {
-            PoketchSystem_SetState(poketchSys, POKETCHSYSTEM_UPDATE);
+            PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UPDATE);
         }
     }
 }
@@ -365,7 +365,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
         if (PoketchSystem_IsAppShutdown(poketchSys)) {
             PoketchSystem_UnloadApp(poketchSys);
             sub_02099D44();
-            PoketchSystem_SetState(poketchSys, POKETCHSYSTEM_CHANGEAPP);
+            PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_CHANGE_APP);
         }
         break;
     case 4:
@@ -418,7 +418,7 @@ static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
         if (ov25_022547F4(poketchSys->unk_1C, 2)) {
             poketchSys->appChanging = FALSE;
             poketchSys->unk_06 = 0;
-            PoketchSystem_SetState(poketchSys, POKETCHSYSTEM_UPDATE);
+            PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UPDATE);
         }
         break;
     }
@@ -458,7 +458,7 @@ static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
         if (ov25_02254800(poketchSys->unk_1C)) {
             PoketchSystem_UnloadApp(poketchSys);
             sub_0201E530();
-            PoketchSystem_SetState(poketchSys, POKETCHSYSTEM_UNLOAD);
+            PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_UNLOAD);
         }
         break;
     }
@@ -545,9 +545,9 @@ void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *sa
 }
 
 static const TouchScreenHitTable sMainPoketchButtons[] = {
-    [POKETCHSYSTEM_MAINBUTTON_UP]     = {POKETCH_BUTTON_TOP_MINY,    POKETCH_BUTTON_TOP_MAXY,    POKETCH_BUTTON_TOP_MINX,    POKETCH_BUTTON_TOP_MAXX},      // Top button
-    [POKETCHSYSTEM_MAINBUTTON_DOWN]   = {POKETCH_BUTTON_BOTTOM_MINY, POKETCH_BUTTON_BOTTOM_MAXY, POKETCH_BUTTON_BOTTOM_MINX, POKETCH_BUTTON_BOTTOM_MAXX},   // Bottom Button
-    [POKETCHSYSTEM_MAINBUTTON_SCREEN] = {POKETCH_SCREEN_MINY,        POKETCH_SCREEN_MAXY,        POKETCH_SCREEN_MINX,        POKETCH_SCREEN_MAXX}           // Screen
+    [POKETCH_SYSTEM_MAIN_BUTTON_UP]     = {POKETCH_BUTTON_TOP_MIN_Y,    POKETCH_BUTTON_TOP_MAX_Y,    POKETCH_BUTTON_TOP_MIN_X,    POKETCH_BUTTON_TOP_MAX_X},      // Top button
+    [POKETCH_SYSTEM_MAIN_BUTTON_DOWN]   = {POKETCH_BUTTON_BOTTOM_MIN_Y, POKETCH_BUTTON_BOTTOM_MAX_Y, POKETCH_BUTTON_BOTTOM_MIN_X, POKETCH_BUTTON_BOTTOM_MAX_X},   // Bottom Button
+    [POKETCH_SYSTEM_MAIN_BUTTON_SCREEN] = {POKETCH_SCREEN_MIN_Y,        POKETCH_SCREEN_MAX_Y,        POKETCH_SCREEN_MIN_X,        POKETCH_SCREEN_MAX_X}           // Screen
 };
 
 static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
@@ -555,7 +555,7 @@ static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
     poketchSys->buttonManager = PoketchButtonManager_New(sMainPoketchButtons, NELEMS(sMainPoketchButtons), PoketchSystem_OnButtonEvent, poketchSys, HEAP_ID_POKETCH_MAIN);
 
     if (poketchSys->buttonManager != NULL) {
-        PoketchButtonManager_SetButtonTimer(poketchSys->buttonManager, POKETCHSYSTEM_MAINBUTTON_UP, 0, 7);
+        PoketchButtonManager_SetButtonTimer(poketchSys->buttonManager, POKETCH_SYSTEM_MAIN_BUTTON_UP, 0, 7);
         poketchSys->unk_2C = 0xffffffff;
         poketchSys->unk_30 = 0xffffffff;
         return TRUE;
@@ -592,7 +592,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
         poketchSys->touchingScreen = FALSE;
     }
 
-    if (buttonID == POKETCHSYSTEM_MAINBUTTON_SCREEN) {
+    if (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_SCREEN) {
         if (ov25_0225450C(poketchSys) && touchEvent == BUTTON_TOUCH_RELEASED) {
             Sound_PlayEffect(SEQ_SE_DP_BEEP);
         }
@@ -601,14 +601,14 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
 
         switch (touchEvent) {
         case BUTTON_TOUCH_PRESSED:
-            v1 = (buttonID == POKETCHSYSTEM_MAINBUTTON_UP) ? 8 : 11;
+            v1 = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? 8 : 11;
             break;
         case BUTTON_TOUCH_RELEASED:
             if (ov25_0225450C(poketchSys) || poketchSys->unk_06) {
-                v1 = (buttonID == POKETCHSYSTEM_MAINBUTTON_UP) ? 6 : 9;
+                v1 = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? 6 : 9;
                 buttonEvent = 0;
             } else {
-                v1 = (buttonID == POKETCHSYSTEM_MAINBUTTON_UP) ? 7 : 10;
+                v1 = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? 7 : 10;
             }
             break;
         }
@@ -645,7 +645,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
         }
 
         poketchSys->buttonState = buttonEvent;
-        poketchSys->buttonDir = (buttonID == POKETCHSYSTEM_MAINBUTTON_UP) ? BUTTON_UP : BUTTON_DOWN;
+        poketchSys->buttonDir = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? BUTTON_UP : BUTTON_DOWN;
     }
 }
 
@@ -687,7 +687,7 @@ void ov25_02254444 (u32 param0, u32 param1)
 
 static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y)
 {
-    if ((u32)(x - POKETCH_SCREEN_MINX) < (u32)(POKETCH_SCREEN_MAXX - POKETCH_SCREEN_MINX) & (u32)(y - POKETCH_SCREEN_MINY) < (u32)(POKETCH_SCREEN_MAXY - POKETCH_SCREEN_MINY)) {
+    if ((u32)(x - POKETCH_SCREEN_MIN_X) < (u32)(POKETCH_SCREEN_MAX_X - POKETCH_SCREEN_MIN_X) & (u32)(y - POKETCH_SCREEN_MIN_Y) < (u32)(POKETCH_SCREEN_MAX_Y - POKETCH_SCREEN_MIN_Y)) {
         return TRUE;
     }
 

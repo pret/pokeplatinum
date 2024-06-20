@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKETCHSYSTEM_H
-#define POKEPLATINUM_POKETCHSYSTEM_H
+#ifndef POKEPLATINUM_POKETCH_SYSTEM_H
+#define POKEPLATINUM_POKETCH_SYSTEM_H
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "field/field_system_decl.h"
@@ -15,23 +15,23 @@
 
 #define POKETCH_PEDOMETER_MAX 99999
 
-#define POKETCH_SCREEN_MINX 16
-#define POKETCH_SCREEN_MAXX 207
+#define POKETCH_SCREEN_MIN_X 16
+#define POKETCH_SCREEN_MAX_X 207
 
-#define POKETCH_SCREEN_MINY 16
-#define POKETCH_SCREEN_MAXY 175
+#define POKETCH_SCREEN_MIN_Y 16
+#define POKETCH_SCREEN_MAX_Y 175
 
-#define POKETCH_BUTTON_TOP_MINX 224
-#define POKETCH_BUTTON_TOP_MAXX 255
+#define POKETCH_BUTTON_TOP_MIN_X 224
+#define POKETCH_BUTTON_TOP_MAX_X 255
 
-#define POKETCH_BUTTON_TOP_MINY 32
-#define POKETCH_BUTTON_TOP_MAXY 96
+#define POKETCH_BUTTON_TOP_MIN_Y 32
+#define POKETCH_BUTTON_TOP_MAX_Y 96
 
-#define POKETCH_BUTTON_BOTTOM_MINX 224
-#define POKETCH_BUTTON_BOTTOM_MAXX 255
+#define POKETCH_BUTTON_BOTTOM_MIN_X 224
+#define POKETCH_BUTTON_BOTTOM_MAX_X 255
 
-#define POKETCH_BUTTON_BOTTOM_MINY 96
-#define POKETCH_BUTTON_BOTTOM_MAXY 160
+#define POKETCH_BUTTON_BOTTOM_MIN_Y 96
+#define POKETCH_BUTTON_BOTTOM_MAX_Y 160
 
 enum ButtonDir {
     BUTTON_UP,
@@ -39,17 +39,17 @@ enum ButtonDir {
 };
 
 enum PoketchMainButton {
-    POKETCHSYSTEM_MAINBUTTON_UP = 0,
-    POKETCHSYSTEM_MAINBUTTON_DOWN,
-    POKETCHSYSTEM_MAINBUTTON_SCREEN,
+    POKETCH_SYSTEM_MAIN_BUTTON_UP = 0,
+    POKETCH_SYSTEM_MAIN_BUTTON_DOWN,
+    POKETCH_SYSTEM_MAIN_BUTTON_SCREEN,
 };
 
 enum PoketchSystemState {
-    POKETCHSYSTEM_INIT = 0,
-    POKETCHSYSTEM_UPDATE,
-    POKETCHSYSTEM_CHANGEAPP,
-    POKETCHSYSTEM_SHUTDOWN,
-    POKETCHSYSTEM_UNLOAD
+    POKETCH_SYSTEM_INIT = 0,
+    POKETCH_SYSTEM_UPDATE,
+    POKETCH_SYSTEM_CHANGE_APP,
+    POKETCH_SYSTEM_SHUTDOWN,
+    POKETCH_SYSTEM_UNLOAD
 };
 
 enum PoketchAppState {
@@ -64,9 +64,9 @@ enum PoketchBorderColor {
     POKETCH_BORDER_BLUE
 };
 
-enum PoketchFieldEventID {
+enum PoketchEventID {
     POKETCH_FIELDEVENT_SLEEP = 0,
-    POKETCH_FIELDEVENT_PLAYERMOVED,
+    POKETCH_FIELDEVENT_PLAYER_MOVED,
     
     POKETCH_FIELDEVENT_SAVE = 4,
     POKETCH_FIELDEVENT_PEDOMETER,
@@ -118,7 +118,7 @@ struct PoketchSystem {
 void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BGL *bgl, NNSG2dOamManagerInstance *oamManager);
 void PoketchSystem_StartShutdown(PoketchSystem *poketchSys);
 BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys);
-void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchFieldEventID eventID, u32);
+void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID eventID, u32);
 BOOL PoketchSystem_IsTapped(PoketchSystem *poketchSys);
 enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys);
 void PoketchSystem_SetAppFunctions(PoketchAppInitFunction initFunction, PoketchAppShutdownFunction shutdownFunction);
@@ -139,4 +139,4 @@ PoketchData * PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys);
 SaveData * PoketchSystem_GetSaveData(const PoketchSystem *poketchSys);
 int PoketchSystem_GetBorderColor(const PoketchSystem *poketchSys);
 
-#endif // POKEPLATINUM_POKETCHSYSTEM_H
+#endif // POKEPLATINUM_POKETCH_SYSTEM_H
