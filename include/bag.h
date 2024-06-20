@@ -1,9 +1,6 @@
 #ifndef POKEPLATINUM_BAG_H
 #define POKEPLATINUM_BAG_H
 
-#include "struct_defs/struct_0207CDEC.h"
-#include "bag.h"
-#include "bag.h"
 #include "savedata.h"
 #include "constants/heap.h"
 
@@ -16,6 +13,10 @@
 #define POKEBALL_POCKET_SIZE    15
 #define BATTLE_ITEM_POCKET_SIZE 30
 
+typedef struct BagItem {
+    u16 item;
+    u16 quantity;
+} BagItem;
 
 typedef struct Bag {
     BagItem items[ITEM_POCKET_SIZE];

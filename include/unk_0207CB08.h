@@ -3,7 +3,7 @@
 
 #include "strbuf.h"
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_defs/struct_0207CDEC.h"
+#include "bag.h"
 #include "savedata.h"
 
 UnkStruct_0207CB08 * sub_0207CB08(u8 param0);
