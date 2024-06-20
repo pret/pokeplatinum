@@ -15,11 +15,11 @@ typedef struct Easy3DModel {
 } Easy3DModel;
 
 typedef struct Easy3DAnim {
-    void *unk_00;
-    void *unk_04;
-    NNSG3dAnmObj *unk_08;
-    fx32 unk_0C;
-    BOOL unk_10;
+    void *data;
+    void *anim;
+    NNSG3dAnmObj *animObj;
+    fx32 frame;
+    BOOL dataBorrowed; // Whether the data field is borrowed from another object (i.e. not allocated by this object)
 } Easy3DAnim;
 
 typedef struct Easy3DObject {
@@ -35,14 +35,15 @@ void Easy3DModel_Load(Easy3DModel *model, u32 narcIndex, u32 memberIndex, u32 he
 void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID);
 void Easy3DModel_Release(Easy3DModel *model);
 
-void sub_02017164(Easy3DAnim * param0, const Easy3DModel * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5);
-void sub_02017190(Easy3DAnim * param0, const Easy3DModel * param1, void * param2, NNSFndAllocator * param3);
-void sub_020171A0(Easy3DAnim * param0, NNSFndAllocator * param1);
-void sub_020171CC(Easy3DAnim * param0, fx32 param1);
-BOOL sub_02017204(Easy3DAnim * param0, fx32 param1);
-void sub_02017240(Easy3DAnim * param0, fx32 param1);
-fx32 sub_02017248(const Easy3DAnim * param0);
-fx32 sub_0201724C(const Easy3DAnim * param0);
+void Easy3DAnim_LoadFrom(Easy3DAnim *anim, const Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID, NNSFndAllocator *allocator);
+void Easy3DAnim_LoadFromData(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator);
+void Easy3DAnim_Release(Easy3DAnim *anim, NNSFndAllocator *allocator);
+void Easy3DAnim_UpdateLooped(Easy3DAnim *anim, fx32 frameDelta);
+BOOL Easy3DAnim_Update(Easy3DAnim *anim, fx32 frameDelta);
+void Easy3DAnim_SetFrame(Easy3DAnim *anim, fx32 frame);
+fx32 Easy3DAnim_GetFrame(const Easy3DAnim *anim);
+fx32 Easy3DAnim_GetFrameCount(const Easy3DAnim *anim);
+
 void sub_02017258(Easy3DObject * param0, Easy3DModel * param1);
 void sub_0201727C(Easy3DObject * param0, Easy3DAnim * param1);
 void sub_02017288(Easy3DObject * param0, Easy3DAnim * param1);

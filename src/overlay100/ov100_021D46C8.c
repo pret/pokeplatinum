@@ -159,7 +159,7 @@ void ov100_021D49B4 (UnkStruct_ov100_021D49B4 * param0)
 
         if (param0->unk_164) {
             if (param0->unk_158 == 0) {
-                sub_020171CC(&param0->unk_88[0], param0->unk_154);
+                Easy3DAnim_UpdateLooped(&param0->unk_88[0], param0->unk_154);
             } else {
                 ov100_021D45A4(param0);
                 ov100_021D4510(param0);
@@ -169,19 +169,19 @@ void ov100_021D49B4 (UnkStruct_ov100_021D49B4 * param0)
                 int v1;
 
                 for (v1 = 0; v1 < 4; v1++) {
-                    v0 = sub_02017204(&param0->unk_88[v1], param0->unk_154);
+                    v0 = Easy3DAnim_Update(&param0->unk_88[v1], param0->unk_154);
                 }
             } else {
-                v0 = sub_02017204(&param0->unk_88[0], param0->unk_154);
+                v0 = Easy3DAnim_Update(&param0->unk_88[0], param0->unk_154);
             }
         }
 
         if (param0->unk_168) {
-            sub_020171CC(&param0->unk_88[1], param0->unk_154);
+            Easy3DAnim_UpdateLooped(&param0->unk_88[1], param0->unk_154);
         }
 
         if (param0->unk_16C) {
-            sub_02017204(&param0->unk_88[1], param0->unk_154);
+            Easy3DAnim_Update(&param0->unk_88[1], param0->unk_154);
         }
 
         if (v0 == 1) {
@@ -201,7 +201,7 @@ void ov100_021D4A84 (UnkStruct_ov100_021D49B4 * param0)
 
 void ov100_021D4A90 (int param0, UnkStruct_ov100_021D49B4 * param1, NNSFndAllocator * param2)
 {
-    sub_020171A0(&param1->unk_88[param0], param2);
+    Easy3DAnim_Release(&param1->unk_88[param0], param2);
 }
 
 void ov100_021D4AA4 (UnkStruct_ov100_021D49B4 * param0, NNSFndAllocator * param1, int param2)
@@ -238,8 +238,8 @@ void ov100_021D4B10 (UnkStruct_ov100_021D49B4 * param0, UnkStruct_ov100_021D49B4
 
 void ov100_021D4B4C (int param0, UnkStruct_ov100_021D49B4 * param1, int param2, NARC * param3, NNSFndAllocator * param4)
 {
-    sub_02017164(&param1->unk_88[param0], &param1->unk_78, param3, param2, 111, param4);
-    sub_02017240(&param1->unk_88[param0], 0);
+    Easy3DAnim_LoadFrom(&param1->unk_88[param0], &param1->unk_78, param3, param2, 111, param4);
+    Easy3DAnim_SetFrame(&param1->unk_88[param0], 0);
     sub_0201727C(&param1->unk_00, &param1->unk_88[param0]);
 
     param1->unk_154 = FX32_CONST(1);
@@ -249,8 +249,8 @@ void ov100_021D4B4C (int param0, UnkStruct_ov100_021D49B4 * param1, int param2, 
 
 void ov100_021D4BA0 (int param0, UnkStruct_ov100_021D49B4 * param1, UnkStruct_ov100_021D49B4 * param2, int param3, NARC * param4, NNSFndAllocator * param5)
 {
-    sub_02017164(&param2->unk_88[param0], &param1->unk_78, param4, param3, 111, param5);
-    sub_02017240(&param2->unk_88[param0], 0);
+    Easy3DAnim_LoadFrom(&param2->unk_88[param0], &param1->unk_78, param4, param3, 111, param5);
+    Easy3DAnim_SetFrame(&param2->unk_88[param0], 0);
     sub_0201727C(&param2->unk_00, &param2->unk_88[param0]);
 
     param2->unk_154 = FX32_CONST(1);

@@ -1364,13 +1364,13 @@ static void ov117_02261C2C (UnkStruct_ov117_02261280 * param0, NARC * param1)
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
             if (v5 == NULL) {
-                sub_02017164(&v2->unk_C8[v0][v1].unk_7C, &v2->unk_88[v1], param1, 35 + v1, 110, &param0->unk_A8);
-                v5 = v2->unk_C8[v0][v1].unk_7C.unk_00;
+                Easy3DAnim_LoadFrom(&v2->unk_C8[v0][v1].unk_7C, &v2->unk_88[v1], param1, 35 + v1, 110, &param0->unk_A8);
+                v5 = v2->unk_C8[v0][v1].unk_7C.data;
             } else {
-                sub_02017190(&v2->unk_C8[v0][v1].unk_7C, &v2->unk_88[v1], v5, &param0->unk_A8);
+                Easy3DAnim_LoadFromData(&v2->unk_C8[v0][v1].unk_7C, &v2->unk_88[v1], v5, &param0->unk_A8);
             }
 
-            sub_02017240(&v2->unk_C8[v0][v1].unk_7C, 0);
+            Easy3DAnim_SetFrame(&v2->unk_C8[v0][v1].unk_7C, 0);
         }
     }
 
@@ -1394,7 +1394,7 @@ static void ov117_02261DD0 (UnkStruct_ov117_02261280 * param0)
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
-            sub_020171A0(&v2->unk_C8[v0][v1].unk_7C, &param0->unk_A8);
+            Easy3DAnim_Release(&v2->unk_C8[v0][v1].unk_7C, &param0->unk_A8);
         }
     }
 
@@ -1425,7 +1425,7 @@ BOOL ov117_02261E38 (UnkStruct_ov117_02261280 * param0, int param1)
             sub_02017350(&v0->unk_C8[v2][v3].unk_04, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
             sub_0201736C(&v0->unk_C8[v2][v3].unk_04, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
             sub_02017348(&v0->unk_C8[v2][v3].unk_04, 1);
-            sub_02017240(&v0->unk_C8[v2][v3].unk_7C, 0);
+            Easy3DAnim_SetFrame(&v0->unk_C8[v2][v3].unk_7C, 0);
             sub_0201727C(&v0->unk_C8[v2][v3].unk_04, &v0->unk_C8[v2][v3].unk_7C);
 
             v0->unk_C8[v2][v3].unk_00 = 1;
@@ -1454,7 +1454,7 @@ void ov117_02261F3C (UnkStruct_ov117_02261280 * param0)
     for (v1 = 0; v1 < 8; v1++) {
         for (v2 = 0; v2 < 4; v2++) {
             if (v0->unk_C8[v1][v2].unk_00 == 1) {
-                if (sub_02017204(&v0->unk_C8[v1][v2].unk_7C, FX32_ONE) == 1) {
+                if (Easy3DAnim_Update(&v0->unk_C8[v1][v2].unk_7C, FX32_ONE) == 1) {
                     ov117_02261F08(param0, v1, v2);
                 }
             }

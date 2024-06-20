@@ -852,9 +852,9 @@ static void ov70_0226965C (UnkStruct_ov70_02269204 * param0, NARC * param1, u32 
     for (v0 = 0; v0 < 39; v0++) {
         for (v1 = 0; v1 < 2; v1++) {
             if (Unk_ov70_0226E5A4[v0].unk_02[v1] != 17) {
-                if (param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]].unk_00 == NULL) {
+                if (param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]].data == NULL) {
                     param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00].texture = NNS_G3dGetTex(param0->unk_10640[Unk_ov70_0226E5A4[v0].unk_01]);
-                    sub_02017164(&param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]], &param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00], param1, 183 + Unk_ov70_0226E5A4[v0].unk_02[v1], param2, &param0->unk_1081C);
+                    Easy3DAnim_LoadFrom(&param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]], &param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00], param1, 183 + Unk_ov70_0226E5A4[v0].unk_02[v1], param2, &param0->unk_1081C);
                 }
             }
         }
@@ -866,9 +866,9 @@ static void ov70_02269700 (UnkStruct_ov70_02269204 * param0)
     int v0;
 
     for (v0 = 0; v0 < 16; v0++) {
-        if (param0->unk_106DC[v0].unk_00 != NULL) {
-            sub_020171A0(&param0->unk_106DC[v0], &param0->unk_1081C);
-            param0->unk_106DC[v0].unk_00 = NULL;
+        if (param0->unk_106DC[v0].data != NULL) {
+            Easy3DAnim_Release(&param0->unk_106DC[v0], &param0->unk_1081C);
+            param0->unk_106DC[v0].data = NULL;
         }
     }
 }
@@ -1064,7 +1064,7 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         if (param1->unk_87C[param2]->unk_02[v4] != 17) {
             v3 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[v4]];
             sub_0201727C(&param1->unk_0C[param2], v3);
-            sub_02017240(v3, param1->unk_8C4[param2][v4]);
+            Easy3DAnim_SetFrame(v3, param1->unk_8C4[param2][v4]);
         } else {
             break;
         }
@@ -1104,7 +1104,7 @@ static void ov70_022699E4 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     Easy3DAnim * v1;
 
     v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
-    v0 = sub_0201724C(v1);
+    v0 = Easy3DAnim_GetFrameCount(v1);
 
     if ((param1->unk_8C4[param2][param3] + param4) < v0) {
         param1->unk_8C4[param2][param3] += param4;
@@ -1120,7 +1120,7 @@ static BOOL ov70_02269A3C (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     Easy3DAnim * v2;
 
     v2 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
-    v0 = sub_0201724C(v2);
+    v0 = Easy3DAnim_GetFrameCount(v2);
 
     if ((param1->unk_8C4[param2][param3] + param4) < v0) {
         param1->unk_8C4[param2][param3] += param4;
@@ -1139,7 +1139,7 @@ static void ov70_02269A90 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     Easy3DAnim * v1;
 
     v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
-    v0 = sub_0201724C(v1);
+    v0 = Easy3DAnim_GetFrameCount(v1);
 
     if (v0 < param4) {
         param1->unk_8C4[param2][param3] = v0 - FX32_HALF;
@@ -1154,7 +1154,7 @@ static fx32 ov70_02269AE8 (const UnkStruct_ov70_02269204 * param0, const UnkStru
     const Easy3DAnim * v1;
 
     v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
-    return sub_02017248(v1);
+    return Easy3DAnim_GetFrame(v1);
 }
 
 static void ov70_02269B10 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1)

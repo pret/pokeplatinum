@@ -252,11 +252,11 @@ static void DWWarp_InitModel (DistortionWorldWarp * warp)
     NNS_G3dMdlUseMdlAlpha(warp->animationModel.model);
     NNS_G3dMdlUseMdlPolygonID(warp->animationModel.model);
 
-    sub_02017164(&warp->animationAnimation, &warp->animationModel, narc, 18, HEAP_ID_DISTORTION_WORLD_WARP, &warp->allocator);
-    sub_02017240(&warp->animationAnimation, 0);
+    Easy3DAnim_LoadFrom(&warp->animationAnimation, &warp->animationModel, narc, 18, HEAP_ID_DISTORTION_WORLD_WARP, &warp->allocator);
+    Easy3DAnim_SetFrame(&warp->animationAnimation, 0);
 
-    sub_02017164(&warp->animationAnimation2, &warp->animationModel, narc, 17, HEAP_ID_DISTORTION_WORLD_WARP, &warp->allocator);
-    sub_02017240(&warp->animationAnimation2, 0);
+    Easy3DAnim_LoadFrom(&warp->animationAnimation2, &warp->animationModel, narc, 17, HEAP_ID_DISTORTION_WORLD_WARP, &warp->allocator);
+    Easy3DAnim_SetFrame(&warp->animationAnimation2, 0);
     sub_02017258(&warp->animationObj, &warp->animationModel);
 
     sub_02017350(&warp->animationObj, 0, 0, 0);
@@ -277,8 +277,8 @@ static void DWWarp_InitModel (DistortionWorldWarp * warp)
 static void DWWarp_DeleteModel (DistortionWorldWarp * warp)
 {
     Easy3DModel_Release(&warp->animationModel);
-    sub_020171A0(&warp->animationAnimation, &warp->allocator);
-    sub_020171A0(&warp->animationAnimation2, &warp->allocator);
+    Easy3DAnim_Release(&warp->animationAnimation, &warp->allocator);
+    Easy3DAnim_Release(&warp->animationAnimation2, &warp->allocator);
 }
 
 static void Model3D_Update (DistortionWorldWarp * warp)
@@ -309,8 +309,8 @@ static void Model3D_Update (DistortionWorldWarp * warp)
     NNS_G3dGlbSetBaseRot(&rot33);
     NNS_G3dGlbSetBaseScale(&scaleVec);
 
-    sub_020171CC(&warp->animationAnimation, FX32_ONE);
-    sub_020171CC(&warp->animationAnimation2, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&warp->animationAnimation, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&warp->animationAnimation2, FX32_ONE);
 
     NNS_G3dGePushMtx();
 

@@ -43,7 +43,7 @@ void ov100_021D4510 (UnkStruct_ov100_021D49B4 * param0)
     int v1;
     int v2;
     fx32 v3;
-    fx32 v4 = sub_02017248(&param0->unk_88[0]);
+    fx32 v4 = Easy3DAnim_GetFrame(&param0->unk_88[0]);
     fx32 v5;
 
     v0 = v4 >> FX32_SHIFT;
@@ -64,7 +64,7 @@ void ov100_021D4510 (UnkStruct_ov100_021D49B4 * param0)
         v3 = v5;
     }
 
-    sub_02017240(&param0->unk_88[0], v3);
+    Easy3DAnim_SetFrame(&param0->unk_88[0], v3);
 }
 
 void ov100_021D45A4 (UnkStruct_ov100_021D49B4 * param0)

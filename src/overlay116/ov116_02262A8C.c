@@ -364,9 +364,9 @@ static void ov116_02262DC0 (UnkStruct_ov116_02262A8C * param0)
 
     ov116_02261C48(param0, 0);
 
-    sub_02017240(&param0->unk_308[0].unk_88[0], 0);
-    sub_02017240(&param0->unk_308[1].unk_88[0], 0);
-    sub_02017240(&param0->unk_308[2].unk_88[0], 0);
+    Easy3DAnim_SetFrame(&param0->unk_308[0].unk_88[0], 0);
+    Easy3DAnim_SetFrame(&param0->unk_308[1].unk_88[0], 0);
+    Easy3DAnim_SetFrame(&param0->unk_308[2].unk_88[0], 0);
     SysTask_Start(ov116_02262E50, v0, 4096);
 }
 
@@ -687,10 +687,10 @@ static void ov116_02263434 (SysTask * param0, void * param1)
         ov116_0226192C(v2);
         ov116_0226192C(v3);
 
-        sub_020171A0(&v2->unk_88[0], &v1->unk_3C->unk_24);
-        sub_020171A0(&v2->unk_88[1], &v1->unk_3C->unk_24);
-        sub_020171A0(&v3->unk_88[0], &v1->unk_3C->unk_24);
-        sub_020171A0(&v3->unk_88[1], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v2->unk_88[0], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v2->unk_88[1], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v3->unk_88[0], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v3->unk_88[1], &v1->unk_3C->unk_24);
 
         v1->unk_30 = 0;
 
@@ -711,12 +711,12 @@ static void ov116_02263434 (SysTask * param0, void * param1)
         v1->unk_00++;
         break;
     case 1:
-        sub_02017164(&v2->unk_88[0], &v2->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[0][0], 106, &v1->unk_3C->unk_24);
-        sub_02017164(&v2->unk_88[1], &v2->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[0][1], 106, &v1->unk_3C->unk_24);
+        Easy3DAnim_LoadFrom(&v2->unk_88[0], &v2->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[0][0], 106, &v1->unk_3C->unk_24);
+        Easy3DAnim_LoadFrom(&v2->unk_88[1], &v2->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[0][1], 106, &v1->unk_3C->unk_24);
         sub_0201727C(&v2->unk_00, &v2->unk_88[0]);
         sub_0201727C(&v2->unk_00, &v2->unk_88[1]);
-        sub_02017240(&v2->unk_88[0], 0);
-        sub_02017240(&v2->unk_88[1], 0);
+        Easy3DAnim_SetFrame(&v2->unk_88[0], 0);
+        Easy3DAnim_SetFrame(&v2->unk_88[1], 0);
         sub_02017348(&v2->unk_00, 0);
 
         v2->unk_1EC = 0;
@@ -735,12 +735,12 @@ static void ov116_02263434 (SysTask * param0, void * param1)
         break;
     case 3:
 
-        sub_02017164(&v3->unk_88[0], &v3->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[1][0], 106, &v1->unk_3C->unk_24);
-        sub_02017164(&v3->unk_88[1], &v3->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[1][1], 106, &v1->unk_3C->unk_24);
+        Easy3DAnim_LoadFrom(&v3->unk_88[0], &v3->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[1][0], 106, &v1->unk_3C->unk_24);
+        Easy3DAnim_LoadFrom(&v3->unk_88[1], &v3->unk_78, v1->unk_3C->unk_00, Unk_ov116_02267B9C[1][1], 106, &v1->unk_3C->unk_24);
         sub_0201727C(&v3->unk_00, &v3->unk_88[0]);
         sub_0201727C(&v3->unk_00, &v3->unk_88[1]);
-        sub_02017240(&v3->unk_88[0], 0);
-        sub_02017240(&v3->unk_88[1], 0);
+        Easy3DAnim_SetFrame(&v3->unk_88[0], 0);
+        Easy3DAnim_SetFrame(&v3->unk_88[1], 0);
         sub_02017348(&v3->unk_00, 1);
 
         v3->unk_1EC = 1;
@@ -773,10 +773,10 @@ static void ov116_02263434 (SysTask * param0, void * param1)
         } else if (v1->unk_28 != *v1->unk_2C) {
             ov116_0226192C(v2);
             ov116_0226192C(v3);
-            sub_020171A0(&v2->unk_88[0], &v1->unk_3C->unk_24);
-            sub_020171A0(&v2->unk_88[1], &v1->unk_3C->unk_24);
-            sub_020171A0(&v3->unk_88[0], &v1->unk_3C->unk_24);
-            sub_020171A0(&v3->unk_88[1], &v1->unk_3C->unk_24);
+            Easy3DAnim_Release(&v2->unk_88[0], &v1->unk_3C->unk_24);
+            Easy3DAnim_Release(&v2->unk_88[1], &v1->unk_3C->unk_24);
+            Easy3DAnim_Release(&v3->unk_88[0], &v1->unk_3C->unk_24);
+            Easy3DAnim_Release(&v3->unk_88[1], &v1->unk_3C->unk_24);
             v1->unk_00 = 0;
         }
         v1->unk_28 = *v1->unk_2C;
@@ -785,10 +785,10 @@ static void ov116_02263434 (SysTask * param0, void * param1)
         ov116_0226192C(v2);
         ov116_0226192C(v3);
 
-        sub_020171A0(&v2->unk_88[0], &v1->unk_3C->unk_24);
-        sub_020171A0(&v2->unk_88[1], &v1->unk_3C->unk_24);
-        sub_020171A0(&v3->unk_88[0], &v1->unk_3C->unk_24);
-        sub_020171A0(&v3->unk_88[1], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v2->unk_88[0], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v2->unk_88[1], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v3->unk_88[0], &v1->unk_3C->unk_24);
+        Easy3DAnim_Release(&v3->unk_88[1], &v1->unk_3C->unk_24);
 
         v1->unk_30 = 0;
         SysTask_Done(param0);

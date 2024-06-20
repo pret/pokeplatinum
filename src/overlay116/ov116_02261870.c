@@ -124,7 +124,7 @@ void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
 
         for (v0 = 0; v0 < 8; v0++) {
             inline_ov116_02261940(&param0->unk_04->unk_B38[v0]);
-            sub_020171CC(&param0->unk_04->unk_B38[v0].unk_88[0], FX32_CONST(1));
+            Easy3DAnim_UpdateLooped(&param0->unk_04->unk_B38[v0].unk_88[0], FX32_CONST(1));
         }
     }
 
@@ -133,19 +133,19 @@ void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
         sub_02017348(&param0->unk_04->unk_308[0].unk_00, 1);
         sub_02017348(&param0->unk_04->unk_308[1].unk_00, 0);
         sub_02017348(&param0->unk_04->unk_308[2].unk_00, 0);
-        sub_020171CC(&param0->unk_04->unk_308[0].unk_88[param0->unk_04->unk_308[0].unk_1F4], FX32_CONST(1));
+        Easy3DAnim_UpdateLooped(&param0->unk_04->unk_308[0].unk_88[param0->unk_04->unk_308[0].unk_1F4], FX32_CONST(1));
         break;
     case 1:
         sub_02017348(&param0->unk_04->unk_308[0].unk_00, 0);
         sub_02017348(&param0->unk_04->unk_308[1].unk_00, 1);
         sub_02017348(&param0->unk_04->unk_308[2].unk_00, 0);
-        sub_02017204(&param0->unk_04->unk_308[1].unk_88[0], FX32_CONST(1));
+        Easy3DAnim_Update(&param0->unk_04->unk_308[1].unk_88[0], FX32_CONST(1));
         break;
     case 2:
         sub_02017348(&param0->unk_04->unk_308[0].unk_00, 0);
         sub_02017348(&param0->unk_04->unk_308[1].unk_00, 0);
         sub_02017348(&param0->unk_04->unk_308[2].unk_00, 1);
-        sub_02017204(&param0->unk_04->unk_308[2].unk_88[0], FX32_CONST(1));
+        Easy3DAnim_Update(&param0->unk_04->unk_308[2].unk_88[0], FX32_CONST(1));
         break;
     }
 
@@ -158,8 +158,8 @@ void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
         if (param0->unk_04->unk_1DA4.unk_1EC) {
             BOOL v1[2];
 
-            v1[0] = sub_02017204(&param0->unk_04->unk_1DA4.unk_88[0], FX32_CONST(1));
-            v1[1] = sub_02017204(&param0->unk_04->unk_1DA4.unk_88[1], FX32_CONST(1));
+            v1[0] = Easy3DAnim_Update(&param0->unk_04->unk_1DA4.unk_88[0], FX32_CONST(1));
+            v1[1] = Easy3DAnim_Update(&param0->unk_04->unk_1DA4.unk_88[1], FX32_CONST(1));
 
             if (v1[0] && v1[1]) {
                 param0->unk_04->unk_1DA4.unk_1EC = 0;
@@ -170,7 +170,7 @@ void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
         inline_ov116_02261940(&param0->unk_04->unk_1B98);
 
         if (param0->unk_04->unk_1B98.unk_1EC) {
-            sub_020171CC(&param0->unk_04->unk_1B98.unk_88[1], FX32_CONST(1));
+            Easy3DAnim_UpdateLooped(&param0->unk_04->unk_1B98.unk_88[1], FX32_CONST(1));
         }
     }
 

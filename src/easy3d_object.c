@@ -11,18 +11,18 @@
 #include "easy3d.h"
 
 static void Easy3DModel_BindTexture(SysTask *task, void *param);
-static void sub_020173A0(Easy3DAnim * param0, const Easy3DModel * param1, void * param2, NNSFndAllocator * param3);
 static void Easy3DModel_LoadInternal(Easy3DModel *model);
+static void Easy3DAnim_LoadInternal(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator);
 
 void Easy3DModel_Load(Easy3DModel *model, u32 narcIndex, u32 memberIndex, u32 heapID)
 {
-    model->data = sub_02006FE8(narcIndex, memberIndex, 0, heapID, 0);
+    model->data = sub_02006FE8(narcIndex, memberIndex, FALSE, heapID, 0);
     Easy3DModel_LoadInternal(model);
 }
 
 void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID)
 {
-    model->data = sub_0200723C(narc, memberIndex, 0, heapID, 0);
+    model->data = sub_0200723C(narc, memberIndex, FALSE, heapID, 0);
     Easy3DModel_LoadInternal(model);
 }
 
@@ -57,91 +57,89 @@ void Easy3DModel_Release(Easy3DModel *model)
     memset(model, 0, sizeof(Easy3DModel));
 }
 
-void sub_02017164 (Easy3DAnim * param0, const Easy3DModel * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5)
+void Easy3DAnim_LoadFrom(Easy3DAnim *anim, const Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID, NNSFndAllocator *allocator)
 {
-    void * v0;
+    void *data = sub_0200723C(narc, memberIndex, FALSE, heapID, 0);
 
-    v0 = sub_0200723C(param2, param3, 0, param4, 0);
-
-    sub_020173A0(param0, param1, v0, param5);
-    param0->unk_10 = 0;
+    Easy3DAnim_LoadInternal(anim, model, data, allocator);
+    anim->dataBorrowed = FALSE;
 }
 
-void sub_02017190 (Easy3DAnim * param0, const Easy3DModel * param1, void * param2, NNSFndAllocator * param3)
+void Easy3DAnim_LoadFromData(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator)
 {
-    sub_020173A0(param0, param1, param2, param3);
-    param0->unk_10 = 1;
+    Easy3DAnim_LoadInternal(anim, model, data, allocator);
+    anim->dataBorrowed = TRUE;
 }
 
-void sub_020171A0 (Easy3DAnim * param0, NNSFndAllocator * param1)
+void Easy3DAnim_Release(Easy3DAnim *anim, NNSFndAllocator *allocator)
 {
-    if (param0->unk_00) {
-        NNS_G3dFreeAnmObj(param1, param0->unk_08);
+    if (anim->data) {
+        NNS_G3dFreeAnmObj(allocator, anim->animObj);
 
-        if (param0->unk_10 == 0) {
-            Heap_FreeToHeap(param0->unk_00);
+        if (anim->dataBorrowed == FALSE) {
+            Heap_FreeToHeap(anim->data);
         }
     }
 
-    memset(param0, 0, sizeof(Easy3DAnim));
+    memset(anim, 0, sizeof(Easy3DAnim));
 }
 
-void sub_020171CC (Easy3DAnim * param0, fx32 param1)
+void Easy3DAnim_UpdateLooped(Easy3DAnim *anim, fx32 frameDelta)
 {
-    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_08);
+    fx32 frameCount = NNS_G3dAnmObjGetNumFrame(anim->animObj);
 
-    if (param1 > 0) {
-        param0->unk_0C = (param0->unk_0C + param1) % v0;
+    if (frameDelta > 0) {
+        anim->frame = (anim->frame + frameDelta) % frameCount;
     } else {
-        param0->unk_0C = param0->unk_0C + param1;
+        anim->frame = anim->frame + frameDelta;
 
-        if (param0->unk_0C < 0) {
-            param0->unk_0C += v0;
+        if (anim->frame < 0) {
+            anim->frame += frameCount;
         }
     }
 
-    NNS_G3dAnmObjSetFrame(param0->unk_08, param0->unk_0C);
+    NNS_G3dAnmObjSetFrame(anim->animObj, anim->frame);
 }
 
-BOOL sub_02017204 (Easy3DAnim * param0, fx32 param1)
+BOOL Easy3DAnim_Update(Easy3DAnim *anim, fx32 frameDelta)
 {
-    fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_08);
-    BOOL v1 = 0;
+    fx32 frameCount = NNS_G3dAnmObjGetNumFrame(anim->animObj);
+    BOOL finished = FALSE;
 
-    if (param1 > 0) {
-        if ((param0->unk_0C + param1) < v0) {
-            param0->unk_0C += param1;
+    if (frameDelta > 0) {
+        if (anim->frame + frameDelta < frameCount) {
+            anim->frame += frameDelta;
         } else {
-            param0->unk_0C = v0;
-            v1 = 1;
+            anim->frame = frameCount;
+            finished = TRUE;
         }
     } else {
-        if ((param0->unk_0C + param1) >= 0) {
-            param0->unk_0C += param1;
+        if (anim->frame + frameDelta >= 0) {
+            anim->frame += frameDelta;
         } else {
-            param0->unk_0C = 0;
-            v1 = 1;
+            anim->frame = 0;
+            finished = TRUE;
         }
     }
 
-    NNS_G3dAnmObjSetFrame(param0->unk_08, param0->unk_0C);
-    return v1;
+    NNS_G3dAnmObjSetFrame(anim->animObj, anim->frame);
+    return finished;
 }
 
-void sub_02017240 (Easy3DAnim * param0, fx32 param1)
+void Easy3DAnim_SetFrame(Easy3DAnim *anim, fx32 frame)
 {
-    param0->unk_0C = param1;
-    NNS_G3dAnmObjSetFrame(param0->unk_08, param1);
+    anim->frame = frame;
+    NNS_G3dAnmObjSetFrame(anim->animObj, frame);
 }
 
-fx32 sub_02017248 (const Easy3DAnim * param0)
+fx32 Easy3DAnim_GetFrame(const Easy3DAnim *anim)
 {
-    return param0->unk_0C;
+    return anim->frame;
 }
 
-fx32 sub_0201724C (const Easy3DAnim * param0)
+fx32 Easy3DAnim_GetFrameCount(const Easy3DAnim *anim)
 {
-    return NNS_G3dAnmObjGetNumFrame(param0->unk_08);
+    return NNS_G3dAnmObjGetNumFrame(anim->animObj);
 }
 
 void sub_02017258 (Easy3DObject * param0, Easy3DModel * param1)
@@ -157,12 +155,12 @@ void sub_02017258 (Easy3DObject * param0, Easy3DModel * param1)
 
 void sub_0201727C (Easy3DObject * param0, Easy3DAnim * param1)
 {
-    NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param1->unk_08);
+    NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param1->animObj);
 }
 
 void sub_02017288 (Easy3DObject * param0, Easy3DAnim * param1)
 {
-    NNS_G3dRenderObjRemoveAnmObj(&param0->unk_00, param1->unk_08);
+    NNS_G3dRenderObjRemoveAnmObj(&param0->unk_00, param1->animObj);
 }
 
 void sub_02017294 (Easy3DObject * param0)
@@ -238,13 +236,13 @@ u16 sub_02017394 (const Easy3DObject * param0, u32 param1)
     return param0->unk_70[param1];
 }
 
-static void sub_020173A0 (Easy3DAnim * param0, const Easy3DModel * param1, void * param2, NNSFndAllocator * param3)
+static void Easy3DAnim_LoadInternal(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator)
 {
-    param0->unk_00 = param2;
-    param0->unk_04 = NNS_G3dGetAnmByIdx(param0->unk_00, 0);
-    param0->unk_08 = NNS_G3dAllocAnmObj(param3, param0->unk_04, param1->model);
+    anim->data = data;
+    anim->anim = NNS_G3dGetAnmByIdx(anim->data, 0);
+    anim->animObj = NNS_G3dAllocAnmObj(allocator, anim->anim, model->model);
 
-    NNS_G3dAnmObjInit(param0->unk_08, param0->unk_04, param1->model, param1->texture);
+    NNS_G3dAnmObjInit(anim->animObj, anim->anim, model->model, model->texture);
 }
 
 static void Easy3DModel_LoadInternal(Easy3DModel *model)

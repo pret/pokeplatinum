@@ -1060,8 +1060,8 @@ static void ov6_0223EA98 (UnkStruct_ov6_0223EA98 * param0)
     sub_02017350(&param0->unk_24, 0, 0, 0);
     sub_0201736C(&param0->unk_24, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
     sub_02017348(&param0->unk_24, 1);
-    sub_02017164(&param0->unk_AC, &param0->unk_9C, v2, v1, 4, &param0->unk_C0);
-    sub_02017240(&param0->unk_AC, 0);
+    Easy3DAnim_LoadFrom(&param0->unk_AC, &param0->unk_9C, v2, v1, 4, &param0->unk_C0);
+    Easy3DAnim_SetFrame(&param0->unk_AC, 0);
     sub_0201727C(&param0->unk_24, &param0->unk_AC);
     NARC_dtor(v2);
 }
@@ -1069,7 +1069,7 @@ static void ov6_0223EA98 (UnkStruct_ov6_0223EA98 * param0)
 static void ov6_0223EB34 (UnkStruct_ov6_0223EA98 * param0)
 {
     Easy3DModel_Release(&param0->unk_9C);
-    sub_020171A0(&param0->unk_AC, &param0->unk_C0);
+    Easy3DAnim_Release(&param0->unk_AC, &param0->unk_C0);
 }
 
 static void ov6_0223EB4C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
@@ -1680,7 +1680,7 @@ static void ov6_0223FAF8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 
     if (v0->unk_10 != 3) {
         G3_Identity();
-        sub_020171CC(&v0->unk_AC, FX32_ONE);
+        Easy3DAnim_UpdateLooped(&v0->unk_AC, FX32_ONE);
         NNS_G3dGePushMtx();
         sub_02017294(&v0->unk_24);
         NNS_G3dGePopMtx(1);
@@ -1778,27 +1778,27 @@ static void ov6_0223FD68 (Easy3DModel * param0)
 
 static void ov6_0223FD70 (Easy3DAnim * param0, const Easy3DModel * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5)
 {
-    sub_02017164(param0, param1, param2, param3, param4, param5);
+    Easy3DAnim_LoadFrom(param0, param1, param2, param3, param4, param5);
 }
 
 static void ov6_0223FD84 (Easy3DAnim * param0, NNSFndAllocator * param1)
 {
-    sub_020171A0(param0, param1);
+    Easy3DAnim_Release(param0, param1);
 }
 
 static void ov6_0223FD8C (Easy3DAnim * param0)
 {
-    sub_020171CC(param0, FX32_ONE);
+    Easy3DAnim_UpdateLooped(param0, FX32_ONE);
 }
 
 static BOOL ov6_0223FD98 (Easy3DAnim * param0)
 {
-    return sub_02017204(param0, FX32_ONE);
+    return Easy3DAnim_Update(param0, FX32_ONE);
 }
 
 static void ov6_0223FDA4 (Easy3DAnim * param0, fx32 param1)
 {
-    sub_02017240(param0, param1);
+    Easy3DAnim_SetFrame(param0, param1);
 }
 
 static void ov6_0223FDAC (Easy3DObject * param0, Easy3DModel * param1)

@@ -1538,7 +1538,7 @@ static void ov115_02261A54 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
 static void ov115_02261A74 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_02261ADC * param1)
 {
     ov115_02264190(&param1->unk_524, 1);
-    sub_02017240(&param1->unk_524.unk_198[1], (FX32_CONST(180)));
+    Easy3DAnim_SetFrame(&param1->unk_524.unk_198[1], (FX32_CONST(180)));
     ov115_0226422C(&param1->unk_524, 1);
 }
 
@@ -1581,7 +1581,7 @@ static BOOL ov115_02261AEC (UnkStruct_ov115_02261ADC * param0)
     param0->unk_504.unk_04++;
 
     if (param0->unk_504.unk_04 >= 60) {
-        v0 = sub_02017204(&param0->unk_524.unk_198[5], (FX32_CONST(2)));
+        v0 = Easy3DAnim_Update(&param0->unk_524.unk_198[5], (FX32_CONST(2)));
 
         if (v0 == 1) {
             return 1;
@@ -3360,14 +3360,14 @@ static void ov115_02263DF8 (UnkStruct_ov115_02263DF8 * param0, NARC * param1, u3
     }
 
     for (v2 = 0; v2 < 6; v2++) {
-        sub_02017164(&param0->unk_198[v2], &param0->unk_168[Unk_ov115_02266644[v2]], param1, v0[v2], param2, param3);
-        sub_02017240(&param0->unk_198[v2], 0);
+        Easy3DAnim_LoadFrom(&param0->unk_198[v2], &param0->unk_168[Unk_ov115_02266644[v2]], param1, v0[v2], param2, param3);
+        Easy3DAnim_SetFrame(&param0->unk_198[v2], 0);
 
         v3 = 0;
         v7 = NNS_G3dGetNodeInfo(param0->unk_168[Unk_ov115_02266644[v2]].model);
 
         while ((v6 = NNS_G3dGetNodeNameByIdx(v7, v3)) != NULL) {
-            NNS_G3dAnmObjDisableID(param0->unk_198[v2].unk_08, v3);
+            NNS_G3dAnmObjDisableID(param0->unk_198[v2].animObj, v3);
             v3++;
         }
 
@@ -3375,13 +3375,13 @@ static void ov115_02263DF8 (UnkStruct_ov115_02263DF8 * param0, NARC * param1, u3
             v5 = NNS_G3dGetNodeIdxByName(v7, &Unk_ov115_022660A4[v2][v3]);
 
             if (v5 != -1) {
-                NNS_G3dAnmObjEnableID(param0->unk_198[v2].unk_08, v5);
+                NNS_G3dAnmObjEnableID(param0->unk_198[v2].animObj, v5);
             }
         }
     }
 
     for (v2 = 0; v2 < 1; v2++) {
-        sub_02017164(&param0->unk_214[v2], &param0->unk_168[Unk_ov115_02265AE0[v2]], param1, 32, param2, param3);
+        Easy3DAnim_LoadFrom(&param0->unk_214[v2], &param0->unk_168[Unk_ov115_02265AE0[v2]], param1, 32, param2, param3);
         sub_0201727C(&param0->unk_00[Unk_ov115_02265AE0[v2]], &param0->unk_214[v2]);
     }
 
@@ -3391,7 +3391,7 @@ static void ov115_02263DF8 (UnkStruct_ov115_02263DF8 * param0, NARC * param1, u3
     ov115_0226422C(param0, 0);
 
     sub_0201727C(&param0->unk_00[1], &param0->unk_198[4]);
-    sub_02017240(&param0->unk_198[4], 0);
+    Easy3DAnim_SetFrame(&param0->unk_198[4], 0);
     sub_02017348(&param0->unk_00[1], 1);
 
     param0->unk_210 = 4;
@@ -3406,11 +3406,11 @@ static void ov115_02263FF4 (UnkStruct_ov115_02263DF8 * param0, NNSFndAllocator *
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_020171A0(&param0->unk_198[v0], param1);
+        Easy3DAnim_Release(&param0->unk_198[v0], param1);
     }
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_020171A0(&param0->unk_214[v0], param1);
+        Easy3DAnim_Release(&param0->unk_214[v0], param1);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov115_02263DF8));
@@ -3439,7 +3439,7 @@ static void ov115_02264044 (UnkStruct_ov115_02263DF8 * param0, const UnkStruct_o
 
 static void ov115_022640A4 (UnkStruct_ov115_02263DF8 * param0, const UnkStruct_ov115_02261C18 * param1, int param2)
 {
-    sub_020171CC(&param0->unk_198[0], (FX32_CONST(1)));
+    Easy3DAnim_UpdateLooped(&param0->unk_198[0], (FX32_CONST(1)));
     ov115_02264270(param0);
 }
 
@@ -3492,7 +3492,7 @@ static void ov115_0226414C (UnkStruct_ov115_02263DF8 * param0, u32 param1)
     v0 = (v0 * (FX32_CONST(180))) / 90;
     v0 = (FX32_CONST(180)) - v0;
 
-    sub_02017240(&param0->unk_198[1], v0);
+    Easy3DAnim_SetFrame(&param0->unk_198[1], v0);
 }
 
 static void ov115_02264190 (UnkStruct_ov115_02263DF8 * param0, u32 param1)
@@ -3502,7 +3502,7 @@ static void ov115_02264190 (UnkStruct_ov115_02263DF8 * param0, u32 param1)
     if (param0->unk_210 != param1) {
         sub_02017288(&param0->unk_00[Unk_ov115_02266644[param0->unk_210]], &param0->unk_198[param0->unk_210]);
         sub_0201727C(&param0->unk_00[Unk_ov115_02266644[param1]], &param0->unk_198[param1]);
-        sub_02017240(&param0->unk_198[param1], 0);
+        Easy3DAnim_SetFrame(&param0->unk_198[param1], 0);
         sub_02017348(&param0->unk_00[Unk_ov115_02266644[param0->unk_210]], 0);
         sub_02017348(&param0->unk_00[Unk_ov115_02266644[param1]], 1);
         param0->unk_210 = param1;
@@ -3511,7 +3511,7 @@ static void ov115_02264190 (UnkStruct_ov115_02263DF8 * param0, u32 param1)
 
 static BOOL ov115_02264214 (UnkStruct_ov115_02263DF8 * param0, fx32 param1)
 {
-    return sub_02017204(&param0->unk_198[param0->unk_210], param1);
+    return Easy3DAnim_Update(&param0->unk_198[param0->unk_210], param1);
 }
 
 static void ov115_0226422C (UnkStruct_ov115_02263DF8 * param0, BOOL param1)
@@ -3566,7 +3566,7 @@ static void ov115_02264270 (UnkStruct_ov115_02263DF8 * param0)
     }
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02017240(&param0->unk_214[v0], param0->unk_228);
+        Easy3DAnim_SetFrame(&param0->unk_214[v0], param0->unk_228);
     }
 }
 
@@ -4148,7 +4148,7 @@ static void ov115_02264E48 (UnkStruct_ov115_02264FA0 * param0, UnkStruct_ov115_0
     }
 
     for (v4 = 0; v4 < 3; v4++) {
-        sub_02017164(&param0->unk_198[v4], &param0->unk_168[v2[v4]], param2, v1[v4], param5, param6);
+        Easy3DAnim_LoadFrom(&param0->unk_198[v4], &param0->unk_168[v2[v4]], param2, v1[v4], param5, param6);
         sub_0201727C(&param0->unk_00[v2[v4]], &param0->unk_198[v4]);
     }
 
@@ -4160,7 +4160,7 @@ static void ov115_02264F68 (UnkStruct_ov115_02264FA0 * param0, UnkStruct_ov115_0
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020171A0(&param0->unk_198[v0], param2);
+        Easy3DAnim_Release(&param0->unk_198[v0], param2);
     }
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -4172,7 +4172,7 @@ static void ov115_02264FA0 (UnkStruct_ov115_02264FA0 * param0)
 {
     int v0;
 
-    sub_020171CC(&param0->unk_198[0], param0->unk_1D4);
+    Easy3DAnim_UpdateLooped(&param0->unk_198[0], param0->unk_1D4);
 
     if (param0->unk_1D8) {
         switch (param0->unk_1D9) {
@@ -4218,8 +4218,8 @@ static void ov115_02264FA0 (UnkStruct_ov115_02264FA0 * param0)
             break;
         }
 
-        sub_02017240(&param0->unk_198[1], param0->unk_1DC);
-        sub_02017240(&param0->unk_198[2], param0->unk_1DC);
+        Easy3DAnim_SetFrame(&param0->unk_198[1], param0->unk_1DC);
+        Easy3DAnim_SetFrame(&param0->unk_198[2], param0->unk_1DC);
     }
 
     for (v0 = 0; v0 < 3; v0++) {
