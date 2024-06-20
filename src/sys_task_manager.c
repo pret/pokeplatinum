@@ -5,11 +5,6 @@
 
 #include "sys_task_manager.h"
 
-enum TaskState {
-    TASK_STATE_ACTIVE = 0,
-    TASK_STATE_INACTIVE = 1,
-};
-
 static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task);
 static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr);
 static SysTask *SysTaskManager_AllocTask(SysTaskManager *sysTaskMgr);
@@ -79,7 +74,7 @@ SysTaskManager *SysTaskManager_Init(u32 maxTasks, void *memory)
     sysTaskMgr->tasks = (SysTask *)((u8 *)(sysTaskMgr->taskStack) + sizeof(SysTask *) * maxTasks);
     sysTaskMgr->maxTasks = maxTasks;
     sysTaskMgr->stackPointer = 0;
-    sysTaskMgr->isBeingModified = FALSE;
+    sysTaskMgr->locked = FALSE;
 
     SysTaskManager_InternalInit(sysTaskMgr);
     return sysTaskMgr;
@@ -100,7 +95,7 @@ void SysTaskManager_InternalInit(SysTaskManager *sysTaskMgr)
 
 void SysTaskManager_ExecuteTasks(SysTaskManager *sysTaskMgr)
 {
-    if (sysTaskMgr->isBeingModified) {
+    if (sysTaskMgr->locked) {
         return;
     }
 
@@ -125,9 +120,9 @@ void SysTaskManager_ExecuteTasks(SysTaskManager *sysTaskMgr)
 
 SysTask *SysTaskManager_AddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback, void *param, u32 priority)
 {
-    sysTaskMgr->isBeingModified = TRUE;
+    sysTaskMgr->locked = TRUE;
     SysTask *task = SysTaskManager_InternalAddTask(sysTaskMgr, callback, param, priority);
-    sysTaskMgr->isBeingModified = FALSE;
+    sysTaskMgr->locked = FALSE;
 
     return task;
 }
