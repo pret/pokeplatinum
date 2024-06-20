@@ -62,7 +62,7 @@ void ov70_0225C730 (void ** param0, NARC * param1, u32 param2, u32 param3)
     Heap_FreeToHeap(v1);
 }
 
-BOOL ov70_0225C7A0 (const UnkStruct_020170F4 * param0, const UnkStruct_02017294 * param1)
+BOOL ov70_0225C7A0 (const Easy3DModel * param0, const Easy3DObject * param1)
 {
     VecFx32 v0;
     VecFx32 v1;

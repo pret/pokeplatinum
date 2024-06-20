@@ -42,7 +42,7 @@ static inline void inline_ov116_02261940_1(void);
 static void ov116_02261CD8(SpriteTemplate * param0, s16 param1, s16 param2, int param3, int param4, int param5);
 void include_ov116_02261870(void);
 
-void ov116_02261870 (UnkStruct_02017294 * param0, MtxFx43 * param1, VecFx32 * param2)
+void ov116_02261870 (Easy3DObject * param0, MtxFx43 * param1, VecFx32 * param2)
 {
     if (param0->unk_6C) {
         NNS_G3dGlbFlush();

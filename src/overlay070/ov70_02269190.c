@@ -68,7 +68,7 @@ typedef struct {
     u8 unk_07;
     UnkStruct_ov70_022692B4 unk_08[4];
     UnkStruct_ov70_0226949C unk_A8[4];
-    UnkStruct_02017294 * unk_D8[4];
+    Easy3DObject * unk_D8[4];
     const UnkStruct_ov70_0225CC54 * unk_E8;
 } UnkStruct_ov70_0226BD64;
 
@@ -130,7 +130,7 @@ typedef struct {
     s16 unk_02;
     u32 unk_04;
     UnkStruct_ov70_0225CC54 * unk_08;
-    UnkStruct_02017294 unk_0C[18];
+    Easy3DObject unk_0C[18];
     const UnkStruct_ov70_0226E5A4 * unk_87C[18];
     fx32 unk_8C4[18][2];
     UnkStruct_ov70_0226BC40 unk_954;
@@ -142,9 +142,9 @@ typedef struct UnkStruct_ov70_02269204_t {
     UnkStruct_ov70_02260AD4 * unk_08;
     UnkStruct_ov70_0225C894 * unk_0C;
     UnkStruct_ov70_02269800 unk_10[20];
-    UnkStruct_020170F4 unk_10550[15];
+    Easy3DModel unk_10550[15];
     void * unk_10640[39];
-    UnkStruct_02017248 unk_106DC[16];
+    Easy3DAnim unk_106DC[16];
     NNSFndAllocator unk_1081C;
 } UnkStruct_ov70_02269204;
 
@@ -237,7 +237,7 @@ static void ov70_0226BBA8(UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269
 static void ov70_0226BBDC(UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1);
 static void ov70_0226BC40(UnkStruct_ov70_0226BC40 * param0, const UnkStruct_ov70_0226E2EC * param1, u32 param2, u32 param3, u32 param4, UnkStruct_ov70_02269800 * param5);
 static int ov70_0226BCC0(UnkStruct_ov70_0226BC40 * param0, u32 param1);
-static void ov70_0226BD64(UnkStruct_ov70_0226BD64 * param0, UnkStruct_02017294 * param1, UnkStruct_02017294 * param2, UnkStruct_02017294 * param3, UnkStruct_02017294 * param4, const UnkStruct_ov70_0225CC54 * param5, u32 param6);
+static void ov70_0226BD64(UnkStruct_ov70_0226BD64 * param0, Easy3DObject * param1, Easy3DObject * param2, Easy3DObject * param3, Easy3DObject * param4, const UnkStruct_ov70_0225CC54 * param5, u32 param6);
 static void ov70_0226BDA0(UnkStruct_ov70_0226BD64 * param0, u32 param1);
 static BOOL ov70_0226BDE8(UnkStruct_ov70_0226BD64 * param0);
 static void ov70_0226BE3C(UnkStruct_ov70_0226BD64 * param0, const UnkStruct_ov70_0225CC54 * param1);
@@ -1041,8 +1041,8 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 {
     BOOL v0;
     void * v1;
-    UnkStruct_020170F4 * v2;
-    UnkStruct_02017248 * v3;
+    Easy3DModel * v2;
+    Easy3DAnim * v3;
     int v4;
 
     GF_ASSERT(param1->unk_87C[param2] != NULL);
@@ -1101,7 +1101,7 @@ static BOOL ov70_022699D0 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 static void ov70_022699E4 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1, u32 param2, u32 param3, fx32 param4)
 {
     fx32 v0;
-    UnkStruct_02017248 * v1;
+    Easy3DAnim * v1;
 
     v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     v0 = sub_0201724C(v1);
@@ -1117,7 +1117,7 @@ static BOOL ov70_02269A3C (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 {
     fx32 v0;
     BOOL v1;
-    UnkStruct_02017248 * v2;
+    Easy3DAnim * v2;
 
     v2 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     v0 = sub_0201724C(v2);
@@ -1136,7 +1136,7 @@ static BOOL ov70_02269A3C (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 static void ov70_02269A90 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1, u32 param2, u32 param3, fx32 param4)
 {
     fx32 v0;
-    UnkStruct_02017248 * v1;
+    Easy3DAnim * v1;
 
     v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     v0 = sub_0201724C(v1);
@@ -1151,7 +1151,7 @@ static void ov70_02269A90 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 static fx32 ov70_02269AE8 (const UnkStruct_ov70_02269204 * param0, const UnkStruct_ov70_02269800 * param1, u32 param2, u32 param3)
 {
     fx32 v0;
-    const UnkStruct_02017248 * v1;
+    const Easy3DAnim * v1;
 
     v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     return sub_02017248(v1);
@@ -2569,7 +2569,7 @@ static int ov70_0226BCC0 (UnkStruct_ov70_0226BC40 * param0, u32 param1)
     return v4;
 }
 
-static void ov70_0226BD64 (UnkStruct_ov70_0226BD64 * param0, UnkStruct_02017294 * param1, UnkStruct_02017294 * param2, UnkStruct_02017294 * param3, UnkStruct_02017294 * param4, const UnkStruct_ov70_0225CC54 * param5, u32 param6)
+static void ov70_0226BD64 (UnkStruct_ov70_0226BD64 * param0, Easy3DObject * param1, Easy3DObject * param2, Easy3DObject * param3, Easy3DObject * param4, const UnkStruct_ov70_0225CC54 * param5, u32 param6)
 {
     GF_ASSERT(param6 < 3);
 

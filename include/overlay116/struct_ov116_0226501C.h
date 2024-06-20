@@ -8,9 +8,9 @@
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    UnkStruct_02017294 unk_00;
-    UnkStruct_020170F4 unk_78;
-    UnkStruct_02017248 unk_88[10];
+    Easy3DObject unk_00;
+    Easy3DModel unk_78;
+    Easy3DAnim unk_88[10];
     UnkUnion_ov116_022671EC unk_150;
     UnkUnion_ov116_02266FEC unk_190;
     UnkUnion_ov116_02266FEC unk_1A0;

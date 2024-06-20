@@ -39,7 +39,7 @@ typedef struct {
 } UnkStruct_ov66_02258B38;
 
 typedef struct {
-    UnkStruct_020170F4 unk_00;
+    Easy3DModel unk_00;
     u32 unk_10;
 } UnkStruct_ov66_02234958;
 
@@ -53,7 +53,7 @@ typedef struct UnkStruct_ov66_02234798_t {
     u8 unk_03;
     const UnkStruct_ov63_0222BEC0 * unk_04;
     UnkStruct_020216E0 * unk_08;
-    UnkStruct_02017294 unk_0C;
+    Easy3DObject unk_0C;
     u8 unk_84;
     u8 unk_85;
     u16 unk_86;
@@ -79,7 +79,7 @@ static void ov66_022348FC(UnkStruct_ov66_02234958 * param0, NARC * param1, u32 p
 static void ov66_02234958(UnkStruct_ov66_02234958 * param0);
 static void ov66_02234960(UnkStruct_ov66_02234958 * param0, u32 param1);
 static u32 ov66_0223496C(const UnkStruct_ov66_02234958 * param0);
-static void ov66_02234970(UnkStruct_ov66_02234958 * param0, UnkStruct_02017294 * param1);
+static void ov66_02234970(UnkStruct_ov66_02234958 * param0, Easy3DObject * param1);
 static UnkStruct_ov66_02234798 * ov66_02234980(UnkStruct_ov66_02234548 * param0);
 static BOOL ov66_022349B8(const UnkStruct_ov66_02234798 * param0);
 static void ov66_022349C8(UnkStruct_ov66_02234798 * param0);
@@ -546,7 +546,7 @@ static u32 ov66_0223496C (const UnkStruct_ov66_02234958 * param0)
     return param0->unk_10;
 }
 
-static void ov66_02234970 (UnkStruct_ov66_02234958 * param0, UnkStruct_02017294 * param1)
+static void ov66_02234970 (UnkStruct_ov66_02234958 * param0, Easy3DObject * param1)
 {
     sub_02017258(param1, &param0->unk_00);
 }

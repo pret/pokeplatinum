@@ -22,9 +22,9 @@
 #include "overlay006/ov6_02248050.h"
 
 typedef struct {
-    UnkStruct_02017294 unk_00;
-    UnkStruct_020170F4 unk_78;
-    UnkStruct_02017248 unk_88[4];
+    Easy3DObject unk_00;
+    Easy3DModel unk_78;
+    Easy3DAnim unk_88[4];
     u32 unk_D8;
 } UnkStruct_ov6_02248140;
 
@@ -47,13 +47,13 @@ typedef struct UnkStruct_ov6_02248498_t {
 } UnkStruct_ov6_02248498;
 
 typedef struct {
-    UnkStruct_02017294 unk_00;
-    UnkStruct_02017248 unk_78[4];
+    Easy3DObject unk_00;
+    Easy3DAnim unk_78[4];
     u32 unk_C8;
 } UnkStruct_ov6_022486B4;
 
 typedef struct {
-    UnkStruct_020170F4 unk_00;
+    Easy3DModel unk_00;
     UnkStruct_ov6_022486B4 unk_10[16];
     void * unk_CD0[4];
     FieldSystem * fieldSystem;
@@ -65,7 +65,7 @@ typedef struct {
     u32 unk_D0C;
 } UnkStruct_ov6_022487F8;
 
-static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017294 * param2)
+static void ov6_02248050 (MapObjectManager * param0, u32 param1, Easy3DObject * param2)
 {
     int v0;
     int v1, v2;
@@ -101,7 +101,7 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
     sub_02017350(param2, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_022480BC (PlayerAvatar * const playerAvatar, UnkStruct_02017294 * param1)
+static void ov6_022480BC (PlayerAvatar * const playerAvatar, Easy3DObject * param1)
 {
     int v0;
     int v1, v2;
@@ -134,7 +134,7 @@ static void ov6_022480BC (PlayerAvatar * const playerAvatar, UnkStruct_02017294 
     sub_02017350(param1, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_02248124 (PlayerAvatar * const playerAvatar, UnkStruct_02017294 * param1)
+static void ov6_02248124 (PlayerAvatar * const playerAvatar, Easy3DObject * param1)
 {
     VecFx32 v0;
 
@@ -537,7 +537,7 @@ static void ov6_02248678 (UnkStruct_ov6_022486B4 * param0)
     }
 }
 
-static void ov6_022486B4 (UnkStruct_ov6_022486B4 * param0, UnkStruct_020170F4 * param1, NNSFndAllocator * param2, void ** param3)
+static void ov6_022486B4 (UnkStruct_ov6_022486B4 * param0, Easy3DModel * param1, NNSFndAllocator * param2, void ** param3)
 {
     int v0;
 

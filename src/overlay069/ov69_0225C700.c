@@ -131,15 +131,15 @@ typedef struct {
     VecFx32 unk_00;
     VecFx32 unk_0C;
     VecFx32 unk_18;
-    UnkStruct_02017294 unk_24;
-    UnkStruct_020170F4 unk_9C;
+    Easy3DObject unk_24;
+    Easy3DModel unk_9C;
 } UnkStruct_ov69_0225D71C;
 
 typedef struct {
     UnkStruct_ov69_0225CA7C_sub1 unk_00;
     VecFx32 unk_B804;
-    UnkStruct_02017294 unk_B810[3];
-    UnkStruct_020170F4 unk_B978[3];
+    Easy3DObject unk_B810[3];
+    Easy3DModel unk_B978[3];
 } UnkStruct_ov69_0225CA7C;
 
 typedef struct {

@@ -37,10 +37,10 @@ typedef struct DistortionWorldWarp {
     SysTask * task;
     int frameCnt;
     int soundEffectCnt;
-    UnkStruct_02017294 animationObj;
-    UnkStruct_02017248 animationAnimation;
-    UnkStruct_02017248 animationAnimation2;
-    UnkStruct_020170F4 animationModel;
+    Easy3DObject animationObj;
+    Easy3DAnim animationAnimation;
+    Easy3DAnim animationAnimation2;
+    Easy3DModel animationModel;
     u32 moveFrame;
     int cameraAngle;
     int cameraAngleCalc;

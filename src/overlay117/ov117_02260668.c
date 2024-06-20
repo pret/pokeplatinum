@@ -1404,7 +1404,7 @@ static void ov117_02261DD0 (UnkStruct_ov117_02261280 * param0)
 BOOL ov117_02261E38 (UnkStruct_ov117_02261280 * param0, int param1)
 {
     UnkStruct_ov117_02261F08 * v0 = &param0->unk_D8;
-    UnkStruct_020170F4 * v1;
+    Easy3DModel * v1;
     int v2, v3;
 
     if (param1 > 1200) {

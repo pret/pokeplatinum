@@ -121,12 +121,12 @@ typedef struct {
 } UnkStruct_ov115_02261C18;
 
 typedef struct {
-    UnkStruct_02017294 unk_00[3];
-    UnkStruct_020170F4 unk_168[3];
-    UnkStruct_02017248 unk_198[6];
+    Easy3DObject unk_00[3];
+    Easy3DModel unk_168[3];
+    Easy3DAnim unk_198[6];
     u16 unk_210;
     u16 unk_212;
-    UnkStruct_02017248 unk_214[1];
+    Easy3DAnim unk_214[1];
     fx32 unk_228;
     u16 unk_22C;
     u16 unk_22E;
@@ -163,16 +163,16 @@ typedef struct {
 } UnkStruct_ov115_02262CA4;
 
 typedef struct {
-    UnkStruct_020170F4 unk_00[5];
-    UnkStruct_020170F4 unk_50;
+    Easy3DModel unk_00[5];
+    Easy3DModel unk_50;
     UnkStruct_02009DC8 * unk_60[4];
     UnkStruct_ov19_021DA864 unk_70;
 } UnkStruct_ov115_02264A40;
 
 typedef struct {
     GraphicElementData * unk_00;
-    UnkStruct_02017294 unk_04;
-    UnkStruct_02017294 unk_7C;
+    Easy3DObject unk_04;
+    Easy3DObject unk_7C;
     BOOL unk_F4;
     const UnkStruct_ov115_022622F8 * unk_F8;
     u16 unk_FC;
@@ -217,9 +217,9 @@ typedef struct {
 } UnkStruct_ov115_02261ADC_sub1;
 
 typedef struct {
-    UnkStruct_02017294 unk_00[3];
-    UnkStruct_020170F4 unk_168[3];
-    UnkStruct_02017248 unk_198[3];
+    Easy3DObject unk_00[3];
+    Easy3DModel unk_168[3];
+    Easy3DAnim unk_198[3];
     fx32 unk_1D4;
     u8 unk_1D8;
     u8 unk_1D9;
@@ -491,7 +491,7 @@ static void ov115_02264924(UnkStruct_ov115_022647A0 * param0);
 static UnkStruct_ov115_022647A0 * ov115_02264948(UnkStruct_ov115_02261ADC * param0);
 static BOOL ov115_02264980(UnkStruct_ov115_022647A0 * param0, const UnkStruct_ov115_022622F8 * param1, u32 param2);
 static void ov115_022649F0(UnkStruct_ov115_022647A0 * param0, UnkStruct_ov115_02261ADC * param1);
-static UnkStruct_020170F4 * ov115_02264A40(const UnkStruct_ov115_022622F8 * param0, UnkStruct_ov115_02264A40 * param1);
+static Easy3DModel * ov115_02264A40(const UnkStruct_ov115_022622F8 * param0, UnkStruct_ov115_02264A40 * param1);
 static void ov115_02264A54(UnkStruct_ov115_022647A0 * param0);
 static void ov115_02264B40(UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_02264BA0 * param1, u32 param2, u32 param3);
 static void ov115_02264BA0(UnkStruct_ov115_02264BA0 * param0);
@@ -3754,7 +3754,7 @@ static void ov115_0226477C (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
 static void ov115_022647A0 (UnkStruct_ov115_022647A0 * param0, UnkStruct_ov115_02261ADC * param1, u32 param2)
 {
     BOOL v0;
-    UnkStruct_020170F4 * v1;
+    Easy3DModel * v1;
 
     if (param0->unk_F4 == 1) {
         v0 = ov115_02264980(param0, param0->unk_F8, param2);
@@ -3873,7 +3873,7 @@ static BOOL ov115_02264980 (UnkStruct_ov115_022647A0 * param0, const UnkStruct_o
 
 static void ov115_022649F0 (UnkStruct_ov115_022647A0 * param0, UnkStruct_ov115_02261ADC * param1)
 {
-    UnkStruct_020170F4 * v0;
+    Easy3DModel * v0;
 
     sub_02021CAC(param0->unk_00, 0);
     param0->unk_F4 = 0;
@@ -3888,7 +3888,7 @@ static void ov115_022649F0 (UnkStruct_ov115_022647A0 * param0, UnkStruct_ov115_0
     }
 }
 
-static UnkStruct_020170F4 * ov115_02264A40 (const UnkStruct_ov115_022622F8 * param0, UnkStruct_ov115_02264A40 * param1)
+static Easy3DModel * ov115_02264A40 (const UnkStruct_ov115_022622F8 * param0, UnkStruct_ov115_02264A40 * param1)
 {
     u32 v0;
 

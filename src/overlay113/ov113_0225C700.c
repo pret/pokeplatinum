@@ -88,8 +88,8 @@
 #include "overlay113/ov113_022607D8.h"
 
 typedef struct {
-    UnkStruct_020170F4 unk_00;
-    UnkStruct_02017294 unk_10;
+    Easy3DModel unk_00;
+    Easy3DObject unk_10;
 } UnkStruct_ov113_0225DBCC_sub1;
 
 typedef struct {

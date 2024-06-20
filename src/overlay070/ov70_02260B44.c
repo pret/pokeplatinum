@@ -19,14 +19,14 @@
 
 typedef struct {
     BOOL unk_00;
-    UnkStruct_02017294 unk_04[2];
+    Easy3DObject unk_04[2];
     u32 unk_F4[5];
     fx32 unk_108[5];
 } UnkStruct_ov70_022615E8;
 
 typedef struct {
-    UnkStruct_020170F4 unk_00[2];
-    UnkStruct_02017248 unk_20[5];
+    Easy3DModel unk_00[2];
+    Easy3DAnim unk_20[5];
     BOOL unk_84[5];
 } UnkStruct_ov70_022615A4;
 
@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov70_02260E8C_t {
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;
-    UnkStruct_02017294 unk_04;
+    Easy3DObject unk_04;
     u32 unk_7C[4];
     fx32 unk_8C[4];
     VecFx32 unk_9C;
@@ -43,16 +43,16 @@ typedef struct UnkStruct_ov70_02260E8C_t {
 } UnkStruct_ov70_02260E8C;
 
 typedef struct {
-    UnkStruct_020170F4 unk_00[2];
+    Easy3DModel unk_00[2];
     void * unk_20[2][3];
-    UnkStruct_02017248 unk_38[2][4];
+    Easy3DAnim unk_38[2][4];
 } UnkStruct_ov70_022618C8;
 
 typedef struct UnkStruct_ov70_022610B8_t {
     u16 unk_00;
     u16 unk_02;
-    UnkStruct_02017294 unk_04;
-    UnkStruct_02017248 unk_7C[3];
+    Easy3DObject unk_04;
+    Easy3DAnim unk_7C[3];
     u8 unk_B8[3];
     u8 unk_BB;
     u8 unk_BC[3];
@@ -69,7 +69,7 @@ typedef struct UnkStruct_ov70_022610B8_t {
 } UnkStruct_ov70_022610B8;
 
 typedef struct {
-    UnkStruct_020170F4 unk_00[18];
+    Easy3DModel unk_00[18];
     void * unk_120[18][3];
 } UnkStruct_ov70_02261BB4;
 
@@ -90,12 +90,12 @@ typedef struct UnkStruct_ov70_02260BB8_t {
 
 static UnkStruct_ov70_02261418 * ov70_022613F4(int param0, int param1, u32 param2);
 static void ov70_02261418(UnkStruct_ov70_02261418 * param0);
-static void ov70_02261420(UnkStruct_020170F4 * param0, NARC * param1, u32 param2, u32 param3);
-static void ov70_0226146C(UnkStruct_020170F4 * param0);
-static void ov70_02261474(fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2);
-static BOOL ov70_02261498(fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2);
-static void ov70_022614C0(fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2);
-static BOOL ov70_022614DC(fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2);
+static void ov70_02261420(Easy3DModel * param0, NARC * param1, u32 param2, u32 param3);
+static void ov70_0226146C(Easy3DModel * param0);
+static void ov70_02261474(fx32 * param0, const Easy3DAnim * param1, fx32 param2);
+static BOOL ov70_02261498(fx32 * param0, const Easy3DAnim * param1, fx32 param2);
+static void ov70_022614C0(fx32 * param0, const Easy3DAnim * param1, fx32 param2);
+static BOOL ov70_022614DC(fx32 * param0, const Easy3DAnim * param1, fx32 param2);
 static void ov70_022614F4(UnkStruct_ov70_022615A4 * param0, NARC * param1, const UnkStruct_ov70_02261418 * param2, u32 param3, NNSFndAllocator * param4);
 static void ov70_022615A4(UnkStruct_ov70_022615A4 * param0, NNSFndAllocator * param1);
 static void ov70_022615E8(UnkStruct_ov70_022615E8 * param0, UnkStruct_ov70_022615A4 * param1);
@@ -575,7 +575,7 @@ static void ov70_02261418 (UnkStruct_ov70_02261418 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov70_02261420 (UnkStruct_020170F4 * param0, NARC * param1, u32 param2, u32 param3)
+static void ov70_02261420 (Easy3DModel * param0, NARC * param1, u32 param2, u32 param3)
 {
     ov70_0225C730(&param0->unk_00, param1, param2, param3);
 
@@ -590,12 +590,12 @@ static void ov70_02261420 (UnkStruct_020170F4 * param0, NARC * param1, u32 param
     }
 }
 
-static void ov70_0226146C (UnkStruct_020170F4 * param0)
+static void ov70_0226146C (Easy3DModel * param0)
 {
     sub_02017110(param0);
 }
 
-static void ov70_02261474 (fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2)
+static void ov70_02261474 (fx32 * param0, const Easy3DAnim * param1, fx32 param2)
 {
     fx32 v0;
 
@@ -608,7 +608,7 @@ static void ov70_02261474 (fx32 * param0, const UnkStruct_02017248 * param1, fx3
     }
 }
 
-static BOOL ov70_02261498 (fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2)
+static BOOL ov70_02261498 (fx32 * param0, const Easy3DAnim * param1, fx32 param2)
 {
     fx32 v0;
     BOOL v1;
@@ -626,7 +626,7 @@ static BOOL ov70_02261498 (fx32 * param0, const UnkStruct_02017248 * param1, fx3
     return v1;
 }
 
-static void ov70_022614C0 (fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2)
+static void ov70_022614C0 (fx32 * param0, const Easy3DAnim * param1, fx32 param2)
 {
     fx32 v0;
 
@@ -639,7 +639,7 @@ static void ov70_022614C0 (fx32 * param0, const UnkStruct_02017248 * param1, fx3
     }
 }
 
-static BOOL ov70_022614DC (fx32 * param0, const UnkStruct_02017248 * param1, fx32 param2)
+static BOOL ov70_022614DC (fx32 * param0, const Easy3DAnim * param1, fx32 param2)
 {
     BOOL v0;
 
