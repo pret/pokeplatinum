@@ -102,7 +102,7 @@ static void Healthbar_DrawCaughtIcon(Healthbar * param0);
 static void Healthbar_DrawStatusIcon(Healthbar * param0, int param1);
 static void Healthbar_DrawBallCount(Healthbar * param0, u32 param1);
 static void Healthbar_DrawBallsLeftMessage(Healthbar * param0, u32 param1);
-static void ov16_02266FE4(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
+static void Healthbar_LoadMainPalette(SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type);
 static void ov16_02267244(Healthbar * param0);
 static void ov16_0226728C(Healthbar * param0);
 static const SpriteTemplate* Healthbar_SpriteTemplate(u8 type);
@@ -540,17 +540,17 @@ void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHand
     }
 }
 
-static void ov16_02266FE4 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4)
+static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type)
 {
-    const SpriteTemplate * v0;
+    const SpriteTemplate * template;
 
-    v0 = ov16_02268314(param4);
+    template = ov16_02268314(type);
 
-    if (v0 != NULL) {
-        SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[0]);
-        SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20006);
-        SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[2], 1, v0->resources[2]);
-        SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[3], 1, v0->resources[3]);
+    if (template != NULL) {
+        SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
+        SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+        SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, handler, narc, template->resources[2], TRUE, template->resources[2]);
+        SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, handler, narc, template->resources[3], TRUE, template->resources[3]);
     }
 }
 
@@ -763,7 +763,7 @@ void ov16_022672C4 (Healthbar * param0)
     Healthbar_LoadResources(v1, v2, v4, v3, param0->type);
     param0->mainActor = Healthbar_LoadCellActor(v1, v2, param0->type);
 
-    ov16_02266FE4(v1, v2, v4, v3, param0->type);
+    Healthbar_LoadMainPalette(v1, v2, v4, v3, param0->type);
 
     if (param0->arrowActor != NULL) {
         SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
