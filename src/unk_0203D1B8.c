@@ -151,7 +151,7 @@
 #include "overlay110/ov110_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "overlay120/ov120_021D0D80.h"
-#include "overlay121/DWWarp.h"
+#include "dw_warp/dw_warp.h"
 
 FS_EXTERN_OVERLAY(battle);
 FS_EXTERN_OVERLAY(overlay19);
@@ -186,7 +186,7 @@ FS_EXTERN_OVERLAY(overlay102);
 FS_EXTERN_OVERLAY(overlay110);
 FS_EXTERN_OVERLAY(overlay111);
 FS_EXTERN_OVERLAY(overlay120);
-FS_EXTERN_OVERLAY(overlay121);
+FS_EXTERN_OVERLAY(dw_warp);
 
 #include <nitro/code16.h>
 
@@ -1838,7 +1838,7 @@ static const OverlayManagerTemplate Unk_020EA368 = {
     DWWarp_Init,
     DWWarp_Main,
     DWWarp_Exit,
-    FS_OVERLAY_ID(overlay121)
+    FS_OVERLAY_ID(dw_warp)
 };
 
 void sub_0203E714 (FieldSystem * fieldSystem)

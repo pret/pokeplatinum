@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_DWWARP_H
-#define POKEPLATINUM_DWWARP_H
+#ifndef POKEPLATINUM_DW_WARP_H
+#define POKEPLATINUM_DW_WARP_H
 
 
 int DWWarp_Init(OverlayManager * ovy, int * seq);
