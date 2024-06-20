@@ -9,7 +9,6 @@
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "camera.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "savedata.h"

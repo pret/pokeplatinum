@@ -3,7 +3,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "camera.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C894.h"

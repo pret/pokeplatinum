@@ -4,7 +4,6 @@
 #include "enums.h"
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "camera.h"
 #include "strbuf.h"
 #include "pokemon.h"
 

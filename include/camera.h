@@ -57,6 +57,8 @@ typedef struct Camera {
     CameraPositionHistory *history;
 } Camera;
 
+extern GXBufferMode gBufferMode;
+
 void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId heapID, Camera *camera);
 void Camera_DeleteHistory(Camera *camera);
 Camera *Camera_Alloc(const enum HeapId heapID);

@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 
-#include "camera.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/sys_task.h"
-#include "camera.h"
 
 #include "field/field_system.h"
 

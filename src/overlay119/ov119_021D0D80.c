@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "camera.h"
 #include "strbuf.h"
 #include "pokemon.h"
 

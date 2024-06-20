@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/sys_task.h"
-#include "camera.h"
 
 #include "functypes/funcptr_02014014.h"
 #include "struct_defs/struct_02014560.h"

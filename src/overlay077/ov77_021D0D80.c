@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "camera.h"
 #include "strbuf.h"
 
 #include "overlay077/const_ov77_021D742C.h"

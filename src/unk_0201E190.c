@@ -7,7 +7,7 @@
 #include "unk_0201E190.h"
 
 #define F32_PI                  ((f32)3.14159265358979323846)
-#define FX_F32_TO_IDX(f)	((u16)(FX_RAD_TO_IDX(FX32_CONST((f)))))
+#define FX_F32_RAD_TO_IDX(f)	((u16)(FX_RAD_TO_IDX(FX32_CONST((f)))))
 
 fx32 sub_0201E190 (fx32 param0, fx32 param1)
 {
@@ -42,7 +42,7 @@ fx32 VEC_AngleBetween(const VecFx32 *a, const VecFx32 *b)
     sin = FX_Mul(aNorm.z, bNorm.x) - FX_Mul(aNorm.x, bNorm.z);
 
     if (cos == 0) {
-        angle = sin > 0 ? FX_F32_TO_IDX(F32_PI / 2) : FX_F32_TO_IDX(-F32_PI / 2);
+        angle = sin > 0 ? FX_F32_RAD_TO_IDX(F32_PI / 2) : FX_F32_RAD_TO_IDX(-F32_PI / 2);
     } else {
         angle = FX_Atan2Idx(sin, cos);
     }

@@ -7,7 +7,6 @@
 #include "message.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "camera.h"
 #include "strbuf.h"
 #include "struct_decls/struct_berry_data_decl.h"
 

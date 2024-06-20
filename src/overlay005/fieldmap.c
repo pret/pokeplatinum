@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 #include "core_sys.h"
-#include "data_02100844.h"
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"

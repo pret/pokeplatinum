@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "camera.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021D3CE4_decl.h"

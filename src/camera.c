@@ -2,8 +2,6 @@
 #include <string.h>
 #include <nnsys.h>
 
-#include "data_02100844.h"
-
 #include "overlay115/camera_angle.h"
 
 #include "heap.h"
@@ -75,36 +73,37 @@ static void Camera_UpdateHistory(Camera const *camera, const VecFx32 *inPos, Vec
 {
     if (camera->history == NULL) {
         *outPos = *inPos;
+        return;
+    }
+
+    int *curHistoryIndex = &camera->history->currentHistoryIndex;
+    int *nextHistoryIndex = &camera->history->nextHistoryIndex;
+
+    if (!camera->history->delayReached) {
+        *outPos = *inPos;
+
+        if (*curHistoryIndex == camera->history->delay) {
+            camera->history->delayReached = TRUE;
+        }
     } else {
-        int *curHistoryIndex = &camera->history->currentHistoryIndex;
-        int *nextHistoryIndex = &camera->history->nextHistoryIndex;
+        *outPos = camera->history->positions[*curHistoryIndex];
+    }
 
-        if (!camera->history->delayReached) {
-            *outPos = *inPos;
+    *curHistoryIndex = (*curHistoryIndex + 1) % camera->history->historySize;
 
-            if (*curHistoryIndex == camera->history->delay) {
-                camera->history->delayReached = TRUE;
-            }
-        } else {
-            *outPos = camera->history->positions[*curHistoryIndex];
-        }
+    camera->history->positions[*nextHistoryIndex] = *inPos;
+    *nextHistoryIndex = (*nextHistoryIndex + 1) % camera->history->historySize;
 
-        *curHistoryIndex = (*curHistoryIndex + 1) % camera->history->historySize;
+    if (!camera->history->delayX) {
+        outPos->x = inPos->x;
+    }
 
-        camera->history->positions[*nextHistoryIndex] = *inPos;
-        *nextHistoryIndex = (*nextHistoryIndex + 1) % camera->history->historySize;
+    if (!camera->history->delayY) {
+        outPos->y = inPos->y;
+    }
 
-        if (!camera->history->delayX) {
-            outPos->x = inPos->x;
-        }
-
-        if (!camera->history->delayY) {
-            outPos->y = inPos->y;
-        }
-
-        if (!camera->history->delayZ) {
-            outPos->z = inPos->z;
-        }
+    if (!camera->history->delayZ) {
+        outPos->z = inPos->z;
     }
 }
 
@@ -223,27 +222,25 @@ void Camera_ComputeViewMatrixWithRoll(void)
 
         sActiveCamera->prevTargetPos = *sActiveCamera->targetPos;
 
-        {
-            VecFx32 cameraPos = sActiveCamera->lookAt.position;
-            VecFx32 cameraUp = sActiveCamera->lookAt.up;
-            const VecFx32 * targetPos = sActiveCamera->targetPos;
-            fx16 cosPitch = FX_CosIdx(sActiveCamera->angle.x);
-            fx16 sinYaw = FX_SinIdx(sActiveCamera->angle.y);
-            fx16 cosYaw = FX_CosIdx(sActiveCamera->angle.y);
-            fx16 sinRoll = FX_SinIdx(sActiveCamera->angle.z);
-            fx16 cosRoll = FX_CosIdx(sActiveCamera->angle.z);
+        VecFx32 cameraPos = sActiveCamera->lookAt.position;
+        VecFx32 cameraUp = sActiveCamera->lookAt.up;
+        const VecFx32 * targetPos = sActiveCamera->targetPos;
+        fx16 cosPitch = FX_CosIdx(sActiveCamera->angle.x);
+        fx16 sinYaw = FX_SinIdx(sActiveCamera->angle.y);
+        fx16 cosYaw = FX_CosIdx(sActiveCamera->angle.y);
+        fx16 sinRoll = FX_SinIdx(sActiveCamera->angle.z);
+        fx16 cosRoll = FX_CosIdx(sActiveCamera->angle.z);
 
-            // zPos = cos(yaw) * cos(pitch) * distance + target.z
-            // up = <sin(roll) * cos(yaw), cos(roll), -sin(roll) * sin(yaw)>
-            cameraPos.z = FX_Mul(cosYaw, sActiveCamera->distance);
-            cameraPos.z = FX_Mul(cameraPos.z, cosPitch);
-            cameraPos.z += targetPos->z;
-            cameraUp.x += FX_Mul(sinRoll, cosYaw);
-            cameraUp.y += cosRoll;
-            cameraUp.z += -FX_Mul(sinRoll, sinYaw);
+        // zPos = cos(yaw) * cos(pitch) * distance + target.z
+        // up = <sin(roll) * cos(yaw), cos(roll), -sin(roll) * sin(yaw)>
+        cameraPos.z = FX_Mul(cosYaw, sActiveCamera->distance);
+        cameraPos.z = FX_Mul(cameraPos.z, cosPitch);
+        cameraPos.z += targetPos->z;
+        cameraUp.x += FX_Mul(sinRoll, cosYaw);
+        cameraUp.y += cosRoll;
+        cameraUp.z += -FX_Mul(sinRoll, sinYaw);
 
-            NNS_G3dGlbLookAt(&cameraPos, &cameraUp, targetPos);
-        }
+        NNS_G3dGlbLookAt(&cameraPos, &cameraUp, targetPos);
     } else {
         NNS_G3dGlbLookAt(&sActiveCamera->lookAt.position, &sActiveCamera->lookAt.up, &sActiveCamera->lookAt.target);
     }
@@ -322,33 +319,31 @@ void Camera_InitWithTargetAndPosition(const VecFx32 *target, const VecFx32 *posi
     VEC_Subtract(position, target, &distanceVector);
     camera->distance = VEC_Mag(&distanceVector);
 
-    {
-        // ROM doesn't match without these
-        VecFx32 unused0 = {0, 0, 0};
-        VecFx32 unused1 = {0, 0, 0};
-        VecFx32 v = {0, 0, 0};
-        VecFx32 unit;
+    // ROM doesn't match without these
+    VecFx32 unused0 = {0, 0, 0};
+    VecFx32 unused1 = {0, 0, 0};
+    VecFx32 v = {0, 0, 0};
+    VecFx32 unit;
 
-        unit.x = 0;
-        unit.y = 0;
-        unit.z = FX32_ONE;
+    unit.x = 0;
+    unit.y = 0;
+    unit.z = FX32_ONE;
 
-        v = distanceVector;
-        v.y = 0;
+    v = distanceVector;
+    v.y = 0;
 
-        camera->angle.y = VEC_AngleBetween(&unit, &v);
+    camera->angle.y = VEC_AngleBetween(&unit, &v);
 
-        unit.x = FX32_ONE;
-        unit.y = 0;
-        unit.z = 0;
+    unit.x = FX32_ONE;
+    unit.y = 0;
+    unit.z = 0;
 
-        v.x = distanceVector.z;
-        v.z = distanceVector.y;
-        v.y = 0;
+    v.x = distanceVector.z;
+    v.z = distanceVector.y;
+    v.y = 0;
 
-        camera->angle.x = VEC_AngleBetween(&unit, &v);
-        camera->angle.z = 0;
-    }
+    camera->angle.x = VEC_AngleBetween(&unit, &v);
+    camera->angle.z = 0;
 
     Camera_ComputeProjectionMatrix(projection, camera);
 

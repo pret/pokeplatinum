@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "camera.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
 
 #include "overlay115/camera_angle.h"
