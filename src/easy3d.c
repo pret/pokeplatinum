@@ -14,19 +14,13 @@ static void Easy3D_EngineSetup(void);
 
 void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource)
 {
-    NNSG3dResTex * texture = NULL;
-    BOOL v1;
-
     *outResource = ReadFileToHeap(heapID, path);
     NNS_G3D_NULL_ASSERT(*outResource);
 
-    texture = NNS_G3dGetTex(*outResource);
-    if (texture != NULL) {
-        if (Texture_IsUploadedToVRam(texture) == FALSE) {
-            DC_FlushRange(*outResource, (*outResource)->fileSize);
-
-            v1 = NNS_G3dResDefaultSetup(*outResource);
-        }
+    NNSG3dResTex *texture = NNS_G3dGetTex(*outResource);
+    if (texture != NULL && Easy3D_IsTextureUploadedToVRam(texture) == FALSE) {
+        DC_FlushRange(*outResource, (*outResource)->fileSize);
+        NNS_G3dResDefaultSetup(*outResource);
     }
 
     *outModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*outResource), 0);
@@ -34,17 +28,11 @@ void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **
 
 void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader **resource)
 {
-    NNSG3dResTex * texture = NULL;
-    BOOL v1;
+    NNSG3dResTex *texture = NNS_G3dGetTex(*resource);
 
-    texture = NNS_G3dGetTex(*resource);
-
-    if (texture != NULL) {
-        if (Texture_IsUploadedToVRam(texture) == FALSE) {
-            DC_FlushRange(*resource, (*resource)->fileSize);
-
-            v1 = NNS_G3dResDefaultSetup(*resource);
-        }
+    if (texture != NULL && Easy3D_IsTextureUploadedToVRam(texture) == FALSE) {
+        DC_FlushRange(*resource, (*resource)->fileSize);
+        NNS_G3dResDefaultSetup(*resource);
     }
 
     *outModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*resource), 0);
@@ -63,7 +51,7 @@ void Easy3D_InitRenderObjFromResource(NNSG3dRenderObj *renderObj, NNSG3dResMdl *
     NNS_G3dRenderObjInit(renderObj, *model);
 }
 
-BOOL Texture_IsUploadedToVRam(NNSG3dResTex *texture)
+BOOL Easy3D_IsTextureUploadedToVRam(NNSG3dResTex *texture)
 {
     return (texture->texInfo.flag & NNS_G3D_RESTEX_LOADED) 
         || (texture->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED);
@@ -88,7 +76,7 @@ void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, 
     NNS_G3dGeFlushBuffer();
 }
 
-static GenericPointerData * Unk_021BFB0C = NULL;
+static GenericPointerData *Unk_021BFB0C = NULL;
 
 void Easy3D_Init(const u8 heapID)
 {
@@ -97,15 +85,15 @@ void Easy3D_Init(const u8 heapID)
 
 static void Easy3D_EngineSetup(void)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
-    G3X_AntiAlias(1);
-    G3X_AlphaTest(0, 0);
-    G3X_AlphaBlend(1);
-    G3X_EdgeMarking(0);
-    G3X_SetFog(0, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
+    G3X_AntiAlias(TRUE);
+    G3X_AlphaTest(FALSE, 0);
+    G3X_AlphaBlend(TRUE);
+    G3X_EdgeMarking(FALSE);
+    G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
     G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, FALSE);
     G3_ViewPort(0, 0, 255, 191);
 }
@@ -136,7 +124,9 @@ BOOL Easy3D_UploadTextureToVRam(NNSG3dResTex *texture)
 
     texture->texInfo.vramKey = 0;
 
-    u32 texRequiredSize, tex4x4RequiredSize, paletteRequiredSize;
+    u32 texRequiredSize, 
+        tex4x4RequiredSize, 
+        paletteRequiredSize;
     BOOL texOk = TRUE;
     BOOL tex4x4Ok = TRUE;
     BOOL paletteOk = TRUE;

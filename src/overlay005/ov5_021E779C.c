@@ -1894,7 +1894,7 @@ static void ov5_021E964C (SysTask * param0, void * param1)
     break;
     case 2:
         if (v1->unk_10 != NULL) {
-            if (Texture_IsUploadedToVRam(v1->unk_10) == 1) {
+            if (Easy3D_IsTextureUploadedToVRam(v1->unk_10) == 1) {
                 v2 = Easy3D_BindTextureToResource(*v1->unk_0C, v1->unk_10);
             } else {
                 (void)0;
@@ -1956,7 +1956,7 @@ NNSG3dResMdl * ov5_021E97AC (NARC * param0, const int param1, NNSG3dRenderObj * 
     NARC_ReadFile(param0, param1, *(param3));
 
     if (param4 != NULL) {
-        if (Texture_IsUploadedToVRam(param4) == 1) {
+        if (Easy3D_IsTextureUploadedToVRam(param4) == 1) {
             v0 = Easy3D_BindTextureToResource(*param3, param4);
             GF_ASSERT(v0);
         } else {
