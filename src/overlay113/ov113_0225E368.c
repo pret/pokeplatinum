@@ -612,7 +612,7 @@ static BOOL ov113_0225E774 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_020170F
                 return 0;
             }
 
-            sub_0201CBB0(param1->unk_00, param1->unk_0C);
+            Easy3D_BindTextureToResource(param1->unk_00, param1->unk_0C);
         }
     }
 

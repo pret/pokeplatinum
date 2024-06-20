@@ -1150,7 +1150,7 @@ static void ov5_021E89D0 (const u8 param0, const UnkStruct_ov5_021E8F60 * param1
         VecFx32 v1 = {FX32_ONE, FX32_ONE, FX32_ONE};
         MtxFx33 v2 = {FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE};
 
-        sub_0201CA74(&(param1->unk_84[param0]->unk_800), &v0, &v2, &v1);
+        Easy3D_DrawRenderObj(&(param1->unk_84[param0]->unk_800), &v0, &v2, &v1);
     }
 
     if (param1->unk_84[param0]->unk_864 == 1) {
@@ -1894,8 +1894,8 @@ static void ov5_021E964C (SysTask * param0, void * param1)
     break;
     case 2:
         if (v1->unk_10 != NULL) {
-            if (sub_0201CA5C(v1->unk_10) == 1) {
-                v2 = sub_0201CBB0(*v1->unk_0C, v1->unk_10);
+            if (Texture_IsUploadedToVRam(v1->unk_10) == 1) {
+                v2 = Easy3D_BindTextureToResource(*v1->unk_0C, v1->unk_10);
             } else {
                 (void)0;
             }
@@ -1956,8 +1956,8 @@ NNSG3dResMdl * ov5_021E97AC (NARC * param0, const int param1, NNSG3dRenderObj * 
     NARC_ReadFile(param0, param1, *(param3));
 
     if (param4 != NULL) {
-        if (sub_0201CA5C(param4) == 1) {
-            v0 = sub_0201CBB0(*param3, param4);
+        if (Texture_IsUploadedToVRam(param4) == 1) {
+            v0 = Easy3D_BindTextureToResource(*param3, param4);
             GF_ASSERT(v0);
         } else {
             (void)0;
@@ -2165,7 +2165,7 @@ static void ov5_021E9C40 (const u8 param0, const UnkStruct_ov5_021E8F60 * param1
     v0.z += param1->unk_10C.z;
 
     if (param1->unk_84[param0]->unk_864 == 1) {
-        sub_0201CA74(&(param1->unk_84[param0]->unk_800), &v0, &v2, &v1);
+        Easy3D_DrawRenderObj(&(param1->unk_84[param0]->unk_800), &v0, &v2, &v1);
     }
 }
 

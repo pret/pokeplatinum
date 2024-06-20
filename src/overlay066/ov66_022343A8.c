@@ -527,7 +527,7 @@ static void ov66_022348FC (UnkStruct_ov66_02234958 * param0, NARC * param1, u32 
     param0->unk_00.unk_08 = NNS_G3dGetMdlByIdx(param0->unk_00.unk_04, 0);
     param0->unk_00.unk_0C = NNS_G3dGetTex(param0->unk_00.unk_00);
 
-    sub_0201CBB0(param0->unk_00.unk_00, param0->unk_00.unk_0C);
+    Easy3D_BindTextureToResource(param0->unk_00.unk_00, param0->unk_00.unk_0C);
 
     NNS_G3dMdlSetMdlPolygonIDAll(param0->unk_00.unk_08, 20);
 }

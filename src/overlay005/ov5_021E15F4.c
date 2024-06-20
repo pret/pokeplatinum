@@ -196,7 +196,7 @@ void ov5_021E17CC (const VecFx32 * param0, const UnkStruct_ov5_021EF76C * param1
                 ov5_021D5790(v3->unk_00, v4, &v5);
 
                 if (v5 == 0) {
-                    sub_0201CA74(&(v3->unk_10), &(v1), &v2, &(v3->unk_80));
+                    Easy3D_DrawRenderObj(&(v3->unk_10), &(v1), &v2, &(v3->unk_80));
                 } else {
                     ov5_021E1944(v3->unk_64, &v1, &v2, &(v3->unk_80), v4, v3->unk_00);
                 }
@@ -384,7 +384,7 @@ void ov5_021E1A6C (UnkStruct_ov5_021E1608 * param0, UnkStruct_ov5_021EF76C * con
                 }
 
                 if (v4 == 0) {
-                    sub_0201CA74(&(v2->unk_10), &(v2->unk_68), &v1, &(v2->unk_80));
+                    Easy3D_DrawRenderObj(&(v2->unk_10), &(v2->unk_68), &v1, &(v2->unk_80));
                 } else {
                     ov5_021E1944(v2->unk_64, &v2->unk_68, &v1, &(v2->unk_80), v3, v2->unk_00);
                 }

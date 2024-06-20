@@ -60,7 +60,7 @@ void sub_0207389C (UnkStruct_02073838 * param0, u32 param1, NARC * param2, u32 p
 
 void sub_020738C0 (UnkStruct_02073838 * param0)
 {
-    sub_0201CBCC(param0->unk_10);
+    Easy3D_UploadTextureToVRam(param0->unk_10);
     NNS_G3dBindMdlSet(param0->unk_08, param0->unk_10);
     param0->unk_00 = 1;
 }
@@ -309,7 +309,7 @@ void sub_02073B90 (UnkStruct_02073B50 * param0, UnkStruct_02073838 * param1, Unk
 
 void sub_02073BA4 (UnkStruct_02073B50 * param0, const VecFx32 * param1, const VecFx32 * param2, const MtxFx33 * param3)
 {
-    sub_0201CA74(&param0->unk_00, param1, param3, param2);
+    Easy3D_DrawRenderObj(&param0->unk_00, param1, param3, param2);
 }
 
 void sub_02073BB4 (UnkStruct_02073B50 * param0, const VecFx32 * param1)
@@ -335,5 +335,5 @@ void sub_02073BF0 (UnkStruct_02073B50 * param0, const VecFx32 * param1, const Un
 
 void sub_02073C1C (UnkStruct_02073B50 * param0, const VecFx32 * param1, const VecFx32 * param2, const MtxFx33 * param3)
 {
-    sub_0201CAB0(&param0->unk_00, param1, param3, param2);
+    Easy3D_DrawRenderObjSimple(&param0->unk_00, param1, param3, param2);
 }

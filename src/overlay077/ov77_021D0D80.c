@@ -413,7 +413,7 @@ static void ov77_021D1208 (UnkStruct_ov77_021D1208 * param0, int param1, int par
     param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param2, param3);
     param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 2, param3);
 
-    sub_0201CA3C(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
+    Easy3D_InitRenderObjFromResource(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
 
     v0 = NNS_G3dGetAnmByIdx(param0->unk_60, 0);
     v1 = NNS_G3dGetAnmByIdx(param0->unk_64, 0);
@@ -569,7 +569,7 @@ static void ov77_021D1568 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
             }
         } else {
             DC_FlushAll();
-            sub_0201CA74(&param1->unk_04, &param1->unk_80, &v0, &param1->unk_8C);
+            Easy3D_DrawRenderObj(&param1->unk_04, &param1->unk_80, &v0, &param1->unk_8C);
         }
 
         switch (param1->unk_AC) {

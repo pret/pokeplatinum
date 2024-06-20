@@ -589,7 +589,7 @@ static void ov70_02261420 (UnkStruct_020170F4 * param0, NARC * param1, u32 param
     }
 
     {
-        sub_0201CBB0(param0->unk_00, param0->unk_0C);
+        Easy3D_BindTextureToResource(param0->unk_00, param0->unk_0C);
     }
 }
 

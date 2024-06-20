@@ -9,97 +9,93 @@
 #include "gx_layers.h"
 #include "unk_02024220.h"
 
-void sub_0201C9CC(NNSG3dResMdl ** param0, NNSG3dResFileHeader ** param1);
-static void sub_0201CB1C(void);
+void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader **resource);
+static void Easy3D_EngineSetup(void);
 
-void sub_0201C970 (const u8 param0, const char * param1, NNSG3dResMdl ** param2, NNSG3dResFileHeader ** param3)
+void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource)
 {
-    NNSG3dResTex * v0 = NULL;
+    NNSG3dResTex * texture = NULL;
     BOOL v1;
 
-    *param3 = ReadFileToHeap(param0, param1);
-    NNS_G3D_NULL_ASSERT(*param3);
+    *outResource = ReadFileToHeap(heapID, path);
+    NNS_G3D_NULL_ASSERT(*outResource);
 
-    v0 = NNS_G3dGetTex(*param3);
+    texture = NNS_G3dGetTex(*outResource);
+    if (texture != NULL) {
+        if (Texture_IsUploadedToVRam(texture) == FALSE) {
+            DC_FlushRange(*outResource, (*outResource)->fileSize);
 
-    if (v0 != NULL) {
-        if (sub_0201CA5C(v0) == 0) {
-            DC_FlushRange(*param3, (*param3)->fileSize);
-
-            v1 = NNS_G3dResDefaultSetup(*param3);
+            v1 = NNS_G3dResDefaultSetup(*outResource);
         }
     }
 
-    *param2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*param3), 0);
+    *outModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*outResource), 0);
 }
 
-void sub_0201C9CC (NNSG3dResMdl ** param0, NNSG3dResFileHeader ** param1)
+void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader **resource)
 {
-    NNSG3dResTex * v0 = NULL;
+    NNSG3dResTex * texture = NULL;
     BOOL v1;
 
-    v0 = NNS_G3dGetTex(*param1);
+    texture = NNS_G3dGetTex(*resource);
 
-    if (v0 != NULL) {
-        if (sub_0201CA5C(v0) == 0) {
-            DC_FlushRange(*param1, (*param1)->fileSize);
+    if (texture != NULL) {
+        if (Texture_IsUploadedToVRam(texture) == FALSE) {
+            DC_FlushRange(*resource, (*resource)->fileSize);
 
-            v1 = NNS_G3dResDefaultSetup(*param1);
+            v1 = NNS_G3dResDefaultSetup(*resource);
         }
     }
 
-    *param0 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*param1), 0);
+    *outModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*resource), 0);
 }
 
-void sub_0201CA24 (const u8 param0, const char * param1, NNSG3dRenderObj * param2, NNSG3dResMdl ** param3, NNSG3dResFileHeader ** param4)
+void Easy3D_InitRenderObjFromPath(const u8 heapID, const char *path, NNSG3dRenderObj *obj, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource)
 {
-    sub_0201C970(param0, param1, param3, param4);
-    NNS_G3dRenderObjInit(param2, *param3);
+    Easy3D_LoadModelFromPath(heapID, path, outModel, outResource);
+    NNS_G3dRenderObjInit(obj, *outModel);
 }
 
-void sub_0201CA3C (NNSG3dRenderObj * param0, NNSG3dResMdl ** param1, NNSG3dResFileHeader ** param2)
+void Easy3D_InitRenderObjFromResource(NNSG3dRenderObj *renderObj, NNSG3dResMdl **model, NNSG3dResFileHeader **resource)
 {
-    sub_0201C9CC(param1, param2);
-    GF_ASSERT(param1);
-    NNS_G3dRenderObjInit(param0, *param1);
+    Easy3D_LoadModelFromResource(model, resource);
+    GF_ASSERT(model);
+    NNS_G3dRenderObjInit(renderObj, *model);
 }
 
-BOOL sub_0201CA5C (NNSG3dResTex * param0)
+BOOL Texture_IsUploadedToVRam(NNSG3dResTex *texture)
 {
-    if ((param0->texInfo.flag & NNS_G3D_RESTEX_LOADED) || (param0->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED)) {
-        return 1;
-    }
-
-    return 0;
+    return (texture->texInfo.flag & NNS_G3D_RESTEX_LOADED) 
+        || (texture->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED);
 }
 
-void sub_0201CA74 (NNSG3dRenderObj * param0, const VecFx32 * param1, const MtxFx33 * param2, const VecFx32 * param3)
+void Easy3D_DrawRenderObj(NNSG3dRenderObj *renderObj, const VecFx32 *pos, const MtxFx33 *rot, const VecFx32 *scale)
 {
-    NNS_G3dGlbSetBaseTrans(param1);
-    NNS_G3dGlbSetBaseRot(param2);
-    NNS_G3dGlbSetBaseScale(param3);
+    NNS_G3dGlbSetBaseTrans(pos);
+    NNS_G3dGlbSetBaseRot(rot);
+    NNS_G3dGlbSetBaseScale(scale);
     NNS_G3dGlbFlush();
-    NNS_G3dDraw(param0);
+    NNS_G3dDraw(renderObj);
 }
 
-void sub_0201CAB0 (NNSG3dRenderObj * param0, const VecFx32 * param1, const MtxFx33 * param2, const VecFx32 * param3)
+void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, const MtxFx33 *rot, const VecFx32 *scale)
 {
-    NNS_G3dGlbSetBaseTrans(param1);
-    NNS_G3dGlbSetBaseRot(param2);
-    NNS_G3dGlbSetBaseScale(param3);
+    NNS_G3dGlbSetBaseTrans(pos);
+    NNS_G3dGlbSetBaseRot(rot);
+    NNS_G3dGlbSetBaseScale(scale);
     NNS_G3dGlbFlush();
-    NNS_G3dDraw1Mat1Shp(param0->resMdl, 0, 0, 1);
+    NNS_G3dDraw1Mat1Shp(renderObj->resMdl, 0, 0, TRUE);
     NNS_G3dGeFlushBuffer();
 }
 
 static GenericPointerData * Unk_021BFB0C = NULL;
 
-void sub_0201CAF4 (const u8 param0)
+void Easy3D_Init(const u8 heapID)
 {
-    Unk_021BFB0C = sub_02024220(param0, 0, 2, 0, 4, sub_0201CB1C);
+    Unk_021BFB0C = sub_02024220(heapID, 0, 2, 0, 4, Easy3D_EngineSetup);
 }
 
-static void sub_0201CB1C (void)
+static void Easy3D_EngineSetup(void)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
@@ -110,117 +106,108 @@ static void sub_0201CB1C (void)
     G3X_AlphaBlend(1);
     G3X_EdgeMarking(0);
     G3X_SetFog(0, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
-    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, 0);
+    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, FALSE);
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void sub_0201CBA0 (void)
+void Easy3D_Shutdown(void)
 {
     sub_020242C4(Unk_021BFB0C);
 }
 
-BOOL sub_0201CBB0 (void * param0, NNSG3dResTex * param1)
+BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture)
 {
-    NNSG3dResMdlSet * v0 = NNS_G3dGetMdlSet((NNSG3dResFileHeader *)param0);
+    NNSG3dResMdlSet *modelSet = NNS_G3dGetMdlSet((NNSG3dResFileHeader *)resource);
+    NNS_G3D_NULL_ASSERT(modelSet);
 
-    NNS_G3D_NULL_ASSERT(v0);
-
-    if (param1) {
-        BOOL v1;
-
-        v1 = NNS_G3dBindMdlSet(v0, param1);
-        return 1;
+    if (texture) {
+        BOOL v1 = NNS_G3dBindMdlSet(modelSet, texture);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_0201CBCC (NNSG3dResTex * param0)
+BOOL Easy3D_UploadTextureToVRam(NNSG3dResTex *texture)
 {
-    if (param0 == NULL) {
-        return 0;
+    if (texture == NULL) {
+        return FALSE;
     }
 
-    param0->texInfo.vramKey = 0;
-    {
-        u32 v0, v1, v2;
-        BOOL v3 = 1;
-        BOOL v4 = 1;
-        BOOL v5 = 1;
-        NNSG3dTexKey v6;
-        NNSG3dTexKey v7;
-        NNSG3dPlttKey v8;
+    texture->texInfo.vramKey = 0;
 
-        if (param0) {
-            v0 = NNS_G3dTexGetRequiredSize(param0);
-            v1 = NNS_G3dTex4x4GetRequiredSize(param0);
-            v2 = NNS_G3dPlttGetRequiredSize(param0);
+    u32 texRequiredSize, tex4x4RequiredSize, paletteRequiredSize;
+    BOOL texOk = TRUE;
+    BOOL tex4x4Ok = TRUE;
+    BOOL paletteOk = TRUE;
+    NNSG3dTexKey texKey;
+    NNSG3dTexKey tex4x4Key;
+    NNSG3dPlttKey paletteKey;
 
-            if (v0 > 0) {
-                v6 = NNS_GfdAllocTexVram(v0, 0, 0);
+    if (texture) {
+        texRequiredSize = NNS_G3dTexGetRequiredSize(texture);
+        tex4x4RequiredSize = NNS_G3dTex4x4GetRequiredSize(texture);
+        paletteRequiredSize = NNS_G3dPlttGetRequiredSize(texture);
 
-                if (v6 == NNS_GFD_ALLOC_ERROR_TEXKEY) {
-                    v3 = 0;
-                }
-            } else {
-                v6 = 0;
+        if (texRequiredSize > 0) {
+            texKey = NNS_GfdAllocTexVram(texRequiredSize, FALSE, 0);
+
+            if (texKey == NNS_GFD_ALLOC_ERROR_TEXKEY) {
+                texOk = FALSE;
             }
-
-            if (v1 > 0) {
-                v7 = NNS_GfdAllocTexVram(v1, 1, 0);
-
-                if (v7 == NNS_GFD_ALLOC_ERROR_TEXKEY) {
-                    v4 = 0;
-                }
-            } else {
-                v7 = 0;
-            }
-
-            if (v2 > 0) {
-                v8 = NNS_GfdAllocPlttVram(v2, param0->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4, 0);
-
-                if (v8 == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-                    v5 = 0;
-                }
-            } else {
-                v8 = 0;
-            }
-
-            if (!v3) {
-                int v9;
-
-                v9 = NNS_GfdFreeTexVram(v6);
-                GF_ASSERT(!v9);
-
-                return 0;
-            }
-
-            if (!v4) {
-                int v10;
-
-                v10 = NNS_GfdFreeTexVram(v7);
-                GF_ASSERT(!v10);
-
-                return 0;
-            }
-
-            if (!v5) {
-                int v11;
-
-                v11 = NNS_GfdFreePlttVram(v8);
-                GF_ASSERT(!v11);
-
-                return 0;
-            }
-
-            NNS_G3dTexSetTexKey(param0, v6, v7);
-            NNS_G3dPlttSetPlttKey(param0, v8);
-
-            DC_FlushRange(param0, param0->header.size);
-
-            NNS_G3dTexLoad(param0, 1);
-            NNS_G3dPlttLoad(param0, 1);
+        } else {
+            texKey = 0;
         }
+
+        if (tex4x4RequiredSize > 0) {
+            tex4x4Key = NNS_GfdAllocTexVram(tex4x4RequiredSize, TRUE, 0);
+
+            if (tex4x4Key == NNS_GFD_ALLOC_ERROR_TEXKEY) {
+                tex4x4Ok = FALSE;
+            }
+        } else {
+            tex4x4Key = 0;
+        }
+
+        if (paletteRequiredSize > 0) {
+            paletteKey = NNS_GfdAllocPlttVram(paletteRequiredSize, texture->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4, 0);
+
+            if (paletteKey == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
+                paletteOk = FALSE;
+            }
+        } else {
+            paletteKey = 0;
+        }
+
+        if (!texOk) {
+            int result = NNS_GfdFreeTexVram(texKey);
+            GF_ASSERT(!result);
+
+            return FALSE;
+        }
+
+        if (!tex4x4Ok) {
+            int result = NNS_GfdFreeTexVram(tex4x4Key);
+            GF_ASSERT(!result);
+
+            return FALSE;
+        }
+
+        if (!paletteOk) {
+            int result = NNS_GfdFreePlttVram(paletteKey);
+            GF_ASSERT(!result);
+
+            return FALSE;
+        }
+
+        NNS_G3dTexSetTexKey(texture, texKey, tex4x4Key);
+        NNS_G3dPlttSetPlttKey(texture, paletteKey);
+
+        DC_FlushRange(texture, texture->header.size);
+
+        NNS_G3dTexLoad(texture, TRUE);
+        NNS_G3dPlttLoad(texture, TRUE);
     }
-    return 1;
+
+    return TRUE;
 }

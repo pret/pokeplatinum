@@ -348,7 +348,7 @@ int ov92_021D0D80 (OverlayManager * param0, int * param1)
 
     ov92_021D14F0();
     ov92_021D1510();
-    sub_0201CAF4(v0->unk_00);
+    Easy3D_Init(v0->unk_00);
 
     v0->unk_B810 = sub_02018340(v0->unk_00);
 
@@ -706,7 +706,7 @@ int ov92_021D1478 (OverlayManager * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     Camera_Delete(v0->camera);
     StringTemplate_Free(v0->unk_B870);
-    sub_0201CBA0();
+    Easy3D_Shutdown();
     Heap_FreeToHeap(v0->unk_B810);
     SetMainCallback(NULL, NULL);
     OverlayManager_FreeData(param0);
@@ -1229,19 +1229,19 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
 static void ov92_021D2150 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
 {
     param0->unk_B8CC = NARC_AllocAndReadWholeMember(param1, 0, param0->unk_00);
-    sub_0201CA3C(&param0->unk_B874, &param0->unk_B8C8, &param0->unk_B8CC);
+    Easy3D_InitRenderObjFromResource(&param0->unk_B874, &param0->unk_B8C8, &param0->unk_B8CC);
 
     param0->unk_BA88[3] = NARC_AllocAndReadWholeMember(param1, 1, param0->unk_00);
-    sub_0201CA3C(&param0->unk_B8D0[3], &param0->unk_BA74[3], &param0->unk_BA88[3]);
+    Easy3D_InitRenderObjFromResource(&param0->unk_B8D0[3], &param0->unk_BA74[3], &param0->unk_BA88[3]);
 
     param0->unk_BA88[4] = NARC_AllocAndReadWholeMember(param1, 2, param0->unk_00);
-    sub_0201CA3C(&param0->unk_B8D0[4], &param0->unk_BA74[4], &param0->unk_BA88[4]);
+    Easy3D_InitRenderObjFromResource(&param0->unk_B8D0[4], &param0->unk_BA74[4], &param0->unk_BA88[4]);
 
     param0->unk_BA88[1] = NARC_AllocAndReadWholeMember(param1, 3, param0->unk_00);
-    sub_0201CA3C(&param0->unk_B8D0[1], &param0->unk_BA74[1], &param0->unk_BA88[1]);
+    Easy3D_InitRenderObjFromResource(&param0->unk_B8D0[1], &param0->unk_BA74[1], &param0->unk_BA88[1]);
 
     param0->unk_BA88[2] = NARC_AllocAndReadWholeMember(param1, 4, param0->unk_00);
-    sub_0201CA3C(&param0->unk_B8D0[2], &param0->unk_BA74[2], &param0->unk_BA88[2]);
+    Easy3D_InitRenderObjFromResource(&param0->unk_B8D0[2], &param0->unk_BA74[2], &param0->unk_BA88[2]);
 }
 
 static void ov92_021D2210 (UnkStruct_ov92_021D1B24 * param0)
@@ -1483,11 +1483,11 @@ static void ov92_021D26D0 (UnkStruct_ov92_021D1B24 * param0)
 
         {
             ov92_021D2370(&v0, &param0->unk_BAB4);
-            sub_0201CA74(&param0->unk_B874, &param0->unk_BA9C, &v0, &param0->unk_BAA8);
+            Easy3D_DrawRenderObj(&param0->unk_B874, &param0->unk_BA9C, &v0, &param0->unk_BAA8);
 
             {
                 MtxFx33 v1 = {FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE};
-                sub_0201CA74(&param0->unk_B8D0[4], &param0->unk_BA9C, &v1, &param0->unk_BAC0);
+                Easy3D_DrawRenderObj(&param0->unk_B8D0[4], &param0->unk_BA9C, &v1, &param0->unk_BAC0);
             }
 
             {
@@ -1498,7 +1498,7 @@ static void ov92_021D26D0 (UnkStruct_ov92_021D1B24 * param0)
                     MTX_Concat33(&param0->unk_0C.unk_04[v3].unk_04, &v0, &v2);
 
                     if (param0->unk_0C.unk_04[v3].unk_28 != 0) {
-                        sub_0201CA74(&param0->unk_B8D0[param0->unk_0C.unk_04[v3].unk_28], &param0->unk_BA9C, &v2, &param0->unk_BAC0);
+                        Easy3D_DrawRenderObj(&param0->unk_B8D0[param0->unk_0C.unk_04[v3].unk_28], &param0->unk_BA9C, &v2, &param0->unk_BAC0);
                     }
                 }
             }

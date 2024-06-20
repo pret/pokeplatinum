@@ -34,8 +34,8 @@ static void sub_020170F4 (SysTask * param0, void * param1)
 {
     UnkStruct_020170F4 * v0 = param1;
 
-    sub_0201CBCC(v0->unk_0C);
-    sub_0201CBB0(v0->unk_00, v0->unk_0C);
+    Easy3D_UploadTextureToVRam(v0->unk_0C);
+    Easy3D_BindTextureToResource(v0->unk_00, v0->unk_0C);
     SysTask_Done(param0);
 }
 
@@ -183,14 +183,14 @@ void sub_02017294 (UnkStruct_02017294 * param0)
         MTX_RotY33(&v1, FX_SinIdx(param0->unk_70[1]), FX_CosIdx(param0->unk_70[1]));
         MTX_Concat33(&v1, &v0, &v0);
 
-        sub_0201CA74(&param0->unk_00, &param0->unk_54, &v0, &param0->unk_60);
+        Easy3D_DrawRenderObj(&param0->unk_00, &param0->unk_54, &v0, &param0->unk_60);
     }
 }
 
 void sub_02017330 (UnkStruct_02017294 * param0, const MtxFx33 * param1)
 {
     if (param0->unk_6C) {
-        sub_0201CA74(&param0->unk_00, &param0->unk_54, (MtxFx33 *)param1, &param0->unk_60);
+        Easy3D_DrawRenderObj(&param0->unk_00, &param0->unk_54, (MtxFx33 *)param1, &param0->unk_60);
     }
 }
 

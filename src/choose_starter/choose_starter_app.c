@@ -812,8 +812,8 @@ static void ov78_021D1630 (ChooseStarter3DGraphics * param0, int param1, int par
     param0->unk_5C = NNS_G3dGetMdlByIdx(param0->unk_58, 0);
     param0->unk_60 = NNS_G3dGetTex(param0->unk_54);
 
-    sub_0201CBCC(param0->unk_60);
-    sub_0201CBB0(param0->unk_54, param0->unk_60);
+    Easy3D_UploadTextureToVRam(param0->unk_60);
+    Easy3D_BindTextureToResource(param0->unk_54, param0->unk_60);
 
     NNS_G3dRenderObjInit(&param0->unk_00, param0->unk_5C);
 }
@@ -856,7 +856,7 @@ static void ov78_021D1708 (ChooseStarter3DGraphics * param0)
     MTX_Concat33(&v1, &v0, &v0);
 
     if (param0->unk_74) {
-        sub_0201CA74(&param0->unk_00, &param0->unk_78, &v0, &param0->unk_84);
+        Easy3D_DrawRenderObj(&param0->unk_00, &param0->unk_78, &v0, &param0->unk_84);
     }
 }
 

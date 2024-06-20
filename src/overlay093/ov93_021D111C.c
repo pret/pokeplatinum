@@ -173,7 +173,7 @@ int ov93_021D120C (OverlayManager * param0, int * param1)
 
     sub_020241B4();
     Camera_ComputeViewMatrix();
-    sub_0201CA74(&v5->unk_04, &v4, &v2, &v3);
+    Easy3D_DrawRenderObj(&v5->unk_04, &v4, &v2, &v3);
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 
     return 0;
@@ -192,7 +192,7 @@ int ov93_021D12F0 (OverlayManager * param0, int * param1)
     Heap_FreeToHeap(v1->unk_5C);
     Camera_Delete(v1->camera);
     OverlayManager_FreeData(param0);
-    sub_0201CBA0();
+    Easy3D_Shutdown();
     Heap_Destroy(72);
 
     return 1;
@@ -209,7 +209,7 @@ static void ov93_021D133C (void)
     GXS_SetVisiblePlane(0);
 
     ov93_021D13A0();
-    sub_0201CAF4(72);
+    Easy3D_Init(72);
 
     G3X_EdgeMarking(1);
     G3X_SetEdgeColorTable(Unk_ov93_021D1524);
@@ -246,7 +246,7 @@ static void ov93_021D13C0 (UnkStruct_ov93_021D13C0 * param0)
     Heap_FndInitAllocatorForExpHeap(&param0->unk_6C, 72, 4);
 
     param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15C8[param0->unk_94].unk_00, 72);
-    sub_0201CA3C(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
+    Easy3D_InitRenderObjFromResource(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
     v1 = NNS_G3dGetTex(param0->unk_5C);
 
     NNS_G3dMdlUseGlbDiff(param0->unk_58);
