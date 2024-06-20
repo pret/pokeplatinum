@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020655F4_H
 #define POKEPLATINUM_UNK_020655F4_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/map_object_anim_cmd.h"
 

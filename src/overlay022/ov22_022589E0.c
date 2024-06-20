@@ -3,8 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
-
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay022/struct_ov22_02257964.h"
 #include "overlay022/struct_ov22_02257F50.h"

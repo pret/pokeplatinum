@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0222118C_decl.h"
@@ -20,7 +19,7 @@
 #include "overlay012/struct_ov12_02226504_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "functypes/sys_task_func.h"
+#include "sys_task_manager.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_022380DC.h"
 #include "overlay012/funcptr_ov12_02239E68.h"

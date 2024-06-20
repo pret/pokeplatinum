@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 

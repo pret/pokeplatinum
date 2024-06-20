@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 

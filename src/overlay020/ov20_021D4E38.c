@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/sys_task.h"
 
 #include "unk_02002F38.h"
 #include "unk_0200679C.h"

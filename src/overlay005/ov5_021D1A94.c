@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
-#include "struct_decls/struct_0201CD88_decl.h"
 #include "overlay005/struct_ov5_021D1A94_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 

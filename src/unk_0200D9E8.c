@@ -3,10 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
-
-#include "functypes/sys_task_func.h"
-
 #include "unk_0200D9E8.h"
 #include "sys_task_manager.h"
 

@@ -3,7 +3,7 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "touch_screen.h"
 #include "struct_defs/struct_0208C06C.h"

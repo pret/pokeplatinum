@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
-
 #include "unk_0200679C.h"
 #include "unk_0200D9E8.h"
 #include "sys_task_manager.h"

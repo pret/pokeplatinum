@@ -5,7 +5,7 @@
 #include "enums.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "poketch_data.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
@@ -10,7 +9,7 @@
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
 
-#include "functypes/sys_task_func.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02254560_1.h"
 #include "overlay025/struct_ov25_0225517C.h"
 #include "overlay025/struct_ov25_02255810.h"

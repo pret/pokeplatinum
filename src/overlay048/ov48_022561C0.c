@@ -5,7 +5,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "overlay025/poketch_system.h"
 #include "overlay048/struct_ov48_0225650C_decl.h"

@@ -5,7 +5,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "overlay101/const_ov101_021D9580.h"

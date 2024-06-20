@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ppwlobby/ppw_lobby.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "savedata.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_02230C90_decl.h"

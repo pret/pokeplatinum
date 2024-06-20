@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
 
 #include "field/field_system.h"
 

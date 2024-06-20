@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 

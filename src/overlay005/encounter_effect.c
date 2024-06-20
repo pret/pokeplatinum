@@ -9,11 +9,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "pokemon.h"
 
-#include "functypes/sys_task_func.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_0205AA50.h"

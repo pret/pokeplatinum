@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 

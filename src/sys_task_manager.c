@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "functypes/sys_task_func.h"
 #include "nitro/types.h"
 
 #include "sys_task_manager.h"
@@ -10,27 +9,6 @@ enum TaskState {
     TASK_STATE_ACTIVE = 0,
     TASK_STATE_INACTIVE = 1,
 };
-
-typedef struct SysTask {
-    SysTaskManager * manager;
-    SysTask * prevTask;
-    SysTask * nextTask;
-    u32 priority;
-    void * param;
-    SysTaskFunc callback;
-    u32 state;
-} SysTask;
-
-typedef struct SysTaskManager {
-    u16 maxTasks;
-    u16 stackPointer;
-    SysTask sentinelTask;
-    SysTask **taskStack;
-    SysTask *tasks;
-    BOOL isBeingModified;   // Whether the task list is being modified
-    SysTask *currentTask;   // The task that is currently being executed
-    SysTask *nextTask;      // The task that will be executed next
-} SysTaskManager;
 
 static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task);
 static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr);

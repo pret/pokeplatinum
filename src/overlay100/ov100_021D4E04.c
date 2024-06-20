@@ -3,8 +3,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/sys_task.h"
-
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay005/struct_ov5_021DDF24_sub1.h"
 #include "overlay100/struct_ov100_021D4E3C.h"

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"

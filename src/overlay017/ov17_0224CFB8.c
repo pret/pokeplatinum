@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "overlay017/struct_ov17_0223F03C.h"
 #include "overlay017/struct_ov17_02243C28.h"

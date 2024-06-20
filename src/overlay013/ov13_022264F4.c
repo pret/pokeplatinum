@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"

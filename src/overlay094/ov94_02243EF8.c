@@ -2,7 +2,6 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 
 #include "touch_screen.h"

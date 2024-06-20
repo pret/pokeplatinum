@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "touch_screen.h"
 #include "overlay116/struct_ov116_02260490.h"

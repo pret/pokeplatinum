@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/poketch_button.h"
 #include "overlay043/struct_ov43_02256544_decl.h"

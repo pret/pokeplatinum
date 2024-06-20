@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02003D54_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "struct_defs/struct_020052C8.h"

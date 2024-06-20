@@ -3,7 +3,7 @@
 #include <string.h>
 #include <nitro/os.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"

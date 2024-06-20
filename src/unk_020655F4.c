@@ -3,7 +3,6 @@
 
 #include "constdata/const_020EE4B8.h"
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 

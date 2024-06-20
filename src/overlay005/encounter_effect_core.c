@@ -4,7 +4,7 @@
 #include "constants/heap.h"
 #include "constants/trainer.h"
 #include "message.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"

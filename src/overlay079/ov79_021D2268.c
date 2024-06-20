@@ -8,13 +8,11 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020158A8.h"
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02098DE8.h"
 #include "struct_defs/struct_0209903C.h"

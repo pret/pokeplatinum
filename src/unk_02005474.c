@@ -3,7 +3,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/sys_task.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "unk_02003B60.h"

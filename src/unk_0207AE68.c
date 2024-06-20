@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"

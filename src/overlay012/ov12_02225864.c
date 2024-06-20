@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"

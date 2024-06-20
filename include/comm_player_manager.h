@@ -2,7 +2,7 @@
 #define POKEPLATINUM_COMM_PLAYER_MANAGER_H
 
 #include "field/field_system_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_02057B48.h"

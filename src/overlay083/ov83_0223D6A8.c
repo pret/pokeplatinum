@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"

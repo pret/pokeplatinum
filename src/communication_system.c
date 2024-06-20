@@ -4,7 +4,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_020322D8.h"
 #include "struct_defs/struct_020322F8.h"

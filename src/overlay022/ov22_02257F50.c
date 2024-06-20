@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
-
 #include "touch_screen.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"

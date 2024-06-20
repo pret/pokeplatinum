@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_020E5EB4.h"
 

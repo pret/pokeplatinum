@@ -1,10 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0201D670.h"
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0201D834.h"

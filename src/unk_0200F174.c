@@ -3,7 +3,7 @@
 
 #include "enums.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_0200F600.h"
 #include "functypes/funcptr_0200F634.h"

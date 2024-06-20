@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0205B43C_decl.h"

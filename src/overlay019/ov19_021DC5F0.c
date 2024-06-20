@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"

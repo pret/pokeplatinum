@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"

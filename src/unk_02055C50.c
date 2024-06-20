@@ -3,7 +3,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02055CBC_decl.h"

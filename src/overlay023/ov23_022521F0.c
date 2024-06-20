@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "savedata.h"

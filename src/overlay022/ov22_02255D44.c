@@ -5,7 +5,6 @@
 
 #include "message.h"
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029C68_decl.h"

@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay116/struct_ov116_0226139C.h"

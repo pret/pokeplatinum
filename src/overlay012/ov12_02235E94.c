@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"

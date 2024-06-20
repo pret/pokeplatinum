@@ -13,7 +13,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"

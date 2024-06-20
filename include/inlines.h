@@ -4,7 +4,7 @@
 #include <nitro/rtc.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "vars_flags.h"
 

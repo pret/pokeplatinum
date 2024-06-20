@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV23_0224F294_H
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "field/field_system_decl.h"
 #include "overlay023/funcptr_ov23_0224F758.h"

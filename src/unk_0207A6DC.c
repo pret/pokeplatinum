@@ -3,7 +3,7 @@
 
 #include "constants/battle.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_party_decl.h"

@@ -15,7 +15,6 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "struct_decls/battle_system.h"
@@ -24,7 +23,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "functypes/sys_task_func.h"
+#include "sys_task_manager.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"

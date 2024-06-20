@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "buffer_manager.h"
 #include "unk_0200D9E8.h"

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ball_rotation_decl.h"

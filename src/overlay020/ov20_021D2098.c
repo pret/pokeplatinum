@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
@@ -15,7 +14,6 @@
 #include "overlay020/struct_ov20_021D4AD4_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay083/struct_ov83_0223D9A8.h"

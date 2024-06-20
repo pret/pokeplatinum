@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"

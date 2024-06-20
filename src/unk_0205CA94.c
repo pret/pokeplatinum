@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "trainer_info.h"
@@ -11,7 +10,6 @@
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200C738.h"
-#include "functypes/sys_task_func.h"
 #include "field/field_system.h"
 #include "overlay115/struct_ov115_02261520.h"
 

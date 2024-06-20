@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 
 #include "struct_defs/struct_02099F80.h"

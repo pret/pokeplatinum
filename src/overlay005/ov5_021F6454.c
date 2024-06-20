@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"

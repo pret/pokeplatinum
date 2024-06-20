@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0205C22C_H
 #define POKEPLATINUM_STRUCT_0205C22C_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"

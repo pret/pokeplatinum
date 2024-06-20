@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "functypes/funcptr_02014014.h"
 #include "struct_defs/struct_02014560.h"

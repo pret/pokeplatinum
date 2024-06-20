@@ -4,7 +4,7 @@
 #include "core_sys.h"
 #include "assert.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay017/struct_ov17_02243C28.h"

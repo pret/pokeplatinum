@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"

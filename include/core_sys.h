@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CORE_SYS_H
 #define POKEPLATINUM_CORE_SYS_H
 
-#include "struct_decls/struct_0201CD88_decl.h"
+#include "sys_task_manager.h"
 #include "overlay023/funcptr_ov23_022537D4.h"
 
 typedef void (* Callback)(void *);

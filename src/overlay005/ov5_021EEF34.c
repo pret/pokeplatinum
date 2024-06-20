@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
 
 #include "overlay005/struct_ov5_021EEC68.h"
 #include "overlay005/struct_ov5_021EED38.h"

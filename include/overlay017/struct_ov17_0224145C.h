@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV17_0224145C_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     PaletteData * unk_00;

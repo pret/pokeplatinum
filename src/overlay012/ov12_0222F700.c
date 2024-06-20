@@ -7,7 +7,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_0222660C_decl.h"

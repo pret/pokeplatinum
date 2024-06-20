@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
@@ -16,7 +15,6 @@
 #include "overlay019/struct_ov19_021DEC04_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/funcptr_ov19_021D79B8.h"

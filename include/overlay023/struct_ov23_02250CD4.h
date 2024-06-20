@@ -6,7 +6,7 @@
 #include "string_template.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "field/field_system_decl.h"
 #include "struct_defs/struct_0205AA50.h"

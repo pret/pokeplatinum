@@ -5,7 +5,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
