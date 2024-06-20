@@ -554,16 +554,16 @@ static void ov16_02266FE4 (SpriteRenderer * param0, SpriteGfxHandler * param1, N
     }
 }
 
-CellActorData * ov16_02267060 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2)
+CellActorData * Healthbar_LoadCellActor (SpriteRenderer * renderer, SpriteGfxHandler * handler, int type)
 {
-    const SpriteTemplate * v0;
-    CellActorData * v1;
+    const SpriteTemplate * template;
+    CellActorData * data;
 
-    v0 = Healthbar_SpriteTemplate(param2);
-    v1 = SpriteActor_LoadResources(param0, param1, v0);
+    template = Healthbar_SpriteTemplate(type);
+    data = SpriteActor_LoadResources(renderer, handler, template);
 
-    SpriteActor_UpdateObject(v1->unk_00);
-    return v1;
+    SpriteActor_UpdateObject(data->unk_00);
+    return data;
 }
 
 void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
@@ -761,7 +761,7 @@ void ov16_022672C4 (Healthbar * param0)
     v0 = Healthbar_SpriteTemplate(param0->type);
 
     Healthbar_LoadResources(v1, v2, v4, v3, param0->type);
-    param0->mainActor = ov16_02267060(v1, v2, param0->type);
+    param0->mainActor = Healthbar_LoadCellActor(v1, v2, param0->type);
 
     ov16_02266FE4(v1, v2, v4, v3, param0->type);
 

@@ -1,0 +1,6 @@
+02267060 - returns cell actor data
+    - unk00 in CellActor... is a GraphicElementData based on call to UpdateOb...
+FillCells
+UpdateGauge
+
+
