@@ -63,8 +63,6 @@ static void DWWarp_CameraMove(DistortionWorldWarp * warp);
 
 int DWWarp_Init (OverlayManager * ovy, int * state)
 {
-    DistortionWorldWarp * dww;
-
     SetMainCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -79,7 +77,7 @@ int DWWarp_Init (OverlayManager * ovy, int * state)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_DISTORTION_WORLD_WARP, HEAP_SIZE_DISTORTION_WORLD_WARP);
 
-    dww = OverlayManager_NewData(ovy, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
+    DistortionWorldWarp* dww = OverlayManager_NewData(ovy, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
     MI_CpuClear8(dww, sizeof(DistortionWorldWarp));
     dww->p3DCallback = DWWarp_Init3D(HEAP_ID_DISTORTION_WORLD_WARP);
 
