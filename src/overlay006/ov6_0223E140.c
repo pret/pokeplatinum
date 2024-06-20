@@ -1055,7 +1055,7 @@ static void ov6_0223EA98 (UnkStruct_ov6_0223EA98 * param0)
     v0 = v3[param0->unk_10][0];
     v1 = v3[param0->unk_10][1];
 
-    sub_020170D8(&param0->unk_9C, v2, v0, 4);
+    Easy3DModel_LoadFrom(&param0->unk_9C, v2, v0, 4);
     sub_02017258(&param0->unk_24, &param0->unk_9C);
     sub_02017350(&param0->unk_24, 0, 0, 0);
     sub_0201736C(&param0->unk_24, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
@@ -1068,7 +1068,7 @@ static void ov6_0223EA98 (UnkStruct_ov6_0223EA98 * param0)
 
 static void ov6_0223EB34 (UnkStruct_ov6_0223EA98 * param0)
 {
-    sub_02017110(&param0->unk_9C);
+    Easy3DModel_Release(&param0->unk_9C);
     sub_020171A0(&param0->unk_AC, &param0->unk_C0);
 }
 
@@ -1763,17 +1763,17 @@ static BOOL ov6_0223FD18 (UnkStruct_ov6_0223FD0C * param0, s32 param1)
 
 static void ov6_0223FD58 (Easy3DModel * param0, u32 param1, u32 param2, u32 param3)
 {
-    sub_020170BC(param0, param1, param2, param3);
+    Easy3DModel_Load(param0, param1, param2, param3);
 }
 
 static void ov6_0223FD60 (Easy3DModel * param0, NARC * param1, u32 param2, u32 param3)
 {
-    sub_020170D8(param0, param1, param2, param3);
+    Easy3DModel_LoadFrom(param0, param1, param2, param3);
 }
 
 static void ov6_0223FD68 (Easy3DModel * param0)
 {
-    sub_02017110(param0);
+    Easy3DModel_Release(param0);
 }
 
 static void ov6_0223FD70 (Easy3DAnim * param0, const Easy3DModel * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5)

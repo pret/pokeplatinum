@@ -1351,15 +1351,15 @@ static void ov117_02261C2C (UnkStruct_ov117_02261280 * param0, NARC * param1)
 
     v4 = ov117_0226235C(param0, CommSys_CurNetId());
 
-    sub_020170D8(&v2->unk_00, param1, Unk_ov117_022669F0[v4].unk_00, 110);
+    Easy3DModel_LoadFrom(&v2->unk_00, param1, Unk_ov117_022669F0[v4].unk_00, 110);
     sub_02017258(&v2->unk_10, &v2->unk_00);
     sub_02017350(&v2->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     sub_0201736C(&v2->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
     sub_02017348(&v2->unk_10, 1);
-    sub_020170D8(&v2->unk_88[0], param1, Unk_ov117_022669F0[v4].unk_04, 110);
-    sub_020170D8(&v2->unk_88[1], param1, Unk_ov117_022669F0[v4].unk_08, 110);
-    sub_020170D8(&v2->unk_88[2], param1, Unk_ov117_022669F0[v4].unk_0C, 110);
-    sub_020170D8(&v2->unk_88[3], param1, Unk_ov117_022669F0[v4].unk_10, 110);
+    Easy3DModel_LoadFrom(&v2->unk_88[0], param1, Unk_ov117_022669F0[v4].unk_04, 110);
+    Easy3DModel_LoadFrom(&v2->unk_88[1], param1, Unk_ov117_022669F0[v4].unk_08, 110);
+    Easy3DModel_LoadFrom(&v2->unk_88[2], param1, Unk_ov117_022669F0[v4].unk_0C, 110);
+    Easy3DModel_LoadFrom(&v2->unk_88[3], param1, Unk_ov117_022669F0[v4].unk_10, 110);
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
@@ -1374,7 +1374,7 @@ static void ov117_02261C2C (UnkStruct_ov117_02261280 * param0, NARC * param1)
         }
     }
 
-    sub_020170D8(&v3->unk_00, param1, 30, 110);
+    Easy3DModel_LoadFrom(&v3->unk_00, param1, 30, 110);
     sub_02017258(&v3->unk_10, &v3->unk_00);
     sub_02017350(&v3->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     sub_0201736C(&v3->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
@@ -1386,10 +1386,10 @@ static void ov117_02261DD0 (UnkStruct_ov117_02261280 * param0)
     int v0, v1;
     UnkStruct_ov117_02261F08 * v2 = &param0->unk_D8;
 
-    sub_02017110(&v2->unk_00);
+    Easy3DModel_Release(&v2->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02017110(&v2->unk_88[v0]);
+        Easy3DModel_Release(&v2->unk_88[v0]);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -1398,7 +1398,7 @@ static void ov117_02261DD0 (UnkStruct_ov117_02261280 * param0)
         }
     }
 
-    sub_02017110(&param0->unk_13A0.unk_00);
+    Easy3DModel_Release(&param0->unk_13A0.unk_00);
 }
 
 BOOL ov117_02261E38 (UnkStruct_ov117_02261280 * param0, int param1)

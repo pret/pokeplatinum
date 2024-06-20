@@ -1557,7 +1557,7 @@ static void ov69_0225D6D8 (UnkStruct_ov69_0225D71C * param0, UnkStruct_ov69_0225
     }
 
     {
-        sub_020170D8(&param0->unk_9C, param1->unk_1A8, 3, param2);
+        Easy3DModel_LoadFrom(&param0->unk_9C, param1->unk_1A8, 3, param2);
         sub_02017258(&param0->unk_24, &param0->unk_9C);
     }
 }
@@ -1565,7 +1565,7 @@ static void ov69_0225D6D8 (UnkStruct_ov69_0225D71C * param0, UnkStruct_ov69_0225
 static void ov69_0225D71C (UnkStruct_ov69_0225D71C * param0)
 {
     {
-        sub_02017110(&param0->unk_9C);
+        Easy3DModel_Release(&param0->unk_9C);
     }
 }
 
@@ -1608,7 +1608,7 @@ static void ov69_0225D7A0 (UnkStruct_ov69_0225CA7C * param0, const UnkStruct_ov6
     ov69_0225C980(param0, param1, param4);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020170D8(&param0->unk_B978[v0], param2->unk_1A8, Unk_ov69_0225F028[v0], param4);
+        Easy3DModel_LoadFrom(&param0->unk_B978[v0], param2->unk_1A8, Unk_ov69_0225F028[v0], param4);
         sub_02017258(&param0->unk_B810[v0], &param0->unk_B978[v0]);
     }
 
@@ -1624,7 +1624,7 @@ static void ov69_0225D838 (UnkStruct_ov69_0225CA7C * param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02017110(&param0->unk_B978[v0]);
+        Easy3DModel_Release(&param0->unk_B978[v0]);
     }
 }
 

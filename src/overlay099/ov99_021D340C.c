@@ -103,7 +103,7 @@ BOOL ov99_021D340C (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D3A40 * 
                 v1 = Unk_ov99_021D4CAC[v2];
             }
 
-            NNS_G3dRenderObjInit(&param0->unk_6C[0][v2].unk_00, param0->unk_2C[v1].unk_08);
+            NNS_G3dRenderObjInit(&param0->unk_6C[0][v2].unk_00, param0->unk_2C[v1].model);
         }
 
         v0->unk_120 = 16;

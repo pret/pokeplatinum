@@ -196,7 +196,7 @@ void ov100_021D49B4 (UnkStruct_ov100_021D49B4 * param0)
 
 void ov100_021D4A84 (UnkStruct_ov100_021D49B4 * param0)
 {
-    sub_02017110(&param0->unk_78);
+    Easy3DModel_Release(&param0->unk_78);
 }
 
 void ov100_021D4A90 (int param0, UnkStruct_ov100_021D49B4 * param1, NNSFndAllocator * param2)
@@ -217,7 +217,7 @@ void ov100_021D4AA4 (UnkStruct_ov100_021D49B4 * param0, NNSFndAllocator * param1
 
 void ov100_021D4AC8 (UnkStruct_ov100_021D49B4 * param0, int param1, NARC * param2)
 {
-    sub_020170D8(&param0->unk_78, param2, param1, 111);
+    Easy3DModel_LoadFrom(&param0->unk_78, param2, param1, 111);
     sub_02017258(&param0->unk_00, &param0->unk_78);
     sub_02017350(&param0->unk_00, 0, 0, 0);
     sub_0201736C(&param0->unk_00, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));

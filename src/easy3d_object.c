@@ -10,51 +10,51 @@
 #include "heap.h"
 #include "easy3d.h"
 
-static void sub_020170F4(SysTask * param0, void * param1);
+static void Easy3DModel_BindTexture(SysTask *task, void *param);
 static void sub_020173A0(Easy3DAnim * param0, const Easy3DModel * param1, void * param2, NNSFndAllocator * param3);
-static void sub_020173CC(Easy3DModel * param0);
+static void Easy3DModel_LoadInternal(Easy3DModel *model);
 
-void sub_020170BC (Easy3DModel * param0, u32 param1, u32 param2, u32 param3)
+void Easy3DModel_Load(Easy3DModel *model, u32 narcIndex, u32 memberIndex, u32 heapID)
 {
-    param0->unk_00 = sub_02006FE8(param1, param2, 0, param3, 0);
-    sub_020173CC(param0);
+    model->data = sub_02006FE8(narcIndex, memberIndex, 0, heapID, 0);
+    Easy3DModel_LoadInternal(model);
 }
 
-void sub_020170D8 (Easy3DModel * param0, NARC * param1, u32 param2, u32 param3)
+void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID)
 {
-    param0->unk_00 = sub_0200723C(param1, param2, 0, param3, 0);
-    sub_020173CC(param0);
+    model->data = sub_0200723C(narc, memberIndex, 0, heapID, 0);
+    Easy3DModel_LoadInternal(model);
 }
 
-static void sub_020170F4 (SysTask * param0, void * param1)
+static void Easy3DModel_BindTexture(SysTask *task, void *param)
 {
-    Easy3DModel * v0 = param1;
+    Easy3DModel *model = param;
 
-    Easy3D_UploadTextureToVRam(v0->unk_0C);
-    Easy3D_BindTextureToResource(v0->unk_00, v0->unk_0C);
-    SysTask_Done(param0);
+    Easy3D_UploadTextureToVRam(model->texture);
+    Easy3D_BindTextureToResource(model->data, model->texture);
+    SysTask_Done(task);
 }
 
-void sub_02017110 (Easy3DModel * param0)
+void Easy3DModel_Release(Easy3DModel *model)
 {
-    NNSG3dTexKey v0;
-    NNSG3dTexKey v1;
-    NNSG3dPlttKey v2;
+    NNSG3dTexKey texKey;
+    NNSG3dTexKey tex4x4Key;
+    NNSG3dPlttKey paletteKey;
 
-    if (param0->unk_0C) {
-        NNS_G3dTexReleaseTexKey(param0->unk_0C, &v0, &v1);
-        NNS_GfdFreeTexVram(v0);
-        NNS_GfdFreeTexVram(v1);
+    if (model->texture) {
+        NNS_G3dTexReleaseTexKey(model->texture, &texKey, &tex4x4Key);
+        NNS_GfdFreeTexVram(texKey);
+        NNS_GfdFreeTexVram(tex4x4Key);
 
-        v2 = NNS_G3dPlttReleasePlttKey(param0->unk_0C);
-        NNS_GfdFreePlttVram(v2);
+        paletteKey = NNS_G3dPlttReleasePlttKey(model->texture);
+        NNS_GfdFreePlttVram(paletteKey);
     }
 
-    if (param0->unk_00) {
-        Heap_FreeToHeap(param0->unk_00);
+    if (model->data) {
+        Heap_FreeToHeap(model->data);
     }
 
-    memset(param0, 0, sizeof(Easy3DModel));
+    memset(model, 0, sizeof(Easy3DModel));
 }
 
 void sub_02017164 (Easy3DAnim * param0, const Easy3DModel * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5)
@@ -147,7 +147,7 @@ fx32 sub_0201724C (const Easy3DAnim * param0)
 void sub_02017258 (Easy3DObject * param0, Easy3DModel * param1)
 {
     memset(param0, 0, sizeof(Easy3DObject));
-    NNS_G3dRenderObjInit(&param0->unk_00, param1->unk_08);
+    NNS_G3dRenderObjInit(&param0->unk_00, param1->model);
 
     param0->unk_6C = 1;
     param0->unk_60.x = FX32_ONE;
@@ -242,20 +242,20 @@ static void sub_020173A0 (Easy3DAnim * param0, const Easy3DModel * param1, void 
 {
     param0->unk_00 = param2;
     param0->unk_04 = NNS_G3dGetAnmByIdx(param0->unk_00, 0);
-    param0->unk_08 = NNS_G3dAllocAnmObj(param3, param0->unk_04, param1->unk_08);
+    param0->unk_08 = NNS_G3dAllocAnmObj(param3, param0->unk_04, param1->model);
 
-    NNS_G3dAnmObjInit(param0->unk_08, param0->unk_04, param1->unk_08, param1->unk_0C);
+    NNS_G3dAnmObjInit(param0->unk_08, param0->unk_04, param1->model, param1->texture);
 }
 
-static void sub_020173CC (Easy3DModel * param0)
+static void Easy3DModel_LoadInternal(Easy3DModel *model)
 {
-    GF_ASSERT(param0->unk_00);
+    GF_ASSERT(model->data);
 
-    param0->unk_04 = NNS_G3dGetMdlSet(param0->unk_00);
-    param0->unk_08 = NNS_G3dGetMdlByIdx(param0->unk_04, 0);
-    param0->unk_0C = NNS_G3dGetTex(param0->unk_00);
+    model->set = NNS_G3dGetMdlSet(model->data);
+    model->model = NNS_G3dGetMdlByIdx(model->set, 0);
+    model->texture = NNS_G3dGetTex(model->data);
 
-    if (param0->unk_0C) {
-        SysTask_ExecuteAfterVBlank(sub_020170F4, param0, 1024);
+    if (model->texture) {
+        SysTask_ExecuteAfterVBlank(Easy3DModel_BindTexture, model, 1024);
     }
 }

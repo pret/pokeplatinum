@@ -520,25 +520,25 @@ static void ov66_022348FC (UnkStruct_ov66_02234958 * param0, NARC * param1, u32 
 
     ov70_0225C730(&v0, param1, param2, param3);
 
-    param0->unk_00.unk_00 = v0;
-    param0->unk_00.unk_04 = NNS_G3dGetMdlSet(param0->unk_00.unk_00);
-    param0->unk_00.unk_08 = NNS_G3dGetMdlByIdx(param0->unk_00.unk_04, 0);
-    param0->unk_00.unk_0C = NNS_G3dGetTex(param0->unk_00.unk_00);
+    param0->unk_00.data = v0;
+    param0->unk_00.set = NNS_G3dGetMdlSet(param0->unk_00.data);
+    param0->unk_00.model = NNS_G3dGetMdlByIdx(param0->unk_00.set, 0);
+    param0->unk_00.texture = NNS_G3dGetTex(param0->unk_00.data);
 
-    Easy3D_BindTextureToResource(param0->unk_00.unk_00, param0->unk_00.unk_0C);
+    Easy3D_BindTextureToResource(param0->unk_00.data, param0->unk_00.texture);
 
-    NNS_G3dMdlSetMdlPolygonIDAll(param0->unk_00.unk_08, 20);
+    NNS_G3dMdlSetMdlPolygonIDAll(param0->unk_00.model, 20);
 }
 
 static void ov66_02234958 (UnkStruct_ov66_02234958 * param0)
 {
-    sub_02017110(&param0->unk_00);
+    Easy3DModel_Release(&param0->unk_00);
 }
 
 static void ov66_02234960 (UnkStruct_ov66_02234958 * param0, u32 param1)
 {
     param0->unk_10 = param1;
-    NNS_G3dMdlSetMdlAlphaAll(param0->unk_00.unk_08, param0->unk_10);
+    NNS_G3dMdlSetMdlAlphaAll(param0->unk_00.model, param0->unk_10);
 }
 
 static u32 ov66_0223496C (const UnkStruct_ov66_02234958 * param0)

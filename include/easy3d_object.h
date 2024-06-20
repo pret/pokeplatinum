@@ -2,15 +2,16 @@
 #define POKEPLATINUM_EASY3D_OBJECT_H
 
 #include "struct_decls/struct_02006C24_decl.h"
+#include "constants/heap.h"
 
 #include <nnsys.h>
 #include <nitro/fx/fx.h>
 
 typedef struct Easy3DModel {
-    void *unk_00;
-    NNSG3dResMdlSet *unk_04;
-    NNSG3dResMdl *unk_08;
-    NNSG3dResTex *unk_0C;
+    void *data;
+    NNSG3dResMdlSet *set;
+    NNSG3dResMdl *model;
+    NNSG3dResTex *texture;
 } Easy3DModel;
 
 typedef struct Easy3DAnim {
@@ -30,9 +31,10 @@ typedef struct Easy3DObject {
     u8 padding_76[2];
 } Easy3DObject;
 
-void sub_020170BC(Easy3DModel * param0, u32 param1, u32 param2, u32 param3);
-void sub_020170D8(Easy3DModel * param0, NARC * param1, u32 param2, u32 param3);
-void sub_02017110(Easy3DModel * param0);
+void Easy3DModel_Load(Easy3DModel *model, u32 narcIndex, u32 memberIndex, u32 heapID);
+void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID);
+void Easy3DModel_Release(Easy3DModel *model);
+
 void sub_02017164(Easy3DAnim * param0, const Easy3DModel * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5);
 void sub_02017190(Easy3DAnim * param0, const Easy3DModel * param1, void * param2, NNSFndAllocator * param3);
 void sub_020171A0(Easy3DAnim * param0, NNSFndAllocator * param1);

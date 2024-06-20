@@ -3352,7 +3352,7 @@ static void ov115_02263DF8 (UnkStruct_ov115_02263DF8 * param0, NARC * param1, u3
     memset(param0, 0, sizeof(UnkStruct_ov115_02263DF8));
 
     for (v2 = 0; v2 < 3; v2++) {
-        sub_020170D8(&param0->unk_168[v2], param1, v1[v2], param2);
+        Easy3DModel_LoadFrom(&param0->unk_168[v2], param1, v1[v2], param2);
         sub_02017258(&param0->unk_00[v2], &param0->unk_168[v2]);
         sub_02017348(&param0->unk_00[v2], 0);
         sub_02017350(&param0->unk_00[v2], Unk_ov115_02265B20.x, Unk_ov115_02265B20.y + (-FX32_CONST(200)), Unk_ov115_02265B20.z);
@@ -3364,7 +3364,7 @@ static void ov115_02263DF8 (UnkStruct_ov115_02263DF8 * param0, NARC * param1, u3
         sub_02017240(&param0->unk_198[v2], 0);
 
         v3 = 0;
-        v7 = NNS_G3dGetNodeInfo(param0->unk_168[Unk_ov115_02266644[v2]].unk_08);
+        v7 = NNS_G3dGetNodeInfo(param0->unk_168[Unk_ov115_02266644[v2]].model);
 
         while ((v6 = NNS_G3dGetNodeNameByIdx(v7, v3)) != NULL) {
             NNS_G3dAnmObjDisableID(param0->unk_198[v2].unk_08, v3);
@@ -3402,7 +3402,7 @@ static void ov115_02263FF4 (UnkStruct_ov115_02263DF8 * param0, NNSFndAllocator *
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02017110(&param0->unk_168[v0]);
+        Easy3DModel_Release(&param0->unk_168[v0]);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -3610,11 +3610,11 @@ static void ov115_022643EC (UnkStruct_ov115_02261ADC * param0, NARC * param1, u3
     };
 
     for (v1 = 0; v1 < 5; v1++) {
-        sub_020170D8(&param0->unk_760.unk_00[v1], param1, v2[v1], param2);
+        Easy3DModel_LoadFrom(&param0->unk_760.unk_00[v1], param1, v2[v1], param2);
     }
 
-    sub_020170D8(&param0->unk_760.unk_50, param1, 46, param2);
-    NNS_G3dMdlUseGlbAlpha(param0->unk_760.unk_50.unk_08);
+    Easy3DModel_LoadFrom(&param0->unk_760.unk_50, param1, 46, param2);
+    NNS_G3dMdlUseGlbAlpha(param0->unk_760.unk_50.model);
 
     {
         param0->unk_760.unk_60[0] = sub_02009A4C(param0->unk_1AC[0], param1, 7, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
@@ -3656,10 +3656,10 @@ static void ov115_02264564 (UnkStruct_ov115_02261ADC * param0)
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_02017110(&param0->unk_760.unk_00[v0]);
+        Easy3DModel_Release(&param0->unk_760.unk_00[v0]);
     }
 
-    sub_02017110(&param0->unk_760.unk_50);
+    Easy3DModel_Release(&param0->unk_760.unk_50);
 
     memset(&param0->unk_760, 0, sizeof(UnkStruct_ov115_02264A40));
     memset(&param0->unk_7F4, 0, sizeof(UnkStruct_ov115_022647A0) * 96);
@@ -3768,9 +3768,9 @@ static void ov115_022647A0 (UnkStruct_ov115_022647A0 * param0, UnkStruct_ov115_0
         v1 = ov115_02264A40(param0->unk_F8, &param1->unk_760);
 
         if (param0->unk_F8->unk_00 == 5) {
-            NNS_G3dMdlSetMdlAmbAll(v1->unk_08, GX_RGB(31, 31, 31));
+            NNS_G3dMdlSetMdlAmbAll(v1->model, GX_RGB(31, 31, 31));
         } else {
-            NNS_G3dMdlSetMdlAmbAll(v1->unk_08, GX_RGB(18, 18, 18));
+            NNS_G3dMdlSetMdlAmbAll(v1->model, GX_RGB(18, 18, 18));
         }
 
         ov115_02264A54(param0);
@@ -4131,7 +4131,7 @@ static void ov115_02264E48 (UnkStruct_ov115_02264FA0 * param0, UnkStruct_ov115_0
             v3 = v0[param3 - 1];
         }
 
-        sub_020170D8(&param0->unk_168[v4], param2, v3, param5);
+        Easy3DModel_LoadFrom(&param0->unk_168[v4], param2, v3, param5);
         sub_02017258(&param0->unk_00[v4], &param0->unk_168[v4]);
         sub_02017350(&param0->unk_00[v4], 0, ((FX32_CONST(-90)) - FX32_CONST(8)), 0);
         sub_0201736C(&param0->unk_00[v4], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
@@ -4164,7 +4164,7 @@ static void ov115_02264F68 (UnkStruct_ov115_02264FA0 * param0, UnkStruct_ov115_0
     }
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02017110(&param0->unk_168[v0]);
+        Easy3DModel_Release(&param0->unk_168[v0]);
     }
 }
 

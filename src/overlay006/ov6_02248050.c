@@ -148,7 +148,7 @@ static void ov6_02248140 (UnkStruct_ov6_02248140 * param0, NARC * param1, u32 pa
 
     memset(param0, 0, sizeof(UnkStruct_ov6_02248140));
 
-    sub_020170D8(&param0->unk_78, param1, param2, 4);
+    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, 4);
     sub_02017258(&param0->unk_00, &param0->unk_78);
 
     param0->unk_D8 = param4;
@@ -163,7 +163,7 @@ static void ov6_022481BC (UnkStruct_ov6_02248140 * param0, NNSFndAllocator * par
 {
     int v0;
 
-    sub_02017110(&param0->unk_78);
+    Easy3DModel_Release(&param0->unk_78);
 
     for (v0 = 0; v0 < param0->unk_D8; v0++) {
         sub_020171A0(&param0->unk_88[v0], param1);
@@ -616,7 +616,7 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, 4);
 
-    sub_020170D8(&v0->unk_00, v2, 8, 4);
+    Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, 4);
 
     for (v1 = 0; v1 < 4; v1++) {
         v0->unk_CD0[v1] = sub_0200723C(v2, 4 + v1, 0, 4, 0);
@@ -642,7 +642,7 @@ static void ov6_0224889C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
         ov6_02248700(&v0->unk_10[v1], &v0->unk_CFC);
     }
 
-    sub_02017110(&v0->unk_00);
+    Easy3DModel_Release(&v0->unk_00);
 
     for (v1 = 0; v1 < 4; v1++) {
         Heap_FreeToHeap(v0->unk_CD0[v1]);

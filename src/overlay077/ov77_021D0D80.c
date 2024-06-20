@@ -447,10 +447,10 @@ static void ov77_021D1300 (UnkStruct_ov77_021D1208 * param0, int param1)
     v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1);
 
     {
-        sub_020170D8(&param0->unk_150, v0, 19, param1);
+        Easy3DModel_LoadFrom(&param0->unk_150, v0, 19, param1);
 
-        NNS_G3dMdlUseMdlAlpha(param0->unk_150.unk_08);
-        NNS_G3dMdlUseMdlPolygonID(param0->unk_150.unk_08);
+        NNS_G3dMdlUseMdlAlpha(param0->unk_150.model);
+        NNS_G3dMdlUseMdlPolygonID(param0->unk_150.model);
 
         sub_02017164(&param0->unk_128, &param0->unk_150, v0, 21, param1, &param0->unk_70);
         sub_02017240(&param0->unk_128, 0);
@@ -469,9 +469,9 @@ static void ov77_021D1300 (UnkStruct_ov77_021D1208 * param0, int param1)
     }
 
     {
-        sub_020170D8(&param0->unk_200, v0, 16, param1);
-        NNS_G3dMdlUseMdlAlpha(param0->unk_200.unk_08);
-        NNS_G3dMdlUseMdlPolygonID(param0->unk_200.unk_08);
+        Easy3DModel_LoadFrom(&param0->unk_200, v0, 16, param1);
+        NNS_G3dMdlUseMdlAlpha(param0->unk_200.model);
+        NNS_G3dMdlUseMdlPolygonID(param0->unk_200.model);
 
         sub_02017164(&param0->unk_1D8, &param0->unk_200, v0, 18, param1, &param0->unk_70);
         sub_02017240(&param0->unk_1D8, 0);
@@ -511,11 +511,11 @@ static void ov77_021D14E4 (UnkStruct_ov77_021D1208 * param0)
 
 static void ov77_021D1514 (UnkStruct_ov77_021D1208 * param0)
 {
-    sub_02017110(&param0->unk_150);
+    Easy3DModel_Release(&param0->unk_150);
     sub_020171A0(&param0->unk_128, &param0->unk_70);
     sub_020171A0(&param0->unk_13C, &param0->unk_70);
 
-    sub_02017110(&param0->unk_200);
+    Easy3DModel_Release(&param0->unk_200);
     sub_020171A0(&param0->unk_1D8, &param0->unk_70);
     sub_020171A0(&param0->unk_1EC, &param0->unk_70);
 }

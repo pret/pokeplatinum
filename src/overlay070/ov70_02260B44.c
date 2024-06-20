@@ -533,7 +533,7 @@ void ov70_0226138C (UnkStruct_ov70_022610B8 * param0, BOOL param1)
 void ov70_02261398 (UnkStruct_ov70_02260BB8 * param0, UnkStruct_ov70_022610B8 * param1, u32 param2)
 {
     GF_ASSERT(param1->unk_02 < 18);
-    NNS_G3dMdlSetMdlLightEnableFlagAll(param0->unk_29C.unk_00[param1->unk_02].unk_08, param2);
+    NNS_G3dMdlSetMdlLightEnableFlagAll(param0->unk_29C.unk_00[param1->unk_02].model, param2);
 }
 
 void ov70_022613C0 (UnkStruct_ov70_022610B8 * param0, fx32 param1)
@@ -577,22 +577,22 @@ static void ov70_02261418 (UnkStruct_ov70_02261418 * param0)
 
 static void ov70_02261420 (Easy3DModel * param0, NARC * param1, u32 param2, u32 param3)
 {
-    ov70_0225C730(&param0->unk_00, param1, param2, param3);
+    ov70_0225C730(&param0->data, param1, param2, param3);
 
     {
-        param0->unk_04 = NNS_G3dGetMdlSet(param0->unk_00);
-        param0->unk_08 = NNS_G3dGetMdlByIdx(param0->unk_04, 0);
-        param0->unk_0C = NNS_G3dGetTex(param0->unk_00);
+        param0->set = NNS_G3dGetMdlSet(param0->data);
+        param0->model = NNS_G3dGetMdlByIdx(param0->set, 0);
+        param0->texture = NNS_G3dGetTex(param0->data);
     }
 
     {
-        Easy3D_BindTextureToResource(param0->unk_00, param0->unk_0C);
+        Easy3D_BindTextureToResource(param0->data, param0->texture);
     }
 }
 
 static void ov70_0226146C (Easy3DModel * param0)
 {
-    sub_02017110(param0);
+    Easy3DModel_Release(param0);
 }
 
 static void ov70_02261474 (fx32 * param0, const Easy3DAnim * param1, fx32 param2)
@@ -660,7 +660,7 @@ static void ov70_022614F4 (UnkStruct_ov70_022615A4 * param0, NARC * param1, cons
 
     for (v0 = 0; v0 < 2; v0++) {
         ov70_02261420(&param0->unk_00[v0], param1, param2->unk_180[v0], param3);
-        ov66_02231668(param0->unk_00[v0].unk_00);
+        ov66_02231668(param0->unk_00[v0].data);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -788,10 +788,10 @@ static void ov70_0226174C (UnkStruct_ov70_022618C8 * param0, NARC * param1, NNSF
 
     {
         for (v0 = 0; v0 < 2; v0++) {
-            param0->unk_00[v0].unk_00 = sub_0200723C(param1, param3->unk_120[v0], 0, param4, 0);
-            param0->unk_00[v0].unk_04 = NNS_G3dGetMdlSet(param0->unk_00[v0].unk_00);
-            param0->unk_00[v0].unk_08 = NNS_G3dGetMdlByIdx(param0->unk_00[v0].unk_04, 0);
-            param0->unk_00[v0].unk_0C = NNS_G3dGetTex(param0->unk_20[v0][0]);
+            param0->unk_00[v0].data = sub_0200723C(param1, param3->unk_120[v0], 0, param4, 0);
+            param0->unk_00[v0].set = NNS_G3dGetMdlSet(param0->unk_00[v0].data);
+            param0->unk_00[v0].model = NNS_G3dGetMdlByIdx(param0->unk_00[v0].set, 0);
+            param0->unk_00[v0].texture = NNS_G3dGetTex(param0->unk_20[v0][0]);
         }
     }
 
@@ -828,7 +828,7 @@ static void ov70_022618C8 (UnkStruct_ov70_022618C8 * param0, NNSFndAllocator * p
 
     {
         for (v0 = 0; v0 < 2; v0++) {
-            Heap_FreeToHeap(param0->unk_00[v0].unk_00);
+            Heap_FreeToHeap(param0->unk_00[v0].data);
         }
     }
 
@@ -907,8 +907,8 @@ static void ov70_022619F4 (UnkStruct_ov70_02260E8C * param0, UnkStruct_ov70_0226
     GF_ASSERT(param0->unk_01 < 3);
     GF_ASSERT(param0->unk_02 < 2);
 
-    param1->unk_00[param0->unk_02].unk_0C = NNS_G3dGetTex(param1->unk_20[param0->unk_02][param0->unk_01]);
-    v0 = NNS_G3dBindMdlSet(param1->unk_00[param0->unk_02].unk_04, param1->unk_00[param0->unk_02].unk_0C);
+    param1->unk_00[param0->unk_02].texture = NNS_G3dGetTex(param1->unk_20[param0->unk_02][param0->unk_01]);
+    v0 = NNS_G3dBindMdlSet(param1->unk_00[param0->unk_02].set, param1->unk_00[param0->unk_02].texture);
 
     GF_ASSERT(v0);
 
@@ -927,7 +927,7 @@ static void ov70_022619F4 (UnkStruct_ov70_02260E8C * param0, UnkStruct_ov70_0226
         }
     }
 
-    NNS_G3dReleaseMdlSet(param1->unk_00[param0->unk_02].unk_04);
+    NNS_G3dReleaseMdlSet(param1->unk_00[param0->unk_02].set);
 }
 
 static UnkStruct_ov70_022610B8 * ov70_02261AF0 (UnkStruct_ov70_02260BB8 * param0)
@@ -952,7 +952,7 @@ static void ov70_02261B24 (UnkStruct_ov70_02261BB4 * param0, NARC * param1, NNSF
         ov70_02261420(&param0->unk_00[v0], param1, param3->unk_00[v0], param4);
 
         if ((v0 != 11) && (v0 != 12)) {
-            ov66_02231668(param0->unk_00[v0].unk_00);
+            ov66_02231668(param0->unk_00[v0].data);
         }
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -994,13 +994,13 @@ static void ov70_02261C04 (UnkStruct_ov70_02261BB4 * param0, UnkStruct_ov70_0226
     }
 
     if (param1->unk_E0 == 1) {
-        NNS_G3dMdlSetMdlAlphaAll(param0->unk_00[param1->unk_02].unk_08, param1->unk_E1);
+        NNS_G3dMdlSetMdlAlphaAll(param0->unk_00[param1->unk_02].model, param1->unk_E1);
     }
 
     sub_02017294(&param1->unk_04);
 
     if (param1->unk_E0 == 1) {
-        NNS_G3dMdlSetMdlAlphaAll(param0->unk_00[param1->unk_02].unk_08, param1->unk_E2);
+        NNS_G3dMdlSetMdlAlphaAll(param0->unk_00[param1->unk_02].model, param1->unk_E2);
     }
 }
 

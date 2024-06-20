@@ -797,12 +797,12 @@ static void ov70_02269540 (UnkStruct_ov70_02269204 * param0, NARC * param1, u32 
     int v0;
 
     for (v0 = 0; v0 < 15; v0++) {
-        param0->unk_10550[v0].unk_00 = sub_0200723C(param1, 129 + v0, 0, param2, 0);
-        param0->unk_10550[v0].unk_04 = NNS_G3dGetMdlSet(param0->unk_10550[v0].unk_00);
-        param0->unk_10550[v0].unk_08 = NNS_G3dGetMdlByIdx(param0->unk_10550[v0].unk_04, 0);
-        param0->unk_10550[v0].unk_0C = NULL;
+        param0->unk_10550[v0].data = sub_0200723C(param1, 129 + v0, 0, param2, 0);
+        param0->unk_10550[v0].set = NNS_G3dGetMdlSet(param0->unk_10550[v0].data);
+        param0->unk_10550[v0].model = NNS_G3dGetMdlByIdx(param0->unk_10550[v0].set, 0);
+        param0->unk_10550[v0].texture = NULL;
 
-        NNS_G3dMdlSetMdlEmiAll(param0->unk_10550[v0].unk_08, GX_RGB(31, 31, 31));
+        NNS_G3dMdlSetMdlEmiAll(param0->unk_10550[v0].model, GX_RGB(31, 31, 31));
     }
 }
 
@@ -811,7 +811,7 @@ static void ov70_022695C4 (UnkStruct_ov70_02269204 * param0)
     int v0;
 
     for (v0 = 0; v0 < 15; v0++) {
-        Heap_FreeToHeap(param0->unk_10550[v0].unk_00);
+        Heap_FreeToHeap(param0->unk_10550[v0].data);
     }
 }
 
@@ -853,7 +853,7 @@ static void ov70_0226965C (UnkStruct_ov70_02269204 * param0, NARC * param1, u32 
         for (v1 = 0; v1 < 2; v1++) {
             if (Unk_ov70_0226E5A4[v0].unk_02[v1] != 17) {
                 if (param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]].unk_00 == NULL) {
-                    param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00].unk_0C = NNS_G3dGetTex(param0->unk_10640[Unk_ov70_0226E5A4[v0].unk_01]);
+                    param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00].texture = NNS_G3dGetTex(param0->unk_10640[Unk_ov70_0226E5A4[v0].unk_01]);
                     sub_02017164(&param0->unk_106DC[Unk_ov70_0226E5A4[v0].unk_02[v1]], &param0->unk_10550[Unk_ov70_0226E5A4[v0].unk_00], param1, 183 + Unk_ov70_0226E5A4[v0].unk_02[v1], param2, &param0->unk_1081C);
                 }
             }
@@ -1053,11 +1053,11 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
     v1 = param0->unk_10640[param1->unk_87C[param2]->unk_01];
     v2 = &param0->unk_10550[param1->unk_87C[param2]->unk_00];
-    v2->unk_0C = NNS_G3dGetTex(v1);
-    v0 = NNS_G3dForceBindMdlTex(v2->unk_08, v2->unk_0C, 0, 0);
+    v2->texture = NNS_G3dGetTex(v1);
+    v0 = NNS_G3dForceBindMdlTex(v2->model, v2->texture, 0, 0);
     GF_ASSERT(v0);
 
-    v0 = NNS_G3dForceBindMdlPltt(v2->unk_08, v2->unk_0C, 0, 0);
+    v0 = NNS_G3dForceBindMdlPltt(v2->model, v2->texture, 0, 0);
     GF_ASSERT(v0);
 
     for (v4 = 0; v4 < 2; v4++) {
@@ -1070,7 +1070,7 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         }
     }
 
-    NNS_G3dMdlSetMdlPolygonIDAll(v2->unk_08, param1->unk_04);
+    NNS_G3dMdlSetMdlPolygonIDAll(v2->model, param1->unk_04);
     sub_02017294(&param1->unk_0C[param2]);
 
     for (v4 = 0; v4 < 2; v4++) {
@@ -1082,10 +1082,10 @@ static void ov70_02269878 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         }
     }
 
-    NNS_G3dReleaseMdlTex(v2->unk_08);
-    NNS_G3dReleaseMdlPltt(v2->unk_08);
+    NNS_G3dReleaseMdlTex(v2->model);
+    NNS_G3dReleaseMdlPltt(v2->model);
 
-    v2->unk_0C = NULL;
+    v2->texture = NULL;
 }
 
 static void ov70_022699BC (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1, u32 param2, u32 param3)
@@ -1681,11 +1681,11 @@ static BOOL ov70_0226A6C8 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
 
                     if (param1->unk_954.val2.unk_04[v4] == 0) {
                         sub_02017348(&param1->unk_0C[v2], 0);
-                        NNS_G3dMdlSetMdlAlphaAll(param0->unk_10550[param1->unk_87C[v2]->unk_00].unk_08, 31);
+                        NNS_G3dMdlSetMdlAlphaAll(param0->unk_10550[param1->unk_87C[v2]->unk_00].model, 31);
                     } else {
                         param1->unk_954.val2.unk_04[v4]--;
                         v3 = (param1->unk_954.val2.unk_04[v4] * 20) / 8;
-                        NNS_G3dMdlSetMdlAlphaAll(param0->unk_10550[param1->unk_87C[v2]->unk_00].unk_08, v3);
+                        NNS_G3dMdlSetMdlAlphaAll(param0->unk_10550[param1->unk_87C[v2]->unk_00].model, v3);
                         v1 = 0;
                     }
                 }

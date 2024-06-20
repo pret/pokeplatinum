@@ -87,5 +87,5 @@ BOOL ov70_0225C7A0 (const Easy3DModel * param0, const Easy3DObject * param1)
     MTX_RotY33(&v3, FX_SinIdx(v5), FX_CosIdx(v5));
     MTX_Concat33(&v3, &v2, &v2);
 
-    return sub_0201CED8(param0->unk_08, &v0, &v2, &v1);
+    return sub_0201CED8(param0->model, &v0, &v2, &v1);
 }

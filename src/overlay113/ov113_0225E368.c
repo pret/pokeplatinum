@@ -574,43 +574,43 @@ static UnkStruct_ov113_0225E6B8 * ov113_0225E6B8 (UnkStruct_ov113_0225DBCC * par
 
 static BOOL ov113_0225E774 (UnkStruct_ov113_0225EB20 * param0, Easy3DModel * param1, NARC * param2, NARC * param3, const UnkStruct_ov113_02260818 * param4, BOOL param5)
 {
-    param1->unk_00 = sub_0200723C(param2, 29, 0, 118, 0);
+    param1->data = sub_0200723C(param2, 29, 0, 118, 0);
 
     {
         BOOL v0;
 
-        GF_ASSERT(param1->unk_00);
+        GF_ASSERT(param1->data);
 
-        param1->unk_04 = NNS_G3dGetMdlSet(param1->unk_00);
-        param1->unk_08 = NNS_G3dGetMdlByIdx(param1->unk_04, 0);
-        param1->unk_0C = NNS_G3dGetTex(param1->unk_00);
+        param1->set = NNS_G3dGetMdlSet(param1->data);
+        param1->model = NNS_G3dGetMdlByIdx(param1->set, 0);
+        param1->texture = NNS_G3dGetTex(param1->data);
 
-        if (param1->unk_0C) {
-            ov113_0225E920(param1->unk_0C, param2, param3, param4, param5);
-            v0 = ov113_0225E8B0(param1->unk_0C);
+        if (param1->texture) {
+            ov113_0225E920(param1->texture, param2, param3, param4, param5);
+            v0 = ov113_0225E8B0(param1->texture);
 
-            if ((v0 == 0) || (ov113_0225E854(param0, param1->unk_0C) == 0)) {
+            if ((v0 == 0) || (ov113_0225E854(param0, param1->texture) == 0)) {
                 NNSG3dTexKey v1;
                 NNSG3dTexKey v2;
                 NNSG3dPlttKey v3;
 
                 if (v0 == 1) {
-                    NNS_G3dTexReleaseTexKey(param1->unk_0C, &v1, &v2);
+                    NNS_G3dTexReleaseTexKey(param1->texture, &v1, &v2);
                     NNS_GfdFreeTexVram(v1);
                     NNS_GfdFreeTexVram(v2);
-                    v3 = NNS_G3dPlttReleasePlttKey(param1->unk_0C);
+                    v3 = NNS_G3dPlttReleasePlttKey(param1->texture);
                     NNS_GfdFreePlttVram(v3);
                 }
 
-                if (param1->unk_00) {
-                    Heap_FreeToHeap(param1->unk_00);
+                if (param1->data) {
+                    Heap_FreeToHeap(param1->data);
                 }
 
                 memset(param1, 0, sizeof(Easy3DModel));
                 return 0;
             }
 
-            Easy3D_BindTextureToResource(param1->unk_00, param1->unk_0C);
+            Easy3D_BindTextureToResource(param1->data, param1->texture);
         }
     }
 
@@ -827,14 +827,14 @@ static void ov113_0225EA60 (NNSG3dResTex * param0, int param1)
 
 static void ov113_0225EB0C (UnkStruct_ov113_0225E6B8 * param0)
 {
-    sub_02017110(&param0->unk_0C);
+    Easy3DModel_Release(&param0->unk_0C);
     Heap_FreeToHeap(param0);
 }
 
 static void ov113_0225EB20 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0225E6B8 * param1, int param2)
 {
     if ((param1->unk_240_0 == 0) || (param1->unk_240_4 == 1)) {
-        ov113_0225E884(param0, param1->unk_0C.unk_0C);
+        ov113_0225E884(param0, param1->unk_0C.texture);
     }
 
     ov113_0225EE78(param0, param1->unk_240_24);
@@ -1101,8 +1101,8 @@ static void ov113_0225EFFC (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     if (v0->unk_09 != 0xff) {
         NNS_G3dGlbPolygonAttr(0, 0, 0, v0->unk_09, v0->unk_00 >> 8, 0);
-        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.unk_08);
-        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.unk_08);
+        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.model);
+        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.model);
     }
 
     sub_02017294(&param1->unk_1C);
@@ -1201,8 +1201,8 @@ static int ov113_0225F1E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_02
         v1 -= 65536 / 4 / 6;
 
         if (v1 <= 65536 / 8 * 7) {
-            ov113_0225EA60(param1->unk_0C.unk_0C, param1->unk_240_8);
-            ov113_0225E854(param0, param1->unk_0C.unk_0C);
+            ov113_0225EA60(param1->unk_0C.texture, param1->unk_240_8);
+            ov113_0225E854(param0, param1->unk_0C.texture);
             param1->unk_240_4 = 1;
             v1 += 65536 / 4;
             v0->unk_00++;
@@ -1283,9 +1283,9 @@ static int ov113_0225F368 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_02
         v1 += 65536 / 4 / 6;
 
         if (v1 >= 65536 / 4 / 2) {
-            ov113_0225EA60(param1->unk_0C.unk_0C, param1->unk_240_8);
+            ov113_0225EA60(param1->unk_0C.texture, param1->unk_240_8);
             v1 -= 65536 / 4;
-            ov113_0225E854(param0, param1->unk_0C.unk_0C);
+            ov113_0225E854(param0, param1->unk_0C.texture);
             param1->unk_240_4 = 1;
             v0->unk_00++;
         }
@@ -1414,8 +1414,8 @@ static void ov113_0225F680 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     if (v0->unk_16C != 0xff) {
         NNS_G3dGlbPolygonAttr(0, 0, 0, v0->unk_16C, 8, 0);
-        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.unk_08);
-        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.unk_08);
+        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.model);
+        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.model);
     }
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -1424,8 +1424,8 @@ static void ov113_0225F680 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     if (v0->unk_16C != 0xff) {
         NNS_G3dGlbPolygonAttr(0, 0, 0, v0->unk_16C, 31, 0);
-        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.unk_08);
-        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.unk_08);
+        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.model);
+        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.model);
     }
 
     sub_02017294(&param1->unk_1C);
@@ -1597,8 +1597,8 @@ static void ov113_0225FA24 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     if (v0->unk_F6 != 0xff) {
         NNS_G3dGlbPolygonAttr(0, 0, 0, v0->unk_F6, v0->unk_F4 >> 8, 0);
-        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.unk_08);
-        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.unk_08);
+        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.model);
+        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.model);
     }
 
     for (v1 = 0; v1 < 2; v1++) {
@@ -1695,8 +1695,8 @@ static void ov113_0225FC44 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     if (v0->unk_F6 != 0xff) {
         NNS_G3dGlbPolygonAttr(0, 0, 0, v0->unk_F6, v0->unk_F4 >> 8, 0);
-        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.unk_08);
-        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.unk_08);
+        NNS_G3dMdlUseGlbPolygonID(param1->unk_0C.model);
+        NNS_G3dMdlUseGlbAlpha(param1->unk_0C.model);
     }
 
     for (v1 = 0; v1 < 2; v1++) {

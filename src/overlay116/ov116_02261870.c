@@ -81,7 +81,7 @@ static inline void inline_ov116_02261940_1 (void)
 
 void ov116_022618A8 (UnkStruct_ov116_0226501C * param0, NARC * param1, int param2)
 {
-    sub_020170D8(&param0->unk_78, param1, param2, 106);
+    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, 106);
 }
 
 void ov116_022618B4 (UnkStruct_ov116_0226501C * param0, int param1)
@@ -109,7 +109,7 @@ void ov116_022618B4 (UnkStruct_ov116_0226501C * param0, int param1)
 void ov116_0226192C (UnkStruct_ov116_0226501C * param0)
 {
     param0->unk_1F0 = 0;
-    sub_02017110(&param0->unk_78);
+    Easy3DModel_Release(&param0->unk_78);
 }
 
 void ov116_02261940 (UnkStruct_ov116_0226139C * param0)

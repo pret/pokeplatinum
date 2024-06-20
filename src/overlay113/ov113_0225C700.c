@@ -1206,7 +1206,7 @@ static void ov113_0225DAA8 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
         v0 = 27;
     }
 
-    sub_020170D8(&param0->unk_D8.unk_00, param1, v0, 118);
+    Easy3DModel_LoadFrom(&param0->unk_D8.unk_00, param1, v0, 118);
     sub_02017258(&param0->unk_D8.unk_10, &param0->unk_D8.unk_00);
     sub_02017350(&param0->unk_D8.unk_10, (FX32_CONST(0)), (FX32_CONST(0)), (FX32_CONST(0)));
     sub_0201736C(&param0->unk_D8.unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
@@ -1215,7 +1215,7 @@ static void ov113_0225DAA8 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
 
 static void ov113_0225DAFC (UnkStruct_ov113_0225DBCC * param0)
 {
-    sub_02017110(&param0->unk_D8.unk_00);
+    Easy3DModel_Release(&param0->unk_D8.unk_00);
 }
 
 static void ov113_0225DB08 (UnkStruct_ov113_0225DBCC * param0)

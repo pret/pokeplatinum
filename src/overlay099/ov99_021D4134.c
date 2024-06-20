@@ -136,7 +136,7 @@ BOOL ov99_021D425C (UnkStruct_ov99_021D2CB0 * param0, s32 param1)
                 if ((param1 != -1) && (v6 == 0)) {
                     MI_CpuClear8(&param0->unk_6C[v6][v7].unk_00, sizeof(NNSG3dRenderObj));
                     NNS_G3dRenderObjInit(
-                        &param0->unk_6C[v6][v7].unk_00, param0->unk_2C[param1].unk_08);
+                        &param0->unk_6C[v6][v7].unk_00, param0->unk_2C[param1].model);
                 }
 
                 v9 = 1;

@@ -247,10 +247,10 @@ static void DWWarp_InitModel (DistortionWorldWarp * warp)
 
     NARC * narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_DISTORTION_WORLD_WARP);
 
-    sub_020170D8(&warp->animationModel, narc, 16, HEAP_ID_DISTORTION_WORLD_WARP);
+    Easy3DModel_LoadFrom(&warp->animationModel, narc, 16, HEAP_ID_DISTORTION_WORLD_WARP);
 
-    NNS_G3dMdlUseMdlAlpha(warp->animationModel.unk_08);
-    NNS_G3dMdlUseMdlPolygonID(warp->animationModel.unk_08);
+    NNS_G3dMdlUseMdlAlpha(warp->animationModel.model);
+    NNS_G3dMdlUseMdlPolygonID(warp->animationModel.model);
 
     sub_02017164(&warp->animationAnimation, &warp->animationModel, narc, 18, HEAP_ID_DISTORTION_WORLD_WARP, &warp->allocator);
     sub_02017240(&warp->animationAnimation, 0);
@@ -276,7 +276,7 @@ static void DWWarp_InitModel (DistortionWorldWarp * warp)
 
 static void DWWarp_DeleteModel (DistortionWorldWarp * warp)
 {
-    sub_02017110(&warp->animationModel);
+    Easy3DModel_Release(&warp->animationModel);
     sub_020171A0(&warp->animationAnimation, &warp->allocator);
     sub_020171A0(&warp->animationAnimation2, &warp->allocator);
 }
