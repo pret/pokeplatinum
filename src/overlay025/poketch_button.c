@@ -205,7 +205,7 @@ static u32 Button_OnPressed(PoketchButton *button, BOOL touched, BOOL tapped)
         }
     } else if (touched) {
         PoketchButton_ChangeState(button, BUTTON_STATE_IDLE);
-        return BUTTON_MANAGER_STATE_SLIDEOUT;
+        return BUTTON_MANAGER_STATE_DRAGGING;
     } else {
         // We don't reset the timer because we want to check for double tap with the same timer
         if (button->doubleTapTime) {

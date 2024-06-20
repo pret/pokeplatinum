@@ -26,7 +26,7 @@
 #include "unk_020508D4.h"
 #include "unk_02099D44.h"
 #include "overlay025/ov25_02254560.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "gender.h"
 
 FS_EXTERN_OVERLAY(overlay26);
@@ -229,7 +229,7 @@ static void PoketchSystem_Shutdown (PoketchSystem *poketchSys)
     ov25_02254754(poketchSys->unk_1C);
 }
 
-typedef void (*const PoketchEvent)(PoketchSystem *);
+typedef void (*const PoketchEvent)(PoketchSystem *poketchSys);
 static PoketchEvent sPoketchEvents[] = {
     PoketchEvent_InitApp,
     PoketchEvent_UpdateApp,
@@ -637,7 +637,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
                 buttonEvent = BUTTON_MANAGER_STATE_NULL;
             }
             break;
-        case BUTTON_MANAGER_STATE_SLIDEOUT:
+        case BUTTON_MANAGER_STATE_DRAGGING:
             if (poketchSys->unk_30 == 7 || poketchSys->unk_30 == 10) {
                 buttonEvent = BUTTON_MANAGER_STATE_TAP;
             }
@@ -698,8 +698,8 @@ BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if (poketchSys->appChanging == FALSE
-        && ov25_0225450C(poketchSys) == 0
+    if (!poketchSys->appChanging
+        && !ov25_0225450C(poketchSys)
         && TouchScreen_GetHoldState(x, y)) {
         return PoketchSystem_InsideScreenBounds(*x, *y);
     }
@@ -711,10 +711,10 @@ BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == 0)) {
-        if (TouchScreen_GetTapState(x, y)) {
-            return PoketchSystem_InsideScreenBounds(*x, *y);
-        }
+    if (!poketchSys->appChanging
+        && !ov25_0225450C(poketchSys)
+        && TouchScreen_GetTapState(x, y)) {
+        return PoketchSystem_InsideScreenBounds(*x, *y);
     }
 
     return FALSE;
