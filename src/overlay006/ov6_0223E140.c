@@ -12,9 +12,6 @@
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02099F80.h"
@@ -29,7 +26,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "sys_task.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"

@@ -13,7 +13,6 @@
 #include "trainer_info.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02017294.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/sprite_template.h"
 #include "overlay116/struct_ov116_0226139C.h"
@@ -27,7 +26,7 @@
 #include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "camera.h"

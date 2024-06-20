@@ -19,9 +19,6 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -55,7 +52,7 @@
 #include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"

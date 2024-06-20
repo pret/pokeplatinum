@@ -25,7 +25,7 @@
 #include "unk_0200C6E4.h"
 #include "sys_task.h"
 #include "unk_0200F174.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"

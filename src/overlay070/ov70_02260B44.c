@@ -3,16 +3,13 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay070/struct_ov70_02261418.h"
 #include "overlay070/funcptr_ov70_02261C60.h"
 
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "easy3d.h"
 #include "unk_0201D15C.h"

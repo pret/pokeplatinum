@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV116_0226501C_H
 #define POKEPLATINUM_STRUCT_OV116_0226501C_H
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
+#include "easy3d_object.h"
 #include "overlay116/union_ov116_02266FEC.h"
 #include "overlay116/union_ov116_022671EC.h"
 

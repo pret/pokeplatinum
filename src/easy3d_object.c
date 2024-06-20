@@ -4,13 +4,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "sys_task_manager.h"
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
-
 #include "unk_02006E3C.h"
 #include "sys_task.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "easy3d.h"
 

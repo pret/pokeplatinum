@@ -4,7 +4,7 @@
 #include "overlay100/struct_ov100_021D49B4.h"
 #include "overlay100/struct_ov100_021D54D0.h"
 
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "overlay100/ov100_021D44C0.h"
 
 void ov100_021D44C0(UnkStruct_ov100_021D49B4 * param0, UnkStruct_ov100_021D54D0 * param1);

@@ -3,12 +3,10 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017294.h"
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "unk_02006E3C.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "easy3d.h"
 #include "unk_0201CED8.h"

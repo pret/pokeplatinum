@@ -18,7 +18,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200DA60.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"

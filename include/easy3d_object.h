@@ -1,13 +1,34 @@
-#ifndef POKEPLATINUM_UNK_020170BC_H
-#define POKEPLATINUM_UNK_020170BC_H
+#ifndef POKEPLATINUM_EASY3D_OBJECT_H
+#define POKEPLATINUM_EASY3D_OBJECT_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
 
 #include <nnsys.h>
 #include <nitro/fx/fx.h>
+
+typedef struct {
+    void * unk_00;
+    NNSG3dResMdlSet * unk_04;
+    NNSG3dResMdl * unk_08;
+    NNSG3dResTex * unk_0C;
+} UnkStruct_020170F4;
+
+typedef struct {
+    void * unk_00;
+    void * unk_04;
+    NNSG3dAnmObj * unk_08;
+    fx32 unk_0C;
+    BOOL unk_10;
+} UnkStruct_02017248;
+
+typedef struct {
+    NNSG3dRenderObj unk_00;
+    VecFx32 unk_54;
+    VecFx32 unk_60;
+    BOOL unk_6C;
+    u16 unk_70[3];
+    u8 padding_76[2];
+} UnkStruct_02017294;
 
 void sub_020170BC(UnkStruct_020170F4 * param0, u32 param1, u32 param2, u32 param3);
 void sub_020170D8(UnkStruct_020170F4 * param0, NARC * param1, u32 param2, u32 param3);
@@ -34,4 +55,4 @@ void sub_02017374(const UnkStruct_02017294 * param0, fx32 * param1, fx32 * param
 void sub_02017388(UnkStruct_02017294 * param0, u16 param1, u32 param2);
 u16 sub_02017394(const UnkStruct_02017294 * param0, u32 param1);
 
-#endif // POKEPLATINUM_UNK_020170BC_H
+#endif // POKEPLATINUM_EASY3D_OBJECT_H

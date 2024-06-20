@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV117_02261F08_H
 #define POKEPLATINUM_STRUCT_OV117_02261F08_H
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
+#include "easy3d_object.h"
 
 typedef struct {
     UnkStruct_020170F4 unk_00;

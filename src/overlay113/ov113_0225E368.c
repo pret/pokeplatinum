@@ -6,8 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "overlay113/struct_ov113_0225DBCC_decl.h"
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017294.h"
 #include "overlay113/struct_ov113_0225EB20.h"
 #include "overlay113/struct_ov113_0225EB20_sub1.h"
 #include "overlay113/struct_ov113_0225EDCC.h"
@@ -28,7 +26,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "easy3d.h"
 #include "unk_0201D15C.h"

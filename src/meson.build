@@ -59,7 +59,7 @@ pokeplatinum_c = files(
     'unk_02015920.c',
     'unk_02015F84.c',
     'unk_02017038.c',
-    'unk_020170BC.c',
+    'easy3d_object.c',
     'unk_02017428.c',
     'unk_02017498.c',
     'unk_02017728.c',

@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV100_021D49B4_H
 #define POKEPLATINUM_STRUCT_OV100_021D49B4_H
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
+#include "easy3d_object.h"
 #include "overlay100/struct_ov100_021D54D0.h"
 
 typedef struct {
