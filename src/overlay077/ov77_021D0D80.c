@@ -553,7 +553,7 @@ static void ov77_021D1568 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
         break;
     case 1:
         sub_020241B4();
-        sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
+        G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
         param1->unk_00 = 0;
         break;
     case 2:
@@ -596,7 +596,7 @@ static void ov77_021D1568 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D
             break;
         }
 
-        sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
+        G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
         break;
     }
 }

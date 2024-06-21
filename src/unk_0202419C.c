@@ -22,7 +22,7 @@ void sub_020241B4 (void)
     G3X_Reset();
 }
 
-void sub_020241BC (GXSortMode param0, GXBufferMode param1)
+void G3_RequestSwapBuffers (GXSortMode param0, GXBufferMode param1)
 {
     Unk_021C0788.unk_04 = param0;
     Unk_021C0788.unk_08 = param1;

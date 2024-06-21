@@ -1562,7 +1562,7 @@ static void ov16_0223CF48 (SysTask * param0, void * param1)
         sub_02007768(v0->unk_88);
         sub_0200C7EC(v0->unk_94);
         sub_0200C808();
-        sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }
 

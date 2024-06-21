@@ -130,7 +130,7 @@ void ov83_0223CBA4 (UnkStruct_ov83_0223B784 * param0)
     }
 
     NNS_G3dGePopMtx(1);
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 
     if (param0->unk_31C) {
         if (param0->unk_2C.unk_00) {
