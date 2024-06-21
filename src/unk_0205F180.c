@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
@@ -2356,7 +2355,7 @@ static void sub_020615C8 (PlayerAvatar * playerAvatar)
 {
     MapObject * v0 = Player_MapObject(playerAvatar);
     FieldSystem * fieldSystem = MapObject_FieldSystem(v0);
-    UnkStruct_0202CD88 * v2 = sub_0202CD88(fieldSystem->saveData);
+    GameRecords * v2 = sub_0202CD88(fieldSystem->saveData);
 
     sub_0202CF28(v2, (0 + 0));
 }

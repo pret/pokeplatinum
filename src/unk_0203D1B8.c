@@ -8,7 +8,6 @@
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -1109,7 +1108,7 @@ BOOL sub_0203DBF0 (TaskManager * param0)
         v2->unk_00 = 2;
 
         {
-            UnkStruct_0202CD88 * v6 = sub_0202CD88(fieldSystem->saveData);
+            GameRecords * v6 = sub_0202CD88(fieldSystem->saveData);
             sub_0202CFEC(v6, 16);
 
             if (sub_020389B8()) {

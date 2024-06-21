@@ -5,7 +5,6 @@
 
 #include "message.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -123,7 +122,7 @@ BOOL ov5_021F08F8 (TaskManager * taskMan)
                 }
 
                 {
-                    UnkStruct_0202CD88 * v4 = sub_0202CD88(fieldSystem->saveData);
+                    GameRecords * v4 = sub_0202CD88(fieldSystem->saveData);
                     sub_0202CF28(v4, (1 + 9));
                 }
 
@@ -352,7 +351,7 @@ static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * playerA
     param0->unk_0C = 14;
 
     {
-        UnkStruct_0202CD88 * v0 = sub_0202CD88(param0->fieldSystem->saveData);
+        GameRecords * v0 = sub_0202CD88(param0->fieldSystem->saveData);
         sub_0202CF28(v0, (((70 + 1)) + 29));
     }
 

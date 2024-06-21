@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 
 #include "struct_defs/struct_0202A93C.h"
 #include "overlay083/struct_ov83_0223B784.h"
@@ -560,7 +559,7 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         break;
     case 3:
     {
-        UnkStruct_0202CD88 * v2 = sub_0202CD88(param0->unk_10->unk_0C);
+        GameRecords * v2 = sub_0202CD88(param0->unk_10->unk_0C);
 
         if (param1->unk_1490 == 0) {
             sub_0202CFEC(v2, 12);

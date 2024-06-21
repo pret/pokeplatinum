@@ -4,7 +4,6 @@
 #include "message.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -184,7 +183,7 @@ void sub_02052E58 (TaskManager * param0)
     VarsFlags * v3;
     TrainerInfo * v4;
     UnkStruct_0205300C * v5;
-    UnkStruct_0202CD88 * v6;
+    GameRecords * v6;
     Party * v7;
 
     fieldSystem = TaskManager_FieldSystem(param0);

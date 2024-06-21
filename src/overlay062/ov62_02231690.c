@@ -13,7 +13,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 
@@ -2505,7 +2504,7 @@ void ov62_02233664 (UnkStruct_ov62_0223359C * param0)
 
 void ov62_02233704 (UnkStruct_0208C06C * param0, u32 param1)
 {
-    UnkStruct_0202CD88 * v0;
+    GameRecords * v0;
 
     v0 = sub_0202CD88(param0->unk_830);
     sub_0202CFEC(v0, param1);

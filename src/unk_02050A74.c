@@ -6,7 +6,6 @@
 #include "constants/battle.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -260,7 +259,7 @@ static BOOL sub_02050CA8 (TaskManager * taskMan)
         sub_02052754(v1->unk_10, fieldSystem);
 
         {
-            UnkStruct_0202CD88 * v3 = sub_0202CD88(fieldSystem->saveData);
+            GameRecords * v3 = sub_0202CD88(fieldSystem->saveData);
             sub_0202CFEC(v3, 21);
         }
 
@@ -300,7 +299,7 @@ static BOOL sub_02050D4C (TaskManager * taskMan)
         sub_02052754(v1->unk_10, fieldSystem);
     }
         {
-            UnkStruct_0202CD88 * v3 = sub_0202CD88(fieldSystem->saveData);
+            GameRecords * v3 = sub_0202CD88(fieldSystem->saveData);
             sub_0202CFEC(v3, 21);
         }
         (*v2)++;

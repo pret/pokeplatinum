@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_020298B0_decl.h"
 #include "journal.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
@@ -325,7 +324,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
     u16 v1, v2;
     UnkStruct_0204AFC4 * v3;
     UnkStruct_0203068C * v4;
-    UnkStruct_0202CD88 * v5;
+    GameRecords * v5;
 
     v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
@@ -600,7 +599,7 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
     u32 v0 = 0;
     int v1;
     u16 v2, v3, v4;
-    UnkStruct_0202CD88 * v5 = sub_0202CD88(param1);
+    GameRecords * v5 = sub_0202CD88(param1);
     UnkStruct_0203068C * v6 = sub_0203068C(param1);
 
     if (param0->unk_0F == 5) {
@@ -660,7 +659,7 @@ void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * par
     int v1;
     void * v2;
     u16 v3, v4, v5;
-    UnkStruct_0202CD88 * v6;
+    GameRecords * v6;
     UnkStruct_0203068C * v7;
 
     if (param0->unk_0F == 5) {

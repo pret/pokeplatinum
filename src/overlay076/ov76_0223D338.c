@@ -7,7 +7,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 
 #include "overlay076/const_ov76_0223EF3C.h"
@@ -1002,7 +1001,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
         ov76_0223B808(param0);
         ov76_0223C7E0(param0);
         {
-            UnkStruct_0202CD88 * v7;
+            GameRecords * v7;
             v7 = sub_0202CD88(param0->unk_00->unk_28);
 
             sub_0202CFEC(v7, 6);

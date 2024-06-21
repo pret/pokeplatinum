@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
@@ -48,7 +47,7 @@ static BOOL sub_02072230(TaskManager * param0);
 void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * fieldSystem, TrainerCard * param5)
 {
     TrainerInfo * v0;
-    UnkStruct_0202CD88 * v1;
+    GameRecords * v1;
     SaveData * v2;
 
     v2 = FieldSystem_SaveData(fieldSystem);
@@ -125,7 +124,7 @@ u8 sub_02071F28 (FieldSystem * fieldSystem)
 {
     u8 v0;
     SaveData * v1;
-    UnkStruct_0202CD88 * v2;
+    GameRecords * v2;
     VarsFlags * v3;
     SecretBaseRecord * v4;
     UnkStruct_0203068C * v5;

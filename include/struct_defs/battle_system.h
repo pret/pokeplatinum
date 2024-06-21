@@ -20,7 +20,6 @@
 #include "game_options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "poketch_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0206D140_decl.h"
@@ -89,7 +88,7 @@ struct BattleSystem {
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
     BattleParams_sub1 unk_20C;
-    UnkStruct_0202CD88 * unk_218;
+    GameRecords * unk_218;
     u8 * unk_21C;
     u16 * unk_220;
     u8 unk_224[4096];

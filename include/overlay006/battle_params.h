@@ -8,7 +8,7 @@
 #include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_decls/struct_0202CD88_decl.h"
+#include "game_records.h"
 #include "poketch_data.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -36,7 +36,7 @@ typedef struct {
     Options * unk_108;
     UnkStruct_0206D140 * unk_10C;
     BattleParams_sub1 unk_110;
-    UnkStruct_0202CD88 * unk_11C;
+    GameRecords * unk_11C;
     Journal * unk_120;
     UnkStruct_02027F8C * unk_124;
     int unk_128;

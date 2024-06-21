@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 
@@ -258,7 +257,7 @@ static BOOL sub_0209843C (TaskManager * param0)
 
             {
                 FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-                UnkStruct_0202CD88 * v11 = sub_0202CD88(FieldSystem_SaveData(fieldSystem));
+                GameRecords * v11 = sub_0202CD88(FieldSystem_SaveData(fieldSystem));
 
                 sub_0202CF28(v11, (1 + 48));
             }

@@ -11,7 +11,6 @@
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "journal.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "savedata.h"
@@ -1630,7 +1629,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
         }
 
         {
-            UnkStruct_0202CD88 * v5;
+            GameRecords * v5;
 
             v5 = sub_0202CD88(param0->unk_1970);
             sub_0202CF28(v5, (((70 + 1)) + 19));
@@ -1659,7 +1658,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
         sub_0202F134(param0->unk_1970, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);
 
         {
-            UnkStruct_0202CD88 * v8;
+            GameRecords * v8;
 
             v8 = sub_0202CD88(param0->unk_1970);
             sub_0202CF28(v8, (((70 + 1)) + 20));

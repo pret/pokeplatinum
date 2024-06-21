@@ -9,59 +9,47 @@
 #include "unk_0202631C.h"
 #include "game_records.h"
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-} UnkStruct_0202CD88_sub1;
-
-typedef struct UnkStruct_0202CD88_t {
-    u32 unk_00[71];
-    u16 unk_11C[77];
-    u16 unk_1B6;
-    UnkStruct_0202CD88_sub1 unk_1B8;
-} UnkStruct_0202CD88;
-
-static void sub_0202CD94(UnkStruct_0202CD88 * param0, int param1);
-static void sub_0202CDC0(UnkStruct_0202CD88 * param0, int param1);
+static void sub_0202CD94(GameRecords * param0, int param1);
+static void sub_0202CDC0(GameRecords * param0, int param1);
 
 int GameRecord_SaveSize (void)
 {
-    return sizeof(UnkStruct_0202CD88);
+    return sizeof(GameRecords);
 }
 
-void GameRecord_Init (UnkStruct_0202CD88 * param0)
+void GameRecord_Init (GameRecords * param0)
 {
-    MI_CpuClear32(param0, sizeof(UnkStruct_0202CD88));
+    MI_CpuClear32(param0, sizeof(GameRecords));
     param0->unk_1B8.unk_02 = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);
 
     sub_0202CD94(param0, (0 + 1));
 }
 
-UnkStruct_0202CD88 * sub_0202CD88 (SaveData * param0)
+GameRecords * sub_0202CD88 (SaveData * param0)
 {
     return SaveData_SaveTable(param0, 20);
 }
 
-static void sub_0202CD94 (UnkStruct_0202CD88 * param0, int param1)
+static void sub_0202CD94 (GameRecords * param0, int param1)
 {
     if (param1 == (0 + 0)) {
         return;
     }
 
-    param0->unk_1B8.unk_00 = sub_0201D5B8(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32)) & 0xffff;
-    EncryptData(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    param0->unk_1B8.unk_00 = sub_0201D5B8(&param0->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
+    EncryptData(&param0->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
 }
 
-static void sub_0202CDC0 (UnkStruct_0202CD88 * param0, int param1)
+static void sub_0202CDC0 (GameRecords * param0, int param1)
 {
     if (param1 == (0 + 0)) {
         return;
     }
 
-    DecryptData(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    DecryptData(&param0->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
 }
 
-static u32 sub_0202CDE0 (const UnkStruct_0202CD88 * param0, int param1)
+static u32 sub_0202CDE0 (const GameRecords * param0, int param1)
 {
     if (param1 < ((70 + 1))) {
         return param0->unk_00[param1];
@@ -73,7 +61,7 @@ static u32 sub_0202CDE0 (const UnkStruct_0202CD88 * param0, int param1)
     return 0;
 }
 
-static u32 sub_0202CE08 (UnkStruct_0202CD88 * param0, int param1, u32 param2)
+static u32 sub_0202CE08 (GameRecords * param0, int param1, u32 param2)
 {
     if (param1 < ((70 + 1))) {
         param0->unk_00[param1] = param2;
@@ -287,7 +275,7 @@ static int sub_0202CE84 (int param0)
     return v0[param0];
 }
 
-u32 sub_0202CE90 (UnkStruct_0202CD88 * param0, int param1, u32 param2)
+u32 sub_0202CE90 (GameRecords * param0, int param1, u32 param2)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
@@ -305,7 +293,7 @@ u32 sub_0202CE90 (UnkStruct_0202CD88 * param0, int param1, u32 param2)
     return v1;
 }
 
-u32 sub_0202CED0 (UnkStruct_0202CD88 * param0, int param1, u32 param2)
+u32 sub_0202CED0 (GameRecords * param0, int param1, u32 param2)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
@@ -333,7 +321,7 @@ u32 sub_0202CED0 (UnkStruct_0202CD88 * param0, int param1, u32 param2)
     return v2;
 }
 
-u32 sub_0202CF28 (UnkStruct_0202CD88 * param0, int param1)
+u32 sub_0202CF28 (GameRecords * param0, int param1)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
@@ -354,7 +342,7 @@ u32 sub_0202CF28 (UnkStruct_0202CD88 * param0, int param1)
     return v2;
 }
 
-u32 sub_0202CF70 (UnkStruct_0202CD88 * param0, int param1, u32 param2)
+u32 sub_0202CF70 (GameRecords * param0, int param1, u32 param2)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
@@ -375,7 +363,7 @@ u32 sub_0202CF70 (UnkStruct_0202CD88 * param0, int param1, u32 param2)
     return v2;
 }
 
-u32 sub_0202CFB8 (UnkStruct_0202CD88 * param0, int param1)
+u32 sub_0202CFB8 (GameRecords * param0, int param1)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
@@ -391,7 +379,7 @@ u32 sub_0202CFB8 (UnkStruct_0202CD88 * param0, int param1)
     }
 }
 
-void sub_0202CFEC (UnkStruct_0202CD88 * param0, int param1)
+void sub_0202CFEC (GameRecords * param0, int param1)
 {
     u32 v0;
 
@@ -406,12 +394,12 @@ void sub_0202CFEC (UnkStruct_0202CD88 * param0, int param1)
     }
 }
 
-u32 sub_0202D034 (UnkStruct_0202CD88 * param0)
+u32 sub_0202D034 (GameRecords * param0)
 {
     return sub_0202CFB8(param0, (0 + 1));
 }
 
-void sub_0202D040 (UnkStruct_0202CD88 * param0, const PokedexData * param1, u16 const param2)
+void sub_0202D040 (GameRecords * param0, const PokedexData * param1, u16 const param2)
 {
     if (!Pokedex_CaughtSpecies(param1, param2)) {
         sub_0202CFEC(param0, 22);

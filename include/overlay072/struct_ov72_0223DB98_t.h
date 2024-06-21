@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "game_options.h"
-#include "struct_decls/struct_0202CD88_decl.h"
+#include "game_records.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay072/struct_ov72_0223E7D8.h"
@@ -22,7 +22,7 @@
 struct UnkStruct_ov72_0223DB98_t {
     BGL * unk_00;
     BOOL unk_04;
-    UnkStruct_0202CD88 * unk_08;
+    GameRecords * unk_08;
     Options * unk_0C;
     StringTemplate * unk_10;
     MessageLoader * unk_14;

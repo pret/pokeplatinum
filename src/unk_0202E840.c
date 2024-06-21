@@ -3,7 +3,6 @@
 
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "savedata.h"
 
@@ -122,7 +121,7 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
 {
     int v0;
     u32 v1;
-    UnkStruct_0202CD88 * v2;
+    GameRecords * v2;
     UnkStruct_0203068C * v3;
     u32 * v4;
     static const int v5[] = {

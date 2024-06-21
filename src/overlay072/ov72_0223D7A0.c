@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "savedata.h"
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 
@@ -147,7 +146,7 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
             SaveData * v2 = (SaveData *)OverlayManager_Args(param0);
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
-            v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((SaveData *)OverlayManager_Args(param0));
+            v0->unk_08 = (GameRecords *)sub_0202CD88((SaveData *)OverlayManager_Args(param0));
             v0->unk_0C = (Options *)SaveData_Options((SaveData *)OverlayManager_Args(param0));
         }
 

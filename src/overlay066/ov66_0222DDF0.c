@@ -14,7 +14,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -1825,7 +1824,7 @@ void ov66_0222F000 (UnkStruct_ov66_0222DFF8 * param0)
 
 void ov66_0222F020 (UnkStruct_ov66_0222DFF8 * param0)
 {
-    UnkStruct_0202CD88 * v0;
+    GameRecords * v0;
 
     v0 = sub_0202CD88(param0->unk_00);
     sub_0202CF28(v0, (1 + 45));
@@ -1833,7 +1832,7 @@ void ov66_0222F020 (UnkStruct_ov66_0222DFF8 * param0)
 
 void ov66_0222F030 (UnkStruct_ov66_0222DFF8 * param0)
 {
-    UnkStruct_0202CD88 * v0;
+    GameRecords * v0;
 
     v0 = sub_0202CD88(param0->unk_00);
     sub_0202CF28(v0, (((70 + 1)) + 47));

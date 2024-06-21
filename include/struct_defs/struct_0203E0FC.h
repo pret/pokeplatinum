@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "journal.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
+#include "game_records.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -26,7 +26,7 @@ typedef struct {
     TrainerInfo * unk_1C;
     SaveData * unk_20;
     Options * unk_24;
-    UnkStruct_0202CD88 * unk_28;
+    GameRecords * unk_28;
     Journal * unk_2C;
     Bag * unk_30;
     int unk_34;

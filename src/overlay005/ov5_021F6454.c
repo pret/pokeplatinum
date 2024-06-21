@@ -10,7 +10,6 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -806,7 +805,7 @@ BOOL ScrCmd_305 (ScriptContext * param0)
 BOOL ScrCmd_30F (ScriptContext * param0)
 {
     VarsFlags * v0;
-    UnkStruct_0202CD88 * v1;
+    GameRecords * v1;
     FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 * v4 = ScriptContext_GetVarPointer(param0);

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
@@ -1239,7 +1238,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
                 param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
 
                 {
-                    UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->unk_284);
+                    GameRecords * v1 = sub_0202CD88(param0->unk_284);
                     sub_0202CF28(v1, (1 + 49));
                 }
 

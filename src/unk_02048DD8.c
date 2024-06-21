@@ -6,7 +6,6 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -179,7 +178,7 @@ BOOL ScrCmd_237 (ScriptContext * param0)
     {
         u16 v4;
         u16 v5, v6;
-        UnkStruct_0202CD88 * v7 = sub_0202CD88(param0->fieldSystem->saveData);
+        GameRecords * v7 = sub_0202CD88(param0->fieldSystem->saveData);
 
         v4 = ScriptContext_GetVar(param0);
         v5 = ScriptContext_GetVar(param0);
