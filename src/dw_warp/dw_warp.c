@@ -29,6 +29,10 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "dw_warp/dw_warp.h"
+#include "consts/sdat.h"
+
+#define DWARP_SND_EFFECT_DELAY 15
+#define DWARP_ANM_DURATION 85
 
 typedef struct DistortionWorldWarp {
     GenericPointerData * p3DCallback;
@@ -61,7 +65,7 @@ static void DWWarp_Setup3D(void);
 static void DWWarp_Exit3D(GenericPointerData * param0);
 static void DWWarp_CameraMove(DistortionWorldWarp * warp);
 
-int DWWarp_Init (OverlayManager * ovy, int * state)
+BOOL DWWarp_Init (OverlayManager * ovy, int * state)
 {
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -111,11 +115,10 @@ enum {
     DWARP_SEQ_WAIT
 };
 
-int DWWarp_Main (OverlayManager * ovy, int * state)
+BOOL DWWarp_Main (OverlayManager * ovy, int * state)
 {
     DistortionWorldWarp * warp = OverlayManager_Data(ovy);
 
-    // Handle the different states of the warp effect.
     switch (*state) {
     case DWARP_SEQ_SCREENWIPE:
         if (ScreenWipe_Done() == TRUE) {
@@ -123,39 +126,34 @@ int DWWarp_Main (OverlayManager * ovy, int * state)
         }
         break;
     case DWARP_SEQ_LOOP:
-        // Play the portal sound effect after 15 frames
-        if (warp->soundEffectCnt == 15) {
-            Sound_PlayEffect(1491);
+        if (warp->soundEffectCnt == DWARP_SND_EFFECT_DELAY) {
+            Sound_PlayEffect( SEQ_SE_PL_SYUWA2 );
         }
 
         warp->soundEffectCnt++;
         warp->frameCnt++;
 
-        // Continue to the next sequence after 85 frames
-        if (warp->frameCnt > 85) {
+        if (warp->frameCnt > DWARP_ANM_DURATION) {
             (*state)++;
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        // Clear the screen to black
         sub_0200F174(0, 0, 0, 0x0, 20, 1, 30);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:
-        // Wait for the screen wipe to finish
         if (ScreenWipe_Done() == TRUE) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
     DWWarp_CameraMove(warp);
 
-    return 0;
+    return FALSE;
 }
 
-// Exits the Distortion World warp effect overlay.
-int DWWarp_Exit (OverlayManager * ovy, int * state)
+BOOL DWWarp_Exit (OverlayManager * ovy, int * state)
 {
     DistortionWorldWarp * warp = OverlayManager_Data(ovy);
 
@@ -172,7 +170,7 @@ int DWWarp_Exit (OverlayManager * ovy, int * state)
     sub_02002AE4(0);
     sub_02002B20(0);
     OverlayManager_FreeData(ovy);
-    Heap_Destroy(30);
+    Heap_Destroy(HEAP_ID_DISTORTION_WORLD_WARP);
 
     return TRUE;
 }
@@ -248,11 +246,9 @@ static void DWWarp_CameraEnd (DistortionWorldWarp * warp)
 
 static void DWWarp_InitModel (DistortionWorldWarp * warp)
 {
-    NARC * narc;
-
     Heap_FndInitAllocatorForExpHeap(&warp->allocator, HEAP_ID_DISTORTION_WORLD_WARP, 4);
 
-    narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_DISTORTION_WORLD_WARP);
+    NARC * narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_DISTORTION_WORLD_WARP);
 
     sub_020170D8(&warp->animationModel, narc, 16, HEAP_ID_DISTORTION_WORLD_WARP);
 
