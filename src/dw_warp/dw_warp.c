@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
@@ -25,7 +24,7 @@
 #include "heap.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "dw_warp/dw_warp.h"
@@ -36,7 +35,7 @@
 
 typedef struct DistortionWorldWarp {
     GenericPointerData * p3DCallback;
-    UnkStruct_020203AC * camera;
+    Camera * camera;
     SysTask * task;
     int frameCnt;
     int soundEffectCnt;
@@ -56,7 +55,7 @@ static void DWWarp_Update(SysTask * task, void * data);
 static void DWWarp_VBlankIntr(void * data);
 static void DWWarp_VramSetBank(void);
 static void DWWarp_InitCamera(DistortionWorldWarp * warp);
-static void DWWarp_CameraEnd(DistortionWorldWarp * warp);
+static void DWWarp_DeleteCamera(DistortionWorldWarp * warp);
 static void DWWarp_InitModel(DistortionWorldWarp * warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp * warp);
 static void Model3D_Update(DistortionWorldWarp * warp);
@@ -160,7 +159,7 @@ BOOL DWWarp_Exit (OverlayManager * ovy, int * state)
     SysTask_Done(warp->task);
 
     DWWarp_DeleteModel(warp);
-    DWWarp_CameraEnd(warp);
+    DWWarp_DeleteCamera(warp);
     DWWarp_Exit3D(warp->p3DCallback);
 
     SetMainCallback(NULL, NULL);
@@ -224,24 +223,24 @@ static void DWWarp_InitCamera (DistortionWorldWarp * warp)
     };
     VecFx32 target = {0, 0, 0};
 
-    warp->camera = sub_020203AC(HEAP_ID_DISTORTION_WORLD_WARP);
+    warp->camera = Camera_Alloc(HEAP_ID_DISTORTION_WORLD_WARP);
 
-    sub_020206D0(&target, (160 << FX32_SHIFT), &DWW_CameraAngle, (((22 * 0xffff) / 360)), 0, 0, warp->camera);
-    sub_020206BC(0, (FX32_ONE * 300), warp->camera);
+    Camera_InitWithTarget(&target, (160 << FX32_SHIFT), &DWW_CameraAngle, (((22 * 0xffff) / 360)), 0, 0, warp->camera);
+    Camera_SetClipping(0, (FX32_ONE * 300), warp->camera);
 
     CameraAngle angle = {0, 0, 0, 0};
 
-    angle = sub_02020A94(warp->camera);
+    angle = Camera_GetAngle(warp->camera);
     angle.x = (0x10000 - 0x3fef);
 
-    Camera_SetAngle(&angle, warp->camera);
+    Camera_SetAngleAroundTarget(&angle, warp->camera);
 
-    sub_020203D4(warp->camera);
+    Camera_SetAsActive(warp->camera);
 }
 
-static void DWWarp_CameraEnd (DistortionWorldWarp * warp)
+static void DWWarp_DeleteCamera (DistortionWorldWarp * warp)
 {
-    sub_020203B8(warp->camera);
+    Camera_Delete(warp->camera);
 }
 
 static void DWWarp_InitModel (DistortionWorldWarp * warp)
@@ -300,9 +299,9 @@ static void Model3D_Update (DistortionWorldWarp * warp)
     MTX_Identity33(&rot33);
 
     sub_020241B4();
-    sub_020203D4(warp->camera);
-    sub_02020854(0, warp->camera);
-    sub_020203EC();
+    Camera_SetAsActive(warp->camera);
+    Camera_ComputeProjectionMatrix(0, warp->camera);
+    Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(28, 28, 28));
@@ -353,7 +352,7 @@ static void DWWarp_CameraMove (DistortionWorldWarp * warp)
     CameraAngle v1 = {0, 0, 0, 0};
     int v2;
 
-    sub_0202094C(-(warp->cameraPerspective >> 8), warp->camera);
+    Camera_AdjustFOV(-(warp->cameraPerspective >> 8), warp->camera);
     warp->cameraPerspective -= 0x80;
 
     if (warp->cameraPerspective < (16 << 8)) {
