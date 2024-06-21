@@ -25,14 +25,14 @@ typedef struct {
     u32 unk_08;
     UnkStruct_ov31_02256554_1 unk_0C;
     UnkStruct_ov31_02256554 * unk_1EC;
-    PoketchSystem * unk_1F0;
+    PoketchSystem *poketchSys;
     u8 unk_1F4[120];
 } UnkStruct_ov31_02256228;
 
 static void NitroStaticInit(void);
 
-static BOOL ov31_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
-static BOOL ov31_02256228(UnkStruct_ov31_02256228 * param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov31_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
+static BOOL ov31_02256228(UnkStruct_ov31_02256228 * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
 static void ov31_02256268(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1);
 static inline u8 inline_ov31_02256298(const u8 * param0, int param1);
 static inline void inline_ov31_022562EC(u8 * param0, int param1, int param2);
@@ -53,12 +53,12 @@ static void NitroStaticInit (void)
     PoketchSystem_SetAppFunctions(ov31_022561D4, ov31_02256404);
 }
 
-static BOOL ov31_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov31_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     UnkStruct_ov31_02256228 * v0 = (UnkStruct_ov31_02256228 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov31_02256228));
 
     if (v0 != NULL) {
-        if (ov31_02256228(v0, param1, param2, param3)) {
+        if (ov31_02256228(v0, poketchSys, param2, param3)) {
             if (SysTask_Start(ov31_022563CC, v0, 1) != NULL) {
                 *param0 = v0;
                 PoketchSystem_SetSaveFunction(ov31_022563B0, v0);
@@ -72,9 +72,9 @@ static BOOL ov31_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
     return 0;
 }
 
-static BOOL ov31_02256228 (UnkStruct_ov31_02256228 * param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov31_02256228 (UnkStruct_ov31_02256228 * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
-    param0->unk_1F0 = param1;
+    param0->poketchSys = poketchSys;
     ov31_02256268(param0, &(param0->unk_0C));
 
     if (ov31_02256554(&(param0->unk_1EC), &(param0->unk_0C), param2)) {
@@ -92,7 +92,7 @@ static BOOL ov31_02256228 (UnkStruct_ov31_02256228 * param0, PoketchSystem * par
 
 static void ov31_02256268 (UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256554_1 * param1)
 {
-    PoketchData * v0 = PoketchSystem_GetPoketchData(param0->unk_1F0);
+    PoketchData * v0 = PoketchSystem_GetPoketchData(param0->poketchSys);
 
     if (PoketchData_DotArtModified(v0)) {
         ov31_02256298(param0, param1, v0);
@@ -178,7 +178,7 @@ static void ov31_0225635C (UnkStruct_ov31_02256554_1 * param0)
 
 static void ov31_02256384 (UnkStruct_ov31_02256228 * param0)
 {
-    ov31_022562EC(param0, &param0->unk_0C, PoketchSystem_GetPoketchData(param0->unk_1F0));
+    ov31_022562EC(param0, &param0->unk_0C, PoketchSystem_GetPoketchData(param0->poketchSys));
     ov31_02256584(param0->unk_1EC);
 
     Heap_FreeToHeap(param0);
@@ -187,7 +187,7 @@ static void ov31_02256384 (UnkStruct_ov31_02256228 * param0)
 static void ov31_022563B0 (void * param0)
 {
     UnkStruct_ov31_02256228 * v0 = param0;
-    ov31_022562EC(v0, &v0->unk_0C, PoketchSystem_GetPoketchData(v0->unk_1F0));
+    ov31_022562EC(v0, &v0->unk_0C, PoketchSystem_GetPoketchData(v0->poketchSys));
 }
 
 static void ov31_022563CC (SysTask * param0, void * param1)
@@ -204,7 +204,7 @@ static void ov31_022563CC (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov31_02256384(v1);
             SysTask_Done(param0);
-            PoketchSystem_NotifyAppUnloaded(v1->unk_1F0);
+            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }
     } else {
     }
@@ -235,7 +235,7 @@ static BOOL ov31_02256420 (UnkStruct_ov31_02256228 * param0)
         break;
     case 1:
         if (ov31_022565B4(param0->unk_1EC, 0)) {
-            PoketchSystem_NotifyAppLoaded(param0->unk_1F0);
+            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
             ov31_0225640C(param0, 1);
         }
         break;

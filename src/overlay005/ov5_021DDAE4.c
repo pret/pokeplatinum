@@ -46,7 +46,7 @@ static BOOL ov5_021DDAE4 (TaskManager * param0)
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
             PoketchData_Enable(v2);
-            PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->unk_14, fieldSystem->saveData, fieldSystem->unk_08, sub_0200A914(1));
+            PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->unk_08, sub_0200A914(1));
             v1->unk_00++;
         }
         break;

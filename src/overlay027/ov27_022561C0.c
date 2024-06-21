@@ -41,12 +41,12 @@ typedef struct {
     UnkStruct_ov27_0225621C_sub1 unk_38;
     PoketchButtonManager * unk_5C;
     UnkStruct_ov27_0225680C * unk_60;
-    PoketchSystem * unk_64;
+    PoketchSystem *poketchSys;
 } UnkStruct_ov27_0225621C;
 
 static void NitroStaticInit(void);
 
-static BOOL ov27_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov27_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
 static BOOL ov27_0225621C(UnkStruct_ov27_0225621C * param0, BGL * param1, u32 param2);
 static void ov27_022562AC(UnkStruct_ov27_0225621C * param0);
 static void ov27_022562FC(SysTask * param0, void * param1);
@@ -71,13 +71,13 @@ static void NitroStaticInit (void)
     PoketchSystem_SetAppFunctions(ov27_022561D4, ov27_02256358);
 }
 
-static BOOL ov27_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov27_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     UnkStruct_ov27_0225621C * v0 = (UnkStruct_ov27_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225621C));
 
     if (v0 != NULL) {
         if (ov27_0225621C(v0, param2, param3)) {
-            v0->unk_64 = param1;
+            v0->poketchSys = poketchSys;
 
             if (SysTask_Start(ov27_022562FC, v0, 1) != NULL) {
                 *param0 = v0;
@@ -166,13 +166,13 @@ static void ov27_022562FC (SysTask * param0, void * param1)
             v1->unk_02 = 0;
         }
 
-        ov25_02254518(v1->unk_64, v1->unk_5C);
+        ov25_02254518(v1->poketchSys, v1->unk_5C);
         ov27_022566D8(v1, &(v1->unk_1C));
 
         if (v0[v1->unk_00](v1)) {
             ov27_022562AC(v1);
             SysTask_Done(param0);
-            PoketchSystem_NotifyAppUnloaded(v1->unk_64);
+            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }
     } else {
     }
@@ -206,7 +206,7 @@ static BOOL ov27_0225637C (UnkStruct_ov27_0225621C * param0)
         break;
     case 1:
         if (ov27_022569EC(param0->unk_60, 0)) {
-            PoketchSystem_NotifyAppLoaded(param0->unk_64);
+            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
 
             if (param0->unk_1C.unk_00) {
                 ov27_02256360(param0, 2);

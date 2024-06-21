@@ -315,10 +315,10 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
                 {
                     BOOL v3 = 0;
-                    PoketchSystem * v4 = FieldSystem_GetPoketchSystem();
+                    PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
 
-                    if (v4 != NULL) {
-                        v3 = PoketchSystem_IsTapped(v4);
+                    if (poketchSys != NULL) {
+                        v3 = PoketchSystem_IsTapped(poketchSys);
                     }
 
                     PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v3);
@@ -341,10 +341,10 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
                 {
                     BOOL v5 = 0;
-                    PoketchSystem * v6 = FieldSystem_GetPoketchSystem();
+                    PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
 
-                    if (v6 != NULL) {
-                        v5 = PoketchSystem_IsTapped(v6);
+                    if (poketchSys != NULL) {
+                        v5 = PoketchSystem_IsTapped(poketchSys);
                     }
 
                     PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v5);
@@ -373,7 +373,7 @@ struct PoketchSystem * FieldSystem_GetPoketchSystem (void)
         return NULL;
     }
 
-    return sFieldSystem->unk_04->unk_14;
+    return sFieldSystem->unk_04->poketchSys;
 }
 
 BGL * sub_0203D170 (void * param0)

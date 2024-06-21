@@ -31,14 +31,14 @@ typedef struct {
     u16 unk_06;
     u32 unk_08;
     PoketchButtonManager * unk_0C;
-    PoketchSystem * unk_10;
+    PoketchSystem *poketchSys;
     UnkStruct_ov28_0225697C * unk_14;
     UnkStruct_ov28_0225697C_1 unk_18;
 } UnkStruct_ov28_02256210;
 
 static void NitroStaticInit(void);
 
-static BOOL ov28_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov28_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
 static BOOL ov28_02256210(UnkStruct_ov28_02256210 * param0, u32 param1, BGL * param2);
 static void ov28_02256298(UnkStruct_ov28_02256210 * param0);
 static void ov28_022562CC(SysTask * param0, void * param1);
@@ -81,13 +81,13 @@ static void NitroStaticInit (void)
     PoketchSystem_SetAppFunctions(ov28_022561D4, ov28_02256324);
 }
 
-static BOOL ov28_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov28_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     UnkStruct_ov28_02256210 * v0 = (UnkStruct_ov28_02256210 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_02256210));
 
     if (v0 != NULL) {
         if (ov28_02256210(v0, param3, param2)) {
-            v0->unk_10 = param1;
+            v0->poketchSys = poketchSys;
             SysTask_Start(ov28_022562CC, v0, 1);
             *param0 = v0;
 
@@ -169,13 +169,13 @@ static void ov28_022562CC (SysTask * param0, void * param1)
 
     if (v1->unk_00 < NELEMS(v0)) {
         v1->unk_06 = 17;
-        ov25_02254518(v1->unk_10, v1->unk_0C);
+        ov25_02254518(v1->poketchSys, v1->unk_0C);
 
         if (v0[v1->unk_00](v1)) {
             ov28_02256298(v1);
             Heap_FreeToHeap(v1);
             SysTask_Done(param0);
-            PoketchSystem_NotifyAppUnloaded(v1->unk_10);
+            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }
     } else {
     }
@@ -227,7 +227,7 @@ static BOOL ov28_02256374 (UnkStruct_ov28_02256210 * param0)
         break;
     case 1:
         if (ov28_022569DC(param0->unk_14, 0)) {
-            PoketchSystem_NotifyAppLoaded(param0->unk_10);
+            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
             ov28_0225632C(param0, 1);
         }
         break;
@@ -634,7 +634,7 @@ static void ov28_02256914 (UnkStruct_ov28_02256210 * param0, const UnkStruct_ov2
         PokedexData * v1;
         u16 v2;
 
-        v1 = SaveData_Pokedex(PoketchSystem_GetSaveData(param0->unk_10));
+        v1 = SaveData_Pokedex(PoketchSystem_GetSaveData(param0->poketchSys));
 
         if (sub_02027474(v1)) {
             v2 = v0;
