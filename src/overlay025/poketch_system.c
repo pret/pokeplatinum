@@ -26,7 +26,7 @@
 #include "unk_020508D4.h"
 #include "unk_02099D44.h"
 #include "overlay025/ov25_02254560.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "gender.h"
 
 FS_EXTERN_OVERLAY(overlay26);
