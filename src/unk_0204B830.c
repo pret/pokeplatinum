@@ -8,7 +8,6 @@
 #include "trainer_info.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
 #include "field/field_system.h"
@@ -37,7 +36,7 @@
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020923C0.h"
 #include "unk_02092494.h"
 
@@ -365,20 +364,20 @@ static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204BE84 (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
 
-    return sub_0207D55C(v0, v1->val3.unk_00, 1, 32);
+    return Bag_CanFitItem(v0, v1->val3.unk_00, 1, 32);
 }
 
 static void sub_0204BEAC (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
     u16 v2;
     u16 v3 = v1->val3.unk_00;
 
-    sub_0207D570(v0, v3, 1, 32);
+    Bag_TryAddItem(v0, v3, 1, 32);
 }
 
 static void sub_0204BED4 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -395,7 +394,7 @@ static void sub_0204BED4 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204BF14 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(param0->fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = v1->val3.unk_00;
 
@@ -546,21 +545,21 @@ static void sub_0204C128 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C138 (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
 
-    return sub_0207D55C(v0, 454, 1, 32);
+    return Bag_CanFitItem(v0, 454, 1, 32);
 }
 
 static void sub_0204C15C (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
     VarsFlags * v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 454;
 
-    sub_0207D570(v0, v4, 1, 32);
+    Bag_TryAddItem(v0, v4, 1, 32);
     sub_0206B144(v2, 0);
 }
 
@@ -578,7 +577,7 @@ static void sub_0204C190 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(param0->fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 454;
 
@@ -590,21 +589,21 @@ static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C1FC (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
 
-    return sub_0207D55C(v0, 452, 1, 32);
+    return Bag_CanFitItem(v0, 452, 1, 32);
 }
 
 static void sub_0204C220 (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
     VarsFlags * v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 452;
 
-    sub_0207D570(v0, v4, 1, 32);
+    Bag_TryAddItem(v0, v4, 1, 32);
     sub_0206B144(v2, 1);
 
     if (sub_0206B618(v2) == 0) {
@@ -626,7 +625,7 @@ static void sub_0204C264 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(param0->fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 452;
 
@@ -638,21 +637,21 @@ static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C2D0 (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
 
-    return sub_0207D55C(v0, 467, 1, 32);
+    return Bag_CanFitItem(v0, 467, 1, 32);
 }
 
 static void sub_0204C2F4 (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
     VarsFlags * v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 467;
 
-    sub_0207D570(v0, v4, 1, 32);
+    Bag_TryAddItem(v0, v4, 1, 32);
     sub_0206B144(v2, 3);
 }
 
@@ -670,7 +669,7 @@ static void sub_0204C328 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(param0->fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 467;
 
@@ -682,21 +681,21 @@ static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C394 (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
 
-    return sub_0207D55C(v0, 455, 1, 32);
+    return Bag_CanFitItem(v0, 455, 1, 32);
 }
 
 static void sub_0204C3B8 (FieldSystem * fieldSystem, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
     VarsFlags * v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
     u16 v3;
     u16 v4 = 455;
 
-    sub_0207D570(v0, v4, 1, 32);
+    Bag_TryAddItem(v0, v4, 1, 32);
     sub_0206B144(v2, 2);
 }
 
@@ -714,7 +713,7 @@ static void sub_0204C3EC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->fieldSystem->saveData);
+    Bag * v0 = SaveData_GetBag(param0->fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->fieldSystem);
     u16 v2 = 455;
 

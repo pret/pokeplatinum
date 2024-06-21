@@ -69,7 +69,7 @@
 #include "unk_02073838.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_02092494.h"
 #include "unk_0209BDF8.h"
 #include "overlay109/ov109_021D0D80.h"
@@ -1304,7 +1304,7 @@ static int ov109_021D1918 (UnkStruct_ov109_021D0F70 * param0)
 
         ov109_021D2714(param0, 3, v0);
 
-        v1 = sub_0207D570(sub_0207D990(param0->unk_CC->unk_14.unk_08), v0, 1, 95);
+        v1 = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, 95);
         sub_02006150(1158);
 
         if (v1 == 1) {

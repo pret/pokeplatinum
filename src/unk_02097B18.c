@@ -42,7 +42,7 @@
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_02097B18.h"
 #include "overlay076/ov76_0223B140.h"
 #include "overlay076/ov76_0223B870.h"
@@ -370,7 +370,7 @@ static BOOL sub_02097F38 (TaskManager * param0)
         PartyManagementData * v6 = v0->unk_0C;
 
         v6->unk_00 = v1->unk_1C;
-        v6->unk_04 = sub_0207D990(v0->unk_10);
+        v6->unk_04 = SaveData_GetBag(v0->unk_10);
         v6->unk_08 = sub_02028430(v0->unk_10);
         v6->unk_22 = 0;
         v6->unk_21 = 0;

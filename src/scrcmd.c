@@ -183,7 +183,7 @@
 #include "trainer_data.h"
 #include "unk_020797C8.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207DA28.h"
 #include "unk_02096420.h"
 #include "unk_02097B18.h"
@@ -4285,7 +4285,7 @@ static BOOL ScrCmd_1D8 (ScriptContext * ctx)
 {
     u16 * v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    if (!sub_0207D69C(sub_0207D990(ctx->fieldSystem->saveData), 4)) {
+    if (!Bag_HasItemsInPocket(SaveData_GetBag(ctx->fieldSystem->saveData), 4)) {
         *v0 = 1;
         return 0;
     }
@@ -5640,7 +5640,7 @@ static BOOL ScrCmd_17A (ScriptContext * ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_0207D69C(sub_0207D990(ctx->fieldSystem->saveData), v0);
+    *v1 = Bag_HasItemsInPocket(SaveData_GetBag(ctx->fieldSystem->saveData), v0);
     return 0;
 }
 

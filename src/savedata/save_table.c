@@ -43,7 +43,7 @@
 #include "poketch_data.h"
 #include "unk_020797C8.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 
 const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_SYSTEM,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SystemData_SaveSize,        (SaveEntryInitFunc)SystemData_Init        },

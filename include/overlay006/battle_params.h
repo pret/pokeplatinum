@@ -14,8 +14,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/trainer_data.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_decls/struct_0207D99C_decl.h"
+#include "bag.h"
 #include "struct_defs/struct_0209C370.h"
 #include "savedata.h"
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
@@ -27,7 +26,7 @@ typedef struct {
     int trainerIDs[4];
     TrainerData trainerData[4];
     TrainerInfo * unk_D0[4];
-    UnkStruct_0207D3C0 * unk_E0;
+    Bag * unk_E0;
     UnkStruct_0207D99C * unk_E4;
     PokedexData * unk_E8;
     PCBoxes * unk_EC;

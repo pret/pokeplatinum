@@ -57,7 +57,7 @@
 #include "party.h"
 #include "unk_0207A2A8.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -2601,7 +2601,7 @@ static int ApplyItemEffectOnPokemon (GameWindowLayout * param0)
     }
 
     if (CheckItemEffectsOnPartyMember(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
-        Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+        Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
         if (Item_Get(v0, 26) != 0) {
             Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
@@ -2710,7 +2710,7 @@ static int UpdatePokemonWithItem (GameWindowLayout * param0, Pokemon * param1, i
 
     fieldSystem = param0->unk_5A4->unk_1C;
 
-    Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+    Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
     Pokemon_SetValue(param1, 6, &v0);
     Pokemon_SetArceusForm(param1);
 
@@ -2732,7 +2732,7 @@ static int UpdatePokemonWithItem (GameWindowLayout * param0, Pokemon * param1, i
 
 static void SwapPokemonItem (GameWindowLayout * param0, Pokemon * param1, u32 param2, u32 param3)
 {
-    sub_0207D570(param0->unk_5A4->unk_04, (u16)param2, 1, 12);
+    Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)param2, 1, 12);
     Pokemon_SetValue(param1, 6, &param3);
     Pokemon_SetArceusForm(param1);
     Pokemon_SetGiratinaForm(param1);
@@ -2803,13 +2803,13 @@ static int ProcessPokemonItemSwap (GameWindowLayout * param0)
         v5 = param0->unk_704[param0->unk_B11].unk_0C;
         v0 = UpdatePokemonWithItem(param0, v2, &v1);
 
-        if (sub_0207D570(param0->unk_5A4->unk_04, (u16)v5, 1, 12) == 0) {
+        if (Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)v5, 1, 12) == 0) {
             SwapPokemonItem(param0, v2, v4, v5);
             MessageLoader_GetStrbuf(param0->unk_69C, 83, param0->unk_6A4);
             v0 = 11;
         } else {
             if (Item_IsMail(param0->unk_5A4->unk_24) == 1) {
-                Bag_SubtractItem(param0->unk_5A4->unk_04, (u16)v5, 1, 12);
+                Bag_TryRemoveItem(param0->unk_5A4->unk_04, (u16)v5, 1, 12);
                 SwapPokemonItem(param0, v2, v4, v5);
                 param0->unk_5A4->unk_23 = 6;
                 return 32;
@@ -2876,7 +2876,7 @@ static int UpdatePokemonFormWithItem (GameWindowLayout * param0)
         StringTemplate_SetItemName(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
         StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else {
-        sub_0207D570(param0->unk_5A4->unk_04, (u16)v3, 1, 12);
+        Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)v3, 1, 12);
         MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
         StringTemplate_SetItemName(param0->unk_6A0, 1, v3);
         StringTemplate_SetItemName(param0->unk_6A0, 2, v2);

@@ -16,7 +16,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 #include "savedata.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -62,7 +61,7 @@
 #include "unk_0207A274.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208694C.h"
 #include "pokemon_summary_app.h"
 #include "overlay019/ov19_021D0D80.h"
@@ -2620,12 +2619,12 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         break;
     case 1:
         if (ov19_021D6600(param0->unk_114, 3)) {
-            UnkStruct_0207D3C0 * v2;
+            Bag * v2;
 
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(10);
 
-            v2 = sub_0207D990(param0->unk_11C);
+            v2 = SaveData_GetBag(param0->unk_11C);
             param0->unk_214 = sub_0207D824(v2, v0, 9);
             sub_0207CB2C(param0->unk_214, param0->unk_11C, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
@@ -2644,7 +2643,7 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             if ((v1 == 112) && (BoxPokemon_GetValue(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
                 (void)0;
             } else if (v1 != 0) {
-                Bag_SubtractItem(sub_0207D990(param0->unk_11C), v1, 1, 9);
+                Bag_TryRemoveItem(SaveData_GetBag(param0->unk_11C), v1, 1, 9);
                 ov19_021D5BE8(&param0->unk_00, v1, param0);
                 ov19_021D0F14(param0);
             }
@@ -2737,7 +2736,7 @@ static void ov19_021D3FB0 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         }
         break;
     case 2:
-        if (sub_0207D570(sub_0207D990(param0->unk_11C), v0, 1, 9)) {
+        if (Bag_TryAddItem(SaveData_GetBag(param0->unk_11C), v0, 1, 9)) {
             ov19_021D5BE8(&param0->unk_00, 0, param0);
             ov19_021D6594(param0->unk_114, 22);
             ov19_021D6594(param0->unk_114, 6);
@@ -2814,7 +2813,7 @@ static void ov19_021D4184 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         }
         break;
     case 2:
-        if (sub_0207D570(sub_0207D990(param0->unk_11C), v0, 1, 9)) {
+        if (Bag_TryAddItem(SaveData_GetBag(param0->unk_11C), v0, 1, 9)) {
             if (ov19_021D5F7C(&param0->unk_00) != 0) {
                 ov19_021D5D54(&param0->unk_00);
                 *param1 = 4;

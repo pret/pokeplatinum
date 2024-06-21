@@ -24,7 +24,7 @@
 #include "map_object.h"
 #include "pokeradar.h"
 #include "unk_020711EC.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021F2D20.h"
 #include "overlay006/ov6_022430C4.h"
 
@@ -473,7 +473,7 @@ int GetChainCount (FieldSystem *fieldSystem) {
 void RadarChargeStep (FieldSystem *fieldSystem) {
     u8 *v0;
 
-    if (sub_0207D688(sub_0207D990(fieldSystem->saveData), 431, 1, 4) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 431, 1, 4) == 1) {
         v0 = sub_0202D9C4(sub_0202D834(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;

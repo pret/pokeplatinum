@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV84_0223F040_H
 
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_0207CDEC.h"
+#include "bag.h"
 #include "overlay084/struct_ov84_0223B5A0.h"
 
 void ov84_0223F040(UnkStruct_ov84_0223B5A0 * param0);

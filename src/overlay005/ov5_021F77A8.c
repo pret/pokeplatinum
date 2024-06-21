@@ -9,7 +9,7 @@
 #include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021F7ED8_decl.h"
 
@@ -36,7 +36,7 @@
 #include "constants/forms.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/ov5_021F77A8.h"
 
@@ -130,11 +130,11 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
-    UnkStruct_0207D3C0 * v5;
+    Bag * v5;
     u16 v6 = ScriptContext_GetVar(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
 
-    v5 = sub_0207D990(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -155,25 +155,25 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
     *v7 = 1;
 
     if (v1) {
-        if (sub_0207D688(v5, 72, v1, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 72, v1, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v2) {
-        if (sub_0207D688(v5, 73, v2, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 73, v2, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v3) {
-        if (sub_0207D688(v5, 74, v3, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 74, v3, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v4) {
-        if (sub_0207D688(v5, 75, v4, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 75, v4, 32) == 0) {
             *v7 = 0;
         }
     }
@@ -185,10 +185,10 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
-    UnkStruct_0207D3C0 * v5;
+    Bag * v5;
     u16 v6 = ScriptContext_GetVar(param0);
 
-    v5 = sub_0207D990(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -204,10 +204,10 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
         GF_ASSERT(0);
     }
 
-    Bag_SubtractItem(v5, 72, v1, 32);
-    Bag_SubtractItem(v5, 73, v2, 32);
-    Bag_SubtractItem(v5, 74, v3, 32);
-    Bag_SubtractItem(v5, 75, v4, 32);
+    Bag_TryRemoveItem(v5, 72, v1, 32);
+    Bag_TryRemoveItem(v5, 73, v2, 32);
+    Bag_TryRemoveItem(v5, 74, v3, 32);
+    Bag_TryRemoveItem(v5, 75, v4, 32);
 
     return 0;
 }

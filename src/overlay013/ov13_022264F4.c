@@ -12,7 +12,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0207D99C_decl.h"
 
 #include "touch_screen.h"
 #include "overlay013/struct_ov13_022264F4.h"
@@ -41,7 +40,7 @@
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay013/ov13_022264F4.h"
 #include "overlay013/ov13_02227288.h"
 #include "overlay013/ov13_02227A4C.h"
@@ -842,6 +841,6 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02227260 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
-    Bag_SubtractItem(BattleSystem_Bag(param0), param1, 1, param3);
+    Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
     Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);
 }

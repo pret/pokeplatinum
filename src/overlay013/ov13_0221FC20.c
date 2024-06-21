@@ -37,7 +37,7 @@
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C098.h"
 #include "pokemon_summary_app.h"
 #include "unk_02094EDC.h"
@@ -1739,7 +1739,7 @@ static void ov13_02221A3C (UnkStruct_ov13_022213F0 * param0)
 static void ov13_02221A54 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
     if ((param1 != 65) && (param1 != 67) && (param1 != 66)) {
-        Bag_SubtractItem(BattleSystem_Bag(param0), param1, 1, param3);
+        Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
     }
 
     Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);

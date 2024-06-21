@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207CB08.h"
-#include "struct_defs/struct_0207CDEC.h"
+#include "bag.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223B5A0.h"

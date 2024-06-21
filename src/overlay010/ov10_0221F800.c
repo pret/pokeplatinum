@@ -73,7 +73,7 @@
 #include "pokemon_icon.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "pokemon_summary_app.h"
@@ -407,7 +407,7 @@ void ov10_0221F800 (UnkStruct_ov10_0221F800 * param0)
 
     if (v0->unk_BBC == 1) {
         if ((v0->unk_00->unk_00 != NULL) && (v0->unk_00->unk_00->unk_198 != NULL)) {
-            v0->unk_BBC = sub_0207D688(sub_0207D990(v0->unk_00->unk_00->unk_198), 465, 1, param0->unk_24);
+            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->unk_198), 465, 1, param0->unk_24);
         }
     }
 }

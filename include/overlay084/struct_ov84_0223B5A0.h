@@ -17,7 +17,7 @@
 #include "game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
 #include "overlay084/struct_ov84_0223C920.h"
 
@@ -26,7 +26,7 @@ typedef struct {
     Window unk_04[11];
     Window unk_B4[1];
     UnkStruct_0207CB08 * unk_C4;
-    UnkStruct_0207D3C0 * unk_C8;
+    Bag * unk_C8;
     TrainerInfo * unk_CC;
     Options * unk_D0;
     NARC * unk_D4;

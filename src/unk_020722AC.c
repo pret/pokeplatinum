@@ -14,7 +14,6 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 #include "savedata.h"
 
 #include "constdata/const_020F1E88.h"
@@ -55,7 +54,7 @@
 #include "unk_0206A780.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_02097624.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D431C.h"
@@ -122,7 +121,7 @@ typedef struct {
     UnkStruct_0206A844 * unk_1A4;
     UnkStruct_02097728 * unk_1A8;
     UnkStruct_02028430 * unk_1AC;
-    UnkStruct_0207D3C0 * unk_1B0;
+    Bag * unk_1B0;
     PartyManagementData * unk_1B4;
 } UnkStruct_02072334;
 
@@ -612,7 +611,7 @@ static void sub_02072878 (SysTask * param0, void * param1)
 
         sub_020734F4(v4, 1);
 
-        if (sub_0207D730(v4->unk_1B0, v4->unk_1C[v4->unk_18].unk_06, v4->unk_00) > 0) {
+        if (Bag_GetItemQuantity(v4->unk_1B0, v4->unk_1C[v4->unk_18].unk_06, v4->unk_00) > 0) {
             v4->unk_13B_6 = 1;
         } else {
             v4->unk_13B_6 = 0;
@@ -926,7 +925,7 @@ static void sub_02072F30 (UnkStruct_02072334 * param0, SaveData * param1, int pa
     v5 = sub_02028430(param1);
 
     param0->unk_1AC = v5;
-    param0->unk_1B0 = sub_0207D990(param1);
+    param0->unk_1B0 = SaveData_GetBag(param1);
 
     v6 = sub_0202818C(param2);
 
@@ -986,10 +985,10 @@ static BOOL sub_02073060 (UnkStruct_02072334 * param0)
     BOOL v1;
 
     v0 = &(param0->unk_1C[param0->unk_18]);
-    v1 = sub_0207D55C(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+    v1 = Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
 
     if (v1) {
-        sub_0207D570(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+        Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
     }
 
     sub_02028470(param0->unk_1AC, 0, param0->unk_18);
@@ -1017,8 +1016,8 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
 
     if (param2) {
-        if (sub_0207D55C(param0->unk_1B0, v0->unk_06, 1, param0->unk_00)) {
-            sub_0207D570(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+        if (Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00)) {
+            Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
         }
     }
 
@@ -1225,7 +1224,7 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
         v0->unk_00 = Party_GetFromSavedata(FieldSystem_SaveData(param0->fieldSystem));
-        v0->unk_04 = sub_0207D990(FieldSystem_SaveData(param0->fieldSystem));
+        v0->unk_04 = SaveData_GetBag(FieldSystem_SaveData(param0->fieldSystem));
         v0->unk_0C = SaveData_Options(FieldSystem_SaveData(param0->fieldSystem));
         v0->unk_08 = sub_02028430(param0->fieldSystem->saveData);
         v0->unk_21 = 0;

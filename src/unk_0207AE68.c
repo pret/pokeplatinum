@@ -11,7 +11,6 @@
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -63,10 +62,10 @@
 #include "party.h"
 #include "unk_0207AE68.h"
 #include "unk_0207C63C.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, PoketchData * param8, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, UnkStruct_0202CD88 * param7, PoketchData * param8, int param9, int param10, int param11);
 static void sub_0207B0A0(SysTask * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
@@ -96,7 +95,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, PoketchData * param8, int param9, int param10, int param11)
+UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, UnkStruct_0202CD88 * param7, PoketchData * param8, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
     ArchivedSprite v1;
@@ -696,7 +695,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
     switch (param0->unk_78) {
     case 13:
     case 14:
-        if (sub_0207D730(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
+        if (Bag_GetItemQuantity(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
                 Pokemon * v1;
                 int v2;
@@ -752,7 +751,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 sub_0202CFEC(param0->unk_50, 22);
                 PoketchData_PokemonHistoryEnqueue(param0->unk_54, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
-                Bag_SubtractItem(param0->unk_4C, 4, 1, param0->unk_5C);
+                Bag_TryRemoveItem(param0->unk_4C, 4, 1, param0->unk_5C);
             }
         }
         break;

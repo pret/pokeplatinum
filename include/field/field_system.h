@@ -19,7 +19,7 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "pokeradar.h"
-#include "struct_decls/struct_0207D99C_decl.h"
+#include "bag.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_0209C370.h"

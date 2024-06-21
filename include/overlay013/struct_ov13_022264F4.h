@@ -3,12 +3,12 @@
 
 #include "trainer_info.h"
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 
 typedef struct {
     BattleSystem * unk_00;
     TrainerInfo * unk_04;
-    UnkStruct_0207D3C0 * unk_08;
+    Bag * unk_08;
     u32 unk_0C;
     s32 unk_10;
     u32 unk_14;

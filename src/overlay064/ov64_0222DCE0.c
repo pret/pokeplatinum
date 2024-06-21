@@ -84,7 +84,7 @@
 #include "vars_flags.h"
 #include "unk_0205C980.h"
 #include "pokemon.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208694C.h"
 #include "unk_020890F4.h"
 #include "overlay063/ov63_0222AE60.h"
@@ -5446,7 +5446,7 @@ static void ov64_02232138 (UnkStruct_ov64_02230904 * param0, s32 param1)
 
 static BOOL ov64_0223217C (UnkStruct_ov64_0222E060 * param0, u32 param1)
 {
-    if (!sub_0207D730(sub_0207D990(param0->unk_00), 449, param1)) {
+    if (!Bag_GetItemQuantity(SaveData_GetBag(param0->unk_00), 449, param1)) {
         return 0;
     }
 

@@ -99,7 +99,7 @@
 #include "vars_flags.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207DFAC.h"
 #include "unk_02099550.h"
 #include "unk_0209C390.h"
@@ -407,7 +407,7 @@ static BOOL ov65_0222DCE0 (UnkStruct_ov65_0222EBE0 * param0)
 
 static BOOL ov65_0222DCF8 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    if (!sub_0207D730(sub_0207D990(param0->unk_160), 449, 54)) {
+    if (!Bag_GetItemQuantity(SaveData_GetBag(param0->unk_160), 449, 54)) {
         return 0;
     }
 
@@ -3799,11 +3799,11 @@ static BOOL ov65_02231978 (UnkStruct_0207E060 * param0)
 
 static u32 ov65_022319B8 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    if (!sub_0207D69C(sub_0207D990(param0->unk_160), 4)) {
+    if (!Bag_HasItemsInPocket(SaveData_GetBag(param0->unk_160), 4)) {
         return 1;
     }
 
-    if (!sub_0207D730(sub_0207D990(param0->unk_160), 449, 54)) {
+    if (!Bag_GetItemQuantity(SaveData_GetBag(param0->unk_160), 449, 54)) {
         return 3;
     }
 

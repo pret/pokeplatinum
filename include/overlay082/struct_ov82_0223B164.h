@@ -5,7 +5,7 @@
 #include "game_options.h"
 #include "struct_decls/struct_0202AB28_decl.h"
 #include "journal.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "savedata.h"
 
 typedef struct {
@@ -14,7 +14,7 @@ typedef struct {
     UnkStruct_0202AB28 * unk_08;
     SaveData * unk_0C;
     TrainerInfo * unk_10;
-    UnkStruct_0207D3C0 * unk_14;
+    Bag * unk_14;
     Options * unk_18;
     Journal * unk_1C;
     BOOL unk_20;

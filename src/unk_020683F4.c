@@ -58,7 +58,7 @@
 #include "party.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020989DC.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021DFB54.h"
@@ -342,7 +342,7 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    v2->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
     v2->unk_0C = SaveData_Options(fieldSystem->saveData);
     v2->unk_10 = SaveData_TVBroadcast(fieldSystem->saveData);
@@ -595,7 +595,7 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    v2->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
     v2->unk_0C = SaveData_Options(fieldSystem->saveData);
     v2->unk_18 = &v1->unk_24C;
@@ -811,7 +811,7 @@ static void sub_02068CF0 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v1->unk_25C = v2;
     v1->state = FIELD_MENU_STATE_10;
 
-    Bag_SubtractItem(sub_0207D990(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, 11);
 }
 
 static void sub_02068D48 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 * param1)
@@ -935,7 +935,7 @@ static BOOL sub_02068EFC (UnkStruct_02068870 * param0)
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, 11);
 
-    sub_0207CC10(param0->fieldSystem->saveData, v0->unk_10, sub_0207D3FC(sub_0207D990(param0->fieldSystem->saveData)), 11);
+    sub_0207CC10(param0->fieldSystem->saveData, v0->unk_10, Bag_GetRegisteredItem(SaveData_GetBag(param0->fieldSystem->saveData)), 11);
     FieldTask_Set(param0->fieldSystem, sub_02068F48, v0);
 
     return 0;
@@ -995,7 +995,7 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     memset(v2, 0, sizeof(PartyManagementData));
 
     v2->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    v2->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v2->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v2->unk_08 = sub_02028430(fieldSystem->saveData);
     v2->unk_0C = SaveData_Options(fieldSystem->saveData);
     v2->unk_10 = SaveData_TVBroadcast(fieldSystem->saveData);
@@ -1024,7 +1024,7 @@ static void sub_02069080 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     menu->unk_25C = NULL;
     menu->state = FIELD_MENU_STATE_10;
 
-    Bag_SubtractItem(sub_0207D990(fieldSystem->saveData), param0->unk_04, 1, 11);
+    Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, 11);
 }
 
 static u32 sub_020690C4 (const UnkStruct_020684D0 * param0)
@@ -1152,7 +1152,7 @@ BOOL sub_02069238 (FieldSystem * fieldSystem)
         return 0;
     }
 
-    v3 = (u16)sub_0207D3FC(sub_0207D990(fieldSystem->saveData));
+    v3 = (u16)Bag_GetRegisteredItem(SaveData_GetBag(fieldSystem->saveData));
     v4 = (u16)Item_LoadParam(v3, 6, 11);
     v2 = (UnkFuncPtr_02069238)sub_020683F4(2, v4);
     v1 = (UnkFuncPtr_020EF79C)sub_020683F4(1, v4);

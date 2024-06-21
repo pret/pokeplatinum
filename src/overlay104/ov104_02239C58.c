@@ -18,7 +18,7 @@
 #include "unk_0202D778.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -113,7 +113,7 @@ static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
 
     param1->unk_A8->unk_00 = Party_GetFromSavedata(param1->unk_00);
-    param1->unk_A8->unk_04 = sub_0207D990(param1->unk_00);
+    param1->unk_A8->unk_04 = SaveData_GetBag(param1->unk_00);
     param1->unk_A8->unk_08 = sub_02028430(param1->unk_00);
     param1->unk_A8->unk_0C = SaveData_Options(param1->unk_00);
     param1->unk_A8->unk_21 = 0;
