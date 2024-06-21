@@ -29,51 +29,51 @@ GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata)
     return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_GAME_RECORDS);
 }
 
-static void sub_0202CD94 (GameRecords * param0, int param1)
+static void sub_0202CD94 (GameRecords * records, int param1)
 {
     if (param1 == (0 + 0)) {
         return;
     }
 
-    param0->unk_1B8.unk_00 = sub_0201D5B8(&param0->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
-    EncryptData(&param0->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    records->unk_1B8.unk_00 = sub_0201D5B8(&records->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
+    EncryptData(&records->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
 }
 
-static void sub_0202CDC0 (GameRecords * param0, int param1)
+static void sub_0202CDC0 (GameRecords * records, int param1)
 {
     if (param1 == (0 + 0)) {
         return;
     }
 
-    DecryptData(&param0->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    DecryptData(&records->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
 }
 
-static u32 sub_0202CDE0 (const GameRecords * param0, int param1)
+static u32 sub_0202CDE0 (const GameRecords * records, int param1)
 {
     if (param1 < ((70 + 1))) {
-        return param0->unk_00[param1];
+        return records->unk_00[param1];
     } else if (param1 < ((49 + 28) + ((70 + 1)))) {
-        return param0->unk_11C[param1 - ((70 + 1))];
+        return records->unk_11C[param1 - ((70 + 1))];
     }
 
     GF_ASSERT(0);
     return 0;
 }
 
-static u32 sub_0202CE08 (GameRecords * param0, int param1, u32 param2)
+static u32 sub_0202CE08 (GameRecords * records, int param1, u32 param2)
 {
     if (param1 < ((70 + 1))) {
-        param0->unk_00[param1] = param2;
+        records->unk_00[param1] = param2;
     } else if (param1 < ((49 + 28) + ((70 + 1)))) {
-        param0->unk_11C[param1 - ((70 + 1))] = param2;
+        records->unk_11C[param1 - ((70 + 1))] = param2;
     } else {
         GF_ASSERT(0);
     }
 
-    return sub_0202CDE0(param0, param1);
+    return sub_0202CDE0(records, param1);
 }
 
-static u32 sub_0202CE3C (int param0)
+static u32 sub_0202CE3C (int records)
 {
     static u8 v0[148] = {
         0x1,
@@ -197,14 +197,14 @@ static u32 sub_0202CE3C (int param0)
         0x0,
         0x0
     };
-    if (param0 < ((70 + 1))) {
-        if (v0[param0]) {
+    if (records < ((70 + 1))) {
+        if (v0[records]) {
             return 999999999;
         } else {
             return 999999;
         }
-    } else if (param0 < ((49 + 28) + ((70 + 1)))) {
-        if (v0[param0]) {
+    } else if (records < ((49 + 28) + ((70 + 1)))) {
+        if (v0[records]) {
             return 0xffff;
         } else {
             return 9999;
@@ -215,7 +215,7 @@ static u32 sub_0202CE3C (int param0)
     return 0;
 }
 
-static int sub_0202CE84 (int param0)
+static int sub_0202CE84 (int records)
 {
     static const u16 v0[51] = {
         0x1,
@@ -271,36 +271,36 @@ static int sub_0202CE84 (int param0)
         0xA
     };
 
-    return v0[param0];
+    return v0[records];
 }
 
-u32 sub_0202CE90 (GameRecords * param0, int param1, u32 param2)
+u32 sub_0202CE90 (GameRecords * records, int param1, u32 param2)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
 
-    sub_0202CDC0(param0, param1);
+    sub_0202CDC0(records, param1);
 
     if (param2 < v0) {
-        v1 = sub_0202CE08(param0, param1, param2);
+        v1 = sub_0202CE08(records, param1, param2);
     } else {
-        v1 = sub_0202CE08(param0, param1, v0);
+        v1 = sub_0202CE08(records, param1, v0);
     }
 
-    sub_0202CD94(param0, param1);
+    sub_0202CD94(records, param1);
 
     return v1;
 }
 
-u32 sub_0202CED0 (GameRecords * param0, int param1, u32 param2)
+u32 sub_0202CED0 (GameRecords * records, int param1, u32 param2)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
     u32 v2;
 
-    sub_0202CDC0(param0, param1);
+    sub_0202CDC0(records, param1);
 
-    v1 = sub_0202CDE0(param0, param1);
+    v1 = sub_0202CDE0(records, param1);
     v2 = v1;
 
     if (param2 > v0) {
@@ -308,68 +308,68 @@ u32 sub_0202CED0 (GameRecords * param0, int param1, u32 param2)
     }
 
     if (v1 < param2) {
-        v2 = sub_0202CE08(param0, param1, param2);
+        v2 = sub_0202CE08(records, param1, param2);
     } else {
         if (v1 > v0) {
-            v2 = sub_0202CE08(param0, param1, v0);
+            v2 = sub_0202CE08(records, param1, v0);
         }
     }
 
-    sub_0202CD94(param0, param1);
+    sub_0202CD94(records, param1);
 
     return v2;
 }
 
-u32 sub_0202CF28 (GameRecords * param0, int param1)
+u32 sub_0202CF28 (GameRecords * records, int param1)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
     u32 v2;
 
-    sub_0202CDC0(param0, param1);
+    sub_0202CDC0(records, param1);
 
-    v1 = sub_0202CDE0(param0, param1);
+    v1 = sub_0202CDE0(records, param1);
 
     if (v1 + 1 < v0) {
-        v2 = sub_0202CE08(param0, param1, v1 + 1);
+        v2 = sub_0202CE08(records, param1, v1 + 1);
     } else {
-        v2 = sub_0202CE08(param0, param1, v0);
+        v2 = sub_0202CE08(records, param1, v0);
     }
 
-    sub_0202CD94(param0, param1);
+    sub_0202CD94(records, param1);
 
     return v2;
 }
 
-u32 sub_0202CF70 (GameRecords * param0, int param1, u32 param2)
+u32 sub_0202CF70 (GameRecords * records, int param1, u32 param2)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
     u32 v2;
 
-    sub_0202CDC0(param0, param1);
+    sub_0202CDC0(records, param1);
 
-    v1 = sub_0202CDE0(param0, param1);
+    v1 = sub_0202CDE0(records, param1);
 
     if (v1 + param2 < v0) {
-        v2 = sub_0202CE08(param0, param1, v1 + param2);
+        v2 = sub_0202CE08(records, param1, v1 + param2);
     } else {
-        v2 = sub_0202CE08(param0, param1, v0);
+        v2 = sub_0202CE08(records, param1, v0);
     }
 
-    sub_0202CD94(param0, param1);
+    sub_0202CD94(records, param1);
 
     return v2;
 }
 
-u32 sub_0202CFB8 (GameRecords * param0, int param1)
+u32 sub_0202CFB8 (GameRecords * records, int param1)
 {
     u32 v0 = sub_0202CE3C(param1);
     u32 v1;
 
-    sub_0202CDC0(param0, param1);
-    v1 = sub_0202CDE0(param0, param1);
-    sub_0202CD94(param0, param1);
+    sub_0202CDC0(records, param1);
+    v1 = sub_0202CDE0(records, param1);
+    sub_0202CD94(records, param1);
 
     if (v1 > v0) {
         return v0;
@@ -378,29 +378,29 @@ u32 sub_0202CFB8 (GameRecords * param0, int param1)
     }
 }
 
-void sub_0202CFEC (GameRecords * param0, int param1)
+void sub_0202CFEC (GameRecords * records, int param1)
 {
     u32 v0;
 
     GF_ASSERT(param1 < 51);
 
-    v0 = sub_0202CFB8(param0, (0 + 1));
+    v0 = sub_0202CFB8(records, (0 + 1));
 
     if (v0 + sub_0202CE84(param1) > 99999999) {
-        sub_0202CE90(param0, (0 + 1), 99999999);
+        sub_0202CE90(records, (0 + 1), 99999999);
     } else {
-        sub_0202CF70(param0, (0 + 1), sub_0202CE84(param1));
+        sub_0202CF70(records, (0 + 1), sub_0202CE84(param1));
     }
 }
 
-u32 sub_0202D034 (GameRecords * param0)
+u32 sub_0202D034 (GameRecords * records)
 {
-    return sub_0202CFB8(param0, (0 + 1));
+    return sub_0202CFB8(records, (0 + 1));
 }
 
-void sub_0202D040 (GameRecords * param0, const PokedexData * param1, u16 const param2)
+void sub_0202D040 (GameRecords * records, const PokedexData * param1, u16 const param2)
 {
     if (!Pokedex_CaughtSpecies(param1, param2)) {
-        sub_0202CFEC(param0, 22);
+        sub_0202CFEC(records, 22);
     }
 }

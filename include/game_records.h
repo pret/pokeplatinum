@@ -20,13 +20,13 @@ GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata);
 
 int GameRecords_SaveSize(void);
 void GameRecords_Init(GameRecords *records);
-u32 sub_0202CE90(GameRecords * param0, int param1, u32 param2);
-u32 sub_0202CED0(GameRecords * param0, int param1, u32 param2);
-u32 sub_0202CF28(GameRecords * param0, int param1);
-u32 sub_0202CF70(GameRecords * param0, int param1, u32 param2);
-u32 sub_0202CFB8(GameRecords * param0, int param1);
-void sub_0202CFEC(GameRecords * param0, int param1);
-u32 sub_0202D034(GameRecords * param0);
-void sub_0202D040(GameRecords * param0, const PokedexData * param1, u16 const param2);
+u32 sub_0202CE90(GameRecords * records, int param1, u32 param2);
+u32 sub_0202CED0(GameRecords * records, int param1, u32 param2);
+u32 sub_0202CF28(GameRecords * records, int param1);
+u32 sub_0202CF70(GameRecords * records, int param1, u32 param2);
+u32 sub_0202CFB8(GameRecords * records, int param1);
+void sub_0202CFEC(GameRecords * records, int param1);
+u32 sub_0202D034(GameRecords * records);
+void sub_0202D040(GameRecords * records, const PokedexData * param1, u16 const param2);
 
 #endif // POKEPLATINUM_UNK_0202CD50_H
