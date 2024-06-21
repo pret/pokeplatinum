@@ -69,7 +69,7 @@ struct BattleSystem {
     UnkStruct_ov12_0221FCDC * unk_8C;
     SpriteRenderer * unk_90;
     SpriteGfxHandler * unk_94;
-    PoketchData * unk_98;
+    PoketchData *poketchData;
     UnkStruct_0206D140 * unk_9C;
     u16 trainerIDs[4];
     u8 unk_A8[4];

@@ -23,7 +23,7 @@ typedef struct {
     PoketchSystem *poketchSys;
     PoketchButtonManager * unk_14;
     u32 unk_18;
-    PoketchData * unk_1C;
+    PoketchData *poketchData;
 } UnkStruct_ov36_0225621C;
 
 static void NitroStaticInit(void);
@@ -74,9 +74,9 @@ static BOOL ov36_0225621C (UnkStruct_ov36_0225621C * param0, PoketchSystem *poke
     };
 
     param0->poketchSys = poketchSys;
-    param0->unk_1C = PoketchSystem_GetPoketchData(poketchSys);
+    param0->poketchData = PoketchSystem_GetPoketchData(poketchSys);
     param0->unk_04.unk_04 = 1;
-    param0->unk_04.unk_00 = PoketchData_StepCount(param0->unk_1C);
+    param0->unk_04.unk_00 = PoketchData_StepCount(param0->poketchData);
 
     if (ov36_02256404(&(param0->unk_0C), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -184,7 +184,7 @@ static BOOL ov36_02256330 (UnkStruct_ov36_0225621C * param0)
         }
 
         if (PoketchSystem_PedometerUpdated(param0->poketchSys)) {
-            v0->unk_00 = PoketchData_StepCount(param0->unk_1C);
+            v0->unk_00 = PoketchData_StepCount(param0->poketchData);
             ov36_0225653C(param0->unk_0C, 3);
             break;
         }
@@ -204,7 +204,7 @@ static BOOL ov36_02256330 (UnkStruct_ov36_0225621C * param0)
             v0->unk_04 = 1;
             v0->unk_00 = 0;
 
-            PoketchData_SetStepCount(param0->unk_1C, 0);
+            PoketchData_SetStepCount(param0->poketchData, 0);
 
             ov36_0225653C(param0->unk_0C, 2);
             ov36_0225653C(param0->unk_0C, 3);

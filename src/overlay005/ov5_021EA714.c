@@ -26,10 +26,10 @@ void ov5_021EA714 (FieldSystem * fieldSystem, int param1, u32 param2)
 
 void ov5_021EA728 (FieldSystem * fieldSystem)
 {
-    PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
+    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
     VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(v0)
+    if (PoketchData_IsEnabled(poketchData)
         && (sub_0206AE2C(v1) == 0)) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
         PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->unk_08, sub_0200A914(1));
@@ -41,10 +41,10 @@ void ov5_021EA728 (FieldSystem * fieldSystem)
 
 void ov5_021EA790 (FieldSystem * fieldSystem)
 {
-    PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
+    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
     VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(v0)
+    if (PoketchData_IsEnabled(poketchData)
         && (sub_0206AE2C(v1) == 0)) {
         PoketchSystem_StartShutdown(fieldSystem->unk_04->poketchSys);
     } else {
@@ -54,10 +54,10 @@ void ov5_021EA790 (FieldSystem * fieldSystem)
 
 u8 ov5_021EA7CC (FieldSystem * fieldSystem)
 {
-    PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
+    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
     VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    if (PoketchData_IsEnabled(v0)
+    if (PoketchData_IsEnabled(poketchData)
         && (sub_0206AE2C(v1) == 0)) {
         if (PoketchSystem_IsSystemShutdown(fieldSystem->unk_04->poketchSys)) {
             fieldSystem->unk_04->poketchSys = NULL;

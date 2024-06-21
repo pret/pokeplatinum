@@ -725,18 +725,18 @@ static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C458 (FieldSystem * fieldSystem, void * param1)
 {
-    PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
+    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
 
-    return PoketchData_IsEnabled(v0);
+    return PoketchData_IsEnabled(poketchData);
 }
 
 static void sub_0204C474 (FieldSystem * fieldSystem, void * param1)
 {
-    PoketchData * v0 = SaveData_PoketchData(fieldSystem->saveData);
+    PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(fieldSystem);
 
-    PoketchData_RegisterApp(v0, v1->val6.unk_00);
+    PoketchData_RegisterApp(poketchData, v1->val6.unk_00);
 }
 
 static void sub_0204C494 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)

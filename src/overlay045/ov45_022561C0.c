@@ -24,7 +24,7 @@ typedef struct {
     UnkStruct_ov45_022566EC_1 unk_03;
     UnkStruct_ov45_022566EC * unk_08;
     PoketchSystem *poketchSys;
-    PoketchData * unk_10;
+    PoketchData *poketchData;
     PoketchButtonManager * unk_14;
     u32 unk_18;
     u32 unk_1C;
@@ -88,10 +88,10 @@ static BOOL ov45_0225621C (UnkStruct_ov45_022561D4 * param0, PoketchSystem *poke
     };
     u32 v1, v2;
 
-    param0->unk_10 = PoketchSystem_GetPoketchData(poketchSys);
-    param0->unk_03.unk_00 = PoketchData_IsAlarmSet(param0->unk_10);
+    param0->poketchData = PoketchSystem_GetPoketchData(poketchSys);
+    param0->unk_03.unk_00 = PoketchData_IsAlarmSet(param0->poketchData);
 
-    PoketchData_AlarmTime(param0->unk_10, &v1, &v2);
+    PoketchData_AlarmTime(param0->poketchData, &v1, &v2);
 
     param0->unk_03.unk_03 = v1;
     param0->unk_03.unk_04 = v2;
@@ -229,7 +229,7 @@ static BOOL ov45_022563C0 (UnkStruct_ov45_022561D4 * param0)
         if ((param0->unk_1C == 1) && (param0->unk_18 == 0)) {
             param0->unk_03.unk_00 = 1;
             ov45_022562C0(&param0->unk_03);
-            PoketchData_SetAlarm(param0->unk_10, 1, param0->unk_03.unk_03, param0->unk_03.unk_04);
+            PoketchData_SetAlarm(param0->poketchData, 1, param0->unk_03.unk_03, param0->unk_03.unk_04);
             ov45_02256918(param0->unk_08, 2);
             param0->unk_1C = 0;
             param0->unk_01++;

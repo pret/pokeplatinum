@@ -1121,8 +1121,8 @@ void ov16_0223EF2C (BattleSystem * param0, int param1, int param2)
 
 void ov16_0223EF48 (BattleSystem * param0, Pokemon * param1)
 {
-    if (param0->unk_98) {
-        PoketchData_PokemonHistoryEnqueue(param0->unk_98, Pokemon_GetBoxPokemon(param1));
+    if (param0->poketchData) {
+        PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param1));
     }
 }
 

@@ -5213,10 +5213,10 @@ static BOOL ScrCmd_131 (ScriptContext * ctx)
 
 static BOOL ScrCmd_132 (ScriptContext * ctx)
 {
-    PoketchData * v0 = SaveData_PoketchData(ctx->fieldSystem->saveData);
+    PoketchData *poketchData = SaveData_PoketchData(ctx->fieldSystem->saveData);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = PoketchData_IsEnabled(v0);
+    *v1 = PoketchData_IsEnabled(poketchData);
     return 0;
 }
 
