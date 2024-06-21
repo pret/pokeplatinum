@@ -447,7 +447,7 @@ BOOL ov62_0222F910 (UnkStruct_0208C06C * param0, int * param1)
 
     sub_020241B4();
     sub_02007768(param0->unk_14.unk_50);
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     ov62_022411D4(param0);
 

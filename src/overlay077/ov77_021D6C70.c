@@ -185,7 +185,7 @@ void ov77_021D6E50 (UnkStruct_ov77_021D6CFC * param0)
         NNS_G2dSetupSoftwareSpriteCamera();
         sub_02007768(param0->unk_00);
         ov77_021D725C();
-        sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }
 

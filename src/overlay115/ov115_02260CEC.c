@@ -3001,7 +3001,7 @@ static void ov115_0226369C (const UnkStruct_ov115_02260D78 * param0, UnkStruct_o
 
     NNS_G3dGePopMtx(1);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     sub_020219F8(param1->unk_1C);
 }
 

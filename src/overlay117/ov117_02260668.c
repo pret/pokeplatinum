@@ -634,7 +634,7 @@ static void ov117_02260F7C (SysTask * param0, void * param1)
 
     sub_0200C7EC(v0->unk_28);
     sub_0200C808();
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     sub_02038A1C(110, v0->unk_2C);
 }
 

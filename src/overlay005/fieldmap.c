@@ -759,7 +759,7 @@ static void ov5_021D15F4 (FieldSystem * fieldSystem)
     }
 
     ov5_021D1B18(fieldSystem->unk_04->unk_04);
-    sub_020241BC(GX_SORTMODE_AUTO, gBufferMode);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
 }
 
 void ov5_021D16F4 (FieldSystem * fieldSystem, BOOL param1)

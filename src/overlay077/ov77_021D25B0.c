@@ -1838,7 +1838,7 @@ static void ov77_021D4188 (UnkStruct_ov77_021D37C0 * param0)
         sub_020146C0();
     }
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }
 
 static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D37C0 * param1, const int param2)

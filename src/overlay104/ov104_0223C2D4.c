@@ -386,7 +386,7 @@ static void ov104_0223C738 (SysTask * param0, void * param1)
     sub_0200C808();
 
     ov104_0223D6A8();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 static void ov104_0223C798 (UnkStruct_ov104_0223C4CC * param0)

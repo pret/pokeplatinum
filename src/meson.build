@@ -1020,5 +1020,5 @@ pokeplatinum_c = files(
     'overlay119/ov119_021D0D80.c',
     'overlay119/ov119_021D191C.c',
     'overlay120/ov120_021D0D80.c',
-    'overlay121/ov121_021D0D80.c'
+    'dw_warp/dw_warp.c'
 )

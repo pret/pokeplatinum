@@ -203,7 +203,7 @@ static void ov95_0224AC64 (UnkStruct_ov95_0224AC64 * param0)
         ov95_02247990(param0->unk_24, &(param0->unk_28));
         G3X_Reset();
         ov95_02247770(param0->unk_20);
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 }
 

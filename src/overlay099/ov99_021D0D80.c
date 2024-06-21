@@ -299,7 +299,7 @@ static void ov99_021D1244 (SysTask * param0, void * param1)
 
     if (v0->unk_1103 == 1) {
         ov99_021D1720(v0);
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 
     sub_0200C7EC(v0->unk_1C);

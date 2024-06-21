@@ -1601,7 +1601,7 @@ static void ov109_021D1C90 (UnkStruct_ov109_021D0F70 * param0)
     ov109_021D2AC8(param0);
     ov109_021D2CCC(param0);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     sub_0200C7EC(param0->unk_D98);
 }
 
