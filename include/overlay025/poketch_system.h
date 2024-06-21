@@ -65,11 +65,11 @@ enum PoketchBorderColor {
 };
 
 enum PoketchEventID {
-    POKETCH_FIELDEVENT_SLEEP = 0,
-    POKETCH_FIELDEVENT_PLAYER_MOVED,
+    POKETCH_EVENT_SLEEP = 0,
+    POKETCH_EVENT_PLAYER_MOVED,
     
-    POKETCH_FIELDEVENT_SAVE = 4,
-    POKETCH_FIELDEVENT_PEDOMETER,
+    POKETCH_EVENT_SAVE = 4,
+    POKETCH_EVENT_PEDOMETER,
 };
 
 typedef struct PoketchSystem PoketchSystem;

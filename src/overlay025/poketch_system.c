@@ -26,7 +26,7 @@
 #include "unk_020508D4.h"
 #include "unk_02099D44.h"
 #include "overlay025/ov25_02254560.h"
-#include "consts/sdat.h"
+#include "constants/sdat.h"
 #include "gender.h"
 
 FS_EXTERN_OVERLAY(overlay26);
@@ -163,12 +163,12 @@ BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys)
 void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID eventID, u32)
 {
     switch (eventID) {
-    case POKETCH_FIELDEVENT_SLEEP:
+    case POKETCH_EVENT_SLEEP:
         break;
-    case POKETCH_FIELDEVENT_PLAYER_MOVED:
+    case POKETCH_EVENT_PLAYER_MOVED:
         poketchSys->playerMoving = TRUE;
         break;
-    case POKETCH_FIELDEVENT_PEDOMETER:{
+    case POKETCH_EVENT_PEDOMETER:{
         u32 step_count = PoketchData_StepCount(poketchSys->poketchData);
 
         if (++step_count > POKETCH_PEDOMETER_MAX) {
@@ -179,7 +179,7 @@ void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID even
         poketchSys->pedometerUpdated = TRUE;
     }
     break;
-    case POKETCH_FIELDEVENT_SAVE:
+    case POKETCH_EVENT_SAVE:
         if (poketchSys->appState == POKETCH_APP_STATE_UPDATE && poketchSys->currAppSave) {
             poketchSys->currAppSave(poketchSys->appSaveData);
         }
