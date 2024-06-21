@@ -52,10 +52,10 @@ typedef struct DistortionWorldWarp {
     NNSFndAllocator allocator;
 } DistortionWorldWarp;
 
-static void DW_Update(SysTask * task, void * data);
-static void DW_VBlankIntr(void * data);
-static void DW_VramSetBank(void);
-static void DW_InitCamera(DistortionWorldWarp * warp);
+static void DWWarp_Update(SysTask * task, void * data);
+static void DWWarp_VBlankIntr(void * data);
+static void DWWarp_VramSetBank(void);
+static void DWWarp_InitCamera(DistortionWorldWarp * warp);
 static void DWWarp_CameraEnd(DistortionWorldWarp * warp);
 static void DWWarp_InitModel(DistortionWorldWarp * warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp * warp);
@@ -86,12 +86,12 @@ BOOL DWWarp_Init (OverlayManager * ovy, int * state)
     dww->p3DCallback = DWWarp_Init3D(HEAP_ID_DISTORTION_WORLD_WARP);
 
     SetAutorepeat(4, 8);
-    DW_VramSetBank();
+    DWWarp_VramSetBank();
     sub_0201E3D8();
     sub_0201E450(4);
 
     DWWarp_InitModel(dww);
-    DW_InitCamera(dww);
+    DWWarp_InitCamera(dww);
     sub_0200F174(0, 1, 1, 0x0, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
     gCoreSys.unk_65 = 0;
@@ -102,8 +102,8 @@ BOOL DWWarp_Init (OverlayManager * ovy, int * state)
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    dww->task = SysTask_Start(DW_Update, dww, 60000);
-    SetMainCallback(DW_VBlankIntr, dww);
+    dww->task = SysTask_Start(DWWarp_Update, dww, 60000);
+    SetMainCallback(DWWarp_VBlankIntr, dww);
 
     return TRUE;
 }
@@ -175,7 +175,7 @@ BOOL DWWarp_Exit (OverlayManager * ovy, int * state)
     return TRUE;
 }
 
-static void DW_Update (SysTask * task, void * data)
+static void DWWarp_Update (SysTask * task, void * data)
 {
     DistortionWorldWarp * dw = data;
 
@@ -183,13 +183,13 @@ static void DW_Update (SysTask * task, void * data)
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 }
 
-static void DW_VBlankIntr (void * data)
+static void DWWarp_VBlankIntr (void * data)
 {
     DistortionWorldWarp * dw = data;
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void DW_VramSetBank (void)
+static void DWWarp_VramSetBank (void)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -215,7 +215,7 @@ static void DW_VramSetBank (void)
     MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 }
 
-static void DW_InitCamera (DistortionWorldWarp * warp)
+static void DWWarp_InitCamera (DistortionWorldWarp * warp)
 {
     static const CameraAngle DWW_CameraAngle = {
         0x10000 - 0x1c7d,
