@@ -188,9 +188,9 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         sub_02038F8C(v0->unk_104);
 
         if (!sub_020389B8()) {
-            sub_0202CF28(v0->unk_11C, (1 + 19));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 19));
         } else {
-            sub_0202CF28(v0->unk_11C, (1 + 24));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 24));
         }
         *param1 = 2;
         break;
@@ -2165,24 +2165,24 @@ static BOOL ov16_0223DB1C (OverlayManager * param0)
     switch (v0->unk_14) {
     case 0x1:
         if (!sub_020389B8()) {
-            sub_0202CF28(v0->unk_11C, (1 + 20));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 20));
         } else {
-            sub_0202CF28(v0->unk_11C, (1 + 25));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 25));
         }
         break;
     case 0x2:
         if (!sub_020389B8()) {
-            sub_0202CF28(v0->unk_11C, (1 + 21));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 21));
         } else {
-            sub_0202CF28(v0->unk_11C, (1 + 26));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 26));
         }
         break;
     case 0x3:
     case 0x5:
         if (!sub_020389B8()) {
-            sub_0202CF28(v0->unk_11C, (1 + 22));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 22));
         } else {
-            sub_0202CF28(v0->unk_11C, (1 + 27));
+            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 27));
         }
         break;
     }

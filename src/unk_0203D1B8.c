@@ -1112,7 +1112,7 @@ BOOL sub_0203DBF0 (TaskManager * param0)
             sub_0202CFEC(v6, 16);
 
             if (sub_020389B8()) {
-                sub_0202CF28(v6, (((70 + 1)) + 42));
+                GameRecords_IncrementRecordValue(v6, (((70 + 1)) + 42));
             }
         }
         break;

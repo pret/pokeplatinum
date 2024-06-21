@@ -580,7 +580,7 @@ BOOL ScrCmd_324 (ScriptContext * param0)
         }
     }
 
-    sub_0202CF70(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), (1 + 67), v7);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), (1 + 67), v7);
 
     if (v7 != 0) {
         sub_0202D230(

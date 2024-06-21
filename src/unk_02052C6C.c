@@ -216,7 +216,7 @@ void sub_02052E58 (TaskManager * param0)
 
     v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-    sub_0202CF28(v6, (((70 + 1)) + 2));
+    GameRecords_IncrementRecordValue(v6, (((70 + 1)) + 2));
     FieldTask_Start(param0, sub_02052CBC, v5);
 }
 

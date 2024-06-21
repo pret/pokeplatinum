@@ -74,7 +74,7 @@ BOOL ScrCmd_183 (ScriptContext * param0)
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_02055EAC(param0->fieldSystem, *v0, v2);
-    sub_0202CF28(v1, (1 + 3));
+    GameRecords_IncrementRecordValue(v1, (1 + 3));
 
     return 0;
 }

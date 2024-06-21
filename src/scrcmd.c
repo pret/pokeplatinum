@@ -6344,7 +6344,7 @@ static BOOL ScrCmd_1E5 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0202CF28(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
     return 0;
 }
 
@@ -6358,7 +6358,7 @@ static BOOL ScrCmd_1E6 (ScriptContext * ctx)
 
     v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, v4);
     v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, v5);
-    v0 = sub_0202CFB8(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v3);
+    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v3);
     *v1 = ((v0 & 0xFFFF0000) >> 16);
     *v2 = (v0 & 0xFFFF);
 
@@ -6378,13 +6378,13 @@ static BOOL ScrCmd_1E7 (ScriptContext * ctx)
 
     switch (v4) {
     case 0:
-        sub_0202CF70(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v1, v0);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v1, v0);
         break;
     case 1:
-        sub_0202CE90(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v1, v0);
+        GameRecords_SetRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v1, v0);
         break;
     case 2:
-        sub_0202CED0(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v1, v0);
+        GameRecords_SetAndLimitRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v1, v0);
         break;
     }
 
@@ -6396,7 +6396,7 @@ static BOOL ScrCmd_334 (ScriptContext * ctx)
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0202CF70(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0, v1);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0, v1);
     return 0;
 }
 
@@ -6405,7 +6405,7 @@ static BOOL ScrCmd_335 (ScriptContext * ctx)
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     u32 v1 = ScriptContext_ReadWord(ctx);
 
-    sub_0202CF70(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0, v1);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0, v1);
     return 0;
 }
 

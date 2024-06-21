@@ -414,7 +414,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         if (Message_Printing(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_0202736C(param0->unk_48, param0->unk_28);
-                sub_0202CF28(param0->unk_50, (1 + 11));
+                GameRecords_IncrementRecordValue(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param0->unk_28));
 
@@ -746,7 +746,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
                 sub_0202736C(param0->unk_48, v1);
-                sub_0202CF28(param0->unk_50, (1 + 11));
+                GameRecords_IncrementRecordValue(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);

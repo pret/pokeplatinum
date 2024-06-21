@@ -2357,7 +2357,7 @@ static void sub_020615C8 (PlayerAvatar * playerAvatar)
     FieldSystem * fieldSystem = MapObject_FieldSystem(v0);
     GameRecords * v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-    sub_0202CF28(v2, (0 + 0));
+    GameRecords_IncrementRecordValue(v2, (0 + 0));
 }
 
 static int sub_020615E0 (PlayerAvatar * playerAvatar, MapObject * mapObj, int param2)

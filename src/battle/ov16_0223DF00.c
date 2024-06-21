@@ -1266,7 +1266,7 @@ void ov16_0223F24C (BattleSystem * param0, int param1)
         return;
     }
 
-    sub_0202CF28(param0->unk_218, param1);
+    GameRecords_IncrementRecordValue(param0->unk_218, param1);
 }
 
 void ov16_0223F268 (BattleSystem * param0)

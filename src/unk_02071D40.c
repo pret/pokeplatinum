@@ -83,10 +83,10 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         UnkStruct_0202C834 * v12;
 
         v12 = sub_0202C834(fieldSystem->saveData);
-        v8 = sub_0202CFB8(v1, (((70 + 1)) + 20)) + sub_0202CFB8(v1, (1 + 18)) + sub_0202CFB8(v1, (1 + 23)) + sub_0202CFB8(v1, (1 + 19)) + sub_0202CFB8(v1, (1 + 24)) + sub_0202CFB8(v1, (1 + 31));
-        v9 = sub_0202CFB8(v1, (1 + 20)) + sub_0202CFB8(v1, (1 + 25));
-        v10 = sub_0202CFB8(v1, (1 + 21)) + sub_0202CFB8(v1, (1 + 26));
-        v11 = sub_0202CFB8(v1, (1 + 18)) + sub_0202CFB8(v1, (1 + 23));
+        v8 = GameRecords_GetRecordValue(v1, (((70 + 1)) + 20)) + GameRecords_GetRecordValue(v1, (1 + 18)) + GameRecords_GetRecordValue(v1, (1 + 23)) + GameRecords_GetRecordValue(v1, (1 + 19)) + GameRecords_GetRecordValue(v1, (1 + 24)) + GameRecords_GetRecordValue(v1, (1 + 31));
+        v9 = GameRecords_GetRecordValue(v1, (1 + 20)) + GameRecords_GetRecordValue(v1, (1 + 25));
+        v10 = GameRecords_GetRecordValue(v1, (1 + 21)) + GameRecords_GetRecordValue(v1, (1 + 26));
+        v11 = GameRecords_GetRecordValue(v1, (1 + 18)) + GameRecords_GetRecordValue(v1, (1 + 23));
 
         sub_02072120(v8, v9, v10, v11, sub_0202C840(v12), param5);
     }

@@ -396,7 +396,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
             v3->unk_1C = sub_0202D3B4(v3->unk_74, v3->unk_0F, 0);
         }
 
-        v3->unk_20 = sub_0202CFB8(v5, (1 + 28));
+        v3->unk_20 = GameRecords_GetRecordValue(v5, (1 + 28));
     }
 
     if (v3->unk_0F == 6) {
@@ -635,11 +635,11 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
         sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 2);
     }
 
-    sub_0202CF70(v5, (1 + 28), param0->unk_0D);
+    GameRecords_AddToRecordValue(v5, (1 + 28), param0->unk_0D);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 2);
 
     if (param0->unk_0F != 6) {
-        sub_0202CF70(SaveData_GetGameRecordsPtr(param1), (1 + 14), 1);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param1), (1 + 14), 1);
     }
 
     sub_0204ACC8(param0);
@@ -692,11 +692,11 @@ void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * par
     v3 = sub_02030698(v7, v1, sub_0205E6A8(v1));
     v4 = sub_02030848(v7, v1, sub_0205E6A8(v1), v0);
 
-    sub_0202CF70(v6, (1 + 28), 7);
+    GameRecords_AddToRecordValue(v6, (1 + 28), 7);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 3);
 
     if (param0->unk_0F != 6) {
-        sub_0202CF70(v6, (1 + 14), 1);
+        GameRecords_AddToRecordValue(v6, (1 + 14), 1);
     }
 
     sub_0202CFEC(v6, 14);

@@ -380,7 +380,7 @@ static BOOL sub_02050EE0 (TaskManager * taskMan)
     switch (v1->unk_00) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
         sub_020557DC(taskMan, v1->unk_04, v1->unk_08);
         v1->unk_00++;
         break;
@@ -463,7 +463,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
     switch (*v2) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
         sub_020557DC(taskMan, v1->unk_04, v1->unk_08);
         (*v2)++;
         break;
@@ -550,7 +550,7 @@ void sub_0205120C (TaskManager * taskMan, int * param1)
 
     ov6_02242034(fieldSystem, v1);
 
-    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param1);
 }
 
@@ -572,7 +572,7 @@ void sub_02051270 (TaskManager * taskMan, u16 param1, u8 param2, int * param3, B
         v1->unk_164 |= 0x8;
     }
 
-    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
@@ -601,7 +601,7 @@ void sub_020512E4 (TaskManager * taskMan, u16 param1, u8 param2, int * param3, B
         v1->unk_164 |= 0x8;
     }
 
-    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
@@ -618,7 +618,7 @@ static BOOL sub_0205136C (TaskManager * taskMan)
     switch (*v2) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
         sub_020557DC(taskMan, v1->unk_04, v1->unk_08);
         (*v2)++;
         break;
@@ -685,7 +685,7 @@ void sub_02051480 (TaskManager * taskMan, int param1, int param2, int * param3)
     v1->trainerIDs[2] = 0;
 
     TrainerData_Encounter(v1, fieldSystem->saveData, param2);
-    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 7));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 7));
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
@@ -776,7 +776,7 @@ void sub_020515CC (TaskManager * taskMan, int param1, int param2, int param3, in
     v2->trainerIDs[2] = param3;
 
     TrainerData_Encounter(v2, fieldSystem->saveData, param4);
-    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 7));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 7));
     sub_02050C4C(taskMan, v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), param5);
 }
 
@@ -1031,6 +1031,6 @@ void sub_02051ABC (TaskManager * taskMan, u16 param1, u8 param2, int * param3, B
     v1->unk_164 |= 0x40 | 0x80;
     v1->unk_12C = 23;
 
-    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 6));
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }

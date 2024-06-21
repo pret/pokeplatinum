@@ -15,6 +15,9 @@
 
 static void EncodeGameRecords(GameRecords *records, int id);
 static void DecodeGameRecords(GameRecords *records, int id);
+static u32 GetRecordValue(const GameRecords *records, int id);
+static u32 SetRecordValue(GameRecords *records, int id, u32 val);
+static u32 GetRecordLimit(int id);
 
 int GameRecords_SaveSize(void)
 {
@@ -59,166 +62,195 @@ static void DecodeGameRecords(GameRecords *records, int id)
     DecodeData(&records->recordsU32[START_ENCODED_RECORDS], SIZE_ENCODED_RECORDS, HashEncodingSeed(records));
 }
 
-static u32 sub_0202CDE0 (const GameRecords * records, int param1)
+static u32 GetRecordValue(const GameRecords *records, int id)
 {
-    if (param1 < ((70 + 1))) {
-        return records->recordsU32[param1];
-    } else if (param1 < ((49 + 28) + ((70 + 1)))) {
-        return records->recordsU16[param1 - ((70 + 1))];
+    if (id < NUM_U32_RECORDS) {
+        return records->recordsU32[id];
+    } else if (id < NUM_U16_RECORDS + NUM_U32_RECORDS) {
+        return records->recordsU16[id - NUM_U32_RECORDS];
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
-static u32 sub_0202CE08 (GameRecords * records, int param1, u32 param2)
+static u32 SetRecordValue(GameRecords *records, int id, u32 val)
 {
-    if (param1 < ((70 + 1))) {
-        records->recordsU32[param1] = param2;
-    } else if (param1 < ((49 + 28) + ((70 + 1)))) {
-        records->recordsU16[param1 - ((70 + 1))] = param2;
+    if (id < NUM_U32_RECORDS) {
+        records->recordsU32[id] = val;
+    } else if (id < MAX_RECORDS) {
+        records->recordsU16[id - NUM_U32_RECORDS] = val;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    return sub_0202CDE0(records, param1);
+    return GetRecordValue(records, id);
 }
 
-static u32 sub_0202CE3C (int records)
+static u8 sUsesHighLimit[MAX_RECORDS] = {
+   [RECORD_UNK_000] = TRUE,
+   [RECORD_UNK_001] = TRUE,
+   [RECORD_UNK_002] = TRUE,
+   [RECORD_UNK_003] = FALSE,
+   [RECORD_UNK_004] = TRUE,
+   [RECORD_UNK_005] = TRUE,
+   [RECORD_UNK_006] = TRUE,
+   [RECORD_UNK_007] = TRUE,
+   [RECORD_UNK_008] = TRUE,
+   [RECORD_UNK_009] = FALSE,
+   [RECORD_UNK_010] = FALSE,
+   [RECORD_UNK_011] = FALSE,
+   [RECORD_UNK_012] = TRUE,
+   [RECORD_UNK_013] = TRUE,
+   [RECORD_UNK_014] = TRUE,
+   [RECORD_UNK_015] = TRUE,
+   [RECORD_UNK_016] = TRUE,
+   [RECORD_UNK_017] = TRUE,
+   [RECORD_UNK_018] = TRUE,
+   [RECORD_UNK_019] = TRUE,
+   [RECORD_UNK_020] = TRUE,
+   [RECORD_UNK_021] = TRUE,
+   [RECORD_UNK_022] = TRUE,
+   [RECORD_UNK_023] = TRUE,
+   [RECORD_UNK_024] = TRUE,
+   [RECORD_UNK_025] = TRUE,
+   [RECORD_UNK_026] = TRUE,
+   [RECORD_UNK_027] = TRUE,
+   [RECORD_UNK_028] = TRUE,
+   [RECORD_UNK_029] = TRUE,
+   [RECORD_UNK_030] = TRUE,
+   [RECORD_UNK_031] = TRUE,
+   [RECORD_UNK_032] = TRUE,
+   [RECORD_UNK_033] = TRUE,
+   [RECORD_UNK_034] = TRUE,
+   [RECORD_UNK_035] = TRUE,
+   [RECORD_UNK_036] = TRUE,
+   [RECORD_UNK_037] = TRUE,
+   [RECORD_UNK_038] = TRUE,
+   [RECORD_UNK_039] = TRUE,
+   [RECORD_UNK_040] = TRUE,
+   [RECORD_UNK_041] = FALSE,
+   [RECORD_UNK_042] = FALSE,
+   [RECORD_UNK_043] = FALSE,
+   [RECORD_UNK_044] = FALSE,
+   [RECORD_UNK_045] = FALSE,
+   [RECORD_UNK_046] = FALSE,
+   [RECORD_UNK_047] = FALSE,
+   [RECORD_UNK_048] = FALSE,
+   [RECORD_UNK_049] = FALSE,
+   [RECORD_UNK_050] = FALSE,
+   [RECORD_UNK_051] = FALSE,
+   [RECORD_UNK_052] = FALSE,
+   [RECORD_UNK_053] = FALSE,
+   [RECORD_UNK_054] = FALSE,
+   [RECORD_UNK_055] = FALSE,
+   [RECORD_UNK_056] = FALSE,
+   [RECORD_UNK_057] = TRUE,
+   [RECORD_UNK_058] = TRUE,
+   [RECORD_UNK_059] = TRUE,
+   [RECORD_UNK_060] = TRUE,
+   [RECORD_UNK_061] = TRUE,
+   [RECORD_UNK_062] = TRUE,
+   [RECORD_UNK_063] = TRUE,
+   [RECORD_UNK_064] = TRUE,
+   [RECORD_UNK_065] = TRUE,
+   [RECORD_UNK_066] = TRUE,
+   [RECORD_UNK_067] = TRUE,
+   [RECORD_UNK_068] = TRUE,
+   [RECORD_UNK_069] = TRUE,
+   [RECORD_UNK_070] = FALSE,
+   [RECORD_UNK_071] = TRUE,
+   [RECORD_UNK_072] = TRUE,
+   [RECORD_UNK_073] = FALSE,
+   [RECORD_UNK_074] = TRUE,
+   [RECORD_UNK_075] = TRUE,
+   [RECORD_UNK_076] = FALSE,
+   [RECORD_UNK_077] = FALSE,
+   [RECORD_UNK_078] = FALSE,
+   [RECORD_UNK_079] = FALSE,
+   [RECORD_UNK_080] = FALSE,
+   [RECORD_UNK_081] = FALSE,
+   [RECORD_UNK_082] = FALSE,
+   [RECORD_UNK_083] = FALSE,
+   [RECORD_UNK_084] = FALSE,
+   [RECORD_UNK_085] = FALSE,
+   [RECORD_UNK_086] = FALSE,
+   [RECORD_UNK_087] = FALSE,
+   [RECORD_UNK_088] = FALSE,
+   [RECORD_UNK_089] = FALSE,
+   [RECORD_UNK_090] = FALSE,
+   [RECORD_UNK_091] = FALSE,
+   [RECORD_UNK_092] = FALSE,
+   [RECORD_UNK_093] = FALSE,
+   [RECORD_UNK_094] = TRUE,
+   [RECORD_UNK_095] = FALSE,
+   [RECORD_UNK_096] = FALSE,
+   [RECORD_UNK_097] = FALSE,
+   [RECORD_UNK_098] = FALSE,
+   [RECORD_UNK_099] = FALSE,
+   [RECORD_UNK_100] = FALSE,
+   [RECORD_UNK_101] = FALSE,
+   [RECORD_UNK_102] = FALSE,
+   [RECORD_UNK_103] = FALSE,
+   [RECORD_UNK_104] = FALSE,
+   [RECORD_UNK_105] = FALSE,
+   [RECORD_UNK_106] = FALSE,
+   [RECORD_UNK_107] = FALSE,
+   [RECORD_UNK_108] = FALSE,
+   [RECORD_UNK_109] = FALSE,
+   [RECORD_UNK_110] = FALSE,
+   [RECORD_UNK_111] = FALSE,
+   [RECORD_UNK_112] = TRUE,
+   [RECORD_UNK_113] = FALSE,
+   [RECORD_UNK_114] = FALSE,
+   [RECORD_UNK_115] = FALSE,
+   [RECORD_UNK_116] = FALSE,
+   [RECORD_UNK_117] = FALSE,
+   [RECORD_UNK_118] = FALSE,
+   [RECORD_UNK_119] = FALSE,
+   [RECORD_UNK_120] = FALSE,
+   [RECORD_UNK_121] = FALSE,
+   [RECORD_UNK_122] = FALSE,
+   [RECORD_UNK_123] = FALSE,
+   [RECORD_UNK_124] = FALSE,
+   [RECORD_UNK_125] = FALSE,
+   [RECORD_UNK_126] = FALSE,
+   [RECORD_UNK_127] = FALSE,
+   [RECORD_UNK_128] = FALSE,
+   [RECORD_UNK_129] = FALSE,
+   [RECORD_UNK_130] = FALSE,
+   [RECORD_UNK_131] = FALSE,
+   [RECORD_UNK_132] = FALSE,
+   [RECORD_UNK_133] = FALSE,
+   [RECORD_UNK_134] = FALSE,
+   [RECORD_UNK_135] = FALSE,
+   [RECORD_UNK_136] = FALSE,
+   [RECORD_UNK_137] = FALSE,
+   [RECORD_UNK_138] = FALSE,
+   [RECORD_UNK_139] = FALSE,
+   [RECORD_UNK_140] = FALSE,
+   [RECORD_UNK_141] = FALSE,
+   [RECORD_UNK_142] = FALSE,
+   [RECORD_UNK_143] = FALSE,
+   [RECORD_UNK_144] = FALSE,
+   [RECORD_UNK_145] = FALSE,
+   [RECORD_UNK_146] = FALSE,
+   [RECORD_UNK_147] = FALSE,
+};
+
+static u32 GetRecordLimit(int id)
 {
-    static u8 v0[148] = {
-        0x1,
-        0x1,
-        0x1,
-        0x0,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x0,
-        0x1,
-        0x1,
-        0x0,
-        0x1,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
-        0x0
-    };
-    if (records < ((70 + 1))) {
-        if (v0[records]) {
-            return 999999999;
+    if (id < NUM_U32_RECORDS) {
+        if (sUsesHighLimit[id]) {
+            return HIGH_LIMIT_U32;
         } else {
-            return 999999;
+            return LOW_LIMIT_U32;
         }
-    } else if (records < ((49 + 28) + ((70 + 1)))) {
-        if (v0[records]) {
-            return 0xffff;
+    } else if (id < MAX_RECORDS) {
+        if (sUsesHighLimit[id]) {
+            return HIGH_LIMIT_U16;
         } else {
-            return 9999;
+            return LOW_LIMIT_U16;
         }
     }
 
@@ -285,108 +317,80 @@ static int sub_0202CE84 (int records)
     return v0[records];
 }
 
-u32 sub_0202CE90 (GameRecords * records, int param1, u32 param2)
+static inline u32 SetRecordValueWithLimit(GameRecords *records, int id, u32 val, u32 limit)
 {
-    u32 v0 = sub_0202CE3C(param1);
-    u32 v1;
-
-    DecodeGameRecords(records, param1);
-
-    if (param2 < v0) {
-        v1 = sub_0202CE08(records, param1, param2);
-    } else {
-        v1 = sub_0202CE08(records, param1, v0);
-    }
-
-    EncodeGameRecords(records, param1);
-
-    return v1;
+    return val < limit
+        ? SetRecordValue(records, id, val)
+        : SetRecordValue(records, id, limit);
 }
 
-u32 sub_0202CED0 (GameRecords * records, int param1, u32 param2)
+u32 GameRecords_SetRecordValue(GameRecords *records, int id, u32 val)
 {
-    u32 v0 = sub_0202CE3C(param1);
-    u32 v1;
-    u32 v2;
+    u32 limit = GetRecordLimit(id);
 
-    DecodeGameRecords(records, param1);
+    DecodeGameRecords(records, id);
+    u32 new = SetRecordValueWithLimit(records, id, val, limit);
+    EncodeGameRecords(records, id);
 
-    v1 = sub_0202CDE0(records, param1);
-    v2 = v1;
-
-    if (param2 > v0) {
-        param2 = v0;
-    }
-
-    if (v1 < param2) {
-        v2 = sub_0202CE08(records, param1, param2);
-    } else {
-        if (v1 > v0) {
-            v2 = sub_0202CE08(records, param1, v0);
-        }
-    }
-
-    EncodeGameRecords(records, param1);
-
-    return v2;
+    return new;
 }
 
-u32 sub_0202CF28 (GameRecords * records, int param1)
+u32 GameRecords_SetAndLimitRecordValue(GameRecords *records, int id, u32 val)
 {
-    u32 v0 = sub_0202CE3C(param1);
-    u32 v1;
-    u32 v2;
+    u32 limit = GetRecordLimit(id);
 
-    DecodeGameRecords(records, param1);
+    DecodeGameRecords(records, id);
+    u32 cur = GetRecordValue(records, id);
+    u32 new = cur;
 
-    v1 = sub_0202CDE0(records, param1);
-
-    if (v1 + 1 < v0) {
-        v2 = sub_0202CE08(records, param1, v1 + 1);
-    } else {
-        v2 = sub_0202CE08(records, param1, v0);
+    if (val > limit) {
+        val = limit;
     }
 
-    EncodeGameRecords(records, param1);
+    if (cur < val) {
+        new = SetRecordValue(records, id, val);
+    } else if (cur > limit) {
+        new = SetRecordValue(records, id, limit);
+    }
 
-    return v2;
+    EncodeGameRecords(records, id);
+
+    return new;
 }
 
-u32 sub_0202CF70 (GameRecords * records, int param1, u32 param2)
+u32 GameRecords_IncrementRecordValue(GameRecords *records, int id)
 {
-    u32 v0 = sub_0202CE3C(param1);
-    u32 v1;
-    u32 v2;
+    u32 limit = GetRecordLimit(id);
 
-    DecodeGameRecords(records, param1);
+    DecodeGameRecords(records, id);
+    u32 cur = GetRecordValue(records, id);
+    u32 new = SetRecordValueWithLimit(records, id, cur + 1, limit);
+    EncodeGameRecords(records, id);
 
-    v1 = sub_0202CDE0(records, param1);
-
-    if (v1 + param2 < v0) {
-        v2 = sub_0202CE08(records, param1, v1 + param2);
-    } else {
-        v2 = sub_0202CE08(records, param1, v0);
-    }
-
-    EncodeGameRecords(records, param1);
-
-    return v2;
+    return new;
 }
 
-u32 sub_0202CFB8 (GameRecords * records, int param1)
+u32 GameRecords_AddToRecordValue(GameRecords *records, int id, u32 toAdd)
 {
-    u32 v0 = sub_0202CE3C(param1);
-    u32 v1;
+    u32 limit = GetRecordLimit(id);
 
-    DecodeGameRecords(records, param1);
-    v1 = sub_0202CDE0(records, param1);
-    EncodeGameRecords(records, param1);
+    DecodeGameRecords(records, id);
+    u32 cur = GetRecordValue(records, id);
+    u32 new = SetRecordValueWithLimit(records, id, cur + toAdd, limit);
+    EncodeGameRecords(records, id);
 
-    if (v1 > v0) {
-        return v0;
-    } else {
-        return v1;
-    }
+    return new;
+}
+
+u32 GameRecords_GetRecordValue(GameRecords *records, int id)
+{
+    u32 limit = GetRecordLimit(id);
+
+    DecodeGameRecords(records, id);
+    u32 cur = GetRecordValue(records, id);
+    EncodeGameRecords(records, id);
+
+    return cur > limit ? limit : cur;
 }
 
 void sub_0202CFEC (GameRecords * records, int param1)
@@ -395,18 +399,18 @@ void sub_0202CFEC (GameRecords * records, int param1)
 
     GF_ASSERT(param1 < 51);
 
-    v0 = sub_0202CFB8(records, (0 + 1));
+    v0 = GameRecords_GetRecordValue(records, (0 + 1));
 
     if (v0 + sub_0202CE84(param1) > 99999999) {
-        sub_0202CE90(records, (0 + 1), 99999999);
+        GameRecords_SetRecordValue(records, (0 + 1), 99999999);
     } else {
-        sub_0202CF70(records, (0 + 1), sub_0202CE84(param1));
+        GameRecords_AddToRecordValue(records, (0 + 1), sub_0202CE84(param1));
     }
 }
 
 u32 sub_0202D034 (GameRecords * records)
 {
-    return sub_0202CFB8(records, (0 + 1));
+    return GameRecords_GetRecordValue(records, (0 + 1));
 }
 
 void sub_0202D040 (GameRecords * records, const PokedexData * param1, u16 const param2)

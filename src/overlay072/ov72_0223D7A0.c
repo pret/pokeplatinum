@@ -770,7 +770,7 @@ static int ov72_0223E488 (UnkStruct_ov72_0223DB98 * param0, int param1)
     switch (v0) {
     case 1:
         sub_0202CFEC(param0->unk_08, 4);
-        sub_0202CF28(param0->unk_08, (((70 + 1)) + 43));
+        GameRecords_IncrementRecordValue(param0->unk_08, (((70 + 1)) + 43));
         sub_0200E084(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
         sub_0200F174(0, 0, 0, 0x0, 16, 1, 39);

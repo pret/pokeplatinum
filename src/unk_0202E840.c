@@ -147,22 +147,22 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
     for (v0 = 0; v0 < 13; v0++) {
         switch (v0) {
         case 5:
-            v1 = sub_0202CFB8(v2, (1 + 14));
+            v1 = GameRecords_GetRecordValue(v2, (1 + 14));
 
             if (v1 > 0) {
-                v1 = sub_0202CFB8(v2, (1 + 28)) / v1;
+                v1 = GameRecords_GetRecordValue(v2, (1 + 28)) / v1;
             }
 
             v4[v0] = v1;
             break;
         case 10:
-            v1 = sub_0202CFB8(v2, (((70 + 1)) + 21));
-            v1 += sub_0202CFB8(v2, (((70 + 1)) + 22));
+            v1 = GameRecords_GetRecordValue(v2, (((70 + 1)) + 21));
+            v1 += GameRecords_GetRecordValue(v2, (((70 + 1)) + 22));
             v4[v0] = v1;
             break;
         case 11:
-            v1 = sub_0202CFB8(v2, (((70 + 1)) + 19));
-            v1 += sub_0202CFB8(v2, (((70 + 1)) + 20));
+            v1 = GameRecords_GetRecordValue(v2, (((70 + 1)) + 19));
+            v1 += GameRecords_GetRecordValue(v2, (((70 + 1)) + 20));
 
             if (v1 > 0) {
                 v1 = (v4[10] * 100) / v1;
@@ -174,7 +174,7 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
             if ((v0 >= 0) && (v0 <= 4)) {
                 v4[v0] = sub_02030698(v3, v5[v0], 0xff);
             } else {
-                v4[v0] = sub_0202CFB8(v2, v5[v0]);
+                v4[v0] = GameRecords_GetRecordValue(v2, v5[v0]);
             }
         }
     }

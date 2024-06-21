@@ -429,7 +429,7 @@ static int ov94_02242ED0 (UnkStruct_ov94_0223FD4C * param0)
         switch (v1) {
         case 0:
             ov94_02243B08(param0, 1);
-            sub_0202CF28(param0->unk_00->unk_28, (1 + 43));
+            GameRecords_IncrementRecordValue(param0->unk_00->unk_28, (1 + 43));
             param0->unk_2C = 30;
             break;
         case -1:
@@ -658,7 +658,7 @@ static int ov94_022431F0 (UnkStruct_ov94_0223FD4C * param0)
             ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_A4C);
             sub_0202CFEC(param0->unk_00->unk_28, 25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
-            sub_0202CF28(param0->unk_00->unk_28, (1 + 23));
+            GameRecords_IncrementRecordValue(param0->unk_00->unk_28, (1 + 23));
 
             {
                 TVBroadcast * v2;
@@ -937,7 +937,7 @@ static int ov94_02243658 (UnkStruct_ov94_0223FD4C * param0)
 
     sub_0202CFEC(param0->unk_00->unk_28, 25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
-    sub_0202CF28(param0->unk_00->unk_28, (1 + 23));
+    GameRecords_IncrementRecordValue(param0->unk_00->unk_28, (1 + 23));
 
     {
         TVBroadcast * v0;

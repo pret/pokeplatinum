@@ -185,7 +185,7 @@ static void ov101_021D0F3C (UnkStruct_ov101_021D0F3C * param0, UnkStruct_ov101_0
     param0->unk_00->unk_0C = param1->unk_20;
 
     if (param0->unk_00->unk_08 != NULL) {
-        sub_0202CF70(param0->unk_00->unk_08, (1 + 13), param1->unk_0C);
+        GameRecords_AddToRecordValue(param0->unk_00->unk_08, (1 + 13), param1->unk_0C);
     }
 }
 

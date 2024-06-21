@@ -572,7 +572,7 @@ void ov104_022346A4 (UnkStruct_ov104_0223ADA0 * param0)
         param0->unk_4E8[param0->unk_4DC[0]] = param0->unk_254[param0->unk_4DC[1]];
 
         ov104_02234790(param0);
-        sub_0202CF28(SaveData_GetGameRecordsPtr(param0->unk_4F8), (1 + 63));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(param0->unk_4F8), (1 + 63));
     }
 
     return;

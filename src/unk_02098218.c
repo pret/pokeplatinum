@@ -259,7 +259,7 @@ static BOOL sub_0209843C (TaskManager * param0)
                 FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
                 GameRecords * v11 = SaveData_GetGameRecordsPtr(FieldSystem_SaveData(fieldSystem));
 
-                sub_0202CF28(v11, (1 + 48));
+                GameRecords_IncrementRecordValue(v11, (1 + 48));
             }
         }
 

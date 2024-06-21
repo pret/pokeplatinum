@@ -563,10 +563,10 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
 
         if (param1->unk_1490 == 0) {
             sub_0202CFEC(v2, 12);
-            sub_0202CF28(v2, (1 + 51));
+            GameRecords_IncrementRecordValue(v2, (1 + 51));
         } else {
             sub_0202CFEC(v2, 18);
-            sub_0202CF28(v2, (1 + 52));
+            GameRecords_IncrementRecordValue(v2, (1 + 52));
         }
     }
 

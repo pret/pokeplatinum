@@ -816,23 +816,23 @@ BOOL ScrCmd_30F (ScriptContext * param0)
 
     switch (v3) {
     case 13:
-        if (sub_0202CFB8(v1, (1 + 28)) < 1) {
+        if (GameRecords_GetRecordValue(v1, (1 + 28)) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 59)) < 1) {
+        if (GameRecords_GetRecordValue(v1, (1 + 59)) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 60)) < 1) {
+        if (GameRecords_GetRecordValue(v1, (1 + 60)) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 61)) < 1) {
+        if (GameRecords_GetRecordValue(v1, (1 + 61)) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 62)) < 1) {
+        if (GameRecords_GetRecordValue(v1, (1 + 62)) < 1) {
             *v4 = 0;
         }
         break;
@@ -860,27 +860,27 @@ BOOL ScrCmd_30F (ScriptContext * param0)
         }
         break;
     case 15:
-        if (sub_0202CFB8(v1, (((70 + 1)) + 2)) < 10) {
+        if (GameRecords_GetRecordValue(v1, (((70 + 1)) + 2)) < 10) {
             *v4 = 0;
         }
         break;
     case 16:
-        if (sub_0202CFB8(v1, (1 + 56)) < 50) {
+        if (GameRecords_GetRecordValue(v1, (1 + 56)) < 50) {
             *v4 = 0;
         }
         break;
     case 17:
-        if (sub_0202CFB8(v1, (1 + 3)) < 50) {
+        if (GameRecords_GetRecordValue(v1, (1 + 3)) < 50) {
             *v4 = 0;
         }
         break;
     case 18:
-        if (sub_0202CFB8(v1, (1 + 10)) < 30) {
+        if (GameRecords_GetRecordValue(v1, (1 + 10)) < 30) {
             *v4 = 0;
         }
         break;
     case 20:
-        if (sub_0202CFB8(v1, (0 + 0)) < 300000) {
+        if (GameRecords_GetRecordValue(v1, (0 + 0)) < 300000) {
             *v4 = 0;
         }
         break;
