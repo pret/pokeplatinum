@@ -14,7 +14,6 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -54,7 +53,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
@@ -1748,7 +1747,7 @@ static void ov10_022216E0 (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
 {
-    UnkStruct_020203AC * v0;
+    Camera * camera;
     void * v1;
 
     param0->unk_B4C = sub_02024220(param0->unk_00->unk_24, 0, 4, 0, 2, NULL);
@@ -1759,8 +1758,8 @@ static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
     param0->unk_B54 = Heap_AllocFromHeap(param0->unk_00->unk_24, 0x4800);
     param0->unk_B50 = sub_02014014(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->unk_24);
 
-    v0 = sub_02014784(param0->unk_B50);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v0);
+    camera = sub_02014784(param0->unk_B50);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v1 = sub_020144C4(61, 2, param0->unk_00->unk_24);
     sub_020144CC(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);

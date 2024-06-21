@@ -12,7 +12,6 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -66,7 +65,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
@@ -304,7 +303,7 @@ typedef struct {
     UnkStruct_ov19_021DA864 unk_1BC;
     UnkStruct_02009DC8 * unk_1E0[4];
     UnkStruct_02012744 * unk_1F0;
-    UnkStruct_020203AC * unk_1F4;
+    Camera * camera;
     VecFx32 unk_1F8;
     UnkStruct_ov115_02264FA0 unk_204;
     UnkStruct_ov115_02261574 unk_3E8;
@@ -3282,7 +3281,7 @@ static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 p
     VecFx32 v1;
     MtxFx33 v2;
 
-    param0->unk_1F4 = sub_020203AC(param3);
+    param0->camera = Camera_Alloc(param3);
     param0->unk_1F8.x = 0;
     param0->unk_1F8.y = 0;
     param0->unk_1F8.z = 0;
@@ -3291,25 +3290,25 @@ static void ov115_02263C24 (UnkStruct_ov115_02261ADC * param0, u32 param1, u32 p
     v0.y = Unk_ov115_02265C5C[param1 - 1][param2];
     v0.z = (((0 * 0xffff) / 360));
 
-    sub_020206D0(&param0->unk_1F8, 0x1d9000, &v0, (((22 * 0xffff) / 360)), 0, 1, param0->unk_1F4);
+    Camera_InitWithTarget(&param0->unk_1F8, 0x1d9000, &v0, (((22 * 0xffff) / 360)), 0, 1, param0->camera);
 
     v1.x = 0;
     v1.y = (FX32_ONE);
     v1.z = 0;
 
-    sub_02020680(&v1, param0->unk_1F4);
-    sub_020203D4(param0->unk_1F4);
-    sub_020206BC((FX32_CONST(200)), (FX32_CONST(1000)), param0->unk_1F4);
+    Camera_SetUp(&v1, param0->camera);
+    Camera_SetAsActive(param0->camera);
+    Camera_SetClipping((FX32_CONST(200)), (FX32_CONST(1000)), param0->camera);
 }
 
 static void ov115_02263CC0 (UnkStruct_ov115_02261ADC * param0)
 {
-    sub_020203B8(param0->unk_1F4);
+    Camera_Delete(param0->camera);
 }
 
 static void ov115_02263CD0 (UnkStruct_ov115_02261ADC * param0)
 {
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 }
 
 static void ov115_02263CD8 (UnkStruct_ov115_02261ADC * param0, NARC * param1, u32 param2, u32 param3)
@@ -4273,10 +4272,10 @@ static void ov115_0226527C (UnkStruct_ov115_02261ADC * param0, u16 param1)
 {
     CameraAngle v0;
 
-    v0 = sub_02020A94(param0->unk_1F4);
+    v0 = Camera_GetAngle(param0->camera);
     v0.x = param1;
 
-    Camera_SetAngle(&v0, param0->unk_1F4);
+    Camera_SetAngleAroundTarget(&v0, param0->camera);
 }
 
 static void ov115_022652A4 (UnkStruct_ov115_022653CC * param0, u8 param1)

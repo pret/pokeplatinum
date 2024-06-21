@@ -3,7 +3,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C894.h"
@@ -14,7 +13,7 @@
 #include "unk_02014000.h"
 #include "heap.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -137,14 +136,14 @@ static UnkStruct_02014014 * sub_0207C7CC (int param0)
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    UnkStruct_020203AC * v2;
+    Camera * camera;
 
     v1 = Heap_AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, param0);
-    v2 = sub_02014784(v0);
+    camera = sub_02014784(v0);
 
-    if (v2 != NULL) {
-        sub_020206BC((FX32_ONE), (FX32_ONE * 900), v2);
+    if (camera != NULL) {
+        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     }
 
     return v0;

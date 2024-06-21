@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -31,7 +31,7 @@ typedef struct {
     ResourceMetadata * unk_84;
     MessageLoader * unk_88;
     StringTemplate * unk_8C;
-    UnkStruct_020203AC * unk_90;
+    Camera * camera;
     UnkStruct_ov5_021D30A8 unk_94;
     GraphicElementData * unk_25C[4];
     u16 unk_26C[2];

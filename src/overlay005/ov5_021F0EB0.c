@@ -2,14 +2,13 @@
 #include <string.h>
 
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "field/field_system.h"
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201CCF0.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay005/ov5_021F0EB0.h"
 
 typedef struct {
@@ -25,7 +24,7 @@ typedef struct {
     u32 unk_24;
     fx32 unk_28;
     FieldSystem * fieldSystem;
-    UnkStruct_020203AC * unk_30;
+    Camera * camera;
 } UnkStruct_ov5_021F0FB8;
 
 static void ov5_021F0F2C(SysTask * param0, void * param1);
@@ -46,8 +45,8 @@ SysTask * ov5_021F0EB0 (FieldSystem * fieldSystem, u32 param1)
     v1->unk_00 = param1;
     v1->unk_0C = 0;
     v1->fieldSystem = fieldSystem;
-    v1->unk_30 = fieldSystem->camera;
-    v1->unk_10 = Camera_GetDistance(v1->unk_30);
+    v1->camera = fieldSystem->camera;
+    v1->unk_10 = Camera_GetDistance(v1->camera);
     v1->unk_20 = v1->unk_10;
 
     v0 = SysTask_Start(ov5_021F0F2C, v1, 0xffff);
@@ -125,7 +124,7 @@ static void ov5_021F0F80 (UnkStruct_ov5_021F0FB8 * param0)
 
 static void ov5_021F0FB8 (UnkStruct_ov5_021F0FB8 * param0)
 {
-    Camera_SetDistance(param0->unk_20, param0->unk_30);
+    Camera_SetDistance(param0->unk_20, param0->camera);
 }
 
 static void ov5_021F0FC8 (UnkStruct_ov5_021F0FB8 * param0)

@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -55,7 +54,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "trainer_info.h"
@@ -166,7 +165,7 @@ typedef struct {
     u32 unk_04;
     VecFx32 unk_08;
     CameraAngle cameraAngle;
-    UnkStruct_020203AC * unk_1C;
+    Camera * camera;
 } UnkStruct_ov109_021D28C4;
 
 typedef struct {
@@ -1592,7 +1591,7 @@ static void ov109_021D1C68 (UnkStruct_ov109_021D0F70 * param0)
 static void ov109_021D1C90 (UnkStruct_ov109_021D0F70 * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(31, 31, 31));
@@ -2176,7 +2175,7 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
 {
     UnkStruct_ov109_021D28C4 * v0 = &param0->unk_D0C;
 
-    v0->unk_1C = sub_020203AC(95);
+    v0->camera = Camera_Alloc(95);
 
     {
         VecFx32 v1;
@@ -2192,21 +2191,21 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
         v0->unk_00 = (0x143 << FX32_SHIFT);
         v0->unk_04 = ((((6 * 0xffff) / 360)));
 
-        sub_020206D0(&v0->unk_08, v0->unk_00, &v0->cameraAngle, v0->unk_04, 0, 1, v0->unk_1C);
+        Camera_InitWithTarget(&v0->unk_08, v0->unk_00, &v0->cameraAngle, v0->unk_04, 0, 1, v0->camera);
 
         v1.x = 0;
         v1.y = FX32_ONE;
         v1.z = 0;
 
-        sub_02020680(&v1, v0->unk_1C);
-        sub_020203D4(v0->unk_1C);
+        Camera_SetUp(&v1, v0->camera);
+        Camera_SetAsActive(v0->camera);
     }
 }
 
 static void ov109_021D293C (UnkStruct_ov109_021D0F70 * param0)
 {
     UnkStruct_ov109_021D28C4 * v0 = &param0->unk_D0C;
-    sub_020203B8(v0->unk_1C);
+    Camera_Delete(v0->camera);
 }
 
 static void ov109_021D294C (UnkStruct_ov109_021D0F70 * param0)

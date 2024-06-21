@@ -12,7 +12,7 @@
 #include "unk_0200762C.h"
 #include "unk_02015F84.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "pokemon.h"
 #include "pokemon_summary_app.h"
@@ -147,7 +147,7 @@ void sub_02091750 (PokemonSummaryApp * param0)
 {
     if (param0->page == 4) {
         sub_020241B4();
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
 
         G3_MtxMode(GX_MTXMODE_PROJECTION);
         G3_Identity();
@@ -168,7 +168,7 @@ void sub_02091750 (PokemonSummaryApp * param0)
 
 void sub_020917B0 (PokemonSummaryApp * param0)
 {
-    sub_020203B8(param0->monSpriteData.unk_00);
+    Camera_Delete(param0->monSpriteData.camera);
     sub_02016114(param0->monSpriteData.animationSys, 0);
     sub_02015FB8(param0->monSpriteData.animationSys);
     sub_02007B6C(param0->monSpriteData.spriteManager);
@@ -181,12 +181,12 @@ void sub_020917E0 (PokemonSummaryApp * param0)
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
-    param0->monSpriteData.unk_00 = sub_020203AC(19);
+    param0->monSpriteData.camera = Camera_Alloc(19);
 
-    sub_02020738(&v0, v2, &v1, v3, 1, param0->monSpriteData.unk_00);
-    sub_020206BC(0, FX32_CONST(100), param0->monSpriteData.unk_00);
-    sub_020206B0(param0->monSpriteData.unk_00);
-    sub_020203D4(param0->monSpriteData.unk_00);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->monSpriteData.camera);
+    Camera_SetClipping(0, FX32_CONST(100), param0->monSpriteData.camera);
+    Camera_ReleaseTarget(param0->monSpriteData.camera);
+    Camera_SetAsActive(param0->monSpriteData.camera);
 }
 
 static void sub_02091850 (UnkStruct_02091850 * param0)

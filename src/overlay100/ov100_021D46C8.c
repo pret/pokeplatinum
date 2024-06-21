@@ -22,7 +22,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"
@@ -92,11 +92,11 @@ void ov100_021D47A0 (UnkStruct_ov100_021D46C8 * param0)
 
 void ov100_021D4844 (UnkStruct_ov100_021D46C8 * param0)
 {
-    CameraAngle v0 = sub_02020A94(param0->unk_18);
-    VecFx32 v1 = sub_02020ABC(param0->unk_18);
+    CameraAngle v0 = Camera_GetAngle(param0->camera);
+    VecFx32 v1 = Camera_GetPosition(param0->camera);
 
-    sub_02020ADC(&v1, param0->unk_18);
-    Camera_SetAngle(&v0, param0->unk_18);
+    Camera_SetPosition(&v1, param0->camera);
+    Camera_SetAngleAroundTarget(&v0, param0->camera);
 }
 
 void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
@@ -112,7 +112,7 @@ void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
     param0->unk_38[2] = param0->unk_1C / param0->unk_08;
     param0->unk_38[3] = param0->unk_20 / param0->unk_08;
 
-    v0 = sub_02020A94(param0->unk_00);
+    v0 = Camera_GetAngle(param0->camera);
 
     param0->cameraAngle.x = v0.x + ((65535 / 360) * param0->unk_0C);
     param0->cameraAngle.y = v0.y + ((65535 / 360) * param0->unk_10);
@@ -122,7 +122,7 @@ void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
 BOOL ov100_021D4920 (UnkStruct_ov100_021D4890 * param0)
 {
     BOOL v0 = 0;
-    CameraAngle v1 = sub_02020A94(param0->unk_00);
+    CameraAngle v1 = Camera_GetAngle(param0->camera);
 
     if (param0->unk_24[0] == 0) {
         return 1;
@@ -143,7 +143,7 @@ BOOL ov100_021D4920 (UnkStruct_ov100_021D4890 * param0)
         param0->unk_04->z += param0->unk_38[3];
     }
 
-    Camera_SetAngle(&v1, param0->unk_00);
+    Camera_SetAngleAroundTarget(&v1, param0->camera);
 
     return v0;
 }

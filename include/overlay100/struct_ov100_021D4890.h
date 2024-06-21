@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_OV100_021D4890_H
 #define POKEPLATINUM_STRUCT_OV100_021D4890_H
 
-#include "struct_decls/struct_020203AC_decl.h"
 #include "overlay115/camera_angle.h"
+#include "camera.h"
 
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    UnkStruct_020203AC * unk_00;
+    Camera * camera;
     VecFx32 * unk_04;
     int unk_08;
     s32 unk_0C;

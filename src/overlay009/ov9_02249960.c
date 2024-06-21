@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -52,7 +51,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02020AEC.h"
 #include "unk_020218BC.h"
 #include "unk_0202298C.h"
@@ -288,7 +287,7 @@ typedef struct {
 } UnkStruct_ov9_0224A0DC;
 
 typedef struct {
-    UnkStruct_020203AC * unk_00;
+    Camera * camera;
     CameraAngle unk_04;
     CameraAngle unk_0C;
     CameraAngle unk_14;
@@ -1603,7 +1602,7 @@ void ov9_02249F9C (FieldSystem * fieldSystem)
     v0.y = v2->unk_04.y + v2->unk_0C.y;
     v0.z = v2->unk_04.z + v2->unk_0C.z;
 
-    Camera_SetAngle(&v0, v2->unk_00);
+    Camera_SetAngleAroundTarget(&v0, v2->camera);
 }
 
 void ov9_02249FD0 (FieldSystem * fieldSystem)
@@ -1626,20 +1625,20 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     UnkStruct_ov9_02249F9C * v0 = &param0->unk_14;
 
     param0->fieldSystem->unk_20 = 1;
-    v0->unk_00 = param0->fieldSystem->camera;
+    v0->camera = param0->fieldSystem->camera;
 
     {
         UnkStruct_ov9_02249FF4 v1 = {
             0x29aec1, {-0x29fe, 0, 0}, 0, 0x5c1, 0
         };
 
-        Camera_SetDistance(v1.unk_00, v0->unk_00);
-        Camera_SetAngle(&v1.cameraAngle, v0->unk_00);
-        Camera_SetFOV(v1.unk_0E, v0->unk_00);
-        sub_02020854(v1.unk_0C, v0->unk_00);
+        Camera_SetDistance(v1.unk_00, v0->camera);
+        Camera_SetAngleAroundTarget(&v1.cameraAngle, v0->camera);
+        Camera_SetFOV(v1.unk_0E, v0->camera);
+        Camera_ComputeProjectionMatrix(v1.unk_0C, v0->camera);
     }
 
-    sub_020206BC((FX32_ONE * 150), (FX32_ONE * 1700), v0->unk_00);
+    Camera_SetClipping((FX32_ONE * 150), (FX32_ONE * 1700), v0->camera);
 
     v0->unk_04.x = -0x29fe;
     v0->unk_04.y = 0x0;
@@ -1657,7 +1656,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
     }
 
     if (ov9_022510D0(param0) != 582) {
-        sub_0202094C(0x681 - 0x5c1, v0->unk_00);
+        Camera_AdjustFOV(0x681 - 0x5c1, v0->camera);
     }
 
     v0->unk_3C = SysTask_Start(ov9_0224A0DC, param0, 0);

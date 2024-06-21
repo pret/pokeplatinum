@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
@@ -25,14 +24,14 @@
 #include "heap.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "overlay121/ov121_021D0D80.h"
 
 typedef struct {
     GenericPointerData * unk_00;
-    UnkStruct_020203AC * unk_04;
+    Camera * camera;
     SysTask * unk_08;
     int unk_0C;
     int unk_10;
@@ -218,27 +217,27 @@ static void ov121_021D0FF4 (UnkStruct_ov121_021D0FF4 * param0)
         };
         VecFx32 v1 = {0, 0, 0};
 
-        param0->unk_04 = sub_020203AC(30);
+        param0->camera = Camera_Alloc(30);
 
-        sub_020206D0(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->unk_04);
-        sub_020206BC(0, (FX32_ONE * 300), param0->unk_04);
+        Camera_InitWithTarget(&v1, (160 << FX32_SHIFT), &v0, (((22 * 0xffff) / 360)), 0, 0, param0->camera);
+        Camera_SetClipping(0, (FX32_ONE * 300), param0->camera);
 
         {
             CameraAngle v2 = {0, 0, 0, 0};
 
-            v2 = sub_02020A94(param0->unk_04);
+            v2 = Camera_GetAngle(param0->camera);
             v2.x = (0x10000 - 0x3fef);
 
-            Camera_SetAngle(&v2, param0->unk_04);
+            Camera_SetAngleAroundTarget(&v2, param0->camera);
         }
 
-        sub_020203D4(param0->unk_04);
+        Camera_SetAsActive(param0->camera);
     }
 }
 
 static void ov121_021D1068 (UnkStruct_ov121_021D0FF4 * param0)
 {
-    sub_020203B8(param0->unk_04);
+    Camera_Delete(param0->camera);
 }
 
 static void ov121_021D1074 (UnkStruct_ov121_021D0FF4 * param0)
@@ -301,9 +300,9 @@ static void ov121_021D11A8 (UnkStruct_ov121_021D0FF4 * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    sub_020203D4(param0->unk_04);
-    sub_02020854(0, param0->unk_04);
-    sub_020203EC();
+    Camera_SetAsActive(param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
+    Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(28, 28, 28));
@@ -360,7 +359,7 @@ static void ov121_021D1318 (UnkStruct_ov121_021D0FF4 * param0)
     CameraAngle v1 = {0, 0, 0, 0};
     int v2;
 
-    sub_0202094C(-(param0->unk_D4 >> 8), param0->unk_04);
+    Camera_AdjustFOV(-(param0->unk_D4 >> 8), param0->camera);
     param0->unk_D4 -= 0x80;
 
     if (param0->unk_D4 < (16 << 8)) {

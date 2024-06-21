@@ -4,7 +4,7 @@
 #include "field/field_system.h"
 #include "overlay115/camera_angle.h"
 
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay005/ov5_021D5B40.h"
 
 typedef struct {
@@ -208,20 +208,20 @@ void ov5_021D5B40 (const VecFx32 * param0, FieldSystem * fieldSystem, const int 
 
     GF_ASSERT(param2 < NELEMS(Unk_ov5_021F8AE4));
 
-    fieldSystem->camera = sub_020203AC(4);
+    fieldSystem->camera = Camera_Alloc(4);
 
-    sub_020206D0(v0, v1->unk_00, &v1->cameraAngle, v1->unk_0E, v1->unk_0C, 1, fieldSystem->camera);
-    sub_020203D4(fieldSystem->camera);
-    sub_020206BC(v1->unk_10, v1->unk_14, fieldSystem->camera);
+    Camera_InitWithTarget(v0, v1->unk_00, &v1->cameraAngle, v1->unk_0E, v1->unk_0C, 1, fieldSystem->camera);
+    Camera_SetAsActive(fieldSystem->camera);
+    Camera_SetClipping(v1->unk_10, v1->unk_14, fieldSystem->camera);
 
     if (param3) {
-        sub_02020304((6 + 1), 6, 2, 4, fieldSystem->camera);
+        Camera_InitHistory((6 + 1), 6, 2, 4, fieldSystem->camera);
     }
 }
 
 void ov5_021D5BA8 (FieldSystem * fieldSystem)
 {
-    sub_020203E0();
-    sub_02020390(fieldSystem->camera);
-    sub_020203B8(fieldSystem->camera);
+    Camera_ClearActive();
+    Camera_DeleteHistory(fieldSystem->camera);
+    Camera_Delete(fieldSystem->camera);
 }

@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021D3CE4_decl.h"
@@ -13,7 +12,7 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_02056B30.h"
@@ -45,8 +44,8 @@ typedef struct UnkStruct_ov5_021D4E00_t {
     u16 unk_0C;
 } UnkStruct_ov5_021D4E00;
 
-static void ov5_021D4798(UnkStruct_020203AC * param0, u8 * param1);
-static void ov5_021D47DC(UnkStruct_020203AC * param0, u8 * param1);
+static void ov5_021D4798(Camera * camera, u8 * param1);
+static void ov5_021D47DC(Camera * camera, u8 * param1);
 static u8 ov5_021D481C(const int param0);
 
 UnkStruct_ov5_021D432C * ov5_021D431C (void)
@@ -139,7 +138,7 @@ BOOL ov5_021D433C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
         v9 = ov5_021D4310(fieldSystem->unk_54, 1);
 
         if (v9 != 75) {
-            sub_020206B0(fieldSystem->camera);
+            Camera_ReleaseTarget(fieldSystem->camera);
             param1->unk_20 = 1;
         }
 
@@ -298,7 +297,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
         param1->unk_24 = Camera_GetFOV(fieldSystem->camera);
 
         if (v4 != 75) {
-            sub_0202094C(-96, fieldSystem->camera);
+            Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
         (param1->unk_00)++;
@@ -418,7 +417,7 @@ BOOL ov5_021D453C (FieldSystem * fieldSystem, UnkStruct_ov5_021D432C * param1)
     return 0;
 }
 
-static void ov5_021D4798 (UnkStruct_020203AC * param0, u8 * param1)
+static void ov5_021D4798 (Camera * camera, u8 * param1)
 {
     u8 v0;
     u16 v1;
@@ -438,17 +437,17 @@ static void ov5_021D4798 (UnkStruct_020203AC * param0, u8 * param1)
     {
         u16 v2;
 
-        v2 = Camera_GetFOV(param0);
+        v2 = Camera_GetFOV(camera);
 
         if ((u16)(v2 - v0) > 0x0) {
-            sub_0202094C(-v0, param0);
+            Camera_AdjustFOV(-v0, camera);
         }
 
         (*param1)++;
     }
 }
 
-static void ov5_021D47DC (UnkStruct_020203AC * param0, u8 * param1)
+static void ov5_021D47DC (Camera * camera, u8 * param1)
 {
     u8 v0;
     u16 v1;
@@ -468,10 +467,10 @@ static void ov5_021D47DC (UnkStruct_020203AC * param0, u8 * param1)
     {
         u16 v2;
 
-        v2 = Camera_GetFOV(param0);
+        v2 = Camera_GetFOV(camera);
 
         if ((u16)(v2 + v0) > 0x0) {
-            sub_0202094C(v0, param0);
+            Camera_AdjustFOV(v0, camera);
         }
 
         (*param1)++;
@@ -907,7 +906,7 @@ BOOL ov5_021D4E10 (TaskManager * param0)
 
         {
             v2->unk_0C = Camera_GetFOV(fieldSystem->camera);
-            sub_0202094C(-96, fieldSystem->camera);
+            Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
         sub_0200F174(0, 1, 1, 0x7fff, 6, 1, 11);
@@ -1042,7 +1041,7 @@ BOOL ov5_021D5020 (TaskManager * param0)
 
         {
             v2->unk_0C = Camera_GetFOV(fieldSystem->camera);
-            sub_0202094C(-96, fieldSystem->camera);
+            Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
         switch (v3) {

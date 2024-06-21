@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -1262,7 +1262,7 @@ static void ov23_0223EC34 (BGL * param0)
 static void ov23_0223ED68 (int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
 {
     void * v0;
-    UnkStruct_020203AC * v1;
+    Camera * camera;
     void * v2;
     VecFx32 v3;
 
@@ -1304,7 +1304,7 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     int v0;
     BGL * v1;
     void * v2;
-    UnkStruct_020203AC * v3;
+    Camera * camera;
     void * v4;
     int v5;
 
@@ -1350,7 +1350,7 @@ static void ov23_0223EF98 (void)
     int v0;
     BGL * v1;
     void * v2;
-    UnkStruct_020203AC * v3;
+    Camera * camera;
     void * v4;
     int v5;
 

@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 
@@ -49,7 +48,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -84,7 +83,7 @@ typedef struct {
     int unk_2E0[6];
     u32 unk_2F8[6];
     u8 unk_310[6400];
-    UnkStruct_020203AC * unk_1C10;
+    Camera * camera;
     VecFx32 unk_1C14;
     CameraAngle cameraAngle;
     SysTask * unk_1C28;
@@ -757,7 +756,7 @@ static void ov86_0223B9A8 (UnkStruct_ov86_0223B3C8 * param0)
 {
     VecFx32 v0;
 
-    param0->unk_1C10 = sub_020203AC(63);
+    param0->camera = Camera_Alloc(63);
     param0->unk_1C14.x = 0;
     param0->unk_1C14.y = 0;
     param0->unk_1C14.z = 0;
@@ -765,20 +764,20 @@ static void ov86_0223B9A8 (UnkStruct_ov86_0223B3C8 * param0)
     param0->cameraAngle.y = ((0 * 0xffff) / 360);
     param0->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    sub_020206D0(&(param0->unk_1C14), 20480, &(param0->cameraAngle), 4004, 0, 1, param0->unk_1C10);
+    Camera_InitWithTarget(&(param0->unk_1C14), 20480, &(param0->cameraAngle), 4004, 0, 1, param0->camera);
 
     v0.x = 0;
     v0.y = FX32_ONE;
     v0.z = 0;
 
-    sub_02020680(&v0, param0->unk_1C10);
-    sub_020203D4(param0->unk_1C10);
-    sub_020206BC((1 << FX32_SHIFT), (500 << FX32_SHIFT), param0->unk_1C10);
+    Camera_SetUp(&v0, param0->camera);
+    Camera_SetAsActive(param0->camera);
+    Camera_SetClipping((1 << FX32_SHIFT), (500 << FX32_SHIFT), param0->camera);
 }
 
 static void ov86_0223BA34 (UnkStruct_ov86_0223B3C8 * param0)
 {
-    sub_020203B8(param0->unk_1C10);
+    Camera_Delete(param0->camera);
 }
 
 static void ov86_0223BA44 (UnkStruct_ov86_0223B3C8 * param0)

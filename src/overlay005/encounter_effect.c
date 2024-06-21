@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "pokemon.h"
 
@@ -45,7 +44,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "unk_02054884.h"
 #include "pokemon.h"
@@ -1441,7 +1440,7 @@ void ov5_021DF084(void)
 void ov5_021DF0CC(NARC *param0, u32 param1)
 {
     void *v0;
-    UnkStruct_020203AC *v1;
+    Camera *v1;
 
     GF_ASSERT(Unk_ov5_02202120);
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
@@ -1453,7 +1452,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     sub_02014788(Unk_ov5_02202120->unk_08, 1);
 
     v1 = sub_02014784(Unk_ov5_02202120->unk_08);
-    sub_020206BC(FX32_ONE, FX32_ONE *900, v1);
+    Camera_SetClipping(FX32_ONE, FX32_ONE *900, v1);
 
     v0 = sub_0200723C(param0, param1, 0, 4, 0);
     sub_020144CC(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);

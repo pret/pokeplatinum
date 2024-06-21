@@ -36,7 +36,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"
@@ -1647,7 +1647,7 @@ void ov8_0224A8C8 (FieldSystem * fieldSystem)
         ov8_0224A434(v0, v6.y);
     }
 
-    sub_020206BC(FX32_ONE * 100, FX32_ONE * 1700, fieldSystem->camera);
+    Camera_SetClipping(FX32_ONE * 100, FX32_ONE * 1700, fieldSystem->camera);
 
     ov5_021D57FC(fieldSystem->unk_48, 0xffffffff, 1, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x0200, 0x76a0);
     ov5_021D5834(fieldSystem->unk_48, 0xffffffff, GX_RGB(0, 0, 0), 0);
@@ -2664,7 +2664,7 @@ static void ov8_0224B18C (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * pa
     v4 = MapObject_PosVector(param1->unk_20);
 
     ov5_021E931C(v4, fieldSystem->unk_28);
-    sub_02020690(v4, fieldSystem->camera);
+    Camera_TrackTarget(v4, fieldSystem->camera);
 }
 
 static void ov8_0224B240 (UnkStruct_ov8_0224B28C * param0, int param1, int param2)
@@ -2729,7 +2729,7 @@ static void ov8_0224B2C4 (FieldSystem * fieldSystem, UnkStruct_ov8_0224B28C * pa
     const VecFx32 * v0 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
 
     ov5_021E931C(v0, fieldSystem->unk_28);
-    sub_02020690(v0, fieldSystem->camera);
+    Camera_TrackTarget(v0, fieldSystem->camera);
     MapObject_Delete(param1->unk_20);
 }
 
@@ -3718,7 +3718,7 @@ static void ov8_0224BFCC (FieldSystem * fieldSystem, UnkStruct_ov8_0224C098 * pa
     v2 = MapObject_PosVector(v3->unk_30);
 
     ov5_021E931C(v2, fieldSystem->unk_28);
-    sub_02020690(v2, fieldSystem->camera);
+    Camera_TrackTarget(v2, fieldSystem->camera);
 }
 
 static void ov8_0224C098 (UnkStruct_ov8_0224C098 * param0)
@@ -3727,7 +3727,7 @@ static void ov8_0224C098 (UnkStruct_ov8_0224C098 * param0)
     const VecFx32 * v1 = PlayerAvatar_PosVector(v0->fieldSystem->playerAvatar);
 
     ov5_021E931C(v1, v0->fieldSystem->unk_28);
-    sub_02020690(v1, v0->fieldSystem->camera);
+    Camera_TrackTarget(v1, v0->fieldSystem->camera);
     MapObject_Delete(v0->unk_30);
 }
 

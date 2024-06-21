@@ -239,7 +239,7 @@ typedef struct {
 } UnkStruct_ov6_0224936C;
 
 typedef struct {
-    int unk_00;
+    int camera;
     int unk_04;
     int unk_08;
     VecFx32 unk_0C;

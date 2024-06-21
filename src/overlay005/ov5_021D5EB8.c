@@ -32,7 +32,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201E190.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "unk_0202309C.h"
 #include "overlay005/ov5_021D57BC.h"

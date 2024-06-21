@@ -9,7 +9,6 @@
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "savedata.h"
@@ -44,7 +43,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02025E08.h"
@@ -106,7 +105,7 @@ typedef struct {
     VecFx32 unk_BAA8;
     VecFx32 unk_BAB4;
     VecFx32 unk_BAC0;
-    UnkStruct_020203AC * unk_BACC;
+    Camera * camera;
     CameraAngle unk_BAD0;
     u16 unk_BAD8;
     VecFx32 unk_BADC;
@@ -357,7 +356,7 @@ int ov92_021D0D80 (OverlayManager * param0, int * param1)
     sub_0201D710();
 
     v0->unk_B870 = StringTemplate_New(8, 64, v0->unk_00);
-    v0->unk_BACC = sub_020203AC(v0->unk_00);
+    v0->camera = Camera_Alloc(v0->unk_00);
     v0->unk_BAE8 = 0;
 
     gCoreSys.unk_65 = 1;
@@ -705,7 +704,7 @@ int ov92_021D1478 (OverlayManager * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    sub_020203B8(v0->unk_BACC);
+    Camera_Delete(v0->camera);
     StringTemplate_Free(v0->unk_B870);
     sub_0201CBA0();
     Heap_FreeToHeap(v0->unk_B810);
@@ -1283,10 +1282,10 @@ static void ov92_021D22B0 (UnkStruct_ov92_021D1B24 * param0)
     VecFx32 v0 = {0, 0, 0};
     VecFx32 v1 = {0, 0, 0x128000};
 
-    sub_02020784(&v0, &v1, 0x5c1, 0, 0, param0->unk_BACC);
-    sub_020206BC(0, (FX32_ONE * 100), param0->unk_BACC);
-    sub_02020854(0, param0->unk_BACC);
-    sub_020203D4(param0->unk_BACC);
+    Camera_InitWithTargetAndPosition(&v0, &v1, 0x5c1, 0, 0, param0->camera);
+    Camera_SetClipping(0, (FX32_ONE * 100), param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
+    Camera_SetAsActive(param0->camera);
 
     if (param0->unk_BAF4 == 0) {
         param0->unk_BAD8 = 1;
@@ -1435,7 +1434,7 @@ static BOOL ov92_021D2460 (UnkStruct_ov92_021D1B24 * param0, int param1, int par
 
 static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
 {
-    fx32 v0 = Camera_GetDistance(param0->unk_BACC);
+    fx32 v0 = Camera_GetDistance(param0->camera);
     BOOL v1 = 0;
 
     switch (param0->unk_BAD8) {
@@ -1461,7 +1460,7 @@ static BOOL ov92_021D2644 (UnkStruct_ov92_021D1B24 * param0)
         break;
     }
 
-    Camera_SetDistance(v0, param0->unk_BACC);
+    Camera_SetDistance(v0, param0->camera);
 
     return v1;
 }
@@ -1480,7 +1479,7 @@ static void ov92_021D26D0 (UnkStruct_ov92_021D1B24 * param0)
         break;
     case 1:
         sub_020241B4();
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
 
         {
             ov92_021D2370(&v0, &param0->unk_BAB4);

@@ -4,7 +4,6 @@
 #include "enums.h"
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
 
@@ -19,7 +18,7 @@
 #include "heap.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
@@ -191,15 +190,15 @@ static void ov118_021D0FB8 (GameWindowLayout * param0)
 static void ov118_021D0FDC (OverlayMetadata * param0)
 {
     void * v0;
-    UnkStruct_020203AC * v1;
+    Camera * camera;
 
     sub_02014000();
 
     v0 = Heap_AllocFromHeap(12, 0x4800);
     param0->unk_18 = sub_02014014(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, 12);
-    v1 = sub_02014784(param0->unk_18);
+    camera = sub_02014784(param0->unk_18);
 
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v1);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 }
 
 static void ov118_021D1028 (OverlayMetadata * param0)

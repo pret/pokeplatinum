@@ -1,12 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020203AC_decl.h"
-
 #include "overlay115/camera_angle.h"
 
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay005/ov5_021EAFA4.h"
 
 typedef struct UnkStruct_ov5_021EB0E0_t {
@@ -16,7 +14,7 @@ typedef struct UnkStruct_ov5_021EB0E0_t {
     VecFx32 unk_10;
     fx32 unk_1C;
     MtxFx43 unk_20;
-    UnkStruct_020203AC * unk_50;
+    Camera * camera;
     VecFx32 unk_54;
 } UnkStruct_ov5_021EB0E0;
 
@@ -29,7 +27,7 @@ VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_02
     u16 v6, v7;
 
     v3.y = 0;
-    v2 = sub_02020AAC(param2->unk_50);
+    v2 = Camera_GetTarget(param2->camera);
 
     {
         MtxFx43 v8;
@@ -80,7 +78,7 @@ VecFx32 ov5_021EAFA4 (const u16 param0, const u16 param1, const UnkStruct_ov5_02
     }
 }
 
-UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (UnkStruct_020203AC * const param0)
+UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (Camera * const param0)
 {
     UnkStruct_ov5_021EB0E0 * v0;
 
@@ -90,11 +88,11 @@ UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (UnkStruct_020203AC * const param0)
     return v0;
 }
 
-void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, UnkStruct_020203AC * const param1)
+void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, Camera * const param1)
 {
     CameraAngle v0;
 
-    v0 = sub_02020A94(param1);
+    v0 = Camera_GetAngle(param1);
     param0->unk_00 = Camera_GetFOV(param1);
 
     {
@@ -109,8 +107,8 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, UnkStruct_020203AC * const p
         VecFx32 v2 = {0, FX32_ONE, 0};
         VecFx32 v3, v4;
 
-        v3 = sub_02020ABC(param1);
-        v4 = sub_02020AAC(param1);
+        v3 = Camera_GetPosition(param1);
+        v4 = Camera_GetTarget(param1);
 
         VEC_Subtract(&v3, &v4, &param0->unk_04);
 
@@ -119,7 +117,7 @@ void ov5_021EB0E0 (UnkStruct_ov5_021EB0E0 * param0, UnkStruct_020203AC * const p
     }
 
     MTX_RotX43(&param0->unk_20, FX_SinIdx(v0.x), FX_CosIdx(v0.x));
-    param0->unk_50 = param1;
+    param0->camera = param1;
 }
 
 void ov5_021EB184 (UnkStruct_ov5_021EB0E0 ** param0)

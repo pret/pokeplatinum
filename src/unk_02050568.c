@@ -16,7 +16,7 @@
 
 #include "unk_02005474.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02050568.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
@@ -149,12 +149,12 @@ static void sub_0205075C (FieldSystem * fieldSystem)
     v0.y = 0x15edb7;
     v0.z = 0x23da40e;
 
-    sub_02020ACC(&v0, fieldSystem->camera);
+    Camera_SetTarget(&v0, fieldSystem->camera);
 
     v1.x = 0x823;
     v1.y = 0x520;
     v1.z = 0;
 
-    Camera_SetAngle(&v1, fieldSystem->camera);
-    sub_020206BC(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
+    Camera_SetAngleAroundTarget(&v1, fieldSystem->camera);
+    Camera_SetClipping(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
 }

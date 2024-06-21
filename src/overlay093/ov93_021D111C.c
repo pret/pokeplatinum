@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_0206C8D4.h"
 #include "struct_defs/struct_02099F80.h"
@@ -16,13 +15,13 @@
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
 #include "overlay093/ov93_021D111C.h"
 
 typedef struct {
-    UnkStruct_020203AC * unk_00;
+    Camera * camera;
     NNSG3dRenderObj unk_04;
     NNSG3dResMdl * unk_58;
     NNSG3dResFileHeader * unk_5C;
@@ -96,7 +95,7 @@ int ov93_021D111C (OverlayManager * param0, int * param1)
 
     v1->unk_94 = v2->unk_00;
     v1->unk_95 = 0;
-    v1->unk_00 = sub_020203AC(72);
+    v1->camera = Camera_Alloc(72);
 
     ov93_021D133C();
     ov93_021D13C0(v1);
@@ -104,8 +103,8 @@ int ov93_021D111C (OverlayManager * param0, int * param1)
     {
         VecFx32 v3 = {0, 0, 0};
 
-        sub_020206D0(&v3, Unk_ov93_021D1534.unk_00, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.unk_0E, Unk_ov93_021D1534.unk_0C, 0, v1->unk_00);
-        sub_020203D4(v1->unk_00);
+        Camera_InitWithTarget(&v3, Unk_ov93_021D1534.unk_00, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.unk_0E, Unk_ov93_021D1534.unk_0C, 0, v1->camera);
+        Camera_SetAsActive(v1->camera);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -173,7 +172,7 @@ int ov93_021D120C (OverlayManager * param0, int * param1)
     }
 
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
     sub_0201CA74(&v5->unk_04, &v4, &v2, &v3);
     sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 
@@ -191,7 +190,7 @@ int ov93_021D12F0 (OverlayManager * param0, int * param1)
     }
 
     Heap_FreeToHeap(v1->unk_5C);
-    sub_020203B8(v1->unk_00);
+    Camera_Delete(v1->camera);
     OverlayManager_FreeData(param0);
     sub_0201CBA0();
     Heap_Destroy(72);

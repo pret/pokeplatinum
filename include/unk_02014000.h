@@ -4,7 +4,7 @@
 #include "functypes/funcptr_02014014.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "functypes/funcptr_020146F4.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 
 #include "spl.h"
 #include <nnsys.h>
@@ -33,7 +33,7 @@ void sub_02014734(UnkStruct_02014014 * param0, VecFx32 * param1);
 void sub_02014744(UnkStruct_02014014 * param0, const VecFx32 * param1);
 void * sub_02014764(void);
 void sub_02014770(VecFx32 * param0);
-UnkStruct_020203AC * sub_02014784(UnkStruct_02014014 * param0);
+Camera * sub_02014784(UnkStruct_02014014 * param0);
 void sub_02014788(UnkStruct_02014014 * param0, int param1);
 u8 sub_02014790(UnkStruct_02014014 * param0);
 void sub_02014798(UnkSPLStruct6 * param0, VecFx16 * param1);

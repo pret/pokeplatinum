@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "overlay017/struct_ov17_0223E838.h"
@@ -43,7 +42,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "unk_020366A0.h"
@@ -833,7 +832,7 @@ static void ov17_0223E774 (UnkStruct_ov17_0224DF54 * param0)
 static void ov17_0223E778 (UnkStruct_ov17_0224DF54 * param0)
 {
     void * v0;
-    UnkStruct_020203AC * v1;
+    Camera * camera;
     void * v2;
 
     GF_ASSERT(param0->unk_0C == NULL);
@@ -841,8 +840,8 @@ static void ov17_0223E778 (UnkStruct_ov17_0224DF54 * param0)
     v0 = Heap_AllocFromHeap(23, 0x4800);
     param0->unk_0C = sub_02014014(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, 23);
 
-    v1 = sub_02014784(param0->unk_0C);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v1);
+    camera = sub_02014784(param0->unk_0C);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v2 = sub_020144C4(61, 3, 23);
     sub_020144CC(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);
