@@ -19,7 +19,7 @@ int GameRecords_SaveSize(void)
 void GameRecords_Init(GameRecords *records)
 {
     MI_CpuClear32(records, sizeof(GameRecords));
-    records->unk_1B8.unk_02 = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);
+    records->seed.modifier = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);
 
     sub_0202CD94(records, 1);
 }
@@ -35,8 +35,8 @@ static void sub_0202CD94 (GameRecords * records, int param1)
         return;
     }
 
-    records->unk_1B8.unk_00 = SumBytes(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
-    EncodeData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
+    records->seed.byteSum = SumBytes(&records->recordsU32[1], sizeof(GameRecords) - sizeof(EncodingSeed) - sizeof(u32)) & 0xffff;
+    EncodeData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(EncodingSeed) - sizeof(u32), records->seed.byteSum + (records->seed.modifier << 16));
 }
 
 static void sub_0202CDC0 (GameRecords * records, int param1)
@@ -45,7 +45,7 @@ static void sub_0202CDC0 (GameRecords * records, int param1)
         return;
     }
 
-    DecodeData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
+    DecodeData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(EncodingSeed) - sizeof(u32), records->seed.byteSum + (records->seed.modifier << 16));
 }
 
 static u32 sub_0202CDE0 (const GameRecords * records, int param1)

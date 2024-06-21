@@ -7,16 +7,16 @@
 #define NUM_U32_RECORDS 71
 #define NUM_U16_RECORDS 77
 
-typedef struct GameRecords_sub1 {
-    u16 unk_00;
-    u16 unk_02;
-} GameRecords_sub1;
+typedef struct EncodingSeed {
+    u16 byteSum;
+    u16 modifier;
+} EncodingSeed;
 
 typedef struct GameRecords {
     u32 recordsU32[NUM_U32_RECORDS];
     u16 recordsU16[NUM_U16_RECORDS];
     u16 padding; // this should be added by the compiler, but is needed to match
-    GameRecords_sub1 unk_1B8;
+    EncodingSeed seed;
 } GameRecords;
 
 GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata);
