@@ -39,7 +39,7 @@ typedef struct {
     u64 unk_14;
     UnkStruct_ov27_0225680C_1 unk_1C;
     UnkStruct_ov27_0225621C_sub1 unk_38;
-    PoketchButtonManager * unk_5C;
+    PoketchButtonManager *buttonManager;
     UnkStruct_ov27_0225680C * unk_60;
     PoketchSystem *poketchSys;
 } UnkStruct_ov27_0225621C;
@@ -166,7 +166,7 @@ static void ov27_022562FC (SysTask * param0, void * param1)
             v1->unk_02 = 0;
         }
 
-        ov25_02254518(v1->poketchSys, v1->unk_5C);
+        ov25_02254518(v1->poketchSys, v1->buttonManager);
         ov27_022566D8(v1, &(v1->unk_1C));
 
         if (v0[v1->unk_00](v1)) {
@@ -375,11 +375,11 @@ static BOOL ov27_02256608 (UnkStruct_ov27_0225621C * param0)
         {0xfe, 112, 112, 39},
     };
 
-    param0->unk_5C = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);
+    param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);
 
-    if (param0->unk_5C != NULL) {
-        PoketchButtonManager_SetButtonTimer(param0->unk_5C, 0, 0, 15);
-        PoketchButtonManager_SetButtonTimer(param0->unk_5C, 0, 1, 75);
+    if (param0->buttonManager != NULL) {
+        PoketchButtonManager_SetButtonTimer(param0->buttonManager, 0, 0, 15);
+        PoketchButtonManager_SetButtonTimer(param0->buttonManager, 0, 1, 75);
         param0->unk_04 = 0;
         return 1;
     }
@@ -389,7 +389,7 @@ static BOOL ov27_02256608 (UnkStruct_ov27_0225621C * param0)
 
 static void ov27_02256654 (UnkStruct_ov27_0225621C * param0)
 {
-    PoketchButtonManager_Free(param0->unk_5C);
+    PoketchButtonManager_Free(param0->buttonManager);
 }
 
 static void ov27_02256660 (u32 param0, u32 param1, u32 param2, void * param3)

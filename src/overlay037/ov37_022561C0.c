@@ -22,7 +22,7 @@ typedef struct {
     UnkStruct_ov37_022563D4_1 unk_04;
     UnkStruct_ov37_022563D4 * unk_08;
     PoketchSystem *poketchSys;
-    PoketchButtonManager * unk_10;
+    PoketchButtonManager *buttonManager;
     u32 unk_14;
     u32 unk_18;
 } UnkStruct_ov37_0225621C;
@@ -78,7 +78,7 @@ static BOOL ov37_0225621C (UnkStruct_ov37_0225621C * param0, PoketchSystem *poke
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_10 = PoketchButtonManager_New(v0, NELEMS(v0), ov37_02256298, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov37_02256298, param0, 8);
         param0->unk_14 = 0;
         param0->poketchSys = poketchSys;
 
@@ -90,7 +90,7 @@ static BOOL ov37_0225621C (UnkStruct_ov37_0225621C * param0, PoketchSystem *poke
 
 static void ov37_02256280 (UnkStruct_ov37_0225621C * param0)
 {
-    PoketchButtonManager_Free(param0->unk_10);
+    PoketchButtonManager_Free(param0->buttonManager);
     ov37_02256410(param0->unk_08);
     Heap_FreeToHeap(param0);
 }
@@ -114,7 +114,7 @@ static void ov37_022562A0 (SysTask * param0, void * param1)
     UnkStruct_ov37_0225621C * v1 = (UnkStruct_ov37_0225621C *)param1;
 
     if (v1->unk_00 < NELEMS(v0)) {
-        ov25_02254518(v1->poketchSys, v1->unk_10);
+        ov25_02254518(v1->poketchSys, v1->buttonManager);
 
         if (v0[v1->unk_00](v1)) {
             ov37_02256280(v1);
