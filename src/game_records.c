@@ -35,8 +35,8 @@ static void sub_0202CD94 (GameRecords * records, int param1)
         return;
     }
 
-    records->unk_1B8.unk_00 = sub_0201D5B8(&records->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
-    EncryptData(&records->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
+    records->unk_1B8.unk_00 = sub_0201D5B8(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
+    EncryptData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
 }
 
 static void sub_0202CDC0 (GameRecords * records, int param1)
@@ -45,15 +45,15 @@ static void sub_0202CDC0 (GameRecords * records, int param1)
         return;
     }
 
-    DecryptData(&records->unk_00[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
+    DecryptData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
 }
 
 static u32 sub_0202CDE0 (const GameRecords * records, int param1)
 {
     if (param1 < ((70 + 1))) {
-        return records->unk_00[param1];
+        return records->recordsU32[param1];
     } else if (param1 < ((49 + 28) + ((70 + 1)))) {
-        return records->unk_11C[param1 - ((70 + 1))];
+        return records->recordsU16[param1 - ((70 + 1))];
     }
 
     GF_ASSERT(0);
@@ -63,9 +63,9 @@ static u32 sub_0202CDE0 (const GameRecords * records, int param1)
 static u32 sub_0202CE08 (GameRecords * records, int param1, u32 param2)
 {
     if (param1 < ((70 + 1))) {
-        records->unk_00[param1] = param2;
+        records->recordsU32[param1] = param2;
     } else if (param1 < ((49 + 28) + ((70 + 1)))) {
-        records->unk_11C[param1 - ((70 + 1))] = param2;
+        records->recordsU16[param1 - ((70 + 1))] = param2;
     } else {
         GF_ASSERT(0);
     }
