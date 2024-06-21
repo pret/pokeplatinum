@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV62_022300D8_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "struct_decls/struct_020F3DCC_decl.h"
 #include "overlay062/struct_ov62_022307C0_sub1.h"

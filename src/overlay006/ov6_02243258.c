@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -25,12 +24,12 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
@@ -1574,14 +1573,14 @@ static void ov6_0224464C (UnkStruct_ov6_02243FFC * param0)
 {
     param0->unk_268 = 0;
     param0->unk_26C = 0;
-    param0->unk_278 = CoreSys_ExecuteOnVBlank(ov6_022446B8, param0, 0x80);
+    param0->unk_278 = SysTask_ExecuteOnVBlank(ov6_022446B8, param0, 0x80);
 }
 
 static void ov6_02244674 (UnkStruct_ov6_02243FFC * param0)
 {
     param0->unk_268 = 0;
     param0->unk_26C = 0;
-    param0->unk_278 = CoreSys_ExecuteOnVBlank(ov6_022447B4, param0, 0x80);
+    param0->unk_278 = SysTask_ExecuteOnVBlank(ov6_022447B4, param0, 0x80);
 }
 
 static void ov6_0224469C (UnkStruct_ov6_02243FFC * param0)
@@ -1620,7 +1619,7 @@ static void ov6_022446B8 (SysTask * param0, void * param1)
         }
 
         v1->unk_268++;
-        CoreSys_ExecuteAfterVBlank(ov6_02244734, v1, 0x80);
+        SysTask_ExecuteAfterVBlank(ov6_02244734, v1, 0x80);
 
         break;
     }
@@ -1667,7 +1666,7 @@ static void ov6_022447B4 (SysTask * param0, void * param1)
     switch (v0->unk_268) {
     case 0:
         sub_0200A3DC(v1);
-        CoreSys_ExecuteAfterVBlank(ov6_022447EC, v0, 0x80);
+        SysTask_ExecuteAfterVBlank(ov6_022447EC, v0, 0x80);
         v0->unk_268++;
         break;
     }
@@ -2032,7 +2031,7 @@ static void ov6_02244F80 (UnkStruct_ov6_02243FFC * param0, fx32 param1, fx32 par
 static void ov6_02244F8C (UnkStruct_ov6_02243FFC * param0)
 {
     GF_ASSERT(param0->unk_27C == NULL);
-    param0->unk_27C = CoreSys_ExecuteOnVBlank(ov6_02244FE4, param0, 0x81);
+    param0->unk_27C = SysTask_ExecuteOnVBlank(ov6_02244FE4, param0, 0x81);
 }
 
 static void ov6_02244FB4 (UnkStruct_ov6_02243FFC * param0)

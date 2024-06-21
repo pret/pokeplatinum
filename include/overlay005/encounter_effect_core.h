@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_ENCOUNTER_EFFECT_CORE_H
 #define POKEPLATINUM_ENCOUNTER_EFFECT_CORE_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param);
 void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param);

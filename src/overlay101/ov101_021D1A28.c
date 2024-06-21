@@ -5,7 +5,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "overlay101/const_ov101_021D9580.h"
@@ -36,7 +36,7 @@
 #include "overlay101/struct_ov101_021D9AE4.h"
 
 #include "unk_02005474.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"

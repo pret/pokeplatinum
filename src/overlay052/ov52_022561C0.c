@@ -3,14 +3,14 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay052/struct_ov52_02256694_decl.h"
 
 #include "field/field_system.h"
 #include "overlay052/struct_ov52_02256694_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "touch_screen.h"
 #include "unk_02033200.h"

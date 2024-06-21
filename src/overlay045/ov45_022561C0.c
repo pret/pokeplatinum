@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/poketch_button.h"
 #include "overlay045/struct_ov45_022566EC_decl.h"
@@ -11,7 +11,7 @@
 #include "touch_screen.h"
 #include "overlay045/struct_ov45_022566EC_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "rtc.h"
 #include "heap.h"
 #include "poketch_data.h"

@@ -3,8 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
-
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay022/struct_ov22_02257964.h"
 #include "overlay022/struct_ov22_02257F50.h"
@@ -16,7 +14,7 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_022578F4.h"

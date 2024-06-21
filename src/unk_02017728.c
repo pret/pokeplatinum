@@ -7,7 +7,7 @@
 
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_02024358.h"
 
@@ -27,7 +27,7 @@ void sub_02017728 (void)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 
     MI_WaitDma(GX_DEFAULT_DMAID);
-    sub_0201CDD4(gCoreSys.unk_1C);
+    SysTaskManager_ExecuteTasks(gCoreSys.vBlankTaskMgr);
 
     gCoreSys.unk_30++;
 }
@@ -146,10 +146,10 @@ void sub_0201789C (void)
     OS_InitTick();
     sub_02017850();
 
-    gCoreSys.unk_18 = sub_0201CD88(160, OS_AllocFromMainArenaLo(sub_0201CD80(160), 4));
-    gCoreSys.unk_1C = sub_0201CD88(32, OS_AllocFromMainArenaLo(sub_0201CD80(32), 4));
-    gCoreSys.unk_20 = sub_0201CD88(32, OS_AllocFromMainArenaLo(sub_0201CD80(32), 4));
-    gCoreSys.unk_24 = sub_0201CD88(4, OS_AllocFromMainArenaLo(sub_0201CD80(4), 4));
+    gCoreSys.mainTaskMgr = SysTaskManager_Init(160, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(160), 4));
+    gCoreSys.vBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gCoreSys.postVBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gCoreSys.unk_24 = SysTaskManager_Init(4, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(4), 4));
 
     GX_DispOff();
     GXS_DispOff();

@@ -24,7 +24,7 @@
 #include "unk_020093B4.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
 #include "heap.h"

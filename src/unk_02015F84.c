@@ -2,13 +2,13 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/poke_animation_settings.h"
 
 #include "narc.h"
 #include "unk_0200762C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02015F84.h"
 #include "heap.h"
 

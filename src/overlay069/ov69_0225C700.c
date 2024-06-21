@@ -9,7 +9,7 @@
 #include "message.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -46,7 +46,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
@@ -2406,7 +2406,7 @@ static void ov69_0225E478 (UnkStruct_ov69_0225E478 * param0)
     ov69_0225E504(param0, 0, 0);
     ov69_0225E51C(param0, 0, 0);
 
-    param0->unk_0C = CoreSys_ExecuteAfterVBlank(ov69_0225E534, param0, 0);
+    param0->unk_0C = SysTask_ExecuteAfterVBlank(ov69_0225E534, param0, 0);
 }
 
 static void ov69_0225E4E8 (UnkStruct_ov69_0225E478 * param0)

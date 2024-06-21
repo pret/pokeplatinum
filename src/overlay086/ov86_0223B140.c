@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 
@@ -16,7 +15,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -38,13 +36,13 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
@@ -614,7 +612,7 @@ static void ov86_0223B6CC (SysTask * param0, void * param1)
 
 static SysTask * ov86_0223B744 (SysTaskFunc param0, void * param1, int param2)
 {
-    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
+    return SysTask_ExecuteOnVBlank(param0, param1, param2);
 }
 
 static void ov86_0223B74C (UnkStruct_ov86_0223B3C8 * param0)
@@ -924,7 +922,7 @@ static void ov86_0223BDC4 (UnkStruct_ov86_0223BDAC * param0, void * param1, SysT
 
 static void ov86_0223BDCC (UnkStruct_ov86_0223BDAC * param0)
 {
-    CoreSys_ExecuteAfterVBlank(ov86_0223BDAC, param0, 0);
+    SysTask_ExecuteAfterVBlank(ov86_0223BDAC, param0, 0);
 }
 
 static void ov86_0223BDE0 (UnkStruct_ov86_0223B3C8 * param0, int param1, int param2)

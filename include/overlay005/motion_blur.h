@@ -2,7 +2,7 @@
 #define POKEPLATINUM_MOTION_BLUR_H
 
 #include <nitro/gx.h>
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "constants/heap.h"
 
 typedef struct MotionBlurParams {

@@ -17,7 +17,7 @@
 
 #include "unk_02005474.h"
 #include "game_overlay.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0201E3D8.h"
 #include "unk_02025E08.h"

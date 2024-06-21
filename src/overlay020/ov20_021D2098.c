@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
@@ -15,7 +14,6 @@
 #include "overlay020/struct_ov20_021D4AD4_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay083/struct_ov83_0223D9A8.h"
@@ -26,12 +24,12 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "overlay020/ov20_021D0D80.h"
@@ -163,7 +161,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
 
 SysTask * ov20_021D2170 (SysTaskFunc param0, void * param1, int param2)
 {
-    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
+    return SysTask_ExecuteOnVBlank(param0, param1, param2);
 }
 
 static void ov20_021D2178 (SysTask * param0, void * param1)

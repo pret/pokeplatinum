@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017294.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "camera.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0205AA50.h"

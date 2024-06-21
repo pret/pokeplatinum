@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "buffer_manager.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "screen_scroll_manager.h"
 #include "heap.h"
 

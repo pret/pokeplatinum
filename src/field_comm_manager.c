@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -12,7 +12,7 @@
 #include "functypes/funcptr_020598EC.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "constants/heap.h"

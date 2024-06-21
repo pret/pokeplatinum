@@ -5,7 +5,7 @@
 #include "field/field_system_decl.h"
 #include "poketch_data.h"
 #include "savedata.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "overlay025/struct_ov25_02254560_decl.h"
 #include "overlay025/struct_ov25_02254560_1.h"

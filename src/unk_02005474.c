@@ -3,16 +3,15 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/sys_task.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     int unk_00;

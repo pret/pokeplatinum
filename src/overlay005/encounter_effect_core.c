@@ -4,7 +4,7 @@
 #include "constants/heap.h"
 #include "constants/trainer.h"
 #include "message.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -28,7 +28,7 @@
 #include "unk_0200A9DC.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "screen_scroll_manager.h"
 #include "heap.h"
@@ -425,7 +425,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
 
 static SysTask *ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShakeEfx)
 {
-    return CoreSys_ExecuteOnVBlank(ScreenShakeEffect_DMATransfer, screenShakeEfx, 1024);
+    return SysTask_ExecuteOnVBlank(ScreenShakeEffect_DMATransfer, screenShakeEfx, 1024);
 }
 
 static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param)

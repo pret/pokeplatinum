@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV20_021D4FF0_H
 #define POKEPLATINUM_STRUCT_OV20_021D4FF0_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     int unk_00;

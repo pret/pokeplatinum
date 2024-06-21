@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
 
 #include "overlay005/struct_ov5_021EEC68.h"
 #include "overlay005/struct_ov5_021EED38.h"
@@ -10,9 +9,9 @@
 #include "overlay005/struct_ov5_021EF13C_sub1.h"
 
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay005/ov5_021EEF34.h"
 
 typedef struct {

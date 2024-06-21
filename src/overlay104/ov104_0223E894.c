@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay104/struct_ov104_0223E9EC.h"
@@ -9,7 +9,7 @@
 #include "overlay104/struct_ov104_0223F094.h"
 #include "overlay104/struct_ov104_0223F1B4.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "screen_scroll_manager.h"
 #include "buffer_manager.h"
 #include "heap.h"
@@ -179,7 +179,7 @@ BOOL ov104_0223E9F8 (UnkStruct_ov104_0223E9EC * param0)
     BOOL v0;
 
     v0 = ov104_0223EA38(&param0->unk_00);
-    CoreSys_ExecuteAfterVBlank(ov104_0223EA14, param0, 10);
+    SysTask_ExecuteAfterVBlank(ov104_0223EA14, param0, 10);
 
     return v0;
 }
@@ -499,7 +499,7 @@ BOOL ov104_0223EE44 (UnkStruct_ov104_0223EBD0 * param0)
 
 static SysTask * ov104_0223F05C (UnkStruct_ov104_0223F094 * param0)
 {
-    return CoreSys_ExecuteOnVBlank(ov104_0223F070, param0, 1024);
+    return SysTask_ExecuteOnVBlank(ov104_0223F070, param0, 1024);
 }
 
 static void ov104_0223F070 (SysTask * param0, void * param1)
@@ -560,8 +560,8 @@ static void ov104_0223F110 (UnkStruct_ov104_0223F0D8 * param0, void * param1, Un
     param0->unk_18 = param1;
     param0->unk_10 = param2;
     param0->unk_14 = param3;
-    param0->unk_04 = CoreSys_ExecuteAfterVBlank(ov104_0223F0D8, param0, 0);
-    param0->unk_00 = CoreSys_ExecuteOnVBlank(ov104_0223F0F4, param0, 0);
+    param0->unk_04 = SysTask_ExecuteAfterVBlank(ov104_0223F0D8, param0, 0);
+    param0->unk_00 = SysTask_ExecuteOnVBlank(ov104_0223F0F4, param0, 0);
 }
 
 static void ov104_0223F150 (UnkStruct_ov104_0223F0D8 * param0)

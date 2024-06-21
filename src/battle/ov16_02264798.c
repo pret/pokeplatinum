@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/battle_system.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
 #include "battle/struct_ov16_0225BFFC_t.h"
 
 #include "unk_0200762C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0201D15C.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02264798.h"

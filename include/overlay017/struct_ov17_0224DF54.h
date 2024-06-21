@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV17_0224DF54_H
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
 #include "overlay017/struct_ov17_0223E838.h"

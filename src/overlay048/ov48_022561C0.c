@@ -5,14 +5,14 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "overlay025/poketch_system.h"
 #include "overlay048/struct_ov48_0225650C_decl.h"
 
 #include "overlay048/struct_ov48_0225650C_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "savedata_misc.h"
 #include "unk_02027B70.h"

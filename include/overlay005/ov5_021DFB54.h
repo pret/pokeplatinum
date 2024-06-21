@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021DFB54_H
 #define POKEPLATINUM_OV5_021DFB54_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"

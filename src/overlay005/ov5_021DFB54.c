@@ -3,7 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -19,9 +18,9 @@
 #include "overlay006/battle_params.h"
 
 #include "unk_02005474.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0202CD50.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"

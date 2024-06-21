@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02039E30_decl.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
@@ -15,11 +14,11 @@
 #include "overlay005/funcptr_ov5_021E9630.h"
 
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_0201C970.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_020366A0.h"
 #include "unk_02039C80.h"
 #include "overlay005/ov5_021D521C.h"

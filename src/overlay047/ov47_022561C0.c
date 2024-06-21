@@ -5,7 +5,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
 
@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0206C638.h"
 #include "overlay047/struct_ov47_02256634_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0202D7A8.h"
 #include "vars_flags.h"

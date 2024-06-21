@@ -8,7 +8,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
@@ -31,12 +30,12 @@
 #include "unk_0200762C.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
@@ -567,7 +566,7 @@ static void ov95_0224BBB0 (UnkStruct_ov95_0224B4D4 * param0, int param1, int par
         v0->unk_08 = param2 << 12;
         v0->unk_0C = (v0->unk_08 - v0->unk_04) / param3;
         v0->unk_10 = param3;
-        param0->unk_7C = CoreSys_ExecuteOnVBlank(ov95_0224BC30, v0, 0);
+        param0->unk_7C = SysTask_ExecuteOnVBlank(ov95_0224BC30, v0, 0);
 
         G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, param1);
     }

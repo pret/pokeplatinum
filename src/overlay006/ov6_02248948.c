@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "overlay006/ov6_02248050.h"
 #include "overlay006/ov6_02248948.h"

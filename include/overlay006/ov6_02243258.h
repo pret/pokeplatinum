@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV6_02243258_H
 #define POKEPLATINUM_OV6_02243258_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "field/field_system_decl.h"
 #include "pokemon.h"
 

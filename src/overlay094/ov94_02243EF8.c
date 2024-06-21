@@ -2,7 +2,6 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 
 #include "touch_screen.h"
@@ -13,7 +12,7 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_020218BC.h"
 #include "unk_0205C980.h"
 #include "overlay094/ov94_0223BCB0.h"

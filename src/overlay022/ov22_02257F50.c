@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
-
 #include "touch_screen.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
@@ -15,7 +13,7 @@
 
 #include "unk_0200679C.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02257F50.h"

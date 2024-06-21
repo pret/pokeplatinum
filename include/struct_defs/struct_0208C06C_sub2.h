@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0208C06C_SUB2_H
 #define POKEPLATINUM_STRUCT_0208C06C_SUB2_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_defs/struct_0208B878.h"
 
 typedef struct {
