@@ -11,12 +11,12 @@
 #include <nnsys.h>
 #include <nitro/fx/fx.h>
 
-GraphicElementManager * sub_020218BC(const UnkStruct_020095C4 * param0);
+GraphicElementManager * GraphicElementManager_New(const GraphicElementManagerParams * param0);
 BOOL sub_02021964(GraphicElementManager * param0);
 BOOL sub_020219A4(GraphicElementManager * param0, u8 param1);
 BOOL sub_020219C0(GraphicElementManager * param0);
 void sub_020219F8(const GraphicElementManager * param0);
-void sub_02021A78(GraphicElementData * param0);
+void GraphicElementData_Reset(GraphicElementData * param0);
 GraphicElementData * sub_02021AA0(const UnkStruct_ov115_02261520 * param0);
 GraphicElementData * sub_02021B90(const UnkStruct_ov83_0223D9A8 * param0);
 void sub_02021BD4(GraphicElementData * param0);

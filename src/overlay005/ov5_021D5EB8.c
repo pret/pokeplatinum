@@ -800,13 +800,13 @@ static void ov5_021D61D0 (UnkStruct_ov5_021D61D0 * param0)
     ov5_021D6290(param0->unk_10, 3, 62);
 
     {
-        UnkStruct_020095C4 v3;
+        GraphicElementManagerParams v3;
 
         v3.unk_00 = 96;
         v3.unk_04 = &param0->unk_14;
         v3.unk_08 = 4;
 
-        param0->unk_130 = sub_020218BC(&v3);
+        param0->unk_130 = GraphicElementManager_New(&v3);
         param0->unk_134 = SysTask_Start(ov5_021D6284, param0, 10);
     }
 }

@@ -44,14 +44,14 @@ typedef struct GraphicElementData_t {
     u8 unk_29;
     u8 unk_2A;
     BOOL unk_2C;
-    GXOamMode unk_30;
+    GXOamMode oamMode;
     u8 unk_34;
     u8 unk_35;
     fx32 unk_38;
-    GraphicElementManager * unk_3C;
+    GraphicElementManager * manager;
     u32 unk_40[29];
-    NNSG2dImageProxy unk_B4;
-    NNSG2dImagePaletteProxy unk_D8;
+    NNSG2dImageProxy imageProxy;
+    NNSG2dImagePaletteProxy paletteProxy;
     u32 unk_EC;
     u16 unk_F0;
     u8 unk_F2;
@@ -66,17 +66,17 @@ typedef struct GraphicElementManager_t {
     int unk_04;
     GraphicElementData ** unk_08;
     int unk_0C;
-    GraphicElementData unk_10;
-    NNSG2dRendererInstance * unk_110;
-    void * unk_114;
-    NNSG2dCellAnimBankData * unk_118;
+    GraphicElementData sentinelData;
+    NNSG2dRendererInstance * renderer;
+    void * rawAnimData;
+    NNSG2dCellAnimBankData * animData;
     u32 unk_11C;
 } GraphicElementManager;
 
 typedef void (* GraphicElementUpdateFunc)(const GraphicElementManager *, GraphicElementData *);
 typedef void (* GraphicElementInitializeFunc)(GraphicElementData *);
 
-static void sub_02021A50(GraphicElementManager * param0);
+static void GraphicElementManager_Reset(GraphicElementManager * param0);
 static u32 sub_020221B8(const UnkStruct_ov19_021DA864 * param0);
 static void sub_020221D0(const NNSG2dCellDataBank * param0, GraphicElementData * param1);
 static void sub_020221D4(const NNSG2dCellAnimBankData * param0, GraphicElementData * param1);
@@ -97,38 +97,38 @@ static void sub_02022518(GraphicElementManager * param0);
 static GraphicElementData * sub_02022550(GraphicElementManager * param0);
 static BOOL sub_0202256C(GraphicElementManager * param0, GraphicElementData * param1);
 
-GraphicElementManager * sub_020218BC (const UnkStruct_020095C4 * param0)
+GraphicElementManager *GraphicElementManager_New(const GraphicElementManagerParams *params)
 {
-    GraphicElementManager * v0;
+    GraphicElementManager *gfxElemMgr;
     int v1;
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04);
+    GF_ASSERT(params);
+    GF_ASSERT(params->renderer);
 
-    v0 = Heap_AllocFromHeap(param0->unk_08, sizeof(GraphicElementManager));
-    GF_ASSERT(v0);
+    gfxElemMgr = Heap_AllocFromHeap(params->unk_08, sizeof(GraphicElementManager));
+    GF_ASSERT(gfxElemMgr);
 
-    sub_02021A50(v0);
+    GraphicElementManager_Reset(gfxElemMgr);
 
-    v0->unk_00 = Heap_AllocFromHeap(param0->unk_08, sizeof(GraphicElementData) * param0->unk_00);
-    GF_ASSERT(v0->unk_00);
-    v0->unk_04 = param0->unk_00;
+    gfxElemMgr->unk_00 = Heap_AllocFromHeap(params->unk_08, sizeof(GraphicElementData) * params->unk_00);
+    GF_ASSERT(gfxElemMgr->unk_00);
+    gfxElemMgr->unk_04 = params->unk_00;
 
-    v0->unk_08 = Heap_AllocFromHeap(param0->unk_08, sizeof(GraphicElementData *) * param0->unk_00);
-    GF_ASSERT(v0->unk_08);
+    gfxElemMgr->unk_08 = Heap_AllocFromHeap(params->unk_08, sizeof(GraphicElementData *) * params->unk_00);
+    GF_ASSERT(gfxElemMgr->unk_08);
 
-    sub_02022518(v0);
-    sub_02021A78(&v0->unk_10);
+    sub_02022518(gfxElemMgr);
+    GraphicElementData_Reset(&gfxElemMgr->sentinelData);
 
-    v0->unk_10.unk_FC = &v0->unk_10;
-    v0->unk_10.unk_100 = &v0->unk_10;
-    v0->unk_110 = param0->unk_04;
-    v0->unk_114 = ReadFileToHeap(param0->unk_08, "data/clact_default.NANR");
+    gfxElemMgr->sentinelData.unk_FC = &gfxElemMgr->sentinelData;
+    gfxElemMgr->sentinelData.unk_100 = &gfxElemMgr->sentinelData;
+    gfxElemMgr->renderer = params->renderer;
+    gfxElemMgr->rawAnimData = ReadFileToHeap(params->unk_08, "data/clact_default.NANR");
 
-    NNS_G2dGetUnpackedAnimBank(v0->unk_114, &v0->unk_118);
-    v0->unk_11C = 1;
+    NNS_G2dGetUnpackedAnimBank(gfxElemMgr->rawAnimData, &gfxElemMgr->animData);
+    gfxElemMgr->unk_11C = 1;
 
-    return v0;
+    return gfxElemMgr;
 }
 
 BOOL sub_02021964 (GraphicElementManager * param0)
@@ -143,11 +143,11 @@ BOOL sub_02021964 (GraphicElementManager * param0)
 
     sub_020219C0(param0);
 
-    Heap_FreeToHeap(param0->unk_114);
+    Heap_FreeToHeap(param0->rawAnimData);
     Heap_FreeToHeap(param0->unk_08);
     Heap_FreeToHeap(param0->unk_00);
 
-    sub_02021A50(param0);
+    GraphicElementManager_Reset(param0);
     Heap_FreeToHeap(param0);
 
     param0 = NULL;
@@ -183,9 +183,9 @@ BOOL sub_020219C0 (GraphicElementManager * param0)
         return 1;
     }
 
-    v0 = param0->unk_10.unk_100;
+    v0 = param0->sentinelData.unk_100;
 
-    while (v0 != &param0->unk_10) {
+    while (v0 != &param0->sentinelData) {
         v1 = v0->unk_100;
         sub_02021BD4(v0);
         v0 = v1;
@@ -212,38 +212,38 @@ void sub_020219F8 (const GraphicElementManager * param0)
         return;
     }
 
-    v0 = param0->unk_10.unk_100;
+    v0 = param0->sentinelData.unk_100;
 
-    while (v0 != &param0->unk_10) {
+    while (v0 != &param0->sentinelData) {
         v1[v0->unk_34](param0, v0);
         v2[v0->unk_35](v0);
         v0 = v0->unk_100;
     }
 }
 
-static void sub_02021A50 (GraphicElementManager * param0)
+static void GraphicElementManager_Reset(GraphicElementManager *gfxElemMgr)
 {
-    param0->unk_00 = NULL;
-    param0->unk_04 = 0;
-    param0->unk_08 = NULL;
-    param0->unk_0C = 0;
-    param0->unk_110 = NULL;
+    gfxElemMgr->unk_00 = NULL;
+    gfxElemMgr->unk_04 = 0;
+    gfxElemMgr->unk_08 = NULL;
+    gfxElemMgr->unk_0C = 0;
+    gfxElemMgr->renderer = NULL;
 
-    sub_02021A78(&param0->unk_10);
-    param0->unk_11C = 0;
+    GraphicElementData_Reset(&gfxElemMgr->sentinelData);
+    gfxElemMgr->unk_11C = 0;
 }
 
-void sub_02021A78 (GraphicElementData * param0)
+void GraphicElementData_Reset(GraphicElementData *elem)
 {
     int v0;
 
-    param0->unk_3C = NULL;
-    memset(param0, 0, sizeof(GraphicElementData));
+    elem->manager = NULL;
+    memset(elem, 0, sizeof(GraphicElementData));
 
-    NNS_G2dInitImageProxy(&param0->unk_B4);
-    NNS_G2dInitImagePaletteProxy(&param0->unk_D8);
+    NNS_G2dInitImageProxy(&elem->imageProxy);
+    NNS_G2dInitImagePaletteProxy(&elem->paletteProxy);
 
-    param0->unk_30 = GX_OAM_MODE_NORMAL;
+    elem->oamMode = GX_OAM_MODE_NORMAL;
 }
 
 GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
@@ -256,7 +256,7 @@ GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
         return NULL;
     }
 
-    v0->unk_3C = param0->unk_00;
+    v0->manager = param0->unk_00;
     v0->unk_F0 = 0;
     v0->unk_00 = param0->unk_08;
     v0->unk_18 = param0->unk_14;
@@ -266,11 +266,11 @@ GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
     v0->unk_26 = 0;
     v0->unk_27 = 0;
     v0->unk_2C = 0;
-    v0->unk_30 = GX_OAM_MODE_NORMAL;
+    v0->oamMode = GX_OAM_MODE_NORMAL;
     v0->unk_28 = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
-    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_00->unk_110->rendererCore), v0->unk_26);
-    NNS_G2dSetRndCoreFlipMode(&(param0->unk_00->unk_110->rendererCore), v0->unk_27 & 1, v0->unk_27 & 2);
+    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_00->renderer->rendererCore), v0->unk_26);
+    NNS_G2dSetRndCoreFlipMode(&(param0->unk_00->renderer->rendererCore), v0->unk_27 & 1, v0->unk_27 & 2);
 
     v0->unk_34 = 1;
     v0->unk_35 = 0;
@@ -281,7 +281,7 @@ GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
         return NULL;
     }
 
-    v0->unk_2A = sub_020222C4(&v0->unk_D8, v0->unk_F8);
+    v0->unk_2A = sub_020222C4(&v0->paletteProxy, v0->unk_F8);
     v0->unk_29 = v0->unk_2A;
 
     sub_02022464(param0->unk_00, v0);
@@ -321,7 +321,7 @@ void sub_02021BD4 (GraphicElementData * param0)
         if (param0->unk_EC == 3) {
             CellDataAnimationWrapper * v2 = (CellDataAnimationWrapper *)&param0->unk_40;
 
-            if (NNS_G2dGetImageLocation(&param0->unk_B4, param0->unk_F8) != NNS_G2D_VRAM_ADDR_NONE) {
+            if (NNS_G2dGetImageLocation(&param0->imageProxy, param0->unk_F8) != NNS_G2D_VRAM_ADDR_NONE) {
                 NNS_G2dFreeCellTransferStateHandle(v2->unk_60);
             }
         }
@@ -340,7 +340,7 @@ void sub_02021BD4 (GraphicElementData * param0)
 
         param0->unk_EC = 0;
 
-        v0 = (GraphicElementManager *)param0->unk_3C;
+        v0 = (GraphicElementManager *)param0->manager;
         sub_0202256C(v0, param0);
     }
 }
@@ -567,7 +567,7 @@ void sub_02021E90 (GraphicElementData * param0, u32 param1)
 void sub_02021EC4 (GraphicElementData * param0, u32 param1)
 {
     sub_02021E90(param0, param1);
-    param0->unk_29 += sub_020222C4(&param0->unk_D8, param0->unk_F8);
+    param0->unk_29 += sub_020222C4(&param0->paletteProxy, param0->unk_F8);
 }
 
 u32 sub_02021EE8 (const GraphicElementData * param0)
@@ -587,7 +587,7 @@ void sub_02021EF0 (GraphicElementData * param0, u32 param1)
 void sub_02021F24 (GraphicElementData * param0, u32 param1)
 {
     sub_02021EF0(param0, param1);
-    param0->unk_2A += sub_020222C4(&param0->unk_D8, param0->unk_F8);
+    param0->unk_2A += sub_020222C4(&param0->paletteProxy, param0->unk_F8);
 }
 
 u32 sub_02021F48 (const GraphicElementData * param0)
@@ -598,7 +598,7 @@ u32 sub_02021F48 (const GraphicElementData * param0)
 
 void sub_02021F58 (GraphicElementData * param0, u32 param1)
 {
-    GraphicElementManager * v0 = (GraphicElementManager *)param0->unk_3C;
+    GraphicElementManager * v0 = (GraphicElementManager *)param0->manager;
 
     param0->unk_F4 = param1;
 
@@ -613,17 +613,17 @@ u32 sub_02021F74 (const GraphicElementData * param0)
 
 void sub_02021F7C (GraphicElementData * param0, const NNSG2dImageProxy * param1)
 {
-    param0->unk_B4 = *param1;
+    param0->imageProxy = *param1;
 }
 
 NNSG2dImageProxy * SpriteActor_ImageProxy (GraphicElementData * param0)
 {
-    return &param0->unk_B4;
+    return &param0->imageProxy;
 }
 
 NNSG2dImagePaletteProxy * sub_02021F9C (GraphicElementData * param0)
 {
-    return &param0->unk_D8;
+    return &param0->paletteProxy;
 }
 
 void sub_02021FA0 (GraphicElementData * param0, BOOL param1)
@@ -659,7 +659,7 @@ void sub_02021FE0 (GraphicElementData * param0, GXOamMode param1)
 {
     GF_ASSERT(param0);
 
-    param0->unk_30 = param1;
+    param0->oamMode = param1;
 
     if (param1 == GX_OAM_MODE_NORMAL) {
         param0->unk_28 ^= NNS_G2D_RND_OVERWRITE_OBJMODE;
@@ -739,15 +739,15 @@ u32 sub_020220F4 (const GraphicElementData * param0)
 static BOOL sub_02022110 (const GraphicElementManager * param0, const UnkStruct_ov19_021DA864 * param1, GraphicElementData * param2, int param3)
 {
     param2->unk_EC = sub_020221B8(param1);
-    param2->unk_B4 = *param1->unk_00;
-    param2->unk_D8 = *param1->unk_08;
+    param2->imageProxy = *param1->unk_00;
+    param2->paletteProxy = *param1->unk_08;
 
     sub_020221D0(param1->unk_0C, param2);
 
     if (param1->unk_10) {
         sub_020221D4(param1->unk_10, param2);
     } else {
-        sub_020221D4(param0->unk_118, param2);
+        sub_020221D4(param0->animData, param2);
     }
 
     if (param2->unk_EC == 2) {
@@ -830,7 +830,7 @@ static void sub_02022208 (const UnkStruct_ov19_021DA864 * param0, GraphicElement
     v0->unk_60 = NNS_G2dGetNewCellTransferStateHandle();
     v1 = param0->unk_04;
 
-    NNS_G2dInitCellAnimationVramTransfered((NNSG2dCellAnimation *)&v0->unk_08, NNS_G2dGetAnimSequenceByIdx(v0->unk_04, 0), v0->unk_00, v0->unk_60, NNS_G2D_VRAM_ADDR_NONE, NNS_G2dGetImageLocation(&param1->unk_B4, NNS_G2D_VRAM_TYPE_2DMAIN), NNS_G2dGetImageLocation(&param1->unk_B4, NNS_G2D_VRAM_TYPE_2DSUB), v1->pRawData, NULL, v1->szByte);
+    NNS_G2dInitCellAnimationVramTransfered((NNSG2dCellAnimation *)&v0->unk_08, NNS_G2dGetAnimSequenceByIdx(v0->unk_04, 0), v0->unk_00, v0->unk_60, NNS_G2D_VRAM_ADDR_NONE, NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN), NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DSUB), v1->pRawData, NULL, v1->szByte);
 }
 
 static void sub_02022264 (GraphicElementData * param0, int param1)
@@ -879,17 +879,17 @@ static void sub_020222F4 (const GraphicElementManager * param0, GraphicElementDa
 {
     VecFx32 v0 = param1->unk_00;
 
-    NNS_G2dSetRendererImageProxy(param0->unk_110, &param1->unk_B4, &param1->unk_D8);
-    NNS_G2dBeginRendering(param0->unk_110);
+    NNS_G2dSetRendererImageProxy(param0->renderer, &param1->imageProxy, &param1->paletteProxy);
+    NNS_G2dBeginRendering(param0->renderer);
     NNS_G2dPushMtx();
 
     {
-        NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_110->rendererCore), param1->unk_26);
+        NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->renderer->rendererCore), param1->unk_26);
 
         if (param1->unk_26 == 0) {
-            NNS_G2dSetRndCoreFlipMode(&(param0->unk_110->rendererCore), param1->unk_27 & 1, param1->unk_27 & 2);
+            NNS_G2dSetRndCoreFlipMode(&(param0->renderer->rendererCore), param1->unk_27 & 1, param1->unk_27 & 2);
         } else {
-            NNS_G2dSetRndCoreFlipMode(&(param0->unk_110->rendererCore), 0, 0);
+            NNS_G2dSetRndCoreFlipMode(&(param0->renderer->rendererCore), 0, 0);
         }
 
         NNS_G2dTranslate(v0.x, v0.y, v0.z);
@@ -901,13 +901,13 @@ static void sub_020222F4 (const GraphicElementManager * param0, GraphicElementDa
             NNS_G2dTranslate(-param1->unk_0C.x, -param1->unk_0C.y, -param1->unk_0C.z);
         }
 
-        NNS_G2dSetRendererOverwriteEnable(param0->unk_110, param1->unk_28);
-        NNS_G2dSetRendererOverwriteDisable(param0->unk_110, ~param1->unk_28);
-        NNS_G2dSetRendererOverwritePlttNo(param0->unk_110, param1->unk_29);
-        NNS_G2dSetRendererOverwritePlttNoOffset(param0->unk_110, param1->unk_2A);
-        NNS_G2dSetRendererOverwriteMosaicFlag(param0->unk_110, param1->unk_2C);
-        NNS_G2dSetRendererOverwriteOBJMode(param0->unk_110, param1->unk_30);
-        NNS_G2dSetRendererOverwritePriority(param0->unk_110, param1->unk_F2);
+        NNS_G2dSetRendererOverwriteEnable(param0->renderer, param1->unk_28);
+        NNS_G2dSetRendererOverwriteDisable(param0->renderer, ~param1->unk_28);
+        NNS_G2dSetRendererOverwritePlttNo(param0->renderer, param1->unk_29);
+        NNS_G2dSetRendererOverwritePlttNoOffset(param0->renderer, param1->unk_2A);
+        NNS_G2dSetRendererOverwriteMosaicFlag(param0->renderer, param1->unk_2C);
+        NNS_G2dSetRendererOverwriteOBJMode(param0->renderer, param1->oamMode);
+        NNS_G2dSetRendererOverwritePriority(param0->renderer, param1->unk_F2);
 
         if ((param1->unk_EC == 1) || (param1->unk_EC == 3)) {
             CellAnimationData * v1 = (CellAnimationData *)&param1->unk_40;
@@ -941,21 +941,21 @@ static void sub_02022464 (GraphicElementManager * param0, GraphicElementData * p
 {
     GraphicElementData * v0;
 
-    if (param0->unk_10.unk_100 == &param0->unk_10) {
-        param0->unk_10.unk_100 = param1;
-        param0->unk_10.unk_FC = param1;
-        param1->unk_FC = &param0->unk_10;
-        param1->unk_100 = &param0->unk_10;
+    if (param0->sentinelData.unk_100 == &param0->sentinelData) {
+        param0->sentinelData.unk_100 = param1;
+        param0->sentinelData.unk_FC = param1;
+        param1->unk_FC = &param0->sentinelData;
+        param1->unk_100 = &param0->sentinelData;
     } else {
-        if (param0->unk_10.unk_FC->unk_F4 <= param1->unk_F4) {
-            param1->unk_FC = param0->unk_10.unk_FC;
-            param0->unk_10.unk_FC->unk_100 = param1;
-            param1->unk_100 = &param0->unk_10;
-            param0->unk_10.unk_FC = param1;
+        if (param0->sentinelData.unk_FC->unk_F4 <= param1->unk_F4) {
+            param1->unk_FC = param0->sentinelData.unk_FC;
+            param0->sentinelData.unk_FC->unk_100 = param1;
+            param1->unk_100 = &param0->sentinelData;
+            param0->sentinelData.unk_FC = param1;
         } else {
-            v0 = param0->unk_10.unk_100;
+            v0 = param0->sentinelData.unk_100;
 
-            while (v0 != &param0->unk_10) {
+            while (v0 != &param0->sentinelData) {
                 if (v0->unk_F4 > param1->unk_F4) {
                     v0->unk_FC->unk_100 = param1;
                     param1->unk_FC = v0->unk_FC;
@@ -981,7 +981,7 @@ static void sub_02022518 (GraphicElementManager * param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021A78(&param0->unk_00[v0]);
+        GraphicElementData_Reset(&param0->unk_00[v0]);
         param0->unk_08[v0] = param0->unk_00 + v0;
     }
 
@@ -1008,7 +1008,7 @@ static BOOL sub_0202256C (GraphicElementManager * param0, GraphicElementData * p
         return 0;
     }
 
-    sub_02021A78(param1);
+    GraphicElementData_Reset(param1);
 
     param0->unk_0C--;
     param0->unk_08[param0->unk_0C] = param1;
