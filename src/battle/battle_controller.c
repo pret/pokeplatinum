@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "consts/abilities.h"
+#include "consts/game_records.h"
 
 #include "constants/battle.h"
 #include "constants/heap.h"
@@ -12,7 +13,6 @@
 #include "consts/sdat.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
-#include "constants/savedata/record.h"
 
 #include "nitro/types.h"
 #include "struct_decls/battle_system.h"
@@ -3353,7 +3353,7 @@ static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *ba
         GF_ASSERT(battleCtx->damage < 0);
 
         if (Battler_Side(battleSys, battleCtx->attacker) == Battler_Side(battleSys, battleCtx->defender)) {
-            BattleIO_IncrementRecord(battleSys, battleCtx->attacker, 0, SAVE_RECORD_ATTACKED_ALLY);
+            BattleIO_IncrementRecord(battleSys, battleCtx->attacker, 0, RECORD_ATTACKED_ALLY);
         }
 
         battleCtx->lastHitByBattler[battleCtx->defender] = battleCtx->attacker;

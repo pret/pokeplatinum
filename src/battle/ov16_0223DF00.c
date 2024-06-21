@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/battle.h"
+#include "consts/game_records.h"
 
 #include "battle/common.h"
 #include "constants/battle.h"
@@ -1275,7 +1276,7 @@ void ov16_0223F268 (BattleSystem * param0)
         return;
     }
 
-    GameRecords_IncrementTrainerScore(param0->unk_218, 22);
+    GameRecords_IncrementTrainerScore(param0->unk_218, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
 }
 
 void BattleSystem_SetCommandSelectionFlags (BattleSystem *battleSys, int flags)
