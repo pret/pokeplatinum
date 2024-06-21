@@ -392,7 +392,7 @@ void ov23_02253834 (BGL * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834
 void ov23_022538FC (int param0)
 {
     int v0 = sub_02028558();
-    int v1 = sub_0202D034(sub_0202CD88(Unk_ov23_022577BC->unk_08));
+    int v1 = sub_0202D034(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
     u8 * v2 = Heap_AllocFromHeap(4, v0 + 1);
 
     MI_CpuClear8(v2, v0 + 1);
@@ -412,7 +412,7 @@ void ov23_022538FC (int param0)
 
 void ov23_02253968 (void)
 {
-    int v0 = sub_0202D034(sub_0202CD88(Unk_ov23_022577BC->unk_08));
+    int v0 = sub_0202D034(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
 
     if (v0 >= 999999) {
         v0 = 999999;

@@ -830,7 +830,7 @@ static BOOL Field_UpdateDaycare (FieldSystem *fieldSystem)
     UnkStruct_02026310 *v1 = sub_02026310(fieldSystem->saveData);
 
     if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
-        GameRecords *v2 = sub_0202CD88(fieldSystem->saveData);
+        GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
         sub_0202CF28(v2, (1 + 10));
         sub_0202CFEC(v2, 15);

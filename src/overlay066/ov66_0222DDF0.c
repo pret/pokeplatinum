@@ -1826,7 +1826,7 @@ void ov66_0222F020 (UnkStruct_ov66_0222DFF8 * param0)
 {
     GameRecords * v0;
 
-    v0 = sub_0202CD88(param0->unk_00);
+    v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
     sub_0202CF28(v0, (1 + 45));
 }
 
@@ -1834,7 +1834,7 @@ void ov66_0222F030 (UnkStruct_ov66_0222DFF8 * param0)
 {
     GameRecords * v0;
 
-    v0 = sub_0202CD88(param0->unk_00);
+    v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
     sub_0202CF28(v0, (((70 + 1)) + 47));
 }
 

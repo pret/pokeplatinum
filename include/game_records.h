@@ -16,9 +16,10 @@ typedef struct GameRecords {
     GameRecords_sub1 unk_1B8;
 } GameRecords;
 
-int GameRecord_SaveSize(void);
-void GameRecord_Init(GameRecords * param0);
-GameRecords * sub_0202CD88(SaveData * param0);
+GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata);
+
+int GameRecords_SaveSize(void);
+void GameRecords_Init(GameRecords *records);
 u32 sub_0202CE90(GameRecords * param0, int param1, u32 param2);
 u32 sub_0202CED0(GameRecords * param0, int param1, u32 param2);
 u32 sub_0202CF28(GameRecords * param0, int param1);

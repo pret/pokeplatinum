@@ -2048,7 +2048,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
 void ov5_021E6358 (Party * param0, int param1, UnkStruct_02026310 * param2, SaveData * param3)
 {
     int v0;
-    GameRecords * v1 = sub_0202CD88(param3);
+    GameRecords * v1 = SaveData_GetGameRecordsPtr(param3);
 
     sub_0202CF28(v1, 1 + 39);
     v0 = ov5_021E6270(param2);

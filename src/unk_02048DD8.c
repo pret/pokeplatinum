@@ -178,7 +178,7 @@ BOOL ScrCmd_237 (ScriptContext * param0)
     {
         u16 v4;
         u16 v5, v6;
-        GameRecords * v7 = sub_0202CD88(param0->fieldSystem->saveData);
+        GameRecords * v7 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
 
         v4 = ScriptContext_GetVar(param0);
         v5 = ScriptContext_GetVar(param0);

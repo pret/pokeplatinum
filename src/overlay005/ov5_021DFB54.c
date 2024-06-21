@@ -508,7 +508,7 @@ static void ov5_021DFF88 (int param0, FieldSystem * fieldSystem, PlayerAvatar * 
     v0->playerAvatar = playerAvatar;
 
     FieldTask_Set(fieldSystem, ov5_021DFFBC, v0);
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 54));
+    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 54));
 }
 
 static BOOL ov5_021DFFBC (TaskManager * param0)
@@ -843,7 +843,7 @@ static void ov5_021E0534 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar
     v0->playerAvatar = playerAvatar;
 
     FieldTask_Set(fieldSystem, ov5_021E0560, v0);
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 55));
+    sub_0202CF28(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 55));
 }
 
 static BOOL ov5_021E0560 (TaskManager * param0)

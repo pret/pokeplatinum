@@ -269,7 +269,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
         }
 
         param0->unk_10->unk_E4 = sub_0207D99C(param1);
-        param0->unk_10->unk_11C = sub_0202CD88(param0->saveData);
+        param0->unk_10->unk_11C = SaveData_GetGameRecordsPtr(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
             ov62_02248408(sub_0202F264(), param0->unk_10, param1);

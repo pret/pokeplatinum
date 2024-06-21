@@ -122,7 +122,7 @@ BOOL ov5_021F08F8 (TaskManager * taskMan)
                 }
 
                 {
-                    GameRecords * v4 = sub_0202CD88(fieldSystem->saveData);
+                    GameRecords * v4 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
                     sub_0202CF28(v4, (1 + 9));
                 }
 
@@ -351,7 +351,7 @@ static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * playerA
     param0->unk_0C = 14;
 
     {
-        GameRecords * v0 = sub_0202CD88(param0->fieldSystem->saveData);
+        GameRecords * v0 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
         sub_0202CF28(v0, (((70 + 1)) + 29));
     }
 

@@ -668,7 +668,7 @@ void ov104_02236ED8 (SaveData * param0, u8 param1, int param2)
         sub_02030804(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
     }
 
-    sub_0202CF70(sub_0202CD88(param0), (1 + 64), param2);
+    sub_0202CF70(SaveData_GetGameRecordsPtr(param0), (1 + 64), param2);
     return;
 }
 

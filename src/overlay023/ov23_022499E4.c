@@ -88,7 +88,7 @@ void ov23_02249A2C (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     v0->unk_41 = 1;
-    sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 36);
+    sub_0202CFEC(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), 36);
 
     ov23_02242BC0(v0->fieldSystem);
     ov23_02249C24(ov23_02249C34, 0);

@@ -194,7 +194,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
     v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_278 = SaveData_Options(fieldSystem->saveData);
-    v0->unk_280 = sub_0202CD88(fieldSystem->saveData);
+    v0->unk_280 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(fieldSystem);
@@ -1238,7 +1238,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
                 param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
 
                 {
-                    GameRecords * v1 = sub_0202CD88(param0->unk_284);
+                    GameRecords * v1 = SaveData_GetGameRecordsPtr(param0->unk_284);
                     sub_0202CF28(v1, (1 + 49));
                 }
 

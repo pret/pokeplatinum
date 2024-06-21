@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "savedata.h"
 
 #include "unk_0201D15C.h"
 #include "savedata.h"
@@ -12,22 +11,22 @@
 static void sub_0202CD94(GameRecords * param0, int param1);
 static void sub_0202CDC0(GameRecords * param0, int param1);
 
-int GameRecord_SaveSize (void)
+int GameRecords_SaveSize(void)
 {
     return sizeof(GameRecords);
 }
 
-void GameRecord_Init (GameRecords * param0)
+void GameRecords_Init(GameRecords *records)
 {
-    MI_CpuClear32(param0, sizeof(GameRecords));
-    param0->unk_1B8.unk_02 = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);
+    MI_CpuClear32(records, sizeof(GameRecords));
+    records->unk_1B8.unk_02 = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);
 
-    sub_0202CD94(param0, (0 + 1));
+    sub_0202CD94(records, 1);
 }
 
-GameRecords * sub_0202CD88 (SaveData * param0)
+GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata)
 {
-    return SaveData_SaveTable(param0, 20);
+    return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_GAME_RECORDS);
 }
 
 static void sub_0202CD94 (GameRecords * param0, int param1)

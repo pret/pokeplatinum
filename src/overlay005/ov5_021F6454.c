@@ -811,7 +811,7 @@ BOOL ScrCmd_30F (ScriptContext * param0)
     u16 * v4 = ScriptContext_GetVarPointer(param0);
 
     v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v1 = sub_0202CD88(fieldSystem->saveData);
+    v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     *v4 = 1;
 
     switch (v3) {

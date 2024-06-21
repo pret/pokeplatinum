@@ -70,7 +70,7 @@ BOOL ScrCmd_182 (ScriptContext * param0)
 BOOL ScrCmd_183 (ScriptContext * param0)
 {
     MapObject ** v0 = sub_0203F098(param0->fieldSystem, 10);
-    GameRecords * v1 = sub_0202CD88(param0->fieldSystem->saveData);
+    GameRecords * v1 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_02055EAC(param0->fieldSystem, *v0, v2);
@@ -98,7 +98,7 @@ BOOL ScrCmd_184 (ScriptContext * param0)
 BOOL ScrCmd_185 (ScriptContext * param0)
 {
     u16 v0;
-    GameRecords * v1 = sub_0202CD88(param0->fieldSystem->saveData);
+    GameRecords * v1 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
     MapObject ** v2 = sub_0203F098(param0->fieldSystem, 10);
 
     sub_02055E00(param0->fieldSystem, *v2);

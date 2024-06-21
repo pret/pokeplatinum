@@ -347,8 +347,8 @@ static int sub_020979A8 (OverlayManager * param0, int * param1)
             if (v0->unk_10->unk_00 == 3) {
                 sub_020978F0(v1->unk_14, v0->unk_10);
 
-                sub_0202CFEC(sub_0202CD88(v1->unk_10), 2);
-                sub_0202CF28(sub_0202CD88(v1->unk_10), (1 + 44));
+                sub_0202CFEC(SaveData_GetGameRecordsPtr(v1->unk_10), 2);
+                sub_0202CF28(SaveData_GetGameRecordsPtr(v1->unk_10), (1 + 44));
                 v1->unk_04 = 1;
             } else {
                 v1->unk_04 = 0;

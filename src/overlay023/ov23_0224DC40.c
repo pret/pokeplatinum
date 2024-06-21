@@ -643,7 +643,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 10:
         break;
     case 11:
-        sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 32);
+        sub_0202CFEC(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), 32);
         ov23_022539E8();
         ov23_0224DC68(v0, 9);
         v0->unk_37 = 12;
@@ -739,7 +739,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
             sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
         }
 
-        sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 31);
+        sub_0202CFEC(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), 31);
         v0->unk_37 = 25;
         break;
     case 25:
@@ -807,7 +807,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
         break;
     case 36:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 33);
+            sub_0202CFEC(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), 33);
             ov23_0224DC68(v0, 142);
             v0->unk_37 = 37;
         }

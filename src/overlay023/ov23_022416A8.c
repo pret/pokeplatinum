@@ -400,7 +400,7 @@ void ov23_02241AE8 (int param0, int param1, int param2, int param3)
 
         Sound_PlayEffect(1585);
         sub_0206AA14(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
-        sub_0202CF28(sub_0202CD88(Unk_ov23_02257744->fieldSystem->saveData), (1 + 46));
+        sub_0202CF28(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), (1 + 46));
 
         ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);
     }

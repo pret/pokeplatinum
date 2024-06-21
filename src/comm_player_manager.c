@@ -930,7 +930,7 @@ static void sub_02058644 (int netId)
             sub_0202929C(underground);
 
             if (sub_020292B4(underground) == 50) {
-                sub_0202CFEC(sub_0202CD88(sCommPlayerManager->fieldSystem->saveData), 37);
+                sub_0202CFEC(SaveData_GetGameRecordsPtr(sCommPlayerManager->fieldSystem->saveData), 37);
             }
         }
     }

@@ -1631,7 +1631,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
         {
             GameRecords * v5;
 
-            v5 = sub_0202CD88(param0->unk_1970);
+            v5 = SaveData_GetGameRecordsPtr(param0->unk_1970);
             sub_0202CF28(v5, (((70 + 1)) + 19));
 
             if (sub_02094790(param0) == 0) {
@@ -1660,7 +1660,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
         {
             GameRecords * v8;
 
-            v8 = sub_0202CD88(param0->unk_1970);
+            v8 = SaveData_GetGameRecordsPtr(param0->unk_1970);
             sub_0202CF28(v8, (((70 + 1)) + 20));
 
             if (sub_02094790(param0) == 0) {

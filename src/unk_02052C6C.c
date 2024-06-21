@@ -214,7 +214,7 @@ void sub_02052E58 (TaskManager * param0)
     sub_0206A944(v3);
     TrainerInfo_SetMainStoryCleared(v4);
 
-    v6 = sub_0202CD88(fieldSystem->saveData);
+    v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
     sub_0202CF28(v6, (((70 + 1)) + 2));
     FieldTask_Start(param0, sub_02052CBC, v5);

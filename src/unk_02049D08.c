@@ -376,7 +376,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
 
     if (v3->unk_0F != 5) {
         v4 = sub_0203068C(param0);
-        v5 = sub_0202CD88(param0);
+        v5 = SaveData_GetGameRecordsPtr(param0);
 
         if (v3->unk_0F == 6) {
             v2 = sub_0206B6FC(SaveData_GetVarsFlags(param0));
@@ -599,7 +599,7 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
     u32 v0 = 0;
     int v1;
     u16 v2, v3, v4;
-    GameRecords * v5 = sub_0202CD88(param1);
+    GameRecords * v5 = SaveData_GetGameRecordsPtr(param1);
     UnkStruct_0203068C * v6 = sub_0203068C(param1);
 
     if (param0->unk_0F == 5) {
@@ -639,7 +639,7 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 2);
 
     if (param0->unk_0F != 6) {
-        sub_0202CF70(sub_0202CD88(param1), (1 + 14), 1);
+        sub_0202CF70(SaveData_GetGameRecordsPtr(param1), (1 + 14), 1);
     }
 
     sub_0204ACC8(param0);
@@ -666,7 +666,7 @@ void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * par
         return;
     }
 
-    v6 = sub_0202CD88(param1);
+    v6 = SaveData_GetGameRecordsPtr(param1);
     v7 = sub_0203068C(param1);
 
     if (param0->unk_0F == 6) {

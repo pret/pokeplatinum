@@ -472,6 +472,6 @@ static void sub_0207DF9C (FieldSystem * fieldSystem)
 {
     GameRecords * v0;
 
-    v0 = sub_0202CD88(fieldSystem->saveData);
+    v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     sub_0202CFEC(v0, 50);
 }

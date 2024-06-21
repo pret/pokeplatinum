@@ -52,7 +52,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 
     v2 = FieldSystem_SaveData(fieldSystem);
     v0 = SaveData_GetTrainerInfo(v2);
-    v1 = sub_0202CD88(v2);
+    v1 = SaveData_GetGameRecordsPtr(v2);
 
     param5->unk_05 = param3;
 
@@ -130,7 +130,7 @@ u8 sub_02071F28 (FieldSystem * fieldSystem)
     UnkStruct_0203068C * v5;
 
     v1 = FieldSystem_SaveData(fieldSystem);
-    v2 = sub_0202CD88(v1);
+    v2 = SaveData_GetGameRecordsPtr(v1);
     v3 = SaveData_GetVarsFlags(v1);
     v4 = SaveData_SecretBaseRecord(v1);
     v5 = sub_0203068C(v1);

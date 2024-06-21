@@ -277,7 +277,7 @@ int ov67_0225C820 (OverlayManager * param0, int * param1)
             {
                 GameRecords * v4;
 
-                v4 = sub_0202CD88(v0->unk_00);
+                v4 = SaveData_GetGameRecordsPtr(v0->unk_00);
                 sub_0202CFEC(v4, 44);
             }
 

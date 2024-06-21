@@ -70,7 +70,7 @@ void sub_020562F8 (FieldSystem * fieldSystem)
 void sub_02056328 (FieldSystem * fieldSystem)
 {
     UnkStruct_020564B4 * v0 = &Unk_021C07FC;
-    GameRecords * v1 = sub_0202CD88(fieldSystem->saveData);
+    GameRecords * v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     s64 v2 = GetTimestamp();
     s64 v3 = TimeElapsed(v0->unk_40, v2);
 
