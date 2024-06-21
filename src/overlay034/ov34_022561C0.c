@@ -43,7 +43,7 @@ static BOOL ov34_0225650C(UnkStruct_ov34_0225621C * param0);
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov34_022561D4, ov34_02256294);
+    PoketchSystem_SetAppFunctions(ov34_022561D4, ov34_02256294);
 }
 
 static BOOL ov34_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -103,7 +103,7 @@ static void ov34_02256260 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov34_02256244(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_4C);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_4C);
         }
     } else {
     }
@@ -134,7 +134,7 @@ static BOOL ov34_022562B0 (UnkStruct_ov34_0225621C * param0)
         break;
     case 1:
         if (ov34_02256664(param0->unk_48, 0)) {
-            ov25_0225424C(param0->unk_4C);
+            PoketchSystem_NotifyAppLoaded(param0->unk_4C);
             ov34_0225629C(param0, 1);
         }
         break;
@@ -157,7 +157,7 @@ static BOOL ov34_022562F0 (UnkStruct_ov34_0225621C * param0)
     case 0:
         if (ov34_022563E4(param0, &v0, &v1)) {
             ov34_02256428(param0, v0, v1);
-            ov25_02254424(1640);
+            PoketchSystem_PlaySoundEffect(1640);
             ov34_02256640(param0->unk_48, 2);
             param0->unk_01 = 1;
         }
@@ -168,7 +168,7 @@ static BOOL ov34_022562F0 (UnkStruct_ov34_0225621C * param0)
             break;
         }
 
-        if ((ov25_02254534(param0->unk_4C) == 1) || (ov25_0225450C(param0->unk_4C))) {
+        if ((PoketchSystem_IsPlayerMoving(param0->unk_4C) == 1) || (ov25_0225450C(param0->unk_4C))) {
             ov34_02256A0C(param0->unk_48);
             param0->unk_01 = 2;
             break;
@@ -188,7 +188,7 @@ static BOOL ov34_022562F0 (UnkStruct_ov34_0225621C * param0)
         break;
     case 3:
         if (ov34_02256664(param0->unk_48, 2)) {
-            ov25_02254424(1640);
+            PoketchSystem_PlaySoundEffect(1640);
             ov34_02256640(param0->unk_48, 2);
             param0->unk_01 = 1;
         }
@@ -201,7 +201,7 @@ static BOOL ov34_022562F0 (UnkStruct_ov34_0225621C * param0)
 static BOOL ov34_022563E4 (UnkStruct_ov34_0225621C * param0, u32 * param1, u32 * param2)
 {
     if (ov25_0225450C(param0->unk_4C) == 0) {
-        if (sub_020227C0(param1, param2)) {
+        if (TouchScreen_GetTapState(param1, param2)) {
             if (((u32)((*param1) - 24) < (u32)(200 - 24)) & ((u32)((*param2) - 24) < (u32)(168 - 24))) {
                 return 1;
             }
@@ -216,7 +216,7 @@ static void ov34_02256428 (UnkStruct_ov34_0225621C * param0, int param1, int par
     static const fx32 v0[] = {
         8 << FX32_SHIFT, 24 << FX32_SHIFT, 48 << FX32_SHIFT,
     };
-    UnkStruct_0203F478 * v1 = sub_0203F478(PoketchSystem_FieldSystem(param0->unk_4C), 8);
+    UnkStruct_0203F478 * v1 = sub_0203F478(PoketchSystem_GetFieldSystem(param0->unk_4C), 8);
     UnkStruct_ov34_02256540_1 * v2 = &(param0->unk_04);
 
     v2->unk_08 = 0;

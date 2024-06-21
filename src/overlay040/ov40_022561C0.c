@@ -47,7 +47,7 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 * param0, UnkStruct_02026310
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov40_022561D4, ov40_022562A4);
+    PoketchSystem_SetAppFunctions(ov40_022561D4, ov40_022562A4);
 }
 
 static BOOL ov40_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -70,7 +70,7 @@ static BOOL ov40_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
 
 static BOOL ov40_0225621C (UnkStruct_ov40_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
 {
-    param0->unk_30 = sub_02026310(PoketchSystem_SaveData(param1));
+    param0->unk_30 = sub_02026310(PoketchSystem_GetSaveData(param1));
 
     ov40_022563D0(&param0->unk_04, param0->unk_30);
 
@@ -106,7 +106,7 @@ static void ov40_02256270 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov40_0225625C(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_2C);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_2C);
         }
     } else {
     }
@@ -137,7 +137,7 @@ static BOOL ov40_022562C0 (UnkStruct_ov40_0225621C * param0)
         break;
     case 1:
         if (ov40_022565EC(param0->unk_28, 0)) {
-            ov25_0225424C(param0->unk_2C);
+            PoketchSystem_NotifyAppLoaded(param0->unk_2C);
             ov40_022562AC(param0, 1);
         }
         break;
@@ -193,7 +193,7 @@ static BOOL ov40_02256388 (UnkStruct_ov40_0225621C * param0)
     if (ov25_0225450C(param0->unk_2C) == 0) {
         u32 v0, v1;
 
-        if (sub_020227C0(&v0, &v1)) {
+        if (TouchScreen_GetTapState(&v0, &v1)) {
             if (((u32)(v0 - 16) < (u32)(207 - 16)) & ((u32)(v1 - 16) < (u32)(175 - 16))) {
                 return 1;
             }

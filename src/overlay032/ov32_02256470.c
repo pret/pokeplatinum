@@ -478,6 +478,6 @@ static void ov32_02256C54 (SysTask * param0, void * param1)
 
     sub_02019448(v0->unk_04, 6);
 
-    ov25_02254424(1641);
+    PoketchSystem_PlaySoundEffect(1641);
     ov32_02256574(param1);
 }

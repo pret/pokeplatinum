@@ -435,7 +435,7 @@ static void ov46_02256F54 (SysTask * param0, void * param1)
                 ov25_022558C4(v0->unk_34[1], 0);
             }
 
-            ov25_02254424(1655);
+            PoketchSystem_PlaySoundEffect(1655);
             v0->unk_A4 = 0;
         }
         break;

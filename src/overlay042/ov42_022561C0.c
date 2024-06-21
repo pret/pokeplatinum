@@ -40,7 +40,7 @@ static BOOL ov42_02256398(void);
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov42_022561D4, ov42_022562B4);
+    PoketchSystem_SetAppFunctions(ov42_022561D4, ov42_022562B4);
 }
 
 static BOOL ov42_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -101,7 +101,7 @@ static void ov42_02256280 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov42_02256260(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_10);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_10);
         }
     } else {
     }
@@ -132,7 +132,7 @@ static BOOL ov42_022562D0 (UnkStruct_ov42_0225621C * param0)
         break;
     case 1:
         if (ov42_022564C4(param0->unk_0C, 0)) {
-            ov25_0225424C(param0->unk_10);
+            PoketchSystem_NotifyAppLoaded(param0->unk_10);
             ov42_022562BC(param0, 1);
         }
         break;
@@ -187,7 +187,7 @@ static BOOL ov42_02256398 (void)
 {
     u32 x, y;
 
-    if (ov25_022544BC(&x, &y)) {
+    if (PoketchSystem_GetDisplayTappedCoords(&x, &y)) {
         x = (112 - x) * (112 - x);
         y = (144 - y) * (144 - y);
 

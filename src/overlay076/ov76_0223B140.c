@@ -116,7 +116,7 @@ int ov76_0223B278 (UnkStruct_ov76_0223DE00 * param0, u8 param1)
         param0->unk_324[v0].unk_05 = 190;
         param0->unk_324[v0].unk_06 = 70;
 
-        sub_020227A4(&v1, &v2);
+        TouchScreen_GetHoldState(&v1, &v2);
 
         param0->unk_324[v0].unk_05 = v1;
         param0->unk_324[v0].unk_06 = v2;

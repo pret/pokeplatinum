@@ -48,7 +48,7 @@ int ov19_021D60A8 (UnkStruct_ov19_021D6104 * param0)
         v0 = 1;
         v1 = (param0->unk_1C == 0);
 
-        if (sub_020227A4(&v2, &v3)) {
+        if (TouchScreen_GetHoldState(&v2, &v3)) {
             param0->unk_14 = v2;
             param0->unk_18 = v3;
         }

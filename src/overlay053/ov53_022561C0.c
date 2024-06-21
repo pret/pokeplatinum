@@ -44,7 +44,7 @@ static BOOL ov53_022563EC(UnkStruct_ov53_0225621C * param0);
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov53_022561D4, ov53_0225630C);
+    PoketchSystem_SetAppFunctions(ov53_022561D4, ov53_0225630C);
 }
 
 static BOOL ov53_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -90,7 +90,7 @@ static BOOL ov53_0225621C (UnkStruct_ov53_0225621C * param0, PoketchSystem * par
     FieldSystem * fieldSystem;
     int v2;
 
-    fieldSystem = PoketchSystem_FieldSystem(param1);
+    fieldSystem = PoketchSystem_GetFieldSystem(param1);
     param0->unk_04.unk_04 = ov6_02243140(fieldSystem);
 
     if (param0->unk_04.unk_04) {
@@ -145,7 +145,7 @@ static void ov53_022562D0 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov53_022562B8(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_30);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_30);
         }
     } else {
     }
@@ -184,7 +184,7 @@ static BOOL ov53_02256330 (UnkStruct_ov53_0225621C * param0)
         break;
     case 1:
         if (ov53_02256484(param0->unk_2C, 0)) {
-            ov25_0225424C(param0->unk_30);
+            PoketchSystem_NotifyAppLoaded(param0->unk_30);
             ov53_0225631C(param0, 1);
         }
         break;
@@ -204,7 +204,7 @@ static BOOL ov53_02256370 (UnkStruct_ov53_0225621C * param0)
         FieldSystem * fieldSystem;
         int v1;
 
-        fieldSystem = PoketchSystem_FieldSystem(param0->unk_30);
+        fieldSystem = PoketchSystem_GetFieldSystem(param0->unk_30);
         param0->unk_04.unk_04 = ov6_02243140(fieldSystem);
 
         if (param0->unk_04.unk_04 == 0) {

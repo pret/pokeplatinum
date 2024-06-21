@@ -87,7 +87,7 @@ static void ov46_02256B10(UnkStruct_ov46_0225621C * param0, u64 param1);
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov46_022561D4, ov46_02256458);
+    PoketchSystem_SetAppFunctions(ov46_022561D4, ov46_02256458);
 }
 
 static BOOL ov46_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -265,7 +265,7 @@ static void ov46_02256408 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov46_022563B8(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_0C);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_0C);
         }
     } else {
     }
@@ -328,7 +328,7 @@ static BOOL ov46_022564D8 (UnkStruct_ov46_0225621C * param0)
         break;
     case 1:
         if (ov46_02256D48(param0->unk_08, 0)) {
-            ov25_0225424C(param0->unk_0C);
+            PoketchSystem_NotifyAppLoaded(param0->unk_0C);
             ov46_02256460(param0, param0->unk_48.unk_44);
         }
         break;
@@ -355,10 +355,10 @@ static BOOL ov46_02256518 (UnkStruct_ov46_0225621C * param0)
         case 2:
             ov46_02256AF0(param0);
             ov46_02256D24(param0->unk_08, 5);
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             break;
         case 0:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
 
             if (ov46_022569CC(param0)) {
                 ov46_0225623C(param0, 0, 0);
@@ -368,7 +368,7 @@ static BOOL ov46_02256518 (UnkStruct_ov46_0225621C * param0)
             }
             break;
         case 1:
-            ov25_02254424(1646);
+            PoketchSystem_PlaySoundEffect(1646);
             break;
         }
 
@@ -451,10 +451,10 @@ static BOOL ov46_022566A0 (UnkStruct_ov46_0225621C * param0)
 
         switch (param0->unk_14) {
         case 0:
-            ov25_02254424(1646);
+            PoketchSystem_PlaySoundEffect(1646);
             break;
         case 1:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 1, 0);
             ov46_0225623C(param0, 0, 1);
             ov46_02256A3C(param0);
@@ -462,7 +462,7 @@ static BOOL ov46_022566A0 (UnkStruct_ov46_0225621C * param0)
             ov46_02256460(param0, 3);
             break;
         case 2:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 0, 1);
             ov46_0225623C(param0, 1, 0);
             ov46_02256AF0(param0);
@@ -489,17 +489,17 @@ static BOOL ov46_0225678C (UnkStruct_ov46_0225621C * param0)
 
         switch (param0->unk_14) {
         case 0:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 1, 1);
             ov46_0225623C(param0, 0, 0);
             ov46_02256A50(param0);
             ov46_02256460(param0, 2);
             break;
         case 1:
-            ov25_02254424(1646);
+            PoketchSystem_PlaySoundEffect(1646);
             break;
         case 2:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 0, 1);
             ov46_0225623C(param0, 1, 0);
             ov46_02256AF0(param0);
@@ -526,10 +526,10 @@ static BOOL ov46_02256838 (UnkStruct_ov46_0225621C * param0)
 
         switch (param0->unk_14) {
         case 0:
-            ov25_02254424(1646);
+            PoketchSystem_PlaySoundEffect(1646);
             break;
         case 1:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 0, 1);
             ov46_0225623C(param0, 1, 0);
             ov46_02256D24(param0->unk_08, 7);
@@ -537,7 +537,7 @@ static BOOL ov46_02256838 (UnkStruct_ov46_0225621C * param0)
             param0->unk_01++;
             break;
         case 2:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 0, 1);
             ov46_0225623C(param0, 1, 0);
             ov46_02256D24(param0->unk_08, 7);
@@ -562,17 +562,17 @@ static BOOL ov46_022568E0 (UnkStruct_ov46_0225621C * param0)
 
         switch (param0->unk_14) {
         case 0:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 0, 0);
             ov46_0225623C(param0, 1, 1);
             ov46_02256D24(param0->unk_08, 6);
             ov46_02256460(param0, 4);
             break;
         case 1:
-            ov25_02254424(1646);
+            PoketchSystem_PlaySoundEffect(1646);
             break;
         case 2:
-            ov25_02254424(1635);
+            PoketchSystem_PlaySoundEffect(1635);
             ov46_0225623C(param0, 0, 1);
             ov46_0225623C(param0, 1, 0);
             ov46_02256AF0(param0);

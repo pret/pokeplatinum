@@ -2462,7 +2462,7 @@ void ov62_02233664 (UnkStruct_ov62_0223359C * param0)
     BOOL v3;
     BOOL v4 = 0;
 
-    v3 = sub_020227A4(&v0, &v1);
+    v3 = TouchScreen_GetHoldState(&v0, &v1);
 
     if (param0->unk_14) {
         sub_0200D33C(param0->unk_18[0]);
@@ -3290,7 +3290,7 @@ static void ov62_02234440 (UnkStruct_0208C06C * param0)
     param0->unk_41D8.unk_00 = 1;
     param0->unk_41D8.unk_04 = 0;
 
-    sub_020227C0(&v0, &v1);
+    TouchScreen_GetTapState(&v0, &v1);
     sub_0208BA30(param0->unk_41D8.unk_08);
     sub_0208B8B0(param0->unk_41D8.unk_08, 1);
     sub_0208B9E0(param0->unk_41D8.unk_08, 1);

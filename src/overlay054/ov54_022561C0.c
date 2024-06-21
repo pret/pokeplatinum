@@ -43,7 +43,7 @@ static BOOL ov54_022563F4(UnkStruct_ov54_0225621C * param0);
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov54_022561D4, ov54_02256338);
+    PoketchSystem_SetAppFunctions(ov54_022561D4, ov54_02256338);
 }
 
 static BOOL ov54_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -143,7 +143,7 @@ static BOOL ov54_0225621C (UnkStruct_ov54_0225621C * param0, PoketchSystem * par
     PoketchData * v1;
     int v2;
 
-    v1 = PoketchSystem_PoketchData(param1);
+    v1 = PoketchSystem_GetPoketchData(param1);
     param0->unk_04.unk_90 = PoketchData_PokemonHistorySize(v1);
 
     for (v2 = 0; v2 < param0->unk_04.unk_90; v2++) {
@@ -190,7 +190,7 @@ static void ov54_022562F4 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov54_022562D4(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_9C);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_9C);
         }
     } else {
     }
@@ -229,7 +229,7 @@ static BOOL ov54_02256360 (UnkStruct_ov54_0225621C * param0)
         break;
     case 1:
         if (ov54_02256490(param0->unk_98, 0)) {
-            ov25_0225424C(param0->unk_9C);
+            PoketchSystem_NotifyAppLoaded(param0->unk_9C);
             ov54_0225634C(param0, 1);
         }
         break;

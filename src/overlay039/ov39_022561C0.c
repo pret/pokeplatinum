@@ -42,7 +42,7 @@ static BOOL ov39_022563A8(UnkStruct_ov39_0225621C * param0);
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov39_022561D4, ov39_022562C8);
+    PoketchSystem_SetAppFunctions(ov39_022561D4, ov39_022562C8);
 }
 
 static BOOL ov39_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
@@ -127,7 +127,7 @@ static void ov39_0225628C (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov39_02256268(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_28);
+            PoketchSystem_NotifyAppUnloaded(v1->unk_28);
         }
     } else {
     }
@@ -158,7 +158,7 @@ static BOOL ov39_022562E4 (UnkStruct_ov39_0225621C * param0)
         break;
     case 1:
         if (ov39_0225643C(param0->unk_24, 0)) {
-            ov25_0225424C(param0->unk_28);
+            PoketchSystem_NotifyAppLoaded(param0->unk_28);
             ov39_022562D0(param0, 1);
         }
         break;
@@ -180,10 +180,10 @@ static BOOL ov39_02256324 (UnkStruct_ov39_0225621C * param0)
             if (param0->unk_04.unk_04[param0->unk_34]) {
                 param0->unk_04.unk_1C = param0->unk_34;
                 ov39_02256418(param0->unk_24, 2);
-                ov25_02254424(1635);
+                PoketchSystem_PlaySoundEffect(1635);
                 param0->unk_01++;
             } else {
-                ov25_02254424(1646);
+                PoketchSystem_PlaySoundEffect(1646);
             }
         }
         break;

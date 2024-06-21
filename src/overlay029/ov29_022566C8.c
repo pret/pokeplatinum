@@ -217,7 +217,7 @@ static void ov29_02256908 (SysTask * param0, void * param1)
         ov25_022558C4(v0->unk_68[1], 2);
     }
 
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
     ov29_022567F0(param1);
 }
 

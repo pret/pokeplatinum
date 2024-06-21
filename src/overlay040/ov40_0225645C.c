@@ -319,7 +319,7 @@ static void ov40_02256704 (SysTask * param0, void * param1)
         v0->unk_80 = 0;
         v0->unk_7C = 10;
         ov40_022567D8(v0);
-        ov25_02254424(1656);
+        PoketchSystem_PlaySoundEffect(1656);
         ov25_0225524C(param1);
         break;
     case 1:
