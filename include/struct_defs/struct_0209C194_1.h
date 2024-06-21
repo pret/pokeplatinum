@@ -14,7 +14,7 @@ typedef struct {
     SaveData * unk_08;
     UnkStruct_0205C22C * unk_0C;
     Options * unk_10;
-    GameRecords * unk_14;
+    GameRecords *records;
     Journal * unk_18;
     FieldSystem * fieldSystem;
 } UnkStruct_0209C194_1;

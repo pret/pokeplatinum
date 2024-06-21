@@ -6,7 +6,7 @@
 typedef struct {
     int * unk_00;
     int unk_04;
-    GameRecords * unk_08;
+    GameRecords *records;
     int unk_0C;
     int unk_10;
 } UnkStruct_0203E348;

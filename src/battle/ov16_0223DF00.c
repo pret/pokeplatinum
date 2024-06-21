@@ -1267,7 +1267,7 @@ void ov16_0223F24C (BattleSystem * param0, int param1)
         return;
     }
 
-    GameRecords_IncrementRecordValue(param0->unk_218, param1);
+    GameRecords_IncrementRecordValue(param0->records, param1);
 }
 
 void ov16_0223F268 (BattleSystem * param0)
@@ -1276,7 +1276,7 @@ void ov16_0223F268 (BattleSystem * param0)
         return;
     }
 
-    GameRecords_IncrementTrainerScore(param0->unk_218, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
+    GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
 }
 
 void BattleSystem_SetCommandSelectionFlags (BattleSystem *battleSys, int flags)

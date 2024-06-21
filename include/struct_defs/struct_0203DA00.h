@@ -13,7 +13,7 @@ typedef struct {
     UnkStruct_02029C68 * unk_04;
     const UnkStruct_02029D04 * unk_08;
     const Options * unk_0C;
-    GameRecords * unk_10;
+    GameRecords *records;
     const TrainerInfo * unk_14;
     BOOL * unk_18;
     BOOL unk_1C;

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "bag.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, GameRecords * param7, PoketchData *poketchData, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, GameRecords *records, PoketchData *poketchData, int param9, int param10, int param11);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
 

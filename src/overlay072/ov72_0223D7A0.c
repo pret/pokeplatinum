@@ -146,7 +146,7 @@ int ov72_0223D7A0 (OverlayManager * param0, int * param1)
             SaveData * v2 = (SaveData *)OverlayManager_Args(param0);
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
-            v0->unk_08 = (GameRecords *)SaveData_GetGameRecordsPtr((SaveData *)OverlayManager_Args(param0));
+            v0->records = (GameRecords *)SaveData_GetGameRecordsPtr((SaveData *)OverlayManager_Args(param0));
             v0->unk_0C = (Options *)SaveData_Options((SaveData *)OverlayManager_Args(param0));
         }
 
@@ -769,8 +769,8 @@ static int ov72_0223E488 (UnkStruct_ov72_0223DB98 * param0, int param1)
 
     switch (v0) {
     case 1:
-        GameRecords_IncrementTrainerScore(param0->unk_08, 4);
-        GameRecords_IncrementRecordValue(param0->unk_08, (((70 + 1)) + 43));
+        GameRecords_IncrementTrainerScore(param0->records, 4);
+        GameRecords_IncrementRecordValue(param0->records, (((70 + 1)) + 43));
         sub_0200E084(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
         sub_0200F174(0, 0, 0, 0x0, 16, 1, 39);

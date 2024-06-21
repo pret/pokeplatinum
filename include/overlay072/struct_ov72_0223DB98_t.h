@@ -22,7 +22,7 @@
 struct UnkStruct_ov72_0223DB98_t {
     BGL * unk_00;
     BOOL unk_04;
-    GameRecords * unk_08;
+    GameRecords *records;
     Options * unk_0C;
     StringTemplate * unk_10;
     MessageLoader * unk_14;

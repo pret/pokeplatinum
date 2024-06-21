@@ -188,9 +188,9 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         sub_02038F8C(v0->unk_104);
 
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 19));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 19));
         } else {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 24));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 24));
         }
         *param1 = 2;
         break;
@@ -273,7 +273,7 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         if (v2) {
             Heap_Create(3, 73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->unk_11C, v0->poketchData, v3, 0x1 | 0x2, 73);
+            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->records, v0->poketchData, v3, 0x1 | 0x2, 73);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -1112,9 +1112,9 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_2424 = param1->unk_140;
     param0->unk_242C = param1->unk_144;
     param0->fieldWeather = param1->unk_14C;
-    param0->unk_218 = param1->unk_11C;
+    param0->records = param1->records;
 
-    GF_ASSERT(param1->unk_11C != NULL);
+    GF_ASSERT(param1->records != NULL);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->trainerIDs[v0] = param1->trainerIDs[v0];
@@ -2165,24 +2165,24 @@ static BOOL ov16_0223DB1C (OverlayManager * param0)
     switch (v0->unk_14) {
     case 0x1:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 20));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 20));
         } else {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 25));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 25));
         }
         break;
     case 0x2:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 21));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 21));
         } else {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 26));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 26));
         }
         break;
     case 0x3:
     case 0x5:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 22));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 22));
         } else {
-            GameRecords_IncrementRecordValue(v0->unk_11C, (1 + 27));
+            GameRecords_IncrementRecordValue(v0->records, (1 + 27));
         }
         break;
     }

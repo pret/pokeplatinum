@@ -1361,8 +1361,8 @@ static int ov109_021D1A14 (UnkStruct_ov109_021D0F70 * param0)
     v0 = sub_0202C244(95, 17);
 
     sub_0202B758(param0->unk_CC->unk_14.unk_18, v0, 4);
-    GameRecords_IncrementRecordValue(param0->unk_CC->unk_14.unk_14, (((70 + 1)) + 48));
-    GameRecords_IncrementTrainerScore(param0->unk_CC->unk_14.unk_14, 45);
+    GameRecords_IncrementRecordValue(param0->unk_CC->unk_14.records, (((70 + 1)) + 48));
+    GameRecords_IncrementTrainerScore(param0->unk_CC->unk_14.records, 45);
     ov109_021D2634(param0, 11);
     CommTiming_StartSync(202);
 

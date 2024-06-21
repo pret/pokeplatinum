@@ -26,7 +26,7 @@ typedef struct {
     TrainerInfo * unk_1C;
     SaveData * unk_20;
     Options * unk_24;
-    GameRecords * unk_28;
+    GameRecords *records;
     Journal * unk_2C;
     Bag * unk_30;
     int unk_34;

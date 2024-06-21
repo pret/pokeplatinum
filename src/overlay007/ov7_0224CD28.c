@@ -194,7 +194,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
     v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_278 = SaveData_Options(fieldSystem->saveData);
-    v0->unk_280 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(fieldSystem);
@@ -1198,9 +1198,9 @@ static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
     ov7_0224E920(param0, param0->unk_2B0 * param0->unk_2AC);
 
     if (param0->unk_2A9 == 3) {
-        GameRecords_AddToRecordValue(param0->unk_280, (1 + 68), param0->unk_2B0 * param0->unk_2AC);
+        GameRecords_AddToRecordValue(param0->records, (1 + 68), param0->unk_2B0 * param0->unk_2AC);
     } else {
-        GameRecords_AddToRecordValue(param0->unk_280, (1 + 34), param0->unk_2B0 * param0->unk_2AC);
+        GameRecords_AddToRecordValue(param0->records, (1 + 34), param0->unk_2B0 * param0->unk_2AC);
     }
 
     ov7_0224DAF8(param0, 1);

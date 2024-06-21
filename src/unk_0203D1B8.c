@@ -886,7 +886,7 @@ static UnkStruct_0203DA00 * sub_0203DA00 (int param0, SaveData * param1, int par
     v0->unk_04 = v4;
     v0->unk_08 = v5;
     v0->unk_0C = SaveData_Options(param1);
-    v0->unk_10 = SaveData_GetGameRecordsPtr(param1);
+    v0->records = SaveData_GetGameRecordsPtr(param1);
     v0->unk_14 = SaveData_GetTrainerInfo(param1);
     v0->unk_18 = param3;
     v0->unk_1C = param4;
@@ -995,7 +995,7 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, FieldSystem * fieldS
     param0->unk_30 = sub_0207A274(fieldSystem->saveData);
     param0->unk_10 = fieldSystem->saveData;
     param0->unk_1C = fieldSystem->unk_9C;
-    param0->unk_20 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     param0->unk_38 = Heap_AllocFromHeap(32, TrainerInfo_Size());
     param0->unk_3C = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
     param0->unk_40 = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
@@ -1163,7 +1163,7 @@ void * sub_0203DE34 (FieldSystem * fieldSystem)
     v0->unk_00 = fieldSystem->saveData;
     v0->unk_04 = fieldSystem->unk_80;
     v0->unk_08 = SaveData_Options(fieldSystem->saveData);
-    v0->unk_0C = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_10 = fieldSystem->unk_9C;
 
     sub_0203CD84(fieldSystem, &Unk_020EA248, v0);
@@ -1396,7 +1396,7 @@ void sub_0203E0FC (FieldSystem * fieldSystem, int param1)
     v0->unk_18 = sub_0202C878(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_Options(fieldSystem->saveData);
-    v0->unk_28 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_2C = fieldSystem->unk_9C;
     v0->unk_3C = PokemonSummary_ShowContestData(fieldSystem->saveData);
     v0->unk_20 = fieldSystem->saveData;
@@ -1616,7 +1616,7 @@ void sub_0203E414 (TaskManager * param0, int param1)
     v2->unk_0C.unk_00 = &v2->unk_00;
     v2->unk_00 = Coins_GetValue(sub_02025E50(fieldSystem->saveData));
     v2->unk_04 = GetTimestamp();
-    v2->unk_0C.unk_08 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    v2->unk_0C.records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v2->unk_0C.unk_0C = 0;
     v2->unk_0C.unk_10 = Options_Frame(v1);
     v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, param1);

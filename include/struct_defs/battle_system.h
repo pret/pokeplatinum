@@ -88,7 +88,7 @@ struct BattleSystem {
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
     BattleParams_sub1 unk_20C;
-    GameRecords * unk_218;
+    GameRecords *records;
     u8 * unk_21C;
     u16 * unk_220;
     u8 unk_224[4096];

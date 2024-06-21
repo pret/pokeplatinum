@@ -22,7 +22,7 @@ typedef struct {
     UnkStruct_0202C878 * unk_14;
     Options * unk_18;
     Journal * unk_1C;
-    GameRecords * unk_20;
+    GameRecords *records;
     PokedexData * unk_24;
     int unk_28;
     int unk_2C;

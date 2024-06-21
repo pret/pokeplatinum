@@ -97,7 +97,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
                 v3 = sub_02076B94(NULL, v1, 1, v2, &v4);
 
                 if (v3 != 0) {
-                    param0->unk_100 = sub_0207AE68(NULL, v1, v3, param0->unk_00->unk_24, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->unk_28, SaveData_PoketchData(param0->unk_00->unk_20), v4, 0x4, 62);
+                    param0->unk_100 = sub_0207AE68(NULL, v1, v3, param0->unk_00->unk_24, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_PoketchData(param0->unk_00->unk_20), v4, 0x4, 62);
                     param0->unk_2C = 1;
                 } else {
                     ov94_0223C4C0(param0, 1, 0);
@@ -117,7 +117,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
                     v7 = sub_02076B94(NULL, v1, 1, v6, &v8);
 
                     if (v7 != 0) {
-                        param0->unk_100 = sub_0207AE68(NULL, v1, v7, param0->unk_00->unk_24, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->unk_28, SaveData_PoketchData(param0->unk_00->unk_20), v8, 0x4, 62);
+                        param0->unk_100 = sub_0207AE68(NULL, v1, v7, param0->unk_00->unk_24, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_PoketchData(param0->unk_00->unk_20), v8, 0x4, 62);
                         param0->unk_2C = 1;
                     } else {
                         ov94_0223C4C0(param0, 1, 0);

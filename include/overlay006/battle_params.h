@@ -36,7 +36,7 @@ typedef struct {
     Options * unk_108;
     UnkStruct_0206D140 * unk_10C;
     BattleParams_sub1 unk_110;
-    GameRecords * unk_11C;
+    GameRecords *records;
     Journal * unk_120;
     UnkStruct_02027F8C * unk_124;
     int unk_128;
