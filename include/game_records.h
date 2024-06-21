@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0202CD50_H
-#define POKEPLATINUM_UNK_0202CD50_H
+#ifndef POKEPLATINUM_GAME_RECORDS_H
+#define POKEPLATINUM_GAME_RECORDS_H
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "savedata.h"
@@ -29,13 +29,14 @@ GameRecords *SaveData_GetGameRecordsPtr(SaveData *savedata);
 
 int GameRecords_SaveSize(void);
 void GameRecords_Init(GameRecords *records);
-u32 GameRecords_SetRecordValue(GameRecords * records, int param1, u32 param2);
-u32 GameRecords_SetAndLimitRecordValue(GameRecords * records, int param1, u32 param2);
-u32 GameRecords_IncrementRecordValue(GameRecords * records, int param1);
-u32 GameRecords_AddToRecordValue(GameRecords * records, int param1, u32 param2);
-u32 GameRecords_GetRecordValue(GameRecords * records, int param1);
-void GameRecords_IncrementTrainerScore(GameRecords * records, int param1);
-u32 GameRecords_GetTrainerScore(GameRecords * records);
-void GameRecords_IncrementTrainerScoreOnCatch(GameRecords * records, const PokedexData * param1, u16 const param2);
+u32 GameRecords_SetRecordValue(GameRecords *records, int id, u32 val);
+u32 GameRecords_SetAndLimitRecordValue(GameRecords *records, int id, u32 val);
+u32 GameRecords_IncrementRecordValue(GameRecords *records, int id);
+u32 GameRecords_AddToRecordValue(GameRecords *records, int id, u32 toAdd);
+u32 GameRecords_GetRecordValue(GameRecords *records, int id);
+void GameRecords_IncrementTrainerScore(GameRecords *records, int scoreID);
+u32 GameRecords_GetTrainerScore(GameRecords *records);
+void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const PokedexData *pokedex, const u16 species);
 
-#endif // POKEPLATINUM_UNK_0202CD50_H
+#endif // POKEPLATINUM_GAME_RECORDS_H
+

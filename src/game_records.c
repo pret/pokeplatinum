@@ -1,12 +1,8 @@
 #include <nitro.h>
-#include <string.h>
 
 #include "consts/game_records.h"
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "unk_0201D15C.h"
-#include "savedata.h"
 #include "unk_0202631C.h"
 #include "game_records.h"
 
@@ -394,19 +390,19 @@ u32 GameRecords_GetRecordValue(GameRecords *records, int id)
     return cur > limit ? limit : cur;
 }
 
-void GameRecords_IncrementTrainerScore(GameRecords *records, int id)
+void GameRecords_IncrementTrainerScore(GameRecords *records, int scoreID)
 {
-    GF_ASSERT(id < MAX_TRAINER_SCORE_EVENTS);
+    GF_ASSERT(scoreID < MAX_TRAINER_SCORE_EVENTS);
 
     u32 cur = GameRecords_GetRecordValue(records, RECORD_TRAINER_SCORE);
-    if (cur + GetTrainerScoreIncrement(id) > TRAINER_SCORE_LIMIT) {
+    if (cur + GetTrainerScoreIncrement(scoreID) > TRAINER_SCORE_LIMIT) {
         GameRecords_SetRecordValue(records, RECORD_TRAINER_SCORE, TRAINER_SCORE_LIMIT);
     } else {
-        GameRecords_AddToRecordValue(records, RECORD_TRAINER_SCORE, GetTrainerScoreIncrement(id));
+        GameRecords_AddToRecordValue(records, RECORD_TRAINER_SCORE, GetTrainerScoreIncrement(scoreID));
     }
 }
 
-u32 GameRecords_GetTrainerScore (GameRecords *records)
+u32 GameRecords_GetTrainerScore(GameRecords *records)
 {
     return GameRecords_GetRecordValue(records, RECORD_TRAINER_SCORE);
 }
@@ -417,3 +413,4 @@ void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const Pokede
         GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
     }
 }
+
