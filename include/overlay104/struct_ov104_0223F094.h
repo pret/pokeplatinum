@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV104_0223F094_H
 
 #include "screen_scroll_manager.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     ScreenScrollManager * screenScrollMgr;

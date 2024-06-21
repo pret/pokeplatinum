@@ -1,10 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0201D670.h"
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0201D834.h"
@@ -13,10 +11,10 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
 

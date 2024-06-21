@@ -8,7 +8,6 @@
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -19,7 +18,6 @@
 #include "constdata/const_020F1E88.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0202818C.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -36,13 +34,13 @@
 #include "unk_02005474.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
@@ -254,7 +252,7 @@ static void sub_02072370 (SysTask * param0, void * param1)
 
     sub_020731F4(v0);
     sub_020729B4(v0);
-    sub_0201CECC(param0, sub_02072390);
+    SysTask_SetCallback(param0, sub_02072390);
 }
 
 static void sub_02072390 (SysTask * param0, void * param1)
@@ -309,7 +307,7 @@ static void sub_02072418 (SysTask * param0, void * param1)
             break;
         }
 
-        sub_0201CECC(param0, sub_02072470);
+        SysTask_SetCallback(param0, sub_02072470);
         v0->unk_10 = 0;
         break;
     }
@@ -347,7 +345,7 @@ static void sub_02072470 (SysTask * param0, void * param1)
             break;
         case 0:
         default:
-            sub_0201CECC(param0, sub_02072550);
+            SysTask_SetCallback(param0, sub_02072550);
             break;
         }
     }
@@ -361,7 +359,7 @@ static void sub_02072518 (SysTask * param0, void * param1)
 
     sub_02072DB8(v0);
     sub_02073294(v0);
-    sub_0201CECC(param0, v0->unk_0C);
+    SysTask_SetCallback(param0, v0->unk_0C);
 }
 
 static void sub_02072534 (SysTask * param0, void * param1)
@@ -370,7 +368,7 @@ static void sub_02072534 (SysTask * param0, void * param1)
 
     sub_02072E4C(v0);
     sub_02073294(v0);
-    sub_0201CECC(param0, v0->unk_0C);
+    SysTask_SetCallback(param0, v0->unk_0C);
 }
 
 static void sub_02072550 (SysTask * param0, void * param1)
@@ -406,7 +404,7 @@ static void sub_02072550 (SysTask * param0, void * param1)
         sub_020731F4(v1);
         sub_020729B4(v1);
         v1->unk_10 = 0;
-        sub_0201CECC(param0, sub_02072390);
+        SysTask_SetCallback(param0, sub_02072390);
         return;
     }
 
@@ -875,7 +873,7 @@ static void sub_02072E4C (UnkStruct_02072334 * param0)
 
 static void sub_02072EA4 (UnkStruct_02072334 * param0, SysTaskFunc param1, SysTaskFunc param2)
 {
-    sub_0201CECC(param0->unk_08, param1);
+    SysTask_SetCallback(param0->unk_08, param1);
 
     param0->unk_10 = 0;
     param0->unk_0C = param2;

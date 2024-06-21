@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -15,10 +14,10 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -333,7 +332,7 @@ static void ov27_02256B80 (SysTask * param0, void * param1)
 
     const UnkStruct_ov27_0225680C_1 * v1 = ov25_02255240(param1);
 
-    sub_0201CECC(param0, v0[v1->unk_18]);
+    SysTask_SetCallback(param0, v0[v1->unk_18]);
     v0[v1->unk_18](param0, param1);
 }
 

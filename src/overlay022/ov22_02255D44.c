@@ -5,7 +5,6 @@
 
 #include "message.h"
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -54,7 +53,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"

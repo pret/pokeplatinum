@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 
 #include "overlay022/struct_ov22_022597BC.h"
 #include "overlay022/struct_ov22_02259820.h"
@@ -11,10 +10,10 @@
 
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay022/ov22_022597BC.h"
 
 typedef struct {
@@ -241,7 +240,7 @@ static void ov22_02259B3C (u32 param0, u32 param1, BGL * param2, u32 param3, u32
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    CoreSys_ExecuteAfterVBlank(ov22_02259BD4, v0, 128);
+    SysTask_ExecuteAfterVBlank(ov22_02259BD4, v0, 128);
 }
 
 static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
@@ -256,7 +255,7 @@ static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 p
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    CoreSys_ExecuteAfterVBlank(ov22_02259C10, v0, 128);
+    SysTask_ExecuteAfterVBlank(ov22_02259C10, v0, 128);
 }
 
 static void ov22_02259BD4 (SysTask * param0, void * param1)

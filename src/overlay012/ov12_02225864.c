@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -18,7 +18,7 @@
 #include "unk_02002F38.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "screen_scroll_manager.h"
 #include "buffer_manager.h"
 #include "heap.h"
@@ -871,8 +871,8 @@ static void ov12_02226490 (UnkStruct_ov12_02226490 * param0, void * param1, UnkF
     param0->unk_18 = param1;
     param0->unk_10 = param2;
     param0->unk_14 = param3;
-    param0->unk_04 = CoreSys_ExecuteAfterVBlank(ov12_02226458, param0, 0);
-    param0->unk_00 = CoreSys_ExecuteOnVBlank(ov12_02226474, param0, 0);
+    param0->unk_04 = SysTask_ExecuteAfterVBlank(ov12_02226458, param0, 0);
+    param0->unk_00 = SysTask_ExecuteOnVBlank(ov12_02226474, param0, 0);
 }
 
 static void ov12_022264D0 (UnkStruct_ov12_02226490 * param0)

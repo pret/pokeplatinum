@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/poketch_button.h"
@@ -14,7 +14,7 @@
 #include "overlay028/struct_ov28_0225697C_1.h"
 
 #include "constants/species.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0202631C.h"
 #include "pokemon.h"

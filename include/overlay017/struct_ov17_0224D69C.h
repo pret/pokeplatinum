@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224D69C_H
 #define POKEPLATINUM_STRUCT_OV17_0224D69C_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay017/struct_ov17_0224DF54.h"
 #include "overlay017/struct_ov17_0224EDE0.h"
 

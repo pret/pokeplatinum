@@ -4,7 +4,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "pokemon.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"

@@ -2,15 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 
 #include "unk_02005474.h"
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226871C.h"
 #include "battle/ov16_0226E148.h"

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
@@ -17,11 +16,11 @@
 #include "overlay115/camera_angle.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "overlay095/ov95_02246C20.h"
@@ -487,7 +486,7 @@ static void ov95_0224B1A8 (UnkStruct_ov95_0224AC64 * param0, SysTask ** param1)
         v0->unk_14 = ((UnkEnum_ov95_0224B1A8_00 - UnkEnum_ov95_0224AE1C_00) << 12) / UnkEnum_ov95_0224B1A8_01;
         v0->unk_08 = UnkEnum_ov95_0224B1A8_01;
         v0->unk_1C = param1;
-        *param1 = CoreSys_ExecuteOnVBlank(ov95_0224B1F8, v0, 0);
+        *param1 = SysTask_ExecuteOnVBlank(ov95_0224B1F8, v0, 0);
 
         if (*param1 == NULL) {
             Heap_FreeToHeap(v0);

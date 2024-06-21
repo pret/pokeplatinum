@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
@@ -25,7 +25,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "buffer_manager.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -5423,8 +5423,8 @@ static void ov5_021DB614 (UnkStruct_ov5_021DB614 * param0, HBlankSystem * param1
     }
 
     param0->unk_14 = param1;
-    CoreSys_ExecuteAfterVBlank(ov5_021DB7F8, param0, 120);
-    param0->unk_24 = CoreSys_ExecuteAfterVBlank(ov5_021DB78C, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov5_021DB7F8, param0, 120);
+    param0->unk_24 = SysTask_ExecuteAfterVBlank(ov5_021DB78C, param0, 1024);
     param0->unk_28 = 0;
 }
 
@@ -5511,7 +5511,7 @@ static void ov5_021DB78C (SysTask * param0, void * param1)
 
 static void ov5_021DB7A4 (UnkStruct_ov5_021DB614 * param0)
 {
-    CoreSys_ExecuteAfterVBlank(ov5_021DB7B8, param0, 128);
+    SysTask_ExecuteAfterVBlank(ov5_021DB7B8, param0, 128);
 }
 
 static void ov5_021DB7B8 (SysTask * param0, void * param1)

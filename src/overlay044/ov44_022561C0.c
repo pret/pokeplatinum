@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/poketch_system.h"
@@ -13,7 +13,7 @@
 #include "touch_screen.h"
 #include "overlay044/struct_ov44_022565BC_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"

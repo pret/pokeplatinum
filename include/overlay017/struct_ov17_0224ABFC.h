@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV17_0224ABFC_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay017/struct_ov17_0224B09C.h"
 
 struct UnkStruct_ov17_0224DF54_t;

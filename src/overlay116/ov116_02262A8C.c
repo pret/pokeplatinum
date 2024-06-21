@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "touch_screen.h"
 #include "overlay116/struct_ov116_02260490.h"
@@ -16,7 +16,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "heap.h"

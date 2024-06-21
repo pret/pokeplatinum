@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
@@ -19,7 +19,7 @@
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -197,7 +197,7 @@ static int ov95_022497F8 (UnkStruct_ov95_022497D8 * param0, int * param1)
 
     param0->unk_0C = 0;
 
-    CoreSys_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
+    SysTask_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
     sub_0200F174(0, 1, 1, 0x7fff, 3, 1, 58);
 
     return 1;

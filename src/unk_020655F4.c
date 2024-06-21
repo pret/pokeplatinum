@@ -3,7 +3,6 @@
 
 #include "constdata/const_020EE4B8.h"
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
@@ -12,9 +11,9 @@
 #include "overlay005/map_object_anim_cmd.h"
 
 #include "unk_02005474.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"

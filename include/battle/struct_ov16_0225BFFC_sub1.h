@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225BFFC_SUB1_H
 #define POKEPLATINUM_STRUCT_OV16_0225BFFC_SUB1_H
 
-#include "functypes/sys_task_func.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     SysTaskFunc unk_00;

@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02018340.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D4E38.h"

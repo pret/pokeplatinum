@@ -3,11 +3,11 @@
 
 #include "inlines.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_020E5EB4.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02033200.h"
@@ -45,7 +45,7 @@ UnkStruct_020393C8 * sub_020393C8 (u32 param0, u32 param1, int param2, int param
 
     v0 = (UnkStruct_020393C8 *)Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_020393C8));
 
-    v0->unk_18 = CoreSys_ExecuteAfterVBlank(sub_02039428, v0, 5);
+    v0->unk_18 = SysTask_ExecuteAfterVBlank(sub_02039428, v0, 5);
     v0->unk_0C = param2;
     v0->unk_0E = param3;
     v0->unk_00 = 0;

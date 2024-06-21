@@ -3,7 +3,7 @@
 
 #include "constants/battle.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_decls/struct_party_decl.h"
@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0207AD40.h"
 
 #include "unk_020021B0.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "trainer_info.h"
 #include "unk_02027F84.h"

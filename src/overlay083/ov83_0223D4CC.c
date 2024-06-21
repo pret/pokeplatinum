@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_02039A58.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02032798.h"
 #include "communication_system.h"
@@ -108,7 +108,7 @@ static UnkStruct_ov83_0223D584 * ov83_0223D584 (const CommCmdTable * param0, int
     v0->unk_190 = param0;
     v0->unk_194 = param1;
     v0->unk_198 = param2;
-    v0->unk_19C = CoreSys_ExecuteAfterVBlank(ov83_0223D5CC, v0, 5000);
+    v0->unk_19C = SysTask_ExecuteAfterVBlank(ov83_0223D5CC, v0, 5000);
 
     return v0;
 }

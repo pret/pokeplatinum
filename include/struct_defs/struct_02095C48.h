@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02095C48_H
 #define POKEPLATINUM_STRUCT_02095C48_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "game_options.h"
 #include "struct_decls/struct_0202A750_decl.h"

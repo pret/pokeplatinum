@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0208B878_H
 #define POKEPLATINUM_STRUCT_0208B878_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208B878_sub1.h"
 #include "struct_defs/struct_0208B878_sub2.h"

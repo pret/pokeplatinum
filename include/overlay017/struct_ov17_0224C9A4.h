@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224C9A4_H
 #define POKEPLATINUM_STRUCT_OV17_0224C9A4_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 struct UnkStruct_ov17_0224DF54_t;
 
