@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
@@ -17,7 +17,7 @@
 #include "unk_02005474.h"
 #include "overlay_manager.h"
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
@@ -28,6 +28,7 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "dw_warp/dw_warp.h"
+
 #include "consts/sdat.h"
 
 #define DWARP_SND_EFFECT_DELAY 15
