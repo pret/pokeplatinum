@@ -1275,7 +1275,7 @@ void ov16_0223F268 (BattleSystem * param0)
         return;
     }
 
-    sub_0202CFEC(param0->unk_218, 22);
+    GameRecords_IncrementTrainerScore(param0->unk_218, 22);
 }
 
 void BattleSystem_SetCommandSelectionFlags (BattleSystem *battleSys, int flags)

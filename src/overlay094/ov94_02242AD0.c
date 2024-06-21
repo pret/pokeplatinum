@@ -656,7 +656,7 @@ static int ov94_022431F0 (UnkStruct_ov94_0223FD4C * param0)
             ov94_02243B08(param0, 0);
             ov94_02243CE4(param0, (Pokemon *)param0->unk_A4C.unk_00.unk_00, param0->unk_110);
             ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_A4C);
-            sub_0202CFEC(param0->unk_00->unk_28, 25);
+            GameRecords_IncrementTrainerScore(param0->unk_00->unk_28, 25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
             GameRecords_IncrementRecordValue(param0->unk_00->unk_28, (1 + 23));
 
@@ -935,7 +935,7 @@ static int ov94_02243658 (UnkStruct_ov94_0223FD4C * param0)
     ov94_02243BC4(param0, (Pokemon *)param0->unk_12C.unk_00.unk_00, sub_0202DAAC(param0->unk_00->unk_00), param0->unk_12C.unk_121);
     ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_12C);
 
-    sub_0202CFEC(param0->unk_00->unk_28, 25);
+    GameRecords_IncrementTrainerScore(param0->unk_00->unk_28, 25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
     GameRecords_IncrementRecordValue(param0->unk_00->unk_28, (1 + 23));
 

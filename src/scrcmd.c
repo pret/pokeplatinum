@@ -6903,7 +6903,7 @@ static BOOL ScrCmd_260 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0202CFEC(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
     return 0;
 }
 
@@ -8249,7 +8249,7 @@ static BOOL ScrCmd_30A (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0202CFEC(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(ctx->fieldSystem->saveData), v0);
     return 0;
 }
 

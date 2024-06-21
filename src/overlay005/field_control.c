@@ -833,7 +833,7 @@ static BOOL Field_UpdateDaycare (FieldSystem *fieldSystem)
         GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
         GameRecords_IncrementRecordValue(v2, (1 + 10));
-        sub_0202CFEC(v2, 15);
+        GameRecords_IncrementTrainerScore(v2, 15);
         sub_0203E880(fieldSystem, 2031, NULL);
 
         return TRUE;

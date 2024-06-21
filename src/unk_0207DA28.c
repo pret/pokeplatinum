@@ -473,5 +473,5 @@ static void sub_0207DF9C (FieldSystem * fieldSystem)
     GameRecords * v0;
 
     v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    sub_0202CFEC(v0, 50);
+    GameRecords_IncrementTrainerScore(v0, 50);
 }

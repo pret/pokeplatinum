@@ -80,7 +80,7 @@ void sub_02056328 (FieldSystem * fieldSystem)
         v0->unk_48 = 0;
     }
 
-    sub_0202CFEC(v1, 17);
+    GameRecords_IncrementTrainerScore(v1, 17);
 }
 
 BOOL sub_02056374 (FieldSystem * fieldSystem, int param1, int param2)

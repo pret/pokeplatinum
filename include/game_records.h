@@ -7,10 +7,11 @@
 #define NUM_U32_RECORDS 71
 #define NUM_U16_RECORDS 77
 
-#define HIGH_LIMIT_U32  999999999
-#define LOW_LIMIT_U32   999999
-#define HIGH_LIMIT_U16  0xFFFF
-#define LOW_LIMIT_U16   9999
+#define TRAINER_SCORE_LIMIT 99999999
+#define HIGH_LIMIT_U32      999999999
+#define LOW_LIMIT_U32       999999
+#define HIGH_LIMIT_U16      0xFFFF
+#define LOW_LIMIT_U16       9999
 
 typedef struct EncodingSeed {
     u16 byteSum;
@@ -33,8 +34,8 @@ u32 GameRecords_SetAndLimitRecordValue(GameRecords * records, int param1, u32 pa
 u32 GameRecords_IncrementRecordValue(GameRecords * records, int param1);
 u32 GameRecords_AddToRecordValue(GameRecords * records, int param1, u32 param2);
 u32 GameRecords_GetRecordValue(GameRecords * records, int param1);
-void sub_0202CFEC(GameRecords * records, int param1);
-u32 sub_0202D034(GameRecords * records);
-void sub_0202D040(GameRecords * records, const PokedexData * param1, u16 const param2);
+void GameRecords_IncrementTrainerScore(GameRecords * records, int param1);
+u32 GameRecords_GetTrainerScore(GameRecords * records);
+void GameRecords_IncrementTrainerScoreOnCatch(GameRecords * records, const PokedexData * param1, u16 const param2);
 
 #endif // POKEPLATINUM_UNK_0202CD50_H

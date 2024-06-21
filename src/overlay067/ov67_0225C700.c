@@ -278,7 +278,7 @@ int ov67_0225C820 (OverlayManager * param0, int * param1)
                 GameRecords * v4;
 
                 v4 = SaveData_GetGameRecordsPtr(v0->unk_00);
-                sub_0202CFEC(v4, 44);
+                GameRecords_IncrementTrainerScore(v4, 44);
             }
 
             {

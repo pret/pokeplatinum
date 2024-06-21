@@ -185,7 +185,7 @@ BOOL ScrCmd_237 (ScriptContext * param0)
         v6 = ScriptContext_GetVar(param0);
 
         sub_020491B8(param0->fieldSystem, v4, v5, v6);
-        sub_0202CFEC(v7, 3);
+        GameRecords_IncrementTrainerScore(v7, 3);
     }
     break;
     }

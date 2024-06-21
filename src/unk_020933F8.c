@@ -1636,7 +1636,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
 
             if (sub_02094790(param0) == 0) {
                 GameRecords_IncrementRecordValue(v5, (((70 + 1)) + 21));
-                sub_0202CFEC(v5, 13);
+                GameRecords_IncrementTrainerScore(v5, 13);
             }
 
             if (v0 == 1) {
@@ -1665,7 +1665,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
 
             if (sub_02094790(param0) == 0) {
                 GameRecords_IncrementRecordValue(v8, (((70 + 1)) + 22));
-                sub_0202CFEC(v8, 19);
+                GameRecords_IncrementTrainerScore(v8, 19);
             }
         }
 

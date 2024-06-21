@@ -10,7 +10,7 @@
 #include "unk_0202631C.h"
 #include "game_records.h"
 
-#define START_ENCODED_RECORDS   RECORD_UNK_001
+#define START_ENCODED_RECORDS   RECORD_TRAINER_SCORE
 #define SIZE_ENCODED_RECORDS    (sizeof(GameRecords) - sizeof(EncodingSeed) - (START_ENCODED_RECORDS * sizeof(u32)))
 
 static void EncodeGameRecords(GameRecords *records, int id);
@@ -18,6 +18,7 @@ static void DecodeGameRecords(GameRecords *records, int id);
 static u32 GetRecordValue(const GameRecords *records, int id);
 static u32 SetRecordValue(GameRecords *records, int id, u32 val);
 static u32 GetRecordLimit(int id);
+static int GetTrainerScoreIncrement(int records);
 
 int GameRecords_SaveSize(void)
 {
@@ -89,7 +90,7 @@ static u32 SetRecordValue(GameRecords *records, int id, u32 val)
 
 static u8 sUsesHighLimit[MAX_RECORDS] = {
    [RECORD_UNK_000] = TRUE,
-   [RECORD_UNK_001] = TRUE,
+   [RECORD_TRAINER_SCORE] = TRUE,
    [RECORD_UNK_002] = TRUE,
    [RECORD_UNK_003] = FALSE,
    [RECORD_UNK_004] = TRUE,
@@ -258,63 +259,63 @@ static u32 GetRecordLimit(int id)
     return 0;
 }
 
-static int sub_0202CE84 (int records)
-{
-    static const u16 v0[51] = {
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x1,
-        0x2,
-        0x2,
-        0x2,
-        0x2,
-        0x3,
-        0x3,
-        0x3,
-        0x7,
-        0x7,
-        0x7,
-        0xA,
-        0xA,
-        0xB,
-        0xB,
-        0xB,
-        0xB,
-        0x14,
-        0x1E,
-        0x23,
-        0x28,
-        0x1F4,
-        0x2710,
-        0x1E,
-        0x1E,
-        0x2,
-        0x5,
-        0x1,
-        0x1,
-        0x5,
-        0x3,
-        0x1,
-        0x1,
-        0x7,
-        0x7,
-        0x7,
-        0x7,
-        0x3E8,
-        0xB,
-        0x14,
-        0xA,
-        0xF,
-        0xB,
-        0xB,
-        0xA,
-        0xA
-    };
+static const u16 sTrainerScoreIncrements[MAX_TRAINER_SCORE_EVENTS] = {
+    [TRAINER_SCORE_EVENT_UNK_00] = 1,
+    [TRAINER_SCORE_EVENT_UNK_01] = 1,
+    [TRAINER_SCORE_EVENT_UNK_02] = 1,
+    [TRAINER_SCORE_EVENT_UNK_03] = 1,
+    [TRAINER_SCORE_EVENT_UNK_04] = 1,
+    [TRAINER_SCORE_EVENT_UNK_05] = 1,
+    [TRAINER_SCORE_EVENT_UNK_06] = 2,
+    [TRAINER_SCORE_EVENT_UNK_07] = 2,
+    [TRAINER_SCORE_EVENT_UNK_08] = 2,
+    [TRAINER_SCORE_EVENT_UNK_09] = 2,
+    [TRAINER_SCORE_EVENT_UNK_10] = 3,
+    [TRAINER_SCORE_EVENT_UNK_11] = 3,
+    [TRAINER_SCORE_EVENT_UNK_12] = 3,
+    [TRAINER_SCORE_EVENT_UNK_13] = 7,
+    [TRAINER_SCORE_EVENT_UNK_14] = 7,
+    [TRAINER_SCORE_EVENT_UNK_15] = 7,
+    [TRAINER_SCORE_EVENT_UNK_16] = 10,
+    [TRAINER_SCORE_EVENT_UNK_17] = 10,
+    [TRAINER_SCORE_EVENT_UNK_18] = 11,
+    [TRAINER_SCORE_EVENT_UNK_19] = 11,
+    [TRAINER_SCORE_EVENT_UNK_20] = 11,
+    [TRAINER_SCORE_EVENT_UNK_21] = 11,
+    [TRAINER_SCORE_EVENT_CAUGHT_SPECIES] = 20,
+    [TRAINER_SCORE_EVENT_UNK_23] = 30,
+    [TRAINER_SCORE_EVENT_UNK_24] = 35,
+    [TRAINER_SCORE_EVENT_UNK_25] = 40,
+    [TRAINER_SCORE_EVENT_UNK_26] = 500,
+    [TRAINER_SCORE_EVENT_UNK_27] = 10000,
+    [TRAINER_SCORE_EVENT_UNK_28] = 30,
+    [TRAINER_SCORE_EVENT_UNK_29] = 30,
+    [TRAINER_SCORE_EVENT_UNK_30] = 2,
+    [TRAINER_SCORE_EVENT_UNK_31] = 5,
+    [TRAINER_SCORE_EVENT_UNK_32] = 1,
+    [TRAINER_SCORE_EVENT_UNK_33] = 1,
+    [TRAINER_SCORE_EVENT_UNK_34] = 5,
+    [TRAINER_SCORE_EVENT_UNK_35] = 3,
+    [TRAINER_SCORE_EVENT_UNK_36] = 1,
+    [TRAINER_SCORE_EVENT_UNK_37] = 1,
+    [TRAINER_SCORE_EVENT_UNK_38] = 7,
+    [TRAINER_SCORE_EVENT_UNK_39] = 7,
+    [TRAINER_SCORE_EVENT_UNK_40] = 7,
+    [TRAINER_SCORE_EVENT_UNK_41] = 7,
+    [TRAINER_SCORE_EVENT_UNK_42] = 1000,
+    [TRAINER_SCORE_EVENT_UNK_43] = 11,
+    [TRAINER_SCORE_EVENT_UNK_44] = 20,
+    [TRAINER_SCORE_EVENT_UNK_45] = 10,
+    [TRAINER_SCORE_EVENT_UNK_46] = 15,
+    [TRAINER_SCORE_EVENT_UNK_47] = 11,
+    [TRAINER_SCORE_EVENT_UNK_48] = 11,
+    [TRAINER_SCORE_EVENT_UNK_49] = 10,
+    [TRAINER_SCORE_EVENT_UNK_50] = 10,
+};
 
-    return v0[records];
+static int GetTrainerScoreIncrement(int records)
+{
+    return sTrainerScoreIncrements[records];
 }
 
 static inline u32 SetRecordValueWithLimit(GameRecords *records, int id, u32 val, u32 limit)
@@ -393,29 +394,26 @@ u32 GameRecords_GetRecordValue(GameRecords *records, int id)
     return cur > limit ? limit : cur;
 }
 
-void sub_0202CFEC (GameRecords * records, int param1)
+void GameRecords_IncrementTrainerScore(GameRecords *records, int id)
 {
-    u32 v0;
+    GF_ASSERT(id < MAX_TRAINER_SCORE_EVENTS);
 
-    GF_ASSERT(param1 < 51);
-
-    v0 = GameRecords_GetRecordValue(records, (0 + 1));
-
-    if (v0 + sub_0202CE84(param1) > 99999999) {
-        GameRecords_SetRecordValue(records, (0 + 1), 99999999);
+    u32 cur = GameRecords_GetRecordValue(records, RECORD_TRAINER_SCORE);
+    if (cur + GetTrainerScoreIncrement(id) > TRAINER_SCORE_LIMIT) {
+        GameRecords_SetRecordValue(records, RECORD_TRAINER_SCORE, TRAINER_SCORE_LIMIT);
     } else {
-        GameRecords_AddToRecordValue(records, (0 + 1), sub_0202CE84(param1));
+        GameRecords_AddToRecordValue(records, RECORD_TRAINER_SCORE, GetTrainerScoreIncrement(id));
     }
 }
 
-u32 sub_0202D034 (GameRecords * records)
+u32 GameRecords_GetTrainerScore (GameRecords *records)
 {
-    return GameRecords_GetRecordValue(records, (0 + 1));
+    return GameRecords_GetRecordValue(records, RECORD_TRAINER_SCORE);
 }
 
-void sub_0202D040 (GameRecords * records, const PokedexData * param1, u16 const param2)
+void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const PokedexData *pokedex, const u16 species)
 {
-    if (!Pokedex_CaughtSpecies(param1, param2)) {
-        sub_0202CFEC(records, 22);
+    if (!Pokedex_CaughtSpecies(pokedex, species)) {
+        GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
     }
 }

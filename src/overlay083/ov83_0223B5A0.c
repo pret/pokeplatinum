@@ -562,10 +562,10 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         GameRecords * v2 = SaveData_GetGameRecordsPtr(param0->unk_10->unk_0C);
 
         if (param1->unk_1490 == 0) {
-            sub_0202CFEC(v2, 12);
+            GameRecords_IncrementTrainerScore(v2, 12);
             GameRecords_IncrementRecordValue(v2, (1 + 51));
         } else {
-            sub_0202CFEC(v2, 18);
+            GameRecords_IncrementTrainerScore(v2, 18);
             GameRecords_IncrementRecordValue(v2, (1 + 52));
         }
     }

@@ -1109,7 +1109,7 @@ BOOL sub_0203DBF0 (TaskManager * param0)
 
         {
             GameRecords * v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-            sub_0202CFEC(v6, 16);
+            GameRecords_IncrementTrainerScore(v6, 16);
 
             if (sub_020389B8()) {
                 GameRecords_IncrementRecordValue(v6, (((70 + 1)) + 42));
@@ -1621,7 +1621,7 @@ void sub_0203E414 (TaskManager * param0, int param1)
     v2->unk_0C.unk_10 = Options_Frame(v1);
     v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, param1);
 
-    sub_0202CFEC(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 5);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 5);
     FieldTask_Start(param0, sub_0203E35C, v2);
 }
 

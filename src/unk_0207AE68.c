@@ -415,7 +415,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             if (--param0->unk_66 == 0) {
                 sub_0202736C(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->unk_50, (1 + 11));
-                sub_0202CFEC(param0->unk_50, 22);
+                GameRecords_IncrementTrainerScore(param0->unk_50, 22);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param0->unk_28));
 
                 if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
@@ -747,7 +747,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 Party_AddPokemon(param0->unk_24, v1);
                 sub_0202736C(param0->unk_48, v1);
                 GameRecords_IncrementRecordValue(param0->unk_50, (1 + 11));
-                sub_0202CFEC(param0->unk_50, 22);
+                GameRecords_IncrementTrainerScore(param0->unk_50, 22);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
                 Bag_TryRemoveItem(param0->unk_4C, 4, 1, param0->unk_5C);

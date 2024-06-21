@@ -81,7 +81,7 @@ static void ov23_0224A204 (int param0)
 
     if (param0 == CommSys_CurNetId()) {
         if (commPlayerMan->unk_290[param0] != NULL) {
-            sub_0202CFEC(SaveData_GetGameRecordsPtr(commPlayerMan->fieldSystem->saveData), 28);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(commPlayerMan->fieldSystem->saveData), 28);
 
             if (commPlayerMan->unk_27C[5 - 1]) {
                 Heap_FreeToHeap(commPlayerMan->unk_27C[5 - 1]);

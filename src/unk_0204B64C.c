@@ -102,7 +102,7 @@ BOOL ScrCmd_185 (ScriptContext * param0)
     MapObject ** v2 = sub_0203F098(param0->fieldSystem, 10);
 
     sub_02055E00(param0->fieldSystem, *v2);
-    sub_0202CFEC(v1, 0);
+    GameRecords_IncrementTrainerScore(v1, 0);
 
     return 0;
 }

@@ -260,7 +260,7 @@ static BOOL sub_02050CA8 (TaskManager * taskMan)
 
         {
             GameRecords * v3 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-            sub_0202CFEC(v3, 21);
+            GameRecords_IncrementTrainerScore(v3, 21);
         }
 
         sub_02055868(taskMan);
@@ -300,7 +300,7 @@ static BOOL sub_02050D4C (TaskManager * taskMan)
     }
         {
             GameRecords * v3 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-            sub_0202CFEC(v3, 21);
+            GameRecords_IncrementTrainerScore(v3, 21);
         }
         (*v2)++;
         break;
@@ -928,28 +928,28 @@ static void sub_020518B0 (FieldSystem * fieldSystem, BattleParams * param1)
             || (v1 == BATTLE_TYPE_ROAMER)
             || (v1 == BATTLE_TYPE_AI_PARTNER)) {
         if (v2 == 0x1) {
-            sub_0202CFEC(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 8);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 8);
         } else if (v2 == 0x4) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
             if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
-                sub_0202CFEC(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 9);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 9);
             } else {
-                sub_0202CFEC(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 10);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 10);
             }
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
         if (v2 == 0x1) {
-            sub_0202CFEC(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 11);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 11);
         }
     } else if ((v1 & BATTLE_TYPE_SAFARI) || (v1 & BATTLE_TYPE_PAL_PARK)) {
         if (v2 == 0x4) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
             if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
-                sub_0202CFEC(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 9);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 9);
             } else {
-                sub_0202CFEC(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 10);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 10);
             }
         }
     }

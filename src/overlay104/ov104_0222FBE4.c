@@ -2827,7 +2827,7 @@ static BOOL ov104_02231E80 (UnkStruct_ov104_0222E930 * param0)
     u16 v1 = ov104_0222EA48(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    sub_0202CFEC(SaveData_GetGameRecordsPtr(v0->unk_08), v1);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->unk_08), v1);
 
     return 0;
 }

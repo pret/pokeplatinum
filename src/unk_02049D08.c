@@ -699,7 +699,7 @@ void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * par
         GameRecords_AddToRecordValue(v6, (1 + 14), 1);
     }
 
-    sub_0202CFEC(v6, 14);
+    GameRecords_IncrementTrainerScore(v6, 14);
     sub_0204ACC8(param0);
     sub_0204A5EC(param0, param1, 1, v0);
 

@@ -2507,7 +2507,7 @@ void ov62_02233704 (UnkStruct_0208C06C * param0, u32 param1)
     GameRecords * v0;
 
     v0 = SaveData_GetGameRecordsPtr(param0->unk_830);
-    sub_0202CFEC(v0, param1);
+    GameRecords_IncrementTrainerScore(v0, param1);
 }
 
 void ov62_0223371C (UnkStruct_0208C06C * param0)
