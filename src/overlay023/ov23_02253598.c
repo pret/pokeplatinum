@@ -32,7 +32,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_system.h"
 #include "comm_player_manager.h"
 #include "overlay023/ov23_02241F74.h"

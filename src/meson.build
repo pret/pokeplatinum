@@ -118,7 +118,7 @@ pokeplatinum_c = files(
     'unk_0202C9F4.c',
     'play_time.c',
     'unk_0202CC64.c',
-    'unk_0202CD50.c',
+    'game_records.c',
     'unk_0202D05C.c',
     'unk_0202D778.c',
     'unk_0202D7A8.c',

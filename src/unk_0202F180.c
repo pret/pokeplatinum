@@ -6,7 +6,7 @@
 #include "savedata.h"
 
 #include "unk_0202631C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F180.h"
 #include "poketch_data.h"
 #include "pokemon.h"

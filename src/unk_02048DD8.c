@@ -25,7 +25,7 @@
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "unk_020298BC.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202E2CC.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"

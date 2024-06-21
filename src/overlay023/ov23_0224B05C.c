@@ -35,7 +35,7 @@
 #include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02030EE0.h"
 #include "communication_information.h"
 #include "unk_02033200.h"

@@ -62,7 +62,7 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "unk_020298BC.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_02094EDC.h"

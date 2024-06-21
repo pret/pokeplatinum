@@ -16,7 +16,7 @@
 
 #include "unk_020041CC.h"
 #include "savedata/save_table.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_02049D08.h"

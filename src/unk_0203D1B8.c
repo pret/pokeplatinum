@@ -82,7 +82,7 @@
 #include "coins.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_0202DA40.h"

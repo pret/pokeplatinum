@@ -55,7 +55,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "savedata_misc.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
 #include "unk_020393C8.h"

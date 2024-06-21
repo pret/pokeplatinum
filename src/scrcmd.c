@@ -93,7 +93,7 @@
 #include "unk_0202ACE0.h"
 #include "journal.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D7A8.h"
 #include "unk_0202DF8C.h"
 #include "unk_02033200.h"

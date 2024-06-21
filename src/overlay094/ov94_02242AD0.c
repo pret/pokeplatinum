@@ -33,7 +33,7 @@
 #include "game_options.h"
 #include "journal.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202DA40.h"
 #include "unk_0202F180.h"
 #include "unk_020366A0.h"

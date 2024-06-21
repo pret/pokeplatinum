@@ -42,7 +42,7 @@
 #include "unk_020298BC.h"
 #include "journal.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F108.h"
 #include "communication_information.h"
 #include "communication_system.h"

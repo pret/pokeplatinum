@@ -15,7 +15,7 @@
 #include "rtc.h"
 #include "heap.h"
 #include "savedata/save_table.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202EEC0.h"
 #include "unk_02051D8C.h"
 #include "unk_02054D00.h"

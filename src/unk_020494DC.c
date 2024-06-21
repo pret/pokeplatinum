@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D05C.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"

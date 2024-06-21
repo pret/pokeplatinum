@@ -38,7 +38,7 @@
 #include "unk_02027F84.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0203266C.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"

@@ -48,7 +48,7 @@
 #include "gx_layers.h"
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "pokemon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02235E94.h"

@@ -55,7 +55,7 @@
 #include "unk_0202631C.h"
 #include "game_options.h"
 #include "unk_02028124.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020393C8.h"
 #include "poketch_data.h"
 #include "pokemon.h"

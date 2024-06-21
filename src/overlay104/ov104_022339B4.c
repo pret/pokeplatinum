@@ -16,7 +16,7 @@
 
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202FF4C.h"
 #include "unk_0203061C.h"
 #include "vars_flags.h"

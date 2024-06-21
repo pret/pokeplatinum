@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
 #include "unk_0204B64C.h"

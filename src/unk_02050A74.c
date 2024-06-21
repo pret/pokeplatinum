@@ -24,7 +24,7 @@
 #include "unk_02025E08.h"
 #include "unk_02026150.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "communication_information.h"
 #include "field_overworld_state.h"

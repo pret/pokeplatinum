@@ -53,7 +53,7 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02030EE0.h"
 #include "communication_information.h"
 #include "communication_system.h"

@@ -25,7 +25,7 @@
 #include "trainer_info.h"
 #include "unk_020261E4.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020559DC.h"
 #include "constants/species.h"
 #include "pokemon.h"

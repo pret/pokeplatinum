@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02005474.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"

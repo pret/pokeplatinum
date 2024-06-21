@@ -45,7 +45,7 @@
 #include "unk_0202854C.h"
 #include "journal.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D05C.h"
 #include "map_header.h"
 #include "unk_0203D1B8.h"

@@ -29,7 +29,7 @@
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
 #include "game_options.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
 #include "field_system.h"

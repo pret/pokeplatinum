@@ -58,7 +58,7 @@
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020393C8.h"

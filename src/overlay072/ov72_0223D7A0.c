@@ -59,7 +59,7 @@
 #include "unk_02025E08.h"
 #include "game_options.h"
 #include "unk_0202C7FC.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "overlay072/ov72_0223D7A0.h"
 
 static void inline_ov72_0223E2A4(UnkStruct_ov72_0223DB98 * param0, int param1);

@@ -23,7 +23,7 @@
 #include "overlay_manager.h"
 #include "heap.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "vars_flags.h"
 #include "unk_02051D8C.h"

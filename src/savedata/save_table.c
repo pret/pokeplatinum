@@ -23,7 +23,7 @@
 #include "unk_0202C858.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D778.h"
 #include "unk_0202D7A8.h"
 #include "unk_0202DA40.h"

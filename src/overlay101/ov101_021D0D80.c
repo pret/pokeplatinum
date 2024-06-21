@@ -36,7 +36,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020711EC.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay101/ov101_021D1A28.h"

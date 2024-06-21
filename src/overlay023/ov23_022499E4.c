@@ -9,7 +9,7 @@
 
 #include "sys_task.h"
 #include "heap.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "unk_02033200.h"
 #include "communication_system.h"

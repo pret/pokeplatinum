@@ -59,7 +59,7 @@
 #include "unk_0202631C.h"
 #include "journal.h"
 #include "unk_0202C858.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02030EA4.h"
 #include "pokemon.h"
 #include "constants/species.h"

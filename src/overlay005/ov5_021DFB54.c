@@ -21,7 +21,7 @@
 #include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"
 #include "unk_020553DC.h"

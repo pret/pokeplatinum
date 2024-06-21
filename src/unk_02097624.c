@@ -16,7 +16,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "pokemon.h"
 #include "item.h"
 #include "unk_0209747C.h"

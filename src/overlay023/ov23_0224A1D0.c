@@ -19,7 +19,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"

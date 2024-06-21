@@ -35,7 +35,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202DF8C.h"
 #include "field_overworld_state.h"
 #include "unk_0203D178.h"

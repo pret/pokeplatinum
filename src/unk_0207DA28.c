@@ -14,7 +14,7 @@
 
 #include "game_overlay.h"
 #include "heap.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_system.h"
 #include "unk_02038FFC.h"
 #include "field_system.h"

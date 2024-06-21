@@ -7,7 +7,7 @@
 #include "unk_0201D15C.h"
 #include "savedata.h"
 #include "unk_0202631C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 
 typedef struct {
     u16 unk_00;

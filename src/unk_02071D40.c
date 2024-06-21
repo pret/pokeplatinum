@@ -22,7 +22,7 @@
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
 #include "play_time.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0203061C.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
