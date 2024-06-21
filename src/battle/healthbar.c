@@ -542,9 +542,7 @@ void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHand
 
 static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type)
 {
-    const SpriteTemplate * template;
-
-    template = ov16_02268314(type);
+    const SpriteTemplate * template = ov16_02268314(type);
 
     if (template != NULL) {
         SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
@@ -556,11 +554,8 @@ static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandl
 
 CellActorData * Healthbar_LoadCellActor (SpriteRenderer * renderer, SpriteGfxHandler * handler, int type)
 {
-    const SpriteTemplate * template;
-    CellActorData * data;
-
-    template = Healthbar_SpriteTemplate(type);
-    data = SpriteActor_LoadResources(renderer, handler, template);
+    const SpriteTemplate * template = Healthbar_SpriteTemplate(type);
+    CellActorData* data = SpriteActor_LoadResources(renderer, handler, template);
 
     SpriteActor_UpdateObject(data->unk_00);
     return data;
@@ -711,7 +706,7 @@ static void ov16_02267244 (Healthbar * param0)
     param0->arrowActor = NULL;
 }
 
-void ov16_02267258 (Healthbar * param0)
+void  ov16_02267258 (Healthbar * param0)
 {
     SpriteRenderer * v0;
     SpriteGfxHandler * v1;
@@ -1596,10 +1591,11 @@ static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fil
     return final;
 }
 
-static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size) //UpdateGaugeCells, FillCells
+static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size)
 {
-    int cell;
-    u32 corrected, pixels, final;
+    int cell = 0;
+    u32 corrected = 8 * size;
+    u32 pixels, final;
     s32 updated = cur - diff;
 
     if (updated < 0) {
@@ -1607,8 +1603,6 @@ static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size
     } else if (updated > max) {
         updated = max;
     }
-
-    corrected = 8 * size;
 
     for (cell = 0; cell < size; cell++) {
         cells[cell] = 0;
