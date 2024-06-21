@@ -4565,12 +4565,12 @@ static void PokemonEvolutionData_LoadSpecies(int monSpecies, PokemonEvolutionDat
 
 static void Pokemon_EncryptData(void *data, u32 bytes, u32 seed)
 {
-    EncryptData(data, bytes, seed);
+    EncodeData(data, bytes, seed);
 }
 
 static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed)
 {
-    DecryptData(data, bytes, seed);
+    DecodeData(data, bytes, seed);
 }
 
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes)

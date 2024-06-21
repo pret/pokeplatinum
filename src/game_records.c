@@ -35,8 +35,8 @@ static void sub_0202CD94 (GameRecords * records, int param1)
         return;
     }
 
-    records->unk_1B8.unk_00 = sub_0201D5B8(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
-    EncryptData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
+    records->unk_1B8.unk_00 = SumBytes(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32)) & 0xffff;
+    EncodeData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
 }
 
 static void sub_0202CDC0 (GameRecords * records, int param1)
@@ -45,7 +45,7 @@ static void sub_0202CDC0 (GameRecords * records, int param1)
         return;
     }
 
-    DecryptData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
+    DecodeData(&records->recordsU32[1], sizeof(GameRecords) - sizeof(GameRecords_sub1) - sizeof(u32), records->unk_1B8.unk_00 + (records->unk_1B8.unk_02 << 16));
 }
 
 static u32 sub_0202CDE0 (const GameRecords * records, int param1)
