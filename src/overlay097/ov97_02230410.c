@@ -37,7 +37,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -870,7 +870,7 @@ static void ov97_022312B4 (UnkStruct_ov97_02230868 * param0, BOOL param1, fx32 p
     }
 
     if (v0->unk_C04 == NULL) {
-        v0->unk_C04 = CoreSys_ExecuteOnVBlank(ov97_02231290, v0, 1024);
+        v0->unk_C04 = SysTask_ExecuteOnVBlank(ov97_02231290, v0, 1024);
     }
 
     v0->unk_C10 = 1;

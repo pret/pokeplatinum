@@ -46,7 +46,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "unk_02014A84.h"
 #include "heap.h"
@@ -2540,7 +2540,7 @@ void ov62_0223376C (UnkStruct_0208C06C * param0, int param1)
     param0->unk_52C.unk_00 = param1;
     param0->unk_52C.unk_04 = 0;
 
-    CoreSys_ExecuteOnVBlank(ov62_02233750, &param0->unk_52C, 4);
+    SysTask_ExecuteOnVBlank(ov62_02233750, &param0->unk_52C, 4);
 }
 
 BOOL ov62_02233790 (UnkStruct_0208C06C * param0)
@@ -2575,7 +2575,7 @@ static void ov62_02233798 (SysTask * param0, void * param1)
 
 void ov62_022337D4 (UnkStruct_0208C06C * param0)
 {
-    param0->unk_41E8 = CoreSys_ExecuteOnVBlank(ov62_02233798, param0, 5);
+    param0->unk_41E8 = SysTask_ExecuteOnVBlank(ov62_02233798, param0, 5);
 }
 
 BOOL ov62_022337F0 (UnkStruct_0208C06C * param0, int param1, u8 param2)

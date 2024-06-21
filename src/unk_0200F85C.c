@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0200F7A0.h"
 #include "struct_defs/struct_02010658.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_0200F85C.h"
 #include "unk_02012480.h"
@@ -1743,7 +1743,7 @@ static void sub_02010728 (UnkStruct_0201076C * param0, int param1, int param2, i
 
 static void sub_0201076C (UnkStruct_0201076C * param0)
 {
-    CoreSys_ExecuteAfterVBlank(sub_020107AC, param0, 1023);
+    SysTask_ExecuteAfterVBlank(sub_020107AC, param0, 1023);
 }
 
 static void sub_02010784 (UnkStruct_0200F600 * param0, UnkStruct_0201076C * param1, u32 param2)
@@ -2052,7 +2052,7 @@ static void sub_02010FC0 (UnkStruct_0201109C * param0, const UnkStruct_0200FB7C 
     param0->unk_2C = param1->unk_0B;
 
     sub_02011180(param0);
-    CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+    SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
 
     v1 = sub_02010604(&param0->unk_00, 0);
     sub_020106A8(param5, param1->unk_09, param1->unk_0A, param1->unk_08, param4, v1->unk_300[0][0], 0, v1->unk_300[1][0], 192, param0->unk_2C);
@@ -2077,7 +2077,7 @@ static BOOL sub_0201109C (UnkStruct_0201109C * param0)
             param0->unk_1C--;
             param0->unk_0C += param0->unk_18;
             sub_02011180(param0);
-            CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+            SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
             sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->unk_28);
             return 1;
@@ -2214,7 +2214,7 @@ static void sub_02011298 (UnkStruct_02011360 * param0, const UnkStruct_0200FC2C 
     param0->unk_20 = param1->unk_07;
 
     sub_020113B0(param0);
-    CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+    SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
 
     v0 = sub_02010604(&param0->unk_00, 0);
     sub_020106A8(param5, param1->unk_05, param1->unk_06, param1->unk_04, param4, v0->unk_300[0][0], 0, v0->unk_300[1][0], 192, param0->unk_20);
@@ -2239,7 +2239,7 @@ static BOOL sub_02011360 (UnkStruct_02011360 * param0)
             param0->unk_14--;
             param0->unk_0C += param0->unk_10;
             sub_020113B0(param0);
-            CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+            SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
             sub_0200F704(param0->unk_28, param0->unk_00.unk_08, param0->unk_2C);
             return 1;
@@ -2330,7 +2330,7 @@ static void sub_02011494 (UnkStruct_02011568 * param0, const UnkStruct_0200FD34 
     param0->unk_24 = param1->unk_07;
 
     sub_020115B8(param0);
-    CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+    SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
 
     v1 = sub_02010604(&param0->unk_00, 0);
     sub_020106A8(param5, param1->unk_05, param1->unk_06, param1->unk_04, param4, v1->unk_300[0][96], 0, v1->unk_300[1][96], 192, param0->unk_24);
@@ -2355,7 +2355,7 @@ static BOOL sub_02011568 (UnkStruct_02011568 * param0)
             param0->unk_18--;
             param0->unk_10 += param0->unk_14;
             sub_020115B8(param0);
-            CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+            SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
             sub_0200F704(param0->unk_2C, param0->unk_00.unk_08, param0->unk_30);
             return 1;
@@ -2486,7 +2486,7 @@ static void sub_02011738 (UnkStruct_0201184C * param0, const UnkStruct_02011738 
     param0->unk_20 = param1->unk_0E;
 
     sub_020118AC(param0);
-    CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+    SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
 
     v1 = sub_02010604(&param0->unk_00, 0);
     sub_020106A8(param5, param1->unk_0C, param1->unk_0D, param1->unk_0A, param4, v1->unk_300[0][0], 0, v1->unk_300[1][0], 192, param0->unk_20);
@@ -2511,7 +2511,7 @@ static BOOL sub_0201184C (UnkStruct_0201184C * param0)
             param0->unk_14--;
             sub_02011938(param0);
             sub_020118AC(param0);
-            CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+            SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
             sub_0200F704(param0->unk_28, param0->unk_00.unk_08, param0->unk_2C);
             return 1;
@@ -2639,7 +2639,7 @@ static void sub_02011A00 (UnkStruct_02011AFC * param0, UnkStruct_0200FEA4 * para
 
     sub_02011C7C(&param0->unk_0C, param0->unk_1C, param0->unk_18);
     sub_02011B58(param0);
-    CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+    SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
 
     v0 = sub_02010604(&param0->unk_00, 0);
     v1 = sub_02010604(&param0->unk_00, 1);
@@ -2662,7 +2662,7 @@ static BOOL sub_02011AFC (UnkStruct_02011AFC * param0)
 
             sub_02011C7C(&param0->unk_0C, param0->unk_1C, param0->unk_18);
             sub_02011B58(param0);
-            CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+            SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
             sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->unk_2C);
             return 1;
@@ -2815,7 +2815,7 @@ static void sub_02011D34 (UnkStruct_02011E04 * param0, UnkStruct_0200FF30 * para
     param0->unk_28 = param1->unk_06;
 
     sub_02011E60(param0);
-    CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+    SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
 
     v0 = sub_02010604(&param0->unk_00, 0);
     v1 = sub_02010604(&param0->unk_00, 1);
@@ -2838,7 +2838,7 @@ static BOOL sub_02011E04 (UnkStruct_02011E04 * param0)
 
             sub_02011F2C(&param0->unk_0C, param0->unk_1C, param0->unk_18);
             sub_02011E60(param0);
-            CoreSys_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
+            SysTask_ExecuteAfterVBlank(sub_02010624, &param0->unk_00, 1023);
         } else {
             sub_0200F704(param0->unk_34, param0->unk_00.unk_08, param0->unk_2C);
             return 1;

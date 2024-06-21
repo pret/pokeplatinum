@@ -24,7 +24,7 @@
 #include "overlay005/funcptr_ov5_021FB0F0_4.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0203E880.h"
 #include "map_header_data.h"

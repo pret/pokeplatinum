@@ -37,7 +37,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"

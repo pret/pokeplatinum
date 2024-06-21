@@ -5,7 +5,7 @@
 #include "sys_task_manager.h"
 #include "overlay104/struct_ov104_0223C23C_decl.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "overlay104/ov104_0223C164.h"

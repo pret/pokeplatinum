@@ -12,7 +12,7 @@
 #include "touch_screen.h"
 #include "overlay053/struct_ov53_02256420_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "overlay006/ov6_022430C4.h"
 #include "overlay053/ov53_02256420.h"

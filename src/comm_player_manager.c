@@ -17,7 +17,7 @@
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "constants/heap.h"
 #include "trainer_info.h"

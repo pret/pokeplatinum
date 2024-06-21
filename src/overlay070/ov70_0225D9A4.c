@@ -62,7 +62,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -2450,7 +2450,7 @@ static void ov70_0225F940 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
     param0->unk_154 = param2;
     param0->unk_156 = param3;
 
-    CoreSys_ExecuteAfterVBlank(ov70_0225F95C, param0, 0);
+    SysTask_ExecuteAfterVBlank(ov70_0225F95C, param0, 0);
 }
 
 static void ov70_0225F95C (SysTask * param0, void * param1)

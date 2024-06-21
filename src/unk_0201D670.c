@@ -11,7 +11,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "sys_task_manager.h"

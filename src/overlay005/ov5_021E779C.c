@@ -14,7 +14,7 @@
 #include "overlay005/funcptr_ov5_021E9630.h"
 
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_0201C970.h"

@@ -40,7 +40,7 @@
 #include "overlay005/struct_ov5_021EE294.h"
 #include "overlay005/funcptr_ov5_021EE454.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02020AEC.h"
 #include "unk_0202298C.h"
@@ -1906,8 +1906,8 @@ static void ov5_021EE320 (UnkStruct_ov5_021ED0A4 * param0, int param1, int param
     v0 = sub_02062858(param0->unk_104);
     v5->unk_18 = SysTask_Start(ov5_021EE030, param0, v0 + 1);
     v5->unk_1C = SysTask_Start(ov5_021EE2C4, param0, v0 + 2);
-    v5->unk_20 = CoreSys_ExecuteOnVBlank(ov5_021EE1AC, param0, 0xff);
-    v5->unk_24 = CoreSys_ExecuteAfterVBlank(ov5_021EE1E8, param0, 0xff);
+    v5->unk_20 = SysTask_ExecuteOnVBlank(ov5_021EE1AC, param0, 0xff);
+    v5->unk_24 = SysTask_ExecuteAfterVBlank(ov5_021EE1E8, param0, 0xff);
 }
 
 static void ov5_021EE3C4 (UnkStruct_ov5_021ED0A4 * param0)
@@ -2056,7 +2056,7 @@ static UnkStruct_020216E0 * ov5_021EE454 (MapObject * param0, int param1, UnkFun
 
     {
         int v16 = sub_02062858(v8->unk_104);
-        SysTask * v17 = CoreSys_ExecuteAfterVBlank(ov5_021EE698, v11, 0xff);
+        SysTask * v17 = SysTask_ExecuteAfterVBlank(ov5_021EE698, v11, 0xff);
 
         GF_ASSERT(v17 != NULL);
         ov5_021EE698(v17, v11);

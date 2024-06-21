@@ -26,7 +26,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02020AEC.h"
 #include "unk_0202298C.h"
@@ -695,8 +695,8 @@ static void ov5_021DFA88 (UnkStruct_ov5_021DF47C * param0, u32 param1, UnkStruct
     v0->unk_04 = param1;
     v0->unk_08 = param2;
 
-    CoreSys_ExecuteOnVBlank(ov5_021DFAC0, v0, 0xff);
-    CoreSys_ExecuteAfterVBlank(ov5_021DFADC, v0, 0xff);
+    SysTask_ExecuteOnVBlank(ov5_021DFAC0, v0, 0xff);
+    SysTask_ExecuteAfterVBlank(ov5_021DFADC, v0, 0xff);
 }
 
 static void ov5_021DFAC0 (SysTask * param0, void * param1)

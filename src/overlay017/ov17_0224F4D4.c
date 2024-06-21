@@ -25,7 +25,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -219,7 +219,7 @@ int ov17_0224F4D4 (OverlayManager * param0, int * param1)
     sub_020959F4(v0->unk_00->unk_155);
     SetMainCallback(ov17_0224FA24, v0);
 
-    v0->unk_08 = CoreSys_ExecuteOnVBlank(ov17_0224FAE4, v0, 10);
+    v0->unk_08 = SysTask_ExecuteOnVBlank(ov17_0224FAE4, v0, 10);
     Sound_PlayEffect(1765);
 
     return 1;

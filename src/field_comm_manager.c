@@ -12,7 +12,7 @@
 #include "functypes/funcptr_020598EC.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "constants/heap.h"

@@ -28,7 +28,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_020170BC.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -412,12 +412,12 @@ static void ov6_0223E1D0 (BGL * param0)
 
 static void ov6_0223E234 (UnkStruct_ov6_0223E140 * param0)
 {
-    CoreSys_ExecuteAfterVBlank(ov6_0223E25C, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov6_0223E25C, param0, 1024);
 }
 
 static void ov6_0223E248 (UnkStruct_ov6_0223E140 * param0)
 {
-    CoreSys_ExecuteAfterVBlank(ov6_0223E280, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov6_0223E280, param0, 1024);
 }
 
 static void ov6_0223E25C (SysTask * param0, void * param1)
@@ -482,7 +482,7 @@ static MotionBlur * ov6_0223E2BC (int param0, int param1)
 
 static void ov6_0223E2E8 (UnkStruct_ov6_0223E140 * param0)
 {
-    CoreSys_ExecuteAfterVBlank(ov6_0223E2FC, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov6_0223E2FC, param0, 1024);
 }
 
 static void ov6_0223E2FC (SysTask * param0, void * param1)
@@ -2006,7 +2006,7 @@ void ov6_02240000 (UnkStruct_ov6_02240000 * param0, u32 param1, u32 param2, u32 
 
     GX_SetMasterBrightness(param0->unk_00.unk_00);
 
-    param0->unk_20 = CoreSys_ExecuteAfterVBlank(ov6_02240064, param0, 1024);
+    param0->unk_20 = SysTask_ExecuteAfterVBlank(ov6_02240064, param0, 1024);
     Sound_PlayEffect(1748);
 }
 

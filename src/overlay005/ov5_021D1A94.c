@@ -8,7 +8,7 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "field_system.h"

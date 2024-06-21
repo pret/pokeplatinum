@@ -11,7 +11,7 @@
 #include "touch_screen.h"
 #include "overlay029/struct_ov29_022566C8_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "overlay029/ov29_022566C8.h"
 

@@ -46,7 +46,7 @@
 #include "message_util.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
@@ -1332,7 +1332,7 @@ void ov16_02268C04 (NARC * param0, NARC * param1, UnkStruct_ov16_02268A14 * para
         v0->unk_28(param2, param3, param4);
     }
 
-    CoreSys_ExecuteAfterVBlank(ov16_0226BC50, param2, 10);
+    SysTask_ExecuteAfterVBlank(ov16_0226BC50, param2, 10);
 }
 
 void ov16_02268D40 (NARC * param0, UnkStruct_ov16_02268A14 * param1)
@@ -1734,7 +1734,7 @@ static void ov16_02269550 (UnkStruct_ov16_02268A14 * param0, int param1)
     v0 = SetHBlankCallback(ov16_0226BB94, v1);
     GF_ASSERT(v0 == 1);
 
-    v1->unk_04 = CoreSys_ExecuteOnVBlank(ov16_0226BA88, v1, 10);
+    v1->unk_04 = SysTask_ExecuteOnVBlank(ov16_0226BA88, v1, 10);
 }
 
 static void ov16_02269654 (UnkStruct_ov16_02268A14 * param0, int param1, int param2)
@@ -2994,7 +2994,7 @@ static void ov16_0226B1C4 (UnkStruct_ov16_02268A14 * param0, int param1, int par
     }
 
     if (param2 == 1) {
-        CoreSys_ExecuteAfterVBlank(ov16_0226BCBC, param0, 10);
+        SysTask_ExecuteAfterVBlank(ov16_0226BCBC, param0, 10);
     }
 }
 

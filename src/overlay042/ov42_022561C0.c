@@ -9,7 +9,7 @@
 
 #include "overlay042/struct_ov42_022563D4_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02099D44.h"

@@ -11,7 +11,7 @@
 #include "touch_screen.h"
 #include "overlay045/struct_ov45_022566EC_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "rtc.h"
 #include "heap.h"
 #include "poketch_data.h"

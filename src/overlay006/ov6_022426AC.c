@@ -17,7 +17,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

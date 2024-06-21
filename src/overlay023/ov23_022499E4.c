@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0205964C.h"
 #include "functypes/funcptr_020598EC.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0202CD50.h"
 #include "communication_information.h"

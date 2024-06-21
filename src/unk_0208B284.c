@@ -13,7 +13,7 @@
 
 #include "narc.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0208B284.h"
@@ -279,7 +279,7 @@ BOOL sub_0208B878 (UnkStruct_0208B878 * param0, int param1)
     sub_0208B6B0(param0, param1);
     sub_0208B7B4(param0);
 
-    param0->unk_F4 = CoreSys_ExecuteOnVBlank(sub_0208B3D4, param0, 0x1000);
+    param0->unk_F4 = SysTask_ExecuteOnVBlank(sub_0208B3D4, param0, 0x1000);
 
     return 1;
 }

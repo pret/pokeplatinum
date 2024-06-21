@@ -11,7 +11,7 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "rtc.h"
 #include "map_object.h"
 #include "unk_020711EC.h"

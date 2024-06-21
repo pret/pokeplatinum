@@ -15,7 +15,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "pokemon.h"
@@ -66,7 +66,7 @@ BOOL ov40_0225645C (UnkStruct_ov40_0225645C ** param0, const UnkStruct_ov40_0225
         v0->unk_04 = ov25_02254674();
         v0->unk_20 = ov25_02254664();
         v0->unk_88 = 0;
-        v0->unk_8C = CoreSys_ExecuteAfterVBlank(ov40_022567E0, v0, 0);
+        v0->unk_8C = SysTask_ExecuteAfterVBlank(ov40_022567E0, v0, 0);
 
         ov40_022564D4(v0, param1);
 

@@ -9,7 +9,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 

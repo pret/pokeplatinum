@@ -11,7 +11,7 @@
 #include "unk_02002F38.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "overlay104/ov104_0223D9E4.h"

@@ -27,7 +27,7 @@
 #include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02014000.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

@@ -29,7 +29,7 @@
 #include "unk_0200A9DC.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_02018340.h"

@@ -25,7 +25,7 @@
 #include "unk_0200A9DC.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "heap.h"
@@ -215,7 +215,7 @@ void ov104_0223DC7C (int param0, BGL * param1, SpriteRenderer * param2, SpriteGf
 
     ov104_0223E5A8(v1, &Unk_ov104_0224191C[v1->unk_2C]);
 
-    v1->unk_34 = CoreSys_ExecuteAfterVBlank(ov104_0223DD5C, v1, 1);
+    v1->unk_34 = SysTask_ExecuteAfterVBlank(ov104_0223DD5C, v1, 1);
 }
 
 static void ov104_0223DD30 (UnkStruct_ov104_0223DD30 * param0, SysTask * param1)

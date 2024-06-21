@@ -11,7 +11,7 @@
 #include "overlay005/map_object_anim_cmd.h"
 
 #include "unk_02005474.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "map_header_data.h"

@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0200F7A0.h"
 #include "struct_defs/struct_02010658.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_0200F85C.h"
 #include "unk_02012480.h"
@@ -459,7 +459,7 @@ void sub_0200F6D8 (UnkStruct_0200F600 * param0, void * param1, UnkFuncPtr_0200F6
     v0->unk_08 = param2;
     v0->unk_0C = param3;
 
-    CoreSys_ExecuteAfterVBlank(sub_0200F728, v0, 1024);
+    SysTask_ExecuteAfterVBlank(sub_0200F728, v0, 1024);
 }
 
 void sub_0200F704 (UnkStruct_0200F600 * param0, int param1, int param2)
@@ -469,7 +469,7 @@ void sub_0200F704 (UnkStruct_0200F600 * param0, int param1, int param2)
     v0->unk_00 = param0;
     v0->unk_04 = param1;
 
-    CoreSys_ExecuteAfterVBlank(sub_0200F748, v0, 1024);
+    SysTask_ExecuteAfterVBlank(sub_0200F748, v0, 1024);
 }
 
 static void sub_0200F728 (SysTask * param0, void * param1)
@@ -532,7 +532,7 @@ static void sub_0200F7A0 (SysTask * param0, void * param1)
 static void sub_0200F7B4 (UnkStruct_0200F7A0 * param0)
 {
     if ((param0->unk_28 == 0) && ((param0->unk_24 == 0x7fff) || (param0->unk_24 == 0x0)) && (param0->unk_2C == 0)) {
-        CoreSys_ExecuteAfterVBlank(sub_0200F7A0, param0, 1024);
+        SysTask_ExecuteAfterVBlank(sub_0200F7A0, param0, 1024);
     }
 }
 

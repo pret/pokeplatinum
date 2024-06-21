@@ -11,7 +11,7 @@
 #include "overlay097/union_ov97_0222D2B0.h"
 
 #include "overlay_manager.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "communication_information.h"
 #include "unk_02033200.h"

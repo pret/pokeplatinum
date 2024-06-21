@@ -10,7 +10,7 @@
 
 #include "touch_screen.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "poketch_data.h"
 

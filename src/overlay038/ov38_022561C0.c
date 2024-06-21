@@ -9,7 +9,7 @@
 
 #include "overlay038/struct_ov38_0225632C_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "overlay038/ov38_0225632C.h"
 

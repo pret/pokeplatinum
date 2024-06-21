@@ -11,7 +11,7 @@
 
 #include "overlay033/struct_ov33_02256474_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "touch_screen.h"
 #include "savedata.h"

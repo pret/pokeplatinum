@@ -9,7 +9,7 @@
 
 #include "overlay049/struct_ov49_022563D4_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "touch_screen.h"
 #include "poketch_data.h"

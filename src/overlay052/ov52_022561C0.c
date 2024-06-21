@@ -10,7 +10,7 @@
 #include "field/field_system.h"
 #include "overlay052/struct_ov52_02256694_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "touch_screen.h"
 #include "unk_02033200.h"

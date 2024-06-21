@@ -20,7 +20,7 @@
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -229,7 +229,7 @@ void * ov95_02248590 (UnkStruct_ov95_02247628 * param0)
         v0->unk_D0 = 0;
         v0->unk_168 = 0;
 
-        CoreSys_ExecuteAfterVBlank(ov95_02248E00, v0, 0);
+        SysTask_ExecuteAfterVBlank(ov95_02248E00, v0, 0);
     }
 
     return v0;
@@ -752,7 +752,7 @@ static void ov95_02248FAC (UnkStruct_ov95_02248688 * param0, SysTask ** param1)
         v0->unk_168 = param1;
         v0->unk_16C = NULL;
 
-        *param1 = CoreSys_ExecuteOnVBlank(ov95_02249020, v0, 0);
+        *param1 = SysTask_ExecuteOnVBlank(ov95_02249020, v0, 0);
 
         if (*param1 == NULL) {
             Heap_FreeToHeap(v0);

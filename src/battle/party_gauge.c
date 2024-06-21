@@ -22,7 +22,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_020218BC.h"
 #include "battle/ov16_0223DF00.h"

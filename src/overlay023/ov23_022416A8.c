@@ -13,7 +13,7 @@
 #include "unk_02005474.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_0202854C.h"

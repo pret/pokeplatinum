@@ -27,7 +27,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -305,7 +305,7 @@ UnkStruct_ov95_02247004 * ov95_02246F30 (BOOL * param0, int param1)
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
         G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 16, 8);
 
-        v0->unk_C0 = CoreSys_ExecuteAfterVBlank(ov95_02247060, v0, 20);
+        v0->unk_C0 = SysTask_ExecuteAfterVBlank(ov95_02247060, v0, 20);
 
         if (v0->unk_C0) {
             *(v0->unk_E4) = 1;
@@ -486,7 +486,7 @@ UnkStruct_ov95_022472C4 * ov95_022472C4 (BGL * param0, fx32 param1, fx32 param2,
         v0->unk_04 = param6;
         *param6 = 0;
 
-        v0->unk_20 = CoreSys_ExecuteOnVBlank(ov95_0224732C, v0, 0);
+        v0->unk_20 = SysTask_ExecuteOnVBlank(ov95_0224732C, v0, 0);
 
         if (v0->unk_20) {
             (void)0;

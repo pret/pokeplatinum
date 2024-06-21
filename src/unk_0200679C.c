@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "unk_0200679C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 

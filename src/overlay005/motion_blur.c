@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "unk_0200679C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "sys_task_manager.h"
 #include "overlay005/motion_blur.h"
 
@@ -24,7 +24,7 @@ MotionBlur *MotionBlur_New(MotionBlurParams *params)
     motionBlur->lcdcVRamBank = GX_GetBankForLCDC();
 
     MotionBlur_Init(&motionBlur->params);
-    CoreSys_ExecuteAfterVBlank(MotionBlur_VBlankInit, motionBlur, 0);
+    SysTask_ExecuteAfterVBlank(MotionBlur_VBlankInit, motionBlur, 0);
 
     return motionBlur;
 }

@@ -13,7 +13,7 @@
 #include "touch_screen.h"
 #include "overlay044/struct_ov44_022565BC_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"

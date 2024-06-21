@@ -9,7 +9,7 @@
 #include "overlay005/struct_ov5_021EF13C_sub1.h"
 
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "overlay005/ov5_021EEF34.h"

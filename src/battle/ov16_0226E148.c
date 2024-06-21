@@ -7,7 +7,7 @@
 
 #include "unk_02005474.h"
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "battle/ov16_0223DF00.h"

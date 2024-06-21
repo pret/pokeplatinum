@@ -24,7 +24,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -161,7 +161,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
 
 SysTask * ov20_021D2170 (SysTaskFunc param0, void * param1, int param2)
 {
-    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
+    return SysTask_ExecuteOnVBlank(param0, param1, param2);
 }
 
 static void ov20_021D2178 (SysTask * param0, void * param1)

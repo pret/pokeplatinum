@@ -17,7 +17,7 @@
 #include "unk_02005474.h"
 #include "overlay_manager.h"
 #include "narc.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"

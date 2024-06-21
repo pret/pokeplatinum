@@ -12,7 +12,7 @@
 
 #include "overlay040/struct_ov40_0225645C_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "touch_screen.h"
 #include "unk_020261E4.h"

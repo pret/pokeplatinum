@@ -12,7 +12,7 @@
 
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

@@ -8,7 +8,7 @@
 
 #include "field/field_system.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
 #include "unk_0203E880.h"

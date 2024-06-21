@@ -19,7 +19,7 @@
 #include "struct_defs/struct_0205C95C.h"
 
 #include "unk_02005474.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "strbuf.h"

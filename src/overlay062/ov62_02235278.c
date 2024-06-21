@@ -13,7 +13,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "heap.h"

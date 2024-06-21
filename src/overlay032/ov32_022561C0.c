@@ -11,7 +11,7 @@
 
 #include "overlay032/struct_ov32_02256470_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "touch_screen.h"
 #include "pokemon.h"

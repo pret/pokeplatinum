@@ -23,7 +23,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_020131EC.h"
 #include "heap.h"
@@ -464,7 +464,7 @@ void * sub_0200E7FC (Window * param0, u32 param1)
     v0->unk_487_0 = 0;
     v0->unk_488_0 = 0;
 
-    CoreSys_ExecuteOnVBlank(sub_0200EB20, v0, 0);
+    SysTask_ExecuteOnVBlank(sub_0200EB20, v0, 0);
     sub_0200E924(v0, 1);
 
     return v0;
@@ -536,7 +536,7 @@ void DeleteWaitDial (void * param0)
 {
     UnkStruct_0200E924 * v0 = param0;
 
-    CoreSys_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
+    SysTask_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
     v0->unk_488_0 = 1;
 }
 
@@ -544,7 +544,7 @@ void sub_0200EBC8 (void * param0)
 {
     UnkStruct_0200E924 * v0 = param0;
 
-    CoreSys_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
+    SysTask_ExecuteAfterVBlank(sub_0200EB8C, v0, 0);
     v0->unk_488_0 = 2;
 }
 

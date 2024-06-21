@@ -18,7 +18,7 @@
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "gx_layers.h"
@@ -87,7 +87,7 @@ static void ov25_02254F68(SysTask * param0, void * param1);
 static void ov25_02255004(SysTask * param0, void * param1);
 static void ov25_02255064(SysTask * param0, void * param1);
 struct PoketchSystem * FieldSystem_GetPoketchSystem(void);
-SysTask * CoreSys_ExecuteAfterVBlank(SysTaskFunc param0, void * param1, u32 param2);
+SysTask * SysTask_ExecuteAfterVBlank(SysTaskFunc param0, void * param1, u32 param2);
 
 BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem * param3)
 {
@@ -122,7 +122,7 @@ BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_0225
         ov25_02254798((*param0)->unk_12C, 64 + 24, 2, 4);
         ov25_02254798((*param0)->unk_16C, 64 + 28, 2, 4);
 
-        v0->unk_1D0 = CoreSys_ExecuteAfterVBlank(ov25_02254654, v0, 0);
+        v0->unk_1D0 = SysTask_ExecuteAfterVBlank(ov25_02254654, v0, 0);
 
         return 1;
     }

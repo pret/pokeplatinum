@@ -10,7 +10,7 @@
 
 #include "spl.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02014000.h"
 #include "heap.h"
 #include "overlay012/ov12_0221FC20.h"

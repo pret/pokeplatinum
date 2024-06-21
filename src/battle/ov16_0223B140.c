@@ -45,7 +45,7 @@
 #include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
@@ -648,7 +648,7 @@ static void ov16_0223B790 (OverlayManager * param0)
 
     v0->unk_1C = SysTask_Start(ov16_0223CF48, v0, 60000);
     v0->unk_20 = SysTask_Start(ov16_0223CF8C, v0, 50000);
-    v0->unk_24 = CoreSys_ExecuteOnVBlank(ov16_0223D0C4, v0, 1200);
+    v0->unk_24 = SysTask_ExecuteOnVBlank(ov16_0223D0C4, v0, 1200);
     v0->unk_2434 = -51;
 
     ov16_0223DD4C(v0);

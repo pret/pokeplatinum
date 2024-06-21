@@ -9,7 +9,7 @@
 #include "struct_defs/struct_02012678.h"
 #include "struct_defs/struct_02012698.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012480.h"
 
 static void sub_020126CC(SysTask * param0, void * param1);
@@ -78,7 +78,7 @@ void sub_02012634 (UnkStruct_02010658 * param0, int param1, int param2)
     v0->unk_00 = param1;
     v0->unk_04 = param2;
 
-    CoreSys_ExecuteAfterVBlank(sub_020126CC, v0, 1);
+    SysTask_ExecuteAfterVBlank(sub_020126CC, v0, 1);
 }
 
 void sub_02012650 (UnkStruct_02010658 * param0, int param1, BOOL param2, int param3, int param4)
@@ -92,7 +92,7 @@ void sub_02012650 (UnkStruct_02010658 * param0, int param1, BOOL param2, int par
     v0->unk_08 = param3;
     v0->unk_0C = param4;
 
-    CoreSys_ExecuteAfterVBlank(sub_020126E0, v0, 1);
+    SysTask_ExecuteAfterVBlank(sub_020126E0, v0, 1);
 }
 
 void sub_02012678 (UnkStruct_02010658 * param0, int param1, BOOL param2, int param3)
@@ -105,7 +105,7 @@ void sub_02012678 (UnkStruct_02010658 * param0, int param1, BOOL param2, int par
     v0->unk_04 = param2;
     v0->unk_08 = param3;
 
-    CoreSys_ExecuteAfterVBlank(sub_020126FC, v0, 1);
+    SysTask_ExecuteAfterVBlank(sub_020126FC, v0, 1);
 }
 
 void sub_02012698 (UnkStruct_02010658 * param0, int param1, int param2, int param3, int param4, int param5, int param6)
@@ -121,7 +121,7 @@ void sub_02012698 (UnkStruct_02010658 * param0, int param1, int param2, int para
     v0->unk_08 = param5;
     v0->unk_0C = param6;
 
-    CoreSys_ExecuteAfterVBlank(sub_02012714, v0, 1);
+    SysTask_ExecuteAfterVBlank(sub_02012714, v0, 1);
 }
 
 static void sub_020126CC (SysTask * param0, void * param1)

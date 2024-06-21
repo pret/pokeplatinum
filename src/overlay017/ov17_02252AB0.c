@@ -10,7 +10,7 @@
 #include "struct_defs/sprite_template.h"
 
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "overlay017/ov17_02252AB0.h"
 

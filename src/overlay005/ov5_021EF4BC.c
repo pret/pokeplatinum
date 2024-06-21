@@ -4,7 +4,7 @@
 #include "sys_task_manager.h"
 
 #include "unk_02005474.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "buffer_manager.h"
 #include "heap.h"
 #include "overlay005/hblank_system.h"
@@ -65,8 +65,8 @@ void ov5_021EF518 (UnkStruct_ov5_021EF4F8 * param0)
 
     param0->unk_314 = HBlankSystem_StartTask(param0->unk_310, ov5_021EF6C0, param0);
     param0->unk_31C = SysTask_Start(ov5_021EF5A8, param0, 1024);
-    param0->unk_320 = CoreSys_ExecuteOnVBlank(ov5_021EF6B0, param0, 1024);
-    param0->unk_324 = CoreSys_ExecuteOnVBlank(ov5_021EF6E4, param0, 1024);
+    param0->unk_320 = SysTask_ExecuteOnVBlank(ov5_021EF6B0, param0, 1024);
+    param0->unk_324 = SysTask_ExecuteOnVBlank(ov5_021EF6E4, param0, 1024);
 
     memset(param0->unk_0C, 0, sizeof(u16) * 192);
     memset(param0->unk_18C, 0, sizeof(u16) * 192);

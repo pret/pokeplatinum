@@ -43,7 +43,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "buffer_manager.h"
@@ -1678,7 +1678,7 @@ static UnkStruct_ov114_0225D678 * ov114_0225D48C (const UnkStruct_ov114_0225C76C
     }
 
     v0->unk_650 = SysTask_Start(ov114_0225D688, v0, 0);
-    v0->unk_654 = CoreSys_ExecuteAfterVBlank(ov114_0225DA0C, v0, 0);
+    v0->unk_654 = SysTask_ExecuteAfterVBlank(ov114_0225DA0C, v0, 0);
 
     if (v0->unk_08.unk_0A) {
         ov4_021D1E74(param2);
@@ -2549,7 +2549,7 @@ static UnkStruct_ov114_0225E854 * ov114_0225E5A8 (const UnkStruct_ov114_0225C76C
         break;
     }
 
-    v0->unk_6AC = CoreSys_ExecuteAfterVBlank(ov114_0225F124, v0, 0);
+    v0->unk_6AC = SysTask_ExecuteAfterVBlank(ov114_0225F124, v0, 0);
 
     if (v0->unk_0C.unk_0A) {
         ov4_021D1E74(param3);
@@ -3786,7 +3786,7 @@ static void ov114_0225FC6C (UnkStruct_ov114_0225FAB8 * param0)
     }
 
     if (param0->unk_18C == NULL) {
-        param0->unk_18C = CoreSys_ExecuteAfterVBlank(ov114_0225FCCC, param0, 0);
+        param0->unk_18C = SysTask_ExecuteAfterVBlank(ov114_0225FCCC, param0, 0);
     }
 }
 

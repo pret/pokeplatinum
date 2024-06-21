@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0207AD40.h"
 
 #include "unk_020021B0.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "trainer_info.h"
 #include "unk_02027F84.h"

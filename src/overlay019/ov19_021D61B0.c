@@ -38,7 +38,7 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -1873,7 +1873,7 @@ static int ov19_021D77A4 (u32 param0, u32 param1)
 
 SysTask * ov19_021D77C8 (SysTaskFunc param0, void * param1, u32 param2)
 {
-    return CoreSys_ExecuteOnVBlank(param0, param1, param2);
+    return SysTask_ExecuteOnVBlank(param0, param1, param2);
 }
 
 NNSG2dImagePaletteProxy * ov19_021D77D0 (UnkStruct_ov19_021D61B0 * param0)

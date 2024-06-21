@@ -19,7 +19,7 @@
 
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "heap.h"
