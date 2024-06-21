@@ -9,7 +9,7 @@
 
 #include <nnsys.h>
 
-BOOL ov25_02254560(UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem * param3);
+BOOL ov25_02254560(UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem *poketchSys);
 UnkStruct_ov25_022555E8 * ov25_02254664(void);
 BGL * ov25_02254674(void);
 void ov25_022546B8(u32 param0, u32 param1);

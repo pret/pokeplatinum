@@ -273,7 +273,7 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         if (v2) {
             Heap_Create(3, 73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->unk_11C, v0->unk_100, v3, 0x1 | 0x2, 73);
+            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->unk_11C, v0->poketchData, v3, 0x1 | 0x2, 73);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -745,7 +745,7 @@ static void ov16_0223BCB4 (OverlayManager * param0)
     v1->unk_EC = v0->pcBoxes;
     v1->unk_E4 = v0->unk_5C;
     v1->unk_190 = v0->unk_1BC;
-    v1->unk_100 = v0->unk_98;
+    v1->poketchData = v0->poketchData;
     v1->unk_10C = v0->unk_9C;
     v1->unk_168 = v0->safariBalls;
     v1->unk_14 = v0->resultMask & (0xc0 ^ 0xff);
@@ -1100,7 +1100,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_1B4 = param1->unk_124;
     param0->unk_5C = param1->unk_E4;
     param0->unk_1BC = param1->unk_190;
-    param0->unk_98 = param1->unk_100;
+    param0->poketchData = param1->poketchData;
     param0->unk_2420 = param1->unk_13C;
     param0->unk_9C = param1->unk_10C;
     param0->safariBalls = param1->unk_168;

@@ -49,7 +49,7 @@ struct UnkStruct_ov25_02254560_t {
     SysTask * unk_1D0;
     UnkStruct_ov25_02254DD8 unk_1D4;
     BGL * unk_1F8;
-    PoketchSystem * unk_1FC;
+    PoketchSystem *poketchSys;
     u16 unk_200[256];
     u16 unk_400[16];
 };
@@ -89,7 +89,7 @@ static void ov25_02255064(SysTask * param0, void * param1);
 struct PoketchSystem * FieldSystem_GetPoketchSystem(void);
 SysTask * SysTask_ExecuteAfterVBlank(SysTaskFunc param0, void * param1, u32 param2);
 
-BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem * param3)
+BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, PoketchSystem *poketchSys)
 {
     *param0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(UnkStruct_ov25_02254560));
 
@@ -108,7 +108,7 @@ BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_0225
 
         v0->unk_00 = param1;
         v0->unk_1F8 = sub_02018340(7);
-        v0->unk_1FC = param3;
+        v0->poketchSys = poketchSys;
 
         ov25_02254684(v0);
         ov25_02254DD8(&v0->unk_1D4, v0->unk_1CC);
@@ -165,8 +165,8 @@ static void ov25_02254684 (UnkStruct_ov25_02254560 * param0)
 void ov25_022546B8 (u32 param0, u32 param1)
 {
     UnkStruct_ov25_02254560 * v0 = ov25_02254418();
-    PoketchData * v1 = PoketchSystem_GetPoketchData(v0->unk_1FC);
-    u32 v2 = PoketchData_CurrentScreenColor(v1);
+    PoketchData *poketchData = PoketchSystem_GetPoketchData(v0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
 
     GXS_LoadBGPltt(&v0->unk_200[v2 * 32], param0 * 0x20, 0x20);
     GXS_LoadOBJPltt(&v0->unk_200[v2 * 32], param1, 0x20);
@@ -175,8 +175,8 @@ void ov25_022546B8 (u32 param0, u32 param1)
 void ov25_022546F0 (u32 param0, u32 param1)
 {
     UnkStruct_ov25_02254560 * v0 = ov25_02254418();
-    PoketchData * v1 = PoketchSystem_GetPoketchData(v0->unk_1FC);
-    u32 v2 = PoketchData_CurrentScreenColor(v1);
+    PoketchData *poketchData = PoketchSystem_GetPoketchData(v0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
 
     GXS_LoadBGPltt(&v0->unk_200[v2 * 32 + 16], 0, 0x20);
     GXS_LoadOBJPltt(&v0->unk_200[v2 * 32 + 16], 0, 0x20);
@@ -185,8 +185,8 @@ void ov25_022546F0 (u32 param0, u32 param1)
 void ov25_02254728 (u16 * param0)
 {
     UnkStruct_ov25_02254560 * v0 = ov25_02254418();
-    PoketchData * v1 = PoketchSystem_GetPoketchData(v0->unk_1FC);
-    u32 v2 = PoketchData_CurrentScreenColor(v1);
+    PoketchData *poketchData = PoketchSystem_GetPoketchData(v0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
 
     MI_CpuCopy16(&v0->unk_200[v2 * 32], param0, 0x20);
 }
@@ -323,7 +323,7 @@ static void ov25_02254820 (SysTask * param0, void * param1)
 
     sub_02006E3C(12, 14, v2->unk_1F8, 4, 64, 0, 1, 7);
     sub_02006E60(12, 15, v2->unk_1F8, 4, 0, 0, 1, 7);
-    sub_02006E9C(12, 13, 4, PoketchSystem_GetBorderColor(v2->unk_1FC) * 0x20, 15 * 0x20, 0x20, 7);
+    sub_02006E9C(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, 7);
 
     sub_02019CB8(v2->unk_1F8, 5, 64 + 164, 0, 0, 32, 24, 15);
     sub_02019448(v2->unk_1F8, 5);
@@ -607,8 +607,8 @@ static void ov25_02254DE0 (UnkStruct_ov25_02254560 * param0, UnkStruct_ov25_0225
 
 static void ov25_02254E84 (UnkStruct_ov25_02254560 * param0, u32 param1)
 {
-    PoketchData * v1 = PoketchSystem_GetPoketchData(param0->unk_1FC);
-    u32 v2 = PoketchData_CurrentScreenColor(v1);
+    PoketchData *poketchData = PoketchSystem_GetPoketchData(param0->poketchSys);
+    u32 v2 = PoketchData_CurrentScreenColor(poketchData);
 
     ov25_02254728(param0->unk_400);
 

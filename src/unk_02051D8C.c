@@ -285,7 +285,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     param0->unk_14C = FieldOverworldState_GetWeather(v6);
     param0->unk_E4 = param5;
     param0->unk_190 = param6;
-    param0->unk_100 = SaveData_PoketchData(param2);
+    param0->poketchData = SaveData_PoketchData(param2);
     param0->unk_104 = sub_0202C878(param2);
     param0->unk_11C = sub_0202CD88(param2);
     param0->unk_120 = param4;
@@ -342,7 +342,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * fieldSystem, int p
     param0->unk_138 = sub_02055BA8(fieldSystem);
     param0->unk_E4 = fieldSystem->unk_98;
     param0->unk_190 = fieldSystem->unk_BC;
-    param0->unk_100 = SaveData_PoketchData(fieldSystem->saveData);
+    param0->poketchData = SaveData_PoketchData(fieldSystem->saveData);
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
     param0->unk_11C = sub_0202CD88(fieldSystem->saveData);
     param0->unk_120 = fieldSystem->unk_9C;

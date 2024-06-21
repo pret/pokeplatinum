@@ -25,7 +25,7 @@ typedef struct {
     u8 unk_02;
     UnkStruct_ov52_02256694_1 unk_04;
     UnkStruct_ov52_02256694 * unk_14;
-    PoketchSystem * unk_18;
+    PoketchSystem *poketchSys;
     u32 unk_1C;
     u8 unk_20;
     u8 unk_21;
@@ -33,8 +33,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov52_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
-static BOOL ov52_0225621C(UnkStruct_ov52_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov52_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
+static BOOL ov52_0225621C(UnkStruct_ov52_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
 static void ov52_0225624C(UnkStruct_ov52_0225621C * param0);
 static void ov52_02256260(SysTask * param0, void * param1);
 static void ov52_0225629C(void * param0);
@@ -59,12 +59,12 @@ static void NitroStaticInit (void)
     PoketchSystem_SetAppFunctions(ov52_022561D4, ov52_0225629C);
 }
 
-static BOOL ov52_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov52_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     UnkStruct_ov52_0225621C * v0 = (UnkStruct_ov52_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov52_0225621C));
 
     if (v0 != NULL) {
-        if (ov52_0225621C(v0, param1, param2, param3)) {
+        if (ov52_0225621C(v0, poketchSys, param2, param3)) {
             if (SysTask_Start(ov52_02256260, v0, 1) != NULL) {
                 *param0 = v0;
                 return 1;
@@ -77,7 +77,7 @@ static BOOL ov52_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
     return 0;
 }
 
-static BOOL ov52_0225621C (UnkStruct_ov52_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov52_0225621C (UnkStruct_ov52_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     if (ov52_02256694(&(param0->unk_14), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -85,7 +85,7 @@ static BOOL ov52_0225621C (UnkStruct_ov52_0225621C * param0, PoketchSystem * par
         param0->unk_02 = 0;
         param0->unk_20 = 0;
         param0->unk_21 = 0;
-        param0->unk_18 = param1;
+        param0->poketchSys = poketchSys;
 
         return 1;
     }
@@ -118,7 +118,7 @@ static void ov52_02256260 (SysTask * param0, void * param1)
         if (v0[v1->unk_00](v1)) {
             ov52_0225624C(v1);
             SysTask_Done(param0);
-            PoketchSystem_NotifyAppUnloaded(v1->unk_18);
+            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }
     } else {
     }
@@ -149,7 +149,7 @@ static BOOL ov52_022562B8 (UnkStruct_ov52_0225621C * param0)
         break;
     case 1:
         if (ov52_022567C8(param0->unk_14, 0)) {
-            PoketchSystem_NotifyAppLoaded(param0->unk_18);
+            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
             ov52_022562A4(param0, 1);
         }
         break;
@@ -169,7 +169,7 @@ static BOOL ov52_022562F8 (UnkStruct_ov52_0225621C * param0)
     case 0:
         if (ov52_02256554(param0)) {
             if (ov52_02256684(param0)) {
-                FieldSystem * fieldSystem = PoketchSystem_GetFieldSystem(param0->unk_18);
+                FieldSystem * fieldSystem = PoketchSystem_GetFieldSystem(param0->poketchSys);
 
                 ov52_022567A4(param0->unk_14, 3);
 
@@ -241,11 +241,11 @@ static BOOL ov52_02256364 (UnkStruct_ov52_0225621C * param0)
 
 static BOOL ov52_02256430 (UnkStruct_ov52_0225621C * param0)
 {
-    if (ov25_0225450C(param0->unk_18)) {
+    if (ov25_0225450C(param0->poketchSys)) {
         return 1;
     }
 
-    if (PoketchSystem_IsPlayerMoving(param0->unk_18)) {
+    if (PoketchSystem_IsPlayerMoving(param0->poketchSys)) {
         return 1;
     }
 
@@ -328,7 +328,7 @@ static BOOL ov52_02256508 (UnkStruct_ov52_0225621C * param0)
 
 static BOOL ov52_02256554 (UnkStruct_ov52_0225621C * param0)
 {
-    if (ov25_0225450C(param0->unk_18) == 0) {
+    if (ov25_0225450C(param0->poketchSys) == 0) {
         u32 v0, v1;
 
         if (TouchScreen_GetTapState(&v0, &v1)) {
@@ -409,7 +409,7 @@ static void ov52_022565EC (UnkStruct_ov52_0225621C * param0)
 static void ov52_0225664C (UnkStruct_ov52_0225621C * param0)
 {
     if (param0->unk_20 == 0) {
-        sub_02037BC0(PoketchSystem_GetSaveData(param0->unk_18));
+        sub_02037BC0(PoketchSystem_GetSaveData(param0->poketchSys));
         param0->unk_20 = 1;
     }
 }

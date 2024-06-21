@@ -21,16 +21,16 @@ typedef struct {
     u8 unk_02;
     UnkStruct_ov39_022563DC_1 unk_04;
     UnkStruct_ov39_022563DC * unk_24;
-    PoketchSystem * unk_28;
-    PoketchButtonManager * unk_2C;
+    PoketchSystem *poketchSys;
+    PoketchButtonManager *buttonManager;
     u32 unk_30;
     u32 unk_34;
 } UnkStruct_ov39_0225621C;
 
 static void NitroStaticInit(void);
 
-static BOOL ov39_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
-static BOOL ov39_0225621C(UnkStruct_ov39_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov39_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
+static BOOL ov39_0225621C(UnkStruct_ov39_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
 static void ov39_02256268(UnkStruct_ov39_0225621C * param0);
 static void ov39_02256284(u32 param0, u32 param1, u32 param2, void * param3);
 static void ov39_0225628C(SysTask * param0, void * param1);
@@ -45,12 +45,12 @@ static void NitroStaticInit (void)
     PoketchSystem_SetAppFunctions(ov39_022561D4, ov39_022562C8);
 }
 
-static BOOL ov39_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov39_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     UnkStruct_ov39_0225621C * v0 = (UnkStruct_ov39_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov39_0225621C));
 
     if (v0 != NULL) {
-        if (ov39_0225621C(v0, param1, param2, param3)) {
+        if (ov39_0225621C(v0, poketchSys, param2, param3)) {
             if (SysTask_Start(ov39_0225628C, v0, 1) != NULL) {
                 *param0 = v0;
                 return 1;
@@ -63,7 +63,7 @@ static BOOL ov39_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
     return 0;
 }
 
-static BOOL ov39_0225621C (UnkStruct_ov39_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov39_0225621C (UnkStruct_ov39_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     if (ov39_022563DC(&(param0->unk_24), &(param0->unk_04), param2)) {
         static const TouchScreenHitTable v0[] = {
@@ -79,8 +79,8 @@ static BOOL ov39_0225621C (UnkStruct_ov39_0225621C * param0, PoketchSystem * par
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->unk_28 = param1;
-        param0->unk_2C = PoketchButtonManager_New(v0, NELEMS(v0), ov39_02256284, param0, 8);
+        param0->poketchSys = poketchSys;
+        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov39_02256284, param0, 8);
         param0->unk_30 = 0;
 
         for (v1 = 0; v1 < 6; v1++) {
@@ -95,8 +95,8 @@ static BOOL ov39_0225621C (UnkStruct_ov39_0225621C * param0, PoketchSystem * par
 
 static void ov39_02256268 (UnkStruct_ov39_0225621C * param0)
 {
-    if (param0->unk_2C) {
-        PoketchButtonManager_Free(param0->unk_2C);
+    if (param0->buttonManager) {
+        PoketchButtonManager_Free(param0->buttonManager);
     }
 
     ov39_0225640C(param0->unk_24);
@@ -122,12 +122,12 @@ static void ov39_0225628C (SysTask * param0, void * param1)
     UnkStruct_ov39_0225621C * v1 = (UnkStruct_ov39_0225621C *)param1;
 
     if (v1->unk_00 < NELEMS(v0)) {
-        ov25_02254518(v1->unk_28, v1->unk_2C);
+        ov25_02254518(v1->poketchSys, v1->buttonManager);
 
         if (v0[v1->unk_00](v1)) {
             ov39_02256268(v1);
             SysTask_Done(param0);
-            PoketchSystem_NotifyAppUnloaded(v1->unk_28);
+            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }
     } else {
     }
@@ -158,7 +158,7 @@ static BOOL ov39_022562E4 (UnkStruct_ov39_0225621C * param0)
         break;
     case 1:
         if (ov39_0225643C(param0->unk_24, 0)) {
-            PoketchSystem_NotifyAppLoaded(param0->unk_28);
+            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
             ov39_022562D0(param0, 1);
         }
         break;
