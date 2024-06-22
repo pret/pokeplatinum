@@ -23,6 +23,8 @@
 #include "library_tv/library_tv.h"
 #include "constants/narc.h"
 
+#define LIBRARY_TV_DURATION 90 + 150
+
 typedef struct LibraryTV {
     int heapID;
     BGL * bgl;
@@ -57,15 +59,13 @@ BOOL LibraryTV_Init (OverlayManager * ovy, int * state)
 }
 
 enum {
-    STATE_INIT = 0,
-    STATE_FALLTHROUGH = 1,
-    STATE_FADE_START = 2,
-    STATE_FADE_WAIT = 3,
-    STATE_MAIN = 4,
-    STATE_EXIT = 5
+    STATE_INIT,
+    STATE_BGM_START,
+    STATE_FADE_START,
+    STATE_FADE_WAIT,
+    STATE_MAIN,
+    STATE_EXIT
 };
-
-#define LIBRARY_TV_DURATION 90 + 150
 
 BOOL LibraryTV_Main (OverlayManager * ovy, int * state)
 {
@@ -95,10 +95,11 @@ BOOL LibraryTV_Main (OverlayManager * ovy, int * state)
         GXLayers_TurnBothDispOn();
 
         ltv->waitTiming = 0;
-        *state = STATE_FALLTHROUGH;
+        *state = STATE_BGM_START;
         break;
-    case STATE_FALLTHROUGH:
+    case STATE_BGM_START:
         if (ltv->waitTiming) {
+            // unreachable
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
@@ -107,6 +108,7 @@ BOOL LibraryTV_Main (OverlayManager * ovy, int * state)
         break;
     case STATE_FADE_START:
         if (ltv->waitTiming) {
+            // unreachable
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
