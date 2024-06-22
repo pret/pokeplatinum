@@ -1010,10 +1010,9 @@ static void ov6_02241BAC (const u16 species, const u8 level, const int param2, c
             u32 speciesGenderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
 
             switch (speciesGenderRatio) {
-            // TODO use Gender ratio enum
-            case 0:
-            case 254:
-            case 255:
+            case GENDER_RATIO_MALE_ONLY:
+            case GENDER_RATIO_FEMALE_ONLY:
+            case GENDER_RATIO_NO_GENDER:
                 break;
             default:
                 if (inline_020564D0(3) > 0) {
@@ -1069,10 +1068,9 @@ static void ov6_02241CC0 (u16 species, u8 level, const int param2, const WildEnc
     u32 speciesGenderRatio = PokemonPersonalData_GetSpeciesValue(species, MON_DATA_PERSONAL_GENDER);
 
     switch (speciesGenderRatio) {
-    // TODO use Gender ratio enum
-    case 0:
-    case 254:
-    case 255:
+    case GENDER_RATIO_MALE_ONLY:
+    case GENDER_RATIO_FEMALE_ONLY:
+    case GENDER_RATIO_NO_GENDER:
         v0 = FALSE;
     }
 
