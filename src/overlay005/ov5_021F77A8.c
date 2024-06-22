@@ -95,7 +95,7 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 * param0);
 
 BOOL ScrCmd_337 (ScriptContext * param0)
 {
-    u16 v0 = sub_0203F150(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 v0 = FieldSystem_TryGetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     u16 * v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     PokedexData * v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
 

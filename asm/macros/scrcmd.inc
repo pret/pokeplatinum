@@ -1,4 +1,5 @@
     .include "macros/movement.inc"
+    .include "consts/scrcmd.inc"
     .include "consts/sdat.inc"
 
     .option alignment off
@@ -323,14 +324,14 @@
     .short 60
     .endm
 
-    .macro ScrCmd_03D arg0, arg1, arg2, arg3, arg4, arg5
+    .macro ScrollBG3 distanceX, countX, directionX, distanceY, countY, directionY
     .short 61
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .byte \arg4
-    .byte \arg5
+    .byte \distanceX
+    .byte \countX
+    .byte \directionX
+    .byte \distanceY
+    .byte \countY
+    .byte \directionY
     .endm
 
     .macro ScrCmd_03E arg0
@@ -1616,9 +1617,9 @@
     .short 299
     .endm
 
-    .macro ScrCmd_12C arg0
+    .macro CheckSaveType destVarID
     .short 300
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_12D arg0

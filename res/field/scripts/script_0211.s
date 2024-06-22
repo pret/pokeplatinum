@@ -344,16 +344,16 @@ _0494:
     End
 
 _04A8:
-    ScrCmd_12C 0x800C
-    GoToIfEq 0x800C, 0, _04FC
+    CheckSaveType 0x800C
+    GoToIfEq 0x800C, SAVE_TYPE_OVERWRITE, _04FC
     ScrCmd_2C1
     Message 13
     ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _05A0
-    ScrCmd_12C 0x800C
-    GoToIfEq 0x800C, 1, _051D
-    GoToIfEq 0x800C, 2, _0509
-    GoToIfEq 0x800C, 3, _0526
+    GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _05A0
+    CheckSaveType 0x800C
+    GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _051D
+    GoToIfEq 0x800C, SAVE_TYPE_FULL_SAVE, _0509
+    GoToIfEq 0x800C, SAVE_TYPE_QUICK_SAVE, _0526
     End
 
 _04FC:

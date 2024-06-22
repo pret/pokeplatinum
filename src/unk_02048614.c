@@ -187,7 +187,7 @@ BOOL ScrCmd_0E7 (ScriptContext * param0)
         v3 = 2;
         v4 = 0;
     } else {
-        v1 = sub_0203F278(*v5);
+        v1 = Script_GetDoubleBattleTrainerIndex(*v5);
 
         if (v1 == 0) {
             v2 = 3;
@@ -222,7 +222,7 @@ BOOL ScrCmd_0E8 (ScriptContext * param0)
         v3 = 0;
         v4 = 0;
     } else {
-        v1 = sub_0203F278(*v5);
+        v1 = Script_GetDoubleBattleTrainerIndex(*v5);
 
         if (v1 == 0) {
             v2 = 18;
@@ -316,7 +316,7 @@ BOOL ScrCmd_0F0 (ScriptContext * param0)
     FieldSystem * fieldSystem = param0->fieldSystem;
 
     v0 = sub_0203F098(fieldSystem, 10);
-    sub_0203F2BC(MapObject_FieldSystem(*v0), MapObject_Id(*v0));
+    Script_SetTrainerDefeated(MapObject_FieldSystem(*v0), MapObject_Id(*v0));
 
     return 0;
 }

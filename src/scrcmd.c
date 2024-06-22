@@ -232,6 +232,7 @@
 #include "overlay023/ov23_022521F0.h"
 
 #include "constants/overworld_weather.h"
+#include "consts/scrcmd.h"
 
 #include <nitro/code16.h>
 
@@ -322,8 +323,8 @@ static BOOL sub_02040670(ScriptContext * ctx);
 static BOOL ScrCmd_03B(ScriptContext * ctx);
 static BOOL sub_02040730(ScriptContext * ctx);
 static BOOL ScrCmd_03C(ScriptContext * ctx);
-static BOOL sub_020403EC(ScriptContext * ctx);
-static BOOL ScrCmd_03D(ScriptContext * ctx);
+static BOOL ScriptContext_ScrollBG3(ScriptContext * ctx);
+static BOOL ScrCmd_ScrollBG3(ScriptContext * ctx);
 static BOOL ScrCmd_03E(ScriptContext * ctx);
 static BOOL sub_02040824(ScriptContext * ctx);
 static BOOL ScrCmd_040(ScriptContext * ctx);
@@ -458,7 +459,7 @@ static BOOL ScrCmd_128(ScriptContext * ctx);
 static BOOL ScrCmd_129(ScriptContext * ctx);
 static BOOL ScrCmd_12A(ScriptContext * ctx);
 static BOOL ScrCmd_12B(ScriptContext * ctx);
-static BOOL ScrCmd_12C(ScriptContext * ctx);
+static BOOL ScrCmd_CheckSaveType(ScriptContext * ctx);
 static BOOL ScrCmd_12D(ScriptContext * ctx);
 static BOOL ScrCmd_131(ScriptContext * ctx);
 static BOOL ScrCmd_132(ScriptContext * ctx);
@@ -834,7 +835,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_03A,
     ScrCmd_03B,
     ScrCmd_03C,
-    ScrCmd_03D,
+    ScrCmd_ScrollBG3,
     ScrCmd_03E,
     ScrCmd_03F,
     ScrCmd_040,
@@ -1073,7 +1074,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_129,
     ScrCmd_12A,
     ScrCmd_12B,
-    ScrCmd_12C,
+    ScrCmd_CheckSaveType,
     ScrCmd_12D,
     ScrCmd_12E,
     ScrCmd_12F,
@@ -2025,7 +2026,7 @@ static BOOL ScrCmd_SetTrainerFlag (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 trainerID = ScriptContext_GetVar(ctx);
-    sub_0203F2BC(fieldSystem, trainerID);
+    Script_SetTrainerDefeated(fieldSystem, trainerID);
     return FALSE;
 }
 
@@ -2033,7 +2034,7 @@ static BOOL ScrCmd_ClearTrainerFlag (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 trainerID = ScriptContext_GetVar(ctx);
-    sub_0203F2D8(fieldSystem, trainerID);
+    Script_ClearTrainerDefeated(fieldSystem, trainerID);
     return FALSE;
 }
 
@@ -2402,67 +2403,68 @@ static BOOL ScrCmd_035 (ScriptContext * ctx)
     return 0;
 }
 
-static BOOL ScrCmd_03D (ScriptContext * ctx)
+// this command is unused
+static BOOL ScrCmd_ScrollBG3 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = sub_0203F098(fieldSystem, 49);
-    u16 * v2 = sub_0203F098(fieldSystem, 45);
-    u16 * v3 = sub_0203F098(fieldSystem, 50);
-    u16 * v4 = sub_0203F098(fieldSystem, 51);
-    u16 * v5 = sub_0203F098(fieldSystem, 46);
-    u16 * v6 = sub_0203F098(fieldSystem, 52);
+    u16 *distanceX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_X);
+    u16 *countX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_X);
+    u16 *directionX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_X);
+    u16 *distanceY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_Y);
+    u16 *countY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_Y);
+    u16 *directionY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_Y);
 
-    *v1 = ScriptContext_ReadByte(ctx);
-    *v2 = ScriptContext_ReadByte(ctx);
-    *v3 = ScriptContext_ReadByte(ctx);
-    *v4 = ScriptContext_ReadByte(ctx);
-    *v5 = ScriptContext_ReadByte(ctx);
-    *v6 = ScriptContext_ReadByte(ctx);
+    *distanceX = ScriptContext_ReadByte(ctx);
+    *countX = ScriptContext_ReadByte(ctx);
+    *directionX = ScriptContext_ReadByte(ctx);
+    *distanceY = ScriptContext_ReadByte(ctx);
+    *countY = ScriptContext_ReadByte(ctx);
+    *directionY = ScriptContext_ReadByte(ctx);
 
-    ScriptContext_Pause(ctx, sub_020403EC);
+    ScriptContext_Pause(ctx, ScriptContext_ScrollBG3);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_020403EC (ScriptContext * ctx)
+static BOOL ScriptContext_ScrollBG3 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = sub_0203F098(fieldSystem, 49);
-    u16 * v2 = sub_0203F098(fieldSystem, 50);
-    u16 * v3 = sub_0203F098(fieldSystem, 51);
-    u16 * v4 = sub_0203F098(fieldSystem, 52);
-    u16 * v5 = sub_0203F098(fieldSystem, 45);
-    u16 * v6 = sub_0203F098(fieldSystem, 46);
+    u16 *distanceX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_X);
+    u16 *directionX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_X);
+    u16 *distanceY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_Y);
+    u16 *directionY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_Y);
+    u16 *countX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_X);
+    u16 *countY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_Y);
 
-    if ((*v5 == 0) && (*v6 == 0)) {
-        return 1;
+    if (*countX == 0 && *countY == 0) {
+        return TRUE;
     }
 
-    if (*v1 != 0) {
-        if (*v2 == 0) {
-            sub_02019184(fieldSystem->unk_08, 3, 1, *v1);
+    if (*distanceX != 0) {
+        if (*directionX == 0) {
+            sub_02019184(fieldSystem->unk_08, 3, 1, *distanceX);
         } else {
-            sub_02019184(fieldSystem->unk_08, 3, 2, *v1);
+            sub_02019184(fieldSystem->unk_08, 3, 2, *distanceX);
         }
     }
 
-    if (*v3 != 0) {
-        if (*v4 == 0) {
-            sub_02019184(fieldSystem->unk_08, 3, 4, *v3);
+    if (*distanceY != 0) {
+        if (*directionY == 0) {
+            sub_02019184(fieldSystem->unk_08, 3, 4, *distanceY);
         } else {
-            sub_02019184(fieldSystem->unk_08, 3, 5, *v3);
+            sub_02019184(fieldSystem->unk_08, 3, 5, *distanceY);
         }
     }
 
-    if (*v5 != 0) {
-        (*v5)--;
+    if (*countX != 0) {
+        (*countX)--;
     }
 
-    if (*v6 != 0) {
-        (*v6)--;
+    if (*countY != 0) {
+        (*countY)--;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_036 (ScriptContext * ctx)
@@ -5164,22 +5166,22 @@ static BOOL ScrCmd_12B (ScriptContext * ctx)
     return 1;
 }
 
-static BOOL ScrCmd_12C (ScriptContext * ctx)
+static BOOL ScrCmd_CheckSaveType (ScriptContext * ctx)
 {
-    SaveData * v0 = ctx->fieldSystem->saveData;
-    u16 * v1 = ScriptContext_GetVarPointer(ctx);
+    SaveData *saveData = ctx->fieldSystem->saveData;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    if (SaveData_OverwriteCheck(v0)) {
-        *v1 = 0;
-    } else if (SaveData_DataExists(v0) == 0) {
-        *v1 = 1;
-    } else if (SaveData_FullSaveRequired(v0)) {
-        *v1 = 2;
+    if (SaveData_OverwriteCheck(saveData)) {
+        *destVar = SAVE_TYPE_OVERWRITE;
+    } else if (SaveData_DataExists(saveData) == FALSE) {
+        *destVar = SAVE_TYPE_NO_DATA_EXISTS;
+    } else if (SaveData_FullSaveRequired(saveData)) {
+        *destVar = SAVE_TYPE_FULL_SAVE;
     } else {
-        *v1 = 3;
+        *destVar = SAVE_TYPE_QUICK_SAVE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_12D (ScriptContext * ctx)
