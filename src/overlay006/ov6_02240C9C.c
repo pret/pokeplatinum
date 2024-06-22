@@ -8,6 +8,7 @@
 #include "consts/gender.h"
 #include "consts/pokemon.h"
 #include "constants/battle.h"
+#include "constants/forms.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
 #include "trainer_info.h"
@@ -115,55 +116,55 @@ static void ov6_02241A90(Pokemon * param0, u8 * param1);
 static void ov6_02241ABC(FieldSystem * fieldSystem, u8 * param1);
 
 static const u8 UnownMostForms[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x6,
-    0x7,
-    0x9,
-    0xA,
-    0xB,
-    0xC,
-    0xE,
-    0xF,
-    0x10,
-    0x12,
-    0x13,
-    0x14,
-    0x15,
-    0x16,
-    0x17,
-    0x18,
-    0x19
+    UNOWN_FORM_A,
+    UNOWN_FORM_B,
+    UNOWN_FORM_C,
+    UNOWN_FORM_G,
+    UNOWN_FORM_H,
+    UNOWN_FORM_J,
+    UNOWN_FORM_K,
+    UNOWN_FORM_L,
+    UNOWN_FORM_M,
+    UNOWN_FORM_O,
+    UNOWN_FORM_P,
+    UNOWN_FORM_Q,
+    UNOWN_FORM_S,
+    UNOWN_FORM_T,
+    UNOWN_FORM_U,
+    UNOWN_FORM_V,
+    UNOWN_FORM_W,
+    UNOWN_FORM_X,
+    UNOWN_FORM_Y,
+    UNOWN_FORM_Z
 };
 
 static const u8 UnownOnlyF[] = {
-    0x5
+    UNOWN_FORM_F
 };
 
 static const u8 UnownOnlyR[] = {
-    0x11
+    UNOWN_FORM_R
 };
 
 static const u8 UnownOnlyI[] = {
-    0x8
+    UNOWN_FORM_I
 };
 
 static const u8 UnownOnlyN[] = {
-    0xD
+    UNOWN_FORM_N
 };
 
 static const u8 UnownOnlyE[] = {
-    0x4
+    UNOWN_FORM_E
 };
 
 static const u8 UnownOnlyD[] = {
-    0x3
+    UNOWN_FORM_D
 };
 
 static const u8 UnownOnlyExcQue[] = {
-    0x1A,
-    0x1B
+    UNOWN_FORM_EXC,
+    UNOWN_FORM_QUE
 };
 
 static const UnkStruct_ov6_02248FF0 WildEncounters_UnownTables[] = {
