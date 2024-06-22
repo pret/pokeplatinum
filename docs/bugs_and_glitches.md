@@ -19,6 +19,8 @@ this is some code
   - [Acid Rain](#acid-rain)
   - [Fire Fang Always Bypasses Wonder Guard](#fire-fang-always-bypasses-wonder-guard)
   - [Post-KO Switch-In AI Scoring Overflow](#post-ko-switch-in-ai-scoring-overflow)
+- [Wild Encounters](#wild-encounters)
+  - [Fishing Encounters ignore Sticky Hold and Suction Cups](#fishing-encounters-ignore-sticky-hold-and-suction-cups)
 
 ## Battle Engine
 
@@ -134,4 +136,18 @@ as having a score equivalent to 65 rather than 320.
 ```diff
 -    u8 score, maxScore;
 +    u32 score, maxScore;
+```
+
+## Wild Encounters
+### Fishing Encounters ignore Sticky Hold and Suction Cups
+
+When calculating the encounter rate for fishing encounters the abilities Sticky 
+Hold and Suction Cups are supposed to double the encounter rate. However, due to
+a typo, the encounter rate stays unmodified.
+
+**Fix:** Edit the routine `ov6_0224226C` in [`src/overlay006/ov6_02240C9C.c`](https://github.com/pret/pokeplatinum/blob/4fb8a8f567ebbfc99a1d7f2e5f1e8edd9beb4aa7/src/overlay006/ov6_02240C9C.c#L1390)
+
+```diff
+-                v0 * 2; // BUG: Abilities do not Increase Fishing Encounter Rate (see docs/bugs_and_glitches.md)
++                v0 *= 2;
 ```
