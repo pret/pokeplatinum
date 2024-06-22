@@ -1175,10 +1175,10 @@ static BOOL ov6_02241F7C (FieldSystem * fieldSystem, Pokemon * param1, const Wil
 {
     u8 encounterSlot = 0;
 
-    u8 v0 = ov6_0224222C(param1, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, 8, 42, &encounterSlot);
+    u8 v0 = ov6_0224222C(param1, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, TYPE_STEEL, ABILITY_MAGNET_PULL, &encounterSlot);
 
     if (v0 == 0) {
-        v0 = ov6_0224222C(param1, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, 13, 9, &encounterSlot);
+        v0 = ov6_0224222C(param1, encounterFieldParams, param3, MAX_GRASS_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
 
         if (v0 == 0) {
             encounterSlot = ov6_02241904();
