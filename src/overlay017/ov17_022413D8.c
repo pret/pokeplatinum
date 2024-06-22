@@ -9,7 +9,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 
 #include "overlay017/const_ov17_022536B4.h"
@@ -36,7 +36,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -1286,7 +1286,7 @@ static void ov17_02242720 (SysTask * param0, void * param1)
             ov17_0223BB14(v0->unk_00, 0, 1);
         }
 
-        sub_0200DA3C(ov17_02242884, v0, 10);
+        SysTask_ExecuteAfterVBlank(ov17_02242884, v0, 10);
         v0->unk_0C++;
         break;
     case 1:
@@ -1309,7 +1309,7 @@ static void ov17_02242720 (SysTask * param0, void * param1)
             ov17_0224262C(v0->unk_00, GX_OAM_MODE_XLU, 1);
         }
 
-        sub_0200DA3C(ov17_02242884, v0, 10);
+        SysTask_ExecuteAfterVBlank(ov17_02242884, v0, 10);
         v0->unk_0C++;
         break;
     case 3:

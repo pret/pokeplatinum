@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/message_banks.h"
+#include "text/pl_msg.naix"
 
 #include "struct_decls/struct_02006C24_decl.h"
 
@@ -338,7 +338,7 @@ void MessageLoader_Get(const MessageLoader *loader, u32 entryID, charcode_t *dst
 
 void MessageLoader_GetSpeciesName(u32 species, u32 heapID, charcode_t *dst)
 {
-    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MESSAGE_BANK_SPECIES_NAMES, heapID);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_species_names, heapID);
 
     MessageLoader_Get(loader, species, dst);
     MessageLoader_Free(loader);

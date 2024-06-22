@@ -205,11 +205,11 @@ static u32 Button_OnPressed(PoketchButton *button, BOOL touched, BOOL tapped)
         }
     } else if (touched) {
         PoketchButton_ChangeState(button, BUTTON_STATE_IDLE);
-        return BUTTON_MANAGER_STATE_OUT;
+        return BUTTON_MANAGER_STATE_DRAGGING;
     } else {
         // We don't reset the timer because we want to check for double tap with the same timer
         if (button->doubleTapTime) {
-            PoketchButton_ChangeState_NoReset(button, BUTTON_STATE_CHECK_DOUBLETAP);
+            PoketchButton_ChangeState_NoReset(button, BUTTON_STATE_CHECK_DOUBLE_TAP);
         } else {
             PoketchButton_ChangeState(button, BUTTON_STATE_IDLE);
             return BUTTON_MANAGER_STATE_TAP;
@@ -230,8 +230,8 @@ static u32 Button_OnCheckDoubleTap(PoketchButton *button, BOOL touched, BOOL tap
     }
 
     if (button->screenTouched && tapped) {
-        PoketchButton_ChangeState(button, BUTTON_STATE_DOUBLETAP);
-        return BUTTON_MANAGER_STATE_DOUBLETAP;
+        PoketchButton_ChangeState(button, BUTTON_STATE_DOUBLE_TAP);
+        return BUTTON_MANAGER_STATE_DOUBLE_TAP;
     }
 
     return BUTTON_MANAGER_STATE_NULL;

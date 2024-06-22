@@ -3,16 +3,15 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/sys_task.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     int unk_00;
@@ -307,18 +306,12 @@ BOOL sub_02005728 (u16 param0, int param1)
     return v0;
 }
 
-BOOL Sound_PlayEffect (u16 param0)
+BOOL Sound_PlayEffect (u16 sdatID)
 {
-    int v0, v1;
+    int v0 = sub_020040F0(sub_02004B18(sdatID));
+    int v1 = NNS_SndArcPlayerStartSeq(sub_020040CC(v0), sdatID);
 
-    v0 = sub_020040F0(sub_02004B18(param0));
-    v1 = NNS_SndArcPlayerStartSeq(sub_020040CC(v0), param0);
-
-    sub_02004AA0(param0, v0);
-
-    if (v1 == 0) {
-        (void)0;
-    }
+    sub_02004AA0(sdatID, v0);
 
     return v1;
 }
@@ -771,7 +764,7 @@ void sub_02005F24 ()
     SysTask ** v1 = sub_02003D5C(35);
 
     if (*v1 != NULL) {
-        v0 = sub_0201CED0(*v1);
+        v0 = SysTask_GetParam(*v1);
         SysTask_Done(*v1);
         Heap_FreeToHeap(v0);
     }

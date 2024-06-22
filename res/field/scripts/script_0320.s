@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _0010-.-4
+    ScriptEntry _000A
+    ScriptEntry _0010
     .short 0xFD13
 
 _000A:
@@ -11,22 +11,22 @@ _000A:
     End
 
 _0010:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_284 0x800C
     GoToIfGe 0x800C, 10, _0034
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0034:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

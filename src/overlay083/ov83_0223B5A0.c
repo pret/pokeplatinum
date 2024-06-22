@@ -34,7 +34,7 @@
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
 #include "unk_0206CCB0.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay083/ov83_0223B5A0.h"
 #include "overlay083/ov83_0223C958.h"
@@ -720,7 +720,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
                     break;
                 }
 
-                if (sub_0207D69C(param0->unk_10->unk_14, 4) == 0) {
+                if (Bag_HasItemsInPocket(param0->unk_10->unk_14, 4) == 0) {
                     ov83_0223EC8C(&param1->unk_6A0, 5);
                     (*param2) = 10;
                     param1->unk_1C = (30 * 5);

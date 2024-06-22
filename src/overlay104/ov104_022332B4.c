@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
@@ -17,7 +17,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0202FF4C.h"

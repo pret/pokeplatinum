@@ -3,7 +3,6 @@
 
 #include "inlines.h"
 #include "core_sys.h"
-#include "data_02100844.h"
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"
@@ -40,7 +39,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "savedata_misc.h"
@@ -83,7 +82,7 @@
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021EE75C.h"
 #include "overlay005/ov5_021EF250.h"
-#include "overlay005/ov5_021EF3A8.h"
+#include "overlay005/hblank_system.h"
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/ov5_021EFB0C.h"
@@ -227,9 +226,9 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
         sub_0203F5C0(fieldSystem, 3);
 
-        fieldSystem->unk_04->unk_1C = ov5_021EF3A8(4);
-        ov5_021EF3DC(fieldSystem->unk_04->unk_1C);
-        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(4, fieldSystem->unk_04->unk_1C);
+        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(4);
+        HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
+        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(4, fieldSystem->unk_04->hBlankSystem);
         break;
     case 2:
         ov5_021D5BD8(fieldSystem);
@@ -323,7 +322,7 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
             }
 
             ov5_021EF4F8(fieldSystem->unk_04->unk_20);
-            ov5_021EF3BC(fieldSystem->unk_04->unk_1C);
+            HBlankSystem_Delete(fieldSystem->unk_04->hBlankSystem);
             sub_02055CBC(fieldSystem->unk_04->unk_18);
             ov5_021D57D8(&fieldSystem->unk_48);
             ov5_021D5894(&fieldSystem->unk_44);
@@ -721,9 +720,9 @@ static void ov5_021D15F4 (FieldSystem * fieldSystem)
             ov9_02249F9C(fieldSystem);
         }
 
-        sub_0202049C();
+        Camera_ComputeViewMatrixWithRoll();
     } else {
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
     }
 
     sub_0206979C(fieldSystem);
@@ -760,7 +759,7 @@ static void ov5_021D15F4 (FieldSystem * fieldSystem)
     }
 
     ov5_021D1B18(fieldSystem->unk_04->unk_04);
-    sub_020241BC(GX_SORTMODE_AUTO, Unk_02100844);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
 }
 
 void ov5_021D16F4 (FieldSystem * fieldSystem, BOOL param1)
@@ -802,7 +801,7 @@ void ov5_021D1744 (const u8 param0)
 static void ov5_021D1790 (FieldSystem * fieldSystem)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    G3_SwapBuffers(GX_SORTMODE_AUTO, Unk_02100844);
+    G3_SwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
 
     fieldSystem->unk_50 = ov5_021D38B8();
     fieldSystem->unk_54 = ov5_021D4194();

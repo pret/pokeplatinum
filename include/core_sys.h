@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CORE_SYS_H
 #define POKEPLATINUM_CORE_SYS_H
 
-#include "struct_decls/struct_0201CD88_decl.h"
+#include "sys_task_manager.h"
 #include "overlay023/funcptr_ov23_022537D4.h"
 
 typedef void (* Callback)(void *);
@@ -22,10 +22,10 @@ typedef struct CoreSys {
     void *hblankCallbackData;
     UnkFuncPtr_ov23_022537D4 unk_10;
     UnkFuncPtr_ov23_022537D4 unk_14;
-    UnkStruct_0201CD88 * unk_18;
-    UnkStruct_0201CD88 * unk_1C;
-    UnkStruct_0201CD88 * unk_20;
-    UnkStruct_0201CD88 * unk_24;
+    SysTaskManager * mainTaskMgr;
+    SysTaskManager * vBlankTaskMgr;
+    SysTaskManager * postVBlankTaskMgr;
+    SysTaskManager * unk_24;
     u32 * unk_28;
     u32 frameCounter;
     u32 unk_30;

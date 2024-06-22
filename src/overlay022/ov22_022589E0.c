@@ -3,8 +3,6 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
-
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay022/struct_ov22_02257964.h"
 #include "overlay022/struct_ov22_02257F50.h"
@@ -16,7 +14,7 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_022578F4.h"
@@ -428,8 +426,8 @@ static void ov22_02258F4C (UnkStruct_ov22_02258EE4 * param0, int param1, int par
     UnkStruct_ov22_02258FC0 * v1;
     int v2, v3;
 
-    v0 = sub_0200679C(ov22_02258FC0, sizeof(UnkStruct_ov22_02258FC0), 0, 13);
-    v1 = sub_0201CED0(v0);
+    v0 = SysTask_StartAndAllocateParam(ov22_02258FC0, sizeof(UnkStruct_ov22_02258FC0), 0, 13);
+    v1 = SysTask_GetParam(v0);
 
     v1->unk_00 = param0->unk_08;
     v1->unk_04 = param0->unk_10;
@@ -474,7 +472,7 @@ static void ov22_02258FC0 (SysTask * param0, void * param1)
             ov22_02255360();
         }
 
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
     } else {
         ov22_022595F8(v0->unk_04, v1, v2);
     }

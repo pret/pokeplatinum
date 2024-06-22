@@ -2,13 +2,13 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     GoToIfSet 0xAA4, _006A
     GoToIfSet 0xAA7, _005F
     GoToIfUnset 247, _004C
@@ -20,17 +20,17 @@ _0006:
 _004C:
     SetFlag 247
     SetFlag 0xAA7
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _005F:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _006A:
@@ -77,26 +77,26 @@ _0104:
 _010E:
     ScrCmd_0D0 1, 0x8002
     ScrCmd_0CD 2
-    ScrCmd_02C 4
+    Message 4
     ScrCmd_04E 0x483
-    ScrCmd_02C 5
+    Message 5
     ScrCmd_04F
-    ScrCmd_02C 6
+    Message 6
     GoTo _012B
 
 _012B:
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 7
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0136:
     ScrCmd_0D0 1, 0x8002
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 8
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0146:
@@ -110,136 +110,136 @@ _0146:
     GoTo _0396
 
 _019E:
-    ScrCmd_02C 20
-    ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 20
+    WaitABPress
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
-    ScrCmd_02C 21
+    Message 21
     SetFlag 0xAA4
     ScrCmd_231 0x8002, 65
     ScrCmd_232 3, 65
     GoTo _010E
 
 _01F2:
-    ScrCmd_02C 2
-    ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 2
+    WaitABPress
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
-    ScrCmd_02C 3
+    Message 3
     SetFlag 0xAA4
     ScrCmd_231 0x8002, 59
     ScrCmd_232 3, 59
     GoTo _010E
 
 _0246:
-    ScrCmd_02C 10
-    ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 10
+    WaitABPress
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
-    ScrCmd_02C 11
+    Message 11
     SetFlag 0xAA4
     ScrCmd_231 0x8002, 60
     ScrCmd_232 3, 60
     GoTo _010E
 
 _029A:
-    ScrCmd_02C 12
-    ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 12
+    WaitABPress
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
-    ScrCmd_02C 13
+    Message 13
     SetFlag 0xAA4
     ScrCmd_231 0x8002, 61
     ScrCmd_232 3, 61
     GoTo _010E
 
 _02EE:
-    ScrCmd_02C 14
-    ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 14
+    WaitABPress
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
-    ScrCmd_02C 15
+    Message 15
     SetFlag 0xAA4
     ScrCmd_231 0x8002, 62
     ScrCmd_232 3, 62
     GoTo _010E
 
 _0342:
-    ScrCmd_02C 16
-    ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 16
+    WaitABPress
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
-    ScrCmd_02C 17
+    Message 17
     SetFlag 0xAA4
     ScrCmd_231 0x8002, 63
     ScrCmd_232 3, 63
     GoTo _010E
 
 _0396:
-    ScrCmd_02C 18
-    ScrCmd_030
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 18
+    WaitABPress
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
     ScrCmd_0A1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
     ScrCmd_245 0, 0x8000
-    ScrCmd_02C 19
+    Message 19
     SetFlag 0xAA4
     ScrCmd_231 0x8002, 64
     ScrCmd_232 3, 64
     GoTo _010E
 
 _03EA:
-    ScrCmd_02C 9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 9
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

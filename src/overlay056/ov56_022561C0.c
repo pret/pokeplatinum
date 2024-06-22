@@ -7,7 +7,6 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -43,7 +42,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
@@ -237,8 +236,8 @@ UnkStruct_ov56_02256468 * ov56_02256410 (FieldSystem * fieldSystem)
     UnkStruct_ov56_02256468 * v0;
     SysTask * v1;
 
-    v1 = sub_0200679C(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
-    v0 = sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
+    v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
     v0->unk_14 = fieldSystem->unk_08;
@@ -276,7 +275,7 @@ void ov56_02256468 (UnkStruct_ov56_02256468 * param0)
         ov56_022564E4(v0);
 
         Heap_FreeToHeap(param0->unk_20);
-        sub_020067D0(param0->unk_2F8);
+        SysTask_FinishAndFreeParam(param0->unk_2F8);
     } else {
         GF_ASSERT(0);
     }
@@ -656,7 +655,7 @@ static int ov56_02256BC0 (UnkStruct_ov56_02256468 * param0)
         switch (v0) {
         case 0:
             ov56_0225717C(param0, 0);
-            sub_020227A4(&v1, &v2);
+            TouchScreen_GetHoldState(&v1, &v2);
             ov56_02256994(param0->unk_1FC[2], v2);
 
             if (param0->unk_2D8.unk_00 > 3) {

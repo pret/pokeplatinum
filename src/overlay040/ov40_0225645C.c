@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -15,7 +15,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "pokemon.h"
@@ -66,7 +66,7 @@ BOOL ov40_0225645C (UnkStruct_ov40_0225645C ** param0, const UnkStruct_ov40_0225
         v0->unk_04 = ov25_02254674();
         v0->unk_20 = ov25_02254664();
         v0->unk_88 = 0;
-        v0->unk_8C = sub_0200DA3C(ov40_022567E0, v0, 0);
+        v0->unk_8C = SysTask_ExecuteAfterVBlank(ov40_022567E0, v0, 0);
 
         ov40_022564D4(v0, param1);
 
@@ -319,7 +319,7 @@ static void ov40_02256704 (SysTask * param0, void * param1)
         v0->unk_80 = 0;
         v0->unk_7C = 10;
         ov40_022567D8(v0);
-        ov25_02254424(1656);
+        PoketchSystem_PlaySoundEffect(1656);
         ov25_0225524C(param1);
         break;
     case 1:

@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -18,7 +18,7 @@
 
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "pokemon_icon.h"
@@ -478,6 +478,6 @@ static void ov32_02256C54 (SysTask * param0, void * param1)
 
     sub_02019448(v0->unk_04, 6);
 
-    ov25_02254424(1641);
+    PoketchSystem_PlaySoundEffect(1641);
     ov32_02256574(param1);
 }

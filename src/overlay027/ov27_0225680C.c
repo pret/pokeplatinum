@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -15,10 +14,10 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -61,7 +60,7 @@ static BOOL ov27_02256E90(UnkStruct_ov27_02256E90 * param0, u32 param1);
 static void ov27_02256EC4(BGL * param0, u32 param1);
 static void ov27_02256F24(SysTask * param0, void * param1);
 static void ov27_02256F7C(UnkStruct_ov27_0225680C * param0);
-struct PoketchSystem * sub_0203D158(void);
+struct PoketchSystem * FieldSystem_GetPoketchSystem(void);
 
 BOOL ov27_0225680C (UnkStruct_ov27_0225680C ** param0, const UnkStruct_ov27_0225680C_1 * param1, BGL * param2)
 {
@@ -333,7 +332,7 @@ static void ov27_02256B80 (SysTask * param0, void * param1)
 
     const UnkStruct_ov27_0225680C_1 * v1 = ov25_02255240(param1);
 
-    sub_0201CECC(param0, v0[v1->unk_18]);
+    SysTask_SetCallback(param0, v0[v1->unk_18]);
     v0[v1->unk_18](param0, param1);
 }
 
@@ -358,7 +357,7 @@ static void ov27_02256BE8 (SysTask * param0, void * param1)
 
     sub_02019448(v0->unk_04, 6);
 
-    ov25_02254424(1641);
+    PoketchSystem_PlaySoundEffect(1641);
     ov27_02256A04(param1);
 }
 
@@ -409,7 +408,7 @@ static void ov27_02256C80 (SysTask * param0, void * param1)
         ov25_0225524C(param1);
     case 1:
         if (ov27_02256E90(v2, 6)) {
-            ov25_02254424(1641);
+            PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
             sub_02019448(v1->unk_04, 6);
         }
@@ -442,7 +441,7 @@ static void ov27_02256D00 (SysTask * param0, void * param1)
         ov25_0225524C(param1);
     case 1:
         if (ov27_02256E90(v2, 3)) {
-            ov25_02254424(1641);
+            PoketchSystem_PlaySoundEffect(1641);
             ov27_02256EC4(v1->unk_04, v2->unk_03);
             sub_02019448(v1->unk_04, 6);
         }
@@ -472,7 +471,7 @@ static void ov27_02256D80 (SysTask * param0, void * param1)
         ov25_022558C4(v1->unk_60[8], 15);
         ov27_02256EC4(v1->unk_04, 5);
         sub_02019448(v1->unk_04, 6);
-        ov25_02254424(1638);
+        PoketchSystem_PlaySoundEffect(1638);
         ov25_0225524C(param1);
     case 1:
         if (++(v2->unk_00) > 2) {

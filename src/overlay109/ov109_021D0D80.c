@@ -8,8 +8,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -32,7 +31,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
@@ -44,7 +43,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -55,7 +54,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "trainer_info.h"
@@ -70,7 +69,7 @@
 #include "unk_02073838.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_02092494.h"
 #include "unk_0209BDF8.h"
 #include "overlay109/ov109_021D0D80.h"
@@ -165,8 +164,8 @@ typedef struct {
     fx32 unk_00;
     u32 unk_04;
     VecFx32 unk_08;
-    UnkStruct_ov115_0226527C unk_14;
-    UnkStruct_020203AC * unk_1C;
+    CameraAngle cameraAngle;
+    Camera * camera;
 } UnkStruct_ov109_021D28C4;
 
 typedef struct {
@@ -1305,7 +1304,7 @@ static int ov109_021D1918 (UnkStruct_ov109_021D0F70 * param0)
 
         ov109_021D2714(param0, 3, v0);
 
-        v1 = sub_0207D570(sub_0207D990(param0->unk_CC->unk_14.unk_08), v0, 1, 95);
+        v1 = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, 95);
         sub_02006150(1158);
 
         if (v1 == 1) {
@@ -1592,7 +1591,7 @@ static void ov109_021D1C68 (UnkStruct_ov109_021D0F70 * param0)
 static void ov109_021D1C90 (UnkStruct_ov109_021D0F70 * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
     NNS_G3dGlbLightColor(0, GX_RGB(31, 31, 31));
@@ -1602,7 +1601,7 @@ static void ov109_021D1C90 (UnkStruct_ov109_021D0F70 * param0)
     ov109_021D2AC8(param0);
     ov109_021D2CCC(param0);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     sub_0200C7EC(param0->unk_D98);
 }
 
@@ -2176,7 +2175,7 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
 {
     UnkStruct_ov109_021D28C4 * v0 = &param0->unk_D0C;
 
-    v0->unk_1C = sub_020203AC(95);
+    v0->camera = Camera_Alloc(95);
 
     {
         VecFx32 v1;
@@ -2185,28 +2184,28 @@ static void ov109_021D28C4 (UnkStruct_ov109_021D0F70 * param0)
         v0->unk_08.y = (FX32_ONE * 0);
         v0->unk_08.z = (FX32_ONE * 0);
 
-        v0->unk_14.unk_00 = ((((-32 * 0xffff) / 360)));
-        v0->unk_14.unk_02 = ((((0 * 0xffff) / 360)));
-        v0->unk_14.unk_04 = ((((0 * 0xffff) / 360)));
+        v0->cameraAngle.x = ((((-32 * 0xffff) / 360)));
+        v0->cameraAngle.y = ((((0 * 0xffff) / 360)));
+        v0->cameraAngle.z = ((((0 * 0xffff) / 360)));
 
         v0->unk_00 = (0x143 << FX32_SHIFT);
         v0->unk_04 = ((((6 * 0xffff) / 360)));
 
-        sub_020206D0(&v0->unk_08, v0->unk_00, &v0->unk_14, v0->unk_04, 0, 1, v0->unk_1C);
+        Camera_InitWithTarget(&v0->unk_08, v0->unk_00, &v0->cameraAngle, v0->unk_04, 0, 1, v0->camera);
 
         v1.x = 0;
         v1.y = FX32_ONE;
         v1.z = 0;
 
-        sub_02020680(&v1, v0->unk_1C);
-        sub_020203D4(v0->unk_1C);
+        Camera_SetUp(&v1, v0->camera);
+        Camera_SetAsActive(v0->camera);
     }
 }
 
 static void ov109_021D293C (UnkStruct_ov109_021D0F70 * param0)
 {
     UnkStruct_ov109_021D28C4 * v0 = &param0->unk_D0C;
-    sub_020203B8(v0->unk_1C);
+    Camera_Delete(v0->camera);
 }
 
 static void ov109_021D294C (UnkStruct_ov109_021D0F70 * param0)

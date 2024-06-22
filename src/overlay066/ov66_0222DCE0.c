@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ppwlobby/ppw_lobby.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "savedata.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_02230C90_decl.h"
@@ -11,7 +11,7 @@
 
 #include "game_overlay.h"
 #include "overlay_manager.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02099550.h"
@@ -56,7 +56,7 @@ int ov66_0222DCE0 (OverlayManager * param0, int * param1)
     SetMainCallback(NULL, NULL);
     DisableHBlank();
 
-    v0->unk_0C = sub_0200DA3C(ov66_0222DDDC, v0, 0);
+    v0->unk_0C = SysTask_ExecuteAfterVBlank(ov66_0222DDDC, v0, 0);
 
     ov66_02230CAC(v0->unk_08);
 

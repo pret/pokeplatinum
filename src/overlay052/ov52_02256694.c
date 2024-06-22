@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
@@ -250,7 +250,7 @@ static void ov52_022568D8 (SysTask * param0, void * param1)
     ov25_02255914(v0->unk_34[3], 1);
 
     ov52_02256A7C(v0);
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
     ov52_022567E0(param1);
 }
 
@@ -265,7 +265,7 @@ static void ov52_0225691C (SysTask * param0, void * param1)
     ov25_022558C4(v0->unk_34[1], 1);
 
     ov52_02256B10(v0);
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
     ov52_022567E0(param1);
 }
 
@@ -279,7 +279,7 @@ static void ov52_02256968 (SysTask * param0, void * param1)
     ov25_02255914(v0->unk_34[3], 1);
     ov25_022558C4(v0->unk_34[2], 2);
     ov52_02256B64(v0);
-    ov25_02254424(1646);
+    PoketchSystem_PlaySoundEffect(1646);
     ov52_022567E0(param1);
 }
 
@@ -293,7 +293,7 @@ static void ov52_022569B4 (SysTask * param0, void * param1)
     ov25_02255914(v0->unk_34[3], 1);
     ov25_022558C4(v0->unk_34[2], 2);
     ov52_02256BDC(v0);
-    ov25_02254424(1646);
+    PoketchSystem_PlaySoundEffect(1646);
     ov52_022567E0(param1);
 }
 
@@ -309,7 +309,7 @@ static void ov52_02256A00 (SysTask * param0, void * param1)
     ov25_022558C4(v0->unk_34[3], 0);
 
     ov52_02256C64(v0, v1);
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
     ov52_022567E0(param1);
 }
 

@@ -3,18 +3,17 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_020203AC_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay095/ov95_022476F0.h"
 
 struct UnkStruct_ov95_02247958_t {
@@ -31,9 +30,9 @@ struct UnkStruct_ov95_02247958_t {
 };
 
 struct UnkStruct_ov95_0224773C_t {
-    UnkStruct_020203AC * unk_00;
+    Camera * camera;
     VecFx32 unk_04;
-    UnkStruct_ov115_0226527C unk_10;
+    CameraAngle cameraAngle;
     UnkStruct_ov95_02247958 * unk_18;
     u32 unk_1C;
 };
@@ -84,7 +83,7 @@ void ov95_02247770 (UnkStruct_ov95_0224773C * param0)
     {
         int v0;
 
-        sub_020203EC();
+        Camera_ComputeViewMatrix();
 
         for (v0 = 0; v0 < param0->unk_1C; v0++) {
             if (param0->unk_18[v0].unk_64) {
@@ -219,7 +218,7 @@ BOOL ov95_022479DC (UnkStruct_ov95_02247958 * param0)
 
     NNS_G3dGePushMtx();
 
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
     v1 = sub_0201CED8(param0->unk_5C, &param0->unk_68, &v0, &param0->unk_74);
 
     NNS_G3dGePopMtx(1);
@@ -229,55 +228,55 @@ BOOL ov95_022479DC (UnkStruct_ov95_02247958 * param0)
 
 void ov95_02247A90 (UnkStruct_ov95_0224773C * param0, VecFx32 * param1)
 {
-    *param1 = sub_02020ABC(param0->unk_00);
+    *param1 = Camera_GetPosition(param0->camera);
 }
 
-void ov95_02247AB0 (UnkStruct_ov95_0224773C * param0, const UnkStruct_ov115_0226527C * param1)
+void ov95_02247AB0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    sub_020209D4(param1, param0->unk_00);
+    Camera_SetAngleAroundTarget(cameraAngle, param0->camera);
 }
 
-void ov95_02247AC0 (UnkStruct_ov95_0224773C * param0, const UnkStruct_ov115_0226527C * param1)
+void ov95_02247AC0 (UnkStruct_ov95_0224773C * param0, const CameraAngle * cameraAngle)
 {
-    sub_020209F8(param1, param0->unk_00);
+    Camera_AdjustAngleAroundSelf(cameraAngle, param0->camera);
 }
 
 void ov95_02247AD0 (UnkStruct_ov95_0224773C * param0, u8 param1)
 {
-    sub_02020854(param1, param0->unk_00);
+    Camera_ComputeProjectionMatrix(param1, param0->camera);
 }
 
 void ov95_02247AE0 (UnkStruct_ov95_0224773C * param0, u16 param1)
 {
-    sub_02020910(param1, param0->unk_00);
+    Camera_SetFOV(param1, param0->camera);
 }
 
 static void ov95_02247AF0 (UnkStruct_ov95_0224773C * param0, fx32 param1, fx32 param2, fx32 param3)
 {
-    UnkStruct_ov115_0226527C v0;
+    CameraAngle v0;
     VecFx32 v1;
 
-    param0->unk_00 = sub_020203AC(58);
+    param0->camera = Camera_Alloc(58);
     param0->unk_04.x = param1;
     param0->unk_04.y = param2;
     param0->unk_04.z = param3;
-    param0->unk_10.unk_00 = ((0 * 0xffff) / 360);
-    param0->unk_10.unk_02 = ((0 * 0xffff) / 360);
-    param0->unk_10.unk_04 = ((0 * 0xffff) / 360);
+    param0->cameraAngle.x = ((0 * 0xffff) / 360);
+    param0->cameraAngle.y = ((0 * 0xffff) / 360);
+    param0->cameraAngle.z = ((0 * 0xffff) / 360);
 
-    sub_020206D0(&(param0->unk_04), 1228800, &(param0->unk_10), 4004, 0, 1, param0->unk_00);
+    Camera_InitWithTarget(&(param0->unk_04), 1228800, &(param0->cameraAngle), 4004, 0, 1, param0->camera);
 
     v1.x = 0;
     v1.y = FX32_ONE;
     v1.z = 0;
 
-    sub_02020680(&v1, param0->unk_00);
-    sub_020203D4(param0->unk_00);
-    sub_020206BC((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->unk_00);
+    Camera_SetUp(&v1, param0->camera);
+    Camera_SetAsActive(param0->camera);
+    Camera_SetClipping((0 << FX32_SHIFT), (1000 << FX32_SHIFT), param0->camera);
 }
 
 static void ov95_02247B5C (UnkStruct_ov95_0224773C * param0)
 {
-    sub_020203E0();
-    sub_020203B8(param0->unk_00);
+    Camera_ClearActive();
+    Camera_Delete(param0->camera);
 }

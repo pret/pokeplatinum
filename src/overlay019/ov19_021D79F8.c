@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -18,7 +18,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -520,7 +520,7 @@ static void ov19_021D8274 (SysTask * param0, void * param1)
 
 static void ov19_021D8318 (UnkStruct_ov19_021D8318 * param0)
 {
-    param0->unk_A3 = (sub_0200DA3C(ov19_021D8274, param0, 0) != NULL);
+    param0->unk_A3 = (SysTask_ExecuteAfterVBlank(ov19_021D8274, param0, 0) != NULL);
 
     if (param0->unk_A3) {
         Unk_ov19_021E077C = 0;

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
@@ -18,7 +18,7 @@
 
 #include "unk_02006E3C.h"
 #include "message.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -206,7 +206,7 @@ static void ov48_0225672C (SysTask * param0, void * param1)
 
         G2S_SetBGMosaicSize(v0->unk_154, v0->unk_154);
         G2S_SetOBJMosaicSize(v0->unk_154, v0->unk_154);
-        ov25_02254424(1656);
+        PoketchSystem_PlaySoundEffect(1656);
         ov25_0225524C(param1);
         break;
     case 1:

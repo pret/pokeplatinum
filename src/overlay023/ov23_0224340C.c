@@ -7,8 +7,8 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "sys_task_manager.h"
+#include "camera.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -32,7 +32,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
@@ -660,7 +660,7 @@ void ov23_022434BC (void * param0, FieldSystem * fieldSystem)
         Unk_ov23_02257764->unk_B68[v0] = 0xff;
     }
 
-    fieldSystem->unk_8C = ov5_021EB0C8(fieldSystem->unk_24);
+    fieldSystem->unk_8C = ov5_021EB0C8(fieldSystem->camera);
 
     ov23_02243754();
     ov23_0224340C();
@@ -697,7 +697,7 @@ void ov23_022435A8 (void)
 {
     int v0;
 
-    Unk_ov23_02257764->fieldSystem->unk_8C = ov5_021EB0C8(Unk_ov23_02257764->fieldSystem->unk_24);
+    Unk_ov23_02257764->fieldSystem->unk_8C = ov5_021EB0C8(Unk_ov23_02257764->fieldSystem->camera);
     Unk_ov23_02257764->unk_BAA = 0;
 
     ov23_0224340C();
@@ -3357,7 +3357,7 @@ static void ov23_02246548 (int param0)
 static void ov23_02246574 (int param0, UnkStruct_ov23_02245ED4 * param1, int param2)
 {
     void * v0;
-    UnkStruct_020203AC * v1;
+    Camera * camera;
     void * v2;
     VecFx32 v3;
     fx32 v4, v5;
@@ -3701,7 +3701,7 @@ static void ov23_02246D44 (UnkStruct_ov23_022468DC * param0)
 static void ov23_02246E90 (int param0, UnkStruct_ov23_022468DC * param1)
 {
     void * v0;
-    UnkStruct_020203AC * v1;
+    Camera * camera;
     void * v2;
     VecFx32 v3;
     fx32 v4;

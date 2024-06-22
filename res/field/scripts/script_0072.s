@@ -2,52 +2,52 @@
 
     .data
 
-    .long _0012-.-4
-    .long _0028-.-4
-    .long _003E-.-4
-    .long _005B-.-4
+    ScriptEntry _0012
+    ScriptEntry _0028
+    ScriptEntry _003E
+    ScriptEntry _005B
     .short 0xFD13
 
 _0012:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_147 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0028:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_148 3
-    ScrCmd_061
+    ReleaseAll
     End
 
 _003E:
     ScrCmd_0D1 0, 26
     ScrCmd_0D1 1, 0x14A
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _005B:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

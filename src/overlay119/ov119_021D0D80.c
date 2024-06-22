@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
 
@@ -47,7 +46,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -273,7 +272,7 @@ void ov119_021D1004 (void)
     }
 
     sub_020146C0();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 void ov119_021D1028 (void)
@@ -443,14 +442,14 @@ static UnkStruct_02014014 * ov119_021D13EC (int param0)
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    UnkStruct_020203AC * v2;
+    Camera * camera;
 
     v1 = Heap_AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, param0);
-    v2 = sub_02014784(v0);
+    camera = sub_02014784(v0);
 
-    if (v2 != NULL) {
-        sub_020206BC((FX32_ONE), (FX32_ONE * 900), v2);
+    if (camera != NULL) {
+        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     }
 
     return v0;

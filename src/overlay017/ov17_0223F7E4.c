@@ -11,13 +11,12 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "overlay017/struct_ov17_02252B48_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "functypes/sys_task_func.h"
+#include "sys_task_manager.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -35,7 +34,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -685,10 +684,10 @@ void ov17_0223F9C4 (UnkStruct_ov17_0223F7E4 * param0, int param1, int param2, vo
 
     if ((v0->unk_00 != 0xffff) && ((param2 == 1) || (v0->unk_00 != v1->unk_00))) {
         param0->unk_2C0 = sub_02006F50(45, v0->unk_00, 1, &param0->unk_2C4, 21);
-        sub_0200DA3C(ov17_022411E4, param0, 10);
+        SysTask_ExecuteAfterVBlank(ov17_022411E4, param0, 10);
     }
 
-    sub_0200DA3C(ov17_02241220, param0, 10);
+    SysTask_ExecuteAfterVBlank(ov17_02241220, param0, 10);
 }
 
 int ov17_0223FAF8 (UnkStruct_ov17_0223F7E4 * param0)

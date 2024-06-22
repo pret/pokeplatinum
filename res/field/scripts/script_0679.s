@@ -5,7 +5,7 @@
     .byte 4
     .short 0x23F3, 0
     .byte 1
-    .long _000B-.-4
+    ScriptEntry _000B
     .byte 0
 
 _000B:

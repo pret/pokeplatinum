@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -21,10 +20,10 @@
 #include "unk_0200762C.h"
 #include "message.h"
 #include "unk_0200C440.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
@@ -266,7 +265,7 @@ static void ov19_021DAC4C (UnkStruct_ov19_021DA9E0 * param0)
 static void ov19_021DAC90 (UnkStruct_ov19_021DA9E0 * param0)
 {
     if (param0->unk_4C) {
-        Heap_FreeToHeap(sub_0201CED0(param0->unk_4C));
+        Heap_FreeToHeap(SysTask_GetParam(param0->unk_4C));
         SysTask_Done(param0->unk_4C);
         param0->unk_4C = NULL;
     }
@@ -274,7 +273,7 @@ static void ov19_021DAC90 (UnkStruct_ov19_021DA9E0 * param0)
 
 static void ov19_021DACB0 (UnkStruct_ov19_021DA9E0 * param0)
 {
-    UnkStruct_ov19_021DAE2C * v0 = sub_0201CED0(param0->unk_4C);
+    UnkStruct_ov19_021DAE2C * v0 = SysTask_GetParam(param0->unk_4C);
 
     if (v0) {
         const UnkStruct_ov19_021D5BAC * v1 = ov19_021D5E70(param0->unk_10);
@@ -286,7 +285,7 @@ static void ov19_021DACB0 (UnkStruct_ov19_021DA9E0 * param0)
 
 static void ov19_021DACDC (UnkStruct_ov19_021DA9E0 * param0)
 {
-    UnkStruct_ov19_021DAE2C * v0 = sub_0201CED0(param0->unk_4C);
+    UnkStruct_ov19_021DAE2C * v0 = SysTask_GetParam(param0->unk_4C);
 
     if (v0) {
         v0->unk_00 = 4;

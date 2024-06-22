@@ -3,7 +3,7 @@
 
 #include "constants/battle.h"
 #include "constants/pokemon.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
 
@@ -15,7 +15,7 @@
 #include "enc_effects.h"
 #include "unk_02054884.h"
 #include "pokemon.h"
-#include "overlay005/ov5_021DDBE8.h"
+#include "overlay005/encounter_effect.h"
 
 // This needs to be moved to a constants file somewhere
 #define ZONE_ID_PAL_PARK    251

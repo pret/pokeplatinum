@@ -9,14 +9,14 @@
 #include "consts/gender.h"
 #include "consts/moves.h"
 
-#include "gmm/pl_msg_0213.h"
-#include "gmm/pl_msg_0361.h"
-#include "gmm/pl_msg_0434.h"
-#include "gmm/pl_msg_0435.h"
+#include "gmm/message_bank_common_strings.h"
+#include "gmm/message_bank_common_strings_2.h"
+#include "gmm/message_bank_mystery_gift_event_names.h"
+#include "gmm/message_bank_special_met_location_names.h"
 
-#include "constants/message_banks.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
+#include "text/pl_msg.naix"
 
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -161,7 +161,7 @@ void StringTemplate_SetRivalName(StringTemplate *template, u32 idx, const SaveDa
 void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const SaveData *save)
 {
     const TrainerInfo *playerInfo = SaveData_GetTrainerInfo(save);
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_COUNTERPART_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_counterpart_names, template->heapID);
 
     if (TrainerInfo_Gender(playerInfo) == GENDER_MALE) {
         MessageLoader_GetStrbuf(loader, GENDER_FEMALE, template->templateBuf);
@@ -175,7 +175,7 @@ void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const 
 
 void StringTemplate_SetSpeciesName(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_SPECIES_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_species_names, template->heapID);
     u32 species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
     MessageLoader_GetStrbuf(loader, species, template->templateBuf);
@@ -190,7 +190,7 @@ void StringTemplate_SetSpeciesNameWithArticle(StringTemplate *template, u32 idx,
 
 void StringTemplate_SetSpeciesNameWithArticleByID(StringTemplate *template, u32 idx, u32 species)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_SPECIES_NAMES_WITH_ARTICLES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_species_names_with_articles, template->heapID);
 
     MessageLoader_GetStrbuf(loader, species, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
@@ -228,22 +228,22 @@ static inline void SetArgFromArchive(StringTemplate *template, u32 idx, u32 argV
 
 void StringTemplate_SetMoveName(StringTemplate *template, u32 idx, enum Move move)
 {
-    SetArgFromArchive(template, idx, move, MESSAGE_BANK_MOVE_NAMES);
+    SetArgFromArchive(template, idx, move, message_bank_move_names);
 }
 
 void StringTemplate_SetRibbonName(StringTemplate *template, u32 idx, u32 ribbon)
 {
-    SetArgFromArchive(template, idx, ribbon, MESSAGE_BANK_RIBBON_NAMES);
+    SetArgFromArchive(template, idx, ribbon, message_bank_ribbon_names);
 }
 
 void StringTemplate_SetAbilityName(StringTemplate *template, u32 idx, enum Ability ability)
 {
-    SetArgFromArchive(template, idx, ability, MESSAGE_BANK_ABILITY_NAMES);
+    SetArgFromArchive(template, idx, ability, message_bank_ability_names);
 }
 
 void StringTemplate_SetNatureName(StringTemplate *template, u32 idx, u32 nature)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_NATURE_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_nature_names, template->heapID);
 
     MessageLoader_GetStrbuf(loader, nature, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
@@ -252,52 +252,52 @@ void StringTemplate_SetNatureName(StringTemplate *template, u32 idx, u32 nature)
 
 void StringTemplate_SetItemName(StringTemplate *template, u32 idx, u32 item)
 {
-    SetArgFromArchive(template, idx, item, MESSAGE_BANK_ITEM_NAMES);
+    SetArgFromArchive(template, idx, item, message_bank_item_names);
 }
 
 void StringTemplate_SetItemNameWithArticle(StringTemplate *template, u32 idx, u32 item)
 {
-    SetArgFromArchive(template, idx, item, MESSAGE_BANK_ITEM_NAMES_WITH_ARTICLES);
+    SetArgFromArchive(template, idx, item, message_bank_item_names_with_articles);
 }
 
 void StringTemplate_SetItemNamePlural(StringTemplate *template, u32 idx, u32 item)
 {
-    SetArgFromArchive(template, idx, item, MESSAGE_BANK_ITEM_NAMES_PLURAL);
+    SetArgFromArchive(template, idx, item, message_bank_item_names_plural);
 }
 
 void StringTemplate_SetBagPocketName(StringTemplate *template, u32 idx, u32 pocket)
 {
-    SetArgFromArchive(template, idx, pocket, MESSAGE_BANK_BAG_POCKET_NAMES_WITH_ICONS);
+    SetArgFromArchive(template, idx, pocket, message_bank_bag_pocket_names_with_icons);
 }
 
 void StringTemplate_SetPokemonTypeName(StringTemplate *template, u32 idx, u32 type)
 {
-    SetArgFromArchive(template, idx, type, MESSAGE_BANK_POKEMON_TYPE_NAMES);
+    SetArgFromArchive(template, idx, type, message_bank_pokemon_type_names);
 }
 
 void StringTemplate_SetPokemonStatName(StringTemplate *template, u32 idx, u32 stat)
 {
-    SetArgFromArchive(template, idx, stat, MESSAGE_BANK_POKEMON_STAT_NAMES);
+    SetArgFromArchive(template, idx, stat, message_bank_pokemon_stat_names);
 }
 
 void StringTemplate_SetStatusConditionName(StringTemplate *template, u32 idx, u32 status)
 {
-    SetArgFromArchive(template, idx, status, MESSAGE_BANK_STATUS_CONDITION_NAMES);
+    SetArgFromArchive(template, idx, status, message_bank_status_condition_names);
 }
 
 void StringTemplate_SetFlavorName(StringTemplate *template, u32 idx, u32 flavor)
 {
-    SetArgFromArchive(template, idx, flavor, MESSAGE_BANK_FLAVOR_NAMES);
+    SetArgFromArchive(template, idx, flavor, message_bank_flavor_names);
 }
 
 void StringTemplate_SetLocationName(StringTemplate *template, u32 idx, u32 location)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_LOCATION_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_location_names, template->heapID);
 
     if (loader) {
         if (location == 0 || location >= MessageLoader_MessageCount(loader)) {
             MessageLoader_Free(loader);
-            loader = InitMessageLoader(MESSAGE_BANK_MYSTERY_GIFT_EVENT_NAMES, template->heapID);
+            loader = InitMessageLoader(message_bank_mystery_gift_event_names, template->heapID);
             location = pl_msg_00000434_00002;
         }
 
@@ -309,22 +309,22 @@ void StringTemplate_SetLocationName(StringTemplate *template, u32 idx, u32 locat
 
 void StringTemplate_SetPoketchAppName(StringTemplate *template, u32 idx, u32 app)
 {
-    SetArgFromArchive(template, idx, app, MESSAGE_BANK_POKETCH_APP_NAMES);
+    SetArgFromArchive(template, idx, app, message_bank_poketch_app_names);
 }
 
 void StringTemplate_SetTrainerClassName(StringTemplate *template, u32 idx, u32 trainerClass)
 {
-    SetArgFromArchive(template, idx, trainerClass, MESSAGE_BANK_TRAINER_CLASS_NAMES);
+    SetArgFromArchive(template, idx, trainerClass, message_bank_trainer_class_names);
 }
 
 void StringTemplate_SetTrainerClassNameWithArticle(StringTemplate *template, u32 idx, u32 trainerClass)
 {
-    SetArgFromArchive(template, idx, trainerClass, MESSAGE_BANK_TRAINER_CLASS_NAMES_WITH_ARTICLES);
+    SetArgFromArchive(template, idx, trainerClass, message_bank_trainer_class_names_with_articles);
 }
 
 void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx, TrainerData *trainerData)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_TRAINER_CLASS_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_trainer_class_names, template->heapID);
 
     if (loader) {
         MessageLoader_GetStrbuf(loader, trainerData->class, template->templateBuf);
@@ -335,12 +335,12 @@ void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx,
 
 void StringTemplate_SetTrainerName(StringTemplate *template, u32 idx, u32 trainerID)
 {
-    SetArgFromArchive(template, idx, trainerID, MESSAGE_BANK_NPC_TRAINER_NAMES);
+    SetArgFromArchive(template, idx, trainerID, message_bank_npc_trainer_names);
 }
 
 void StringTemplate_SetFrontierTrainerName(StringTemplate *template, u32 idx, u32 trainerID)
 {
-    SetArgFromArchive(template, idx, trainerID, MESSAGE_BANK_FRONTIER_TRAINER_NAMES);
+    SetArgFromArchive(template, idx, trainerID, message_bank_frontier_trainer_names);
 }
 
 void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, TrainerData *trainerData)
@@ -351,62 +351,62 @@ void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, Trai
 
 void StringTemplate_SetUndergroundItemName(StringTemplate *template, u32 idx, u32 item)
 {
-    SetArgFromArchive(template, idx, item, MESSAGE_BANK_UNDERGROUND_ITEM_NAMES);
+    SetArgFromArchive(template, idx, item, message_bank_underground_item_names);
 }
 
 void StringTemplate_SetUndergroundItemNameWithArticle(StringTemplate *template, u32 idx, u32 item)
 {
-    SetArgFromArchive(template, idx, item, MESSAGE_BANK_UNDERGROUND_ITEM_NAMES_WITH_ARTICLES);
+    SetArgFromArchive(template, idx, item, message_bank_underground_item_names_with_articles);
 }
 
 void StringTemplate_SetUndergroundTrapName(StringTemplate *template, u32 idx, u32 trap)
 {
-    SetArgFromArchive(template, idx, trap, MESSAGE_BANK_UNDERGROUND_TRAP_NAMES);
+    SetArgFromArchive(template, idx, trap, message_bank_underground_trap_names);
 }
 
 void StringTemplate_SetUndergroundTrapNameWithArticle(StringTemplate *template, u32 idx, u32 trap)
 {
-    SetArgFromArchive(template, idx, trap, MESSAGE_BANK_UNDERGROUND_TRAP_NAMES_WITH_ARTICLES);
+    SetArgFromArchive(template, idx, trap, message_bank_underground_trap_names_with_articles);
 }
 
 void StringTemplate_SetContestJudgeName(StringTemplate *template, u32 idx, u32 judge)
 {
-    SetArgFromArchive(template, idx, judge, MESSAGE_BANK_CONTEST_JUDGE_NAMES);
+    SetArgFromArchive(template, idx, judge, message_bank_contest_judge_names);
 }
 
 void StringTemplate_SetContestRankName(StringTemplate *template, u32 idx, u32 rank)
 {
-    SetArgFromArchive(template, idx, rank, MESSAGE_BANK_CONTEST_TEXT);
+    SetArgFromArchive(template, idx, rank, message_bank_contest_text);
 }
 
 void StringTemplate_SetContestTypeName(StringTemplate *template, u32 idx, u32 type)
 {
-    SetArgFromArchive(template, idx, type, MESSAGE_BANK_CONTEST_TEXT);
+    SetArgFromArchive(template, idx, type, message_bank_contest_text);
 }
 
 void StringTemplate_SetUndergroundQuestion(StringTemplate *template, u32 idx, u32 question)
 {
-    SetArgFromArchive(template, idx, question, MESSAGE_BANK_UNDERGROUND_QUESTIONS);
+    SetArgFromArchive(template, idx, question, message_bank_underground_questions);
 }
 
 void StringTemplate_SetUndergroundAnswer(StringTemplate *template, u32 idx, u32 answer)
 {
-    SetArgFromArchive(template, idx, answer, MESSAGE_BANK_UNDERGROUND_ANSWERS);
+    SetArgFromArchive(template, idx, answer, message_bank_underground_answers);
 }
 
 void StringTemplate_SetUndergroundGoodsName(StringTemplate *template, u32 idx, u32 goods)
 {
-    SetArgFromArchive(template, idx, goods, MESSAGE_BANK_UNDERGROUND_GOODS);
+    SetArgFromArchive(template, idx, goods, message_bank_underground_goods);
 }
 
 void StringTemplate_SetUndergroundGoodsNameWithArticle(StringTemplate *template, u32 idx, u32 goods)
 {
-    SetArgFromArchive(template, idx, goods, MESSAGE_BANK_UNDERGROUND_GOODS_WITH_ARTICLES);
+    SetArgFromArchive(template, idx, goods, message_bank_underground_goods_with_articles);
 }
 
 void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gender gender)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_COMMON_STRINGS, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_common_strings, template->heapID);
 
     switch (gender) {
     case GENDER_MALE:
@@ -433,17 +433,17 @@ void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxe
 
 void StringTemplate_SetGymName(StringTemplate *template, u32 idx, u32 gym)
 {
-    SetArgFromArchive(template, idx, gym, MESSAGE_BANK_GYM_NAMES);
+    SetArgFromArchive(template, idx, gym, message_bank_gym_names);
 }
 
 void StringTemplate_SetTimeOfDay(StringTemplate *template, u32 idx, u32 timeOfDay)
 {
-    SetArgFromArchive(template, idx, timeOfDay, MESSAGE_BANK_TIMES_OF_DAY);
+    SetArgFromArchive(template, idx, timeOfDay, message_bank_times_of_day);
 }
 
 void StringTemplate_SetCountryName(StringTemplate *template, u32 idx, u32 country)
 {
-    SetArgFromArchive(template, idx, country, MESSAGE_BANK_COUNTRY_NAMES);
+    SetArgFromArchive(template, idx, country, message_bank_country_names);
 }
 
 void StringTemplate_SetCityName(StringTemplate *template, u32 idx, u32 country, u32 city)
@@ -462,20 +462,20 @@ void StringTemplate_SetCustomMessageWord(StringTemplate *template, u32 idx, u16 
 
 void StringTemplate_SetBallSealName(StringTemplate *template, u32 idx, u32 ballSeal)
 {
-    SetArgFromArchive(template, idx, ballSeal, MESSAGE_BANK_BALL_SEAL_NAMES);
+    SetArgFromArchive(template, idx, ballSeal, message_bank_ball_seal_names);
 }
 
 void StringTemplate_SetBallSealNamePlural(StringTemplate *template, u32 idx, u32 ballSeal)
 {
-    SetArgFromArchive(template, idx, ballSeal, MESSAGE_BANK_BALL_SEAL_NAMES_PLURAL);
+    SetArgFromArchive(template, idx, ballSeal, message_bank_ball_seal_names_plural);
 }
 
 void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 location)
 {
     static const u16 sMetLocationBanks[] = {
-        MESSAGE_BANK_LOCATION_NAMES,
-        MESSAGE_BANK_SPECIAL_MET_LOCATION_NAMES,
-        MESSAGE_BANK_MYSTERY_GIFT_EVENT_NAMES,
+        message_bank_location_names,
+        message_bank_special_met_location_names,
+        message_bank_mystery_gift_event_names,
     };
 
     int metLocationType = sub_02017038(location);
@@ -507,22 +507,22 @@ void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 lo
 
 void StringTemplate_SetPoffinName(StringTemplate *template, u32 idx, u32 poffin)
 {
-    SetArgFromArchive(template, idx, poffin, MESSAGE_BANK_POFFIN_NAMES);
+    SetArgFromArchive(template, idx, poffin, message_bank_poffin_names);
 }
 
 void StringTemplate_SetContestAccessoryName(StringTemplate *template, u32 idx, u32 accessory)
 {
-    SetArgFromArchive(template, idx, accessory, MESSAGE_BANK_CONTEST_ACCESSORY_NAMES);
+    SetArgFromArchive(template, idx, accessory, message_bank_contest_accessory_names);
 }
 
 void StringTemplate_SetContestAccessoryNameWithArticle(StringTemplate *template, u32 idx, u32 accessory)
 {
-    SetArgFromArchive(template, idx, accessory, MESSAGE_BANK_CONTEST_ACCESSORY_NAMES_WITH_ARTICLES);
+    SetArgFromArchive(template, idx, accessory, message_bank_contest_accessory_names_with_articles);
 }
 
 void StringTemplate_SetContestBackdropName(StringTemplate *template, u32 idx, u32 backdrop)
 {
-    SetArgFromArchive(template, idx, backdrop, MESSAGE_BANK_CONTEST_BACKDROP_NAMES);
+    SetArgFromArchive(template, idx, backdrop, message_bank_contest_backdrop_names);
 }
 
 void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *save, int groupID, int idx, int nameType)
@@ -542,52 +542,52 @@ void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *save, 
 
 void StringTemplate_SetPlazaMinigameName(StringTemplate *template, u32 idx, enum PlazaMinigame minigame)
 {
-    SetArgFromArchive(template, idx, minigame, MESSAGE_BANK_PLAZA_MINIGAME_NAMES);
+    SetArgFromArchive(template, idx, minigame, message_bank_plaza_minigame_names);
 }
 
 void StringTemplate_SetPlazaEventName(StringTemplate *template, u32 idx, int event)
 {
-    SetArgFromArchive(template, idx, event, MESSAGE_BANK_PLAZA_EVENT_NAMES);
+    SetArgFromArchive(template, idx, event, message_bank_plaza_event_names);
 }
 
 void StringTemplate_SetPlazaItemName(StringTemplate *template, u32 idx, u32 item)
 {
-    SetArgFromArchive(template, idx, item, MESSAGE_BANK_PLAZA_ITEM_NAMES);
+    SetArgFromArchive(template, idx, item, message_bank_plaza_item_names);
 }
 
 void StringTemplate_SetJPGreeting(StringTemplate *template, u32 idx, u32 greeting)
 {
-    SetArgFromArchive(template, idx, greeting, MESSAGE_BANK_GREETINGS_JP);
+    SetArgFromArchive(template, idx, greeting, message_bank_greetings_jp);
 }
 
 void StringTemplate_SetENGreeting(StringTemplate *template, u32 idx, u32 greeting)
 {
-    SetArgFromArchive(template, idx, greeting, MESSAGE_BANK_GREETINGS_EN);
+    SetArgFromArchive(template, idx, greeting, message_bank_greetings_en);
 }
 
 void StringTemplate_SetFRGreeting(StringTemplate *template, u32 idx, u32 greeting)
 {
-    SetArgFromArchive(template, idx, greeting, MESSAGE_BANK_GREETINGS_FR);
+    SetArgFromArchive(template, idx, greeting, message_bank_greetings_fr);
 }
 
 void StringTemplate_SetITGreeting(StringTemplate *template, u32 idx, u32 greeting)
 {
-    SetArgFromArchive(template, idx, greeting, MESSAGE_BANK_GREETINGS_IT);
+    SetArgFromArchive(template, idx, greeting, message_bank_greetings_it);
 }
 
 void StringTemplate_SetDEGreeting(StringTemplate *template, u32 idx, u32 greeting)
 {
-    SetArgFromArchive(template, idx, greeting, MESSAGE_BANK_GREETINGS_DE);
+    SetArgFromArchive(template, idx, greeting, message_bank_greetings_de);
 }
 
 void StringTemplate_SetESGreeting(StringTemplate *template, u32 idx, u32 greeting)
 {
-    SetArgFromArchive(template, idx, greeting, MESSAGE_BANK_GREETINGS_ES);
+    SetArgFromArchive(template, idx, greeting, message_bank_greetings_es);
 }
 
 void StringTemplate_SetFurniture(StringTemplate *template, u32 idx, u32 furniture)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_FURNITURE_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_furniture_names, template->heapID);
 
     MessageLoader_GetStrbuf(loader, furniture, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
@@ -596,7 +596,7 @@ void StringTemplate_SetFurniture(StringTemplate *template, u32 idx, u32 furnitur
 
 void StringTemplate_SetMonthName(StringTemplate *template, u32 idx, u32 month)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_MONTH_NAMES, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_month_names, template->heapID);
 
     if (loader) {
         if (month < 1 || month > 12) {
@@ -616,7 +616,7 @@ void StringTemplate_CapitalizeArgAtIndex(StringTemplate *template, u32 idx)
 
 void StringTemplate_SetDepartmentStoreFloor(StringTemplate *template, u32 idx, u32 floor)
 {
-    MessageLoader *loader = InitMessageLoader(MESSAGE_BANK_COMMON_STRINGS_2, template->heapID);
+    MessageLoader *loader = InitMessageLoader(message_bank_common_strings_2, template->heapID);
 
     GF_ASSERT(floor <= 5);
 

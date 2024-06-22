@@ -2,14 +2,14 @@
 
     .data
 
-    .long _015A-.-4
-    .long _0183-.-4
-    .long _0278-.-4
-    .long _0022-.-4
-    .long _02B4-.-4
-    .long _03CA-.-4
-    .long _0457-.-4
-    .long _04E4-.-4
+    ScriptEntry _015A
+    ScriptEntry _0183
+    ScriptEntry _0278
+    ScriptEntry _0022
+    ScriptEntry _02B4
+    ScriptEntry _03CA
+    ScriptEntry _0457
+    ScriptEntry _04E4
     .short 0xFD13
 
 _0022:
@@ -85,39 +85,39 @@ _0140:
     Return
 
 _015A:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     GoToIfSet 215, _0178
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0178:
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 2
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0183:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     SetFlag 0x125
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 5
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8005, 7, _01D5
     CallIfEq 0x8005, 8, _01E9
     CallIfEq 0x8005, 9, _01FD
-    ScrCmd_049 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 1
     SetFlag 231
     SetFlag 0x1D6
-    ScrCmd_061
+    ReleaseAll
     End
 
 _01D5:
@@ -182,16 +182,16 @@ _0264:
     EndMovement
 
 _0278:
-    ScrCmd_060
+    LockAll
     SetVar 0x40C1, 1
     ApplyMovement 0, _02A0
     WaitMovement
     ApplyMovement 0xFF, _02A8
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -206,9 +206,9 @@ _02A8:
     EndMovement
 
 _02B4:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4021
     GoToIfSet 5, _034D
@@ -227,7 +227,7 @@ _02B4:
 
 _032F:
     Call _0811
-    ScrCmd_034
+    CloseMessage
     ScrCmd_1E5 57
     Call _0605
     ScrCmd_0E5 0x4005, 0
@@ -250,9 +250,9 @@ _0376:
     Return
 
 _037E:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0386:
@@ -263,7 +263,7 @@ _0386:
 
 _0398:
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
 _039E:
@@ -273,17 +273,17 @@ _039E:
     End
 
 _03C0:
-    ScrCmd_02C 22
+    Message 22
     Return
 
 _03C5:
-    ScrCmd_02C 73
+    Message 73
     Return
 
 _03CA:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4022
     GoToIfSet 6, _034D
@@ -307,9 +307,9 @@ _0445:
     End
 
 _0457:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4023
     GoToIfSet 7, _034D
@@ -333,9 +333,9 @@ _04D2:
     End
 
 _04E4:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_0CD 0
     SetVar 0x4001, 0x4024
     GoToIfSet 8, _034D
@@ -465,55 +465,55 @@ _0718:
     Return
 
 _07D0:
-    ScrCmd_02C 12
+    Message 12
     Return
 
 _07D5:
-    ScrCmd_02C 23
+    Message 23
     Return
 
 _07DA:
-    ScrCmd_02C 53
+    Message 53
     Return
 
 _07DF:
-    ScrCmd_02C 43
+    Message 43
     Return
 
 _07E4:
-    ScrCmd_02C 33
+    Message 33
     Return
 
 _07E9:
-    ScrCmd_02C 74
+    Message 74
     Return
 
 _07EE:
-    ScrCmd_02C 63
+    Message 63
     Return
 
 _07F3:
-    ScrCmd_02C 84
+    Message 84
     Return
 
 _07F8:
-    ScrCmd_02C 94
+    Message 94
     Return
 
 _07FD:
-    ScrCmd_02C 114
+    Message 114
     Return
 
 _0802:
-    ScrCmd_02C 124
+    Message 124
     Return
 
 _0807:
-    ScrCmd_02C 134
+    Message 134
     Return
 
 _080C:
-    ScrCmd_02C 104
+    Message 104
     Return
 
 _0811:
@@ -534,55 +534,55 @@ _0811:
     Return
 
 _08C9:
-    ScrCmd_02C 13
+    Message 13
     Return
 
 _08CE:
-    ScrCmd_02C 24
+    Message 24
     Return
 
 _08D3:
-    ScrCmd_02C 54
+    Message 54
     Return
 
 _08D8:
-    ScrCmd_02C 44
+    Message 44
     Return
 
 _08DD:
-    ScrCmd_02C 34
+    Message 34
     Return
 
 _08E2:
-    ScrCmd_02C 75
+    Message 75
     Return
 
 _08E7:
-    ScrCmd_02C 64
+    Message 64
     Return
 
 _08EC:
-    ScrCmd_02C 85
+    Message 85
     Return
 
 _08F1:
-    ScrCmd_02C 95
+    Message 95
     Return
 
 _08F6:
-    ScrCmd_02C 115
+    Message 115
     Return
 
 _08FB:
-    ScrCmd_02C 125
+    Message 125
     Return
 
 _0900:
-    ScrCmd_02C 135
+    Message 135
     Return
 
 _0905:
-    ScrCmd_02C 105
+    Message 105
     Return
 
 _090A:
@@ -603,55 +603,55 @@ _090A:
     Return
 
 _09C2:
-    ScrCmd_02C 14
+    Message 14
     Return
 
 _09C7:
-    ScrCmd_02C 25
+    Message 25
     Return
 
 _09CC:
-    ScrCmd_02C 55
+    Message 55
     Return
 
 _09D1:
-    ScrCmd_02C 45
+    Message 45
     Return
 
 _09D6:
-    ScrCmd_02C 35
+    Message 35
     Return
 
 _09DB:
-    ScrCmd_02C 76
+    Message 76
     Return
 
 _09E0:
-    ScrCmd_02C 65
+    Message 65
     Return
 
 _09E5:
-    ScrCmd_02C 86
+    Message 86
     Return
 
 _09EA:
-    ScrCmd_02C 96
+    Message 96
     Return
 
 _09EF:
-    ScrCmd_02C 116
+    Message 116
     Return
 
 _09F4:
-    ScrCmd_02C 126
+    Message 126
     Return
 
 _09F9:
-    ScrCmd_02C 136
+    Message 136
     Return
 
 _09FE:
-    ScrCmd_02C 106
+    Message 106
     Return
 
 _0A03:
@@ -672,55 +672,55 @@ _0A03:
     Return
 
 _0ABB:
-    ScrCmd_02C 15
+    Message 15
     Return
 
 _0AC0:
-    ScrCmd_02C 26
+    Message 26
     Return
 
 _0AC5:
-    ScrCmd_02C 56
+    Message 56
     Return
 
 _0ACA:
-    ScrCmd_02C 46
+    Message 46
     Return
 
 _0ACF:
-    ScrCmd_02C 36
+    Message 36
     Return
 
 _0AD4:
-    ScrCmd_02C 77
+    Message 77
     Return
 
 _0AD9:
-    ScrCmd_02C 66
+    Message 66
     Return
 
 _0ADE:
-    ScrCmd_02C 87
+    Message 87
     Return
 
 _0AE3:
-    ScrCmd_02C 97
+    Message 97
     Return
 
 _0AE8:
-    ScrCmd_02C 117
+    Message 117
     Return
 
 _0AED:
-    ScrCmd_02C 127
+    Message 127
     Return
 
 _0AF2:
-    ScrCmd_02C 137
+    Message 137
     Return
 
 _0AF7:
-    ScrCmd_02C 107
+    Message 107
     Return
 
 _0AFC:
@@ -741,55 +741,55 @@ _0AFC:
     Return
 
 _0BB4:
-    ScrCmd_02C 16
+    Message 16
     Return
 
 _0BB9:
-    ScrCmd_02C 27
+    Message 27
     Return
 
 _0BBE:
-    ScrCmd_02C 57
+    Message 57
     Return
 
 _0BC3:
-    ScrCmd_02C 47
+    Message 47
     Return
 
 _0BC8:
-    ScrCmd_02C 37
+    Message 37
     Return
 
 _0BCD:
-    ScrCmd_02C 78
+    Message 78
     Return
 
 _0BD2:
-    ScrCmd_02C 67
+    Message 67
     Return
 
 _0BD7:
-    ScrCmd_02C 88
+    Message 88
     Return
 
 _0BDC:
-    ScrCmd_02C 98
+    Message 98
     Return
 
 _0BE1:
-    ScrCmd_02C 118
+    Message 118
     Return
 
 _0BE6:
-    ScrCmd_02C 128
+    Message 128
     Return
 
 _0BEB:
-    ScrCmd_02C 138
+    Message 138
     Return
 
 _0BF0:
-    ScrCmd_02C 108
+    Message 108
     Return
 
 _0BF5:
@@ -809,55 +809,55 @@ _0BF5:
     Return
 
 _0CA0:
-    ScrCmd_02C 17
+    Message 17
     Return
 
 _0CA5:
-    ScrCmd_02C 28
+    Message 28
     Return
 
 _0CAA:
-    ScrCmd_02C 58
+    Message 58
     Return
 
 _0CAF:
-    ScrCmd_02C 48
+    Message 48
     Return
 
 _0CB4:
-    ScrCmd_02C 38
+    Message 38
     Return
 
 _0CB9:
-    ScrCmd_02C 79
+    Message 79
     Return
 
 _0CBE:
-    ScrCmd_02C 68
+    Message 68
     Return
 
 _0CC3:
-    ScrCmd_02C 89
+    Message 89
     Return
 
 _0CC8:
-    ScrCmd_02C 99
+    Message 99
     Return
 
 _0CCD:
-    ScrCmd_02C 119
+    Message 119
     Return
 
 _0CD2:
-    ScrCmd_02C 129
+    Message 129
     Return
 
 _0CD7:
-    ScrCmd_02C 139
+    Message 139
     Return
 
 _0CDC:
-    ScrCmd_02C 109
+    Message 109
     Return
 
 _0CE1:
@@ -877,55 +877,55 @@ _0CE1:
     Return
 
 _0D8C:
-    ScrCmd_02C 18
+    Message 18
     Return
 
 _0D91:
-    ScrCmd_02C 29
+    Message 29
     Return
 
 _0D96:
-    ScrCmd_02C 59
+    Message 59
     Return
 
 _0D9B:
-    ScrCmd_02C 49
+    Message 49
     Return
 
 _0DA0:
-    ScrCmd_02C 39
+    Message 39
     Return
 
 _0DA5:
-    ScrCmd_02C 80
+    Message 80
     Return
 
 _0DAA:
-    ScrCmd_02C 69
+    Message 69
     Return
 
 _0DAF:
-    ScrCmd_02C 90
+    Message 90
     Return
 
 _0DB4:
-    ScrCmd_02C 100
+    Message 100
     Return
 
 _0DB9:
-    ScrCmd_02C 120
+    Message 120
     Return
 
 _0DBE:
-    ScrCmd_02C 130
+    Message 130
     Return
 
 _0DC3:
-    ScrCmd_02C 140
+    Message 140
     Return
 
 _0DC8:
-    ScrCmd_02C 110
+    Message 110
     Return
 
 _0DCD:
@@ -945,55 +945,55 @@ _0DCD:
     Return
 
 _0E78:
-    ScrCmd_02C 19
+    Message 19
     Return
 
 _0E7D:
-    ScrCmd_02C 30
+    Message 30
     Return
 
 _0E82:
-    ScrCmd_02C 60
+    Message 60
     Return
 
 _0E87:
-    ScrCmd_02C 50
+    Message 50
     Return
 
 _0E8C:
-    ScrCmd_02C 40
+    Message 40
     Return
 
 _0E91:
-    ScrCmd_02C 81
+    Message 81
     Return
 
 _0E96:
-    ScrCmd_02C 70
+    Message 70
     Return
 
 _0E9B:
-    ScrCmd_02C 91
+    Message 91
     Return
 
 _0EA0:
-    ScrCmd_02C 101
+    Message 101
     Return
 
 _0EA5:
-    ScrCmd_02C 121
+    Message 121
     Return
 
 _0EAA:
-    ScrCmd_02C 131
+    Message 131
     Return
 
 _0EAF:
-    ScrCmd_02C 141
+    Message 141
     Return
 
 _0EB4:
-    ScrCmd_02C 111
+    Message 111
     Return
 
 _0EB9:
@@ -1013,55 +1013,55 @@ _0EB9:
     Return
 
 _0F64:
-    ScrCmd_02C 20
+    Message 20
     Return
 
 _0F69:
-    ScrCmd_02C 31
+    Message 31
     Return
 
 _0F6E:
-    ScrCmd_02C 61
+    Message 61
     Return
 
 _0F73:
-    ScrCmd_02C 51
+    Message 51
     Return
 
 _0F78:
-    ScrCmd_02C 41
+    Message 41
     Return
 
 _0F7D:
-    ScrCmd_02C 82
+    Message 82
     Return
 
 _0F82:
-    ScrCmd_02C 71
+    Message 71
     Return
 
 _0F87:
-    ScrCmd_02C 92
+    Message 92
     Return
 
 _0F8C:
-    ScrCmd_02C 102
+    Message 102
     Return
 
 _0F91:
-    ScrCmd_02C 122
+    Message 122
     Return
 
 _0F96:
-    ScrCmd_02C 132
+    Message 132
     Return
 
 _0F9B:
-    ScrCmd_02C 142
+    Message 142
     Return
 
 _0FA0:
-    ScrCmd_02C 112
+    Message 112
     Return
 
 _0FA5:
@@ -1081,55 +1081,55 @@ _0FA5:
     Return
 
 _1050:
-    ScrCmd_02C 21
+    Message 21
     Return
 
 _1055:
-    ScrCmd_02C 32
+    Message 32
     Return
 
 _105A:
-    ScrCmd_02C 62
+    Message 62
     Return
 
 _105F:
-    ScrCmd_02C 52
+    Message 52
     Return
 
 _1064:
-    ScrCmd_02C 42
+    Message 42
     Return
 
 _1069:
-    ScrCmd_02C 83
+    Message 83
     Return
 
 _106E:
-    ScrCmd_02C 72
+    Message 72
     Return
 
 _1073:
-    ScrCmd_02C 93
+    Message 93
     Return
 
 _1078:
-    ScrCmd_02C 103
+    Message 103
     Return
 
 _107D:
-    ScrCmd_02C 123
+    Message 123
     Return
 
 _1082:
-    ScrCmd_02C 133
+    Message 133
     Return
 
 _1087:
-    ScrCmd_02C 143
+    Message 143
     Return
 
 _108C:
-    ScrCmd_02C 113
+    Message 113
     Return
 
 _1091:

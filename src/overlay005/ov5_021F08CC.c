@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -20,11 +19,11 @@
 #include "unk_02005474.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
@@ -165,19 +164,19 @@ SysTask * ov5_021F09B4 (FieldSystem * fieldSystem, int param1, BOOL param2)
 
 int ov5_021F09D8 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
+    UnkStruct_ov5_021F0D6C * v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
 int ov5_021F09E4 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
+    UnkStruct_ov5_021F0D6C * v0 = SysTask_GetParam(task);
     return v0->unk_08;
 }
 
 void ov5_021F09F0 (SysTask * task)
 {
-    UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(task);
+    UnkStruct_ov5_021F0D6C * v0 = SysTask_GetParam(task);
 
     Heap_FreeToHeap(v0);
     SysTask_Done(task);

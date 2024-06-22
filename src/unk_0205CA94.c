@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "trainer_info.h"
@@ -11,7 +10,6 @@
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200C738.h"
-#include "functypes/sys_task_func.h"
 #include "field/field_system.h"
 #include "overlay115/struct_ov115_02261520.h"
 
@@ -24,7 +22,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
@@ -402,8 +400,8 @@ UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, FieldSystem * fieldSystem, 
     int v2;
     TrainerInfo * v3;
 
-    v1 = sub_0200679C(func, sizeof(UnkStruct_0205D274), 5, 4);
-    v0 = sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(func, sizeof(UnkStruct_0205D274), 5, 4);
+    v0 = SysTask_GetParam(v1);
     v3 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v2 = TrainerInfo_Gender(v3);
 
@@ -415,7 +413,7 @@ UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, FieldSystem * fieldSystem, 
 void sub_0205D080 (SysTask * param0, UnkStruct_0205D274 * param1)
 {
     sub_0205D0AC(&param1->unk_04);
-    sub_020067D0(param0);
+    SysTask_FinishAndFreeParam(param0);
 }
 
 void sub_0205D094 (UnkStruct_0205D094 * param0, int param1, u32 param2)

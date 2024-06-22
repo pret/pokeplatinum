@@ -13,7 +13,7 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_defs/archived_poke_sprite_data.h"
@@ -77,7 +77,7 @@ typedef struct PokemonSummaryAppData {
 } PokemonSummaryAppData;
 
 typedef struct PokemonSummaryAppSpriteData {
-    UnkStruct_020203AC * unk_00;
+    Camera * camera;
     void *spriteManager;
     SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;

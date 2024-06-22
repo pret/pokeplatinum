@@ -9,8 +9,7 @@
 #include "message.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -34,7 +33,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay092/struct_ov92_021D1530.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
@@ -47,7 +46,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
@@ -61,7 +60,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
@@ -146,8 +145,8 @@ typedef struct {
 } UnkStruct_ov69_0225CA7C;
 
 typedef struct {
-    UnkStruct_020203AC * unk_00;
-    UnkStruct_ov115_0226527C unk_04;
+    Camera * camera;
+    CameraAngle unk_04;
     fx32 unk_0C;
     u16 unk_10;
     u16 unk_12;
@@ -1155,7 +1154,7 @@ static void ov69_0225CF50 (UnkStruct_ov69_0225CE64 * param0)
     ov69_0225D854(&param0->unk_288, &param0->unk_1DC);
     ov69_0225D384(&param0->unk_20);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }
 
 static void ov69_0225CF90 (void * param0)
@@ -1760,12 +1759,12 @@ static u32 ov69_0225DA70 (const UnkStruct_ov69_0225CA7C * param0)
 
 static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225DA74 param1, u32 param2)
 {
-    param0->unk_00 = sub_020203AC(param2);
+    param0->camera = Camera_Alloc(param2);
 
-    sub_02020784(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->unk_00);
-    sub_020206BC(0, (FX32_ONE * 100), param0->unk_00);
-    sub_02020854(0, param0->unk_00);
-    sub_020203D4(param0->unk_00);
+    Camera_InitWithTargetAndPosition(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->camera);
+    Camera_SetClipping(0, (FX32_ONE * 100), param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
+    Camera_SetAsActive(param0->camera);
 
     if (param1.unk_00_0 == 0) {
         param0->unk_10 = 1;
@@ -1775,17 +1774,17 @@ static void ov69_0225DA74 (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         param0->unk_0C = 0x128000;
     }
 
-    sub_02020A50(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->camera);
 }
 
 static void ov69_0225DAEC (UnkStruct_ov69_0225DAEC * param0)
 {
-    sub_020203B8(param0->unk_00);
+    Camera_Delete(param0->camera);
 }
 
 static void ov69_0225DAF8 (const UnkStruct_ov69_0225DAEC * param0)
 {
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 }
 
 static void ov69_0225DB00 (UnkStruct_ov69_0225DAEC * param0)
@@ -1830,7 +1829,7 @@ static BOOL ov69_0225DB2C (UnkStruct_ov69_0225DAEC * param0, UnkStruct_ov69_0225
         break;
     }
 
-    sub_02020A50(param0->unk_0C, param0->unk_00);
+    Camera_SetDistance(param0->unk_0C, param0->camera);
 
     return 0;
 }
@@ -2407,7 +2406,7 @@ static void ov69_0225E478 (UnkStruct_ov69_0225E478 * param0)
     ov69_0225E504(param0, 0, 0);
     ov69_0225E51C(param0, 0, 0);
 
-    param0->unk_0C = sub_0200DA3C(ov69_0225E534, param0, 0);
+    param0->unk_0C = SysTask_ExecuteAfterVBlank(ov69_0225E534, param0, 0);
 }
 
 static void ov69_0225E4E8 (UnkStruct_ov69_0225E478 * param0)

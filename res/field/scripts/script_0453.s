@@ -2,20 +2,20 @@
 
     .data
 
-    .long _00B5-.-4
-    .long _00C8-.-4
-    .long _00DF-.-4
-    .long _00F6-.-4
-    .long _010B-.-4
-    .long _011E-.-4
-    .long _0131-.-4
-    .long _0144-.-4
-    .long _0157-.-4
-    .long _002A-.-4
+    ScriptEntry _00B5
+    ScriptEntry _00C8
+    ScriptEntry _00DF
+    ScriptEntry _00F6
+    ScriptEntry _010B
+    ScriptEntry _011E
+    ScriptEntry _0131
+    ScriptEntry _0144
+    ScriptEntry _0157
+    ScriptEntry _002A
     .short 0xFD13
 
 _002A:
-    ScrCmd_1B6 0x4000
+    GetTimeOfDay 0x4000
     GoToIfEq 0x4000, 0, _0071
     GoToIfEq 0x4000, 1, _0071
     GoToIfEq 0x4000, 2, _0071
@@ -46,13 +46,13 @@ _0093:
     End
 
 _00B5:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00C8:
@@ -80,53 +80,53 @@ _00F6:
     End
 
 _010B:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _011E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 2
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0131:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 3
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0144:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 4
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0157:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 5
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

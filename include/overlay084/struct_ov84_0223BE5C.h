@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV84_0223BE5C_H
 #define POKEPLATINUM_STRUCT_OV84_0223BE5C_H
 
-#include "struct_defs/struct_0207CDEC.h"
+#include "bag.h"
 
 typedef struct {
     BagItem * unk_00;

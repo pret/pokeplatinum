@@ -2,11 +2,11 @@
 
     .data
 
-    .long _0016-.-4
-    .long _0089-.-4
-    .long _00D0-.-4
-    .long _00E6-.-4
-    .long _019C-.-4
+    ScriptEntry _0016
+    ScriptEntry _0089
+    ScriptEntry _00D0
+    ScriptEntry _00E6
+    ScriptEntry _019C
     .short 0xFD13
 
 _0016:
@@ -89,24 +89,24 @@ _00B4:
 
 _00D0:
     ScrCmd_0CD 1
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 18
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 18
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00E6:
-    ScrCmd_060
-    ScrCmd_049 0x5DC
+    LockAll
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_04B 0x5DC
     CallIfUnset 215, _0174
     SetVar 0x409E, 2
     ScrCmd_04C 0x1E5, 0
-    ScrCmd_02C 15
-    ScrCmd_034
+    Message 15
+    CloseMessage
     SetFlag 142
     ScrCmd_2BD 0x1E5, 50
     ClearFlag 142
@@ -121,20 +121,20 @@ _00E6:
 
 _0155:
     SetFlag 0x120
-    ScrCmd_061
+    ReleaseAll
     End
 
 _015D:
-    ScrCmd_02C 16
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 16
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0168:
     SetVar 0x409E, 1
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0174:
@@ -175,11 +175,11 @@ _017A:
     .byte 0
 
 _019C:
-    ScrCmd_060
-    ScrCmd_02C 0
-    ScrCmd_034
+    LockAll
+    Message 0
+    CloseMessage
     ScrCmd_04B 0x5DC
-    ScrCmd_049 0x65C
+    PlayFanfare SEQ_SE_DP_FW089
     ScrCmd_29F 0
     ScrCmd_04A 0x65C
     ApplyMovement 2, _03A4
@@ -187,16 +187,16 @@ _019C:
     WaitMovement
     ApplyMovement 2, _00B4
     WaitMovement
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ApplyMovement 5, _03B0
     WaitMovement
     ScrCmd_065 3
-    ScrCmd_02C 2
-    ScrCmd_02C 3
+    Message 2
+    Message 3
     ScrCmd_04C 0x1C5, 0
     ScrCmd_04D
-    ScrCmd_034
+    CloseMessage
     ClearFlag 0x232
     ScrCmd_064 0
     ApplyMovement 0, _0490
@@ -205,46 +205,46 @@ _019C:
     ApplyMovement 9, _0434
     ApplyMovement 10, _043C
     WaitMovement
-    ScrCmd_02C 4
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 4
+    CloseMessage
+    WaitTime 15, 0x800C
+    Message 5
+    CloseMessage
     ScrCmd_065 0
     ScrCmd_065 6
     ClearFlag 0x231
     ScrCmd_064 4
     ScrCmd_014 0x807
-    ScrCmd_02C 6
-    ScrCmd_034
+    Message 6
+    CloseMessage
     ApplyMovement 4, _04A8
     ApplyMovement 9, _0408
     ApplyMovement 10, _0418
     WaitMovement
-    ScrCmd_02C 7
-    ScrCmd_034
+    Message 7
+    CloseMessage
     ApplyMovement 9, _0444
     WaitMovement
-    ScrCmd_02C 8
+    Message 8
     ApplyMovement 10, _044C
     WaitMovement
-    ScrCmd_02C 9
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
+    Message 9
+    CloseMessage
+    WaitTime 15, 0x800C
     ApplyMovement 9, _0454
     ApplyMovement 10, _045C
     WaitMovement
-    ScrCmd_02C 10
-    ScrCmd_034
+    Message 10
+    CloseMessage
     ApplyMovement 9, _0464
     ApplyMovement 10, _047C
     ApplyMovement 0xFF, _0390
     WaitMovement
     ApplyMovement 5, _03D8
     WaitMovement
-    ScrCmd_02C 11
-    ScrCmd_02C 12
-    ScrCmd_034
+    Message 11
+    Message 12
+    CloseMessage
     ClearFlag 0x230
     ScrCmd_064 7
     ApplyMovement 7, _04C8
@@ -252,8 +252,8 @@ _019C:
     ScrCmd_064 8
     ApplyMovement 8, _04FC
     WaitMovement
-    ScrCmd_02C 13
-    ScrCmd_034
+    Message 13
+    CloseMessage
     ApplyMovement 5, _03E0
     ApplyMovement 4, _04B4
     WaitMovement
@@ -265,8 +265,8 @@ _019C:
     ScrCmd_065 7
     ScrCmd_065 8
     ScrCmd_0CD 0
-    ScrCmd_02C 14
-    ScrCmd_034
+    Message 14
+    CloseMessage
     SetVar 0x40A0, 2
     SetFlag 0x1DB
     SetFlag 0x231
@@ -278,11 +278,11 @@ _019C:
     ClearFlag 0x22B
     ClearFlag 0x22D
     ClearFlag 0x22E
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 0x106, 0, 0x2EF, 233, 0
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     End
 
     .balign 4, 0

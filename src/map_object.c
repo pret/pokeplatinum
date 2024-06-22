@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02061830_sub1_decl.h"
 
 #include "overlay005/const_ov5_021FB97C.h"
@@ -24,7 +24,7 @@
 #include "overlay005/funcptr_ov5_021FB0F0_4.h"
 #include "overlay005/struct_ov5_021FB97C.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0203E880.h"
 #include "map_header_data.h"

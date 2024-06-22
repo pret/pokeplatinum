@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "savedata.h"
 
 typedef struct {
@@ -28,7 +28,7 @@ typedef struct {
     Options * unk_24;
     UnkStruct_0202CD88 * unk_28;
     Journal * unk_2C;
-    UnkStruct_0207D3C0 * unk_30;
+    Bag * unk_30;
     int unk_34;
     int unk_38;
     int unk_3C;

@@ -8,7 +8,7 @@
 #include "savedata.h"
 
 #include "struct_defs/struct_0207CB08.h"
-#include "struct_defs/struct_0207CDEC.h"
+#include "bag.h"
 
 #include "message.h"
 #include "string_template.h"

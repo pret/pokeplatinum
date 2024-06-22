@@ -7,13 +7,10 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "struct_decls/struct_02013B10_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021EF3BC_decl.h"
-#include "overlay005/struct_ov5_021EF43C_decl.h"
 
 #include "struct_defs/struct_020095C4.h"
 #include "field/field_system.h"
@@ -28,19 +25,19 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200D9E8.h"
-#include "unk_02013B10.h"
+#include "sys_task.h"
+#include "buffer_manager.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E190.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "unk_0202309C.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021D5EB8.h"
-#include "overlay005/ov5_021EF3A8.h"
+#include "overlay005/hblank_system.h"
 
 typedef struct UnkStruct_ov5_021D5EF8_t {
     UnkStruct_ov5_021D6594 * unk_00;
@@ -228,9 +225,9 @@ typedef struct {
     s16 unk_00;
     s16 unk_02;
     UnkStruct_ov5_021D6538 unk_04;
-    UnkStruct_ov5_021EF3BC * unk_14;
-    UnkStruct_ov5_021EF43C * unk_18;
-    UnkStruct_02013B10 * unk_1C[2];
+    HBlankSystem * unk_14;
+    HBlankTask * unk_18;
+    BufferManager * bufferManagers[2];
     SysTask * unk_24;
     u32 unk_28;
     u16 unk_2C[4][192];
@@ -367,11 +364,11 @@ static void ov5_021D9BC0(UnkStruct_ov5_021DB4B8 * param0, UnkStruct_ov5_021D9984
 static void ov5_021D9BEC(UnkStruct_ov5_021DB4B8 * param0, UnkStruct_ov5_021D9984 * param1);
 static void ov5_021D9C20(SysTask * param0, void * param1, u32 param2, u32 param3, u32 param4, u32 param5);
 static void ov5_021D9DFC(UnkStruct_ov5_021DB4B8 * param0, UnkStruct_ov5_021D84D4 * param1, u32 param2, u32 param3, GXRgb param4, u32 param5, u32 param6);
-static void ov5_021DB614(UnkStruct_ov5_021DB614 * param0, UnkStruct_ov5_021EF3BC * param1);
+static void ov5_021DB614(UnkStruct_ov5_021DB614 * param0, HBlankSystem * param1);
 static void ov5_021DB690(UnkStruct_ov5_021DB614 * param0);
 static void ov5_021DB6E0(UnkStruct_ov5_021DB614 * param0, fx32 param1, fx32 param2, int param3, int param4, int param5);
 static BOOL ov5_021DB700(UnkStruct_ov5_021DB614 * param0);
-static void ov5_021DB72C(UnkStruct_ov5_021EF43C * param0, void * param1);
+static void ov5_021DB72C(HBlankTask * param0, void * param1);
 static void ov5_021DB78C(SysTask * param0, void * param1);
 static void ov5_021DB7A4(UnkStruct_ov5_021DB614 * param0);
 static void ov5_021DB7B8(SysTask * param0, void * param1);
@@ -1680,7 +1677,7 @@ static void ov5_021D7028 (fx32 * param0, fx32 * param1, UnkStruct_ov5_021DB4B8 *
     v6 = (v0.z - param2->unk_B8C.z);
     v8 = FX_Div(FX32_CONST(4), FX32_CONST(3));
 
-    sub_0201E34C(sub_02020A88(param2->unk_00->fieldSystem->unk_24), sub_02020A90(param2->unk_00->fieldSystem->unk_24), v8, &v3, &v4);
+    sub_0201E34C(Camera_GetFOV(param2->unk_00->fieldSystem->camera), Camera_GetDistance(param2->unk_00->fieldSystem->camera), v8, &v3, &v4);
     v3 = FX_Div(v3, 256 * FX32_ONE);
 
     if (v6 <= 0) {
@@ -5123,7 +5120,7 @@ static void ov5_021DB04C (SysTask * param0, void * param1)
 
     switch (v0->unk_BA2) {
     case 0:
-        ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->unk_1C);
+        ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->hBlankSystem);
         ov5_021DB6E0(&v1->unk_00, (FX32_CONST(256)), (FX32_CONST(32)), 128, 84, 30);
         v0->unk_BA2 = 1;
         break;
@@ -5140,7 +5137,7 @@ static void ov5_021DB04C (SysTask * param0, void * param1)
         break;
     case 3:
         if (v0->unk_BA6 == 5) {
-            ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->unk_1C);
+            ov5_021DB614(&v1->unk_00, fieldSystem->unk_04->hBlankSystem);
             ov5_021DB6E0(&v1->unk_00, (FX32_CONST(32)), (FX32_CONST(256)), 128, 84, 30);
             v0->unk_BA2 = 4;
         }
@@ -5356,8 +5353,8 @@ static void ov5_021DB500 (UnkStruct_ov5_021DB614 * param0)
     u16 * v3;
     u16 * v4;
 
-    v3 = sub_02013B54(param0->unk_1C[0]);
-    v4 = sub_02013B54(param0->unk_1C[1]);
+    v3 = BufferManager_GetWriteBuffer(param0->bufferManagers[0]);
+    v4 = BufferManager_GetWriteBuffer(param0->bufferManagers[1]);
 
     for (v0 = 0; v0 < 192; v0++) {
         if (v0 <= param0->unk_02) {
@@ -5411,14 +5408,14 @@ static void ov5_021DB588 (fx32 param0, int param1, int param2, int param3, int *
     }
 }
 
-static void ov5_021DB614 (UnkStruct_ov5_021DB614 * param0, UnkStruct_ov5_021EF3BC * param1)
+static void ov5_021DB614 (UnkStruct_ov5_021DB614 * param0, HBlankSystem * param1)
 {
     int v0;
 
     memset(param0, 0, sizeof(UnkStruct_ov5_021DB614));
 
-    param0->unk_1C[0] = sub_02013B10(4, param0->unk_2C[0], param0->unk_2C[1]);
-    param0->unk_1C[1] = sub_02013B10(4, param0->unk_2C[2], param0->unk_2C[3]);
+    param0->bufferManagers[0] = BufferManager_New(4, param0->unk_2C[0], param0->unk_2C[1]);
+    param0->bufferManagers[1] = BufferManager_New(4, param0->unk_2C[2], param0->unk_2C[3]);
 
     for (v0 = 0; v0 < 192; v0++) {
         param0->unk_2C[2][v0] = 255;
@@ -5426,8 +5423,8 @@ static void ov5_021DB614 (UnkStruct_ov5_021DB614 * param0, UnkStruct_ov5_021EF3B
     }
 
     param0->unk_14 = param1;
-    sub_0200DA3C(ov5_021DB7F8, param0, 120);
-    param0->unk_24 = sub_0200DA3C(ov5_021DB78C, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov5_021DB7F8, param0, 120);
+    param0->unk_24 = SysTask_ExecuteAfterVBlank(ov5_021DB78C, param0, 1024);
     param0->unk_28 = 0;
 }
 
@@ -5436,11 +5433,11 @@ static void ov5_021DB690 (UnkStruct_ov5_021DB614 * param0)
     int v0 = GX_GetVisibleWnd();
 
     GX_SetVisibleWnd(v0 & (~GX_WNDMASK_W1));
-    ov5_021EF43C(param0->unk_18);
+    HBlankTask_Delete(param0->unk_18);
 
     SysTask_Done(param0->unk_24);
-    sub_02013B40(param0->unk_1C[0]);
-    sub_02013B40(param0->unk_1C[1]);
+    BufferManager_Delete(param0->bufferManagers[0]);
+    BufferManager_Delete(param0->bufferManagers[1]);
 
     memset(param0, 0, sizeof(UnkStruct_ov5_021DB614));
 }
@@ -5476,7 +5473,7 @@ static BOOL ov5_021DB700 (UnkStruct_ov5_021DB614 * param0)
     return v0;
 }
 
-static void ov5_021DB72C (UnkStruct_ov5_021EF43C * param0, void * param1)
+static void ov5_021DB72C (HBlankTask * param0, void * param1)
 {
     UnkStruct_ov5_021DB614 * v0 = param1;
     const u16 * v1[2];
@@ -5486,7 +5483,7 @@ static void ov5_021DB72C (UnkStruct_ov5_021EF43C * param0, void * param1)
     v2 = GX_GetVCount();
 
     for (v3 = 0; v3 < 2; v3++) {
-        v1[v3] = sub_02013B68(v0->unk_1C[v3]);
+        v1[v3] = BufferManager_GetReadBuffer(v0->bufferManagers[v3]);
     }
 
     if (v2 < 192) {
@@ -5508,13 +5505,13 @@ static void ov5_021DB78C (SysTask * param0, void * param1)
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
-        sub_02013B94(v0->unk_1C[v1]);
+        BufferManager_SwapBuffers(v0->bufferManagers[v1]);
     }
 }
 
 static void ov5_021DB7A4 (UnkStruct_ov5_021DB614 * param0)
 {
-    sub_0200DA3C(ov5_021DB7B8, param0, 128);
+    SysTask_ExecuteAfterVBlank(ov5_021DB7B8, param0, 128);
 }
 
 static void ov5_021DB7B8 (SysTask * param0, void * param1)
@@ -5530,8 +5527,8 @@ static void ov5_021DB7CC (UnkStruct_ov5_021DB614 * param0)
     int v2;
 
     for (v2 = 0; v2 < 2; v2++) {
-        v0 = sub_02013B68(param0->unk_1C[v2]);
-        v1 = sub_02013B54(param0->unk_1C[v2]);
+        v0 = BufferManager_GetReadBuffer(param0->bufferManagers[v2]);
+        v1 = BufferManager_GetWriteBuffer(param0->bufferManagers[v2]);
 
         memcpy(v1, v0, sizeof(u16) * 192);
     }
@@ -5548,7 +5545,7 @@ static void ov5_021DB7F8 (SysTask * param0, void * param1)
     G2_SetWnd1Position(0, 0, 255, 192);
     GX_SetVisibleWnd(v2 | GX_WNDMASK_W1);
 
-    v0->unk_18 = ov5_021EF418(v0->unk_14, ov5_021DB72C, v0);
+    v0->unk_18 = HBlankSystem_StartTask(v0->unk_14, ov5_021DB72C, v0);
 
     SysTask_Done(param0);
 }

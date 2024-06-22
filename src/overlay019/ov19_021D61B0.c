@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
@@ -16,7 +15,6 @@
 #include "overlay019/struct_ov19_021DEC04_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/funcptr_ov19_021D79B8.h"
@@ -40,12 +38,12 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "overlay019/ov19_021D0D80.h"
@@ -368,7 +366,7 @@ BOOL ov19_021D6600 (UnkStruct_ov19_021D61B0 * param0, u32 param1)
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param0->unk_08[v1] != NULL) {
-            v0 = sub_0201CED0(param0->unk_08[v1]);
+            v0 = SysTask_GetParam(param0->unk_08[v1]);
 
             if (v0->unk_00 == param1) {
                 return 0;
@@ -1875,7 +1873,7 @@ static int ov19_021D77A4 (u32 param0, u32 param1)
 
 SysTask * ov19_021D77C8 (SysTaskFunc param0, void * param1, u32 param2)
 {
-    return sub_0200DA04(param0, param1, param2);
+    return SysTask_ExecuteOnVBlank(param0, param1, param2);
 }
 
 NNSG2dImagePaletteProxy * ov19_021D77D0 (UnkStruct_ov19_021D61B0 * param0)

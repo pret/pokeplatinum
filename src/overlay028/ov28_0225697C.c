@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"
 
@@ -43,7 +43,7 @@ static void ov28_02256D90(BGL * param0, const UnkStruct_ov28_0225697C_1 * param1
 static void ov28_02256DCC(BGL * param0);
 static void ov28_02256DF0(SysTask * param0, void * param1);
 static void ov28_02256E0C(BGL * param0, const u16 * param1);
-struct PoketchSystem * sub_0203D158(void);
+struct PoketchSystem * FieldSystem_GetPoketchSystem(void);
 
 static const u16 Unk_ov28_022578F8[32] = {
     0xFB,
@@ -586,7 +586,7 @@ static void ov28_02256B24 (SysTask * param0, void * param1)
     v1 = ov25_0225523C(param1);
     v2 = v0->unk_00;
 
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
 
     sub_020198C0(v1->unk_04, 6, Unk_ov28_0225797C[v2], Unk_ov28_02257938[v2].unk_00, Unk_ov28_02257938[v2].unk_01, Unk_ov28_02257938[v2].unk_02, Unk_ov28_02257938[v2].unk_03);
     sub_02019448(v1->unk_04, 6);

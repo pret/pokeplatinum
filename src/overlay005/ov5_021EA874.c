@@ -39,7 +39,7 @@
 #include "field_system.h"
 #include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021EA874.h"
 
 typedef struct {
@@ -104,7 +104,7 @@ static BOOL ov5_021EA8F0 (UnkStruct_ov5_021EAE78 * param0)
         return 1;
     }
 
-    if (sub_0207D688(sub_0207D990(param0->unk_34), 437, 1, 4) == 1) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(param0->unk_34), 437, 1, 4) == 1) {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
         StringTemplate_SetPlayerName(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 57);

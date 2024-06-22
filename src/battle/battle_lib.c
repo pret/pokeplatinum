@@ -7599,7 +7599,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIVE:
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
-    case BATTLE_EFFECT_FLINCH_BURN_HIT: // BUG: This entry should be Shadow Force, but is instead Fire Fang
+    case BATTLE_EFFECT_FLINCH_BURN_HIT: // BUG: Fire Fang Always Bypasses Wonder Guard (see docs/bugs_and_glitches.md)
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }
@@ -7932,7 +7932,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     u16 move;
     int moveType;
     u8 battlersDisregarded;
-    u8 score, maxScore;
+    u8 score, maxScore; // BUG: Post-KO Switch-In AI Scoring Overflow (see docs/bugs_and_glitches.md)
     u8 picked = 6;
     u8 slot1, slot2;
     u32 moveStatusFlags;
@@ -7981,10 +7981,6 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                 monType1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
                 monType2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
 
-                // Bug: this operation potentially overflows when considering a mono-type Pokemon
-                // with a quad-effective matchup against a defender. e.g., Machamp (Fighting/Fighting)
-                // vs. Bastiodon (Rock/Steel) would see 160 + 160 = 320, which overflows to an
-                // incorrect matchup-score of 65.
                 score = BattleSystem_TypeMatchupMultiplier(monType1, defenderType1, defenderType2);
                 score += BattleSystem_TypeMatchupMultiplier(monType2, defenderType1, defenderType2);
 

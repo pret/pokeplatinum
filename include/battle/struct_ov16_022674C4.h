@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_022674C4_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/battle_system.h"
 

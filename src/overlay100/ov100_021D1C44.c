@@ -6,26 +6,25 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "overlay100/struct_ov100_021D1C98.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay100/struct_ov100_021D54D0.h"
 #include "struct_defs/sprite_template.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "trainer_info.h"
 #include "overlay100/ov100_021D1C44.h"
@@ -38,7 +37,7 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 * param0);
 static void ov100_021D2324(UnkStruct_ov100_021D1C98 * param0);
 static void ov100_021D2250(UnkStruct_ov100_021D1C98 * param0);
 static void ov100_021D2E0C(UnkStruct_ov100_021D1C98 * param0);
-static void ov100_021D1C44(UnkStruct_020203AC * param0, VecFx32 * param1);
+static void ov100_021D1C44(Camera * camera, VecFx32 * param1);
 
 static UnkStruct_ov100_021D54D0 Unk_ov100_021D54D0[] = {
     {0x6, 0x4, 0x0},
@@ -61,13 +60,13 @@ static UnkStruct_ov100_021D54D0 Unk_ov100_021D54A0[] = {
     {0x0, 0x1}
 };
 
-static void ov100_021D1C44 (UnkStruct_020203AC * param0, VecFx32 * param1)
+static void ov100_021D1C44 (Camera * camera, VecFx32 * param1)
 {
-    UnkStruct_ov115_0226527C v0 = {-0x29fe, 0, 0};
+    CameraAngle v0 = {-0x29fe, 0, 0};
 
-    sub_020206D0(param1, 0x13c805, &v0, 0xc01, 0, 1, param0);
-    sub_020203D4(param0);
-    sub_020206BC(FX32_ONE * 10, FX32_ONE * 1008, param0);
+    Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, camera);
+    Camera_SetAsActive(camera);
+    Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, camera);
 }
 
 static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
@@ -285,7 +284,7 @@ void * ov100_021D2340 (UnkStruct_ov100_021D4DD8 * param0)
         }
     }
 
-    ov100_021D1C44(v0->unk_1EBC->unk_18, &v0->unk_1EBC->unk_44);
+    ov100_021D1C44(v0->unk_1EBC->camera, &v0->unk_1EBC->unk_44);
     v0->unk_1EBC->unk_44.y = FX32_CONST(0);
 
     ov100_021D4DC8(1);
@@ -317,7 +316,7 @@ BOOL ov100_021D2428 (void * param0)
         v0->unk_1EBC->unk_58.unk_10 = 0;
         v0->unk_1EBC->unk_58.unk_14 = 0;
         v0->unk_1EBC->unk_58.unk_08 = 60;
-        v0->unk_1EBC->unk_58.unk_00 = v0->unk_1EBC->unk_18;
+        v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
         v0->unk_1EBC->unk_58.unk_18 = 0;
         v0->unk_1EBC->unk_58.unk_1C = 0;
         v0->unk_1EBC->unk_58.unk_20 = 0;
@@ -347,7 +346,7 @@ BOOL ov100_021D2428 (void * param0)
         v0->unk_1EBC->unk_58.unk_10 = 0;
         v0->unk_1EBC->unk_58.unk_14 = 0;
         v0->unk_1EBC->unk_58.unk_08 = 60;
-        v0->unk_1EBC->unk_58.unk_00 = v0->unk_1EBC->unk_18;
+        v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
         v0->unk_1EBC->unk_58.unk_18 = 0;
         v0->unk_1EBC->unk_58.unk_1C = 0;
         v0->unk_1EBC->unk_58.unk_20 = FX32_CONST(70);
@@ -435,7 +434,7 @@ BOOL ov100_021D2428 (void * param0)
             v0->unk_1EBC->unk_58.unk_10 = 0;
             v0->unk_1EBC->unk_58.unk_14 = 0;
             v0->unk_1EBC->unk_58.unk_08 = 90;
-            v0->unk_1EBC->unk_58.unk_00 = v0->unk_1EBC->unk_18;
+            v0->unk_1EBC->unk_58.camera = v0->unk_1EBC->camera;
             v0->unk_1EBC->unk_58.unk_18 = 0;
             v0->unk_1EBC->unk_58.unk_1C = 0;
             v0->unk_1EBC->unk_58.unk_20 = -FX32_CONST(80);
@@ -734,7 +733,7 @@ BOOL ov100_021D2C8C (void * param0)
 static void ov100_021D2E0C (UnkStruct_ov100_021D1C98 * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     ov100_021D47A0(param0->unk_1EBC);
     ov100_021D4844(param0->unk_1EBC);
@@ -764,5 +763,5 @@ static void ov100_021D2E0C (UnkStruct_ov100_021D1C98 * param0)
     ov100_021D49B4(&param0->unk_1A0.unk_16FC[2]);
     ov100_021D49B4(&param0->unk_1A0.unk_16FC[3]);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }

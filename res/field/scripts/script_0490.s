@@ -2,38 +2,38 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0031
     GoToIfEq 0x800C, 1, _0079
     End
 
 _0031:
-    ScrCmd_02C 1
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 1
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_04E 0x48E
     ScrCmd_04F
     ScrCmd_14E
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
-    ScrCmd_02C 2
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    Message 2
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0031
     GoToIfEq 0x800C, 1, _0079
     End
 
 _0079:
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End

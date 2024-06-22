@@ -12,7 +12,7 @@
 #include "overlay100/struct_ov100_021D4890.h"
 #include "overlay100/struct_ov100_021D49B4.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002F38.h"
 #include "message.h"
@@ -22,7 +22,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"
@@ -92,16 +92,16 @@ void ov100_021D47A0 (UnkStruct_ov100_021D46C8 * param0)
 
 void ov100_021D4844 (UnkStruct_ov100_021D46C8 * param0)
 {
-    UnkStruct_ov115_0226527C v0 = sub_02020A94(param0->unk_18);
-    VecFx32 v1 = sub_02020ABC(param0->unk_18);
+    CameraAngle v0 = Camera_GetAngle(param0->camera);
+    VecFx32 v1 = Camera_GetPosition(param0->camera);
 
-    sub_02020ADC(&v1, param0->unk_18);
-    sub_020209D4(&v0, param0->unk_18);
+    Camera_SetPosition(&v1, param0->camera);
+    Camera_SetAngleAroundTarget(&v0, param0->camera);
 }
 
 void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
 {
-    UnkStruct_ov115_0226527C v0;
+    CameraAngle v0;
 
     param0->unk_24[0] = param0->unk_08;
     param0->unk_24[1] = ((65535 / 360) * param0->unk_0C / param0->unk_08);
@@ -112,38 +112,38 @@ void ov100_021D4890 (UnkStruct_ov100_021D4890 * param0)
     param0->unk_38[2] = param0->unk_1C / param0->unk_08;
     param0->unk_38[3] = param0->unk_20 / param0->unk_08;
 
-    v0 = sub_02020A94(param0->unk_00);
+    v0 = Camera_GetAngle(param0->camera);
 
-    param0->unk_4C.unk_00 = v0.unk_00 + ((65535 / 360) * param0->unk_0C);
-    param0->unk_4C.unk_02 = v0.unk_02 + ((65535 / 360) * param0->unk_10);
-    param0->unk_4C.unk_04 = v0.unk_04 + ((65535 / 360) * param0->unk_14);
+    param0->cameraAngle.x = v0.x + ((65535 / 360) * param0->unk_0C);
+    param0->cameraAngle.y = v0.y + ((65535 / 360) * param0->unk_10);
+    param0->cameraAngle.z = v0.z + ((65535 / 360) * param0->unk_14);
 }
 
 BOOL ov100_021D4920 (UnkStruct_ov100_021D4890 * param0)
 {
     BOOL v0 = 0;
-    UnkStruct_ov115_0226527C v1 = sub_02020A94(param0->unk_00);
+    CameraAngle v1 = Camera_GetAngle(param0->camera);
 
     if (param0->unk_24[0] == 0) {
         return 1;
     }
 
     if ((--param0->unk_24[0]) == 0) {
-        v1.unk_00 = param0->unk_4C.unk_00;
-        v1.unk_02 = param0->unk_4C.unk_02;
-        v1.unk_04 = param0->unk_4C.unk_04;
+        v1.x = param0->cameraAngle.x;
+        v1.y = param0->cameraAngle.y;
+        v1.z = param0->cameraAngle.z;
         v0 = 1;
     } else {
-        v1.unk_00 += (param0->unk_24[1]);
-        v1.unk_02 += (param0->unk_24[2]);
-        v1.unk_04 += (param0->unk_24[3]);
+        v1.x += (param0->unk_24[1]);
+        v1.y += (param0->unk_24[2]);
+        v1.z += (param0->unk_24[3]);
 
         param0->unk_04->x += param0->unk_38[1];
         param0->unk_04->y += param0->unk_38[2];
         param0->unk_04->z += param0->unk_38[3];
     }
 
-    sub_020209D4(&v1, param0->unk_00);
+    Camera_SetAngleAroundTarget(&v1, param0->camera);
 
     return v0;
 }

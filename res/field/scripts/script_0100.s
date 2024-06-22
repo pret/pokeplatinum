@@ -2,10 +2,10 @@
 
     .data
 
-    .long _0012-.-4
-    .long _0016-.-4
-    .long _001A-.-4
-    .long _002B-.-4
+    ScriptEntry _0012
+    ScriptEntry _0016
+    ScriptEntry _001A
+    ScriptEntry _002B
     .short 0xFD13
 
 _0012:
@@ -17,20 +17,20 @@ _0016:
     End
 
 _001A:
-    ScrCmd_060
-    ScrCmd_049 0x624
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    LockAll
+    PlayFanfare SEQ_SE_DP_UG_020
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _002B:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 0
-    ScrCmd_049 0x637
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 0
+    PlayFanfare SEQ_SE_DP_MAZYO4
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End

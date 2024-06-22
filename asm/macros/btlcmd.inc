@@ -5,7 +5,7 @@
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/species.h"
-#include "gmm/pl_msg_0368.h"
+#include "gmm/message_bank_battle_strings.h"
 #include "battle/btlcmd.h"
 
     .include "consts/abilities.inc"
@@ -240,10 +240,10 @@
     .long \frames
     .endm
 
-    .macro PlaySound battler, sdat_id
+    .macro PlaySound battler, sdatID
     .long 31
     .long \battler
-    .long \sdat_id
+    .long \sdatID
     .endm
 
     .macro CompareVarToValue op, var, val, jump
@@ -1207,9 +1207,9 @@
     .long (\jump_not_over)-.) / 4 - 1
     .endm
 
-    .macro WaitTime delay
+    .macro WaitTime frames
     .long 218
-    .long \delay
+    .long \frames
     .endm
 
     .macro CheckCurMoveIsType type, jump
@@ -1234,4 +1234,4 @@
     .long 222
     .endm
 
-    .endif // ASM_BATTLE_SCRIPT_INC
+    .endif ; ASM_BATTLE_SCRIPT_INC

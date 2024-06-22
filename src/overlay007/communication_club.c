@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 
@@ -23,7 +23,7 @@
 #include "unk_02005474.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "heap.h"
@@ -42,9 +42,9 @@
 #include "unk_0205D8CC.h"
 #include "overlay007/communication_club.h"
 
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "constants/communication/comm_type.h"
-#include "gmm/pl_msg_0353.h"
+#include "gmm/message_bank_unk_0353.h"
 
 typedef struct CommClubManager CommClubManager;
 typedef void (* CommClubManTaskFunc)(SysTask *, void *);

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV5_021EEF34_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay005/struct_ov5_021EF13C_decl.h"
 
 UnkStruct_ov5_021EF13C * ov5_021EF13C(void);

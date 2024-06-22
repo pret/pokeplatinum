@@ -2,26 +2,26 @@
 
     .data
 
-    .long _000E-.-4
-    .long _011F-.-4
-    .long _0153-.-4
+    ScriptEntry _000E
+    ScriptEntry _011F
+    ScriptEntry _0153
     .short 0xFD13
 
 _000E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_15B 0, 0x800C
     GoToIfEq 0x800C, 1, _0103
     ScrCmd_1CD 9, 47, 0, 0, 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ScrCmd_0E5 246, 0
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0119
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_0CD 0
-    ScrCmd_02C 2
+    Message 2
     ScrCmd_04E 0x489
     ScrCmd_04F
     SetTrainerFlag 244
@@ -40,7 +40,7 @@ _000E:
     ClearFlag 0x19D
     ClearFlag 0x19C
     SetFlag 0x198
-    ScrCmd_02C 3
+    Message 3
     GoTo _00BB
     End
 
@@ -53,72 +53,72 @@ _00BB:
     SetFlag 117
     ScrCmd_0D1 0, 0x8004
     ScrCmd_0D3 1, 0x8004
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00F9:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _0103:
     GoToIfUnset 117, _00BB
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 5
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0119:
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
 _011F:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_15B 0, 0x800C
     GoToIfEq 0x800C, 1, _0145
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 6
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0145:
     ScrCmd_0CD 0
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 7
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0153:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
     ScrCmd_15B 0, 0x800C
     GoToIfEq 0x800C, 1, _017D
     ScrCmd_0CE 0
     ScrCmd_0CE 1
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 8
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _017D:
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     ScrCmd_0CE 2
-    ScrCmd_02C 9
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 9
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

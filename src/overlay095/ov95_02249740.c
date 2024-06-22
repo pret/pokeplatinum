@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
@@ -15,11 +15,11 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -185,7 +185,7 @@ static void ov95_022497D8 (UnkStruct_ov95_022497D8 * param0)
         G3X_Reset();
 
         ov95_02247770(param0->unk_28);
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 }
 
@@ -197,7 +197,7 @@ static int ov95_022497F8 (UnkStruct_ov95_022497D8 * param0, int * param1)
 
     param0->unk_0C = 0;
 
-    sub_0200DA3C(ov95_02249F38, param0, 0);
+    SysTask_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
     sub_0200F174(0, 1, 1, 0x7fff, 3, 1, 58);
 
     return 1;
@@ -375,11 +375,11 @@ static void ov95_02249A80 (UnkStruct_ov95_022497D8 * param0)
     param0->unk_2C = ov95_022478B4(param0->unk_28, 0, 93, 27, 0, 0, 0, 0);
 
     {
-        UnkStruct_ov115_0226527C v2;
+        CameraAngle v2;
 
-        v2.unk_00 = UnkEnum_ov95_02249A80_00;
-        v2.unk_02 = 0;
-        v2.unk_04 = 0;
+        v2.x = UnkEnum_ov95_02249A80_00;
+        v2.y = 0;
+        v2.z = 0;
 
         ov95_02247AB0(param0->unk_28, &v2);
         ov95_02247AE0(param0->unk_28, ((22 * 0xffff) / 360) / 2);
@@ -598,13 +598,13 @@ static void ov95_02249F38 (SysTask * param0, void * param1)
     UnkStruct_ov95_022497D8 * v0 = param1;
 
     if (v0->unk_0C) {
-        UnkStruct_ov115_0226527C v1;
+        CameraAngle v1;
 
         v0->unk_0C = 0;
 
-        v1.unk_00 = UnkEnum_ov95_02249F38_00;
-        v1.unk_02 = 0;
-        v1.unk_04 = 0;
+        v1.x = UnkEnum_ov95_02249F38_00;
+        v1.y = 0;
+        v1.z = 0;
 
         sub_02019184(v0->unk_24, 3, 3, 0);
         sub_02019184(v0->unk_24, 7, 3, 256);

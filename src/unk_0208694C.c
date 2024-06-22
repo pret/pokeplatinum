@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -49,7 +48,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -1153,7 +1152,7 @@ static int sub_02086F3C (OverlayManager * param0, int * param1)
     Strbuf_Free(v0->unk_184);
 
     for (v2 = 0; v2 < 7; v2++) {
-        sub_020067D0(v0->unk_400[v2]);
+        SysTask_FinishAndFreeParam(v0->unk_400[v2]);
     }
 
     sub_0200A4E4(v0->unk_328[0][0]);
@@ -1641,8 +1640,8 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         for (v0 = 0; v0 < 7; v0++) {
             UnkStruct_020879DC * v2;
 
-            param0->unk_400[v0] = sub_0200679C(sub_020879DC, 16, 5, 18);
-            v2 = sub_0201CED0(param0->unk_400[v0]);
+            param0->unk_400[v0] = SysTask_StartAndAllocateParam(sub_020879DC, 16, 5, 18);
+            v2 = SysTask_GetParam(param0->unk_400[v0]);
             v2->unk_00 = param0->unk_390[7];
             v2->unk_04 = param0->unk_390[v0];
             v2->unk_08 = FX32_ONE * Unk_020F2984[v0][0];
@@ -1741,7 +1740,7 @@ static void sub_02087CDC (SysTask * param0, void * param1)
     case 6:
         v1.x = v0->unk_08;
         sub_02021C50(v0->unk_00, &v1);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 
@@ -1777,8 +1776,8 @@ static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param
             UnkStruct_02087CDC * v4;
             SysTask * v5;
 
-            v5 = sub_0200679C(sub_02087CDC, 16, 0, 18);
-            v4 = sub_0201CED0(v5);
+            v5 = SysTask_StartAndAllocateParam(sub_02087CDC, 16, 0, 18);
+            v4 = SysTask_GetParam(v5);
             v4->unk_00 = param6[7];
             v4->unk_04 = 0;
             v4->unk_08 = sub_02021D28(param6[7])->x;

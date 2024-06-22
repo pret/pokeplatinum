@@ -1,3 +1,4 @@
+
 #include <nitro.h>
 #include <string.h>
 
@@ -11,11 +12,11 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_02050568.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
@@ -139,21 +140,21 @@ static void sub_0205074C (PlayerAvatar * playerAvatar, BOOL param1)
 static void sub_0205075C (FieldSystem * fieldSystem)
 {
     VecFx32 v0;
-    UnkStruct_ov115_0226527C v1;
+    CameraAngle v1;
 
-    sub_02020910(0x8c1, fieldSystem->unk_24);
-    sub_02020A50(0xf81b8, fieldSystem->unk_24);
+    Camera_SetFOV(0x8c1, fieldSystem->camera);
+    Camera_SetDistance(0xf81b8, fieldSystem->camera);
 
     v0.x = 0x350523d;
     v0.y = 0x15edb7;
     v0.z = 0x23da40e;
 
-    sub_02020ACC(&v0, fieldSystem->unk_24);
+    Camera_SetTarget(&v0, fieldSystem->camera);
 
-    v1.unk_00 = 0x823;
-    v1.unk_02 = 0x520;
-    v1.unk_04 = 0;
+    v1.x = 0x823;
+    v1.y = 0x520;
+    v1.z = 0;
 
-    sub_020209D4(&v1, fieldSystem->unk_24);
-    sub_020206BC(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->unk_24);
+    Camera_SetAngleAroundTarget(&v1, fieldSystem->camera);
+    Camera_SetClipping(12 * FX32_ONE, 1564 * FX32_ONE, fieldSystem->camera);
 }

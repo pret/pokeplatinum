@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -37,7 +37,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -196,7 +196,7 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     sub_02002B20(0);
 
     SetMainCallback(ov104_0223C6EC, v0);
-    v0->unk_A0 = sub_0200DA04(ov104_0223C71C, v0, 10);
+    v0->unk_A0 = SysTask_ExecuteOnVBlank(ov104_0223C71C, v0, 10);
     ov104_0222EB8C(v0, &v0->unk_90, v0->unk_C1);
     sub_02039734();
 
@@ -386,7 +386,7 @@ static void ov104_0223C738 (SysTask * param0, void * param1)
     sub_0200C808();
 
     ov104_0223D6A8();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 static void ov104_0223C798 (UnkStruct_ov104_0223C4CC * param0)

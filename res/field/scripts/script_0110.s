@@ -2,9 +2,9 @@
 
     .data
 
-    .long _002D-.-4
-    .long _0040-.-4
-    .long _000E-.-4
+    ScriptEntry _002D
+    ScriptEntry _0040
+    ScriptEntry _000E
     .short 0xFD13
 
 _000E:
@@ -18,23 +18,23 @@ _0027:
     End
 
 _002D:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0040:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

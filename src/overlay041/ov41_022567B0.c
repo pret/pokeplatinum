@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -418,7 +418,7 @@ static void ov41_02256D1C (SysTask * param0, void * param1)
         break;
     case 1:
         if (ov41_022568B0(v0, 7)) {
-            ov25_02254424(1642);
+            PoketchSystem_PlaySoundEffect(1642);
             ov41_022568C8(param1);
         }
         break;

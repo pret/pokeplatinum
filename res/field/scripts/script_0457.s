@@ -2,18 +2,18 @@
 
     .data
 
-    .long _007D-.-4
-    .long _0090-.-4
-    .long _00A3-.-4
-    .long _00B6-.-4
-    .long _00CD-.-4
-    .long _00F9-.-4
-    .long _0022-.-4
-    .long _00E4-.-4
+    ScriptEntry _007D
+    ScriptEntry _0090
+    ScriptEntry _00A3
+    ScriptEntry _00B6
+    ScriptEntry _00CD
+    ScriptEntry _00F9
+    ScriptEntry _0022
+    ScriptEntry _00E4
     .short 0xFD13
 
 _0022:
-    ScrCmd_1B6 0x4000
+    GetTimeOfDay 0x4000
     GoToIfEq 0x4000, 0, _0069
     GoToIfEq 0x4000, 1, _0069
     GoToIfEq 0x4000, 2, _0069
@@ -32,33 +32,33 @@ _0073:
     End
 
 _007D:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0090:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00A3:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 2
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00B6:
@@ -86,11 +86,11 @@ _00E4:
     End
 
 _00F9:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 3
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End

@@ -13,8 +13,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -49,12 +47,12 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
@@ -74,7 +72,7 @@
 #include "pokemon_icon.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "pokemon_summary_app.h"
@@ -399,7 +397,7 @@ void ov10_0221F800 (UnkStruct_ov10_0221F800 * param0)
 {
     UnkStruct_ov10_0221FB28 * v0;
 
-    v0 = sub_0201CED0(sub_0200679C(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->unk_24));
+    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->unk_24));
     memset(v0, 0, sizeof(UnkStruct_ov10_0221FB28));
 
     v0->unk_00 = param0;
@@ -408,7 +406,7 @@ void ov10_0221F800 (UnkStruct_ov10_0221F800 * param0)
 
     if (v0->unk_BBC == 1) {
         if ((v0->unk_00->unk_00 != NULL) && (v0->unk_00->unk_00->unk_198 != NULL)) {
-            v0->unk_BBC = sub_0207D688(sub_0207D990(v0->unk_00->unk_00->unk_198), 465, 1, param0->unk_24);
+            v0->unk_BBC = Bag_CanRemoveItem(SaveData_GetBag(v0->unk_00->unk_00->unk_198), 465, 1, param0->unk_24);
         }
     }
 }
@@ -1181,7 +1179,7 @@ static u8 ov10_02220A50 (SysTask * param0, UnkStruct_ov10_0221FB28 * param1)
     sub_02002F54(param1->unk_08);
 
     param1->unk_00->unk_2B = 1;
-    sub_020067D0(param0);
+    SysTask_FinishAndFreeParam(param0);
 
     return 1;
 }
@@ -1748,7 +1746,7 @@ static void ov10_022216E0 (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
 {
-    UnkStruct_020203AC * v0;
+    Camera * camera;
     void * v1;
 
     param0->unk_B4C = sub_02024220(param0->unk_00->unk_24, 0, 4, 0, 2, NULL);
@@ -1759,8 +1757,8 @@ static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
     param0->unk_B54 = Heap_AllocFromHeap(param0->unk_00->unk_24, 0x4800);
     param0->unk_B50 = sub_02014014(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->unk_24);
 
-    v0 = sub_02014784(param0->unk_B50);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v0);
+    camera = sub_02014784(param0->unk_B50);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v1 = sub_020144C4(61, 2, param0->unk_00->unk_24);
     sub_020144CC(param0->unk_B50, v1, (1 << 1) | (1 << 3), 1);

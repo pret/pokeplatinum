@@ -9,8 +9,8 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "sys_task_manager.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -53,8 +53,8 @@ typedef struct UnkStruct_ov117_02261280_t {
     UnkStruct_02012744 * unk_90;
     SysTask * unk_94;
     GenericPointerData * unk_98;
-    UnkStruct_020203AC * unk_9C;
-    UnkStruct_020203AC * unk_A0;
+    Camera * camera1;
+    Camera * camera2;
     UnkStruct_02014014 * unk_A4;
     NNSFndAllocator unk_A8;
     UnkStruct_ov117_02262664 unk_B8;

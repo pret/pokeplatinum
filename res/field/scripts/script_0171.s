@@ -2,51 +2,51 @@
 
     .data
 
-    .long _0012-.-4
-    .long _0025-.-4
-    .long _0038-.-4
-    .long _004C-.-4
+    ScriptEntry _0012
+    ScriptEntry _0025
+    ScriptEntry _0038
+    ScriptEntry _004C
     .short 0xFD13
 
 _0012:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 4
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0025:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 5
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0038:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
     ScrCmd_0CD 0
-    ScrCmd_02C 3
-    ScrCmd_034
+    Message 3
+    CloseMessage
     ScrCmd_27A
-    ScrCmd_061
+    ReleaseAll
     End
 
 _004C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_02C 1
-    ScrCmd_02C 2
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
+    Message 1
+    Message 2
+    CloseMessage
+    WaitTime 15, 0x800C
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _0092
     GoToIfEq 0x800C, 2, _00AA
@@ -81,7 +81,7 @@ _00D2:
     ScrCmd_16A 77
     ScrCmd_065 2
     SetFlag 0x162
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

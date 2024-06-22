@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
@@ -24,13 +24,13 @@
 #include "unk_0200A9DC.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202854C.h"
@@ -608,7 +608,7 @@ static void ov23_02251A84 (BOOL param0, FieldSystem * fieldSystem)
         v0.z = -v0.z;
     }
 
-    sub_02020990(&v0, fieldSystem->unk_24);
+    Camera_Move(&v0, fieldSystem->camera);
 }
 
 static BOOL ov23_02251ACC (TaskManager * param0)

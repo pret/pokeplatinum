@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -29,7 +29,7 @@
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
@@ -53,7 +53,7 @@
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F6454.h"
@@ -148,7 +148,7 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
     ctx->data[0] = v13;
 
     v6 = MessageLoader_Init(0, 26, 412, 32);
-    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, sub_0203F118(fieldSystem, v13), *v10, sub_0203F098(ctx->fieldSystem, 1), v6, sub_0203F118(fieldSystem, v14), sub_0203F118(fieldSystem, v15));
+    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, sub_0203F098(ctx->fieldSystem, 1), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
     v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
 
     if (v0 == 1) {
@@ -188,7 +188,7 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
 static BOOL ov5_021F65D4 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = sub_0203F118(fieldSystem, ctx->data[0]);
+    u16 * v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;
@@ -518,7 +518,7 @@ BOOL ScrCmd_31D (ScriptContext * param0)
     }
 
     if (v9 > 0) {
-        v4 = sub_0207D570(sub_0207D990(fieldSystem->saveData), 112, v9, 4);
+        v4 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), 112, v9, 4);
 
         if (v4 == 0) {
             *v11 = 0xff;
@@ -583,7 +583,7 @@ BOOL ScrCmd_31E (ScriptContext * param0)
     v5 = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
     if (v5 == 112) {
-        v6 = sub_0207D570(sub_0207D990(fieldSystem->saveData), 112, 1, 4);
+        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), 112, 1, 4);
 
         if (v6 == 0) {
             *v9 = 0xff;

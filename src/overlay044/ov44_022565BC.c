@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -279,7 +279,7 @@ static void ov44_0225686C (SysTask * param0, void * param1)
     v0 = ov25_0225523C(param1);
     v1 = ov25_02255240(param1);
 
-    ov25_02254424(1641);
+    PoketchSystem_PlaySoundEffect(1641);
     ov25_022558C4(v0->unk_24[0], 10);
     ov44_02256780(param1);
 }
@@ -508,7 +508,7 @@ static BOOL ov44_02256AC8 (UnkStruct_ov44_022565BC * param0, const UnkStruct_ov4
                 param0->unk_70 = 2;
                 break;
             case -5:
-                ov25_02254424(param0->unk_6C[(param0->unk_74)++]);
+                PoketchSystem_PlaySoundEffect(param0->unk_6C[(param0->unk_74)++]);
                 break;
             case -6:
                 ov25_022558C4(param0->unk_24[2], 6);

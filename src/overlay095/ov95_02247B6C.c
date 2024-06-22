@@ -6,7 +6,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
@@ -29,12 +28,12 @@
 #include "unk_0200762C.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
@@ -199,7 +198,7 @@ static void ov95_02247C6C (UnkStruct_ov95_02247C6C * param0)
     NNS_G3dGePopMtx(1);
 
     ov95_02247770(param0->unk_70);
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
 static int ov95_02247CB4 (UnkStruct_ov95_02247C6C * param0, int * param1)
@@ -524,7 +523,7 @@ static void ov95_02248364 (UnkStruct_ov95_02247C6C * param0, int param1, int par
         v0->unk_08 = param2 << 12;
         v0->unk_0C = (v0->unk_08 - v0->unk_04) / param3;
         v0->unk_10 = param3;
-        param0->unk_78 = sub_0200DA04(ov95_022483E4, v0, 0);
+        param0->unk_78 = SysTask_ExecuteOnVBlank(ov95_022483E4, v0, 0);
 
         G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, param1);
     }
@@ -538,7 +537,7 @@ static BOOL ov95_022483B4 (UnkStruct_ov95_02247C6C * param0)
 static void ov95_022483C4 (UnkStruct_ov95_02247C6C * param0)
 {
     if (param0->unk_78) {
-        ov95_022476C8(sub_0201CED0(param0->unk_78));
+        ov95_022476C8(SysTask_GetParam(param0->unk_78));
         SysTask_Done(param0->unk_78);
         param0->unk_78 = NULL;
     }
@@ -589,7 +588,7 @@ static BOOL ov95_0224846C (UnkStruct_ov95_02247C6C * param0)
 static int ov95_0224847C (UnkStruct_ov95_02247C6C * param0)
 {
     if (param0->unk_7C) {
-        UnkStruct_ov95_02248420 * v0 = sub_0201CED0(param0->unk_7C);
+        UnkStruct_ov95_02248420 * v0 = SysTask_GetParam(param0->unk_7C);
         return v0->unk_20;
     }
 
@@ -599,7 +598,7 @@ static int ov95_0224847C (UnkStruct_ov95_02247C6C * param0)
 static void ov95_02248490 (UnkStruct_ov95_02247C6C * param0)
 {
     if (param0->unk_7C) {
-        Heap_FreeToHeap(sub_0201CED0(param0->unk_7C));
+        Heap_FreeToHeap(SysTask_GetParam(param0->unk_7C));
         SysTask_Done(param0->unk_7C);
         param0->unk_7C = NULL;
     }

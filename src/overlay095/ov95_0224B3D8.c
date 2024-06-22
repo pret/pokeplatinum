@@ -8,7 +8,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
@@ -31,12 +30,12 @@
 #include "unk_0200762C.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
@@ -229,7 +228,7 @@ static void ov95_0224B4D4 (UnkStruct_ov95_0224B4D4 * param0)
         ov95_02247770(param0->unk_74);
     }
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
 static int ov95_0224B520 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
@@ -567,7 +566,7 @@ static void ov95_0224BBB0 (UnkStruct_ov95_0224B4D4 * param0, int param1, int par
         v0->unk_08 = param2 << 12;
         v0->unk_0C = (v0->unk_08 - v0->unk_04) / param3;
         v0->unk_10 = param3;
-        param0->unk_7C = sub_0200DA04(ov95_0224BC30, v0, 0);
+        param0->unk_7C = SysTask_ExecuteOnVBlank(ov95_0224BC30, v0, 0);
 
         G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0, param1);
     }
@@ -581,7 +580,7 @@ static BOOL ov95_0224BC00 (UnkStruct_ov95_0224B4D4 * param0)
 static void ov95_0224BC10 (UnkStruct_ov95_0224B4D4 * param0)
 {
     if (param0->unk_7C) {
-        ov95_022476C8(sub_0201CED0(param0->unk_7C));
+        ov95_022476C8(SysTask_GetParam(param0->unk_7C));
         SysTask_Done(param0->unk_7C);
         param0->unk_7C = NULL;
     }
@@ -637,7 +636,7 @@ static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, SysTask ** param1)
 static void ov95_0224BCE8 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_0224BC6C * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_0224BC6C * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
         Heap_FreeToHeap(v0);

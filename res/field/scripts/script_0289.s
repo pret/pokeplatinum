@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _002A-.-4
+    ScriptEntry _000A
+    ScriptEntry _002A
     .short 0xFD13
 
 _000A:
@@ -19,21 +19,21 @@ _001C:
 
 _002A:
     GoToIfSet 0x121, _0046
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0046:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "battle/battle_context.h"
@@ -45,7 +45,7 @@
 #include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
@@ -78,7 +78,7 @@
 #include "party.h"
 #include "unk_0207A6DC.h"
 #include "unk_0207AE68.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C098.h"
 #include "flags.h"
 #include "overlay010/ov10_0221F800.h"
@@ -273,7 +273,7 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         if (v2) {
             Heap_Create(3, 73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->unk_11C, v0->unk_100, v3, 0x1 | 0x2, 73);
+            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->unk_11C, v0->poketchData, v3, 0x1 | 0x2, 73);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -648,7 +648,7 @@ static void ov16_0223B790 (OverlayManager * param0)
 
     v0->unk_1C = SysTask_Start(ov16_0223CF48, v0, 60000);
     v0->unk_20 = SysTask_Start(ov16_0223CF8C, v0, 50000);
-    v0->unk_24 = sub_0200DA04(ov16_0223D0C4, v0, 1200);
+    v0->unk_24 = SysTask_ExecuteOnVBlank(ov16_0223D0C4, v0, 1200);
     v0->unk_2434 = -51;
 
     ov16_0223DD4C(v0);
@@ -737,7 +737,7 @@ static void ov16_0223BCB4 (OverlayManager * param0)
     }
 
     sub_02015760(v0->unk_1AC);
-    sub_0207D3EC(v0->unk_58, v1->unk_E0);
+    Bag_Copy(v0->unk_58, v1->unk_E0);
     Heap_FreeToHeap(v0->unk_58);
     sub_02026338(v0->pokedex, v1->unk_E8);
     Heap_FreeToHeap(v0->pokedex);
@@ -745,7 +745,7 @@ static void ov16_0223BCB4 (OverlayManager * param0)
     v1->unk_EC = v0->pcBoxes;
     v1->unk_E4 = v0->unk_5C;
     v1->unk_190 = v0->unk_1BC;
-    v1->unk_100 = v0->unk_98;
+    v1->poketchData = v0->poketchData;
     v1->unk_10C = v0->unk_9C;
     v1->unk_168 = v0->safariBalls;
     v1->unk_14 = v0->resultMask & (0xc0 ^ 0xff);
@@ -1089,9 +1089,9 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_2444 = param1->unk_174;
     param0->unk_2448 = param1->unk_174;
     param0->battleStatusMask = param1->unk_164;
-    param0->unk_58 = sub_0207D3C0(5);
+    param0->unk_58 = Bag_New(5);
 
-    sub_0207D3EC(param1->unk_E0, param0->unk_58);
+    Bag_Copy(param1->unk_E0, param0->unk_58);
     param0->pokedex = sub_02026324(5);
     sub_02026338(param1->unk_E8, param0->pokedex);
 
@@ -1100,7 +1100,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_1B4 = param1->unk_124;
     param0->unk_5C = param1->unk_E4;
     param0->unk_1BC = param1->unk_190;
-    param0->unk_98 = param1->unk_100;
+    param0->poketchData = param1->poketchData;
     param0->unk_2420 = param1->unk_13C;
     param0->unk_9C = param1->unk_10C;
     param0->safariBalls = param1->unk_168;
@@ -1562,7 +1562,7 @@ static void ov16_0223CF48 (SysTask * param0, void * param1)
         sub_02007768(v0->unk_88);
         sub_0200C7EC(v0->unk_94);
         sub_0200C808();
-        sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }
 

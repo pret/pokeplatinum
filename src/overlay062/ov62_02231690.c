@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
@@ -46,7 +46,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "unk_02014A84.h"
 #include "heap.h"
@@ -2462,7 +2462,7 @@ void ov62_02233664 (UnkStruct_ov62_0223359C * param0)
     BOOL v3;
     BOOL v4 = 0;
 
-    v3 = sub_020227A4(&v0, &v1);
+    v3 = TouchScreen_GetHoldState(&v0, &v1);
 
     if (param0->unk_14) {
         sub_0200D33C(param0->unk_18[0]);
@@ -2540,7 +2540,7 @@ void ov62_0223376C (UnkStruct_0208C06C * param0, int param1)
     param0->unk_52C.unk_00 = param1;
     param0->unk_52C.unk_04 = 0;
 
-    sub_0200DA04(ov62_02233750, &param0->unk_52C, 4);
+    SysTask_ExecuteOnVBlank(ov62_02233750, &param0->unk_52C, 4);
 }
 
 BOOL ov62_02233790 (UnkStruct_0208C06C * param0)
@@ -2575,7 +2575,7 @@ static void ov62_02233798 (SysTask * param0, void * param1)
 
 void ov62_022337D4 (UnkStruct_0208C06C * param0)
 {
-    param0->unk_41E8 = sub_0200DA04(ov62_02233798, param0, 5);
+    param0->unk_41E8 = SysTask_ExecuteOnVBlank(ov62_02233798, param0, 5);
 }
 
 BOOL ov62_022337F0 (UnkStruct_0208C06C * param0, int param1, u8 param2)
@@ -3290,7 +3290,7 @@ static void ov62_02234440 (UnkStruct_0208C06C * param0)
     param0->unk_41D8.unk_00 = 1;
     param0->unk_41D8.unk_04 = 0;
 
-    sub_020227C0(&v0, &v1);
+    TouchScreen_GetTapState(&v0, &v1);
     sub_0208BA30(param0->unk_41D8.unk_08);
     sub_0208B8B0(param0->unk_41D8.unk_08, 1);
     sub_0208B9E0(param0->unk_41D8.unk_08, 1);

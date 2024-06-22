@@ -2,12 +2,12 @@
 
     .data
 
-    .long _001A-.-4
-    .long _00BE-.-4
-    .long _00E7-.-4
-    .long _018F-.-4
-    .long _0225-.-4
-    .long _0289-.-4
+    ScriptEntry _001A
+    ScriptEntry _00BE
+    ScriptEntry _00E7
+    ScriptEntry _018F
+    ScriptEntry _0225
+    ScriptEntry _0289
     .short 0xFD13
 
 _001A:
@@ -81,18 +81,18 @@ _0165:
     End
 
 _0171:
-    ScrCmd_030
+    WaitABPress
     ScrCmd_19F 8
     GoTo _00F3
     End
 
 _017F:
-    ScrCmd_030
+    WaitABPress
     GoTo _0171
     End
 
 _0189:
-    ScrCmd_030
+    WaitABPress
     ScrCmd_1A0
     End
 
@@ -128,12 +128,12 @@ _0201:
     End
 
 _020D:
-    ScrCmd_030
+    WaitABPress
     GoTo _0217
     End
 
 _0217:
-    ScrCmd_030
+    WaitABPress
     ScrCmd_19F 8
     GoTo _019B
     End
@@ -158,12 +158,12 @@ _0265:
     End
 
 _0271:
-    ScrCmd_030
+    WaitABPress
     GoTo _027B
     End
 
 _027B:
-    ScrCmd_030
+    WaitABPress
     ScrCmd_19F 8
     GoTo _0231
     End
@@ -173,11 +173,11 @@ _0289:
     WaitMovement
     ScrCmd_152 3
     ScrCmd_19F 91
-    ScrCmd_030
+    WaitABPress
     ScrCmd_1A0
     ApplyMovement 16, _02E4
     WaitMovement
-    ScrCmd_049 0x630
+    PlayFanfare SEQ_SE_DP_PYUU2
     ApplyMovement 16, _02F0
     WaitMovement
     ScrCmd_065 16

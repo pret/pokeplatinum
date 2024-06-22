@@ -6,10 +6,10 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "pokemon.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021F7ED8_decl.h"
 
@@ -22,7 +22,7 @@
 #include "unk_02005474.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
@@ -36,7 +36,7 @@
 #include "constants/forms.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/ov5_021F77A8.h"
 
@@ -96,7 +96,7 @@ static void ov5_021F8250(UnkStruct_ov5_021F7ED8 * param0);
 BOOL ScrCmd_337 (ScriptContext * param0)
 {
     u16 v0 = sub_0203F150(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
-    u16 * v1 = sub_0203F118(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
+    u16 * v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     PokedexData * v2 = SaveData_Pokedex(param0->fieldSystem->saveData);
 
     *v1 = sub_02026FE8(v2, v0);
@@ -130,11 +130,11 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
-    UnkStruct_0207D3C0 * v5;
+    Bag * v5;
     u16 v6 = ScriptContext_GetVar(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
 
-    v5 = sub_0207D990(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -155,25 +155,25 @@ BOOL ScrCmd_2EA (ScriptContext * param0)
     *v7 = 1;
 
     if (v1) {
-        if (sub_0207D688(v5, 72, v1, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 72, v1, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v2) {
-        if (sub_0207D688(v5, 73, v2, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 73, v2, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v3) {
-        if (sub_0207D688(v5, 74, v3, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 74, v3, 32) == 0) {
             *v7 = 0;
         }
     }
 
     if (v4) {
-        if (sub_0207D688(v5, 75, v4, 32) == 0) {
+        if (Bag_CanRemoveItem(v5, 75, v4, 32) == 0) {
             *v7 = 0;
         }
     }
@@ -185,10 +185,10 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
 {
     int v0;
     u8 v1, v2, v3, v4;
-    UnkStruct_0207D3C0 * v5;
+    Bag * v5;
     u16 v6 = ScriptContext_GetVar(param0);
 
-    v5 = sub_0207D990(param0->fieldSystem->saveData);
+    v5 = SaveData_GetBag(param0->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (NELEMS(sTeachableMoves)); v0++) {
         if (v6 == sTeachableMoves[v0].moveID) {
@@ -204,10 +204,10 @@ BOOL ScrCmd_2EB (ScriptContext * param0)
         GF_ASSERT(0);
     }
 
-    Bag_SubtractItem(v5, 72, v1, 32);
-    Bag_SubtractItem(v5, 73, v2, 32);
-    Bag_SubtractItem(v5, 74, v3, 32);
-    Bag_SubtractItem(v5, 75, v4, 32);
+    Bag_TryRemoveItem(v5, 72, v1, 32);
+    Bag_TryRemoveItem(v5, 73, v2, 32);
+    Bag_TryRemoveItem(v5, 74, v3, 32);
+    Bag_TryRemoveItem(v5, 75, v4, 32);
 
     return 0;
 }
@@ -341,7 +341,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
     }
 
     v7 = MessageLoader_Init(0, 26, 647, 32);
-    v10 = ov5_021F7ED8(fieldSystem, 20, 1, 0, 1, sub_0203F118(fieldSystem, v16), *v13, sub_0203F098(param0->fieldSystem, 1), v7);
+    v10 = ov5_021F7ED8(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v16), *v13, sub_0203F098(param0->fieldSystem, 1), v7);
 
     for (v2 = 0; v2 < (NELEMS(sTeachableMoves)); v2++) {
         v12[v2] = 0;
@@ -404,7 +404,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
 static BOOL ov5_021F7DE8 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v1 = sub_0203F118(fieldSystem, param0->data[0]);
+    u16 * v1 = FieldSystem_GetVarPointer(fieldSystem, param0->data[0]);
 
     if (*v1 == 0xeeee) {
         return 0;

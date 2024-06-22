@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/poketch_button.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
@@ -11,7 +11,7 @@
 #include "touch_screen.h"
 #include "overlay027/struct_ov27_0225680C_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02022844.h"
 #include "unk_02099D44.h"
@@ -39,14 +39,14 @@ typedef struct {
     u64 unk_14;
     UnkStruct_ov27_0225680C_1 unk_1C;
     UnkStruct_ov27_0225621C_sub1 unk_38;
-    PoketchButtonManager * unk_5C;
+    PoketchButtonManager *buttonManager;
     UnkStruct_ov27_0225680C * unk_60;
-    PoketchSystem * unk_64;
+    PoketchSystem *poketchSys;
 } UnkStruct_ov27_0225621C;
 
 static void NitroStaticInit(void);
 
-static BOOL ov27_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov27_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
 static BOOL ov27_0225621C(UnkStruct_ov27_0225621C * param0, BGL * param1, u32 param2);
 static void ov27_022562AC(UnkStruct_ov27_0225621C * param0);
 static void ov27_022562FC(SysTask * param0, void * param1);
@@ -68,16 +68,16 @@ static void ov27_022566D8(UnkStruct_ov27_0225621C * param0, UnkStruct_ov27_02256
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov27_022561D4, ov27_02256358);
+    PoketchSystem_SetAppFunctions(ov27_022561D4, ov27_02256358);
 }
 
-static BOOL ov27_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov27_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     UnkStruct_ov27_0225621C * v0 = (UnkStruct_ov27_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225621C));
 
     if (v0 != NULL) {
         if (ov27_0225621C(v0, param2, param3)) {
-            v0->unk_64 = param1;
+            v0->poketchSys = poketchSys;
 
             if (SysTask_Start(ov27_022562FC, v0, 1) != NULL) {
                 *param0 = v0;
@@ -166,13 +166,13 @@ static void ov27_022562FC (SysTask * param0, void * param1)
             v1->unk_02 = 0;
         }
 
-        ov25_02254518(v1->unk_64, v1->unk_5C);
+        ov25_02254518(v1->poketchSys, v1->buttonManager);
         ov27_022566D8(v1, &(v1->unk_1C));
 
         if (v0[v1->unk_00](v1)) {
             ov27_022562AC(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_64);
+            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }
     } else {
     }
@@ -206,7 +206,7 @@ static BOOL ov27_0225637C (UnkStruct_ov27_0225621C * param0)
         break;
     case 1:
         if (ov27_022569EC(param0->unk_60, 0)) {
-            ov25_0225424C(param0->unk_64);
+            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
 
             if (param0->unk_1C.unk_00) {
                 ov27_02256360(param0, 2);
@@ -375,11 +375,11 @@ static BOOL ov27_02256608 (UnkStruct_ov27_0225621C * param0)
         {0xfe, 112, 112, 39},
     };
 
-    param0->unk_5C = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);
+    param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);
 
-    if (param0->unk_5C != NULL) {
-        PoketchButtonManager_SetButtonTimer(param0->unk_5C, 0, 0, 15);
-        PoketchButtonManager_SetButtonTimer(param0->unk_5C, 0, 1, 75);
+    if (param0->buttonManager != NULL) {
+        PoketchButtonManager_SetButtonTimer(param0->buttonManager, 0, 0, 15);
+        PoketchButtonManager_SetButtonTimer(param0->buttonManager, 0, 1, 75);
         param0->unk_04 = 0;
         return 1;
     }
@@ -389,7 +389,7 @@ static BOOL ov27_02256608 (UnkStruct_ov27_0225621C * param0)
 
 static void ov27_02256654 (UnkStruct_ov27_0225621C * param0)
 {
-    PoketchButtonManager_Free(param0->unk_5C);
+    PoketchButtonManager_Free(param0->buttonManager);
 }
 
 static void ov27_02256660 (u32 param0, u32 param1, u32 param2, void * param3)

@@ -2,12 +2,12 @@
 
     .data
 
-    .long _001C-.-4
-    .long _0037-.-4
-    .long _00A5-.-4
-    .long _0116-.-4
-    .long _001A-.-4
-    .long _0127-.-4
+    ScriptEntry _001C
+    ScriptEntry _0037
+    ScriptEntry _00A5
+    ScriptEntry _0116
+    ScriptEntry _001A
+    ScriptEntry _0127
     .short 0xFD13
 
 _001A:
@@ -24,12 +24,12 @@ _0029:
     End
 
 _0037:
-    ScrCmd_060
-    ScrCmd_049 0x5DC
+    LockAll
+    PlayFanfare SEQ_SE_CONFIRM
     ScrCmd_04B 0x5DC
     ScrCmd_04C 0x1E7, 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     SetFlag 142
     ScrCmd_2BD 0x1E7, 47
     ClearFlag 142
@@ -43,25 +43,25 @@ _0037:
 _0084:
     SetFlag 0x121
     SetFlag 0x250
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0090:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _009B:
     ClearFlag 0x250
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00A5:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
     GoToIfEq 0x410C, 3, _00F4
     GoToIfLt 0x410C, 15, _0100
     SetVar 0x8004, 90
@@ -70,9 +70,9 @@ _00CB:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _010C
     ScrCmd_014 0x7E0
-    ScrCmd_034
+    CloseMessage
     ScrCmd_065 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00F4:
@@ -85,23 +85,23 @@ _0100:
 
 _010C:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _0116:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 4
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0127:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 2
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 2
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0149
     GoTo _017F
@@ -109,20 +109,20 @@ _0127:
 
 _0149:
     ScrCmd_0CD 0
-    ScrCmd_02C 3
-    ScrCmd_034
-    ScrCmd_049 0x5D2
+    Message 3
+    CloseMessage
+    PlayFanfare SEQ_SE_PL_SYUWA
     ScrCmd_328 1
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 0x247, 0, 116, 75, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     End
 
 _017F:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

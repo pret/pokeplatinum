@@ -6,12 +6,11 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -35,7 +34,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "heap.h"
@@ -52,7 +51,7 @@
 #include "comm_player_manager.h"
 #include "player_avatar.h"
 #include "unk_0206A780.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022416A8.h"
@@ -1329,11 +1328,11 @@ static BOOL ov23_022507D8 (SysTask * param0, void * param1)
 
         if (v1 == 3) {
             int v3 = sub_02028938(Unk_ov23_022577B8->unk_05);
-            UnkStruct_0207D3C0 * v4 = sub_0207D990(v0->fieldSystem->saveData);
+            Bag * v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
             Sound_PlayEffect(1500);
 
-            if (sub_0207D570(v4, v3, 1, 4)) {
+            if (Bag_TryAddItem(v4, v3, 1, 4)) {
                 sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
                 ov23_022541A0(ov23_0224219C(), 0, Unk_ov23_022577B8->unk_05);
 

@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
@@ -11,7 +11,7 @@
 
 #include "unk_02002B7C.h"
 #include "message.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -306,7 +306,7 @@ UnkStruct_ov99_021D3E78 * ov99_021D3E78 (BGL * param0, int param1, int param2, i
 
         v0->unk_28 = sub_0201A778(75, 1);
         BGL_AddWindow(param0, v0->unk_28, param2, 0, 0, 32, 2, param3, 0);
-        v0->unk_34 = sub_0200DA3C(ov99_021D4104, v0, 0);
+        v0->unk_34 = SysTask_ExecuteAfterVBlank(ov99_021D4104, v0, 0);
     }
 
     return v0;

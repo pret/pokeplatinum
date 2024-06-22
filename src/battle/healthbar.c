@@ -8,7 +8,7 @@
 #include "constants/font.h"
 #include "constants/heap.h"
 
-#include "gmm/pl_msg_0368.h"
+#include "gmm/message_bank_battle_strings.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -16,7 +16,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "pokemon.h"
 
@@ -31,7 +31,7 @@
 #include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
@@ -88,7 +88,7 @@ typedef struct {
 } UnkStruct_ov16_0226834C;
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
-static s32 UpdateGauge(s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5);
+static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset);
 static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
@@ -1508,84 +1508,81 @@ static void DrawGauge (Healthbar * param0, u8 param1)
     }
 }
 
-static s32 UpdateGauge (s32 param0, s32 param1, s32 param2, s32 * param3, u8 param4, u16 param5)
+static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset)
 {
-    s32 v0;
-    s32 v1;
-    u8 v2;
-    s32 v3;
+    s32 updated, final, ratio;
 
-    v2 = param4 * 8;
+    u8 corrected = size * 8;
 
-    if (*param3 == -2147483648) {
-        if (param0 < v2) {
-            *param3 = param1 << 8;
+    if (*temp == -2147483648) {
+        if (max < corrected) {
+            *temp = cur << 8;
         } else {
-            *param3 = param1;
+            *temp = cur;
         }
     }
 
-    v0 = param1 - param2;
+    updated = cur - diff;
 
-    if (v0 < 0) {
-        v0 = 0;
-    } else if (v0 > param0) {
-        v0 = param0;
+    if (updated < 0) {
+        updated = 0;
+    } else if (updated > max) {
+        updated = max;
     }
 
-    if (param0 < v2) {
-        if ((v0 == (*param3 >> 8)) && ((*param3 & 0xff) == 0)) {
+    if (max < corrected) {
+        if (updated == (*temp >> 8) && (*temp & 0xff) == 0) {
             return -1;
         }
     } else {
-        if (v0 == *param3) {
+        if (updated == *temp) {
             return -1;
         }
     }
 
-    if (param0 < v2) {
-        v3 = param0 * 0x100 / v2;
+    if (max < corrected) {
+        ratio = max * 0x100 / corrected;
 
-        if (param2 < 0) {
-            *param3 += v3;
-            v1 = *param3 >> 8;
+        if (diff < 0) {
+            *temp += ratio;
+            final = *temp >> 8;
 
-            if (v1 >= v0) {
-                *param3 = v0 << 8;
-                v1 = v0;
+            if (final >= updated) {
+                *temp = updated << 8;
+                final = updated;
             }
         } else {
-            *param3 -= v3;
-            v1 = *param3 >> 8;
+            *temp -= ratio;
+            final = *temp >> 8;
 
-            if ((*param3 & 0xff) > 0) {
-                v1++;
+            if ((*temp & 0xff) > 0) {
+                final++;
             }
 
-            if (v1 <= v0) {
-                *param3 = v0 << 8;
-                v1 = v0;
+            if (final <= updated) {
+                *temp = updated << 8;
+                final = updated;
             }
         }
     } else {
-        if (param2 < 0) {
-            *param3 += param5;
+        if (diff < 0) {
+            *temp += fillOffset;
 
-            if (*param3 > v0) {
-                *param3 = v0;
+            if (*temp > updated) {
+                *temp = updated;
             }
         } else {
-            *param3 -= param5;
+            *temp -= fillOffset;
 
-            if (*param3 < v0) {
-                *param3 = v0;
+            if (*temp < updated) {
+                *temp = updated;
             }
         }
 
-        v1 = *param3;
+        final = *temp;
     }
 
-    return v1;
+    return final;
 }
 
 static u8 ov16_02268194 (s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5)

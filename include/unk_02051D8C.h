@@ -7,7 +7,7 @@
 #include "field/field_system_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D99C_decl.h"
+#include "bag.h"
 #include "struct_defs/struct_0209C370.h"
 #include "savedata.h"
 #include "overlay006/battle_params.h"

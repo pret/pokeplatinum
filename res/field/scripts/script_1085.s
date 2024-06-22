@@ -2,23 +2,23 @@
 
     .data
 
-    .long _000C-.-4
-    .long _0109-.-4
+    ScriptEntry _000C
+    ScriptEntry _0109
     .short 0xFD13
     End
 
 _000C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     GoToIfUnset 0x117, _00FE
     CallIfUnset 1, _00F6
     ScrCmd_1C0 0x800C, 201
     GoToIfEq 0x800C, 1, _0048
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0048:
@@ -33,7 +33,7 @@ _0067:
     ScrCmd_093 0x8007, 0x800C
     GoToIfEq 0x800C, 99, _00EB
     ScrCmd_0D0 0, 0x8004
-    ScrCmd_02C 1
+    Message 1
     SetVar 0x8000, 10
     ScrCmd_093 0x8007, 0x800C
     GoToIfLe 0x800C, 89, _00B3
@@ -50,17 +50,17 @@ _00B3:
 _00DB:
     ScrCmd_2B3 0, 0x8007
 _00E0:
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00EB:
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00F6:
@@ -68,38 +68,38 @@ _00F6:
     Return
 
 _00FE:
-    ScrCmd_02C 3
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 3
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0109:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     GoToIfSet 0x117, _0144
-    ScrCmd_02C 5
+    Message 5
     SetVar 0x8004, 0x1B2
     SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     SetFlag 0x117
     Call _014F
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 7
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0144:
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 7
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _014F:
-    ScrCmd_02C 6
+    Message 6
     ScrCmd_1B7 0x8007, 6
     AddVar 0x8007, 1
     ScrCmd_094 0x8007, 1

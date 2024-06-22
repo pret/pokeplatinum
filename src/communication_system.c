@@ -4,13 +4,13 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_020322D8.h"
 #include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_0203233C.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "rtc.h"
 #include "heap.h"
 #include "constants/heap.h"
@@ -198,7 +198,7 @@ static BOOL CommSys_Init (BOOL shouldAlloc, int maxPacketSize)
     CommSys_Seed(&sCommunicationSystem->rand);
 
     if (!reinit) {
-        sCommunicationSystem->unk_57C = sub_0200DA04(sub_0203498C, NULL, 0);
+        sCommunicationSystem->unk_57C = SysTask_ExecuteOnVBlank(sub_0203498C, NULL, 0);
     }
 
     sCommunicationSystem->wifiConnected = FALSE;

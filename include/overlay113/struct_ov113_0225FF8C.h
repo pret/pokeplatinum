@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV113_0225FF8C_H
 #define POKEPLATINUM_STRUCT_OV113_0225FF8C_H
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 typedef struct {
-    UnkStruct_ov115_0226527C unk_00;
+    CameraAngle cameraAngle;
     s32 unk_08;
     s16 unk_0C;
     u8 unk_0E;

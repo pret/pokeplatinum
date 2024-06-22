@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "touch_screen.h"
 #include "overlay116/struct_ov116_02260490.h"
@@ -16,7 +16,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "heap.h"
@@ -1008,7 +1008,7 @@ void ov116_02263BA0 (UnkStruct_ov116_02262A8C * param0)
         u32 v0, v1;
         s16 v2, v3;
         BOOL v4;
-        BOOL v5 = sub_020227A4(&v0, &v1);
+        BOOL v5 = TouchScreen_GetHoldState(&v0, &v1);
         TouchScreenHitTable * v6;
         int v7;
 

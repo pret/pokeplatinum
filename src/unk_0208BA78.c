@@ -28,7 +28,7 @@
 #include "vars_flags.h"
 #include "unk_02051D8C.h"
 #include "unk_020553DC.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208BA78.h"
 #include "unk_0208C010.h"
 #include "unk_02099550.h"

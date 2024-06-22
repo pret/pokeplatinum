@@ -13,7 +13,7 @@
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -62,7 +62,7 @@
 #include "unk_0200A784.h"
 #include "message.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
@@ -1504,7 +1504,7 @@ static void ov70_0225E92C (UnkStruct_ov70_0225DEE8 * param0)
     ov70_0225CAD4(param0->unk_444);
     ov70_02269240(param0->unk_438);
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 
     ov70_0225E6C0(&param0->unk_3C);
 }
@@ -2450,7 +2450,7 @@ static void ov70_0225F940 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
     param0->unk_154 = param2;
     param0->unk_156 = param3;
 
-    sub_0200DA3C(ov70_0225F95C, param0, 0);
+    SysTask_ExecuteAfterVBlank(ov70_0225F95C, param0, 0);
 }
 
 static void ov70_0225F95C (SysTask * param0, void * param1)

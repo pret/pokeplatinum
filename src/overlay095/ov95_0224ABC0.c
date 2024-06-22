@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
@@ -14,14 +13,14 @@
 #include "struct_defs/struct_02099F80.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "overlay095/ov95_02246C20.h"
@@ -204,7 +203,7 @@ static void ov95_0224AC64 (UnkStruct_ov95_0224AC64 * param0)
         ov95_02247990(param0->unk_24, &(param0->unk_28));
         G3X_Reset();
         ov95_02247770(param0->unk_20);
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 }
 
@@ -453,11 +452,11 @@ static void ov95_0224B084 (UnkStruct_ov95_0224AC64 * param0)
     param0->unk_24 = ov95_022478B4(param0->unk_20, 0, 93, 27, 0, UnkEnum_ov95_0224B084_00, 0, 1);
 
     {
-        static UnkStruct_ov115_0226527C v2;
+        static CameraAngle v2;
 
-        v2.unk_00 = 0;
-        v2.unk_02 = 0;
-        v2.unk_04 = 0;
+        v2.x = 0;
+        v2.y = 0;
+        v2.z = 0;
 
         ov95_02247AB0(param0->unk_20, &v2);
         ov95_02247AD0(param0->unk_20, 1);
@@ -487,7 +486,7 @@ static void ov95_0224B1A8 (UnkStruct_ov95_0224AC64 * param0, SysTask ** param1)
         v0->unk_14 = ((UnkEnum_ov95_0224B1A8_00 - UnkEnum_ov95_0224AE1C_00) << 12) / UnkEnum_ov95_0224B1A8_01;
         v0->unk_08 = UnkEnum_ov95_0224B1A8_01;
         v0->unk_1C = param1;
-        *param1 = sub_0200DA04(ov95_0224B1F8, v0, 0);
+        *param1 = SysTask_ExecuteOnVBlank(ov95_0224B1F8, v0, 0);
 
         if (*param1 == NULL) {
             Heap_FreeToHeap(v0);
@@ -515,7 +514,7 @@ static void ov95_0224B1F8 (SysTask * param0, void * param1)
 static void ov95_0224B258 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_0224B1A8 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_0224B1A8 * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_1C) = NULL;
         ov95_022476C8(v0);
@@ -561,7 +560,7 @@ static void ov95_0224B2C8 (SysTask * param0, void * param1)
 static void ov95_0224B308 (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_0224B274 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_0224B274 * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
 
@@ -608,7 +607,7 @@ static void ov95_0224B388 (SysTask * param0, void * param1)
 static void ov95_0224B3BC (SysTask * param0)
 {
     if (param0) {
-        UnkStruct_ov95_0224B324 * v0 = sub_0201CED0(param0);
+        UnkStruct_ov95_0224B324 * v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
         Heap_FreeToHeap(v0);

@@ -2,10 +2,10 @@
 
     .data
 
-    .long _0012-.-4
-    .long _0018-.-4
-    .long _002F-.-4
-    .long _0118-.-4
+    ScriptEntry _0012
+    ScriptEntry _0018
+    ScriptEntry _002F
+    ScriptEntry _0118
     .short 0xFD13
 
 _0012:
@@ -21,32 +21,32 @@ _0018:
     End
 
 _002F:
-    ScrCmd_060
+    LockAll
     ApplyMovement 6, _00A4
     ApplyMovement 7, _00E0
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 6, _00AC
     ApplyMovement 7, _00EC
     WaitMovement
     ApplyMovement 7, _0100
     WaitMovement
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ApplyMovement 6, _00C4
     WaitMovement
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     ApplyMovement 6, _00D4
     ApplyMovement 7, _0108
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 6
     ScrCmd_065 7
     ScrCmd_04B 0x603
     SetVar 0x40A0, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -110,29 +110,29 @@ _0108:
     EndMovement
 
 _0118:
-    ScrCmd_060
-    ScrCmd_02C 3
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
-    ScrCmd_02C 4
+    LockAll
+    Message 3
+    CloseMessage
+    WaitTime 15, 0x800C
+    Message 4
     ApplyMovement 5, _01F0
     WaitMovement
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 5
+    CloseMessage
     ApplyMovement 5, _01F8
     WaitMovement
     ApplyMovement 4, _01CC
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 6
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
+    Message 6
+    CloseMessage
+    WaitTime 15, 0x800C
     ApplyMovement 5, _0204
     ApplyMovement 4, _01DC
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 7
-    ScrCmd_034
+    Message 7
+    CloseMessage
     ApplyMovement 5, _0214
     ApplyMovement 0xFF, _0238
     WaitMovement
@@ -141,15 +141,15 @@ _0118:
     ApplyMovement 0xFF, _0240
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 8
-    ScrCmd_034
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    Message 8
+    CloseMessage
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_065 4
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     SetVar 0x40A0, 3
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

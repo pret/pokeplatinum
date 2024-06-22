@@ -36,7 +36,7 @@
 #include "unk_0206B9D8.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 
 typedef struct {
@@ -78,7 +78,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, FieldSystem * fieldSystem,
 
     v2->unk_0C = SaveData_Options(v1);
     v2->unk_00 = Party_GetFromSavedata(v1);
-    v2->unk_04 = sub_0207D990(v1);
+    v2->unk_04 = SaveData_GetBag(v1);
     v2->unk_21 = 0;
     v2->unk_20 = param0->unk_08;
     v2->unk_32_0 = param0->unk_0A;
@@ -259,7 +259,7 @@ static BOOL sub_0206BC94 (TaskManager * param0)
         v2->unk_04 = sub_0206BC70(v2, fieldSystem);
         break;
     case 2:
-        v0 = sub_0203F118(fieldSystem, v2->unk_10);
+        v0 = FieldSystem_GetVarPointer(fieldSystem, v2->unk_10);
         *v0 = v2->unk_00;
         Heap_FreeToHeap(v2);
         return 1;
@@ -295,7 +295,7 @@ static BOOL sub_0206BD1C (TaskManager * param0)
         return 0;
     }
 
-    v0 = sub_0203F118(fieldSystem, v3->unk_02);
+    v0 = FieldSystem_GetVarPointer(fieldSystem, v3->unk_02);
 
     switch (v3->unk_00) {
     case 0:

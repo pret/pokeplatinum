@@ -52,7 +52,7 @@
 #include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 #include "overlay005/ov5_021D0D80.h"
 
@@ -164,7 +164,7 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
     v1->unk_0C = SaveData_Options(param0->fieldSystem->saveData);
     v1->unk_14 = (void *)param0->fieldSystem->unk_B0;
     v1->unk_00 = Party_GetFromSavedata(param0->fieldSystem->saveData);
-    v1->unk_04 = sub_0207D990(param0->fieldSystem->saveData);
+    v1->unk_04 = SaveData_GetBag(param0->fieldSystem->saveData);
     v1->unk_21 = 0;
     v1->unk_20 = 2;
 

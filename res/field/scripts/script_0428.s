@@ -2,13 +2,13 @@
 
     .data
 
-    .long _001E-.-4
-    .long _0071-.-4
-    .long _0084-.-4
-    .long _009B-.-4
-    .long _00B2-.-4
-    .long _00C7-.-4
-    .long _04C4-.-4
+    ScriptEntry _001E
+    ScriptEntry _0071
+    ScriptEntry _0084
+    ScriptEntry _009B
+    ScriptEntry _00B2
+    ScriptEntry _00C7
+    ScriptEntry _04C4
     .short 0xFD13
 
 _001E:
@@ -33,13 +33,13 @@ _005B:
     Return
 
 _0071:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 10
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 10
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0084:
@@ -67,7 +67,7 @@ _00B2:
     End
 
 _00C7:
-    ScrCmd_060
+    LockAll
     ApplyMovement 3, _03C4
     ApplyMovement 0xFF, _04A0
     WaitMovement
@@ -115,18 +115,18 @@ _019F:
     ScrCmd_014 0x7F8
     ScrCmd_0CF 0
     ScrCmd_0CD 1
-    ScrCmd_02C 2
+    Message 2
     GoTo _01C5
 
 _01B2:
     ScrCmd_014 0x7F8
     ScrCmd_0CF 0
     ScrCmd_0CD 1
-    ScrCmd_02C 7
+    Message 7
     GoTo _01C5
 
 _01C5:
-    ScrCmd_034
+    CloseMessage
     ApplyMovement 3, _0488
     ApplyMovement 0xFF, _04BC
     WaitMovement
@@ -140,12 +140,12 @@ _01C5:
 
 _0205:
     ScrCmd_0CD 0
-    ScrCmd_02C 3
+    Message 3
     GoTo _021D
 
 _0211:
     ScrCmd_0CD 0
-    ScrCmd_02C 8
+    Message 8
     GoTo _021D
 
 _021D:
@@ -159,20 +159,20 @@ _021D:
 
 _024D:
     ScrCmd_0CD 0
-    ScrCmd_02C 4
+    Message 4
     GoTo _0262
 
 _0259:
-    ScrCmd_02C 9
+    Message 9
     GoTo _0262
 
 _0262:
-    ScrCmd_034
+    CloseMessage
     ApplyMovement 3, _0498
     WaitMovement
     ScrCmd_065 3
     SetVar 0x4087, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _027C:
@@ -189,11 +189,11 @@ _029C:
     GoTo _02F4
 
 _02BE:
-    ScrCmd_02C 0
+    Message 0
     Return
 
 _02C3:
-    ScrCmd_02C 1
+    Message 1
     Return
 
 _02C8:
@@ -204,15 +204,15 @@ _02C8:
     GoTo _02F4
 
 _02EA:
-    ScrCmd_02C 5
+    Message 5
     Return
 
 _02EF:
-    ScrCmd_02C 6
+    Message 6
     Return
 
 _02F4:
-    ScrCmd_034
+    CloseMessage
     GoToIfEq 0x8005, 0x339, _0339
     GoToIfEq 0x8005, 0x33A, _0351
     GoToIfEq 0x8005, 0x33B, _0369
@@ -254,7 +254,7 @@ _03B1:
     ApplyMovement 3, _0480
     WaitMovement
     SetFlag 0x115
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -376,15 +376,15 @@ _04BC:
     EndMovement
 
 _04C4:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_0CD 0
     ScrCmd_1BD 0x8002
     ScrCmd_14D 0x8000
     CallIfEq 0x8000, 0, _0653
     CallIfEq 0x8000, 1, _0658
-    ScrCmd_034
+    CloseMessage
     ScrCmd_050 0x47E
     ScrCmd_308 189, 0x332
     ApplyMovement 241, _06F8
@@ -393,11 +393,11 @@ _04C4:
     ApplyMovement 3, _0690
     ApplyMovement 0xFF, _06D0
     WaitMovement
-    ScrCmd_003 15, 0x800C
+    WaitTime 15, 0x800C
     CallIfEq 0x8000, 0, _065D
     CallIfEq 0x8000, 1, _0662
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
+    CloseMessage
+    WaitTime 15, 0x800C
     ScrCmd_052
     CallIfEq 0x8002, 0, _05D1
     CallIfEq 0x8002, 1, _05E5
@@ -405,7 +405,7 @@ _04C4:
     CallIfEq 0x8002, 3, _0605
     CallIfEq 0x8000, 0, _0667
     CallIfEq 0x8000, 1, _066C
-    ScrCmd_034
+    CloseMessage
     CallIfEq 0x8002, 0, _0611
     CallIfEq 0x8002, 1, _061D
     CallIfEq 0x8002, 2, _0629
@@ -459,31 +459,31 @@ _0641:
     ScrCmd_065 3
     ClearFlag 0x177
     SetVar 0x4087, 3
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0653:
-    ScrCmd_02C 14
+    Message 14
     Return
 
 _0658:
-    ScrCmd_02C 17
+    Message 17
     Return
 
 _065D:
-    ScrCmd_02C 15
+    Message 15
     Return
 
 _0662:
-    ScrCmd_02C 18
+    Message 18
     Return
 
 _0667:
-    ScrCmd_02C 16
+    Message 16
     Return
 
 _066C:
-    ScrCmd_02C 19
+    Message 19
     Return
 
     .balign 4, 0

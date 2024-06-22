@@ -4,7 +4,7 @@
 #include <nitro/rtc.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "vars_flags.h"
 
@@ -15,7 +15,7 @@
 #include "assert.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "map_header.h"
@@ -42,7 +42,7 @@ static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC 
     inline_ov61_0222C3B0_sub_1(param0);
 
     param0->unk_04 = 1;
-    param0->unk_00 = sub_0200DA04(inline_ov61_0222C3B0_sub, param0, 20);
+    param0->unk_00 = SysTask_ExecuteOnVBlank(inline_ov61_0222C3B0_sub, param0, 20);
 }
 
 static inline void inline_ov61_0222C160 (UnkStruct_ov61_0222C3B0 * param0)
@@ -161,7 +161,7 @@ static inline void Location_Set (Location * location, int mapId, int param2, int
 
 static inline u16 * ScriptContext_GetVarPointer (ScriptContext * ctx)
 {
-    return sub_0203F118(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    return FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
 static inline u16 ScriptContext_GetVar (ScriptContext * ctx)

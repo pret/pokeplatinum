@@ -19,7 +19,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
+#include "bag.h"
 #include "struct_defs/pokemon_summary.h"
 
 struct UnkStruct_0207AE68_t {
@@ -41,9 +41,9 @@ struct UnkStruct_0207AE68_t {
     void * unk_40;
     PokemonAnimationSys * unk_44;
     PokedexData * unk_48;
-    UnkStruct_0207D3C0 * unk_4C;
+    Bag * unk_4C;
     UnkStruct_0202CD88 * unk_50;
-    PoketchData * unk_54;
+    PoketchData *poketchData;
     void * unk_58;
     int unk_5C;
     u16 unk_60;

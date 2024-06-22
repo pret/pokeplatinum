@@ -2,22 +2,22 @@
 
     .data
 
-    .long _0012-.-4
-    .long _012C-.-4
-    .long _01C4-.-4
-    .long _01D5-.-4
+    ScriptEntry _0012
+    ScriptEntry _012C
+    ScriptEntry _01C4
+    ScriptEntry _01D5
     .short 0xFD13
 
 _0012:
-    ScrCmd_060
+    LockAll
     ApplyMovement 0, _00E8
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 0, _00F0
     WaitMovement
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8004, 8, _0054
     GoToIfEq 0x8004, 9, _0064
@@ -37,22 +37,22 @@ _0074:
     ScrCmd_0E5 0x193, 0
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _00E1
-    ScrCmd_02C 2
+    Message 2
     SetVar 0x8004, 1
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     CallIfEq 0x800C, 1, _00DB
-    ScrCmd_02C 3
-    ScrCmd_034
+    Message 3
+    CloseMessage
     ApplyMovement 0, _0110
     WaitMovement
-    ScrCmd_02C 4
-    ScrCmd_034
+    Message 4
+    CloseMessage
     ApplyMovement 0, _0124
     WaitMovement
     ScrCmd_065 0
     SetVar 0x40D6, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00DB:
@@ -61,7 +61,7 @@ _00DB:
 
 _00E1:
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -100,19 +100,19 @@ _0124:
     EndMovement
 
 _012C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_07E 0x1B8, 1, 0x800C
     GoToIfEq 0x800C, 1, _0154
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 5
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0154:
-    ScrCmd_02C 6
+    Message 6
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0177
     GoToIfEq 0x800C, 1, _01AB
@@ -120,23 +120,23 @@ _0154:
 
 _0177:
     ScrCmd_0CD 0
-    ScrCmd_02C 7
-    ScrCmd_031
+    Message 7
+    WaitABXPadPress
     ScrCmd_04B 0x5DC
-    ScrCmd_049 0x608
+    PlayFanfare SEQ_SE_DP_DOOR10
     ApplyMovement 1, _01B4
     ApplyMovement 2, _01BC
     WaitMovement
     SetFlag 0x226
     ScrCmd_065 1
     ScrCmd_065 2
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _01AB:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -150,23 +150,23 @@ _01BC:
     EndMovement
 
 _01C4:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 8
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 8
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _01D5:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 9
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 9
     GoTo _01E6
     End
 
 _01E6:
-    ScrCmd_02C 10
+    Message 10
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_29D 0x10C, 0
     ScrCmd_29D 0x10D, 1
@@ -181,23 +181,23 @@ _01E6:
     End
 
 _0240:
-    ScrCmd_02C 11
+    Message 11
     GoTo _01E6
     End
 
 _024B:
-    ScrCmd_02C 12
+    Message 12
     GoTo _01E6
     End
 
 _0256:
-    ScrCmd_02C 13
+    Message 13
     GoTo _01E6
     End
 
 _0261:
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

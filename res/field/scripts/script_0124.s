@@ -2,60 +2,60 @@
 
     .data
 
-    .long _0016-.-4
-    .long _002C-.-4
-    .long _0042-.-4
-    .long _0055-.-4
-    .long _0068-.-4
+    ScriptEntry _0016
+    ScriptEntry _002C
+    ScriptEntry _0042
+    ScriptEntry _0055
+    ScriptEntry _0068
     .short 0xFD13
 
 _0016:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_147 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _002C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_014 0x7E3
     ScrCmd_035
     ScrCmd_148 7
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0042:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0055:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0068:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 2
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

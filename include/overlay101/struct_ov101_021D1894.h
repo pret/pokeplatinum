@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV101_021D1894_H
 #define POKEPLATINUM_STRUCT_OV101_021D1894_H
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "enums.h"
 

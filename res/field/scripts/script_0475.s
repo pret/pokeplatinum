@@ -2,28 +2,28 @@
 
     .data
 
-    .long _000A-.-4
-    .long _001D-.-4
+    ScriptEntry _000A
+    ScriptEntry _001D
     .short 0xFD13
 
 _000A:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _001D:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     SetVar 0x8004, 0x1BD
     ScrCmd_0D1 0, 0x8004
     GoToIfSet 132, _005E
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _00A7
     GoToIfEq 0x800C, 1, _009C
@@ -31,36 +31,36 @@ _001D:
 
 _005E:
     ScrCmd_0D1 0, 0x8004
-    ScrCmd_02C 3
+    Message 3
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _0086
     GoToIfEq 0x800C, 1, _0091
     End
 
 _0086:
-    ScrCmd_02C 5
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 5
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0091:
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 6
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _009C:
-    ScrCmd_02C 4
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 4
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _00A7:
     ScrCmd_0D1 0, 0x8004
-    ScrCmd_02C 2
+    Message 2
     SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     SetFlag 132

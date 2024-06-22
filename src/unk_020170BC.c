@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
 #include "struct_defs/struct_02017294.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_020170BC.h"
 #include "heap.h"
 #include "unk_0201C970.h"
@@ -260,6 +260,6 @@ static void sub_020173CC (UnkStruct_020170F4 * param0)
     param0->unk_0C = NNS_G3dGetTex(param0->unk_00);
 
     if (param0->unk_0C) {
-        sub_0200DA3C(sub_020170F4, param0, 1024);
+        SysTask_ExecuteAfterVBlank(sub_020170F4, param0, 1024);
     }
 }

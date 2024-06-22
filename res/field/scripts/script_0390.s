@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _000E-.-4
+    ScriptEntry _000A
+    ScriptEntry _000E
     .short 0xFD13
 
 _000A:
@@ -11,24 +11,24 @@ _000A:
     End
 
 _000E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_02C 0
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _002E
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _002E:
     ScrCmd_0CD 0
-    ScrCmd_02C 1
-    ScrCmd_034
-    ScrCmd_049 0x5D2
+    Message 1
+    CloseMessage
+    PlayFanfare SEQ_SE_PL_SYUWA
     ScrCmd_328 0
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     ScrCmd_0BE 0x10E, 0, 11, 15, 1
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     End

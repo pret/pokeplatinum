@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "pokemon.h"
 
@@ -35,7 +35,7 @@
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -445,7 +445,7 @@ void ov76_0223BF50 (void)
     }
 
     sub_020146C0();
-    sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+    G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 void ov76_0223BF74 (BGL * param0, Window * param1, int param2, UnkStruct_ov76_0223DE00 * param3, int param4)

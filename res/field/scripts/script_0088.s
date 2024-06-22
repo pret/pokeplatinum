@@ -2,12 +2,12 @@
 
     .data
 
-    .long _003B-.-4
-    .long _004E-.-4
-    .long _0061-.-4
-    .long _00B0-.-4
-    .long _00C0-.-4
-    .long _001A-.-4
+    ScriptEntry _003B
+    ScriptEntry _004E
+    ScriptEntry _0061
+    ScriptEntry _00B0
+    ScriptEntry _00C0
+    ScriptEntry _001A
     .short 0xFD13
 
 _001A:
@@ -29,32 +29,32 @@ _0048:
     Return
 
 _004E:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 2
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _0061:
-    ScrCmd_060
+    LockAll
     ScrCmd_0C7 0x800C
     GoToIfEq 0x800C, 1, _0091
     ApplyMovement 1, _00A0
     WaitMovement
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ApplyMovement 0xFF, _00A8
     WaitMovement
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0091:
     SetFlag 0x996
     SetVar 0x4002, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -68,16 +68,16 @@ _00A8:
     EndMovement
 
 _00B0:
-    ScrCmd_060
+    LockAll
     ClearFlag 0x996
     SetVar 0x4002, 0
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00C0:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     GoToIfSet 0x10B, _0154
     ScrCmd_0CD 0
     ScrCmd_0CF 1
@@ -86,46 +86,46 @@ _00C0:
     GoTo _00F9
 
 _00F0:
-    ScrCmd_02C 3
+    Message 3
     GoTo _0102
 
 _00F9:
-    ScrCmd_02C 4
+    Message 4
     GoTo _0102
 
 _0102:
     ScrCmd_120 0x8004
     ScrCmd_0D5 1, 0x8004
     GoToIfLt 0x8004, 35, _015F
-    ScrCmd_02C 5
+    Message 5
     SetVar 0x8004, 216
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _014A
     SetFlag 0x10B
     ScrCmd_014 0x7E0
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _014A:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _0154:
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 6
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _015F:
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 7
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

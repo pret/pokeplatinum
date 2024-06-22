@@ -7,13 +7,13 @@
 
 #include "constants/heap.h"
 #include "constants/palette.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/battle_io.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -22,7 +22,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_020218BC.h"
 #include "battle/ov16_0223DF00.h"

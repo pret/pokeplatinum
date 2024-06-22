@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _000E-.-4
+    ScriptEntry _000A
+    ScriptEntry _000E
     .short 0xFD13
 
 _000A:
@@ -11,27 +11,27 @@ _000A:
     End
 
 _000E:
-    ScrCmd_060
+    LockAll
     ScrCmd_311 128
     ApplyMovement 128, _0060
     WaitMovement
-    ScrCmd_02C 0
+    Message 0
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _003B
-    ScrCmd_02C 1
+    Message 1
     GoTo _003E
 
 _003B:
-    ScrCmd_02C 2
+    Message 2
 _003E:
-    ScrCmd_02C 3
-    ScrCmd_02C 4
-    ScrCmd_034
+    Message 3
+    Message 4
+    CloseMessage
     ApplyMovement 128, _0068
     WaitMovement
     ScrCmd_312 128
     SetVar 0x4055, 6
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -27,7 +27,7 @@
 #include "message.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
@@ -210,7 +210,7 @@ void ov62_02230464 (UnkStruct_0208C06C * param0)
                 }
             }
 
-            param0->unk_6F8[v5].unk_08 = sub_0200DA04(ov62_02230C28, &param0->unk_6F8[v5], 5);
+            param0->unk_6F8[v5].unk_08 = SysTask_ExecuteOnVBlank(ov62_02230C28, &param0->unk_6F8[v5], 5);
         }
         if (param0->unk_534.unk_1A4 != 0) {
             BOOL v9;

@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/poketch_system.h"
 #include "overlay025/poketch_button.h"
 #include "overlay030/struct_ov30_022563EC_decl.h"
@@ -11,7 +11,7 @@
 #include "touch_screen.h"
 #include "overlay030/struct_ov30_022563EC_1.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "rtc.h"
 #include "heap.h"
 #include "overlay030/ov30_022563EC.h"
@@ -26,16 +26,16 @@ typedef struct {
     u8 unk_06;
     u32 unk_08;
     u32 unk_0C;
-    PoketchButtonManager * unk_10;
+    PoketchButtonManager *buttonManager;
     UnkStruct_ov30_022563EC_1 unk_14;
     UnkStruct_ov30_022563EC * unk_24;
-    PoketchSystem * unk_28;
+    PoketchSystem *poketchSys;
 } UnkStruct_ov30_0225621C;
 
 static void NitroStaticInit(void);
 
-static BOOL ov30_022561D4(void ** param0, PoketchSystem * param1, BGL * param2, u32 param3);
-static BOOL ov30_0225621C(UnkStruct_ov30_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3);
+static BOOL ov30_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
+static BOOL ov30_0225621C(UnkStruct_ov30_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
 static void ov30_02256298(UnkStruct_ov30_0225621C * param0);
 static void ov30_022562B0(SysTask * param0, void * param1);
 static void ov30_022562EC(void * param0);
@@ -51,15 +51,15 @@ static const TouchScreenHitTable Unk_ov30_02256678[] = {
 
 static void NitroStaticInit (void)
 {
-    ov25_02254238(ov30_022561D4, ov30_022562EC);
+    PoketchSystem_SetAppFunctions(ov30_022561D4, ov30_022562EC);
 }
 
-static BOOL ov30_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov30_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     UnkStruct_ov30_0225621C * v0 = (UnkStruct_ov30_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov30_0225621C));
 
     if (v0 != NULL) {
-        if (ov30_0225621C(v0, param1, param2, param3)) {
+        if (ov30_0225621C(v0, poketchSys, param2, param3)) {
             if (SysTask_Start(ov30_022562B0, v0, 1) != NULL) {
                 *param0 = v0;
                 return 1;
@@ -72,7 +72,7 @@ static BOOL ov30_022561D4 (void ** param0, PoketchSystem * param1, BGL * param2,
     return 0;
 }
 
-static BOOL ov30_0225621C (UnkStruct_ov30_0225621C * param0, PoketchSystem * param1, BGL * param2, u32 param3)
+static BOOL ov30_0225621C (UnkStruct_ov30_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
 {
     if (ov30_022563EC(&(param0->unk_24), &(param0->unk_14), param2)) {
         param0->unk_00 = 0;
@@ -93,13 +93,13 @@ static BOOL ov30_0225621C (UnkStruct_ov30_0225621C * param0, PoketchSystem * par
         }
 
         param0->unk_05 = param0->unk_14.unk_00.minute;
-        param0->unk_10 = PoketchButtonManager_New(Unk_ov30_02256678, NELEMS(Unk_ov30_02256678), ov30_022562F4, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(Unk_ov30_02256678, NELEMS(Unk_ov30_02256678), ov30_022562F4, param0, 8);
 
-        if (param0->unk_10 == NULL) {
+        if (param0->buttonManager == NULL) {
             return 0;
         }
 
-        param0->unk_28 = param1;
+        param0->poketchSys = poketchSys;
         return 1;
     }
 
@@ -109,7 +109,7 @@ static BOOL ov30_0225621C (UnkStruct_ov30_0225621C * param0, PoketchSystem * par
 static void ov30_02256298 (UnkStruct_ov30_0225621C * param0)
 {
     ov30_02256444(param0->unk_24);
-    PoketchButtonManager_Free(param0->unk_10);
+    PoketchButtonManager_Free(param0->buttonManager);
     Heap_FreeToHeap(param0);
 }
 
@@ -124,12 +124,12 @@ static void ov30_022562B0 (SysTask * param0, void * param1)
     UnkStruct_ov30_0225621C * v1 = (UnkStruct_ov30_0225621C *)param1;
 
     if (v1->unk_00 < NELEMS(v0)) {
-        ov25_02254518(v1->unk_28, v1->unk_10);
+        ov25_02254518(v1->poketchSys, v1->buttonManager);
 
         if (v0[v1->unk_00](v1)) {
             ov30_02256298(v1);
             SysTask_Done(param0);
-            ov25_02254260(v1->unk_28);
+            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }
     } else {
     }
@@ -176,7 +176,7 @@ static BOOL ov30_02256324 (UnkStruct_ov30_0225621C * param0)
         break;
     case 1:
         if (ov30_02256488(param0->unk_24, 0)) {
-            ov25_0225424C(param0->unk_28);
+            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
             ov30_02256310(param0, 1);
         }
         break;

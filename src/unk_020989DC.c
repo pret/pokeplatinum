@@ -25,7 +25,7 @@
 #include "poffin.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 #include "unk_020989DC.h"
 #include "overlay079/ov79_021D0D80.h"
@@ -108,7 +108,7 @@ UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
     v0->unk_08 = Poffin_GetSavedataBlock(param0);
     v0->unk_0C = SaveData_GetTrainerInfo(param0);
     v0->unk_10 = Party_GetFromSavedata(param0);
-    v0->unk_14 = sub_0207D990(param0);
+    v0->unk_14 = SaveData_GetBag(param0);
     v0->unk_18 = SaveData_Options(param0);
 
     v1 = Poffin_malloc(param1);

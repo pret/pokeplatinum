@@ -2,11 +2,11 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_060
+    LockAll
     ScrCmd_1B7 0x8000, 5
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0, _0057
@@ -52,17 +52,17 @@ _00BF:
     End
 
 _00D9:
-    ScrCmd_02C 0
-    ScrCmd_030
-    ScrCmd_034
+    Message 0
+    WaitABPress
+    CloseMessage
     ApplyMovement 0xFF, _0184
     ApplyMovement 0, _0240
     WaitMovement
-    ScrCmd_049 0x64F
+    PlayFanfare SEQ_SE_DP_TELE2
     ApplyMovement 0xFF, _01E8
     WaitMovement
-    ScrCmd_0BC 6, 1, 0, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
     SetVar 0x4003, 1
     ScrCmd_0BE 0x405C, 0, 5, 2, 1
     ScrCmd_1F8
@@ -72,8 +72,8 @@ _00D9:
     ScrCmd_0A1
     SetVar 0x4080, 1
     ScrCmd_1B2 0xFF
-    ScrCmd_0BC 6, 1, 1, 0
-    ScrCmd_0BD
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
     End
 
     .balign 4, 0

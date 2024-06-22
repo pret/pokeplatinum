@@ -2,9 +2,9 @@
 
     .data
 
-    .long _000E-.-4
-    .long _0062-.-4
-    .long _007D-.-4
+    ScriptEntry _000E
+    ScriptEntry _0062
+    ScriptEntry _007D
     .short 0xFD13
 
 _000E:
@@ -34,12 +34,12 @@ _006F:
     End
 
 _007D:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_04C 0x1EC, 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     SetFlag 142
     ScrCmd_318 0x1EC, 30
     ClearFlag 142
@@ -48,21 +48,21 @@ _007D:
     ScrCmd_2BC 0x800C
     GoToIfEq 0x800C, 1, _00C8
     SetFlag 0x123
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00C8:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
+    Message 1
+    WaitABXPadPress
+    CloseMessage
     ClearFlag 0x251
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00D7:
     ScrCmd_0EB
     ClearFlag 0x251
-    ScrCmd_061
+    ReleaseAll
     End
 
     .byte 0

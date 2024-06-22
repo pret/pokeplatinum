@@ -24,8 +24,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/trainer_data.h"
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_decls/struct_0207D99C_decl.h"
+#include "bag.h"
 #include "overlay006/battle_params.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "battle/struct_ov16_0223E0C8.h"
@@ -129,7 +128,7 @@ TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
  * @return The trainer info for the requested battler.
  */
 TrainerInfo* BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
-UnkStruct_0207D3C0 * BattleSystem_Bag(BattleSystem * param0);
+Bag * BattleSystem_Bag(BattleSystem * param0);
 UnkStruct_0207D99C * BattleSystem_BagCursor(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
 

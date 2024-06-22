@@ -21,7 +21,7 @@
 #include "rtc.h"
 #include "unk_02017428.h"
 #include "unk_02017728.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E3D8.h"
 #include "unk_02022844.h"
@@ -133,8 +133,8 @@ void NitroMain (void)
         if (CommSys_Update()) {
             CheckHeapCanary();
             sub_02000E54();
-            sub_0201CDD4(gCoreSys.unk_18);
-            sub_0201CDD4(gCoreSys.unk_24);
+            SysTaskManager_ExecuteTasks(gCoreSys.mainTaskMgr);
+            SysTaskManager_ExecuteTasks(gCoreSys.unk_24);
 
             if (!gCoreSys.unk_30) {
                 OS_WaitIrq(1, OS_IE_V_BLANK);
@@ -145,7 +145,7 @@ void NitroMain (void)
         UpdateRTC();
         sub_02017458();
         sub_020241CC();
-        sub_0201CDD4(gCoreSys.unk_24);
+        SysTaskManager_ExecuteTasks(gCoreSys.unk_24);
 
         OS_WaitIrq(1, OS_IE_V_BLANK);
 
@@ -160,7 +160,7 @@ void NitroMain (void)
         }
 
         UpdateSound();
-        sub_0201CDD4(gCoreSys.unk_20);
+        SysTaskManager_ExecuteTasks(gCoreSys.postVBlankTaskMgr);
     }
 }
 

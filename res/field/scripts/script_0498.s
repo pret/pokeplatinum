@@ -2,7 +2,7 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
@@ -15,24 +15,24 @@ _0006:
     GoTo _0059
 
 _0043:
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0047:
-    ScrCmd_02C 0
+    Message 0
     GoTo _0068
 
 _0050:
-    ScrCmd_02C 1
+    Message 1
     GoTo _0068
 
 _0059:
-    ScrCmd_003 30, 0x800C
-    ScrCmd_02C 2
+    WaitTime 30, 0x800C
+    Message 2
     GoTo _0068
 
 _0068:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End

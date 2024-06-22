@@ -33,7 +33,7 @@
 #include "unk_0205DFC4.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "pokemon_summary_app.h"
 #include "unk_02099500.h"
 
@@ -75,7 +75,7 @@ BOOL ScrCmd_2D2 (ScriptContext * param0)
     v3 = ScriptContext_ReadHalfWord(param0);
     v4 = ScriptContext_GetVar(param0);
     v5 = ScriptContext_ReadHalfWord(param0);
-    v6 = sub_0203F118(param0->fieldSystem, v5);
+    v6 = FieldSystem_GetVarPointer(param0->fieldSystem, v5);
     v10 = sub_020302DC(param0->fieldSystem->saveData);
     v11 = sub_0203041C(param0->fieldSystem->saveData);
     v8 = sub_0203F098(param0->fieldSystem, 19);
@@ -260,7 +260,7 @@ static int sub_0204FE50 (UnkStruct_0204FE50 * param0, FieldSystem * fieldSystem,
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 
     v1->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
-    v1->unk_04 = sub_0207D990(fieldSystem->saveData);
+    v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
     v1->unk_08 = sub_02028430(fieldSystem->saveData);
     v1->unk_0C = SaveData_Options(fieldSystem->saveData);
 

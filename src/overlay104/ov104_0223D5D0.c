@@ -2,11 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "unk_02014000.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "overlay104/ov104_0223D5D0.h"
 
@@ -50,16 +49,16 @@ UnkStruct_02014014 * ov104_0223D614 (UnkStruct_ov104_0223D5F0 * param0, int para
 {
     UnkStruct_02014014 * v0;
     void * v1;
-    UnkStruct_020203AC * v2;
+    Camera * camera;
     void * v3;
 
     GF_ASSERT(param0->unk_00[param1] == NULL);
 
     v1 = Heap_AllocFromHeap(param0->unk_20, 0x4800);
     v0 = sub_02014014(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->unk_20);
-    v2 = sub_02014784(v0);
+    camera = sub_02014784(v0);
 
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v2);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
     sub_02014788(v0, param3);
 
     v3 = sub_020144C4(157, param2, param0->unk_20);

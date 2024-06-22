@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -174,7 +174,7 @@ static void ov49_02256594 (SysTask * param0, void * param1)
     UnkStruct_ov49_022563D4 * v0 = ov25_0225523C(param1);
     const UnkStruct_ov49_022563D4_1 * v1 = ov25_02255240(param1);
 
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
     ov25_022546B8(0, 0);
     ov25_02255900(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
     ov49_022564D0(param1);

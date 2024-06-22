@@ -9,7 +9,7 @@
 #include "constants/moves.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
 #include "constants/savedata/record.h"
@@ -38,7 +38,7 @@
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "flags.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
@@ -1958,7 +1958,7 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
             nextSeq = subscript_throw_pokeball;
             if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) == FALSE) {
-                Bag_SubtractItem(BattleSystem_Bag(battleSys), used->item, 1, HEAP_ID_BATTLE);
+                Bag_TryRemoveItem(BattleSystem_Bag(battleSys), used->item, 1, HEAP_ID_BATTLE);
                 Bag_SetLastItemUsed(BattleSystem_BagCursor(battleSys), used->item, used->pocket);
             }
 

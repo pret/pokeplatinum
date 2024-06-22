@@ -2,15 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "spl.h"
 
 #include "unk_02014000.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_0222389C.h"
 #include "overlay012/ov12_02235254.h"
@@ -102,22 +101,22 @@ void ov12_022238E0 (UnkSPLStruct6 * param0)
     ov12_02235760(v2, &v7);
 
     {
-        UnkStruct_ov115_0226527C v11;
-        UnkStruct_020203AC * v12;
+        CameraAngle v11;
+        Camera * camera;
 
-        v12 = sub_02014784(v1);
+        camera = sub_02014784(v1);
 
         switch (v2) {
         case 2:
         default:
-            v11 = sub_02020A94(v12);
-            sub_020209D4(&v11, v12);
+            v11 = Camera_GetAngle(camera);
+            Camera_SetAngleAroundTarget(&v11, camera);
             break;
         case 3:
-            v11 = sub_02020A94(v12);
-            v11.unk_00 += 65536 / 2;
-            v11.unk_02 += 65536 / 2;
-            sub_020209D4(&v11, v12);
+            v11 = Camera_GetAngle(camera);
+            v11.x += 65536 / 2;
+            v11.y += 65536 / 2;
+            Camera_SetAngleAroundTarget(&v11, camera);
             break;
         }
     }

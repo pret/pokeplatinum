@@ -5,7 +5,7 @@
 #include "enums.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -16,7 +16,7 @@
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
@@ -26,7 +26,7 @@
 #include "unk_0200A9DC.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
@@ -35,14 +35,14 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay099/ov99_021D1A54.h"
 #include "overlay099/ov99_021D3E78.h"
 
-static const UnkStruct_ov115_0226527C Unk_ov99_021D46CC = {
+static const CameraAngle Unk_ov99_021D46CC = {
     ((0 * 0xffff) / 360),
     ((0 * 0xffff) / 360),
     ((0 * 0xffff) / 360)
@@ -299,7 +299,7 @@ static void ov99_021D1244 (SysTask * param0, void * param1)
 
     if (v0->unk_1103 == 1) {
         ov99_021D1720(v0);
-        sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 
     sub_0200C7EC(v0->unk_1C);
@@ -696,9 +696,9 @@ static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)
     MTX_Identity33(&v2);
 
     sub_020241B4();
-    sub_020203D4(param0->unk_28);
-    sub_02020854(0, param0->unk_28);
-    sub_020203EC();
+    Camera_SetAsActive(param0->camera);
+    Camera_ComputeProjectionMatrix(0, param0->camera);
+    Camera_ComputeViewMatrix();
 
     switch (param0->unk_1101) {
     case 0:
@@ -759,18 +759,18 @@ static void ov99_021D1918 (UnkStruct_ov99_021D2CB0 * param0)
     VecFx32 v1 = {-31712, -142304, 496744};
     VecFx32 v2 = {-31712, -67780, -5704};
 
-    param0->unk_28 = sub_020203AC(75);
+    param0->camera = Camera_Alloc(75);
 
-    sub_020206D0(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->unk_28);
-    sub_02020ADC(&v1, param0->unk_28);
-    sub_02020ACC(&v2, param0->unk_28);
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), param0->unk_28);
-    sub_020203D4(param0->unk_28);
+    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov99_021D46CC, (((22 * 0xffff) / 360)), 0, 0, param0->camera);
+    Camera_SetPosition(&v1, param0->camera);
+    Camera_SetTarget(&v2, param0->camera);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->camera);
+    Camera_SetAsActive(param0->camera);
 }
 
 static void ov99_021D19A0 (UnkStruct_ov99_021D2CB0 * param0)
 {
-    sub_020203B8(param0->unk_28);
+    Camera_Delete(param0->camera);
 }
 
 static GenericPointerData * ov99_021D19AC (int param0)

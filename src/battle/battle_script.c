@@ -9,7 +9,7 @@
 #include "constants/items.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
 
@@ -67,7 +67,7 @@
 #include "unk_0200762C.h"
 #include "string_template.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -2096,7 +2096,7 @@ static BOOL BtlCmd_WaitButtonABTime(BattleSystem *battleSys, BattleContext *batt
  * from which of the DS's stereo speakers to pan the sound. Enemies will have
  * their sounds pan from the right, while allies will have their sounds pan from
  * the left.
- * 2. The SDAT sequence to play.
+ * 2. The SDAT ID to play.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -2106,9 +2106,9 @@ static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int battler = BattleScript_Read(battleCtx);
-    int sdatSeq = BattleScript_Read(battleCtx);
+    int sdatID = BattleScript_Read(battleCtx);
 
-    BattleIO_PlaySound(battleSys, battleCtx, sdatSeq, BattleScript_Battler(battleSys, battleCtx, battler));
+    BattleIO_PlaySound(battleSys, battleCtx, sdatID, BattleScript_Battler(battleSys, battleCtx, battler));
 
     return FALSE;
 }

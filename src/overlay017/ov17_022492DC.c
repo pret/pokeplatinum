@@ -9,12 +9,11 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "functypes/sys_task_func.h"
+#include "sys_task_manager.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -27,7 +26,7 @@
 #include "unk_02006E3C.h"
 #include "message.h"
 #include "unk_0200C6E4.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -442,7 +441,7 @@ void ov17_02249640 (UnkStruct_ov17_022492DC * param0, int param1, int param2, vo
 
     if (1) {
         param0->unk_88 = v0->unk_00;
-        sub_0200DA3C(ov17_0224A088, param0, 8);
+        SysTask_ExecuteAfterVBlank(ov17_0224A088, param0, 8);
     }
 
     if ((v0->unk_02 != 0xffff) && ((param2 == 1) || (v0->unk_02 != v1->unk_02))) {
@@ -464,7 +463,7 @@ void ov17_02249640 (UnkStruct_ov17_022492DC * param0, int param1, int param2, vo
         v0->unk_1C(param0, param1, param2);
     }
 
-    sub_0200DA3C(ov17_0224A038, param0, 10);
+    SysTask_ExecuteAfterVBlank(ov17_0224A038, param0, 10);
 }
 
 int ov17_02249760 (UnkStruct_ov17_022492DC * param0)
@@ -642,7 +641,7 @@ static UnkStruct_ov17_02249B30 * ov17_02249B08 (UnkStruct_ov17_022492DC * param0
     UnkStruct_ov17_02249B30 * v0;
 
     v0 = ov17_02249AAC(param0, param1, param2, param3, param4, param5);
-    v0->unk_00 = sub_0200DA3C(ov17_0224A0C8, v0, 20);
+    v0->unk_00 = SysTask_ExecuteAfterVBlank(ov17_0224A0C8, v0, 20);
 
     return v0;
 }

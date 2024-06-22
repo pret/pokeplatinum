@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV17_0223F6E8_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     CellActorData * unk_00[6];

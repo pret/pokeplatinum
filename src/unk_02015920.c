@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "struct_defs/struct_02015958.h"
@@ -10,7 +10,7 @@
 
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02015920.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -377,7 +377,7 @@ static void sub_02015DCC (u32 param0, u32 param1, BGL * param2, u32 param3, u32 
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(sub_02015E64, v0, 128);
+    SysTask_ExecuteAfterVBlank(sub_02015E64, v0, 128);
 }
 
 static void sub_02015E1C (u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
@@ -392,7 +392,7 @@ static void sub_02015E1C (u32 param0, u32 param1, int param2, u32 param3, u32 pa
     v0->unk_0C = param3;
     v0->unk_10 = param4;
 
-    sub_0200DA3C(sub_02015EA0, v0, 128);
+    SysTask_ExecuteAfterVBlank(sub_02015EA0, v0, 128);
 }
 
 static void sub_02015E64 (SysTask * param0, void * param1)

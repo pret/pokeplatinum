@@ -7,7 +7,6 @@
 #include "message.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_berry_data_decl.h"
 
@@ -17,7 +16,7 @@
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02002B7C.h"
 #include "overlay_manager.h"
@@ -33,7 +32,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
@@ -55,7 +54,7 @@ typedef struct {
     MessageLoader * unk_C4;
     StringTemplate * unk_C8;
     UnkStruct_0200C440 * unk_CC;
-    UnkStruct_020203AC * unk_D0;
+    Camera * camera;
     UnkStruct_ov85_022420A8 unk_D4[4];
     UnkStruct_ov85_022420A8 unk_134[4];
     UnkStruct_ov85_022420A8 unk_194[4];
@@ -895,7 +894,7 @@ static void ov85_02241F5C (void)
 static void ov85_02241FF0 (UnkStruct_ov85_022417E4 * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     G3_MtxMode(GX_MTXMODE_PROJECTION);
     G3_Identity();
@@ -910,22 +909,22 @@ static void ov85_02241FF0 (UnkStruct_ov85_022417E4 * param0)
 
 static void ov85_0224202C (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_020203B8(param0->unk_D0);
+    Camera_Delete(param0->camera);
 }
 
 static void ov85_02242038 (UnkStruct_ov85_022417E4 * param0)
 {
     VecFx32 v0 = {0, 0, 0x10000};
-    UnkStruct_ov115_0226527C v1 = {0, 0, 0};
+    CameraAngle v1 = {0, 0, 0};
     fx32 v2 = 0x10000;
     u16 v3 = 0x5c1;
 
-    param0->unk_D0 = sub_020203AC(36);
+    param0->camera = Camera_Alloc(36);
 
-    sub_02020738(&v0, v2, &v1, v3, 1, param0->unk_D0);
-    sub_020206BC(0, FX32_CONST(100), param0->unk_D0);
-    sub_020206B0(param0->unk_D0);
-    sub_020203D4(param0->unk_D0);
+    Camera_InitWithPosition(&v0, v2, &v1, v3, 1, param0->camera);
+    Camera_SetClipping(0, FX32_CONST(100), param0->camera);
+    Camera_ReleaseTarget(param0->camera);
+    Camera_SetAsActive(param0->camera);
 }
 
 static void ov85_022420A8 (UnkStruct_ov85_022420A8 * param0)

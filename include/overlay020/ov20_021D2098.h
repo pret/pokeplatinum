@@ -2,8 +2,7 @@
 #define POKEPLATINUM_OV20_021D2098_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
-#include "functypes/sys_task_func.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"

@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -28,8 +28,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/trainer_data.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
-#include "struct_decls/struct_0207D99C_decl.h"
+#include "bag.h"
 #include "struct_defs/struct_0209C370.h"
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
 #include "overlay010/struct_ov10_0221F800.h"
@@ -60,7 +59,7 @@ struct BattleSystem {
     BattlerData *battlers[MAX_BATTLERS];
     int maxBattlers;
     TrainerInfo *trainerInfo[4];
-    UnkStruct_0207D3C0 * unk_58;
+    Bag * unk_58;
     UnkStruct_0207D99C * unk_5C;
     PokedexData *pokedex;
     PCBoxes *pcBoxes;
@@ -70,7 +69,7 @@ struct BattleSystem {
     UnkStruct_ov12_0221FCDC * unk_8C;
     SpriteRenderer * unk_90;
     SpriteGfxHandler * unk_94;
-    PoketchData * unk_98;
+    PoketchData *poketchData;
     UnkStruct_0206D140 * unk_9C;
     u16 trainerIDs[4];
     u8 unk_A8[4];

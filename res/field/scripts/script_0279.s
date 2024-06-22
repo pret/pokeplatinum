@@ -2,9 +2,9 @@
 
     .data
 
-    .long _000E-.-4
-    .long _0014-.-4
-    .long _007B-.-4
+    ScriptEntry _000E
+    ScriptEntry _0014
+    ScriptEntry _007B
     .short 0xFD13
 
 _000E:
@@ -12,20 +12,20 @@ _000E:
     End
 
 _0014:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_15B 0, 0x800C
     GoToIfEq 0x800C, 0, _003A
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 2
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _003A:
     GoToIfSet 147, _0064
-    ScrCmd_02C 0
+    Message 0
     SetVar 0x8004, 0x1A9
     SetVar 0x8005, 1
     ScrCmd_014 0x7FC
@@ -33,10 +33,10 @@ _003A:
     GoTo _0064
 
 _0064:
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _006F:
@@ -45,19 +45,19 @@ _006F:
     Return
 
 _007B:
-    ScrCmd_060
+    LockAll
     ApplyMovement 10, _00C0
     ApplyMovement 0xFF, _00B4
     WaitMovement
-    ScrCmd_02C 0
+    Message 0
     SetVar 0x8004, 0x1A9
     SetVar 0x8005, 1
     ScrCmd_014 0x7FC
     Call _006F
-    ScrCmd_02C 1
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    Message 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

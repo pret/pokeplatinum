@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -37,7 +36,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
@@ -59,7 +58,7 @@
 #include "unk_0206CCB0.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "unk_0209AC14.h"
@@ -206,9 +205,9 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
     if (v0->unk_2A9 == 0) {
-        v0->unk_274 = sub_0207D990(fieldSystem->saveData);
+        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
     } else if (v0->unk_2A9 == 3) {
-        v0->unk_274 = sub_0207D990(fieldSystem->saveData);
+        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
     } else if (v0->unk_2A9 == 1) {
         v0->unk_274 = sub_020298B0(fieldSystem->saveData);
     } else {
@@ -447,10 +446,10 @@ static void ov7_0224D388 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * pa
     ov7_0224D21C(param1);
     ov7_0224D3E8(param1);
 
-    param1->unk_90 = sub_020203AC(11);
+    param1->camera = Camera_Alloc(11);
 
-    sub_020203C0(fieldSystem->unk_24, param1->unk_90);
-    sub_020203D4(param1->unk_90);
+    Camera_Copy(fieldSystem->camera, param1->camera);
+    Camera_SetAsActive(param1->camera);
 
     param1->unk_2A5 = 0;
 }
@@ -540,7 +539,7 @@ static u8 ov7_0224D620 (UnkStruct_ov7_0224D008 * param0)
     if (param0->unk_2A5 != param0->unk_2A6) {
         VecFx32 v0 = {8 * FX32_ONE, 0, 0};
 
-        sub_02020990(&v0, param0->unk_90);
+        Camera_Move(&v0, param0->camera);
         param0->unk_2A5++;
         return 3;
     }
@@ -940,9 +939,9 @@ static void ov7_0224DED4 (UnkStruct_ov7_0224D008 * param0)
     u16 v2;
 
     if (param0->unk_2A9 == 0) {
-        v2 = sub_0207D730(param0->unk_274, param0->unk_2AA, 11);
+        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
     } else if (param0->unk_2A9 == 3) {
-        v2 = sub_0207D730(param0->unk_274, param0->unk_2AA, 11);
+        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
     } else if (param0->unk_2A9 == 2) {
         v2 = sub_0202CBC8(param0->unk_274, param0->unk_2AA);
     } else {
@@ -1009,9 +1008,9 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
     BOOL v1;
 
     if (param0->unk_2A9 == 0) {
-        v1 = sub_0207D55C(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
     } else if (param0->unk_2A9 == 3) {
-        v1 = sub_0207D55C(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
     } else if (param0->unk_2A9 == 1) {
         if (sub_020289A0(param0->unk_274) == 200) {
             v1 = 0;
@@ -1187,10 +1186,10 @@ static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
     }
 
     if (param0->unk_2A9 == 0) {
-        sub_0207D570(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
         sub_0206D504(param0->unk_284, param0->unk_2AA, param0->unk_2AC);
     } else if (param0->unk_2A9 == 3) {
-        sub_0207D570(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
     } else if (param0->unk_2A9 == 1) {
         sub_0202895C(param0->unk_274, param0->unk_2AA);
     } else {
@@ -1230,7 +1229,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
         }
 
         if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
-            if (sub_0207D570(param0->unk_274, 12, 1, 11) == 1) {
+            if (Bag_TryAddItem(param0->unk_274, 12, 1, 11) == 1) {
                 Strbuf* v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 10);
 
                 StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
@@ -1386,16 +1385,16 @@ static u8 ov7_0224E950 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * para
     if (param1->unk_2A5 != param1->unk_2A6) {
         VecFx32 v0 = {-8 * FX32_ONE, 0, 0};
 
-        sub_02020990(&v0, param1->unk_90);
+        Camera_Move(&v0, param1->camera);
         param1->unk_2A5++;
         return 12;
     }
 
     param1->unk_2A5 = 0;
 
-    sub_020203C0(param1->unk_90, fieldSystem->unk_24);
-    sub_020203B8(param1->unk_90);
-    sub_020203D4(fieldSystem->unk_24);
+    Camera_Copy(param1->camera, fieldSystem->camera);
+    Camera_Delete(param1->camera);
+    Camera_SetAsActive(fieldSystem->camera);
 
     ov7_0224EB14(param1);
 
@@ -1546,9 +1545,9 @@ static void ov7_0224EC38 (TaskManager * param0)
     ov7_0224D21C(v1);
 
     {
-        UnkStruct_0207D3C0 * v2;
+        Bag * v2;
 
-        v2 = sub_0207D990(fieldSystem->saveData);
+        v2 = SaveData_GetBag(fieldSystem->saveData);
         v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);
 
         sub_0207CB2C(v1->unk_04, fieldSystem->saveData, 2, fieldSystem->unk_98);

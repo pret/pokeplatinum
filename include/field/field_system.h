@@ -2,7 +2,7 @@
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_defs/struct_0202610C.h"
 #include "journal.h"
 #include "struct_decls/struct_02039E30_decl.h"
@@ -19,7 +19,7 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "pokeradar.h"
-#include "struct_decls/struct_0207D99C_decl.h"
+#include "bag.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_defs/struct_0209C370.h"
@@ -54,7 +54,7 @@ typedef struct FieldSystem_t {
     int unk_18;
     Location * location;
     int unk_20;
-    UnkStruct_020203AC * unk_24;
+    Camera * camera;
     UnkStruct_ov5_021E8F60 * unk_28;
     UnkStruct_02039E30 * unk_2C;
     UnkStruct_ov5_021EF76C * unk_30;

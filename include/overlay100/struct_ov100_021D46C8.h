@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "camera.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "overlay100/struct_ov100_021D36CC.h"
@@ -25,7 +25,7 @@ typedef struct {
     BGL * unk_0C;
     PaletteData * unk_10;
     GenericPointerData * unk_14;
-    UnkStruct_020203AC * unk_18;
+    Camera * camera;
     NNSFndAllocator unk_1C;
     MessageLoader * unk_2C;
     Window unk_30;

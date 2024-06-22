@@ -29,7 +29,7 @@
 #include "comm_player_manager.h"
 #include "unk_0205F180.h"
 #include "pokeradar.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
 #include "overlay005/field_control.h"
@@ -315,10 +315,10 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
                 {
                     BOOL v3 = 0;
-                    PoketchSystem * v4 = sub_0203D158();
+                    PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
 
-                    if (v4 != NULL) {
-                        v3 = ov25_02253DD4(v4);
+                    if (poketchSys != NULL) {
+                        v3 = PoketchSystem_IsTapped(poketchSys);
                     }
 
                     PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v3);
@@ -341,10 +341,10 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
 
                 {
                     BOOL v5 = 0;
-                    PoketchSystem * v6 = sub_0203D158();
+                    PoketchSystem *poketchSys = FieldSystem_GetPoketchSystem();
 
-                    if (v6 != NULL) {
-                        v5 = ov25_02253DD4(v6);
+                    if (poketchSys != NULL) {
+                        v5 = PoketchSystem_IsTapped(poketchSys);
                     }
 
                     PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, v5);
@@ -367,13 +367,13 @@ void sub_0203D140 (void)
     CommSys_EnableSendMovementData();
 }
 
-struct PoketchSystem * sub_0203D158 (void)
+struct PoketchSystem * FieldSystem_GetPoketchSystem (void)
 {
     if (sFieldSystem->unk_04 == NULL) {
         return NULL;
     }
 
-    return sFieldSystem->unk_04->unk_14;
+    return sFieldSystem->unk_04->poketchSys;
 }
 
 BGL * sub_0203D170 (void * param0)

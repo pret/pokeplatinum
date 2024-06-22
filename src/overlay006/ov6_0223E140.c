@@ -5,13 +5,11 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
-#include "struct_decls/struct_020203AC_decl.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay005/struct_ov5_021E20E8_decl.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -21,23 +19,22 @@
 #include "field/field_system_sub2_t.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay005/struct_ov5_021D52F4.h"
-#include "overlay005/struct_ov5_021E2098.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay006/funcptr_ov6_0223E6EC.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_0226527C.h"
+#include "overlay115/camera_angle.h"
 
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_020170BC.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "field_system.h"
 #include "unk_020508D4.h"
 #include "player_avatar.h"
@@ -46,7 +43,7 @@
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D521C.h"
-#include "overlay005/ov5_021E2098.h"
+#include "overlay005/motion_blur.h"
 #include "overlay006/ov6_0223E140.h"
 
 void include_unk_ov6_02248F30();
@@ -54,7 +51,7 @@ void include_unk_ov6_02248F30();
 typedef struct {
     FieldSystem * fieldSystem;
     UnkStruct_02099F80 unk_04;
-    UnkStruct_ov5_021E20E8 * unk_2C;
+    MotionBlur * motionBlur;
     int unk_30;
     int unk_34;
     u32 unk_38;
@@ -78,7 +75,7 @@ typedef struct {
     s32 unk_04;
     UnkStruct_ov6_0223FDE4 * unk_08;
     UnkStruct_ov6_02240000 * unk_0C;
-    UnkStruct_020203AC * unk_10;
+    Camera * camera;
 } UnkStruct_ov6_0223E548_sub1;
 
 typedef struct {
@@ -147,8 +144,8 @@ typedef struct {
 } UnkStruct_ov6_0223EA98;
 
 typedef struct UnkStruct_ov6_0223FDE4_t {
-    UnkStruct_020203AC * unk_00;
-    UnkStruct_020203AC * unk_04;
+    Camera * camera1;
+    Camera * camera2;
     UnkStruct_ov6_0223FD0C unk_08;
     UnkStruct_ov6_0223FD0C unk_18;
     VecFx32 unk_28;
@@ -267,7 +264,7 @@ static void ov6_0223E1B0(void);
 static void ov6_0223E1D0(BGL * param0);
 static void ov6_0223E2AC(BGL * param0);
 static void ov6_0223E2A4(BGL * param0);
-static UnkStruct_ov5_021E20E8 * ov6_0223E2BC(int param0, int param1);
+static MotionBlur * ov6_0223E2BC(int param0, int param1);
 static void ov6_0223E2E8(UnkStruct_ov6_0223E140 * param0);
 static void ov6_0223E234(UnkStruct_ov6_0223E140 * param0);
 static void ov6_0223E248(UnkStruct_ov6_0223E140 * param0);
@@ -327,7 +324,7 @@ static void ov6_0223E140 (UnkStruct_ov6_0223E140 * param0)
         param0->unk_38++;
         break;
     case 1:
-        param0->unk_2C = ov6_0223E2BC(param0->unk_30, param0->unk_34);
+        param0->motionBlur = ov6_0223E2BC(param0->unk_30, param0->unk_34);
         param0->unk_38++;
         break;
     case 2:
@@ -415,12 +412,12 @@ static void ov6_0223E1D0 (BGL * param0)
 
 static void ov6_0223E234 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E25C, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov6_0223E25C, param0, 1024);
 }
 
 static void ov6_0223E248 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E280, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov6_0223E280, param0, 1024);
 }
 
 static void ov6_0223E25C (SysTask * param0, void * param1)
@@ -455,12 +452,12 @@ static void ov6_0223E2AC (BGL * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
-static UnkStruct_ov5_021E20E8 * ov6_0223E2BC (int param0, int param1)
+static MotionBlur * ov6_0223E2BC (int param0, int param1)
 {
-    UnkStruct_ov5_021E20E8 * v0;
+    MotionBlur * motionBlur;
 
     {
-        UnkStruct_ov5_021E2098 v1 = {
+        MotionBlurParams motionBlurParams = {
             GX_DISPMODE_VRAM_C,
             GX_BGMODE_0,
             GX_BG0_AS_3D,
@@ -474,25 +471,25 @@ static UnkStruct_ov5_021E20E8 * ov6_0223E2BC (int param0, int param1)
             4
         };
 
-        v1.unk_20 = param0;
-        v1.unk_24 = param1;
+        motionBlurParams.blendCoeffA = param0;
+        motionBlurParams.blendCoeffB = param1;
 
-        v0 = ov5_021E2098(&v1);
+        motionBlur = MotionBlur_New(&motionBlurParams);
     }
 
-    return v0;
+    return motionBlur;
 }
 
 static void ov6_0223E2E8 (UnkStruct_ov6_0223E140 * param0)
 {
-    sub_0200DA3C(ov6_0223E2FC, param0, 1024);
+    SysTask_ExecuteAfterVBlank(ov6_0223E2FC, param0, 1024);
 }
 
 static void ov6_0223E2FC (SysTask * param0, void * param1)
 {
     UnkStruct_ov6_0223E140 * v0 = param1;
 
-    ov5_021E20E8(&v0->unk_2C, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
+    MotionBlur_Delete(&v0->motionBlur, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     SysTask_Done(param0);
 }
 
@@ -539,7 +536,7 @@ void ov6_0223E384 (TaskManager * taskMan)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->unk_24);
+    ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->camera);
     FieldTask_Start(taskMan, ov6_0223E33C, v1);
 }
 
@@ -626,7 +623,7 @@ void ov6_0223E4EC (TaskManager * param0)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->unk_24);
+    ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->camera);
 
     v1->unk_08 = ov6_0223FFF4(v1->unk_00);
     FieldTask_Start(param0, ov6_0223E408, v1);
@@ -893,40 +890,40 @@ static void ov6_0223E830 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
 #if (GAME_VERSION == 10 || GAME_VERSION == 12)
-    sub_02020910(0x1701, fieldSystem->unk_24);
-    sub_02020A50(0xc8a55, fieldSystem->unk_24);
+    Camera_SetFOV(0x1701, fieldSystem->camera);
+    Camera_SetDistance(0xc8a55, fieldSystem->camera);
     v1.x = 0x2280ef;
     v1.y = 0xca424;
     v1.z = 0x268c50;
-    sub_02020ACC(&v1, fieldSystem->unk_24);
-    v2.unk_00 = 0x22a2;
-    v2.unk_02 = 0xf800;
-    v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->unk_24);
+    Camera_SetTarget(&v1, fieldSystem->camera);
+    v2.x = 0x22a2;
+    v2.y = 0xf800;
+    v2.z = 0;
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
 
-    sub_020206BC(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->unk_24);
+    Camera_SetClipping(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
 #elif (GAME_VERSION == 11)
-    sub_02020910(0x10c1, fieldSystem->unk_24);
-    sub_02020A50(0xD5052, fieldSystem->unk_24);
+    Camera_SetFOV(0x10c1, fieldSystem->camera);
+    Camera_SetDistance(0xD5052, fieldSystem->camera);
     v1.x = 0x1bffbd;
     v1.y = 0xaa361;
     v1.z = 0x25dfdc;
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    Camera_SetTarget(&v1, fieldSystem->camera);
     v2.unk_00 = 0x19a3;
     v2.unk_02 = 0x90c;
     v2.unk_04 = 0;
-    sub_020209D4(&v2, fieldSystem->unk_24);
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
 
-    sub_020206BC(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->unk_24);
+    Camera_SetClipping(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->camera);
 #endif
 
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = Camera_GetTarget(fieldSystem->camera);
 
     ov6_02240A18(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240AEC(v0->unk_08, v1.x, v1.y, v1.z);
@@ -936,23 +933,23 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
-    sub_02020910(0xf81, fieldSystem->unk_24);
-    sub_02020A50(0x17e532, fieldSystem->unk_24);
+    Camera_SetFOV(0xf81, fieldSystem->camera);
+    Camera_SetDistance(0x17e532, fieldSystem->camera);
 
     v1.x = 0xf99d58;
     v1.y = 0xc5502;
     v1.z = 0x28cf549;
 
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    Camera_SetTarget(&v1, fieldSystem->camera);
 
-    v2.unk_00 = 0x642;
-    v2.unk_02 = 0xeda0;
-    v2.unk_04 = 0;
+    v2.x = 0x642;
+    v2.y = 0xeda0;
+    v2.z = 0;
 
-    sub_020209D4(&v2, fieldSystem->unk_24);
-    sub_020206BC(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->unk_24);
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
+    Camera_SetClipping(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -960,7 +957,7 @@ static void ov6_0223E8D0 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = Camera_GetTarget(fieldSystem->camera);
 
     ov6_02240A50(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B24(v0->unk_08, v1.x, v1.y, v1.z);
@@ -970,23 +967,23 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 {
     UnkStruct_ov6_0223E830 * v0 = param2;
     VecFx32 v1;
-    UnkStruct_ov115_0226527C v2;
+    CameraAngle v2;
 
-    sub_02020910(0x4c1, fieldSystem->unk_24);
-    sub_02020A50(0x26bec1, fieldSystem->unk_24);
+    Camera_SetFOV(0x4c1, fieldSystem->camera);
+    Camera_SetDistance(0x26bec1, fieldSystem->camera);
 
     v1.x = 0x1df5dfd;
     v1.y = 0x73a0c;
     v1.z = 0x2b9f4a2;
 
-    sub_02020ACC(&v1, fieldSystem->unk_24);
+    Camera_SetTarget(&v1, fieldSystem->camera);
 
-    v2.unk_00 = 0x4c2;
-    v2.unk_02 = 0xa40;
-    v2.unk_04 = 0;
+    v2.x = 0x4c2;
+    v2.y = 0xa40;
+    v2.z = 0;
 
-    sub_020209D4(&v2, fieldSystem->unk_24);
-    sub_020206BC(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->unk_24);
+    Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
+    Camera_SetClipping(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
     fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
@@ -994,7 +991,7 @@ static void ov6_0223E984 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
 
-    v1 = sub_02020AAC(fieldSystem->unk_24);
+    v1 = Camera_GetTarget(fieldSystem->camera);
 
     ov6_02240A8C(v0->unk_04, v1.x, v1.y, v1.z);
     ov6_02240B60(v0->unk_08, v1.x, v1.y, v1.z);
@@ -1618,7 +1615,7 @@ static void ov6_0223FAF8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
             break;
         }
 
-        v2 = sub_02020AAC(fieldSystem->unk_24);
+        v2 = Camera_GetTarget(fieldSystem->camera);
         {
             int v4[] = {
                 504, 504, 435
@@ -1848,7 +1845,7 @@ UnkStruct_ov6_0223FDE4 * ov6_0223FDE4 (u32 param0)
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_0223FDE4));
     memset(v0, 0, sizeof(UnkStruct_ov6_0223FDE4));
-    v0->unk_00 = sub_020203AC(param0);
+    v0->camera1 = Camera_Alloc(param0);
     v0->unk_40 = 5;
 
     return v0;
@@ -1856,22 +1853,22 @@ UnkStruct_ov6_0223FDE4 * ov6_0223FDE4 (u32 param0)
 
 void ov6_0223FE08 (UnkStruct_ov6_0223FDE4 * param0)
 {
-    sub_020203B8(param0->unk_00);
+    Camera_Delete(param0->camera1);
     Heap_FreeToHeap(param0);
 }
 
-void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u32 param3, u32 param4, UnkStruct_020203AC * param5)
+void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u32 param3, u32 param4, Camera * camera)
 {
     ov6_0223FF7C(param0);
-    sub_020203C0(param5, param0->unk_00);
+    Camera_Copy(camera, param0->camera1);
 
-    param0->unk_28 = sub_02020AAC(param5);
+    param0->unk_28 = Camera_GetTarget(camera);
     param0->unk_34 = param0->unk_28;
 
-    sub_02020690(&param0->unk_28, param0->unk_00);
-    sub_020203D4(param0->unk_00);
+    Camera_TrackTarget(&param0->unk_28, param0->camera1);
+    Camera_SetAsActive(param0->camera1);
 
-    param0->unk_04 = param5;
+    param0->camera2 = camera;
 
     ov6_0223FD0C(&param0->unk_08, 0, param1, param3);
     ov6_0223FD0C(&param0->unk_18, 0, param2, param3);
@@ -1929,7 +1926,7 @@ void ov6_0223FE9C (UnkStruct_ov6_0223FDE4 * param0)
         }
         break;
     case 4:
-        sub_020203D4(param0->unk_04);
+        Camera_SetAsActive(param0->camera2);
         param0->unk_40++;
         break;
     case 5:
@@ -2009,7 +2006,7 @@ void ov6_02240000 (UnkStruct_ov6_02240000 * param0, u32 param1, u32 param2, u32 
 
     GX_SetMasterBrightness(param0->unk_00.unk_00);
 
-    param0->unk_20 = sub_0200DA3C(ov6_02240064, param0, 1024);
+    param0->unk_20 = SysTask_ExecuteAfterVBlank(ov6_02240064, param0, 1024);
     Sound_PlayEffect(1748);
 }
 

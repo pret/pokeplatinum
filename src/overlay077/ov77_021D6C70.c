@@ -4,7 +4,6 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/archived_sprite.h"
 
@@ -14,7 +13,7 @@
 #include "rtc.h"
 #include "unk_02014000.h"
 #include "heap.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "unk_0202419C.h"
 #include "pokemon.h"
 #include "overlay077/ov77_021D6C70.h"
@@ -113,7 +112,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 {
     u8 v0;
     ArchivedSprite v1;
-    UnkStruct_020203AC * v2;
+    Camera * camera;
     void * v3;
     int v4[3] = {389, 392, 395};
     int v5[3];
@@ -156,9 +155,9 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 
     param0->unk_14 = Heap_AllocFromHeap(76, 0x4800);
     param0->unk_18 = sub_02014014(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, 76);
-    v2 = sub_02014784(param0->unk_18);
+    camera = sub_02014784(param0->unk_18);
 
-    sub_020206BC((FX32_ONE), (FX32_ONE * 900), v2);
+    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 
     v3 = sub_020144C4(61, 4, 76);
     sub_020144CC(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);
@@ -186,7 +185,7 @@ void ov77_021D6E50 (UnkStruct_ov77_021D6CFC * param0)
         NNS_G2dSetupSoftwareSpriteCamera();
         sub_02007768(param0->unk_00);
         ov77_021D725C();
-        sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
+        G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }
 

@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_020961E8_decl.h"
@@ -36,7 +36,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -225,7 +225,7 @@ int ov59_021D0D80 (OverlayManager * param0, int * param1)
         sub_02039734();
         ov59_021D30E0(v0->unk_4A9C, &v0->unk_418);
 
-        v0->unk_20 = sub_0200DA04(ov59_021D109C, v0, 5);
+        v0->unk_20 = SysTask_ExecuteOnVBlank(ov59_021D109C, v0, 5);
 
         NARC_dtor(v1);
         (*param1)++;

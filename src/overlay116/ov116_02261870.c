@@ -30,7 +30,7 @@
 #include "unk_020170BC.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02020020.h"
+#include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "trainer_info.h"
@@ -116,7 +116,7 @@ void ov116_0226192C (UnkStruct_ov116_0226501C * param0)
 void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
 {
     sub_020241B4();
-    sub_020203EC();
+    Camera_ComputeViewMatrix();
 
     inline_ov116_02261940_1();
 
@@ -175,7 +175,7 @@ void ov116_02261940 (UnkStruct_ov116_0226139C * param0)
         }
     }
 
-    sub_020241BC(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
+    G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
     sub_0200C7EC(param0->unk_48.unk_0C);
 }
 
@@ -198,9 +198,9 @@ void ov116_02261C88 (UnkStruct_ov116_0226139C * param0)
     VecFx32 v0 = {0, 0, 0};
     VecFx32 v1 = {0, 0, (FX32_ONE * 160)};
 
-    sub_02020784(&v0, &v1, 0xb60, 0, 0, param0->unk_48.unk_1C);
-    sub_020206BC((FX32_ONE * -1000), (FX32_ONE * 1000), param0->unk_48.unk_1C);
-    sub_020203D4(param0->unk_48.unk_1C);
+    Camera_InitWithTargetAndPosition(&v0, &v1, 0xb60, 0, 0, param0->unk_48.camera);
+    Camera_SetClipping((FX32_ONE * -1000), (FX32_ONE * 1000), param0->unk_48.camera);
+    Camera_SetAsActive(param0->unk_48.camera);
 }
 
 static void ov116_02261CD8 (SpriteTemplate * param0, s16 param1, s16 param2, int param3, int param4, int param5)

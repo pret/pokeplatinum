@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "strbuf.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
@@ -308,7 +308,7 @@ static void ov43_022568B4 (SysTask * param0, void * param1)
     v2 = (v1->unk_00 & 1) ?  3 : 1;
 
     ov25_022558C4(v0->unk_34[v1->unk_00], v2);
-    ov25_02254424(1635);
+    PoketchSystem_PlaySoundEffect(1635);
     ov43_022566EC(param1);
 }
 

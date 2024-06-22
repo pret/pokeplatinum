@@ -2,13 +2,13 @@
 
     .data
 
-    .long _0006-.-4
+    ScriptEntry _0006
     .short 0xFD13
 
 _0006:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
     ScrCmd_14D 0x8004
     GoToIfEq 0x40A6, 3, _0027
     GoTo _006C
@@ -22,19 +22,19 @@ _0027:
 _003A:
     CallIfEq 0x8004, 0, _005C
     CallIfEq 0x8004, 1, _0064
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _005C:
     ScrCmd_0CD 0
-    ScrCmd_02C 28
+    Message 28
     Return
 
 _0064:
     ScrCmd_0CD 0
-    ScrCmd_02C 29
+    Message 29
     Return
 
 _006C:
@@ -108,7 +108,7 @@ _01F4:
     ScrCmd_0CD 0
     CallIfEq 0x8004, 0, _043F
     CallIfEq 0x8004, 1, _0444
-    ScrCmd_034
+    CloseMessage
     ScrCmd_1BD 0x800C
     GoToIfEq 0x800C, 0, _0251
     GoToIfEq 0x800C, 1, _026B
@@ -147,7 +147,7 @@ _02B1:
     ScrCmd_065 4
     ClearFlag 0x188
     SetVar 0x4087, 2
-    ScrCmd_061
+    ReleaseAll
     End
 
 _02C3:
@@ -193,127 +193,127 @@ _037C:
     End
 
 _03A1:
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _03A9:
-    ScrCmd_02C 10
+    Message 10
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _03CC
     GoToIfEq 0x800C, 1, _03D1
     End
 
 _03CC:
-    ScrCmd_02C 11
+    Message 11
     Return
 
 _03D1:
-    ScrCmd_02C 12
+    Message 12
     Return
 
 _03D6:
-    ScrCmd_02C 24
+    Message 24
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 0, _03F9
     GoToIfEq 0x800C, 1, _03FE
     End
 
 _03F9:
-    ScrCmd_02C 25
+    Message 25
     Return
 
 _03FE:
-    ScrCmd_02C 26
+    Message 26
     Return
 
 _0403:
-    ScrCmd_02C 13
+    Message 13
     Return
 
 _0408:
-    ScrCmd_02C 27
+    Message 27
     Return
 
 _040D:
-    ScrCmd_02C 0
+    Message 0
     Return
 
 _0412:
-    ScrCmd_02C 14
+    Message 14
     Return
 
 _0417:
-    ScrCmd_02C 1
+    Message 1
     Return
 
 _041C:
-    ScrCmd_02C 15
+    Message 15
     Return
 
 _0421:
-    ScrCmd_02C 2
+    Message 2
     Return
 
 _0426:
-    ScrCmd_02C 16
+    Message 16
     Return
 
 _042B:
-    ScrCmd_02C 3
+    Message 3
     Return
 
 _0430:
-    ScrCmd_02C 17
+    Message 17
     Return
 
 _0435:
-    ScrCmd_02C 4
+    Message 4
     Return
 
 _043A:
-    ScrCmd_02C 18
+    Message 18
     Return
 
 _043F:
-    ScrCmd_02C 5
+    Message 5
     Return
 
 _0444:
-    ScrCmd_02C 19
+    Message 19
     Return
 
 _0449:
-    ScrCmd_02C 6
+    Message 6
     Return
 
 _044E:
-    ScrCmd_02C 20
+    Message 20
     Return
 
 _0453:
-    ScrCmd_02C 7
+    Message 7
     Return
 
 _0458:
-    ScrCmd_02C 21
+    Message 21
     Return
 
 _045D:
-    ScrCmd_02C 8
+    Message 8
     Return
 
 _0462:
-    ScrCmd_02C 22
+    Message 22
     Return
 
 _0467:
-    ScrCmd_02C 9
+    Message 9
     Return
 
 _046C:
-    ScrCmd_02C 23
+    Message 23
     Return
 
     .balign 4, 0

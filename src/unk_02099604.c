@@ -11,7 +11,7 @@
 #include "unk_02025E08.h"
 #include "poffin.h"
 #include "field_system.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay082/ov82_0223B140.h"
 
 FS_EXTERN_OVERLAY(overlay82);
@@ -30,7 +30,7 @@ UnkStruct_ov82_0223B164 * sub_02099604 (int param0, SaveData * param1, int param
     v0->unk_0C = param1;
     v0->unk_08 = Poffin_GetSavedataBlock(param1);
     v0->unk_10 = SaveData_GetTrainerInfo(param1);
-    v0->unk_14 = sub_0207D990(param1);
+    v0->unk_14 = SaveData_GetBag(param1);
     v0->unk_18 = SaveData_Options(param1);
     v0->unk_1C = param3;
     v0->unk_20 = 0;

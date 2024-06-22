@@ -1,4 +1,5 @@
     .include "macros/movement.inc"
+    .include "consts/sdat.inc"
 
     .option alignment off
 
@@ -14,10 +15,10 @@
     .short 2
     .endm
 
-    .macro ScrCmd_003 arg0, arg1
+    .macro WaitTime frames, countdownVarID
     .short 3
-    .short \arg0
-    .short \arg1
+    .short \frames
+    .short \countdownVarID
     .endm
 
     .macro ScrCmd_004 arg0, arg1
@@ -100,9 +101,9 @@
 
     .macro CompareVar varID, valueOrVarID
     .if \valueOrVarID < 0x4000
-        .short 17 // CompareVarToValue
+        .short 17 ; CompareVarToValue
     .else
-        .short 18 // CompareVarToVar
+        .short 18 ; CompareVarToVar
     .endif
     .short \varID
     .short \valueOrVarID
@@ -221,9 +222,9 @@
 
     .macro SetVar destVarID, valueOrVarID
     .if \valueOrVarID < 0x4000
-        .short 40 // SetVarFromValue
+        .short 40 ; SetVarFromValue
     .else
-        .short 41 // SetVarFromVar
+        .short 41 ; SetVarFromVar
     .endif
     .short \destVarID
     .short \valueOrVarID
@@ -235,19 +236,19 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_02B arg0
+    .macro MessageInstant messageID
     .short 43
-    .byte \arg0
+    .byte \messageID
     .endm
 
-    .macro ScrCmd_02C arg0
+    .macro Message messageID
     .short 44
-    .byte \arg0
+    .byte \messageID
     .endm
 
-    .macro ScrCmd_02D arg0
+    .macro MessageVar messageVar
     .short 45
-    .short \arg0
+    .short \messageVar
     .endm
 
     .macro ScrCmd_02E arg0
@@ -260,15 +261,15 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_030
+    .macro WaitABPress
     .short 48
     .endm
 
-    .macro ScrCmd_031
+    .macro WaitABXPadPress
     .short 49
     .endm
 
-    .macro ScrCmd_032
+    .macro WaitABPadPress
     .short 50
     .endm
 
@@ -276,7 +277,7 @@
     .short 51
     .endm
 
-    .macro ScrCmd_034
+    .macro CloseMessage
     .short 52
     .endm
 
@@ -403,9 +404,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_049 arg0
+    .macro PlayFanfare sdatID
     .short 73
-    .short \arg0
+    .short \sdatID
     .endm
 
     .macro ScrCmd_04A arg0
@@ -515,11 +516,11 @@
     .short 95
     .endm
 
-    .macro ScrCmd_060
+    .macro LockAll
     .short 96
     .endm
 
-    .macro ScrCmd_061
+    .macro ReleaseAll
     .short 97
     .endm
 
@@ -553,7 +554,7 @@
     .short 103
     .endm
 
-    .macro ScrCmd_068
+    .macro FacePlayer
     .short 104
     .endm
 
@@ -686,10 +687,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_080 arg0, arg1
+    .macro GetItemPocket item, destVarID
     .short 128
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \destVarID
     .endm
 
     .macro ScrCmd_081
@@ -1019,15 +1020,15 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0BC arg0, arg1, arg2, arg3
+    .macro FadeScreen transition, frames, type, color
     .short 188
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \transition
+    .short \frames
+    .short \type
+    .short \color
     .endm
 
-    .macro ScrCmd_0BD
+    .macro WaitFadeScreen
     .short 189
     .endm
 
@@ -2112,9 +2113,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_190 arg0
+    .macro WaitABPressTime frames
     .short 400
-    .short \arg0
+    .short \frames
     .endm
 
     .macro ScrCmd_191
@@ -2309,9 +2310,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B6 arg0
+    .macro GetTimeOfDay destVarID
     .short 438
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_1B7 arg0, arg1
@@ -2693,10 +2694,11 @@
     .macro ScrCmd_1F8
     .short 504
     .endm
-
-    .macro ScrCmd_1F9 arg0
+    
+    ; this is a dummy function that doesn't do anything
+    .macro Dummy1 dummy
     .short 505
-    .short \arg0
+    .short \dummy
     .endm
 
     .macro ScrCmd_1FA arg0, arg1
@@ -3732,7 +3734,8 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_2B4
+    ; this is unused, but the underlying function is called from LockAll
+    .macro LockLastTalked
     .short 692
     .endm
 
@@ -4635,4 +4638,8 @@
     .macro CallIfSet flagID, offset
     CheckFlag \flagID
     CallIf 1, \offset
+    .endm
+
+    .macro ScriptEntry name
+    .long \name-.-4
     .endm

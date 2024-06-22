@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
@@ -10,7 +10,7 @@
 #include "overlay005/struct_ov5_02201C58.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201E190.h"
@@ -76,7 +76,7 @@ static void sub_020738D8 (SysTask * param0, void * param1)
 void sub_020738EC (UnkStruct_02073838 * param0)
 {
     {
-        SysTask * v0 = sub_0200DA04(sub_020738D8, param0, 0xffff);
+        SysTask * v0 = SysTask_ExecuteOnVBlank(sub_020738D8, param0, 0xffff);
         GF_ASSERT(v0 != NULL);
     }
 }

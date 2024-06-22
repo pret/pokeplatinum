@@ -2,12 +2,12 @@
 
     .data
 
-    .long _0031-.-4
-    .long _00FC-.-4
-    .long _0154-.-4
-    .long _021C-.-4
-    .long _022F-.-4
-    .long _001A-.-4
+    ScriptEntry _0031
+    ScriptEntry _00FC
+    ScriptEntry _0154
+    ScriptEntry _021C
+    ScriptEntry _022F
+    ScriptEntry _001A
     .short 0xFD13
 
 _001A:
@@ -19,23 +19,23 @@ _0029:
     End
 
 _0031:
-    ScrCmd_060
+    LockAll
     ScrCmd_0C8 0
     CallIfUnset 221, _007D
     CallIfSet 221, _00B7
     ScrCmd_0CD 0
     ScrCmd_04E 0x481
-    ScrCmd_02C 1
+    Message 1
     ScrCmd_04F
     SetFlag 221
     SetVar 0x4094, 1
-    ScrCmd_02C 2
-    ScrCmd_031
-    ScrCmd_034
+    Message 2
+    WaitABXPadPress
+    CloseMessage
     SetVar 0x403F, 0x263
     ScrCmd_161
     ScrCmd_06D 14, 48
-    ScrCmd_061
+    ReleaseAll
     End
 
     .byte 27
@@ -52,8 +52,8 @@ _007D:
     ApplyMovement 0xFF, _00EC
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     Return
 
 _00B7:
@@ -62,7 +62,7 @@ _00B7:
     ScrCmd_188 14, 14
     ApplyMovement 14, _0144
     WaitMovement
-    ScrCmd_02C 3
+    Message 3
     Return
 
     .balign 4, 0
@@ -94,18 +94,18 @@ _00EC:
     .byte 0
 
 _00FC:
-    ScrCmd_060
+    LockAll
     ApplyMovement 14, _014C
     ApplyMovement 0xFF, _0134
     WaitMovement
-    ScrCmd_02C 4
-    ScrCmd_034
+    Message 4
+    CloseMessage
     SetVar 0x4094, 0
     ScrCmd_162
     ScrCmd_06D 14, 15
     ApplyMovement 14, _013C
     WaitMovement
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -129,7 +129,7 @@ _014C:
     EndMovement
 
 _0154:
-    ScrCmd_060
+    LockAll
     ScrCmd_162
     ScrCmd_06D 14, 15
     ScrCmd_1BD 0x800C
@@ -155,16 +155,16 @@ _01AB:
     ApplyMovement 14, _0204
     WaitMovement
     ScrCmd_0CD 0
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 5
+    CloseMessage
     ApplyMovement 14, _0214
     WaitMovement
     ScrCmd_04B 0x5DC
-    ScrCmd_049 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 14
     ScrCmd_04B 0x603
     SetVar 0x4094, 2
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0
@@ -197,23 +197,23 @@ _0214:
     EndMovement
 
 _021C:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 6
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 6
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
 _022F:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 7
-    ScrCmd_031
-    ScrCmd_034
-    ScrCmd_061
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 7
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
     End
 
     .byte 0

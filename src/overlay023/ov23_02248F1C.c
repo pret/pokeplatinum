@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -28,7 +27,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
@@ -194,7 +193,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         break;
     case 8:
         v0->fieldSystem->unk_6C = NULL;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 }
@@ -330,8 +329,8 @@ UnkStruct_ov23_0224942C * ov23_02249404 (FieldSystem * fieldSystem)
     UnkStruct_ov23_0224942C * v0;
     SysTask * v1;
 
-    v1 = sub_0200679C(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
-    v0 = sub_0201CED0(v1);
+    v1 = SysTask_StartAndAllocateParam(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
+    v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
     v0->unk_1B8 = fieldSystem->unk_08;

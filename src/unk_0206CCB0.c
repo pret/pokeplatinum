@@ -61,7 +61,7 @@
 #include "constants/species.h"
 #include "pokemon.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020923C0.h"
 #include "unk_02094EDC.h"
 #include "overlay006/ov6_02243218.h"
@@ -1229,7 +1229,7 @@ static int sub_0206DAFC (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206DB08 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return sub_0207D688(sub_0207D990(fieldSystem->saveData), 428, 1, 32);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 428, 1, 32);
 }
 
 void sub_0206DB20 (FieldSystem * fieldSystem)
@@ -1553,7 +1553,7 @@ static int sub_0206DF88 (FieldSystem * fieldSystem, StringTemplate * param1, Unk
 
 static BOOL sub_0206DFC8 (FieldSystem * fieldSystem, UnkStruct_ov6_022465F4 * param1)
 {
-    return sub_0207D688(sub_0207D990(fieldSystem->saveData), 428, 1, 32);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 428, 1, 32);
 }
 
 void sub_0206DFE0 (SaveData * param0)
@@ -1696,7 +1696,7 @@ void sub_0206E264 (FieldSystem * fieldSystem, u16 param1)
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E28C * v1 = &v0.val28;
 
-    v1->unk_00 = PoketchSystem_CurrentAppID(fieldSystem->unk_04->unk_14);
+    v1->unk_00 = PoketchSystem_CurrentAppID(fieldSystem->unk_04->poketchSys);
     v1->unk_04 = param1;
 
     sub_0206CD70(fieldSystem, 1, 6, v1);

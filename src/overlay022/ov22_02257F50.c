@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
-
 #include "touch_screen.h"
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
@@ -15,7 +13,7 @@
 
 #include "unk_0200679C.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02257F50.h"
@@ -610,8 +608,8 @@ static void ov22_0225864C (UnkStruct_ov22_02257F50 * param0, int param1, int par
     SysTask * v0;
     UnkStruct_ov22_022586C4 * v1;
 
-    v0 = sub_0200679C(ov22_022586C4, sizeof(UnkStruct_ov22_022586C4), 0, 13);
-    v1 = sub_0201CED0(v0);
+    v0 = SysTask_StartAndAllocateParam(ov22_022586C4, sizeof(UnkStruct_ov22_022586C4), 0, 13);
+    v1 = SysTask_GetParam(v0);
 
     v1->unk_00 = param0;
     v1->unk_04 = param1;
@@ -697,7 +695,7 @@ static void ov22_022586C4 (SysTask * param0, void * param1)
         v0->unk_00->unk_00.unk_3C = 0;
 
         Heap_FreeToHeap(v0->unk_28);
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
 
         return;
     default:

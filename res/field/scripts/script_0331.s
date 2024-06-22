@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _0035-.-4
+    ScriptEntry _000A
+    ScriptEntry _0035
     .short 0xFD13
 
 _000A:
@@ -21,18 +21,18 @@ _002F:
     Return
 
 _0035:
-    ScrCmd_049 0x5DC
-    ScrCmd_060
-    ScrCmd_068
-    ScrCmd_02C 0
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 0
     SetVar 0x8004, 233
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00A8
     ScrCmd_014 0x7FC
     SetFlag 0x11D
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ScrCmd_1BD 0x8004
     GoToIfEq 0x8004, 2, _00B2
     GoToIfEq 0x8004, 3, _00D0
@@ -42,28 +42,28 @@ _0035:
 
 _00A8:
     ScrCmd_014 0x7E1
-    ScrCmd_034
-    ScrCmd_061
+    CloseMessage
+    ReleaseAll
     End
 
 _00B2:
     ApplyMovement 0, _00F0
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
     ScrCmd_04B 0x603
     ScrCmd_04A 0x603
-    ScrCmd_061
+    ReleaseAll
     End
 
 _00D0:
     ApplyMovement 0, _00FC
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
     ScrCmd_04B 0x603
     ScrCmd_04A 0x603
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

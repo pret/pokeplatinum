@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -190,7 +190,7 @@ static void ov42_022565C4 (SysTask * param0, void * param1)
 
     switch (ov25_02255248(param1)) {
     case 0:
-        ov25_02254424(1653);
+        PoketchSystem_PlaySoundEffect(1653);
         ov25_022558C4(v0->unk_24, 0);
         v0->unk_3C = 144 << FX32_SHIFT;
         v0->unk_40 = Unk_ov42_02256720;
@@ -209,10 +209,10 @@ static void ov42_022565C4 (SysTask * param0, void * param1)
             v0->unk_40 = -((v0->unk_40 * 56) / 100);
 
             if (v0->unk_40 < (-2 * FX32_ONE)) {
-                ov25_02254424(1654);
+                PoketchSystem_PlaySoundEffect(1654);
                 v0->unk_3C = 144 << FX32_SHIFT;
             } else {
-                ov25_02254424(1654);
+                PoketchSystem_PlaySoundEffect(1654);
                 ov25_022558C4(v0->unk_24, (v1->unk_00) ? 1 : 2);
                 v0->unk_3C = 144 << FX32_SHIFT;
                 ov25_0225524C(param1);

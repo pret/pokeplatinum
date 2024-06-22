@@ -9,6 +9,7 @@ consts_manifest_basenames = [
     'movement',
     'moves',
     'pokemon',
+    'sdat',
     'shadows',
     'species',
     'tm_learnset',

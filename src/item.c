@@ -4,7 +4,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-#include "struct_defs/struct_0207CDEC.h"
+#include "bag.h"
 
 #include "heap.h"
 #include "item.h"

@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -9,9 +8,9 @@
 
 #include "field/field_system.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0203E880.h"
 #include "player_avatar.h"
 #include "map_object.h"
@@ -439,7 +438,7 @@ static int sub_02068048 (SysTask * task)
 {
     UnkStruct_020EF6D0 * v0;
 
-    v0 = sub_0201CED0(task);
+    v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
@@ -447,7 +446,7 @@ static void sub_02068054 (SysTask * task)
 {
     UnkStruct_020EF6D0 * v0;
 
-    v0 = sub_0201CED0(task);
+    v0 = SysTask_GetParam(task);
 
     Heap_FreeToHeapExplicit(4, v0);
     SysTask_Done(task);

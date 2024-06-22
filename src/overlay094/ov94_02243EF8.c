@@ -2,7 +2,6 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 
 #include "touch_screen.h"
@@ -13,7 +12,7 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_020218BC.h"
 #include "unk_0205C980.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -80,9 +79,9 @@ void ov94_02243FA8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     {
         UnkStruct_ov94_02243FF0 * v0;
 
-        param0->unk_10EC = sub_0200679C(ov94_0224400C, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
+        param0->unk_10EC = SysTask_StartAndAllocateParam(ov94_0224400C, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
 
-        v0 = sub_0201CED0(param0->unk_10EC);
+        v0 = SysTask_GetParam(param0->unk_10EC);
         v0->unk_00 = 0;
         v0->unk_04 = -40;
         v0->unk_08 = param1;
@@ -136,7 +135,7 @@ static void ov94_0224400C (SysTask * param0, void * param1)
     case 3:
         Sound_PlayEffect(1549);
         v1->unk_0C->unk_10F0 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 }
@@ -146,9 +145,9 @@ void ov94_022440B8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     {
         UnkStruct_ov94_02243FF0 * v0;
 
-        param0->unk_10EC = sub_0200679C(ov94_022440FC, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
+        param0->unk_10EC = SysTask_StartAndAllocateParam(ov94_022440FC, sizeof(UnkStruct_ov94_02243FF0), 5, 62);
 
-        v0 = sub_0201CED0(param0->unk_10EC);
+        v0 = SysTask_GetParam(param0->unk_10EC);
         v0->unk_00 = 0;
         v0->unk_04 = 130;
         v0->unk_08 = param1;
@@ -196,7 +195,7 @@ static void ov94_022440FC (SysTask * param0, void * param1)
         break;
     case 3:
         v1->unk_0C->unk_10F0 = 1;
-        sub_020067D0(param0);
+        SysTask_FinishAndFreeParam(param0);
         break;
     }
 }

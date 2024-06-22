@@ -6,13 +6,11 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0207D99C_decl.h"
 
 #include "touch_screen.h"
 #include "overlay013/struct_ov13_022264F4.h"
@@ -33,7 +31,7 @@
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201CCF0.h"
+#include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
@@ -41,7 +39,7 @@
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay013/ov13_022264F4.h"
 #include "overlay013/ov13_02227288.h"
 #include "overlay013/ov13_02227A4C.h"
@@ -112,7 +110,7 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
 {
     UnkStruct_ov13_02227244 * v0;
 
-    v0 = sub_0201CED0(sub_0200679C(ov13_02226590, sizeof(UnkStruct_ov13_02227244), 100, param0->unk_0C));
+    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov13_02226590, sizeof(UnkStruct_ov13_02227244), 100, param0->unk_0C));
     memset(v0, 0, sizeof(UnkStruct_ov13_02227244));
 
     v0->unk_00 = param0;
@@ -577,7 +575,7 @@ static u8 ov13_02226CFC (SysTask * param0, UnkStruct_ov13_02227244 * param1)
     }
 
     param1->unk_00->unk_26 = 1;
-    sub_020067D0(param0);
+    SysTask_FinishAndFreeParam(param0);
 
     return 1;
 }
@@ -842,6 +840,6 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02227260 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
-    Bag_SubtractItem(BattleSystem_Bag(param0), param1, 1, param3);
+    Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
     Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);
 }

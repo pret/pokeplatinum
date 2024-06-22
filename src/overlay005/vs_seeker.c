@@ -1,18 +1,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_object_anim_cmd.h"
 
-#include "constants/sdat.h"
+#include "consts/sdat.h"
 
 #include "unk_02005474.h"
 #include "string_template.h"
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0203E880.h"
@@ -24,7 +24,7 @@
 #include "unk_020655F4.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay005/ov5_021DFB54.h"
 
@@ -575,7 +575,7 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
     u16 battery = VsSeeker_GetBattery(varsFlags);
     u16 activeStepCount = VsSeeker_GetActiveStepCount(varsFlags);
 
-    if (sub_0207D688(sub_0207D990(fieldSystem->saveData), 443, 1, 4) == 1
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 443, 1, 4) == 1
         && battery < VS_SEEKER_MAX_BATTERY) {
         battery++;
         VsSeeker_SetBattery(varsFlags, battery);

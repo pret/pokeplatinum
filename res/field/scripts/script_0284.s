@@ -2,8 +2,8 @@
 
     .data
 
-    .long _000A-.-4
-    .long _0014-.-4
+    ScriptEntry _000A
+    ScriptEntry _0014
     .short 0xFD13
 
 _000A:
@@ -12,63 +12,63 @@ _000A:
     End
 
 _0014:
-    ScrCmd_060
+    LockAll
     ApplyMovement 0, _0158
     WaitMovement
-    ScrCmd_02C 0
-    ScrCmd_034
+    Message 0
+    CloseMessage
     ApplyMovement 0, _0160
     WaitMovement
     ScrCmd_0E5 0x39E, 0
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0150
-    ScrCmd_02C 1
-    ScrCmd_034
+    Message 1
+    CloseMessage
     ApplyMovement 0, _0168
     WaitMovement
     ApplyMovement 4, _01BC
     WaitMovement
-    ScrCmd_02C 2
-    ScrCmd_034
+    Message 2
+    CloseMessage
     ApplyMovement 4, _01CC
     WaitMovement
     ScrCmd_0E5 0x39F, 0
     ScrCmd_0EC 0x800C
     GoToIfEq 0x800C, 0, _0150
-    ScrCmd_02C 3
-    ScrCmd_034
-    ScrCmd_003 15, 0x800C
+    Message 3
+    CloseMessage
+    WaitTime 15, 0x800C
     ApplyMovement 0, _0174
     ApplyMovement 4, _01F4
     WaitMovement
-    ScrCmd_02C 4
+    Message 4
     ApplyMovement 4, _01D4
     WaitMovement
-    ScrCmd_02C 5
-    ScrCmd_034
+    Message 5
+    CloseMessage
     ApplyMovement 0, _017C
     WaitMovement
-    ScrCmd_02C 6
-    ScrCmd_034
+    Message 6
+    CloseMessage
     ApplyMovement 0, _0190
     ApplyMovement 0xFF, _01A4
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04B 0x603
     ApplyMovement 4, _01DC
     WaitMovement
-    ScrCmd_02C 7
-    ScrCmd_034
+    Message 7
+    CloseMessage
     ApplyMovement 4, _01E4
     WaitMovement
-    ScrCmd_049 0x603
+    PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04B 0x603
     ApplyMovement 14, _0200
     ApplyMovement 0xFF, _01B4
     WaitMovement
-    ScrCmd_02C 8
-    ScrCmd_02C 9
-    ScrCmd_034
+    Message 8
+    Message 9
+    CloseMessage
     ApplyMovement 14, _0208
     ApplyMovement 15, _0210
     ApplyMovement 16, _021C
@@ -79,12 +79,12 @@ _0014:
     ScrCmd_065 15
     ScrCmd_065 16
     SetVar 0x40AD, 1
-    ScrCmd_061
+    ReleaseAll
     End
 
 _0150:
     ScrCmd_0EB
-    ScrCmd_061
+    ReleaseAll
     End
 
     .balign 4, 0

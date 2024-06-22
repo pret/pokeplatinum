@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/sys_task.h"
+#include "sys_task_manager.h"
 
 #include "functypes/funcptr_020146F4.h"
 #include "overlay012/struct_ov12_02237EFC.h"
@@ -10,7 +10,7 @@
 
 #include "spl.h"
 
-#include "unk_0200D9E8.h"
+#include "sys_task.h"
 #include "unk_02014000.h"
 #include "heap.h"
 #include "overlay012/ov12_0221FC20.h"
