@@ -33,7 +33,7 @@ _0032:
     Message 2
     SetVar 0x8004, 0x1BA
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     ScrCmd_0CE 1
     Message 3
     CloseMessage
@@ -210,7 +210,7 @@ _0274:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _02B3
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x112
     GoTo _02A8
     End
@@ -223,7 +223,7 @@ _02A8:
     End
 
 _02B3:
-    ScrCmd_014 0x7E1
+    CommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

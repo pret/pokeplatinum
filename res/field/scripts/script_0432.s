@@ -236,7 +236,7 @@ _0280:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0297:
@@ -244,7 +244,7 @@ _0297:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _02AE:
@@ -252,7 +252,7 @@ _02AE:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 9, 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
     .byte 0

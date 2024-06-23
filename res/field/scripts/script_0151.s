@@ -53,7 +53,7 @@ _009F:
     SetVar 0x8004, 0x1BC
     SetVar 0x8005, 1
     SetFlag 188
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End

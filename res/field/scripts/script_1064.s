@@ -64,7 +64,7 @@ _00E5:
     End
 
 _0100:
-    ScrCmd_014 0x26DE
+    CommonScript 0x26DE
     End
 
 _0106:
@@ -600,7 +600,7 @@ _0677:
     Message 43
     SetVar 0x8004, 0x1AF
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     Message 44
     WaitABXPadPress
     CloseMessage

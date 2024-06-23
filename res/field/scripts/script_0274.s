@@ -395,7 +395,7 @@ _054D:
     ScrCmd_04D
     ScrCmd_27C 1, 0x8004
     ScrCmd_1E5 51
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -422,7 +422,7 @@ _05BE:
     ScrCmd_04D
     ScrCmd_27C 2, 0x8004
     ScrCmd_1E5 51
-    ScrCmd_014 0x7DF
+    CommonScript 0x7DF
     CloseMessage
     ReleaseAll
     End
@@ -1029,7 +1029,7 @@ _1136:
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _1161
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DF
+    CommonScript 0x7DF
     GoTo _117C
     End
 
@@ -1048,7 +1048,7 @@ _1161:
     .byte 0
 
 _1172:
-    ScrCmd_014 0x7E1
+    CommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

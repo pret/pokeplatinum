@@ -398,7 +398,7 @@ _04D0:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
     WaitTime 30, 0x800C
-    ScrCmd_014 0x7FA
+    CommonScript 0x7FA
     ApplyMovement 2, _059C
     WaitMovement
     ScrCmd_0CE 0
@@ -418,7 +418,7 @@ _04D0:
     ScrCmd_169 77
     ScrCmd_16A 77
     ScrCmd_065 2
-    ScrCmd_014 0x7FB
+    CommonScript 0x7FB
     SetVar 0x4070, 1
     SetVar 0x40E6, 1
     ReleaseAll
@@ -508,7 +508,7 @@ _0628:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _063F:
@@ -517,7 +517,7 @@ _063F:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0659:
@@ -526,7 +526,7 @@ _0659:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
     .byte 0

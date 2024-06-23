@@ -37,7 +37,7 @@ _0010:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0113
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     ScrCmd_1C2 0x8002
     Message 3
     WaitABXPadPress

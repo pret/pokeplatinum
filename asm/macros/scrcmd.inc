@@ -115,12 +115,12 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_014 scriptID
+    .macro CommonScript scriptID
     .short 20
     .short \scriptID
     .endm
 
-    .macro ScrCmd_015
+    .macro ReturnLocal
     .short 21
     .endm
 

@@ -217,7 +217,7 @@ _0309:
     End
 
 _0314:
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x130
     Message 8
     WaitABXPadPress

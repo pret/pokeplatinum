@@ -36,7 +36,7 @@ _002E:
     Message 4
     SetVar 0x8004, 49
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FF
+    CommonScript 0x7FF
     Message 5
     ApplyMovement 6, _0158
     ApplyMovement 5, _017C

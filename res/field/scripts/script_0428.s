@@ -47,7 +47,7 @@ _0084:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _009B:
@@ -55,7 +55,7 @@ _009B:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _00B2:
@@ -63,7 +63,7 @@ _00B2:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 13, 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _00C7:
@@ -112,14 +112,14 @@ _0174:
     End
 
 _019F:
-    ScrCmd_014 0x7F8
+    CommonScript 0x7F8
     ScrCmd_0CF 0
     ScrCmd_0CD 1
     Message 2
     GoTo _01C5
 
 _01B2:
-    ScrCmd_014 0x7F8
+    CommonScript 0x7F8
     ScrCmd_0CF 0
     ScrCmd_0CD 1
     Message 7
@@ -151,7 +151,7 @@ _0211:
 _021D:
     SetVar 0x8004, 4
     SetVar 0x8005, 5
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _024D
     GoToIfEq 0x800C, 1, _0259

@@ -62,7 +62,7 @@ _010A:
 _0121:
     Message 2
     SetVar 0x8004, 2
-    ScrCmd_014 0x7D9
+    CommonScript 0x7D9
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -72,7 +72,7 @@ _0121:
 _0139:
     Message 5
     SetVar 0x8004, 12
-    ScrCmd_014 0x7D9
+    CommonScript 0x7D9
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -82,7 +82,7 @@ _0139:
 _0151:
     Message 8
     SetVar 0x8004, 13
-    ScrCmd_014 0x7D9
+    CommonScript 0x7D9
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -92,7 +92,7 @@ _0151:
 _0169:
     Message 11
     SetVar 0x8004, 15
-    ScrCmd_014 0x7D9
+    CommonScript 0x7D9
     Message 12
     WaitABXPadPress
     CloseMessage

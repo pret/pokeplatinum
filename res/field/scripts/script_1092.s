@@ -13,7 +13,7 @@ _0012:
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_014 0x7E3
+    CommonScript 0x7E3
     ScrCmd_035
     ScrCmd_147 1
     ReleaseAll
@@ -23,7 +23,7 @@ _002B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_014 0x7E3
+    CommonScript 0x7E3
     ScrCmd_035
     ScrCmd_147 1
     ReleaseAll
@@ -33,7 +33,7 @@ _0041:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_014 0x7E3
+    CommonScript 0x7E3
     ScrCmd_035
     ScrCmd_148 14
     ReleaseAll
@@ -57,7 +57,7 @@ _0093:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0174
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x134
     Message 3
     GoTo _0153
@@ -69,7 +69,7 @@ _00D3:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0174
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x135
     Message 4
     GoTo _015E
@@ -81,7 +81,7 @@ _0113:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0174
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x136
     Message 5
     GoTo _0169

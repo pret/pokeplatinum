@@ -305,7 +305,7 @@ _02BA:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _02D1:
@@ -313,7 +313,7 @@ _02D1:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _02E8:
@@ -321,7 +321,7 @@ _02E8:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _02FF:
@@ -329,7 +329,7 @@ _02FF:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0316:
@@ -337,7 +337,7 @@ _0316:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _032D:

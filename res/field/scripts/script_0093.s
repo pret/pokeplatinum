@@ -329,7 +329,7 @@ _03AC:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x14A
     CloseMessage
     ReleaseAll
@@ -344,7 +344,7 @@ _03F4:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x14B
     CloseMessage
     ReleaseAll
@@ -358,7 +358,7 @@ _0442:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x14C
     CloseMessage
     ReleaseAll
@@ -372,7 +372,7 @@ _048A:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x14D
     CloseMessage
     ReleaseAll
@@ -386,7 +386,7 @@ _04D2:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x14E
     CloseMessage
     ReleaseAll
@@ -400,7 +400,7 @@ _051A:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x14F
     CloseMessage
     ReleaseAll
@@ -414,7 +414,7 @@ _0562:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x150
     CloseMessage
     ReleaseAll
@@ -429,7 +429,7 @@ _05AA:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x151
     CloseMessage
     ReleaseAll
@@ -444,7 +444,7 @@ _05F8:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x152
     CloseMessage
     ReleaseAll
@@ -459,7 +459,7 @@ _0646:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x153
     CloseMessage
     ReleaseAll
@@ -474,7 +474,7 @@ _0694:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _06F3
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetFlag 0x154
     CloseMessage
     ReleaseAll
@@ -644,7 +644,7 @@ _08A4:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _08BB:
@@ -652,7 +652,7 @@ _08BB:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 53, 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _08D0:
@@ -660,7 +660,7 @@ _08D0:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _08E7:
@@ -668,7 +668,7 @@ _08E7:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _08FE:
@@ -676,7 +676,7 @@ _08FE:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0915:
@@ -684,7 +684,7 @@ _0915:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _092C:
@@ -692,7 +692,7 @@ _092C:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0943:
@@ -700,7 +700,7 @@ _0943:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _095A:
@@ -708,7 +708,7 @@ _095A:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0971:

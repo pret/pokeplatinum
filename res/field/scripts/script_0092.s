@@ -20,7 +20,7 @@ _001A:
     Message 0
     SetVar 0x8004, 0x1AC
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 121
     ClearFlag 0x111
     Message 1
@@ -170,13 +170,13 @@ _01DF:
     Message 6
     SetVar 0x8004, 1
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DD
+    CommonScript 0x7DD
     SetVar 0x8004, 23
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DD
+    CommonScript 0x7DD
     SetVar 0x8004, 28
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DD
+    CommonScript 0x7DD
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -191,13 +191,13 @@ _023D:
     Message 10
     SetVar 0x8004, 1
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DE
+    CommonScript 0x7DE
     SetVar 0x8004, 3
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DE
+    CommonScript 0x7DE
     SetVar 0x8004, 4
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DE
+    CommonScript 0x7DE
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -212,7 +212,7 @@ _029B:
     Message 14
     SetVar 0x8004, 33
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DD
+    CommonScript 0x7DD
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -227,16 +227,16 @@ _02D9:
     Message 18
     SetVar 0x8004, 11
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     SetVar 0x8004, 9
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     SetVar 0x8004, 17
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     SetVar 0x8004, 113
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     Message 19
     WaitABXPadPress
     CloseMessage
@@ -266,19 +266,19 @@ _037F:
 _03A3:
     SetVar 0x8004, 101
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     Return
 
 _03B5:
     SetVar 0x8004, 102
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     Return
 
 _03C7:
     SetVar 0x8004, 103
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     Return
 
 _03D9:
@@ -290,7 +290,7 @@ _03D9:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
-    ScrCmd_014 0x7FE
+    CommonScript 0x7FE
     SetVar 0x40B6, 6
     ClearFlag 0x111
     ClearFlag 252
@@ -313,7 +313,7 @@ _0448:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetVar 0x40B6, 7
     ClearFlag 252
     CloseMessage
@@ -333,7 +333,7 @@ _04A9:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetVar 0x40B6, 8
     ClearFlag 252
     CloseMessage
@@ -353,7 +353,7 @@ _050A:
     SetVar 0x8005, 1
     ScrCmd_085 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _056B
-    ScrCmd_014 0x7DC
+    CommonScript 0x7DC
     SetVar 0x40B6, 9
     ClearFlag 252
     CloseMessage

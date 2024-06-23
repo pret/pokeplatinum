@@ -208,7 +208,7 @@ _030B:
     ClearFlag 0x179
     ScrCmd_064 6
     ScrCmd_062 6
-    ScrCmd_014 0x7F8
+    CommonScript 0x7F8
     ApplyMovement 6, _08C8
     WaitMovement
     ScrCmd_14D 0x800C
@@ -265,7 +265,7 @@ _03DE:
     Message 34
     WaitABXPadPress
     CloseMessage
-    ScrCmd_014 0x7F9
+    CommonScript 0x7F9
     ScrCmd_188 2, 16
     SetVar 0x4086, 1
     ReleaseAll
@@ -1223,7 +1223,7 @@ _0E47:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0E97
     SetFlag 108
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -1236,7 +1236,7 @@ _0E8C:
     End
 
 _0E97:
-    ScrCmd_014 0x7E1
+    CommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
@@ -1309,7 +1309,7 @@ _0F76:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0F8D:
@@ -1317,7 +1317,7 @@ _0F8D:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0FA4:
@@ -1325,7 +1325,7 @@ _0FA4:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 62, 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
     .byte 0

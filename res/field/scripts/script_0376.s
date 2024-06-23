@@ -131,7 +131,7 @@ _01DE:
     CallIfEq 0x40B8, 1, _0386
     SetVar 0x4000, 0
     ScrCmd_14E
-    ScrCmd_014 0x7D6
+    CommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0139
     GoToIfEq 0x40B8, 2, _022C
@@ -446,7 +446,7 @@ _0653:
     ScrCmd_04E 0x486
     ScrCmd_04F
     SetVar 0x4050, 4
-    ScrCmd_014 0x806
+    CommonScript 0x806
     Return
 
 _066E:

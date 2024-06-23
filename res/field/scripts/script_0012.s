@@ -41,7 +41,7 @@ _0044:
     ScrCmd_343 0, 0x8004
     Message 1
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DF
+    CommonScript 0x7DF
     SetFlag 0x13D
     CloseMessage
     ReleaseAll

@@ -117,10 +117,10 @@ _01E1:
     Return
 
 _01E9:
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetVar 0x8004, 93
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     ClearFlag 220
     SetVar 0x40E5, 0
     SetFlag 0xAB1
@@ -155,10 +155,10 @@ _025C:
     Message 7
     ClearFlag 220
     SetVar 0x40E5, 0
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetVar 0x8004, 93
     SetVar 0x8005, 1
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End

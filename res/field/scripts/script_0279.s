@@ -28,7 +28,7 @@ _003A:
     Message 0
     SetVar 0x8004, 0x1A9
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     Call _006F
     GoTo _0064
 
@@ -52,7 +52,7 @@ _007B:
     Message 0
     SetVar 0x8004, 0x1A9
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     Call _006F
     Message 1
     WaitABXPadPress

@@ -19,7 +19,7 @@ _001A:
     Message 1
     SetVar 0x8004, 0x1B5
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     GoTo _0046
     End
 
@@ -175,14 +175,14 @@ _0277:
     ScrCmd_31D 0x800C
     GoToIfEq 0x800C, 0xFF, _02A9
     ScrCmd_14E
-    ScrCmd_014 0x7D6
+    CommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _02AF
     GoTo _026C
     End
 
 _02A9:
-    ScrCmd_014 0x809
+    CommonScript 0x809
     End
 
 _02AF:
@@ -314,7 +314,7 @@ _0424:
     EndMovement
 
 _0430:
-    ScrCmd_014 0x2338
+    CommonScript 0x2338
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -385,7 +385,7 @@ _051B:
 
 _0526:
     ScrCmd_14E
-    ScrCmd_014 0x7D6
+    CommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0508
     Message 19

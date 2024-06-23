@@ -58,7 +58,7 @@ _0082:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 3, 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _0097:
@@ -96,7 +96,7 @@ _00E0:
     ScrCmd_064 0
     ApplyMovement 0, _0394
     WaitMovement
-    ScrCmd_014 0x7FA
+    CommonScript 0x7FA
     ScrCmd_0CE 0
     Message 6
     CloseMessage
@@ -135,7 +135,7 @@ _00E0:
     CallIfEq 0x4000, 3, _037D
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
-    ScrCmd_014 0x7FB
+    CommonScript 0x7FB
     ScrCmd_04B 0x603
     SetFlag 0x173
     SetVar 0x40A5, 1

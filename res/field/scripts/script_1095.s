@@ -127,7 +127,7 @@ _01C3:
     Message 13
     SetVar 0x8004, 0x1A6
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x1AC
     ClearFlag 0x1C3
     SetFlag 0x98D

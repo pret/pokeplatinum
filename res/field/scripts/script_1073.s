@@ -19,7 +19,7 @@ _000E:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0064
     SetFlag 0xAAA
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -32,7 +32,7 @@ _0059:
     End
 
 _0064:
-    ScrCmd_014 0x7E1
+    CommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
@@ -46,7 +46,7 @@ _006E:
     SetVar 0x8004, 0x1C0
     SetVar 0x8005, 1
     SetFlag 128
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End

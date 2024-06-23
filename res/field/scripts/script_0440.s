@@ -25,7 +25,7 @@ _001C:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0072
     SetFlag 0xAA0
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -38,7 +38,7 @@ _0067:
     End
 
 _0072:
-    ScrCmd_014 0x7E1
+    CommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
@@ -60,7 +60,7 @@ _00C7:
     Message 3
     SetVar 0x4000, 1
     SetVar 0x8004, 7
-    ScrCmd_014 0x7D9
+    CommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll

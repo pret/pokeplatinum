@@ -72,7 +72,7 @@ _00E4:
     ScrCmd_04B 0x644
     CallIfEq 0x8006, 0x1F4, _0139
     CallIfEq 0x8006, 0x1770, _013E
-    ScrCmd_014 0x7E0
+    CommonScript 0x7E0
     CloseMessage
     ScrCmd_073
     ReleaseAll

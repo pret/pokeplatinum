@@ -21,14 +21,14 @@ _0031:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnLocal
     End
 
 _003E:
     Call _00E8
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnLocal
     End
 
 _004C:
@@ -54,19 +54,19 @@ _0090:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnLocal
     End
 
 _009D:
     Call _0126
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnLocal
     End
 
 _00AB:
     Call _00B5
-    ScrCmd_015
+    ReturnLocal
     End
 
 _00B5:

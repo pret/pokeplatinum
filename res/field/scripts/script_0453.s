@@ -60,7 +60,7 @@ _00C8:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _00DF:
@@ -68,7 +68,7 @@ _00DF:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _00F6:
@@ -76,7 +76,7 @@ _00F6:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 8, 0x800C
-    ScrCmd_014 0x7D0
+    CommonScript 0x7D0
     End
 
 _010B:

@@ -116,7 +116,7 @@ _012B:
     GoToIfEq 0x800C, 1, _017A
     Message 11
     SetVar 0x8004, 10
-    ScrCmd_014 0x7D9
+    CommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -160,7 +160,7 @@ _0198:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_014 0x7E3
+    CommonScript 0x7E3
     ScrCmd_035
     ScrCmd_148 10
     ReleaseAll
@@ -170,7 +170,7 @@ _01AE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_014 0x7E3
+    CommonScript 0x7E3
     ScrCmd_035
     ScrCmd_148 11
     ReleaseAll

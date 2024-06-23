@@ -57,7 +57,7 @@ _00D7:
     ScrCmd_0D0 0, 0x8000
     ScrCmd_0D1 1, 0x104
     Message 4
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x140
     Message 5
     WaitABXPadPress
@@ -73,7 +73,7 @@ _0118:
     ScrCmd_0D0 0, 0x8000
     ScrCmd_0D1 1, 0x105
     Message 4
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x141
     Message 6
     WaitABXPadPress
@@ -89,7 +89,7 @@ _0159:
     ScrCmd_0D0 0, 0x8000
     ScrCmd_0D1 1, 0x106
     Message 4
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x142
     Message 7
     WaitABXPadPress
@@ -105,7 +105,7 @@ _019A:
     ScrCmd_0D0 0, 0x8000
     ScrCmd_0D1 1, 0x107
     Message 4
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x143
     Message 8
     WaitABXPadPress
@@ -121,7 +121,7 @@ _01DB:
     ScrCmd_0D0 0, 0x8000
     ScrCmd_0D1 1, 0x108
     Message 4
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     SetFlag 0x144
     Message 9
     WaitABXPadPress

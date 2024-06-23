@@ -96,7 +96,7 @@ _00FC:
     Message 0
     SetVar 0x8004, 0x1A7
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CommonScript 0x7FC
     ScrCmd_15B 5, 0x800C
     GoToIfEq 0x800C, 0, _0140
     GoTo _0135

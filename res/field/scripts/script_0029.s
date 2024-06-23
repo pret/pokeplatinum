@@ -156,11 +156,11 @@ _0161:
     End
 
 _0167:
-    ScrCmd_014 0x7D6
+    CommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0161
     CloseMessage
-    ScrCmd_014 0x802
+    CommonScript 0x802
     ReleaseAll
     End
 
@@ -196,11 +196,11 @@ _01EB:
     End
 
 _01F1:
-    ScrCmd_014 0x7D6
+    CommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _01EB
     CloseMessage
-    ScrCmd_014 0x802
+    CommonScript 0x802
     ReleaseAll
     End
 
