@@ -1,47 +1,48 @@
+#include "unk_0203E880.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
+
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "sys_task_manager.h"
-#include "strbuf.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/struct_0203F478.h"
+#include "struct_defs/struct_0205AA50.h"
+
+#include "field/field_system.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "constdata/const_020EAC58.h"
-#include "constdata/const_020EAB80.h"
-
-#include "field/field_system.h"
-#include "struct_defs/struct_0203F478.h"
-#include "struct_defs/struct_0205AA50.h"
-
-#include "constants/battle.h"
-#include "narc.h"
-#include "message.h"
-#include "string_template.h"
-#include "heap.h"
-#include "unk_0201D15C.h"
-#include "strbuf.h"
-#include "map_header.h"
-#include "map_header_data.h"
 #include "field_menu.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
-#include "vars_flags.h"
-#include "unk_020508D4.h"
-#include "player_avatar.h"
+#include "heap.h"
+#include "map_header.h"
+#include "map_header_data.h"
 #include "map_object.h"
+#include "message.h"
+#include "narc.h"
+#include "player_avatar.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task_manager.h"
 #include "trainer_data.h"
+#include "unk_0201D15C.h"
+#include "unk_020508D4.h"
+#include "vars_flags.h"
+
+#include "constdata/const_020EAB80.h"
+#include "constdata/const_020EAC58.h"
 
 #define SINGLE_BATTLE_EVENT_ID_OFFSET 3000
 #define DOUBLE_BATTLE_EVENT_ID_OFFSET 5000
 
 #define TRAINER_DEFEATED_FLAG_OFFSET 1360
 
-typedef void (* UnkFuncPtr_0203E950)(FieldSystem *);
+typedef void (*UnkFuncPtr_0203E950)(FieldSystem *);
 
 typedef struct {
     int unk_00;
@@ -49,8 +50,8 @@ typedef struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-    MapObject * unk_14;
-    SysTask * unk_18;
+    MapObject *unk_14;
+    SysTask *unk_18;
 } UnkStruct_0203E8B0;
 
 struct UnkStruct_0203EF60_t {
@@ -63,75 +64,75 @@ struct UnkStruct_0203EF60_t {
     u8 unk_09;
     u16 unk_0A;
     BOOL unk_0C;
-    UnkStruct_ov5_021DC1A4 * unk_10;
+    UnkStruct_ov5_021DC1A4 *unk_10;
     Window unk_14;
-    UIControlData * unk_24;
+    UIControlData *unk_24;
     int unk_28;
-    MapObject * unk_2C;
-    MapObject * unk_30;
-    u16 * unk_34;
-    ScriptContext * unk_38[2];
-    StringTemplate * unk_40;
-    Strbuf* unk_44;
-    Strbuf* unk_48;
-    void * unk_4C;
+    MapObject *unk_2C;
+    MapObject *unk_30;
+    u16 *unk_34;
+    ScriptContext *unk_38[2];
+    StringTemplate *unk_40;
+    Strbuf *unk_44;
+    Strbuf *unk_48;
+    void *unk_4C;
     UnkStruct_0203E8B0 unk_50[2];
     u16 unk_88[14];
     UnkFuncPtr_0203E950 unk_A4;
-    void * unk_A8;
-    void * unk_AC;
-    UnkStruct_ov101_021D5D90 * unk_B0;
-    SysTask * unk_B4;
+    void *unk_A8;
+    void *unk_AC;
+    UnkStruct_ov101_021D5D90 *unk_B0;
+    SysTask *unk_B4;
     Window unk_B8;
     Window unk_C8;
-    UnkStruct_ov5_021E1FF4 * unk_D8;
+    UnkStruct_ov5_021E1FF4 *unk_D8;
 };
 
 #include "data/field/hidden_items.h"
 
-void sub_0203E880(FieldSystem * fieldSystem, u16 param1, MapObject * param2);
-void sub_0203E8E0(TaskManager * param0, u16 param1, MapObject * param2, void * param3);
-static BOOL sub_0203E950(TaskManager * param0);
-static UnkStruct_0203EF60 * sub_0203EA28();
-static void sub_0203EA50(ScriptContext * param0);
-static void sub_0203EA68(FieldSystem * fieldSystem, UnkStruct_0203EF60 * param1, u16 param2, MapObject * param3, void * param4);
-ScriptContext * sub_0203EAB8(FieldSystem * fieldSystem, u16 param1);
-static void sub_0203EAF4(FieldSystem * fieldSystem, ScriptContext * param1, u16 param2, u8 param3);
-static u16 sub_0203EB20(FieldSystem * fieldSystem, ScriptContext * param1, u16 param2);
-static void sub_0203EF14(FieldSystem * fieldSystem, ScriptContext * param1, int param2, u32 param3);
-static void sub_0203EF38(FieldSystem * fieldSystem, ScriptContext * param1);
-void * sub_0203EF60(UnkStruct_0203EF60 * param0, u32 param1);
-void * sub_0203F098(FieldSystem * fieldSystem, u32 param1);
-void sub_0203F0C0(FieldSystem * fieldSystem);
-static void sub_0203F0E4(ScriptContext * param0, u16 param1);
-static void * sub_0203F0FC(int param0);
+void sub_0203E880(FieldSystem *fieldSystem, u16 param1, MapObject *param2);
+void sub_0203E8E0(TaskManager *param0, u16 param1, MapObject *param2, void *param3);
+static BOOL sub_0203E950(TaskManager *param0);
+static UnkStruct_0203EF60 *sub_0203EA28();
+static void sub_0203EA50(ScriptContext *param0);
+static void sub_0203EA68(FieldSystem *fieldSystem, UnkStruct_0203EF60 *param1, u16 param2, MapObject *param3, void *param4);
+ScriptContext *sub_0203EAB8(FieldSystem *fieldSystem, u16 param1);
+static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *param1, u16 param2, u8 param3);
+static u16 sub_0203EB20(FieldSystem *fieldSystem, ScriptContext *param1, u16 param2);
+static void sub_0203EF14(FieldSystem *fieldSystem, ScriptContext *param1, int param2, u32 param3);
+static void sub_0203EF38(FieldSystem *fieldSystem, ScriptContext *param1);
+void *sub_0203EF60(UnkStruct_0203EF60 *param0, u32 param1);
+void *sub_0203F098(FieldSystem *fieldSystem, u32 param1);
+void sub_0203F0C0(FieldSystem *fieldSystem);
+static void sub_0203F0E4(ScriptContext *param0, u16 param1);
+static void *sub_0203F0FC(int param0);
 static u32 sub_0203F110(int param0);
-u16 * FieldSystem_GetVarPointer(FieldSystem * fieldSystem, u16 varID);
-u16 sub_0203F150(FieldSystem * fieldSystem, u16 param1);
-u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
-BOOL sub_0203F188(FieldSystem * fieldSystem, u16 param1);
-void sub_0203F19C(FieldSystem * fieldSystem, u16 param1);
-void sub_0203F1B0(FieldSystem * fieldSystem, u16 param1);
-void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
-void sub_0203F1FC(FieldSystem * fieldSystem);
+u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID);
+u16 sub_0203F150(FieldSystem *fieldSystem, u16 param1);
+u16 sub_0203F164(FieldSystem *fieldSystem, u16 param1);
+BOOL sub_0203F188(FieldSystem *fieldSystem, u16 param1);
+void sub_0203F19C(FieldSystem *fieldSystem, u16 param1);
+void sub_0203F1B0(FieldSystem *fieldSystem, u16 param1);
+void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem);
+void sub_0203F1FC(FieldSystem *fieldSystem);
 BOOL sub_0203F278(u16 param0);
-void sub_0203F2BC(FieldSystem * fieldSystem, u16 param1);
-void sub_0203F2D8(FieldSystem * fieldSystem, u16 param1);
+void sub_0203F2BC(FieldSystem *fieldSystem, u16 param1);
+void sub_0203F2D8(FieldSystem *fieldSystem, u16 param1);
 u16 sub_0203F2F4(u16 param0);
 u16 sub_0203F304(u16 param0);
 u8 sub_0203F3C8(u16 param0);
-static BOOL sub_0203F404(UnkStruct_0203EF60 * param0, u16 param1);
-void sub_0203F310(FieldSystem * fieldSystem);
-void FieldSystem_InitNewGameState(FieldSystem * fieldSystem);
-void sub_0203F5A4(FieldSystem * fieldSystem, u16 param1);
-BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
-static u16 sub_0203F610(const u8 * param0, u8 param1);
-static u16 sub_0203F638(FieldSystem * fieldSystem, const u8 * param1, u8 param2);
-UnkStruct_0203F478 * sub_0203F478(FieldSystem * param0, int param1);
+static BOOL sub_0203F404(UnkStruct_0203EF60 *param0, u16 param1);
+void sub_0203F310(FieldSystem *fieldSystem);
+void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
+void sub_0203F5A4(FieldSystem *fieldSystem, u16 param1);
+BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1);
+static u16 sub_0203F610(const u8 *param0, u8 param1);
+static u16 sub_0203F638(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
+UnkStruct_0203F478 *sub_0203F478(FieldSystem *param0, int param1);
 
-void sub_0203E880 (FieldSystem * fieldSystem, u16 param1, MapObject * param2)
+void sub_0203E880(FieldSystem *fieldSystem, u16 param1, MapObject *param2)
 {
-    UnkStruct_0203EF60 * v0 = sub_0203EA28();
+    UnkStruct_0203EF60 *v0 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v0, param1, param2, NULL);
     FieldTask_Set(fieldSystem, sub_0203E950, v0);
@@ -139,10 +140,10 @@ void sub_0203E880 (FieldSystem * fieldSystem, u16 param1, MapObject * param2)
     return;
 }
 
-void sub_0203E8B0 (FieldSystem * fieldSystem, MapObject * param1, int param2, int param3, int param4, int param5, int param6, int param7)
+void sub_0203E8B0(FieldSystem *fieldSystem, MapObject *param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_0203EF60 * v0 = TaskManager_Environment(fieldSystem->unk_10);
-    UnkStruct_0203E8B0 * v1 = &v0->unk_50[param7];
+    UnkStruct_0203EF60 *v0 = TaskManager_Environment(fieldSystem->unk_10);
+    UnkStruct_0203E8B0 *v1 = &v0->unk_50[param7];
 
     v1->unk_00 = param2;
     v1->unk_04 = param3;
@@ -152,10 +153,10 @@ void sub_0203E8B0 (FieldSystem * fieldSystem, MapObject * param1, int param2, in
     v1->unk_14 = param1;
 }
 
-void sub_0203E8E0 (TaskManager * param0, u16 param1, MapObject * param2, void * param3)
+void sub_0203E8E0(TaskManager *param0, u16 param1, MapObject *param2, void *param3)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0203EF60 * v1 = sub_0203EA28();
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0203EF60 *v1 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v1, param1, param2, param3);
     FieldTask_Start(param0, sub_0203E950, v1);
@@ -163,10 +164,10 @@ void sub_0203E8E0 (TaskManager * param0, u16 param1, MapObject * param2, void * 
     return;
 }
 
-void sub_0203E918 (TaskManager * param0, u16 param1, MapObject * param2)
+void sub_0203E918(TaskManager *param0, u16 param1, MapObject *param2)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0203EF60 * v1 = sub_0203EA28();
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0203EF60 *v1 = sub_0203EA28();
 
     sub_0203EA68(fieldSystem, v1, param1, param2, NULL);
     FieldTask_Change(param0, sub_0203E950, v1);
@@ -174,13 +175,13 @@ void sub_0203E918 (TaskManager * param0, u16 param1, MapObject * param2)
     return;
 }
 
-static BOOL sub_0203E950 (TaskManager * param0)
+static BOOL sub_0203E950(TaskManager *param0)
 {
     int v0;
     UnkFuncPtr_0203E950 v1;
-    ScriptContext * v2 = NULL;
-    UnkStruct_0203EF60 * v3 = TaskManager_Environment(param0);
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    ScriptContext *v2 = NULL;
+    UnkStruct_0203EF60 *v3 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     switch (v3->unk_04) {
     case 0:
@@ -229,9 +230,9 @@ static BOOL sub_0203E950 (TaskManager * param0)
     return 0;
 }
 
-static UnkStruct_0203EF60 * sub_0203EA28 ()
+static UnkStruct_0203EF60 *sub_0203EA28()
 {
-    UnkStruct_0203EF60 * v0;
+    UnkStruct_0203EF60 *v0;
 
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203EF60));
 
@@ -246,7 +247,7 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
     return v0;
 }
 
-static void sub_0203EA50 (ScriptContext * param0)
+static void sub_0203EA50(ScriptContext *param0)
 {
     MessageLoader_Free(param0->loader);
     Heap_FreeToHeap(param0->scripts);
@@ -255,9 +256,9 @@ static void sub_0203EA50 (ScriptContext * param0)
     return;
 }
 
-static void sub_0203EA68 (FieldSystem * fieldSystem, UnkStruct_0203EF60 * param1, u16 param2, MapObject * param3, void * param4)
+static void sub_0203EA68(FieldSystem *fieldSystem, UnkStruct_0203EF60 *param1, u16 param2, MapObject *param3, void *param4)
 {
-    u16 * v0 = sub_0203EF60(param1, 54);
+    u16 *v0 = sub_0203EF60(param1, 54);
 
     param1->unk_28 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
     param1->unk_2C = param3;
@@ -275,9 +276,9 @@ static void sub_0203EA68 (FieldSystem * fieldSystem, UnkStruct_0203EF60 * param1
     return;
 }
 
-ScriptContext * sub_0203EAB8 (FieldSystem * fieldSystem, u16 param1)
+ScriptContext *sub_0203EAB8(FieldSystem *fieldSystem, u16 param1)
 {
-    ScriptContext * v0 = NULL;
+    ScriptContext *v0 = NULL;
 
     v0 = Heap_AllocFromHeap(11, sizeof(ScriptContext));
 
@@ -291,7 +292,7 @@ ScriptContext * sub_0203EAB8 (FieldSystem * fieldSystem, u16 param1)
     return v0;
 }
 
-static void sub_0203EAF4 (FieldSystem * fieldSystem, ScriptContext * param1, u16 param2, u8 param3)
+static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *param1, u16 param2, u8 param3)
 {
     u16 v0;
 
@@ -305,7 +306,7 @@ static void sub_0203EAF4 (FieldSystem * fieldSystem, ScriptContext * param1, u16
     return;
 }
 
-static u16 sub_0203EB20 (FieldSystem * fieldSystem, ScriptContext * param1, u16 param2)
+static u16 sub_0203EB20(FieldSystem *fieldSystem, ScriptContext *param1, u16 param2)
 {
     u16 v0 = param2;
 
@@ -410,9 +411,9 @@ static u16 sub_0203EB20 (FieldSystem * fieldSystem, ScriptContext * param1, u16 
     return v0;
 }
 
-static void sub_0203EF14 (FieldSystem * fieldSystem, ScriptContext * param1, int param2, u32 param3)
+static void sub_0203EF14(FieldSystem *fieldSystem, ScriptContext *param1, int param2, u32 param3)
 {
-    u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, param2, 11);
+    u8 *v0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, param2, 11);
 
     param1->scripts = (u8 *)v0;
     param1->loader = MessageLoader_Init(1, 26, param3, 11);
@@ -420,9 +421,9 @@ static void sub_0203EF14 (FieldSystem * fieldSystem, ScriptContext * param1, int
     return;
 }
 
-static void sub_0203EF38 (FieldSystem * fieldSystem, ScriptContext * param1)
+static void sub_0203EF38(FieldSystem *fieldSystem, ScriptContext *param1)
 {
-    u8 * v0 = sub_0203F0FC(fieldSystem->location->mapId);
+    u8 *v0 = sub_0203F0FC(fieldSystem->location->mapId);
 
     param1->scripts = (u8 *)v0;
     param1->loader = MessageLoader_Init(1, 26, sub_0203F110(fieldSystem->location->mapId), 11);
@@ -430,9 +431,9 @@ static void sub_0203EF38 (FieldSystem * fieldSystem, ScriptContext * param1)
     return;
 }
 
-void * sub_0203EF60 (UnkStruct_0203EF60 * param0, u32 param1)
+void *sub_0203EF60(UnkStruct_0203EF60 *param0, u32 param1)
 {
-    UnkStruct_0203E8B0 * v0;
+    UnkStruct_0203E8B0 *v0;
 
     switch (param1) {
     case 0:
@@ -553,9 +554,9 @@ void * sub_0203EF60 (UnkStruct_0203EF60 * param0, u32 param1)
     return NULL;
 }
 
-void * sub_0203F098 (FieldSystem * fieldSystem, u32 param1)
+void *sub_0203F098(FieldSystem *fieldSystem, u32 param1)
 {
-    UnkStruct_0203EF60 * v0 = TaskManager_Environment(fieldSystem->unk_10);
+    UnkStruct_0203EF60 *v0 = TaskManager_Environment(fieldSystem->unk_10);
 
     if (v0->unk_00 != 0x3643f) {
         GF_ASSERT(FALSE);
@@ -564,9 +565,9 @@ void * sub_0203F098 (FieldSystem * fieldSystem, u32 param1)
     return sub_0203EF60(v0, param1);
 }
 
-void sub_0203F0C0 (FieldSystem * fieldSystem)
+void sub_0203F0C0(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203EF60 * v0 = TaskManager_Environment(fieldSystem->unk_10);
+    UnkStruct_0203EF60 *v0 = TaskManager_Environment(fieldSystem->unk_10);
 
     if (sub_0203A9C8(fieldSystem) == 1) {
         v0->unk_A4 = sub_0203AB00;
@@ -575,7 +576,7 @@ void sub_0203F0C0 (FieldSystem * fieldSystem)
     return;
 }
 
-static void sub_0203F0E4 (ScriptContext * param0, u16 param1)
+static void sub_0203F0E4(ScriptContext *param0, u16 param1)
 {
     param0->scriptPtr += (param1 * 4);
     param0->scriptPtr += ScriptContext_ReadWord(param0);
@@ -583,17 +584,17 @@ static void sub_0203F0E4 (ScriptContext * param0, u16 param1)
     return;
 }
 
-static void * sub_0203F0FC (int param0)
+static void *sub_0203F0FC(int param0)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, MapHeader_GetScriptsArchiveID(param0), 11);
 }
 
-static u32 sub_0203F110 (int param0)
+static u32 sub_0203F110(int param0)
 {
     return MapHeader_GetMsgArchiveID(param0);
 }
 
-u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
+u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
@@ -608,9 +609,9 @@ u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
     return sub_0203F098(fieldSystem, (41 + varID - SPECIAL_VARS_START));
 }
 
-u16 sub_0203F150 (FieldSystem * fieldSystem, u16 param1)
+u16 sub_0203F150(FieldSystem *fieldSystem, u16 param1)
 {
-    u16 * v0 = FieldSystem_GetVarPointer(fieldSystem, param1);
+    u16 *v0 = FieldSystem_GetVarPointer(fieldSystem, param1);
 
     if (v0 == NULL) {
         return param1;
@@ -619,33 +620,33 @@ u16 sub_0203F150 (FieldSystem * fieldSystem, u16 param1)
     return *v0;
 }
 
-u16 sub_0203F164 (FieldSystem * fieldSystem, u16 param1)
+u16 sub_0203F164(FieldSystem *fieldSystem, u16 param1)
 {
-    GF_ASSERT((param1 < 16));
+    GF_ASSERT(param1 < 16);
     return sub_0203F150(fieldSystem, (((0 + 0x4000) + 32) + param1));
 }
 
-BOOL sub_0203F188 (FieldSystem * fieldSystem, u16 param1)
+BOOL sub_0203F188(FieldSystem *fieldSystem, u16 param1)
 {
     return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
 }
 
-void sub_0203F19C (FieldSystem * fieldSystem, u16 param1)
+void sub_0203F19C(FieldSystem *fieldSystem, u16 param1)
 {
     VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
     return;
 }
 
-void sub_0203F1B0 (FieldSystem * fieldSystem, u16 param1)
+void sub_0203F1B0(FieldSystem *fieldSystem, u16 param1)
 {
     VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), param1);
     return;
 }
 
-void FieldSystem_ClearLocalFlags (FieldSystem * fieldSystem)
+void FieldSystem_ClearLocalFlags(FieldSystem *fieldSystem)
 {
     int v0;
-    VarsFlags * v1;
+    VarsFlags *v1;
 
     v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
@@ -655,9 +656,9 @@ void FieldSystem_ClearLocalFlags (FieldSystem * fieldSystem)
     return;
 }
 
-void sub_0203F1FC (FieldSystem * fieldSystem)
+void sub_0203F1FC(FieldSystem *fieldSystem)
 {
-    VarsFlags * v0;
+    VarsFlags *v0;
 
     v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
     memset(VarsFlags_GetFlagChunk(v0, 2400 + 320), 0, 192 / 8);
@@ -665,7 +666,7 @@ void sub_0203F1FC (FieldSystem * fieldSystem)
     return;
 }
 
-void sub_0203F21C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4)
+void sub_0203F21C(FieldSystem *fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4)
 {
     *(u16 *)sub_0203F098(fieldSystem, 41) = param1;
     *(u16 *)sub_0203F098(fieldSystem, 42) = param2;
@@ -682,7 +683,7 @@ u16 Script_GetTrainerID(u16 eventID)
     }
 }
 
-BOOL sub_0203F278 (u16 param0)
+BOOL sub_0203F278(u16 param0)
 {
     if (param0 < 5000) {
         return 0;
@@ -701,33 +702,33 @@ BOOL Script_IsTrainerDefeated(FieldSystem *fieldSystem, u16 trainerID)
     return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + trainerID);
 }
 
-void sub_0203F2BC (FieldSystem *fieldSystem, u16 param1)
+void sub_0203F2BC(FieldSystem *fieldSystem, u16 param1)
 {
     VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
     return;
 }
 
-void sub_0203F2D8 (FieldSystem *fieldSystem, u16 param1)
+void sub_0203F2D8(FieldSystem *fieldSystem, u16 param1)
 {
     VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), TRAINER_DEFEATED_FLAG_OFFSET + param1);
     return;
 }
 
-u16 sub_0203F2F4 (u16 param0)
+u16 sub_0203F2F4(u16 param0)
 {
     return param0 - 8000 + 730;
 }
 
-u16 sub_0203F304 (u16 param0)
+u16 sub_0203F304(u16 param0)
 {
     return param0 - 8000;
 }
 
 static u16 Unk_02100AE0[][2] = {
-    {0x123, 0x34},
-    {0x124, 0x35},
-    {0x125, 0x36},
-    {0x125, 0x37}
+    { 0x123, 0x34 },
+    { 0x124, 0x35 },
+    { 0x125, 0x36 },
+    { 0x125, 0x37 }
 };
 
 static u16 Unk_02100AD4[] = {
@@ -739,7 +740,7 @@ static u16 Unk_02100AD4[] = {
     0xDE
 };
 
-void sub_0203F310 (FieldSystem * fieldSystem)
+void sub_0203F310(FieldSystem *fieldSystem)
 {
     u8 v0;
 
@@ -766,11 +767,11 @@ void sub_0203F310 (FieldSystem * fieldSystem)
     return;
 }
 
-u8 sub_0203F3C8 (u16 param0)
+u8 sub_0203F3C8(u16 param0)
 {
     int v0;
     u16 v1;
-    const HiddenItem * v2;
+    const HiddenItem *v2;
 
     v2 = &gHiddenItems[0];
     v1 = sub_0203F304(param0);
@@ -789,14 +790,14 @@ u8 sub_0203F3C8 (u16 param0)
     return v2[v0].range;
 }
 
-static BOOL sub_0203F404 (UnkStruct_0203EF60 * param0, u16 param1)
+static BOOL sub_0203F404(UnkStruct_0203EF60 *param0, u16 param1)
 {
     int v0;
     u16 v1;
-    const HiddenItem * v2;
-    u16 * v3 = sub_0203EF60(param0, 41);
-    u16 * v4 = sub_0203EF60(param0, 42);
-    u16 * v5 = sub_0203EF60(param0, 43);
+    const HiddenItem *v2;
+    u16 *v3 = sub_0203EF60(param0, 41);
+    u16 *v4 = sub_0203EF60(param0, 42);
+    u16 *v5 = sub_0203EF60(param0, 43);
 
     v2 = &gHiddenItems[0];
     v1 = sub_0203F304(param1);
@@ -819,10 +820,10 @@ static BOOL sub_0203F404 (UnkStruct_0203EF60 * param0, u16 param1)
     return 1;
 }
 
-UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
+UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_0203F478 * v0;
-    const BgEvent * v1;
+    UnkStruct_0203F478 *v0;
+    const BgEvent *v1;
     int v2, v3, v4, v5, v6, v7;
     int v8, v9, v10, v11;
 
@@ -882,15 +883,15 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     return v0;
 }
 
-void FieldSystem_InitNewGameState (FieldSystem * fieldSystem)
+void FieldSystem_InitNewGameState(FieldSystem *fieldSystem)
 {
     sub_0203F5A4(fieldSystem, 9600);
     return;
 }
 
-void sub_0203F5A4 (FieldSystem * fieldSystem, u16 param1)
+void sub_0203F5A4(FieldSystem *fieldSystem, u16 param1)
 {
-    ScriptContext * ctx = sub_0203EAB8(fieldSystem, param1);
+    ScriptContext *ctx = sub_0203EAB8(fieldSystem, param1);
 
     while (ScriptContext_Run(ctx) == 1) {
         (void)0;
@@ -899,10 +900,10 @@ void sub_0203F5A4 (FieldSystem * fieldSystem, u16 param1)
     sub_0203EA50(ctx);
 }
 
-BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
+BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1)
 {
     u16 v0;
-    const u8 * v1;
+    const u8 *v1;
 
     v1 = MapHeaderData_GetScripts(fieldSystem);
 
@@ -929,7 +930,7 @@ BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
     return 1;
 }
 
-static u16 sub_0203F610 (const u8 * param0, u8 param1)
+static u16 sub_0203F610(const u8 *param0, u8 param1)
 {
     while (TRUE) {
         if (*param0 == 0) {
@@ -947,7 +948,7 @@ static u16 sub_0203F610 (const u8 * param0, u8 param1)
     return 0xffff;
 }
 
-static u16 sub_0203F638 (FieldSystem * fieldSystem, const u8 * param1, u8 param2)
+static u16 sub_0203F638(FieldSystem *fieldSystem, const u8 *param1, u8 param2)
 {
     u16 v0, v1;
     u32 v2;

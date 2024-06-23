@@ -2,13 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV5_021DE47C_H
 
 #include "struct_decls/struct_02009714_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_020218BC_decl.h"
+#include "struct_defs/struct_0200C738.h"
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    GraphicElementManager *unk_00;
     UnkStruct_0200C738 unk_04;
-    UnkStruct_02009714 * unk_190[4];
+    UnkStruct_02009714 *unk_190[4];
 } UnkStruct_ov5_021DE47C;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021DE47C_H

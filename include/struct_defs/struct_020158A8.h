@@ -5,8 +5,8 @@
 #include "strbuf.h"
 
 typedef struct {
-    MessageLoader * unk_00;
-    Strbuf* unk_04[29];
+    MessageLoader *unk_00;
+    Strbuf *unk_04[29];
 } UnkStruct_020158A8;
 
 #endif // POKEPLATINUM_STRUCT_020158A8_H

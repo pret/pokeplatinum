@@ -1,15 +1,15 @@
 #ifndef POKEPLATINUM_CONSTANTS_PLAYER_AVATAR_H
 #define POKEPLATINUM_CONSTANTS_PLAYER_AVATAR_H
 
-//Player State
-#define PLAYER_STATE_WALKING        0
-#define PLAYER_STATE_CYCLING        1
-#define PLAYER_STATE_SURFING        2
+// Player State
+#define PLAYER_STATE_WALKING 0
+#define PLAYER_STATE_CYCLING 1
+#define PLAYER_STATE_SURFING 2
 
-#define PLAYER_EVENT_NONE               0
-#define PLAYER_EVENT_USED_STRENGTH      (1 << 0)
-#define PLAYER_EVENT_USED_WATERFALL     (1 << 1)
-#define PLAYER_EVENT_DISTORTION_WORLD   (1 << 2)
+#define PLAYER_EVENT_NONE             0
+#define PLAYER_EVENT_USED_STRENGTH    (1 << 0)
+#define PLAYER_EVENT_USED_WATERFALL   (1 << 1)
+#define PLAYER_EVENT_DISTORTION_WORLD (1 << 2)
 
 enum PlayerMoveState {
     PLAYER_MOVE_STATE_NONE = 0,
@@ -19,9 +19,9 @@ enum PlayerMoveState {
 };
 
 enum AvatarMoveState {
-    AVATAR_MOVE_STATE_NONE = 0,			
-    AVATAR_MOVE_STATE_MOVING,			
-    AVATAR_MOVE_STATE_TURNING,				
+    AVATAR_MOVE_STATE_NONE = 0,
+    AVATAR_MOVE_STATE_MOVING,
+    AVATAR_MOVE_STATE_TURNING,
 };
 
 enum AvatarDistortionState {

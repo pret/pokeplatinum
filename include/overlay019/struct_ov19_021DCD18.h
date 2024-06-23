@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021DCD18_H
 #define POKEPLATINUM_STRUCT_OV19_021DCD18_H
 
-#include "struct_decls/struct_02022550_decl.h"
-
 #include <nnsys.h>
 
+#include "struct_decls/struct_02022550_decl.h"
+
 typedef struct {
-    GraphicElementData * unk_00;
+    GraphicElementData *unk_00;
     NNSG2dImageProxy unk_04;
     u32 unk_28;
     u16 unk_2C;

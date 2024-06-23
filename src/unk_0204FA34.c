@@ -1,25 +1,25 @@
+#include "unk_0204FA34.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_0203026C_decl.h"
-#include "savedata.h"
-
 #include "struct_defs/struct_0204F3D0.h"
 
+#include "communication_system.h"
+#include "savedata.h"
 #include "unk_02030108.h"
 #include "unk_0203061C.h"
-#include "communication_system.h"
-#include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
 
-void sub_0204FA34(int param0, int param1, void * param2, void * param3);
-void sub_0204FA50(SaveData * param0, UnkStruct_0203026C * param1, u8 param2);
+void sub_0204FA34(int param0, int param1, void *param2, void *param3);
+void sub_0204FA50(SaveData *param0, UnkStruct_0203026C *param1, u8 param2);
 
-void sub_0204FA34 (int param0, int param1, void * param2, void * param3)
+void sub_0204FA34(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_0204F3D0 * v2 = param3;
-    const UnkStruct_0204F3D0 * v3 = param2;
+    UnkStruct_0204F3D0 *v2 = param3;
+    const UnkStruct_0204F3D0 *v3 = param2;
 
     v1 = 0;
     v2->unk_01++;
@@ -32,7 +32,7 @@ void sub_0204FA34 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-void sub_0204FA50 (SaveData * param0, UnkStruct_0203026C * param1, u8 param2)
+void sub_0204FA50(SaveData *param0, UnkStruct_0203026C *param1, u8 param2)
 {
     int v0;
     u8 v1[4];

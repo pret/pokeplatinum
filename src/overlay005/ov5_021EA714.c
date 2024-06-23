@@ -1,33 +1,33 @@
+#include "overlay005/ov5_021EA714.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-
-#include "game_overlay.h"
-#include "unk_0200A784.h"
-#include "vars_flags.h"
-#include "poketch_data.h"
-#include "unk_0206A8DC.h"
-#include "overlay005/ov5_021EA714.h"
 #include "overlay024/ov24_02253CE0.h"
 #include "overlay025/poketch_system.h"
+
+#include "game_overlay.h"
+#include "poketch_data.h"
+#include "unk_0200A784.h"
+#include "unk_0206A8DC.h"
+#include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(overlay24);
 FS_EXTERN_OVERLAY(overlay25);
 
-void ov5_021EA714 (FieldSystem * fieldSystem, int param1, u32 param2)
+void ov5_021EA714(FieldSystem *fieldSystem, int param1, u32 param2)
 {
     if ((fieldSystem->unk_04 != NULL) && (fieldSystem->unk_04->poketchSys != NULL)) {
         PoketchSystem_SendEvent(fieldSystem->unk_04->poketchSys, param1, param2);
     }
 }
 
-
-void ov5_021EA728 (FieldSystem * fieldSystem)
+void ov5_021EA728(FieldSystem *fieldSystem)
 {
     PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (PoketchData_IsEnabled(poketchData)
         && (sub_0206AE2C(v1) == 0)) {
@@ -39,10 +39,10 @@ void ov5_021EA728 (FieldSystem * fieldSystem)
     }
 }
 
-void ov5_021EA790 (FieldSystem * fieldSystem)
+void ov5_021EA790(FieldSystem *fieldSystem)
 {
     PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (PoketchData_IsEnabled(poketchData)
         && (sub_0206AE2C(v1) == 0)) {
@@ -52,10 +52,10 @@ void ov5_021EA790 (FieldSystem * fieldSystem)
     }
 }
 
-u8 ov5_021EA7CC (FieldSystem * fieldSystem)
+u8 ov5_021EA7CC(FieldSystem *fieldSystem)
 {
     PoketchData *poketchData = SaveData_PoketchData(fieldSystem->saveData);
-    VarsFlags * v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     if (PoketchData_IsEnabled(poketchData)
         && (sub_0206AE2C(v1) == 0)) {
@@ -74,18 +74,18 @@ u8 ov5_021EA7CC (FieldSystem * fieldSystem)
     return 0;
 }
 
-void ov5_021EA830 (FieldSystem * fieldSystem)
+void ov5_021EA830(FieldSystem *fieldSystem)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay24), 2);
     ov24_02253CE0(fieldSystem->unk_08);
 }
 
-void ov5_021EA848 (FieldSystem * fieldSystem)
+void ov5_021EA848(FieldSystem *fieldSystem)
 {
     ov24_02253DA4(fieldSystem->unk_08);
 }
 
-BOOL ov5_021EA854 (FieldSystem * fieldSystem)
+BOOL ov5_021EA854(FieldSystem *fieldSystem)
 {
     if (ov24_02253DB4(fieldSystem->unk_08)) {
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));

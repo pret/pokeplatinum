@@ -1,39 +1,39 @@
+#include "overlay087/ov87_021D0D80.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "overlay087/struct_ov87_021D106C_decl.h"
-
 #include "struct_defs/struct_0202DF8C.h"
+
+#include "overlay087/ov87_021D106C.h"
+#include "overlay087/struct_ov87_021D106C_decl.h"
 #include "overlay087/struct_ov87_021D12C0.h"
 
-#include "overlay_manager.h"
+#include "core_sys.h"
 #include "heap.h"
+#include "overlay_manager.h"
 #include "strbuf.h"
 #include "unk_0202DF8C.h"
-#include "overlay087/ov87_021D0D80.h"
-#include "overlay087/ov87_021D106C.h"
 
 typedef struct UnkStruct_ov87_021D0D80_t {
     UnkStruct_ov87_021D12C0 unk_00;
-    UnkStruct_ov87_021D106C * unk_C8;
-    HallOfFame * unk_CC;
+    UnkStruct_ov87_021D106C *unk_C8;
+    HallOfFame *unk_CC;
     int unk_D0;
     int unk_D4;
     BOOL unk_D8;
 } UnkStruct_ov87_021D0D80;
 
-static void ov87_021D0F38(UnkStruct_ov87_021D0D80 * param0, int param1);
-static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 * param0);
-static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 * param0);
-static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1);
-static void ov87_021D1000(UnkStruct_ov87_021D12C0 * param0);
-static void ov87_021D101C(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1, int param2);
+static void ov87_021D0F38(UnkStruct_ov87_021D0D80 *param0, int param1);
+static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 *param0);
+static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 *param0);
+static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1);
+static void ov87_021D1000(UnkStruct_ov87_021D12C0 *param0);
+static void ov87_021D101C(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1, int param2);
 
-int ov87_021D0D80 (OverlayManager * param0, int * param1)
+int ov87_021D0D80(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov87_021D0D80 * v0;
+    UnkStruct_ov87_021D0D80 *v0;
 
     Heap_Create(3, 60, 16384);
     Heap_Create(3, 61, 114688);
@@ -54,9 +54,9 @@ int ov87_021D0D80 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov87_021D0DFC (OverlayManager * param0, int * param1)
+int ov87_021D0DFC(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov87_021D0D80 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov87_021D0D80 *v0 = OverlayManager_Data(param0);
 
     ov87_021D1140(v0->unk_C8);
     ov87_021D1000(&(v0->unk_00));
@@ -67,9 +67,9 @@ int ov87_021D0DFC (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov87_021D0E2C (OverlayManager * param0, int * param1)
+int ov87_021D0E2C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov87_021D0D80 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov87_021D0D80 *v0 = OverlayManager_Data(param0);
 
     if (v0->unk_D8) {
         if (ov87_021D11F8(v0->unk_C8) == 0) {
@@ -137,12 +137,12 @@ int ov87_021D0E2C (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static void ov87_021D0F38 (UnkStruct_ov87_021D0D80 * param0, int param1)
+static void ov87_021D0F38(UnkStruct_ov87_021D0D80 *param0, int param1)
 {
     param0->unk_D8 = ov87_021D11D0(param0->unk_C8, param1);
 }
 
-static BOOL ov87_021D0F4C (UnkStruct_ov87_021D0D80 * param0)
+static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 *param0)
 {
     if (++(param0->unk_D4) >= param0->unk_D0) {
         param0->unk_D4 = 0;
@@ -153,7 +153,7 @@ static BOOL ov87_021D0F4C (UnkStruct_ov87_021D0D80 * param0)
     return 1;
 }
 
-static BOOL ov87_021D0F88 (UnkStruct_ov87_021D0D80 * param0)
+static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 *param0)
 {
     if (--(param0->unk_D4) < 0) {
         param0->unk_D4 = param0->unk_D0 - 1;
@@ -164,7 +164,7 @@ static BOOL ov87_021D0F88 (UnkStruct_ov87_021D0D80 * param0)
     return 1;
 }
 
-static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1)
+static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1)
 {
     int v0;
 
@@ -178,7 +178,7 @@ static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1
     ov87_021D101C(param0, param1, 0);
 }
 
-static void ov87_021D1000 (UnkStruct_ov87_021D12C0 * param0)
+static void ov87_021D1000(UnkStruct_ov87_021D12C0 *param0)
 {
     int v0;
 
@@ -188,7 +188,7 @@ static void ov87_021D1000 (UnkStruct_ov87_021D12C0 * param0)
     }
 }
 
-static void ov87_021D101C (UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1, int param2)
+static void ov87_021D101C(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1, int param2)
 {
     int v0;
 

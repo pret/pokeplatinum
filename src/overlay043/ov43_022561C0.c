@@ -1,20 +1,20 @@
 #include <nitro.h>
-#include <string.h>
 #include <nitro/sinit.h>
+#include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "overlay025/poketch_system.h"
+
 #include "overlay025/poketch_button.h"
+#include "overlay025/poketch_system.h"
+#include "overlay043/ov43_02256544.h"
+#include "overlay043/struct_ov43_02256544_1.h"
 #include "overlay043/struct_ov43_02256544_decl.h"
 
-#include "touch_screen.h"
-#include "overlay043/struct_ov43_02256544_1.h"
-
-#include "sys_task.h"
 #include "heap.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "touch_screen.h"
 #include "unk_02099D44.h"
-#include "overlay043/ov43_02256544.h"
 
 typedef struct {
     u8 unk_00;
@@ -22,7 +22,7 @@ typedef struct {
     u8 unk_02;
     u32 unk_04;
     UnkStruct_ov43_02256544_1 unk_08;
-    UnkStruct_ov43_02256544 * unk_14;
+    UnkStruct_ov43_02256544 *unk_14;
     PoketchSystem *poketchSys;
     PoketchButtonManager *buttonManager;
     u32 unk_20;
@@ -30,28 +30,28 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov43_022561D4(void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
-static BOOL ov43_0225621C(UnkStruct_ov43_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3);
-static void ov43_02256288(UnkStruct_ov43_02256544_1 * param0);
-static void ov43_022562A8(UnkStruct_ov43_0225621C * param0);
-static void ov43_022562CC(SysTask * param0, void * param1);
-static void ov43_02256308(u32 param0, u32 param1, u32 param2, void * param3);
-static void ov43_02256310(void * param0);
-static void ov43_02256318(UnkStruct_ov43_0225621C * param0, u32 param1);
-static BOOL ov43_0225632C(UnkStruct_ov43_0225621C * param0);
-static BOOL ov43_0225636C(UnkStruct_ov43_0225621C * param0);
-static BOOL ov43_02256478(UnkStruct_ov43_0225621C * param0);
+static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3);
+static void ov43_02256288(UnkStruct_ov43_02256544_1 *param0);
+static void ov43_022562A8(UnkStruct_ov43_0225621C *param0);
+static void ov43_022562CC(SysTask *param0, void *param1);
+static void ov43_02256308(u32 param0, u32 param1, u32 param2, void *param3);
+static void ov43_02256310(void *param0);
+static void ov43_02256318(UnkStruct_ov43_0225621C *param0, u32 param1);
+static BOOL ov43_0225632C(UnkStruct_ov43_0225621C *param0);
+static BOOL ov43_0225636C(UnkStruct_ov43_0225621C *param0);
+static BOOL ov43_02256478(UnkStruct_ov43_0225621C *param0);
 static u32 ov43_022564AC(u32 param0, u32 param1, u32 param2);
 static u32 ov43_022564EC(s32 param0, s32 param1, BOOL param2);
 
-static void NitroStaticInit (void)
+static void NitroStaticInit(void)
 {
     PoketchSystem_SetAppFunctions(ov43_022561D4, ov43_02256310);
 }
 
-static BOOL ov43_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
+static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
 {
-    UnkStruct_ov43_0225621C * v0 = (UnkStruct_ov43_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov43_0225621C));
+    UnkStruct_ov43_0225621C *v0 = (UnkStruct_ov43_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov43_0225621C));
 
     if (v0 != NULL) {
         if (ov43_0225621C(v0, poketchSys, param2, param3)) {
@@ -67,15 +67,15 @@ static BOOL ov43_022561D4 (void ** param0, PoketchSystem *poketchSys, BGL * para
     return 0;
 }
 
-static BOOL ov43_0225621C (UnkStruct_ov43_0225621C * param0, PoketchSystem *poketchSys, BGL * param2, u32 param3)
+static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BGL *param2, u32 param3)
 {
     static const TouchScreenHitTable v0[] = {
-        {112, 144, 16, 40},
-        {112, 144, 104, 128},
-        {24, 56, 96, 120},
-        {24, 56, 184, 208},
-        {56, 88, 96, 120},
-        {56, 88, 184, 208}
+        { 112, 144, 16, 40 },
+        { 112, 144, 104, 128 },
+        { 24, 56, 96, 120 },
+        { 24, 56, 184, 208 },
+        { 56, 88, 96, 120 },
+        { 56, 88, 184, 208 }
     };
 
     param0->unk_04 = param3;
@@ -98,7 +98,7 @@ static BOOL ov43_0225621C (UnkStruct_ov43_0225621C * param0, PoketchSystem *poke
     return 0;
 }
 
-static void ov43_02256288 (UnkStruct_ov43_02256544_1 * param0)
+static void ov43_02256288(UnkStruct_ov43_02256544_1 *param0)
 {
     param0->unk_00 = 0;
     param0->unk_06 = 0;
@@ -107,7 +107,7 @@ static void ov43_02256288 (UnkStruct_ov43_02256544_1 * param0)
     param0->unk_04 = ov43_022564AC(param0->unk_06, param0->unk_08, param0->unk_0A);
 }
 
-static void ov43_022562A8 (UnkStruct_ov43_0225621C * param0)
+static void ov43_022562A8(UnkStruct_ov43_0225621C *param0)
 {
     sub_02099D54(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
     PoketchButtonManager_Free(param0->buttonManager);
@@ -115,15 +115,15 @@ static void ov43_022562A8 (UnkStruct_ov43_0225621C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov43_022562CC (SysTask * param0, void * param1)
+static void ov43_022562CC(SysTask *param0, void *param1)
 {
-    static BOOL(*const v0[])(UnkStruct_ov43_0225621C *) = {
+    static BOOL (*const v0[])(UnkStruct_ov43_0225621C *) = {
         ov43_0225632C,
         ov43_0225636C,
         ov43_02256478
     };
 
-    UnkStruct_ov43_0225621C * v1 = (UnkStruct_ov43_0225621C *)param1;
+    UnkStruct_ov43_0225621C *v1 = (UnkStruct_ov43_0225621C *)param1;
 
     if (v1->unk_00 < NELEMS(v0)) {
         ov25_02254518(v1->poketchSys, v1->buttonManager);
@@ -137,20 +137,20 @@ static void ov43_022562CC (SysTask * param0, void * param1)
     }
 }
 
-static void ov43_02256308 (u32 param0, u32 param1, u32 param2, void * param3)
+static void ov43_02256308(u32 param0, u32 param1, u32 param2, void *param3)
 {
-    UnkStruct_ov43_0225621C * v0 = (UnkStruct_ov43_0225621C *)param3;
+    UnkStruct_ov43_0225621C *v0 = (UnkStruct_ov43_0225621C *)param3;
 
     v0->unk_08.unk_00 = param0;
     v0->unk_20 = param1;
 }
 
-static void ov43_02256310 (void * param0)
+static void ov43_02256310(void *param0)
 {
     ((UnkStruct_ov43_0225621C *)param0)->unk_02 = 1;
 }
 
-static void ov43_02256318 (UnkStruct_ov43_0225621C * param0, u32 param1)
+static void ov43_02256318(UnkStruct_ov43_0225621C *param0, u32 param1)
 {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
@@ -161,7 +161,7 @@ static void ov43_02256318 (UnkStruct_ov43_0225621C * param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov43_0225632C (UnkStruct_ov43_0225621C * param0)
+static BOOL ov43_0225632C(UnkStruct_ov43_0225621C *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -179,7 +179,7 @@ static BOOL ov43_0225632C (UnkStruct_ov43_0225621C * param0)
     return 0;
 }
 
-static BOOL ov43_0225636C (UnkStruct_ov43_0225621C * param0)
+static BOOL ov43_0225636C(UnkStruct_ov43_0225621C *param0)
 {
     if (param0->unk_02) {
         if (ov43_022566E0(param0->unk_14)) {
@@ -242,7 +242,7 @@ static BOOL ov43_0225636C (UnkStruct_ov43_0225621C * param0)
     return 0;
 }
 
-static BOOL ov43_02256478 (UnkStruct_ov43_0225621C * param0)
+static BOOL ov43_02256478(UnkStruct_ov43_0225621C *param0)
 {
     switch (param0->unk_01) {
     case 0:
@@ -259,27 +259,27 @@ static BOOL ov43_02256478 (UnkStruct_ov43_0225621C * param0)
     return 0;
 }
 
-static u32 ov43_022564AC (u32 param0, u32 param1, u32 param2)
+static u32 ov43_022564AC(u32 param0, u32 param1, u32 param2)
 {
     static const s8 v0[][18] = {
-        {0, 0, 0, 0, 0, -1, 0, -10, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {1, 0, -1, -1, 0, 1, -1, -10, 1, 0, 0, 0, 0, 0, -1, 1, 0, 1},
-        {0, 1, 0, 0, 0, -1, 1, 0, -1, 0, 0, 0, 1, -1, 0, 0, 0, 0},
-        {0, 0, 0, -1, -1, -1, 0, -1, -10, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-        {0, 0, -10, 1, 0, 1, -1, 0, 1, 0, 1, 0, -1, 1, 0, 0, 0, 0},
-        {0, -1, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
-        {0, -1, -1, -1, 0, 0, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0, 0, 1},
-        {-10, 0, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1},
-        {0, 0, 0, 0, 0, 1, 0, 0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, -1, 1, 0, 1, 0, -1, -1, 1, 0, 0, 1, -1, 0},
-        {0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, -1, -1, 0, 0, 0, -1, 0},
-        {0, 0, -1, -1, 1, 1, -1, 0, -1, 0, -1, 1, -1, 0, 0, 0, -1, 0},
-        {0, 0, 1, 0, -10, 0, 0, 0, 0, 0, 0, 1, -1, -1, 0, 0, -1, 0},
-        {0, 1, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, -1, 0, 0, -10},
-        {0, 0, 1, 0, 1, 0, 0, 0, -1, 0, -1, -1, 1, 0, 0, -1, 1, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-        {0, -1, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1}
+        { 0, 0, 0, 0, 0, -1, 0, -10, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 1, 0, -1, -1, 0, 1, -1, -10, 1, 0, 0, 0, 0, 0, -1, 1, 0, 1 },
+        { 0, 1, 0, 0, 0, -1, 1, 0, -1, 0, 0, 0, 1, -1, 0, 0, 0, 0 },
+        { 0, 0, 0, -1, -1, -1, 0, -1, -10, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+        { 0, 0, -10, 1, 0, 1, -1, 0, 1, 0, 1, 0, -1, 1, 0, 0, 0, 0 },
+        { 0, -1, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, 0, 0, 0, 1, 0, 0 },
+        { 0, -1, -1, -1, 0, 0, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0, 0, 1 },
+        { -10, 0, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1 },
+        { 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, -1, 1, 0, 1, 0, -1, -1, 1, 0, 0, 1, -1, 0 },
+        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, -1, -1, 0, 0, 0, -1, 0 },
+        { 0, 0, -1, -1, 1, 1, -1, 0, -1, 0, -1, 1, -1, 0, 0, 0, -1, 0 },
+        { 0, 0, 1, 0, -10, 0, 0, 0, 0, 0, 0, 1, -1, -1, 0, 0, -1, 0 },
+        { 0, 1, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, -1, 0, 0, -10 },
+        { 0, 0, 1, 0, 1, 0, 0, 0, -1, 0, -1, -1, 1, 0, 0, -1, 1, 0 },
+        { 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0 },
+        { 0, -1, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1 }
     };
 
     if ((v0[param0][param1] == -10) || ((param2 != 18) && (v0[param0][param2] == -10))) {
@@ -297,7 +297,7 @@ static u32 ov43_022564AC (u32 param0, u32 param1, u32 param2)
     }
 }
 
-static u32 ov43_022564EC (s32 param0, s32 param1, BOOL param2)
+static u32 ov43_022564EC(s32 param0, s32 param1, BOOL param2)
 {
     static const u8 v0[] = {
         0,

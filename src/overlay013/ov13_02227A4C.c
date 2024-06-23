@@ -1,13 +1,14 @@
+#include "overlay013/ov13_02227A4C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay013/struct_ov13_02227244.h"
 
-#include "item.h"
 #include "bag.h"
-#include "overlay013/ov13_02227A4C.h"
+#include "item.h"
 
-u8 ov13_02227A4C (UnkStruct_ov13_02227244 * param0)
+u8 ov13_02227A4C(UnkStruct_ov13_02227244 *param0)
 {
     if (param0->unk_00->unk_20 == 0) {
         return 0;
@@ -22,7 +23,7 @@ u8 ov13_02227A4C (UnkStruct_ov13_02227244 * param0)
     return 1;
 }
 
-void ov13_02227A7C (UnkStruct_ov13_02227244 * param0)
+void ov13_02227A7C(UnkStruct_ov13_02227244 *param0)
 {
     u32 v0;
 
@@ -43,9 +44,9 @@ static const u8 Unk_ov13_02229BB0[] = {
     0x0
 };
 
-void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
+void ov13_02227AC8(UnkStruct_ov13_02227244 *param0)
 {
-    BagItem * v0;
+    BagItem *v0;
     u32 v1, v2, v3;
     s32 v4;
 
@@ -89,7 +90,7 @@ void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
     }
 }
 
-u16 ov13_02227BA8 (UnkStruct_ov13_02227244 * param0, u32 param1)
+u16 ov13_02227BA8(UnkStruct_ov13_02227244 *param0, u32 param1)
 {
     if ((param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].item != 0) && (param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].quantity != 0)) {
         return param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].item;

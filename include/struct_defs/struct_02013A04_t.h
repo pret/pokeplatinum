@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_02013A04_T_H
 
 struct ResourceMetadata_t {
-    const void * unk_00;
+    const void *unk_00;
     u32 unk_04;
 };
 

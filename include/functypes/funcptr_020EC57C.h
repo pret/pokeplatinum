@@ -3,6 +3,6 @@
 
 #include "field/field_system_decl.h"
 
-typedef void (* UnkFuncPtr_020EC57C)(FieldSystem *);
+typedef void (*UnkFuncPtr_020EC57C)(FieldSystem *);
 
 #endif // POKEPLATINUM_FUNCPTR_020EC57C_H

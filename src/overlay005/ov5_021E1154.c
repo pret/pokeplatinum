@@ -1,3 +1,5 @@
+#include "overlay005/ov5_021E1154.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -7,33 +9,32 @@
 
 #include "field/field_system.h"
 
-#include "unk_02005474.h"
 #include "heap.h"
+#include "map_object.h"
+#include "player_avatar.h"
+#include "unk_02005474.h"
 #include "unk_020508D4.h"
 #include "unk_0205DAC8.h"
-#include "player_avatar.h"
 #include "unk_0205F180.h"
-#include "map_object.h"
 #include "unk_020655F4.h"
-#include "overlay005/ov5_021E1154.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    FieldSystem * fieldSystem;
-    PlayerAvatar * playerAvatar;
-    MapObject * unk_14;
+    FieldSystem *fieldSystem;
+    PlayerAvatar *playerAvatar;
+    MapObject *unk_14;
 } UnkStruct_ov5_021E11B0;
 
-static void ov5_021E11B0(FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2);
-static BOOL ov5_021E120C(TaskManager * param0);
-static void * ov5_021E132C(int param0);
-static void ov5_021E1350(void * param0);
+static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2);
+static BOOL ov5_021E120C(TaskManager *param0);
+static void *ov5_021E132C(int param0);
+static void ov5_021E1350(void *param0);
 
-int ov5_021E1154 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2)
+int ov5_021E1154(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)
 {
-    MapObject * v0 = Player_MapObject(playerAvatar);
+    MapObject *v0 = Player_MapObject(playerAvatar);
     u8 v1 = sub_02062BE8(v0);
     int v2;
 
@@ -53,9 +54,9 @@ int ov5_021E1154 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int pa
     return 1;
 }
 
-static void ov5_021E11B0 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar, int param2)
+static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)
 {
-    UnkStruct_ov5_021E11B0 * v0 = ov5_021E132C((sizeof(UnkStruct_ov5_021E11B0)));
+    UnkStruct_ov5_021E11B0 *v0 = ov5_021E132C(sizeof(UnkStruct_ov5_021E11B0));
 
     v0->fieldSystem = fieldSystem;
     v0->playerAvatar = playerAvatar;
@@ -65,7 +66,7 @@ static void ov5_021E11B0 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar
     FieldTask_Set(fieldSystem, ov5_021E120C, v0);
 }
 
-static int ov5_021E11E0 (int param0)
+static int ov5_021E11E0(int param0)
 {
     switch (param0) {
     case 0:
@@ -81,10 +82,10 @@ static int ov5_021E11E0 (int param0)
     return 0;
 }
 
-static BOOL ov5_021E120C (TaskManager * param0)
+static BOOL ov5_021E120C(TaskManager *param0)
 {
-    UnkStruct_ov5_021E11B0 * v0 = TaskManager_Environment(param0);
-    MapObject * v1 = Player_MapObject(v0->playerAvatar);
+    UnkStruct_ov5_021E11B0 *v0 = TaskManager_Environment(param0);
+    MapObject *v1 = Player_MapObject(v0->playerAvatar);
     u8 v2 = sub_02062BE8(v1);
 
     switch (v0->unk_08) {
@@ -151,9 +152,9 @@ static BOOL ov5_021E120C (TaskManager * param0)
     return 0;
 }
 
-static void * ov5_021E132C (int param0)
+static void *ov5_021E132C(int param0)
 {
-    void * v0 = Heap_AllocFromHeapAtEnd(4, param0);
+    void *v0 = Heap_AllocFromHeapAtEnd(4, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -161,7 +162,7 @@ static void * ov5_021E132C (int param0)
     return v0;
 }
 
-static void ov5_021E1350 (void * param0)
+static void ov5_021E1350(void *param0)
 {
     Heap_FreeToHeapExplicit(4, param0);
 }

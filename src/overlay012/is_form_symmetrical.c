@@ -1,11 +1,11 @@
+#include "overlay012/is_form_symmetrical.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/is_form_symmetrical.h"
-
 #include "constants/species.h"
 
-BOOL IsFormSymmetrical (u32 species, u32 formId)
+BOOL IsFormSymmetrical(u32 species, u32 formId)
 {
     switch (species) {
     case SPECIES_STARYU:

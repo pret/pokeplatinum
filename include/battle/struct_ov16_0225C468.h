@@ -7,9 +7,9 @@ typedef struct {
     s16 unk_02;
     u16 unk_04;
     u8 unk_06;
-    u8 unk_07_0    : 5;
-    u8 unk_07_5    : 2;
-    u8 unk_07_7    : 1;
+    u8 unk_07_0 : 5;
+    u8 unk_07_5 : 2;
+    u8 unk_07_7 : 1;
     u32 unk_08;
     u32 unk_0C;
     int unk_10;

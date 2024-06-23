@@ -7,7 +7,7 @@
 #include "overlay017/struct_ov17_02246F24_sub1.h"
 
 typedef struct {
-    UnkStruct_ov17_02246F24 * unk_00;
+    UnkStruct_ov17_02246F24 *unk_00;
     UnkStruct_ov17_02243C80 unk_04;
     u8 unk_0C;
     u8 unk_0D;
@@ -22,7 +22,7 @@ typedef struct {
     s16 unk_F6;
     u8 unk_F8;
     u8 unk_F9;
-    UnkStruct_ov17_0224365C * unk_FC;
+    UnkStruct_ov17_0224365C *unk_FC;
 } UnkStruct_ov17_02244C08;
 
 #endif // POKEPLATINUM_STRUCT_OV17_02244C08_H

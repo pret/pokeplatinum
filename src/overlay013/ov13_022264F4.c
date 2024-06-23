@@ -1,114 +1,111 @@
+#include "overlay013/ov13_022264F4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
+#include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/battle_system.h"
 
-#include "touch_screen.h"
-#include "overlay013/struct_ov13_022264F4.h"
-#include "overlay013/struct_ov13_02227244.h"
-#include "overlay084/struct_ov84_0223BA5C.h"
-#include "overlay097/struct_ov97_0222DB78.h"
-
-#include "unk_02002B7C.h"
-#include "unk_02002F38.h"
-#include "unk_02005474.h"
-#include "unk_0200679C.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
-#include "message.h"
-#include "string_template.h"
-#include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
-#include "unk_0200DA60.h"
-#include "heap.h"
-#include "unk_02018340.h"
-#include "sys_task_manager.h"
-#include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "pokemon.h"
-#include "unk_020797C8.h"
-#include "party.h"
-#include "item.h"
-#include "bag.h"
-#include "overlay013/ov13_022264F4.h"
+#include "battle/battle_lib.h"
+#include "battle/ov16_0223DF00.h"
+#include "battle/ov16_0226DE44.h"
 #include "overlay013/ov13_02227288.h"
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/ov13_02227BDC.h"
 #include "overlay013/ov13_02228128.h"
 #include "overlay013/ov13_02228A38.h"
-#include "battle/ov16_0223DF00.h"
-#include "battle/battle_lib.h"
-#include "battle/ov16_0226DE44.h"
+#include "overlay013/struct_ov13_022264F4.h"
+#include "overlay013/struct_ov13_02227244.h"
+#include "overlay084/struct_ov84_0223BA5C.h"
+#include "overlay097/struct_ov97_0222DB78.h"
 
-static void ov13_02226590(SysTask * param0, void * param1);
-static u8 ov13_0222668C(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226760(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226838(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_022269C0(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226C48(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226C54(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226C60(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226948(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226C6C(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226C7C(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226C94(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226CBC(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226D94(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226CD4(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226CFC(SysTask * param0, UnkStruct_ov13_02227244 * param1);
-static void ov13_02226ED0(UnkStruct_ov13_02227244 * param0);
-static void ov13_02226F9C(BGL * param0);
-static void ov13_02226FC4(UnkStruct_ov13_02227244 * param0);
-static void ov13_022270B8(UnkStruct_ov13_02227244 * param0);
-static void ov13_022270F8(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226A5C(UnkStruct_ov13_02227244 * param0);
-static void ov13_02227118(UnkStruct_ov13_02227244 * param0, u8 param1);
-static void ov13_022271D0(UnkStruct_ov13_02227244 * param0, u8 param1);
-static int ov13_02227238(UnkStruct_ov13_02227244 * param0, const TouchScreenRect *rect);
-static void ov13_02227260(BattleSystem * param0, u16 param1, u16 param2, u32 param3);
+#include "bag.h"
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "item.h"
+#include "message.h"
+#include "narc.h"
+#include "party.h"
+#include "pokemon.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task_manager.h"
+#include "touch_screen.h"
+#include "unk_02002B7C.h"
+#include "unk_02002F38.h"
+#include "unk_02005474.h"
+#include "unk_0200679C.h"
+#include "unk_02006E3C.h"
+#include "unk_0200C440.h"
+#include "unk_0200C6E4.h"
+#include "unk_0200DA60.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
+#include "unk_020797C8.h"
+
+static void ov13_02226590(SysTask *param0, void *param1);
+static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_022269C0(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226C48(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226C54(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226C60(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226948(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226C6C(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226C7C(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226C94(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226CBC(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226CD4(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1);
+static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0);
+static void ov13_02226F9C(BGL *param0);
+static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0);
+static void ov13_022270B8(UnkStruct_ov13_02227244 *param0);
+static void ov13_022270F8(UnkStruct_ov13_02227244 *param0);
+static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0);
+static void ov13_02227118(UnkStruct_ov13_02227244 *param0, u8 param1);
+static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1);
+static int ov13_02227238(UnkStruct_ov13_02227244 *param0, const TouchScreenRect *rect);
+static void ov13_02227260(BattleSystem *param0, u16 param1, u16 param2, u32 param3);
 
 static const TouchScreenRect Unk_ov13_02229A1C[] = {
-    {0x8, 0x4F, 0x0, 0x7F},
-    {0x50, 0x97, 0x0, 0x7F},
-    {0x8, 0x4F, 0x80, 0xFF},
-    {0x50, 0x97, 0x80, 0xFF},
-    {0x98, 0xBF, 0x0, 0xCF},
-    {0x98, 0xBF, 0xD8, 0xFF},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x8, 0x4F, 0x0, 0x7F },
+    { 0x50, 0x97, 0x0, 0x7F },
+    { 0x8, 0x4F, 0x80, 0xFF },
+    { 0x50, 0x97, 0x80, 0xFF },
+    { 0x98, 0xBF, 0x0, 0xCF },
+    { 0x98, 0xBF, 0xD8, 0xFF },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenRect Unk_ov13_02229A38[] = {
-    {0x8, 0x37, 0x0, 0x7F},
-    {0x8, 0x37, 0x80, 0xFF},
-    {0x38, 0x67, 0x0, 0x7F},
-    {0x38, 0x67, 0x80, 0xFF},
-    {0x68, 0x97, 0x0, 0x7F},
-    {0x68, 0x97, 0x80, 0xFF},
-    {0x98, 0xBF, 0x0, 0x27},
-    {0x98, 0xBF, 0x28, 0x4F},
-    {0x98, 0xBF, 0xD8, 0xFF},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x8, 0x37, 0x0, 0x7F },
+    { 0x8, 0x37, 0x80, 0xFF },
+    { 0x38, 0x67, 0x0, 0x7F },
+    { 0x38, 0x67, 0x80, 0xFF },
+    { 0x68, 0x97, 0x0, 0x7F },
+    { 0x68, 0x97, 0x80, 0xFF },
+    { 0x98, 0xBF, 0x0, 0x27 },
+    { 0x98, 0xBF, 0x28, 0x4F },
+    { 0x98, 0xBF, 0xD8, 0xFF },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
 static const TouchScreenRect Unk_ov13_022299AC[] = {
-    {0x98, 0xBF, 0x0, 0xCF},
-    {0x98, 0xBF, 0xD8, 0xFF},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x98, 0xBF, 0x0, 0xCF },
+    { 0x98, 0xBF, 0xD8, 0xFF },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
+void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
 {
-    UnkStruct_ov13_02227244 * v0;
+    UnkStruct_ov13_02227244 *v0;
 
     v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov13_02226590, sizeof(UnkStruct_ov13_02227244), 100, param0->unk_0C));
     memset(v0, 0, sizeof(UnkStruct_ov13_02227244));
@@ -119,7 +116,7 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
     v0->unk_114A = 0;
 
     {
-        UnkStruct_0207D99C * v1;
+        UnkStruct_0207D99C *v1;
         u8 v2;
 
         v1 = BattleSystem_BagCursor(param0->unk_00);
@@ -139,9 +136,9 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
     }
 }
 
-static void ov13_02226590 (SysTask * param0, void * param1)
+static void ov13_02226590(SysTask *param0, void *param1)
 {
-    UnkStruct_ov13_02227244 * v0 = (UnkStruct_ov13_02227244 *)param1;
+    UnkStruct_ov13_02227244 *v0 = (UnkStruct_ov13_02227244 *)param1;
 
     switch (v0->unk_114A) {
     case 0:
@@ -196,7 +193,7 @@ static void ov13_02226590 (SysTask * param0, void * param1)
     sub_0200C7EC(v0->unk_30C);
 }
 
-static u8 ov13_0222668C (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
 {
     G2S_BlendNone();
 
@@ -231,7 +228,7 @@ static u8 ov13_0222668C (UnkStruct_ov13_02227244 * param0)
     return 1;
 }
 
-static u8 ov13_02226760 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
 {
     if (sub_0200384C(param0->unk_08) != 0) {
         return 1;
@@ -282,7 +279,7 @@ static u8 ov13_02226760 (UnkStruct_ov13_02227244 * param0)
     return 1;
 }
 
-static u8 ov13_02226838 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0)
 {
     {
         int v0 = ov13_02227238(param0, Unk_ov13_02229A38);
@@ -341,7 +338,7 @@ static u8 ov13_02226838 (UnkStruct_ov13_02227244 * param0)
     return 2;
 }
 
-static u8 ov13_02226948 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226948(UnkStruct_ov13_02227244 *param0)
 {
     s8 v0 = param0->unk_00->unk_2C[param0->unk_114D];
 
@@ -364,7 +361,7 @@ static u8 ov13_02226948 (UnkStruct_ov13_02227244 * param0)
     return 2;
 }
 
-static u8 ov13_022269C0 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_022269C0(UnkStruct_ov13_02227244 *param0)
 {
     {
         int v0 = ov13_02227238(param0, Unk_ov13_022299AC);
@@ -397,17 +394,17 @@ static u8 ov13_022269C0 (UnkStruct_ov13_02227244 * param0)
     return 3;
 }
 
-static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0)
 {
-    UnkStruct_ov13_022264F4 * v0 = param0->unk_00;
+    UnkStruct_ov13_022264F4 *v0 = param0->unk_00;
 
     if (param0->unk_114D == 3) {
         int v1 = ov13_02227244(param0);
         u32 v2 = Item_LoadParam(v0->unk_1C, 7, v0->unk_0C);
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
-            Pokemon * v3;
-            Strbuf* v4;
+            Pokemon *v3;
+            Strbuf *v4;
 
             v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_10, v1);
             v4 = MessageLoader_GetNewStrbuf(param0->unk_10, 46);
@@ -431,8 +428,8 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
                 return 13;
             } else {
-                MessageLoader * v5;
-                Strbuf* v6;
+                MessageLoader *v5;
+                Strbuf *v6;
 
                 v5 = MessageLoader_Init(1, 26, 213, v0->unk_0C);
                 v6 = MessageLoader_GetNewStrbuf(v5, 36);
@@ -473,8 +470,8 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
         }
 
         {
-            Party * v7 = BattleSystem_Party(v0->unk_00, v0->unk_10);
-            PCBoxes * v8 = ov16_0223E228(v0->unk_00);
+            Party *v7 = BattleSystem_Party(v0->unk_00, v0->unk_10);
+            PCBoxes *v8 = ov16_0223E228(v0->unk_00);
 
             if ((Party_GetCurrentCount(v7) == 6) && (PCBoxes_FirstEmptyBox(v8) == 18)) {
                 MessageLoader_GetStrbuf(param0->unk_10, 45, param0->unk_18);
@@ -488,31 +485,31 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
     return 13;
 }
 
-static u8 ov13_02226C48 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226C48(UnkStruct_ov13_02227244 *param0)
 {
     ov13_022271D0(param0, 0);
     return 1;
 }
 
-static u8 ov13_02226C54 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226C54(UnkStruct_ov13_02227244 *param0)
 {
     ov13_022271D0(param0, 1);
     return 2;
 }
 
-static u8 ov13_02226C60 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226C60(UnkStruct_ov13_02227244 *param0)
 {
     ov13_022271D0(param0, 2);
     return 3;
 }
 
-static u8 ov13_02226C6C (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226C6C(UnkStruct_ov13_02227244 *param0)
 {
     sub_0200E084(&param0->unk_1C, 0);
     return 3;
 }
 
-static u8 ov13_02226C7C (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226C7C(UnkStruct_ov13_02227244 *param0)
 {
     if (Message_Printing(param0->unk_32) == 0) {
         return 10;
@@ -521,7 +518,7 @@ static u8 ov13_02226C7C (UnkStruct_ov13_02227244 * param0)
     return 9;
 }
 
-static u8 ov13_02226C94 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226C94(UnkStruct_ov13_02227244 *param0)
 {
     if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
         return param0->unk_114B;
@@ -530,7 +527,7 @@ static u8 ov13_02226C94 (UnkStruct_ov13_02227244 * param0)
     return 10;
 }
 
-static u8 ov13_02226CBC (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226CBC(UnkStruct_ov13_02227244 *param0)
 {
     if (param0->unk_113E == 2) {
         return param0->unk_114B;
@@ -539,13 +536,13 @@ static u8 ov13_02226CBC (UnkStruct_ov13_02227244 * param0)
     return 11;
 }
 
-static u8 ov13_02226CD4 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226CD4(UnkStruct_ov13_02227244 *param0)
 {
     sub_02003178(param0->unk_08, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
     return 14;
 }
 
-static u8 ov13_02226CFC (SysTask * param0, UnkStruct_ov13_02227244 * param1)
+static u8 ov13_02226CFC(SysTask *param0, UnkStruct_ov13_02227244 *param1)
 {
     if (sub_0200384C(param1->unk_08) != 0) {
         return 0;
@@ -562,7 +559,7 @@ static u8 ov13_02226CFC (SysTask * param0, UnkStruct_ov13_02227244 * param1)
     sub_02002C60(2);
 
     if (param1->unk_00->unk_1C != 0) {
-        UnkStruct_0207D99C * v0;
+        UnkStruct_0207D99C *v0;
         u8 v1;
 
         v0 = BattleSystem_BagCursor(param1->unk_00->unk_00);
@@ -580,7 +577,7 @@ static u8 ov13_02226CFC (SysTask * param0, UnkStruct_ov13_02227244 * param1)
     return 1;
 }
 
-static u8 ov13_02226D94 (UnkStruct_ov13_02227244 * param0)
+static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
 {
     if (sub_0200384C(param0->unk_08) != 0) {
         return 12;
@@ -638,7 +635,7 @@ static u8 ov13_02226D94 (UnkStruct_ov13_02227244 * param0)
     return 12;
 }
 
-static void ov13_02226ED0 (UnkStruct_ov13_02227244 * param0)
+static void ov13_02226ED0(UnkStruct_ov13_02227244 *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -719,7 +716,7 @@ static void ov13_02226ED0 (UnkStruct_ov13_02227244 * param0)
     sub_0201C3C0(param0->unk_04, 4);
 }
 
-static void ov13_02226F9C (BGL * param0)
+static void ov13_02226F9C(BGL *param0)
 {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 4);
@@ -727,9 +724,9 @@ static void ov13_02226F9C (BGL * param0)
     sub_02019044(param0, 6);
 }
 
-static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
+static void ov13_02226FC4(UnkStruct_ov13_02227244 *param0)
 {
-    NARC * v0;
+    NARC *v0;
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, param0->unk_00->unk_0C);
 
@@ -737,9 +734,9 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
     sub_0200710C(v0, 0, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
 
     {
-        NNSG2dScreenData * v1;
-        void * v2;
-        u16 * v3;
+        NNSG2dScreenData *v1;
+        void *v2;
+        u16 *v3;
 
         v2 = NARC_AllocAndReadWholeMember(v0, 1, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
@@ -760,7 +757,7 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
     }
 }
 
-static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
+static void ov13_022270B8(UnkStruct_ov13_02227244 *param0)
 {
     param0->unk_10 = MessageLoader_Init(0, 26, 2, param0->unk_00->unk_0C);
     param0->unk_0C = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
@@ -768,7 +765,7 @@ static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
     param0->unk_18 = Strbuf_Init(512, param0->unk_00->unk_0C);
 }
 
-static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)
+static void ov13_022270F8(UnkStruct_ov13_02227244 *param0)
 {
     MessageLoader_Free(param0->unk_10);
     sub_0200C560(param0->unk_0C);
@@ -776,7 +773,7 @@ static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)
     Strbuf_Free(param0->unk_18);
 }
 
-static void ov13_02227118 (UnkStruct_ov13_02227244 * param0, u8 param1)
+static void ov13_02227118(UnkStruct_ov13_02227244 *param0, u8 param1)
 {
     switch (param1) {
     case 0:
@@ -794,7 +791,7 @@ static void ov13_02227118 (UnkStruct_ov13_02227244 * param0, u8 param1)
     }
 }
 
-static void ov13_0222717C (UnkStruct_ov13_02227244 * param0, u8 param1)
+static void ov13_0222717C(UnkStruct_ov13_02227244 *param0, u8 param1)
 {
     if (param1 != 2) {
         return;
@@ -804,7 +801,7 @@ static void ov13_0222717C (UnkStruct_ov13_02227244 * param0, u8 param1)
     sub_02019E2C(param0->unk_04, 6, 2, 40, 28, 8, 8 + param0->unk_114D);
 }
 
-static void ov13_022271D0 (UnkStruct_ov13_02227244 * param0, u8 param1)
+static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1)
 {
     ov13_0222717C(param0, param1);
     ov13_02227118(param0, param1);
@@ -824,13 +821,13 @@ static void ov13_022271D0 (UnkStruct_ov13_02227244 * param0, u8 param1)
     ov13_02227E68(param0, param0->unk_114C);
 }
 
-static int ov13_02227238 (UnkStruct_ov13_02227244 * param0, const TouchScreenRect *rect)
+static int ov13_02227238(UnkStruct_ov13_02227244 *param0, const TouchScreenRect *rect)
 {
     int v0 = sub_02022664(rect);
     return v0;
 }
 
-int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
+int ov13_02227244(UnkStruct_ov13_02227244 *param0)
 {
     int v0;
 
@@ -838,7 +835,7 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
     return v0;
 }
 
-static void ov13_02227260 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
+static void ov13_02227260(BattleSystem *param0, u16 param1, u16 param2, u32 param3)
 {
     Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
     Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);

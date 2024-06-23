@@ -1,12 +1,13 @@
 #ifndef POKEPLATINUM_POKERADAR_H
 #define POKEPLATINUM_POKERADAR_H
 
-#include "field/field_system_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
+
+#include "field/field_system_decl.h"
 
 typedef struct RadarChain RadarChain;
 
-#define NUM_GRASS_PATCHES 4
+#define NUM_GRASS_PATCHES   4
 #define RADAR_BATTERY_STEPS 50
 
 enum PatchShakeType {

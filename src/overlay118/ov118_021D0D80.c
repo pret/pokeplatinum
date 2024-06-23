@@ -1,34 +1,30 @@
+#include "overlay118/ov118_021D0D80.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "enums.h"
-
 #include "struct_decls/struct_02014014_decl.h"
-#include "strbuf.h"
-#include "pokemon.h"
-
 #include "struct_defs/struct_0207F248.h"
 
-#include "spl.h"
-
-#include "unk_02005474.h"
-#include "message.h"
-#include "string_template.h"
-#include "unk_02014000.h"
-#include "heap.h"
-#include "unk_0201D670.h"
-#include "gx_layers.h"
 #include "camera.h"
+#include "enums.h"
+#include "field_system.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "party.h"
+#include "pokemon.h"
+#include "spl.h"
 #include "strbuf.h"
+#include "string_template.h"
+#include "unk_02005474.h"
+#include "unk_02014000.h"
+#include "unk_0201D670.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
-#include "field_system.h"
-#include "pokemon.h"
-#include "party.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
-#include "overlay118/ov118_021D0D80.h"
 
 typedef struct OverlayMetadata_t {
     int unk_00;
@@ -37,30 +33,30 @@ typedef struct OverlayMetadata_t {
     int unk_0C;
     u32 unk_10;
     int unk_14;
-    UnkStruct_02014014 * unk_18;
+    UnkStruct_02014014 *unk_18;
 } OverlayMetadata;
 
-static void ov118_021D0F70(GameWindowLayout * param0);
-static void ov118_021D0F88(GameWindowLayout * param0);
-static void ov118_021D0FB8(GameWindowLayout * param0);
-static void ov118_021D0FDC(OverlayMetadata * param0);
-static void ov118_021D1028(OverlayMetadata * param0);
+static void ov118_021D0F70(GameWindowLayout *param0);
+static void ov118_021D0F88(GameWindowLayout *param0);
+static void ov118_021D0FB8(GameWindowLayout *param0);
+static void ov118_021D0FDC(OverlayMetadata *param0);
+static void ov118_021D1028(OverlayMetadata *param0);
 static int ov118_021D10E8(void);
-static void ov118_021D110C(OverlayMetadata * param0);
+static void ov118_021D110C(OverlayMetadata *param0);
 static u32 ov118_021D1128(u32 param0, BOOL param1);
 static u32 ov118_021D114C(u32 param0, BOOL param1);
-static void ov118_021D10B0(UnkSPLStruct6 * param0);
+static void ov118_021D10B0(UnkSPLStruct6 *param0);
 
 static const fx32 Unk_ov118_021D1170[][2] = {
-    {0xFFFFFFFFFFFFBF8C, 0x2EE0},
-    {0x1388, 0x2CEC},
-    {0xFFFFFFFFFFFFBF8C, 0x1388},
-    {0x1388, 0xDAC},
-    {0xFFFFFFFFFFFFBF8C, 0xFFFFFFFFFFFFF448},
-    {0x1388, 0xFFFFFFFFFFFFEE6C}
+    { 0xFFFFFFFFFFFFBF8C, 0x2EE0 },
+    { 0x1388, 0x2CEC },
+    { 0xFFFFFFFFFFFFBF8C, 0x1388 },
+    { 0x1388, 0xDAC },
+    { 0xFFFFFFFFFFFFBF8C, 0xFFFFFFFFFFFFF448 },
+    { 0x1388, 0xFFFFFFFFFFFFEE6C }
 };
 
-void ov118_021D0D80 (GameWindowLayout * param0)
+void ov118_021D0D80(GameWindowLayout *param0)
 {
     GF_ASSERT(param0->unk_B24 == NULL);
 
@@ -69,14 +65,13 @@ void ov118_021D0D80 (GameWindowLayout * param0)
     param0->unk_B24->unk_14 = param0->unk_B11;
 }
 
-int ov118_021D0DBC (GameWindowLayout * param0)
+int ov118_021D0DBC(GameWindowLayout *param0)
 {
-    OverlayMetadata * v0 = param0->unk_B24;
-    Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    OverlayMetadata *v0 = param0->unk_B24;
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
     switch (v0->unk_00) {
-    case 0:
-    {
+    case 0: {
         v0->unk_0C = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
@@ -139,9 +134,8 @@ int ov118_021D0DBC (GameWindowLayout * param0)
             v0->unk_00++;
         }
         break;
-    case 9:
-    {
-        Strbuf* v2;
+    case 9: {
+        Strbuf *v2;
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
 
@@ -165,13 +159,13 @@ int ov118_021D0DBC (GameWindowLayout * param0)
     return 0;
 }
 
-static void ov118_021D0F70 (GameWindowLayout * param0)
+static void ov118_021D0F70(GameWindowLayout *param0)
 {
     Heap_FreeToHeap(param0->unk_B24);
     param0->unk_B24 = NULL;
 }
 
-static void ov118_021D0F88 (GameWindowLayout * param0)
+static void ov118_021D0F88(GameWindowLayout *param0)
 {
     sub_0207EA74(param0, 0);
     ov118_021D0FDC(param0->unk_B24);
@@ -179,7 +173,7 @@ static void ov118_021D0F88 (GameWindowLayout * param0)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 31, 0);
 }
 
-static void ov118_021D0FB8 (GameWindowLayout * param0)
+static void ov118_021D0FB8(GameWindowLayout *param0)
 {
     ov118_021D110C(param0->unk_B24);
     sub_0207EA74(param0, 1);
@@ -187,10 +181,10 @@ static void ov118_021D0FB8 (GameWindowLayout * param0)
     G2_BlendNone();
 }
 
-static void ov118_021D0FDC (OverlayMetadata * param0)
+static void ov118_021D0FDC(OverlayMetadata *param0)
 {
-    void * v0;
-    Camera * camera;
+    void *v0;
+    Camera *camera;
 
     sub_02014000();
 
@@ -201,9 +195,9 @@ static void ov118_021D0FDC (OverlayMetadata * param0)
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 }
 
-static void ov118_021D1028 (OverlayMetadata * param0)
+static void ov118_021D1028(OverlayMetadata *param0)
 {
-    void * v0;
+    void *v0;
 
     v0 = sub_020144C4(185, param0->unk_10, 12);
     sub_020144CC(param0->unk_18, v0, (1 << 1) | (1 << 3), 1);
@@ -223,9 +217,9 @@ static void ov118_021D1028 (OverlayMetadata * param0)
     }
 }
 
-static void ov118_021D10B0 (UnkSPLStruct6 * param0)
+static void ov118_021D10B0(UnkSPLStruct6 *param0)
 {
-    OverlayMetadata * v0;
+    OverlayMetadata *v0;
 
     v0 = sub_02014764();
 
@@ -233,7 +227,7 @@ static void ov118_021D10B0 (UnkSPLStruct6 * param0)
     SPL_UnkInline3(param0, Unk_ov118_021D1170[v0->unk_14][1]);
 }
 
-static int ov118_021D10E8 (void)
+static int ov118_021D10E8(void)
 {
     int v0;
 
@@ -251,16 +245,16 @@ static int ov118_021D10E8 (void)
     return v0;
 }
 
-static void ov118_021D110C (OverlayMetadata * param0)
+static void ov118_021D110C(OverlayMetadata *param0)
 {
-    void * v0;
+    void *v0;
 
     v0 = sub_02014730(param0->unk_18);
     sub_0201411C(param0->unk_18);
     Heap_FreeToHeap(v0);
 }
 
-static u32 ov118_021D1128 (u32 param0, BOOL param1)
+static u32 ov118_021D1128(u32 param0, BOOL param1)
 {
     NNSGfdTexKey v0;
 
@@ -271,7 +265,7 @@ static u32 ov118_021D1128 (u32 param0, BOOL param1)
     return NNS_GfdGetTexKeyAddr(v0);
 }
 
-static u32 ov118_021D114C (u32 param0, BOOL param1)
+static u32 ov118_021D114C(u32 param0, BOOL param1)
 {
     NNSGfdPlttKey v0;
 

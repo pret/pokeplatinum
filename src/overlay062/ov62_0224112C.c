@@ -1,34 +1,35 @@
+#include "overlay062/ov62_0224112C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
 #include "struct_defs/struct_0208C06C.h"
-#include "overlay062/struct_ov62_022349A8.h"
-#include "overlay062/struct_ov62_02241130.h"
 
-#include "unk_02025CB0.h"
 #include "overlay061/ov61_0222B008.h"
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_02237D24.h"
 #include "overlay062/ov62_02239D60.h"
 #include "overlay062/ov62_0223CAEC.h"
-#include "overlay062/ov62_0224112C.h"
 #include "overlay062/ov62_02241204.h"
+#include "overlay062/struct_ov62_022349A8.h"
+#include "overlay062/struct_ov62_02241130.h"
 
-static inline BOOL inline_ov62_022411B8(UnkStruct_0208C06C * param0);
+#include "inlines.h"
+#include "unk_02025CB0.h"
 
-static inline BOOL inline_ov62_022411B8 (UnkStruct_0208C06C * param0)
+static inline BOOL inline_ov62_022411B8(UnkStruct_0208C06C *param0);
+
+static inline BOOL inline_ov62_022411B8(UnkStruct_0208C06C *param0)
 {
     return param0->unk_14.unk_54.unk_3B8;
 }
 
-UnkStruct_ov62_022349A8 * ov62_0224112C (UnkStruct_0208C06C * param0)
+UnkStruct_ov62_022349A8 *ov62_0224112C(UnkStruct_0208C06C *param0)
 {
     return &param0->unk_14.unk_54;
 }
 
-void ov62_02241130 (UnkStruct_0208C06C * param0)
+void ov62_02241130(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02241130 v0;
 
@@ -52,7 +53,7 @@ void ov62_02241130 (UnkStruct_0208C06C * param0)
     ov61_0222B008(&param0->unk_14.unk_54, &v0);
 }
 
-BOOL ov62_022411B8 (UnkStruct_0208C06C * param0)
+BOOL ov62_022411B8(UnkStruct_0208C06C *param0)
 {
     if (inline_ov62_022411B8(param0) == 0) {
         return 0;
@@ -61,7 +62,7 @@ BOOL ov62_022411B8 (UnkStruct_0208C06C * param0)
     return ov61_0222BBBC(ov62_0224112C(param0));
 }
 
-void ov62_022411D4 (UnkStruct_0208C06C * param0)
+void ov62_022411D4(UnkStruct_0208C06C *param0)
 {
     if (inline_ov62_022411B8(param0) == 0) {
         return;
@@ -70,7 +71,7 @@ void ov62_022411D4 (UnkStruct_0208C06C * param0)
     ov61_0222B57C(ov62_0224112C(param0));
 }
 
-void ov62_022411EC (UnkStruct_0208C06C * param0)
+void ov62_022411EC(UnkStruct_0208C06C *param0)
 {
     if (inline_ov62_022411B8(param0) == 0) {
         return;

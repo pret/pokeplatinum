@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_UNK_0202419C_H
 #define POKEPLATINUM_UNK_0202419C_H
 
-
 #include <nitro/gx.h>
 
 void sub_0202419C(void);

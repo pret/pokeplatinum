@@ -1,19 +1,17 @@
 #ifndef POKEPLATINUM_STRUCT_OV117_02261280_H
 #define POKEPLATINUM_STRUCT_OV117_02261280_H
 
+#include <nnsys.h>
+
 #include "struct_decls/struct_02002F38_decl.h"
-#include "message.h"
-#include "string_template.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "camera.h"
-#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
+
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
 #include "overlay117/struct_ov117_022605C0.h"
 #include "overlay117/struct_ov117_02261280_sub1.h"
@@ -33,32 +31,36 @@
 #include "overlay117/struct_ov117_02265EC8.h"
 #include "overlay117/struct_ov117_02266274.h"
 
-#include <nnsys.h>
+#include "camera.h"
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov117_02261280_t {
-    UnkStruct_ov117_022605C0 * unk_00;
+    UnkStruct_ov117_022605C0 *unk_00;
     int unk_04;
     u32 unk_08;
     u32 unk_0C[4];
-    UnkStruct_ov114_0225CAD4 * unk_1C;
+    UnkStruct_ov114_0225CAD4 *unk_1C;
     int unk_20;
-    SpriteRenderer * unk_24;
-    SpriteGfxHandler * unk_28;
-    BGL * unk_2C;
+    SpriteRenderer *unk_24;
+    SpriteGfxHandler *unk_28;
+    BGL *unk_2C;
     Window unk_30[5];
-    MessageLoader * unk_80;
-    StringTemplate * unk_84;
-    Strbuf* unk_88;
-    PaletteData * unk_8C;
-    UnkStruct_02012744 * unk_90;
-    SysTask * unk_94;
-    GenericPointerData * unk_98;
-    Camera * camera1;
-    Camera * camera2;
-    UnkStruct_02014014 * unk_A4;
+    MessageLoader *unk_80;
+    StringTemplate *unk_84;
+    Strbuf *unk_88;
+    PaletteData *unk_8C;
+    UnkStruct_02012744 *unk_90;
+    SysTask *unk_94;
+    GenericPointerData *unk_98;
+    Camera *camera1;
+    Camera *camera2;
+    UnkStruct_02014014 *unk_A4;
     NNSFndAllocator unk_A8;
     UnkStruct_ov117_02262664 unk_B8;
-    UnkStruct_ov117_022626B0 * unk_D4;
+    UnkStruct_ov117_022626B0 *unk_D4;
     UnkStruct_ov117_02261F08 unk_D8;
     UnkStruct_ov117_02261C2C unk_13A0;
     UnkStruct_ov117_02263DAC unk_1428;

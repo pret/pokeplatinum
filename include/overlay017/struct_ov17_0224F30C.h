@@ -4,7 +4,7 @@
 struct UnkStruct_ov17_022539E4_t;
 
 typedef struct {
-    const struct UnkStruct_ov17_022539E4_t * unk_00;
+    const struct UnkStruct_ov17_022539E4_t *unk_00;
     u16 unk_04;
     u8 unk_06;
     u8 unk_07;

@@ -1,13 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF6B8.h"
+#include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
 #include "overlay005/const_ov5_021FF85C.h"
-
-#include "overlay005/struct_ov5_021FF85C.h"
-
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F17B8.h"
@@ -41,6 +38,7 @@
 #include "overlay005/ov5_021F600C.h"
 #include "overlay005/ov5_021F61BC.h"
 #include "overlay005/ov5_021F8560.h"
+#include "overlay005/struct_ov5_021FF85C.h"
 
 const UnkStruct_ov5_021FF85C Unk_ov5_021FF85C[35] = {
     { 0x0, ov5_021F134C, ov5_021F1370 },

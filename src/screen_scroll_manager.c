@@ -1,13 +1,14 @@
+#include "screen_scroll_manager.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
-#include "sys_task_manager.h"
 
 #include "buffer_manager.h"
-#include "sys_task.h"
-#include "screen_scroll_manager.h"
 #include "heap.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
 
 static void ScreenScrollManager_StopDMA(void);
 static void ScreenScrollManager_StartDMA(const ScreenScrollManager *screenScrollMgr);

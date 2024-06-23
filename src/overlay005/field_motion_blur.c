@@ -1,12 +1,14 @@
+#include "overlay005/field_motion_blur.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
 
-#include "heap.h"
-#include "gx_layers.h"
 #include "overlay005/motion_blur.h"
-#include "overlay005/field_motion_blur.h"
+
+#include "gx_layers.h"
+#include "heap.h"
 
 FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
 {

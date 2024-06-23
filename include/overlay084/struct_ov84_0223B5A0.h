@@ -1,53 +1,55 @@
 #ifndef POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 #define POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
-#include "string_template.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "game_options.h"
-#include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0207CB08_decl.h"
-#include "bag.h"
+#include "struct_defs/struct_0205AA50.h"
+
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
 #include "overlay084/struct_ov84_0223C920.h"
 
+#include "bag.h"
+#include "game_options.h"
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "trainer_info.h"
+
 typedef struct {
-    BGL * unk_00;
+    BGL *unk_00;
     Window unk_04[11];
     Window unk_B4[1];
-    UnkStruct_0207CB08 * unk_C4;
-    Bag * unk_C8;
-    TrainerInfo * unk_CC;
-    Options * unk_D0;
-    NARC * unk_D4;
-    SpriteRenderer * unk_D8;
-    SpriteGfxHandler * unk_DC;
-    CellActorData * unk_E0[12];
-    UnkStruct_0200C440 * unk_110;
-    MessageLoader * unk_114;
-    StringTemplate * unk_118;
-    MessageLoader * unk_11C;
-    MessageLoader * unk_120;
-    Strbuf* unk_124[12];
-    ResourceMetadata * unk_154;
-    UIControlData * unk_158;
-    BmpList * unk_15C;
-    ResourceMetadata * unk_160;
-    Strbuf* unk_164[165];
-    Strbuf* unk_3F8;
-    Strbuf* unk_3FC;
-    Strbuf* unk_400;
-    Strbuf* unk_404[8];
+    UnkStruct_0207CB08 *unk_C4;
+    Bag *unk_C8;
+    TrainerInfo *unk_CC;
+    Options *unk_D0;
+    NARC *unk_D4;
+    SpriteRenderer *unk_D8;
+    SpriteGfxHandler *unk_DC;
+    CellActorData *unk_E0[12];
+    UnkStruct_0200C440 *unk_110;
+    MessageLoader *unk_114;
+    StringTemplate *unk_118;
+    MessageLoader *unk_11C;
+    MessageLoader *unk_120;
+    Strbuf *unk_124[12];
+    ResourceMetadata *unk_154;
+    UIControlData *unk_158;
+    BmpList *unk_15C;
+    ResourceMetadata *unk_160;
+    Strbuf *unk_164[165];
+    Strbuf *unk_3F8;
+    Strbuf *unk_3FC;
+    Strbuf *unk_400;
+    Strbuf *unk_404[8];
     u8 unk_424;
     u8 unk_425;
     u8 unk_426;

@@ -1,36 +1,36 @@
+#include "overlay100/ov100_021D400C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "sys_task_manager.h"
-
 #include "overlay100/struct_ov100_021D4104.h"
 
+#include "sys_task_manager.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201D15C.h"
-#include "overlay100/ov100_021D400C.h"
 
 typedef struct {
     f32 unk_00;
     f32 unk_04;
 } UnkStruct_ov100_021D400C;
 
-static BOOL ov100_021D400C(s16 param0, s16 param1, f32 param2, f32 param3, f32 * param4, f32 * param5, f32 param6, s16 param7);
-static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 * param0, s16 param1, s16 param2, f32 param3, int param4);
-static void ov100_021D41FC(UnkStruct_ov100_021D4104 * param0);
-static void ov100_021D4214(UnkStruct_ov100_021D4104 * param0);
-static void ov100_021D4264(UnkStruct_ov100_021D4104 * param0, int param1, int param2, int param3, int param4);
-static void ov100_021D42B0(UnkStruct_ov100_021D4104 * param0);
-static void ov100_021D4318(UnkStruct_ov100_021D4104 * param0);
-static void ov100_021D43BC(UnkStruct_ov100_021D4104 * param0);
+static BOOL ov100_021D400C(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7);
+static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 param2, f32 param3, int param4);
+static void ov100_021D41FC(UnkStruct_ov100_021D4104 *param0);
+static void ov100_021D4214(UnkStruct_ov100_021D4104 *param0);
+static void ov100_021D4264(UnkStruct_ov100_021D4104 *param0, int param1, int param2, int param3, int param4);
+static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0);
+static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0);
+static void ov100_021D43BC(UnkStruct_ov100_021D4104 *param0);
 
-static void(*const Unk_ov100_021D5334[])(UnkStruct_ov100_021D4104 *) = {
+static void (*const Unk_ov100_021D5334[])(UnkStruct_ov100_021D4104 *) = {
     ov100_021D41FC,
     ov100_021D4214,
     ov100_021D42B0,
     ov100_021D4318
 };
 
-static BOOL ov100_021D400C (s16 param0, s16 param1, f32 param2, f32 param3, f32 * param4, f32 * param5, f32 param6, s16 param7)
+static BOOL ov100_021D400C(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7)
 {
     f32 v0;
     f32 v1;
@@ -64,7 +64,7 @@ static BOOL ov100_021D400C (s16 param0, s16 param1, f32 param2, f32 param3, f32 
     return 1;
 }
 
-static BOOL ov100_021D4104 (UnkStruct_ov100_021D4104 * param0, s16 param1, s16 param2, f32 param3, int param4)
+static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 param2, f32 param3, int param4)
 {
     f32 v0;
     f32 v1;
@@ -98,12 +98,12 @@ static BOOL ov100_021D4104 (UnkStruct_ov100_021D4104 * param0, s16 param1, s16 p
     return v6;
 }
 
-static void ov100_021D41FC (UnkStruct_ov100_021D4104 * param0)
+static void ov100_021D41FC(UnkStruct_ov100_021D4104 *param0)
 {
     BOOL v0 = ov100_021D4104(param0, 128, 40, 5.0f, 32);
 }
 
-static void ov100_021D4214 (UnkStruct_ov100_021D4104 * param0)
+static void ov100_021D4214(UnkStruct_ov100_021D4104 *param0)
 {
     fx32 v0, v1;
 
@@ -118,7 +118,7 @@ static void ov100_021D4214 (UnkStruct_ov100_021D4104 * param0)
     param0->unk_14 = v1 / FX32_ONE;
 }
 
-static void ov100_021D4264 (UnkStruct_ov100_021D4104 * param0, int param1, int param2, int param3, int param4)
+static void ov100_021D4264(UnkStruct_ov100_021D4104 *param0, int param1, int param2, int param3, int param4)
 {
     fx32 v0, v1;
 
@@ -131,20 +131,20 @@ static void ov100_021D4264 (UnkStruct_ov100_021D4104 * param0, int param1, int p
     sub_0200D650(param0->unk_00, v0, v1, FX32_CONST(192));
 }
 
-static void ov100_021D42B0 (UnkStruct_ov100_021D4104 * param0)
+static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
 {
     fx32 v0, v1;
     static s16 v2[][2] = {
-        {97, 80},
-        {87, 106},
-        {102, 94},
-        {182, 83},
-        {129, 116},
-        {97, 116},
-        {172, 84},
-        {187, 99},
-        {168, 123},
-        {108, 93},
+        { 97, 80 },
+        { 87, 106 },
+        { 102, 94 },
+        { 182, 83 },
+        { 129, 116 },
+        { 97, 116 },
+        { 172, 84 },
+        { 187, 99 },
+        { 168, 123 },
+        { 108, 93 },
     };
     BOOL v3;
 
@@ -162,7 +162,7 @@ static void ov100_021D42B0 (UnkStruct_ov100_021D4104 * param0)
     param0->unk_14 = (v1 / FX32_ONE);
 }
 
-static void ov100_021D4318 (UnkStruct_ov100_021D4104 * param0)
+static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0)
 {
     fx32 v0, v1;
 
@@ -187,7 +187,7 @@ static void ov100_021D4318 (UnkStruct_ov100_021D4104 * param0)
     param0->unk_14 = v1 / FX32_ONE;
 }
 
-static void ov100_021D43BC (UnkStruct_ov100_021D4104 * param0)
+static void ov100_021D43BC(UnkStruct_ov100_021D4104 *param0)
 {
     f32 v0;
 
@@ -207,9 +207,9 @@ static void ov100_021D43BC (UnkStruct_ov100_021D4104 * param0)
     sub_0200D474(param0->unk_00, param0->unk_14);
 }
 
-void ov100_021D4414 (SysTask * param0, void * param1)
+void ov100_021D4414(SysTask *param0, void *param1)
 {
-    UnkStruct_ov100_021D4104 * v0 = param1;
+    UnkStruct_ov100_021D4104 *v0 = param1;
 
     Unk_ov100_021D5334[v0->unk_0C](v0);
 
@@ -217,9 +217,9 @@ void ov100_021D4414 (SysTask * param0, void * param1)
     sub_0200D33C(v0->unk_00);
 }
 
-void ov100_021D4438 (SysTask * param0, void * param1)
+void ov100_021D4438(SysTask *param0, void *param1)
 {
-    UnkStruct_ov100_021D4104 * v0 = param1;
+    UnkStruct_ov100_021D4104 *v0 = param1;
 
     if (v0->unk_0C) {
         ov100_021D4264(v0, 128, 48 - 12, 32, 12);

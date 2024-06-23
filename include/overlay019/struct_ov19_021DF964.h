@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021DF964_H
 #define POKEPLATINUM_STRUCT_OV19_021DF964_H
 
-
 #include "enums.h"
 
 typedef struct {

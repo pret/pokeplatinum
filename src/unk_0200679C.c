@@ -1,9 +1,10 @@
+#include "unk_0200679C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0200679C.h"
-#include "sys_task.h"
 #include "heap.h"
+#include "sys_task.h"
 #include "sys_task_manager.h"
 
 SysTask *SysTask_StartAndAllocateParam(SysTaskFunc callback, int paramSize, u32 priority, const u32 heapID)

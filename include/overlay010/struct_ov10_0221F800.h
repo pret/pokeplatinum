@@ -1,14 +1,16 @@
 #ifndef POKEPLATINUM_STRUCT_OV10_0221F800_H
 #define POKEPLATINUM_STRUCT_OV10_0221F800_H
 
-#include "strbuf.h"
 #include "struct_decls/struct_party_decl.h"
+
 #include "overlay006/battle_params.h"
 
+#include "strbuf.h"
+
 typedef struct {
-    BattleParams * unk_00;
-    Party * unk_04[4];
-    Strbuf* unk_14[4];
+    BattleParams *unk_00;
+    Party *unk_04[4];
+    Strbuf *unk_14[4];
     u32 unk_24;
     u8 unk_28;
     u8 unk_29;

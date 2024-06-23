@@ -1,15 +1,17 @@
 #ifndef POKEPLATINUM_SAVEDATA_MISC_H
 #define POKEPLATINUM_SAVEDATA_MISC_H
 
-#include "struct_defs/sentence.h"
-#include "strbuf.h"
-#include "struct_decls/struct_02027854_decl.h"
-#include "struct_decls/struct_02027860_decl.h"
-#include "struct_defs/struct_02027854.h"
-#include "struct_defs/struct_02027860.h"
-#include "savedata.h"
 #include "constants/savedata/save_table.h"
 #include "constants/string.h"
+
+#include "struct_decls/struct_02027854_decl.h"
+#include "struct_decls/struct_02027860_decl.h"
+#include "struct_defs/sentence.h"
+#include "struct_defs/struct_02027854.h"
+#include "struct_defs/struct_02027860.h"
+
+#include "savedata.h"
+#include "strbuf.h"
 
 typedef struct ExtraSaveKey {
     u32 keys[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
@@ -36,13 +38,13 @@ typedef struct MiscSaveBlock {
 
 int MiscSaveBlock_SaveSize(void);
 void MiscSaveBlock_Init(MiscSaveBlock *miscSave);
-MiscSaveBlock* SaveData_MiscSaveBlock(SaveData *saveData);
-const MiscSaveBlock* SaveData_MiscSaveBlockConst(const SaveData *saveData);
-UnkStruct_02027854* sub_02027854(SaveData *saveData);
-UnkStruct_02027860* sub_02027860(SaveData *saveData);
-const u16* MiscSaveBlock_RivalName(const MiscSaveBlock *miscSave);
+MiscSaveBlock *SaveData_MiscSaveBlock(SaveData *saveData);
+const MiscSaveBlock *SaveData_MiscSaveBlockConst(const SaveData *saveData);
+UnkStruct_02027854 *sub_02027854(SaveData *saveData);
+UnkStruct_02027860 *sub_02027860(SaveData *saveData);
+const u16 *MiscSaveBlock_RivalName(const MiscSaveBlock *miscSave);
 void MiscSaveBlock_SetRivalName(MiscSaveBlock *miscSave, Strbuf *name);
-const u16* MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave);
+const u16 *MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave);
 void MiscSaveBlock_SetTabletName(MiscSaveBlock *miscSave, Strbuf *name);
 void MiscSaveBlock_SetInitFlag(MiscSaveBlock *miscSave);
 u32 MiscSaveBlock_InitFlag(const MiscSaveBlock *miscSave);

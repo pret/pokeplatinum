@@ -1,33 +1,33 @@
+#include "overlay012/ov12_02225104.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/ov12_0222421C.h"
+#include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225640.h"
 
 #include "spl.h"
-
 #include "unk_02014000.h"
-#include "overlay012/ov12_0221FC20.h"
-#include "overlay012/ov12_0222421C.h"
-#include "overlay012/ov12_02225104.h"
-#include "overlay012/ov12_02235254.h"
 
-static void ov12_02225104(UnkStruct_ov12_02225640 * param0, int param1[]);
-static BOOL ov12_02225110(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_02225114(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_022251F8(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_022251FC(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_02225200(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_022252C8(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_0222534C(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_022253CC(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_02225434(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_02225438(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_0222543C(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_02225440(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_02225444(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
-static BOOL ov12_02225550(UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1);
+static void ov12_02225104(UnkStruct_ov12_02225640 *param0, int param1[]);
+static BOOL ov12_02225110(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225114(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022251F8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022251FC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225200(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022252C8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_0222534C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_022253CC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225434(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225438(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_0222543C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225440(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225444(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
+static BOOL ov12_02225550(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1);
 
-static BOOL(*const Unk_ov12_02239D6C[])(UnkSPLStruct6 *, UnkStruct_ov12_02225640 *) = {
+static BOOL (*const Unk_ov12_02239D6C[])(UnkSPLStruct6 *, UnkStruct_ov12_02225640 *) = {
     ov12_02225110,
     ov12_02225114,
     ov12_022251F8,
@@ -44,20 +44,20 @@ static BOOL(*const Unk_ov12_02239D6C[])(UnkSPLStruct6 *, UnkStruct_ov12_02225640
     ov12_02225550
 };
 
-static void ov12_02225104 (UnkStruct_ov12_02225640 * param0, int param1[])
+static void ov12_02225104(UnkStruct_ov12_02225640 *param0, int param1[])
 {
     ov12_0222325C(param0->unk_00, param1, 5);
 }
 
-static BOOL ov12_02225110 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225110(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225114 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225114(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[5];
-    VecFx16 v1 = {0, 0, 0};
+    VecFx16 v1 = { 0, 0, 0 };
 
     ov12_02225104(param1, v0);
     param1->unk_08 = ov12_02224FC4(param1);
@@ -67,16 +67,13 @@ static BOOL ov12_02225114 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     }
 
     switch (v0[0]) {
-    case 0:
-    {
+    case 0: {
         sub_02014874(param0, &v1);
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         VEC_Fx16Set(&v1, v0[2], v0[3], v0[4]);
 
         v1.x *= param1->unk_08;
@@ -86,8 +83,7 @@ static BOOL ov12_02225114 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
         sub_02014874(param0, &v1);
 
         return 1;
-    }
-    break;
+    } break;
     case 2:
     case 3:
     case 0xFF:
@@ -102,20 +98,20 @@ static BOOL ov12_02225114 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     return 1;
 }
 
-static BOOL ov12_022251F8 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_022251F8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     return 1;
 }
 
-static BOOL ov12_022251FC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_022251FC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225200 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225200(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[5];
-    VecFx32 v1 = {0, 0, 0};
+    VecFx32 v1 = { 0, 0, 0 };
 
     ov12_02225104(param1, v0);
     param1->unk_08 = ov12_02224FC4(param1);
@@ -125,24 +121,20 @@ static BOOL ov12_02225200 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     }
 
     switch (v0[0]) {
-    case 0:
-    {
+    case 0: {
         sub_020148A8(param0, &v1);
 
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         VEC_Set(&v1, v0[2], v0[3], v0[4]);
 
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
-    }
-    break;
+    } break;
     case 2:
         ov12_02235508(param1->unk_00, param1->unk_24, &v1);
         break;
@@ -160,7 +152,7 @@ static BOOL ov12_02225200 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     return 1;
 }
 
-static BOOL ov12_022252C8 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_022252C8(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[5];
     fx16 v1 = 0;
@@ -173,18 +165,14 @@ static BOOL ov12_022252C8 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     }
 
     switch (v0[0]) {
-    case 0:
-    {
+    case 0: {
         sub_020148F4(param0, &v1);
         v1 *= param1->unk_08;
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         v1 = v0[2];
         v1 *= param1->unk_08;
-    }
-    break;
+    } break;
     case 2:
     case 3:
     case 0xFF:
@@ -195,7 +183,7 @@ static BOOL ov12_022252C8 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     return 1;
 }
 
-static BOOL ov12_0222534C (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_0222534C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[5];
     u16 v1 = 0;
@@ -208,18 +196,14 @@ static BOOL ov12_0222534C (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     }
 
     switch (v0[0]) {
-    case 0:
-    {
+    case 0: {
         sub_02014924(param0, &v1);
         v1 *= param1->unk_08;
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         v1 = v0[2];
         v1 *= param1->unk_08;
-    }
-    break;
+    } break;
     case 2:
     case 3:
     case 0xFF:
@@ -230,7 +214,7 @@ static BOOL ov12_0222534C (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     return 1;
 }
 
-static BOOL ov12_022253CC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_022253CC(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[5];
     u16 v1 = 0;
@@ -243,16 +227,12 @@ static BOOL ov12_022253CC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     }
 
     switch (v0[0]) {
-    case 0:
-    {
+    case 0: {
         sub_02014954(param0, &v1);
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         v1 = v0[2];
-    }
-    break;
+    } break;
     case 2:
     case 3:
     case 0xFF:
@@ -263,30 +243,30 @@ static BOOL ov12_022253CC (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     return 1;
 }
 
-static BOOL ov12_02225434 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225434(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225438 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225438(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     return 1;
 }
 
-static BOOL ov12_0222543C (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_0222543C(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225440 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225440(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     return 1;
 }
 
-static BOOL ov12_02225444 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225444(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[5];
-    VecFx32 v1 = {0, 0, 0};
+    VecFx32 v1 = { 0, 0, 0 };
 
     ov12_02225104(param1, v0);
     param1->unk_08 = ov12_02224FC4(param1);
@@ -296,23 +276,19 @@ static BOOL ov12_02225444 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     }
 
     switch (v0[0]) {
-    case 0:
-    {
+    case 0: {
         sub_02014988(param0, &v1);
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         VEC_Set(&v1, v0[2], v0[3], v0[4]);
 
         v1.x *= param1->unk_08;
         v1.y *= param1->unk_08;
         v1.z *= param1->unk_08;
-    }
-    break;
+    } break;
     case 4:
         ov12_02235508(param1->unk_00, param1->unk_28, &v1);
 
@@ -338,7 +314,7 @@ static BOOL ov12_02225444 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     return 1;
 }
 
-static BOOL ov12_02225550 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * param1)
+static BOOL ov12_02225550(UnkSPLStruct6 *param0, UnkStruct_ov12_02225640 *param1)
 {
     int v0[5];
     fx16 v1 = 0;
@@ -351,18 +327,14 @@ static BOOL ov12_02225550 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     }
 
     switch (v0[0]) {
-    case 0:
-    {
+    case 0: {
         sub_020149D4(param0, &v1);
         v1 *= param1->unk_08;
-    }
-    break;
-    case 1:
-    {
+    } break;
+    case 1: {
         v1 = v0[2];
         v1 *= param1->unk_08;
-    }
-    break;
+    } break;
     case 2:
     case 3:
     case 0xFF:
@@ -373,7 +345,7 @@ static BOOL ov12_02225550 (UnkSPLStruct6 * param0, UnkStruct_ov12_02225640 * par
     return 1;
 }
 
-void ov12_022255D4 (int param0, UnkSPLStruct6 * param1, UnkStruct_ov12_02225640 * param2)
+void ov12_022255D4(int param0, UnkSPLStruct6 *param1, UnkStruct_ov12_02225640 *param2)
 {
     BOOL v0;
 
@@ -384,7 +356,7 @@ void ov12_022255D4 (int param0, UnkSPLStruct6 * param1, UnkStruct_ov12_02225640 
     }
 }
 
-int ov12_022255EC (int param0)
+int ov12_022255EC(int param0)
 {
     const int v0[] = {
         0x0,
@@ -407,7 +379,7 @@ int ov12_022255EC (int param0)
     return v0[param0];
 }
 
-int ov12_02225614 (void)
+int ov12_02225614(void)
 {
     int v0 = 0;
     int v1 = 0;

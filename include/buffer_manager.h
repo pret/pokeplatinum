@@ -18,7 +18,6 @@ typedef struct BufferManager {
     u8 padding[2];
 } BufferManager;
 
-
 BufferManager *BufferManager_New(enum HeapId heapID, void *buffer1, void *buffer2);
 void BufferManager_Delete(BufferManager *bufferManager);
 void *BufferManager_GetWriteBuffer(const BufferManager *bufferManager);

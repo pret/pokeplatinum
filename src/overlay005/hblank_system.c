@@ -1,9 +1,10 @@
+#include "overlay005/hblank_system.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02017728.h"
 #include "heap.h"
-#include "overlay005/hblank_system.h"
+#include "unk_02017728.h"
 
 static void HBlankSystem_Init(HBlankSystem *hBlankSystem);
 static void HBlankTask_Init(HBlankTask *task);
@@ -11,7 +12,7 @@ static void HBlankSystem_HBlankCallback(void *param);
 static void HBlankTask_DummyCallback(HBlankTask *task, void *param);
 static HBlankTask *HBlankSystem_GetAvailableTask(HBlankSystem *hBlankSystem);
 
-HBlankSystem * HBlankSystem_New(enum HeapId heapID)
+HBlankSystem *HBlankSystem_New(enum HeapId heapID)
 {
     HBlankSystem *hBlankSystem = Heap_AllocFromHeap(heapID, sizeof(HBlankSystem));
     HBlankSystem_Init(hBlankSystem);

@@ -1,19 +1,19 @@
+#include "overlay012/ov12_0222E784.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "sys_task_manager.h"
+#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/ov12_02225864.h"
+#include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
+#include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "overlay012/ov12_0221FC20.h"
-#include "overlay012/ov12_02225864.h"
-#include "overlay012/ov12_0222E784.h"
-#include "overlay012/ov12_02235254.h"
 
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
@@ -25,9 +25,9 @@ typedef struct {
     UnkStruct_ov12_02225F6C unk_60;
 } UnkStruct_ov12_0222E784;
 
-static void ov12_0222E784 (SysTask * param0, void * param1)
+static void ov12_0222E784(SysTask *param0, void *param1)
 {
-    UnkStruct_ov12_0222E784 * v0 = (UnkStruct_ov12_0222E784 *)param1;
+    UnkStruct_ov12_0222E784 *v0 = (UnkStruct_ov12_0222E784 *)param1;
 
     switch (v0->unk_00.unk_00) {
     case 0:
@@ -61,9 +61,9 @@ static void ov12_0222E784 (SysTask * param0, void * param1)
     sub_0200C7EC(v0->unk_00.unk_0C);
 }
 
-void ov12_0222E810 (UnkStruct_ov12_0221FCDC * param0)
+void ov12_0222E810(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_0222E784 * v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E784));
+    UnkStruct_ov12_0222E784 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E784));
 
     ov12_0223595C(param0, &v0->unk_00);
 

@@ -1,50 +1,50 @@
+#include "overlay004/ov4_021D0D80.h"
+
+#include <dwc.h>
 #include <nitro.h>
+#include <ppwlobby/ppw_lobby.h>
 #include <string.h>
 #include <vct.h>
-#include <dwc.h>
-#include <ppwlobby/ppw_lobby.h>
-
-#include "savedata.h"
 
 #include "overlay004/funcptr_ov4_021D1104.h"
 #include "overlay004/funcptr_ov4_021D1120.h"
 #include "overlay004/funcptr_ov4_021D113C.h"
 #include "overlay004/funcptr_ov4_021D1150.h"
+#include "overlay004/ov4_021D2808.h"
 
+#include "communication_system.h"
 #include "heap.h"
+#include "savedata.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203266C.h"
-#include "communication_system.h"
 #include "unk_020366A0.h"
-#include "overlay004/ov4_021D0D80.h"
-#include "overlay004/ov4_021D2808.h"
 
 typedef struct {
     u8 unk_00[256];
-    DWCFriendData * unk_100;
+    DWCFriendData *unk_100;
     DWCFriendsMatchControl unk_104;
-    DWCUserData * unk_F08;
+    DWCUserData *unk_F08;
     DWCInetControl unk_F0C;
-    SaveData * unk_F6C;
-    void * unk_F70;
-    void * unk_F74[4];
-    void * unk_F84;
+    SaveData *unk_F6C;
+    void *unk_F70;
+    void *unk_F74[4];
+    void *unk_F84;
     NNSFndHeapHandle unk_F88;
-    void * unk_F8C;
+    void *unk_F8C;
     NNSFndHeapHandle unk_F90;
     u32 unk_F94;
     UnkFuncPtr_ov4_021D1104 unk_F98;
     UnkFuncPtr_ov4_021D1104 unk_F9C;
     UnkFuncPtr_ov4_021D1120 unk_FA0;
-    void * unk_FA4;
+    void *unk_FA4;
     UnkFuncPtr_ov4_021D1150 unk_FA8;
-    void * unk_FAC;
+    void *unk_FAC;
     UnkFuncPtr_ov4_021D113C unk_FB0;
-    void (* unk_FB4)(int param0);
+    void (*unk_FB4)(int param0);
     u8 unk_FB8[128];
     u8 unk_1038[32];
-    void * unk_1058;
+    void *unk_1058;
     int unk_105C;
     u32 unk_1060;
     int unk_1064;
@@ -78,16 +78,16 @@ typedef struct {
     u8 unk_10DA;
 } UnkStruct_ov4_0221A400;
 
-static void ov4_021D1650(DWCError param0, int param1, void * param2);
-static void ov4_021D171C(DWCError param0, BOOL param1, void * param2);
-static void ov4_021D1740(int param0, u8 param1, const char * param2, void * param3);
-static void ov4_021D1744(int param0, int param1, void * param2);
-static void ov4_021D17A0(int param0, void * param1);
-static void ov4_021D1898(DWCError param0, BOOL param1, void * param2);
+static void ov4_021D1650(DWCError param0, int param1, void *param2);
+static void ov4_021D171C(DWCError param0, BOOL param1, void *param2);
+static void ov4_021D1740(int param0, u8 param1, const char *param2, void *param3);
+static void ov4_021D1744(int param0, int param1, void *param2);
+static void ov4_021D17A0(int param0, void *param1);
+static void ov4_021D1898(DWCError param0, BOOL param1, void *param2);
 static void ov4_021D18F4(int param0, u8 param1);
-static void ov4_021D1950(u8 param0, u8 * param1, int param2);
-static void ov4_021D1A20(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void * param5);
-static int ov4_021D18F0(int param0, void * param1);
+static void ov4_021D1950(u8 param0, u8 *param1, int param2);
+static void ov4_021D1A20(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void *param5);
+static int ov4_021D18F0(int param0, void *param1);
 static int ov4_021D1D1C(void);
 static void ov4_021D16E8(u8 param0);
 static BOOL ov4_021D1C5C(void);
@@ -95,15 +95,15 @@ static void ov4_021D2700(int param0);
 static void ov4_021D27CC(void);
 static void ov4_021D2748(int param0);
 static void ov4_021D21B4(void);
-static void ov4_021D23A4(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void * param5);
-static void ov4_021D2488(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void * param5);
-static void ov4_021D24AC(int param0, void * param1);
+static void ov4_021D23A4(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void *param5);
+static void ov4_021D2488(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void *param5);
+static void ov4_021D24AC(int param0, void *param1);
 
-static UnkStruct_ov4_0221A400 * Unk_ov4_0221A400 = NULL;
+static UnkStruct_ov4_0221A400 *Unk_ov4_0221A400 = NULL;
 
-int ov4_021D0D80 (SaveData * param0, int param1, int param2, int param3)
+int ov4_021D0D80(SaveData *param0, int param1, int param2, int param3)
 {
-    void * v0;
+    void *v0;
 
     GF_ASSERT(Unk_ov4_0221A400 == NULL);
 
@@ -169,7 +169,7 @@ int ov4_021D0D80 (SaveData * param0, int param1, int param2, int param3)
     return 0;
 }
 
-void ov4_021D0F68 ()
+void ov4_021D0F68()
 {
     if (Unk_ov4_0221A400) {
         ov4_021D27CC();
@@ -191,21 +191,19 @@ void ov4_021D0F68 ()
     DWC_ClearError();
 }
 
-int ov4_021D0FEC ()
+int ov4_021D0FEC()
 {
     switch (Unk_ov4_0221A400->unk_1064) {
-    case 0:
-    {
+    case 0: {
         DWC_SetMemFunc(ov4_021D1AA0, ov4_021D1B04);
         DWC_InitInetEx(&Unk_ov4_0221A400->unk_F0C, 2, 1, 20);
-        DWC_SetAuthServer((DWC_CONNECTINET_AUTH_RELEASE));
+        DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
 
         Unk_ov4_0221A400->unk_1064 = 1;
         Unk_ov4_0221A400->unk_1084 = 0;
     }
-    case 1:
-    {
+    case 1: {
         if (DWC_CheckInet()) {
             if (DWC_GetInetStatus() == DWC_CONNECTINET_STATE_CONNECTED) {
                 Unk_ov4_0221A400->unk_1064 = 2;
@@ -217,8 +215,7 @@ int ov4_021D0FEC ()
             break;
         }
     }
-    case 2:
-    {
+    case 2: {
         int v0 = ov4_021D1B5C();
 
         if (v0 != 0) {
@@ -240,30 +237,30 @@ int ov4_021D0FEC ()
         break;
     case 4:
         DWC_ProcessFriendsMatch();
-        return (DWC_ERROR_NUM)+7;
+        return (DWC_ERROR_NUM) + 7;
     }
 
     return ov4_021D1B5C();
 }
 
-void ov4_021D1104 (UnkFuncPtr_ov4_021D1104 param0, UnkFuncPtr_ov4_021D1104 param1)
+void ov4_021D1104(UnkFuncPtr_ov4_021D1104 param0, UnkFuncPtr_ov4_021D1104 param1)
 {
     Unk_ov4_0221A400->unk_F98 = param0;
     Unk_ov4_0221A400->unk_F9C = param1;
 }
 
-void ov4_021D1120 (UnkFuncPtr_ov4_021D1120 param0, void * param1)
+void ov4_021D1120(UnkFuncPtr_ov4_021D1120 param0, void *param1)
 {
     Unk_ov4_0221A400->unk_FA0 = param0;
     Unk_ov4_0221A400->unk_FA4 = param1;
 }
 
-void ov4_021D113C (UnkFuncPtr_ov4_021D113C param0)
+void ov4_021D113C(UnkFuncPtr_ov4_021D113C param0)
 {
     Unk_ov4_0221A400->unk_FB0 = param0;
 }
 
-void ov4_021D1150 (UnkFuncPtr_ov4_021D1150 param0, void * param1)
+void ov4_021D1150(UnkFuncPtr_ov4_021D1150 param0, void *param1)
 {
     Unk_ov4_0221A400->unk_FA8 = param0;
     Unk_ov4_0221A400->unk_FAC = param1;
@@ -271,7 +268,7 @@ void ov4_021D1150 (UnkFuncPtr_ov4_021D1150 param0, void * param1)
 
 const static char Unk_ov4_02215870[] = "%s = \'%s\'";
 
-int ov4_021D116C (u8 * param0, int param1, BOOL param2, u32 param3)
+int ov4_021D116C(u8 *param0, int param1, BOOL param2, u32 param3)
 {
     GF_ASSERT(Unk_ov4_0221A400 != NULL);
 
@@ -283,7 +280,7 @@ int ov4_021D116C (u8 * param0, int param1, BOOL param2, u32 param3)
 
     {
         int v0;
-        DWCMatchOptMinComplete v1 = {1, 2, {0, 0}, 0};
+        DWCMatchOptMinComplete v1 = { 1, 2, { 0, 0 }, 0 };
 
         v1.timeout = param3 * 1000;
         v0 = DWC_SetMatchingOption(DWC_MATCH_OPTION_MIN_COMPLETE, &v1, sizeof(v1));
@@ -319,7 +316,7 @@ int ov4_021D116C (u8 * param0, int param1, BOOL param2, u32 param3)
     return 1;
 }
 
-static void ov4_021D12B4 ()
+static void ov4_021D12B4()
 {
     if (Unk_ov4_0221A400->unk_1064 == 10) {
         Unk_ov4_0221A400->unk_1064 = 11;
@@ -328,7 +325,7 @@ static void ov4_021D12B4 ()
     }
 }
 
-int ov4_021D12D4 (int param0)
+int ov4_021D12D4(int param0)
 {
     switch (Unk_ov4_0221A400->unk_1064) {
     case 5:
@@ -358,8 +355,7 @@ int ov4_021D12D4 (int param0)
             ov4_021D12B4();
         }
         break;
-    case 7:
-    {
+    case 7: {
         if (!sub_0203272C(sub_0203895C())) {
             ov4_021D1E74(Unk_ov4_0221A400->unk_1078);
         }
@@ -372,23 +368,22 @@ int ov4_021D12D4 (int param0)
 
         Unk_ov4_0221A400->unk_1064 = 8;
         return DWC_ERROR_NUM;
-    }
-    break;
+    } break;
     case 9:
         Unk_ov4_0221A400->unk_1064 = 4;
         Unk_ov4_0221A400->unk_106C = 0;
         Unk_ov4_0221A400->unk_108C = -1;
-        return (DWC_ERROR_NUM)+1;
+        return (DWC_ERROR_NUM) + 1;
     case 11:
         Unk_ov4_0221A400->unk_1064 = 4;
         Unk_ov4_0221A400->unk_106C = 0;
         Unk_ov4_0221A400->unk_108C = -1;
-        return (DWC_ERROR_NUM)+2;
+        return (DWC_ERROR_NUM) + 2;
     case 12:
         return ov4_021D1B5C();
     case 16:
         if (Unk_ov4_0221A400->unk_1084 == 0) {
-            DWC_CloseAllConnectionsHard( );
+            DWC_CloseAllConnectionsHard();
             Unk_ov4_0221A400->unk_1064 = 17;
             break;
         }
@@ -399,12 +394,12 @@ int ov4_021D12D4 (int param0)
     return ov4_021D1D1C();
 }
 
-BOOL ov4_021D1404 ()
+BOOL ov4_021D1404()
 {
     return (Unk_ov4_0221A400->unk_106C == 0) && ov4_021D1C5C();
 }
 
-int ov4_021D142C (void * param0, int param1)
+int ov4_021D142C(void *param0, int param1)
 {
     if (!(param1 < 256)) {
         return 0;
@@ -433,7 +428,7 @@ int ov4_021D142C (void * param0, int param1)
     }
 }
 
-int ov4_021D14D4 (void * param0, int param1)
+int ov4_021D14D4(void *param0, int param1)
 {
     if (!(param1 < 256)) {
         return 0;
@@ -466,7 +461,7 @@ int ov4_021D14D4 (void * param0, int param1)
     return 1;
 }
 
-int ov4_021D1590 (void * param0, int param1)
+int ov4_021D1590(void *param0, int param1)
 {
     u16 v0;
 
@@ -501,12 +496,12 @@ int ov4_021D1590 (void * param0, int param1)
     return 1;
 }
 
-static void ov4_021D1650 (DWCError param0, int param1, void * param2)
+static void ov4_021D1650(DWCError param0, int param1, void *param2)
 {
     BOOL v0;
 
-    if (DWC_CheckDirtyFlag((Unk_ov4_0221A400->unk_F08))) {
-        DWCUserData * v1 = NULL;
+    if (DWC_CheckDirtyFlag(Unk_ov4_0221A400->unk_F08)) {
+        DWCUserData *v1 = NULL;
 
         DWC_ClearDirtyFlag(Unk_ov4_0221A400->unk_F08);
         Unk_ov4_0221A400->unk_10DA = 1;
@@ -526,16 +521,16 @@ static void ov4_021D1650 (DWCError param0, int param1, void * param2)
     }
 }
 
-static void ov4_021D16E8 (u8 param0)
+static void ov4_021D16E8(u8 param0)
 {
     if (Unk_ov4_0221A400->unk_109C) {
-        DWC_CloseAllConnectionsHard( );
+        DWC_CloseAllConnectionsHard();
         Unk_ov4_0221A400->unk_108C = -1;
         Unk_ov4_0221A400->unk_1064 = 18;
     }
 }
 
-static void ov4_021D171C (DWCError param0, BOOL param1, void * param2)
+static void ov4_021D171C(DWCError param0, BOOL param1, void *param2)
 {
 #pragma unused(param2)
     if (param0 == DWC_ERROR_NONE) {
@@ -549,13 +544,13 @@ static void ov4_021D171C (DWCError param0, BOOL param1, void * param2)
     }
 }
 
-static void ov4_021D1740 (int param0, u8 param1, const char * param2, void * param3)
+static void ov4_021D1740(int param0, u8 param1, const char *param2, void *param3)
 {
 #pragma unused(param3)
     return;
 }
 
-static void ov4_021D1744 (int param0, int param1, void * param2)
+static void ov4_021D1744(int param0, int param1, void *param2)
 {
 #pragma unused(param2)
 
@@ -565,18 +560,18 @@ static void ov4_021D1744 (int param0, int param1, void * param2)
     sub_020307F0(sub_0203068C(Unk_ov4_0221A400->unk_F6C), param0, param1);
 }
 
-static void ov4_021D17A0 (int param0, void * param1)
+static void ov4_021D17A0(int param0, void *param1)
 {
 #pragma unused(param1)
     return;
 }
 
-static void ov4_021D17A4 (void)
+static void ov4_021D17A4(void)
 {
     MI_CpuClear8(Unk_ov4_0221A400->unk_10A0, sizeof(Unk_ov4_0221A400->unk_10A0));
 }
 
-static void ov4_021D17C0 (void)
+static void ov4_021D17C0(void)
 {
     int v0;
 
@@ -600,7 +595,7 @@ static void ov4_021D17C0 (void)
     ov4_021D17A4();
 }
 
-static void ov4_021D1854 (int param0)
+static void ov4_021D1854(int param0)
 {
     int v0, v1;
 
@@ -615,7 +610,7 @@ static void ov4_021D1854 (int param0)
     ov4_021D17C0();
 }
 
-static void ov4_021D1898 (DWCError param0, BOOL param1, void * param2)
+static void ov4_021D1898(DWCError param0, BOOL param1, void *param2)
 {
 #pragma unused(param2)
 
@@ -634,20 +629,20 @@ static void ov4_021D1898 (DWCError param0, BOOL param1, void * param2)
     }
 }
 
-static int ov4_021D18F0 (int param0, void * param1)
+static int ov4_021D18F0(int param0, void *param1)
 {
-#pragma unused(param0,param1)
+#pragma unused(param0, param1)
     return 1;
 }
 
-static void ov4_021D18F4 (int param0, u8 param1)
+static void ov4_021D18F4(int param0, u8 param1)
 {
 #pragma unused(param0)
     Unk_ov4_0221A400->unk_106C = 0;
     Unk_ov4_0221A400->unk_10A0[param1] = 0;
 }
 
-static void ov4_021D1918 (u32 param0)
+static void ov4_021D1918(u32 param0)
 {
     if (!sub_0203272C(sub_0203895C())) {
         if (param0 & 0x100) {
@@ -658,9 +653,9 @@ static void ov4_021D1918 (u32 param0)
     }
 }
 
-static void ov4_021D1950 (u8 param0, u8 * param1, int param2)
+static void ov4_021D1950(u8 param0, u8 *param1, int param2)
 {
-#pragma unused( param0, param1, param2 )
+#pragma unused(param0, param1, param2)
 
     u32 v0;
     v0 = (param1[3] << 24) | (param1[2] << 16) | (param1[1] << 8) | param1[0];
@@ -680,7 +675,7 @@ static void ov4_021D1950 (u8 param0, u8 * param1, int param2)
     }
 
     {
-        u16 * v1 = (u16 *)ov4_021D1AA0(NULL, param2 - 4, 4);
+        u16 *v1 = (u16 *)ov4_021D1AA0(NULL, param2 - 4, 4);
 
         if (v1 == NULL) {
             return;
@@ -702,7 +697,7 @@ static void ov4_021D1950 (u8 param0, u8 * param1, int param2)
     }
 }
 
-static void ov4_021D1A20 (DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void * param5)
+static void ov4_021D1A20(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void *param5)
 {
 #pragma unused(param5, param4)
 
@@ -711,7 +706,7 @@ static void ov4_021D1A20 (DWCError param0, BOOL param1, BOOL param2, u8 param3, 
     Unk_ov4_0221A400->unk_1094 = 0;
 
     if (param0 == DWC_ERROR_NONE) {
-        if (((Unk_ov4_0221A400->unk_10D9 == 1) && (DWC_GetNumConnectionHost() == 1))) {
+        if ((Unk_ov4_0221A400->unk_10D9 == 1) && (DWC_GetNumConnectionHost() == 1)) {
             if (Unk_ov4_0221A400->unk_1064 == 6) {
                 (void)0;
             } else {
@@ -737,10 +732,10 @@ static void ov4_021D1A20 (DWCError param0, BOOL param1, BOOL param2, u8 param3, 
     }
 }
 
-void * ov4_021D1AA0 (DWCAllocType param0, u32 param1, int param2)
+void *ov4_021D1AA0(DWCAllocType param0, u32 param1, int param2)
 {
-#pragma unused( param0 )
-    void * v0;
+#pragma unused(param0)
+    void *v0;
     OSIntrMode v1;
 
     v1 = OS_DisableInterrupts();
@@ -764,9 +759,9 @@ void * ov4_021D1AA0 (DWCAllocType param0, u32 param1, int param2)
     return v0;
 }
 
-void ov4_021D1B04 (DWCAllocType param0, void * param1, u32 param2)
+void ov4_021D1B04(DWCAllocType param0, void *param1, u32 param2)
 {
-#pragma unused( param0, param2 )
+#pragma unused(param0, param2)
     OSIntrMode v0;
     u16 v1;
 
@@ -791,7 +786,7 @@ void ov4_021D1B04 (DWCAllocType param0, void * param1, u32 param2)
     OS_RestoreInterrupts(v0);
 }
 
-int ov4_021D1B5C (void)
+int ov4_021D1B5C(void)
 {
     int v0;
     DWCErrorType v1;
@@ -831,12 +826,12 @@ int ov4_021D1B5C (void)
                 case 18:
                 case 16:
                 case 17:
-                    DWC_ShutdownFriendsMatch(  );
+                    DWC_ShutdownFriendsMatch();
                 case 0:
                 case 1:
                 case 2:
                     if (sub_0203895C() != 33) {
-                        DWC_CleanupInet( );
+                        DWC_CleanupInet();
                     }
                 }
 
@@ -860,7 +855,7 @@ int ov4_021D1B5C (void)
     }
 
     if (Unk_ov4_0221A400->unk_10D2) {
-        v3 = ((DWC_ERROR_NUM)+6);
+        v3 = ((DWC_ERROR_NUM) + 6);
     }
 
     if (v2 != 0) {
@@ -870,7 +865,7 @@ int ov4_021D1B5C (void)
     return v3;
 }
 
-static BOOL ov4_021D1C5C (void)
+static BOOL ov4_021D1C5C(void)
 {
     int v0;
     BOOL v1 = 0;
@@ -892,7 +887,7 @@ static BOOL ov4_021D1C5C (void)
     return v1;
 }
 
-static BOOL ov4_021D1CAC (int param0)
+static BOOL ov4_021D1CAC(int param0)
 {
     if ((Unk_ov4_0221A400->unk_106C == 0) && ov4_021D1C5C() && (0xfffe & DWC_GetAIDBitmap())) {
         Unk_ov4_0221A400->unk_106C = 1;
@@ -908,7 +903,7 @@ static BOOL ov4_021D1CAC (int param0)
     return 0;
 }
 
-static int ov4_021D1D1C (void)
+static int ov4_021D1D1C(void)
 {
     int v0, v1;
 
@@ -940,11 +935,11 @@ static int ov4_021D1D1C (void)
             return v1;
         }
 
-        return (DWC_ERROR_NUM)+3;
+        return (DWC_ERROR_NUM) + 3;
     }
 
     if (Unk_ov4_0221A400->unk_1064 == 17) {
-        return (DWC_ERROR_NUM)+4;
+        return (DWC_ERROR_NUM) + 4;
     }
 
     if ((Unk_ov4_0221A400->unk_1064 == 7) || (Unk_ov4_0221A400->unk_1064 == 8)) {
@@ -961,7 +956,7 @@ static int ov4_021D1D1C (void)
     return ov4_021D1B5C();
 }
 
-int ov4_021D1E30 ()
+int ov4_021D1E30()
 {
     if (Unk_ov4_0221A400) {
         if ((Unk_ov4_0221A400->unk_1064 == 7) || (Unk_ov4_0221A400->unk_1064 == 8) || (Unk_ov4_0221A400->unk_1064 == 16)) {
@@ -972,12 +967,12 @@ int ov4_021D1E30 ()
     return -1;
 }
 
-static void ov4_021D1E60 ()
+static void ov4_021D1E60()
 {
     Unk_ov4_0221A400->unk_1084 = 0;
 }
 
-void ov4_021D1E74 (int param0)
+void ov4_021D1E74(int param0)
 {
     int v0;
     int v1 = 1;
@@ -1025,7 +1020,7 @@ void ov4_021D1E74 (int param0)
     }
 }
 
-void ov4_021D1F18 (void)
+void ov4_021D1F18(void)
 {
     ov4_021D2F08();
 
@@ -1035,7 +1030,7 @@ void ov4_021D1F18 (void)
     }
 }
 
-int ov4_021D1F3C (int param0, int param1)
+int ov4_021D1F3C(int param0, int param1)
 {
     int v0 = param0 / 100;
     int v1 = param0 / 1000;
@@ -1156,7 +1151,7 @@ int ov4_021D1F3C (int param0, int param1)
     return -1;
 }
 
-int ov4_021D20B0 (int param0)
+int ov4_021D20B0(int param0)
 {
     if (param0 == 0) {
         switch (Unk_ov4_0221A400->unk_1064) {
@@ -1187,7 +1182,7 @@ int ov4_021D20B0 (int param0)
     return 0;
 }
 
-int ov4_021D2134 ()
+int ov4_021D2134()
 {
     if ((Unk_ov4_0221A400->unk_1064 == 17) || (Unk_ov4_0221A400->unk_1064 == 18) || (Unk_ov4_0221A400->unk_1064 == 4)) {
         Unk_ov4_0221A400->unk_1064 = 4;
@@ -1199,14 +1194,14 @@ int ov4_021D2134 ()
     return 0;
 }
 
-void ov4_021D2170 (void (* func)(int))
+void ov4_021D2170(void (*func)(int))
 {
     if (Unk_ov4_0221A400) {
         Unk_ov4_0221A400->unk_FB4 = func;
     }
 }
 
-void ov4_021D2184 (void)
+void ov4_021D2184(void)
 {
     DWC_ShutdownFriendsMatch();
     DWC_CleanupInet();
@@ -1215,13 +1210,13 @@ void ov4_021D2184 (void)
     ov4_021D0F68();
 }
 
-void ov4_021D2198 (void * param0, int param1)
+void ov4_021D2198(void *param0, int param1)
 {
     Unk_ov4_0221A400->unk_1058 = param0;
     Unk_ov4_0221A400->unk_105C = param1;
 }
 
-static void ov4_021D21B4 (void)
+static void ov4_021D21B4(void)
 {
     int v0;
 
@@ -1245,17 +1240,17 @@ static void ov4_021D21B4 (void)
     }
 }
 
-BOOL ov4_021D222C (const void * param0, int param1)
+BOOL ov4_021D222C(const void *param0, int param1)
 {
     return DWC_SetOwnStatusData(param0, param1);
 }
 
-u8 ov4_021D2234 (int param0)
+u8 ov4_021D2234(int param0)
 {
     return Unk_ov4_0221A400->unk_1038[param0];
 }
 
-int ov4_021D2248 (int param0, int param1, BOOL param2)
+int ov4_021D2248(int param0, int param1, BOOL param2)
 {
     int v0, v1 = param1;
 
@@ -1317,7 +1312,7 @@ int ov4_021D2248 (int param0, int param1, BOOL param2)
     return 0;
 }
 
-int ov4_021D2388 ()
+int ov4_021D2388()
 {
     if (Unk_ov4_0221A400) {
         return Unk_ov4_0221A400->unk_1088;
@@ -1326,7 +1321,7 @@ int ov4_021D2388 ()
     return -1;
 }
 
-static void ov4_021D23A4 (DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void * param5)
+static void ov4_021D23A4(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void *param5)
 {
 #pragma unused(param3, param5)
     BOOL v0 = 0;
@@ -1380,7 +1375,7 @@ static void ov4_021D23A4 (DWCError param0, BOOL param1, BOOL param2, BOOL param3
     }
 }
 
-static void ov4_021D2488 (DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void * param5)
+static void ov4_021D2488(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void *param5)
 {
 #pragma unused(param5)
     Unk_ov4_0221A400->unk_1094 = 0;
@@ -1408,7 +1403,7 @@ static void ov4_021D2488 (DWCError param0, BOOL param1, BOOL param2, BOOL param3
     }
 }
 
-static void ov4_021D24AC (int param0, void * param1)
+static void ov4_021D24AC(int param0, void *param1)
 {
 #pragma unused(param1)
 
@@ -1425,13 +1420,13 @@ static void ov4_021D24AC (int param0, void * param1)
     }
 }
 
-void ov4_021D24D8 ()
+void ov4_021D24D8()
 {
     int v0;
 
     if (!DWC_CheckHasProfile(Unk_ov4_0221A400->unk_F08)) {
         DWCFriendData v1;
-        u32 * v2;
+        u32 *v2;
 
         DWC_CreateExchangeToken(Unk_ov4_0221A400->unk_F08, &v1);
         v2 = (u32 *)&v1;
@@ -1443,7 +1438,7 @@ void ov4_021D24D8 ()
 
     for (v0 = 0; v0 < 32; v0++) {
         int v4 = DWC_GetFriendDataType(&(Unk_ov4_0221A400->unk_100[v0]));
-        u32 * v5 = (u32 *)(&Unk_ov4_0221A400->unk_100[v0]);
+        u32 *v5 = (u32 *)(&Unk_ov4_0221A400->unk_100[v0]);
 
         switch (v4) {
         case DWC_FRIENDDATA_LOGIN_ID:
@@ -1463,12 +1458,12 @@ void ov4_021D24D8 ()
     }
 }
 
-BOOL ov4_021D2544 (void)
+BOOL ov4_021D2544(void)
 {
     return ov4_021D2F7C();
 }
 
-BOOL ov4_021D254C (void)
+BOOL ov4_021D254C(void)
 {
     if (Unk_ov4_0221A400) {
         return Unk_ov4_0221A400->unk_1090;
@@ -1477,7 +1472,7 @@ BOOL ov4_021D254C (void)
     return 0;
 }
 
-BOOL ov4_021D2568 (void)
+BOOL ov4_021D2568(void)
 {
     if (Unk_ov4_0221A400) {
         return Unk_ov4_0221A400->unk_108C;
@@ -1486,12 +1481,12 @@ BOOL ov4_021D2568 (void)
     return 0;
 }
 
-void ov4_021D2584 (BOOL param0)
+void ov4_021D2584(BOOL param0)
 {
     Unk_ov4_0221A400->unk_1090 = param0;
 }
 
-static void sendPacket ()
+static void sendPacket()
 {
     int v0;
 
@@ -1504,17 +1499,17 @@ static void sendPacket ()
     }
 }
 
-void ov4_021D2598 (BOOL param0)
+void ov4_021D2598(BOOL param0)
 {
     Unk_ov4_0221A400->unk_10CA = param0;
 }
 
-static void ov4_021D25AC (void * param0)
+static void ov4_021D25AC(void *param0)
 {
     Unk_ov4_0221A400->unk_10D4 = 2;
 }
 
-int ov4_021D25C0 (void)
+int ov4_021D25C0(void)
 {
     if (Unk_ov4_0221A400->unk_10D4 == 0) {
         Unk_ov4_0221A400->unk_10D4 = 1;
@@ -1524,17 +1519,17 @@ int ov4_021D25C0 (void)
     return Unk_ov4_0221A400->unk_10D4 == 2;
 }
 
-void ov4_021D25FC (void)
+void ov4_021D25FC(void)
 {
     Unk_ov4_0221A400->unk_10D4 = 0;
 }
 
-int ov4_021D2610 (void)
+int ov4_021D2610(void)
 {
     return DWC_GetNumConnectionHost();
 }
 
-void ov4_021D2618 (BOOL param0, int param1)
+void ov4_021D2618(BOOL param0, int param1)
 {
     if (param0) {
         Unk_ov4_0221A400->unk_107C = 11;
@@ -1562,12 +1557,12 @@ void ov4_021D2618 (BOOL param0, int param1)
     }
 }
 
-void ov4_021D26EC (BOOL param0)
+void ov4_021D26EC(BOOL param0)
 {
     Unk_ov4_0221A400->unk_10D9 = param0;
 }
 
-void ov4_021D2700 (int param0)
+void ov4_021D2700(int param0)
 {
     if (Unk_ov4_0221A400->unk_F74[param0] != NULL) {
         if (Unk_ov4_0221A400->unk_10D5[param0] == 1) {
@@ -1580,7 +1575,7 @@ void ov4_021D2700 (int param0)
     }
 }
 
-void ov4_021D2748 (int param0)
+void ov4_021D2748(int param0)
 {
     ov4_021D2700(param0);
 
@@ -1597,7 +1592,7 @@ void ov4_021D2748 (int param0)
     }
 }
 
-void ov4_021D27CC (void)
+void ov4_021D27CC(void)
 {
     int v0;
 
@@ -1606,12 +1601,12 @@ void ov4_021D27CC (void)
     }
 }
 
-u8 ov4_021D27E0 (void)
+u8 ov4_021D27E0(void)
 {
     return Unk_ov4_0221A400->unk_10DA;
 }
 
-void ov4_021D27F4 (void)
+void ov4_021D27F4(void)
 {
     Unk_ov4_0221A400->unk_10DA = 0;
 }

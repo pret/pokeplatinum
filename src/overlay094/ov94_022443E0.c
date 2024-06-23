@@ -1,17 +1,18 @@
+#include "overlay094/ov94_022443E0.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
-#include "constdata/const_020F410C.h"
-
+#include "overlay094/ov94_0223BCB0.h"
+#include "overlay094/ov94_0223FB48.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "overlay_manager.h"
-#include "unk_0202D778.h"
 #include "pokemon_summary_app.h"
-#include "overlay094/ov94_0223BCB0.h"
-#include "overlay094/ov94_0223FB48.h"
-#include "overlay094/ov94_022443E0.h"
+#include "unk_0202D778.h"
+
+#include "constdata/const_020F410C.h"
 
 static const u8 Unk_ov94_02246360[] = {
     0x0,
@@ -25,7 +26,7 @@ static const u8 Unk_ov94_02246360[] = {
     0x8
 };
 
-int ov94_022443E0 (UnkStruct_ov94_0223FD4C * param0, int param1)
+int ov94_022443E0(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     param0->unk_B8.monData = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
     param0->unk_B8.dataType = 2;
@@ -47,7 +48,7 @@ int ov94_022443E0 (UnkStruct_ov94_0223FD4C * param0, int param1)
     return 2;
 }
 
-int ov94_02244490 (UnkStruct_ov94_0223FD4C * param0, int param1)
+int ov94_02244490(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     int v0 = 3;
 
@@ -61,7 +62,7 @@ int ov94_02244490 (UnkStruct_ov94_0223FD4C * param0, int param1)
     return v0;
 }
 
-int ov94_022444BC (UnkStruct_ov94_0223FD4C * param0, int param1)
+int ov94_022444BC(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     ov94_0223C4C8(param0);
     return 1;

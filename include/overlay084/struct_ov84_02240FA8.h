@@ -6,10 +6,10 @@
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {
-    const ResourceMetadata * unk_00;
-    void (* unk_04)(BmpList *, u32, u8);
-    void (* unk_08)(BmpList *, u32, u8);
-    Window * unk_0C;
+    const ResourceMetadata *unk_00;
+    void (*unk_04)(BmpList *, u32, u8);
+    void (*unk_08)(BmpList *, u32, u8);
+    Window *unk_0C;
     u16 unk_10;
     u16 unk_12;
     u8 unk_14;
@@ -24,7 +24,7 @@ typedef struct {
     u16 unk_1A_7 : 2;
     u16 unk_1A_9 : 6;
     u16 unk_1A_15 : 1;
-    void * unk_1C;
+    void *unk_1C;
 } UnkStruct_ov84_02240FA8;
 
 #endif // POKEPLATINUM_STRUCT_OV84_02240FA8_H

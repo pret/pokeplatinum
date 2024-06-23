@@ -3,7 +3,7 @@
 
 #include "field/field_system_decl.h"
 
-void ov23_022499E8(FieldSystem * fieldSystem);
+void ov23_022499E8(FieldSystem *fieldSystem);
 void ov23_02249A2C(void);
 void ov23_02249A5C(void);
 void ov23_02249A74(void);

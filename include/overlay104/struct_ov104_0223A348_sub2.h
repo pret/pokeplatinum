@@ -15,14 +15,14 @@ typedef struct {
     u32 unk_10;
     union {
         struct {
-            u32 unk_14_val1_0   : 5;
-            u32 unk_14_val1_5   : 5;
-            u32 unk_14_val1_10  : 5;
-            u32 unk_14_val1_15  : 5;
-            u32 unk_14_val1_20  : 5;
-            u32 unk_14_val1_25  : 5;
-            u32 unk_14_val1_30  : 1;
-            u32                 : 1;
+            u32 unk_14_val1_0 : 5;
+            u32 unk_14_val1_5 : 5;
+            u32 unk_14_val1_10 : 5;
+            u32 unk_14_val1_15 : 5;
+            u32 unk_14_val1_20 : 5;
+            u32 unk_14_val1_25 : 5;
+            u32 unk_14_val1_30 : 1;
+            u32 : 1;
         };
         u32 unk_14_val2;
     };

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 
 typedef struct {
-    BGL * unk_00;
+    BGL *unk_00;
     u32 unk_04;
     u32 unk_08;
     u32 unk_0C;

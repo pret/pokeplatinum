@@ -3,6 +3,7 @@
 
 #include "struct_defs/struct_0209BDF8.h"
 #include "struct_defs/struct_0209C194_1.h"
+
 #include "overlay109/struct_ov109_021D0F70_decl.h"
 #include "overlay109/struct_ov109_021D5140_decl.h"
 
@@ -13,9 +14,9 @@ typedef struct UnkStruct_0209C194_t {
     u32 unk_0C;
     BOOL unk_10;
     UnkStruct_0209C194_1 unk_14;
-    UnkStruct_0209BDF8 * unk_34;
-    UnkStruct_ov109_021D0F70 * unk_38;
-    UnkStruct_ov109_021D5140 * unk_3C;
+    UnkStruct_0209BDF8 *unk_34;
+    UnkStruct_ov109_021D0F70 *unk_38;
+    UnkStruct_ov109_021D5140 *unk_3C;
 } UnkStruct_0209C194;
 
 #endif // POKEPLATINUM_STRUCT_0209C194_H

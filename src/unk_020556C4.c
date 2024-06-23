@@ -1,11 +1,11 @@
+#include "unk_020556C4.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_020556C4.h"
 
-#include "unk_020556C4.h"
-
-void sub_020556C4 (UnkStruct_020556C4 * param0)
+void sub_020556C4(UnkStruct_020556C4 *param0)
 {
     u8 v0;
 
@@ -21,7 +21,7 @@ void sub_020556C4 (UnkStruct_020556C4 * param0)
     param0->unk_05 = 0;
 }
 
-void sub_020556E8 (UnkStruct_020556C4 * param0, int param1, int param2)
+void sub_020556E8(UnkStruct_020556C4 *param0, int param1, int param2)
 {
     u8 v0, v1;
 
@@ -37,7 +37,7 @@ void sub_020556E8 (UnkStruct_020556C4 * param0, int param1, int param2)
     }
 }
 
-void sub_02055740 (UnkStruct_020556C4 * param0, int param1, int param2, int param3)
+void sub_02055740(UnkStruct_020556C4 *param0, int param1, int param2, int param3)
 {
     u8 v0, v1;
 

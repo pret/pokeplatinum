@@ -1,41 +1,40 @@
+#include "overlay062/ov62_02248408.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "savedata.h"
 
 #include "struct_defs/struct_0202F264.h"
 #include "struct_defs/struct_0202F298.h"
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_0202F41C.h"
-#include "pokemon.h"
-#include "overlay006/battle_params.h"
 
-#include "unk_02002B7C.h"
-#include "message.h"
-#include "unk_02017728.h"
-#include "heap.h"
-#include "strbuf.h"
+#include "overlay006/battle_params.h"
 #include "savedata/save_table.h"
-#include "savedata.h"
-#include "unk_0202F1D4.h"
-#include "pokemon.h"
+
+#include "heap.h"
+#include "message.h"
 #include "party.h"
-#include "overlay062/ov62_02248408.h"
+#include "pokemon.h"
+#include "savedata.h"
+#include "strbuf.h"
+#include "unk_02002B7C.h"
+#include "unk_02017728.h"
+#include "unk_0202F1D4.h"
 
 static void ov62_0224856C(Strbuf *param0, int param1);
 
-extern BattleRecording * Unk_021C07A4;
+extern BattleRecording *Unk_021C07A4;
 
-void ov62_02248408 (BattleRecording * param0, BattleParams * param1, int param2)
+void ov62_02248408(BattleRecording *param0, BattleParams *param1, int param2)
 {
-    UnkStruct_0202F298 * v0 = &param0->unk_E8;
-    UnkStruct_0202F41C * v1 = &param0->unk_84;
+    UnkStruct_0202F298 *v0 = &param0->unk_E8;
+    UnkStruct_0202F41C *v1 = &param0->unk_84;
     int v2, v3, v4, v5;
-    Strbuf* v6, * v7;
-    u16 * v8;
+    Strbuf *v6, *v7;
+    u16 *v8;
     int v9 = 64;
     int v10, v11, v12;
-    Pokemon * v13;
+    Pokemon *v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
     v6 = Strbuf_Init(v9, param2);
@@ -93,9 +92,9 @@ void ov62_02248408 (BattleRecording * param0, BattleParams * param1, int param2)
     Heap_FreeToHeap(v8);
 }
 
-static void ov62_0224856C (Strbuf *param0, int param1)
+static void ov62_0224856C(Strbuf *param0, int param1)
 {
-    MessageLoader * v0;
+    MessageLoader *v0;
 
     Strbuf_Clear(param0);
 
@@ -105,7 +104,7 @@ static void ov62_0224856C (Strbuf *param0, int param1)
     MessageLoader_Free(v0);
 }
 
-int ov62_02248598 (SaveData * param0, int param1, u8 param2, u16 * param3, u16 * param4)
+int ov62_02248598(SaveData *param0, int param1, u8 param2, u16 *param3, u16 *param4)
 {
     int v0;
 
@@ -131,13 +130,13 @@ int ov62_02248598 (SaveData * param0, int param1, u8 param2, u16 * param3, u16 *
     return 0;
 }
 
-void ov62_02248624 (SaveData * param0)
+void ov62_02248624(SaveData *param0)
 {
     GF_ASSERT(Unk_021C07A4);
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
 }
 
-int ov62_02248658 (SaveData * param0, u64 param1, u16 * param2, u16 * param3)
+int ov62_02248658(SaveData *param0, u64 param1, u16 *param2, u16 *param3)
 {
     int v0;
 
@@ -156,7 +155,7 @@ int ov62_02248658 (SaveData * param0, u64 param1, u16 * param2, u16 * param3)
     return 0;
 }
 
-int ov62_022486A4 (SaveData * param0, int param1)
+int ov62_022486A4(SaveData *param0, int param1)
 {
     int v0;
 

@@ -1,36 +1,37 @@
+#include "overlay106/ov106_022435FC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02022550_decl.h"
-#include "pokemon.h"
+
+#include "overlay106/ov106_02243310.h"
+#include "overlay106/struct_ov106_02243310.h"
 #include "overlay106/struct_ov106_02243650_decl.h"
 
-#include "overlay106/struct_ov106_02243310.h"
-
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "pokemon.h"
 #include "pokemon_icon.h"
-#include "overlay106/ov106_02243310.h"
-#include "overlay106/ov106_022435FC.h"
+#include "unk_020218BC.h"
 
 struct UnkStruct_ov106_02243650_t {
     u32 unk_00;
     u32 unk_04;
     u32 unk_08;
-    const u8 * unk_0C;
-    GraphicElementData * unk_10;
+    const u8 *unk_0C;
+    GraphicElementData *unk_10;
 };
 
-UnkStruct_ov106_02243650 * ov106_022435FC(UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u16 param3, u16 param4, const u8 * param5);
-void * ov106_02243650(UnkStruct_ov106_02243650 * param0);
-void ov106_02243664(UnkStruct_ov106_02243650 * param0, int param1);
-void ov106_02243670(UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2);
-void ov106_022436B0(UnkStruct_ov106_02243650 * param0, u32 param1);
-void ov106_022436CC(UnkStruct_ov106_02243650 * param0, Pokemon * param1);
+UnkStruct_ov106_02243650 *ov106_022435FC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u16 param3, u16 param4, const u8 *param5);
+void *ov106_02243650(UnkStruct_ov106_02243650 *param0);
+void ov106_02243664(UnkStruct_ov106_02243650 *param0, int param1);
+void ov106_02243670(UnkStruct_ov106_02243650 *param0, u16 param1, u16 param2);
+void ov106_022436B0(UnkStruct_ov106_02243650 *param0, u32 param1);
+void ov106_022436CC(UnkStruct_ov106_02243650 *param0, Pokemon *param1);
 
-UnkStruct_ov106_02243650 * ov106_022435FC (UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u16 param3, u16 param4, const u8 * param5)
+UnkStruct_ov106_02243650 *ov106_022435FC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u16 param3, u16 param4, const u8 *param5)
 {
-    UnkStruct_ov106_02243650 * v0;
+    UnkStruct_ov106_02243650 *v0;
     VecFx32 v1;
 
     v0 = Heap_AllocFromHeap(98, sizeof(UnkStruct_ov106_02243650));
@@ -52,7 +53,7 @@ UnkStruct_ov106_02243650 * ov106_022435FC (UnkStruct_ov106_02243310 * param0, u3
     return v0;
 }
 
-void * ov106_02243650 (UnkStruct_ov106_02243650 * param0)
+void *ov106_02243650(UnkStruct_ov106_02243650 *param0)
 {
     sub_02021BD4(param0->unk_10);
     Heap_FreeToHeap(param0);
@@ -60,13 +61,13 @@ void * ov106_02243650 (UnkStruct_ov106_02243650 * param0)
     return NULL;
 }
 
-void ov106_02243664 (UnkStruct_ov106_02243650 * param0, int param1)
+void ov106_02243664(UnkStruct_ov106_02243650 *param0, int param1)
 {
     sub_02021CAC(param0->unk_10, param1);
     return;
 }
 
-void ov106_02243670 (UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2)
+void ov106_02243670(UnkStruct_ov106_02243650 *param0, u16 param1, u16 param2)
 {
     VecFx32 v0;
 
@@ -83,7 +84,7 @@ void ov106_02243670 (UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2)
     return;
 }
 
-void ov106_022436B0 (UnkStruct_ov106_02243650 * param0, u32 param1)
+void ov106_022436B0(UnkStruct_ov106_02243650 *param0, u32 param1)
 {
     sub_02021CE4(param0->unk_10, FX32_ONE);
     sub_02021DCC(param0->unk_10, param1);
@@ -91,7 +92,7 @@ void ov106_022436B0 (UnkStruct_ov106_02243650 * param0, u32 param1)
     return;
 }
 
-void ov106_022436CC (UnkStruct_ov106_02243650 * param0, Pokemon * param1)
+void ov106_022436CC(UnkStruct_ov106_02243650 *param0, Pokemon *param1)
 {
     sub_02021F24(param0->unk_10, Pokemon_IconPaletteIndex(param1));
     return;

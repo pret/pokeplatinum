@@ -10,9 +10,9 @@
 #include "overlay017/struct_ov17_0224F30C.h"
 
 typedef struct {
-    UnkStruct_ov17_0224DF54 * unk_00;
+    UnkStruct_ov17_0224DF54 *unk_00;
     UnkStruct_ov17_02243C80 unk_04;
-    UnkStruct_ov17_0224F30C * unk_0C;
+    UnkStruct_ov17_0224F30C *unk_0C;
     u8 unk_10;
     u8 unk_11;
     u8 unk_12;
@@ -22,7 +22,7 @@ typedef struct {
     UnkStruct_ov17_0224DF54_sub2 unk_18;
     UnkStruct_ov17_0224DC1C unk_50;
     UnkStruct_ov17_0224E958 unk_58[4];
-    UnkStruct_ov17_0224D69C * unk_140[4];
+    UnkStruct_ov17_0224D69C *unk_140[4];
 } UnkStruct_ov17_0224D710;
 
 #endif // POKEPLATINUM_STRUCT_OV17_0224D710_H

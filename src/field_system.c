@@ -1,63 +1,62 @@
+#include "field/field_system.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02018340_decl.h"
-#include "field/field_system_sub1_decl.h"
-#include "savedata.h"
-#include "overlay025/poketch_system.h"
-
-#include "overlay005/const_ov5_021F89B0.h"
-#include "overlay077/const_ov77_021D742C.h"
-
 #include "struct_defs/struct_0203CC84.h"
-#include "field/field_system.h"
-#include "field/field_system_sub2_t.h"
 
-#include "unk_02000C88.h"
-#include "game_overlay.h"
-#include "overlay_manager.h"
-#include "heap.h"
-#include "communication_system.h"
-#include "unk_02039C80.h"
-#include "map_header_data.h"
-#include "field_overworld_state.h"
-#include "field_system.h"
-#include "unk_020508D4.h"
-#include "field_map_change.h"
-#include "comm_player_manager.h"
-#include "unk_0205F180.h"
-#include "pokeradar.h"
-#include "bag.h"
-#include "unk_0209ACBC.h"
-#include "unk_0209C370.h"
+#include "field/field_system_sub1_decl.h"
+#include "field/field_system_sub2_t.h"
+#include "overlay005/const_ov5_021F89B0.h"
 #include "overlay005/field_control.h"
 #include "overlay005/ov5_021DD6FC.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021EA714.h"
+#include "overlay025/poketch_system.h"
+#include "overlay077/const_ov77_021D742C.h"
+
+#include "bag.h"
+#include "comm_player_manager.h"
+#include "communication_system.h"
+#include "core_sys.h"
+#include "field_map_change.h"
+#include "field_overworld_state.h"
+#include "field_system.h"
+#include "game_overlay.h"
+#include "heap.h"
+#include "map_header_data.h"
+#include "overlay_manager.h"
+#include "pokeradar.h"
+#include "savedata.h"
+#include "unk_02000C88.h"
+#include "unk_02039C80.h"
+#include "unk_020508D4.h"
+#include "unk_0205F180.h"
+#include "unk_0209ACBC.h"
+#include "unk_0209C370.h"
 
 FS_EXTERN_OVERLAY(overlay5);
 FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct FieldSystem_sub1_t {
-    OverlayManager * unk_00;
-    OverlayManager * unk_04;
+    OverlayManager *unk_00;
+    OverlayManager *unk_04;
     BOOL unk_08;
     BOOL unk_0C;
 };
 
-static FieldSystem * FieldSystem_Init(OverlayManager * param0);
-static BOOL FieldSystem_Run(FieldSystem * fieldSystem);
-static void sub_0203CE6C(OverlayManager * param0);
-static void FieldSystem_Control(FieldSystem * fieldSystem);
+static FieldSystem *FieldSystem_Init(OverlayManager *param0);
+static BOOL FieldSystem_Run(FieldSystem *fieldSystem);
+static void sub_0203CE6C(OverlayManager *param0);
+static void FieldSystem_Control(FieldSystem *fieldSystem);
 
-static FieldSystem * sFieldSystem;
+static FieldSystem *sFieldSystem;
 
-static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_InitContinue(OverlayManager *overlayMan, int *param1)
 {
-    UnkStruct_0203CC84 * v0 = OverlayManager_Args(overlayMan);
+    UnkStruct_0203CC84 *v0 = OverlayManager_Args(overlayMan);
 
     sFieldSystem = FieldSystem_Init(overlayMan);
 
@@ -71,16 +70,16 @@ static int FieldSystem_InitContinue (OverlayManager * overlayMan, int * param1)
     return 1;
 }
 
-static int FieldSystem_InitNewGame (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_InitNewGame(OverlayManager *overlayMan, int *param1)
 {
     sFieldSystem = FieldSystem_Init(overlayMan);
     FieldSystem_SetLoadNewGameSpawnTask(sFieldSystem);
     return 1;
 }
 
-static int FieldSystem_Main (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_Main(OverlayManager *overlayMan, int *param1)
 {
-    FieldSystem * fieldSystem = OverlayManager_Data(overlayMan);
+    FieldSystem *fieldSystem = OverlayManager_Data(overlayMan);
 
     if (FieldSystem_Run(fieldSystem)) {
         return 1;
@@ -89,7 +88,7 @@ static int FieldSystem_Main (OverlayManager * overlayMan, int * param1)
     }
 }
 
-static int FieldSystem_Exit (OverlayManager * overlayMan, int * param1)
+static int FieldSystem_Exit(OverlayManager *overlayMan, int *param1)
 {
     sub_0203CE6C(overlayMan);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
@@ -110,7 +109,7 @@ const OverlayManagerTemplate gFieldSystemContinueTemplate = {
     0xffffffff
 };
 
-void sub_0203CD00 (FieldSystem * fieldSystem)
+void sub_0203CD00(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->unk_00->unk_04 == NULL);
     GF_ASSERT(fieldSystem->unk_00->unk_00 == NULL);
@@ -121,17 +120,17 @@ void sub_0203CD00 (FieldSystem * fieldSystem)
     fieldSystem->unk_00->unk_00 = OverlayManager_New(&gFieldMapTemplate, fieldSystem, 11);
 }
 
-void sub_0203CD44 (FieldSystem * fieldSystem)
+void sub_0203CD44(FieldSystem *fieldSystem)
 {
     fieldSystem->unk_68 = 0;
 }
 
-BOOL sub_0203CD4C (FieldSystem * fieldSystem)
+BOOL sub_0203CD4C(FieldSystem *fieldSystem)
 {
     return fieldSystem->unk_00->unk_00 != NULL;
 }
 
-BOOL sub_0203CD5C (FieldSystem * fieldSystem)
+BOOL sub_0203CD5C(FieldSystem *fieldSystem)
 {
     if ((fieldSystem->unk_00->unk_00 != NULL) && fieldSystem->unk_68) {
         return 1;
@@ -140,22 +139,22 @@ BOOL sub_0203CD5C (FieldSystem * fieldSystem)
     }
 }
 
-BOOL sub_0203CD74 (FieldSystem * fieldSystem)
+BOOL sub_0203CD74(FieldSystem *fieldSystem)
 {
     return fieldSystem->unk_00->unk_04 != NULL;
 }
 
-void sub_0203CD84 (FieldSystem * fieldSystem, const OverlayManagerTemplate * param1, void * param2)
+void sub_0203CD84(FieldSystem *fieldSystem, const OverlayManagerTemplate *param1, void *param2)
 {
     GF_ASSERT(fieldSystem->unk_00->unk_04 == NULL);
     sub_0203CD44(fieldSystem);
     fieldSystem->unk_00->unk_04 = OverlayManager_New(param1, param2, 11);
 }
 
-static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
+static FieldSystem *FieldSystem_Init(OverlayManager *overlayMan)
 {
-    UnkStruct_0203CC84 * v0;
-    FieldSystem * fieldSystem;
+    UnkStruct_0203CC84 *v0;
+    FieldSystem *fieldSystem;
 
     Heap_Create(3, 11, 0x1c000);
     Heap_Create(3, 32, 0x4000);
@@ -190,9 +189,9 @@ static FieldSystem * FieldSystem_Init (OverlayManager * overlayMan)
     return fieldSystem;
 }
 
-static void sub_0203CE6C (OverlayManager * overlayMan)
+static void sub_0203CE6C(OverlayManager *overlayMan)
 {
-    FieldSystem * fieldSystem = OverlayManager_Data(overlayMan);
+    FieldSystem *fieldSystem = OverlayManager_Data(overlayMan);
 
     sub_02039DE4(fieldSystem->unk_2C);
     MapHeaderData_Free(fieldSystem);
@@ -208,7 +207,7 @@ static void sub_0203CE6C (OverlayManager * overlayMan)
     Heap_Destroy(32);
 }
 
-static void sub_0203CECC (OverlayManager ** overlayMan)
+static void sub_0203CECC(OverlayManager **overlayMan)
 {
     if (*overlayMan) {
         if (OverlayManager_Exec(*overlayMan)) {
@@ -218,7 +217,7 @@ static void sub_0203CECC (OverlayManager ** overlayMan)
     }
 }
 
-BOOL FieldSystem_Run (FieldSystem * fieldSystem)
+BOOL FieldSystem_Run(FieldSystem *fieldSystem)
 {
     BOOL v0;
 
@@ -246,7 +245,7 @@ BOOL FieldSystem_Run (FieldSystem * fieldSystem)
     return 0;
 }
 
-void FieldSystem_Control (FieldSystem * fieldSystem)
+void FieldSystem_Control(FieldSystem *fieldSystem)
 {
     int v0;
     FieldInput v1;
@@ -272,7 +271,6 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
         if (v2) {
             if (sub_02058C40()) {
                 if (FieldInput_Process_Underground(&v1, fieldSystem) == 1) {
-                    
                 }
             }
         }
@@ -295,7 +293,7 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     case 2:
         if (v2) {
             if (FieldInput_Process_UnionRoom(&v1, fieldSystem) == 1) {
-                
+
             } else {
                 PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, v1.pressedKeys, v1.heldKeys, 0);
             }
@@ -355,19 +353,19 @@ void FieldSystem_Control (FieldSystem * fieldSystem)
     }
 }
 
-void sub_0203D128 (void)
+void sub_0203D128(void)
 {
     sFieldSystem->unk_00->unk_08 = 1;
     CommSys_DisableSendMovementData();
 }
 
-void sub_0203D140 (void)
+void sub_0203D140(void)
 {
     sFieldSystem->unk_00->unk_08 = 0;
     CommSys_EnableSendMovementData();
 }
 
-struct PoketchSystem * FieldSystem_GetPoketchSystem (void)
+struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
 {
     if (sFieldSystem->unk_04 == NULL) {
         return NULL;
@@ -376,13 +374,13 @@ struct PoketchSystem * FieldSystem_GetPoketchSystem (void)
     return sFieldSystem->unk_04->poketchSys;
 }
 
-BGL * sub_0203D170 (void * param0)
+BGL *sub_0203D170(void *param0)
 {
-    FieldSystem * v0 = (FieldSystem *)param0;
+    FieldSystem *v0 = (FieldSystem *)param0;
     return v0->unk_08;
 }
 
-SaveData * FieldSystem_SaveData (void * param0)
+SaveData *FieldSystem_SaveData(void *param0)
 {
     return ((FieldSystem *)param0)->saveData;
 }

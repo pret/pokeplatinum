@@ -14,9 +14,9 @@ typedef struct {
     s8 unk_C0[8];
     union {
         struct {
-            u8 unk_C8_val1_0    : 1;
-            u8 unk_C8_val1_1    : 1;
-            u8                  : 6;
+            u8 unk_C8_val1_0 : 1;
+            u8 unk_C8_val1_1 : 1;
+            u8 : 6;
         };
         u8 unk_C8_val2;
     };

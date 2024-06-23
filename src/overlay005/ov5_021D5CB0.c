@@ -1,13 +1,14 @@
+#include "overlay005/ov5_021D5CB0.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "narc.h"
 #include "heap.h"
+#include "narc.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201DD00.h"
-#include "overlay005/ov5_021D5CB0.h"
 
 typedef struct {
     char unk_00[16];
@@ -15,11 +16,11 @@ typedef struct {
 } UnkStruct_ov5_021D5DEC_sub1;
 
 typedef struct {
-    u8 * unk_00;
+    u8 *unk_00;
     int unk_04;
-    NNSG3dResTex * unk_08;
-    void * unk_0C;
-    UnkStruct_ov5_021D5DEC_sub1 * unk_10;
+    NNSG3dResTex *unk_08;
+    void *unk_0C;
+    UnkStruct_ov5_021D5DEC_sub1 *unk_10;
     u16 unk_14;
     u16 unk_16;
 } UnkStruct_ov5_021D5DEC;
@@ -30,17 +31,17 @@ typedef struct {
 } UnkStruct_ov5_021D5CE4;
 
 typedef struct UnkStruct_ov5_021D5CB0_t {
-    void * unk_00;
-    UnkStruct_ov5_021D5CE4 * unk_04;
+    void *unk_00;
+    UnkStruct_ov5_021D5CE4 *unk_04;
     UnkStruct_ov5_021D5DEC unk_08[16];
 } UnkStruct_ov5_021D5CB0;
 
-static int ov5_021D5D30(UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1, int param2, NARC * param3);
+static int ov5_021D5D30(UnkStruct_ov5_021D5CB0 *param0, NNSG3dResTex *param1, int param2, NARC *param3);
 
-UnkStruct_ov5_021D5CB0 * ov5_021D5CB0 (void)
+UnkStruct_ov5_021D5CB0 *ov5_021D5CB0(void)
 {
     int v0;
-    UnkStruct_ov5_021D5CB0 * v1 = NULL;
+    UnkStruct_ov5_021D5CB0 *v1 = NULL;
 
     v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021D5CB0));
 
@@ -58,10 +59,10 @@ UnkStruct_ov5_021D5CB0 * ov5_021D5CB0 (void)
     return v1;
 }
 
-int ov5_021D5CE4 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1)
+int ov5_021D5CE4(UnkStruct_ov5_021D5CB0 *param0, NNSG3dResTex *param1)
 {
     int v0, v1 = 0;
-    NARC * v2;
+    NARC *v2;
 
     v2 = NARC_ctor(NARC_INDEX_DATA__FLDTANIME, 4);
 
@@ -79,7 +80,7 @@ int ov5_021D5CE4 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1)
     return v1;
 }
 
-static int ov5_021D5D30 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1, int param2, NARC * param3)
+static int ov5_021D5D30(UnkStruct_ov5_021D5CB0 *param0, NNSG3dResTex *param1, int param2, NARC *param3)
 {
     int v0, v1;
     char v2[40];
@@ -113,7 +114,7 @@ static int ov5_021D5D30 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1,
     return v0;
 }
 
-void ov5_021D5DEC (UnkStruct_ov5_021D5CB0 * param0)
+void ov5_021D5DEC(UnkStruct_ov5_021D5CB0 *param0)
 {
     int v0;
 
@@ -122,7 +123,7 @@ void ov5_021D5DEC (UnkStruct_ov5_021D5CB0 * param0)
     }
 
     for (v0 = 0; v0 < 16; v0++) {
-        UnkStruct_ov5_021D5DEC * v1 = &param0->unk_08[v0];
+        UnkStruct_ov5_021D5DEC *v1 = &param0->unk_08[v0];
 
         if (v1->unk_0C == NULL) {
             continue;
@@ -147,7 +148,7 @@ void ov5_021D5DEC (UnkStruct_ov5_021D5CB0 * param0)
     }
 }
 
-void ov5_021D5E5C (UnkStruct_ov5_021D5CB0 * param0, int param1)
+void ov5_021D5E5C(UnkStruct_ov5_021D5CB0 *param0, int param1)
 {
     if (param0 == NULL) {
         return;
@@ -165,7 +166,7 @@ void ov5_021D5E5C (UnkStruct_ov5_021D5CB0 * param0, int param1)
     param0->unk_08[param1].unk_16 = 0;
 }
 
-void ov5_021D5E8C (UnkStruct_ov5_021D5CB0 * param0)
+void ov5_021D5E8C(UnkStruct_ov5_021D5CB0 *param0)
 {
     int v0;
 
@@ -180,7 +181,7 @@ void ov5_021D5E8C (UnkStruct_ov5_021D5CB0 * param0)
     Heap_FreeToHeap(param0->unk_00);
 }
 
-void ov5_021D5EAC (UnkStruct_ov5_021D5CB0 * param0)
+void ov5_021D5EAC(UnkStruct_ov5_021D5CB0 *param0)
 {
     if (param0 != NULL) {
         Heap_FreeToHeap(param0);

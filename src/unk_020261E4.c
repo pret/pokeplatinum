@@ -1,14 +1,12 @@
+#include "unk_020261E4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "savedata.h"
-
 #include "struct_defs/struct_0202818C.h"
-#include "pokemon.h"
 
-#include "savedata.h"
-#include "unk_020261E4.h"
 #include "pokemon.h"
+#include "savedata.h"
 
 typedef struct UnkStruct_02026224_t {
     UnkStruct_0202818C unk_00;
@@ -30,12 +28,12 @@ typedef struct UnkStruct_02026310_t {
     u8 unk_DC;
 } UnkStruct_02026310;
 
-int Daycare_SaveSize (void)
+int Daycare_SaveSize(void)
 {
     return sizeof(UnkStruct_02026310);
 }
 
-void Daycare_Init (UnkStruct_02026310 * param0)
+void Daycare_Init(UnkStruct_02026310 *param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026310));
 
@@ -46,32 +44,32 @@ void Daycare_Init (UnkStruct_02026310 * param0)
     param0->unk_DC = 0;
 }
 
-UnkStruct_02026218 * sub_02026218 (UnkStruct_02026310 * param0, int param1)
+UnkStruct_02026218 *sub_02026218(UnkStruct_02026310 *param0, int param1)
 {
     return &(param0->unk_00[param1]);
 }
 
-BoxPokemon * sub_02026220 (UnkStruct_02026218 * param0)
+BoxPokemon *sub_02026220(UnkStruct_02026218 *param0)
 {
     return &(param0->unk_00);
 }
 
-UnkStruct_02026224 * sub_02026224 (UnkStruct_02026218 * param0)
+UnkStruct_02026224 *sub_02026224(UnkStruct_02026218 *param0)
 {
     return &(param0->unk_08);
 }
 
-u32 sub_02026228 (const UnkStruct_02026218 * param0)
+u32 sub_02026228(const UnkStruct_02026218 *param0)
 {
     return param0->unk_68;
 }
 
-UnkStruct_0202818C * sub_02026230 (UnkStruct_02026224 * param0)
+UnkStruct_0202818C *sub_02026230(UnkStruct_02026224 *param0)
 {
     return &(param0->unk_00);
 }
 
-int sub_02026234 (const UnkStruct_02026310 * param0)
+int sub_02026234(const UnkStruct_02026310 *param0)
 {
     if (param0->unk_D8 != 0) {
         return 1;
@@ -80,37 +78,37 @@ int sub_02026234 (const UnkStruct_02026310 * param0)
     return 0;
 }
 
-int sub_02026248 (const UnkStruct_02026310 * param0)
+int sub_02026248(const UnkStruct_02026310 *param0)
 {
     return param0->unk_D8;
 }
 
-int sub_02026250 (const UnkStruct_02026310 * param0)
+int sub_02026250(const UnkStruct_02026310 *param0)
 {
     return param0->unk_DC;
 }
 
-void sub_02026258 (UnkStruct_02026218 * param0, int param1)
+void sub_02026258(UnkStruct_02026218 *param0, int param1)
 {
     param0->unk_68 = param1;
 }
 
-void sub_02026260 (UnkStruct_02026218 * param0, int param1)
+void sub_02026260(UnkStruct_02026218 *param0, int param1)
 {
     param0->unk_68 += param1;
 }
 
-void sub_02026270 (UnkStruct_02026310 * param0, int param1)
+void sub_02026270(UnkStruct_02026310 *param0, int param1)
 {
     param0->unk_D8 = param1;
 }
 
-void sub_02026278 (UnkStruct_02026310 * param0, int param1)
+void sub_02026278(UnkStruct_02026310 *param0, int param1)
 {
     param0->unk_DC = param1;
 }
 
-BOOL sub_02026280 (UnkStruct_02026310 * param0)
+BOOL sub_02026280(UnkStruct_02026310 *param0)
 {
     int v0, v1;
 
@@ -124,12 +122,12 @@ BOOL sub_02026280 (UnkStruct_02026310 * param0)
     return 0;
 }
 
-void sub_020262A8 (UnkStruct_02026218 * param0, const UnkStruct_02026218 * param1)
+void sub_020262A8(UnkStruct_02026218 *param0, const UnkStruct_02026218 *param1)
 {
     *param0 = *param1;
 }
 
-void sub_020262C0 (UnkStruct_02026224 * param0)
+void sub_020262C0(UnkStruct_02026224 *param0)
 {
     int v0;
 
@@ -145,16 +143,16 @@ void sub_020262C0 (UnkStruct_02026224 * param0)
     param0->unk_48[0] = 0xffff;
 }
 
-void sub_020262F4 (UnkStruct_02026218 * param0)
+void sub_020262F4(UnkStruct_02026218 *param0)
 {
     BoxPokemon_Init(&param0->unk_00);
     param0->unk_68 = 0;
     sub_020262C0(&param0->unk_08);
 }
 
-UnkStruct_02026310 * sub_02026310 (SaveData * param0)
+UnkStruct_02026310 *sub_02026310(SaveData *param0)
 {
-    UnkStruct_02026310 * v0;
+    UnkStruct_02026310 *v0;
 
     v0 = SaveData_SaveTable(param0, 8);
     return v0;

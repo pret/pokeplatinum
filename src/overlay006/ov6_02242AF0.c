@@ -1,30 +1,31 @@
+#include "overlay006/ov6_02242AF0.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "field/field_system.h"
-#include "overlay006/struct_ov6_02242AF0.h"
-
-#include "unk_02005474.h"
-#include "heap.h"
-#include "savedata_misc.h"
-#include "unk_02027F50.h"
-#include "field_system.h"
-#include "unk_020508D4.h"
-#include "player_avatar.h"
-#include "unk_020655F4.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
-#include "overlay006/ov6_02242AF0.h"
+#include "overlay005/struct_ov5_021E1890_decl.h"
+#include "overlay006/struct_ov6_02242AF0.h"
+
+#include "field_system.h"
+#include "heap.h"
+#include "player_avatar.h"
+#include "savedata_misc.h"
+#include "unk_02005474.h"
+#include "unk_02027F50.h"
+#include "unk_020508D4.h"
+#include "unk_020655F4.h"
 
 typedef struct UnkStruct_ov6_02242B58_t UnkStruct_ov6_02242B58;
 
-typedef BOOL (* UnkFuncPtr_ov6_02242B58)(FieldSystem *, UnkStruct_ov6_02242B58 *, const fx32 *, VecFx32 *);
+typedef BOOL (*UnkFuncPtr_ov6_02242B58)(FieldSystem *, UnkStruct_ov6_02242B58 *, const fx32 *, VecFx32 *);
 
 typedef struct UnkStruct_ov6_02242B58_t {
     UnkFuncPtr_ov6_02242B58 unk_00;
@@ -37,9 +38,9 @@ typedef struct UnkStruct_ov6_02242B58_t {
     int unk_10;
 } UnkStruct_ov6_02242B58;
 
-static BOOL ov6_02242C5C(TaskManager * taskMan);
-static BOOL ov6_02242D94(FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3);
-static BOOL ov6_02242E60(FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3);
+static BOOL ov6_02242C5C(TaskManager *taskMan);
+static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3);
+static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3);
 
 static const int Unk_ov6_02249058[7] = {
     0x4,
@@ -81,17 +82,17 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE / 2
 };
 
-void ov6_02242AF0 (FieldSystem * fieldSystem)
+void ov6_02242AF0(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_ov6_02242AF0 * v1;
+    UnkStruct_02027860 *v0;
+    UnkStruct_ov6_02242AF0 *v1;
     VecFx32 v2;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
 
     v2.x = ((FX32_ONE * 16) * (32 * 2 + 2));
-    v2.y = ((FX32_ONE * 16));
+    v2.y = (FX32_ONE * 16);
 
     switch (v1->unk_00) {
     case 0:
@@ -108,11 +109,11 @@ void ov6_02242AF0 (FieldSystem * fieldSystem)
     ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 475, &v2, NULL, fieldSystem->unk_50);
 }
 
-void ov6_02242B58 (FieldSystem * fieldSystem, const u16 param1, const u16 param2)
+void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_ov6_02242AF0 * v1;
-    UnkStruct_ov6_02242B58 * v2;
+    UnkStruct_02027860 *v0;
+    UnkStruct_ov6_02242AF0 *v1;
+    UnkStruct_ov6_02242B58 *v2;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
@@ -129,11 +130,11 @@ void ov6_02242B58 (FieldSystem * fieldSystem, const u16 param1, const u16 param2
         if (param1 == 1) {
             v2->unk_0C = ((FX32_ONE * 16) * (32 * 2 + 18));
             v1->unk_00 = 1;
-            v2->unk_10 = ((32 * 2 + 10));
+            v2->unk_10 = (32 * 2 + 10);
         } else {
             v2->unk_0C = ((FX32_ONE * 16) * (32 * 3 + 12));
             v1->unk_00 = 2;
-            v2->unk_10 = ((32 * 3 + 4));
+            v2->unk_10 = (32 * 3 + 4);
         }
         break;
     case 1:
@@ -141,12 +142,12 @@ void ov6_02242B58 (FieldSystem * fieldSystem, const u16 param1, const u16 param2
             v2->unk_04 = 0;
             v2->unk_0C = ((FX32_ONE * 16) * (32 * 1 + 8));
             v1->unk_00 = 0;
-            v2->unk_10 = ((32 * 1 + 14));
+            v2->unk_10 = (32 * 1 + 14);
         } else {
             v2->unk_04 = 1;
             v2->unk_0C = ((FX32_ONE * 16) * (32 * 3 + 12));
             v1->unk_00 = 2;
-            v2->unk_10 = ((32 * 3 + 4));
+            v2->unk_10 = (32 * 3 + 4);
         }
         break;
     case 2:
@@ -155,11 +156,11 @@ void ov6_02242B58 (FieldSystem * fieldSystem, const u16 param1, const u16 param2
         if (param1 == 0) {
             v2->unk_0C = ((FX32_ONE * 16) * (32 * 1 + 8));
             v1->unk_00 = 0;
-            v2->unk_10 = ((32 * 1 + 14));
+            v2->unk_10 = (32 * 1 + 14);
         } else {
             v2->unk_0C = ((FX32_ONE * 16) * (32 * 2 + 18));
             v1->unk_00 = 1;
-            v2->unk_10 = ((32 * 2 + 24));
+            v2->unk_10 = (32 * 2 + 24);
         }
         break;
     default:
@@ -178,10 +179,10 @@ void ov6_02242B58 (FieldSystem * fieldSystem, const u16 param1, const u16 param2
     FieldTask_Start(fieldSystem->unk_10, ov6_02242C5C, v2);
 }
 
-u32 ov6_02242C3C (FieldSystem * fieldSystem, const u16 param1)
+u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
 {
-    UnkStruct_02027860 * v0;
-    UnkStruct_ov6_02242AF0 * v1;
+    UnkStruct_02027860 *v0;
+    UnkStruct_ov6_02242AF0 *v1;
 
     v0 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
@@ -193,19 +194,19 @@ u32 ov6_02242C3C (FieldSystem * fieldSystem, const u16 param1)
     }
 }
 
-static BOOL ov6_02242C5C (TaskManager * taskMan)
+static BOOL ov6_02242C5C(TaskManager *taskMan)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_ov6_02242B58 * v1 = TaskManager_Environment(taskMan);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_ov6_02242B58 *v1 = TaskManager_Environment(taskMan);
 
     switch (v1->unk_05) {
     case 0:
 
     {
-        NNSG3dResMdl * v2;
-        NNSG3dResFileHeader ** v3;
-        UnkStruct_ov5_021E1890 * v4;
-        NNSG3dRenderObj * v5;
+        NNSG3dResMdl *v2;
+        NNSG3dResFileHeader **v3;
+        UnkStruct_ov5_021E1890 *v4;
+        NNSG3dRenderObj *v5;
 
         v4 = ov5_021E18CC(fieldSystem->unk_A4, 475);
         v5 = ov5_021E18BC(v4);
@@ -231,7 +232,7 @@ static BOOL ov6_02242C5C (TaskManager * taskMan)
     case 3:
 
     {
-        UnkStruct_ov5_021E1890 * v6;
+        UnkStruct_ov5_021E1890 *v6;
         VecFx32 v7;
 
         v6 = ov5_021E18CC(fieldSystem->unk_A4, 475);
@@ -242,8 +243,7 @@ static BOOL ov6_02242C5C (TaskManager * taskMan)
         }
 
         ov5_021E18A4(v6, &v7);
-    }
-    break;
+    } break;
     case 4:
         ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 16);
         (v1->unk_05)++;
@@ -256,7 +256,7 @@ static BOOL ov6_02242C5C (TaskManager * taskMan)
     return 0;
 }
 
-static BOOL ov6_02242D94 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
+static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3)
 {
     if (param1->unk_04 == 0) {
         param3->z -= Unk_ov6_02249074[param1->unk_06];
@@ -293,9 +293,9 @@ static BOOL ov6_02242D94 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * pa
     }
 }
 
-static BOOL ov6_02242E60 (FieldSystem * fieldSystem, UnkStruct_ov6_02242B58 * param1, const fx32 * param2, VecFx32 * param3)
+static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3)
 {
-    MapObject * v0;
+    MapObject *v0;
     VecFx32 v1;
 
     v0 = Player_MapObject(fieldSystem->playerAvatar);

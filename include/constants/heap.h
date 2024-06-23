@@ -21,8 +21,7 @@ enum HeapId {
     HEAP_ID_LIBRARY_TV = 120,
 };
 
-enum HeapSize
-{
+enum HeapSize {
     HEAP_SIZE_POKETCH_MAIN = 0xc000,
     HEAP_SIZE_POKETCH_APP = 0xc000,
 

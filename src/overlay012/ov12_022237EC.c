@@ -1,3 +1,5 @@
+#include "overlay012/ov12_022237EC.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -5,17 +7,15 @@
 #include "struct_decls/struct_02014014_decl.h"
 
 #include "functypes/funcptr_020146F4.h"
-
-#include "spl.h"
-
-#include "narc.h"
-#include "unk_02014000.h"
 #include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_022237EC.h"
 #include "overlay012/ov12_0222389C.h"
 #include "overlay012/ov12_0222421C.h"
 
-static void ov12_022237EC(UnkSPLStruct6 * param0);
+#include "narc.h"
+#include "spl.h"
+#include "unk_02014000.h"
+
+static void ov12_022237EC(UnkSPLStruct6 *param0);
 
 static const UnkFuncPtr_020146F4 Unk_ov12_02238DB0[] = {
     ov12_022237EC,
@@ -43,15 +43,15 @@ static const UnkFuncPtr_020146F4 Unk_ov12_02238DB0[] = {
     ov12_022238DC
 };
 
-static void ov12_022237EC (UnkSPLStruct6 * param0)
+static void ov12_022237EC(UnkSPLStruct6 *param0)
 {
     return;
 }
 
-UnkStruct_02014014 * ov12_022237F0 (int param0, int param1, int param2)
+UnkStruct_02014014 *ov12_022237F0(int param0, int param1, int param2)
 {
-    UnkStruct_02014014 * v0;
-    void * v1;
+    UnkStruct_02014014 *v0;
+    void *v1;
 
     v0 = ov11_0221F840(param0);
     v1 = sub_020144C4(29, param1, param0);
@@ -60,10 +60,10 @@ UnkStruct_02014014 * ov12_022237F0 (int param0, int param1, int param2)
     return v0;
 }
 
-UnkStruct_02014014 * ov12_02223818 (int param0, int param1, int param2, int param3)
+UnkStruct_02014014 *ov12_02223818(int param0, int param1, int param2, int param3)
 {
-    UnkStruct_02014014 * v0;
-    void * v1;
+    UnkStruct_02014014 *v0;
+    void *v1;
 
     v0 = ov11_0221F840(param0);
     v1 = sub_020144C4(param1, param2, param0);
@@ -72,15 +72,15 @@ UnkStruct_02014014 * ov12_02223818 (int param0, int param1, int param2, int para
     return v0;
 }
 
-void * ov12_02223844 (NARC * param0, int param1, int param2)
+void *ov12_02223844(NARC *param0, int param1, int param2)
 {
     return NARC_AllocAndReadWholeMember(param0, param1, param2);
 }
 
-UnkStruct_02014014 * ov12_0222384C (NARC * param0, int param1, int param2, int param3)
+UnkStruct_02014014 *ov12_0222384C(NARC *param0, int param1, int param2, int param3)
 {
-    UnkStruct_02014014 * v0;
-    void * v1;
+    UnkStruct_02014014 *v0;
+    void *v1;
 
     v0 = ov11_0221F888(param1);
 
@@ -94,12 +94,12 @@ UnkStruct_02014014 * ov12_0222384C (NARC * param0, int param1, int param2, int p
     return v0;
 }
 
-UnkSPLStruct6 * ov12_02223880 (UnkStruct_02014014 * param0, int param1, int param2, void * param3)
+UnkSPLStruct6 *ov12_02223880(UnkStruct_02014014 *param0, int param1, int param2, void *param3)
 {
     return sub_020146F4(param0, param1, Unk_ov12_02238DB0[param2], param3);
 }
 
-void ov12_02223894 (UnkStruct_02014014 * param0)
+void ov12_02223894(UnkStruct_02014014 *param0)
 {
     ov11_0221F8D8(param0);
 }

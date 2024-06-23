@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV65_02236318_H
 #define POKEPLATINUM_STRUCT_OV65_02236318_H
 
-
 #include <nnsys.h>
 
 typedef struct {
-    void * unk_00;
-    NNSG2dPaletteData * unk_04;
+    void *unk_00;
+    NNSG2dPaletteData *unk_04;
     u8 unk_08;
     u8 unk_09;
     s16 unk_0A;

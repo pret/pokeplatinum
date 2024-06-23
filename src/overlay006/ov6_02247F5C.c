@@ -1,22 +1,23 @@
+#include "overlay006/ov6_02247F5C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "overlay005/struct_ov5_021D3CE4_decl.h"
 
 #include "field/field_system.h"
+#include "overlay005/ov5_021D37AC.h"
+#include "overlay005/struct_ov5_021D3CE4_decl.h"
 
-#include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_0206A8DC.h"
-#include "overlay005/ov5_021D37AC.h"
-#include "overlay006/ov6_02247F5C.h"
+#include "vars_flags.h"
 
-static BOOL ov6_02247FD0(TaskManager * param0);
+static BOOL ov6_02247FD0(TaskManager *param0);
 
-void ov6_02247F5C (FieldSystem * fieldSystem)
+void ov6_02247F5C(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021D3CE4 * v0;
+    UnkStruct_ov5_021D3CE4 *v0;
 
     if (!sub_0206ADEC(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         v0 = ov5_021D3DE4(496, 1, fieldSystem->unk_50);
@@ -32,16 +33,16 @@ void ov6_02247F5C (FieldSystem * fieldSystem)
     }
 }
 
-void ov6_02247FBC (FieldSystem * fieldSystem)
+void ov6_02247FBC(FieldSystem *fieldSystem)
 {
     FieldTask_Start(fieldSystem->unk_10, ov6_02247FD0, NULL);
 }
 
-static BOOL ov6_02247FD0 (TaskManager * param0)
+static BOOL ov6_02247FD0(TaskManager *param0)
 {
-    int * v0;
-    UnkStruct_ov5_021D3CE4 * v1;
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
+    int *v0;
+    UnkStruct_ov5_021D3CE4 *v1;
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
 
     v0 = FieldTask_GetState(param0);
 

@@ -1,14 +1,15 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_022264F4_H
 #define POKEPLATINUM_STRUCT_OV13_022264F4_H
 
-#include "trainer_info.h"
 #include "struct_decls/battle_system.h"
+
 #include "bag.h"
+#include "trainer_info.h"
 
 typedef struct {
-    BattleSystem * unk_00;
-    TrainerInfo * unk_04;
-    Bag * unk_08;
+    BattleSystem *unk_00;
+    TrainerInfo *unk_04;
+    Bag *unk_08;
     u32 unk_0C;
     s32 unk_10;
     u32 unk_14;

@@ -2,11 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV104_0223B5C0_H
 
 #include "struct_decls/struct_02030114_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "savedata.h"
+
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
+
+#include "pokemon.h"
+#include "savedata.h"
 
 typedef struct {
     int unk_00;
@@ -22,16 +24,16 @@ typedef struct {
     u16 unk_18[20];
     UnkStruct_ov104_0223A348 unk_40[2];
     u8 unk_260[2];
-    Party * unk_264;
+    Party *unk_264;
     u16 unk_268[20];
     UnkStruct_ov104_0223A348_sub2 unk_290[20];
     u16 unk_6F0;
     u16 unk_6F2;
     u8 unk_6F4;
     u8 unk_6F5;
-    UnkStruct_02030114 * unk_6F8;
-    SaveData * unk_6FC;
-    void * unk_700;
+    UnkStruct_02030114 *unk_6F8;
+    SaveData *unk_6FC;
+    void *unk_700;
     u8 unk_704[4][9];
     u16 unk_728[2];
     u16 unk_72C[44];
@@ -39,7 +41,7 @@ typedef struct {
     u8 unk_984[2][512];
     u16 unk_D84[2];
     u8 unk_D88;
-    Pokemon * unk_D8C;
+    Pokemon *unk_D8C;
     u8 unk_D90;
     u32 unk_D94;
 } UnkStruct_ov104_0223B5C0;

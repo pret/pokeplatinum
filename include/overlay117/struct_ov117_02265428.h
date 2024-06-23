@@ -2,12 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV117_02265428_H
 
 #include "struct_decls/cell_actor_data.h"
+
 #include "overlay117/struct_ov117_02266344.h"
 
 typedef struct {
-    CellActorData * unk_00;
-    CellActorData * unk_04;
-    CellActorData * unk_08;
+    CellActorData *unk_00;
+    CellActorData *unk_04;
+    CellActorData *unk_08;
     fx32 unk_0C;
     u8 unk_10;
     u8 unk_11;

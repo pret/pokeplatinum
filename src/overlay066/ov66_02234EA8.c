@@ -1,29 +1,30 @@
+#include "overlay066/ov66_02234EA8.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 
+#include "overlay066/ov66_02231428.h"
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay069/struct_ov69_0225C980.h"
 #include "overlay092/struct_ov92_021D1530.h"
 
+#include "heap.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "heap.h"
 #include "unk_020996D0.h"
-#include "overlay066/ov66_02231428.h"
-#include "overlay066/ov66_02234EA8.h"
 
-static void ov66_02234F2C(NARC * param0, u32 param1, u16 param2, u8 param3, fx32 * param4);
+static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 *param4);
 
-UnkStruct_ov66_02231428 ov66_02234EA8 (u16 param0, u8 param1, UnkStruct_ov66_02231428 param2, u32 param3)
+UnkStruct_ov66_02231428 ov66_02234EA8(u16 param0, u8 param1, UnkStruct_ov66_02231428 param2, u32 param3)
 {
     fx32 v0;
     fx32 v1;
     u16 v2;
     s32 v3;
     UnkStruct_ov66_02231428 v4;
-    NARC * v5;
+    NARC *v5;
 
     v5 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, param3);
 
@@ -50,13 +51,13 @@ UnkStruct_ov66_02231428 ov66_02234EA8 (u16 param0, u8 param1, UnkStruct_ov66_022
     return v4;
 }
 
-static void ov66_02234F2C (NARC * param0, u32 param1, u16 param2, u8 param3, fx32 * param4)
+static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 *param4)
 {
     BOOL v0 = 0;
 
     {
-        void * v1;
-        UnkStruct_ov92_021D1530 * v2;
+        void *v1;
+        UnkStruct_ov92_021D1530 *v2;
         u32 v3;
         int v4;
 
@@ -75,8 +76,8 @@ static void ov66_02234F2C (NARC * param0, u32 param1, u16 param2, u8 param3, fx3
     }
 
     if (v0 == 0) {
-        void * v5;
-        UnkStruct_ov69_0225C980 * v6;
+        void *v5;
+        UnkStruct_ov69_0225C980 *v6;
         u32 v7, v8;
         int v9, v10;
 

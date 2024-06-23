@@ -4,15 +4,19 @@
 #include "constants/items.h"
 
 typedef struct HiddenItem {
-    u16 item;   //< Item given on pickup
-    u8 qty;     //< Quantity of the item given on pickup
-    u8 range;   //< Search range of the item
-    u16 pad;    //< Padding; unused
+    u16 item; //< Item given on pickup
+    u8 qty; //< Quantity of the item given on pickup
+    u8 range; //< Search range of the item
+    u16 pad; //< Padding; unused
     u16 script; //< Index of the script to invoke on pickup
 } HiddenItem;
 
-#define HIDDEN_ITEM_ENTRY(item_in, qty_in, range_in, script_in) { .item = item_in, .qty = qty_in, .range = range_in, .pad = 0, .script = script_in }
+#define HIDDEN_ITEM_ENTRY(item_in, qty_in, range_in, script_in)                          \
+    {                                                                                    \
+        .item = item_in, .qty = qty_in, .range = range_in, .pad = 0, .script = script_in \
+    }
 
+// clang-format off
 const HiddenItem gHiddenItems[] = {
 	HIDDEN_ITEM_ENTRY(ITEM_MAX_ELIXIR,   1, 2, 0),
     HIDDEN_ITEM_ENTRY(ITEM_INSECT_PLATE, 1, 0, 1),
@@ -272,5 +276,6 @@ const HiddenItem gHiddenItems[] = {
     HIDDEN_ITEM_ENTRY(ITEM_NUGGET,       1, 2, 282),
     HIDDEN_ITEM_ENTRY(ITEM_NUGGET,       1, 2, 283),
 };
+// clang-format on
 
 #endif

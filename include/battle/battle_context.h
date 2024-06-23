@@ -4,14 +4,14 @@
 #include "constants/battle.h"
 #include "constants/pokemon.h"
 
-#include "battle/ai_context.h"
-#include "battle/battle_message.h"
-#include "battle/battle_mon.h"
-
+#include "struct_decls/battle_system.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/font_oam.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_decls/battle_system.h"
+
+#include "battle/ai_context.h"
+#include "battle/battle_message.h"
+#include "battle/battle_mon.h"
 #include "overlay012/struct_ball_rotation_decl.h"
 
 typedef struct BattleContext BattleContext;
@@ -161,7 +161,7 @@ struct BattleContext {
     int sideEffectFlags;
     int sideEffectMon;
     int lastBattlerId;
-    
+
     int gainedExp;
     int sharedExp;
     u32 sideGetExpMask[2];
@@ -197,13 +197,13 @@ struct BattleContext {
 
     BattleScriptTaskData *taskData;
     void *tmpData;
-    
+
     u32 fieldConditionsMask;
     FieldConditions fieldConditions;
 
     u32 sideConditionsMask[NUM_BATTLE_SIDES];
     SideConditions sideConditions[NUM_BATTLE_SIDES];
-    
+
     TurnFlags turnFlags[MAX_BATTLERS];
     SelfTurnFlags selfTurnFlags[MAX_BATTLERS];
     MoveFailFlags moveFailFlags[MAX_BATTLERS];
@@ -214,7 +214,7 @@ struct BattleContext {
 
     u32 battleStatusMask;
     u32 battleStatusMask2;
-    
+
     int damage;
     int hitDamage;
     int criticalBoosts;
@@ -243,12 +243,12 @@ struct BattleContext {
     u8 selectedPartySlot[MAX_BATTLERS];
     u8 switchedPartySlot[MAX_BATTLERS];
     u8 aiSwitchedPartySlot[MAX_BATTLERS];
-    
+
     u32 battlerActions[MAX_BATTLERS][MAX_BATTLE_ACTIONS];
     u8 battlerActionOrder[MAX_BATTLERS];
     u8 monSpeedOrder[MAX_BATTLERS];
     u32 monSpeedValues[MAX_BATTLERS];
-    
+
     u8 ioQueue[MAX_LINK_BATTLERS][MAX_BATTLERS][BATTLE_IO_QUEUE_SIZE];
     u8 ioBuffer[MAX_BATTLERS][BATTLE_IO_BUFFER_SIZE];
     int battleScript[BATTLE_SCRIPT_SIZE_MAX];
@@ -282,7 +282,7 @@ struct BattleContext {
     u16 padding310A;
 
     u16 speedRand[MAX_BATTLERS];
-    
+
     int flingTemp;
     int flingScript;
 

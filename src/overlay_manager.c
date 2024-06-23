@@ -1,15 +1,16 @@
+#include "overlay_manager.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "heap.h"
 #include "game_overlay.h"
-#include "overlay_manager.h"
+#include "heap.h"
 
-OverlayManager* OverlayManager_New(const OverlayManagerTemplate *template, void *args, const enum HeapId heapID)
+OverlayManager *OverlayManager_New(const OverlayManagerTemplate *template, void *args, const enum HeapId heapID)
 {
     OverlayManager *ovyManager = Heap_AllocFromHeap(heapID, sizeof(OverlayManager));
 
-    ovyManager->template= *template;
+    ovyManager->template = *template;
     ovyManager->execState = 0;
     ovyManager->procState = 0;
     ovyManager->args = args;
@@ -25,13 +26,13 @@ void OverlayManager_Free(OverlayManager *ovyManager)
     Heap_FreeToHeap(ovyManager);
 }
 
-void* OverlayManager_NewData(OverlayManager *ovyManager, u32 size, enum HeapId heapID)
+void *OverlayManager_NewData(OverlayManager *ovyManager, u32 size, enum HeapId heapID)
 {
     ovyManager->data = Heap_AllocFromHeap(heapID, size);
     return ovyManager->data;
 }
 
-void* OverlayManager_Data(OverlayManager *ovyManager)
+void *OverlayManager_Data(OverlayManager *ovyManager)
 {
     return ovyManager->data;
 }
@@ -42,7 +43,7 @@ void OverlayManager_FreeData(OverlayManager *ovyManager)
     ovyManager->data = NULL;
 }
 
-void* OverlayManager_Args(OverlayManager *ovyManager)
+void *OverlayManager_Args(OverlayManager *ovyManager)
 {
     return ovyManager->args;
 }

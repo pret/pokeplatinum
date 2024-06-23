@@ -1,17 +1,18 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225F764_H
 #define POKEPLATINUM_STRUCT_OV16_0225F764_H
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/battle_system.h"
-#include "overlay012/struct_ball_rotation_decl.h"
+#include "struct_decls/sprite_decl.h"
+
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
+#include "overlay012/struct_ball_rotation_decl.h"
 
 typedef struct {
-    BattleSystem * unk_00;
-    BattlerData * unk_04;
-    Sprite * unk_08;
-    BallRotation * unk_0C;
+    BattleSystem *unk_00;
+    BattlerData *unk_04;
+    Sprite *unk_08;
+    BallRotation *unk_0C;
     UnkStruct_ov16_02265BBC unk_10;
     u8 unk_68;
     u8 unk_69;

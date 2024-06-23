@@ -17,7 +17,7 @@ typedef struct {
     u16 unk_14_9 : 1;
     u16 unk_14_10 : 1;
     u16 unk_14_11 : 1;
-    u16  : 4;
+    u16 : 4;
 } UnkStruct_ov97_0223635C;
 
 #endif // POKEPLATINUM_STRUCT_OV97_0223635C_H

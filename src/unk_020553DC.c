@@ -1,23 +1,24 @@
+#include "unk_020553DC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 
-#include "unk_020041CC.h"
-#include "unk_02005474.h"
-#include "rtc.h"
-#include "map_header.h"
+#include "field/field_system.h"
+
 #include "field_overworld_state.h"
-#include "vars_flags.h"
-#include "unk_020553DC.h"
+#include "map_header.h"
 #include "player_avatar.h"
 #include "pokeradar.h"
-#include "unk_0206A8DC.h"
+#include "rtc.h"
 #include "trainer_data.h"
+#include "unk_020041CC.h"
+#include "unk_02005474.h"
+#include "unk_0206A8DC.h"
+#include "vars_flags.h"
 
 const static u16 Unk_020EC3E0[][2] = {
     { 0x7, 0x450 },
@@ -101,16 +102,15 @@ const static u16 Unk_020EC3E0[][2] = {
     { 0x62, 0x458 }
 };
 
-
 void sub_020553DC(void);
-u16 sub_02055428(FieldSystem * fieldSystem, int param1);
-u16 sub_020554A4(FieldSystem * fieldSystem, int param1);
-static u16 sub_020554E8(FieldSystem * fieldSystem, int param1);
-BOOL sub_02055554(FieldSystem * fieldSystem, u16 param1, int param2);
-static void sub_020555CC(FieldSystem * fieldSystem, int param1, int * param2, int * param3);
+u16 sub_02055428(FieldSystem *fieldSystem, int param1);
+u16 sub_020554A4(FieldSystem *fieldSystem, int param1);
+static u16 sub_020554E8(FieldSystem *fieldSystem, int param1);
+BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2);
+static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int *param3);
 u16 sub_0205560C(int param0);
 
-void sub_020553DC ()
+void sub_020553DC()
 {
     sub_0200569C();
     sub_02004A3C();
@@ -119,31 +119,31 @@ void sub_020553DC ()
     return;
 }
 
-void sub_020553F0 (FieldSystem * fieldSystem, u16 param1)
+void sub_020553F0(FieldSystem *fieldSystem, u16 param1)
 {
-    u16 * v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *v0 = param1;
     return;
 }
 
-u16 sub_02055404 (FieldSystem * fieldSystem)
+u16 sub_02055404(FieldSystem *fieldSystem)
 {
-    u16 * v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     return *v0;
 }
 
-void Sound_ClearSpecialBGM (FieldSystem * fieldSystem)
+void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
 {
-    u16 * v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    u16 *v0 = sub_0203A748(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *v0 = 0;
     return;
 }
 
-u16 sub_02055428 (FieldSystem * fieldSystem, int param1)
+u16 sub_02055428(FieldSystem *fieldSystem, int param1)
 {
-    PlayerAvatar * playerAvatar;
+    PlayerAvatar *playerAvatar;
     int v1;
     u16 v2, v3;
 
@@ -181,7 +181,7 @@ u16 sub_02055428 (FieldSystem * fieldSystem, int param1)
     return v2;
 }
 
-u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
+u16 sub_020554A4(FieldSystem *fieldSystem, int param1)
 {
     u16 v0, v1;
 
@@ -206,11 +206,11 @@ u16 sub_020554A4 (FieldSystem * fieldSystem, int param1)
     return v0;
 }
 
-static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
+static u16 sub_020554E8(FieldSystem *fieldSystem, int param1)
 {
     int v0, v1;
-    FieldOverworldState * v2 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
-    Location * location = FieldOverworldState_GetPrevLocation(v2);
+    FieldOverworldState *v2 = SaveData_GetFieldOverworldState(fieldSystem->saveData);
+    Location *location = FieldOverworldState_GetPrevLocation(v2);
 
     v0 = Player_GetXPos(fieldSystem->playerAvatar);
     v1 = Player_GetZPos(fieldSystem->playerAvatar);
@@ -236,9 +236,9 @@ static u16 sub_020554E8 (FieldSystem * fieldSystem, int param1)
     return 0;
 }
 
-BOOL sub_02055554 (FieldSystem * fieldSystem, u16 param1, int param2)
+BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2)
 {
-    PlayerAvatar * playerAvatar;
+    PlayerAvatar *playerAvatar;
     int v1, v2, v3;
 
     playerAvatar = fieldSystem->playerAvatar;
@@ -264,7 +264,7 @@ BOOL sub_02055554 (FieldSystem * fieldSystem, u16 param1, int param2)
     return 1;
 }
 
-static void sub_020555CC (FieldSystem * fieldSystem, int param1, int * param2, int * param3)
+static void sub_020555CC(FieldSystem *fieldSystem, int param1, int *param2, int *param3)
 {
     switch (param1) {
     case 0:
@@ -288,7 +288,7 @@ static void sub_020555CC (FieldSystem * fieldSystem, int param1, int * param2, i
     return;
 }
 
-u16 sub_0205560C (int param0)
+u16 sub_0205560C(int param0)
 {
     u8 v0;
     u16 v1, v2;
@@ -306,7 +306,7 @@ u16 sub_0205560C (int param0)
     return v1;
 }
 
-void Sound_TryFadeInBGM (FieldSystem * fieldSystem, int param1)
+void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int param1)
 {
     if (sub_020041DC() == 1) {
         return;
@@ -319,7 +319,7 @@ void Sound_TryFadeInBGM (FieldSystem * fieldSystem, int param1)
     return;
 }
 
-void Sound_PlayMapBGM (FieldSystem * fieldSystem, int param1)
+void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
 {
     u16 v0;
 
@@ -337,7 +337,7 @@ void Sound_PlayMapBGM (FieldSystem * fieldSystem, int param1)
     return;
 }
 
-void sub_020556A0 (FieldSystem * fieldSystem, int param1)
+void sub_020556A0(FieldSystem *fieldSystem, int param1)
 {
     u16 v0;
 

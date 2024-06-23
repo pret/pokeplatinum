@@ -4,7 +4,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    SysTask * unk_00;
+    SysTask *unk_00;
     s16 unk_04;
     s16 unk_06;
     s8 unk_08;

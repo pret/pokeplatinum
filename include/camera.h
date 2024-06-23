@@ -1,15 +1,16 @@
 #ifndef POKEPLATINUM_CAMERA_H
 #define POKEPLATINUM_CAMERA_H
 
-#include "overlay115/camera_angle.h"
-#include "constants/heap.h"
-
 #include <nitro/fx/fx.h>
 
-#define CAMERA_DELAY_NONE   0
-#define CAMERA_DELAY_X      1
-#define CAMERA_DELAY_Y      2
-#define CAMERA_DELAY_Z      4
+#include "constants/heap.h"
+
+#include "overlay115/camera_angle.h"
+
+#define CAMERA_DELAY_NONE 0
+#define CAMERA_DELAY_X    1
+#define CAMERA_DELAY_Y    2
+#define CAMERA_DELAY_Z    4
 
 enum CameraProjection {
     CAMERA_PROJECTION_PERSPECTIVE = 0,
@@ -68,7 +69,7 @@ void Camera_SetAsActive(Camera *camera);
 void Camera_ClearActive(void);
 void Camera_ComputeViewMatrix(void);
 void Camera_ComputeViewMatrixWithRoll(void); // Calculates the view matrix with respect to the camera's Z rotation
-void Camera_SetUp (const VecFx32 *up, Camera *camera);
+void Camera_SetUp(const VecFx32 *up, Camera *camera);
 void Camera_TrackTarget(const VecFx32 *target, Camera *camera);
 void Camera_ReleaseTarget(Camera *camera);
 void Camera_SetClipping(const fx32 nearClip, const fx32 farClip, Camera *camera);

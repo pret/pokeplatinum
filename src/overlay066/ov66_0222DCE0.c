@@ -1,39 +1,39 @@
-#include <nitro.h>
-#include <string.h>
-#include <ppwlobby/ppw_lobby.h>
+#include "overlay066/ov66_0222DCE0.h"
 
-#include "sys_task_manager.h"
-#include "savedata.h"
+#include <nitro.h>
+#include <ppwlobby/ppw_lobby.h>
+#include <string.h>
+
+#include "overlay066/ov66_0222DDF0.h"
+#include "overlay066/ov66_02230C44.h"
+#include "overlay066/struct_ov66_0222DCE0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_02230C90_decl.h"
 
-#include "overlay066/struct_ov66_0222DCE0.h"
-
 #include "game_overlay.h"
-#include "overlay_manager.h"
-#include "sys_task.h"
-#include "unk_02017728.h"
 #include "heap.h"
+#include "overlay_manager.h"
+#include "savedata.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02017728.h"
 #include "unk_02099550.h"
-#include "overlay066/ov66_0222DCE0.h"
-#include "overlay066/ov66_0222DDF0.h"
-#include "overlay066/ov66_02230C44.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 
 typedef struct {
-    SaveData * unk_00;
-    UnkStruct_ov66_0222DFF8 * unk_04;
-    UnkStruct_ov66_02230C90 * unk_08;
-    SysTask * unk_0C;
+    SaveData *unk_00;
+    UnkStruct_ov66_0222DFF8 *unk_04;
+    UnkStruct_ov66_02230C90 *unk_08;
+    SysTask *unk_0C;
 } UnkStruct_ov66_0222DD90;
 
-static void ov66_0222DDDC(SysTask * param0, void * param1);
+static void ov66_0222DDDC(SysTask *param0, void *param1);
 
-int ov66_0222DCE0 (OverlayManager * param0, int * param1)
+int ov66_0222DCE0(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov66_0222DD90 * v0;
-    UnkStruct_ov66_0222DCE0 * v1;
+    UnkStruct_ov66_0222DD90 *v0;
+    UnkStruct_ov66_0222DCE0 *v1;
 
     {
         FS_EXTERN_OVERLAY(overlay63);
@@ -63,9 +63,9 @@ int ov66_0222DCE0 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov66_0222DD6C (OverlayManager * param0, int * param1)
+int ov66_0222DD6C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov66_0222DD90 * v0;
+    UnkStruct_ov66_0222DD90 *v0;
     int v1;
 
     v0 = OverlayManager_Data(param0);
@@ -80,9 +80,9 @@ int ov66_0222DD6C (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov66_0222DD90 (OverlayManager * param0, int * param1)
+int ov66_0222DD90(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov66_0222DD90 * v0;
+    UnkStruct_ov66_0222DD90 *v0;
 
     v0 = OverlayManager_Data(param0);
 
@@ -106,9 +106,9 @@ int ov66_0222DD90 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void ov66_0222DDDC (SysTask * param0, void * param1)
+static void ov66_0222DDDC(SysTask *param0, void *param1)
 {
-    UnkStruct_ov66_0222DD90 * v0;
+    UnkStruct_ov66_0222DD90 *v0;
 
     v0 = param1;
 

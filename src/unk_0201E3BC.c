@@ -1,10 +1,10 @@
-#include <nitro.h>
-#include <string.h>
-#include <nnsys.h>
-
 #include "unk_0201E3BC.h"
 
-u32 sub_0201E3BC (s32 param0, s32 param1, s32 param2, s32 param3)
+#include <nitro.h>
+#include <nnsys.h>
+#include <string.h>
+
+u32 sub_0201E3BC(s32 param0, s32 param1, s32 param2, s32 param3)
 {
     s32 v0, v1;
     u32 v2;

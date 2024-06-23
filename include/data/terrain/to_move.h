@@ -1,6 +1,7 @@
 #include "constants/battle/terrain.h"
 #include "constants/moves.h"
 
+// clang-format off
 static const u16 sTerrainMove[] = {
     [TERRAIN_PLAIN]       = MOVE_EARTHQUAKE,
     [TERRAIN_SAND]        = MOVE_EARTHQUAKE,
@@ -16,3 +17,4 @@ static const u16 sTerrainMove[] = {
     [TERRAIN_BRIDGE]      = MOVE_AIR_SLASH,
     [TERRAIN_SPECIAL]     = MOVE_TRI_ATTACK,
 };
+// clang-format on

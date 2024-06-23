@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV17_0224CD84_H
 
 typedef struct {
-    u16 * unk_00;
+    u16 *unk_00;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;

@@ -1,18 +1,19 @@
+#include "unk_02050548.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_02050224.h"
 
 #include "communication_system.h"
-#include "unk_02050548.h"
 
-void sub_02050548(int param0, int param1, void * param2, void * param3);
+void sub_02050548(int param0, int param1, void *param2, void *param3);
 
-void sub_02050548 (int param0, int param1, void * param2, void * param3)
+void sub_02050548(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_02050224 * v2 = param3;
-    const UnkStruct_02050224 * v3 = param2;
+    UnkStruct_02050224 *v2 = param3;
+    const UnkStruct_02050224 *v3 = param2;
 
     v1 = 0;
     v2->unk_01++;

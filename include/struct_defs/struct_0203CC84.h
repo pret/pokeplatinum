@@ -6,7 +6,7 @@
 typedef struct {
     int unk_00;
     BOOL unk_04;
-    SaveData * unk_08;
+    SaveData *unk_08;
 } UnkStruct_0203CC84;
 
 #endif // POKEPLATINUM_STRUCT_0203CC84_H

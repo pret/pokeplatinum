@@ -2,6 +2,7 @@
 #define POKEPLATINUM_STRUCT_0201D834_H
 
 #include "struct_defs/struct_0201D738.h"
+
 #include "functypes/funcptr_0201D834.h"
 
 typedef struct {
@@ -17,7 +18,7 @@ typedef struct {
     u8 unk_2C;
     u8 unk_2D;
     u16 unk_2E;
-    void * unk_30;
+    void *unk_30;
 } UnkStruct_0201D834;
 
 #endif // POKEPLATINUM_STRUCT_0201D834_H

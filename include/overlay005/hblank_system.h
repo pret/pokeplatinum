@@ -7,7 +7,7 @@
 
 typedef struct HBlankTask HBlankTask;
 
-typedef void (* HBlankCallback)(HBlankTask *task, void *param);
+typedef void (*HBlankCallback)(HBlankTask *task, void *param);
 
 struct HBlankTask {
     BOOL used;

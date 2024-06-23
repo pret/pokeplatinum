@@ -1,64 +1,64 @@
+#include "overlay012/ov12_022380BC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-
-#include "overlay012/const_ov12_0223B0B8.h"
-#include "overlay012/const_ov12_0223B0A0.h"
-#include "overlay012/const_ov12_0223B0DC.h"
-
 #include "struct_defs/archived_sprite.h"
+
+#include "overlay012/const_ov12_0223B0A0.h"
+#include "overlay012/const_ov12_0223B0B8.h"
+#include "overlay012/const_ov12_0223B0DC.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
 #include "narc.h"
+#include "pokemon.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
-#include "pokemon.h"
-#include "overlay012/ov12_022380BC.h"
 
-static void ov12_022380DC(UnkStruct_ov12_022380DC * param0, int param1, int param2, int param3);
+static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int param3);
 
 const s16 Unk_ov12_0223B0B8[][3] = {
-    {0x150, 0x70, 0xFFFFFFFFFFFFFE00},
-    {0xFFFFFFFFFFFFFFB0, 0x32, 0xFFFFFFFFFFFFFD80},
-    {0x13C, 0x70, 0xFFFFFFFFFFFFFE00},
-    {0xFFFFFFFFFFFFFFC4, 0x32, 0xFFFFFFFFFFFFFF9C},
-    {0x164, 0x78, 0x0},
-    {0xFFFFFFFFFFFFFF9C, 0x2A, 0xFFFFFFFFFFFFFD80}
+    { 0x150, 0x70, 0xFFFFFFFFFFFFFE00 },
+    { 0xFFFFFFFFFFFFFFB0, 0x32, 0xFFFFFFFFFFFFFD80 },
+    { 0x13C, 0x70, 0xFFFFFFFFFFFFFE00 },
+    { 0xFFFFFFFFFFFFFFC4, 0x32, 0xFFFFFFFFFFFFFF9C },
+    { 0x164, 0x78, 0x0 },
+    { 0xFFFFFFFFFFFFFF9C, 0x2A, 0xFFFFFFFFFFFFFD80 }
 };
 
 const s16 Unk_ov12_0223B0A0[][2] = {
-    {0x40, 0x20},
-    {0xC0, 0xE0},
-    {0x28, 0x20},
-    {0xD8, 0xE0},
-    {0x50, 0x20},
-    {0xB0, 0xE0}
+    { 0x40, 0x20 },
+    { 0xC0, 0xE0 },
+    { 0x28, 0x20 },
+    { 0xD8, 0xE0 },
+    { 0x50, 0x20 },
+    { 0xB0, 0xE0 }
 };
 
 const s16 Unk_ov12_0223B0DC[][3] = {
-    {0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00},
-    {0x150, 0x32, 0xFFFFFFFFFFFFFE00},
-    {0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00},
-    {0x150, 0x32, 0xFFFFFFFFFFFFFE00},
-    {0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00},
-    {0x150, 0x32, 0xFFFFFFFFFFFFFE00}
+    { 0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00 },
+    { 0x150, 0x32, 0xFFFFFFFFFFFFFE00 },
+    { 0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00 },
+    { 0x150, 0x32, 0xFFFFFFFFFFFFFE00 },
+    { 0xFFFFFFFFFFFFFFB0, 0x70, 0xFFFFFFFFFFFFFE00 },
+    { 0x150, 0x32, 0xFFFFFFFFFFFFFE00 }
 };
 
-void ov12_022380BC (UnkStruct_ov12_022380DC * param0, int param1)
+void ov12_022380BC(UnkStruct_ov12_022380DC *param0, int param1)
 {
     ov12_022380DC(param0, param0->unk_00, 0, param1);
 }
 
-void ov12_022380CC (UnkStruct_ov12_022380DC * param0, int param1)
+void ov12_022380CC(UnkStruct_ov12_022380DC *param0, int param1)
 {
     ov12_022380DC(param0, param0->unk_04, 1, param1);
 }
 
-static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int param2, int param3)
+static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int param3)
 {
     ArchivedSprite v0;
-    ArchivedSprite * v1;
+    ArchivedSprite *v1;
     int v2;
     int v3;
     int v4;
@@ -110,7 +110,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v8 + v11);
 
     if (v4 == 2) {
-        NARC * v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param3);
+        NARC *v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param3);
 
         PokeSprite_LoadYOffset(v13, &v9, v2);
         PokeSprite_LoadXOffsetShadow(v13, &v10, v2);
@@ -125,9 +125,9 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     }
 }
 
-void ov12_022382BC (UnkStruct_ov12_022380DC * param0, int param1)
+void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int param1)
 {
-    ArchivedSprite * v0;
+    ArchivedSprite *v0;
     int v1;
     int v2;
     int v3;
@@ -160,10 +160,10 @@ void ov12_022382BC (UnkStruct_ov12_022380DC * param0, int param1)
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v6);
 }
 
-void ov12_02238390 (UnkStruct_ov12_022380DC * param0, int param1)
+void ov12_02238390(UnkStruct_ov12_022380DC *param0, int param1)
 {
     ArchivedSprite v0;
-    ArchivedSprite * v1;
+    ArchivedSprite *v1;
     int v2;
     int v3;
     u8 v4;
@@ -208,7 +208,7 @@ void ov12_02238390 (UnkStruct_ov12_022380DC * param0, int param1)
     }
 }
 
-s16 ov12_022384CC (int param0, int param1)
+s16 ov12_022384CC(int param0, int param1)
 {
     if (param1 == 0) {
         return Unk_ov12_0223B0A0[param0][0];

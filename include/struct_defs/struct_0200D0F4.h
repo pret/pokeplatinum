@@ -1,14 +1,15 @@
 #ifndef POKEPLATINUM_STRUCT_0200D0F4_H
 #define POKEPLATINUM_STRUCT_0200D0F4_H
 
-#include "struct_defs/struct_02009508.h"
 #include "struct_decls/struct_02022550_decl.h"
+#include "struct_defs/struct_02009508.h"
+
 #include "overlay019/struct_ov19_021DA864.h"
 
 typedef struct CellActorData {
-    GraphicElementData * unk_00;
-    UnkStruct_ov19_021DA864 * unk_04;
-    UnkStruct_02009508 * unk_08;
+    GraphicElementData *unk_00;
+    UnkStruct_ov19_021DA864 *unk_04;
+    UnkStruct_02009508 *unk_08;
     int unk_0C;
 } CellActorData;
 

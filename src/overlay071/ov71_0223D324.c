@@ -1,17 +1,18 @@
+#include "overlay071/ov71_0223D324.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay071/struct_ov71_0223D324.h"
 
 #include "unk_020041CC.h"
-#include "overlay071/ov71_0223D324.h"
 
-static void ov71_0223D370(UnkStruct_ov71_0223D324 * param0);
-static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 * param0, const int param1, const u8 param2);
-static BOOL ov71_0223D3D8(UnkStruct_ov71_0223D324 * param0, const int param1, const u8 param2);
-static BOOL ov71_0223D410(UnkStruct_ov71_0223D324 * param0, const int param1, const u8 param2);
-static void ov71_0223D454(UnkStruct_ov71_0223D324 * param0);
-static void ov71_0223D42C(UnkStruct_ov71_0223D324 * param0, int param1, int param2, int param3);
+static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0);
+static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2);
+static BOOL ov71_0223D3D8(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2);
+static BOOL ov71_0223D410(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2);
+static void ov71_0223D454(UnkStruct_ov71_0223D324 *param0);
+static void ov71_0223D42C(UnkStruct_ov71_0223D324 *param0, int param1, int param2, int param3);
 static void ov71_0223D470(int param0, const int param1, const u8 param2);
 
 static const u16 Unk_ov71_0223D77C[8] = {
@@ -25,7 +26,7 @@ static const u16 Unk_ov71_0223D77C[8] = {
     0x300
 };
 
-void ov71_0223D324 (UnkStruct_ov71_0223D324 * param0)
+void ov71_0223D324(UnkStruct_ov71_0223D324 *param0)
 {
     int v0, v1;
 
@@ -37,7 +38,7 @@ void ov71_0223D324 (UnkStruct_ov71_0223D324 * param0)
     return;
 }
 
-void ov71_0223D338 (UnkStruct_ov71_0223D324 * param0, const int param1, const u8 param2)
+void ov71_0223D338(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
 {
     int v0;
 
@@ -58,13 +59,13 @@ void ov71_0223D338 (UnkStruct_ov71_0223D324 * param0, const int param1, const u8
     return;
 }
 
-static void ov71_0223D370 (UnkStruct_ov71_0223D324 * param0)
+static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_00[v0][1] != 0xff) {
-            if (sub_02004B04((3 + param0->unk_00[v0][0])) == 0) {
+            if (sub_02004B04(3 + param0->unk_00[v0][0]) == 0) {
                 param0->unk_00[v0][1] = 0xff;
             }
         }
@@ -74,7 +75,7 @@ static void ov71_0223D370 (UnkStruct_ov71_0223D324 * param0)
     return;
 }
 
-static BOOL ov71_0223D3A0 (UnkStruct_ov71_0223D324 * param0, const int param1, const u8 param2)
+static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
 {
     int v0;
 
@@ -89,7 +90,7 @@ static BOOL ov71_0223D3A0 (UnkStruct_ov71_0223D324 * param0, const int param1, c
     return 0;
 }
 
-static BOOL ov71_0223D3D8 (UnkStruct_ov71_0223D324 * param0, const int param1, const u8 param2)
+static BOOL ov71_0223D3D8(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
 {
     int v0, v1;
 
@@ -105,7 +106,7 @@ static BOOL ov71_0223D3D8 (UnkStruct_ov71_0223D324 * param0, const int param1, c
     return 0;
 }
 
-static BOOL ov71_0223D410 (UnkStruct_ov71_0223D324 * param0, const int param1, const u8 param2)
+static BOOL ov71_0223D410(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
 {
     int v0;
 
@@ -117,7 +118,7 @@ static BOOL ov71_0223D410 (UnkStruct_ov71_0223D324 * param0, const int param1, c
     return 1;
 }
 
-static void ov71_0223D42C (UnkStruct_ov71_0223D324 * param0, int param1, int param2, int param3)
+static void ov71_0223D42C(UnkStruct_ov71_0223D324 *param0, int param1, int param2, int param3)
 {
     int v0;
 
@@ -132,7 +133,7 @@ static void ov71_0223D42C (UnkStruct_ov71_0223D324 * param0, int param1, int par
     return;
 }
 
-static void ov71_0223D454 (UnkStruct_ov71_0223D324 * param0)
+static void ov71_0223D454(UnkStruct_ov71_0223D324 *param0)
 {
     int v0;
 
@@ -146,7 +147,7 @@ static void ov71_0223D454 (UnkStruct_ov71_0223D324 * param0)
     return;
 }
 
-static void ov71_0223D470 (int param0, const int param1, const u8 param2)
+static void ov71_0223D470(int param0, const int param1, const u8 param2)
 {
     int v0 = 152 * (4 - param2);
 

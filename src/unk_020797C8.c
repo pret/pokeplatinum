@@ -1,11 +1,12 @@
+#include "unk_020797C8.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "message.h"
-#include "strbuf.h"
-#include "savedata.h"
 #include "pokemon.h"
-#include "unk_020797C8.h"
+#include "savedata.h"
+#include "strbuf.h"
 
 typedef struct PCBoxes {
     u32 unk_00;
@@ -15,23 +16,23 @@ typedef struct PCBoxes {
     u8 unk_13C6;
 } PCBoxes;
 
-static void sub_020797DC(PCBoxes * param0);
+static void sub_020797DC(PCBoxes *param0);
 
-void PCBoxes_Init (PCBoxes * param0)
+void PCBoxes_Init(PCBoxes *param0)
 {
     sub_020797DC(param0);
     SaveData_SetFullSaveRequired();
 }
 
-u32 PCBoxes_SaveSize (void)
+u32 PCBoxes_SaveSize(void)
 {
     return sizeof(PCBoxes);
 }
 
-static void sub_020797DC (PCBoxes * param0)
+static void sub_020797DC(PCBoxes *param0)
 {
     u32 v0, v1;
-    MessageLoader * v2;
+    MessageLoader *v2;
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
@@ -61,7 +62,7 @@ static void sub_020797DC (PCBoxes * param0)
     param0->unk_00 = 0;
 }
 
-BOOL sub_02079868 (PCBoxes * param0, BoxPokemon * param1)
+BOOL sub_02079868(PCBoxes *param0, BoxPokemon *param1)
 {
     u32 v0;
 
@@ -83,7 +84,7 @@ BOOL sub_02079868 (PCBoxes * param0, BoxPokemon * param1)
     return 0;
 }
 
-BOOL sub_020798A0 (PCBoxes * param0, u32 param1, BoxPokemon * param2)
+BOOL sub_020798A0(PCBoxes *param0, u32 param1, BoxPokemon *param2)
 {
     u32 v0;
 
@@ -105,7 +106,7 @@ BOOL sub_020798A0 (PCBoxes * param0, u32 param1, BoxPokemon * param2)
     return 0;
 }
 
-BOOL sub_02079914 (PCBoxes * param0, u32 param1, u32 param2, BoxPokemon * param3)
+BOOL sub_02079914(PCBoxes *param0, u32 param1, u32 param2, BoxPokemon *param3)
 {
     sub_0207896C(param3);
     BoxPokemon_SetShayminForm(param3, 0);
@@ -125,7 +126,7 @@ BOOL sub_02079914 (PCBoxes * param0, u32 param1, u32 param2, BoxPokemon * param3
     return 0;
 }
 
-void sub_02079968 (PCBoxes * param0, u32 param1, u32 param2)
+void sub_02079968(PCBoxes *param0, u32 param1, u32 param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -139,12 +140,12 @@ void sub_02079968 (PCBoxes * param0, u32 param1, u32 param2)
     }
 }
 
-u32 sub_0207999C (const PCBoxes * param0)
+u32 sub_0207999C(const PCBoxes *param0)
 {
     return param0->unk_00;
 }
 
-u32 PCBoxes_FirstEmptyBox (const PCBoxes * param0)
+u32 PCBoxes_FirstEmptyBox(const PCBoxes *param0)
 {
     int v0, v1;
 
@@ -166,10 +167,10 @@ u32 PCBoxes_FirstEmptyBox (const PCBoxes * param0)
         }
     }
 
-    return(18);
+    return 18;
 }
 
-BOOL sub_020799F0 (const PCBoxes * param0, int * param1, int * param2)
+BOOL sub_020799F0(const PCBoxes *param0, int *param1, int *param2)
 {
     int v0, v1;
 
@@ -181,7 +182,7 @@ BOOL sub_020799F0 (const PCBoxes * param0, int * param1, int * param2)
     v1 = *param2;
 
     while (TRUE) {
-        for ( ; v1 < (5 * 6); v1++) {
+        for (; v1 < (5 * 6); v1++) {
             if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 *param1 = v0;
                 *param2 = v1;
@@ -200,10 +201,10 @@ BOOL sub_020799F0 (const PCBoxes * param0, int * param1, int * param2)
         v1 = 0;
     }
 
-    return(18);
+    return 18;
 }
 
-u32 sub_02079A50 (const PCBoxes * param0)
+u32 sub_02079A50(const PCBoxes *param0)
 {
     int v0, v1;
     u32 v2;
@@ -221,7 +222,7 @@ u32 sub_02079A50 (const PCBoxes * param0)
     return v2;
 }
 
-void sub_02079A94 (PCBoxes * param0, u32 param1)
+void sub_02079A94(PCBoxes *param0, u32 param1)
 {
     if (param1 < 18) {
         param0->unk_00 = param1;
@@ -231,7 +232,7 @@ void sub_02079A94 (PCBoxes * param0, u32 param1)
     }
 }
 
-u32 sub_02079AA8 (const PCBoxes * param0, u32 param1)
+u32 sub_02079AA8(const PCBoxes *param0, u32 param1)
 {
     if (param1 < 18) {
         return param0->unk_13B4[param1];
@@ -241,7 +242,7 @@ u32 sub_02079AA8 (const PCBoxes * param0, u32 param1)
     }
 }
 
-void sub_02079AC4 (PCBoxes * param0, u32 param1, u32 param2)
+void sub_02079AC4(PCBoxes *param0, u32 param1, u32 param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -259,7 +260,7 @@ void sub_02079AC4 (PCBoxes * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_02079AF4 (const PCBoxes * param0, u32 param1, Strbuf *param2)
+void sub_02079AF4(const PCBoxes *param0, u32 param1, Strbuf *param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -272,7 +273,7 @@ void sub_02079AF4 (const PCBoxes * param0, u32 param1, Strbuf *param2)
     }
 }
 
-void sub_02079B24 (PCBoxes * param0, u32 param1, const Strbuf *param2)
+void sub_02079B24(PCBoxes *param0, u32 param1, const Strbuf *param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -284,7 +285,7 @@ void sub_02079B24 (PCBoxes * param0, u32 param1, const Strbuf *param2)
     }
 }
 
-u32 sub_02079B54 (const PCBoxes * param0, u32 param1)
+u32 sub_02079B54(const PCBoxes *param0, u32 param1)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -308,7 +309,7 @@ u32 sub_02079B54 (const PCBoxes * param0, u32 param1)
     return 0;
 }
 
-u32 sub_02079B98 (const PCBoxes * param0, u32 param1)
+u32 sub_02079B98(const PCBoxes *param0, u32 param1)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -334,7 +335,7 @@ u32 sub_02079B98 (const PCBoxes * param0, u32 param1)
     return 0;
 }
 
-u32 sub_02079BEC (const PCBoxes * param0)
+u32 sub_02079BEC(const PCBoxes *param0)
 {
     u32 v0, v1;
 
@@ -345,7 +346,7 @@ u32 sub_02079BEC (const PCBoxes * param0)
     return v0;
 }
 
-u32 sub_02079C08 (const PCBoxes * param0, u32 param1, u32 param2, int param3, void * param4)
+u32 sub_02079C08(const PCBoxes *param0, u32 param1, u32 param2, int param3, void *param4)
 {
     GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
     GF_ASSERT(param2 < (5 * 6));
@@ -357,7 +358,7 @@ u32 sub_02079C08 (const PCBoxes * param0, u32 param1, u32 param2, int param3, vo
     return BoxPokemon_GetValue((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
 }
 
-void sub_02079C50 (PCBoxes * param0, u32 param1, u32 param2, int param3, void * param4)
+void sub_02079C50(PCBoxes *param0, u32 param1, u32 param2, int param3, void *param4)
 {
     GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
     GF_ASSERT(param2 < (5 * 6));
@@ -370,10 +371,10 @@ void sub_02079C50 (PCBoxes * param0, u32 param1, u32 param2, int param3, void * 
     SaveData_SetFullSaveRequired();
 }
 
-BoxPokemon * sub_02079C9C (const PCBoxes * param0, u32 param1, u32 param2)
+BoxPokemon *sub_02079C9C(const PCBoxes *param0, u32 param1, u32 param2)
 {
-    GF_ASSERT(((param1 < 18) || (param1 == 0xffffffff)));
-    GF_ASSERT((param2 < (5 * 6)));
+    GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
+    GF_ASSERT(param2 < (5 * 6));
 
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -382,7 +383,7 @@ BoxPokemon * sub_02079C9C (const PCBoxes * param0, u32 param1, u32 param2)
     return (BoxPokemon *)&(param0->unk_04[param1][param2]);
 }
 
-void sub_02079CD8 (PCBoxes * param0, u32 param1)
+void sub_02079CD8(PCBoxes *param0, u32 param1)
 {
     GF_ASSERT(param1 < 8);
 
@@ -390,14 +391,14 @@ void sub_02079CD8 (PCBoxes * param0, u32 param1)
     SaveData_SetFullSaveRequired();
 }
 
-BOOL sub_02079CFC (const PCBoxes * param0, u32 param1)
+BOOL sub_02079CFC(const PCBoxes *param0, u32 param1)
 {
     GF_ASSERT(param1 < 8);
 
     return (param0->unk_13C6 & (1 << param1)) != 0;
 }
 
-u32 sub_02079D20 (const PCBoxes * param0)
+u32 sub_02079D20(const PCBoxes *param0)
 {
     u32 v0, v1;
 

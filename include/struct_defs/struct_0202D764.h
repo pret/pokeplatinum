@@ -2,6 +2,7 @@
 #define POKEPLATINUM_STRUCT_0202D764_H
 
 #include "struct_defs/struct_0202D63C.h"
+
 #include "overlay090/struct_ov90_021D1750.h"
 
 typedef struct UnkStruct_0202D764_t {

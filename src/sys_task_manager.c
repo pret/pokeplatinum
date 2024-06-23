@@ -1,9 +1,8 @@
-#include <nitro.h>
-#include <string.h>
+#include "sys_task_manager.h"
 
 #include "nitro/types.h"
-
-#include "sys_task_manager.h"
+#include <nitro.h>
+#include <string.h>
 
 static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task);
 static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr);

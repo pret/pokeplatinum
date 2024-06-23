@@ -3,6 +3,6 @@
 
 void ov97_02237520(u32 param0);
 int ov97_02237624(void);
-BOOL ov97_0223764C(void * param0, int param1);
+BOOL ov97_0223764C(void *param0, int param1);
 
 #endif // POKEPLATINUM_OV97_02237520_H

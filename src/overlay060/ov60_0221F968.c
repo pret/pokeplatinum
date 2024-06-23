@@ -1,6 +1,8 @@
-#include <dwc.h>
-#include "overlay060/ov60_0221F800.h"
 #include "overlay060/ov60_0221F968.h"
+
+#include <dwc.h>
+
+#include "overlay060/ov60_0221F800.h"
 
 struct {
     int unk_00;
@@ -8,17 +10,17 @@ struct {
     int unk_08;
     int unk_0C;
     int unk_10;
-    void * unk_14;
+    void *unk_14;
     int unk_18;
-    void * unk_1C;
+    void *unk_1C;
     int unk_20;
-    char * unk_24;
-    char * unk_28;
-    char * unk_2C;
+    char *unk_24;
+    char *unk_28;
+    char *unk_2C;
     int unk_30;
-} Unk_ov60_02228E40 = {1, 0, 0, 0};
+} Unk_ov60_02228E40 = { 1, 0, 0, 0 };
 
-static void ov60_0221F968 (int param0)
+static void ov60_0221F968(int param0)
 {
     switch (param0) {
     case DWC_GHTTP_IN_ERROR:
@@ -47,7 +49,7 @@ static void ov60_0221F968 (int param0)
     }
 }
 
-static void ov60_0221F9D0 (const char * param0, int param1, DWCGHTTPResult param2, void * param3)
+static void ov60_0221F9D0(const char *param0, int param1, DWCGHTTPResult param2, void *param3)
 {
 #pragma unused(param3)
 
@@ -63,7 +65,7 @@ static void ov60_0221F9D0 (const char * param0, int param1, DWCGHTTPResult param
 
             if (param1 == 32) {
                 int v0;
-                u8 * v1 = (u8 *)(Unk_ov60_02228E40.unk_28 + 20);
+                u8 *v1 = (u8 *)(Unk_ov60_02228E40.unk_28 + 20);
                 char v2[(32 + 20 + 1)];
                 int v3;
                 const char v4[] = "0123456789abcdef";
@@ -193,7 +195,7 @@ static void ov60_0221F9D0 (const char * param0, int param1, DWCGHTTPResult param
     }
 }
 
-void ov60_0221FC84 (void)
+void ov60_0221FC84(void)
 {
     Unk_ov60_02228E40.unk_00 = 2;
     Unk_ov60_02228E40.unk_04 = -1;
@@ -205,7 +207,7 @@ void ov60_0221FC84 (void)
     return;
 }
 
-int ov60_0221FCA8 (const u8 * param0, int param1, const void * param2, int param3, u8 * param4, int param5)
+int ov60_0221FCA8(const u8 *param0, int param1, const void *param2, int param3, u8 *param4, int param5)
 {
     if (Unk_ov60_02228E40.unk_00 != 2) {
         return 1;
@@ -232,7 +234,7 @@ int ov60_0221FCA8 (const u8 * param0, int param1, const void * param2, int param
     return 0;
 }
 
-int ov60_0221FD48 (void)
+int ov60_0221FD48(void)
 {
     BOOL v0;
 
@@ -286,7 +288,7 @@ int ov60_0221FD48 (void)
     return Unk_ov60_02228E40.unk_00;
 }
 
-void ov60_0221FDEC (void)
+void ov60_0221FDEC(void)
 {
     if (Unk_ov60_02228E40.unk_24 != NULL) {
         DWC_Free((DWCAllocType)10, Unk_ov60_02228E40.unk_24, (u32)0);
@@ -299,12 +301,12 @@ void ov60_0221FDEC (void)
     return;
 }
 
-int ov60_0221FE14 (void)
+int ov60_0221FE14(void)
 {
     return (int)Unk_ov60_02228E40.unk_08;
 }
 
-int ov60_0221FE20 (void)
+int ov60_0221FE20(void)
 {
     return Unk_ov60_02228E40.unk_0C;
 }

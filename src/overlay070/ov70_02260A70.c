@@ -1,18 +1,18 @@
+#include "overlay070/ov70_02260A70.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay070/ov70_0225C9B4.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
-
 #include "overlay115/camera_angle.h"
 
-#include "heap.h"
 #include "camera.h"
-#include "overlay070/ov70_0225C9B4.h"
-#include "overlay070/ov70_02260A70.h"
+#include "heap.h"
 
 typedef struct UnkStruct_ov70_02260AD4_t {
-    Camera * camera;
-    const UnkStruct_ov70_0225CC54 * unk_04;
+    Camera *camera;
+    const UnkStruct_ov70_0225CC54 *unk_04;
     VecFx32 unk_08;
 } UnkStruct_ov70_02260AD4;
 
@@ -22,9 +22,9 @@ static const CameraAngle Unk_ov70_0226D904 = {
     0x0
 };
 
-UnkStruct_ov70_02260AD4 * ov70_02260A70 (u32 param0)
+UnkStruct_ov70_02260AD4 *ov70_02260A70(u32 param0)
 {
-    UnkStruct_ov70_02260AD4 * v0;
+    UnkStruct_ov70_02260AD4 *v0;
     VecFx32 v1;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov70_02260AD4));
@@ -38,14 +38,14 @@ UnkStruct_ov70_02260AD4 * ov70_02260A70 (u32 param0)
     return v0;
 }
 
-void ov70_02260AD4 (UnkStruct_ov70_02260AD4 * param0)
+void ov70_02260AD4(UnkStruct_ov70_02260AD4 *param0)
 {
     Camera_ClearActive();
     Camera_Delete(param0->camera);
     Heap_FreeToHeap(param0);
 }
 
-void ov70_02260AEC (UnkStruct_ov70_02260AD4 * param0)
+void ov70_02260AEC(UnkStruct_ov70_02260AD4 *param0)
 {
     if (param0->unk_04) {
         ov70_0225D054(param0->unk_04, &param0->unk_08);
@@ -57,26 +57,26 @@ void ov70_02260AEC (UnkStruct_ov70_02260AD4 * param0)
     Camera_ComputeViewMatrix();
 }
 
-void ov70_02260B18 (UnkStruct_ov70_02260AD4 * param0, fx32 param1, fx32 param2, fx32 param3)
+void ov70_02260B18(UnkStruct_ov70_02260AD4 *param0, fx32 param1, fx32 param2, fx32 param3)
 {
     param0->unk_08.x = param1;
     param0->unk_08.y = param2;
     param0->unk_08.z = param3;
 }
 
-void ov70_02260B20 (UnkStruct_ov70_02260AD4 * param0, fx32 param1, fx32 param2, fx32 param3)
+void ov70_02260B20(UnkStruct_ov70_02260AD4 *param0, fx32 param1, fx32 param2, fx32 param3)
 {
     param0->unk_08.x = param1 + (FX32_CONST(8));
     param0->unk_08.y = param2;
     param0->unk_08.z = param3 + (-FX32_CONST(32));
 }
 
-void ov70_02260B38 (UnkStruct_ov70_02260AD4 * param0, const UnkStruct_ov70_0225CC54 * param1)
+void ov70_02260B38(UnkStruct_ov70_02260AD4 *param0, const UnkStruct_ov70_0225CC54 *param1)
 {
     param0->unk_04 = param1;
 }
 
-void ov70_02260B3C (UnkStruct_ov70_02260AD4 * param0)
+void ov70_02260B3C(UnkStruct_ov70_02260AD4 *param0)
 {
     param0->unk_04 = NULL;
 }

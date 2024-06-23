@@ -1,18 +1,19 @@
+#include "overlay019/ov19_021D603C.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay019/struct_ov19_021D6104.h"
 
 #include "touch_screen.h"
-#include "overlay019/ov19_021D603C.h"
 
-static void ov19_021D60FC(UnkStruct_ov19_021D6104 * param0, int (* func)(UnkStruct_ov19_021D6104 *, BOOL, BOOL));
-static int ov19_021D6104(UnkStruct_ov19_021D6104 * param0, BOOL param1, BOOL param2);
-static int ov19_021D6134(UnkStruct_ov19_021D6104 * param0, BOOL param1, BOOL param2);
-static u16 ov19_021D6164(const UnkStruct_ov19_021D6104 * param0, u32 param1, u32 param2);
-static int ov19_021D617C(const UnkStruct_ov19_021D6104 * param0, u16 param1, u16 param2);
+static void ov19_021D60FC(UnkStruct_ov19_021D6104 *param0, int (*func)(UnkStruct_ov19_021D6104 *, BOOL, BOOL));
+static int ov19_021D6104(UnkStruct_ov19_021D6104 *param0, BOOL param1, BOOL param2);
+static int ov19_021D6134(UnkStruct_ov19_021D6104 *param0, BOOL param1, BOOL param2);
+static u16 ov19_021D6164(const UnkStruct_ov19_021D6104 *param0, u32 param1, u32 param2);
+static int ov19_021D617C(const UnkStruct_ov19_021D6104 *param0, u16 param1, u16 param2);
 
-void ov19_021D603C (UnkStruct_ov19_021D6104 * param0, int param1, int param2, int param3, int param4)
+void ov19_021D603C(UnkStruct_ov19_021D6104 *param0, int param1, int param2, int param3, int param4)
 {
     param0->unk_30 = ov19_021D6104;
     param0->unk_1C = 0;
@@ -38,7 +39,7 @@ void ov19_021D603C (UnkStruct_ov19_021D6104 * param0, int param1, int param2, in
     }
 }
 
-int ov19_021D60A8 (UnkStruct_ov19_021D6104 * param0)
+int ov19_021D60A8(UnkStruct_ov19_021D6104 *param0)
 {
     BOOL v0, v1;
 
@@ -61,13 +62,13 @@ int ov19_021D60A8 (UnkStruct_ov19_021D6104 * param0)
     return param0->unk_30(param0, v0, v1);
 }
 
-static void ov19_021D60FC (UnkStruct_ov19_021D6104 * param0, int (* func)(UnkStruct_ov19_021D6104 *, BOOL, BOOL))
+static void ov19_021D60FC(UnkStruct_ov19_021D6104 *param0, int (*func)(UnkStruct_ov19_021D6104 *, BOOL, BOOL))
 {
     param0->unk_00 = 0;
     param0->unk_30 = func;
 }
 
-static int ov19_021D6104 (UnkStruct_ov19_021D6104 * param0, BOOL param1, BOOL param2)
+static int ov19_021D6104(UnkStruct_ov19_021D6104 *param0, BOOL param1, BOOL param2)
 {
     if (param1 && param2) {
         param0->unk_04 = param0->unk_14;
@@ -80,7 +81,7 @@ static int ov19_021D6104 (UnkStruct_ov19_021D6104 * param0, BOOL param1, BOOL pa
     return 0;
 }
 
-static int ov19_021D6134 (UnkStruct_ov19_021D6104 * param0, BOOL param1, BOOL param2)
+static int ov19_021D6134(UnkStruct_ov19_021D6104 *param0, BOOL param1, BOOL param2)
 {
     if (param1 == 0) {
         ov19_021D60FC(param0, ov19_021D6104);
@@ -90,7 +91,7 @@ static int ov19_021D6134 (UnkStruct_ov19_021D6104 * param0, BOOL param1, BOOL pa
     return 2;
 }
 
-int ov19_021D614C (const UnkStruct_ov19_021D6104 * param0)
+int ov19_021D614C(const UnkStruct_ov19_021D6104 *param0)
 {
     int v0;
     u16 v1;
@@ -101,7 +102,7 @@ int ov19_021D614C (const UnkStruct_ov19_021D6104 * param0)
     return v0;
 }
 
-static u16 ov19_021D6164 (const UnkStruct_ov19_021D6104 * param0, u32 param1, u32 param2)
+static u16 ov19_021D6164(const UnkStruct_ov19_021D6104 *param0, u32 param1, u32 param2)
 {
     fx32 v0, v1;
 
@@ -111,10 +112,11 @@ static u16 ov19_021D6164 (const UnkStruct_ov19_021D6104 * param0, u32 param1, u3
     return FX_Atan2Idx(v1, v0);
 }
 
-static int ov19_021D617C (const UnkStruct_ov19_021D6104 * param0, u16 param1, u16 param2)
+static int ov19_021D617C(const UnkStruct_ov19_021D6104 *param0, u16 param1, u16 param2)
 {
     static const u16 v0[] = {
-        0x300, 0x1800,
+        0x300,
+        0x1800,
     };
     int v1, v2, v3, v4;
 

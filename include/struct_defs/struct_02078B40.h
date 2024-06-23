@@ -22,7 +22,7 @@ typedef struct UnkStruct_02078B40_t {
     u16 unk_1C[4];
     u8 unk_24[4];
     u8 unk_28[4];
-    u32 hpIV : 5; 
+    u32 hpIV : 5;
     u32 atkIV : 5;
     u32 defIV : 5;
     u32 speedIV : 5;
