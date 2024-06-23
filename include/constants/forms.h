@@ -18,4 +18,35 @@
 
 #define MOVESET_MAX                   MOVESET_FORM_ROTOM_MOW
 
+enum UnownForms {
+    UNOWN_FORM_A = 0,
+    UNOWN_FORM_B,
+    UNOWN_FORM_C,
+    UNOWN_FORM_D,
+    UNOWN_FORM_E,
+    UNOWN_FORM_F,
+    UNOWN_FORM_G,
+    UNOWN_FORM_H,
+    UNOWN_FORM_I,
+    UNOWN_FORM_J,
+    UNOWN_FORM_K,
+    UNOWN_FORM_L,
+    UNOWN_FORM_M,
+    UNOWN_FORM_N,
+    UNOWN_FORM_O,
+    UNOWN_FORM_P,
+    UNOWN_FORM_Q,
+    UNOWN_FORM_R,
+    UNOWN_FORM_S,
+    UNOWN_FORM_T,
+    UNOWN_FORM_U,
+    UNOWN_FORM_V,
+    UNOWN_FORM_W,
+    UNOWN_FORM_X,
+    UNOWN_FORM_Y,
+    UNOWN_FORM_Z,
+    UNOWN_FORM_EXC,
+    UNOWN_FORM_QUE
+};
+
 #endif

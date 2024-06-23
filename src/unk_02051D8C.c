@@ -294,10 +294,10 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     param0->unk_198 = param2;
 }
 
-void sub_02052314 (BattleParams * param0, const FieldSystem * fieldSystem)
+void sub_02052314 (BattleParams * battleParams, const FieldSystem * fieldSystem)
 {
-    sub_020521B8(param0, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->unk_9C, fieldSystem->unk_98, fieldSystem->unk_BC);
-    sub_02052894(param0);
+    sub_020521B8(battleParams, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->unk_9C, fieldSystem->unk_98, fieldSystem->unk_BC);
+    sub_02052894(battleParams);
 }
 
 void sub_02052348 (BattleParams * param0, const FieldSystem * fieldSystem, int param2)

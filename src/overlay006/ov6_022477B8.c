@@ -3,36 +3,36 @@
 
 #include "core_sys.h"
 
-#include "overlay006/struct_ov6_02242634.h"
+#include "overlay006/wild_encounters.h"
 
 #include "overlay006/ov6_022477B8.h"
 
-void ov6_022477B8 (const UnkStruct_ov6_02242634 * param0, const BOOL param1, int * param2, int * param3)
+void WildEncounters_ReplaceDualSlotEncounters (const WildEncounters * encounterData, const BOOL nationalDexObtained, int * param2, int * param3)
 {
-    if (!param1) {
+    if (!nationalDexObtained) {
         return;
     }
 
     switch (gCoreSys.unk_66) {
     case 1:
-        (*param2) = param0->unk_88[0];
-        (*param3) = param0->unk_88[1];
+        (*param2) = encounterData->dualSlotSapphireEncounters[0];
+        (*param3) = encounterData->dualSlotSapphireEncounters[1];
         break;
     case 2:
-        (*param2) = param0->unk_80[0];
-        (*param3) = param0->unk_80[1];
+        (*param2) = encounterData->dualSlotRubyEncounters[0];
+        (*param3) = encounterData->dualSlotRubyEncounters[1];
         break;
     case 3:
-        (*param2) = param0->unk_90[0];
-        (*param3) = param0->unk_90[1];
+        (*param2) = encounterData->dualSlotEmeraldEncouters[0];
+        (*param3) = encounterData->dualSlotEmeraldEncouters[1];
         break;
     case 4:
-        (*param2) = param0->unk_98[0];
-        (*param3) = param0->unk_98[1];
+        (*param2) = encounterData->dualSlotFireredEncounters[0];
+        (*param3) = encounterData->dualSlotFireredEncounters[1];
         break;
     case 5:
-        (*param2) = param0->unk_A0[0];
-        (*param3) = param0->unk_A0[1];
+        (*param2) = encounterData->dualSlotLeafgreenEncounters[0];
+        (*param3) = encounterData->dualSlotLeafgreenEncounters[1];
         break;
     }
 }

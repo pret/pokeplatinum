@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
-#include "overlay006/struct_ov6_02242634.h"
+#include "overlay006/wild_encounters.h"
 
 #include "narc.h"
 #include "heap.h"
@@ -34,24 +34,21 @@ typedef struct UnkStruct_ov6_02242A8C_t {
 
 int ov6_02242984 (FieldSystem * fieldSystem)
 {
-    u8 v0;
-    BOOL v1;
-    int v2[12];
-    UnkStruct_ov6_02242634 * v3;
+    int v2[MAX_GRASS_ENCOUNTERS];
 
-    v3 = (UnkStruct_ov6_02242634 *)MapHeaderData_GetWildEncounters(fieldSystem);
+    WildEncounters * encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
 
-    for (v0 = 0; v0 < 12; v0++) {
-        v2[v0] = v3->unk_04[v0].unk_04;
+    for (u8 i = 0; i < MAX_GRASS_ENCOUNTERS; i++) {
+        v2[i] = encounterData->grassEncounters.encounters[i].species;
     }
 
-    v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
+    BOOL v1 = sub_02027474(SaveData_Pokedex(FieldSystem_SaveData(fieldSystem)));
 
     ov6_02242F74(sub_0202D814(sub_0202D834(fieldSystem->saveData), 1), v1, fieldSystem->location->mapId, &v2[6], &v2[7]);
-    ov6_02240C9C(v3, &v2[2], &v2[3]);
-    ov6_022477B8(v3, v1, &v2[8], &v2[9]);
+    WildEncounters_ReplaceTimedEncounters(encounterData, &v2[2], &v2[3]);
+    WildEncounters_ReplaceDualSlotEncounters(encounterData, v1, &v2[8], &v2[9]);
 
-    return v2[inline_020564D0(12)];
+    return v2[inline_020564D0(MAX_GRASS_ENCOUNTERS)];
 }
 
 UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, FieldSystem * fieldSystem)
