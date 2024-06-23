@@ -1179,13 +1179,13 @@ BOOL sub_02054084 (TaskManager * taskMan)
         break;
     case 3:
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
-            sub_0203E8E0(taskMan, 2034, NULL, NULL);
+            ScriptManager_Start(taskMan, 2034, NULL, NULL);
         } else {
             sub_020287E0(fieldSystem->saveData);
             v1->unk_20 = ov5_021E1F98(fieldSystem, 11, 3);
             ov5_021E1F04(v1->unk_20);
             v1->unk_1C = 0;
-            sub_0203E8E0(taskMan, 2005, NULL, &v1->unk_1C);
+            ScriptManager_Start(taskMan, 2005, NULL, &v1->unk_1C);
         }
 
         v1->unk_00 = 4;

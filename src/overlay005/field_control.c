@@ -270,9 +270,9 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             }
 
             if (MapObject_GetEventType(object) != 0x9) {
-                sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
+                ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
             } else {
-                sub_0203E880(fieldSystem, 0, object);
+                ScriptManager_Set(fieldSystem, 0, object);
             }
 
             return TRUE;
@@ -284,7 +284,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             int event = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
             if (event != 0xffff) {
-                sub_0203E880(fieldSystem, event, NULL);
+                ScriptManager_Set(fieldSystem, event, NULL);
                 return TRUE;
             }
         }
@@ -293,7 +293,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
             int event;
 
             if (ov5_021EFB40(fieldSystem, &event)) {
-                sub_0203E880(fieldSystem, event, NULL);
+                ScriptManager_Set(fieldSystem, event, NULL);
                 return TRUE;
             }
         }
@@ -303,7 +303,7 @@ BOOL FieldInput_Process (const FieldInput *input, FieldSystem *fieldSystem)
         int distortionScript = Field_TileBehaviorToScript(fieldSystem, distortionBehavior);
 
         if (distortionScript != 0xffff) {
-            sub_0203E880(fieldSystem, distortionScript, NULL);
+            ScriptManager_Set(fieldSystem, distortionScript, NULL);
             return TRUE;
         }
 
@@ -344,14 +344,14 @@ static BOOL Field_CheckSign (FieldSystem *fieldSystem)
     MapObject *object;
 
     if (sub_0203CBE0(fieldSystem, &object) == TRUE) {
-        sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
+        ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
         return TRUE;
     }
 
     int event = sub_0203CB80(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
     
     if (event != 0xffff) {
-        sub_0203E880(fieldSystem, event, NULL);
+        ScriptManager_Set(fieldSystem, event, NULL);
         return TRUE;
     }
 
@@ -393,7 +393,7 @@ BOOL FieldInput_Process_Colosseum (FieldInput *input, FieldSystem *fieldSystem)
         && input->transitionDir == DIR_SOUTH
         && sub_0205DB1C(Field_CurrentTileBehavior(fieldSystem))) {
 
-        sub_0203E880(fieldSystem, 9101, NULL);
+        ScriptManager_Set(fieldSystem, 9101, NULL);
         return TRUE;
     }
 
@@ -409,7 +409,7 @@ BOOL FieldInput_Process_Colosseum (FieldInput *input, FieldSystem *fieldSystem)
                 sub_0205F5E4(fieldSystem->playerAvatar, PlayerAvatar_GetDir(fieldSystem->playerAvatar));
             }
 
-            sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
+            ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
             return TRUE;
         }
     }
@@ -449,7 +449,7 @@ BOOL FieldInput_Process_UnionRoom (const FieldInput *input, FieldSystem *fieldSy
 {
     if (sub_020318EC() & 0xfe) {
         if (Field_CheckTrainerInfo() && CommSys_ConnectedCount() > 1) {
-            sub_0203E880(fieldSystem, 5, NULL);
+            ScriptManager_Set(fieldSystem, 5, NULL);
             return TRUE;
         }
 
@@ -465,7 +465,7 @@ BOOL FieldInput_Process_UnionRoom (const FieldInput *input, FieldSystem *fieldSy
             }
 
             sub_02036B84();
-            sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
+            ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
 
             return TRUE;
         }
@@ -502,9 +502,9 @@ int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldS
             }
             
             if (MapObject_GetEventType(object) != 0x9) {
-                sub_0203E880(fieldSystem, MapObject_GetEventID(object), object);
+                ScriptManager_Set(fieldSystem, MapObject_GetEventID(object), object);
             } else {
-                sub_0203E880(fieldSystem, 0, object);
+                ScriptManager_Set(fieldSystem, 0, object);
             }
 
             return TRUE;
@@ -513,14 +513,14 @@ int FieldInput_Process_BattleTower (const FieldInput *input, FieldSystem *fieldS
         int v2 = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
         
         if (v2 != 0xffff) {
-            sub_0203E880(fieldSystem, v2, NULL);
+            ScriptManager_Set(fieldSystem, v2, NULL);
             return TRUE;
         }
 
         int tileScript = Field_TileBehaviorToScript(fieldSystem, Field_NextTileBehavior(fieldSystem));
 
         if (tileScript != 0xffff) {
-            sub_0203E880(fieldSystem, tileScript, NULL);
+            ScriptManager_Set(fieldSystem, tileScript, NULL);
             return TRUE;
         }
     }
@@ -771,7 +771,7 @@ static BOOL Field_CheckCoordEvent (FieldSystem *fieldSystem)
     u16 event = sub_0203CC14(fieldSystem, MapHeaderData_GetCoordEvents(fieldSystem), MapHeaderData_GetNumCoordEvents(fieldSystem));
     
     if (event != 0xffff) {
-        sub_0203E880(fieldSystem, event, NULL);
+        ScriptManager_Set(fieldSystem, event, NULL);
         return TRUE;
     }
 
@@ -835,7 +835,7 @@ static BOOL Field_UpdateDaycare (FieldSystem *fieldSystem)
 
         GameRecords_IncrementRecordValue(v2, RECORD_UNK_011);
         GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_15);
-        sub_0203E880(fieldSystem, 2031, NULL);
+        ScriptManager_Set(fieldSystem, 2031, NULL);
 
         return TRUE;
     }
@@ -915,7 +915,7 @@ static BOOL Field_UpdatePoison (FieldSystem *fieldSystem)
         return FALSE;
     case 2:
         ov5_021EF518(fieldSystem->unk_04->unk_20);
-        sub_0203E880(fieldSystem, 2003, NULL);
+        ScriptManager_Set(fieldSystem, 2003, NULL);
         return TRUE;
     }
 
@@ -931,7 +931,7 @@ static BOOL Field_UpdateSafari (FieldSystem *fieldSystem)
     u16 *balls = sub_0203A784(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (*balls == 0) {
-        sub_0203E880(fieldSystem, 8802, NULL);
+        ScriptManager_Set(fieldSystem, 8802, NULL);
         return TRUE;
     }
 
@@ -939,7 +939,7 @@ static BOOL Field_UpdateSafari (FieldSystem *fieldSystem)
     (*steps)++;
 
     if (*steps >= 500) {
-        sub_0203E880(fieldSystem, 8801, NULL);
+        ScriptManager_Set(fieldSystem, 8801, NULL);
         return TRUE;
     }
 

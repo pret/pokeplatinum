@@ -132,7 +132,7 @@ BOOL ov5_021F8410 (FieldSystem * fieldSystem, const int param1, const int param2
                     }
                 }
 
-                sub_0203E880(fieldSystem, v4->unk_00, NULL);
+                ScriptManager_Set(fieldSystem, v4->unk_00, NULL);
                 return 1;
             }
         }

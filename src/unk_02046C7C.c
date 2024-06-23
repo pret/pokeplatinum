@@ -67,7 +67,7 @@ BOOL ScrCmd_10F(ScriptContext * param0);
 
 BOOL ScrCmd_0F8 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 v1 = ScriptContext_GetVar(param0);
 
     sub_02094754(*v0, v1);
@@ -76,7 +76,7 @@ BOOL ScrCmd_0F8 (ScriptContext * param0)
 
 BOOL ScrCmd_0F9 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 v1 = ScriptContext_GetVar(param0);
 
     param0->data[0] = v1;
@@ -87,7 +87,7 @@ BOOL ScrCmd_0F9 (ScriptContext * param0)
 
 static BOOL sub_02046CE0 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     return sub_0209476C(*v0, param0->data[0]);
 }
 
@@ -95,7 +95,7 @@ BOOL ScrCmd_0FA (ScriptContext * param0)
 {
     Strbuf* v0;
     Pokemon * v1;
-    void ** v2 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v2 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5 = ScriptContext_GetVar(param0);
@@ -130,7 +130,7 @@ BOOL ScrCmd_0FA (ScriptContext * param0)
 BOOL ScrCmd_0FB (ScriptContext * param0)
 {
     Pokemon * v0;
-    void ** v1 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 v2 = ScriptContext_GetVar(param0);
     u32 v3 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->mapId);
 
@@ -142,8 +142,8 @@ BOOL ScrCmd_0FB (ScriptContext * param0)
 
 BOOL ScrCmd_0FC (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
@@ -154,8 +154,8 @@ BOOL ScrCmd_0FC (ScriptContext * param0)
 
 BOOL ScrCmd_0FD (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
@@ -166,8 +166,8 @@ BOOL ScrCmd_0FD (ScriptContext * param0)
 
 BOOL ScrCmd_0FE (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
@@ -178,8 +178,8 @@ BOOL ScrCmd_0FE (ScriptContext * param0)
 
 BOOL ScrCmd_0FF (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
@@ -189,7 +189,7 @@ BOOL ScrCmd_0FF (ScriptContext * param0)
 
 BOOL ScrCmd_100 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
 
     sub_020943B0(*v0);
     ScriptContext_Pause(param0, sub_02046FDC);
@@ -199,13 +199,13 @@ BOOL ScrCmd_100 (ScriptContext * param0)
 
 static BOOL sub_02046FDC (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     return sub_020944CC(*v0);
 }
 
 BOOL ScrCmd_101 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
 
     sub_020933F8(param0->taskManager, *v0);
     return 1;
@@ -213,8 +213,8 @@ BOOL ScrCmd_101 (ScriptContext * param0)
 
 BOOL ScrCmd_102 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_020946A4(*v0, *v1, v2);
@@ -223,8 +223,8 @@ BOOL ScrCmd_102 (ScriptContext * param0)
 
 BOOL ScrCmd_103 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_020946CC(*v0, *v1, v2);
@@ -233,8 +233,8 @@ BOOL ScrCmd_103 (ScriptContext * param0)
 
 BOOL ScrCmd_104 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_020946F0(*v0, *v1, v2);
@@ -243,7 +243,7 @@ BOOL ScrCmd_104 (ScriptContext * param0)
 
 BOOL ScrCmd_105 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02094750(*v0);
@@ -252,8 +252,8 @@ BOOL ScrCmd_105 (ScriptContext * param0)
 
 BOOL ScrCmd_106 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_02094720(*v0, *v1, v2);
@@ -262,7 +262,7 @@ BOOL ScrCmd_106 (ScriptContext * param0)
 
 BOOL ScrCmd_107 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02094790(*v0);
@@ -271,7 +271,7 @@ BOOL ScrCmd_107 (ScriptContext * param0)
 
 BOOL ScrCmd_108 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_020947A4(*v0);
@@ -280,7 +280,7 @@ BOOL ScrCmd_108 (ScriptContext * param0)
 
 BOOL ScrCmd_109 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_020947C8(*v0);
@@ -289,7 +289,7 @@ BOOL ScrCmd_109 (ScriptContext * param0)
 
 BOOL ScrCmd_10A (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 v1 = ScriptContext_GetVar(param0);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
@@ -299,7 +299,7 @@ BOOL ScrCmd_10A (ScriptContext * param0)
 
 BOOL ScrCmd_10B (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 v1 = ScriptContext_GetVar(param0);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
@@ -309,7 +309,7 @@ BOOL ScrCmd_10B (ScriptContext * param0)
 
 BOOL ScrCmd_10C (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02094804(*v0);
@@ -318,7 +318,7 @@ BOOL ScrCmd_10C (ScriptContext * param0)
 
 BOOL ScrCmd_110 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
@@ -330,7 +330,7 @@ BOOL ScrCmd_110 (ScriptContext * param0)
 
 BOOL ScrCmd_10D (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02094868(*v0);
@@ -339,8 +339,8 @@ BOOL ScrCmd_10D (ScriptContext * param0)
 
 BOOL ScrCmd_10E (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
-    StringTemplate ** v1 = sub_0203F098(param0->fieldSystem, 15);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_02094898(*v0, *v1, v2, 11);
@@ -349,7 +349,7 @@ BOOL ScrCmd_10E (ScriptContext * param0)
 
 BOOL ScrCmd_10F (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02094904(*v0);
@@ -358,7 +358,7 @@ BOOL ScrCmd_10F (ScriptContext * param0)
 
 BOOL ScrCmd_117 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
 
     sub_02094850(*v0);
     return 0;
@@ -366,7 +366,7 @@ BOOL ScrCmd_117 (ScriptContext * param0)
 
 BOOL ScrCmd_118 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
 
     sub_02094860(*v0);
     return 0;
@@ -374,7 +374,7 @@ BOOL ScrCmd_118 (ScriptContext * param0)
 
 BOOL ScrCmd_111 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 v1 = ScriptContext_GetVar(param0);
 
     sub_02094A58(*v0, v1);
@@ -383,7 +383,7 @@ BOOL ScrCmd_111 (ScriptContext * param0)
 
 BOOL ScrCmd_112 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
 
     ScriptContext_Pause(param0, sub_02047404);
     return 1;
@@ -391,7 +391,7 @@ BOOL ScrCmd_112 (ScriptContext * param0)
 
 static BOOL sub_02047404 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
 
     if (sub_02094B1C(*v0) == 1) {
         return 1;
@@ -414,7 +414,7 @@ BOOL ScrCmd_114 (ScriptContext * param0)
 
 BOOL ScrCmd_115 (ScriptContext * param0)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
     int v2, v3, v4, v5, v6;
 

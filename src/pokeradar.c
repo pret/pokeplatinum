@@ -404,8 +404,8 @@ BOOL RefreshRadarChain (TaskManager *taskMan) {
         u8 *v2 = sub_0202D9C4(sub_0202D834(fieldSystem->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
-            sub_0203E8E0(taskMan, 8970, NULL, NULL);
-            *(u16 *)(sub_0203F098(fieldSystem, 41)) = RADAR_BATTERY_STEPS - (*v2);
+            ScriptManager_Start(taskMan, 8970, NULL, NULL);
+            *(u16 *)(FieldSystem_GetScriptMember(fieldSystem, 41)) = RADAR_BATTERY_STEPS - (*v2);
             *v1 = 4;
         } else {
             *v2 = 0;
@@ -436,7 +436,7 @@ BOOL RefreshRadarChain (TaskManager *taskMan) {
         return TRUE;
         break;
     case 3:
-        sub_0203E8E0(taskMan, 8971, NULL, NULL);
+        ScriptManager_Start(taskMan, 8971, NULL, NULL);
         *v1 = 4;
         break;
     }

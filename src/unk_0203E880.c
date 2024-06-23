@@ -34,13 +34,12 @@ static void ScriptContext_Load(FieldSystem * fieldSystem, ScriptContext * ctx, i
 static void ScriptContext_SetMapScripts(FieldSystem * fieldSystem, ScriptContext * ctx);
 static void sub_0203F0E4(ScriptContext * ctx, u16 param1);
 static void * ScriptContext_LoadMapScripts(int headerID);
-static u32 Script_MapHeaderToMsgArchive(int headerID);
+static u32 MapHeaderToMsgArchive(int headerID);
 static BOOL ScriptManager_SetHiddenItem(ScriptManager * scriptManager, u16 scriptID);
 static u16 sub_0203F610(const u8 * param0, u8 param1);
 static u16 sub_0203F638(FieldSystem * fieldSystem, const u8 * param1, u8 param2);
 
-//ravetodo ScriptManager_Set
-void sub_0203E880 (FieldSystem * fieldSystem, u16 scriptID, MapObject * object)
+void ScriptManager_Set (FieldSystem * fieldSystem, u16 scriptID, MapObject * object)
 {
     ScriptManager *scriptManager = ScriptManager_New();
 
@@ -48,8 +47,7 @@ void sub_0203E880 (FieldSystem * fieldSystem, u16 scriptID, MapObject * object)
     FieldTask_Set(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
-//ravetodo ScriptManager_SetApproachingTrainer
-void sub_0203E8B0 (FieldSystem * fieldSystem, MapObject * object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
+void ScriptManager_SetApproachingTrainer (FieldSystem * fieldSystem, MapObject * object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
 {
     ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->unk_10);
     ApproachingTrainer *trainer = &scriptManager->trainer[approachNum];
@@ -62,8 +60,7 @@ void sub_0203E8B0 (FieldSystem * fieldSystem, MapObject * object, int sightRange
     trainer->object = object;
 }
 
-//ravetodo ScriptManager_Start
-void sub_0203E8E0 (TaskManager * taskManager, u16 scriptID, MapObject * object, void * saveType)
+void ScriptManager_Start (TaskManager * taskManager, u16 scriptID, MapObject * object, void * saveType)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
@@ -72,16 +69,13 @@ void sub_0203E8E0 (TaskManager * taskManager, u16 scriptID, MapObject * object, 
     FieldTask_Start(taskManager, FieldTask_RunScript, scriptManager);
 }
 
-//ravetodo ScriptManager_Change
-void sub_0203E918 (TaskManager * taskManager, u16 scriptID, MapObject * object)
+void ScriptManager_Change (TaskManager * taskManager, u16 scriptID, MapObject * object)
 {
     FieldSystem *fieldSystem = TaskManager_FieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
 
     sub_0203EA68(fieldSystem, scriptManager, scriptID, object, NULL);
     FieldTask_Change(taskManager, FieldTask_RunScript, scriptManager);
-
-    return;
 }
 
 static BOOL FieldTask_RunScript (TaskManager *taskManager)
@@ -94,7 +88,7 @@ static BOOL FieldTask_RunScript (TaskManager *taskManager)
 
     switch (scriptManager->state) {
     case 0:
-        scriptManager->ctx[0] = sub_0203EAB8(fieldSystem, scriptManager->scriptID);
+        scriptManager->ctx[0] = ScriptContext_New(fieldSystem, scriptManager->scriptID);
         scriptManager->ctxCount = 1;
         scriptManager->strTemplate = StringTemplate_New(8, 64, 11);
         scriptManager->msgBuf = Strbuf_Init(1024, 11);
@@ -177,8 +171,7 @@ static void sub_0203EA68 (FieldSystem * fieldSystem, ScriptManager * scriptManag
     }
 }
 
-//ravetodo ScriptContext_New
-ScriptContext * sub_0203EAB8 (FieldSystem * fieldSystem, u16 scriptID)
+ScriptContext * ScriptContext_New (FieldSystem * fieldSystem, u16 scriptID)
 {
     ScriptContext *ctx = Heap_AllocFromHeap(11, sizeof(ScriptContext));
 
@@ -318,7 +311,7 @@ static void ScriptContext_SetMapScripts (FieldSystem * fieldSystem, ScriptContex
 {
     u8 *scripts = ScriptContext_LoadMapScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, Script_MapHeaderToMsgArchive(fieldSystem->location->mapId), 11);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), 11);
 }
 
 void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
@@ -444,8 +437,7 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
     return NULL;
 }
 
-//ravetodo FieldSystem_GetScriptMember
-void * sub_0203F098 (FieldSystem * fieldSystem, u32 member)
+void * FieldSystem_GetScriptMember (FieldSystem * fieldSystem, u32 member)
 {
     ScriptManager *script = TaskManager_Environment(fieldSystem->unk_10);
 
@@ -476,7 +468,7 @@ static void * ScriptContext_LoadMapScripts (int headerID)
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, MapHeader_GetScriptsArchiveID(headerID), 11);
 }
 
-static u32 Script_MapHeaderToMsgArchive (int headerID)
+static u32 MapHeaderToMsgArchive (int headerID)
 {
     return MapHeader_GetMsgArchiveID(headerID);
 }
@@ -493,7 +485,7 @@ u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
         return VarsFlags_GetVarAddress(varsFlags, varID);
     }
 
-    return sub_0203F098(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
+    return FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
 }
 
 u16 FieldSystem_TryGetVarPointer (FieldSystem * fieldSystem, u16 varID)
@@ -513,20 +505,17 @@ u16 sub_0203F164 (FieldSystem * fieldSystem, u16 varID)
     return FieldSystem_TryGetVarPointer(fieldSystem, (((0 + VARS_START) + 32) + varID));
 }
 
-//ravetodo FieldSystem_CheckFlag
-BOOL sub_0203F188 (FieldSystem * fieldSystem, u16 flagID)
+BOOL FieldSystem_CheckFlag (FieldSystem * fieldSystem, u16 flagID)
 {
     return VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), flagID);
 }
 
-//ravetodo FieldSystem_SetFlag
-void sub_0203F19C (FieldSystem * fieldSystem, u16 flagID)
+void FieldSystem_SetFlag (FieldSystem * fieldSystem, u16 flagID)
 {
     VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), flagID);
 }
 
-//ravetodo FieldSystem_ClearFlag
-void sub_0203F1B0 (FieldSystem * fieldSystem, u16 flagID)
+void FieldSystem_ClearFlag (FieldSystem * fieldSystem, u16 flagID)
 {
     VarsFlags_ClearFlag(SaveData_GetVarsFlags(fieldSystem->saveData), flagID);
 }
@@ -546,13 +535,12 @@ void sub_0203F1FC (FieldSystem * fieldSystem)
     memset(VarsFlags_GetFlagChunk(varsFlags, 2400 + 320), 0, 192 / 8);
 }
 
-//ravetodo FieldSystem_SetScriptParameters
-void sub_0203F21C (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4)
+void FieldSystem_SetScriptParameters (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4)
 {
-    *(u16 *)sub_0203F098(fieldSystem, 41) = param1;
-    *(u16 *)sub_0203F098(fieldSystem, 42) = param2;
-    *(u16 *)sub_0203F098(fieldSystem, 43) = param3;
-    *(u16 *)sub_0203F098(fieldSystem, 44) = param4;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 41) = param1;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 42) = param2;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 43) = param3;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 44) = param4;
 }
 
 u16 Script_GetTrainerID(u16 scriptID)
@@ -620,21 +608,21 @@ void FieldSystem_ClearDailyHiddenItemFlags (FieldSystem * fieldSystem)
     u8 rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
     if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        sub_0203F1B0(fieldSystem, (FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]));
+        FieldSystem_ClearFlag(fieldSystem, (FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]));
     }
 
     rand = LCRNG_Next() % NELEMS(sIronIslandHiddenItemFlags);
 
     if (fieldSystem->location->mapId != sIronIslandHiddenItemFlags[rand][0]) {
-        sub_0203F1B0(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
+        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sIronIslandHiddenItemFlags[rand][1]);
     }
 
     if (fieldSystem->location->mapId != MAP_HEADER_FLOAROMA_MEADOW) {
         rand = LCRNG_Next() % NELEMS(sFloaromaMeadowHiddenItemFlags);
-        sub_0203F1B0(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
+        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
 
         rand = LCRNG_Next() % NELEMS(sFloaromaMeadowHiddenItemFlags);
-        sub_0203F1B0(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
+        FieldSystem_ClearFlag(fieldSystem, FLAG_OFFSET_HIDDEN_ITEMS + sFloaromaMeadowHiddenItemFlags[rand]);
     }
 }
 
@@ -729,7 +717,7 @@ UnkStruct_0203F478 * sub_0203F478 (FieldSystem * fieldSystem, int param1)
     }
 
     for (v4 = 0; v4 < v5; v4++) {
-        if ((v1[v4].type == 2) && (sub_0203F188(fieldSystem, Script_GetHiddenItemFlag(v1[v4].script)) == 0)) {
+        if ((v1[v4].type == 2) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(v1[v4].script)) == 0)) {
             if ((v1[v4].x >= v8) && (v1[v4].x <= v9) && (v1[v4].z >= v10) && (v1[v4].z <= v11)) {
                 v0[v6].unk_04 = Script_GetHiddenItemRange(v1[v4].script);
                 v7 = (v2 - v1[v4].x);
@@ -755,7 +743,7 @@ void FieldSystem_InitNewGameState (FieldSystem * fieldSystem)
 
 void FieldSystem_RunScript (FieldSystem * fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = sub_0203EAB8(fieldSystem, scriptID);
+    ScriptContext *ctx = ScriptContext_New(fieldSystem, scriptID);
 
     while (ScriptContext_Run(ctx) == TRUE); 
 
@@ -782,7 +770,7 @@ BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
     }
 
     if (param1 == 1) {
-        sub_0203E880(fieldSystem, scriptID, NULL);
+        ScriptManager_Set(fieldSystem, scriptID, NULL);
     } else {
         FieldSystem_RunScript(fieldSystem, scriptID);
     }

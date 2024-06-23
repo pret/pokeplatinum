@@ -409,7 +409,7 @@ static void sub_02059B74 (void)
                         }
                     }
 
-                    sub_0203E880(sFieldCommMan->fieldSystem, 9102, NULL);
+                    ScriptManager_Set(sFieldCommMan->fieldSystem, 9102, NULL);
                 }
             }
         }

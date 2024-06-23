@@ -312,12 +312,12 @@ static BOOL sub_020685AC (TaskManager * taskMan)
     switch (*v2) {
     case 0:
         sub_0203C9D4(fieldSystem, &v3);
-        sub_0203E8E0(taskMan, v1->unk_00, v3, NULL);
+        ScriptManager_Start(taskMan, v1->unk_00, v3, NULL);
 
-        *(u16 *)(sub_0203F098(fieldSystem, 41)) = v1->unk_04;
-        *(u16 *)(sub_0203F098(fieldSystem, 42)) = v1->unk_06;
-        *(u16 *)(sub_0203F098(fieldSystem, 43)) = v1->unk_08;
-        *(u16 *)(sub_0203F098(fieldSystem, 44)) = v1->unk_0A;
+        *(u16 *)(FieldSystem_GetScriptMember(fieldSystem, 41)) = v1->unk_04;
+        *(u16 *)(FieldSystem_GetScriptMember(fieldSystem, 42)) = v1->unk_06;
+        *(u16 *)(FieldSystem_GetScriptMember(fieldSystem, 43)) = v1->unk_08;
+        *(u16 *)(FieldSystem_GetScriptMember(fieldSystem, 44)) = v1->unk_0A;
 
         (*v2)++;
         break;

@@ -260,9 +260,9 @@ BOOL sub_02052B2C (TaskManager * param0)
 
         if (sub_0203A7EC()
             == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {
-            sub_0203E8E0(param0, 2020, NULL, NULL);
+            ScriptManager_Start(param0, 2020, NULL, NULL);
         } else {
-            sub_0203E8E0(param0, 2021, NULL, NULL);
+            ScriptManager_Start(param0, 2021, NULL, NULL);
         }
 
         (*v1)++;

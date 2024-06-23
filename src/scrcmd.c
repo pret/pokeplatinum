@@ -1841,11 +1841,11 @@ static BOOL ScrCmd_013 (ScriptContext * ctx)
 {
     u16 v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v2 = sub_0203F098(fieldSystem, 7);
-    ScriptContext ** v3 = sub_0203F098(fieldSystem, 14);
+    u8 * v2 = FieldSystem_GetScriptMember(fieldSystem, 7);
+    ScriptContext ** v3 = FieldSystem_GetScriptMember(fieldSystem, 14);
 
     v0 = ScriptContext_ReadHalfWord(ctx);
-    *v3 = sub_0203EAB8(fieldSystem, v0);
+    *v3 = ScriptContext_New(fieldSystem, v0);
     (*v2)++;
 
     return 1;
@@ -1855,13 +1855,13 @@ static BOOL ScrCmd_014 (ScriptContext * ctx)
 {
     u16 v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v2 = sub_0203F098(fieldSystem, 5);
-    u8 * v3 = sub_0203F098(fieldSystem, 7);
-    ScriptContext ** v4 = sub_0203F098(fieldSystem, 14);
+    u8 * v2 = FieldSystem_GetScriptMember(fieldSystem, 5);
+    u8 * v3 = FieldSystem_GetScriptMember(fieldSystem, 7);
+    ScriptContext ** v4 = FieldSystem_GetScriptMember(fieldSystem, 14);
 
     v0 = ScriptContext_ReadHalfWord(ctx);
     *v2 = 1;
-    *v4 = sub_0203EAB8(fieldSystem, v0);
+    *v4 = ScriptContext_New(fieldSystem, v0);
     (*v3)++;
 
     ScriptContext_Pause(ctx, sub_0203F9EC);
@@ -1871,7 +1871,7 @@ static BOOL ScrCmd_014 (ScriptContext * ctx)
 static BOOL sub_0203F9EC (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = sub_0203F098(fieldSystem, 5);
+    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, 5);
 
     if (*v1 == 0) {
         return 1;
@@ -1883,7 +1883,7 @@ static BOOL sub_0203F9EC (ScriptContext * ctx)
 static BOOL ScrCmd_015 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = sub_0203F098(fieldSystem, 5);
+    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, 5);
 
     *v1 = 0;
     return 0;
@@ -1902,7 +1902,7 @@ static BOOL ScrCmd_017 (ScriptContext * ctx)
     MapObject ** v2;
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
-    v2 = sub_0203F098(fieldSystem, 10);
+    v2 = FieldSystem_GetScriptMember(fieldSystem, 10);
     v0 = ScriptContext_ReadByte(ctx);
     v1 = (s32)ScriptContext_ReadWord(ctx);
 
@@ -1937,7 +1937,7 @@ static BOOL ScrCmd_019 (ScriptContext * ctx)
     int * v2;
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
-    v2 = sub_0203F098(fieldSystem, 9);
+    v2 = FieldSystem_GetScriptMember(fieldSystem, 9);
     v0 = ScriptContext_ReadByte(ctx);
     v1 = (s32)ScriptContext_ReadWord(ctx);
 
@@ -1984,7 +1984,7 @@ static BOOL ScrCmd_SetFlag (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 flagID = ScriptContext_ReadHalfWord(ctx);
-    sub_0203F19C(fieldSystem, flagID);
+    FieldSystem_SetFlag(fieldSystem, flagID);
     return FALSE;
 }
 
@@ -1992,7 +1992,7 @@ static BOOL ScrCmd_ClearFlag (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 flagID = ScriptContext_ReadHalfWord(ctx);
-    sub_0203F1B0(fieldSystem, flagID);
+    FieldSystem_ClearFlag(fieldSystem, flagID);
     return FALSE;
 }
 
@@ -2000,7 +2000,7 @@ static BOOL ScrCmd_CheckFlag (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 flagID = ScriptContext_ReadHalfWord(ctx);
-    ctx->comparisonResult = sub_0203F188(fieldSystem, flagID);
+    ctx->comparisonResult = FieldSystem_CheckFlag(fieldSystem, flagID);
     return FALSE;
 }
 
@@ -2010,7 +2010,7 @@ static BOOL ScrCmd_021 (ScriptContext * ctx)
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0203F188(fieldSystem, (*v1));
+    *v2 = FieldSystem_CheckFlag(fieldSystem, (*v1));
     return 0;
 }
 
@@ -2018,7 +2018,7 @@ static BOOL ScrCmd_SetFlagFromVar (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 flagID = *ScriptContext_GetVarPointer(ctx);
-    sub_0203F19C(fieldSystem, flagID);
+    FieldSystem_SetFlag(fieldSystem, flagID);
     return FALSE;
 }
 
@@ -2220,7 +2220,7 @@ static BOOL ScrCmd_Message (ScriptContext * ctx)
 static BOOL sub_02040014 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = sub_0203F098(fieldSystem, 3);
+    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, 3);
 
     return FieldMessage_FinishedPrinting(*v1);
 }
@@ -2262,7 +2262,7 @@ static BOOL ScrCmd_02E (ScriptContext * ctx)
 
 static BOOL ScrCmd_20C (ScriptContext * ctx)
 {
-    MapObject ** mapObj = sub_0203F098(ctx->fieldSystem, 10);
+    MapObject ** mapObj = FieldSystem_GetScriptMember(ctx->fieldSystem, 10);
     u8 v1 = MapObject_GetEventType(*mapObj);
 
     ov5_021DD444(ctx, ctx->loader, (u8)v1, 1, NULL);
@@ -2369,10 +2369,10 @@ static BOOL ScriptContext_CheckABPadPress (ScriptContext * ctx)
 static BOOL ScrCmd_033 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = sub_0203F098(fieldSystem, 6);
+    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, 6);
 
-    FieldMessage_AddWindow(fieldSystem->unk_08, sub_0203F098(fieldSystem, 1), 3);
-    FieldMessage_DrawWindow(sub_0203F098(fieldSystem, 1), SaveData_Options(ctx->fieldSystem->saveData));
+    FieldMessage_AddWindow(fieldSystem->unk_08, FieldSystem_GetScriptMember(fieldSystem, 1), 3);
+    FieldMessage_DrawWindow(FieldSystem_GetScriptMember(fieldSystem, 1), SaveData_Options(ctx->fieldSystem->saveData));
 
     *v1 = 1;
     return 0;
@@ -2381,8 +2381,8 @@ static BOOL ScrCmd_033 (ScriptContext * ctx)
 static BOOL ScrCmd_CloseMessage (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Window *window = sub_0203F098(fieldSystem, 1);
-    u8 *v2 = sub_0203F098(fieldSystem, 6);
+    Window *window = FieldSystem_GetScriptMember(fieldSystem, 1);
+    u8 *v2 = FieldSystem_GetScriptMember(fieldSystem, 6);
 
     sub_0200E084(window, 0);
     BGL_DeleteWindow(window);
@@ -2394,8 +2394,8 @@ static BOOL ScrCmd_CloseMessage (ScriptContext * ctx)
 static BOOL ScrCmd_035 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    Window * v1 = sub_0203F098(fieldSystem, 1);
-    u8 * v2 = sub_0203F098(fieldSystem, 6);
+    Window * v1 = FieldSystem_GetScriptMember(fieldSystem, 1);
+    u8 * v2 = FieldSystem_GetScriptMember(fieldSystem, 6);
 
     BGL_DeleteWindow(v1);
 
@@ -2407,12 +2407,12 @@ static BOOL ScrCmd_035 (ScriptContext * ctx)
 static BOOL ScrCmd_ScrollBG3 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 *distanceX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_X);
-    u16 *countX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_X);
-    u16 *directionX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_X);
-    u16 *distanceY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_Y);
-    u16 *countY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_Y);
-    u16 *directionY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_Y);
+    u16 *distanceX = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_X);
+    u16 *countX = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_X);
+    u16 *directionX = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_X);
+    u16 *distanceY = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_Y);
+    u16 *countY = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_Y);
+    u16 *directionY = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_Y);
 
     *distanceX = ScriptContext_ReadByte(ctx);
     *countX = ScriptContext_ReadByte(ctx);
@@ -2429,12 +2429,12 @@ static BOOL ScrCmd_ScrollBG3 (ScriptContext * ctx)
 static BOOL ScriptContext_ScrollBG3 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 *distanceX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_X);
-    u16 *directionX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_X);
-    u16 *distanceY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_Y);
-    u16 *directionY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_Y);
-    u16 *countX = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_X);
-    u16 *countY = sub_0203F098(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_Y);
+    u16 *distanceX = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_X);
+    u16 *directionX = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_X);
+    u16 *distanceY = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIST_Y);
+    u16 *directionY = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_DIR_Y);
+    u16 *countX = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_X);
+    u16 *countY = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_BG3_SCROLL_COUNT_Y);
 
     if (*countX == 0 && *countY == 0) {
         return TRUE;
@@ -2479,16 +2479,16 @@ static BOOL ScrCmd_036 (ScriptContext * ctx)
     u8 v7;
 
     fieldSystem = ctx->fieldSystem;
-    v1 = sub_0203F098(fieldSystem, 17);
-    v2 = sub_0203F098(fieldSystem, 16);
-    v3 = sub_0203F098(fieldSystem, 15);
+    v1 = FieldSystem_GetScriptMember(fieldSystem, 17);
+    v2 = FieldSystem_GetScriptMember(fieldSystem, 16);
+    v3 = FieldSystem_GetScriptMember(fieldSystem, 15);
     v7 = ScriptContext_ReadByte(ctx);
     v6 = ScriptContext_ReadByte(ctx);
     v4 = ScriptContext_ReadHalfWord(ctx);
     v5 = ScriptContext_ReadHalfWord(ctx);
 
     if (v4 == 0) {
-        MapObject ** v8 = sub_0203F098(fieldSystem, 10);
+        MapObject ** v8 = FieldSystem_GetScriptMember(fieldSystem, 10);
 
         v4 = sub_020629D8(*v8, 0);
     }
@@ -2559,10 +2559,10 @@ static BOOL sub_020405C4 (ScriptContext * ctx)
 static BOOL ScrCmd_03A (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = sub_0203F098(fieldSystem, 3);
-    Strbuf ** v2 = sub_0203F098(fieldSystem, 17);
-    Strbuf ** v3 = sub_0203F098(fieldSystem, 16);
-    StringTemplate ** v4 = sub_0203F098(fieldSystem, 15);
+    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, 3);
+    Strbuf ** v2 = FieldSystem_GetScriptMember(fieldSystem, 17);
+    Strbuf ** v3 = FieldSystem_GetScriptMember(fieldSystem, 16);
+    StringTemplate ** v4 = FieldSystem_GetScriptMember(fieldSystem, 15);
     u8 v5 = ScriptContext_ReadByte(ctx);
     u16 v6 = ScriptContext_ReadHalfWord(ctx);
 
@@ -2580,7 +2580,7 @@ static BOOL ScrCmd_03A (ScriptContext * ctx)
 static BOOL sub_02040670 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = sub_0203F098(fieldSystem, 3);
+    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, 3);
     u16 * v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
     u8 v3 = ov5_021E1B54(fieldSystem->unk_64);
     int v4 = 0xffff;
@@ -2672,7 +2672,7 @@ static BOOL ScrCmd_03C (ScriptContext * ctx)
 static BOOL ScrCmd_03E (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UIControlData ** v1 = sub_0203F098(fieldSystem, 2);
+    UIControlData ** v1 = FieldSystem_GetScriptMember(fieldSystem, 2);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
 
     sub_0200DAA4(fieldSystem->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
@@ -2689,7 +2689,7 @@ static BOOL sub_02040824 (ScriptContext * ctx)
 {
     u32 v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UIControlData ** v2 = sub_0203F098(fieldSystem, 2);
+    UIControlData ** v2 = FieldSystem_GetScriptMember(fieldSystem, 2);
     u16 * v3 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
     v0 = sub_02002114(*v2, 4);
@@ -2710,9 +2710,9 @@ static BOOL sub_02040824 (ScriptContext * ctx)
 static BOOL ScrCmd_18D (ScriptContext * ctx)
 {
     void ** v0;
-    Window * v1 = sub_0203F098(ctx->fieldSystem, 1);
+    Window * v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 1);
 
-    v0 = sub_0203F098(ctx->fieldSystem, 18);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 18);
     *v0 = sub_0200E7FC(v1, 1024 - (18 + 12));
 
     return 0;
@@ -2722,7 +2722,7 @@ static BOOL ScrCmd_18E (ScriptContext * ctx)
 {
     void ** v0;
 
-    v0 = sub_0203F098(ctx->fieldSystem, 18);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 18);
     DeleteWaitDial(*v0);
 
     return 0;
@@ -2731,15 +2731,15 @@ static BOOL ScrCmd_18E (ScriptContext * ctx)
 static BOOL ScrCmd_040 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
+    StringTemplate ** v2 = FieldSystem_GetScriptMember(fieldSystem, 15);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u8 v5 = ScriptContext_ReadByte(ctx);
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), NULL);
+    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMember(ctx->fieldSystem, 1), NULL);
     ctx->data[0] = v7;
 
     return 1;
@@ -2748,15 +2748,15 @@ static BOOL ScrCmd_040 (ScriptContext * ctx)
 static BOOL ScrCmd_041 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
+    StringTemplate ** v2 = FieldSystem_GetScriptMember(fieldSystem, 15);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u8 v5 = ScriptContext_ReadByte(ctx);
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), ctx->loader);
+    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMember(ctx->fieldSystem, 1), ctx->loader);
     ctx->data[0] = v7;
 
     return 1;
@@ -2766,7 +2766,7 @@ static BOOL ScrCmd_042 (ScriptContext * ctx)
 {
     u8 v0, v1;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v3 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v3 = FieldSystem_GetScriptMember(fieldSystem, 0);
 
     v0 = ScriptContext_ReadByte(ctx);
     v1 = ScriptContext_ReadByte(ctx);
@@ -2779,7 +2779,7 @@ static BOOL ScrCmd_29D (ScriptContext * ctx)
 {
     u16 v0, v1;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v3 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v3 = FieldSystem_GetScriptMember(fieldSystem, 0);
 
     v0 = ScriptContext_GetVar(ctx);
     v1 = ScriptContext_GetVar(ctx);
@@ -2791,7 +2791,7 @@ static BOOL ScrCmd_29D (ScriptContext * ctx)
 static BOOL ScrCmd_043 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
 
     ov5_021DC1AC(*v1);
     ScriptContext_Pause(ctx, sub_02040A50);
@@ -2814,7 +2814,7 @@ static BOOL sub_02040A50 (ScriptContext * ctx)
 static BOOL ScrCmd_2B9 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
 
     ov5_021DC1AC(*v1);
     ScriptContext_Pause(ctx, sub_02040A9C);
@@ -2826,7 +2826,7 @@ static BOOL sub_02040A9C (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 * v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
-    UnkStruct_ov5_021DC1A4 ** v2 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v2 = FieldSystem_GetScriptMember(fieldSystem, 0);
 
     if (*v1 == 0xeeee) {
         if (sub_0205B9E8(fieldSystem->unk_7C)) {
@@ -2844,15 +2844,15 @@ static BOOL sub_02040A9C (ScriptContext * ctx)
 static BOOL ScrCmd_044 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
+    StringTemplate ** v2 = FieldSystem_GetScriptMember(fieldSystem, 15);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u8 v5 = ScriptContext_ReadByte(ctx);
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), NULL);
+    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMember(ctx->fieldSystem, 1), NULL);
     ctx->data[0] = v7;
 
     return 1;
@@ -2861,15 +2861,15 @@ static BOOL ScrCmd_044 (ScriptContext * ctx)
 static BOOL ScrCmd_045 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
+    StringTemplate ** v2 = FieldSystem_GetScriptMember(fieldSystem, 15);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u8 v5 = ScriptContext_ReadByte(ctx);
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, sub_0203F098(ctx->fieldSystem, 1), ctx->loader);
+    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMember(ctx->fieldSystem, 1), ctx->loader);
     ctx->data[0] = v7;
 
     return 1;
@@ -2877,7 +2877,7 @@ static BOOL ScrCmd_045 (ScriptContext * ctx)
 
 static BOOL ScrCmd_046 (ScriptContext * ctx)
 {
-    UnkStruct_ov5_021DC1A4 ** v0 = sub_0203F098(ctx->fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 0);
     u8 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = ScriptContext_GetVar(ctx);
     u8 v3 = ScriptContext_GetVar(ctx);
@@ -2889,7 +2889,7 @@ static BOOL ScrCmd_046 (ScriptContext * ctx)
 static BOOL ScrCmd_047 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
 
     ov5_021DC4B8(*v1);
 
@@ -2900,7 +2900,7 @@ static BOOL ScrCmd_047 (ScriptContext * ctx)
 static BOOL ScrCmd_327 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
     u16 v2 = ScriptContext_GetVar(ctx);
 
     ov5_021DC528(*v1, v2);
@@ -2912,7 +2912,7 @@ static BOOL ScrCmd_327 (ScriptContext * ctx)
 static BOOL ScrCmd_306 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
     u16 * v3 = ScriptContext_GetVarPointer(ctx);
 
@@ -2925,7 +2925,7 @@ static BOOL ScrCmd_306 (ScriptContext * ctx)
 static BOOL ScrCmd_048 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
     u8 v2 = ScriptContext_ReadByte(ctx);
 
     ov5_021DCD94(*v1, v2);
@@ -2937,7 +2937,7 @@ static BOOL ScrCmd_048 (ScriptContext * ctx)
 static BOOL ScrCmd_33A (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
     u8 v2 = ScriptContext_ReadByte(ctx);
 
     ov5_021DD3F4(*v1, (BOOL)v2);
@@ -2947,7 +2947,7 @@ static BOOL ScrCmd_33A (ScriptContext * ctx)
 static BOOL ScrCmd_33B (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = sub_0203F098(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
     u8 v2 = ScriptContext_ReadByte(ctx);
 
     ov5_021DD410(*v1, (BOOL)v2);
@@ -2965,7 +2965,7 @@ static BOOL ScrCmd_ApplyMovement (ScriptContext * ctx)
     }
 
     SysTask * v1 = MapObject_StartAnimation(object, (MapObjectAnimCmd *)(ctx->scriptPtr + movementOffset));
-    u8 * v2 = sub_0203F098(ctx->fieldSystem, 4);
+    u8 * v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 4);
     (*v2)++;
     sub_02040F28(ctx->fieldSystem, v1, NULL);
     return FALSE;
@@ -3020,7 +3020,7 @@ static BOOL ScrCmd_2A1 (ScriptContext * ctx)
     v10[v11].unk_02 = 0;
 
     v1 = MapObject_StartAnimation(v4, v10);
-    v2 = sub_0203F098(ctx->fieldSystem, 4);
+    v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 4);
     (*v2)++;
 
     sub_02040F28(ctx->fieldSystem, v1, v10);
@@ -3036,7 +3036,7 @@ static MapObject * sub_02040ED4 (FieldSystem * fieldSystem, int param1)
     if (param1 == 0xf2) {
         v1 = sub_02062570(fieldSystem->mapObjMan, 0x30);
     } else if (param1 == 0xf1) {
-        v0 = sub_0203F098(fieldSystem, 11);
+        v0 = FieldSystem_GetScriptMember(fieldSystem, 11);
         v1 = *v0;
     } else {
         v1 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, param1);
@@ -3054,7 +3054,7 @@ static BOOL ScrCmd_WaitMovement (ScriptContext * ctx)
 static BOOL sub_02040F0C (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = sub_0203F098(fieldSystem, 4);
+    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, 4);
 
     if (*v1 == 0) {
         return 1;
@@ -3088,7 +3088,7 @@ static void sub_02040F5C (SysTask * task, void * param1)
     u8 * v1;
 
     v0 = (UnkStruct_02040F28 *)param1;
-    v1 = sub_0203F098(v0->fieldSystem, 4);
+    v1 = FieldSystem_GetScriptMember(v0->fieldSystem, 4);
 
     if (MapObject_HasAnimationEnded(v0->unk_04) == 1) {
         MapObject_FinishAnimation(v0->unk_04);
@@ -3114,7 +3114,7 @@ static void sub_02040F5C (SysTask * task, void * param1)
 static BOOL ScrCmd_LockAll (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    MapObject **objectPtr = sub_0203F098(fieldSystem, 10);
+    MapObject **objectPtr = FieldSystem_GetScriptMember(fieldSystem, 10);
 
     if (*objectPtr == NULL) {
         MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
@@ -3162,7 +3162,7 @@ static inline void inline_020410F4_3 (int mask)
 static BOOL sub_02041004 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    MapObject ** v1 = sub_0203F098(fieldSystem, 10);
+    MapObject ** v1 = FieldSystem_GetScriptMember(fieldSystem, 10);
     MapObject * v2 = Player_MapObject(fieldSystem->playerAvatar);
 
     if (inline_020410F4_1((1 << 0)) && (LocalMapObj_CheckAnimationFinished(v2) == 1)) {
@@ -3216,7 +3216,7 @@ static BOOL sub_020410CC (ScriptContext * ctx)
 static BOOL ScrCmd_LockLastTalked (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    MapObject **v1 = sub_0203F098(fieldSystem, 10);
+    MapObject **v1 = FieldSystem_GetScriptMember(fieldSystem, 10);
     MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
     MapObject *v3 = sub_02062570(fieldSystem->mapObjMan, 0x30);
     MapObject *v4 = sub_02069EB8(*v1);
@@ -3319,7 +3319,7 @@ static BOOL ScrCmd_066 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
-    MapObject ** v2 = sub_0203F098(ctx->fieldSystem, 11);
+    MapObject ** v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 11);
 
     *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
@@ -3340,7 +3340,7 @@ static BOOL ScrCmd_066 (ScriptContext * ctx)
 
 static BOOL ScrCmd_067 (ScriptContext * ctx)
 {
-    MapObject ** v0 = sub_0203F098(ctx->fieldSystem, 11);
+    MapObject ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 11);
 
     MapObject_Delete(*v0);
 
@@ -3362,7 +3362,7 @@ static BOOL ScrCmd_308 (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
-    MapObject ** v2 = sub_0203F098(ctx->fieldSystem, 11);
+    MapObject ** v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 11);
 
     *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
@@ -3375,7 +3375,7 @@ static BOOL ScrCmd_308 (ScriptContext * ctx)
 
 static BOOL ScrCmd_309 (ScriptContext * ctx)
 {
-    MapObject ** v0 = sub_0203F098(ctx->fieldSystem, 11);
+    MapObject ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 11);
 
     MapObject_Delete(*v0);
     return 0;
@@ -3386,7 +3386,7 @@ static BOOL ScrCmd_FacePlayer (ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int dir = Direction_GetOpposite(PlayerAvatar_GetDir(playerAvatar));
-    MapObject **object = sub_0203F098(fieldSystem, 10);
+    MapObject **object = FieldSystem_GetScriptMember(fieldSystem, 10);
 
     if (*object == NULL) {
         return FALSE;
@@ -3552,7 +3552,7 @@ static BOOL ScrCmd_191 (ScriptContext * ctx)
 {
     void ** v0;
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     *v0 = sub_0203D3C0(32, ctx->fieldSystem);
 
     ScriptContext_Pause(ctx, sub_02041D60);
@@ -3563,7 +3563,7 @@ static BOOL ScrCmd_2A5 (ScriptContext * ctx)
 {
     void ** v0;
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     *v0 = sub_0203D3E4(32, ctx->fieldSystem);
 
     ScriptContext_Pause(ctx, sub_02041D60);
@@ -3574,7 +3574,7 @@ static BOOL ScrCmd_192 (ScriptContext * ctx)
 {
     void ** v0;
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     *v0 = sub_0203D50C(ctx->fieldSystem->unk_10, 32);
 
     return 1;
@@ -3586,7 +3586,7 @@ static BOOL ScrCmd_193 (ScriptContext * ctx)
     u16 * v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v0 != 0);
 
@@ -3613,7 +3613,7 @@ static BOOL ScrCmd_2D0 (ScriptContext * ctx)
 
     v3 = ScriptContext_GetVarPointer(ctx);
     v4 = ScriptContext_GetVarPointer(ctx);
-    v2 = sub_0203F098(ctx->fieldSystem, 19);
+    v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     v5 = *v2;
 
     GF_ASSERT(*v2 != 0);
@@ -3653,7 +3653,7 @@ static BOOL ScrCmd_2D4 (ScriptContext * ctx)
     v3 = ScriptContext_GetVarPointer(ctx);
     v4 = ScriptContext_GetVarPointer(ctx);
     v5 = ScriptContext_GetVarPointer(ctx);
-    v2 = sub_0203F098(ctx->fieldSystem, 19);
+    v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     v6 = *v2;
 
     GF_ASSERT(*v2 != 0);
@@ -3695,7 +3695,7 @@ static BOOL ScrCmd_2DB (ScriptContext * ctx)
     v3 = ScriptContext_GetVarPointer(ctx);
     v4 = ScriptContext_GetVarPointer(ctx);
     v5 = ScriptContext_GetVarPointer(ctx);
-    v2 = sub_0203F098(ctx->fieldSystem, 19);
+    v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     v6 = *v2;
 
     GF_ASSERT(*v2 != 0);
@@ -3726,7 +3726,7 @@ static BOOL ScrCmd_2DB (ScriptContext * ctx)
 
 static BOOL ScrCmd_194 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
@@ -3745,7 +3745,7 @@ static BOOL ScrCmd_195 (ScriptContext * ctx)
 
     v1 = ScriptContext_GetVarPointer(ctx);
     v2 = ScriptContext_GetVarPointer(ctx);
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v0 != 0);
 
@@ -3771,7 +3771,7 @@ static BOOL ScrCmd_195 (ScriptContext * ctx)
 
 static BOOL ScrCmd_196 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     u16 v1 = ScriptContext_GetVar(ctx);
 
     *v0 = sub_0203D5C8(32, ctx->fieldSystem, v1);
@@ -3786,7 +3786,7 @@ static BOOL ScrCmd_197 (ScriptContext * ctx)
     u16 * v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v0 != 0);
 
@@ -3800,7 +3800,7 @@ static BOOL ScrCmd_197 (ScriptContext * ctx)
 
 static BOOL ScrCmd_2E7 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
@@ -3817,7 +3817,7 @@ static BOOL ScrCmd_2E8 (ScriptContext * ctx)
     PokemonSummary * v2;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v0 != 0);
 
@@ -3833,7 +3833,7 @@ static BOOL ScrCmd_2E8 (ScriptContext * ctx)
 static BOOL ScrCmd_09B (ScriptContext * ctx)
 {
     u8 v0, v1;
-    MapObject ** v2 = sub_0203F098(ctx->fieldSystem, 10);
+    MapObject ** v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 10);
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 * v4 = ScriptContext_GetVarPointer(ctx);
 
@@ -3874,7 +3874,7 @@ BOOL sub_02041CC8 (ScriptContext * ctx)
     void ** v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     if (sub_020509B4(fieldSystem)) {
         return 0;
@@ -3893,7 +3893,7 @@ static BOOL sub_02041CF4 (ScriptContext * ctx)
     UnkStruct_02042434 * v2;
 
     fieldSystem = ctx->fieldSystem;
-    v0 = sub_0203F098(fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(fieldSystem, 19);
     v2 = *v0;
 
     if (sub_020509B4(fieldSystem)) {
@@ -3918,7 +3918,7 @@ static BOOL sub_02041D3C (ScriptContext * ctx)
     void ** v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     if (sub_0209C238(*v0) == 0) {
         return 0;
@@ -4005,7 +4005,7 @@ static BOOL ScrCmd_0A3 (ScriptContext * ctx)
 static BOOL ScrCmd_0A4 (ScriptContext * ctx)
 {
     UnkStruct_ov98_02247168 * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
 
     v0 = (*v1);
@@ -4025,7 +4025,7 @@ static BOOL ScrCmd_207 (ScriptContext * ctx)
 
 static BOOL ScrCmd_208 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
@@ -4039,7 +4039,7 @@ static BOOL ScrCmd_208 (ScriptContext * ctx)
 static BOOL ScrCmd_28C (ScriptContext * ctx)
 {
     Pokemon * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 v2 = ScriptContext_GetVar(ctx);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), v2);
@@ -4054,7 +4054,7 @@ static BOOL ScrCmd_28C (ScriptContext * ctx)
 static BOOL ScrCmd_209 (ScriptContext * ctx)
 {
     u8 * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
 
     v0 = *v1;
     *v0 = 1;
@@ -4065,7 +4065,7 @@ static BOOL ScrCmd_209 (ScriptContext * ctx)
 static BOOL ScrCmd_28D (ScriptContext * ctx)
 {
     u8 * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
 
     v0 = *v1;
     *v0 = 2;
@@ -4087,7 +4087,7 @@ static BOOL ScrCmd_28E (ScriptContext * ctx)
 static BOOL sub_02041FF8 (ScriptContext * ctx)
 {
     u8 * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 * v2 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
     v0 = *v1;
@@ -4102,7 +4102,7 @@ static BOOL sub_02041FF8 (ScriptContext * ctx)
 static BOOL ScrCmd_20A (ScriptContext * ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    StringTemplate ** v1 = sub_0203F098(ctx->fieldSystem, 15);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 15);
 
     VsSeeker_Start(ctx->taskManager, *v1, FieldSystem_GetVarPointer(ctx->fieldSystem, v0));
     return 1;
@@ -4110,7 +4110,7 @@ static BOOL ScrCmd_20A (ScriptContext * ctx)
 
 static BOOL ScrCmd_20B (ScriptContext * ctx)
 {
-    MapObject ** v0 = sub_0203F098(ctx->fieldSystem, 10);
+    MapObject ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 10);
 
     if (*v0 != NULL) {
         if ((sub_02071CB4(ctx->fieldSystem, 2) == 0) || (ov8_0224C5DC(ctx->fieldSystem, *v0) == 0)) {
@@ -4147,7 +4147,7 @@ static BOOL ScrCmd_0A6 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0A7 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     int v1 = ScriptContext_ReadHalfWord(ctx);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
 
@@ -4169,7 +4169,7 @@ static BOOL ScrCmd_0A7 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0A8 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     int v1 = ScriptContext_ReadHalfWord(ctx);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
 
@@ -4259,7 +4259,7 @@ static BOOL ScrCmd_0A9 (ScriptContext * ctx)
 static BOOL ScrCmd_0AA (ScriptContext * ctx)
 {
     UnkStruct_0203D8AC * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203D8AC));
 
@@ -4274,7 +4274,7 @@ static BOOL ScrCmd_1D7 (ScriptContext * ctx)
 {
     u8 v0;
     UnkStruct_0203D8AC * v1;
-    void ** v2 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v2 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     v0 = ScriptContext_ReadHalfWord(ctx);
     *v2 = sub_02099674(ctx->fieldSystem, v0, 11);
@@ -4306,7 +4306,7 @@ static BOOL ScrCmd_1D9 (ScriptContext * ctx)
     UnkStruct_ov90_021D0D80 * v0;
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
-    void ** v3 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v3 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov90_021D0D80));
 
@@ -4325,7 +4325,7 @@ static BOOL ScrCmd_1D9 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0AB (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     UnkStruct_02042434 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02042434));
 
     v1->unk_00 = ctx->fieldSystem->saveData;
@@ -4362,7 +4362,7 @@ static BOOL ScrCmd_0AE (ScriptContext * ctx)
 
 static BOOL ScrCmd_0AF (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v0 = sub_0203DE34(ctx->fieldSystem);
     ScriptContext_Pause(ctx, sub_02041CC8);
@@ -4378,7 +4378,7 @@ static BOOL ScrCmd_0B0 (ScriptContext * ctx)
 
 static BOOL ScrCmd_0B1 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v0 = sub_0203E244(ctx->fieldSystem);
     ScriptContext_Pause(ctx, sub_02041CC8);
@@ -4431,7 +4431,7 @@ static BOOL ScrCmd_0B3 (ScriptContext * ctx)
 static BOOL ScrCmd_0B4 (ScriptContext * ctx)
 {
     ChooseStarterData * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
 
     *v1 = Heap_AllocFromHeap(11, sizeof(ChooseStarterData));
     v0 = *v1;
@@ -4447,7 +4447,7 @@ static BOOL ScrCmd_0B4 (ScriptContext * ctx)
 static BOOL ScrCmd_0B5 (ScriptContext * ctx)
 {
     ChooseStarterData * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
 
     v0 = (*v1);
 
@@ -4469,7 +4469,7 @@ static BOOL ScrCmd_178 (ScriptContext * ctx)
         v1 = 1;
     }
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     GF_ASSERT(*v0 == 0);
 
     *v0 = sub_0203D264(ctx->fieldSystem, v1);
@@ -4484,7 +4484,7 @@ static BOOL ScrCmd_179 (ScriptContext * ctx)
     void ** v1;
 
     v0 = ScriptContext_GetVarPointer(ctx);
-    v1 = sub_0203F098(ctx->fieldSystem, 19);
+    v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v1 != 0);
     *v0 = sub_0203D2C4(*v1);
@@ -4526,7 +4526,7 @@ static BOOL ScrCmd_271 (ScriptContext * ctx)
 
 static BOOL ScrCmd_2C6 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v0 = sub_0209C1EC(ctx->fieldSystem);
     ScriptContext_Pause(ctx, sub_02041D3C);
@@ -4578,7 +4578,7 @@ static BOOL ScrCmd_244 (ScriptContext * ctx)
 
 static BOOL ScrCmd_245 (ScriptContext * ctx)
 {
-    StringTemplate ** v0 = sub_0203F098(ctx->fieldSystem, 15);
+    StringTemplate ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 15);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
@@ -4737,7 +4737,7 @@ static BOOL ScrCmd_0C4 (ScriptContext * ctx)
 static BOOL ScrCmd_0C5 (ScriptContext * ctx)
 {
     Pokemon * v0;
-    void ** v1 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 v2 = ScriptContext_GetVar(ctx);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), v2);
@@ -4749,7 +4749,7 @@ static BOOL ScrCmd_0C5 (ScriptContext * ctx)
 
 static BOOL sub_02042C80 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
 
     if (ov6_02243FBC(*v0) == 1) {
         ov6_02243FC8(*v0);
@@ -4852,17 +4852,17 @@ static BOOL ScrCmd_0DE (ScriptContext * ctx)
 static BOOL ScrCmd_0E6 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u16 * v1 = sub_0203F098(fieldSystem, 8);
-    Strbuf ** v2 = sub_0203F098(fieldSystem, 16);
-    u8 * v3 = sub_0203F098(fieldSystem, 6);
-    u8 * v4 = sub_0203F098(fieldSystem, 3);
+    u16 * v1 = FieldSystem_GetScriptMember(fieldSystem, 8);
+    Strbuf ** v2 = FieldSystem_GetScriptMember(fieldSystem, 16);
+    u8 * v3 = FieldSystem_GetScriptMember(fieldSystem, 6);
+    u8 * v4 = FieldSystem_GetScriptMember(fieldSystem, 3);
     u16 v5 = ScriptContext_GetVar(ctx);
     u16 v6 = ScriptContext_GetVar(ctx);
 
     TrainerData_LoadMessage(v5, v6, *v2, 11);
-    BGL_FillWindow(sub_0203F098(fieldSystem, 1), 15);
+    BGL_FillWindow(FieldSystem_GetScriptMember(fieldSystem, 1), 15);
 
-    *v4 = FieldMessage_Print(sub_0203F098(fieldSystem, 1), *v2, SaveData_Options(ctx->fieldSystem->saveData), 1);
+    *v4 = FieldMessage_Print(FieldSystem_GetScriptMember(fieldSystem, 1), *v2, SaveData_Options(ctx->fieldSystem->saveData), 1);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return 1;
@@ -4951,7 +4951,7 @@ static BOOL ScrCmd_0F6 (ScriptContext * ctx)
     PartyManagementData * v0;
     void ** v1;
 
-    v1 = sub_0203F098(ctx->fieldSystem, 19);
+    v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     v0 = *v1;
 
     sub_0205167C(ctx->fieldSystem->unk_10, v0->unk_2C, (0x4 | 0x1));
@@ -4995,7 +4995,7 @@ static BOOL ScrCmd_11C (ScriptContext * ctx)
 static BOOL ScrCmd_11D (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    StringTemplate ** v1 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(fieldSystem, 15);
     u8 v2 = ScriptContext_ReadByte(ctx);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u16 * v4 = ScriptContext_GetVarPointer(ctx);
@@ -5069,7 +5069,7 @@ static BOOL ScrCmd_123 (ScriptContext * ctx)
 
 static BOOL ScrCmd_124 (ScriptContext * ctx)
 {
-    BOOL * v0 = sub_0203F098(ctx->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 23);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5080,7 +5080,7 @@ static BOOL ScrCmd_124 (ScriptContext * ctx)
 
 static BOOL ScrCmd_2BD (ScriptContext * ctx)
 {
-    BOOL * v0 = sub_0203F098(ctx->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 23);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5091,7 +5091,7 @@ static BOOL ScrCmd_2BD (ScriptContext * ctx)
 
 static BOOL ScrCmd_319 (ScriptContext * ctx)
 {
-    BOOL * v0 = sub_0203F098(ctx->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 23);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5101,7 +5101,7 @@ static BOOL ScrCmd_319 (ScriptContext * ctx)
 
 static BOOL ScrCmd_318 (ScriptContext * ctx)
 {
-    BOOL * v0 = sub_0203F098(ctx->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 23);
     u16 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = (u8)ScriptContext_GetVar(ctx);
 
@@ -5112,7 +5112,7 @@ static BOOL ScrCmd_318 (ScriptContext * ctx)
 static BOOL ScrCmd_125 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    BOOL * v1 = sub_0203F098(fieldSystem, 23);
+    BOOL * v1 = FieldSystem_GetScriptMember(fieldSystem, 23);
     u16 v2 = ScriptContext_GetVar(ctx);
 
     sub_02051480(ctx->taskManager, v2, 11, v1);
@@ -5145,7 +5145,7 @@ static BOOL ScrCmd_128 (ScriptContext * ctx)
 static BOOL ScrCmd_129 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    BOOL * v1 = sub_0203F098(fieldSystem, 23);
+    BOOL * v1 = FieldSystem_GetScriptMember(fieldSystem, 23);
 
     sub_0205120C(ctx->taskManager, v1);
     return 1;
@@ -5275,7 +5275,7 @@ static BOOL ScrCmd_136 (ScriptContext * ctx)
 static BOOL ScrCmd_137 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    StringTemplate ** v1 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(fieldSystem, 15);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
 
     *v2 = sub_0205BC50(*v1);
@@ -5286,7 +5286,7 @@ static BOOL ScrCmd_138 (ScriptContext * ctx)
 {
     u16 * v0 = ScriptContext_GetVarPointer(ctx);
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v2 = FieldSystem_GetScriptMember(fieldSystem, 15);
 
     *v0 = sub_0205BF44(ctx->fieldSystem->unk_7C, *v2);
     return 0;
@@ -5311,8 +5311,8 @@ static BOOL ScrCmd_139 (ScriptContext * ctx)
 
 static BOOL ScrCmd_13C (ScriptContext * ctx)
 {
-    MapObject ** v0 = sub_0203F098(ctx->fieldSystem, 10);
-    StringTemplate ** v1 = sub_0203F098(ctx->fieldSystem, 15);
+    MapObject ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 10);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 15);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
     TrainerInfo * v3 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
     UnkStruct_02014EC4 * v4 = sub_02014EC4(FieldSystem_SaveData(ctx->fieldSystem));
@@ -5352,10 +5352,10 @@ static BOOL sub_020437E8 (ScriptContext * ctx)
 
 static BOOL ScrCmd_13F (ScriptContext * ctx)
 {
-    MapObject ** v0 = sub_0203F098(ctx->fieldSystem, 10);
+    MapObject ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 10);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
-    StringTemplate ** v3 = sub_0203F098(ctx->fieldSystem, 15);
+    StringTemplate ** v3 = FieldSystem_GetScriptMember(ctx->fieldSystem, 15);
 
     *v2 = sub_0205BCF4(ctx->fieldSystem->unk_7C, MapObject_Id(*v0), v1, *v3);
     return 0;
@@ -5370,7 +5370,7 @@ static BOOL ScrCmd_2BA (ScriptContext * ctx)
     *v2 = sub_0205BA7C(ctx->fieldSystem->unk_7C);
 
     if (*v2 != 0) {
-        v1 = sub_0203F098(ctx->fieldSystem, 19);
+        v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
         v0 = *v1;
         Heap_FreeToHeap(v0);
     }
@@ -5381,7 +5381,7 @@ static BOOL ScrCmd_2BA (ScriptContext * ctx)
 static BOOL ScrCmd_140 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    MapObject ** v1 = sub_0203F098(fieldSystem, 10);
+    MapObject ** v1 = FieldSystem_GetScriptMember(fieldSystem, 10);
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
 
     *v2 = sub_0205B780(fieldSystem->unk_7C, MapObject_Id(*v1));
@@ -5391,7 +5391,7 @@ static BOOL ScrCmd_140 (ScriptContext * ctx)
 static BOOL ScrCmd_146 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    MapObject ** v1 = sub_0203F098(fieldSystem, 10);
+    MapObject ** v1 = FieldSystem_GetScriptMember(fieldSystem, 10);
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 * v3 = ScriptContext_GetVarPointer(ctx);
 
@@ -5525,7 +5525,7 @@ static BOOL ScrCmd_153 (ScriptContext * ctx)
 static BOOL ScrCmd_154 (ScriptContext * ctx)
 {
     TrainerInfo * v0 = SaveData_GetTrainerInfo(FieldSystem_SaveData(ctx->fieldSystem));
-    StringTemplate ** v1 = sub_0203F098(ctx->fieldSystem, 15);
+    StringTemplate ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 15);
 
     sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
     return 0;
@@ -5729,7 +5729,7 @@ static BOOL ScrCmd_18C (ScriptContext * ctx)
 
 static BOOL ScrCmd_18F (ScriptContext * ctx)
 {
-    u16 ** v0 = sub_0203F098(ctx->fieldSystem, 12);
+    u16 ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 12);
     u16 v1 = ScriptContext_GetVar(ctx);
 
     if (*v0 != NULL) {
@@ -5927,8 +5927,8 @@ static BOOL ScrCmd_1AC (ScriptContext * ctx)
 
 static BOOL ScrCmd_19E (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
-    MapObject ** v1 = sub_0203F098(ctx->fieldSystem, 10);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
+    MapObject ** v1 = FieldSystem_GetScriptMember(ctx->fieldSystem, 10);
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
@@ -5941,7 +5941,7 @@ static BOOL ScrCmd_19E (ScriptContext * ctx)
 
 static BOOL sub_020441C8 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 * v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
     *v1 = ov23_02252C70((*v0));
@@ -5955,7 +5955,7 @@ static BOOL sub_020441C8 (ScriptContext * ctx)
 
 static BOOL ScrCmd_19F (ScriptContext * ctx)
 {
-    u8 * v0 = sub_0203F098(ctx->fieldSystem, 3);
+    u8 * v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 3);
 
     *v0 = ov23_02252C9C(ScriptContext_GetVar(ctx));
     ScriptContext_Pause(ctx, sub_02044240);
@@ -5965,7 +5965,7 @@ static BOOL ScrCmd_19F (ScriptContext * ctx)
 
 static BOOL sub_02044240 (ScriptContext * ctx)
 {
-    u8 * v0 = sub_0203F098(ctx->fieldSystem, 3);
+    u8 * v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 3);
     return FieldMessage_FinishedPrinting(*v0);
 }
 
@@ -6152,7 +6152,7 @@ static BOOL ScrCmd_1CD (ScriptContext * ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
-    void ** v6 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v6 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
 
     switch (v1) {
     case 16:
@@ -6304,7 +6304,7 @@ static BOOL ScrCmd_1E9 (ScriptContext * ctx)
 
 static BOOL ScrCmd_1EA (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v0 = sub_0203E53C(ctx->fieldSystem, 32, 0);
     ScriptContext_Pause(ctx, sub_02041CC8);
@@ -6314,7 +6314,7 @@ static BOOL ScrCmd_1EA (ScriptContext * ctx)
 
 static BOOL ScrCmd_1EB (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v0 = sub_0203E53C(ctx->fieldSystem, 32, 1);
     ScriptContext_Pause(ctx, sub_02041CC8);
@@ -6561,7 +6561,7 @@ static BOOL ScrCmd_21C (ScriptContext * ctx)
 
 static BOOL ScrCmd_226 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u8 v1 = ScriptContext_ReadByte(ctx);
 
     *v0 = ov6_02246184(11, v1);
@@ -6570,7 +6570,7 @@ static BOOL ScrCmd_226 (ScriptContext * ctx)
 
 static BOOL ScrCmd_227 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = ov6_02246224((UnkStruct_ov6_02246204 *)*v0);
@@ -6579,7 +6579,7 @@ static BOOL ScrCmd_227 (ScriptContext * ctx)
 
 static BOOL ScrCmd_228 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
 
     *v1 = ov6_0224622C((UnkStruct_ov6_02246204 *)*v0);
@@ -6588,7 +6588,7 @@ static BOOL ScrCmd_228 (ScriptContext * ctx)
 
 static BOOL ScrCmd_229 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
     u16 v1 = ScriptContext_GetVar(ctx);
 
     sub_0206C740(ctx->taskManager, (UnkStruct_ov6_02246204 *)*v0, v1, 11);
@@ -6597,7 +6597,7 @@ static BOOL ScrCmd_229 (ScriptContext * ctx)
 
 static BOOL ScrCmd_22A (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 20);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 20);
 
     ov6_02246204((UnkStruct_ov6_02246204 *)*v0);
     return 0;
@@ -6840,7 +6840,7 @@ static BOOL ScrCmd_252 (ScriptContext * ctx)
 
 static BOOL ScrCmd_258 (ScriptContext * ctx)
 {
-    SysTask ** v0 = sub_0203F098(ctx->fieldSystem, 22);
+    SysTask ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 22);
 
     *v0 = NULL;
     *v0 = ov5_021E1000(ctx->fieldSystem);
@@ -6850,7 +6850,7 @@ static BOOL ScrCmd_258 (ScriptContext * ctx)
 
 static BOOL ScrCmd_259 (ScriptContext * ctx)
 {
-    SysTask ** v0 = sub_0203F098(ctx->fieldSystem, 22);
+    SysTask ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 22);
 
     ov5_021E100C(*v0);
     return 1;
@@ -7136,7 +7136,7 @@ static BOOL ScrCmd_270 (ScriptContext * ctx)
 
 static BOOL ScrCmd_273 (ScriptContext * ctx)
 {
-    StringTemplate ** v0 = sub_0203F098(ctx->fieldSystem, 15);
+    StringTemplate ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 15);
     u8 v1 = ScriptContext_ReadByte(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
@@ -7207,7 +7207,7 @@ static BOOL ScrCmd_27D (ScriptContext * ctx)
     u32 v1;
     u16 * v2 = ScriptContext_GetVarPointer(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
-    StringTemplate ** v4 = sub_0203F098(ctx->fieldSystem, 15);
+    StringTemplate ** v4 = FieldSystem_GetScriptMember(ctx->fieldSystem, 15);
 
     v0 = sub_02014EC4(ctx->fieldSystem->saveData);
     v1 = sub_02014EE4(v0);
@@ -7513,7 +7513,7 @@ static BOOL ScrCmd_290 (ScriptContext * ctx)
     void ** v0;
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     *v0 = sub_0203D410(32, ctx->fieldSystem, v1);
 
     ScriptContext_Pause(ctx, sub_02041D60);
@@ -7527,7 +7527,7 @@ static BOOL ScrCmd_291 (ScriptContext * ctx)
 
     v1 = ScriptContext_GetVarPointer(ctx);
     v2 = ScriptContext_GetVarPointer(ctx);
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v0 != 0);
 
@@ -7705,7 +7705,7 @@ static BOOL ScrCmd_2AF (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
     u16 * v1 = ScriptContext_GetVarPointer(ctx);
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v2 = FieldSystem_GetScriptMember(fieldSystem, 15);
 
     *v1 = sub_0205BC50(*v2);
     return 0;
@@ -7774,7 +7774,7 @@ static BOOL ScrCmd_2BE (ScriptContext * ctx)
 static BOOL ScrCmd_2C1 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021E1FF4 ** v1 = sub_0203F098(fieldSystem, 40);
+    UnkStruct_ov5_021E1FF4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 40);
 
     if (!SaveData_OverwriteCheck(fieldSystem->saveData)) {
         *v1 = ov5_021E1F98(fieldSystem, 4, 3);
@@ -7787,7 +7787,7 @@ static BOOL ScrCmd_2C1 (ScriptContext * ctx)
 static BOOL ScrCmd_2C2 (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021E1FF4 ** v1 = sub_0203F098(fieldSystem, 40);
+    UnkStruct_ov5_021E1FF4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 40);
 
     if (!SaveData_OverwriteCheck(fieldSystem->saveData)) {
         ov5_021E1F7C(*v1);
@@ -7805,7 +7805,7 @@ static BOOL ScrCmd_2C3 (ScriptContext * ctx)
 
 static BOOL ScrCmd_2C4 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     u8 v1 = ScriptContext_ReadByte(ctx);
     UnkStruct_ov104_02230BE4 * v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov104_02230BE4));
 
@@ -7836,8 +7836,8 @@ static BOOL ScrCmd_2C4 (ScriptContext * ctx)
 static BOOL ScrCmd_2CA (ScriptContext * ctx)
 {
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    Strbuf ** v1 = sub_0203F098(fieldSystem, 16);
-    Window * v2 = sub_0203F098(fieldSystem, 1);
+    Strbuf ** v1 = FieldSystem_GetScriptMember(fieldSystem, 16);
+    Window * v2 = FieldSystem_GetScriptMember(fieldSystem, 1);
 
     ov8_0224B67C(fieldSystem, v2, ctx->loader, *v1);
     return 1;
@@ -7930,7 +7930,7 @@ static BOOL ScrCmd_2D8 (ScriptContext * ctx)
 
 BOOL ScrCmd_2C8 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
@@ -7943,7 +7943,7 @@ BOOL ScrCmd_2C8 (ScriptContext * ctx)
 
 BOOL ScrCmd_2E2 (ScriptContext * ctx)
 {
-    void ** v0 = sub_0203F098(ctx->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
 
     *v0 = sub_0203E608(ctx->fieldSystem, 32);
     ScriptContext_Pause(ctx, sub_02041D60);
@@ -7956,7 +7956,7 @@ BOOL ScrCmd_2E3 (ScriptContext * ctx)
     void ** v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     Heap_FreeToHeap(*v0);
     *v0 = NULL;
 
@@ -7972,7 +7972,7 @@ BOOL ScrCmd_2E4 (ScriptContext * ctx)
     u16 * v4 = ScriptContext_GetVarPointer(ctx);
     u16 * v5 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0203F098(ctx->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(ctx->fieldSystem, 19);
     v1 = (UnkStruct_0203E608 *)*v0;
     *v4 = v1->unk_08[v3];
     *v5 = v1->unk_0E[v3];

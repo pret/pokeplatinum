@@ -25,7 +25,7 @@ BOOL ScrCmd_1C6 (ScriptContext * param0)
     u16 v0 = ScriptContext_GetVar(param0);
     void ** v1;
 
-    v1 = sub_0203F098(param0->fieldSystem, 19);
+    v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
     *v1 = sub_0203D6E4(32, param0->fieldSystem, v0);
 
     ScriptContext_Pause(param0, sub_02041D60);
@@ -38,7 +38,7 @@ BOOL ScrCmd_1C7 (ScriptContext * param0)
     u16 * v1;
 
     v1 = ScriptContext_GetVarPointer(param0);
-    v0 = sub_0203F098(param0->fieldSystem, 19);
+    v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
     GF_ASSERT(*v0 != 0);
     *v1 = sub_0203D750(*v0);
 
@@ -74,7 +74,7 @@ BOOL ScrCmd_21F (ScriptContext * param0)
 
 static void sub_0204EE90 (ScriptContext * param0, u16 param1, Pokemon * param2, u16 * param3)
 {
-    void ** v0 = sub_0203F098(param0->fieldSystem, 19);
+    void ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
     UnkStruct_020997B8 * v1;
 
     v1 = sub_020997B8(32);
@@ -137,7 +137,7 @@ BOOL ScrCmd_223 (ScriptContext * param0)
 {
     UnkStruct_020997B8 * v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
-    void ** v2 = sub_0203F098(param0->fieldSystem, 19);
+    void ** v2 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
 
     v0 = *v2;
 
@@ -158,7 +158,7 @@ BOOL ScrCmd_225 (ScriptContext * param0)
 {
     UnkStruct_020997B8 * v0;
     u16 * v1 = ScriptContext_GetVarPointer(param0);
-    void ** v2 = sub_0203F098(param0->fieldSystem, 19);
+    void ** v2 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
 
     v0 = *v2;
 

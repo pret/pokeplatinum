@@ -126,7 +126,7 @@ static u8 sub_0203CAEC (FieldSystem * fieldSystem, const BgEvent * param1)
         return 0;
     }
 
-    if (sub_0203F188(fieldSystem, Script_GetHiddenItemFlag(param1->script)) == 1) {
+    if (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(param1->script)) == 1) {
         return 0;
     }
 

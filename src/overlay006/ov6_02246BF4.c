@@ -18,7 +18,7 @@ BOOL ov6_02246BF4 (SaveData * param0, FieldSystem * fieldSystem)
         (*v0)--;
 
         if ((*v0) == 0) {
-            sub_0203E880(fieldSystem, 2032, NULL);
+            ScriptManager_Set(fieldSystem, 2032, NULL);
             return 1;
         }
     }

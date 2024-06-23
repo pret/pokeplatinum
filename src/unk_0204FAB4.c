@@ -78,7 +78,7 @@ BOOL ScrCmd_2D2 (ScriptContext * param0)
     v6 = FieldSystem_GetVarPointer(param0->fieldSystem, v5);
     v10 = sub_020302DC(param0->fieldSystem->saveData);
     v11 = sub_0203041C(param0->fieldSystem->saveData);
-    v8 = sub_0203F098(param0->fieldSystem, 19);
+    v8 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
 
     switch (v3) {
     case 0:

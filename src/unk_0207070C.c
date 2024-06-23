@@ -292,8 +292,8 @@ static BOOL sub_02070914 (TaskManager * taskMan)
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
-    sub_0203E918(taskMan, 10008, v0->unk_04);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(taskMan, 10008, v0->unk_04);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -388,8 +388,8 @@ static BOOL sub_02070AB4 (TaskManager * taskMan)
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
-    sub_0203E918(taskMan, 10012, NULL);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(taskMan, 10012, NULL);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -432,8 +432,8 @@ static BOOL sub_02070B5C (TaskManager * param0)
     UnkStruct_0207086C * v0 = TaskManager_Environment(param0);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    sub_0203E918(param0, 10010, v0->unk_04);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(param0, 10010, v0->unk_04);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -476,8 +476,8 @@ static BOOL sub_02070C04 (TaskManager * taskMan)
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
-    sub_0203E918(taskMan, 10014, NULL);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(taskMan, 10014, NULL);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -524,8 +524,8 @@ static BOOL sub_02070CBC (TaskManager * taskMan)
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
-    sub_0203E918(taskMan, 10009, v0->unk_04);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(taskMan, 10009, v0->unk_04);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -568,8 +568,8 @@ static BOOL sub_02070D64 (TaskManager * param0)
     UnkStruct_0207086C * v0 = TaskManager_Environment(param0);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
 
-    sub_0203E918(param0, 10013, NULL);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(param0, 10013, NULL);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -616,8 +616,8 @@ static BOOL sub_02070E20 (TaskManager * taskMan)
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
-    sub_0203E918(taskMan, 10011, NULL);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(taskMan, 10011, NULL);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -656,8 +656,8 @@ static BOOL sub_02070EB0 (TaskManager * taskMan)
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
-    sub_0203E918(taskMan, 10015, NULL);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(taskMan, 10015, NULL);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;
@@ -836,8 +836,8 @@ static BOOL sub_0207118C (TaskManager * taskMan)
     UnkStruct_0207086C * v0 = TaskManager_Environment(taskMan);
     FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
 
-    sub_0203E918(taskMan, 8900, NULL);
-    sub_0203F21C(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
+    ScriptManager_Change(taskMan, 8900, NULL);
+    FieldSystem_SetScriptParameters(fieldSystem, v0->unk_08.unk_04, 0, 0, 0);
     sub_02070890(v0);
 
     return 0;

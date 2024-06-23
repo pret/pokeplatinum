@@ -510,16 +510,16 @@ static BOOL sub_02051074 (TaskManager * taskMan)
     case 6:
         if ((*v3) == 0) {
             if (v1->unk_10->unk_14 == 0x4) {
-                sub_0203E8E0(taskMan, 8802, NULL, NULL);
+                ScriptManager_Start(taskMan, 8802, NULL, NULL);
             } else {
-                sub_0203E8E0(taskMan, 8809, NULL, NULL);
+                ScriptManager_Start(taskMan, 8809, NULL, NULL);
             }
         } else {
             PCBoxes * v7 = SaveData_PCBoxes(fieldSystem->saveData);
             Party * v8 = Party_GetFromSavedata(fieldSystem->saveData);
 
             if ((PCBoxes_FirstEmptyBox(v7) == 18) && (Party_GetCurrentCount(v8) == 6)) {
-                sub_0203E8E0(taskMan, 8822, NULL, NULL);
+                ScriptManager_Start(taskMan, 8822, NULL, NULL);
             }
         }
 
@@ -650,7 +650,7 @@ static BOOL sub_0205136C (TaskManager * taskMan)
         sub_02050AF0(v1);
 
         if (sub_020563BC(fieldSystem) == 0) {
-            sub_0203E918(taskMan, 3, NULL);
+            ScriptManager_Change(taskMan, 3, NULL);
             return 0;
         } else {
             return 1;

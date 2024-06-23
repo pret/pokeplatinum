@@ -59,21 +59,21 @@ BOOL ScrCmd_0B6 (ScriptContext * param0)
     u16 v9 = ScriptContext_GetVar(param0);
 
     if (v9 == 0) {
-        v0 = sub_0203F098(fieldSystem, 24);
-        v4 = sub_0203F098(fieldSystem, 25);
-        v1 = sub_0203F098(fieldSystem, 26);
-        v2 = sub_0203F098(fieldSystem, 27);
-        v3 = sub_0203F098(fieldSystem, 28);
-        v6 = sub_0203F098(fieldSystem, 29);
-        v5 = sub_0203F098(fieldSystem, 30);
+        v0 = FieldSystem_GetScriptMember(fieldSystem, 24);
+        v4 = FieldSystem_GetScriptMember(fieldSystem, 25);
+        v1 = FieldSystem_GetScriptMember(fieldSystem, 26);
+        v2 = FieldSystem_GetScriptMember(fieldSystem, 27);
+        v3 = FieldSystem_GetScriptMember(fieldSystem, 28);
+        v6 = FieldSystem_GetScriptMember(fieldSystem, 29);
+        v5 = FieldSystem_GetScriptMember(fieldSystem, 30);
     } else {
-        v0 = sub_0203F098(fieldSystem, 31);
-        v4 = sub_0203F098(fieldSystem, 32);
-        v1 = sub_0203F098(fieldSystem, 33);
-        v2 = sub_0203F098(fieldSystem, 34);
-        v3 = sub_0203F098(fieldSystem, 35);
-        v6 = sub_0203F098(fieldSystem, 36);
-        v5 = sub_0203F098(fieldSystem, 37);
+        v0 = FieldSystem_GetScriptMember(fieldSystem, 31);
+        v4 = FieldSystem_GetScriptMember(fieldSystem, 32);
+        v1 = FieldSystem_GetScriptMember(fieldSystem, 33);
+        v2 = FieldSystem_GetScriptMember(fieldSystem, 34);
+        v3 = FieldSystem_GetScriptMember(fieldSystem, 35);
+        v6 = FieldSystem_GetScriptMember(fieldSystem, 36);
+        v5 = FieldSystem_GetScriptMember(fieldSystem, 37);
     }
 
     playerAvatar = fieldSystem->playerAvatar;
@@ -91,9 +91,9 @@ BOOL ScrCmd_0B7 (ScriptContext * param0)
     *v2 = 0;
 
     if (v1 == 0) {
-        v0 = sub_0203F098(param0->fieldSystem, 30);
+        v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 30);
     } else {
-        v0 = sub_0203F098(param0->fieldSystem, 37);
+        v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 37);
     }
 
     if (*v0 == NULL) {
@@ -112,7 +112,7 @@ BOOL ScrCmd_0B7 (ScriptContext * param0)
 
 BOOL ScrCmd_0B8 (ScriptContext * param0)
 {
-    u16 * v0 = sub_0203F098(param0->fieldSystem, 28);
+    u16 * v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 28);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = *v0;
@@ -121,8 +121,8 @@ BOOL ScrCmd_0B8 (ScriptContext * param0)
 
 BOOL ScrCmd_0B9 (ScriptContext * param0)
 {
-    u16 * v0 = sub_0203F098(param0->fieldSystem, 27);
-    u16 * v1 = sub_0203F098(param0->fieldSystem, 34);
+    u16 * v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 27);
+    u16 * v1 = FieldSystem_GetScriptMember(param0->fieldSystem, 34);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
 
@@ -133,7 +133,7 @@ BOOL ScrCmd_0B9 (ScriptContext * param0)
 BOOL ScrCmd_0E4 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v1 = sub_0203F098(fieldSystem, 8);
+    u16 * v1 = FieldSystem_GetScriptMember(fieldSystem, 8);
     u16 * v2 = ScriptContext_GetVarPointer(param0);
 
     *v2 = Script_GetTrainerID(*v1);
@@ -144,8 +144,8 @@ BOOL ScrCmd_0E5 (ScriptContext * param0)
 {
     u32 v0;
     FieldSystem * fieldSystem = param0->fieldSystem;
-    u16 * v2 = sub_0203F098(fieldSystem, 8);
-    BOOL * v3 = sub_0203F098(fieldSystem, 23);
+    u16 * v2 = FieldSystem_GetScriptMember(fieldSystem, 8);
+    BOOL * v3 = FieldSystem_GetScriptMember(fieldSystem, 23);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 v5 = ScriptContext_GetVar(param0);
     u16 v6;
@@ -163,7 +163,7 @@ BOOL ScrCmd_0E5 (ScriptContext * param0)
 BOOL ScrCmd_2A0 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    BOOL * v1 = sub_0203F098(fieldSystem, 23);
+    BOOL * v1 = FieldSystem_GetScriptMember(fieldSystem, 23);
     u16 v2 = ScriptContext_GetVar(param0);
     u16 v3 = ScriptContext_GetVar(param0);
     u16 v4 = ScriptContext_GetVar(param0);
@@ -175,7 +175,7 @@ BOOL ScrCmd_2A0 (ScriptContext * param0)
 BOOL ScrCmd_0E7 (ScriptContext * param0)
 {
     u16 v0, v1, v2, v3, v4;
-    u16 * v5 = sub_0203F098(param0->fieldSystem, 8);
+    u16 * v5 = FieldSystem_GetScriptMember(param0->fieldSystem, 8);
     u16 * v6 = ScriptContext_GetVarPointer(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
     u16 * v8 = ScriptContext_GetVarPointer(param0);
@@ -210,7 +210,7 @@ BOOL ScrCmd_0E7 (ScriptContext * param0)
 BOOL ScrCmd_0E8 (ScriptContext * param0)
 {
     u16 v0, v1, v2, v3, v4;
-    u16 * v5 = sub_0203F098(param0->fieldSystem, 8);
+    u16 * v5 = FieldSystem_GetScriptMember(param0->fieldSystem, 8);
     u16 * v6 = ScriptContext_GetVarPointer(param0);
     u16 * v7 = ScriptContext_GetVarPointer(param0);
     u16 * v8 = ScriptContext_GetVarPointer(param0);
@@ -244,7 +244,7 @@ BOOL ScrCmd_0E8 (ScriptContext * param0)
 
 BOOL ScrCmd_0E9 (ScriptContext * param0)
 {
-    u16 * v0 = sub_0203F098(param0->fieldSystem, 8);
+    u16 * v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 8);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = Script_IsTrainerDoubleBattle(Script_GetTrainerID(*v0));
@@ -267,7 +267,7 @@ BOOL ScrCmd_0EB (ScriptContext * param0)
 
 BOOL ScrCmd_0EC (ScriptContext * param0)
 {
-    BOOL * v0 = sub_0203F098(param0->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 23);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02052868(*v0);
@@ -276,7 +276,7 @@ BOOL ScrCmd_0EC (ScriptContext * param0)
 
 BOOL ScrCmd_0ED (ScriptContext * param0)
 {
-    BOOL * v0 = sub_0203F098(param0->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 23);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02052878(*v0);
@@ -285,7 +285,7 @@ BOOL ScrCmd_0ED (ScriptContext * param0)
 
 BOOL ScrCmd_2BC (ScriptContext * param0)
 {
-    BOOL * v0 = sub_0203F098(param0->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 23);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = sub_02052888(*v0);
@@ -303,7 +303,7 @@ BOOL ScrCmd_0EE (ScriptContext * param0)
 BOOL ScrCmd_0EF (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    BOOL * v1 = sub_0203F098(fieldSystem, 23);
+    BOOL * v1 = FieldSystem_GetScriptMember(fieldSystem, 23);
 
     sub_020515CC(param0->taskManager, 1, 0, 0, 11, v1);
 
@@ -315,7 +315,7 @@ BOOL ScrCmd_0F0 (ScriptContext * param0)
     MapObject ** v0;
     FieldSystem * fieldSystem = param0->fieldSystem;
 
-    v0 = sub_0203F098(fieldSystem, 10);
+    v0 = FieldSystem_GetScriptMember(fieldSystem, 10);
     Script_SetTrainerDefeated(MapObject_FieldSystem(*v0), MapObject_Id(*v0));
 
     return 0;
@@ -328,7 +328,7 @@ BOOL ScrCmd_0F1 (ScriptContext * param0)
     MapObject ** v2;
     FieldSystem * fieldSystem = param0->fieldSystem;
 
-    v2 = sub_0203F098(fieldSystem, 10);
+    v2 = FieldSystem_GetScriptMember(fieldSystem, 10);
     v1 = (s32)ScriptContext_ReadWord(param0);
     v0 = Script_IsTrainerDefeated(MapObject_FieldSystem(*v2), MapObject_Id(*v2));
 
@@ -342,7 +342,7 @@ BOOL ScrCmd_0F1 (ScriptContext * param0)
 
 BOOL ScrCmd_314 (ScriptContext * param0)
 {
-    BOOL * v0 = sub_0203F098(param0->fieldSystem, 23);
+    BOOL * v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 23);
     u16 * v1 = ScriptContext_GetVarPointer(param0);
 
     *v1 = *v0;

@@ -114,22 +114,22 @@ static u8 ov5_021DD574 (ScriptContext * param0)
 
 static void ov5_021DD588 (FieldSystem * fieldSystem, UnkStruct_ov5_021DD648 * param1)
 {
-    param1->unk_00 = *((Strbuf **)(sub_0203F098(fieldSystem, 16)));
-    param1->unk_04 = *((Strbuf **)(sub_0203F098(fieldSystem, 17)));
-    param1->unk_08 = *((StringTemplate **)(sub_0203F098(fieldSystem, 15)));
-    param1->unk_0C = sub_0203F098(fieldSystem, 1);
-    param1->unk_10 = sub_0203F098(fieldSystem, 6);
-    param1->unk_14 = sub_0203F098(fieldSystem, 3);
+    param1->unk_00 = *((Strbuf **)(FieldSystem_GetScriptMember(fieldSystem, 16)));
+    param1->unk_04 = *((Strbuf **)(FieldSystem_GetScriptMember(fieldSystem, 17)));
+    param1->unk_08 = *((StringTemplate **)(FieldSystem_GetScriptMember(fieldSystem, 15)));
+    param1->unk_0C = FieldSystem_GetScriptMember(fieldSystem, 1);
+    param1->unk_10 = FieldSystem_GetScriptMember(fieldSystem, 6);
+    param1->unk_14 = FieldSystem_GetScriptMember(fieldSystem, 3);
 }
 
 static void ov5_021DD5D0 (FieldSystem * fieldSystem, StringTemplate * param1, UnkStruct_ov5_021DD648 * param2)
 {
-    param2->unk_00 = *((Strbuf **)(sub_0203F098(fieldSystem, 16)));
-    param2->unk_04 = *((Strbuf **)(sub_0203F098(fieldSystem, 17)));
+    param2->unk_00 = *((Strbuf **)(FieldSystem_GetScriptMember(fieldSystem, 16)));
+    param2->unk_04 = *((Strbuf **)(FieldSystem_GetScriptMember(fieldSystem, 17)));
     param2->unk_08 = param1;
-    param2->unk_0C = sub_0203F098(fieldSystem, 1);
-    param2->unk_10 = sub_0203F098(fieldSystem, 6);
-    param2->unk_14 = sub_0203F098(fieldSystem, 3);
+    param2->unk_0C = FieldSystem_GetScriptMember(fieldSystem, 1);
+    param2->unk_10 = FieldSystem_GetScriptMember(fieldSystem, 6);
+    param2->unk_14 = FieldSystem_GetScriptMember(fieldSystem, 3);
 }
 
 static void ov5_021DD610 (FieldSystem * fieldSystem, UnkStruct_ov5_021DD648 * param1)
