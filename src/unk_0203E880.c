@@ -327,8 +327,8 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
         return &scriptManager->messageID;
     case SCRIPT_MANAGER_MOVEMENT_COUNT:
         return &scriptManager->movementCount;
-    case SCRIPT_MANAGER_IS_COMMON_SCRIPT:
-        return &scriptManager->isCommonScript;
+    case SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE:
+        return &scriptManager->commonScriptActive;
     case SCRIPT_MANAGER_IS_MSG_BOX_OPEN:
         return &scriptManager->isMsgBoxOpen;
     case SCRIPT_MANAGER_CONTEXT_COUNT:

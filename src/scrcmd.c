@@ -265,9 +265,9 @@ static BOOL ScrCmd_010(ScriptContext * ctx);
 static BOOL ScrCmd_CompareVarToValue(ScriptContext * ctx);
 static BOOL ScrCmd_CompareVarToVar(ScriptContext * ctx);
 static BOOL ScrCmd_013(ScriptContext * ctx);
-static BOOL ScrCmd_014(ScriptContext * ctx);
-static BOOL sub_0203F9EC(ScriptContext * ctx);
-static BOOL ScrCmd_015(ScriptContext * ctx);
+static BOOL ScrCmd_CommonScript(ScriptContext * ctx);
+static BOOL ScriptContext_WaitCommonScript(ScriptContext * ctx);
+static BOOL ScrCmd_ReturnLocal(ScriptContext * ctx);
 static BOOL ScrCmd_GoTo(ScriptContext * ctx);
 static MapObject * sub_02040ED4(FieldSystem * fieldSystem, int param1);
 static BOOL ScrCmd_017(ScriptContext * ctx);
@@ -794,8 +794,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CompareVarToValue,
     ScrCmd_CompareVarToVar,
     ScrCmd_013,
-    ScrCmd_014,
-    ScrCmd_015,
+    ScrCmd_CommonScript,
+    ScrCmd_ReturnLocal,
     ScrCmd_GoTo,
     ScrCmd_017,
     ScrCmd_018,
@@ -1851,42 +1851,36 @@ static BOOL ScrCmd_013 (ScriptContext * ctx)
     return 1;
 }
 
-static BOOL ScrCmd_014 (ScriptContext * ctx)
+static BOOL ScrCmd_CommonScript (ScriptContext * ctx)
 {
-    u16 v0;
+    u16 scriptID;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v2 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_IS_COMMON_SCRIPT);
-    u8 * v3 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_CONTEXT_COUNT);
-    ScriptContext ** v4 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_CONTEXT_1);
+    u8 *commonScriptActive = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE);
+    u8 *ctxCount = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_CONTEXT_COUNT);
+    ScriptContext **commonScriptCtx = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_CONTEXT_1);
 
-    v0 = ScriptContext_ReadHalfWord(ctx);
-    *v2 = 1;
-    *v4 = ScriptContext_New(fieldSystem, v0);
-    (*v3)++;
+    scriptID = ScriptContext_ReadHalfWord(ctx);
+    *commonScriptActive = TRUE;
+    *commonScriptCtx = ScriptContext_New(fieldSystem, scriptID);
+    (*ctxCount)++;
 
-    ScriptContext_Pause(ctx, sub_0203F9EC);
-    return 1;
+    ScriptContext_Pause(ctx, ScriptContext_WaitCommonScript);
+    return TRUE;
 }
 
-static BOOL sub_0203F9EC (ScriptContext * ctx)
+static BOOL ScriptContext_WaitCommonScript (ScriptContext * ctx)
 {
-    FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_IS_COMMON_SCRIPT);
-
-    if (*v1 == 0) {
-        return 1;
-    }
-
-    return 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u8 *commonScriptActive = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE);
+    return *commonScriptActive == FALSE;
 }
 
-static BOOL ScrCmd_015 (ScriptContext * ctx)
+static BOOL ScrCmd_ReturnLocal (ScriptContext * ctx)
 {
-    FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_IS_COMMON_SCRIPT);
-
-    *v1 = 0;
-    return 0;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u8 *commonScriptActive = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE);
+    *commonScriptActive = FALSE;
+    return FALSE;
 }
 
 static BOOL ScrCmd_GoTo (ScriptContext * ctx)

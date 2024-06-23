@@ -115,9 +115,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_014 arg0
+    .macro ScrCmd_014 scriptID
     .short 20
-    .short \arg0
+    .short \scriptID
     .endm
 
     .macro ScrCmd_015

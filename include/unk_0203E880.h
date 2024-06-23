@@ -19,7 +19,7 @@ enum ScriptManagerMember {
     SCRIPT_MANAGER_UI_CONTROL,
     SCRIPT_MANAGER_MESSAGE_ID,
     SCRIPT_MANAGER_MOVEMENT_COUNT,
-    SCRIPT_MANAGER_IS_COMMON_SCRIPT,
+    SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE,
     SCRIPT_MANAGER_IS_MSG_BOX_OPEN,
     SCRIPT_MANAGER_CONTEXT_COUNT,
     SCRIPT_MANAGER_SCRIPT_ID,
@@ -102,7 +102,7 @@ typedef struct ScriptManager {
     u8 state;
     u8 messageID;
     u8 movementCount;
-    u8 isCommonScript;
+    u8 commonScriptActive; // used to determine when to return from a common script
     u8 isMsgBoxOpen;
     u8 ctxCount;
     u16 scriptID;
