@@ -89,7 +89,7 @@ typedef struct {
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
 static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset);
-static u8 ov16_02268194(s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5);
+static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cellNum);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
 static void DrawGauge(Healthbar * param0, u8 param1);
@@ -102,7 +102,7 @@ static void Healthbar_DrawCaughtIcon(Healthbar * param0);
 static void Healthbar_DrawStatusIcon(Healthbar * param0, int param1);
 static void Healthbar_DrawBallCount(Healthbar * param0, u32 param1);
 static void Healthbar_DrawBallsLeftMessage(Healthbar * param0, u32 param1);
-static void ov16_02266FE4(SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4);
+static void Healthbar_LoadMainPalette(SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type);
 static void ov16_02267244(Healthbar * param0);
 static void ov16_0226728C(Healthbar * param0);
 static const SpriteTemplate* Healthbar_SpriteTemplate(u8 type);
@@ -540,30 +540,25 @@ void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHand
     }
 }
 
-static void ov16_02266FE4 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, int param4)
+static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type)
 {
-    const SpriteTemplate * v0;
+    const SpriteTemplate * template = ov16_02268314(type);
 
-    v0 = ov16_02268314(param4);
-
-    if (v0 != NULL) {
-        SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[0]);
-        SpriteRenderer_LoadPalette(param3, 2, param0, param1, param2, 71, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20006);
-        SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[2], 1, v0->resources[2]);
-        SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[3], 1, v0->resources[3]);
+    if (template != NULL) {
+        SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
+        SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+        SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, handler, narc, template->resources[2], TRUE, template->resources[2]);
+        SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, handler, narc, template->resources[3], TRUE, template->resources[3]);
     }
 }
 
-CellActorData * ov16_02267060 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2)
+CellActorData * Healthbar_LoadCellActor (SpriteRenderer * renderer, SpriteGfxHandler * handler, int type)
 {
-    const SpriteTemplate * v0;
-    CellActorData * v1;
+    const SpriteTemplate * template = Healthbar_SpriteTemplate(type);
+    CellActorData * data = SpriteActor_LoadResources(renderer, handler, template);
 
-    v0 = Healthbar_SpriteTemplate(param2);
-    v1 = SpriteActor_LoadResources(param0, param1, v0);
-
-    SpriteActor_UpdateObject(v1->unk_00);
-    return v1;
+    SpriteActor_UpdateObject(data->unk_00);
+    return data;
 }
 
 void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
@@ -761,9 +756,9 @@ void ov16_022672C4 (Healthbar * param0)
     v0 = Healthbar_SpriteTemplate(param0->type);
 
     Healthbar_LoadResources(v1, v2, v4, v3, param0->type);
-    param0->mainActor = ov16_02267060(v1, v2, param0->type);
+    param0->mainActor = Healthbar_LoadCellActor(v1, v2, param0->type);
 
-    ov16_02266FE4(v1, v2, v4, v3, param0->type);
+    Healthbar_LoadMainPalette(v1, v2, v4, v3, param0->type);
 
     if (param0->arrowActor != NULL) {
         SpriteActor_SetPositionXY(param0->arrowActor->unk_00, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
@@ -1453,7 +1448,7 @@ static void DrawGauge (Healthbar * param0, u8 param1)
 
     switch (param1) {
     case 0:
-        v4 = ov16_02268194(param0->maxHP, param0->curHP, param0->damage, &param0->hpTemp, v1, 6);
+        v4 = FillCells(param0->maxHP, param0->curHP, param0->damage, &param0->hpTemp, v1, 6);
 
         {
             int v10;
@@ -1486,7 +1481,7 @@ static void DrawGauge (Healthbar * param0, u8 param1)
         }
         break;
     case 1:
-        ov16_02268194(param0->maxExp, param0->curExp, param0->expReward, &param0->expTemp, v1, 12);
+        FillCells(param0->maxExp, param0->curExp, param0->expReward, &param0->expTemp, v1, 12);
         v5 = param0->unk_48;
 
         if (v5 == 100) {
@@ -1508,6 +1503,17 @@ static void DrawGauge (Healthbar * param0, u8 param1)
     }
 }
 
+/**
+ * @brief Update the pixels of a gauge based on the calculated
+ * change in the current value of a gauge.
+ * 
+ * @param cur       Current value of the gauge
+ * @param diff      Change to be applied to the current value
+ * @param max       Max value of the gauge
+ * @param size      Size of the gauge, in squares of fill
+ * @param temp      Temporary value stored in the gauge
+ * @return          Number of pixels to be filled
+ */
 static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset)
 {
     s32 updated, final, ratio;
@@ -1585,51 +1591,48 @@ static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fil
     return final;
 }
 
-static u8 ov16_02268194 (s32 param0, s32 param1, s32 param2, s32 * param3, u8 * param4, u8 param5)
+static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cellNum)
 {
-    int v0;
-    u32 v1;
-    u32 v2, v3;
-    s32 v4;
+    int cell;
+    u32 offset, pixels, final;
+    s32 updated = cur - diff;
 
-    v4 = param1 - param2;
-
-    if (v4 < 0) {
-        v4 = 0;
-    } else if (v4 > param0) {
-        v4 = param0;
+    if (updated < 0) {
+        updated = 0;
+    } else if (updated > max) {
+        updated = max;
     }
 
-    v1 = 8 * param5;
+    offset = 8 * cellNum;
 
-    for (v0 = 0; v0 < param5; v0++) {
-        param4[v0] = 0;
+    for (cell = 0; cell < cellNum; cell++) {
+        cells[cell] = 0;
     }
-
-    if (param0 < v1) {
-        v2 = (*param3 * v1 / param0) >> 8;
+    
+    if (max < offset) {
+        pixels = (*temp * offset / max) >> 8;
     } else {
-        v2 = *param3 * v1 / param0;
+        pixels = *temp * offset / max;
     }
 
-    v3 = v2;
+    final = pixels;
 
-    if ((v2 == 0) && (v4 > 0)) {
-        param4[0] = 1;
-        v3 = 1;
+    if ((pixels == 0) && (updated > 0)) {
+        cells[0] = 1;
+        final = 1;
     } else {
-        for (v0 = 0; v0 < param5; v0++) {
-            if (v2 >= 8) {
-                param4[v0] = 8;
-                v2 -= 8;
+        for (cell = 0; cell < cellNum; cell++) {
+            if (pixels >= 8) {
+                cells[cell] = 8;
+                pixels -= 8;
             } else {
-                param4[v0] = v2;
+                cells[cell] = pixels;
                 break;
             }
         }
     }
 
-    return v3;
+    return final;
 }
 
 /**
