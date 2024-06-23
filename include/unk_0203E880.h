@@ -149,7 +149,7 @@ void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
 void FieldSystem_SetScriptParameters(FieldSystem * fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3);
 u16 Script_GetTrainerID(u16 scriptID);
-BOOL Script_GetDoubleBattleTrainerIndex(u16 scriptID);
+BOOL Script_GetTrainerBattlerIndex(u16 scriptID);
 BOOL Script_IsTrainerDoubleBattle(u16 trainerID);
 BOOL Script_IsTrainerDefeated(FieldSystem * fieldSystem, u16 trainerID);
 void Script_SetTrainerDefeated(FieldSystem * fieldSystem, u16 trainerID);

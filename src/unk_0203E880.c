@@ -550,7 +550,7 @@ u16 Script_GetTrainerID(u16 scriptID)
     }
 }
 
-int Script_GetDoubleBattleTrainerIndex (u16 scriptID)
+int Script_GetTrainerBattlerIndex (u16 scriptID)
 {
     return !(scriptID < SCRIPT_ID_OFFSET_DOUBLE_BATTLES);
 }

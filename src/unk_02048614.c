@@ -187,7 +187,7 @@ BOOL ScrCmd_0E7 (ScriptContext * param0)
         v3 = 2;
         v4 = 0;
     } else {
-        v1 = Script_GetDoubleBattleTrainerIndex(*v5);
+        v1 = Script_GetTrainerBattlerIndex(*v5);
 
         if (v1 == 0) {
             v2 = 3;
@@ -222,7 +222,7 @@ BOOL ScrCmd_0E8 (ScriptContext * param0)
         v3 = 0;
         v4 = 0;
     } else {
-        v1 = Script_GetDoubleBattleTrainerIndex(*v5);
+        v1 = Script_GetTrainerBattlerIndex(*v5);
 
         if (v1 == 0) {
             v2 = 18;
