@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "pokemon.h"
 #include "savedata.h"
@@ -65,7 +66,7 @@ BOOL ov104_02239130 (UnkStruct_ov104_0222E930 * param0)
         *v7 = sub_0204AA04(v2);
         v0 = SaveData_TVBroadcast(v8->unk_08);
         sub_0206D0C8(v0, *v7);
-        GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v8->unk_08), (1 + 67), *v7);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v8->unk_08), RECORD_UNK_068, *v7);
         break;
     case (30 + 25):
         *v7 = ov104_0223927C(v2, v6);

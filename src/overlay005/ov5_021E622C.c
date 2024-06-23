@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02026218_decl.h"
@@ -2050,7 +2051,7 @@ void ov5_021E6358 (Party * param0, int param1, UnkStruct_02026310 * param2, Save
     int v0;
     GameRecords * v1 = SaveData_GetGameRecordsPtr(param3);
 
-    GameRecords_IncrementRecordValue(v1, 1 + 39);
+    GameRecords_IncrementRecordValue(v1, RECORD_UNK_040);
     v0 = ov5_021E6270(param2);
     ov5_021E62C4(param0, param1, sub_02026218(param2, v0), param3);
 }

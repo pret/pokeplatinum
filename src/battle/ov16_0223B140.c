@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 
+#include "consts/game_records.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -188,9 +189,9 @@ BOOL Battle_Main (OverlayManager * param0, int * param1)
         sub_02038F8C(v0->unk_104);
 
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 19));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_020);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 24));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_025);
         }
         *param1 = 2;
         break;
@@ -2165,24 +2166,24 @@ static BOOL ov16_0223DB1C (OverlayManager * param0)
     switch (v0->unk_14) {
     case 0x1:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 20));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_021);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 25));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_026);
         }
         break;
     case 0x2:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 21));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_022);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 26));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_027);
         }
         break;
     case 0x3:
     case 0x5:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 22));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_023);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, (1 + 27));
+            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_028);
         }
         break;
     }

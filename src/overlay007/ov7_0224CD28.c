@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
@@ -1198,9 +1199,9 @@ static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
     ov7_0224E920(param0, param0->unk_2B0 * param0->unk_2AC);
 
     if (param0->unk_2A9 == 3) {
-        GameRecords_AddToRecordValue(param0->records, (1 + 68), param0->unk_2B0 * param0->unk_2AC);
+        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_069, param0->unk_2B0 * param0->unk_2AC);
     } else {
-        GameRecords_AddToRecordValue(param0->records, (1 + 34), param0->unk_2B0 * param0->unk_2AC);
+        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_035, param0->unk_2B0 * param0->unk_2AC);
     }
 
     ov7_0224DAF8(param0, 1);
@@ -1239,7 +1240,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 
                 {
                     GameRecords * v1 = SaveData_GetGameRecordsPtr(param0->unk_284);
-                    GameRecords_IncrementRecordValue(v1, (1 + 49));
+                    GameRecords_IncrementRecordValue(v1, RECORD_UNK_050);
                 }
 
                 return 11;

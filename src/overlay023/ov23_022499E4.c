@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "sys_task_manager.h"
 
 #include "field/field_system.h"
@@ -88,7 +89,7 @@ void ov23_02249A2C (void)
     FieldCommunicationManager * v0 = FieldCommMan_Get();
 
     v0->unk_41 = 1;
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), 36);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_36);
 
     ov23_02242BC0(v0->fieldSystem);
     ov23_02249C24(ov23_02249C34, 0);

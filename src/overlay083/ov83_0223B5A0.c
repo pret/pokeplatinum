@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
@@ -562,11 +563,11 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         GameRecords * v2 = SaveData_GetGameRecordsPtr(param0->unk_10->unk_0C);
 
         if (param1->unk_1490 == 0) {
-            GameRecords_IncrementTrainerScore(v2, 12);
-            GameRecords_IncrementRecordValue(v2, (1 + 51));
+            GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_12);
+            GameRecords_IncrementRecordValue(v2, RECORD_UNK_052);
         } else {
-            GameRecords_IncrementTrainerScore(v2, 18);
-            GameRecords_IncrementRecordValue(v2, (1 + 52));
+            GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_18);
+            GameRecords_IncrementRecordValue(v2, RECORD_UNK_053);
         }
     }
 

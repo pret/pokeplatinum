@@ -2,6 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 #include "constants/species.h"
 
@@ -429,7 +430,7 @@ static int ov94_02242ED0 (UnkStruct_ov94_0223FD4C * param0)
         switch (v1) {
         case 0:
             ov94_02243B08(param0, 1);
-            GameRecords_IncrementRecordValue(param0->unk_00->records, (1 + 43));
+            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_044);
             param0->unk_2C = 30;
             break;
         case -1:
@@ -656,9 +657,9 @@ static int ov94_022431F0 (UnkStruct_ov94_0223FD4C * param0)
             ov94_02243B08(param0, 0);
             ov94_02243CE4(param0, (Pokemon *)param0->unk_A4C.unk_00.unk_00, param0->unk_110);
             ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_A4C);
-            GameRecords_IncrementTrainerScore(param0->unk_00->records, 25);
+            GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
-            GameRecords_IncrementRecordValue(param0->unk_00->records, (1 + 23));
+            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
 
             {
                 TVBroadcast * v2;
@@ -935,9 +936,9 @@ static int ov94_02243658 (UnkStruct_ov94_0223FD4C * param0)
     ov94_02243BC4(param0, (Pokemon *)param0->unk_12C.unk_00.unk_00, sub_0202DAAC(param0->unk_00->unk_00), param0->unk_12C.unk_121);
     ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_12C);
 
-    GameRecords_IncrementTrainerScore(param0->unk_00->records, 25);
+    GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
-    GameRecords_IncrementRecordValue(param0->unk_00->records, (1 + 23));
+    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
 
     {
         TVBroadcast * v0;

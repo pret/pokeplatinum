@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -1067,7 +1068,7 @@ static int ov109_021D4CC8 (UnkStruct_ov109_021D5140 * param0, int param1)
 
     v0 = sub_0202C244(95, 17);
     sub_0202B758(param0->unk_0C->unk_14.unk_18, v0, 4);
-    GameRecords_IncrementTrainerScore(param0->unk_0C->unk_14.records, 20);
+    GameRecords_IncrementTrainerScore(param0->unk_0C->unk_14.records, TRAINER_SCORE_EVENT_UNK_20);
     sub_02038ED4(&param0->unk_414);
     param0->unk_3B8 = 28;
 

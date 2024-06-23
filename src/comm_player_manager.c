@@ -3,6 +3,7 @@
 #include <nitro/os.h>
 #include <nnsys/g3d/glbstate.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "sys_task_manager.h"
@@ -930,7 +931,7 @@ static void sub_02058644 (int netId)
             sub_0202929C(underground);
 
             if (sub_020292B4(underground) == 50) {
-                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(sCommPlayerManager->fieldSystem->saveData), 37);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_37);
             }
         }
     }

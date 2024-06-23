@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "play_time.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
@@ -83,10 +84,10 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         UnkStruct_0202C834 * v12;
 
         v12 = sub_0202C834(fieldSystem->saveData);
-        v8 = GameRecords_GetRecordValue(v1, (((70 + 1)) + 20)) + GameRecords_GetRecordValue(v1, (1 + 18)) + GameRecords_GetRecordValue(v1, (1 + 23)) + GameRecords_GetRecordValue(v1, (1 + 19)) + GameRecords_GetRecordValue(v1, (1 + 24)) + GameRecords_GetRecordValue(v1, (1 + 31));
-        v9 = GameRecords_GetRecordValue(v1, (1 + 20)) + GameRecords_GetRecordValue(v1, (1 + 25));
-        v10 = GameRecords_GetRecordValue(v1, (1 + 21)) + GameRecords_GetRecordValue(v1, (1 + 26));
-        v11 = GameRecords_GetRecordValue(v1, (1 + 18)) + GameRecords_GetRecordValue(v1, (1 + 23));
+        v8 = GameRecords_GetRecordValue(v1, RECORD_UNK_091) + GameRecords_GetRecordValue(v1, RECORD_UNK_019) + GameRecords_GetRecordValue(v1, RECORD_UNK_024) + GameRecords_GetRecordValue(v1, RECORD_UNK_020) + GameRecords_GetRecordValue(v1, RECORD_UNK_025) + GameRecords_GetRecordValue(v1, RECORD_UNK_032);
+        v9 = GameRecords_GetRecordValue(v1, RECORD_UNK_021) + GameRecords_GetRecordValue(v1, RECORD_UNK_026);
+        v10 = GameRecords_GetRecordValue(v1, RECORD_UNK_022) + GameRecords_GetRecordValue(v1, RECORD_UNK_027);
+        v11 = GameRecords_GetRecordValue(v1, RECORD_UNK_019) + GameRecords_GetRecordValue(v1, RECORD_UNK_024);
 
         sub_02072120(v8, v9, v10, v11, sub_0202C840(v12), param5);
     }

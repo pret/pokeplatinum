@@ -1,3 +1,4 @@
+#include "consts/game_records.h"
 #include "enums.h"
 
 #include <nitro.h>
@@ -1827,7 +1828,7 @@ void ov66_0222F020 (UnkStruct_ov66_0222DFF8 * param0)
     GameRecords * v0;
 
     v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
-    GameRecords_IncrementRecordValue(v0, (1 + 45));
+    GameRecords_IncrementRecordValue(v0, RECORD_UNK_046);
 }
 
 void ov66_0222F030 (UnkStruct_ov66_0222DFF8 * param0)
@@ -1835,7 +1836,7 @@ void ov66_0222F030 (UnkStruct_ov66_0222DFF8 * param0)
     GameRecords * v0;
 
     v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
-    GameRecords_IncrementRecordValue(v0, (((70 + 1)) + 47));
+    GameRecords_IncrementRecordValue(v0, RECORD_UNK_118);
 }
 
 void ov66_0222F040 (UnkStruct_ov66_0222DFF8 * param0, int param1)

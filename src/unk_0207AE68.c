@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
@@ -414,8 +415,8 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         if (Message_Printing(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_0202736C(param0->unk_48, param0->unk_28);
-                GameRecords_IncrementRecordValue(param0->records, (1 + 11));
-                GameRecords_IncrementTrainerScore(param0->records, 22);
+                GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
+                GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param0->unk_28));
 
                 if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
@@ -746,8 +747,8 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
                 sub_0202736C(param0->unk_48, v1);
-                GameRecords_IncrementRecordValue(param0->records, (1 + 11));
-                GameRecords_IncrementTrainerScore(param0->records, 22);
+                GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
+                GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
                 Bag_TryRemoveItem(param0->unk_4C, 4, 1, param0->unk_5C);

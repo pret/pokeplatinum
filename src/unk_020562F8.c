@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_02024440_decl.h"
@@ -80,7 +81,7 @@ void sub_02056328 (FieldSystem * fieldSystem)
         v0->unk_48 = 0;
     }
 
-    GameRecords_IncrementTrainerScore(v1, 17);
+    GameRecords_IncrementTrainerScore(v1, TRAINER_SCORE_EVENT_UNK_17);
 }
 
 BOOL sub_02056374 (FieldSystem * fieldSystem, int param1, int param2)

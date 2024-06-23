@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "trainer_info.h"
@@ -832,8 +833,8 @@ static BOOL Field_UpdateDaycare (FieldSystem *fieldSystem)
     if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
         GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-        GameRecords_IncrementRecordValue(v2, (1 + 10));
-        GameRecords_IncrementTrainerScore(v2, 15);
+        GameRecords_IncrementRecordValue(v2, RECORD_UNK_011);
+        GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_15);
         sub_0203E880(fieldSystem, 2031, NULL);
 
         return TRUE;

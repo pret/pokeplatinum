@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
@@ -259,7 +260,7 @@ static BOOL sub_0209843C (TaskManager * param0)
                 FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
                 GameRecords * v11 = SaveData_GetGameRecordsPtr(FieldSystem_SaveData(fieldSystem));
 
-                GameRecords_IncrementRecordValue(v11, (1 + 48));
+                GameRecords_IncrementRecordValue(v11, RECORD_UNK_049);
             }
         }
 

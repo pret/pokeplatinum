@@ -2,6 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
+#include "consts/game_records.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
@@ -473,5 +474,5 @@ static void sub_0207DF9C (FieldSystem * fieldSystem)
     GameRecords * v0;
 
     v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    GameRecords_IncrementTrainerScore(v0, 50);
+    GameRecords_IncrementTrainerScore(v0, TRAINER_SCORE_EVENT_UNK_50);
 }

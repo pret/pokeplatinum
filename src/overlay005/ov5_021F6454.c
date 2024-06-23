@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
@@ -816,23 +817,23 @@ BOOL ScrCmd_30F (ScriptContext * param0)
 
     switch (v3) {
     case 13:
-        if (GameRecords_GetRecordValue(v1, (1 + 28)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_029) < 1) {
             *v4 = 0;
         }
 
-        if (GameRecords_GetRecordValue(v1, (1 + 59)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_060) < 1) {
             *v4 = 0;
         }
 
-        if (GameRecords_GetRecordValue(v1, (1 + 60)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_061) < 1) {
             *v4 = 0;
         }
 
-        if (GameRecords_GetRecordValue(v1, (1 + 61)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_062) < 1) {
             *v4 = 0;
         }
 
-        if (GameRecords_GetRecordValue(v1, (1 + 62)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_063) < 1) {
             *v4 = 0;
         }
         break;
@@ -860,27 +861,27 @@ BOOL ScrCmd_30F (ScriptContext * param0)
         }
         break;
     case 15:
-        if (GameRecords_GetRecordValue(v1, (((70 + 1)) + 2)) < 10) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_073) < 10) {
             *v4 = 0;
         }
         break;
     case 16:
-        if (GameRecords_GetRecordValue(v1, (1 + 56)) < 50) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_057) < 50) {
             *v4 = 0;
         }
         break;
     case 17:
-        if (GameRecords_GetRecordValue(v1, (1 + 3)) < 50) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_004) < 50) {
             *v4 = 0;
         }
         break;
     case 18:
-        if (GameRecords_GetRecordValue(v1, (1 + 10)) < 30) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_011) < 30) {
             *v4 = 0;
         }
         break;
     case 20:
-        if (GameRecords_GetRecordValue(v1, (0 + 0)) < 300000) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_000) < 300000) {
             *v4 = 0;
         }
         break;

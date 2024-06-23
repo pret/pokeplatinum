@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -1109,10 +1110,10 @@ BOOL sub_0203DBF0 (TaskManager * param0)
 
         {
             GameRecords * v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-            GameRecords_IncrementTrainerScore(v6, 16);
+            GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_16);
 
             if (sub_020389B8()) {
-                GameRecords_IncrementRecordValue(v6, (((70 + 1)) + 42));
+                GameRecords_IncrementRecordValue(v6, RECORD_UNK_113);
             }
         }
         break;
@@ -1621,7 +1622,7 @@ void sub_0203E414 (TaskManager * param0, int param1)
     v2->unk_0C.unk_10 = Options_Frame(v1);
     v2->unk_0C.unk_04 = sub_0203E484(fieldSystem->saveData, param1);
 
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), 5);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_05);
     FieldTask_Start(param0, sub_0203E35C, v2);
 }
 

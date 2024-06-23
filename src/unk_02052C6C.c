@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "message.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -216,7 +217,7 @@ void sub_02052E58 (TaskManager * param0)
 
     v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-    GameRecords_IncrementRecordValue(v6, (((70 + 1)) + 2));
+    GameRecords_IncrementRecordValue(v6, RECORD_UNK_073);
     FieldTask_Start(param0, sub_02052CBC, v5);
 }
 

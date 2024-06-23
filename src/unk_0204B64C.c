@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -74,7 +75,7 @@ BOOL ScrCmd_183 (ScriptContext * param0)
     u16 v2 = ScriptContext_GetVar(param0);
 
     sub_02055EAC(param0->fieldSystem, *v0, v2);
-    GameRecords_IncrementRecordValue(v1, (1 + 3));
+    GameRecords_IncrementRecordValue(v1, RECORD_UNK_004);
 
     return 0;
 }
@@ -102,7 +103,7 @@ BOOL ScrCmd_185 (ScriptContext * param0)
     MapObject ** v2 = sub_0203F098(param0->fieldSystem, 10);
 
     sub_02055E00(param0->fieldSystem, *v2);
-    GameRecords_IncrementTrainerScore(v1, 0);
+    GameRecords_IncrementTrainerScore(v1, TRAINER_SCORE_EVENT_UNK_00);
 
     return 0;
 }

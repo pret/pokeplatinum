@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -1004,7 +1005,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             GameRecords * v7;
             v7 = SaveData_GetGameRecordsPtr(param0->unk_00->unk_28);
 
-            GameRecords_IncrementTrainerScore(v7, 6);
+            GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_06);
         }
 
         {

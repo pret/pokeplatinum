@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "message.h"
@@ -368,7 +369,7 @@ int ov22_02256098 (OverlayManager * param0, int * param1)
     UnkStruct_0203DA00 * v2 = OverlayManager_Args(param0);
 
     if (v0->unk_71C == 1) {
-        GameRecords_IncrementTrainerScore(v2->records, 7);
+        GameRecords_IncrementTrainerScore(v2->records, TRAINER_SCORE_EVENT_UNK_07);
         ov22_02256F38(v2->unk_04, &v0->unk_458, v2->unk_14);
     }
 

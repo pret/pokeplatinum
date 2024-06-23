@@ -251,7 +251,7 @@ static u32 GetRecordLimit(int id)
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

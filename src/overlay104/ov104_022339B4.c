@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "pokemon.h"
 #include "savedata.h"
@@ -572,7 +573,7 @@ void ov104_022346A4 (UnkStruct_ov104_0223ADA0 * param0)
         param0->unk_4E8[param0->unk_4DC[0]] = param0->unk_254[param0->unk_4DC[1]];
 
         ov104_02234790(param0);
-        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(param0->unk_4F8), (1 + 63));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(param0->unk_4F8), RECORD_UNK_064);
     }
 
     return;

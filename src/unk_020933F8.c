@@ -3,6 +3,7 @@
 
 #include "assert.h"
 
+#include "consts/game_records.h"
 #include "sys_task_manager.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"
@@ -1632,15 +1633,15 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
             GameRecords * v5;
 
             v5 = SaveData_GetGameRecordsPtr(param0->unk_1970);
-            GameRecords_IncrementRecordValue(v5, (((70 + 1)) + 19));
+            GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
 
             if (sub_02094790(param0) == 0) {
-                GameRecords_IncrementRecordValue(v5, (((70 + 1)) + 21));
-                GameRecords_IncrementTrainerScore(v5, 13);
+                GameRecords_IncrementRecordValue(v5, RECORD_UNK_092);
+                GameRecords_IncrementTrainerScore(v5, TRAINER_SCORE_EVENT_UNK_13);
             }
 
             if (v0 == 1) {
-                GameRecords_IncrementRecordValue(v5, (((70 + 1)) + 23));
+                GameRecords_IncrementRecordValue(v5, RECORD_UNK_094);
             }
         }
 
@@ -1661,11 +1662,11 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, J
             GameRecords * v8;
 
             v8 = SaveData_GetGameRecordsPtr(param0->unk_1970);
-            GameRecords_IncrementRecordValue(v8, (((70 + 1)) + 20));
+            GameRecords_IncrementRecordValue(v8, RECORD_UNK_091);
 
             if (sub_02094790(param0) == 0) {
-                GameRecords_IncrementRecordValue(v8, (((70 + 1)) + 22));
-                GameRecords_IncrementTrainerScore(v8, 19);
+                GameRecords_IncrementRecordValue(v8, RECORD_UNK_093);
+                GameRecords_IncrementTrainerScore(v8, TRAINER_SCORE_EVENT_UNK_19);
             }
         }
 

@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_02030114_decl.h"
@@ -580,7 +581,7 @@ BOOL ScrCmd_324 (ScriptContext * param0)
         }
     }
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), (1 + 67), v7);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), RECORD_UNK_068, v7);
 
     if (v7 != 0) {
         sub_0202D230(

@@ -1,3 +1,4 @@
+#include "consts/game_records.h"
 #include "enums.h"
 
 #include <nitro.h>
@@ -1923,7 +1924,7 @@ static BOOL ov104_02230F28 (UnkStruct_ov104_0222E930 * param0)
     v0 = SaveData_TVBroadcast(v1->unk_08);
 
     sub_0206D0C8(v0, v2);
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v1->unk_08), (1 + 67), v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v1->unk_08), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(v1->unk_08), v2, 5);
 
     return 0;
@@ -1934,7 +1935,7 @@ static BOOL ov104_02230F6C (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u16 v1 = ov104_0222FC00(param0);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), (1 + 68), v1);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), RECORD_UNK_069, v1);
     sub_0202D230(sub_0202D750(v0->unk_08), v1, 6);
 
     return 0;

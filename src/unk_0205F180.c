@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
@@ -2357,7 +2358,7 @@ static void sub_020615C8 (PlayerAvatar * playerAvatar)
     FieldSystem * fieldSystem = MapObject_FieldSystem(v0);
     GameRecords * v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-    GameRecords_IncrementRecordValue(v2, (0 + 0));
+    GameRecords_IncrementRecordValue(v2, RECORD_UNK_000);
 }
 
 static int sub_020615E0 (PlayerAvatar * playerAvatar, MapObject * mapObj, int param2)

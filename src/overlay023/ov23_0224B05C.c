@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -2026,7 +2027,7 @@ void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
             void * v6 = sub_0202BE20(11);
 
             sub_0202B758(Unk_ov23_022577AC->fieldSystem->unk_9C, v6, 1);
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577AC->fieldSystem->saveData), 35);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
         }
     }
 }

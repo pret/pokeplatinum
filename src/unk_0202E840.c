@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -147,22 +148,22 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
     for (v0 = 0; v0 < 13; v0++) {
         switch (v0) {
         case 5:
-            v1 = GameRecords_GetRecordValue(v2, (1 + 14));
+            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_015);
 
             if (v1 > 0) {
-                v1 = GameRecords_GetRecordValue(v2, (1 + 28)) / v1;
+                v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_029) / v1;
             }
 
             v4[v0] = v1;
             break;
         case 10:
-            v1 = GameRecords_GetRecordValue(v2, (((70 + 1)) + 21));
-            v1 += GameRecords_GetRecordValue(v2, (((70 + 1)) + 22));
+            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_092);
+            v1 += GameRecords_GetRecordValue(v2, RECORD_UNK_093);
             v4[v0] = v1;
             break;
         case 11:
-            v1 = GameRecords_GetRecordValue(v2, (((70 + 1)) + 19));
-            v1 += GameRecords_GetRecordValue(v2, (((70 + 1)) + 20));
+            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_090);
+            v1 += GameRecords_GetRecordValue(v2, RECORD_UNK_091);
 
             if (v1 > 0) {
                 v1 = (v4[10] * 100) / v1;

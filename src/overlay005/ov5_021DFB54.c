@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
@@ -508,7 +509,7 @@ static void ov5_021DFF88 (int param0, FieldSystem * fieldSystem, PlayerAvatar * 
     v0->playerAvatar = playerAvatar;
 
     FieldTask_Set(fieldSystem, ov5_021DFFBC, v0);
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 54));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_055);
 }
 
 static BOOL ov5_021DFFBC (TaskManager * param0)
@@ -843,7 +844,7 @@ static void ov5_021E0534 (FieldSystem * fieldSystem, PlayerAvatar * playerAvatar
     v0->playerAvatar = playerAvatar;
 
     FieldTask_Set(fieldSystem, ov5_021E0560, v0);
-    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), (1 + 55));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_056);
 }
 
 static BOOL ov5_021E0560 (TaskManager * param0)
