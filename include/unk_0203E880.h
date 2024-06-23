@@ -56,7 +56,8 @@ enum ScriptManagerMember {
     SCRIPT_MANAGER_MONEY_WINDOW,
 
     SCRIPT_DATA_START = 41,
-    // Parameter 0 is used for storing the mon's party slot when you use a field move, as well as the item ID for hidden items.
+    // Parameter 0 is used for storing the mon's party slot when you use a field move, the item ID for hidden items,
+    // and steps for the PokeRadar.
     // Parameters 1 and 2 are used for storing hidden item quantities and flags respectively.
     // Parameter 3 is unused.
     SCRIPT_DATA_PARAMETER_0 = SCRIPT_DATA_START,
@@ -150,7 +151,7 @@ void FieldSystem_SetFlag(FieldSystem * fieldSystem, u16 flagID);
 void FieldSystem_ClearFlag(FieldSystem * fieldSystem, u16 flagID);
 void FieldSystem_ClearLocalFlags(FieldSystem * fieldSystem);
 void sub_0203F1FC(FieldSystem * fieldSystem);
-void FieldSystem_SetScriptParameters(FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4);
+void FieldSystem_SetScriptParameters(FieldSystem * fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3);
 u16 Script_GetTrainerID(u16 eventID);
 BOOL Script_GetDoubleBattleTrainerIndex(u16 scriptID);
 BOOL Script_IsTrainerDoubleBattle(u16 trainerID);

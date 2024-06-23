@@ -22,7 +22,7 @@
 
 BOOL ScrCmd_21D (ScriptContext * param0)
 {
-    StringTemplate ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
+    StringTemplate ** v0 = FieldSystem_GetScriptMember(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->fieldSystem->saveData);
     SaveData * v2 = param0->fieldSystem->saveData;
 

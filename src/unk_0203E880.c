@@ -535,12 +535,12 @@ void sub_0203F1FC (FieldSystem * fieldSystem)
     memset(VarsFlags_GetFlagChunk(varsFlags, 2400 + 320), 0, 192 / 8);
 }
 
-void FieldSystem_SetScriptParameters (FieldSystem * fieldSystem, u16 param1, u16 param2, u16 param3, u16 param4)
+void FieldSystem_SetScriptParameters (FieldSystem * fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3)
 {
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 41) = param1;
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 42) = param2;
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 43) = param3;
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, 44) = param4;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_0) = scriptParam0;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_1) = scriptParam1;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_2) = scriptParam2;
+    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_3) = scriptParam3;
 }
 
 u16 Script_GetTrainerID(u16 scriptID)

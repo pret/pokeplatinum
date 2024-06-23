@@ -95,7 +95,7 @@ BOOL ScrCmd_072 (ScriptContext * param0)
     u16 v2 = ScriptContext_GetVar(param0);
     Window ** v3;
 
-    v3 = FieldSystem_GetScriptMember(fieldSystem, 39);
+    v3 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
     *v3 = ov5_021DCEB0(param0->fieldSystem, v1, v2);
 
     return 0;
@@ -104,7 +104,7 @@ BOOL ScrCmd_072 (ScriptContext * param0)
 BOOL ScrCmd_073 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, 39);
+    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
     ov5_021DCF58(*v1);
     return 0;
@@ -113,7 +113,7 @@ BOOL ScrCmd_073 (ScriptContext * param0)
 BOOL ScrCmd_074 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, 39);
+    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
     ov5_021DCF6C(param0->fieldSystem, *v1);
     return 0;

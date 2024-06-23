@@ -393,7 +393,7 @@ BOOL ScrCmd_294 (ScriptContext * param0)
     u8 v2 = ScriptContext_ReadByte(param0);
     Window ** v3;
 
-    v3 = FieldSystem_GetScriptMember(fieldSystem, 38);
+    v3 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
     *v3 = ov5_021DD140(param0->fieldSystem, v1, v2);
 
     return 0;
@@ -402,7 +402,7 @@ BOOL ScrCmd_294 (ScriptContext * param0)
 BOOL ScrCmd_295 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, 38);
+    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD084(*v1);
     return 0;
@@ -411,7 +411,7 @@ BOOL ScrCmd_295 (ScriptContext * param0)
 BOOL ScrCmd_296 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, 38);
+    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD1A4(param0->fieldSystem, *v1);
     return 0;

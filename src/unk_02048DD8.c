@@ -79,7 +79,7 @@ BOOL ScrCmd_235 (ScriptContext * param0)
     break;
     case 3:
     {
-        StringTemplate ** v4 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
+        StringTemplate ** v4 = FieldSystem_GetScriptMember(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
         u16 v5 = ScriptContext_GetVar(param0);
         u16 * v6 = ScriptContext_GetVarPointer(param0);
         u16 * v7 = ScriptContext_GetVarPointer(param0);
@@ -160,7 +160,7 @@ BOOL ScrCmd_237 (ScriptContext * param0)
 {
     StringTemplate ** v0;
 
-    v0 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
+    v0 = FieldSystem_GetScriptMember(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:

@@ -131,7 +131,7 @@ BOOL ScrCmd_23E (ScriptContext * param0)
     {
         UnkStruct_0204B830 v5;
         const UnkStruct_020EBE94 * v6 = &Unk_020EBE94[sub_0204B838(param0->fieldSystem) - 1];
-        StringTemplate ** v7 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
+        StringTemplate ** v7 = FieldSystem_GetScriptMember(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
         u16 * v8 = ScriptContext_GetVarPointer(param0);
         u16 * v9 = ScriptContext_GetVarPointer(param0);
 
@@ -143,7 +143,7 @@ BOOL ScrCmd_23E (ScriptContext * param0)
     {
         UnkStruct_0204B830 v10;
         const UnkStruct_020EBE94 * v11 = &Unk_020EBE94[sub_0204B838(param0->fieldSystem) - 1];
-        StringTemplate ** v12 = FieldSystem_GetScriptMember(param0->fieldSystem, 15);
+        StringTemplate ** v12 = FieldSystem_GetScriptMember(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
         u16 * v13 = ScriptContext_GetVarPointer(param0);
         u16 * v14 = ScriptContext_GetVarPointer(param0);
 

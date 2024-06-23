@@ -27,6 +27,7 @@
 #include "bag.h"
 #include "overlay005/ov5_021F2D20.h"
 #include "overlay006/ov6_022430C4.h"
+#include "scrcmd.h"
 
 #include "constants/battle.h"
 #include "consts/sdat.h"
@@ -405,7 +406,7 @@ BOOL RefreshRadarChain (TaskManager *taskMan) {
 
         if (*v2 < RADAR_BATTERY_STEPS) {
             ScriptManager_Start(taskMan, 8970, NULL, NULL);
-            *(u16 *)(FieldSystem_GetScriptMember(fieldSystem, 41)) = RADAR_BATTERY_STEPS - (*v2);
+            *(u16 *)(FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_0)) = RADAR_BATTERY_STEPS - (*v2);
             *v1 = 4;
         } else {
             *v2 = 0;
