@@ -1,26 +1,26 @@
+#include "overlay117/ov117_02266498.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
+#include "overlay114/ov114_0225C700.h"
 #include "overlay114/struct_ov114_0225D678_decl.h"
 #include "overlay114/struct_ov114_0225E854_decl.h"
-
 #include "overlay117/struct_ov117_022605C0.h"
 
 #include "overlay_manager.h"
 #include "unk_0200F174.h"
-#include "overlay114/ov114_0225C700.h"
-#include "overlay117/ov117_02266498.h"
 
 typedef struct {
-    UnkStruct_ov117_022605C0 * unk_00;
-    UnkStruct_ov114_0225D678 * unk_04;
-    UnkStruct_ov114_0225E854 * unk_08;
+    UnkStruct_ov117_022605C0 *unk_00;
+    UnkStruct_ov114_0225D678 *unk_04;
+    UnkStruct_ov114_0225E854 *unk_08;
 } UnkStruct_ov117_02266498;
 
-int ov117_02266498 (OverlayManager * param0, int * param1)
+int ov117_02266498(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov117_02266498 * v0;
+    UnkStruct_ov117_02266498 *v0;
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02266498), 110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02266498));
@@ -29,9 +29,9 @@ int ov117_02266498 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov117_022664BC (OverlayManager * param0, int * param1)
+int ov117_022664BC(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov117_02266498 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02266498 *v0 = OverlayManager_Data(param0);
 
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
@@ -107,9 +107,9 @@ int ov117_022664BC (OverlayManager * param0, int * param1)
     return 0;
 }
 
-int ov117_022665E8 (OverlayManager * param0, int * param1)
+int ov117_022665E8(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov117_02266498 * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02266498 *v0 = OverlayManager_Data(param0);
     OverlayManager_FreeData(param0);
 
     return 1;

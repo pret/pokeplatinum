@@ -1,59 +1,61 @@
+#include "unk_02032798.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/struct_02039A58.h"
+
 #include "functypes/funcptr_02032868.h"
 #include "functypes/funcptr_0203290C.h"
-#include "struct_defs/struct_02039A58.h"
 #include "functypes/funcptr_020F8E60.h"
 
-#include "heap.h"
-#include "unk_02032798.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "heap.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 
 typedef struct {
-    const CommCmdTable * cmdTable;
+    const CommCmdTable *cmdTable;
     int unk_04;
-    void * unk_08;
+    void *unk_08;
     u8 unk_0C[8];
     u8 unk_14;
 } CommCmdManager;
 
-static void sub_02032958(int param0, int param1, void * param2, void * param3);
-static void sub_0203299C(int param0, int param1, void * param2, void * param3);
-static void sub_020329C4(int param0, int param1, void * param2, void * param3);
+static void sub_02032958(int param0, int param1, void *param2, void *param3);
+static void sub_0203299C(int param0, int param1, void *param2, void *param3);
+static void sub_020329C4(int param0, int param1, void *param2, void *param3);
 static int sub_02032954(void);
 
 static const CommCmdTable Unk_020E5D64[] = {
-    {NULL, sub_0203294C, NULL},
-    {NULL, sub_0203294C, NULL},
-    {sub_0203619C, sub_0203294C, NULL},
-    {CommInfo_RecvPlayerData, CommPlayerInfo_Size, NULL},
-    {CommInfo_RecvPlayerDataArray, CommPlayerInfo_Size, NULL},
-    {CommunicatitonInformaion_FinishReading, sub_0203294C, NULL},
-    {sub_02037A78, sub_02037B54, NULL},
-    {sub_02037AD8, sub_02037B54, NULL},
-    {NULL, NULL, NULL},
-    {NULL, NULL, NULL},
-    {sub_02036008, CommPacketSizeOf_NetId, NULL},
-    {sub_02036030, CommPacketSizeOf_NetId, NULL},
-    {sub_02036058, CommPacketSizeOf_NetId, NULL},
-    {sub_02032958, sub_0203294C, NULL},
-    {sub_0203299C, sub_0203294C, NULL},
-    {sub_020329C4, sub_0203294C, NULL},
-    {CommCmd_16, CommPacketSizeOf_NetId, NULL},
-    {CommCmd_17, CommPacketSizeOf_NetId, NULL},
-    {CommCmd_18, sub_02032954, NULL},
-    {sub_02036574, sub_02036590, NULL},
-    {sub_02036670, CommTool_TempDataSize, NULL},
-    {sub_02038240, sub_0203294C, NULL}
+    { NULL, sub_0203294C, NULL },
+    { NULL, sub_0203294C, NULL },
+    { sub_0203619C, sub_0203294C, NULL },
+    { CommInfo_RecvPlayerData, CommPlayerInfo_Size, NULL },
+    { CommInfo_RecvPlayerDataArray, CommPlayerInfo_Size, NULL },
+    { CommunicatitonInformaion_FinishReading, sub_0203294C, NULL },
+    { sub_02037A78, sub_02037B54, NULL },
+    { sub_02037AD8, sub_02037B54, NULL },
+    { NULL, NULL, NULL },
+    { NULL, NULL, NULL },
+    { sub_02036008, CommPacketSizeOf_NetId, NULL },
+    { sub_02036030, CommPacketSizeOf_NetId, NULL },
+    { sub_02036058, CommPacketSizeOf_NetId, NULL },
+    { sub_02032958, sub_0203294C, NULL },
+    { sub_0203299C, sub_0203294C, NULL },
+    { sub_020329C4, sub_0203294C, NULL },
+    { CommCmd_16, CommPacketSizeOf_NetId, NULL },
+    { CommCmd_17, CommPacketSizeOf_NetId, NULL },
+    { CommCmd_18, sub_02032954, NULL },
+    { sub_02036574, sub_02036590, NULL },
+    { sub_02036670, CommTool_TempDataSize, NULL },
+    { sub_02038240, sub_0203294C, NULL }
 };
 
-static CommCmdManager * sCommCmdManager = NULL;
+static CommCmdManager *sCommCmdManager = NULL;
 
-void CommCmd_Init (const CommCmdTable * cmdTable, int param1, void * param2)
+void CommCmd_Init(const CommCmdTable *cmdTable, int param1, void *param2)
 {
     int v0;
 
@@ -72,7 +74,7 @@ void CommCmd_Init (const CommCmdTable * cmdTable, int param1, void * param2)
     sCommCmdManager->unk_14 = 0;
 }
 
-void sub_020327E0 (void)
+void sub_020327E0(void)
 {
     if (sCommCmdManager) {
         Heap_FreeToHeap(sCommCmdManager);
@@ -80,7 +82,7 @@ void sub_020327E0 (void)
     }
 }
 
-void CommCmd_Callback (int param0, int cmd, int param2, void * param3)
+void CommCmd_Callback(int param0, int cmd, int param2, void *param3)
 {
     UnkFuncPtr_020F8E60 v0;
 
@@ -106,7 +108,7 @@ void CommCmd_Callback (int param0, int cmd, int param2, void * param3)
     }
 }
 
-int CommCmd_PacketSizeOf (int cmd)
+int CommCmd_PacketSizeOf(int cmd)
 {
     int v0 = 0;
     UnkFuncPtr_02032868 v1;
@@ -137,7 +139,7 @@ int CommCmd_PacketSizeOf (int cmd)
     return v0;
 }
 
-BOOL sub_020328D0 (int cmd)
+BOOL sub_020328D0(int cmd)
 {
     if (cmd < 22) {
         return Unk_020E5D64[cmd].unk_08 != NULL;
@@ -146,7 +148,7 @@ BOOL sub_020328D0 (int cmd)
     return sCommCmdManager->cmdTable[cmd - 22].unk_08 != NULL;
 }
 
-void * sub_0203290C (int cmd, int netId, int param2)
+void *sub_0203290C(int cmd, int netId, int param2)
 {
     UnkFuncPtr_0203290C v0;
 
@@ -161,29 +163,29 @@ void * sub_0203290C (int cmd, int netId, int param2)
     return NULL;
 }
 
-int sub_02032944 (void)
+int sub_02032944(void)
 {
     return 0xffff;
 }
 
-int sub_0203294C (void)
+int sub_0203294C(void)
 {
     return 0;
 }
 
-int CommPacketSizeOf_NetId (void)
+int CommPacketSizeOf_NetId(void)
 {
     return 1;
 }
 
-static int sub_02032954 (void)
+static int sub_02032954(void)
 {
     return 2;
 }
 
-static void sub_02032958 (int param0, int param1, void * param2, void * param3)
+static void sub_02032958(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     int v1;
 
     if (CommSys_CurNetId() != 0) {
@@ -205,9 +207,9 @@ static void sub_02032958 (int param0, int param1, void * param2, void * param3)
     CommSys_SendDataServer(14, NULL, 0);
 }
 
-static void sub_0203299C (int param0, int param1, void * param2, void * param3)
+static void sub_0203299C(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     int v1;
 
     sCommCmdManager->cmdTable = NULL;
@@ -218,9 +220,9 @@ static void sub_0203299C (int param0, int param1, void * param2, void * param3)
     CommSys_SendDataFixedSize(15, param2);
 }
 
-static void sub_020329C4 (int param0, int param1, void * param2, void * param3)
+static void sub_020329C4(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     int v1;
 
     if (CommSys_CurNetId() != 0) {

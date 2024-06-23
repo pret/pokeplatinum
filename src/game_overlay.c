@@ -1,7 +1,7 @@
+#include "game_overlay.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "game_overlay.h"
 
 typedef enum PMiOverlayRegion {
     OVERLAY_REGION_MAIN,
@@ -21,10 +21,10 @@ typedef struct {
     PMiLoadedOverlay unk_80[8];
 } UnkStruct_021BF370;
 
-static void FreeOverlayAllocation(PMiLoadedOverlay * param0);
+static void FreeOverlayAllocation(PMiLoadedOverlay *param0);
 static BOOL CanOverlayBeLoaded(const FSOverlayID param0);
-static PMiLoadedOverlay * GetLoadedOverlaysInRegion(int param0);
-static BOOL GetOverlayRamBounds(const FSOverlayID param0, u32 * param1, u32 * param2);
+static PMiLoadedOverlay *GetLoadedOverlaysInRegion(int param0);
+static BOOL GetOverlayRamBounds(const FSOverlayID param0, u32 *param1, u32 *param2);
 static BOOL LoadOverlayNormal(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInit(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInitAsync(MIProcessor param0, FSOverlayID param1);
@@ -34,7 +34,7 @@ BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
 
 static UnkStruct_021BF370 Unk_021BF370;
 
-static void FreeOverlayAllocation (PMiLoadedOverlay * param0)
+static void FreeOverlayAllocation(PMiLoadedOverlay *param0)
 {
     GF_ASSERT(param0->isActive == 1);
     GF_ASSERT(FS_UnloadOverlay(MI_PROCESSOR_ARM9, param0->id) == TRUE);
@@ -42,9 +42,9 @@ static void FreeOverlayAllocation (PMiLoadedOverlay * param0)
     param0->isActive = 0;
 }
 
-void Overlay_UnloadByID (const FSOverlayID overlayID)
+void Overlay_UnloadByID(const FSOverlayID overlayID)
 {
-    PMiLoadedOverlay * table;
+    PMiLoadedOverlay *table;
     int i;
 
     table = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(overlayID));
@@ -57,7 +57,7 @@ void Overlay_UnloadByID (const FSOverlayID overlayID)
     }
 }
 
-int Overlay_GetLoadDestination (const FSOverlayID overlayID)
+int Overlay_GetLoadDestination(const FSOverlayID overlayID)
 {
     FSOverlayInfo info;
     u32 v2;
@@ -74,12 +74,12 @@ int Overlay_GetLoadDestination (const FSOverlayID overlayID)
     return OVERLAY_REGION_MAIN;
 }
 
-BOOL Overlay_LoadByID (const FSOverlayID overlayID, int loadType)
+BOOL Overlay_LoadByID(const FSOverlayID overlayID, int loadType)
 {
     BOOL result;
     u32 dmaBak = FS_DMA_NOT_USE;
     int overlayRegion;
-    PMiLoadedOverlay * loadedOverlays;
+    PMiLoadedOverlay *loadedOverlays;
     int i;
 
     if (!CanOverlayBeLoaded(overlayID)) {
@@ -134,10 +134,10 @@ BOOL Overlay_LoadByID (const FSOverlayID overlayID, int loadType)
     return 1;
 }
 
-static BOOL CanOverlayBeLoaded (const FSOverlayID param0)
+static BOOL CanOverlayBeLoaded(const FSOverlayID param0)
 {
     u32 myStart, myEnd, theirStart, theirEnd;
-    PMiLoadedOverlay * loadedOverlay;
+    PMiLoadedOverlay *loadedOverlay;
     int i;
 
     if (!GetOverlayRamBounds(param0, &myStart, &myEnd)) {
@@ -158,9 +158,9 @@ static BOOL CanOverlayBeLoaded (const FSOverlayID param0)
     return TRUE;
 }
 
-static PMiLoadedOverlay * GetLoadedOverlaysInRegion (int region)
+static PMiLoadedOverlay *GetLoadedOverlaysInRegion(int region)
 {
-    PMiLoadedOverlay * ret;
+    PMiLoadedOverlay *ret;
 
     switch (region) {
     case OVERLAY_REGION_MAIN:
@@ -178,7 +178,7 @@ static PMiLoadedOverlay * GetLoadedOverlaysInRegion (int region)
     return ret;
 }
 
-static BOOL GetOverlayRamBounds (const FSOverlayID overlayID, u32 * start, u32 * end)
+static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *start, u32 *end)
 {
     FSOverlayInfo info;
 
@@ -193,12 +193,12 @@ static BOOL GetOverlayRamBounds (const FSOverlayID overlayID, u32 * start, u32 *
     return TRUE;
 }
 
-static BOOL LoadOverlayNormal (MIProcessor proc, FSOverlayID overlayID)
+static BOOL LoadOverlayNormal(MIProcessor proc, FSOverlayID overlayID)
 {
     return FS_LoadOverlay(proc, overlayID);
 }
 
-static BOOL LoadOverlayNoInit (MIProcessor proc, FSOverlayID overlayID)
+static BOOL LoadOverlayNoInit(MIProcessor proc, FSOverlayID overlayID)
 {
     FSOverlayInfo info;
 
@@ -214,7 +214,7 @@ static BOOL LoadOverlayNoInit (MIProcessor proc, FSOverlayID overlayID)
     return TRUE;
 }
 
-static BOOL LoadOverlayNoInitAsync (MIProcessor proc, FSOverlayID overlayID)
+static BOOL LoadOverlayNoInitAsync(MIProcessor proc, FSOverlayID overlayID)
 {
     FSFile file;
     FSOverlayInfo info;

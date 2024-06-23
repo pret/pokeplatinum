@@ -1,8 +1,9 @@
+#include "overlay005/ov5_021EF250.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "heap.h"
-#include "overlay005/ov5_021EF250.h"
 
 typedef struct {
     int unk_00;
@@ -15,12 +16,12 @@ typedef struct {
 
 typedef struct UnkStruct_ov5_021EF300_t {
     int unk_00;
-    UnkStruct_ov5_021EF250 * unk_04;
+    UnkStruct_ov5_021EF250 *unk_04;
 } UnkStruct_ov5_021EF300;
 
-static BOOL ov5_021EF250(const int param0, const int param1, const UnkStruct_ov5_021EF250 * param2);
+static BOOL ov5_021EF250(const int param0, const int param1, const UnkStruct_ov5_021EF250 *param2);
 
-static BOOL ov5_021EF250 (const int param0, const int param1, const UnkStruct_ov5_021EF250 * param2)
+static BOOL ov5_021EF250(const int param0, const int param1, const UnkStruct_ov5_021EF250 *param2)
 {
     if (param2->unk_14 == 0) {
         return 0;
@@ -40,10 +41,10 @@ static BOOL ov5_021EF250 (const int param0, const int param1, const UnkStruct_ov
     return 0;
 }
 
-UnkStruct_ov5_021EF300 * ov5_021EF28C (const u8 param0, const u8 param1)
+UnkStruct_ov5_021EF300 *ov5_021EF28C(const u8 param0, const u8 param1)
 {
     u8 v0;
-    UnkStruct_ov5_021EF300 * v1;
+    UnkStruct_ov5_021EF300 *v1;
 
     v1 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021EF300));
 
@@ -57,7 +58,7 @@ UnkStruct_ov5_021EF300 * ov5_021EF28C (const u8 param0, const u8 param1)
     return v1;
 }
 
-void ov5_021EF2CC (const u8 param0, const int param1, const int param2, const int param3, const int param4, const fx32 param5, UnkStruct_ov5_021EF300 * param6)
+void ov5_021EF2CC(const u8 param0, const int param1, const int param2, const int param3, const int param4, const fx32 param5, UnkStruct_ov5_021EF300 *param6)
 {
     param6->unk_04[param0].unk_00 = param1;
     param6->unk_04[param0].unk_04 = param2;
@@ -67,19 +68,19 @@ void ov5_021EF2CC (const u8 param0, const int param1, const int param2, const in
     param6->unk_04[param0].unk_14 = 1;
 }
 
-void ov5_021EF300 (UnkStruct_ov5_021EF300 * param0)
+void ov5_021EF300(UnkStruct_ov5_021EF300 *param0)
 {
     Heap_FreeToHeap(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
-BOOL ov5_021EF314 (const int param0, const int param1, const UnkStruct_ov5_021EF300 * param2, u8 * param3)
+BOOL ov5_021EF314(const int param0, const int param1, const UnkStruct_ov5_021EF300 *param2, u8 *param3)
 {
     u8 v0;
     BOOL v1;
-    UnkStruct_ov5_021EF250 * v2;
+    UnkStruct_ov5_021EF250 *v2;
 
-    GF_ASSERT((param3 != NULL));
+    GF_ASSERT(param3 != NULL);
 
     for (v0 = 0; v0 < param2->unk_00; v0++) {
         v2 = &param2->unk_04[v0];
@@ -93,16 +94,16 @@ BOOL ov5_021EF314 (const int param0, const int param1, const UnkStruct_ov5_021EF
     return 0;
 }
 
-fx32 ov5_021EF35C (const u8 param0, const UnkStruct_ov5_021EF300 * param1)
+fx32 ov5_021EF35C(const u8 param0, const UnkStruct_ov5_021EF300 *param1)
 {
-    GF_ASSERT((param0 < param1->unk_00));
-    GF_ASSERT((param1->unk_04[param0].unk_14));
+    GF_ASSERT(param0 < param1->unk_00);
+    GF_ASSERT(param1->unk_04[param0].unk_14);
 
     return param1->unk_04[param0].unk_10;
 }
 
-void ov5_021EF388 (const u8 param0, const fx32 param1, UnkStruct_ov5_021EF300 * param2)
+void ov5_021EF388(const u8 param0, const fx32 param1, UnkStruct_ov5_021EF300 *param2)
 {
-    GF_ASSERT((param0 < param2->unk_00));
+    GF_ASSERT(param0 < param2->unk_00);
     param2->unk_04[param0].unk_10 = param1;
 }

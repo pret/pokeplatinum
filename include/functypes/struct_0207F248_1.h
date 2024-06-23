@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0207F248_1_H
 #define POKEPLATINUM_STRUCT_0207F248_1_H
 
-typedef int (* GameWindowLayout_1)(void *);
+typedef int (*GameWindowLayout_1)(void *);
 
 #endif // POKEPLATINUM_STRUCT_0207F248_1_H

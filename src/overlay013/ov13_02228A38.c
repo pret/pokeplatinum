@@ -1,61 +1,61 @@
+#include "overlay013/ov13_02228A38.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "overlay013/struct_ov13_02228A50_decl.h"
-#include "battle/struct_ov16_0226DC24_decl.h"
-
 #include "struct_defs/struct_020F1DB8.h"
 
-#include "unk_02005474.h"
-#include "heap.h"
-#include "unk_0201E010.h"
-#include "overlay013/ov13_02228A38.h"
 #include "battle/ov16_0226DB7C.h"
+#include "battle/struct_ov16_0226DC24_decl.h"
+#include "overlay013/struct_ov13_02228A50_decl.h"
+
+#include "core_sys.h"
+#include "heap.h"
+#include "unk_02005474.h"
+#include "unk_0201E010.h"
 
 struct UnkStruct_ov13_02228A50_t {
-    UnkStruct_ov16_0226DC24 * unk_00;
-    const ByteFlagSet * unk_04;
+    UnkStruct_ov16_0226DC24 *unk_00;
+    const ByteFlagSet *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
     u32 unk_0C;
 };
 
-UnkStruct_ov13_02228A50 * ov13_02228A38 (u32 param0)
+UnkStruct_ov13_02228A50 *ov13_02228A38(u32 param0)
 {
-    UnkStruct_ov13_02228A50 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov13_02228A50));
+    UnkStruct_ov13_02228A50 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov13_02228A50));
     memset(v0, 0, sizeof(UnkStruct_ov13_02228A50));
     return v0;
 }
 
-void ov13_02228A50 (UnkStruct_ov13_02228A50 * param0)
+void ov13_02228A50(UnkStruct_ov13_02228A50 *param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov16_0226DC24 * ov13_02228A58 (UnkStruct_ov13_02228A50 * param0)
+UnkStruct_ov16_0226DC24 *ov13_02228A58(UnkStruct_ov13_02228A50 *param0)
 {
     return param0->unk_00;
 }
 
-u8 ov13_02228A5C (UnkStruct_ov13_02228A50 * param0)
+u8 ov13_02228A5C(UnkStruct_ov13_02228A50 *param0)
 {
     return param0->unk_08;
 }
 
-void ov13_02228A60 (UnkStruct_ov13_02228A50 * param0, u8 param1)
+void ov13_02228A60(UnkStruct_ov13_02228A50 *param0, u8 param1)
 {
     param0->unk_08 = param1;
 }
 
-void ov13_02228A64 (UnkStruct_ov13_02228A50 * param0, UnkStruct_ov16_0226DC24 * param1)
+void ov13_02228A64(UnkStruct_ov13_02228A50 *param0, UnkStruct_ov16_0226DC24 *param1)
 {
     param0->unk_00 = param1;
 }
 
-void ov13_02228A68 (UnkStruct_ov13_02228A50 * param0, u8 param1)
+void ov13_02228A68(UnkStruct_ov13_02228A50 *param0, u8 param1)
 {
     param0->unk_09 = param1;
 
@@ -64,13 +64,13 @@ void ov13_02228A68 (UnkStruct_ov13_02228A50 * param0, u8 param1)
     }
 }
 
-void ov13_02228A90 (UnkStruct_ov13_02228A50 * param0)
+void ov13_02228A90(UnkStruct_ov13_02228A50 *param0)
 {
     param0->unk_09 = 0;
     param0->unk_0A = 0xff;
 }
 
-void ov13_02228A9C (UnkStruct_ov13_02228A50 * param0, const ByteFlagSet * param1)
+void ov13_02228A9C(UnkStruct_ov13_02228A50 *param0, const ByteFlagSet *param1)
 {
     ov13_02228A90(param0);
 
@@ -82,12 +82,12 @@ void ov13_02228A9C (UnkStruct_ov13_02228A50 * param0, const ByteFlagSet * param1
     }
 }
 
-void ov13_02228AC8 (UnkStruct_ov13_02228A50 * param0, u32 param1)
+void ov13_02228AC8(UnkStruct_ov13_02228A50 *param0, u32 param1)
 {
     param0->unk_0C = param1;
 }
 
-static u8 ov13_02228ACC (UnkStruct_ov13_02228A50 * param0)
+static u8 ov13_02228ACC(UnkStruct_ov13_02228A50 *param0)
 {
     if (param0->unk_08 == 1) {
         return 1;
@@ -103,7 +103,7 @@ static u8 ov13_02228ACC (UnkStruct_ov13_02228A50 * param0)
     return 0;
 }
 
-static u8 ov13_02228B18 (const ByteFlagSet * param0, u8 param1)
+static u8 ov13_02228B18(const ByteFlagSet *param0, u8 param1)
 {
     switch (param1) {
     case 0:
@@ -131,7 +131,7 @@ static u8 ov13_02228B18 (const ByteFlagSet * param0, u8 param1)
     return 0;
 }
 
-u32 ov13_02228B64 (UnkStruct_ov13_02228A50 * param0)
+u32 ov13_02228B64(UnkStruct_ov13_02228A50 *param0)
 {
     u8 v0, v1, v2, v3;
     u8 v4;

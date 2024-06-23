@@ -23,7 +23,7 @@ typedef struct AIContext {
     int padding0014; // this does not match with a u32, weird
 
     u8 moveDamageRolls[LEARNED_MOVES_MAX];
-    
+
     u16 battlerMoves[MAX_BATTLERS][LEARNED_MOVES_MAX];
     u8 battlerAbilities[MAX_BATTLERS];
     u16 battlerHeldItems[MAX_BATTLERS];

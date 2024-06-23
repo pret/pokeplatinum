@@ -1,24 +1,24 @@
+#include "overlay104/ov104_0223D9E4.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "enums.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
 
-#include "unk_02002F38.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
-#include "sys_task.h"
+#include "enums.h"
 #include "heap.h"
+#include "narc.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02002F38.h"
+#include "unk_02006E3C.h"
 #include "unk_02018340.h"
-#include "overlay104/ov104_0223D9E4.h"
 
 typedef struct {
-    SysTask * unk_00;
-    BGL * unk_04;
+    SysTask *unk_00;
+    BGL *unk_04;
     u16 unk_08[2][2048];
     u8 unk_2008[2][65536];
     u8 unk_22008;
@@ -26,17 +26,17 @@ typedef struct {
 } UnkStruct_ov104_0223DB34;
 
 typedef struct {
-    SysTask * unk_00;
-    PaletteData * unk_04;
+    SysTask *unk_00;
+    PaletteData *unk_04;
     u16 unk_08[3][16];
     u8 unk_68;
     u8 unk_69;
 } UnkStruct_ov104_0223DC04;
 
 typedef struct {
-    SysTask * unk_00;
-    SysTask * unk_04;
-    BGL * unk_08;
+    SysTask *unk_00;
+    SysTask *unk_04;
+    BGL *unk_08;
     int unk_0C;
     int unk_10;
     int unk_14;
@@ -46,26 +46,26 @@ typedef struct {
 } UnkStruct_ov104_0223DA28_sub1;
 
 typedef struct UnkStruct_ov104_0223DA28_t {
-    UnkStruct_ov104_0223DB34 * unk_00;
-    UnkStruct_ov104_0223DC04 * unk_04;
-    UnkStruct_ov104_0223DA28_sub1 * unk_08;
+    UnkStruct_ov104_0223DB34 *unk_00;
+    UnkStruct_ov104_0223DC04 *unk_04;
+    UnkStruct_ov104_0223DA28_sub1 *unk_08;
 } UnkStruct_ov104_0223DA28;
 
-static UnkStruct_ov104_0223DB34 * ov104_0223DA40(BGL * param0);
-static void ov104_0223DB34(UnkStruct_ov104_0223DB34 * param0);
-static void ov104_0223DB48(SysTask * param0, void * param1);
-static UnkStruct_ov104_0223DC04 * ov104_0223DBB8(PaletteData * param0);
-static void ov104_0223DC04(UnkStruct_ov104_0223DC04 * param0);
-static void ov104_0223DC18(SysTask * param0, void * param1);
+static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BGL *param0);
+static void ov104_0223DB34(UnkStruct_ov104_0223DB34 *param0);
+static void ov104_0223DB48(SysTask *param0, void *param1);
+static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0);
+static void ov104_0223DC04(UnkStruct_ov104_0223DC04 *param0);
+static void ov104_0223DC18(SysTask *param0, void *param1);
 
 static const u16 Unk_ov104_022418B0[] = {
     0x14,
     0x15
 };
 
-UnkStruct_ov104_0223DA28 * ov104_0223D9E4 (BGL * param0, PaletteData * param1)
+UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BGL *param0, PaletteData *param1)
 {
-    UnkStruct_ov104_0223DA28 * v0;
+    UnkStruct_ov104_0223DA28 *v0;
 
     v0 = Heap_AllocFromHeap(94, sizeof(UnkStruct_ov104_0223DA28));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223DA28));
@@ -78,16 +78,16 @@ UnkStruct_ov104_0223DA28 * ov104_0223D9E4 (BGL * param0, PaletteData * param1)
     return v0;
 }
 
-void ov104_0223DA28 (UnkStruct_ov104_0223DA28 * param0)
+void ov104_0223DA28(UnkStruct_ov104_0223DA28 *param0)
 {
     ov104_0223DB34(param0->unk_00);
     ov104_0223DC04(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
-static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (BGL * param0)
+static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BGL *param0)
 {
-    UnkStruct_ov104_0223DB34 * v0;
+    UnkStruct_ov104_0223DB34 *v0;
 
     GF_ASSERT(2 == NELEMS(Unk_ov104_022418B0));
 
@@ -96,9 +96,9 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (BGL * param0)
     v0->unk_04 = param0;
 
     {
-        NARC * v1;
-        void * v2;
-        NNSG2dScreenData * v3;
+        NARC *v1;
+        void *v2;
+        NNSG2dScreenData *v3;
         int v4;
 
         v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
@@ -113,9 +113,9 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (BGL * param0)
     }
 
     {
-        NARC * v5;
-        void * v6;
-        NNSG2dCharacterData * v7;
+        NARC *v5;
+        void *v6;
+        NNSG2dCharacterData *v7;
 
         v5 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
@@ -136,16 +136,16 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (BGL * param0)
     return v0;
 }
 
-static void ov104_0223DB34 (UnkStruct_ov104_0223DB34 * param0)
+static void ov104_0223DB34(UnkStruct_ov104_0223DB34 *param0)
 {
     SysTask_Done(param0->unk_00);
     Heap_FreeToHeap(param0);
 }
 
-static void ov104_0223DB48 (SysTask * param0, void * param1)
+static void ov104_0223DB48(SysTask *param0, void *param1)
 {
     u32 v0;
-    UnkStruct_ov104_0223DB34 * v1 = param1;
+    UnkStruct_ov104_0223DB34 *v1 = param1;
 
     if (v1->unk_22008 < 12) {
         v1->unk_22008++;
@@ -164,9 +164,9 @@ static void ov104_0223DB48 (SysTask * param0, void * param1)
     v1->unk_22009 ^= 1;
 }
 
-static UnkStruct_ov104_0223DC04 * ov104_0223DBB8 (PaletteData * param0)
+static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0)
 {
-    UnkStruct_ov104_0223DC04 * v0;
+    UnkStruct_ov104_0223DC04 *v0;
 
     v0 = Heap_AllocFromHeap(94, sizeof(UnkStruct_ov104_0223DC04));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223DC04));
@@ -175,7 +175,7 @@ static UnkStruct_ov104_0223DC04 * ov104_0223DBB8 (PaletteData * param0)
     v0->unk_68 = 2;
 
     {
-        u16 * v1;
+        u16 *v1;
 
         v1 = sub_02003164(param0, 0);
         MI_CpuCopy16(&v1[16 * 5], v0->unk_08, 3 * 16 * sizeof(u16));
@@ -186,15 +186,15 @@ static UnkStruct_ov104_0223DC04 * ov104_0223DBB8 (PaletteData * param0)
     return v0;
 }
 
-static void ov104_0223DC04 (UnkStruct_ov104_0223DC04 * param0)
+static void ov104_0223DC04(UnkStruct_ov104_0223DC04 *param0)
 {
     SysTask_Done(param0->unk_00);
     Heap_FreeToHeap(param0);
 }
 
-static void ov104_0223DC18 (SysTask * param0, void * param1)
+static void ov104_0223DC18(SysTask *param0, void *param1)
 {
-    UnkStruct_ov104_0223DC04 * v0 = param1;
+    UnkStruct_ov104_0223DC04 *v0 = param1;
 
     if (v0->unk_69 < 8) {
         v0->unk_69++;

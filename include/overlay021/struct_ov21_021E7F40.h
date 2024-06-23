@@ -6,9 +6,9 @@
 #include "struct_decls/struct_020151A4_decl.h"
 
 typedef struct {
-    UnkStruct_02015064 * unk_00;
-    UnkStruct_02015128 * unk_04;
-    UnkStruct_020151A4 * unk_08;
+    UnkStruct_02015064 *unk_00;
+    UnkStruct_02015128 *unk_04;
+    UnkStruct_020151A4 *unk_08;
     s16 unk_0C;
     s16 unk_0E;
     u16 unk_10;

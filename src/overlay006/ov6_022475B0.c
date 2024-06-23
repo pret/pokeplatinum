@@ -1,21 +1,20 @@
+#include "overlay006/ov6_022475B0.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "savedata.h"
-
-#include "narc.h"
 #include "heap.h"
+#include "inlines.h"
+#include "narc.h"
+#include "savedata.h"
 #include "unk_0202D7A8.h"
-#include "overlay006/ov6_022475B0.h"
 
-void ov6_022475B0 (SaveData * param0)
+void ov6_022475B0(SaveData *param0)
 {
     u16 v0;
     u16 v1, v2;
     int v3[2];
-    int * v4;
+    int *v4;
 
     v4 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, 4);
 
@@ -45,10 +44,10 @@ void ov6_022475B0 (SaveData * param0)
     Heap_FreeToHeap(v4);
 }
 
-int ov6_02247624 (SaveData * param0)
+int ov6_02247624(SaveData *param0)
 {
     int v0;
-    int * v1;
+    int *v1;
     u16 v2, v3;
 
     sub_0202DA10(param0, &v2, &v3);

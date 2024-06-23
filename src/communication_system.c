@@ -1,30 +1,31 @@
+#include "communication_system.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
-#include "core_sys.h"
-
-#include "sys_task_manager.h"
+#include "constants/heap.h"
 
 #include "struct_defs/struct_020322D8.h"
 #include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_0203233C.h"
 
-#include "sys_task.h"
-#include "rtc.h"
-#include "heap.h"
-#include "constants/heap.h"
-#include "unk_02030EE0.h"
+#include "overlay004/ov4_021D0D80.h"
+
 #include "comm_ring.h"
+#include "communication_information.h"
+#include "core_sys.h"
+#include "heap.h"
+#include "rtc.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02030EE0.h"
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
-#include "communication_information.h"
 #include "unk_02033200.h"
-#include "communication_system.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "overlay004/ov4_021D0D80.h"
 
 enum {
     TRANSMISSION_TYPE_SERVER_CLIENT,
@@ -34,19 +35,19 @@ enum {
 };
 
 typedef struct {
-    u8 * unk_00;
-    UnkStruct_020322D8 * unk_04;
-    UnkStruct_020322D8 * unk_08;
+    u8 *unk_00;
+    UnkStruct_020322D8 *unk_04;
+    UnkStruct_020322D8 *unk_08;
     u16 unk_0C;
     u8 unk_0E;
     u8 unk_0F_0 : 1;
     u8 unk_0F_1 : 1;
-    u8  : 6;
+    u8 : 6;
 } UnkStruct_020322D8_t;
 
 typedef struct {
     int unk_00;
-    u8 * unk_04;
+    u8 *unk_04;
     u16 unk_08;
     u8 unk_0A;
 } CommRecvPackage;
@@ -56,16 +57,16 @@ typedef struct {
     u8 sendBufferServer[2][192];
     u8 sendBufferCommRing[264];
     u8 sendBufferCommRingServer[384];
-    u8 * unk_488;
-    u8 * recvBufferRingServer;
-    u8 * recvBufferRing;
-    u8 * tempBuffer;
+    u8 *unk_488;
+    u8 *recvBufferRingServer;
+    u8 *recvBufferRing;
+    u8 *tempBuffer;
     CommRing sendRing;
     CommRing recvRing;
     CommRing unk_4B0[8];
     CommRing sendRingServer;
     CommRing sendRingClient[8];
-    SysTask * unk_57C;
+    SysTask *unk_57C;
     CommQueueMan commQueueManSend;
     CommQueueMan commQueueManSendServer;
     CommRecvPackage commRecvServer[8];
@@ -111,34 +112,34 @@ typedef struct {
 } CommunicationSystem;
 
 static void sub_0203463C(void);
-static void sub_0203498C(SysTask * param0, void * param1);
+static void sub_0203498C(SysTask *param0, void *param1);
 static void sub_02034B50(void);
 static void CommSys_UpdateServerClient(void);
 static void sub_02034F68(void);
 static void sub_02035394(BOOL param0);
 static void sub_020353B0(BOOL param0);
-static void sub_020350A4(u16 param0, u16 * param1, u16 param2);
-static void sub_02035200(u16 param0, u16 * param1, u16 param2);
+static void sub_020350A4(u16 param0, u16 *param1, u16 param2);
+static void sub_02035200(u16 param0, u16 *param1, u16 param2);
 static BOOL CommSys_CheckRecvLimit(void);
 static void sub_02035534(void);
 static void sub_020353CC(void);
 static void CommSys_RecvData(void);
 static void CommSys_RecvDataServer(void);
-static BOOL sub_020357F0(u8 * param0);
-static void sub_020358C0(u8 * param0);
-static BOOL sub_020356A0(u8 * param0, int param1);
-static BOOL sub_02035730(u8 * param0);
+static BOOL sub_020357F0(u8 *param0);
+static void sub_020358C0(u8 *param0);
+static BOOL sub_020356A0(u8 *param0, int param1);
+static BOOL sub_02035730(u8 *param0);
 static void CommSys_Transmission(void);
 static BOOL sub_0203594C(void);
 
 static u32 Unk_021C07C8 = 0;
-static CommunicationSystem * sCommunicationSystem = NULL;
+static CommunicationSystem *sCommunicationSystem = NULL;
 static volatile u8 Unk_021C07C5 = 0;
 static volatile u8 Unk_02100A1C = 4;
 static volatile u8 Unk_02100A1D = 4;
 static u8 Unk_021C07C4 = 0;
 
-static BOOL CommSys_Init (BOOL shouldAlloc, int maxPacketSize)
+static BOOL CommSys_Init(BOOL shouldAlloc, int maxPacketSize)
 {
     int i;
     BOOL reinit = FALSE;
@@ -205,7 +206,7 @@ static BOOL CommSys_Init (BOOL shouldAlloc, int maxPacketSize)
     return TRUE;
 }
 
-static void CommSys_ClearData (void)
+static void CommSys_ClearData(void)
 {
     int netId, size;
     int maxMachines = CommLocal_MaxMachines(sub_0203895C()) + 1;
@@ -276,7 +277,7 @@ static void CommSys_ClearData (void)
     sCommunicationSystem->unk_6B0 = 0;
 }
 
-static void sub_0203463C (void)
+static void sub_0203463C(void)
 {
     sCommunicationSystem->unk_6A7 = 0;
     sCommunicationSystem->unk_6A8 = 0;
@@ -288,12 +289,12 @@ static void sub_0203463C (void)
     Unk_02100A1D = 4;
 }
 
-static void sub_02034670 (void)
+static void sub_02034670(void)
 {
     CommSys_ClearData();
 }
 
-static void CommSys_ClearServerRecvData (int netId)
+static void CommSys_ClearServerRecvData(int netId)
 {
     sCommunicationSystem->unk_68F[netId] = 0;
     sCommunicationSystem->unk_697[netId] = 1;
@@ -313,7 +314,7 @@ static void CommSys_ClearServerRecvData (int netId)
     sCommunicationSystem->commRecvServer[netId].unk_00 = 0;
 }
 
-static void sub_02034734 (void)
+static void sub_02034734(void)
 {
     int netId;
 
@@ -326,12 +327,12 @@ static void sub_02034734 (void)
     }
 }
 
-static void sub_02034770 (int param0)
+static void sub_02034770(int param0)
 {
     CommSys_ClearServerRecvData(param0);
 }
 
-BOOL CommSys_InitServer (BOOL param0, BOOL param1, int param2, BOOL param3)
+BOOL CommSys_InitServer(BOOL param0, BOOL param1, int param2, BOOL param3)
 {
     BOOL ret = 1;
 
@@ -344,7 +345,7 @@ BOOL CommSys_InitServer (BOOL param0, BOOL param1, int param2, BOOL param3)
     return ret;
 }
 
-BOOL CommSys_InitClient (BOOL param0, BOOL param1, int param2)
+BOOL CommSys_InitClient(BOOL param0, BOOL param1, int param2)
 {
     BOOL v0 = 1;
 
@@ -358,7 +359,7 @@ BOOL CommSys_InitClient (BOOL param0, BOOL param1, int param2)
     return v0;
 }
 
-static void CommSys_UpdateTransitionType (void)
+static void CommSys_UpdateTransitionType(void)
 {
     BOOL changed = FALSE;
 
@@ -389,7 +390,7 @@ static void CommSys_UpdateTransitionType (void)
     CommSys_Transmission();
 }
 
-static void CommSys_SwitchTransitionType (int type)
+static void CommSys_SwitchTransitionType(int type)
 {
     if ((sCommunicationSystem->transmissionType == TRANSMISSION_TYPE_SERVER_CLIENT) && (type == TRANSMISSION_TYPE_PARALLEL)) {
         sCommunicationSystem->transmissionType = TRANSMISSION_TYPE_SWITCH_TO_PARALLEL;
@@ -402,17 +403,17 @@ static void CommSys_SwitchTransitionType (int type)
     }
 }
 
-void CommSys_SwitchTransitionTypeToParallel (void)
+void CommSys_SwitchTransitionTypeToParallel(void)
 {
     CommSys_SwitchTransitionType(TRANSMISSION_TYPE_PARALLEL);
 }
 
-void CommSys_SwitchTransitionTypeToServerClient (void)
+void CommSys_SwitchTransitionTypeToServerClient(void)
 {
     CommSys_SwitchTransitionType(TRANSMISSION_TYPE_SERVER_CLIENT);
 }
 
-static int CommSys_TransmissionType (void)
+static int CommSys_TransmissionType(void)
 {
     if (sCommunicationSystem->transmissionType == TRANSMISSION_TYPE_SWITCH_TO_SERVER_CLIENT) {
         return TRANSMISSION_TYPE_PARALLEL;
@@ -425,7 +426,7 @@ static int CommSys_TransmissionType (void)
     return sCommunicationSystem->transmissionType;
 }
 
-BOOL CommSys_TransitionTypeIsParallel (void)
+BOOL CommSys_TransitionTypeIsParallel(void)
 {
     if (TRANSMISSION_TYPE_PARALLEL == CommSys_TransmissionType()) {
         return TRUE;
@@ -434,7 +435,7 @@ BOOL CommSys_TransitionTypeIsParallel (void)
     return FALSE;
 }
 
-void CommSys_Delete (void)
+void CommSys_Delete(void)
 {
     BOOL v0 = 0;
 
@@ -470,12 +471,12 @@ void CommSys_Delete (void)
     }
 }
 
-BOOL sub_02034984 (u16 param0)
+BOOL sub_02034984(u16 param0)
 {
     return sub_020339E8(param0);
 }
 
-static void sub_0203498C (SysTask * param0, void * param1)
+static void sub_0203498C(SysTask *param0, void *param1)
 {
     if (Unk_021C07C5) {
         sub_020353CC();
@@ -488,7 +489,7 @@ static void sub_0203498C (SysTask * param0, void * param1)
     }
 }
 
-static void sub_020349C4 (void)
+static void sub_020349C4(void)
 {
     if (!sub_0203406C()) {
         return;
@@ -505,7 +506,7 @@ static void sub_020349C4 (void)
     }
 }
 
-BOOL CommSys_Update (void)
+BOOL CommSys_Update(void)
 {
     sub_02036C50();
 
@@ -553,7 +554,7 @@ BOOL CommSys_Update (void)
     return TRUE;
 }
 
-void CommSys_Reset (void)
+void CommSys_Reset(void)
 {
     BOOL v0 = Unk_021C07C5;
 
@@ -566,7 +567,7 @@ void CommSys_Reset (void)
     Unk_021C07C5 = v0;
 }
 
-void CommSys_ResetDS (void)
+void CommSys_ResetDS(void)
 {
     BOOL v0 = Unk_021C07C5;
 
@@ -580,7 +581,7 @@ void CommSys_ResetDS (void)
     Unk_021C07C5 = v0;
 }
 
-void CommSys_ResetBattleClient (void)
+void CommSys_ResetBattleClient(void)
 {
     BOOL v0 = Unk_021C07C5;
 
@@ -594,7 +595,7 @@ void CommSys_ResetBattleClient (void)
     Unk_021C07C5 = v0;
 }
 
-static void sub_02034B50 (void)
+static void sub_02034B50(void)
 {
     if (sub_0203272C(sub_0203895C())) {
         if (sCommunicationSystem->wifiConnected) {
@@ -684,7 +685,7 @@ static void sub_02034B50 (void)
     }
 }
 
-static BOOL sub_02034CF8 (int param0)
+static BOOL sub_02034CF8(int param0)
 {
     int v0;
     int v1;
@@ -718,7 +719,7 @@ static BOOL sub_02034CF8 (int param0)
     return 1;
 }
 
-static void CommSys_UpdateServerClient (void)
+static void CommSys_UpdateServerClient(void)
 {
     int v0;
     int v1 = 0;
@@ -772,7 +773,7 @@ static void CommSys_UpdateServerClient (void)
     }
 }
 
-static BOOL CommSys_CheckRecvLimit (void)
+static BOOL CommSys_CheckRecvLimit(void)
 {
     int v0;
     int v1 = CommLocal_MaxMachines(sub_0203895C()) + 1;
@@ -788,7 +789,7 @@ static BOOL CommSys_CheckRecvLimit (void)
     return 1;
 }
 
-static void sub_02034F68 (void)
+static void sub_02034F68(void)
 {
     int v0;
     int v1 = CommLocal_MaxMachines(sub_0203895C()) + 1;
@@ -851,14 +852,14 @@ static void sub_02034F68 (void)
     }
 }
 
-void sub_0203509C (u16 param0, u16 * param1, u16 param2)
+void sub_0203509C(u16 param0, u16 *param1, u16 param2)
 {
     sub_020350A4(param0, param1, param2);
 }
 
-static void sub_020350A4 (u16 param0, u16 * param1, u16 param2)
+static void sub_020350A4(u16 param0, u16 *param1, u16 param2)
 {
-    u8 * v0 = (u8 *)param1;
+    u8 *v0 = (u8 *)param1;
     int v1;
     int v2 = param2;
 
@@ -926,14 +927,14 @@ static void sub_020350A4 (u16 param0, u16 * param1, u16 param2)
     }
 }
 
-void sub_020351F8 (u16 param0, u16 * buffer, u16 param2)
+void sub_020351F8(u16 param0, u16 *buffer, u16 param2)
 {
     sub_02035200(param0, buffer, param2);
 }
 
-static void sub_02035200 (u16 param0, u16 * _buffer, u16 param2)
+static void sub_02035200(u16 param0, u16 *_buffer, u16 param2)
 {
-    u8 * buffer = (u8 *)_buffer;
+    u8 *buffer = (u8 *)_buffer;
     int v1;
 
     sCommunicationSystem->unk_664[param0]--;
@@ -970,9 +971,9 @@ static void sub_02035200 (u16 param0, u16 * _buffer, u16 param2)
     }
 }
 
-void sub_020352C0 (u16 param0, u16 * param1, u16 param2)
+void sub_020352C0(u16 param0, u16 *param1, u16 param2)
 {
-    u8 * buffer = (u8 *)param1;
+    u8 *buffer = (u8 *)param1;
     int v1;
 
     sCommunicationSystem->unk_664[param0]--;
@@ -1014,7 +1015,7 @@ void sub_020352C0 (u16 param0, u16 * param1, u16 param2)
     }
 }
 
-static void sub_02035394 (BOOL param0)
+static void sub_02035394(BOOL param0)
 {
     if (param0) {
         Unk_02100A1D++;
@@ -1023,7 +1024,7 @@ static void sub_02035394 (BOOL param0)
     }
 }
 
-static void sub_020353B0 (BOOL param0)
+static void sub_020353B0(BOOL param0)
 {
     if (param0) {
         Unk_02100A1C++;
@@ -1032,10 +1033,10 @@ static void sub_020353B0 (BOOL param0)
     }
 }
 
-static void sub_020353CC (void)
+static void sub_020353CC(void)
 {
     u16 v0;
-    u8 * v1;
+    u8 *v1;
     int v2;
 
     if (!sCommunicationSystem) {
@@ -1093,7 +1094,7 @@ static void sub_020353CC (void)
     }
 }
 
-static void sub_02035534 (void)
+static void sub_02035534(void)
 {
     u16 v0 = 0;
 
@@ -1154,22 +1155,22 @@ static void sub_02035534 (void)
     sCommunicationSystem->sendHeldKeys += v0;
 }
 
-void sub_02035664 (void)
+void sub_02035664(void)
 {
     sCommunicationSystem->unk_658 = 1;
 }
 
-void sub_02035678 (void)
+void sub_02035678(void)
 {
     sCommunicationSystem->unk_658 = 2;
 }
 
-void sub_0203568C (void)
+void sub_0203568C(void)
 {
     sCommunicationSystem->unk_658 = 0;
 }
 
-static BOOL sub_020356A0 (u8 * param0, int param1)
+static BOOL sub_020356A0(u8 *param0, int param1)
 {
     int v0;
     u8 v1[2];
@@ -1195,12 +1196,12 @@ static BOOL sub_020356A0 (u8 * param0, int param1)
     return 1;
 }
 
-void sub_0203572C (void)
+void sub_0203572C(void)
 {
     return;
 }
 
-static BOOL sub_02035730 (u8 * param0)
+static BOOL sub_02035730(u8 *param0)
 {
     int v0, v1;
 
@@ -1234,7 +1235,7 @@ static BOOL sub_02035730 (u8 * param0)
     return 0;
 }
 
-static BOOL sub_020357F0 (u8 * param0)
+static BOOL sub_020357F0(u8 *param0)
 {
     int v0;
     int v1 = sub_02036128(sub_0203895C());
@@ -1278,7 +1279,7 @@ static BOOL sub_020357F0 (u8 * param0)
     return 1;
 }
 
-static void sub_020358C0 (u8 * param0)
+static void sub_020358C0(u8 *param0)
 {
     int v0;
 
@@ -1313,12 +1314,12 @@ static void sub_020358C0 (u8 * param0)
     }
 }
 
-void sub_02035938 (u8 param0)
+void sub_02035938(u8 param0)
 {
     sCommunicationSystem->unk_6B4 = param0;
 }
 
-static BOOL sub_0203594C (void)
+static BOOL sub_0203594C(void)
 {
     if (sCommunicationSystem->unk_6B4 == 0) {
         return 0;
@@ -1331,7 +1332,7 @@ static BOOL sub_0203594C (void)
     return 0;
 }
 
-BOOL CommSys_SendDataHuge (int cmd, const void * param1, int param2)
+BOOL CommSys_SendDataHuge(int cmd, const void *param1, int param2)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return 0;
@@ -1348,7 +1349,7 @@ BOOL CommSys_SendDataHuge (int cmd, const void * param1, int param2)
     return 0;
 }
 
-BOOL CommSys_SendData (int cmd, const void * param1, int param2)
+BOOL CommSys_SendData(int cmd, const void *param1, int param2)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return 0;
@@ -1365,7 +1366,7 @@ BOOL CommSys_SendData (int cmd, const void * param1, int param2)
     return 0;
 }
 
-BOOL sub_02035A3C (int cmd, const void * param1, int param2)
+BOOL sub_02035A3C(int cmd, const void *param1, int param2)
 {
     if (CommSys_CurNetId() != 0) {
         GF_ASSERT(FALSE);
@@ -1391,7 +1392,7 @@ BOOL sub_02035A3C (int cmd, const void * param1, int param2)
     return 0;
 }
 
-BOOL CommSys_SendDataServer (int cmd, const void * param1, int param2)
+BOOL CommSys_SendDataServer(int cmd, const void *param1, int param2)
 {
     if (CommSys_CurNetId() != 0) {
         sub_020363BC();
@@ -1418,17 +1419,17 @@ BOOL CommSys_SendDataServer (int cmd, const void * param1, int param2)
     return 0;
 }
 
-BOOL sub_02035B48 (int cmd, const void * param1)
+BOOL sub_02035B48(int cmd, const void *param1)
 {
     return CommSys_SendDataServer(cmd, param1, 0);
 }
 
-int CommSys_SendRingRemainingSize (void)
+int CommSys_SendRingRemainingSize(void)
 {
     return CommRing_RemainingSize(&sCommunicationSystem->sendRing);
 }
 
-static void CommSys_EndCallback (int netId, int command, int param2, void * param3, CommRecvPackage * param4)
+static void CommSys_EndCallback(int netId, int command, int param2, void *param3, CommRecvPackage *param4)
 {
     CommCmd_Callback(netId, command, param2, param3);
     param4->unk_0A = 0xee;
@@ -1437,7 +1438,7 @@ static void CommSys_EndCallback (int netId, int command, int param2, void * para
     param4->unk_00 = 0;
 }
 
-static void CommSys_RecvDataSingle (CommRing * ring, int netId, u8 * buffer, CommRecvPackage * param3)
+static void CommSys_RecvDataSingle(CommRing *ring, int netId, u8 *buffer, CommRecvPackage *param3)
 {
     int size;
     u8 cmd;
@@ -1519,7 +1520,7 @@ static void CommSys_RecvDataSingle (CommRing * ring, int netId, u8 * buffer, Com
     }
 }
 
-static void CommSys_RecvData (void)
+static void CommSys_RecvData(void)
 {
     int v0 = 0;
     int v1;
@@ -1541,7 +1542,7 @@ static void CommSys_RecvData (void)
     }
 }
 
-static void CommSys_RecvDataServer (void)
+static void CommSys_RecvDataServer(void)
 {
     int v0;
     int v1;
@@ -1567,7 +1568,7 @@ static void CommSys_RecvDataServer (void)
     }
 }
 
-BOOL CommSys_IsPlayerConnected (u16 param0)
+BOOL CommSys_IsPlayerConnected(u16 param0)
 {
     if (!sCommunicationSystem) {
         return 0;
@@ -1608,7 +1609,7 @@ BOOL CommSys_IsPlayerConnected (u16 param0)
     return 0;
 }
 
-int CommSys_ConnectedCount (void)
+int CommSys_ConnectedCount(void)
 {
     int v0 = 0, i;
 
@@ -1621,7 +1622,7 @@ int CommSys_ConnectedCount (void)
     return v0;
 }
 
-BOOL CommSys_IsInitialized (void)
+BOOL CommSys_IsInitialized(void)
 {
     if (sCommunicationSystem) {
         if (CommLocal_IsWifiGroup(sub_0203895C())) {
@@ -1632,17 +1633,17 @@ BOOL CommSys_IsInitialized (void)
     return CommServerClient_IsInitialized();
 }
 
-void CommSys_SetSendSpeed (u8 param0)
+void CommSys_SetSendSpeed(u8 param0)
 {
     sCommunicationSystem->sendSpeed = param0;
 }
 
-u8 CommSys_RecvSpeed (int param0)
+u8 CommSys_RecvSpeed(int param0)
 {
     return sCommunicationSystem->recvSpeed[param0];
 }
 
-u16 sub_02035E84 (int param0)
+u16 sub_02035E84(int param0)
 {
     int v0;
 
@@ -1656,21 +1657,21 @@ u16 sub_02035E84 (int param0)
     return v0;
 }
 
-void CommSys_EnableSendMovementData (void)
+void CommSys_EnableSendMovementData(void)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->sendHeldKeys |= 0x8000;
     }
 }
 
-void CommSys_DisableSendMovementData (void)
+void CommSys_DisableSendMovementData(void)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->sendHeldKeys = 0;
     }
 }
 
-BOOL CommSys_IsSendingMovementData (void)
+BOOL CommSys_IsSendingMovementData(void)
 {
     if (sCommunicationSystem) {
         return sCommunicationSystem->sendHeldKeys & 0x8000;
@@ -1679,7 +1680,7 @@ BOOL CommSys_IsSendingMovementData (void)
     return 1;
 }
 
-BOOL CommSys_WriteToQueueServer (int cmd, const void * param1, int param2)
+BOOL CommSys_WriteToQueueServer(int cmd, const void *param1, int param2)
 {
     if (CommSys_TransmissionType() == 1) {
         return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)param1, param2, 1, 0);
@@ -1688,12 +1689,12 @@ BOOL CommSys_WriteToQueueServer (int cmd, const void * param1, int param2)
     }
 }
 
-BOOL CommSys_WriteToQueue (int cmd, const void * param1, int param2)
+BOOL CommSys_WriteToQueue(int cmd, const void *param1, int param2)
 {
     return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)param1, param2, 0, 0);
 }
 
-static void CommSys_Transmission (void)
+static void CommSys_Transmission(void)
 {
     BOOL v0 = 0;
 
@@ -1722,9 +1723,9 @@ static void CommSys_Transmission (void)
     }
 }
 
-void sub_02036008 (int param0, int param1, void * param2, void * param3)
+void sub_02036008(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     int v1;
 
     if (CommSys_CurNetId() != 0) {
@@ -1735,9 +1736,9 @@ void sub_02036008 (int param0, int param1, void * param2, void * param3)
     sCommunicationSystem->unk_6A4 = v0[0];
 }
 
-void sub_02036030 (int param0, int param1, void * param2, void * param3)
+void sub_02036030(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     int v1;
 
     if (CommSys_CurNetId() == 0) {
@@ -1748,9 +1749,9 @@ void sub_02036030 (int param0, int param1, void * param2, void * param3)
     sCommunicationSystem->transmissionState = 3;
 }
 
-void sub_02036058 (int param0, int param1, void * param2, void * param3)
+void sub_02036058(int param0, int param1, void *param2, void *param3)
 {
-    u8 * v0 = param2;
+    u8 *v0 = param2;
     int v1;
 
     if (CommSys_CurNetId() != 0) {
@@ -1763,7 +1764,7 @@ void sub_02036058 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-u16 CommSys_CurNetId (void)
+u16 CommSys_CurNetId(void)
 {
     if (sCommunicationSystem) {
         if (CommLocal_IsWifiGroup(sub_0203895C())) {
@@ -1782,22 +1783,22 @@ u16 CommSys_CurNetId (void)
     return 0;
 }
 
-BOOL CommSys_SendDataFixedSize (int cmd, const void * data)
+BOOL CommSys_SendDataFixedSize(int cmd, const void *data)
 {
     return CommSys_SendData(cmd, data, 0);
 }
 
-BOOL Link_Message (int cmd)
+BOOL Link_Message(int cmd)
 {
     return CommSys_SendData(cmd, NULL, 0);
 }
 
-BOOL sub_020360E8 (void)
+BOOL sub_020360E8(void)
 {
     return CommServerClient_IsClientConnecting();
 }
 
-BOOL CommSys_CheckError (void)
+BOOL CommSys_CheckError(void)
 {
     if (CommSys_IsAlone()) {
         return FALSE;
@@ -1813,7 +1814,7 @@ BOOL CommSys_CheckError (void)
     return CommServerClient_CheckError();
 }
 
-u16 sub_02036128 (u16 param0)
+u16 sub_02036128(u16 param0)
 {
     if (CommLocal_MaxMachines(param0) >= 5) {
         return 12;
@@ -1826,24 +1827,24 @@ u16 sub_02036128 (u16 param0)
     return 38;
 }
 
-int CommType_MaxPlayers (int param0)
+int CommType_MaxPlayers(int param0)
 {
     return CommLocal_MaxMachines(param0) + 1;
 }
 
-int CommType_MinPlayers (int param0)
+int CommType_MinPlayers(int param0)
 {
     return sub_02032698(param0) + 1;
 }
 
-void CommSys_SetAlone (BOOL param0)
+void CommSys_SetAlone(BOOL param0)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->unk_6AE = param0;
     }
 }
 
-BOOL CommSys_IsAlone (void)
+BOOL CommSys_IsAlone(void)
 {
     if (sCommunicationSystem) {
         return sCommunicationSystem->unk_6AE;
@@ -1852,7 +1853,7 @@ BOOL CommSys_IsAlone (void)
     return FALSE;
 }
 
-void sub_0203619C (int param0, int param1, void * param2, void * param3)
+void sub_0203619C(int param0, int param1, void *param2, void *param3)
 {
     u8 v0;
 
@@ -1865,7 +1866,7 @@ void sub_0203619C (int param0, int param1, void * param2, void * param3)
     sub_0203408C();
 }
 
-void CommSys_Seed (MATHRandContext32 * rand)
+void CommSys_Seed(MATHRandContext32 *rand)
 {
     u64 seed = 0;
     RTCDate date;
@@ -1876,44 +1877,44 @@ void CommSys_Seed (MATHRandContext32 * rand)
     MATH_InitRand32(rand, seed);
 }
 
-BOOL sub_02036254 (int param0)
+BOOL sub_02036254(int param0)
 {
     return CommQueue_CompareCmd(&sCommunicationSystem->commQueueManSendServer, param0);
 }
 
-BOOL sub_0203626C (int param0)
+BOOL sub_0203626C(int param0)
 {
     return CommQueue_CompareCmd(&sCommunicationSystem->commQueueManSend, param0);
 }
 
-BOOL sub_02036284 (void)
+BOOL sub_02036284(void)
 {
     return CommQueue_IsEmpty(&sCommunicationSystem->commQueueManSendServer);
 }
 
-BOOL sub_0203629C (void)
+BOOL sub_0203629C(void)
 {
     return CommQueue_IsEmpty(&sCommunicationSystem->commQueueManSend);
 }
 
-void CommSys_SetWifiConnected (BOOL param0)
+void CommSys_SetWifiConnected(BOOL param0)
 {
     sCommunicationSystem->wifiConnected = param0;
 }
 
-BOOL CommSys_WifiConnected (void)
+BOOL CommSys_WifiConnected(void)
 {
     return sCommunicationSystem->wifiConnected;
 }
 
-void sub_020362DC (int param0, int param1)
+void sub_020362DC(int param0, int param1)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->unk_69F[param1] = param0;
     }
 }
 
-int sub_020362F4 (int networkId)
+int sub_020362F4(int networkId)
 {
     if (sCommunicationSystem) {
         if (sCommunicationSystem->unk_69F[networkId] != 0xff) {
@@ -1924,7 +1925,7 @@ int sub_020362F4 (int networkId)
     return networkId;
 }
 
-BOOL sub_02036314 (void)
+BOOL sub_02036314(void)
 {
     if (!CommLocal_IsWifiGroup(sub_0203895C())) {
         return 0;
@@ -1933,7 +1934,7 @@ BOOL sub_02036314 (void)
     return ov4_021D254C();
 }
 
-void sub_0203632C (BOOL param0)
+void sub_0203632C(BOOL param0)
 {
     int v0;
 
@@ -1954,7 +1955,7 @@ void sub_0203632C (BOOL param0)
     }
 }
 
-void sub_02036378 (BOOL param0)
+void sub_02036378(BOOL param0)
 {
     sub_0203632C(param0);
 
@@ -1967,7 +1968,7 @@ void sub_02036378 (BOOL param0)
     }
 }
 
-BOOL sub_020363A0 (void)
+BOOL sub_020363A0(void)
 {
     if (sCommunicationSystem->unk_6A9) {
         return 1;
@@ -1976,12 +1977,12 @@ BOOL sub_020363A0 (void)
     return 0;
 }
 
-void sub_020363BC (void)
+void sub_020363BC(void)
 {
     sCommunicationSystem->unk_6B1 = 1;
 }
 
-void CommSys_StartShutdown (void)
+void CommSys_StartShutdown(void)
 {
     if (sCommunicationSystem) {
         sCommunicationSystem->shuttingDown = 1;

@@ -1,16 +1,16 @@
-#include "enums.h"
+#include "overlay096/ov96_0223B140.h"
 
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
-#include <dwc.h>
 
+#include "overlay060/ov60_0221F968.h"
 #include "overlay096/struct_ov96_0223B450.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
 
-#include "overlay060/ov60_0221F968.h"
-#include "overlay096/ov96_0223B140.h"
+#include "enums.h"
 
 typedef enum {
     UnkEnum_ov96_0223B15C_00,
@@ -35,15 +35,15 @@ typedef struct {
     u64 unk_0C;
     u8 unk_14[239];
     u8 unk_103[2];
-    u8 * unk_108;
+    u8 *unk_108;
 } UnkStruct_ov96_0223DDE0;
 
-static BOOL ov96_0223B5D0(const u8 * param0, const void * param1, int param2, void * param3, int param4);
+static BOOL ov96_0223B5D0(const u8 *param0, const void *param1, int param2, void *param3, int param4);
 static int ov96_0223B608(int param0);
 
 static UnkStruct_ov96_0223DDE0 Unk_ov96_0223DDE0;
 
-void ov96_0223B140 (s32 param0, u64 param1)
+void ov96_0223B140(s32 param0, u64 param1)
 {
     Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_01;
     Unk_ov96_0223DDE0.unk_04 = 0;
@@ -51,7 +51,7 @@ void ov96_0223B140 (s32 param0, u64 param1)
     Unk_ov96_0223DDE0.unk_0C = param1;
 }
 
-void ov96_0223B15C (void)
+void ov96_0223B15C(void)
 {
     switch (Unk_ov96_0223DDE0.unk_00) {
     case UnkEnum_ov96_0223B15C_00:
@@ -225,7 +225,7 @@ void ov96_0223B15C (void)
     }
 }
 
-BOOL ov96_0223B3D4 (void)
+BOOL ov96_0223B3D4(void)
 {
     switch (Unk_ov96_0223DDE0.unk_00) {
     case UnkEnum_ov96_0223B15C_01:
@@ -240,18 +240,23 @@ BOOL ov96_0223B3D4 (void)
     return 0;
 }
 
-s32 ov96_0223B3F4 (void)
+s32 ov96_0223B3F4(void)
 {
     return Unk_ov96_0223DDE0.unk_04;
 }
 
-void ov96_0223B400 (s32 param0)
+void ov96_0223B400(s32 param0)
 {
     ov60_0221FC84();
 
     Unk_ov96_0223DDE0.unk_14[0] = (u8)(param0 - 1);
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/" "battletower/roomnum.asp"), Unk_ov96_0223DDE0.unk_14, 1, Unk_ov96_0223DDE0.unk_103, 2)) {
+    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                   "battletower/roomnum.asp"),
+            Unk_ov96_0223DDE0.unk_14,
+            1,
+            Unk_ov96_0223DDE0.unk_103,
+            2)) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_02;
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -260,7 +265,7 @@ void ov96_0223B400 (s32 param0)
     }
 }
 
-void ov96_0223B450 (s32 param0, s32 param1, UnkStruct_ov96_0223B450 * param2)
+void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
 {
     Unk_ov96_0223DDE0.unk_108 = (u8 *)param2;
 
@@ -269,7 +274,12 @@ void ov96_0223B450 (s32 param0, s32 param1, UnkStruct_ov96_0223B450 * param2)
     Unk_ov96_0223DDE0.unk_14[0] = (u8)(param0 - 1);
     Unk_ov96_0223DDE0.unk_14[1] = (u8)(param1 - 1);
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/" "battletower/download.asp"), Unk_ov96_0223DDE0.unk_14, 2, param2, sizeof(UnkStruct_ov96_0223B450))) {
+    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                   "battletower/download.asp"),
+            Unk_ov96_0223DDE0.unk_14,
+            2,
+            param2,
+            sizeof(UnkStruct_ov96_0223B450))) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_04;
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -278,7 +288,7 @@ void ov96_0223B450 (s32 param0, s32 param1, UnkStruct_ov96_0223B450 * param2)
     }
 }
 
-void ov96_0223B4B0 (s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223B450_sub1 * param3)
+void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223B450_sub1 *param3)
 {
     ov60_0221FC84();
 
@@ -290,7 +300,12 @@ void ov96_0223B4B0 (s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_022
 
     memcpy(&Unk_ov96_0223DDE0.unk_14[sizeof(UnkStruct_ov96_0223B450_sub1) + 3], &Unk_ov96_0223DDE0.unk_0C, 8);
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/" "battletower/upload.asp"), Unk_ov96_0223DDE0.unk_14, sizeof(UnkStruct_ov96_0223B450_sub1) + 11, Unk_ov96_0223DDE0.unk_103, 2)) {
+    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                   "battletower/upload.asp"),
+            Unk_ov96_0223DDE0.unk_14,
+            sizeof(UnkStruct_ov96_0223B450_sub1) + 11,
+            Unk_ov96_0223DDE0.unk_103,
+            2)) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_06;
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -299,11 +314,16 @@ void ov96_0223B4B0 (s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_022
     }
 }
 
-void ov96_0223B530 (void)
+void ov96_0223B530(void)
 {
     ov60_0221FC84();
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/" "battletower/info.asp"), Unk_ov96_0223DDE0.unk_14, 0, Unk_ov96_0223DDE0.unk_103, 2)) {
+    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                   "battletower/info.asp"),
+            Unk_ov96_0223DDE0.unk_14,
+            0,
+            Unk_ov96_0223DDE0.unk_103,
+            2)) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_08;
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -312,7 +332,7 @@ void ov96_0223B530 (void)
     }
 }
 
-void ov96_0223B574 (const UnkStruct_ov96_0223B574 * param0, UnkStruct_ov96_0223B574_1 * param1)
+void ov96_0223B574(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1)
 {
     OS_GetMacAddress((u8 *)param0->unk_14);
 
@@ -321,7 +341,12 @@ void ov96_0223B574 (const UnkStruct_ov96_0223B574 * param0, UnkStruct_ov96_0223B
 
     ov60_0221FC84();
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/" "common/setProfile.asp"), Unk_ov96_0223DDE0.unk_14, sizeof(UnkStruct_ov96_0223B574), Unk_ov96_0223DDE0.unk_108, sizeof(UnkStruct_ov96_0223B574_1))) {
+    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                   "common/setProfile.asp"),
+            Unk_ov96_0223DDE0.unk_14,
+            sizeof(UnkStruct_ov96_0223B574),
+            Unk_ov96_0223DDE0.unk_108,
+            sizeof(UnkStruct_ov96_0223B574_1))) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_10;
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -330,7 +355,7 @@ void ov96_0223B574 (const UnkStruct_ov96_0223B574 * param0, UnkStruct_ov96_0223B
     }
 }
 
-static BOOL ov96_0223B5D0 (const u8 * param0, const void * param1, int param2, void * param3, int param4)
+static BOOL ov96_0223B5D0(const u8 *param0, const void *param1, int param2, void *param3, int param4)
 {
     switch (ov60_0221FCA8(param0, Unk_ov96_0223DDE0.unk_08, param1, param2, (u8 *)param3, param4)) {
     case 0:
@@ -345,7 +370,7 @@ static BOOL ov96_0223B5D0 (const u8 * param0, const void * param1, int param2, v
     return 0;
 }
 
-static int ov96_0223B608 (int param0)
+static int ov96_0223B608(int param0)
 {
     int v0;
 

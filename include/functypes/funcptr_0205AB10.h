@@ -3,6 +3,6 @@
 
 #include "struct_decls/struct_party_decl.h"
 
-typedef void (UnkFuncPtr_0205AB10)(BOOL, const Party *);
+typedef void(UnkFuncPtr_0205AB10)(BOOL, const Party *);
 
 #endif // POKEPLATINUM_FUNCPTR_0205AB10_H

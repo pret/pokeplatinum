@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_0202B370_H
 #define POKEPLATINUM_STRUCT_0202B370_H
 
-#include "struct_defs/struct_0202B370_sub1.h"
-
 #include <dwc.h>
+
+#include "struct_defs/struct_0202B370_sub1.h"
 
 typedef struct UnkStruct_0202B370_t {
     DWCUserData unk_00;

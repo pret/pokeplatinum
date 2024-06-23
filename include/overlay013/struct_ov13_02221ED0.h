@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_02221ED0_H
 #define POKEPLATINUM_STRUCT_OV13_02221ED0_H
 
-#include "pokemon.h"
 #include "overlay013/struct_ov13_022236B8.h"
 
+#include "pokemon.h"
+
 typedef struct {
-    Pokemon * unk_00;
+    Pokemon *unk_00;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;

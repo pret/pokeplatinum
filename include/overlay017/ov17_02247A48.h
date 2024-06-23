@@ -3,6 +3,6 @@
 
 #include "overlay017/struct_ov17_02247A48.h"
 
-void ov17_02247A48(UnkStruct_ov17_02247A48 * param0);
+void ov17_02247A48(UnkStruct_ov17_02247A48 *param0);
 
 #endif // POKEPLATINUM_OV17_02247A48_H

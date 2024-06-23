@@ -1,12 +1,13 @@
+#include "pokemon_icon.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/pokemon.h"
 
-#include "pokemon.h"
-#include "pokemon_icon.h"
-
 #include "data/pokeicon_palettes.h"
+
+#include "pokemon.h"
 
 enum {
     POKEICON_SHARED_PALETTES = 0,

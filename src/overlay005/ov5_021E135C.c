@@ -1,31 +1,31 @@
+#include "overlay005/ov5_021E135C.h"
+
 #include <nitro.h>
-
-#include <string.h>
 #include <nitro/os.h>
+#include <string.h>
 
-#include "sys_task_manager.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-
-#include "unk_02005474.h"
-#include "sys_task.h"
-#include "unk_0200F174.h"
-#include "heap.h"
-#include "player_avatar.h"
-#include "map_object.h"
-#include "overlay005/ov5_021E135C.h"
 #include "overlay005/ov5_021ECC20.h"
 
+#include "heap.h"
+#include "map_object.h"
+#include "player_avatar.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_02005474.h"
+#include "unk_0200F174.h"
+
 typedef struct {
-    FieldSystem * fieldSystem;
-    BOOL * unk_04;
+    FieldSystem *fieldSystem;
+    BOOL *unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
 } UnkStruct_ov5_021E135C;
 
-static void ov5_021E135C (UnkStruct_ov5_021E135C * param0)
+static void ov5_021E135C(UnkStruct_ov5_021E135C *param0)
 {
     switch (param0->unk_10) {
     case 0:
@@ -45,10 +45,10 @@ static void ov5_021E135C (UnkStruct_ov5_021E135C * param0)
     Player_SetDir(param0->fieldSystem->playerAvatar, param0->unk_10);
 }
 
-static void ov5_021E139C (SysTask * param0, void * param1)
+static void ov5_021E139C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov5_021E135C * v0 = param1;
-    MapObject * v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
+    UnkStruct_ov5_021E135C *v0 = param1;
+    MapObject *v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
     VecFx32 v2;
 
     switch (v0->unk_08) {
@@ -78,16 +78,15 @@ static void ov5_021E139C (SysTask * param0, void * param1)
     }
 }
 
-static void ov5_021E1470 (SysTask * param0, void * param1)
+static void ov5_021E1470(SysTask *param0, void *param1)
 {
-    UnkStruct_ov5_021E135C * v0 = param1;
-    MapObject * v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
+    UnkStruct_ov5_021E135C *v0 = param1;
+    MapObject *v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
     VecFx32 v2;
     int v3;
 
     switch (v0->unk_08) {
-    case 0:
-    {
+    case 0: {
         sub_02062DDC(v1);
         sub_0206309C(v1, &v2);
         v3 = (20 - v0->unk_0C);
@@ -128,9 +127,9 @@ static void ov5_021E1470 (SysTask * param0, void * param1)
     }
 }
 
-void ov5_021E15A8 (FieldSystem * fieldSystem, BOOL param1, BOOL * param2)
+void ov5_021E15A8(FieldSystem *fieldSystem, BOOL param1, BOOL *param2)
 {
-    UnkStruct_ov5_021E135C * v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E135C));
+    UnkStruct_ov5_021E135C *v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E135C));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov5_021E135C));
 

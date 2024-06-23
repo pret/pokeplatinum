@@ -2,6 +2,6 @@
 #define POKEPLATINUM_OV97_0223635C_H
 
 u32 ov97_0223635C(void);
-u8 * ov97_02236378(void);
+u8 *ov97_02236378(void);
 
 #endif // POKEPLATINUM_OV97_0223635C_H

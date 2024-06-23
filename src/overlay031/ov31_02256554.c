@@ -1,37 +1,38 @@
+#include "overlay031/ov31_02256554.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "sys_task_manager.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
-#include "overlay031/struct_ov31_02256554_decl.h"
 
+#include "overlay025/ov25_02254560.h"
+#include "overlay025/ov25_02255090.h"
 #include "overlay025/struct_ov25_0225517C.h"
+#include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay031/struct_ov31_02256554_1.h"
+#include "overlay031/struct_ov31_02256554_decl.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "heap.h"
+#include "sys_task_manager.h"
 #include "unk_02018340.h"
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255090.h"
-#include "overlay031/ov31_02256554.h"
 
 struct UnkStruct_ov31_02256554_t {
-    const UnkStruct_ov31_02256554_1 * unk_00;
-    BGL * unk_04;
+    const UnkStruct_ov31_02256554_1 *unk_00;
+    BGL *unk_04;
     u32 unk_08[10];
 };
 
-static void ov31_022565CC(UnkStruct_ov25_02255224 * param0);
-static void ov31_022565E0(SysTask * param0, void * param1);
-static void ov31_02256644(BGL * param0);
-static void ov31_022566EC(SysTask * param0, void * param1);
-static void ov31_02256710(SysTask * param0, void * param1);
-static void ov31_0225672C(BGL * param0, const UnkStruct_ov31_02256554_1 * param1);
+static void ov31_022565CC(UnkStruct_ov25_02255224 *param0);
+static void ov31_022565E0(SysTask *param0, void *param1);
+static void ov31_02256644(BGL *param0);
+static void ov31_022566EC(SysTask *param0, void *param1);
+static void ov31_02256710(SysTask *param0, void *param1);
+static void ov31_0225672C(BGL *param0, const UnkStruct_ov31_02256554_1 *param1);
 
-BOOL ov31_02256554 (UnkStruct_ov31_02256554 ** param0, const UnkStruct_ov31_02256554_1 * param1, BGL * param2)
+BOOL ov31_02256554(UnkStruct_ov31_02256554 **param0, const UnkStruct_ov31_02256554_1 *param1, BGL *param2)
 {
-    UnkStruct_ov31_02256554 * v0 = (UnkStruct_ov31_02256554 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov31_02256554));
+    UnkStruct_ov31_02256554 *v0 = (UnkStruct_ov31_02256554 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov31_02256554));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 8);
@@ -48,7 +49,7 @@ BOOL ov31_02256554 (UnkStruct_ov31_02256554 ** param0, const UnkStruct_ov31_0225
     return 0;
 }
 
-void ov31_02256584 (UnkStruct_ov31_02256554 * param0)
+void ov31_02256584(UnkStruct_ov31_02256554 *param0)
 {
     if (param0 != NULL) {
         Heap_FreeToHeap(param0);
@@ -56,34 +57,34 @@ void ov31_02256584 (UnkStruct_ov31_02256554 * param0)
 }
 
 static const UnkStruct_ov25_0225517C Unk_ov31_02256970[] = {
-    {0x0, ov31_022565E0, 0x0},
-    {0x1, ov31_022566EC, 0x0},
-    {0x2, ov31_02256710, 0x0},
-    {0x0, NULL, 0x0}
+    { 0x0, ov31_022565E0, 0x0 },
+    { 0x1, ov31_022566EC, 0x0 },
+    { 0x2, ov31_02256710, 0x0 },
+    { 0x0, NULL, 0x0 }
 };
 
-void ov31_02256590 (UnkStruct_ov31_02256554 * param0, u32 param1)
+void ov31_02256590(UnkStruct_ov31_02256554 *param0, u32 param1)
 {
     ov25_0225517C(Unk_ov31_02256970, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov31_022565B4 (UnkStruct_ov31_02256554 * param0, u32 param1)
+BOOL ov31_022565B4(UnkStruct_ov31_02256554 *param0, u32 param1)
 {
     return ov25_02255130(param0->unk_08, param1);
 }
 
-BOOL ov31_022565C0 (UnkStruct_ov31_02256554 * param0)
+BOOL ov31_022565C0(UnkStruct_ov31_02256554 *param0)
 {
     return ov25_02255154(param0->unk_08);
 }
 
-static void ov31_022565CC (UnkStruct_ov25_02255224 * param0)
+static void ov31_022565CC(UnkStruct_ov25_02255224 *param0)
 {
-    UnkStruct_ov31_02256554 * v0 = ov25_0225523C(param0);
+    UnkStruct_ov31_02256554 *v0 = ov25_0225523C(param0);
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov31_022565E0 (SysTask * param0, void * param1)
+static void ov31_022565E0(SysTask *param0, void *param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -101,7 +102,7 @@ static void ov31_022565E0 (SysTask * param0, void * param1)
         0
     };
     GXSDispCnt v1;
-    UnkStruct_ov31_02256554 * v2;
+    UnkStruct_ov31_02256554 *v2;
 
     v2 = ov25_0225523C(param1);
 
@@ -118,9 +119,9 @@ static void ov31_022565E0 (SysTask * param0, void * param1)
     ov31_022565CC(param1);
 }
 
-static void ov31_02256644 (BGL * param0)
+static void ov31_02256644(BGL *param0)
 {
-    u8 * v0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20 * 16);
+    u8 *v0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20 * 16);
 
     if (v0) {
         int v1;
@@ -136,9 +137,9 @@ static void ov31_02256644 (BGL * param0)
     }
 }
 
-static void ov31_022566EC (SysTask * param0, void * param1)
+static void ov31_022566EC(SysTask *param0, void *param1)
 {
-    UnkStruct_ov31_02256554 * v0;
+    UnkStruct_ov31_02256554 *v0;
 
     v0 = ov25_0225523C(param1);
 
@@ -147,21 +148,21 @@ static void ov31_022566EC (SysTask * param0, void * param1)
     ov31_022565CC(param1);
 }
 
-static void ov31_02256710 (SysTask * param0, void * param1)
+static void ov31_02256710(SysTask *param0, void *param1)
 {
-    UnkStruct_ov31_02256554 * v0 = ov25_0225523C(param1);
+    UnkStruct_ov31_02256554 *v0 = ov25_0225523C(param1);
 
     sub_02019044(v0->unk_04, 6);
     ov31_022565CC(param1);
 }
 
-static void ov31_0225672C (BGL * param0, const UnkStruct_ov31_02256554_1 * param1)
+static void ov31_0225672C(BGL *param0, const UnkStruct_ov31_02256554_1 *param1)
 {
     static const u8 v0[] = {
         4, 15, 8, 1
     };
     int v1, v2, v3;
-    u16 * v4 = sub_02019FE4(param0, 6);
+    u16 *v4 = sub_02019FE4(param0, 6);
 
     v4 += ((2 * 32) + 2);
 

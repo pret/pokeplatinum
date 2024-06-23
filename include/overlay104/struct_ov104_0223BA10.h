@@ -3,15 +3,17 @@
 
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "savedata.h"
+
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
+#include "savedata.h"
+
 typedef struct {
     int unk_00;
-    SaveData * unk_04;
-    UnkStruct_020302DC * unk_08;
-    void * unk_0C;
+    SaveData *unk_04;
+    UnkStruct_020302DC *unk_08;
+    void *unk_0C;
     u8 unk_10;
     u8 unk_11;
     u8 unk_12;
@@ -24,8 +26,8 @@ typedef struct {
     u16 unk_22;
     u8 unk_24[3];
     u8 unk_27;
-    Party * unk_28;
-    Party * unk_2C;
+    Party *unk_28;
+    Party *unk_2C;
     u16 unk_30[14];
     UnkStruct_ov104_0223A348 unk_4C[2];
     u16 unk_26C[4];
@@ -56,7 +58,7 @@ typedef struct {
     u8 unk_A1A;
     u8 unk_A1B;
     u16 unk_A1C;
-    u16 * unk_A20;
+    u16 *unk_A20;
     u32 unk_A24;
 } UnkStruct_ov104_0223BA10;
 

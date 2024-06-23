@@ -1,26 +1,27 @@
 #ifndef POKEPLATINUM_COMM_PLAYER_MANAGER_H
 #define POKEPLATINUM_COMM_PLAYER_MANAGER_H
 
-#include "field/field_system_decl.h"
-#include "sys_task_manager.h"
-#include "trainer_info.h"
-#include "field/field_system_decl.h"
-#include "struct_defs/struct_02057B48.h"
 #include "struct_decls/struct_0205E884_decl.h"
-#include "communication_system.h"
+#include "struct_defs/struct_02057B48.h"
+
+#include "field/field_system_decl.h"
 #include "overlay023/struct_ov23_0224991C_decl.h"
 #include "overlay023/struct_ov23_0224A294_sub1.h"
 #include "overlay023/struct_ov23_0224ABC4.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
+#include "communication_system.h"
+#include "sys_task_manager.h"
+#include "trainer_info.h"
+
 typedef struct CommPlayerManager {
     u32 unk_00;
-    UnkStruct_ov23_0224991C * unk_04;
-    PlayerAvatar * playerAvatar[MAX_CONNECTED_PLAYERS];
-    UnkStruct_ov101_021D5D90 * unk_28[MAX_CONNECTED_PLAYERS];
+    UnkStruct_ov23_0224991C *unk_04;
+    PlayerAvatar *playerAvatar[MAX_CONNECTED_PLAYERS];
+    UnkStruct_ov101_021D5D90 *unk_28[MAX_CONNECTED_PLAYERS];
     u8 isActive[MAX_CONNECTED_PLAYERS];
-    SysTask * task;
-    FieldSystem * fieldSystem;
+    SysTask *task;
+    FieldSystem *fieldSystem;
     UnkStruct_ov23_0224A294_sub1 unk_58;
     u8 unk_5A[MAX_CONNECTED_PLAYERS];
     CommPlayerLocation playerLocationServer[MAX_CONNECTED_PLAYERS];
@@ -39,8 +40,8 @@ typedef struct CommPlayerManager {
     u8 moveTimerServer[MAX_CONNECTED_PLAYERS];
     u8 moveTimer[MAX_CONNECTED_PLAYERS];
     UnkStruct_ov23_0224ABC4 unk_14A[8 + 1];
-    TrainerInfo * unk_27C[5];
-    TrainerInfo * unk_290[MAX_CONNECTED_PLAYERS];
+    TrainerInfo *unk_27C[5];
+    TrainerInfo *unk_290[MAX_CONNECTED_PLAYERS];
     u16 unk_2B0;
     u16 unk_2B2;
     u8 unk_2B4[4];
@@ -58,8 +59,8 @@ typedef struct CommPlayerManager {
     u8 unk_2C3;
 } CommPlayerManager;
 
-CommPlayerManager * CommPlayerMan_Get(void);
-BOOL CommPlayerMan_Init(void * param0, FieldSystem * fieldSystem, BOOL param2);
+CommPlayerManager *CommPlayerMan_Get(void);
+BOOL CommPlayerMan_Init(void *param0, FieldSystem *fieldSystem, BOOL param2);
 void CommPlayerMan_Reset(void);
 void CommPlayerMan_Restart(void);
 void CommPlayerMan_Delete(BOOL param0);
@@ -74,13 +75,13 @@ u32 CommPlayer_Size(void);
 void CommPlayer_Destroy(u8 param0, BOOL param1, BOOL param2);
 BOOL sub_02057FAC(void);
 void sub_02057FC4(BOOL param0);
-void sub_02058018(int param0, int param1, void * param2, void * param3);
-void sub_0205805C(FieldSystem * fieldSystem, BOOL param1);
+void sub_02058018(int param0, int param1, void *param2, void *param3);
+void sub_0205805C(FieldSystem *fieldSystem, BOOL param1);
 BOOL CommPlayer_CheckNPCCollision(int param0, int param1);
-void CommPlayer_RecvLocation(int param0, int param1, void * param2, void * param3);
-void CommPlayer_RecvDelete(int param0, int param1, void * param2, void * param3);
+void CommPlayer_RecvLocation(int param0, int param1, void *param2, void *param3);
+void CommPlayer_RecvDelete(int param0, int param1, void *param2, void *param3);
 int CommPacketSizeOf_RecvLocation(void);
-void CommPlayer_RecvLocationAndInit(int param0, int param1, void * param2, void * param3);
+void CommPlayer_RecvLocationAndInit(int param0, int param1, void *param2, void *param3);
 void sub_02058B0C(int param0, int param1, BOOL param2);
 void sub_02058B7C(int param0);
 void sub_02058B94(int param0);
@@ -109,7 +110,7 @@ int sub_0205900C(int param0, int param1);
 void sub_02059058(int param0, BOOL param1);
 BOOL sub_02059094(int param0);
 BOOL sub_020590C4(void);
-void sub_02059180(int param0, int param1, void * param2, void * param3);
+void sub_02059180(int param0, int param1, void *param2, void *param3);
 void CommPlayer_SetBattleDir(void);
 BOOL sub_0205928C(void);
 int CommPlayer_GetOppositeDir(int param0);

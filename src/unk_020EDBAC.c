@@ -1,19 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constdata/const_020EE4B8.h"
-
 #include "struct_decls/struct_02061AB4_decl.h"
-
-#include "constdata/const_020EE31C.h"
-#include "constdata/const_020EE3A8.h"
-
 #include "struct_defs/struct_020EDF0C.h"
 
 #include "map_object.h"
 #include "unk_0206450C.h"
 #include "unk_020677F4.h"
 #include "unk_02069BE0.h"
+
+#include "constdata/const_020EE31C.h"
+#include "constdata/const_020EE3A8.h"
+#include "constdata/const_020EE4B8.h"
 
 extern int (*const Unk_020EEC78[])(MapObject *);
 extern int (*const Unk_020EEC48[])(MapObject *);
@@ -169,7 +167,6 @@ extern int (*const Unk_020EEF60[])(MapObject *);
 extern int (*const Unk_020EEFFC[])(MapObject *);
 extern int (*const Unk_020EF170[])(MapObject *);
 extern int (*const Unk_020EF5E4[])(MapObject *);
-
 
 static const UnkStruct_020EDF0C Unk_020EDF0C = {
     0x0,
@@ -715,7 +712,7 @@ static const UnkStruct_020EDF0C Unk_020EE0D8 = {
     sub_020633EC
 };
 
-const UnkStruct_020EDF0C * const Unk_020EE3A8[] = {
+const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EDF0C,
     &Unk_020EDE58,
     &Unk_020EE308,
@@ -786,7 +783,7 @@ const UnkStruct_020EDF0C * const Unk_020EE3A8[] = {
     &Unk_020EE2B8
 };
 
-int (*const * const Unk_020EE4B8[0x9a])(MapObject *) = {
+int (*const *const Unk_020EE4B8[0x9a])(MapObject *) = {
     Unk_020EEC78,
     Unk_020EEC48,
     Unk_020EEC88,
@@ -1181,7 +1178,7 @@ static const int Unk_020EDBBC[] = {
     0x90
 };
 
-const int * const Unk_020EE31C[] = {
+const int *const Unk_020EE31C[] = {
     Unk_020EDD5C,
     Unk_020EDCDC,
     Unk_020EDC5C,

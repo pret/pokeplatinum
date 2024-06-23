@@ -1,31 +1,29 @@
+#include "unk_0209AA74.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "strbuf.h"
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
-#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "unk_0209AA74.h"
 
 void sub_0201777C(void);
 
@@ -75,12 +73,12 @@ static const UnkStruct_ov61_0222C884 Unk_020F8B20 = {
     0x23
 };
 
-void sub_0209AA74 (int param0, int param1)
+void sub_0209AA74(int param0, int param1)
 {
-    BGL * v0;
+    BGL *v0;
     Window v1;
-    MessageLoader * v2;
-    Strbuf* v3;
+    MessageLoader *v2;
+    Strbuf *v3;
     int v4;
 
     if (param1 == 0) {

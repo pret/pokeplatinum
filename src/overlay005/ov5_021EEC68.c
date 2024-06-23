@@ -1,3 +1,5 @@
+#include "overlay005/ov5_021EEC68.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -7,13 +9,12 @@
 #include "overlay005/struct_ov5_021EF13C.h"
 
 #include "unk_0201E190.h"
-#include "overlay005/ov5_021EEC68.h"
 
-static BOOL ov5_021EED38(const UnkStruct_ov5_021EED38 * param0, const u16 param1, const fx32 param2, u16 * param3);
+static BOOL ov5_021EED38(const UnkStruct_ov5_021EED38 *param0, const u16 param1, const fx32 param2, u16 *param3);
 
-static BOOL ov5_021EEC68 (const UnkStruct_ov5_021EEC68 * param0, const UnkStruct_ov5_021EEC68 * param1, const UnkStruct_ov5_021EEC68 * param2)
+static BOOL ov5_021EEC68(const UnkStruct_ov5_021EEC68 *param0, const UnkStruct_ov5_021EEC68 *param1, const UnkStruct_ov5_021EEC68 *param2)
 {
-    const fx32 * v0, * v1, * v2, * v3;
+    const fx32 *v0, *v1, *v2, *v3;
 
     if (param0->unk_00 <= param1->unk_00) {
         v0 = &param0->unk_00;
@@ -38,23 +39,23 @@ static BOOL ov5_021EEC68 (const UnkStruct_ov5_021EEC68 * param0, const UnkStruct
     return 0;
 }
 
-static void ov5_021EECB8 (const UnkStruct_ov5_021EF13C * param0, u16 param1, UnkStruct_ov5_021EEC68 * param2)
+static void ov5_021EECB8(const UnkStruct_ov5_021EF13C *param0, u16 param1, UnkStruct_ov5_021EEC68 *param2)
 {
     param2[0] = param0->unk_10[param0->unk_00[param1].unk_00];
     param2[1] = param0->unk_10[param0->unk_00[param1].unk_02];
 }
 
-static void ov5_021EECE8 (const UnkStruct_ov5_021EF13C * param0, u16 param1, VecFx32 * param2)
+static void ov5_021EECE8(const UnkStruct_ov5_021EF13C *param0, u16 param1, VecFx32 *param2)
 {
     *param2 = param0->unk_14[param0->unk_00[param1].unk_04];
 }
 
-static void ov5_021EED08 (const UnkStruct_ov5_021EF13C * param0, u16 param1, fx32 * param2)
+static void ov5_021EED08(const UnkStruct_ov5_021EF13C *param0, u16 param1, fx32 *param2)
 {
     *param2 = param0->unk_04[param0->unk_00[param1].unk_06];
 }
 
-static void ov5_021EED20 (UnkStruct_ov5_021EED20 * param0)
+static void ov5_021EED20(UnkStruct_ov5_021EED20 *param0)
 {
     int v0;
 
@@ -65,7 +66,7 @@ static void ov5_021EED20 (UnkStruct_ov5_021EED20 * param0)
     }
 }
 
-static BOOL ov5_021EED38 (const UnkStruct_ov5_021EED38 * param0, const u16 param1, const fx32 param2, u16 * param3)
+static BOOL ov5_021EED38(const UnkStruct_ov5_021EED38 *param0, const u16 param1, const fx32 param2, u16 *param3)
 {
     int v0, v1;
     u32 v2;
@@ -107,7 +108,7 @@ static BOOL ov5_021EED38 (const UnkStruct_ov5_021EED38 * param0, const u16 param
     return 0;
 }
 
-BOOL ov5_021EED9C (const fx32 param0, const fx32 param1, const fx32 param2, const UnkStruct_ov5_021EF13C * param3, fx32 * param4)
+BOOL ov5_021EED9C(const fx32 param0, const fx32 param1, const fx32 param2, const UnkStruct_ov5_021EF13C *param3, fx32 *param4)
 {
     UnkStruct_ov5_021EEC68 v0[2];
     UnkStruct_ov5_021EEC68 v1;
@@ -124,7 +125,7 @@ BOOL ov5_021EED9C (const fx32 param0, const fx32 param1, const fx32 param2, cons
     u16 v19;
     u16 v20;
     u16 v21;
-    const UnkStruct_ov5_021EED38 * v22;
+    const UnkStruct_ov5_021EED38 *v22;
 
     if (param3->unk_18 == 0) {
         return 0;

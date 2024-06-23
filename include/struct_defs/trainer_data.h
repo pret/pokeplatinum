@@ -2,9 +2,10 @@
 #define POKEPLATINUM_STRUCT_TRAINER_DATA_H
 
 #include "constants/string.h"
-#include "strbuf.h"
 
 #include "struct_defs/sentence.h"
+
+#include "strbuf.h"
 
 enum TrainerDataType {
     TRDATATYPE_BASE = 0,
@@ -14,7 +15,7 @@ enum TrainerDataType {
 };
 
 /**
- * @brief Trainer data encapsulation. Contains all trainer-level data needed to instantiate a trainer battle. 
+ * @brief Trainer data encapsulation. Contains all trainer-level data needed to instantiate a trainer battle.
  */
 typedef struct TrainerData {
     u8 type; //< The data type of the trainer; controls which TrainerMon struct is used for the party.
@@ -34,10 +35,10 @@ typedef struct TrainerData {
     Sentence loseMsg; //< The message to display if the trainer loses.
 } TrainerData;
 
-#define MAX_DV  255
+#define MAX_DV 255
 
 /**
- * @brief The most basic Trainer Pokemon structure. No item is held, and moves are populated from the learnset. 
+ * @brief The most basic Trainer Pokemon structure. No item is held, and moves are populated from the learnset.
  */
 typedef struct TrainerMonBase {
     u16 dv; //< Difficulty value; determines how many IVs the Pokemon will have in each stat.

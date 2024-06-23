@@ -1,37 +1,33 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "savedata.h"
-
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "overlay_manager.h"
+#include "savedata.h"
+#include "strbuf.h"
 #include "unk_02000C88.h"
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "overlay_manager.h"
-#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "savedata.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -40,26 +36,26 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    Strbuf* unk_10;
-    BGL * unk_14;
-    MessageLoader * unk_18;
+    Strbuf *unk_10;
+    BGL *unk_14;
+    MessageLoader *unk_18;
     Window unk_1C;
-    UIControlData * unk_2C;
-    SaveData * unk_30;
-    void * unk_34;
+    UIControlData *unk_2C;
+    SaveData *unk_30;
+    void *unk_34;
 } UnkStruct_02099DFC;
 
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate * param1);
-int sub_02099DFC(OverlayManager * param0, int * param1);
-int sub_02099E38(OverlayManager * param0, int * param1);
-int sub_02099F54(OverlayManager * param0, int * param1);
-static void sub_02099F74(void * param0);
-static void sub_02099F80(UnkStruct_02099DFC * param0);
-static void sub_0209A044(UnkStruct_02099DFC * param0);
-static void sub_0209A098(UnkStruct_02099DFC * param0);
-static void sub_0209A0E0(UnkStruct_02099DFC * param0);
-static BOOL sub_0209A0F4(UnkStruct_02099DFC * param0);
-static BOOL sub_0209A200(UnkStruct_02099DFC * param0, u32 param1, int param2, int param3);
+void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+int sub_02099DFC(OverlayManager *param0, int *param1);
+int sub_02099E38(OverlayManager *param0, int *param1);
+int sub_02099F54(OverlayManager *param0, int *param1);
+static void sub_02099F74(void *param0);
+static void sub_02099F80(UnkStruct_02099DFC *param0);
+static void sub_0209A044(UnkStruct_02099DFC *param0);
+static void sub_0209A098(UnkStruct_02099DFC *param0);
+static void sub_0209A0E0(UnkStruct_02099DFC *param0);
+static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0);
+static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int param3);
 
 extern const OverlayManagerTemplate Unk_ov77_021D742C;
 
@@ -90,9 +86,9 @@ static const UnkStruct_ov61_0222C884 Unk_020F89EC = {
     0x155
 };
 
-int sub_02099DFC (OverlayManager * param0, int * param1)
+int sub_02099DFC(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02099DFC * v0;
+    UnkStruct_02099DFC *v0;
     int v1 = 88;
 
     Heap_Create(3, v1, 0x20000);
@@ -107,9 +103,9 @@ int sub_02099DFC (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int sub_02099E38 (OverlayManager * param0, int * param1)
+int sub_02099E38(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02099DFC * v0 = OverlayManager_Data(param0);
+    UnkStruct_02099DFC *v0 = OverlayManager_Data(param0);
     int v1 = 0;
 
     switch (*param1) {
@@ -159,9 +155,9 @@ int sub_02099E38 (OverlayManager * param0, int * param1)
     return v1;
 }
 
-int sub_02099F54 (OverlayManager * param0, int * param1)
+int sub_02099F54(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02099DFC * v0 = OverlayManager_Data(param0);
+    UnkStruct_02099DFC *v0 = OverlayManager_Data(param0);
     int v1 = v0->unk_00;
 
     OverlayManager_FreeData(param0);
@@ -171,13 +167,13 @@ int sub_02099F54 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void sub_02099F74 (void * param0)
+static void sub_02099F74(void *param0)
 {
-    UnkStruct_02099DFC * v0 = param0;
+    UnkStruct_02099DFC *v0 = param0;
     sub_0201C2B8(v0->unk_14);
 }
 
-static void sub_02099F80 (UnkStruct_02099DFC * param0)
+static void sub_02099F80(UnkStruct_02099DFC *param0)
 {
     {
         UnkStruct_02099F80 v0 = {
@@ -234,7 +230,7 @@ static void sub_02099F80 (UnkStruct_02099DFC * param0)
     sub_0201975C(4, 0x6c21);
 }
 
-static void sub_0209A044 (UnkStruct_02099DFC * param0)
+static void sub_0209A044(UnkStruct_02099DFC *param0)
 {
     sub_02019120(0, 0);
     sub_02019120(1, 0);
@@ -248,7 +244,7 @@ static void sub_0209A044 (UnkStruct_02099DFC * param0)
     Heap_FreeToHeap(param0->unk_14);
 }
 
-static void sub_0209A098 (UnkStruct_02099DFC * param0)
+static void sub_0209A098(UnkStruct_02099DFC *param0)
 {
     param0->unk_18 = MessageLoader_Init(1, 26, 4, param0->unk_00);
     sub_0201D710();
@@ -257,13 +253,13 @@ static void sub_0209A098 (UnkStruct_02099DFC * param0)
     BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
 }
 
-static void sub_0209A0E0 (UnkStruct_02099DFC * param0)
+static void sub_0209A0E0(UnkStruct_02099DFC *param0)
 {
     BGL_DeleteWindow(&param0->unk_1C);
     MessageLoader_Free(param0->unk_18);
 }
 
-static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
+static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
 {
     BOOL v0 = 0;
 
@@ -274,8 +270,7 @@ static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
             param0->unk_04 = 1;
         }
         break;
-    case 1:
-    {
+    case 1: {
         u32 v1 = sub_02002114(param0->unk_2C, param0->unk_00);
 
         switch (v1) {
@@ -286,8 +281,7 @@ static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
             param0->unk_04 = 6;
             break;
         }
-    }
-    break;
+    } break;
     case 2:
         if (sub_0209A200(param0, 1, 1, 4) == TRUE) {
             param0->unk_2C = sub_02002054(param0->unk_14, &Unk_020F89EC, (512 - (18 + 12)) - 9, 3, 1, param0->unk_00);
@@ -305,8 +299,7 @@ static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
             param0->unk_04 = 6;
             break;
         }
-    }
-    break;
+    } break;
     case 4:
         if (sub_0209A200(param0, 2, 1, 0) == TRUE) {
             param0->unk_34 = sub_0200E7FC(&param0->unk_1C, 512 - (18 + 12));
@@ -327,7 +320,7 @@ static BOOL sub_0209A0F4 (UnkStruct_02099DFC * param0)
     return v0;
 }
 
-static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, int param3)
+static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int param3)
 {
     BOOL v0 = 0;
 

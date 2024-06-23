@@ -9,7 +9,7 @@ void DisableHBlank(void);
 BOOL SetHBlankCallback(Callback cb, void *data);
 void sub_0201789C(void);
 void InitGraphics(void);
-void * ReadFileToHeap(int heapID, const char *filename);
+void *ReadFileToHeap(int heapID, const char *filename);
 void ReadFileToBuffer(const char *filename, void **buf);
 void sub_02017ACC(void);
 void InitKeypadAndTouchpad(void);

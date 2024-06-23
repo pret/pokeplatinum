@@ -1,29 +1,28 @@
+#include "overlay077/ov77_021D6C70.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
+#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-
 #include "struct_defs/archived_sprite.h"
 
-#include "spl.h"
-
-#include "unk_0200762C.h"
-#include "rtc.h"
-#include "unk_02014000.h"
-#include "heap.h"
 #include "camera.h"
-#include "unk_0202419C.h"
+#include "heap.h"
 #include "pokemon.h"
-#include "overlay077/ov77_021D6C70.h"
+#include "rtc.h"
+#include "spl.h"
+#include "unk_0200762C.h"
+#include "unk_02014000.h"
+#include "unk_0202419C.h"
 
 typedef struct UnkStruct_ov77_021D6CFC_t {
-    UnkStruct_02007768 * unk_00;
-    Sprite * unk_04[3];
+    UnkStruct_02007768 *unk_00;
+    Sprite *unk_04[3];
     BOOL unk_10;
-    void * unk_14;
-    UnkStruct_02014014 * unk_18;
+    void *unk_14;
+    UnkStruct_02014014 *unk_18;
     int unk_1C[3];
     u8 unk_28;
     u8 unk_29;
@@ -34,7 +33,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_ov77_021D7958;
 
-typedef BOOL (* UnkFuncPtr_ov77_021D7940)(UnkStruct_ov77_021D6CFC *, const u8);
+typedef BOOL (*UnkFuncPtr_ov77_021D7940)(UnkStruct_ov77_021D6CFC *, const u8);
 
 typedef struct {
     UnkFuncPtr_ov77_021D7940 unk_00;
@@ -42,21 +41,21 @@ typedef struct {
 } UnkStruct_ov77_021D7940;
 
 static void ov77_021D725C(void);
-static void ov77_021D7268(UnkSPLStruct6 * param0);
-static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC * param0, const u8 param1);
-static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC * param0, const u8 param1);
-static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC * param0, const u8 param1);
-static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC * param0, const u8 param1);
-static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC * param0, const u8 param1);
-static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC * param0, const u8 param1);
+static void ov77_021D7268(UnkSPLStruct6 *param0);
+static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
+static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
+static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
+static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
+static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
+static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1);
 
 static const UnkStruct_ov77_021D7958 Unk_ov77_021D7958[3] = {
-    {0x5C, 0xC0},
-    {0xE0, 0xC0},
-    {0x50, 0xC0}
+    { 0x5C, 0xC0 },
+    { 0xE0, 0xC0 },
+    { 0x50, 0xC0 }
 };
 
-static u32 ov77_021D6C70 (u32 param0, BOOL param1)
+static u32 ov77_021D6C70(u32 param0, BOOL param1)
 {
     u32 v0;
     NNSGfdTexKey v1;
@@ -71,7 +70,7 @@ static u32 ov77_021D6C70 (u32 param0, BOOL param1)
     return v0;
 }
 
-static u32 ov77_021D6C94 (u32 param0, BOOL param1)
+static u32 ov77_021D6C94(u32 param0, BOOL param1)
 {
     NNSGfdPlttKey v0;
     u32 v1;
@@ -89,18 +88,18 @@ static u32 ov77_021D6C94 (u32 param0, BOOL param1)
     return v1;
 }
 
-const int ov77_021D6CB8 (void)
+const int ov77_021D6CB8(void)
 {
     return sizeof(UnkStruct_ov77_021D6CFC);
 }
 
-UnkStruct_02014014 * ov77_021D6CBC (UnkStruct_ov77_021D6CFC * param0)
+UnkStruct_02014014 *ov77_021D6CBC(UnkStruct_ov77_021D6CFC *param0)
 {
     GF_ASSERT(param0 != NULL && param0->unk_18 != NULL);
     return param0->unk_18;
 }
 
-UnkSPLStruct6 * ov77_021D6CD0 (UnkStruct_ov77_021D6CFC * param0, int param1)
+UnkSPLStruct6 *ov77_021D6CD0(UnkStruct_ov77_021D6CFC *param0, int param1)
 {
     GF_ASSERT(param0 != NULL && param0->unk_18 != NULL);
 
@@ -108,13 +107,13 @@ UnkSPLStruct6 * ov77_021D6CD0 (UnkStruct_ov77_021D6CFC * param0, int param1)
     return sub_020146F4(param0->unk_18, param1, NULL, NULL);
 }
 
-void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
+void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 {
     u8 v0;
     ArchivedSprite v1;
-    Camera * camera;
-    void * v3;
-    int v4[3] = {389, 392, 395};
+    Camera *camera;
+    void *v3;
+    int v4[3] = { 389, 392, 395 };
     int v5[3];
     int v6, v7;
     RTCTime v8;
@@ -163,21 +162,21 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
     sub_020144CC(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);
 }
 
-void ov77_021D6E28 (UnkStruct_ov77_021D6CFC * param0)
+void ov77_021D6E28(UnkStruct_ov77_021D6CFC *param0)
 {
     sub_0201411C(param0->unk_18);
     Heap_FreeToHeap(param0->unk_14);
     sub_02007B6C(param0->unk_00);
 }
 
-void ov77_021D6E40 (UnkStruct_ov77_021D6CFC * param0)
+void ov77_021D6E40(UnkStruct_ov77_021D6CFC *param0)
 {
     if (param0 != NULL) {
         sub_02008A94(param0->unk_00);
     }
 }
 
-void ov77_021D6E50 (UnkStruct_ov77_021D6CFC * param0)
+void ov77_021D6E50(UnkStruct_ov77_021D6CFC *param0)
 {
     if (param0 != NULL) {
         NNS_G3dGeFlushBuffer();
@@ -190,20 +189,20 @@ void ov77_021D6E50 (UnkStruct_ov77_021D6CFC * param0)
 }
 
 static const UnkStruct_ov77_021D7940 Unk_ov77_021D7940[3] = {
-    {ov77_021D7004, ov77_021D7074},
-    {ov77_021D70CC, ov77_021D713C},
-    {ov77_021D7194, ov77_021D7204}
+    { ov77_021D7004, ov77_021D7074 },
+    { ov77_021D70CC, ov77_021D713C },
+    { ov77_021D7194, ov77_021D7204 }
 };
 
 static const int Unk_ov77_021D7970[3][3] = {
-    {0x6, 0x7, 0x8},
-    {0x3, 0x4, 0x5},
-    {0x0, 0x1, 0x2}
+    { 0x6, 0x7, 0x8 },
+    { 0x3, 0x4, 0x5 },
+    { 0x0, 0x1, 0x2 }
 };
 
-BOOL ov77_021D6E78 (UnkStruct_ov77_021D6CFC * param0, const u8 param1, const int param2)
+BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int param2)
 {
-    u8 * v0 = &param0->unk_28;
+    u8 *v0 = &param0->unk_28;
 
     switch (*v0) {
     case 0:
@@ -251,9 +250,9 @@ BOOL ov77_021D6E78 (UnkStruct_ov77_021D6CFC * param0, const u8 param1, const int
     return 0;
 }
 
-static BOOL ov77_021D7004 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
+static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite * v0 = param0->unk_04[param1];
+    Sprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, 6);
     sub_02008274(v0, 1, -16);
@@ -272,9 +271,9 @@ static BOOL ov77_021D7004 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D7074 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
+static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite * v0 = param0->unk_04[param1];
+    Sprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, -3);
     sub_02008274(v0, 1, -18);
@@ -290,9 +289,9 @@ static BOOL ov77_021D7074 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D70CC (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
+static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite * v0 = param0->unk_04[param1];
+    Sprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, -16);
     sub_02008274(v0, 1, -16);
@@ -311,9 +310,9 @@ static BOOL ov77_021D70CC (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D713C (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
+static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite * v0 = param0->unk_04[param1];
+    Sprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, -6);
     sub_02008274(v0, 1, -16);
@@ -329,9 +328,9 @@ static BOOL ov77_021D713C (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D7194 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
+static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite * v0 = param0->unk_04[param1];
+    Sprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, 8);
     sub_02008274(v0, 1, -16);
@@ -350,9 +349,9 @@ static BOOL ov77_021D7194 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D7204 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
+static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite * v0 = param0->unk_04[param1];
+    Sprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, 6);
     sub_02008274(v0, 1, -20);
@@ -368,7 +367,7 @@ static BOOL ov77_021D7204 (UnkStruct_ov77_021D6CFC * param0, const u8 param1)
     return 0;
 }
 
-static void ov77_021D725C (void)
+static void ov77_021D725C(void)
 {
     int v0;
 
@@ -377,10 +376,10 @@ static void ov77_021D725C (void)
     sub_020146C0();
 }
 
-static void ov77_021D7268 (UnkSPLStruct6 * param0)
+static void ov77_021D7268(UnkSPLStruct6 *param0)
 {
-    Sprite * v0 = sub_02014764();
-    VecFx32 v1 = {0, 0, 0};
+    Sprite *v0 = sub_02014764();
+    VecFx32 v1 = { 0, 0, 0 };
 
     v1.x = 172 * (sub_020080C0(v0, 0) - 128);
     v1.y = 172 * (sub_020080C0(v0, 1) - 96);

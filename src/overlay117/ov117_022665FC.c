@@ -1,29 +1,31 @@
+#include "overlay117/ov117_022665FC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_02039A58.h"
+
+#include "overlay117/ov117_02260668.h"
 #include "overlay117/struct_ov117_02261280.h"
 #include "overlay117/struct_ov117_022621D4.h"
 
-#include "unk_02032798.h"
 #include "communication_system.h"
-#include "overlay117/ov117_02260668.h"
-#include "overlay117/ov117_022665FC.h"
+#include "unk_02032798.h"
 
-static void ov117_02266618(int param0, int param1, void * param2, void * param3);
-static void ov117_0226663C(int param0, int param1, void * param2, void * param3);
-static void ov117_02266660(int param0, int param1, void * param2, void * param3);
+static void ov117_02266618(int param0, int param1, void *param2, void *param3);
+static void ov117_0226663C(int param0, int param1, void *param2, void *param3);
+static void ov117_02266660(int param0, int param1, void *param2, void *param3);
 static int ov117_02266610(void);
 static int ov117_02266614(void);
 
 static const CommCmdTable Unk_ov117_02266FE4[] = {
-    {NULL, sub_0203294C, NULL},
-    {ov117_02266660, ov117_02266614, NULL},
-    {ov117_02266618, ov117_02266610, NULL},
-    {ov117_0226663C, sub_0203294C, NULL}
+    { NULL, sub_0203294C, NULL },
+    { ov117_02266660, ov117_02266614, NULL },
+    { ov117_02266618, ov117_02266610, NULL },
+    { ov117_0226663C, sub_0203294C, NULL }
 };
 
-void ov117_022665FC (void * param0)
+void ov117_022665FC(void *param0)
 {
     int v0 = sizeof(Unk_ov117_02266FE4) / sizeof(CommCmdTable);
 
@@ -31,23 +33,23 @@ void ov117_022665FC (void * param0)
     GF_ASSERT(sizeof(UnkStruct_ov117_022621D4) < 256);
 }
 
-static int ov117_02266610 (void)
+static int ov117_02266610(void)
 {
     return sizeof(UnkStruct_ov117_022621D4);
 }
 
-static int ov117_02266614 (void)
+static int ov117_02266614(void)
 {
     return sizeof(u32);
 }
 
-static void ov117_02266618 (int param0, int param1, void * param2, void * param3)
+static void ov117_02266618(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov117_02261280 * v0 = param3;
+    UnkStruct_ov117_02261280 *v0 = param3;
     ov117_02262044(v0, param0, param2);
 }
 
-BOOL ov117_02266624 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022621D4 * param1)
+BOOL ov117_02266624(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022621D4 *param1)
 {
     if (CommSys_SendData(24, param1, sizeof(UnkStruct_ov117_022621D4)) == 1) {
         return 1;
@@ -56,13 +58,13 @@ BOOL ov117_02266624 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022621D4
     return 0;
 }
 
-static void ov117_0226663C (int param0, int param1, void * param2, void * param3)
+static void ov117_0226663C(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov117_02261280 * v0 = param3;
+    UnkStruct_ov117_02261280 *v0 = param3;
     v0->unk_2FC0 = 1;
 }
 
-BOOL ov117_02266648 (UnkStruct_ov117_02261280 * param0)
+BOOL ov117_02266648(UnkStruct_ov117_02261280 *param0)
 {
     if (CommSys_SendData(25, NULL, 0) == 1) {
         return 1;
@@ -71,10 +73,10 @@ BOOL ov117_02266648 (UnkStruct_ov117_02261280 * param0)
     return 0;
 }
 
-static void ov117_02266660 (int param0, int param1, void * param2, void * param3)
+static void ov117_02266660(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov117_02261280 * v0 = param3;
-    u32 * v1 = param2;
+    UnkStruct_ov117_02261280 *v0 = param3;
+    u32 *v1 = param2;
     u32 v2;
     int v3;
 
@@ -91,7 +93,7 @@ static void ov117_02266660 (int param0, int param1, void * param2, void * param3
     v0->unk_08++;
 }
 
-BOOL ov117_022666A4 (UnkStruct_ov117_02261280 * param0)
+BOOL ov117_022666A4(UnkStruct_ov117_02261280 *param0)
 {
     u32 v0 = 100;
 

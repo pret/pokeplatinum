@@ -15,8 +15,8 @@
 #include "overlay116/struct_ov116_022649E4.h"
 
 typedef struct {
-    UnkStruct_ov116_02262A44 * unk_00;
-    UnkStruct_ov116_02262A8C * unk_04;
+    UnkStruct_ov116_02262A44 *unk_00;
+    UnkStruct_ov116_02262A8C *unk_04;
     BOOL unk_08;
     BOOL unk_0C;
     BOOL unk_10;
@@ -26,12 +26,12 @@ typedef struct {
     u32 unk_44;
     UnkStruct_ov116_022649E4 unk_48;
     u32 unk_78;
-    UnkStruct_ov114_0225CAD4 * unk_7C;
-    UnkStruct_ov66_02231134 * unk_80;
+    UnkStruct_ov114_0225CAD4 *unk_7C;
+    UnkStruct_ov66_02231134 *unk_80;
     UnkStruct_ov114_0225C76C unk_84;
-    UnkStruct_ov114_0225D678 * unk_94;
+    UnkStruct_ov114_0225D678 *unk_94;
     UnkStruct_ov114_0225C9A8 unk_98;
-    UnkStruct_ov114_0225E854 * unk_B0;
+    UnkStruct_ov114_0225E854 *unk_B0;
     int unk_B4[4];
     BOOL unk_C4;
 } UnkStruct_ov116_0226139C;

@@ -1,31 +1,29 @@
+#include "unk_0209A74C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "strbuf.h"
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
-#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "unk_0209A74C.h"
 
 static const UnkStruct_02099F80 Unk_020F8AF8 = {
     GX_VRAM_BG_256_AB,
@@ -73,12 +71,12 @@ static const UnkStruct_ov61_0222C884 Unk_020F8AC4 = {
     0x23
 };
 
-void sub_0209A74C (int param0)
+void sub_0209A74C(int param0)
 {
-    BGL * v0;
+    BGL *v0;
     Window v1;
-    MessageLoader * v2;
-    Strbuf* v3;
+    MessageLoader *v2;
+    Strbuf *v3;
     int v4 = 0;
 
     sub_0200F344(0, 0);
@@ -148,12 +146,12 @@ void sub_0209A74C (int param0)
     PM_ForceToPowerOff();
 }
 
-void sub_0209A8E0 (int param0)
+void sub_0209A8E0(int param0)
 {
-    BGL * v0;
+    BGL *v0;
     Window v1;
-    MessageLoader * v2;
-    Strbuf* v3;
+    MessageLoader *v2;
+    Strbuf *v3;
     int v4 = 1;
 
     sub_0200F344(0, 0);

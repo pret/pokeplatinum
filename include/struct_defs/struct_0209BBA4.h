@@ -1,14 +1,16 @@
 #ifndef POKEPLATINUM_STRUCT_0209BBA4_H
 #define POKEPLATINUM_STRUCT_0209BBA4_H
 
-#include "field/field_system_decl.h"
-#include "struct_defs/struct_02098C44.h"
 #include "struct_defs/pokemon_summary.h"
+#include "struct_defs/struct_02098C44.h"
+
+#include "field/field_system_decl.h"
+
 #include "savedata.h"
 
 typedef struct {
-    SaveData * unk_00;
-    void * unk_04;
+    SaveData *unk_00;
+    void *unk_04;
     u16 unk_08[40];
     u8 unk_58;
     u8 unk_59;
@@ -24,16 +26,16 @@ typedef struct {
     u16 unk_7E[4];
     u16 unk_86[4];
     u16 unk_8E[4];
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     u8 unk_9C;
     u8 unk_9D;
     u8 unk_9E;
     u8 unk_9F;
     u8 unk_A0;
     u8 unk_A1[4];
-    PartyManagementData * unk_A8;
-    PokemonSummary * unk_AC;
-    u16 * unk_B0;
+    PartyManagementData *unk_A8;
+    PokemonSummary *unk_AC;
+    u16 *unk_B0;
 } UnkStruct_0209BBA4;
 
 #endif // POKEPLATINUM_STRUCT_0209BBA4_H

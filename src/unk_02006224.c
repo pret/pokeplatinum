@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_defs/chatot_cry.h"
-
 #include "struct_defs/struct_02004CB4.h"
 
 #include "unk_02003B60.h"
@@ -12,22 +11,22 @@
 #include "unk_0202CC64.h"
 
 BOOL CheckMicRecordingStatus(void);
-BOOL IsChatotCryStructReadyForProcessing(const ChatotCry * param0);
-BOOL ProcessAudioInput(const ChatotCry * param0, u32 param1, int param2, int param3);
+BOOL IsChatotCryStructReadyForProcessing(const ChatotCry *param0);
+BOOL ProcessAudioInput(const ChatotCry *param0, u32 param1, int param2, int param3);
 void ResetMicStatusFlags(void);
 MICResult StartMicSampling(void);
 MICResult StopMicSampling(void);
-void StoreMicDataInChatotCryStruct(ChatotCry * param0);
+void StoreMicDataInChatotCryStruct(ChatotCry *param0);
 void Sound_FlagDefaultChatotCry(u8 param0);
-BOOL Sound_PlayChatotCry(ChatotCry * param0, u32 param1, int param2, int param3);
-BOOL Sound_PlayDelayedChatotCry(ChatotCry * param0, u32 param1, int param2, int param3, u8 param4);
-int Sound_Chatter(ChatotCry * param0);
+BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int param2, int param3);
+BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int param2, int param3, u8 param4);
+int Sound_Chatter(ChatotCry *param0);
 BOOL Sound_CanPlayChatotCry(int param0);
 
-BOOL CheckMicRecordingStatus (void)
+BOOL CheckMicRecordingStatus(void)
 {
-    u8 * v0 = sub_02003D5C(16);
-    u8 * v1 = sub_02003D5C(30);
+    u8 *v0 = sub_02003D5C(16);
+    u8 *v1 = sub_02003D5C(30);
 
     if (*v1 == 1) {
         if (*v0 == 1) {
@@ -44,10 +43,10 @@ BOOL CheckMicRecordingStatus (void)
     return 0;
 }
 
-BOOL IsChatotCryStructReadyForProcessing (const ChatotCry * cry)
+BOOL IsChatotCryStructReadyForProcessing(const ChatotCry *cry)
 {
-    u8 * v0 = sub_02003D5C(31);
-    u8 * v1 = sub_02003D5C(54);
+    u8 *v0 = sub_02003D5C(31);
+    u8 *v1 = sub_02003D5C(54);
 
     if (IsChatotCryDataValid(cry) == 0) {
         return 0;
@@ -64,12 +63,12 @@ BOOL IsChatotCryStructReadyForProcessing (const ChatotCry * cry)
     return 1;
 }
 
-BOOL ProcessAudioInput (const ChatotCry * param0, u32 param1, int param2, int param3)
+BOOL ProcessAudioInput(const ChatotCry *param0, u32 param1, int param2, int param3)
 {
     u16 v0;
     int v1, v2;
-    s8 * v3 = sub_02005014();
-    u8 * v4 = sub_02003D5C(30);
+    s8 *v3 = sub_02005014();
+    u8 *v4 = sub_02003D5C(30);
 
     if (IsChatotCryStructReadyForProcessing(param0) == 0) {
         return 0;
@@ -112,10 +111,10 @@ BOOL ProcessAudioInput (const ChatotCry * param0, u32 param1, int param2, int pa
     return v1;
 }
 
-void ResetMicStatusFlags (void)
+void ResetMicStatusFlags(void)
 {
-    u8 * v0 = sub_02003D5C(16);
-    u8 * v1 = sub_02003D5C(30);
+    u8 *v0 = sub_02003D5C(16);
+    u8 *v1 = sub_02003D5C(30);
 
     if (*v0 == 1) {
         sub_02004E84(14);
@@ -126,7 +125,7 @@ void ResetMicStatusFlags (void)
     return;
 }
 
-MICResult StartMicSampling (void)
+MICResult StartMicSampling(void)
 {
     MICAutoParam v0;
 
@@ -146,29 +145,29 @@ MICResult StartMicSampling (void)
     return sub_02004B5C(&v0);
 }
 
-MICResult StopMicSampling (void)
+MICResult StopMicSampling(void)
 {
     return sub_02004B64();
 }
 
-void StoreMicDataInChatotCryStruct (ChatotCry * param0)
+void StoreMicDataInChatotCryStruct(ChatotCry *param0)
 {
     StoreProcessedAudioInChatotCryData(param0, (const s8 *)sub_02005014());
     return;
 }
 
-void Sound_FlagDefaultChatotCry (u8 param0)
+void Sound_FlagDefaultChatotCry(u8 param0)
 {
-    u8 * v0 = sub_02003D5C(31);
+    u8 *v0 = sub_02003D5C(31);
 
     *v0 = param0;
     return;
 }
 
-BOOL Sound_PlayChatotCry (ChatotCry * param0, u32 param1, int param2, int param3)
+BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int param2, int param3)
 {
     int v0;
-    ChatotCry ** v1 = sub_02003D5C(36);
+    ChatotCry **v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
         v0 = ProcessAudioInput(*v1, param1, param2, param3);
@@ -184,10 +183,10 @@ BOOL Sound_PlayChatotCry (ChatotCry * param0, u32 param1, int param2, int param3
     return v0;
 }
 
-BOOL Sound_PlayDelayedChatotCry (ChatotCry * param0, u32 param1, int param2, int param3, u8 param4)
+BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int param2, int param3, u8 param4)
 {
     int v0;
-    ChatotCry ** v1 = sub_02003D5C(36);
+    ChatotCry **v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
         v0 = ProcessAudioInput(*v1, param1, param2, param3);
@@ -204,9 +203,9 @@ BOOL Sound_PlayDelayedChatotCry (ChatotCry * param0, u32 param1, int param2, int
     return v0;
 }
 
-int Sound_Chatter (ChatotCry * param0)
+int Sound_Chatter(ChatotCry *param0)
 {
-    const s8 * v0;
+    const s8 *v0;
     s8 v1;
 
     if (IsChatotCryDataValid(param0) == 0) {
@@ -227,7 +226,7 @@ int Sound_Chatter (ChatotCry * param0)
     return 0;
 }
 
-BOOL Sound_CanPlayChatotCry (int param0)
+BOOL Sound_CanPlayChatotCry(int param0)
 {
     switch (param0) {
     case 0:

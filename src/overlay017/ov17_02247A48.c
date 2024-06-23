@@ -1,12 +1,12 @@
+#include "overlay017/ov17_02247A48.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-#include "assert.h"
-
-#include "sys_task_manager.h"
-
+#include "overlay012/ov12_02235E94.h"
 #include "overlay012/struct_ov12_02237728.h"
+#include "overlay017/ov17_022476F8.h"
+#include "overlay017/ov17_0224F18C.h"
 #include "overlay017/struct_ov17_02243C28.h"
 #include "overlay017/struct_ov17_02243C80.h"
 #include "overlay017/struct_ov17_02247A48.h"
@@ -30,97 +30,95 @@
 #include "overlay017/struct_ov17_0224F30C.h"
 #include "overlay017/struct_ov17_0224F3D8.h"
 #include "overlay017/struct_ov17_022539E4.h"
+#include "overlay022/ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225AF8C.h"
 
+#include "assert.h"
+#include "core_sys.h"
+#include "heap.h"
+#include "pokemon.h"
 #include "spl.h"
-
+#include "sys_task.h"
+#include "sys_task_manager.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
-#include "sys_task.h"
 #include "unk_0200DA60.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "pokemon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
-#include "overlay012/ov12_02235E94.h"
-#include "overlay017/ov17_022476F8.h"
-#include "overlay017/ov17_02247A48.h"
-#include "overlay017/ov17_0224F18C.h"
-#include "overlay022/ov22_0225AF8C.h"
 
-static int ov17_02247A88(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02247A9C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02247AAC(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, UnkStruct_ov17_0224F3D8 * param3, int param4);
-static int ov17_02247AEC(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02247B00(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02247C5C(SysTask * param0, void * param1);
-static int ov17_02247D68(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02247D7C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02247DC8(SysTask * param0, void * param1);
-static int ov17_02247E78(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02247E8C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02247EDC(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02247F2C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02247F8C(SysTask * param0, void * param1);
-static int ov17_02248138(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_0224814C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02248198(SysTask * param0, void * param1);
-static int ov17_02247AB0(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02247AC4(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static int ov17_02248258(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_0224826C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_022482B0(SysTask * param0, void * param1);
-static int ov17_0224840C(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02248420(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02248464(SysTask * param0, void * param1);
-static int ov17_022485E8(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_022485FC(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02248648(SysTask * param0, void * param1);
-static int ov17_022486E4(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_022486F8(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02248744(SysTask * param0, void * param1);
-static int ov17_022487E8(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_022487FC(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02248860(SysTask * param0, void * param1);
-static void ov17_022489C8(SysTask * param0, void * param1);
-static void ov17_02248A24(SysTask * param0, void * param1);
-static void ov17_02248AA4(SysTask * param0, void * param1);
-static void ov17_02248BE0(SysTask * param0, void * param1);
-static int ov17_02248D28(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02248D3C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02248DA4(SysTask * param0, void * param1);
-static int ov17_02248FBC(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02248FD0(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02249014(SysTask * param0, void * param1);
-static int ov17_02248E58(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02248E6C(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_02248EC4(SysTask * param0, void * param1);
-static int ov17_0224924C(UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3);
-static void ov17_02249260(UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3);
-static void ov17_022492AC(SysTask * param0, void * param1);
+static int ov17_02247A88(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02247A9C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02247AAC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, UnkStruct_ov17_0224F3D8 *param3, int param4);
+static int ov17_02247AEC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02247B00(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02247C5C(SysTask *param0, void *param1);
+static int ov17_02247D68(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02247D7C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02247DC8(SysTask *param0, void *param1);
+static int ov17_02247E78(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02247E8C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02247EDC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02247F2C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02247F8C(SysTask *param0, void *param1);
+static int ov17_02248138(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_0224814C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02248198(SysTask *param0, void *param1);
+static int ov17_02247AB0(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02247AC4(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static int ov17_02248258(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_0224826C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_022482B0(SysTask *param0, void *param1);
+static int ov17_0224840C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02248420(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02248464(SysTask *param0, void *param1);
+static int ov17_022485E8(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_022485FC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02248648(SysTask *param0, void *param1);
+static int ov17_022486E4(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_022486F8(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02248744(SysTask *param0, void *param1);
+static int ov17_022487E8(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_022487FC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02248860(SysTask *param0, void *param1);
+static void ov17_022489C8(SysTask *param0, void *param1);
+static void ov17_02248A24(SysTask *param0, void *param1);
+static void ov17_02248AA4(SysTask *param0, void *param1);
+static void ov17_02248BE0(SysTask *param0, void *param1);
+static int ov17_02248D28(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02248D3C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02248DA4(SysTask *param0, void *param1);
+static int ov17_02248FBC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02248FD0(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02249014(SysTask *param0, void *param1);
+static int ov17_02248E58(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02248E6C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_02248EC4(SysTask *param0, void *param1);
+static int ov17_0224924C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
+static void ov17_02249260(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
+static void ov17_022492AC(SysTask *param0, void *param1);
 
 static const UnkStruct_ov17_022539E4 Unk_ov17_02254488[] = {
-    {ov17_02247A88, ov17_02247A9C, ov17_02247AAC},
-    {ov17_02247AB0, ov17_02247AC4, NULL},
-    {ov17_02247AEC, ov17_02247B00, NULL},
-    {ov17_02247D68, ov17_02247D7C, NULL},
-    {ov17_02247E78, ov17_02247E8C, NULL},
-    {ov17_02247E78, ov17_02247EDC, NULL},
-    {ov17_02247E78, ov17_02247F2C, NULL},
-    {ov17_02248138, ov17_0224814C, NULL},
-    {ov17_02248258, ov17_0224826C, NULL},
-    {ov17_0224840C, ov17_02248420, NULL},
-    {ov17_022485E8, ov17_022485FC, NULL},
-    {ov17_022486E4, ov17_022486F8, NULL},
-    {ov17_022487E8, ov17_022487FC, NULL},
-    {ov17_02248D28, ov17_02248D3C, NULL},
-    {ov17_02248E58, ov17_02248E6C, NULL},
-    {ov17_02248FBC, ov17_02248FD0, NULL},
-    {ov17_0224924C, ov17_02249260, NULL}
+    { ov17_02247A88, ov17_02247A9C, ov17_02247AAC },
+    { ov17_02247AB0, ov17_02247AC4, NULL },
+    { ov17_02247AEC, ov17_02247B00, NULL },
+    { ov17_02247D68, ov17_02247D7C, NULL },
+    { ov17_02247E78, ov17_02247E8C, NULL },
+    { ov17_02247E78, ov17_02247EDC, NULL },
+    { ov17_02247E78, ov17_02247F2C, NULL },
+    { ov17_02248138, ov17_0224814C, NULL },
+    { ov17_02248258, ov17_0224826C, NULL },
+    { ov17_0224840C, ov17_02248420, NULL },
+    { ov17_022485E8, ov17_022485FC, NULL },
+    { ov17_022486E4, ov17_022486F8, NULL },
+    { ov17_022487E8, ov17_022487FC, NULL },
+    { ov17_02248D28, ov17_02248D3C, NULL },
+    { ov17_02248E58, ov17_02248E6C, NULL },
+    { ov17_02248FBC, ov17_02248FD0, NULL },
+    { ov17_0224924C, ov17_02249260, NULL }
 };
 
 __attribute__((aligned(4))) static const s8 Unk_ov17_02254468[] = {
@@ -146,7 +144,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02254470[] = {
     0x138
 };
 
-void ov17_02247A48 (UnkStruct_ov17_02247A48 * param0)
+void ov17_02247A48(UnkStruct_ov17_02247A48 *param0)
 {
     UnkStruct_ov17_02243C28 v0;
 
@@ -159,39 +157,39 @@ void ov17_02247A48 (UnkStruct_ov17_02247A48 * param0)
     ov17_0224F18C(&param0->unk_4F8, &v0);
 }
 
-static int ov17_02247A88 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02247A88(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, NULL, 0);
     return v1;
 }
 
-static void ov17_02247A9C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02247A9C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     ov17_0224F26C(param0, param2, NULL, 0);
 }
 
-static void ov17_02247AAC (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, UnkStruct_ov17_0224F3D8 * param3, int param4)
+static void ov17_02247AAC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, UnkStruct_ov17_0224F3D8 *param3, int param4)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     return;
 }
 
-static int ov17_02247AB0 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02247AB0(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, NULL, 0);
     return v1;
 }
 
-static void ov17_02247AC4 (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02247AC4(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
 
     v0->unk_F14 = 1;
 
@@ -200,20 +198,20 @@ static void ov17_02247AC4 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     }
 }
 
-static int ov17_02247AEC (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02247AEC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_02247B00 (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02247B00(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02247DC8 * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02247DC8 *v2;
     s32 v3;
     int v4;
 
@@ -265,9 +263,9 @@ static void ov17_02247B00 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02247C5C, v2, 30000);
 }
 
-static void ov17_02247C5C (SysTask * param0, void * param1)
+static void ov17_02247C5C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02247C5C * v0 = param1;
+    UnkStruct_ov17_02247C5C *v0 = param1;
     int v1;
 
     switch (v0->unk_10) {
@@ -307,20 +305,20 @@ static void ov17_02247C5C (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_02247D68 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02247D68(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_02247D7C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02247D7C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02247DC8 * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02247DC8 *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02247DC8));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02247DC8));
@@ -333,9 +331,9 @@ static void ov17_02247D7C (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02247DC8, v2, 30000);
 }
 
-static void ov17_02247DC8 (SysTask * param0, void * param1)
+static void ov17_02247DC8(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02247DC8 * v0 = param1;
+    UnkStruct_ov17_02247DC8 *v0 = param1;
     int v1;
 
     switch (v0->unk_10) {
@@ -364,20 +362,20 @@ static void ov17_02247DC8 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_02247E78 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02247E78(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_02247E8C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02247E8C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02247F8C * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02247F8C *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02247F8C));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02247F8C));
@@ -391,11 +389,11 @@ static void ov17_02247E8C (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02247F8C, v2, 30000);
 }
 
-static void ov17_02247EDC (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02247EDC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02247F8C * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02247F8C *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02247F8C));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02247F8C));
@@ -409,11 +407,11 @@ static void ov17_02247EDC (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02247F8C, v2, 30000);
 }
 
-static void ov17_02247F2C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02247F2C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02247F8C * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02247F8C *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02247F8C));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02247F8C));
@@ -430,9 +428,9 @@ static void ov17_02247F2C (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02247F8C, v2, 30000);
 }
 
-static void ov17_02247F8C (SysTask * param0, void * param1)
+static void ov17_02247F8C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02247F8C * v0 = param1;
+    UnkStruct_ov17_02247F8C *v0 = param1;
     int v1;
 
     switch (v0->unk_10) {
@@ -522,20 +520,20 @@ static void ov17_02247F8C (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_02248138 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02248138(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_0224814C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_0224814C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02248198 * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02248198 *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02248198));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02248198));
@@ -548,9 +546,9 @@ static void ov17_0224814C (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02248198, v2, 30000);
 }
 
-static void ov17_02248198 (SysTask * param0, void * param1)
+static void ov17_02248198(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248198 * v0 = param1;
+    UnkStruct_ov17_02248198 *v0 = param1;
     int v1;
 
     v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_11], 2);
@@ -580,19 +578,19 @@ static void ov17_02248198 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_02248258 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02248258(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, NULL, 0);
     return v1;
 }
 
-static void ov17_0224826C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_0224826C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_022482B0 * v1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_022482B0 *v1;
 
     v1 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022482B0));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_022482B0));
@@ -604,9 +602,9 @@ static void ov17_0224826C (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_022482B0, v1, 30000);
 }
 
-static void ov17_022482B0 (SysTask * param0, void * param1)
+static void ov17_022482B0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_022482B0 * v0 = param1;
+    UnkStruct_ov17_022482B0 *v0 = param1;
 
     switch (v0->unk_10) {
     case 0:
@@ -624,7 +622,7 @@ static void ov17_022482B0 (SysTask * param0, void * param1)
         v0->unk_13 = 1;
 
         {
-            u16 * v1, * v2;
+            u16 *v1, *v2;
             int v3, v4, v5, v6, v7;
 
             v1 = sub_02019FE4(v0->unk_00->unk_0C.unk_24, 2);
@@ -681,19 +679,19 @@ static void ov17_022482B0 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_0224840C (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_0224840C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, NULL, 0);
     return v1;
 }
 
-static void ov17_02248420 (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02248420(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02248464 * v1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02248464 *v1;
 
     v1 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02248464));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02248464));
@@ -705,9 +703,9 @@ static void ov17_02248420 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02248464, v1, 30000);
 }
 
-static void ov17_02248464 (SysTask * param0, void * param1)
+static void ov17_02248464(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248464 * v0 = param1;
+    UnkStruct_ov17_02248464 *v0 = param1;
 
     switch (v0->unk_10) {
     case 0:
@@ -725,7 +723,7 @@ static void ov17_02248464 (SysTask * param0, void * param1)
         v0->unk_13 = 1;
 
         {
-            u16 * v1, * v2;
+            u16 *v1, *v2;
             int v3, v4, v5, v6, v7;
             int v8;
 
@@ -789,20 +787,20 @@ static void ov17_02248464 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_022485E8 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_022485E8(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_022485FC (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_022485FC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02248744 * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02248744 *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02248744));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02248744));
@@ -815,9 +813,9 @@ static void ov17_022485FC (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02248648, v2, 30000);
 }
 
-static void ov17_02248648 (SysTask * param0, void * param1)
+static void ov17_02248648(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248744 * v0 = param1;
+    UnkStruct_ov17_02248744 *v0 = param1;
 
     switch (v0->unk_10) {
     case 0:
@@ -844,20 +842,20 @@ static void ov17_02248648 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_022486E4 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_022486E4(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_022486F8 (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_022486F8(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02248744 * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02248744 *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02248744));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02248744));
@@ -870,9 +868,9 @@ static void ov17_022486F8 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02248744, v2, 30000);
 }
 
-static void ov17_02248744 (SysTask * param0, void * param1)
+static void ov17_02248744(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248744 * v0 = param1;
+    UnkStruct_ov17_02248744 *v0 = param1;
 
     switch (v0->unk_10) {
     case 0:
@@ -900,20 +898,20 @@ static void ov17_02248744 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_022487E8 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_022487E8(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_022487FC (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_022487FC(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02248860 * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02248860 *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02248860));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02248860));
@@ -931,9 +929,9 @@ static void ov17_022487FC (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02248860, v2, 30000);
 }
 
-static void ov17_02248860 (SysTask * param0, void * param1)
+static void ov17_02248860(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248860 * v0 = param1;
+    UnkStruct_ov17_02248860 *v0 = param1;
 
     switch (v0->unk_10) {
     case 0:
@@ -978,17 +976,17 @@ static void ov17_02248860 (SysTask * param0, void * param1)
     }
 }
 
-static void ov17_02248990 (UnkSPLStruct6 * param0)
+static void ov17_02248990(UnkSPLStruct6 *param0)
 {
     {
-        VecFx32 v0 = {0, 0, 0};
+        VecFx32 v0 = { 0, 0, 0 };
         SPL_UnkInline1(param0, &v0);
     }
 }
 
-static void ov17_022489C8 (SysTask * param0, void * param1)
+static void ov17_022489C8(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_022489C8 * v0 = param1;
+    UnkStruct_ov17_022489C8 *v0 = param1;
 
     switch (v0->unk_14) {
     case 0:
@@ -1012,9 +1010,9 @@ static void ov17_022489C8 (SysTask * param0, void * param1)
     }
 }
 
-static void ov17_02248A24 (SysTask * param0, void * param1)
+static void ov17_02248A24(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248A24 * v0 = param1;
+    UnkStruct_ov17_02248A24 *v0 = param1;
 
     switch (v0->unk_08) {
     case 0:
@@ -1025,8 +1023,7 @@ static void ov17_02248A24 (SysTask * param0, void * param1)
             v0->unk_08++;
         }
         break;
-    case 1:
-    {
+    case 1: {
         BallThrow v1;
 
         v1.type = 14;
@@ -1053,17 +1050,16 @@ static void ov17_02248A24 (SysTask * param0, void * param1)
     }
 }
 
-static void ov17_02248AA4 (SysTask * param0, void * param1)
+static void ov17_02248AA4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248AA4 * v0 = param1;
+    UnkStruct_ov17_02248AA4 *v0 = param1;
     s32 v1;
     s32 v2, v3;
 
     v1 = Pokemon_DPSpriteYOffset(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], 2);
 
     switch (v0->unk_0C) {
-    case 0:
-    {
+    case 0: {
         v0->unk_04 = 0;
         v0->unk_08 = 0;
         ov22_0225B0EC(v0->unk_00->unk_F18[v0->unk_0E].unk_00, 0, 0, FX32_ONE);
@@ -1099,9 +1095,9 @@ static void ov17_02248AA4 (SysTask * param0, void * param1)
     }
 }
 
-static void ov17_02248BE0 (SysTask * param0, void * param1)
+static void ov17_02248BE0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248BE0 * v0 = param1;
+    UnkStruct_ov17_02248BE0 *v0 = param1;
 
     switch (v0->unk_0C) {
     case 0:
@@ -1160,20 +1156,20 @@ static void ov17_02248BE0 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_02248D28 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02248D28(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_02248D3C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02248D3C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_02248DA4 * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_02248DA4 *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02248DA4));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_02248DA4));
@@ -1190,9 +1186,9 @@ static void ov17_02248D3C (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02248DA4, v2, 30000);
 }
 
-static void ov17_02248DA4 (SysTask * param0, void * param1)
+static void ov17_02248DA4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248DA4 * v0 = param1;
+    UnkStruct_ov17_02248DA4 *v0 = param1;
 
     switch (v0->unk_10) {
     case 0:
@@ -1229,20 +1225,20 @@ static void ov17_02248DA4 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_02248E58 (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02248E58(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_02248E6C (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02248E6C(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02248EC4 * v1;
-    UnkStruct_ov17_02249260 * v2 = param3;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02248EC4 *v1;
+    UnkStruct_ov17_02249260 *v2 = param3;
 
     v1 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02248EC4));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02248EC4));
@@ -1258,9 +1254,9 @@ static void ov17_02248E6C (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02248EC4, v1, 30000);
 }
 
-static void ov17_02248EC4 (SysTask * param0, void * param1)
+static void ov17_02248EC4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02248EC4 * v0 = param1;
+    UnkStruct_ov17_02248EC4 *v0 = param1;
     int v1;
 
     switch (v0->unk_10) {
@@ -1283,7 +1279,7 @@ static void ov17_02248EC4 (SysTask * param0, void * param1)
     case 1:
         if (sub_0200AC1C(1) == 1) {
             sub_020038B0(v0->unk_00->unk_0C.unk_44, 0, 0, 0x0, 0, (13 * 16));
-            sub_020038B0(v0->unk_00->unk_0C.unk_44, 2, 0, 0x0, 0, (((16 - 2) * 16)));
+            sub_020038B0(v0->unk_00->unk_0C.unk_44, 2, 0, 0x0, 0, ((16 - 2) * 16));
             v0->unk_10++;
         }
         break;
@@ -1295,19 +1291,19 @@ static void ov17_02248EC4 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_02248FBC (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_02248FBC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, NULL, 0);
     return v1;
 }
 
-static void ov17_02248FD0 (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02248FD0(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249014 * v1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249014 *v1;
 
     v1 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_02249014));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02249014));
@@ -1319,9 +1315,9 @@ static void ov17_02248FD0 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_02249014, v1, 30000);
 }
 
-static void ov17_02249014 (SysTask * param0, void * param1)
+static void ov17_02249014(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_02249014 * v0 = param1;
+    UnkStruct_ov17_02249014 *v0 = param1;
     int v1;
 
     v0->unk_18++;
@@ -1363,7 +1359,7 @@ static void ov17_02249014 (SysTask * param0, void * param1)
         }
 
         {
-            u16 * v2, * v3;
+            u16 *v2, *v3;
             int v4, v5, v6, v7, v8;
 
             v2 = sub_02019FE4(v0->unk_00->unk_0C.unk_24, 2);
@@ -1432,20 +1428,20 @@ static void ov17_02249014 (SysTask * param0, void * param1)
     }
 }
 
-static int ov17_0224924C (UnkStruct_ov17_0224F30C * param0, void * param1, int param2, void * param3)
+static int ov17_0224924C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
+    UnkStruct_ov17_02247A48 *v0 = param1;
     int v1;
 
     v1 = ov17_0224F1F8(param0, 0xff, param2, param3, sizeof(UnkStruct_ov17_02249260));
     return v1;
 }
 
-static void ov17_02249260 (UnkStruct_ov17_0224F30C * param0, void * param1, const UnkStruct_ov17_02243C80 * param2, void * param3)
+static void ov17_02249260(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
-    UnkStruct_ov17_02247A48 * v0 = param1;
-    UnkStruct_ov17_02249260 * v1 = param3;
-    UnkStruct_ov17_022492AC * v2;
+    UnkStruct_ov17_02247A48 *v0 = param1;
+    UnkStruct_ov17_02249260 *v1 = param3;
+    UnkStruct_ov17_022492AC *v2;
 
     v2 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022492AC));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_022492AC));
@@ -1458,9 +1454,9 @@ static void ov17_02249260 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     SysTask_Start(ov17_022492AC, v2, 30000);
 }
 
-static void ov17_022492AC (SysTask * param0, void * param1)
+static void ov17_022492AC(SysTask *param0, void *param1)
 {
-    UnkStruct_ov17_022492AC * v0 = param1;
+    UnkStruct_ov17_022492AC *v0 = param1;
 
     switch (v0->unk_10) {
     case 0:

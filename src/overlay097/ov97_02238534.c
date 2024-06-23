@@ -1,13 +1,13 @@
-#include <nitro.h>
-#include <string.h>
-#include <nitro/wm.h>
-#include <nitro/cht.h>
+#include "overlay097/ov97_02238534.h"
 
-#include "crypto.h"
+#include <nitro.h>
+#include <nitro/cht.h>
+#include <nitro/wm.h>
+#include <string.h>
 
 #include "overlay097/funcptr_ov97_02238A4C.h"
 
-#include "overlay097/ov97_02238534.h"
+#include "crypto.h"
 
 typedef struct {
     u16 unk_00;
@@ -35,32 +35,32 @@ typedef struct {
     int unk_11E0;
     u8 unk_11E4[6];
     u16 unk_11EA;
-    u8 * unk_11EC;
+    u8 *unk_11EC;
     UnkFuncPtr_ov97_02238A4C unk_11F0;
     u8 unk_11F4[1261];
 } UnkStruct_ov97_022403F8;
 
-typedef void (* UnkFuncPtr_020312B8)(WMBssDesc *);
+typedef void (*UnkFuncPtr_020312B8)(WMBssDesc *);
 
-static void ov97_02238AB4(UnkStruct_ov97_02238AB4 * param0);
-static int ov97_02238B34(UnkStruct_ov97_02238AB4 * param0);
-static void ov97_022388E0(void * param0);
+static void ov97_02238AB4(UnkStruct_ov97_02238AB4 *param0);
+static int ov97_02238B34(UnkStruct_ov97_02238AB4 *param0);
+static void ov97_022388E0(void *param0);
 static BOOL ov97_02238908(void);
-static void ov97_0223893C(void * param0);
+static void ov97_0223893C(void *param0);
 static BOOL ov97_02238624(void);
-static void ov97_02238720(void * param0);
+static void ov97_02238720(void *param0);
 static BOOL ov97_02238858(void);
-static void ov97_02238874(void * param0);
-static void ov97_0223888C(void * param0);
+static void ov97_02238874(void *param0);
+static void ov97_0223888C(void *param0);
 static BOOL ov97_022389EC(void);
-static void ov97_02238A10(void * param0);
+static void ov97_02238A10(void *param0);
 
-static UnkStruct_ov97_022403F8 * Unk_ov97_022403F8;
-static void (* Unk_ov97_022403FC)(const char *, ...) = NULL;
+static UnkStruct_ov97_022403F8 *Unk_ov97_022403F8;
+static void (*Unk_ov97_022403FC)(const char *, ...) = NULL;
 
-static void ov97_02238534 (int param0)
+static void ov97_02238534(int param0)
 {
-    static const char * v0[] = {
+    static const char *v0[] = {
         "mywh_SYSSTATE_STOP",
         "mywh_SYSSTATE_IDLE",
         "mywh_SYSSTATE_SCANNING",
@@ -84,7 +84,7 @@ static void ov97_02238534 (int param0)
     }
 }
 
-static void ov97_02238584 (int param0)
+static void ov97_02238584(int param0)
 {
     if (((*Unk_ov97_022403F8).unk_11C4 == 9) || ((*Unk_ov97_022403F8).unk_11C4 == 10)) {
         return;
@@ -93,7 +93,7 @@ static void ov97_02238584 (int param0)
     (*Unk_ov97_022403F8).unk_11C8 = param0;
 }
 
-static BOOL ov97_022385A0 (void)
+static BOOL ov97_022385A0(void)
 {
     Unk_ov97_022403F8->unk_11C4 != 4 ? (void)0 : OS_Terminate();
 
@@ -122,7 +122,7 @@ static BOOL ov97_022385A0 (void)
     return 1;
 }
 
-static BOOL ov97_02238624 (void)
+static BOOL ov97_02238624(void)
 {
     WMErrCode v0;
     u16 v1;
@@ -189,9 +189,9 @@ static BOOL ov97_02238624 (void)
     return 1;
 }
 
-static void ov97_02238720 (void * param0)
+static void ov97_02238720(void *param0)
 {
-    WMstartScanCallback * v0 = (WMstartScanCallback *)param0;
+    WMstartScanCallback *v0 = (WMstartScanCallback *)param0;
 
     if (v0->errcode != WM_ERRCODE_SUCCESS) {
         do {
@@ -272,7 +272,7 @@ static void ov97_02238720 (void * param0)
     }
 }
 
-static BOOL ov97_02238858 (void)
+static BOOL ov97_02238858(void)
 {
     WMErrCode v0;
 
@@ -289,9 +289,9 @@ static BOOL ov97_02238858 (void)
     return 1;
 }
 
-static void ov97_02238874 (void * param0)
+static void ov97_02238874(void *param0)
 {
-    WMCallback * v0 = (WMCallback *)param0;
+    WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode != WM_ERRCODE_SUCCESS) {
         do {
@@ -304,9 +304,9 @@ static void ov97_02238874 (void * param0)
     ov97_02238534(1);
 }
 
-static void ov97_0223888C (void * param0)
+static void ov97_0223888C(void *param0)
 {
-    WMCallback * v0 = (WMCallback *)param0;
+    WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode != WM_ERRCODE_SUCCESS) {
         ov97_02238534(10);
@@ -320,7 +320,7 @@ static void ov97_0223888C (void * param0)
     }
 }
 
-static BOOL ov97_022388BC (void)
+static BOOL ov97_022388BC(void)
 {
     (*Unk_ov97_022403F8).unk_11C8 = WM_ERRCODE_SUCCESS;
 
@@ -331,9 +331,9 @@ static BOOL ov97_022388BC (void)
     return 1;
 }
 
-static void ov97_022388E0 (void * param0)
+static void ov97_022388E0(void *param0)
 {
-    WMindCallback * v0 = (WMindCallback *)param0;
+    WMindCallback *v0 = (WMindCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_FIFO_ERROR) {
         ov97_02238534(9);
@@ -344,7 +344,7 @@ static void ov97_022388E0 (void * param0)
     }
 }
 
-static BOOL ov97_02238908 (void)
+static BOOL ov97_02238908(void)
 {
     WMErrCode v0;
 
@@ -363,10 +363,10 @@ static BOOL ov97_02238908 (void)
     return 1;
 }
 
-static void ov97_0223893C (void * param0)
+static void ov97_0223893C(void *param0)
 {
     WMErrCode v0;
-    WMCallback * v1 = (WMCallback *)param0;
+    WMCallback *v1 = (WMCallback *)param0;
 
     if (v1->errcode != WM_ERRCODE_SUCCESS) {
         do {
@@ -392,7 +392,7 @@ static void ov97_0223893C (void * param0)
     (void)ov97_022385A0();
 }
 
-static BOOL ov97_02238978 (void)
+static BOOL ov97_02238978(void)
 {
     (void)(((*Unk_ov97_022403F8).unk_11C4 == 1) || (OS_Terminate(), 0));
 
@@ -411,16 +411,16 @@ static BOOL ov97_02238978 (void)
     return 1;
 }
 
-BOOL ov97_022389C8 (void)
+BOOL ov97_022389C8(void)
 {
     if ((*Unk_ov97_022403F8).unk_11C4 == 1) {
-        return ov97_02238978( );
+        return ov97_02238978();
     }
 
     return ov97_022389EC();
 }
 
-static BOOL ov97_022389EC (void)
+static BOOL ov97_022389EC(void)
 {
     WMErrCode v0;
 
@@ -438,9 +438,9 @@ static BOOL ov97_022389EC (void)
     return 1;
 }
 
-static void ov97_02238A10 (void * param0)
+static void ov97_02238A10(void *param0)
 {
-    WMCallback * v0 = (WMCallback *)param0;
+    WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode != WM_ERRCODE_SUCCESS) {
         ov97_02238534(9);
@@ -459,7 +459,7 @@ static void ov97_02238A10 (void * param0)
     ov97_02238978();
 }
 
-BOOL ov97_02238A4C (void * param0, UnkFuncPtr_ov97_02238A4C param1, void * param2)
+BOOL ov97_02238A4C(void *param0, UnkFuncPtr_ov97_02238A4C param1, void *param2)
 {
     Unk_ov97_022403F8 = (UnkStruct_ov97_022403F8 *)(((u32)param2 + 31) / 32 * 32);
     (*Unk_ov97_022403F8).unk_11C4 = 0;
@@ -475,7 +475,7 @@ BOOL ov97_02238A4C (void * param0, UnkFuncPtr_ov97_02238A4C param1, void * param
     return ov97_022388BC();
 }
 
-static void ov97_02238AB4 (UnkStruct_ov97_02238AB4 * param0)
+static void ov97_02238AB4(UnkStruct_ov97_02238AB4 *param0)
 {
     int v0;
 
@@ -492,7 +492,7 @@ static void ov97_02238AB4 (UnkStruct_ov97_02238AB4 * param0)
     }
 }
 
-static int ov97_02238B34 (UnkStruct_ov97_02238AB4 * param0)
+static int ov97_02238B34(UnkStruct_ov97_02238AB4 *param0)
 {
     if (((*Unk_ov97_022403F8).unk_11CE != param0->unk_00) || ((*Unk_ov97_022403F8).unk_11D4 != param0->unk_04)) {
         if ((*Unk_ov97_022403F8).unk_11D8++ >= 16) {
@@ -544,10 +544,10 @@ static int ov97_02238B34 (UnkStruct_ov97_02238AB4 * param0)
     return 0;
 }
 
-static u16 ov97_02238C70 (u8 * param0, u32 param1)
+static u16 ov97_02238C70(u8 *param0, u32 param1)
 {
     u16 v0, v1;
-    u16 * v2 = (u16 *)param0;
+    u16 *v2 = (u16 *)param0;
 
     v0 = 0;
 
@@ -559,11 +559,11 @@ static u16 ov97_02238C70 (u8 * param0, u32 param1)
     return v0;
 }
 
-int ov97_02238CA0 (void)
+int ov97_02238CA0(void)
 {
     {
         u16 v0[4];
-        u16 * v1;
+        u16 *v1;
 
         v1 = (u16 *)&((*Unk_ov97_022403F8).unk_11E4[0]);
         v0[0] = v1[0];
@@ -582,7 +582,7 @@ int ov97_02238CA0 (void)
         }
 
         {
-            u8 * v3 = (u8 *)&(v0[0]);
+            u8 *v3 = (u8 *)&(v0[0]);
             int v4;
 
             for (v4 = 0; v4 < 8; v4++) {
@@ -599,12 +599,12 @@ int ov97_02238CA0 (void)
     return ov97_02238C70((*Unk_ov97_022403F8).unk_11EC, (*Unk_ov97_022403F8).unk_11D4) == (*Unk_ov97_022403F8).unk_11CE;
 }
 
-int ov97_02238D4C (void)
+int ov97_02238D4C(void)
 {
     return sizeof(UnkStruct_ov97_022403F8) + 32;
 }
 
-void * ov97_02238D54 (void)
+void *ov97_02238D54(void)
 {
     if ((*Unk_ov97_022403F8).unk_10BC) {
         return &((*Unk_ov97_022403F8).unk_1054[0]);

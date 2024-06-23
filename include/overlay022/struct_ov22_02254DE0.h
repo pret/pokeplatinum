@@ -4,7 +4,7 @@
 #include "overlay022/struct_ov22_02255040.h"
 
 typedef struct {
-    UnkStruct_ov22_02255040 * unk_00;
+    UnkStruct_ov22_02255040 *unk_00;
     int unk_04;
 } UnkStruct_ov22_02254DE0;
 

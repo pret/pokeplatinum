@@ -1,41 +1,41 @@
+#include "overlay105/ov105_02245FB8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02022550_decl.h"
-#include "overlay105/struct_ov105_02246060_decl.h"
 
+#include "overlay105/ov105_02245AAC.h"
 #include "overlay105/struct_ov105_02245AAC.h"
+#include "overlay105/struct_ov105_02246060_decl.h"
 #include "overlay105/struct_ov105_02246394.h"
 
+#include "core_sys.h"
 #include "heap.h"
 #include "unk_020218BC.h"
-#include "overlay105/ov105_02245AAC.h"
-#include "overlay105/ov105_02245FB8.h"
 
 struct UnkStruct_ov105_02246060_t {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;
-    const UnkStruct_ov105_02246394 * unk_04;
-    const u8 * unk_08;
-    GraphicElementData * unk_0C;
+    const UnkStruct_ov105_02246394 *unk_04;
+    const u8 *unk_08;
+    GraphicElementData *unk_0C;
     u8 unk_10;
 };
 
-UnkStruct_ov105_02246060 * ov105_02245FB8(UnkStruct_ov105_02245AAC * param0, u8 param1, u8 param2, u8 param3, u8 param4, const UnkStruct_ov105_02246394 * param5, const u8 * param6);
-void * ov105_02246060(UnkStruct_ov105_02246060 * param0);
-void ov105_02246074(UnkStruct_ov105_02246060 * param0, int param1);
-void ov105_02246080(UnkStruct_ov105_02246060 * param0);
-u8 ov105_022461A0(UnkStruct_ov105_02246060 * param0);
-void ov105_022461A4(UnkStruct_ov105_02246060 * param0, int param1);
-void ov105_022461C0(UnkStruct_ov105_02246060 * param0, u8 param1);
+UnkStruct_ov105_02246060 *ov105_02245FB8(UnkStruct_ov105_02245AAC *param0, u8 param1, u8 param2, u8 param3, u8 param4, const UnkStruct_ov105_02246394 *param5, const u8 *param6);
+void *ov105_02246060(UnkStruct_ov105_02246060 *param0);
+void ov105_02246074(UnkStruct_ov105_02246060 *param0, int param1);
+void ov105_02246080(UnkStruct_ov105_02246060 *param0);
+u8 ov105_022461A0(UnkStruct_ov105_02246060 *param0);
+void ov105_022461A4(UnkStruct_ov105_02246060 *param0, int param1);
+void ov105_022461C0(UnkStruct_ov105_02246060 *param0, u8 param1);
 
-UnkStruct_ov105_02246060 * ov105_02245FB8 (UnkStruct_ov105_02245AAC * param0, u8 param1, u8 param2, u8 param3, u8 param4, const UnkStruct_ov105_02246394 * param5, const u8 * param6)
+UnkStruct_ov105_02246060 *ov105_02245FB8(UnkStruct_ov105_02245AAC *param0, u8 param1, u8 param2, u8 param3, u8 param4, const UnkStruct_ov105_02246394 *param5, const u8 *param6)
 {
-    UnkStruct_ov105_02246060 * v0;
+    UnkStruct_ov105_02246060 *v0;
     VecFx32 v1;
 
     v0 = Heap_AllocFromHeap(93, sizeof(UnkStruct_ov105_02246060));
@@ -65,7 +65,7 @@ UnkStruct_ov105_02246060 * ov105_02245FB8 (UnkStruct_ov105_02245AAC * param0, u8
     return v0;
 }
 
-void * ov105_02246060 (UnkStruct_ov105_02246060 * param0)
+void *ov105_02246060(UnkStruct_ov105_02246060 *param0)
 {
     sub_02021BD4(param0->unk_0C);
     Heap_FreeToHeap(param0);
@@ -73,13 +73,13 @@ void * ov105_02246060 (UnkStruct_ov105_02246060 * param0)
     return NULL;
 }
 
-void ov105_02246074 (UnkStruct_ov105_02246060 * param0, int param1)
+void ov105_02246074(UnkStruct_ov105_02246060 *param0, int param1)
 {
     sub_02021CAC(param0->unk_0C, param1);
     return;
 }
 
-void ov105_02246080 (UnkStruct_ov105_02246060 * param0)
+void ov105_02246080(UnkStruct_ov105_02246060 *param0)
 {
     VecFx32 v0;
     u32 v1, v2;
@@ -156,12 +156,12 @@ void ov105_02246080 (UnkStruct_ov105_02246060 * param0)
     return;
 }
 
-u8 ov105_022461A0 (UnkStruct_ov105_02246060 * param0)
+u8 ov105_022461A0(UnkStruct_ov105_02246060 *param0)
 {
     return param0->unk_02;
 }
 
-void ov105_022461A4 (UnkStruct_ov105_02246060 * param0, int param1)
+void ov105_022461A4(UnkStruct_ov105_02246060 *param0, int param1)
 {
     param0->unk_03 = param1;
 
@@ -174,7 +174,7 @@ void ov105_022461A4 (UnkStruct_ov105_02246060 * param0, int param1)
     return;
 }
 
-void ov105_022461C0 (UnkStruct_ov105_02246060 * param0, u8 param1)
+void ov105_022461C0(UnkStruct_ov105_02246060 *param0, u8 param1)
 {
     VecFx32 v0;
 

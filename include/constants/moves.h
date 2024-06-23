@@ -3,8 +3,8 @@
 
 #include "consts/moves.h"
 
-#define LEARNED_MOVES_MAX     4
+#define LEARNED_MOVES_MAX 4
 
 #define NUM_MOVES MOVE_SHADOW_FORCE
 
-#endif //POKEPLATINUM_CONSTANTS_MOVES_H
+#endif // POKEPLATINUM_CONSTANTS_MOVES_H

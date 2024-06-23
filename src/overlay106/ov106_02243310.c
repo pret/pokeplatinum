@@ -1,30 +1,31 @@
+#include "overlay106/ov106_02243310.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "pokemon.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay106/struct_ov106_02243310.h"
 #include "overlay115/struct_ov115_02261520.h"
 
+#include "gx_layers.h"
 #include "narc.h"
+#include "pokemon.h"
+#include "pokemon_icon.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "pokemon_icon.h"
-#include "overlay106/ov106_02243310.h"
 
-void ov106_02243310(UnkStruct_ov106_02243310 * param0, Pokemon * param1);
-GraphicElementData * ov106_022434BC(UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u32 param3, u8 param4);
-void ov106_02243570(UnkStruct_ov106_02243310 * param0);
+void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1);
+GraphicElementData *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4);
+void ov106_02243570(UnkStruct_ov106_02243310 *param0);
 static void ov106_022435C8(void);
 
 static const u8 Unk_ov106_0224384C[4] = {
@@ -34,10 +35,10 @@ static const u8 Unk_ov106_0224384C[4] = {
     0x2
 };
 
-void ov106_02243310 (UnkStruct_ov106_02243310 * param0, Pokemon * param1)
+void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1)
 {
     int v0;
-    NARC * v1;
+    NARC *v1;
 
     ov106_022435C8();
     NNS_G2dInitOamManagerModule();
@@ -73,11 +74,11 @@ void ov106_02243310 (UnkStruct_ov106_02243310 * param0, Pokemon * param1)
     return;
 }
 
-GraphicElementData * ov106_022434BC (UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u32 param3, u8 param4)
+GraphicElementData *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4)
 {
     int v0;
     UnkStruct_ov19_021DA864 v1;
-    GraphicElementData * v2;
+    GraphicElementData *v2;
 
     sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
@@ -118,7 +119,7 @@ GraphicElementData * ov106_022434BC (UnkStruct_ov106_02243310 * param0, u32 para
     return v2;
 }
 
-void ov106_02243570 (UnkStruct_ov106_02243310 * param0)
+void ov106_02243570(UnkStruct_ov106_02243310 *param0)
 {
     u8 v0;
 
@@ -139,7 +140,7 @@ void ov106_02243570 (UnkStruct_ov106_02243310 * param0)
     return;
 }
 
-static void ov106_022435C8 (void)
+static void ov106_022435C8(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {

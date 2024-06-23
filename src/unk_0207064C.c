@@ -1,34 +1,35 @@
+#include "unk_0207064C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "sys_task_manager.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "pokemon.h"
-
-#include "field/field_system.h"
 #include "struct_defs/struct_02049FA8.h"
 
-#include "heap.h"
-#include "unk_0203A7D8.h"
-#include "unk_020508D4.h"
-#include "field_map_change.h"
-#include "player_avatar.h"
-#include "unk_0207064C.h"
+#include "field/field_system.h"
 #include "overlay006/ov6_02243258.h"
 
+#include "field_map_change.h"
+#include "heap.h"
+#include "player_avatar.h"
+#include "pokemon.h"
+#include "sys_task_manager.h"
+#include "unk_0203A7D8.h"
+#include "unk_020508D4.h"
+
 typedef struct {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     int unk_04;
     u16 unk_08;
     s16 unk_0A;
     s16 unk_0C;
-    Pokemon * unk_10;
-    SysTask * unk_14;
+    Pokemon *unk_10;
+    SysTask *unk_14;
 } UnkStruct_0207064C;
 
-void * sub_0207064C (u32 param0, FieldSystem * fieldSystem, Pokemon * param2, u16 param3, s16 param4, s16 param5)
+void *sub_0207064C(u32 param0, FieldSystem *fieldSystem, Pokemon *param2, u16 param3, s16 param4, s16 param5)
 {
-    UnkStruct_0207064C * v0 = Heap_AllocFromHeapAtEnd(param0, (sizeof(UnkStruct_0207064C)));
+    UnkStruct_0207064C *v0 = Heap_AllocFromHeapAtEnd(param0, (sizeof(UnkStruct_0207064C)));
 
     memset(v0, 0, (sizeof(UnkStruct_0207064C)));
 
@@ -41,10 +42,10 @@ void * sub_0207064C (u32 param0, FieldSystem * fieldSystem, Pokemon * param2, u1
     return v0;
 }
 
-BOOL sub_02070680 (TaskManager * param0)
+BOOL sub_02070680(TaskManager *param0)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-    UnkStruct_0207064C * v1 = TaskManager_Environment(param0);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(param0);
+    UnkStruct_0207064C *v1 = TaskManager_Environment(param0);
 
     switch (v1->unk_04) {
     case 0:

@@ -1,6 +1,7 @@
 #include "constants/battle/side_effects.h"
 #include "constants/battle/terrain.h"
 
+// clang-format off
 static const u32 sTerrainSideEffect[] = {
     [TERRAIN_PLAIN]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_ACCURACY_DOWN_1_STAGE,
     [TERRAIN_SAND]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_ACCURACY_DOWN_1_STAGE,
@@ -16,3 +17,4 @@ static const u32 sTerrainSideEffect[] = {
     [TERRAIN_BRIDGE]      = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_EVASION_DOWN_1_STAGE,
     [TERRAIN_SPECIAL]     = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_PARALYZE,
 };
+// clang-format on

@@ -1,13 +1,14 @@
+#include "comm_ring.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "comm_ring.h"
 #include "communication_system.h"
 
-static int CommRing_Index(CommRing * ring, int index);
-static int CommRing_RemainingSizeBackup(CommRing * ring);
+static int CommRing_Index(CommRing *ring, int index);
+static int CommRing_RemainingSizeBackup(CommRing *ring);
 
-void CommRing_Init (CommRing * ring, u8 * buffer, int size)
+void CommRing_Init(CommRing *ring, u8 *buffer, int size)
 {
     ring->buffer = buffer;
     ring->size = size;
@@ -16,7 +17,7 @@ void CommRing_Init (CommRing * ring, u8 * buffer, int size)
     ring->backupEndIndex = 0;
 }
 
-void CommRring_Write (CommRing * ring, u8 * buffer, int size, int unused)
+void CommRring_Write(CommRing *ring, u8 *buffer, int size, int unused)
 {
     int i;
 
@@ -35,7 +36,7 @@ void CommRring_Write (CommRing * ring, u8 * buffer, int size, int unused)
     ring->backupEndIndex = CommRing_Index(ring, i);
 }
 
-int CommRing_Read (CommRing * ring, u8 * buffer, int size)
+int CommRing_Read(CommRing *ring, u8 *buffer, int size)
 {
     int index = CommRing_Peek(ring, buffer, size);
     ring->startIndex = CommRing_Index(ring, ring->startIndex + index);
@@ -43,7 +44,7 @@ int CommRing_Read (CommRing * ring, u8 * buffer, int size)
     return index;
 }
 
-u8 CommRing_ReadByte (CommRing * ring)
+u8 CommRing_ReadByte(CommRing *ring)
 {
     u8 buff;
 
@@ -51,8 +52,8 @@ u8 CommRing_ReadByte (CommRing * ring)
     return buff;
 }
 
-//Reading but doesn't incriment the index
-int CommRing_Peek (CommRing * ring, u8 * buffer, int size)
+// Reading but doesn't incriment the index
+int CommRing_Peek(CommRing *ring, u8 *buffer, int size)
 {
     int j = 0;
 
@@ -67,7 +68,7 @@ int CommRing_Peek (CommRing * ring, u8 * buffer, int size)
     return j;
 }
 
-int CommRing_DataSize (CommRing * ring)
+int CommRing_DataSize(CommRing *ring)
 {
     if (ring->startIndex > ring->endIndex) {
         return ring->size + ring->endIndex - ring->startIndex;
@@ -76,12 +77,12 @@ int CommRing_DataSize (CommRing * ring)
     return ring->endIndex - ring->startIndex;
 }
 
-int CommRing_RemainingSize (CommRing * ring)
+int CommRing_RemainingSize(CommRing *ring)
 {
     return ring->size - CommRing_DataSize(ring);
 }
 
-static int CommRing_RemainingSizeBackup (CommRing * ring)
+static int CommRing_RemainingSizeBackup(CommRing *ring)
 {
     if (ring->startIndex > ring->backupEndIndex) {
         return ring->startIndex - ring->backupEndIndex;
@@ -90,12 +91,12 @@ static int CommRing_RemainingSizeBackup (CommRing * ring)
     return ring->size - (ring->backupEndIndex - ring->startIndex);
 }
 
-int CommRing_Index (CommRing * ring, int index)
+int CommRing_Index(CommRing *ring, int index)
 {
     return index % ring->size;
 }
 
-void CommRing_UpdateEndPos (CommRing * ring)
+void CommRing_UpdateEndPos(CommRing *ring)
 {
     ring->endIndex = ring->backupEndIndex;
 }

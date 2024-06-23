@@ -1,31 +1,29 @@
+#include "unk_02039814.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
+#include "core_sys.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "message.h"
+#include "strbuf.h"
+#include "string_template.h"
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "unk_02039814.h"
 
 void sub_02039834(int param0, int param1, int param2);
 
@@ -75,20 +73,20 @@ static const UnkStruct_ov61_0222C884 Unk_020E5EC8 = {
     0x23
 };
 
-static void sub_02039814 (void)
+static void sub_02039814(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void sub_02039834 (int param0, int param1, int param2)
+void sub_02039834(int param0, int param1, int param2)
 {
-    BGL * v0;
+    BGL *v0;
     Window v1;
-    MessageLoader * v2;
-    Strbuf* v3;
-    Strbuf* v4;
-    StringTemplate * v5;
+    MessageLoader *v2;
+    Strbuf *v3;
+    Strbuf *v4;
+    StringTemplate *v5;
     int v6;
 
     switch (param1) {

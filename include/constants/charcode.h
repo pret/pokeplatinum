@@ -98,4 +98,3 @@ enum {
 };
 
 #endif // POKEPLATINUM_CONSTANTS_CHARCODE_H
-

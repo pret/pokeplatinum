@@ -1,23 +1,23 @@
+#include "unk_02068344.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02027860_decl.h"
 
 #include "field/field_system.h"
-
 #include "functypes/funcptr_020EF718.h"
 #include "functypes/funcptr_020EF744.h"
 #include "functypes/funcptr_020EF770.h"
-
-#include "savedata_misc.h"
-#include "unk_02027F50.h"
-#include "field_system.h"
-#include "unk_02068344.h"
-#include "unk_0207160C.h"
 #include "overlay005/ov5_021F8370.h"
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
+
+#include "field_system.h"
+#include "savedata_misc.h"
+#include "unk_02027F50.h"
+#include "unk_0207160C.h"
 
 const static UnkFuncPtr_020EF744 Unk_020EF744[11] = {
     NULL,
@@ -61,10 +61,10 @@ const static UnkFuncPtr_020EF770 Unk_020EF770[11] = {
     ov5_021F83D4
 };
 
-void sub_02068344 (FieldSystem * fieldSystem)
+void sub_02068344(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_02027860 * v1;
+    UnkStruct_02027860 *v1;
 
     v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v0 = sub_02027F80(v1);
@@ -76,10 +76,10 @@ void sub_02068344 (FieldSystem * fieldSystem)
     Unk_020EF744[v0](fieldSystem);
 }
 
-void sub_02068368 (FieldSystem * fieldSystem)
+void sub_02068368(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_02027860 * v1;
+    UnkStruct_02027860 *v1;
 
     v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v0 = sub_02027F80(v1);
@@ -93,10 +93,10 @@ void sub_02068368 (FieldSystem * fieldSystem)
     }
 }
 
-BOOL sub_02068390 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, BOOL * param4)
+BOOL sub_02068390(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
     int v0;
-    UnkStruct_02027860 * v1;
+    UnkStruct_02027860 *v1;
 
     v1 = sub_02027860(FieldSystem_SaveData(fieldSystem));
     v0 = sub_02027F80(v1);
@@ -115,7 +115,7 @@ BOOL sub_02068390 (FieldSystem * fieldSystem, const int param1, const int param2
     return 0;
 }
 
-BOOL sub_020683D8 (FieldSystem * fieldSystem, const int param1, const int param2, const fx32 param3, int param4)
+BOOL sub_020683D8(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, int param4)
 {
     if (fieldSystem->location->mapId == 67) {
         if (ov8_0224B714(fieldSystem, param1, param2, param4)) {

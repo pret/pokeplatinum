@@ -1,20 +1,21 @@
+#include "unk_0201C970.h"
+
 #include <nitro.h>
-#include <string.h>
 #include <nnsys.h>
+#include <string.h>
 
 #include "struct_defs/struct_0207C690.h"
 
-#include "unk_02017728.h"
-#include "unk_0201C970.h"
 #include "gx_layers.h"
+#include "unk_02017728.h"
 #include "unk_02024220.h"
 
-void sub_0201C9CC(NNSG3dResMdl ** param0, NNSG3dResFileHeader ** param1);
+void sub_0201C9CC(NNSG3dResMdl **param0, NNSG3dResFileHeader **param1);
 static void sub_0201CB1C(void);
 
-void sub_0201C970 (const u8 param0, const char * param1, NNSG3dResMdl ** param2, NNSG3dResFileHeader ** param3)
+void sub_0201C970(const u8 param0, const char *param1, NNSG3dResMdl **param2, NNSG3dResFileHeader **param3)
 {
-    NNSG3dResTex * v0 = NULL;
+    NNSG3dResTex *v0 = NULL;
     BOOL v1;
 
     *param3 = ReadFileToHeap(param0, param1);
@@ -33,9 +34,9 @@ void sub_0201C970 (const u8 param0, const char * param1, NNSG3dResMdl ** param2,
     *param2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*param3), 0);
 }
 
-void sub_0201C9CC (NNSG3dResMdl ** param0, NNSG3dResFileHeader ** param1)
+void sub_0201C9CC(NNSG3dResMdl **param0, NNSG3dResFileHeader **param1)
 {
-    NNSG3dResTex * v0 = NULL;
+    NNSG3dResTex *v0 = NULL;
     BOOL v1;
 
     v0 = NNS_G3dGetTex(*param1);
@@ -51,20 +52,20 @@ void sub_0201C9CC (NNSG3dResMdl ** param0, NNSG3dResFileHeader ** param1)
     *param0 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*param1), 0);
 }
 
-void sub_0201CA24 (const u8 param0, const char * param1, NNSG3dRenderObj * param2, NNSG3dResMdl ** param3, NNSG3dResFileHeader ** param4)
+void sub_0201CA24(const u8 param0, const char *param1, NNSG3dRenderObj *param2, NNSG3dResMdl **param3, NNSG3dResFileHeader **param4)
 {
     sub_0201C970(param0, param1, param3, param4);
     NNS_G3dRenderObjInit(param2, *param3);
 }
 
-void sub_0201CA3C (NNSG3dRenderObj * param0, NNSG3dResMdl ** param1, NNSG3dResFileHeader ** param2)
+void sub_0201CA3C(NNSG3dRenderObj *param0, NNSG3dResMdl **param1, NNSG3dResFileHeader **param2)
 {
     sub_0201C9CC(param1, param2);
     GF_ASSERT(param1);
     NNS_G3dRenderObjInit(param0, *param1);
 }
 
-BOOL sub_0201CA5C (NNSG3dResTex * param0)
+BOOL sub_0201CA5C(NNSG3dResTex *param0)
 {
     if ((param0->texInfo.flag & NNS_G3D_RESTEX_LOADED) || (param0->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED)) {
         return 1;
@@ -73,7 +74,7 @@ BOOL sub_0201CA5C (NNSG3dResTex * param0)
     return 0;
 }
 
-void sub_0201CA74 (NNSG3dRenderObj * param0, const VecFx32 * param1, const MtxFx33 * param2, const VecFx32 * param3)
+void sub_0201CA74(NNSG3dRenderObj *param0, const VecFx32 *param1, const MtxFx33 *param2, const VecFx32 *param3)
 {
     NNS_G3dGlbSetBaseTrans(param1);
     NNS_G3dGlbSetBaseRot(param2);
@@ -82,7 +83,7 @@ void sub_0201CA74 (NNSG3dRenderObj * param0, const VecFx32 * param1, const MtxFx
     NNS_G3dDraw(param0);
 }
 
-void sub_0201CAB0 (NNSG3dRenderObj * param0, const VecFx32 * param1, const MtxFx33 * param2, const VecFx32 * param3)
+void sub_0201CAB0(NNSG3dRenderObj *param0, const VecFx32 *param1, const MtxFx33 *param2, const VecFx32 *param3)
 {
     NNS_G3dGlbSetBaseTrans(param1);
     NNS_G3dGlbSetBaseRot(param2);
@@ -92,14 +93,14 @@ void sub_0201CAB0 (NNSG3dRenderObj * param0, const VecFx32 * param1, const MtxFx
     NNS_G3dGeFlushBuffer();
 }
 
-static GenericPointerData * Unk_021BFB0C = NULL;
+static GenericPointerData *Unk_021BFB0C = NULL;
 
-void sub_0201CAF4 (const u8 param0)
+void sub_0201CAF4(const u8 param0)
 {
     Unk_021BFB0C = sub_02024220(param0, 0, 2, 0, 4, sub_0201CB1C);
 }
 
-static void sub_0201CB1C (void)
+static void sub_0201CB1C(void)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
@@ -114,14 +115,14 @@ static void sub_0201CB1C (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void sub_0201CBA0 (void)
+void sub_0201CBA0(void)
 {
     sub_020242C4(Unk_021BFB0C);
 }
 
-BOOL sub_0201CBB0 (void * param0, NNSG3dResTex * param1)
+BOOL sub_0201CBB0(void *param0, NNSG3dResTex *param1)
 {
-    NNSG3dResMdlSet * v0 = NNS_G3dGetMdlSet((NNSG3dResFileHeader *)param0);
+    NNSG3dResMdlSet *v0 = NNS_G3dGetMdlSet((NNSG3dResFileHeader *)param0);
 
     NNS_G3D_NULL_ASSERT(v0);
 
@@ -135,7 +136,7 @@ BOOL sub_0201CBB0 (void * param0, NNSG3dResTex * param1)
     return 0;
 }
 
-BOOL sub_0201CBCC (NNSG3dResTex * param0)
+BOOL sub_0201CBCC(NNSG3dResTex *param0)
 {
     if (param0 == NULL) {
         return 0;

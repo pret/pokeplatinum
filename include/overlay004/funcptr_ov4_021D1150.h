@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_FUNCPTR_OV4_021D1150_H
 #define POKEPLATINUM_FUNCPTR_OV4_021D1150_H
 
-typedef void (* UnkFuncPtr_ov4_021D1150) (u16, void *);
+typedef void (*UnkFuncPtr_ov4_021D1150)(u16, void *);
 
 #endif // POKEPLATINUM_FUNCPTR_OV4_021D1150_H

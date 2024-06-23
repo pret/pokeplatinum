@@ -7,10 +7,10 @@
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {
-    UnkStruct_02030A80 * unk_00;
-    UnkStruct_0202F41C * unk_04;
+    UnkStruct_02030A80 *unk_00;
+    UnkStruct_0202F41C *unk_04;
     u8 padding_08[4];
-    CellActorData * unk_0C[12];
+    CellActorData *unk_0C[12];
     Window unk_3C[8];
 } UnkStruct_ov62_02233F74;
 

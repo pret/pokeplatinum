@@ -1,17 +1,18 @@
+#include "message.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "text/pl_msg.naix"
-
 #include "struct_decls/struct_02006C24_decl.h"
 
+#include "text/pl_msg.naix"
+
 #include "heap.h"
-#include "message.h"
 #include "narc.h"
 #include "strbuf.h"
 
 #define KEY_START 596947
-#define KEY_INC 18749
+#define KEY_INC   18749
 
 static void MemCopyEntry(charcode_t *dst, const charcode_t *src, const MessageBankEntry *entry);
 
@@ -40,12 +41,12 @@ static inline void DecodeString(charcode_t *str, u32 len, u32 entryID, u16 seed)
     }
 }
 
-static inline u8* EntryOffsetAddress(const MessageBank *bank, u32 bankIndex)
+static inline u8 *EntryOffsetAddress(const MessageBank *bank, u32 bankIndex)
 {
     return (u8 *)bank + bankIndex;
 }
 
-MessageBank* MessageBank_Load(u32 narcID, u32 bankID, u32 heapID)
+MessageBank *MessageBank_Load(u32 narcID, u32 bankID, u32 heapID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, bankID, heapID);
 }
@@ -121,7 +122,7 @@ void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf)
     Strbuf_Clear(strbuf);
 }
 
-Strbuf* MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapID)
+Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapID)
 {
     if (entryID < bank->count) {
         MessageBankEntry entry = bank->entries[entryID];
@@ -187,7 +188,7 @@ void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 he
     Strbuf_Clear(strbuf);
 }
 
-Strbuf* MessageBank_GetNewStrbufFromNARC (u32 narcID, u32 bankID, u32 entryID, u32 heapID)
+Strbuf *MessageBank_GetNewStrbufFromNARC(u32 narcID, u32 bankID, u32 entryID, u32 heapID)
 {
     NARC *narc = NARC_ctor(narcID, heapID);
 
@@ -202,7 +203,7 @@ Strbuf* MessageBank_GetNewStrbufFromNARC (u32 narcID, u32 bankID, u32 entryID, u
     return strbuf;
 }
 
-Strbuf* MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID)
+Strbuf *MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID)
 {
     MessageBank bank;
     NARC_ReadFromMember(narc, bankID, 0, sizeof(MessageBank), &bank);
@@ -247,7 +248,7 @@ u32 MessageBank_NARCEntryCount(u32 narcID, u32 bankID)
     return bank.count;
 }
 
-MessageLoader* MessageLoader_Init(enum MessageLoaderType type, u32 narcID, u32 bankID, u32 heapID)
+MessageLoader *MessageLoader_Init(enum MessageLoaderType type, u32 narcID, u32 bankID, u32 heapID)
 {
     MessageLoader *loader = Heap_AllocFromHeapAtEnd(heapID, sizeof(MessageLoader));
 
@@ -300,7 +301,7 @@ void MessageLoader_GetStrbuf(const MessageLoader *loader, u32 entryID, Strbuf *s
     }
 }
 
-Strbuf* MessageLoader_GetNewStrbuf(const MessageLoader *loader, u32 entryID)
+Strbuf *MessageLoader_GetNewStrbuf(const MessageLoader *loader, u32 entryID)
 {
     switch (loader->type) {
     case MESSAGE_LOADER_BANK_HANDLE:

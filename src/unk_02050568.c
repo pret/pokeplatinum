@@ -1,58 +1,58 @@
 
+#include "unk_02050568.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "inlines.h"
-#include "core_sys.h"
 
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/struct_02049FA8.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "struct_defs/struct_02049FA8.h"
 #include "overlay115/camera_angle.h"
 
-#include "unk_02005474.h"
-#include "heap.h"
 #include "camera.h"
-#include "unk_02050568.h"
-#include "vars_flags.h"
-#include "unk_020508D4.h"
+#include "core_sys.h"
 #include "field_map_change.h"
+#include "heap.h"
+#include "inlines.h"
+#include "map_object.h"
+#include "player_avatar.h"
+#include "unk_02005474.h"
+#include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_02056B30.h"
-#include "player_avatar.h"
-#include "map_object.h"
 #include "unk_0206A8DC.h"
 #include "unk_02070428.h"
+#include "vars_flags.h"
 
 typedef struct {
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
     u16 unk_04;
     u16 unk_06;
     u8 unk_08;
     u8 unk_09[3];
 } UnkStruct_02050568;
 
-static BOOL sub_020505A0(TaskManager * taskMan);
-static void sub_0205074C(PlayerAvatar * playerAvatar, BOOL param1);
-static void sub_0205075C(FieldSystem * fieldSystem);
+static BOOL sub_020505A0(TaskManager *taskMan);
+static void sub_0205074C(PlayerAvatar *playerAvatar, BOOL param1);
+static void sub_0205075C(FieldSystem *fieldSystem);
 
-void sub_02050568 (FieldSystem * fieldSystem)
+void sub_02050568(FieldSystem *fieldSystem)
 {
-    UnkStruct_02050568 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
+    UnkStruct_02050568 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
     FieldTask_Start(fieldSystem->unk_10, sub_020505A0, v0);
 }
 
-static BOOL sub_020505A0 (TaskManager * taskMan)
+static BOOL sub_020505A0(TaskManager *taskMan)
 {
-    FieldSystem * fieldSystem = TaskManager_FieldSystem(taskMan);
-    UnkStruct_02050568 * v1 = TaskManager_Environment(taskMan);
-    VarsFlags * v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    FieldSystem *fieldSystem = TaskManager_FieldSystem(taskMan);
+    UnkStruct_02050568 *v1 = TaskManager_Environment(taskMan);
+    VarsFlags *v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     switch (v1->unk_08) {
     case 0:
@@ -89,7 +89,7 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
         v1->unk_08++;
         break;
     case 5:
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             v1->unk_08++;
         }
         break;
@@ -131,13 +131,13 @@ static BOOL sub_020505A0 (TaskManager * taskMan)
     return 0;
 }
 
-static void sub_0205074C (PlayerAvatar * playerAvatar, BOOL param1)
+static void sub_0205074C(PlayerAvatar *playerAvatar, BOOL param1)
 {
-    MapObject * mapObj = Player_MapObject(playerAvatar);
+    MapObject *mapObj = Player_MapObject(playerAvatar);
     MapObject_SetHidden(mapObj, param1);
 }
 
-static void sub_0205075C (FieldSystem * fieldSystem)
+static void sub_0205075C(FieldSystem *fieldSystem)
 {
     VecFx32 v0;
     CameraAngle v1;

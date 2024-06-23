@@ -13,7 +13,7 @@ typedef struct {
     u8 unk_1E_2 : 1;
     u8 unk_1E_3 : 1;
     u8 unk_1E_4 : 1;
-    u8  : 3;
+    u8 : 3;
     u8 unk_1F;
 } UnkStruct_ov61_0222BED8_sub1_sub1;
 

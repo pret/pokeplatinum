@@ -1,7 +1,11 @@
+#include "overlay099/ov99_021D2C08.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_0200D0F4.h"
+
+#include "overlay099/ov99_021D4134.h"
 #include "overlay099/struct_ov99_021D2C08.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D2D18.h"
@@ -11,8 +15,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "overlay099/ov99_021D2C08.h"
-#include "overlay099/ov99_021D4134.h"
 
 typedef struct {
     s32 unk_00;
@@ -27,10 +29,10 @@ typedef struct {
     u16 unk_22;
 } UnkStruct_ov99_021D4B70;
 
-static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1);
-static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1);
-static void ov99_021D2DF4(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1);
-static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1, CellActorData * param2, int param3);
+static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1);
+static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1);
+static void ov99_021D2DF4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1);
+static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, CellActorData *param2, int param3);
 
 static const UnkStruct_ov99_021D4B70 Unk_ov99_021D4B70[] = {
     {
@@ -42,7 +44,7 @@ static const UnkStruct_ov99_021D4B70 Unk_ov99_021D4B70[] = {
         0xe00,
         0x8000,
         0.0030,
-        60
+        60,
     },
     {
         1350,
@@ -64,13 +66,13 @@ static const UnkStruct_ov99_021D4B70 Unk_ov99_021D4B70[] = {
         0xc00,
         0x8000,
         -0.0045,
-        60
+        60,
     },
 };
 
-BOOL ov99_021D2C08 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D3A40 * param1)
+BOOL ov99_021D2C08(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1)
 {
-    UnkStruct_ov99_021D2C08 * v0 = &param1->unk_08_val1;
+    UnkStruct_ov99_021D2C08 *v0 = &param1->unk_08_val1;
 
     switch (param1->unk_00) {
     case 0:
@@ -99,7 +101,7 @@ BOOL ov99_021D2C08 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D3A40 * 
     return 0;
 }
 
-static void ov99_021D2CB0 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1)
+static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1)
 {
     int v0, v1 = 0;
 
@@ -112,7 +114,7 @@ static void ov99_021D2CB0 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
     }
 }
 
-static void ov99_021D2CEC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1)
+static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1)
 {
     int v0, v1 = 0;
 
@@ -121,10 +123,10 @@ static void ov99_021D2CEC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
     }
 }
 
-static void ov99_021D2D18 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1, CellActorData * param2, int param3)
+static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, CellActorData *param2, int param3)
 {
-    UnkStruct_ov99_021D2D18 * v0 = &param1->unk_08[param3];
-    const UnkStruct_ov99_021D4B70 * v1 = &Unk_ov99_021D4B70[param3];
+    UnkStruct_ov99_021D2D18 *v0 = &param1->unk_08[param3];
+    const UnkStruct_ov99_021D4B70 *v1 = &Unk_ov99_021D4B70[param3];
     fx32 v2;
 
     if (v0->unk_0C < v1->unk_00) {
@@ -159,7 +161,7 @@ static void ov99_021D2D18 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
     }
 }
 
-static void ov99_021D2DF4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2C08 * param1)
+static void ov99_021D2DF4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1)
 {
     param1->unk_00 += -0x40;
 

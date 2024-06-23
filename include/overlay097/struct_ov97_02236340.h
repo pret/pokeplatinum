@@ -3,7 +3,7 @@
 
 #include "overlay097/box_pokemon_gba.h"
 
-#define GBA_TOTAL_BOXES_COUNT   14
+#define GBA_TOTAL_BOXES_COUNT 14
 
 typedef struct {
     u8 currentBox;

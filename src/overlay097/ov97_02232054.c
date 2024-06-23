@@ -1,23 +1,23 @@
+#include "overlay097/ov97_02232054.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "savedata.h"
-
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay097/struct_ov97_0223829C.h"
-
-#include "unk_02018340.h"
-#include "gx_layers.h"
 #include "savedata/save_table.h"
-#include "savedata.h"
-#include "unk_0202DAB4.h"
-#include "overlay097/ov97_02232054.h"
 
-void ov97_02232054 (void)
+#include "gx_layers.h"
+#include "savedata.h"
+#include "unk_02018340.h"
+#include "unk_0202DAB4.h"
+
+void ov97_02232054(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_C,
@@ -35,7 +35,7 @@ void ov97_02232054 (void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov97_02232074 (BGL * param0)
+void ov97_02232074(BGL *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -133,10 +133,10 @@ void ov97_02232074 (BGL * param0)
     }
 }
 
-int ov97_02232148 (SaveData * param0, UnkStruct_ov97_0223829C * param1)
+int ov97_02232148(SaveData *param0, UnkStruct_ov97_0223829C *param1)
 {
     u32 v0;
-    MysteryGift * v1 = SaveData_MysteryGift(param0);
+    MysteryGift *v1 = SaveData_MysteryGift(param0);
 
     v0 = param1->unk_00.unk_48;
 

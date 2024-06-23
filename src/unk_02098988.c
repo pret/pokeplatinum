@@ -1,13 +1,13 @@
+#include "unk_02098988.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "unk_02098988.h"
 
 static u32 Unk_02100D94 = 75;
 static u32 Unk_02100D90 = 707;
 static u32 Unk_02100D98 = 709;
 
-void Pokedex_SetupGiratina (u32 param0)
+void Pokedex_SetupGiratina(u32 param0)
 {
     if (param0 == 0) {
         Unk_02100D94 = 194;
@@ -20,17 +20,17 @@ void Pokedex_SetupGiratina (u32 param0)
     }
 }
 
-u32 sub_020989B8 (void)
+u32 sub_020989B8(void)
 {
     return Unk_02100D94;
 }
 
-u32 sub_020989C4 (void)
+u32 sub_020989C4(void)
 {
     return Unk_02100D90;
 }
 
-u32 sub_020989D0 (void)
+u32 sub_020989D0(void)
 {
     return Unk_02100D98;
 }

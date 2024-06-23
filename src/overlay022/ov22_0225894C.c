@@ -1,3 +1,5 @@
+#include "overlay022/ov22_0225894C.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -6,9 +8,8 @@
 #include "overlay022/struct_ov22_0225899C.h"
 
 #include "unk_020298BC.h"
-#include "overlay022/ov22_0225894C.h"
 
-void ov22_0225894C (const UnkStruct_02029D04 * param0, UnkStruct_ov22_0225899C * param1)
+void ov22_0225894C(const UnkStruct_02029D04 *param0, UnkStruct_ov22_0225899C *param1)
 {
     int v0;
     u32 v1;
@@ -30,18 +31,18 @@ void ov22_0225894C (const UnkStruct_02029D04 * param0, UnkStruct_ov22_0225899C *
     }
 }
 
-u32 ov22_0225899C (const UnkStruct_ov22_0225899C * param0, u32 param1)
+u32 ov22_0225899C(const UnkStruct_ov22_0225899C *param0, u32 param1)
 {
     GF_ASSERT(param1 < 100);
     return param0->unk_00[param1];
 }
 
-u32 ov22_022589B0 (const UnkStruct_ov22_0225899C * param0, u32 param1)
+u32 ov22_022589B0(const UnkStruct_ov22_0225899C *param0, u32 param1)
 {
     return param0->unk_190[param1];
 }
 
-u32 ov22_022589BC (const UnkStruct_ov22_0225899C * param0, u32 param1)
+u32 ov22_022589BC(const UnkStruct_ov22_0225899C *param0, u32 param1)
 {
     int v0;
 

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02017294_H
 #define POKEPLATINUM_STRUCT_02017294_H
 
-
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 

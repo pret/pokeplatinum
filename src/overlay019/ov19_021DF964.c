@@ -1,27 +1,26 @@
-#include "enums.h"
+#include "overlay019/ov19_021DF964.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_020797DC_decl.h"
 
+#include "overlay019/ov19_021D0D80.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D5BAC.h"
 #include "overlay019/struct_ov19_021DF964.h"
 
+#include "core_sys.h"
+#include "enums.h"
 #include "unk_02005474.h"
 #include "unk_020797C8.h"
-#include "overlay019/ov19_021D0D80.h"
-#include "overlay019/ov19_021DF964.h"
 
-static void ov19_021DFCF8(UnkStruct_ov19_021DF964 * param0);
-static void ov19_021DFD08(UnkStruct_ov19_021DF964 * param0, UnkEnum_021DFB94 param1);
+static void ov19_021DFCF8(UnkStruct_ov19_021DF964 *param0);
+static void ov19_021DFD08(UnkStruct_ov19_021DF964 *param0, UnkEnum_021DFB94 param1);
 
-void ov19_021DF964 (UnkStruct_ov19_021D4DF0 * param0, u32 param1)
+void ov19_021DF964(UnkStruct_ov19_021D4DF0 *param0, u32 param1)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
 
     ov19_021DFCF8(v0);
     ov19_021DFD08(v0, UnkEnum_021DFB94_54);
@@ -31,9 +30,9 @@ void ov19_021DF964 (UnkStruct_ov19_021D4DF0 * param0, u32 param1)
     v0->unk_23 = 0;
 }
 
-void ov19_021DF990 (UnkStruct_ov19_021D4DF0 * param0)
+void ov19_021DF990(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
 
     ov19_021DFCF8(v0);
     v0->unk_23 = 1;
@@ -50,7 +49,7 @@ void ov19_021DF990 (UnkStruct_ov19_021D4DF0 * param0)
         ov19_021DFD08(v0, UnkEnum_021DFB94_37);
 
         {
-            const UnkStruct_ov19_021D5BAC * v1 = ov19_021D5E70(param0);
+            const UnkStruct_ov19_021D5BAC *v1 = ov19_021D5E70(param0);
 
             if (v1->unk_0F == 0) {
                 ov19_021DFD08(v0, UnkEnum_021DFB94_40);
@@ -84,9 +83,9 @@ void ov19_021DF990 (UnkStruct_ov19_021D4DF0 * param0)
     }
 }
 
-void ov19_021DFAD0 (UnkStruct_ov19_021D4DF0 * param0)
+void ov19_021DFAD0(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021DF964 * v0;
+    UnkStruct_ov19_021DF964 *v0;
     u32 v1, v2;
 
     v0 = &(param0->unk_74);
@@ -118,10 +117,10 @@ void ov19_021DFAD0 (UnkStruct_ov19_021D4DF0 * param0)
     ov19_021DFD08(v0, UnkEnum_021DFB94_51);
 }
 
-void ov19_021DFB50 (UnkStruct_ov19_021D4DF0 * param0)
+void ov19_021DFB50(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
-    const PCBoxes * v1 = ov19_021D5E90(param0);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
+    const PCBoxes *v1 = ov19_021D5E90(param0);
 
     ov19_021DFCF8(v0);
     ov19_021DFD08(v0, UnkEnum_021DFB94_00);
@@ -136,10 +135,10 @@ void ov19_021DFB50 (UnkStruct_ov19_021D4DF0 * param0)
     v0->unk_23 = 2;
 }
 
-void ov19_021DFB94 (UnkStruct_ov19_021D4DF0 * param0, UnkEnum_021DFB94 param1)
+void ov19_021DFB94(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
-    const PCBoxes * v1 = ov19_021D5E90(param0);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
+    const PCBoxes *v1 = ov19_021D5E90(param0);
     u32 v2;
 
     ov19_021DFCF8(v0);
@@ -167,16 +166,16 @@ void ov19_021DFB94 (UnkStruct_ov19_021D4DF0 * param0, UnkEnum_021DFB94 param1)
     }
 }
 
-void ov19_021DFC04 (UnkStruct_ov19_021D4DF0 * param0, UnkEnum_021DFB94 param1)
+void ov19_021DFC04(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
 {
     static const u16 v0[][4] = {
-        {UnkEnum_021DFB94_10, UnkEnum_021DFB94_11, UnkEnum_021DFB94_12, UnkEnum_021DFB94_13},
-        {UnkEnum_021DFB94_14, UnkEnum_021DFB94_15, UnkEnum_021DFB94_16, UnkEnum_021DFB94_17},
-        {UnkEnum_021DFB94_18, UnkEnum_021DFB94_19, UnkEnum_021DFB94_20, UnkEnum_021DFB94_21},
-        {UnkEnum_021DFB94_22, UnkEnum_021DFB94_23, UnkEnum_021DFB94_24, UnkEnum_021DFB94_25},
+        { UnkEnum_021DFB94_10, UnkEnum_021DFB94_11, UnkEnum_021DFB94_12, UnkEnum_021DFB94_13 },
+        { UnkEnum_021DFB94_14, UnkEnum_021DFB94_15, UnkEnum_021DFB94_16, UnkEnum_021DFB94_17 },
+        { UnkEnum_021DFB94_18, UnkEnum_021DFB94_19, UnkEnum_021DFB94_20, UnkEnum_021DFB94_21 },
+        { UnkEnum_021DFB94_22, UnkEnum_021DFB94_23, UnkEnum_021DFB94_24, UnkEnum_021DFB94_25 },
     };
-    UnkStruct_ov19_021DF964 * v1 = &(param0->unk_74);
-    const PCBoxes * v2 = ov19_021D5E90(param0);
+    UnkStruct_ov19_021DF964 *v1 = &(param0->unk_74);
+    const PCBoxes *v2 = ov19_021D5E90(param0);
     int v3;
 
     ov19_021DFCF8(v1);
@@ -213,9 +212,9 @@ void ov19_021DFC04 (UnkStruct_ov19_021D4DF0 * param0, UnkEnum_021DFB94 param1)
     v1->unk_23 = 3;
 }
 
-void ov19_021DFC80 (UnkStruct_ov19_021D4DF0 * param0)
+void ov19_021DFC80(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
 
     ov19_021DFCF8(v0);
 
@@ -232,28 +231,28 @@ void ov19_021DFC80 (UnkStruct_ov19_021D4DF0 * param0)
     ov19_021DFD08(v0, UnkEnum_021DFB94_45);
 }
 
-void ov19_021DFCE4 (UnkStruct_ov19_021D4DF0 * param0, u32 param1)
+void ov19_021DFCE4(UnkStruct_ov19_021D4DF0 *param0, u32 param1)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
     v0->unk_22 ^= (1 << param1);
 }
 
-static void ov19_021DFCF8 (UnkStruct_ov19_021DF964 * param0)
+static void ov19_021DFCF8(UnkStruct_ov19_021DF964 *param0)
 {
     param0->unk_21 = 0;
     param0->unk_20 = 0;
 }
 
-static void ov19_021DFD08 (UnkStruct_ov19_021DF964 * param0, UnkEnum_021DFB94 param1)
+static void ov19_021DFD08(UnkStruct_ov19_021DF964 *param0, UnkEnum_021DFB94 param1)
 {
     if (param0->unk_21 < 8) {
         param0->unk_00[param0->unk_21++] = param1;
     }
 }
 
-int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
+int ov19_021DFD2C(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
 
     if (gCoreSys.pressedKeys & PAD_KEY_UP) {
         if (v0->unk_20) {
@@ -288,14 +287,14 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
     return -3;
 }
 
-UnkEnum_021DFB94 ov19_021DFDDC (UnkStruct_ov19_021D4DF0 * param0)
+UnkEnum_021DFB94 ov19_021DFDDC(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
     return v0->unk_00[v0->unk_20];
 }
 
-UnkEnum_021DFB94 ov19_021DFDEC (UnkStruct_ov19_021D4DF0 * param0)
+UnkEnum_021DFB94 ov19_021DFDEC(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
     return v0->unk_00[0];
 }

@@ -5,8 +5,8 @@
 #include "struct_decls/struct_020218BC_decl.h"
 
 typedef struct {
-    GraphicElementManager * unk_00;
-    BGL * unk_04;
+    GraphicElementManager *unk_00;
+    BGL *unk_04;
     int unk_08;
     int unk_0C;
 } UnkStruct_ov21_021D1FA4;

@@ -1,22 +1,24 @@
+#include "overlay004/ov4_021D2808.h"
+
+#include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 #include <vct.h>
-#include <dwc.h>
+
+#include "overlay004/ov4_021D0D80.h"
 
 #include "heap.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
-#include "overlay004/ov4_021D0D80.h"
-#include "overlay004/ov4_021D2808.h"
 
 typedef struct {
     u8 unk_00[2176];
-    void * unk_880;
-    u8 * unk_884;
-    u8 * unk_888;
+    void *unk_880;
+    u8 *unk_884;
+    u8 *unk_888;
     u8 unk_88C[2176];
     u8 unk_110C[2176];
-    void (* unk_198C)(void);
+    void (*unk_198C)(void);
     VCTSession unk_1990[3];
     BOOL unk_19D8[4];
     int unk_19E8;
@@ -24,7 +26,7 @@ typedef struct {
     int unk_19F0;
     int unk_19F4;
     struct NNSSndStrm unk_19F8;
-    VCTSession * unk_1A54;
+    VCTSession *unk_1A54;
     u8 unk_1A58;
     u8 unk_1A59;
     u16 unk_1A5A;
@@ -39,13 +41,13 @@ typedef struct {
 } UnkStruct_ov4_0221A408;
 
 static void ov4_021D2E8C(void);
-static void ov4_021D2B04(VCTSession * param0);
+static void ov4_021D2B04(VCTSession *param0);
 
-static UnkStruct_ov4_0221A408 * Unk_ov4_0221A408 = NULL;
+static UnkStruct_ov4_0221A408 *Unk_ov4_0221A408 = NULL;
 static OSTick Unk_ov4_0221A40C;
 static int Unk_ov4_0221A404 = 0;
 
-static void ov4_021D2808 (void)
+static void ov4_021D2808(void)
 {
     MIC_Init();
     PM_Init();
@@ -101,20 +103,20 @@ static void ov4_021D2808 (void)
     VCT_EnableEchoCancel(1);
 }
 
-static void ov4_021D28B0 (MICResult param0, void * param1)
+static void ov4_021D28B0(MICResult param0, void *param1)
 {
 #pragma unused(param0, param1)
     return;
 }
 
-static void ov4_021D28B4 (NNSSndStrmCallbackStatus param0, int param1, void * param2[], u32 param3, NNSSndStrmFormat param4, void * param5)
+static void ov4_021D28B4(NNSSndStrmCallbackStatus param0, int param1, void *param2[], u32 param3, NNSSndStrmFormat param4, void *param5)
 {
 #pragma unused(param4)
 
     OSTick v0;
-    const void * v1;
+    const void *v1;
     u32 v2;
-    u8 * v3;
+    u8 *v3;
     u32 v4;
 
     v3 = (u8 *)param5;
@@ -159,10 +161,10 @@ static void ov4_021D28B4 (NNSSndStrmCallbackStatus param0, int param1, void * pa
     return;
 }
 
-static int ov4_021D2974 (u8 param0)
+static int ov4_021D2974(u8 param0)
 {
     BOOL v0;
-    VCTSession * v1;
+    VCTSession *v1;
 
     if (Unk_ov4_0221A408->unk_1A54 == NULL) {
         v1 = VCT_CreateSession(param0);
@@ -188,7 +190,7 @@ static int ov4_021D2974 (u8 param0)
     return 1;
 }
 
-static int ov4_021D29C8 (u8 param0)
+static int ov4_021D29C8(u8 param0)
 {
     BOOL v0;
 
@@ -211,7 +213,7 @@ static int ov4_021D29C8 (u8 param0)
     return 0;
 }
 
-static void ov4_021D2A10 (u8 param0, VCTEvent param1, VCTSession * param2, void * param3)
+static void ov4_021D2A10(u8 param0, VCTEvent param1, VCTSession *param2, void *param3)
 {
 #pragma unused(param0, param3)
 
@@ -230,7 +232,7 @@ static void ov4_021D2A10 (u8 param0, VCTEvent param1, VCTSession * param2, void 
     }
 }
 
-static void ov4_021D2A38 (u8 param0, VCTEvent param1, VCTSession * param2, void * param3)
+static void ov4_021D2A38(u8 param0, VCTEvent param1, VCTSession *param2, void *param3)
 {
 #pragma unused(param0, param3)
 
@@ -294,14 +296,14 @@ static void ov4_021D2A38 (u8 param0, VCTEvent param1, VCTSession * param2, void 
     }
 }
 
-static void ov4_021D2B04 (VCTSession * param0)
+static void ov4_021D2B04(VCTSession *param0)
 {
     VCT_StopStreaming(param0);
     VCT_DeleteSession(param0);
     Unk_ov4_0221A408->unk_1A54 = NULL;
 }
 
-void ov4_021D2B28 (void)
+void ov4_021D2B28(void)
 {
     OSTick v0;
 
@@ -342,8 +344,7 @@ void ov4_021D2B28 (void)
 
     if (Unk_ov4_0221A408->unk_19E8 != VCT_MODE_CONFERENCE) {
         switch (Unk_ov4_0221A408->unk_19EC) {
-        case 0:
-        {
+        case 0: {
             if (ov4_021D1E30() == 0) {
                 if (ov4_021D2974(1)) {
                     Unk_ov4_0221A408->unk_19EC = 1;
@@ -369,7 +370,7 @@ void ov4_021D2B28 (void)
     }
 }
 
-BOOL ov4_021D2C70 (int param0, void * param1, int param2)
+BOOL ov4_021D2C70(int param0, void *param1, int param2)
 {
     if (Unk_ov4_0221A408 == NULL) {
         return 0;
@@ -382,22 +383,22 @@ BOOL ov4_021D2C70 (int param0, void * param1, int param2)
     return 0;
 }
 
-static void ov4_021D2C98 (void ** param0, void ** param1, int param2, int param3)
+static void ov4_021D2C98(void **param0, void **param1, int param2, int param3)
 {
     *param0 = Heap_AllocFromHeap(param3, param2 + 32);
     MI_CpuClear8(*param0, param2 + 32);
-    *param1 = (UnkStruct_ov4_0221A408 *)(((u32) * param0 + 31) / 32 * 32);
+    *param1 = (UnkStruct_ov4_0221A408 *)(((u32)*param0 + 31) / 32 * 32);
 }
 
-void ov4_021D2CC0 (int param0, int param1, int param2)
+void ov4_021D2CC0(int param0, int param1, int param2)
 {
-    u8 v0[3] = {13, 13, 13};
+    u8 v0[3] = { 13, 13, 13 };
     u32 v1;
     BOOL v2;
     int v3;
 
     if (Unk_ov4_0221A408 == NULL) {
-        void * v4 = NULL;
+        void *v4 = NULL;
 
         ov4_021D2C98(&v4, (void **)&Unk_ov4_0221A408, sizeof(UnkStruct_ov4_0221A408), param0);
         Unk_ov4_0221A408->unk_880 = v4;
@@ -445,7 +446,7 @@ void ov4_021D2CC0 (int param0, int param1, int param2)
         v5.numSession = param2;
         v5.aid = DWC_GetMyAID();
 
-        GF_ASSERT((v5.aid != -1));
+        GF_ASSERT(v5.aid != -1);
 
         if (Unk_ov4_0221A408->unk_19E8 == VCT_MODE_CONFERENCE) {
             v5.callback = ov4_021D2A10;
@@ -471,12 +472,12 @@ void ov4_021D2CC0 (int param0, int param1, int param2)
     return;
 }
 
-static void ov4_021D2E8C (void)
+static void ov4_021D2E8C(void)
 {
     NNS_SndStrmStart(&Unk_ov4_0221A408->unk_19F8);
 }
 
-void ov4_021D2EA4 (void)
+void ov4_021D2EA4(void)
 {
     int v0;
 
@@ -504,14 +505,14 @@ void ov4_021D2EA4 (void)
     return;
 }
 
-void ov4_021D2EF4 (void (* func)())
+void ov4_021D2EF4(void (*func)())
 {
     Unk_ov4_0221A408->unk_198C = func;
 }
 
-void ov4_021D2F08 (void)
+void ov4_021D2F08(void)
 {
-    void (* v0)(void);
+    void (*v0)(void);
 
     if (Unk_ov4_0221A408 != NULL) {
         v0 = Unk_ov4_0221A408->unk_198C;
@@ -532,7 +533,7 @@ void ov4_021D2F08 (void)
     }
 }
 
-BOOL ov4_021D2F7C (void)
+BOOL ov4_021D2F7C(void)
 {
     if (Unk_ov4_0221A408) {
         VCTVADInfo v0;
@@ -547,17 +548,17 @@ BOOL ov4_021D2F7C (void)
     return 0;
 }
 
-void ov4_021D2FA4 (void)
+void ov4_021D2FA4(void)
 {
     Unk_ov4_0221A408->unk_19F0 = 1;
 }
 
-void ov4_021D2FB8 (void)
+void ov4_021D2FB8(void)
 {
     Unk_ov4_0221A408->unk_19F0 = 0;
 }
 
-BOOL ov4_021D2FCC (int param0, int param1)
+BOOL ov4_021D2FCC(int param0, int param1)
 {
     int v0, v1;
 

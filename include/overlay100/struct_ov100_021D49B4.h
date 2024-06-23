@@ -4,6 +4,7 @@
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
 #include "struct_defs/struct_02017294.h"
+
 #include "overlay100/struct_ov100_021D54D0.h"
 
 typedef struct {
@@ -23,7 +24,7 @@ typedef struct {
     int unk_178;
     int unk_17C;
     int unk_180;
-    UnkStruct_ov100_021D54D0 * unk_184;
+    UnkStruct_ov100_021D54D0 *unk_184;
 } UnkStruct_ov100_021D49B4;
 
 #endif // POKEPLATINUM_STRUCT_OV100_021D49B4_H

@@ -1,9 +1,9 @@
+#include "unk_0200A9DC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/struct_0200A9DC.h"
-
-#include "unk_0200A9DC.h"
 
 typedef struct {
     UnkStruct_0200A9DC unk_00;
@@ -16,14 +16,14 @@ typedef struct {
     BOOL unk_1C;
 } UnkStruct_021BF454;
 
-static void sub_0200AA78(UnkStruct_021BF454 * param0, const u8 param1, const s16 param2, const s16 param3, const int param4, const u32 param5);
+static void sub_0200AA78(UnkStruct_021BF454 *param0, const u8 param1, const s16 param2, const s16 param3, const int param4, const u32 param5);
 
 static UnkStruct_021BF454 Unk_021BF454;
 static UnkStruct_021BF454 Unk_021BF434;
 
-static void sub_0200A9DC (UnkStruct_021BF454 * param0)
+static void sub_0200A9DC(UnkStruct_021BF454 *param0)
 {
-    UnkStruct_0200A9DC * v0;
+    UnkStruct_0200A9DC *v0;
     BOOL v1;
 
     v1 = 0;
@@ -58,11 +58,11 @@ static void sub_0200A9DC (UnkStruct_021BF454 * param0)
     }
 }
 
-static void sub_0200AA78 (UnkStruct_021BF454 * param0, const u8 param1, const s16 param2, const s16 param3, const int param4, const u32 param5)
+static void sub_0200AA78(UnkStruct_021BF454 *param0, const u8 param1, const s16 param2, const s16 param3, const int param4, const u32 param5)
 {
-    UnkStruct_0200A9DC * v0;
+    UnkStruct_0200A9DC *v0;
 
-    GF_ASSERT((param0->unk_1C == 0));
+    GF_ASSERT(param0->unk_1C == 0);
     param0->unk_1C = 1;
 
     v0 = &param0->unk_00;
@@ -87,9 +87,9 @@ static void sub_0200AA78 (UnkStruct_021BF454 * param0, const u8 param1, const s1
     param0->unk_18 = 0;
 }
 
-void sub_0200AAE0 (const u8 param0, const s16 param1, const s16 param2, const int param3, const u32 param4)
+void sub_0200AAE0(const u8 param0, const s16 param1, const s16 param2, const int param3, const u32 param4)
 {
-    UnkStruct_021BF454 * v0;
+    UnkStruct_021BF454 *v0;
 
     if (param0 == 0) {
         return;
@@ -108,7 +108,7 @@ void sub_0200AAE0 (const u8 param0, const s16 param1, const s16 param2, const in
     }
 }
 
-void sub_0200AB4C (const s16 param0, const int param1, const u32 param2)
+void sub_0200AB4C(const s16 param0, const int param1, const u32 param2)
 {
     if (param2 & 1) {
         G2_SetBlendBrightness(param1, param0);
@@ -121,7 +121,7 @@ void sub_0200AB4C (const s16 param0, const int param1, const u32 param2)
     sub_0200ABB0(param2);
 }
 
-void sub_0200AB84 (void)
+void sub_0200AB84(void)
 {
     MI_CpuClear8(&Unk_021BF454, sizeof(UnkStruct_021BF454));
     MI_CpuClear8(&Unk_021BF434, sizeof(UnkStruct_021BF454));
@@ -130,7 +130,7 @@ void sub_0200AB84 (void)
     Unk_021BF434.unk_1C = 0;
 }
 
-void sub_0200ABB0 (const u32 param0)
+void sub_0200ABB0(const u32 param0)
 {
     if (param0 & 1) {
         MI_CpuClear8(&Unk_021BF454, sizeof(UnkStruct_021BF454));
@@ -143,7 +143,7 @@ void sub_0200ABB0 (const u32 param0)
     }
 }
 
-void sub_0200ABF0 (void)
+void sub_0200ABF0(void)
 {
     if (Unk_021BF454.unk_1C) {
         sub_0200A9DC(&Unk_021BF454);
@@ -154,7 +154,7 @@ void sub_0200ABF0 (void)
     }
 }
 
-BOOL sub_0200AC1C (u32 param0)
+BOOL sub_0200AC1C(u32 param0)
 {
     if (param0 == 3) {
         if ((Unk_021BF454.unk_1C == 0) && (Unk_021BF434.unk_1C == 0)) {

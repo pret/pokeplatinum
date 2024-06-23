@@ -5,7 +5,7 @@
 #include "struct_defs/sprite_manager_allocation.h"
 
 typedef struct {
-    FontOAM * unk_00;
+    FontOAM *unk_00;
     SpriteManagerAllocation unk_04;
 } UnkStruct_ov21_021D4CA0;
 

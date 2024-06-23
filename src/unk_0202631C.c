@@ -1,16 +1,14 @@
+#include "unk_0202631C.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
-#include "pokemon.h"
-#include "savedata.h"
+#include "constants/species.h"
 
 #include "heap.h"
-#include "savedata.h"
-#include "unk_0202631C.h"
+#include "inlines.h"
 #include "pokemon.h"
-#include "constants/species.h"
+#include "savedata.h"
 #include "unk_020986CC.h"
 
 // These u32[16] arrays store pokedex seen/caught info as bit flags
@@ -18,7 +16,7 @@
 // ReadBit and WriteBit may need to be changed as well, to handle a larger range of bits
 
 #define UNOWN_COUNT 28
-#define BYTE_SLOTS 16
+#define BYTE_SLOTS  16
 
 typedef struct PokedexData {
     u32 magic;
@@ -42,14 +40,14 @@ typedef struct PokedexData {
     u16 unk_322;
 } PokedexData;
 
-int Pokedex_SaveSize (void)
+int Pokedex_SaveSize(void)
 {
     return sizeof(PokedexData);
 }
 
-PokedexData * sub_02026324 (u32 param0)
+PokedexData *sub_02026324(u32 param0)
 {
-    PokedexData * v0;
+    PokedexData *v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(PokedexData));
     Pokedex_Init(v0);
@@ -57,17 +55,17 @@ PokedexData * sub_02026324 (u32 param0)
     return v0;
 }
 
-void sub_02026338 (const PokedexData * param0, PokedexData * param1)
+void sub_02026338(const PokedexData *param0, PokedexData *param1)
 {
     MI_CpuCopy8(param0, param1, sizeof(PokedexData));
 }
 
-static inline void CheckPokedexIntegrity (const PokedexData * param0)
+static inline void CheckPokedexIntegrity(const PokedexData *param0)
 {
     GF_ASSERT(param0->magic == 3203386110);
 }
 
-static BOOL sub_02026344 (u16 param0)
+static BOOL sub_02026344(u16 param0)
 {
     if ((param0 == 0) || (param0 > NATIONAL_DEX_COUNT)) {
         GF_ASSERT(0);
@@ -77,19 +75,19 @@ static BOOL sub_02026344 (u16 param0)
     }
 }
 
-static inline BOOL ReadBit (const u8 * array, u16 bitNumber)
+static inline BOOL ReadBit(const u8 *array, u16 bitNumber)
 {
     bitNumber--;
     return 0 != (array[bitNumber >> 3] & (1 << (bitNumber & 7)));
 }
 
-static inline void WriteBit (u8 * array, u16 bitNumber)
+static inline void WriteBit(u8 *array, u16 bitNumber)
 {
     bitNumber--;
     array[bitNumber >> 3] |= 1 << (bitNumber & 7);
 }
 
-static inline void inline_02026360 (u8 * param0, u8 param1, u16 param2)
+static inline void inline_02026360(u8 *param0, u8 param1, u16 param2)
 {
     GF_ASSERT(param1 < 2);
 
@@ -99,12 +97,12 @@ static inline void inline_02026360 (u8 * param0, u8 param1, u16 param2)
     param0[param2 >> 3] |= param1 << (param2 & 7);
 }
 
-static inline u32 inline_020266F8 (const u8 * param0, u16 param1)
+static inline u32 inline_020266F8(const u8 *param0, u16 param1)
 {
     return (param0[param1 >> 2] >> ((param1 & 3) * 2)) & 0x3;
 }
 
-static inline void inline_020267B8 (u8 * param0, u8 param1, u16 param2)
+static inline void inline_020267B8(u8 *param0, u8 param1, u16 param2)
 {
     GF_ASSERT(param1 < 4);
 
@@ -112,17 +110,17 @@ static inline void inline_020267B8 (u8 * param0, u8 param1, u16 param2)
     param0[param2 >> 2] |= param1 << ((param2 & 3) * 2);
 }
 
-static inline void inline_0202736C (PokedexData * param0, u16 param1)
+static inline void inline_0202736C(PokedexData *param0, u16 param1)
 {
     WriteBit((u8 *)param0->seenPokemon, param1);
 }
 
-static inline void inline_sub_0202736C_1 (PokedexData * param0, u16 param1)
+static inline void inline_sub_0202736C_1(PokedexData *param0, u16 param1)
 {
     WriteBit((u8 *)param0->caughtPokemon, param1);
 }
 
-static void sub_02026360 (PokedexData * param0, u8 param1, u8 param2, u16 param3)
+static void sub_02026360(PokedexData *param0, u8 param1, u8 param2, u16 param3)
 {
     if (param2 == 0) {
         inline_02026360((u8 *)param0->recordedGenders[1], param1, param3);
@@ -131,7 +129,7 @@ static void sub_02026360 (PokedexData * param0, u8 param1, u8 param2, u16 param3
     inline_02026360((u8 *)param0->recordedGenders[param2], param1, param3);
 }
 
-static void sub_020263D8 (PokedexData * param0, u8 param1, u8 param2, u16 param3)
+static void sub_020263D8(PokedexData *param0, u8 param1, u8 param2, u16 param3)
 {
     GF_ASSERT(param1 <= 2);
 
@@ -142,29 +140,29 @@ static void sub_020263D8 (PokedexData * param0, u8 param1, u8 param2, u16 param3
     sub_02026360(param0, param1, param2, param3);
 }
 
-static inline BOOL inline_02026FE8 (const PokedexData * param0, u16 param1)
+static inline BOOL inline_02026FE8(const PokedexData *param0, u16 param1)
 {
     return ReadBit((const u8 *)param0->seenPokemon, param1);
 }
 
-static inline BOOL inline_02026F9C (const PokedexData * param0, u16 param1)
+static inline BOOL inline_02026F9C(const PokedexData *param0, u16 param1)
 {
     return ReadBit((const u8 *)param0->caughtPokemon, param1);
 }
 
-static inline u8 inline_02026BAC (const PokedexData * param0, u16 param1, u8 param2)
+static inline u8 inline_02026BAC(const PokedexData *param0, u16 param1, u8 param2)
 {
     return ReadBit((const u8 *)param0->recordedGenders[param2], param1);
 }
 
-static inline void inline_0202736C_1 (PokedexData * param0, u16 param1, u32 param2)
+static inline void inline_0202736C_1(PokedexData *param0, u16 param1, u32 param2)
 {
     if (param1 == 327) {
         param0->unk_104 = param2;
     }
 }
 
-static int sub_02026400 (const PokedexData * param0)
+static int sub_02026400(const PokedexData *param0)
 {
     int v0;
 
@@ -177,7 +175,7 @@ static int sub_02026400 (const PokedexData * param0)
     return v0;
 }
 
-static BOOL sub_02026418 (const PokedexData * param0, u8 param1)
+static BOOL sub_02026418(const PokedexData *param0, u8 param1)
 {
     int v0;
 
@@ -190,7 +188,7 @@ static BOOL sub_02026418 (const PokedexData * param0, u8 param1)
     return 0;
 }
 
-static void sub_0202643C (PokedexData * param0, int param1)
+static void sub_0202643C(PokedexData *param0, int param1)
 {
     int v0;
 
@@ -205,11 +203,11 @@ static void sub_0202643C (PokedexData * param0, int param1)
     }
 }
 
-static int sub_02026464 (const PokedexData * param0, u32 param1)
+static int sub_02026464(const PokedexData *param0, u32 param1)
 {
     u32 v0;
     u32 v1;
-    const u8 * v2;
+    const u8 *v2;
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
@@ -242,12 +240,12 @@ static int sub_02026464 (const PokedexData * param0, u32 param1)
     return 2;
 }
 
-static BOOL sub_02026514 (const PokedexData * param0, u32 param1, u8 param2)
+static BOOL sub_02026514(const PokedexData *param0, u32 param1, u8 param2)
 {
     u32 v0;
     u32 v1;
     u32 v2;
-    const u8 * v3;
+    const u8 *v3;
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
@@ -283,10 +281,10 @@ static BOOL sub_02026514 (const PokedexData * param0, u32 param1, u8 param2)
     return 0;
 }
 
-static void sub_020265E8 (PokedexData * param0, u32 param1, int param2)
+static void sub_020265E8(PokedexData *param0, u32 param1, int param2)
 {
     int v0;
-    u8 * v1;
+    u8 *v1;
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
 
@@ -320,11 +318,11 @@ static void sub_020265E8 (PokedexData * param0, u32 param1, int param2)
     }
 }
 
-static int sub_020266F8 (const PokedexData * param0, u32 param1)
+static int sub_020266F8(const PokedexData *param0, u32 param1)
 {
     u32 v0;
     int v1;
-    const u8 * v2;
+    const u8 *v2;
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
@@ -349,11 +347,11 @@ static int sub_020266F8 (const PokedexData * param0, u32 param1)
     return v1;
 }
 
-static BOOL sub_02026754 (const PokedexData * param0, u32 param1, u8 param2)
+static BOOL sub_02026754(const PokedexData *param0, u32 param1, u8 param2)
 {
     u32 v0;
     int v1;
-    const u8 * v2;
+    const u8 *v2;
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
@@ -378,10 +376,10 @@ static BOOL sub_02026754 (const PokedexData * param0, u32 param1, u8 param2)
     return 0;
 }
 
-static void sub_020267B8 (PokedexData * param0, u32 param1, int param2)
+static void sub_020267B8(PokedexData *param0, u32 param1, int param2)
 {
     int v0;
-    u8 * v1;
+    u8 *v1;
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
 
@@ -402,7 +400,7 @@ static void sub_020267B8 (PokedexData * param0, u32 param1, int param2)
     }
 }
 
-static void sub_02026834 (u32 * param0, u8 param1, u8 param2)
+static void sub_02026834(u32 *param0, u8 param1, u8 param2)
 {
     u32 v0 = (24 + (param2 * 4));
     u32 v1 = ~(15 << v0);
@@ -411,7 +409,7 @@ static void sub_02026834 (u32 * param0, u8 param1, u8 param2)
     param0[16 - 1] |= (param1 << v0);
 }
 
-static void sub_02026850 (PokedexData * param0, u8 param1, u8 param2)
+static void sub_02026850(PokedexData *param0, u8 param1, u8 param2)
 {
     GF_ASSERT(param2 < 4);
     GF_ASSERT(param1 <= 15);
@@ -423,7 +421,7 @@ static void sub_02026850 (PokedexData * param0, u8 param1, u8 param2)
     }
 }
 
-static inline u32 inline_0202688C (const u32 * param0, u8 param1)
+static inline u32 inline_0202688C(const u32 *param0, u8 param1)
 {
     u32 v0 = (24 + (param1 * 4));
     u32 v1 = (param0[16 - 1] >> v0) & 15;
@@ -431,7 +429,7 @@ static inline u32 inline_0202688C (const u32 * param0, u8 param1)
     return v1;
 }
 
-static u32 sub_0202688C (const PokedexData * param0, u8 param1)
+static u32 sub_0202688C(const PokedexData *param0, u8 param1)
 {
     u32 v0;
 
@@ -444,7 +442,7 @@ static u32 sub_0202688C (const PokedexData * param0, u8 param1)
     return v0;
 }
 
-static u32 sub_020268B8 (const PokedexData * param0)
+static u32 sub_020268B8(const PokedexData *param0)
 {
     int v0;
 
@@ -457,7 +455,7 @@ static u32 sub_020268B8 (const PokedexData * param0)
     return v0;
 }
 
-static BOOL sub_020268D8 (const PokedexData * param0, u32 param1)
+static BOOL sub_020268D8(const PokedexData *param0, u32 param1)
 {
     int v0;
 
@@ -470,7 +468,7 @@ static BOOL sub_020268D8 (const PokedexData * param0, u32 param1)
     return 0;
 }
 
-static void sub_020268FC (PokedexData * param0, u16 param1, Pokemon * param2)
+static void sub_020268FC(PokedexData *param0, u16 param1, Pokemon *param2)
 {
     u8 v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
     u32 v1;
@@ -483,7 +481,7 @@ static void sub_020268FC (PokedexData * param0, u16 param1, Pokemon * param2)
     }
 }
 
-static void sub_0202693C (PokedexData * param0)
+static void sub_0202693C(PokedexData *param0)
 {
     int v0;
 
@@ -492,12 +490,12 @@ static void sub_0202693C (PokedexData * param0)
     }
 }
 
-static inline u32 inline_02026958 (u32 param0, u32 param1)
+static inline u32 inline_02026958(u32 param0, u32 param1)
 {
     return (param0 >> (param1 * 3)) & 0x7;
 }
 
-static inline void inline_02026A00 (u32 * param0, u32 param1, u32 param2)
+static inline void inline_02026A00(u32 *param0, u32 param1, u32 param2)
 {
     GF_ASSERT(param2 < 0x7);
 
@@ -505,7 +503,7 @@ static inline void inline_02026A00 (u32 * param0, u32 param1, u32 param2)
     (*param0) |= (param2 << (param1 * 3));
 }
 
-static int sub_02026958 (const PokedexData * param0, u32 param1)
+static int sub_02026958(const PokedexData *param0, u32 param1)
 {
     u32 v0;
     int v1, v2;
@@ -531,13 +529,13 @@ static int sub_02026958 (const PokedexData * param0, u32 param1)
     return v2;
 }
 
-static BOOL sub_020269A4 (const PokedexData * param0, u32 param1, u8 param2)
+static BOOL sub_020269A4(const PokedexData *param0, u32 param1, u8 param2)
 {
     int v0;
     u32 v1;
     u32 v2;
 
-    GF_ASSERT((param1 == 479));
+    GF_ASSERT(param1 == 479);
 
     if (sub_02026FE8(param0, param1) == 0) {
         return 0;
@@ -556,11 +554,11 @@ static BOOL sub_020269A4 (const PokedexData * param0, u32 param1, u8 param2)
     return 0;
 }
 
-static void sub_02026A00 (PokedexData * param0, u32 param1, int param2)
+static void sub_02026A00(PokedexData *param0, u32 param1, int param2)
 {
     int v0;
 
-    GF_ASSERT((param1 == 479));
+    GF_ASSERT(param1 == 479);
 
     if (sub_020269A4(param0, param1, param2)) {
         return;
@@ -573,7 +571,7 @@ static void sub_02026A00 (PokedexData * param0, u32 param1, int param2)
     }
 }
 
-static void sub_02026A60 (PokedexData * param0, u16 param1, Pokemon * param2)
+static void sub_02026A60(PokedexData *param0, u16 param1, Pokemon *param2)
 {
     int v0;
 
@@ -618,7 +616,7 @@ static void sub_02026A60 (PokedexData * param0, u16 param1, Pokemon * param2)
     }
 }
 
-static void sub_02026B88 (PokedexData * param0, u16 param1, u32 param2)
+static void sub_02026B88(PokedexData *param0, u16 param1, u32 param2)
 {
     int v0;
     int v1;
@@ -633,7 +631,7 @@ static void sub_02026B88 (PokedexData * param0, u16 param1, u32 param2)
     param0->recordedLanguages[v0] |= 1 << v1;
 }
 
-static u32 sub_02026BAC (const PokedexData * param0, u16 param1, int param2)
+static u32 sub_02026BAC(const PokedexData *param0, u16 param1, int param2)
 {
     u32 v0, v1;
     u32 v2;
@@ -663,14 +661,14 @@ static u32 sub_02026BAC (const PokedexData * param0, u16 param1, int param2)
     return v2;
 }
 
-static inline int inline_020270AC (const PokedexData * param0, int param1)
+static inline int inline_020270AC(const PokedexData *param0, int param1)
 {
     return param0->unk_10C[param1];
 }
 
-static int sub_02026C24 (const PokedexData * param0, u32 param1, int param2)
+static int sub_02026C24(const PokedexData *param0, u32 param1, int param2)
 {
-    const u8 * v0;
+    const u8 *v0;
 
     GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
     GF_ASSERT(param2 < 2);
@@ -693,17 +691,17 @@ static int sub_02026C24 (const PokedexData * param0, u32 param1, int param2)
     return ReadBit(v0, param2 + 1);
 }
 
-static int sub_02026CCC (const PokedexData * param0, u32 param1, int param2)
+static int sub_02026CCC(const PokedexData *param0, u32 param1, int param2)
 {
-    GF_ASSERT((param1 == 479));
+    GF_ASSERT(param1 == 479);
     GF_ASSERT(param2 < 6);
 
     return inline_02026958(param0->unk_31C, param2);
 }
 
-static int sub_02026CFC (const PokedexData * param0, u32 param1, int param2)
+static int sub_02026CFC(const PokedexData *param0, u32 param1, int param2)
 {
-    const u8 * v0;
+    const u8 *v0;
 
     GF_ASSERT((param1 == 412) || (param1 == 413));
     GF_ASSERT(param2 < 3);
@@ -717,7 +715,7 @@ static int sub_02026CFC (const PokedexData * param0, u32 param1, int param2)
     return inline_020266F8(v0, param2);
 }
 
-static BOOL sub_02026D44 (u16 param0)
+static BOOL sub_02026D44(u16 param0)
 {
     int v0;
     BOOL v1;
@@ -746,12 +744,12 @@ static BOOL sub_02026D44 (u16 param0)
     return v1;
 }
 
-static BOOL sub_02026D68 (u16 param0)
+static BOOL sub_02026D68(u16 param0)
 {
     return 1;
 }
 
-void Pokedex_Init (PokedexData * param0)
+void Pokedex_Init(PokedexData *param0)
 {
     memset(param0, 0, sizeof(PokedexData));
 
@@ -771,7 +769,7 @@ void Pokedex_Init (PokedexData * param0)
     sub_0202693C(param0);
 }
 
-u16 sub_02026DD0 (const PokedexData * param0)
+u16 sub_02026DD0(const PokedexData *param0)
 {
     int v0;
     int v1;
@@ -788,7 +786,7 @@ u16 sub_02026DD0 (const PokedexData * param0)
     return v1;
 }
 
-u16 sub_02026E0C (const PokedexData * param0)
+u16 sub_02026E0C(const PokedexData *param0)
 {
     int v0;
     int v1;
@@ -805,7 +803,7 @@ u16 sub_02026E0C (const PokedexData * param0)
     return v1;
 }
 
-u16 sub_02026E48 (const PokedexData * param0)
+u16 sub_02026E48(const PokedexData *param0)
 {
     if (sub_02027474(param0)) {
         return sub_02026E0C(param0);
@@ -814,7 +812,7 @@ u16 sub_02026E48 (const PokedexData * param0)
     return sub_02026EAC(param0);
 }
 
-u16 sub_02026E64 (const PokedexData * param0)
+u16 sub_02026E64(const PokedexData *param0)
 {
     int v0;
     int v1;
@@ -833,7 +831,7 @@ u16 sub_02026E64 (const PokedexData * param0)
     return v1;
 }
 
-u16 sub_02026EAC (const PokedexData * param0)
+u16 sub_02026EAC(const PokedexData *param0)
 {
     int v0;
     int v1;
@@ -852,7 +850,7 @@ u16 sub_02026EAC (const PokedexData * param0)
     return v1;
 }
 
-BOOL sub_02026EF4 (const PokedexData * param0)
+BOOL sub_02026EF4(const PokedexData *param0)
 {
     u16 v0;
 
@@ -865,7 +863,7 @@ BOOL sub_02026EF4 (const PokedexData * param0)
     return 0;
 }
 
-BOOL sub_02026F0C (const PokedexData * param0)
+BOOL sub_02026F0C(const PokedexData *param0)
 {
     u16 v0;
 
@@ -878,7 +876,7 @@ BOOL sub_02026F0C (const PokedexData * param0)
     return 0;
 }
 
-u16 sub_02026F20 (const PokedexData * param0)
+u16 sub_02026F20(const PokedexData *param0)
 {
     int v0;
     u16 v1;
@@ -896,7 +894,7 @@ u16 sub_02026F20 (const PokedexData * param0)
     return v1;
 }
 
-u16 sub_02026F58 (const PokedexData * param0)
+u16 sub_02026F58(const PokedexData *param0)
 {
     int v0;
     u16 v1;
@@ -919,7 +917,7 @@ u16 sub_02026F58 (const PokedexData * param0)
     return v1;
 }
 
-BOOL Pokedex_CaughtSpecies (const PokedexData * param0, u16 param1)
+BOOL Pokedex_CaughtSpecies(const PokedexData *param0, u16 param1)
 {
     CheckPokedexIntegrity(param0);
 
@@ -934,7 +932,7 @@ BOOL Pokedex_CaughtSpecies (const PokedexData * param0, u16 param1)
     }
 }
 
-BOOL sub_02026FE8 (const PokedexData * param0, u16 param1)
+BOOL sub_02026FE8(const PokedexData *param0, u16 param1)
 {
     CheckPokedexIntegrity(param0);
 
@@ -945,7 +943,7 @@ BOOL sub_02026FE8 (const PokedexData * param0, u16 param1)
     return inline_02026FE8(param0, param1);
 }
 
-u32 sub_0202702C (const PokedexData * param0, u8 param1)
+u32 sub_0202702C(const PokedexData *param0, u8 param1)
 {
     u32 v0;
 
@@ -963,7 +961,7 @@ u32 sub_0202702C (const PokedexData * param0, u8 param1)
     return v0;
 }
 
-u32 sub_02027058 (const PokedexData * param0, u16 param1, int param2)
+u32 sub_02027058(const PokedexData *param0, u16 param1, int param2)
 {
     CheckPokedexIntegrity(param0);
 
@@ -978,7 +976,7 @@ u32 sub_02027058 (const PokedexData * param0, u16 param1, int param2)
     return sub_02026BAC(param0, param1, param2);
 }
 
-u32 sub_020270AC (const PokedexData * param0, int param1)
+u32 sub_020270AC(const PokedexData *param0, int param1)
 {
     CheckPokedexIntegrity(param0);
 
@@ -989,13 +987,13 @@ u32 sub_020270AC (const PokedexData * param0, int param1)
     return inline_020270AC(param0, param1);
 }
 
-u32 sub_020270DC (const PokedexData * param0)
+u32 sub_020270DC(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return sub_02026400(param0);
 }
 
-u32 sub_020270F8 (const PokedexData * param0, int param1)
+u32 sub_020270F8(const PokedexData *param0, int param1)
 {
     CheckPokedexIntegrity(param0);
 
@@ -1006,13 +1004,13 @@ u32 sub_020270F8 (const PokedexData * param0, int param1)
     return sub_02026C24(param0, 422, param1);
 }
 
-u32 sub_02027130 (const PokedexData * param0)
+u32 sub_02027130(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return sub_02026464(param0, 422);
 }
 
-u32 sub_02027154 (const PokedexData * param0, int param1)
+u32 sub_02027154(const PokedexData *param0, int param1)
 {
     CheckPokedexIntegrity(param0);
 
@@ -1023,13 +1021,13 @@ u32 sub_02027154 (const PokedexData * param0, int param1)
     return sub_02026C24(param0, 423, param1);
 }
 
-u32 sub_0202718C (const PokedexData * param0)
+u32 sub_0202718C(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return sub_02026464(param0, 423);
 }
 
-u32 sub_020271B0 (const PokedexData * param0, int param1)
+u32 sub_020271B0(const PokedexData *param0, int param1)
 {
     CheckPokedexIntegrity(param0);
 
@@ -1040,13 +1038,13 @@ u32 sub_020271B0 (const PokedexData * param0, int param1)
     return sub_02026CFC(param0, 412, param1);
 }
 
-u32 sub_020271E8 (const PokedexData * param0)
+u32 sub_020271E8(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return sub_020266F8(param0, 412);
 }
 
-u32 sub_02027208 (const PokedexData * param0, int param1)
+u32 sub_02027208(const PokedexData *param0, int param1)
 {
     CheckPokedexIntegrity(param0);
 
@@ -1057,25 +1055,25 @@ u32 sub_02027208 (const PokedexData * param0, int param1)
     return sub_02026CFC(param0, 413, param1);
 }
 
-u32 sub_02027240 (const PokedexData * param0)
+u32 sub_02027240(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return sub_020266F8(param0, 413);
 }
 
-u32 sub_02027264 (const PokedexData * param0, int param1)
+u32 sub_02027264(const PokedexData *param0, int param1)
 {
     CheckPokedexIntegrity(param0);
     return sub_0202688C(param0, param1);
 }
 
-u32 sub_02027288 (const PokedexData * param0)
+u32 sub_02027288(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return sub_020268B8(param0);
 }
 
-void sub_020272A4 (PokedexData * param0, Pokemon * pokemon)
+void sub_020272A4(PokedexData *param0, Pokemon *pokemon)
 {
     u16 v0 = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     u32 v1 = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
@@ -1103,7 +1101,7 @@ void sub_020272A4 (PokedexData * param0, Pokemon * pokemon)
     inline_0202736C(param0, v0);
 }
 
-void sub_0202736C (PokedexData * param0, Pokemon * param1)
+void sub_0202736C(PokedexData *param0, Pokemon *param1)
 {
     u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     u32 v1 = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
@@ -1135,31 +1133,31 @@ void sub_0202736C (PokedexData * param0, Pokemon * param1)
     inline_0202736C(param0, v0);
 }
 
-void sub_02027454 (PokedexData * param0)
+void sub_02027454(PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     param0->nationalDexObtained = 1;
 }
 
-BOOL sub_02027474 (const PokedexData * param0)
+BOOL sub_02027474(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return param0->nationalDexObtained;
 }
 
-BOOL sub_02027494 (const PokedexData * param0)
+BOOL sub_02027494(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return param0->canDetectForms;
 }
 
-void sub_020274B0 (PokedexData * param0)
+void sub_020274B0(PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     param0->canDetectForms = 1;
 }
 
-BOOL sub_020274D0 (const PokedexData * param0, u16 param1, u32 param2)
+BOOL sub_020274D0(const PokedexData *param0, u16 param1, u32 param2)
 {
     int v0;
 
@@ -1173,37 +1171,37 @@ BOOL sub_020274D0 (const PokedexData * param0, u16 param1, u32 param2)
     return param0->recordedLanguages[v0] & (1 << param2);
 }
 
-void sub_02027508 (PokedexData * param0)
+void sub_02027508(PokedexData *param0)
 {
     param0->unk_319 = 1;
 }
 
-BOOL sub_02027514 (const PokedexData * param0)
+BOOL sub_02027514(const PokedexData *param0)
 {
     return param0->unk_319;
 }
 
-BOOL sub_02027520 (const PokedexData * param0)
+BOOL sub_02027520(const PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     return param0->pokedexObtained;
 }
 
-void sub_02027540 (PokedexData * param0)
+void sub_02027540(PokedexData *param0)
 {
     CheckPokedexIntegrity(param0);
     param0->pokedexObtained = 1;
 }
 
-PokedexData * SaveData_Pokedex (SaveData * param0)
+PokedexData *SaveData_Pokedex(SaveData *param0)
 {
-    PokedexData * v0;
+    PokedexData *v0;
 
     v0 = SaveData_SaveTable(param0, 7);
     return v0;
 }
 
-u32 sub_0202756C (const PokedexData * param0, int param1, int param2)
+u32 sub_0202756C(const PokedexData *param0, int param1, int param2)
 {
     CheckPokedexIntegrity(param0);
 
@@ -1260,7 +1258,7 @@ u32 sub_0202756C (const PokedexData * param0, int param1, int param2)
     return 0;
 }
 
-u32 sub_020276C8 (const PokedexData *pokedex, int species)
+u32 sub_020276C8(const PokedexData *pokedex, int species)
 {
     CheckPokedexIntegrity(pokedex);
 

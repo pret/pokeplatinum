@@ -1,26 +1,26 @@
+#include "overlay006/ov6_02247660.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
-
 #include "field/field_system.h"
 
-#include "narc.h"
 #include "heap.h"
+#include "inlines.h"
+#include "narc.h"
 #include "unk_0202B37C.h"
 #include "unk_02039C80.h"
 #include "unk_0205F180.h"
-#include "overlay006/ov6_02247660.h"
 
-BOOL ov6_02247660 (FieldSystem * fieldSystem)
+BOOL ov6_02247660(FieldSystem *fieldSystem)
 {
     u8 v0;
     int v1;
     int v2;
     u8 v3;
     u8 v4;
-    void * v5;
-    u16 * v6;
+    void *v5;
+    u16 *v6;
     int v7;
     int v8[4];
     int v9[4];
@@ -58,7 +58,7 @@ BOOL ov6_02247660 (FieldSystem * fieldSystem)
     v6 = &((u16 *)v5)[2 + v7 * 2];
     v2 = v1 / 4;
 
-    GF_ASSERT((v2 < 256));
+    GF_ASSERT(v2 < 256);
 
     v3 = v1 % 4;
     v4 = 0;
@@ -87,15 +87,15 @@ BOOL ov6_02247660 (FieldSystem * fieldSystem)
     return v12;
 }
 
-void ov6_02247794 (u8 * param0, u8 * param1)
+void ov6_02247794(u8 *param0, u8 *param1)
 {
     (*param0) = 20;
     (*param1) = 10;
 }
 
-void ov6_022477A0 (int * param0)
+void ov6_022477A0(int *param0)
 {
-    int * v0;
+    int *v0;
 
     v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, 4);
     (*param0) = (*v0);

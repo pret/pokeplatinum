@@ -1,72 +1,70 @@
+#include "unk_0207E0B8.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "pokemon.h"
-
-#include "constdata/const_020F1E88.h"
-
-#include "touch_screen.h"
-#include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
-#include "functypes/funcptr_0207E634.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_020F1DB8.h"
+
+#include "field/field_system.h"
+#include "functypes/funcptr_0207E634.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
+#include "overlay118/ov118_021D0D80.h"
 
+#include "bag.h"
+#include "core_sys.h"
+#include "game_options.h"
+#include "game_overlay.h"
+#include "gx_layers.h"
+#include "heap.h"
+#include "item.h"
+#include "journal.h"
+#include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "party.h"
+#include "pokemon.h"
+#include "pokemon_summary_app.h"
+#include "strbuf.h"
+#include "string_template.h"
+#include "touch_screen.h"
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "game_overlay.h"
-#include "overlay_manager.h"
-#include "narc.h"
 #include "unk_02006E3C.h"
-#include "message.h"
-#include "string_template.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
-#include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "strbuf.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
-#include "game_options.h"
-#include "journal.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
-#include "pokemon.h"
-#include "party.h"
 #include "unk_0207A2A8.h"
-#include "item.h"
-#include "bag.h"
-#include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
-#include "pokemon_summary_app.h"
 #include "unk_02096420.h"
-#include "overlay118/ov118_021D0D80.h"
+
+#include "constdata/const_020F1E88.h"
 
 FS_EXTERN_OVERLAY(overlay118);
 
@@ -79,85 +77,85 @@ typedef struct {
     u16 unk_0A;
 } UnkStruct_020F1DF8;
 
-static int sub_0207E0B8(OverlayManager * param0, int * param1);
-static int sub_0207E2A8(OverlayManager * param0, int * param1);
-static int sub_0207E7E0(OverlayManager * param0, int * param1);
-static int sub_0207E490(GameWindowLayout * param0);
-static int sub_0207E518(GameWindowLayout * param0);
-static int sub_0207E5B4(GameWindowLayout * param0);
-static int sub_0207E5F4(GameWindowLayout * param0);
-static int sub_0207E6C0(GameWindowLayout * param0);
-static int sub_0207E6E4(GameWindowLayout * param0);
-static int sub_0207E708(GameWindowLayout * param0);
-static int sub_0207E714(GameWindowLayout * param0);
-static int sub_0207E750(GameWindowLayout * param0);
-static int ProcessWindowInput(GameWindowLayout * param0);
-static void sub_0207E898(void * param0);
+static int sub_0207E0B8(OverlayManager *param0, int *param1);
+static int sub_0207E2A8(OverlayManager *param0, int *param1);
+static int sub_0207E7E0(OverlayManager *param0, int *param1);
+static int sub_0207E490(GameWindowLayout *param0);
+static int sub_0207E518(GameWindowLayout *param0);
+static int sub_0207E5B4(GameWindowLayout *param0);
+static int sub_0207E5F4(GameWindowLayout *param0);
+static int sub_0207E6C0(GameWindowLayout *param0);
+static int sub_0207E6E4(GameWindowLayout *param0);
+static int sub_0207E708(GameWindowLayout *param0);
+static int sub_0207E714(GameWindowLayout *param0);
+static int sub_0207E750(GameWindowLayout *param0);
+static int ProcessWindowInput(GameWindowLayout *param0);
+static void sub_0207E898(void *param0);
 static void sub_0207E8C0(void);
-static void sub_0207E918(BGL * param0);
-static void sub_0207EA24(BGL * param0);
-static void sub_0207EB6C(GameWindowLayout * param0, NARC * param1);
-static GameWindowLayout * sub_0207ECC0(OverlayManager * param0);
-static void sub_0207EE14(GameWindowLayout * param0);
-static void sub_0207F308(GameWindowLayout * param0);
-static u8 sub_0207F984(GameWindowLayout * param0, u8 param1);
-static u8 sub_0207FE98(GameWindowLayout * param0);
-static void sub_02080500(GameWindowLayout * param0, u8 param1, u8 param2);
-static void sub_0207F9A0(GameWindowLayout * param0);
-static void sub_0207EDC0(GameWindowLayout * param0);
-static int HandleGameWindowEvent(GameWindowLayout * param0);
-static u8 HandleWindowInputEvent(GameWindowLayout * param0, int * param1);
-static u8 sub_020805E4(GameWindowLayout * param0);
-static void UpdateWindowLayout(GameWindowLayout * param0, u8 param1, u8 param2);
-static int GetValidWindowLayout(GameWindowLayout * param0);
-static u8 HandleSpecialInput(GameWindowLayout * param0);
-static int ApplyItemEffectOnPokemon(GameWindowLayout * param0);
-static u8 CheckItemUsageValidity(GameWindowLayout * param0);
-static int ProcessItemApplication(GameWindowLayout * param0);
-static int UpdatePokemonWithItem(GameWindowLayout * param0, Pokemon * param1, int * param2);
-static int HandleMessageCompletion(GameWindowLayout * param0);
-static int FinalizeMessageProcessing(GameWindowLayout * param0);
-static int ProcessPokemonItemSwap(GameWindowLayout * param0);
-static int sub_0207E634(GameWindowLayout * param0);
-static int ResetWindowOnInput(GameWindowLayout * param0);
-static int UpdatePokemonFormWithItem(GameWindowLayout * param0);
-static void sub_0207F094(GameWindowLayout * param0, Pokemon * param1, u8 param2);
-static u32 sub_0207F134(Pokemon * param0, u8 param1);
-static void sub_0207FE1C(GameWindowLayout * param0);
-static void CalculateWindowPosition(u8 param0, s16 * param1, s16 * param2);
-static int CheckForItemApplication(GameWindowLayout * param0);
-static u8 CheckDuplicateValues(GameWindowLayout * param0);
-static u8 CheckUniqueValues(GameWindowLayout * param0);
-static u8 CheckEqualityInArray(GameWindowLayout * param0);
-static BOOL ValidateGameWindowState(GameWindowLayout * param0);
-static GenericPointerData * sub_0207EAD4(int param0);
+static void sub_0207E918(BGL *param0);
+static void sub_0207EA24(BGL *param0);
+static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1);
+static GameWindowLayout *sub_0207ECC0(OverlayManager *param0);
+static void sub_0207EE14(GameWindowLayout *param0);
+static void sub_0207F308(GameWindowLayout *param0);
+static u8 sub_0207F984(GameWindowLayout *param0, u8 param1);
+static u8 sub_0207FE98(GameWindowLayout *param0);
+static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2);
+static void sub_0207F9A0(GameWindowLayout *param0);
+static void sub_0207EDC0(GameWindowLayout *param0);
+static int HandleGameWindowEvent(GameWindowLayout *param0);
+static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1);
+static u8 sub_020805E4(GameWindowLayout *param0);
+static void UpdateWindowLayout(GameWindowLayout *param0, u8 param1, u8 param2);
+static int GetValidWindowLayout(GameWindowLayout *param0);
+static u8 HandleSpecialInput(GameWindowLayout *param0);
+static int ApplyItemEffectOnPokemon(GameWindowLayout *param0);
+static u8 CheckItemUsageValidity(GameWindowLayout *param0);
+static int ProcessItemApplication(GameWindowLayout *param0);
+static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int *param2);
+static int HandleMessageCompletion(GameWindowLayout *param0);
+static int FinalizeMessageProcessing(GameWindowLayout *param0);
+static int ProcessPokemonItemSwap(GameWindowLayout *param0);
+static int sub_0207E634(GameWindowLayout *param0);
+static int ResetWindowOnInput(GameWindowLayout *param0);
+static int UpdatePokemonFormWithItem(GameWindowLayout *param0);
+static void sub_0207F094(GameWindowLayout *param0, Pokemon *param1, u8 param2);
+static u32 sub_0207F134(Pokemon *param0, u8 param1);
+static void sub_0207FE1C(GameWindowLayout *param0);
+static void CalculateWindowPosition(u8 param0, s16 *param1, s16 *param2);
+static int CheckForItemApplication(GameWindowLayout *param0);
+static u8 CheckDuplicateValues(GameWindowLayout *param0);
+static u8 CheckUniqueValues(GameWindowLayout *param0);
+static u8 CheckEqualityInArray(GameWindowLayout *param0);
+static BOOL ValidateGameWindowState(GameWindowLayout *param0);
+static GenericPointerData *sub_0207EAD4(int param0);
 static void sub_0207EAF4(void);
-static void sub_0207EB64(GenericPointerData * param0);
-static int ProcessMessageResult(GameWindowLayout * param0);
-static int HandleOverlayCompletion(GameWindowLayout * param0);
-static void sub_0207F388(GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1);
-static void sub_0207F4AC(GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1);
-static void sub_0207F5A0(GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1);
-static void sub_0207F694(GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1);
-static void sub_0207F788(GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1);
-static void sub_0207F884(GameWindowLayout * param0, u8 param1, s16 param2, s16 param3);
-static u8 sub_0207FA24(GameWindowLayout * param0);
-static u8 sub_0207FBE0(GameWindowLayout * param0, u8 * param1, u8 * param2, u8 param3);
-static u8 sub_0207FC30(GameWindowLayout * param0, u8 * param1, u8 * param2, const u8 * param3);
-static u8 sub_0207FC94(GameWindowLayout * param0);
-static void sub_0207FFC8(GameWindowLayout * param0);
-static u8 sub_020800B4(GameWindowLayout * param0, u8 * param1);
-static u8 sub_020801F0(GameWindowLayout * param0, u8 * param1);
-static u8 sub_0208022C(GameWindowLayout * param0, u8 * param1);
-static u8 sub_0208027C(GameWindowLayout * param0, u8 * param1);
-static u8 sub_020802CC(GameWindowLayout * param0, u8 * param1);
-static u8 sub_0208031C(GameWindowLayout * param0, u8 * param1);
-static u8 sub_020801AC(GameWindowLayout * param0, u8 * param1);
-static u8 sub_020801B8(GameWindowLayout * param0, u8 * param1);
-u8 sub_02080404(GameWindowLayout * param0, u8 param1);
-u8 sub_02080488(GameWindowLayout * param0, u8 param1);
-static u8 CheckPokemonCondition(GameWindowLayout * param0);
-static BOOL UpdatePokemonStatus(GameWindowLayout * param0, u8 param1, s8 param2);
+static void sub_0207EB64(GenericPointerData *param0);
+static int ProcessMessageResult(GameWindowLayout *param0);
+static int HandleOverlayCompletion(GameWindowLayout *param0);
+static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
+static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
+static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
+static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
+static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
+static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3);
+static u8 sub_0207FA24(GameWindowLayout *param0);
+static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 param3);
+static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u8 *param3);
+static u8 sub_0207FC94(GameWindowLayout *param0);
+static void sub_0207FFC8(GameWindowLayout *param0);
+static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1);
+static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1);
+static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1);
+static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1);
+static u8 sub_020802CC(GameWindowLayout *param0, u8 *param1);
+static u8 sub_0208031C(GameWindowLayout *param0, u8 *param1);
+static u8 sub_020801AC(GameWindowLayout *param0, u8 *param1);
+static u8 sub_020801B8(GameWindowLayout *param0, u8 *param1);
+u8 sub_02080404(GameWindowLayout *param0, u8 param1);
+u8 sub_02080488(GameWindowLayout *param0, u8 param1);
+static u8 CheckPokemonCondition(GameWindowLayout *param0);
+static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 param1, s8 param2);
 
 const OverlayManagerTemplate Unk_020F1E88 = {
     sub_0207E0B8,
@@ -167,66 +165,62 @@ const OverlayManagerTemplate Unk_020F1E88 = {
 };
 
 static const UnkStruct_020F1DF8 Unk_020F1DF8[2][6] = {
-    {
-        {0x0, 0x0, 0x1E, 0x10, 0x10, 0xE},
-        {0x10, 0x1, 0x9E, 0x18, 0x90, 0x16},
-        {0x0, 0x6, 0x1E, 0x40, 0x10, 0x3E},
-        {0x10, 0x7, 0x9E, 0x48, 0x90, 0x46},
-        {0x0, 0xC, 0x1E, 0x70, 0x10, 0x6E},
-        {0x10, 0xD, 0x9E, 0x78, 0x90, 0x76}
-    },
-    {
-        {0x0, 0x0, 0x1E, 0x10, 0x10, 0xE},
-        {0x10, 0x0, 0x9E, 0x10, 0x90, 0xE},
-        {0x0, 0x6, 0x1E, 0x40, 0x10, 0x3E},
-        {0x10, 0x6, 0x9E, 0x40, 0x90, 0x3E},
-        {0x0, 0xC, 0x1E, 0x70, 0x10, 0x6E},
-        {0x10, 0xC, 0x9E, 0x70, 0x90, 0x6E}
-    }
+    { { 0x0, 0x0, 0x1E, 0x10, 0x10, 0xE },
+        { 0x10, 0x1, 0x9E, 0x18, 0x90, 0x16 },
+        { 0x0, 0x6, 0x1E, 0x40, 0x10, 0x3E },
+        { 0x10, 0x7, 0x9E, 0x48, 0x90, 0x46 },
+        { 0x0, 0xC, 0x1E, 0x70, 0x10, 0x6E },
+        { 0x10, 0xD, 0x9E, 0x78, 0x90, 0x76 } },
+    { { 0x0, 0x0, 0x1E, 0x10, 0x10, 0xE },
+        { 0x10, 0x0, 0x9E, 0x10, 0x90, 0xE },
+        { 0x0, 0x6, 0x1E, 0x40, 0x10, 0x3E },
+        { 0x10, 0x6, 0x9E, 0x40, 0x90, 0x3E },
+        { 0x0, 0xC, 0x1E, 0x70, 0x10, 0x6E },
+        { 0x10, 0xC, 0x9E, 0x70, 0x90, 0x6E } }
 };
 
 static const ByteFlagSet Unk_020F1DB8[] = {
-    {0x40, 0x19, 0x0, 0x0, 0x7, 0x2, 0x7, 0x1},
-    {0xC0, 0x21, 0x0, 0x0, 0x7, 0x3, 0x0, 0x2},
-    {0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3},
-    {0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4},
-    {0x40, 0x79, 0x0, 0x0, 0x2, 0x7, 0x3, 0x5},
-    {0xC0, 0x81, 0x0, 0x0, 0x3, 0x7, 0x4, 0x7},
-    {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
-    {0xE0, 0xA8, 0x0, 0x0, 0x5, 0x1, 0x5, 0x0}
+    { 0x40, 0x19, 0x0, 0x0, 0x7, 0x2, 0x7, 0x1 },
+    { 0xC0, 0x21, 0x0, 0x0, 0x7, 0x3, 0x0, 0x2 },
+    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3 },
+    { 0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4 },
+    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x7, 0x3, 0x5 },
+    { 0xC0, 0x81, 0x0, 0x0, 0x3, 0x7, 0x4, 0x7 },
+    { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
+    { 0xE0, 0xA8, 0x0, 0x0, 0x5, 0x1, 0x5, 0x0 }
 };
 
 static const ByteFlagSet Unk_020F1CF8[] = {
-    {0x40, 0x19, 0x0, 0x0, 0x4, 0x2, 0x1, 0x1},
-    {0xC0, 0x19, 0x0, 0x0, 0x7, 0x3, 0x0, 0x0},
-    {0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x3, 0x3},
-    {0xC0, 0x49, 0x0, 0x0, 0x1, 0x5, 0x2, 0x2},
-    {0x40, 0x79, 0x0, 0x0, 0x2, 0x0, 0x5, 0x5},
-    {0xC0, 0x79, 0x0, 0x0, 0x3, 0x7, 0x4, 0x4},
-    {0xE0, 0xA8, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
-    {0xE0, 0xA8, 0x0, 0x0, 0x5, 0x1, 0xFF, 0xFF}
+    { 0x40, 0x19, 0x0, 0x0, 0x4, 0x2, 0x1, 0x1 },
+    { 0xC0, 0x19, 0x0, 0x0, 0x7, 0x3, 0x0, 0x0 },
+    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x3, 0x3 },
+    { 0xC0, 0x49, 0x0, 0x0, 0x1, 0x5, 0x2, 0x2 },
+    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x0, 0x5, 0x5 },
+    { 0xC0, 0x79, 0x0, 0x0, 0x3, 0x7, 0x4, 0x4 },
+    { 0xE0, 0xA8, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
+    { 0xE0, 0xA8, 0x0, 0x0, 0x5, 0x1, 0xFF, 0xFF }
 };
 
 static const ByteFlagSet Unk_020F1D38[] = {
-    {0x40, 0x19, 0x0, 0x0, 0x7, 0x2, 0x7, 0x1},
-    {0xC0, 0x21, 0x0, 0x0, 0x7, 0x3, 0x0, 0x2},
-    {0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3},
-    {0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4},
-    {0x40, 0x79, 0x0, 0x0, 0x2, 0x6, 0x3, 0x5},
-    {0xC0, 0x81, 0x0, 0x0, 0x3, 0x6, 0x4, 0x6},
-    {0xE0, 0xA8, 0x0, 0x0, 0x5, 0x7, 0x5, 0x7},
-    {0xE0, 0xB8, 0x0, 0x0, 0x6, 0x1, 0x6, 0x0}
+    { 0x40, 0x19, 0x0, 0x0, 0x7, 0x2, 0x7, 0x1 },
+    { 0xC0, 0x21, 0x0, 0x0, 0x7, 0x3, 0x0, 0x2 },
+    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3 },
+    { 0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4 },
+    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x6, 0x3, 0x5 },
+    { 0xC0, 0x81, 0x0, 0x0, 0x3, 0x6, 0x4, 0x6 },
+    { 0xE0, 0xA8, 0x0, 0x0, 0x5, 0x7, 0x5, 0x7 },
+    { 0xE0, 0xB8, 0x0, 0x0, 0x6, 0x1, 0x6, 0x0 }
 };
 
 static const ByteFlagSet Unk_020F1D78[] = {
-    {0x40, 0x19, 0x0, 0x0, 0x5, 0x2, 0x5, 0x1},
-    {0xC0, 0x21, 0x0, 0x0, 0x5, 0x3, 0x0, 0x2},
-    {0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3},
-    {0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4},
-    {0x40, 0x79, 0x0, 0x0, 0x2, 0x0, 0x3, 0x5},
-    {0xC0, 0x81, 0x0, 0x0, 0x3, 0x0, 0x4, 0x0},
-    {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
-    {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}
+    { 0x40, 0x19, 0x0, 0x0, 0x5, 0x2, 0x5, 0x1 },
+    { 0xC0, 0x21, 0x0, 0x0, 0x5, 0x3, 0x0, 0x2 },
+    { 0x40, 0x49, 0x0, 0x0, 0x0, 0x4, 0x1, 0x3 },
+    { 0xC0, 0x51, 0x0, 0x0, 0x1, 0x5, 0x2, 0x4 },
+    { 0x40, 0x79, 0x0, 0x0, 0x2, 0x0, 0x3, 0x5 },
+    { 0xC0, 0x81, 0x0, 0x0, 0x3, 0x0, 0x4, 0x0 },
+    { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 },
+    { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 };
 
 static const u16 Unk_020F1CB0[] = {
@@ -247,10 +241,10 @@ static const u16 Unk_020F1CB0[] = {
     0x87
 };
 
-static int sub_0207E0B8 (OverlayManager * param0, int * param1)
+static int sub_0207E0B8(OverlayManager *param0, int *param1)
 {
-    GameWindowLayout * v0;
-    NARC * v1;
+    GameWindowLayout *v0;
+    NARC *v1;
 
     SetMainCallback(NULL, NULL);
     DisableHBlank();
@@ -323,9 +317,9 @@ static int sub_0207E0B8 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static int sub_0207E2A8 (OverlayManager * param0, int * param1)
+static int sub_0207E2A8(OverlayManager *param0, int *param1)
 {
-    GameWindowLayout * v0 = OverlayManager_Data(param0);
+    GameWindowLayout *v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -414,8 +408,7 @@ static int sub_0207E2A8 (OverlayManager * param0, int * param1)
     case 27:
         *param1 = sub_0207E714(v0);
         break;
-    case 28:
-    {
+    case 28: {
         u8 v1 = sub_020805E4(v0);
 
         if (v1 == 0) {
@@ -423,8 +416,7 @@ static int sub_0207E2A8 (OverlayManager * param0, int * param1)
         } else if (v1 == 3) {
             *param1 = 1;
         }
-    }
-    break;
+    } break;
     case 29:
         if (sub_02083D1C(v0) == 1) {
             *param1 = 1;
@@ -461,7 +453,7 @@ static int sub_0207E2A8 (OverlayManager * param0, int * param1)
     return 0;
 }
 
-static int sub_0207E490 (GameWindowLayout * param0)
+static int sub_0207E490(GameWindowLayout *param0)
 {
     if (ScreenWipe_Done() == 1) {
         if ((param0->unk_5A4->unk_20 == 5) || (param0->unk_5A4->unk_20 == 16)) {
@@ -491,7 +483,7 @@ static int sub_0207E490 (GameWindowLayout * param0)
     return 0;
 }
 
-static int sub_0207E518 (GameWindowLayout * param0)
+static int sub_0207E518(GameWindowLayout *param0)
 {
     u8 v0 = sub_0207FE98(param0);
 
@@ -525,7 +517,7 @@ static int sub_0207E518 (GameWindowLayout * param0)
     return 1;
 }
 
-static int sub_0207E5B4 (GameWindowLayout * param0)
+static int sub_0207E5B4(GameWindowLayout *param0)
 {
     u8 v0 = HandleSpecialInput(param0);
 
@@ -540,7 +532,7 @@ static int sub_0207E5B4 (GameWindowLayout * param0)
     return 4;
 }
 
-static int sub_0207E5F4 (GameWindowLayout * param0)
+static int sub_0207E5F4(GameWindowLayout *param0)
 {
     u8 v0 = HandleSpecialInput(param0);
 
@@ -555,7 +547,7 @@ static int sub_0207E5F4 (GameWindowLayout * param0)
     return 8;
 }
 
-static int sub_0207E634 (GameWindowLayout * param0)
+static int sub_0207E634(GameWindowLayout *param0)
 {
     u32 v0 = sub_02001BE0(param0->unk_700);
 
@@ -571,8 +563,7 @@ static int sub_0207E634 (GameWindowLayout * param0)
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;
-    default:
-    {
+    default: {
         UnkFuncPtr_0207E634 v1;
         int v2;
 
@@ -586,7 +577,7 @@ static int sub_0207E634 (GameWindowLayout * param0)
     return 15;
 }
 
-static int sub_0207E6C0 (GameWindowLayout * param0)
+static int sub_0207E6C0(GameWindowLayout *param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
         return param0->unk_B0E;
@@ -595,7 +586,7 @@ static int sub_0207E6C0 (GameWindowLayout * param0)
     return 24;
 }
 
-static int sub_0207E6E4 (GameWindowLayout * param0)
+static int sub_0207E6E4(GameWindowLayout *param0)
 {
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(1500);
@@ -605,13 +596,13 @@ static int sub_0207E6E4 (GameWindowLayout * param0)
     return 25;
 }
 
-static int sub_0207E708 (GameWindowLayout * param0)
+static int sub_0207E708(GameWindowLayout *param0)
 {
     sub_020827EC(param0);
     return 27;
 }
 
-static int sub_0207E714 (GameWindowLayout * param0)
+static int sub_0207E714(GameWindowLayout *param0)
 {
     switch (sub_02002114(param0->unk_700, 12)) {
     case 0:
@@ -623,7 +614,7 @@ static int sub_0207E714 (GameWindowLayout * param0)
     return 27;
 }
 
-static int sub_0207E750 (GameWindowLayout * param0)
+static int sub_0207E750(GameWindowLayout *param0)
 {
     u8 v0 = HandleSpecialInput(param0);
 
@@ -647,9 +638,9 @@ static int sub_0207E750 (GameWindowLayout * param0)
     return 21;
 }
 
-static int sub_0207E7E0 (OverlayManager * param0, int * param1)
+static int sub_0207E7E0(OverlayManager *param0, int *param1)
 {
-    GameWindowLayout * v0 = OverlayManager_Data(param0);
+    GameWindowLayout *v0 = OverlayManager_Data(param0);
     u32 v1;
 
     SetMainCallback(NULL, NULL);
@@ -684,9 +675,9 @@ static int sub_0207E7E0 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-static void sub_0207E898 (void * param0)
+static void sub_0207E898(void *param0)
 {
-    GameWindowLayout * v0 = param0;
+    GameWindowLayout *v0 = param0;
 
     sub_0201C2B8(v0->unk_00);
     sub_0201DCAC();
@@ -695,7 +686,7 @@ static void sub_0207E898 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void sub_0207E8C0 (void)
+static void sub_0207E8C0(void)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
@@ -713,7 +704,7 @@ static void sub_0207E8C0 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_0207E8E0 (BGL * param0)
+static void sub_0207E8E0(BGL *param0)
 {
     UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -735,7 +726,7 @@ static void sub_0207E8E0 (BGL * param0)
     sub_02019EBC(param0, 0);
 }
 
-static void sub_0207E918 (BGL * param0)
+static void sub_0207E918(BGL *param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -859,7 +850,7 @@ static void sub_0207E918 (BGL * param0)
     sub_02019690(4, 32, 0, 12);
 }
 
-static void sub_0207EA24 (BGL * param0)
+static void sub_0207EA24(BGL *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
@@ -872,7 +863,7 @@ static void sub_0207EA24 (BGL * param0)
     Heap_FreeToHeapExplicit(12, param0);
 }
 
-void sub_0207EA74 (GameWindowLayout * param0, int param1)
+void sub_0207EA74(GameWindowLayout *param0, int param1)
 {
     if (param1 == 0) {
         sub_02019120(0, 0);
@@ -891,15 +882,15 @@ void sub_0207EA74 (GameWindowLayout * param0, int param1)
     }
 }
 
-static GenericPointerData * sub_0207EAD4 (int param0)
+static GenericPointerData *sub_0207EAD4(int param0)
 {
-    GenericPointerData * v0;
+    GenericPointerData *v0;
 
     v0 = sub_02024220(param0, 0, 1, 0, 2, sub_0207EAF4);
     return v0;
 }
 
-static void sub_0207EAF4 (void)
+static void sub_0207EAF4(void)
 {
     G3X_SetShading(GX_SHADING_TOON);
     G3X_AntiAlias(1);
@@ -911,20 +902,20 @@ static void sub_0207EAF4 (void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64 (GenericPointerData * param0)
+static void sub_0207EB64(GenericPointerData *param0)
 {
     sub_020242C4(param0);
 }
 
-static void sub_0207EB6C (GameWindowLayout * param0, NARC * param1)
+static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 {
     sub_020070E8(param1, 15, param0->unk_00, 3, 0, 0, 0, 12);
     sub_0200710C(param1, 17, param0->unk_00, 3, 0, 0, 0, 12);
 
     {
-        NNSG2dPaletteData * v0;
-        void * v1;
-        u16 * v2;
+        NNSG2dPaletteData *v0;
+        void *v1;
+        u16 *v2;
 
         v1 = NARC_AllocAndReadWholeMember(param1, 16, 12);
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
@@ -948,9 +939,9 @@ static void sub_0207EB6C (GameWindowLayout * param0, NARC * param1)
     sub_0201975C(4, 0);
 }
 
-static GameWindowLayout * sub_0207ECC0 (OverlayManager * param0)
+static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
 {
-    GameWindowLayout * v0;
+    GameWindowLayout *v0;
     u32 v1;
 
     v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), 12);
@@ -986,7 +977,7 @@ static GameWindowLayout * sub_0207ECC0 (OverlayManager * param0)
     return v0;
 }
 
-static void sub_0207EDC0 (GameWindowLayout * param0)
+static void sub_0207EDC0(GameWindowLayout *param0)
 {
     if ((param0->unk_5A4->unk_20 & 0x80) != 0) {
         param0->unk_B0F_7 = 1;
@@ -998,7 +989,7 @@ static void sub_0207EDC0 (GameWindowLayout * param0)
     }
 }
 
-static void sub_0207EE14 (GameWindowLayout * param0)
+static void sub_0207EE14(GameWindowLayout *param0)
 {
     u8 v0 = 3;
 
@@ -1034,14 +1025,14 @@ static void sub_0207EE14 (GameWindowLayout * param0)
     sub_020825B4(param0, v0);
 }
 
-u8 sub_0207EF04 (GameWindowLayout * param0, u8 param1)
+u8 sub_0207EF04(GameWindowLayout *param0, u8 param1)
 {
     return param0->unk_704[param1].unk_29;
 }
 
-u8 sub_0207EF14 (GameWindowLayout * param0, u8 param1)
+u8 sub_0207EF14(GameWindowLayout *param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u32 v1;
     u16 v2;
 
@@ -1084,7 +1075,7 @@ u8 sub_0207EF14 (GameWindowLayout * param0, u8 param1)
     return 1;
 }
 
-static void sub_0207F094 (GameWindowLayout * param0, Pokemon * param1, u8 param2)
+static void sub_0207F094(GameWindowLayout *param0, Pokemon *param1, u8 param2)
 {
     u32 v0;
     u32 v1;
@@ -1113,7 +1104,7 @@ static void sub_0207F094 (GameWindowLayout * param0, Pokemon * param1, u8 param2
     }
 }
 
-static u32 sub_0207F134 (Pokemon * param0, u8 param1)
+static u32 sub_0207F134(Pokemon *param0, u8 param1)
 {
     u32 v0;
 
@@ -1152,14 +1143,14 @@ static u32 sub_0207F134 (Pokemon * param0, u8 param1)
     return v0;
 }
 
-const u16 * sub_0207F248 (GameWindowLayout * param0)
+const u16 *sub_0207F248(GameWindowLayout *param0)
 {
     return &param0->unk_324[3 * 16 + 6];
 }
 
-static void sub_0207F250 (GameWindowLayout * param0, u8 param1, u8 param2, u8 param3, u8 param4)
+static void sub_0207F250(GameWindowLayout *param0, u8 param1, u8 param2, u8 param3, u8 param4)
 {
-    const u16 * v0;
+    const u16 *v0;
 
     if ((param1 == 0) || ((param0->unk_5A4->unk_21 != 0) && (param1 == 1))) {
         v0 = param0->unk_264;
@@ -1181,9 +1172,9 @@ static void sub_0207F250 (GameWindowLayout * param0, u8 param1, u8 param2, u8 pa
     sub_0207F8F8(param0, param1);
 }
 
-static void sub_0207F308 (GameWindowLayout * param0)
+static void sub_0207F308(GameWindowLayout *param0)
 {
-    const UnkStruct_020F1DF8 * v0;
+    const UnkStruct_020F1DF8 *v0;
 
     if (param0->unk_5A4->unk_21 == 2) {
         v0 = Unk_020F1DF8[1];
@@ -1207,10 +1198,10 @@ static void sub_0207F308 (GameWindowLayout * param0)
     sub_0201C3C0(param0->unk_00, 4);
 }
 
-static void sub_0207F388 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1)
+static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC * v1;
+    NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
@@ -1239,10 +1230,10 @@ static void sub_0207F388 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * 
     NARC_dtor(v1);
 }
 
-static void sub_0207F4AC (GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1)
+static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC * v1;
+    NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
@@ -1266,10 +1257,10 @@ static void sub_0207F4AC (GameWindowLayout * param0, const UnkStruct_020F1DF8 * 
     NARC_dtor(v1);
 }
 
-static void sub_0207F5A0 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1)
+static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC * v1;
+    NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
@@ -1293,10 +1284,10 @@ static void sub_0207F5A0 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * 
     NARC_dtor(v1);
 }
 
-static void sub_0207F694 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1)
+static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC * v1;
+    NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
@@ -1320,10 +1311,10 @@ static void sub_0207F694 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * 
     NARC_dtor(v1);
 }
 
-static void sub_0207F788 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * param1)
+static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC * v1;
+    NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
@@ -1348,7 +1339,7 @@ static void sub_0207F788 (GameWindowLayout * param0, const UnkStruct_020F1DF8 * 
     NARC_dtor(v1);
 }
 
-static void sub_0207F884 (GameWindowLayout * param0, u8 param1, s16 param2, s16 param3)
+static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
 {
     sub_020198E8(param0->unk_00, 2, param2, param3, 16, 6, (const void *)param0->unk_3E4, 0, 0, 16, 6);
     sub_02019E2C(param0->unk_00, 2, param2, param3, 16, 6, 1);
@@ -1357,9 +1348,9 @@ static void sub_0207F884 (GameWindowLayout * param0, u8 param1, s16 param2, s16 
     sub_02083104(param0, param1);
 }
 
-void sub_0207F8F8 (GameWindowLayout * param0, u8 param1)
+void sub_0207F8F8(GameWindowLayout *param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u8 v1;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
@@ -1385,7 +1376,7 @@ void sub_0207F8F8 (GameWindowLayout * param0, u8 param1)
     sub_0201972C(2, &param0->unk_4A4[v1 * 16], 8 * 2, (3 + param1) * 32);
 }
 
-static u8 sub_0207F984 (GameWindowLayout * param0, u8 param1)
+static u8 sub_0207F984(GameWindowLayout *param0, u8 param1)
 {
     if ((param0->unk_5A4->unk_21 == 2) && ((param1 & 1) != 0)) {
         return 1;
@@ -1394,7 +1385,7 @@ static u8 sub_0207F984 (GameWindowLayout * param0, u8 param1)
     return 0;
 }
 
-static void sub_0207F9A0 (GameWindowLayout * param0)
+static void sub_0207F9A0(GameWindowLayout *param0)
 {
     u8 v0, v1;
 
@@ -1404,13 +1395,13 @@ static void sub_0207F9A0 (GameWindowLayout * param0)
 }
 
 static const u8 Unk_020F1BD4[][6] = {
-    {0x0, 0x2, 0x4, 0x1, 0x3, 0x5},
-    {0x1, 0x3, 0x5, 0x0, 0x2, 0x4},
-    {0x4, 0x2, 0x0, 0x5, 0x3, 0x1},
-    {0x5, 0x3, 0x1, 0x4, 0x2, 0x0}
+    { 0x0, 0x2, 0x4, 0x1, 0x3, 0x5 },
+    { 0x1, 0x3, 0x5, 0x0, 0x2, 0x4 },
+    { 0x4, 0x2, 0x0, 0x5, 0x3, 0x1 },
+    { 0x5, 0x3, 0x1, 0x4, 0x2, 0x0 }
 };
 
-static u8 sub_0207FA00 (GameWindowLayout * param0)
+static u8 sub_0207FA00(GameWindowLayout *param0)
 {
     if (sub_0207FA24(param0) == 1) {
         return 1;
@@ -1423,7 +1414,7 @@ static u8 sub_0207FA00 (GameWindowLayout * param0)
     return 5;
 }
 
-static u8 sub_0207FA24 (GameWindowLayout * param0)
+static u8 sub_0207FA24(GameWindowLayout *param0)
 {
     u8 v0;
     u8 v1;
@@ -1498,7 +1489,7 @@ static u8 sub_0207FA24 (GameWindowLayout * param0)
     return 0;
 }
 
-static u8 sub_0207FBE0 (GameWindowLayout * param0, u8 * param1, u8 * param2, u8 param3)
+static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 param3)
 {
     u8 v0 = param0->unk_B11;
 
@@ -1517,7 +1508,7 @@ static u8 sub_0207FBE0 (GameWindowLayout * param0, u8 * param1, u8 * param2, u8 
     return v0;
 }
 
-static u8 sub_0207FC30 (GameWindowLayout * param0, u8 * param1, u8 * param2, const u8 * param3)
+static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u8 *param3)
 {
     u8 v0 = 0;
 
@@ -1538,7 +1529,7 @@ static u8 sub_0207FC30 (GameWindowLayout * param0, u8 * param1, u8 * param2, con
     return 0;
 }
 
-static u8 sub_0207FC94 (GameWindowLayout * param0)
+static u8 sub_0207FC94(GameWindowLayout *param0)
 {
     int v0 = GetValidWindowLayout(param0);
 
@@ -1576,7 +1567,7 @@ static u8 sub_0207FC94 (GameWindowLayout * param0)
     return 0;
 }
 
-void sub_0207FD68 (GameWindowLayout * param0, u8 param1)
+void sub_0207FD68(GameWindowLayout *param0, u8 param1)
 {
     if ((param1 == 6) || (param1 == 7)) {
         sub_02021CAC(param0->unk_5B0[6], 0);
@@ -1603,7 +1594,7 @@ void sub_0207FD68 (GameWindowLayout * param0, u8 param1)
     }
 }
 
-static void sub_0207FE1C (GameWindowLayout * param0)
+static void sub_0207FE1C(GameWindowLayout *param0)
 {
     switch (param0->unk_B0C) {
     case 0:
@@ -1628,7 +1619,7 @@ static void sub_0207FE1C (GameWindowLayout * param0)
     }
 }
 
-static u8 sub_0207FE98 (GameWindowLayout * param0)
+static u8 sub_0207FE98(GameWindowLayout *param0)
 {
     u8 v0;
 
@@ -1694,9 +1685,9 @@ static u8 sub_0207FE98 (GameWindowLayout * param0)
     return v0;
 }
 
-static void sub_0207FFC8 (GameWindowLayout * param0)
+static void sub_0207FFC8(GameWindowLayout *param0)
 {
-    u8 * v0;
+    u8 *v0;
     u8 v1;
 
     sub_0200E084(&param0->unk_04[32], 1);
@@ -1737,9 +1728,9 @@ static void sub_0207FFC8 (GameWindowLayout * param0)
     sub_0200D414(param0->unk_5B0[6], 1);
 }
 
-static u8 sub_020800B4 (GameWindowLayout * param0, u8 * param1)
+static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
 {
-    Pokemon * v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     u16 v1;
     u8 v2 = 0, v3, v4 = 0, v5;
 
@@ -1787,7 +1778,7 @@ static u8 sub_020800B4 (GameWindowLayout * param0, u8 * param1)
     return v4;
 }
 
-static u8 sub_020801AC (GameWindowLayout * param0, u8 * param1)
+static u8 sub_020801AC(GameWindowLayout *param0, u8 *param1)
 {
     param1[0] = 14;
     param1[1] = 9;
@@ -1795,7 +1786,7 @@ static u8 sub_020801AC (GameWindowLayout * param0, u8 * param1)
     return 2;
 }
 
-static u8 sub_020801B8 (GameWindowLayout * param0, u8 * param1)
+static u8 sub_020801B8(GameWindowLayout *param0, u8 *param1)
 {
     if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
         param1[0] = 8;
@@ -1811,7 +1802,7 @@ static u8 sub_020801B8 (GameWindowLayout * param0, u8 * param1)
     return 2;
 }
 
-static u8 sub_020801F0 (GameWindowLayout * param0, u8 * param1)
+static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1)
 {
     if (param0->unk_704[param0->unk_B11].unk_0E_15 == 1) {
         param1[0] = 13;
@@ -1827,7 +1818,7 @@ static u8 sub_020801F0 (GameWindowLayout * param0, u8 * param1)
     return 2;
 }
 
-static u8 sub_0208022C (GameWindowLayout * param0, u8 * param1)
+static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1)
 {
     switch (sub_02080354(param0, param0->unk_B11)) {
     case 0:
@@ -1849,7 +1840,7 @@ static u8 sub_0208022C (GameWindowLayout * param0, u8 * param1)
     return 0;
 }
 
-static u8 sub_0208027C (GameWindowLayout * param0, u8 * param1)
+static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1)
 {
     switch (sub_02080404(param0, param0->unk_B11)) {
     case 0:
@@ -1871,7 +1862,7 @@ static u8 sub_0208027C (GameWindowLayout * param0, u8 * param1)
     return 0;
 }
 
-static u8 sub_020802CC (GameWindowLayout * param0, u8 * param1)
+static u8 sub_020802CC(GameWindowLayout *param0, u8 *param1)
 {
     switch (sub_02080488(param0, param0->unk_B11)) {
     case 0:
@@ -1893,7 +1884,7 @@ static u8 sub_020802CC (GameWindowLayout * param0, u8 * param1)
     return 0;
 }
 
-static u8 sub_0208031C (GameWindowLayout * param0, u8 * param1)
+static u8 sub_0208031C(GameWindowLayout *param0, u8 *param1)
 {
     if (param0->unk_704[param0->unk_B11].unk_10 == 1) {
         param1[0] = 1;
@@ -1908,12 +1899,12 @@ static u8 sub_0208031C (GameWindowLayout * param0, u8 * param1)
     return 2;
 }
 
-u8 sub_02080354 (GameWindowLayout * param0, u8 param1)
+u8 sub_02080354(GameWindowLayout *param0, u8 param1)
 {
     u8 v0;
 
     if (param0->unk_5A4->unk_14 != NULL) {
-        Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+        Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
 
         if (sub_0207A2D0(param0->unk_5A4->unk_14, v1, param0->unk_B20) == 0) {
             return 0;
@@ -1939,7 +1930,7 @@ u8 sub_02080354 (GameWindowLayout * param0, u8 param1)
     return 1;
 }
 
-u8 sub_02080404 (GameWindowLayout * param0, u8 param1)
+u8 sub_02080404(GameWindowLayout *param0, u8 param1)
 {
     u8 v0;
 
@@ -1962,7 +1953,7 @@ u8 sub_02080404 (GameWindowLayout * param0, u8 param1)
     return 1;
 }
 
-u8 sub_02080488 (GameWindowLayout * param0, u8 param1)
+u8 sub_02080488(GameWindowLayout *param0, u8 param1)
 {
     u8 v0;
 
@@ -1985,7 +1976,7 @@ u8 sub_02080488 (GameWindowLayout * param0, u8 param1)
     return 1;
 }
 
-static void sub_02080500 (GameWindowLayout * param0, u8 param1, u8 param2)
+static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2)
 {
     if (param1 == 6) {
         u8 v0 = sub_02021E24(param0->unk_5B0[8]);
@@ -2028,7 +2019,7 @@ static void sub_02080500 (GameWindowLayout * param0, u8 param1, u8 param2)
     sub_0207F8F8(param0, param1);
 }
 
-u8 sub_020805D0 (u8 param0, u8 param1)
+u8 sub_020805D0(u8 param0, u8 param1)
 {
     if ((param1 == 0) || ((param0 != 0) && (param1 == 1))) {
         return 1;
@@ -2037,7 +2028,7 @@ u8 sub_020805D0 (u8 param0, u8 param1)
     return 0;
 }
 
-static u8 sub_020805E4 (GameWindowLayout * param0)
+static u8 sub_020805E4(GameWindowLayout *param0)
 {
     u8 v0;
 
@@ -2074,7 +2065,7 @@ static u8 sub_020805E4 (GameWindowLayout * param0)
     return v0;
 }
 
-static int HandleGameWindowEvent (GameWindowLayout * param0)
+static int HandleGameWindowEvent(GameWindowLayout *param0)
 {
     u8 v0;
 
@@ -2112,9 +2103,8 @@ static int HandleGameWindowEvent (GameWindowLayout * param0)
         case 0:
             break;
 
-        case 1:
-        {
-            Strbuf* v1;
+        case 1: {
+            Strbuf *v1;
             int v2;
 
             v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 184);
@@ -2187,7 +2177,7 @@ static int HandleGameWindowEvent (GameWindowLayout * param0)
     return 32;
 }
 
-static u8 CheckDuplicateValues (GameWindowLayout * param0)
+static u8 CheckDuplicateValues(GameWindowLayout *param0)
 {
     u8 v0, v1;
 
@@ -2214,7 +2204,7 @@ static u8 CheckDuplicateValues (GameWindowLayout * param0)
     return 0;
 }
 
-static u8 CheckUniqueValues (GameWindowLayout * param0)
+static u8 CheckUniqueValues(GameWindowLayout *param0)
 {
     u8 v0, v1;
 
@@ -2237,7 +2227,7 @@ static u8 CheckUniqueValues (GameWindowLayout * param0)
     return 0;
 }
 
-static u8 CheckEqualityInArray (GameWindowLayout * param0)
+static u8 CheckEqualityInArray(GameWindowLayout *param0)
 {
     u8 v0, v1;
 
@@ -2261,27 +2251,27 @@ static u8 CheckEqualityInArray (GameWindowLayout * param0)
 }
 
 static const u8 Unk_020F1BB8[6][2] = {
-    {0x1, 0x3},
-    {0x1A, 0x3},
-    {0x1, 0xA},
-    {0x1A, 0xA},
-    {0x1, 0x11},
-    {0x1A, 0x11}
+    { 0x1, 0x3 },
+    { 0x1A, 0x3 },
+    { 0x1, 0xA },
+    { 0x1A, 0xA },
+    { 0x1, 0x11 },
+    { 0x1A, 0x11 }
 };
 
 static const TouchScreenRect Unk_020F1C94[] = {
-    {0x18, 0x3F, 0x8, 0x2F},
-    {0x18, 0x3F, 0xD0, 0xF7},
-    {0x50, 0x77, 0x8, 0x2F},
-    {0x50, 0x77, 0xD0, 0xF7},
-    {0x88, 0xAF, 0x8, 0x2F},
-    {0x88, 0xAF, 0xD0, 0xF7},
-    {0xFF, 0x0, 0x0, 0x0}
+    { 0x18, 0x3F, 0x8, 0x2F },
+    { 0x18, 0x3F, 0xD0, 0xF7 },
+    { 0x50, 0x77, 0x8, 0x2F },
+    { 0x50, 0x77, 0xD0, 0xF7 },
+    { 0x88, 0xAF, 0x8, 0x2F },
+    { 0x88, 0xAF, 0xD0, 0xF7 },
+    { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-static void UpdateWindowLayout (GameWindowLayout * param0, u8 param1, u8 param2)
+static void UpdateWindowLayout(GameWindowLayout *param0, u8 param1, u8 param2)
 {
-    u16 * v0;
+    u16 *v0;
     u16 v1;
     u8 v2, v3;
     u8 v4, v5;
@@ -2298,13 +2288,13 @@ static void UpdateWindowLayout (GameWindowLayout * param0, u8 param1, u8 param2)
     }
 }
 
-static void CalculateWindowPosition (u8 param0, s16 * param1, s16 * param2)
+static void CalculateWindowPosition(u8 param0, s16 *param1, s16 *param2)
 {
     *param1 = Unk_020F1BB8[param0][0] * 8 + ((5 * 8) >> 1);
     *param2 = Unk_020F1BB8[param0][1] * 8 + ((5 * 8) >> 1);
 }
 
-static int GetValidWindowLayout (GameWindowLayout * param0)
+static int GetValidWindowLayout(GameWindowLayout *param0)
 {
     int v0;
 
@@ -2325,7 +2315,7 @@ static int GetValidWindowLayout (GameWindowLayout * param0)
     return v0;
 }
 
-static u8 HandleWindowInputEvent (GameWindowLayout * param0, int * param1)
+static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
 {
     u32 v0 = sub_02001BE0(param0->unk_700);
 
@@ -2346,8 +2336,7 @@ static u8 HandleWindowInputEvent (GameWindowLayout * param0, int * param1)
 
         sub_0200D414(param0->unk_5B0[6], 0);
         return 1;
-    default:
-    {
+    default: {
         UnkFuncPtr_0207E634 v1 = (UnkFuncPtr_0207E634)v0;
         v1(param0, param1);
     }
@@ -2356,7 +2345,7 @@ static u8 HandleWindowInputEvent (GameWindowLayout * param0, int * param1)
     return 0;
 }
 
-u8 GetElementIndex (u16 param0)
+u8 GetElementIndex(u16 param0)
 {
     u8 v0;
 
@@ -2369,7 +2358,7 @@ u8 GetElementIndex (u16 param0)
     return 0xff;
 }
 
-static int ProcessWindowInput (GameWindowLayout * param0)
+static int ProcessWindowInput(GameWindowLayout *param0)
 {
     switch (param0->unk_B14[1]) {
     case 0:
@@ -2453,10 +2442,10 @@ static int ProcessWindowInput (GameWindowLayout * param0)
         break;
     case 3:
         if (UpdatePokemonStatus(param0, param0->unk_B11, 1) == 1) {
-            Pokemon * v0;
-            Strbuf* v1;
-            void * v2;
-            FieldSystem * fieldSystem;
+            Pokemon *v0;
+            Strbuf *v1;
+            void *v2;
+            FieldSystem *fieldSystem;
 
             v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 64);
@@ -2489,7 +2478,7 @@ static int ProcessWindowInput (GameWindowLayout * param0)
     return 30;
 }
 
-static u8 CheckPokemonCondition (GameWindowLayout * param0)
+static u8 CheckPokemonCondition(GameWindowLayout *param0)
 {
     if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
         return 2;
@@ -2508,7 +2497,7 @@ static u8 CheckPokemonCondition (GameWindowLayout * param0)
     return 0;
 }
 
-static BOOL UpdatePokemonStatus (GameWindowLayout * param0, u8 slot, s8 param2)
+static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
 {
     param0->unk_704[slot].unk_06 += param2;
     param0->unk_B14[2]++;
@@ -2519,8 +2508,8 @@ static BOOL UpdatePokemonStatus (GameWindowLayout * param0, u8 slot, s8 param2)
     sub_02082104(param0, slot);
 
     if ((param0->unk_B14[0] == param0->unk_B14[2]) || (param0->unk_704[slot].unk_06 == param0->unk_704[slot].unk_08)) {
-        Pokemon * mon;
-        u32 v1; 
+        Pokemon *mon;
+        u32 v1;
 
         mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, slot);
         v1 = param0->unk_704[slot].unk_06;
@@ -2531,7 +2520,7 @@ static BOOL UpdatePokemonStatus (GameWindowLayout * param0, u8 slot, s8 param2)
     return 0;
 }
 
-static u8 HandleSpecialInput (GameWindowLayout * param0)
+static u8 HandleSpecialInput(GameWindowLayout *param0)
 {
     u8 v0;
 
@@ -2575,9 +2564,9 @@ static u8 HandleSpecialInput (GameWindowLayout * param0)
     return v0;
 }
 
-static int ApplyItemEffectOnPokemon (GameWindowLayout * param0)
+static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 {
-    ItemData * v0;
+    ItemData *v0;
 
     v0 = Item_Load(param0->unk_5A4->unk_24, 0, 12);
 
@@ -2604,7 +2593,7 @@ static int ApplyItemEffectOnPokemon (GameWindowLayout * param0)
         Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
         if (Item_Get(v0, 26) != 0) {
-            Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+            Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
             param0->unk_5A4->unk_38 = sub_02076B94(NULL, v1, 3, param0->unk_5A4->unk_24, &param0->unk_5A4->unk_3C);
             param0->unk_5A4->unk_23 = 8;
@@ -2613,7 +2602,7 @@ static int ApplyItemEffectOnPokemon (GameWindowLayout * param0)
         }
 
         if ((Item_IsHerbalMedicine(param0->unk_5A4->unk_24) == 1) && (param0->unk_5A4->unk_10 != NULL)) {
-            Pokemon * v2 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+            Pokemon *v2 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             sub_0206D90C(param0->unk_5A4->unk_10, v2, param0->unk_5A4->unk_24);
         }
 
@@ -2628,7 +2617,7 @@ static int ApplyItemEffectOnPokemon (GameWindowLayout * param0)
     return 5;
 }
 
-static u8 CheckItemUsageValidity (GameWindowLayout * param0)
+static u8 CheckItemUsageValidity(GameWindowLayout *param0)
 {
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
         return 0;
@@ -2639,12 +2628,12 @@ static u8 CheckItemUsageValidity (GameWindowLayout * param0)
     return 1;
 }
 
-static int ProcessItemApplication (GameWindowLayout * param0)
+static int ProcessItemApplication(GameWindowLayout *param0)
 {
-    Pokemon * v0;
-    Window * v1;
+    Pokemon *v0;
+    Window *v1;
     int v2 = -1, v3;
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     v1 = &param0->unk_04[34];
@@ -2703,10 +2692,10 @@ static int ProcessItemApplication (GameWindowLayout * param0)
     return v2;
 }
 
-static int UpdatePokemonWithItem (GameWindowLayout * param0, Pokemon * param1, int * param2)
+static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int *param2)
 {
     u32 v0 = param0->unk_5A4->unk_24;
-    FieldSystem * fieldSystem;
+    FieldSystem *fieldSystem;
 
     fieldSystem = param0->unk_5A4->unk_1C;
 
@@ -2730,7 +2719,7 @@ static int UpdatePokemonWithItem (GameWindowLayout * param0, Pokemon * param1, i
     return 11;
 }
 
-static void SwapPokemonItem (GameWindowLayout * param0, Pokemon * param1, u32 param2, u32 param3)
+static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *param1, u32 param2, u32 param3)
 {
     Bag_TryAddItem(param0->unk_5A4->unk_04, (u16)param2, 1, 12);
     Pokemon_SetValue(param1, 6, &param3);
@@ -2740,7 +2729,7 @@ static void SwapPokemonItem (GameWindowLayout * param0, Pokemon * param1, u32 pa
     sub_02083040(param0, param0->unk_B11, param0->unk_704[param0->unk_B11].unk_0C);
 }
 
-static int HandleMessageCompletion (GameWindowLayout * param0)
+static int HandleMessageCompletion(GameWindowLayout *param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
@@ -2751,7 +2740,7 @@ static int HandleMessageCompletion (GameWindowLayout * param0)
     return 11;
 }
 
-static int ProcessMessageResult (GameWindowLayout * param0)
+static int ProcessMessageResult(GameWindowLayout *param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
         if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
@@ -2764,7 +2753,7 @@ static int ProcessMessageResult (GameWindowLayout * param0)
     return 12;
 }
 
-static int HandleOverlayCompletion (GameWindowLayout * param0)
+static int HandleOverlayCompletion(GameWindowLayout *param0)
 {
     if (ov118_021D0DBC(param0) == 1) {
         UnloadOverlay118(param0);
@@ -2775,7 +2764,7 @@ static int HandleOverlayCompletion (GameWindowLayout * param0)
     return 13;
 }
 
-static int FinalizeMessageProcessing (GameWindowLayout * param0)
+static int FinalizeMessageProcessing(GameWindowLayout *param0)
 {
     if (Message_Printing(param0->unk_B10) == 0) {
         sub_020827EC(param0);
@@ -2785,15 +2774,14 @@ static int FinalizeMessageProcessing (GameWindowLayout * param0)
     return 9;
 }
 
-static int ProcessPokemonItemSwap (GameWindowLayout * param0)
+static int ProcessPokemonItemSwap(GameWindowLayout *param0)
 {
     int v0, v1;
 
     switch (sub_02002114(param0->unk_700, 12)) {
-    case 0:
-    {
-        Pokemon * v2;
-        Window * v3;
+    case 0: {
+        Pokemon *v2;
+        Window *v3;
         u32 v4;
         u32 v5;
 
@@ -2838,7 +2826,7 @@ static int ProcessPokemonItemSwap (GameWindowLayout * param0)
     return 10;
 }
 
-static int ResetWindowOnInput (GameWindowLayout * param0)
+static int ResetWindowOnInput(GameWindowLayout *param0)
 {
     if (param0->unk_5A4->unk_20 == 10) {
         sub_0200E084(&param0->unk_04[34], 1);
@@ -2852,10 +2840,10 @@ static int ResetWindowOnInput (GameWindowLayout * param0)
     return 32;
 }
 
-static int UpdatePokemonFormWithItem (GameWindowLayout * param0)
+static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
 {
-    Pokemon * v0;
-    Window * v1;
+    Pokemon *v0;
+    Window *v1;
     u32 v2;
     u32 v3;
     int v4, v5;
@@ -2894,7 +2882,7 @@ static int UpdatePokemonFormWithItem (GameWindowLayout * param0)
     return v4;
 }
 
-static int CheckForItemApplication (GameWindowLayout * param0)
+static int CheckForItemApplication(GameWindowLayout *param0)
 {
     if (param0->unk_704[param0->unk_B11].unk_12 == 0) {
         param0->unk_5A4->unk_23 = 0;
@@ -2909,7 +2897,7 @@ static int CheckForItemApplication (GameWindowLayout * param0)
     return 24;
 }
 
-static BOOL ValidateGameWindowState (GameWindowLayout * param0)
+static BOOL ValidateGameWindowState(GameWindowLayout *param0)
 {
     if ((param0->unk_5A4->unk_20 == 5) || (param0->unk_5A4->unk_20 == 6) || (param0->unk_5A4->unk_20 == 7) || (param0->unk_5A4->unk_20 == 8) || (param0->unk_5A4->unk_20 == 9) || (param0->unk_5A4->unk_20 == 11) || (param0->unk_5A4->unk_20 == 14) || (param0->unk_5A4->unk_20 == 16) || (param0->unk_5A4->unk_20 == 20)) {
         return 0;
@@ -2918,31 +2906,31 @@ static BOOL ValidateGameWindowState (GameWindowLayout * param0)
     return 1;
 }
 
-u32 sub_02081930 (void)
+u32 sub_02081930(void)
 {
     return 20;
 }
 
-u32 sub_02081934 (void)
+u32 sub_02081934(void)
 {
     return 21;
 }
 
-u32 sub_02081938 (void)
+u32 sub_02081938(void)
 {
     return 19;
 }
 
-u32 sub_0208193C (void)
+u32 sub_0208193C(void)
 {
     return 18;
 }
 
-void LoadScreenDataFromNARC (u32 param0, u16 * param1, u16 * param2, u16 * param3)
+void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3)
 {
-    NNSG2dScreenData * v0;
-    void * v1;
-    u16 * v2;
+    NNSG2dScreenData *v0;
+    void *v1;
+    u16 *v2;
     u32 v3;
 
     v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 22, param0);
@@ -2958,13 +2946,13 @@ void LoadScreenDataFromNARC (u32 param0, u16 * param1, u16 * param2, u16 * param
     Heap_FreeToHeap(v1);
 }
 
-void LoadOverlay118 (GameWindowLayout * param0)
+void LoadOverlay118(GameWindowLayout *param0)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay118), 2);
     ov118_021D0D80(param0);
 }
 
-void UnloadOverlay118 (GameWindowLayout * param0)
+void UnloadOverlay118(GameWindowLayout *param0)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay118));
 }

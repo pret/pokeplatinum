@@ -1,37 +1,38 @@
+#include "unk_02054D00.h"
+
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/struct_02055130.h"
+
+#include "field/field_system.h"
+#include "overlay005/ov5_021E15F4.h"
+#include "overlay005/ov5_021E779C.h"
+#include "overlay005/ov5_021EEC68.h"
+#include "overlay005/ov5_021EF250.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EF13C_decl.h"
 
-#include "field/field_system.h"
-#include "struct_defs/struct_02055130.h"
-
 #include "unk_02039C80.h"
 #include "unk_02054BD0.h"
-#include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "unk_02068344.h"
-#include "overlay005/ov5_021E15F4.h"
-#include "overlay005/ov5_021E779C.h"
-#include "overlay005/ov5_021EEC68.h"
-#include "overlay005/ov5_021EF250.h"
 
-typedef const fx32 (* UnkFuncPtr_02054F44)(const FieldSystem *, const fx32, const fx32, const fx32, u8 *);
-typedef BOOL (* UnkFuncPtr_02054F44_1)(const FieldSystem *, const int, const int, u16 *);
+typedef const fx32 (*UnkFuncPtr_02054F44)(const FieldSystem *, const fx32, const fx32, const fx32, u8 *);
+typedef BOOL (*UnkFuncPtr_02054F44_1)(const FieldSystem *, const int, const int, u16 *);
 
 typedef struct UnkStruct_02054F44_t {
     UnkFuncPtr_02054F44 unk_00;
     UnkFuncPtr_02054F44_1 unk_04;
 } UnkStruct_02054F44;
 
-static const fx32 sub_02054D0C(const FieldSystem * fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 * param4);
-static const fx32 sub_02054E50(const FieldSystem * fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 * param4);
-static BOOL sub_02054E84(const FieldSystem * fieldSystem, const int param1, const int param2, u16 * param3);
-static BOOL sub_02054EF4(const FieldSystem * fieldSystem, const int param1, const int param2, u16 * param3);
-static int sub_02054FD0(const FieldSystem * fieldSystem, const VecFx32 * param1, const int param2, const int param3, u8 * param4);
+static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
+static const fx32 sub_02054E50(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4);
+static BOOL sub_02054E84(const FieldSystem *fieldSystem, const int param1, const int param2, u16 *param3);
+static BOOL sub_02054EF4(const FieldSystem *fieldSystem, const int param1, const int param2, u16 *param3);
+static int sub_02054FD0(const FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, u8 *param4);
 
 static const UnkStruct_02054F44 Unk_020EC3D0 = {
     sub_02054D0C,
@@ -43,7 +44,7 @@ static const UnkStruct_02054F44 Unk_020EC3D8 = {
     sub_02054EF4
 };
 
-static fx32 sub_02054D00 (const fx32 param0, const fx32 param1)
+static fx32 sub_02054D00(const fx32 param0, const fx32 param1)
 {
     fx32 v0;
 
@@ -56,7 +57,7 @@ static fx32 sub_02054D00 (const fx32 param0, const fx32 param1)
     return v0;
 }
 
-static const fx32 sub_02054D0C (const FieldSystem * fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 * param4)
+static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4)
 {
     BOOL v0, v1;
     u8 v2;
@@ -72,7 +73,7 @@ static const fx32 sub_02054D0C (const FieldSystem * fieldSystem, const fx32 para
     fx32 v15;
     fx32 v16;
     VecFx32 v17;
-    const UnkStruct_ov5_021E8F60 * v18 = fieldSystem->unk_28;
+    const UnkStruct_ov5_021E8F60 *v18 = fieldSystem->unk_28;
 
     ov5_021EA6BC(v18, &v17);
 
@@ -111,7 +112,7 @@ static const fx32 sub_02054D0C (const FieldSystem * fieldSystem, const fx32 para
             v1 = 0;
         } else {
             {
-                const UnkStruct_ov5_021EF13C * v21 = ov5_021E9610(v18, v8);
+                const UnkStruct_ov5_021EF13C *v21 = ov5_021E9610(v18, v8);
                 v1 = ov5_021EED9C(v16, v11.x, v11.z, v21, &v11.y);
             }
         }
@@ -162,7 +163,7 @@ static const fx32 sub_02054D0C (const FieldSystem * fieldSystem, const fx32 para
     return v15;
 }
 
-static const fx32 sub_02054E50 (const FieldSystem * fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 * param4)
+static const fx32 sub_02054E50(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4)
 {
     BOOL v0;
     int v1, v2;
@@ -188,14 +189,14 @@ static const fx32 sub_02054E50 (const FieldSystem * fieldSystem, const fx32 para
     return v3;
 }
 
-static BOOL sub_02054E84 (const FieldSystem * fieldSystem, const int param1, const int param2, u16 * param3)
+static BOOL sub_02054E84(const FieldSystem *fieldSystem, const int param1, const int param2, u16 *param3)
 {
     BOOL v0;
     u32 v1, v2;
     u32 v3;
     u8 v4;
     int v5, v6;
-    const UnkStruct_ov5_021E8F60 * v7 = fieldSystem->unk_28;
+    const UnkStruct_ov5_021E8F60 *v7 = fieldSystem->unk_28;
     u32 v8;
     u8 v9;
 
@@ -214,7 +215,7 @@ static BOOL sub_02054E84 (const FieldSystem * fieldSystem, const int param1, con
 
         {
             u32 v11;
-            u16 const * v12;
+            u16 const *v12;
 
             v11 = (v6 % 32) * 32 + (v5 % 32);
 
@@ -226,7 +227,7 @@ static BOOL sub_02054E84 (const FieldSystem * fieldSystem, const int param1, con
     }
 }
 
-static BOOL sub_02054EF4 (const FieldSystem * fieldSystem, const int param1, const int param2, u16 * param3)
+static BOOL sub_02054EF4(const FieldSystem *fieldSystem, const int param1, const int param2, u16 *param3)
 {
     BOOL v0;
     u32 v1, v2;
@@ -238,7 +239,7 @@ static BOOL sub_02054EF4 (const FieldSystem * fieldSystem, const int param1, con
     {
         int v7;
         int v8;
-        const UnkStruct_ov5_021E8F60 * v9 = fieldSystem->unk_28;
+        const UnkStruct_ov5_021E8F60 *v9 = fieldSystem->unk_28;
 
         v7 = sub_02039E10(fieldSystem->unk_2C);
         v8 = v7 * 32;
@@ -248,7 +249,7 @@ static BOOL sub_02054EF4 (const FieldSystem * fieldSystem, const int param1, con
 
         {
             u32 v10;
-            u16 const * v11;
+            u16 const *v11;
 
             v10 = (param2 % 32) * 32 + (param1 % 32);
 
@@ -260,7 +261,7 @@ static BOOL sub_02054EF4 (const FieldSystem * fieldSystem, const int param1, con
     }
 }
 
-void sub_02054F44 (const UnkStruct_02054F44 ** param0, int param1)
+void sub_02054F44(const UnkStruct_02054F44 **param0, int param1)
 {
     if (param1 == 0) {
         *param0 = &Unk_020EC3D0;
@@ -271,7 +272,7 @@ void sub_02054F44 (const UnkStruct_02054F44 ** param0, int param1)
     }
 }
 
-BOOL FieldSystem_CheckCollision (const FieldSystem * fieldSystem, const int param1, const int param2)
+BOOL FieldSystem_CheckCollision(const FieldSystem *fieldSystem, const int param1, const int param2)
 {
     BOOL v0;
     u16 v1;
@@ -292,7 +293,7 @@ BOOL FieldSystem_CheckCollision (const FieldSystem * fieldSystem, const int para
     return 0;
 }
 
-u8 sub_02054F94 (const FieldSystem * fieldSystem, const int param1, const int param2)
+u8 sub_02054F94(const FieldSystem *fieldSystem, const int param1, const int param2)
 {
     BOOL v0;
     u16 v1;
@@ -311,7 +312,7 @@ u8 sub_02054F94 (const FieldSystem * fieldSystem, const int param1, const int pa
     return 0xff;
 }
 
-const fx32 sub_02054FBC (const FieldSystem * fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 * param4)
+const fx32 sub_02054FBC(const FieldSystem *fieldSystem, const fx32 param1, const fx32 param2, const fx32 param3, u8 *param4)
 {
     BOOL v0;
     fx32 v1;
@@ -321,7 +322,7 @@ const fx32 sub_02054FBC (const FieldSystem * fieldSystem, const fx32 param1, con
     return v1;
 }
 
-static int sub_02054FD0 (const FieldSystem * fieldSystem, const VecFx32 * param1, const int param2, const int param3, u8 * param4)
+static int sub_02054FD0(const FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, u8 *param4)
 {
     int v0;
     fx32 v1, v2;
@@ -355,7 +356,7 @@ static int sub_02054FD0 (const FieldSystem * fieldSystem, const VecFx32 * param1
     return v0;
 }
 
-BOOL sub_02055024 (const FieldSystem * fieldSystem, const VecFx32 * param1, const int param2, const int param3, s8 * param4)
+BOOL sub_02055024(const FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, s8 *param4)
 {
     int v0;
     u8 v1;
@@ -385,7 +386,7 @@ BOOL sub_02055024 (const FieldSystem * fieldSystem, const VecFx32 * param1, cons
     }
 }
 
-BOOL sub_0205507C (FieldSystem * fieldSystem, const VecFx32 * param1, const int param2, const int param3, s8 * param4)
+BOOL sub_0205507C(FieldSystem *fieldSystem, const VecFx32 *param1, const int param2, const int param3, s8 *param4)
 {
     int v0;
     u8 v1;
@@ -422,7 +423,7 @@ BOOL sub_0205507C (FieldSystem * fieldSystem, const VecFx32 * param1, const int 
     }
 }
 
-void sub_020550F4 (const int param0, const int param1, const int param2, const int param3, const u32 param4, const u32 param5, UnkStruct_02055130 * param6)
+void sub_020550F4(const int param0, const int param1, const int param2, const int param3, const u32 param4, const u32 param5, UnkStruct_02055130 *param6)
 {
     int v0, v1, v2, v3;
 
@@ -442,7 +443,7 @@ void sub_020550F4 (const int param0, const int param1, const int param2, const i
     param6->unk_0C = v3 * 16 * FX32_ONE;
 }
 
-BOOL sub_02055130 (const UnkStruct_ov5_021E1890 * param0, const UnkStruct_02055130 * param1, const VecFx32 * param2)
+BOOL sub_02055130(const UnkStruct_ov5_021E1890 *param0, const UnkStruct_02055130 *param1, const VecFx32 *param2)
 {
     VecFx32 v0;
 
@@ -458,10 +459,10 @@ BOOL sub_02055130 (const UnkStruct_ov5_021E1890 * param0, const UnkStruct_020551
     return 0;
 }
 
-BOOL sub_02055178 (const FieldSystem * fieldSystem, const int param1, const UnkStruct_02055130 * param2, UnkStruct_ov5_021E1890 ** param3)
+BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStruct_02055130 *param2, UnkStruct_ov5_021E1890 **param3)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 * v1;
+    UnkStruct_ov5_021E1608 *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -483,7 +484,7 @@ BOOL sub_02055178 (const FieldSystem * fieldSystem, const int param1, const UnkS
             sub_020553A4(v4, v5, &v3);
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 * v7;
+                UnkStruct_ov5_021E1890 *v7;
 
                 v7 = ov5_021E18C4(v1, v2);
                 v6 = sub_02055130(v7, param2, &v3);
@@ -508,10 +509,10 @@ BOOL sub_02055178 (const FieldSystem * fieldSystem, const int param1, const UnkS
     return 0;
 }
 
-BOOL sub_02055208 (const FieldSystem * fieldSystem, const int * param1, const u8 param2, const UnkStruct_02055130 * param3, UnkStruct_ov5_021E1890 ** param4, int * param5)
+BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 param2, const UnkStruct_02055130 *param3, UnkStruct_ov5_021E1890 **param4, int *param5)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 * v1;
+    UnkStruct_ov5_021E1608 *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -533,7 +534,7 @@ BOOL sub_02055208 (const FieldSystem * fieldSystem, const int * param1, const u8
             sub_020553A4(v4, v5, &v3);
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 * v7;
+                UnkStruct_ov5_021E1890 *v7;
 
                 v7 = ov5_021E18C4(v1, v2);
                 v6 = sub_02055130(v7, param3, &v3);
@@ -565,10 +566,10 @@ BOOL sub_02055208 (const FieldSystem * fieldSystem, const int * param1, const u8
     return 0;
 }
 
-BOOL sub_020552B4 (const FieldSystem * fieldSystem, const int param1, UnkStruct_ov5_021E1890 ** param2, int * param3)
+BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, UnkStruct_ov5_021E1890 **param2, int *param3)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 * v1;
+    UnkStruct_ov5_021E1608 *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -581,7 +582,7 @@ BOOL sub_020552B4 (const FieldSystem * fieldSystem, const int param1, UnkStruct_
             u8 v2;
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 * v3;
+                UnkStruct_ov5_021E1890 *v3;
 
                 v3 = ov5_021E18C4(v1, v2);
                 {
@@ -609,10 +610,10 @@ BOOL sub_020552B4 (const FieldSystem * fieldSystem, const int param1, UnkStruct_
     return 0;
 }
 
-BOOL sub_02055324 (const FieldSystem * fieldSystem, const int * param1, const u8 param2, UnkStruct_ov5_021E1890 ** param3, int * param4)
+BOOL sub_02055324(const FieldSystem *fieldSystem, const int *param1, const u8 param2, UnkStruct_ov5_021E1890 **param3, int *param4)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 * v1;
+    UnkStruct_ov5_021E1608 *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -625,7 +626,7 @@ BOOL sub_02055324 (const FieldSystem * fieldSystem, const int * param1, const u8
             u8 v2;
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 * v3;
+                UnkStruct_ov5_021E1890 *v3;
 
                 v3 = ov5_021E18C4(v1, v2);
                 {
@@ -655,7 +656,7 @@ BOOL sub_02055324 (const FieldSystem * fieldSystem, const int * param1, const u8
     return 0;
 }
 
-void sub_020553A4 (const int param0, const int param1, VecFx32 * param2)
+void sub_020553A4(const int param0, const int param1, VecFx32 *param2)
 {
     u16 v0;
     u16 v1;

@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_POKEMON_SUMMARY_H
 #define POKEPLATINUM_STRUCT_POKEMON_SUMMARY_H
 
-#include "game_options.h"
 #include "struct_defs/chatot_cry.h"
+
+#include "game_options.h"
 
 typedef struct PokemonSummary {
     void *monData; //!< Pointer to generic Pokemon data

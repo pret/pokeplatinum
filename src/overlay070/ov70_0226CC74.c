@@ -1,33 +1,34 @@
+#include "overlay070/ov70_0226CC74.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
+#include "overlay063/ov63_0222BE18.h"
+#include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
+#include "overlay070/ov70_0225C9B4.h"
+#include "overlay070/ov70_0225D9A4.h"
+#include "overlay070/ov70_02262DA8.h"
 #include "overlay070/struct_ov70_0225CA20_decl.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
 #include "overlay070/struct_ov70_0225DEE8_decl.h"
 #include "overlay070/struct_ov70_02263344_decl.h"
 
+#include "strbuf.h"
 #include "unk_02005474.h"
-#include "overlay063/ov63_0222BE18.h"
-#include "overlay066/ov66_0222DDF0.h"
-#include "overlay070/ov70_0225C9B4.h"
-#include "overlay070/ov70_0225D9A4.h"
-#include "overlay070/ov70_02262DA8.h"
-#include "overlay070/ov70_0226CC74.h"
 
 typedef struct {
     u32 unk_00;
 } UnkStruct_ov70_0226CC74;
 
-BOOL ov70_0226CC74 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * param1, u32 param2)
+BOOL ov70_0226CC74(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2)
 {
-    UnkStruct_ov70_0226CC74 * v0;
-    UnkStruct_ov66_0222DFF8 * v1;
-    UnkStruct_ov70_0225CA20 * v2;
-    UnkStruct_ov70_0225CC54 * v3;
-    UnkStruct_ov70_0225CC54 * v4;
-    Strbuf* v5;
+    UnkStruct_ov70_0226CC74 *v0;
+    UnkStruct_ov66_0222DFF8 *v1;
+    UnkStruct_ov70_0225CA20 *v2;
+    UnkStruct_ov70_0225CC54 *v3;
+    UnkStruct_ov70_0225CC54 *v4;
+    Strbuf *v5;
 
     v0 = ov70_02262E80(param0);
     v1 = ov70_0225DEE8(param1);
@@ -59,7 +60,7 @@ BOOL ov70_0226CC74 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             break;
         }
 
-        if ((ov66_0222E19C(v1) == 1)) {
+        if (ov66_0222E19C(v1) == 1) {
             v5 = ov70_0225E20C(param1, 1, 88);
             v0->unk_00 = 4;
             ov70_0225DF8C(param1, v5);
@@ -86,8 +87,7 @@ BOOL ov70_0226CC74 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         ov70_0225E164(param1);
         ov70_02262E88(param0, 2);
         break;
-    case 2:
-    {
+    case 2: {
         int v7;
 
         v7 = ov70_0225E1C4(param1);
@@ -105,8 +105,7 @@ BOOL ov70_0226CC74 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         case 2:
             break;
         }
-    }
-    break;
+    } break;
     case 3:
         v5 = ov70_0225E20C(param1, 1, 85);
         v0->unk_00 = 4;

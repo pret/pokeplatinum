@@ -17,7 +17,7 @@ typedef struct UnkStruct_ov19_021D6104_t {
     int unk_24;
     TouchScreenHitTable unk_28;
     TouchScreenHitTable unk_2C;
-    int (* unk_30)(struct UnkStruct_ov19_021D6104_t *, BOOL, BOOL);
+    int (*unk_30)(struct UnkStruct_ov19_021D6104_t *, BOOL, BOOL);
 } UnkStruct_ov19_021D6104;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D6104_H

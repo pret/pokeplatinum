@@ -3,27 +3,27 @@
 
 #include "touch_screen.h"
 
-#define BUTTON_TIMER_MAX 0xffff
+#define BUTTON_TIMER_MAX                     0xffff
 #define BUTTON_MANAGER_NUM_TIMERS_PER_BUTTON 2
 
-typedef void (* PoketchButtonCallback)(u32, u32, u32, void *);
+typedef void (*PoketchButtonCallback)(u32, u32, u32, void *);
 
 enum ButtonManagerState {
-	BUTTON_MANAGER_STATE_NULL = 0,
-	BUTTON_MANAGER_STATE_TOUCH,
-	BUTTON_MANAGER_STATE_DRAGGING,
-	BUTTON_MANAGER_STATE_TAP,
-	BUTTON_MANAGER_STATE_DOUBLE_TAP,
-	BUTTON_MANAGER_STATE_TIMER0,
-	BUTTON_MANAGER_STATE_TIMER1,
-	BUTTON_MANAGER_STATE_REPEAT,
+    BUTTON_MANAGER_STATE_NULL = 0,
+    BUTTON_MANAGER_STATE_TOUCH,
+    BUTTON_MANAGER_STATE_DRAGGING,
+    BUTTON_MANAGER_STATE_TAP,
+    BUTTON_MANAGER_STATE_DOUBLE_TAP,
+    BUTTON_MANAGER_STATE_TIMER0,
+    BUTTON_MANAGER_STATE_TIMER1,
+    BUTTON_MANAGER_STATE_REPEAT,
 };
 
 /** Button states similar to a game input */
 enum ButtonTouchState {
-	BUTTON_TOUCH_PRESSED = 0,     //!< up last frame, down this frame
-	BUTTON_TOUCH_RELEASED,        //!< down last frame, up this frame
-	BUTTON_TOUCH_DOWN,            //!< down last frame, down this frame
+    BUTTON_TOUCH_PRESSED = 0, //!< up last frame, down this frame
+    BUTTON_TOUCH_RELEASED, //!< down last frame, up this frame
+    BUTTON_TOUCH_DOWN, //!< down last frame, down this frame
 };
 
 /** States in the Button State Machine */
@@ -47,15 +47,15 @@ typedef struct PoketchButton {
 } PoketchButton;
 
 typedef struct PoketchButtonManager {
-    const TouchScreenHitTable * hitTable;
+    const TouchScreenHitTable *hitTable;
     PoketchButtonCallback callback;
     u32 heapID;
     u32 numButtons;
-    void * buttonCallbackData;
-    PoketchButton * buttons;
+    void *buttonCallbackData;
+    PoketchButton *buttons;
 } PoketchButtonManager;
 
-PoketchButtonManager * PoketchButtonManager_New(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID);
+PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID);
 void PoketchButtonManager_Free(PoketchButtonManager *buttonManager);
 void PoketchButtonManager_Update(PoketchButtonManager *buttonManager);
 void PoketchButtonManager_SetButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time);

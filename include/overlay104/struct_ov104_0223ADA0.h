@@ -1,12 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_0223ADA0_H
 #define POKEPLATINUM_STRUCT_OV104_0223ADA0_H
 
-#include "sys_task_manager.h"
-#include "struct_defs/struct_0202FF58.h"
 #include "struct_decls/struct_party_decl.h"
-#include "savedata.h"
+#include "struct_defs/struct_0202FF58.h"
+
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
+
+#include "savedata.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     int unk_00;
@@ -33,14 +35,14 @@ typedef struct {
     u32 unk_3E0[4];
     UnkStruct_ov104_0223A348_sub2 unk_3F0[4];
     u16 unk_4D0;
-    Party * unk_4D4;
-    Party * unk_4D8;
+    Party *unk_4D4;
+    Party *unk_4D8;
     u16 unk_4DC[6];
     u16 unk_4E8[6];
-    UnkStruct_0202FF58 * unk_4F4;
-    SaveData * unk_4F8;
-    void * unk_4FC;
-    SysTask * unk_500;
+    UnkStruct_0202FF58 *unk_4F4;
+    SaveData *unk_4F8;
+    void *unk_4FC;
+    SysTask *unk_500;
     u16 unk_504[60];
     u8 unk_57C;
     u8 unk_57D;

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV84_0223BA5C_H
 #define POKEPLATINUM_STRUCT_OV84_0223BA5C_H
 
-
 #include <nitro/gx.h>
 
 typedef struct {

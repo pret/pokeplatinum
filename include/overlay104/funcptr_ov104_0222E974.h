@@ -3,6 +3,6 @@
 
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
-typedef BOOL (* UnkFuncPtr_ov104_0222E974)(UnkStruct_ov104_0222E930 *);
+typedef BOOL (*UnkFuncPtr_ov104_0222E974)(UnkStruct_ov104_0222E930 *);
 
 #endif // POKEPLATINUM_FUNCPTR_OV104_0222E974_H

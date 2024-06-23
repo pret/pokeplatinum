@@ -1,32 +1,33 @@
+#include "overlay023/ov23_022499E4.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "sys_task_manager.h"
+#include "struct_defs/struct_0205964C.h"
 
 #include "field/field_system.h"
-#include "struct_defs/struct_0205964C.h"
 #include "functypes/funcptr_020598EC.h"
-
-#include "sys_task.h"
-#include "heap.h"
-#include "unk_0202CD50.h"
-#include "communication_information.h"
-#include "unk_02033200.h"
-#include "communication_system.h"
-#include "unk_020366A0.h"
-#include "field_system.h"
-#include "vars_flags.h"
-#include "comm_player_manager.h"
-#include "field_comm_manager.h"
-#include "unk_0206A8DC.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
-#include "overlay023/ov23_022499E4.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 
-static void ov97_0222D19C(SysTask * param0, void * param1);
+#include "comm_player_manager.h"
+#include "communication_information.h"
+#include "communication_system.h"
+#include "field_comm_manager.h"
+#include "field_system.h"
+#include "heap.h"
+#include "sys_task.h"
+#include "sys_task_manager.h"
+#include "unk_0202CD50.h"
+#include "unk_02033200.h"
+#include "unk_020366A0.h"
+#include "unk_0206A8DC.h"
+#include "vars_flags.h"
+
+static void ov97_0222D19C(SysTask *param0, void *param1);
 static void ov23_02249C24(FieldCommTask param0, int param1);
 static void ov23_02249C34(void);
 static void ov23_02249C98(void);
@@ -59,14 +60,14 @@ static void ov23_0224A180(void);
 static void ov23_0224A184(void);
 static void ov23_0224A024(void);
 static void ov23_0224A064(void);
-static void ov23_022499E4 (char * param0)
+static void ov23_022499E4(char *param0)
 {
     return;
 }
 
-void ov23_022499E8 (FieldSystem * fieldSystem)
+void ov23_022499E8(FieldSystem *fieldSystem)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0 != NULL) {
         return;
@@ -83,9 +84,9 @@ void ov23_022499E8 (FieldSystem * fieldSystem)
     }
 }
 
-void ov23_02249A2C (void)
+void ov23_02249A2C(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     v0->unk_41 = 1;
     sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 36);
@@ -94,9 +95,9 @@ void ov23_02249A2C (void)
     ov23_02249C24(ov23_02249C34, 0);
 }
 
-void ov23_02249A5C (void)
+void ov23_02249A5C(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0 == NULL) {
         return;
@@ -105,13 +106,13 @@ void ov23_02249A5C (void)
     ov23_02249C24(ov23_0224A1A0, 3);
 }
 
-void ov23_02249A74 (void)
+void ov23_02249A74(void)
 {
     sub_02036884();
     ov23_02249C24(ov23_0224A02C, 0);
 }
 
-static void ov23_02249A88 (void)
+static void ov23_02249A88(void)
 {
     if (!sub_02033DFC()) {
         ov23_0224C198();
@@ -119,15 +120,15 @@ static void ov23_02249A88 (void)
     }
 }
 
-void ov23_02249AA4 (void)
+void ov23_02249AA4(void)
 {
     sub_020368A4();
     ov23_02249C24(ov23_02249A88, 0);
 }
 
-BOOL ov23_02249AB8 (void)
+BOOL ov23_02249AB8(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
     int v1;
     u32 v2 = (u32)v0->task;
     u32 v3 = (u32)ov23_02249E18;
@@ -164,9 +165,9 @@ BOOL ov23_02249AB8 (void)
     return 0;
 }
 
-BOOL ov23_02249B60 (void)
+BOOL ov23_02249B60(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
     u32 v1 = (u32)v0->task;
     u32 v2 = (u32)ov23_02249E98;
     u32 v3 = (u32)ov23_0224A0E0;
@@ -190,9 +191,9 @@ BOOL ov23_02249B60 (void)
     return 0;
 }
 
-BOOL ov23_02249BD4 (void)
+BOOL ov23_02249BD4(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
     int v1;
     u32 v2[] = {
         (u32)ov23_0224A09C,
@@ -224,9 +225,9 @@ BOOL ov23_02249BD4 (void)
     return 0;
 }
 
-static void ov97_0222D19C (SysTask * param0, void * param1)
+static void ov97_0222D19C(SysTask *param0, void *param1)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0 == NULL) {
         SysTask_Done(param0);
@@ -241,17 +242,17 @@ static void ov97_0222D19C (SysTask * param0, void * param1)
     }
 }
 
-static void ov23_02249C24 (FieldCommTask param0, int param1)
+static void ov23_02249C24(FieldCommTask param0, int param1)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     v0->task = param0;
     v0->timer = param1;
 }
 
-static void ov23_02249C34 (void)
+static void ov23_02249C34(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0->timer != 0) {
         v0->timer--;
@@ -278,9 +279,9 @@ static void ov23_02249C34 (void)
     }
 }
 
-static void ov23_02249C98 (void)
+static void ov23_02249C98(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (!sub_0206ADDC(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
         return;
@@ -292,9 +293,9 @@ static void ov23_02249C98 (void)
     ov23_02249C24(ov23_02249CE4, 12 * 2);
 }
 
-static void ov23_02249CC4 (void)
+static void ov23_02249CC4(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0->timer != 0) {
         v0->timer--;
@@ -304,7 +305,7 @@ static void ov23_02249CC4 (void)
     ov23_02249C24(ov23_02249CE4, 12 * 2);
 }
 
-static void ov23_02249CE4 (void)
+static void ov23_02249CE4(void)
 {
     ov23_02242B14();
     sub_02059524();
@@ -319,9 +320,9 @@ static void ov23_02249CE4 (void)
     }
 }
 
-static void ov23_02249D20 (void)
+static void ov23_02249D20(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0->timer != 0) {
         v0->timer--;
@@ -354,9 +355,9 @@ static void ov23_02249D20 (void)
     }
 }
 
-static void ov23_02249DBC (void)
+static void ov23_02249DBC(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     ov23_02242B14();
 
@@ -382,9 +383,9 @@ static void ov23_02249DBC (void)
     }
 }
 
-static void ov23_02249E18 (void)
+static void ov23_02249E18(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     ov23_02242B14();
 
@@ -392,7 +393,7 @@ static void ov23_02249E18 (void)
         return;
     }
 
-    if (CommSys_CheckError() || !CommServerClient_IsClientConnecting() || ((!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()))) {
+    if (CommSys_CheckError() || !CommServerClient_IsClientConnecting() || (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone())) {
         ov23_0224B5CC(0);
         ov23_0224AA84();
         ov23_0224DA8C();
@@ -407,29 +408,29 @@ static void ov23_02249E18 (void)
     }
 }
 
-static void ov23_02249E84 (void)
+static void ov23_02249E84(void)
 {
     CommPlayerMan_Reset();
     ov23_02249C24(ov23_02249E98, 0);
 }
 
-static void ov23_02249E98 (void)
+static void ov23_02249E98(void)
 {
     ov23_02242B14();
 }
 
-static void ov23_02249EA0 (void)
+static void ov23_02249EA0(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     ov23_0224C198();
     CommPlayerMan_Restart();
     ov23_02249C24(ov23_02249E18, 0);
 }
 
-static void ov23_02249EBC (void)
+static void ov23_02249EBC(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0->timer == 9) {
         CommInfo_SendBattleRegulation();
@@ -455,9 +456,9 @@ static void ov23_02249EBC (void)
     ov23_0224A09C();
 }
 
-static void ov23_02249F14 (void)
+static void ov23_02249F14(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (ov23_0224AC3C()) {
         ov23_02243AF0();
@@ -473,7 +474,7 @@ static void ov23_02249F14 (void)
     }
 }
 
-static void ov23_02249F4C (void)
+static void ov23_02249F4C(void)
 {
     if (ov23_0224404C()) {
         ov23_022499E4("\u0090\u0065\u008B\u0040\u00E3\u00A9\u0083\u0066\u0081\u005B\u0083\u005E\u0093\u00CD\u0082\u00A2\u0082\u00BD\u0082\u00E7\u0082\u00B5\u0082\u00A2");
@@ -486,7 +487,7 @@ static void ov23_02249F4C (void)
     ov23_0224A09C();
 }
 
-static void ov23_02249F7C (void)
+static void ov23_02249F7C(void)
 {
     if (ov23_0224C420()) {
         ov23_022499E4("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD");
@@ -500,7 +501,7 @@ static void ov23_02249F7C (void)
     ov23_0224A09C();
 }
 
-static void ov23_02249FB4 (void)
+static void ov23_02249FB4(void)
 {
     if (!CommSys_IsAlone()) {
         return;
@@ -510,9 +511,9 @@ static void ov23_02249FB4 (void)
     ov23_02249C24(ov23_02249FD4, 30);
 }
 
-static void ov23_02249FD4 (void)
+static void ov23_02249FD4(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0->timer != 0) {
         v0->timer--;
@@ -524,9 +525,9 @@ static void ov23_02249FD4 (void)
     }
 }
 
-static void ov23_02249FFC (void)
+static void ov23_02249FFC(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0->timer != 0) {
         v0->timer--;
@@ -538,14 +539,14 @@ static void ov23_02249FFC (void)
     }
 }
 
-static void ov23_0224A024 (void)
+static void ov23_0224A024(void)
 {
     ov23_02242B14();
 }
 
-static void ov23_0224A02C (void)
+static void ov23_0224A02C(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (CommSys_CurNetId() == 0) {
         ov23_02242D44(v0->fieldSystem);
@@ -557,7 +558,7 @@ static void ov23_0224A02C (void)
     }
 }
 
-static void ov23_0224A064 (void)
+static void ov23_0224A064(void)
 {
     ov23_02244858(CommSys_CurNetId(), 1);
     ov23_0224D9AC(CommSys_CurNetId(), 1);
@@ -569,9 +570,9 @@ static void ov23_0224A064 (void)
     ov23_02249C24(ov23_02249FFC, 0);
 }
 
-static void ov23_0224A09C (void)
+static void ov23_0224A09C(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     ov23_02242B14();
     sub_02059524();
@@ -585,20 +586,20 @@ static void ov23_0224A09C (void)
     }
 }
 
-static void ov23_0224A0CC (void)
+static void ov23_0224A0CC(void)
 {
     CommPlayerMan_Reset();
     ov23_02249C24(ov23_0224A0E0, 0);
 }
 
-static void ov23_0224A0E0 (void)
+static void ov23_0224A0E0(void)
 {
     ov23_0224DAB4();
 }
 
-static void ov23_0224A0E8 (void)
+static void ov23_0224A0E8(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     ov23_0224C198();
     CommPlayerMan_Restart();
@@ -615,49 +616,49 @@ static void ov23_0224A0E8 (void)
     }
 }
 
-static void ov23_0224A138 (void)
+static void ov23_0224A138(void)
 {
     CommPlayerMan_Reset();
     ov23_02249C24(ov23_0224A14C, 0);
 }
 
-static void ov23_0224A14C (void)
+static void ov23_0224A14C(void)
 {
     return;
 }
 
-static void ov23_0224A150 (void)
+static void ov23_0224A150(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     ov23_0224C198();
     CommPlayerMan_Restart();
     ov23_02249C24(ov23_02249CE4, 0);
 }
 
-static void ov23_0224A16C (void)
+static void ov23_0224A16C(void)
 {
     ov23_0224A1D0();
     ov23_02249C24(ov23_0224A180, 0);
 }
 
-static void ov23_0224A180 (void)
+static void ov23_0224A180(void)
 {
     return;
 }
 
-static void ov23_0224A184 (void)
+static void ov23_0224A184(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     ov23_0224C198();
     CommPlayerMan_Restart();
     ov23_02249C24(ov23_0224A024, 0);
 }
 
-static void ov23_0224A1A0 (void)
+static void ov23_0224A1A0(void)
 {
-    FieldCommunicationManager * v0 = FieldCommMan_Get();
+    FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (v0->timer != 0) {
         v0->timer--;

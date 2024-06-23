@@ -1,12 +1,12 @@
+#include "overlay097/ov97_02237520.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "heap.h"
-#include "overlay097/ov97_02237520.h"
-
 #include "crypto.h"
+#include "heap.h"
 
-void * ov97_0223752C(u32 param0);
+void *ov97_0223752C(u32 param0);
 
 static u32 Unk_ov97_0223EF9C[] = {
     'B5BE',
@@ -165,17 +165,17 @@ static const u8 Unk_ov97_0223DA1C[] = {
 
 static u32 Unk_ov97_0223F54C;
 
-void ov97_02237520 (u32 param0)
+void ov97_02237520(u32 param0)
 {
     Unk_ov97_0223F54C = param0;
 }
 
-void * ov97_0223752C (u32 param0)
+void *ov97_0223752C(u32 param0)
 {
     return Heap_AllocFromHeap(Unk_ov97_0223F54C, param0);
 }
 
-static BOOL ov97_02237540 (void)
+static BOOL ov97_02237540(void)
 {
     int v0;
     u32 v1 = CTRDG_GetAgbGameCode();
@@ -205,7 +205,7 @@ static BOOL ov97_02237540 (void)
     return 0;
 }
 
-static BOOL ov97_022375F0 (void)
+static BOOL ov97_022375F0(void)
 {
     CTRDG_Init();
 
@@ -224,7 +224,7 @@ static BOOL ov97_022375F0 (void)
     return 1;
 }
 
-int ov97_02237624 (void)
+int ov97_02237624(void)
 {
     u32 v0;
 
@@ -239,7 +239,7 @@ int ov97_02237624 (void)
     return v0;
 }
 
-BOOL ov97_0223764C (void * param0, int param1)
+BOOL ov97_0223764C(void *param0, int param1)
 {
     BOOL v0;
 

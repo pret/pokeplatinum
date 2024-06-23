@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_CONST_020EE31C_H
 #define POKEPLATINUM_CONST_020EE31C_H
 
-extern const int * const Unk_020EE31C[];
+extern const int *const Unk_020EE31C[];
 
 #endif // POKEPLATINUM_CONST_020EE31C_H

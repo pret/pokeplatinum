@@ -1,7 +1,7 @@
+#include "unk_02017038.h"
+
 #include <nitro.h>
 #include <string.h>
-
-#include "unk_02017038.h"
 
 static const u16 Unk_020E565C[] = {
     0x0,
@@ -9,7 +9,7 @@ static const u16 Unk_020E565C[] = {
     0xBB8
 };
 
-int sub_02017038 (u32 param0)
+int sub_02017038(u32 param0)
 {
     int v0;
 
@@ -22,19 +22,19 @@ int sub_02017038 (u32 param0)
     return v0;
 }
 
-int sub_02017058 (u32 param0)
+int sub_02017058(u32 param0)
 {
     int v0 = sub_02017038(param0);
     return param0 - Unk_020E565C[v0];
 }
 
-int sub_02017070 (int param0, int param1)
+int sub_02017070(int param0, int param1)
 {
     GF_ASSERT(param0 < 3);
     return Unk_020E565C[param0] + param1;
 }
 
-BOOL sub_0201708C (u16 param0)
+BOOL sub_0201708C(u16 param0)
 {
     if (((param0 >= 1) && (param0 <= 111)) || ((param0 >= 2000) && (param0 <= 2010)) || ((param0 >= 3000) && (param0 <= 3076))) {
         return 1;

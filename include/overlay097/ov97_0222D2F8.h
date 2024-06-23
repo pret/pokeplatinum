@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_OV97_0222D2F8_H
 #define POKEPLATINUM_OV97_0222D2F8_H
 
-void ov97_0222D2F8(void * param0);
+void ov97_0222D2F8(void *param0);
 
 #endif // POKEPLATINUM_OV97_0222D2F8_H

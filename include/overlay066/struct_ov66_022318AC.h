@@ -4,8 +4,8 @@
 #include "trainer_info.h"
 
 typedef struct {
-    const TrainerInfo * unk_00;
-    const TrainerInfo * unk_04;
+    const TrainerInfo *unk_00;
+    const TrainerInfo *unk_04;
     u16 unk_08;
     u16 unk_0A;
     u32 unk_0C;

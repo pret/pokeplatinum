@@ -1,11 +1,12 @@
+#include "berry_data.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "narc.h"
 #include "message.h"
-#include "berry_data.h"
+#include "narc.h"
 #include "strbuf.h"
 
 typedef struct BerryData {
@@ -22,32 +23,32 @@ typedef struct BerryData {
     u8 smoothness;
 } BerryData;
 
-NARC * BerryData_NARC_ctor (u32 heapID)
+NARC *BerryData_NARC_ctor(u32 heapID)
 {
     return NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__NUTS_DATA, heapID);
 }
 
-BerryData * sub_020973A8 (NARC * param0, u32 param1, u32 param2)
+BerryData *sub_020973A8(NARC *param0, u32 param1, u32 param2)
 {
     return NARC_AllocAndReadWholeMember(param0, 0 + param1, param2);
 }
 
-void BerryData_NARC_dtor (NARC * narc)
+void BerryData_NARC_dtor(NARC *narc)
 {
     NARC_dtor(narc);
 }
 
-BerryData * BerryData_LoadDataByNarcMemberIndex (u32 index, u32 heapID)
+BerryData *BerryData_LoadDataByNarcMemberIndex(u32 index, u32 heapID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__NUTS_DATA, 0 + index, heapID);
 }
 
-BerryData * BerryData_LoadDataByItemID (u32 itemID, u32 heapID)
+BerryData *BerryData_LoadDataByItemID(u32 itemID, u32 heapID)
 {
     return BerryData_LoadDataByNarcMemberIndex(itemID - 149, heapID);
 }
 
-u32 BerryData_GetAttribute (BerryData * berryData, u32 attributeID)
+u32 BerryData_GetAttribute(BerryData *berryData, u32 attributeID)
 {
     switch (attributeID) {
     case 0:
@@ -77,10 +78,10 @@ u32 BerryData_GetAttribute (BerryData * berryData, u32 attributeID)
     return 0;
 }
 
-Strbuf* BerryData_AllocAndGetName (u16 index, u32 heapID)
+Strbuf *BerryData_AllocAndGetName(u16 index, u32 heapID)
 {
-    MessageLoader * v0;
-    Strbuf* v1;
+    MessageLoader *v0;
+    Strbuf *v1;
 
     v0 = MessageLoader_Init(1, 26, 424, heapID);
     v1 = MessageLoader_GetNewStrbuf(v0, index);
@@ -89,10 +90,10 @@ Strbuf* BerryData_AllocAndGetName (u16 index, u32 heapID)
     return v1;
 }
 
-Strbuf* BerryData_AllocAndGetDescription (u16 index, u16 heapID)
+Strbuf *BerryData_AllocAndGetDescription(u16 index, u16 heapID)
 {
-    MessageLoader * v0;
-    Strbuf* v1;
+    MessageLoader *v0;
+    Strbuf *v1;
 
     v0 = MessageLoader_Init(1, 26, 423, heapID);
     v1 = MessageLoader_GetNewStrbuf(v0, index);

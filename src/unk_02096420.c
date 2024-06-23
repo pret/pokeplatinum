@@ -1,27 +1,27 @@
+#include "unk_02096420.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "heap.h"
-#include "pokemon.h"
+#include "item.h"
 #include "move_table.h"
 #include "party.h"
-#include "item.h"
-#include "unk_02096420.h"
+#include "pokemon.h"
 
-static u8 CheckMovePPAvailability(Pokemon * param0, u32 param1);
-static u8 UpdatePokemonMovePP(Pokemon * param0, u32 param1, u32 param2);
-static u8 IncreaseMovePPUps(Pokemon * param0, u32 param1, u32 param2);
-static void RestorePokemonHP(Pokemon * param0, u32 param1, u32 param2, u32 param3);
+static u8 CheckMovePPAvailability(Pokemon *param0, u32 param1);
+static u8 UpdatePokemonMovePP(Pokemon *param0, u32 param1, u32 param2);
+static u8 IncreaseMovePPUps(Pokemon *param0, u32 param1, u32 param2);
+static void RestorePokemonHP(Pokemon *param0, u32 param1, u32 param2, u32 param3);
 static s32 CalculateEVUpdate(s32 param0, s32 param1, s32 param2);
-static u8 UpdatePokemonFriendship(Pokemon * param0, s32 param1, s32 param2, u16 param3, u32 param4);
-static u8 CheckFriendshipItemEffect(Pokemon * param0, ItemData * param1);
+static u8 UpdatePokemonFriendship(Pokemon *param0, s32 param1, s32 param2, u16 param3, u32 param4);
+static u8 CheckFriendshipItemEffect(Pokemon *param0, ItemData *param1);
 
-u8 CheckItemEffectsOnPokemon (Pokemon * param0, u16 param1, u16 param2, u32 param3)
+u8 CheckItemEffectsOnPokemon(Pokemon *param0, u16 param1, u16 param2, u32 param3)
 {
-    ItemData * v0;
+    ItemData *v0;
     s32 v1[8];
 
     v0 = Item_Load(param1, 0, param3);
@@ -259,15 +259,15 @@ u8 CheckItemEffectsOnPokemon (Pokemon * param0, u16 param1, u16 param2, u32 para
     return 0;
 }
 
-u8 CheckItemEffectsOnPartyMember (Party * param0, u16 param1, u8 param2, u8 param3, u32 param4)
+u8 CheckItemEffectsOnPartyMember(Party *param0, u16 param1, u8 param2, u8 param3, u32 param4)
 {
-    Pokemon * v0 = Party_GetPokemonBySlotIndex(param0, param2);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0, param2);
     return CheckItemEffectsOnPokemon(v0, param1, param3, param4);
 }
 
-u8 ApplyItemEffectsToPokemon (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param4)
+u8 ApplyItemEffectsToPokemon(Pokemon *param0, u16 param1, u16 param2, u16 param3, u32 param4)
 {
-    ItemData * v0;
+    ItemData *v0;
     s32 v1[8];
     u8 v2;
     u8 v3;
@@ -525,14 +525,14 @@ u8 ApplyItemEffectsToPokemon (Pokemon * param0, u16 param1, u16 param2, u16 para
     return v2;
 }
 
-u8 sub_02096F14 (Party * param0, u16 param1, u8 param2, u8 param3, u16 param4, u32 param5)
+u8 sub_02096F14(Party *param0, u16 param1, u8 param2, u8 param3, u16 param4, u32 param5)
 {
-    Pokemon * v0 = Party_GetPokemonBySlotIndex(param0, param2);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0, param2);
 
     return ApplyItemEffectsToPokemon(v0, param1, param3, param4, param5);
 }
 
-static u8 CheckMovePPAvailability (Pokemon * mon, u32 moveIDX) // param0,1
+static u8 CheckMovePPAvailability(Pokemon *mon, u32 moveIDX) // param0,1
 {
     u16 move; // v0
     u8 ppCurr; // v1
@@ -554,7 +554,7 @@ static u8 CheckMovePPAvailability (Pokemon * mon, u32 moveIDX) // param0,1
     return 0;
 }
 
-static u8 UpdatePokemonMovePP (Pokemon * mon, u32 moveIDX, u32 pp)
+static u8 UpdatePokemonMovePP(Pokemon *mon, u32 moveIDX, u32 pp)
 {
     u16 move;
     u8 ppCurr;
@@ -587,7 +587,7 @@ static u8 UpdatePokemonMovePP (Pokemon * mon, u32 moveIDX, u32 pp)
     return 0;
 }
 
-static u8 IncreaseMovePPUps (Pokemon * param0, u32 param1, u32 param2)
+static u8 IncreaseMovePPUps(Pokemon *param0, u32 param1, u32 param2)
 {
     u16 v0;
     u8 v1;
@@ -623,7 +623,7 @@ static u8 IncreaseMovePPUps (Pokemon * param0, u32 param1, u32 param2)
     return 1;
 }
 
-static void RestorePokemonHP (Pokemon * mon, u32 param1, u32 param2, u32 param3)
+static void RestorePokemonHP(Pokemon *mon, u32 param1, u32 param2, u32 param3)
 {
     if (param2 == 1) {
         param3 = 1;
@@ -644,7 +644,7 @@ static void RestorePokemonHP (Pokemon * mon, u32 param1, u32 param2, u32 param3)
     Pokemon_SetValue(mon, 163, &param1);
 }
 
-static s32 CalculateEVUpdate (s32 param0, s32 param1, s32 param2)
+static s32 CalculateEVUpdate(s32 param0, s32 param1, s32 param2)
 {
     if ((param0 == 0) && (param2 < 0)) {
         return -1;
@@ -673,7 +673,7 @@ static s32 CalculateEVUpdate (s32 param0, s32 param1, s32 param2)
     return param0;
 }
 
-static u8 CheckFriendshipItemEffect (Pokemon * param0, ItemData * param1)
+static u8 CheckFriendshipItemEffect(Pokemon *param0, ItemData *param1)
 {
     s32 v0;
     s32 v1;
@@ -713,7 +713,7 @@ static u8 CheckFriendshipItemEffect (Pokemon * param0, ItemData * param1)
     return 0;
 }
 
-static u8 UpdatePokemonFriendship (Pokemon * param0, s32 param1, s32 param2, u16 param3, u32 param4)
+static u8 UpdatePokemonFriendship(Pokemon *param0, s32 param1, s32 param2, u16 param3, u32 param4)
 {
     if ((param1 == 255) && (param2 > 0)) {
         return 0;
@@ -751,11 +751,11 @@ static u8 UpdatePokemonFriendship (Pokemon * param0, s32 param1, s32 param2, u16
     return 1;
 }
 
-void HealAllPokemonInParty (Party * party) 
+void HealAllPokemonInParty(Party *party)
 {
     int i, j, monCount;
     u32 tmp;
-    Pokemon * mon;
+    Pokemon *mon;
 
     monCount = Party_GetCurrentCount(party);
 

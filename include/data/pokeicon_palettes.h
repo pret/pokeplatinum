@@ -1,5 +1,6 @@
 #include "constants/species.h"
 
+// clang-format off
 enum {
     ICON_EGG = SPECIES_EGG,
     ICON_MANAPHY_EGG,
@@ -596,3 +597,4 @@ const u8 sPokemonIconPaletteIndex[] = {
     [ICON_ROTOM_FAN]          = 0,
     [ICON_ROTOM_MOW]          = 0,
 };
+// clang-format on

@@ -1,15 +1,16 @@
+#include "unk_02071CFC.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "field/field_system_sub2_t.h"
 
-#include "unk_02002B7C.h"
-#include "message.h"
 #include "map_header.h"
+#include "message.h"
 #include "strbuf.h"
-#include "unk_02071CFC.h"
+#include "unk_02002B7C.h"
 
-u32 sub_02071CFC (MessageLoader * param0, const int param1, Strbuf *param2)
+u32 sub_02071CFC(MessageLoader *param0, const int param1, Strbuf *param2)
 {
     u32 v0;
 
@@ -19,10 +20,10 @@ u32 sub_02071CFC (MessageLoader * param0, const int param1, Strbuf *param2)
     return v0;
 }
 
-void sub_02071D10 (const int param0, const u32 param1, Strbuf *param2)
+void sub_02071D10(const int param0, const u32 param1, Strbuf *param2)
 {
     int v0;
-    MessageLoader * v1;
+    MessageLoader *v1;
 
     v1 = MessageLoader_Init(1, 26, 433, param1);
     v0 = MapHeader_GetMapLabelTextID(param0);

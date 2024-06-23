@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_02072014_H
 #define POKEPLATINUM_STRUCT_02072014_H
 
-#include "play_time.h"
 #include "struct_defs/struct_02072014_sub1.h"
+
+#include "play_time.h"
 
 typedef struct {
     u8 unk_00;

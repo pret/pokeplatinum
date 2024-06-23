@@ -1,388 +1,386 @@
+#include "unk_02094EDC.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "strbuf.h"
-#include "pokemon.h"
-
-#include "pokemon.h"
+#include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
 #include "struct_defs/struct_020F568C.h"
-#include "overlay006/struct_ov6_02248BE8.h"
-#include "battle/struct_ov16_0223E0C8.h"
 
-#include "unk_02002328.h"
+#include "battle/struct_ov16_0223E0C8.h"
+#include "overlay006/struct_ov6_02248BE8.h"
+
+#include "heap.h"
+#include "message.h"
 #include "narc.h"
+#include "pokemon.h"
+#include "strbuf.h"
+#include "unk_02002328.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "message.h"
 #include "unk_020131EC.h"
-#include "heap.h"
 #include "unk_0201D15C.h"
-#include "strbuf.h"
 #include "unk_020298BC.h"
-#include "pokemon.h"
 #include "unk_020933F8.h"
-#include "unk_02094EDC.h"
 
 const UnkStruct_020F568C Unk_020F568C[] = {
-	{
-		0x0,
-		0x0,
-		0x0
-	},
-	{
-		0x0,
-		0x1,
-		0x14,
-		0x0,
-		0x2,
-		0x1,
-		0x7,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x2,
-		0x3,
-		0x14,
-		0x2,
-		0x2,
-		0x3,
-		0x7,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x4,
-		0x5,
-		0x0,
-		0x4,
-		0x2,
-		0x5,
-		0x2,
-		0x6,
-		0x2,
-		0x7,
-		0x2,
-		0xffff,
-		0x0
-	},
-	{
-		0x6,
-		0x7,
-		0x14,
-		0x8,
-		0x8,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x8,
-		0x9,
-		0x1E,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0xA,
-		0xB,
-		0xA,
-		0x9,
-		0x2,
-		0xA,
-		0x2,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xB,
-		0x2
-	},
-	{
-		0xC,
-		0xD,
-		0x14,
-		0xC,
-		0x2,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0xE,
-		0xF,
-		0x0,
-		0xD,
-		0x5,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x10,
-		0x11,
-		0x0,
-		0xE,
-		0x2,
-		0xF,
-		0x2,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0x10,
-		0x2
-	},
-	{
-		0x12,
-		0x13,
-		0x14,
-		0x11,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x14,
-		0x15,
-		0x0,
-		0x12,
-		0x9,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x16,
-		0x17,
-		0x0,
-		0x13,
-		0x7,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x18,
-		0x19,
-		0x14,
-		0x14,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x1A,
-		0x1B,
-		0x14,
-		0x15,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x1C,
-		0x1D,
-		0x14,
-		0x16,
-		0x9,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x1E,
-		0x1F,
-		0x0,
-		0x17,
-		0x5,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x20,
-		0x21,
-		0x14,
-		0x18,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x22,
-		0x23,
-		0x14,
-		0x19,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x24,
-		0x25,
-		0x14,
-		0x1A,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x26,
-		0x27,
-		0xA,
-		0x1B,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x28,
-		0x29,
-		0x0,
-		0x1C,
-		0x2,
-		0x1D,
-		0x2,
-		0x1E,
-		0x2,
-		0x1F,
-		0x2,
-		0xffff,
-		0x0
-	},
-	{
-		0x2A,
-		0x2B,
-		0x14,
-		0x20,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	},
-	{
-		0x2C,
-		0x2D,
-		0xA,
-		0x21,
-		0x2,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0,
-		0xffff,
-		0x0
-	}
+    {
+        0x0,
+        0x0,
+        0x0,
+    },
+    {
+        0x0,
+        0x1,
+        0x14,
+        0x0,
+        0x2,
+        0x1,
+        0x7,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x2,
+        0x3,
+        0x14,
+        0x2,
+        0x2,
+        0x3,
+        0x7,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x4,
+        0x5,
+        0x0,
+        0x4,
+        0x2,
+        0x5,
+        0x2,
+        0x6,
+        0x2,
+        0x7,
+        0x2,
+        0xffff,
+        0x0,
+    },
+    {
+        0x6,
+        0x7,
+        0x14,
+        0x8,
+        0x8,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x8,
+        0x9,
+        0x1E,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0xA,
+        0xB,
+        0xA,
+        0x9,
+        0x2,
+        0xA,
+        0x2,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xB,
+        0x2,
+    },
+    {
+        0xC,
+        0xD,
+        0x14,
+        0xC,
+        0x2,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0xE,
+        0xF,
+        0x0,
+        0xD,
+        0x5,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x10,
+        0x11,
+        0x0,
+        0xE,
+        0x2,
+        0xF,
+        0x2,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0x10,
+        0x2,
+    },
+    {
+        0x12,
+        0x13,
+        0x14,
+        0x11,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x14,
+        0x15,
+        0x0,
+        0x12,
+        0x9,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x16,
+        0x17,
+        0x0,
+        0x13,
+        0x7,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x18,
+        0x19,
+        0x14,
+        0x14,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x1A,
+        0x1B,
+        0x14,
+        0x15,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x1C,
+        0x1D,
+        0x14,
+        0x16,
+        0x9,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x1E,
+        0x1F,
+        0x0,
+        0x17,
+        0x5,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x20,
+        0x21,
+        0x14,
+        0x18,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x22,
+        0x23,
+        0x14,
+        0x19,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x24,
+        0x25,
+        0x14,
+        0x1A,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x26,
+        0x27,
+        0xA,
+        0x1B,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x28,
+        0x29,
+        0x0,
+        0x1C,
+        0x2,
+        0x1D,
+        0x2,
+        0x1E,
+        0x2,
+        0x1F,
+        0x2,
+        0xffff,
+        0x0,
+    },
+    {
+        0x2A,
+        0x2B,
+        0x14,
+        0x20,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
+    {
+        0x2C,
+        0x2D,
+        0xA,
+        0x21,
+        0x2,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+        0xffff,
+        0x0,
+    },
 };
 
-int sub_02094EDC (UnkStruct_02095C48 * param0)
+int sub_02094EDC(UnkStruct_02095C48 *param0)
 {
     if ((param0->unk_155 == 0) || ((param0->unk_155 == 1) && (param0->unk_00.unk_10C == param0->unk_00.unk_113))) {
         return 1;
@@ -391,16 +389,16 @@ int sub_02094EDC (UnkStruct_02095C48 * param0)
     return 0;
 }
 
-void sub_02094F04 (UnkStruct_02095C48 * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7)
+void sub_02094F04(UnkStruct_02095C48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7)
 {
     int v0, v1;
-    u8 * v2;
+    u8 *v2;
     u8 v3 = 0;
     u16 v4;
     int v5 = 0;
     int v6;
     int v7, v8;
-    UnkStruct_ov6_02248BE8 * v9;
+    UnkStruct_ov6_02248BE8 *v9;
     int v10, v11;
     UnkStruct_ov6_02248BE8 v12;
 
@@ -524,11 +522,11 @@ void sub_02094F04 (UnkStruct_02095C48 * param0, int param1, int param2, int para
     Heap_FreeToHeap(v9);
 }
 
-void sub_020951B0 (UnkStruct_02095C48 * param0, int param1)
+void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
 {
     int v0, v1;
-    UnkStruct_020951B0 * v2;
-    UnkStruct_020951B0 * v3;
+    UnkStruct_020951B0 *v2;
+    UnkStruct_020951B0 *v3;
     int v4;
     int v5;
 
@@ -605,7 +603,7 @@ void sub_020951B0 (UnkStruct_02095C48 * param0, int param1)
     Heap_FreeToHeap(v2);
 }
 
-void sub_02095338 (UnkStruct_02095C48 * param0)
+void sub_02095338(UnkStruct_02095C48 *param0)
 {
     int v0;
 
@@ -617,7 +615,7 @@ void sub_02095338 (UnkStruct_02095C48 * param0)
     }
 }
 
-void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int param2)
+void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int param2)
 {
     int v0;
     u16 v1;
@@ -632,8 +630,8 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
     }
 
     {
-        Strbuf* v3, * v4;
-        MessageLoader * v5;
+        Strbuf *v3, *v4;
+        MessageLoader *v5;
 
         v5 = MessageLoader_Init(1, 26, 205, param2);
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
@@ -666,10 +664,10 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
     }
 }
 
-Sprite * sub_02095484 (UnkStruct_02007768 * param0, int param1, Pokemon * param2, int param3, UnkStruct_ov16_0223E0C8 * param4, int param5, int param6, int param7, int param8)
+Sprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int param5, int param6, int param7, int param8)
 {
     ArchivedSprite v0;
-    Sprite * v1;
+    Sprite *v1;
     int v2, v3, v4;
 
     Pokemon_BuildArchivedSprite(&v0, param2, param3);
@@ -687,14 +685,14 @@ Sprite * sub_02095484 (UnkStruct_02007768 * param0, int param1, Pokemon * param2
     return v1;
 }
 
-void sub_020954F0 (UnkStruct_02095C48 * param0, int param1, int param2, int param3, int param4)
+void sub_020954F0(UnkStruct_02095C48 *param0, int param1, int param2, int param3, int param4)
 {
     int v0, v1;
     u8 v2 = 0, v3 = 0;
     u16 v4;
     int v5;
-    UnkStruct_020954F0 * v6;
-    u8 * v7, * v8;
+    UnkStruct_020954F0 *v6;
+    u8 *v7, *v8;
 
     v6 = sub_02006FE8(90, 1, 0, param1, 1);
     v5 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1) / sizeof(UnkStruct_020954F0);
@@ -766,13 +764,13 @@ void sub_020954F0 (UnkStruct_02095C48 * param0, int param1, int param2, int para
     Heap_FreeToHeap(v6);
 }
 
-s8 sub_02095734 (int param0)
+s8 sub_02095734(int param0)
 {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
     return Unk_020F568C[param0].unk_04;
 }
 
-void sub_02095750 (int param0, u32 * param1, u32 * param2)
+void sub_02095750(int param0, u32 *param1, u32 *param2)
 {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
 
@@ -780,13 +778,13 @@ void sub_02095750 (int param0, u32 * param1, u32 * param2)
     *param2 = Unk_020F568C[param0].unk_02;
 }
 
-u32 sub_0209577C (int param0)
+u32 sub_0209577C(int param0)
 {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
     return 46 + (param0 - 1);
 }
 
-void sub_02095790 (int param0, int param1, u32 * param2, u32 * param3)
+void sub_02095790(int param0, int param1, u32 *param2, u32 *param3)
 {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
 
@@ -815,7 +813,7 @@ void sub_02095790 (int param0, int param1, u32 * param2, u32 * param3)
     }
 }
 
-u32 sub_02095848 (int param0, int param1, int param2)
+u32 sub_02095848(int param0, int param1, int param2)
 {
     u32 v0;
 
@@ -849,7 +847,7 @@ u32 sub_02095848 (int param0, int param1, int param2)
     return v0;
 }
 
-u32 sub_02095888 (int param0)
+u32 sub_02095888(int param0)
 {
     u32 v0;
 
@@ -875,12 +873,12 @@ u32 sub_02095888 (int param0)
     return v0;
 }
 
-u32 sub_020958B8 (int param0)
+u32 sub_020958B8(int param0)
 {
     return sub_020958C4(param0, 2);
 }
 
-u32 sub_020958C4 (int param0, int param1)
+u32 sub_020958C4(int param0, int param1)
 {
     u32 v0;
 
@@ -910,17 +908,17 @@ u32 sub_020958C4 (int param0, int param1)
     return v0;
 }
 
-int sub_020958FC (int param0)
+int sub_020958FC(int param0)
 {
     return 4 - param0 - 1;
 }
 
-int sub_02095904 (int param0)
+int sub_02095904(int param0)
 {
     return 4 - param0 - 1;
 }
 
-BOOL sub_0209590C (UnkStruct_02095C48 * param0)
+BOOL sub_0209590C(UnkStruct_02095C48 *param0)
 {
     switch (param0->unk_00.unk_111) {
     case 3:
@@ -932,16 +930,16 @@ BOOL sub_0209590C (UnkStruct_02095C48 * param0)
     return 0;
 }
 
-int sub_02095928 (UnkStruct_02095C48 * param0, int param1)
+int sub_02095928(UnkStruct_02095C48 *param0, int param1)
 {
     int v0, v1, v2;
-    const u16 * v3;
+    const u16 *v3;
     const u16 v4[][8] = {
-        {10, 20, 30, 40, 50, 60, 70, 80},
-        {90, 110, 130, 150, 170, 190, 210, 230},
-        {170, 200, 230, 260, 290, 320, 350, 380},
-        {320, 360, 400, 440, 480, 520, 560, 600},
-        {100, 200, 300, 400, 450, 500, 550, 600},
+        { 10, 20, 30, 40, 50, 60, 70, 80 },
+        { 90, 110, 130, 150, 170, 190, 210, 230 },
+        { 170, 200, 230, 260, 290, 320, 350, 380 },
+        { 320, 360, 400, 440, 480, 520, 560, 600 },
+        { 100, 200, 300, 400, 450, 500, 550, 600 },
     };
 
     v0 = 0;
@@ -964,12 +962,16 @@ int sub_02095928 (UnkStruct_02095C48 * param0, int param1)
     return v0;
 }
 
-int sub_0209598C (UnkStruct_02095C48 * param0, int param1)
+int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
 {
     int v0, v1, v2;
-    const u8 * v3;
+    const u8 *v3;
     const u8 v4[][3] = {
-        {3, 5, 8}, {5, 10, 15}, {7, 15, 23}, {10, 20, 30}, {10, 20, 30},
+        { 3, 5, 8 },
+        { 5, 10, 15 },
+        { 7, 15, 23 },
+        { 10, 20, 30 },
+        { 10, 20, 30 },
     };
 
     v0 = 0;
@@ -998,7 +1000,7 @@ int sub_0209598C (UnkStruct_02095C48 * param0, int param1)
     return v0;
 }
 
-void sub_020959F4 (int param0)
+void sub_020959F4(int param0)
 {
     if (param0 == 0) {
         sub_02002AC8(1);
@@ -1011,14 +1013,14 @@ void sub_020959F4 (int param0)
     }
 }
 
-void sub_02095A24 (void)
+void sub_02095A24(void)
 {
     sub_02002AC8(0);
     sub_02002AE4(0);
     sub_02002B20(0);
 }
 
-u32 sub_02095A3C (int param0, int param1)
+u32 sub_02095A3C(int param0, int param1)
 {
     u32 v0;
 
@@ -1046,7 +1048,7 @@ u32 sub_02095A3C (int param0, int param1)
     return v0;
 }
 
-u32 sub_02095A74 (int param0, int param1)
+u32 sub_02095A74(int param0, int param1)
 {
     u8 v0[12];
     int v1 = 0;

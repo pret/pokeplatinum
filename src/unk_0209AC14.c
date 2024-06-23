@@ -1,25 +1,26 @@
+#include "unk_0209AC14.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
+#include "overlay005/ov5_021D0D80.h"
+#include "overlay007/ov7_0224CD28.h"
 #include "overlay007/struct_ov7_0224D008.h"
 
 #include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_0207CB08.h"
-#include "unk_0209AC14.h"
-#include "overlay005/ov5_021D0D80.h"
-#include "overlay007/ov7_0224CD28.h"
 
-static u8 sub_0209AC50(FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * param1);
-static void sub_0209AC80(TaskManager * param0);
+static u8 sub_0209AC50(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
+static void sub_0209AC80(TaskManager *param0);
 
-BOOL sub_0209AC14 (TaskManager * param0)
+BOOL sub_0209AC14(TaskManager *param0)
 {
-    FieldSystem * fieldSystem;
-    UnkStruct_ov7_0224D008 * v1;
+    FieldSystem *fieldSystem;
+    UnkStruct_ov7_0224D008 *v1;
 
     fieldSystem = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);
@@ -36,7 +37,7 @@ BOOL sub_0209AC14 (TaskManager * param0)
     return 0;
 }
 
-static u8 sub_0209AC50 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * param1)
+static u8 sub_0209AC50(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
 {
     if (sub_020509B4(fieldSystem)) {
         return 16;
@@ -50,10 +51,10 @@ static u8 sub_0209AC50 (FieldSystem * fieldSystem, UnkStruct_ov7_0224D008 * para
     return 17;
 }
 
-static void sub_0209AC80 (TaskManager * param0)
+static void sub_0209AC80(TaskManager *param0)
 {
-    FieldSystem * fieldSystem;
-    UnkStruct_ov7_0224D008 * v1;
+    FieldSystem *fieldSystem;
+    UnkStruct_ov7_0224D008 *v1;
 
     fieldSystem = TaskManager_FieldSystem(param0);
     v1 = TaskManager_Environment(param0);

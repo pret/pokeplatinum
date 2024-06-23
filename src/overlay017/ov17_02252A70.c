@@ -1,3 +1,5 @@
+#include "overlay017/ov17_02252A70.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -5,9 +7,8 @@
 
 #include "unk_02006E3C.h"
 #include "unk_020298BC.h"
-#include "overlay017/ov17_02252A70.h"
 
-u32 ov17_02252A70 (const UnkStruct_02029C88 * param0, const u8 * param1)
+u32 ov17_02252A70(const UnkStruct_02029C88 *param0, const u8 *param1)
 {
     u8 v0;
     u32 v1;
@@ -25,7 +26,7 @@ u32 ov17_02252A70 (const UnkStruct_02029C88 * param0, const u8 * param1)
     return v1;
 }
 
-u8 * ov17_02252A9C (u32 param0, u32 param1)
+u8 *ov17_02252A9C(u32 param0, u32 param1)
 {
     return sub_02006FE8(90, 3 + param1, 0, param0, 0);
 }

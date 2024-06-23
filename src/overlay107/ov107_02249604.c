@@ -1,10 +1,11 @@
+#include "overlay107/ov107_02249604.h"
+
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
@@ -12,7 +13,12 @@
 #include "overlay107/struct_ov107_02249954.h"
 #include "overlay115/struct_ov115_02261520.h"
 
+#include "gx_layers.h"
+#include "item.h"
 #include "narc.h"
+#include "party.h"
+#include "pokemon.h"
+#include "pokemon_icon.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -20,21 +26,16 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "pokemon_icon.h"
-#include "party.h"
-#include "item.h"
 #include "unk_0207E0B8.h"
-#include "overlay107/ov107_02249604.h"
 
-void ov107_02249604(UnkStruct_ov107_02249954 * param0, Party * param1, u8 param2);
-GraphicElementData * ov107_022498A4(UnkStruct_ov107_02249954 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
-void ov107_02249954(UnkStruct_ov107_02249954 * param0);
-void ov107_022499BC(UnkStruct_ov107_02249954 * param0, u16 param1);
-void ov107_022499FC(UnkStruct_ov107_02249954 * param0, u16 param1);
+void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2);
+GraphicElementData *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
+void ov107_02249954(UnkStruct_ov107_02249954 *param0);
+void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1);
+void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1);
 static void ov107_02249A3C(void);
-static void ov107_02249A70(UnkStruct_ov107_02249954 * param0);
+static void ov107_02249A70(UnkStruct_ov107_02249954 *param0);
 
 static const u8 Unk_ov107_0224A204[4] = {
     0x7,
@@ -43,11 +44,11 @@ static const u8 Unk_ov107_0224A204[4] = {
     0x7
 };
 
-void ov107_02249604 (UnkStruct_ov107_02249954 * param0, Party * param1, u8 param2)
+void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
 {
     int v0;
-    NARC * v1;
-    Pokemon * v2;
+    NARC *v1;
+    Pokemon *v2;
 
     sub_0201DBEC(32, 100);
     ov107_02249A3C();
@@ -112,11 +113,11 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, Party * param1, u8 param
     return;
 }
 
-GraphicElementData * ov107_022498A4 (UnkStruct_ov107_02249954 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
+GraphicElementData *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
 {
     int v0;
     UnkStruct_ov19_021DA864 v1;
-    GraphicElementData * v2;
+    GraphicElementData *v2;
 
     sub_020093B4(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
@@ -156,7 +157,7 @@ GraphicElementData * ov107_022498A4 (UnkStruct_ov107_02249954 * param0, u32 para
     return v2;
 }
 
-void ov107_02249954 (UnkStruct_ov107_02249954 * param0)
+void ov107_02249954(UnkStruct_ov107_02249954 *param0)
 {
     u8 v0;
 
@@ -180,9 +181,9 @@ void ov107_02249954 (UnkStruct_ov107_02249954 * param0)
     return;
 }
 
-void ov107_022499BC (UnkStruct_ov107_02249954 * param0, u16 param1)
+void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
 
     v0 = sub_02009DC8(param0->unk_190[0], 1);
 
@@ -192,9 +193,9 @@ void ov107_022499BC (UnkStruct_ov107_02249954 * param0, u16 param1)
     return;
 }
 
-void ov107_022499FC (UnkStruct_ov107_02249954 * param0, u16 param1)
+void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
 {
-    UnkStruct_02009DC8 * v0;
+    UnkStruct_02009DC8 *v0;
 
     v0 = sub_02009DC8(param0->unk_190[1], 1);
 
@@ -204,7 +205,7 @@ void ov107_022499FC (UnkStruct_ov107_02249954 * param0, u16 param1)
     return;
 }
 
-static void ov107_02249A3C (void)
+static void ov107_02249A3C(void)
 {
     {
         UnkStruct_ov22_022559F8 v0 = {
@@ -221,9 +222,9 @@ static void ov107_02249A3C (void)
     return;
 }
 
-static void ov107_02249A70 (UnkStruct_ov107_02249954 * param0)
+static void ov107_02249A70(UnkStruct_ov107_02249954 *param0)
 {
-    NARC * v0;
+    NARC *v0;
     u32 v1;
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 100);

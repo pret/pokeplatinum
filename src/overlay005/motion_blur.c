@@ -1,10 +1,11 @@
+#include "overlay005/motion_blur.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0200679C.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "overlay005/motion_blur.h"
+#include "unk_0200679C.h"
 
 #define MOTION_BLUR_INIT_BLEND_COEFF_A 16
 #define MOTION_BLUR_INIT_BLEND_COEFF_B 0
@@ -62,14 +63,13 @@ static void MotionBlur_SetCapture(SysTask *task, void *param)
 
     if (motionBlur->initialized) {
         GX_SetCapture(
-            motionBlur->params.captureSize, 
-            motionBlur->params.captureMode, 
-            motionBlur->params.captureSourceA, 
-            motionBlur->params.captureSourceB, 
-            motionBlur->params.captureDestination, 
-            motionBlur->params.blendCoeffA, 
-            motionBlur->params.blendCoeffB
-        );
+            motionBlur->params.captureSize,
+            motionBlur->params.captureMode,
+            motionBlur->params.captureSourceA,
+            motionBlur->params.captureSourceB,
+            motionBlur->params.captureDestination,
+            motionBlur->params.blendCoeffA,
+            motionBlur->params.blendCoeffB);
     }
 }
 
@@ -120,12 +120,11 @@ static void MotionBlur_Init(MotionBlurParams *params)
     }
 
     GX_SetCapture(
-        params->captureSize, 
-        params->captureMode, 
-        params->captureSourceA, 
-        params->captureSourceB, 
-        params->captureDestination, 
+        params->captureSize,
+        params->captureMode,
+        params->captureSourceA,
+        params->captureSourceB,
+        params->captureDestination,
         MOTION_BLUR_INIT_BLEND_COEFF_A,
-        MOTION_BLUR_INIT_BLEND_COEFF_B
-    );
+        MOTION_BLUR_INIT_BLEND_COEFF_B);
 }

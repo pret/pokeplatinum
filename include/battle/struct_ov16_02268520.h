@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_02268520_H
 #define POKEPLATINUM_STRUCT_OV16_02268520_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/battle_system.h"
+#include "struct_decls/cell_actor_data.h"
 
 typedef struct {
-    CellActorData * unk_00;
-    BattleSystem * unk_04;
+    CellActorData *unk_00;
+    BattleSystem *unk_04;
     u8 unk_08;
     u8 unk_09;
     s16 unk_0A;
