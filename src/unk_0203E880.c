@@ -30,7 +30,7 @@ static void ScriptContext_Free(ScriptContext * ctx);
 static void sub_0203EA68(FieldSystem * fieldSystem, ScriptManager * scriptManager, u16 scriptID, MapObject * object, void * saveType);
 static void sub_0203EAF4(FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID, u8 dummy);
 static u16 ScriptContext_LoadAndOffsetID(FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID);
-static void ScriptContext_Load(FieldSystem * fieldSystem, ScriptContext * ctx, int scriptsIndex, u32 bankID);
+static void ScriptContext_Load(FieldSystem * fieldSystem, ScriptContext * ctx, int scriptFile, u32 textBank);
 static void ScriptContext_SetMapScripts(FieldSystem * fieldSystem, ScriptContext * ctx);
 static void sub_0203F0E4(ScriptContext * ctx, u16 param1);
 static void * ScriptContext_LoadMapScripts(int headerID);
@@ -98,17 +98,15 @@ static BOOL FieldTask_RunScript (TaskManager *taskManager)
         for (i = 0; i < 2; i++) {
             ctx = scriptManager->ctx[i];
 
-            if (ctx != NULL) {
-                if (ScriptContext_Run(ctx) == FALSE) {
-                    ScriptContext_Free(ctx);
+            if (ctx != NULL && ScriptContext_Run(ctx) == FALSE) {
+                ScriptContext_Free(ctx);
 
-                    if (scriptManager->ctxCount == 0) {
-                        GF_ASSERT(FALSE);
-                    }
-
-                    scriptManager->ctx[i] = NULL;
-                    scriptManager->ctxCount--;
+                if (scriptManager->ctxCount == 0) {
+                    GF_ASSERT(FALSE);
                 }
+
+                scriptManager->ctx[i] = NULL;
+                scriptManager->ctxCount--;
             }
         }
 
@@ -300,11 +298,11 @@ static u16 ScriptContext_LoadAndOffsetID (FieldSystem * fieldSystem, ScriptConte
     return retScriptID;
 }
 
-static void ScriptContext_Load (FieldSystem * fieldSystem, ScriptContext * ctx, int scriptsIndex, u32 bankID)
+static void ScriptContext_Load (FieldSystem * fieldSystem, ScriptContext * ctx, int scriptFile, u32 textBank)
 {
-    u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptsIndex, 11);
+    u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, 11);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, 11);
 }
 
 static void ScriptContext_SetMapScripts (FieldSystem * fieldSystem, ScriptContext * ctx)
@@ -552,7 +550,7 @@ u16 Script_GetTrainerID(u16 scriptID)
     }
 }
 
-BOOL Script_GetDoubleBattleTrainerIndex (u16 scriptID)
+int Script_GetDoubleBattleTrainerIndex (u16 scriptID)
 {
     return !(scriptID < SCRIPT_ID_OFFSET_DOUBLE_BATTLES);
 }
@@ -629,7 +627,7 @@ void FieldSystem_ClearDailyHiddenItemFlags (FieldSystem * fieldSystem)
 u8 Script_GetHiddenItemRange (u16 scriptID)
 {
     int i;
-    const HiddenItem *item = &gHiddenItems[0];
+    const HiddenItem *item = gHiddenItems;
     u16 itemScript = Script_GetHiddenItemScript(scriptID);
 
     for (i = 0; i < NELEMS(gHiddenItems); i++) {
@@ -652,7 +650,7 @@ static BOOL ScriptManager_SetHiddenItem (ScriptManager * scriptManager, u16 scri
     u16 *scriptParam0 = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_PARAMETER_0);
     u16 *scriptParam1 = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_PARAMETER_1);
     u16 *scriptParam2 = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_PARAMETER_2);
-    const HiddenItem *item = &gHiddenItems[0];
+    const HiddenItem *item = gHiddenItems;
     u16 itemScript = Script_GetHiddenItemScript(scriptID);
 
     for (i = 0; i < NELEMS(gHiddenItems); i++) {

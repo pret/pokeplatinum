@@ -56,14 +56,10 @@ enum ScriptManagerMember {
     SCRIPT_MANAGER_MONEY_WINDOW,
 
     SCRIPT_DATA_START = 41,
-    // Parameter 0 is used for storing the mon's party slot when you use a field move, the item ID for hidden items,
-    // and steps for the PokeRadar.
-    // Parameters 1 and 2 are used for storing hidden item quantities and flags respectively.
-    // Parameter 3 is unused.
-    SCRIPT_DATA_PARAMETER_0 = SCRIPT_DATA_START,
-    SCRIPT_DATA_PARAMETER_1,
-    SCRIPT_DATA_PARAMETER_2,
-    SCRIPT_DATA_PARAMETER_3,
+    SCRIPT_DATA_PARAMETER_0 = SCRIPT_DATA_START, // used for storing the mon's party slot when you use a field move, the item ID for hidden items, and steps for the PokeRadar
+    SCRIPT_DATA_PARAMETER_1, //  used for storing hidden item quantities.
+    SCRIPT_DATA_PARAMETER_2, // used for storing hidden item quantities and flags respectively.
+    SCRIPT_DATA_PARAMETER_3, // unused
     // The BG3 data below are a set of parameters for the unused script command ScrollBG3.
     SCRIPT_DATA_BG3_SCROLL_COUNT_X,
     SCRIPT_DATA_BG3_SCROLL_COUNT_Y,
