@@ -89,7 +89,7 @@ typedef struct {
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
 static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fillOffset);
-static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size);
+static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cellNum);
 static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
 static const u8 * ov16_02268250(int param0);
 static void DrawGauge(Healthbar * param0, u8 param1);
@@ -542,9 +542,7 @@ void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHand
 
 static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandler * handler, NARC * narc, PaletteData * palette, int type)
 {
-    const SpriteTemplate * template;
-
-    template = ov16_02268314(type);
+    const SpriteTemplate * template = ov16_02268314(type);
 
     if (template != NULL) {
         SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
@@ -556,11 +554,8 @@ static void Healthbar_LoadMainPalette (SpriteRenderer * renderer, SpriteGfxHandl
 
 CellActorData * Healthbar_LoadCellActor (SpriteRenderer * renderer, SpriteGfxHandler * handler, int type)
 {
-    const SpriteTemplate * template;
-    CellActorData * data;
-
-    template = Healthbar_SpriteTemplate(type);
-    data = SpriteActor_LoadResources(renderer, handler, template);
+    const SpriteTemplate * template = Healthbar_SpriteTemplate(type);
+    CellActorData * data = SpriteActor_LoadResources(renderer, handler, template);
 
     SpriteActor_UpdateObject(data->unk_00);
     return data;
@@ -1596,10 +1591,10 @@ static s32 UpdateGauge (s32 max, s32 cur, s32 diff, s32 * temp, u8 size, u16 fil
     return final;
 }
 
-static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size) //UpdateGaugeCells, FillCells
+static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 cellNum)
 {
     int cell;
-    u32 corrected, pixels, final;
+    u32 offset, pixels, final;
     s32 updated = cur - diff;
 
     if (updated < 0) {
@@ -1608,16 +1603,16 @@ static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size
         updated = max;
     }
 
-    corrected = 8 * size;
+    offset = 8 * cellNum;
 
-    for (cell = 0; cell < size; cell++) {
+    for (cell = 0; cell < cellNum; cell++) {
         cells[cell] = 0;
     }
     
-    if (max < corrected) {
-        pixels = (*temp * corrected / max) >> 8;
+    if (max < offset) {
+        pixels = (*temp * offset / max) >> 8;
     } else {
-        pixels = *temp * corrected / max;
+        pixels = *temp * offset / max;
     }
 
     final = pixels;
@@ -1626,7 +1621,7 @@ static u8 FillCells (s32 max, s32 cur, s32 diff, s32 * temp, u8 * cells, u8 size
         cells[0] = 1;
         final = 1;
     } else {
-        for (cell = 0; cell < size; cell++) {
+        for (cell = 0; cell < cellNum; cell++) {
             if (pixels >= 8) {
                 cells[cell] = 8;
                 pixels -= 8;
