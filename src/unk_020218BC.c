@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "nnsys/g2d/g2d_RendererCore.h"
 #include "struct_defs/struct_020095C4.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay083/struct_ov83_0223D9A8.h"
@@ -9,6 +10,10 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_020218BC.h"
+
+#define GRAPHIC_ELEMENT_DATA_FLIP_NONE 0
+#define GRAPHIC_ELEMENT_DATA_FLIP_H 1
+#define GRAPHIC_ELEMENT_DATA_FLIP_V 2
 
 typedef struct {
     const NNSG2dCellDataBank * unk_00;
@@ -34,17 +39,17 @@ typedef struct {
 } MultiCellAnimationData;
 
 typedef struct GraphicElementData_t {
-    VecFx32 unk_00;
-    VecFx32 unk_0C;
-    VecFx32 unk_18;
-    u16 unk_24;
-    u8 unk_26;
-    u8 unk_27;
-    u8 unk_28;
-    u8 unk_29;
-    u8 unk_2A;
-    BOOL unk_2C;
-    GXOamMode oamMode;
+    VecFx32 position;
+    VecFx32 affineTranslation;
+    VecFx32 affineScale;
+    u16 affineZRotation;
+    u8 affineOverwriteMode;
+    u8 flip;
+    u8 overwriteFlags;
+    u8 explicitPalette;
+    u8 explicitPaletteOffset;
+    BOOL explicitMosaic;
+    GXOamMode explicitOamMode;
     u8 unk_34;
     u8 unk_35;
     fx32 unk_38;
@@ -54,7 +59,7 @@ typedef struct GraphicElementData_t {
     NNSG2dImagePaletteProxy paletteProxy;
     u32 unk_EC;
     u16 unk_F0;
-    u8 unk_F2;
+    u8 explicitPriority;
     u16 unk_F4;
     NNS_G2D_VRAM_TYPE type;
     struct GraphicElementData_t *prev;
@@ -87,7 +92,7 @@ static void sub_02022208(const UnkStruct_ov19_021DA864 * param0, GraphicElementD
 static void sub_02022264(GraphicElementData * param0, int param1);
 static BOOL sub_02022110(const GraphicElementManager * param0, const UnkStruct_ov19_021DA864 * param1, GraphicElementData * param2, int param3);
 static u32 sub_020222C4(const NNSG2dImagePaletteProxy * param0, u32 param1);
-static void sub_020222F4(const GraphicElementManager * param0, GraphicElementData * param1);
+static void GraphicElementManager_DrawElement(const GraphicElementManager * param0, GraphicElementData * param1);
 static void sub_02022450(const GraphicElementManager * param0, GraphicElementData * param1);
 static void sub_02022454(GraphicElementData * param0);
 static void sub_02022460(GraphicElementData * param0);
@@ -198,7 +203,7 @@ void sub_020219F8 (const GraphicElementManager * param0)
     GraphicElementData * v0;
     static const GraphicElementUpdateFunc v1[] = {
         sub_02022450,
-        sub_020222F4
+        GraphicElementManager_DrawElement
     };
     static const GraphicElementInitializeFunc v2[] = {
         sub_02022460,
@@ -242,7 +247,7 @@ void GraphicElementData_Reset(GraphicElementData *elem)
     NNS_G2dInitImageProxy(&elem->imageProxy);
     NNS_G2dInitImagePaletteProxy(&elem->paletteProxy);
 
-    elem->oamMode = GX_OAM_MODE_NORMAL;
+    elem->explicitOamMode = GX_OAM_MODE_NORMAL;
 }
 
 GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
@@ -257,19 +262,19 @@ GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
 
     v0->manager = param0->unk_00;
     v0->unk_F0 = 0;
-    v0->unk_00 = param0->unk_08;
-    v0->unk_18 = param0->unk_14;
-    v0->unk_24 = param0->unk_20;
+    v0->position = param0->unk_08;
+    v0->affineScale = param0->unk_14;
+    v0->affineZRotation = param0->unk_20;
     v0->type = param0->unk_28;
     v0->unk_F4 = param0->unk_24;
-    v0->unk_26 = 0;
-    v0->unk_27 = 0;
-    v0->unk_2C = 0;
-    v0->oamMode = GX_OAM_MODE_NORMAL;
-    v0->unk_28 = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
+    v0->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
+    v0->flip = GRAPHIC_ELEMENT_DATA_FLIP_NONE;
+    v0->explicitMosaic = FALSE;
+    v0->explicitOamMode = GX_OAM_MODE_NORMAL;
+    v0->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
-    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_00->renderer->rendererCore), v0->unk_26);
-    NNS_G2dSetRndCoreFlipMode(&(param0->unk_00->renderer->rendererCore), v0->unk_27 & 1, v0->unk_27 & 2);
+    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_00->renderer->rendererCore), v0->affineOverwriteMode);
+    NNS_G2dSetRndCoreFlipMode(&(param0->unk_00->renderer->rendererCore), v0->flip & 1, v0->flip & 2);
 
     v0->unk_34 = 1;
     v0->unk_35 = 0;
@@ -280,8 +285,8 @@ GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
         return NULL;
     }
 
-    v0->unk_2A = sub_020222C4(&v0->paletteProxy, v0->type);
-    v0->unk_29 = v0->unk_2A;
+    v0->explicitPaletteOffset = sub_020222C4(&v0->paletteProxy, v0->type);
+    v0->explicitPalette = v0->explicitPaletteOffset;
 
     sub_02022464(param0->unk_00, v0);
 
@@ -346,17 +351,17 @@ void sub_02021BD4 (GraphicElementData *gfxElem)
 
 void sub_02021C50 (GraphicElementData * param0, const VecFx32 * param1)
 {
-    param0->unk_00 = *param1;
+    param0->position = *param1;
 }
 
 void sub_02021C60 (GraphicElementData * param0, const VecFx32 * param1)
 {
-    param0->unk_0C = *param1;
+    param0->affineTranslation = *param1;
 }
 
 void sub_02021C70 (GraphicElementData * param0, const VecFx32 * param1)
 {
-    param0->unk_18 = *param1;
+    param0->affineScale = *param1;
 }
 
 void sub_02021C80 (GraphicElementData * param0, const VecFx32 * param1, int param2)
@@ -367,7 +372,7 @@ void sub_02021C80 (GraphicElementData * param0, const VecFx32 * param1, int para
 
 void sub_02021C94 (GraphicElementData * param0, u16 param1)
 {
-    param0->unk_24 = param1;
+    param0->affineZRotation = param1;
 }
 
 void sub_02021C98 (GraphicElementData * param0, u16 param1, int param2)
@@ -403,30 +408,30 @@ void sub_02021CF8 (GraphicElementData * param0, int param1)
 {
     GF_ASSERT(param0);
 
-    param0->unk_26 = param1;
+    param0->affineOverwriteMode = param1;
 }
 
 void sub_02021D0C (GraphicElementData * param0, int param1)
 {
     GF_ASSERT(param0);
 
-    param0->unk_27 = param1;
-    param0->unk_26 = 0;
+    param0->flip = param1;
+    param0->affineOverwriteMode = 0;
 }
 
 const VecFx32 * sub_02021D28 (const GraphicElementData * param0)
 {
-    return &param0->unk_00;
+    return &param0->position;
 }
 
 const VecFx32 * sub_02021D2C (const GraphicElementData * param0)
 {
-    return &param0->unk_18;
+    return &param0->affineScale;
 }
 
 u16 sub_02021D30 (const GraphicElementData * param0)
 {
-    return param0->unk_24;
+    return param0->affineZRotation;
 }
 
 int sub_02021D34 (const GraphicElementData * param0)
@@ -546,53 +551,53 @@ u16 sub_02021E74 (const GraphicElementData * param0)
 
 void sub_02021E80 (GraphicElementData * param0, u8 param1)
 {
-    param0->unk_F2 = param1;
+    param0->explicitPriority = param1;
 }
 
 u8 sub_02021E88 (const GraphicElementData * param0)
 {
-    return param0->unk_F2;
+    return param0->explicitPriority;
 }
 
 void sub_02021E90 (GraphicElementData * param0, u32 param1)
 {
     GF_ASSERT(param0);
 
-    param0->unk_29 = param1;
-    param0->unk_28 |= NNS_G2D_RND_OVERWRITE_PLTTNO;
-    param0->unk_28 &= ~NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
+    param0->explicitPalette = param1;
+    param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_PLTTNO;
+    param0->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
 }
 
 void sub_02021EC4 (GraphicElementData * param0, u32 param1)
 {
     sub_02021E90(param0, param1);
-    param0->unk_29 += sub_020222C4(&param0->paletteProxy, param0->type);
+    param0->explicitPalette += sub_020222C4(&param0->paletteProxy, param0->type);
 }
 
 u32 sub_02021EE8 (const GraphicElementData * param0)
 {
-    return param0->unk_29;
+    return param0->explicitPalette;
 }
 
 void sub_02021EF0 (GraphicElementData * param0, u32 param1)
 {
     GF_ASSERT(param0);
 
-    param0->unk_2A = param1;
-    param0->unk_28 |= NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
-    param0->unk_28 &= ~NNS_G2D_RND_OVERWRITE_PLTTNO;
+    param0->explicitPaletteOffset = param1;
+    param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
+    param0->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO;
 }
 
 void sub_02021F24 (GraphicElementData * param0, u32 param1)
 {
     sub_02021EF0(param0, param1);
-    param0->unk_2A += sub_020222C4(&param0->paletteProxy, param0->type);
+    param0->explicitPaletteOffset += sub_020222C4(&param0->paletteProxy, param0->type);
 }
 
 u32 sub_02021F48 (const GraphicElementData * param0)
 {
     GF_ASSERT(param0);
-    return param0->unk_2A;
+    return param0->explicitPaletteOffset;
 }
 
 void sub_02021F58 (GraphicElementData * param0, u32 param1)
@@ -627,12 +632,12 @@ NNSG2dImagePaletteProxy * sub_02021F9C (GraphicElementData * param0)
 
 void sub_02021FA0 (GraphicElementData * param0, BOOL param1)
 {
-    param0->unk_2C = param1;
+    param0->explicitMosaic = param1;
 
     if (param1 == 1) {
-        param0->unk_28 |= NNS_G2D_RND_OVERWRITE_MOSAIC;
+        param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_MOSAIC;
     } else {
-        param0->unk_28 ^= NNS_G2D_RND_OVERWRITE_MOSAIC;
+        param0->overwriteFlags ^= NNS_G2D_RND_OVERWRITE_MOSAIC;
     }
 }
 
@@ -658,12 +663,12 @@ void sub_02021FE0 (GraphicElementData * param0, GXOamMode param1)
 {
     GF_ASSERT(param0);
 
-    param0->oamMode = param1;
+    param0->explicitOamMode = param1;
 
     if (param1 == GX_OAM_MODE_NORMAL) {
-        param0->unk_28 ^= NNS_G2D_RND_OVERWRITE_OBJMODE;
+        param0->overwriteFlags ^= NNS_G2D_RND_OVERWRITE_OBJMODE;
     } else {
-        param0->unk_28 |= NNS_G2D_RND_OVERWRITE_OBJMODE;
+        param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_OBJMODE;
     }
 }
 
@@ -762,7 +767,7 @@ static BOOL sub_02022110 (const GraphicElementManager * param0, const UnkStruct_
         }
     }
 
-    param2->unk_F2 = param1->unk_20;
+    param2->explicitPriority = param1->unk_20;
 
     return 1;
 }
@@ -874,47 +879,56 @@ static u32 sub_020222C4 (const NNSG2dImagePaletteProxy * param0, u32 param1)
     return v1;
 }
 
-static void sub_020222F4 (const GraphicElementManager * param0, GraphicElementData * param1)
+static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxElemMgr, GraphicElementData *elem)
 {
-    VecFx32 v0 = param1->unk_00;
+    VecFx32 pos = elem->position;
 
-    NNS_G2dSetRendererImageProxy(param0->renderer, &param1->imageProxy, &param1->paletteProxy);
-    NNS_G2dBeginRendering(param0->renderer);
+    NNS_G2dSetRendererImageProxy(gfxElemMgr->renderer, &elem->imageProxy, &elem->paletteProxy);
+    NNS_G2dBeginRendering(gfxElemMgr->renderer);
     NNS_G2dPushMtx();
 
-    {
-        NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->renderer->rendererCore), param1->unk_26);
+    NNS_G2dSetRndCoreAffineOverwriteMode(&gfxElemMgr->renderer->rendererCore, elem->affineOverwriteMode);
 
-        if (param1->unk_26 == 0) {
-            NNS_G2dSetRndCoreFlipMode(&(param0->renderer->rendererCore), param1->unk_27 & 1, param1->unk_27 & 2);
-        } else {
-            NNS_G2dSetRndCoreFlipMode(&(param0->renderer->rendererCore), 0, 0);
-        }
+    if (elem->affineOverwriteMode == NNS_G2D_RND_AFFINE_OVERWRITE_NONE) {
+        NNS_G2dSetRndCoreFlipMode(
+            &gfxElemMgr->renderer->rendererCore, 
+            elem->flip & GRAPHIC_ELEMENT_DATA_FLIP_H, 
+            elem->flip & GRAPHIC_ELEMENT_DATA_FLIP_V
+        );
+    } else {
+        NNS_G2dSetRndCoreFlipMode(&gfxElemMgr->renderer->rendererCore, FALSE, FALSE);
+    }
 
-        NNS_G2dTranslate(v0.x, v0.y, v0.z);
+    NNS_G2dTranslate(pos.x, pos.y, pos.z);
 
-        if (param1->unk_26 != 0) {
-            NNS_G2dTranslate(param1->unk_0C.x, param1->unk_0C.y, param1->unk_0C.z);
-            NNS_G2dScale(param1->unk_18.x, param1->unk_18.y, param1->unk_18.z);
-            NNS_G2dRotZ(FX_SinIdx(param1->unk_24), FX_CosIdx(param1->unk_24));
-            NNS_G2dTranslate(-param1->unk_0C.x, -param1->unk_0C.y, -param1->unk_0C.z);
-        }
+    if (elem->affineOverwriteMode != NNS_G2D_RND_AFFINE_OVERWRITE_NONE) {
+        NNS_G2dTranslate(elem->affineTranslation.x, elem->affineTranslation.y, elem->affineTranslation.z);
+        NNS_G2dScale(elem->affineScale.x, elem->affineScale.y, elem->affineScale.z);
+        NNS_G2dRotZ(FX_SinIdx(elem->affineZRotation), FX_CosIdx(elem->affineZRotation));
 
-        NNS_G2dSetRendererOverwriteEnable(param0->renderer, param1->unk_28);
-        NNS_G2dSetRendererOverwriteDisable(param0->renderer, ~param1->unk_28);
-        NNS_G2dSetRendererOverwritePlttNo(param0->renderer, param1->unk_29);
-        NNS_G2dSetRendererOverwritePlttNoOffset(param0->renderer, param1->unk_2A);
-        NNS_G2dSetRendererOverwriteMosaicFlag(param0->renderer, param1->unk_2C);
-        NNS_G2dSetRendererOverwriteOBJMode(param0->renderer, param1->oamMode);
-        NNS_G2dSetRendererOverwritePriority(param0->renderer, param1->unk_F2);
+        // affineTranslation only serves as a pivot point for rotation and scaling
+        // so we undo this translation after applying these transformations.
+        NNS_G2dTranslate(-elem->affineTranslation.x, -elem->affineTranslation.y, -elem->affineTranslation.z);
+    }
 
-        if ((param1->unk_EC == 1) || (param1->unk_EC == 3)) {
-            CellAnimationData * v1 = (CellAnimationData *)&param1->unk_40;
-            NNS_G2dDrawCellAnimation(&v1->unk_08);
-        } else {
-            MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param1->unk_40;
-            NNS_G2dDrawMultiCellAnimation(&v2->unk_08);
-        }
+    // Set the overwrite parameters
+    // We always want the actual overwrite flags to be equal to overwriteParam
+    // so we set the flags that are not in overwriteParam to 0 with the second call
+    NNS_G2dSetRendererOverwriteEnable(gfxElemMgr->renderer, elem->overwriteFlags);
+    NNS_G2dSetRendererOverwriteDisable(gfxElemMgr->renderer, ~elem->overwriteFlags);
+
+    NNS_G2dSetRendererOverwritePlttNo(gfxElemMgr->renderer, elem->explicitPalette);
+    NNS_G2dSetRendererOverwritePlttNoOffset(gfxElemMgr->renderer, elem->explicitPaletteOffset);
+    NNS_G2dSetRendererOverwriteMosaicFlag(gfxElemMgr->renderer, elem->explicitMosaic);
+    NNS_G2dSetRendererOverwriteOBJMode(gfxElemMgr->renderer, elem->explicitOamMode);
+    NNS_G2dSetRendererOverwritePriority(gfxElemMgr->renderer, elem->explicitPriority);
+
+    if (elem->unk_EC == 1 || elem->unk_EC == 3) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->unk_40;
+        NNS_G2dDrawCellAnimation(&cellAnim->unk_08);
+    } else {
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->unk_40;
+        NNS_G2dDrawMultiCellAnimation(&multiCellAnim->unk_08);
     }
 
     NNS_G2dPopMtx();
