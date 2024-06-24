@@ -13,7 +13,7 @@
 #include "struct_defs/union_0206B878.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "trainer_info.h"
 #include "unk_02039C80.h"
 #include "map_header.h"

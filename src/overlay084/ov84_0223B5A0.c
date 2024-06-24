@@ -48,7 +48,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "trainer_info.h"
 #include "game_options.h"
 #include "unk_0202D7A8.h"

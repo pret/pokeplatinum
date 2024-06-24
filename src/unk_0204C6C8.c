@@ -9,7 +9,7 @@
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "coins.h"
 #include "field_system.h"
 #include "field_script_context.h"
@@ -53,7 +53,7 @@ BOOL ScrCmd_078 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = SaveData_GetCoins(v1);
     u16 * v3;
 
     v3 = ScriptContext_GetVarPointer(param0);
@@ -66,7 +66,7 @@ BOOL ScrCmd_079 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = SaveData_GetCoins(v1);
     u16 v3;
 
     v3 = ScriptContext_GetVar(param0);
@@ -79,7 +79,7 @@ BOOL ScrCmd_07A (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = SaveData_GetCoins(v1);
     u16 v3;
 
     v3 = ScriptContext_GetVar(param0);
@@ -92,7 +92,7 @@ BOOL ScrCmd_2A8 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = SaveData_GetCoins(v1);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
     u16 v4;
 
@@ -108,7 +108,7 @@ BOOL ScrCmd_274 (ScriptContext * param0)
     FieldSystem * fieldSystem = param0->fieldSystem;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
     SaveData * v2 = fieldSystem->saveData;
-    u16 * v3 = sub_02025E50(v2);
+    u16 * v3 = SaveData_GetCoins(v2);
     u32 v4, v5;
     u16 * v6 = ScriptContext_GetVarPointer(param0);
 
@@ -129,7 +129,7 @@ BOOL ScrCmd_2A9 (ScriptContext * param0)
     FieldSystem * fieldSystem = param0->fieldSystem;
     TrainerInfo * v1 = SaveData_GetTrainerInfo(FieldSystem_SaveData(param0->fieldSystem));
     SaveData * v2 = fieldSystem->saveData;
-    u16 * v3 = sub_02025E50(v2);
+    u16 * v3 = SaveData_GetCoins(v2);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
     u16 * v5 = ScriptContext_GetVarPointer(param0);
     u32 v6, v7;
@@ -150,7 +150,7 @@ BOOL ScrCmd_276 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = SaveData_GetCoins(v1);
     u16 * v3 = ScriptContext_GetVarPointer(param0);
     u16 v4 = ScriptContext_GetVar(param0);
 

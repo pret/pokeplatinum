@@ -11,7 +11,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "unk_0202631C.h"
 #include "game_options.h"
 #include "vars_flags.h"

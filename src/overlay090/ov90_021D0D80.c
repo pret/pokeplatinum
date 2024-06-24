@@ -48,7 +48,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0208C098.h"

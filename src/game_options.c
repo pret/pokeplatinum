@@ -4,7 +4,7 @@
 #include "core_sys.h"
 #include "savedata.h"
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "game_options.h"
 #include "core_sys.h"
 

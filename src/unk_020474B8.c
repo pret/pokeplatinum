@@ -15,7 +15,7 @@
 #include "string_template.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"
 #include "field_system.h"

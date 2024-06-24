@@ -39,7 +39,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "trainer_info.h"
 #include "overlay005/encounter_effect.h"
 #include "overlay005/field_motion_blur.h"

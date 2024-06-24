@@ -29,7 +29,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "unk_0202CD50.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"

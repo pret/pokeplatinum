@@ -8,7 +8,7 @@
 #include "struct_defs/struct_020997B8.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"

@@ -28,7 +28,7 @@
 #include "string_template.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "unk_0202F1D4.h"
 #include "unk_020366A0.h"
 #include "overlay004/ov4_021D0D80.h"

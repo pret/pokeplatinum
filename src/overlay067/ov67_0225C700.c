@@ -40,7 +40,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_020366A0.h"

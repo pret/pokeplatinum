@@ -21,7 +21,7 @@
 #include "unk_020041CC.h"
 #include "heap.h"
 #include "savedata/save_table.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "unk_02026150.h"
 #include "journal.h"
 #include "unk_0202CD50.h"

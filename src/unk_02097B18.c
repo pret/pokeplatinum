@@ -33,7 +33,7 @@
 #include "unk_02023FCC.h"
 #include "unk_02024220.h"
 #include "savedata/save_table.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "game_options.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"

@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
 #include "party.h"

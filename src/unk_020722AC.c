@@ -43,7 +43,7 @@
 #include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "game_options.h"
 #include "unk_02028124.h"
 #include "field_system.h"

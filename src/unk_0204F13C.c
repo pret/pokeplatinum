@@ -24,7 +24,7 @@
 #include "string_template.h"
 #include "heap.h"
 #include "savedata.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"

@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "trainer_info.h"
 #include "unk_02030494.h"
 #include "communication_information.h"

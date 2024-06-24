@@ -11,7 +11,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "field_system.h"
 #include "unk_0209BA18.h"
 

@@ -65,7 +65,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "game_options.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"

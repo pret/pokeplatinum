@@ -9,7 +9,7 @@
 #include "field_script_context.h"
 #include "struct_defs/struct_0205EC34.h"
 
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "field_overworld_state.h"

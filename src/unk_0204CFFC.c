@@ -14,7 +14,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "savedata/save_table.h"
-#include "unk_02025E08.h"
+#include "save_state.h"
 #include "trainer_info.h"
 #include "map_header.h"
 #include "field_system.h"
