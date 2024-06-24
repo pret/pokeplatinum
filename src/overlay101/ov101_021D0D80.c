@@ -1,3 +1,4 @@
+#include "consts/game_records.h"
 #include "enums.h"
 
 #include <nitro.h>
@@ -36,7 +37,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020711EC.h"
 #include "overlay101/ov101_021D0D80.h"
 #include "overlay101/ov101_021D1A28.h"
@@ -184,8 +185,8 @@ static void ov101_021D0F3C (UnkStruct_ov101_021D0F3C * param0, UnkStruct_ov101_0
     (*param0->unk_00->unk_00) = v0;
     param0->unk_00->unk_0C = param1->unk_20;
 
-    if (param0->unk_00->unk_08 != NULL) {
-        sub_0202CF70(param0->unk_00->unk_08, (1 + 13), param1->unk_0C);
+    if (param0->unk_00->records != NULL) {
+        GameRecords_AddToRecordValue(param0->unk_00->records, RECORD_UNK_014, param1->unk_0C);
     }
 }
 

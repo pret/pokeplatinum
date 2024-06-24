@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 
 #include "overlay076/const_ov76_0223EF3C.h"
@@ -48,7 +48,7 @@
 #include "gx_layers.h"
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "pokemon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02235E94.h"
@@ -1002,10 +1002,10 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
         ov76_0223B808(param0);
         ov76_0223C7E0(param0);
         {
-            UnkStruct_0202CD88 * v7;
-            v7 = sub_0202CD88(param0->unk_00->unk_28);
+            GameRecords * v7;
+            v7 = SaveData_GetGameRecordsPtr(param0->unk_00->unk_28);
 
-            sub_0202CFEC(v7, 6);
+            GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_06);
         }
 
         {

@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "message.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -35,7 +35,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202DF8C.h"
 #include "field_overworld_state.h"
 #include "unk_0203D178.h"
@@ -184,7 +184,7 @@ void sub_02052E58 (TaskManager * param0)
     VarsFlags * v3;
     TrainerInfo * v4;
     UnkStruct_0205300C * v5;
-    UnkStruct_0202CD88 * v6;
+    GameRecords * v6;
     Party * v7;
 
     fieldSystem = TaskManager_FieldSystem(param0);
@@ -215,9 +215,9 @@ void sub_02052E58 (TaskManager * param0)
     sub_0206A944(v3);
     TrainerInfo_SetMainStoryCleared(v4);
 
-    v6 = sub_0202CD88(fieldSystem->saveData);
+    v6 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-    sub_0202CF28(v6, (((70 + 1)) + 2));
+    GameRecords_IncrementRecordValue(v6, RECORD_UNK_073);
     FieldTask_Start(param0, sub_02052CBC, v5);
 }
 

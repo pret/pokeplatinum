@@ -3,10 +3,10 @@
 
 #include "inlines.h"
 
+#include "consts/game_records.h"
 
 #include "struct_decls/struct_020298B0_decl.h"
 #include "journal.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
@@ -28,7 +28,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "field_overworld_state.h"
@@ -325,7 +325,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
     u16 v1, v2;
     UnkStruct_0204AFC4 * v3;
     UnkStruct_0203068C * v4;
-    UnkStruct_0202CD88 * v5;
+    GameRecords * v5;
 
     v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
@@ -377,7 +377,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
 
     if (v3->unk_0F != 5) {
         v4 = sub_0203068C(param0);
-        v5 = sub_0202CD88(param0);
+        v5 = SaveData_GetGameRecordsPtr(param0);
 
         if (v3->unk_0F == 6) {
             v2 = sub_0206B6FC(SaveData_GetVarsFlags(param0));
@@ -397,7 +397,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (SaveData * param0, u16 param1, u16 param2)
             v3->unk_1C = sub_0202D3B4(v3->unk_74, v3->unk_0F, 0);
         }
 
-        v3->unk_20 = sub_0202CFB8(v5, (1 + 28));
+        v3->unk_20 = GameRecords_GetRecordValue(v5, RECORD_UNK_029);
     }
 
     if (v3->unk_0F == 6) {
@@ -600,7 +600,7 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
     u32 v0 = 0;
     int v1;
     u16 v2, v3, v4;
-    UnkStruct_0202CD88 * v5 = sub_0202CD88(param1);
+    GameRecords * v5 = SaveData_GetGameRecordsPtr(param1);
     UnkStruct_0203068C * v6 = sub_0203068C(param1);
 
     if (param0->unk_0F == 5) {
@@ -636,11 +636,11 @@ void sub_0204A660 (UnkStruct_0204AFC4 * param0, SaveData * param1)
         sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 2);
     }
 
-    sub_0202CF70(v5, (1 + 28), param0->unk_0D);
+    GameRecords_AddToRecordValue(v5, RECORD_UNK_029, param0->unk_0D);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 2);
 
     if (param0->unk_0F != 6) {
-        sub_0202CF70(sub_0202CD88(param1), (1 + 14), 1);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param1), RECORD_UNK_015, 1);
     }
 
     sub_0204ACC8(param0);
@@ -660,14 +660,14 @@ void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * par
     int v1;
     void * v2;
     u16 v3, v4, v5;
-    UnkStruct_0202CD88 * v6;
+    GameRecords * v6;
     UnkStruct_0203068C * v7;
 
     if (param0->unk_0F == 5) {
         return;
     }
 
-    v6 = sub_0202CD88(param1);
+    v6 = SaveData_GetGameRecordsPtr(param1);
     v7 = sub_0203068C(param1);
 
     if (param0->unk_0F == 6) {
@@ -693,14 +693,14 @@ void sub_0204A7A4 (UnkStruct_0204AFC4 * param0, SaveData * param1, Journal * par
     v3 = sub_02030698(v7, v1, sub_0205E6A8(v1));
     v4 = sub_02030848(v7, v1, sub_0205E6A8(v1), v0);
 
-    sub_0202CF70(v6, (1 + 28), 7);
+    GameRecords_AddToRecordValue(v6, RECORD_UNK_029, 7);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 3);
 
     if (param0->unk_0F != 6) {
-        sub_0202CF70(v6, (1 + 14), 1);
+        GameRecords_AddToRecordValue(v6, RECORD_UNK_015, 1);
     }
 
-    sub_0202CFEC(v6, 14);
+    GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_14);
     sub_0204ACC8(param0);
     sub_0204A5EC(param0, param1, 1, v0);
 

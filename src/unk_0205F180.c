@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02005474.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"
@@ -2356,9 +2356,9 @@ static void sub_020615C8 (PlayerAvatar * playerAvatar)
 {
     MapObject * v0 = Player_MapObject(playerAvatar);
     FieldSystem * fieldSystem = MapObject_FieldSystem(v0);
-    UnkStruct_0202CD88 * v2 = sub_0202CD88(fieldSystem->saveData);
+    GameRecords * v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-    sub_0202CF28(v2, (0 + 0));
+    GameRecords_IncrementRecordValue(v2, RECORD_UNK_000);
 }
 
 static int sub_020615E0 (PlayerAvatar * playerAvatar, MapObject * mapObj, int param2)

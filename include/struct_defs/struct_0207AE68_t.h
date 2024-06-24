@@ -12,7 +12,7 @@
 #include "strbuf.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "game_options.h"
-#include "struct_decls/struct_0202CD88_decl.h"
+#include "game_records.h"
 #include "poketch_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "pokemon.h"
@@ -42,7 +42,7 @@ struct UnkStruct_0207AE68_t {
     PokemonAnimationSys * unk_44;
     PokedexData * unk_48;
     Bag * unk_4C;
-    UnkStruct_0202CD88 * unk_50;
+    GameRecords *records;
     PoketchData *poketchData;
     void * unk_58;
     int unk_5C;

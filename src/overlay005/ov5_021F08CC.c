@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "message.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"
 #include "unk_02051D8C.h"
@@ -123,8 +123,8 @@ BOOL ov5_021F08F8 (TaskManager * taskMan)
                 }
 
                 {
-                    UnkStruct_0202CD88 * v4 = sub_0202CD88(fieldSystem->saveData);
-                    sub_0202CF28(v4, (1 + 9));
+                    GameRecords * v4 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+                    GameRecords_IncrementRecordValue(v4, RECORD_UNK_010);
                 }
 
                 sub_02050E78(fieldSystem, taskMan, v1->unk_10);
@@ -352,8 +352,8 @@ static int ov5_021F0BF4 (UnkStruct_ov5_021F0D6C * param0, PlayerAvatar * playerA
     param0->unk_0C = 14;
 
     {
-        UnkStruct_0202CD88 * v0 = sub_0202CD88(param0->fieldSystem->saveData);
-        sub_0202CF28(v0, (((70 + 1)) + 29));
+        GameRecords * v0 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
+        GameRecords_IncrementRecordValue(v0, RECORD_UNK_100);
     }
 
     sub_0206D340(param0->fieldSystem, 0, ov5_021F0E58(param0->unk_1C), NULL);

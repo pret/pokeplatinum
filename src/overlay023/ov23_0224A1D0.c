@@ -2,6 +2,7 @@
 #include <string.h>
 #include <nnsys/g3d/glbstate.h>
 
+#include "consts/game_records.h"
 #include "sys_task_manager.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -19,7 +20,7 @@
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
@@ -81,7 +82,7 @@ static void ov23_0224A204 (int param0)
 
     if (param0 == CommSys_CurNetId()) {
         if (commPlayerMan->unk_290[param0] != NULL) {
-            sub_0202CFEC(sub_0202CD88(commPlayerMan->fieldSystem->saveData), 28);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(commPlayerMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_28);
 
             if (commPlayerMan->unk_27C[5 - 1]) {
                 Heap_FreeToHeap(commPlayerMan->unk_27C[5 - 1]);

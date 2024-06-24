@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "strbuf.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "savedata.h"
 
@@ -20,7 +20,7 @@
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202B37C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202E840.h"
 #include "unk_0203061C.h"
 
@@ -122,7 +122,7 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
 {
     int v0;
     u32 v1;
-    UnkStruct_0202CD88 * v2;
+    GameRecords * v2;
     UnkStruct_0203068C * v3;
     u32 * v4;
     static const int v5[] = {
@@ -141,29 +141,29 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
         0x5E
     };
 
-    v2 = sub_0202CD88(param0);
+    v2 = SaveData_GetGameRecordsPtr(param0);
     v3 = sub_0203068C(param0);
     v4 = Heap_AllocFromHeapAtEnd(param1, 4 * 13);
 
     for (v0 = 0; v0 < 13; v0++) {
         switch (v0) {
         case 5:
-            v1 = sub_0202CFB8(v2, (1 + 14));
+            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_015);
 
             if (v1 > 0) {
-                v1 = sub_0202CFB8(v2, (1 + 28)) / v1;
+                v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_029) / v1;
             }
 
             v4[v0] = v1;
             break;
         case 10:
-            v1 = sub_0202CFB8(v2, (((70 + 1)) + 21));
-            v1 += sub_0202CFB8(v2, (((70 + 1)) + 22));
+            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_092);
+            v1 += GameRecords_GetRecordValue(v2, RECORD_UNK_093);
             v4[v0] = v1;
             break;
         case 11:
-            v1 = sub_0202CFB8(v2, (((70 + 1)) + 19));
-            v1 += sub_0202CFB8(v2, (((70 + 1)) + 20));
+            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_090);
+            v1 += GameRecords_GetRecordValue(v2, RECORD_UNK_091);
 
             if (v1 > 0) {
                 v1 = (v4[10] * 100) / v1;
@@ -175,7 +175,7 @@ static u32 * sub_0202E924 (SaveData * param0, int param1)
             if ((v0 >= 0) && (v0 <= 4)) {
                 v4[v0] = sub_02030698(v3, v5[v0], 0xff);
             } else {
-                v4[v0] = sub_0202CFB8(v2, v5[v0]);
+                v4[v0] = GameRecords_GetRecordValue(v2, v5[v0]);
             }
         }
     }

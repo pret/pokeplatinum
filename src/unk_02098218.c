@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "trainer_info.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 
@@ -29,7 +29,7 @@
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
 #include "game_options.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
 #include "field_system.h"
@@ -258,9 +258,9 @@ static BOOL sub_0209843C (TaskManager * param0)
 
             {
                 FieldSystem * fieldSystem = TaskManager_FieldSystem(param0);
-                UnkStruct_0202CD88 * v11 = sub_0202CD88(FieldSystem_SaveData(fieldSystem));
+                GameRecords * v11 = SaveData_GetGameRecordsPtr(FieldSystem_SaveData(fieldSystem));
 
-                sub_0202CF28(v11, (1 + 48));
+                GameRecords_IncrementRecordValue(v11, RECORD_UNK_049);
             }
         }
 

@@ -3,6 +3,7 @@
 #include <nitro/os.h>
 #include <nnsys/g3d/glbstate.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "sys_task_manager.h"
@@ -22,7 +23,7 @@
 #include "constants/heap.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
@@ -930,7 +931,7 @@ static void sub_02058644 (int netId)
             sub_0202929C(underground);
 
             if (sub_020292B4(underground) == 50) {
-                sub_0202CFEC(sub_0202CD88(sCommPlayerManager->fieldSystem->saveData), 37);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_37);
             }
         }
     }

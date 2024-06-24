@@ -128,7 +128,7 @@ Static main
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
 	Object main.nef.p/src_unk_0202CC64.c.o
-	Object main.nef.p/src_unk_0202CD50.c.o
+	Object main.nef.p/src_game_records.c.o
 	Object main.nef.p/src_unk_0202D05C.c.o
 	Object main.nef.p/src_unk_0202D778.c.o
 	Object main.nef.p/src_unk_0202D7A8.c.o

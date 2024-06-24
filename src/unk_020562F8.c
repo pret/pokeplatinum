@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020564B4_decl.h"
 #include "pokemon.h"
 
@@ -15,7 +15,7 @@
 #include "rtc.h"
 #include "heap.h"
 #include "savedata/save_table.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202EEC0.h"
 #include "unk_02051D8C.h"
 #include "unk_02054D00.h"
@@ -71,7 +71,7 @@ void sub_020562F8 (FieldSystem * fieldSystem)
 void sub_02056328 (FieldSystem * fieldSystem)
 {
     UnkStruct_020564B4 * v0 = &Unk_021C07FC;
-    UnkStruct_0202CD88 * v1 = sub_0202CD88(fieldSystem->saveData);
+    GameRecords * v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     s64 v2 = GetTimestamp();
     s64 v3 = TimeElapsed(v0->unk_40, v2);
 
@@ -81,7 +81,7 @@ void sub_02056328 (FieldSystem * fieldSystem)
         v0->unk_48 = 0;
     }
 
-    sub_0202CFEC(v1, 17);
+    GameRecords_IncrementTrainerScore(v1, TRAINER_SCORE_EVENT_UNK_17);
 }
 
 BOOL sub_02056374 (FieldSystem * fieldSystem, int param1, int param2)

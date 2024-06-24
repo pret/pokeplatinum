@@ -1,3 +1,4 @@
+#include "consts/game_records.h"
 #include "enums.h"
 
 #include <nitro.h>
@@ -6,7 +7,6 @@
 #include "constants/battle.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -24,7 +24,7 @@
 #include "unk_02025E08.h"
 #include "unk_02026150.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "communication_information.h"
 #include "field_overworld_state.h"
@@ -260,8 +260,8 @@ static BOOL sub_02050CA8 (TaskManager * taskMan)
         sub_02052754(v1->unk_10, fieldSystem);
 
         {
-            UnkStruct_0202CD88 * v3 = sub_0202CD88(fieldSystem->saveData);
-            sub_0202CFEC(v3, 21);
+            GameRecords * v3 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+            GameRecords_IncrementTrainerScore(v3, TRAINER_SCORE_EVENT_UNK_21);
         }
 
         sub_02055868(taskMan);
@@ -300,8 +300,8 @@ static BOOL sub_02050D4C (TaskManager * taskMan)
         sub_02052754(v1->unk_10, fieldSystem);
     }
         {
-            UnkStruct_0202CD88 * v3 = sub_0202CD88(fieldSystem->saveData);
-            sub_0202CFEC(v3, 21);
+            GameRecords * v3 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+            GameRecords_IncrementTrainerScore(v3, TRAINER_SCORE_EVENT_UNK_21);
         }
         (*v2)++;
         break;
@@ -381,7 +381,7 @@ static BOOL sub_02050EE0 (TaskManager * taskMan)
     switch (v1->unk_00) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 6));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
         sub_020557DC(taskMan, v1->unk_04, v1->unk_08);
         v1->unk_00++;
         break;
@@ -464,7 +464,7 @@ static BOOL sub_02051074 (TaskManager * taskMan)
     switch (*v2) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 6));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
         sub_020557DC(taskMan, v1->unk_04, v1->unk_08);
         (*v2)++;
         break;
@@ -551,7 +551,7 @@ void sub_0205120C (TaskManager * taskMan, int * param1)
 
     ov6_02242034(fieldSystem, v1);
 
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param1);
 }
 
@@ -573,7 +573,7 @@ void sub_02051270 (TaskManager * taskMan, u16 param1, u8 param2, int * param3, B
         v1->unk_164 |= 0x8;
     }
 
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
@@ -602,7 +602,7 @@ void sub_020512E4 (TaskManager * taskMan, u16 param1, u8 param2, int * param3, B
         v1->unk_164 |= 0x8;
     }
 
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
@@ -619,7 +619,7 @@ static BOOL sub_0205136C (TaskManager * taskMan)
     switch (*v2) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 6));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
         sub_020557DC(taskMan, v1->unk_04, v1->unk_08);
         (*v2)++;
         break;
@@ -686,7 +686,7 @@ void sub_02051480 (TaskManager * taskMan, int param1, int param2, int * param3)
     v1->trainerIDs[2] = 0;
 
     TrainerData_Encounter(v1, fieldSystem->saveData, param2);
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 7));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_008);
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
@@ -777,7 +777,7 @@ void sub_020515CC (TaskManager * taskMan, int param1, int param2, int param3, in
     v2->trainerIDs[2] = param3;
 
     TrainerData_Encounter(v2, fieldSystem->saveData, param4);
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 7));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_008);
     sub_02050C4C(taskMan, v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), param5);
 }
 
@@ -929,28 +929,28 @@ static void sub_020518B0 (FieldSystem * fieldSystem, BattleParams * param1)
             || (v1 == BATTLE_TYPE_ROAMER)
             || (v1 == BATTLE_TYPE_AI_PARTNER)) {
         if (v2 == 0x1) {
-            sub_0202CFEC(sub_0202CD88(fieldSystem->saveData), 8);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_08);
         } else if (v2 == 0x4) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
             if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
-                sub_0202CFEC(sub_0202CD88(fieldSystem->saveData), 9);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_09);
             } else {
-                sub_0202CFEC(sub_0202CD88(fieldSystem->saveData), 10);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_10);
             }
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
         if (v2 == 0x1) {
-            sub_0202CFEC(sub_0202CD88(fieldSystem->saveData), 11);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_11);
         }
     } else if ((v1 & BATTLE_TYPE_SAFARI) || (v1 & BATTLE_TYPE_PAL_PARK)) {
         if (v2 == 0x4) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
             if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
-                sub_0202CFEC(sub_0202CD88(fieldSystem->saveData), 9);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_09);
             } else {
-                sub_0202CFEC(sub_0202CD88(fieldSystem->saveData), 10);
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_10);
             }
         }
     }
@@ -1032,6 +1032,6 @@ void sub_02051ABC (TaskManager * taskMan, u16 param1, u8 param2, int * param3, B
     v1->unk_164 |= 0x40 | 0x80;
     v1->unk_12C = 23;
 
-    sub_0202CF28(sub_0202CD88(fieldSystem->saveData), (1 + 6));
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_UNK_007);
     sub_02050C4C(taskMan, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }

@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026224_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "savedata.h"
@@ -25,7 +25,7 @@
 #include "trainer_info.h"
 #include "unk_020261E4.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020559DC.h"
 #include "constants/species.h"
 #include "pokemon.h"
@@ -2049,9 +2049,9 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
 void ov5_021E6358 (Party * param0, int param1, UnkStruct_02026310 * param2, SaveData * param3)
 {
     int v0;
-    UnkStruct_0202CD88 * v1 = sub_0202CD88(param3);
+    GameRecords * v1 = SaveData_GetGameRecordsPtr(param3);
 
-    sub_0202CF28(v1, 1 + 39);
+    GameRecords_IncrementRecordValue(v1, RECORD_UNK_040);
     v0 = ov5_021E6270(param2);
     ov5_021E62C4(param0, param1, sub_02026218(param2, v0), param3);
 }

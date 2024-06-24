@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -41,7 +42,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0202854C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
@@ -2559,7 +2560,7 @@ void ov23_022455B4 (int param0, int param1, void * param2, void * param3)
 
     if (v0->unk_00 == CommSys_CurNetId()) {
         sub_02029744(v1);
-        sub_0202CFEC(sub_0202CD88(Unk_ov23_02257764->fieldSystem->saveData), 34);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_02257764->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_34);
         sub_020594FC();
 
         ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(v0->unk_01));

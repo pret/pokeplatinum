@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
@@ -30,7 +31,7 @@
 #include "unk_0201D15C.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
@@ -643,7 +644,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
     case 10:
         break;
     case 11:
-        sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 32);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_32);
         ov23_022539E8();
         ov23_0224DC68(v0, 9);
         v0->unk_37 = 12;
@@ -739,7 +740,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
             sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
         }
 
-        sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 31);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
         v0->unk_37 = 25;
         break;
     case 25:
@@ -807,7 +808,7 @@ static void ov23_0224E2D8 (SysTask * param0, void * param1)
         break;
     case 36:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            sub_0202CFEC(sub_0202CD88(v0->fieldSystem->saveData), 33);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_33);
             ov23_0224DC68(v0, 142);
             v0->unk_37 = 37;
         }

@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "sys_task_manager.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -17,7 +18,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_0202854C.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_system.h"
 #include "field_system.h"
 #include "vars_flags.h"
@@ -400,7 +401,7 @@ void ov23_02241AE8 (int param0, int param1, int param2, int param3)
 
         Sound_PlayEffect(1585);
         sub_0206AA14(SaveData_GetVarsFlags(Unk_ov23_02257744->fieldSystem->saveData));
-        sub_0202CF28(sub_0202CD88(Unk_ov23_02257744->fieldSystem->saveData), (1 + 46));
+        GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(Unk_ov23_02257744->fieldSystem->saveData), RECORD_UNK_047);
 
         ov5_021F57C8(Unk_ov23_02257744->fieldSystem, param2, param3);
     }

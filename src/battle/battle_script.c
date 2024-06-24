@@ -294,7 +294,7 @@ static BOOL BtlCmd_ShowPartyGauge(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_HidePartyGauge(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_LoadPartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_FreePartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IncrementGameStat(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IncrementGameRecord(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -554,7 +554,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_HidePartyGauge,
     BtlCmd_LoadPartyGaugeGraphics,
     BtlCmd_FreePartyGaugeGraphics,
-    BtlCmd_IncrementGameStat,
+    BtlCmd_IncrementGameRecord,
     BtlCmd_RestoreSprite,
     BtlCmd_TriggerAbilityOnHit,
     BtlCmd_SpriteToOAM,
@@ -8917,7 +8917,7 @@ static BOOL BtlCmd_FreePartyGaugeGraphics(BattleSystem *battleSys, BattleContext
     return FALSE;
 }
 
-static BOOL BtlCmd_IncrementGameStat(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_IncrementGameRecord(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int inBattler = BattleScript_Read(battleCtx);

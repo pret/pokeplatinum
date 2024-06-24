@@ -38,7 +38,7 @@
 #include "unk_02027F84.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0203266C.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"
@@ -108,7 +108,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     v1->unk_190 = NULL;
     v1->unk_168 = 0;
     v1->unk_104 = NULL;
-    v1->unk_11C = NULL;
+    v1->records = NULL;
     v1->unk_120 = NULL;
     v1->unk_16C = 0;
 
@@ -186,7 +186,7 @@ BattleParams * sub_02051F4C (int param0, const FieldSystem * fieldSystem)
     v4->unk_EC = SaveData_PCBoxes(fieldSystem->saveData);
     v4->unk_E4 = fieldSystem->unk_98;
     v4->unk_190 = NULL;
-    v4->unk_11C = sub_0202CD88(fieldSystem->saveData);
+    v4->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v4->unk_120 = fieldSystem->unk_9C;
     v4->mapHeaderID = fieldSystem->location->mapId;
 
@@ -287,7 +287,7 @@ void sub_020521B8 (BattleParams * param0, const FieldSystem * fieldSystem, SaveD
     param0->unk_190 = param6;
     param0->poketchData = SaveData_PoketchData(param2);
     param0->unk_104 = sub_0202C878(param2);
-    param0->unk_11C = sub_0202CD88(param2);
+    param0->records = SaveData_GetGameRecordsPtr(param2);
     param0->unk_120 = param4;
     param0->unk_124 = sub_02027F8C(param2);
     param0->mapHeaderID = param3;
@@ -344,7 +344,7 @@ void sub_02052348 (BattleParams * param0, const FieldSystem * fieldSystem, int p
     param0->unk_190 = fieldSystem->unk_BC;
     param0->poketchData = SaveData_PoketchData(fieldSystem->saveData);
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
-    param0->unk_11C = sub_0202CD88(fieldSystem->saveData);
+    param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     param0->unk_120 = fieldSystem->unk_9C;
     param0->unk_124 = sub_02027F8C(fieldSystem->saveData);
     param0->mapHeaderID = fieldSystem->location->mapId;
@@ -413,7 +413,7 @@ void sub_020524E4 (BattleParams * param0, const FieldSystem * fieldSystem, const
     param0->unk_E4 = fieldSystem->unk_98;
     param0->unk_190 = fieldSystem->unk_BC;
     param0->unk_104 = sub_0202C878(fieldSystem->saveData);
-    param0->unk_11C = sub_0202CD88(fieldSystem->saveData);
+    param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     param0->unk_120 = fieldSystem->unk_9C;
     param0->mapHeaderID = fieldSystem->location->mapId;
     param0->unk_124 = sub_02027F8C(fieldSystem->saveData);

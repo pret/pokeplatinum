@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "trainer_info.h"
@@ -11,7 +12,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D05C.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
@@ -432,7 +433,7 @@ BOOL ScrCmd_298 (ScriptContext * param0)
     SaveData * v1 = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
 
-    sub_0202CF70(sub_0202CD88(param0->fieldSystem->saveData), (1 + 67), v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(v1), v2, 5);
 
     return 0;
@@ -444,7 +445,7 @@ BOOL ScrCmd_299 (ScriptContext * param0)
     SaveData * v1 = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
 
-    sub_0202CF70(sub_0202CD88(param0->fieldSystem->saveData), (1 + 68), v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData), RECORD_UNK_069, v2);
     sub_0202D230(sub_0202D750(v1), v2, 6);
 
     return 0;
