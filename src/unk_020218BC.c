@@ -38,11 +38,11 @@ typedef struct {
 typedef struct {
     const NNSG2dCellDataBank * unk_00;
     const NNSG2dCellAnimBankData * unk_04;
-    NNSG2dMultiCellAnimation unk_08;
-    const NNSG2dMultiCellDataBank * unk_6C;
-    const NNSG2dMultiCellAnimBankData * unk_70;
-    NNSG2dNode * unk_74;
-    NNSG2dCellAnimation * unk_78;
+    NNSG2dMultiCellAnimation anim;
+    const NNSG2dMultiCellDataBank * cellBank;
+    const NNSG2dMultiCellAnimBankData * animBank;
+    NNSG2dNode * nodes;
+    NNSG2dCellAnimation * cellAnims;
 } MultiCellAnimationData;
 
 typedef struct GraphicElementData_t {
@@ -61,7 +61,7 @@ typedef struct GraphicElementData_t {
     u8 unk_35;
     fx32 unk_38;
     GraphicElementManager * manager;
-    u32 unk_40[29];
+    u32 animData[29];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
     u32 type;
@@ -89,16 +89,16 @@ typedef void (* GraphicElementDrawFunc)(const GraphicElementManager *, GraphicEl
 typedef void (* GraphicElementInitializeFunc)(GraphicElementData *);
 
 static void GraphicElementManager_Reset(GraphicElementManager * param0);
-static enum CellType sub_020221B8(const CellActorResourceData * param0);
-static void sub_020221D0(const NNSG2dCellDataBank * param0, GraphicElementData * param1);
-static void sub_020221D4(const NNSG2dCellAnimBankData * param0, GraphicElementData * param1);
-static void sub_020221D8(const NNSG2dMultiCellDataBank * param0, GraphicElementData * param1);
-static void sub_020221E0(const NNSG2dMultiCellAnimBankData * param0, GraphicElementData * param1);
+static enum CellType CellActorResourceData_GetCellType(const CellActorResourceData * param0);
+static void GraphicElementData_SetCellBank(const NNSG2dCellDataBank * param0, GraphicElementData * param1);
+static void GraphicElementData_SetCellAnimBank(const NNSG2dCellAnimBankData * param0, GraphicElementData * param1);
+static void GraphicElementData_SetMultiCellBank(const NNSG2dMultiCellDataBank * param0, GraphicElementData * param1);
+static void GraphicElementData_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData * param0, GraphicElementData * param1);
 static void sub_020221E8(GraphicElementData * param0, int param1);
 static void sub_02022208(const CellActorResourceData * param0, GraphicElementData * param1, int param2);
-static void sub_02022264(GraphicElementData * param0, int param1);
-static BOOL GraphicElementManager_InitElementFromResource(const GraphicElementManager * param0, const CellActorResourceData * param1, GraphicElementData * param2, int param3);
-static u32 sub_020222C4(const NNSG2dImagePaletteProxy * param0, u32 param1);
+static void GraphicElementData_CreateMultiCellAnim(GraphicElementData * param0, int param1);
+static BOOL GraphicElementManager_InitElement(const GraphicElementManager * param0, const CellActorResourceData * param1, GraphicElementData * param2, int param3);
+static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy * param0, u32 param1);
 static void GraphicElementManager_DrawElement(const GraphicElementManager * param0, GraphicElementData * param1);
 static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager * param0, GraphicElementData * param1);
 static void sub_02022454(GraphicElementData * param0);
@@ -235,13 +235,11 @@ static void GraphicElementManager_Reset(GraphicElementManager *gfxElemMgr)
     gfxElemMgr->renderer = NULL;
 
     GraphicElementData_Reset(&gfxElemMgr->sentinelData);
-    gfxElemMgr->active = 0;
+    gfxElemMgr->active = FALSE;
 }
 
 void GraphicElementData_Reset(GraphicElementData *elem)
 {
-    int v0;
-
     elem->manager = NULL;
     memset(elem, 0, sizeof(GraphicElementData));
 
@@ -251,20 +249,20 @@ void GraphicElementData_Reset(GraphicElementData *elem)
     elem->explicitOamMode = GX_OAM_MODE_NORMAL;
 }
 
-GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParamsEx * param0)
+GraphicElementData *GraphicElementManager_AddElement(const CellActorInitParamsEx *params)
 {
-    GraphicElementData *elem = GraphicElementManager_AllocElement(param0->manager);
+    GraphicElementData *elem = GraphicElementManager_AllocElement(params->manager);
     if (elem == NULL) {
         return NULL;
     }
 
-    elem->manager = param0->manager;
+    elem->manager = params->manager;
     elem->unk_F0 = 0;
-    elem->position = param0->position;
-    elem->affineScale = param0->affineScale;
-    elem->affineZRotation = param0->affineZRotation;
-    elem->vramType = param0->vramType;
-    elem->priority = param0->priority;
+    elem->position = params->position;
+    elem->affineScale = params->affineScale;
+    elem->affineZRotation = params->affineZRotation;
+    elem->vramType = params->vramType;
+    elem->priority = params->priority;
     elem->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
     elem->flip = GRAPHIC_ELEMENT_DATA_FLIP_NONE;
     elem->explicitMosaic = FALSE;
@@ -272,11 +270,11 @@ GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParamsE
     elem->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
     NNS_G2dSetRndCoreAffineOverwriteMode(
-        &param0->manager->renderer->rendererCore, 
+        &params->manager->renderer->rendererCore, 
         elem->affineOverwriteMode
     );
     NNS_G2dSetRndCoreFlipMode(
-        &param0->manager->renderer->rendererCore, 
+        &params->manager->renderer->rendererCore, 
         elem->flip & GRAPHIC_ELEMENT_DATA_FLIP_H,
         elem->flip & GRAPHIC_ELEMENT_DATA_FLIP_V
     );
@@ -285,15 +283,15 @@ GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParamsE
     elem->unk_35 = 0;
     elem->unk_38 = (FX32_ONE * 2);
 
-    if (GraphicElementManager_InitElementFromResource(param0->manager, param0->resourceData, elem, param0->heapID) == 0) {
+    if (GraphicElementManager_InitElement(params->manager, params->resourceData, elem, params->heapID) == FALSE) {
         GraphicElementData_Delete(elem);
         return NULL;
     }
 
-    elem->explicitPaletteOffset = sub_020222C4(&elem->paletteProxy, elem->vramType);
+    elem->explicitPaletteOffset = GetPaletteIndexForProxy(&elem->paletteProxy, elem->vramType);
     elem->explicitPalette = elem->explicitPaletteOffset;
 
-    GraphicElementManager_InsertElement(param0->manager, elem);
+    GraphicElementManager_InsertElement(params->manager, elem);
 
     return elem;
 }
@@ -319,14 +317,14 @@ GraphicElementData * sub_02021B90 (const CellActorInitParams * params)
 void GraphicElementData_Delete(GraphicElementData *gfxElem)
 {
     if (gfxElem->type != CELL_TYPE_NONE) {
-        CellAnimationData *cellAnim = (CellAnimationData *)&gfxElem->unk_40;
+        CellAnimationData *cellAnim = (CellAnimationData *)&gfxElem->animData;
 
         if (gfxElem->prev != NULL) {
             GraphicElementManager_RemoveElement(gfxElem);
         }
 
         if (gfxElem->type == CELL_TYPE_VRAM_CELL) {
-            VRamCellAnimationData *vramCellAnim = (VRamCellAnimationData *)&gfxElem->unk_40;
+            VRamCellAnimationData *vramCellAnim = (VRamCellAnimationData *)&gfxElem->animData;
 
             if (NNS_G2dGetImageLocation(&gfxElem->imageProxy, gfxElem->vramType) != NNS_G2D_VRAM_ADDR_NONE) {
                 NNS_G2dFreeCellTransferStateHandle(vramCellAnim->transferHandle);
@@ -334,14 +332,14 @@ void GraphicElementData_Delete(GraphicElementData *gfxElem)
         }
 
         if (gfxElem->type == CELL_TYPE_MULTI_CELL) {
-            MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&gfxElem->unk_40;
+            MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&gfxElem->animData;
 
-            if (multiCellAnim->unk_74 != NULL) {
-                Heap_FreeToHeap(multiCellAnim->unk_74);
+            if (multiCellAnim->nodes != NULL) {
+                Heap_FreeToHeap(multiCellAnim->nodes);
             }
 
-            if (multiCellAnim->unk_78 != NULL) {
-                Heap_FreeToHeap(multiCellAnim->unk_78);
+            if (multiCellAnim->cellAnims != NULL) {
+                Heap_FreeToHeap(multiCellAnim->cellAnims);
             }
         }
 
@@ -453,11 +451,11 @@ u32 sub_02021D44 (const GraphicElementData * param0)
     GF_ASSERT(param0);
 
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v1 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
         v0 = v1->unk_04->numSequences;
     } else {
-        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->unk_40;
-        v0 = v2->unk_70->numSequences;
+        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->animData;
+        v0 = v2->animBank->numSequences;
     }
 
     return v0;
@@ -471,17 +469,17 @@ void SpriteActor_SetSpriteAnimActive (GraphicElementData * param0, u32 param1)
     param0->unk_F0 = param1;
 
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v1 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
 
         v0 = NNS_G2dGetAnimSequenceByIdx(v1->unk_04, param1);
         NNS_G2dSetCellAnimationSequence(&v1->unk_08, v0);
         NNS_G2dStartAnimCtrl(&v1->unk_08.animCtrl);
     } else {
-        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->unk_40;
+        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->animData;
 
-        v0 = NNS_G2dGetAnimSequenceByIdx(v2->unk_70, param1);
-        NNS_G2dSetAnimSequenceToMCAnimation(&v2->unk_08, v0);
-        NNS_G2dStartAnimCtrl(&v2->unk_08.animCtrl);
+        v0 = NNS_G2dGetAnimSequenceByIdx(v2->animBank, param1);
+        NNS_G2dSetAnimSequenceToMCAnimation(&v2->anim, v0);
+        NNS_G2dStartAnimCtrl(&v2->anim.animCtrl);
     }
 }
 
@@ -495,16 +493,16 @@ void sub_02021DCC (GraphicElementData * param0, u32 param1)
 void sub_02021DE0 (GraphicElementData * param0)
 {
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
 
         NNS_G2dResetAnimCtrlState(&v0->unk_08.animCtrl);
         NNS_G2dStartAnimCtrl(&v0->unk_08.animCtrl);
         SpriteActor_SetAnimFrame(param0, 0);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->unk_40;
+        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
 
-        NNS_G2dResetAnimCtrlState(&v1->unk_08.animCtrl);
-        NNS_G2dStartAnimCtrl(&v1->unk_08.animCtrl);
+        NNS_G2dResetAnimCtrlState(&v1->anim.animCtrl);
+        NNS_G2dStartAnimCtrl(&v1->anim.animCtrl);
         SpriteActor_SetAnimFrame(param0, 0);
     }
 }
@@ -517,22 +515,22 @@ u32 sub_02021E24 (const GraphicElementData * param0)
 void sub_02021E2C (GraphicElementData * param0, fx32 param1)
 {
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
         NNS_G2dTickCellAnimation(&v0->unk_08, param1);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->unk_40;
-        NNS_G2dTickMCAnimation(&v1->unk_08, param1);
+        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
+        NNS_G2dTickMCAnimation(&v1->anim, param1);
     }
 }
 
 void SpriteActor_SetAnimFrame (GraphicElementData * param0, u16 param1)
 {
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
         NNS_G2dSetCellAnimationCurrentFrame(&v0->unk_08, param1);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->unk_40;
-        NNS_G2dSetMCAnimationCurrentFrame(&v1->unk_08, param1);
+        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
+        NNS_G2dSetMCAnimationCurrentFrame(&v1->anim, param1);
     }
 }
 
@@ -541,11 +539,11 @@ u16 sub_02021E74 (const GraphicElementData * param0)
     NNSG2dAnimController * v0;
 
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v1 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
         v0 = NNS_G2dGetCellAnimationAnimCtrl(&v1->unk_08);
     } else {
-        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->unk_40;
-        v0 = NNS_G2dGetMCAnimAnimCtrl(&v2->unk_08);
+        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->animData;
+        v0 = NNS_G2dGetMCAnimAnimCtrl(&v2->anim);
     }
 
     return NNS_G2dGetAnimCtrlCurrentFrame(v0);
@@ -573,7 +571,7 @@ void sub_02021E90 (GraphicElementData * param0, u32 param1)
 void sub_02021EC4 (GraphicElementData * param0, u32 param1)
 {
     sub_02021E90(param0, param1);
-    param0->explicitPalette += sub_020222C4(&param0->paletteProxy, param0->vramType);
+    param0->explicitPalette += GetPaletteIndexForProxy(&param0->paletteProxy, param0->vramType);
 }
 
 u32 sub_02021EE8 (const GraphicElementData * param0)
@@ -593,7 +591,7 @@ void sub_02021EF0 (GraphicElementData * param0, u32 param1)
 void sub_02021F24 (GraphicElementData * param0, u32 param1)
 {
     sub_02021EF0(param0, param1);
-    param0->explicitPaletteOffset += sub_020222C4(&param0->paletteProxy, param0->vramType);
+    param0->explicitPaletteOffset += GetPaletteIndexForProxy(&param0->paletteProxy, param0->vramType);
 }
 
 u32 sub_02021F48 (const GraphicElementData * param0)
@@ -653,11 +651,11 @@ BOOL sub_02021FD0 (GraphicElementData * param0)
     GF_ASSERT(param0);
 
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
         return NNS_G2dIsAnimCtrlActive(&v0->unk_08.animCtrl);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->unk_40;
-        return NNS_G2dIsAnimCtrlActive(&v1->unk_08.animCtrl);
+        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
+        return NNS_G2dIsAnimCtrlActive(&v1->anim.animCtrl);
     }
 }
 
@@ -707,11 +705,11 @@ u32 sub_0202207C (const GraphicElementData * param0, u32 param1, u32 param2)
     const NNSG2dUserExAnimFrameAttr * v3;
 
     if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v4 = (CellAnimationData *)&param0->unk_40;
+        CellAnimationData * v4 = (CellAnimationData *)&param0->animData;
         v0 = v4->unk_04;
     } else {
-        MultiCellAnimationData * v5 = (MultiCellAnimationData *)&param0->unk_40;
-        v0 = v5->unk_70;
+        MultiCellAnimationData * v5 = (MultiCellAnimationData *)&param0->animData;
+        v0 = v5->animBank;
     }
 
     v1 = NNS_G2dGetUserExAnimAttrBank(v0);
@@ -742,89 +740,81 @@ u32 sub_020220F4 (const GraphicElementData * param0)
     return sub_0202207C(param0, v0, v1);
 }
 
-static BOOL GraphicElementManager_InitElementFromResource(const GraphicElementManager *gfxElemMgr, 
-    const CellActorResourceData * param1, GraphicElementData *elem, int param3)
+static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxElemMgr, 
+    const CellActorResourceData *resourceData, GraphicElementData *elem, int param3)
 {
-    elem->type = sub_020221B8(param1);
-    elem->imageProxy = *param1->unk_00;
-    elem->paletteProxy = *param1->unk_08;
+    elem->type = CellActorResourceData_GetCellType(resourceData);
+    elem->imageProxy = *resourceData->unk_00;
+    elem->paletteProxy = *resourceData->unk_08;
 
-    sub_020221D0(param1->unk_0C, elem);
+    GraphicElementData_SetCellBank(resourceData->unk_0C, elem);
 
-    if (param1->unk_10) {
-        sub_020221D4(param1->unk_10, elem);
+    if (resourceData->unk_10) {
+        GraphicElementData_SetCellAnimBank(resourceData->unk_10, elem);
     } else {
-        sub_020221D4(gfxElemMgr->animData, elem);
+        GraphicElementData_SetCellAnimBank(gfxElemMgr->animData, elem);
     }
 
-    if (elem->type == 2) {
-        sub_020221D8(param1->multiCellBank, elem);
-        sub_020221E0(param1->unk_18, elem);
-        sub_02022264(elem, param3);
+    if (elem->type == CELL_TYPE_MULTI_CELL) {
+        GraphicElementData_SetMultiCellBank(resourceData->multiCellBank, elem);
+        GraphicElementData_SetMultiCellAnimBank(resourceData->unk_18, elem);
+        GraphicElementData_CreateMultiCellAnim(elem, param3);
     } else {
-        if (elem->type == 3) {
-            VRamCellAnimationData * v0 = (VRamCellAnimationData *)&elem->unk_40;
-            sub_02022208(param1, elem, param3);
+        if (elem->type == CELL_TYPE_VRAM_CELL) {
+            VRamCellAnimationData * v0 = (VRamCellAnimationData *)&elem->animData;
+            sub_02022208(resourceData, elem, param3);
         } else {
             sub_020221E8(elem, param3);
         }
     }
 
-    elem->explicitPriority = param1->unk_20;
+    elem->explicitPriority = resourceData->unk_20;
 
     return 1;
 }
 
-static enum CellType sub_020221B8 (const CellActorResourceData * param0)
+static enum CellType CellActorResourceData_GetCellType(const CellActorResourceData *resourceData)
 {
-    if (param0->multiCellBank != NULL) {
+    if (resourceData->multiCellBank != NULL) {
         return CELL_TYPE_MULTI_CELL;
     }
 
-    if (param0->unk_1C == 1) {
+    if (resourceData->unk_1C == 1) {
         return CELL_TYPE_VRAM_CELL;
     }
 
     return CELL_TYPE_CELL;
 }
 
-static void sub_020221D0 (const NNSG2dCellDataBank * param0, GraphicElementData * param1)
+static void GraphicElementData_SetCellBank(const NNSG2dCellDataBank *cellBank, GraphicElementData *elem)
 {
-    CellAnimationData * v0;
-
-    v0 = (CellAnimationData *)&param1->unk_40;
-    v0->unk_00 = param0;
+    CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+    cellAnim->unk_00 = cellBank;
 }
 
-static void sub_020221D4 (const NNSG2dCellAnimBankData * param0, GraphicElementData * param1)
+static void GraphicElementData_SetCellAnimBank(const NNSG2dCellAnimBankData *cellAnimBank, GraphicElementData *elem)
 {
-    CellAnimationData * v0;
-
-    v0 = (CellAnimationData *)&param1->unk_40;
-    v0->unk_04 = param0;
+    CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+    cellAnim->unk_04 = cellAnimBank;
 }
 
-static void sub_020221D8 (const NNSG2dMultiCellDataBank * param0, GraphicElementData * param1)
+static void GraphicElementData_SetMultiCellBank(const NNSG2dMultiCellDataBank *multiCellBank, GraphicElementData *elem)
 {
-    MultiCellAnimationData * v0;
-
-    v0 = (MultiCellAnimationData *)&param1->unk_40;
-    v0->unk_6C = param0;
+    MultiCellAnimationData *multiCell = (MultiCellAnimationData *)&elem->animData;
+    multiCell->cellBank = multiCellBank;
 }
 
-static void sub_020221E0 (const NNSG2dMultiCellAnimBankData * param0, GraphicElementData * param1)
+static void GraphicElementData_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData *multiCellAnimBank, GraphicElementData *elem)
 {
-    MultiCellAnimationData * v0;
-
-    v0 = (MultiCellAnimationData *)&param1->unk_40;
-    v0->unk_70 = param0;
+    MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+    multiCellAnim->animBank = multiCellAnimBank;
 }
 
 static void sub_020221E8 (GraphicElementData * param0, int param1)
 {
     CellAnimationData * v0;
 
-    v0 = (CellAnimationData *)&param0->unk_40;
+    v0 = (CellAnimationData *)&param0->animData;
     NNS_G2dInitCellAnimation((NNSG2dCellAnimation *)&v0->unk_08, NNS_G2dGetAnimSequenceByIdx(v0->unk_04, 0), v0->unk_00);
 }
 
@@ -833,53 +823,59 @@ static void sub_02022208 (const CellActorResourceData * param0, GraphicElementDa
     VRamCellAnimationData * v0;
     const NNSG2dCharacterData * v1;
 
-    v0 = (VRamCellAnimationData *)&param1->unk_40;
+    v0 = (VRamCellAnimationData *)&param1->animData;
     v0->transferHandle = NNS_G2dGetNewCellTransferStateHandle();
     v1 = param0->unk_04;
 
     NNS_G2dInitCellAnimationVramTransfered((NNSG2dCellAnimation *)&v0->unk_08, NNS_G2dGetAnimSequenceByIdx(v0->unk_04, 0), v0->unk_00, v0->transferHandle, NNS_G2D_VRAM_ADDR_NONE, NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN), NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DSUB), v1->pRawData, NULL, v1->szByte);
 }
 
-static void sub_02022264 (GraphicElementData * param0, int param1)
+static void GraphicElementData_CreateMultiCellAnim(GraphicElementData *elem, int heapID)
 {
-    MultiCellAnimationData * v0;
-    const NNSG2dMultiCellAnimSequence * v1;
-    u16 v2;
+    MultiCellAnimationData *multiCellAnim;
+    const NNSG2dMultiCellAnimSequence * animSequence;
+    u16 maxNodes;
 
-    v0 = (MultiCellAnimationData *)&param0->unk_40;
-    v1 = NNS_G2dGetAnimSequenceByIdx(v0->unk_70, 0);
-    v2 = NNS_G2dGetMCBankNumNodesRequired(v0->unk_6C);
+    multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+    animSequence = NNS_G2dGetAnimSequenceByIdx(multiCellAnim->animBank, 0);
+    maxNodes = NNS_G2dGetMCBankNumNodesRequired(multiCellAnim->cellBank);
 
-    v0->unk_74 = Heap_AllocFromHeap(param1, sizeof(NNSG2dNode) * v2);
-    v0->unk_78 = Heap_AllocFromHeap(param1, sizeof(NNSG2dCellAnimation) * v2);
+    multiCellAnim->nodes = Heap_AllocFromHeap(heapID, sizeof(NNSG2dNode) * maxNodes);
+    multiCellAnim->cellAnims = Heap_AllocFromHeap(heapID, sizeof(NNSG2dCellAnimation) * maxNodes);
 
-    NNS_G2dInitMCAnimation((NNSG2dMultiCellAnimation *)&v0->unk_08, v0->unk_74, v0->unk_78, v2, v0->unk_04, v0->unk_00, v0->unk_6C);
-    NNS_G2dSetAnimSequenceToMCAnimation((NNSG2dMultiCellAnimation *)&v0->unk_08, v1);
+    NNS_G2dInitMCAnimation(
+        &multiCellAnim->anim, 
+        multiCellAnim->nodes, 
+        multiCellAnim->cellAnims, 
+        maxNodes, 
+        multiCellAnim->unk_04, 
+        multiCellAnim->unk_00, 
+        multiCellAnim->cellBank
+    );
+
+    NNS_G2dSetAnimSequenceToMCAnimation(
+        &multiCellAnim->anim, 
+        animSequence
+    );
 }
 
-static u32 sub_020222C4 (const NNSG2dImagePaletteProxy * param0, u32 param1)
+static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy *paletteProxy, u32 vramType)
 {
-    u32 v0;
-    u32 v1;
+    u32 paletteSize;
 
-    if (param0->bExtendedPlt) {
-        v0 = 32 * 16;
+    if (paletteProxy->bExtendedPlt) {
+        paletteSize = 32 * 16;
     } else {
-        if (param0->fmt == GX_TEXFMT_PLTT256) {
-            v0 = 0;
+        if (paletteProxy->fmt == GX_TEXFMT_PLTT256) {
+            paletteSize = 0;
         } else {
-            v0 = 32;
+            paletteSize = 32;
         }
     }
 
-    if (v0 != 0) {
-        v1 = NNS_G2dGetImagePaletteLocation(param0, param1);
-        v1 /= v0;
-    } else {
-        v1 = 0;
-    }
-
-    return v1;
+    return paletteSize != 0
+        ? NNS_G2dGetImagePaletteLocation(paletteProxy, vramType) / paletteSize
+        : 0;
 }
 
 static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxElemMgr, GraphicElementData *elem)
@@ -927,11 +923,11 @@ static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxEl
     NNS_G2dSetRendererOverwritePriority(gfxElemMgr->renderer, elem->explicitPriority);
 
     if (elem->type == 1 || elem->type == 3) {
-        CellAnimationData *cellAnim = (CellAnimationData *)&elem->unk_40;
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
         NNS_G2dDrawCellAnimation(&cellAnim->unk_08);
     } else {
-        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->unk_40;
-        NNS_G2dDrawMultiCellAnimation(&multiCellAnim->unk_08);
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+        NNS_G2dDrawMultiCellAnimation(&multiCellAnim->anim);
     }
 
     NNS_G2dPopMtx();
