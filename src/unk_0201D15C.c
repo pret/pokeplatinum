@@ -216,32 +216,27 @@ s32 sub_0201D580 (u16 param0, s32 param1)
     return (s32)((param1 * 0xffff) / v0);
 }
 
-u32 sub_0201D5B8 (const void * param0, u32 param1)
+u32 SumBytes(const void *data, u32 size)
 {
-    u32 v0, v1;
-
-    v0 = 0;
-
-    for (v1 = 0; v1 < param1; v1++) {
-        v0 += ((const u8 *)param0)[v1];
+    u32 sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += ((const u8 *)data)[i];
     }
 
-    return v0;
+    return sum;
 }
 
-void EncryptData (void *data, u32 bytes, u32 seed)
+void EncodeData(void *data, u32 size, u32 seed)
 {
-    int i;
-    u16 *dataWords = (u16 *)data;
-
-    for (i = 0; i < bytes / 2; i++) {
-        dataWords[i] ^= LCRNG_NextFrom(&seed);
+    u16 *halfWords = (u16 *)data;
+    for (int i = 0; i < size / 2; i++) {
+        halfWords[i] ^= LCRNG_NextFrom(&seed);
     }
 }
 
-void DecryptData (void *data, u32 bytes, u32 seed)
+void DecodeData (void *data, u32 size, u32 seed)
 {
-    EncryptData(data, bytes, seed);
+    EncodeData(data, size, seed);
 }
 
 static u16 LCRNG_NextFrom (u32 *seed)

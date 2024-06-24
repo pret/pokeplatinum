@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "pokemon.h"
 #include "savedata.h"
@@ -16,7 +17,7 @@
 #include "strbuf.h"
 #include "save_state.h"
 #include "unk_02028124.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "pokemon.h"
 #include "item.h"
 #include "unk_0209747C.h"
@@ -347,8 +348,8 @@ static int sub_020979A8 (OverlayManager * param0, int * param1)
             if (v0->unk_10->unk_00 == 3) {
                 sub_020978F0(v1->unk_14, v0->unk_10);
 
-                sub_0202CFEC(sub_0202CD88(v1->unk_10), 2);
-                sub_0202CF28(sub_0202CD88(v1->unk_10), (1 + 44));
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v1->unk_10), TRAINER_SCORE_EVENT_UNK_02);
+                GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(v1->unk_10), RECORD_UNK_045);
                 v1->unk_04 = 1;
             } else {
                 v1->unk_04 = 0;

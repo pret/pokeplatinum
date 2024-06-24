@@ -12,6 +12,7 @@
     .include "consts/battle.inc"
     .include "consts/battle_subscripts.inc"
     .include "consts/btlcmd.inc"
+    .include "consts/game_records.inc"
     .include "consts/gender.inc"
     .include "consts/items.inc"
     .include "consts/moves.inc"
@@ -1089,7 +1090,7 @@
     .long 194
     .endm
 
-    .macro IncrementGameStat battler, battler_type, game_stat
+    .macro IncrementGameRecord battler, battler_type, game_stat
     .long 195
     .long \battler
     .long \battler_type

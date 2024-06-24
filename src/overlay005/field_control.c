@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "trainer_info.h"
 #include "struct_decls/struct_02026310_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "pokemon.h"
@@ -20,7 +20,7 @@
 #include "save_state.h"
 #include "trainer_info.h"
 #include "unk_020261E4.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02030EE0.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -831,10 +831,10 @@ static BOOL Field_UpdateDaycare (FieldSystem *fieldSystem)
     UnkStruct_02026310 *v1 = sub_02026310(fieldSystem->saveData);
 
     if (ov5_021E7154(v1, party, fieldSystem) == TRUE) {
-        UnkStruct_0202CD88 *v2 = sub_0202CD88(fieldSystem->saveData);
+        GameRecords *v2 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
 
-        sub_0202CF28(v2, (1 + 10));
-        sub_0202CFEC(v2, 15);
+        GameRecords_IncrementRecordValue(v2, RECORD_UNK_011);
+        GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_15);
         sub_0203E880(fieldSystem, 2031, NULL);
 
         return TRUE;

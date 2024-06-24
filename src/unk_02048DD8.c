@@ -3,10 +3,11 @@
 
 #include "inlines.h"
 
+#include "consts/game_records.h"
+
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -25,7 +26,7 @@
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "unk_020298BC.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202E2CC.h"
 #include "field_script_context.h"
 #include "unk_0203E880.h"
@@ -179,14 +180,14 @@ BOOL ScrCmd_237 (ScriptContext * param0)
     {
         u16 v4;
         u16 v5, v6;
-        UnkStruct_0202CD88 * v7 = sub_0202CD88(param0->fieldSystem->saveData);
+        GameRecords * v7 = SaveData_GetGameRecordsPtr(param0->fieldSystem->saveData);
 
         v4 = ScriptContext_GetVar(param0);
         v5 = ScriptContext_GetVar(param0);
         v6 = ScriptContext_GetVar(param0);
 
         sub_020491B8(param0->fieldSystem, v4, v5, v6);
-        sub_0202CFEC(v7, 3);
+        GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_03);
     }
     break;
     }

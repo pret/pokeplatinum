@@ -416,12 +416,12 @@ static BOOL sub_0202F794 (SaveData * param0, const BattleRecording * param1)
 
 void sub_0202F858 (void * param0, u32 param1, u32 param2)
 {
-    EncryptData(param0, param1, param2);
+    EncodeData(param0, param1, param2);
 }
 
 static void sub_0202F860 (void * param0, u32 param1, u32 param2)
 {
-    DecryptData(param0, param1, param2);
+    DecodeData(param0, param1, param2);
 }
 
 void sub_0202F868 (int param0, int param1, u8 param2)

@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 #include "core_sys.h"
 
@@ -9,7 +10,6 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "savedata.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
@@ -42,7 +42,7 @@
 #include "strbuf.h"
 #include "save_state.h"
 #include "game_options.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -276,10 +276,10 @@ int ov67_0225C820 (OverlayManager * param0, int * param1)
             ov67_0225D310(&v0->unk_70);
 
             {
-                UnkStruct_0202CD88 * v4;
+                GameRecords * v4;
 
-                v4 = sub_0202CD88(v0->unk_00);
-                sub_0202CFEC(v4, 44);
+                v4 = SaveData_GetGameRecordsPtr(v0->unk_00);
+                GameRecords_IncrementTrainerScore(v4, TRAINER_SCORE_EVENT_UNK_44);
             }
 
             {

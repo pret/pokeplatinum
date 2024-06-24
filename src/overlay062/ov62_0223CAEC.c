@@ -34,7 +34,7 @@
 #include "unk_02023FCC.h"
 #include "save_state.h"
 #include "play_time.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02030A80.h"
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
@@ -531,7 +531,7 @@ static u32 ov62_0223D124 (UnkStruct_0208C06C * param0, int param1)
 
     GF_ASSERT(Unk_ov62_022497E8[v1] != 0xFFFF);
 
-    v0 = sub_0202CFB8(sub_0202CD88(param0->unk_830), Unk_ov62_022497E8[v1]);
+    v0 = GameRecords_GetRecordValue(SaveData_GetGameRecordsPtr(param0->unk_830), Unk_ov62_022497E8[v1]);
 
     return v0;
 }

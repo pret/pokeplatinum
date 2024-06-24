@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
@@ -10,7 +11,6 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -40,7 +40,7 @@
 #include "unk_0202631C.h"
 #include "savedata_misc.h"
 #include "unk_0202C858.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
 #include "field_script_context.h"
@@ -806,34 +806,34 @@ BOOL ScrCmd_305 (ScriptContext * param0)
 BOOL ScrCmd_30F (ScriptContext * param0)
 {
     VarsFlags * v0;
-    UnkStruct_0202CD88 * v1;
+    GameRecords * v1;
     FieldSystem * fieldSystem = param0->fieldSystem;
     u16 v3 = ScriptContext_GetVar(param0);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
 
     v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v1 = sub_0202CD88(fieldSystem->saveData);
+    v1 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     *v4 = 1;
 
     switch (v3) {
     case 13:
-        if (sub_0202CFB8(v1, (1 + 28)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_029) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 59)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_060) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 60)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_061) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 61)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_062) < 1) {
             *v4 = 0;
         }
 
-        if (sub_0202CFB8(v1, (1 + 62)) < 1) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_063) < 1) {
             *v4 = 0;
         }
         break;
@@ -861,27 +861,27 @@ BOOL ScrCmd_30F (ScriptContext * param0)
         }
         break;
     case 15:
-        if (sub_0202CFB8(v1, (((70 + 1)) + 2)) < 10) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_073) < 10) {
             *v4 = 0;
         }
         break;
     case 16:
-        if (sub_0202CFB8(v1, (1 + 56)) < 50) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_057) < 50) {
             *v4 = 0;
         }
         break;
     case 17:
-        if (sub_0202CFB8(v1, (1 + 3)) < 50) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_004) < 50) {
             *v4 = 0;
         }
         break;
     case 18:
-        if (sub_0202CFB8(v1, (1 + 10)) < 30) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_011) < 30) {
             *v4 = 0;
         }
         break;
     case 20:
-        if (sub_0202CFB8(v1, (0 + 0)) < 300000) {
+        if (GameRecords_GetRecordValue(v1, RECORD_UNK_000) < 300000) {
             *v4 = 0;
         }
         break;

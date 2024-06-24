@@ -14,7 +14,7 @@
 #include "trainer_info.h"
 #include "game_options.h"
 #include "journal.h"
-#include "struct_decls/struct_0202CD88_decl.h"
+#include "game_records.h"
 #include "vars_flags.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "savedata.h"
@@ -39,7 +39,7 @@ typedef struct {
     void * unk_274;
     Options * unk_278;
     Journal * unk_27C;
-    UnkStruct_0202CD88 * unk_280;
+    GameRecords *records;
     SaveData * unk_284;
     VarsFlags * unk_288;
     BOOL unk_28C;

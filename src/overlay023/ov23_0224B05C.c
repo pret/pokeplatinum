@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -35,7 +36,7 @@
 #include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_02030EE0.h"
 #include "communication_information.h"
 #include "unk_02033200.h"
@@ -384,7 +385,7 @@ void ov23_0224B2C8 (FieldSystem * fieldSystem)
     v0 = sub_02029894(FieldSystem_SaveData(fieldSystem));
     v1 = sub_020298AC(v0);
 
-    sub_020294D4(v1, sub_0202D034(sub_0202CD88(fieldSystem->saveData)));
+    sub_020294D4(v1, GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData)));
 
     MI_CpuCopy8(v0, Unk_ov23_022577AC->unk_08[16].unk_02, 148);
     ov23_0224B39C(v0, Unk_ov23_022577AC->unk_A04[16]);
@@ -2026,7 +2027,7 @@ void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
             void * v6 = sub_0202BE20(11);
 
             sub_0202B758(Unk_ov23_022577AC->fieldSystem->unk_9C, v6, 1);
-            sub_0202CFEC(sub_0202CD88(Unk_ov23_022577AC->fieldSystem->saveData), 35);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
         }
     }
 }

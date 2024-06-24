@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "consts/abilities.h"
+#include "consts/game_records.h"
 #include "consts/gender.h"
 
 #include "constants/battle.h"
@@ -3293,7 +3294,7 @@ BOOL Battler_CanEscape(BattleSystem *battleSys, BattleContext *battleCtx, int ba
         }
 
         if (result == FALSE) {
-            BattleIO_IncrementRecord(battleSys, battler, 0, (((70 + 1)) + 27));
+            BattleIO_IncrementRecord(battleSys, battler, 0, RECORD_FAILED_ESCAPE);
         }
 
         battleCtx->runAttempts++;

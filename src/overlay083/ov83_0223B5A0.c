@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 
 #include "struct_defs/struct_0202A93C.h"
 #include "overlay083/struct_ov83_0223B784.h"
@@ -26,7 +26,7 @@
 #include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "unk_020363E8.h"
@@ -560,14 +560,14 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         break;
     case 3:
     {
-        UnkStruct_0202CD88 * v2 = sub_0202CD88(param0->unk_10->unk_0C);
+        GameRecords * v2 = SaveData_GetGameRecordsPtr(param0->unk_10->unk_0C);
 
         if (param1->unk_1490 == 0) {
-            sub_0202CFEC(v2, 12);
-            sub_0202CF28(v2, (1 + 51));
+            GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_12);
+            GameRecords_IncrementRecordValue(v2, RECORD_UNK_052);
         } else {
-            sub_0202CFEC(v2, 18);
-            sub_0202CF28(v2, (1 + 52));
+            GameRecords_IncrementTrainerScore(v2, TRAINER_SCORE_EVENT_UNK_18);
+            GameRecords_IncrementRecordValue(v2, RECORD_UNK_053);
         }
     }
 

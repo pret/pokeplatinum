@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "play_time.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "savedata.h"
@@ -22,7 +22,7 @@
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
 #include "play_time.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0203061C.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
@@ -48,12 +48,12 @@ static BOOL sub_02072230(TaskManager * param0);
 void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem * fieldSystem, TrainerCard * param5)
 {
     TrainerInfo * v0;
-    UnkStruct_0202CD88 * v1;
+    GameRecords * v1;
     SaveData * v2;
 
     v2 = FieldSystem_SaveData(fieldSystem);
     v0 = SaveData_GetTrainerInfo(v2);
-    v1 = sub_0202CD88(v2);
+    v1 = SaveData_GetGameRecordsPtr(v2);
 
     param5->unk_05 = param3;
 
@@ -64,7 +64,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(v0), param5);
     }
 
-    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(SaveData_Pokedex(fieldSystem->saveData)), sub_02027520(SaveData_Pokedex(fieldSystem->saveData)), sub_0202D034(v1), param5);
+    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(SaveData_Pokedex(fieldSystem->saveData)), sub_02027520(SaveData_Pokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(v1), param5);
 
     {
         RTCDate v4;
@@ -84,10 +84,10 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         UnkStruct_0202C834 * v12;
 
         v12 = sub_0202C834(fieldSystem->saveData);
-        v8 = sub_0202CFB8(v1, (((70 + 1)) + 20)) + sub_0202CFB8(v1, (1 + 18)) + sub_0202CFB8(v1, (1 + 23)) + sub_0202CFB8(v1, (1 + 19)) + sub_0202CFB8(v1, (1 + 24)) + sub_0202CFB8(v1, (1 + 31));
-        v9 = sub_0202CFB8(v1, (1 + 20)) + sub_0202CFB8(v1, (1 + 25));
-        v10 = sub_0202CFB8(v1, (1 + 21)) + sub_0202CFB8(v1, (1 + 26));
-        v11 = sub_0202CFB8(v1, (1 + 18)) + sub_0202CFB8(v1, (1 + 23));
+        v8 = GameRecords_GetRecordValue(v1, RECORD_UNK_091) + GameRecords_GetRecordValue(v1, RECORD_UNK_019) + GameRecords_GetRecordValue(v1, RECORD_UNK_024) + GameRecords_GetRecordValue(v1, RECORD_UNK_020) + GameRecords_GetRecordValue(v1, RECORD_UNK_025) + GameRecords_GetRecordValue(v1, RECORD_UNK_032);
+        v9 = GameRecords_GetRecordValue(v1, RECORD_UNK_021) + GameRecords_GetRecordValue(v1, RECORD_UNK_026);
+        v10 = GameRecords_GetRecordValue(v1, RECORD_UNK_022) + GameRecords_GetRecordValue(v1, RECORD_UNK_027);
+        v11 = GameRecords_GetRecordValue(v1, RECORD_UNK_019) + GameRecords_GetRecordValue(v1, RECORD_UNK_024);
 
         sub_02072120(v8, v9, v10, v11, sub_0202C840(v12), param5);
     }
@@ -125,13 +125,13 @@ u8 sub_02071F28 (FieldSystem * fieldSystem)
 {
     u8 v0;
     SaveData * v1;
-    UnkStruct_0202CD88 * v2;
+    GameRecords * v2;
     VarsFlags * v3;
     SecretBaseRecord * v4;
     UnkStruct_0203068C * v5;
 
     v1 = FieldSystem_SaveData(fieldSystem);
-    v2 = sub_0202CD88(v1);
+    v2 = SaveData_GetGameRecordsPtr(v1);
     v3 = SaveData_GetVarsFlags(v1);
     v4 = SaveData_SecretBaseRecord(v1);
     v5 = sub_0203068C(v1);

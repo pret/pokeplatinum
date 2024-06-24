@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_0202CD88_decl.h"
+#include "consts/game_records.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
@@ -14,7 +14,7 @@
 
 #include "game_overlay.h"
 #include "heap.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "communication_system.h"
 #include "unk_02038FFC.h"
 #include "field_system.h"
@@ -471,8 +471,8 @@ static void sub_0207DF88 (UnkStruct_ov115_02260440 * param0)
 
 static void sub_0207DF9C (FieldSystem * fieldSystem)
 {
-    UnkStruct_0202CD88 * v0;
+    GameRecords * v0;
 
-    v0 = sub_0202CD88(fieldSystem->saveData);
-    sub_0202CFEC(v0, 50);
+    v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    GameRecords_IncrementTrainerScore(v0, TRAINER_SCORE_EVENT_UNK_50);
 }

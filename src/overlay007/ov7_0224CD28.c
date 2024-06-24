@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "field/field_system.h"
@@ -45,7 +45,7 @@
 #include "unk_0202854C.h"
 #include "journal.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D05C.h"
 #include "map_header.h"
 #include "unk_0203D1B8.h"
@@ -195,7 +195,7 @@ void ov7_0224CDA4 (TaskManager * param0, FieldSystem * fieldSystem, u16 * param2
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
     v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_278 = SaveData_Options(fieldSystem->saveData);
-    v0->unk_280 = sub_0202CD88(fieldSystem->saveData);
+    v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(fieldSystem);
@@ -1199,9 +1199,9 @@ static u8 ov7_0224E5B0 (UnkStruct_ov7_0224D008 * param0)
     ov7_0224E920(param0, param0->unk_2B0 * param0->unk_2AC);
 
     if (param0->unk_2A9 == 3) {
-        sub_0202CF70(param0->unk_280, (1 + 68), param0->unk_2B0 * param0->unk_2AC);
+        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_069, param0->unk_2B0 * param0->unk_2AC);
     } else {
-        sub_0202CF70(param0->unk_280, (1 + 34), param0->unk_2B0 * param0->unk_2AC);
+        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_035, param0->unk_2B0 * param0->unk_2AC);
     }
 
     ov7_0224DAF8(param0, 1);
@@ -1239,8 +1239,8 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
                 param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
 
                 {
-                    UnkStruct_0202CD88 * v1 = sub_0202CD88(param0->unk_284);
-                    sub_0202CF28(v1, (1 + 49));
+                    GameRecords * v1 = SaveData_GetGameRecordsPtr(param0->unk_284);
+                    GameRecords_IncrementRecordValue(v1, RECORD_UNK_050);
                 }
 
                 return 11;

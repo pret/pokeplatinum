@@ -13,7 +13,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
 #include "strbuf.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 
@@ -55,7 +54,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "savedata_misc.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
 #include "unk_020393C8.h"
@@ -2505,10 +2504,10 @@ void ov62_02233664 (UnkStruct_ov62_0223359C * param0)
 
 void ov62_02233704 (UnkStruct_0208C06C * param0, u32 param1)
 {
-    UnkStruct_0202CD88 * v0;
+    GameRecords * v0;
 
-    v0 = sub_0202CD88(param0->unk_830);
-    sub_0202CFEC(v0, param1);
+    v0 = SaveData_GetGameRecordsPtr(param0->unk_830);
+    GameRecords_IncrementTrainerScore(v0, param1);
 }
 
 void ov62_0223371C (UnkStruct_0208C06C * param0)

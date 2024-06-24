@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -30,7 +31,7 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "save_state.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "communication_information.h"
@@ -668,7 +669,7 @@ void ov104_02236ED8 (SaveData * param0, u8 param1, int param2)
         sub_02030804(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
     }
 
-    sub_0202CF70(sub_0202CD88(param0), (1 + 64), param2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(param0), RECORD_UNK_065, param2);
     return;
 }
 

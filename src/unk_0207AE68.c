@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
 #include "strbuf.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -55,7 +55,7 @@
 #include "unk_0202631C.h"
 #include "game_options.h"
 #include "unk_02028124.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020393C8.h"
 #include "poketch_data.h"
 #include "pokemon.h"
@@ -65,7 +65,7 @@
 #include "bag.h"
 #include "pokemon_summary_app.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, UnkStruct_0202CD88 * param7, PoketchData *poketchData, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, GameRecords *records, PoketchData *poketchData, int param9, int param10, int param11);
 static void sub_0207B0A0(SysTask * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
@@ -95,7 +95,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, UnkStruct_0202CD88 * param7, PoketchData *poketchData, int param9, int param10, int param11)
+UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, Options * param3, int param4, PokedexData * param5, Bag * param6, GameRecords *records, PoketchData *poketchData, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
     ArchivedSprite v1;
@@ -153,7 +153,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_3C->contest = param4;
     v0->unk_48 = param5;
     v0->unk_4C = param6;
-    v0->unk_50 = param7;
+    v0->records = records;
     v0->poketchData = poketchData;
     v0->unk_78 = param9;
     v0->unk_7C = param10;
@@ -415,8 +415,8 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         if (Message_Printing(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_0202736C(param0->unk_48, param0->unk_28);
-                sub_0202CF28(param0->unk_50, (1 + 11));
-                sub_0202CFEC(param0->unk_50, 22);
+                GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
+                GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(param0->unk_28));
 
                 if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
@@ -747,8 +747,8 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
                 sub_0202736C(param0->unk_48, v1);
-                sub_0202CF28(param0->unk_50, (1 + 11));
-                sub_0202CFEC(param0->unk_50, 22);
+                GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
+                GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 PoketchData_PokemonHistoryEnqueue(param0->poketchData, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
                 Bag_TryRemoveItem(param0->unk_4C, 4, 1, param0->unk_5C);

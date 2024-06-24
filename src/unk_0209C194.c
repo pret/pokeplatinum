@@ -11,7 +11,7 @@
 #include "save_state.h"
 #include "game_options.h"
 #include "journal.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_020366A0.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
@@ -72,7 +72,7 @@ void * sub_0209C1EC (FieldSystem * fieldSystem)
     v0->unk_08.unk_08 = fieldSystem->saveData;
     v0->unk_08.unk_0C = fieldSystem->unk_80;
     v0->unk_08.unk_10 = SaveData_Options(fieldSystem->saveData);
-    v0->unk_08.unk_14 = sub_0202CD88(fieldSystem->saveData);
+    v0->unk_08.records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v0->unk_08.unk_18 = SaveData_GetJournal(fieldSystem->saveData);
     v0->unk_08.unk_04 = Options_Frame(v0->unk_08.unk_10);
     v0->unk_08.fieldSystem = fieldSystem;

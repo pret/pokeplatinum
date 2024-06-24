@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "consts/game_records.h"
 #include "inlines.h"
 #include "core_sys.h"
 
@@ -75,7 +76,7 @@
 #include "unk_0202ACE0.h"
 #include "journal.h"
 #include "unk_0202CC64.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_0203061C.h"
@@ -2534,7 +2535,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);
-    sub_0202CF28(param4->unk_20, (1 + 18));
+    GameRecords_IncrementRecordValue(param4->records, RECORD_UNK_019);
     Heap_FreeToHeap(v0);
     Heap_FreeToHeap(v1);
 }

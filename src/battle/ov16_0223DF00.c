@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "consts/battle.h"
+#include "consts/game_records.h"
 
 #include "battle/common.h"
 #include "constants/battle.h"
@@ -62,7 +63,7 @@
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "game_options.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202F1D4.h"
 #include "poketch_data.h"
 #include "unk_0206CCB0.h"
@@ -1266,7 +1267,7 @@ void ov16_0223F24C (BattleSystem * param0, int param1)
         return;
     }
 
-    sub_0202CF28(param0->unk_218, param1);
+    GameRecords_IncrementRecordValue(param0->records, param1);
 }
 
 void ov16_0223F268 (BattleSystem * param0)
@@ -1275,7 +1276,7 @@ void ov16_0223F268 (BattleSystem * param0)
         return;
     }
 
-    sub_0202CFEC(param0->unk_218, 22);
+    GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
 }
 
 void BattleSystem_SetCommandSelectionFlags (BattleSystem *battleSys, int flags)

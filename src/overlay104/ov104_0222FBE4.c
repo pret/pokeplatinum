@@ -1,3 +1,4 @@
+#include "consts/game_records.h"
 #include "enums.h"
 
 #include <nitro.h>
@@ -75,7 +76,7 @@
 #include "save_state.h"
 #include "trainer_info.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202CD50.h"
+#include "game_records.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
 #include "communication_information.h"
@@ -1923,7 +1924,7 @@ static BOOL ov104_02230F28 (UnkStruct_ov104_0222E930 * param0)
     v0 = SaveData_TVBroadcast(v1->unk_08);
 
     sub_0206D0C8(v0, v2);
-    sub_0202CF70(sub_0202CD88(v1->unk_08), (1 + 67), v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v1->unk_08), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(v1->unk_08), v2, 5);
 
     return 0;
@@ -1934,7 +1935,7 @@ static BOOL ov104_02230F6C (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u16 v1 = ov104_0222FC00(param0);
 
-    sub_0202CF70(sub_0202CD88(v0->unk_08), (1 + 68), v1);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), RECORD_UNK_069, v1);
     sub_0202D230(sub_0202D750(v0->unk_08), v1, 6);
 
     return 0;
@@ -2804,7 +2805,7 @@ static BOOL ov104_02231E30 (UnkStruct_ov104_0222E930 * param0)
     u16 v1 = ov104_0222EA48(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    sub_0202CF28(sub_0202CD88(v0->unk_08), v1);
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), v1);
 
     return 0;
 }
@@ -2816,7 +2817,7 @@ static BOOL ov104_02231E54 (UnkStruct_ov104_0222E930 * param0)
     u16 v2 = ov104_0222FC00(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    sub_0202CF70(sub_0202CD88(v0->unk_08), v1, v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecordsPtr(v0->unk_08), v1, v2);
 
     return 0;
 }
@@ -2827,7 +2828,7 @@ static BOOL ov104_02231E80 (UnkStruct_ov104_0222E930 * param0)
     u16 v1 = ov104_0222EA48(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    sub_0202CFEC(sub_0202CD88(v0->unk_08), v1);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->unk_08), v1);
 
     return 0;
 }
