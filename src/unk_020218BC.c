@@ -60,7 +60,7 @@ typedef struct GraphicElementData_t {
     u32 unk_EC;
     u16 unk_F0;
     u8 explicitPriority;
-    u16 unk_F4;
+    u16 priority;
     NNS_G2D_VRAM_TYPE type;
     struct GraphicElementData_t *prev;
     struct GraphicElementData_t *next;
@@ -69,8 +69,8 @@ typedef struct GraphicElementData_t {
 typedef struct GraphicElementManager_t {
     GraphicElementData * elements;
     int maxElements;
-    GraphicElementData ** unk_08;
-    int unk_0C;
+    GraphicElementData ** elementStack; // Stack of currently unused elements
+    int stackPointer;
     GraphicElementData sentinelData;
     NNSG2dRendererInstance * renderer;
     void * rawAnimData;
@@ -96,11 +96,11 @@ static void GraphicElementManager_DrawElement(const GraphicElementManager * para
 static void sub_02022450(const GraphicElementManager * param0, GraphicElementData * param1);
 static void sub_02022454(GraphicElementData * param0);
 static void sub_02022460(GraphicElementData * param0);
-static void sub_02022464(GraphicElementManager * param0, GraphicElementData * param1);
-static void sub_020224FC(GraphicElementData * param0);
+static void GraphicElementManager_InsertElement(GraphicElementManager * param0, GraphicElementData * param1);
+static void GraphicElementManager_RemoveElement(GraphicElementData * param0);
 static void GraphicElementManager_InitElements(GraphicElementManager * param0);
-static GraphicElementData * sub_02022550(GraphicElementManager * param0);
-static BOOL sub_0202256C(GraphicElementManager * param0, GraphicElementData * param1);
+static GraphicElementData * GraphicElementManager_AllocElement(GraphicElementManager * param0);
+static BOOL GraphicElementManager_FreeElement(GraphicElementManager * param0, GraphicElementData * param1);
 
 GraphicElementManager *GraphicElementManager_New(const GraphicElementManagerParams *params)
 {
@@ -119,8 +119,8 @@ GraphicElementManager *GraphicElementManager_New(const GraphicElementManagerPara
     GF_ASSERT(gfxElemMgr->elements);
     gfxElemMgr->maxElements = params->maxElements;
 
-    gfxElemMgr->unk_08 = Heap_AllocFromHeap(params->heapID, sizeof(GraphicElementData *) * params->maxElements);
-    GF_ASSERT(gfxElemMgr->unk_08);
+    gfxElemMgr->elementStack = Heap_AllocFromHeap(params->heapID, sizeof(GraphicElementData *) * params->maxElements);
+    GF_ASSERT(gfxElemMgr->elementStack);
 
     GraphicElementManager_InitElements(gfxElemMgr);
     GraphicElementData_Reset(&gfxElemMgr->sentinelData);
@@ -149,7 +149,7 @@ BOOL GraphicElementManager_Delete(GraphicElementManager *gfxElemMgr)
     sub_020219C0(gfxElemMgr);
 
     Heap_FreeToHeap(gfxElemMgr->rawAnimData);
-    Heap_FreeToHeap(gfxElemMgr->unk_08);
+    Heap_FreeToHeap(gfxElemMgr->elementStack);
     Heap_FreeToHeap(gfxElemMgr->elements);
 
     GraphicElementManager_Reset(gfxElemMgr);
@@ -229,8 +229,8 @@ static void GraphicElementManager_Reset(GraphicElementManager *gfxElemMgr)
 {
     gfxElemMgr->elements = NULL;
     gfxElemMgr->maxElements = 0;
-    gfxElemMgr->unk_08 = NULL;
-    gfxElemMgr->unk_0C = 0;
+    gfxElemMgr->elementStack = NULL;
+    gfxElemMgr->stackPointer = 0;
     gfxElemMgr->renderer = NULL;
 
     GraphicElementData_Reset(&gfxElemMgr->sentinelData);
@@ -250,47 +250,47 @@ void GraphicElementData_Reset(GraphicElementData *elem)
     elem->explicitOamMode = GX_OAM_MODE_NORMAL;
 }
 
-GraphicElementData * sub_02021AA0 (const UnkStruct_ov115_02261520 * param0)
+GraphicElementData * GraphicElementManager_AddElement(const UnkStruct_ov115_02261520 * param0)
 {
-    GraphicElementData * v0;
+    GraphicElementData *elem;
 
-    v0 = sub_02022550(param0->unk_00);
+    elem = GraphicElementManager_AllocElement(param0->unk_00);
 
-    if (v0 == NULL) {
+    if (elem == NULL) {
         return NULL;
     }
 
-    v0->manager = param0->unk_00;
-    v0->unk_F0 = 0;
-    v0->position = param0->unk_08;
-    v0->affineScale = param0->unk_14;
-    v0->affineZRotation = param0->unk_20;
-    v0->type = param0->unk_28;
-    v0->unk_F4 = param0->unk_24;
-    v0->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
-    v0->flip = GRAPHIC_ELEMENT_DATA_FLIP_NONE;
-    v0->explicitMosaic = FALSE;
-    v0->explicitOamMode = GX_OAM_MODE_NORMAL;
-    v0->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
+    elem->manager = param0->unk_00;
+    elem->unk_F0 = 0;
+    elem->position = param0->unk_08;
+    elem->affineScale = param0->unk_14;
+    elem->affineZRotation = param0->unk_20;
+    elem->type = param0->unk_28;
+    elem->priority = param0->unk_24;
+    elem->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
+    elem->flip = GRAPHIC_ELEMENT_DATA_FLIP_NONE;
+    elem->explicitMosaic = FALSE;
+    elem->explicitOamMode = GX_OAM_MODE_NORMAL;
+    elem->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
-    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_00->renderer->rendererCore), v0->affineOverwriteMode);
-    NNS_G2dSetRndCoreFlipMode(&(param0->unk_00->renderer->rendererCore), v0->flip & 1, v0->flip & 2);
+    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_00->renderer->rendererCore), elem->affineOverwriteMode);
+    NNS_G2dSetRndCoreFlipMode(&(param0->unk_00->renderer->rendererCore), elem->flip & 1, elem->flip & 2);
 
-    v0->unk_34 = 1;
-    v0->unk_35 = 0;
-    v0->unk_38 = (FX32_ONE * 2);
+    elem->unk_34 = 1;
+    elem->unk_35 = 0;
+    elem->unk_38 = (FX32_ONE * 2);
 
-    if (sub_02022110(param0->unk_00, param0->unk_04, v0, param0->unk_2C) == 0) {
-        sub_02021BD4(v0);
+    if (sub_02022110(param0->unk_00, param0->unk_04, elem, param0->unk_2C) == 0) {
+        sub_02021BD4(elem);
         return NULL;
     }
 
-    v0->explicitPaletteOffset = sub_020222C4(&v0->paletteProxy, v0->type);
-    v0->explicitPalette = v0->explicitPaletteOffset;
+    elem->explicitPaletteOffset = sub_020222C4(&elem->paletteProxy, elem->type);
+    elem->explicitPalette = elem->explicitPaletteOffset;
 
-    sub_02022464(param0->unk_00, v0);
+    GraphicElementManager_InsertElement(param0->unk_00, elem);
 
-    return v0;
+    return elem;
 }
 
 GraphicElementData * sub_02021B90 (const UnkStruct_ov83_0223D9A8 * param0)
@@ -308,7 +308,7 @@ GraphicElementData * sub_02021B90 (const UnkStruct_ov83_0223D9A8 * param0)
     v0.unk_28 = param0->unk_18;
     v0.unk_2C = param0->unk_1C;
 
-    return sub_02021AA0(&v0);
+    return GraphicElementManager_AddElement(&v0);
 }
 
 void sub_02021BD4 (GraphicElementData *gfxElem)
@@ -319,7 +319,7 @@ void sub_02021BD4 (GraphicElementData *gfxElem)
         CellAnimationData *v1 = (CellAnimationData *)&gfxElem->unk_40;
 
         if (gfxElem->prev != NULL) {
-            sub_020224FC(gfxElem);
+            GraphicElementManager_RemoveElement(gfxElem);
         }
 
         if (gfxElem->unk_EC == 3) {
@@ -345,7 +345,7 @@ void sub_02021BD4 (GraphicElementData *gfxElem)
         gfxElem->unk_EC = 0;
 
         gfxElemMgr = (GraphicElementManager *)gfxElem->manager;
-        sub_0202256C(gfxElemMgr, gfxElem);
+        GraphicElementManager_FreeElement(gfxElemMgr, gfxElem);
     }
 }
 
@@ -604,15 +604,15 @@ void sub_02021F58 (GraphicElementData * param0, u32 param1)
 {
     GraphicElementManager * v0 = (GraphicElementManager *)param0->manager;
 
-    param0->unk_F4 = param1;
+    param0->priority = param1;
 
-    sub_020224FC(param0);
-    sub_02022464(v0, param0);
+    GraphicElementManager_RemoveElement(param0);
+    GraphicElementManager_InsertElement(v0, param0);
 }
 
 u32 sub_02021F74 (const GraphicElementData * param0)
 {
-    return param0->unk_F4;
+    return param0->priority;
 }
 
 void sub_02021F7C (GraphicElementData * param0, const NNSG2dImageProxy * param1)
@@ -950,79 +950,79 @@ static void sub_02022460 (GraphicElementData * param0)
     return;
 }
 
-static void sub_02022464 (GraphicElementManager * param0, GraphicElementData * param1)
+static void GraphicElementManager_InsertElement(GraphicElementManager *gfxElemMgr, GraphicElementData *elem)
 {
-    GraphicElementData * v0;
+    // If the list is empty, insert the element as the only element
+    if (gfxElemMgr->sentinelData.next == &gfxElemMgr->sentinelData) {
+        gfxElemMgr->sentinelData.next = elem;
+        gfxElemMgr->sentinelData.prev = elem;
+        elem->prev = &gfxElemMgr->sentinelData;
+        elem->next = &gfxElemMgr->sentinelData;
+        return;
+    }
 
-    if (param0->sentinelData.next == &param0->sentinelData) {
-        param0->sentinelData.next = param1;
-        param0->sentinelData.prev = param1;
-        param1->prev = &param0->sentinelData;
-        param1->next = &param0->sentinelData;
-    } else {
-        if (param0->sentinelData.prev->unk_F4 <= param1->unk_F4) {
-            param1->prev = param0->sentinelData.prev;
-            param0->sentinelData.prev->next = param1;
-            param1->next = &param0->sentinelData;
-            param0->sentinelData.prev = param1;
-        } else {
-            v0 = param0->sentinelData.next;
+    // Check if the element should be inserted at the end of the list (lowest priority)
+    if (gfxElemMgr->sentinelData.prev->priority <= elem->priority) {
+        elem->prev = gfxElemMgr->sentinelData.prev;
+        gfxElemMgr->sentinelData.prev->next = elem;
+        elem->next = &gfxElemMgr->sentinelData;
+        gfxElemMgr->sentinelData.prev = elem;
+        return;
+    }
 
-            while (v0 != &param0->sentinelData) {
-                if (v0->unk_F4 > param1->unk_F4) {
-                    v0->prev->next = param1;
-                    param1->prev = v0->prev;
-                    v0->prev = param1;
-                    param1->next = v0;
-                    break;
-                }
-
-                v0 = v0->next;
-            }
+    // Insert the element in the correct position according to its priority
+    GraphicElementData *cur = gfxElemMgr->sentinelData.next;
+    while (cur != &gfxElemMgr->sentinelData) {
+        if (cur->priority > elem->priority) {
+            cur->prev->next = elem;
+            elem->prev = cur->prev;
+            cur->prev = elem;
+            elem->next = cur;
+            break;
         }
+
+        cur = cur->next;
     }
 }
 
-static void sub_020224FC (GraphicElementData * param0)
+static void GraphicElementManager_RemoveElement(GraphicElementData *elem)
 {
-    param0->prev->next = param0->next;
-    param0->next->prev = param0->prev;
+    elem->prev->next = elem->next;
+    elem->next->prev = elem->prev;
 }
 
 static void GraphicElementManager_InitElements(GraphicElementManager *gfxElemMgr)
 {
     for (int i = 0; i < gfxElemMgr->maxElements; i++) {
         GraphicElementData_Reset(&gfxElemMgr->elements[i]);
-        gfxElemMgr->unk_08[i] = gfxElemMgr->elements + i;
+        gfxElemMgr->elementStack[i] = gfxElemMgr->elements + i;
     }
 
-    gfxElemMgr->unk_0C = 0;
+    gfxElemMgr->stackPointer = 0;
 }
 
-static GraphicElementData * sub_02022550 (GraphicElementManager * param0)
+static GraphicElementData *GraphicElementManager_AllocElement(GraphicElementManager *gfxElemMgr)
 {
-    GraphicElementData * v0;
-
-    if (param0->unk_0C >= param0->maxElements) {
+    if (gfxElemMgr->stackPointer >= gfxElemMgr->maxElements) {
         return NULL;
     }
 
-    v0 = param0->unk_08[param0->unk_0C];
-    param0->unk_0C++;
+    GraphicElementData *elem = gfxElemMgr->elementStack[gfxElemMgr->stackPointer];
+    gfxElemMgr->stackPointer++;
 
-    return v0;
+    return elem;
 }
 
-static BOOL sub_0202256C (GraphicElementManager * param0, GraphicElementData * param1)
+static BOOL GraphicElementManager_FreeElement(GraphicElementManager *gfxElemMgr, GraphicElementData *elem)
 {
-    if (param0->unk_0C <= 0) {
-        return 0;
+    if (gfxElemMgr->stackPointer <= 0) {
+        return FALSE;
     }
 
-    GraphicElementData_Reset(param1);
+    GraphicElementData_Reset(elem);
 
-    param0->unk_0C--;
-    param0->unk_08[param0->unk_0C] = param1;
+    gfxElemMgr->stackPointer--;
+    gfxElemMgr->elementStack[gfxElemMgr->stackPointer] = elem;
 
-    return 1;
+    return TRUE;
 }

@@ -108,7 +108,7 @@ GraphicElementData * ov106_022434BC (UnkStruct_ov106_02243310 * param0, u32 para
             v3.unk_08.y += (192 << FX32_SHIFT);
         }
 
-        v2 = sub_02021AA0(&v3);
+        v2 = GraphicElementManager_AddElement(&v3);
 
         sub_02021CC8(v2, 1);
         sub_02021CE4(v2, FX32_ONE);

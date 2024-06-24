@@ -6706,7 +6706,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
         v9[v1].unk_04 = &v2;
         v9[v1].unk_2C = param2;
 
-        param0->unk_BE0.unk_21C[v1] = sub_02021AA0(&v9[v1]);
+        param0->unk_BE0.unk_21C[v1] = GraphicElementManager_AddElement(&v9[v1]);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
     }

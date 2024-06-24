@@ -142,7 +142,7 @@ GraphicElementData * ov111_021D3280 (UnkStruct_ov111_021D2F80 * param0, u32 para
             v3.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
-        v2 = sub_02021AA0(&v3);
+        v2 = GraphicElementManager_AddElement(&v3);
 
         sub_02021CC8(v2, 0);
         sub_02021CE4(v2, FX32_ONE);

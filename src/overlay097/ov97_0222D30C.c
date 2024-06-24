@@ -1199,7 +1199,7 @@ static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int
             v1.unk_08.y += FX32_CONST(256);
         }
 
-        v0 = sub_02021AA0(&v1);
+        v0 = GraphicElementManager_AddElement(&v1);
     }
 
     if (v0) {

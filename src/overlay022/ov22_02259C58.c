@@ -58,7 +58,7 @@ void ov22_02259C58 (UnkStruct_ov22_02259C58 * param0, UnkStruct_ov22_02259C58_1 
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
-    param0->unk_00 = sub_02021AA0(param1->unk_00);
+    param0->unk_00 = GraphicElementManager_AddElement(param1->unk_00);
     GF_ASSERT(param0->unk_00);
 
     param0->unk_04 = param1->unk_0C;

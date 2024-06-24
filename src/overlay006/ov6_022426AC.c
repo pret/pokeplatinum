@@ -220,7 +220,7 @@ static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
         v2.unk_08.x = FX32_ONE * (256 / 2);
         v2.unk_08.y = FX32_ONE * (192 / 2);
 
-        param0->unk_1C8 = sub_02021AA0(&v2);
+        param0->unk_1C8 = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_1C8, 0);
         SpriteActor_SetSpriteAnimActive(param0->unk_1C8, 0);

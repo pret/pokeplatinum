@@ -55,14 +55,14 @@ void ov94_02243EF8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     v0.unk_08.x = FX32_ONE * 128;
     v0.unk_08.y = FX32_ONE * 130 + (256 * FX32_ONE);
 
-    param0->unk_F34[0] = sub_02021AA0(&v0);
+    param0->unk_F34[0] = GraphicElementManager_AddElement(&v0);
 
     sub_02021CC8(param0->unk_F34[0], 1);
     SpriteActor_SetSpriteAnimActive(param0->unk_F34[0], 3 + param1 * 7);
     sub_02021CAC(param0->unk_F34[0], 1);
 
     for (v1 = 0; v1 < 7; v1++) {
-        param0->unk_F34[v1 + 1] = sub_02021AA0(&v0);
+        param0->unk_F34[v1 + 1] = GraphicElementManager_AddElement(&v0);
 
         sub_02021CC8(param0->unk_F34[v1 + 1], 1);
         SpriteActor_SetSpriteAnimActive(param0->unk_F34[v1 + 1], 14 + v1 * 4);

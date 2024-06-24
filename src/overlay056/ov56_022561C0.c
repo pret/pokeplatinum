@@ -435,7 +435,7 @@ static void ov56_02256704 (UnkStruct_ov56_02256468 * param0)
             v1.unk_08.x = FX32_CONST((256 - 24));
             v1.unk_08.y = FX32_CONST(Unk_ov56_02257238[v0]) + (192 << FX32_SHIFT);
 
-            param0->unk_1FC[v0] = sub_02021AA0(&v1);
+            param0->unk_1FC[v0] = GraphicElementManager_AddElement(&v1);
 
             sub_02021CC8(param0->unk_1FC[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_1FC[v0], v0);

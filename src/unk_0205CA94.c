@@ -575,7 +575,7 @@ static GraphicElementData * sub_0205D344 (UnkStruct_0205D094 * param0, int param
     v0.unk_28 = param4;
     v0.unk_2C = 4;
 
-    v1 = sub_02021AA0(&v0);
+    v1 = GraphicElementManager_AddElement(&v0);
     GF_ASSERT(v1);
 
     return v1;

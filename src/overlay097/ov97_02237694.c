@@ -462,7 +462,7 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
             v1.unk_08.y += v0->unk_274;
         }
 
-        param1 = sub_02021AA0(&v1);
+        param1 = GraphicElementManager_AddElement(&v1);
     }
 
     sub_02021CC8(param1, 1);

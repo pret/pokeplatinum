@@ -119,7 +119,7 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     v0.unk_28 = param1->unk_14;
     v0.unk_2C = param0->unk_1C6;
 
-    v1 = sub_02021AA0(&v0);
+    v1 = GraphicElementManager_AddElement(&v0);
     GF_ASSERT(v1);
 
     SpriteActor_SetSpriteAnimActive(v1, param1->unk_0A);
@@ -385,7 +385,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
     v3.unk_28 = param1->vramType;
     v3.unk_2C = param0->unk_1C6;
 
-    v2->unk_00 = sub_02021AA0(&v3);
+    v2->unk_00 = GraphicElementManager_AddElement(&v3);
 
     if (v2->unk_00 != NULL) {
         v1 = sub_02021EE8(v2->unk_00);

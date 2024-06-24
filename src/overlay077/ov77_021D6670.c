@@ -249,7 +249,7 @@ static void ov77_021D6964 (UnkStruct_ov77_021D6800 * param0)
         v2.unk_08.x = FX32_ONE * v0 * 2;
         v2.unk_08.y = FX32_ONE * v0 * 2;
 
-        param0->unk_1B0[v0].unk_04 = sub_02021AA0(&v2);
+        param0->unk_1B0[v0].unk_04 = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_1B0[v0].unk_04, 0);
         sub_02021CAC(param0->unk_1B0[v0].unk_04, 0);

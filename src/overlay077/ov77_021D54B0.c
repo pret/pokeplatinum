@@ -270,7 +270,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * (128 - 48);
         v2.unk_08.y = FX32_ONE * (14 * 8);
-        param0->unk_250[0] = sub_02021AA0(&v2);
+        param0->unk_250[0] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[0], 0);
         sub_02021CAC(param0->unk_250[0], 0);
@@ -279,7 +279,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * (128 - 48);
         v2.unk_08.y = FX32_ONE * (14 * 8) + (192 << FX32_SHIFT);
-        param0->unk_250[1] = sub_02021AA0(&v2);
+        param0->unk_250[1] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[1], 0);
         sub_02021CAC(param0->unk_250[1], 0);
@@ -288,7 +288,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * (128 + 48);
         v2.unk_08.y = FX32_ONE * (14 * 8);
-        param0->unk_250[2] = sub_02021AA0(&v2);
+        param0->unk_250[2] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[2], 0);
         sub_02021CAC(param0->unk_250[2], 0);
@@ -297,7 +297,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * -64;
         v2.unk_08.y = FX32_ONE * (14 * 8);
-        param0->unk_250[3] = sub_02021AA0(&v2);
+        param0->unk_250[3] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[3], 1);
         sub_02021CAC(param0->unk_250[3], 0);
@@ -306,7 +306,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * (256 + 64);
         v2.unk_08.y = FX32_ONE * (14 * 8);
-        param0->unk_250[10] = sub_02021AA0(&v2);
+        param0->unk_250[10] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[10], 1);
         sub_02021CAC(param0->unk_250[10], 0);
@@ -315,7 +315,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * 128;
         v2.unk_08.y = FX32_ONE * (12 * 8);
-        param0->unk_250[11] = sub_02021AA0(&v2);
+        param0->unk_250[11] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[11], 1);
         sub_02021CAC(param0->unk_250[11], 0);
@@ -325,7 +325,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * 128;
         v2.unk_08.y = FX32_ONE * (12 * 8) + (192 << FX32_SHIFT);
-        param0->unk_250[12] = sub_02021AA0(&v2);
+        param0->unk_250[12] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[12], 1);
         sub_02021CAC(param0->unk_250[12], 0);
@@ -335,12 +335,12 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * 128;
         v2.unk_08.y = FX32_ONE * (0xd * 8);
-        param0->unk_250[13] = sub_02021AA0(&v2);
+        param0->unk_250[13] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[13], 1);
         sub_02021CAC(param0->unk_250[13], 0);
 
-        param0->unk_250[14] = sub_02021AA0(&v2);
+        param0->unk_250[14] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[14], 1);
         sub_02021CAC(param0->unk_250[14], 0);
@@ -349,12 +349,12 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
         v2.unk_08.x = FX32_ONE * 128;
         v2.unk_08.y = FX32_ONE * (0xd * 8) + (192 << FX32_SHIFT);
-        param0->unk_250[15] = sub_02021AA0(&v2);
+        param0->unk_250[15] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[15], 1);
         sub_02021CAC(param0->unk_250[15], 0);
 
-        param0->unk_250[16] = sub_02021AA0(&v2);
+        param0->unk_250[16] = GraphicElementManager_AddElement(&v2);
 
         sub_02021CC8(param0->unk_250[16], 1);
         sub_02021CAC(param0->unk_250[16], 0);
@@ -364,7 +364,7 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
 
             v2.unk_08.x = FX32_ONE * v4[v0];
             v2.unk_08.y = FX32_ONE * v5[v0];
-            param0->unk_250[v3[v0]] = sub_02021AA0(&v2);
+            param0->unk_250[v3[v0]] = GraphicElementManager_AddElement(&v2);
 
             sub_02021CC8(param0->unk_250[v3[v0]], 1);
             sub_02021CAC(param0->unk_250[v3[v0]], 0);
@@ -384,7 +384,7 @@ void ov77_021D5FB4 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
 
         for (v0 = 0; v0 < 16; v0++) {
             v3 = ov77_021D6794(param1, v0);
-            (*v3) = sub_02021AA0(&v2);
+            (*v3) = GraphicElementManager_AddElement(&v2);
             sub_02021CC8(*v3, 0);
             sub_02021CAC(*v3, 0);
         }

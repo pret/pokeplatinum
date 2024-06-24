@@ -126,7 +126,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
             v3.unk_2C = 4;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
-                v0->unk_390[v2] = sub_02021AA0(&v3);
+                v0->unk_390[v2] = GraphicElementManager_AddElement(&v3);
                 sub_02021CC8(v0->unk_390[v2], 1);
                 sub_02021CAC(v0->unk_390[v2], 0);
 
@@ -136,7 +136,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
             }
 
             for (v2 = 0; v2 < 16 + 1; v2++) {
-                v0->unk_3B0[v2] = sub_02021AA0(&v3);
+                v0->unk_3B0[v2] = GraphicElementManager_AddElement(&v3);
                 sub_02021CC8(v0->unk_3B0[v2], 1);
                 sub_02021CAC(v0->unk_3B0[v2], 0);
                 SpriteActor_SetSpriteAnimActive(v0->unk_3B0[v2], 2);

@@ -694,7 +694,7 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
             v1.unk_08.y = FX32_ONE * (32 + 32);
             v1.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
 
-            param0->unk_23C[v0] = sub_02021AA0(&v1);
+            param0->unk_23C[v0] = GraphicElementManager_AddElement(&v1);
 
             sub_02021CC8(param0->unk_23C[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_23C[v0], v0);
@@ -706,7 +706,7 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
             v1.unk_08.x = FX32_ONE * (Unk_ov58_021D2EEC[v0][0]);
             v1.unk_08.y = FX32_ONE * (Unk_ov58_021D2EEC[v0][1]);
 
-            param0->unk_2AC[v0] = sub_02021AA0(&v1);
+            param0->unk_2AC[v0] = GraphicElementManager_AddElement(&v1);
 
             sub_02021CC8(param0->unk_2AC[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_2AC[v0], Unk_ov58_021D2EEC[v0][2]);
@@ -722,7 +722,7 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
             v1.unk_08.x = FX32_ONE * 24;
             v1.unk_08.y = FX32_ONE * (32 + 32 * v0) + (256 * FX32_ONE);
 
-            param0->unk_274[v0] = sub_02021AA0(&v1);
+            param0->unk_274[v0] = GraphicElementManager_AddElement(&v1);
 
             sub_02021CC8(param0->unk_274[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_274[v0], v0);
