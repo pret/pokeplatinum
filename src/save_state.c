@@ -35,25 +35,19 @@ void Player_Init (SaveState * player)
 
 TrainerInfo * SaveData_GetTrainerInfo (SaveData * savedata)
 {
-    SaveState * state;
-
-    state = SaveData_SaveTable(savedata, 1);
+    SaveState * state = SaveData_SaveTable(savedata, 1);
     return &state->info;
 }
 
 Options * SaveData_Options (SaveData * savedata)
 {
-    SaveState * state;
-
-    state = SaveData_SaveTable(savedata, 1);
+    SaveState * state = SaveData_SaveTable(savedata, 1);
     return &state->options;
 }
 
 u16 * SaveData_GetCoins (SaveData * savedata)
 {
-    SaveState * state;
-
-    state = SaveData_SaveTable(savedata, 1);
+    SaveState * state = SaveData_SaveTable(savedata, 1);
     return &state->coins;
 }
 
