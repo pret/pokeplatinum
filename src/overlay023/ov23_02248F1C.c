@@ -113,7 +113,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
             CellActorInitParamsEx v3;
 
             v3.manager = v0->unk_1BC;
-            v3.unk_04 = &v0->unk_36C;
+            v3.resourceData = &v0->unk_36C;
             v3.position.x = FX32_CONST(32);
             v3.position.y = FX32_CONST(96) + (192 << FX32_SHIFT);
             v3.position.z = 0;
@@ -123,7 +123,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
             v3.affineZRotation = 0;
             v3.priority = 0;
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-            v3.unk_2C = 4;
+            v3.heapID = 4;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
                 v0->unk_390[v2] = GraphicElementManager_AddElement(&v3);

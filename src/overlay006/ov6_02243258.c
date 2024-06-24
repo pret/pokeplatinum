@@ -541,7 +541,7 @@ static void ov6_022436D0 (UnkStruct_ov6_02243258 * param0, NARC * param1, int pa
 static GraphicElementData * ov6_02243740 (UnkStruct_ov6_02243258 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     GraphicElementData * v2;
 
     if (param5 == param0->unk_07) {
@@ -551,12 +551,12 @@ static GraphicElementData * ov6_02243740 (UnkStruct_ov6_02243258 * param0, const
     sub_020093B4(
         &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_198, param0->unk_19C, param0->unk_1A0, param0->unk_1A4, NULL, NULL);
 
-    v1.unk_00 = param0->unk_08;
-    v1.unk_04 = &v0;
-    v1.unk_08 = *param1;
-    v1.unk_14 = param7;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = 4;
+    v1.manager = param0->unk_08;
+    v1.resourceData = &v0;
+    v1.position = *param1;
+    v1.priority = param7;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = 4;
     v2 = sub_02021B90(&v1);
 
     GF_ASSERT(v2 != NULL);
@@ -1842,7 +1842,7 @@ static void ov6_02244C10 (UnkStruct_ov6_02243FFC * param0)
 static GraphicElementData * ov6_02244C20 (UnkStruct_ov6_02243FFC * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     GraphicElementData * v2;
 
     if (param5 == 4) {
@@ -1853,12 +1853,12 @@ static GraphicElementData * ov6_02244C20 (UnkStruct_ov6_02243FFC * param0, const
             &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, param0->unk_20C, NULL, NULL);
     }
 
-    v1.unk_00 = param0->unk_70;
-    v1.unk_04 = &v0;
-    v1.unk_08 = *param1;
-    v1.unk_14 = param7;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = 4;
+    v1.manager = param0->unk_70;
+    v1.resourceData = &v0;
+    v1.position = *param1;
+    v1.priority = param7;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = 4;
 
     v2 = sub_02021B90(&v1);
     GF_ASSERT(v2 != NULL);

@@ -646,25 +646,25 @@ static void ov21_021D8CC8 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
 static void ov21_021D8D0C (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D879C * param1, const UnkStruct_ov21_021D8788 * param2, int param3)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
 
     sub_020093B4(&v0, 81 + 15000, 3 + 15000, 79 + 15000, 80 + 15000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param3;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param3;
 
-    v1.unk_08.x = 128 << FX32_SHIFT;
-    v1.unk_08.y = 164 << FX32_SHIFT;
+    v1.position.x = 128 << FX32_SHIFT;
+    v1.position.y = 164 << FX32_SHIFT;
     param0->unk_20 = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_20, 3);
 
-    v1.unk_08.x = 128 << FX32_SHIFT;
-    v1.unk_08.y = 96 << FX32_SHIFT;
+    v1.position.x = 128 << FX32_SHIFT;
+    v1.position.y = 96 << FX32_SHIFT;
 
     param0->unk_58 = sub_02021B90(&v1);
 

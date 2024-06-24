@@ -557,25 +557,25 @@ static void ov21_021DFDC8 (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
 static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021DF858 * param1, const UnkStruct_ov21_021DF844 * param2, int param3)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3, v4;
     int v5;
 
     sub_020093B4(&v0, 122 + 14000, 22 + 14000, 123 + 14000, 121 + 14000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 32;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param3;
-    v1.unk_08.x = 0;
-    v1.unk_08.y = 0;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 32;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param3;
+    v1.position.x = 0;
+    v1.position.y = 0;
 
     for (v5 = 0; v5 < 4; v5++) {
         ov21_021E0B24(v5, &v3, &v4);
-        v1.unk_08.x = v3 << FX32_SHIFT;
-        v1.unk_08.y = (v4 + 8) << FX32_SHIFT;
+        v1.position.x = v3 << FX32_SHIFT;
+        v1.position.y = (v4 + 8) << FX32_SHIFT;
 
         param0->unk_00[v5] = sub_02021B90(&v1);
 
@@ -586,9 +586,9 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
         }
     }
 
-    v1.unk_08.x = 248 << FX32_SHIFT;
-    v1.unk_08.y = 96 << FX32_SHIFT;
-    v1.unk_14 = 0;
+    v1.position.x = 248 << FX32_SHIFT;
+    v1.position.y = 96 << FX32_SHIFT;
+    v1.priority = 0;
 
     param0->unk_BC = sub_02021B90(&v1);
 

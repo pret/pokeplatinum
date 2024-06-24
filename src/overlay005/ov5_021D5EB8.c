@@ -1464,7 +1464,7 @@ static void ov5_021D6CDC (UnkStruct_ov5_021D6594 * param0, UnkStruct_ov5_021D69B
         ov5_021D6F4C(&param1->unk_0C->unk_40, param0, param1->unk_0C, 0, 1);
         memset(&param1->unk_0C->unk_10, 0, sizeof(CellActorInitParamsEx));
         param1->unk_0C->unk_10.manager = param0->unk_08.unk_130;
-        param1->unk_0C->unk_10.unk_04 = &param1->unk_0C->unk_40;
+        param1->unk_0C->unk_10.resourceData = &param1->unk_0C->unk_40;
         param1->unk_0C->unk_10.affineScale.x = FX32_ONE;
         param1->unk_0C->unk_10.affineScale.y = FX32_ONE;
         param1->unk_0C->unk_10.affineScale.z = FX32_ONE;

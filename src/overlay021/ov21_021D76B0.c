@@ -596,20 +596,20 @@ static void ov21_021D7E3C (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D77E8 * param1, const UnkStruct_ov21_021D77D4 * param2, int param3)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
 
     sub_020093B4(&v0, 84 + 1000, 3 + 1000, 82 + 1000, 83 + 1000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 8;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_1C = param3;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 8;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v1.heapID = param3;
 
-    v1.unk_08.x = 48 << FX32_SHIFT;
-    v1.unk_08.y = 40 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 48 << FX32_SHIFT;
+    v1.position.y = 40 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_00[0] = sub_02021B90(&v1);
 
@@ -619,9 +619,9 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
         sub_02021CAC(param0->unk_00[0], 0);
     }
 
-    v1.unk_08.x = 48 << FX32_SHIFT;
-    v1.unk_08.y = 88 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 48 << FX32_SHIFT;
+    v1.position.y = 88 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_00[1] = sub_02021B90(&v1);
 
@@ -631,33 +631,33 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
         sub_02021CAC(param0->unk_00[1], 0);
     }
 
-    v1.unk_08.x = 48 << FX32_SHIFT;
-    v1.unk_08.y = 152 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 48 << FX32_SHIFT;
+    v1.position.y = 152 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_00[2] = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00[2], 1);
 
-    v1.unk_08.x = 124 << FX32_SHIFT;
-    v1.unk_08.y = 64 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 124 << FX32_SHIFT;
+    v1.position.y = 64 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_18 = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_18, 3);
 
-    v1.unk_08.x = 124 << FX32_SHIFT;
-    v1.unk_08.y = 146 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 124 << FX32_SHIFT;
+    v1.position.y = 146 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_1C = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_1C, 4);
 
-    v1.unk_08.x = 124 << FX32_SHIFT;
-    v1.unk_08.y = 8 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 124 << FX32_SHIFT;
+    v1.position.y = 8 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_20 = sub_02021B90(&v1);
 

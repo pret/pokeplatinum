@@ -434,19 +434,19 @@ static void ov21_021DE224 (UnkStruct_ov21_021DDEC8 * param0, UnkStruct_ov21_021D
 static void ov21_021DE258 (UnkStruct_ov21_021DDEC8 * param0, UnkStruct_ov21_021DDDF0 * param1, int param2)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
 
     sub_020093B4(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_1C = param2;
-    v1.unk_08.x = 0;
-    v1.unk_08.y = 0;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v1.heapID = param2;
+    v1.position.x = 0;
+    v1.position.y = 0;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_00 = sub_02021B90(&v1);
 

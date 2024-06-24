@@ -285,7 +285,7 @@ GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParamsE
     elem->unk_35 = 0;
     elem->unk_38 = (FX32_ONE * 2);
 
-    if (GraphicElementManager_InitElementFromResource(param0->manager, param0->unk_04, elem, param0->unk_2C) == 0) {
+    if (GraphicElementManager_InitElementFromResource(param0->manager, param0->resourceData, elem, param0->heapID) == 0) {
         GraphicElementData_Delete(elem);
         return NULL;
     }
@@ -298,22 +298,22 @@ GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParamsE
     return elem;
 }
 
-GraphicElementData * sub_02021B90 (const UnkStruct_ov83_0223D9A8 * param0)
+GraphicElementData * sub_02021B90 (const CellActorInitParams * params)
 {
-    CellActorInitParamsEx v0;
+    CellActorInitParamsEx paramsEx;
 
-    v0.manager = param0->unk_00;
-    v0.unk_04 = param0->unk_04;
-    v0.position = param0->unk_08;
-    v0.affineScale.x = FX32_ONE;
-    v0.affineScale.y = FX32_ONE;
-    v0.affineScale.z = FX32_ONE;
-    v0.affineZRotation = 0;
-    v0.priority = param0->unk_14;
-    v0.vramType = param0->unk_18;
-    v0.unk_2C = param0->unk_1C;
+    paramsEx.manager = params->manager;
+    paramsEx.resourceData = params->resourceData;
+    paramsEx.position = params->position;
+    paramsEx.affineScale.x = FX32_ONE;
+    paramsEx.affineScale.y = FX32_ONE;
+    paramsEx.affineScale.z = FX32_ONE;
+    paramsEx.affineZRotation = 0;
+    paramsEx.priority = params->priority;
+    paramsEx.vramType = params->vramType;
+    paramsEx.heapID = params->heapID;
 
-    return GraphicElementManager_AddElement(&v0);
+    return GraphicElementManager_AddElement(&paramsEx);
 }
 
 void GraphicElementData_Delete(GraphicElementData *gfxElem)

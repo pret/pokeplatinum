@@ -1279,38 +1279,38 @@ static void ov21_021E3AAC (UnkStruct_ov21_021E3900 * param0, UnkStruct_ov21_021E
 static void ov21_021E3AF0 (UnkStruct_ov21_021E3900 * param0, UnkStruct_ov21_021E3440 * param1, int param2)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3;
 
     sub_020093B4(&v0, 96 + 2100, 11 + 2100, 94 + 2100, 95 + 2100, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 32;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_1C = param2;
-    v1.unk_08.y = (24 * FX32_ONE) + (192 << FX32_SHIFT);
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 32;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v1.heapID = param2;
+    v1.position.y = (24 * FX32_ONE) + (192 << FX32_SHIFT);
 
     for (v3 = 0; v3 < 6; v3++) {
         switch (v3) {
         case 5:
-            v1.unk_08.x = 228 * FX32_ONE;
+            v1.position.x = 228 * FX32_ONE;
             break;
         case 0:
-            v1.unk_08.x = 28 * FX32_ONE;
+            v1.position.x = 28 * FX32_ONE;
             break;
         case 1:
-            v1.unk_08.x = 68 * FX32_ONE;
+            v1.position.x = 68 * FX32_ONE;
             break;
         case 2:
-            v1.unk_08.x = 108 * FX32_ONE;
+            v1.position.x = 108 * FX32_ONE;
             break;
         case 3:
-            v1.unk_08.x = 148 * FX32_ONE;
+            v1.position.x = 148 * FX32_ONE;
             break;
         case 4:
-            v1.unk_08.x = 188 * FX32_ONE;
+            v1.position.x = 188 * FX32_ONE;
             break;
         }
 

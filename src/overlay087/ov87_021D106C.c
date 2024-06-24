@@ -493,7 +493,7 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         {56, 112},
     };
     CellActorResourceData v1;
-    UnkStruct_ov83_0223D9A8 v2;
+    CellActorInitParams v2;
     NNSG2dImageProxy v3;
     NNSG2dImagePaletteProxy v4;
     NNSG2dCharacterData * v5;
@@ -511,11 +511,11 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
     v1.unk_20 = 0;
     v1.unk_00 = &v3;
     v1.unk_08 = &v4;
-    v2.unk_00 = param0->unk_34;
-    v2.unk_04 = &v1;
-    v2.unk_08.z = 0;
-    v2.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.unk_1C = 61;
+    v2.manager = param0->unk_34;
+    v2.resourceData = &v1;
+    v2.position.z = 0;
+    v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v2.heapID = 61;
 
     v7 = sub_02006F50(27, 76, 0, &v5, 61);
     v8 = sub_02006F88(27, 75, &v6, 61);
@@ -526,9 +526,9 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         NNS_G2dLoadImage1DMapping(v5, v9 * 3200, NNS_G2D_VRAM_TYPE_2DMAIN, &v3);
         NNS_G2dLoadPalette(v6, v9 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v4);
 
-        v2.unk_08.x = v0[v9].x << FX32_SHIFT;
-        v2.unk_08.y = v0[v9].y << FX32_SHIFT;
-        v2.unk_14 = v9 + 1;
+        v2.position.x = v0[v9].x << FX32_SHIFT;
+        v2.position.y = v0[v9].y << FX32_SHIFT;
+        v2.priority = v9 + 1;
 
         param0->unk_1C4[v9] = sub_02021B90(&v2);
         sub_02021CAC(param0->unk_1C4[v9], 0);

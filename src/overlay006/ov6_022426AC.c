@@ -206,7 +206,7 @@ static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
         CellActorInitParamsEx v2;
 
         v2.manager = param0->unk_38;
-        v2.unk_04 = &v1;
+        v2.resourceData = &v1;
         v2.position.x = 0;
         v2.position.y = 0;
         v2.position.z = 0;
@@ -216,7 +216,7 @@ static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
         v2.affineZRotation = 0;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.unk_2C = 4;
+        v2.heapID = 4;
         v2.position.x = FX32_ONE * (256 / 2);
         v2.position.y = FX32_ONE * (192 / 2);
 

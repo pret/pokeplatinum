@@ -3318,7 +3318,7 @@ static void ov23_0224644C (int param0)
         int v1;
 
         v0.manager = Unk_ov23_02257764->unk_44;
-        v0.unk_04 = &Unk_ov23_02257764->unk_238;
+        v0.resourceData = &Unk_ov23_02257764->unk_238;
         v0.position.x = FX32_CONST(32);
         v0.position.y = FX32_CONST(96);
         v0.position.z = 0;
@@ -3328,7 +3328,7 @@ static void ov23_0224644C (int param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.unk_2C = 4;
+        v0.heapID = 4;
 
         for (v1 = 0; v1 < param0; v1++) {
             v0.position.x = FX32_ONE * 300;
@@ -3668,7 +3668,7 @@ static void ov23_02246D44 (UnkStruct_ov23_022468DC * param0)
         int v1;
 
         v0.manager = Unk_ov23_02257764->unk_44;
-        v0.unk_04 = &Unk_ov23_02257764->unk_238;
+        v0.resourceData = &Unk_ov23_02257764->unk_238;
         v0.position.x = FX32_CONST(32);
         v0.position.y = FX32_CONST(96);
         v0.position.z = 0;
@@ -3678,7 +3678,7 @@ static void ov23_02246D44 (UnkStruct_ov23_022468DC * param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.unk_2C = 4;
+        v0.heapID = 4;
 
         for (v1 = 0; v1 < ov23_022468C0(); v1++) {
             v0.position.x = FX32_ONE * 300;
@@ -3846,7 +3846,7 @@ static void ov23_022471D8 (UnkStruct_ov23_022471D8 * param0)
         int v1;
 
         v0.manager = Unk_ov23_02257764->unk_44;
-        v0.unk_04 = &Unk_ov23_02257764->unk_238;
+        v0.resourceData = &Unk_ov23_02257764->unk_238;
         v0.position.x = FX32_CONST(32);
         v0.position.y = FX32_CONST(96);
         v0.position.z = 0;
@@ -3856,7 +3856,7 @@ static void ov23_022471D8 (UnkStruct_ov23_022471D8 * param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.unk_2C = 4;
+        v0.heapID = 4;
 
         for (v1 = 0; v1 < 15; v1++) {
             v0.position.x = FX32_ONE * 100;
@@ -4315,7 +4315,7 @@ static void ov23_02247E38 (UnkStruct_ov23_02247E38 * param0)
         int v1;
 
         v0.manager = Unk_ov23_02257764->unk_44;
-        v0.unk_04 = &Unk_ov23_02257764->unk_238;
+        v0.resourceData = &Unk_ov23_02257764->unk_238;
         v0.position.x = FX32_CONST(32);
         v0.position.y = FX32_CONST(96);
         v0.position.z = 0;
@@ -4325,7 +4325,7 @@ static void ov23_02247E38 (UnkStruct_ov23_02247E38 * param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.unk_2C = 4;
+        v0.heapID = 4;
 
         for (v1 = 0; v1 < 1; v1++) {
             v0.position.x = FX32_ONE * 128;
@@ -4775,7 +4775,7 @@ static void ov23_02248748 (UnkStruct_ov23_02248748 * param0)
         int v1;
 
         v0.manager = Unk_ov23_02257764->unk_44;
-        v0.unk_04 = &Unk_ov23_02257764->unk_238;
+        v0.resourceData = &Unk_ov23_02257764->unk_238;
         v0.position.x = FX32_CONST(32);
         v0.position.y = FX32_CONST(96);
         v0.position.z = 0;
@@ -4785,7 +4785,7 @@ static void ov23_02248748 (UnkStruct_ov23_02248748 * param0)
         v0.affineZRotation = 0;
         v0.priority = 0;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v0.unk_2C = 4;
+        v0.heapID = 4;
 
         for (v1 = 0; v1 < 25; v1++) {
             v0.position.x = FX32_ONE * 300;

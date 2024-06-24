@@ -2640,18 +2640,18 @@ static void ov69_0225E960 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225
     int v0;
     CellActorResourceData v1;
     BOOL v2;
-    UnkStruct_ov83_0223D9A8 v3 = {NULL};
+    CellActorInitParams v3 = {NULL};
 
     memset(param0, 0, sizeof(UnkStruct_ov69_0225EB60));
 
     param0->unk_30 = 2;
     param0->unk_32 = 128;
 
-    v3.unk_00 = param1->unk_04;
-    v3.unk_04 = &v1;
-    v3.unk_14 = 64;
-    v3.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v3.unk_1C = param3;
+    v3.manager = param1->unk_04;
+    v3.resourceData = &v1;
+    v3.priority = 64;
+    v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v3.heapID = param3;
 
     param0->unk_6C[0][1] = sub_02009B04(param1->unk_194[1], param1->unk_1A8, 20, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 12, param3);
     v2 = sub_0200A640(param0->unk_6C[0][1]);

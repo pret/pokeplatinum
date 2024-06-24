@@ -288,7 +288,7 @@ static const u16 Unk_ov96_0223DA80[][2] = {
 void ov96_0223BAE0 (CellActorInitParamsEx * param0, UnkStruct_ov96_0223BF40 * param1, CellActorResourceData * param2, int param3)
 {
     param0->manager = param1->unk_BF4;
-    param0->unk_04 = param2;
+    param0->resourceData = param2;
     param0->position.z = 0;
     param0->affineScale.x = FX32_ONE;
     param0->affineScale.y = FX32_ONE;
@@ -296,7 +296,7 @@ void ov96_0223BAE0 (CellActorInitParamsEx * param0, UnkStruct_ov96_0223BF40 * pa
     param0->affineZRotation = 0;
     param0->priority = 1;
     param0->vramType = param3;
-    param0->unk_2C = 68;
+    param0->heapID = 68;
 }
 
 static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)

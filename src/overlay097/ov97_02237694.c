@@ -446,7 +446,7 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
         CellActorInitParamsEx v1;
 
         v1.manager = v0->unk_34.unk_00;
-        v1.unk_04 = &v0->unk_34.unk_1D8[param0];
+        v1.resourceData = &v0->unk_34.unk_1D8[param0];
         v1.position.z = 0;
         v1.affineScale.x = FX32_ONE;
         v1.affineScale.y = FX32_ONE;
@@ -456,7 +456,7 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
         v1.position.y = FX32_ONE * param3;
         v1.priority = 10;
         v1.vramType = (param0 == 0) ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
-        v1.unk_2C = v0->unk_08;
+        v1.heapID = v0->unk_08;
 
         if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
             v1.position.y += v0->unk_274;

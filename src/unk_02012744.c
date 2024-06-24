@@ -727,7 +727,7 @@ static void sub_020130DC (FontOAM * param0)
 
 static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     CellActorResourceData v1;
 
     v1.unk_00 = param2;
@@ -740,24 +740,24 @@ static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, con
     v1.unk_1C = 0;
     v1.unk_20 = param0->unk_20;
 
-    v0.unk_00 = param0->unk_08;
-    v0.unk_04 = &v1;
-    v0.unk_14 = param0->unk_24;
-    v0.unk_18 = param0->unk_28;
-    v0.unk_1C = param0->unk_2C;
-    v0.unk_08.x = 0;
-    v0.unk_08.y = 0;
-    v0.unk_08.z = 0;
+    v0.manager = param0->unk_08;
+    v0.resourceData = &v1;
+    v0.priority = param0->unk_24;
+    v0.vramType = param0->unk_28;
+    v0.heapID = param0->unk_2C;
+    v0.position.x = 0;
+    v0.position.y = 0;
+    v0.position.z = 0;
 
     if (param0->unk_10) {
         const VecFx32 * v2;
 
         v2 = sub_02021D28(param0->unk_10);
-        v0.unk_08 = *v2;
+        v0.position = *v2;
     }
 
-    v0.unk_08.x += (param0->unk_18 << FX32_SHIFT) + ((param1->unk_00 * 8) << FX32_SHIFT);
-    v0.unk_08.y += (param0->unk_1C << FX32_SHIFT) + ((param1->unk_04 * 8) << FX32_SHIFT);
+    v0.position.x += (param0->unk_18 << FX32_SHIFT) + ((param1->unk_00 * 8) << FX32_SHIFT);
+    v0.position.y += (param0->unk_1C << FX32_SHIFT) + ((param1->unk_04 * 8) << FX32_SHIFT);
 
     return sub_02021B90(&v0);
 }

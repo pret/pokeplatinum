@@ -1611,7 +1611,7 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         CellActorInitParamsEx v1;
 
         v1.manager = param0->unk_188;
-        v1.unk_04 = &param0->unk_348;
+        v1.resourceData = &param0->unk_348;
         v1.position.x = FX32_CONST(32);
         v1.position.y = FX32_CONST(96);
         v1.position.z = 0;
@@ -1621,7 +1621,7 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.unk_2C = 18;
+        v1.heapID = 18;
 
         for (v0 = 0; v0 < 9; v0++) {
             v1.position.x = FX32_ONE * Unk_020F2984[v0][0];

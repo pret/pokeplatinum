@@ -111,13 +111,13 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     v3.z = param1->unk_08 * FX32_ONE;
 
     v0.manager = param0->unk_00;
-    v0.unk_04 = &param0->unk_190->unk_00[param1->unk_00];
+    v0.resourceData = &param0->unk_190->unk_00[param1->unk_00];
     v0.position = v3;
     v0.affineScale = v2;
     v0.affineZRotation = 0;
     v0.priority = param1->unk_0C;
     v0.vramType = param1->unk_14;
-    v0.unk_2C = param0->unk_1C6;
+    v0.heapID = param0->unk_1C6;
 
     v1 = GraphicElementManager_AddElement(&v0);
     GF_ASSERT(v1);
@@ -368,7 +368,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
     sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     v3.manager = param0->unk_00;
-    v3.unk_04 = v2->unk_04;
+    v3.resourceData = v2->unk_04;
     v3.position.x = FX32_CONST(param1->x);
     v3.position.y = FX32_CONST(param1->y);
     v3.position.z = FX32_CONST(param1->z);
@@ -383,7 +383,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
     v3.affineZRotation = 0;
     v3.priority = param1->priority;
     v3.vramType = param1->vramType;
-    v3.unk_2C = param0->unk_1C6;
+    v3.heapID = param0->unk_1C6;
 
     v2->unk_00 = GraphicElementManager_AddElement(&v3);
 

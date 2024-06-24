@@ -107,7 +107,7 @@ static void ov77_021D66A0 (UnkStruct_ov77_021D6800 * param0, CellActorInitParams
 
     {
         param1->manager = param0->unk_00;
-        param1->unk_04 = param2;
+        param1->resourceData = param2;
         param1->position.x = 0;
         param1->position.y = 0;
         param1->position.z = 0;
@@ -117,7 +117,7 @@ static void ov77_021D66A0 (UnkStruct_ov77_021D6800 * param0, CellActorInitParams
         param1->affineZRotation = 0;
         param1->priority = 1;
         param1->vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        param1->unk_2C = 76;
+        param1->heapID = 76;
     }
 }
 

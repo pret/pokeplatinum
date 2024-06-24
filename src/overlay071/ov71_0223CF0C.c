@@ -113,7 +113,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
         CellActorInitParamsEx v3;
 
         v3.manager = param0->unk_00;
-        v3.unk_04 = &v1;
+        v3.resourceData = &v1;
         v3.position.x = 0;
         v3.position.y = 0;
         v3.position.z = 0;
@@ -123,7 +123,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
         v3.affineZRotation = 0;
         v3.priority = 2;
         v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v3.unk_2C = 25;
+        v3.heapID = 25;
 
         for (v0 = 0; v0 < 8; v0++) {
             v3.position.x = FX32_ONE * Unk_ov71_0223D73C[v0].unk_00;

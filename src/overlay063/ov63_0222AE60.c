@@ -453,14 +453,14 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
     memset(&v1, 0, sizeof(CellActorInitParamsEx));
 
     v1.manager = param0->unk_00;
-    v1.unk_04 = &param0->unk_10[v2].unk_14;
+    v1.resourceData = &param0->unk_10[v2].unk_14;
     v1.position.x = param1->unk_00 << FX32_SHIFT;
     v1.position.y = param1->unk_02 << FX32_SHIFT;
     v1.affineScale.x = FX32_ONE;
     v1.affineScale.y = FX32_ONE;
     v1.affineScale.z = FX32_ONE;
     v1.priority = param1->unk_04;
-    v1.unk_2C = param3;
+    v1.heapID = param3;
 
     if ((param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_MAX) || (param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_2DMAIN)) {
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -486,14 +486,14 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
         memset(&v1, 0, sizeof(CellActorInitParamsEx));
 
         v1.manager = param0->unk_00;
-        v1.unk_04 = &param0->unk_2248.unk_10;
+        v1.resourceData = &param0->unk_2248.unk_10;
         v1.position.x = param1->unk_00 << FX32_SHIFT;
         v1.position.y = param1->unk_02 << FX32_SHIFT;
         v1.affineScale.x = FX32_ONE;
         v1.affineScale.y = FX32_ONE;
         v1.affineScale.z = FX32_ONE;
         v1.priority = param0->unk_227C;
-        v1.unk_2C = param3;
+        v1.heapID = param3;
 
         if ((param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_MAX) || (param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_2DMAIN)) {
             v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;

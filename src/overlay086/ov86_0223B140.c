@@ -807,7 +807,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     };
     ArchivedSprite v1;
     CellActorResourceData v2;
-    UnkStruct_ov83_0223D9A8 v3;
+    CellActorInitParams v3;
     UnkStruct_ov5_021DE5D0 v4;
     NNSG2dImageProxy v5;
     NNSG2dImagePaletteProxy v6;
@@ -828,13 +828,13 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     v2.unk_00 = &v5;
     v2.unk_08 = &v6;
 
-    v3.unk_00 = param0->unk_24;
-    v3.unk_04 = &v2;
+    v3.manager = param0->unk_24;
+    v3.resourceData = &v2;
 
-    VEC_Set(&(v3.unk_08), 0, 0, 0);
+    VEC_Set(&(v3.position), 0, 0, 0);
 
-    v3.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v3.unk_1C = 63;
+    v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v3.heapID = 63;
 
     v9 = sub_020071B4(param3, 76, 0, &v7, 63);
     v10 = sub_020071EC(param3, 75, &v8, 63);
@@ -845,7 +845,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         NNS_G2dLoadImage1DMapping(v7, v12 * 2 * 3200, NNS_G2D_VRAM_TYPE_2DMAIN, &v5);
         NNS_G2dLoadPalette(v8, v12 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
-        v3.unk_14 = 1 + v12;
+        v3.priority = 1 + v12;
         param0->unk_1B4[v12] = sub_02021B90(&v3);
 
         sub_02021CAC(param0->unk_1B4[v12], 0);
@@ -882,7 +882,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
 
     sub_02006E84(v4.unk_00, v4.unk_08, 1, 192, 0x20, 63);
 
-    v3.unk_14 = 0;
+    v3.priority = 0;
     param0->unk_1CC = sub_02021B90(&v3);
 
     sub_02021CAC(param0->unk_1CC, 0);

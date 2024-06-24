@@ -1183,7 +1183,7 @@ static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int
         int v2 = (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) ? 0 : 1;
 
         v1.manager = param0->unk_0C->unk_00;
-        v1.unk_04 = &param0->unk_10[v2];
+        v1.resourceData = &param0->unk_10[v2];
         v1.position.z = 0;
         v1.affineScale.x = FX32_ONE;
         v1.affineScale.y = FX32_ONE;
@@ -1193,7 +1193,7 @@ static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int
         v1.position.y = FX32_ONE * 32;
         v1.priority = 10;
         v1.vramType = param1;
-        v1.unk_2C = 86;
+        v1.heapID = 86;
 
         if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
             v1.position.y += FX32_CONST(256);

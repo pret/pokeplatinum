@@ -511,18 +511,18 @@ static void ov21_021E94A4 (UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 
 
 static void ov21_021E94B0 (UnkStruct_ov21_021E94F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     CellActorResourceData v1;
 
     ov21_021E93F8(param0->unk_04, param2, &v1, 2);
 
-    v0.unk_00 = param1;
-    v0.unk_04 = &v1;
-    v0.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_14 = 32;
-    v0.unk_1C = param3;
-    v0.unk_08.x = (120 * FX32_ONE);
-    v0.unk_08.y = (88 * FX32_ONE);
+    v0.manager = param1;
+    v0.resourceData = &v1;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.priority = 32;
+    v0.heapID = param3;
+    v0.position.x = (120 * FX32_ONE);
+    v0.position.y = (88 * FX32_ONE);
 
     param0->unk_00 = sub_02021B90(&v0);
     GF_ASSERT(param0->unk_00);
@@ -535,18 +535,18 @@ static void ov21_021E94F8 (UnkStruct_ov21_021E94F8 * param0)
 
 static void ov21_021E9504 (UnkStruct_ov21_021E95B0 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, UnkStruct_02009DC8 ** param4)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     CellActorResourceData v1;
 
     ov21_021E93F8(param4, param2, &v1, 2);
 
-    v0.unk_00 = param1;
-    v0.unk_04 = &v1;
-    v0.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_14 = 32;
-    v0.unk_1C = param3;
-    v0.unk_08.x = (192 * FX32_ONE);
-    v0.unk_08.y = (52 * FX32_ONE);
+    v0.manager = param1;
+    v0.resourceData = &v1;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.priority = 32;
+    v0.heapID = param3;
+    v0.position.x = (192 * FX32_ONE);
+    v0.position.y = (52 * FX32_ONE);
 
     param0->unk_00 = sub_02021B90(&v0);
 
@@ -599,7 +599,7 @@ static void ov21_021E95EC (UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 
 
 static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, int param4)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     CellActorResourceData v1;
     int v2, v3;
 
@@ -610,21 +610,21 @@ static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, GraphicElementManag
 
     ov21_021E93F8(param0->unk_08, param2, &v1, 2);
 
-    v0.unk_00 = param1;
-    v0.unk_04 = &v1;
-    v0.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_14 = 32;
-    v0.unk_1C = param3;
-    v0.unk_08.x = (170 * FX32_ONE);
-    v0.unk_08.y = (72 * FX32_ONE);
+    v0.manager = param1;
+    v0.resourceData = &v1;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.priority = 32;
+    v0.heapID = param3;
+    v0.position.x = (170 * FX32_ONE);
+    v0.position.y = (72 * FX32_ONE);
 
     param0->unk_00[0] = sub_02021B90(&v0);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00[0], 0 + v2);
 
     if (v2 != v3) {
-        v0.unk_08.x = (220 * FX32_ONE);
-        v0.unk_08.y = (72 * FX32_ONE);
+        v0.position.x = (220 * FX32_ONE);
+        v0.position.y = (72 * FX32_ONE);
         param0->unk_00[1] = sub_02021B90(&v0);
         SpriteActor_SetSpriteAnimActive(param0->unk_00[1], 0 + v3);
     } else {

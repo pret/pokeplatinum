@@ -88,7 +88,7 @@ void ov22_02259C9C (UnkStruct_ov22_0225A154 * param0, UnkStruct_ov22_02259C9C * 
     v0.unk_20 = 0;
     v0.unk_24 = 0;
     v0.unk_28 = param1->unk_00.unk_00->vramType;
-    v0.unk_2C = param1->unk_00.unk_00->unk_2C;
+    v0.unk_2C = param1->unk_00.unk_00->heapID;
 
     param0->unk_10 = sub_020127E8(&v0);
 }

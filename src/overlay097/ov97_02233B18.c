@@ -554,7 +554,7 @@ static void ov97_022340B0 (UnkStruct_ov97_02234A2C * param0)
 static void ov97_022340FC (CellActorInitParamsEx * param0, UnkStruct_ov97_02234A2C * param1, CellActorResourceData * param2, int param3)
 {
     param0->manager = param1->unk_28;
-    param0->unk_04 = &param1->unk_1E8;
+    param0->resourceData = &param1->unk_1E8;
     param0->position.z = 0;
     param0->affineScale.x = FX32_ONE;
     param0->affineScale.y = FX32_ONE;
@@ -562,7 +562,7 @@ static void ov97_022340FC (CellActorInitParamsEx * param0, UnkStruct_ov97_02234A
     param0->affineZRotation = 0;
     param0->priority = 20;
     param0->vramType = param3;
-    param0->unk_2C = 78;
+    param0->heapID = 78;
 }
 
 static int ov97_02234124 (UnkStruct_ov97_02234A2C * param0, int param1, int param2)

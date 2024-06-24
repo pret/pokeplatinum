@@ -573,7 +573,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
     int v0;
     Strbuf* v1;
     CellActorResourceData v2;
-    UnkStruct_ov83_0223D9A8 v3;
+    CellActorInitParams v3;
     static const u8 v4[2] = {
         8, 136
     };
@@ -647,15 +647,15 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
 
     ov7_0224CA54(&v2, param0, param2);
 
-    v3.unk_00 = param8;
-    v3.unk_04 = &v2;
-    v3.unk_14 = 0;
-    v3.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v3.unk_1C = param2;
-    v3.unk_08.x = 192 * FX32_ONE;
+    v3.manager = param8;
+    v3.resourceData = &v2;
+    v3.priority = 0;
+    v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v3.heapID = param2;
+    v3.position.x = 192 * FX32_ONE;
 
     for (v0 = 0; v0 < 2; v0++) {
-        v3.unk_08.y = v4[v0] * FX32_ONE;
+        v3.position.y = v4[v0] * FX32_ONE;
         param0->unk_158[v0] = sub_02021B90(&v3);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_158[v0], v0);

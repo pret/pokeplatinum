@@ -684,12 +684,12 @@ static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
     memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
     v0.manager = param0->unk_00;
-    v0.unk_04 = &param0->unk_1A0.unk_10;
+    v0.resourceData = &param0->unk_1A0.unk_10;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.affineScale.x = FX32_ONE;
     v0.affineScale.y = FX32_ONE;
     v0.priority = 0;
-    v0.unk_2C = param1;
+    v0.heapID = param1;
 
     param0->unk_1A0.unk_34 = GraphicElementManager_AddElement(&v0);
     param0->unk_1A0.unk_38 = GraphicElementManager_AddElement(&v0);

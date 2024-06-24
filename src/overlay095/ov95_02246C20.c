@@ -650,16 +650,16 @@ void ov95_022475C4 (CellActorResourceData * param0, UnkStruct_ov95_02247568 * pa
 GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     GraphicElementData * v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
 
-    v1.unk_00 = param0->unk_18;
-    v1.unk_04 = param1;
-    v1.unk_08.x = param2 * FX32_ONE;
-    v1.unk_08.y = param3 * FX32_ONE;
-    v1.unk_08.z = 0;
-    v1.unk_14 = param4;
-    v1.unk_18 = param5;
-    v1.unk_1C = 57;
+    v1.manager = param0->unk_18;
+    v1.resourceData = param1;
+    v1.position.x = param2 * FX32_ONE;
+    v1.position.y = param3 * FX32_ONE;
+    v1.position.z = 0;
+    v1.priority = param4;
+    v1.vramType = param5;
+    v1.heapID = 57;
 
     v0 = sub_02021B90(&v1);
 

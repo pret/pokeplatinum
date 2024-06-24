@@ -86,7 +86,7 @@ GraphicElementData * ov108_022430F0 (UnkStruct_ov108_02243030 * param0, u32 para
         CellActorInitParamsEx v3;
 
         v3.manager = param0->unk_00;
-        v3.unk_04 = &v1;
+        v3.resourceData = &v1;
         v3.position.x = 0;
         v3.position.y = 0;
         v3.position.z = 0;
@@ -95,7 +95,7 @@ GraphicElementData * ov108_022430F0 (UnkStruct_ov108_02243030 * param0, u32 para
         v3.affineScale.z = FX32_ONE;
         v3.affineZRotation = 0;
         v3.priority = param5;
-        v3.unk_2C = 103;
+        v3.heapID = 103;
 
         if (param7 == 0) {
             v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;

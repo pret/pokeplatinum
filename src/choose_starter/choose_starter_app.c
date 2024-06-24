@@ -1477,18 +1477,18 @@ static void ov78_021D2290 (ChooseStarterApp * param0, ChooseStarterCursor * para
 static void AttachCursorCellActor (ChooseStarterApp * param0, ChooseStarterCursor * param1, int param2)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
 
     sub_020093B4(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
 
-    v1.unk_00 = param0->unk_248;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 32;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param2;
+    v1.manager = param0->unk_248;
+    v1.resourceData = &v0;
+    v1.priority = 32;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param2;
 
-    v1.unk_08.x = 0;
-    v1.unk_08.y = 0;
+    v1.position.x = 0;
+    v1.position.y = 0;
 
     param1->unk_00 = sub_02021B90(&v1);
     sub_02021CAC(param1->unk_00, 0);

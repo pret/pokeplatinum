@@ -1672,7 +1672,7 @@ static void ov70_0225EBC4 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param
 static void ov70_0225EC20 (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225E4EC * param1, u32 param2)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     int v2;
     NARC * v3 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 
@@ -1686,15 +1686,15 @@ static void ov70_0225EC20 (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225
     sub_0200A640(param0->unk_40[1]);
     sub_020093B4(&v0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
-    v1.unk_00 = param1->unk_04;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 0;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param2;
-    v1.unk_08.x = 192 * FX32_ONE;
+    v1.manager = param1->unk_04;
+    v1.resourceData = &v0;
+    v1.priority = 0;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param2;
+    v1.position.x = 192 * FX32_ONE;
 
     for (v2 = 0; v2 < 2; v2++) {
-        v1.unk_08.y = Unk_ov70_0226D580[v2] * FX32_ONE;
+        v1.position.y = Unk_ov70_0226D580[v2] * FX32_ONE;
         param0->unk_50[v2] = sub_02021B90(&v1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_50[v2], v2);
@@ -2737,17 +2737,17 @@ static void ov70_0225FEF0 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 
     {
         CellActorResourceData v3;
-        UnkStruct_ov83_0223D9A8 v4 = {NULL};
+        CellActorInitParams v4 = {NULL};
 
         sub_020093B4(&v3, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
-        v4.unk_00 = param1->unk_04;
-        v4.unk_04 = &v3;
-        v4.unk_14 = 16;
-        v4.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-        v4.unk_1C = param3;
-        v4.unk_08.x = (FX32_CONST(208));
-        v4.unk_08.y = (FX32_CONST(152) + (256 * FX32_ONE));
+        v4.manager = param1->unk_04;
+        v4.resourceData = &v3;
+        v4.priority = 16;
+        v4.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+        v4.heapID = param3;
+        v4.position.x = (FX32_CONST(208));
+        v4.position.y = (FX32_CONST(152) + (256 * FX32_ONE));
         param0->unk_54 = sub_02021B90(&v4);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_54, v1);
@@ -2811,17 +2811,17 @@ static void ov70_02260080 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 
     {
         CellActorResourceData v6;
-        UnkStruct_ov83_0223D9A8 v7 = {NULL};
+        CellActorInitParams v7 = {NULL};
 
         sub_020093B4(&v6, 101, 101, 101, 101, 0xffffffff, 0xffffffff, 1, 3, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
-        v7.unk_00 = param1->unk_04;
-        v7.unk_04 = &v6;
-        v7.unk_14 = 32;
-        v7.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-        v7.unk_1C = param3;
-        v7.unk_08.x = FX32_CONST(v1);
-        v7.unk_08.y = FX32_CONST(v2) + (256 * FX32_ONE);
+        v7.manager = param1->unk_04;
+        v7.resourceData = &v6;
+        v7.priority = 32;
+        v7.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+        v7.heapID = param3;
+        v7.position.x = FX32_CONST(v1);
+        v7.position.y = FX32_CONST(v2) + (256 * FX32_ONE);
 
         param0->unk_68 = sub_02021B90(&v7);
     }
@@ -2948,7 +2948,7 @@ static void ov70_022603CC (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
     u32 v5;
     u32 v6;
     u32 v7;
-    UnkStruct_ov83_0223D9A8 v8;
+    CellActorInitParams v8;
     CellActorResourceData v9;
     const UnkStruct_ov70_0226D844 * v10;
     static const u16 v11[4][3] = {
@@ -3025,14 +3025,14 @@ static void ov70_022603CC (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
             sub_02009D4C(param0->unk_BC[v0]);
             sub_020093B4(&v9, 150 + v0, 150 + v10->unk_00, 150 + v10->unk_00, 150 + v10->unk_00, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
-            v8.unk_00 = param1->unk_04;
-            v8.unk_04 = &v9;
-            v8.unk_14 = 0;
-            v8.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-            v8.unk_1C = param3;
-            v8.unk_08 = Unk_ov70_0226D7B4[v0];
-            v8.unk_08.x += FX32_CONST(v10->unk_04);
-            v8.unk_08.y += FX32_CONST(v10->unk_06);
+            v8.manager = param1->unk_04;
+            v8.resourceData = &v9;
+            v8.priority = 0;
+            v8.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+            v8.heapID = param3;
+            v8.position = Unk_ov70_0226D7B4[v0];
+            v8.position.x += FX32_CONST(v10->unk_04);
+            v8.position.y += FX32_CONST(v10->unk_06);
 
             param0->unk_7C[v0] = sub_02021B90(&v8);
 

@@ -1940,17 +1940,17 @@ void ov19_021D783C (CellActorResourceData * param0, NNSG2dImageProxy * param1, N
 
 GraphicElementData * ov19_021D785C (GraphicElementManager * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     GraphicElementData * v1;
 
-    v0.unk_00 = param0;
-    v0.unk_04 = param1;
-    v0.unk_08.x = param2 * FX32_ONE;
-    v0.unk_08.y = param3 * FX32_ONE;
-    v0.unk_08.z = 0;
-    v0.unk_14 = param4;
-    v0.unk_18 = param5;
-    v0.unk_1C = 10;
+    v0.manager = param0;
+    v0.resourceData = param1;
+    v0.position.x = param2 * FX32_ONE;
+    v0.position.y = param3 * FX32_ONE;
+    v0.position.z = 0;
+    v0.priority = param4;
+    v0.vramType = param5;
+    v0.heapID = 10;
 
     {
         OSIntrMode v2 = OS_DisableInterrupts();

@@ -1260,14 +1260,14 @@ static void ov115_02261520 (UnkStruct_ov115_02261574 * param0, UnkStruct_ov115_0
     u32 v3;
 
     v0.manager = param1->unk_1C;
-    v0.unk_04 = &param1->unk_1BC;
+    v0.resourceData = &param1->unk_1BC;
     v0.affineScale.x = FX32_ONE;
     v0.affineScale.y = FX32_ONE;
     v0.affineScale.z = FX32_ONE;
     v0.affineZRotation = 0;
     v0.priority = 0;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_2C = param4;
+    v0.heapID = param4;
 
     v3 = param3;
 
@@ -2686,15 +2686,15 @@ static void ov115_02262FB4 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
     }
 
     {
-        UnkStruct_ov83_0223D9A8 v2;
+        CellActorInitParams v2;
 
-        v2.unk_00 = param1->unk_1C;
-        v2.unk_04 = &param0->unk_10;
-        v2.unk_08.x = FX32_CONST(128);
-        v2.unk_08.y = FX32_CONST(120) + (512 << FX32_SHIFT);
-        v2.unk_14 = 0;
-        v2.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-        v2.unk_1C = param2;
+        v2.manager = param1->unk_1C;
+        v2.resourceData = &param0->unk_10;
+        v2.position.x = FX32_CONST(128);
+        v2.position.y = FX32_CONST(120) + (512 << FX32_SHIFT);
+        v2.priority = 0;
+        v2.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+        v2.heapID = param2;
 
         param0->unk_34 = sub_02021B90(&v2);
         sub_02021CAC(param0->unk_34, 0);
@@ -3709,13 +3709,13 @@ static void ov115_022646BC (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
         CellActorInitParamsEx v0 = {0};
 
         v0.manager = param0->unk_1C;
-        v0.unk_04 = &param0->unk_760.unk_70;
+        v0.resourceData = &param0->unk_760.unk_70;
         v0.affineScale.x = FX32_ONE;
         v0.affineScale.y = FX32_ONE;
         v0.affineScale.z = FX32_ONE;
         v0.priority = 32;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-        v0.unk_2C = param2;
+        v0.heapID = param2;
         param1->unk_00 = GraphicElementManager_AddElement(&v0);
 
         sub_02021CAC(param1->unk_00, 0);
@@ -3931,13 +3931,13 @@ static void ov115_02264B40 (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
     CellActorInitParamsEx v0 = {0};
 
     v0.manager = param0->unk_1C;
-    v0.unk_04 = &param0->unk_760.unk_70;
+    v0.resourceData = &param0->unk_760.unk_70;
     v0.affineScale.x = FX32_ONE;
     v0.affineScale.y = FX32_ONE;
     v0.affineScale.z = FX32_ONE;
     v0.priority = 32;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_2C = param3;
+    v0.heapID = param3;
 
     param1->unk_04 = GraphicElementManager_AddElement(&v0);
 
@@ -3991,13 +3991,13 @@ static void ov115_02264C0C (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
     CellActorInitParamsEx v1 = {0};
 
     v1.manager = param0->unk_1C;
-    v1.unk_04 = &param0->unk_760.unk_70;
+    v1.resourceData = &param0->unk_760.unk_70;
     v1.affineScale.x = 9;
     v1.affineScale.y = 9;
     v1.affineScale.z = 9;
     v1.priority = 32;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_2C = param3;
+    v1.heapID = param3;
 
     for (v0 = 0; v0 < 8; v0++) {
         param1->unk_00[v0].unk_04 = GraphicElementManager_AddElement(&v1);
@@ -4402,15 +4402,15 @@ static void ov115_02265478 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
     }
 
     {
-        UnkStruct_ov83_0223D9A8 v1;
+        CellActorInitParams v1;
 
-        v1.unk_00 = param1->unk_1C;
-        v1.unk_04 = &param0->unk_10;
-        v1.unk_08.x = (-FX32_CONST(64));
-        v1.unk_08.y = (FX32_CONST(48));
-        v1.unk_14 = (0 + 1);
-        v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.unk_1C = param3;
+        v1.manager = param1->unk_1C;
+        v1.resourceData = &param0->unk_10;
+        v1.position.x = (-FX32_CONST(64));
+        v1.position.y = (FX32_CONST(48));
+        v1.priority = (0 + 1);
+        v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v1.heapID = param3;
 
         param0->unk_34 = sub_02021B90(&v1);
         sub_02021CAC(param0->unk_34, 0);

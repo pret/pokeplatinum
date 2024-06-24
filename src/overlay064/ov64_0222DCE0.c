@@ -1237,8 +1237,8 @@ static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
     for (v1 = 0; v1 < 2; v1++) {
         v0[v1].manager = param0->unk_04;
-        v0[v1].unk_04 = &param0->unk_23C;
-        v0[v1].unk_2C = param1;
+        v0[v1].resourceData = &param0->unk_23C;
+        v0[v1].heapID = param1;
 
         param0->unk_270[v1] = GraphicElementManager_AddElement(&v0[v1]);
 

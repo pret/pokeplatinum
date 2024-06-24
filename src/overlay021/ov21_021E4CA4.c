@@ -844,22 +844,22 @@ static void ov21_021E56F0 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
 static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E4DA4 * param1, int param2)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3;
     int v4, v5;
 
     sub_020093B4(&v0, 113 + 10000, 18 + 10000, 114 + 10000, 112 + 10000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_1C = param2;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v1.heapID = param2;
 
-    v1.unk_08.x = 64 << FX32_SHIFT;
-    v1.unk_08.y = 67 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 64 << FX32_SHIFT;
+    v1.position.y = 67 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_3C = sub_02021B90(&v1);
 
@@ -868,18 +868,18 @@ static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
     sub_02021CE4(param0->unk_3C, (FX32_ONE * 2));
     SpriteActor_SetAnimFrame(param0->unk_3C, 8);
 
-    v1.unk_08.x = 51 << FX32_SHIFT;
-    v1.unk_08.y = 157 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 51 << FX32_SHIFT;
+    v1.position.y = 157 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_00 = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00, 1);
     sub_02021CF8(param0->unk_00, 1);
 
-    v1.unk_08.x = 180 << FX32_SHIFT;
-    v1.unk_08.y = 131 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 180 << FX32_SHIFT;
+    v1.position.y = 131 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_04 = sub_02021B90(&v1);
 
@@ -894,9 +894,9 @@ static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
     param0->unk_08.unk_10 = 5;
     param0->unk_08.unk_14 = 2;
 
-    v1.unk_08.x = 230 << FX32_SHIFT;
-    v1.unk_08.y = 166 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 230 << FX32_SHIFT;
+    v1.position.y = 166 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
     param0->unk_20 = sub_02021B90(&v1);
 

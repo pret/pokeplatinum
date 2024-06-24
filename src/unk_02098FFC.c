@@ -143,7 +143,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
     v5.manager = param0->unk_10;
-    v5.unk_04 = v4->unk_04;
+    v5.resourceData = v4->unk_04;
     v5.position.x = FX32_CONST(param2);
     v5.position.y = FX32_CONST(param3);
     v5.position.z = FX32_CONST(param4);
@@ -158,7 +158,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     v5.affineZRotation = 0;
     v5.priority = param6;
     v5.vramType = v0;
-    v5.unk_2C = param0->unk_00;
+    v5.heapID = param0->unk_00;
 
     v4->unk_00 = GraphicElementManager_AddElement(&v5);
 

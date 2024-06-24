@@ -324,7 +324,7 @@ void ov101_021D8358 (UnkStruct_ov101_021D7E48 * param0, u32 param1, u32 param2, 
 void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544 * param1, const VecFx32 * param2, u32 param3, int param4, u32 param5, u32 param6, u32 param7, u32 param8, int param9, int param10)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     GraphicElementData * v2;
 
     if (param8 == param0->unk_0B) {
@@ -341,12 +341,12 @@ void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544
         param1->unk_00 = 0;
     }
 
-    v1.unk_00 = param0->unk_0C;
-    v1.unk_04 = &v0;
-    v1.unk_08 = *param2;
-    v1.unk_14 = param10;
-    v1.unk_18 = param3;
-    v1.unk_1C = param0->unk_00;
+    v1.manager = param0->unk_0C;
+    v1.resourceData = &v0;
+    v1.position = *param2;
+    v1.priority = param10;
+    v1.vramType = param3;
+    v1.heapID = param0->unk_00;
 
     param1->unk_04 = sub_02021B90(&v1);
     GF_ASSERT(param1->unk_04 != NULL);

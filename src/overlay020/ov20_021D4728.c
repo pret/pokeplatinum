@@ -348,7 +348,7 @@ static void ov20_021D4B2C (UnkStruct_ov20_021D4B2C * param0)
 static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     GraphicElementData * v2;
 
     v0.unk_00 = param1;
@@ -361,14 +361,14 @@ static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNS
     v0.unk_18 = NULL;
     v0.unk_1C = 0;
 
-    v1.unk_00 = param0->unk_10;
-    v1.unk_04 = &v0;
-    v1.unk_08.x = param4 * FX32_ONE;
-    v1.unk_08.y = (param5 + 192) * FX32_ONE;
-    v1.unk_08.z = 0;
-    v1.unk_14 = param7;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_1C = 35;
+    v1.manager = param0->unk_10;
+    v1.resourceData = &v0;
+    v1.position.x = param4 * FX32_ONE;
+    v1.position.y = (param5 + 192) * FX32_ONE;
+    v1.position.z = 0;
+    v1.priority = param7;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v1.heapID = 35;
 
     v2 = sub_02021B90(&v1);
 

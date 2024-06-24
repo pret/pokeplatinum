@@ -273,17 +273,17 @@ void ov83_0223D95C (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * 
 
 GraphicElementData * ov83_0223D9A8 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, fx32 param2, fx32 param3, fx32 param4, int param5, int param6)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     GraphicElementData * v1;
 
-    v0.unk_00 = param0->unk_00;
-    v0.unk_04 = &param1->unk_14;
-    v0.unk_08.x = param2;
-    v0.unk_08.y = param3;
-    v0.unk_08.z = param4;
-    v0.unk_14 = param5;
-    v0.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_1C = param6;
+    v0.manager = param0->unk_00;
+    v0.resourceData = &param1->unk_14;
+    v0.position.x = param2;
+    v0.position.y = param3;
+    v0.position.z = param4;
+    v0.priority = param5;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.heapID = param6;
 
     v1 = sub_02021B90(&v0);
     GF_ASSERT(v1);

@@ -2822,7 +2822,7 @@ static void ov23_0224108C (void)
         sub_020093B4(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
 
         v2.manager = Unk_ov23_02257740->unk_20;
-        v2.unk_04 = &Unk_ov23_02257740->unk_204[v0];
+        v2.resourceData = &Unk_ov23_02257740->unk_204[v0];
         v2.position.x = FX32_CONST(32);
         v2.position.y = FX32_CONST(96);
         v2.position.z = 0;
@@ -2832,7 +2832,7 @@ static void ov23_0224108C (void)
         v2.affineZRotation = 0;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.unk_2C = 29;
+        v2.heapID = 29;
         v2.position.x = FX32_ONE * 0;
         v2.position.y = FX32_ONE * 240;
 

@@ -629,7 +629,7 @@ static void ov21_021E7AA0 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
 static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E747C * param1, const UnkStruct_ov21_021E7468 * param2, int param3)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     VecFx32 v3;
     short v4;
@@ -639,13 +639,13 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
 
     sub_020093B4(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param3;
-    v1.unk_08.x = 184 << FX32_SHIFT;
-    v1.unk_08.y = 64 << FX32_SHIFT;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param3;
+    v1.position.x = 184 << FX32_SHIFT;
+    v1.position.y = 64 << FX32_SHIFT;
 
     param0->unk_00 = sub_02021B90(&v1);
 
@@ -655,35 +655,35 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
         SpriteActor_SetSpriteAnimActive(param0->unk_00, 4);
     }
 
-    v1.unk_08.x = 128 << FX32_SHIFT;
-    v1.unk_08.y = (96 + 10) << FX32_SHIFT;
+    v1.position.x = 128 << FX32_SHIFT;
+    v1.position.y = (96 + 10) << FX32_SHIFT;
 
     param0->unk_08 = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_08, 1);
     sub_02021E80(param0->unk_08, 1);
 
-    v1.unk_08.x = 184 << FX32_SHIFT;
-    v1.unk_08.y = (64 + 24) << FX32_SHIFT;
+    v1.position.x = 184 << FX32_SHIFT;
+    v1.position.y = (64 + 24) << FX32_SHIFT;
 
     param0->unk_0C[0] = sub_02021B90(&v1);
     SpriteActor_SetSpriteAnimActive(param0->unk_0C[0], 0);
 
-    v1.unk_08.x = 72 << FX32_SHIFT;
-    v1.unk_08.y = (64 + 24) << FX32_SHIFT;
+    v1.position.x = 72 << FX32_SHIFT;
+    v1.position.y = (64 + 24) << FX32_SHIFT;
 
     param0->unk_0C[1] = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_0C[1], 0);
     sub_020093B4(&v0, sub_02009E08(param0->unk_14[0]), sub_02009E08(param0->unk_14[1]), sub_02009E08(param0->unk_14[2]), sub_02009E08(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param3;
-    v1.unk_08.x = 72 << FX32_SHIFT;
-    v1.unk_08.y = 64 << FX32_SHIFT;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param3;
+    v1.position.x = 72 << FX32_SHIFT;
+    v1.position.y = 64 << FX32_SHIFT;
 
     param0->unk_04 = sub_02021B90(&v1);
     sub_02021EC4(param0->unk_04, PokeIconPaletteIndex(v6, v7, 0));

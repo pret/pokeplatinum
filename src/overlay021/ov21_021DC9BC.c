@@ -576,32 +576,32 @@ static void ov21_021DD114 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
 static void ov21_021DD1A8 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021DCAE0 * param1, int param2)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3;
 
     sub_020093B4(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param2;
-    v1.unk_08.x = 160 * FX32_ONE;
-    v1.unk_08.y = 96 * FX32_ONE;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param2;
+    v1.position.x = 160 * FX32_ONE;
+    v1.position.y = 96 * FX32_ONE;
 
     param0->unk_C8 = sub_02021B90(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_C8, 2);
     sub_020093B4(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param2;
-    v1.unk_08.x = 0;
-    v1.unk_08.y = 0;
+    v1.manager = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param2;
+    v1.position.x = 0;
+    v1.position.y = 0;
 
     for (v3 = 0; v3 < (22 * 2); v3++) {
         param0->unk_04[v3] = sub_02021B90(&v1);

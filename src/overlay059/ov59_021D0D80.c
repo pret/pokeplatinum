@@ -648,7 +648,7 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
         CellActorInitParamsEx v1;
 
         v1.manager = param0->unk_50;
-        v1.unk_04 = &param0->unk_268;
+        v1.resourceData = &param0->unk_268;
         v1.position.z = 0;
         v1.affineScale.x = FX32_ONE;
         v1.affineScale.y = FX32_ONE;
@@ -656,7 +656,7 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.unk_2C = 51;
+        v1.heapID = 51;
         v1.position.x = FX32_ONE * Unk_ov59_021D32C4[0][0];
         v1.position.y = FX32_ONE * Unk_ov59_021D32C4[0][1];
 

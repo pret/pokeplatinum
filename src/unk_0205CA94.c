@@ -568,12 +568,12 @@ static GraphicElementData * sub_0205D344 (UnkStruct_0205D094 * param0, int param
     memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
     v0.manager = param0->unk_00;
-    v0.unk_04 = &param0->unk_04->unk_00[param1];
+    v0.resourceData = &param0->unk_04->unk_00[param1];
     v0.position = *param2;
     v0.affineScale = v2;
     v0.priority = param3;
     v0.vramType = param4;
-    v0.unk_2C = 4;
+    v0.heapID = 4;
 
     v1 = GraphicElementManager_AddElement(&v0);
     GF_ASSERT(v1);

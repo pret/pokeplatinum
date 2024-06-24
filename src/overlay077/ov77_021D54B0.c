@@ -119,7 +119,7 @@ static void ov77_021D54E8 (const int param0, UnkStruct_ov77_021D5564 * param1, c
 
     {
         param3->manager = param1->unk_00;
-        param3->unk_04 = param4;
+        param3->resourceData = param4;
         param3->position.x = 0;
         param3->position.y = 0;
         param3->position.z = 0;
@@ -129,7 +129,7 @@ static void ov77_021D54E8 (const int param0, UnkStruct_ov77_021D5564 * param1, c
         param3->affineZRotation = 0;
         param3->priority = 1;
         param3->vramType = param6;
-        param3->unk_2C = 76;
+        param3->heapID = 76;
     }
 }
 

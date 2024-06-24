@@ -801,17 +801,17 @@ void ov5_021DE5D0(GraphicElementData *param0, u32 param1, u32 param2, u8 param3,
 
 GraphicElementData *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     GraphicElementData *v1;
 
-    v0.unk_00 = param0->unk_00;
-    v0.unk_04 = &param1->unk_10;
-    v0.unk_08.x = param2;
-    v0.unk_08.y = param3;
-    v0.unk_08.z = param4;
-    v0.unk_14 = param5;
-    v0.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_1C = 4;
+    v0.manager = param0->unk_00;
+    v0.resourceData = &param1->unk_10;
+    v0.position.x = param2;
+    v0.position.y = param3;
+    v0.position.z = param4;
+    v0.priority = param5;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.heapID = 4;
 
     v1 = sub_02021B90(&v0);
     GF_ASSERT(v1);

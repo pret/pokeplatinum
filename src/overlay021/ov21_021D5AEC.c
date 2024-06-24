@@ -833,37 +833,37 @@ static void ov21_021D65DC (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
 static void ov21_021D6744 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D13FC * param1, int param2)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
     int v1;
 
-    memset(&v0, 0, sizeof(UnkStruct_ov83_0223D9A8));
-    v0.unk_00 = param1->unk_138;
-    v0.unk_04 = &param0->unk_90;
-    v0.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_1C = param2;
-    v0.unk_14 = 32;
+    memset(&v0, 0, sizeof(CellActorInitParams));
+    v0.manager = param1->unk_138;
+    v0.resourceData = &param0->unk_90;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.heapID = param2;
+    v0.priority = 32;
 
     for (v1 = 0; v1 < 9; v1++) {
         param0->unk_00[v1] = sub_02021B90(&v0);
         SpriteActor_SetSpriteAnimActive(param0->unk_00[v1], 0);
     }
 
-    v0.unk_14 = 0;
+    v0.priority = 0;
 
     for (v1 = 0; v1 < 9; v1++) {
         param0->unk_50[v1] = sub_02021B90(&v0);
         SpriteActor_SetSpriteAnimActive(param0->unk_50[v1], 1);
     }
 
-    v0.unk_14 = 0;
+    v0.priority = 0;
     param0->unk_74 = sub_02021B90(&v0);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_74, 2);
 
-    v0.unk_14 = 0;
-    v0.unk_08.x = 56 << FX32_SHIFT;
-    v0.unk_08.y = 80 << FX32_SHIFT;
-    v0.unk_04 = &param0->unk_B4;
+    v0.priority = 0;
+    v0.position.x = 56 << FX32_SHIFT;
+    v0.position.y = 80 << FX32_SHIFT;
+    v0.resourceData = &param0->unk_B4;
 
     param0->unk_7C = sub_02021B90(&v0);
 

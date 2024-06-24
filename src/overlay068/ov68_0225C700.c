@@ -696,15 +696,15 @@ static void ov68_0225CCD0 (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
 
     {
         CellActorResourceData v1;
-        UnkStruct_ov83_0223D9A8 v2 = {0};
+        CellActorInitParams v2 = {0};
 
         sub_020093B4(&v1, 20, 20, 20, 20, 0xffffffff, 0xffffffff, 0, 0, param2->unk_194[0], param2->unk_194[1], param2->unk_194[2], param2->unk_194[3], NULL, NULL);
 
-        v2.unk_00 = param2->unk_04;
-        v2.unk_04 = &v1;
-        v2.unk_14 = 0;
-        v2.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.unk_1C = param3;
+        v2.manager = param2->unk_04;
+        v2.resourceData = &v1;
+        v2.priority = 0;
+        v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v2.heapID = param3;
 
         param0->unk_14 = sub_02021B90(&v2);
         sub_02021CAC(param0->unk_14, 0);

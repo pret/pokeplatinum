@@ -1285,15 +1285,15 @@ static UnkStruct_ov114_0225CDB4 * ov114_0225CD54 (UnkStruct_ov114_0225CCD0 * par
 
 static GraphicElementData * ov114_0225CDB4 (UnkStruct_ov114_0225CDB4 * param0, GraphicElementManager * param1, s16 param2, s16 param3, u16 param4, u32 param5)
 {
-    UnkStruct_ov83_0223D9A8 v0;
+    CellActorInitParams v0;
 
-    v0.unk_00 = param1;
-    v0.unk_04 = &param0->unk_14;
-    v0.unk_08.x = param2 << FX32_SHIFT;
-    v0.unk_08.y = param3 << FX32_SHIFT;
-    v0.unk_14 = param4;
-    v0.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_1C = param5;
+    v0.manager = param1;
+    v0.resourceData = &param0->unk_14;
+    v0.position.x = param2 << FX32_SHIFT;
+    v0.position.y = param3 << FX32_SHIFT;
+    v0.priority = param4;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.heapID = param5;
 
     return sub_02021B90(&v0);
 }

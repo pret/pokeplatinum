@@ -2757,17 +2757,17 @@ static void ov9_0224B124 (SysTask * param0, void * param1)
 static GraphicElementData * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
     CellActorResourceData v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorInitParams v1;
     GraphicElementData * v2;
 
     sub_020093B4(&v0, ((param2) + 0xff), ((param3) + 0xff), ((param4) + 0xff), ((param5) + 0xff), 0xffffffff, 0xffffffff, 0, param6, param0->unk_190, param0->unk_194, param0->unk_198, param0->unk_19C, NULL, NULL);
 
-    v1.unk_00 = param0->unk_00;
-    v1.unk_04 = &v0;
-    v1.unk_08 = *param1;
-    v1.unk_14 = param7;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = 4;
+    v1.manager = param0->unk_00;
+    v1.resourceData = &v0;
+    v1.position = *param1;
+    v1.priority = param7;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = 4;
 
     v2 = sub_02021B90(&v1);
     GF_ASSERT(v2 != NULL);
