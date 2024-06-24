@@ -1391,7 +1391,7 @@ static void ov70_0225E6D0 (UnkStruct_ov70_0225E4EC * param0)
             sub_02009754(param0->unk_194[v1]);
         }
 
-        sub_02021964(param0->unk_04);
+        GraphicElementManager_Delete(param0->unk_04);
         sub_0201E958();
         sub_0201F8B4();
         sub_0200A878();

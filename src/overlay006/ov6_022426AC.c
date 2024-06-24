@@ -148,7 +148,7 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
         sub_02009754(param0->unk_00[v0]);
     }
 
-    sub_02021964(param0->unk_38);
+    GraphicElementManager_Delete(param0->unk_38);
     Heap_FreeToHeap(param0->unk_20);
     Heap_FreeToHeap(param0->unk_24);
 }

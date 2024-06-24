@@ -397,7 +397,7 @@ static void ov7_0224C3CC (UnkStruct_ov7_0224BEFC * param0)
 
 static void ov7_0224C3E0 (UnkStruct_ov7_0224BEFC * param0)
 {
-    sub_02021964(param0->unk_1C);
+    GraphicElementManager_Delete(param0->unk_1C);
 }
 
 static void ov7_0224C3EC (UnkStruct_ov7_0224C3EC * param0, BGL * param1, u32 param2, u32 param3)

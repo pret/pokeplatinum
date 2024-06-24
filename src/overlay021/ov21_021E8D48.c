@@ -277,7 +277,7 @@ static void ov21_021E900C (UnkStruct_ov21_021E8D48 * param0)
     ov21_021D2C58(&param0->unk_1B4, param0->unk_1A0);
     ov21_021E9228(param0->unk_1A0);
 
-    sub_02021964(param0->unk_19C);
+    GraphicElementManager_Delete(param0->unk_19C);
 
     ov21_021E91F0(param0->unk_04);
     ov21_021E9194(param0->unk_00);

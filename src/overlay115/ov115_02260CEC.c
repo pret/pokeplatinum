@@ -3212,7 +3212,7 @@ static void ov115_02263A3C (UnkStruct_ov115_02261ADC * param0)
     int v0;
 
     sub_020127BC(param0->unk_1F0);
-    sub_02021964(param0->unk_1C);
+    GraphicElementManager_Delete(param0->unk_1C);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_1AC[v0]);

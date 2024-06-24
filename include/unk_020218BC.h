@@ -12,7 +12,7 @@
 #include <nitro/fx/fx.h>
 
 GraphicElementManager * GraphicElementManager_New(const GraphicElementManagerParams * param0);
-BOOL sub_02021964(GraphicElementManager * param0);
+BOOL GraphicElementManager_Delete(GraphicElementManager * param0);
 BOOL sub_020219A4(GraphicElementManager * param0, u8 param1);
 BOOL sub_020219C0(GraphicElementManager * param0);
 void sub_020219F8(const GraphicElementManager * param0);

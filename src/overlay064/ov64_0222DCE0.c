@@ -1052,7 +1052,7 @@ static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)
         sub_02009754(param0->unk_204[v0]);
     }
 
-    sub_02021964(param0->unk_04);
+    GraphicElementManager_Delete(param0->unk_04);
     sub_0201E958();
     sub_0201F8B4();
     sub_0200A878();

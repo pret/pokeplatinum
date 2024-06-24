@@ -416,7 +416,7 @@ static void ov96_0223BC8C (UnkStruct_ov96_0223BF40 * param0)
         sub_02009754(param0->unk_D84[v0]);
     }
 
-    sub_02021964(param0->unk_BF4);
+    GraphicElementManager_Delete(param0->unk_BF4);
 
     param0->unk_BF4 = NULL;
 

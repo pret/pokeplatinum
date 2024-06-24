@@ -900,7 +900,7 @@ static void ov86_0223BD68 (UnkStruct_ov86_0223B3C8 * param0)
 
     Heap_FreeToHeap(param0->unk_1D4);
     Heap_FreeToHeap(param0->unk_1D0);
-    sub_02021964(param0->unk_24);
+    GraphicElementManager_Delete(param0->unk_24);
     sub_0200A878();
 }
 

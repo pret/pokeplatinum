@@ -165,7 +165,7 @@ void ov111_021D3320 (UnkStruct_ov111_021D2F80 * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();

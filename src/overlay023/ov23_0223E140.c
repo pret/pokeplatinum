@@ -1398,7 +1398,7 @@ static void ov23_0223F020 (UnkStruct_ov23_0223EE80 * param0)
         }
     }
 
-    sub_02021964(Unk_ov23_02257740->unk_20);
+    GraphicElementManager_Delete(Unk_ov23_02257740->unk_20);
     sub_0200A878();
 
     sub_0201E958();

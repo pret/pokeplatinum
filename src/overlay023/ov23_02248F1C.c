@@ -181,7 +181,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
             sub_02009754(v0->unk_34C[v2]);
         }
 
-        sub_02021964(v0->unk_1BC);
+        GraphicElementManager_Delete(v0->unk_1BC);
         sub_0200E084(&v0->unk_3F4, 0);
         BGL_DeleteWindow(&v0->unk_3F4);
         sub_02019044(v1, 7);

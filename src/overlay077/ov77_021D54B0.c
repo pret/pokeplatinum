@@ -223,7 +223,7 @@ void ov77_021D5BAC (UnkStruct_ov77_021D5564 * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
         sub_020094F0(&param0->unk_294[v0]);

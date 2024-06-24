@@ -781,7 +781,7 @@ static void MakeCellActors (ChooseStarterApp * param0, int param1)
 
 static void ov78_021D1594 (ChooseStarterApp * param0)
 {
-    sub_02021964(param0->unk_248);
+    GraphicElementManager_Delete(param0->unk_248);
     sub_02009754(param0->unk_24C[0]);
     sub_02009754(param0->unk_24C[1]);
     sub_02009754(param0->unk_24C[2]);

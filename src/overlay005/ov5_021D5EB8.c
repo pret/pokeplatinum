@@ -802,9 +802,9 @@ static void ov5_021D61D0 (UnkStruct_ov5_021D61D0 * param0)
     {
         GraphicElementManagerParams v3;
 
-        v3.unk_00 = 96;
-        v3.unk_04 = &param0->unk_14;
-        v3.unk_08 = 4;
+        v3.maxElements = 96;
+        v3.renderer = &param0->unk_14;
+        v3.heapID = 4;
 
         param0->unk_130 = GraphicElementManager_New(&v3);
         param0->unk_134 = SysTask_Start(ov5_021D6284, param0, 10);
@@ -844,7 +844,7 @@ static void ov5_021D62BC (UnkStruct_ov5_021D61D0 * param0)
     Heap_FreeToHeap(param0->unk_10);
     param0->unk_10 = NULL;
 
-    sub_02021964(param0->unk_130);
+    GraphicElementManager_Delete(param0->unk_130);
     param0->unk_130 = NULL;
 
     SysTask_Done(param0->unk_134);

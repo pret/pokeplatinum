@@ -259,7 +259,7 @@ void ov19_021D64A0 (UnkStruct_ov19_021D61B0 * param0)
     ov19_021D7A74(&(param0->unk_494));
     ov19_021DA384(&(param0->unk_1C8));
 
-    sub_02021964(param0->unk_18);
+    GraphicElementManager_Delete(param0->unk_18);
     sub_02019044(param0->unk_1C0, 3);
     sub_02019044(param0->unk_1C0, 2);
     sub_02019044(param0->unk_1C0, 1);

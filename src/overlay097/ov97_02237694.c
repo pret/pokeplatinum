@@ -505,7 +505,7 @@ void ov97_02237DA0 (void)
         v1->unk_190[v2] = NULL;
     }
 
-    sub_02021964(v1->unk_00);
+    GraphicElementManager_Delete(v1->unk_00);
     v1->unk_00 = NULL;
 
     sub_0200A878();

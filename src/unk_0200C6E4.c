@@ -172,7 +172,7 @@ void sub_0200C808 (void)
 
 void sub_0200C810 (SpriteGfxHandler * param0)
 {
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
 }
 
 void sub_0200C81C (SpriteGfxHandler * param0)

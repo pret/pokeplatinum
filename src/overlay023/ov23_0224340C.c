@@ -3303,7 +3303,7 @@ static void ov23_02246370 (int param0)
     }
 
     if (Unk_ov23_02257764->unk_44) {
-        sub_02021964(Unk_ov23_02257764->unk_44);
+        GraphicElementManager_Delete(Unk_ov23_02257764->unk_44);
     }
 
     Unk_ov23_02257764->unk_44 = NULL;
@@ -4856,7 +4856,7 @@ static void ov23_02248884 (SysTask * param0, void * param1)
             Unk_ov23_02257764->unk_25C[v1] = NULL;
         }
 
-        sub_02021964(Unk_ov23_02257764->unk_44);
+        GraphicElementManager_Delete(Unk_ov23_02257764->unk_44);
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
 

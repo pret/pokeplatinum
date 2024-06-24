@@ -327,7 +327,7 @@ int ov58_021D1018 (OverlayManager * param0, int * param1)
             sub_02009754(v0->unk_1C4[v2]);
         }
 
-        sub_02021964(v0->unk_34);
+        GraphicElementManager_Delete(v0->unk_34);
         sub_0200A878();
         sub_0201E958();
         sub_0201F8B4();

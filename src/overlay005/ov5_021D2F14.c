@@ -88,7 +88,7 @@ void ov5_021D30A8 (UnkStruct_ov5_021D30A8 * param0)
 {
     u32 v0;
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
     sub_020095A8(param0->unk_190);
     sub_0200A508(param0->unk_1AC[0]);
     sub_0200A700(param0->unk_1AC[1]);
@@ -402,7 +402,7 @@ void ov5_021D375C (UnkStruct_ov5_021D30A8 * param0)
 {
     u32 v0;
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
     sub_0200A508(param0->unk_1AC[0]);
     sub_0200A700(param0->unk_1AC[1]);
 

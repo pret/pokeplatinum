@@ -1413,7 +1413,7 @@ static void ov114_0225CFCC (UnkStruct_ov114_0225CFCC * param0, u32 param1, u32 p
 
 static void ov114_0225D058 (UnkStruct_ov114_0225CFCC * param0)
 {
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
     sub_0201E958();
     sub_0201F8B4();
     sub_0200A878();

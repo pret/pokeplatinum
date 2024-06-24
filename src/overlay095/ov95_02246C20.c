@@ -220,7 +220,7 @@ int ov95_02246E1C (OverlayManager * param0, int * param1)
     MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
-    sub_02021964(v1->unk_18);
+    GraphicElementManager_Delete(v1->unk_18);
     sub_0200A878();
     OverlayManager_FreeData(param0);
     Heap_Destroy(57);

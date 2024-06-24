@@ -200,7 +200,7 @@ void ov83_0223D784 (UnkStruct_ov83_0223D784 * param0)
 {
     int v0;
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 
     for (v0 = 0; v0 < 4; v0++) {

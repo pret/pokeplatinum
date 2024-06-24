@@ -749,7 +749,7 @@ void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0)
 {
     int v0;
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_190[v0]);

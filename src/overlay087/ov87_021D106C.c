@@ -132,7 +132,7 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
         MessageLoader_Free(param0->unk_1EC);
         MessageLoader_Free(param0->unk_1E8);
         MessageLoader_Free(param0->unk_1E4);
-        sub_02021964(param0->unk_34);
+        GraphicElementManager_Delete(param0->unk_34);
         sub_0200A878();
         Heap_FreeToHeap(param0->unk_10);
         Heap_FreeToHeap(param0);

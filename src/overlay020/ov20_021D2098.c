@@ -152,7 +152,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
         SysTask_Done(param0->unk_04);
 
         sub_0200A878();
-        sub_02021964(param0->unk_24);
+        GraphicElementManager_Delete(param0->unk_24);
 
         Heap_FreeToHeap(param0->unk_20);
         Heap_FreeToHeap(param0);

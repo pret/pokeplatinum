@@ -87,7 +87,7 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
     u32 v0;
 
     Heap_FreeToHeap(param0->unk_1C4);
-    sub_02021964(param0->unk_10);
+    GraphicElementManager_Delete(param0->unk_10);
     sub_0200A508(param0->unk_1B4[0]);
     sub_0200A700(param0->unk_1B4[1]);
 

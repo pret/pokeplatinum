@@ -501,7 +501,7 @@ static void sub_0205D22C (UnkStruct_0205D094 * param0)
 {
     int v0;
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 
     sub_020095A8(param0->unk_04);

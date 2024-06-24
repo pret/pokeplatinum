@@ -158,9 +158,9 @@ GraphicElementManager * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, i
 
     sub_0200A8B0(&param1->unk_94[1], &v1, NNS_G2D_SURFACETYPE_SUB2D, &param1->unk_00);
 
-    v0.unk_00 = param0;
-    v0.unk_04 = &param1->unk_00;
-    v0.unk_08 = param2;
+    v0.maxElements = param0;
+    v0.renderer = &param1->unk_00;
+    v0.heapID = param2;
 
     return GraphicElementManager_New(&v0);
 }

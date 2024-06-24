@@ -310,7 +310,7 @@ int ov59_021D0FF4 (OverlayManager * param0, int * param1)
         sub_02009754(v0->unk_1E0[v1]);
     }
 
-    sub_02021964(v0->unk_50);
+    GraphicElementManager_Delete(v0->unk_50);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();

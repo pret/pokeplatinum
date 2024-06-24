@@ -226,7 +226,7 @@ int ov72_0223D984 (OverlayManager * param0, int * param1)
         sub_02009754(v0->unk_1CC[v1]);
     }
 
-    sub_02021964(v0->unk_3C);
+    GraphicElementManager_Delete(v0->unk_3C);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();

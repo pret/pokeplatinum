@@ -1164,7 +1164,7 @@ static int sub_02086F3C (OverlayManager * param0, int * param1)
         sub_02009754(v0->unk_318[v2]);
     }
 
-    sub_02021964(v0->unk_188);
+    GraphicElementManager_Delete(v0->unk_188);
     sub_0200A878();
     Heap_FreeToHeapExplicit(18, v0->unk_510);
 

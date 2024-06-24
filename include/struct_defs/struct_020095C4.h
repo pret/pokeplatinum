@@ -5,9 +5,9 @@
 #include <nnsys.h>
 
 typedef struct {
-    int unk_00;
+    int maxElements;
     NNSG2dRendererInstance * renderer;
-    int unk_08;
+    int heapID;
 } GraphicElementManagerParams;
 
 #endif // POKEPLATINUM_STRUCT_020095C4_H

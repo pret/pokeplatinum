@@ -2745,7 +2745,7 @@ static void ov9_0224B064 (UnkStruct_ov9_0224B064 * param0)
     sub_02009754(param0->unk_19C);
 
     sub_020219C0(param0->unk_00);
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
 }
 
 static void ov9_0224B124 (SysTask * param0, void * param1)

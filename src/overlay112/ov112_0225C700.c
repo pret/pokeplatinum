@@ -587,7 +587,7 @@ static void ov112_0225CC38 (UnkStruct_ov112_0225C9BC * param0)
 {
     int v0;
 
-    sub_02021964(param0->unk_04);
+    GraphicElementManager_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_194[v0]);

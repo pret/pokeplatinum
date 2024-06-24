@@ -1583,7 +1583,7 @@ static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
         sub_02009754(param0->unk_1B8[v0]);
     }
 
-    sub_02021964(param0->unk_28);
+    GraphicElementManager_Delete(param0->unk_28);
     param0->unk_28 = NULL;
 
     sub_0200A878();

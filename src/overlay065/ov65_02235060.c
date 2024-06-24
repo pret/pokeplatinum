@@ -605,7 +605,7 @@ static void ov65_022358CC (UnkStruct_ov65_022358CC * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    sub_02021964(param0->unk_00);
+    GraphicElementManager_Delete(param0->unk_00);
 }
 
 static void ov65_022358F8 (UnkStruct_ov65_022358CC * param0, u32 param1, NARC * param2)

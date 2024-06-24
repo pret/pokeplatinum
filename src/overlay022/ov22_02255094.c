@@ -726,7 +726,7 @@ static void ov22_022559F8 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_02255A98 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    sub_02021964(param0->unk_44);
+    GraphicElementManager_Delete(param0->unk_44);
 
     {
         int v0;

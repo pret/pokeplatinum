@@ -120,7 +120,7 @@ void ov21_021D2098 (UnkStruct_ov21_021D13FC * param0)
     ov21_021D299C(param0->unk_00);
 
     Heap_FreeToHeap(param0->unk_00);
-    sub_02021964(param0->unk_138);
+    GraphicElementManager_Delete(param0->unk_138);
     sub_02009754(param0->unk_13C[0]);
     sub_02009754(param0->unk_13C[1]);
     sub_02009754(param0->unk_13C[2]);
