@@ -85,7 +85,7 @@ typedef struct {
 typedef struct {
     BOOL unk_00;
     UnkStruct_02009DC8 * unk_04[4];
-    UnkStruct_ov19_021DA864 unk_14;
+    CellActorResourceData unk_14;
 } UnkStruct_ov114_0225CDB4;
 
 typedef struct {

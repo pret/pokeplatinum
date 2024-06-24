@@ -11,7 +11,7 @@
 int ov94_0223BCB0(OverlayManager * param0, int * param1);
 int ov94_0223BE2C(OverlayManager * param0, int * param1);
 int ov94_0223BF54(OverlayManager * param0, int * param1);
-void ov94_0223C300(UnkStruct_ov115_02261520 * param0, UnkStruct_ov94_0223FD4C * param1, UnkStruct_ov19_021DA864 * param2, int param3);
+void ov94_0223C300(CellActorInitParamsEx * param0, UnkStruct_ov94_0223FD4C * param1, CellActorResourceData * param2, int param3);
 UIControlData * ov94_0223C3C0(BGL * param0, int param1, int param2);
 void ov94_0223C3F4(UnkStruct_ov94_0223FD4C * param0, int param1, int param2);
 void ov94_0223C3FC(GraphicElementData * param0, int param1, int param2);

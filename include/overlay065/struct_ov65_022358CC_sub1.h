@@ -7,7 +7,7 @@
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    UnkStruct_ov19_021DA864 unk_10;
+    CellActorResourceData unk_10;
     GraphicElementData * unk_34;
     GraphicElementData * unk_38;
 } UnkStruct_ov65_022358CC_sub1;

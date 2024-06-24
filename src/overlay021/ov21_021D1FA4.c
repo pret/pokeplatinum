@@ -859,7 +859,7 @@ void ov21_021D2C58 (UnkStruct_ov21_021D22F8 * param0, UnkStruct_02009714 ** para
 
 static void ov21_021D2C8C (UnkStruct_ov21_021D13FC * param0, int param1)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
 
     sub_020093B4(&v0, 3000, 3000, 3000, 3000, 0xffffffff, 0xffffffff, 0, 0, param0->unk_13C[0], param0->unk_13C[1], param0->unk_13C[2], param0->unk_13C[3], NULL, NULL);
@@ -906,7 +906,7 @@ static void ov21_021D2D4C (UnkStruct_ov21_021D13FC * param0)
 
 void ov21_021D2D88 (UnkStruct_ov21_021D22F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, int param4)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
 
     sub_020093B4(&v0, 3000, 3000, 3000, 3000, 0xffffffff, 0xffffffff, 0, param4, param2[0], param2[1], param2[2], param2[3], NULL, NULL);
@@ -1000,7 +1000,7 @@ static void ov21_021D2F14 (UnkStruct_ov21_021D13FC * param0)
 
 static void ov21_021D2F5C (UnkStruct_ov21_021D13FC * param0, int param1)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     int v2;
     UnkStruct_ov21_021D2584 * v3 = &param0->unk_1E0;

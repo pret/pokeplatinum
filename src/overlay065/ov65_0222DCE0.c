@@ -6644,14 +6644,14 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
 {
     BOOL v0;
     int v1;
-    UnkStruct_ov19_021DA864 v2;
+    CellActorResourceData v2;
     Window v3;
     Strbuf* v4;
     UnkStruct_02012B20 * v5;
     int v6;
     UnkStruct_020127E8 v7;
     u32 v8;
-    UnkStruct_ov115_02261520 v9[3] = {
+    CellActorInitParamsEx v9[3] = {
         {
             NULL,
             NULL,

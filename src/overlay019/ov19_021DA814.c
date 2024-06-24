@@ -34,7 +34,7 @@ BOOL ov19_021DA814 (UnkStruct_ov19_021DA8D8 * param0, UnkStruct_ov19_021D61B0 * 
 
 void ov19_021DA864 (UnkStruct_ov19_021DA8D8 * param0, NARC * param1)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
 
     NNS_G2dInitImageProxy(&(param0->unk_18));
 

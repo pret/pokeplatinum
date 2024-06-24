@@ -166,7 +166,7 @@ typedef struct {
     Easy3DModel unk_00[5];
     Easy3DModel unk_50;
     UnkStruct_02009DC8 * unk_60[4];
-    UnkStruct_ov19_021DA864 unk_70;
+    CellActorResourceData unk_70;
 } UnkStruct_ov115_02264A40;
 
 typedef struct {
@@ -245,7 +245,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    UnkStruct_ov19_021DA864 unk_10;
+    CellActorResourceData unk_10;
     GraphicElementData * unk_34;
     u8 unk_38;
     u8 unk_39;
@@ -262,7 +262,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    UnkStruct_ov19_021DA864 unk_10;
+    CellActorResourceData unk_10;
     GraphicElementData * unk_34;
     Window unk_38;
     FontOAM * unk_48;
@@ -297,7 +297,7 @@ typedef struct {
     GraphicElementManager * unk_1C;
     UnkStruct_0200C738 unk_20;
     UnkStruct_02009714 * unk_1AC[4];
-    UnkStruct_ov19_021DA864 unk_1BC;
+    CellActorResourceData unk_1BC;
     UnkStruct_02009DC8 * unk_1E0[4];
     UnkStruct_02012744 * unk_1F0;
     Camera * camera;
@@ -352,7 +352,7 @@ static void ov115_02261520(UnkStruct_ov115_02261574 * param0, UnkStruct_ov115_02
 static void ov115_02261574(UnkStruct_ov115_02261574 * param0, UnkStruct_ov115_02261ADC * param1);
 static void ov115_0226158C(UnkStruct_ov115_02261574 * param0, u32 param1, u32 param2, int param3);
 static void ov115_02261598(UnkStruct_ov115_02261574 * param0);
-static void ov115_022615B0(UnkStruct_ov115_022615B0 * param0, UnkStruct_ov115_02261520 * param1, UnkStruct_ov115_02261ADC * param2, u32 param3, u32 param4, u32 param5, u32 param6);
+static void ov115_022615B0(UnkStruct_ov115_022615B0 * param0, CellActorInitParamsEx * param1, UnkStruct_ov115_02261ADC * param2, u32 param3, u32 param4, u32 param5, u32 param6);
 static void ov115_02261648(UnkStruct_ov115_022615B0 * param0);
 static void ov115_02261660(UnkStruct_ov115_022615B0 * param0, u32 param1, u32 param2, int param3);
 static void ov115_02261744(UnkStruct_ov115_022615B0 * param0);
@@ -1255,18 +1255,18 @@ static u32 ov115_022614F8 (UnkStruct_ov115_02260D78 * param0)
 
 static void ov115_02261520 (UnkStruct_ov115_02261574 * param0, UnkStruct_ov115_02261ADC * param1, u32 param2, u32 param3, u32 param4)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
     int v1, v2;
     u32 v3;
 
     v0.manager = param1->unk_1C;
     v0.unk_04 = &param1->unk_1BC;
-    v0.unk_14.x = FX32_ONE;
-    v0.unk_14.y = FX32_ONE;
-    v0.unk_14.z = FX32_ONE;
-    v0.unk_20 = 0;
-    v0.unk_24 = 0;
-    v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.affineScale.x = FX32_ONE;
+    v0.affineScale.y = FX32_ONE;
+    v0.affineScale.z = FX32_ONE;
+    v0.affineZRotation = 0;
+    v0.priority = 0;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.unk_2C = param4;
 
     v3 = param3;
@@ -1299,16 +1299,16 @@ static void ov115_02261598 (UnkStruct_ov115_02261574 * param0)
     }
 }
 
-static void ov115_022615B0 (UnkStruct_ov115_022615B0 * param0, UnkStruct_ov115_02261520 * param1, UnkStruct_ov115_02261ADC * param2, u32 param3, u32 param4, u32 param5, u32 param6)
+static void ov115_022615B0 (UnkStruct_ov115_022615B0 * param0, CellActorInitParamsEx * param1, UnkStruct_ov115_02261ADC * param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     int v0;
     s32 v1, v2;
 
     for (v0 = 0; v0 < 3; v0++) {
         ov115_022613CC(param3, param5, param4, &v1, &v2);
-        param1->unk_08.x = v1 << FX32_SHIFT;
-        param1->unk_08.y = v2 << FX32_SHIFT;
-        param0->unk_18[v0] = param1->unk_08;
+        param1->position.x = v1 << FX32_SHIFT;
+        param1->position.y = v2 << FX32_SHIFT;
+        param0->unk_18[v0] = param1->position;
         param0->unk_00[v0] = GraphicElementManager_AddElement(param1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 2);
@@ -1434,7 +1434,7 @@ static void ov115_022617D8 (UnkStruct_ov115_022615B0 * param0, u32 param1)
 static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_02261ADC * param1, const UnkStruct_ov115_02262F50 * param2, u32 param3, u32 param4, NARC * param5, u32 param6)
 {
     Strbuf* v0;
-    UnkStruct_ov115_02261520 v1;
+    CellActorInitParamsEx v1;
 
     memset(param0, 0, sizeof(UnkStruct_ov115_022617E8));
 
@@ -3706,15 +3706,15 @@ static void ov115_02264684 (UnkStruct_ov115_02261ADC * param0, u32 param1)
 static void ov115_022646BC (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_022647A0 * param1, u32 param2)
 {
     {
-        UnkStruct_ov115_02261520 v0 = {0};
+        CellActorInitParamsEx v0 = {0};
 
         v0.manager = param0->unk_1C;
         v0.unk_04 = &param0->unk_760.unk_70;
-        v0.unk_14.x = FX32_ONE;
-        v0.unk_14.y = FX32_ONE;
-        v0.unk_14.z = FX32_ONE;
-        v0.unk_24 = 32;
-        v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
+        v0.affineScale.x = FX32_ONE;
+        v0.affineScale.y = FX32_ONE;
+        v0.affineScale.z = FX32_ONE;
+        v0.priority = 32;
+        v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         v0.unk_2C = param2;
         param1->unk_00 = GraphicElementManager_AddElement(&v0);
 
@@ -3928,15 +3928,15 @@ static void ov115_02264A54 (UnkStruct_ov115_022647A0 * param0)
 
 static void ov115_02264B40 (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_02264BA0 * param1, u32 param2, u32 param3)
 {
-    UnkStruct_ov115_02261520 v0 = {0};
+    CellActorInitParamsEx v0 = {0};
 
     v0.manager = param0->unk_1C;
     v0.unk_04 = &param0->unk_760.unk_70;
-    v0.unk_14.x = FX32_ONE;
-    v0.unk_14.y = FX32_ONE;
-    v0.unk_14.z = FX32_ONE;
-    v0.unk_24 = 32;
-    v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
+    v0.affineScale.x = FX32_ONE;
+    v0.affineScale.y = FX32_ONE;
+    v0.affineScale.z = FX32_ONE;
+    v0.priority = 32;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v0.unk_2C = param3;
 
     param1->unk_04 = GraphicElementManager_AddElement(&v0);
@@ -3988,15 +3988,15 @@ static void ov115_02264BF8 (UnkStruct_ov115_02264BA0 * param0)
 static void ov115_02264C0C (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_02264C90 * param1, u32 param2, u32 param3)
 {
     int v0;
-    UnkStruct_ov115_02261520 v1 = {0};
+    CellActorInitParamsEx v1 = {0};
 
     v1.manager = param0->unk_1C;
     v1.unk_04 = &param0->unk_760.unk_70;
-    v1.unk_14.x = 9;
-    v1.unk_14.y = 9;
-    v1.unk_14.z = 9;
-    v1.unk_24 = 32;
-    v1.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
+    v1.affineScale.x = 9;
+    v1.affineScale.y = 9;
+    v1.affineScale.z = 9;
+    v1.priority = 32;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.unk_2C = param3;
 
     for (v0 = 0; v0 < 8; v0++) {

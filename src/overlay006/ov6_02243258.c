@@ -540,7 +540,7 @@ static void ov6_022436D0 (UnkStruct_ov6_02243258 * param0, NARC * param1, int pa
 
 static GraphicElementData * ov6_02243740 (UnkStruct_ov6_02243258 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     GraphicElementData * v2;
 
@@ -1841,7 +1841,7 @@ static void ov6_02244C10 (UnkStruct_ov6_02243FFC * param0)
 
 static GraphicElementData * ov6_02244C20 (UnkStruct_ov6_02243FFC * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     GraphicElementData * v2;
 

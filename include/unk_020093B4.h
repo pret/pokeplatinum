@@ -10,8 +10,8 @@
 
 #include <nitro/gx.h>
 
-void sub_020093B4(UnkStruct_ov19_021DA864 * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, UnkStruct_02009714 * param9, UnkStruct_02009714 * param10, UnkStruct_02009714 * param11, UnkStruct_02009714 * param12, UnkStruct_02009714 * param13, UnkStruct_02009714 * param14);
-void sub_020094F0(UnkStruct_ov19_021DA864 * param0);
+void sub_020093B4(CellActorResourceData * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, UnkStruct_02009714 * param9, UnkStruct_02009714 * param10, UnkStruct_02009714 * param11, UnkStruct_02009714 * param12, UnkStruct_02009714 * param13, UnkStruct_02009714 * param14);
+void sub_020094F0(CellActorResourceData * param0);
 UnkStruct_02009508 * sub_02009508(const UnkStruct_02009508_1 * param0, int param1, UnkStruct_02009714 * param2, UnkStruct_02009714 * param3, UnkStruct_02009714 * param4, UnkStruct_02009714 * param5, UnkStruct_02009714 * param6, UnkStruct_02009714 * param7);
 void sub_020095A8(UnkStruct_02009508 * param0);
 GraphicElementManager * sub_020095C4(int param0, UnkStruct_0200C738 * param1, int param2);

@@ -107,7 +107,7 @@ typedef struct {
     int unk_04;
     s8 unk_08;
     UnkStruct_ov97_02237AEC * unk_0C;
-    UnkStruct_ov19_021DA864 unk_10[2];
+    CellActorResourceData unk_10[2];
     UnkStruct_02009DC8 * unk_58[2][6];
     UnkStruct_ov97_0222EEB8 unk_88[80];
     UnkStruct_ov97_0222EEB8 unk_1848[80];
@@ -1179,24 +1179,24 @@ static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int
     GraphicElementData * v0;
 
     {
-        UnkStruct_ov115_02261520 v1;
+        CellActorInitParamsEx v1;
         int v2 = (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) ? 0 : 1;
 
         v1.manager = param0->unk_0C->unk_00;
         v1.unk_04 = &param0->unk_10[v2];
-        v1.unk_08.z = 0;
-        v1.unk_14.x = FX32_ONE;
-        v1.unk_14.y = FX32_ONE;
-        v1.unk_14.z = FX32_ONE;
-        v1.unk_20 = 0;
-        v1.unk_08.x = FX32_ONE * 128;
-        v1.unk_08.y = FX32_ONE * 32;
-        v1.unk_24 = 10;
-        v1.unk_28 = param1;
+        v1.position.z = 0;
+        v1.affineScale.x = FX32_ONE;
+        v1.affineScale.y = FX32_ONE;
+        v1.affineScale.z = FX32_ONE;
+        v1.affineZRotation = 0;
+        v1.position.x = FX32_ONE * 128;
+        v1.position.y = FX32_ONE * 32;
+        v1.priority = 10;
+        v1.vramType = param1;
         v1.unk_2C = 86;
 
-        if (v1.unk_28 == NNS_G2D_VRAM_TYPE_2DSUB) {
-            v1.unk_08.y += FX32_CONST(256);
+        if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
+            v1.position.y += FX32_CONST(256);
         }
 
         v0 = GraphicElementManager_AddElement(&v1);

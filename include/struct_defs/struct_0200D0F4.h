@@ -7,7 +7,7 @@
 
 typedef struct CellActorData {
     GraphicElementData * unk_00;
-    UnkStruct_ov19_021DA864 * unk_04;
+    CellActorResourceData * unk_04;
     UnkStruct_02009508 * unk_08;
     int unk_0C;
 } CellActorData;

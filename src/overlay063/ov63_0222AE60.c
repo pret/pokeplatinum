@@ -26,7 +26,7 @@ typedef struct {
     UnkStruct_02009DC8 * unk_04[2];
     u32 unk_0C;
     int unk_10;
-    UnkStruct_ov19_021DA864 unk_14;
+    CellActorResourceData unk_14;
 } UnkStruct_ov63_0222BB38_sub1;
 
 typedef struct {
@@ -45,7 +45,7 @@ typedef struct UnkStruct_ov63_0222BB38_t {
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    UnkStruct_ov19_021DA864 unk_10;
+    CellActorResourceData unk_10;
 } UnkStruct_ov63_0222B96C;
 
 typedef struct UnkStruct_ov63_0222AE60_t {
@@ -443,29 +443,29 @@ void ov63_0222B0B8 (UnkStruct_ov63_0222AE60 * param0)
 UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const UnkStruct_ov64_022302EC * param1, u32 param2, u32 param3)
 {
     UnkStruct_ov63_0222BB38 * v0;
-    UnkStruct_ov115_02261520 v1;
+    CellActorInitParamsEx v1;
     u32 v2;
 
     v0 = ov63_0222BB00(param0);
     v2 = ov63_0222B450(param2);
 
     GF_ASSERT(ov63_0222B7D4(param0, v2) == 1);
-    memset(&v1, 0, sizeof(UnkStruct_ov115_02261520));
+    memset(&v1, 0, sizeof(CellActorInitParamsEx));
 
     v1.manager = param0->unk_00;
     v1.unk_04 = &param0->unk_10[v2].unk_14;
-    v1.unk_08.x = param1->unk_00 << FX32_SHIFT;
-    v1.unk_08.y = param1->unk_02 << FX32_SHIFT;
-    v1.unk_14.x = FX32_ONE;
-    v1.unk_14.y = FX32_ONE;
-    v1.unk_14.z = FX32_ONE;
-    v1.unk_24 = param1->unk_04;
+    v1.position.x = param1->unk_00 << FX32_SHIFT;
+    v1.position.y = param1->unk_02 << FX32_SHIFT;
+    v1.affineScale.x = FX32_ONE;
+    v1.affineScale.y = FX32_ONE;
+    v1.affineScale.z = FX32_ONE;
+    v1.priority = param1->unk_04;
     v1.unk_2C = param3;
 
     if ((param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_MAX) || (param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_2DMAIN)) {
-        v1.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     } else {
-        v1.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
+        v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     }
 
     v0->unk_04 = GraphicElementManager_AddElement(&v1);
@@ -483,22 +483,22 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
     v0->unk_00 = &param0->unk_10[v2];
 
     if (ov63_0222B96C(&param0->unk_2248)) {
-        memset(&v1, 0, sizeof(UnkStruct_ov115_02261520));
+        memset(&v1, 0, sizeof(CellActorInitParamsEx));
 
         v1.manager = param0->unk_00;
         v1.unk_04 = &param0->unk_2248.unk_10;
-        v1.unk_08.x = param1->unk_00 << FX32_SHIFT;
-        v1.unk_08.y = param1->unk_02 << FX32_SHIFT;
-        v1.unk_14.x = FX32_ONE;
-        v1.unk_14.y = FX32_ONE;
-        v1.unk_14.z = FX32_ONE;
-        v1.unk_24 = param0->unk_227C;
+        v1.position.x = param1->unk_00 << FX32_SHIFT;
+        v1.position.y = param1->unk_02 << FX32_SHIFT;
+        v1.affineScale.x = FX32_ONE;
+        v1.affineScale.y = FX32_ONE;
+        v1.affineScale.z = FX32_ONE;
+        v1.priority = param0->unk_227C;
         v1.unk_2C = param3;
 
         if ((param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_MAX) || (param0->unk_10[v2].unk_0C == NNS_G2D_VRAM_TYPE_2DMAIN)) {
-            v1.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+            v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         } else {
-            v1.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
+            v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
         v0->unk_08 = GraphicElementManager_AddElement(&v1);

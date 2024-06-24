@@ -706,7 +706,7 @@ static void ov21_021E226C (UnkStruct_ov21_021E2588 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E22C8 (UnkStruct_ov21_021E2588 * param0, UnkStruct_ov21_021E1A90 * param1, int param2)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3;

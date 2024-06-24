@@ -10,11 +10,11 @@ typedef struct {
     const NNSG2dImagePaletteProxy * unk_08;
     NNSG2dCellDataBank * unk_0C;
     const NNSG2dCellAnimBankData * unk_10;
-    const NNSG2dMultiCellDataBank * unk_14;
+    const NNSG2dMultiCellDataBank * multiCellBank;
     const NNSG2dMultiCellAnimBankData * unk_18;
     int unk_1C;
     u8 unk_20;
     u8 padding_21[3];
-} UnkStruct_ov19_021DA864;
+} CellActorResourceData;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DA864_H

@@ -285,17 +285,17 @@ static const u16 Unk_ov96_0223DA80[][2] = {
     {0xE0, 0x81}
 };
 
-void ov96_0223BAE0 (UnkStruct_ov115_02261520 * param0, UnkStruct_ov96_0223BF40 * param1, UnkStruct_ov19_021DA864 * param2, int param3)
+void ov96_0223BAE0 (CellActorInitParamsEx * param0, UnkStruct_ov96_0223BF40 * param1, CellActorResourceData * param2, int param3)
 {
     param0->manager = param1->unk_BF4;
     param0->unk_04 = param2;
-    param0->unk_08.z = 0;
-    param0->unk_14.x = FX32_ONE;
-    param0->unk_14.y = FX32_ONE;
-    param0->unk_14.z = FX32_ONE;
-    param0->unk_20 = 0;
-    param0->unk_24 = 1;
-    param0->unk_28 = param3;
+    param0->position.z = 0;
+    param0->affineScale.x = FX32_ONE;
+    param0->affineScale.y = FX32_ONE;
+    param0->affineScale.z = FX32_ONE;
+    param0->affineZRotation = 0;
+    param0->priority = 1;
+    param0->vramType = param3;
     param0->unk_2C = 68;
 }
 
@@ -306,13 +306,13 @@ static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)
     sub_020093B4(&param0->unk_DC4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D84[0], param0->unk_D84[1], param0->unk_D84[2], param0->unk_D84[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v1;
+        CellActorInitParamsEx v1;
 
         ov96_0223BAE0(&v1, param0, &param0->unk_DC4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         for (v0 = 0; v0 < 2; v0++) {
-            v1.unk_08.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
-            v1.unk_08.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
+            v1.position.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
+            v1.position.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
             param0->unk_E30[v0] = GraphicElementManager_AddElement(&v1);
             sub_02021CC8(param0->unk_E30[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_E30[v0], v0);

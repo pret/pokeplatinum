@@ -170,7 +170,7 @@ static void ov7_0224C934(UnkStruct_ov7_0224C768 * param0);
 static u32 ov7_0224C9A4(UnkStruct_ov7_0224C768 * param0);
 static void ov7_0224CA0C(UnkStruct_ov7_0224C768 * param0);
 static void ov7_0224CA34(UnkStruct_ov7_0224C768 * param0);
-static void ov7_0224CA54(UnkStruct_ov19_021DA864 * param0, UnkStruct_ov7_0224C768 * param1, u32 param2);
+static void ov7_0224CA54(CellActorResourceData * param0, UnkStruct_ov7_0224C768 * param1, u32 param2);
 static void ov7_0224CB40(UnkStruct_ov7_0224C768 * param0);
 static void ov7_0224CB70(UnkStruct_ov7_0224C768 * param0);
 static void ov7_0224CC44(UnkStruct_ov7_0224CC44 * param0, BGL * param1, u32 param2);
@@ -572,7 +572,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
 {
     int v0;
     Strbuf* v1;
-    UnkStruct_ov19_021DA864 v2;
+    CellActorResourceData v2;
     UnkStruct_ov83_0223D9A8 v3;
     static const u8 v4[2] = {
         8, 136
@@ -729,7 +729,7 @@ static void ov7_0224CA34 (UnkStruct_ov7_0224C768 * param0)
     sub_02021CAC(param0->unk_158[1], 0);
 }
 
-static void ov7_0224CA54 (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov7_0224C768 * param1, u32 param2)
+static void ov7_0224CA54 (CellActorResourceData * param0, UnkStruct_ov7_0224C768 * param1, u32 param2)
 {
     NARC * v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 

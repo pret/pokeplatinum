@@ -444,7 +444,7 @@ void ov19_021DD114 (UnkStruct_ov19_021DCF88 * param0, NARC * param1)
 
 static void ov19_021DD224 (UnkStruct_ov19_021DCF88 * param0, NARC * param1)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     NNSG2dImageProxy v1;
 
     ov19_021DD2BC(param0, param1);
@@ -806,7 +806,7 @@ BOOL ov19_021DD820 (UnkStruct_ov19_021DCF88 * param0)
 
 static void ov19_021DD854 (UnkStruct_ov19_021DCF88 * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov19_021DBA9C * v1;
     NNSG2dImageProxy v2;
     int v3, v4;
@@ -839,7 +839,7 @@ static void ov19_021DD854 (UnkStruct_ov19_021DCF88 * param0)
 
 static void ov19_021DD8F8 (UnkStruct_ov19_021DCF88 * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov19_021DBA9C * v1;
     int v2, v3, v4, v5, v6, v7, v8;
 
@@ -932,7 +932,7 @@ static u32 ov19_021DD9B8 (u32 param0, u32 param1)
 
 static void ov19_021DD9DC (UnkStruct_ov19_021DCF88 * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     NNSG2dImageProxy v1;
     u32 v2;
     int v3;

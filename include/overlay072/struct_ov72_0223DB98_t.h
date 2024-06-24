@@ -35,8 +35,8 @@ struct UnkStruct_ov72_0223DB98_t {
     UnkStruct_0200C738 unk_40;
     UnkStruct_02009714 * unk_1CC[4];
     UnkStruct_02009DC8 * unk_1DC[2][4];
-    UnkStruct_ov19_021DA864 unk_1FC;
-    UnkStruct_ov19_021DA864 unk_220;
+    CellActorResourceData unk_1FC;
+    CellActorResourceData unk_220;
     GraphicElementData * unk_244[14];
     GraphicElementData * unk_27C[14];
     GraphicElementData * unk_2B4[9];

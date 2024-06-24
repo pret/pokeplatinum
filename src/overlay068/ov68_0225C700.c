@@ -695,7 +695,7 @@ static void ov68_0225CCD0 (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
     }
 
     {
-        UnkStruct_ov19_021DA864 v1;
+        CellActorResourceData v1;
         UnkStruct_ov83_0223D9A8 v2 = {0};
 
         sub_020093B4(&v1, 20, 20, 20, 20, 0xffffffff, 0xffffffff, 0, 0, param2->unk_194[0], param2->unk_194[1], param2->unk_194[2], param2->unk_194[3], NULL, NULL);

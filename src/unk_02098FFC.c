@@ -109,7 +109,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     u32 v2;
     UnkStruct_0209916C * v3;
     CellActorData * v4 = NULL;
-    UnkStruct_ov115_02261520 v5;
+    CellActorInitParamsEx v5;
     UnkStruct_02009DC8 * v6;
 
     v1 = sub_020994B8(param0, param1);
@@ -137,27 +137,27 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
     v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
-    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov19_021DA864));
+    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
     v4->unk_04 = v4->unk_08->unk_00;
 
     sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
     v5.manager = param0->unk_10;
     v5.unk_04 = v4->unk_04;
-    v5.unk_08.x = FX32_CONST(param2);
-    v5.unk_08.y = FX32_CONST(param3);
-    v5.unk_08.z = FX32_CONST(param4);
+    v5.position.x = FX32_CONST(param2);
+    v5.position.y = FX32_CONST(param3);
+    v5.position.z = FX32_CONST(param4);
 
     if (v0 == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v5.unk_08.y += (192 << FX32_SHIFT);
+        v5.position.y += (192 << FX32_SHIFT);
     }
 
-    v5.unk_14.x = FX32_ONE;
-    v5.unk_14.y = FX32_ONE;
-    v5.unk_14.z = FX32_ONE;
-    v5.unk_20 = 0;
-    v5.unk_24 = param6;
-    v5.unk_28 = v0;
+    v5.affineScale.x = FX32_ONE;
+    v5.affineScale.y = FX32_ONE;
+    v5.affineScale.z = FX32_ONE;
+    v5.affineZRotation = 0;
+    v5.priority = param6;
+    v5.vramType = v0;
     v5.unk_2C = param0->unk_00;
 
     v4->unk_00 = GraphicElementManager_AddElement(&v5);

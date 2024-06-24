@@ -64,9 +64,9 @@ struct UnkStruct_ov96_0223BF40_t {
     UnkStruct_0200C738 unk_BF8;
     UnkStruct_02009714 * unk_D84[4];
     UnkStruct_02009DC8 * unk_D94[3][4];
-    UnkStruct_ov19_021DA864 unk_DC4;
-    UnkStruct_ov19_021DA864 unk_DE8;
-    UnkStruct_ov19_021DA864 unk_E0C;
+    CellActorResourceData unk_DC4;
+    CellActorResourceData unk_DE8;
+    CellActorResourceData unk_E0C;
     GraphicElementData * unk_E30[2];
     Window unk_E38;
     Window unk_E48;

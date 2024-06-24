@@ -301,24 +301,24 @@ GraphicElementData * sub_0200CA08 (SpriteRenderer * param0, SpriteGfxHandler * p
 GraphicElementData * sub_0200CA44 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13)
 {
     GraphicElementData * v0 = NULL;
-    UnkStruct_ov115_02261520 v1;
+    CellActorInitParamsEx v1;
 
     v1.manager = param1->unk_00;
     v1.unk_04 = &param1->unk_04->unk_00[param2];
-    v1.unk_08.x = FX32_CONST(param3);
-    v1.unk_08.y = FX32_CONST(param4);
-    v1.unk_08.z = FX32_CONST(param5);
+    v1.position.x = FX32_CONST(param3);
+    v1.position.y = FX32_CONST(param4);
+    v1.position.z = FX32_CONST(param5);
 
     if (param9 == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v1.unk_08.y += (192 << FX32_SHIFT);
+        v1.position.y += (192 << FX32_SHIFT);
     }
 
-    v1.unk_14.x = FX32_ONE;
-    v1.unk_14.y = FX32_ONE;
-    v1.unk_14.z = FX32_ONE;
-    v1.unk_20 = 0;
-    v1.unk_24 = param7;
-    v1.unk_28 = param9;
+    v1.affineScale.x = FX32_ONE;
+    v1.affineScale.y = FX32_ONE;
+    v1.affineScale.z = FX32_ONE;
+    v1.affineZRotation = 0;
+    v1.priority = param7;
+    v1.vramType = param9;
     v1.unk_2C = param0->unk_00;
 
     v0 = GraphicElementManager_AddElement(&v1);
@@ -512,7 +512,7 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
     int v0;
     int v1;
     CellActorData * v2 = NULL;
-    UnkStruct_ov115_02261520 v3;
+    CellActorInitParamsEx v3;
     int v4[6];
 
     v2 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
@@ -527,7 +527,7 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
         return NULL;
     }
 
-    v2->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov19_021DA864));
+    v2->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
     v2->unk_04 = v2->unk_08->unk_00;
 
     if (v2->unk_08->unk_00 == NULL) {
@@ -559,20 +559,20 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
 
     v3.manager = param1->unk_00;
     v3.unk_04 = v2->unk_04;
-    v3.unk_08.x = FX32_CONST(param2->x);
-    v3.unk_08.y = FX32_CONST(param2->y);
-    v3.unk_08.z = FX32_CONST(param2->z);
+    v3.position.x = FX32_CONST(param2->x);
+    v3.position.y = FX32_CONST(param2->y);
+    v3.position.z = FX32_CONST(param2->z);
 
     if (param2->vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v3.unk_08.y += (192 << FX32_SHIFT);
+        v3.position.y += (192 << FX32_SHIFT);
     }
 
-    v3.unk_14.x = FX32_ONE;
-    v3.unk_14.y = FX32_ONE;
-    v3.unk_14.z = FX32_ONE;
-    v3.unk_20 = 0;
-    v3.unk_24 = param2->priority;
-    v3.unk_28 = param2->vramType;
+    v3.affineScale.x = FX32_ONE;
+    v3.affineScale.y = FX32_ONE;
+    v3.affineScale.z = FX32_ONE;
+    v3.affineZRotation = 0;
+    v3.priority = param2->priority;
+    v3.vramType = param2->vramType;
     v3.unk_2C = param0->unk_00;
     v2->unk_00 = GraphicElementManager_AddElement(&v3);
     v2->unk_0C = param2->transferToVRAM;

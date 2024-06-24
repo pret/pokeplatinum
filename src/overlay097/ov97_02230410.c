@@ -113,7 +113,7 @@ typedef struct {
     UnkStruct_0200C738 unk_2CA8;
     UnkStruct_02009714 * unk_2E34[6];
     UnkStruct_02009DC8 * unk_2E4C[6];
-    UnkStruct_ov19_021DA864 unk_2E64;
+    CellActorResourceData unk_2E64;
     GraphicElementData * unk_2E88[2];
     GraphicElementData * unk_2E90[3];
     UnkUnion_ov97_0222D2B0 unk_2E9C;

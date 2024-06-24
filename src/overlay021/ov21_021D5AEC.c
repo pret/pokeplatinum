@@ -74,8 +74,8 @@ typedef struct {
     fx32 unk_78;
     GraphicElementData * unk_7C;
     UnkStruct_02009714 * unk_80[4];
-    UnkStruct_ov19_021DA864 unk_90;
-    UnkStruct_ov19_021DA864 unk_B4;
+    CellActorResourceData unk_90;
+    CellActorResourceData unk_B4;
     void * unk_D8;
     NNSG2dScreenData * unk_DC;
     UnkStruct_ov21_021D157C unk_E0;

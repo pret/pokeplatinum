@@ -492,7 +492,7 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         {216, 112},
         {56, 112},
     };
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
     UnkStruct_ov83_0223D9A8 v2;
     NNSG2dImageProxy v3;
     NNSG2dImagePaletteProxy v4;
@@ -503,7 +503,7 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
     int v9;
 
     v1.unk_04 = NULL;
-    v1.unk_14 = NULL;
+    v1.multiCellBank = NULL;
     v1.unk_18 = NULL;
     v1.unk_1C = 0;
     v1.unk_0C = param1;

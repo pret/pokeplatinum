@@ -89,15 +89,15 @@ typedef void (* GraphicElementDrawFunc)(const GraphicElementManager *, GraphicEl
 typedef void (* GraphicElementInitializeFunc)(GraphicElementData *);
 
 static void GraphicElementManager_Reset(GraphicElementManager * param0);
-static u32 sub_020221B8(const UnkStruct_ov19_021DA864 * param0);
+static enum CellType sub_020221B8(const CellActorResourceData * param0);
 static void sub_020221D0(const NNSG2dCellDataBank * param0, GraphicElementData * param1);
 static void sub_020221D4(const NNSG2dCellAnimBankData * param0, GraphicElementData * param1);
 static void sub_020221D8(const NNSG2dMultiCellDataBank * param0, GraphicElementData * param1);
 static void sub_020221E0(const NNSG2dMultiCellAnimBankData * param0, GraphicElementData * param1);
 static void sub_020221E8(GraphicElementData * param0, int param1);
-static void sub_02022208(const UnkStruct_ov19_021DA864 * param0, GraphicElementData * param1, int param2);
+static void sub_02022208(const CellActorResourceData * param0, GraphicElementData * param1, int param2);
 static void sub_02022264(GraphicElementData * param0, int param1);
-static BOOL sub_02022110(const GraphicElementManager * param0, const UnkStruct_ov19_021DA864 * param1, GraphicElementData * param2, int param3);
+static BOOL GraphicElementManager_InitElementFromResource(const GraphicElementManager * param0, const CellActorResourceData * param1, GraphicElementData * param2, int param3);
 static u32 sub_020222C4(const NNSG2dImagePaletteProxy * param0, u32 param1);
 static void GraphicElementManager_DrawElement(const GraphicElementManager * param0, GraphicElementData * param1);
 static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager * param0, GraphicElementData * param1);
@@ -251,7 +251,7 @@ void GraphicElementData_Reset(GraphicElementData *elem)
     elem->explicitOamMode = GX_OAM_MODE_NORMAL;
 }
 
-GraphicElementData * GraphicElementManager_AddElement(const UnkStruct_ov115_02261520 * param0)
+GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParamsEx * param0)
 {
     GraphicElementData *elem = GraphicElementManager_AllocElement(param0->manager);
     if (elem == NULL) {
@@ -260,25 +260,32 @@ GraphicElementData * GraphicElementManager_AddElement(const UnkStruct_ov115_0226
 
     elem->manager = param0->manager;
     elem->unk_F0 = 0;
-    elem->position = param0->unk_08;
-    elem->affineScale = param0->unk_14;
-    elem->affineZRotation = param0->unk_20;
-    elem->vramType = param0->unk_28;
-    elem->priority = param0->unk_24;
+    elem->position = param0->position;
+    elem->affineScale = param0->affineScale;
+    elem->affineZRotation = param0->affineZRotation;
+    elem->vramType = param0->vramType;
+    elem->priority = param0->priority;
     elem->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
     elem->flip = GRAPHIC_ELEMENT_DATA_FLIP_NONE;
     elem->explicitMosaic = FALSE;
     elem->explicitOamMode = GX_OAM_MODE_NORMAL;
     elem->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
-    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->manager->renderer->rendererCore), elem->affineOverwriteMode);
-    NNS_G2dSetRndCoreFlipMode(&(param0->manager->renderer->rendererCore), elem->flip & 1, elem->flip & 2);
+    NNS_G2dSetRndCoreAffineOverwriteMode(
+        &param0->manager->renderer->rendererCore, 
+        elem->affineOverwriteMode
+    );
+    NNS_G2dSetRndCoreFlipMode(
+        &param0->manager->renderer->rendererCore, 
+        elem->flip & GRAPHIC_ELEMENT_DATA_FLIP_H,
+        elem->flip & GRAPHIC_ELEMENT_DATA_FLIP_V
+    );
 
-    elem->draw = 1;
+    elem->draw = TRUE;
     elem->unk_35 = 0;
     elem->unk_38 = (FX32_ONE * 2);
 
-    if (sub_02022110(param0->manager, param0->unk_04, elem, param0->unk_2C) == 0) {
+    if (GraphicElementManager_InitElementFromResource(param0->manager, param0->unk_04, elem, param0->unk_2C) == 0) {
         GraphicElementData_Delete(elem);
         return NULL;
     }
@@ -293,17 +300,17 @@ GraphicElementData * GraphicElementManager_AddElement(const UnkStruct_ov115_0226
 
 GraphicElementData * sub_02021B90 (const UnkStruct_ov83_0223D9A8 * param0)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
 
     v0.manager = param0->unk_00;
     v0.unk_04 = param0->unk_04;
-    v0.unk_08 = param0->unk_08;
-    v0.unk_14.x = FX32_ONE;
-    v0.unk_14.y = FX32_ONE;
-    v0.unk_14.z = FX32_ONE;
-    v0.unk_20 = 0;
-    v0.unk_24 = param0->unk_14;
-    v0.unk_28 = param0->unk_18;
+    v0.position = param0->unk_08;
+    v0.affineScale.x = FX32_ONE;
+    v0.affineScale.y = FX32_ONE;
+    v0.affineScale.z = FX32_ONE;
+    v0.affineZRotation = 0;
+    v0.priority = param0->unk_14;
+    v0.vramType = param0->unk_18;
     v0.unk_2C = param0->unk_1C;
 
     return GraphicElementManager_AddElement(&v0);
@@ -735,49 +742,50 @@ u32 sub_020220F4 (const GraphicElementData * param0)
     return sub_0202207C(param0, v0, v1);
 }
 
-static BOOL sub_02022110 (const GraphicElementManager * param0, const UnkStruct_ov19_021DA864 * param1, GraphicElementData * param2, int param3)
+static BOOL GraphicElementManager_InitElementFromResource(const GraphicElementManager *gfxElemMgr, 
+    const CellActorResourceData * param1, GraphicElementData *elem, int param3)
 {
-    param2->type = sub_020221B8(param1);
-    param2->imageProxy = *param1->unk_00;
-    param2->paletteProxy = *param1->unk_08;
+    elem->type = sub_020221B8(param1);
+    elem->imageProxy = *param1->unk_00;
+    elem->paletteProxy = *param1->unk_08;
 
-    sub_020221D0(param1->unk_0C, param2);
+    sub_020221D0(param1->unk_0C, elem);
 
     if (param1->unk_10) {
-        sub_020221D4(param1->unk_10, param2);
+        sub_020221D4(param1->unk_10, elem);
     } else {
-        sub_020221D4(param0->animData, param2);
+        sub_020221D4(gfxElemMgr->animData, elem);
     }
 
-    if (param2->type == 2) {
-        sub_020221D8(param1->unk_14, param2);
-        sub_020221E0(param1->unk_18, param2);
-        sub_02022264(param2, param3);
+    if (elem->type == 2) {
+        sub_020221D8(param1->multiCellBank, elem);
+        sub_020221E0(param1->unk_18, elem);
+        sub_02022264(elem, param3);
     } else {
-        if (param2->type == 3) {
-            VRamCellAnimationData * v0 = (VRamCellAnimationData *)&param2->unk_40;
-            sub_02022208(param1, param2, param3);
+        if (elem->type == 3) {
+            VRamCellAnimationData * v0 = (VRamCellAnimationData *)&elem->unk_40;
+            sub_02022208(param1, elem, param3);
         } else {
-            sub_020221E8(param2, param3);
+            sub_020221E8(elem, param3);
         }
     }
 
-    param2->explicitPriority = param1->unk_20;
+    elem->explicitPriority = param1->unk_20;
 
     return 1;
 }
 
-static u32 sub_020221B8 (const UnkStruct_ov19_021DA864 * param0)
+static enum CellType sub_020221B8 (const CellActorResourceData * param0)
 {
-    if (param0->unk_14 != NULL) {
-        return 2;
+    if (param0->multiCellBank != NULL) {
+        return CELL_TYPE_MULTI_CELL;
     }
 
     if (param0->unk_1C == 1) {
-        return 3;
+        return CELL_TYPE_VRAM_CELL;
     }
 
-    return 1;
+    return CELL_TYPE_CELL;
 }
 
 static void sub_020221D0 (const NNSG2dCellDataBank * param0, GraphicElementData * param1)
@@ -820,7 +828,7 @@ static void sub_020221E8 (GraphicElementData * param0, int param1)
     NNS_G2dInitCellAnimation((NNSG2dCellAnimation *)&v0->unk_08, NNS_G2dGetAnimSequenceByIdx(v0->unk_04, 0), v0->unk_00);
 }
 
-static void sub_02022208 (const UnkStruct_ov19_021DA864 * param0, GraphicElementData * param1, int param2)
+static void sub_02022208 (const CellActorResourceData * param0, GraphicElementData * param1, int param2)
 {
     VRamCellAnimationData * v0;
     const NNSG2dCharacterData * v1;

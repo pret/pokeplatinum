@@ -98,7 +98,7 @@ static void ov20_021D390C (BGL * param0, const UnkStruct_ov61_0222C884 * param1,
 
 static void ov20_021D3980 (UnkStruct_ov20_021D3980 * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
 
     ov20_021D2E0C(param0->unk_00, &v0, 0, 3);
     param0->unk_0C = ov20_021D2E50(param0->unk_00, &v0, 64, 56, 5, NNS_G2D_VRAM_TYPE_2DMAIN);

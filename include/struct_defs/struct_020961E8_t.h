@@ -40,9 +40,9 @@ struct UnkStruct_020961E8_t {
     UnkStruct_0200C738 unk_54;
     UnkStruct_02009714 * unk_1E0[4];
     UnkStruct_02009DC8 * unk_1F0[3][4];
-    UnkStruct_ov19_021DA864 unk_220;
-    UnkStruct_ov19_021DA864 unk_244;
-    UnkStruct_ov19_021DA864 unk_268;
+    CellActorResourceData unk_220;
+    CellActorResourceData unk_244;
+    CellActorResourceData unk_268;
     GraphicElementData * unk_28C[14];
     GraphicElementData * unk_2C4[14];
     Window unk_2FC[5];

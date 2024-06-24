@@ -350,7 +350,7 @@ static void ov19_021DBD9C (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 par
 
 static void ov19_021DBDF4 (UnkStruct_ov19_021DBA9C * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov19_021DA384 * v1;
     NNSG2dImageProxy v2;
     VecFx32 v3;
@@ -702,7 +702,7 @@ static void ov19_021DC46C (SysTask * param0, void * param1)
 static void ov19_021DC4F8 (UnkStruct_ov19_021DBA9C * param0, u32 param1)
 {
     if (param1 != 0) {
-        UnkStruct_ov19_021DA864 v0;
+        CellActorResourceData v0;
         UnkStruct_ov19_021DA384 * v1;
         NNSG2dImageProxy v2;
         NNSG2dCharacterData * v3;

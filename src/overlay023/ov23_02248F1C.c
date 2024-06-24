@@ -60,7 +60,7 @@ struct UnkStruct_ov23_0224942C_t {
     UnkStruct_0200C738 unk_1C0;
     UnkStruct_02009714 * unk_34C[4];
     UnkStruct_02009DC8 * unk_35C[4];
-    UnkStruct_ov19_021DA864 unk_36C;
+    CellActorResourceData unk_36C;
     GraphicElementData * unk_390[8];
     GraphicElementData * unk_3B0[17];
     Window unk_3F4;
@@ -110,19 +110,19 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         sub_020093B4(&v0->unk_36C, 1000, 1000, 1000, 1000, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34C[0], v0->unk_34C[1], v0->unk_34C[2], v0->unk_34C[3], NULL, NULL);
 
         {
-            UnkStruct_ov115_02261520 v3;
+            CellActorInitParamsEx v3;
 
             v3.manager = v0->unk_1BC;
             v3.unk_04 = &v0->unk_36C;
-            v3.unk_08.x = FX32_CONST(32);
-            v3.unk_08.y = FX32_CONST(96) + (192 << FX32_SHIFT);
-            v3.unk_08.z = 0;
-            v3.unk_14.x = FX32_ONE;
-            v3.unk_14.y = FX32_ONE;
-            v3.unk_14.z = FX32_ONE;
-            v3.unk_20 = 0;
-            v3.unk_24 = 0;
-            v3.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
+            v3.position.x = FX32_CONST(32);
+            v3.position.y = FX32_CONST(96) + (192 << FX32_SHIFT);
+            v3.position.z = 0;
+            v3.affineScale.x = FX32_ONE;
+            v3.affineScale.y = FX32_ONE;
+            v3.affineScale.z = FX32_ONE;
+            v3.affineZRotation = 0;
+            v3.priority = 0;
+            v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
             v3.unk_2C = 4;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {

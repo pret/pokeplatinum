@@ -62,7 +62,7 @@ static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C * param0);
 static BOOL ov22_0225AF34(const UnkStruct_ov22_0225AE9C * param0);
 static void ov22_0225AA34(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, NARC * param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov22_0225AAC0(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1);
-static void ov22_0225AAF4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, UnkStruct_ov19_021DA864 * param2, int param3);
+static void ov22_0225AAF4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, CellActorResourceData * param2, int param3);
 static void ov22_0225AD68(UnkStruct_ov22_0225AD68 * param0, fx32 param1, fx32 param2, int param3);
 static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 * param0);
 
@@ -293,7 +293,7 @@ static s32 ov22_0225A8B4 (Window * param0, int param1, int param2, int param3, i
 
 static void ov22_0225A914 (UnkStruct_ov22_0225A914 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, NARC * param4)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     int v2, v3;
 
@@ -379,14 +379,14 @@ static void ov22_0225AAC0 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** p
     sub_02009D68(param1[3], param0[3]);
 }
 
-static void ov22_0225AAF4 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, UnkStruct_ov19_021DA864 * param2, int param3)
+static void ov22_0225AAF4 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, CellActorResourceData * param2, int param3)
 {
     sub_020093B4(param2, sub_02009E08(param0[0]), sub_02009E08(param0[1]), sub_02009E08(param0[2]), sub_02009E08(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
 static void ov22_0225AB54 (UnkStruct_ov22_0225AB54 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, BGL * param4, UnkStruct_02095C60 * param5, NARC * param6)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     int v2;
 

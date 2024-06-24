@@ -8,7 +8,7 @@
 
 typedef struct {
     GraphicElementManager * unk_00;
-    const UnkStruct_ov19_021DA864 * unk_04;
+    const CellActorResourceData * unk_04;
     VecFx32 unk_08;
     u32 unk_14;
     int unk_18;

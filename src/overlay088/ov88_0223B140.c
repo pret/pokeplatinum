@@ -1408,25 +1408,25 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
     sub_020093B4(&param0->unk_378, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_324[0], param0->unk_324[1], param0->unk_324[2], param0->unk_324[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v0;
+        CellActorInitParamsEx v0;
         int v1;
 
         v0.manager = param0->unk_194;
         v0.unk_04 = &param0->unk_354;
-        v0.unk_08.x = FX32_CONST(32);
-        v0.unk_08.y = FX32_CONST(96);
-        v0.unk_08.z = 0;
-        v0.unk_14.x = FX32_ONE;
-        v0.unk_14.y = FX32_ONE;
-        v0.unk_14.z = FX32_ONE;
-        v0.unk_20 = 0;
-        v0.unk_24 = 0;
-        v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v0.position.x = FX32_CONST(32);
+        v0.position.y = FX32_CONST(96);
+        v0.position.z = 0;
+        v0.affineScale.x = FX32_ONE;
+        v0.affineScale.y = FX32_ONE;
+        v0.affineScale.z = FX32_ONE;
+        v0.affineZRotation = 0;
+        v0.priority = 0;
+        v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v0.unk_2C = 26;
 
         for (v1 = 0; v1 < 2; v1++) {
-            v0.unk_08.x = FX32_ONE * Unk_ov88_0223EF9C[v1][0];
-            v0.unk_08.y = FX32_ONE * Unk_ov88_0223EF9C[v1][1];
+            v0.position.x = FX32_ONE * Unk_ov88_0223EF9C[v1][0];
+            v0.position.y = FX32_ONE * Unk_ov88_0223EF9C[v1][1];
             param0->unk_39C[v1] = GraphicElementManager_AddElement(&v0);
             sub_02021CC8(param0->unk_39C[v1], 1);
             ov88_0223CF68(param0->unk_88[v1], param0->unk_39C[v1], v1);
@@ -1435,8 +1435,8 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
         }
 
         for (v1 = 0; v1 < 12; v1++) {
-            v0.unk_08.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16);
-            v0.unk_08.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] - 6);
+            v0.position.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16);
+            v0.position.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] - 6);
             param0->unk_3D4[v1] = GraphicElementManager_AddElement(&v0);
             sub_02021CC8(param0->unk_3D4[v1], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_3D4[v1], 5 + v1);
@@ -1445,25 +1445,25 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
         }
 
         for (v1 = 0; v1 < 12; v1++) {
-            v0.unk_08.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16 + 20);
-            v0.unk_08.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] + 16);
-            v0.unk_24 = 0;
+            v0.position.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16 + 20);
+            v0.position.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] + 16);
+            v0.priority = 0;
             param0->unk_404[v1] = GraphicElementManager_AddElement(&v0);
             sub_02021F58(param0->unk_404[v1], 3);
             sub_02021CAC(param0->unk_404[v1], 0);
         }
 
         for (v1 = 0; v1 < 12; v1++) {
-            v0.unk_08.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16 + 20 + 9);
-            v0.unk_08.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] + 16);
-            v0.unk_24 = 0;
+            v0.position.x = FX32_ONE * (Unk_ov88_0223EF9C[v1][0] + 16 + 20 + 9);
+            v0.position.y = FX32_ONE * (Unk_ov88_0223EF9C[v1][1] + 16);
+            v0.priority = 0;
             param0->unk_434[v1] = GraphicElementManager_AddElement(&v0);
             sub_02021F58(param0->unk_434[v1], 3);
             sub_02021CAC(param0->unk_434[v1], 0);
         }
 
-        v0.unk_08.x = FX32_ONE * (128 - 4 * 8);
-        v0.unk_08.y = FX32_ONE * (8 * 8 + 2);
+        v0.position.x = FX32_ONE * (128 - 4 * 8);
+        v0.position.y = FX32_ONE * (8 * 8 + 2);
         param0->unk_47C = GraphicElementManager_AddElement(&v0);
         sub_02021CC8(param0->unk_47C, 1);
         SpriteActor_SetSpriteAnimActive(param0->unk_47C, 20);
@@ -1471,9 +1471,9 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
 
         for (v1 = 0; v1 < 6; v1++) {
             v0.unk_04 = &param0->unk_378;
-            v0.unk_08.x = FX32_ONE * Unk_ov88_0223EF54[v1][0];
-            v0.unk_08.y = FX32_ONE * (Unk_ov88_0223EF54[v1][1]) + (192 << FX32_SHIFT);
-            v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
+            v0.position.x = FX32_ONE * Unk_ov88_0223EF54[v1][0];
+            v0.position.y = FX32_ONE * (Unk_ov88_0223EF54[v1][1]) + (192 << FX32_SHIFT);
+            v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
             param0->unk_464[v1] = GraphicElementManager_AddElement(&v0);
             sub_02021CAC(param0->unk_464[v1], 0);
             sub_02021CC8(param0->unk_464[v1], 0);

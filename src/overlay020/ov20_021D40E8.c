@@ -115,7 +115,7 @@ void ov20_021D41A8 (UnkStruct_ov20_021D4210 * param0)
 
 static void ov20_021D4210 (UnkStruct_ov20_021D4210 * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
 
     ov20_021D2E0C(param0->unk_00, &v0, 0, 2);
     param0->unk_30 = ov20_021D2E50(param0->unk_00, &v0, 72, 56, 3, NNS_G2D_VRAM_TYPE_2DMAIN);

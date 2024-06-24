@@ -218,7 +218,7 @@ void ov19_021DAADC (UnkStruct_ov19_021DA9E0 * param0)
 static void ov19_021DAB44 (UnkStruct_ov19_021DA9E0 * param0)
 {
     NNSG2dImageProxy v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
     u32 v2, v3, v4;
 
     v2 = sub_0207C944();

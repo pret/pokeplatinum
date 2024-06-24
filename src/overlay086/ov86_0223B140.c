@@ -806,7 +806,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         {0 + 10, 0, 10, 10}
     };
     ArchivedSprite v1;
-    UnkStruct_ov19_021DA864 v2;
+    CellActorResourceData v2;
     UnkStruct_ov83_0223D9A8 v3;
     UnkStruct_ov5_021DE5D0 v4;
     NNSG2dImageProxy v5;
@@ -819,7 +819,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     int v12, v13;
 
     v2.unk_04 = NULL;
-    v2.unk_14 = NULL;
+    v2.multiCellBank = NULL;
     v2.unk_18 = NULL;
     v2.unk_1C = 0;
     v2.unk_0C = param1;

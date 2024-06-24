@@ -1671,7 +1671,7 @@ static void ov70_0225EBC4 (UnkStruct_ov70_0225E9C8 * param0, const Strbuf *param
 
 static void ov70_0225EC20 (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225E4EC * param1, u32 param2)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     int v2;
     NARC * v3 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
@@ -2736,7 +2736,7 @@ static void ov70_0225FEF0 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
     }
 
     {
-        UnkStruct_ov19_021DA864 v3;
+        CellActorResourceData v3;
         UnkStruct_ov83_0223D9A8 v4 = {NULL};
 
         sub_020093B4(&v3, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
@@ -2810,7 +2810,7 @@ static void ov70_02260080 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
     }
 
     {
-        UnkStruct_ov19_021DA864 v6;
+        CellActorResourceData v6;
         UnkStruct_ov83_0223D9A8 v7 = {NULL};
 
         sub_020093B4(&v6, 101, 101, 101, 101, 0xffffffff, 0xffffffff, 1, 3, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
@@ -2949,7 +2949,7 @@ static void ov70_022603CC (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
     u32 v6;
     u32 v7;
     UnkStruct_ov83_0223D9A8 v8;
-    UnkStruct_ov19_021DA864 v9;
+    CellActorResourceData v9;
     const UnkStruct_ov70_0226D844 * v10;
     static const u16 v11[4][3] = {
         {192, 0, 8},

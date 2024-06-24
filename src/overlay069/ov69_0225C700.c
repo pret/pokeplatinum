@@ -2638,7 +2638,7 @@ static void ov69_0225E910 (UnkStruct_ov69_0225E7DC * param0, u32 param1, UnkStru
 static void ov69_0225E960 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225D35C * param1, UnkStruct_ov69_0225E478 * param2, u32 param3)
 {
     int v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
     BOOL v2;
     UnkStruct_ov83_0223D9A8 v3 = {NULL};
 

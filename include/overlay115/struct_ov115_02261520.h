@@ -8,13 +8,13 @@
 
 typedef struct {
     GraphicElementManager * manager;
-    const UnkStruct_ov19_021DA864 * unk_04;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
-    u16 unk_20;
-    u32 unk_24;
-    int unk_28;
+    const CellActorResourceData * unk_04;
+    VecFx32 position;
+    VecFx32 affineScale;
+    u16 affineZRotation;
+    u32 priority;
+    int vramType;
     int unk_2C;
-} UnkStruct_ov115_02261520;
+} CellActorInitParamsEx;
 
 #endif // POKEPLATINUM_STRUCT_OV115_02261520_H

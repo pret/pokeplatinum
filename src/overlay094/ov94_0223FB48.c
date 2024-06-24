@@ -358,12 +358,12 @@ static const u16 Unk_ov94_02245E1C[][2] = {
 static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
 {
     int v0;
-    UnkStruct_ov115_02261520 v1;
+    CellActorInitParamsEx v1;
 
     ov94_0223C300(&v1, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v1.unk_08.x = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][0];
-    v1.unk_08.y = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][1];
+    v1.position.x = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][0];
+    v1.position.y = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][1];
 
     param0->unk_E20 = GraphicElementManager_AddElement(&v1);
 
@@ -377,9 +377,9 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
     }
 
     for (v0 = 0; v0 < 30; v0++) {
-        v1.unk_08.x = FX32_ONE * Unk_ov94_02245ED4[v0][0];
-        v1.unk_08.y = FX32_ONE * Unk_ov94_02245ED4[v0][1];
-        v1.unk_24 = 20;
+        v1.position.x = FX32_ONE * Unk_ov94_02245ED4[v0][0];
+        v1.position.y = FX32_ONE * Unk_ov94_02245ED4[v0][1];
+        v1.priority = 20;
 
         param0->unk_E28[v0] = GraphicElementManager_AddElement(&v1);
 
@@ -388,9 +388,9 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
     }
 
     for (v0 = 0; v0 < 30; v0++) {
-        v1.unk_08.x = FX32_ONE * (Unk_ov94_02245ED4[v0][0] + 4);
-        v1.unk_08.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
-        v1.unk_24 = 10;
+        v1.position.x = FX32_ONE * (Unk_ov94_02245ED4[v0][0] + 4);
+        v1.position.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
+        v1.priority = 10;
 
         param0->unk_EA0[v0] = GraphicElementManager_AddElement(&v1);
 
@@ -399,9 +399,9 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1.unk_08.x = FX32_ONE * (Unk_ov94_02245ED4[v0][0] + 4 + 8);
-        v1.unk_08.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
-        v1.unk_24 = 10;
+        v1.position.x = FX32_ONE * (Unk_ov94_02245ED4[v0][0] + 4 + 8);
+        v1.position.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
+        v1.priority = 10;
 
         param0->unk_F18[v0] = GraphicElementManager_AddElement(&v1);
 
@@ -410,8 +410,8 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1.unk_08.x = FX32_ONE * Unk_ov94_02245E1C[v0][0];
-        v1.unk_08.y = FX32_ONE * Unk_ov94_02245E1C[v0][1];
+        v1.position.x = FX32_ONE * Unk_ov94_02245E1C[v0][0];
+        v1.position.y = FX32_ONE * Unk_ov94_02245E1C[v0][1];
 
         param0->unk_F54[v0] = GraphicElementManager_AddElement(&v1);
 

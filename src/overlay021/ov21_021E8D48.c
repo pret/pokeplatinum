@@ -118,7 +118,7 @@ static Sprite * ov21_021E99E0(UnkStruct_02007768 * param0, Pokemon * param1, int
 static void ov21_021E92C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E9344(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, NARC * param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E93C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1);
-static void ov21_021E93F8(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, UnkStruct_ov19_021DA864 * param2, int param3);
+static void ov21_021E93F8(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, CellActorResourceData * param2, int param3);
 static void ov21_021E9458(UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 ** param1, int param2, int param3);
 static void ov21_021E94A4(UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 ** param1);
 static void ov21_021E94B0(UnkStruct_ov21_021E94F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3);
@@ -488,7 +488,7 @@ static void ov21_021E93C4 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** p
     sub_02009D68(param1[3], param0[3]);
 }
 
-static void ov21_021E93F8 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, UnkStruct_ov19_021DA864 * param2, int param3)
+static void ov21_021E93F8 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, CellActorResourceData * param2, int param3)
 {
     sub_020093B4(param2, sub_02009E08(param0[0]), sub_02009E08(param0[1]), sub_02009E08(param0[2]), sub_02009E08(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
@@ -512,7 +512,7 @@ static void ov21_021E94A4 (UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 
 static void ov21_021E94B0 (UnkStruct_ov21_021E94F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
 
     ov21_021E93F8(param0->unk_04, param2, &v1, 2);
 
@@ -536,7 +536,7 @@ static void ov21_021E94F8 (UnkStruct_ov21_021E94F8 * param0)
 static void ov21_021E9504 (UnkStruct_ov21_021E95B0 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, UnkStruct_02009DC8 ** param4)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
 
     ov21_021E93F8(param4, param2, &v1, 2);
 
@@ -600,7 +600,7 @@ static void ov21_021E95EC (UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 
 static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, int param4)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
     int v2, v3;
 
     v2 = PokemonPersonalData_GetSpeciesValue(param4, 6);

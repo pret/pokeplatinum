@@ -149,7 +149,7 @@ typedef struct {
     Strbuf* unk_230;
     Strbuf* unk_234;
     u32 unk_238;
-    UnkStruct_ov19_021DA864 unk_23C;
+    CellActorResourceData unk_23C;
     UnkStruct_02009DC8 * unk_260[4];
     GraphicElementData * unk_270[2];
     UnkStruct_ov64_022300E4 unk_278;
@@ -1211,7 +1211,7 @@ static void ov64_0222E990 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
 static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 {
-    static UnkStruct_ov115_02261520 v0[2] = {
+    static CellActorInitParamsEx v0[2] = {
         {
             NULL,
             NULL,
@@ -1958,7 +1958,7 @@ static const u16 Unk_ov64_022321BC[3] = {
     0x1BB
 };
 
-static const UnkStruct_ov115_02261520 Unk_ov64_022322B4 = {
+static const CellActorInitParamsEx Unk_ov64_022322B4 = {
     NULL,
     NULL,
     {0x0, 0x0, 0x0},

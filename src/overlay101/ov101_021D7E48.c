@@ -323,7 +323,7 @@ void ov101_021D8358 (UnkStruct_ov101_021D7E48 * param0, u32 param1, u32 param2, 
 
 void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544 * param1, const VecFx32 * param2, u32 param3, int param4, u32 param5, u32 param6, u32 param7, u32 param8, int param9, int param10)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     GraphicElementData * v2;
 

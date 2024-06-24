@@ -12,7 +12,7 @@ typedef struct {
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[6];
     UnkStruct_02009DC8 * unk_1A8[2][6];
-    UnkStruct_ov19_021DA864 unk_1D8[2];
+    CellActorResourceData unk_1D8[2];
     int unk_220;
     int unk_224;
     int unk_228;

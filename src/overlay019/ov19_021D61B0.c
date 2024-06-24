@@ -1925,7 +1925,7 @@ int ov19_021D7820 (UnkStruct_ov19_021D61B0 * param0)
     }
 }
 
-void ov19_021D783C (UnkStruct_ov19_021DA864 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, NNSG2dCellDataBank * param3, NNSG2dCellAnimBankData * param4, u32 param5)
+void ov19_021D783C (CellActorResourceData * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, NNSG2dCellDataBank * param3, NNSG2dCellAnimBankData * param4, u32 param5)
 {
     param0->unk_00 = param1;
     param0->unk_08 = param2;
@@ -1933,12 +1933,12 @@ void ov19_021D783C (UnkStruct_ov19_021DA864 * param0, NNSG2dImageProxy * param1,
     param0->unk_10 = param4;
     param0->unk_20 = param5;
     param0->unk_04 = NULL;
-    param0->unk_14 = NULL;
+    param0->multiCellBank = NULL;
     param0->unk_18 = NULL;
     param0->unk_1C = 0;
 }
 
-GraphicElementData * ov19_021D785C (GraphicElementManager * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+GraphicElementData * ov19_021D785C (GraphicElementManager * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     UnkStruct_ov83_0223D9A8 v0;
     GraphicElementData * v1;

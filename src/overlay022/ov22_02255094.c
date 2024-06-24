@@ -158,7 +158,7 @@ void ov22_022551D0 (UnkStruct_ov22_0225A0E4 * param0)
 
 GraphicElementData * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
 
     sub_020093B4(&v0, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_48[0], param0->unk_48[1], param0->unk_48[2], param0->unk_48[3], NULL, NULL);

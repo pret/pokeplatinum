@@ -230,7 +230,7 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 pa
 
 static void ov20_021D3E0C (UnkStruct_ov20_021D3E0C * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
 
     ov20_021D2E0C(param0->unk_00, &v0, 0, 1);
     param0->unk_5C = ov20_021D2E50(param0->unk_00, &v0, 48, 54, 2, NNS_G2D_VRAM_TYPE_2DMAIN);

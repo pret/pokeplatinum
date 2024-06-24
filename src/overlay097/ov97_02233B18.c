@@ -142,7 +142,7 @@ typedef struct {
     UnkStruct_0200C738 unk_2C;
     UnkStruct_02009714 * unk_1B8[6];
     UnkStruct_02009DC8 * unk_1D0[6];
-    UnkStruct_ov19_021DA864 unk_1E8;
+    CellActorResourceData unk_1E8;
     UnkStruct_ov97_02234A2C_sub1 unk_20C[30];
     TouchScreenRect unk_374[34];
     GraphicElementData * unk_3FC[4];
@@ -551,17 +551,17 @@ static void ov97_022340B0 (UnkStruct_ov97_02234A2C * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov97_022340FC (UnkStruct_ov115_02261520 * param0, UnkStruct_ov97_02234A2C * param1, UnkStruct_ov19_021DA864 * param2, int param3)
+static void ov97_022340FC (CellActorInitParamsEx * param0, UnkStruct_ov97_02234A2C * param1, CellActorResourceData * param2, int param3)
 {
     param0->manager = param1->unk_28;
     param0->unk_04 = &param1->unk_1E8;
-    param0->unk_08.z = 0;
-    param0->unk_14.x = FX32_ONE;
-    param0->unk_14.y = FX32_ONE;
-    param0->unk_14.z = FX32_ONE;
-    param0->unk_20 = 0;
-    param0->unk_24 = 20;
-    param0->unk_28 = param3;
+    param0->position.z = 0;
+    param0->affineScale.x = FX32_ONE;
+    param0->affineScale.y = FX32_ONE;
+    param0->affineScale.z = FX32_ONE;
+    param0->affineZRotation = 0;
+    param0->priority = 20;
+    param0->vramType = param3;
     param0->unk_2C = 78;
 }
 
@@ -749,7 +749,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
 static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0, v1, v2;
-    UnkStruct_ov115_02261520 v3;
+    CellActorInitParamsEx v3;
 
     ov97_022340FC(&v3, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -759,8 +759,8 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
         for (v1 = 0; v1 < 6; v1++) {
             ov97_02234190(&param0->unk_374[v0], v1 * 40 + 28, v2 * 24 + 40, 28, 28);
 
-            v3.unk_08.x = FX32_ONE * (v1 * 40 + 28);
-            v3.unk_08.y = FX32_ONE * (v2 * 24 + 40);
+            v3.position.x = FX32_ONE * (v1 * 40 + 28);
+            v3.position.y = FX32_ONE * (v2 * 24 + 40);
 
             if (param0->unk_20C[v0].unk_00 == NULL) {
                 param0->unk_20C[v0].unk_00 = GraphicElementManager_AddElement(&v3);
@@ -772,8 +772,8 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
             sub_02021CAC(param0->unk_20C[v0].unk_00, 1);
             sub_02021F58(param0->unk_20C[v0].unk_00, 100 + v0);
 
-            v3.unk_08.x += FX32_ONE * 6;
-            v3.unk_08.y += FX32_ONE * 12;
+            v3.position.x += FX32_ONE * 6;
+            v3.position.y += FX32_ONE * 12;
 
             if (param0->unk_20C[v0].unk_04 == NULL) {
                 param0->unk_20C[v0].unk_04 = GraphicElementManager_AddElement(&v3);
@@ -796,14 +796,14 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
 
 static GraphicElementData * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int param1, int param2, int param3, int param4)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
     GraphicElementData * v1;
 
     ov97_022340FC(&v0, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0.unk_08.x = FX32_ONE * param1;
-    v0.unk_08.y = FX32_ONE * param2;
-    v0.unk_24 = 10;
+    v0.position.x = FX32_ONE * param1;
+    v0.position.y = FX32_ONE * param2;
+    v0.priority = 10;
 
     v1 = GraphicElementManager_AddElement(&v0);
 
@@ -1456,7 +1456,7 @@ static void ov97_02234F88 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0, v1, v2, v3;
     u32 v4;
-    UnkStruct_ov115_02261520 v5;
+    CellActorInitParamsEx v5;
 
     for (v0 = 0; v0 < 30; v0++) {
         sub_02021CAC(param0->unk_20C[v0].unk_00, 0);
@@ -1474,8 +1474,8 @@ static void ov97_02234F88 (UnkStruct_ov97_02234A2C * param0)
     ov97_022340FC(&v5, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v5.unk_08.x = FX32_ONE * (v0 * 40 + 28);
-        v5.unk_08.y = FX32_ONE * 142;
+        v5.position.x = FX32_ONE * (v0 * 40 + 28);
+        v5.position.y = FX32_ONE * 142;
 
         param0->unk_478[v0] = GraphicElementManager_AddElement(&v5);
 

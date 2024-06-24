@@ -378,17 +378,17 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
     NARC_dtor(v1);
 }
 
-void ov94_0223C300 (UnkStruct_ov115_02261520 * param0, UnkStruct_ov94_0223FD4C * param1, UnkStruct_ov19_021DA864 * param2, int param3)
+void ov94_0223C300 (CellActorInitParamsEx * param0, UnkStruct_ov94_0223FD4C * param1, CellActorResourceData * param2, int param3)
 {
     param0->manager = param1->unk_BE4;
     param0->unk_04 = param2;
-    param0->unk_08.z = 0;
-    param0->unk_14.x = FX32_ONE;
-    param0->unk_14.y = FX32_ONE;
-    param0->unk_14.z = FX32_ONE;
-    param0->unk_20 = 0;
-    param0->unk_24 = 1;
-    param0->unk_28 = param3;
+    param0->position.z = 0;
+    param0->affineScale.x = FX32_ONE;
+    param0->affineScale.y = FX32_ONE;
+    param0->affineScale.z = FX32_ONE;
+    param0->affineZRotation = 0;
+    param0->priority = 1;
+    param0->vramType = param3;
     param0->unk_2C = 62;
 }
 

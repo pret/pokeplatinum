@@ -561,18 +561,18 @@ void sub_0205D274 (UnkStruct_0205D274 * param0, UnkStruct_0205D3AC * param1, int
 
 static GraphicElementData * sub_0205D344 (UnkStruct_0205D094 * param0, int param1, VecFx32 * param2, int param3, int param4)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
     GraphicElementData * v1;
     VecFx32 v2 = {FX32_ONE, FX32_ONE, FX32_ONE};
 
-    memset(&v0, 0, sizeof(UnkStruct_ov115_02261520));
+    memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
     v0.manager = param0->unk_00;
     v0.unk_04 = &param0->unk_04->unk_00[param1];
-    v0.unk_08 = *param2;
-    v0.unk_14 = v2;
-    v0.unk_24 = param3;
-    v0.unk_28 = param4;
+    v0.position = *param2;
+    v0.affineScale = v2;
+    v0.priority = param3;
+    v0.vramType = param4;
     v0.unk_2C = 4;
 
     v1 = GraphicElementManager_AddElement(&v0);

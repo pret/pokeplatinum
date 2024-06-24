@@ -347,7 +347,7 @@ static void ov20_021D4B2C (UnkStruct_ov20_021D4B2C * param0)
 
 static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     GraphicElementData * v2;
 
@@ -357,7 +357,7 @@ static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNS
     v0.unk_10 = param3->unk_0C;
     v0.unk_20 = param6;
     v0.unk_04 = NULL;
-    v0.unk_14 = NULL;
+    v0.multiCellBank = NULL;
     v0.unk_18 = NULL;
     v0.unk_1C = 0;
 

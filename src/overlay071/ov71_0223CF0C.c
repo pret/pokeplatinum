@@ -104,30 +104,30 @@ void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
 void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
 {
     int v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
 
     sub_020093B4(&v1, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         u8 v2;
-        UnkStruct_ov115_02261520 v3;
+        CellActorInitParamsEx v3;
 
         v3.manager = param0->unk_00;
         v3.unk_04 = &v1;
-        v3.unk_08.x = 0;
-        v3.unk_08.y = 0;
-        v3.unk_08.z = 0;
-        v3.unk_14.x = FX32_ONE;
-        v3.unk_14.y = FX32_ONE;
-        v3.unk_14.z = FX32_ONE;
-        v3.unk_20 = 0;
-        v3.unk_24 = 2;
-        v3.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v3.position.x = 0;
+        v3.position.y = 0;
+        v3.position.z = 0;
+        v3.affineScale.x = FX32_ONE;
+        v3.affineScale.y = FX32_ONE;
+        v3.affineScale.z = FX32_ONE;
+        v3.affineZRotation = 0;
+        v3.priority = 2;
+        v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v3.unk_2C = 25;
 
         for (v0 = 0; v0 < 8; v0++) {
-            v3.unk_08.x = FX32_ONE * Unk_ov71_0223D73C[v0].unk_00;
-            v3.unk_08.y = FX32_ONE * Unk_ov71_0223D73C[v0].unk_04;
+            v3.position.x = FX32_ONE * Unk_ov71_0223D73C[v0].unk_00;
+            v3.position.y = FX32_ONE * Unk_ov71_0223D73C[v0].unk_04;
             param0->unk_1C0[v0] = GraphicElementManager_AddElement(&v3);
             sub_02021CC8(param0->unk_1C0[v0], 0);
             SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v0], v0);
@@ -141,9 +141,9 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
             v2 = 8;
 
             for (v0 = 0; v0 < 8; v0++) {
-                v3.unk_08.x = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_00;
-                v3.unk_08.y = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_04;
-                v3.unk_24 = 1;
+                v3.position.x = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_00;
+                v3.position.y = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_04;
+                v3.priority = 1;
                 param0->unk_1C0[v2 + v0] = GraphicElementManager_AddElement(&v3);
                 sub_02021CC8(param0->unk_1C0[v2 + v0], 1);
                 SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v2 + v0], 8);
@@ -153,9 +153,9 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
             v2 += 8;
 
             for (v0 = 0; v0 < 8; v0++) {
-                v3.unk_08.x = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_00;
-                v3.unk_08.y = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_04;
-                v3.unk_24 = 1;
+                v3.position.x = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_00;
+                v3.position.y = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_04;
+                v3.priority = 1;
                 param0->unk_1C0[v2 + v0] = GraphicElementManager_AddElement(&v3);
                 sub_02021CC8(param0->unk_1C0[v2 + v0], 1);
                 SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v2 + v0], 9);
@@ -166,9 +166,9 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
 
         {
             v1.unk_20 = 0;
-            v3.unk_08.x = FX32_ONE * (12 * 8);
-            v3.unk_08.y = FX32_ONE * (17 * 8);
-            v3.unk_24 = 0;
+            v3.position.x = FX32_ONE * (12 * 8);
+            v3.position.y = FX32_ONE * (17 * 8);
+            v3.priority = 0;
             param0->unk_1C0[v2] = GraphicElementManager_AddElement(&v3);
             sub_02021CC8(param0->unk_1C0[v2], 0);
             SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v2], 10);

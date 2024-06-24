@@ -103,7 +103,7 @@ void ov19_021DE440 (UnkStruct_ov19_021DE3E8 * param0)
 static void ov19_021DE450 (UnkStruct_ov19_021DE3E8 * param0)
 {
     if (param0->unk_00) {
-        UnkStruct_ov19_021DA864 v0;
+        CellActorResourceData v0;
         NNSG2dImageProxy v1;
         NNSG2dCharacterData * v2;
         void * v3;

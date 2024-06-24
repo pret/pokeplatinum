@@ -645,20 +645,20 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
     sub_020093B4(&param0->unk_268, 2, 2, 2, 2, 0xffffffff, 0xffffffff, 0, 1, param0->unk_1E0[0], param0->unk_1E0[1], param0->unk_1E0[2], param0->unk_1E0[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v1;
+        CellActorInitParamsEx v1;
 
         v1.manager = param0->unk_50;
         v1.unk_04 = &param0->unk_268;
-        v1.unk_08.z = 0;
-        v1.unk_14.x = FX32_ONE;
-        v1.unk_14.y = FX32_ONE;
-        v1.unk_14.z = FX32_ONE;
-        v1.unk_20 = 0;
-        v1.unk_24 = 1;
-        v1.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v1.position.z = 0;
+        v1.affineScale.x = FX32_ONE;
+        v1.affineScale.y = FX32_ONE;
+        v1.affineScale.z = FX32_ONE;
+        v1.affineZRotation = 0;
+        v1.priority = 1;
+        v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v1.unk_2C = 51;
-        v1.unk_08.x = FX32_ONE * Unk_ov59_021D32C4[0][0];
-        v1.unk_08.y = FX32_ONE * Unk_ov59_021D32C4[0][1];
+        v1.position.x = FX32_ONE * Unk_ov59_021D32C4[0][0];
+        v1.position.y = FX32_ONE * Unk_ov59_021D32C4[0][1];
 
         param0->unk_28C[0] = GraphicElementManager_AddElement(&v1);
 
@@ -666,8 +666,8 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
         sub_02021CAC(param0->unk_28C[0], 1);
 
         for (v0 = 0; v0 < 5; v0++) {
-            v1.unk_08.x = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][0];
-            v1.unk_08.y = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][1];
+            v1.position.x = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][0];
+            v1.position.y = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][1];
 
             param0->unk_28C[v0 + 1] = GraphicElementManager_AddElement(&v1);
 
@@ -677,8 +677,8 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
         }
 
         for (v0 = 0; v0 < 5; v0++) {
-            v1.unk_08.x = FX32_ONE * 24;
-            v1.unk_08.y = FX32_ONE * (32 + 32 * v0) + (256 * FX32_ONE);
+            v1.position.x = FX32_ONE * 24;
+            v1.position.y = FX32_ONE * (32 + 32 * v0) + (256 * FX32_ONE);
         }
     }
 

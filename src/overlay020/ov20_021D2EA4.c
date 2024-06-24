@@ -213,7 +213,7 @@ static void ov20_021D312C (UnkStruct_ov20_021D30F8 * param0)
 
 static void ov20_021D3184 (UnkStruct_ov20_021D30F8 * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov20_021D34CC v1;
 
     if (param0->unk_5C) {

@@ -2756,7 +2756,7 @@ static void ov9_0224B124 (SysTask * param0, void * param1)
 
 static GraphicElementData * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     GraphicElementData * v2;
 

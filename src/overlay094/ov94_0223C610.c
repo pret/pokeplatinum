@@ -306,12 +306,12 @@ static const u16 Unk_ov94_02245A48[][2] = {
 
 static void ov94_0223C950 (UnkStruct_ov94_0223FD4C * param0)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
 
     ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0.unk_08.x = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][0];
-    v0.unk_08.y = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][1];
+    v0.position.x = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][0];
+    v0.position.y = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][1];
 
     param0->unk_E20 = GraphicElementManager_AddElement(&v0);
 

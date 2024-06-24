@@ -103,8 +103,8 @@ struct UnkStruct_02087A10_t {
     UnkStruct_0200C738 unk_18C;
     UnkStruct_02009714 * unk_318[4];
     UnkStruct_02009DC8 * unk_328[2][4];
-    UnkStruct_ov19_021DA864 unk_348;
-    UnkStruct_ov19_021DA864 unk_36C;
+    CellActorResourceData unk_348;
+    CellActorResourceData unk_36C;
     GraphicElementData * unk_390[14];
     GraphicElementData * unk_3C8[12];
     GraphicElementData * unk_3F8[2];
@@ -192,7 +192,7 @@ static void sub_02087CDC(SysTask * param0, void * param1);
 static void sub_02086B30(NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3);
 static void sub_0208732C(int param0);
 static void sub_02087544(UnkStruct_02087A10 * param0, OverlayManager * param1);
-static void sub_02087BE4(UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1);
+static void sub_02087BE4(UnkStruct_02087A10 * param0, CellActorInitParamsEx * param1);
 static void sub_02086E6C(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
 static void sub_02087F48(Window * param0, int param1, Strbuf *param2);
 static void sub_02088FD0(UnkStruct_02087A10 * param0);
@@ -1608,24 +1608,24 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
     sub_020093B4(&param0->unk_36C, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v1;
+        CellActorInitParamsEx v1;
 
         v1.manager = param0->unk_188;
         v1.unk_04 = &param0->unk_348;
-        v1.unk_08.x = FX32_CONST(32);
-        v1.unk_08.y = FX32_CONST(96);
-        v1.unk_08.z = 0;
-        v1.unk_14.x = FX32_ONE;
-        v1.unk_14.y = FX32_ONE;
-        v1.unk_14.z = FX32_ONE;
-        v1.unk_20 = 0;
-        v1.unk_24 = 1;
-        v1.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v1.position.x = FX32_CONST(32);
+        v1.position.y = FX32_CONST(96);
+        v1.position.z = 0;
+        v1.affineScale.x = FX32_ONE;
+        v1.affineScale.y = FX32_ONE;
+        v1.affineScale.z = FX32_ONE;
+        v1.affineZRotation = 0;
+        v1.priority = 1;
+        v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v1.unk_2C = 18;
 
         for (v0 = 0; v0 < 9; v0++) {
-            v1.unk_08.x = FX32_ONE * Unk_020F2984[v0][0];
-            v1.unk_08.y = FX32_ONE * Unk_020F2984[v0][1];
+            v1.position.x = FX32_ONE * Unk_020F2984[v0][0];
+            v1.position.y = FX32_ONE * Unk_020F2984[v0][1];
 
             param0->unk_390[v0] = GraphicElementManager_AddElement(&v1);
 
@@ -1649,8 +1649,8 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         }
 
         for (v0 = 0; v0 < param0->unk_0C; v0++) {
-            v1.unk_08.x = FX32_ONE * ((10 * 8) + v0 * 12);
-            v1.unk_08.y = FX32_ONE * (4 * 8 + 7);
+            v1.position.x = FX32_ONE * ((10 * 8) + v0 * 12);
+            v1.position.y = FX32_ONE * (4 * 8 + 7);
 
             param0->unk_3C8[v0] = GraphicElementManager_AddElement(&v1);
 
@@ -1666,10 +1666,10 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1)
+static void sub_02087BE4 (UnkStruct_02087A10 * param0, CellActorInitParamsEx * param1)
 {
-    param1->unk_08.x = FX32_ONE * 24;
-    param1->unk_08.y = FX32_ONE * (16 - 8);
+    param1->position.x = FX32_ONE * 24;
+    param1->position.y = FX32_ONE * (16 - 8);
     param0->unk_3F8[0] = GraphicElementManager_AddElement(param1);
 
     sub_02021CC8(param0->unk_3F8[0], 1);
@@ -1702,8 +1702,8 @@ static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 
         SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 50);
 
         if (param0->unk_10 != 2) {
-            param1->unk_08.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
-            param1->unk_08.y = FX32_ONE * ((4 * 8 + 7) - 12);
+            param1->position.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
+            param1->position.y = FX32_ONE * ((4 * 8 + 7) - 12);
             param0->unk_3F8[1] = GraphicElementManager_AddElement(param1);
 
             if (param0->unk_10 == 0) {

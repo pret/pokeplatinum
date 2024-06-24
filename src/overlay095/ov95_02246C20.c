@@ -634,7 +634,7 @@ void ov95_022475A0 (UnkStruct_ov95_02247568 * param0)
     }
 }
 
-void ov95_022475C4 (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov95_02247568 * param1, NNSG2dImageProxy * param2, NNSG2dImagePaletteProxy * param3, u32 param4)
+void ov95_022475C4 (CellActorResourceData * param0, UnkStruct_ov95_02247568 * param1, NNSG2dImageProxy * param2, NNSG2dImagePaletteProxy * param3, u32 param4)
 {
     param0->unk_00 = param2;
     param0->unk_08 = param3;
@@ -642,12 +642,12 @@ void ov95_022475C4 (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov95_02247568 * 
     param0->unk_10 = param1->unk_0C;
     param0->unk_20 = param4;
     param0->unk_04 = NULL;
-    param0->unk_14 = NULL;
+    param0->multiCellBank = NULL;
     param0->unk_18 = NULL;
     param0->unk_1C = 0;
 }
 
-GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     GraphicElementData * v0;
     UnkStruct_ov83_0223D9A8 v1;

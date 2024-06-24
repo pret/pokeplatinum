@@ -728,14 +728,14 @@ static void sub_020130DC (FontOAM * param0)
 static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2)
 {
     UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
 
     v1.unk_00 = param2;
     v1.unk_04 = NULL;
     v1.unk_08 = param0->unk_0C;
     v1.unk_0C = param0->unk_00->unk_30[param1->unk_08];
     v1.unk_10 = NULL;
-    v1.unk_14 = NULL;
+    v1.multiCellBank = NULL;
     v1.unk_18 = NULL;
     v1.unk_1C = 0;
     v1.unk_20 = param0->unk_20;

@@ -33,8 +33,8 @@ struct UnkStruct_02095EAC_t {
     UnkStruct_0200C738 unk_38;
     UnkStruct_02009714 * unk_1C4[4];
     UnkStruct_02009DC8 * unk_1D4[2][4];
-    UnkStruct_ov19_021DA864 unk_1F4;
-    UnkStruct_ov19_021DA864 unk_218;
+    CellActorResourceData unk_1F4;
+    CellActorResourceData unk_218;
     GraphicElementData * unk_23C[14];
     GraphicElementData * unk_274[14];
     GraphicElementData * unk_2AC[12];

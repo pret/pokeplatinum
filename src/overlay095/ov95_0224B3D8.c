@@ -523,7 +523,7 @@ static void ov95_0224BAE8 (UnkStruct_ov95_0224B4D4 * param0)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
-    UnkStruct_ov19_021DA864 v2;
+    CellActorResourceData v2;
 
     ov95_02247568(&param0->unk_48, 93, 7, 8);
 

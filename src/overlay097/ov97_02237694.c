@@ -443,23 +443,23 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
     UnkStruct_ov97_0223F550 * v0 = &Unk_ov97_0223F550;
 
     if (param1 == NULL) {
-        UnkStruct_ov115_02261520 v1;
+        CellActorInitParamsEx v1;
 
         v1.manager = v0->unk_34.unk_00;
         v1.unk_04 = &v0->unk_34.unk_1D8[param0];
-        v1.unk_08.z = 0;
-        v1.unk_14.x = FX32_ONE;
-        v1.unk_14.y = FX32_ONE;
-        v1.unk_14.z = FX32_ONE;
-        v1.unk_20 = 0;
-        v1.unk_08.x = FX32_ONE * param2;
-        v1.unk_08.y = FX32_ONE * param3;
-        v1.unk_24 = 10;
-        v1.unk_28 = (param0 == 0) ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
+        v1.position.z = 0;
+        v1.affineScale.x = FX32_ONE;
+        v1.affineScale.y = FX32_ONE;
+        v1.affineScale.z = FX32_ONE;
+        v1.affineZRotation = 0;
+        v1.position.x = FX32_ONE * param2;
+        v1.position.y = FX32_ONE * param3;
+        v1.priority = 10;
+        v1.vramType = (param0 == 0) ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
         v1.unk_2C = v0->unk_08;
 
-        if (v1.unk_28 == NNS_G2D_VRAM_TYPE_2DSUB) {
-            v1.unk_08.y += v0->unk_274;
+        if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
+            v1.position.y += v0->unk_274;
         }
 
         param1 = GraphicElementManager_AddElement(&v1);

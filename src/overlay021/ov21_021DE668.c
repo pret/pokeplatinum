@@ -548,7 +548,7 @@ static void ov21_021DEE38 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 
 static void ov21_021DEE80 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1, int param2)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
 
@@ -634,7 +634,7 @@ static void ov21_021DF054 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 
 static void ov21_021DF098 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1, const UnkStruct_ov21_021DE6D4 * param2, int param3)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3 = ov21_021D37BC(param2->unk_04);
@@ -745,7 +745,7 @@ static void ov21_021DF1F8 (UnkStruct_ov21_021DF374 * param0)
 
 static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1, const UnkStruct_ov21_021DE6D4 * param2, int param3)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov83_0223D9A8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3 = ov21_021D37BC(param2->unk_04);

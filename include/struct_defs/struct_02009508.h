@@ -4,7 +4,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 
 typedef struct {
-    UnkStruct_ov19_021DA864 * unk_00;
+    CellActorResourceData * unk_00;
     int unk_04;
 } UnkStruct_02009508;
 

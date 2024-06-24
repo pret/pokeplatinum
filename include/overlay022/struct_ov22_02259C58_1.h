@@ -6,7 +6,7 @@
 #include "overlay022/funcptr_ov22_02259D78.h"
 
 typedef struct {
-    UnkStruct_ov115_02261520 * unk_00;
+    CellActorInitParamsEx * unk_00;
     UnkFuncPtr_ov22_02259D78 unk_04;
     void * unk_08;
     int unk_0C;

@@ -56,8 +56,8 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    UnkStruct_ov115_02261520 unk_10;
-    UnkStruct_ov19_021DA864 unk_40;
+    CellActorInitParamsEx unk_10;
+    CellActorResourceData unk_40;
 } UnkStruct_ov5_021D6690;
 
 typedef struct {
@@ -259,7 +259,7 @@ static void ov5_021D630C(GraphicElementData * param0, VecFx32 * param1);
 static void ov5_021D6FA8(UnkStruct_ov5_021D6FA8 * param0);
 static void ov5_021D6FD8(UnkStruct_ov5_021D6FA8 * param0);
 static UnkStruct_ov5_021D6FA8 * ov5_021D6F00(UnkStruct_ov5_021DB4B8 * param0, int param1);
-static void ov5_021D6F4C(UnkStruct_ov19_021DA864 * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4);
+static void ov5_021D6F4C(CellActorResourceData * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4);
 static BOOL ov5_021D6A48(UnkStruct_ov5_021D6594 * param0, UnkStruct_ov5_021D69B8 * param1);
 static void ov5_021D6FF0(UnkStruct_ov5_021D6FA8 * param0, UnkFuncPtr_ov5_021D6FF0 param1);
 static void ov5_021D700C(UnkStruct_ov5_021DB4B8 * param0);
@@ -1462,13 +1462,13 @@ static void ov5_021D6CDC (UnkStruct_ov5_021D6594 * param0, UnkStruct_ov5_021D69B
 {
     if (param1->unk_00 != 0xffff) {
         ov5_021D6F4C(&param1->unk_0C->unk_40, param0, param1->unk_0C, 0, 1);
-        memset(&param1->unk_0C->unk_10, 0, sizeof(UnkStruct_ov115_02261520));
+        memset(&param1->unk_0C->unk_10, 0, sizeof(CellActorInitParamsEx));
         param1->unk_0C->unk_10.manager = param0->unk_08.unk_130;
         param1->unk_0C->unk_10.unk_04 = &param1->unk_0C->unk_40;
-        param1->unk_0C->unk_10.unk_14.x = FX32_ONE;
-        param1->unk_0C->unk_10.unk_14.y = FX32_ONE;
-        param1->unk_0C->unk_10.unk_14.z = FX32_ONE;
-        param1->unk_0C->unk_10.unk_28 = 1;
+        param1->unk_0C->unk_10.affineScale.x = FX32_ONE;
+        param1->unk_0C->unk_10.affineScale.y = FX32_ONE;
+        param1->unk_0C->unk_10.affineScale.z = FX32_ONE;
+        param1->unk_0C->unk_10.vramType = 1;
     }
 }
 
@@ -1594,7 +1594,7 @@ static UnkStruct_ov5_021D6FA8 * ov5_021D6F00 (UnkStruct_ov5_021DB4B8 * param0, i
     return v0;
 }
 
-static void ov5_021D6F4C (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4)
+static void ov5_021D6F4C (CellActorResourceData * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4)
 {
     int v0[4];
     int v1;

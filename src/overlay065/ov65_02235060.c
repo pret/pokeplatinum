@@ -679,16 +679,16 @@ static void ov65_02235A60 (UnkStruct_ov65_022358CC * param0)
 
 static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
 
-    memset(&v0, 0, sizeof(UnkStruct_ov115_02261520));
+    memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
     v0.manager = param0->unk_00;
     v0.unk_04 = &param0->unk_1A0.unk_10;
-    v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_14.x = FX32_ONE;
-    v0.unk_14.y = FX32_ONE;
-    v0.unk_24 = 0;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.affineScale.x = FX32_ONE;
+    v0.affineScale.y = FX32_ONE;
+    v0.priority = 0;
     v0.unk_2C = param1;
 
     param0->unk_1A0.unk_34 = GraphicElementManager_AddElement(&v0);
