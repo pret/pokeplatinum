@@ -100,15 +100,15 @@ void ov20_021D2EF0 (UnkStruct_ov20_021D30F8 * param0)
     }
 
     if (param0->unk_3C) {
-        sub_02021BD4(param0->unk_3C);
+        GraphicElementData_Delete(param0->unk_3C);
     }
 
     if (param0->unk_40) {
-        sub_02021BD4(param0->unk_40);
+        GraphicElementData_Delete(param0->unk_40);
     }
 
     if (param0->unk_44) {
-        sub_02021BD4(param0->unk_44);
+        GraphicElementData_Delete(param0->unk_44);
     }
 
     if (param0->unk_48) {

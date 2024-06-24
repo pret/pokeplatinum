@@ -411,7 +411,7 @@ static void ov6_0224339C (UnkStruct_ov6_02243258 * param0)
     Heap_FreeToHeap(param0->unk_1AC);
     Heap_FreeToHeap(param0->unk_1B0);
     Heap_FreeToHeap(param0->unk_1B4);
-    sub_020219C0(param0->unk_08);
+    GraphicElementManager_DeleteAll(param0->unk_08);
     GraphicElementManager_Delete(param0->unk_08);
 }
 
@@ -658,7 +658,7 @@ static void ov6_022438EC (UnkStruct_ov101_021D5D90 * param0)
 static void ov6_02243914 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov6_02249110 * v0 = param1;
-    sub_02021BD4(v0->unk_68);
+    GraphicElementData_Delete(v0->unk_68);
 }
 
 static void ov6_02243920 (UnkStruct_ov101_021D5D90 * param0, void * param1)
@@ -1828,7 +1828,7 @@ static void ov6_02244B6C (UnkStruct_ov6_02243FFC * param0)
     sub_02009754(param0->unk_204);
     sub_02009754(param0->unk_208);
     sub_02009754(param0->unk_20C);
-    sub_020219C0(param0->unk_70);
+    GraphicElementManager_DeleteAll(param0->unk_70);
     GraphicElementManager_Delete(param0->unk_70);
 }
 
@@ -2255,7 +2255,7 @@ static int ov6_02245364 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov6_022453AC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov6_02245364 * v0 = param1;
-    sub_02021BD4(v0->unk_08);
+    GraphicElementData_Delete(v0->unk_08);
 }
 
 static void ov6_022453B8 (UnkStruct_ov101_021D5D90 * param0, void * param1)
@@ -2348,7 +2348,7 @@ static int ov6_022454B0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov6_022454DC (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov6_02249198 * v0 = param1;
-    sub_02021BD4(v0->unk_58);
+    GraphicElementData_Delete(v0->unk_58);
 }
 
 static void ov6_022454E8 (UnkStruct_ov101_021D5D90 * param0, void * param1)

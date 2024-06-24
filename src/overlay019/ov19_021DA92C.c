@@ -138,7 +138,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
     }
 
     if (param0->unk_30) {
-        sub_02021BD4(param0->unk_30);
+        GraphicElementData_Delete(param0->unk_30);
     }
 
     if (param0->unk_34) {
@@ -147,7 +147,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_3C[v0] != NULL) {
-            sub_02021BD4(param0->unk_3C[v0]);
+            GraphicElementData_Delete(param0->unk_3C[v0]);
         }
     }
 

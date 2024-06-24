@@ -415,7 +415,7 @@ static void ov19_021D8114 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param1->unk_00 != NULL) {
-            sub_02021BD4(param1->unk_00);
+            GraphicElementData_Delete(param1->unk_00);
             param1->unk_00 = NULL;
         }
 

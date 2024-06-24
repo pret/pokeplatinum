@@ -249,25 +249,25 @@ static void ov97_02230410 (UnkStruct_ov97_02230868 * param0)
 static void ov97_02230438 (UnkStruct_ov97_02230868 * param0)
 {
     if (param0->unk_2E88[0]) {
-        sub_02021BD4(param0->unk_2E88[0]);
+        GraphicElementData_Delete(param0->unk_2E88[0]);
     }
 
     if (param0->unk_2E88[1]) {
-        sub_02021BD4(param0->unk_2E88[1]);
+        GraphicElementData_Delete(param0->unk_2E88[1]);
     }
 
     param0->unk_2E88[0] = param0->unk_2E88[1] = NULL;
 
     if (param0->unk_2E90[0]) {
-        sub_02021BD4(param0->unk_2E90[0]);
+        GraphicElementData_Delete(param0->unk_2E90[0]);
     }
 
     if (param0->unk_2E90[1]) {
-        sub_02021BD4(param0->unk_2E90[1]);
+        GraphicElementData_Delete(param0->unk_2E90[1]);
     }
 
     if (param0->unk_2E90[2]) {
-        sub_02021BD4(param0->unk_2E90[2]);
+        GraphicElementData_Delete(param0->unk_2E90[2]);
     }
 
     param0->unk_2E90[0] = param0->unk_2E90[1] = param0->unk_2E90[2] = NULL;

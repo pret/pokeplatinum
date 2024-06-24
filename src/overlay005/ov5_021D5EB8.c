@@ -1463,7 +1463,7 @@ static void ov5_021D6CDC (UnkStruct_ov5_021D6594 * param0, UnkStruct_ov5_021D69B
     if (param1->unk_00 != 0xffff) {
         ov5_021D6F4C(&param1->unk_0C->unk_40, param0, param1->unk_0C, 0, 1);
         memset(&param1->unk_0C->unk_10, 0, sizeof(UnkStruct_ov115_02261520));
-        param1->unk_0C->unk_10.unk_00 = param0->unk_08.unk_130;
+        param1->unk_0C->unk_10.manager = param0->unk_08.unk_130;
         param1->unk_0C->unk_10.unk_04 = &param1->unk_0C->unk_40;
         param1->unk_0C->unk_10.unk_14.x = FX32_ONE;
         param1->unk_0C->unk_10.unk_14.y = FX32_ONE;
@@ -1489,7 +1489,7 @@ static void ov5_021D6D64 (UnkStruct_ov5_021DB4B8 * param0)
 
     for (v0 = 0; v0 < 48; v0++) {
         if (param0->unk_48[v0].unk_04) {
-            sub_02021BD4(param0->unk_48[v0].unk_04);
+            GraphicElementData_Delete(param0->unk_48[v0].unk_04);
             param0->unk_48[v0].unk_04 = NULL;
         }
     }

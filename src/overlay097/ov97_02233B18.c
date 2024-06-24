@@ -553,7 +553,7 @@ static void ov97_022340B0 (UnkStruct_ov97_02234A2C * param0)
 
 static void ov97_022340FC (UnkStruct_ov115_02261520 * param0, UnkStruct_ov97_02234A2C * param1, UnkStruct_ov19_021DA864 * param2, int param3)
 {
-    param0->unk_00 = param1->unk_28;
+    param0->manager = param1->unk_28;
     param0->unk_04 = &param1->unk_1E8;
     param0->unk_08.z = 0;
     param0->unk_14.x = FX32_ONE;
@@ -1519,7 +1519,7 @@ static void ov97_02235178 (UnkStruct_ov97_02234A2C * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02021BD4(param0->unk_478[v0]);
+        GraphicElementData_Delete(param0->unk_478[v0]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -1545,30 +1545,30 @@ static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
 
     for (v0 = 0; v0 < 30; v0++) {
         if (param0->unk_20C[v0].unk_00) {
-            sub_02021BD4(param0->unk_20C[v0].unk_00);
+            GraphicElementData_Delete(param0->unk_20C[v0].unk_00);
         }
 
         if (param0->unk_20C[v0].unk_04) {
-            sub_02021BD4(param0->unk_20C[v0].unk_04);
+            GraphicElementData_Delete(param0->unk_20C[v0].unk_04);
         }
     }
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_42C[v0].unk_00) {
-            sub_02021BD4(param0->unk_42C[v0].unk_00);
+            GraphicElementData_Delete(param0->unk_42C[v0].unk_00);
         }
     }
 
     if (param0->unk_3FC[0]) {
-        sub_02021BD4(param0->unk_3FC[0]);
+        GraphicElementData_Delete(param0->unk_3FC[0]);
     }
 
     if (param0->unk_41C[0]) {
-        sub_02021BD4(param0->unk_41C[0]);
+        GraphicElementData_Delete(param0->unk_41C[0]);
     }
 
     if (param0->unk_40C[0]) {
-        sub_02021BD4(param0->unk_40C[0]);
+        GraphicElementData_Delete(param0->unk_40C[0]);
     }
 
     ov97_02235158(&param0->unk_4DC);

@@ -895,7 +895,7 @@ static void ov86_0223BD68 (UnkStruct_ov86_0223B3C8 * param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021BD4(param0->unk_1B4[v0]);
+        GraphicElementData_Delete(param0->unk_1B4[v0]);
     }
 
     Heap_FreeToHeap(param0->unk_1D4);

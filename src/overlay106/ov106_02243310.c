@@ -84,7 +84,7 @@ GraphicElementData * ov106_022434BC (UnkStruct_ov106_02243310 * param0, u32 para
     {
         UnkStruct_ov115_02261520 v3;
 
-        v3.unk_00 = param0->unk_00;
+        v3.manager = param0->unk_00;
         v3.unk_04 = &v1;
 
         v3.unk_08.x = 0;

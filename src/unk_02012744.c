@@ -721,7 +721,7 @@ static void sub_020130DC (FontOAM * param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021BD4(param0->unk_00[v0].unk_00);
+        GraphicElementData_Delete(param0->unk_00[v0].unk_00);
     }
 }
 

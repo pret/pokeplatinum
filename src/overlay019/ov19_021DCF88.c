@@ -395,11 +395,11 @@ void ov19_021DD078 (UnkStruct_ov19_021DCF88 * param0)
         }
 
         if (param0->unk_2C) {
-            sub_02021BD4(param0->unk_2C);
+            GraphicElementData_Delete(param0->unk_2C);
         }
 
         if (param0->unk_30) {
-            sub_02021BD4(param0->unk_30);
+            GraphicElementData_Delete(param0->unk_30);
         }
 
         if (param0->unk_84 != NULL) {
@@ -408,13 +408,13 @@ void ov19_021DD078 (UnkStruct_ov19_021DCF88 * param0)
 
         for (v0 = 0; v0 < 8; v0++) {
             if (param0->unk_34[v0]) {
-                sub_02021BD4(param0->unk_34[v0]);
+                GraphicElementData_Delete(param0->unk_34[v0]);
             }
         }
 
         for (v0 = 0; v0 < 10; v0++) {
             if (param0->unk_54[v0]) {
-                sub_02021BD4(param0->unk_54[v0]);
+                GraphicElementData_Delete(param0->unk_54[v0]);
             }
         }
 
@@ -911,7 +911,7 @@ static void ov19_021DD998 (UnkStruct_ov19_021DCF88 * param0)
 
     for (v0 = 0; v0 < 10; v0++) {
         if (param0->unk_54[v0]) {
-            sub_02021BD4(param0->unk_54[v0]);
+            GraphicElementData_Delete(param0->unk_54[v0]);
             param0->unk_54[v0] = NULL;
         }
     }
@@ -960,7 +960,7 @@ static void ov19_021DDA7C (UnkStruct_ov19_021DCF88 * param0)
 
     for (v0 = 0; v0 < 8; v0++) {
         if (param0->unk_34[v0]) {
-            sub_02021BD4(param0->unk_34[v0]);
+            GraphicElementData_Delete(param0->unk_34[v0]);
             param0->unk_34[v0] = NULL;
         }
     }

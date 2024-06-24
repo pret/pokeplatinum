@@ -549,7 +549,7 @@ static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_40[v0]) {
-            sub_02021BD4(param0->unk_40[v0]);
+            GraphicElementData_Delete(param0->unk_40[v0]);
         }
     }
 

@@ -139,7 +139,7 @@ void ov101_021D7FB4 (UnkStruct_ov101_021D7E48 * param0)
     Heap_FreeToHeap(param0->unk_1BC);
     sub_0201DC3C();
     sub_0201DCF0(param0->unk_19C);
-    sub_020219C0(param0->unk_0C);
+    GraphicElementManager_DeleteAll(param0->unk_0C);
     GraphicElementManager_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
 }
@@ -358,7 +358,7 @@ void ov101_021D8544 (UnkStruct_ov101_021D8544 * param0)
         sub_0200A5B4(param0->unk_08);
     }
 
-    sub_02021BD4(param0->unk_04);
+    GraphicElementData_Delete(param0->unk_04);
     param0->unk_04 = NULL;
 }
 

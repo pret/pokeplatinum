@@ -645,7 +645,7 @@ static void ov109_021D4518 (UnkStruct_ov109_021D5140 * param0)
     {
         UnkStruct_ov115_02261520 v1;
 
-        v1.unk_00 = param0->unk_60;
+        v1.manager = param0->unk_60;
         v1.unk_04 = &param0->unk_278;
         v1.unk_08.z = 0;
         v1.unk_14.x = FX32_ONE;

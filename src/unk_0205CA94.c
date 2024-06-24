@@ -567,7 +567,7 @@ static GraphicElementData * sub_0205D344 (UnkStruct_0205D094 * param0, int param
 
     memset(&v0, 0, sizeof(UnkStruct_ov115_02261520));
 
-    v0.unk_00 = param0->unk_00;
+    v0.manager = param0->unk_00;
     v0.unk_04 = &param0->unk_04->unk_00[param1];
     v0.unk_08 = *param2;
     v0.unk_14 = v2;
@@ -606,7 +606,7 @@ void sub_0205D404 (struct UnkStruct_0205D3AC_t * param0)
     UnkStruct_0205D3C4 * v0 = (UnkStruct_0205D3C4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
-        sub_02021BD4(v0->unk_0C);
+        GraphicElementData_Delete(v0->unk_0C);
         Heap_FreeToHeapExplicit(4, param0->unk_00);
 
         param0->unk_00 = NULL;
@@ -655,7 +655,7 @@ void sub_0205D4E0 (struct UnkStruct_0205D3AC_t * param0)
     UnkStruct_0205D4A4 * v0 = (UnkStruct_0205D4A4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
-        sub_02021BD4(v0->unk_0C);
+        GraphicElementData_Delete(v0->unk_0C);
         Heap_FreeToHeapExplicit(4, param0->unk_00);
 
         param0->unk_00 = NULL;
@@ -694,7 +694,7 @@ void sub_0205D564 (struct UnkStruct_0205D3AC_t * param0)
     UnkStruct_0205D3C4 * v0 = (UnkStruct_0205D3C4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
-        sub_02021BD4(v0->unk_0C);
+        GraphicElementData_Delete(v0->unk_0C);
         Heap_FreeToHeapExplicit(4, param0->unk_00);
         param0->unk_00 = NULL;
     }
@@ -746,7 +746,7 @@ void sub_0205D624 (struct UnkStruct_0205D3AC_t * param0)
     UnkStruct_0205D5E0 * v0 = (UnkStruct_0205D5E0 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
-        sub_02021BD4(v0->unk_0C);
+        GraphicElementData_Delete(v0->unk_0C);
         Heap_FreeToHeapExplicit(4, param0->unk_00);
 
         param0->unk_00 = NULL;
@@ -828,7 +828,7 @@ void sub_0205D768 (struct UnkStruct_0205D3AC_t * param0)
     UnkStruct_0205D5E0 * v0 = (UnkStruct_0205D5E0 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
-        sub_02021BD4(v0->unk_0C);
+        GraphicElementData_Delete(v0->unk_0C);
         Heap_FreeToHeapExplicit(4, param0->unk_00);
         param0->unk_00 = NULL;
     }
@@ -894,7 +894,7 @@ void sub_0205D888 (struct UnkStruct_0205D3AC_t * param0)
     UnkStruct_0205D4A4 * v0 = (UnkStruct_0205D4A4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
-        sub_02021BD4(v0->unk_0C);
+        GraphicElementData_Delete(v0->unk_0C);
         Heap_FreeToHeapExplicit(4, param0->unk_00);
         param0->unk_00 = NULL;
     }

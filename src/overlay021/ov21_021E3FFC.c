@@ -603,10 +603,10 @@ static void ov21_021E4868 (UnkStruct_ov21_021E4360 * param0)
 
     for (v0 = 0; v0 < 9; v0++) {
         for (v1 = 0; v1 < 9; v1++) {
-            sub_02021BD4(param0->unk_20[v0].unk_00[v1].unk_00);
+            GraphicElementData_Delete(param0->unk_20[v0].unk_00[v1].unk_00);
         }
 
-        sub_02021BD4(param0->unk_20[v0].unk_48.unk_00);
+        GraphicElementData_Delete(param0->unk_20[v0].unk_48.unk_00);
     }
 }
 

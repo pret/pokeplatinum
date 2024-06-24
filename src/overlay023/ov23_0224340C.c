@@ -3273,7 +3273,7 @@ static void ov23_02246370 (int param0)
 
     for (v0 = 0; v0 < param0; v0++) {
         if (Unk_ov23_02257764->unk_25C[v0] != NULL) {
-            sub_02021BD4(Unk_ov23_02257764->unk_25C[v0]);
+            GraphicElementData_Delete(Unk_ov23_02257764->unk_25C[v0]);
             Unk_ov23_02257764->unk_25C[v0] = NULL;
         }
     }
@@ -3317,7 +3317,7 @@ static void ov23_0224644C (int param0)
         UnkStruct_ov115_02261520 v0;
         int v1;
 
-        v0.unk_00 = Unk_ov23_02257764->unk_44;
+        v0.manager = Unk_ov23_02257764->unk_44;
         v0.unk_04 = &Unk_ov23_02257764->unk_238;
         v0.unk_08.x = FX32_CONST(32);
         v0.unk_08.y = FX32_CONST(96);
@@ -3350,7 +3350,7 @@ static void ov23_0224644C (int param0)
 static void ov23_02246548 (int param0)
 {
     if (Unk_ov23_02257764->unk_25C[param0]) {
-        sub_02021BD4(Unk_ov23_02257764->unk_25C[param0]);
+        GraphicElementData_Delete(Unk_ov23_02257764->unk_25C[param0]);
         Unk_ov23_02257764->unk_25C[param0] = NULL;
     }
 }
@@ -3667,7 +3667,7 @@ static void ov23_02246D44 (UnkStruct_ov23_022468DC * param0)
         UnkStruct_ov115_02261520 v0;
         int v1;
 
-        v0.unk_00 = Unk_ov23_02257764->unk_44;
+        v0.manager = Unk_ov23_02257764->unk_44;
         v0.unk_04 = &Unk_ov23_02257764->unk_238;
         v0.unk_08.x = FX32_CONST(32);
         v0.unk_08.y = FX32_CONST(96);
@@ -3845,7 +3845,7 @@ static void ov23_022471D8 (UnkStruct_ov23_022471D8 * param0)
         UnkStruct_ov115_02261520 v0;
         int v1;
 
-        v0.unk_00 = Unk_ov23_02257764->unk_44;
+        v0.manager = Unk_ov23_02257764->unk_44;
         v0.unk_04 = &Unk_ov23_02257764->unk_238;
         v0.unk_08.x = FX32_CONST(32);
         v0.unk_08.y = FX32_CONST(96);
@@ -4314,7 +4314,7 @@ static void ov23_02247E38 (UnkStruct_ov23_02247E38 * param0)
         UnkStruct_ov115_02261520 v0;
         int v1;
 
-        v0.unk_00 = Unk_ov23_02257764->unk_44;
+        v0.manager = Unk_ov23_02257764->unk_44;
         v0.unk_04 = &Unk_ov23_02257764->unk_238;
         v0.unk_08.x = FX32_CONST(32);
         v0.unk_08.y = FX32_CONST(96);
@@ -4774,7 +4774,7 @@ static void ov23_02248748 (UnkStruct_ov23_02248748 * param0)
         UnkStruct_ov115_02261520 v0;
         int v1;
 
-        v0.unk_00 = Unk_ov23_02257764->unk_44;
+        v0.manager = Unk_ov23_02257764->unk_44;
         v0.unk_04 = &Unk_ov23_02257764->unk_238;
         v0.unk_08.x = FX32_CONST(32);
         v0.unk_08.y = FX32_CONST(96);
@@ -4850,7 +4850,7 @@ static void ov23_02248884 (SysTask * param0, void * param1)
 
         for (v1 = 0; v1 < 25; v1++) {
             if (Unk_ov23_02257764->unk_25C[v1] != NULL) {
-                sub_02021BD4(Unk_ov23_02257764->unk_25C[v1]);
+                GraphicElementData_Delete(Unk_ov23_02257764->unk_25C[v1]);
             }
 
             Unk_ov23_02257764->unk_25C[v1] = NULL;

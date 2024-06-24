@@ -1132,7 +1132,7 @@ void ov114_0225CB38 (UnkStruct_ov114_0225CAD4 * param0)
     }
 
     if (param0->unk_30 != NULL) {
-        sub_02021BD4(param0->unk_30);
+        GraphicElementData_Delete(param0->unk_30);
     }
 
     ov114_0225FBF0(&param0->unk_34);
@@ -2067,12 +2067,12 @@ static void ov114_0225DD94 (UnkStruct_ov114_0225DAC0 * param0)
 static void ov114_0225DDA0 (UnkStruct_ov114_0225DAC0 * param0)
 {
     if (param0->unk_10) {
-        sub_02021BD4(param0->unk_10);
+        GraphicElementData_Delete(param0->unk_10);
         param0->unk_10 = NULL;
     }
 
     if (param0->unk_14) {
-        sub_02021BD4(param0->unk_14);
+        GraphicElementData_Delete(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
@@ -3431,7 +3431,7 @@ static void ov114_0225F578 (UnkStruct_ov114_0225F578 * param0)
         int v0;
 
         for (v0 = 0; v0 < (5 * 3); v0++) {
-            sub_02021BD4(param0->unk_08[v0]);
+            GraphicElementData_Delete(param0->unk_08[v0]);
         }
     }
 
@@ -3763,7 +3763,7 @@ static void ov114_0225FBF0 (UnkStruct_ov114_0225FAB8 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_00[v0] != NULL) {
-            sub_02021BD4(param0->unk_00[v0]);
+            GraphicElementData_Delete(param0->unk_00[v0]);
             param0->unk_00[v0] = NULL;
         }
     }
@@ -3907,7 +3907,7 @@ static void ov114_0225FDC8 (SysTask * param0, void * param1)
         v1 = ov114_0225FAD8(&v0->unk_34);
 
         if (v1 == 1) {
-            sub_02021BD4(v0->unk_30);
+            GraphicElementData_Delete(v0->unk_30);
             v0->unk_30 = NULL;
             v0->unk_04++;
             v0->unk_06 = 0;
@@ -3966,7 +3966,7 @@ static void ov114_0225FF54 (SysTask * param0, void * param1)
         v1 = ov114_0225FAD8(&v0->unk_34);
 
         if (v1 == 1) {
-            sub_02021BD4(v0->unk_30);
+            GraphicElementData_Delete(v0->unk_30);
             v0->unk_30 = NULL;
             v0->unk_06 = 0;
             v0->unk_04++;

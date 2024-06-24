@@ -1182,7 +1182,7 @@ static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int
         UnkStruct_ov115_02261520 v1;
         int v2 = (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) ? 0 : 1;
 
-        v1.unk_00 = param0->unk_0C->unk_00;
+        v1.manager = param0->unk_0C->unk_00;
         v1.unk_04 = &param0->unk_10[v2];
         v1.unk_08.z = 0;
         v1.unk_14.x = FX32_ONE;
@@ -1252,13 +1252,13 @@ static void ov97_0222E60C (UnkStruct_ov97_0222E398 * param0)
 
 static void ov97_0222E664 (UnkStruct_ov97_0222E398 * param0)
 {
-    sub_02021BD4(param0->unk_3008.unk_0C);
+    GraphicElementData_Delete(param0->unk_3008.unk_0C);
     param0->unk_3008.unk_0C = NULL;
 }
 
 static void ov97_0222E67C (UnkStruct_ov97_0222E398 * param0)
 {
-    sub_02021BD4(param0->unk_3054.unk_0C);
+    GraphicElementData_Delete(param0->unk_3054.unk_0C);
     param0->unk_3054.unk_0C = NULL;
 }
 
@@ -1331,7 +1331,7 @@ static void ov97_0222E7B4 (UnkStruct_ov97_0222E398 * param0)
             continue;
         }
 
-        sub_02021BD4(param0->unk_88[v0].unk_0C);
+        GraphicElementData_Delete(param0->unk_88[v0].unk_0C);
         param0->unk_88[v0].unk_0C = NULL;
         SysTask_Done(param0->unk_88[v0].unk_48);
     }
@@ -1342,7 +1342,7 @@ static void ov97_0222E7E4 (UnkStruct_ov97_0222E398 * param0)
     int v0;
 
     for (v0 = 0; v0 < 80; v0++) {
-        sub_02021BD4(param0->unk_1848[v0].unk_0C);
+        GraphicElementData_Delete(param0->unk_1848[v0].unk_0C);
         param0->unk_1848[v0].unk_0C = NULL;
         SysTask_Done(param0->unk_1848[v0].unk_48);
     }

@@ -965,15 +965,15 @@ static void ov21_021D695C (UnkStruct_ov21_021D71A8 * param0)
     int v0;
 
     for (v0 = 0; v0 < 9; v0++) {
-        sub_02021BD4(param0->unk_00[v0]);
+        GraphicElementData_Delete(param0->unk_00[v0]);
     }
 
     for (v0 = 0; v0 < 9; v0++) {
-        sub_02021BD4(param0->unk_50[v0]);
+        GraphicElementData_Delete(param0->unk_50[v0]);
     }
 
-    sub_02021BD4(param0->unk_74);
-    sub_02021BD4(param0->unk_7C);
+    GraphicElementData_Delete(param0->unk_74);
+    GraphicElementData_Delete(param0->unk_7C);
 }
 
 static void ov21_021D6994 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov21_021D5B68 * param1)

@@ -521,7 +521,7 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
     {
         UnkStruct_ov115_02261520 v1;
 
-        v1.unk_00 = param0->unk_3C;
+        v1.manager = param0->unk_3C;
         v1.unk_04 = &param0->unk_1FC;
         v1.unk_08.z = 0;
         v1.unk_14.x = FX32_ONE;

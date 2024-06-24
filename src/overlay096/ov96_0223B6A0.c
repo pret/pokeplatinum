@@ -287,7 +287,7 @@ static const u16 Unk_ov96_0223DA80[][2] = {
 
 void ov96_0223BAE0 (UnkStruct_ov115_02261520 * param0, UnkStruct_ov96_0223BF40 * param1, UnkStruct_ov19_021DA864 * param2, int param3)
 {
-    param0->unk_00 = param1->unk_BF4;
+    param0->manager = param1->unk_BF4;
     param0->unk_04 = param2;
     param0->unk_08.z = 0;
     param0->unk_14.x = FX32_ONE;

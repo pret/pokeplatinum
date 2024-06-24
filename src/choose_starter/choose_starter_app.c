@@ -1499,7 +1499,7 @@ static void AttachCursorCellActor (ChooseStarterApp * param0, ChooseStarterCurso
 
 static void ov78_021D2350 (ChooseStarterCursor * param0)
 {
-    sub_02021BD4(param0->unk_00);
+    GraphicElementData_Delete(param0->unk_00);
 }
 
 static void ov78_021D235C (ChooseStarterRotation * param0, fx32 param1, int param2)

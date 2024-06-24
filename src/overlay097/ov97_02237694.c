@@ -445,7 +445,7 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
     if (param1 == NULL) {
         UnkStruct_ov115_02261520 v1;
 
-        v1.unk_00 = v0->unk_34.unk_00;
+        v1.manager = v0->unk_34.unk_00;
         v1.unk_04 = &v0->unk_34.unk_1D8[param0];
         v1.unk_08.z = 0;
         v1.unk_14.x = FX32_ONE;
@@ -480,7 +480,7 @@ void ov97_02237DA0 (void)
     int v2;
 
     if (v0->unk_26C) {
-        sub_02021BD4(v0->unk_26C);
+        GraphicElementData_Delete(v0->unk_26C);
         v0->unk_26C = NULL;
     }
 

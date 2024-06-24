@@ -564,7 +564,7 @@ static void ov21_021E8B34 (UnkStruct_ov21_021E8794 * param0)
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02021BD4(param0->unk_00[v0]);
+        GraphicElementData_Delete(param0->unk_00[v0]);
     }
 }
 

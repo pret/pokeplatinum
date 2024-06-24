@@ -151,7 +151,7 @@ BOOL sub_0200C7C0 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param
 
 void sub_0200C7E4 (GraphicElementData * param0)
 {
-    sub_02021BD4(param0);
+    GraphicElementData_Delete(param0);
 }
 
 void sub_0200C7EC (SpriteGfxHandler * param0)
@@ -303,7 +303,7 @@ GraphicElementData * sub_0200CA44 (SpriteRenderer * param0, SpriteGfxHandler * p
     GraphicElementData * v0 = NULL;
     UnkStruct_ov115_02261520 v1;
 
-    v1.unk_00 = param1->unk_00;
+    v1.manager = param1->unk_00;
     v1.unk_04 = &param1->unk_04->unk_00[param2];
     v1.unk_08.x = FX32_CONST(param3);
     v1.unk_08.y = FX32_CONST(param4);
@@ -557,7 +557,7 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
 
     sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param2->transferToVRAM, param2->bgPriority, param1->unk_0C[0], param1->unk_0C[1], param1->unk_0C[2], param1->unk_0C[3], param1->unk_0C[4], param1->unk_0C[5]);
 
-    v3.unk_00 = param1->unk_00;
+    v3.manager = param1->unk_00;
     v3.unk_04 = v2->unk_04;
     v3.unk_08.x = FX32_CONST(param2->x);
     v3.unk_08.y = FX32_CONST(param2->y);
@@ -643,7 +643,7 @@ void sub_0200D0F4 (CellActorData * param0)
         sub_0200A5B4(param0->unk_04->unk_00);
     }
 
-    sub_02021BD4(param0->unk_00);
+    GraphicElementData_Delete(param0->unk_00);
     sub_020095A8(param0->unk_08);
     Heap_FreeToHeap(param0);
 }

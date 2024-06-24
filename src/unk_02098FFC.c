@@ -142,7 +142,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
 
     sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
-    v5.unk_00 = param0->unk_10;
+    v5.manager = param0->unk_10;
     v5.unk_04 = v4->unk_04;
     v5.unk_08.x = FX32_CONST(param2);
     v5.unk_08.y = FX32_CONST(param3);

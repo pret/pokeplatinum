@@ -892,10 +892,10 @@ static void ov21_021D2C8C (UnkStruct_ov21_021D13FC * param0, int param1)
 
 static void ov21_021D2D4C (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_02021BD4(param0->unk_1B0.unk_00);
+    GraphicElementData_Delete(param0->unk_1B0.unk_00);
     param0->unk_1B0.unk_00 = NULL;
 
-    sub_02021BD4(param0->unk_1B0.unk_04);
+    GraphicElementData_Delete(param0->unk_1B0.unk_04);
     param0->unk_1B0.unk_04 = NULL;
 
     if (param0->unk_1B0.unk_08) {
@@ -939,10 +939,10 @@ void ov21_021D2D88 (UnkStruct_ov21_021D22F8 * param0, GraphicElementManager * pa
 
 void ov21_021D2E1C (UnkStruct_ov21_021D22F8 * param0)
 {
-    sub_02021BD4(param0->unk_00);
+    GraphicElementData_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 
-    sub_02021BD4(param0->unk_04);
+    GraphicElementData_Delete(param0->unk_04);
     param0->unk_04 = NULL;
 
     if (param0->unk_08) {
@@ -1034,7 +1034,7 @@ static void ov21_021D300C (UnkStruct_ov21_021D13FC * param0)
     ov21_021D3054(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021BD4(v1->unk_00[v0]);
+        GraphicElementData_Delete(v1->unk_00[v0]);
     }
 }
 

@@ -2471,7 +2471,7 @@ static void ov21_021DB90C (UnkStruct_ov21_021DC96C * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02021BD4(param0->unk_00[v0]);
+        GraphicElementData_Delete(param0->unk_00[v0]);
     }
 }
 
@@ -2481,7 +2481,7 @@ static void ov21_021DB924 (UnkStruct_ov21_021DC96C * param0)
 
     for (v0 = 0; v0 < 15; v0++) {
         if (param0->unk_30[v0]) {
-            sub_02021BD4(param0->unk_30[v0]);
+            GraphicElementData_Delete(param0->unk_30[v0]);
             param0->unk_30[v0] = NULL;
         }
     }
@@ -2678,7 +2678,7 @@ static void ov21_021DBDA0 (UnkStruct_ov21_021DC96C * param0)
 
     for (v0 = 0; v0 < 15; v0++) {
         if (param0->unk_A8[v0]) {
-            sub_02021BD4(param0->unk_A8[v0]);
+            GraphicElementData_Delete(param0->unk_A8[v0]);
             param0->unk_A8[v0] = NULL;
         }
     }

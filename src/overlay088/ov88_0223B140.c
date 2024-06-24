@@ -1411,7 +1411,7 @@ static void ov88_0223CBA0 (UnkStruct_02095E80 * param0)
         UnkStruct_ov115_02261520 v0;
         int v1;
 
-        v0.unk_00 = param0->unk_194;
+        v0.manager = param0->unk_194;
         v0.unk_04 = &param0->unk_354;
         v0.unk_08.x = FX32_CONST(32);
         v0.unk_08.y = FX32_CONST(96);

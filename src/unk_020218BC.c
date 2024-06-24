@@ -15,6 +15,13 @@
 #define GRAPHIC_ELEMENT_DATA_FLIP_H 1
 #define GRAPHIC_ELEMENT_DATA_FLIP_V 2
 
+enum CellType {
+    CELL_TYPE_NONE = 0,
+    CELL_TYPE_CELL,
+    CELL_TYPE_MULTI_CELL,
+    CELL_TYPE_VRAM_CELL,
+};
+
 typedef struct {
     const NNSG2dCellDataBank * unk_00;
     const NNSG2dCellAnimBankData * unk_04;
@@ -25,8 +32,8 @@ typedef struct {
     NNSG2dCellDataBank * unk_00;
     const NNSG2dCellAnimBankData * unk_04;
     NNSG2dCellAnimation unk_08;
-    u32 unk_60;
-} CellDataAnimationWrapper;
+    u32 transferHandle;
+} VRamCellAnimationData;
 
 typedef struct {
     const NNSG2dCellDataBank * unk_00;
@@ -50,18 +57,18 @@ typedef struct GraphicElementData_t {
     u8 explicitPaletteOffset;
     BOOL explicitMosaic;
     GXOamMode explicitOamMode;
-    u8 unk_34;
+    u8 draw;
     u8 unk_35;
     fx32 unk_38;
     GraphicElementManager * manager;
     u32 unk_40[29];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
-    u32 unk_EC;
+    u32 type;
     u16 unk_F0;
     u8 explicitPriority;
     u16 priority;
-    NNS_G2D_VRAM_TYPE type;
+    NNS_G2D_VRAM_TYPE vramType;
     struct GraphicElementData_t *prev;
     struct GraphicElementData_t *next;
 } GraphicElementData;
@@ -75,10 +82,10 @@ typedef struct GraphicElementManager_t {
     NNSG2dRendererInstance * renderer;
     void * rawAnimData;
     NNSG2dCellAnimBankData * animData;
-    u32 unk_11C;
+    BOOL active;
 } GraphicElementManager;
 
-typedef void (* GraphicElementUpdateFunc)(const GraphicElementManager *, GraphicElementData *);
+typedef void (* GraphicElementDrawFunc)(const GraphicElementManager *, GraphicElementData *);
 typedef void (* GraphicElementInitializeFunc)(GraphicElementData *);
 
 static void GraphicElementManager_Reset(GraphicElementManager * param0);
@@ -93,7 +100,7 @@ static void sub_02022264(GraphicElementData * param0, int param1);
 static BOOL sub_02022110(const GraphicElementManager * param0, const UnkStruct_ov19_021DA864 * param1, GraphicElementData * param2, int param3);
 static u32 sub_020222C4(const NNSG2dImagePaletteProxy * param0, u32 param1);
 static void GraphicElementManager_DrawElement(const GraphicElementManager * param0, GraphicElementData * param1);
-static void sub_02022450(const GraphicElementManager * param0, GraphicElementData * param1);
+static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager * param0, GraphicElementData * param1);
 static void sub_02022454(GraphicElementData * param0);
 static void sub_02022460(GraphicElementData * param0);
 static void GraphicElementManager_InsertElement(GraphicElementManager * param0, GraphicElementData * param1);
@@ -104,13 +111,10 @@ static BOOL GraphicElementManager_FreeElement(GraphicElementManager * param0, Gr
 
 GraphicElementManager *GraphicElementManager_New(const GraphicElementManagerParams *params)
 {
-    GraphicElementManager *gfxElemMgr;
-    int v1;
-
     GF_ASSERT(params);
     GF_ASSERT(params->renderer);
 
-    gfxElemMgr = Heap_AllocFromHeap(params->heapID, sizeof(GraphicElementManager));
+    GraphicElementManager *gfxElemMgr = Heap_AllocFromHeap(params->heapID, sizeof(GraphicElementManager));
     GF_ASSERT(gfxElemMgr);
 
     GraphicElementManager_Reset(gfxElemMgr);
@@ -131,7 +135,7 @@ GraphicElementManager *GraphicElementManager_New(const GraphicElementManagerPara
     gfxElemMgr->rawAnimData = ReadFileToHeap(params->heapID, "data/clact_default.NANR");
 
     NNS_G2dGetUnpackedAnimBank(gfxElemMgr->rawAnimData, &gfxElemMgr->animData);
-    gfxElemMgr->unk_11C = 1;
+    gfxElemMgr->active = TRUE;
 
     return gfxElemMgr;
 }
@@ -146,7 +150,7 @@ BOOL GraphicElementManager_Delete(GraphicElementManager *gfxElemMgr)
         return TRUE;
     }
 
-    sub_020219C0(gfxElemMgr);
+    GraphicElementManager_DeleteAll(gfxElemMgr);
 
     Heap_FreeToHeap(gfxElemMgr->rawAnimData);
     Heap_FreeToHeap(gfxElemMgr->elementStack);
@@ -160,26 +164,23 @@ BOOL GraphicElementManager_Delete(GraphicElementManager *gfxElemMgr)
     return TRUE;
 }
 
-BOOL sub_020219A4 (GraphicElementManager * param0, u8 param1)
+BOOL GraphicElementManager_SetActive(GraphicElementManager *gfxElemMgr, u8 active)
 {
-    if (param0 == NULL) {
-        return 0;
+    if (gfxElemMgr == NULL) {
+        return FALSE;
     }
 
-    if (param0->elements == NULL) {
-        return 0;
+    if (gfxElemMgr->elements == NULL) {
+        return FALSE;
     }
 
-    param0->unk_11C = param1;
+    gfxElemMgr->active = active;
 
-    return 1;
+    return TRUE;
 }
 
-BOOL sub_020219C0(GraphicElementManager *gfxElemMgr)
+BOOL GraphicElementManager_DeleteAll(GraphicElementManager *gfxElemMgr)
 {
-    GraphicElementData *elem;
-    GraphicElementData *next;
-
     if (gfxElemMgr == NULL) {
         return FALSE;
     }
@@ -188,21 +189,21 @@ BOOL sub_020219C0(GraphicElementManager *gfxElemMgr)
         return TRUE;
     }
 
-    elem = gfxElemMgr->sentinelData.next;
+    GraphicElementData *elem = gfxElemMgr->sentinelData.next;
     while (elem != &gfxElemMgr->sentinelData) {
-        next = elem->next;
-        sub_02021BD4(elem);
+        GraphicElementData *next = elem->next;
+        GraphicElementData_Delete(elem);
         elem = next;
     }
 
     return TRUE;
 }
 
-void sub_020219F8 (const GraphicElementManager * param0)
+void sub_020219F8 (const GraphicElementManager *gfxElemMgr)
 {
-    GraphicElementData * v0;
-    static const GraphicElementUpdateFunc v1[] = {
-        sub_02022450,
+    GraphicElementData * elem;
+    static const GraphicElementDrawFunc sDrawFuncs[] = {
+        GraphicElementManager_DrawElement_Stub,
         GraphicElementManager_DrawElement
     };
     static const GraphicElementInitializeFunc v2[] = {
@@ -210,18 +211,18 @@ void sub_020219F8 (const GraphicElementManager * param0)
         sub_02022454
     };
 
-    GF_ASSERT(param0);
+    GF_ASSERT(gfxElemMgr);
 
-    if (param0->unk_11C == 0) {
+    if (gfxElemMgr->active == FALSE) {
         return;
     }
 
-    v0 = param0->sentinelData.next;
+    elem = gfxElemMgr->sentinelData.next;
 
-    while (v0 != &param0->sentinelData) {
-        v1[v0->unk_34](param0, v0);
-        v2[v0->unk_35](v0);
-        v0 = v0->next;
+    while (elem != &gfxElemMgr->sentinelData) {
+        sDrawFuncs[elem->draw](gfxElemMgr, elem);
+        v2[elem->unk_35](elem);
+        elem = elem->next;
     }
 }
 
@@ -234,7 +235,7 @@ static void GraphicElementManager_Reset(GraphicElementManager *gfxElemMgr)
     gfxElemMgr->renderer = NULL;
 
     GraphicElementData_Reset(&gfxElemMgr->sentinelData);
-    gfxElemMgr->unk_11C = 0;
+    gfxElemMgr->active = 0;
 }
 
 void GraphicElementData_Reset(GraphicElementData *elem)
@@ -252,20 +253,17 @@ void GraphicElementData_Reset(GraphicElementData *elem)
 
 GraphicElementData * GraphicElementManager_AddElement(const UnkStruct_ov115_02261520 * param0)
 {
-    GraphicElementData *elem;
-
-    elem = GraphicElementManager_AllocElement(param0->unk_00);
-
+    GraphicElementData *elem = GraphicElementManager_AllocElement(param0->manager);
     if (elem == NULL) {
         return NULL;
     }
 
-    elem->manager = param0->unk_00;
+    elem->manager = param0->manager;
     elem->unk_F0 = 0;
     elem->position = param0->unk_08;
     elem->affineScale = param0->unk_14;
     elem->affineZRotation = param0->unk_20;
-    elem->type = param0->unk_28;
+    elem->vramType = param0->unk_28;
     elem->priority = param0->unk_24;
     elem->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
     elem->flip = GRAPHIC_ELEMENT_DATA_FLIP_NONE;
@@ -273,22 +271,22 @@ GraphicElementData * GraphicElementManager_AddElement(const UnkStruct_ov115_0226
     elem->explicitOamMode = GX_OAM_MODE_NORMAL;
     elem->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
-    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->unk_00->renderer->rendererCore), elem->affineOverwriteMode);
-    NNS_G2dSetRndCoreFlipMode(&(param0->unk_00->renderer->rendererCore), elem->flip & 1, elem->flip & 2);
+    NNS_G2dSetRndCoreAffineOverwriteMode(&(param0->manager->renderer->rendererCore), elem->affineOverwriteMode);
+    NNS_G2dSetRndCoreFlipMode(&(param0->manager->renderer->rendererCore), elem->flip & 1, elem->flip & 2);
 
-    elem->unk_34 = 1;
+    elem->draw = 1;
     elem->unk_35 = 0;
     elem->unk_38 = (FX32_ONE * 2);
 
-    if (sub_02022110(param0->unk_00, param0->unk_04, elem, param0->unk_2C) == 0) {
-        sub_02021BD4(elem);
+    if (sub_02022110(param0->manager, param0->unk_04, elem, param0->unk_2C) == 0) {
+        GraphicElementData_Delete(elem);
         return NULL;
     }
 
-    elem->explicitPaletteOffset = sub_020222C4(&elem->paletteProxy, elem->type);
+    elem->explicitPaletteOffset = sub_020222C4(&elem->paletteProxy, elem->vramType);
     elem->explicitPalette = elem->explicitPaletteOffset;
 
-    GraphicElementManager_InsertElement(param0->unk_00, elem);
+    GraphicElementManager_InsertElement(param0->manager, elem);
 
     return elem;
 }
@@ -297,7 +295,7 @@ GraphicElementData * sub_02021B90 (const UnkStruct_ov83_0223D9A8 * param0)
 {
     UnkStruct_ov115_02261520 v0;
 
-    v0.unk_00 = param0->unk_00;
+    v0.manager = param0->unk_00;
     v0.unk_04 = param0->unk_04;
     v0.unk_08 = param0->unk_08;
     v0.unk_14.x = FX32_ONE;
@@ -311,41 +309,38 @@ GraphicElementData * sub_02021B90 (const UnkStruct_ov83_0223D9A8 * param0)
     return GraphicElementManager_AddElement(&v0);
 }
 
-void sub_02021BD4 (GraphicElementData *gfxElem)
+void GraphicElementData_Delete(GraphicElementData *gfxElem)
 {
-    GraphicElementManager *gfxElemMgr;
-
-    if (gfxElem->unk_EC != 0) {
-        CellAnimationData *v1 = (CellAnimationData *)&gfxElem->unk_40;
+    if (gfxElem->type != CELL_TYPE_NONE) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&gfxElem->unk_40;
 
         if (gfxElem->prev != NULL) {
             GraphicElementManager_RemoveElement(gfxElem);
         }
 
-        if (gfxElem->unk_EC == 3) {
-            CellDataAnimationWrapper * v2 = (CellDataAnimationWrapper *)&gfxElem->unk_40;
+        if (gfxElem->type == CELL_TYPE_VRAM_CELL) {
+            VRamCellAnimationData *vramCellAnim = (VRamCellAnimationData *)&gfxElem->unk_40;
 
-            if (NNS_G2dGetImageLocation(&gfxElem->imageProxy, gfxElem->type) != NNS_G2D_VRAM_ADDR_NONE) {
-                NNS_G2dFreeCellTransferStateHandle(v2->unk_60);
+            if (NNS_G2dGetImageLocation(&gfxElem->imageProxy, gfxElem->vramType) != NNS_G2D_VRAM_ADDR_NONE) {
+                NNS_G2dFreeCellTransferStateHandle(vramCellAnim->transferHandle);
             }
         }
 
-        if (gfxElem->unk_EC == 2) {
-            MultiCellAnimationData * v3 = (MultiCellAnimationData *)&gfxElem->unk_40;
+        if (gfxElem->type == CELL_TYPE_MULTI_CELL) {
+            MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&gfxElem->unk_40;
 
-            if (v3->unk_74 != NULL) {
-                Heap_FreeToHeap(v3->unk_74);
+            if (multiCellAnim->unk_74 != NULL) {
+                Heap_FreeToHeap(multiCellAnim->unk_74);
             }
 
-            if (v3->unk_78 != NULL) {
-                Heap_FreeToHeap(v3->unk_78);
+            if (multiCellAnim->unk_78 != NULL) {
+                Heap_FreeToHeap(multiCellAnim->unk_78);
             }
         }
 
-        gfxElem->unk_EC = 0;
+        gfxElem->type = CELL_TYPE_NONE;
 
-        gfxElemMgr = (GraphicElementManager *)gfxElem->manager;
-        GraphicElementManager_FreeElement(gfxElemMgr, gfxElem);
+        GraphicElementManager_FreeElement(gfxElem->manager, gfxElem);
     }
 }
 
@@ -386,7 +381,7 @@ void sub_02021CAC (GraphicElementData * param0, int param1)
     GF_ASSERT(param0);
     GF_ASSERT(param1 < 2);
 
-    param0->unk_34 = param1;
+    param0->draw = param1;
 }
 
 void sub_02021CC8 (GraphicElementData * param0, int param1)
@@ -436,7 +431,7 @@ u16 sub_02021D30 (const GraphicElementData * param0)
 
 int sub_02021D34 (const GraphicElementData * param0)
 {
-    return param0->unk_34;
+    return param0->draw;
 }
 
 int sub_02021D3C (const GraphicElementData * param0)
@@ -450,7 +445,7 @@ u32 sub_02021D44 (const GraphicElementData * param0)
 
     GF_ASSERT(param0);
 
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v1 = (CellAnimationData *)&param0->unk_40;
         v0 = v1->unk_04->numSequences;
     } else {
@@ -468,7 +463,7 @@ void SpriteActor_SetSpriteAnimActive (GraphicElementData * param0, u32 param1)
     GF_ASSERT(sub_02021D44(param0) > param1);
     param0->unk_F0 = param1;
 
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v1 = (CellAnimationData *)&param0->unk_40;
 
         v0 = NNS_G2dGetAnimSequenceByIdx(v1->unk_04, param1);
@@ -492,7 +487,7 @@ void sub_02021DCC (GraphicElementData * param0, u32 param1)
 
 void sub_02021DE0 (GraphicElementData * param0)
 {
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
 
         NNS_G2dResetAnimCtrlState(&v0->unk_08.animCtrl);
@@ -514,7 +509,7 @@ u32 sub_02021E24 (const GraphicElementData * param0)
 
 void sub_02021E2C (GraphicElementData * param0, fx32 param1)
 {
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
         NNS_G2dTickCellAnimation(&v0->unk_08, param1);
     } else {
@@ -525,7 +520,7 @@ void sub_02021E2C (GraphicElementData * param0, fx32 param1)
 
 void SpriteActor_SetAnimFrame (GraphicElementData * param0, u16 param1)
 {
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
         NNS_G2dSetCellAnimationCurrentFrame(&v0->unk_08, param1);
     } else {
@@ -538,7 +533,7 @@ u16 sub_02021E74 (const GraphicElementData * param0)
 {
     NNSG2dAnimController * v0;
 
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v1 = (CellAnimationData *)&param0->unk_40;
         v0 = NNS_G2dGetCellAnimationAnimCtrl(&v1->unk_08);
     } else {
@@ -571,7 +566,7 @@ void sub_02021E90 (GraphicElementData * param0, u32 param1)
 void sub_02021EC4 (GraphicElementData * param0, u32 param1)
 {
     sub_02021E90(param0, param1);
-    param0->explicitPalette += sub_020222C4(&param0->paletteProxy, param0->type);
+    param0->explicitPalette += sub_020222C4(&param0->paletteProxy, param0->vramType);
 }
 
 u32 sub_02021EE8 (const GraphicElementData * param0)
@@ -591,7 +586,7 @@ void sub_02021EF0 (GraphicElementData * param0, u32 param1)
 void sub_02021F24 (GraphicElementData * param0, u32 param1)
 {
     sub_02021EF0(param0, param1);
-    param0->explicitPaletteOffset += sub_020222C4(&param0->paletteProxy, param0->type);
+    param0->explicitPaletteOffset += sub_020222C4(&param0->paletteProxy, param0->vramType);
 }
 
 u32 sub_02021F48 (const GraphicElementData * param0)
@@ -643,14 +638,14 @@ void sub_02021FA0 (GraphicElementData * param0, BOOL param1)
 
 NNS_G2D_VRAM_TYPE sub_02021FC8 (const GraphicElementData * param0)
 {
-    return param0->type;
+    return param0->vramType;
 }
 
 BOOL sub_02021FD0 (GraphicElementData * param0)
 {
     GF_ASSERT(param0);
 
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v0 = (CellAnimationData *)&param0->unk_40;
         return NNS_G2dIsAnimCtrlActive(&v0->unk_08.animCtrl);
     } else {
@@ -704,7 +699,7 @@ u32 sub_0202207C (const GraphicElementData * param0, u32 param1, u32 param2)
     const NNSG2dUserExAnimSequenceAttr * v2;
     const NNSG2dUserExAnimFrameAttr * v3;
 
-    if ((param0->unk_EC == 1) || (param0->unk_EC == 3)) {
+    if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v4 = (CellAnimationData *)&param0->unk_40;
         v0 = v4->unk_04;
     } else {
@@ -742,7 +737,7 @@ u32 sub_020220F4 (const GraphicElementData * param0)
 
 static BOOL sub_02022110 (const GraphicElementManager * param0, const UnkStruct_ov19_021DA864 * param1, GraphicElementData * param2, int param3)
 {
-    param2->unk_EC = sub_020221B8(param1);
+    param2->type = sub_020221B8(param1);
     param2->imageProxy = *param1->unk_00;
     param2->paletteProxy = *param1->unk_08;
 
@@ -754,13 +749,13 @@ static BOOL sub_02022110 (const GraphicElementManager * param0, const UnkStruct_
         sub_020221D4(param0->animData, param2);
     }
 
-    if (param2->unk_EC == 2) {
+    if (param2->type == 2) {
         sub_020221D8(param1->unk_14, param2);
         sub_020221E0(param1->unk_18, param2);
         sub_02022264(param2, param3);
     } else {
-        if (param2->unk_EC == 3) {
-            CellDataAnimationWrapper * v0 = (CellDataAnimationWrapper *)&param2->unk_40;
+        if (param2->type == 3) {
+            VRamCellAnimationData * v0 = (VRamCellAnimationData *)&param2->unk_40;
             sub_02022208(param1, param2, param3);
         } else {
             sub_020221E8(param2, param3);
@@ -827,14 +822,14 @@ static void sub_020221E8 (GraphicElementData * param0, int param1)
 
 static void sub_02022208 (const UnkStruct_ov19_021DA864 * param0, GraphicElementData * param1, int param2)
 {
-    CellDataAnimationWrapper * v0;
+    VRamCellAnimationData * v0;
     const NNSG2dCharacterData * v1;
 
-    v0 = (CellDataAnimationWrapper *)&param1->unk_40;
-    v0->unk_60 = NNS_G2dGetNewCellTransferStateHandle();
+    v0 = (VRamCellAnimationData *)&param1->unk_40;
+    v0->transferHandle = NNS_G2dGetNewCellTransferStateHandle();
     v1 = param0->unk_04;
 
-    NNS_G2dInitCellAnimationVramTransfered((NNSG2dCellAnimation *)&v0->unk_08, NNS_G2dGetAnimSequenceByIdx(v0->unk_04, 0), v0->unk_00, v0->unk_60, NNS_G2D_VRAM_ADDR_NONE, NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN), NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DSUB), v1->pRawData, NULL, v1->szByte);
+    NNS_G2dInitCellAnimationVramTransfered((NNSG2dCellAnimation *)&v0->unk_08, NNS_G2dGetAnimSequenceByIdx(v0->unk_04, 0), v0->unk_00, v0->transferHandle, NNS_G2D_VRAM_ADDR_NONE, NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN), NNS_G2dGetImageLocation(&param1->imageProxy, NNS_G2D_VRAM_TYPE_2DSUB), v1->pRawData, NULL, v1->szByte);
 }
 
 static void sub_02022264 (GraphicElementData * param0, int param1)
@@ -923,7 +918,7 @@ static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxEl
     NNS_G2dSetRendererOverwriteOBJMode(gfxElemMgr->renderer, elem->explicitOamMode);
     NNS_G2dSetRendererOverwritePriority(gfxElemMgr->renderer, elem->explicitPriority);
 
-    if (elem->unk_EC == 1 || elem->unk_EC == 3) {
+    if (elem->type == 1 || elem->type == 3) {
         CellAnimationData *cellAnim = (CellAnimationData *)&elem->unk_40;
         NNS_G2dDrawCellAnimation(&cellAnim->unk_08);
     } else {
@@ -935,7 +930,7 @@ static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxEl
     NNS_G2dEndRendering();
 }
 
-static void sub_02022450 (const GraphicElementManager * param0, GraphicElementData * param1)
+static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager *gfxElemMgr, GraphicElementData *elem)
 {
     return;
 }

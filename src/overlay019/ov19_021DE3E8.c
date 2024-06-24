@@ -148,7 +148,7 @@ static void ov19_021DE51C (UnkStruct_ov19_021DE3E8 * param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_1C[v0]) {
-            sub_02021BD4(param0->unk_1C[v0]);
+            GraphicElementData_Delete(param0->unk_1C[v0]);
         }
     }
 }

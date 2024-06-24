@@ -2744,7 +2744,7 @@ static void ov9_0224B064 (UnkStruct_ov9_0224B064 * param0)
     sub_02009754(param0->unk_198);
     sub_02009754(param0->unk_19C);
 
-    sub_020219C0(param0->unk_00);
+    GraphicElementManager_DeleteAll(param0->unk_00);
     GraphicElementManager_Delete(param0->unk_00);
 }
 
@@ -2826,7 +2826,7 @@ static int ov9_0224B23C (UnkStruct_ov101_021D5D90 * param0, void * param1)
 static void ov9_0224B2C0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov9_0224B2C0 * v0 = param1;
-    sub_02021BD4(v0->unk_40);
+    GraphicElementData_Delete(v0->unk_40);
 }
 
 static void ov9_0224B2CC (UnkStruct_ov101_021D5D90 * param0, void * param1)

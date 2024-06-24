@@ -606,10 +606,10 @@ static void ov21_021DFF18 (UnkStruct_ov21_021DFFF8 * param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021BD4(param0->unk_00[v0]);
+        GraphicElementData_Delete(param0->unk_00[v0]);
     }
 
-    sub_02021BD4(param0->unk_BC);
+    GraphicElementData_Delete(param0->unk_BC);
 }
 
 static void ov21_021DFF38 (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021DF858 * param1, const UnkStruct_ov21_021DF844 * param2, BOOL param3)

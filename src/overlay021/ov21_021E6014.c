@@ -444,7 +444,7 @@ static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E65EC (UnkStruct_ov21_021E6274 * param0)
 {
-    sub_02021BD4(param0->unk_10);
+    GraphicElementData_Delete(param0->unk_10);
 }
 
 static void ov21_021E65F8 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E6118 * param1, const UnkStruct_ov21_021E6104 * param2, int param3)

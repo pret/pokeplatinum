@@ -1718,7 +1718,7 @@ static void ov70_0225ED4C (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021BD4(param0->unk_50[v0]);
+        GraphicElementData_Delete(param0->unk_50[v0]);
         param0->unk_50[v0] = NULL;
     }
 
@@ -2757,7 +2757,7 @@ static void ov70_0225FEF0 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 
 static void ov70_02260048 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225E4EC * param1)
 {
-    sub_02021BD4(param0->unk_54);
+    GraphicElementData_Delete(param0->unk_54);
     param0->unk_54 = NULL;
 
     {
@@ -2830,7 +2830,7 @@ static void ov70_02260080 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 static void ov70_02260228 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225E4EC * param1)
 {
     sub_0201ED1C(SpriteActor_ImageProxy(param0->unk_68));
-    sub_02021BD4(param0->unk_68);
+    GraphicElementData_Delete(param0->unk_68);
 
     param0->unk_68 = NULL;
 
@@ -3049,7 +3049,7 @@ static void ov70_0226068C (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 
     for (v0 = 0; v0 < 12; v0++) {
         if (param0->unk_BC[v0] != NULL) {
-            sub_02021BD4(param0->unk_7C[v0]);
+            GraphicElementData_Delete(param0->unk_7C[v0]);
 
             param0->unk_7C[v0] = NULL;
 

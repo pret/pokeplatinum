@@ -73,15 +73,15 @@ UnkStruct_ov20_021D4210 * ov20_021D40E8 (UnkStruct_ov20_021D2128 * param0, const
 void ov20_021D4164 (UnkStruct_ov20_021D4210 * param0)
 {
     if (param0->unk_30) {
-        sub_02021BD4(param0->unk_30);
+        GraphicElementData_Delete(param0->unk_30);
     }
 
     if (param0->unk_34) {
-        sub_02021BD4(param0->unk_34);
+        GraphicElementData_Delete(param0->unk_34);
     }
 
     if (param0->unk_38) {
-        sub_02021BD4(param0->unk_38);
+        GraphicElementData_Delete(param0->unk_38);
     }
 
     if (param0->unk_3C) {

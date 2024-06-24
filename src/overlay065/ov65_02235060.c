@@ -683,7 +683,7 @@ static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
 
     memset(&v0, 0, sizeof(UnkStruct_ov115_02261520));
 
-    v0.unk_00 = param0->unk_00;
+    v0.manager = param0->unk_00;
     v0.unk_04 = &param0->unk_1A0.unk_10;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.unk_14.x = FX32_ONE;
@@ -702,8 +702,8 @@ static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
 
 static void ov65_02235B14 (UnkStruct_ov65_022358CC * param0)
 {
-    sub_02021BD4(param0->unk_1A0.unk_34);
-    sub_02021BD4(param0->unk_1A0.unk_38);
+    GraphicElementData_Delete(param0->unk_1A0.unk_34);
+    GraphicElementData_Delete(param0->unk_1A0.unk_38);
 }
 
 static void ov65_02235B30 (UnkStruct_ov65_02235130 * param0)

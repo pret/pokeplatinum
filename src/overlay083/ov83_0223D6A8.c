@@ -434,8 +434,8 @@ void ov83_0223DC1C (UnkStruct_ov83_0223DB30 * param0, UnkStruct_ov83_0223D784 * 
     GF_ASSERT(param0->unk_00 == 1);
 
     for (v0 = 0; v0 < param0->unk_108; v0++) {
-        sub_02021BD4(param0->unk_08[v0]);
-        sub_02021BD4(param0->unk_18[v0]);
+        GraphicElementData_Delete(param0->unk_08[v0]);
+        GraphicElementData_Delete(param0->unk_18[v0]);
         ov83_0223D95C(param1, &param0->unk_28[v0]);
     }
 
@@ -705,7 +705,7 @@ void ov83_0223E28C (UnkStruct_ov83_0223E244 * param0, UnkStruct_ov83_0223D784 * 
 void ov83_0223E2C8 (UnkStruct_ov83_0223E244 * param0)
 {
     GF_ASSERT(param0->unk_00 == 1);
-    sub_02021BD4(param0->unk_08);
+    GraphicElementData_Delete(param0->unk_08);
     param0->unk_00 = 0;
 }
 
@@ -934,7 +934,7 @@ void ov83_0223E63C (UnkStruct_ov83_0223E5C0 * param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021BD4(param0->unk_04[v0]);
+        GraphicElementData_Delete(param0->unk_04[v0]);
     }
 
     param0->unk_00 = 0;
@@ -1399,7 +1399,7 @@ static void ov83_0223F054 (UnkStruct_ov83_0223F054 * param0)
 {
     GF_ASSERT(param0->unk_78);
 
-    sub_02021BD4(param0->unk_78);
+    GraphicElementData_Delete(param0->unk_78);
     memset(param0, 0, sizeof(UnkStruct_ov83_0223F054));
 }
 
@@ -1552,7 +1552,7 @@ void ov83_0223F348 (UnkStruct_ov83_0223F29C * param0)
     GF_ASSERT(param0->unk_7C == 1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021BD4(param0->unk_3C[v0].unk_00);
+        GraphicElementData_Delete(param0->unk_3C[v0].unk_00);
     }
 
     ov83_0223D95C(param0->unk_00, &param0->unk_04);
@@ -1683,7 +1683,7 @@ void ov83_0223F510 (UnkStruct_ov83_0223F4AC * param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        sub_02021BD4(param0->unk_0C[v0].unk_44);
+        GraphicElementData_Delete(param0->unk_0C[v0].unk_44);
     }
 
     param0->unk_00 = 0;

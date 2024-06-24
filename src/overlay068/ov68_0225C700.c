@@ -867,7 +867,7 @@ static void ov68_0225D02C (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
     }
 
     {
-        sub_02021BD4(param0->unk_14);
+        GraphicElementData_Delete(param0->unk_14);
     }
 
     {

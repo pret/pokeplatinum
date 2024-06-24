@@ -452,7 +452,7 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
     GF_ASSERT(ov63_0222B7D4(param0, v2) == 1);
     memset(&v1, 0, sizeof(UnkStruct_ov115_02261520));
 
-    v1.unk_00 = param0->unk_00;
+    v1.manager = param0->unk_00;
     v1.unk_04 = &param0->unk_10[v2].unk_14;
     v1.unk_08.x = param1->unk_00 << FX32_SHIFT;
     v1.unk_08.y = param1->unk_02 << FX32_SHIFT;
@@ -485,7 +485,7 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
     if (ov63_0222B96C(&param0->unk_2248)) {
         memset(&v1, 0, sizeof(UnkStruct_ov115_02261520));
 
-        v1.unk_00 = param0->unk_00;
+        v1.manager = param0->unk_00;
         v1.unk_04 = &param0->unk_2248.unk_10;
         v1.unk_08.x = param1->unk_00 << FX32_SHIFT;
         v1.unk_08.y = param1->unk_02 << FX32_SHIFT;
@@ -514,10 +514,10 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
 void ov63_0222B210 (UnkStruct_ov63_0222BB38 * param0)
 {
     if (param0->unk_08 != NULL) {
-        sub_02021BD4(param0->unk_08);
+        GraphicElementData_Delete(param0->unk_08);
     }
 
-    sub_02021BD4(param0->unk_04);
+    GraphicElementData_Delete(param0->unk_04);
     memset(param0, 0, sizeof(UnkStruct_ov63_0222BB38));
 }
 

@@ -589,7 +589,7 @@ static Window * ov21_021E1460 (UnkStruct_ov21_021E0D7C * param0, int param1, int
 
 static void ov21_021E14BC (UnkStruct_ov21_021E14D4 * param0)
 {
-    sub_02021BD4(param0->unk_00);
+    GraphicElementData_Delete(param0->unk_00);
     param0->unk_00 = NULL;
     ov21_021D4D1C(param0->unk_04);
 }

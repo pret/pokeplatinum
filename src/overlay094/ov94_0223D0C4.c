@@ -276,7 +276,7 @@ static void ov94_0223D3DC (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223D428 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_02021BD4(param0->unk_F30);
+    GraphicElementData_Delete(param0->unk_F30);
 }
 
 static const int Unk_ov94_02245B94[][4] = {

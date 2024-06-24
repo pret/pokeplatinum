@@ -1610,7 +1610,7 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
     {
         UnkStruct_ov115_02261520 v1;
 
-        v1.unk_00 = param0->unk_188;
+        v1.manager = param0->unk_188;
         v1.unk_04 = &param0->unk_348;
         v1.unk_08.x = FX32_CONST(32);
         v1.unk_08.y = FX32_CONST(96);

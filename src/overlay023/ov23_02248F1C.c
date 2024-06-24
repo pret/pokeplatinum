@@ -112,7 +112,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         {
             UnkStruct_ov115_02261520 v3;
 
-            v3.unk_00 = v0->unk_1BC;
+            v3.manager = v0->unk_1BC;
             v3.unk_04 = &v0->unk_36C;
             v3.unk_08.x = FX32_CONST(32);
             v3.unk_08.y = FX32_CONST(96) + (192 << FX32_SHIFT);

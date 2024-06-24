@@ -7,7 +7,7 @@
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    GraphicElementManager * manager;
     const UnkStruct_ov19_021DA864 * unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;

@@ -118,7 +118,7 @@ static void ov77_021D54E8 (const int param0, UnkStruct_ov77_021D5564 * param1, c
     sub_020093B4(param4, param0, param0, param0, param0, 0xffffffff, 0xffffffff, param5, param2, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
 
     {
-        param3->unk_00 = param1->unk_00;
+        param3->manager = param1->unk_00;
         param3->unk_04 = param4;
         param3->unk_08.x = 0;
         param3->unk_08.y = 0;

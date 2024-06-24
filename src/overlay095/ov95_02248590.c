@@ -639,11 +639,11 @@ static void ov95_02248DC4 (UnkStruct_ov95_02248688 * param0)
 
     for (v0 = 0; v0 < 20; v0++) {
         if (param0->unk_1C[v0][0]) {
-            sub_02021BD4(param0->unk_1C[v0][0]);
+            GraphicElementData_Delete(param0->unk_1C[v0][0]);
         }
 
         if (param0->unk_1C[v0][1]) {
-            sub_02021BD4(param0->unk_1C[v0][1]);
+            GraphicElementData_Delete(param0->unk_1C[v0][1]);
         }
     }
 

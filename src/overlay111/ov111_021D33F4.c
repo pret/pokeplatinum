@@ -51,7 +51,7 @@ UnkStruct_ov111_021D33F4 * ov111_021D33F4 (UnkStruct_ov111_021D2F80 * param0, u3
 
 void * ov111_021D3448 (UnkStruct_ov111_021D33F4 * param0)
 {
-    sub_02021BD4(param0->unk_0C);
+    GraphicElementData_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
     return NULL;
 }

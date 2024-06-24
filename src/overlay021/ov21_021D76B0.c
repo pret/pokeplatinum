@@ -666,12 +666,12 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 
 static void ov21_021D7FEC (UnkStruct_ov21_021D7C64 * param0)
 {
-    sub_02021BD4(param0->unk_00[0]);
-    sub_02021BD4(param0->unk_00[1]);
-    sub_02021BD4(param0->unk_00[2]);
-    sub_02021BD4(param0->unk_18);
-    sub_02021BD4(param0->unk_1C);
-    sub_02021BD4(param0->unk_20);
+    GraphicElementData_Delete(param0->unk_00[0]);
+    GraphicElementData_Delete(param0->unk_00[1]);
+    GraphicElementData_Delete(param0->unk_00[2]);
+    GraphicElementData_Delete(param0->unk_18);
+    GraphicElementData_Delete(param0->unk_1C);
+    GraphicElementData_Delete(param0->unk_20);
 }
 
 static void ov21_021D8018 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D77E8 * param1, const UnkStruct_ov21_021D77D4 * param2, int param3)

@@ -2686,7 +2686,7 @@ static void ov69_0225EAE8 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225
     sub_020057A4(1473, 0);
 
     for (v0 = 0; v0 < 12; v0++) {
-        sub_02021BD4(param0->unk_3C[v0]);
+        GraphicElementData_Delete(param0->unk_3C[v0]);
         sub_0200A4E4(param0->unk_6C[v0][0]);
 
         if (v0 == 0) {

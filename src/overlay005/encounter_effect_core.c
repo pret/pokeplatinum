@@ -825,7 +825,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
             int v9;
 
             for (v9 = 0; v9 < 2; v9++) {
-                sub_02021BD4(trainerEffect->pokeballSprites[v9]);
+                GraphicElementData_Delete(trainerEffect->pokeballSprites[v9]);
             }
         }
         ov5_021DE5A4(&trainerEffect->unk_48, &trainerEffect->unk_1E8);
@@ -969,7 +969,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
             int v9;
 
             for (v9 = 0; v9 < 2; v9++) {
-                sub_02021BD4(v1->unk_200[v9]);
+                GraphicElementData_Delete(v1->unk_200[v9]);
             }
         }
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
@@ -1138,7 +1138,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
         v1->unk_4C = 0;
 
         for (v5 = 0; v5 < 2; v5++) {
-            sub_02021BD4(v1->unk_224[v5]);
+            GraphicElementData_Delete(v1->unk_224[v5]);
         }
 
         ov5_021DE5A4(&v1->unk_50, &v1->unk_1F0);
@@ -1317,7 +1317,7 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
         v1->unk_280 = 0;
 
         for (v3 = 0; v3 < 3; v3++) {
-            sub_02021BD4(v1->unk_1D4[v3]);
+            GraphicElementData_Delete(v1->unk_1D4[v3]);
             ov5_021DE6BC(v1->unk_258[v3]);
         }
 
@@ -1482,7 +1482,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        sub_02021BD4(v1->unk_230);
+        GraphicElementData_Delete(v1->unk_230);
         ov5_021DE5A4(&v1->unk_5C, &v1->unk_1FC);
         ov5_021DE4AC(&v1->unk_5C);
         EncounterEffect_Finish(v0, param0);
@@ -1663,7 +1663,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         }
 
         for (v4 = 0; v4 < 3; v4++) {
-            sub_02021BD4(v1->unk_1D4[v4]);
+            GraphicElementData_Delete(v1->unk_1D4[v4]);
         }
 
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
@@ -1824,7 +1824,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        sub_02021BD4(v1->unk_200);
+        GraphicElementData_Delete(v1->unk_200);
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
         ov5_021DE4AC(&v1->unk_2C);
         EncounterEffect_Finish(v0, param0);
@@ -1941,7 +1941,7 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
         }
 
         for (v3 = 0; v3 < 4; v3++) {
-            sub_02021BD4(v1->unk_1D4[v3]);
+            GraphicElementData_Delete(v1->unk_1D4[v3]);
         }
 
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
@@ -2108,7 +2108,7 @@ void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
         }
 
         for (v3 = 0; v3 < 6; v3++) {
-            sub_02021BD4(v1->unk_1D4[v3]);
+            GraphicElementData_Delete(v1->unk_1D4[v3]);
         }
 
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
@@ -2251,7 +2251,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        sub_02021BD4(v1->unk_1DC);
+        GraphicElementData_Delete(v1->unk_1DC);
         ov5_021DE5A4(&v1->unk_08, &v1->unk_1A8);
         ov5_021DE4AC(&v1->unk_08);
 
@@ -2857,7 +2857,7 @@ static void ov5_021E519C (UnkStruct_ov5_021E5128 * param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021BD4(param0->unk_04[v0]);
+        GraphicElementData_Delete(param0->unk_04[v0]);
     }
 }
 
@@ -3118,7 +3118,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
             *(encEffect->done) = 1;
         }
 
-        sub_02021BD4(v0->unk_24C);
+        GraphicElementData_Delete(v0->unk_24C);
         ov5_021E519C(&v0->unk_250);
         ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[0]);
         ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[1]);
@@ -3583,7 +3583,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         BGL_DeleteWindow(&v0->unk_358);
 
         for (v5 = 0; v5 < 4; v5++) {
-            sub_02021BD4(v0->unk_2CC[v5]);
+            GraphicElementData_Delete(v0->unk_2CC[v5]);
         }
 
         for (v5 = 0; v5 < 4; v5++) {

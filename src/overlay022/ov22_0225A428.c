@@ -347,7 +347,7 @@ static void ov22_0225AA10 (UnkStruct_ov22_0225A914 * param0, UnkStruct_02009714 
     int v0;
 
     for (v0 = 0; v0 < 20; v0++) {
-        sub_02021BD4(param0->unk_10[v0]);
+        GraphicElementData_Delete(param0->unk_10[v0]);
     }
 
     ov22_0225AAC0(param0->unk_00, param1);

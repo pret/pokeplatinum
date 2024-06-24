@@ -426,18 +426,18 @@ static void ov94_0223FFC8 (UnkStruct_ov94_0223FD4C * param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021BD4(param0->unk_F54[v0]);
+        GraphicElementData_Delete(param0->unk_F54[v0]);
     }
 
-    sub_02021BD4(param0->unk_E20);
+    GraphicElementData_Delete(param0->unk_E20);
 
     for (v0 = 0; v0 < 30; v0++) {
-        sub_02021BD4(param0->unk_E28[v0]);
-        sub_02021BD4(param0->unk_EA0[v0]);
+        GraphicElementData_Delete(param0->unk_E28[v0]);
+        GraphicElementData_Delete(param0->unk_EA0[v0]);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02021BD4(param0->unk_F18[v0]);
+        GraphicElementData_Delete(param0->unk_F18[v0]);
     }
 }
 

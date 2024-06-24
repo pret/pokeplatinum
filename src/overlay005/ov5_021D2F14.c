@@ -110,7 +110,7 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     v3.y = param1->unk_06 * FX32_ONE;
     v3.z = param1->unk_08 * FX32_ONE;
 
-    v0.unk_00 = param0->unk_00;
+    v0.manager = param0->unk_00;
     v0.unk_04 = &param0->unk_190->unk_00[param1->unk_00];
     v0.unk_08 = v3;
     v0.unk_14 = v2;
@@ -367,7 +367,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
 
     sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
-    v3.unk_00 = param0->unk_00;
+    v3.manager = param0->unk_00;
     v3.unk_04 = v2->unk_04;
     v3.unk_08.x = FX32_CONST(param1->x);
     v3.unk_08.y = FX32_CONST(param1->y);

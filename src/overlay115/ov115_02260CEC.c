@@ -1259,7 +1259,7 @@ static void ov115_02261520 (UnkStruct_ov115_02261574 * param0, UnkStruct_ov115_0
     int v1, v2;
     u32 v3;
 
-    v0.unk_00 = param1->unk_1C;
+    v0.manager = param1->unk_1C;
     v0.unk_04 = &param1->unk_1BC;
     v0.unk_14.x = FX32_ONE;
     v0.unk_14.y = FX32_ONE;
@@ -1331,7 +1331,7 @@ static void ov115_02261648 (UnkStruct_ov115_022615B0 * param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02021BD4(param0->unk_00[v0]);
+        GraphicElementData_Delete(param0->unk_00[v0]);
     }
 }
 
@@ -2706,7 +2706,7 @@ static void ov115_02262FB4 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
 static void ov115_022630DC (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_02261ADC * param1)
 {
     {
-        sub_02021BD4(param0->unk_34);
+        GraphicElementData_Delete(param0->unk_34);
     }
 
     {
@@ -3708,7 +3708,7 @@ static void ov115_022646BC (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
     {
         UnkStruct_ov115_02261520 v0 = {0};
 
-        v0.unk_00 = param0->unk_1C;
+        v0.manager = param0->unk_1C;
         v0.unk_04 = &param0->unk_760.unk_70;
         v0.unk_14.x = FX32_ONE;
         v0.unk_14.y = FX32_ONE;
@@ -3727,7 +3727,7 @@ static void ov115_022646BC (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
 
 static void ov115_02264728 (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_022647A0 * param1)
 {
-    sub_02021BD4(param1->unk_00);
+    GraphicElementData_Delete(param1->unk_00);
     memset(param1, 0, sizeof(UnkStruct_ov115_022647A0));
 }
 
@@ -3930,7 +3930,7 @@ static void ov115_02264B40 (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
 {
     UnkStruct_ov115_02261520 v0 = {0};
 
-    v0.unk_00 = param0->unk_1C;
+    v0.manager = param0->unk_1C;
     v0.unk_04 = &param0->unk_760.unk_70;
     v0.unk_14.x = FX32_ONE;
     v0.unk_14.y = FX32_ONE;
@@ -3949,7 +3949,7 @@ static void ov115_02264B40 (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
 
 static void ov115_02264BA0 (UnkStruct_ov115_02264BA0 * param0)
 {
-    sub_02021BD4(param0->unk_04);
+    GraphicElementData_Delete(param0->unk_04);
 }
 
 static void ov115_02264BAC (UnkStruct_ov115_02264BA0 * param0)
@@ -3990,7 +3990,7 @@ static void ov115_02264C0C (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
     int v0;
     UnkStruct_ov115_02261520 v1 = {0};
 
-    v1.unk_00 = param0->unk_1C;
+    v1.manager = param0->unk_1C;
     v1.unk_04 = &param0->unk_760.unk_70;
     v1.unk_14.x = 9;
     v1.unk_14.y = 9;
@@ -4013,7 +4013,7 @@ static void ov115_02264C78 (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_02021BD4(param1->unk_00[v0].unk_04);
+        GraphicElementData_Delete(param1->unk_00[v0].unk_04);
     }
 }
 
@@ -4472,7 +4472,7 @@ static void ov115_02265688 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
         Strbuf_Free(param0->unk_5C);
     }
 
-    sub_02021BD4(param0->unk_34);
+    GraphicElementData_Delete(param0->unk_34);
 
     {
         sub_0200A4E4(param0->unk_00[0]);

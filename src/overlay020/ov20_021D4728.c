@@ -323,11 +323,11 @@ static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 static void ov20_021D4AD4 (UnkStruct_ov20_021D4AD4 * param0)
 {
     if (param0->unk_14) {
-        sub_02021BD4(param0->unk_14);
+        GraphicElementData_Delete(param0->unk_14);
     }
 
     if (param0->unk_18) {
-        sub_02021BD4(param0->unk_18);
+        GraphicElementData_Delete(param0->unk_18);
     }
 
     ov20_021D4B2C(&param0->unk_1C);

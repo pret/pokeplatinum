@@ -311,7 +311,7 @@ static void ov94_0223E770 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223E7C4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_02021BD4(param0->unk_E20);
+    GraphicElementData_Delete(param0->unk_E20);
 }
 
 static const u16 Unk_ov94_02245D94[6][2] = {

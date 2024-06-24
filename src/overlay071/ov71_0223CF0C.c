@@ -112,7 +112,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
         u8 v2;
         UnkStruct_ov115_02261520 v3;
 
-        v3.unk_00 = param0->unk_00;
+        v3.manager = param0->unk_00;
         v3.unk_04 = &v1;
         v3.unk_08.x = 0;
         v3.unk_08.y = 0;

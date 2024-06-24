@@ -568,7 +568,7 @@ static void ov21_021DEE80 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 static void ov21_021DEEF8 (UnkStruct_ov21_021DF374 * param0)
 {
     if (param0->unk_00[0]) {
-        sub_02021BD4(param0->unk_00[0]);
+        GraphicElementData_Delete(param0->unk_00[0]);
     }
 }
 
@@ -735,11 +735,11 @@ int ov21_021DF180 (int param0)
 static void ov21_021DF1F8 (UnkStruct_ov21_021DF374 * param0)
 {
     if (param0->unk_00[1]) {
-        sub_02021BD4(param0->unk_00[1]);
+        GraphicElementData_Delete(param0->unk_00[1]);
     }
 
     if (param0->unk_00[2]) {
-        sub_02021BD4(param0->unk_00[2]);
+        GraphicElementData_Delete(param0->unk_00[2]);
     }
 }
 
@@ -812,7 +812,7 @@ Window * ov21_021DF30C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2
 
 static void ov21_021DF35C (UnkStruct_ov21_021DF374 * param0)
 {
-    sub_02021BD4(param0->unk_0C);
+    GraphicElementData_Delete(param0->unk_0C);
     param0->unk_0C = NULL;
     ov21_021D4D1C(param0->unk_10);
 }

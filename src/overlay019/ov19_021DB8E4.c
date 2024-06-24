@@ -391,7 +391,7 @@ static void ov19_021DBEF8 (UnkStruct_ov19_021DBA9C * param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_48[v0] != NULL) {
-            sub_02021BD4(param0->unk_48[v0]);
+            GraphicElementData_Delete(param0->unk_48[v0]);
             param0->unk_48[v0] = NULL;
         }
     }
@@ -743,6 +743,6 @@ static void ov19_021DC5B8 (UnkStruct_ov19_021DBA9C * param0, fx32 param1)
 static void ov19_021DC5E0 (UnkStruct_ov19_021DBA9C * param0)
 {
     if (param0->unk_90) {
-        sub_02021BD4(param0->unk_90);
+        GraphicElementData_Delete(param0->unk_90);
     }
 }

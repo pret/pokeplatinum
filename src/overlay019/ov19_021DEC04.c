@@ -660,15 +660,15 @@ static void ov19_021DF7D0 (UnkStruct_ov19_021DEC04 * param0)
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021BD4(param0->unk_20[v0]);
-        sub_02021BD4(param0->unk_28[v0]);
+        GraphicElementData_Delete(param0->unk_20[v0]);
+        GraphicElementData_Delete(param0->unk_28[v0]);
 
         for (v1 = 0; v1 < 5; v1++) {
-            sub_02021BD4(param0->unk_34[v0][v1]);
+            GraphicElementData_Delete(param0->unk_34[v0][v1]);
         }
     }
 
-    sub_02021BD4(param0->unk_30);
+    GraphicElementData_Delete(param0->unk_30);
     Heap_FreeToHeap(param0->unk_5C);
     Heap_FreeToHeap(param0->unk_64);
 }

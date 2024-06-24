@@ -914,10 +914,10 @@ static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E5898 (UnkStruct_ov21_021E5004 * param0)
 {
-    sub_02021BD4(param0->unk_00);
-    sub_02021BD4(param0->unk_3C);
-    sub_02021BD4(param0->unk_04);
-    sub_02021BD4(param0->unk_20);
+    GraphicElementData_Delete(param0->unk_00);
+    GraphicElementData_Delete(param0->unk_3C);
+    GraphicElementData_Delete(param0->unk_04);
+    GraphicElementData_Delete(param0->unk_20);
 }
 
 static void ov21_021E58B8 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E4DA4 * param1, int param2)

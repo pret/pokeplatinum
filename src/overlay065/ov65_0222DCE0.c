@@ -6702,7 +6702,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     sub_020093B4(&v2, 30, 30, 30, 30, 0xffffffff, 0xffffffff, 0, 0, param0->unk_31C[0], param0->unk_31C[1], param0->unk_31C[2], param0->unk_31C[3], NULL, NULL);
 
     for (v1 = 0; v1 < 3; v1++) {
-        v9[v1].unk_00 = param0->unk_18C;
+        v9[v1].manager = param0->unk_18C;
         v9[v1].unk_04 = &v2;
         v9[v1].unk_2C = param2;
 
@@ -6762,7 +6762,7 @@ static void ov65_02234CFC (UnkStruct_ov65_0222EBE0 * param0)
     sub_0201EE28(&param0->unk_BE0.unk_228);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02021BD4(param0->unk_BE0.unk_21C[v0]);
+        GraphicElementData_Delete(param0->unk_BE0.unk_21C[v0]);
     }
 
     sub_0200A4E4(param0->unk_BE0.unk_20C[0]);

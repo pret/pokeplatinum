@@ -205,7 +205,7 @@ static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
     {
         UnkStruct_ov115_02261520 v2;
 
-        v2.unk_00 = param0->unk_38;
+        v2.manager = param0->unk_38;
         v2.unk_04 = &v1;
         v2.unk_08.x = 0;
         v2.unk_08.y = 0;

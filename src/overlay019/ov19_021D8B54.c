@@ -204,22 +204,22 @@ void ov19_021D8E84 (UnkStruct_ov19_021D8E00 * param0)
     }
 
     if (param0->unk_04 != NULL) {
-        sub_02021BD4(param0->unk_04);
+        GraphicElementData_Delete(param0->unk_04);
         param0->unk_04 = NULL;
     }
 
     if (param0->unk_08 != NULL) {
-        sub_02021BD4(param0->unk_08);
+        GraphicElementData_Delete(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
     if (param0->unk_0C != NULL) {
-        sub_02021BD4(param0->unk_0C);
+        GraphicElementData_Delete(param0->unk_0C);
         param0->unk_0C = NULL;
     }
 
     if (param0->unk_10 != NULL) {
-        sub_02021BD4(param0->unk_10);
+        GraphicElementData_Delete(param0->unk_10);
         param0->unk_10 = NULL;
     }
 }

@@ -1236,7 +1236,7 @@ static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
-        v0[v1].unk_00 = param0->unk_04;
+        v0[v1].manager = param0->unk_04;
         v0[v1].unk_04 = &param0->unk_23C;
         v0[v1].unk_2C = param1;
 
@@ -1253,7 +1253,7 @@ static void ov64_0222EA0C (UnkStruct_ov64_0222E21C * param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021BD4(param0->unk_270[v0]);
+        GraphicElementData_Delete(param0->unk_270[v0]);
     }
 }
 
@@ -2189,7 +2189,7 @@ static void ov64_0222F5F4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 {
     int v0;
 
-    sub_02021BD4(param0->unk_104);
+    GraphicElementData_Delete(param0->unk_104);
     BGL_DeleteWindow(&param0->unk_C4);
     Strbuf_Free(param0->unk_D4);
 

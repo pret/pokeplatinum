@@ -49,7 +49,7 @@ UnkStruct_ov20_021D3980 * ov20_021D3864 (UnkStruct_ov20_021D2128 * param0, const
 void ov20_021D3880 (UnkStruct_ov20_021D3980 * param0)
 {
     if (param0->unk_0C) {
-        sub_02021BD4(param0->unk_0C);
+        GraphicElementData_Delete(param0->unk_0C);
     }
 
     Heap_FreeToHeap(param0);

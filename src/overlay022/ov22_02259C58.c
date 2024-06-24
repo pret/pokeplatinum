@@ -79,7 +79,7 @@ void ov22_02259C9C (UnkStruct_ov22_0225A154 * param0, UnkStruct_ov22_02259C9C * 
 
     v0.unk_00 = param1->unk_14;
     v0.unk_04 = param1->unk_10;
-    v0.unk_08 = param1->unk_00.unk_00->unk_00;
+    v0.unk_08 = param1->unk_00.unk_00->manager;
     v0.unk_0C = param1->unk_18;
     v0.unk_10 = param0->unk_00.unk_00;
     v0.unk_14 = param1->unk_24;
@@ -95,7 +95,7 @@ void ov22_02259C9C (UnkStruct_ov22_0225A154 * param0, UnkStruct_ov22_02259C9C * 
 
 void ov22_02259CE8 (UnkStruct_ov22_02259C58 * param0)
 {
-    sub_02021BD4(param0->unk_00);
+    GraphicElementData_Delete(param0->unk_00);
     memset(param0, 0, sizeof(UnkStruct_ov22_02259C58));
 }
 

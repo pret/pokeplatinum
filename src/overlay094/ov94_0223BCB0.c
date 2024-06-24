@@ -380,7 +380,7 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
 
 void ov94_0223C300 (UnkStruct_ov115_02261520 * param0, UnkStruct_ov94_0223FD4C * param1, UnkStruct_ov19_021DA864 * param2, int param3)
 {
-    param0->unk_00 = param1->unk_BE4;
+    param0->manager = param1->unk_BE4;
     param0->unk_04 = param2;
     param0->unk_08.z = 0;
     param0->unk_14.x = FX32_ONE;

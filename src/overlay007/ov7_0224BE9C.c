@@ -672,7 +672,7 @@ static void ov7_0224C934 (UnkStruct_ov7_0224C768 * param0)
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021BD4(param0->unk_158[v0]);
+        GraphicElementData_Delete(param0->unk_158[v0]);
     }
 
     ov7_0224CB40(param0);

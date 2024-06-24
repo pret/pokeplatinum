@@ -903,8 +903,8 @@ static void ov97_0222BC9C (OverlayManager * param0)
     UnkStruct_0222AE60 * v1 = OverlayManager_Data(param0);
 
     if (v1->unk_168[0] || v1->unk_168[1]) {
-        sub_02021BD4(v1->unk_168[0]);
-        sub_02021BD4(v1->unk_168[1]);
+        GraphicElementData_Delete(v1->unk_168[0]);
+        GraphicElementData_Delete(v1->unk_168[1]);
         ov97_02237DA0();
     }
 

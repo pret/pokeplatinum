@@ -96,7 +96,7 @@ void ov80_021D2C1C (UnkStruct_ov80_021D2C1C * param0)
     for (v1 = 0; v1 < param0->unk_00; v1++) {
         v0 = &param0->unk_08[v1];
         sub_02021C98(v0->unk_18, 0, 0);
-        sub_02021BD4(v0->unk_18);
+        GraphicElementData_Delete(v0->unk_18);
     }
 
     Heap_FreeToHeap(param0->unk_08);
