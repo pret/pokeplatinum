@@ -212,7 +212,7 @@ u16 sub_0203CC14 (FieldSystem * fieldSystem, void * param1, int param2)
     int v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
     for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 >= v0[v3].x) && (v1 < (v0[v3].x + v0[v3].width)) && (v2 >= v0[v3].z) && (v2 < (v0[v3].z + v0[v3].length)) && (FieldSystem_TryGetVarPointer(fieldSystem, v0[v3].var) == v0[v3].value)) {
+        if ((v1 >= v0[v3].x) && (v1 < (v0[v3].x + v0[v3].width)) && (v2 >= v0[v3].z) && (v2 < (v0[v3].z + v0[v3].length)) && (FieldSystem_TryGetVar(fieldSystem, v0[v3].var) == v0[v3].value)) {
             return v0[v3].script;
         }
     }

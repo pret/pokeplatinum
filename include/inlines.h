@@ -166,7 +166,7 @@ static inline u16 * ScriptContext_GetVarPointer (ScriptContext * ctx)
 
 static inline u16 ScriptContext_GetVar (ScriptContext * ctx)
 {
-    return FieldSystem_TryGetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    return FieldSystem_TryGetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 }
 
 static inline void inline_0204E650 (VarsFlags * param0)

@@ -140,7 +140,7 @@ void * ScriptManager_GetMemberPtr(ScriptManager * scriptManager, u32 member);
 void * FieldSystem_GetScriptMember(FieldSystem * fieldSystem, u32 member);
 void sub_0203F0C0(FieldSystem * fieldSystem);
 u16 * FieldSystem_GetVarPointer(FieldSystem * fieldSystem, u16 varID);
-u16 FieldSystem_TryGetVarPointer(FieldSystem * fieldSystem, u16 varID);
+u16 FieldSystem_TryGetVar(FieldSystem * fieldSystem, u16 varID);
 u16 sub_0203F164(FieldSystem * fieldSystem, u16 param1);
 BOOL FieldSystem_CheckFlag(FieldSystem * fieldSystem, u16 flagID);
 void FieldSystem_SetFlag(FieldSystem * fieldSystem, u16 flagID);

@@ -486,21 +486,21 @@ u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
     return FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
 }
 
-u16 FieldSystem_TryGetVarPointer (FieldSystem * fieldSystem, u16 varID)
+u16 FieldSystem_TryGetVar (FieldSystem * fieldSystem, u16 varID)
 {
-    u16 *varPtr = FieldSystem_GetVarPointer(fieldSystem, varID);
+    u16 *var = FieldSystem_GetVarPointer(fieldSystem, varID);
 
-    if (varPtr == NULL) {
+    if (var == NULL) {
         return varID;
     }
 
-    return *varPtr;
+    return *var;
 }
 
 u16 sub_0203F164 (FieldSystem * fieldSystem, u16 varID)
 {
     GF_ASSERT(varID < 16);
-    return FieldSystem_TryGetVarPointer(fieldSystem, (((0 + VARS_START) + 32) + varID));
+    return FieldSystem_TryGetVar(fieldSystem, (((0 + VARS_START) + 32) + varID));
 }
 
 BOOL FieldSystem_CheckFlag (FieldSystem * fieldSystem, u16 flagID)
@@ -837,7 +837,7 @@ static u16 sub_0203F638 (FieldSystem * fieldSystem, const u8 * param1, u8 param2
         v1 = (*param1 + (*(param1 + 1) << 8));
         param1 += 2;
 
-        if (FieldSystem_TryGetVarPointer(fieldSystem, v0) == FieldSystem_TryGetVarPointer(fieldSystem, v1)) {
+        if (FieldSystem_TryGetVar(fieldSystem, v0) == FieldSystem_TryGetVar(fieldSystem, v1)) {
             return *param1 + (*(param1 + 1) << 8);
         }
 
