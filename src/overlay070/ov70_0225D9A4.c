@@ -1695,7 +1695,7 @@ static void ov70_0225EC20 (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225
 
     for (v2 = 0; v2 < 2; v2++) {
         v1.position.y = Unk_ov70_0226D580[v2] * FX32_ONE;
-        param0->unk_50[v2] = sub_02021B90(&v1);
+        param0->unk_50[v2] = GraphicElementManager_AddElement(&v1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_50[v2], v2);
         sub_02021CC8(param0->unk_50[v2], 1);
@@ -2748,7 +2748,7 @@ static void ov70_0225FEF0 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
         v4.heapID = param3;
         v4.position.x = (FX32_CONST(208));
         v4.position.y = (FX32_CONST(152) + (256 * FX32_ONE));
-        param0->unk_54 = sub_02021B90(&v4);
+        param0->unk_54 = GraphicElementManager_AddElement(&v4);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_54, v1);
         sub_02021CAC(param0->unk_54, param5);
@@ -2823,7 +2823,7 @@ static void ov70_02260080 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
         v7.position.x = FX32_CONST(v1);
         v7.position.y = FX32_CONST(v2) + (256 * FX32_ONE);
 
-        param0->unk_68 = sub_02021B90(&v7);
+        param0->unk_68 = GraphicElementManager_AddElement(&v7);
     }
 }
 
@@ -3034,7 +3034,7 @@ static void ov70_022603CC (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
             v8.position.x += FX32_CONST(v10->unk_04);
             v8.position.y += FX32_CONST(v10->unk_06);
 
-            param0->unk_7C[v0] = sub_02021B90(&v8);
+            param0->unk_7C[v0] = GraphicElementManager_AddElement(&v8);
 
             sub_02021F24(param0->unk_7C[v0], v10->unk_01);
         }

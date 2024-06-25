@@ -577,7 +577,7 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
         v1.position.x = v3 << FX32_SHIFT;
         v1.position.y = (v4 + 8) << FX32_SHIFT;
 
-        param0->unk_00[v5] = sub_02021B90(&v1);
+        param0->unk_00[v5] = GraphicElementManager_AddElement(&v1);
 
         if ((v5 % 2) == 0) {
             SpriteActor_SetSpriteAnimActive(param0->unk_00[v5], 0);
@@ -590,7 +590,7 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
     v1.position.y = 96 << FX32_SHIFT;
     v1.priority = 0;
 
-    param0->unk_BC = sub_02021B90(&v1);
+    param0->unk_BC = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_BC, 1);
     sub_02021CC8(param0->unk_BC, 1);

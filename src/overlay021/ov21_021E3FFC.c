@@ -590,10 +590,10 @@ static void ov21_021E47CC (UnkStruct_ov21_021E4360 * param0, UnkStruct_ov21_021E
 
     for (v3 = 0; v3 < 9; v3++) {
         for (v4 = 0; v4 < 9; v4++) {
-            param0->unk_20[v3].unk_00[v4].unk_00 = sub_02021B90(&v1);
+            param0->unk_20[v3].unk_00[v4].unk_00 = GraphicElementManager_AddElement(&v1);
         }
 
-        param0->unk_20[v3].unk_48.unk_00 = sub_02021B90(&v1);
+        param0->unk_20[v3].unk_48.unk_00 = GraphicElementManager_AddElement(&v1);
     }
 }
 

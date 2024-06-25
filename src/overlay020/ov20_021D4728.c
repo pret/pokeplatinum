@@ -370,7 +370,7 @@ static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNS
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.heapID = 35;
 
-    v2 = sub_02021B90(&v1);
+    v2 = GraphicElementManager_AddElement(&v1);
 
     if (v2) {
         sub_02021CC8(v2, 1);

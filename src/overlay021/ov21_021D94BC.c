@@ -2447,7 +2447,7 @@ static void ov21_021DB858 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
             break;
         }
 
-        param0->unk_00[v0] = sub_02021B90(param1);
+        param0->unk_00[v0] = GraphicElementManager_AddElement(param1);
 
         switch (v0) {
         case 0:
@@ -2498,7 +2498,7 @@ static void ov21_021DB944 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
         for (v1 = 0; v1 < 2; v1++) {
             param1->position.x = 48 + (v1 * (128 - 48));
             param1->position.x <<= FX32_SHIFT;
-            param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
+            param0->unk_30[(v0 * 2) + v1] = GraphicElementManager_AddElement(param1);
             SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
@@ -2515,7 +2515,7 @@ static void ov21_021DB9B4 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
         for (v1 = 0; v1 < 2; v1++) {
             param1->position.x = 48 + (v1 * (128 - 48));
             param1->position.x <<= FX32_SHIFT;
-            param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
+            param0->unk_30[(v0 * 2) + v1] = GraphicElementManager_AddElement(param1);
             SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
@@ -2532,7 +2532,7 @@ static void ov21_021DBA24 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
         for (v1 = 0; v1 < 2; v1++) {
             param1->position.x = 48 + (v1 * (128 - 48));
             param1->position.x <<= FX32_SHIFT;
-            param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
+            param0->unk_30[(v0 * 2) + v1] = GraphicElementManager_AddElement(param1);
             SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
@@ -2541,7 +2541,7 @@ static void ov21_021DBA24 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
     param1->position.x = (48 - 24);
     param1->position.x <<= FX32_SHIFT;
     param1->position.y = (param1->position.y << FX32_SHIFT) + (192 << FX32_SHIFT);
-    param0->unk_30[10] = sub_02021B90(param1);
+    param0->unk_30[10] = GraphicElementManager_AddElement(param1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_30[10], 5);
 }
@@ -2557,7 +2557,7 @@ static void ov21_021DBAB8 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
         for (v1 = 0; v1 < 2; v1++) {
             param1->position.x = 48 + (v1 * (128 - 48));
             param1->position.x <<= FX32_SHIFT;
-            param0->unk_30[(v0 * 2) + v1] = sub_02021B90(param1);
+            param0->unk_30[(v0 * 2) + v1] = GraphicElementManager_AddElement(param1);
             SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 2) + v1], 0);
         }
     }
@@ -2566,7 +2566,7 @@ static void ov21_021DBAB8 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
     param1->position.x = 128;
     param1->position.x <<= FX32_SHIFT;
     param1->position.y = (param1->position.y << FX32_SHIFT) + (192 << FX32_SHIFT);
-    param0->unk_30[8] = sub_02021B90(param1);
+    param0->unk_30[8] = GraphicElementManager_AddElement(param1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_30[8], 0);
 
@@ -2574,7 +2574,7 @@ static void ov21_021DBAB8 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
     param1->position.x = (48 - 24);
     param1->position.x <<= FX32_SHIFT;
     param1->position.y = (param1->position.y << FX32_SHIFT) + (192 << FX32_SHIFT);
-    param0->unk_30[9] = sub_02021B90(param1);
+    param0->unk_30[9] = GraphicElementManager_AddElement(param1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_30[9], 4);
 }
@@ -2590,7 +2590,7 @@ static void ov21_021DBB74 (UnkStruct_ov21_021DC96C * param0, CellActorInitParams
         for (v1 = 0; v1 < 3; v1++) {
             param1->position.x = 28 + (v1 * 56);
             param1->position.x <<= FX32_SHIFT;
-            param0->unk_30[(v0 * 3) + v1] = sub_02021B90(param1);
+            param0->unk_30[(v0 * 3) + v1] = GraphicElementManager_AddElement(param1);
 
             SpriteActor_SetSpriteAnimActive(param0->unk_30[(v0 * 3) + v1], 6);
         }
@@ -2619,7 +2619,7 @@ static void ov21_021DBBE4 (UnkStruct_ov21_021DC96C * param0, UnkStruct_ov21_021D
         for (v4 = 0; v4 < 3; v4++) {
             v1.position.x = 28 + (v4 * 56);
             v1.position.x <<= FX32_SHIFT;
-            param0->unk_A8[(v3 * 3) + v4] = sub_02021B90(&v1);
+            param0->unk_A8[(v3 * 3) + v4] = GraphicElementManager_AddElement(&v1);
 
             switch ((v3 * 3) + v4) {
             case 0:

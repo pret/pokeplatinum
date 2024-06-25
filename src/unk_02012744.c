@@ -759,7 +759,7 @@ static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, con
     v0.position.x += (param0->unk_18 << FX32_SHIFT) + ((param1->unk_00 * 8) << FX32_SHIFT);
     v0.position.y += (param0->unk_1C << FX32_SHIFT) + ((param1->unk_04 * 8) << FX32_SHIFT);
 
-    return sub_02021B90(&v0);
+    return GraphicElementManager_AddElement(&v0);
 }
 
 static UnkStruct_02013034 * sub_02013188 (int param0)

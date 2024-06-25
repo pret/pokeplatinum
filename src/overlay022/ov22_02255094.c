@@ -172,7 +172,7 @@ GraphicElementData * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1
     v1.vramType = param5;
     v1.heapID = 14;
 
-    return sub_02021B90(&v1);
+    return GraphicElementManager_AddElement(&v1);
 }
 
 void ov22_02255248 (UnkStruct_ov22_0225A0E4 * param0, NARC * param1, int param2, BOOL param3, int param4, int param5)

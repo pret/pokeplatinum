@@ -575,7 +575,7 @@ static GraphicElementData * sub_0205D344 (UnkStruct_0205D094 * param0, int param
     v0.vramType = param4;
     v0.heapID = 4;
 
-    v1 = GraphicElementManager_AddElement(&v0);
+    v1 = GraphicElementManager_AddElementEx(&v0);
     GF_ASSERT(v1);
 
     return v1;

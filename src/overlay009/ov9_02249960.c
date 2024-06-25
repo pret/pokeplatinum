@@ -2769,7 +2769,7 @@ static GraphicElementData * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = 4;
 
-    v2 = sub_02021B90(&v1);
+    v2 = GraphicElementManager_AddElement(&v1);
     GF_ASSERT(v2 != NULL);
 
     return v2;

@@ -647,7 +647,7 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     v1.position.x = 184 << FX32_SHIFT;
     v1.position.y = 64 << FX32_SHIFT;
 
-    param0->unk_00 = sub_02021B90(&v1);
+    param0->unk_00 = GraphicElementManager_AddElement(&v1);
 
     if (ov21_021D3920(param2->unk_00) == 0) {
         SpriteActor_SetSpriteAnimActive(param0->unk_00, 3);
@@ -658,7 +658,7 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     v1.position.x = 128 << FX32_SHIFT;
     v1.position.y = (96 + 10) << FX32_SHIFT;
 
-    param0->unk_08 = sub_02021B90(&v1);
+    param0->unk_08 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_08, 1);
     sub_02021E80(param0->unk_08, 1);
@@ -666,13 +666,13 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     v1.position.x = 184 << FX32_SHIFT;
     v1.position.y = (64 + 24) << FX32_SHIFT;
 
-    param0->unk_0C[0] = sub_02021B90(&v1);
+    param0->unk_0C[0] = GraphicElementManager_AddElement(&v1);
     SpriteActor_SetSpriteAnimActive(param0->unk_0C[0], 0);
 
     v1.position.x = 72 << FX32_SHIFT;
     v1.position.y = (64 + 24) << FX32_SHIFT;
 
-    param0->unk_0C[1] = sub_02021B90(&v1);
+    param0->unk_0C[1] = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_0C[1], 0);
     sub_020093B4(&v0, sub_02009E08(param0->unk_14[0]), sub_02009E08(param0->unk_14[1]), sub_02009E08(param0->unk_14[2]), sub_02009E08(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
@@ -685,7 +685,7 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     v1.position.x = 72 << FX32_SHIFT;
     v1.position.y = 64 << FX32_SHIFT;
 
-    param0->unk_04 = sub_02021B90(&v1);
+    param0->unk_04 = GraphicElementManager_AddElement(&v1);
     sub_02021EC4(param0->unk_04, PokeIconPaletteIndex(v6, v7, 0));
 }
 

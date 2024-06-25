@@ -160,7 +160,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     v5.vramType = v0;
     v5.heapID = param0->unk_00;
 
-    v4->unk_00 = GraphicElementManager_AddElement(&v5);
+    v4->unk_00 = GraphicElementManager_AddElementEx(&v5);
 
     if (v4->unk_00 != NULL) {
         SpriteActor_SetSpriteAnimActive(v4->unk_00, 0);

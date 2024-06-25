@@ -706,7 +706,7 @@ static void ov68_0225CCD0 (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v2.heapID = param3;
 
-        param0->unk_14 = sub_02021B90(&v2);
+        param0->unk_14 = GraphicElementManager_AddElement(&v2);
         sub_02021CAC(param0->unk_14, 0);
     }
 

@@ -315,7 +315,7 @@ static void ov22_0225A914 (UnkStruct_ov22_0225A914 * param0, GraphicElementManag
             v1.position.x = 38 + (18 * v3);
             v1.position.x *= FX32_ONE;
 
-            param0->unk_10[(v2 * 10) + v3] = sub_02021B90(&v1);
+            param0->unk_10[(v2 * 10) + v3] = GraphicElementManager_AddElement(&v1);
             SpriteActor_SetSpriteAnimActive(param0->unk_10[(v2 * 10) + v3], 1);
 
             if (((v2 * 10) + v3) >= param3) {
@@ -404,7 +404,7 @@ static void ov22_0225AB54 (UnkStruct_ov22_0225AB54 * param0, GraphicElementManag
     for (v2 = 0; v2 < 2; v2++) {
         v1.position.x = 103 + (v2 * 24);
         v1.position.x *= FX32_ONE;
-        param0->unk_10[v2] = sub_02021B90(&v1);
+        param0->unk_10[v2] = GraphicElementManager_AddElement(&v1);
     }
 
     param0->unk_1C = param3;

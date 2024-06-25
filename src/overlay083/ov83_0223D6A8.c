@@ -285,7 +285,7 @@ GraphicElementData * ov83_0223D9A8 (UnkStruct_ov83_0223D784 * param0, UnkStruct_
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.heapID = param6;
 
-    v1 = sub_02021B90(&v0);
+    v1 = GraphicElementManager_AddElement(&v0);
     GF_ASSERT(v1);
 
     return v1;

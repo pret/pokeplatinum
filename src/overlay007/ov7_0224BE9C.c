@@ -656,7 +656,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
 
     for (v0 = 0; v0 < 2; v0++) {
         v3.position.y = v4[v0] * FX32_ONE;
-        param0->unk_158[v0] = sub_02021B90(&v3);
+        param0->unk_158[v0] = GraphicElementManager_AddElement(&v3);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_158[v0], v0);
         sub_02021CC8(param0->unk_158[v0], 1);

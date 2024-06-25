@@ -348,7 +348,7 @@ void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544
     v1.vramType = param3;
     v1.heapID = param0->unk_00;
 
-    param1->unk_04 = sub_02021B90(&v1);
+    param1->unk_04 = GraphicElementManager_AddElement(&v1);
     GF_ASSERT(param1->unk_04 != NULL);
 }
 

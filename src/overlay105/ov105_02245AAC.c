@@ -94,7 +94,7 @@ GraphicElementData * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 para
             v3.position.y += (192 << FX32_SHIFT);
         }
 
-        v2 = GraphicElementManager_AddElement(&v3);
+        v2 = GraphicElementManager_AddElementEx(&v3);
 
         sub_02021CC8(v2, 1);
         SpriteActor_SetSpriteAnimActive(v2, param2);

@@ -1477,7 +1477,7 @@ static void ov5_021D6D34 (UnkStruct_ov5_021DB4B8 * param0)
     int v0;
 
     for (v0 = 0; v0 < 48; v0++) {
-        param0->unk_48[v0].unk_04 = GraphicElementManager_AddElement(&param0->unk_08->unk_10);
+        param0->unk_48[v0].unk_04 = GraphicElementManager_AddElementEx(&param0->unk_08->unk_10);
         sub_02021CAC(param0->unk_48[v0].unk_04, 0);
         GF_ASSERT(param0->unk_48[v0].unk_04);
     }

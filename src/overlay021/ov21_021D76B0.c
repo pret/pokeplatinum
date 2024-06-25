@@ -611,7 +611,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     v1.position.y = 40 << FX32_SHIFT;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_00[0] = sub_02021B90(&v1);
+    param0->unk_00[0] = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00[0], 2);
 
@@ -623,7 +623,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     v1.position.y = 88 << FX32_SHIFT;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_00[1] = sub_02021B90(&v1);
+    param0->unk_00[1] = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00[1], 0);
 
@@ -635,7 +635,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     v1.position.y = 152 << FX32_SHIFT;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_00[2] = sub_02021B90(&v1);
+    param0->unk_00[2] = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00[2], 1);
 
@@ -643,7 +643,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     v1.position.y = 64 << FX32_SHIFT;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_18 = sub_02021B90(&v1);
+    param0->unk_18 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_18, 3);
 
@@ -651,7 +651,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     v1.position.y = 146 << FX32_SHIFT;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_1C = sub_02021B90(&v1);
+    param0->unk_1C = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_1C, 4);
 
@@ -659,7 +659,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     v1.position.y = 8 << FX32_SHIFT;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_20 = sub_02021B90(&v1);
+    param0->unk_20 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_20, 5);
 }

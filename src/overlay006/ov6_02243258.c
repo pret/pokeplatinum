@@ -557,7 +557,7 @@ static GraphicElementData * ov6_02243740 (UnkStruct_ov6_02243258 * param0, const
     v1.priority = param7;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = 4;
-    v2 = sub_02021B90(&v1);
+    v2 = GraphicElementManager_AddElement(&v1);
 
     GF_ASSERT(v2 != NULL);
     return v2;
@@ -1860,7 +1860,7 @@ static GraphicElementData * ov6_02244C20 (UnkStruct_ov6_02243FFC * param0, const
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = 4;
 
-    v2 = sub_02021B90(&v1);
+    v2 = GraphicElementManager_AddElement(&v1);
     GF_ASSERT(v2 != NULL);
 
     return v2;

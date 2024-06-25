@@ -530,7 +530,7 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         v2.position.y = v0[v9].y << FX32_SHIFT;
         v2.priority = v9 + 1;
 
-        param0->unk_1C4[v9] = sub_02021B90(&v2);
+        param0->unk_1C4[v9] = GraphicElementManager_AddElement(&v2);
         sub_02021CAC(param0->unk_1C4[v9], 0);
     }
 

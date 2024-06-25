@@ -1490,7 +1490,7 @@ static void AttachCursorCellActor (ChooseStarterApp * param0, ChooseStarterCurso
     v1.position.x = 0;
     v1.position.y = 0;
 
-    param1->unk_00 = sub_02021B90(&v1);
+    param1->unk_00 = GraphicElementManager_AddElement(&v1);
     sub_02021CAC(param1->unk_00, 0);
 
     param1->unk_1C.x = 0;

@@ -846,7 +846,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         NNS_G2dLoadPalette(v8, v12 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
         v3.priority = 1 + v12;
-        param0->unk_1B4[v12] = sub_02021B90(&v3);
+        param0->unk_1B4[v12] = GraphicElementManager_AddElement(&v3);
 
         sub_02021CAC(param0->unk_1B4[v12], 0);
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
@@ -883,7 +883,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     sub_02006E84(v4.unk_00, v4.unk_08, 1, 192, 0x20, 63);
 
     v3.priority = 0;
-    param0->unk_1CC = sub_02021B90(&v3);
+    param0->unk_1CC = GraphicElementManager_AddElement(&v3);
 
     sub_02021CAC(param0->unk_1CC, 0);
     Heap_FreeToHeap(v10);

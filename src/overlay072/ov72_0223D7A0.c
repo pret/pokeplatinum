@@ -537,7 +537,7 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
             v1.position.x = FX32_ONE * (Unk_ov72_0223EB3C[v0][0]);
             v1.position.y = FX32_ONE * (Unk_ov72_0223EB3C[v0][1]);
 
-            param0->unk_2B4[v0] = GraphicElementManager_AddElement(&v1);
+            param0->unk_2B4[v0] = GraphicElementManager_AddElementEx(&v1);
 
             sub_02021CC8(param0->unk_2B4[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);

@@ -2669,7 +2669,7 @@ static void ov69_0225E960 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225
         sub_02009D4C(param0->unk_6C[v0][0]);
         sub_020093B4(&v1, v0, 0, v0, v0, 0xffffffff, 0xffffffff, 0, 1, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
-        param0->unk_3C[v0] = sub_02021B90(&v3);
+        param0->unk_3C[v0] = GraphicElementManager_AddElement(&v3);
 
         sub_02021CC8(param0->unk_3C[v0], 1);
         sub_02021CE4(param0->unk_3C[v0], FX32_ONE);

@@ -321,7 +321,7 @@ GraphicElementData * sub_0200CA44 (SpriteRenderer * param0, SpriteGfxHandler * p
     v1.vramType = param9;
     v1.heapID = param0->unk_00;
 
-    v0 = GraphicElementManager_AddElement(&v1);
+    v0 = GraphicElementManager_AddElementEx(&v1);
 
     if (v0 != NULL) {
         SpriteActor_SetSpriteAnimActive(v0, param6);
@@ -574,7 +574,7 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
     v3.priority = param2->priority;
     v3.vramType = param2->vramType;
     v3.heapID = param0->unk_00;
-    v2->unk_00 = GraphicElementManager_AddElement(&v3);
+    v2->unk_00 = GraphicElementManager_AddElementEx(&v3);
     v2->unk_0C = param2->transferToVRAM;
 
     if (v2->unk_00 != NULL) {

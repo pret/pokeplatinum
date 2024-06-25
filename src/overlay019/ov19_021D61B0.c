@@ -1955,7 +1955,7 @@ GraphicElementData * ov19_021D785C (GraphicElementManager * param0, CellActorRes
     {
         OSIntrMode v2 = OS_DisableInterrupts();
 
-        v1 = sub_02021B90(&v0);
+        v1 = GraphicElementManager_AddElement(&v0);
         OS_RestoreInterrupts(v2);
     }
 

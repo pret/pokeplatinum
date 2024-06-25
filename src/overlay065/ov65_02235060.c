@@ -691,8 +691,8 @@ static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
     v0.priority = 0;
     v0.heapID = param1;
 
-    param0->unk_1A0.unk_34 = GraphicElementManager_AddElement(&v0);
-    param0->unk_1A0.unk_38 = GraphicElementManager_AddElement(&v0);
+    param0->unk_1A0.unk_34 = GraphicElementManager_AddElementEx(&v0);
+    param0->unk_1A0.unk_38 = GraphicElementManager_AddElementEx(&v0);
 
     sub_02021CAC(param0->unk_1A0.unk_34, 0);
     sub_02021CAC(param0->unk_1A0.unk_38, 0);

@@ -430,7 +430,7 @@ static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
     v1.position.x = 168 << FX32_SHIFT;
     v1.position.y = (88 + v4) << FX32_SHIFT;
 
-    param0->unk_10 = sub_02021B90(&v1);
+    param0->unk_10 = GraphicElementManager_AddElement(&v1);
 
     if (ov21_021D3920(param2->unk_04) == 0) {
         SpriteActor_SetSpriteAnimActive(param0->unk_10, 5);

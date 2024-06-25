@@ -998,7 +998,7 @@ GraphicElementData * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, CellActorR
     v0.heapID = 35;
 
     v2 = OS_DisableInterrupts();
-    v1 = sub_02021B90(&v0);
+    v1 = GraphicElementManager_AddElement(&v0);
 
     OS_RestoreInterrupts(v2);
 

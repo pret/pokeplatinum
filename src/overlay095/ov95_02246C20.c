@@ -661,7 +661,7 @@ GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorR
     v1.vramType = param5;
     v1.heapID = 57;
 
-    v0 = sub_02021B90(&v1);
+    v0 = GraphicElementManager_AddElement(&v1);
 
     if (v0) {
         sub_02021CC8(v0, 1);

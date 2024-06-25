@@ -1295,7 +1295,7 @@ static GraphicElementData * ov114_0225CDB4 (UnkStruct_ov114_0225CDB4 * param0, G
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.heapID = param5;
 
-    return sub_02021B90(&v0);
+    return GraphicElementManager_AddElement(&v0);
 }
 
 static void ov114_0225CDE0 (UnkStruct_ov114_0225CCD0 * param0, UnkStruct_ov114_0225CDB4 * param1, NARC * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9)

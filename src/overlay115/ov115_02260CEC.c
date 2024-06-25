@@ -1309,7 +1309,7 @@ static void ov115_022615B0 (UnkStruct_ov115_022615B0 * param0, CellActorInitPara
         param1->position.x = v1 << FX32_SHIFT;
         param1->position.y = v2 << FX32_SHIFT;
         param0->unk_18[v0] = param1->position;
-        param0->unk_00[v0] = GraphicElementManager_AddElement(param1);
+        param0->unk_00[v0] = GraphicElementManager_AddElementEx(param1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 2);
         sub_02021CAC(param0->unk_00[v0], 0);
@@ -2696,7 +2696,7 @@ static void ov115_02262FB4 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
         v2.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         v2.heapID = param2;
 
-        param0->unk_34 = sub_02021B90(&v2);
+        param0->unk_34 = GraphicElementManager_AddElement(&v2);
         sub_02021CAC(param0->unk_34, 0);
     }
 
@@ -3716,7 +3716,7 @@ static void ov115_022646BC (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
         v0.priority = 32;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         v0.heapID = param2;
-        param1->unk_00 = GraphicElementManager_AddElement(&v0);
+        param1->unk_00 = GraphicElementManager_AddElementEx(&v0);
 
         sub_02021CAC(param1->unk_00, 0);
     }
@@ -3939,7 +3939,7 @@ static void ov115_02264B40 (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
     v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v0.heapID = param3;
 
-    param1->unk_04 = GraphicElementManager_AddElement(&v0);
+    param1->unk_04 = GraphicElementManager_AddElementEx(&v0);
 
     sub_02021CAC(param1->unk_04, 0);
     sub_02021E90(param1->unk_04, param2);
@@ -4000,7 +4000,7 @@ static void ov115_02264C0C (UnkStruct_ov115_02261ADC * param0, UnkStruct_ov115_0
     v1.heapID = param3;
 
     for (v0 = 0; v0 < 8; v0++) {
-        param1->unk_00[v0].unk_04 = GraphicElementManager_AddElement(&v1);
+        param1->unk_00[v0].unk_04 = GraphicElementManager_AddElementEx(&v1);
         sub_02021CAC(param1->unk_00[v0].unk_04, 0);
         sub_02021CF8(param1->unk_00[v0].unk_04, 1);
         sub_02021E90(param1->unk_00[v0].unk_04, param2);
@@ -4412,7 +4412,7 @@ static void ov115_02265478 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v1.heapID = param3;
 
-        param0->unk_34 = sub_02021B90(&v1);
+        param0->unk_34 = GraphicElementManager_AddElement(&v1);
         sub_02021CAC(param0->unk_34, 0);
     }
 

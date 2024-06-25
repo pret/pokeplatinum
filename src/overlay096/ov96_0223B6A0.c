@@ -313,7 +313,7 @@ static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)
         for (v0 = 0; v0 < 2; v0++) {
             v1.position.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
             v1.position.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
-            param0->unk_E30[v0] = GraphicElementManager_AddElement(&v1);
+            param0->unk_E30[v0] = GraphicElementManager_AddElementEx(&v1);
             sub_02021CC8(param0->unk_E30[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_E30[v0], v0);
             sub_02021CAC(param0->unk_E30[v0], 0);

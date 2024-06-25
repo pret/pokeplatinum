@@ -541,7 +541,7 @@ static void ov21_021E136C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
     v1.position.x = (192 * FX32_ONE);
     v1.position.y = (52 * FX32_ONE);
 
-    param0->unk_00 = sub_02021B90(&v1);
+    param0->unk_00 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00, 0x11);
 
