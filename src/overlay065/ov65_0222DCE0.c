@@ -6860,7 +6860,7 @@ static BOOL ov65_02234E8C (UnkStruct_ov65_02234E50 * param0, u32 param1, u32 par
             }
 
             if (v1 < 3) {
-                sub_02021E2C(param0->unk_21C[param1], FX32_CONST(2));
+                GraphicElementData_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
                 v1 = sub_02021E74(param0->unk_21C[param1]);
 
                 if (param1 == 1) {
@@ -6885,7 +6885,7 @@ static BOOL ov65_02234E8C (UnkStruct_ov65_02234E50 * param0, u32 param1, u32 par
             SpriteActor_SetAnimFrame(param0->unk_21C[param1], (5 - 1) - v1);
         }
 
-        sub_02021E2C(param0->unk_21C[param1], FX32_CONST(2));
+        GraphicElementData_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
     }
 
     return v0;

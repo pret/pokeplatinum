@@ -81,7 +81,7 @@ UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (SpriteRenderer * param0, SpriteGfxHandl
             }
         }
 
-        sub_02021E2C(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
+        GraphicElementData_UpdateAnim(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
         SpriteActor_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
     }
 

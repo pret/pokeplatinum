@@ -849,7 +849,7 @@ static void sub_0203B520 (FieldMenu * menu)
     u16 v0;
 
     for (v0 = 0; v0 < menu->unk_220; v0++) {
-        sub_02021E2C(menu->unk_200[v0]->unk_00, FX32_ONE);
+        GraphicElementData_UpdateAnim(menu->unk_200[v0]->unk_00, FX32_ONE);
     }
 }
 

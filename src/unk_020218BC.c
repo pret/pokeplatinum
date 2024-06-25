@@ -11,9 +11,9 @@
 #include "heap.h"
 #include "unk_020218BC.h"
 
-#define GRAPHIC_ELEMENT_DATA_FLIP_NONE 0
-#define GRAPHIC_ELEMENT_DATA_FLIP_H 1
-#define GRAPHIC_ELEMENT_DATA_FLIP_V 2
+#define GRAPHIC_ELEMENT_DATA_FLIP_NONE  0
+#define GRAPHIC_ELEMENT_DATA_FLIP_H     1
+#define GRAPHIC_ELEMENT_DATA_FLIP_V     2
 
 enum CellType {
     CELL_TYPE_NONE = 0,
@@ -22,30 +22,30 @@ enum CellType {
     CELL_TYPE_VRAM_CELL,
 };
 
-typedef struct {
-    const NNSG2dCellDataBank * cellBank;
-    const NNSG2dCellAnimBankData * unk_04;
+typedef struct CellAnimationData {
+    const NNSG2dCellDataBank *cellBank;
+    const NNSG2dCellAnimBankData *unk_04;
     NNSG2dCellAnimation anim;
 } CellAnimationData;
 
-typedef struct {
-    NNSG2dCellDataBank * cellBank;
-    const NNSG2dCellAnimBankData * unk_04;
+typedef struct VRamCellAnimationData {
+    NNSG2dCellDataBank *cellBank;
+    const NNSG2dCellAnimBankData *unk_04;
     NNSG2dCellAnimation anim;
     u32 transferHandle;
 } VRamCellAnimationData;
 
-typedef struct {
-    const NNSG2dCellDataBank * individualCellBank;
-    const NNSG2dCellAnimBankData * individualAnimBank;
+typedef struct MultiCellAnimationData {
+    const NNSG2dCellDataBank *individualCellBank;
+    const NNSG2dCellAnimBankData *individualAnimBank;
     NNSG2dMultiCellAnimation anim;
-    const NNSG2dMultiCellDataBank * cellBank;
-    const NNSG2dMultiCellAnimBankData * animBank;
-    NNSG2dNode * nodes;
-    NNSG2dCellAnimation * cellAnims;
+    const NNSG2dMultiCellDataBank *cellBank;
+    const NNSG2dMultiCellAnimBankData *animBank;
+    NNSG2dNode *nodes;
+    NNSG2dCellAnimation *cellAnims;
 } MultiCellAnimationData;
 
-typedef struct GraphicElementData_t {
+typedef struct GraphicElementData {
     VecFx32 position;
     VecFx32 affineTranslation;
     VecFx32 affineScale;
@@ -58,9 +58,9 @@ typedef struct GraphicElementData_t {
     BOOL explicitMosaic;
     GXOamMode explicitOamMode;
     u8 draw;
-    u8 unk_35;
-    fx32 unk_38;
-    GraphicElementManager * manager;
+    u8 animate;
+    fx32 animSpeed;
+    GraphicElementManager *manager;
     u32 animData[29];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
@@ -69,45 +69,46 @@ typedef struct GraphicElementData_t {
     u8 explicitPriority;
     u16 priority;
     NNS_G2D_VRAM_TYPE vramType;
-    struct GraphicElementData_t *prev;
-    struct GraphicElementData_t *next;
+    struct GraphicElementData *prev;
+    struct GraphicElementData *next;
 } GraphicElementData;
 
-typedef struct GraphicElementManager_t {
-    GraphicElementData * elements;
+typedef struct GraphicElementManager {
+    GraphicElementData *elements;
     int maxElements;
-    GraphicElementData ** elementStack; // Stack of currently unused elements
+    GraphicElementData **elementStack; // Stack of currently unused elements
     int stackPointer;
     GraphicElementData sentinelData;
-    NNSG2dRendererInstance * renderer;
-    void * rawAnimData;
-    NNSG2dCellAnimBankData * defaultAnimBank;
+    NNSG2dRendererInstance *renderer;
+    void *rawAnimData;
+    NNSG2dCellAnimBankData *defaultAnimBank;
     BOOL active;
 } GraphicElementManager;
 
 typedef void (* GraphicElementDrawFunc)(const GraphicElementManager *, GraphicElementData *);
-typedef void (* GraphicElementInitializeFunc)(GraphicElementData *);
+typedef void (* GraphicElementAnimUpdateFunc)(GraphicElementData *);
 
-static void GraphicElementManager_Reset(GraphicElementManager * param0);
-static enum CellType CellActorResourceData_GetCellType(const CellActorResourceData * param0);
+static void GraphicElementManager_Reset(GraphicElementManager *gfxElemMgr);
+static enum CellType CellActorResourceData_GetCellType(const CellActorResourceData *resourceData);
 static void GraphicElementData_SetCellBank(const NNSG2dCellDataBank * param0, GraphicElementData * param1);
-static void GraphicElementData_SetCellAnimBank(const NNSG2dCellAnimBankData * param0, GraphicElementData * param1);
-static void GraphicElementData_SetMultiCellBank(const NNSG2dMultiCellDataBank * param0, GraphicElementData * param1);
-static void GraphicElementData_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData * param0, GraphicElementData * param1);
-static void GraphicElementData_CreateCellAnim(GraphicElementData * param0, enum HeapId param1);
-static void GraphicElementData_CreateVRamCellAnim(const CellActorResourceData * param0, GraphicElementData * param1, enum HeapId param2);
-static void GraphicElementData_CreateMultiCellAnim(GraphicElementData * param0, enum HeapId param1);
-static BOOL GraphicElementManager_InitElement(const GraphicElementManager * param0, const CellActorResourceData * param1, GraphicElementData * param2, enum HeapId param3);
+static void GraphicElementData_SetCellAnimBank(const NNSG2dCellAnimBankData *cellAnimBank, GraphicElementData *elem);
+static void GraphicElementData_SetMultiCellBank(const NNSG2dMultiCellDataBank *multiCellBank, GraphicElementData *elem);
+static void GraphicElementData_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData *multiCellAnimBank, GraphicElementData *elem);
+static void GraphicElementData_CreateCellAnim(GraphicElementData *elem, enum HeapId heapID);
+static void GraphicElementData_CreateVRamCellAnim(const CellActorResourceData *resourceData, GraphicElementData *elem, enum HeapId heapID);
+static void GraphicElementData_CreateMultiCellAnim(GraphicElementData *elem, enum HeapId heapID);
+static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxElemMgr, 
+    const CellActorResourceData *resourceData, GraphicElementData *elem, enum HeapId heapID);
 static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy * param0, u32 param1);
-static void GraphicElementManager_DrawElement(const GraphicElementManager * param0, GraphicElementData * param1);
-static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager * param0, GraphicElementData * param1);
-static void sub_02022454(GraphicElementData * param0);
-static void sub_02022460(GraphicElementData * param0);
-static void GraphicElementManager_InsertElement(GraphicElementManager * param0, GraphicElementData * param1);
-static void GraphicElementManager_RemoveElement(GraphicElementData * param0);
-static void GraphicElementManager_InitElements(GraphicElementManager * param0);
-static GraphicElementData * GraphicElementManager_AllocElement(GraphicElementManager * param0);
-static BOOL GraphicElementManager_FreeElement(GraphicElementManager * param0, GraphicElementData * param1);
+static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxElemMgr, GraphicElementData *elem);
+static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager *gfxElemMgr, GraphicElementData *elem);
+static void GraphicElementData_UpdateAnimInternal(GraphicElementData *gfxElemMgr);
+static void GraphicElementData_UpdateAnimInternal_Stub(GraphicElementData *gfxElemMgr);
+static void GraphicElementManager_InsertElement(GraphicElementManager *gfxElemMgr, GraphicElementData *elem);
+static void GraphicElementManager_RemoveElement(GraphicElementData *elem);
+static void GraphicElementManager_InitElements(GraphicElementManager *gfxElemMgr);
+static GraphicElementData *GraphicElementManager_AllocElement(GraphicElementManager *gfxElemMgr);
+static BOOL GraphicElementManager_FreeElement(GraphicElementManager *gfxElemMgr, GraphicElementData *elem);
 
 GraphicElementManager *GraphicElementManager_New(const GraphicElementManagerParams *params)
 {
@@ -201,14 +202,13 @@ BOOL GraphicElementManager_DeleteAll(GraphicElementManager *gfxElemMgr)
 
 void sub_020219F8 (const GraphicElementManager *gfxElemMgr)
 {
-    GraphicElementData * elem;
     static const GraphicElementDrawFunc sDrawFuncs[] = {
         GraphicElementManager_DrawElement_Stub,
         GraphicElementManager_DrawElement
     };
-    static const GraphicElementInitializeFunc v2[] = {
-        sub_02022460,
-        sub_02022454
+    static const GraphicElementAnimUpdateFunc sAnimUpdateFuncs[] = {
+        GraphicElementData_UpdateAnimInternal_Stub,
+        GraphicElementData_UpdateAnimInternal
     };
 
     GF_ASSERT(gfxElemMgr);
@@ -217,11 +217,11 @@ void sub_020219F8 (const GraphicElementManager *gfxElemMgr)
         return;
     }
 
-    elem = gfxElemMgr->sentinelData.next;
+    GraphicElementData *elem = gfxElemMgr->sentinelData.next;
 
     while (elem != &gfxElemMgr->sentinelData) {
         sDrawFuncs[elem->draw](gfxElemMgr, elem);
-        v2[elem->unk_35](elem);
+        sAnimUpdateFuncs[elem->animate](elem);
         elem = elem->next;
     }
 }
@@ -280,8 +280,8 @@ GraphicElementData *GraphicElementManager_AddElementEx(const CellActorInitParams
     );
 
     elem->draw = TRUE;
-    elem->unk_35 = 0;
-    elem->unk_38 = (FX32_ONE * 2);
+    elem->animate = 0;
+    elem->animSpeed = (FX32_ONE * 2);
 
     if (GraphicElementManager_InitElement(params->manager, params->resourceData, elem, params->heapID) == FALSE) {
         GraphicElementData_Delete(elem);
@@ -394,14 +394,14 @@ void sub_02021CC8 (GraphicElementData * param0, int param1)
     GF_ASSERT(param0);
     GF_ASSERT(param1 < 2);
 
-    param0->unk_35 = param1;
+    param0->animate = param1;
 }
 
 void sub_02021CE4 (GraphicElementData * param0, fx32 param1)
 {
     GF_ASSERT(param0);
 
-    param0->unk_38 = param1;
+    param0->animSpeed = param1;
 }
 
 void sub_02021CF8 (GraphicElementData * param0, int param1)
@@ -441,7 +441,7 @@ int sub_02021D34 (const GraphicElementData * param0)
 
 int sub_02021D3C (const GraphicElementData * param0)
 {
-    return param0->unk_35;
+    return param0->animate;
 }
 
 u32 sub_02021D44 (const GraphicElementData * param0)
@@ -512,14 +512,14 @@ u32 sub_02021E24 (const GraphicElementData * param0)
     return param0->unk_F0;
 }
 
-void sub_02021E2C (GraphicElementData * param0, fx32 param1)
+void GraphicElementData_UpdateAnim(GraphicElementData *elem, fx32 frames)
 {
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
-        NNS_G2dTickCellAnimation(&v0->anim, param1);
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+        NNS_G2dTickCellAnimation(&cellAnim->anim, frames);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
-        NNS_G2dTickMCAnimation(&v1->anim, param1);
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+        NNS_G2dTickMCAnimation(&multiCellAnim->anim, frames);
     }
 }
 
@@ -741,7 +741,7 @@ u32 sub_020220F4 (const GraphicElementData * param0)
 }
 
 static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxElemMgr, 
-    const CellActorResourceData *resourceData, GraphicElementData *elem, enum HeapId param3)
+    const CellActorResourceData *resourceData, GraphicElementData *elem, enum HeapId heapID)
 {
     elem->type = CellActorResourceData_GetCellType(resourceData);
     elem->imageProxy = *resourceData->unk_00;
@@ -758,11 +758,11 @@ static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxEl
     if (elem->type == CELL_TYPE_MULTI_CELL) {
         GraphicElementData_SetMultiCellBank(resourceData->multiCellBank, elem);
         GraphicElementData_SetMultiCellAnimBank(resourceData->unk_18, elem);
-        GraphicElementData_CreateMultiCellAnim(elem, param3);
+        GraphicElementData_CreateMultiCellAnim(elem, heapID);
     } else if (elem->type == CELL_TYPE_VRAM_CELL) {
-        GraphicElementData_CreateVRamCellAnim(resourceData, elem, param3);
+        GraphicElementData_CreateVRamCellAnim(resourceData, elem, heapID);
     } else {
-        GraphicElementData_CreateCellAnim(elem, param3);
+        GraphicElementData_CreateCellAnim(elem, heapID);
     }
 
     elem->explicitPriority = resourceData->unk_20;
@@ -942,12 +942,12 @@ static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager *
     return;
 }
 
-static void sub_02022454 (GraphicElementData * param0)
+static void GraphicElementData_UpdateAnimInternal(GraphicElementData *elem)
 {
-    sub_02021E2C(param0, param0->unk_38);
+    GraphicElementData_UpdateAnim(elem, elem->animSpeed);
 }
 
-static void sub_02022460 (GraphicElementData * param0)
+static void GraphicElementData_UpdateAnimInternal_Stub(GraphicElementData *elem)
 {
     return;
 }

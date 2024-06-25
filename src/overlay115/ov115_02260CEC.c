@@ -2744,7 +2744,7 @@ static BOOL ov115_02263150 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
         param0->unk_3A++;
         break;
     case 1:
-        sub_02021E2C(param0->unk_34, FX32_CONST(2));
+        GraphicElementData_UpdateAnim(param0->unk_34, FX32_CONST(2));
 
         {
             u32 v0;

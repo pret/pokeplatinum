@@ -90,7 +90,7 @@ void sub_0206A870 (UnkStruct_0206A844 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            sub_02021E2C(param0->unk_1C8[v0]->unk_00, FX32_ONE);
+            GraphicElementData_UpdateAnim(param0->unk_1C8[v0]->unk_00, FX32_ONE);
         }
     }
 

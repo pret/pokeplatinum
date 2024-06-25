@@ -1166,7 +1166,7 @@ static int ov101_021D6908 (UnkStruct_ov101_021D66D0 * param0)
 
 static int ov101_021D6968 (UnkStruct_ov101_021D66D0 * param0)
 {
-    sub_02021E2C(param0->unk_24.unk_04, (FX32_ONE * 1));
+    GraphicElementData_UpdateAnim(param0->unk_24.unk_04, (FX32_ONE * 1));
     param0->unk_14++;
 
     if (param0->unk_14 >= 9) {
@@ -1364,7 +1364,7 @@ static int ov101_021D6C74 (UnkStruct_ov101_021D66D0 * param0)
 
 static int ov101_021D6CE0 (UnkStruct_ov101_021D66D0 * param0)
 {
-    sub_02021E2C(param0->unk_24.unk_04, FX32_ONE);
+    GraphicElementData_UpdateAnim(param0->unk_24.unk_04, FX32_ONE);
 
     if (sub_02021FD0(param0->unk_24.unk_04) == 0) {
         param0->unk_14++;

@@ -325,7 +325,7 @@ void sub_020831B4 (GameWindowLayout * param0)
         }
 
         sub_02083138(v0->unk_24, v2);
-        sub_02021E2C(v0->unk_24, FX32_ONE);
+        GraphicElementData_UpdateAnim(v0->unk_24, FX32_ONE);
 
         if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
             if (sub_02021E74(v0->unk_24) == 0) {
@@ -370,7 +370,7 @@ void sub_020832E4 (GameWindowLayout * param0, s16 param1, s16 param2)
 void sub_02083334 (GameWindowLayout * param0)
 {
     if (sub_02021D34(param0->unk_5B0[28]) == 1) {
-        sub_02021E2C(param0->unk_5B0[28], FX32_ONE);
+        GraphicElementData_UpdateAnim(param0->unk_5B0[28], FX32_ONE);
 
         if (sub_02021E74(param0->unk_5B0[28]) == 2) {
             sub_02021CAC(param0->unk_5B0[28], 0);

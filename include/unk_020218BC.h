@@ -41,7 +41,7 @@ void SpriteActor_SetSpriteAnimActive(GraphicElementData * param0, u32 param1);
 void sub_02021DCC(GraphicElementData * param0, u32 param1);
 void sub_02021DE0(GraphicElementData * param0);
 u32 sub_02021E24(const GraphicElementData * param0);
-void sub_02021E2C(GraphicElementData * param0, fx32 param1);
+void GraphicElementData_UpdateAnim(GraphicElementData * param0, fx32 param1);
 void SpriteActor_SetAnimFrame(GraphicElementData * param0, u16 param1);
 u16 sub_02021E74(const GraphicElementData * param0);
 void sub_02021E80(GraphicElementData * param0, u8 param1);

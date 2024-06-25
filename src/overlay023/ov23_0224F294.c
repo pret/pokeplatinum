@@ -245,7 +245,7 @@ static void ov23_0224F498 (UnkStruct_ov23_02250CD4 * param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_25C; v0++) {
-        sub_02021E2C(param0->unk_23C[v0]->unk_00, FX32_ONE);
+        GraphicElementData_UpdateAnim(param0->unk_23C[v0]->unk_00, FX32_ONE);
     }
 }
 

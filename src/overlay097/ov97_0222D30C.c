@@ -1268,20 +1268,20 @@ static void ov97_0222E694 (UnkStruct_ov97_0222E398 * param0)
 
     for (v0 = 0; v0 < 80; v0++) {
         if (param0->unk_88[v0].unk_0C) {
-            sub_02021E2C(param0->unk_88[v0].unk_0C, FX32_CONST(2));
+            GraphicElementData_UpdateAnim(param0->unk_88[v0].unk_0C, FX32_CONST(2));
         }
 
         if (param0->unk_1848[v0].unk_0C) {
-            sub_02021E2C(param0->unk_1848[v0].unk_0C, FX32_CONST(2));
+            GraphicElementData_UpdateAnim(param0->unk_1848[v0].unk_0C, FX32_CONST(2));
         }
     }
 
     if (param0->unk_3008.unk_0C) {
-        sub_02021E2C(param0->unk_3008.unk_0C, FX32_CONST(2));
+        GraphicElementData_UpdateAnim(param0->unk_3008.unk_0C, FX32_CONST(2));
     }
 
     if (param0->unk_3054.unk_0C) {
-        sub_02021E2C(param0->unk_3054.unk_0C, FX32_CONST(2));
+        GraphicElementData_UpdateAnim(param0->unk_3054.unk_0C, FX32_CONST(2));
     }
 }
 

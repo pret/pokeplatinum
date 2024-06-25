@@ -555,7 +555,7 @@ void ov21_021D144C (GraphicElementData * param0, int param1)
     case 3:
     case (3 + 1):
         if (sub_02021E74(param0) > 0) {
-            sub_02021E2C(param0, -(FX32_ONE * 2));
+            GraphicElementData_UpdateAnim(param0, -(FX32_ONE * 2));
         }
         break;
     default:

@@ -790,7 +790,7 @@ static BOOL sub_0200D2D0 (UnkStruct_02009714 * param0, UnkStruct_02009CFC * para
 
 void SpriteActor_UpdateObject (GraphicElementData * param0)
 {
-    sub_02021E2C(param0, FX32_ONE);
+    GraphicElementData_UpdateAnim(param0, FX32_ONE);
 }
 
 void sub_0200D330 (CellActorData * param0)
@@ -800,12 +800,12 @@ void sub_0200D330 (CellActorData * param0)
 
 void sub_0200D33C (CellActorData * param0)
 {
-    sub_02021E2C(param0->unk_00, FX32_CONST(2));
+    GraphicElementData_UpdateAnim(param0->unk_00, FX32_CONST(2));
 }
 
 void sub_0200D34C (CellActorData * param0, fx32 param1)
 {
-    sub_02021E2C(param0->unk_00, param1);
+    GraphicElementData_UpdateAnim(param0->unk_00, param1);
 }
 
 u32 sub_0200D358 (CellActorData * param0)

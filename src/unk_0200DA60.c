@@ -597,7 +597,7 @@ static void sub_0200EC9C (SysTask * param0, void * param1)
         }
     }
 
-    sub_02021E2C(v0->unk_1C8->unk_00, FX32_ONE);
+    GraphicElementData_UpdateAnim(v0->unk_1C8->unk_00, FX32_ONE);
     sub_020219F8(v0->unk_00.unk_00);
 }
 

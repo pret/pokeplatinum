@@ -3857,7 +3857,7 @@ static void ov114_0225FDC8 (SysTask * param0, void * param1)
         break;
     case 3:
         v2 = sub_02021E74(v0->unk_30);
-        sub_02021E2C(v0->unk_30, FX32_CONST(2));
+        GraphicElementData_UpdateAnim(v0->unk_30, FX32_CONST(2));
         v3 = sub_02021E74(v0->unk_30);
 
         if (v2 != v3) {

@@ -183,11 +183,11 @@ void sub_0208EAF4 (PokemonSummaryApp * param0)
 
 void sub_0208EB14 (PokemonSummaryApp * param0)
 {
-    sub_02021E2C(param0->unk_41C[21], FX32_ONE);
-    sub_02021E2C(param0->unk_41C[22], FX32_ONE);
-    sub_02021E2C(param0->unk_41C[41], FX32_ONE);
-    sub_02021E2C(param0->unk_41C[68], FX32_ONE);
-    sub_02021E2C(param0->unk_41C[69], FX32_ONE);
+    GraphicElementData_UpdateAnim(param0->unk_41C[21], FX32_ONE);
+    GraphicElementData_UpdateAnim(param0->unk_41C[22], FX32_ONE);
+    GraphicElementData_UpdateAnim(param0->unk_41C[41], FX32_ONE);
+    GraphicElementData_UpdateAnim(param0->unk_41C[68], FX32_ONE);
+    GraphicElementData_UpdateAnim(param0->unk_41C[69], FX32_ONE);
 }
 
 void sub_0208EB64 (PokemonSummaryApp * param0)
@@ -580,7 +580,7 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
             continue;
         }
 
-        sub_02021E2C(param0->unk_41C[v0], FX32_ONE);
+        GraphicElementData_UpdateAnim(param0->unk_41C[v0], FX32_ONE);
 
         if (sub_02021E74(param0->unk_41C[v0]) == 6) {
             sub_02021CAC(param0->unk_41C[v0], 0);
@@ -784,7 +784,7 @@ void sub_0208FB00 (PokemonSummaryApp * param0)
 void sub_0208FB30 (PokemonSummaryApp * param0)
 {
     if (sub_02021D34(param0->unk_41C[70]) == 1) {
-        sub_02021E2C(param0->unk_41C[70], FX32_ONE);
+        GraphicElementData_UpdateAnim(param0->unk_41C[70], FX32_ONE);
     }
 }
 
@@ -864,6 +864,6 @@ void sub_0208FCD4 (PokemonSummaryApp * param0)
     u32 v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_02021E2C(param0->unk_41C[71 + v0], FX32_ONE);
+        GraphicElementData_UpdateAnim(param0->unk_41C[71 + v0], FX32_ONE);
     }
 }

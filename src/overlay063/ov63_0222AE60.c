@@ -1069,12 +1069,12 @@ static void ov63_0222BBD0 (UnkStruct_ov63_0222BB38 * param0, int param1)
 
 static void ov63_0222BBE0 (UnkStruct_ov63_0222BB38 * param0)
 {
-    sub_02021E2C(param0->unk_04, (2 * FX32_ONE));
+    GraphicElementData_UpdateAnim(param0->unk_04, (2 * FX32_ONE));
 }
 
 static void ov63_0222BBF0 (UnkStruct_ov63_0222BB38 * param0)
 {
-    sub_02021E2C(param0->unk_04, (2 * FX32_ONE));
+    GraphicElementData_UpdateAnim(param0->unk_04, (2 * FX32_ONE));
 }
 
 static void ov63_0222BC00 (UnkStruct_ov63_0222BB38 * param0)
@@ -1088,27 +1088,27 @@ static void ov63_0222BC00 (UnkStruct_ov63_0222BB38 * param0)
 
 static void ov63_0222BC20 (UnkStruct_ov63_0222BB38 * param0)
 {
-    sub_02021E2C(param0->unk_04, (2 * FX32_ONE));
+    GraphicElementData_UpdateAnim(param0->unk_04, (2 * FX32_ONE));
 }
 
 static void ov63_0222BC30 (UnkStruct_ov63_0222BB38 * param0)
 {
-    sub_02021E2C(param0->unk_04, (FX32_ONE));
+    GraphicElementData_UpdateAnim(param0->unk_04, (FX32_ONE));
 }
 
 static void ov63_0222BC40 (UnkStruct_ov63_0222BB38 * param0)
 {
-    sub_02021E2C(param0->unk_04, (FX32_ONE));
+    GraphicElementData_UpdateAnim(param0->unk_04, (FX32_ONE));
 }
 
 static void ov63_0222BC50 (UnkStruct_ov63_0222BB38 * param0)
 {
-    sub_02021E2C(param0->unk_04, (8 * FX32_ONE));
+    GraphicElementData_UpdateAnim(param0->unk_04, (8 * FX32_ONE));
 }
 
 static void ov63_0222BC60 (UnkStruct_ov63_0222BB38 * param0)
 {
-    sub_02021E2C(param0->unk_04, (6 * FX32_ONE));
+    GraphicElementData_UpdateAnim(param0->unk_04, (6 * FX32_ONE));
 }
 
 static BOOL ov63_0222BC70 (const UnkStruct_ov63_0222BB38 * param0)

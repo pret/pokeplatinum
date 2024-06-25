@@ -392,7 +392,7 @@ void ov104_0222E1D8 (GraphicElementData * param0, u8 param1)
 
     SpriteActor_SetAnimFrame(param0, 0);
     SpriteActor_SetSpriteAnimActive(param0, param1);
-    sub_02021E2C(param0, FX32_ONE);
+    GraphicElementData_UpdateAnim(param0, FX32_ONE);
     return;
 }
 

@@ -627,7 +627,7 @@ static void ov80_021D1C24 (UnkStruct_ov80_021D2A08 * param0)
 
     if (v1->unk_13-- == 3) {
         SpriteActor_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
-        sub_02021E2C(v1->unk_104, FX32_ONE);
+        GraphicElementData_UpdateAnim(v1->unk_104, FX32_ONE);
 
         ov80_021D1A30(param0);
         ov80_021D1AB0(param0, &(v1->unk_28[0]), sub_02039F04((const UnkStruct_02039EBC *)param0->unk_30, v1->unk_18, v1->unk_1C), v1->unk_18, v1->unk_1C);
