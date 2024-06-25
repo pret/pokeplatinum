@@ -117,11 +117,11 @@ BOOL ScrCmd_1DD (ScriptContext * param0)
         sub_0206BCE4(param0->taskManager, v1, v2, *v3);
         return 1;
     case (30 + 0):
-        v5 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
+        v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
         sub_0204A358(v6, param0->taskManager, v5);
         return 1;
     case (30 + 1):
-        v5 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
+        v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
         *v3 = sub_0204A378(v6, v5, param0->fieldSystem->saveData);
         break;
     case (30 + 2):
@@ -393,7 +393,7 @@ BOOL ScrCmd_294 (ScriptContext * param0)
     u8 v2 = ScriptContext_ReadByte(param0);
     Window ** v3;
 
-    v3 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
     *v3 = ov5_021DD140(param0->fieldSystem, v1, v2);
 
     return 0;
@@ -402,7 +402,7 @@ BOOL ScrCmd_294 (ScriptContext * param0)
 BOOL ScrCmd_295 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD084(*v1);
     return 0;
@@ -411,7 +411,7 @@ BOOL ScrCmd_295 (ScriptContext * param0)
 BOOL ScrCmd_296 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
+    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD1A4(param0->fieldSystem, *v1);
     return 0;

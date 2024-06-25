@@ -99,7 +99,7 @@ BOOL ScrCmd_2CC (ScriptContext * param0)
 
     v10 = sub_02030114(param0->fieldSystem->saveData);
     v11 = sub_0203026C(param0->fieldSystem->saveData);
-    v8 = FieldSystem_GetScriptMember(param0->fieldSystem, 19);
+    v8 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
 
     switch (v3) {
     case 0:
@@ -531,7 +531,7 @@ BOOL ScrCmd_324 (ScriptContext * param0)
     u32 v4, v5, v6;
     u16 v7, v8;
     FieldSystem * fieldSystem = param0->fieldSystem;
-    StringTemplate ** v10 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate ** v10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v11 = ScriptContext_ReadByte(param0);
     u8 v12 = ScriptContext_ReadByte(param0);
     u8 v13 = ScriptContext_ReadByte(param0);

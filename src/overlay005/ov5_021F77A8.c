@@ -329,7 +329,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
     UnkStruct_ov5_021F7ED8 * v10;
     u16 v11[4];
     u16 v12[(NELEMS(sTeachableMoves))];
-    StringTemplate ** v13 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    StringTemplate ** v13 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 v14 = ScriptContext_GetVar(param0);
     u16 v15 = ScriptContext_GetVar(param0);
     u16 v16 = ScriptContext_ReadHalfWord(param0);
@@ -341,7 +341,7 @@ BOOL ScrCmd_2E6 (ScriptContext * param0)
     }
 
     v7 = MessageLoader_Init(0, 26, 647, 32);
-    v10 = ov5_021F7ED8(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v16), *v13, FieldSystem_GetScriptMember(param0->fieldSystem, SCRIPT_MANAGER_WINDOW), v7);
+    v10 = ov5_021F7ED8(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v16), *v13, FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_WINDOW), v7);
 
     for (v2 = 0; v2 < (NELEMS(sTeachableMoves)); v2++) {
         v12[v2] = 0;
@@ -627,8 +627,8 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
 BOOL ScrCmd_2EC (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    StringTemplate ** v1 = FieldSystem_GetScriptMember(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    UnkStruct_ov5_021DC1A4 ** v2 = FieldSystem_GetScriptMember(fieldSystem, 0);
+    StringTemplate ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    UnkStruct_ov5_021DC1A4 ** v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u8 v3 = ScriptContext_ReadByte(param0);
     u8 v4 = ScriptContext_ReadByte(param0);
     u16 v5 = ScriptContext_GetVar(param0);
@@ -643,7 +643,7 @@ BOOL ScrCmd_2EC (ScriptContext * param0)
 BOOL ScrCmd_2ED (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMember(fieldSystem, 0);
+    UnkStruct_ov5_021DC1A4 ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
     ov5_021DD3A8(*v1);
     return 0;

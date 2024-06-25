@@ -137,7 +137,7 @@ void ScriptManager_Start(TaskManager * taskManager, u16 scriptID, MapObject * ob
 void ScriptManager_Change(TaskManager * taskManager, u16 scriptID, MapObject * object);
 ScriptContext * ScriptContext_New(FieldSystem * fieldSystem, u16 scriptID);
 void * ScriptManager_GetMemberPtr(ScriptManager * scriptManager, u32 member);
-void * FieldSystem_GetScriptMember(FieldSystem * fieldSystem, u32 member);
+void * FieldSystem_GetScriptMemberPtr(FieldSystem * fieldSystem, u32 member);
 void sub_0203F0C0(FieldSystem * fieldSystem);
 u16 * FieldSystem_GetVarPointer(FieldSystem * fieldSystem, u16 varID);
 u16 FieldSystem_TryGetVar(FieldSystem * fieldSystem, u16 varID);

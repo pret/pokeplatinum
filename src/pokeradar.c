@@ -406,7 +406,7 @@ BOOL RefreshRadarChain (TaskManager *taskMan) {
 
         if (*v2 < RADAR_BATTERY_STEPS) {
             ScriptManager_Start(taskMan, 8970, NULL, NULL);
-            *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_0) = RADAR_BATTERY_STEPS - (*v2);
+            *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_0) = RADAR_BATTERY_STEPS - (*v2);
             *v1 = 4;
         } else {
             *v2 = 0;

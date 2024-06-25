@@ -435,7 +435,7 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
     return NULL;
 }
 
-void * FieldSystem_GetScriptMember (FieldSystem * fieldSystem, u32 member)
+void * FieldSystem_GetScriptMemberPtr (FieldSystem * fieldSystem, u32 member)
 {
     ScriptManager *script = TaskManager_Environment(fieldSystem->unk_10);
 
@@ -483,7 +483,7 @@ u16 * FieldSystem_GetVarPointer (FieldSystem * fieldSystem, u16 varID)
         return VarsFlags_GetVarAddress(varsFlags, varID);
     }
 
-    return FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
+    return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
 }
 
 u16 FieldSystem_TryGetVar (FieldSystem * fieldSystem, u16 varID)
@@ -535,10 +535,10 @@ void sub_0203F1FC (FieldSystem * fieldSystem)
 
 void FieldSystem_SetScriptParameters (FieldSystem * fieldSystem, u16 scriptParam0, u16 scriptParam1, u16 scriptParam2, u16 scriptParam3)
 {
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_0) = scriptParam0;
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_1) = scriptParam1;
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_2) = scriptParam2;
-    *(u16 *)FieldSystem_GetScriptMember(fieldSystem, SCRIPT_DATA_PARAMETER_3) = scriptParam3;
+    *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_0) = scriptParam0;
+    *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_1) = scriptParam1;
+    *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_2) = scriptParam2;
+    *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_3) = scriptParam3;
 }
 
 u16 Script_GetTrainerID(u16 scriptID)
