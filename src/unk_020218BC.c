@@ -13,8 +13,8 @@
 #include "heap.h"
 #include "unk_020218BC.h"
 
-#define GRAPHIC_ELEMENT_ANIM_DATA_SIZE 29
-#define MAX_SIMULTANEOUS_SPRITES 128
+#define GRAPHIC_ELEMENT_ANIM_DATA_SIZE  29
+#define MAX_SIMULTANEOUS_SPRITES        128
 
 enum CellType {
     CELL_TYPE_NONE = 0,
@@ -62,6 +62,9 @@ typedef struct GraphicElementData {
     u8 animate;
     fx32 animSpeed;
     GraphicElementManager *manager;
+
+    // This field is supposed to be a union between CellAnimationData, VRamCellAnimationData, and MultiCellAnimationData
+    // but it's actually too small to hold the largest of these types. This should really be u32 animData[31].
     u32 animData[GRAPHIC_ELEMENT_ANIM_DATA_SIZE];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
@@ -297,7 +300,7 @@ GraphicElementData *GraphicElementManager_AddElementEx(const CellActorInitParams
     return elem;
 }
 
-GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParams *params)
+GraphicElementData *GraphicElementManager_AddElement(const CellActorInitParams *params)
 {
     CellActorInitParamsEx paramsEx;
 
@@ -611,9 +614,9 @@ void GraphicElementData_SetImageProxy(GraphicElementData *elem, const NNSG2dImag
     elem->imageProxy = *imageProxy;
 }
 
-NNSG2dImageProxy * SpriteActor_ImageProxy (GraphicElementData * param0)
+NNSG2dImageProxy *SpriteActor_ImageProxy(GraphicElementData *elem)
 {
-    return &param0->imageProxy;
+    return &elem->imageProxy;
 }
 
 NNSG2dImagePaletteProxy *GraphicElementData_GetPaletteProxy(GraphicElementData *paletteProxy)
