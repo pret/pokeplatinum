@@ -301,17 +301,17 @@ static void ov94_0223E770 (UnkStruct_ov94_0223FD4C * param0)
     v0.position.x = FX32_ONE;
     v0.position.y = FX32_ONE;
 
-    param0->unk_E20 = GraphicElementManager_AddElementEx(&v0);
+    param0->unk_E20 = CellActorCollection_AddEx(&v0);
 
-    GraphicElementData_SetAnimateFlag(param0->unk_E20, 1);
-    GraphicElementData_SetAnim(param0->unk_E20, 0);
-    GraphicElementData_SetExplicitPriority(param0->unk_E20, 1);
+    CellActor_SetAnimateFlag(param0->unk_E20, 1);
+    CellActor_SetAnim(param0->unk_E20, 0);
+    CellActor_SetExplicitPriority(param0->unk_E20, 1);
     sub_02039734();
 }
 
 static void ov94_0223E7C4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    GraphicElementData_Delete(param0->unk_E20);
+    CellActor_Delete(param0->unk_E20);
 }
 
 static const u16 Unk_ov94_02245D94[6][2] = {
@@ -464,7 +464,7 @@ static int ov94_0223EA84 (UnkStruct_ov94_0223FD4C * param0)
 
         if (param0->unk_10F2) {
             if (v1 >= 0) {
-                GraphicElementData_SetAnim(param0->unk_F34[v1 + 1], 16 + v1 * 4);
+                CellActor_SetAnim(param0->unk_F34[v1 + 1], 16 + v1 * 4);
                 param0->unk_2C = 2;
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_11C = v1;
@@ -736,7 +736,7 @@ static void ov94_0223EFAC (UnkStruct_ov94_0223FD4C * param0)
         v1.x = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][0];
         v1.y = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][1];
 
-        GraphicElementData_SetPosition(param0->unk_E20, &v1);
+        CellActor_SetPosition(param0->unk_E20, &v1);
     }
 }
 

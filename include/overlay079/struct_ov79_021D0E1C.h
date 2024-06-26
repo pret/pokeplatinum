@@ -55,9 +55,9 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     Window unk_E8[13];
     SpriteRenderer * unk_1B8;
     SpriteGfxHandler * unk_1BC;
-    GraphicElementData * unk_1C0[3];
-    GraphicElementData * unk_1CC[5];
-    GraphicElementData * unk_1E0[6];
+    CellActor * unk_1C0[3];
+    CellActor * unk_1CC[5];
+    CellActor * unk_1E0[6];
     UnkStruct_0209903C * unk_1F8;
     UnkStruct_0209916C * unk_1FC;
 } UnkStruct_ov79_021D0E1C;

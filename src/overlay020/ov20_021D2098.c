@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     const UnkStruct_ov20_021D16E8 * unk_18;
     const UnkStruct_020998EC * unk_1C;
     BGL * unk_20;
-    GraphicElementManager * unk_24;
+    CellActorCollection * unk_24;
     UnkStruct_0200C738 unk_28;
     NNSG2dImageProxy unk_1B4[2];
     NNSG2dImagePaletteProxy unk_1FC[2];
@@ -152,7 +152,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
         SysTask_Done(param0->unk_04);
 
         sub_0200A878();
-        GraphicElementManager_Delete(param0->unk_24);
+        CellActorCollection_Delete(param0->unk_24);
 
         Heap_FreeToHeap(param0->unk_20);
         Heap_FreeToHeap(param0);
@@ -173,7 +173,7 @@ static void ov20_021D217C (SysTask * param0, void * param1)
 {
     UnkStruct_ov20_021D2128 * v0 = param1;
 
-    GraphicElementManager_Update(v0->unk_24);
+    CellActorCollection_Update(v0->unk_24);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -964,7 +964,7 @@ BGL * ov20_021D2E04 (UnkStruct_ov20_021D2128 * param0)
     return param0->unk_20;
 }
 
-GraphicElementManager * ov20_021D2E08 (UnkStruct_ov20_021D2128 * param0)
+CellActorCollection * ov20_021D2E08 (UnkStruct_ov20_021D2128 * param0)
 {
     return param0->unk_24;
 }
@@ -982,13 +982,13 @@ void ov20_021D2E0C (UnkStruct_ov20_021D2128 * param0, CellActorResourceData * pa
     param1->isVRamTransfer = 0;
 }
 
-GraphicElementData * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
+CellActor * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     CellActorInitParams v0;
-    GraphicElementData * v1;
+    CellActor * v1;
     OSIntrMode v2;
 
-    v0.manager = param0->unk_24;
+    v0.collection = param0->unk_24;
     v0.resourceData = param1;
     v0.position.x = param2 * FX32_ONE;
     v0.position.y = param3 * FX32_ONE;
@@ -998,13 +998,13 @@ GraphicElementData * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, CellActorR
     v0.heapID = 35;
 
     v2 = OS_DisableInterrupts();
-    v1 = GraphicElementManager_AddElement(&v0);
+    v1 = CellActorCollection_Add(&v0);
 
     OS_RestoreInterrupts(v2);
 
     if (v1) {
-        GraphicElementData_SetAnimateFlag(v1, 1);
-        GraphicElementData_SetAnimSpeed(v1, ((FX32_ONE * 2) / 2));
+        CellActor_SetAnimateFlag(v1, 1);
+        CellActor_SetAnimSpeed(v1, ((FX32_ONE * 2) / 2));
     }
 
     return v1;

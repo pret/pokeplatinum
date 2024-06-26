@@ -589,16 +589,16 @@ static void sub_0200EC9C (SysTask * param0, void * param1)
         return;
     case 2:
         v0->unk_1D3 = 3;
-        GraphicElementData_SetAnim(v0->unk_1C8->unk_00, 1);
+        CellActor_SetAnim(v0->unk_1C8->unk_00, 1);
         break;
     case 3:
-        if (GraphicElementData_GetAnimFrame(v0->unk_1C8->unk_00) == 6) {
+        if (CellActor_GetAnimFrame(v0->unk_1C8->unk_00) == 6) {
             v0->unk_1D3 = 0;
         }
     }
 
-    GraphicElementData_UpdateAnim(v0->unk_1C8->unk_00, FX32_ONE);
-    GraphicElementManager_Update(v0->unk_00.unk_00);
+    CellActor_UpdateAnim(v0->unk_1C8->unk_00, FX32_ONE);
+    CellActorCollection_Update(v0->unk_00.unk_00);
 }
 
 static UnkStruct_0200ED50 * sub_0200ED14 (BGL * param0, u8 param1, u8 param2, u8 param3, u32 param4)
@@ -637,7 +637,7 @@ static void sub_0200EDD4 (UnkStruct_0200ED50 * param0, u8 param1, u8 param2)
 
     param0->unk_1C8 = ov5_021D3584(&param0->unk_00, &v0);
 
-    GraphicElementManager_Update(param0->unk_00.unk_00);
+    CellActorCollection_Update(param0->unk_00.unk_00);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 

@@ -89,7 +89,7 @@ typedef struct {
     int unk_08;
     BOOL unk_0C;
     UnkStruct_ov95_02247568 unk_10;
-    GraphicElementData * unk_20[1];
+    CellActor * unk_20[1];
     BGL * unk_24;
     UnkStruct_ov95_0224773C * unk_28;
     UnkStruct_ov95_02247958 * unk_2C;
@@ -191,13 +191,13 @@ static int ov95_0224A464 (UnkStruct_ov95_0224A42C * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            GraphicElementData_SetAnim(param0->unk_20[0], 3);
-            GraphicElementData_SetDrawFlag(param0->unk_20[0], 1);
+            CellActor_SetAnim(param0->unk_20[0], 3);
+            CellActor_SetDrawFlag(param0->unk_20[0], 1);
             (*param1)++;
         }
         break;
     case 1:
-        if (GraphicElementData_IsAnimated(param0->unk_20[0]) == 0) {
+        if (CellActor_IsAnimated(param0->unk_20[0]) == 0) {
             Sound_PlayEffect(1707);
             ov95_0224A864(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);
@@ -390,7 +390,7 @@ static void ov95_0224A7B0 (UnkStruct_ov95_0224A42C * param0)
 
     ov95_022475C4(&v2, &param0->unk_10, &v1, &v0, 1);
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, 128, 96, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
-    GraphicElementData_SetDrawFlag(param0->unk_20[0], 0);
+    CellActor_SetDrawFlag(param0->unk_20[0], 0);
 }
 
 static void ov95_0224A830 (UnkStruct_ov95_0224A42C * param0)
@@ -399,7 +399,7 @@ static void ov95_0224A830 (UnkStruct_ov95_0224A42C * param0)
 
     for (v0 = 0; v0 < 1; v0++) {
         if (param0->unk_20[v0]) {
-            GraphicElementData_Delete(param0->unk_20[v0]);
+            CellActor_Delete(param0->unk_20[v0]);
         }
     }
 

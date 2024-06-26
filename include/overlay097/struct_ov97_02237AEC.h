@@ -8,7 +8,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    CellActorCollection * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[6];
     UnkStruct_02009DC8 * unk_1A8[2][6];

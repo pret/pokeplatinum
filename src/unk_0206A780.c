@@ -90,11 +90,11 @@ void sub_0206A870 (UnkStruct_0206A844 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            GraphicElementData_UpdateAnim(param0->unk_1C8[v0]->unk_00, FX32_ONE);
+            CellActor_UpdateAnim(param0->unk_1C8[v0]->unk_00, FX32_ONE);
         }
     }
 
-    GraphicElementManager_Update(param0->unk_00.unk_00);
+    CellActorCollection_Update(param0->unk_00.unk_00);
 }
 
 void sub_0206A8A0 (UnkStruct_0206A844 * param0, s16 param1, s16 param2, s16 param3)

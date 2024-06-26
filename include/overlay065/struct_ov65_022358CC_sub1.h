@@ -8,8 +8,8 @@
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
     CellActorResourceData unk_10;
-    GraphicElementData * unk_34;
-    GraphicElementData * unk_38;
+    CellActor * unk_34;
+    CellActor * unk_38;
 } UnkStruct_ov65_022358CC_sub1;
 
 #endif // POKEPLATINUM_STRUCT_OV65_022358CC_SUB1_H

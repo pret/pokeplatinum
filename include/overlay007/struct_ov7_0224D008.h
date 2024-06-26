@@ -33,7 +33,7 @@ typedef struct {
     StringTemplate * unk_8C;
     Camera * camera;
     UnkStruct_ov5_021D30A8 unk_94;
-    GraphicElementData * unk_25C[4];
+    CellActor * unk_25C[4];
     u16 unk_26C[2];
     TrainerInfo * unk_270;
     void * unk_274;

@@ -2422,7 +2422,7 @@ void ov12_022291AC (UnkStruct_ov12_0221FCDC * param0)
 
         ov12_02235D74(param0, v3, &(v1->unk_1C), &v0);
 
-        v2 = sub_0201FAB4(GraphicElementData_GetPaletteProxy(v1->unk_1C.unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_1C.unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
         v1->unk_30 = ov12_02226870(v1->unk_00.unk_18, ov12_0221FDE4(param0), 2, v2 * 16, 16, v4, v5, v6, v7, v8, 1100);
     }
 

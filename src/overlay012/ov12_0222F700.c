@@ -785,7 +785,7 @@ static void ov12_0222FC44 (SysTask * param0, void * param1)
     case 4:
         sub_0200D330(v0->unk_0C.unk_00);
 
-        if (GraphicElementData_IsAnimated(v0->unk_0C.unk_00->unk_00) == 0) {
+        if (CellActor_IsAnimated(v0->unk_0C.unk_00->unk_00) == 0) {
             SpriteActor_SetOAMMode(v0->unk_0C.unk_00, GX_OAM_MODE_XLU);
             v0->unk_EC++;
         }

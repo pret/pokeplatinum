@@ -405,27 +405,27 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
             {
                 VecFx32 v21;
                 VecFx32 v22;
-                GraphicElementData * v23;
-                GraphicElementData * v24;
+                CellActor * v23;
+                CellActor * v24;
 
                 for (v11 = 0; v11 < v4; v11++) {
                     v23 = v3->unk_30[v11]->unk_00;
-                    v21 = *(GraphicElementData_GetPosition((const GraphicElementData *)v23));
+                    v21 = *(CellActor_GetPosition((const CellActor *)v23));
 
                     v24 = v3->unk_40[v11]->unk_00;
-                    v22 = *(GraphicElementData_GetPosition((const GraphicElementData *)v24));
+                    v22 = *(CellActor_GetPosition((const CellActor *)v24));
 
-                    GraphicElementData_SetPosition(v23, &v22);
-                    GraphicElementData_SetPosition(v24, &v21);
+                    CellActor_SetPosition(v23, &v22);
+                    CellActor_SetPosition(v24, &v21);
 
                     v23 = v3->unk_50[v11]->unk_00;
-                    v21 = *(GraphicElementData_GetPosition((const GraphicElementData *)v23));
+                    v21 = *(CellActor_GetPosition((const CellActor *)v23));
 
                     v24 = v3->unk_60[v11]->unk_00;
-                    v22 = *(GraphicElementData_GetPosition((const GraphicElementData *)v24));
+                    v22 = *(CellActor_GetPosition((const CellActor *)v24));
 
-                    GraphicElementData_SetPosition(v23, &v22);
-                    GraphicElementData_SetPosition(v24, &v21);
+                    CellActor_SetPosition(v23, &v22);
+                    CellActor_SetPosition(v24, &v21);
                 }
             }
         }
@@ -453,11 +453,11 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
 
         if (v18 == 0) {
             for (v11 = 0; v11 < v4; v11++) {
-                GraphicElementData_SetExplicitPriority(v3->unk_30[v11]->unk_00, 2);
+                CellActor_SetExplicitPriority(v3->unk_30[v11]->unk_00, 2);
             }
         } else {
             for (v11 = 0; v11 < v5; v11++) {
-                GraphicElementData_SetExplicitPriority(v3->unk_40[v11]->unk_00, 2);
+                CellActor_SetExplicitPriority(v3->unk_40[v11]->unk_00, 2);
             }
         }
         break;
@@ -523,7 +523,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
             {
                 u32 v25;
                 UnkStruct_ov104_0223C634 * v26;
-                GraphicElementData * v27;
+                CellActor * v27;
 
                 v26 = ov104_0223D5A8(param0->unk_00->unk_00, v19);
                 v25 = ov63_0222D050(v26->unk_04);

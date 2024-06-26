@@ -56,7 +56,7 @@ struct UnkStruct_ov95_02247628_t {
     StringTemplate * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
-    GraphicElementManager * unk_18;
+    CellActorCollection * unk_18;
     UnkStruct_0200C738 unk_1C;
     SysTask * unk_1A8;
     BOOL unk_1AC;
@@ -220,7 +220,7 @@ int ov95_02246E1C (OverlayManager * param0, int * param1)
     MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
-    GraphicElementManager_Delete(v1->unk_18);
+    CellActorCollection_Delete(v1->unk_18);
     sub_0200A878();
     OverlayManager_FreeData(param0);
     Heap_Destroy(57);
@@ -265,7 +265,7 @@ static void ov95_02246F0C (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02247628 * v0 = param1;
 
-    GraphicElementManager_Update(v0->unk_18);
+    CellActorCollection_Update(v0->unk_18);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -647,12 +647,12 @@ void ov95_022475C4 (CellActorResourceData * param0, UnkStruct_ov95_02247568 * pa
     param0->isVRamTransfer = 0;
 }
 
-GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
+CellActor * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    GraphicElementData * v0;
+    CellActor * v0;
     CellActorInitParams v1;
 
-    v1.manager = param0->unk_18;
+    v1.collection = param0->unk_18;
     v1.resourceData = param1;
     v1.position.x = param2 * FX32_ONE;
     v1.position.y = param3 * FX32_ONE;
@@ -661,11 +661,11 @@ GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorR
     v1.vramType = param5;
     v1.heapID = 57;
 
-    v0 = GraphicElementManager_AddElement(&v1);
+    v0 = CellActorCollection_Add(&v1);
 
     if (v0) {
-        GraphicElementData_SetAnimateFlag(v0, 1);
-        GraphicElementData_SetAnimSpeed(v0, FX32_ONE);
+        CellActor_SetAnimateFlag(v0, 1);
+        CellActor_SetAnimSpeed(v0, FX32_ONE);
     }
 
     return v0;

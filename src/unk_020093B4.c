@@ -137,9 +137,9 @@ void sub_020095A8 (UnkStruct_02009508 * param0)
     Heap_FreeToHeap(param0);
 }
 
-GraphicElementManager * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, int param2)
+CellActorCollection * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, int param2)
 {
-    GraphicElementManagerParams v0;
+    CellActorCollectionParams v0;
     NNSG2dViewRect v1;
 
     sub_0202309C(&param1->unk_00, -FX32_ONE);
@@ -162,7 +162,7 @@ GraphicElementManager * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, i
     v0.renderer = &param1->unk_00;
     v0.heapID = param2;
 
-    return GraphicElementManager_New(&v0);
+    return CellActorCollection_New(&v0);
 }
 
 void sub_0200962C (UnkStruct_0200C738 * param0, fx32 param1, fx32 param2)

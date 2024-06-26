@@ -311,7 +311,7 @@ int ov106_02241B9C (OverlayManager * param0, int * param1)
         break;
     }
 
-    GraphicElementManager_Update(v0->unk_C0.unk_00);
+    CellActorCollection_Update(v0->unk_C0.unk_00);
     return 0;
 }
 

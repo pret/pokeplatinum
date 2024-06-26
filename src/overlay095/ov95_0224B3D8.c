@@ -69,7 +69,7 @@ typedef struct {
     UnkStruct_02007768 * unk_10;
     Sprite * unk_14;
     SpriteAnimationFrame unk_18[10];
-    GraphicElementData * unk_40[2];
+    CellActor * unk_40[2];
     UnkStruct_ov95_02247568 unk_48;
     BGL * unk_58;
     Window unk_5C;
@@ -335,8 +335,8 @@ static int ov95_0224B6F0 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            GraphicElementData_SetAnim(param0->unk_40[0], 1);
-            GraphicElementData_SetDrawFlag(param0->unk_40[0], 1);
+            CellActor_SetAnim(param0->unk_40[0], 1);
+            CellActor_SetDrawFlag(param0->unk_40[0], 1);
             return 1;
         }
         break;
@@ -353,8 +353,8 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
         (*param1)++;
     case 1:
         if (param0->unk_80 == NULL) {
-            GraphicElementData_SetAnim(param0->unk_40[1], 2);
-            GraphicElementData_SetDrawFlag(param0->unk_40[1], 1);
+            CellActor_SetAnim(param0->unk_40[1], 2);
+            CellActor_SetDrawFlag(param0->unk_40[1], 1);
             ov95_022479A8(param0->unk_78, 0);
             param0->unk_08 = 0;
             (*param1)++;
@@ -538,9 +538,9 @@ static void ov95_0224BAE8 (UnkStruct_ov95_0224B4D4 * param0)
     param0->unk_40[0] = ov95_022475E4(param0->unk_00, &v2, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
     param0->unk_40[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    GraphicElementData_SetExplicitPriority(param0->unk_40[1], 1);
-    GraphicElementData_SetDrawFlag(param0->unk_40[0], 0);
-    GraphicElementData_SetDrawFlag(param0->unk_40[1], 0);
+    CellActor_SetExplicitPriority(param0->unk_40[1], 1);
+    CellActor_SetDrawFlag(param0->unk_40[0], 0);
+    CellActor_SetDrawFlag(param0->unk_40[1], 0);
 }
 
 static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)
@@ -549,7 +549,7 @@ static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_40[v0]) {
-            GraphicElementData_Delete(param0->unk_40[v0]);
+            CellActor_Delete(param0->unk_40[v0]);
         }
     }
 

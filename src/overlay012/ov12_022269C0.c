@@ -38,7 +38,7 @@ typedef struct {
     SpriteGfxHandler * unk_0C;
     CellActorData * unk_10;
     CellActorData * unk_14[100];
-    GraphicElementData * unk_1A4[10];
+    CellActor * unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
 void ov12_022269C0 (UnkStruct_ov12_0221FCDC * param0)

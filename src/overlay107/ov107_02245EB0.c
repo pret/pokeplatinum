@@ -380,7 +380,7 @@ int ov107_02245FD0 (OverlayManager * param0, int * param1)
     }
 
     ov107_022492A8(v0);
-    GraphicElementManager_Update(v0->unk_158.unk_00);
+    CellActorCollection_Update(v0->unk_158.unk_00);
 
     return 0;
 }

@@ -117,7 +117,7 @@ typedef struct {
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
-    GraphicElementManager * unk_18;
+    CellActorCollection * unk_18;
     UnkStruct_0200C738 unk_1C;
     UnkStruct_02009714 * unk_1A8[4];
     UnkStruct_ov63_0222BE18 * unk_1B8;
@@ -502,7 +502,7 @@ int ov65_02236548 (OverlayManager * param0, int * param1)
     }
 
     ov65_022372B0(&v0->unk_30);
-    GraphicElementManager_Update(v0->unk_30.unk_18);
+    CellActorCollection_Update(v0->unk_30.unk_18);
 
     return 0;
 }
@@ -882,7 +882,7 @@ static void ov65_02236E04 (UnkStruct_ov65_02236840 * param0)
     ov63_0222CD9C(param0->unk_1BC);
     ov63_0222BE58(param0->unk_1B8);
 
-    GraphicElementManager_Delete(param0->unk_18);
+    CellActorCollection_Delete(param0->unk_18);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_1A8[v0]);

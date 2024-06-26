@@ -111,7 +111,7 @@ static void ov5_021DEDE8(SysTask *param0, void *param1);
 static void ov5_021DEE24(SysTask *param0, void *param1);
 static void ov5_021DEE50(HBlankTask *param0, void *param1);
 static void ov5_021DEE84(UnkStruct_ov5_021DED04 *param0);
-static void ov5_021DE67C(GraphicElementData *param0, void *param1, u32 param2);
+static void ov5_021DE67C(CellActor *param0, void *param1, u32 param2);
 static void ov5_021DF258(SysTask *param0, void *param1);
 static void ov5_021DF28C(SysTask *param0, void *param1);
 static void ov5_021DF30C(FieldSystem *fieldSystem);
@@ -749,7 +749,7 @@ void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0)
 {
     int v0;
 
-    GraphicElementManager_Delete(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_190[v0]);
@@ -781,7 +781,7 @@ void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1
     }
 }
 
-void ov5_021DE5D0(GraphicElementData *param0, u32 param1, u32 param2, u8 param3, u16 param4)
+void ov5_021DE5D0(CellActor *param0, u32 param1, u32 param2, u8 param3, u16 param4)
 {
     UnkStruct_ov5_021DE5D0 v0;
     NNSG2dPaletteData *v1;
@@ -799,12 +799,12 @@ void ov5_021DE5D0(GraphicElementData *param0, u32 param1, u32 param2, u8 param3,
     Heap_FreeToHeap(v2);
 }
 
-GraphicElementData *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5)
+CellActor *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5)
 {
     CellActorInitParams v0;
-    GraphicElementData *v1;
+    CellActor *v1;
 
-    v0.manager = param0->unk_00;
+    v0.collection = param0->unk_00;
     v0.resourceData = &param1->unk_10;
     v0.position.x = param2;
     v0.position.y = param3;
@@ -813,7 +813,7 @@ GraphicElementData *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_0
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.heapID = 4;
 
-    v1 = GraphicElementManager_AddElement(&v0);
+    v1 = CellActorCollection_Add(&v0);
     GF_ASSERT(v1);
     return v1;
 }
@@ -823,11 +823,11 @@ VecFx32 VecFx32_FromXYZ(fx32 x, fx32 y, fx32 z)
     return (VecFx32){ x, y, z };
 }
 
-static void ov5_021DE67C(GraphicElementData *param0, void *param1, u32 param2)
+static void ov5_021DE67C(CellActor *param0, void *param1, u32 param2)
 {
     NNSG2dImagePaletteProxy *v0;
 
-    v0 = GraphicElementData_GetPaletteProxy(param0);
+    v0 = CellActor_GetPaletteProxy(param0);
 
     DC_FlushRange(param1, param2);
     GX_LoadOBJPltt(param1, NNS_G2dGetImagePaletteLocation(v0, NNS_G2D_VRAM_TYPE_2DMAIN), param2);

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020218BC_DECL_H
 #define POKEPLATINUM_STRUCT_020218BC_DECL_H
 
-typedef struct GraphicElementManager GraphicElementManager;
+typedef struct CellActorCollection CellActorCollection;
 
 #endif // POKEPLATINUM_STRUCT_020218BC_DECL_H

@@ -103,10 +103,10 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    GraphicElementData * unk_04[44];
+    CellActor * unk_04[44];
     UnkStruct_02009DC8 * unk_B4[4];
     int unk_C4;
-    GraphicElementData * unk_C8;
+    CellActor * unk_C8;
     UnkStruct_ov21_021D4CA0 * unk_CC;
     UnkStruct_02009DC8 * unk_D0[4];
     UnkStruct_ov21_021D4CA0 * unk_E0[3];
@@ -582,7 +582,7 @@ static void ov21_021DD1A8 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
 
     sub_020093B4(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.manager = v2->unk_138;
+    v1.collection = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -590,12 +590,12 @@ static void ov21_021DD1A8 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
     v1.position.x = 160 * FX32_ONE;
     v1.position.y = 96 * FX32_ONE;
 
-    param0->unk_C8 = GraphicElementManager_AddElement(&v1);
+    param0->unk_C8 = CellActorCollection_Add(&v1);
 
-    GraphicElementData_SetAnim(param0->unk_C8, 2);
+    CellActor_SetAnim(param0->unk_C8, 2);
     sub_020093B4(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.manager = v2->unk_138;
+    v1.collection = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -604,9 +604,9 @@ static void ov21_021DD1A8 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
     v1.position.y = 0;
 
     for (v3 = 0; v3 < (22 * 2); v3++) {
-        param0->unk_04[v3] = GraphicElementManager_AddElement(&v1);
-        GraphicElementData_SetDrawFlag(param0->unk_04[v3], 0);
-        GraphicElementData_SetExplicitOAMMode(param0->unk_04[v3], GX_OAM_MODE_XLU);
+        param0->unk_04[v3] = CellActorCollection_Add(&v1);
+        CellActor_SetDrawFlag(param0->unk_04[v3], 0);
+        CellActor_SetExplicitOAMMode(param0->unk_04[v3], GX_OAM_MODE_XLU);
     }
 }
 
@@ -614,11 +614,11 @@ static void ov21_021DD2B8 (UnkStruct_ov21_021DD420 * param0)
 {
     int v0;
 
-    GraphicElementData_Delete(param0->unk_C8);
+    CellActor_Delete(param0->unk_C8);
     param0->unk_C8 = NULL;
 
     for (v0 = 0; v0 < (22 * 2); v0++) {
-        GraphicElementData_Delete(param0->unk_04[v0]);
+        CellActor_Delete(param0->unk_04[v0]);
         param0->unk_04[v0] = NULL;
     }
 }
@@ -689,7 +689,7 @@ static void ov21_021DD420 (UnkStruct_ov21_021DD420 * param0)
 {
     int v0;
 
-    GraphicElementData_SetExplicitOAMMode(param0->unk_C8, GX_OAM_MODE_XLU);
+    CellActor_SetExplicitOAMMode(param0->unk_C8, GX_OAM_MODE_XLU);
     sub_02012AF0(param0->unk_CC->unk_00, GX_OAM_MODE_XLU);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -701,7 +701,7 @@ static void ov21_021DD458 (UnkStruct_ov21_021DD420 * param0)
 {
     int v0;
 
-    GraphicElementData_SetExplicitOAMMode(param0->unk_C8, GX_OAM_MODE_NORMAL);
+    CellActor_SetExplicitOAMMode(param0->unk_C8, GX_OAM_MODE_NORMAL);
     sub_02012AF0(param0->unk_CC->unk_00, GX_OAM_MODE_NORMAL);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -896,7 +896,7 @@ static void ov21_021DD8B4 (UnkStruct_ov21_021DD420 * param0)
     memset(param0->unk_470, 0, sizeof(u8) * (30 * 30));
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
-        GraphicElementData_SetDrawFlag(param0->unk_04[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_04[v0], 0);
     }
 
     param0->unk_C4 = 0;
@@ -1107,10 +1107,10 @@ static void ov21_021DD964 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
 static void ov21_021DD9E8 (UnkStruct_ov21_021DD420 * param0, const UnkStruct_ov21_021DDABC * param1)
 {
     if ((param0->unk_834 <= 0) && (param0->unk_838 <= 0) && (param0->unk_83C <= 0) && (param0->unk_840 <= 0)) {
-        GraphicElementData_SetDrawFlag(param0->unk_C8, 1);
+        CellActor_SetDrawFlag(param0->unk_C8, 1);
         sub_020129D0(param0->unk_CC->unk_00, 1);
     } else {
-        GraphicElementData_SetDrawFlag(param0->unk_C8, 0);
+        CellActor_SetDrawFlag(param0->unk_C8, 0);
         sub_020129D0(param0->unk_CC->unk_00, 0);
     }
 }
@@ -1193,7 +1193,7 @@ static void ov21_021DDB8C (UnkStruct_ov21_021DD420 * param0)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
-        GraphicElementData_SetDrawFlag(param0->unk_04[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_04[v0], 0);
     }
 }
 
@@ -1205,7 +1205,7 @@ static void ov21_021DDBCC (UnkStruct_ov21_021DD420 * param0)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
-        GraphicElementData_SetDrawFlag(param0->unk_04[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_04[v0], 0);
     }
 }
 
@@ -1220,7 +1220,7 @@ static void ov21_021DDC14 (UnkStruct_ov21_021DD420 * param0)
 
         if (param0->unk_810 == 0) {
             for (v2 = 0; v2 < param0->unk_C4; v2++) {
-                GraphicElementData_SetDrawFlag(param0->unk_04[v2], 1);
+                CellActor_SetDrawFlag(param0->unk_04[v2], 1);
             }
 
             param0->unk_810 = 1;
@@ -1248,7 +1248,7 @@ static void ov21_021DDC14 (UnkStruct_ov21_021DD420 * param0)
             GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
         } else {
             for (v2 = 0; v2 < param0->unk_C4; v2++) {
-                GraphicElementData_SetDrawFlag(param0->unk_04[v2], 0);
+                CellActor_SetDrawFlag(param0->unk_04[v2], 0);
             }
         }
     }

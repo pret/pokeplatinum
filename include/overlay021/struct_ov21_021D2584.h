@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 
 typedef struct {
-    GraphicElementData * unk_00[4];
+    CellActor * unk_00[4];
     UnkStruct_02009DC8 * unk_10[4];
     int unk_20;
     int unk_24;

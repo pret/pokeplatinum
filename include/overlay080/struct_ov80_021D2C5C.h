@@ -7,7 +7,7 @@
 typedef struct {
     UnkStruct_ov80_021D2C5C_sub1 unk_00;
     int unk_14;
-    GraphicElementData * unk_18;
+    CellActor * unk_18;
 } UnkStruct_ov80_021D2C5C;
 
 #endif // POKEPLATINUM_STRUCT_OV80_021D2C5C_H

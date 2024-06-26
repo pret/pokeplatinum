@@ -8,7 +8,7 @@
 
 typedef struct {
     BOOL unk_00;
-    GraphicElementData * unk_04[2];
+    CellActor * unk_04[2];
     VecFx32 unk_0C[2];
     UnkStruct_ov22_0225AD68 unk_24;
     UnkStruct_ov22_0225AD68 unk_38;

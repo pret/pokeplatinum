@@ -131,7 +131,7 @@ u32 ov21_021D5948 (u8 * param0, int param1, int param2, const UnkStruct_ov21_021
     return v2;
 }
 
-void ov21_021D59D8 (GraphicElementData * param0, int param1, int param2, int param3, int param4, const UnkStruct_ov21_021D5868 * param5, int param6, int param7)
+void ov21_021D59D8 (CellActor * param0, int param1, int param2, int param3, int param4, const UnkStruct_ov21_021D5868 * param5, int param6, int param7)
 {
     VecFx32 v0;
 
@@ -140,16 +140,16 @@ void ov21_021D59D8 (GraphicElementData * param0, int param1, int param2, int par
     v0.x <<= FX32_SHIFT;
     v0.y <<= FX32_SHIFT;
 
-    GraphicElementData_SetPosition(param0, &v0);
+    CellActor_SetPosition(param0, &v0);
 
     if (param5->unk_02) {
-        GraphicElementData_SetAnim(param0, param7);
+        CellActor_SetAnim(param0, param7);
     } else {
-        GraphicElementData_SetAnim(param0, param6);
+        CellActor_SetAnim(param0, param6);
     }
 }
 
-int ov21_021D5A20 (GraphicElementData ** param0, int param1, int param2, int param3, int param4, int param5, int param6, const UnkStruct_ov21_021D5868 * param7, const UnkStruct_ov21_021D5844 * param8, int param9, int param10, const u8 * param11, u32 param12, u32 * param13)
+int ov21_021D5A20 (CellActor ** param0, int param1, int param2, int param3, int param4, int param5, int param6, const UnkStruct_ov21_021D5868 * param7, const UnkStruct_ov21_021D5844 * param8, int param9, int param10, const u8 * param11, u32 param12, u32 * param13)
 {
     int v0, v1;
     int v2 = param1;

@@ -98,7 +98,7 @@ typedef struct {
     UnkStruct_ov90_021D17F8 unk_BC[30];
     SpriteRenderer * unk_29C;
     SpriteGfxHandler * unk_2A0;
-    GraphicElementData * unk_2A4[4];
+    CellActor * unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 
 static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC * param0);
@@ -934,12 +934,12 @@ static void ov90_021D1BAC (UnkStruct_ov90_021D0ECC * param0)
         param0->unk_2A4[v0] = sub_0200CA08(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
-    GraphicElementData_SetDrawFlag(param0->unk_2A4[2], 0);
-    GraphicElementData_SetDrawFlag(param0->unk_2A4[1], 0);
-    GraphicElementData_SetAnimateFlag(param0->unk_2A4[0], 1);
-    GraphicElementData_SetAnimateFlag(param0->unk_2A4[2], 1);
-    GraphicElementData_SetAnimateFlag(param0->unk_2A4[3], 1);
-    GraphicElementData_SetExplicitPriority(param0->unk_2A4[1], 3);
+    CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
+    CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[0], 1);
+    CellActor_SetAnimateFlag(param0->unk_2A4[2], 1);
+    CellActor_SetAnimateFlag(param0->unk_2A4[3], 1);
+    CellActor_SetExplicitPriority(param0->unk_2A4[1], 3);
 }
 
 static void ov90_021D1C28 (UnkStruct_ov90_021D0ECC * param0)
@@ -956,16 +956,16 @@ static void ov90_021D1C44 (UnkStruct_ov90_021D0ECC * param0, BOOL param1)
     BOOL v0;
 
     if (param1 == 0) {
-        GraphicElementData_SetExplicitPalette(param0->unk_2A4[0], 1);
+        CellActor_SetExplicitPalette(param0->unk_2A4[0], 1);
         v0 = 0;
     } else {
-        GraphicElementData_SetExplicitPalette(param0->unk_2A4[0], 0);
+        CellActor_SetExplicitPalette(param0->unk_2A4[0], 0);
         v0 = 1;
     }
 
-    GraphicElementData_SetAnimateFlag(param0->unk_2A4[0], v0);
-    GraphicElementData_SetAnimateFlag(param0->unk_2A4[2], v0);
-    GraphicElementData_SetAnimateFlag(param0->unk_2A4[3], v0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[0], v0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[2], v0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[3], v0);
 }
 
 static void ov90_021D1C90 (UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param2, u8 param3)
@@ -973,30 +973,30 @@ static void ov90_021D1C90 (UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param
     u16 v0, v1;
 
     if (param0->unk_0E == 10 - 2) {
-        GraphicElementData_SetDrawFlag(param0->unk_2A4[1], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[1], 1);
 
         if (param1 == 10) {
             SpriteActor_SetAnimFrame(param0->unk_2A4[1], 1);
-            GraphicElementData_SetDrawFlag(param0->unk_2A4[0], 0);
+            CellActor_SetDrawFlag(param0->unk_2A4[0], 0);
         } else {
             SpriteActor_SetAnimFrame(param0->unk_2A4[1], 0);
-            GraphicElementData_SetDrawFlag(param0->unk_2A4[0], 1);
+            CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
         }
     } else {
-        GraphicElementData_SetDrawFlag(param0->unk_2A4[0], 1);
-        GraphicElementData_SetDrawFlag(param0->unk_2A4[1], 0);
+        CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
     }
 
     switch (param0->unk_0E) {
     case 0:
-        GraphicElementData_SetDrawFlag(param0->unk_2A4[2], 0);
+        CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
         break;
     case (10 - 2):
-        GraphicElementData_SetDrawFlag(param0->unk_2A4[3], 0);
+        CellActor_SetDrawFlag(param0->unk_2A4[3], 0);
         break;
     default:
-        GraphicElementData_SetDrawFlag(param0->unk_2A4[2], 1);
-        GraphicElementData_SetDrawFlag(param0->unk_2A4[3], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[2], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[3], 1);
         break;
     }
 

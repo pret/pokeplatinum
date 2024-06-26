@@ -23,7 +23,7 @@ static int ov63_0222D0C4(const UnkStruct_ov63_0222BB38 * param0, int param1);
 static void ov63_0222D0E0(const UnkStruct_ov63_0222CE44 * param0, s16 * param1, s16 * param2);
 static void ov63_0222D110(UnkStruct_ov63_0222CE44 * param0, int param1, int param2);
 
-UnkStruct_ov63_0222CD2C * ov63_0222CCE4 (GraphicElementManager * param0, PaletteData * param1, u32 param2, u32 param3, u32 param4)
+UnkStruct_ov63_0222CD2C * ov63_0222CCE4 (CellActorCollection * param0, PaletteData * param1, u32 param2, u32 param3, u32 param4)
 {
     UnkStruct_ov63_0222CD2C * v0;
 
@@ -40,7 +40,7 @@ UnkStruct_ov63_0222CD2C * ov63_0222CCE4 (GraphicElementManager * param0, Palette
     return v0;
 }
 
-UnkStruct_ov63_0222CD2C * ov63_0222CD2C (GraphicElementManager * param0, PaletteData * param1, u32 param2, u32 param3, int param4, u32 param5, u32 param6)
+UnkStruct_ov63_0222CD2C * ov63_0222CD2C (CellActorCollection * param0, PaletteData * param1, u32 param2, u32 param3, int param4, u32 param5, u32 param6)
 {
     UnkStruct_ov63_0222CD2C * v0;
 
@@ -248,7 +248,7 @@ u32 ov63_0222D034 (s16 param0, BOOL param1)
 
 u32 ov63_0222D050 (const UnkStruct_ov63_0222CE44 * param0)
 {
-    return GraphicElementData_GetExplicitPaletteOffset(ov63_0222B234(param0->unk_04));
+    return CellActor_GetExplicitPaletteOffset(ov63_0222B234(param0->unk_04));
 }
 
 void ov63_0222D060 (UnkStruct_ov63_0222CE44 * param0, UnkStruct_ov63_0222CC3C param1)

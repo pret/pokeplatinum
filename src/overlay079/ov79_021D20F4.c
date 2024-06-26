@@ -83,12 +83,12 @@ void ov79_021D21F8 (UnkStruct_ov79_021D0E1C * param0)
 void ov79_021D2214 (UnkStruct_ov79_021D0E1C * param0, BOOL param1)
 {
     if (param1 == 0) {
-        GraphicElementData_SetExplicitPalette(param0->unk_1C0[0], 0);
-        GraphicElementData_SetAnimateFlag(param0->unk_1C0[1], 1);
-        GraphicElementData_SetAnimateFlag(param0->unk_1C0[2], 1);
+        CellActor_SetExplicitPalette(param0->unk_1C0[0], 0);
+        CellActor_SetAnimateFlag(param0->unk_1C0[1], 1);
+        CellActor_SetAnimateFlag(param0->unk_1C0[2], 1);
     } else {
-        GraphicElementData_SetExplicitPalette(param0->unk_1C0[0], 9);
-        GraphicElementData_SetAnimateFlag(param0->unk_1C0[1], 0);
-        GraphicElementData_SetAnimateFlag(param0->unk_1C0[2], 0);
+        CellActor_SetExplicitPalette(param0->unk_1C0[0], 9);
+        CellActor_SetAnimateFlag(param0->unk_1C0[1], 0);
+        CellActor_SetAnimateFlag(param0->unk_1C0[2], 0);
     }
 }

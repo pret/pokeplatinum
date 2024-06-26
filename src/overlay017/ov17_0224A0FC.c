@@ -977,7 +977,7 @@ BOOL ov17_0224AD70 (UnkStruct_ov17_0224DF54 * param0, int param1, int param2)
 
     sub_0200D364(v0, param2);
     sub_0200D500(v0, v5, v6, (256 * FX32_ONE));
-    GraphicElementData_SetAnimateFlag(v0->unk_00, 1);
+    CellActor_SetAnimateFlag(v0->unk_00, 1);
     SpriteActor_UpdateObject(v0->unk_00);
 
     v1 = sub_02094E98(param0->unk_00);

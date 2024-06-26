@@ -22,7 +22,7 @@
 #include "overlay111/ov111_021D2F80.h"
 
 void ov111_021D2F80(UnkStruct_ov111_021D2F80 * param0);
-GraphicElementData * ov111_021D3280(UnkStruct_ov111_021D2F80 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5);
+CellActor * ov111_021D3280(UnkStruct_ov111_021D2F80 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5);
 void ov111_021D3320(UnkStruct_ov111_021D2F80 * param0);
 void ov111_021D33B0(UnkStruct_ov111_021D2F80 * param0, int param1);
 static void ov111_021D3378(void);
@@ -113,18 +113,18 @@ static void ov111_021D31F4 (UnkStruct_ov111_021D2F80 * param0, int param1)
     return;
 }
 
-GraphicElementData * ov111_021D3280 (UnkStruct_ov111_021D2F80 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5)
+CellActor * ov111_021D3280 (UnkStruct_ov111_021D2F80 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5)
 {
     int v0;
     CellActorResourceData v1;
-    GraphicElementData * v2;
+    CellActor * v2;
 
     sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param3, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v3;
 
-        v3.manager = param0->unk_00;
+        v3.collection = param0->unk_00;
         v3.resourceData = &v1;
         v3.position.x = 0;
         v3.position.y = 0;
@@ -142,11 +142,11 @@ GraphicElementData * ov111_021D3280 (UnkStruct_ov111_021D2F80 * param0, u32 para
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
-        v2 = GraphicElementManager_AddElementEx(&v3);
+        v2 = CellActorCollection_AddEx(&v3);
 
-        GraphicElementData_SetAnimateFlag(v2, 0);
-        GraphicElementData_SetAnimSpeed(v2, FX32_ONE);
-        GraphicElementData_SetAnim(v2, param2);
+        CellActor_SetAnimateFlag(v2, 0);
+        CellActor_SetAnimSpeed(v2, FX32_ONE);
+        CellActor_SetAnim(v2, param2);
     }
 
     return v2;
@@ -165,7 +165,7 @@ void ov111_021D3320 (UnkStruct_ov111_021D2F80 * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    GraphicElementManager_Delete(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();

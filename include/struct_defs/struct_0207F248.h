@@ -34,7 +34,7 @@ typedef struct {
     PartyManagementData * unk_5A4;
     SpriteRenderer * unk_5A8;
     SpriteGfxHandler * unk_5AC;
-    GraphicElementData * unk_5B0[29];
+    CellActor * unk_5B0[29];
     CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;
     MessageLoader * unk_69C;

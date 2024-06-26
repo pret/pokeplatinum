@@ -60,14 +60,14 @@ struct UnkStruct_ov96_0223BF40_t {
     Strbuf* unk_BE8;
     Strbuf* unk_BEC;
     int unk_BF0;
-    GraphicElementManager * unk_BF4;
+    CellActorCollection * unk_BF4;
     UnkStruct_0200C738 unk_BF8;
     UnkStruct_02009714 * unk_D84[4];
     UnkStruct_02009DC8 * unk_D94[3][4];
     CellActorResourceData unk_DC4;
     CellActorResourceData unk_DE8;
     CellActorResourceData unk_E0C;
-    GraphicElementData * unk_E30[2];
+    CellActor * unk_E30[2];
     Window unk_E38;
     Window unk_E48;
     Window unk_E58;

@@ -31,9 +31,9 @@ typedef struct UnkStruct_ov6_022426B8_t {
     void * unk_20;
     void * unk_24;
     ArchivedSprite unk_28;
-    GraphicElementManager * unk_38;
+    CellActorCollection * unk_38;
     UnkStruct_0200C738 unk_3C;
-    GraphicElementData * unk_1C8;
+    CellActor * unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;
 } UnkStruct_ov6_022426B8;
@@ -148,7 +148,7 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
         sub_02009754(param0->unk_00[v0]);
     }
 
-    GraphicElementManager_Delete(param0->unk_38);
+    CellActorCollection_Delete(param0->unk_38);
     Heap_FreeToHeap(param0->unk_20);
     Heap_FreeToHeap(param0->unk_24);
 }
@@ -158,7 +158,7 @@ static void ov6_02242860 (SysTask * param0, void * param1)
     UnkStruct_ov6_022426B8 * v0 = param1;
 
     if (v0->unk_1CC) {
-        GraphicElementManager_Update(v0->unk_38);
+        CellActorCollection_Update(v0->unk_38);
     } else {
         v0->unk_1D0 = 1;
         SysTask_Done(param0);
@@ -205,7 +205,7 @@ static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
     {
         CellActorInitParamsEx v2;
 
-        v2.manager = param0->unk_38;
+        v2.collection = param0->unk_38;
         v2.resourceData = &v1;
         v2.position.x = 0;
         v2.position.y = 0;
@@ -220,9 +220,9 @@ static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
         v2.position.x = FX32_ONE * (256 / 2);
         v2.position.y = FX32_ONE * (192 / 2);
 
-        param0->unk_1C8 = GraphicElementManager_AddElementEx(&v2);
+        param0->unk_1C8 = CellActorCollection_AddEx(&v2);
 
-        GraphicElementData_SetAnimateFlag(param0->unk_1C8, 0);
-        GraphicElementData_SetAnim(param0->unk_1C8, 0);
+        CellActor_SetAnimateFlag(param0->unk_1C8, 0);
+        CellActor_SetAnim(param0->unk_1C8, 0);
     }
 }

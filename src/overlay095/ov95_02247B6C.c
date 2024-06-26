@@ -52,7 +52,7 @@ typedef struct {
     UnkStruct_02007768 * unk_0C;
     Sprite * unk_10;
     SpriteAnimationFrame unk_14[10];
-    GraphicElementData * unk_3C[2];
+    CellActor * unk_3C[2];
     UnkStruct_ov95_02247568 unk_44;
     BGL * unk_54;
     Window unk_58;
@@ -307,8 +307,8 @@ static int ov95_02247ED8 (UnkStruct_ov95_02247C6C * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            GraphicElementData_SetAnim(param0->unk_3C[0], 1);
-            GraphicElementData_SetDrawFlag(param0->unk_3C[0], 1);
+            CellActor_SetAnim(param0->unk_3C[0], 1);
+            CellActor_SetDrawFlag(param0->unk_3C[0], 1);
             return 1;
         }
         break;
@@ -402,13 +402,13 @@ static int ov95_02248090 (UnkStruct_ov95_02247C6C * param0, int * param1)
     case 1:
         if (ov95_022483B4(param0)) {
             sub_02007DC8(param0->unk_10);
-            GraphicElementData_SetAnim(param0->unk_3C[1], 0);
-            GraphicElementData_SetDrawFlag(param0->unk_3C[1], 1);
+            CellActor_SetAnim(param0->unk_3C[1], 0);
+            CellActor_SetDrawFlag(param0->unk_3C[1], 1);
             (*param1)++;
         }
         break;
     case 2:
-        if (GraphicElementData_IsAnimated(param0->unk_3C[1]) == 0) {
+        if (CellActor_IsAnimated(param0->unk_3C[1]) == 0) {
             ov95_022479A8(param0->unk_74, 1);
             ov95_02248364(param0, 16, 0, 16);
             ov95_02248420(param0);
@@ -495,9 +495,9 @@ static void ov95_0224829C (UnkStruct_ov95_02247C6C * param0)
     param0->unk_3C[0] = ov95_022475E4(param0->unk_00, &v2, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
     param0->unk_3C[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    GraphicElementData_SetExplicitPriority(param0->unk_3C[1], 1);
-    GraphicElementData_SetDrawFlag(param0->unk_3C[0], 0);
-    GraphicElementData_SetDrawFlag(param0->unk_3C[1], 0);
+    CellActor_SetExplicitPriority(param0->unk_3C[1], 1);
+    CellActor_SetDrawFlag(param0->unk_3C[0], 0);
+    CellActor_SetDrawFlag(param0->unk_3C[1], 0);
 }
 
 static void ov95_02248340 (UnkStruct_ov95_02247C6C * param0)
@@ -506,7 +506,7 @@ static void ov95_02248340 (UnkStruct_ov95_02247C6C * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_3C[v0]) {
-            GraphicElementData_Delete(param0->unk_3C[v0]);
+            CellActor_Delete(param0->unk_3C[v0]);
         }
     }
 

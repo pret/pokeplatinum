@@ -41,8 +41,8 @@
 #include "overlay104/ov104_0222DCE0.h"
 
 void ov104_0222E1C0(SaveData * param0, Party * param1, Pokemon * param2);
-void ov104_0222E1D8(GraphicElementData * param0, u8 param1);
-void ov104_0222E204(GraphicElementData * param0, s16 param1, s16 param2, u8 param3);
+void ov104_0222E1D8(CellActor * param0, u8 param1);
+void ov104_0222E204(CellActor * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
 void ov104_0222E278(UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, int param3);
 void ov104_0222E284(BattleParams * param0, UnkStruct_ov104_0223A348_sub1 * param1, int param2, int param3, int param4);
@@ -384,19 +384,19 @@ void ov104_0222E1C0 (SaveData * param0, Party * param1, Pokemon * param2)
     return;
 }
 
-void ov104_0222E1D8 (GraphicElementData * param0, u8 param1)
+void ov104_0222E1D8 (CellActor * param0, u8 param1)
 {
-    if (GraphicElementData_GetActiveAnim(param0) == param1) {
+    if (CellActor_GetActiveAnim(param0) == param1) {
         return;
     }
 
     SpriteActor_SetAnimFrame(param0, 0);
-    GraphicElementData_SetAnim(param0, param1);
-    GraphicElementData_UpdateAnim(param0, FX32_ONE);
+    CellActor_SetAnim(param0, param1);
+    CellActor_UpdateAnim(param0, FX32_ONE);
     return;
 }
 
-void ov104_0222E204 (GraphicElementData * param0, s16 param1, s16 param2, u8 param3)
+void ov104_0222E204 (CellActor * param0, s16 param1, s16 param2, u8 param3)
 {
     VecFx32 v0;
 
@@ -405,14 +405,14 @@ void ov104_0222E204 (GraphicElementData * param0, s16 param1, s16 param2, u8 par
     v0.z = 0;
 
     if (param3 == 1) {
-        if (GraphicElementData_GetAnimFrame(param0) == 0) {
+        if (CellActor_GetAnimFrame(param0) == 0) {
             v0.y = (param2 - 3) * FX32_ONE;
         } else {
             v0.y = (param2 + 1) * FX32_ONE;
         }
     }
 
-    GraphicElementData_SetPosition(param0, &v0);
+    CellActor_SetPosition(param0, &v0);
     return;
 }
 

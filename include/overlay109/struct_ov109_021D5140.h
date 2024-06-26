@@ -40,15 +40,15 @@ typedef struct UnkStruct_ov109_021D5140_t {
     Strbuf* unk_54;
     Strbuf* unk_58;
     int unk_5C;
-    GraphicElementManager * unk_60;
+    CellActorCollection * unk_60;
     UnkStruct_0200C738 unk_64;
     UnkStruct_02009714 * unk_1F0[4];
     UnkStruct_02009DC8 * unk_200[3][4];
     CellActorResourceData unk_230;
     CellActorResourceData unk_254;
     CellActorResourceData unk_278;
-    GraphicElementData * unk_29C[14];
-    GraphicElementData * unk_2D4[14];
+    CellActor * unk_29C[14];
+    CellActor * unk_2D4[14];
     Window unk_30C[5];
     Window unk_35C;
     Window unk_36C;

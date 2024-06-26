@@ -582,7 +582,7 @@ int ov105_02241BD8 (OverlayManager * param0, int * param1)
         break;
     }
 
-    GraphicElementManager_Update(v0->unk_144.unk_00);
+    CellActorCollection_Update(v0->unk_144.unk_00);
     ov105_02245D50(v0->unk_128);
 
     return 0;

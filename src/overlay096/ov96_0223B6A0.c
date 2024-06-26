@@ -161,7 +161,7 @@ int ov96_0223B7F8 (OverlayManager * param0, int * param1)
     }
 
     if (v0->unk_BF4 != NULL) {
-        GraphicElementManager_Update(v0->unk_BF4);
+        CellActorCollection_Update(v0->unk_BF4);
     }
 
     return 0;
@@ -287,7 +287,7 @@ static const u16 Unk_ov96_0223DA80[][2] = {
 
 void ov96_0223BAE0 (CellActorInitParamsEx * param0, UnkStruct_ov96_0223BF40 * param1, CellActorResourceData * param2, int param3)
 {
-    param0->manager = param1->unk_BF4;
+    param0->collection = param1->unk_BF4;
     param0->resourceData = param2;
     param0->position.z = 0;
     param0->affineScale.x = FX32_ONE;
@@ -313,10 +313,10 @@ static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)
         for (v0 = 0; v0 < 2; v0++) {
             v1.position.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
             v1.position.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
-            param0->unk_E30[v0] = GraphicElementManager_AddElementEx(&v1);
-            GraphicElementData_SetAnimateFlag(param0->unk_E30[v0], 1);
-            GraphicElementData_SetAnim(param0->unk_E30[v0], v0);
-            GraphicElementData_SetDrawFlag(param0->unk_E30[v0], 0);
+            param0->unk_E30[v0] = CellActorCollection_AddEx(&v1);
+            CellActor_SetAnimateFlag(param0->unk_E30[v0], 1);
+            CellActor_SetAnim(param0->unk_E30[v0], v0);
+            CellActor_SetDrawFlag(param0->unk_E30[v0], 0);
         }
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -416,7 +416,7 @@ static void ov96_0223BC8C (UnkStruct_ov96_0223BF40 * param0)
         sub_02009754(param0->unk_D84[v0]);
     }
 
-    GraphicElementManager_Delete(param0->unk_BF4);
+    CellActorCollection_Delete(param0->unk_BF4);
 
     param0->unk_BF4 = NULL;
 

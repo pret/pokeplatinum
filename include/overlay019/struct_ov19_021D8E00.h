@@ -14,11 +14,11 @@
 #include <nnsys.h>
 
 typedef struct {
-    GraphicElementManager * unk_00;
-    GraphicElementData * unk_04;
-    GraphicElementData * unk_08;
-    GraphicElementData * unk_0C;
-    GraphicElementData * unk_10;
+    CellActorCollection * unk_00;
+    CellActor * unk_04;
+    CellActor * unk_08;
+    CellActor * unk_0C;
+    CellActor * unk_10;
     void * unk_14;
     void * unk_18;
     NNSG2dCellDataBank * unk_1C;

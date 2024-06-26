@@ -87,7 +87,7 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
     u32 v0;
 
     Heap_FreeToHeap(param0->unk_1C4);
-    GraphicElementManager_Delete(param0->unk_10);
+    CellActorCollection_Delete(param0->unk_10);
     sub_0200A508(param0->unk_1B4[0]);
     sub_0200A700(param0->unk_1B4[1]);
 
@@ -99,7 +99,7 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
 
 void sub_02099160 (UnkStruct_0209903C * param0)
 {
-    GraphicElementManager_Update(param0->unk_10);
+    CellActorCollection_Update(param0->unk_10);
 }
 
 UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 param2, u16 param3, u16 param4, u8 param5, u8 param6, int param7)
@@ -142,7 +142,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
 
     sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
-    v5.manager = param0->unk_10;
+    v5.collection = param0->unk_10;
     v5.resourceData = v4->unk_04;
     v5.position.x = FX32_CONST(param2);
     v5.position.y = FX32_CONST(param3);
@@ -160,13 +160,13 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     v5.vramType = v0;
     v5.heapID = param0->unk_00;
 
-    v4->unk_00 = GraphicElementManager_AddElementEx(&v5);
+    v4->unk_00 = CellActorCollection_AddEx(&v5);
 
     if (v4->unk_00 != NULL) {
-        GraphicElementData_SetAnim(v4->unk_00, 0);
+        CellActor_SetAnim(v4->unk_00, 0);
         v2 = sub_0200A760(
             v6, v0);
-        GraphicElementData_SetExplicitPalette(v4->unk_00, v2);
+        CellActor_SetExplicitPalette(v4->unk_00, v2);
     } else {
         GF_ASSERT(FALSE);
     }

@@ -36,7 +36,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     u8 unk_09;
     u8 unk_0A;
     u8 unk_0B;
-    GraphicElementManager * unk_0C;
+    CellActorCollection * unk_0C;
     UnkStruct_0200C738 unk_10;
     NNSG2dCellTransferState * unk_19C;
     UnkStruct_02009714 * unk_1A0;
@@ -139,14 +139,14 @@ void ov101_021D7FB4 (UnkStruct_ov101_021D7E48 * param0)
     Heap_FreeToHeap(param0->unk_1BC);
     sub_0201DC3C();
     sub_0201DCF0(param0->unk_19C);
-    GraphicElementManager_DeleteAll(param0->unk_0C);
-    GraphicElementManager_Delete(param0->unk_0C);
+    CellActorCollection_DeleteAll(param0->unk_0C);
+    CellActorCollection_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
 }
 
 void ov101_021D80D4 (UnkStruct_ov101_021D7E48 * param0)
 {
-    GraphicElementManager_Update(param0->unk_0C);
+    CellActorCollection_Update(param0->unk_0C);
     sub_0201DCE8();
 }
 
@@ -325,7 +325,7 @@ void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
-    GraphicElementData * v2;
+    CellActor * v2;
 
     if (param8 == param0->unk_0B) {
         param8 = 0xffffffff;
@@ -341,14 +341,14 @@ void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544
         param1->unk_00 = 0;
     }
 
-    v1.manager = param0->unk_0C;
+    v1.collection = param0->unk_0C;
     v1.resourceData = &v0;
     v1.position = *param2;
     v1.priority = param10;
     v1.vramType = param3;
     v1.heapID = param0->unk_00;
 
-    param1->unk_04 = GraphicElementManager_AddElement(&v1);
+    param1->unk_04 = CellActorCollection_Add(&v1);
     GF_ASSERT(param1->unk_04 != NULL);
 }
 
@@ -358,18 +358,18 @@ void ov101_021D8544 (UnkStruct_ov101_021D8544 * param0)
         sub_0200A5B4(param0->unk_08);
     }
 
-    GraphicElementData_Delete(param0->unk_04);
+    CellActor_Delete(param0->unk_04);
     param0->unk_04 = NULL;
 }
 
-void ov101_021D8560 (GraphicElementData * param0, VecFx32 * param1)
+void ov101_021D8560 (CellActor * param0, VecFx32 * param1)
 {
-    const VecFx32 * v0 = GraphicElementData_GetPosition(param0);
+    const VecFx32 * v0 = CellActor_GetPosition(param0);
     *param1 = *v0;
 }
 
-void ov101_021D8574 (GraphicElementData * param0, VecFx32 * param1)
+void ov101_021D8574 (CellActor * param0, VecFx32 * param1)
 {
-    const VecFx32 * v0 = GraphicElementData_GetAffineScale(param0);
+    const VecFx32 * v0 = CellActor_GetAffineScale(param0);
     *param1 = *v0;
 }

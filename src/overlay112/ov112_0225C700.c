@@ -124,7 +124,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    GraphicElementManager * unk_04;
+    CellActorCollection * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
     NARC * unk_1A4;
@@ -497,7 +497,7 @@ static void ov112_0225C9F4 (UnkStruct_ov112_0225C9BC * param0)
 
 static void ov112_0225CA14 (UnkStruct_ov112_0225C9BC * param0)
 {
-    GraphicElementManager_Update(param0->unk_04);
+    CellActorCollection_Update(param0->unk_04);
 }
 
 static void ov112_0225CA20 (UnkStruct_ov112_0225C9BC * param0)
@@ -587,7 +587,7 @@ static void ov112_0225CC38 (UnkStruct_ov112_0225C9BC * param0)
 {
     int v0;
 
-    GraphicElementManager_Delete(param0->unk_04);
+    CellActorCollection_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_194[v0]);

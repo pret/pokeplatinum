@@ -10,7 +10,7 @@
 
 #include <nnsys.h>
 
-BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, NARC * param5);
+BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, CellActorCollection * param4, NARC * param5);
 void ov19_021DBA9C(UnkStruct_ov19_021DBA9C * param0);
 void ov19_021DBAD0(UnkStruct_ov19_021DBA9C * param0);
 void ov19_021DBB48(UnkStruct_ov19_021DBA9C * param0);

@@ -10,7 +10,7 @@
 
 typedef struct {
     BGL * unk_00;
-    GraphicElementManager * unk_04;
+    CellActorCollection * unk_04;
     UnkStruct_02009714 ** unk_08;
     const Options * unk_0C;
     int unk_10;

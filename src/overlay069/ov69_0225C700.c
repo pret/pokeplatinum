@@ -120,7 +120,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    GraphicElementManager * unk_04;
+    CellActorCollection * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
     GenericPointerData * unk_1A4;
@@ -194,7 +194,7 @@ typedef struct {
     s16 unk_32;
     u8 unk_34[4];
     u8 unk_38[4];
-    GraphicElementData * unk_3C[12];
+    CellActor * unk_3C[12];
     UnkStruct_02009DC8 * unk_6C[12][4];
 } UnkStruct_ov69_0225EB60;
 
@@ -1409,7 +1409,7 @@ static void ov69_0225D35C (UnkStruct_ov69_0225D35C * param0)
 
 static void ov69_0225D384 (UnkStruct_ov69_0225D35C * param0)
 {
-    GraphicElementManager_Update(param0->unk_04);
+    CellActorCollection_Update(param0->unk_04);
 }
 
 static void ov69_0225D390 (UnkStruct_ov69_0225D35C * param0)
@@ -1511,7 +1511,7 @@ static void ov69_0225D5D8 (UnkStruct_ov69_0225D35C * param0)
 {
     int v0;
 
-    GraphicElementManager_Delete(param0->unk_04);
+    CellActorCollection_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_194[v0]);
@@ -2647,7 +2647,7 @@ static void ov69_0225E960 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225
     param0->unk_30 = 2;
     param0->unk_32 = 128;
 
-    v3.manager = param1->unk_04;
+    v3.collection = param1->unk_04;
     v3.resourceData = &v1;
     v3.priority = 64;
     v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -2669,10 +2669,10 @@ static void ov69_0225E960 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225
         sub_02009D4C(param0->unk_6C[v0][0]);
         sub_020093B4(&v1, v0, 0, v0, v0, 0xffffffff, 0xffffffff, 0, 1, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
-        param0->unk_3C[v0] = GraphicElementManager_AddElement(&v3);
+        param0->unk_3C[v0] = CellActorCollection_Add(&v3);
 
-        GraphicElementData_SetAnimateFlag(param0->unk_3C[v0], 1);
-        GraphicElementData_SetAnimSpeed(param0->unk_3C[v0], FX32_ONE);
+        CellActor_SetAnimateFlag(param0->unk_3C[v0], 1);
+        CellActor_SetAnimSpeed(param0->unk_3C[v0], FX32_ONE);
     }
 
     ov69_0225EBEC(param0);
@@ -2686,7 +2686,7 @@ static void ov69_0225EAE8 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225
     sub_020057A4(1473, 0);
 
     for (v0 = 0; v0 < 12; v0++) {
-        GraphicElementData_Delete(param0->unk_3C[v0]);
+        CellActor_Delete(param0->unk_3C[v0]);
         sub_0200A4E4(param0->unk_6C[v0][0]);
 
         if (v0 == 0) {
@@ -2737,7 +2737,7 @@ static void ov69_0225EBEC (UnkStruct_ov69_0225EB60 * param0)
     int v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        GraphicElementData_SetDrawFlag(param0->unk_3C[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_3C[v0], 0);
     }
 }
 
@@ -2780,7 +2780,7 @@ static BOOL ov69_0225EC70 (UnkStruct_ov69_0225EB60 * param0, u32 param1, UnkStru
     }
 
     ov69_0225ED5C(&param0->unk_00[param1], param2);
-    GraphicElementData_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 1);
+    CellActor_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 1);
     ov69_0225EEC4(param0, param1);
 
     return 1;
@@ -2798,7 +2798,7 @@ static BOOL ov69_0225ECAC (UnkStruct_ov69_0225EB60 * param0, u32 param1, UnkStru
     ov69_0225EEC4(param0, param1);
 
     if (v0 == 1) {
-        GraphicElementData_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 0);
+        CellActor_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 0);
     }
 
     return v0;
@@ -2904,12 +2904,12 @@ static void ov69_0225EE68 (const UnkStruct_ov69_0225ED90 * param0, UnkStruct_ov6
 static void ov69_0225EEC4 (UnkStruct_ov69_0225EB60 * param0, u32 param1)
 {
     VecFx32 v0;
-    GraphicElementData * v1;
+    CellActor * v1;
 
     ov69_0225ED78(&param0->unk_00[param1], &v0);
 
     v1 = param0->unk_3C[param0->unk_38[param1]];
-    GraphicElementData_SetPosition(v1, &v0);
+    CellActor_SetPosition(v1, &v0);
 }
 
 static u16 ov69_0225EEEC (u32 param0)

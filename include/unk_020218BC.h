@@ -13,9 +13,9 @@
 #include <nnsys.h>
 #include <nitro/fx/fx.h>
 
-#define GRAPHIC_ELEMENT_DATA_FLIP_NONE  0
-#define GRAPHIC_ELEMENT_DATA_FLIP_H     1
-#define GRAPHIC_ELEMENT_DATA_FLIP_V     2
+#define CELL_ACTOR_FLIP_NONE  0
+#define CELL_ACTOR_FLIP_H     1
+#define CELL_ACTOR_FLIP_V     2
 
 enum AffineOverwriteMode {
     AFFINE_OVERWRITE_MODE_NONE = 0,
@@ -23,59 +23,59 @@ enum AffineOverwriteMode {
     AFFINE_OVERWRITE_MODE_DOUBLE, // Extends the cell actor's drawable area by 2x, use when the cell actor is scaled up
 };
 
-GraphicElementManager *GraphicElementManager_New(const GraphicElementManagerParams *params);
-BOOL GraphicElementManager_Delete(GraphicElementManager *gfxElemMgr);
-BOOL GraphicElementManager_SetActive(GraphicElementManager *gfxElemMgr, u8 active);
-BOOL GraphicElementManager_DeleteAll(GraphicElementManager *gfxElemMgr);
-void GraphicElementManager_Update(const GraphicElementManager *gfxElemMgr);
-void GraphicElementData_Reset(GraphicElementData *elem);
-GraphicElementData *GraphicElementManager_AddElementEx(const CellActorInitParamsEx *params);
-GraphicElementData *GraphicElementManager_AddElement(const CellActorInitParams *params);
-void GraphicElementData_Delete(GraphicElementData *gfxElem);
-void GraphicElementData_SetPosition(GraphicElementData *elem, const VecFx32 *position);
-void GraphicElementData_SetAffineTranslation(GraphicElementData *elem, const VecFx32 *translation);
-void GraphicElementData_SetAffineScale(GraphicElementData *elem, const VecFx32 *scale);
-void GraphicElementData_SetAffineScaleEx(GraphicElementData *elem, const VecFx32 *scale, enum AffineOverwriteMode mode);
-void GraphicElementData_SetAffineZRotation(GraphicElementData *elem, u16 angle);
-void GraphicElementData_SetAffineZRotationEx(GraphicElementData *elem, u16 angle, enum AffineOverwriteMode mode);
-void GraphicElementData_SetDrawFlag(GraphicElementData *elem, BOOL draw);
-void GraphicElementData_SetAnimateFlag(GraphicElementData *elem, BOOL animate);
-void GraphicElementData_SetAnimSpeed(GraphicElementData *elem, fx32 speed);
-void GraphicElementData_SetAffineOverwriteMode(GraphicElementData *elem, enum AffineOverwriteMode mode);
-void GraphicElementData_SetFlipMode(GraphicElementData *elem, u32 mode);
-const VecFx32 *GraphicElementData_GetPosition(const GraphicElementData *elem);
-const VecFx32 *GraphicElementData_GetAffineScale(const GraphicElementData *elem);
-u16 GraphicElementData_GetAffineZRotation(const GraphicElementData *elem);
-BOOL GraphicElementData_GetDrawFlag(const GraphicElementData *elem);
-BOOL GraphicElementData_GetAnimateFlag(const GraphicElementData *elem);
-u32 GraphicElementData_GetAnimCount(const GraphicElementData *elem);
-void GraphicElementData_SetAnim(GraphicElementData *elem, u32 animID);
-void GraphicElementData_SetAnimNoRestart(GraphicElementData *elem, u32 animID);
-void GraphicElementData_RestartAnim(GraphicElementData *elem);
-u32 GraphicElementData_GetActiveAnim(const GraphicElementData *elem);
-void GraphicElementData_UpdateAnim(GraphicElementData *elem, fx32 frames);
-void SpriteActor_SetAnimFrame(GraphicElementData *elem, u16 frame);
-u16 GraphicElementData_GetAnimFrame(const GraphicElementData *elem);
-void GraphicElementData_SetExplicitPriority(GraphicElementData *elem, u8 priority);
-u8 GraphicElementData_GetExplicitPriority(const GraphicElementData *elem);
-void GraphicElementData_SetExplicitPalette(GraphicElementData *elem, u32 palette);
-void GraphicElementData_SetExplicitPaletteWithOffset(GraphicElementData *elem, u32 palette);
-u32 GraphicElementData_GetExplicitPalette(const GraphicElementData *elem);
-void GraphicElementData_SetExplicitPaletteOffset(GraphicElementData *elem, u32 paletteOffset);
-void GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(GraphicElementData *elem, u32 paletteOffset);
-u32 GraphicElementData_GetExplicitPaletteOffset(const GraphicElementData *elem);
-void GraphicElementData_SetPriority(GraphicElementData *elem, u32 priority);
-u32 GraphicElementData_GetPriority(const GraphicElementData *elem);
-void GraphicElementData_SetImageProxy(GraphicElementData *elem, const NNSG2dImageProxy *imageProxy);
-NNSG2dImageProxy *SpriteActor_ImageProxy(GraphicElementData *elem);
-NNSG2dImagePaletteProxy *GraphicElementData_GetPaletteProxy(GraphicElementData *paletteProxy);
-void GraphicElementData_SetPixelated(GraphicElementData *elem, BOOL pixelated);
-NNS_G2D_VRAM_TYPE GraphicElementData_GetVRamType(const GraphicElementData *elem);
-BOOL GraphicElementData_IsAnimated(GraphicElementData *elem);
-void GraphicElementData_SetExplicitOAMMode(GraphicElementData *elem, GXOamMode mode);
+CellActorCollection *CellActorCollection_New(const CellActorCollectionParams *params);
+BOOL CellActorCollection_Delete(CellActorCollection *collection);
+BOOL CellActorCollection_SetActive(CellActorCollection *collection, u8 active);
+BOOL CellActorCollection_DeleteAll(CellActorCollection *collection);
+void CellActorCollection_Update(const CellActorCollection *collection);
+void CellActor_Reset(CellActor *actor);
+CellActor *CellActorCollection_AddEx(const CellActorInitParamsEx *params);
+CellActor *CellActorCollection_Add(const CellActorInitParams *params);
+void CellActor_Delete(CellActor *gfxElem);
+void CellActor_SetPosition(CellActor *actor, const VecFx32 *position);
+void CellActor_SetAffineTranslation(CellActor *actor, const VecFx32 *translation);
+void CellActor_SetAffineScale(CellActor *actor, const VecFx32 *scale);
+void CellActor_SetAffineScaleEx(CellActor *actor, const VecFx32 *scale, enum AffineOverwriteMode mode);
+void CellActor_SetAffineZRotation(CellActor *actor, u16 angle);
+void CellActor_SetAffineZRotationEx(CellActor *actor, u16 angle, enum AffineOverwriteMode mode);
+void CellActor_SetDrawFlag(CellActor *actor, BOOL draw);
+void CellActor_SetAnimateFlag(CellActor *actor, BOOL animate);
+void CellActor_SetAnimSpeed(CellActor *actor, fx32 speed);
+void CellActor_SetAffineOverwriteMode(CellActor *actor, enum AffineOverwriteMode mode);
+void CellActor_SetFlipMode(CellActor *actor, u32 mode);
+const VecFx32 *CellActor_GetPosition(const CellActor *actor);
+const VecFx32 *CellActor_GetAffineScale(const CellActor *actor);
+u16 CellActor_GetAffineZRotation(const CellActor *actor);
+BOOL CellActor_GetDrawFlag(const CellActor *actor);
+BOOL CellActor_GetAnimateFlag(const CellActor *actor);
+u32 CellActor_GetAnimCount(const CellActor *actor);
+void CellActor_SetAnim(CellActor *actor, u32 animID);
+void CellActor_SetAnimNoRestart(CellActor *actor, u32 animID);
+void CellActor_RestartAnim(CellActor *actor);
+u32 CellActor_GetActiveAnim(const CellActor *actor);
+void CellActor_UpdateAnim(CellActor *actor, fx32 frames);
+void SpriteActor_SetAnimFrame(CellActor *actor, u16 frame);
+u16 CellActor_GetAnimFrame(const CellActor *actor);
+void CellActor_SetExplicitPriority(CellActor *actor, u8 priority);
+u8 CellActor_GetExplicitPriority(const CellActor *actor);
+void CellActor_SetExplicitPalette(CellActor *actor, u32 palette);
+void CellActor_SetExplicitPaletteWithOffset(CellActor *actor, u32 palette);
+u32 CellActor_GetExplicitPalette(const CellActor *actor);
+void CellActor_SetExplicitPaletteOffset(CellActor *actor, u32 paletteOffset);
+void CellActor_SetExplicitPaletteOffsetAutoAdjust(CellActor *actor, u32 paletteOffset);
+u32 CellActor_GetExplicitPaletteOffset(const CellActor *actor);
+void CellActor_SetPriority(CellActor *actor, u32 priority);
+u32 CellActor_GetPriority(const CellActor *actor);
+void CellActor_SetImageProxy(CellActor *actor, const NNSG2dImageProxy *imageProxy);
+NNSG2dImageProxy *SpriteActor_ImageProxy(CellActor *actor);
+NNSG2dImagePaletteProxy *CellActor_GetPaletteProxy(CellActor *paletteProxy);
+void CellActor_SetPixelated(CellActor *actor, BOOL pixelated);
+NNS_G2D_VRAM_TYPE CellActor_GetVRamType(const CellActor *actor);
+BOOL CellActor_IsAnimated(CellActor *actor);
+void CellActor_SetExplicitOAMMode(CellActor *actor, GXOamMode mode);
 void Utility_Clear2DMainOAM(enum HeapId heapID);
 void Utility_Clear2DSubOAM(enum HeapId heapID);
-u32 GraphicElementData_GetUserAttrForAnimFrame(const GraphicElementData *elem, u32 animID, u32 frame);
-u32 GraphicElementData_GetUserAttrForCurrentAnimFrame(const GraphicElementData *elem);
+u32 CellActor_GetUserAttrForAnimFrame(const CellActor *actor, u32 animID, u32 frame);
+u32 CellActor_GetUserAttrForCurrentAnimFrame(const CellActor *actor);
 
 #endif // POKEPLATINUM_UNK_020218BC_H

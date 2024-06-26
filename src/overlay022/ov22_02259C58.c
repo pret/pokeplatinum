@@ -58,7 +58,7 @@ void ov22_02259C58 (UnkStruct_ov22_02259C58 * param0, UnkStruct_ov22_02259C58_1 
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
-    param0->unk_00 = GraphicElementManager_AddElementEx(param1->unk_00);
+    param0->unk_00 = CellActorCollection_AddEx(param1->unk_00);
     GF_ASSERT(param0->unk_00);
 
     param0->unk_04 = param1->unk_0C;
@@ -79,7 +79,7 @@ void ov22_02259C9C (UnkStruct_ov22_0225A154 * param0, UnkStruct_ov22_02259C9C * 
 
     v0.unk_00 = param1->unk_14;
     v0.unk_04 = param1->unk_10;
-    v0.unk_08 = param1->unk_00.unk_00->manager;
+    v0.unk_08 = param1->unk_00.unk_00->collection;
     v0.unk_0C = param1->unk_18;
     v0.unk_10 = param0->unk_00.unk_00;
     v0.unk_14 = param1->unk_24;
@@ -95,7 +95,7 @@ void ov22_02259C9C (UnkStruct_ov22_0225A154 * param0, UnkStruct_ov22_02259C9C * 
 
 void ov22_02259CE8 (UnkStruct_ov22_02259C58 * param0)
 {
-    GraphicElementData_Delete(param0->unk_00);
+    CellActor_Delete(param0->unk_00);
     memset(param0, 0, sizeof(UnkStruct_ov22_02259C58));
 }
 
@@ -545,11 +545,11 @@ static void ov22_0225A3DC (UnkStruct_ov22_02259C58 * param0, int param1, int par
     const VecFx32 * v0;
     VecFx32 v1;
 
-    v0 = GraphicElementData_GetPosition(param0->unk_00);
+    v0 = CellActor_GetPosition(param0->unk_00);
     v1 = *v0;
     v1.x += param1 << FX32_SHIFT;
     v1.y += param2 << FX32_SHIFT;
-    GraphicElementData_SetPosition(param0->unk_00, &v1);
+    CellActor_SetPosition(param0->unk_00, &v1);
 }
 
 static void ov22_0225A418 (UnkStruct_ov22_0225A154 * param0, int param1, int param2)

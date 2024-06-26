@@ -102,7 +102,7 @@ typedef struct PokemonSummaryApp {
 
     SpriteRenderer *renderer;
     SpriteGfxHandler *gfxHandler;
-    GraphicElementData * unk_41C[77];
+    CellActor * unk_41C[77];
     CellActorData *actor[77];
 
     UnkStruct_0200C440 *unk_684;

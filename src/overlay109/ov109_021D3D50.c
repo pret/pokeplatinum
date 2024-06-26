@@ -292,7 +292,7 @@ int ov109_021D3EB0 (OverlayManager * param0, int * param1)
         break;
     }
 
-    GraphicElementManager_Update(v0->unk_60);
+    CellActorCollection_Update(v0->unk_60);
     return 0;
 }
 
@@ -309,7 +309,7 @@ int ov109_021D3F9C (OverlayManager * param0, int * param1)
         sub_02009754(v1->unk_1F0[v0]);
     }
 
-    GraphicElementManager_Delete(v1->unk_60);
+    CellActorCollection_Delete(v1->unk_60);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();
@@ -645,7 +645,7 @@ static void ov109_021D4518 (UnkStruct_ov109_021D5140 * param0)
     {
         CellActorInitParamsEx v1;
 
-        v1.manager = param0->unk_60;
+        v1.collection = param0->unk_60;
         v1.resourceData = &param0->unk_278;
         v1.position.z = 0;
         v1.affineScale.x = FX32_ONE;
@@ -660,11 +660,11 @@ static void ov109_021D4518 (UnkStruct_ov109_021D5140 * param0)
             v1.position.x = FX32_ONE * Unk_ov109_021D5DD0[v0 + 1][0];
             v1.position.y = FX32_ONE * Unk_ov109_021D5DD0[v0 + 1][1];
 
-            param0->unk_29C[v0 + 1] = GraphicElementManager_AddElementEx(&v1);
+            param0->unk_29C[v0 + 1] = CellActorCollection_AddEx(&v1);
 
-            GraphicElementData_SetAnimateFlag(param0->unk_29C[v0 + 1], 1);
-            GraphicElementData_SetAnim(param0->unk_29C[v0 + 1], 27 + (v0 - 1) * 2);
-            GraphicElementData_SetDrawFlag(param0->unk_29C[v0 + 1], 0);
+            CellActor_SetAnimateFlag(param0->unk_29C[v0 + 1], 1);
+            CellActor_SetAnim(param0->unk_29C[v0 + 1], 27 + (v0 - 1) * 2);
+            CellActor_SetDrawFlag(param0->unk_29C[v0 + 1], 0);
         }
 
         for (v0 = 0; v0 < 5; v0++) {
@@ -1628,13 +1628,13 @@ static void ov109_021D5668 (UnkStruct_ov109_021D5140 * param0)
             v2 = TrainerInfo_Appearance(param0->unk_3D8[v0][0]);
 
             if (CommSys_CurNetId() == v0) {
-                GraphicElementData_SetAnim(param0->unk_29C[v0 + 1], 38 + v3 * 2);
+                CellActor_SetAnim(param0->unk_29C[v0 + 1], 38 + v3 * 2);
             } else {
                 ov109_021D57E0(param0->unk_3A0, param0->unk_3B0, v0, v2, v3);
-                GraphicElementData_SetAnim(param0->unk_29C[v0 + 1], 27 + v0 * 2);
+                CellActor_SetAnim(param0->unk_29C[v0 + 1], 27 + v0 * 2);
             }
         }
-            GraphicElementData_SetDrawFlag(param0->unk_29C[v0 + 1], 1);
+            CellActor_SetDrawFlag(param0->unk_29C[v0 + 1], 1);
             param0->unk_400[v0] = 2;
             v1 = 1;
             break;
@@ -1644,9 +1644,9 @@ static void ov109_021D5668 (UnkStruct_ov109_021D5140 * param0)
             if (CommSys_CurNetId() == v0) {
                 int v4 = TrainerInfo_Gender(param0->unk_3D8[v0][0]);
 
-                GraphicElementData_SetAnim(param0->unk_29C[v0 + 1], 38 + v4 * 2 + 1);
+                CellActor_SetAnim(param0->unk_29C[v0 + 1], 38 + v4 * 2 + 1);
             } else {
-                GraphicElementData_SetAnim(param0->unk_29C[v0 + 1], 27 + v0 * 2 + 1);
+                CellActor_SetAnim(param0->unk_29C[v0 + 1], 27 + v0 * 2 + 1);
             }
 
             param0->unk_400[v0] = 0;

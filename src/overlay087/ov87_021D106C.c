@@ -51,9 +51,9 @@ typedef struct UnkStruct_ov87_021D106C_t {
     int unk_0C;
     BGL * unk_10;
     Window unk_14[2];
-    GraphicElementManager * unk_34;
+    CellActorCollection * unk_34;
     UnkStruct_0200C738 unk_38;
-    GraphicElementData * unk_1C4[6];
+    CellActor * unk_1C4[6];
     void * unk_1DC;
     void * unk_1E0;
     MessageLoader * unk_1E4;
@@ -132,7 +132,7 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
         MessageLoader_Free(param0->unk_1EC);
         MessageLoader_Free(param0->unk_1E8);
         MessageLoader_Free(param0->unk_1E4);
-        GraphicElementManager_Delete(param0->unk_34);
+        CellActorCollection_Delete(param0->unk_34);
         sub_0200A878();
         Heap_FreeToHeap(param0->unk_10);
         Heap_FreeToHeap(param0);
@@ -143,7 +143,7 @@ static void ov87_021D11AC (void * param0)
 {
     UnkStruct_ov87_021D106C * v0 = param0;
 
-    GraphicElementManager_Update(v0->unk_34);
+    CellActorCollection_Update(v0->unk_34);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -210,14 +210,14 @@ static BOOL ov87_021D12C0 (UnkStruct_ov87_021D106C * param0, int * param1)
 
     for (v1 = 0; v1 < v0->unk_14; v1++) {
         if (v1 == v0->unk_18) {
-            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
-            GraphicElementData_SetPriority(param0->unk_1C4[v1], 0);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
+            CellActor_SetPriority(param0->unk_1C4[v1], 0);
             Sound_FlagDefaultChatotCry(1);
 
             sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
-            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
-            GraphicElementData_SetPriority(param0->unk_1C4[v1], v1 + 1);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
+            CellActor_SetPriority(param0->unk_1C4[v1], v1 + 1);
         }
     }
 
@@ -471,7 +471,7 @@ static void ov87_021D186C (UnkStruct_ov87_021D106C * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_1C4[v0]) {
-            GraphicElementData_Delete(param0->unk_1C4[v0]);
+            CellActor_Delete(param0->unk_1C4[v0]);
         }
     }
 
@@ -511,7 +511,7 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
     v1.priority = 0;
     v1.imageProxy = &v3;
     v1.paletteProxy = &v4;
-    v2.manager = param0->unk_34;
+    v2.collection = param0->unk_34;
     v2.resourceData = &v1;
     v2.position.z = 0;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -530,8 +530,8 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         v2.position.y = v0[v9].y << FX32_SHIFT;
         v2.priority = v9 + 1;
 
-        param0->unk_1C4[v9] = GraphicElementManager_AddElement(&v2);
-        GraphicElementData_SetDrawFlag(param0->unk_1C4[v9], 0);
+        param0->unk_1C4[v9] = CellActorCollection_Add(&v2);
+        CellActor_SetDrawFlag(param0->unk_1C4[v9], 0);
     }
 
     Heap_FreeToHeap(v8);
@@ -563,16 +563,16 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
         if (v3 == v2->unk_18) {
             Sound_FlagDefaultChatotCry(1);
             sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
-            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
-            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
         }
 
-        GraphicElementData_SetDrawFlag(param0->unk_1C4[v3], 1);
+        CellActor_SetDrawFlag(param0->unk_1C4[v3], 1);
     }
 
     for ( ; v3 < 6; v3++) {
-        GraphicElementData_SetDrawFlag(param0->unk_1C4[v3], 0);
+        CellActor_SetDrawFlag(param0->unk_1C4[v3], 0);
     }
 }
 
@@ -581,6 +581,6 @@ static void ov87_021D1AB8 (UnkStruct_ov87_021D106C * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        GraphicElementData_SetDrawFlag(param0->unk_1C4[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_1C4[v0], 0);
     }
 }

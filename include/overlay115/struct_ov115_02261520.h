@@ -7,7 +7,7 @@
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    GraphicElementManager * manager;
+    CellActorCollection * collection;
     const CellActorResourceData * resourceData;
     VecFx32 position;
     VecFx32 affineScale;

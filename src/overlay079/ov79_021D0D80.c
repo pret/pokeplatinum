@@ -752,12 +752,12 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_1C0[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[v0]);
-        GraphicElementData_SetDrawFlag(param0->unk_1C0[v0], 1);
+        CellActor_SetDrawFlag(param0->unk_1C0[v0], 1);
     }
 
-    GraphicElementData_SetAnimateFlag(param0->unk_1C0[0], 0);
-    GraphicElementData_SetAnimateFlag(param0->unk_1C0[1], 1);
-    GraphicElementData_SetAnimateFlag(param0->unk_1C0[2], 1);
+    CellActor_SetAnimateFlag(param0->unk_1C0[0], 0);
+    CellActor_SetAnimateFlag(param0->unk_1C0[1], 1);
+    CellActor_SetAnimateFlag(param0->unk_1C0[2], 1);
 
     for (v0 = 0; v0 < 5; v0++) {
         static const struct {
@@ -772,8 +772,8 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
 
         param0->unk_1CC[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[3]);
 
-        GraphicElementData_SetDrawFlag(param0->unk_1CC[v0], 1);
-        GraphicElementData_SetAnim(param0->unk_1CC[v0], v0 + 3);
+        CellActor_SetDrawFlag(param0->unk_1CC[v0], 1);
+        CellActor_SetAnim(param0->unk_1CC[v0], v0 + 3);
         SpriteActor_SetPositionXY(param0->unk_1CC[v0], v2[v0].unk_00, v2[v0].unk_02);
     }
 
@@ -791,11 +791,11 @@ static void ov79_021D167C (UnkStruct_ov79_021D0E1C * param0)
 
         param0->unk_1E0[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[4]);
 
-        GraphicElementData_SetDrawFlag(param0->unk_1E0[v0], 1);
-        GraphicElementData_SetAnim(param0->unk_1E0[v0], v0 * 3);
-        GraphicElementData_SetAnimSpeed(param0->unk_1E0[v0], FX32_CONST(2));
-        GraphicElementData_SetExplicitPalette(param0->unk_1E0[v0], v0 + 2);
-        GraphicElementData_SetAnimateFlag(param0->unk_1E0[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_1E0[v0], 1);
+        CellActor_SetAnim(param0->unk_1E0[v0], v0 * 3);
+        CellActor_SetAnimSpeed(param0->unk_1E0[v0], FX32_CONST(2));
+        CellActor_SetExplicitPalette(param0->unk_1E0[v0], v0 + 2);
+        CellActor_SetAnimateFlag(param0->unk_1E0[v0], 0);
         SpriteActor_SetPositionXY(param0->unk_1E0[v0], v3[v0].unk_00, v3[v0].unk_02);
     }
 

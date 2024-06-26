@@ -36,15 +36,15 @@ struct UnkStruct_020961E8_t {
     Strbuf* unk_44;
     Strbuf* unk_48;
     int unk_4C;
-    GraphicElementManager * unk_50;
+    CellActorCollection * unk_50;
     UnkStruct_0200C738 unk_54;
     UnkStruct_02009714 * unk_1E0[4];
     UnkStruct_02009DC8 * unk_1F0[3][4];
     CellActorResourceData unk_220;
     CellActorResourceData unk_244;
     CellActorResourceData unk_268;
-    GraphicElementData * unk_28C[14];
-    GraphicElementData * unk_2C4[14];
+    CellActor * unk_28C[14];
+    CellActor * unk_2C4[14];
     Window unk_2FC[5];
     Window unk_34C;
     Window unk_35C;

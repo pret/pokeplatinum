@@ -45,12 +45,12 @@ typedef struct {
     int unk_438;
     int unk_43C;
     int unk_440;
-    GraphicElementManager * unk_444;
+    CellActorCollection * unk_444;
     UnkStruct_0200C738 unk_448;
     UnkStruct_02009714 * unk_5D4[6];
     UnkStruct_02009DC8 * unk_5EC[6];
     CellActorResourceData unk_604;
-    GraphicElementData * unk_628;
+    CellActor * unk_628;
     int unk_62C;
     int unk_630;
     int unk_634;

@@ -28,7 +28,7 @@
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    GraphicElementData * unk_04;
+    CellActor * unk_04;
     SysTask * unk_08;
 } UnkStruct_ov77_021D6ADC;
 
@@ -54,7 +54,7 @@ typedef struct {
 } UnkStruct_ov77_021D6A0C;
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    CellActorCollection * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[4];
     UnkStruct_02009DC8 * unk_1A0[4];
@@ -106,7 +106,7 @@ static void ov77_021D66A0 (UnkStruct_ov77_021D6800 * param0, CellActorInitParams
     sub_020093B4(param2, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
-        param1->manager = param0->unk_00;
+        param1->collection = param0->unk_00;
         param1->resourceData = param2;
         param1->position.x = 0;
         param1->position.y = 0;
@@ -163,7 +163,7 @@ void ov77_021D6760 (UnkStruct_ov77_021D6734 * param0)
     Heap_FreeToHeap(param0);
 }
 
-GraphicElementData ** ov77_021D6794 (UnkStruct_ov77_021D6734 * param0, const int param1)
+CellActor ** ov77_021D6794 (UnkStruct_ov77_021D6734 * param0, const int param1)
 {
     GF_ASSERT(param1 < param0->unk_00);
     return &param0->unk_04[param1].unk_04;
@@ -232,7 +232,7 @@ static void ov77_021D691C (UnkStruct_ov77_021D6800 * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    GraphicElementManager_Delete(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();
@@ -249,16 +249,16 @@ static void ov77_021D6964 (UnkStruct_ov77_021D6800 * param0)
         v2.position.x = FX32_ONE * v0 * 2;
         v2.position.y = FX32_ONE * v0 * 2;
 
-        param0->unk_1B0[v0].unk_04 = GraphicElementManager_AddElementEx(&v2);
+        param0->unk_1B0[v0].unk_04 = CellActorCollection_AddEx(&v2);
 
-        GraphicElementData_SetAnimateFlag(param0->unk_1B0[v0].unk_04, 0);
-        GraphicElementData_SetDrawFlag(param0->unk_1B0[v0].unk_04, 0);
+        CellActor_SetAnimateFlag(param0->unk_1B0[v0].unk_04, 0);
+        CellActor_SetDrawFlag(param0->unk_1B0[v0].unk_04, 0);
     }
 }
 
 static void ov77_021D69B4 (UnkStruct_ov77_021D6800 * param0)
 {
-    GraphicElementManager_Update(param0->unk_00);
+    CellActorCollection_Update(param0->unk_00);
 }
 
 void ov77_021D69C0 (UnkStruct_ov77_021D670C * param0, const int param1)
@@ -302,15 +302,15 @@ static void ov77_021D6A44 (UnkStruct_ov77_021D6ADC * param0, const u8 param1, co
         {
             VecFx32 v3;
 
-            v3 = *GraphicElementData_GetPosition(v1->unk_04);
+            v3 = *CellActor_GetPosition(v1->unk_04);
             v3.x = FX32_ONE * (64 + (LCRNG_Next() % 128));
             v3.y = FX32_ONE * (v2 + (LCRNG_Next() % 64));
 
-            GraphicElementData_SetPosition(v1->unk_04, &v3);
+            CellActor_SetPosition(v1->unk_04, &v3);
         }
 
-        GraphicElementData_SetAnimateFlag(v1->unk_04, 1);
-        GraphicElementData_SetDrawFlag(v1->unk_04, 1);
+        CellActor_SetAnimateFlag(v1->unk_04, 1);
+        CellActor_SetDrawFlag(v1->unk_04, 1);
 
         v1->unk_08 = SysTask_Start(ov77_021D6B48, v1, 20);
     }
@@ -357,10 +357,10 @@ static void ov77_021D6B48 (SysTask * param0, void * param1)
     {
         VecFx32 v1;
 
-        v1 = *GraphicElementData_GetPosition(v0->unk_04);
+        v1 = *CellActor_GetPosition(v0->unk_04);
         v1.y += (FX32_ONE * 3);
 
-        GraphicElementData_SetPosition(v0->unk_04, &v1);
+        CellActor_SetPosition(v0->unk_04, &v1);
     }
 
     v0->unk_01++;
@@ -369,8 +369,8 @@ static void ov77_021D6B48 (SysTask * param0, void * param1)
         SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
-        GraphicElementData_SetAnimateFlag(v0->unk_04, 0);
-        GraphicElementData_SetDrawFlag(v0->unk_04, 0);
+        CellActor_SetAnimateFlag(v0->unk_04, 0);
+        CellActor_SetDrawFlag(v0->unk_04, 0);
     }
 }
 
@@ -393,19 +393,19 @@ static void ov77_021D6BAC (UnkStruct_ov77_021D6734 * param0, const u8 param1, in
         {
             VecFx32 v3;
 
-            v3 = *GraphicElementData_GetPosition(v2->unk_04);
+            v3 = *CellActor_GetPosition(v2->unk_04);
             v3.x = FX32_ONE * ((16 - 6) + (LCRNG_Next() % 224));
             v3.y = FX32_ONE * (192 + (64 - 6) + (LCRNG_Next() % 56));
 
-            GraphicElementData_SetPosition(v2->unk_04, &v3);
+            CellActor_SetPosition(v2->unk_04, &v3);
         }
 
-        GraphicElementData_SetAnimateFlag(v2->unk_04, 1);
+        CellActor_SetAnimateFlag(v2->unk_04, 1);
 
         if (param2 == 0) {
-            GraphicElementData_SetDrawFlag(v2->unk_04, 1);
+            CellActor_SetDrawFlag(v2->unk_04, 1);
         } else {
-            GraphicElementData_SetDrawFlag(v2->unk_04, 0);
+            CellActor_SetDrawFlag(v2->unk_04, 0);
         }
 
         v2->unk_08 = SysTask_Start(ov77_021D6C44, v2, 20);
@@ -422,7 +422,7 @@ static void ov77_021D6C44 (SysTask * param0, void * param1)
         SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
-        GraphicElementData_SetAnimateFlag(v0->unk_04, 0);
-        GraphicElementData_SetDrawFlag(v0->unk_04, 0);
+        CellActor_SetAnimateFlag(v0->unk_04, 0);
+        CellActor_SetDrawFlag(v0->unk_04, 0);
     }
 }

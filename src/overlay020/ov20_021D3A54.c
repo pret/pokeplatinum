@@ -43,7 +43,7 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     SysTask * unk_18;
     UnkStruct_ov20_021D4FF0 unk_1C;
     UnkStruct_ov20_021D4E8C unk_3C;
-    GraphicElementData * unk_5C;
+    CellActor * unk_5C;
 } UnkStruct_ov20_021D3E0C;
 
 static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2);
@@ -69,7 +69,7 @@ UnkStruct_ov20_021D3E0C * ov20_021D3A54 (UnkStruct_ov20_021D2128 * param0, const
 void ov20_021D3A80 (UnkStruct_ov20_021D3E0C * param0)
 {
     if (param0->unk_5C) {
-        GraphicElementData_Delete(param0->unk_5C);
+        CellActor_Delete(param0->unk_5C);
     }
 
     Heap_FreeToHeap(param0);
@@ -234,19 +234,19 @@ static void ov20_021D3E0C (UnkStruct_ov20_021D3E0C * param0)
 
     ov20_021D2E0C(param0->unk_00, &v0, 0, 1);
     param0->unk_5C = ov20_021D2E50(param0->unk_00, &v0, 48, 54, 2, NNS_G2D_VRAM_TYPE_2DMAIN);
-    GraphicElementData_SetAnim(param0->unk_5C, 4);
-    GraphicElementData_SetDrawFlag(param0->unk_5C, 0);
+    CellActor_SetAnim(param0->unk_5C, 4);
+    CellActor_SetDrawFlag(param0->unk_5C, 0);
 }
 
 void ov20_021D3E48 (UnkStruct_ov20_021D3E0C * param0, BOOL param1)
 {
-    GraphicElementData_SetDrawFlag(param0->unk_5C, param1);
+    CellActor_SetDrawFlag(param0->unk_5C, param1);
 
     if (param1) {
         if (ov20_021D1F94(param0->unk_04) == 0) {
-            GraphicElementData_SetAnim(param0->unk_5C, 4);
+            CellActor_SetAnim(param0->unk_5C, 4);
         } else {
-            GraphicElementData_SetAnim(param0->unk_5C, 6);
+            CellActor_SetAnim(param0->unk_5C, 6);
         }
     }
 }
@@ -282,8 +282,8 @@ void ov20_021D3E74 (UnkStruct_ov20_021D3E0C * param0, u32 param1)
     v0.x *= FX32_ONE;
     v0.y *= FX32_ONE;
 
-    GraphicElementData_SetPosition(param0->unk_5C, &v0);
-    GraphicElementData_SetAnim(param0->unk_5C, v2);
+    CellActor_SetPosition(param0->unk_5C, &v0);
+    CellActor_SetAnim(param0->unk_5C, v2);
 }
 
 void ov20_021D3EF8 (UnkStruct_ov20_021D3E0C * param0)

@@ -18,7 +18,7 @@ struct UnkStruct_ov106_02243650_t {
     u32 unk_04;
     u32 unk_08;
     const u8 * unk_0C;
-    GraphicElementData * unk_10;
+    CellActor * unk_10;
 };
 
 UnkStruct_ov106_02243650 * ov106_022435FC(UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u16 param3, u16 param4, const u8 * param5);
@@ -47,14 +47,14 @@ UnkStruct_ov106_02243650 * ov106_022435FC (UnkStruct_ov106_02243310 * param0, u3
     v1.x = (param3 * FX32_ONE);
     v1.y = (param4 * FX32_ONE);
 
-    GraphicElementData_SetPosition(v0->unk_10, &v1);
+    CellActor_SetPosition(v0->unk_10, &v1);
 
     return v0;
 }
 
 void * ov106_02243650 (UnkStruct_ov106_02243650 * param0)
 {
-    GraphicElementData_Delete(param0->unk_10);
+    CellActor_Delete(param0->unk_10);
     Heap_FreeToHeap(param0);
 
     return NULL;
@@ -62,7 +62,7 @@ void * ov106_02243650 (UnkStruct_ov106_02243650 * param0)
 
 void ov106_02243664 (UnkStruct_ov106_02243650 * param0, int param1)
 {
-    GraphicElementData_SetDrawFlag(param0->unk_10, param1);
+    CellActor_SetDrawFlag(param0->unk_10, param1);
     return;
 }
 
@@ -71,28 +71,28 @@ void ov106_02243670 (UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2)
     VecFx32 v0;
 
     if (param0->unk_0C != NULL) {
-        GraphicElementData_SetAnimNoRestart(param0->unk_10, param0->unk_0C[0]);
+        CellActor_SetAnimNoRestart(param0->unk_10, param0->unk_0C[0]);
     }
 
-    v0 = *(GraphicElementData_GetPosition(param0->unk_10));
+    v0 = *(CellActor_GetPosition(param0->unk_10));
 
     v0.x = (param1 * FX32_ONE);
     v0.y = (param2 * FX32_ONE);
 
-    GraphicElementData_SetPosition(param0->unk_10, &v0);
+    CellActor_SetPosition(param0->unk_10, &v0);
     return;
 }
 
 void ov106_022436B0 (UnkStruct_ov106_02243650 * param0, u32 param1)
 {
-    GraphicElementData_SetAnimSpeed(param0->unk_10, FX32_ONE);
-    GraphicElementData_SetAnimNoRestart(param0->unk_10, param1);
+    CellActor_SetAnimSpeed(param0->unk_10, FX32_ONE);
+    CellActor_SetAnimNoRestart(param0->unk_10, param1);
 
     return;
 }
 
 void ov106_022436CC (UnkStruct_ov106_02243650 * param0, Pokemon * param1)
 {
-    GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10, Pokemon_IconPaletteIndex(param1));
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10, Pokemon_IconPaletteIndex(param1));
     return;
 }

@@ -1259,7 +1259,7 @@ static void ov10_02220C2C (UnkStruct_ov10_0221FB28 * param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_210; v0++) {
-        GraphicElementData_UpdateAnim(param0->unk_198[v0]->unk_00, FX32_ONE);
+        CellActor_UpdateAnim(param0->unk_198[v0]->unk_00, FX32_ONE);
     }
 }
 

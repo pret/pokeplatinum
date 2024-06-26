@@ -292,7 +292,7 @@ int ov59_021D0F00 (OverlayManager * param0, int * param1)
         break;
     }
 
-    GraphicElementManager_Update(v0->unk_50);
+    CellActorCollection_Update(v0->unk_50);
 
     return 0;
 }
@@ -310,7 +310,7 @@ int ov59_021D0FF4 (OverlayManager * param0, int * param1)
         sub_02009754(v0->unk_1E0[v1]);
     }
 
-    GraphicElementManager_Delete(v0->unk_50);
+    CellActorCollection_Delete(v0->unk_50);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();
@@ -647,7 +647,7 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
     {
         CellActorInitParamsEx v1;
 
-        v1.manager = param0->unk_50;
+        v1.collection = param0->unk_50;
         v1.resourceData = &param0->unk_268;
         v1.position.z = 0;
         v1.affineScale.x = FX32_ONE;
@@ -660,20 +660,20 @@ static void ov59_021D1598 (UnkStruct_020961E8 * param0)
         v1.position.x = FX32_ONE * Unk_ov59_021D32C4[0][0];
         v1.position.y = FX32_ONE * Unk_ov59_021D32C4[0][1];
 
-        param0->unk_28C[0] = GraphicElementManager_AddElementEx(&v1);
+        param0->unk_28C[0] = CellActorCollection_AddEx(&v1);
 
-        GraphicElementData_SetAnimateFlag(param0->unk_28C[0], 1);
-        GraphicElementData_SetDrawFlag(param0->unk_28C[0], 1);
+        CellActor_SetAnimateFlag(param0->unk_28C[0], 1);
+        CellActor_SetDrawFlag(param0->unk_28C[0], 1);
 
         for (v0 = 0; v0 < 5; v0++) {
             v1.position.x = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][0];
             v1.position.y = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][1];
 
-            param0->unk_28C[v0 + 1] = GraphicElementManager_AddElementEx(&v1);
+            param0->unk_28C[v0 + 1] = CellActorCollection_AddEx(&v1);
 
-            GraphicElementData_SetAnimateFlag(param0->unk_28C[v0 + 1], 1);
-            GraphicElementData_SetAnim(param0->unk_28C[v0 + 1], 27 + (v0 - 1) * 2);
-            GraphicElementData_SetDrawFlag(param0->unk_28C[v0 + 1], 0);
+            CellActor_SetAnimateFlag(param0->unk_28C[v0 + 1], 1);
+            CellActor_SetAnim(param0->unk_28C[v0 + 1], 27 + (v0 - 1) * 2);
+            CellActor_SetDrawFlag(param0->unk_28C[v0 + 1], 0);
         }
 
         for (v0 = 0; v0 < 5; v0++) {
@@ -1051,7 +1051,7 @@ void ov59_021D1D40 (UnkStruct_020961E8 * param0)
 {
     MessageLoader_GetStrbuf(param0->unk_28, 18, param0->unk_48);
     ov59_021D1784(&param0->unk_36C, param0->unk_48, 0);
-    GraphicElementData_SetAnim(param0->unk_28C[0], 37);
+    CellActor_SetAnim(param0->unk_28C[0], 37);
 
     param0->unk_0C.unk_00 = 1;
 }
@@ -1111,7 +1111,7 @@ static int ov59_021D1E0C (UnkStruct_020961E8 * param0, int param1)
         sub_020057A4(1624, 8);
         ov59_021D2628(param0, 13, 0);
         ov59_021D19B0(param0, 29);
-        GraphicElementData_SetAnim(param0->unk_28C[0], 0);
+        CellActor_SetAnim(param0->unk_28C[0], 0);
 
         param0->unk_0C.unk_00 = 0;
         param0->unk_3B4 = 0;
@@ -1626,13 +1626,13 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
             v2 = TrainerInfo_Appearance(param0->unk_3C8[v0][0]);
 
             if (CommSys_CurNetId() == v0) {
-                GraphicElementData_SetAnim(param0->unk_28C[v0 + 1], 38 + v3 * 2);
+                CellActor_SetAnim(param0->unk_28C[v0 + 1], 38 + v3 * 2);
             } else {
                 ov59_021D2860(param0->unk_390, param0->unk_3A0, v0, v2, v3);
-                GraphicElementData_SetAnim(param0->unk_28C[v0 + 1], 27 + v0 * 2);
+                CellActor_SetAnim(param0->unk_28C[v0 + 1], 27 + v0 * 2);
             }
         }
-            GraphicElementData_SetDrawFlag(param0->unk_28C[v0 + 1], 1);
+            CellActor_SetDrawFlag(param0->unk_28C[v0 + 1], 1);
             param0->unk_3F0[v0] = 2;
             v1 = 1;
             break;
@@ -1641,9 +1641,9 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
         case 3:
             if (CommSys_CurNetId() == v0) {
                 int v4 = TrainerInfo_Gender(param0->unk_3C8[v0][0]);
-                GraphicElementData_SetAnim(param0->unk_28C[v0 + 1], 38 + v4 * 2 + 1);
+                CellActor_SetAnim(param0->unk_28C[v0 + 1], 38 + v4 * 2 + 1);
             } else {
-                GraphicElementData_SetAnim(param0->unk_28C[v0 + 1], 27 + v0 * 2 + 1);
+                CellActor_SetAnim(param0->unk_28C[v0 + 1], 27 + v0 * 2 + 1);
             }
 
             param0->unk_3F0[v0] = 0;

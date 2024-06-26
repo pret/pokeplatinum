@@ -55,7 +55,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    GraphicElementData * unk_10;
+    CellActor * unk_10;
 } UnkStruct_ov21_021E6274;
 
 static UnkStruct_ov21_021E6104 * ov21_021E608C(int param0, UnkStruct_ov21_021D0F60 * param1);
@@ -88,9 +88,9 @@ static void ov21_021E6600(UnkStruct_ov21_021E6118 * param0, int param1);
 static void ov21_021E66B0(UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1, int param2);
 static void ov21_021E67C8(UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1);
 static void ov21_021E6844(UnkStruct_ov21_021E6118 * param0);
-static void ov21_021E6860(GraphicElementData * param0, short param1);
+static void ov21_021E6860(CellActor * param0, short param1);
 static void ov21_021E687C(Sprite * param0, short param1);
-static void ov21_021E688C(GraphicElementData * param0, short param1);
+static void ov21_021E688C(CellActor * param0, short param1);
 static void ov21_021E68B0(Sprite * param0, short param1);
 
 void ov21_021E6014 (UnkStruct_ov21_021E68F4 * param0, UnkStruct_ov21_021D0F60 * param1, int param2)
@@ -296,12 +296,12 @@ static int ov21_021E6204 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
 
 static void ov21_021E6274 (UnkStruct_ov21_021E6274 * param0)
 {
-    GraphicElementData_SetExplicitOAMMode(param0->unk_10, GX_OAM_MODE_XLU);
+    CellActor_SetExplicitOAMMode(param0->unk_10, GX_OAM_MODE_XLU);
 }
 
 static void ov21_021E6280 (UnkStruct_ov21_021E6274 * param0)
 {
-    GraphicElementData_SetExplicitOAMMode(param0->unk_10, GX_OAM_MODE_NORMAL);
+    CellActor_SetExplicitOAMMode(param0->unk_10, GX_OAM_MODE_NORMAL);
 }
 
 static void ov21_021E628C (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E6118 * param1, const UnkStruct_ov21_021E6104 * param2, BOOL param3)
@@ -418,7 +418,7 @@ static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
 
     sub_020093B4(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.manager = v2->unk_138;
+    v1.collection = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -430,12 +430,12 @@ static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
     v1.position.x = 168 << FX32_SHIFT;
     v1.position.y = (88 + v4) << FX32_SHIFT;
 
-    param0->unk_10 = GraphicElementManager_AddElement(&v1);
+    param0->unk_10 = CellActorCollection_Add(&v1);
 
     if (ov21_021D3920(param2->unk_04) == 0) {
-        GraphicElementData_SetAnim(param0->unk_10, 5);
+        CellActor_SetAnim(param0->unk_10, 5);
     } else {
-        GraphicElementData_SetAnim(param0->unk_10, 6);
+        CellActor_SetAnim(param0->unk_10, 6);
     }
 
     ov21_021E6860(param0->unk_10, v4);
@@ -444,7 +444,7 @@ static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E65EC (UnkStruct_ov21_021E6274 * param0)
 {
-    GraphicElementData_Delete(param0->unk_10);
+    CellActor_Delete(param0->unk_10);
 }
 
 static void ov21_021E65F8 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E6118 * param1, const UnkStruct_ov21_021E6104 * param2, int param3)
@@ -545,14 +545,14 @@ static void ov21_021E6844 (UnkStruct_ov21_021E6118 * param0)
     sub_02008780(v0);
 }
 
-static void ov21_021E6860 (GraphicElementData * param0, short param1)
+static void ov21_021E6860 (CellActor * param0, short param1)
 {
     VecFx32 v0;
 
     v0.x = 168 << FX32_SHIFT;
     v0.y = (88 + param1) << FX32_SHIFT;
 
-    GraphicElementData_SetPosition(param0, &v0);
+    CellActor_SetPosition(param0, &v0);
 }
 
 static void ov21_021E687C (Sprite * param0, short param1)
@@ -560,14 +560,14 @@ static void ov21_021E687C (Sprite * param0, short param1)
     sub_02007DEC(param0, 1, 88 + param1);
 }
 
-static void ov21_021E688C (GraphicElementData * param0, short param1)
+static void ov21_021E688C (CellActor * param0, short param1)
 {
     VecFx32 v0;
 
     v0.x = FX_Div(0x100 << FX32_SHIFT, param1 << FX32_SHIFT);
     v0.y = v0.x;
 
-    GraphicElementData_SetAffineScaleEx(param0, &v0, 2);
+    CellActor_SetAffineScaleEx(param0, &v0, 2);
 }
 
 static void ov21_021E68B0 (Sprite * param0, short param1)

@@ -26,7 +26,7 @@ typedef struct {
     s16 unk_1C;
     s16 unk_1E;
     s16 unk_20;
-    GraphicElementData * unk_24;
+    CellActor * unk_24;
     u8 unk_28;
     u8 unk_29;
 } StrBufWrapper;

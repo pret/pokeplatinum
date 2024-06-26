@@ -156,14 +156,14 @@ void ov22_022551D0 (UnkStruct_ov22_0225A0E4 * param0)
     sub_020151EC(param0->unk_00);
 }
 
-GraphicElementData * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5)
+CellActor * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
 
     sub_020093B4(&v0, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_48[0], param0->unk_48[1], param0->unk_48[2], param0->unk_48[3], NULL, NULL);
 
-    v1.manager = param0->unk_44;
+    v1.collection = param0->unk_44;
     v1.resourceData = &v0;
     v1.position.x = param2 << FX32_SHIFT;
     v1.position.y = param3 << FX32_SHIFT;
@@ -172,7 +172,7 @@ GraphicElementData * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1
     v1.vramType = param5;
     v1.heapID = 14;
 
-    return GraphicElementManager_AddElement(&v1);
+    return CellActorCollection_Add(&v1);
 }
 
 void ov22_02255248 (UnkStruct_ov22_0225A0E4 * param0, NARC * param1, int param2, BOOL param3, int param4, int param5)
@@ -726,7 +726,7 @@ static void ov22_022559F8 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_02255A98 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    GraphicElementManager_Delete(param0->unk_44);
+    CellActorCollection_Delete(param0->unk_44);
 
     {
         int v0;
@@ -743,7 +743,7 @@ static void ov22_02255A98 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_02255AC0 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    GraphicElementManager_Update(param0->unk_44);
+    CellActorCollection_Update(param0->unk_44);
 }
 
 static void ov22_02255ACC (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_02255CB8 * param1)

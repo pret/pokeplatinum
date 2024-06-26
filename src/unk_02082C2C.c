@@ -170,13 +170,13 @@ void sub_02082E58 (GameWindowLayout * param0)
         param0->unk_5B0[10 + v0] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[4 + v0]);
         param0->unk_704[v0].unk_1A = Unk_020F20C0[4 + v0].unk_04;
         param0->unk_704[v0].unk_1C = Unk_020F20C0[4 + v0].unk_06;
-        GraphicElementData_SetDrawFlag(param0->unk_5B0[10 + v0], 0);
+        CellActor_SetDrawFlag(param0->unk_5B0[10 + v0], 0);
         param0->unk_5B0[16 + v0] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[10 + v0]);
         param0->unk_5B0[22 + v0] = sub_0200CA08(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[16 + v0]);
     }
 
-    GraphicElementData_SetDrawFlag(param0->unk_5B0[7], 0);
-    GraphicElementData_SetDrawFlag(param0->unk_5B0[28], 0);
+    CellActor_SetDrawFlag(param0->unk_5B0[7], 0);
+    CellActor_SetDrawFlag(param0->unk_5B0[28], 0);
 }
 
 void sub_02082FAC (GameWindowLayout * param0, u8 param1, u16 param2, u16 param3)
@@ -207,46 +207,46 @@ void sub_02082FF4 (GameWindowLayout * param0)
 
 void sub_02083014 (GameWindowLayout * param0, u8 param1, u8 param2)
 {
-    GraphicElementData ** v0 = &param0->unk_5B0[10 + param1];
+    CellActor ** v0 = &param0->unk_5B0[10 + param1];
 
     if (param2 == 7) {
-        GraphicElementData_SetDrawFlag(*v0, 0);
+        CellActor_SetDrawFlag(*v0, 0);
         return;
     }
 
-    GraphicElementData_SetAnim(*v0, param2);
-    GraphicElementData_SetDrawFlag(*v0, 1);
+    CellActor_SetAnim(*v0, param2);
+    CellActor_SetDrawFlag(*v0, 1);
 }
 
 void sub_02083040 (GameWindowLayout * param0, u8 param1, u16 param2)
 {
-    GraphicElementData ** v0 = &param0->unk_5B0[16 + param1];
+    CellActor ** v0 = &param0->unk_5B0[16 + param1];
 
     if (param2 == 0) {
-        GraphicElementData_SetDrawFlag(*v0, 0);
+        CellActor_SetDrawFlag(*v0, 0);
         return;
     }
 
     if (Item_IsMail(param2) == 1) {
-        GraphicElementData_SetAnim(*v0, 1);
+        CellActor_SetAnim(*v0, 1);
     } else {
-        GraphicElementData_SetAnim(*v0, 0);
+        CellActor_SetAnim(*v0, 0);
     }
 
-    GraphicElementData_SetDrawFlag(*v0, 1);
+    CellActor_SetDrawFlag(*v0, 1);
 }
 
 void sub_02083080 (GameWindowLayout * param0, u8 param1)
 {
-    GraphicElementData ** v0 = &param0->unk_5B0[16 + param1];
+    CellActor ** v0 = &param0->unk_5B0[16 + param1];
 
-    GraphicElementData_SetAnim(*v0, 1);
-    GraphicElementData_SetDrawFlag(*v0, 1);
+    CellActor_SetAnim(*v0, 1);
+    CellActor_SetDrawFlag(*v0, 1);
 }
 
 void sub_020830A0 (GameWindowLayout * param0, u8 param1, s16 param2, s16 param3)
 {
-    GraphicElementData ** v0 = &param0->unk_5B0[16 + param1];
+    CellActor ** v0 = &param0->unk_5B0[16 + param1];
 
     param0->unk_704[param1].unk_1E = param2 + 8;
     param0->unk_704[param1].unk_20 = param3 + 8;
@@ -261,24 +261,24 @@ void sub_020830D4 (GameWindowLayout * param0, u8 param1)
 
 void sub_02083104 (GameWindowLayout * param0, u8 param1)
 {
-    GraphicElementData ** v0 = &param0->unk_5B0[22 + param1];
+    CellActor ** v0 = &param0->unk_5B0[22 + param1];
 
     if (param0->unk_704[param1].unk_12 == 0) {
-        GraphicElementData_SetDrawFlag(*v0, 0);
+        CellActor_SetDrawFlag(*v0, 0);
         return;
     }
 
-    GraphicElementData_SetDrawFlag(*v0, 1);
+    CellActor_SetDrawFlag(*v0, 1);
 }
 
-static void sub_02083138 (GraphicElementData * param0, u8 param1)
+static void sub_02083138 (CellActor * param0, u8 param1)
 {
-    if (GraphicElementData_GetActiveAnim(param0) == param1) {
+    if (CellActor_GetActiveAnim(param0) == param1) {
         return;
     }
 
     SpriteActor_SetAnimFrame(param0, 0);
-    GraphicElementData_SetAnim(param0, param1);
+    CellActor_SetAnim(param0, param1);
 }
 
 static u8 sub_02083158 (StrBufWrapper * param0)
@@ -325,10 +325,10 @@ void sub_020831B4 (GameWindowLayout * param0)
         }
 
         sub_02083138(v0->unk_24, v2);
-        GraphicElementData_UpdateAnim(v0->unk_24, FX32_ONE);
+        CellActor_UpdateAnim(v0->unk_24, FX32_ONE);
 
         if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
-            if (GraphicElementData_GetAnimFrame(v0->unk_24) == 0) {
+            if (CellActor_GetAnimFrame(v0->unk_24) == 0) {
                 SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
             } else {
                 SpriteActor_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 + 1);
@@ -346,8 +346,8 @@ void sub_0208327C (GameWindowLayout * param0, u8 param1, u8 param2)
     u8 v0, v1;
 
     sub_0201E010(&param0->unk_7F4[param1], &v0, &v1);
-    GraphicElementData_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
-    GraphicElementData_SetDrawFlag(param0->unk_5B0[6], 1);
+    CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
+    CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
     SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
     sub_0200D414(param0->unk_5B0[6], param2);
 }
@@ -361,19 +361,19 @@ void sub_020832E4 (GameWindowLayout * param0, s16 param1, s16 param2)
     v0.y += (256 * FX32_ONE);
     v0.z = 0;
 
-    GraphicElementData_SetPosition(param0->unk_5B0[28], &v0);
-    GraphicElementData_SetDrawFlag(param0->unk_5B0[28], 1);
+    CellActor_SetPosition(param0->unk_5B0[28], &v0);
+    CellActor_SetDrawFlag(param0->unk_5B0[28], 1);
     SpriteActor_SetAnimFrame(param0->unk_5B0[28], 0);
-    GraphicElementData_SetAnim(param0->unk_5B0[28], 0);
+    CellActor_SetAnim(param0->unk_5B0[28], 0);
 }
 
 void sub_02083334 (GameWindowLayout * param0)
 {
-    if (GraphicElementData_GetDrawFlag(param0->unk_5B0[28]) == 1) {
-        GraphicElementData_UpdateAnim(param0->unk_5B0[28], FX32_ONE);
+    if (CellActor_GetDrawFlag(param0->unk_5B0[28]) == 1) {
+        CellActor_UpdateAnim(param0->unk_5B0[28], FX32_ONE);
 
-        if (GraphicElementData_GetAnimFrame(param0->unk_5B0[28]) == 2) {
-            GraphicElementData_SetDrawFlag(param0->unk_5B0[28], 0);
+        if (CellActor_GetAnimFrame(param0->unk_5B0[28]) == 2) {
+            CellActor_SetDrawFlag(param0->unk_5B0[28], 0);
         }
     }
 }

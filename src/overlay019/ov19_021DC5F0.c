@@ -47,7 +47,7 @@ static void ov19_021DCE50(UnkStruct_ov19_021DC680 * param0, fx32 param1);
 static void ov19_021DCEB8(UnkStruct_ov19_021DC680 * param0, BOOL param1);
 static void ov19_021DCF50(UnkStruct_ov19_021DC680 * param0);
 
-BOOL ov19_021DC5F0 (UnkStruct_ov19_021DC680 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, NARC * param5)
+BOOL ov19_021DC5F0 (UnkStruct_ov19_021DC680 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, CellActorCollection * param4, NARC * param5)
 {
     param0->unk_00 = param1;
     param0->unk_0C = param2;
@@ -224,7 +224,7 @@ static void ov19_021DC8E8 (SysTask * param0, void * param1)
 
     for (v3 = 0; v3 < v4; v3++) {
         if (v0->unk_3C[v2].unk_00 != NULL) {
-            GraphicElementData_SetPosition(v0->unk_3C[v2].unk_00, v1);
+            CellActor_SetPosition(v0->unk_3C[v2].unk_00, v1);
         }
 
         v2++;
@@ -249,7 +249,7 @@ void ov19_021DC96C (UnkStruct_ov19_021DC680 * param0)
     if (param0->unk_28 > v0) {
         VecFx32 v1;
 
-        v1 = *GraphicElementData_GetPosition(param0->unk_3C[v0].unk_00);
+        v1 = *CellActor_GetPosition(param0->unk_3C[v0].unk_00);
         param0->unk_20 = (((Unk_ov19_021E0234[v0].unk_00 + param0->unk_34) << FX32_SHIFT) - v1.x) / 8;
         param0->unk_24 = ((Unk_ov19_021E0234[v0].unk_02 << FX32_SHIFT) - v1.y) / 8;
         param0->unk_2A = 0;
@@ -272,7 +272,7 @@ static void ov19_021DCA18 (SysTask * param0, void * param1)
     BOOL v2;
 
     v0 = (UnkStruct_ov19_021DC680 *)param1;
-    v1 = *GraphicElementData_GetPosition(v0->unk_3C[v0->unk_28].unk_00);
+    v1 = *CellActor_GetPosition(v0->unk_3C[v0->unk_28].unk_00);
 
     if (++(v0->unk_2A) >= 8) {
         v1.x = (Unk_ov19_021E0234[v0->unk_28].unk_00 + v0->unk_34) << FX32_SHIFT;
@@ -284,7 +284,7 @@ static void ov19_021DCA18 (SysTask * param0, void * param1)
         v2 = 0;
     }
 
-    GraphicElementData_SetPosition(v0->unk_3C[v0->unk_28].unk_00, &v1);
+    CellActor_SetPosition(v0->unk_3C[v0->unk_28].unk_00, &v1);
 
     if (v2) {
         v0->unk_2C = 0;
@@ -400,7 +400,7 @@ void ov19_021DCC80 (UnkStruct_ov19_021DC680 * param0, u32 param1, const UnkStruc
 
     ov19_021DA418(param2, v2, 1);
     ov19_021DA754(param0->unk_38, v2, v1);
-    GraphicElementData_SetExplicitPriority(v2->unk_00, 1);
+    CellActor_SetExplicitPriority(v2->unk_00, 1);
     ov19_021D78AC(v2->unk_00, 4 + v0);
 
     param0->unk_28 = param1;
@@ -418,7 +418,7 @@ void ov19_021DCCD4 (UnkStruct_ov19_021DC680 * param0, u32 param1, const UnkStruc
 
     ov19_021DA418(param2, v2, 1);
     ov19_021DA754(param0->unk_38, v2, v1);
-    GraphicElementData_SetExplicitPriority(v2->unk_00, 1);
+    CellActor_SetExplicitPriority(v2->unk_00, 1);
     ov19_021D78AC(v2->unk_00, 4 + v0);
 
     param0->unk_28 = param1;
@@ -493,17 +493,17 @@ static void ov19_021DCE50 (UnkStruct_ov19_021DC680 * param0, fx32 param1)
 
     for (v1 = 0; v1 < 6; v1++) {
         if (param0->unk_3C[v1].unk_00 != NULL) {
-            v0 = *GraphicElementData_GetPosition(param0->unk_3C[v1].unk_00);
+            v0 = *CellActor_GetPosition(param0->unk_3C[v1].unk_00);
             v0.y += param1;
-            GraphicElementData_SetPosition(param0->unk_3C[v1].unk_00, &v0);
+            CellActor_SetPosition(param0->unk_3C[v1].unk_00, &v0);
 
             if (param1 < 0) {
                 if (v0.y < 851968) {
-                    GraphicElementData_SetDrawFlag(param0->unk_3C[v1].unk_00, 1);
+                    CellActor_SetDrawFlag(param0->unk_3C[v1].unk_00, 1);
                 }
             } else {
                 if (v0.y >= 851968) {
-                    GraphicElementData_SetDrawFlag(param0->unk_3C[v1].unk_00, 0);
+                    CellActor_SetDrawFlag(param0->unk_3C[v1].unk_00, 0);
                 }
             }
         } else {
@@ -523,7 +523,7 @@ static void ov19_021DCEB8 (UnkStruct_ov19_021DC680 * param0, BOOL param1)
     for (v1 = 0; v1 < v2; v1++) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, v1);
         ov19_021DA428(param0->unk_38, (BoxPokemon *)v0, Unk_ov19_021E0234[v1].unk_00 + param0->unk_34, Unk_ov19_021E0234[v1].unk_02 + v3, 1, 4 + v1, 1048 + 32 * v1, &param0->unk_3C[v1]);
-        GraphicElementData_SetDrawFlag(param0->unk_3C[v1].unk_00, param1);
+        CellActor_SetDrawFlag(param0->unk_3C[v1].unk_00, param1);
     }
 }
 

@@ -41,13 +41,13 @@ struct UnkStruct_ov19_021DEC04_t {
     UnkStruct_ov19_021D61B0 * unk_04;
     const UnkStruct_ov19_021D4DF0 * unk_08;
     BGL * unk_0C;
-    GraphicElementManager * unk_10;
+    CellActorCollection * unk_10;
     UnkStruct_ov19_021DA384 * unk_14;
     u32 unk_18[2];
-    GraphicElementData * unk_20[2];
-    GraphicElementData * unk_28[2];
-    GraphicElementData * unk_30;
-    GraphicElementData * unk_34[2][5];
+    CellActor * unk_20[2];
+    CellActor * unk_28[2];
+    CellActor * unk_30;
+    CellActor * unk_34[2][5];
     void * unk_5C;
     NNSG2dCellDataBank * unk_60;
     void * unk_64;
@@ -90,7 +90,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF930(SysTask * param0, void * param1);
 
-BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, MessageLoader * param5, NARC * param6)
+BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, CellActorCollection * param4, MessageLoader * param5, NARC * param6)
 {
     if (ov19_021D5E08(param2) != 4) {
         *param0 = NULL;
@@ -161,11 +161,11 @@ void ov19_021DEDDC (UnkStruct_ov19_021DEC04 * param0, BOOL param1)
         int v0 = ov19_021D5F9C(param0->unk_08);
 
         if (param1) {
-            GraphicElementData_SetAnim(param0->unk_28[v0 ^ 1], 2);
-            GraphicElementData_SetAnim(param0->unk_28[v0], 0);
+            CellActor_SetAnim(param0->unk_28[v0 ^ 1], 2);
+            CellActor_SetAnim(param0->unk_28[v0], 0);
         } else {
-            GraphicElementData_SetAnim(param0->unk_28[v0 ^ 1], 1);
-            GraphicElementData_SetAnim(param0->unk_28[v0], 0);
+            CellActor_SetAnim(param0->unk_28[v0 ^ 1], 1);
+            CellActor_SetAnim(param0->unk_28[v0], 0);
         }
 
         ov19_021DEEFC(param0);
@@ -418,10 +418,10 @@ static void ov19_021DF178 (UnkStruct_ov19_021DEC04 * param0, int param1)
         for (v5 = 0; v5 < 5; v5++) {
             v6.x = v0[v5].unk_00 + (((v0[v5].unk_08 - v0[v5].unk_00) / 256) * (int)(*v7));
             v6.y = v0[v5].unk_04 + (((v0[v5].unk_0C - v0[v5].unk_04) / 256) * (int)(*v7));
-            GraphicElementData_SetPosition(param0->unk_34[param1][v5], &v6);
+            CellActor_SetPosition(param0->unk_34[param1][v5], &v6);
             ov19_021D78AC(param0->unk_34[param1][v5], 0);
             ov19_021D78AC(param0->unk_34[param1 ^ 1][v5], 1);
-            GraphicElementData_SetDrawFlag(param0->unk_34[param1][v5], 1);
+            CellActor_SetDrawFlag(param0->unk_34[param1][v5], 1);
             v7++;
         }
     } else {
@@ -437,7 +437,7 @@ static void ov19_021DF250 (UnkStruct_ov19_021DEC04 * param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        GraphicElementData_SetDrawFlag(param0->unk_34[param1][v0], 0);
+        CellActor_SetDrawFlag(param0->unk_34[param1][v0], 0);
     }
 }
 
@@ -606,21 +606,21 @@ static void ov19_021DF5D0 (UnkStruct_ov19_021DEC04 * param0, NARC * param1)
     for (v4 = 0; v4 < 2; v4++) {
         param0->unk_28[v4] = ov19_021D785C(param0->unk_10, &v2, v0[v4].unk_00, v0[v4].unk_02, 0, NNS_G2D_VRAM_TYPE_2DSUB);
 
-        GraphicElementData_SetExplicitPalette(param0->unk_28[v4], v4);
-        GraphicElementData_SetAnim(param0->unk_28[v4], 0);
+        CellActor_SetExplicitPalette(param0->unk_28[v4], v4);
+        CellActor_SetAnim(param0->unk_28[v4], 0);
 
         for (v5 = 0; v5 < 5; v5++) {
             param0->unk_34[v4][v5] = ov19_021D785C(param0->unk_10, &v2, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB);
-            GraphicElementData_SetAnim(param0->unk_34[v4][v5], 5 + v4);
-            GraphicElementData_SetExplicitPalette(param0->unk_34[v4][v5], v4);
-            GraphicElementData_SetDrawFlag(param0->unk_34[v4][v5], 0);
+            CellActor_SetAnim(param0->unk_34[v4][v5], 5 + v4);
+            CellActor_SetExplicitPalette(param0->unk_34[v4][v5], v4);
+            CellActor_SetDrawFlag(param0->unk_34[v4][v5], 0);
         }
     }
 
-    GraphicElementData_SetFlipMode(param0->unk_28[1], 1);
+    CellActor_SetFlipMode(param0->unk_28[1], 1);
     param0->unk_30 = ov19_021D785C(param0->unk_10, &v2, 128, 176 + 384, 0, NNS_G2D_VRAM_TYPE_2DSUB);
-    GraphicElementData_SetAnim(param0->unk_30, 3);
-    GraphicElementData_SetExplicitPalette(param0->unk_30, 2);
+    CellActor_SetAnim(param0->unk_30, 3);
+    CellActor_SetExplicitPalette(param0->unk_30, 2);
     param0->unk_380 = SysTask_Start(ov19_021DF930, param0, 1);
 
     ov19_021DF730(param0, v3);
@@ -647,7 +647,7 @@ static void ov19_021DF730 (UnkStruct_ov19_021DEC04 * param0, u32 param1)
         NNS_G2dSetImageLocation(&v1, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_18[v3]);
         v1.attr.mappingType = GXS_GetOBJVRamModeChar();
         param0->unk_20[v3] = ov19_021D785C(param0->unk_10, &v2, v0[v3].unk_00, v0[v3].unk_02, 1 - v3, NNS_G2D_VRAM_TYPE_2DSUB);
-        GraphicElementData_SetDrawFlag(param0->unk_20[v3], 0);
+        CellActor_SetDrawFlag(param0->unk_20[v3], 0);
     }
 }
 
@@ -660,15 +660,15 @@ static void ov19_021DF7D0 (UnkStruct_ov19_021DEC04 * param0)
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        GraphicElementData_Delete(param0->unk_20[v0]);
-        GraphicElementData_Delete(param0->unk_28[v0]);
+        CellActor_Delete(param0->unk_20[v0]);
+        CellActor_Delete(param0->unk_28[v0]);
 
         for (v1 = 0; v1 < 5; v1++) {
-            GraphicElementData_Delete(param0->unk_34[v0][v1]);
+            CellActor_Delete(param0->unk_34[v0][v1]);
         }
     }
 
-    GraphicElementData_Delete(param0->unk_30);
+    CellActor_Delete(param0->unk_30);
     Heap_FreeToHeap(param0->unk_5C);
     Heap_FreeToHeap(param0->unk_64);
 }
@@ -677,7 +677,7 @@ static void ov19_021DF834 (UnkStruct_ov19_021DEC04 * param0)
 {
     int v0 = ov19_021D5F9C(param0->unk_08);
     const UnkStruct_ov19_021D5FAC * v1 = ov19_021D5FAC(param0->unk_08, v0);
-    GraphicElementData * v2 = param0->unk_20[v0];
+    CellActor * v2 = param0->unk_20[v0];
     BoxPokemon * v3 = (BoxPokemon *)(v1->unk_00);
     NNSG2dCharacterData * v4;
 
@@ -690,10 +690,10 @@ static void ov19_021DF834 (UnkStruct_ov19_021DEC04 * param0)
         DC_FlushRange(v4->pRawData, (4 * 4) * 0x20);
         GXS_LoadOBJ(v4->pRawData, param0->unk_18[v0], (4 * 4) * 0x20);
 
-        GraphicElementData_SetExplicitPalette(v2, v5);
-        GraphicElementData_SetDrawFlag(v2, 1);
+        CellActor_SetExplicitPalette(v2, v5);
+        CellActor_SetDrawFlag(v2, 1);
     } else {
-        GraphicElementData_SetDrawFlag(v2, 0);
+        CellActor_SetDrawFlag(v2, 0);
     }
 }
 
@@ -719,13 +719,13 @@ static void ov19_021DF930 (SysTask * param0, void * param1)
     UnkStruct_ov19_021DEC04 * v0 = param1;
     BOOL v1 = ov19_021D5FC0(v0->unk_08);
 
-    if (GraphicElementData_GetActiveAnim(v0->unk_30) == 3) {
+    if (CellActor_GetActiveAnim(v0->unk_30) == 3) {
         if (v1) {
-            GraphicElementData_SetAnim(v0->unk_30, 4);
+            CellActor_SetAnim(v0->unk_30, 4);
         }
     } else {
         if (v1 == 0) {
-            GraphicElementData_SetAnim(v0->unk_30, 3);
+            CellActor_SetAnim(v0->unk_30, 3);
         }
     }
 }

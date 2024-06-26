@@ -31,8 +31,8 @@ void ov21_021D222C(UnkStruct_ov21_021D13FC * param0, int param1, int param2, int
 void ov21_021D2250(UnkStruct_ov21_021D13FC * param0, int * param1, int * param2, int param3);
 Sprite * ov21_021D2274(const UnkStruct_ov21_021D13FC * param0, int param1);
 void ov21_021D2280(const UnkStruct_ov21_021D13FC * param0, BOOL param1, int param2);
-GraphicElementData * ov21_021D22A8(const UnkStruct_ov21_021D13FC * param0);
-GraphicElementData * ov21_021D22C4(const UnkStruct_ov21_021D13FC * param0);
+CellActor * ov21_021D22A8(const UnkStruct_ov21_021D13FC * param0);
+CellActor * ov21_021D22C4(const UnkStruct_ov21_021D13FC * param0);
 void ov21_021D22E0(UnkStruct_ov21_021D13FC * param0, UnkStruct_ov21_021D4CB8 * param1, int param2, int param3, u32 param4);
 void ov21_021D22F8(UnkStruct_ov21_021D22F8 * param0, UnkStruct_ov21_021D4CB8 * param1, int param2, int param3, u32 param4);
 UnkStruct_02009DC8 * ov21_021D2344(const UnkStruct_ov21_021D13FC * param0, int param1);
@@ -64,7 +64,7 @@ void * ov21_021D27E0(UnkStruct_ov21_021D13FC * param0, u32 param1, NNSG2dPalette
 void * ov21_021D2808(UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2, NNSG2dCharacterData ** param3, u32 param4);
 void ov21_021D2B88(UnkStruct_ov21_021D22F8 * param0, UnkStruct_02009714 ** param1, int param2, NARC * param3);
 void ov21_021D2C58(UnkStruct_ov21_021D22F8 * param0, UnkStruct_02009714 ** param1);
-void ov21_021D2D88(UnkStruct_ov21_021D22F8 * param0, GraphicElementManager * param1, UnkStruct_02009714 ** param2, int param3, int param4);
+void ov21_021D2D88(UnkStruct_ov21_021D22F8 * param0, CellActorCollection * param1, UnkStruct_02009714 ** param2, int param3, int param4);
 void ov21_021D2E1C(UnkStruct_ov21_021D22F8 * param0);
 void ov21_021D2E44(UnkStruct_ov21_021D22F8 * param0, BOOL param1);
 

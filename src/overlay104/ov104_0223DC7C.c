@@ -530,8 +530,8 @@ static void ov104_0223E3FC (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
         SpriteActor_EnableObject(param1->unk_04[v0], 0);
 
         if (v0 != 3) {
-            GraphicElementData_SetAffineOverwriteMode(param1->unk_04[v0]->unk_00, 2);
-            GraphicElementData_SetAnim(param1->unk_04[v0]->unk_00, 1);
+            CellActor_SetAffineOverwriteMode(param1->unk_04[v0]->unk_00, 2);
+            CellActor_SetAnim(param1->unk_04[v0]->unk_00, 1);
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);
@@ -569,8 +569,8 @@ static BOOL ov104_0223E4A4 (UnkStruct_ov104_0223E48C * param0)
         v1 = ov104_0223E544(&param0->unk_14[v0]);
         v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
-        GraphicElementData_SetAffineScale(param0->unk_04[v0]->unk_00, &v3);
-        GraphicElementData_SetDrawFlag(param0->unk_04[v0]->unk_00, 1);
+        CellActor_SetAffineScale(param0->unk_04[v0]->unk_00, &v3);
+        CellActor_SetDrawFlag(param0->unk_04[v0]->unk_00, 1);
 
         if (v1 == 0) {
             v2 = 0;

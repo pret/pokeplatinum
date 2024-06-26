@@ -47,7 +47,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     int unk_180;
     UIControlData * unk_184;
     void * unk_188;
-    GraphicElementManager * unk_18C;
+    CellActorCollection * unk_18C;
     UnkStruct_0200C738 unk_190;
     UnkStruct_02009714 * unk_31C[4];
     UnkStruct_02012744 * unk_32C;

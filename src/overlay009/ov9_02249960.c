@@ -100,7 +100,7 @@ typedef struct {
 } UnkStruct_ov9_02251EC8;
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    CellActorCollection * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190;
     UnkStruct_02009714 * unk_194;
@@ -152,7 +152,7 @@ typedef struct {
     fx32 unk_00;
     fx32 unk_04;
     UnkStruct_ov9_0224B1B4 unk_08;
-    GraphicElementData * unk_40;
+    CellActor * unk_40;
 } UnkStruct_ov9_0224B2C0;
 
 typedef struct {
@@ -930,7 +930,7 @@ static void ov9_0224AED8(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224AEE4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B064 * param1, NARC * param2);
 static void ov9_0224B064(UnkStruct_ov9_0224B064 * param0);
 static void ov9_0224B124(SysTask * param0, void * param1);
-static GraphicElementData * ov9_0224B130(UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
+static CellActor * ov9_0224B130(UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
 static void ov9_0224B1B4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov5_021DF47C * param1, UnkStruct_ov9_0224B064 * param2);
 static void ov9_0224B3A8(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224B3F4(UnkStruct_ov9_02249B04 * param0);
@@ -2744,32 +2744,32 @@ static void ov9_0224B064 (UnkStruct_ov9_0224B064 * param0)
     sub_02009754(param0->unk_198);
     sub_02009754(param0->unk_19C);
 
-    GraphicElementManager_DeleteAll(param0->unk_00);
-    GraphicElementManager_Delete(param0->unk_00);
+    CellActorCollection_DeleteAll(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
 }
 
 static void ov9_0224B124 (SysTask * param0, void * param1)
 {
     UnkStruct_ov9_0224B064 * v0 = param1;
-    GraphicElementManager_Update(v0->unk_00);
+    CellActorCollection_Update(v0->unk_00);
 }
 
-static GraphicElementData * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
+static CellActor * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
-    GraphicElementData * v2;
+    CellActor * v2;
 
     sub_020093B4(&v0, ((param2) + 0xff), ((param3) + 0xff), ((param4) + 0xff), ((param5) + 0xff), 0xffffffff, 0xffffffff, 0, param6, param0->unk_190, param0->unk_194, param0->unk_198, param0->unk_19C, NULL, NULL);
 
-    v1.manager = param0->unk_00;
+    v1.collection = param0->unk_00;
     v1.resourceData = &v0;
     v1.position = *param1;
     v1.priority = param7;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = 4;
 
-    v2 = GraphicElementManager_AddElement(&v1);
+    v2 = CellActorCollection_Add(&v1);
     GF_ASSERT(v2 != NULL);
 
     return v2;
@@ -2819,14 +2819,14 @@ static int ov9_0224B23C (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1 = &Unk_ov9_02251EC8[v3->unk_08.unk_04.unk_00];
     v3->unk_40 = ov9_0224B130(v3->unk_08.unk_34, &v0, v1->unk_00, v1->unk_01, v1->unk_02, v1->unk_03, 3, 0xffff);
 
-    GraphicElementData_SetAffineScaleEx(v3->unk_40, &v3->unk_08.unk_04.unk_24, 2);
+    CellActor_SetAffineScaleEx(v3->unk_40, &v3->unk_08.unk_04.unk_24, 2);
     return 1;
 }
 
 static void ov9_0224B2C0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 {
     UnkStruct_ov9_0224B2C0 * v0 = param1;
-    GraphicElementData_Delete(v0->unk_40);
+    CellActor_Delete(v0->unk_40);
 }
 
 static void ov9_0224B2CC (UnkStruct_ov101_021D5D90 * param0, void * param1)
@@ -2863,8 +2863,8 @@ static void ov9_0224B2CC (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v3.y += ((FX32_ONE * -512)) + (sub_0201D15C(((v4->unk_00) / FX32_ONE)) * v4->unk_08.unk_04.unk_10);
 
     sub_020715D4(param0, &v3);
-    GraphicElementData_SetPosition(v4->unk_40, &v3);
-    GraphicElementData_SetAffineZRotation(v4->unk_40, sub_0201D2A4(((v0) / FX32_ONE)));
+    CellActor_SetPosition(v4->unk_40, &v3);
+    CellActor_SetAffineZRotation(v4->unk_40, sub_0201D2A4(((v0) / FX32_ONE)));
 }
 
 static void ov9_0224B3A4 (UnkStruct_ov101_021D5D90 * param0, void * param1)

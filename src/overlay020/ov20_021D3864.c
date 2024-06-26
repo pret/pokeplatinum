@@ -28,7 +28,7 @@ typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_ov20_021D2128 * unk_00;
     const UnkStruct_ov20_021D16E8 * unk_04;
     const UnkStruct_020998EC * unk_08;
-    GraphicElementData * unk_0C;
+    CellActor * unk_0C;
 } UnkStruct_ov20_021D3980;
 
 static void ov20_021D390C(BGL * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2);
@@ -49,7 +49,7 @@ UnkStruct_ov20_021D3980 * ov20_021D3864 (UnkStruct_ov20_021D2128 * param0, const
 void ov20_021D3880 (UnkStruct_ov20_021D3980 * param0)
 {
     if (param0->unk_0C) {
-        GraphicElementData_Delete(param0->unk_0C);
+        CellActor_Delete(param0->unk_0C);
     }
 
     Heap_FreeToHeap(param0);
@@ -103,28 +103,28 @@ static void ov20_021D3980 (UnkStruct_ov20_021D3980 * param0)
     ov20_021D2E0C(param0->unk_00, &v0, 0, 3);
     param0->unk_0C = ov20_021D2E50(param0->unk_00, &v0, 64, 56, 5, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    GraphicElementData_SetAnim(param0->unk_0C, 2);
-    GraphicElementData_SetDrawFlag(param0->unk_0C, 0);
+    CellActor_SetAnim(param0->unk_0C, 2);
+    CellActor_SetDrawFlag(param0->unk_0C, 0);
 }
 
 void ov20_021D39BC (UnkStruct_ov20_021D3980 * param0)
 {
-    GraphicElementData_SetAnim(param0->unk_0C, 3);
+    CellActor_SetAnim(param0->unk_0C, 3);
 }
 
 void ov20_021D39C8 (UnkStruct_ov20_021D3980 * param0)
 {
-    GraphicElementData_SetAnim(param0->unk_0C, 2);
+    CellActor_SetAnim(param0->unk_0C, 2);
 }
 
 void ov20_021D39D4 (UnkStruct_ov20_021D3980 * param0, BOOL param1)
 {
-    GraphicElementData_SetDrawFlag(param0->unk_0C, param1);
+    CellActor_SetDrawFlag(param0->unk_0C, param1);
 }
 
 BOOL ov20_021D39E0 (UnkStruct_ov20_021D3980 * param0)
 {
-    return GraphicElementData_GetDrawFlag(param0->unk_0C);
+    return CellActor_GetDrawFlag(param0->unk_0C);
 }
 
 void ov20_021D39EC (UnkStruct_ov20_021D3980 * param0, int param1)
@@ -145,8 +145,8 @@ void ov20_021D39EC (UnkStruct_ov20_021D3980 * param0, int param1)
         break;
     }
 
-    GraphicElementData_SetPosition(param0->unk_0C, &v0);
-    GraphicElementData_SetAnim(param0->unk_0C, 2);
+    CellActor_SetPosition(param0->unk_0C, &v0);
+    CellActor_SetAnim(param0->unk_0C, 2);
 }
 
 void ov20_021D3A2C (UnkStruct_ov20_021D3980 * param0)

@@ -11,9 +11,9 @@
 typedef struct {
     const UnkStruct_02012744 * unk_00;
     const Window * unk_04;
-    GraphicElementManager * unk_08;
+    CellActorCollection * unk_08;
     const NNSG2dImagePaletteProxy * unk_0C;
-    const GraphicElementData * unk_10;
+    const CellActor * unk_10;
     int unk_14;
     int unk_18;
     int unk_1C;

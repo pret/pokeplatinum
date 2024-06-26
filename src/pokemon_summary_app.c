@@ -709,7 +709,7 @@ static int sub_0208CC6C (PokemonSummaryApp * param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        GraphicElementData_SetDrawFlag(param0->unk_41C[10], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[10], 0);
 
         if ((param0->cursor != 4) && (param0->cursor != param0->cursorTmp)) {
             Sound_PlayEffect(1501);
@@ -726,7 +726,7 @@ static int sub_0208CC6C (PokemonSummaryApp * param0)
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1501);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[10], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[10], 0);
         return 7;
     }
 
@@ -1656,7 +1656,7 @@ static u8 sub_0208DD8C (PokemonSummaryApp * param0)
             SpriteActor_DrawSprite(param0->unk_41C[12], 1);
         }
 
-        GraphicElementData_SetDrawFlag(param0->unk_41C[9], 1);
+        CellActor_SetDrawFlag(param0->unk_41C[9], 1);
         return 1;
     }
 
@@ -1671,7 +1671,7 @@ static u8 sub_0208DEA4 (PokemonSummaryApp * param0)
         SpriteActor_DrawSprite(param0->unk_41C[12], 0);
         SpriteActor_DrawSprite(param0->unk_41C[18], 0);
         SpriteActor_DrawSprite(param0->unk_41C[19], 0);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[9], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[9], 0);
         sub_0201AD10(&param0->staticWindows[35]);
         sub_0208F6DC(param0, NULL);
         sub_0209145C(param0);
@@ -1825,7 +1825,7 @@ static void sub_0208E190 (PokemonSummaryApp * param0)
         SpriteActor_DrawSprite(param0->unk_41C[12], 1);
     }
 
-    GraphicElementData_SetDrawFlag(param0->unk_41C[9], 1);
+    CellActor_SetDrawFlag(param0->unk_41C[9], 1);
 }
 
 static u8 sub_0208E208 (PokemonSummaryApp * param0)
@@ -1867,7 +1867,7 @@ static u8 sub_0208E208 (PokemonSummaryApp * param0)
         sub_0208DFF4(param0);
         sub_0208F7A4(param0);
         sub_0208F844(param0);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[9], 1);
+        CellActor_SetDrawFlag(param0->unk_41C[9], 1);
 
         return 1;
     }
@@ -1882,7 +1882,7 @@ static u8 sub_0208E308 (PokemonSummaryApp * param0)
         sub_0208F964(param0);
         SpriteActor_DrawSprite(param0->unk_41C[19], 0);
         sub_0208E498(param0, 0xffffffff);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[9], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[9], 0);
         sub_0201AD10(&param0->staticWindows[35]);
         sub_0208F6DC(param0, NULL);
         sub_0209145C(param0);
@@ -2017,12 +2017,12 @@ static u8 sub_0208E57C (PokemonSummaryApp * param0)
     case 2:
         sub_02090064(param0, 181);
         sub_0208F6DC(param0, &param0->staticWindows[35]);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[67], 1);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[70], 1);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[63], 0);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[64], 0);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[65], 0);
-        GraphicElementData_SetDrawFlag(param0->unk_41C[66], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[67], 1);
+        CellActor_SetDrawFlag(param0->unk_41C[70], 1);
+        CellActor_SetDrawFlag(param0->unk_41C[63], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[64], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[65], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[66], 0);
         sub_0208E794(param0, 0);
 
         return 1;
@@ -2137,15 +2137,15 @@ static void sub_0208E794 (PokemonSummaryApp * param0, s8 param1)
     sub_02090F84(param0);
 
     if (param0->ribbonState != 0) {
-        GraphicElementData_SetDrawFlag(param0->unk_41C[68], 1);
+        CellActor_SetDrawFlag(param0->unk_41C[68], 1);
     } else {
-        GraphicElementData_SetDrawFlag(param0->unk_41C[68], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[68], 0);
     }
 
     if ((param0->ribbonState * 4 + 8) < param0->ribbonMax) {
-        GraphicElementData_SetDrawFlag(param0->unk_41C[69], 1);
+        CellActor_SetDrawFlag(param0->unk_41C[69], 1);
     } else {
-        GraphicElementData_SetDrawFlag(param0->unk_41C[69], 0);
+        CellActor_SetDrawFlag(param0->unk_41C[69], 0);
     }
 }
 

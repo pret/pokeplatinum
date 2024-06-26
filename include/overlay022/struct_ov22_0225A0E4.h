@@ -32,7 +32,7 @@ typedef struct {
     NNSG2dCharacterData ** unk_38;
     int unk_3C;
     BGL * unk_40;
-    GraphicElementManager * unk_44;
+    CellActorCollection * unk_44;
     UnkStruct_02009714 * unk_48[4];
     UnkStruct_0200C738 unk_58;
     NARC * unk_5C;

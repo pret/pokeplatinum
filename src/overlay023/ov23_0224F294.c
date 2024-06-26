@@ -81,10 +81,10 @@ typedef struct {
 
 static void ov23_0224F460(UnkStruct_ov23_02250CD4 * param0);
 static void ov23_0224F498(UnkStruct_ov23_02250CD4 * param0);
-static void ov23_0224F4D0(GraphicElementData * param0, u32 param1);
-static void ov23_0224F500(GraphicElementData * param0, u16 param1, u16 param2);
+static void ov23_0224F4D0(CellActor * param0, u32 param1);
+static void ov23_0224F500(CellActor * param0, u16 param1, u16 param2);
 static void ov23_0224F52C(UnkStruct_ov23_02250CD4 * param0, u16 param1, u16 param2);
-static void ov23_0224F560(GraphicElementData * param0);
+static void ov23_0224F560(CellActor * param0);
 static void ov23_0224F914(SysTask * param0, void * param1);
 static BOOL ov23_0224FA58(SysTask * param0, void * param1);
 static void ov23_0224FE38(UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_02248D20 param1);
@@ -220,7 +220,7 @@ static void ov23_0224F294 (UnkStruct_ov23_02250CD4 * param0, u8 * param1, u32 pa
 
         {
             VecFx32 v4 = {FX32_ONE, FX32_ONE, FX32_ONE};
-            GraphicElementData_SetAffineScaleEx(param0->unk_23C[1 + v1]->unk_00, &v4, 1);
+            CellActor_SetAffineScaleEx(param0->unk_23C[1 + v1]->unk_00, &v4, 1);
         }
     }
 
@@ -245,26 +245,26 @@ static void ov23_0224F498 (UnkStruct_ov23_02250CD4 * param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_25C; v0++) {
-        GraphicElementData_UpdateAnim(param0->unk_23C[v0]->unk_00, FX32_ONE);
+        CellActor_UpdateAnim(param0->unk_23C[v0]->unk_00, FX32_ONE);
     }
 }
 
-static void ov23_0224F4D0 (GraphicElementData * param0, u32 param1)
+static void ov23_0224F4D0 (CellActor * param0, u32 param1)
 {
     VecFx32 v0;
 
-    v0 = *(GraphicElementData_GetPosition(param0));
+    v0 = *(CellActor_GetPosition(param0));
     v0.y = (20 + 24 * param1) * FX32_ONE;
 
-    GraphicElementData_SetPosition(param0, &v0);
+    CellActor_SetPosition(param0, &v0);
 }
 
-static void ov23_0224F500 (GraphicElementData * param0, u16 param1, u16 param2)
+static void ov23_0224F500 (CellActor * param0, u16 param1, u16 param2)
 {
-    u32 v0 = GraphicElementData_GetActiveAnim(param0);
+    u32 v0 = CellActor_GetActiveAnim(param0);
 
-    GraphicElementData_SetAnim(param0, (v0 / 3) * 3 + param1);
-    GraphicElementData_SetExplicitPaletteWithOffset(param0, param2);
+    CellActor_SetAnim(param0, (v0 / 3) * 3 + param1);
+    CellActor_SetExplicitPaletteWithOffset(param0, param2);
 }
 
 static void ov23_0224F52C (UnkStruct_ov23_02250CD4 * param0, u16 param1, u16 param2)
@@ -273,13 +273,13 @@ static void ov23_0224F52C (UnkStruct_ov23_02250CD4 * param0, u16 param1, u16 par
     ov23_0224F500(param0->unk_23C[1 + param2]->unk_00, 1, 1);
 }
 
-static void ov23_0224F560 (GraphicElementData * param0)
+static void ov23_0224F560 (CellActor * param0)
 {
-    if ((GraphicElementData_GetActiveAnim(param0) % 3) != 1) {
+    if ((CellActor_GetActiveAnim(param0) % 3) != 1) {
         return;
     }
 
-    if (GraphicElementData_IsAnimated(param0) == 0) {
+    if (CellActor_IsAnimated(param0) == 0) {
         ov23_0224F500(param0, 2, 1);
     }
 }
@@ -643,7 +643,7 @@ static BOOL ov23_0224FA58 (SysTask * param0, void * param1)
     switch (v0->unk_2A0) {
     case 0xffffffff:
         ov23_0224F498(v0);
-        GraphicElementManager_Update(v0->unk_74.unk_00);
+        CellActorCollection_Update(v0->unk_74.unk_00);
         return 0;
     case 0xfffffffe:
         v0->unk_2AA = 2;

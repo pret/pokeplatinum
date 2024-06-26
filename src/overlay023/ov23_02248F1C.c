@@ -56,13 +56,13 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_A4[17][4];
     FieldSystem * fieldSystem;
     BGL * unk_1B8;
-    GraphicElementManager * unk_1BC;
+    CellActorCollection * unk_1BC;
     UnkStruct_0200C738 unk_1C0;
     UnkStruct_02009714 * unk_34C[4];
     UnkStruct_02009DC8 * unk_35C[4];
     CellActorResourceData unk_36C;
-    GraphicElementData * unk_390[8];
-    GraphicElementData * unk_3B0[17];
+    CellActor * unk_390[8];
+    CellActor * unk_3B0[17];
     Window unk_3F4;
     int unk_404;
     int unk_408;
@@ -76,7 +76,7 @@ static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C * param0);
 static void ov23_02249214(PlayerAvatar * const playerAvatar, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
-static void ov23_022492C8(int param0[][3], GraphicElementData * param1[]);
+static void ov23_022492C8(int param0[][3], CellActor * param1[]);
 static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249438(BGL * param0);
 static void ov23_0224966C(BGL * param0, Window * param1, int * param2, int * param3, int * param4, UnkStruct_ov23_02249724 * param5);
@@ -85,7 +85,7 @@ static void ov23_02249778(UnkStruct_ov23_02249724 * param0);
 static int ov23_02249844(UnkStruct_ov23_02249724 * param0, Strbuf *param1);
 static Strbuf* ov23_022498C4(UnkStruct_ov23_02249724 * param0);
 static int ov23_02249900(UnkStruct_ov23_02249724 * param0);
-static void ov23_0224937C(int param0[][4], GraphicElementData * param1[]);
+static void ov23_0224937C(int param0[][4], CellActor * param1[]);
 static void ov23_02249334(int param0[][4]);
 
 static UnkStruct_ov23_0224942C * Unk_ov23_02257768;
@@ -112,7 +112,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         {
             CellActorInitParamsEx v3;
 
-            v3.manager = v0->unk_1BC;
+            v3.collection = v0->unk_1BC;
             v3.resourceData = &v0->unk_36C;
             v3.position.x = FX32_CONST(32);
             v3.position.y = FX32_CONST(96) + (192 << FX32_SHIFT);
@@ -126,20 +126,20 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
             v3.heapID = 4;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
-                v0->unk_390[v2] = GraphicElementManager_AddElementEx(&v3);
-                GraphicElementData_SetAnimateFlag(v0->unk_390[v2], 1);
-                GraphicElementData_SetDrawFlag(v0->unk_390[v2], 0);
+                v0->unk_390[v2] = CellActorCollection_AddEx(&v3);
+                CellActor_SetAnimateFlag(v0->unk_390[v2], 1);
+                CellActor_SetDrawFlag(v0->unk_390[v2], 0);
 
                 if (v2 == 0) {
-                    GraphicElementData_SetAnim(v0->unk_390[v2], 1);
+                    CellActor_SetAnim(v0->unk_390[v2], 1);
                 }
             }
 
             for (v2 = 0; v2 < 16 + 1; v2++) {
-                v0->unk_3B0[v2] = GraphicElementManager_AddElementEx(&v3);
-                GraphicElementData_SetAnimateFlag(v0->unk_3B0[v2], 1);
-                GraphicElementData_SetDrawFlag(v0->unk_3B0[v2], 0);
-                GraphicElementData_SetAnim(v0->unk_3B0[v2], 2);
+                v0->unk_3B0[v2] = CellActorCollection_AddEx(&v3);
+                CellActor_SetAnimateFlag(v0->unk_3B0[v2], 1);
+                CellActor_SetDrawFlag(v0->unk_3B0[v2], 0);
+                CellActor_SetAnim(v0->unk_3B0[v2], 2);
             }
         }
 
@@ -166,7 +166,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         ov23_02249334(v0->unk_A4);
         ov23_0224937C(v0->unk_A4, v0->unk_3B0);
         ov23_0224966C(v0->unk_1B8, &v0->unk_3F4, &v0->unk_404, &v0->unk_408, &v0->unk_40C, &v0->unk_410);
-        GraphicElementManager_Update(v0->unk_1BC);
+        CellActorCollection_Update(v0->unk_1BC);
         break;
     case 6:
         if (FieldMessage_FinishedPrinting(v0->unk_404)) {
@@ -181,7 +181,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
             sub_02009754(v0->unk_34C[v2]);
         }
 
-        GraphicElementManager_Delete(v0->unk_1BC);
+        CellActorCollection_Delete(v0->unk_1BC);
         sub_0200E084(&v0->unk_3F4, 0);
         BGL_DeleteWindow(&v0->unk_3F4);
         sub_02019044(v1, 7);
@@ -253,7 +253,7 @@ static void ov23_02249214 (PlayerAvatar * const playerAvatar, int param1[][2], i
     }
 }
 
-static void ov23_022492C8 (int param0[][3], GraphicElementData * param1[])
+static void ov23_022492C8 (int param0[][3], CellActor * param1[])
 {
     int v0;
 
@@ -265,10 +265,10 @@ static void ov23_022492C8 (int param0[][3], GraphicElementData * param1[])
             v1.y = ((8 + 1) + ((((8 + 1) + 8 * 16) - (8 + 1)) * param0[v0][1]) / (32 * 13)) * FX32_ONE + (192 << FX32_SHIFT);
             v1.z = FX32_ONE;
 
-            GraphicElementData_SetPosition(param1[v0], &v1);
-            GraphicElementData_SetDrawFlag(param1[v0], 1);
+            CellActor_SetPosition(param1[v0], &v1);
+            CellActor_SetDrawFlag(param1[v0], 1);
         } else {
-            GraphicElementData_SetDrawFlag(param1[v0], 0);
+            CellActor_SetDrawFlag(param1[v0], 0);
         }
     }
 }
@@ -294,7 +294,7 @@ static void ov23_02249334 (int param0[][4])
     }
 }
 
-static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
+static void ov23_0224937C (int param0[][4], CellActor * param1[])
 {
     int v0;
 
@@ -306,18 +306,18 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
             v1.y = ((8 + 1) + ((((8 + 1) + 8 * 16) - (8 + 1)) * param0[v0][1]) / (32 * 13)) * FX32_ONE + (192 << FX32_SHIFT);
             v1.z = FX32_ONE;
 
-            GraphicElementData_SetPosition(param1[v0], &v1);
+            CellActor_SetPosition(param1[v0], &v1);
 
             if (param0[v0][2] != param0[v0][3]) {
                 if (param0[v0][2] != 0) {
-                    GraphicElementData_SetAnim(param1[v0], param0[v0][2]);
-                    GraphicElementData_SetDrawFlag(param1[v0], 1);
+                    CellActor_SetAnim(param1[v0], param0[v0][2]);
+                    CellActor_SetDrawFlag(param1[v0], 1);
                 } else {
-                    GraphicElementData_SetDrawFlag(param1[v0], 0);
+                    CellActor_SetDrawFlag(param1[v0], 0);
                 }
             }
         } else {
-            GraphicElementData_SetDrawFlag(param1[v0], 0);
+            CellActor_SetDrawFlag(param1[v0], 0);
         }
 
         param0[v0][3] = param0[v0][2];

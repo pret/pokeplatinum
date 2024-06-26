@@ -267,16 +267,16 @@ static void ov94_0223D3DC (UnkStruct_ov94_0223FD4C * param0)
     v0.position.x = FX32_ONE * 208;
     v0.position.y = FX32_ONE * 58;
 
-    param0->unk_F30 = GraphicElementManager_AddElementEx(&v0);
+    param0->unk_F30 = CellActorCollection_AddEx(&v0);
 
-    GraphicElementData_SetAnimateFlag(param0->unk_F30, 1);
-    GraphicElementData_SetAnim(param0->unk_F30, 37);
+    CellActor_SetAnimateFlag(param0->unk_F30, 1);
+    CellActor_SetAnim(param0->unk_F30, 37);
     sub_02039734();
 }
 
 static void ov94_0223D428 (UnkStruct_ov94_0223FD4C * param0)
 {
-    GraphicElementData_Delete(param0->unk_F30);
+    CellActor_Delete(param0->unk_F30);
 }
 
 static const int Unk_ov94_02245B94[][4] = {

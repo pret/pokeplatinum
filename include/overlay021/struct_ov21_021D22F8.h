@@ -8,8 +8,8 @@
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    GraphicElementData * unk_00;
-    GraphicElementData * unk_04;
+    CellActor * unk_00;
+    CellActor * unk_04;
     UnkStruct_ov21_021D4CA0 * unk_08;
     UnkStruct_02009DC8 * unk_0C[4];
     VecFx32 unk_1C;

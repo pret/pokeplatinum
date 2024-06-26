@@ -42,7 +42,7 @@ typedef struct {
     u16 unk_08;
     u8 unk_0A;
     u8 unk_0B;
-    GraphicElementData * unk_0C;
+    CellActor * unk_0C;
 } UnkStruct_ov80_021D1744;
 
 typedef struct {
@@ -78,9 +78,9 @@ typedef struct {
     UnkStruct_ov80_021D2C1C * unk_9C;
     UnkStruct_ov80_021D2AF4 * unk_A0;
     UnkStruct_ov80_021D2570 unk_A4;
-    GraphicElementData * unk_100;
-    GraphicElementData * unk_104;
-    GraphicElementData * unk_108;
+    CellActor * unk_100;
+    CellActor * unk_104;
+    CellActor * unk_108;
     SysTask * unk_10C;
 } UnkStruct_ov80_021D1478;
 
@@ -627,7 +627,7 @@ static void ov80_021D1C24 (UnkStruct_ov80_021D2A08 * param0)
 
     if (v1->unk_13-- == 3) {
         SpriteActor_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
-        GraphicElementData_UpdateAnim(v1->unk_104, FX32_ONE);
+        CellActor_UpdateAnim(v1->unk_104, FX32_ONE);
 
         ov80_021D1A30(param0);
         ov80_021D1AB0(param0, &(v1->unk_28[0]), sub_02039F04((const UnkStruct_02039EBC *)param0->unk_30, v1->unk_18, v1->unk_1C), v1->unk_18, v1->unk_1C);
@@ -916,15 +916,15 @@ static void ov80_021D2398 (UnkStruct_ov80_021D2A08 * param0)
 
     v0->unk_100 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
 
-    GraphicElementData_SetDrawFlag(v0->unk_100, 0);
-    GraphicElementData_SetAnimSpeed(v0->unk_100, FX32_ONE);
+    CellActor_SetDrawFlag(v0->unk_100, 0);
+    CellActor_SetAnimSpeed(v0->unk_100, FX32_ONE);
     SpriteActor_SetPositionXY(v0->unk_100, 128, 108);
 
     v0->unk_104 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
 
-    GraphicElementData_SetDrawFlag(v0->unk_104, 1);
-    GraphicElementData_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
-    GraphicElementData_SetAnimateFlag(v0->unk_104, 1);
+    CellActor_SetDrawFlag(v0->unk_104, 1);
+    CellActor_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
+    CellActor_SetAnimateFlag(v0->unk_104, 1);
     SpriteActor_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 
     if (param0->unk_2C->unk_0C == 0) {
@@ -935,7 +935,7 @@ static void ov80_021D2398 (UnkStruct_ov80_021D2A08 * param0)
 
     v0->unk_108 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &v1);
 
-    GraphicElementData_SetDrawFlag(v0->unk_108, 1);
+    CellActor_SetDrawFlag(v0->unk_108, 1);
     SpriteActor_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
     SpriteActor_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
@@ -1027,8 +1027,8 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
         v2->unk_0C = sub_0200CA08(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
 
         SpriteActor_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
-        GraphicElementData_SetPriority(v2->unk_0C, 2);
-        GraphicElementData_SetDrawFlag(v2->unk_0C, 0);
+        CellActor_SetPriority(v2->unk_0C, 2);
+        CellActor_SetDrawFlag(v2->unk_0C, 0);
     }
 
     if (v0->unk_A4.unk_00 == 0) {
@@ -1047,8 +1047,8 @@ static void ov80_021D26AC (SysTask * param0, void * param1)
         return;
     }
 
-    GraphicElementData_SetDrawFlag(v0->unk_0C[v0->unk_0B].unk_0C, 0);
-    GraphicElementData_SetDrawFlag(v0->unk_0C[v0->unk_0A].unk_0C, 1);
+    CellActor_SetDrawFlag(v0->unk_0C[v0->unk_0B].unk_0C, 0);
+    CellActor_SetDrawFlag(v0->unk_0C[v0->unk_0A].unk_0C, 1);
 
     v0->unk_0B = v0->unk_0A;
     v0->unk_0A = (v0->unk_0A + (v0->unk_00 - 1)) % v0->unk_00;
@@ -1096,8 +1096,8 @@ static void ov80_021D2774 (SysTask * param0, void * param1)
 
     switch (v1->unk_04) {
     case 0:
-        GraphicElementData_SetDrawFlag(v1->unk_100, 1);
-        GraphicElementData_SetAnimateFlag(v1->unk_100, 1);
+        CellActor_SetDrawFlag(v1->unk_100, 1);
+        CellActor_SetAnimateFlag(v1->unk_100, 1);
         SpriteActor_SetAnimFrame(v1->unk_100, 1);
         Sound_PlayEffect(1508);
         v1->unk_04++;
@@ -1114,8 +1114,8 @@ static void ov80_021D2774 (SysTask * param0, void * param1)
 
         break;
     case 2:
-        GraphicElementData_SetDrawFlag(v1->unk_100, 0);
-        GraphicElementData_SetAnimateFlag(v1->unk_100, 0);
+        CellActor_SetDrawFlag(v1->unk_100, 0);
+        CellActor_SetAnimateFlag(v1->unk_100, 0);
 
         v0->unk_14 = 0;
         sub_0200F174(4, 13, 2, 0x0, 8, 1, v0->unk_04);

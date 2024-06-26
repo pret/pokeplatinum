@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    CellActorCollection * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009508 * unk_190;
     UnkStruct_02009714 * unk_194[6];

@@ -88,7 +88,7 @@ void ov5_021D30A8 (UnkStruct_ov5_021D30A8 * param0)
 {
     u32 v0;
 
-    GraphicElementManager_Delete(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
     sub_020095A8(param0->unk_190);
     sub_0200A508(param0->unk_1AC[0]);
     sub_0200A700(param0->unk_1AC[1]);
@@ -99,10 +99,10 @@ void ov5_021D30A8 (UnkStruct_ov5_021D30A8 * param0)
     }
 }
 
-GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F358 * param1)
+CellActor * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F358 * param1)
 {
     CellActorInitParamsEx v0;
-    GraphicElementData * v1;
+    CellActor * v1;
     VecFx32 v2 = {FX32_ONE, FX32_ONE, FX32_ONE};
     VecFx32 v3;
 
@@ -110,7 +110,7 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     v3.y = param1->unk_06 * FX32_ONE;
     v3.z = param1->unk_08 * FX32_ONE;
 
-    v0.manager = param0->unk_00;
+    v0.collection = param0->unk_00;
     v0.resourceData = &param0->unk_190->unk_00[param1->unk_00];
     v0.position = v3;
     v0.affineScale = v2;
@@ -119,11 +119,11 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     v0.vramType = param1->unk_14;
     v0.heapID = param0->unk_1C6;
 
-    v1 = GraphicElementManager_AddElementEx(&v0);
+    v1 = CellActorCollection_AddEx(&v0);
     GF_ASSERT(v1);
 
-    GraphicElementData_SetAnim(v1, param1->unk_0A);
-    GraphicElementData_SetExplicitPaletteWithOffset(v1, param1->unk_10);
+    CellActor_SetAnim(v1, param1->unk_0A);
+    CellActor_SetExplicitPaletteWithOffset(v1, param1->unk_10);
 
     return v1;
 }
@@ -367,7 +367,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
 
     sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
-    v3.manager = param0->unk_00;
+    v3.collection = param0->unk_00;
     v3.resourceData = v2->unk_04;
     v3.position.x = FX32_CONST(param1->x);
     v3.position.y = FX32_CONST(param1->y);
@@ -385,12 +385,12 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
     v3.vramType = param1->vramType;
     v3.heapID = param0->unk_1C6;
 
-    v2->unk_00 = GraphicElementManager_AddElementEx(&v3);
+    v2->unk_00 = CellActorCollection_AddEx(&v3);
 
     if (v2->unk_00 != NULL) {
-        v1 = GraphicElementData_GetExplicitPalette(v2->unk_00);
-        GraphicElementData_SetAnim(v2->unk_00, param1->animIdx);
-        GraphicElementData_SetExplicitPalette(v2->unk_00, v1 + param1->plttIdx);
+        v1 = CellActor_GetExplicitPalette(v2->unk_00);
+        CellActor_SetAnim(v2->unk_00, param1->animIdx);
+        CellActor_SetExplicitPalette(v2->unk_00, v1 + param1->plttIdx);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -402,7 +402,7 @@ void ov5_021D375C (UnkStruct_ov5_021D30A8 * param0)
 {
     u32 v0;
 
-    GraphicElementManager_Delete(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
     sub_0200A508(param0->unk_1AC[0]);
     sub_0200A700(param0->unk_1AC[1]);
 

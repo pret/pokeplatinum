@@ -8,6 +8,6 @@ typedef struct {
     int maxElements;
     NNSG2dRendererInstance * renderer;
     int heapID;
-} GraphicElementManagerParams;
+} CellActorCollectionParams;
 
 #endif // POKEPLATINUM_STRUCT_020095C4_H

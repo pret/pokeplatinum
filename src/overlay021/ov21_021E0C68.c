@@ -58,7 +58,7 @@ typedef struct {
 } UnkStruct_ov21_021E0D7C;
 
 typedef struct {
-    GraphicElementData * unk_00;
+    CellActor * unk_00;
     UnkStruct_ov21_021D4CA0 * unk_04;
     UnkStruct_02009DC8 * unk_08[4];
     UnkStruct_ov21_021D2648 unk_18;
@@ -533,7 +533,7 @@ static void ov21_021E136C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
 
     sub_020093B4(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.manager = v2->unk_138;
+    v1.collection = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 32;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -541,9 +541,9 @@ static void ov21_021E136C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
     v1.position.x = (192 * FX32_ONE);
     v1.position.y = (52 * FX32_ONE);
 
-    param0->unk_00 = GraphicElementManager_AddElement(&v1);
+    param0->unk_00 = CellActorCollection_Add(&v1);
 
-    GraphicElementData_SetAnim(param0->unk_00, 0x11);
+    CellActor_SetAnim(param0->unk_00, 0x11);
 
     if (ov21_021D37CC(param2->unk_04) != 2) {
         v3 = 0;
@@ -589,7 +589,7 @@ static Window * ov21_021E1460 (UnkStruct_ov21_021E0D7C * param0, int param1, int
 
 static void ov21_021E14BC (UnkStruct_ov21_021E14D4 * param0)
 {
-    GraphicElementData_Delete(param0->unk_00);
+    CellActor_Delete(param0->unk_00);
     param0->unk_00 = NULL;
     ov21_021D4D1C(param0->unk_04);
 }
@@ -747,13 +747,13 @@ static BOOL ov21_021E1730 (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E17AC (UnkStruct_ov21_021E14D4 * param0)
 {
-    GraphicElementData_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_XLU);
+    CellActor_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_XLU);
     sub_02012AF0(param0->unk_04->unk_00, GX_OAM_MODE_XLU);
 }
 
 static void ov21_021E17C4 (UnkStruct_ov21_021E14D4 * param0)
 {
-    GraphicElementData_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_NORMAL);
+    CellActor_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_NORMAL);
     sub_02012AF0(param0->unk_04->unk_00, GX_OAM_MODE_NORMAL);
 }
 

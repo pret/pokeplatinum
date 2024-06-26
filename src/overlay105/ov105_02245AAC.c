@@ -19,7 +19,7 @@
 #include "overlay105/ov105_02245AAC.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC * param0);
-GraphicElementData * ov105_02245BA4(UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
+CellActor * ov105_02245BA4(UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
 void ov105_02245C50(UnkStruct_ov105_02245AAC * param0);
 static void ov105_02245C98(void);
 
@@ -60,18 +60,18 @@ void ov105_02245AAC (UnkStruct_ov105_02245AAC * param0)
     return;
 }
 
-GraphicElementData * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
+CellActor * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
 {
     int v0;
     CellActorResourceData v1;
-    GraphicElementData * v2;
+    CellActor * v2;
 
     sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param4, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v3;
 
-        v3.manager = param0->unk_00;
+        v3.collection = param0->unk_00;
         v3.resourceData = &v1;
         v3.position.x = 0;
         v3.position.y = 0;
@@ -94,10 +94,10 @@ GraphicElementData * ov105_02245BA4 (UnkStruct_ov105_02245AAC * param0, u32 para
             v3.position.y += (192 << FX32_SHIFT);
         }
 
-        v2 = GraphicElementManager_AddElementEx(&v3);
+        v2 = CellActorCollection_AddEx(&v3);
 
-        GraphicElementData_SetAnimateFlag(v2, 1);
-        GraphicElementData_SetAnim(v2, param2);
+        CellActor_SetAnimateFlag(v2, 1);
+        CellActor_SetAnim(v2, param2);
     }
 
     return v2;
@@ -116,7 +116,7 @@ void ov105_02245C50 (UnkStruct_ov105_02245AAC * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    GraphicElementManager_Delete(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();

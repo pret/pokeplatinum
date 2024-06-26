@@ -96,7 +96,7 @@ struct UnkStruct_ov79_021D29B4_t {
     int unk_08;
     UnkStruct_ov79_021D2C50 unk_0C;
     UnkStruct_ov79_021D2C50 unk_68;
-    GraphicElementData * unk_C4;
+    CellActor * unk_C4;
     Sprite * unk_C8;
     UnkStruct_ov79_021D29E4 unk_CC[4];
 };
@@ -656,12 +656,12 @@ static int ov79_021D2A04 (UnkStruct_ov79_021D2928 * param0, UnkStruct_ov79_021D2
     param1->unk_0C.unk_58 = 24;
     param1->unk_0C.unk_54 = 0;
 
-    GraphicElementData_SetPosition(param1->unk_C4, &param1->unk_0C.unk_00);
+    CellActor_SetPosition(param1->unk_C4, &param1->unk_0C.unk_00);
     VEC_Subtract(&param1->unk_0C.unk_00, &param1->unk_0C.unk_0C, &v0);
     ov79_021D2268(&param1->unk_0C.unk_3C, &v0, FX32_CONST(24));
 
-    GraphicElementData_SetAffineOverwriteMode(param1->unk_C4, 1);
-    GraphicElementData_SetAffineScale(param1->unk_C4, &param1->unk_0C.unk_24);
+    CellActor_SetAffineOverwriteMode(param1->unk_C4, 1);
+    CellActor_SetAffineScale(param1->unk_C4, &param1->unk_0C.unk_24);
 
     ov79_021D29B4(param1, 0, ov79_021D2C50);
     ov79_021D29B4(param1, 1, ov79_021D2D7C);
@@ -775,9 +775,9 @@ static void ov79_021D2C50 (SysTask * param0, void * param1)
     VEC_Subtract(&v2->unk_24, &v2->unk_30, &v3);
 
     ov79_021D2268(&v2->unk_3C, &v3, FX32_CONST(v0->unk_04));
-    GraphicElementData_SetDrawFlag(v1->unk_C4, 1);
-    GraphicElementData_SetAffineOverwriteMode(v1->unk_C4, 1);
-    GraphicElementData_SetAffineScale(v1->unk_C4, &v2->unk_24);
+    CellActor_SetDrawFlag(v1->unk_C4, 1);
+    CellActor_SetAffineOverwriteMode(v1->unk_C4, 1);
+    CellActor_SetAffineScale(v1->unk_C4, &v2->unk_24);
     SysTask_SetCallback(param0, ov79_021D2CEC);
 }
 
@@ -791,13 +791,13 @@ static void ov79_021D2CEC (SysTask * param0, void * param1)
     v3.x = v2->unk_24.x - FX_Mul(v2->unk_3C.x, v0->unk_0C);
     v3.y = v2->unk_24.y - FX_Mul(v2->unk_3C.y, v0->unk_0C);
 
-    GraphicElementData_SetAffineScale(v1->unk_C4, &v3);
+    CellActor_SetAffineScale(v1->unk_C4, &v3);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;
 
     if (v0->unk_04 == 0) {
-        GraphicElementData_SetDrawFlag(v1->unk_C4, 0);
+        CellActor_SetDrawFlag(v1->unk_C4, 0);
         ov79_021D29E4(v0);
     }
 }
@@ -822,7 +822,7 @@ static void ov79_021D2D7C (SysTask * param0, void * param1)
     v2->unk_48 = FX_Div(FX32_CONST(180), FX32_CONST(v0->unk_04));
     v2->unk_4C = FX_Div(FX32_CONST(1), FX32_CONST(v0->unk_04));
 
-    GraphicElementData_SetPosition(v1->unk_C4, &v2->unk_00);
+    CellActor_SetPosition(v1->unk_C4, &v2->unk_00);
     SysTask_SetCallback(param0, ov79_021D2E74);
 }
 
@@ -842,7 +842,7 @@ static void ov79_021D2E74 (SysTask * param0, void * param1)
     v5 = FX32_ONE;
     v3.y += FX_Mul(v4, v5);
 
-    GraphicElementData_SetPosition(v1->unk_C4, &v3);
+    CellActor_SetPosition(v1->unk_C4, &v3);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;

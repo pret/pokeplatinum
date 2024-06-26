@@ -203,7 +203,7 @@ int ov94_0223BE2C (OverlayManager * param0, int * param1)
     ov94_0223C598(v0);
 
     if (v0->unk_BE4 != NULL) {
-        GraphicElementManager_Update(v0->unk_BE4);
+        CellActorCollection_Update(v0->unk_BE4);
     }
 
     return 0;
@@ -380,7 +380,7 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
 
 void ov94_0223C300 (CellActorInitParamsEx * param0, UnkStruct_ov94_0223FD4C * param1, CellActorResourceData * param2, int param3)
 {
-    param0->manager = param1->unk_BE4;
+    param0->collection = param1->unk_BE4;
     param0->resourceData = param2;
     param0->position.z = 0;
     param0->affineScale.x = FX32_ONE;
@@ -429,7 +429,7 @@ void ov94_0223C3F4 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)
     param0->unk_30 = param2;
 }
 
-void ov94_0223C3FC (GraphicElementData * param0, int param1, int param2)
+void ov94_0223C3FC (CellActor * param0, int param1, int param2)
 {
     VecFx32 v0;
 
@@ -437,7 +437,7 @@ void ov94_0223C3FC (GraphicElementData * param0, int param1, int param2)
     v0.y = FX32_CONST(param2);
     v0.z = 0;
 
-    GraphicElementData_SetPosition(param0, &v0);
+    CellActor_SetPosition(param0, &v0);
 }
 
 static void * ov94_0223C468 (DWCAllocType param0, u32 param1, int param2)
@@ -520,7 +520,7 @@ static void ov94_0223C508 (UnkStruct_ov94_0223FD4C * param0)
         sub_02009754(param0->unk_D74[v0]);
     }
 
-    GraphicElementManager_Delete(param0->unk_BE4);
+    CellActorCollection_Delete(param0->unk_BE4);
     param0->unk_BE4 = NULL;
 
     sub_0200A878();

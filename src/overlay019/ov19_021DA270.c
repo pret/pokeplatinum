@@ -21,7 +21,7 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
 
-BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, GraphicElementManager * param3, NARC * param4)
+BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, CellActorCollection * param3, NARC * param4)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dPaletteData * v1;
@@ -107,7 +107,7 @@ void ov19_021DA3F0 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 {
     while (param2--) {
         if (param1->unk_00 != NULL) {
-            GraphicElementData_Delete(param1->unk_00);
+            CellActor_Delete(param1->unk_00);
             param1->unk_00 = NULL;
         }
 
@@ -154,7 +154,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
 
     GF_ASSERT(param7->unk_00 != NULL);
 
-    GraphicElementData_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
+    CellActor_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
     ov19_021DA63C(param0, param7, ov19_021D5EC8(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(param1, v5);
 }
@@ -190,7 +190,7 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
 
     GF_ASSERT(param10->unk_00 != NULL);
 
-    GraphicElementData_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
+    CellActor_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
     ov19_021DA63C(param0, param10, ov19_021D5EC8(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(param1, v2);
 }
@@ -202,20 +202,20 @@ void ov19_021DA63C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
         if ((param2 & 1)) {
             if (param1->unk_30 == 0) {
-                GraphicElementData_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
+                CellActor_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
                 return;
             }
         }
 
         for (v0 = 0; v0 < 6; v0++) {
             if ((param2 & (2 << v0)) && ((param1->unk_2E & (1 << v0)) == 0)) {
-                GraphicElementData_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
+                CellActor_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
                 return;
             }
         }
     }
 
-    GraphicElementData_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_NORMAL);
+    CellActor_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_NORMAL);
 }
 
 void ov19_021DA68C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)
@@ -270,31 +270,31 @@ void ov19_021DA754 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
         NNS_G2dLoadImage1DMapping(v0, param2 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param1->unk_04));
 
-        GraphicElementData_SetImageProxy(param1->unk_00, &(param1->unk_04));
+        CellActor_SetImageProxy(param1->unk_00, &(param1->unk_04));
     }
 }
 
 void ov19_021DA7B8 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)
 {
     if ((param2 == 1) || (param2 == 2)) {
-        GraphicElementData_SetAffineOverwriteMode(param1->unk_00, 1);
+        CellActor_SetAffineOverwriteMode(param1->unk_00, 1);
     } else {
-        GraphicElementData_SetAffineOverwriteMode(param1->unk_00, 0);
+        CellActor_SetAffineOverwriteMode(param1->unk_00, 0);
     }
 
-    GraphicElementData_SetAnim(param1->unk_00, param2);
+    CellActor_SetAnim(param1->unk_00, param2);
 }
 
 BOOL ov19_021DA7E0 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1)
 {
-    return GraphicElementData_IsAnimated(param1->unk_00) == 0;
+    return CellActor_IsAnimated(param1->unk_00) == 0;
 }
 
 void ov19_021DA7F4 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, BOOL param2)
 {
     u32 v0 = ((param2) ? 6 : 2) + param1->unk_2C;
 
-    GraphicElementData_SetExplicitPalette(param1->unk_00, v0);
+    CellActor_SetExplicitPalette(param1->unk_00, v0);
 }
 
 NNSG2dCellDataBank * ov19_021DA80C (UnkStruct_ov19_021DA384 * param0)

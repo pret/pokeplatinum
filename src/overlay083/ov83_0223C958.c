@@ -134,7 +134,7 @@ void ov83_0223CBA4 (UnkStruct_ov83_0223B784 * param0)
 
     if (param0->unk_31C) {
         if (param0->unk_2C.unk_00) {
-            GraphicElementManager_Update(param0->unk_2C.unk_00);
+            CellActorCollection_Update(param0->unk_2C.unk_00);
         }
     }
 }

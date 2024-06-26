@@ -64,7 +64,7 @@ struct UnkStruct_ov19_021D61B0_t {
     SysTask * unk_00;
     SysTask * unk_04;
     SysTask * unk_08[4];
-    GraphicElementManager * unk_18;
+    CellActorCollection * unk_18;
     UnkStruct_0200C738 unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 * unk_1BC;
@@ -259,7 +259,7 @@ void ov19_021D64A0 (UnkStruct_ov19_021D61B0 * param0)
     ov19_021D7A74(&(param0->unk_494));
     ov19_021DA384(&(param0->unk_1C8));
 
-    GraphicElementManager_Delete(param0->unk_18);
+    CellActorCollection_Delete(param0->unk_18);
     sub_02019044(param0->unk_1C0, 3);
     sub_02019044(param0->unk_1C0, 2);
     sub_02019044(param0->unk_1C0, 1);
@@ -405,7 +405,7 @@ static void ov19_021D6664 (SysTask * param0, void * param1)
 
     ov19_021DAA80(&v0->unk_6604);
 
-    GraphicElementManager_Update(v0->unk_18);
+    CellActorCollection_Update(v0->unk_18);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -1938,12 +1938,12 @@ void ov19_021D783C (CellActorResourceData * param0, NNSG2dImageProxy * param1, N
     param0->isVRamTransfer = 0;
 }
 
-GraphicElementData * ov19_021D785C (GraphicElementManager * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
+CellActor * ov19_021D785C (CellActorCollection * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     CellActorInitParams v0;
-    GraphicElementData * v1;
+    CellActor * v1;
 
-    v0.manager = param0;
+    v0.collection = param0;
     v0.resourceData = param1;
     v0.position.x = param2 * FX32_ONE;
     v0.position.y = param3 * FX32_ONE;
@@ -1955,23 +1955,23 @@ GraphicElementData * ov19_021D785C (GraphicElementManager * param0, CellActorRes
     {
         OSIntrMode v2 = OS_DisableInterrupts();
 
-        v1 = GraphicElementManager_AddElement(&v0);
+        v1 = CellActorCollection_Add(&v0);
         OS_RestoreInterrupts(v2);
     }
 
     if (v1) {
-        GraphicElementData_SetAnimateFlag(v1, 1);
-        GraphicElementData_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
+        CellActor_SetAnimateFlag(v1, 1);
+        CellActor_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
     }
 
     return v1;
 }
 
-void ov19_021D78AC (GraphicElementData * param0, u32 param1)
+void ov19_021D78AC (CellActor * param0, u32 param1)
 {
     OSIntrMode v0 = OS_DisableInterrupts();
 
-    GraphicElementData_SetPriority(param0, param1);
+    CellActor_SetPriority(param0, param1);
     OS_RestoreInterrupts(v0);
 }
 
