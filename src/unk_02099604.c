@@ -8,7 +8,7 @@
 #include "overlay082/struct_ov82_0223B164.h"
 
 #include "heap.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "poffin.h"
 #include "field_system.h"
 #include "bag.h"

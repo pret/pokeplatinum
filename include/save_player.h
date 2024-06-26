@@ -1,17 +1,23 @@
-#ifndef POKEPLATINUM_SAVE_STATE_H
-#define POKEPLATINUM_SAVE_STATE_H
+#ifndef POKEPLATINUM_SAVE_PLAYER_H
+#define POKEPLATINUM_SAVE_PLAYER_H
 
-#include "struct_decls/struct_save_state_decl.h"
 #include "play_time.h"
 #include "trainer_info.h"
 #include "game_options.h"
 #include "savedata.h"
 
+typedef struct PlayerSave_t {
+    Options options;
+    TrainerInfo info;
+    u16 coins; 
+    PlayTime playTime;
+} PlayerSave;
+
 int Player_SaveSize(void);
-void Player_Init(SaveState * player);
+void Player_Init(PlayerSave * player);
 TrainerInfo * SaveData_GetTrainerInfo(SaveData * savedata);
 Options * SaveData_Options(SaveData * savedata);
 u16 * SaveData_GetCoins(SaveData * savedata);
 PlayTime * SaveData_GetPlayTime(SaveData * savedata);
 
-#endif // POKEPLATINUM_SAVE_STATE_H
+#endif // POKEPLATINUM_SAVE_PLAYER_H

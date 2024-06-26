@@ -16,7 +16,7 @@
 #include "functypes/funcptr_02084808.h"
 
 #include "heap.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "journal.h"
 #include "map_header.h"

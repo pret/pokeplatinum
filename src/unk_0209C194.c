@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0209C194_1.h"
 
 #include "heap.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "journal.h"
 #include "game_records.h"

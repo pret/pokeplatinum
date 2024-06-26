@@ -27,7 +27,7 @@
 #include "unk_02022844.h"
 #include "unk_0202419C.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_0202CC64.h"
 #include "communication_system.h"
 #include "unk_020366A0.h"

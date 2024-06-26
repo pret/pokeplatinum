@@ -79,7 +79,7 @@
 #include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "game_options.h"

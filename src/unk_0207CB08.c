@@ -14,7 +14,7 @@
 #include "string_template.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_020298BC.h"
 #include "coins.h"
 #include "unk_0202C9F4.h"

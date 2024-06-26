@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "camera.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_0202854C.h"
 #include "communication_information.h"
 #include "unk_02033200.h"

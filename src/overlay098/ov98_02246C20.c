@@ -19,7 +19,7 @@
 #include "heap.h"
 #include "error_handling.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_02038FFC.h"

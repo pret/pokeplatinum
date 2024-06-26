@@ -70,7 +70,7 @@
 #include "savedata/save_table.h"
 #include "savedata.h"
 #include "unk_02025CB0.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "savedata_misc.h"

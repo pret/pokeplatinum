@@ -12,7 +12,7 @@
 
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "communication_information.h"
 #include "communication_system.h"

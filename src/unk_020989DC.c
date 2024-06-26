@@ -20,7 +20,7 @@
 #include "overlay_manager.h"
 #include "string_template.h"
 #include "heap.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "poffin.h"
 #include "pokemon.h"

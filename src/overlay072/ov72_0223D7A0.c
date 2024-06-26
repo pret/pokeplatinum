@@ -56,7 +56,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "unk_0202C7FC.h"
 #include "game_records.h"

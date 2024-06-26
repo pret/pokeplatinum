@@ -26,7 +26,7 @@
 #include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_records.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"

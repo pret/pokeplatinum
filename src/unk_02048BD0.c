@@ -11,7 +11,7 @@
 #include "string_template.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202B37C.h"
 #include "unk_0203D1B8.h"

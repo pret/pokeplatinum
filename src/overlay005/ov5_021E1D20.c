@@ -23,7 +23,7 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "play_time.h"

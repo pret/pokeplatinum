@@ -57,7 +57,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "game_options.h"
 #include "unk_020302D0.h"

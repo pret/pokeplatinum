@@ -62,7 +62,7 @@
 #include "strbuf.h"
 #include "savedata/save_table.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "unk_0202EEC0.h"
 #include "pokemon.h"

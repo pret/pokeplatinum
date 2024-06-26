@@ -46,7 +46,7 @@
 #include "camera.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"

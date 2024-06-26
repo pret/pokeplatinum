@@ -13,7 +13,7 @@
 #include "unk_020021B0.h"
 #include "heap.h"
 #include "savedata/save_table.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202E2CC.h"
 #include "overlay006/ov6_02246444.h"

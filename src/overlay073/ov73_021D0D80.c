@@ -51,7 +51,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"
 #include "game_options.h"

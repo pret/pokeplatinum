@@ -19,7 +19,7 @@
 #include "struct_defs/pokemon_summary.h"
 
 #include "heap.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_0202854C.h"
 #include "unk_0202B37C.h"
 #include "unk_0202D05C.h"

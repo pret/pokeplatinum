@@ -57,7 +57,7 @@
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"

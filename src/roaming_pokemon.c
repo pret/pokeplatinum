@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "heap.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202D7A8.h"
 #include "roaming_pokemon.h"

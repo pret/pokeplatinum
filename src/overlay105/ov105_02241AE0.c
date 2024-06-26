@@ -54,7 +54,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02024220.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "game_options.h"
 #include "communication_information.h"

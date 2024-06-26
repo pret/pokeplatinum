@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "strbuf.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"
 #include "unk_02027F50.h"

@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202B37C.h"
 #include "game_records.h"

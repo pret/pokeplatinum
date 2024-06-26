@@ -9,7 +9,7 @@
 #include "field/field_system.h"
 
 #include "unk_0201D15C.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "vars_flags.h"

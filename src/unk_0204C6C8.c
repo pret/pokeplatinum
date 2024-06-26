@@ -9,7 +9,7 @@
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "save_state.h"
+#include "save_player.h"
 #include "coins.h"
 #include "field_system.h"
 #include "field_script_context.h"

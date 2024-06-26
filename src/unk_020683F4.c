@@ -28,7 +28,7 @@
 #include "unk_02018340.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "map_header.h"

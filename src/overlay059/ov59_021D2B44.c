@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "savedata/save_table.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "communication_information.h"
 #include "overlay059/ov59_021D2B44.h"

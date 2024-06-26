@@ -13,7 +13,7 @@
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "savedata.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_02028124.h"
 #include "pokemon.h"

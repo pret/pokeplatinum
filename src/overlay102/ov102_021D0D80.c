@@ -29,7 +29,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "overlay102/ov102_021D0D80.h"
 
 typedef struct {

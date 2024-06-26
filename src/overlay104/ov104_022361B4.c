@@ -30,7 +30,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_records.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"

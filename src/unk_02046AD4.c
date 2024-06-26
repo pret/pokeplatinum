@@ -5,7 +5,7 @@
 
 #include "field_script_context.h"
 
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0203D1B8.h"
 #include "unk_02046AD4.h"

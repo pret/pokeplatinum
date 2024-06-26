@@ -27,7 +27,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02024220.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "unk_0202F180.h"

@@ -15,7 +15,7 @@
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_02028124.h"
 #include "game_records.h"
 #include "pokemon.h"

@@ -11,7 +11,7 @@
 #include "message.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202F180.h"
 #include "map_header.h"

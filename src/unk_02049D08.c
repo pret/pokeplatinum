@@ -25,7 +25,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "savedata/save_table.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "journal.h"
 #include "game_records.h"

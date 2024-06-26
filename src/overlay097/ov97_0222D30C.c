@@ -58,7 +58,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "savedata/save_table.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"

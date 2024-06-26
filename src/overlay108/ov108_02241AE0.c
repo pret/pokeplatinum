@@ -51,7 +51,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "communication_system.h"

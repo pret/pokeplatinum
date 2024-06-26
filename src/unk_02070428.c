@@ -9,7 +9,7 @@
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 
-#include "save_state.h"
+#include "save_player.h"
 #include "journal.h"
 #include "unk_0202D7A8.h"
 #include "map_header.h"

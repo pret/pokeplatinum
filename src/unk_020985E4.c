@@ -10,7 +10,7 @@
 
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "field_system.h"
 #include "unk_020508D4.h"

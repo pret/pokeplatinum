@@ -17,7 +17,7 @@
 #include "overlay005/struct_ov5_021D219C.h"
 
 #include "unk_02005474.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_020261E4.h"
 #include "game_records.h"

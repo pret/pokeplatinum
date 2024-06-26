@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "savedata.h"
 #include "unk_02025CB0.h"
-#include "save_state.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"
 #include "unk_0202C858.h"
