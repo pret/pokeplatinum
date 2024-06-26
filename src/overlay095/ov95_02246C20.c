@@ -265,7 +265,7 @@ static void ov95_02246F0C (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02247628 * v0 = param1;
 
-    sub_020219F8(v0->unk_18);
+    GraphicElementManager_Update(v0->unk_18);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

@@ -613,7 +613,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 
     param0->unk_00[0] = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[0], 2);
+    GraphicElementData_SetAnim(param0->unk_00[0], 2);
 
     if (param2->unk_1C->unk_04->unk_1740 == 1) {
         GraphicElementData_SetDrawFlag(param0->unk_00[0], 0);
@@ -625,7 +625,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 
     param0->unk_00[1] = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[1], 0);
+    GraphicElementData_SetAnim(param0->unk_00[1], 0);
 
     if ((ov21_021D36A4(param2->unk_1C->unk_04, 1) == 0) || (param2->unk_1C->unk_04->unk_1740 == 1)) {
         GraphicElementData_SetDrawFlag(param0->unk_00[1], 0);
@@ -637,7 +637,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 
     param0->unk_00[2] = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[2], 1);
+    GraphicElementData_SetAnim(param0->unk_00[2], 1);
 
     v1.position.x = 124 << FX32_SHIFT;
     v1.position.y = 64 << FX32_SHIFT;
@@ -645,7 +645,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 
     param0->unk_18 = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_18, 3);
+    GraphicElementData_SetAnim(param0->unk_18, 3);
 
     v1.position.x = 124 << FX32_SHIFT;
     v1.position.y = 146 << FX32_SHIFT;
@@ -653,7 +653,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 
     param0->unk_1C = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_1C, 4);
+    GraphicElementData_SetAnim(param0->unk_1C, 4);
 
     v1.position.x = 124 << FX32_SHIFT;
     v1.position.y = 8 << FX32_SHIFT;
@@ -661,7 +661,7 @@ static void ov21_021D7E80 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
 
     param0->unk_20 = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_20, 5);
+    GraphicElementData_SetAnim(param0->unk_20, 5);
 }
 
 static void ov21_021D7FEC (UnkStruct_ov21_021D7C64 * param0)

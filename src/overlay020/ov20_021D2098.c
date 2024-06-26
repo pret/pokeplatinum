@@ -173,7 +173,7 @@ static void ov20_021D217C (SysTask * param0, void * param1)
 {
     UnkStruct_ov20_021D2128 * v0 = param1;
 
-    sub_020219F8(v0->unk_24);
+    GraphicElementManager_Update(v0->unk_24);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

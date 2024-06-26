@@ -362,7 +362,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
         break;
     }
 
-    sub_020219F8(param0->unk_1C);
+    GraphicElementManager_Update(param0->unk_1C);
 
     return 0;
 }
@@ -658,7 +658,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
         v3.position.y = v4[v0] * FX32_ONE;
         param0->unk_158[v0] = GraphicElementManager_AddElement(&v3);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_158[v0], v0);
+        GraphicElementData_SetAnim(param0->unk_158[v0], v0);
         GraphicElementData_SetAnimateFlag(param0->unk_158[v0], 1);
     }
 }

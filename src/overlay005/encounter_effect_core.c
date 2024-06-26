@@ -774,9 +774,9 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
 
         EncounterEffect_ScreenSlice(encEffect, trainerEffect->screenSliceEfx, 96, 6, 0, (255 * FX32_ONE), (FX32_ONE * 10));
 
-        SpriteActor_SetSpriteAnimActive(
+        GraphicElementData_SetAnim(
             trainerEffect->pokeballSprites[0], 1);
-        SpriteActor_SetSpriteAnimActive(
+        GraphicElementData_SetAnim(
             trainerEffect->pokeballSprites[1], 2);
 
         QuadraticInterpolationTaskFX32_Init(&trainerEffect->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
@@ -836,7 +836,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
     }
 
     if (encEffect->state != 7) {
-        sub_020219F8(trainerEffect->unk_48.unk_00);
+        GraphicElementManager_Update(trainerEffect->unk_48.unk_00);
     }
 }
 
@@ -980,7 +980,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
     }
 
     if (encEffect->state != 7) {
-        sub_020219F8(v1->unk_2C.unk_00);
+        GraphicElementManager_Update(v1->unk_2C.unk_00);
     }
 }
 
@@ -1052,7 +1052,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
 
             GraphicElementData_SetAffineOverwriteMode(
                 v1->unk_224[v5], 2);
-            sub_02021FE0(v1->unk_224[v5], GX_OAM_MODE_XLU);
+            GraphicElementData_SetExplicitOAMMode(v1->unk_224[v5], GX_OAM_MODE_XLU);
         }
 
         LinearInterpolationTaskS32_Init(&v1->unk_2C, 0, 0xffff, 8);
@@ -1079,7 +1079,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
             G2_BlendNone();
 
             for (v5 = 0; v5 < 2; v5++) {
-                sub_02021FE0(v1->unk_224[v5], GX_OAM_MODE_NORMAL);
+                GraphicElementData_SetExplicitOAMMode(v1->unk_224[v5], GX_OAM_MODE_NORMAL);
             }
 
             v0->state++;
@@ -1152,7 +1152,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_50.unk_00);
+        GraphicElementManager_Update(v1->unk_50.unk_00);
     }
 }
 
@@ -1365,7 +1365,7 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
     sub_0201A9A4(v1->unk_270);
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_00.unk_00);
+        GraphicElementManager_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -1490,7 +1490,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_5C.unk_00);
+        GraphicElementManager_Update(v1->unk_5C.unk_00);
     }
 }
 
@@ -1703,7 +1703,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
     }
 
     if (v0->state != 9) {
-        sub_020219F8(v1->unk_00.unk_00);
+        GraphicElementManager_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -1743,7 +1743,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
         v1->unk_200 = ov5_021DE62C(
             &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
         GraphicElementData_SetDrawFlag(v1->unk_200, 0);
-        sub_02021FE0(v1->unk_200, GX_OAM_MODE_XLU);
+        GraphicElementData_SetExplicitOAMMode(v1->unk_200, GX_OAM_MODE_XLU);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->state++;
@@ -1777,7 +1777,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
 
         if (v2 == 1) {
             G2_BlendNone();
-            sub_02021FE0(v1->unk_200, GX_OAM_MODE_NORMAL);
+            GraphicElementData_SetExplicitOAMMode(v1->unk_200, GX_OAM_MODE_NORMAL);
             v0->state++;
         }
 
@@ -1832,7 +1832,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_2C.unk_00);
+        GraphicElementManager_Update(v1->unk_2C.unk_00);
     }
 }
 
@@ -1951,7 +1951,7 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_00.unk_00);
+        GraphicElementManager_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -2141,7 +2141,7 @@ void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_00.unk_00);
+        GraphicElementManager_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -2165,7 +2165,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
         v1->unk_1DC = ov5_021DE62C(
             &v1->unk_08, &v1->unk_1A8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
         GraphicElementData_SetDrawFlag(v1->unk_1DC, 0);
-        sub_02021FE0(v1->unk_1DC, GX_OAM_MODE_XLU);
+        GraphicElementData_SetExplicitOAMMode(v1->unk_1DC, GX_OAM_MODE_XLU);
         GraphicElementData_SetExplicitPriority(v1->unk_1DC, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -2212,7 +2212,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
 
         if (v2 == 1) {
             G2_BlendNone();
-            sub_02021FE0(v1->unk_1DC, GX_OAM_MODE_NORMAL);
+            GraphicElementData_SetExplicitOAMMode(v1->unk_1DC, GX_OAM_MODE_NORMAL);
             v0->state++;
             v1->unk_21C = 16;
         }
@@ -2269,7 +2269,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_08.unk_00);
+        GraphicElementManager_Update(v1->unk_08.unk_00);
     }
 }
 
@@ -2843,7 +2843,7 @@ static void ov5_021E5128 (UnkStruct_ov5_021E5128 * param0, UnkStruct_ov5_021DE47
 
         if (v0 != 3) {
             GraphicElementData_SetAffineOverwriteMode(param0->unk_04[v0], 2);
-            SpriteActor_SetSpriteAnimActive(param0->unk_04[v0], 1);
+            GraphicElementData_SetAnim(param0->unk_04[v0], 1);
 
             LinearInterpolationTaskFX32_Init(&param0->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
@@ -3142,7 +3142,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
     }
 
     if (encEffect->state != 15) {
-        sub_020219F8(v0->unk_44.unk_00);
+        GraphicElementManager_Update(v0->unk_44.unk_00);
     }
 
     return 0;
@@ -3292,7 +3292,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             v0->unk_2CC[v5] = ov5_021DE62C(
                 &v0->unk_5C, v7, 0, 0, 0, 0);
             GraphicElementData_SetDrawFlag(v0->unk_2CC[v5], 0);
-            SpriteActor_SetSpriteAnimActive(v0->unk_2CC[v5], v8);
+            GraphicElementData_SetAnim(v0->unk_2CC[v5], v8);
             GraphicElementData_SetExplicitPriority(v0->unk_2CC[v5], 1);
         }
 
@@ -3602,7 +3602,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
     }
 
     if (encEffect->state != 14) {
-        sub_020219F8(v0->unk_5C.unk_00);
+        GraphicElementManager_Update(v0->unk_5C.unk_00);
 
         if (4 < encEffect->state) {
             sub_020241B4();

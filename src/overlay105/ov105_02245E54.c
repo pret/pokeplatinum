@@ -145,7 +145,7 @@ int ov105_02245F8C (UnkStruct_ov105_02245EA8 * param0)
 void ov105_02245F90 (UnkStruct_ov105_02245EA8 * param0, u32 param1)
 {
     GraphicElementData_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    SpriteActor_SetSpriteAnimActive(param0->unk_0C, param1);
+    GraphicElementData_SetAnim(param0->unk_0C, param1);
 
     return;
 }

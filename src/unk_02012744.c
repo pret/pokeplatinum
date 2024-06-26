@@ -332,7 +332,7 @@ void sub_02012AF0 (FontOAM * param0, GXOamMode param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021FE0(param0->unk_00[v0].unk_00, param1);
+        GraphicElementData_SetExplicitOAMMode(param0->unk_00[v0].unk_00, param1);
     }
 }
 

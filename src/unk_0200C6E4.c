@@ -157,7 +157,7 @@ void sub_0200C7E4 (GraphicElementData * param0)
 void sub_0200C7EC (SpriteGfxHandler * param0)
 {
     GF_ASSERT(param0 != NULL);
-    sub_020219F8(param0->unk_00);
+    GraphicElementManager_Update(param0->unk_00);
 }
 
 void sub_0200C800 (void)
@@ -324,7 +324,7 @@ GraphicElementData * sub_0200CA44 (SpriteRenderer * param0, SpriteGfxHandler * p
     v0 = GraphicElementManager_AddElementEx(&v1);
 
     if (v0 != NULL) {
-        SpriteActor_SetSpriteAnimActive(v0, param6);
+        GraphicElementData_SetAnim(v0, param6);
         GraphicElementData_SetExplicitPalette(v0, param8);
     }
 
@@ -580,7 +580,7 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
     if (v2->unk_00 != NULL) {
         v1 = GraphicElementData_GetExplicitPalette(v2->unk_00);
 
-        SpriteActor_SetSpriteAnimActive(v2->unk_00, param2->animIdx);
+        GraphicElementData_SetAnim(v2->unk_00, param2->animIdx);
         GraphicElementData_SetExplicitPalette(v2->unk_00, v1 + param2->plttIdx);
     } else {
         GF_ASSERT(FALSE);
@@ -810,22 +810,22 @@ void sub_0200D34C (CellActorData * param0, fx32 param1)
 
 u32 sub_0200D358 (CellActorData * param0)
 {
-    return GraphicElementData_GetAnimSequenceCount(param0->unk_00);
+    return GraphicElementData_GetAnimCount(param0->unk_00);
 }
 
 void sub_0200D364 (CellActorData * param0, u32 param1)
 {
-    SpriteActor_SetSpriteAnimActive(param0->unk_00, param1);
+    GraphicElementData_SetAnim(param0->unk_00, param1);
 }
 
 void sub_0200D370 (CellActorData * param0, u32 param1)
 {
-    sub_02021DCC(param0->unk_00, param1);
+    GraphicElementData_SetAnimNoRestart(param0->unk_00, param1);
 }
 
 u32 sub_0200D37C (CellActorData * param0)
 {
-    return sub_02021E24(param0->unk_00);
+    return GraphicElementData_GetActiveAnim(param0->unk_00);
 }
 
 void sub_0200D388 (GraphicElementData * param0, int param1)
@@ -850,7 +850,7 @@ void sub_0200D3A4 (CellActorData * param0, fx32 param1)
 
 BOOL sub_0200D3B0 (GraphicElementData * param0)
 {
-    return sub_02021FD0(param0);
+    return GraphicElementData_IsAnimated(param0);
 }
 
 BOOL sub_0200D3B8 (CellActorData * param0)
@@ -870,7 +870,7 @@ void sub_0200D3CC (CellActorData * param0, u16 param1)
 
 u16 sub_0200D3D8 (GraphicElementData * param0)
 {
-    return sub_02021E74(param0);
+    return GraphicElementData_GetAnimFrame(param0);
 }
 
 u16 sub_0200D3E0 (CellActorData * param0)
@@ -1231,7 +1231,7 @@ void sub_0200D7FC (CellActorData * param0, BOOL param1)
 
 void sub_0200D808 (GraphicElementData * param0, GXOamMode param1)
 {
-    sub_02021FE0(param0, param1);
+    GraphicElementData_SetExplicitOAMMode(param0, param1);
 }
 
 void SpriteActor_SetOAMMode (CellActorData * param0, GXOamMode param1)
@@ -1241,7 +1241,7 @@ void SpriteActor_SetOAMMode (CellActorData * param0, GXOamMode param1)
 
 u32 sub_0200D81C (CellActorData * param0)
 {
-    return sub_020220F4(param0->unk_00);
+    return GraphicElementData_GetUserAttrForCurrentAnimFrame(param0->unk_00);
 }
 
 BOOL sub_0200D828 (SpriteRenderer * param0, SpriteGfxHandler * param1, int param2, int param3, BOOL param4, int param5, int param6)

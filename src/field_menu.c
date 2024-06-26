@@ -513,7 +513,7 @@ static BOOL sub_0203AC44 (TaskManager * taskMan)
 
     if (menu->unk_20 != NULL) {
         sub_0203B520(menu);
-        sub_020219F8(menu->unk_38.unk_00);
+        GraphicElementManager_Update(menu->unk_38.unk_00);
     }
 
     return FALSE;
@@ -865,9 +865,9 @@ static void sub_0203B558 (GraphicElementData * graphicElement, u32 param1)
 
 static void sub_0203B588 (GraphicElementData * graphicElement, u16 param1, u16 param2)
 {
-    u32 v0 = sub_02021E24(graphicElement);
+    u32 v0 = GraphicElementData_GetActiveAnim(graphicElement);
 
-    SpriteActor_SetSpriteAnimActive(graphicElement, (v0 / 3) * 3 + param1);
+    GraphicElementData_SetAnim(graphicElement, (v0 / 3) * 3 + param1);
     GraphicElementData_SetExplicitPaletteWithOffset(graphicElement, param2);
 }
 
@@ -879,11 +879,11 @@ static void sub_0203B5B4 (FieldMenu * menu, u16 param1, u16 param2)
 
 static void sub_0203B5E8 (GraphicElementData * graphicElement)
 {
-    if ((sub_02021E24(graphicElement) % 3) != 1) {
+    if ((GraphicElementData_GetActiveAnim(graphicElement) % 3) != 1) {
         return;
     }
 
-    if (sub_02021FD0(graphicElement) == 0) {
+    if (GraphicElementData_IsAnimated(graphicElement) == 0) {
         sub_0203B588(graphicElement, 2, 1);
     }
 }

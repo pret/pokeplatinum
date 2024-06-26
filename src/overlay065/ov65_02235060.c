@@ -219,7 +219,7 @@ u32 ov65_02235198 (UnkStruct_ov65_02235130 * param0)
 void ov65_02235244 (UnkStruct_ov65_02235130 * param0)
 {
     if (param0->unk_00) {
-        sub_020219F8(param0->unk_14.unk_00);
+        GraphicElementManager_Update(param0->unk_14.unk_00);
     }
 }
 
@@ -697,7 +697,7 @@ static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
     GraphicElementData_SetDrawFlag(param0->unk_1A0.unk_34, 0);
     GraphicElementData_SetDrawFlag(param0->unk_1A0.unk_38, 0);
     GraphicElementData_SetAnimateFlag(param0->unk_1A0.unk_34, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_1A0.unk_38, 1);
+    GraphicElementData_SetAnim(param0->unk_1A0.unk_38, 1);
 }
 
 static void ov65_02235B14 (UnkStruct_ov65_022358CC * param0)

@@ -606,7 +606,7 @@ static void ov86_0223B6CC (SysTask * param0, void * param1)
     NNS_G3dGePopMtx(1);
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
-    sub_020219F8(v0->unk_24);
+    GraphicElementManager_Update(v0->unk_24);
     sub_0200A858();
 }
 

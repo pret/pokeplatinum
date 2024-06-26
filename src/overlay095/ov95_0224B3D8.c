@@ -335,7 +335,7 @@ static int ov95_0224B6F0 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_40[0], 1);
+            GraphicElementData_SetAnim(param0->unk_40[0], 1);
             GraphicElementData_SetDrawFlag(param0->unk_40[0], 1);
             return 1;
         }
@@ -353,7 +353,7 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
         (*param1)++;
     case 1:
         if (param0->unk_80 == NULL) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_40[1], 2);
+            GraphicElementData_SetAnim(param0->unk_40[1], 2);
             GraphicElementData_SetDrawFlag(param0->unk_40[1], 1);
             ov95_022479A8(param0->unk_78, 0);
             param0->unk_08 = 0;

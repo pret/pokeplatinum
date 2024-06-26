@@ -259,15 +259,15 @@ void sub_0208ECF4 (PokemonSummaryApp * param0)
             continue;
         }
 
-        v4 = sub_02021E24(v0[v5]);
+        v4 = GraphicElementData_GetActiveAnim(v0[v5]);
 
         if (param0->page == v5) {
             if (v4 < 8) {
-                SpriteActor_SetSpriteAnimActive(v0[v5], v4 + 8);
+                GraphicElementData_SetAnim(v0[v5], v4 + 8);
             }
         } else {
             if (v4 >= 8) {
-                SpriteActor_SetSpriteAnimActive(v0[v5], v4 - 8);
+                GraphicElementData_SetAnim(v0[v5], v4 - 8);
             }
         }
 
@@ -332,7 +332,7 @@ void sub_0208EE9C (PokemonSummaryApp * param0)
     } else if (param0->monData.status != 0) {
         GraphicElementData_SetDrawFlag(param0->unk_41C[76], 0);
         GraphicElementData_SetDrawFlag(param0->unk_41C[20], 1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_41C[20], param0->monData.status);
+        GraphicElementData_SetAnim(param0->unk_41C[20], param0->monData.status);
     } else {
         GraphicElementData_SetDrawFlag(param0->unk_41C[76], 1);
         GraphicElementData_SetDrawFlag(param0->unk_41C[20], 0);
@@ -531,7 +531,7 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
         if (param0->sheenCount == 0) {
             GraphicElementData_SetDrawFlag(param0->unk_41C[29 + param0->sheenPos], 1);
             SpriteActor_SetAnimFrame(param0->unk_41C[29 + param0->sheenPos], 0);
-            SpriteActor_SetSpriteAnimActive(param0->unk_41C[29 + param0->sheenPos], 0);
+            GraphicElementData_SetAnim(param0->unk_41C[29 + param0->sheenPos], 0);
 
             param0->sheenPos++;
 
@@ -557,7 +557,7 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
             for (v0 = 29; v0 < 29 + param0->sheenMax; v0++) {
                 GraphicElementData_SetDrawFlag(param0->unk_41C[v0], 1);
                 SpriteActor_SetAnimFrame(param0->unk_41C[v0], 0);
-                SpriteActor_SetSpriteAnimActive(param0->unk_41C[v0], 0);
+                GraphicElementData_SetAnim(param0->unk_41C[v0], 0);
             }
 
             param0->sheenCount = 0;
@@ -582,7 +582,7 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
 
         GraphicElementData_UpdateAnim(param0->unk_41C[v0], FX32_ONE);
 
-        if (sub_02021E74(param0->unk_41C[v0]) == 6) {
+        if (GraphicElementData_GetAnimFrame(param0->unk_41C[v0]) == 6) {
             GraphicElementData_SetDrawFlag(param0->unk_41C[v0], 0);
         }
     }
@@ -594,9 +594,9 @@ void sub_0208F574 (PokemonSummaryApp * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->monData.markings & (1 << v0)) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 1);
+            GraphicElementData_SetAnim(param0->unk_41C[23 + v0], 1);
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_41C[23 + v0], 0);
+            GraphicElementData_SetAnim(param0->unk_41C[23 + v0], 0);
         }
     }
 
@@ -619,7 +619,7 @@ void sub_0208F600 (PokemonSummaryApp * param0)
 
     GraphicElementData_SetDrawFlag(param0->unk_41C[41], 1);
     SpriteActor_SetAnimFrame(param0->unk_41C[41], 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_41C[41], 0);
+    GraphicElementData_SetAnim(param0->unk_41C[41], 0);
 
     sub_02092368(param0, &v0, &v1);
 
@@ -632,7 +632,7 @@ void sub_0208F600 (PokemonSummaryApp * param0)
 
 void sub_0208F684 (PokemonSummaryApp * param0)
 {
-    if (sub_02021E74(param0->unk_41C[41]) == 2) {
+    if (GraphicElementData_GetAnimFrame(param0->unk_41C[41]) == 2) {
         GraphicElementData_SetDrawFlag(param0->unk_41C[41], 0);
     }
 }
@@ -758,7 +758,7 @@ void sub_0208FA04 (PokemonSummaryApp * param0)
         }
     }
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_41C[70], 0);
+    GraphicElementData_SetAnim(param0->unk_41C[70], 0);
 }
 
 void sub_0208FAA4 (PokemonSummaryApp * param0)
@@ -856,7 +856,7 @@ static void sub_0208FC30 (GraphicElementData * param0, u32 param1, u32 param2, c
 
     SpriteActor_SetPositionXY(param0, v0, v1);
     SpriteActor_SetAnimFrame(param0, 0);
-    SpriteActor_SetSpriteAnimActive(param0, 0);
+    GraphicElementData_SetAnim(param0, 0);
 }
 
 void sub_0208FCD4 (PokemonSummaryApp * param0)

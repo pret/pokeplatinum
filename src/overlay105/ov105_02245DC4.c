@@ -59,5 +59,5 @@ void ov105_02245E30 (UnkStruct_ov105_02245E1C * param0, int param1, int param2)
 
 BOOL ov105_02245E48 (UnkStruct_ov105_02245E1C * param0)
 {
-    return sub_02021FD0(param0->unk_08);
+    return GraphicElementData_IsAnimated(param0->unk_08);
 }

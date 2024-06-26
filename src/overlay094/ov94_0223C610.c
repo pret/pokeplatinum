@@ -316,7 +316,7 @@ static void ov94_0223C950 (UnkStruct_ov94_0223FD4C * param0)
     param0->unk_E20 = GraphicElementManager_AddElementEx(&v0);
 
     GraphicElementData_SetAnimateFlag(param0->unk_E20, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_E20, 1);
+    GraphicElementData_SetAnim(param0->unk_E20, 1);
 }
 
 static void ov94_0223C9B0 (UnkStruct_ov94_0223FD4C * param0)

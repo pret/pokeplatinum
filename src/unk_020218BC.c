@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "nitro/gx/g2_oam.h"
 #include "nnsys/g2d/g2d_Image.h"
 #include "nnsys/g2d/g2d_RendererCore.h"
 #include "struct_defs/struct_020095C4.h"
@@ -13,6 +14,7 @@
 #include "unk_020218BC.h"
 
 #define GRAPHIC_ELEMENT_ANIM_DATA_SIZE 29
+#define MAX_SIMULTANEOUS_SPRITES 128
 
 enum CellType {
     CELL_TYPE_NONE = 0,
@@ -64,7 +66,7 @@ typedef struct GraphicElementData {
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
     u32 type;
-    u16 unk_F0;
+    u16 activeAnimID;
     u8 explicitPriority;
     u16 priority;
     NNS_G2D_VRAM_TYPE vramType;
@@ -199,7 +201,7 @@ BOOL GraphicElementManager_DeleteAll(GraphicElementManager *gfxElemMgr)
     return TRUE;
 }
 
-void sub_020219F8 (const GraphicElementManager *gfxElemMgr)
+void GraphicElementManager_Update(const GraphicElementManager *gfxElemMgr)
 {
     static const GraphicElementDrawFunc sDrawFuncs[] = {
         GraphicElementManager_DrawElement_Stub,
@@ -256,7 +258,7 @@ GraphicElementData *GraphicElementManager_AddElementEx(const CellActorInitParams
     }
 
     elem->manager = params->manager;
-    elem->unk_F0 = 0;
+    elem->activeAnimID = 0;
     elem->position = params->position;
     elem->affineScale = params->affineScale;
     elem->affineZRotation = params->affineZRotation;
@@ -315,37 +317,37 @@ GraphicElementData * GraphicElementManager_AddElement(const CellActorInitParams 
 
 void GraphicElementData_Delete(GraphicElementData *gfxElem)
 {
-    if (gfxElem->type != CELL_TYPE_NONE) {
-        CellAnimationData *cellAnim = (CellAnimationData *)&gfxElem->animData;
-
-        if (gfxElem->prev != NULL) {
-            GraphicElementManager_RemoveElement(gfxElem);
-        }
-
-        if (gfxElem->type == CELL_TYPE_VRAM_CELL) {
-            VRamCellAnimationData *vramCellAnim = (VRamCellAnimationData *)&gfxElem->animData;
-
-            if (NNS_G2dGetImageLocation(&gfxElem->imageProxy, gfxElem->vramType) != NNS_G2D_VRAM_ADDR_NONE) {
-                NNS_G2dFreeCellTransferStateHandle(vramCellAnim->transferHandle);
-            }
-        }
-
-        if (gfxElem->type == CELL_TYPE_MULTI_CELL) {
-            MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&gfxElem->animData;
-
-            if (multiCellAnim->nodes != NULL) {
-                Heap_FreeToHeap(multiCellAnim->nodes);
-            }
-
-            if (multiCellAnim->cellAnims != NULL) {
-                Heap_FreeToHeap(multiCellAnim->cellAnims);
-            }
-        }
-
-        gfxElem->type = CELL_TYPE_NONE;
-
-        GraphicElementManager_FreeElement(gfxElem->manager, gfxElem);
+    if (gfxElem->type == CELL_TYPE_NONE) {
+        return;
     }
+
+    if (gfxElem->prev != NULL) {
+        GraphicElementManager_RemoveElement(gfxElem);
+    }
+
+    if (gfxElem->type == CELL_TYPE_VRAM_CELL) {
+        VRamCellAnimationData *vramCellAnim = (VRamCellAnimationData *)&gfxElem->animData;
+
+        if (NNS_G2dGetImageLocation(&gfxElem->imageProxy, gfxElem->vramType) != NNS_G2D_VRAM_ADDR_NONE) {
+            NNS_G2dFreeCellTransferStateHandle(vramCellAnim->transferHandle);
+        }
+    }
+
+    if (gfxElem->type == CELL_TYPE_MULTI_CELL) {
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&gfxElem->animData;
+
+        if (multiCellAnim->nodes != NULL) {
+            Heap_FreeToHeap(multiCellAnim->nodes);
+        }
+
+        if (multiCellAnim->cellAnims != NULL) {
+            Heap_FreeToHeap(multiCellAnim->cellAnims);
+        }
+    }
+
+    gfxElem->type = CELL_TYPE_NONE;
+
+    GraphicElementManager_FreeElement(gfxElem->manager, gfxElem);
 }
 
 void GraphicElementData_SetPosition(GraphicElementData *elem, const VecFx32 *position)
@@ -440,7 +442,7 @@ BOOL GraphicElementData_GetAnimateFlag(const GraphicElementData *elem)
     return elem->animate;
 }
 
-u32 GraphicElementData_GetAnimSequenceCount(const GraphicElementData *elem)
+u32 GraphicElementData_GetAnimCount(const GraphicElementData *elem)
 {
     GF_ASSERT(elem);
 
@@ -453,55 +455,53 @@ u32 GraphicElementData_GetAnimSequenceCount(const GraphicElementData *elem)
     }
 }
 
-void SpriteActor_SetSpriteAnimActive (GraphicElementData * param0, u32 param1)
+void GraphicElementData_SetAnim(GraphicElementData *elem, u32 animID)
 {
-    const NNSG2dAnimSequence * v0;
+    GF_ASSERT(GraphicElementData_GetAnimCount(elem) > animID);
+    elem->activeAnimID = animID;
 
-    GF_ASSERT(GraphicElementData_GetAnimSequenceCount(param0) > param1);
-    param0->unk_F0 = param1;
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
 
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
-
-        v0 = NNS_G2dGetAnimSequenceByIdx(v1->animBank, param1);
-        NNS_G2dSetCellAnimationSequence(&v1->anim, v0);
-        NNS_G2dStartAnimCtrl(&v1->anim.animCtrl);
+        const NNSG2dAnimSequence *animSequence = NNS_G2dGetAnimSequenceByIdx(cellAnim->animBank, animID);
+        NNS_G2dSetCellAnimationSequence(&cellAnim->anim, animSequence);
+        NNS_G2dStartAnimCtrl(&cellAnim->anim.animCtrl);
     } else {
-        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->animData;
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
 
-        v0 = NNS_G2dGetAnimSequenceByIdx(v2->animBank, param1);
-        NNS_G2dSetAnimSequenceToMCAnimation(&v2->anim, v0);
-        NNS_G2dStartAnimCtrl(&v2->anim.animCtrl);
+        const NNSG2dAnimSequence *animSequence = NNS_G2dGetAnimSequenceByIdx(multiCellAnim->animBank, animID);
+        NNS_G2dSetAnimSequenceToMCAnimation(&multiCellAnim->anim, animSequence);
+        NNS_G2dStartAnimCtrl(&multiCellAnim->anim.animCtrl);
     }
 }
 
-void sub_02021DCC (GraphicElementData * param0, u32 param1)
+void GraphicElementData_SetAnimNoRestart(GraphicElementData *elem, u32 animID)
 {
-    if (param0->unk_F0 != param1) {
-        SpriteActor_SetSpriteAnimActive(param0, param1);
+    if (elem->activeAnimID != animID) {
+        GraphicElementData_SetAnim(elem, animID);
     }
 }
 
-void sub_02021DE0 (GraphicElementData * param0)
+void GraphicElementData_RestartAnim(GraphicElementData *elem)
 {
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
 
-        NNS_G2dResetAnimCtrlState(&v0->anim.animCtrl);
-        NNS_G2dStartAnimCtrl(&v0->anim.animCtrl);
-        SpriteActor_SetAnimFrame(param0, 0);
+        NNS_G2dResetAnimCtrlState(&cellAnim->anim.animCtrl);
+        NNS_G2dStartAnimCtrl(&cellAnim->anim.animCtrl);
+        SpriteActor_SetAnimFrame(elem, 0);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
 
-        NNS_G2dResetAnimCtrlState(&v1->anim.animCtrl);
-        NNS_G2dStartAnimCtrl(&v1->anim.animCtrl);
-        SpriteActor_SetAnimFrame(param0, 0);
+        NNS_G2dResetAnimCtrlState(&multiCellAnim->anim.animCtrl);
+        NNS_G2dStartAnimCtrl(&multiCellAnim->anim.animCtrl);
+        SpriteActor_SetAnimFrame(elem, 0);
     }
 }
 
-u32 sub_02021E24 (const GraphicElementData * param0)
+u32 GraphicElementData_GetActiveAnim(const GraphicElementData *elem)
 {
-    return param0->unk_F0;
+    return elem->activeAnimID;
 }
 
 void GraphicElementData_UpdateAnim(GraphicElementData *elem, fx32 frames)
@@ -515,30 +515,30 @@ void GraphicElementData_UpdateAnim(GraphicElementData *elem, fx32 frames)
     }
 }
 
-void SpriteActor_SetAnimFrame (GraphicElementData * param0, u16 param1)
+void SpriteActor_SetAnimFrame(GraphicElementData *elem, u16 frame)
 {
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
-        NNS_G2dSetCellAnimationCurrentFrame(&v0->anim, param1);
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+        NNS_G2dSetCellAnimationCurrentFrame(&cellAnim->anim, frame);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
-        NNS_G2dSetMCAnimationCurrentFrame(&v1->anim, param1);
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+        NNS_G2dSetMCAnimationCurrentFrame(&multiCellAnim->anim, frame);
     }
 }
 
-u16 sub_02021E74 (const GraphicElementData * param0)
+u16 GraphicElementData_GetAnimFrame(const GraphicElementData *elem)
 {
-    NNSG2dAnimController * v0;
+    NNSG2dAnimController *controller;
 
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
-        v0 = NNS_G2dGetCellAnimationAnimCtrl(&v1->anim);
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+        controller = NNS_G2dGetCellAnimationAnimCtrl(&cellAnim->anim);
     } else {
-        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->animData;
-        v0 = NNS_G2dGetMCAnimAnimCtrl(&v2->anim);
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+        controller = NNS_G2dGetMCAnimAnimCtrl(&multiCellAnim->anim);
     }
 
-    return NNS_G2dGetAnimCtrlCurrentFrame(v0);
+    return NNS_G2dGetAnimCtrlCurrentFrame(controller);
 }
 
 void GraphicElementData_SetExplicitPriority(GraphicElementData *elem, u8 priority)
@@ -594,7 +594,7 @@ u32 GraphicElementData_GetExplicitPaletteOffset(const GraphicElementData *elem)
 
 void GraphicElementData_SetPriority(GraphicElementData *elem, u32 priority)
 {
-    GraphicElementManager *gfxElemMgr = elem->manager;
+    GraphicElementManager *gfxElemMgr = elem->manager; // Required to match
     elem->priority = priority;
 
     GraphicElementManager_RemoveElement(elem);
@@ -637,82 +637,77 @@ NNS_G2D_VRAM_TYPE GraphicElementData_GetVRamType(const GraphicElementData *elem)
     return elem->vramType;
 }
 
-BOOL sub_02021FD0 (GraphicElementData * param0)
+BOOL GraphicElementData_IsAnimated(GraphicElementData *elem)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(elem);
 
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v0 = (CellAnimationData *)&param0->animData;
-        return NNS_G2dIsAnimCtrlActive(&v0->anim.animCtrl);
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+        return NNS_G2dIsAnimCtrlActive(&cellAnim->anim.animCtrl);
     } else {
-        MultiCellAnimationData * v1 = (MultiCellAnimationData *)&param0->animData;
-        return NNS_G2dIsAnimCtrlActive(&v1->anim.animCtrl);
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+        return NNS_G2dIsAnimCtrlActive(&multiCellAnim->anim.animCtrl);
     }
 }
 
-void sub_02021FE0 (GraphicElementData * param0, GXOamMode param1)
+void GraphicElementData_SetExplicitOAMMode(GraphicElementData *elem, GXOamMode mode)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(elem);
 
-    param0->explicitOamMode = param1;
+    elem->explicitOamMode = mode;
 
-    if (param1 == GX_OAM_MODE_NORMAL) {
-        param0->overwriteFlags ^= NNS_G2D_RND_OVERWRITE_OBJMODE;
+    if (mode == GX_OAM_MODE_NORMAL) {
+        elem->overwriteFlags ^= NNS_G2D_RND_OVERWRITE_OBJMODE;
     } else {
-        param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_OBJMODE;
+        elem->overwriteFlags |= NNS_G2D_RND_OVERWRITE_OBJMODE;
     }
 }
 
-void sub_02022014 (int param0)
+void Utility_Clear2DMainOAM(enum HeapId heapID)
 {
-    void * v0;
+    GXOamAttr *oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * MAX_SIMULTANEOUS_SPRITES);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(GXOamAttr) * 128);
+    MI_CpuFill16(oam, 0x2C0, sizeof(GXOamAttr) * MAX_SIMULTANEOUS_SPRITES);
+    DC_FlushRange(oam, sizeof(GXOamAttr) * MAX_SIMULTANEOUS_SPRITES);
+    GX_LoadOAM(oam, 0, sizeof(GXOamAttr) * MAX_SIMULTANEOUS_SPRITES);
 
-    MI_CpuFill16(v0, 0x2C0, sizeof(GXOamAttr) * 128);
-    DC_FlushRange(v0, sizeof(GXOamAttr) * 128);
-    GX_LoadOAM(v0, 0, sizeof(GXOamAttr) * 128);
-
-    Heap_FreeToHeap(v0);
+    Heap_FreeToHeap(oam);
 }
 
-void sub_0202204C (int param0)
+void Utility_Clear2DSubOAM(enum HeapId heapID)
 {
-    void * v0;
+    GXOamAttr *oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * MAX_SIMULTANEOUS_SPRITES);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(GXOamAttr) * 128);
+    MI_CpuFill16(oam, 0x2C0, sizeof(GXOamAttr) * MAX_SIMULTANEOUS_SPRITES);
+    // According to the NitroSDK docs there should be a call to DC_FlushRange here.
+    GXS_LoadOAM(oam, 0, sizeof(GXOamAttr) * MAX_SIMULTANEOUS_SPRITES);
 
-    MI_CpuFill16(v0, 0x2C0, sizeof(GXOamAttr) * 128);
-    GXS_LoadOAM(v0, 0, sizeof(GXOamAttr) * 128);
-
-    Heap_FreeToHeap(v0);
+    Heap_FreeToHeap(oam);
 }
 
-u32 sub_0202207C (const GraphicElementData * param0, u32 param1, u32 param2)
+u32 GraphicElementData_GetUserAttrForAnimFrame(const GraphicElementData *elem, u32 animID, u32 frame)
 {
-    const NNSG2dAnimBankData * v0;
-    const NNSG2dUserExAnimAttrBank * v1;
-    const NNSG2dUserExAnimSequenceAttr * v2;
-    const NNSG2dUserExAnimFrameAttr * v3;
+    const NNSG2dAnimBankData *animBank;
 
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v4 = (CellAnimationData *)&param0->animData;
-        v0 = v4->animBank;
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+        animBank = cellAnim->animBank;
     } else {
-        MultiCellAnimationData * v5 = (MultiCellAnimationData *)&param0->animData;
-        v0 = v5->animBank;
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+        animBank = multiCellAnim->animBank;
     }
 
-    v1 = NNS_G2dGetUserExAnimAttrBank(v0);
+    const NNSG2dUserExAnimAttrBank *animAttrBank = NNS_G2dGetUserExAnimAttrBank(animBank);
 
-    if (v1) {
-        v2 = NNS_G2dGetUserExAnimSequenceAttr(v1, param1);
+    // Guard clauses don't match here so the nested if's are required
+    if (animAttrBank) {
+        const NNSG2dUserExAnimSequenceAttr *animAttr = NNS_G2dGetUserExAnimSequenceAttr(animAttrBank, animID);
 
-        if (v2) {
-            v3 = NNS_G2dGetUserExAnimFrameAttr(v2, param2);
+        if (animAttr) {
+            const NNSG2dUserExAnimFrameAttr *frameAttr = NNS_G2dGetUserExAnimFrameAttr(animAttr, frame);
 
-            if (v3) {
-                return NNS_G2dGetUserExAnimFrmAttrValue(v3);
+            if (frameAttr) {
+                return NNS_G2dGetUserExAnimFrmAttrValue(frameAttr);
             }
         }
     }
@@ -720,15 +715,12 @@ u32 sub_0202207C (const GraphicElementData * param0, u32 param1, u32 param2)
     return 0;
 }
 
-u32 sub_020220F4 (const GraphicElementData * param0)
+u32 GraphicElementData_GetUserAttrForCurrentAnimFrame(const GraphicElementData *elem)
 {
-    u32 v0;
-    u32 v1;
+    u32 animID = GraphicElementData_GetActiveAnim(elem);
+    u32 frame = GraphicElementData_GetAnimFrame(elem);
 
-    v0 = sub_02021E24(param0);
-    v1 = sub_02021E74(param0);
-
-    return sub_0202207C(param0, v0, v1);
+    return GraphicElementData_GetUserAttrForAnimFrame(elem, animID, frame);
 }
 
 static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxElemMgr, 

@@ -235,8 +235,8 @@ static void ov101_021D5A70 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v2 = ((v2) / 32);
     v1 = Unk_ov101_021D927C[ov101_021D55A4(v4->unk_00.unk_00, v0, ((v2) / FX32_ONE))];
 
-    if (v1 != sub_02021E24(v4->unk_0C.unk_04)) {
-        SpriteActor_SetSpriteAnimActive(v4->unk_0C.unk_04, v1);
+    if (v1 != GraphicElementData_GetActiveAnim(v4->unk_0C.unk_04)) {
+        GraphicElementData_SetAnim(v4->unk_0C.unk_04, v1);
         SpriteActor_SetAnimFrame(v4->unk_0C.unk_04, 0);
     }
 }
@@ -302,9 +302,9 @@ static void ov101_021D5BA8 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v2 %= v1->unk_08;
     v2 /= v1->unk_04;
 
-    if (v2 != sub_02021E24(v1->unk_0C.unk_04)) {
-        SpriteActor_SetSpriteAnimActive(v1->unk_0C.unk_04, v2);
-        sub_02021DE0(v1->unk_0C.unk_04);
+    if (v2 != GraphicElementData_GetActiveAnim(v1->unk_0C.unk_04)) {
+        GraphicElementData_SetAnim(v1->unk_0C.unk_04, v2);
+        GraphicElementData_RestartAnim(v1->unk_0C.unk_04);
     }
 
     sub_020715E4(param0, &v0);
@@ -375,9 +375,9 @@ static void ov101_021D5CE0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v2 %= v1->unk_08;
     v2 /= v1->unk_04;
 
-    if (v2 != sub_02021E24(v1->unk_0C.unk_04)) {
-        SpriteActor_SetSpriteAnimActive(v1->unk_0C.unk_04, v2);
-        sub_02021DE0(v1->unk_0C.unk_04);
+    if (v2 != GraphicElementData_GetActiveAnim(v1->unk_0C.unk_04)) {
+        GraphicElementData_SetAnim(v1->unk_0C.unk_04, v2);
+        GraphicElementData_RestartAnim(v1->unk_0C.unk_04);
     }
 
     sub_020715E4(param0, &v0);
@@ -528,7 +528,7 @@ static int ov101_021D5E84 (UnkStruct_ov101_021D630C * param0)
     GraphicElementData_SetAffineScale(param0->unk_3C.unk_04, &v1);
     GraphicElementData_SetAffineZRotation(param0->unk_3C.unk_04, 0);
     GraphicElementData_SetPosition(param0->unk_3C.unk_04, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_3C.unk_04, 0);
+    GraphicElementData_SetAnim(param0->unk_3C.unk_04, 0);
     SpriteActor_SetAnimFrame(param0->unk_3C.unk_04, 0);
     Sound_PlayEffect(1572);
 
@@ -582,8 +582,8 @@ static int(*const Unk_ov101_021D912C[])(UnkStruct_ov101_021D630C *) = {
 
 static int ov101_021D5F70 (UnkStruct_ov101_021D630C * param0)
 {
-    SpriteActor_SetSpriteAnimActive(param0->unk_3C.unk_04, 1);
-    sub_02021DE0(param0->unk_3C.unk_04);
+    GraphicElementData_SetAnim(param0->unk_3C.unk_04, 1);
+    GraphicElementData_RestartAnim(param0->unk_3C.unk_04);
     GraphicElementData_SetAnimateFlag(param0->unk_3C.unk_04, 1);
 
     Sound_PlayEffect(1744);
@@ -619,8 +619,8 @@ static int ov101_021D5FB8 (UnkStruct_ov101_021D630C * param0)
     GraphicElementData_SetPosition(param0->unk_3C.unk_04, &v1);
     GraphicElementData_SetAffineScale(param0->unk_3C.unk_04, &v0);
     GraphicElementData_SetAffineZRotation(param0->unk_3C.unk_04, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_3C.unk_04, 3);
-    sub_02021DE0(param0->unk_3C.unk_04);
+    GraphicElementData_SetAnim(param0->unk_3C.unk_04, 3);
+    GraphicElementData_RestartAnim(param0->unk_3C.unk_04);
 
     param0->unk_04++;
     return 1;
@@ -661,8 +661,8 @@ static int ov101_021D6084 (UnkStruct_ov101_021D630C * param0)
     GraphicElementData_SetPosition(param0->unk_3C.unk_04, &v1);
     GraphicElementData_SetAffineScale(param0->unk_3C.unk_04, &v0);
     GraphicElementData_SetAffineZRotation(param0->unk_3C.unk_04, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_3C.unk_04, 4);
-    sub_02021DE0(param0->unk_3C.unk_04);
+    GraphicElementData_SetAnim(param0->unk_3C.unk_04, 4);
+    GraphicElementData_RestartAnim(param0->unk_3C.unk_04);
 
     param0->unk_04++;
     return 1;
@@ -717,8 +717,8 @@ static int ov101_021D6158 (UnkStruct_ov101_021D630C * param0)
     GraphicElementData_SetPosition(param0->unk_3C.unk_04, &v1);
     GraphicElementData_SetAffineScale(param0->unk_3C.unk_04, &v0);
     GraphicElementData_SetAffineZRotation(param0->unk_3C.unk_04, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_3C.unk_04, 2);
-    sub_02021DE0(param0->unk_3C.unk_04);
+    GraphicElementData_SetAnim(param0->unk_3C.unk_04, 2);
+    GraphicElementData_RestartAnim(param0->unk_3C.unk_04);
 
     param0->unk_04++;
     return 1;
@@ -767,8 +767,8 @@ static int ov101_021D6288 (UnkStruct_ov101_021D630C * param0)
     GraphicElementData_SetPosition(param0->unk_3C.unk_04, &v1);
     GraphicElementData_SetAffineScale(param0->unk_3C.unk_04, &v0);
     GraphicElementData_SetAffineZRotation(param0->unk_3C.unk_04, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_3C.unk_04, 2);
-    sub_02021DE0(param0->unk_3C.unk_04);
+    GraphicElementData_SetAnim(param0->unk_3C.unk_04, 2);
+    GraphicElementData_RestartAnim(param0->unk_3C.unk_04);
 
     param0->unk_04++;
 
@@ -1129,7 +1129,7 @@ static int ov101_021D68AC (UnkStruct_ov101_021D66D0 * param0)
 
     GraphicElementData_SetAffineScale(param0->unk_24.unk_04, &v1);
     GraphicElementData_SetPosition(param0->unk_24.unk_04, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_24.unk_04, 1);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, 0);
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 0);
 
@@ -1189,7 +1189,7 @@ static int ov101_021D6994 (UnkStruct_ov101_021D66D0 * param0)
 
     GraphicElementData_SetAffineScale(param0->unk_24.unk_04, &v1);
     GraphicElementData_SetPosition(param0->unk_24.unk_04, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_24.unk_04, 1);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, 0);
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 0);
     Sound_PlayEffect(1745);
@@ -1236,10 +1236,10 @@ static int ov101_021D6A60 (UnkStruct_ov101_021D66D0 * param0)
 
     GraphicElementData_SetAffineScale(param0->unk_24.unk_04, &v1);
     GraphicElementData_SetPosition(param0->unk_24.unk_04, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 0);
+    GraphicElementData_SetAnim(param0->unk_24.unk_04, 0);
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 0);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, 0);
-    sub_02021DE0(param0->unk_24.unk_04);
+    GraphicElementData_RestartAnim(param0->unk_24.unk_04);
 
     param0->unk_0C = 1;
     param0->unk_08++;
@@ -1261,9 +1261,9 @@ static int ov101_021D6AC8 (UnkStruct_ov101_021D66D0 * param0)
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 1);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, FX32_ONE / 2);
 
-    if (sub_02021E24(param0->unk_24.unk_04) != 2) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 2);
-        sub_02021DE0(param0->unk_24.unk_04);
+    if (GraphicElementData_GetActiveAnim(param0->unk_24.unk_04) != 2) {
+        GraphicElementData_SetAnim(param0->unk_24.unk_04, 2);
+        GraphicElementData_RestartAnim(param0->unk_24.unk_04);
     }
 
     param0->unk_0C = 1;
@@ -1283,10 +1283,10 @@ static int ov101_021D6B3C (UnkStruct_ov101_021D66D0 * param0)
 
     GraphicElementData_SetAffineScale(param0->unk_24.unk_04, &v1);
     GraphicElementData_SetPosition(param0->unk_24.unk_04, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 5);
+    GraphicElementData_SetAnim(param0->unk_24.unk_04, 5);
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 1);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, FX32_ONE);
-    sub_02021DE0(param0->unk_24.unk_04);
+    GraphicElementData_RestartAnim(param0->unk_24.unk_04);
 
     param0->unk_0C = 1;
     param0->unk_08++;
@@ -1305,10 +1305,10 @@ static int ov101_021D6BA4 (UnkStruct_ov101_021D66D0 * param0)
 
     GraphicElementData_SetAffineScale(param0->unk_24.unk_04, &v1);
     GraphicElementData_SetPosition(param0->unk_24.unk_04, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 4);
+    GraphicElementData_SetAnim(param0->unk_24.unk_04, 4);
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 1);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, FX32_ONE);
-    sub_02021DE0(param0->unk_24.unk_04);
+    GraphicElementData_RestartAnim(param0->unk_24.unk_04);
 
     param0->unk_0C = 1;
     param0->unk_08++;
@@ -1327,10 +1327,10 @@ static int ov101_021D6C0C (UnkStruct_ov101_021D66D0 * param0)
 
     GraphicElementData_SetAffineScale(param0->unk_24.unk_04, &v1);
     GraphicElementData_SetPosition(param0->unk_24.unk_04, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 3);
+    GraphicElementData_SetAnim(param0->unk_24.unk_04, 3);
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 1);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, FX32_ONE);
-    sub_02021DE0(param0->unk_24.unk_04);
+    GraphicElementData_RestartAnim(param0->unk_24.unk_04);
 
     param0->unk_0C = 1;
     param0->unk_08++;
@@ -1352,8 +1352,8 @@ static int ov101_021D6C74 (UnkStruct_ov101_021D66D0 * param0)
     GraphicElementData_SetAnimateFlag(param0->unk_24.unk_04, 0);
     GraphicElementData_SetAnimSpeed(param0->unk_24.unk_04, FX32_ONE);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_24.unk_04, 5);
-    sub_02021DE0(param0->unk_24.unk_04);
+    GraphicElementData_SetAnim(param0->unk_24.unk_04, 5);
+    GraphicElementData_RestartAnim(param0->unk_24.unk_04);
 
     param0->unk_14 = 0;
     param0->unk_0C = 1;
@@ -1366,12 +1366,12 @@ static int ov101_021D6CE0 (UnkStruct_ov101_021D66D0 * param0)
 {
     GraphicElementData_UpdateAnim(param0->unk_24.unk_04, FX32_ONE);
 
-    if (sub_02021FD0(param0->unk_24.unk_04) == 0) {
+    if (GraphicElementData_IsAnimated(param0->unk_24.unk_04) == 0) {
         param0->unk_14++;
 
         if (param0->unk_14 >= 8) {
             param0->unk_14 = 0;
-            sub_02021DE0(param0->unk_24.unk_04);
+            GraphicElementData_RestartAnim(param0->unk_24.unk_04);
         }
     }
 
@@ -1957,8 +1957,8 @@ static void ov101_021D7604 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
         if (v4) {
             GraphicElementData_SetPosition(v0->unk_04[v3].unk_04, &v2);
-            SpriteActor_SetSpriteAnimActive(v0->unk_04[v3].unk_04, v4);
-            sub_02021DE0(v0->unk_04[v3].unk_04);
+            GraphicElementData_SetAnim(v0->unk_04[v3].unk_04, v4);
+            GraphicElementData_RestartAnim(v0->unk_04[v3].unk_04);
             GraphicElementData_SetDrawFlag(v0->unk_04[v3].unk_04, 1);
             v2.x += (FX32_ONE * 8);
             v3++;
@@ -1967,8 +1967,8 @@ static void ov101_021D7604 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         v4 = (v5 % 10);
 
         GraphicElementData_SetPosition(v0->unk_04[v3].unk_04, &v2);
-        SpriteActor_SetSpriteAnimActive(v0->unk_04[v3].unk_04, v4);
-        sub_02021DE0(v0->unk_04[v3].unk_04);
+        GraphicElementData_SetAnim(v0->unk_04[v3].unk_04, v4);
+        GraphicElementData_RestartAnim(v0->unk_04[v3].unk_04);
         GraphicElementData_SetDrawFlag(v0->unk_04[v3].unk_04, 1);
     }
 }
@@ -2051,8 +2051,8 @@ static void ov101_021D776C (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
         for (v4 = 10000; v4 >= 1; v4 /= 10, v5++) {
             v6 = (v7 % (v4 * 10)) / v4;
-            SpriteActor_SetSpriteAnimActive(v1->unk_04[v5].unk_04, v6);
-            sub_02021DE0(v1->unk_04[v5].unk_04);
+            GraphicElementData_SetAnim(v1->unk_04[v5].unk_04, v6);
+            GraphicElementData_RestartAnim(v1->unk_04[v5].unk_04);
         }
     }
 }
@@ -2140,8 +2140,8 @@ static int ov101_021D7810 (UnkStruct_ov101_021D5D90 * param0, void * param1)
 
         v2 = (v6->unk_04 % (v1 * 10)) / v1;
 
-        SpriteActor_SetSpriteAnimActive(v6->unk_18[v0].unk_04, v2);
-        sub_02021DE0(v6->unk_18[v0].unk_04);
+        GraphicElementData_SetAnim(v6->unk_18[v0].unk_04, v2);
+        GraphicElementData_RestartAnim(v6->unk_18[v0].unk_04);
     }
 
     v6->unk_10 = v0;
@@ -2222,7 +2222,7 @@ static int ov101_021D7A00 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         ov101_021D84A4(v5->unk_08->unk_450, &v5->unk_0C[v0], &v4, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 9, 7, 9, 9, 2, 3);
 
         v3 = (v1 % (v2 * 10)) / v2;
-        SpriteActor_SetSpriteAnimActive(v5->unk_0C[v0].unk_04, v3);
+        GraphicElementData_SetAnim(v5->unk_0C[v0].unk_04, v3);
     }
 
     return 1;

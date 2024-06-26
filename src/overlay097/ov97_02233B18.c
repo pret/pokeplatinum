@@ -767,7 +767,7 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
             }
 
             GraphicElementData_SetAnimateFlag(param0->unk_20C[v0].unk_00, 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_20C[v0].unk_00, 10 + v0);
+            GraphicElementData_SetAnim(param0->unk_20C[v0].unk_00, 10 + v0);
             GraphicElementData_SetExplicitPriority(param0->unk_20C[v0].unk_00, 1);
             GraphicElementData_SetDrawFlag(param0->unk_20C[v0].unk_00, 1);
             GraphicElementData_SetPriority(param0->unk_20C[v0].unk_00, 100 + v0);
@@ -780,7 +780,7 @@ static void ov97_02234508 (UnkStruct_ov97_02234A2C * param0)
             }
 
             GraphicElementData_SetAnimateFlag(param0->unk_20C[v0].unk_04, 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_20C[v0].unk_04, 40);
+            GraphicElementData_SetAnim(param0->unk_20C[v0].unk_04, 40);
             GraphicElementData_SetExplicitPriority(param0->unk_20C[v0].unk_04, 1);
             GraphicElementData_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
             GraphicElementData_SetPriority(param0->unk_20C[v0].unk_04, 0 + v0);
@@ -808,7 +808,7 @@ static GraphicElementData * ov97_02234638 (UnkStruct_ov97_02234A2C * param0, int
     v1 = GraphicElementManager_AddElementEx(&v0);
 
     GraphicElementData_SetAnimateFlag(v1, 1);
-    SpriteActor_SetSpriteAnimActive(v1, param3);
+    GraphicElementData_SetAnim(v1, param3);
     GraphicElementData_SetExplicitPriority(v1, 1);
     GraphicElementData_SetDrawFlag(v1, param4);
 
@@ -1480,7 +1480,7 @@ static void ov97_02234F88 (UnkStruct_ov97_02234A2C * param0)
         param0->unk_478[v0] = GraphicElementManager_AddElementEx(&v5);
 
         GraphicElementData_SetAnimateFlag(param0->unk_478[v0], 1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_478[v0], 10 + v0);
+        GraphicElementData_SetAnim(param0->unk_478[v0], 10 + v0);
         GraphicElementData_SetExplicitPriority(param0->unk_478[v0], 1);
         GraphicElementData_SetDrawFlag(param0->unk_478[v0], 1);
 
@@ -2141,7 +2141,7 @@ static int ov97_022356E8 (OverlayManager * param0, int * param1)
     }
 
     if (v3->unk_28 != NULL) {
-        sub_020219F8(v3->unk_28);
+        GraphicElementManager_Update(v3->unk_28);
     }
 
     return 0;

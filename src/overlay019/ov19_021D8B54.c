@@ -126,17 +126,17 @@ void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
         param0->unk_10 = ov19_021D785C(param0->unk_00, &v0, v4, 20, 43, NNS_G2D_VRAM_TYPE_2DMAIN);
     }
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_08, 5);
+    GraphicElementData_SetAnim(param0->unk_08, 5);
     GraphicElementData_SetExplicitPriority(param0->unk_08, 2);
 
     v1 = ov19_021D5E10(param0->unk_790);
 
     if (v1 != 2) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_0C, 6);
-        SpriteActor_SetSpriteAnimActive(param0->unk_10, 7);
+        GraphicElementData_SetAnim(param0->unk_0C, 6);
+        GraphicElementData_SetAnim(param0->unk_10, 7);
     } else {
-        SpriteActor_SetSpriteAnimActive(param0->unk_0C, 8);
-        SpriteActor_SetSpriteAnimActive(param0->unk_10, 9);
+        GraphicElementData_SetAnim(param0->unk_0C, 8);
+        GraphicElementData_SetAnim(param0->unk_10, 9);
     }
 
     if (v1 != 0) {
@@ -145,11 +145,11 @@ void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
 
     if (v2 != 3) {
         if (ov19_021D5E38(param0->unk_790) == 1) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_04, 0);
+            GraphicElementData_SetAnim(param0->unk_04, 0);
             ov19_021DA3CC(param0->unk_48, param0->unk_4C, (5 * 6));
             param0->unk_78C = 0;
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_04, 2);
+            GraphicElementData_SetAnim(param0->unk_04, 2);
             ov19_021D8E00(param0);
             param0->unk_78C = 1;
         }
@@ -157,10 +157,10 @@ void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
         param0->unk_78D = 0;
     } else {
         if (ov19_021D5F7C(param0->unk_790) == 0) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_04, 0);
+            GraphicElementData_SetAnim(param0->unk_04, 0);
             param0->unk_78D = 0;
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_04, 2);
+            GraphicElementData_SetAnim(param0->unk_04, 2);
             param0->unk_78D = 1;
         }
 
@@ -370,11 +370,11 @@ static void ov19_021D9088 (SysTask * param0, void * param1)
     }
 
     if (v0->unk_786 != 2) {
-        SpriteActor_SetSpriteAnimActive(v0->unk_0C, 6);
-        SpriteActor_SetSpriteAnimActive(v0->unk_10, 7);
+        GraphicElementData_SetAnim(v0->unk_0C, 6);
+        GraphicElementData_SetAnim(v0->unk_10, 7);
     } else {
-        SpriteActor_SetSpriteAnimActive(v0->unk_0C, 8);
-        SpriteActor_SetSpriteAnimActive(v0->unk_10, 9);
+        GraphicElementData_SetAnim(v0->unk_0C, 8);
+        GraphicElementData_SetAnim(v0->unk_10, 9);
     }
 
     SysTask_Done(param0);
@@ -382,7 +382,7 @@ static void ov19_021D9088 (SysTask * param0, void * param1)
 
 void ov19_021D9230 (UnkStruct_ov19_021D8E00 * param0)
 {
-    SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_04, 1);
 
     param0->unk_780 = (12 << FX32_SHIFT) / 6;
     param0->unk_770 = (param0->unk_768 + 12);
@@ -417,7 +417,7 @@ static void ov19_021D928C (SysTask * param0, void * param1)
         v1.y = v0->unk_770 << FX32_SHIFT;
 
         ov19_021D9E04(v0, &v1);
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 2);
+        GraphicElementData_SetAnim(v0->unk_04, 2);
         ov19_021DA038(v0);
 
         v0->unk_787 = 6;
@@ -479,7 +479,7 @@ static void ov19_021D93D0 (SysTask * param0, void * param1)
         v1.y = v0->unk_770 << FX32_SHIFT;
 
         ov19_021D9E04(v0, &v1);
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 1);
+        GraphicElementData_SetAnim(v0->unk_04, 1);
         ov19_021DA1F8(v0);
 
         v0->unk_787 = 6;
@@ -495,7 +495,7 @@ static void ov19_021D93D0 (SysTask * param0, void * param1)
         v1.y = v0->unk_768 << FX32_SHIFT;
 
         ov19_021D9E04(v0, &v1);
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 0);
+        GraphicElementData_SetAnim(v0->unk_04, 0);
 
         v0->unk_784 = 255;
         v0->unk_78E = 1;
@@ -509,7 +509,7 @@ void ov19_021D94B4 (UnkStruct_ov19_021D8E00 * param0)
     VecFx32 v0;
     GraphicElementData * v1;
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_04, 1);
 
     param0->unk_788 = 0;
 
@@ -526,7 +526,7 @@ void ov19_021D94B4 (UnkStruct_ov19_021D8E00 * param0)
 BOOL ov19_021D9530 (UnkStruct_ov19_021D8E00 * param0)
 {
     if (ov19_021D95E0(param0)) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_04, 2);
+        GraphicElementData_SetAnim(param0->unk_04, 2);
         ov19_021DA110(param0);
         return 1;
     }
@@ -614,7 +614,7 @@ void ov19_021D9690 (UnkStruct_ov19_021D8E00 * param0)
     VecFx32 v0;
 
     if ((param0->unk_78C == 0) && (param0->unk_78D == 0)) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_04, 3);
+        GraphicElementData_SetAnim(param0->unk_04, 3);
     }
 
     v0 = *GraphicElementData_GetPosition(param0->unk_04);
@@ -649,7 +649,7 @@ static void ov19_021D9718 (SysTask * param0, void * param1)
             v0->unk_787 = 2;
 
             if ((v0->unk_78C == 0) && (v0->unk_78D == 0)) {
-                SpriteActor_SetSpriteAnimActive(v0->unk_04, 4);
+                GraphicElementData_SetAnim(v0->unk_04, 4);
             }
 
             v0->unk_784++;
@@ -692,8 +692,8 @@ BOOL ov19_021D9858 (UnkStruct_ov19_021D8E00 * param0)
 {
     if (param0->unk_788 == 0) {
         if ((param0->unk_78C == 0) && (param0->unk_78D == 0)) {
-            if (sub_02021E24(param0->unk_04) != 0) {
-                SpriteActor_SetSpriteAnimActive(param0->unk_04, 0);
+            if (GraphicElementData_GetActiveAnim(param0->unk_04) != 0) {
+                GraphicElementData_SetAnim(param0->unk_04, 0);
             }
         }
 
@@ -730,12 +730,12 @@ void ov19_021D9900 (UnkStruct_ov19_021D8E00 * param0)
     }
 
     ov19_021DA204(param0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_04, 0);
+    GraphicElementData_SetAnim(param0->unk_04, 0);
 }
 
 void ov19_021D9938 (UnkStruct_ov19_021D8E00 * param0)
 {
-    SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_04, 1);
     ov19_021DA7B8(param0->unk_48, param0->unk_4C, 1);
 
     param0->unk_784 = 0;
@@ -754,7 +754,7 @@ BOOL ov19_021D995C (UnkStruct_ov19_021D8E00 * param0)
     case 1:
         if (ov19_021D3B18(v0)) {
             if (ov19_021D3B20(v0)) {
-                SpriteActor_SetSpriteAnimActive(param0->unk_04, 0);
+                GraphicElementData_SetAnim(param0->unk_04, 0);
                 ov19_021DA204(param0);
                 return 1;
             } else {
@@ -765,7 +765,7 @@ BOOL ov19_021D995C (UnkStruct_ov19_021D8E00 * param0)
         break;
     case 2:
         if (ov19_021DA7E0(param0->unk_48, param0->unk_4C)) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_04, 2);
+            GraphicElementData_SetAnim(param0->unk_04, 2);
             return 1;
         }
 
@@ -838,7 +838,7 @@ void ov19_021D9AEC (UnkStruct_ov19_021D8E00 * param0)
 
 void ov19_021D9B10 (UnkStruct_ov19_021D8E00 * param0)
 {
-    SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_04, 1);
 }
 
 void ov19_021D9B1C (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
@@ -867,13 +867,13 @@ static void ov19_021D9B78 (SysTask * param0, void * param1)
 
     switch (v0->unk_784) {
     case 0:
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 1);
+        GraphicElementData_SetAnim(v0->unk_04, 1);
         ov19_021DE954(v0->unk_760);
         v0->unk_784++;
         break;
     case 1:
         if (ov19_021DE9A8(v0->unk_760)) {
-            SpriteActor_SetSpriteAnimActive(v0->unk_04, 2);
+            GraphicElementData_SetAnim(v0->unk_04, 2);
             v0->unk_788 = 0;
             SysTask_Done(param0);
         }
@@ -901,13 +901,13 @@ static void ov19_021D9C18 (SysTask * param0, void * param1)
 
     switch (v0->unk_784) {
     case 0:
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 1);
+        GraphicElementData_SetAnim(v0->unk_04, 1);
         ov19_021DEA18(v0->unk_760);
         v0->unk_784++;
         break;
     case 1:
         if (ov19_021DEA64(v0->unk_760)) {
-            SpriteActor_SetSpriteAnimActive(v0->unk_04, 0);
+            GraphicElementData_SetAnim(v0->unk_04, 0);
             v0->unk_788 = 0;
             SysTask_Done(param0);
         }
@@ -934,13 +934,13 @@ static void ov19_021D9CB4 (SysTask * param0, void * param1)
 
     switch (v0->unk_784) {
     case 0:
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 1);
+        GraphicElementData_SetAnim(v0->unk_04, 1);
         ov19_021DEA74(v0->unk_760);
         v0->unk_784++;
         break;
     case 1:
         if (ov19_021DEB08(v0->unk_760)) {
-            SpriteActor_SetSpriteAnimActive(v0->unk_04, 2);
+            GraphicElementData_SetAnim(v0->unk_04, 2);
             v0->unk_788 = 0;
             SysTask_Done(param0);
         }
@@ -950,14 +950,14 @@ static void ov19_021D9CB4 (SysTask * param0, void * param1)
 void ov19_021D9D10 (UnkStruct_ov19_021D8E00 * param0)
 {
     if (param0->unk_78D) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
+        GraphicElementData_SetAnim(param0->unk_04, 1);
     }
 }
 
 void ov19_021D9D28 (UnkStruct_ov19_021D8E00 * param0)
 {
     if (param0->unk_78D) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_04, 0);
+        GraphicElementData_SetAnim(param0->unk_04, 0);
         param0->unk_78D = 0;
     }
 }

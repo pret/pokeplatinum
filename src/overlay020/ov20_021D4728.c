@@ -312,11 +312,11 @@ static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     ov20_021D4AF8(&(param0->unk_1C), param1, 22, 23);
 
     param0->unk_14 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 56, 0, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_14, 0);
+    GraphicElementData_SetAnim(param0->unk_14, 0);
     GraphicElementData_SetDrawFlag(param0->unk_14, 0);
 
     param0->unk_18 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 136, 0, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_18, 2);
+    GraphicElementData_SetAnim(param0->unk_18, 2);
     GraphicElementData_SetDrawFlag(param0->unk_18, 0);
 }
 
@@ -475,20 +475,20 @@ void ov20_021D4DF4 (UnkStruct_ov20_021D4AD4 * param0, int param1, int param2)
     case 0:
         switch (param2) {
         case 1:
-            SpriteActor_SetSpriteAnimActive(param0->unk_14, 1);
+            GraphicElementData_SetAnim(param0->unk_14, 1);
             break;
         case 0:
-            SpriteActor_SetSpriteAnimActive(param0->unk_14, 0);
+            GraphicElementData_SetAnim(param0->unk_14, 0);
             break;
         }
         break;
     case 1:
         switch (param2) {
         case 1:
-            SpriteActor_SetSpriteAnimActive(param0->unk_18, 3);
+            GraphicElementData_SetAnim(param0->unk_18, 3);
             break;
         case 0:
-            SpriteActor_SetSpriteAnimActive(param0->unk_18, 2);
+            GraphicElementData_SetAnim(param0->unk_18, 2);
             break;
         }
         break;

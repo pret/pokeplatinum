@@ -1064,7 +1064,7 @@ static void DrawScene (ChooseStarterApp * param0)
     NNS_G3dGePopMtx(1);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    sub_020219F8(param0->unk_248);
+    GraphicElementManager_Update(param0->unk_248);
 }
 
 static void MakeCamera (ChooseStarterApp * param0, int param1)

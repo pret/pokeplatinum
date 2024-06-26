@@ -1409,7 +1409,7 @@ static void ov69_0225D35C (UnkStruct_ov69_0225D35C * param0)
 
 static void ov69_0225D384 (UnkStruct_ov69_0225D35C * param0)
 {
-    sub_020219F8(param0->unk_04);
+    GraphicElementManager_Update(param0->unk_04);
 }
 
 static void ov69_0225D390 (UnkStruct_ov69_0225D35C * param0)

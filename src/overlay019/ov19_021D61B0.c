@@ -405,7 +405,7 @@ static void ov19_021D6664 (SysTask * param0, void * param1)
 
     ov19_021DAA80(&v0->unk_6604);
 
-    sub_020219F8(v0->unk_18);
+    GraphicElementManager_Update(v0->unk_18);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

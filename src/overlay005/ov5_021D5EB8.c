@@ -814,7 +814,7 @@ static void ov5_021D61D0 (UnkStruct_ov5_021D61D0 * param0)
 static void ov5_021D6284 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D61D0 * v0 = param1;
-    sub_020219F8(v0->unk_130);
+    GraphicElementManager_Update(v0->unk_130);
 }
 
 static void ov5_021D6290 (UnkStruct_02009F38 * param0, int param1, int param2)

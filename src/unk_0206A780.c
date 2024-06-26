@@ -94,7 +94,7 @@ void sub_0206A870 (UnkStruct_0206A844 * param0)
         }
     }
 
-    sub_020219F8(param0->unk_00.unk_00);
+    GraphicElementManager_Update(param0->unk_00.unk_00);
 }
 
 void sub_0206A8A0 (UnkStruct_0206A844 * param0, s16 param1, s16 param2, s16 param3)

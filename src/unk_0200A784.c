@@ -120,12 +120,12 @@ NNSG2dOamManagerInstance * sub_0200A914 (int param0)
 
 void sub_0200A93C (int param0)
 {
-    sub_02022014(param0);
+    Utility_Clear2DMainOAM(param0);
 }
 
 void sub_0200A944 (int param0)
 {
-    sub_0202204C(param0);
+    Utility_Clear2DSubOAM(param0);
 }
 
 static BOOL sub_0200A94C (const GXOamAttr * param0, u16 param1, BOOL param2)

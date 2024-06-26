@@ -368,7 +368,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
     param0->unk_E20 = GraphicElementManager_AddElementEx(&v1);
 
     GraphicElementData_SetAnimateFlag(param0->unk_E20, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_E20, 4);
+    GraphicElementData_SetAnim(param0->unk_E20, 4);
 
     if ((param0->unk_112 == 31) || ((param0->unk_112 >= 0) && (param0->unk_112 <= 5))) {
         GraphicElementData_SetExplicitPriority(param0->unk_E20, 0);
@@ -383,7 +383,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
 
         param0->unk_E28[v0] = GraphicElementManager_AddElementEx(&v1);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_E28[v0], 6 + v0);
+        GraphicElementData_SetAnim(param0->unk_E28[v0], 6 + v0);
         GraphicElementData_SetExplicitPriority(param0->unk_E28[v0], 1);
     }
 
@@ -394,7 +394,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
 
         param0->unk_EA0[v0] = GraphicElementManager_AddElementEx(&v1);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_EA0[v0], 40);
+        GraphicElementData_SetAnim(param0->unk_EA0[v0], 40);
         GraphicElementData_SetExplicitPriority(param0->unk_EA0[v0], 1);
     }
 
@@ -405,7 +405,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
 
         param0->unk_F18[v0] = GraphicElementManager_AddElementEx(&v1);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_F18[v0], 42);
+        GraphicElementData_SetAnim(param0->unk_F18[v0], 42);
         GraphicElementData_SetExplicitPriority(param0->unk_F18[v0], 1);
     }
 
@@ -416,7 +416,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
         param0->unk_F54[v0] = GraphicElementManager_AddElementEx(&v1);
 
         GraphicElementData_SetAnimateFlag(param0->unk_F54[v0], 1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_F54[v0], 38 + v0);
+        GraphicElementData_SetAnim(param0->unk_F54[v0], 38 + v0);
         GraphicElementData_SetExplicitPriority(param0->unk_F54[v0], 1);
     }
 }
@@ -1119,9 +1119,9 @@ static void ov94_02240EAC (BoxPokemon * param0, GraphicElementData * param1, Gra
             GraphicElementData_SetDrawFlag(param2, 1);
 
             if (Item_IsMail(v1)) {
-                SpriteActor_SetSpriteAnimActive(param2, 41);
+                GraphicElementData_SetAnim(param2, 41);
             } else {
-                SpriteActor_SetSpriteAnimActive(param2, 40);
+                GraphicElementData_SetAnim(param2, 40);
             }
         } else {
             GraphicElementData_SetDrawFlag(param2, 0);

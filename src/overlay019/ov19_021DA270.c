@@ -202,20 +202,20 @@ void ov19_021DA63C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
         if ((param2 & 1)) {
             if (param1->unk_30 == 0) {
-                sub_02021FE0(param1->unk_00, GX_OAM_MODE_XLU);
+                GraphicElementData_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
                 return;
             }
         }
 
         for (v0 = 0; v0 < 6; v0++) {
             if ((param2 & (2 << v0)) && ((param1->unk_2E & (1 << v0)) == 0)) {
-                sub_02021FE0(param1->unk_00, GX_OAM_MODE_XLU);
+                GraphicElementData_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
                 return;
             }
         }
     }
 
-    sub_02021FE0(param1->unk_00, GX_OAM_MODE_NORMAL);
+    GraphicElementData_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_NORMAL);
 }
 
 void ov19_021DA68C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)
@@ -282,12 +282,12 @@ void ov19_021DA7B8 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
         GraphicElementData_SetAffineOverwriteMode(param1->unk_00, 0);
     }
 
-    SpriteActor_SetSpriteAnimActive(param1->unk_00, param2);
+    GraphicElementData_SetAnim(param1->unk_00, param2);
 }
 
 BOOL ov19_021DA7E0 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1)
 {
-    return sub_02021FD0(param1->unk_00) == 0;
+    return GraphicElementData_IsAnimated(param1->unk_00) == 0;
 }
 
 void ov19_021DA7F4 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, BOOL param2)

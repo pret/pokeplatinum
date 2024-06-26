@@ -136,7 +136,7 @@ void ov21_021D2098 (UnkStruct_ov21_021D13FC * param0)
 
 void ov21_021D2124 (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_020219F8(param0->unk_138);
+    GraphicElementManager_Update(param0->unk_138);
 
     NNS_G2dSetupSoftwareSpriteCamera();
 
@@ -267,8 +267,8 @@ UnkStruct_02009DC8 * ov21_021D2344 (const UnkStruct_ov21_021D13FC * param0, int 
 
 void ov21_021D2360 (const UnkStruct_ov21_021D13FC * param0, GXOamMode param1)
 {
-    sub_02021FE0(param0->unk_1B0.unk_00, param1);
-    sub_02021FE0(param0->unk_1B0.unk_04, param1);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_1B0.unk_00, param1);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_1B0.unk_04, param1);
     sub_02012AF0(param0->unk_1B0.unk_08->unk_00, param1);
 }
 
@@ -883,7 +883,7 @@ static void ov21_021D2C8C (UnkStruct_ov21_021D13FC * param0, int param1)
     param0->unk_1B0.unk_04 = GraphicElementManager_AddElement(&v1);
 
     GraphicElementData_SetDrawFlag(param0->unk_1B0.unk_04, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_1B0.unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_1B0.unk_04, 1);
 
     param0->unk_1B0.unk_08 = NULL;
     param0->unk_1B0.unk_28 = 0;
@@ -930,7 +930,7 @@ void ov21_021D2D88 (UnkStruct_ov21_021D22F8 * param0, GraphicElementManager * pa
     param0->unk_04 = GraphicElementManager_AddElement(&v1);
 
     GraphicElementData_SetDrawFlag(param0->unk_04, 0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_04, 1);
+    GraphicElementData_SetAnim(param0->unk_04, 1);
 
     param0->unk_08 = NULL;
     param0->unk_28 = 0;
@@ -1017,7 +1017,7 @@ static void ov21_021D2F5C (UnkStruct_ov21_021D13FC * param0, int param1)
 
     for (v2 = 0; v2 < 4; v2++) {
         v3->unk_00[v2] = GraphicElementManager_AddElement(&v1);
-        SpriteActor_SetSpriteAnimActive(v3->unk_00[v2], v2);
+        GraphicElementData_SetAnim(v3->unk_00[v2], v2);
     }
 
     ov21_021D2584(v3, 0);

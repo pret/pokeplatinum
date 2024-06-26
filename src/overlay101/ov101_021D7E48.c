@@ -146,7 +146,7 @@ void ov101_021D7FB4 (UnkStruct_ov101_021D7E48 * param0)
 
 void ov101_021D80D4 (UnkStruct_ov101_021D7E48 * param0)
 {
-    sub_020219F8(param0->unk_0C);
+    GraphicElementManager_Update(param0->unk_0C);
     sub_0201DCE8();
 }
 

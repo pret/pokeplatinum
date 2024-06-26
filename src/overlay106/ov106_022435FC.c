@@ -71,7 +71,7 @@ void ov106_02243670 (UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2)
     VecFx32 v0;
 
     if (param0->unk_0C != NULL) {
-        sub_02021DCC(param0->unk_10, param0->unk_0C[0]);
+        GraphicElementData_SetAnimNoRestart(param0->unk_10, param0->unk_0C[0]);
     }
 
     v0 = *(GraphicElementData_GetPosition(param0->unk_10));
@@ -86,7 +86,7 @@ void ov106_02243670 (UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2)
 void ov106_022436B0 (UnkStruct_ov106_02243650 * param0, u32 param1)
 {
     GraphicElementData_SetAnimSpeed(param0->unk_10, FX32_ONE);
-    sub_02021DCC(param0->unk_10, param1);
+    GraphicElementData_SetAnimNoRestart(param0->unk_10, param1);
 
     return;
 }

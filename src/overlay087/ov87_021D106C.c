@@ -143,7 +143,7 @@ static void ov87_021D11AC (void * param0)
 {
     UnkStruct_ov87_021D106C * v0 = param0;
 
-    sub_020219F8(v0->unk_34);
+    GraphicElementManager_Update(v0->unk_34);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -210,13 +210,13 @@ static BOOL ov87_021D12C0 (UnkStruct_ov87_021D106C * param0, int * param1)
 
     for (v1 = 0; v1 < v0->unk_14; v1++) {
         if (v1 == v0->unk_18) {
-            sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
             GraphicElementData_SetPriority(param0->unk_1C4[v1], 0);
             Sound_FlagDefaultChatotCry(1);
 
             sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
-            sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
             GraphicElementData_SetPriority(param0->unk_1C4[v1], v1 + 1);
         }
     }
@@ -563,9 +563,9 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
         if (v3 == v2->unk_18) {
             Sound_FlagDefaultChatotCry(1);
             sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
-            sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
-            sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
         }
 
         GraphicElementData_SetDrawFlag(param0->unk_1C4[v3], 1);

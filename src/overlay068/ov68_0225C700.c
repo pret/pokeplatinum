@@ -472,7 +472,7 @@ static void ov68_0225C960 (UnkStruct_ov68_0225C91C * param0)
 
 static void ov68_0225C980 (UnkStruct_ov68_0225C91C * param0)
 {
-    sub_020219F8(param0->unk_04);
+    GraphicElementManager_Update(param0->unk_04);
 }
 
 static void ov68_0225C98C (UnkStruct_ov68_0225C91C * param0)

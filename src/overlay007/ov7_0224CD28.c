@@ -305,7 +305,7 @@ BOOL ov7_0224CEAC (TaskManager * param0)
     if ((v1->unk_297 >= 4) && (v1->unk_297 <= 11)) {
         GraphicElementData_UpdateAnim(v1->unk_25C[0], FX32_ONE);
         GraphicElementData_UpdateAnim(v1->unk_25C[1], FX32_ONE);
-        sub_020219F8(v1->unk_94.unk_00);
+        GraphicElementManager_Update(v1->unk_94.unk_00);
     }
 
     return 0;

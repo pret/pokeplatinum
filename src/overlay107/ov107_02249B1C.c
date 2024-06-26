@@ -87,7 +87,7 @@ void ov107_02249BB8 (UnkStruct_ov107_02249B8C * param0, u16 param1, u16 param2)
 void ov107_02249BEC (UnkStruct_ov107_02249B8C * param0, u32 param1)
 {
     GraphicElementData_SetAnimSpeed(param0->unk_04, FX32_ONE);
-    SpriteActor_SetSpriteAnimActive(param0->unk_04, param1);
+    GraphicElementData_SetAnim(param0->unk_04, param1);
 
     return;
 }
@@ -112,7 +112,7 @@ void ov107_02249C28 (UnkStruct_ov107_02249B8C * param0, u8 param1)
 
 BOOL ov107_02249C40 (UnkStruct_ov107_02249B8C * param0)
 {
-    return sub_02021FD0(param0->unk_04);
+    return GraphicElementData_IsAnimated(param0->unk_04);
 }
 
 void ov107_02249C4C (UnkStruct_ov107_02249B8C * param0, u8 param1)

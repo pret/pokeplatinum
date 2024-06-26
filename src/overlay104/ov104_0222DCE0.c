@@ -386,12 +386,12 @@ void ov104_0222E1C0 (SaveData * param0, Party * param1, Pokemon * param2)
 
 void ov104_0222E1D8 (GraphicElementData * param0, u8 param1)
 {
-    if (sub_02021E24(param0) == param1) {
+    if (GraphicElementData_GetActiveAnim(param0) == param1) {
         return;
     }
 
     SpriteActor_SetAnimFrame(param0, 0);
-    SpriteActor_SetSpriteAnimActive(param0, param1);
+    GraphicElementData_SetAnim(param0, param1);
     GraphicElementData_UpdateAnim(param0, FX32_ONE);
     return;
 }
@@ -405,7 +405,7 @@ void ov104_0222E204 (GraphicElementData * param0, s16 param1, s16 param2, u8 par
     v0.z = 0;
 
     if (param3 == 1) {
-        if (sub_02021E74(param0) == 0) {
+        if (GraphicElementData_GetAnimFrame(param0) == 0) {
             v0.y = (param2 - 3) * FX32_ONE;
         } else {
             v0.y = (param2 + 1) * FX32_ONE;

@@ -211,7 +211,7 @@ static void ov21_021E8E0C (UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov2
     param0->unk_00 = param1->unk_00;
     param0->unk_19C = sub_020095C4(32, &param0->unk_10, param1->unk_0C);
 
-    sub_02022014(param1->unk_0C);
+    Utility_Clear2DMainOAM(param1->unk_0C);
     ov21_021E9A0C(param1->unk_0C);
 
     param0->unk_0C = ov21_021E99E0(param1->unk_08, param1->unk_10, 48, 72, param1->unk_0C);
@@ -551,7 +551,7 @@ static void ov21_021E9504 (UnkStruct_ov21_021E95B0 * param0, GraphicElementManag
     param0->unk_00 = GraphicElementManager_AddElement(&v0);
 
     GF_ASSERT(param0->unk_00);
-    SpriteActor_SetSpriteAnimActive(param0->unk_00, 0x11);
+    GraphicElementData_SetAnim(param0->unk_00, 0x11);
 }
 
 static void ov21_021E9554 (UnkStruct_ov21_021E95B0 * param0)
@@ -620,13 +620,13 @@ static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, GraphicElementManag
 
     param0->unk_00[0] = GraphicElementManager_AddElement(&v0);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[0], 0 + v2);
+    GraphicElementData_SetAnim(param0->unk_00[0], 0 + v2);
 
     if (v2 != v3) {
         v0.position.x = (220 * FX32_ONE);
         v0.position.y = (72 * FX32_ONE);
         param0->unk_00[1] = GraphicElementManager_AddElement(&v0);
-        SpriteActor_SetSpriteAnimActive(param0->unk_00[1], 0 + v3);
+        GraphicElementData_SetAnim(param0->unk_00[1], 0 + v3);
     } else {
         param0->unk_00[1] = NULL;
     }
@@ -722,7 +722,7 @@ static void ov21_021E9828 (SysTask * param0, void * param1)
         ov21_021E9A9C(&v0->unk_228);
     }
 
-    sub_020219F8(v0->unk_19C);
+    GraphicElementManager_Update(v0->unk_19C);
 }
 
 static void ov21_021E98D8 (PaletteData * param0, Sprite * param1)

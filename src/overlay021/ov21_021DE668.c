@@ -658,13 +658,13 @@ static void ov21_021DF098 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 
     param0->unk_00[1] = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[1], 0 + v4);
+    GraphicElementData_SetAnim(param0->unk_00[1], 0 + v4);
 
     if (v4 != v5) {
         v1.position.x = (220 * FX32_ONE);
         v1.position.y = (72 * FX32_ONE);
         param0->unk_00[2] = GraphicElementManager_AddElement(&v1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_00[2], 0 + v5);
+        GraphicElementData_SetAnim(param0->unk_00[2], 0 + v5);
     } else {
         param0->unk_00[2] = NULL;
     }
@@ -765,7 +765,7 @@ static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 
     param0->unk_0C = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_0C, 0x11);
+    GraphicElementData_SetAnim(param0->unk_0C, 0x11);
 
     if (ov21_021D37CC(param2->unk_04) != 2) {
         v3 = 0;
@@ -973,11 +973,11 @@ static void ov21_021DF64C (UnkStruct_ov21_021DF374 * param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_00[v0]) {
-            sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_XLU);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_XLU);
         }
     }
 
-    sub_02021FE0(param0->unk_0C, GX_OAM_MODE_XLU);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_XLU);
     sub_02012AF0(param0->unk_10->unk_00, GX_OAM_MODE_XLU);
 }
 
@@ -987,11 +987,11 @@ static void ov21_021DF680 (UnkStruct_ov21_021DF374 * param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_00[v0]) {
-            sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
         }
     }
 
-    sub_02021FE0(param0->unk_0C, GX_OAM_MODE_NORMAL);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_NORMAL);
     sub_02012AF0(param0->unk_10->unk_00, GX_OAM_MODE_NORMAL);
 }
 

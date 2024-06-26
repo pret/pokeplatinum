@@ -661,14 +661,14 @@ static void ov21_021D8D0C (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
     v1.position.y = 164 << FX32_SHIFT;
     param0->unk_20 = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_20, 3);
+    GraphicElementData_SetAnim(param0->unk_20, 3);
 
     v1.position.x = 128 << FX32_SHIFT;
     v1.position.y = 96 << FX32_SHIFT;
 
     param0->unk_58 = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_58, 17);
+    GraphicElementData_SetAnim(param0->unk_58, 17);
     GraphicElementData_SetDrawFlag(param0->unk_58, 0);
     GraphicElementData_SetAffineOverwriteMode(param0->unk_58, 1);
     GraphicElementData_SetExplicitPriority(param0->unk_58, 0);
@@ -992,46 +992,46 @@ static void ov21_021D924C (UnkStruct_ov21_021D9320 * param0, int param1)
 
         switch (param1) {
         case 1:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 3);
+            GraphicElementData_SetAnim(param0->unk_20, 3);
             break;
         case 2:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 4);
+            GraphicElementData_SetAnim(param0->unk_20, 4);
             break;
         case 3:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 5);
+            GraphicElementData_SetAnim(param0->unk_20, 5);
             break;
         case 4:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 6);
+            GraphicElementData_SetAnim(param0->unk_20, 6);
             break;
         case 5:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 7);
+            GraphicElementData_SetAnim(param0->unk_20, 7);
             break;
         case 6:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 8);
+            GraphicElementData_SetAnim(param0->unk_20, 8);
             break;
         case 7:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 9);
+            GraphicElementData_SetAnim(param0->unk_20, 9);
             break;
         case 8:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 10);
+            GraphicElementData_SetAnim(param0->unk_20, 10);
             break;
         case 9:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 11);
+            GraphicElementData_SetAnim(param0->unk_20, 11);
             break;
         case 10:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 12);
+            GraphicElementData_SetAnim(param0->unk_20, 12);
             break;
         case 11:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 13);
+            GraphicElementData_SetAnim(param0->unk_20, 13);
             break;
         case 12:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 14);
+            GraphicElementData_SetAnim(param0->unk_20, 14);
             break;
         case 13:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 15);
+            GraphicElementData_SetAnim(param0->unk_20, 15);
             break;
         case 14:
-            SpriteActor_SetSpriteAnimActive(param0->unk_20, 16);
+            GraphicElementData_SetAnim(param0->unk_20, 16);
             break;
         default:
             break;

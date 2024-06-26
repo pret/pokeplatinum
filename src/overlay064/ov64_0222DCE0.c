@@ -905,7 +905,7 @@ static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 
 static void ov64_0222E21C (UnkStruct_ov64_0222E21C * param0)
 {
-    sub_020219F8(param0->unk_04);
+    GraphicElementManager_Update(param0->unk_04);
 }
 
 static void ov64_0222E228 (UnkStruct_ov64_0222E21C * param0)
@@ -1244,7 +1244,7 @@ static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
         GraphicElementData_SetAnimateFlag(param0->unk_270[v1], 1);
         GraphicElementData_SetDrawFlag(param0->unk_270[v1], 0);
-        SpriteActor_SetSpriteAnimActive(param0->unk_270[v1], v1);
+        GraphicElementData_SetAnim(param0->unk_270[v1], v1);
     }
 }
 
@@ -2646,7 +2646,7 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     u32 v1;
 
     GraphicElementData_SetDrawFlag(param0->unk_104, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_104, 2);
+    GraphicElementData_SetAnim(param0->unk_104, 2);
 
     param0->unk_108 = 0;
 
@@ -2672,11 +2672,11 @@ static BOOL ov64_02230008 (UnkStruct_ov64_0222F0C4 * param0)
 {
     u32 v0;
 
-    if (sub_02021FD0(param0->unk_104) == 0) {
+    if (GraphicElementData_IsAnimated(param0->unk_104) == 0) {
         return 1;
     }
 
-    v0 = sub_02021E74(param0->unk_104);
+    v0 = GraphicElementData_GetAnimFrame(param0->unk_104);
 
     if ((v0 - param0->unk_108) >= 2) {
         param0->unk_108 = v0;

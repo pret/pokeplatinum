@@ -221,13 +221,13 @@ static int ov95_02249840 (UnkStruct_ov95_022497D8 * param0, int * param1)
     case 2:
         if (ov95_02249CF0(&(param0->unk_34))) {
             Sound_PlayEffect(1709);
-            SpriteActor_SetSpriteAnimActive(param0->unk_20[0], 3);
+            GraphicElementData_SetAnim(param0->unk_20[0], 3);
             GraphicElementData_SetDrawFlag(param0->unk_20[0], 1);
             (*param1)++;
         }
         break;
     case 3:
-        if (sub_02021FD0(param0->unk_20[0]) == 0) {
+        if (GraphicElementData_IsAnimated(param0->unk_20[0]) == 0) {
             sub_0200F174(0, 0, 0, 0x7fff, 16, 1, 58);
             (*param1)++;
         }

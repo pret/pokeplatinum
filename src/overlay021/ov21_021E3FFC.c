@@ -389,10 +389,10 @@ static void ov21_021E4360 (UnkStruct_ov21_021E4360 * param0)
 
     for (v0 = 0; v0 < 9; v0++) {
         for (v1 = 0; v1 < 9; v1++) {
-            sub_02021FE0(param0->unk_20[v0].unk_00[v1].unk_00, GX_OAM_MODE_XLU);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_20[v0].unk_00[v1].unk_00, GX_OAM_MODE_XLU);
         }
 
-        sub_02021FE0(param0->unk_20[v0].unk_48.unk_00, GX_OAM_MODE_XLU);
+        GraphicElementData_SetExplicitOAMMode(param0->unk_20[v0].unk_48.unk_00, GX_OAM_MODE_XLU);
     }
 }
 
@@ -402,10 +402,10 @@ static void ov21_021E4394 (UnkStruct_ov21_021E4360 * param0)
 
     for (v0 = 0; v0 < 9; v0++) {
         for (v1 = 0; v1 < 9; v1++) {
-            sub_02021FE0(param0->unk_20[v0].unk_00[v1].unk_00, GX_OAM_MODE_NORMAL);
+            GraphicElementData_SetExplicitOAMMode(param0->unk_20[v0].unk_00[v1].unk_00, GX_OAM_MODE_NORMAL);
         }
 
-        sub_02021FE0(param0->unk_20[v0].unk_48.unk_00, GX_OAM_MODE_NORMAL);
+        GraphicElementData_SetExplicitOAMMode(param0->unk_20[v0].unk_48.unk_00, GX_OAM_MODE_NORMAL);
     }
 }
 
@@ -760,7 +760,7 @@ static void ov21_021E4B30 (UnkStruct_ov21_021E4B30 * param0, int param1)
 
         v1.y += -8 << FX32_SHIFT;
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_00[v0].unk_00, 1);
+        GraphicElementData_SetAnim(param0->unk_00[v0].unk_00, 1);
     }
 
     v1.y = 96 << FX32_SHIFT;

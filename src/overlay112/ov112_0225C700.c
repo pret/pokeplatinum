@@ -497,7 +497,7 @@ static void ov112_0225C9F4 (UnkStruct_ov112_0225C9BC * param0)
 
 static void ov112_0225CA14 (UnkStruct_ov112_0225C9BC * param0)
 {
-    sub_020219F8(param0->unk_04);
+    GraphicElementManager_Update(param0->unk_04);
 }
 
 static void ov112_0225CA20 (UnkStruct_ov112_0225C9BC * param0)

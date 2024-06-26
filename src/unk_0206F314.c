@@ -867,31 +867,31 @@ static BOOL sub_020702D0 (TaskManager * param0)
         break;
     case 2:
         v1->unk_00 = sub_0206F488(v1->unk_08);
-        sub_020219F8(v1->unk_08->unk_134.unk_00);
+        GraphicElementManager_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 3:
         v1->unk_00 = sub_0206F498(v1->unk_08);
-        sub_020219F8(v1->unk_08->unk_134.unk_00);
+        GraphicElementManager_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 4:
         v1->unk_00 = sub_0206F508(v1->unk_08);
-        sub_020219F8(v1->unk_08->unk_134.unk_00);
+        GraphicElementManager_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 5:
         v1->unk_00 = sub_0206F514(v1->unk_08);
-        sub_020219F8(v1->unk_08->unk_134.unk_00);
+        GraphicElementManager_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 6:
         v1->unk_00 = sub_0206F554(v1->unk_08);
-        sub_020219F8(v1->unk_08->unk_134.unk_00);
+        GraphicElementManager_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 7:
         v1->unk_00 = sub_0206F658(v1->unk_08);
-        sub_020219F8(v1->unk_08->unk_134.unk_00);
+        GraphicElementManager_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 8:
         v1->unk_00 = sub_0206F748(v2);
-        sub_020219F8(v1->unk_08->unk_134.unk_00);
+        GraphicElementManager_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 9:
         if (!(gCoreSys.pressedKeys & PAD_BUTTON_A)) {

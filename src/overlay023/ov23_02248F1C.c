@@ -131,7 +131,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
                 GraphicElementData_SetDrawFlag(v0->unk_390[v2], 0);
 
                 if (v2 == 0) {
-                    SpriteActor_SetSpriteAnimActive(v0->unk_390[v2], 1);
+                    GraphicElementData_SetAnim(v0->unk_390[v2], 1);
                 }
             }
 
@@ -139,7 +139,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
                 v0->unk_3B0[v2] = GraphicElementManager_AddElementEx(&v3);
                 GraphicElementData_SetAnimateFlag(v0->unk_3B0[v2], 1);
                 GraphicElementData_SetDrawFlag(v0->unk_3B0[v2], 0);
-                SpriteActor_SetSpriteAnimActive(v0->unk_3B0[v2], 2);
+                GraphicElementData_SetAnim(v0->unk_3B0[v2], 2);
             }
         }
 
@@ -166,7 +166,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
         ov23_02249334(v0->unk_A4);
         ov23_0224937C(v0->unk_A4, v0->unk_3B0);
         ov23_0224966C(v0->unk_1B8, &v0->unk_3F4, &v0->unk_404, &v0->unk_408, &v0->unk_40C, &v0->unk_410);
-        sub_020219F8(v0->unk_1BC);
+        GraphicElementManager_Update(v0->unk_1BC);
         break;
     case 6:
         if (FieldMessage_FinishedPrinting(v0->unk_404)) {
@@ -310,7 +310,7 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
 
             if (param0[v0][2] != param0[v0][3]) {
                 if (param0[v0][2] != 0) {
-                    SpriteActor_SetSpriteAnimActive(param1[v0], param0[v0][2]);
+                    GraphicElementData_SetAnim(param1[v0], param0[v0][2]);
                     GraphicElementData_SetDrawFlag(param1[v0], 1);
                 } else {
                     GraphicElementData_SetDrawFlag(param1[v0], 0);

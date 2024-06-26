@@ -161,11 +161,11 @@ void ov19_021DEDDC (UnkStruct_ov19_021DEC04 * param0, BOOL param1)
         int v0 = ov19_021D5F9C(param0->unk_08);
 
         if (param1) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_28[v0 ^ 1], 2);
-            SpriteActor_SetSpriteAnimActive(param0->unk_28[v0], 0);
+            GraphicElementData_SetAnim(param0->unk_28[v0 ^ 1], 2);
+            GraphicElementData_SetAnim(param0->unk_28[v0], 0);
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_28[v0 ^ 1], 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_28[v0], 0);
+            GraphicElementData_SetAnim(param0->unk_28[v0 ^ 1], 1);
+            GraphicElementData_SetAnim(param0->unk_28[v0], 0);
         }
 
         ov19_021DEEFC(param0);
@@ -607,11 +607,11 @@ static void ov19_021DF5D0 (UnkStruct_ov19_021DEC04 * param0, NARC * param1)
         param0->unk_28[v4] = ov19_021D785C(param0->unk_10, &v2, v0[v4].unk_00, v0[v4].unk_02, 0, NNS_G2D_VRAM_TYPE_2DSUB);
 
         GraphicElementData_SetExplicitPalette(param0->unk_28[v4], v4);
-        SpriteActor_SetSpriteAnimActive(param0->unk_28[v4], 0);
+        GraphicElementData_SetAnim(param0->unk_28[v4], 0);
 
         for (v5 = 0; v5 < 5; v5++) {
             param0->unk_34[v4][v5] = ov19_021D785C(param0->unk_10, &v2, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB);
-            SpriteActor_SetSpriteAnimActive(param0->unk_34[v4][v5], 5 + v4);
+            GraphicElementData_SetAnim(param0->unk_34[v4][v5], 5 + v4);
             GraphicElementData_SetExplicitPalette(param0->unk_34[v4][v5], v4);
             GraphicElementData_SetDrawFlag(param0->unk_34[v4][v5], 0);
         }
@@ -619,7 +619,7 @@ static void ov19_021DF5D0 (UnkStruct_ov19_021DEC04 * param0, NARC * param1)
 
     GraphicElementData_SetFlipMode(param0->unk_28[1], 1);
     param0->unk_30 = ov19_021D785C(param0->unk_10, &v2, 128, 176 + 384, 0, NNS_G2D_VRAM_TYPE_2DSUB);
-    SpriteActor_SetSpriteAnimActive(param0->unk_30, 3);
+    GraphicElementData_SetAnim(param0->unk_30, 3);
     GraphicElementData_SetExplicitPalette(param0->unk_30, 2);
     param0->unk_380 = SysTask_Start(ov19_021DF930, param0, 1);
 
@@ -719,13 +719,13 @@ static void ov19_021DF930 (SysTask * param0, void * param1)
     UnkStruct_ov19_021DEC04 * v0 = param1;
     BOOL v1 = ov19_021D5FC0(v0->unk_08);
 
-    if (sub_02021E24(v0->unk_30) == 3) {
+    if (GraphicElementData_GetActiveAnim(v0->unk_30) == 3) {
         if (v1) {
-            SpriteActor_SetSpriteAnimActive(v0->unk_30, 4);
+            GraphicElementData_SetAnim(v0->unk_30, 4);
         }
     } else {
         if (v1 == 0) {
-            SpriteActor_SetSpriteAnimActive(v0->unk_30, 3);
+            GraphicElementData_SetAnim(v0->unk_30, 3);
         }
     }
 }

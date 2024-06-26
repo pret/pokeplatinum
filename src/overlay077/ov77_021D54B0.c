@@ -404,7 +404,7 @@ void ov77_021D6000 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
 
 void ov77_021D6020 (UnkStruct_ov77_021D5564 * param0)
 {
-    sub_020219F8(param0->unk_00);
+    GraphicElementManager_Update(param0->unk_00);
 
     if (param0->unk_300 != NULL) {
         sub_0201DCE8();

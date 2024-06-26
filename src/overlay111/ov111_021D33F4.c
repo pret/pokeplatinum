@@ -98,7 +98,7 @@ void ov111_021D349C (UnkStruct_ov111_021D33F4 * param0, int * param1, int * para
 void ov111_021D34C4 (UnkStruct_ov111_021D33F4 * param0, u32 param1)
 {
     GraphicElementData_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    sub_02021DCC(param0->unk_0C, param1);
+    GraphicElementData_SetAnimNoRestart(param0->unk_0C, param1);
 
     return;
 }
@@ -143,7 +143,7 @@ void ov111_021D350C (UnkStruct_ov111_021D33F4 * param0, int param1)
 {
     GraphicElementData_SetAnimateFlag(param0->unk_0C, param1);
     GraphicElementData_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    SpriteActor_SetSpriteAnimActive(param0->unk_0C, sub_02021E24(param0->unk_0C));
+    GraphicElementData_SetAnim(param0->unk_0C, GraphicElementData_GetActiveAnim(param0->unk_0C));
     return;
 }
 
@@ -155,5 +155,5 @@ void ov111_021D3530 (UnkStruct_ov111_021D33F4 * param0, BOOL param1)
 
 BOOL ov111_021D353C (UnkStruct_ov111_021D33F4 * param0)
 {
-    return sub_02021FD0(param0->unk_0C);
+    return GraphicElementData_IsAnimated(param0->unk_0C);
 }

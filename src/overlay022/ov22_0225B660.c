@@ -287,7 +287,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     GF_ASSERT(v8);
     v5 = StringTemplate_Default(13);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_1FC, 5);
+    GraphicElementData_SetAnim(param0->unk_1FC, 5);
     v0.x = 48 << FX32_SHIFT;
     v0.y = 144 << FX32_SHIFT;
     v0.z = 0;
@@ -334,7 +334,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     int v8, v9;
     int v10;
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_1FC, param0->unk_08);
+    GraphicElementData_SetAnim(param0->unk_1FC, param0->unk_08);
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = StringTemplate_Default(13);

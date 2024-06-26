@@ -203,7 +203,7 @@ int ov94_0223BE2C (OverlayManager * param0, int * param1)
     ov94_0223C598(v0);
 
     if (v0->unk_BE4 != NULL) {
-        sub_020219F8(v0->unk_BE4);
+        GraphicElementManager_Update(v0->unk_BE4);
     }
 
     return 0;

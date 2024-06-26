@@ -132,7 +132,7 @@ void sub_0205CA94 (SysTask * param0, void * param1)
     v3 = v0->unk_1E4;
 
     if (v0->unk_04.unk_00) {
-        sub_020219F8(v0->unk_04.unk_00);
+        GraphicElementManager_Update(v0->unk_04.unk_00);
     }
 
     switch (v0->unk_1E4) {
@@ -195,7 +195,7 @@ void sub_0205CBFC (SysTask * param0, void * param1)
     v2 = v0->unk_1E4;
 
     if (v2 != 5) {
-        sub_020219F8(v0->unk_04.unk_00);
+        GraphicElementManager_Update(v0->unk_04.unk_00);
     }
 
     switch (v0->unk_1E4) {
@@ -250,7 +250,7 @@ void sub_0205CD3C (SysTask * param0, void * param1)
     v2 = v0->unk_1E4;
 
     if (v2 != 6) {
-        sub_020219F8(v0->unk_04.unk_00);
+        GraphicElementManager_Update(v0->unk_04.unk_00);
     }
 
     switch (v0->unk_1E4) {
@@ -313,7 +313,7 @@ void sub_0205CE7C (SysTask * param0, void * param1)
     v3 = v0->unk_1E4;
 
     if (v3 != 6) {
-        sub_020219F8(v0->unk_04.unk_00);
+        GraphicElementManager_Update(v0->unk_04.unk_00);
     }
 
     switch (v0->unk_1E4) {
@@ -738,7 +738,7 @@ void sub_0205D5E0 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
     v0->unk_00.y = (69 * FX32_ONE);
     v0->unk_0C = sub_0205D344(param0, 0, &v0->unk_00, 0, 1);
 
-    SpriteActor_SetSpriteAnimActive(v0->unk_0C, 1);
+    GraphicElementData_SetAnim(v0->unk_0C, 1);
 }
 
 void sub_0205D624 (struct UnkStruct_0205D3AC_t * param0)
@@ -818,7 +818,7 @@ void sub_0205D714 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
     v0->unk_00.y = (69 * FX32_ONE);
     v0->unk_0C = sub_0205D344(param0, 0, &v0->unk_00, 0, 1);
 
-    SpriteActor_SetSpriteAnimActive(v0->unk_0C, 1);
+    GraphicElementData_SetAnim(v0->unk_0C, 1);
     v0->unk_14 = (2 * FX32_ONE);
     GraphicElementData_SetDrawFlag(v0->unk_0C, 0);
 }
@@ -886,7 +886,7 @@ void sub_0205D844 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
     v0->unk_00.y = 96 * FX32_ONE;
     v0->unk_0C = sub_0205D344(param0, 1, &v0->unk_00, 1, 1);
 
-    SpriteActor_SetSpriteAnimActive(v0->unk_0C, 1);
+    GraphicElementData_SetAnim(v0->unk_0C, 1);
 }
 
 void sub_0205D888 (struct UnkStruct_0205D3AC_t * param0)

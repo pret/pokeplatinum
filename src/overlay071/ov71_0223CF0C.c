@@ -130,7 +130,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
             v3.position.y = FX32_ONE * Unk_ov71_0223D73C[v0].unk_04;
             param0->unk_1C0[v0] = GraphicElementManager_AddElementEx(&v3);
             GraphicElementData_SetAnimateFlag(param0->unk_1C0[v0], 0);
-            SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v0], v0);
+            GraphicElementData_SetAnim(param0->unk_1C0[v0], v0);
 
             if (!param1[v0]) {
                 GraphicElementData_SetDrawFlag(param0->unk_1C0[v0], 0);
@@ -146,7 +146,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
                 v3.priority = 1;
                 param0->unk_1C0[v2 + v0] = GraphicElementManager_AddElementEx(&v3);
                 GraphicElementData_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
-                SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v2 + v0], 8);
+                GraphicElementData_SetAnim(param0->unk_1C0[v2 + v0], 8);
                 GraphicElementData_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
             }
 
@@ -158,7 +158,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
                 v3.priority = 1;
                 param0->unk_1C0[v2 + v0] = GraphicElementManager_AddElementEx(&v3);
                 GraphicElementData_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
-                SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v2 + v0], 9);
+                GraphicElementData_SetAnim(param0->unk_1C0[v2 + v0], 9);
                 GraphicElementData_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
             }
         }
@@ -171,7 +171,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
             v3.priority = 0;
             param0->unk_1C0[v2] = GraphicElementManager_AddElementEx(&v3);
             GraphicElementData_SetAnimateFlag(param0->unk_1C0[v2], 0);
-            SpriteActor_SetSpriteAnimActive(param0->unk_1C0[v2], 10);
+            GraphicElementData_SetAnim(param0->unk_1C0[v2], 10);
             GraphicElementData_SetDrawFlag(param0->unk_1C0[v2], 0);
         }
     }

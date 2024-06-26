@@ -472,9 +472,9 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
     GraphicElementData_SetExplicitPriority(v0->unk_04, param1->unk_06);
 
     if (param0->unk_10[v2].unk_10 == 1) {
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 5 + 1);
+        GraphicElementData_SetAnim(v0->unk_04, 5 + 1);
     } else {
-        SpriteActor_SetSpriteAnimActive(v0->unk_04, 1);
+        GraphicElementData_SetAnim(v0->unk_04, 1);
     }
 
     v0->unk_0C = 9;
@@ -585,7 +585,7 @@ void ov63_0222B2C8 (UnkStruct_ov63_0222BB38 * param0, u16 param1)
 
 u16 ov63_0222B2D4 (const UnkStruct_ov63_0222BB38 * param0)
 {
-    return sub_02021E74(param0->unk_04);
+    return GraphicElementData_GetAnimFrame(param0->unk_04);
 }
 
 void ov63_0222B2E0 (UnkStruct_ov63_0222BB38 * param0, s16 param1, s16 param2)
@@ -1016,55 +1016,55 @@ static void ov63_0222BB38 (UnkStruct_ov63_0222BB38 * param0)
 static void ov63_0222BB50 (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, param0->unk_10);
 }
 
 static void ov63_0222BB5C (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, 4);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 4);
 }
 
 static void ov63_0222BB6C (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, 5 + param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 5 + param0->unk_10);
 }
 
 static void ov63_0222BB7C (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
-    sub_02021DCC(param0->unk_04, 5 + param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 5 + param0->unk_10);
     param0->unk_10 = param1;
 }
 
 static void ov63_0222BB90 (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, 9 + param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 9 + param0->unk_10);
 }
 
 static void ov63_0222BBA0 (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, 5 + param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 5 + param0->unk_10);
 }
 
 static void ov63_0222BBB0 (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, 5 + param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 5 + param0->unk_10);
 }
 
 static void ov63_0222BBC0 (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, 5 + param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 5 + param0->unk_10);
 }
 
 static void ov63_0222BBD0 (UnkStruct_ov63_0222BB38 * param0, int param1)
 {
     param0->unk_10 = param1;
-    sub_02021DCC(param0->unk_04, 5 + param0->unk_10);
+    GraphicElementData_SetAnimNoRestart(param0->unk_04, 5 + param0->unk_10);
 }
 
 static void ov63_0222BBE0 (UnkStruct_ov63_0222BB38 * param0)
@@ -1082,7 +1082,7 @@ static void ov63_0222BC00 (UnkStruct_ov63_0222BB38 * param0)
     if (param0->unk_14 == 0) {
         SpriteActor_SetAnimFrame(param0->unk_04, 1);
     } else {
-        SpriteActor_SetSpriteAnimActive(param0->unk_04, 5 + param0->unk_10);
+        GraphicElementData_SetAnim(param0->unk_04, 5 + param0->unk_10);
     }
 }
 

@@ -1315,7 +1315,7 @@ static void ov21_021E3AF0 (UnkStruct_ov21_021E3900 * param0, UnkStruct_ov21_021E
         }
 
         param0->unk_00[v3] = GraphicElementManager_AddElement(&v1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_00[v3], v3);
+        GraphicElementData_SetAnim(param0->unk_00[v3], v3);
     }
 }
 

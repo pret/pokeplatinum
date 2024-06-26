@@ -502,7 +502,7 @@ int ov65_02236548 (OverlayManager * param0, int * param1)
     }
 
     ov65_022372B0(&v0->unk_30);
-    sub_020219F8(v0->unk_30.unk_18);
+    GraphicElementManager_Update(v0->unk_30.unk_18);
 
     return 0;
 }

@@ -143,9 +143,9 @@ void ov21_021D59D8 (GraphicElementData * param0, int param1, int param2, int par
     GraphicElementData_SetPosition(param0, &v0);
 
     if (param5->unk_02) {
-        SpriteActor_SetSpriteAnimActive(param0, param7);
+        GraphicElementData_SetAnim(param0, param7);
     } else {
-        SpriteActor_SetSpriteAnimActive(param0, param6);
+        GraphicElementData_SetAnim(param0, param6);
     }
 }
 

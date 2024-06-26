@@ -554,7 +554,7 @@ void ov21_021D144C (GraphicElementData * param0, int param1)
         break;
     case 3:
     case (3 + 1):
-        if (sub_02021E74(param0) > 0) {
+        if (GraphicElementData_GetAnimFrame(param0) > 0) {
             GraphicElementData_UpdateAnim(param0, -(FX32_ONE * 2));
         }
         break;
@@ -565,7 +565,7 @@ void ov21_021D144C (GraphicElementData * param0, int param1)
 
 void ov21_021D1498 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2)
 {
-    int v0 = sub_02021E74(param0);
+    int v0 = GraphicElementData_GetAnimFrame(param0);
     int v1, v2;
 
     switch (v0) {
@@ -597,7 +597,7 @@ void ov21_021D1524 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param
     int v0;
 
     ov21_021D1498(param0, param1, param2);
-    v0 = sub_02021E74(param0);
+    v0 = GraphicElementData_GetAnimFrame(param0);
 
     if (v0 < 2) {
         sub_02012AC0(param1->unk_00, param3);

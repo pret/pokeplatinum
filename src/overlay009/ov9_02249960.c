@@ -2751,7 +2751,7 @@ static void ov9_0224B064 (UnkStruct_ov9_0224B064 * param0)
 static void ov9_0224B124 (SysTask * param0, void * param1)
 {
     UnkStruct_ov9_0224B064 * v0 = param1;
-    sub_020219F8(v0->unk_00);
+    GraphicElementManager_Update(v0->unk_00);
 }
 
 static GraphicElementData * ov9_0224B130 (UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)

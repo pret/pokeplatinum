@@ -1311,7 +1311,7 @@ static void ov115_022615B0 (UnkStruct_ov115_022615B0 * param0, CellActorInitPara
         param0->unk_18[v0] = param1->position;
         param0->unk_00[v0] = GraphicElementManager_AddElementEx(param1);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_00[v0], 2);
+        GraphicElementData_SetAnim(param0->unk_00[v0], 2);
         GraphicElementData_SetDrawFlag(param0->unk_00[v0], 0);
         GraphicElementData_SetAnimateFlag(param0->unk_00[v0], 1);
         GraphicElementData_SetAnimSpeed(param0->unk_00[v0], FX32_CONST(1.5));
@@ -1389,7 +1389,7 @@ static void ov115_02261660 (UnkStruct_ov115_022615B0 * param0, u32 param1, u32 p
         v6 = 7;
     }
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[v1], v5);
+    GraphicElementData_SetAnim(param0->unk_00[v1], v5);
     param0->unk_0C[v1] = 0;
     GraphicElementData_SetDrawFlag(param0->unk_00[v1], 1);
     ov115_0226177C(param0, v1);
@@ -2749,7 +2749,7 @@ static BOOL ov115_02263150 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
         {
             u32 v0;
 
-            v0 = sub_02021E74(param0->unk_34);
+            v0 = GraphicElementData_GetAnimFrame(param0->unk_34);
 
             switch (v0) {
             case 10:
@@ -2999,7 +2999,7 @@ static void ov115_0226369C (const UnkStruct_ov115_02260D78 * param0, UnkStruct_o
     NNS_G3dGePopMtx(1);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    sub_020219F8(param1->unk_1C);
+    GraphicElementManager_Update(param1->unk_1C);
 }
 
 static void ov115_0226376C (UnkStruct_ov115_02261ADC * param0, u32 param1)

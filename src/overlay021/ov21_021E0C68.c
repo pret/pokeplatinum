@@ -543,7 +543,7 @@ static void ov21_021E136C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
 
     param0->unk_00 = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00, 0x11);
+    GraphicElementData_SetAnim(param0->unk_00, 0x11);
 
     if (ov21_021D37CC(param2->unk_04) != 2) {
         v3 = 0;
@@ -747,13 +747,13 @@ static BOOL ov21_021E1730 (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E17AC (UnkStruct_ov21_021E14D4 * param0)
 {
-    sub_02021FE0(param0->unk_00, GX_OAM_MODE_XLU);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_XLU);
     sub_02012AF0(param0->unk_04->unk_00, GX_OAM_MODE_XLU);
 }
 
 static void ov21_021E17C4 (UnkStruct_ov21_021E14D4 * param0)
 {
-    sub_02021FE0(param0->unk_00, GX_OAM_MODE_NORMAL);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_NORMAL);
     sub_02012AF0(param0->unk_04->unk_00, GX_OAM_MODE_NORMAL);
 }
 

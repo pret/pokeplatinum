@@ -179,7 +179,7 @@ static void ov56_022561C0 (SysTask * param0, void * param1)
         ov56_02256D04(v0);
         ov56_022568E0(v0);
         ov56_022571D0(v0);
-        sub_020219F8(v0->unk_28);
+        GraphicElementManager_Update(v0->unk_28);
         break;
     case 3:
         break;
@@ -438,7 +438,7 @@ static void ov56_02256704 (UnkStruct_ov56_02256468 * param0)
             param0->unk_1FC[v0] = GraphicElementManager_AddElementEx(&v1);
 
             GraphicElementData_SetAnimateFlag(param0->unk_1FC[v0], 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_1FC[v0], v0);
+            GraphicElementData_SetAnim(param0->unk_1FC[v0], v0);
         }
     }
 }
@@ -968,11 +968,11 @@ static void ov56_0225718C (UnkStruct_ov56_02256468 * param0, int param1)
     u16 v0;
     u16 v1;
 
-    v0 = sub_02021E74(param0->unk_1FC[param1]);
-    v1 = sub_02021E24(param0->unk_1FC[param1]);
+    v0 = GraphicElementData_GetAnimFrame(param0->unk_1FC[param1]);
+    v1 = GraphicElementData_GetActiveAnim(param0->unk_1FC[param1]);
 
     if ((v0 > 1) || (v1 != param1 + 4)) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_1FC[param1], param1 + 4);
+        GraphicElementData_SetAnim(param0->unk_1FC[param1], param1 + 4);
     }
 
     param0->unk_2F4[param1] = 1;
@@ -984,7 +984,7 @@ static void ov56_022571D0 (UnkStruct_ov56_02256468 * param0)
     u16 v1;
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1 = sub_02021E74(param0->unk_1FC[v0]);
+        v1 = GraphicElementData_GetAnimFrame(param0->unk_1FC[v0]);
 
         if (param0->unk_2F4[v0] == 1) {
             if (v1 >= 1) {

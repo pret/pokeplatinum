@@ -354,7 +354,7 @@ static void ov21_021E8794 (UnkStruct_ov21_021E8794 * param0)
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_XLU);
+        GraphicElementData_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_XLU);
         sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_XLU);
     }
 }
@@ -364,7 +364,7 @@ static void ov21_021E87AC (UnkStruct_ov21_021E8794 * param0)
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
+        GraphicElementData_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
         sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_NORMAL);
     }
 }
@@ -556,7 +556,7 @@ static void ov21_021E8AA8 (UnkStruct_ov21_021E8794 * param0, UnkStruct_ov21_021E
 
     param0->unk_00[0] = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[0], 2);
+    GraphicElementData_SetAnim(param0->unk_00[0], 2);
 }
 
 static void ov21_021E8B34 (UnkStruct_ov21_021E8794 * param0)
@@ -623,7 +623,7 @@ static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, GraphicElementData 
     ov21_021D144C(param1, param3);
     ov21_021E8C94(param1, param2, param4, param8, param9);
 
-    v0 = sub_02021E74(param1);
+    v0 = GraphicElementData_GetAnimFrame(param1);
 
     switch (v0) {
     case 0:
@@ -667,7 +667,7 @@ static void ov21_021E8C94 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 
     int v0;
 
     ov21_021D1498(param0, param1, param2);
-    v0 = sub_02021E74(param0);
+    v0 = GraphicElementData_GetAnimFrame(param0);
 
     if (v0 < 2) {
         sub_02012AC0(param1->unk_00, param3);

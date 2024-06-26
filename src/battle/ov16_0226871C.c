@@ -1513,12 +1513,12 @@ void ov16_02269168 (UnkStruct_ov16_02268A14 * param0, u8 param1[], u8 param2[])
     for (v0 = 0; v0 < 6; v0++) {
         v1 = ov16_0226A934(param1[v0]);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_5BC[v0]->unk_00, v1);
+        GraphicElementData_SetAnim(param0->unk_5BC[v0]->unk_00, v1);
         SpriteActor_UpdateObject(param0->unk_5BC[v0]->unk_00);
 
         v1 = ov16_0226A934(param2[v0]);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_5D4[v0]->unk_00, v1);
+        GraphicElementData_SetAnim(param0->unk_5D4[v0]->unk_00, v1);
         SpriteActor_UpdateObject(param0->unk_5D4[v0]->unk_00);
     }
 }

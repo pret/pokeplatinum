@@ -122,7 +122,7 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     v1 = GraphicElementManager_AddElementEx(&v0);
     GF_ASSERT(v1);
 
-    SpriteActor_SetSpriteAnimActive(v1, param1->unk_0A);
+    GraphicElementData_SetAnim(v1, param1->unk_0A);
     GraphicElementData_SetExplicitPaletteWithOffset(v1, param1->unk_10);
 
     return v1;
@@ -389,7 +389,7 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
 
     if (v2->unk_00 != NULL) {
         v1 = GraphicElementData_GetExplicitPalette(v2->unk_00);
-        SpriteActor_SetSpriteAnimActive(v2->unk_00, param1->animIdx);
+        GraphicElementData_SetAnim(v2->unk_00, param1->animIdx);
         GraphicElementData_SetExplicitPalette(v2->unk_00, v1 + param1->plttIdx);
     } else {
         GF_ASSERT(FALSE);

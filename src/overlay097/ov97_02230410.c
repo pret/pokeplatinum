@@ -997,8 +997,8 @@ static void ov97_022314FC (UnkStruct_ov97_02230868 * param0, int param1, int * p
     }
 
     if (v1 != param0->unk_3E10) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
-        SpriteActor_SetSpriteAnimActive(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
+        GraphicElementData_SetAnim(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
+        GraphicElementData_SetAnim(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
     }
 
     v0 = 0;
@@ -1258,7 +1258,7 @@ static int ov97_0223161C (OverlayManager * param0, int * param1)
     }
 
     if (v4->unk_2CA4 != NULL) {
-        sub_020219F8(v4->unk_2CA4);
+        GraphicElementManager_Update(v4->unk_2CA4);
     }
 
     ov97_02237CA0();

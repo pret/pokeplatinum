@@ -191,13 +191,13 @@ static int ov95_0224A464 (UnkStruct_ov95_0224A42C * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_20[0], 3);
+            GraphicElementData_SetAnim(param0->unk_20[0], 3);
             GraphicElementData_SetDrawFlag(param0->unk_20[0], 1);
             (*param1)++;
         }
         break;
     case 1:
-        if (sub_02021FD0(param0->unk_20[0]) == 0) {
+        if (GraphicElementData_IsAnimated(param0->unk_20[0]) == 0) {
             Sound_PlayEffect(1707);
             ov95_0224A864(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);

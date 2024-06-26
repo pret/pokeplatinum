@@ -1205,7 +1205,7 @@ static GraphicElementData * ov97_0222E538 (UnkStruct_ov97_0222E398 * param0, int
     if (v0) {
         GraphicElementData_SetAnimateFlag(v0, 1);
         GraphicElementData_SetExplicitPriority(v0, 0);
-        SpriteActor_SetSpriteAnimActive(v0, 0);
+        GraphicElementData_SetAnim(v0, 0);
         GraphicElementData_SetDrawFlag(v0, 1);
     }
 
@@ -1216,7 +1216,7 @@ static void ov97_0222E5B4 (UnkStruct_ov97_0222E398 * param0)
 {
     param0->unk_3008.unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    sub_02021DCC(param0->unk_3008.unk_0C, 2);
+    GraphicElementData_SetAnimNoRestart(param0->unk_3008.unk_0C, 2);
     SpriteActor_SetAnimFrame(param0->unk_3008.unk_0C, 0);
     GraphicElementData_SetDrawFlag(param0->unk_3008.unk_0C, 0);
     GraphicElementData_SetPriority(param0->unk_3008.unk_0C, 0);
@@ -1235,7 +1235,7 @@ static void ov97_0222E60C (UnkStruct_ov97_0222E398 * param0)
 {
     param0->unk_3054.unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DSUB);
 
-    sub_02021DCC(param0->unk_3054.unk_0C, 4);
+    GraphicElementData_SetAnimNoRestart(param0->unk_3054.unk_0C, 4);
     SpriteActor_SetAnimFrame(param0->unk_3054.unk_0C, 0);
     GraphicElementData_SetDrawFlag(param0->unk_3054.unk_0C, 0);
     GraphicElementData_SetPriority(param0->unk_3054.unk_0C, 0);
@@ -1291,7 +1291,7 @@ static void ov97_0222E6F8 (UnkStruct_ov97_0222E398 * param0)
 
     for (v0 = 0; v0 < 80; v0++) {
         param0->unk_88[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_02021DCC(param0->unk_88[v0].unk_0C, 1);
+        GraphicElementData_SetAnimNoRestart(param0->unk_88[v0].unk_0C, 1);
         SpriteActor_SetAnimFrame(param0->unk_88[v0].unk_0C, 0);
     }
 }
@@ -1303,7 +1303,7 @@ static void ov97_0222E734 (UnkStruct_ov97_0222E398 * param0)
     for (v0 = 0; v0 < 80; v0++) {
         if (v0 < (80 / 4)) {
             param0->unk_88[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
-            sub_02021DCC(param0->unk_88[v0].unk_0C, 1);
+            GraphicElementData_SetAnimNoRestart(param0->unk_88[v0].unk_0C, 1);
             SpriteActor_SetAnimFrame(param0->unk_88[v0].unk_0C, 0);
         } else {
             param0->unk_88[v0].unk_0C = NULL;
@@ -1317,7 +1317,7 @@ static void ov97_0222E77C (UnkStruct_ov97_0222E398 * param0)
 
     for (v0 = 0; v0 < 80; v0++) {
         param0->unk_1848[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DSUB);
-        sub_02021DCC(param0->unk_1848[v0].unk_0C, 5);
+        GraphicElementData_SetAnimNoRestart(param0->unk_1848[v0].unk_0C, 5);
         SpriteActor_SetAnimFrame(param0->unk_1848[v0].unk_0C, 0);
     }
 }
@@ -1467,7 +1467,7 @@ static void ov97_0222EA68 (UnkStruct_ov97_0222E398 * param0)
             GraphicElementData_SetPosition(param0->unk_88[v0].unk_0C, &v1);
         }
 
-        sub_02021DCC(param0->unk_88[v0].unk_0C, 1);
+        GraphicElementData_SetAnimNoRestart(param0->unk_88[v0].unk_0C, 1);
         GraphicElementData_SetDrawFlag(param0->unk_88[v0].unk_0C, 0);
 
         param0->unk_88[v0].unk_48 = SysTask_Start(ov97_0222EEB8, &param0->unk_88[v0], 6);
@@ -1839,9 +1839,9 @@ static void ov97_0222F4BC (SysTask * param0, void * param1)
         }
 
         if (v3 > 50) {
-            sub_02021DCC(v0->unk_3008.unk_0C, 4);
+            GraphicElementData_SetAnimNoRestart(v0->unk_3008.unk_0C, 4);
         } else if (v3 > 30) {
-            sub_02021DCC(v0->unk_3008.unk_0C, 3);
+            GraphicElementData_SetAnimNoRestart(v0->unk_3008.unk_0C, 3);
         } else if (v3 > 7) {
             GraphicElementData_SetDrawFlag(v0->unk_3008.unk_0C, 1);
         }
@@ -1960,9 +1960,9 @@ static void ov97_0222F4BC (SysTask * param0, void * param1)
         if (v10 > 50) {
             GraphicElementData_SetDrawFlag(v0->unk_3054.unk_0C, 0);
         } else if (v10 > 30) {
-            sub_02021DCC(v0->unk_3054.unk_0C, 2);
+            GraphicElementData_SetAnimNoRestart(v0->unk_3054.unk_0C, 2);
         } else if (v10 > 7) {
-            sub_02021DCC(v0->unk_3054.unk_0C, 3);
+            GraphicElementData_SetAnimNoRestart(v0->unk_3054.unk_0C, 3);
         }
 
         if (v1) {

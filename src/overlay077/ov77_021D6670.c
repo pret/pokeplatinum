@@ -258,7 +258,7 @@ static void ov77_021D6964 (UnkStruct_ov77_021D6800 * param0)
 
 static void ov77_021D69B4 (UnkStruct_ov77_021D6800 * param0)
 {
-    sub_020219F8(param0->unk_00);
+    GraphicElementManager_Update(param0->unk_00);
 }
 
 void ov77_021D69C0 (UnkStruct_ov77_021D670C * param0, const int param1)

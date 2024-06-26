@@ -161,7 +161,7 @@ int ov96_0223B7F8 (OverlayManager * param0, int * param1)
     }
 
     if (v0->unk_BF4 != NULL) {
-        sub_020219F8(v0->unk_BF4);
+        GraphicElementManager_Update(v0->unk_BF4);
     }
 
     return 0;
@@ -315,7 +315,7 @@ static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)
             v1.position.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
             param0->unk_E30[v0] = GraphicElementManager_AddElementEx(&v1);
             GraphicElementData_SetAnimateFlag(param0->unk_E30[v0], 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_E30[v0], v0);
+            GraphicElementData_SetAnim(param0->unk_E30[v0], v0);
             GraphicElementData_SetDrawFlag(param0->unk_E30[v0], 0);
         }
     }

@@ -423,7 +423,7 @@ int ov111_021D0E34 (OverlayManager * param0, int * param1)
         break;
     }
 
-    sub_020219F8(v0->unk_16C.unk_00);
+    GraphicElementManager_Update(v0->unk_16C.unk_00);
 
     return 0;
 }

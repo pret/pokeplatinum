@@ -145,7 +145,7 @@ void ov105_02246080 (UnkStruct_ov105_02246060 * param0)
     }
 
     if (param0->unk_08 != NULL) {
-        sub_02021DCC(param0->unk_0C, param0->unk_08[param0->unk_02]);
+        GraphicElementData_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
     }
 
     v0 = *(GraphicElementData_GetPosition(param0->unk_0C));
@@ -166,9 +166,9 @@ void ov105_022461A4 (UnkStruct_ov105_02246060 * param0, int param1)
     param0->unk_03 = param1;
 
     if (param1 == 0) {
-        sub_02021DCC(param0->unk_0C, 8);
+        GraphicElementData_SetAnimNoRestart(param0->unk_0C, 8);
     } else {
-        sub_02021DCC(param0->unk_0C, 13);
+        GraphicElementData_SetAnimNoRestart(param0->unk_0C, 13);
     }
 
     return;
@@ -181,7 +181,7 @@ void ov105_022461C0 (UnkStruct_ov105_02246060 * param0, u8 param1)
     param0->unk_02 = param1;
 
     if (param0->unk_08 != NULL) {
-        sub_02021DCC(param0->unk_0C, param0->unk_08[param0->unk_02]);
+        GraphicElementData_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
     }
 
     v0 = *(GraphicElementData_GetPosition(param0->unk_0C));

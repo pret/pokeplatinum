@@ -743,7 +743,7 @@ static void ov22_02255A98 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_02255AC0 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    sub_020219F8(param0->unk_44);
+    GraphicElementManager_Update(param0->unk_44);
 }
 
 static void ov22_02255ACC (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_02255CB8 * param1)

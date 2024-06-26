@@ -434,7 +434,7 @@ void ov97_02237CAC (int param0)
     }
 
     if (v0->unk_34.unk_00 != NULL) {
-        sub_020219F8(v0->unk_34.unk_00);
+        GraphicElementManager_Update(v0->unk_34.unk_00);
     }
 }
 
@@ -467,7 +467,7 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
 
     GraphicElementData_SetAnimateFlag(param1, 1);
     GraphicElementData_SetExplicitPriority(param1, 0);
-    SpriteActor_SetSpriteAnimActive(param1, param4);
+    GraphicElementData_SetAnim(param1, param4);
     GraphicElementData_SetDrawFlag(param1, 1);
 
     return param1;

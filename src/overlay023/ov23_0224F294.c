@@ -261,9 +261,9 @@ static void ov23_0224F4D0 (GraphicElementData * param0, u32 param1)
 
 static void ov23_0224F500 (GraphicElementData * param0, u16 param1, u16 param2)
 {
-    u32 v0 = sub_02021E24(param0);
+    u32 v0 = GraphicElementData_GetActiveAnim(param0);
 
-    SpriteActor_SetSpriteAnimActive(param0, (v0 / 3) * 3 + param1);
+    GraphicElementData_SetAnim(param0, (v0 / 3) * 3 + param1);
     GraphicElementData_SetExplicitPaletteWithOffset(param0, param2);
 }
 
@@ -275,11 +275,11 @@ static void ov23_0224F52C (UnkStruct_ov23_02250CD4 * param0, u16 param1, u16 par
 
 static void ov23_0224F560 (GraphicElementData * param0)
 {
-    if ((sub_02021E24(param0) % 3) != 1) {
+    if ((GraphicElementData_GetActiveAnim(param0) % 3) != 1) {
         return;
     }
 
-    if (sub_02021FD0(param0) == 0) {
+    if (GraphicElementData_IsAnimated(param0) == 0) {
         ov23_0224F500(param0, 2, 1);
     }
 }
@@ -643,7 +643,7 @@ static BOOL ov23_0224FA58 (SysTask * param0, void * param1)
     switch (v0->unk_2A0) {
     case 0xffffffff:
         ov23_0224F498(v0);
-        sub_020219F8(v0->unk_74.unk_00);
+        GraphicElementManager_Update(v0->unk_74.unk_00);
         return 0;
     case 0xfffffffe:
         v0->unk_2AA = 2;

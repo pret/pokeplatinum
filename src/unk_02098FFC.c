@@ -99,7 +99,7 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
 
 void sub_02099160 (UnkStruct_0209903C * param0)
 {
-    sub_020219F8(param0->unk_10);
+    GraphicElementManager_Update(param0->unk_10);
 }
 
 UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 param2, u16 param3, u16 param4, u8 param5, u8 param6, int param7)
@@ -163,7 +163,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     v4->unk_00 = GraphicElementManager_AddElementEx(&v5);
 
     if (v4->unk_00 != NULL) {
-        SpriteActor_SetSpriteAnimActive(v4->unk_00, 0);
+        GraphicElementData_SetAnim(v4->unk_00, 0);
         v2 = sub_0200A760(
             v6, v0);
         GraphicElementData_SetExplicitPalette(v4->unk_00, v2);

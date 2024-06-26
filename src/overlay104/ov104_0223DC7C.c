@@ -531,7 +531,7 @@ static void ov104_0223E3FC (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
 
         if (v0 != 3) {
             GraphicElementData_SetAffineOverwriteMode(param1->unk_04[v0]->unk_00, 2);
-            SpriteActor_SetSpriteAnimActive(param1->unk_04[v0]->unk_00, 1);
+            GraphicElementData_SetAnim(param1->unk_04[v0]->unk_00, 1);
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);

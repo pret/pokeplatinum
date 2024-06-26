@@ -844,7 +844,7 @@ int ov65_0222E3FC (OverlayManager * param0, int * param1)
     }
 
     if (v0->unk_18C) {
-        sub_020219F8(v0->unk_18C);
+        GraphicElementManager_Update(v0->unk_18C);
     }
 
     if (ov65_02235194(&v0->unk_3EC) == 1) {
@@ -6708,7 +6708,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
 
         param0->unk_BE0.unk_21C[v1] = GraphicElementManager_AddElementEx(&v9[v1]);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
+        GraphicElementData_SetAnim(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
     }
 
     sub_02002BB8(2, param2);
@@ -6837,7 +6837,7 @@ static void ov65_02234E40 (u32 param0, u32 param1, void * param2)
 
 static void ov65_02234E50 (UnkStruct_ov65_02234E50 * param0, u32 param1)
 {
-    SpriteActor_SetSpriteAnimActive(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
+    GraphicElementData_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
     SpriteActor_SetAnimFrame(param0->unk_21C[param1], (5 - 1));
 
     if (param1 == 1) {
@@ -6852,16 +6852,16 @@ static BOOL ov65_02234E8C (UnkStruct_ov65_02234E50 * param0, u32 param1, u32 par
     u32 v2;
 
     if ((param2 == param1)) {
-        v1 = sub_02021E74(param0->unk_21C[param1]);
+        v1 = GraphicElementData_GetAnimFrame(param0->unk_21C[param1]);
 
         if ((param3 == 0) || (param3 == 2)) {
             if (param3 == 0) {
-                SpriteActor_SetSpriteAnimActive(param0->unk_21C[param1], Unk_ov65_0223892C[param1]);
+                GraphicElementData_SetAnim(param0->unk_21C[param1], Unk_ov65_0223892C[param1]);
             }
 
             if (v1 < 3) {
                 GraphicElementData_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
-                v1 = sub_02021E74(param0->unk_21C[param1]);
+                v1 = GraphicElementData_GetAnimFrame(param0->unk_21C[param1]);
 
                 if (param1 == 1) {
                     sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[v1]);
@@ -6877,11 +6877,11 @@ static BOOL ov65_02234E8C (UnkStruct_ov65_02234E50 * param0, u32 param1, u32 par
             }
         }
     } else {
-        v2 = sub_02021E24(param0->unk_21C[param1]);
-        v1 = sub_02021E74(param0->unk_21C[param1]);
+        v2 = GraphicElementData_GetActiveAnim(param0->unk_21C[param1]);
+        v1 = GraphicElementData_GetAnimFrame(param0->unk_21C[param1]);
 
         if (v2 == Unk_ov65_0223892C[param1]) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
+            GraphicElementData_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
             SpriteActor_SetAnimFrame(param0->unk_21C[param1], (5 - 1) - v1);
         }
 

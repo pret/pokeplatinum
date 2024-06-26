@@ -91,7 +91,7 @@ void ov108_022435B4 (UnkStruct_ov108_02243594 * param0, u16 param1, u16 param2)
 void ov108_022435F4 (UnkStruct_ov108_02243594 * param0, u32 param1)
 {
     GraphicElementData_SetAnimSpeed(param0->unk_10, FX32_ONE);
-    sub_02021DCC(param0->unk_10, param1);
+    GraphicElementData_SetAnimNoRestart(param0->unk_10, param1);
 
     return;
 }

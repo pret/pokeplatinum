@@ -304,7 +304,7 @@ static void ov94_0223E770 (UnkStruct_ov94_0223FD4C * param0)
     param0->unk_E20 = GraphicElementManager_AddElementEx(&v0);
 
     GraphicElementData_SetAnimateFlag(param0->unk_E20, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_E20, 0);
+    GraphicElementData_SetAnim(param0->unk_E20, 0);
     GraphicElementData_SetExplicitPriority(param0->unk_E20, 1);
     sub_02039734();
 }
@@ -464,7 +464,7 @@ static int ov94_0223EA84 (UnkStruct_ov94_0223FD4C * param0)
 
         if (param0->unk_10F2) {
             if (v1 >= 0) {
-                SpriteActor_SetSpriteAnimActive(param0->unk_F34[v1 + 1], 16 + v1 * 4);
+                GraphicElementData_SetAnim(param0->unk_F34[v1 + 1], 16 + v1 * 4);
                 param0->unk_2C = 2;
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_11C = v1;

@@ -580,9 +580,9 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
         param0->unk_00[v5] = GraphicElementManager_AddElement(&v1);
 
         if ((v5 % 2) == 0) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_00[v5], 0);
+            GraphicElementData_SetAnim(param0->unk_00[v5], 0);
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_00[v5], 2);
+            GraphicElementData_SetAnim(param0->unk_00[v5], 2);
         }
     }
 
@@ -592,7 +592,7 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
 
     param0->unk_BC = GraphicElementManager_AddElement(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_BC, 1);
+    GraphicElementData_SetAnim(param0->unk_BC, 1);
     GraphicElementData_SetAnimateFlag(param0->unk_BC, 1);
     GraphicElementData_SetExplicitPriority(param0->unk_BC, 0);
 
@@ -655,10 +655,10 @@ static void ov21_021DFFF8 (UnkStruct_ov21_021DFFF8 * param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_XLU);
+        GraphicElementData_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_XLU);
     }
 
-    sub_02021FE0(param0->unk_BC, GX_OAM_MODE_XLU);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_BC, GX_OAM_MODE_XLU);
 
     for (v0 = 0; v0 < 2; v0++) {
         sub_02012AF0(param0->unk_20[v0]->unk_00, GX_OAM_MODE_XLU);
@@ -670,10 +670,10 @@ static void ov21_021E0038 (UnkStruct_ov21_021DFFF8 * param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
+        GraphicElementData_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
     }
 
-    sub_02021FE0(param0->unk_BC, GX_OAM_MODE_NORMAL);
+    GraphicElementData_SetExplicitOAMMode(param0->unk_BC, GX_OAM_MODE_NORMAL);
 
     for (v0 = 0; v0 < 2; v0++) {
         sub_02012AF0(param0->unk_20[v0]->unk_00, GX_OAM_MODE_NORMAL);
