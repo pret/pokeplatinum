@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV101_021D7E48_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay101/struct_ov101_021D7E48_decl.h"
 #include "overlay101/struct_ov101_021D8544.h"
 

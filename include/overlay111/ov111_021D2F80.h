@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV111_021D2F80_H
 #define POKEPLATINUM_OV111_021D2F80_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay111/struct_ov111_021D2F80.h"
 
 void ov111_021D2F80(UnkStruct_ov111_021D2F80 * param0);

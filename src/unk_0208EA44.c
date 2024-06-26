@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon_summary_app.h"
@@ -14,7 +13,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "move_table.h"
 #include "pokemon_icon.h"

@@ -75,7 +75,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "touch_screen.h"
 #include "unk_020797C8.h"
 #include "pokemon_icon.h"

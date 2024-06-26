@@ -55,7 +55,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "move_table.h"

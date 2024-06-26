@@ -52,7 +52,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "pokemon.h"

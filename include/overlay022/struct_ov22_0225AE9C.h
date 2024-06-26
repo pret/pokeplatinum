@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_0225AE9C_H
 #define POKEPLATINUM_STRUCT_OV22_0225AE9C_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_0225AD68.h"
 
 #include <nitro/fx/fx.h>

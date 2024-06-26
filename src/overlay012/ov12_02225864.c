@@ -23,7 +23,7 @@
 #include "buffer_manager.h"
 #include "heap.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"

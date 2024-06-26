@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "overlay065/struct_ov65_022358CC_sub1.h"
 
 typedef struct {

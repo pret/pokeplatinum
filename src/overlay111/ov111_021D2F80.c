@@ -3,12 +3,11 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay111/struct_ov111_021D2F80.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -18,7 +17,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay111/ov111_021D2F80.h"
 
 void ov111_021D2F80(UnkStruct_ov111_021D2F80 * param0);

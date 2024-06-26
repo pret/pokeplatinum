@@ -13,8 +13,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_decls/struct_02027F8C_decl.h"
@@ -27,7 +26,7 @@
 #include "struct_defs/struct_02095E80_sub1.h"
 #include "struct_defs/pokemon_summary.h"
 #include "savedata.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
 

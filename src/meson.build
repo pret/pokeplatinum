@@ -81,7 +81,7 @@ pokeplatinum_c = files(
     'unk_0201F834.c',
     'camera.c',
     'unk_02020AEC.c',
-    'unk_020218BC.c',
+    'cell_actor.c',
     'touch_screen.c',
     'unk_02022844.c',
     'resource_collection.c',

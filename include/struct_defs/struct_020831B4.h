@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_020831B4_H
 #define POKEPLATINUM_STRUCT_020831B4_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 
 typedef struct {

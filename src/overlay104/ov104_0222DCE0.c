@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -24,7 +23,7 @@
 #include "string_template.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "save_player.h"
 #include "trainer_info.h"

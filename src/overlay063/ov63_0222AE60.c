@@ -5,12 +5,11 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
+#include "cell_actor.h"
 
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay064/struct_ov64_022302EC.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02002F38.h"
 #include "narc.h"
@@ -18,7 +17,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay063/ov63_0222AE60.h"
 
 typedef struct {

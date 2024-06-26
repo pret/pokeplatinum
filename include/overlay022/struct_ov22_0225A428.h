@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV22_0225A428_H
 
 #include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay022/struct_ov22_022597BC.h"

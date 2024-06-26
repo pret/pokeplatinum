@@ -1,12 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay105/struct_ov105_02245AAC.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -15,7 +14,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay105/ov105_02245AAC.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC * param0);

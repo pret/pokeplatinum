@@ -3,7 +3,7 @@
 
 #include "unk_0200A784.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0202309C.h"
 
 typedef struct {

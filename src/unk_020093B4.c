@@ -3,13 +3,12 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009508_1.h"
-#include "struct_defs/struct_020095C4.h"
+#include "cell_actor.h"
 #include "struct_defs/struct_0200C738.h"
-#include "overlay019/struct_ov19_021DA864.h"
 
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -18,7 +17,7 @@
 #include "heap.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0202309C.h"
 
 void sub_020093B4 (CellActorResourceData * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, UnkStruct_02009714 * param9, UnkStruct_02009714 * param10, UnkStruct_02009714 * param11, UnkStruct_02009714 * param12, UnkStruct_02009714 * param13, UnkStruct_02009714 * param14)

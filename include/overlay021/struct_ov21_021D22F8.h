@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV21_021D22F8_H
 
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 
 #include <nitro/fx/fx.h>

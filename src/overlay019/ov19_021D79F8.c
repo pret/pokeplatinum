@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
@@ -22,7 +21,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
 #include "pokemon_icon.h"

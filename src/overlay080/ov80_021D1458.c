@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "sys_task_manager.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02039EBC_decl.h"
 
@@ -28,7 +27,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_02039C80.h"
 #include "unk_02071CFC.h"

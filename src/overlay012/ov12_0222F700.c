@@ -25,7 +25,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "sys_task_manager.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_0222F700.h"

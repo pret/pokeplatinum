@@ -48,7 +48,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_02028124.h"

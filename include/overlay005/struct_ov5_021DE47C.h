@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 
 typedef struct {
     CellActorCollection * unk_00;

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223F054_H
 #define POKEPLATINUM_STRUCT_OV83_0223F054_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay083/struct_ov83_0223DA94.h"
 
 #include <nitro/fx/fx.h>

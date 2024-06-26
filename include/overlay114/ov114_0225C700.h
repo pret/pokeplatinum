@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV114_0225C700_H
 #define POKEPLATINUM_OV114_0225C700_H
 
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "trainer_info.h"
 #include "savedata.h"
 #include "overlay066/struct_ov66_02230DBC.h"

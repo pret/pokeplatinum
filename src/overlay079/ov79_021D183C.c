@@ -22,7 +22,7 @@
 #include "unk_020158A8.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D183C.h"

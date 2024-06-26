@@ -1,14 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
 #include "pokemon.h"
 #include "overlay106/struct_ov106_02243650_decl.h"
 
 #include "overlay106/struct_ov106_02243310.h"
 
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon_icon.h"
 #include "overlay106/ov106_02243310.h"
 #include "overlay106/ov106_022435FC.h"

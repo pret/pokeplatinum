@@ -12,7 +12,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "move_table.h"
 #include "unk_0207C908.h"
 #include "item.h"

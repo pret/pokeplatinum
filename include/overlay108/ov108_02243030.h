@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV108_02243030_H
 #define POKEPLATINUM_OV108_02243030_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay108/struct_ov108_02243030.h"
 

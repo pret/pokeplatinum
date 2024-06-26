@@ -3,14 +3,13 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay105/struct_ov105_02246060_decl.h"
 
 #include "overlay105/struct_ov105_02245AAC.h"
 #include "overlay105/struct_ov105_02246394.h"
 
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay105/ov105_02245AAC.h"
 #include "overlay105/ov105_02245FB8.h"
 

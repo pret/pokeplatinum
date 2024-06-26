@@ -3,10 +3,9 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay094/struct_ov94_0223FD4C_decl.h"
-#include "overlay115/struct_ov115_02261520.h"
+#include "cell_actor.h"
 
 int ov94_0223BCB0(OverlayManager * param0, int * param1);
 int ov94_0223BE2C(OverlayManager * param0, int * param1);

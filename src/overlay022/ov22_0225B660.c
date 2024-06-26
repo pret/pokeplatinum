@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
@@ -27,7 +26,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"

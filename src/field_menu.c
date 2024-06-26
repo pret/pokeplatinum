@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -51,7 +50,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "savedata.h"
 #include "save_player.h"

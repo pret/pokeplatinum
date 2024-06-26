@@ -1,13 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay111/struct_ov111_021D33F4_decl.h"
 
 #include "overlay111/struct_ov111_021D2F80.h"
 
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay111/ov111_021D2F80.h"
 #include "overlay111/ov111_021D33F4.h"
 

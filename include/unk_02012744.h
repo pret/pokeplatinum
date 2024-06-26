@@ -5,7 +5,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include <nitro/gx.h>

@@ -4,11 +4,11 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D3320.h"
@@ -16,7 +16,6 @@
 #include "overlay021/struct_ov21_021D5B68.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 
 #include "overlay021/struct_ov21_021E6A68.h"
 
@@ -30,7 +29,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"

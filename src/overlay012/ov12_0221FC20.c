@@ -46,7 +46,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"

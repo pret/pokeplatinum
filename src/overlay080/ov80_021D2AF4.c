@@ -13,7 +13,7 @@
 
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay080/ov80_021D2AF4.h"
 
 #include "overlay080/struct_ov80_021D2C5C_sub1.h"

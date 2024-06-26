@@ -2,14 +2,13 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay108/struct_ov108_02243030.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "narc.h"
 #include "unk_020093B4.h"
@@ -20,7 +19,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon_icon.h"
 #include "party.h"
 #include "unk_0207E0B8.h"

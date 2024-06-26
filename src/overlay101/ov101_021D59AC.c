@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "sys_task_manager.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "overlay101/struct_ov101_021D13C8.h"
@@ -16,7 +15,7 @@
 #include "unk_02005474.h"
 #include "sys_task.h"
 #include "unk_0201D15C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_020711EC.h"
 #include "overlay101/ov101_021D1A28.h"
 #include "overlay101/ov101_021D59AC.h"

@@ -2,19 +2,18 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021DA384.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "overlay019/ov19_021D0D80.h"

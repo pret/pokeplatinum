@@ -2,8 +2,7 @@
 #define POKEPLATINUM_STRUCT_020127E8_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include <nnsys.h>

@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -21,7 +21,6 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 #include "overlay094/struct_ov94_0223FD4C_sub2.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
@@ -37,7 +36,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "unk_020393C8.h"

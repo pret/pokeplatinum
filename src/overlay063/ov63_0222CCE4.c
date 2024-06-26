@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 
@@ -12,7 +11,7 @@
 #include "overlay064/struct_ov64_022302EC.h"
 
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay063/ov63_0222AE60.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"

@@ -8,7 +8,6 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -46,7 +45,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "communication_system.h"
 #include "unk_020393C8.h"

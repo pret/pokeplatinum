@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223D784.h"
 #include "overlay083/struct_ov83_0223D95C.h"

@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "vars_flags.h"

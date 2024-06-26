@@ -5,13 +5,13 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
@@ -19,7 +19,6 @@
 #include "overlay021/struct_ov21_021DE6D4.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 
 #include "overlay021/struct_ov21_021E6A68.h"
 
@@ -34,7 +33,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "unk_02098988.h"

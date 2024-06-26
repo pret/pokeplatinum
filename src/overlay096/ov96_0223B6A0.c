@@ -11,12 +11,11 @@
 
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay096/struct_ov96_0223BF40_t.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
@@ -36,7 +35,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_02099550.h"

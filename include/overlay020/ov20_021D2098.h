@@ -3,10 +3,9 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "struct_decls/struct_020998EC_decl.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 

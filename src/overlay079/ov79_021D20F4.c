@@ -10,7 +10,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "communication_system.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"

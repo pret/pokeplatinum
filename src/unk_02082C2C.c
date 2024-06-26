@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "pokemon.h"
 
 #include "struct_defs/struct_0200C738.h"
@@ -21,7 +20,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "party.h"

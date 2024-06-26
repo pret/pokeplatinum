@@ -6,8 +6,8 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
+#include "cell_actor.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
@@ -15,13 +15,12 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_02241308.h"
 #include "overlay104/struct_ov104_0224133C.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02002F38.h"
 #include "unk_020093B4.h"
@@ -34,7 +33,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 
 typedef struct CellTransferStateData_t {
     int unk_00;

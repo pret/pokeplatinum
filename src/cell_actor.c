@@ -4,90 +4,10 @@
 #include "nitro/gx/g2_oam.h"
 #include "nnsys/g2d/g2d_Image.h"
 #include "nnsys/g2d/g2d_RendererCore.h"
-#include "struct_defs/struct_020095C4.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_020218BC.h"
-
-#define CELL_ACTOR_ANIM_DATA_SIZE   29
-#define MAX_SIMULTANEOUS_SPRITES    128
-
-enum CellAnimType {
-    CELL_ANIM_TYPE_NONE = 0,
-    CELL_ANIM_TYPE_CELL,
-    CELL_ANIM_TYPE_MULTI_CELL,
-    CELL_ANIM_TYPE_VRAM_CELL,
-};
-
-typedef struct CellAnimationData {
-    const NNSG2dCellDataBank *cellBank;
-    const NNSG2dCellAnimBankData *animBank;
-    NNSG2dCellAnimation anim;
-} CellAnimationData;
-
-typedef struct VRamCellAnimationData {
-    NNSG2dCellDataBank *cellBank;
-    const NNSG2dCellAnimBankData *animBank;
-    NNSG2dCellAnimation anim;
-    u32 transferHandle;
-} VRamCellAnimationData;
-
-typedef struct MultiCellAnimationData {
-    const NNSG2dCellDataBank *individualCellBank;
-    const NNSG2dCellAnimBankData *individualAnimBank;
-    NNSG2dMultiCellAnimation anim;
-    const NNSG2dMultiCellDataBank *cellBank;
-    const NNSG2dMultiCellAnimBankData *animBank;
-    NNSG2dNode *nodes;
-    NNSG2dCellAnimation *cellAnims;
-} MultiCellAnimationData;
-
-typedef struct CellActor {
-    VecFx32 position;
-    VecFx32 affineTranslation;
-    VecFx32 affineScale;
-    u16 affineZRotation;
-    u8 affineOverwriteMode;
-    u8 flip;
-    u8 overwriteFlags; // Specifies which of the 'explicit' fields are used. Overwrites data provided by the OAM.
-    u8 explicitPalette; // An explicit palette index.
-    u8 explicitPaletteOffset; // An explicit palette index offset added onto the index specified by the OAM.
-    BOOL explicitMosaic;
-    GXOamMode explicitOamMode;
-    u8 draw;
-    u8 animate;
-    fx32 animSpeed;
-    CellActorCollection *collection; // The collection this actor belongs to
-
-    // This field is supposed to be a union between CellAnimationData, VRamCellAnimationData, and MultiCellAnimationData
-    // but it's actually too small to hold the largest of these types. This should really be u32 animData[31].
-    u32 animData[CELL_ACTOR_ANIM_DATA_SIZE];
-    NNSG2dImageProxy imageProxy;
-    NNSG2dImagePaletteProxy paletteProxy;
-    u32 type;
-    u16 activeAnimID;
-    u8 explicitPriority;
-    u16 priority;
-    NNS_G2D_VRAM_TYPE vramType;
-    struct CellActor *prev;
-    struct CellActor *next;
-} CellActor;
-
-typedef struct CellActorCollection {
-    CellActor *actors;
-    int maxActors;
-    CellActor **actorStack; // Stack of currently unused elements
-    int stackPointer;
-    CellActor sentinelData;
-    NNSG2dRendererInstance *renderer;
-    void *rawAnimData;
-    NNSG2dCellAnimBankData *defaultAnimBank;
-    BOOL active;
-} CellActorCollection;
+#include "cell_actor.h"
 
 typedef void (* CellActorDrawFunc)(const CellActorCollection *, CellActor *);
 typedef void (* CellActorAnimUpdateFunc)(CellActor *);

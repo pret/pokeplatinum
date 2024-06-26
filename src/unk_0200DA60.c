@@ -30,7 +30,7 @@
 #include "unk_02018340.h"
 #include "sys_task_manager.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "overlay005/ov5_021D2F14.h"
 

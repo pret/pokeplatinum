@@ -5,13 +5,12 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
+#include "cell_actor.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay115/struct_ov115_02261520.h"
+#include "cell_actor.h"
 
 #include "narc.h"
 #include "unk_020093B4.h"
@@ -21,7 +20,7 @@
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "overlay006/ov6_022426AC.h"
 

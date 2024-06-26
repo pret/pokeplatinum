@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223E5C0_H
 #define POKEPLATINUM_STRUCT_OV83_0223E5C0_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 #include "overlay083/struct_ov83_0223FE50.h"
 

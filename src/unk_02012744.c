@@ -1,18 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
+#include "cell_actor.h"
 
 #include "unk_02006E3C.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_0201E86C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 
 typedef struct {
     CellActor * unk_00;

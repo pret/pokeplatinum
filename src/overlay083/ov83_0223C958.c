@@ -23,7 +23,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "overlay083/ov83_0223C958.h"

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "resource_collection.h"
 
 #include <nnsys.h>

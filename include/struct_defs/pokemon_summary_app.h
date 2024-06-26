@@ -14,7 +14,7 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "camera.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"

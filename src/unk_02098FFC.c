@@ -11,8 +11,7 @@
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209903C_sub1.h"
 #include "struct_defs/struct_0209916C.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay115/struct_ov115_02261520.h"
+#include "cell_actor.h"
 
 #include "narc.h"
 #include "unk_020093B4.h"
@@ -20,7 +19,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_02098FFC.h"
 
 static void sub_02099058(UnkStruct_0209903C * param0);

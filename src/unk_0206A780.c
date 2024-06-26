@@ -10,7 +10,7 @@
 #include "narc.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0206A780.h"
 #include "overlay005/ov5_021D2F14.h"
 

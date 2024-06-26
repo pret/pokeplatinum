@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021DCD18_H
 #define POKEPLATINUM_STRUCT_OV19_021DCD18_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 
 #include <nnsys.h>
 

@@ -2,8 +2,7 @@
 #define POKEPLATINUM_OV63_0222AE60_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay063/struct_ov63_0222AE60_decl.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"

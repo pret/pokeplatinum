@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
 #include "pokemon.h"
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
@@ -9,7 +8,7 @@
 
 #include "unk_02005474.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon_icon.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay107/ov107_02249604.h"

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV21_021D2584_H
 
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 
 typedef struct {
     CellActor * unk_00[4];

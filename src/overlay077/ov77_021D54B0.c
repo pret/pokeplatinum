@@ -5,14 +5,13 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
+#include "cell_actor.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -22,7 +21,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay077/ov77_021D54B0.h"
 #include "overlay077/ov77_021D6670.h"
 

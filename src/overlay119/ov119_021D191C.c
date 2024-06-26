@@ -16,7 +16,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "overlay119/ov119_021D0D80.h"
 #include "overlay119/ov119_021D191C.h"

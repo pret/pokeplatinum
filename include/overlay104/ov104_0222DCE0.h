@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV104_0222DCE0_H
 
 #include "string_template.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "trainer_info.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"

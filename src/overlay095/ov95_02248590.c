@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
@@ -12,7 +12,6 @@
 #include "overlay095/struct_ov95_02247958_decl.h"
 
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay097/struct_ov97_0222DB78.h"
@@ -27,7 +26,7 @@
 #include "sys_task_manager.h"
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0202419C.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"

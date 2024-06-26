@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "savedata/save_table.h"
 #include "game_options.h"
 #include "poffin.h"

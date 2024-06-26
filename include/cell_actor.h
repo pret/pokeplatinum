@@ -1,27 +1,139 @@
-#ifndef POKEPLATINUM_UNK_020218BC_H
-#define POKEPLATINUM_UNK_020218BC_H
-
-#include "struct_defs/struct_020095C4.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
-#include "overlay115/struct_ov115_02261520.h"
-
-#include "constants/heap.h"
+#ifndef POKEPLATINUM_CELL_ACTOR_H
+#define POKEPLATINUM_CELL_ACTOR_H
 
 #include <nitro/gx.h>
 #include <nnsys.h>
 #include <nitro/fx/fx.h>
 
-#define CELL_ACTOR_FLIP_NONE  0
-#define CELL_ACTOR_FLIP_H     1
-#define CELL_ACTOR_FLIP_V     2
+#include "constants/heap.h"
+
+#define CELL_ACTOR_FLIP_NONE        0
+#define CELL_ACTOR_FLIP_H           1
+#define CELL_ACTOR_FLIP_V           2
+
+#define CELL_ACTOR_ANIM_DATA_SIZE   29
+#define MAX_SIMULTANEOUS_SPRITES    128
+
+enum CellAnimType {
+    CELL_ANIM_TYPE_NONE = 0,
+    CELL_ANIM_TYPE_CELL,
+    CELL_ANIM_TYPE_MULTI_CELL,
+    CELL_ANIM_TYPE_VRAM_CELL,
+};
 
 enum AffineOverwriteMode {
     AFFINE_OVERWRITE_MODE_NONE = 0,
     AFFINE_OVERWRITE_MODE_NORMAL,
     AFFINE_OVERWRITE_MODE_DOUBLE, // Extends the cell actor's drawable area by 2x, use when the cell actor is scaled up
 };
+
+typedef struct CellActorCollection CellActorCollection;
+
+typedef struct CellAnimationData {
+    const NNSG2dCellDataBank *cellBank;
+    const NNSG2dCellAnimBankData *animBank;
+    NNSG2dCellAnimation anim;
+} CellAnimationData;
+
+typedef struct VRamCellAnimationData {
+    NNSG2dCellDataBank *cellBank;
+    const NNSG2dCellAnimBankData *animBank;
+    NNSG2dCellAnimation anim;
+    u32 transferHandle;
+} VRamCellAnimationData;
+
+typedef struct MultiCellAnimationData {
+    const NNSG2dCellDataBank *individualCellBank;
+    const NNSG2dCellAnimBankData *individualAnimBank;
+    NNSG2dMultiCellAnimation anim;
+    const NNSG2dMultiCellDataBank *cellBank;
+    const NNSG2dMultiCellAnimBankData *animBank;
+    NNSG2dNode *nodes;
+    NNSG2dCellAnimation *cellAnims;
+} MultiCellAnimationData;
+
+typedef struct CellActor {
+    VecFx32 position;
+    VecFx32 affineTranslation;
+    VecFx32 affineScale;
+    u16 affineZRotation;
+    u8 affineOverwriteMode;
+    u8 flip;
+    u8 overwriteFlags; // Specifies which of the 'explicit' fields are used. Overwrites data provided by the OAM.
+    u8 explicitPalette; // An explicit palette index.
+    u8 explicitPaletteOffset; // An explicit palette index offset added onto the index specified by the OAM.
+    BOOL explicitMosaic;
+    GXOamMode explicitOamMode;
+    u8 draw;
+    u8 animate;
+    fx32 animSpeed;
+    CellActorCollection *collection; // The collection this actor belongs to
+
+    // This field is supposed to be a union between CellAnimationData, VRamCellAnimationData, and MultiCellAnimationData
+    // but it's actually too small to hold the largest of these types. This should really be u32 animData[31].
+    u32 animData[CELL_ACTOR_ANIM_DATA_SIZE];
+    NNSG2dImageProxy imageProxy;
+    NNSG2dImagePaletteProxy paletteProxy;
+    u32 type;
+    u16 activeAnimID;
+    u8 explicitPriority;
+    u16 priority;
+    NNS_G2D_VRAM_TYPE vramType;
+    struct CellActor *prev;
+    struct CellActor *next;
+} CellActor;
+
+struct CellActorCollection {
+    CellActor *actors;
+    int maxActors;
+    CellActor **actorStack; // Stack of currently unused actors
+    int stackPointer;
+    CellActor sentinelData;
+    NNSG2dRendererInstance *renderer;
+    void *rawAnimData;
+    NNSG2dCellAnimBankData *defaultAnimBank;
+    BOOL active;
+};
+
+typedef struct CellActorCollectionParams {
+    int maxElements;
+    NNSG2dRendererInstance *renderer;
+    int heapID;
+} CellActorCollectionParams;
+
+typedef struct CellActorResourceData {
+    const NNSG2dImageProxy *imageProxy;
+    const NNSG2dCharacterData *charData;
+    const NNSG2dImagePaletteProxy *paletteProxy;
+    NNSG2dCellDataBank *cellBank;
+    const NNSG2dCellAnimBankData *cellAnimBank;
+    const NNSG2dMultiCellDataBank *multiCellBank;
+    const NNSG2dMultiCellAnimBankData *multiCellAnimBank;
+    BOOL isVRamTransfer;
+    u8 priority;
+    u8 padding_21[3];
+} CellActorResourceData;
+
+typedef struct CellActorInitParams {
+    CellActorCollection * collection;
+    const CellActorResourceData * resourceData;
+    VecFx32 position;
+    u32 priority;
+    int vramType;
+    int heapID;
+} CellActorInitParams;
+
+typedef struct CellActorInitParamsEx {
+    CellActorCollection *collection;
+    const CellActorResourceData *resourceData;
+    VecFx32 position;
+    VecFx32 affineScale;
+    u16 affineZRotation;
+    u32 priority;
+    int vramType;
+    int heapID;
+} CellActorInitParamsEx;
+
 
 CellActorCollection *CellActorCollection_New(const CellActorCollectionParams *params);
 BOOL CellActorCollection_Delete(CellActorCollection *collection);
@@ -78,4 +190,4 @@ void Utility_Clear2DSubOAM(enum HeapId heapID);
 u32 CellActor_GetUserAttrForAnimFrame(const CellActor *actor, u32 animID, u32 frame);
 u32 CellActor_GetUserAttrForCurrentAnimFrame(const CellActor *actor);
 
-#endif // POKEPLATINUM_UNK_020218BC_H
+#endif // POKEPLATINUM_CELL_ACTOR_H

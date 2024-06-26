@@ -24,7 +24,7 @@
 #include "unk_0200C6E4.h"
 #include "sys_task.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/party_gauge.h"
 

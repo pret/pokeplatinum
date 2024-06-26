@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 
 #include "field/field_system.h"
@@ -25,7 +25,6 @@
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay006/battle_params.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
@@ -43,7 +42,7 @@
 #include "sys_task_manager.h"
 #include "gx_layers.h"
 #include "camera.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_02054884.h"
 #include "pokemon.h"
 #include "overlay005/ov5_021D0D80.h"

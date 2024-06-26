@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"

@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
 
 #include "overlay021/struct_ov21_021D5844.h"
 #include "overlay021/struct_ov21_021D5868.h"
@@ -9,7 +8,7 @@
 
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay021/ov21_021D57B4.h"
 
 void ov21_021D57B4 (UnkStruct_ov21_021D5844 * param0, int param1, int param2, int param3)

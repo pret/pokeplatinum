@@ -33,7 +33,7 @@
 #include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 
 typedef struct {

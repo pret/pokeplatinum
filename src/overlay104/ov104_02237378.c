@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -26,7 +25,7 @@
 #include "unk_02014000.h"
 #include "heap.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_02030494.h"

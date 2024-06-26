@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV105_02245AAC_H
 #define POKEPLATINUM_OV105_02245AAC_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay105/struct_ov105_02245AAC.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC * param0);

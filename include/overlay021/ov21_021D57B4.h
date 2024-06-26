@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D57B4_H
 #define POKEPLATINUM_OV21_021D57B4_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay021/struct_ov21_021D5844.h"
 #include "overlay021/struct_ov21_021D5868.h"
 #include "overlay021/struct_ov21_021D5890.h"

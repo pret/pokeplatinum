@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
@@ -12,17 +12,16 @@
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_02241308.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay005/ov5_021D2F14.h"
 
 static BOOL ov5_021D3478(UnkStruct_02009CFC * param0, UnkStruct_02009DC8 * param1);

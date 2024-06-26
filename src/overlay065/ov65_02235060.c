@@ -16,7 +16,6 @@
 #include "overlay065/struct_ov65_022358CC.h"
 #include "overlay065/struct_ov65_02236318.h"
 #include "overlay065/struct_ov65_022376D0.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -26,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay063/ov63_0222BCE8.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CA88.h"
