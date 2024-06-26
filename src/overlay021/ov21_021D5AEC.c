@@ -883,7 +883,7 @@ static void ov21_021D67EC (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
     int v7;
 
     v4.unk_00 = param1->unk_14C;
-    v4.unk_08 = param0->unk_90.unk_08;
+    v4.unk_08 = param0->unk_90.paletteProxy;
     v4.unk_0C = NULL;
     v4.unk_10 = 0;
     v4.unk_14 = 0;
@@ -1270,7 +1270,7 @@ static void ov21_021D6D78 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
     GF_ASSERT(v2);
 
     v0.unk_00 = param1->unk_14C;
-    v0.unk_08 = param0->unk_90.unk_08;
+    v0.unk_08 = param0->unk_90.paletteProxy;
     v0.unk_0C = NULL;
     v0.unk_10 = 0;
     v0.unk_14 = 0;
@@ -1299,7 +1299,7 @@ static void ov21_021D6DF4 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
     MessageLoader * v3 = MessageLoader_Init(0, 26, 697, param2);
 
     v0.unk_00 = param1->unk_14C;
-    v0.unk_08 = param0->unk_90.unk_08;
+    v0.unk_08 = param0->unk_90.paletteProxy;
     v0.unk_0C = NULL;
     v0.unk_10 = 0;
     v0.unk_14 = 0;

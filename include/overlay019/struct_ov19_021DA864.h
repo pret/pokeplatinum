@@ -5,15 +5,15 @@
 #include <nnsys.h>
 
 typedef struct {
-    const NNSG2dImageProxy * unk_00;
-    const NNSG2dCharacterData * unk_04;
-    const NNSG2dImagePaletteProxy * unk_08;
-    NNSG2dCellDataBank * unk_0C;
-    const NNSG2dCellAnimBankData * unk_10;
-    const NNSG2dMultiCellDataBank * multiCellBank;
-    const NNSG2dMultiCellAnimBankData * unk_18;
-    int unk_1C;
-    u8 unk_20;
+    const NNSG2dImageProxy *imageProxy;
+    const NNSG2dCharacterData *charData;
+    const NNSG2dImagePaletteProxy *paletteProxy;
+    NNSG2dCellDataBank *cellBank;
+    const NNSG2dCellAnimBankData *cellAnimBank;
+    const NNSG2dMultiCellDataBank *multiCellBank;
+    const NNSG2dMultiCellAnimBankData *multiCellAnimBank;
+    BOOL isVRamTransfer;
+    u8 priority;
     u8 padding_21[3];
 } CellActorResourceData;
 

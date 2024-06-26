@@ -502,15 +502,15 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
     void * v8;
     int v9;
 
-    v1.unk_04 = NULL;
+    v1.charData = NULL;
     v1.multiCellBank = NULL;
-    v1.unk_18 = NULL;
-    v1.unk_1C = 0;
-    v1.unk_0C = param1;
-    v1.unk_10 = param2;
-    v1.unk_20 = 0;
-    v1.unk_00 = &v3;
-    v1.unk_08 = &v4;
+    v1.multiCellAnimBank = NULL;
+    v1.isVRamTransfer = 0;
+    v1.cellBank = param1;
+    v1.cellAnimBank = param2;
+    v1.priority = 0;
+    v1.imageProxy = &v3;
+    v1.paletteProxy = &v4;
     v2.manager = param0->unk_34;
     v2.resourceData = &v1;
     v2.position.z = 0;

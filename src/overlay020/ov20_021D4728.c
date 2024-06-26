@@ -351,15 +351,15 @@ static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNS
     CellActorInitParams v1;
     GraphicElementData * v2;
 
-    v0.unk_00 = param1;
-    v0.unk_08 = param2;
-    v0.unk_0C = param3->unk_04;
-    v0.unk_10 = param3->unk_0C;
-    v0.unk_20 = param6;
-    v0.unk_04 = NULL;
+    v0.imageProxy = param1;
+    v0.paletteProxy = param2;
+    v0.cellBank = param3->unk_04;
+    v0.cellAnimBank = param3->unk_0C;
+    v0.priority = param6;
+    v0.charData = NULL;
     v0.multiCellBank = NULL;
-    v0.unk_18 = NULL;
-    v0.unk_1C = 0;
+    v0.multiCellAnimBank = NULL;
+    v0.isVRamTransfer = 0;
 
     v1.manager = param0->unk_10;
     v1.resourceData = &v0;

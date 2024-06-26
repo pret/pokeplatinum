@@ -149,7 +149,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
 
     NNS_G2dLoadImage1DMapping(v0, param6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param7->unk_04));
 
-    v1.unk_00 = &(param7->unk_04);
+    v1.imageProxy = &(param7->unk_04);
     param7->unk_00 = ov19_021D785C(param0->unk_24, &v1, param2, param3, param5, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     GF_ASSERT(param7->unk_00 != NULL);
@@ -185,7 +185,7 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
 
     NNS_G2dLoadImage1DMapping(v0, param9 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param10->unk_04));
 
-    v1.unk_00 = &(param10->unk_04);
+    v1.imageProxy = &(param10->unk_04);
     param10->unk_00 = ov19_021D785C(param0->unk_24, &v1, param5, param6, param8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     GF_ASSERT(param10->unk_00 != NULL);

@@ -1927,15 +1927,15 @@ int ov19_021D7820 (UnkStruct_ov19_021D61B0 * param0)
 
 void ov19_021D783C (CellActorResourceData * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, NNSG2dCellDataBank * param3, NNSG2dCellAnimBankData * param4, u32 param5)
 {
-    param0->unk_00 = param1;
-    param0->unk_08 = param2;
-    param0->unk_0C = param3;
-    param0->unk_10 = param4;
-    param0->unk_20 = param5;
-    param0->unk_04 = NULL;
+    param0->imageProxy = param1;
+    param0->paletteProxy = param2;
+    param0->cellBank = param3;
+    param0->cellAnimBank = param4;
+    param0->priority = param5;
+    param0->charData = NULL;
     param0->multiCellBank = NULL;
-    param0->unk_18 = NULL;
-    param0->unk_1C = 0;
+    param0->multiCellAnimBank = NULL;
+    param0->isVRamTransfer = 0;
 }
 
 GraphicElementData * ov19_021D785C (GraphicElementManager * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)

@@ -640,7 +640,7 @@ void sub_0200D0B0 (SpriteRenderer * param0, SpriteGfxHandler * param1)
 void sub_0200D0F4 (CellActorData * param0)
 {
     if (param0->unk_0C) {
-        sub_0200A5B4(param0->unk_04->unk_00);
+        sub_0200A5B4(param0->unk_04->imageProxy);
     }
 
     GraphicElementData_Delete(param0->unk_00);

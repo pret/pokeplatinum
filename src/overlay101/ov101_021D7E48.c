@@ -335,7 +335,7 @@ void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544
         &v0, param5, param6, param7, param8, 0xffffffff, 0xffffffff, param4, param9, param0->unk_1A0, param0->unk_1A4, param0->unk_1A8, param0->unk_1AC, NULL, NULL);
 
     if (param4 == 1) {
-        param1->unk_08 = v0.unk_00;
+        param1->unk_08 = v0.imageProxy;
         param1->unk_00 = 1;
     } else {
         param1->unk_00 = 0;

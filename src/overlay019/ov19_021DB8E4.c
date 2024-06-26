@@ -365,7 +365,7 @@ static void ov19_021DBDF4 (UnkStruct_ov19_021DBA9C * param0)
         NNS_G2dInitImageProxy(&v2);
         ov19_021DBBA8(param0, v5, 1584 + 32 * v4, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
-        v0.unk_00 = &v2;
+        v0.imageProxy = &v2;
         param0->unk_48[v4] = ov19_021D785C(param0->unk_08, &v0, 512, 256, 11, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         GF_ASSERT(param0->unk_48[v4] != NULL);

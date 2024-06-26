@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "nnsys/g2d/g2d_Image.h"
 #include "nnsys/g2d/g2d_RendererCore.h"
 #include "struct_defs/struct_020095C4.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -15,6 +16,8 @@
 #define GRAPHIC_ELEMENT_DATA_FLIP_H     1
 #define GRAPHIC_ELEMENT_DATA_FLIP_V     2
 
+#define GRAPHIC_ELEMENT_ANIM_DATA_SIZE 29
+
 enum CellType {
     CELL_TYPE_NONE = 0,
     CELL_TYPE_CELL,
@@ -24,13 +27,13 @@ enum CellType {
 
 typedef struct CellAnimationData {
     const NNSG2dCellDataBank *cellBank;
-    const NNSG2dCellAnimBankData *unk_04;
+    const NNSG2dCellAnimBankData *animBank;
     NNSG2dCellAnimation anim;
 } CellAnimationData;
 
 typedef struct VRamCellAnimationData {
     NNSG2dCellDataBank *cellBank;
-    const NNSG2dCellAnimBankData *unk_04;
+    const NNSG2dCellAnimBankData *animBank;
     NNSG2dCellAnimation anim;
     u32 transferHandle;
 } VRamCellAnimationData;
@@ -61,7 +64,7 @@ typedef struct GraphicElementData {
     u8 animate;
     fx32 animSpeed;
     GraphicElementManager *manager;
-    u32 animData[29];
+    u32 animData[GRAPHIC_ELEMENT_ANIM_DATA_SIZE];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
     u32 type;
@@ -90,7 +93,7 @@ typedef void (* GraphicElementAnimUpdateFunc)(GraphicElementData *);
 
 static void GraphicElementManager_Reset(GraphicElementManager *gfxElemMgr);
 static enum CellType CellActorResourceData_GetCellType(const CellActorResourceData *resourceData);
-static void GraphicElementData_SetCellBank(const NNSG2dCellDataBank * param0, GraphicElementData * param1);
+static void GraphicElementData_SetCellBank(const NNSG2dCellDataBank *cellBank, GraphicElementData *elem);
 static void GraphicElementData_SetCellAnimBank(const NNSG2dCellAnimBankData *cellAnimBank, GraphicElementData *elem);
 static void GraphicElementData_SetMultiCellBank(const NNSG2dMultiCellDataBank *multiCellBank, GraphicElementData *elem);
 static void GraphicElementData_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData *multiCellAnimBank, GraphicElementData *elem);
@@ -99,7 +102,7 @@ static void GraphicElementData_CreateVRamCellAnim(const CellActorResourceData *r
 static void GraphicElementData_CreateMultiCellAnim(GraphicElementData *elem, enum HeapId heapID);
 static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxElemMgr, 
     const CellActorResourceData *resourceData, GraphicElementData *elem, enum HeapId heapID);
-static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy * param0, u32 param1);
+static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy *paletteProxy, u32 vramType);
 static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxElemMgr, GraphicElementData *elem);
 static void GraphicElementManager_DrawElement_Stub(const GraphicElementManager *gfxElemMgr, GraphicElementData *elem);
 static void GraphicElementData_UpdateAnimInternal(GraphicElementData *gfxElemMgr);
@@ -452,7 +455,7 @@ u32 sub_02021D44 (const GraphicElementData * param0)
 
     if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
-        v0 = v1->unk_04->numSequences;
+        v0 = v1->animBank->numSequences;
     } else {
         MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->animData;
         v0 = v2->animBank->numSequences;
@@ -471,7 +474,7 @@ void SpriteActor_SetSpriteAnimActive (GraphicElementData * param0, u32 param1)
     if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
 
-        v0 = NNS_G2dGetAnimSequenceByIdx(v1->unk_04, param1);
+        v0 = NNS_G2dGetAnimSequenceByIdx(v1->animBank, param1);
         NNS_G2dSetCellAnimationSequence(&v1->anim, v0);
         NNS_G2dStartAnimCtrl(&v1->anim.animCtrl);
     } else {
@@ -706,7 +709,7 @@ u32 sub_0202207C (const GraphicElementData * param0, u32 param1, u32 param2)
 
     if ((param0->type == 1) || (param0->type == 3)) {
         CellAnimationData * v4 = (CellAnimationData *)&param0->animData;
-        v0 = v4->unk_04;
+        v0 = v4->animBank;
     } else {
         MultiCellAnimationData * v5 = (MultiCellAnimationData *)&param0->animData;
         v0 = v5->animBank;
@@ -744,20 +747,20 @@ static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxEl
     const CellActorResourceData *resourceData, GraphicElementData *elem, enum HeapId heapID)
 {
     elem->type = CellActorResourceData_GetCellType(resourceData);
-    elem->imageProxy = *resourceData->unk_00;
-    elem->paletteProxy = *resourceData->unk_08;
+    elem->imageProxy = *resourceData->imageProxy;
+    elem->paletteProxy = *resourceData->paletteProxy;
 
-    GraphicElementData_SetCellBank(resourceData->unk_0C, elem);
+    GraphicElementData_SetCellBank(resourceData->cellBank, elem);
 
-    if (resourceData->unk_10) {
-        GraphicElementData_SetCellAnimBank(resourceData->unk_10, elem);
+    if (resourceData->cellAnimBank) {
+        GraphicElementData_SetCellAnimBank(resourceData->cellAnimBank, elem);
     } else {
         GraphicElementData_SetCellAnimBank(gfxElemMgr->defaultAnimBank, elem);
     }
 
     if (elem->type == CELL_TYPE_MULTI_CELL) {
         GraphicElementData_SetMultiCellBank(resourceData->multiCellBank, elem);
-        GraphicElementData_SetMultiCellAnimBank(resourceData->unk_18, elem);
+        GraphicElementData_SetMultiCellAnimBank(resourceData->multiCellAnimBank, elem);
         GraphicElementData_CreateMultiCellAnim(elem, heapID);
     } else if (elem->type == CELL_TYPE_VRAM_CELL) {
         GraphicElementData_CreateVRamCellAnim(resourceData, elem, heapID);
@@ -765,7 +768,7 @@ static BOOL GraphicElementManager_InitElement(const GraphicElementManager *gfxEl
         GraphicElementData_CreateCellAnim(elem, heapID);
     }
 
-    elem->explicitPriority = resourceData->unk_20;
+    elem->explicitPriority = resourceData->priority;
 
     return TRUE;
 }
@@ -776,7 +779,7 @@ static enum CellType CellActorResourceData_GetCellType(const CellActorResourceDa
         return CELL_TYPE_MULTI_CELL;
     }
 
-    if (resourceData->unk_1C == 1) {
+    if (resourceData->isVRamTransfer == TRUE) {
         return CELL_TYPE_VRAM_CELL;
     }
 
@@ -792,7 +795,7 @@ static void GraphicElementData_SetCellBank(const NNSG2dCellDataBank *cellBank, G
 static void GraphicElementData_SetCellAnimBank(const NNSG2dCellAnimBankData *cellAnimBank, GraphicElementData *elem)
 {
     CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
-    cellAnim->unk_04 = cellAnimBank;
+    cellAnim->animBank = cellAnimBank;
 }
 
 static void GraphicElementData_SetMultiCellBank(const NNSG2dMultiCellDataBank *multiCellBank, GraphicElementData *elem)
@@ -812,7 +815,7 @@ static void GraphicElementData_CreateCellAnim(GraphicElementData *elem, enum Hea
     CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
     NNS_G2dInitCellAnimation(
         &cellAnim->anim, 
-        NNS_G2dGetAnimSequenceByIdx(cellAnim->unk_04, 0), 
+        NNS_G2dGetAnimSequenceByIdx(cellAnim->animBank, 0), 
         cellAnim->cellBank
     );
 }
@@ -821,11 +824,11 @@ static void GraphicElementData_CreateVRamCellAnim(const CellActorResourceData *r
 {
     VRamCellAnimationData *vramCellAnim = (VRamCellAnimationData *)&elem->animData;
     vramCellAnim->transferHandle = NNS_G2dGetNewCellTransferStateHandle();
-    const NNSG2dCharacterData *charData = resourceData->unk_04;
+    const NNSG2dCharacterData *charData = resourceData->charData;
 
     NNS_G2dInitCellAnimationVramTransfered(
         &vramCellAnim->anim, 
-        NNS_G2dGetAnimSequenceByIdx(vramCellAnim->unk_04, 0), 
+        NNS_G2dGetAnimSequenceByIdx(vramCellAnim->animBank, 0), 
         vramCellAnim->cellBank, 
         vramCellAnim->transferHandle, 
         NNS_G2D_VRAM_ADDR_NONE, 
@@ -842,7 +845,6 @@ static void GraphicElementData_CreateMultiCellAnim(GraphicElementData *elem, enu
     MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
     const NNSG2dMultiCellAnimSequence *animSequence = NNS_G2dGetAnimSequenceByIdx(multiCellAnim->animBank, 0);
     u16 maxNodes = NNS_G2dGetMCBankNumNodesRequired(multiCellAnim->cellBank);
-
     multiCellAnim->nodes = Heap_AllocFromHeap(heapID, sizeof(NNSG2dNode) * maxNodes);
     multiCellAnim->cellAnims = Heap_AllocFromHeap(heapID, sizeof(NNSG2dCellAnimation) * maxNodes);
 

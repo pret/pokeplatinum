@@ -165,7 +165,7 @@ void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
         v2 += 8;
 
         {
-            v1.unk_20 = 0;
+            v1.priority = 0;
             v3.position.x = FX32_ONE * (12 * 8);
             v3.position.y = FX32_ONE * (17 * 8);
             v3.priority = 0;

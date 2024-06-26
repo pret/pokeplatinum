@@ -971,15 +971,15 @@ GraphicElementManager * ov20_021D2E08 (UnkStruct_ov20_021D2128 * param0)
 
 void ov20_021D2E0C (UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3)
 {
-    param1->unk_00 = &param0->unk_1B4[param2];
-    param1->unk_08 = &param0->unk_1FC[param2];
-    param1->unk_0C = param0->unk_224[param2];
-    param1->unk_10 = param0->unk_22C[param2];
-    param1->unk_20 = param3;
-    param1->unk_04 = NULL;
+    param1->imageProxy = &param0->unk_1B4[param2];
+    param1->paletteProxy = &param0->unk_1FC[param2];
+    param1->cellBank = param0->unk_224[param2];
+    param1->cellAnimBank = param0->unk_22C[param2];
+    param1->priority = param3;
+    param1->charData = NULL;
     param1->multiCellBank = NULL;
-    param1->unk_18 = NULL;
-    param1->unk_1C = 0;
+    param1->multiCellAnimBank = NULL;
+    param1->isVRamTransfer = 0;
 }
 
 GraphicElementData * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)

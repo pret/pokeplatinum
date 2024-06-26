@@ -67,38 +67,38 @@ void sub_020093B4 (CellActorResourceData * param0, int param1, int param2, int p
         v6 = sub_0200A558(v0, v2);
         GF_ASSERT(v6);
 
-        param0->unk_04 = sub_02009E1C(v0);
+        param0->charData = sub_02009E1C(v0);
     } else {
         v6 = sub_0200A534(v0);
         GF_ASSERT(v6);
-        param0->unk_04 = NULL;
+        param0->charData = NULL;
     }
 
-    param0->unk_08 = sub_0200A72C(v1, v6);
-    param0->unk_00 = v6;
-    param0->unk_0C = sub_02009E4C(v2);
+    param0->paletteProxy = sub_0200A72C(v1, v6);
+    param0->imageProxy = v6;
+    param0->cellBank = sub_02009E4C(v2);
 
     if (v3) {
-        param0->unk_10 = sub_02009E64(v3);
+        param0->cellAnimBank = sub_02009E64(v3);
     } else {
-        param0->unk_10 = NULL;
+        param0->cellAnimBank = NULL;
     }
 
     if (v4) {
         param0->multiCellBank = sub_02009E7C(v4);
-        param0->unk_18 = sub_02009E94(v5);
+        param0->multiCellAnimBank = sub_02009E94(v5);
     } else {
         param0->multiCellBank = NULL;
-        param0->unk_18 = NULL;
+        param0->multiCellAnimBank = NULL;
     }
 
-    param0->unk_1C = param7;
-    param0->unk_20 = param8;
+    param0->isVRamTransfer = param7;
+    param0->priority = param8;
 }
 
 void sub_020094F0 (CellActorResourceData * param0)
 {
-    sub_0200A5B4(param0->unk_00);
+    sub_0200A5B4(param0->imageProxy);
     memset(param0, 0, sizeof(CellActorResourceData));
 }
 

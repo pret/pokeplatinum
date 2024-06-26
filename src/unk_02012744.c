@@ -730,15 +730,15 @@ static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, con
     CellActorInitParams v0;
     CellActorResourceData v1;
 
-    v1.unk_00 = param2;
-    v1.unk_04 = NULL;
-    v1.unk_08 = param0->unk_0C;
-    v1.unk_0C = param0->unk_00->unk_30[param1->unk_08];
-    v1.unk_10 = NULL;
+    v1.imageProxy = param2;
+    v1.charData = NULL;
+    v1.paletteProxy = param0->unk_0C;
+    v1.cellBank = param0->unk_00->unk_30[param1->unk_08];
+    v1.cellAnimBank = NULL;
     v1.multiCellBank = NULL;
-    v1.unk_18 = NULL;
-    v1.unk_1C = 0;
-    v1.unk_20 = param0->unk_20;
+    v1.multiCellAnimBank = NULL;
+    v1.isVRamTransfer = 0;
+    v1.priority = param0->unk_20;
 
     v0.manager = param0->unk_08;
     v0.resourceData = &v1;

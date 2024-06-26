@@ -818,15 +818,15 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     const Pokemon * v11;
     int v12, v13;
 
-    v2.unk_04 = NULL;
+    v2.charData = NULL;
     v2.multiCellBank = NULL;
-    v2.unk_18 = NULL;
-    v2.unk_1C = 0;
-    v2.unk_0C = param1;
-    v2.unk_10 = param2;
-    v2.unk_20 = 3;
-    v2.unk_00 = &v5;
-    v2.unk_08 = &v6;
+    v2.multiCellAnimBank = NULL;
+    v2.isVRamTransfer = 0;
+    v2.cellBank = param1;
+    v2.cellAnimBank = param2;
+    v2.priority = 3;
+    v2.imageProxy = &v5;
+    v2.paletteProxy = &v6;
 
     v3.manager = param0->unk_24;
     v3.resourceData = &v2;

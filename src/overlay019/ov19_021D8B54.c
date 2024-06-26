@@ -121,7 +121,7 @@ void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
             v4 = 236 + -44;
         }
 
-        v0.unk_20 = 2;
+        v0.priority = 2;
         param0->unk_0C = ov19_021D785C(param0->unk_00, &v0, v3, 20, 43, NNS_G2D_VRAM_TYPE_2DMAIN);
         param0->unk_10 = ov19_021D785C(param0->unk_00, &v0, v4, 20, 43, NNS_G2D_VRAM_TYPE_2DMAIN);
     }

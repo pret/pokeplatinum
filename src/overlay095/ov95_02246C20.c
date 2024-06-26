@@ -636,15 +636,15 @@ void ov95_022475A0 (UnkStruct_ov95_02247568 * param0)
 
 void ov95_022475C4 (CellActorResourceData * param0, UnkStruct_ov95_02247568 * param1, NNSG2dImageProxy * param2, NNSG2dImagePaletteProxy * param3, u32 param4)
 {
-    param0->unk_00 = param2;
-    param0->unk_08 = param3;
-    param0->unk_0C = param1->unk_08;
-    param0->unk_10 = param1->unk_0C;
-    param0->unk_20 = param4;
-    param0->unk_04 = NULL;
+    param0->imageProxy = param2;
+    param0->paletteProxy = param3;
+    param0->cellBank = param1->unk_08;
+    param0->cellAnimBank = param1->unk_0C;
+    param0->priority = param4;
+    param0->charData = NULL;
     param0->multiCellBank = NULL;
-    param0->unk_18 = NULL;
-    param0->unk_1C = 0;
+    param0->multiCellAnimBank = NULL;
+    param0->isVRamTransfer = 0;
 }
 
 GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
