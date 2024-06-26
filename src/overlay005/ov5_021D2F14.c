@@ -123,7 +123,7 @@ GraphicElementData * ov5_021D3104 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     GF_ASSERT(v1);
 
     SpriteActor_SetSpriteAnimActive(v1, param1->unk_0A);
-    sub_02021EC4(v1, param1->unk_10);
+    GraphicElementData_SetExplicitPaletteWithOffset(v1, param1->unk_10);
 
     return v1;
 }
@@ -388,9 +388,9 @@ CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const SpriteTempl
     v2->unk_00 = GraphicElementManager_AddElementEx(&v3);
 
     if (v2->unk_00 != NULL) {
-        v1 = sub_02021EE8(v2->unk_00);
+        v1 = GraphicElementData_GetExplicitPalette(v2->unk_00);
         SpriteActor_SetSpriteAnimActive(v2->unk_00, param1->animIdx);
-        sub_02021E90(v2->unk_00, v1 + param1->plttIdx);
+        GraphicElementData_SetExplicitPalette(v2->unk_00, v1 + param1->plttIdx);
     } else {
         GF_ASSERT(FALSE);
     }

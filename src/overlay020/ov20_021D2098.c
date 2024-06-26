@@ -1003,8 +1003,8 @@ GraphicElementData * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, CellActorR
     OS_RestoreInterrupts(v2);
 
     if (v1) {
-        sub_02021CC8(v1, 1);
-        sub_02021CE4(v1, ((FX32_ONE * 2) / 2));
+        GraphicElementData_SetAnimateFlag(v1, 1);
+        GraphicElementData_SetAnimSpeed(v1, ((FX32_ONE * 2) / 2));
     }
 
     return v1;

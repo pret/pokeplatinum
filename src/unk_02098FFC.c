@@ -166,7 +166,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
         SpriteActor_SetSpriteAnimActive(v4->unk_00, 0);
         v2 = sub_0200A760(
             v6, v0);
-        sub_02021E90(v4->unk_00, v2);
+        GraphicElementData_SetExplicitPalette(v4->unk_00, v2);
     } else {
         GF_ASSERT(FALSE);
     }

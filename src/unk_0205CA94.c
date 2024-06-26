@@ -622,7 +622,7 @@ int sub_0205D424 (struct UnkStruct_0205D3AC_t * param0)
         v0 = v1->unk_00;
         v0.y -= FX_Mul(FX_SinIdx(v1->unk_10), (16 * FX32_ONE));
 
-        sub_02021C50(v1->unk_0C, &v0);
+        GraphicElementData_SetPosition(v1->unk_0C, &v0);
         v1->unk_10 += (0x8000 / 16);
         GraphicElementData_UpdateAnim(v1->unk_0C, FX32_ONE);
 
@@ -706,7 +706,7 @@ int sub_0205D584 (struct UnkStruct_0205D3AC_t * param0)
 
     v0->unk_00.y += (FX32_ONE * 8);
 
-    sub_02021C50(v0->unk_0C, &v0->unk_00);
+    GraphicElementData_SetPosition(v0->unk_0C, &v0->unk_00);
     GraphicElementData_UpdateAnim(v0->unk_0C, FX32_ONE);
 
     if (v0->unk_10 == 0) {
@@ -717,7 +717,7 @@ int sub_0205D584 (struct UnkStruct_0205D3AC_t * param0)
     } else {
         if (v0->unk_00.y >= ((69 * FX32_ONE))) {
             v0->unk_00.y = ((69 * FX32_ONE));
-            sub_02021C50(v0->unk_0C, &v0->unk_00);
+            GraphicElementData_SetPosition(v0->unk_0C, &v0->unk_00);
             return 0;
         }
     }
@@ -770,7 +770,7 @@ int sub_0205D644 (struct UnkStruct_0205D3AC_t * param0)
     case 1:
         if (v0->unk_00.y > (-32 * FX32_ONE)) {
             v0->unk_00.y -= (FX32_ONE * 8);
-            sub_02021C50(v0->unk_0C, &v0->unk_00);
+            GraphicElementData_SetPosition(v0->unk_0C, &v0->unk_00);
             GraphicElementData_UpdateAnim(v0->unk_0C, v0->unk_14);
         } else {
             v0->unk_00.y = (384 * FX32_ONE);
@@ -780,7 +780,7 @@ int sub_0205D644 (struct UnkStruct_0205D3AC_t * param0)
     case 2:
         v0->unk_00.y -= (FX32_ONE * 8);
 
-        sub_02021C50(v0->unk_0C, &v0->unk_00);
+        GraphicElementData_SetPosition(v0->unk_0C, &v0->unk_00);
         GraphicElementData_UpdateAnim(v0->unk_0C, v0->unk_14);
 
         if ((v0->unk_00.y < (300 * FX32_ONE))) {
@@ -791,7 +791,7 @@ int sub_0205D644 (struct UnkStruct_0205D3AC_t * param0)
     case 3:
         if (v0->unk_00.y > (192 * FX32_ONE)) {
             v0->unk_00.y -= (FX32_ONE * 8);
-            sub_02021C50(v0->unk_0C, &v0->unk_00);
+            GraphicElementData_SetPosition(v0->unk_0C, &v0->unk_00);
             GraphicElementData_UpdateAnim(v0->unk_0C, v0->unk_14);
         } else {
             v0->unk_10++;
@@ -820,7 +820,7 @@ void sub_0205D714 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
 
     SpriteActor_SetSpriteAnimActive(v0->unk_0C, 1);
     v0->unk_14 = (2 * FX32_ONE);
-    sub_02021CAC(v0->unk_0C, 0);
+    GraphicElementData_SetDrawFlag(v0->unk_0C, 0);
 }
 
 void sub_0205D768 (struct UnkStruct_0205D3AC_t * param0)
@@ -842,7 +842,7 @@ int sub_0205D788 (struct UnkStruct_0205D3AC_t * param0)
 
     switch (v1->unk_10) {
     case 0:
-        sub_02021CAC(v1->unk_0C, 1);
+        GraphicElementData_SetDrawFlag(v1->unk_0C, 1);
         v1->unk_10++;
         break;
     case 1:
@@ -850,7 +850,7 @@ int sub_0205D788 (struct UnkStruct_0205D3AC_t * param0)
             v0 = v1->unk_00;
             v0.y -= FX_Mul(FX_SinIdx(v1->unk_14), (32 * FX32_ONE));
 
-            sub_02021C50(v1->unk_0C, &v0);
+            GraphicElementData_SetPosition(v1->unk_0C, &v0);
             v1->unk_14 += (0x8000 / 8);
             GraphicElementData_UpdateAnim(v1->unk_0C, FX32_ONE);
         } else {

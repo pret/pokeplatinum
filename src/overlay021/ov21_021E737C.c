@@ -661,7 +661,7 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     param0->unk_08 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_08, 1);
-    sub_02021E80(param0->unk_08, 1);
+    GraphicElementData_SetExplicitPriority(param0->unk_08, 1);
 
     v1.position.x = 184 << FX32_SHIFT;
     v1.position.y = (64 + 24) << FX32_SHIFT;
@@ -686,7 +686,7 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     v1.position.y = 64 << FX32_SHIFT;
 
     param0->unk_04 = GraphicElementManager_AddElement(&v1);
-    sub_02021EC4(param0->unk_04, PokeIconPaletteIndex(v6, v7, 0));
+    GraphicElementData_SetExplicitPaletteWithOffset(param0->unk_04, PokeIconPaletteIndex(v6, v7, 0));
 }
 
 static void ov21_021E7CCC (UnkStruct_ov21_021E7714 * param0)
@@ -922,16 +922,16 @@ static void ov21_021E80D4 (UnkStruct_02015214 * param0, GraphicElementData * par
     v2.x = (128 << FX32_SHIFT) + v0;
     v2.y = (64 << FX32_SHIFT) + v1;
 
-    sub_02021C50(param3, &v2);
+    GraphicElementData_SetPosition(param3, &v2);
     v2.y += 24 << FX32_SHIFT;
-    sub_02021C50(param1, &v2);
+    GraphicElementData_SetPosition(param1, &v2);
 
     v2.x = (128 << FX32_SHIFT) - v0;
     v2.y = (64 << FX32_SHIFT) - v1;
 
-    sub_02021C50(param4, &v2);
+    GraphicElementData_SetPosition(param4, &v2);
     v2.y += 24 << FX32_SHIFT;
-    sub_02021C50(param2, &v2);
+    GraphicElementData_SetPosition(param2, &v2);
 }
 
 static void ov21_021E8188 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E747C * param1, u16 param2, u16 param3, int param4)
@@ -997,7 +997,7 @@ static void ov21_021E8258 (UnkStruct_ov21_021E7714 * param0, s16 param1, int par
 
     param0->unk_98.unk_10 = (-param1 / 1) * 2;
 
-    v0 = sub_02021D28(param0->unk_98.unk_00);
+    v0 = GraphicElementData_GetPosition(param0->unk_98.unk_00);
 
     param0->unk_98.unk_04 = v0->x;
     param0->unk_98.unk_08 = v0->y;
@@ -1023,7 +1023,7 @@ static void ov21_021E82C8 (SysTask * param0, void * param1)
         v2.x = v0->unk_04;
         v2.y = v0->unk_08 + (v1 << FX32_SHIFT);
 
-        sub_02021C50(v0->unk_00, &v2);
+        GraphicElementData_SetPosition(v0->unk_00, &v2);
 
         if (v0->unk_14 >= v0->unk_10) {
             v0->unk_14 = 0;
@@ -1035,7 +1035,7 @@ static void ov21_021E82C8 (SysTask * param0, void * param1)
         if (v0->unk_14 == 0) {
             v2.x = v0->unk_04 + (2 * FX32_ONE);
             v2.y = v0->unk_08;
-            sub_02021C50(v0->unk_00, &v2);
+            GraphicElementData_SetPosition(v0->unk_00, &v2);
         }
 
         v0->unk_14++;
@@ -1049,7 +1049,7 @@ static void ov21_021E82C8 (SysTask * param0, void * param1)
         if (v0->unk_14 == 0) {
             v2.x = v0->unk_04 - (2 * FX32_ONE);
             v2.y = v0->unk_08;
-            sub_02021C50(v0->unk_00, &v2);
+            GraphicElementData_SetPosition(v0->unk_00, &v2);
         }
 
         v0->unk_14++;
@@ -1068,7 +1068,7 @@ static void ov21_021E82C8 (SysTask * param0, void * param1)
     case 3:
         v2.x = v0->unk_04;
         v2.y = v0->unk_08;
-        sub_02021C50(v0->unk_00, &v2);
+        GraphicElementData_SetPosition(v0->unk_00, &v2);
         SysTask_Done(param0);
         *v0->unk_1C = 1;
         break;

@@ -669,9 +669,9 @@ static void ov21_021D8D0C (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
     param0->unk_58 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_58, 17);
-    sub_02021CAC(param0->unk_58, 0);
-    sub_02021CF8(param0->unk_58, 1);
-    sub_02021E80(param0->unk_58, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_58, 0);
+    GraphicElementData_SetAffineOverwriteMode(param0->unk_58, 1);
+    GraphicElementData_SetExplicitPriority(param0->unk_58, 0);
 }
 
 static void ov21_021D8DC0 (UnkStruct_ov21_021D9320 * param0)
@@ -986,9 +986,9 @@ static void ov21_021D9240 (UnkStruct_ov21_021D879C * param0, int param1, int par
 static void ov21_021D924C (UnkStruct_ov21_021D9320 * param0, int param1)
 {
     if (param1 == 0) {
-        sub_02021CAC(param0->unk_20, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_20, 0);
     } else {
-        sub_02021CAC(param0->unk_20, 1);
+        GraphicElementData_SetDrawFlag(param0->unk_20, 1);
 
         switch (param1) {
         case 1:
@@ -1060,10 +1060,10 @@ static void ov21_021D9390 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
     int v1;
 
     if (param2->unk_34 == 32) {
-        sub_02021CAC(param0->unk_58, 1);
+        GraphicElementData_SetDrawFlag(param0->unk_58, 1);
         ov21_021D93F4(param1, param3);
     } else if (param2->unk_34 == 0) {
-        sub_02021CAC(param0->unk_58, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_58, 0);
         BGL_FillWindow(&param1->unk_00->unk_04, 0);
         sub_0201A9A4(&param1->unk_00->unk_04);
     }
@@ -1072,7 +1072,7 @@ static void ov21_021D9390 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
     v0 = (((180 * 0xffff) / 360)) * v1;
     v0 = v0 / 4;
 
-    sub_02021C94(param0->unk_58, (u16)v0);
+    GraphicElementData_SetAffineZRotation(param0->unk_58, (u16)v0);
 }
 
 static void ov21_021D93F4 (UnkStruct_ov21_021D879C * param0, int param1)

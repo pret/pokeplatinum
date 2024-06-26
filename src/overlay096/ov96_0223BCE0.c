@@ -1652,8 +1652,8 @@ void ov96_0223D948 (UnkStruct_ov96_0223BF40 * param0)
 static void ov96_0223D950 (UnkStruct_ov96_0223BF40 * param0, int param1, int param2)
 {
     if ((param1 == 0) || (param1 == 1)) {
-        sub_02021CAC(param0->unk_E30[0], param2);
-        sub_02021CAC(param0->unk_E30[1], param2);
+        GraphicElementData_SetDrawFlag(param0->unk_E30[0], param2);
+        GraphicElementData_SetDrawFlag(param0->unk_E30[1], param2);
     }
 }
 

@@ -1284,19 +1284,19 @@ static void ov23_0223ED68 (int param0, int param1, BOOL param2, BOOL param3, BOO
         Sound_PlayEffect(1699);
     }
 
-    sub_02021CC8(Unk_ov23_02257740->unk_24C[0], 1);
-    sub_02021CC8(Unk_ov23_02257740->unk_24C[3], 1);
+    GraphicElementData_SetAnimateFlag(Unk_ov23_02257740->unk_24C[0], 1);
+    GraphicElementData_SetAnimateFlag(Unk_ov23_02257740->unk_24C[3], 1);
 
     v3.x = FX32_ONE * (param0 + 8);
     v3.y = FX32_ONE * (param1 + 8);
 
-    sub_02021C50(Unk_ov23_02257740->unk_24C[0], &v3);
-    sub_02021C50(Unk_ov23_02257740->unk_24C[3], &v3);
+    GraphicElementData_SetPosition(Unk_ov23_02257740->unk_24C[0], &v3);
+    GraphicElementData_SetPosition(Unk_ov23_02257740->unk_24C[3], &v3);
 
     if (param4) {
         SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[4], 5);
-        sub_02021CC8(Unk_ov23_02257740->unk_24C[4], 1);
-        sub_02021C50(Unk_ov23_02257740->unk_24C[4], &v3);
+        GraphicElementData_SetAnimateFlag(Unk_ov23_02257740->unk_24C[4], 1);
+        GraphicElementData_SetPosition(Unk_ov23_02257740->unk_24C[4], &v3);
     }
 }
 
@@ -1642,7 +1642,7 @@ static void ov23_0223F118 (SysTask * param0, void * param1)
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
-                sub_02021CAC(Unk_ov23_02257740->unk_24C[v3], 0);
+                GraphicElementData_SetDrawFlag(Unk_ov23_02257740->unk_24C[v3], 0);
             }
 
             v0->unk_00 = 25;
@@ -2014,7 +2014,7 @@ static void ov23_0223FDE0 (UnkStruct_ov23_0223EE80 * param0)
                 v4.y = FX32_ONE * v2;
 
                 SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[5 + v3], 8 + v3);
-                sub_02021C50(Unk_ov23_02257740->unk_24C[5 + v3], &v4);
+                GraphicElementData_SetPosition(Unk_ov23_02257740->unk_24C[5 + v3], &v4);
             }
         }
     }
@@ -2380,12 +2380,12 @@ static void ov23_022404F8 (BGL * param0, int param1, int param2, int param3)
 
         if (2 == param3) {
             SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[2], 6);
-            sub_02021CC8(Unk_ov23_02257740->unk_24C[2], 1);
+            GraphicElementData_SetAnimateFlag(Unk_ov23_02257740->unk_24C[2], 1);
 
             v0.x = FX32_ONE * 232;
             v0.y = FX32_ONE * 80;
 
-            sub_02021C50(Unk_ov23_02257740->unk_24C[2], &v0);
+            GraphicElementData_SetPosition(Unk_ov23_02257740->unk_24C[2], &v0);
         }
         break;
     case 1:
@@ -2399,12 +2399,12 @@ static void ov23_022404F8 (BGL * param0, int param1, int param2, int param3)
 
         if (2 == param3) {
             SpriteActor_SetSpriteAnimActive(Unk_ov23_02257740->unk_24C[2], 7);
-            sub_02021CC8(Unk_ov23_02257740->unk_24C[2], 1);
+            GraphicElementData_SetAnimateFlag(Unk_ov23_02257740->unk_24C[2], 1);
 
             v0.x = FX32_ONE * 232;
             v0.y = FX32_ONE * 152;
 
-            sub_02021C50(Unk_ov23_02257740->unk_24C[2], &v0);
+            GraphicElementData_SetPosition(Unk_ov23_02257740->unk_24C[2], &v0);
         }
         break;
     }
@@ -2667,7 +2667,7 @@ static void ov23_02240B84 (BGL * param0)
     v3.x -= Unk_ov23_02257740->unk_A2D * FX32_ONE;
     v3.y -= Unk_ov23_02257740->unk_A2E * FX32_ONE;
 
-    sub_02021C50(Unk_ov23_02257740->unk_24C[1], &v3);
+    GraphicElementData_SetPosition(Unk_ov23_02257740->unk_24C[1], &v3);
 }
 
 static void ov23_02240C94 (BGL * param0)
@@ -2839,12 +2839,12 @@ static void ov23_0224108C (void)
         if (v0 == 0) {
             for (v1 = 2; v1 <= 7; v1++) {
                 Unk_ov23_02257740->unk_24C[v1] = GraphicElementManager_AddElementEx(&v2);
-                sub_02021CC8(Unk_ov23_02257740->unk_24C[v1], 1);
+                GraphicElementData_SetAnimateFlag(Unk_ov23_02257740->unk_24C[v1], 1);
             }
         }
 
         Unk_ov23_02257740->unk_24C[v0] = GraphicElementManager_AddElementEx(&v2);
-        sub_02021CC8(Unk_ov23_02257740->unk_24C[v0], 1);
+        GraphicElementData_SetAnimateFlag(Unk_ov23_02257740->unk_24C[v0], 1);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

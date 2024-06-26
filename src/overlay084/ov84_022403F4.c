@@ -292,7 +292,7 @@ static void ov84_02240950 (UnkStruct_ov84_0223B5A0 * param0)
 
     {
         VecFx32 v1 = {FX32_ONE, FX32_ONE, FX32_ONE};
-        sub_02021C80(param0->unk_E0[0]->unk_00, &v1, 2);
+        GraphicElementData_SetAffineScaleEx(param0->unk_E0[0]->unk_00, &v1, 2);
     }
 }
 
@@ -361,7 +361,7 @@ static void ov84_02240B98 (UnkStruct_ov84_0223B5A0 * param0)
 {
     VecFx32 v0;
 
-    v0 = *(sub_02021D28(param0->unk_E0[1]->unk_00));
+    v0 = *(GraphicElementData_GetPosition(param0->unk_E0[1]->unk_00));
 
     if (param0->unk_454.unk_01 == 0) {
         v0.x -= param0->unk_454.unk_04[param0->unk_454.unk_03];
@@ -369,12 +369,12 @@ static void ov84_02240B98 (UnkStruct_ov84_0223B5A0 * param0)
         v0.x += param0->unk_454.unk_04[param0->unk_454.unk_03];
     }
 
-    sub_02021C50(param0->unk_E0[1]->unk_00, &v0);
+    GraphicElementData_SetPosition(param0->unk_E0[1]->unk_00, &v0);
     param0->unk_454.unk_03++;
 
     if (param0->unk_454.unk_03 == 8) {
         v0.x = ov84_02240C30(param0, param0->unk_478) * FX32_ONE;
-        sub_02021C50(param0->unk_E0[1]->unk_00, &v0);
+        GraphicElementData_SetPosition(param0->unk_E0[1]->unk_00, &v0);
         param0->unk_454.unk_00 = 0;
     }
 }
@@ -389,7 +389,7 @@ static void ov84_02240C48 (UnkStruct_ov84_0223B5A0 * param0)
     VecFx32 v0;
     fx32 v1;
 
-    v0 = *(sub_02021D28(param0->unk_E0[1]->unk_00));
+    v0 = *(GraphicElementData_GetPosition(param0->unk_E0[1]->unk_00));
     v1 = ov84_02240C30(param0, param0->unk_478) * FX32_ONE;
 
     if (v1 < v0.x) {

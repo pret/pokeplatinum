@@ -1491,7 +1491,7 @@ static void AttachCursorCellActor (ChooseStarterApp * param0, ChooseStarterCurso
     v1.position.y = 0;
 
     param1->unk_00 = GraphicElementManager_AddElement(&v1);
-    sub_02021CAC(param1->unk_00, 0);
+    GraphicElementData_SetDrawFlag(param1->unk_00, 0);
 
     param1->unk_1C.x = 0;
     param1->unk_1C.y = 0;
@@ -1541,7 +1541,7 @@ static void ov78_021D23E8 (SysTask * param0, void * param1)
     v1 = v0->unk_1C;
     v1.y += v0->unk_2C.unk_00;
 
-    sub_02021C50(v0->unk_00, &v1);
+    GraphicElementData_SetPosition(v0->unk_00, &v1);
 }
 
 static void ov78_021D241C (ChooseStarterCursor * param0)
@@ -1554,7 +1554,7 @@ static void ov78_021D241C (ChooseStarterCursor * param0)
 
 static void ov78_021D2430 (ChooseStarterCursor * param0, BOOL param1)
 {
-    sub_02021CAC(param0->unk_00, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_00, param1);
 }
 
 static void ov78_021D243C (ChooseStarterCursor * param0, int param1, int param2)

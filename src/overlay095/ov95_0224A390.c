@@ -192,7 +192,7 @@ static int ov95_0224A464 (UnkStruct_ov95_0224A42C * param0, int * param1)
     case 0:
         if (ScreenWipe_Done()) {
             SpriteActor_SetSpriteAnimActive(param0->unk_20[0], 3);
-            sub_02021CAC(param0->unk_20[0], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_20[0], 1);
             (*param1)++;
         }
         break;
@@ -390,7 +390,7 @@ static void ov95_0224A7B0 (UnkStruct_ov95_0224A42C * param0)
 
     ov95_022475C4(&v2, &param0->unk_10, &v1, &v0, 1);
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, 128, 96, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
-    sub_02021CAC(param0->unk_20[0], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_20[0], 0);
 }
 
 static void ov95_0224A830 (UnkStruct_ov95_0224A42C * param0)

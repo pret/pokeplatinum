@@ -1604,6 +1604,6 @@ static void ov21_021E3FC0 (UnkStruct_ov21_021E326C * param0, int param1, int par
 static void ov21_021E3FE4 (UnkStruct_ov21_021E3900 * param0, const UnkStruct_ov21_021E342C * param1)
 {
     if (ov21_021D3954(param1->unk_08) == 0) {
-        sub_02021CAC(param0->unk_00[4], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_00[4], 0);
     }
 }

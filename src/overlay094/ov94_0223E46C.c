@@ -303,9 +303,9 @@ static void ov94_0223E770 (UnkStruct_ov94_0223FD4C * param0)
 
     param0->unk_E20 = GraphicElementManager_AddElementEx(&v0);
 
-    sub_02021CC8(param0->unk_E20, 1);
+    GraphicElementData_SetAnimateFlag(param0->unk_E20, 1);
     SpriteActor_SetSpriteAnimActive(param0->unk_E20, 0);
-    sub_02021E80(param0->unk_E20, 1);
+    GraphicElementData_SetExplicitPriority(param0->unk_E20, 1);
     sub_02039734();
 }
 
@@ -736,7 +736,7 @@ static void ov94_0223EFAC (UnkStruct_ov94_0223FD4C * param0)
         v1.x = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][0];
         v1.y = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][1];
 
-        sub_02021C50(param0->unk_E20, &v1);
+        GraphicElementData_SetPosition(param0->unk_E20, &v1);
     }
 }
 

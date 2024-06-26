@@ -319,7 +319,7 @@ static void ov22_0225A914 (UnkStruct_ov22_0225A914 * param0, GraphicElementManag
             SpriteActor_SetSpriteAnimActive(param0->unk_10[(v2 * 10) + v3], 1);
 
             if (((v2 * 10) + v3) >= param3) {
-                sub_02021CAC(param0->unk_10[(v2 * 10) + v3], 0);
+                GraphicElementData_SetDrawFlag(param0->unk_10[(v2 * 10) + v3], 0);
             }
         }
     }
@@ -490,7 +490,7 @@ static void ov22_0225ACE4 (UnkStruct_ov22_0225AB54 * param0)
 
         if (param0->unk_90 == 0) {
             if (param0->unk_1C <= 10) {
-                sub_02021EC4(param0->unk_10[v0], 1);
+                GraphicElementData_SetExplicitPaletteWithOffset(param0->unk_10[v0], 1);
 
                 if (v0 == 2 - 1) {
                     param0->unk_90 = 1;
@@ -548,7 +548,7 @@ static void ov22_0225ADC0 (UnkStruct_ov22_0225AB54 * param0, UnkStruct_ov22_0225
 
     for (v0 = 0; v0 < 2; v0++) {
         param1->unk_04[v0] = param0->unk_10[v0];
-        sub_02021CF8(param1->unk_04[v0], 2);
+        GraphicElementData_SetAffineOverwriteMode(param1->unk_04[v0], 2);
         v4.x = 103 + (v0 * 24);
         v4.x *= FX32_ONE;
         param1->unk_0C[v0] = v4;
@@ -594,19 +594,19 @@ static void ov22_0225AE9C (UnkStruct_ov22_0225AE9C * param0)
     v0.y = param0->unk_24.unk_00;
     v0.z = param0->unk_24.unk_00;
 
-    sub_02021C70(param0->unk_04[0], &v0);
-    sub_02021C70(param0->unk_04[1], &v0);
+    GraphicElementData_SetAffineScale(param0->unk_04[0], &v0);
+    GraphicElementData_SetAffineScale(param0->unk_04[1], &v0);
 
     v1 = param0->unk_0C[0];
     v1.x -= param0->unk_38.unk_00;
     v1.y -= param0->unk_4C.unk_00;
 
-    sub_02021C50(param0->unk_04[0], &v1);
+    GraphicElementData_SetPosition(param0->unk_04[0], &v1);
 
     v1 = param0->unk_0C[1];
     v1.y -= param0->unk_4C.unk_00;
 
-    sub_02021C50(param0->unk_04[1], &v1);
+    GraphicElementData_SetPosition(param0->unk_04[1], &v1);
 
     if (v2) {
         param0->unk_00 = 0;

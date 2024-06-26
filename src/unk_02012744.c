@@ -205,7 +205,7 @@ void sub_020128C4 (FontOAM * param0, int param1, int param2)
     param2 *= FX32_ONE;
 
     if (param0->unk_08) {
-        v2 = sub_02021D28(param0->unk_08);
+        v2 = GraphicElementData_GetPosition(param0->unk_08);
 
         param1 += v2->x;
         param2 += v2->y;
@@ -217,7 +217,7 @@ void sub_020128C4 (FontOAM * param0, int param1, int param2)
         v1.x = param1 + (param0->unk_00[v0].unk_04 << FX32_SHIFT);
         v1.y = param2 + (param0->unk_00[v0].unk_08 << FX32_SHIFT);
 
-        sub_02021C50(param0->unk_00[v0].unk_00, &v1);
+        GraphicElementData_SetPosition(param0->unk_00[v0].unk_00, &v1);
     }
 }
 
@@ -233,7 +233,7 @@ void sub_02012938 (FontOAM * param0)
     if (param0->unk_08) {
         v3 = param0->unk_0C << FX32_SHIFT;
         v4 = param0->unk_10 << FX32_SHIFT;
-        v2 = sub_02021D28(param0->unk_08);
+        v2 = GraphicElementData_GetPosition(param0->unk_08);
 
         v3 += v2->x;
         v4 += v2->y;
@@ -244,7 +244,7 @@ void sub_02012938 (FontOAM * param0)
             v1.x = v3 + (param0->unk_00[v0].unk_04 << FX32_SHIFT);
             v1.y = v4 + (param0->unk_00[v0].unk_08 << FX32_SHIFT);
 
-            sub_02021C50(param0->unk_00[v0].unk_00, &v1);
+            GraphicElementData_SetPosition(param0->unk_00[v0].unk_00, &v1);
         }
     }
 }
@@ -266,7 +266,7 @@ void sub_020129D0 (FontOAM * param0, BOOL param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021CAC(param0->unk_00[v0].unk_00, param1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -277,7 +277,7 @@ void sub_02012A00 (FontOAM * param0, u8 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021E80(param0->unk_00[v0].unk_00, param1);
+        GraphicElementData_SetExplicitPriority(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -288,7 +288,7 @@ void sub_02012A30 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021F58(param0->unk_00[v0].unk_00, param1);
+        GraphicElementData_SetPriority(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -299,7 +299,7 @@ void sub_02012A60 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021E90(param0->unk_00[v0].unk_00, param1);
+        GraphicElementData_SetExplicitPalette(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -310,7 +310,7 @@ void sub_02012A90 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021EF0(param0->unk_00[v0].unk_00, param1);
+        GraphicElementData_SetExplicitPaletteOffset(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -321,7 +321,7 @@ void sub_02012AC0 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021F24(param0->unk_00[v0].unk_00, param1);
+        GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -399,7 +399,7 @@ void sub_02012BE0 (FontOAM * param0, const UnkStruct_02012B20 * param1, const Wi
     GraphicElementData * v3 = param0->unk_00[0].unk_00;
     int v4;
 
-    v4 = sub_02021FC8(v3);
+    v4 = GraphicElementData_GetVRamType(v3);
     v0 = sub_02012B58(param1, v4);
     v1 = (char *)Heap_AllocFromHeapAtEnd(param3, v0);
 
@@ -752,7 +752,7 @@ static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, con
     if (param0->unk_10) {
         const VecFx32 * v2;
 
-        v2 = sub_02021D28(param0->unk_10);
+        v2 = GraphicElementData_GetPosition(param0->unk_10);
         v0.position = *v2;
     }
 

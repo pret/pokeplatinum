@@ -593,11 +593,11 @@ static void ov21_021DFE0C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
     param0->unk_BC = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_BC, 1);
-    sub_02021CC8(param0->unk_BC, 1);
-    sub_02021E80(param0->unk_BC, 0);
+    GraphicElementData_SetAnimateFlag(param0->unk_BC, 1);
+    GraphicElementData_SetExplicitPriority(param0->unk_BC, 0);
 
     if (param2->unk_10 <= 1) {
-        sub_02021CAC(param0->unk_BC, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_BC, 0);
     }
 }
 
@@ -745,7 +745,7 @@ static BOOL ov21_021E015C (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
     v1.x = param0->unk_28[param2].unk_00 << FX32_SHIFT;
     v1.y = (param0->unk_28[param2].unk_04 + 8) << FX32_SHIFT;
 
-    sub_02021C50(param0->unk_00[v2], &v1);
+    GraphicElementData_SetPosition(param0->unk_00[v2], &v1);
 
     return v0;
 }
@@ -1322,7 +1322,7 @@ static void ov21_021E0BF8 (UnkStruct_ov21_021DFFF8 * param0)
 
 static void ov21_021E0C10 (UnkStruct_ov21_021DFFF8 * param0)
 {
-    sub_02021CAC(param0->unk_BC, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_BC, 0);
 
     param0->unk_C0 = (16 + 8);
     param0->unk_C4 = 1;
@@ -1334,7 +1334,7 @@ static void ov21_021E0C30 (UnkStruct_ov21_021DFFF8 * param0)
         param0->unk_C0--;
 
         if (param0->unk_C0 <= 0) {
-            sub_02021CAC(param0->unk_BC, 1);
+            GraphicElementData_SetDrawFlag(param0->unk_BC, 1);
             param0->unk_C4 = 0;
         }
     }

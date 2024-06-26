@@ -565,7 +565,7 @@ static GraphicElementData * ov6_02243740 (UnkStruct_ov6_02243258 * param0, const
 
 static void ov6_022437C8 (GraphicElementData * param0, VecFx32 * param1)
 {
-    const VecFx32 * v0 = sub_02021D28(param0);
+    const VecFx32 * v0 = GraphicElementData_GetPosition(param0);
     *param1 = *v0;
 }
 
@@ -578,10 +578,10 @@ static GraphicElementData * ov6_022437DC (UnkStruct_ov6_02243258 * param0)
 
     v0 = ov6_02243740(param0, &v1, 0, 0, 0, 2, 0, 132);
 
-    sub_02021CF8(v0, 2);
-    sub_02021C60(v0, &v2);
-    sub_02021C70(v0, &v3);
-    sub_02021C94(v0, sub_0201D2A4(0));
+    GraphicElementData_SetAffineOverwriteMode(v0, 2);
+    GraphicElementData_SetAffineTranslation(v0, &v2);
+    GraphicElementData_SetAffineScale(v0, &v3);
+    GraphicElementData_SetAffineZRotation(v0, sub_0201D2A4(0));
 
     return v0;
 }
@@ -598,7 +598,7 @@ static GraphicElementData * ov6_02243848 (UnkStruct_ov6_02243258 * param0, int p
 
     v1 = ov6_02243740(param0, &v0, 2, v2, 2, 1, 0, 131);
 
-    sub_02021CAC(v1, 0);
+    GraphicElementData_SetDrawFlag(v1, 0);
     SpriteActor_SetSpriteAnimActive(v1, 6);
 
     return v1;
@@ -684,7 +684,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov6_0224925C = {
 static int ov6_02243940 (UnkStruct_ov6_02249110 * param0)
 {
     param0->unk_02 = 0;
-    sub_02021CAC(param0->unk_68, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_68, 0);
     return 0;
 }
 
@@ -716,11 +716,11 @@ static void ov6_02243950 (UnkStruct_ov101_021D5D90 * param0)
     v0.x = v2->unk_08.x + v2->unk_14.x;
     v0.y = v2->unk_08.y + v2->unk_14.y;
 
-    sub_02021C50(v2->unk_68, &v0);
-    sub_02021C70(v2->unk_68, &v1);
-    sub_02021C94(v2->unk_68, sub_0201D2A4(((v2->unk_38) / FX32_ONE)));
-    sub_02021F58(v2->unk_68, 132);
-    sub_02021CAC(v2->unk_68, 1);
+    GraphicElementData_SetPosition(v2->unk_68, &v0);
+    GraphicElementData_SetAffineScale(v2->unk_68, &v1);
+    GraphicElementData_SetAffineZRotation(v2->unk_68, sub_0201D2A4(((v2->unk_38) / FX32_ONE)));
+    GraphicElementData_SetPriority(v2->unk_68, 132);
+    GraphicElementData_SetDrawFlag(v2->unk_68, 1);
 
     v2->unk_6C = ov6_02245B4C(v2->unk_58.unk_00, v2->unk_58.unk_08);
     v2->unk_70 = ov5_021F0EB0(v2->unk_58.fieldSystem, 4);
@@ -734,10 +734,10 @@ static void ov6_02243950 (UnkStruct_ov101_021D5D90 * param0)
 
         v3 = v2->unk_58.unk_08;
 
-        sub_02021CF8(v3, 2);
-        sub_02021C60(v3, &v4);
-        sub_02021C70(v3, &v5);
-        sub_02021C94(v3, sub_0201D2A4(0));
+        GraphicElementData_SetAffineOverwriteMode(v3, 2);
+        GraphicElementData_SetAffineTranslation(v3, &v4);
+        GraphicElementData_SetAffineScale(v3, &v5);
+        GraphicElementData_SetAffineZRotation(v3, sub_0201D2A4(0));
         SpriteActor_SetSpriteAnimActive(v3, 2);
     }
 
@@ -783,15 +783,15 @@ static int ov6_02243AB8 (UnkStruct_ov6_02249110 * param0)
         param0->unk_2C.y = 0x1000;
     }
 
-    sub_02021C70(v1, &param0->unk_2C);
-    sub_02021C70(v2, &param0->unk_2C);
+    GraphicElementData_SetAffineScale(v1, &param0->unk_2C);
+    GraphicElementData_SetAffineScale(v2, &param0->unk_2C);
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    sub_02021C50(v1, &v0);
+    GraphicElementData_SetPosition(v1, &v0);
     v0.y -= (FX32_ONE * 18);
-    sub_02021C50(v2, &v0);
+    GraphicElementData_SetPosition(v2, &v0);
 
     if (param0->unk_48 == 0) {
         param0->unk_04 = 0;
@@ -837,7 +837,7 @@ static int ov6_02243BEC (UnkStruct_ov6_02249110 * param0)
     }
 
     param0->unk_38 += 0x2000;
-    sub_02021C94(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
+    GraphicElementData_SetAffineZRotation(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
     param0->unk_2C.x += param0->unk_50;
 
     if (param0->unk_2C.x > 0x1000) {
@@ -850,12 +850,12 @@ static int ov6_02243BEC (UnkStruct_ov6_02249110 * param0)
         param0->unk_2C.y = 0x1000;
     }
 
-    sub_02021C70(v1, &param0->unk_2C);
+    GraphicElementData_SetAffineScale(v1, &param0->unk_2C);
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y - param0->unk_14.y;
 
-    sub_02021C50(v1, &v0);
+    GraphicElementData_SetPosition(v1, &v0);
 
     if (((v0.y) / FX32_ONE) <= -16) {
         param0->unk_01++;
@@ -866,7 +866,7 @@ static int ov6_02243BEC (UnkStruct_ov6_02249110 * param0)
 
 static int ov6_02243CD8 (UnkStruct_ov6_02249110 * param0)
 {
-    sub_02021CAC(param0->unk_68, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_68, 0);
     SpriteActor_SetSpriteAnimActive(param0->unk_58.unk_08, 1);
 
     param0->unk_04 = 0;
@@ -897,12 +897,12 @@ static int ov6_02243CFC (UnkStruct_ov6_02249110 * param0)
         param0->unk_48 = (FX32_ONE * 128);
         param0->unk_4C = 0x2000;
 
-        sub_02021C50(param0->unk_68, &v0);
-        sub_02021C70(param0->unk_68, &v1);
-        sub_02021C94(param0->unk_68, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
-        sub_02021CAC(param0->unk_68, 1);
+        GraphicElementData_SetPosition(param0->unk_68, &v0);
+        GraphicElementData_SetAffineScale(param0->unk_68, &v1);
+        GraphicElementData_SetAffineZRotation(param0->unk_68, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
+        GraphicElementData_SetDrawFlag(param0->unk_68, 1);
         SpriteActor_SetSpriteAnimActive(param0->unk_58.unk_08, 6);
-        sub_02021CC8(param0->unk_58.unk_08, 1);
+        GraphicElementData_SetAnimateFlag(param0->unk_58.unk_08, 1);
     }
 
     param0->unk_01++;
@@ -943,22 +943,22 @@ static int ov6_02243DC0 (UnkStruct_ov6_02249110 * param0)
         param0->unk_2C.y = 0x400;
     }
 
-    sub_02021C70(v1, &param0->unk_2C);
+    GraphicElementData_SetAffineScale(v1, &param0->unk_2C);
     param0->unk_38 += 0x6000;
 
     if (((param0->unk_38) / FX32_ONE) > 60) {
         param0->unk_38 = (FX32_ONE * 60);
     }
 
-    sub_02021C94(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
+    GraphicElementData_SetAffineZRotation(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    sub_02021C50(v1, &v0);
+    GraphicElementData_SetPosition(v1, &v0);
 
     if (param0->unk_48 <= 0) {
-        sub_02021CAC(v1, 0);
+        GraphicElementData_SetDrawFlag(v1, 0);
         param0->unk_01++;
     }
 
@@ -975,7 +975,7 @@ static int ov6_02243ECC (UnkStruct_ov6_02249110 * param0)
     }
 
     if (param0->unk_04 == 10) {
-        sub_02021CAC(param0->unk_58.unk_08, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_58.unk_08, 0);
     }
 
     if ((param0->unk_04 > 15) && (ov5_021F0EF0(param0->unk_70) == 1)) {
@@ -1207,7 +1207,7 @@ static int ov6_022441DC (UnkStruct_ov6_02243FFC * param0)
     const VecFx32 * v0;
     VecFx32 v1;
 
-    v0 = sub_02021D28(param0->unk_24C);
+    v0 = GraphicElementData_GetPosition(param0->unk_24C);
     v1 = *v0;
     v1.x += param0->unk_58;
 
@@ -1216,7 +1216,7 @@ static int ov6_022441DC (UnkStruct_ov6_02243FFC * param0)
         param0->unk_00++;
     }
 
-    sub_02021C50(param0->unk_24C, &v1);
+    GraphicElementData_SetPosition(param0->unk_24C, &v1);
     return 0;
 }
 
@@ -1236,11 +1236,11 @@ static int ov6_02244228 (UnkStruct_ov6_02243FFC * param0)
         }
     }
 
-    v0 = sub_02021D28(param0->unk_24C);
+    v0 = GraphicElementData_GetPosition(param0->unk_24C);
     v1 = *v0;
     v1.x += param0->unk_58;
 
-    sub_02021C50(param0->unk_24C, &v1);
+    GraphicElementData_SetPosition(param0->unk_24C, &v1);
     return 0;
 }
 
@@ -1268,11 +1268,11 @@ static int ov6_022442A4 (UnkStruct_ov6_02243FFC * param0)
         param0->unk_58 = (FX32_ONE * -64);
     }
 
-    v0 = sub_02021D28(param0->unk_24C);
+    v0 = GraphicElementData_GetPosition(param0->unk_24C);
     v1 = *v0;
     v1.x += param0->unk_58;
 
-    sub_02021C50(param0->unk_24C, &v1);
+    GraphicElementData_SetPosition(param0->unk_24C, &v1);
 
     if (v1.x <= (FX32_ONE * -40)) {
         param0->unk_54 = 0x1000;
@@ -1887,7 +1887,7 @@ static GraphicElementData * ov6_02244CFC (UnkStruct_ov6_02243FFC * param0, const
 
     v0 = ov6_02244C20(param0, param1, 2, v1, 2, 1, 0, 131);
 
-    sub_02021CAC(v0, 0);
+    GraphicElementData_SetDrawFlag(v0, 0);
     SpriteActor_SetSpriteAnimActive(v0, 6);
 
     return v0;
@@ -1895,8 +1895,8 @@ static GraphicElementData * ov6_02244CFC (UnkStruct_ov6_02243FFC * param0, const
 
 static void ov6_02244D34 (GraphicElementData * param0)
 {
-    sub_02021CC8(param0, 1);
-    sub_02021CE4(param0, FX32_ONE);
+    GraphicElementData_SetAnimateFlag(param0, 1);
+    GraphicElementData_SetAnimSpeed(param0, FX32_ONE);
 }
 
 static GraphicElementData * ov6_02244D4C (UnkStruct_ov6_02243FFC * param0, const VecFx32 * param1, int param2, int param3)
@@ -1907,10 +1907,10 @@ static GraphicElementData * ov6_02244D4C (UnkStruct_ov6_02243FFC * param0, const
 
     v0 = ov6_02244C20(param0, param1, 0, 0, 0, 0xffffffff, 0, param2);
 
-    sub_02021CF8(v0, 2);
-    sub_02021C60(v0, &v1);
-    sub_02021C70(v0, &v2);
-    sub_02021C94(v0, sub_0201D2A4(0));
+    GraphicElementData_SetAffineOverwriteMode(v0, 2);
+    GraphicElementData_SetAffineTranslation(v0, &v1);
+    GraphicElementData_SetAffineScale(v0, &v2);
+    GraphicElementData_SetAffineZRotation(v0, sub_0201D2A4(0));
 
     return v0;
 }
@@ -2247,7 +2247,7 @@ static int ov6_02245364 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     sub_020715E4(param0, &v0);
 
     v1->unk_08 = ov6_02244CD4(v1->unk_0C.unk_08, &v0, v1->unk_0C.unk_00, v1->unk_04);
-    sub_02021CAC(v1->unk_08, 0);
+    GraphicElementData_SetDrawFlag(v1->unk_08, 0);
 
     return 1;
 }
@@ -2269,7 +2269,7 @@ static void ov6_022453B8 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v0.x %= (FX32_ONE * 512);
 
     sub_020715D4(param0, &v0);
-    sub_02021C50(v1->unk_08, &v0);
+    GraphicElementData_SetPosition(v1->unk_08, &v0);
 
     if (v1->unk_0C.unk_04 == 1) {
         UnkStruct_ov6_02243FFC * v2 = v1->unk_0C.unk_08;
@@ -2282,9 +2282,9 @@ static void ov6_022453B8 (UnkStruct_ov101_021D5D90 * param0, void * param1)
                 v3 = 1;
             }
 
-            sub_02021CAC(v1->unk_08, v3);
+            GraphicElementData_SetDrawFlag(v1->unk_08, v3);
         } else if (v2->unk_14 == 1) {
-            sub_02021CAC(v1->unk_08, 0);
+            GraphicElementData_SetDrawFlag(v1->unk_08, 0);
         }
     }
 }
@@ -2383,7 +2383,7 @@ static int(*const * const Unk_ov6_02249198[])(UnkStruct_ov6_02249198 *) = {
 static int ov6_0224550C (UnkStruct_ov6_02249198 * param0)
 {
     param0->unk_02 = 0;
-    sub_02021CAC(param0->unk_58, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_58, 0);
     return 0;
 }
 
@@ -2409,10 +2409,10 @@ static void ov6_0224551C (UnkStruct_ov6_02243FFC * param0)
     v2->unk_48 = 0;
     v2->unk_4C = 0x2000;
 
-    sub_02021C50(v2->unk_58, &v0);
-    sub_02021C70(v2->unk_58, &v1);
-    sub_02021C94(v2->unk_58, sub_0201D2A4(((v2->unk_38) / FX32_ONE)));
-    sub_02021CAC(v2->unk_58, 1);
+    GraphicElementData_SetPosition(v2->unk_58, &v0);
+    GraphicElementData_SetAffineScale(v2->unk_58, &v1);
+    GraphicElementData_SetAffineZRotation(v2->unk_58, sub_0201D2A4(((v2->unk_38) / FX32_ONE)));
+    GraphicElementData_SetDrawFlag(v2->unk_58, 1);
 }
 
 static int ov6_022455C4 (UnkStruct_ov6_02249198 * param0)
@@ -2445,22 +2445,22 @@ static int ov6_022455C4 (UnkStruct_ov6_02249198 * param0)
         param0->unk_2C.y = 0x1000;
     }
 
-    sub_02021C70(v1, &param0->unk_2C);
+    GraphicElementData_SetAffineScale(v1, &param0->unk_2C);
     param0->unk_38 -= 0x6000;
 
     if (((param0->unk_38) / FX32_ONE) < 0) {
         param0->unk_38 = 0;
     }
 
-    sub_02021C94(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
+    GraphicElementData_SetAffineZRotation(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    sub_02021C50(v1, &v0);
+    GraphicElementData_SetPosition(v1, &v0);
 
     if (v0.y < (FX32_ONE * -64)) {
-        sub_02021CAC(v1, 0);
+        GraphicElementData_SetDrawFlag(v1, 0);
         param0->unk_02 = 2;
         param0->unk_01++;
     }
@@ -2502,10 +2502,10 @@ static void ov6_022456D4 (UnkStruct_ov6_02243FFC * param0)
     v0.x = v2->unk_08.x + v2->unk_14.x;
     v0.y = v2->unk_08.y + v2->unk_14.y;
 
-    sub_02021C50(v2->unk_58, &v0);
-    sub_02021C70(v2->unk_58, &v1);
-    sub_02021C94(v2->unk_58, sub_0201D2A4(((v2->unk_38) / FX32_ONE)));
-    sub_02021CAC(v2->unk_58, 1);
+    GraphicElementData_SetPosition(v2->unk_58, &v0);
+    GraphicElementData_SetAffineScale(v2->unk_58, &v1);
+    GraphicElementData_SetAffineZRotation(v2->unk_58, sub_0201D2A4(((v2->unk_38) / FX32_ONE)));
+    GraphicElementData_SetDrawFlag(v2->unk_58, 1);
 
     v2->unk_60 = ov6_02245B4C(param0->unk_244, param0->unk_248);
     param0->unk_1C = 1;
@@ -2520,10 +2520,10 @@ static void ov6_022456D4 (UnkStruct_ov6_02243FFC * param0)
 
         v3 = v2->unk_5C.unk_00->unk_248;
 
-        sub_02021CF8(v3, 2);
-        sub_02021C60(v3, &v4);
-        sub_02021C70(v3, &v5);
-        sub_02021C94(v3, sub_0201D2A4(0));
+        GraphicElementData_SetAffineOverwriteMode(v3, 2);
+        GraphicElementData_SetAffineTranslation(v3, &v4);
+        GraphicElementData_SetAffineScale(v3, &v5);
+        GraphicElementData_SetAffineZRotation(v3, sub_0201D2A4(0));
     }
 }
 
@@ -2565,19 +2565,19 @@ static int ov6_02245840 (UnkStruct_ov6_02249198 * param0)
         param0->unk_2C.y = 0x1800;
     }
 
-    sub_02021C70(v1, &param0->unk_2C);
+    GraphicElementData_SetAffineScale(v1, &param0->unk_2C);
     param0->unk_38 += 0x8000;
 
     if (((param0->unk_38) / FX32_ONE) > 360) {
         param0->unk_38 = (FX32_ONE * 360);
     }
 
-    sub_02021C94(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
+    GraphicElementData_SetAffineZRotation(v1, sub_0201D2A4(((param0->unk_38) / FX32_ONE)));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    sub_02021C50(v1, &v0);
+    GraphicElementData_SetPosition(v1, &v0);
 
     if (param0->unk_48 == 0) {
         param0->unk_04 = 0;
@@ -2592,7 +2592,7 @@ static int ov6_02245840 (UnkStruct_ov6_02249198 * param0)
 
     {
         GraphicElementData * v2 = param0->unk_5C.unk_00->unk_248;
-        const VecFx32 * v3 = sub_02021D2C(v2);
+        const VecFx32 * v3 = GraphicElementData_GetAffineScale(v2);
         VecFx32 v4 = *v3;
 
         v4.x += 0x80;
@@ -2607,7 +2607,7 @@ static int ov6_02245840 (UnkStruct_ov6_02249198 * param0)
             v4.y = 0x1400;
         }
 
-        sub_02021C70(v2, &v4);
+        GraphicElementData_SetAffineScale(v2, &v4);
     }
 
     return 0;
@@ -2621,10 +2621,10 @@ static int ov6_022459B0 (UnkStruct_ov6_02249198 * param0)
 
     {
         fx32 v1, v2;
-        const VecFx32 * v3 = sub_02021D28(v0);
+        const VecFx32 * v3 = GraphicElementData_GetPosition(v0);
 
         v1 = v3->y;
-        v3 = sub_02021D28(param0->unk_58);
+        v3 = GraphicElementData_GetPosition(param0->unk_58);
         v2 = v3->y;
 
         param0->unk_54 = v1 - v2;
@@ -2674,23 +2674,23 @@ static int ov6_02245A0C (UnkStruct_ov6_02249198 * param0)
         param0->unk_2C.y = 0x2000;
     }
 
-    sub_02021C70(v1, &param0->unk_2C);
+    GraphicElementData_SetAffineScale(v1, &param0->unk_2C);
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    sub_02021C50(v1, &v0);
+    GraphicElementData_SetPosition(v1, &v0);
 
     {
         GraphicElementData * v2 = param0->unk_5C.unk_00->unk_248;
-        const VecFx32 * v3 = sub_02021D2C(v2);
+        const VecFx32 * v3 = GraphicElementData_GetAffineScale(v2);
         VecFx32 v4 = v0;
         VecFx32 v5 = *v3;
 
         param0->unk_54 -= 0x1000;
 
         v4.y += param0->unk_54;
-        sub_02021C50(v2, &v4);
+        GraphicElementData_SetPosition(v2, &v4);
         v5.x += 0x100;
 
         if (v5.x > 0x2000) {
@@ -2703,7 +2703,7 @@ static int ov6_02245A0C (UnkStruct_ov6_02249198 * param0)
             v5.y = 0x2000;
         }
 
-        sub_02021C70(v2, &v5);
+        GraphicElementData_SetAffineScale(v2, &v5);
     }
 
     if (((v0.y) / FX32_ONE) >= 240) {
@@ -2755,7 +2755,7 @@ static void ov6_02245B80 (UnkStruct_ov101_021D5D90 * param0)
     v2->unk_0C = 0;
     v2->unk_08 = 0;
     v2->unk_10.x = 0; v2->unk_10.y = 0; v2->unk_10.z = 0;
-    v1 = sub_02021D28(v2->unk_20);
+    v1 = GraphicElementData_GetPosition(v2->unk_20);
     v0 = *v1;
 
     sub_020715D4(param0, &v0);
@@ -2821,7 +2821,7 @@ static void ov6_02245C18 (UnkStruct_ov101_021D5D90 * param0, UnkStruct_ov6_02245
         param1->unk_10.y = Unk_ov6_022492A8[param1->unk_0C];
         sub_020715E4(param0, &v0);
         v0.y += param1->unk_10.y;
-        sub_02021C50(param1->unk_20, &v0);
+        GraphicElementData_SetPosition(param1->unk_20, &v0);
         param1->unk_0C++;
 
         if (param1->unk_0C >= 12) {
@@ -2841,7 +2841,7 @@ static void ov6_02245C64 (UnkStruct_ov101_021D5D90 * param0, UnkStruct_ov6_02245
         param1->unk_10.y = Unk_ov6_022491FC[param1->unk_0C];
         sub_020715E4(param0, &v0);
         v0.y += param1->unk_10.y;
-        sub_02021C50(param1->unk_20, &v0);
+        GraphicElementData_SetPosition(param1->unk_20, &v0);
         param1->unk_0C++;
 
         if (param1->unk_0C >= 4) {
@@ -2980,7 +2980,7 @@ static int ov6_02245D60 (UnkStruct_ov6_02249270 * param0)
 static int ov6_02245EA4 (UnkStruct_ov6_02249270 * param0)
 {
     param0->unk_1D0 = ov6_02243848(&param0->unk_18, param0->unk_0C);
-    sub_02021CAC(param0->unk_1D0, 1);
+    GraphicElementData_SetDrawFlag(param0->unk_1D0, 1);
 
     param0->unk_1D8 = ov6_02243888(param0->fieldSystem, param0->unk_1D4, &param0->unk_18, param0->unk_1D0);
     ov6_02243950(param0->unk_1D8);
@@ -3062,19 +3062,19 @@ static void ov6_02245F94 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     const VecFx32 * v3;
     UnkStruct_ov6_02245F80 * v4 = param1;
 
-    v3 = sub_02021D28(v4->unk_00);
+    v3 = GraphicElementData_GetPosition(v4->unk_00);
     v0 = v3->y;
     v1 = v4->unk_04->unk_4C;
     v2 = v4->unk_04->unk_50;
 
     if (v4->unk_04->unk_1C == 0) {
         if (((v0 - (FX32_ONE * 8)) >= v1) && ((v0 + (FX32_ONE * 8)) <= v2)) {
-            sub_02021CAC(v4->unk_00, 1);
+            GraphicElementData_SetDrawFlag(v4->unk_00, 1);
         } else {
-            sub_02021CAC(v4->unk_00, 0);
+            GraphicElementData_SetDrawFlag(v4->unk_00, 0);
         }
     } else {
-        sub_02021CAC(v4->unk_00, 1);
+        GraphicElementData_SetDrawFlag(v4->unk_00, 1);
     }
 }
 

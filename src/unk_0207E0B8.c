@@ -1013,7 +1013,7 @@ static void sub_0207EE14 (GameWindowLayout * param0)
     }
 
     if ((param0->unk_5A4->unk_20 != 2) && (param0->unk_5A4->unk_20 != 17) && (param0->unk_5A4->unk_20 != 23) && (param0->unk_5A4->unk_20 != 22)) {
-        sub_02021CAC(param0->unk_5B0[8], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_5B0[8], 0);
         SpriteActor_SetSpriteAnimActive(param0->unk_5B0[9], 0);
 
         {
@@ -1027,7 +1027,7 @@ static void sub_0207EE14 (GameWindowLayout * param0)
     }
 
     if ((param0->unk_5A4->unk_20 == 4) || (param0->unk_5A4->unk_20 == 21)) {
-        sub_02021CAC(param0->unk_5B0[9], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_5B0[9], 0);
         v0 ^= 2;
     }
 
@@ -1467,10 +1467,10 @@ static u8 sub_0207FA24 (GameWindowLayout * param0)
 
     if ((v0 != param0->unk_B11) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
-            sub_02021CAC(param0->unk_5B0[6], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_5B0[6], 0);
         } else {
             SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, v0));
-            sub_02021CAC(param0->unk_5B0[6], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_5B0[6], 1);
             SpriteActor_SetPositionXY(param0->unk_5B0[6], v2, v3);
         }
 
@@ -1558,7 +1558,7 @@ static u8 sub_0207FC94 (GameWindowLayout * param0)
 
         sub_0201E028(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->unk_B11, 4);
         SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
-        sub_02021CAC(param0->unk_5B0[6], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_5B0[6], 1);
         SpriteActor_SetPositionXY(param0->unk_5B0[6], v1, v2);
 
         param0->unk_B0C = 1;
@@ -1579,13 +1579,13 @@ static u8 sub_0207FC94 (GameWindowLayout * param0)
 void sub_0207FD68 (GameWindowLayout * param0, u8 param1)
 {
     if ((param1 == 6) || (param1 == 7)) {
-        sub_02021CAC(param0->unk_5B0[6], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_5B0[6], 0);
     } else {
         u8 v0, v1;
 
         sub_0201E028(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, 4);
         SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
-        sub_02021CAC(param0->unk_5B0[6], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_5B0[6], 1);
         SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
     }
 

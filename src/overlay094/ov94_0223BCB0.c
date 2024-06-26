@@ -437,7 +437,7 @@ void ov94_0223C3FC (GraphicElementData * param0, int param1, int param2)
     v0.y = FX32_CONST(param2);
     v0.z = 0;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 static void * ov94_0223C468 (DWCAllocType param0, u32 param1, int param2)

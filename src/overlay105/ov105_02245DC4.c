@@ -53,7 +53,7 @@ void ov105_02245E30 (UnkStruct_ov105_02245E1C * param0, int param1, int param2)
     v0.x = (param1 * FX32_ONE);
     v0.y = (param2 * FX32_ONE);
 
-    sub_02021C50(param0->unk_08, &v0);
+    GraphicElementData_SetPosition(param0->unk_08, &v0);
     return;
 }
 

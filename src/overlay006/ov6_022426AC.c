@@ -222,7 +222,7 @@ static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
 
         param0->unk_1C8 = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_1C8, 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_1C8, 0);
         SpriteActor_SetSpriteAnimActive(param0->unk_1C8, 0);
     }
 }

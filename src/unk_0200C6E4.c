@@ -325,7 +325,7 @@ GraphicElementData * sub_0200CA44 (SpriteRenderer * param0, SpriteGfxHandler * p
 
     if (v0 != NULL) {
         SpriteActor_SetSpriteAnimActive(v0, param6);
-        sub_02021E90(v0, param8);
+        GraphicElementData_SetExplicitPalette(v0, param8);
     }
 
     return v0;
@@ -578,10 +578,10 @@ CellActorData * SpriteActor_LoadResources (SpriteRenderer * param0, SpriteGfxHan
     v2->unk_0C = param2->transferToVRAM;
 
     if (v2->unk_00 != NULL) {
-        v1 = sub_02021EE8(v2->unk_00);
+        v1 = GraphicElementData_GetExplicitPalette(v2->unk_00);
 
         SpriteActor_SetSpriteAnimActive(v2->unk_00, param2->animIdx);
-        sub_02021E90(v2->unk_00, v1 + param2->plttIdx);
+        GraphicElementData_SetExplicitPalette(v2->unk_00, v1 + param2->plttIdx);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -810,7 +810,7 @@ void sub_0200D34C (CellActorData * param0, fx32 param1)
 
 u32 sub_0200D358 (CellActorData * param0)
 {
-    return sub_02021D44(param0->unk_00);
+    return GraphicElementData_GetAnimSequenceCount(param0->unk_00);
 }
 
 void sub_0200D364 (CellActorData * param0, u32 param1)
@@ -830,7 +830,7 @@ u32 sub_0200D37C (CellActorData * param0)
 
 void sub_0200D388 (GraphicElementData * param0, int param1)
 {
-    sub_02021CC8(param0, param1);
+    GraphicElementData_SetAnimateFlag(param0, param1);
 }
 
 void sub_0200D390 (CellActorData * param0, int param1)
@@ -840,7 +840,7 @@ void sub_0200D390 (CellActorData * param0, int param1)
 
 void sub_0200D39C (GraphicElementData * param0, fx32 param1)
 {
-    sub_02021CE4(param0, param1);
+    GraphicElementData_SetAnimSpeed(param0, param1);
 }
 
 void sub_0200D3A4 (CellActorData * param0, fx32 param1)
@@ -880,7 +880,7 @@ u16 sub_0200D3E0 (CellActorData * param0)
 
 void SpriteActor_DrawSprite (GraphicElementData * param0, int param1)
 {
-    sub_02021CAC(param0, param1);
+    GraphicElementData_SetDrawFlag(param0, param1);
 }
 
 void SpriteActor_EnableObject (CellActorData * param0, int param1)
@@ -890,7 +890,7 @@ void SpriteActor_EnableObject (CellActorData * param0, int param1)
 
 int sub_0200D400 (GraphicElementData * param0)
 {
-    return sub_02021D34(param0);
+    return GraphicElementData_GetDrawFlag(param0);
 }
 
 int sub_0200D408 (CellActorData * param0)
@@ -900,7 +900,7 @@ int sub_0200D408 (CellActorData * param0)
 
 void sub_0200D414 (GraphicElementData * param0, int param1)
 {
-    sub_02021E90(param0, param1);
+    GraphicElementData_SetExplicitPalette(param0, param1);
 }
 
 void sub_0200D41C (CellActorData * param0, int param1)
@@ -910,7 +910,7 @@ void sub_0200D41C (CellActorData * param0, int param1)
 
 void sub_0200D428 (GraphicElementData * param0, int param1)
 {
-    sub_02021EF0(param0, param1);
+    GraphicElementData_SetExplicitPaletteOffset(param0, param1);
 }
 
 void sub_0200D430 (CellActorData * param0, int param1)
@@ -920,17 +920,17 @@ void sub_0200D430 (CellActorData * param0, int param1)
 
 int sub_0200D43C (CellActorData * param0)
 {
-    return sub_02021F48(param0->unk_00);
+    return GraphicElementData_GetExplicitPaletteOffset(param0->unk_00);
 }
 
 void sub_0200D448 (GraphicElementData * param0, int param1)
 {
-    sub_02021E80(param0, param1);
+    GraphicElementData_SetExplicitPriority(param0, param1);
 }
 
 int sub_0200D454 (CellActorData * param0)
 {
-    return sub_02021E88(param0->unk_00);
+    return GraphicElementData_GetExplicitPriority(param0->unk_00);
 }
 
 void sub_0200D460 (CellActorData * param0, int param1)
@@ -940,7 +940,7 @@ void sub_0200D460 (CellActorData * param0, int param1)
 
 void sub_0200D46C (GraphicElementData * param0, int param1)
 {
-    sub_02021F58(param0, param1);
+    GraphicElementData_SetPriority(param0, param1);
 }
 
 void sub_0200D474 (CellActorData * param0, int param1)
@@ -950,7 +950,7 @@ void sub_0200D474 (CellActorData * param0, int param1)
 
 u32 sub_0200D480 (GraphicElementData * param0)
 {
-    return sub_02021F74(param0);
+    return GraphicElementData_GetPriority(param0);
 }
 
 u32 sub_0200D488 (CellActorData * param0)
@@ -965,13 +965,13 @@ void SpriteActor_SetPositionXY (GraphicElementData * param0, s16 param1, s16 par
     v0.x = param1 * FX32_ONE;
     v0.y = param2 * FX32_ONE;
 
-    if (sub_02021FC8(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (GraphicElementData_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
         v0.y += (192 << FX32_SHIFT);
     }
 
     v0.z = 0;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 void SpriteActor_SetSpritePositionXY (CellActorData * param0, s16 param1, s16 param2)
@@ -986,13 +986,13 @@ void sub_0200D4D0 (GraphicElementData * param0, s16 param1, s16 param2, fx32 par
     v0.x = param1 * FX32_ONE;
     v0.y = param2 * FX32_ONE;
 
-    if (sub_02021FC8(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (GraphicElementData_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
         v0.y += param3;
     }
 
     v0.z = 0;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 void sub_0200D500 (CellActorData * param0, s16 param1, s16 param2, fx32 param3)
@@ -1004,10 +1004,10 @@ void sub_0200D50C (GraphicElementData * param0, s16 * param1, s16 * param2)
 {
     const VecFx32 * v0;
 
-    v0 = sub_02021D28(param0);
+    v0 = GraphicElementData_GetPosition(param0);
     *param1 = v0->x / FX32_ONE;
 
-    if (sub_02021FC8(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (GraphicElementData_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
         *param2 = (v0->y - (192 << FX32_SHIFT)) / FX32_ONE;
     } else {
         *param2 = v0->y / FX32_ONE;
@@ -1023,10 +1023,10 @@ void sub_0200D55C (GraphicElementData * param0, s16 * param1, s16 * param2, fx32
 {
     const VecFx32 * v0;
 
-    v0 = sub_02021D28(param0);
+    v0 = GraphicElementData_GetPosition(param0);
     *param1 = v0->x / FX32_ONE;
 
-    if (sub_02021FC8(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (GraphicElementData_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
         *param2 = (v0->y - param3) / FX32_ONE;
     } else {
         *param2 = v0->y / FX32_ONE;
@@ -1043,13 +1043,13 @@ void sub_0200D5AC (GraphicElementData * param0, s16 param1, s16 param2)
     const VecFx32 * v0;
     VecFx32 v1;
 
-    v0 = sub_02021D28(param0);
+    v0 = GraphicElementData_GetPosition(param0);
 
     v1.x = v0->x + (param1 * FX32_ONE);
     v1.y = v0->y + (param2 * FX32_ONE);
     v1.z = v0->z;
 
-    sub_02021C50(param0, &v1);
+    GraphicElementData_SetPosition(param0, &v1);
 }
 
 void sub_0200D5DC (CellActorData * param0, s16 param1, s16 param2)
@@ -1062,13 +1062,13 @@ void sub_0200D5E8 (CellActorData * param0, fx32 param1, fx32 param2)
     const VecFx32 * v0;
     VecFx32 v1;
 
-    v0 = sub_02021D28(param0->unk_00);
+    v0 = GraphicElementData_GetPosition(param0->unk_00);
 
     v1.x = v0->x + param1;
     v1.y = v0->y + param2;
     v1.z = v0->z;
 
-    sub_02021C50(param0->unk_00, &v1);
+    GraphicElementData_SetPosition(param0->unk_00, &v1);
 }
 
 void sub_0200D614 (CellActorData * param0, fx32 param1, fx32 param2)
@@ -1076,13 +1076,13 @@ void sub_0200D614 (CellActorData * param0, fx32 param1, fx32 param2)
     const VecFx32 * v0;
     VecFx32 v1;
 
-    v0 = sub_02021D28(param0->unk_00);
+    v0 = GraphicElementData_GetPosition(param0->unk_00);
 
     v1.x = param1;
     v1.y = param2;
     v1.z = v0->z;
 
-    sub_02021C50(param0->unk_00, &v1);
+    GraphicElementData_SetPosition(param0->unk_00, &v1);
 }
 
 void sub_0200D638 (CellActorData * param0, fx32 * param1, fx32 * param2)
@@ -1090,7 +1090,7 @@ void sub_0200D638 (CellActorData * param0, fx32 * param1, fx32 * param2)
     const VecFx32 * v0;
     VecFx32 v1;
 
-    v0 = sub_02021D28(param0->unk_00);
+    v0 = GraphicElementData_GetPosition(param0->unk_00);
 
     *param1 = v0->x;
     *param2 = v0->y;
@@ -1098,7 +1098,7 @@ void sub_0200D638 (CellActorData * param0, fx32 * param1, fx32 * param2)
 
 void sub_0200D650 (CellActorData * param0, fx32 param1, fx32 param2, fx32 param3)
 {
-    if (sub_02021FC8(param0->unk_00) == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (GraphicElementData_GetVRamType(param0->unk_00) == NNS_G2D_VRAM_TYPE_2DSUB) {
         sub_0200D614(param0, param1, param2 + param3);
     } else {
         sub_0200D614(param0, param1, param2);
@@ -1109,14 +1109,14 @@ void sub_0200D67C (CellActorData * param0, fx32 * param1, fx32 * param2, fx32 pa
 {
     sub_0200D638(param0, param1, param2);
 
-    if (sub_02021FC8(param0->unk_00) == NNS_G2D_VRAM_TYPE_2DSUB) {
+    if (GraphicElementData_GetVRamType(param0->unk_00) == NNS_G2D_VRAM_TYPE_2DSUB) {
         *param2 = *param2 - param3;
     }
 }
 
 void sub_0200D69C (GraphicElementData * param0, int param1)
 {
-    sub_02021CF8(param0, param1);
+    GraphicElementData_SetAffineOverwriteMode(param0, param1);
 }
 
 void sub_0200D6A4 (CellActorData * param0, int param1)
@@ -1129,13 +1129,13 @@ void sub_0200D6B0 (GraphicElementData * param0, f32 param1, f32 param2)
     const VecFx32 * v0;
     VecFx32 * v1;
 
-    v0 = sub_02021D2C(param0);
+    v0 = GraphicElementData_GetAffineScale(param0);
     v1 = (VecFx32 *)v0;
 
     v1->x = (param1 * FX32_ONE);
     v1->y = (param2 * FX32_ONE);
 
-    sub_02021C70(param0, v1);
+    GraphicElementData_SetAffineScale(param0, v1);
 }
 
 void sub_0200D6E8 (CellActorData * param0, f32 param1, f32 param2)
@@ -1148,13 +1148,13 @@ void sub_0200D6F4 (GraphicElementData * param0, f32 param1, f32 param2)
     const VecFx32 * v0;
     VecFx32 * v1;
 
-    v0 = sub_02021D2C(param0);
+    v0 = GraphicElementData_GetAffineScale(param0);
     v1 = (VecFx32 *)v0;
 
     v1->x = v0->x + (param1 * FX32_ONE);
     v1->y = v0->y + (param2 * FX32_ONE);
 
-    sub_02021C70(param0, v1);
+    GraphicElementData_SetAffineScale(param0, v1);
 }
 
 void sub_0200D74C (CellActorData * param0, f32 param1, f32 param2)
@@ -1167,7 +1167,7 @@ void sub_0200D758 (GraphicElementData * param0, f32 * param1, f32 * param2)
     const VecFx32 * v0;
     VecFx32 * v1;
 
-    v0 = sub_02021D2C(param0);
+    v0 = GraphicElementData_GetAffineScale(param0);
 
     *param1 = FX_FX32_TO_F32(v0->x);
     *param2 = FX_FX32_TO_F32(v0->y);
@@ -1180,7 +1180,7 @@ void sub_0200D788 (CellActorData * param0, f32 * param1, f32 * param2)
 
 void sub_0200D794 (GraphicElementData * param0, u16 param1)
 {
-    sub_02021C94(param0, param1);
+    GraphicElementData_SetAffineZRotation(param0, param1);
 }
 
 void sub_0200D79C (CellActorData * param0, u16 param1)
@@ -1192,10 +1192,10 @@ void sub_0200D7A8 (GraphicElementData * param0, s32 param1)
 {
     u16 v0;
 
-    v0 = sub_02021D30(param0);
+    v0 = GraphicElementData_GetAffineZRotation(param0);
     v0 += param1;
 
-    sub_02021C94(param0, v0);
+    GraphicElementData_SetAffineZRotation(param0, v0);
 }
 
 void sub_0200D7C0 (CellActorData * param0, s32 param1)
@@ -1205,7 +1205,7 @@ void sub_0200D7C0 (CellActorData * param0, s32 param1)
 
 void sub_0200D7CC (GraphicElementData * param0, int param1)
 {
-    sub_02021D0C(param0, param1);
+    GraphicElementData_SetFlipMode(param0, param1);
 }
 
 void sub_0200D7D4 (CellActorData * param0, int param1)
@@ -1221,12 +1221,12 @@ void sub_0200D7E0 (CellActorData * param0, s16 param1, s16 param2)
     v0.y = param2 << FX32_SHIFT;
     v0.z = 0;
 
-    sub_02021C60(param0->unk_00, &v0);
+    GraphicElementData_SetAffineTranslation(param0->unk_00, &v0);
 }
 
 void sub_0200D7FC (CellActorData * param0, BOOL param1)
 {
-    sub_02021FA0(param0->unk_00, param1);
+    GraphicElementData_SetPixelated(param0->unk_00, param1);
 }
 
 void sub_0200D808 (GraphicElementData * param0, GXOamMode param1)

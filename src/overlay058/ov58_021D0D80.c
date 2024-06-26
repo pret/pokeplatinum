@@ -696,9 +696,9 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
 
             param0->unk_23C[v0] = GraphicElementManager_AddElementEx(&v1);
 
-            sub_02021CC8(param0->unk_23C[v0], 1);
+            GraphicElementData_SetAnimateFlag(param0->unk_23C[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_23C[v0], v0);
-            sub_02021CAC(param0->unk_23C[v0], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_23C[v0], 0);
         }
 
         for (v0 = 0; v0 < 9 + 3; v0++) {
@@ -708,11 +708,11 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
 
             param0->unk_2AC[v0] = GraphicElementManager_AddElementEx(&v1);
 
-            sub_02021CC8(param0->unk_2AC[v0], 1);
+            GraphicElementData_SetAnimateFlag(param0->unk_2AC[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_2AC[v0], Unk_ov58_021D2EEC[v0][2]);
 
             if (v0 >= 8) {
-                sub_02021E80(param0->unk_2AC[v0], 2);
+                GraphicElementData_SetExplicitPriority(param0->unk_2AC[v0], 2);
             }
         }
 
@@ -724,10 +724,10 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
 
             param0->unk_274[v0] = GraphicElementManager_AddElementEx(&v1);
 
-            sub_02021CC8(param0->unk_274[v0], 1);
+            GraphicElementData_SetAnimateFlag(param0->unk_274[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_274[v0], v0);
-            sub_02021F58(param0->unk_274[v0], 1);
-            sub_02021CAC(param0->unk_274[v0], 0);
+            GraphicElementData_SetPriority(param0->unk_274[v0], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_274[v0], 0);
         }
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -781,7 +781,7 @@ static void ov58_021D1A10 (GraphicElementData * param0, int param1, int param2)
     v0.y = FX32_CONST(param2 - 8);
     v0.z = 0;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 static const TouchScreenRect Unk_ov58_021D2EB8[] = {
@@ -885,11 +885,11 @@ static void ov58_021D1A80 (UnkStruct_02095EAC * param0)
     }
 
     v1 = sub_02022644(Unk_ov58_021D2DDC);
-    sub_02021CAC(param0->unk_23C[CommSys_CurNetId()], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_23C[CommSys_CurNetId()], 0);
 
     if (v1 != 0xffffffff) {
         ov58_021D1A10(param0->unk_23C[CommSys_CurNetId()], gCoreSys.touchX, gCoreSys.touchY);
-        sub_02021CAC(param0->unk_23C[CommSys_CurNetId()], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_23C[CommSys_CurNetId()], 1);
     }
 
     {
@@ -1576,10 +1576,10 @@ static void ov58_021D2820 (UnkStruct_02095EAC * param0)
     for (v0 = 0; v0 < 5; v0++) {
         if (v0 != CommSys_CurNetId()) {
             if ((v1[v0].unk_08_3 != 0) && (CommInfo_TrainerInfo(v0) != NULL)) {
-                sub_02021CAC(param0->unk_23C[v0], 1);
+                GraphicElementData_SetDrawFlag(param0->unk_23C[v0], 1);
                 ov58_021D1A10(param0->unk_23C[v0], v1[v0].unk_00[v1[v0].unk_08_3 - 1], v1[v0].unk_04[v1[v0].unk_08_3 - 1]);
             } else {
-                sub_02021CAC(param0->unk_23C[v0], 0);
+                GraphicElementData_SetDrawFlag(param0->unk_23C[v0], 0);
             }
         }
     }
@@ -1633,9 +1633,9 @@ static void ov58_021D28E4 (Window * param0, int param1, u32 param2, UnkStruct_02
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param3->unk_398[v0][0] == NULL) {
-            sub_02021CAC(param3->unk_274[v0], 0);
+            GraphicElementData_SetDrawFlag(param3->unk_274[v0], 0);
         } else {
-            sub_02021CAC(param3->unk_274[v0], 1);
+            GraphicElementData_SetDrawFlag(param3->unk_274[v0], 1);
         }
     }
 

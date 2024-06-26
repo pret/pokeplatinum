@@ -694,9 +694,9 @@ static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
     param0->unk_1A0.unk_34 = GraphicElementManager_AddElementEx(&v0);
     param0->unk_1A0.unk_38 = GraphicElementManager_AddElementEx(&v0);
 
-    sub_02021CAC(param0->unk_1A0.unk_34, 0);
-    sub_02021CAC(param0->unk_1A0.unk_38, 0);
-    sub_02021CC8(param0->unk_1A0.unk_34, 1);
+    GraphicElementData_SetDrawFlag(param0->unk_1A0.unk_34, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_1A0.unk_38, 0);
+    GraphicElementData_SetAnimateFlag(param0->unk_1A0.unk_34, 1);
     SpriteActor_SetSpriteAnimActive(param0->unk_1A0.unk_38, 1);
 }
 
@@ -719,13 +719,13 @@ static void ov65_02235B30 (UnkStruct_ov65_02235130 * param0)
     v1.x = v0.unk_00 << FX32_SHIFT;
     v1.y = v0.unk_02 << FX32_SHIFT;
 
-    sub_02021C50(param0->unk_14.unk_1A0.unk_34, &v1);
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_34, 1);
+    GraphicElementData_SetPosition(param0->unk_14.unk_1A0.unk_34, &v1);
+    GraphicElementData_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 1);
 }
 
 static void ov65_02235B78 (UnkStruct_ov65_02235130 * param0)
 {
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_34, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 0);
 }
 
 static void ov65_02235B88 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov63_0222CC3C param1, u32 param2)
@@ -738,14 +738,14 @@ static void ov65_02235B88 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov63_0222
     v0.x = param1.unk_00 << FX32_SHIFT;
     v0.y = param1.unk_02 << FX32_SHIFT;
 
-    sub_02021C50(param0->unk_14.unk_1A0.unk_38, &v0);
-    sub_02021F58(param0->unk_14.unk_1A0.unk_38, param2);
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_38, 1);
+    GraphicElementData_SetPosition(param0->unk_14.unk_1A0.unk_38, &v0);
+    GraphicElementData_SetPriority(param0->unk_14.unk_1A0.unk_38, param2);
+    GraphicElementData_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 1);
 }
 
 static void ov65_02235BD8 (UnkStruct_ov65_02235130 * param0)
 {
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_38, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 0);
 }
 
 static BOOL ov65_02235BE8 (UnkStruct_ov65_02235130 * param0)

@@ -867,7 +867,7 @@ static void ov21_021D6744 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
     param0->unk_7C = GraphicElementManager_AddElement(&v0);
 
-    sub_02021CAC(param0->unk_7C, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_7C, 0);
     sub_02021FE0(param0->unk_7C, GX_OAM_MODE_XLU);
 }
 
@@ -937,14 +937,14 @@ static void ov21_021D68C8 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
         ov21_021D217C(param1, 0);
 
         if (param0->unk_7C) {
-            sub_02021CAC(param0->unk_7C, 1);
+            GraphicElementData_SetDrawFlag(param0->unk_7C, 1);
         }
     } else {
         ov21_021D1890(param1, param2->unk_04, v2->unk_00, 2, 56, 80);
         ov21_021D217C(param1, 1);
 
         if (param0->unk_7C) {
-            sub_02021CAC(param0->unk_7C, 0);
+            GraphicElementData_SetDrawFlag(param0->unk_7C, 0);
         }
     }
 }
@@ -1006,7 +1006,7 @@ static void ov21_021D69A0 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
         v1.x = ov21_021D6BF8(Unk_ov21_021E9D14[v3], Unk_ov21_021E9D14[v4], (64 * 10), (64 * 10) - param1->unk_0C);
         v1.y = ov21_021D6BF8(Unk_ov21_021E9D40[v3], Unk_ov21_021E9D40[v4], (64 * 10), (64 * 10) - param1->unk_0C);
 
-        sub_02021C50(param0->unk_00[v0], &v1);
+        GraphicElementData_SetPosition(param0->unk_00[v0], &v1);
 
         v5 = 4 - v2;
 
@@ -1022,15 +1022,15 @@ static void ov21_021D69A0 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
 
         v6 += 32;
 
-        sub_02021F58(param0->unk_00[v0], v6);
+        GraphicElementData_SetPriority(param0->unk_00[v0], v6);
 
         if (v2 == 4) {
-            sub_02021F24(param0->unk_00[v0], 0);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_00[v0], 0);
         } else {
             if (7 + (v5 - 1) < 9) {
-                sub_02021F24(param0->unk_00[v0], 7 + (v5 - 1));
+                GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_00[v0], 7 + (v5 - 1));
             } else {
-                sub_02021F24(param0->unk_00[v0], 9);
+                GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_00[v0], 9);
             }
         }
 
@@ -1058,9 +1058,9 @@ static void ov21_021D6A58 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
         v0 %= 9;
 
         if ((v1 + 4) >= v2) {
-            sub_02021CAC(param0->unk_00[v0], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_00[v0], 0);
         } else {
-            sub_02021CAC(param0->unk_00[v0], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_00[v0], 1);
         }
     } else {
         if (param1->unk_08 == 2) {
@@ -1073,9 +1073,9 @@ static void ov21_021D6A58 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
             v0 = param0->unk_24;
 
             if ((v1 - 4) < 0) {
-                sub_02021CAC(param0->unk_00[v0], 0);
+                GraphicElementData_SetDrawFlag(param0->unk_00[v0], 0);
             } else {
-                sub_02021CAC(param0->unk_00[v0], 1);
+                GraphicElementData_SetDrawFlag(param0->unk_00[v0], 1);
             }
         } else {
             ov21_021D6ED0(param0, param1);
@@ -1119,22 +1119,22 @@ static void ov21_021D6AE4 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
             }
         }
 
-        sub_02021CAC(param0->unk_50[v3], v4);
+        GraphicElementData_SetDrawFlag(param0->unk_50[v3], v4);
 
         if (v4) {
-            v0 = sub_02021D28(param0->unk_00[v3]);
+            v0 = GraphicElementData_GetPosition(param0->unk_00[v3]);
 
             v1.x = v0->x + (-54 * FX32_ONE);
             v1.y = v0->y;
 
-            sub_02021C50(param0->unk_50[v3], &v1);
+            GraphicElementData_SetPosition(param0->unk_50[v3], &v1);
 
-            v10 = sub_02021F48(param0->unk_00[v3]);
-            sub_02021EF0(param0->unk_50[v3], v10);
+            v10 = GraphicElementData_GetExplicitPaletteOffset(param0->unk_00[v3]);
+            GraphicElementData_SetExplicitPaletteOffset(param0->unk_50[v3], v10);
 
-            v9 = sub_02021F74(param0->unk_00[v3]);
+            v9 = GraphicElementData_GetPriority(param0->unk_00[v3]);
             v9--;
-            sub_02021F58(param0->unk_50[v3], v9);
+            GraphicElementData_SetPriority(param0->unk_50[v3], v9);
         }
     }
 }
@@ -1154,7 +1154,7 @@ static void ov21_021D6BB0 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
     v0.y += (58 * FX32_ONE);
     v0.x = (248 * FX32_ONE);
 
-    sub_02021C50(param0->unk_74, &v0);
+    GraphicElementData_SetPosition(param0->unk_74, &v0);
 }
 
 static fx32 ov21_021D6BF8 (fx32 param0, fx32 param1, int param2, int param3)
@@ -1190,11 +1190,11 @@ static void ov21_021D6C44 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
             ov21_021D6CA4(param0->unk_00[v4], &v1, &v2);
             sub_020128C4(param0->unk_28[v4]->unk_00, v1, v2);
 
-            v5 = sub_02021F74(param0->unk_00[v4]);
+            v5 = GraphicElementData_GetPriority(param0->unk_00[v4]);
             v5--;
             sub_02012A30(param0->unk_28[v4]->unk_00, v5);
 
-            v6 = sub_02021F48(param0->unk_00[v4]);
+            v6 = GraphicElementData_GetExplicitPaletteOffset(param0->unk_00[v4]);
             sub_02012A90(param0->unk_28[v4]->unk_00, v6);
         }
 
@@ -1206,7 +1206,7 @@ static void ov21_021D6CA4 (GraphicElementData * param0, int * param1, int * para
 {
     const VecFx32 * v0;
 
-    v0 = sub_02021D28(param0);
+    v0 = GraphicElementData_GetPosition(param0);
 
     *param1 = v0->x >> FX32_SHIFT;
     *param2 = v0->y >> FX32_SHIFT;
@@ -1343,9 +1343,9 @@ static void ov21_021D6ED0 (UnkStruct_ov21_021D71A8 * param0, const UnkStruct_ov2
 
     for (v2 = 0; v2 < 9; v2++) {
         if ((v0 >= 0) && (v0 < v4)) {
-            sub_02021CAC(param0->unk_00[v1], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_00[v1], 1);
         } else {
-            sub_02021CAC(param0->unk_00[v1], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_00[v1], 0);
         }
 
         v1 = (v1 + 1) % 9;
@@ -1516,7 +1516,7 @@ static void ov21_021D7160 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
     int v1;
 
     v1 = (param0->unk_24 + 4) % 9;
-    v0 = sub_02021D28(param0->unk_00[v1]);
+    v0 = GraphicElementData_GetPosition(param0->unk_00[v1]);
 
     ov21_021D1778(param1, param2->unk_04, param3, ov21_021D375C(param2->unk_04), v0->x, v0->y);
     ov21_021D238C(param1, 0);

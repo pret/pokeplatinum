@@ -121,15 +121,15 @@ static void ov20_021D4210 (UnkStruct_ov20_021D4210 * param0)
     param0->unk_30 = ov20_021D2E50(param0->unk_00, &v0, 72, 56, 3, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_30, 8);
-    sub_02021CAC(param0->unk_30, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_30, 0);
 
     param0->unk_34 = ov20_021D2E50(param0->unk_00, &v0, 240, 64, 4, NNS_G2D_VRAM_TYPE_2DMAIN);
     SpriteActor_SetSpriteAnimActive(param0->unk_34, 11);
-    sub_02021CAC(param0->unk_34, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_34, 0);
 
     param0->unk_38 = ov20_021D2E50(param0->unk_00, &v0, 240, 144, 4, NNS_G2D_VRAM_TYPE_2DMAIN);
     SpriteActor_SetSpriteAnimActive(param0->unk_38, 10);
-    sub_02021CAC(param0->unk_38, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_38, 0);
 }
 
 void ov20_021D4294 (UnkStruct_ov20_021D4210 * param0)
@@ -216,14 +216,14 @@ BOOL ov20_021D43D8 (UnkStruct_ov20_021D4210 * param0)
 
 void ov20_021D4440 (UnkStruct_ov20_021D4210 * param0, BOOL param1)
 {
-    sub_02021CAC(param0->unk_30, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_30, param1);
 
     if (param1) {
-        sub_02021CAC(param0->unk_34, ov20_021D204C(param0->unk_04));
-        sub_02021CAC(param0->unk_38, ov20_021D2060(param0->unk_04));
+        GraphicElementData_SetDrawFlag(param0->unk_34, ov20_021D204C(param0->unk_04));
+        GraphicElementData_SetDrawFlag(param0->unk_38, ov20_021D2060(param0->unk_04));
     } else {
-        sub_02021CAC(param0->unk_34, 0);
-        sub_02021CAC(param0->unk_38, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_34, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_38, 0);
     }
 }
 
@@ -239,7 +239,7 @@ void ov20_021D4480 (UnkStruct_ov20_021D4210 * param0, u32 param1)
     v0.y = (56 + 24 * v2) * FX32_ONE;
     v0.z = 0;
 
-    sub_02021C50(param0->unk_30, &v0);
+    GraphicElementData_SetPosition(param0->unk_30, &v0);
     SpriteActor_SetSpriteAnimActive(param0->unk_30, 8);
 }
 
@@ -287,8 +287,8 @@ void ov20_021D44BC (UnkStruct_ov20_021D4210 * param0, int param1)
 BOOL ov20_021D4578 (UnkStruct_ov20_021D4210 * param0)
 {
     if (ov20_021D4E8C(&param0->unk_60)) {
-        sub_02021CAC(param0->unk_34, ov20_021D204C(param0->unk_04));
-        sub_02021CAC(param0->unk_38, ov20_021D2060(param0->unk_04));
+        GraphicElementData_SetDrawFlag(param0->unk_34, ov20_021D204C(param0->unk_04));
+        GraphicElementData_SetDrawFlag(param0->unk_38, ov20_021D2060(param0->unk_04));
         return 1;
     }
 

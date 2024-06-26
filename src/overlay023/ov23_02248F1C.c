@@ -127,8 +127,8 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
                 v0->unk_390[v2] = GraphicElementManager_AddElementEx(&v3);
-                sub_02021CC8(v0->unk_390[v2], 1);
-                sub_02021CAC(v0->unk_390[v2], 0);
+                GraphicElementData_SetAnimateFlag(v0->unk_390[v2], 1);
+                GraphicElementData_SetDrawFlag(v0->unk_390[v2], 0);
 
                 if (v2 == 0) {
                     SpriteActor_SetSpriteAnimActive(v0->unk_390[v2], 1);
@@ -137,8 +137,8 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
 
             for (v2 = 0; v2 < 16 + 1; v2++) {
                 v0->unk_3B0[v2] = GraphicElementManager_AddElementEx(&v3);
-                sub_02021CC8(v0->unk_3B0[v2], 1);
-                sub_02021CAC(v0->unk_3B0[v2], 0);
+                GraphicElementData_SetAnimateFlag(v0->unk_3B0[v2], 1);
+                GraphicElementData_SetDrawFlag(v0->unk_3B0[v2], 0);
                 SpriteActor_SetSpriteAnimActive(v0->unk_3B0[v2], 2);
             }
         }
@@ -265,10 +265,10 @@ static void ov23_022492C8 (int param0[][3], GraphicElementData * param1[])
             v1.y = ((8 + 1) + ((((8 + 1) + 8 * 16) - (8 + 1)) * param0[v0][1]) / (32 * 13)) * FX32_ONE + (192 << FX32_SHIFT);
             v1.z = FX32_ONE;
 
-            sub_02021C50(param1[v0], &v1);
-            sub_02021CAC(param1[v0], 1);
+            GraphicElementData_SetPosition(param1[v0], &v1);
+            GraphicElementData_SetDrawFlag(param1[v0], 1);
         } else {
-            sub_02021CAC(param1[v0], 0);
+            GraphicElementData_SetDrawFlag(param1[v0], 0);
         }
     }
 }
@@ -306,18 +306,18 @@ static void ov23_0224937C (int param0[][4], GraphicElementData * param1[])
             v1.y = ((8 + 1) + ((((8 + 1) + 8 * 16) - (8 + 1)) * param0[v0][1]) / (32 * 13)) * FX32_ONE + (192 << FX32_SHIFT);
             v1.z = FX32_ONE;
 
-            sub_02021C50(param1[v0], &v1);
+            GraphicElementData_SetPosition(param1[v0], &v1);
 
             if (param0[v0][2] != param0[v0][3]) {
                 if (param0[v0][2] != 0) {
                     SpriteActor_SetSpriteAnimActive(param1[v0], param0[v0][2]);
-                    sub_02021CAC(param1[v0], 1);
+                    GraphicElementData_SetDrawFlag(param1[v0], 1);
                 } else {
-                    sub_02021CAC(param1[v0], 0);
+                    GraphicElementData_SetDrawFlag(param1[v0], 0);
                 }
             }
         } else {
-            sub_02021CAC(param1[v0], 0);
+            GraphicElementData_SetDrawFlag(param1[v0], 0);
         }
 
         param0[v0][3] = param0[v0][2];

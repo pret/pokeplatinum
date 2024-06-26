@@ -1088,39 +1088,39 @@ static void ov21_021E28A8 (UnkStruct_ov21_021E1E74 * param0)
 static void ov21_021E28D0 (UnkStruct_ov21_021E2588 * param0, const UnkStruct_ov21_021E1E74 * param1)
 {
     if ((param1->unk_38 & 1) == 0) {
-        sub_02021CAC(param0->unk_00[2], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_00[2], 0);
     } else {
-        sub_02021CAC(param0->unk_00[2], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[2], 1);
     }
 
     if ((param1->unk_38 & 2) == 0) {
-        sub_02021CAC(param0->unk_00[3], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_00[3], 0);
     } else {
-        sub_02021CAC(param0->unk_00[3], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[3], 1);
     }
 
     if ((param1->unk_38 & 4) == 0) {
-        sub_02021CAC(param0->unk_00[4], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_00[4], 0);
     } else {
-        sub_02021CAC(param0->unk_00[4], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[4], 1);
     }
 
     if ((param1->unk_38 & 8) == 0) {
-        sub_02021CAC(param0->unk_00[5], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_00[5], 0);
     } else {
-        sub_02021CAC(param0->unk_00[5], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[5], 1);
     }
 
     if ((param1->unk_38 & 16) == 0) {
-        sub_02021CAC(param0->unk_00[6], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_00[6], 0);
     } else {
-        sub_02021CAC(param0->unk_00[6], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[6], 1);
     }
 
     if ((param1->unk_38 & 32) == 0) {
-        sub_02021CAC(param0->unk_00[7], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_00[7], 0);
     } else {
-        sub_02021CAC(param0->unk_00[7], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[7], 1);
     }
 }
 

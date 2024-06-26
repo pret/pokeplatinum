@@ -47,7 +47,7 @@ UnkStruct_ov106_02243650 * ov106_022435FC (UnkStruct_ov106_02243310 * param0, u3
     v1.x = (param3 * FX32_ONE);
     v1.y = (param4 * FX32_ONE);
 
-    sub_02021C50(v0->unk_10, &v1);
+    GraphicElementData_SetPosition(v0->unk_10, &v1);
 
     return v0;
 }
@@ -62,7 +62,7 @@ void * ov106_02243650 (UnkStruct_ov106_02243650 * param0)
 
 void ov106_02243664 (UnkStruct_ov106_02243650 * param0, int param1)
 {
-    sub_02021CAC(param0->unk_10, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_10, param1);
     return;
 }
 
@@ -74,18 +74,18 @@ void ov106_02243670 (UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2)
         sub_02021DCC(param0->unk_10, param0->unk_0C[0]);
     }
 
-    v0 = *(sub_02021D28(param0->unk_10));
+    v0 = *(GraphicElementData_GetPosition(param0->unk_10));
 
     v0.x = (param1 * FX32_ONE);
     v0.y = (param2 * FX32_ONE);
 
-    sub_02021C50(param0->unk_10, &v0);
+    GraphicElementData_SetPosition(param0->unk_10, &v0);
     return;
 }
 
 void ov106_022436B0 (UnkStruct_ov106_02243650 * param0, u32 param1)
 {
-    sub_02021CE4(param0->unk_10, FX32_ONE);
+    GraphicElementData_SetAnimSpeed(param0->unk_10, FX32_ONE);
     sub_02021DCC(param0->unk_10, param1);
 
     return;
@@ -93,6 +93,6 @@ void ov106_022436B0 (UnkStruct_ov106_02243650 * param0, u32 param1)
 
 void ov106_022436CC (UnkStruct_ov106_02243650 * param0, Pokemon * param1)
 {
-    sub_02021F24(param0->unk_10, Pokemon_IconPaletteIndex(param1));
+    GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10, Pokemon_IconPaletteIndex(param1));
     return;
 }

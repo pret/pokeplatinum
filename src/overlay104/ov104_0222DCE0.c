@@ -412,7 +412,7 @@ void ov104_0222E204 (GraphicElementData * param0, s16 param1, s16 param2, u8 par
         }
     }
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
     return;
 }
 

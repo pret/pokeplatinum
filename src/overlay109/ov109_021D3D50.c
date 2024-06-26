@@ -662,9 +662,9 @@ static void ov109_021D4518 (UnkStruct_ov109_021D5140 * param0)
 
             param0->unk_29C[v0 + 1] = GraphicElementManager_AddElementEx(&v1);
 
-            sub_02021CC8(param0->unk_29C[v0 + 1], 1);
+            GraphicElementData_SetAnimateFlag(param0->unk_29C[v0 + 1], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_29C[v0 + 1], 27 + (v0 - 1) * 2);
-            sub_02021CAC(param0->unk_29C[v0 + 1], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_29C[v0 + 1], 0);
         }
 
         for (v0 = 0; v0 < 5; v0++) {
@@ -1634,7 +1634,7 @@ static void ov109_021D5668 (UnkStruct_ov109_021D5140 * param0)
                 SpriteActor_SetSpriteAnimActive(param0->unk_29C[v0 + 1], 27 + v0 * 2);
             }
         }
-            sub_02021CAC(param0->unk_29C[v0 + 1], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_29C[v0 + 1], 1);
             param0->unk_400[v0] = 2;
             v1 = 1;
             break;

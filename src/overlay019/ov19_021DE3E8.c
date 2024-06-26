@@ -123,9 +123,9 @@ static void ov19_021DE450 (UnkStruct_ov19_021DE3E8 * param0)
 
                 param0->unk_1C[v5] = ov19_021D785C(param0->unk_10, &v0, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                sub_02021E90(param0->unk_1C[v5], Unk_ov19_021E04CC[v5].unk_04);
-                sub_02021CAC(param0->unk_1C[v5], 0);
-                sub_02021CF8(param0->unk_1C[v5], 1);
+                GraphicElementData_SetExplicitPalette(param0->unk_1C[v5], Unk_ov19_021E04CC[v5].unk_04);
+                GraphicElementData_SetDrawFlag(param0->unk_1C[v5], 0);
+                GraphicElementData_SetAffineOverwriteMode(param0->unk_1C[v5], 1);
 
                 param0->unk_28[v5] = 0;
             }
@@ -204,7 +204,7 @@ static void ov19_021DE59C (UnkStruct_ov19_021DE3E8 * param0)
 
         ov19_021DE718(param0, v1, v0);
         SpriteActor_SetSpriteAnimActive(param0->unk_1C[v1], 6);
-        sub_02021CAC(param0->unk_1C[v1], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_1C[v1], 1);
     }
 }
 
@@ -230,13 +230,13 @@ static void ov19_021DE5D4 (UnkStruct_ov19_021DE3E8 * param0)
 
         sub_02006EC0(16, Item_FileID(v0, 1), 0, Unk_ov19_021E04CC[v3].unk_00, 0, 0, 10);
         sub_02006E84(16, Item_FileID(v0, 2), 1, Unk_ov19_021E04CC[v3].unk_04 * 0x20, 0x20, 10);
-        sub_02021E80(param0->unk_1C[v3], v2);
+        GraphicElementData_SetExplicitPriority(param0->unk_1C[v3], v2);
 
         ov19_021D78AC(param0->unk_1C[v3], 2);
 
-        sub_02021C50(param0->unk_1C[v3], &v1);
+        GraphicElementData_SetPosition(param0->unk_1C[v3], &v1);
         SpriteActor_SetSpriteAnimActive(param0->unk_1C[v3], 0);
-        sub_02021CAC(param0->unk_1C[v3], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_1C[v3], 1);
     }
 }
 
@@ -271,10 +271,10 @@ static void ov19_021DE718 (UnkStruct_ov19_021DE3E8 * param0, int param1, int par
 
         sub_02006EC0(16, Item_FileID(param2, 1), 0, Unk_ov19_021E04CC[param1].unk_00, 0, 0, 10);
         sub_02006E84(16, Item_FileID(param2, 2), 1, Unk_ov19_021E04CC[param1].unk_04 * 0x20, 0x20, 10);
-        sub_02021E80(param0->unk_1C[param1], v1);
+        GraphicElementData_SetExplicitPriority(param0->unk_1C[param1], v1);
 
         ov19_021D78AC(param0->unk_1C[param1], 3);
-        sub_02021C50(param0->unk_1C[param1], &v0);
+        GraphicElementData_SetPosition(param0->unk_1C[param1], &v0);
     }
 }
 
@@ -298,7 +298,7 @@ void ov19_021DE7A0 (UnkStruct_ov19_021DE3E8 * param0)
             if (v0 >= 0) {
                 ov19_021DE718(param0, v0, v1);
                 SpriteActor_SetSpriteAnimActive(param0->unk_1C[v0], 1);
-                sub_02021CAC(param0->unk_1C[v0], 1);
+                GraphicElementData_SetDrawFlag(param0->unk_1C[v0], 1);
             }
         }
     }
@@ -338,7 +338,7 @@ static void ov19_021DE858 (UnkStruct_ov19_021DE3E8 * param0, int param1, const V
     if (v0) {
         v0->unk_00 = param0;
         v0->unk_04 = param0->unk_1C[param1];
-        v0->unk_08 = *(sub_02021D28(v0->unk_04));
+        v0->unk_08 = *(GraphicElementData_GetPosition(v0->unk_04));
         v0->unk_14 = *param2;
         v0->unk_20 = (v0->unk_14.x - v0->unk_08.x) / param4;
         v0->unk_24 = (v0->unk_14.y - v0->unk_08.y) / param4;
@@ -363,10 +363,10 @@ static void ov19_021DE8E0 (SysTask * param0, void * param1)
         if (v0->unk_2C) {
             v0->unk_08.x += v0->unk_20;
             v0->unk_08.y += v0->unk_24;
-            sub_02021C50(v0->unk_04, &v0->unk_08);
+            GraphicElementData_SetPosition(v0->unk_04, &v0->unk_08);
             v0->unk_2C--;
         } else {
-            sub_02021C50(v0->unk_04, &v0->unk_14);
+            GraphicElementData_SetPosition(v0->unk_04, &v0->unk_14);
             v0->unk_30++;
         }
         break;
@@ -539,7 +539,7 @@ void ov19_021DEB9C (UnkStruct_ov19_021DE3E8 * param0, const VecFx32 * param1)
             v1.x += (0 << FX32_SHIFT);
             v1.y += (8 << FX32_SHIFT);
 
-            sub_02021C50(param0->unk_1C[v0], &v1);
+            GraphicElementData_SetPosition(param0->unk_1C[v0], &v1);
         }
     }
 }
@@ -550,7 +550,7 @@ void ov19_021DEBDC (UnkStruct_ov19_021DE3E8 * param0, u32 param1)
         int v0 = ov19_021DE560(param0, 3);
 
         if (v0 >= 0) {
-            sub_02021E80(param0->unk_1C[v0], param1);
+            GraphicElementData_SetExplicitPriority(param0->unk_1C[v0], param1);
         }
     }
 }

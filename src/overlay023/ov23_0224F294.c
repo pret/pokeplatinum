@@ -220,7 +220,7 @@ static void ov23_0224F294 (UnkStruct_ov23_02250CD4 * param0, u8 * param1, u32 pa
 
         {
             VecFx32 v4 = {FX32_ONE, FX32_ONE, FX32_ONE};
-            sub_02021C80(param0->unk_23C[1 + v1]->unk_00, &v4, 1);
+            GraphicElementData_SetAffineScaleEx(param0->unk_23C[1 + v1]->unk_00, &v4, 1);
         }
     }
 
@@ -253,10 +253,10 @@ static void ov23_0224F4D0 (GraphicElementData * param0, u32 param1)
 {
     VecFx32 v0;
 
-    v0 = *(sub_02021D28(param0));
+    v0 = *(GraphicElementData_GetPosition(param0));
     v0.y = (20 + 24 * param1) * FX32_ONE;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 static void ov23_0224F500 (GraphicElementData * param0, u16 param1, u16 param2)
@@ -264,7 +264,7 @@ static void ov23_0224F500 (GraphicElementData * param0, u16 param1, u16 param2)
     u32 v0 = sub_02021E24(param0);
 
     SpriteActor_SetSpriteAnimActive(param0, (v0 / 3) * 3 + param1);
-    sub_02021EC4(param0, param2);
+    GraphicElementData_SetExplicitPaletteWithOffset(param0, param2);
 }
 
 static void ov23_0224F52C (UnkStruct_ov23_02250CD4 * param0, u16 param1, u16 param2)

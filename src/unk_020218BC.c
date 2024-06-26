@@ -12,10 +12,6 @@
 #include "heap.h"
 #include "unk_020218BC.h"
 
-#define GRAPHIC_ELEMENT_DATA_FLIP_NONE  0
-#define GRAPHIC_ELEMENT_DATA_FLIP_H     1
-#define GRAPHIC_ELEMENT_DATA_FLIP_V     2
-
 #define GRAPHIC_ELEMENT_ANIM_DATA_SIZE 29
 
 enum CellType {
@@ -55,9 +51,9 @@ typedef struct GraphicElementData {
     u16 affineZRotation;
     u8 affineOverwriteMode;
     u8 flip;
-    u8 overwriteFlags;
-    u8 explicitPalette;
-    u8 explicitPaletteOffset;
+    u8 overwriteFlags; // Specifies which of the 'explicit' fields are used. Overwrites data provided by the OAM.
+    u8 explicitPalette; // An explicit palette index.
+    u8 explicitPaletteOffset; // An explicit palette index offset added onto the index specified by the OAM.
     BOOL explicitMosaic;
     GXOamMode explicitOamMode;
     u8 draw;
@@ -352,123 +348,116 @@ void GraphicElementData_Delete(GraphicElementData *gfxElem)
     }
 }
 
-void sub_02021C50 (GraphicElementData * param0, const VecFx32 * param1)
+void GraphicElementData_SetPosition(GraphicElementData *elem, const VecFx32 *position)
 {
-    param0->position = *param1;
+    elem->position = *position;
 }
 
-void sub_02021C60 (GraphicElementData * param0, const VecFx32 * param1)
+void GraphicElementData_SetAffineTranslation(GraphicElementData *elem, const VecFx32 *translation)
 {
-    param0->affineTranslation = *param1;
+    elem->affineTranslation = *translation;
 }
 
-void sub_02021C70 (GraphicElementData * param0, const VecFx32 * param1)
+void GraphicElementData_SetAffineScale(GraphicElementData *elem, const VecFx32 *scale)
 {
-    param0->affineScale = *param1;
+    elem->affineScale = *scale;
 }
 
-void sub_02021C80 (GraphicElementData * param0, const VecFx32 * param1, int param2)
+void GraphicElementData_SetAffineScaleEx(GraphicElementData *elem, const VecFx32 *scale, enum AffineOverwriteMode mode)
 {
-    sub_02021C70(param0, param1);
-    sub_02021CF8(param0, param2);
+    GraphicElementData_SetAffineScale(elem, scale);
+    GraphicElementData_SetAffineOverwriteMode(elem, mode);
 }
 
-void sub_02021C94 (GraphicElementData * param0, u16 param1)
+void GraphicElementData_SetAffineZRotation(GraphicElementData *elem, u16 angle)
 {
-    param0->affineZRotation = param1;
+    elem->affineZRotation = angle;
 }
 
-void sub_02021C98 (GraphicElementData * param0, u16 param1, int param2)
+void GraphicElementData_SetAffineZRotationEx(GraphicElementData *elem, u16 angle, enum AffineOverwriteMode mode)
 {
-    sub_02021C94(param0, param1);
-    sub_02021CF8(param0, param2);
+    GraphicElementData_SetAffineZRotation(elem, angle);
+    GraphicElementData_SetAffineOverwriteMode(elem, mode);
 }
 
-void sub_02021CAC (GraphicElementData * param0, int param1)
+void GraphicElementData_SetDrawFlag(GraphicElementData *elem, BOOL draw)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param1 < 2);
+    GF_ASSERT(elem);
+    GF_ASSERT(draw < 2); // This value is used as an index into an array of size 2 inside GraphicElementManager_Update
 
-    param0->draw = param1;
+    elem->draw = draw;
 }
 
-void sub_02021CC8 (GraphicElementData * param0, int param1)
+void GraphicElementData_SetAnimateFlag(GraphicElementData *elem, BOOL animate)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param1 < 2);
+    GF_ASSERT(elem);
+    GF_ASSERT(animate < 2); // This value is used as an index into an array of size 2 inside GraphicElementManager_Update
 
-    param0->animate = param1;
+    elem->animate = animate;
 }
 
-void sub_02021CE4 (GraphicElementData * param0, fx32 param1)
+void GraphicElementData_SetAnimSpeed(GraphicElementData *elem, fx32 speed)
 {
-    GF_ASSERT(param0);
-
-    param0->animSpeed = param1;
+    GF_ASSERT(elem);
+    elem->animSpeed = speed;
 }
 
-void sub_02021CF8 (GraphicElementData * param0, int param1)
+void GraphicElementData_SetAffineOverwriteMode(GraphicElementData *elem, enum AffineOverwriteMode mode)
 {
-    GF_ASSERT(param0);
-
-    param0->affineOverwriteMode = param1;
+    GF_ASSERT(elem);
+    elem->affineOverwriteMode = mode;
 }
 
-void sub_02021D0C (GraphicElementData * param0, int param1)
+void GraphicElementData_SetFlipMode(GraphicElementData *elem, u32 mode)
 {
-    GF_ASSERT(param0);
-
-    param0->flip = param1;
-    param0->affineOverwriteMode = 0;
+    GF_ASSERT(elem);
+    elem->flip = mode;
+    elem->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
 }
 
-const VecFx32 * sub_02021D28 (const GraphicElementData * param0)
+const VecFx32 *GraphicElementData_GetPosition(const GraphicElementData *elem)
 {
-    return &param0->position;
+    return &elem->position;
 }
 
-const VecFx32 * sub_02021D2C (const GraphicElementData * param0)
+const VecFx32 *GraphicElementData_GetAffineScale(const GraphicElementData *elem)
 {
-    return &param0->affineScale;
+    return &elem->affineScale;
 }
 
-u16 sub_02021D30 (const GraphicElementData * param0)
+u16 GraphicElementData_GetAffineZRotation(const GraphicElementData *elem)
 {
-    return param0->affineZRotation;
+    return elem->affineZRotation;
 }
 
-int sub_02021D34 (const GraphicElementData * param0)
+BOOL GraphicElementData_GetDrawFlag(const GraphicElementData *elem)
 {
-    return param0->draw;
+    return elem->draw;
 }
 
-int sub_02021D3C (const GraphicElementData * param0)
+BOOL GraphicElementData_GetAnimateFlag(const GraphicElementData *elem)
 {
-    return param0->animate;
+    return elem->animate;
 }
 
-u32 sub_02021D44 (const GraphicElementData * param0)
+u32 GraphicElementData_GetAnimSequenceCount(const GraphicElementData *elem)
 {
-    u32 v0;
+    GF_ASSERT(elem);
 
-    GF_ASSERT(param0);
-
-    if ((param0->type == 1) || (param0->type == 3)) {
-        CellAnimationData * v1 = (CellAnimationData *)&param0->animData;
-        v0 = v1->animBank->numSequences;
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
+        CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
+        return cellAnim->animBank->numSequences;
     } else {
-        MultiCellAnimationData * v2 = (MultiCellAnimationData *)&param0->animData;
-        v0 = v2->animBank->numSequences;
+        MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&elem->animData;
+        return multiCellAnim->animBank->numSequences;
     }
-
-    return v0;
 }
 
 void SpriteActor_SetSpriteAnimActive (GraphicElementData * param0, u32 param1)
 {
     const NNSG2dAnimSequence * v0;
 
-    GF_ASSERT(sub_02021D44(param0) > param1);
+    GF_ASSERT(GraphicElementData_GetAnimSequenceCount(param0) > param1);
     param0->unk_F0 = param1;
 
     if ((param0->type == 1) || (param0->type == 3)) {
@@ -552,75 +541,74 @@ u16 sub_02021E74 (const GraphicElementData * param0)
     return NNS_G2dGetAnimCtrlCurrentFrame(v0);
 }
 
-void sub_02021E80 (GraphicElementData * param0, u8 param1)
+void GraphicElementData_SetExplicitPriority(GraphicElementData *elem, u8 priority)
 {
-    param0->explicitPriority = param1;
+    elem->explicitPriority = priority;
 }
 
-u8 sub_02021E88 (const GraphicElementData * param0)
+u8 GraphicElementData_GetExplicitPriority(const GraphicElementData *elem)
 {
-    return param0->explicitPriority;
+    return elem->explicitPriority;
 }
 
-void sub_02021E90 (GraphicElementData * param0, u32 param1)
+void GraphicElementData_SetExplicitPalette(GraphicElementData *elem, u32 palette)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(elem);
 
-    param0->explicitPalette = param1;
-    param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_PLTTNO;
-    param0->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
+    elem->explicitPalette = palette;
+    elem->overwriteFlags |= NNS_G2D_RND_OVERWRITE_PLTTNO;
+    elem->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
 }
 
-void sub_02021EC4 (GraphicElementData * param0, u32 param1)
+void GraphicElementData_SetExplicitPaletteWithOffset(GraphicElementData *elem, u32 palette)
 {
-    sub_02021E90(param0, param1);
-    param0->explicitPalette += GetPaletteIndexForProxy(&param0->paletteProxy, param0->vramType);
+    GraphicElementData_SetExplicitPalette(elem, palette);
+    elem->explicitPalette += GetPaletteIndexForProxy(&elem->paletteProxy, elem->vramType);
 }
 
-u32 sub_02021EE8 (const GraphicElementData * param0)
+u32 GraphicElementData_GetExplicitPalette(const GraphicElementData *elem)
 {
-    return param0->explicitPalette;
+    return elem->explicitPalette;
 }
 
-void sub_02021EF0 (GraphicElementData * param0, u32 param1)
+void GraphicElementData_SetExplicitPaletteOffset(GraphicElementData *elem, u32 paletteOffset)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(elem);
 
-    param0->explicitPaletteOffset = param1;
-    param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
-    param0->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO;
+    elem->explicitPaletteOffset = paletteOffset;
+    elem->overwriteFlags |= NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
+    elem->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO;
 }
 
-void sub_02021F24 (GraphicElementData * param0, u32 param1)
+void GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(GraphicElementData *elem, u32 paletteOffset)
 {
-    sub_02021EF0(param0, param1);
-    param0->explicitPaletteOffset += GetPaletteIndexForProxy(&param0->paletteProxy, param0->vramType);
+    GraphicElementData_SetExplicitPaletteOffset(elem, paletteOffset);
+    elem->explicitPaletteOffset += GetPaletteIndexForProxy(&elem->paletteProxy, elem->vramType);
 }
 
-u32 sub_02021F48 (const GraphicElementData * param0)
+u32 GraphicElementData_GetExplicitPaletteOffset(const GraphicElementData *elem)
 {
-    GF_ASSERT(param0);
-    return param0->explicitPaletteOffset;
+    GF_ASSERT(elem);
+    return elem->explicitPaletteOffset;
 }
 
-void sub_02021F58 (GraphicElementData * param0, u32 param1)
+void GraphicElementData_SetPriority(GraphicElementData *elem, u32 priority)
 {
-    GraphicElementManager * v0 = (GraphicElementManager *)param0->manager;
+    GraphicElementManager *gfxElemMgr = elem->manager;
+    elem->priority = priority;
 
-    param0->priority = param1;
-
-    GraphicElementManager_RemoveElement(param0);
-    GraphicElementManager_InsertElement(v0, param0);
+    GraphicElementManager_RemoveElement(elem);
+    GraphicElementManager_InsertElement(gfxElemMgr, elem);
 }
 
-u32 sub_02021F74 (const GraphicElementData * param0)
+u32 GraphicElementData_GetPriority(const GraphicElementData *elem)
 {
-    return param0->priority;
+    return elem->priority;
 }
 
-void sub_02021F7C (GraphicElementData * param0, const NNSG2dImageProxy * param1)
+void GraphicElementData_SetImageProxy(GraphicElementData *elem, const NNSG2dImageProxy *imageProxy)
 {
-    param0->imageProxy = *param1;
+    elem->imageProxy = *imageProxy;
 }
 
 NNSG2dImageProxy * SpriteActor_ImageProxy (GraphicElementData * param0)
@@ -628,25 +616,25 @@ NNSG2dImageProxy * SpriteActor_ImageProxy (GraphicElementData * param0)
     return &param0->imageProxy;
 }
 
-NNSG2dImagePaletteProxy * sub_02021F9C (GraphicElementData * param0)
+NNSG2dImagePaletteProxy *GraphicElementData_GetPaletteProxy(GraphicElementData *paletteProxy)
 {
-    return &param0->paletteProxy;
+    return &paletteProxy->paletteProxy;
 }
 
-void sub_02021FA0 (GraphicElementData * param0, BOOL param1)
+void GraphicElementData_SetPixelated(GraphicElementData *elem, BOOL pixelated)
 {
-    param0->explicitMosaic = param1;
+    elem->explicitMosaic = pixelated;
 
-    if (param1 == 1) {
-        param0->overwriteFlags |= NNS_G2D_RND_OVERWRITE_MOSAIC;
+    if (pixelated == TRUE) {
+        elem->overwriteFlags |= NNS_G2D_RND_OVERWRITE_MOSAIC;
     } else {
-        param0->overwriteFlags ^= NNS_G2D_RND_OVERWRITE_MOSAIC;
+        elem->overwriteFlags ^= NNS_G2D_RND_OVERWRITE_MOSAIC;
     }
 }
 
-NNS_G2D_VRAM_TYPE sub_02021FC8 (const GraphicElementData * param0)
+NNS_G2D_VRAM_TYPE GraphicElementData_GetVRamType(const GraphicElementData *elem)
 {
-    return param0->vramType;
+    return elem->vramType;
 }
 
 BOOL sub_02021FD0 (GraphicElementData * param0)
@@ -927,7 +915,7 @@ static void GraphicElementManager_DrawElement(const GraphicElementManager *gfxEl
     NNS_G2dSetRendererOverwriteOBJMode(gfxElemMgr->renderer, elem->explicitOamMode);
     NNS_G2dSetRendererOverwritePriority(gfxElemMgr->renderer, elem->explicitPriority);
 
-    if (elem->type == 1 || elem->type == 3) {
+    if (elem->type == CELL_TYPE_CELL || elem->type == CELL_TYPE_VRAM_CELL) {
         CellAnimationData *cellAnim = (CellAnimationData *)&elem->animData;
         NNS_G2dDrawCellAnimation(&cellAnim->anim);
     } else {

@@ -2671,8 +2671,8 @@ static void ov69_0225E960 (UnkStruct_ov69_0225EB60 * param0, UnkStruct_ov69_0225
 
         param0->unk_3C[v0] = GraphicElementManager_AddElement(&v3);
 
-        sub_02021CC8(param0->unk_3C[v0], 1);
-        sub_02021CE4(param0->unk_3C[v0], FX32_ONE);
+        GraphicElementData_SetAnimateFlag(param0->unk_3C[v0], 1);
+        GraphicElementData_SetAnimSpeed(param0->unk_3C[v0], FX32_ONE);
     }
 
     ov69_0225EBEC(param0);
@@ -2737,7 +2737,7 @@ static void ov69_0225EBEC (UnkStruct_ov69_0225EB60 * param0)
     int v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        sub_02021CAC(param0->unk_3C[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_3C[v0], 0);
     }
 }
 
@@ -2780,7 +2780,7 @@ static BOOL ov69_0225EC70 (UnkStruct_ov69_0225EB60 * param0, u32 param1, UnkStru
     }
 
     ov69_0225ED5C(&param0->unk_00[param1], param2);
-    sub_02021CAC(param0->unk_3C[param0->unk_38[param1]], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 1);
     ov69_0225EEC4(param0, param1);
 
     return 1;
@@ -2798,7 +2798,7 @@ static BOOL ov69_0225ECAC (UnkStruct_ov69_0225EB60 * param0, u32 param1, UnkStru
     ov69_0225EEC4(param0, param1);
 
     if (v0 == 1) {
-        sub_02021CAC(param0->unk_3C[param0->unk_38[param1]], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 0);
     }
 
     return v0;
@@ -2909,7 +2909,7 @@ static void ov69_0225EEC4 (UnkStruct_ov69_0225EB60 * param0, u32 param1)
     ov69_0225ED78(&param0->unk_00[param1], &v0);
 
     v1 = param0->unk_3C[param0->unk_38[param1]];
-    sub_02021C50(v1, &v0);
+    GraphicElementData_SetPosition(v1, &v0);
 }
 
 static u16 ov69_0225EEEC (u32 param0)

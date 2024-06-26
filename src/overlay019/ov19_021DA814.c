@@ -41,7 +41,7 @@ void ov19_021DA864 (UnkStruct_ov19_021DA8D8 * param0, NARC * param1)
     sub_0200718C(param1, 9, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1256 * 0x20, 10, &(param0->unk_18));
     ov19_021D783C(&v0, &(param0->unk_18), ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_14, 2);
     param0->unk_04 = ov19_021D785C(param0->unk_00, &v0, 183 + ov19_021D7820(param0->unk_44), 176, 44, NNS_G2D_VRAM_TYPE_2DMAIN);
-    sub_02021E90(param0->unk_04, 1);
+    GraphicElementData_SetExplicitPalette(param0->unk_04, 1);
 }
 
 void ov19_021DA8D8 (UnkStruct_ov19_021DA8D8 * param0)

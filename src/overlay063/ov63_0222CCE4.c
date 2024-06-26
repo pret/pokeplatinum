@@ -248,7 +248,7 @@ u32 ov63_0222D034 (s16 param0, BOOL param1)
 
 u32 ov63_0222D050 (const UnkStruct_ov63_0222CE44 * param0)
 {
-    return sub_02021F48(ov63_0222B234(param0->unk_04));
+    return GraphicElementData_GetExplicitPaletteOffset(ov63_0222B234(param0->unk_04));
 }
 
 void ov63_0222D060 (UnkStruct_ov63_0222CE44 * param0, UnkStruct_ov63_0222CC3C param1)

@@ -1242,8 +1242,8 @@ static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
         param0->unk_270[v1] = GraphicElementManager_AddElementEx(&v0[v1]);
 
-        sub_02021CC8(param0->unk_270[v1], 1);
-        sub_02021CAC(param0->unk_270[v1], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_270[v1], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_270[v1], 0);
         SpriteActor_SetSpriteAnimActive(param0->unk_270[v1], v1);
     }
 }
@@ -1262,7 +1262,7 @@ static void ov64_0222EA28 (UnkStruct_ov64_0222E21C * param0, BOOL param1)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021CAC(param0->unk_270[v0], param1);
+        GraphicElementData_SetDrawFlag(param0->unk_270[v0], param1);
     }
 }
 
@@ -1271,7 +1271,7 @@ static void ov64_0222EA48 (UnkStruct_ov64_0222E21C * param0, BOOL param1)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021CC8(param0->unk_270[v0], param1);
+        GraphicElementData_SetAnimateFlag(param0->unk_270[v0], param1);
     }
 }
 
@@ -2179,7 +2179,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     add r0, r1, #0
     ldr r0, [r0, r2]
     mov r1, #0
-    bl sub_02021CAC
+    bl GraphicElementData_SetDrawFlag
     add sp, #0x58
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -2645,12 +2645,12 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     VecFx32 v0;
     u32 v1;
 
-    sub_02021CAC(param0->unk_104, 1);
+    GraphicElementData_SetDrawFlag(param0->unk_104, 1);
     SpriteActor_SetSpriteAnimActive(param0->unk_104, 2);
 
     param0->unk_108 = 0;
 
-    sub_02021CC8(param0->unk_104, 1);
+    GraphicElementData_SetAnimateFlag(param0->unk_104, 1);
 
     v1 = param0->unk_04;
 
@@ -2659,7 +2659,7 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     v0.x <<= FX32_SHIFT;
     v0.y <<= FX32_SHIFT;
 
-    sub_02021C50(param0->unk_104, &v0);
+    GraphicElementData_SetPosition(param0->unk_104, &v0);
 
     G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2, 0);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
@@ -2690,8 +2690,8 @@ static void ov64_02230044 (UnkStruct_ov64_0222F0C4 * param0)
 {
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_02021CAC(param0->unk_104, 0);
-    sub_02021CC8(param0->unk_104, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_104, 0);
+    GraphicElementData_SetAnimateFlag(param0->unk_104, 0);
 }
 
 static void ov64_02230074 (UnkStruct_ov64_02230074 * param0, UnkStruct_ov64_0222E21C * param1, const UnkStruct_ov64_0223221C * param2, u32 param3, u32 param4)

@@ -940,7 +940,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
         break;
     case UnkEnum_ov97_0222C6F8_29:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 30);
-        sub_02021CAC(param0->unk_3170, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_3170, 0);
         DeleteWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
         Sound_PlayEffect(1500);
@@ -977,7 +977,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
     case UnkEnum_ov97_0222C6F8_10:
         if (ov97_022332F4()) {
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 71);
-            sub_02021CAC(param0->unk_3170, 1);
+            GraphicElementData_SetDrawFlag(param0->unk_3170, 1);
             ov97_0222C578(param0);
             *v3 = UnkEnum_ov97_0222C6F8_11;
         }
@@ -1071,7 +1071,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
 
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 73);
 
-            sub_02021CAC(param0->unk_3170, 0);
+            GraphicElementData_SetDrawFlag(param0->unk_3170, 0);
             DeleteWaitDial(param0->unk_34D8);
             Sound_PlayEffect(1500);
 
@@ -1096,7 +1096,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
         *v3 = UnkEnum_ov97_0222C6F8_23;
     case UnkEnum_ov97_0222C6F8_23:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 74);
-        sub_02021CAC(param0->unk_3170, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_3170, 0);
 
         if (param0->unk_34D8) {
             DeleteWaitDial(param0->unk_34D8);

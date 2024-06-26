@@ -539,12 +539,12 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
 
             param0->unk_2B4[v0] = GraphicElementManager_AddElementEx(&v1);
 
-            sub_02021CC8(param0->unk_2B4[v0], 1);
+            GraphicElementData_SetAnimateFlag(param0->unk_2B4[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);
-            sub_02021E90(param0->unk_2B4[v0], 0);
+            GraphicElementData_SetExplicitPalette(param0->unk_2B4[v0], 0);
 
             if (v0 == 0) {
-                sub_02021E80(param0->unk_2B4[v0], 2);
+                GraphicElementData_SetExplicitPriority(param0->unk_2B4[v0], 2);
             }
         }
     }

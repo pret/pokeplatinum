@@ -49,7 +49,7 @@ UnkStruct_ov107_02249B8C * ov107_02249B1C (UnkStruct_ov107_02249954 * param0, u3
     v1.x = (param5 * FX32_ONE);
     v1.y = (param6 * FX32_ONE);
 
-    sub_02021C50(v0->unk_04, &v1);
+    GraphicElementData_SetPosition(v0->unk_04, &v1);
     return v0;
 }
 
@@ -68,7 +68,7 @@ void * ov107_02249B8C (UnkStruct_ov107_02249B8C * param0)
 
 void ov107_02249BAC (UnkStruct_ov107_02249B8C * param0, int param1)
 {
-    sub_02021CAC(param0->unk_04, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_04, param1);
     return;
 }
 
@@ -76,17 +76,17 @@ void ov107_02249BB8 (UnkStruct_ov107_02249B8C * param0, u16 param1, u16 param2)
 {
     VecFx32 v0;
 
-    v0 = *(sub_02021D28(param0->unk_04));
+    v0 = *(GraphicElementData_GetPosition(param0->unk_04));
     v0.x = (param1 * FX32_ONE);
     v0.y = (param2 * FX32_ONE);
 
-    sub_02021C50(param0->unk_04, &v0);
+    GraphicElementData_SetPosition(param0->unk_04, &v0);
     return;
 }
 
 void ov107_02249BEC (UnkStruct_ov107_02249B8C * param0, u32 param1)
 {
-    sub_02021CE4(param0->unk_04, FX32_ONE);
+    GraphicElementData_SetAnimSpeed(param0->unk_04, FX32_ONE);
     SpriteActor_SetSpriteAnimActive(param0->unk_04, param1);
 
     return;
@@ -94,7 +94,7 @@ void ov107_02249BEC (UnkStruct_ov107_02249B8C * param0, u32 param1)
 
 void ov107_02249C08 (UnkStruct_ov107_02249B8C * param0, Pokemon * param1)
 {
-    sub_02021F24(param0->unk_04, Pokemon_IconPaletteIndex(param1));
+    GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_04, Pokemon_IconPaletteIndex(param1));
     return;
 }
 
@@ -117,7 +117,7 @@ BOOL ov107_02249C40 (UnkStruct_ov107_02249B8C * param0)
 
 void ov107_02249C4C (UnkStruct_ov107_02249B8C * param0, u8 param1)
 {
-    sub_02021E80(param0->unk_04, param1);
+    GraphicElementData_SetExplicitPriority(param0->unk_04, param1);
     return;
 }
 

@@ -755,8 +755,8 @@ static void ov21_021E4B30 (UnkStruct_ov21_021E4B30 * param0, int param1)
     v1.y = 96 << FX32_SHIFT;
 
     for (v0 = 0; v0 < 9; v0++) {
-        sub_02021C50(param0->unk_00[v0].unk_00, &v1);
-        sub_02021CAC(param0->unk_00[v0].unk_00, 0);
+        GraphicElementData_SetPosition(param0->unk_00[v0].unk_00, &v1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[v0].unk_00, 0);
 
         v1.y += -8 << FX32_SHIFT;
 
@@ -765,8 +765,8 @@ static void ov21_021E4B30 (UnkStruct_ov21_021E4B30 * param0, int param1)
 
     v1.y = 96 << FX32_SHIFT;
 
-    sub_02021C50(param0->unk_48.unk_00, &v1);
-    sub_02021CAC(param0->unk_48.unk_00, 0);
+    GraphicElementData_SetPosition(param0->unk_48.unk_00, &v1);
+    GraphicElementData_SetDrawFlag(param0->unk_48.unk_00, 0);
 }
 
 static void ov21_021E4B94 (UnkStruct_ov21_021E4B30 * param0, int param1)
@@ -775,17 +775,17 @@ static void ov21_021E4B94 (UnkStruct_ov21_021E4B30 * param0, int param1)
     int v1 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        sub_02021CAC(param0->unk_00[v0].unk_00, 1);
+        GraphicElementData_SetDrawFlag(param0->unk_00[v0].unk_00, 1);
         param0->unk_00[v0].unk_04 = 2 * (v0 + 1);
     }
 
     for (v0 = 0; v0 < 9; v0++) {
-        if (sub_02021D34(param0->unk_00[v0].unk_00)) {
+        if (GraphicElementData_GetDrawFlag(param0->unk_00[v0].unk_00)) {
             if ((param0->unk_00[v0].unk_04 - 1) > 0) {
                 param0->unk_00[v0].unk_04--;
                 v1 = v0 + 1;
             } else {
-                sub_02021CAC(param0->unk_00[v0].unk_00, 0);
+                GraphicElementData_SetDrawFlag(param0->unk_00[v0].unk_00, 0);
             }
         }
     }
@@ -795,7 +795,7 @@ static void ov21_021E4B94 (UnkStruct_ov21_021E4B30 * param0, int param1)
         param0->unk_48.unk_08 = 16;
 
         if (param0->unk_48.unk_04 < v1) {
-            sub_02021CAC(param0->unk_48.unk_00, 1);
+            GraphicElementData_SetDrawFlag(param0->unk_48.unk_00, 1);
         }
 
         param0->unk_48.unk_04 = v1;
@@ -809,7 +809,7 @@ static void ov21_021E4B94 (UnkStruct_ov21_021E4B30 * param0, int param1)
             param0->unk_48.unk_08--;
         }
     } else {
-        sub_02021CAC(param0->unk_48.unk_00, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_48.unk_00, 0);
     }
 }
 
@@ -818,11 +818,11 @@ static void ov21_021E4C38 (GraphicElementData * param0, int param1)
     VecFx32 v0;
     const VecFx32 * v1;
 
-    v1 = sub_02021D28(param0);
+    v1 = GraphicElementData_GetPosition(param0);
     v0 = *v1;
     v0.y = (96 + (-8 * param1)) << FX32_SHIFT;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 static void ov21_021E4C68 (UnkStruct_ov21_021E4898 * param0, UnkStruct_ov21_021E40F4 * param1)

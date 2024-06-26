@@ -58,13 +58,13 @@ void * ov111_021D3448 (UnkStruct_ov111_021D33F4 * param0)
 
 void ov111_021D345C (UnkStruct_ov111_021D33F4 * param0, int param1)
 {
-    sub_02021CAC(param0->unk_0C, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_0C, param1);
     return;
 }
 
 void ov111_021D3468 (UnkStruct_ov111_021D33F4 * param0, u32 param1)
 {
-    sub_02021F58(param0->unk_0C, param1);
+    GraphicElementData_SetPriority(param0->unk_0C, param1);
     return;
 }
 
@@ -79,7 +79,7 @@ void ov111_021D3474 (UnkStruct_ov111_021D33F4 * param0, int param1, int param2)
         v0.y += (512 * FX32_ONE);
     }
 
-    sub_02021C50(param0->unk_0C, &v0);
+    GraphicElementData_SetPosition(param0->unk_0C, &v0);
     return;
 }
 
@@ -87,7 +87,7 @@ void ov111_021D349C (UnkStruct_ov111_021D33F4 * param0, int * param1, int * para
 {
     const VecFx32 * v0;
 
-    v0 = sub_02021D28(param0->unk_0C);
+    v0 = GraphicElementData_GetPosition(param0->unk_0C);
 
     *param1 = (v0->x / FX32_ONE);
     *param2 = (v0->y / FX32_ONE);
@@ -97,7 +97,7 @@ void ov111_021D349C (UnkStruct_ov111_021D33F4 * param0, int * param1, int * para
 
 void ov111_021D34C4 (UnkStruct_ov111_021D33F4 * param0, u32 param1)
 {
-    sub_02021CE4(param0->unk_0C, FX32_ONE);
+    GraphicElementData_SetAnimSpeed(param0->unk_0C, FX32_ONE);
     sub_02021DCC(param0->unk_0C, param1);
 
     return;
@@ -122,34 +122,34 @@ void ov111_021D34E0 (UnkStruct_ov111_021D33F4 * param0, u32 param1)
     u8 v0;
     v0 = param1;
 
-    sub_02021C80(param0->unk_0C, &Unk_ov111_021D3834[0], 1);
+    GraphicElementData_SetAffineScaleEx(param0->unk_0C, &Unk_ov111_021D3834[0], 1);
 
     return;
 }
 
 void ov111_021D34F4 (UnkStruct_ov111_021D33F4 * param0, VecFx32 * param1)
 {
-    sub_02021C80(param0->unk_0C, param1, 2);
+    GraphicElementData_SetAffineScaleEx(param0->unk_0C, param1, 2);
     return;
 }
 
 void ov111_021D3500 (UnkStruct_ov111_021D33F4 * param0, u32 param1)
 {
-    sub_02021EC4(param0->unk_0C, param1);
+    GraphicElementData_SetExplicitPaletteWithOffset(param0->unk_0C, param1);
     return;
 }
 
 void ov111_021D350C (UnkStruct_ov111_021D33F4 * param0, int param1)
 {
-    sub_02021CC8(param0->unk_0C, param1);
-    sub_02021CE4(param0->unk_0C, FX32_ONE);
+    GraphicElementData_SetAnimateFlag(param0->unk_0C, param1);
+    GraphicElementData_SetAnimSpeed(param0->unk_0C, FX32_ONE);
     SpriteActor_SetSpriteAnimActive(param0->unk_0C, sub_02021E24(param0->unk_0C));
     return;
 }
 
 void ov111_021D3530 (UnkStruct_ov111_021D33F4 * param0, BOOL param1)
 {
-    sub_02021FA0(param0->unk_0C, param1);
+    GraphicElementData_SetPixelated(param0->unk_0C, param1);
     return;
 }
 

@@ -706,13 +706,13 @@ void ov104_02238764 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC
         for (v2 = 0; v2 < v0; v2++) {
             v3 = Party_GetPokemonBySlotIndex(param0->unk_70, v2);
             param0->unk_30[v2] = ov104_02232F4C(param1, v3, v2, Unk_ov104_0223FB18[v2].unk_00, Unk_ov104_0223FB18[v2].unk_02);
-            sub_02021CC8(param0->unk_30[v2]->unk_00, 0);
+            GraphicElementData_SetAnimateFlag(param0->unk_30[v2]->unk_00, 0);
         }
     } else {
         for (v2 = 0; v2 < v1; v2++) {
             v3 = Party_GetPokemonBySlotIndex(param0->unk_74, v2);
             param0->unk_40[v2] = ov104_02232F4C(param1, v3, v2 + v0, Unk_ov104_0223FB28[v2].unk_00, Unk_ov104_0223FB28[v2].unk_02);
-            sub_02021CC8(param0->unk_40[v2]->unk_00, 0);
+            GraphicElementData_SetAnimateFlag(param0->unk_40[v2]->unk_00, 0);
         }
     }
 
@@ -751,9 +751,9 @@ void ov104_0223886C (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC
     }
 
     if (param2 == 1) {
-        sub_02021CAC(param0->unk_30[param3]->unk_00, 1);
+        GraphicElementData_SetDrawFlag(param0->unk_30[param3]->unk_00, 1);
     } else {
-        sub_02021CAC(param0->unk_30[param3]->unk_00, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_30[param3]->unk_00, 0);
     }
 
     return;
@@ -770,9 +770,9 @@ void ov104_022388A4 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC
     }
 
     if (param2 == 1) {
-        sub_02021CAC(param0->unk_40[param3]->unk_00, 1);
+        GraphicElementData_SetDrawFlag(param0->unk_40[param3]->unk_00, 1);
     } else {
-        sub_02021CAC(param0->unk_40[param3]->unk_00, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_40[param3]->unk_00, 0);
     }
 
     return;
@@ -794,7 +794,7 @@ void ov104_022388DC (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC
             v3 = Party_GetPokemonBySlotIndex(param0->unk_70, v2);
 
             if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                sub_02021CAC(param0->unk_50[v2]->unk_00, 0);
+                GraphicElementData_SetDrawFlag(param0->unk_50[v2]->unk_00, 0);
             }
         }
     } else {
@@ -804,7 +804,7 @@ void ov104_022388DC (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC
             v3 = Party_GetPokemonBySlotIndex(param0->unk_74, v2);
 
             if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                sub_02021CAC(param0->unk_60[v2]->unk_00, 0);
+                GraphicElementData_SetDrawFlag(param0->unk_60[v2]->unk_00, 0);
             }
         }
     }
@@ -852,12 +852,12 @@ void ov104_022389F4 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC
 
         if (param4 == 1) {
             if (v0 == 0) {
-                sub_02021CAC(param0->unk_50[param3]->unk_00, 0);
+                GraphicElementData_SetDrawFlag(param0->unk_50[param3]->unk_00, 0);
             } else {
-                sub_02021CAC(param0->unk_50[param3]->unk_00, 1);
+                GraphicElementData_SetDrawFlag(param0->unk_50[param3]->unk_00, 1);
             }
         } else {
-            sub_02021CAC(param0->unk_50[param3]->unk_00, 0);
+            GraphicElementData_SetDrawFlag(param0->unk_50[param3]->unk_00, 0);
         }
     } else {
         if (param3 >= v2) {
@@ -869,12 +869,12 @@ void ov104_022389F4 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC
 
         if (param4 == 1) {
             if (v0 == 0) {
-                sub_02021CAC(param0->unk_60[param3]->unk_00, 0);
+                GraphicElementData_SetDrawFlag(param0->unk_60[param3]->unk_00, 0);
             } else {
-                sub_02021CAC(param0->unk_60[param3]->unk_00, 1);
+                GraphicElementData_SetDrawFlag(param0->unk_60[param3]->unk_00, 1);
             }
         } else {
-            sub_02021CAC(param0->unk_60[param3]->unk_00, 0);
+            GraphicElementData_SetDrawFlag(param0->unk_60[param3]->unk_00, 0);
         }
     }
 

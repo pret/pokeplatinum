@@ -659,7 +659,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, BGL * param1, u32 par
         param0->unk_158[v0] = GraphicElementManager_AddElement(&v3);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_158[v0], v0);
-        sub_02021CC8(param0->unk_158[v0], 1);
+        GraphicElementData_SetAnimateFlag(param0->unk_158[v0], 1);
     }
 }
 
@@ -725,8 +725,8 @@ static void ov7_0224CA0C (UnkStruct_ov7_0224C768 * param0)
 
 static void ov7_0224CA34 (UnkStruct_ov7_0224C768 * param0)
 {
-    sub_02021CAC(param0->unk_158[0], 0);
-    sub_02021CAC(param0->unk_158[1], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_158[0], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_158[1], 0);
 }
 
 static void ov7_0224CA54 (CellActorResourceData * param0, UnkStruct_ov7_0224C768 * param1, u32 param2)
@@ -763,15 +763,15 @@ static void ov7_0224CB70 (UnkStruct_ov7_0224C768 * param0)
     sub_020014DC(param0->unk_08, &v0, NULL);
 
     if ((v0 <= 0)) {
-        sub_02021CAC(param0->unk_158[0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_158[0], 0);
     } else {
-        sub_02021CAC(param0->unk_158[0], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_158[0], 1);
     }
 
     if (v0 >= (param0->unk_120 - 7)) {
-        sub_02021CAC(param0->unk_158[1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_158[1], 0);
     } else {
-        sub_02021CAC(param0->unk_158[1], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_158[1], 1);
     }
 }
 

@@ -418,10 +418,10 @@ static void ov19_021DF178 (UnkStruct_ov19_021DEC04 * param0, int param1)
         for (v5 = 0; v5 < 5; v5++) {
             v6.x = v0[v5].unk_00 + (((v0[v5].unk_08 - v0[v5].unk_00) / 256) * (int)(*v7));
             v6.y = v0[v5].unk_04 + (((v0[v5].unk_0C - v0[v5].unk_04) / 256) * (int)(*v7));
-            sub_02021C50(param0->unk_34[param1][v5], &v6);
+            GraphicElementData_SetPosition(param0->unk_34[param1][v5], &v6);
             ov19_021D78AC(param0->unk_34[param1][v5], 0);
             ov19_021D78AC(param0->unk_34[param1 ^ 1][v5], 1);
-            sub_02021CAC(param0->unk_34[param1][v5], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_34[param1][v5], 1);
             v7++;
         }
     } else {
@@ -437,7 +437,7 @@ static void ov19_021DF250 (UnkStruct_ov19_021DEC04 * param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_02021CAC(param0->unk_34[param1][v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_34[param1][v0], 0);
     }
 }
 
@@ -606,21 +606,21 @@ static void ov19_021DF5D0 (UnkStruct_ov19_021DEC04 * param0, NARC * param1)
     for (v4 = 0; v4 < 2; v4++) {
         param0->unk_28[v4] = ov19_021D785C(param0->unk_10, &v2, v0[v4].unk_00, v0[v4].unk_02, 0, NNS_G2D_VRAM_TYPE_2DSUB);
 
-        sub_02021E90(param0->unk_28[v4], v4);
+        GraphicElementData_SetExplicitPalette(param0->unk_28[v4], v4);
         SpriteActor_SetSpriteAnimActive(param0->unk_28[v4], 0);
 
         for (v5 = 0; v5 < 5; v5++) {
             param0->unk_34[v4][v5] = ov19_021D785C(param0->unk_10, &v2, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB);
             SpriteActor_SetSpriteAnimActive(param0->unk_34[v4][v5], 5 + v4);
-            sub_02021E90(param0->unk_34[v4][v5], v4);
-            sub_02021CAC(param0->unk_34[v4][v5], 0);
+            GraphicElementData_SetExplicitPalette(param0->unk_34[v4][v5], v4);
+            GraphicElementData_SetDrawFlag(param0->unk_34[v4][v5], 0);
         }
     }
 
-    sub_02021D0C(param0->unk_28[1], 1);
+    GraphicElementData_SetFlipMode(param0->unk_28[1], 1);
     param0->unk_30 = ov19_021D785C(param0->unk_10, &v2, 128, 176 + 384, 0, NNS_G2D_VRAM_TYPE_2DSUB);
     SpriteActor_SetSpriteAnimActive(param0->unk_30, 3);
-    sub_02021E90(param0->unk_30, 2);
+    GraphicElementData_SetExplicitPalette(param0->unk_30, 2);
     param0->unk_380 = SysTask_Start(ov19_021DF930, param0, 1);
 
     ov19_021DF730(param0, v3);
@@ -647,7 +647,7 @@ static void ov19_021DF730 (UnkStruct_ov19_021DEC04 * param0, u32 param1)
         NNS_G2dSetImageLocation(&v1, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_18[v3]);
         v1.attr.mappingType = GXS_GetOBJVRamModeChar();
         param0->unk_20[v3] = ov19_021D785C(param0->unk_10, &v2, v0[v3].unk_00, v0[v3].unk_02, 1 - v3, NNS_G2D_VRAM_TYPE_2DSUB);
-        sub_02021CAC(param0->unk_20[v3], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_20[v3], 0);
     }
 }
 
@@ -690,10 +690,10 @@ static void ov19_021DF834 (UnkStruct_ov19_021DEC04 * param0)
         DC_FlushRange(v4->pRawData, (4 * 4) * 0x20);
         GXS_LoadOBJ(v4->pRawData, param0->unk_18[v0], (4 * 4) * 0x20);
 
-        sub_02021E90(v2, v5);
-        sub_02021CAC(v2, 1);
+        GraphicElementData_SetExplicitPalette(v2, v5);
+        GraphicElementData_SetDrawFlag(v2, 1);
     } else {
-        sub_02021CAC(v2, 0);
+        GraphicElementData_SetDrawFlag(v2, 0);
     }
 }
 

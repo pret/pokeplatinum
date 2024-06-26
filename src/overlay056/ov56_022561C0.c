@@ -437,7 +437,7 @@ static void ov56_02256704 (UnkStruct_ov56_02256468 * param0)
 
             param0->unk_1FC[v0] = GraphicElementManager_AddElementEx(&v1);
 
-            sub_02021CC8(param0->unk_1FC[v0], 1);
+            GraphicElementData_SetAnimateFlag(param0->unk_1FC[v0], 1);
             SpriteActor_SetSpriteAnimActive(param0->unk_1FC[v0], v0);
         }
     }
@@ -539,7 +539,7 @@ static void ov56_02256994 (GraphicElementData * param0, int param1)
     v0.y = FX32_CONST(param1) + (192 << FX32_SHIFT);
     v0.z = 0;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 static void ov56_022569E0 (UnkStruct_ov56_02256468 * param0)
@@ -551,7 +551,7 @@ static void ov56_022569E0 (UnkStruct_ov56_02256468 * param0)
         param0->unk_2D8.unk_04 = param0->unk_2D8.unk_00 - 3;
     }
 
-    sub_02021CAC(param0->unk_1FC[2], param0->unk_2D8.unk_06);
+    GraphicElementData_SetDrawFlag(param0->unk_1FC[2], param0->unk_2D8.unk_06);
 
     if (param0->unk_2D8.unk_06) {
         if (ov56_02257184(param0) == 1) {
@@ -988,13 +988,13 @@ static void ov56_022571D0 (UnkStruct_ov56_02256468 * param0)
 
         if (param0->unk_2F4[v0] == 1) {
             if (v1 >= 1) {
-                sub_02021CC8(param0->unk_1FC[v0], 0);
+                GraphicElementData_SetAnimateFlag(param0->unk_1FC[v0], 0);
             }
 
             param0->unk_2F4[v0] = 0;
         } else {
-            if (sub_02021D3C(param0->unk_1FC[v0]) == 0) {
-                sub_02021CC8(param0->unk_1FC[v0], 1);
+            if (GraphicElementData_GetAnimateFlag(param0->unk_1FC[v0]) == 0) {
+                GraphicElementData_SetAnimateFlag(param0->unk_1FC[v0], 1);
                 SpriteActor_SetAnimFrame(param0->unk_1FC[v0], 1 + 1);
             }
         }

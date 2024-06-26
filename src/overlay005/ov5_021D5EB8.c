@@ -869,7 +869,7 @@ static void ov5_021D630C (GraphicElementData * param0, VecFx32 * param1)
         }
     }
 
-    sub_02021C50(param0, param1);
+    GraphicElementData_SetPosition(param0, param1);
 }
 
 UnkStruct_ov5_021D6594 * ov5_021D6364 (FieldSystem * fieldSystem)
@@ -1478,7 +1478,7 @@ static void ov5_021D6D34 (UnkStruct_ov5_021DB4B8 * param0)
 
     for (v0 = 0; v0 < 48; v0++) {
         param0->unk_48[v0].unk_04 = GraphicElementManager_AddElementEx(&param0->unk_08->unk_10);
-        sub_02021CAC(param0->unk_48[v0].unk_04, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_48[v0].unk_04, 0);
         GF_ASSERT(param0->unk_48[v0].unk_04);
     }
 }
@@ -1589,7 +1589,7 @@ static UnkStruct_ov5_021D6FA8 * ov5_021D6F00 (UnkStruct_ov5_021DB4B8 * param0, i
     }
 
     GF_ASSERT(v0->unk_04);
-    sub_02021CAC(v0->unk_04, 1);
+    GraphicElementData_SetDrawFlag(v0->unk_04, 1);
 
     return v0;
 }
@@ -1613,7 +1613,7 @@ static void ov5_021D6FA8 (UnkStruct_ov5_021D6FA8 * param0)
     param0->unk_38->unk_34 = param0->unk_34;
     param0->unk_34->unk_38 = param0->unk_38;
 
-    sub_02021CAC(param0->unk_04, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_04, 0);
     ov5_021D6EF0(param0);
 
     v0 = param0->unk_04;
@@ -1659,7 +1659,7 @@ static void ov5_021D700C (UnkStruct_ov5_021DB4B8 * param0)
 
 static VecFx32 ov5_021D7010 (UnkStruct_ov5_021D6FA8 * param0)
 {
-    const VecFx32 * v0 = sub_02021D28(param0->unk_04);
+    const VecFx32 * v0 = GraphicElementData_GetPosition(param0->unk_04);
     return *v0;
 }
 

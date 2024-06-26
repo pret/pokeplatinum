@@ -1960,8 +1960,8 @@ GraphicElementData * ov19_021D785C (GraphicElementManager * param0, CellActorRes
     }
 
     if (v1) {
-        sub_02021CC8(v1, 1);
-        sub_02021CE4(v1, (FX32_ONE * (2 / 2)));
+        GraphicElementData_SetAnimateFlag(v1, 1);
+        GraphicElementData_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
     }
 
     return v1;
@@ -1971,7 +1971,7 @@ void ov19_021D78AC (GraphicElementData * param0, u32 param1)
 {
     OSIntrMode v0 = OS_DisableInterrupts();
 
-    sub_02021F58(param0, param1);
+    GraphicElementData_SetPriority(param0, param1);
     OS_RestoreInterrupts(v0);
 }
 

@@ -148,8 +148,8 @@ GraphicElementData * ov107_022498A4 (UnkStruct_ov107_02249954 * param0, u32 para
 
         v2 = GraphicElementManager_AddElementEx(&v3);
 
-        sub_02021CC8(v2, 1);
-        sub_02021CE4(v2, FX32_ONE);
+        GraphicElementData_SetAnimateFlag(v2, 1);
+        GraphicElementData_SetAnimSpeed(v2, FX32_ONE);
         SpriteActor_SetSpriteAnimActive(v2, param4);
     }
 

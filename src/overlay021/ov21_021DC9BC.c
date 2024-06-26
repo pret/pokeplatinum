@@ -605,7 +605,7 @@ static void ov21_021DD1A8 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
 
     for (v3 = 0; v3 < (22 * 2); v3++) {
         param0->unk_04[v3] = GraphicElementManager_AddElement(&v1);
-        sub_02021CAC(param0->unk_04[v3], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_04[v3], 0);
         sub_02021FE0(param0->unk_04[v3], GX_OAM_MODE_XLU);
     }
 }
@@ -896,7 +896,7 @@ static void ov21_021DD8B4 (UnkStruct_ov21_021DD420 * param0)
     memset(param0->unk_470, 0, sizeof(u8) * (30 * 30));
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
-        sub_02021CAC(param0->unk_04[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_04[v0], 0);
     }
 
     param0->unk_C4 = 0;
@@ -1107,10 +1107,10 @@ static void ov21_021DD964 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
 static void ov21_021DD9E8 (UnkStruct_ov21_021DD420 * param0, const UnkStruct_ov21_021DDABC * param1)
 {
     if ((param0->unk_834 <= 0) && (param0->unk_838 <= 0) && (param0->unk_83C <= 0) && (param0->unk_840 <= 0)) {
-        sub_02021CAC(param0->unk_C8, 1);
+        GraphicElementData_SetDrawFlag(param0->unk_C8, 1);
         sub_020129D0(param0->unk_CC->unk_00, 1);
     } else {
-        sub_02021CAC(param0->unk_C8, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_C8, 0);
         sub_020129D0(param0->unk_CC->unk_00, 0);
     }
 }
@@ -1193,7 +1193,7 @@ static void ov21_021DDB8C (UnkStruct_ov21_021DD420 * param0)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
-        sub_02021CAC(param0->unk_04[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_04[v0], 0);
     }
 }
 
@@ -1205,7 +1205,7 @@ static void ov21_021DDBCC (UnkStruct_ov21_021DD420 * param0)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
-        sub_02021CAC(param0->unk_04[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_04[v0], 0);
     }
 }
 
@@ -1220,7 +1220,7 @@ static void ov21_021DDC14 (UnkStruct_ov21_021DD420 * param0)
 
         if (param0->unk_810 == 0) {
             for (v2 = 0; v2 < param0->unk_C4; v2++) {
-                sub_02021CAC(param0->unk_04[v2], 1);
+                GraphicElementData_SetDrawFlag(param0->unk_04[v2], 1);
             }
 
             param0->unk_810 = 1;
@@ -1248,7 +1248,7 @@ static void ov21_021DDC14 (UnkStruct_ov21_021DD420 * param0)
             GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
         } else {
             for (v2 = 0; v2 < param0->unk_C4; v2++) {
-                sub_02021CAC(param0->unk_04[v2], 0);
+                GraphicElementData_SetDrawFlag(param0->unk_04[v2], 0);
             }
         }
     }

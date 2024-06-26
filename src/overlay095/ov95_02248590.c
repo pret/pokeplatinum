@@ -628,8 +628,8 @@ static void ov95_02248CA8 (UnkStruct_ov95_02248688 * param0)
 
         SpriteActor_SetSpriteAnimActive(param0->unk_1C[v3][0], 0);
         SpriteActor_SetSpriteAnimActive(param0->unk_1C[v3][1], 1);
-        sub_02021CAC(param0->unk_1C[v3][0], 0);
-        sub_02021CAC(param0->unk_1C[v3][1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_1C[v3][0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_1C[v3][1], 0);
     }
 }
 
@@ -682,7 +682,7 @@ static void ov95_02248E5C (UnkStruct_ov95_02248688 * param0, SysTask ** param1, 
 
     for (v0 = 0; v0 < 20; v0++) {
         param2->unk_08[v0] = 0;
-        param2->unk_58[v0] = *(sub_02021D28(param0->unk_1C[v0][0]));
+        param2->unk_58[v0] = *(GraphicElementData_GetPosition(param0->unk_1C[v0][0]));
     }
 
     *(param2->unk_00) = SysTask_Start(ov95_02248EC4, param2, 0);
@@ -714,17 +714,17 @@ static void ov95_02248EC4 (SysTask * param0, void * param1)
             v0->unk_58[v2].y = -114688 + (v0->unk_58[v2].y - 1736704);
 
             if (v0->unk_08[v2]) {
-                sub_02021CAC(v0->unk_04->unk_1C[v2][0], 1);
-                sub_02021CAC(v0->unk_04->unk_1C[v2][1], 1);
+                GraphicElementData_SetDrawFlag(v0->unk_04->unk_1C[v2][0], 1);
+                GraphicElementData_SetDrawFlag(v0->unk_04->unk_1C[v2][1], 1);
             }
         }
 
-        sub_02021C50(v0->unk_04->unk_1C[v2][0], &(v0->unk_58[v2]));
+        GraphicElementData_SetPosition(v0->unk_04->unk_1C[v2][0], &(v0->unk_58[v2]));
 
         v1 = v0->unk_58[v2];
         v1.y += 229376;
 
-        sub_02021C50(v0->unk_04->unk_1C[v2][1], &v1);
+        GraphicElementData_SetPosition(v0->unk_04->unk_1C[v2][1], &v1);
     }
 }
 

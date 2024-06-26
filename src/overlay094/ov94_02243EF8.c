@@ -57,16 +57,16 @@ void ov94_02243EF8 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
     param0->unk_F34[0] = GraphicElementManager_AddElementEx(&v0);
 
-    sub_02021CC8(param0->unk_F34[0], 1);
+    GraphicElementData_SetAnimateFlag(param0->unk_F34[0], 1);
     SpriteActor_SetSpriteAnimActive(param0->unk_F34[0], 3 + param1 * 7);
-    sub_02021CAC(param0->unk_F34[0], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_F34[0], 1);
 
     for (v1 = 0; v1 < 7; v1++) {
         param0->unk_F34[v1 + 1] = GraphicElementManager_AddElementEx(&v0);
 
-        sub_02021CC8(param0->unk_F34[v1 + 1], 1);
+        GraphicElementData_SetAnimateFlag(param0->unk_F34[v1 + 1], 1);
         SpriteActor_SetSpriteAnimActive(param0->unk_F34[v1 + 1], 14 + v1 * 4);
-        sub_02021CAC(param0->unk_F34[v1 + 1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_F34[v1 + 1], 0);
 
         ov94_022441A0(param0->unk_F34[v1 + 1], Unk_ov94_02246322[v1][0], Unk_ov94_02246322[v1][1]);
     }
@@ -208,7 +208,7 @@ static void ov94_022441A0 (GraphicElementData * param0, int param1, int param2)
     v0.y = FX32_CONST(param2 - 8) + (256 * FX32_ONE);
     v0.z = 0;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 static const TouchScreenRect Unk_ov94_0224633E[] = {
@@ -256,9 +256,9 @@ void ov94_02244234 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)
                 SpriteActor_SetSpriteAnimActive(param0->unk_F34[v0 + 1], 17 + v0 * 4);
             }
 
-            sub_02021CAC(param0->unk_F34[v0 + 1], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_F34[v0 + 1], 1);
         } else {
-            sub_02021CAC(param0->unk_F34[v0 + 1], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_F34[v0 + 1], 0);
         }
     }
 }
@@ -273,7 +273,7 @@ void ov94_022442E4 (UnkStruct_ov94_0223FD4C * param0)
     int v0;
 
     for (v0 = 0; v0 < 7; v0++) {
-        if (sub_02021D34(param0->unk_F34[v0 + 1])) {
+        if (GraphicElementData_GetDrawFlag(param0->unk_F34[v0 + 1])) {
             if (sub_02021E24(param0->unk_F34[v0 + 1]) != ov94_022442DC(v0) + 1) {
                 SpriteActor_SetSpriteAnimActive(param0->unk_F34[v0 + 1], ov94_022442DC(v0) + 1);
             }

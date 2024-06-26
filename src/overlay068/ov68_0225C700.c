@@ -707,7 +707,7 @@ static void ov68_0225CCD0 (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
         v2.heapID = param3;
 
         param0->unk_14 = GraphicElementManager_AddElement(&v2);
-        sub_02021CAC(param0->unk_14, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_14, 0);
     }
 
     {
@@ -901,13 +901,13 @@ static void ov68_0225D06C (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
 
 static void ov68_0225D0F8 (UnkStruct_ov68_0225D0F8 * param0)
 {
-    sub_02021CAC(param0->unk_14, 1);
-    sub_02021C50(param0->unk_14, &Unk_ov68_0225DD78[param0->unk_10]);
+    GraphicElementData_SetDrawFlag(param0->unk_14, 1);
+    GraphicElementData_SetPosition(param0->unk_14, &Unk_ov68_0225DD78[param0->unk_10]);
 }
 
 static void ov68_0225D11C (UnkStruct_ov68_0225D0F8 * param0)
 {
-    sub_02021CC8(param0->unk_14, 1);
+    GraphicElementData_SetAnimateFlag(param0->unk_14, 1);
 }
 
 static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225C91C * param1, SaveData * param2, u32 param3)

@@ -150,7 +150,7 @@ s16 ov12_022258E0 (UnkStruct_ov12_0221FCDC * param0, int param1, int param2)
 
 u8 ov12_02225950 (CellActorData * param0)
 {
-    return sub_0201FAB4(sub_02021F9C(param0->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+    return sub_0201FAB4(GraphicElementData_GetPaletteProxy(param0->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 int ov12_02225964 (UnkStruct_ov12_0221FCDC * param0, int param1)

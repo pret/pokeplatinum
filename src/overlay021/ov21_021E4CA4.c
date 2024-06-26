@@ -864,8 +864,8 @@ static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
     param0->unk_3C = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_3C, 4);
-    sub_02021CC8(param0->unk_3C, 1);
-    sub_02021CE4(param0->unk_3C, (FX32_ONE * 2));
+    GraphicElementData_SetAnimateFlag(param0->unk_3C, 1);
+    GraphicElementData_SetAnimSpeed(param0->unk_3C, (FX32_ONE * 2));
     SpriteActor_SetAnimFrame(param0->unk_3C, 8);
 
     v1.position.x = 51 << FX32_SHIFT;
@@ -875,7 +875,7 @@ static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
     param0->unk_00 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_00, 1);
-    sub_02021CF8(param0->unk_00, 1);
+    GraphicElementData_SetAffineOverwriteMode(param0->unk_00, 1);
 
     v1.position.x = 180 << FX32_SHIFT;
     v1.position.y = 131 << FX32_SHIFT;
@@ -884,8 +884,8 @@ static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
     param0->unk_04 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_04, 3);
-    sub_02021CC8(param0->unk_04, 1);
-    sub_02021CE4(param0->unk_04, (FX32_ONE * 2));
+    GraphicElementData_SetAnimateFlag(param0->unk_04, 1);
+    GraphicElementData_SetAnimSpeed(param0->unk_04, (FX32_ONE * 2));
     SpriteActor_SetAnimFrame(param0->unk_04, 5);
 
     param0->unk_08.unk_00 = 3;
@@ -901,8 +901,8 @@ static void ov21_021E5734 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
     param0->unk_20 = GraphicElementManager_AddElement(&v1);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_20, 6);
-    sub_02021CC8(param0->unk_20, 1);
-    sub_02021CE4(param0->unk_20, (FX32_ONE * 2));
+    GraphicElementData_SetAnimateFlag(param0->unk_20, 1);
+    GraphicElementData_SetAnimSpeed(param0->unk_20, (FX32_ONE * 2));
     SpriteActor_SetAnimFrame(param0->unk_20, 5);
 
     param0->unk_24.unk_00 = 6;
@@ -1107,7 +1107,7 @@ static void ov21_021E5AD8 (UnkStruct_ov21_021E51DC * param0)
 
 static void ov21_021E5B50 (UnkStruct_ov21_021E5004 * param0, const UnkStruct_ov21_021E51DC * param1)
 {
-    sub_02021C94(param0->unk_00, sub_0201D580(14, param1->unk_5C));
+    GraphicElementData_SetAffineZRotation(param0->unk_00, sub_0201D580(14, param1->unk_5C));
 }
 
 static void ov21_021E5B6C (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E4DA4 * param1, const UnkStruct_ov21_021E51DC * param2)
@@ -1188,13 +1188,13 @@ static void ov21_021E5C80 (GraphicElementData * param0, UnkStruct_ov21_021E5C80 
     case 2:
         if (v0 > param1->unk_14) {
             SpriteActor_SetAnimFrame(param0, param1->unk_14);
-            sub_02021CE4(param0, 0);
+            GraphicElementData_SetAnimSpeed(param0, 0);
         }
         break;
     case 1:
     case 100:
         ov21_021E5D90(param0, param1, param2);
-        sub_02021CE4(param0, (FX32_ONE * 2));
+        GraphicElementData_SetAnimSpeed(param0, (FX32_ONE * 2));
         break;
     default:
         break;
@@ -1228,12 +1228,12 @@ static void ov21_021E5CF8 (GraphicElementData * param0, UnkStruct_ov21_021E5C80 
         break;
     case 2:
         SpriteActor_SetAnimFrame(param0, param1->unk_14);
-        sub_02021CE4(param0, 0);
+        GraphicElementData_SetAnimSpeed(param0, 0);
         break;
     case 3:
     case 100:
         ov21_021E5D90(param0, param1, param2);
-        sub_02021CE4(param0, (FX32_ONE * 2));
+        GraphicElementData_SetAnimSpeed(param0, (FX32_ONE * 2));
         break;
     default:
         break;

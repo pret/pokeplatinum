@@ -336,7 +336,7 @@ static int ov95_0224B6F0 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
     case 0:
         if (ScreenWipe_Done()) {
             SpriteActor_SetSpriteAnimActive(param0->unk_40[0], 1);
-            sub_02021CAC(param0->unk_40[0], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_40[0], 1);
             return 1;
         }
         break;
@@ -354,7 +354,7 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
     case 1:
         if (param0->unk_80 == NULL) {
             SpriteActor_SetSpriteAnimActive(param0->unk_40[1], 2);
-            sub_02021CAC(param0->unk_40[1], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_40[1], 1);
             ov95_022479A8(param0->unk_78, 0);
             param0->unk_08 = 0;
             (*param1)++;
@@ -538,9 +538,9 @@ static void ov95_0224BAE8 (UnkStruct_ov95_0224B4D4 * param0)
     param0->unk_40[0] = ov95_022475E4(param0->unk_00, &v2, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
     param0->unk_40[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    sub_02021E80(param0->unk_40[1], 1);
-    sub_02021CAC(param0->unk_40[0], 0);
-    sub_02021CAC(param0->unk_40[1], 0);
+    GraphicElementData_SetExplicitPriority(param0->unk_40[1], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_40[0], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_40[1], 0);
 }
 
 static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)

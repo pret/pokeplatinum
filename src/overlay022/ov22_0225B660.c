@@ -228,7 +228,7 @@ static void ov22_0225B964 (UnkStruct_ov22_0225B85C * param0)
 
     param0->unk_1FC = ov22_022551E4(&param0->unk_14, 1000, 0, 144, 100, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    sub_02021E80(param0->unk_1FC, 1);
+    GraphicElementData_SetExplicitPriority(param0->unk_1FC, 1);
 }
 
 static void ov22_0225BA00 (UnkStruct_ov22_0225B85C * param0)
@@ -291,7 +291,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     v0.x = 48 << FX32_SHIFT;
     v0.y = 144 << FX32_SHIFT;
     v0.z = 0;
-    sub_02021C50(param0->unk_1FC, &v0);
+    GraphicElementData_SetPosition(param0->unk_1FC, &v0);
 
     v7 = Strbuf_Init(12, 13);
     sub_0202A1A0(param0->unk_00, v7);

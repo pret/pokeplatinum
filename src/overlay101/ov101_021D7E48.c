@@ -364,12 +364,12 @@ void ov101_021D8544 (UnkStruct_ov101_021D8544 * param0)
 
 void ov101_021D8560 (GraphicElementData * param0, VecFx32 * param1)
 {
-    const VecFx32 * v0 = sub_02021D28(param0);
+    const VecFx32 * v0 = GraphicElementData_GetPosition(param0);
     *param1 = *v0;
 }
 
 void ov101_021D8574 (GraphicElementData * param0, VecFx32 * param1)
 {
-    const VecFx32 * v0 = sub_02021D2C(param0);
+    const VecFx32 * v0 = GraphicElementData_GetAffineScale(param0);
     *param1 = *v0;
 }

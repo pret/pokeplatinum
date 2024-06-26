@@ -251,8 +251,8 @@ static void ov77_021D6964 (UnkStruct_ov77_021D6800 * param0)
 
         param0->unk_1B0[v0].unk_04 = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_1B0[v0].unk_04, 0);
-        sub_02021CAC(param0->unk_1B0[v0].unk_04, 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_1B0[v0].unk_04, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_1B0[v0].unk_04, 0);
     }
 }
 
@@ -302,15 +302,15 @@ static void ov77_021D6A44 (UnkStruct_ov77_021D6ADC * param0, const u8 param1, co
         {
             VecFx32 v3;
 
-            v3 = *sub_02021D28(v1->unk_04);
+            v3 = *GraphicElementData_GetPosition(v1->unk_04);
             v3.x = FX32_ONE * (64 + (LCRNG_Next() % 128));
             v3.y = FX32_ONE * (v2 + (LCRNG_Next() % 64));
 
-            sub_02021C50(v1->unk_04, &v3);
+            GraphicElementData_SetPosition(v1->unk_04, &v3);
         }
 
-        sub_02021CC8(v1->unk_04, 1);
-        sub_02021CAC(v1->unk_04, 1);
+        GraphicElementData_SetAnimateFlag(v1->unk_04, 1);
+        GraphicElementData_SetDrawFlag(v1->unk_04, 1);
 
         v1->unk_08 = SysTask_Start(ov77_021D6B48, v1, 20);
     }
@@ -357,10 +357,10 @@ static void ov77_021D6B48 (SysTask * param0, void * param1)
     {
         VecFx32 v1;
 
-        v1 = *sub_02021D28(v0->unk_04);
+        v1 = *GraphicElementData_GetPosition(v0->unk_04);
         v1.y += (FX32_ONE * 3);
 
-        sub_02021C50(v0->unk_04, &v1);
+        GraphicElementData_SetPosition(v0->unk_04, &v1);
     }
 
     v0->unk_01++;
@@ -369,8 +369,8 @@ static void ov77_021D6B48 (SysTask * param0, void * param1)
         SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
-        sub_02021CC8(v0->unk_04, 0);
-        sub_02021CAC(v0->unk_04, 0);
+        GraphicElementData_SetAnimateFlag(v0->unk_04, 0);
+        GraphicElementData_SetDrawFlag(v0->unk_04, 0);
     }
 }
 
@@ -393,19 +393,19 @@ static void ov77_021D6BAC (UnkStruct_ov77_021D6734 * param0, const u8 param1, in
         {
             VecFx32 v3;
 
-            v3 = *sub_02021D28(v2->unk_04);
+            v3 = *GraphicElementData_GetPosition(v2->unk_04);
             v3.x = FX32_ONE * ((16 - 6) + (LCRNG_Next() % 224));
             v3.y = FX32_ONE * (192 + (64 - 6) + (LCRNG_Next() % 56));
 
-            sub_02021C50(v2->unk_04, &v3);
+            GraphicElementData_SetPosition(v2->unk_04, &v3);
         }
 
-        sub_02021CC8(v2->unk_04, 1);
+        GraphicElementData_SetAnimateFlag(v2->unk_04, 1);
 
         if (param2 == 0) {
-            sub_02021CAC(v2->unk_04, 1);
+            GraphicElementData_SetDrawFlag(v2->unk_04, 1);
         } else {
-            sub_02021CAC(v2->unk_04, 0);
+            GraphicElementData_SetDrawFlag(v2->unk_04, 0);
         }
 
         v2->unk_08 = SysTask_Start(ov77_021D6C44, v2, 20);
@@ -422,7 +422,7 @@ static void ov77_021D6C44 (SysTask * param0, void * param1)
         SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
-        sub_02021CC8(v0->unk_04, 0);
-        sub_02021CAC(v0->unk_04, 0);
+        GraphicElementData_SetAnimateFlag(v0->unk_04, 0);
+        GraphicElementData_SetDrawFlag(v0->unk_04, 0);
     }
 }

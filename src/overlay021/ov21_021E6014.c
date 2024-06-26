@@ -552,7 +552,7 @@ static void ov21_021E6860 (GraphicElementData * param0, short param1)
     v0.x = 168 << FX32_SHIFT;
     v0.y = (88 + param1) << FX32_SHIFT;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 }
 
 static void ov21_021E687C (Sprite * param0, short param1)
@@ -567,7 +567,7 @@ static void ov21_021E688C (GraphicElementData * param0, short param1)
     v0.x = FX_Div(0x100 << FX32_SHIFT, param1 << FX32_SHIFT);
     v0.y = v0.x;
 
-    sub_02021C80(param0, &v0, 2);
+    GraphicElementData_SetAffineScaleEx(param0, &v0, 2);
 }
 
 static void ov21_021E68B0 (Sprite * param0, short param1)

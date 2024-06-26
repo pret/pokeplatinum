@@ -140,7 +140,7 @@ void ov21_021D59D8 (GraphicElementData * param0, int param1, int param2, int par
     v0.x <<= FX32_SHIFT;
     v0.y <<= FX32_SHIFT;
 
-    sub_02021C50(param0, &v0);
+    GraphicElementData_SetPosition(param0, &v0);
 
     if (param5->unk_02) {
         SpriteActor_SetSpriteAnimActive(param0, param7);

@@ -469,7 +469,7 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
     }
 
     v0->unk_04 = GraphicElementManager_AddElementEx(&v1);
-    sub_02021E80(v0->unk_04, param1->unk_06);
+    GraphicElementData_SetExplicitPriority(v0->unk_04, param1->unk_06);
 
     if (param0->unk_10[v2].unk_10 == 1) {
         SpriteActor_SetSpriteAnimActive(v0->unk_04, 5 + 1);
@@ -503,7 +503,7 @@ UnkStruct_ov63_0222BB38 * ov63_0222B0C0 (UnkStruct_ov63_0222AE60 * param0, const
 
         v0->unk_08 = GraphicElementManager_AddElementEx(&v1);
 
-        sub_02021E80(v0->unk_08, param1->unk_06);
+        GraphicElementData_SetExplicitPriority(v0->unk_08, param1->unk_06);
     } else {
         v0->unk_08 = NULL;
     }
@@ -534,38 +534,38 @@ void ov63_0222B238 (UnkStruct_ov63_0222BB38 * param0, s16 param1, s16 param2)
     v0.y = param2 << FX32_SHIFT;
     v0.z = 0;
 
-    sub_02021C50(param0->unk_04, &v0);
+    GraphicElementData_SetPosition(param0->unk_04, &v0);
 
     if (param0->unk_08) {
         v0.x += 8 << FX32_SHIFT;
         v0.y += 14 << FX32_SHIFT;
 
-        sub_02021C50(param0->unk_08, &v0);
+        GraphicElementData_SetPosition(param0->unk_08, &v0);
     }
 }
 
 void ov63_0222B278 (UnkStruct_ov63_0222BB38 * param0, u16 param1)
 {
-    sub_02021F58(param0->unk_04, param1);
+    GraphicElementData_SetPriority(param0->unk_04, param1);
 }
 
 u16 ov63_0222B284 (const UnkStruct_ov63_0222BB38 * param0)
 {
-    return sub_02021F74(param0->unk_04);
+    return GraphicElementData_GetPriority(param0->unk_04);
 }
 
 void ov63_0222B294 (UnkStruct_ov63_0222BB38 * param0, BOOL param1)
 {
-    sub_02021CAC(param0->unk_04, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_04, param1);
 
     if (param0->unk_08) {
-        sub_02021CAC(param0->unk_08, param1);
+        GraphicElementData_SetDrawFlag(param0->unk_08, param1);
     }
 }
 
 BOOL ov63_0222B2B0 (const UnkStruct_ov63_0222BB38 * param0)
 {
-    return sub_02021D34(param0->unk_04);
+    return GraphicElementData_GetDrawFlag(param0->unk_04);
 }
 
 int ov63_0222B2BC (const UnkStruct_ov63_0222BB38 * param0)
@@ -597,7 +597,7 @@ void ov63_0222B2E0 (UnkStruct_ov63_0222BB38 * param0, s16 param1, s16 param2)
         v0.y = param2 + 14 << FX32_SHIFT;
         v0.z = 0;
 
-        sub_02021C50(param0->unk_08, &v0);
+        GraphicElementData_SetPosition(param0->unk_08, &v0);
     }
 }
 

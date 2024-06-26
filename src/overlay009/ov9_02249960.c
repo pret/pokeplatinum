@@ -2819,7 +2819,7 @@ static int ov9_0224B23C (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v1 = &Unk_ov9_02251EC8[v3->unk_08.unk_04.unk_00];
     v3->unk_40 = ov9_0224B130(v3->unk_08.unk_34, &v0, v1->unk_00, v1->unk_01, v1->unk_02, v1->unk_03, 3, 0xffff);
 
-    sub_02021C80(v3->unk_40, &v3->unk_08.unk_04.unk_24, 2);
+    GraphicElementData_SetAffineScaleEx(v3->unk_40, &v3->unk_08.unk_04.unk_24, 2);
     return 1;
 }
 
@@ -2863,8 +2863,8 @@ static void ov9_0224B2CC (UnkStruct_ov101_021D5D90 * param0, void * param1)
     v3.y += ((FX32_ONE * -512)) + (sub_0201D15C(((v4->unk_00) / FX32_ONE)) * v4->unk_08.unk_04.unk_10);
 
     sub_020715D4(param0, &v3);
-    sub_02021C50(v4->unk_40, &v3);
-    sub_02021C94(v4->unk_40, sub_0201D2A4(((v0) / FX32_ONE)));
+    GraphicElementData_SetPosition(v4->unk_40, &v3);
+    GraphicElementData_SetAffineZRotation(v4->unk_40, sub_0201D2A4(((v0) / FX32_ONE)));
 }
 
 static void ov9_0224B3A4 (UnkStruct_ov101_021D5D90 * param0, void * param1)

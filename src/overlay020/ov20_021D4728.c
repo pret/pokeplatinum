@@ -313,11 +313,11 @@ static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 
     param0->unk_14 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 56, 0, 0);
     SpriteActor_SetSpriteAnimActive(param0->unk_14, 0);
-    sub_02021CAC(param0->unk_14, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_14, 0);
 
     param0->unk_18 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 136, 0, 0);
     SpriteActor_SetSpriteAnimActive(param0->unk_18, 2);
-    sub_02021CAC(param0->unk_18, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_18, 0);
 }
 
 static void ov20_021D4AD4 (UnkStruct_ov20_021D4AD4 * param0)
@@ -373,8 +373,8 @@ static GraphicElementData * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNS
     v2 = GraphicElementManager_AddElement(&v1);
 
     if (v2) {
-        sub_02021CC8(v2, 1);
-        sub_02021CE4(v2, ((FX32_ONE * 2) / 2));
+        GraphicElementData_SetAnimateFlag(v2, 1);
+        GraphicElementData_SetAnimSpeed(v2, ((FX32_ONE * 2) / 2));
     }
 
     return v2;
@@ -461,11 +461,11 @@ static void ov20_021D4C40 (SysTask * param0, void * param1)
 void ov20_021D4DBC (UnkStruct_ov20_021D4AD4 * param0, BOOL param1)
 {
     if (param1) {
-        sub_02021CAC(param0->unk_14, ov20_021D204C(param0->unk_04));
-        sub_02021CAC(param0->unk_18, ov20_021D2060(param0->unk_04));
+        GraphicElementData_SetDrawFlag(param0->unk_14, ov20_021D204C(param0->unk_04));
+        GraphicElementData_SetDrawFlag(param0->unk_18, ov20_021D2060(param0->unk_04));
     } else {
-        sub_02021CAC(param0->unk_14, 0);
-        sub_02021CAC(param0->unk_18, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_14, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_18, 0);
     }
 }
 

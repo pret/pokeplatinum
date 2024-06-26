@@ -686,9 +686,9 @@ static void ov19_021D865C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
     for (v2 = 0; v2 < 5; v2++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param1->unk_00 != NULL) {
-                v0 = *(sub_02021D28(param1->unk_00));
+                v0 = *(GraphicElementData_GetPosition(param1->unk_00));
                 v0.x = param0->unk_68[param2][v1];
-                sub_02021C50(param1->unk_00, &v0);
+                GraphicElementData_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;
@@ -704,9 +704,9 @@ static void ov19_021D86B4 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
     for (v2 = 0; v2 < 5; v2++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param1->unk_00 != NULL) {
-                v0 = *(sub_02021D28(param1->unk_00));
+                v0 = *(GraphicElementData_GetPosition(param1->unk_00));
                 v0.x = param0->unk_38[param2][v1];
-                sub_02021C50(param1->unk_00, &v0);
+                GraphicElementData_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;
@@ -728,7 +728,7 @@ static void ov19_021D870C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
             v0.x = (112 + param0->unk_585C + v1 * 24) * FX32_ONE;
 
             if (param1->unk_00 != NULL) {
-                sub_02021C50(param1->unk_00, &v0);
+                GraphicElementData_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;

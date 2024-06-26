@@ -154,7 +154,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
 
     GF_ASSERT(param7->unk_00 != NULL);
 
-    sub_02021E90(param7->unk_00, 2 + param7->unk_2C);
+    GraphicElementData_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
     ov19_021DA63C(param0, param7, ov19_021D5EC8(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(param1, v5);
 }
@@ -190,7 +190,7 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
 
     GF_ASSERT(param10->unk_00 != NULL);
 
-    sub_02021E90(param10->unk_00, 2 + param10->unk_2C);
+    GraphicElementData_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
     ov19_021DA63C(param0, param10, ov19_021D5EC8(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(param1, v2);
 }
@@ -270,16 +270,16 @@ void ov19_021DA754 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
         NNS_G2dLoadImage1DMapping(v0, param2 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param1->unk_04));
 
-        sub_02021F7C(param1->unk_00, &(param1->unk_04));
+        GraphicElementData_SetImageProxy(param1->unk_00, &(param1->unk_04));
     }
 }
 
 void ov19_021DA7B8 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)
 {
     if ((param2 == 1) || (param2 == 2)) {
-        sub_02021CF8(param1->unk_00, 1);
+        GraphicElementData_SetAffineOverwriteMode(param1->unk_00, 1);
     } else {
-        sub_02021CF8(param1->unk_00, 0);
+        GraphicElementData_SetAffineOverwriteMode(param1->unk_00, 0);
     }
 
     SpriteActor_SetSpriteAnimActive(param1->unk_00, param2);
@@ -294,7 +294,7 @@ void ov19_021DA7F4 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 {
     u32 v0 = ((param2) ? 6 : 2) + param1->unk_2C;
 
-    sub_02021E90(param1->unk_00, v0);
+    GraphicElementData_SetExplicitPalette(param1->unk_00, v0);
 }
 
 NNSG2dCellDataBank * ov19_021DA80C (UnkStruct_ov19_021DA384 * param0)

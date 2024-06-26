@@ -419,11 +419,11 @@ void ov97_02237CAC (int param0)
         VecFx32 * v1;
 
         if (v0->unk_270 == 0) {
-            if ((sub_02021D34(v0->unk_26C) == 0) && (param0 == 0)) {
-                sub_02021CAC(v0->unk_26C, 1);
+            if ((GraphicElementData_GetDrawFlag(v0->unk_26C) == 0) && (param0 == 0)) {
+                GraphicElementData_SetDrawFlag(v0->unk_26C, 1);
             }
 
-            v1 = ( VecFx32 * )sub_02021D28(v0->unk_26C);
+            v1 = ( VecFx32 * )GraphicElementData_GetPosition(v0->unk_26C);
 
             if (v1->y < 384 * FX32_ONE) {
                 v1->y += FX32_ONE * 3;
@@ -465,10 +465,10 @@ GraphicElementData * ov97_02237D14 (int param0, GraphicElementData * param1, int
         param1 = GraphicElementManager_AddElementEx(&v1);
     }
 
-    sub_02021CC8(param1, 1);
-    sub_02021E80(param1, 0);
+    GraphicElementData_SetAnimateFlag(param1, 1);
+    GraphicElementData_SetExplicitPriority(param1, 0);
     SpriteActor_SetSpriteAnimActive(param1, param4);
-    sub_02021CAC(param1, 1);
+    GraphicElementData_SetDrawFlag(param1, 1);
 
     return param1;
 }
@@ -596,7 +596,7 @@ static void ov97_02237EF8 (GraphicElementData * param0, Pokemon * param1, int pa
     }
 
     {
-        NNSG2dImagePaletteProxy * v6 = sub_02021F9C(param0);
+        NNSG2dImagePaletteProxy * v6 = GraphicElementData_GetPaletteProxy(param0);
         u32 v7 = NNS_G2dGetImagePaletteLocation(v6, NNS_G2D_VRAM_TYPE_2DSUB);
 
         sub_02006E84(param5->archive, param5->palette, 5, 0x20 * (2 + 1) + v7, 32, v3->unk_08);
@@ -718,7 +718,7 @@ void ov97_02238194 (BGL * param0, UnkStruct_0202DF40 * param1)
         break;
     }
 
-    sub_02021CAC(v2->unk_26C, 0);
+    GraphicElementData_SetDrawFlag(v2->unk_26C, 0);
 }
 
 void ov97_0223829C (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * param1, int param2)

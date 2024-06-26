@@ -12248,7 +12248,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
     param1->cellActorData[1] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
 
-    sub_02021F24(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
+    GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
     sub_0200D330(param1->cellActorData[1]);
 
     param1->tmpPtr[0] = sub_02012744(1, 5);

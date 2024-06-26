@@ -127,7 +127,7 @@ void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
     }
 
     SpriteActor_SetSpriteAnimActive(param0->unk_08, 5);
-    sub_02021E80(param0->unk_08, 2);
+    GraphicElementData_SetExplicitPriority(param0->unk_08, 2);
 
     v1 = ov19_021D5E10(param0->unk_790);
 
@@ -140,7 +140,7 @@ void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
     }
 
     if (v1 != 0) {
-        sub_02021CAC(param0->unk_08, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_08, 0);
     }
 
     if (v2 != 3) {
@@ -178,12 +178,12 @@ static void ov19_021D8E00 (UnkStruct_ov19_021D8E00 * param0)
     VecFx32 v0;
     s32 v1, v2;
 
-    v0 = *sub_02021D28(param0->unk_04);
+    v0 = *GraphicElementData_GetPosition(param0->unk_04);
     v1 = (v0.x >> FX32_SHIFT) - 0;
     v2 = (v0.y >> FX32_SHIFT) - -4;
 
     ov19_021DA3CC(param0->unk_48, param0->unk_4C, 1);
-    ov19_021DA428(param0->unk_48, ov19_021D5E9C(param0->unk_790), v1, v2, sub_02021E88(param0->unk_04), 2, 1240, param0->unk_4C);
+    ov19_021DA428(param0->unk_48, ov19_021D5E9C(param0->unk_790), v1, v2, GraphicElementData_GetExplicitPriority(param0->unk_04), 2, 1240, param0->unk_4C);
 
     param0->unk_664[0].unk_00 = (0 * FX32_ONE);
     param0->unk_664[0].unk_04 = (-4 * FX32_ONE);
@@ -263,7 +263,7 @@ void ov19_021D8F60 (UnkStruct_ov19_021D8E00 * param0)
     ov19_021D8EE0(param0, &v0, &v1);
 
     if (param0->unk_786 != 0) {
-        sub_02021CAC(param0->unk_08, 0);
+        GraphicElementData_SetDrawFlag(param0->unk_08, 0);
     }
 
     param0->unk_774 = param0->unk_764 << FX32_SHIFT;
@@ -366,7 +366,7 @@ static void ov19_021D9088 (SysTask * param0, void * param1)
     v0->unk_78B = ov19_021D5E2C(v0->unk_790);
 
     if (v0->unk_786 == 0) {
-        sub_02021CAC(v0->unk_08, 1);
+        GraphicElementData_SetDrawFlag(v0->unk_08, 1);
     }
 
     if (v0->unk_786 != 2) {
@@ -401,7 +401,7 @@ BOOL ov19_021D9278 (UnkStruct_ov19_021D8E00 * param0)
 static void ov19_021D928C (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021D8E00 * v0 = (UnkStruct_ov19_021D8E00 *)param1;
-    VecFx32 v1 = *(sub_02021D28(v0->unk_04));
+    VecFx32 v1 = *(GraphicElementData_GetPosition(v0->unk_04));
 
     switch (v0->unk_784) {
     case 0:
@@ -463,7 +463,7 @@ BOOL ov19_021D939C (UnkStruct_ov19_021D8E00 * param0)
 static void ov19_021D93D0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021D8E00 * v0 = (UnkStruct_ov19_021D8E00 *)param1;
-    VecFx32 v1 = *(sub_02021D28(v0->unk_04));
+    VecFx32 v1 = *(GraphicElementData_GetPosition(v0->unk_04));
 
     switch (v0->unk_784) {
     case 0:
@@ -514,11 +514,11 @@ void ov19_021D94B4 (UnkStruct_ov19_021D8E00 * param0)
     param0->unk_788 = 0;
 
     v1 = ov19_021DA224(param0);
-    v0 = *(sub_02021D28(v1));
-    ov19_021D9554(param0, param0->unk_4C->unk_00, v0.y, 1, sub_02021F74(v1));
+    v0 = *(GraphicElementData_GetPosition(v1));
+    ov19_021D9554(param0, param0->unk_4C->unk_00, v0.y, 1, GraphicElementData_GetPriority(v1));
 
-    v0 = *(sub_02021D28(param0->unk_4C->unk_00));
-    ov19_021D9554(param0, v1, v0.y, -1, sub_02021F74(param0->unk_4C->unk_00));
+    v0 = *(GraphicElementData_GetPosition(param0->unk_4C->unk_00));
+    ov19_021D9554(param0, v1, v0.y, -1, GraphicElementData_GetPriority(param0->unk_4C->unk_00));
 
     param0->unk_784 = 0;
 }
@@ -541,7 +541,7 @@ static void ov19_021D9554 (UnkStruct_ov19_021D8E00 * param0, GraphicElementData 
     if (v0) {
         VecFx32 v1;
 
-        v1 = *sub_02021D28(param1);
+        v1 = *GraphicElementData_GetPosition(param1);
 
         v0->unk_00 = param1;
         v0->unk_04 = 12;
@@ -581,7 +581,7 @@ static void ov19_021D9600 (SysTask * param0, void * param1)
     UnkStruct_ov19_021D9554 * v0 = (UnkStruct_ov19_021D9554 *)param1;
     VecFx32 v1;
 
-    v1 = *sub_02021D28(v0->unk_00);
+    v1 = *GraphicElementData_GetPosition(v0->unk_00);
 
     if (v0->unk_04) {
         fx32 v2;
@@ -598,12 +598,12 @@ static void ov19_021D9600 (SysTask * param0, void * param1)
         v2 = v0->unk_24 * sub_0201D15C(v0->unk_18 >> FX32_SHIFT);
         v1.x = v0->unk_14 + v2;
 
-        sub_02021C50(v0->unk_00, &v1);
+        GraphicElementData_SetPosition(v0->unk_00, &v1);
     } else {
         v1.x = v0->unk_14;
         v1.y = v0->unk_10;
 
-        sub_02021C50(v0->unk_00, &v1);
+        GraphicElementData_SetPosition(v0->unk_00, &v1);
         ov19_021D79B8(param1, ov19_021D95F4, v0->unk_28);
         SysTask_Done(param0);
     }
@@ -617,7 +617,7 @@ void ov19_021D9690 (UnkStruct_ov19_021D8E00 * param0)
         SpriteActor_SetSpriteAnimActive(param0->unk_04, 3);
     }
 
-    v0 = *sub_02021D28(param0->unk_04);
+    v0 = *GraphicElementData_GetPosition(param0->unk_04);
     v0.y += (-2 * FX32_ONE);
 
     ov19_021D9E04(param0, &v0);
@@ -642,7 +642,7 @@ static void ov19_021D9718 (SysTask * param0, void * param1)
     switch (v0->unk_784) {
     case 0:
         if (++(v0->unk_787) >= 4) {
-            VecFx32 v1 = *sub_02021D28(v0->unk_04);
+            VecFx32 v1 = *GraphicElementData_GetPosition(v0->unk_04);
 
             v0->unk_770 = (v1.y >> FX32_SHIFT) + 6;
             v0->unk_780 = (6 * FX32_ONE) / 2;
@@ -657,7 +657,7 @@ static void ov19_021D9718 (SysTask * param0, void * param1)
         break;
     case 1:
     {
-        VecFx32 v2 = *sub_02021D28(v0->unk_04);
+        VecFx32 v2 = *GraphicElementData_GetPosition(v0->unk_04);
 
         if (v0->unk_787) {
             v2.y += v0->unk_780;
@@ -676,7 +676,7 @@ static void ov19_021D9718 (SysTask * param0, void * param1)
 
 void ov19_021D97FC (UnkStruct_ov19_021D8E00 * param0)
 {
-    VecFx32 v0 = *sub_02021D28(param0->unk_04);
+    VecFx32 v0 = *GraphicElementData_GetPosition(param0->unk_04);
 
     param0->unk_770 = (v0.y >> FX32_SHIFT) + -4;
     param0->unk_780 = (-4 * FX32_ONE) / 4;
@@ -709,7 +709,7 @@ static void ov19_021D9894 (SysTask * param0, void * param1)
     VecFx32 v1;
 
     v0 = (UnkStruct_ov19_021D8E00 *)param1;
-    v1 = *sub_02021D28(v0->unk_04);
+    v1 = *GraphicElementData_GetPosition(v0->unk_04);
 
     if (v0->unk_787) {
         v1.y += v0->unk_780;
@@ -777,10 +777,10 @@ BOOL ov19_021D995C (UnkStruct_ov19_021D8E00 * param0)
 
 void ov19_021D99F4 (UnkStruct_ov19_021D8E00 * param0)
 {
-    sub_02021E80(param0->unk_04, 1);
+    GraphicElementData_SetExplicitPriority(param0->unk_04, 1);
 
     if (param0->unk_78C) {
-        sub_02021E80(param0->unk_4C->unk_00, 1);
+        GraphicElementData_SetExplicitPriority(param0->unk_4C->unk_00, 1);
     }
 
     if (param0->unk_78D) {
@@ -790,10 +790,10 @@ void ov19_021D99F4 (UnkStruct_ov19_021D8E00 * param0)
 
 void ov19_021D9A2C (UnkStruct_ov19_021D8E00 * param0)
 {
-    sub_02021E80(param0->unk_04, 2);
+    GraphicElementData_SetExplicitPriority(param0->unk_04, 2);
 
     if (param0->unk_78C) {
-        sub_02021E80(param0->unk_4C->unk_00, 2);
+        GraphicElementData_SetExplicitPriority(param0->unk_4C->unk_00, 2);
     }
 
     if (param0->unk_78D) {
@@ -830,9 +830,9 @@ void ov19_021D9AB0 (UnkStruct_ov19_021D8E00 * param0, u32 param1)
 void ov19_021D9AEC (UnkStruct_ov19_021D8E00 * param0)
 {
     if (ov19_021D5EE0(param0->unk_790)) {
-        sub_02021E90(param0->unk_04, 1);
+        GraphicElementData_SetExplicitPalette(param0->unk_04, 1);
     } else {
-        sub_02021E90(param0->unk_04, 0);
+        GraphicElementData_SetExplicitPalette(param0->unk_04, 0);
     }
 }
 
@@ -843,7 +843,7 @@ void ov19_021D9B10 (UnkStruct_ov19_021D8E00 * param0)
 
 void ov19_021D9B1C (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
 {
-    *param1 = *(sub_02021D28(param0->unk_04));
+    *param1 = *(GraphicElementData_GetPosition(param0->unk_04));
 }
 
 void ov19_021D9B34 (UnkStruct_ov19_021D8E00 * param0)
@@ -999,7 +999,7 @@ static void ov19_021D9D48 (s32 * param0, s32 * param1, u8 * param2, UnkStruct_ov
 
 static void ov19_021D9E04 (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
 {
-    sub_02021C50(param0->unk_04, param1);
+    GraphicElementData_SetPosition(param0->unk_04, param1);
 
     if (param0->unk_78C) {
         VecFx32 v0;
@@ -1010,7 +1010,7 @@ static void ov19_021D9E04 (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
         for (v1 = 0; v1 < param0->unk_754; v1++) {
             v0.x = param1->x + param0->unk_664[v1].unk_00;
             v0.y = param1->y - param0->unk_664[v1].unk_04;
-            sub_02021C50(param0->unk_4C[v1].unk_00, &v0);
+            GraphicElementData_SetPosition(param0->unk_4C[v1].unk_00, &v0);
         }
     }
 
@@ -1022,7 +1022,7 @@ static void ov19_021D9E04 (UnkStruct_ov19_021D8E00 * param0, VecFx32 * param1)
         VecFx32 v2 = *param1;
 
         v2.y += (24 << FX32_SHIFT);
-        sub_02021C50(param0->unk_08, &v2);
+        GraphicElementData_SetPosition(param0->unk_08, &v2);
     }
 }
 

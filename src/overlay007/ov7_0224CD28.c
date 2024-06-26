@@ -703,17 +703,17 @@ static void ov7_0224D85C (BmpList * param0, u32 param1, u8 param2)
         sub_020014DC(param0, &v5, &v6);
 
         if (v5 == 0) {
-            sub_02021CAC(v0->unk_25C[0], 0);
+            GraphicElementData_SetDrawFlag(v0->unk_25C[0], 0);
         } else {
-            sub_02021CAC(v0->unk_25C[0], 1);
+            GraphicElementData_SetDrawFlag(v0->unk_25C[0], 1);
         }
 
         v4 = sub_02001504(param0, 2);
 
         if ((v4 > 7) && (v4 > v5 + 7)) {
-            sub_02021CAC(v0->unk_25C[1], 1);
+            GraphicElementData_SetDrawFlag(v0->unk_25C[1], 1);
         } else {
-            sub_02021CAC(v0->unk_25C[1], 0);
+            GraphicElementData_SetDrawFlag(v0->unk_25C[1], 0);
         }
     }
     sub_0201A9A4(&v0->unk_08[1]);
@@ -850,11 +850,11 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
         Strbuf* v3;
         u32 v4;
 
-        param0->unk_26C[0] = (u16)sub_02021D34(param0->unk_25C[0]);
-        param0->unk_26C[1] = (u16)sub_02021D34(param0->unk_25C[1]);
+        param0->unk_26C[0] = (u16)GraphicElementData_GetDrawFlag(param0->unk_25C[0]);
+        param0->unk_26C[1] = (u16)GraphicElementData_GetDrawFlag(param0->unk_25C[1]);
 
-        sub_02021CAC(param0->unk_25C[0], 0);
-        sub_02021CAC(param0->unk_25C[1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[1], 0);
 
         ov7_0224EC10(param0, 1);
 
@@ -926,8 +926,8 @@ static u8 ov7_0224DE94 (UnkStruct_ov7_0224D008 * param0)
     ov7_0224DED4(param0);
     ov7_0224E28C(param0, 0);
 
-    sub_02021CAC(param0->unk_25C[0], 1);
-    sub_02021CAC(param0->unk_25C[1], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_25C[0], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_25C[1], 1);
 
     return 6;
 }
@@ -971,8 +971,8 @@ static u8 ov7_0224DFB0 (UnkStruct_ov7_0224D008 * param0)
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-        sub_02021CAC(param0->unk_25C[0], 0);
-        sub_02021CAC(param0->unk_25C[1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[1], 0);
         Window_Clear(&param0->unk_08[4], 1);
         Window_Clear(&param0->unk_08[3], 1);
         BGL_FillWindow(&param0->unk_08[5], 15);
@@ -988,8 +988,8 @@ static u8 ov7_0224DFB0 (UnkStruct_ov7_0224D008 * param0)
 
         ov7_0224EB38(param0, 0);
 
-        sub_02021CAC(param0->unk_25C[0], param0->unk_26C[0]);
-        sub_02021CAC(param0->unk_25C[1], param0->unk_26C[1]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
 
         ov7_0224EC10(param0, 0);
 
@@ -1169,8 +1169,8 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
     case 0xfffffffe:
         sub_0200E084(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
-        sub_02021CAC(param0->unk_25C[0], param0->unk_26C[0]);
-        sub_02021CAC(param0->unk_25C[1], param0->unk_26C[1]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
         sub_0201A9A4(&param0->unk_08[1]);
         return 4;
@@ -1249,8 +1249,8 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 
         sub_0200E084(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
-        sub_02021CAC(param0->unk_25C[0], param0->unk_26C[0]);
-        sub_02021CAC(param0->unk_25C[1], param0->unk_26C[1]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
         sub_0201A9A4(&param0->unk_08[1]);
 
@@ -1269,8 +1269,8 @@ static u8 ov7_0224E7C8 (UnkStruct_ov7_0224D008 * param0)
     if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         sub_0200E084(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
-        sub_02021CAC(param0->unk_25C[0], param0->unk_26C[0]);
-        sub_02021CAC(param0->unk_25C[1], param0->unk_26C[1]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
         sub_0201A9A4(&param0->unk_08[1]);
 
@@ -1504,7 +1504,7 @@ static void ov7_0224EB7C (UnkStruct_ov7_0224D008 * param0, u16 param1)
     UnkStruct_02009DC8 * v0;
 
     if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3)) {
-        sub_02021CAC(param0->unk_25C[3], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_25C[3], 0);
         return;
     }
 

@@ -486,7 +486,7 @@ static BOOL ov86_0223B464 (UnkStruct_ov86_0223B3C8 * param0)
         break;
     case 6:
         if (ov86_0223B6B4(param0, 0)) {
-            sub_02021CAC(param0->unk_1B4[v0], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_1B4[v0], 0);
 
             if (++v0 < param0->unk_04) {
                 param0->unk_08 = 30;
@@ -848,7 +848,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         v3.priority = 1 + v12;
         param0->unk_1B4[v12] = GraphicElementManager_AddElement(&v3);
 
-        sub_02021CAC(param0->unk_1B4[v12], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_1B4[v12], 0);
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
         Pokemon_BuildArchivedSprite(&v1, (Pokemon *)v11, 2);
 
@@ -885,7 +885,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     v3.priority = 0;
     param0->unk_1CC = GraphicElementManager_AddElement(&v3);
 
-    sub_02021CAC(param0->unk_1CC, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_1CC, 0);
     Heap_FreeToHeap(v10);
     Heap_FreeToHeap(v9);
 }
@@ -946,8 +946,8 @@ static void ov86_0223BDE0 (UnkStruct_ov86_0223B3C8 * param0, int param1, int par
 
     VEC_Set(&v1->unk_0C, v0[v2].unk_00, 393216, 0);
 
-    sub_02021C50(v1->unk_08, &v1->unk_0C);
-    sub_02021CAC(v1->unk_08, 1);
+    GraphicElementData_SetPosition(v1->unk_08, &v1->unk_0C);
+    GraphicElementData_SetDrawFlag(v1->unk_08, 1);
 
     param0->unk_1C34[param2] = ov86_0223B744(ov86_0223BE6C, v1, 0);
 }
@@ -957,7 +957,7 @@ static void ov86_0223BE6C (SysTask * param0, void * param1)
     UnkStruct_ov86_0223BDE0 * v0 = param1;
 
     v0->unk_0C.x = ov86_0223D284(&v0->unk_18);
-    sub_02021C50(v0->unk_08, &v0->unk_0C);
+    GraphicElementData_SetPosition(v0->unk_08, &v0->unk_0C);
 
     if (ov86_0223D2A4(&v0->unk_18)) {
         ov86_0223BDCC(&v0->unk_00);
@@ -977,8 +977,8 @@ static void ov86_0223BEA0 (UnkStruct_ov86_0223B3C8 * param0, int param1)
 
     VEC_Set(&v0->unk_0C, FX32_CONST(128), FX32_CONST(232), 0);
 
-    sub_02021C50(v0->unk_08, &v0->unk_0C);
-    sub_02021CAC(v0->unk_08, 1);
+    GraphicElementData_SetPosition(v0->unk_08, &v0->unk_0C);
+    GraphicElementData_SetDrawFlag(v0->unk_08, 1);
 
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223BF10, v0, 0);
 }
@@ -988,7 +988,7 @@ static void ov86_0223BF10 (SysTask * param0, void * param1)
     UnkStruct_ov86_0223BEA0 * v0 = param1;
 
     v0->unk_0C.y = ov86_0223D284(&v0->unk_18);
-    sub_02021C50(v0->unk_08, &v0->unk_0C);
+    GraphicElementData_SetPosition(v0->unk_08, &v0->unk_0C);
 
     if (ov86_0223D2A4(&v0->unk_18)) {
         ov86_0223BDCC(&v0->unk_00);
@@ -1248,7 +1248,7 @@ static void ov86_0223C398 (SysTask * param0, void * param1)
     v1 = sub_02008900(&v0->unk_10);
 
     if (v1 >= 0) {
-        sub_02021F7C(v0->unk_08, &v0->unk_24[v1]);
+        GraphicElementData_SetImageProxy(v0->unk_08, &v0->unk_24[v1]);
     } else {
         ov86_0223BDCC(&v0->unk_00);
         SysTask_Done(param0);
@@ -1473,8 +1473,8 @@ static void ov86_0223C840 (UnkStruct_ov86_0223B3C8 * param0, int param1)
 
     for (v3 = 0; v3 < v2->unk_14; v3++) {
         v2->unk_94[v3] = v0[v3];
-        sub_02021C50(v2->unk_08[v3], &v0[v3]);
-        sub_02021CAC(v2->unk_08[v3], 1);
+        GraphicElementData_SetPosition(v2->unk_08[v3], &v0[v3]);
+        GraphicElementData_SetDrawFlag(v2->unk_08[v3], 1);
     }
 
     for (v3 = 0; v3 < 6; v3++) {
@@ -1493,7 +1493,7 @@ static void ov86_0223C914 (SysTask * param0, void * param1)
         v0->unk_94[v1].x = ov86_0223D284(&v0->unk_1C[v1]);
 
         if (v1 < v0->unk_14) {
-            sub_02021C50(v0->unk_08[v1], &(v0->unk_94[v1]));
+            GraphicElementData_SetPosition(v0->unk_08[v1], &(v0->unk_94[v1]));
         }
     }
 

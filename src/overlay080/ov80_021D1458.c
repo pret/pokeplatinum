@@ -916,15 +916,15 @@ static void ov80_021D2398 (UnkStruct_ov80_021D2A08 * param0)
 
     v0->unk_100 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
 
-    sub_02021CAC(v0->unk_100, 0);
-    sub_02021CE4(v0->unk_100, FX32_ONE);
+    GraphicElementData_SetDrawFlag(v0->unk_100, 0);
+    GraphicElementData_SetAnimSpeed(v0->unk_100, FX32_ONE);
     SpriteActor_SetPositionXY(v0->unk_100, 128, 108);
 
     v0->unk_104 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
 
-    sub_02021CAC(v0->unk_104, 1);
-    sub_02021CE4(v0->unk_104, FX32_CONST(2));
-    sub_02021CC8(v0->unk_104, 1);
+    GraphicElementData_SetDrawFlag(v0->unk_104, 1);
+    GraphicElementData_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
+    GraphicElementData_SetAnimateFlag(v0->unk_104, 1);
     SpriteActor_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 
     if (param0->unk_2C->unk_0C == 0) {
@@ -935,7 +935,7 @@ static void ov80_021D2398 (UnkStruct_ov80_021D2A08 * param0)
 
     v0->unk_108 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &v1);
 
-    sub_02021CAC(v0->unk_108, 1);
+    GraphicElementData_SetDrawFlag(v0->unk_108, 1);
     SpriteActor_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
     SpriteActor_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
@@ -1027,8 +1027,8 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
         v2->unk_0C = sub_0200CA08(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
 
         SpriteActor_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
-        sub_02021F58(v2->unk_0C, 2);
-        sub_02021CAC(v2->unk_0C, 0);
+        GraphicElementData_SetPriority(v2->unk_0C, 2);
+        GraphicElementData_SetDrawFlag(v2->unk_0C, 0);
     }
 
     if (v0->unk_A4.unk_00 == 0) {
@@ -1047,8 +1047,8 @@ static void ov80_021D26AC (SysTask * param0, void * param1)
         return;
     }
 
-    sub_02021CAC(v0->unk_0C[v0->unk_0B].unk_0C, 0);
-    sub_02021CAC(v0->unk_0C[v0->unk_0A].unk_0C, 1);
+    GraphicElementData_SetDrawFlag(v0->unk_0C[v0->unk_0B].unk_0C, 0);
+    GraphicElementData_SetDrawFlag(v0->unk_0C[v0->unk_0A].unk_0C, 1);
 
     v0->unk_0B = v0->unk_0A;
     v0->unk_0A = (v0->unk_0A + (v0->unk_00 - 1)) % v0->unk_00;
@@ -1096,8 +1096,8 @@ static void ov80_021D2774 (SysTask * param0, void * param1)
 
     switch (v1->unk_04) {
     case 0:
-        sub_02021CAC(v1->unk_100, 1);
-        sub_02021CC8(v1->unk_100, 1);
+        GraphicElementData_SetDrawFlag(v1->unk_100, 1);
+        GraphicElementData_SetAnimateFlag(v1->unk_100, 1);
         SpriteActor_SetAnimFrame(v1->unk_100, 1);
         Sound_PlayEffect(1508);
         v1->unk_04++;
@@ -1114,8 +1114,8 @@ static void ov80_021D2774 (SysTask * param0, void * param1)
 
         break;
     case 2:
-        sub_02021CAC(v1->unk_100, 0);
-        sub_02021CC8(v1->unk_100, 0);
+        GraphicElementData_SetDrawFlag(v1->unk_100, 0);
+        GraphicElementData_SetAnimateFlag(v1->unk_100, 0);
 
         v0->unk_14 = 0;
         sub_0200F174(4, 13, 2, 0x0, 8, 1, v0->unk_04);

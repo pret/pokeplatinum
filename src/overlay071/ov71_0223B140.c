@@ -238,9 +238,9 @@ int ov71_0223B140 (OverlayManager * param0, int * param1)
                 }
 
                 if (v5 == 4 - 1) {
-                    sub_02021CAC(v0->unk_30E4.unk_1C0[8 + v6], 1);
+                    GraphicElementData_SetDrawFlag(v0->unk_30E4.unk_1C0[8 + v6], 1);
                 } else if (v5 == 4) {
-                    sub_02021CAC(v0->unk_30E4.unk_1C0[(8 + 8) + v6], 1);
+                    GraphicElementData_SetDrawFlag(v0->unk_30E4.unk_1C0[(8 + 8) + v6], 1);
                 }
             }
         }
@@ -280,8 +280,8 @@ int ov71_0223B388 (OverlayManager * param0, int * param1)
                 v0->unk_3350 = 1;
                 v0->unk_3381 = 1;
 
-                sub_02021CAC(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
-                sub_02021CC8(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
+                GraphicElementData_SetDrawFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
+                GraphicElementData_SetAnimateFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
                 SpriteActor_SetSpriteAnimActive(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 10);
 
                 v0->unk_337E = 0;
@@ -1110,10 +1110,10 @@ static void ov71_0223C1AC (UnkStruct_ov71_0223B620 * param0, const u8 param1)
                 }
 
                 if (v1 == 4 - 1) {
-                    sub_02021CAC(param0->unk_30E4.unk_1C0[8 + param1], 1);
+                    GraphicElementData_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 1);
                 } else if (v1 == 4) {
-                    sub_02021CAC(param0->unk_30E4.unk_1C0[8 + param1], 0);
-                    sub_02021CAC(param0->unk_30E4.unk_1C0[(8 + 8) + param1], 1);
+                    GraphicElementData_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 0);
+                    GraphicElementData_SetDrawFlag(param0->unk_30E4.unk_1C0[(8 + 8) + param1], 1);
                 }
             }
         }

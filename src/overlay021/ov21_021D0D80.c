@@ -736,17 +736,17 @@ void ov21_021D1778 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3
     v5.x = param4;
     v5.y = param5;
 
-    sub_02021C50(v0, &v5);
-    sub_02021CAC(v0, 1);
+    GraphicElementData_SetPosition(v0, &v5);
+    GraphicElementData_SetDrawFlag(v0, 1);
 
     if (v6->unk_04 == 2) {
         v5.x = param4 + (-54 * FX32_ONE);
         v5.y = param5;
 
-        sub_02021C50(v1, &v5);
-        sub_02021CAC(v1, 1);
+        GraphicElementData_SetPosition(v1, &v5);
+        GraphicElementData_SetDrawFlag(v1, 1);
     } else {
-        sub_02021CAC(v1, 0);
+        GraphicElementData_SetDrawFlag(v1, 0);
     }
 
     v4 = ov21_021D2344(param0, 1);
@@ -780,9 +780,9 @@ void ov21_021D1858 (UnkStruct_ov21_021D22F8 * param0, int param1, int param2)
     v0.x = param1 << FX32_SHIFT;
     v0.y = param2 << FX32_SHIFT;
 
-    sub_02021C50(param0->unk_00, &v0);
+    GraphicElementData_SetPosition(param0->unk_00, &v0);
     v0.x += (-54 * FX32_ONE);
-    sub_02021C50(param0->unk_04, &v0);
+    GraphicElementData_SetPosition(param0->unk_04, &v0);
 
     if (param0->unk_08->unk_00) {
         sub_02012938(param0->unk_08->unk_00);

@@ -827,7 +827,7 @@ static void ov5_021DE67C(GraphicElementData *param0, void *param1, u32 param2)
 {
     NNSG2dImagePaletteProxy *v0;
 
-    v0 = sub_02021F9C(param0);
+    v0 = GraphicElementData_GetPaletteProxy(param0);
 
     DC_FlushRange(param1, param2);
     GX_LoadOBJPltt(param1, NNS_G2dGetImagePaletteLocation(v0, NNS_G2D_VRAM_TYPE_2DMAIN), param2);

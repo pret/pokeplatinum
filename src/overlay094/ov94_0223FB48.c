@@ -367,13 +367,13 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
 
     param0->unk_E20 = GraphicElementManager_AddElementEx(&v1);
 
-    sub_02021CC8(param0->unk_E20, 1);
+    GraphicElementData_SetAnimateFlag(param0->unk_E20, 1);
     SpriteActor_SetSpriteAnimActive(param0->unk_E20, 4);
 
     if ((param0->unk_112 == 31) || ((param0->unk_112 >= 0) && (param0->unk_112 <= 5))) {
-        sub_02021E80(param0->unk_E20, 0);
+        GraphicElementData_SetExplicitPriority(param0->unk_E20, 0);
     } else {
-        sub_02021E80(param0->unk_E20, 1);
+        GraphicElementData_SetExplicitPriority(param0->unk_E20, 1);
     }
 
     for (v0 = 0; v0 < 30; v0++) {
@@ -384,7 +384,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
         param0->unk_E28[v0] = GraphicElementManager_AddElementEx(&v1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_E28[v0], 6 + v0);
-        sub_02021E80(param0->unk_E28[v0], 1);
+        GraphicElementData_SetExplicitPriority(param0->unk_E28[v0], 1);
     }
 
     for (v0 = 0; v0 < 30; v0++) {
@@ -395,7 +395,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
         param0->unk_EA0[v0] = GraphicElementManager_AddElementEx(&v1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_EA0[v0], 40);
-        sub_02021E80(param0->unk_EA0[v0], 1);
+        GraphicElementData_SetExplicitPriority(param0->unk_EA0[v0], 1);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -406,7 +406,7 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
         param0->unk_F18[v0] = GraphicElementManager_AddElementEx(&v1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_F18[v0], 42);
-        sub_02021E80(param0->unk_F18[v0], 1);
+        GraphicElementData_SetExplicitPriority(param0->unk_F18[v0], 1);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -415,9 +415,9 @@ static void ov94_0223FE24 (UnkStruct_ov94_0223FD4C * param0)
 
         param0->unk_F54[v0] = GraphicElementManager_AddElementEx(&v1);
 
-        sub_02021CC8(param0->unk_F54[v0], 1);
+        GraphicElementData_SetAnimateFlag(param0->unk_F54[v0], 1);
         SpriteActor_SetSpriteAnimActive(param0->unk_F54[v0], 38 + v0);
-        sub_02021E80(param0->unk_F54[v0], 1);
+        GraphicElementData_SetExplicitPriority(param0->unk_F54[v0], 1);
     }
 }
 
@@ -663,9 +663,9 @@ static void ov94_022404F0 (UnkStruct_ov94_0223FD4C * param0)
     }
 
     if ((param0->unk_112 == 31) || ((param0->unk_112 >= 0) && (param0->unk_112 <= 5))) {
-        sub_02021E80(param0->unk_E20, 0);
+        GraphicElementData_SetExplicitPriority(param0->unk_E20, 0);
     } else {
-        sub_02021E80(param0->unk_E20, 1);
+        GraphicElementData_SetExplicitPriority(param0->unk_E20, 1);
     }
 }
 
@@ -1082,7 +1082,7 @@ static void ov94_02240E5C (void * param0)
             DC_FlushRange(v2->unk_0C, ((4 * 4) * 0x20));
             GX_LoadOBJ(v2->unk_0C, v2->unk_00, ((4 * 4) * 0x20));
 
-            sub_02021E90(v2->unk_08, v2->unk_04);
+            GraphicElementData_SetExplicitPalette(v2->unk_08, v2->unk_04);
         }
     }
 
@@ -1113,10 +1113,10 @@ static void ov94_02240EAC (BoxPokemon * param0, GraphicElementData * param1, Gra
 
     if (v0) {
         ov94_02240DF8(*param3, v3, v2, param4, param1, param5, param7);
-        sub_02021CAC(param1, 1);
+        GraphicElementData_SetDrawFlag(param1, 1);
 
         if (v1 != 0) {
-            sub_02021CAC(param2, 1);
+            GraphicElementData_SetDrawFlag(param2, 1);
 
             if (Item_IsMail(v1)) {
                 SpriteActor_SetSpriteAnimActive(param2, 41);
@@ -1124,11 +1124,11 @@ static void ov94_02240EAC (BoxPokemon * param0, GraphicElementData * param1, Gra
                 SpriteActor_SetSpriteAnimActive(param2, 40);
             }
         } else {
-            sub_02021CAC(param2, 0);
+            GraphicElementData_SetDrawFlag(param2, 0);
         }
     } else {
-        sub_02021CAC(param1, 0);
-        sub_02021CAC(param2, 0);
+        GraphicElementData_SetDrawFlag(param1, 0);
+        GraphicElementData_SetDrawFlag(param2, 0);
 
         param7->unk_08 = NULL;
     }
@@ -1156,7 +1156,7 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
             ov94_02240EAC(sub_02079C9C(v5, param1, v1), param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
             if (v1 < 6) {
-                sub_02021CAC(param0->unk_F18[v1], 0);
+                GraphicElementData_SetDrawFlag(param0->unk_F18[v1], 0);
             }
         }
 
@@ -1172,20 +1172,20 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
             ov94_02240EAC(v4, param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
             if (Pokemon_GetValue(v3, MON_DATA_MAIL_ID, NULL)) {
-                sub_02021CAC(param0->unk_F18[v1], 1);
+                GraphicElementData_SetDrawFlag(param0->unk_F18[v1], 1);
             } else {
-                sub_02021CAC(param0->unk_F18[v1], 0);
+                GraphicElementData_SetDrawFlag(param0->unk_F18[v1], 0);
             }
         }
 
         for (; v1 < 30; v1++) {
             param0->unk_1108->unk_00[v1].unk_00 = 0;
-            sub_02021CAC(param0->unk_E28[v1], 0);
-            sub_02021CAC(param0->unk_EA0[v1], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_E28[v1], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_EA0[v1], 0);
             v7[v1].unk_08 = NULL;
 
             if (v1 < 6) {
-                sub_02021CAC(param0->unk_F18[v1], 0);
+                GraphicElementData_SetDrawFlag(param0->unk_F18[v1], 0);
             }
         }
 

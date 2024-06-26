@@ -211,13 +211,13 @@ static BOOL ov87_021D12C0 (UnkStruct_ov87_021D106C * param0, int * param1)
     for (v1 = 0; v1 < v0->unk_14; v1++) {
         if (v1 == v0->unk_18) {
             sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
-            sub_02021F58(param0->unk_1C4[v1], 0);
+            GraphicElementData_SetPriority(param0->unk_1C4[v1], 0);
             Sound_FlagDefaultChatotCry(1);
 
             sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
             sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
-            sub_02021F58(param0->unk_1C4[v1], v1 + 1);
+            GraphicElementData_SetPriority(param0->unk_1C4[v1], v1 + 1);
         }
     }
 
@@ -531,7 +531,7 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         v2.priority = v9 + 1;
 
         param0->unk_1C4[v9] = GraphicElementManager_AddElement(&v2);
-        sub_02021CAC(param0->unk_1C4[v9], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_1C4[v9], 0);
     }
 
     Heap_FreeToHeap(v8);
@@ -568,11 +568,11 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
             sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
         }
 
-        sub_02021CAC(param0->unk_1C4[v3], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_1C4[v3], 1);
     }
 
     for ( ; v3 < 6; v3++) {
-        sub_02021CAC(param0->unk_1C4[v3], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_1C4[v3], 0);
     }
 }
 
@@ -581,6 +581,6 @@ static void ov87_021D1AB8 (UnkStruct_ov87_021D106C * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02021CAC(param0->unk_1C4[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_1C4[v0], 0);
     }
 }

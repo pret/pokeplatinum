@@ -489,10 +489,10 @@ static void ov97_0222B404 (UnkStruct_0222AE60 * param0)
     ov97_02237B0C(116, 43, 40, 42, 41, 0);
 
     param0->unk_168[0] = ov97_02237D14(0, param0->unk_168[0], HW_LCD_WIDTH / 2, 8, 0);
-    sub_02021CAC(param0->unk_168[0], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_168[0], 0);
 
     param0->unk_168[1] = ov97_02237D14(0, param0->unk_168[1], HW_LCD_WIDTH / 2, HW_LCD_HEIGHT - 8, 1);
-    sub_02021CAC(param0->unk_168[1], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_168[1], 0);
 }
 
 static void ov97_0222B46C (UnkStruct_0222AE60 * param0)
@@ -893,8 +893,8 @@ static void ov97_0222BC1C (UnkStruct_0222AE60 * param0)
         }
     }
 
-    sub_02021CAC(param0->unk_168[0], v1);
-    sub_02021CAC(param0->unk_168[1], v2);
+    GraphicElementData_SetDrawFlag(param0->unk_168[0], v1);
+    GraphicElementData_SetDrawFlag(param0->unk_168[1], v2);
 }
 
 static void ov97_0222BC9C (OverlayManager * param0)

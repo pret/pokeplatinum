@@ -272,8 +272,8 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (14 * 8);
         param0->unk_250[0] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[0], 0);
-        sub_02021CAC(param0->unk_250[0], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_250[0], 0);
 
         ov77_021D54E8(1, param0, 0, &v2, &param0->unk_294[2], 1, NNS_G2D_VRAM_TYPE_2DSUB);
 
@@ -281,8 +281,8 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (14 * 8) + (192 << FX32_SHIFT);
         param0->unk_250[1] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[1], 0);
-        sub_02021CAC(param0->unk_250[1], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_250[1], 0);
 
         ov77_021D54E8(2, param0, 0, &v2, &param0->unk_294[1], 1, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -290,8 +290,8 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (14 * 8);
         param0->unk_250[2] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[2], 0);
-        sub_02021CAC(param0->unk_250[2], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[2], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_250[2], 0);
 
         ov77_021D54E8(3, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -299,8 +299,8 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (14 * 8);
         param0->unk_250[3] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[3], 1);
-        sub_02021CAC(param0->unk_250[3], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[3], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[3], 0);
 
         ov77_021D54E8(6, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -308,8 +308,8 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (14 * 8);
         param0->unk_250[10] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[10], 1);
-        sub_02021CAC(param0->unk_250[10], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[10], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[10], 0);
 
         ov77_021D54E8(7, param0, 1, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -317,9 +317,9 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (12 * 8);
         param0->unk_250[11] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[11], 1);
-        sub_02021CAC(param0->unk_250[11], 0);
-        sub_02021CF8(param0->unk_250[11], 1);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[11], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[11], 0);
+        GraphicElementData_SetAffineOverwriteMode(param0->unk_250[11], 1);
 
         ov77_021D54E8(8, param0, 1, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DSUB);
 
@@ -327,9 +327,9 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (12 * 8) + (192 << FX32_SHIFT);
         param0->unk_250[12] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[12], 1);
-        sub_02021CAC(param0->unk_250[12], 0);
-        sub_02021CF8(param0->unk_250[12], 1);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[12], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[12], 0);
+        GraphicElementData_SetAffineOverwriteMode(param0->unk_250[12], 1);
 
         ov77_021D54E8(9, param0, 3, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -337,13 +337,13 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (0xd * 8);
         param0->unk_250[13] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[13], 1);
-        sub_02021CAC(param0->unk_250[13], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[13], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[13], 0);
 
         param0->unk_250[14] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[14], 1);
-        sub_02021CAC(param0->unk_250[14], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[14], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[14], 0);
 
         ov77_021D54E8(10, param0, 3, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DSUB);
 
@@ -351,13 +351,13 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
         v2.position.y = FX32_ONE * (0xd * 8) + (192 << FX32_SHIFT);
         param0->unk_250[15] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[15], 1);
-        sub_02021CAC(param0->unk_250[15], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[15], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[15], 0);
 
         param0->unk_250[16] = GraphicElementManager_AddElementEx(&v2);
 
-        sub_02021CC8(param0->unk_250[16], 1);
-        sub_02021CAC(param0->unk_250[16], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_250[16], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_250[16], 0);
 
         for (v0 = 0; v0 < 6; v0++) {
             ov77_021D54E8(4, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -366,8 +366,8 @@ void ov77_021D5C3C (UnkStruct_ov77_021D5564 * param0)
             v2.position.y = FX32_ONE * v5[v0];
             param0->unk_250[v3[v0]] = GraphicElementManager_AddElementEx(&v2);
 
-            sub_02021CC8(param0->unk_250[v3[v0]], 1);
-            sub_02021CAC(param0->unk_250[v3[v0]], 0);
+            GraphicElementData_SetAnimateFlag(param0->unk_250[v3[v0]], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_250[v3[v0]], 0);
         }
     }
 }
@@ -385,8 +385,8 @@ void ov77_021D5FB4 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
         for (v0 = 0; v0 < 16; v0++) {
             v3 = ov77_021D6794(param1, v0);
             (*v3) = GraphicElementManager_AddElementEx(&v2);
-            sub_02021CC8(*v3, 0);
-            sub_02021CAC(*v3, 0);
+            GraphicElementData_SetAnimateFlag(*v3, 0);
+            GraphicElementData_SetDrawFlag(*v3, 0);
         }
     }
 }
@@ -398,7 +398,7 @@ void ov77_021D6000 (UnkStruct_ov77_021D5564 * param0, UnkStruct_ov77_021D6734 * 
 
     for (v0 = 0; v0 < 16; v0++) {
         v1 = ov77_021D6794(param1, v0);
-        sub_02021CAC(*v1, 0);
+        GraphicElementData_SetDrawFlag(*v1, 0);
     }
 }
 
@@ -413,29 +413,29 @@ void ov77_021D6020 (UnkStruct_ov77_021D5564 * param0)
 
 void ov77_021D603C (UnkStruct_ov77_021D5564 * param0, const u8 param1, const u8 param2)
 {
-    sub_02021CAC(param0->unk_250[param1], param2);
+    GraphicElementData_SetDrawFlag(param0->unk_250[param1], param2);
 }
 
 void ov77_021D6050 (UnkStruct_ov77_021D5564 * param0, const u8 param1)
 {
-    sub_02021CC8(param0->unk_250[0], param1);
-    sub_02021CC8(param0->unk_250[2], param1);
-    sub_02021CC8(param0->unk_250[1], param1);
+    GraphicElementData_SetAnimateFlag(param0->unk_250[0], param1);
+    GraphicElementData_SetAnimateFlag(param0->unk_250[2], param1);
+    GraphicElementData_SetAnimateFlag(param0->unk_250[1], param1);
 }
 
 void ov77_021D607C (UnkStruct_ov77_021D5564 * param0)
 {
     VecFx32 v0;
 
-    v0 = *sub_02021D28(param0->unk_250[1]);
+    v0 = *GraphicElementData_GetPosition(param0->unk_250[1]);
     v0.x -= 0x200;
 
-    sub_02021C50(param0->unk_250[1], &v0);
+    GraphicElementData_SetPosition(param0->unk_250[1], &v0);
 
-    v0 = *sub_02021D28(param0->unk_250[2]);
+    v0 = *GraphicElementData_GetPosition(param0->unk_250[2]);
     v0.x += 0x200;
 
-    sub_02021C50(param0->unk_250[2], &v0);
+    GraphicElementData_SetPosition(param0->unk_250[2], &v0);
 }
 
 BOOL ov77_021D60E0 (UnkStruct_ov77_021D5564 * param0, int param1)
@@ -451,29 +451,29 @@ BOOL ov77_021D60E0 (UnkStruct_ov77_021D5564 * param0, int param1)
     }
 
     if (param1 < (53 * 30 - 15)) {
-        v0 = *sub_02021D28(param0->unk_250[3]);
+        v0 = *GraphicElementData_GetPosition(param0->unk_250[3]);
         v0.x += (FX32_ONE * 18);
 
         if (v0.x >= (FX32_ONE * ((128 + 48)))) {
             v0.x = (FX32_ONE * ((128 + 48)));
-            sub_02021C50(param0->unk_250[3], &v0);
+            GraphicElementData_SetPosition(param0->unk_250[3], &v0);
             return 1;
         }
 
-        sub_02021C50(param0->unk_250[3], &v0);
+        GraphicElementData_SetPosition(param0->unk_250[3], &v0);
         return 0;
     } else {
-        v0 = *sub_02021D28(param0->unk_250[3]);
+        v0 = *GraphicElementData_GetPosition(param0->unk_250[3]);
         v0.x += (FX32_ONE * 18);
 
         if (v0.x >= (256 + 64) * FX32_ONE) {
             v0.x = (256 + 64) * FX32_ONE;
-            sub_02021C50(param0->unk_250[3], &v0);
+            GraphicElementData_SetPosition(param0->unk_250[3], &v0);
             ov77_021D603C(param0, 3, 0);
             return 1;
         }
 
-        sub_02021C50(param0->unk_250[3], &v0);
+        GraphicElementData_SetPosition(param0->unk_250[3], &v0);
         return 0;
     }
 }
@@ -491,29 +491,29 @@ BOOL ov77_021D61B8 (UnkStruct_ov77_021D5564 * param0, int param1)
     }
 
     if (param1 < ((53 * 30 - 15))) {
-        v0 = *sub_02021D28(param0->unk_250[10]);
+        v0 = *GraphicElementData_GetPosition(param0->unk_250[10]);
         v0.x += (-(FX32_ONE * 18));
 
         if (v0.x <= (FX32_ONE * ((128 - 48)))) {
             v0.x = (FX32_ONE * ((128 - 48)));
-            sub_02021C50(param0->unk_250[10], &v0);
+            GraphicElementData_SetPosition(param0->unk_250[10], &v0);
             return 1;
         }
 
-        sub_02021C50(param0->unk_250[10], &v0);
+        GraphicElementData_SetPosition(param0->unk_250[10], &v0);
         return 0;
     } else {
-        v0 = *sub_02021D28(param0->unk_250[10]);
+        v0 = *GraphicElementData_GetPosition(param0->unk_250[10]);
         v0.x += (-(FX32_ONE * 18));
 
         if (v0.x <= -64 * FX32_ONE) {
             v0.x = -64 * FX32_ONE;
-            sub_02021C50(param0->unk_250[10], &v0);
+            GraphicElementData_SetPosition(param0->unk_250[10], &v0);
             ov77_021D603C(param0, 10, 0);
             return 1;
         }
 
-        sub_02021C50(param0->unk_250[10], &v0);
+        GraphicElementData_SetPosition(param0->unk_250[10], &v0);
         return 0;
     }
 }
@@ -532,7 +532,7 @@ void ov77_021D6290 (UnkStruct_ov77_021D5564 * param0, fx32 param1)
         v3 = 13;
     }
 
-    v0 = sub_02021D28(param0->unk_250[v2]);
+    v0 = GraphicElementData_GetPosition(param0->unk_250[v2]);
     v1 = *v0;
     v1.x += param1;
 
@@ -540,11 +540,11 @@ void ov77_021D6290 (UnkStruct_ov77_021D5564 * param0, fx32 param1)
         v1.x -= 256 * FX32_ONE;
     }
 
-    sub_02021C50(param0->unk_250[v2], &v1);
+    GraphicElementData_SetPosition(param0->unk_250[v2], &v1);
     v1.x -= 256 * FX32_ONE;
-    sub_02021C50(param0->unk_250[v2 + 1], &v1);
+    GraphicElementData_SetPosition(param0->unk_250[v2 + 1], &v1);
 
-    v0 = sub_02021D28(param0->unk_250[v3]);
+    v0 = GraphicElementData_GetPosition(param0->unk_250[v3]);
     v1 = *v0;
     v1.x -= param1;
 
@@ -552,9 +552,9 @@ void ov77_021D6290 (UnkStruct_ov77_021D5564 * param0, fx32 param1)
         v1.x += 256 * FX32_ONE;
     }
 
-    sub_02021C50(param0->unk_250[v3], &v1);
+    GraphicElementData_SetPosition(param0->unk_250[v3], &v1);
     v1.x += 256 * FX32_ONE;
-    sub_02021C50(param0->unk_250[v3 + 1], &v1);
+    GraphicElementData_SetPosition(param0->unk_250[v3 + 1], &v1);
 }
 
 void ov77_021D636C (UnkStruct_ov77_021D5564 * param0, int param1)
@@ -564,34 +564,34 @@ void ov77_021D636C (UnkStruct_ov77_021D5564 * param0, int param1)
 
     if (param1 == 0) {
         if (gCoreSys.unk_65 == 0) {
-            sub_02021F24(param0->unk_250[13], 0);
-            sub_02021F24(param0->unk_250[14], 0);
-            sub_02021F24(param0->unk_250[15], 1);
-            sub_02021F24(param0->unk_250[16], 1);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[13], 0);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[14], 0);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[15], 1);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[16], 1);
         } else {
-            sub_02021F24(param0->unk_250[13], 1);
-            sub_02021F24(param0->unk_250[14], 1);
-            sub_02021F24(param0->unk_250[15], 0);
-            sub_02021F24(param0->unk_250[16], 0);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[13], 1);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[14], 1);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[15], 0);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[16], 0);
         }
     } else {
-        sub_02021F24(param0->unk_250[13], 2);
-        sub_02021F24(param0->unk_250[14], 2);
-        sub_02021F24(param0->unk_250[15], 2);
-        sub_02021F24(param0->unk_250[16], 2);
+        GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[13], 2);
+        GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[14], 2);
+        GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[15], 2);
+        GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[16], 2);
     }
 
-    v0 = sub_02021D28(param0->unk_250[13]);
+    v0 = GraphicElementData_GetPosition(param0->unk_250[13]);
     v1 = *v0;
     v1.x = 128 * FX32_ONE;
 
-    sub_02021C50(param0->unk_250[13], &v1);
+    GraphicElementData_SetPosition(param0->unk_250[13], &v1);
 
-    v0 = sub_02021D28(param0->unk_250[15]);
+    v0 = GraphicElementData_GetPosition(param0->unk_250[15]);
     v1 = *v0;
     v1.x = 128 * FX32_ONE;
 
-    sub_02021C50(param0->unk_250[15], &v1);
+    GraphicElementData_SetPosition(param0->unk_250[15], &v1);
 }
 
 void ov77_021D6470 (UnkStruct_ov77_021D5564 * param0, int param1)
@@ -609,24 +609,24 @@ void ov77_021D6470 (UnkStruct_ov77_021D5564 * param0, int param1)
         (void)0;
     }
 
-    v0 = sub_02021D30(param0->unk_250[11]);
-    sub_02021C94(param0->unk_250[11], v0 + 0x1c00 + v3);
+    v0 = GraphicElementData_GetAffineZRotation(param0->unk_250[11]);
+    GraphicElementData_SetAffineZRotation(param0->unk_250[11], v0 + 0x1c00 + v3);
 
-    v0 = sub_02021D30(param0->unk_250[12]);
-    sub_02021C94(param0->unk_250[12], v0 - 0x1c00 - v3);
+    v0 = GraphicElementData_GetAffineZRotation(param0->unk_250[12]);
+    GraphicElementData_SetAffineZRotation(param0->unk_250[12], v0 - 0x1c00 - v3);
 
     if (param1 >= (65 * 30 - 15 - 15 - 45 - 15)) {
-        v1 = sub_02021D28(param0->unk_250[11]);
+        v1 = GraphicElementData_GetPosition(param0->unk_250[11]);
         v2 = *v1;
         v2.x += 0x1000;
 
-        sub_02021C50(param0->unk_250[11], &v2);
+        GraphicElementData_SetPosition(param0->unk_250[11], &v2);
 
-        v1 = sub_02021D28(param0->unk_250[12]);
+        v1 = GraphicElementData_GetPosition(param0->unk_250[12]);
         v2 = *v1;
         v2.x -= 0x1000;
 
-        sub_02021C50(param0->unk_250[12], &v2);
+        GraphicElementData_SetPosition(param0->unk_250[12], &v2);
     }
 }
 
@@ -652,28 +652,28 @@ void ov77_021D6530 (UnkStruct_ov77_021D5564 * param0, const int param1)
 
     if (param1 >= (1460 - 15)) {
         for (v0 = 0; v0 < 3; v0++) {
-            v1 = *sub_02021D28(param0->unk_250[v2[v0]]);
+            v1 = *GraphicElementData_GetPosition(param0->unk_250[v2[v0]]);
             v1.x -= Unk_ov77_021D79AC[v0];
             v1.y -= (FX32_ONE * 4);
-            sub_02021C50(param0->unk_250[v2[v0]], &v1);
+            GraphicElementData_SetPosition(param0->unk_250[v2[v0]], &v1);
         }
     }
 
     if (param1 >= (1490 - 15 + 15)) {
         for (v0 = 0; v0 < 1; v0++) {
-            v1 = *sub_02021D28(param0->unk_250[v3[v0]]);
+            v1 = *GraphicElementData_GetPosition(param0->unk_250[v3[v0]]);
             v1.x -= Unk_ov77_021D79A0[v0];
             v1.y -= (FX32_ONE * 3);
-            sub_02021C50(param0->unk_250[v3[v0]], &v1);
+            GraphicElementData_SetPosition(param0->unk_250[v3[v0]], &v1);
         }
     }
 
     if (param1 >= (1510 - 15 + 15)) {
         for (v0 = 0; v0 < 2; v0++) {
-            v1 = *sub_02021D28(param0->unk_250[v4[v0]]);
+            v1 = *GraphicElementData_GetPosition(param0->unk_250[v4[v0]]);
             v1.x -= Unk_ov77_021D79A4[v0];
             v1.y -= (FX32_ONE * 3);
-            sub_02021C50(param0->unk_250[v4[v0]], &v1);
+            GraphicElementData_SetPosition(param0->unk_250[v4[v0]], &v1);
         }
     }
 }

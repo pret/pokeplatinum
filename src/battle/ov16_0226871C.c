@@ -2528,7 +2528,7 @@ static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon 
     v4 = SpriteActor_LoadResources(v0, v1, &v3);
 
     sub_0200D500(v4, v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
-    sub_02021F24(v4->unk_00, Pokemon_IconPaletteIndex(param1));
+    GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(v4->unk_00, Pokemon_IconPaletteIndex(param1));
 
     {
         int v6 = 0;

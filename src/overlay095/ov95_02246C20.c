@@ -664,8 +664,8 @@ GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorR
     v0 = GraphicElementManager_AddElement(&v1);
 
     if (v0) {
-        sub_02021CC8(v0, 1);
-        sub_02021CE4(v0, FX32_ONE);
+        GraphicElementData_SetAnimateFlag(v0, 1);
+        GraphicElementData_SetAnimSpeed(v0, FX32_ONE);
     }
 
     return v0;

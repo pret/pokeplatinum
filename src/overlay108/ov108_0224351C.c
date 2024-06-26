@@ -52,7 +52,7 @@ UnkStruct_ov108_02243594 * ov108_0224351C (UnkStruct_ov108_02243030 * param0, u3
         v1.y += (192 << FX32_SHIFT);
     }
 
-    sub_02021C50(v0->unk_10, &v1);
+    GraphicElementData_SetPosition(v0->unk_10, &v1);
 
     return v0;
 }
@@ -67,7 +67,7 @@ void * ov108_02243594 (UnkStruct_ov108_02243594 * param0)
 
 void ov108_022435A8 (UnkStruct_ov108_02243594 * param0, int param1)
 {
-    sub_02021CAC(param0->unk_10, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_10, param1);
     return;
 }
 
@@ -75,7 +75,7 @@ void ov108_022435B4 (UnkStruct_ov108_02243594 * param0, u16 param1, u16 param2)
 {
     VecFx32 v0;
 
-    v0 = *(sub_02021D28(param0->unk_10));
+    v0 = *(GraphicElementData_GetPosition(param0->unk_10));
 
     v0.x = (param1 * FX32_ONE);
     v0.y = (param2 * FX32_ONE);
@@ -84,13 +84,13 @@ void ov108_022435B4 (UnkStruct_ov108_02243594 * param0, u16 param1, u16 param2)
         v0.y += (192 << FX32_SHIFT);
     }
 
-    sub_02021C50(param0->unk_10, &v0);
+    GraphicElementData_SetPosition(param0->unk_10, &v0);
     return;
 }
 
 void ov108_022435F4 (UnkStruct_ov108_02243594 * param0, u32 param1)
 {
-    sub_02021CE4(param0->unk_10, FX32_ONE);
+    GraphicElementData_SetAnimSpeed(param0->unk_10, FX32_ONE);
     sub_02021DCC(param0->unk_10, param1);
 
     return;
@@ -98,7 +98,7 @@ void ov108_022435F4 (UnkStruct_ov108_02243594 * param0, u32 param1)
 
 void ov108_02243610 (UnkStruct_ov108_02243594 * param0, Pokemon * param1)
 {
-    sub_02021F24(param0->unk_10, Pokemon_IconPaletteIndex(param1));
+    GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10, Pokemon_IconPaletteIndex(param1));
     return;
 }
 
@@ -116,6 +116,6 @@ static const VecFx32 Unk_ov111_021D3834[] = {
 
 void ov108_02243624 (UnkStruct_ov108_02243594 * param0, u8 param1)
 {
-    sub_02021CC8(param0->unk_10, param1);
+    GraphicElementData_SetAnimateFlag(param0->unk_10, param1);
     return;
 }

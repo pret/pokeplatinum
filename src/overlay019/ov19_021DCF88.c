@@ -457,7 +457,7 @@ static void ov19_021DD224 (UnkStruct_ov19_021DCF88 * param0, NARC * param1)
     param0->unk_2C = ov19_021D785C(param0->unk_0C, &v0, 0, 568, 49, NNS_G2D_VRAM_TYPE_2DSUB);
     param0->unk_30 = ov19_021D785C(param0->unk_0C, &v0, 256, 568, 49, NNS_G2D_VRAM_TYPE_2DSUB);
 
-    sub_02021D0C(param0->unk_30, 1);
+    GraphicElementData_SetFlipMode(param0->unk_30, 1);
 
     if (ov19_021D5E08(param0->unk_04) == 3) {
         SpriteActor_SetSpriteAnimActive(param0->unk_30, 1);
@@ -985,7 +985,7 @@ static void ov19_021DDA9C (SysTask * param0, void * param1)
         v1.x = Unk_ov19_021E028C[v2].x << FX32_SHIFT;
         v1.y = Unk_ov19_021E028C[v2].y << FX32_SHIFT;
         v1.z = 0;
-        sub_02021C50(v0->unk_04, &v1);
+        GraphicElementData_SetPosition(v0->unk_04, &v1);
     } else {
         u32 v3 = v0->unk_0C >> FX32_SHIFT;
 
@@ -993,7 +993,7 @@ static void ov19_021DDA9C (SysTask * param0, void * param1)
         v1.y = Unk_ov19_021E028C[v3].y << FX32_SHIFT;
         v1.z = 0;
 
-        sub_02021C50(v0->unk_04, &v1);
+        GraphicElementData_SetPosition(v0->unk_04, &v1);
         ov19_021DDBD0(param0, v0);
     }
 }
@@ -1018,7 +1018,7 @@ static void ov19_021DDB20 (SysTask * param0, void * param1)
         v1.y = Unk_ov19_021E028C[v2].y << FX32_SHIFT;
         v1.z = 0;
 
-        sub_02021C50(v0->unk_04, &v1);
+        GraphicElementData_SetPosition(v0->unk_04, &v1);
     } else {
         u32 v3 = v0->unk_0C >> FX32_SHIFT;
 
@@ -1026,7 +1026,7 @@ static void ov19_021DDB20 (SysTask * param0, void * param1)
         v1.y = Unk_ov19_021E028C[v3].y << FX32_SHIFT;
         v1.z = 0;
 
-        sub_02021C50(v0->unk_04, &v1);
+        GraphicElementData_SetPosition(v0->unk_04, &v1);
 
         if (v0->unk_18) {
             v0->unk_14 = v0->unk_28;

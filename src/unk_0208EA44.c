@@ -200,31 +200,31 @@ void sub_0208EB64 (PokemonSummaryApp * param0)
 
     sub_0208EF0C(param0);
 
-    sub_02021CAC(param0->unk_41C[9], 0);
-    sub_02021CAC(param0->unk_41C[10], 0);
-    sub_02021CAC(param0->unk_41C[41], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[9], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[10], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[41], 0);
 
-    sub_02021CAC(param0->unk_41C[42], 0);
-    sub_02021CAC(param0->unk_41C[43], 0);
-    sub_02021CAC(param0->unk_41C[44], 0);
-    sub_02021CAC(param0->unk_41C[45], 0);
-    sub_02021CAC(param0->unk_41C[46], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[42], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[43], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[44], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[45], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[46], 0);
 
-    sub_02021CAC(param0->unk_41C[47], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[47], 0);
 
-    sub_02021CAC(param0->unk_41C[48], 0);
-    sub_02021CAC(param0->unk_41C[49], 0);
-    sub_02021CAC(param0->unk_41C[50], 0);
-    sub_02021CAC(param0->unk_41C[51], 0);
-    sub_02021CAC(param0->unk_41C[52], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[48], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[49], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[50], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[51], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[52], 0);
 
-    sub_02021CAC(param0->unk_41C[71], 0);
-    sub_02021CAC(param0->unk_41C[72], 0);
-    sub_02021CAC(param0->unk_41C[73], 0);
-    sub_02021CAC(param0->unk_41C[74], 0);
-    sub_02021CAC(param0->unk_41C[75], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[71], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[72], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[73], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[74], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[75], 0);
 
-    sub_02021CAC(param0->unk_41C[76], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[76], 0);
 }
 
 static u8 sub_0208ECB8 (PokemonSummaryApp * param0)
@@ -255,7 +255,7 @@ void sub_0208ECF4 (PokemonSummaryApp * param0)
 
     for (v5 = 0; v5 < 8; v5++) {
         if (PokemonSummary_PageIsVisble(param0, v5) == 0) {
-            sub_02021CAC(v0[v5], 0);
+            GraphicElementData_SetDrawFlag(v0[v5], 0);
             continue;
         }
 
@@ -280,7 +280,7 @@ void sub_0208ECF4 (PokemonSummaryApp * param0)
         }
 
         SpriteActor_SetPositionXY(param0->unk_41C[v5], v1, v2);
-        sub_02021CAC(v0[v5], 1);
+        GraphicElementData_SetDrawFlag(v0[v5], 1);
 
         v6++;
     }
@@ -306,8 +306,8 @@ void sub_0208EE10 (PokemonSummaryApp * param0, u8 param1)
         param1 = 0;
     }
 
-    sub_02021CAC(param0->unk_41C[21], param1);
-    sub_02021CAC(param0->unk_41C[22], param1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[21], param1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[22], param1);
 }
 
 void sub_0208EE3C (PokemonSummaryApp * param0)
@@ -327,15 +327,15 @@ void sub_0208EE3C (PokemonSummaryApp * param0)
 void sub_0208EE9C (PokemonSummaryApp * param0)
 {
     if (param0->monData.status == 7) {
-        sub_02021CAC(param0->unk_41C[20], 0);
-        sub_02021CAC(param0->unk_41C[76], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[20], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[76], 0);
     } else if (param0->monData.status != 0) {
-        sub_02021CAC(param0->unk_41C[76], 0);
-        sub_02021CAC(param0->unk_41C[20], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[76], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[20], 1);
         SpriteActor_SetSpriteAnimActive(param0->unk_41C[20], param0->monData.status);
     } else {
-        sub_02021CAC(param0->unk_41C[76], 1);
-        sub_02021CAC(param0->unk_41C[20], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[76], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[20], 0);
     }
 }
 
@@ -480,7 +480,7 @@ void sub_0208F310 (PokemonSummaryApp * param0)
 
     sub_0200D50C(param0->unk_41C[9], &v0, &v1);
     SpriteActor_SetPositionXY(param0->unk_41C[10], v0, v1);
-    sub_02021CAC(param0->unk_41C[10], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[10], 1);
 }
 
 void sub_0208F34C (PokemonSummaryApp * param0)
@@ -500,7 +500,7 @@ void sub_0208F34C (PokemonSummaryApp * param0)
     }
 
     for (v0 = 29; v0 <= 40; v0++) {
-        sub_02021CAC(param0->unk_41C[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[v0], 0);
         SpriteActor_SetAnimFrame(param0->unk_41C[v0], 0);
     }
 }
@@ -529,7 +529,7 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
         break;
     case 1:
         if (param0->sheenCount == 0) {
-            sub_02021CAC(param0->unk_41C[29 + param0->sheenPos], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_41C[29 + param0->sheenPos], 1);
             SpriteActor_SetAnimFrame(param0->unk_41C[29 + param0->sheenPos], 0);
             SpriteActor_SetSpriteAnimActive(param0->unk_41C[29 + param0->sheenPos], 0);
 
@@ -544,7 +544,7 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
         param0->sheenCount = (param0->sheenCount + 1) % 10;
         break;
     case 2:
-        if (sub_02021D34(param0->unk_41C[29 + param0->sheenMax - 1]) == 0) {
+        if (GraphicElementData_GetDrawFlag(param0->unk_41C[29 + param0->sheenMax - 1]) == 0) {
             param0->sheenCount = 0;
             param0->sheenState = 3;
             break;
@@ -555,7 +555,7 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
 
         if (param0->sheenCount == 32) {
             for (v0 = 29; v0 < 29 + param0->sheenMax; v0++) {
-                sub_02021CAC(param0->unk_41C[v0], 1);
+                GraphicElementData_SetDrawFlag(param0->unk_41C[v0], 1);
                 SpriteActor_SetAnimFrame(param0->unk_41C[v0], 0);
                 SpriteActor_SetSpriteAnimActive(param0->unk_41C[v0], 0);
             }
@@ -576,14 +576,14 @@ void sub_0208F3B0 (PokemonSummaryApp * param0)
     }
 
     for (v0 = 29; v0 < 29 + param0->sheenMax; v0++) {
-        if (sub_02021D34(param0->unk_41C[v0]) == 0) {
+        if (GraphicElementData_GetDrawFlag(param0->unk_41C[v0]) == 0) {
             continue;
         }
 
         GraphicElementData_UpdateAnim(param0->unk_41C[v0], FX32_ONE);
 
         if (sub_02021E74(param0->unk_41C[v0]) == 6) {
-            sub_02021CAC(param0->unk_41C[v0], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_41C[v0], 0);
         }
     }
 }
@@ -617,7 +617,7 @@ void sub_0208F600 (PokemonSummaryApp * param0)
 {
     s16 v0, v1;
 
-    sub_02021CAC(param0->unk_41C[41], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[41], 1);
     SpriteActor_SetAnimFrame(param0->unk_41C[41], 0);
     SpriteActor_SetSpriteAnimActive(param0->unk_41C[41], 0);
 
@@ -633,7 +633,7 @@ void sub_0208F600 (PokemonSummaryApp * param0)
 void sub_0208F684 (PokemonSummaryApp * param0)
 {
     if (sub_02021E74(param0->unk_41C[41]) == 2) {
-        sub_02021CAC(param0->unk_41C[41], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[41], 0);
     }
 }
 
@@ -643,7 +643,7 @@ void sub_0208F6A4 (PokemonSummaryApp * param0)
 
     for (v0 = 0; v0 < 5; v0++) {
         if ((param0->subscreen & (1 << v0))) {
-            sub_02021CAC(param0->unk_41C[42 + v0], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_41C[42 + v0], 1);
         }
     }
 }
@@ -651,12 +651,12 @@ void sub_0208F6A4 (PokemonSummaryApp * param0)
 void sub_0208F6DC (PokemonSummaryApp * param0, Window * param1)
 {
     if (param1 == NULL) {
-        sub_02021CAC(param0->unk_41C[47], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[47], 0);
         return;
     }
 
     SpriteActor_SetPositionXY(param0->unk_41C[47], sub_0201C29C(param1) * 8 - 10, 8);
-    sub_02021CAC(param0->unk_41C[47], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[47], 1);
 }
 
 void sub_0208F71C (PokemonSummaryApp * param0)
@@ -672,7 +672,7 @@ void sub_0208F71C (PokemonSummaryApp * param0)
 
     sub_0200D948(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
     sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + 7);
-    sub_02021D0C(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
+    GraphicElementData_SetFlipMode(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
 void sub_0208F7A4 (PokemonSummaryApp * param0)
@@ -715,20 +715,20 @@ void sub_0208F844 (PokemonSummaryApp * param0)
     SpriteActor_SetPositionXY(param0->unk_41C[51], sub_0208F800(param0->monData.smart, 72, 87), sub_0208F800(param0->monData.smart, 92, 73));
     SpriteActor_SetPositionXY(param0->unk_41C[52], sub_0208F800(param0->monData.tough, 65, 87), sub_0208F800(param0->monData.tough, 65, 73));
 
-    sub_02021CAC(param0->unk_41C[48], 1);
-    sub_02021CAC(param0->unk_41C[49], 1);
-    sub_02021CAC(param0->unk_41C[50], 1);
-    sub_02021CAC(param0->unk_41C[51], 1);
-    sub_02021CAC(param0->unk_41C[52], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[48], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[49], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[50], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[51], 1);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[52], 1);
 }
 
 void sub_0208F964 (PokemonSummaryApp * param0)
 {
-    sub_02021CAC(param0->unk_41C[48], 0);
-    sub_02021CAC(param0->unk_41C[49], 0);
-    sub_02021CAC(param0->unk_41C[50], 0);
-    sub_02021CAC(param0->unk_41C[51], 0);
-    sub_02021CAC(param0->unk_41C[52], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[48], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[49], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[50], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[51], 0);
+    GraphicElementData_SetDrawFlag(param0->unk_41C[52], 0);
 }
 
 static void sub_0208F9B0 (PokemonSummaryApp * param0, u8 param1, u8 param2)
@@ -742,7 +742,7 @@ void sub_0208FA04 (PokemonSummaryApp * param0)
     u16 v0;
 
     for (v0 = 55; v0 <= 70; v0++) {
-        sub_02021CAC(param0->unk_41C[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_41C[v0], 0);
     }
 
     if (param0->page != 6) {
@@ -753,7 +753,7 @@ void sub_0208FA04 (PokemonSummaryApp * param0)
 
     for (v0 = 0; v0 < 12; v0++) {
         if (v0 < param0->ribbonMax) {
-            sub_02021CAC(param0->unk_41C[55 + v0], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_41C[55 + v0], 1);
             sub_0208F9B0(param0, PokemonSummary_RibbonAt(param0, v0), v0);
         }
     }
@@ -767,10 +767,10 @@ void sub_0208FAA4 (PokemonSummaryApp * param0)
 
     for (v0 = 0; v0 < 8; v0++) {
         if ((param0->ribbonState * 4 + v0) < param0->ribbonMax) {
-            sub_02021CAC(param0->unk_41C[55 + v0], 1);
+            GraphicElementData_SetDrawFlag(param0->unk_41C[55 + v0], 1);
             sub_0208F9B0(param0, PokemonSummary_RibbonAt(param0, v0), v0);
         } else {
-            sub_02021CAC(param0->unk_41C[55 + v0], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_41C[55 + v0], 0);
         }
     }
 }
@@ -783,7 +783,7 @@ void sub_0208FB00 (PokemonSummaryApp * param0)
 
 void sub_0208FB30 (PokemonSummaryApp * param0)
 {
-    if (sub_02021D34(param0->unk_41C[70]) == 1) {
+    if (GraphicElementData_GetDrawFlag(param0->unk_41C[70]) == 1) {
         GraphicElementData_UpdateAnim(param0->unk_41C[70], FX32_ONE);
     }
 }
@@ -802,7 +802,7 @@ void sub_0208FB54 (PokemonSummaryApp * param0, u8 param1)
 
     if (param1 == 0) {
         for (v0 = 0; v0 < 5; v0++) {
-            sub_02021CAC(param0->unk_41C[71 + v0], 0);
+            GraphicElementData_SetDrawFlag(param0->unk_41C[71 + v0], 0);
         }
     } else {
         v1 = param0->monData.cool;
@@ -836,11 +836,11 @@ static void sub_0208FC30 (GraphicElementData * param0, u32 param1, u32 param2, c
     s32 v0, v1;
 
     if ((param1 == 0) || (param1 != param2)) {
-        sub_02021CAC(param0, 0);
+        GraphicElementData_SetDrawFlag(param0, 0);
         return;
     }
 
-    sub_02021CAC(param0, 1);
+    GraphicElementData_SetDrawFlag(param0, 1);
 
     if (param3[0] >= param3[2]) {
         v0 = param3[2] + (((((param3[0] - param3[2]) << 8) / 256) * param1) >> 8);

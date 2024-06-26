@@ -104,7 +104,7 @@ static void ov20_021D3980 (UnkStruct_ov20_021D3980 * param0)
     param0->unk_0C = ov20_021D2E50(param0->unk_00, &v0, 64, 56, 5, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     SpriteActor_SetSpriteAnimActive(param0->unk_0C, 2);
-    sub_02021CAC(param0->unk_0C, 0);
+    GraphicElementData_SetDrawFlag(param0->unk_0C, 0);
 }
 
 void ov20_021D39BC (UnkStruct_ov20_021D3980 * param0)
@@ -119,12 +119,12 @@ void ov20_021D39C8 (UnkStruct_ov20_021D3980 * param0)
 
 void ov20_021D39D4 (UnkStruct_ov20_021D3980 * param0, BOOL param1)
 {
-    sub_02021CAC(param0->unk_0C, param1);
+    GraphicElementData_SetDrawFlag(param0->unk_0C, param1);
 }
 
 BOOL ov20_021D39E0 (UnkStruct_ov20_021D3980 * param0)
 {
-    return sub_02021D34(param0->unk_0C);
+    return GraphicElementData_GetDrawFlag(param0->unk_0C);
 }
 
 void ov20_021D39EC (UnkStruct_ov20_021D3980 * param0, int param1)
@@ -145,7 +145,7 @@ void ov20_021D39EC (UnkStruct_ov20_021D3980 * param0, int param1)
         break;
     }
 
-    sub_02021C50(param0->unk_0C, &v0);
+    GraphicElementData_SetPosition(param0->unk_0C, &v0);
     SpriteActor_SetSpriteAnimActive(param0->unk_0C, 2);
 }
 

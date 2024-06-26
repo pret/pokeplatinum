@@ -1698,8 +1698,8 @@ static void ov70_0225EC20 (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225
         param0->unk_50[v2] = GraphicElementManager_AddElement(&v1);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_50[v2], v2);
-        sub_02021CC8(param0->unk_50[v2], 1);
-        sub_02021CAC(param0->unk_50[v2], 0);
+        GraphicElementData_SetAnimateFlag(param0->unk_50[v2], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_50[v2], 0);
     }
 
     param0->unk_3C = 0;
@@ -1834,7 +1834,7 @@ static void ov70_0225EF14 (UnkStruct_ov70_0225EC20 * param0, u16 * param1, u16 *
     param0->unk_3C = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021CAC(param0->unk_50[v0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_50[v0], 0);
     }
 }
 
@@ -1855,23 +1855,23 @@ static void ov70_0225EF70 (UnkStruct_ov70_0225EC20 * param0)
     u16 v0;
 
     if (param0->unk_3C == 0) {
-        sub_02021CAC(param0->unk_50[0], 0);
-        sub_02021CAC(param0->unk_50[1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_50[0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_50[1], 0);
         return;
     }
 
     sub_020014DC(param0->unk_30, &v0, NULL);
 
     if ((v0 <= 0)) {
-        sub_02021CAC(param0->unk_50[0], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_50[0], 0);
     } else {
-        sub_02021CAC(param0->unk_50[0], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_50[0], 1);
     }
 
     if (v0 >= (param0->unk_3A - 7)) {
-        sub_02021CAC(param0->unk_50[1], 0);
+        GraphicElementData_SetDrawFlag(param0->unk_50[1], 0);
     } else {
-        sub_02021CAC(param0->unk_50[1], 1);
+        GraphicElementData_SetDrawFlag(param0->unk_50[1], 1);
     }
 }
 
@@ -2751,7 +2751,7 @@ static void ov70_0225FEF0 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
         param0->unk_54 = GraphicElementManager_AddElement(&v4);
 
         SpriteActor_SetSpriteAnimActive(param0->unk_54, v1);
-        sub_02021CAC(param0->unk_54, param5);
+        GraphicElementData_SetDrawFlag(param0->unk_54, param5);
     }
 }
 
@@ -3036,7 +3036,7 @@ static void ov70_022603CC (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 
             param0->unk_7C[v0] = GraphicElementManager_AddElement(&v8);
 
-            sub_02021F24(param0->unk_7C[v0], v10->unk_01);
+            GraphicElementData_SetExplicitPaletteOffsetAutoAdjust(param0->unk_7C[v0], v10->unk_01);
         }
     }
 
