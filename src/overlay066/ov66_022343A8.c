@@ -66,7 +66,7 @@ typedef struct UnkStruct_ov66_02234798_t {
 typedef struct UnkStruct_ov66_02234548_t {
     ResourceManager * unk_00;
     ResourceManager * unk_04;
-    UnkStruct_02022BD8 * unk_08;
+    TextureResourceManager * unk_08;
     UnkStruct_02020C44 * unk_0C;
     UnkStruct_ov66_02234798 * unk_10;
     u32 unk_14;
@@ -168,7 +168,7 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
 
     v0->unk_00 = ResourceManager_New(1, param2);
     v0->unk_04 = ResourceManager_New(2, param2);
-    v0->unk_08 = sub_02022BD8(20, param2);
+    v0->unk_08 = TextureResourceManager_New(20, param2);
 
     {
         UnkStruct_ov5_021EDDAC v2;
@@ -212,7 +212,7 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
         }
 
         {
-            UnkStruct_02022BD8_2 * v9;
+            TextureResource * v9;
             int v10;
             BOOL v11;
 
@@ -266,7 +266,7 @@ void ov66_02234548 (UnkStruct_ov66_02234548 * param0)
         sub_02020BD0();
     }
 
-    sub_02022C1C(param0->unk_08);
+    TextureResourceManager_Delete(param0->unk_08);
     ResourceManager_Delete(param0->unk_00);
     ResourceManager_Delete(param0->unk_04);
     Heap_FreeToHeap(param0->unk_10);
@@ -321,7 +321,7 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
         UnkStruct_ov5_021DF84C v2;
         UnkStruct_ov5_021DF7F8 v3;
         Resource * v4;
-        UnkStruct_02022BD8_2 * v5;
+        TextureResource * v5;
         u32 v6;
         void * v7;
         const NNSG3dResTex * v8;

@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "resource_manager.h"
@@ -11,7 +12,7 @@
 
 typedef struct Resource {
     int id;
-    void * data;
+    void *data;
 } Resource;
 
 typedef struct ResourceManager {
@@ -20,33 +21,33 @@ typedef struct ResourceManager {
     int resourceCount;
 } ResourceManager;
 
-typedef struct UnkStruct_02022BD8_2_t {
-    Resource * unk_00;
+typedef struct TextureResource {
+    Resource *resource;
     NNSGfdTexKey unk_04;
     NNSGfdTexKey unk_08;
     NNSGfdPlttKey unk_0C;
-    void * unk_10;
+    void *textureData; // Only used when mode is TEX_RESOURCE_MODE_STRIPPED
     u16 unk_14;
-    u16 unk_16;
-} UnkStruct_02022BD8_2;
+    u16 mode;
+} TextureResource;
 
-typedef struct UnkStruct_02022BD8_t {
-    ResourceManager * unk_00;
-    UnkStruct_02022BD8_2 * unk_04;
-} UnkStruct_02022BD8;
+typedef struct TextureResourceManager {
+    ResourceManager *resMgr;
+    TextureResource *textures;
+} TextureResourceManager;
 
 static Resource *ResourceManager_AllocResource(ResourceManager *resMgr);
 static void Resource_Init(Resource *resource);
-static UnkStruct_02022BD8_2 * sub_02022F2C(const UnkStruct_02022BD8 * param0);
-static void sub_02022F5C(UnkStruct_02022BD8_2 * param0);
+static TextureResource * TextureResourceManager_AllocTexture(const TextureResourceManager * param0);
+static void TextureResource_Init(TextureResource * param0);
 static void sub_02022F98(const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3);
-static NNSG3dResTex * sub_02022F70(const UnkStruct_02022BD8_2 * param0);
-static NNSG3dResTex * sub_02022F80(const UnkStruct_02022BD8_2 * param0);
-static void sub_02023008(NNSG3dResTex * param0, UnkStruct_02022BD8_2 * param1);
+static NNSG3dResTex * TextureResource_GetTexture(const TextureResource * param0);
+static NNSG3dResTex * TextureResource_GetTextureSafe(const TextureResource * param0);
+static void sub_02023008(NNSG3dResTex * param0, TextureResource * param1);
 static void sub_02023034(NNSG3dResTex * param0, NNSGfdTexKey param1, NNSGfdTexKey param2, NNSGfdPlttKey param3);
 static void sub_02023048(NNSG3dResTex * param0);
-static void * sub_02023060(void * param0, u32 param1);
-static u32 sub_02023084(const void * param0);
+static void * CreateStrippedTexture(void * param0, enum HeapId param1);
+static u32 GetStrippedTextureResourceSize(const void * param0);
 
 ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID)
 {
@@ -199,65 +200,62 @@ static void Resource_Init(Resource *resource)
     resource->data = NULL;
 }
 
-UnkStruct_02022BD8 * sub_02022BD8 (int param0, int param1)
+TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID)
 {
-    UnkStruct_02022BD8 * v0;
-    int v1;
+    TextureResourceManager *texMgr = Heap_AllocFromHeap(heapID, sizeof(TextureResourceManager));
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BD8));
+    texMgr->resMgr = ResourceManager_New(maxTextures, heapID);
+    texMgr->textures = Heap_AllocFromHeap(heapID, sizeof(TextureResource) * maxTextures);
 
-    v0->unk_00 = ResourceManager_New(param0, param1);
-    v0->unk_04 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BD8_2) * param0);
-
-    for (v1 = 0; v1 < param0; v1++) {
-        sub_02022F5C(v0->unk_04 + v1);
+    for (int i = 0; i < maxTextures; i++) {
+        TextureResource_Init(texMgr->textures + i);
     }
 
-    return v0;
+    return texMgr;
 }
 
-void sub_02022C1C (UnkStruct_02022BD8 * param0)
+void TextureResourceManager_Delete(TextureResourceManager *texMgr)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(texMgr);
 
-    sub_02022D58(param0);
-    ResourceManager_Delete(param0->unk_00);
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    sub_02022D58(texMgr);
+    ResourceManager_Delete(texMgr->resMgr);
+    Heap_FreeToHeap(texMgr->textures);
+    Heap_FreeToHeap(texMgr);
 }
 
-BOOL sub_02022C40 (const UnkStruct_02022BD8 * param0, int param1)
+BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id)
 {
-    GF_ASSERT(param0);
-    return ResourceManager_IsIDUnused(param0->unk_00, param1);
+    GF_ASSERT(texMgr);
+    return ResourceManager_IsIDUnused(texMgr->resMgr, id);
 }
 
-UnkStruct_02022BD8_2 * sub_02022C58 (const UnkStruct_02022BD8 * param0, void * param1, int param2, u32 param3, u32 param4)
+TextureResource *sub_02022C58(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID)
 {
-    UnkStruct_02022BD8_2 * v0;
-    void * v1;
+    TextureResource * texResource;
+    void * resourceData;
 
-    GF_ASSERT(param0);
+    GF_ASSERT(texMgr);
 
-    v0 = sub_02022F2C(param0);
-    v0->unk_16 = param3;
+    texResource = TextureResourceManager_AllocTexture(texMgr);
+    texResource->mode = mode;
 
-    if (v0->unk_16 == 1) {
-        v1 = sub_02023060(param1, param4);
-        v0->unk_10 = param1;
+    if (texResource->mode == TEX_RESOURCE_MODE_STRIPPED) {
+        resourceData = CreateStrippedTexture(data, heapID);
+        texResource->textureData = data;
     } else {
-        v1 = param1;
-        v0->unk_10 = NULL;
+        resourceData = data;
+        texResource->textureData = NULL;
     }
 
-    v0->unk_00 = ResourceManager_AddResource(param0->unk_00, v1, param2);
+    texResource->resource = ResourceManager_AddResource(texMgr->resMgr, resourceData, id);
 
-    return v0;
+    return texResource;
 }
 
-UnkStruct_02022BD8_2 * sub_02022C9C (UnkStruct_02022BD8 * param0, void * param1, int param2, u32 param3, int param4)
+TextureResource * sub_02022C9C (TextureResourceManager * param0, void * param1, int param2, u32 param3, int param4)
 {
-    UnkStruct_02022BD8_2 * v0;
+    TextureResource * v0;
 
     v0 = sub_02022C58(param0, param1, param2, param3, param4);
     sub_02022EBC(v0);
@@ -265,20 +263,20 @@ UnkStruct_02022BD8_2 * sub_02022C9C (UnkStruct_02022BD8 * param0, void * param1,
     return v0;
 }
 
-void sub_02022CB4 (UnkStruct_02022BD8 * param0, UnkStruct_02022BD8_2 * param1)
+void sub_02022CB4 (TextureResourceManager * param0, TextureResource * param1)
 {
     int v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
-    if ((param1->unk_16 == 1) && (param1->unk_14 == 0)) {
-        Heap_FreeToHeap(param1->unk_10);
-        param1->unk_16 = NULL;
+    if ((param1->mode == 1) && (param1->unk_14 == 0)) {
+        Heap_FreeToHeap(param1->textureData);
+        param1->mode = NULL;
     }
 
-    if (param1->unk_00) {
-        ResourceManager_RemoveResource(param0->unk_00, param1->unk_00);
+    if (param1->resource) {
+        ResourceManager_RemoveResource(param0->resMgr, param1->resource);
     }
 
     if (param1->unk_04 != NNS_GFD_ALLOC_ERROR_TEXKEY) {
@@ -296,12 +294,12 @@ void sub_02022CB4 (UnkStruct_02022BD8 * param0, UnkStruct_02022BD8_2 * param1)
         GF_ASSERT(v0 == 0);
     }
 
-    sub_02022F5C(param1);
+    TextureResource_Init(param1);
 }
 
-void sub_02022D38 (UnkStruct_02022BD8 * param0, int param1)
+void sub_02022D38 (TextureResourceManager * param0, int param1)
 {
-    UnkStruct_02022BD8_2 * v0;
+    TextureResource * v0;
 
     GF_ASSERT(param0);
 
@@ -309,33 +307,33 @@ void sub_02022D38 (UnkStruct_02022BD8 * param0, int param1)
     sub_02022CB4(param0, v0);
 }
 
-void sub_02022D58 (UnkStruct_02022BD8 * param0)
+void sub_02022D58 (TextureResourceManager * param0)
 {
     int v0;
 
     GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04);
+    GF_ASSERT(param0->textures);
 
-    for (v0 = 0; v0 < param0->unk_00->maxResources; v0++) {
-        if (param0->unk_04[v0].unk_00) {
-            sub_02022CB4(param0, param0->unk_04 + v0);
+    for (v0 = 0; v0 < param0->resMgr->maxResources; v0++) {
+        if (param0->textures[v0].resource) {
+            sub_02022CB4(param0, param0->textures + v0);
         }
     }
 }
 
-UnkStruct_02022BD8_2 * sub_02022D98 (const UnkStruct_02022BD8 * param0, int param1)
+TextureResource * sub_02022D98 (const TextureResourceManager *texMgr, int param1)
 {
     int v0;
     int v1;
 
-    GF_ASSERT(param0);
+    GF_ASSERT(texMgr);
 
-    for (v0 = 0; v0 < param0->unk_00->maxResources; v0++) {
-        if (param0->unk_04[v0].unk_00) {
-            v1 = sub_02022DE0(param0->unk_04 + v0);
+    for (v0 = 0; v0 < texMgr->resMgr->maxResources; v0++) {
+        if (texMgr->textures[v0].resource) {
+            v1 = TextureResource_GetID(texMgr->textures + v0);
 
             if (v1 == param1) {
-                return param0->unk_04 + v0;
+                return texMgr->textures + v0;
             }
         }
     }
@@ -343,19 +341,19 @@ UnkStruct_02022BD8_2 * sub_02022D98 (const UnkStruct_02022BD8 * param0, int para
     return NULL;
 }
 
-int sub_02022DE0 (const UnkStruct_02022BD8_2 * param0)
+int TextureResource_GetID(const TextureResource *texResource)
 {
-    GF_ASSERT(param0);
-    return Resource_GetID(param0->unk_00);
+    GF_ASSERT(texResource);
+    return Resource_GetID(texResource->resource);
 }
 
-NNSG3dResTex * sub_02022DF4 (const UnkStruct_02022BD8_2 * param0)
+NNSG3dResTex * sub_02022DF4 (const TextureResource * param0)
 {
     GF_ASSERT(param0);
-    return sub_02022F70(param0);
+    return TextureResource_GetTexture(param0);
 }
 
-void sub_02022E08 (UnkStruct_02022BD8_2 * param0)
+void sub_02022E08 (TextureResource * param0)
 {
     NNSG3dResTex * v0;
 
@@ -367,13 +365,13 @@ void sub_02022E08 (UnkStruct_02022BD8_2 * param0)
         return;
     }
 
-    v0 = sub_02022F80(param0);
+    v0 = TextureResource_GetTextureSafe(param0);
     sub_02023008(v0, param0);
 }
 
-void sub_02022E38 (UnkStruct_02022BD8 * param0, int param1)
+void sub_02022E38 (TextureResourceManager * param0, int param1)
 {
-    UnkStruct_02022BD8_2 * v0;
+    TextureResource * v0;
 
     GF_ASSERT(param0);
 
@@ -381,13 +379,13 @@ void sub_02022E38 (UnkStruct_02022BD8 * param0, int param1)
     sub_02022E08(v0);
 }
 
-void sub_02022E54 (UnkStruct_02022BD8_2 * param0)
+void sub_02022E54 (TextureResource * param0)
 {
     void * v0;
 
     GF_ASSERT(param0);
 
-    if (param0->unk_16 == 0) {
+    if (param0->mode == 0) {
         GF_ASSERT(0);
         return;
     }
@@ -397,17 +395,17 @@ void sub_02022E54 (UnkStruct_02022BD8_2 * param0)
         return;
     }
 
-    sub_02023048(sub_02022F80(param0));
-    sub_02023034(sub_02022F70(param0), param0->unk_04, param0->unk_08, param0->unk_0C);
-    Heap_FreeToHeap(param0->unk_10);
+    sub_02023048(TextureResource_GetTextureSafe(param0));
+    sub_02023034(TextureResource_GetTexture(param0), param0->unk_04, param0->unk_08, param0->unk_0C);
+    Heap_FreeToHeap(param0->textureData);
 
-    param0->unk_10 = NULL;
+    param0->textureData = NULL;
     param0->unk_14 = 1;
 }
 
-void sub_02022EA0 (UnkStruct_02022BD8 * param0, int param1)
+void sub_02022EA0 (TextureResourceManager * param0, int param1)
 {
-    UnkStruct_02022BD8_2 * v0;
+    TextureResource * v0;
 
     GF_ASSERT(param0);
 
@@ -415,7 +413,7 @@ void sub_02022EA0 (UnkStruct_02022BD8 * param0, int param1)
     sub_02022E54(v0);
 }
 
-void sub_02022EBC (UnkStruct_02022BD8_2 * param0)
+void sub_02022EBC (TextureResource * param0)
 {
     NNSG3dResTex * v0;
 
@@ -427,23 +425,23 @@ void sub_02022EBC (UnkStruct_02022BD8_2 * param0)
         return;
     }
 
-    v0 = sub_02022F80(param0);
+    v0 = TextureResource_GetTextureSafe(param0);
     sub_02022F98(v0, &param0->unk_04, &param0->unk_08, &param0->unk_0C);
 }
 
-NNSGfdTexKey sub_02022EF4 (const UnkStruct_02022BD8_2 * param0)
+NNSGfdTexKey sub_02022EF4 (const TextureResource * param0)
 {
     GF_ASSERT(param0);
     return param0->unk_04;
 }
 
-NNSGfdTexKey sub_02022F04 (const UnkStruct_02022BD8_2 * param0)
+NNSGfdTexKey sub_02022F04 (const TextureResource * param0)
 {
     GF_ASSERT(param0);
     return param0->unk_08;
 }
 
-NNSGfdPlttKey sub_02022F14 (const UnkStruct_02022BD8_2 * param0)
+NNSGfdPlttKey sub_02022F14 (const TextureResource * param0)
 {
     GF_ASSERT(param0);
     return param0->unk_0C;
@@ -451,57 +449,44 @@ NNSGfdPlttKey sub_02022F14 (const UnkStruct_02022BD8_2 * param0)
 
 u32 sub_02022F24 (NNSG3dResFileHeader * param0)
 {
-    return sub_02023084(param0);
+    return GetStrippedTextureResourceSize(param0);
 }
 
-static UnkStruct_02022BD8_2 * sub_02022F2C (const UnkStruct_02022BD8 * param0)
+static TextureResource * TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_00->maxResources; v0++) {
-        if (param0->unk_04[v0].unk_00 == NULL) {
-            return param0->unk_04 + v0;
+    for (int i = 0; i < texMgr->resMgr->maxResources; i++) {
+        if (texMgr->textures[i].resource == NULL) {
+            return texMgr->textures + i;
         }
     }
 
     return NULL;
 }
 
-static void sub_02022F5C (UnkStruct_02022BD8_2 * param0)
+static void TextureResource_Init(TextureResource *texResource)
 {
-    param0->unk_00 = NULL;
-    param0->unk_04 = NNS_GFD_ALLOC_ERROR_TEXKEY;
-    param0->unk_08 = NNS_GFD_ALLOC_ERROR_TEXKEY;
-    param0->unk_0C = NNS_GFD_ALLOC_ERROR_PLTTKEY;
-    param0->unk_14 = 0;
-    param0->unk_10 = NULL;
-    param0->unk_14 = 0;
+    texResource->resource = NULL;
+    texResource->unk_04 = NNS_GFD_ALLOC_ERROR_TEXKEY;
+    texResource->unk_08 = NNS_GFD_ALLOC_ERROR_TEXKEY;
+    texResource->unk_0C = NNS_GFD_ALLOC_ERROR_PLTTKEY;
+    texResource->unk_14 = 0;
+    texResource->textureData = NULL;
+    texResource->unk_14 = 0;
 }
 
-static NNSG3dResTex * sub_02022F70 (const UnkStruct_02022BD8_2 * param0)
+// Assumes that the texture resource is in TEX_RESOURCE_MODE_NORMAL
+static NNSG3dResTex *TextureResource_GetTexture(const TextureResource *texResource)
 {
-    void * v0;
-    NNSG3dResTex * v1;
-
-    v0 = Resource_GetData(param0->unk_00);
-    v1 = NNS_G3dGetTex(v0);
-
-    return v1;
+    return NNS_G3dGetTex(Resource_GetData(texResource->resource));
 }
 
-static NNSG3dResTex * sub_02022F80 (const UnkStruct_02022BD8_2 * param0)
+static NNSG3dResTex *TextureResource_GetTextureSafe(const TextureResource *texResource)
 {
-    void * v0;
-    NNSG3dResTex * v1;
+    void *texData = texResource->mode == TEX_RESOURCE_MODE_NORMAL 
+        ? Resource_GetData(texResource->resource) 
+        : texResource->textureData;
 
-    if (param0->unk_16 == 0) {
-        v0 = Resource_GetData(param0->unk_00);
-    } else {
-        v0 = param0->unk_10;
-    }
-
-    v1 = NNS_G3dGetTex(v0);
-    return v1;
+    return NNS_G3dGetTex(texData);
 }
 
 static void sub_02022F98 (const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3)
@@ -527,7 +512,7 @@ static void sub_02022F98 (const NNSG3dResTex * param0, NNSGfdTexKey * param1, NN
     }
 }
 
-static void sub_02023008 (NNSG3dResTex * param0, UnkStruct_02022BD8_2 * param1)
+static void sub_02023008 (NNSG3dResTex * param0, TextureResource * param1)
 {
     sub_02023034(param0, param1->unk_04, param1->unk_08, param1->unk_0C);
 
@@ -553,29 +538,22 @@ static void sub_02023048 (NNSG3dResTex * param0)
     v2 = NNS_G3dPlttReleasePlttKey(param0);
 }
 
-static void * sub_02023060 (void * param0, u32 param1)
+// Duplicates a texture resource without the actual texture data
+static void *CreateStrippedTexture(void *resFile, enum HeapId heapID)
 {
-    u32 v0;
-    void * v1;
+    u32 size = GetStrippedTextureResourceSize(resFile);
+    void *duplicated = Heap_AllocFromHeap(heapID, size);
+    memcpy(duplicated, resFile, size);
 
-    v0 = sub_02023084(param0);
-    v1 = Heap_AllocFromHeap(param1, v0);
-
-    memcpy(v1, param0, v0);
-    return v1;
+    return duplicated;
 }
 
-static u32 sub_02023084 (const void * param0)
+// Calculates the size of a texture resource without the actual texture data
+static u32 GetStrippedTextureResourceSize(const void *resFile)
 {
-    NNSG3dResTex * v0;
-    u8 * v1;
-    u32 v2;
+    NNSG3dResTex *texture = NNS_G3dGetTex(resFile);
+    GF_ASSERT(texture);
 
-    v0 = NNS_G3dGetTex(param0);
-    GF_ASSERT(v0);
-
-    v1 = (u8 *)v0 + v0->texInfo.ofsTex;
-    v2 = (u32)(v1 - (u8 *)param0);
-
-    return v2;
+    u8 *texData = (u8 *)texture + texture->texInfo.ofsTex;
+    return (u32)(texData - (u8 *)resFile);
 }

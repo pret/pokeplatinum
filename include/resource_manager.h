@@ -10,6 +10,11 @@
 
 #include <nnsys.h>
 
+enum TextureResourceMode {
+    TEX_RESOURCE_MODE_NORMAL = 0,   // Texture data is contained in the actual resource
+    TEX_RESOURCE_MODE_STRIPPED,     // Texture data is stripped from the resource and stored in a separate buffer
+};
+
 ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID);
 void ResourceManager_Delete(ResourceManager *resMgr);
 BOOL ResourceManager_IsIDUnused(ResourceManager *resMgr, int id);
@@ -21,25 +26,25 @@ Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id);
 void *Resource_GetData(Resource *resource);
 void Resource_SetData(Resource *resource, void *data);
 int Resource_GetID(Resource *resource);
-UnkStruct_02022BD8 * sub_02022BD8(int param0, int param1);
-void sub_02022C1C(UnkStruct_02022BD8 * param0);
-BOOL sub_02022C40(const UnkStruct_02022BD8 * param0, int param1);
-UnkStruct_02022BD8_2 * sub_02022C58(const UnkStruct_02022BD8 * param0, void * param1, int param2, u32 param3, u32 param4);
-UnkStruct_02022BD8_2 * sub_02022C9C(UnkStruct_02022BD8 * param0, void * param1, int param2, u32 param3, int param4);
-void sub_02022CB4(UnkStruct_02022BD8 * param0, UnkStruct_02022BD8_2 * param1);
-void sub_02022D38(UnkStruct_02022BD8 * param0, int param1);
-void sub_02022D58(UnkStruct_02022BD8 * param0);
-UnkStruct_02022BD8_2 * sub_02022D98(const UnkStruct_02022BD8 * param0, int param1);
-int sub_02022DE0(const UnkStruct_02022BD8_2 * param0);
-NNSG3dResTex * sub_02022DF4(const UnkStruct_02022BD8_2 * param0);
-void sub_02022E08(UnkStruct_02022BD8_2 * param0);
-void sub_02022E38(UnkStruct_02022BD8 * param0, int param1);
-void sub_02022E54(UnkStruct_02022BD8_2 * param0);
-void sub_02022EA0(UnkStruct_02022BD8 * param0, int param1);
-void sub_02022EBC(UnkStruct_02022BD8_2 * param0);
-NNSGfdTexKey sub_02022EF4(const UnkStruct_02022BD8_2 * param0);
-NNSGfdTexKey sub_02022F04(const UnkStruct_02022BD8_2 * param0);
-NNSGfdPlttKey sub_02022F14(const UnkStruct_02022BD8_2 * param0);
+TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID);
+void TextureResourceManager_Delete(TextureResourceManager * param0);
+BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager * param0, int param1);
+TextureResource * sub_02022C58(const TextureResourceManager * param0, void * param1, int param2, enum TextureResourceMode param3, enum HeapId param4);
+TextureResource * sub_02022C9C(TextureResourceManager * param0, void * param1, int param2, u32 param3, int param4);
+void sub_02022CB4(TextureResourceManager * param0, TextureResource * param1);
+void sub_02022D38(TextureResourceManager * param0, int param1);
+void sub_02022D58(TextureResourceManager * param0);
+TextureResource * sub_02022D98(const TextureResourceManager * param0, int param1);
+int TextureResource_GetID(const TextureResource * param0);
+NNSG3dResTex * sub_02022DF4(const TextureResource * param0);
+void sub_02022E08(TextureResource * param0);
+void sub_02022E38(TextureResourceManager * param0, int param1);
+void sub_02022E54(TextureResource * param0);
+void sub_02022EA0(TextureResourceManager * param0, int param1);
+void sub_02022EBC(TextureResource * param0);
+NNSGfdTexKey sub_02022EF4(const TextureResource * param0);
+NNSGfdTexKey sub_02022F04(const TextureResource * param0);
+NNSGfdPlttKey sub_02022F14(const TextureResource * param0);
 u32 sub_02022F24(NNSG3dResFileHeader * param0);
 
 #endif // POKEPLATINUM_UNK_0202298C_H

@@ -8811,8 +8811,8 @@ void ov9_02250780 (FieldSystem * fieldSystem)
     if (v0->unk_1EC0 == 1) {
         UnkStruct_ov9_0225074C * v1 = ov9_0224E39C(v0);
         UnkStruct_ov5_021ED0A4 * v2 = sub_0206285C(v0->fieldSystem->mapObjMan);
-        UnkStruct_02022BD8 * v3 = ov5_021EDCB0(v2);
-        UnkStruct_02022BD8_2 * v4 = sub_02022D98(v3, 0xe6);
+        TextureResourceManager * v3 = ov5_021EDCB0(v2);
+        TextureResource * v4 = sub_02022D98(v3, 0xe6);
         NNSGfdPlttKey v5 = sub_02022F14(v4);
         u32 v6 = NNS_GfdGetPlttKeyAddr(v5);
 

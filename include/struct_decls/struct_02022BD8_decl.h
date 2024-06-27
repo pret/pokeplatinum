@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02022BD8_DECL_H
 #define POKEPLATINUM_STRUCT_02022BD8_DECL_H
 
-typedef struct UnkStruct_02022BD8_t UnkStruct_02022BD8;
+typedef struct TextureResourceManager TextureResourceManager;
 
 #endif // POKEPLATINUM_STRUCT_02022BD8_DECL_H
