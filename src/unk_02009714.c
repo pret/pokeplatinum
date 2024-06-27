@@ -395,7 +395,7 @@ void sub_02009D4C (UnkStruct_02009DC8 * param0)
     GF_ASSERT(param0);
 
     sub_0200A1F8(param0);
-    sub_02022B64(param0->unk_00, NULL);
+    Resource_SetData(param0->unk_00, NULL);
 }
 
 void sub_02009D68 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1)
@@ -430,7 +430,7 @@ UnkStruct_02009DC8 * sub_02009DC8 (const UnkStruct_02009714 * param0, int param1
 
     for (v0 = 0; v0 < param0->unk_08; v0++) {
         if (param0->unk_04[v0].unk_00) {
-            v1 = sub_02022B80(param0->unk_04[v0].unk_00);
+            v1 = Resource_GetID(param0->unk_04[v0].unk_00);
 
             if (v1 == param1) {
                 return param0->unk_04 + v0;
@@ -444,7 +444,7 @@ UnkStruct_02009DC8 * sub_02009DC8 (const UnkStruct_02009714 * param0, int param1
 int sub_02009E08 (const UnkStruct_02009DC8 * param0)
 {
     GF_ASSERT(param0);
-    return sub_02022B80(param0->unk_00);
+    return Resource_GetID(param0->unk_00);
 }
 
 NNSG2dCharacterData * sub_02009E1C (const UnkStruct_02009DC8 * param0)
@@ -720,7 +720,7 @@ static void sub_0200A0D4 (UnkStruct_02009DC8 * param0, int param1, int param2, i
 {
     void * v0;
 
-    v0 = sub_02022B54(param0->unk_00);
+    v0 = Resource_GetData(param0->unk_00);
 
     switch (param1) {
     case 0:

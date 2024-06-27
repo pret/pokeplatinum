@@ -18,9 +18,9 @@ Resource *ResourceManager_AddResourceFromFile(ResourceManager *resMgr, const cha
 void ResourceManager_RemoveResource(ResourceManager *resMgr, Resource *resource);
 void ResourceManager_Clear(ResourceManager *resMgr);
 Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id);
-void * sub_02022B54(Resource * param0);
-void sub_02022B64(Resource * param0, void * param1);
-int sub_02022B80(Resource * param0);
+void *Resource_GetData(Resource *resource);
+void Resource_SetData(Resource *resource, void *data);
+int Resource_GetID(Resource *resource);
 UnkStruct_02022BD8 * sub_02022BD8(int param0, int param1);
 void sub_02022C1C(UnkStruct_02022BD8 * param0);
 BOOL sub_02022C40(const UnkStruct_02022BD8 * param0, int param1);

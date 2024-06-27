@@ -155,27 +155,27 @@ Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id)
     return NULL;
 }
 
-void * sub_02022B54 (Resource * param0)
+void *Resource_GetData(Resource *resource)
 {
-    GF_ASSERT(param0);
-    return param0->data;
+    GF_ASSERT(resource);
+    return resource->data;
 }
 
-void sub_02022B64 (Resource * param0, void * param1)
+void Resource_SetData(Resource *resource, void *data)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(resource);
 
-    if (param0->data) {
-        Heap_FreeToHeap(param0->data);
+    if (resource->data) {
+        Heap_FreeToHeap(resource->data);
     }
 
-    param0->data = param1;
+    resource->data = data;
 }
 
-int sub_02022B80 (Resource * param0)
+int Resource_GetID(Resource *resource)
 {
-    GF_ASSERT(param0);
-    return param0->id;
+    GF_ASSERT(resource);
+    return resource->id;
 }
 
 static Resource *ResourceManager_AllocResource(ResourceManager *resMgr)
@@ -195,7 +195,7 @@ static void Resource_Init(Resource *resource)
 {
     GF_ASSERT(resource);
 
-    resource->id = 0xffffffff;
+    resource->id = RESOURCE_ID_INVALID;
     resource->data = NULL;
 }
 
@@ -346,7 +346,7 @@ UnkStruct_02022BD8_2 * sub_02022D98 (const UnkStruct_02022BD8 * param0, int para
 int sub_02022DE0 (const UnkStruct_02022BD8_2 * param0)
 {
     GF_ASSERT(param0);
-    return sub_02022B80(param0->unk_00);
+    return Resource_GetID(param0->unk_00);
 }
 
 NNSG3dResTex * sub_02022DF4 (const UnkStruct_02022BD8_2 * param0)
@@ -483,7 +483,7 @@ static NNSG3dResTex * sub_02022F70 (const UnkStruct_02022BD8_2 * param0)
     void * v0;
     NNSG3dResTex * v1;
 
-    v0 = sub_02022B54(param0->unk_00);
+    v0 = Resource_GetData(param0->unk_00);
     v1 = NNS_G3dGetTex(v0);
 
     return v1;
@@ -495,7 +495,7 @@ static NNSG3dResTex * sub_02022F80 (const UnkStruct_02022BD8_2 * param0)
     NNSG3dResTex * v1;
 
     if (param0->unk_16 == 0) {
-        v0 = sub_02022B54(param0->unk_00);
+        v0 = Resource_GetData(param0->unk_00);
     } else {
         v0 = param0->unk_10;
     }

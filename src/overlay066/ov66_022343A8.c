@@ -337,7 +337,7 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
 
         {
             v4 = ResourceManager_FindResource(param0->unk_00, 127);
-            v7 = sub_02022B54(v4);
+            v7 = Resource_GetData(v4);
         }
 
         {
@@ -356,7 +356,7 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
             }
 
             v4 = ResourceManager_FindResource(param0->unk_04, v15);
-            v16 = sub_02022B54(v4);
+            v16 = Resource_GetData(v4);
 
             sub_02024184(v16, &v9);
         }
