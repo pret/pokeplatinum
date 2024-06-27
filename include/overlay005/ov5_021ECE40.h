@@ -29,8 +29,8 @@ void ov5_021EDBC4(const MapObjectManager * param0, int param1, MapObject * param
 void ov5_021EDC84(UnkStruct_ov5_021ED0A4 * param0, UnkStruct_02020C44 * param1);
 UnkStruct_02020C44 * ov5_021EDC8C(UnkStruct_ov5_021ED0A4 * param0);
 void ov5_021EDC94(UnkStruct_ov5_021ED0A4 * param0, int param1);
-UnkStruct_0202298C * ov5_021EDC98(const UnkStruct_ov5_021ED0A4 * param0);
-UnkStruct_0202298C * ov5_021EDCA0(const UnkStruct_ov5_021ED0A4 * param0);
+ResourceManager * ov5_021EDC98(const UnkStruct_ov5_021ED0A4 * param0);
+ResourceManager * ov5_021EDCA0(const UnkStruct_ov5_021ED0A4 * param0);
 void ov5_021EDCA8(UnkStruct_ov5_021ED0A4 * param0, UnkStruct_02022BD8 * param1);
 UnkStruct_02022BD8 * ov5_021EDCB0(const UnkStruct_ov5_021ED0A4 * param0);
 void ov5_021EDD78(MapObject * param0, int param1);

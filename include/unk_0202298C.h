@@ -8,17 +8,17 @@
 
 #include <nnsys.h>
 
-UnkStruct_0202298C * sub_0202298C(int param0, int param1);
-void sub_020229D8(UnkStruct_0202298C * param0);
-BOOL sub_020229F8(UnkStruct_0202298C * param0, int param1);
-UnkStruct_02022BC0 * sub_02022A1C(UnkStruct_0202298C * param0, void * param1, int param2);
-UnkStruct_02022BC0 * sub_02022A58(UnkStruct_0202298C * param0, const char * param1, int param2, int param3);
-void sub_02022AB0(UnkStruct_0202298C * param0, UnkStruct_02022BC0 * param1);
-void sub_02022AE4(UnkStruct_0202298C * param0);
-UnkStruct_02022BC0 * sub_02022B20(UnkStruct_0202298C * param0, int param1);
-void * sub_02022B54(UnkStruct_02022BC0 * param0);
-void sub_02022B64(UnkStruct_02022BC0 * param0, void * param1);
-int sub_02022B80(UnkStruct_02022BC0 * param0);
+ResourceManager * ResourceManager_New(int param0, int param1);
+void ResourceManager_Delete(ResourceManager * param0);
+BOOL ResourceManager_IsIDUnused(ResourceManager * param0, int param1);
+Resource * ResourceManager_AddResource(ResourceManager * param0, void * param1, int param2);
+Resource * ResourceManager_AddResourceFromFile(ResourceManager * param0, const char * param1, int param2, int param3);
+void ResourceManager_RemoveResource(ResourceManager * param0, Resource * param1);
+void ResourceManager_Clear(ResourceManager * param0);
+Resource * ResourceManager_FindResource(ResourceManager * param0, int param1);
+void * sub_02022B54(Resource * param0);
+void sub_02022B64(Resource * param0, void * param1);
+int sub_02022B80(Resource * param0);
 UnkStruct_02022BD8 * sub_02022BD8(int param0, int param1);
 void sub_02022C1C(UnkStruct_02022BD8 * param0);
 BOOL sub_02022C40(const UnkStruct_02022BD8 * param0, int param1);

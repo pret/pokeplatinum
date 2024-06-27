@@ -7,19 +7,21 @@
 
 #include "nnsys.h"
 
-typedef struct UnkStruct_02022BC0_t {
-    int unk_00;
-    void * unk_04;
-} UnkStruct_02022BC0;
+#define RESOURCE_ID_INVALID (-1)
 
-typedef struct UnkStruct_0202298C_t {
-    UnkStruct_02022BC0 * unk_00;
-    int unk_04;
-    int unk_08;
-} UnkStruct_0202298C;
+typedef struct Resource {
+    int id;
+    void * data;
+} Resource;
+
+typedef struct ResourceManager {
+    Resource * resources;
+    int maxResources;
+    int resourceCount;
+} ResourceManager;
 
 typedef struct UnkStruct_02022BD8_2_t {
-    UnkStruct_02022BC0 * unk_00;
+    Resource * unk_00;
     NNSGfdTexKey unk_04;
     NNSGfdTexKey unk_08;
     NNSGfdPlttKey unk_0C;
@@ -29,12 +31,12 @@ typedef struct UnkStruct_02022BD8_2_t {
 } UnkStruct_02022BD8_2;
 
 typedef struct UnkStruct_02022BD8_t {
-    UnkStruct_0202298C * unk_00;
+    ResourceManager * unk_00;
     UnkStruct_02022BD8_2 * unk_04;
 } UnkStruct_02022BD8;
 
-static UnkStruct_02022BC0 * sub_02022B90(UnkStruct_0202298C * param0);
-static void sub_02022BC0(UnkStruct_02022BC0 * param0);
+static Resource *ResourceManager_AllocResource(ResourceManager *resMgr);
+static void Resource_Init(Resource *resource);
 static UnkStruct_02022BD8_2 * sub_02022F2C(const UnkStruct_02022BD8 * param0);
 static void sub_02022F5C(UnkStruct_02022BD8_2 * param0);
 static void sub_02022F98(const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3);
@@ -46,175 +48,155 @@ static void sub_02023048(NNSG3dResTex * param0);
 static void * sub_02023060(void * param0, u32 param1);
 static u32 sub_02023084(const void * param0);
 
-UnkStruct_0202298C * sub_0202298C (int param0, int param1)
+ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID)
 {
-    UnkStruct_0202298C * v0;
-    int v1;
+    ResourceManager *resMgr = Heap_AllocFromHeap(heapID, sizeof(ResourceManager));
+    GF_ASSERT(resMgr);
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0202298C));
-    GF_ASSERT(v0);
+    resMgr->resources = Heap_AllocFromHeap(heapID, sizeof(Resource) * maxResources);
+    GF_ASSERT(resMgr->resources);
 
-    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BC0) * param0);
-    GF_ASSERT(v0->unk_00);
-
-    for (v1 = 0; v1 < param0; v1++) {
-        sub_02022BC0((v0->unk_00 + v1));
+    for (int i = 0; i < maxResources; i++) {
+        Resource_Init(resMgr->resources + i);
     }
 
-    v0->unk_04 = param0;
-    v0->unk_08 = 0;
+    resMgr->maxResources = maxResources;
+    resMgr->resourceCount = 0;
 
-    return v0;
+    return resMgr;
 }
 
-void sub_020229D8 (UnkStruct_0202298C * param0)
+void ResourceManager_Delete(ResourceManager *resMgr)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(resMgr);
 
-    sub_02022AE4(param0);
-    Heap_FreeToHeap(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    ResourceManager_Clear(resMgr);
+    Heap_FreeToHeap(resMgr->resources);
+    Heap_FreeToHeap(resMgr);
 }
 
-BOOL sub_020229F8 (UnkStruct_0202298C * param0, int param1)
+BOOL ResourceManager_IsIDUnused(ResourceManager *resMgr, int id)
 {
-    int v0;
+    GF_ASSERT(resMgr);
+    return ResourceManager_FindResource(resMgr, id) == NULL;
+}
 
-    GF_ASSERT(param0);
+Resource *ResourceManager_AddResource(ResourceManager *resMgr, void *data, int id)
+{
+    GF_ASSERT(resMgr);
 
-    if (sub_02022B20(param0, param1) == NULL) {
-        return 1;
+    Resource *resource = ResourceManager_AllocResource(resMgr);
+    GF_ASSERT(resource);
+
+    GF_ASSERT(ResourceManager_IsIDUnused(resMgr, id) == TRUE);
+
+    resource->data = data;
+    resource->id = id;
+    resMgr->resourceCount++;
+
+    return resource;
+}
+
+Resource *ResourceManager_AddResourceFromFile(ResourceManager *resMgr, const char *filename, int id, enum HeapId heapID)
+{
+    GF_ASSERT(resMgr);
+    GF_ASSERT(filename);
+
+    Resource *resource = ResourceManager_AllocResource(resMgr);
+
+    GF_ASSERT(resource);
+    GF_ASSERT(ResourceManager_IsIDUnused(resMgr, id) == TRUE);
+
+    resource->data = ReadFileToHeap(heapID, filename);
+    GF_ASSERT(resource->data);
+    resource->id = id;
+
+    resMgr->resourceCount++;
+
+    return resource;
+}
+
+void ResourceManager_RemoveResource(ResourceManager *resMgr, Resource *resource)
+{
+    GF_ASSERT(resMgr);
+    GF_ASSERT(resource);
+
+    if (resource->data) {
+        Heap_FreeToHeap(resource->data);
+        resource->data = NULL;
     }
 
-    return 0;
+    resource->id = RESOURCE_ID_INVALID;
+    resMgr->resourceCount--;
 }
 
-UnkStruct_02022BC0 * sub_02022A1C (UnkStruct_0202298C * param0, void * param1, int param2)
+void ResourceManager_Clear(ResourceManager *resMgr)
 {
-    UnkStruct_02022BC0 * v0;
+    GF_ASSERT(resMgr);
+    GF_ASSERT(resMgr->resources);
 
-    GF_ASSERT(param0);
-
-    v0 = sub_02022B90(param0);
-
-    GF_ASSERT(v0);
-    GF_ASSERT((sub_020229F8(param0, param2) == 1));
-
-    v0->unk_04 = param1;
-    v0->unk_00 = param2;
-    param0->unk_08++;
-
-    return v0;
-}
-
-UnkStruct_02022BC0 * sub_02022A58 (UnkStruct_0202298C * param0, const char * param1, int param2, int param3)
-{
-    UnkStruct_02022BC0 * v0;
-
-    GF_ASSERT(param0);
-    GF_ASSERT(param1);
-
-    v0 = sub_02022B90(param0);
-
-    GF_ASSERT(v0);
-    GF_ASSERT((sub_020229F8(param0, param2) == 1));
-
-    v0->unk_04 = ReadFileToHeap(param3, param1);
-    GF_ASSERT(v0->unk_04);
-    v0->unk_00 = param2;
-
-    param0->unk_08++;
-
-    return v0;
-}
-
-void sub_02022AB0 (UnkStruct_0202298C * param0, UnkStruct_02022BC0 * param1)
-{
-    GF_ASSERT(param0);
-    GF_ASSERT(param1);
-
-    if (param1->unk_04) {
-        Heap_FreeToHeap(param1->unk_04);
-        param1->unk_04 = NULL;
-    }
-
-    param1->unk_00 = 0xffffffff;
-    param0->unk_08--;
-}
-
-void sub_02022AE4 (UnkStruct_0202298C * param0)
-{
-    int v0;
-
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_00);
-
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0].unk_00 != 0xffffffff) {
-            sub_02022AB0(param0, (param0->unk_00 + v0));
+    for (int i = 0; i < resMgr->maxResources; i++) {
+        if (resMgr->resources[i].id != RESOURCE_ID_INVALID) {
+            ResourceManager_RemoveResource(resMgr, resMgr->resources + i);
         }
     }
 }
 
-UnkStruct_02022BC0 * sub_02022B20 (UnkStruct_0202298C * param0, int param1)
+Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id)
 {
-    int v0;
+    GF_ASSERT(resMgr);
 
-    GF_ASSERT(param0);
-
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0].unk_00 == param1) {
-            return param0->unk_00 + v0;
+    for (int i = 0; i < resMgr->maxResources; i++) {
+        if (resMgr->resources[i].id == id) {
+            return resMgr->resources + i;
         }
     }
 
     return NULL;
 }
 
-void * sub_02022B54 (UnkStruct_02022BC0 * param0)
+void * sub_02022B54 (Resource * param0)
 {
     GF_ASSERT(param0);
-    return param0->unk_04;
+    return param0->data;
 }
 
-void sub_02022B64 (UnkStruct_02022BC0 * param0, void * param1)
+void sub_02022B64 (Resource * param0, void * param1)
 {
     GF_ASSERT(param0);
 
-    if (param0->unk_04) {
-        Heap_FreeToHeap(param0->unk_04);
+    if (param0->data) {
+        Heap_FreeToHeap(param0->data);
     }
 
-    param0->unk_04 = param1;
+    param0->data = param1;
 }
 
-int sub_02022B80 (UnkStruct_02022BC0 * param0)
+int sub_02022B80 (Resource * param0)
 {
     GF_ASSERT(param0);
-    return param0->unk_00;
+    return param0->id;
 }
 
-static UnkStruct_02022BC0 * sub_02022B90 (UnkStruct_0202298C * param0)
+static Resource *ResourceManager_AllocResource(ResourceManager *resMgr)
 {
-    int v0;
+    GF_ASSERT(resMgr);
 
-    GF_ASSERT(param0);
-
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0].unk_00 == 0xffffffff) {
-            return param0->unk_00 + v0;
+    for (int i = 0; i < resMgr->maxResources; i++) {
+        if (resMgr->resources[i].id == RESOURCE_ID_INVALID) {
+            return resMgr->resources + i;
         }
     }
 
     return NULL;
 }
 
-static void sub_02022BC0 (UnkStruct_02022BC0 * param0)
+static void Resource_Init(Resource *resource)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(resource);
 
-    param0->unk_00 = 0xffffffff;
-    param0->unk_04 = NULL;
+    resource->id = 0xffffffff;
+    resource->data = NULL;
 }
 
 UnkStruct_02022BD8 * sub_02022BD8 (int param0, int param1)
@@ -224,7 +206,7 @@ UnkStruct_02022BD8 * sub_02022BD8 (int param0, int param1)
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BD8));
 
-    v0->unk_00 = sub_0202298C(param0, param1);
+    v0->unk_00 = ResourceManager_New(param0, param1);
     v0->unk_04 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BD8_2) * param0);
 
     for (v1 = 0; v1 < param0; v1++) {
@@ -239,7 +221,7 @@ void sub_02022C1C (UnkStruct_02022BD8 * param0)
     GF_ASSERT(param0);
 
     sub_02022D58(param0);
-    sub_020229D8(param0->unk_00);
+    ResourceManager_Delete(param0->unk_00);
     Heap_FreeToHeap(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
@@ -247,7 +229,7 @@ void sub_02022C1C (UnkStruct_02022BD8 * param0)
 BOOL sub_02022C40 (const UnkStruct_02022BD8 * param0, int param1)
 {
     GF_ASSERT(param0);
-    return sub_020229F8(param0->unk_00, param1);
+    return ResourceManager_IsIDUnused(param0->unk_00, param1);
 }
 
 UnkStruct_02022BD8_2 * sub_02022C58 (const UnkStruct_02022BD8 * param0, void * param1, int param2, u32 param3, u32 param4)
@@ -268,7 +250,7 @@ UnkStruct_02022BD8_2 * sub_02022C58 (const UnkStruct_02022BD8 * param0, void * p
         v0->unk_10 = NULL;
     }
 
-    v0->unk_00 = sub_02022A1C(param0->unk_00, v1, param2);
+    v0->unk_00 = ResourceManager_AddResource(param0->unk_00, v1, param2);
 
     return v0;
 }
@@ -296,7 +278,7 @@ void sub_02022CB4 (UnkStruct_02022BD8 * param0, UnkStruct_02022BD8_2 * param1)
     }
 
     if (param1->unk_00) {
-        sub_02022AB0(param0->unk_00, param1->unk_00);
+        ResourceManager_RemoveResource(param0->unk_00, param1->unk_00);
     }
 
     if (param1->unk_04 != NNS_GFD_ALLOC_ERROR_TEXKEY) {
@@ -334,7 +316,7 @@ void sub_02022D58 (UnkStruct_02022BD8 * param0)
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_04);
 
-    for (v0 = 0; v0 < param0->unk_00->unk_04; v0++) {
+    for (v0 = 0; v0 < param0->unk_00->maxResources; v0++) {
         if (param0->unk_04[v0].unk_00) {
             sub_02022CB4(param0, param0->unk_04 + v0);
         }
@@ -348,7 +330,7 @@ UnkStruct_02022BD8_2 * sub_02022D98 (const UnkStruct_02022BD8 * param0, int para
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_00->unk_04; v0++) {
+    for (v0 = 0; v0 < param0->unk_00->maxResources; v0++) {
         if (param0->unk_04[v0].unk_00) {
             v1 = sub_02022DE0(param0->unk_04 + v0);
 
@@ -476,7 +458,7 @@ static UnkStruct_02022BD8_2 * sub_02022F2C (const UnkStruct_02022BD8 * param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->unk_00->unk_04; v0++) {
+    for (v0 = 0; v0 < param0->unk_00->maxResources; v0++) {
         if (param0->unk_04[v0].unk_00 == NULL) {
             return param0->unk_04 + v0;
         }

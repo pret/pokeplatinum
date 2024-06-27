@@ -247,7 +247,7 @@ void ov22_02255338 (UnkStruct_ov22_02255CB8 * param0)
 
 NNSG2dCharacterData * ov22_02255340 (UnkStruct_ov22_0225A0E4 * param0, void * param1, int param2)
 {
-    sub_02022A1C(param0->unk_34, param1, param2);
+    ResourceManager_AddResource(param0->unk_34, param1, param2);
     NNS_G2dGetUnpackedCharacterData(param1, &param0->unk_38[param2]);
 
     return param0->unk_38[param2];
@@ -682,7 +682,7 @@ static void ov22_02255984 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_022559B4 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    param0->unk_34 = sub_0202298C((((100 + 18)) + 1), 14);
+    param0->unk_34 = ResourceManager_New((((100 + 18)) + 1), 14);
     param0->unk_38 = Heap_AllocFromHeap(14, sizeof(NNSG2dCharacterData *) * (((100 + 18)) + 1));
     memset(param0->unk_38, 0, sizeof(NNSG2dCharacterData *) * (((100 + 18)) + 1));
     param0->unk_3C = (((100 + 18)) + 1);
@@ -691,7 +691,7 @@ static void ov22_022559B4 (UnkStruct_ov22_0225A0E4 * param0)
 static void ov22_022559E0 (UnkStruct_ov22_0225A0E4 * param0)
 {
     Heap_FreeToHeap(param0->unk_38);
-    sub_020229D8(param0->unk_34);
+    ResourceManager_Delete(param0->unk_34);
     param0->unk_3C = 0;
 }
 
@@ -765,7 +765,7 @@ static void ov22_02255ACC (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_0225
 
     v2 = sub_0200723C(param0->unk_5C, 0, 0, 14, 1);
 
-    sub_02022A1C(param1->unk_14, v2, 0);
+    ResourceManager_AddResource(param1->unk_14, v2, 0);
     NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);
 
     param1->unk_08[0].unk_00 = param0->unk_00;
@@ -788,7 +788,7 @@ static void ov22_02255B50 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_0225
         v2 = v0 + 1;
         v1 = sub_0200723C(param0->unk_5C, (v0) * 4 + 134 + 1, 0, 14, 1);
 
-        sub_02022A1C(param1->unk_14, v1, v2);
+        ResourceManager_AddResource(param1->unk_14, v1, v2);
         NNS_G2dGetUnpackedPaletteData(v1, &param1->unk_08[v2].unk_04);
         GF_ASSERT(param1->unk_08[v2].unk_04);
 
@@ -834,24 +834,24 @@ static void ov22_02255CB8 (UnkStruct_ov22_02255CB8 * param0, int param1, int par
 {
     param0->unk_00 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov22_022557A0) * param1);
     memset(param0->unk_00, 0, sizeof(UnkStruct_ov22_022557A0) * param1);
-    param0->unk_10 = sub_0202298C(param1, param3);
+    param0->unk_10 = ResourceManager_New(param1, param3);
     param0->unk_04 = param1;
 
     param0->unk_08 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov22_02255800) * param2);
     memset(param0->unk_08, 0, sizeof(UnkStruct_ov22_02255800) * param2);
-    param0->unk_14 = sub_0202298C(param2, param3);
+    param0->unk_14 = ResourceManager_New(param2, param3);
     param0->unk_0C = param2;
 }
 
 static void ov22_02255D0C (UnkStruct_ov22_02255CB8 * param0)
 {
     if (param0->unk_10) {
-        sub_020229D8(param0->unk_10);
+        ResourceManager_Delete(param0->unk_10);
         param0->unk_10 = NULL;
     }
 
     if (param0->unk_14) {
-        sub_020229D8(param0->unk_14);
+        ResourceManager_Delete(param0->unk_14);
         param0->unk_14 = NULL;
     }
 

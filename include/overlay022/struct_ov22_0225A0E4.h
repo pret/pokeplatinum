@@ -28,7 +28,7 @@ typedef struct {
     NNSGfdPlttKey unk_28;
     BOOL unk_2C;
     u8 * unk_30;
-    UnkStruct_0202298C * unk_34;
+    ResourceManager * unk_34;
     NNSG2dCharacterData ** unk_38;
     int unk_3C;
     BGL * unk_40;

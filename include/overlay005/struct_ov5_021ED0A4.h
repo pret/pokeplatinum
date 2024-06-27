@@ -24,8 +24,8 @@ typedef struct UnkStruct_ov5_021ED0A4_t {
     int unk_60[32];
     UnkStruct_02020C44 * unk_E0;
     UnkStruct_ov5_021DF84C * unk_E4;
-    UnkStruct_0202298C * unk_E8;
-    UnkStruct_0202298C * unk_EC;
+    ResourceManager * unk_E8;
+    ResourceManager * unk_EC;
     UnkStruct_02022BD8 * unk_F0;
     UnkStruct_ov5_021ED110 * unk_F4;
     UnkStruct_ov5_021F06D8 * unk_F8;

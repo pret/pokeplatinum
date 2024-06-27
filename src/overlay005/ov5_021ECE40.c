@@ -614,7 +614,7 @@ static void ov5_021ED3B8 (UnkStruct_ov5_021ED0A4 * param0, const int * param1)
 
 static void ov5_021ED3DC (UnkStruct_ov5_021ED0A4 * param0, int param1)
 {
-    UnkStruct_0202298C * v0;
+    ResourceManager * v0;
 
     v0 = ov5_021EDC98(param0);
 
@@ -624,7 +624,7 @@ static void ov5_021ED3DC (UnkStruct_ov5_021ED0A4 * param0, int param1)
 
 static void ov5_021ED40C (UnkStruct_ov5_021ED0A4 * param0, int param1)
 {
-    UnkStruct_0202298C * v0;
+    ResourceManager * v0;
 
     v0 = ov5_021EDC98(param0);
 
@@ -642,7 +642,7 @@ static void ov5_021ED43C (UnkStruct_ov5_021ED0A4 * param0, const int * param1)
 
 static void ov5_021ED460 (UnkStruct_ov5_021ED0A4 * param0, int param1)
 {
-    UnkStruct_0202298C * v0;
+    ResourceManager * v0;
 
     v0 = ov5_021EDCA0(param0);
 
@@ -652,7 +652,7 @@ static void ov5_021ED460 (UnkStruct_ov5_021ED0A4 * param0, int param1)
 
 static void ov5_021ED490 (UnkStruct_ov5_021ED0A4 * param0, int param1)
 {
-    UnkStruct_0202298C * v0;
+    ResourceManager * v0;
 
     v0 = ov5_021EDCA0(param0);
 
@@ -800,7 +800,7 @@ static void ov5_021ED63C (MapObjectManager * param0, UnkStruct_ov5_021ED0A4 * pa
 {
     int v0;
     int * v1;
-    UnkStruct_0202298C * v2;
+    ResourceManager * v2;
 
     v2 = ov5_021EDC98(param1);
     v1 = ov5_021EDCBC(param1);
@@ -892,7 +892,7 @@ static void ov5_021ED778 (MapObjectManager * param0, UnkStruct_ov5_021ED0A4 * pa
 {
     int v0;
     int * v1;
-    UnkStruct_0202298C * v2;
+    ResourceManager * v2;
 
     v2 = ov5_021EDCA0(param1);
     v1 = ov5_021EDCC0(param1);
@@ -1251,12 +1251,12 @@ void ov5_021EDC94 (UnkStruct_ov5_021ED0A4 * param0, int param1)
     param0->unk_04 = param1;
 }
 
-UnkStruct_0202298C * ov5_021EDC98 (const UnkStruct_ov5_021ED0A4 * param0)
+ResourceManager * ov5_021EDC98 (const UnkStruct_ov5_021ED0A4 * param0)
 {
     return param0->unk_E8;
 }
 
-UnkStruct_0202298C * ov5_021EDCA0 (const UnkStruct_ov5_021ED0A4 * param0)
+ResourceManager * ov5_021EDCA0 (const UnkStruct_ov5_021ED0A4 * param0)
 {
     return param0->unk_EC;
 }

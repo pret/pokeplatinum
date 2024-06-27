@@ -15,13 +15,13 @@
 
 
 typedef struct UnkStruct_02009DC8_t {
-    UnkStruct_02022BC0 * unk_00;
+    Resource * unk_00;
     int unk_04;
     void * unk_08;
 } UnkStruct_02009DC8;
 
 typedef struct UnkStruct_02009714_t {
-    UnkStruct_0202298C * unk_00;
+    ResourceManager * unk_00;
     UnkStruct_02009DC8 * unk_04;
     int unk_08;
     int unk_0C;
@@ -98,7 +98,7 @@ UnkStruct_02009714 * sub_02009714 (int param0, int param1, int param2)
     int v1;
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02009714));
-    v0->unk_00 = sub_0202298C(param0, param2);
+    v0->unk_00 = ResourceManager_New(param0, param2);
     v0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02009DC8) * param0);
 
     memset(v0->unk_04, 0, sizeof(UnkStruct_02009DC8) * param0);
@@ -118,7 +118,7 @@ void sub_02009754 (UnkStruct_02009714 * param0)
 
     sub_02009D9C(param0);
 
-    sub_020229D8(param0->unk_00);
+    ResourceManager_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 
     Heap_FreeToHeap(param0->unk_04);
@@ -387,7 +387,7 @@ void sub_02009D20 (UnkStruct_02009CFC * param0)
 BOOL sub_02009D34 (const UnkStruct_02009714 * param0, int param1)
 {
     GF_ASSERT(param0);
-    return sub_020229F8(param0->unk_00, param1);
+    return ResourceManager_IsIDUnused(param0->unk_00, param1);
 }
 
 void sub_02009D4C (UnkStruct_02009DC8 * param0)
@@ -404,7 +404,7 @@ void sub_02009D68 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1)
     GF_ASSERT(param0->unk_04);
 
     sub_0200A1F8(param1);
-    sub_02022AB0(param0->unk_00, param1->unk_00);
+    ResourceManager_RemoveResource(param0->unk_00, param1->unk_00);
 
     param1->unk_00 = NULL;
     param0->unk_0C--;
@@ -827,7 +827,7 @@ static void * sub_0200A20C (const UnkStruct_02009DC8 * param0)
 
 static void sub_0200A224 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1, const char * param2, int param3, int param4, int param5, int param6, int param7)
 {
-    param1->unk_00 = sub_02022A58(param0->unk_00, param2, param3, param7);
+    param1->unk_00 = ResourceManager_AddResourceFromFile(param0->unk_00, param2, param3, param7);
     param1->unk_04 = param6;
 
     sub_0200A0D4(param1, param6, param4, param5, param7);
@@ -839,7 +839,7 @@ static void sub_0200A250 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * para
 
     v0 = sub_02006FE8(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = sub_02022A1C(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceManager_AddResource(param0->unk_00, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);
@@ -851,7 +851,7 @@ static void sub_0200A288 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * para
 
     v0 = sub_0200A2DC(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = sub_02022A1C(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceManager_AddResource(param0->unk_00, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);

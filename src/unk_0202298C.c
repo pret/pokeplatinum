@@ -7,19 +7,19 @@
 
 #include "nnsys.h"
 
-typedef struct UnkStruct_02022BC0_t {
-    int unk_00;
-    void * unk_04;
-} UnkStruct_02022BC0;
+typedef struct Resource {
+    int id;
+    void * data;
+} Resource;
 
-typedef struct UnkStruct_0202298C_t {
-    UnkStruct_02022BC0 * unk_00;
+typedef struct ResourceManager {
+    Resource * unk_00;
     int unk_04;
-    int unk_08;
+    int resourceCount;
 } UnkStruct_0202298C;
 
 typedef struct UnkStruct_02022BD8_2_t {
-    UnkStruct_02022BC0 * unk_00;
+    Resource * unk_00;
     NNSGfdTexKey unk_04;
     NNSGfdTexKey unk_08;
     NNSGfdPlttKey unk_0C;
@@ -33,8 +33,8 @@ typedef struct UnkStruct_02022BD8_t {
     UnkStruct_02022BD8_2 * unk_04;
 } UnkStruct_02022BD8;
 
-static UnkStruct_02022BC0 * sub_02022B90(UnkStruct_0202298C * param0);
-static void sub_02022BC0(UnkStruct_02022BC0 * param0);
+static Resource * sub_02022B90(UnkStruct_0202298C * param0);
+static void sub_02022BC0(Resource * param0);
 static UnkStruct_02022BD8_2 * sub_02022F2C(const UnkStruct_02022BD8 * param0);
 static void sub_02022F5C(UnkStruct_02022BD8_2 * param0);
 static void sub_02022F98(const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3);
@@ -46,7 +46,7 @@ static void sub_02023048(NNSG3dResTex * param0);
 static void * sub_02023060(void * param0, u32 param1);
 static u32 sub_02023084(const void * param0);
 
-UnkStruct_0202298C * sub_0202298C (int param0, int param1)
+UnkStruct_0202298C * ResourceManager_New (int param0, int param1)
 {
     UnkStruct_0202298C * v0;
     int v1;
@@ -54,7 +54,7 @@ UnkStruct_0202298C * sub_0202298C (int param0, int param1)
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0202298C));
     GF_ASSERT(v0);
 
-    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BC0) * param0);
+    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(Resource) * param0);
     GF_ASSERT(v0->unk_00);
 
     for (v1 = 0; v1 < param0; v1++) {
@@ -62,54 +62,54 @@ UnkStruct_0202298C * sub_0202298C (int param0, int param1)
     }
 
     v0->unk_04 = param0;
-    v0->unk_08 = 0;
+    v0->resourceCount = 0;
 
     return v0;
 }
 
-void sub_020229D8 (UnkStruct_0202298C * param0)
+void ResourceManager_Delete (UnkStruct_0202298C * param0)
 {
     GF_ASSERT(param0);
 
-    sub_02022AE4(param0);
+    ResourceManager_Clear(param0);
     Heap_FreeToHeap(param0->unk_00);
     Heap_FreeToHeap(param0);
 }
 
-BOOL sub_020229F8 (UnkStruct_0202298C * param0, int param1)
+BOOL ResourceManager_IsIDUnused (UnkStruct_0202298C * param0, int param1)
 {
     int v0;
 
     GF_ASSERT(param0);
 
-    if (sub_02022B20(param0, param1) == NULL) {
+    if (ResourceManager_FindResource(param0, param1) == NULL) {
         return 1;
     }
 
     return 0;
 }
 
-UnkStruct_02022BC0 * sub_02022A1C (UnkStruct_0202298C * param0, void * param1, int param2)
+Resource * ResourceManager_AddResource (UnkStruct_0202298C * param0, void * param1, int param2)
 {
-    UnkStruct_02022BC0 * v0;
+    Resource * v0;
 
     GF_ASSERT(param0);
 
     v0 = sub_02022B90(param0);
 
     GF_ASSERT(v0);
-    GF_ASSERT((sub_020229F8(param0, param2) == 1));
+    GF_ASSERT((ResourceManager_IsIDUnused(param0, param2) == 1));
 
     v0->unk_04 = param1;
     v0->unk_00 = param2;
-    param0->unk_08++;
+    param0->resourceCount++;
 
     return v0;
 }
 
-UnkStruct_02022BC0 * sub_02022A58 (UnkStruct_0202298C * param0, const char * param1, int param2, int param3)
+Resource * ResourceManager_AddResourceFromFile (UnkStruct_0202298C * param0, const char * param1, int param2, int param3)
 {
-    UnkStruct_02022BC0 * v0;
+    Resource * v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param1);
@@ -117,18 +117,18 @@ UnkStruct_02022BC0 * sub_02022A58 (UnkStruct_0202298C * param0, const char * par
     v0 = sub_02022B90(param0);
 
     GF_ASSERT(v0);
-    GF_ASSERT((sub_020229F8(param0, param2) == 1));
+    GF_ASSERT((ResourceManager_IsIDUnused(param0, param2) == 1));
 
     v0->unk_04 = ReadFileToHeap(param3, param1);
     GF_ASSERT(v0->unk_04);
     v0->unk_00 = param2;
 
-    param0->unk_08++;
+    param0->resourceCount++;
 
     return v0;
 }
 
-void sub_02022AB0 (UnkStruct_0202298C * param0, UnkStruct_02022BC0 * param1)
+void ResourceManager_RemoveResource (UnkStruct_0202298C * param0, Resource * param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param1);
@@ -139,10 +139,10 @@ void sub_02022AB0 (UnkStruct_0202298C * param0, UnkStruct_02022BC0 * param1)
     }
 
     param1->unk_00 = 0xffffffff;
-    param0->unk_08--;
+    param0->resourceCount--;
 }
 
-void sub_02022AE4 (UnkStruct_0202298C * param0)
+void ResourceManager_Clear (UnkStruct_0202298C * param0)
 {
     int v0;
 
@@ -151,12 +151,12 @@ void sub_02022AE4 (UnkStruct_0202298C * param0)
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
         if (param0->unk_00[v0].unk_00 != 0xffffffff) {
-            sub_02022AB0(param0, (param0->unk_00 + v0));
+            ResourceManager_RemoveResource(param0, (param0->unk_00 + v0));
         }
     }
 }
 
-UnkStruct_02022BC0 * sub_02022B20 (UnkStruct_0202298C * param0, int param1)
+Resource * ResourceManager_FindResource (UnkStruct_0202298C * param0, int param1)
 {
     int v0;
 
@@ -171,13 +171,13 @@ UnkStruct_02022BC0 * sub_02022B20 (UnkStruct_0202298C * param0, int param1)
     return NULL;
 }
 
-void * sub_02022B54 (UnkStruct_02022BC0 * param0)
+void * sub_02022B54 (Resource * param0)
 {
     GF_ASSERT(param0);
     return param0->unk_04;
 }
 
-void sub_02022B64 (UnkStruct_02022BC0 * param0, void * param1)
+void sub_02022B64 (Resource * param0, void * param1)
 {
     GF_ASSERT(param0);
 
@@ -188,13 +188,13 @@ void sub_02022B64 (UnkStruct_02022BC0 * param0, void * param1)
     param0->unk_04 = param1;
 }
 
-int sub_02022B80 (UnkStruct_02022BC0 * param0)
+int sub_02022B80 (Resource * param0)
 {
     GF_ASSERT(param0);
     return param0->unk_00;
 }
 
-static UnkStruct_02022BC0 * sub_02022B90 (UnkStruct_0202298C * param0)
+static Resource * sub_02022B90 (UnkStruct_0202298C * param0)
 {
     int v0;
 
@@ -209,7 +209,7 @@ static UnkStruct_02022BC0 * sub_02022B90 (UnkStruct_0202298C * param0)
     return NULL;
 }
 
-static void sub_02022BC0 (UnkStruct_02022BC0 * param0)
+static void sub_02022BC0 (Resource * param0)
 {
     GF_ASSERT(param0);
 
@@ -224,7 +224,7 @@ UnkStruct_02022BD8 * sub_02022BD8 (int param0, int param1)
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BD8));
 
-    v0->unk_00 = sub_0202298C(param0, param1);
+    v0->unk_00 = ResourceManager_New(param0, param1);
     v0->unk_04 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02022BD8_2) * param0);
 
     for (v1 = 0; v1 < param0; v1++) {
@@ -239,7 +239,7 @@ void sub_02022C1C (UnkStruct_02022BD8 * param0)
     GF_ASSERT(param0);
 
     sub_02022D58(param0);
-    sub_020229D8(param0->unk_00);
+    ResourceManager_Delete(param0->unk_00);
     Heap_FreeToHeap(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
@@ -247,7 +247,7 @@ void sub_02022C1C (UnkStruct_02022BD8 * param0)
 BOOL sub_02022C40 (const UnkStruct_02022BD8 * param0, int param1)
 {
     GF_ASSERT(param0);
-    return sub_020229F8(param0->unk_00, param1);
+    return ResourceManager_IsIDUnused(param0->unk_00, param1);
 }
 
 UnkStruct_02022BD8_2 * sub_02022C58 (const UnkStruct_02022BD8 * param0, void * param1, int param2, u32 param3, u32 param4)
@@ -268,7 +268,7 @@ UnkStruct_02022BD8_2 * sub_02022C58 (const UnkStruct_02022BD8 * param0, void * p
         v0->unk_10 = NULL;
     }
 
-    v0->unk_00 = sub_02022A1C(param0->unk_00, v1, param2);
+    v0->unk_00 = ResourceManager_AddResource(param0->unk_00, v1, param2);
 
     return v0;
 }
@@ -296,7 +296,7 @@ void sub_02022CB4 (UnkStruct_02022BD8 * param0, UnkStruct_02022BD8_2 * param1)
     }
 
     if (param1->unk_00) {
-        sub_02022AB0(param0->unk_00, param1->unk_00);
+        ResourceManager_RemoveResource(param0->unk_00, param1->unk_00);
     }
 
     if (param1->unk_04 != NNS_GFD_ALLOC_ERROR_TEXKEY) {

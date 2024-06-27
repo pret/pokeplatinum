@@ -6,19 +6,21 @@
 #include "struct_decls/struct_02022BD8_2_decl.h"
 #include "struct_decls/struct_02022BD8_decl.h"
 
+#include "constants/heap.h"
+
 #include <nnsys.h>
 
-UnkStruct_0202298C * sub_0202298C(int param0, int param1);
-void sub_020229D8(UnkStruct_0202298C * param0);
-BOOL sub_020229F8(UnkStruct_0202298C * param0, int param1);
-UnkStruct_02022BC0 * sub_02022A1C(UnkStruct_0202298C * param0, void * param1, int param2);
-UnkStruct_02022BC0 * sub_02022A58(UnkStruct_0202298C * param0, const char * param1, int param2, int param3);
-void sub_02022AB0(UnkStruct_0202298C * param0, UnkStruct_02022BC0 * param1);
-void sub_02022AE4(UnkStruct_0202298C * param0);
-UnkStruct_02022BC0 * sub_02022B20(UnkStruct_0202298C * param0, int param1);
-void * sub_02022B54(UnkStruct_02022BC0 * param0);
-void sub_02022B64(UnkStruct_02022BC0 * param0, void * param1);
-int sub_02022B80(UnkStruct_02022BC0 * param0);
+ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID);
+void ResourceManager_Delete(ResourceManager *resMgr);
+BOOL ResourceManager_IsIDUnused(ResourceManager *resMgr, int id);
+Resource *ResourceManager_AddResource(ResourceManager *resMgr, void *data, int id);
+Resource *ResourceManager_AddResourceFromFile(ResourceManager *resMgr, const char *filename, int id, enum HeapId heapID);
+void ResourceManager_RemoveResource(ResourceManager *resMgr, Resource *resource);
+void ResourceManager_Clear(ResourceManager *resMgr);
+Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id);
+void * sub_02022B54(Resource * param0);
+void sub_02022B64(Resource * param0, void * param1);
+int sub_02022B80(Resource * param0);
 UnkStruct_02022BD8 * sub_02022BD8(int param0, int param1);
 void sub_02022C1C(UnkStruct_02022BD8 * param0);
 BOOL sub_02022C40(const UnkStruct_02022BD8 * param0, int param1);

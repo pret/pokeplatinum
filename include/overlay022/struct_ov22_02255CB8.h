@@ -10,8 +10,8 @@ typedef struct {
     int unk_04;
     UnkStruct_ov22_02255800 * unk_08;
     int unk_0C;
-    UnkStruct_0202298C * unk_10;
-    UnkStruct_0202298C * unk_14;
+    ResourceManager * unk_10;
+    ResourceManager * unk_14;
 } UnkStruct_ov22_02255CB8;
 
 #endif // POKEPLATINUM_STRUCT_OV22_02255CB8_H
