@@ -29,7 +29,7 @@
 #include "sys_task.h"
 #include "heap.h"
 #include "unk_02020AEC.h"
-#include "unk_0202298C.h"
+#include "resource_manager.h"
 #include "unk_0202414C.h"
 #include "map_object.h"
 #include "unk_020711EC.h"

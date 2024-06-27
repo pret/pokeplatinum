@@ -23,7 +23,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0202298C.h"
+#include "resource_manager.h"
 #include "unk_020298BC.h"
 #include "pokemon.h"
 #include "overlay022/ov22_02254DE0.h"

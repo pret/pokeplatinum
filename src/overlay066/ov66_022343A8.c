@@ -27,7 +27,7 @@
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
-#include "unk_0202298C.h"
+#include "resource_manager.h"
 #include "unk_0202414C.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay066/ov66_02231428.h"

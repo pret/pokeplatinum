@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
-#include "unk_0202298C.h"
+#include "resource_manager.h"
 #include "overlay070/ov70_0225C700.h"
 
 void ov70_0225C700 (const UnkStruct_ov63_0222CC3C * param0, VecFx32 * param1)

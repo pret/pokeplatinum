@@ -36,7 +36,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_0202298C.h"
+#include "resource_manager.h"
 #include "unk_0202419C.h"
 #include "overlay022/ov22_02255094.h"
 

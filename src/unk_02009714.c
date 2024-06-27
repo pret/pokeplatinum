@@ -11,7 +11,7 @@
 #include "unk_02006E3C.h"
 #include "unk_02009714.h"
 #include "heap.h"
-#include "unk_0202298C.h"
+#include "resource_manager.h"
 
 
 typedef struct UnkStruct_02009DC8_t {
