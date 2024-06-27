@@ -98,7 +98,7 @@ struct CellActorCollection {
 typedef struct CellActorCollectionParams {
     int maxElements;
     NNSG2dRendererInstance *renderer;
-    int heapID;
+    enum HeapId heapID;
 } CellActorCollectionParams;
 
 typedef struct CellActorResourceData {
@@ -119,8 +119,8 @@ typedef struct CellActorInitParams {
     const CellActorResourceData *resourceData;
     VecFx32 position;
     u32 priority;
-    int vramType;
-    int heapID;
+    NNS_G2D_VRAM_TYPE vramType;
+    enum HeapId heapID;
 } CellActorInitParams;
 
 typedef struct CellActorInitParamsEx {
@@ -130,8 +130,8 @@ typedef struct CellActorInitParamsEx {
     VecFx32 affineScale;
     u16 affineZRotation;
     u32 priority;
-    int vramType;
-    int heapID;
+    NNS_G2D_VRAM_TYPE vramType;
+    enum HeapId heapID;
 } CellActorInitParamsEx;
 
 
