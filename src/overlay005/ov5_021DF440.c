@@ -5,8 +5,6 @@
 #include "sys_task_manager.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_02022BD8_2_decl.h"
-#include "struct_decls/struct_02022BD8_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "overlay005/struct_ov5_021F06D8_decl.h"

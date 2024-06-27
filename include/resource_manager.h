@@ -1,10 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0202298C_H
-#define POKEPLATINUM_UNK_0202298C_H
-
-#include "struct_decls/struct_0202298C_decl.h"
-#include "struct_decls/struct_02022BC0_decl.h"
-#include "struct_decls/struct_02022BD8_2_decl.h"
-#include "struct_decls/struct_02022BD8_decl.h"
+#ifndef POKEPLATINUM_RESOURCE_MANAGER_H
+#define POKEPLATINUM_RESOURCE_MANAGER_H
 
 #include "constants/heap.h"
 
@@ -18,6 +13,32 @@ enum TextureResourceMode {
     TEX_RESOURCE_MODE_SEPARATED,
 };
 
+typedef struct Resource {
+    int id;
+    void *data;
+} Resource;
+
+typedef struct ResourceManager {
+    Resource *resources;
+    int maxResources;
+    int resourceCount;
+} ResourceManager;
+
+typedef struct TextureResource {
+    Resource *resource;
+    NNSGfdTexKey texKey;
+    NNSGfdTexKey tex4x4Key;
+    NNSGfdPlttKey paletteKey;
+    void *textureData; // Only used when mode is TEX_RESOURCE_MODE_STRIPPED
+    u16 texDataDiscarded;
+    u16 mode;
+} TextureResource;
+
+typedef struct TextureResourceManager {
+    ResourceManager *resMgr;
+    TextureResource *textures;
+} TextureResourceManager;
+
 ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID);
 void ResourceManager_Delete(ResourceManager *resMgr);
 BOOL ResourceManager_IsIDUnused(ResourceManager *resMgr, int id);
@@ -30,26 +51,26 @@ void *Resource_GetData(Resource *resource);
 void Resource_SetData(Resource *resource, void *data);
 int Resource_GetID(Resource *resource);
 TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID);
-void TextureResourceManager_Delete(TextureResourceManager * param0);
-BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager * param0, int param1);
+void TextureResourceManager_Delete(TextureResourceManager *texMgr);
+BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id);
 TextureResource * TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, 
     int id, enum TextureResourceMode mode, enum HeapId heapID);
 TextureResource * TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, 
     int id, enum TextureResourceMode mode, enum HeapId heapID);
-void TextureResourceManager_RemoveTexture(TextureResourceManager * param0, TextureResource * param1);
-void TextureResourceManager_RemoveTextureWithID(TextureResourceManager * param0, int param1);
-void TextureResourceManager_Clear(TextureResourceManager * param0);
-TextureResource * TextureResourceManager_FindTextureResource(const TextureResourceManager * param0, int param1);
-int TextureResource_GetID(const TextureResource * param0);
-NNSG3dResTex * TextureResource_GetUnderlyingResource(const TextureResource * param0);
-void TextureResource_UploadToVRam(TextureResource * param0);
-void TextureResourceManager_UploadResourceToVRam(TextureResourceManager * param0, int param1);
-void TextureResource_DiscardTextureData(TextureResource * param0);
-void TextureResourceManager_DiscardTextureData(TextureResourceManager * param0, int param1);
-void TextureResource_AllocVRam(TextureResource * param0);
-NNSGfdTexKey TextureResource_GetTexKey(const TextureResource * param0);
-NNSGfdTexKey TextureResource_GetTex4x4Key(const TextureResource * param0);
-NNSGfdPlttKey TextureResource_GetPaletteKey(const TextureResource * param0);
-u32 Utility_GetStrippedTextureResourceSize(NNSG3dResFileHeader * param0);
+void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, TextureResource *texResource);
+void TextureResourceManager_RemoveTextureWithID(TextureResourceManager *texMgr, int id);
+void TextureResourceManager_Clear(TextureResourceManager *texMgr);
+TextureResource *TextureResourceManager_FindTextureResource(const TextureResourceManager *texMgr, int id);
+int TextureResource_GetID(const TextureResource *texResource);
+NNSG3dResTex *TextureResource_GetUnderlyingResource(const TextureResource *texResource);
+void TextureResource_UploadToVRam(TextureResource *texResource);
+void TextureResourceManager_UploadResourceToVRam(TextureResourceManager *texMgr, int id);
+void TextureResource_DiscardTextureData(TextureResource *texResource);
+void TextureResourceManager_DiscardTextureData(TextureResourceManager *texMgr, int id);
+void TextureResource_AllocVRam(TextureResource *texResource);
+NNSGfdTexKey TextureResource_GetTexKey(const TextureResource *texResource);
+NNSGfdTexKey TextureResource_GetTex4x4Key(const TextureResource *texResource);
+NNSGfdPlttKey TextureResource_GetPaletteKey(const TextureResource *texResource);
+u32 Utility_GetStrippedTextureResourceSize(NNSG3dResFileHeader *resFile);
 
-#endif // POKEPLATINUM_UNK_0202298C_H
+#endif // POKEPLATINUM_RESOURCE_MANAGER_H

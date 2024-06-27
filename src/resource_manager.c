@@ -10,32 +10,6 @@
 
 #define RESOURCE_ID_INVALID (-1)
 
-typedef struct Resource {
-    int id;
-    void *data;
-} Resource;
-
-typedef struct ResourceManager {
-    Resource * resources;
-    int maxResources;
-    int resourceCount;
-} ResourceManager;
-
-typedef struct TextureResource {
-    Resource *resource;
-    NNSGfdTexKey texKey;
-    NNSGfdTexKey tex4x4Key;
-    NNSGfdPlttKey paletteKey;
-    void *textureData; // Only used when mode is TEX_RESOURCE_MODE_STRIPPED
-    u16 texDataDiscarded;
-    u16 mode;
-} TextureResource;
-
-typedef struct TextureResourceManager {
-    ResourceManager *resMgr;
-    TextureResource *textures;
-} TextureResourceManager;
-
 static Resource *ResourceManager_AllocResource(ResourceManager *resMgr);
 static void Resource_Init(Resource *resource);
 static TextureResource * TextureResourceManager_AllocTexture(const TextureResourceManager * param0);

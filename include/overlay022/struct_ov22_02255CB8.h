@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_02255CB8_H
 #define POKEPLATINUM_STRUCT_OV22_02255CB8_H
 
-#include "struct_decls/struct_0202298C_decl.h"
+#include "resource_manager.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
 

@@ -1,10 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202298C_H
 #define POKEPLATINUM_UNK_0202298C_H
 
-#include "struct_decls/struct_0202298C_decl.h"
-#include "struct_decls/struct_02022BC0_decl.h"
-#include "struct_decls/struct_02022BD8_2_decl.h"
-#include "struct_decls/struct_02022BD8_decl.h"
+#include "resource_manager.h"
 
 #include <nnsys.h>
 

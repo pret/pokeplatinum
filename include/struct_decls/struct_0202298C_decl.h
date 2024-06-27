@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_0202298C_DECL_H
-#define POKEPLATINUM_STRUCT_0202298C_DECL_H
-
-typedef struct ResourceManager ResourceManager;
-
-#endif // POKEPLATINUM_STRUCT_0202298C_DECL_H

@@ -2,8 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0202298C_decl.h"
-#include "struct_decls/struct_02022BC0_decl.h"
 
 #include "struct_defs/struct_02009CFC.h"
 
