@@ -115,8 +115,8 @@ typedef struct CellActorResourceData {
 } CellActorResourceData;
 
 typedef struct CellActorInitParams {
-    CellActorCollection * collection;
-    const CellActorResourceData * resourceData;
+    CellActorCollection *collection;
+    const CellActorResourceData *resourceData;
     VecFx32 position;
     u32 priority;
     int vramType;
