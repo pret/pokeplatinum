@@ -6,22 +6,20 @@
 #include "heap.h"
 #include "resource_manager.h"
 
-#include "nnsys.h"
-
 #define RESOURCE_ID_INVALID (-1)
 
 static Resource *ResourceManager_AllocResource(ResourceManager *resMgr);
 static void Resource_Init(Resource *resource);
-static TextureResource * TextureResourceManager_AllocTexture(const TextureResourceManager * param0);
-static void TextureResource_Init(TextureResource * param0);
-static void TexRes_AllocVRam(const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3);
-static NNSG3dResTex * TextureResource_GetTexRes(const TextureResource * param0);
-static NNSG3dResTex * TextureResource_GetTexResWithData(const TextureResource * param0);
-static void TexRes_UploadToVRam(NNSG3dResTex * param0, TextureResource * param1);
-static void TexRes_AssignVRamKeys(NNSG3dResTex * param0, NNSGfdTexKey param1, NNSGfdTexKey param2, NNSGfdPlttKey param3);
-static void TexRes_ReleaseVRamKeys(NNSG3dResTex * param0);
-static void * CreateStrippedTexture(void * param0, enum HeapId param1);
-static u32 GetStrippedTextureResourceSize(const void * param0);
+static TextureResource *TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr);
+static void TextureResource_Init(TextureResource *texResource);
+static void TexRes_AllocVRam(const NNSG3dResTex *texRes, NNSGfdTexKey *texKey, NNSGfdTexKey *tex4x4Key, NNSGfdPlttKey *paletteKey);
+static NNSG3dResTex *TextureResource_GetTexRes(const TextureResource *texResource);
+static NNSG3dResTex *TextureResource_GetTexResWithData(const TextureResource *texResource);
+static void TexRes_UploadToVRam(NNSG3dResTex *texRes, TextureResource *texResource);
+static void TexRes_AssignVRamKeys(NNSG3dResTex *texRes, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey paletteKey);
+static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes);
+static void *CreateStrippedTexture(void *resFile, enum HeapId heapID);
+static u32 GetStrippedTextureResourceSize(const void *resFile);
 
 ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID)
 {

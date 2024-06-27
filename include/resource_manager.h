@@ -50,6 +50,7 @@ Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id);
 void *Resource_GetData(Resource *resource);
 void Resource_SetData(Resource *resource, void *data);
 int Resource_GetID(Resource *resource);
+
 TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID);
 void TextureResourceManager_Delete(TextureResourceManager *texMgr);
 BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id);
