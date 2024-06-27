@@ -8812,8 +8812,8 @@ void ov9_02250780 (FieldSystem * fieldSystem)
         UnkStruct_ov9_0225074C * v1 = ov9_0224E39C(v0);
         UnkStruct_ov5_021ED0A4 * v2 = sub_0206285C(v0->fieldSystem->mapObjMan);
         TextureResourceManager * v3 = ov5_021EDCB0(v2);
-        TextureResource * v4 = sub_02022D98(v3, 0xe6);
-        NNSGfdPlttKey v5 = sub_02022F14(v4);
+        TextureResource * v4 = TextureResourceManager_FindTextureResource(v3, 0xe6);
+        NNSGfdPlttKey v5 = TextureResource_GetPaletteKey(v4);
         u32 v6 = NNS_GfdGetPlttKeyAddr(v5);
 
         sub_0201DC68(NNS_GFD_DST_3D_TEX_PLTT, v6, v1->unk_1C, 32);

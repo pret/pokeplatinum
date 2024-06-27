@@ -995,7 +995,7 @@ static void ov5_021ED8B8 (MapObjectManager * param0, UnkStruct_ov5_021ED0A4 * pa
 
         if (v1 != 0xffff) {
             if (ov5_021EDA54(param0, v1, NULL) == 0) {
-                sub_02022D38(v3, v1);
+                TextureResourceManager_RemoveTextureWithID(v3, v1);
                 ov5_021EDFBC(param1, v1);
                 ov5_021EE170(param1, v1);
 
@@ -1228,7 +1228,7 @@ void ov5_021EDBC4 (const MapObjectManager * param0, int param1, MapObject * para
         if (ov5_021EDA54(param0, param1, param2) == 0) {
             TextureResourceManager * v2 = ov5_021EDCB0(v1);
 
-            sub_02022D38(v2, param1);
+            TextureResourceManager_RemoveTextureWithID(v2, param1);
             ov5_021ED88C(v1, param1);
             ov5_021EDFBC(v1, param1);
             ov5_021EE170(v1, param1);
@@ -1484,14 +1484,14 @@ static void ov5_021EDE3C (UnkStruct_ov5_021ED0A4 * param0, u32 param1, UnkStruct
 
     {
         TextureResourceManager * v4 = ov5_021EDCB0(param0);
-        TextureResource * v5 = sub_02022D98(v4, param1);
+        TextureResource * v5 = TextureResourceManager_FindTextureResource(v4, param1);
 
-        param2->unk_04 = sub_02022DF4(v5);
+        param2->unk_04 = TextureResource_GetUnderlyingResource(v5);
 
         {
-            param2->unk_1C = sub_02022EF4(v5);
-            param2->unk_20 = sub_02022F04(v5);
-            param2->unk_24 = sub_02022F14(v5);
+            param2->unk_1C = TextureResource_GetTexKey(v5);
+            param2->unk_20 = TextureResource_GetTex4x4Key(v5);
+            param2->unk_24 = TextureResource_GetPaletteKey(v5);
         }
     }
 
@@ -1684,7 +1684,7 @@ static void ov5_021EE030 (SysTask * param0, void * param1)
 
 static void ov5_021EE0E8 (UnkStruct_ov5_021ED0A4 * param0, int param1, void * param2, int param3)
 {
-    TextureResource * v0 = sub_02022C9C(param0->unk_F0, param2, param1, 1, 4);
+    TextureResource * v0 = TextureResourceManager_AddTextureAndAllocVRam(param0->unk_F0, param2, param1, 1, 4);
 
     GF_ASSERT(v0 != NULL);
     ov5_021EE134(param0, param1);
@@ -1758,7 +1758,7 @@ static void ov5_021EE1AC (SysTask * param0, void * param1)
 
         while (v2 < v1->unk_00) {
             if ((v3->unk_00 == 0) && (v3->unk_08 != NULL)) {
-                sub_02022E38(v3->unk_08, v3->unk_04);
+                TextureResourceManager_UploadResourceToVRam(v3->unk_08, v3->unk_04);
                 v3->unk_00 = 1;
             }
 
@@ -1779,7 +1779,7 @@ static void ov5_021EE1E8 (SysTask * param0, void * param1)
 
     while (v0 < v2->unk_00) {
         if ((v3->unk_00 == 1) && (v3->unk_08 != NULL)) {
-            sub_02022EA0(v3->unk_08, v3->unk_04);
+            TextureResourceManager_DiscardTextureData(v3->unk_08, v3->unk_04);
             v3->unk_00 = 0;
             v3->unk_08 = NULL;
         }

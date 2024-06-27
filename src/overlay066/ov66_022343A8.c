@@ -234,12 +234,12 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
                 }
 
                 v5 = sub_0200723C(v3, Unk_ov66_02258B38[v6].unk_02_0, 0, param3, 0);
-                v9 = sub_02022C58(v0->unk_08, v5, Unk_ov66_02258B38[v6].unk_02_0, v11, param3);
+                v9 = TextureResourceManager_AddTexture(v0->unk_08, v5, Unk_ov66_02258B38[v6].unk_02_0, v11, param3);
 
                 if (v11 == 1) {
-                    sub_02022EBC(v9);
-                    sub_02022E08(v9);
-                    sub_02022E54(v9);
+                    TextureResource_AllocVRam(v9);
+                    TextureResource_UploadToVRam(v9);
+                    TextureResource_DiscardTextureData(v9);
                 }
             }
         }
@@ -256,7 +256,7 @@ void ov66_02234548 (UnkStruct_ov66_02234548 * param0)
 {
     {
         ov66_02234958(&param0->unk_18);
-        sub_02022D58(param0->unk_08);
+        TextureResourceManager_Clear(param0->unk_08);
         ResourceManager_Clear(param0->unk_00);
         ResourceManager_Clear(param0->unk_04);
     }
@@ -341,8 +341,8 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
         }
 
         {
-            v5 = sub_02022D98(param0->unk_08, v1->unk_02_0);
-            v8 = sub_02022DF4(v5);
+            v5 = TextureResourceManager_FindTextureResource(param0->unk_08, v1->unk_02_0);
+            v8 = TextureResource_GetUnderlyingResource(v5);
         }
 
         {
@@ -364,9 +364,9 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
         if (v1->unk_02_15 == 1) {
             sub_02021284(&v2, v7, v8, Unk_ov66_02258B88, &v9);
         } else {
-            v10 = sub_02022EF4(v5);
-            v11 = sub_02022F04(v5);
-            v12 = sub_02022F14(v5);
+            v10 = TextureResource_GetTexKey(v5);
+            v11 = TextureResource_GetTex4x4Key(v5);
+            v12 = TextureResource_GetPaletteKey(v5);
 
             sub_0202125C(&v2, v7, v8, Unk_ov66_02258B88, &v9, v10, v11, v12);
         }

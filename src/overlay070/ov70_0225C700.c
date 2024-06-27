@@ -50,7 +50,7 @@ void ov70_0225C730 (void ** param0, NARC * param1, u32 param2, u32 param3)
     }
 
     {
-        v0 = sub_02022F24(v1);
+        v0 = Utility_GetStrippedTextureResourceSize(v1);
         *param0 = Heap_AllocFromHeap(param3, v0);
         memcpy(*param0, v1, v0);
     }

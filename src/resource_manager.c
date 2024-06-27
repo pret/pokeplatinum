@@ -23,11 +23,11 @@ typedef struct ResourceManager {
 
 typedef struct TextureResource {
     Resource *resource;
-    NNSGfdTexKey unk_04;
-    NNSGfdTexKey unk_08;
-    NNSGfdPlttKey unk_0C;
+    NNSGfdTexKey texKey;
+    NNSGfdTexKey tex4x4Key;
+    NNSGfdPlttKey paletteKey;
     void *textureData; // Only used when mode is TEX_RESOURCE_MODE_STRIPPED
-    u16 unk_14;
+    u16 texDataDiscarded;
     u16 mode;
 } TextureResource;
 
@@ -40,12 +40,12 @@ static Resource *ResourceManager_AllocResource(ResourceManager *resMgr);
 static void Resource_Init(Resource *resource);
 static TextureResource * TextureResourceManager_AllocTexture(const TextureResourceManager * param0);
 static void TextureResource_Init(TextureResource * param0);
-static void sub_02022F98(const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3);
-static NNSG3dResTex * TextureResource_GetTexture(const TextureResource * param0);
-static NNSG3dResTex * TextureResource_GetTextureSafe(const TextureResource * param0);
-static void sub_02023008(NNSG3dResTex * param0, TextureResource * param1);
-static void sub_02023034(NNSG3dResTex * param0, NNSGfdTexKey param1, NNSGfdTexKey param2, NNSGfdPlttKey param3);
-static void sub_02023048(NNSG3dResTex * param0);
+static void TexRes_AllocVRam(const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3);
+static NNSG3dResTex * TextureResource_GetTexRes(const TextureResource * param0);
+static NNSG3dResTex * TextureResource_GetTexResWithData(const TextureResource * param0);
+static void TexRes_UploadToVRam(NNSG3dResTex * param0, TextureResource * param1);
+static void TexRes_AssignVRamKeys(NNSG3dResTex * param0, NNSGfdTexKey param1, NNSGfdTexKey param2, NNSGfdPlttKey param3);
+static void TexRes_ReleaseVRamKeys(NNSG3dResTex * param0);
 static void * CreateStrippedTexture(void * param0, enum HeapId param1);
 static u32 GetStrippedTextureResourceSize(const void * param0);
 
@@ -218,7 +218,7 @@ void TextureResourceManager_Delete(TextureResourceManager *texMgr)
 {
     GF_ASSERT(texMgr);
 
-    sub_02022D58(texMgr);
+    TextureResourceManager_Clear(texMgr);
     ResourceManager_Delete(texMgr->resMgr);
     Heap_FreeToHeap(texMgr->textures);
     Heap_FreeToHeap(texMgr);
@@ -230,7 +230,8 @@ BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int
     return ResourceManager_IsIDUnused(texMgr->resMgr, id);
 }
 
-TextureResource *sub_02022C58(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID)
+TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, 
+    int id, enum TextureResourceMode mode, enum HeapId heapID)
 {
     TextureResource * texResource;
     void * resourceData;
@@ -240,7 +241,7 @@ TextureResource *sub_02022C58(const TextureResourceManager *texMgr, void *data, 
     texResource = TextureResourceManager_AllocTexture(texMgr);
     texResource->mode = mode;
 
-    if (texResource->mode == TEX_RESOURCE_MODE_STRIPPED) {
+    if (texResource->mode == TEX_RESOURCE_MODE_SEPARATED) {
         resourceData = CreateStrippedTexture(data, heapID);
         texResource->textureData = data;
     } else {
@@ -253,87 +254,72 @@ TextureResource *sub_02022C58(const TextureResourceManager *texMgr, void *data, 
     return texResource;
 }
 
-TextureResource * sub_02022C9C (TextureResourceManager * param0, void * param1, int param2, u32 param3, int param4)
+TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, 
+    int id, enum TextureResourceMode mode, enum HeapId heapID)
 {
-    TextureResource * v0;
+    TextureResource *texResource = TextureResourceManager_AddTexture(texMgr, data, id, mode, heapID);
+    TextureResource_AllocVRam(texResource);
 
-    v0 = sub_02022C58(param0, param1, param2, param3, param4);
-    sub_02022EBC(v0);
-
-    return v0;
+    return texResource;
 }
 
-void sub_02022CB4 (TextureResourceManager * param0, TextureResource * param1)
+void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, TextureResource *texResource)
 {
-    int v0;
+    GF_ASSERT(texMgr);
+    GF_ASSERT(texResource);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param1);
-
-    if ((param1->mode == 1) && (param1->unk_14 == 0)) {
-        Heap_FreeToHeap(param1->textureData);
-        param1->mode = NULL;
+    if (texResource->mode == TEX_RESOURCE_MODE_SEPARATED && (texResource->texDataDiscarded == 0)) {
+        Heap_FreeToHeap(texResource->textureData);
+        texResource->mode = NULL;
     }
 
-    if (param1->resource) {
-        ResourceManager_RemoveResource(param0->resMgr, param1->resource);
+    if (texResource->resource) {
+        ResourceManager_RemoveResource(texMgr->resMgr, texResource->resource);
     }
 
-    if (param1->unk_04 != NNS_GFD_ALLOC_ERROR_TEXKEY) {
-        v0 = NNS_GfdFreeTexVram(param1->unk_04);
-        GF_ASSERT(v0 == 0);
+    if (texResource->texKey != NNS_GFD_ALLOC_ERROR_TEXKEY) {
+        GF_ASSERT(NNS_GfdFreeTexVram(texResource->texKey) == 0);
     }
 
-    if (param1->unk_08 != NNS_GFD_ALLOC_ERROR_TEXKEY) {
-        v0 = NNS_GfdFreeTexVram(param1->unk_08);
-        GF_ASSERT(v0 == 0);
+    if (texResource->tex4x4Key != NNS_GFD_ALLOC_ERROR_TEXKEY) {
+        GF_ASSERT(NNS_GfdFreeTexVram(texResource->tex4x4Key) == 0);
     }
 
-    if (param1->unk_0C != NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-        v0 = NNS_GfdFreePlttVram(param1->unk_0C);
-        GF_ASSERT(v0 == 0);
+    if (texResource->paletteKey != NNS_GFD_ALLOC_ERROR_PLTTKEY) {
+        GF_ASSERT(NNS_GfdFreePlttVram(texResource->paletteKey) == 0);
     }
 
-    TextureResource_Init(param1);
+    TextureResource_Init(texResource);
 }
 
-void sub_02022D38 (TextureResourceManager * param0, int param1)
+void TextureResourceManager_RemoveTextureWithID(TextureResourceManager *texMgr, int id)
 {
-    TextureResource * v0;
-
-    GF_ASSERT(param0);
-
-    v0 = sub_02022D98(param0, param1);
-    sub_02022CB4(param0, v0);
+    GF_ASSERT(texMgr);
+    TextureResourceManager_RemoveTexture(texMgr, TextureResourceManager_FindTextureResource(texMgr, id));
 }
 
-void sub_02022D58 (TextureResourceManager * param0)
+void TextureResourceManager_Clear(TextureResourceManager *texMgr)
 {
-    int v0;
+    GF_ASSERT(texMgr);
+    GF_ASSERT(texMgr->textures);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->textures);
-
-    for (v0 = 0; v0 < param0->resMgr->maxResources; v0++) {
-        if (param0->textures[v0].resource) {
-            sub_02022CB4(param0, param0->textures + v0);
+    for (int i = 0; i < texMgr->resMgr->maxResources; i++) {
+        if (texMgr->textures[i].resource) {
+            TextureResourceManager_RemoveTexture(texMgr, texMgr->textures + i);
         }
     }
 }
 
-TextureResource * sub_02022D98 (const TextureResourceManager *texMgr, int param1)
+TextureResource *TextureResourceManager_FindTextureResource(const TextureResourceManager *texMgr, int id)
 {
-    int v0;
-    int v1;
-
     GF_ASSERT(texMgr);
 
-    for (v0 = 0; v0 < texMgr->resMgr->maxResources; v0++) {
-        if (texMgr->textures[v0].resource) {
-            v1 = TextureResource_GetID(texMgr->textures + v0);
-
-            if (v1 == param1) {
-                return texMgr->textures + v0;
+    for (int i = 0; i < texMgr->resMgr->maxResources; i++) {
+        // Combining these two checks into one doesn't match
+        if (texMgr->textures[i].resource) {
+            int texId = TextureResource_GetID(texMgr->textures + i);
+            if (texId == id) {
+                return texMgr->textures + i;
             }
         }
     }
@@ -347,112 +333,108 @@ int TextureResource_GetID(const TextureResource *texResource)
     return Resource_GetID(texResource->resource);
 }
 
-NNSG3dResTex * sub_02022DF4 (const TextureResource * param0)
+NNSG3dResTex *TextureResource_GetUnderlyingResource(const TextureResource *texResource)
 {
-    GF_ASSERT(param0);
-    return TextureResource_GetTexture(param0);
+    GF_ASSERT(texResource);
+    return TextureResource_GetTexRes(texResource);
 }
 
-void sub_02022E08 (TextureResource * param0)
+void TextureResource_UploadToVRam(TextureResource *texResource)
 {
-    NNSG3dResTex * v0;
+    NNSG3dResTex * texRes;
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_14 == 0);
+    GF_ASSERT(texResource);
+    GF_ASSERT(texResource->texDataDiscarded == FALSE);
 
-    if (param0->unk_0C == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-        GF_ASSERT(0);
+    if (texResource->paletteKey == NNS_GFD_ALLOC_ERROR_PLTTKEY) {
+        GF_ASSERT(FALSE);
         return;
     }
 
-    v0 = TextureResource_GetTextureSafe(param0);
-    sub_02023008(v0, param0);
+    texRes = TextureResource_GetTexResWithData(texResource);
+    TexRes_UploadToVRam(texRes, texResource);
 }
 
-void sub_02022E38 (TextureResourceManager * param0, int param1)
+void TextureResourceManager_UploadResourceToVRam(TextureResourceManager *texMgr, int id)
 {
-    TextureResource * v0;
-
-    GF_ASSERT(param0);
-
-    v0 = sub_02022D98(param0, param1);
-    sub_02022E08(v0);
+    GF_ASSERT(texMgr);
+    TextureResource_UploadToVRam(TextureResourceManager_FindTextureResource(texMgr, id));
 }
 
-void sub_02022E54 (TextureResource * param0)
+// Discards the texture data of a texture resource. Only do this after the texture has been uploaded to VRAM.
+// Only allowed for TEX_RESOURCE_MODE_SEPARATED resources.
+void TextureResource_DiscardTextureData(TextureResource *texResource)
 {
-    void * v0;
+    GF_ASSERT(texResource);
 
-    GF_ASSERT(param0);
-
-    if (param0->mode == 0) {
-        GF_ASSERT(0);
+    // Discarding texture data is not allowed for normal texture resources
+    if (texResource->mode == TEX_RESOURCE_MODE_NORMAL) {
+        GF_ASSERT(FALSE);
         return;
     }
 
-    if (param0->unk_14) {
-        GF_ASSERT(0);
+    if (texResource->texDataDiscarded) {
+        GF_ASSERT(FALSE);
         return;
     }
 
-    sub_02023048(TextureResource_GetTextureSafe(param0));
-    sub_02023034(TextureResource_GetTexture(param0), param0->unk_04, param0->unk_08, param0->unk_0C);
-    Heap_FreeToHeap(param0->textureData);
+    TexRes_ReleaseVRamKeys(TextureResource_GetTexResWithData(texResource));
+    TexRes_AssignVRamKeys(
+        TextureResource_GetTexRes(texResource), 
+        texResource->texKey, 
+        texResource->tex4x4Key, 
+        texResource->paletteKey
+    );
+    Heap_FreeToHeap(texResource->textureData);
 
-    param0->textureData = NULL;
-    param0->unk_14 = 1;
+    texResource->textureData = NULL;
+    texResource->texDataDiscarded = TRUE;
 }
 
-void sub_02022EA0 (TextureResourceManager * param0, int param1)
+void TextureResourceManager_DiscardTextureData(TextureResourceManager *texMgr, int id)
 {
-    TextureResource * v0;
-
-    GF_ASSERT(param0);
-
-    v0 = sub_02022D98(param0, param1);
-    sub_02022E54(v0);
+    GF_ASSERT(texMgr);
+    TextureResource_DiscardTextureData(TextureResourceManager_FindTextureResource(texMgr, id));
 }
 
-void sub_02022EBC (TextureResource * param0)
+void TextureResource_AllocVRam(TextureResource *texResource)
 {
-    NNSG3dResTex * v0;
+    GF_ASSERT(texResource);
+    GF_ASSERT(texResource->texDataDiscarded == FALSE);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_14 == 0);
-
-    if (param0->unk_0C != NNS_GFD_ALLOC_ERROR_PLTTKEY) {
-        GF_ASSERT(0);
+    if (texResource->paletteKey != NNS_GFD_ALLOC_ERROR_PLTTKEY) {
+        GF_ASSERT(FALSE);
         return;
     }
 
-    v0 = TextureResource_GetTextureSafe(param0);
-    sub_02022F98(v0, &param0->unk_04, &param0->unk_08, &param0->unk_0C);
+    NNSG3dResTex *texRes = TextureResource_GetTexResWithData(texResource);
+    TexRes_AllocVRam(texRes, &texResource->texKey, &texResource->tex4x4Key, &texResource->paletteKey);
 }
 
-NNSGfdTexKey sub_02022EF4 (const TextureResource * param0)
+NNSGfdTexKey TextureResource_GetTexKey(const TextureResource *texResource)
 {
-    GF_ASSERT(param0);
-    return param0->unk_04;
+    GF_ASSERT(texResource);
+    return texResource->texKey;
 }
 
-NNSGfdTexKey sub_02022F04 (const TextureResource * param0)
+NNSGfdTexKey TextureResource_GetTex4x4Key(const TextureResource *texResource)
 {
-    GF_ASSERT(param0);
-    return param0->unk_08;
+    GF_ASSERT(texResource);
+    return texResource->tex4x4Key;
 }
 
-NNSGfdPlttKey sub_02022F14 (const TextureResource * param0)
+NNSGfdPlttKey TextureResource_GetPaletteKey(const TextureResource *texResource)
 {
-    GF_ASSERT(param0);
-    return param0->unk_0C;
+    GF_ASSERT(texResource);
+    return texResource->paletteKey;
 }
 
-u32 sub_02022F24 (NNSG3dResFileHeader * param0)
+u32 Utility_GetStrippedTextureResourceSize(NNSG3dResFileHeader *resFile)
 {
-    return GetStrippedTextureResourceSize(param0);
+    return GetStrippedTextureResourceSize(resFile);
 }
 
-static TextureResource * TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr)
+static TextureResource *TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr)
 {
     for (int i = 0; i < texMgr->resMgr->maxResources; i++) {
         if (texMgr->textures[i].resource == NULL) {
@@ -466,21 +448,20 @@ static TextureResource * TextureResourceManager_AllocTexture(const TextureResour
 static void TextureResource_Init(TextureResource *texResource)
 {
     texResource->resource = NULL;
-    texResource->unk_04 = NNS_GFD_ALLOC_ERROR_TEXKEY;
-    texResource->unk_08 = NNS_GFD_ALLOC_ERROR_TEXKEY;
-    texResource->unk_0C = NNS_GFD_ALLOC_ERROR_PLTTKEY;
-    texResource->unk_14 = 0;
+    texResource->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
+    texResource->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
+    texResource->paletteKey = NNS_GFD_ALLOC_ERROR_PLTTKEY;
+    texResource->texDataDiscarded = 0;
     texResource->textureData = NULL;
-    texResource->unk_14 = 0;
+    texResource->texDataDiscarded = 0;
 }
 
-// Assumes that the texture resource is in TEX_RESOURCE_MODE_NORMAL
-static NNSG3dResTex *TextureResource_GetTexture(const TextureResource *texResource)
+static NNSG3dResTex *TextureResource_GetTexRes(const TextureResource *texResource)
 {
     return NNS_G3dGetTex(Resource_GetData(texResource->resource));
 }
 
-static NNSG3dResTex *TextureResource_GetTextureSafe(const TextureResource *texResource)
+static NNSG3dResTex *TextureResource_GetTexResWithData(const TextureResource *texResource)
 {
     void *texData = texResource->mode == TEX_RESOURCE_MODE_NORMAL 
         ? Resource_GetData(texResource->resource) 
@@ -489,53 +470,48 @@ static NNSG3dResTex *TextureResource_GetTextureSafe(const TextureResource *texRe
     return NNS_G3dGetTex(texData);
 }
 
-static void sub_02022F98 (const NNSG3dResTex * param0, NNSGfdTexKey * param1, NNSGfdTexKey * param2, NNSGfdPlttKey * param3)
+static void TexRes_AllocVRam(const NNSG3dResTex *texRes, NNSGfdTexKey *texKey, NNSGfdTexKey *tex4x4Key, NNSGfdPlttKey *paletteKey)
 {
-    u32 v0;
-    u32 v1;
-    u32 v2;
+    u32 texSize = NNS_G3dTexGetRequiredSize(texRes);
+    u32 tex4x4Size = NNS_G3dTex4x4GetRequiredSize(texRes);
+    u32 paletteSize = NNS_G3dPlttGetRequiredSize(texRes);
 
-    v0 = NNS_G3dTexGetRequiredSize(param0);
-    v1 = NNS_G3dTex4x4GetRequiredSize(param0);
-    v2 = NNS_G3dPlttGetRequiredSize(param0);
-
-    if (v0 != 0) {
-        *param1 = NNS_GfdAllocTexVram(v0, 0, 0);
+    if (texSize != 0) {
+        *texKey = NNS_GfdAllocTexVram(texSize, FALSE, 0);
     }
 
-    if (v1 != 0) {
-        *param2 = NNS_GfdAllocTexVram(v1, 1, 0);
+    if (tex4x4Size != 0) {
+        *tex4x4Key = NNS_GfdAllocTexVram(tex4x4Size, TRUE, 0);
     }
 
-    if (v2 != 0) {
-        *param3 = NNS_GfdAllocPlttVram(v2, param0->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4, 0);
+    if (paletteSize != 0) {
+        *paletteKey = NNS_GfdAllocPlttVram(paletteSize, texRes->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4, 0);
     }
 }
 
-static void sub_02023008 (NNSG3dResTex * param0, TextureResource * param1)
+static void TexRes_UploadToVRam(NNSG3dResTex *texRes, TextureResource *texResource)
 {
-    sub_02023034(param0, param1->unk_04, param1->unk_08, param1->unk_0C);
+    TexRes_AssignVRamKeys(texRes, texResource->texKey, texResource->tex4x4Key, texResource->paletteKey);
 
-    DC_FlushRange(param0, param0->header.size);
+    DC_FlushRange(texRes, texRes->header.size);
 
-    NNS_G3dTexLoad(param0, 1);
-    NNS_G3dPlttLoad(param0, 1);
+    NNS_G3dTexLoad(texRes, TRUE);
+    NNS_G3dPlttLoad(texRes, TRUE);
 }
 
-static void sub_02023034 (NNSG3dResTex * param0, NNSGfdTexKey param1, NNSGfdTexKey param2, NNSGfdPlttKey param3)
+static void TexRes_AssignVRamKeys(NNSG3dResTex *texRes, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey paletteKey)
 {
-    NNS_G3dTexSetTexKey(param0, param1, param2);
-    NNS_G3dPlttSetPlttKey(param0, param3);
+    NNS_G3dTexSetTexKey(texRes, texKey, tex4x4Key);
+    NNS_G3dPlttSetPlttKey(texRes, paletteKey);
 }
 
-static void sub_02023048 (NNSG3dResTex * param0)
+static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes)
 {
-    NNSGfdTexKey v0;
-    NNSGfdTexKey v1;
-    NNSGfdPlttKey v2;
+    NNSGfdTexKey texKey;
+    NNSGfdTexKey tex4x4Key;
 
-    NNS_G3dTexReleaseTexKey(param0, &v0, &v1);
-    v2 = NNS_G3dPlttReleasePlttKey(param0);
+    NNS_G3dTexReleaseTexKey(texRes, &texKey, &tex4x4Key);
+    NNS_G3dPlttReleasePlttKey(texRes);
 }
 
 // Duplicates a texture resource without the actual texture data
