@@ -26,26 +26,26 @@ void Player_Init (PlayerSave * player)
     PlayTime_Init(&player->playTime);
 }
 
-TrainerInfo * SaveData_GetTrainerInfo (SaveData * savedata)
+TrainerInfo * SaveData_GetTrainerInfo (SaveData * saveData)
 {
-    PlayerSave * state = SaveData_SaveTable(savedata, 1);
+    PlayerSave * state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->info;
 }
 
-Options * SaveData_Options (SaveData * savedata)
+Options * SaveData_Options (SaveData * saveData)
 {
-    PlayerSave * state = SaveData_SaveTable(savedata, 1);
+    PlayerSave * state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->options;
 }
 
-u16 * SaveData_GetCoins (SaveData * savedata)
+u16 * SaveData_GetCoins (SaveData * saveData)
 {
-    PlayerSave * state = SaveData_SaveTable(savedata, 1);
+    PlayerSave * state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->coins;
 }
 
-PlayTime *SaveData_GetPlayTime(SaveData *savedata)
+PlayTime *SaveData_GetPlayTime(SaveData *saveData)
 {
-    PlayerSave *state = SaveData_SaveTable(savedata, 1);
+    PlayerSave *state = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PLAYER);
     return &state->playTime;
 }

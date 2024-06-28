@@ -6,7 +6,7 @@
 #include "game_options.h"
 #include "savedata.h"
 
-typedef struct PlayerSave_t {
+typedef struct PlayerSave {
     Options options;
     TrainerInfo info;
     u16 coins; 
@@ -15,9 +15,9 @@ typedef struct PlayerSave_t {
 
 int Player_SaveSize(void);
 void Player_Init(PlayerSave * player);
-TrainerInfo * SaveData_GetTrainerInfo(SaveData * savedata);
-Options * SaveData_Options(SaveData * savedata);
-u16 * SaveData_GetCoins(SaveData * savedata);
-PlayTime * SaveData_GetPlayTime(SaveData * savedata);
+TrainerInfo * SaveData_GetTrainerInfo(SaveData * saveData);
+Options * SaveData_Options(SaveData * saveData);
+u16 * SaveData_GetCoins(SaveData * saveData);
+PlayTime * SaveData_GetPlayTime(SaveData * saveData);
 
 #endif // POKEPLATINUM_SAVE_PLAYER_H
