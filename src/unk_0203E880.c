@@ -31,9 +31,9 @@ static void sub_0203EA68(FieldSystem * fieldSystem, ScriptManager * scriptManage
 static void sub_0203EAF4(FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID, u8 dummy);
 static u16 ScriptContext_LoadAndOffsetID(FieldSystem * fieldSystem, ScriptContext * ctx, u16 scriptID);
 static void ScriptContext_Load(FieldSystem * fieldSystem, ScriptContext * ctx, int scriptFile, u32 textBank);
-static void ScriptContext_SetMapScripts(FieldSystem * fieldSystem, ScriptContext * ctx);
+static void ScriptContext_LoadFromCurrentMap(FieldSystem * fieldSystem, ScriptContext * ctx);
 static void sub_0203F0E4(ScriptContext * ctx, u16 param1);
-static void * ScriptContext_LoadMapScripts(int headerID);
+static void * ScriptContext_LoadScripts(int headerID);
 static u32 MapHeaderToMsgArchive(int headerID);
 static BOOL ScriptManager_SetHiddenItem(ScriptManager * scriptManager, u16 scriptID);
 static u16 sub_0203F610(const u8 * param0, u8 param1);
@@ -50,7 +50,7 @@ void ScriptManager_Set (FieldSystem * fieldSystem, u16 scriptID, MapObject * obj
 void ScriptManager_SetApproachingTrainer (FieldSystem * fieldSystem, MapObject * object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
 {
     ScriptManager *scriptManager = TaskManager_Environment(fieldSystem->unk_10);
-    ApproachingTrainer *trainer = &scriptManager->trainer[approachNum];
+    ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
 
     trainer->sightRange = sightRange;
     trainer->direction = direction;
@@ -88,29 +88,27 @@ static BOOL FieldTask_RunScript (TaskManager *taskManager)
 
     switch (scriptManager->state) {
     case 0:
-        scriptManager->ctx[0] = ScriptContext_New(fieldSystem, scriptManager->scriptID);
-        scriptManager->ctxCount = 1;
+        scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
+        scriptManager->numActiveContexts = 1;
         scriptManager->strTemplate = StringTemplate_New(8, 64, 11);
         scriptManager->msgBuf = Strbuf_Init(1024, 11);
         scriptManager->tmpBuf = Strbuf_Init(1024, 11);
         scriptManager->state++;
     case 1:
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < NUM_SCRIPT_CONTEXTS; i++) {
             ctx = scriptManager->ctx[i];
 
             if (ctx != NULL && ScriptContext_Run(ctx) == FALSE) {
                 ScriptContext_Free(ctx);
 
-                if (scriptManager->ctxCount == 0) {
-                    GF_ASSERT(FALSE);
-                }
+                GF_ASSERT(scriptManager->numActiveContexts != 0);
 
                 scriptManager->ctx[i] = NULL;
-                scriptManager->ctxCount--;
+                scriptManager->numActiveContexts--;
             }
         }
 
-        if (scriptManager->ctxCount <= 0) {
+        if (scriptManager->numActiveContexts <= 0) {
             scriptFunction = scriptManager->function;
             StringTemplate_Free(scriptManager->strTemplate);
             Strbuf_Free(scriptManager->msgBuf);
@@ -135,9 +133,7 @@ static ScriptManager * ScriptManager_New ()
 {
     ScriptManager *scriptManager = Heap_AllocFromHeap(11, sizeof(ScriptManager));
 
-    if (scriptManager == NULL) {
-        GF_ASSERT(FALSE);
-    }
+    GF_ASSERT(scriptManager != NULL);
 
     memset(scriptManager, 0, sizeof(ScriptManager));
     scriptManager->magic = SCRIPT_MANAGER_MAGIC_NUMBER;
@@ -169,13 +165,11 @@ static void sub_0203EA68 (FieldSystem * fieldSystem, ScriptManager * scriptManag
     }
 }
 
-ScriptContext * ScriptContext_New (FieldSystem * fieldSystem, u16 scriptID)
+ScriptContext * ScriptContext_CreateAndStart (FieldSystem * fieldSystem, u16 scriptID)
 {
     ScriptContext *ctx = Heap_AllocFromHeap(11, sizeof(ScriptContext));
 
-    if (ctx == NULL) {
-        GF_ASSERT(FALSE);
-    }
+    GF_ASSERT(ctx != NULL);
 
     ScriptContext_Init(ctx, Unk_020EAC58, Unk_020EAB80);
     sub_0203EAF4(fieldSystem, ctx, scriptID, 0);
@@ -288,7 +282,7 @@ static u16 ScriptContext_LoadAndOffsetID (FieldSystem * fieldSystem, ScriptConte
         ScriptContext_Load(fieldSystem, ctx, 211, 213);
         retScriptID -= 2000;
     } else if (retScriptID >= 1) {
-        ScriptContext_SetMapScripts(fieldSystem, ctx);
+        ScriptContext_LoadFromCurrentMap(fieldSystem, ctx);
         retScriptID -= 1;
     } else {
         ScriptContext_Load(fieldSystem, ctx, 402, 355);
@@ -305,9 +299,9 @@ static void ScriptContext_Load (FieldSystem * fieldSystem, ScriptContext * ctx, 
     ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, 11);
 }
 
-static void ScriptContext_SetMapScripts (FieldSystem * fieldSystem, ScriptContext * ctx)
+static void ScriptContext_LoadFromCurrentMap (FieldSystem * fieldSystem, ScriptContext * ctx)
 {
-    u8 *scripts = ScriptContext_LoadMapScripts(fieldSystem->location->mapId);
+    u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
     ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), 11);
 }
@@ -327,12 +321,12 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
         return &scriptManager->messageID;
     case SCRIPT_MANAGER_MOVEMENT_COUNT:
         return &scriptManager->movementCount;
-    case SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE:
-        return &scriptManager->commonScriptActive;
+    case SCRIPT_MANAGER_SUB_CONTEXT_ACTIVE:
+        return &scriptManager->subCtxActive;
     case SCRIPT_MANAGER_IS_MSG_BOX_OPEN:
         return &scriptManager->isMsgBoxOpen;
-    case SCRIPT_MANAGER_CONTEXT_COUNT:
-        return &scriptManager->ctxCount;
+    case SCRIPT_MANAGER_NUM_ACTIVE_CONTEXTS:
+        return &scriptManager->numActiveContexts;
     case SCRIPT_MANAGER_SCRIPT_ID:
         return &scriptManager->scriptID;
     case SCRIPT_MANAGER_PLAYER_DIR:
@@ -343,10 +337,10 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
         return &scriptManager->cameraObject;
     case SCRIPT_MANAGER_SAVE_TYPE:
         return &scriptManager->saveType;
-    case SCRIPT_MANAGER_CONTEXT_0:
-        return &scriptManager->ctx[0];
-    case SCRIPT_MANAGER_CONTEXT_1:
-        return &scriptManager->ctx[1];
+    case SCRIPT_MANAGER_MAIN_CONTEXT:
+        return &scriptManager->ctx[SCRIPT_CONTEXT_MAIN];
+    case SCRIPT_MANAGER_SUB_CONTEXT:
+        return &scriptManager->ctx[SCRIPT_CONTEXT_SUB];
     case SCRIPT_MANAGER_STR_TEMPLATE:
         return &scriptManager->strTemplate;
     case SCRIPT_MANAGER_MESSAGE_BUF:
@@ -366,46 +360,46 @@ void * ScriptManager_GetMemberPtr (ScriptManager *scriptManager, u32 member)
     case SCRIPT_MANAGER_PLAYER_WON_BATTLE:
         return &scriptManager->playerWonBattle;
     case SCRIPT_MANAGER_TRAINER_0_SIGHT_RANGE:
-        trainer = &scriptManager->trainer[0];
+        trainer = &scriptManager->trainers[0];
         return &trainer->sightRange;
     case SCRIPT_MANAGER_TRAINER_0_DIRECTION:
-        trainer = &scriptManager->trainer[0];
+        trainer = &scriptManager->trainers[0];
         return &trainer->direction;
     case SCRIPT_MANAGER_TRAINER_0_SCRIPT_ID:
-        trainer = &scriptManager->trainer[0];
+        trainer = &scriptManager->trainers[0];
         return &trainer->scriptID;
     case SCRIPT_MANAGER_TRAINER_0_ID:
-        trainer = &scriptManager->trainer[0];
+        trainer = &scriptManager->trainers[0];
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_0_TYPE:
-        trainer = &scriptManager->trainer[0];
+        trainer = &scriptManager->trainers[0];
         return &trainer->trainerType;
     case SCRIPT_MANAGER_TRAINER_0_MAP_OBJECT:
-        trainer = &scriptManager->trainer[0];
+        trainer = &scriptManager->trainers[0];
         return &trainer->object;
     case SCRIPT_MANAGER_TRAINER_0_TASK:
-        trainer = &scriptManager->trainer[0];
+        trainer = &scriptManager->trainers[0];
         return &trainer->task;
     case SCRIPT_MANAGER_TRAINER_1_SIGHT_RANGE:
-        trainer = &scriptManager->trainer[1];
+        trainer = &scriptManager->trainers[1];
         return &trainer->sightRange;
     case SCRIPT_MANAGER_TRAINER_1_DIRECTION:
-        trainer = &scriptManager->trainer[1];
+        trainer = &scriptManager->trainers[1];
         return &trainer->direction;
     case SCRIPT_MANAGER_TRAINER_1_SCRIPT_ID:
-        trainer = &scriptManager->trainer[1];
+        trainer = &scriptManager->trainers[1];
         return &trainer->scriptID;
     case SCRIPT_MANAGER_TRAINER_1_ID:
-        trainer = &scriptManager->trainer[1];
+        trainer = &scriptManager->trainers[1];
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_1_TYPE:
-        trainer = &scriptManager->trainer[1];
+        trainer = &scriptManager->trainers[1];
         return &trainer->trainerType;
     case SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT:
-        trainer = &scriptManager->trainer[1];
+        trainer = &scriptManager->trainers[1];
         return &trainer->object;
     case SCRIPT_MANAGER_TRAINER_1_TASK:
-        trainer = &scriptManager->trainer[1];
+        trainer = &scriptManager->trainers[1];
         return &trainer->task;
     case SCRIPT_MANAGER_COIN_WINDOW:
         return &scriptManager->coinWindow;
@@ -439,9 +433,7 @@ void * FieldSystem_GetScriptMemberPtr (FieldSystem * fieldSystem, u32 member)
 {
     ScriptManager *script = TaskManager_Environment(fieldSystem->unk_10);
 
-    if (script->magic != SCRIPT_MANAGER_MAGIC_NUMBER) {
-        GF_ASSERT(FALSE);
-    }
+    GF_ASSERT(script->magic == SCRIPT_MANAGER_MAGIC_NUMBER);
 
     return ScriptManager_GetMemberPtr(script, member);
 }
@@ -461,7 +453,7 @@ static void sub_0203F0E4 (ScriptContext * ctx, u16 param1)
     ctx->scriptPtr += ScriptContext_ReadWord(ctx);
 }
 
-static void * ScriptContext_LoadMapScripts (int headerID)
+static void * ScriptContext_LoadScripts (int headerID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, MapHeader_GetScriptsArchiveID(headerID), 11);
 }
@@ -741,7 +733,7 @@ void FieldSystem_InitNewGameState (FieldSystem * fieldSystem)
 
 void FieldSystem_RunScript (FieldSystem * fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = ScriptContext_New(fieldSystem, scriptID);
+    ScriptContext *ctx = ScriptContext_CreateAndStart(fieldSystem, scriptID);
 
     while (ScriptContext_Run(ctx) == TRUE); 
 

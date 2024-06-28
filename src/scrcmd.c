@@ -266,7 +266,7 @@ static BOOL ScrCmd_CompareVarToValue(ScriptContext * ctx);
 static BOOL ScrCmd_CompareVarToVar(ScriptContext * ctx);
 static BOOL ScrCmd_013(ScriptContext * ctx);
 static BOOL ScrCmd_CommonScript(ScriptContext * ctx);
-static BOOL ScriptContext_WaitCommonScript(ScriptContext * ctx);
+static BOOL ScriptContext_WaitSubContext(ScriptContext * ctx);
 static BOOL ScrCmd_ReturnLocal(ScriptContext * ctx);
 static BOOL ScrCmd_GoTo(ScriptContext * ctx);
 static MapObject * sub_02040ED4(FieldSystem * fieldSystem, int param1);
@@ -1841,11 +1841,11 @@ static BOOL ScrCmd_013 (ScriptContext * ctx)
 {
     u16 v0;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 * v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_CONTEXT_COUNT);
-    ScriptContext ** v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_CONTEXT_1);
+    u8 * v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_NUM_ACTIVE_CONTEXTS);
+    ScriptContext ** v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT);
 
     v0 = ScriptContext_ReadHalfWord(ctx);
-    *v3 = ScriptContext_New(fieldSystem, v0);
+    *v3 = ScriptContext_CreateAndStart(fieldSystem, v0);
     (*v2)++;
 
     return 1;
@@ -1855,31 +1855,31 @@ static BOOL ScrCmd_CommonScript (ScriptContext * ctx)
 {
     u16 scriptID;
     FieldSystem * fieldSystem = ctx->fieldSystem;
-    u8 *commonScriptActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE);
-    u8 *ctxCount = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_CONTEXT_COUNT);
-    ScriptContext **commonScriptCtx = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_CONTEXT_1);
+    u8 *subCtxActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT_ACTIVE);
+    u8 *numActiveContexts = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_NUM_ACTIVE_CONTEXTS);
+    ScriptContext **commonScriptCtx = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT);
 
     scriptID = ScriptContext_ReadHalfWord(ctx);
-    *commonScriptActive = TRUE;
-    *commonScriptCtx = ScriptContext_New(fieldSystem, scriptID);
-    (*ctxCount)++;
+    *subCtxActive = TRUE;
+    *commonScriptCtx = ScriptContext_CreateAndStart(fieldSystem, scriptID);
+    (*numActiveContexts)++;
 
-    ScriptContext_Pause(ctx, ScriptContext_WaitCommonScript);
+    ScriptContext_Pause(ctx, ScriptContext_WaitSubContext);
     return TRUE;
 }
 
-static BOOL ScriptContext_WaitCommonScript (ScriptContext * ctx)
+static BOOL ScriptContext_WaitSubContext (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *commonScriptActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE);
-    return *commonScriptActive == FALSE;
+    u8 *subCtxActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT_ACTIVE);
+    return *subCtxActive == FALSE;
 }
 
 static BOOL ScrCmd_ReturnLocal (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *commonScriptActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COMMON_SCRIPT_ACTIVE);
-    *commonScriptActive = FALSE;
+    u8 *subCtxActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT_ACTIVE);
+    *subCtxActive = FALSE;
     return FALSE;
 }
 
