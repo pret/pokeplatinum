@@ -185,7 +185,7 @@ _0254:
     ScrCmd_0D1 0, 0x8004
     Message 11
     SetVar 0x8005, 1
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 162
     GoTo _020B
 
@@ -194,7 +194,7 @@ _0270:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0287:
@@ -202,7 +202,7 @@ _0287:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _029E:
@@ -210,7 +210,7 @@ _029E:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 20, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _02B3:

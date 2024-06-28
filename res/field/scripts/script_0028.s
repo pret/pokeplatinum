@@ -162,7 +162,7 @@ _0202:
     End
 
 _020D:
-    CommonScript 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _02EA
     ScrCmd_14E
@@ -260,7 +260,7 @@ _0360:
     EndMovement
 
 _0368:
-    CommonScript 0x2338
+    CallCommonScript 0x2338
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -373,11 +373,11 @@ _0464:
     End
 
 _046A:
-    CommonScript 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0464
     CloseMessage
-    CommonScript 0x802
+    CallCommonScript 0x802
     ReleaseAll
     End
 
@@ -413,11 +413,11 @@ _04EE:
     End
 
 _04F4:
-    CommonScript 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _04EE
     CloseMessage
-    CommonScript 0x802
+    CallCommonScript 0x802
     ReleaseAll
     End
 
@@ -556,7 +556,7 @@ _06A1:
 
 _06D3:
     SetVar 0x8005, 1
-    CommonScript 0x7FD
+    CallCommonScript 0x7FD
     Message 28
     Call _0710
     SetFlag 0xAC3

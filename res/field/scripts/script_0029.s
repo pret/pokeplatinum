@@ -156,11 +156,11 @@ _0161:
     End
 
 _0167:
-    CommonScript 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0161
     CloseMessage
-    CommonScript 0x802
+    CallCommonScript 0x802
     ReleaseAll
     End
 
@@ -196,11 +196,11 @@ _01EB:
     End
 
 _01F1:
-    CommonScript 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _01EB
     CloseMessage
-    CommonScript 0x802
+    CallCommonScript 0x802
     ReleaseAll
     End
 

@@ -21,14 +21,14 @@ _0031:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _003E:
     Call _00E8
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _004C:
@@ -54,19 +54,19 @@ _0090:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _009D:
     Call _0126
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _00AB:
     Call _00B5
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _00B5:

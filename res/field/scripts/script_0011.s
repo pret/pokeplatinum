@@ -158,7 +158,7 @@ _021B:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0246
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     GoTo _0269
 
 _0246:

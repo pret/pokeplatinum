@@ -265,9 +265,9 @@ static BOOL ScrCmd_010(ScriptContext * ctx);
 static BOOL ScrCmd_CompareVarToValue(ScriptContext * ctx);
 static BOOL ScrCmd_CompareVarToVar(ScriptContext * ctx);
 static BOOL ScrCmd_013(ScriptContext * ctx);
-static BOOL ScrCmd_CommonScript(ScriptContext * ctx);
+static BOOL ScrCmd_CallCommonScript(ScriptContext * ctx);
 static BOOL ScriptContext_WaitSubContext(ScriptContext * ctx);
-static BOOL ScrCmd_ReturnLocal(ScriptContext * ctx);
+static BOOL ScrCmd_ReturnCommonScript(ScriptContext * ctx);
 static BOOL ScrCmd_GoTo(ScriptContext * ctx);
 static MapObject * sub_02040ED4(FieldSystem * fieldSystem, int param1);
 static BOOL ScrCmd_017(ScriptContext * ctx);
@@ -794,8 +794,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CompareVarToValue,
     ScrCmd_CompareVarToVar,
     ScrCmd_013,
-    ScrCmd_CommonScript,
-    ScrCmd_ReturnLocal,
+    ScrCmd_CallCommonScript,
+    ScrCmd_ReturnCommonScript,
     ScrCmd_GoTo,
     ScrCmd_017,
     ScrCmd_018,
@@ -1851,7 +1851,7 @@ static BOOL ScrCmd_013 (ScriptContext * ctx)
     return 1;
 }
 
-static BOOL ScrCmd_CommonScript (ScriptContext * ctx)
+static BOOL ScrCmd_CallCommonScript (ScriptContext * ctx)
 {
     u16 scriptID;
     FieldSystem * fieldSystem = ctx->fieldSystem;
@@ -1875,7 +1875,7 @@ static BOOL ScriptContext_WaitSubContext (ScriptContext * ctx)
     return *subCtxActive == FALSE;
 }
 
-static BOOL ScrCmd_ReturnLocal (ScriptContext * ctx)
+static BOOL ScrCmd_ReturnCommonScript (ScriptContext * ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *subCtxActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT_ACTIVE);

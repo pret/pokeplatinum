@@ -14,7 +14,7 @@ _000A:
     GoToIfEq 0x800C, 1, _003A
     Message 0
     SetVar 0x8004, 11
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll

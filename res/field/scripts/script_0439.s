@@ -14,7 +14,7 @@ _0016:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _002D:
@@ -22,7 +22,7 @@ _002D:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0044:
@@ -30,7 +30,7 @@ _0044:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _005B:
@@ -38,7 +38,7 @@ _005B:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 5, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0070:
@@ -52,7 +52,7 @@ _0070:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00C0
     SetFlag 0x13F
-    CommonScript 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -65,7 +65,7 @@ _00B5:
     End
 
 _00C0:
-    CommonScript 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

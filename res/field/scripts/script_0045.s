@@ -16,7 +16,7 @@ _000A:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _005C
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 201
     GoTo _0051
     End
@@ -29,7 +29,7 @@ _0051:
     End
 
 _005C:
-    CommonScript 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

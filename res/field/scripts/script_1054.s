@@ -14,7 +14,7 @@ _000E:
     CloseMessage
     ApplyMovement 0, _0060
     WaitMovement
-    CommonScript 0x7FA
+    CallCommonScript 0x7FA
     ScrCmd_0CD 0
     Message 1
     CloseMessage
@@ -23,7 +23,7 @@ _000E:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 0
-    CommonScript 0x7FB
+    CallCommonScript 0x7FB
     SetFlag 234
     SetVar 0x40A3, 1
     SetVar 0x4070, 2

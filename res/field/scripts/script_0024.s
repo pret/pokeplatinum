@@ -56,13 +56,13 @@ _0063:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00AD
     SetFlag 191
-    CommonScript 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
 
 _00AD:
-    CommonScript 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

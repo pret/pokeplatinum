@@ -20,7 +20,7 @@ _001D:
     LockAll
     ApplyMovement 1, _0264
     WaitMovement
-    CommonScript 0x7FA
+    CallCommonScript 0x7FA
     ScrCmd_069 0x8004, 0x8005
     CallIfEq 0x8005, 5, _014E
     CallIfEq 0x8005, 6, _015A

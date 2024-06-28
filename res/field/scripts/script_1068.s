@@ -115,7 +115,7 @@ _00FC:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0113:
@@ -123,7 +123,7 @@ _0113:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _012A:
@@ -131,7 +131,7 @@ _012A:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0141:
@@ -147,7 +147,7 @@ _0141:
     Message 9
     SetVar 0x8004, 0x1D2
     SetVar 0x8005, 1
-    CommonScript 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End

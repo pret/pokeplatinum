@@ -163,7 +163,7 @@ _021E:
     WaitMovement
     Message 18
     SetVar 0x8004, 22
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     SetFlag 163
     CloseMessage
     ReleaseAll

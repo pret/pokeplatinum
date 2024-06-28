@@ -148,7 +148,7 @@ _028A:
     ScrCmd_064 11
     ApplyMovement 11, _0340
     WaitMovement
-    CommonScript 0x7FA
+    CallCommonScript 0x7FA
     ApplyMovement 11, _0354
     WaitMovement
     ScrCmd_0CE 0
@@ -472,7 +472,7 @@ _0649:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0660:
@@ -480,7 +480,7 @@ _0660:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 37, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0675:
@@ -488,7 +488,7 @@ _0675:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _068C:
@@ -496,7 +496,7 @@ _068C:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06A3:
@@ -504,7 +504,7 @@ _06A3:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06BA:
@@ -514,7 +514,7 @@ _06BA:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 42, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06E2:
@@ -522,7 +522,7 @@ _06E2:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 41, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06F7:

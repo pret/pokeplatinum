@@ -170,7 +170,7 @@ _025F:
 _0272:
     Message 88
     SetVar 0x8005, 1
-    CommonScript 0x7FE
+    CallCommonScript 0x7FE
     Message 15
     GoTo _020B
     End
@@ -278,7 +278,7 @@ _045C:
     End
 
 _049C:
-    CommonScript 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     Return
 
@@ -1028,7 +1028,7 @@ _114C:
     ScrCmd_04E 0x486
     ScrCmd_04F
     SetVar 0x404F, 4
-    CommonScript 0x806
+    CallCommonScript 0x806
     Return
 
 _1167:
@@ -1263,7 +1263,7 @@ _13AF:
 _13CE:
     Call _07B5
     Call _07B9
-    CommonScript 0x809
+    CallCommonScript 0x809
     End
 
 _13E0:

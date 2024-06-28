@@ -36,7 +36,7 @@ _002E:
     Message 4
     SetVar 0x8004, 49
     SetVar 0x8005, 1
-    CommonScript 0x7FF
+    CallCommonScript 0x7FF
     Message 5
     ApplyMovement 6, _0158
     ApplyMovement 5, _017C

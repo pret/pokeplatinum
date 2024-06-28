@@ -17,13 +17,13 @@ _0006:
     GoToIfEq 0x800C, 0, _004F
     SetFlag 0x13B
     SetFlag 0x25F
-    CommonScript 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
 
 _004F:
-    CommonScript 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

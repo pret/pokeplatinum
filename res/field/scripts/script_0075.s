@@ -11,7 +11,7 @@
 
 _0016:
     SetVar 0x8007, 3
-    CommonScript 0x7D2
+    CallCommonScript 0x7D2
     End
 
 _0022:
@@ -75,7 +75,7 @@ _00D9:
     Message 4
     SetVar 0x4002, 1
     SetVar 0x8004, 5
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll

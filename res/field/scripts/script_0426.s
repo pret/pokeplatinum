@@ -94,7 +94,7 @@ _0121:
     ScrCmd_1D8 0x800C
     GoToIfEq 0x800C, 1, _00BA
     GoToIfEq 0x800C, 2, _00C5
-    CommonScript 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _0173
     GoTo _006D

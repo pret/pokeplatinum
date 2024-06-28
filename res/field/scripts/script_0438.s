@@ -32,7 +32,7 @@ _004E:
     Call _008E
     ApplyMovement 18, _0194
     WaitMovement
-    CommonScript 0x7F8
+    CallCommonScript 0x7F8
     ApplyMovement 18, _01A0
     WaitMovement
     ApplyMovement 0xFF, _0174
@@ -85,12 +85,12 @@ _012F:
     SetFlag 0x97F
     SetVar 0x8004, 0x1BB
     SetVar 0x8005, 1
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     Return
 
 _0145:
     SetVar 0x8004, 6
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     ScrCmd_0D7 1, 6
     Return
 
@@ -99,7 +99,7 @@ _0156:
     ApplyMovement 18, _01A8
     WaitMovement
     ScrCmd_065 18
-    CommonScript 0x7F9
+    CallCommonScript 0x7F9
     SetVar 0x408C, 1
     ReleaseAll
     End
@@ -183,7 +183,7 @@ _01EC:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0203:
@@ -191,7 +191,7 @@ _0203:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _021A:
@@ -199,7 +199,7 @@ _021A:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 13, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
     .byte 0

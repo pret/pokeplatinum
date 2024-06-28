@@ -214,7 +214,7 @@ _019C:
     ScrCmd_065 6
     ClearFlag 0x231
     ScrCmd_064 4
-    CommonScript 0x807
+    CallCommonScript 0x807
     Message 6
     CloseMessage
     ApplyMovement 4, _04A8

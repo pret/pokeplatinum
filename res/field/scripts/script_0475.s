@@ -62,7 +62,7 @@ _00A7:
     ScrCmd_0D1 0, 0x8004
     Message 2
     SetVar 0x8005, 1
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 132
     GoTo _005E
 

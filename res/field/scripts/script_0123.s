@@ -113,7 +113,7 @@ _012F:
     ScrCmd_261 0, 0x8004
     Message 37
     SetVar 0x8005, 1
-    CommonScript 0x7DF
+    CallCommonScript 0x7DF
     SetFlag 0x128
     CloseMessage
     ReleaseAll
@@ -480,7 +480,7 @@ _03E4:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _03FB:
@@ -488,7 +488,7 @@ _03FB:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 42, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0410:
@@ -496,7 +496,7 @@ _0410:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0427:
@@ -504,7 +504,7 @@ _0427:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _043E:
@@ -565,7 +565,7 @@ _04C8:
     ScrCmd_064 26
     ApplyMovement 26, _05B0
     WaitMovement
-    CommonScript 0x7FA
+    CallCommonScript 0x7FA
     ApplyMovement 26, _05C0
     ApplyMovement 0xFF, _05A4
     WaitMovement

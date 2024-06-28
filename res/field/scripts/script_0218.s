@@ -21,7 +21,7 @@ _0018:
     ScrCmd_261 0, 0x8004
     Message 0
     SetVar 0x8005, 1
-    CommonScript 0x7DF
+    CallCommonScript 0x7DF
     SetFlag 0x12A
     CloseMessage
     ReleaseAll
@@ -39,7 +39,7 @@ _0058:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _006F:
@@ -47,5 +47,5 @@ _006F:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 3, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End

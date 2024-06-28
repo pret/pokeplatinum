@@ -12,7 +12,7 @@ _0012:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CommonScript 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     ScrCmd_147 1
     ReleaseAll
@@ -31,7 +31,7 @@ _002A:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _007C
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 213
     GoTo _0071
     End
@@ -44,7 +44,7 @@ _0071:
     End
 
 _007C:
-    CommonScript 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

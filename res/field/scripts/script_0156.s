@@ -440,7 +440,7 @@ _0577:
     Message 6
     SetVar 0x8004, 0x1AA
     SetVar 0x8005, 1
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 154
     Message 7
     Return
@@ -583,7 +583,7 @@ _06F2:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0709:
@@ -591,7 +591,7 @@ _0709:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 22, 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _071E:
@@ -599,7 +599,7 @@ _071E:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0735:
@@ -607,7 +607,7 @@ _0735:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _074C:
@@ -615,7 +615,7 @@ _074C:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0763:
@@ -623,7 +623,7 @@ _0763:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _077A:
@@ -631,14 +631,14 @@ _077A:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0791:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CommonScript 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     ScrCmd_234 0x800C
     SetVar 0x8008, 0x800C

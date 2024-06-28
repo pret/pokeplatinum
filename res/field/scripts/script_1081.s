@@ -23,7 +23,7 @@ _0021:
     GoToIfEq 0x800C, 1, _0051
     Message 0
     SetVar 0x8004, 8
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll

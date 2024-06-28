@@ -22,7 +22,7 @@ _0010:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01F3
     SetFlag 0x138
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     GoTo _0062
     End
 
@@ -118,7 +118,7 @@ _01E5:
     End
 
 _01F3:
-    CommonScript 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

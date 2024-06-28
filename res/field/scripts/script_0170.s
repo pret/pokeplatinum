@@ -58,7 +58,7 @@ _00C5:
     ScrCmd_0D0 0, 0x8000
     Message 4
     SetVar 0x8004, 16
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -69,7 +69,7 @@ _00E5:
     ScrCmd_0D0 0, 0x8000
     Message 5
     SetVar 0x8004, 17
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -80,7 +80,7 @@ _0105:
     ScrCmd_0D0 0, 0x8000
     Message 6
     SetVar 0x8004, 18
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll

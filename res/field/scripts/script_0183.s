@@ -16,14 +16,14 @@ _001A:
 
 _0020:
     SetVar 0x8007, 0
-    CommonScript 0x7D2
+    CallCommonScript 0x7D2
     End
 
 _002C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CommonScript 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     ScrCmd_147 1
     ReleaseAll
@@ -33,7 +33,7 @@ _0042:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CommonScript 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     ScrCmd_148 18
     ReleaseAll

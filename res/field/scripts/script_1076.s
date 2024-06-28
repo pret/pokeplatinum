@@ -97,7 +97,7 @@ _00CC:
     GoToIfLt 0x800C, 50, _010D
     Message 10
     SetVar 0x8004, 9
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -122,7 +122,7 @@ _0123:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _013A:
@@ -130,7 +130,7 @@ _013A:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0151:
@@ -138,14 +138,14 @@ _0151:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    CommonScript 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0168:
     LockAll
     ApplyMovement 0xFF, _0218
     WaitMovement
-    CommonScript 0x7FA
+    CallCommonScript 0x7FA
     ScrCmd_069 0x8004, 0x8005
     ScrCmd_186 18, 0x8004, 0x295
     ClearFlag 0x21E
@@ -168,7 +168,7 @@ _0168:
     ApplyMovement 18, _0210
     WaitMovement
     ScrCmd_065 18
-    CommonScript 0x7FB
+    CallCommonScript 0x7FB
     SetVar 0x4073, 1
     ReleaseAll
     End

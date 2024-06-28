@@ -395,7 +395,7 @@ _04F6:
     WaitMovement
     Message 3
     SetVar 0x8004, 19
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     Message 4
     CloseMessage
     WaitTime 15, 0x800C
@@ -452,7 +452,7 @@ _057C:
     GoToIfEq 0x800C, 0, _064C
     Message 11
     SetVar 0x8004, 20
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     SetVar 0x400A, 1
     CloseMessage
@@ -465,7 +465,7 @@ _05FB:
     GoToIfEq 0x800C, 0, _064C
     Message 14
     SetVar 0x8004, 21
-    CommonScript 0x7D9
+    CallCommonScript 0x7D9
     WaitABXPadPress
     SetVar 0x400A, 2
     CloseMessage
@@ -573,14 +573,14 @@ _077A:
     End
 
 _079E:
-    CommonScript 0x7DF
+    CallCommonScript 0x7DF
     SetVar 0x4009, 1
     CloseMessage
     ReleaseAll
     End
 
 _07AE:
-    CommonScript 0x7F4
+    CallCommonScript 0x7F4
     SetVar 0x4009, 1
     CloseMessage
     ReleaseAll
@@ -650,7 +650,7 @@ _09A1:
     Message 45
     SetVar 0x8004, 0x8006
     SetVar 0x8005, 1
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     Return
 
 _09B6:

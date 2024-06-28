@@ -94,7 +94,7 @@ _0165:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0172:
@@ -140,7 +140,7 @@ _01E1:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0218:
@@ -155,7 +155,7 @@ _0218:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0242:
@@ -173,7 +173,7 @@ _0259:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _027A:
@@ -188,7 +188,7 @@ _027A:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _02B0:
@@ -200,7 +200,7 @@ _02B0:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _02D4:
@@ -231,24 +231,24 @@ _02FC:
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 1, _0341
     ScrCmd_038 2
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _033A:
     ScrCmd_038 2
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0341:
     ScrCmd_038 4
     ScrCmd_039
     ScrCmd_03C
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _034C:
     Call _0356
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0356:
@@ -340,7 +340,7 @@ _0494:
     SetFlag 31
     Call _04A8
     SetVar 0x4000, 0x800C
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _04A8:
@@ -542,7 +542,7 @@ _0713:
 
 _0719:
     Call _0723
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0723:
@@ -687,13 +687,13 @@ _0901:
     Call _091D
     Message 109
     WaitABXPadPress
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0910:
     Call _091D
     Message 128
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _091D:
@@ -707,7 +707,7 @@ _091D:
 
 _093A:
     Call _0944
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0944:
@@ -720,7 +720,7 @@ _0944:
 
 _095C:
     Call _0966
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0966:
@@ -736,13 +736,13 @@ _0983:
     Call _099F
     Message 31
     WaitABXPadPress
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0992:
     Call _099F
     Message 127
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _099F:
@@ -759,13 +759,13 @@ _09BD:
     Call _09D9
     Message 31
     WaitABXPadPress
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _09CC:
     Call _09D9
     Message 127
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _09D9:
@@ -780,7 +780,7 @@ _09D9:
 
 _09F5:
     Call _09FF
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _09FF:
@@ -795,7 +795,7 @@ _09FF:
 
 _0A34:
     Call _0A3E
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0A3E:
@@ -893,7 +893,7 @@ _0BDB:
 
 _0BDD:
     Call _0BE7
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0BE7:
@@ -1124,7 +1124,7 @@ _0F59:
 
 _0F62:
     PlayFanfare SEQ_SE_DP_PC_LOGIN
-    CommonScript 0x26DF
+    CallCommonScript 0x26DF
     GoTo _0C1C
 
 _0F70:
@@ -1159,7 +1159,7 @@ _0FA7:
 
 _0FC3:
     Message 37
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _0FCA:
@@ -1495,7 +1495,7 @@ _13AB:
 
 _13BE:
     Call _13C8
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _13C8:
@@ -1609,7 +1609,7 @@ _1581:
     ScrCmd_14D 0x800C
     CallIfEq 0x800C, 0, _15A7
     CallIfEq 0x800C, 1, _15AD
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _15A7:
@@ -1623,26 +1623,26 @@ _15AD:
 _15B3:
     ScrCmd_051 0
     ScrCmd_057 0x473
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _15BF:
     ScrCmd_051 0
     ScrCmd_057 0x472
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _15CB:
     ScrCmd_051 0
     ScrCmd_057 0x4B0
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _15D7:
     ScrCmd_054 0, 30
     ScrCmd_051 0
     ScrCmd_052
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _15E7:
@@ -1655,14 +1655,14 @@ _15E7:
     ScrCmd_0A1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _1624:
     ScrCmd_0A1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _1636:
@@ -1715,7 +1715,7 @@ _16AA:
     End
 
 _1706:
-    ReturnLocal
+    ReturnCommonScript
     End
 
 _170A:
@@ -1723,7 +1723,7 @@ _170A:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ReturnLocal
+    ReturnCommonScript
     End
 
     .byte 0

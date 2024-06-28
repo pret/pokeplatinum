@@ -12,7 +12,7 @@ _0012:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CommonScript 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     ScrCmd_147 0
     ReleaseAll

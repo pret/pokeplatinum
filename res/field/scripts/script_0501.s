@@ -365,7 +365,7 @@ _04A0:
 
 _04EF:
     ScrCmd_073
-    CommonScript 0x809
+    CallCommonScript 0x809
     End
 
     .byte 0

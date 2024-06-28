@@ -52,7 +52,7 @@ _0073:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0114
-    CommonScript 0x7FC
+    CallCommonScript 0x7FC
     Message 5
     CloseMessage
     ScrCmd_069 0x8004, 0x8005
