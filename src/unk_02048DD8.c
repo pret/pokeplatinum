@@ -29,7 +29,7 @@
 #include "game_records.h"
 #include "unk_0202E2CC.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02048DD8.h"
 #include "unk_02054884.h"
 #include "poketch_data.h"

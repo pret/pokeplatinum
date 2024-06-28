@@ -30,7 +30,7 @@
 #include "strbuf.h"
 #include "unk_0202631C.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02054884.h"
 #include "constants/species.h"
 #include "constants/forms.h"

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0203E880_H
-#define POKEPLATINUM_UNK_0203E880_H
+#ifndef POKEPLATINUM_SCRIPT_MANAGER_H
+#define POKEPLATINUM_SCRIPT_MANAGER_H
 
 #include "field/field_system_decl.h"
 #include "field_script_context.h"
@@ -169,4 +169,4 @@ void FieldSystem_InitNewGameState(FieldSystem * fieldSystem);
 void FieldSystem_RunScript(FieldSystem * fieldSystem, u16 scriptID);
 BOOL sub_0203F5C0(FieldSystem * fieldSystem, u8 param1);
 
-#endif // POKEPLATINUM_UNK_0203E880_H
+#endif // POKEPLATINUM_SCRIPT_MANAGER_H

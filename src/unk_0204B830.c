@@ -28,7 +28,7 @@
 #include "unk_0202DAB4.h"
 #include "unk_0202F180.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0204B830.h"
 #include "vars_flags.h"
 #include "unk_02054884.h"

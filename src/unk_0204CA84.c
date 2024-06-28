@@ -15,7 +15,7 @@
 #include "unk_020261E4.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0204CA84.h"
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"

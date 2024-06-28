@@ -18,7 +18,7 @@
 #include "unk_020363E8.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_020494DC.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"

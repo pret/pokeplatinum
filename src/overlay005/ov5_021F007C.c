@@ -16,7 +16,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "map_header.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "player_avatar.h"

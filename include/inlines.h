@@ -21,7 +21,7 @@
 #include "map_header.h"
 #include "field_overworld_state.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0206A8DC.h"
 
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);

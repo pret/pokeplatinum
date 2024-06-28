@@ -34,7 +34,7 @@
 #include "field_overworld_state.h"
 #include "unk_0203A7D8.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_020508D4.h"
 #include "unk_020528D0.h"
 #include "field_map_change.h"

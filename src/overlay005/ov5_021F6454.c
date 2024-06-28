@@ -44,7 +44,7 @@
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_0205DFC4.h"
 #include "player_avatar.h"

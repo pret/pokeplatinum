@@ -36,7 +36,7 @@
 #include "communication_system.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FA34.h"
 #include "unk_020508D4.h"

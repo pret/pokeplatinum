@@ -19,7 +19,7 @@
 #include "map_header.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "player_avatar.h"
 #include "unk_0206AFE0.h"

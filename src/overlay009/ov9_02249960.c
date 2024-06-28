@@ -59,7 +59,7 @@
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_0205DAC8.h"

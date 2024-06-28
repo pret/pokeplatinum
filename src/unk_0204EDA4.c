@@ -12,7 +12,7 @@
 #include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "scrcmd.h"
 #include "unk_0204EDA4.h"
 #include "party.h"

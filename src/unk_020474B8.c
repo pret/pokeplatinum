@@ -20,7 +20,7 @@
 #include "savedata_misc.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_020474B8.h"
 #include "vars_flags.h"
 #include "unk_0205C980.h"

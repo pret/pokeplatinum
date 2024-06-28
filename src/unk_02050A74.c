@@ -29,7 +29,7 @@
 #include "communication_information.h"
 #include "field_overworld_state.h"
 #include "unk_0203D1B8.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"

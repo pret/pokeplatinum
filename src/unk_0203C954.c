@@ -7,7 +7,7 @@
 #include "field/field_system.h"
 
 #include "unk_0203C954.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"

@@ -16,7 +16,7 @@
 #include "unk_0202B37C.h"
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02048BD0.h"
 #include "unk_0206CCB0.h"
 

@@ -11,7 +11,7 @@
 
 #include "unk_020041CC.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_02050A74.h"
 #include "unk_02051D8C.h"

@@ -26,7 +26,7 @@
 
 #include "sys_task.h"
 #include "heap.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"

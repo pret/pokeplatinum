@@ -11,7 +11,7 @@
 #include "sys_task.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "player_avatar.h"
 #include "map_object.h"
 #include "map_object_move.h"

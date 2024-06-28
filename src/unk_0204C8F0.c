@@ -12,7 +12,7 @@
 #include "trainer_info.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0204C8F0.h"
 #include "overlay005/ov5_021DC018.h"
 

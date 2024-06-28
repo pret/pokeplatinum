@@ -15,7 +15,7 @@
 #include "unk_0201CED8.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"

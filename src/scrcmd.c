@@ -107,7 +107,7 @@
 #include "field_system.h"
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "scrcmd.h"
 #include "unk_02046AD4.h"
 #include "unk_02046C7C.h"
@@ -1854,7 +1854,7 @@ static BOOL ScrCmd_013 (ScriptContext * ctx)
 static BOOL ScrCmd_CallCommonScript (ScriptContext * ctx)
 {
     u16 scriptID;
-    FieldSystem * fieldSystem = ctx->fieldSystem;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *subCtxActive = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT_ACTIVE);
     u8 *numActiveContexts = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_NUM_ACTIVE_CONTEXTS);
     ScriptContext **commonScriptCtx = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SUB_CONTEXT);

@@ -15,7 +15,7 @@
 #include "sys_task.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "player_avatar.h"

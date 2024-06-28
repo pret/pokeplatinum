@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "game_options.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0205D8CC.h"
 #include "overlay005/ov5_021DD42C.h"
 

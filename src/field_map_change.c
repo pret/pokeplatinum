@@ -47,7 +47,7 @@
 #include "unk_0203A944.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "field_map_change.h"
