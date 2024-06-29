@@ -112,7 +112,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
     {
         BOOL v2;
 
-        v2 = Easy3D_UploadTextureToVRam(param0->unk_C0C);
+        v2 = Easy3D_UploadTextureToVRAM(param0->unk_C0C);
         GF_ASSERT(v2);
     }
 
@@ -121,7 +121,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
     if (param0->unk_C10 != NULL) {
         BOOL v3;
 
-        v3 = Easy3D_UploadTextureToVRam(param0->unk_C10);
+        v3 = Easy3D_UploadTextureToVRAM(param0->unk_C10);
         GF_ASSERT(v3);
 
         ov5_021EF75C(param0->unk_C08, param0->unk_C10);
@@ -180,7 +180,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
             (NNSG3dResFileHeader *)param0->unk_04[0]);
 
         if (v11 != NULL) {
-            v10 = Easy3D_UploadTextureToVRam(v11);
+            v10 = Easy3D_UploadTextureToVRAM(v11);
             GF_ASSERT(v10);
 
             v10 = Easy3D_BindTextureToResource(param0->unk_04[0], v11);

@@ -30,7 +30,7 @@ static void Easy3DModel_BindTexture(SysTask *task, void *param)
 {
     Easy3DModel *model = param;
 
-    Easy3D_UploadTextureToVRam(model->texture);
+    Easy3D_UploadTextureToVRAM(model->texture);
     Easy3D_BindTextureToResource(model->data, model->texture);
     SysTask_Done(task);
 }

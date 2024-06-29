@@ -409,7 +409,7 @@ static void ov117_02262B98 (UnkStruct_ov117_022626B0 * param0)
     param0->unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 29, 110);
     param0->unk_04 = NNS_G3dGetTex(param0->unk_00);
 
-    Easy3D_UploadTextureToVRam(param0->unk_04);
+    Easy3D_UploadTextureToVRAM(param0->unk_04);
 
     {
         u32 v0;

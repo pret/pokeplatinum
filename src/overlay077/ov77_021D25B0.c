@@ -1677,7 +1677,7 @@ static void ov77_021D3EDC (UnkStruct_ov77_021D37C0 * param0, int param1)
     {
         BOOL v0;
 
-        v0 = Easy3D_UploadTextureToVRam(param0->unk_20.unk_04);
+        v0 = Easy3D_UploadTextureToVRAM(param0->unk_20.unk_04);
         GF_ASSERT(v0);
     }
 

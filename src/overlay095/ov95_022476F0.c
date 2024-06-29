@@ -151,7 +151,7 @@ UnkStruct_ov95_02247958 * ov95_022478B4 (UnkStruct_ov95_0224773C * param0, int p
         v0->unk_5C = NNS_G3dGetMdlByIdx(v0->unk_58, 0);
         v0->unk_60 = NNS_G3dGetTex(v0->unk_00);
 
-        Easy3D_UploadTextureToVRam(v0->unk_60);
+        Easy3D_UploadTextureToVRAM(v0->unk_60);
         Easy3D_BindTextureToResource(v0->unk_00, v0->unk_60);
 
         NNS_G3dRenderObjInit(&v0->unk_04, v0->unk_5C);

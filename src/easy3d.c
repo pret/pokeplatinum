@@ -9,8 +9,7 @@
 #include "gx_layers.h"
 #include "unk_02024220.h"
 
-void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader **resource);
-static void Easy3D_EngineSetup(void);
+static void Easy3D_SetupEngine(void);
 
 void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource)
 {
@@ -18,7 +17,7 @@ void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **
     NNS_G3D_NULL_ASSERT(*outResource);
 
     NNSG3dResTex *texture = NNS_G3dGetTex(*outResource);
-    if (texture != NULL && Easy3D_IsTextureUploadedToVRam(texture) == FALSE) {
+    if (texture != NULL && Easy3D_IsTextureUploadedToVRAM(texture) == FALSE) {
         DC_FlushRange(*outResource, (*outResource)->fileSize);
         NNS_G3dResDefaultSetup(*outResource);
     }
@@ -30,7 +29,7 @@ void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader *
 {
     NNSG3dResTex *texture = NNS_G3dGetTex(*resource);
 
-    if (texture != NULL && Easy3D_IsTextureUploadedToVRam(texture) == FALSE) {
+    if (texture != NULL && Easy3D_IsTextureUploadedToVRAM(texture) == FALSE) {
         DC_FlushRange(*resource, (*resource)->fileSize);
         NNS_G3dResDefaultSetup(*resource);
     }
@@ -51,7 +50,7 @@ void Easy3D_InitRenderObjFromResource(NNSG3dRenderObj *renderObj, NNSG3dResMdl *
     NNS_G3dRenderObjInit(renderObj, *model);
 }
 
-BOOL Easy3D_IsTextureUploadedToVRam(NNSG3dResTex *texture)
+BOOL Easy3D_IsTextureUploadedToVRAM(NNSG3dResTex *texture)
 {
     return (texture->texInfo.flag & NNS_G3D_RESTEX_LOADED) 
         || (texture->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED);
@@ -80,10 +79,10 @@ static GenericPointerData *Unk_021BFB0C = NULL;
 
 void Easy3D_Init(const u8 heapID)
 {
-    Unk_021BFB0C = sub_02024220(heapID, 0, 2, 0, 4, Easy3D_EngineSetup);
+    Unk_021BFB0C = sub_02024220(heapID, 0, 2, 0, 4, Easy3D_SetupEngine);
 }
 
-static void Easy3D_EngineSetup(void)
+static void Easy3D_SetupEngine(void)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
@@ -116,7 +115,7 @@ BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture)
     return FALSE;
 }
 
-BOOL Easy3D_UploadTextureToVRam(NNSG3dResTex *texture)
+BOOL Easy3D_UploadTextureToVRAM(NNSG3dResTex *texture)
 {
     if (texture == NULL) {
         return FALSE;
@@ -124,9 +123,7 @@ BOOL Easy3D_UploadTextureToVRam(NNSG3dResTex *texture)
 
     texture->texInfo.vramKey = 0;
 
-    u32 texRequiredSize, 
-        tex4x4RequiredSize, 
-        paletteRequiredSize;
+    u32 texRequiredSize, tex4x4RequiredSize, paletteRequiredSize;
     BOOL texOk = TRUE;
     BOOL tex4x4Ok = TRUE;
     BOOL paletteOk = TRUE;

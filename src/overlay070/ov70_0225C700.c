@@ -39,7 +39,7 @@ void ov70_0225C730 (void ** param0, NARC * param1, u32 param2, u32 param3)
 
     {
         v5 = NNS_G3dGetTex(v1);
-        Easy3D_UploadTextureToVRam(v5);
+        Easy3D_UploadTextureToVRAM(v5);
     }
 
     {

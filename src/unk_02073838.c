@@ -60,7 +60,7 @@ void sub_0207389C (UnkStruct_02073838 * param0, u32 param1, NARC * param2, u32 p
 
 void sub_020738C0 (UnkStruct_02073838 * param0)
 {
-    Easy3D_UploadTextureToVRam(param0->unk_10);
+    Easy3D_UploadTextureToVRAM(param0->unk_10);
     NNS_G3dBindMdlSet(param0->unk_08, param0->unk_10);
     param0->unk_00 = 1;
 }

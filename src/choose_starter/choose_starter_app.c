@@ -812,7 +812,7 @@ static void ov78_021D1630 (ChooseStarter3DGraphics * param0, int param1, int par
     param0->unk_5C = NNS_G3dGetMdlByIdx(param0->unk_58, 0);
     param0->unk_60 = NNS_G3dGetTex(param0->unk_54);
 
-    Easy3D_UploadTextureToVRam(param0->unk_60);
+    Easy3D_UploadTextureToVRAM(param0->unk_60);
     Easy3D_BindTextureToResource(param0->unk_54, param0->unk_60);
 
     NNS_G3dRenderObjInit(&param0->unk_00, param0->unk_5C);
