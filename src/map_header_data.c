@@ -14,7 +14,7 @@
 
 static void MapHeaderData_LoadEvents(MapHeaderData * data, int headerID);
 static void MapHeaderData_ParseEvents(MapHeaderData * data);
-static void MapHeaderData_LoadScripts(MapHeaderData * data, int headerID);
+static void MapHeaderData_LoadInitScripts(MapHeaderData * data, int headerID);
 
 void MapHeaderData_Init (FieldSystem * fieldSystem, enum HeapId heapID)
 {
@@ -35,7 +35,7 @@ void MapHeaderData_Load (FieldSystem * fieldSystem, int headerID)
     MapHeaderData_LoadEvents(fieldSystem->mapHeaderData, headerID);
     MapHeaderData_ParseEvents(fieldSystem->mapHeaderData);
     MapHeaderData_LoadWildEncounters(&fieldSystem->mapHeaderData->wildEncounters, headerID);
-    MapHeaderData_LoadScripts(fieldSystem->mapHeaderData, headerID);
+    MapHeaderData_LoadInitScripts(fieldSystem->mapHeaderData, headerID);
 }
 
 static void MapHeaderData_LoadEvents (MapHeaderData * data, int headerID)
@@ -259,20 +259,20 @@ const WildEncounters * MapHeaderData_GetWildEncounters (const FieldSystem * fiel
     return &fieldSystem->mapHeaderData->wildEncounters;
 }
 
-static void MapHeaderData_LoadScripts (MapHeaderData * data, int headerID)
+static void MapHeaderData_LoadInitScripts (MapHeaderData * data, int headerID)
 {
-    int mapScriptID = MapHeader_GetMapScriptArchiveID(headerID);
+    int initScriptsID = MapHeader_GetInitScriptsArchiveID(headerID);
 
-    MI_CpuClearFast(data->scripts, sizeof(data->scripts));
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, mapScriptID) < sizeof(data->scripts));
+    MI_CpuClearFast(data->initScripts, sizeof(data->initScripts));
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, initScriptsID) < sizeof(data->initScripts));
 
-    NARC_ReadWholeMemberByIndexPair(data->scripts, NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, mapScriptID);
+    NARC_ReadWholeMemberByIndexPair(data->initScripts, NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, initScriptsID);
 }
 
-const u8 * MapHeaderData_GetScripts (const FieldSystem * fieldSystem)
+const u8 * MapHeaderData_GetInitScripts (const FieldSystem * fieldSystem)
 {
     GF_ASSERT(fieldSystem->mapHeaderData != NULL);
-    return (const u8 *)&fieldSystem->mapHeaderData->scripts;
+    return (const u8 *)&fieldSystem->mapHeaderData->initScripts;
 }
 
 BOOL MapHeaderData_IsAnyObjectEventAtPos (const FieldSystem * fieldSystem, u16 x, u16 z)
