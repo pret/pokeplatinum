@@ -1,0 +1,13 @@
+{
+    "definitions": {
+        "@SaveType": {
+            "type": "enum",
+            "values": [
+                "SAVE_TYPE_OVERWRITE",
+                "SAVE_TYPE_NO_DATA_EXISTS",
+                "SAVE_TYPE_FULL_SAVE",
+                "SAVE_TYPE_QUICK_SAVE"
+            ]
+        }
+    }
+}

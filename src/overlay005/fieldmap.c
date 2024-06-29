@@ -49,7 +49,7 @@
 #include "map_header_data.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_020508D4.h"
 #include "field_map_change.h"
 #include "unk_020553DC.h"

@@ -228,7 +228,7 @@ _02A8:
 _02BD:
     ScrCmd_14E
     ClearFlag 0x966
-    ScrCmd_014 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _02E2
     GoTo _0291
@@ -790,7 +790,7 @@ _0BF2:
     ScrCmd_261 1, 0x8004
     Message 80
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FF
+    CallCommonScript 0x7FF
 _0C3E:
     Message 82
     WaitABXPadPress

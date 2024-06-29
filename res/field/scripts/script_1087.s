@@ -10,7 +10,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_014 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     ScrCmd_147 1
     ReleaseAll
@@ -20,7 +20,7 @@ _0020:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_014 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     ScrCmd_148 14
     ReleaseAll

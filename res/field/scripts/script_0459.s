@@ -117,7 +117,7 @@ _019A:
     SetFlag 0x104
     ClearFlag 0x1E8
     ScrCmd_064 33
-    ScrCmd_014 0x807
+    CallCommonScript 0x807
     ScrCmd_315 0x800C
     CallIfEq 0x800C, 2, _0261
     CallIfEq 0x8004, 2, _0267
@@ -135,7 +135,7 @@ _019A:
     CallIfEq 0x8004, 0, _02DF
     CallIfEq 0x8004, 1, _02F3
     ScrCmd_065 33
-    ScrCmd_014 0x808
+    CallCommonScript 0x808
     ScrCmd_315 0x800C
     CallIfEq 0x800C, 2, _0261
     ClearFlag 0x211
@@ -348,7 +348,7 @@ _0435:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _044C:
@@ -356,7 +356,7 @@ _044C:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0463:
@@ -364,7 +364,7 @@ _0463:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
     .byte 0

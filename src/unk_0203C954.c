@@ -7,7 +7,7 @@
 #include "field/field_system.h"
 
 #include "unk_0203C954.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02054D00.h"
 #include "unk_0205DAC8.h"
 #include "player_avatar.h"
@@ -126,7 +126,7 @@ static u8 sub_0203CAEC (FieldSystem * fieldSystem, const BgEvent * param1)
         return 0;
     }
 
-    if (sub_0203F188(fieldSystem, sub_0203F2F4(param1->script)) == 1) {
+    if (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(param1->script)) == 1) {
         return 0;
     }
 
@@ -212,7 +212,7 @@ u16 sub_0203CC14 (FieldSystem * fieldSystem, void * param1, int param2)
     int v2 = Player_GetZPos(fieldSystem->playerAvatar);
 
     for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 >= v0[v3].x) && (v1 < (v0[v3].x + v0[v3].width)) && (v2 >= v0[v3].z) && (v2 < (v0[v3].z + v0[v3].length)) && (sub_0203F150(fieldSystem, v0[v3].var) == v0[v3].value)) {
+        if ((v1 >= v0[v3].x) && (v1 < (v0[v3].x + v0[v3].width)) && (v2 >= v0[v3].z) && (v2 < (v0[v3].z + v0[v3].length)) && (FieldSystem_TryGetVar(fieldSystem, v0[v3].var) == v0[v3].value)) {
             return v0[v3].script;
         }
     }

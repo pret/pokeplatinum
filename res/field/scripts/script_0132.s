@@ -37,7 +37,7 @@ _004A:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00B2
     SetFlag 0x11C
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     GoTo _00BD
     End
 

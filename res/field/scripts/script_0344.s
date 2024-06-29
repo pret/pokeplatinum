@@ -56,7 +56,7 @@ _0074:
     End
 
 _00DB:
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Return
 
 _00E1:

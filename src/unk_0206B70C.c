@@ -19,7 +19,7 @@
 #include "map_header.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "player_avatar.h"
 #include "unk_0206AFE0.h"
@@ -183,7 +183,7 @@ static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1
             v5->val1_0 = 1;
             break;
         case 2:
-            v5->val1_2 = sub_0203F188(fieldSystem, v4->unk_01);
+            v5->val1_2 = FieldSystem_CheckFlag(fieldSystem, v4->unk_01);
             v5->val1_0 = 1;
             break;
         }
@@ -194,7 +194,7 @@ static void sub_0206B878 (FieldSystem * fieldSystem, UnkStruct_0203D8AC * param1
             v5->val1_4 = 1;
             break;
         case 2:
-            v5->val1_6 = sub_0203F188(fieldSystem, v4->unk_03);
+            v5->val1_6 = FieldSystem_CheckFlag(fieldSystem, v4->unk_03);
             v5->val1_4 = 1;
             break;
         }

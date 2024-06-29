@@ -41,7 +41,7 @@ _007D:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00CD
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 206
     GoTo _00C2
 
@@ -53,7 +53,7 @@ _00C2:
     End
 
 _00CD:
-    ScrCmd_014 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
@@ -73,7 +73,7 @@ _00EA:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0101:
@@ -81,7 +81,7 @@ _0101:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0118:
@@ -89,7 +89,7 @@ _0118:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _012F:
@@ -97,7 +97,7 @@ _012F:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0146:

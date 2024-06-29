@@ -268,7 +268,7 @@ _036C:
     Message 15
     SetVar 0x8004, 0x1B1
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     ScrCmd_1CC
     Message 16
     ScrCmd_1BD 0x8007
@@ -410,7 +410,7 @@ _05A6:
 _05B1:
     SetVar 0x8004, 0x1CB
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 143
     Message 27
     ScrCmd_0CE 1

@@ -303,7 +303,7 @@ _04AC:
     End
 
 _04B0:
-    ScrCmd_014 0x7D1
+    CallCommonScript 0x7D1
     ScrCmd_236 0x8004
     ScrCmd_07B 0x8004, 0x8005, 0x800C
     ScrCmd_07F 0x8004, 0x800C
@@ -409,7 +409,7 @@ _064F:
     End
 
 _0667:
-    ScrCmd_014 0x7F6
+    CallCommonScript 0x7F6
     Return
 
     .byte 0

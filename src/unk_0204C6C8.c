@@ -13,7 +13,7 @@
 #include "coins.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0204C6C8.h"
 #include "overlay005/ov5_021DC018.h"
 
@@ -25,7 +25,7 @@ BOOL ScrCmd_075 (ScriptContext * param0)
     u16 v2 = ScriptContext_GetVar(param0);
     Window ** v3;
 
-    v3 = sub_0203F098(fieldSystem, 38);
+    v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
     *v3 = ov5_021DD020(param0->fieldSystem, v1, v2);
 
     return 0;
@@ -34,7 +34,7 @@ BOOL ScrCmd_075 (ScriptContext * param0)
 BOOL ScrCmd_076 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = sub_0203F098(fieldSystem, 38);
+    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD084(*v1);
     return 0;
@@ -43,7 +43,7 @@ BOOL ScrCmd_076 (ScriptContext * param0)
 BOOL ScrCmd_077 (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
-    Window ** v1 = sub_0203F098(fieldSystem, 38);
+    Window ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_COIN_WINDOW);
 
     ov5_021DD098(param0->fieldSystem, *v1);
     return 0;

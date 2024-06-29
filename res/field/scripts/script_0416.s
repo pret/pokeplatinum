@@ -197,7 +197,7 @@ _0248:
     ScrCmd_189 10, 0
     ScrCmd_188 10, 14
     ScrCmd_064 10
-    ScrCmd_014 0x7FA
+    CallCommonScript 0x7FA
     CallIfEq 0x8000, 0, _046C
     CallIfEq 0x8000, 1, _0480
     CallIfEq 0x8000, 2, _0494
@@ -219,7 +219,7 @@ _0248:
     ApplyMovement 10, _058C
     WaitMovement
     ScrCmd_065 10
-    ScrCmd_014 0x7FB
+    CallCommonScript 0x7FB
     Message 8
     CloseMessage
     CallIfEq 0x8000, 0, _0414
@@ -342,7 +342,7 @@ _0502:
     Message 12
     SetVar 0x8004, 0x1D0
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Message 13
     CloseMessage
     GoTo _0522
@@ -537,7 +537,7 @@ _06B8:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06CF:

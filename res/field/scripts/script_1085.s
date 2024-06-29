@@ -82,7 +82,7 @@ _0109:
     Message 5
     SetVar 0x8004, 0x1B2
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 0x117
     Call _014F
     Message 7

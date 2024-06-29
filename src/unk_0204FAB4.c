@@ -26,7 +26,7 @@
 #include "communication_system.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02049D08.h"
 #include "unk_0204FAB4.h"
 #include "unk_020508D4.h"
@@ -78,7 +78,7 @@ BOOL ScrCmd_2D2 (ScriptContext * param0)
     v6 = FieldSystem_GetVarPointer(param0->fieldSystem, v5);
     v10 = sub_020302DC(param0->fieldSystem->saveData);
     v11 = sub_0203041C(param0->fieldSystem->saveData);
-    v8 = sub_0203F098(param0->fieldSystem, 19);
+    v8 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
 
     switch (v3) {
     case 0:

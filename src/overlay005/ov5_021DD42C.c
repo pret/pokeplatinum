@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "game_options.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0205D8CC.h"
 #include "overlay005/ov5_021DD42C.h"
 
@@ -114,22 +114,22 @@ static u8 ov5_021DD574 (ScriptContext * param0)
 
 static void ov5_021DD588 (FieldSystem * fieldSystem, UnkStruct_ov5_021DD648 * param1)
 {
-    param1->unk_00 = *((Strbuf **)(sub_0203F098(fieldSystem, 16)));
-    param1->unk_04 = *((Strbuf **)(sub_0203F098(fieldSystem, 17)));
-    param1->unk_08 = *((StringTemplate **)(sub_0203F098(fieldSystem, 15)));
-    param1->unk_0C = sub_0203F098(fieldSystem, 1);
-    param1->unk_10 = sub_0203F098(fieldSystem, 6);
-    param1->unk_14 = sub_0203F098(fieldSystem, 3);
+    param1->unk_00 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    param1->unk_04 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    param1->unk_08 = *(StringTemplate **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    param1->unk_0C = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    param1->unk_10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    param1->unk_14 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 }
 
 static void ov5_021DD5D0 (FieldSystem * fieldSystem, StringTemplate * param1, UnkStruct_ov5_021DD648 * param2)
 {
-    param2->unk_00 = *((Strbuf **)(sub_0203F098(fieldSystem, 16)));
-    param2->unk_04 = *((Strbuf **)(sub_0203F098(fieldSystem, 17)));
+    param2->unk_00 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    param2->unk_04 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
     param2->unk_08 = param1;
-    param2->unk_0C = sub_0203F098(fieldSystem, 1);
-    param2->unk_10 = sub_0203F098(fieldSystem, 6);
-    param2->unk_14 = sub_0203F098(fieldSystem, 3);
+    param2->unk_0C = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    param2->unk_10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    param2->unk_14 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 }
 
 static void ov5_021DD610 (FieldSystem * fieldSystem, UnkStruct_ov5_021DD648 * param1)

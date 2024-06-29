@@ -13,7 +13,7 @@
 
 _001E:
     SetVar 0x8007, 3
-    ScrCmd_014 0x7D2
+    CallCommonScript 0x7D2
     End
 
 _002A:

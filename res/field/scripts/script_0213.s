@@ -259,7 +259,7 @@ _0290:
 
 _02E4:
     ScrCmd_14E
-    ScrCmd_014 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _0305
     GoTo _01D3
@@ -460,7 +460,7 @@ _05CF:
     GoToIfEq 0x800C, 0xFF, _068E
     SetVar 0x40D5, 2
     SetFlag 0x966
-    ScrCmd_014 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 1, _062D
     SetVar 0x40D5, 0
@@ -489,7 +489,7 @@ _062D:
     End
 
 _068E:
-    ScrCmd_014 0x809
+    CallCommonScript 0x809
     End
 
 _0694:
@@ -573,7 +573,7 @@ _0755:
 
 _0763:
     Call _076D
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _076D:

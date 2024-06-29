@@ -114,11 +114,11 @@ _00D8:
     ScrCmd_0CD 1
     Message 0
     CloseMessage
-    ScrCmd_014 0x800
+    CallCommonScript 0x800
     ApplyMovement 0xFF, _03E4
     ApplyMovement 7, _0354
     WaitMovement
-    ScrCmd_014 0x801
+    CallCommonScript 0x801
     SetVar 0x4081, 1
     ScrCmd_32E
     Message 1
@@ -545,7 +545,7 @@ _0521:
     Message 43
     SetVar 0x8004, 0x1BF
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 107
     Message 44
     WaitABXPadPress
@@ -572,7 +572,7 @@ _0585:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _059C:
@@ -580,7 +580,7 @@ _059C:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _05B3:
@@ -588,7 +588,7 @@ _05B3:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _05CA:

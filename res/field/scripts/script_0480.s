@@ -37,7 +37,7 @@ _006D:
     GoTo _00C2
 
 _00C2:
-    ScrCmd_014 0x7E0
+    CallCommonScript 0x7E0
     ClearFlag 0x137
     SetFlag 0xAAE
     AddVar 0x4108, 1

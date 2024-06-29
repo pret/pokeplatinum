@@ -38,7 +38,7 @@ _0036:
     ScrCmd_064 5
     ApplyMovement 5, _0148
     WaitMovement
-    ScrCmd_014 0x807
+    CallCommonScript 0x807
     CallIfEq 0x8005, 24, _0109
     CallIfEq 0x8005, 25, _011D
     CallIfEq 0x8005, 26, _0131
@@ -53,9 +53,9 @@ _0036:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00F2
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Call _00E5
-    ScrCmd_014 0x808
+    CallCommonScript 0x808
     ReleaseAll
     End
 
@@ -68,7 +68,7 @@ _00E5:
 
 _00F2:
     Call _0100
-    ScrCmd_014 0x808
+    CallCommonScript 0x808
     ReleaseAll
     End
 
@@ -156,7 +156,7 @@ _01BE:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01F0
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Call _00E5
     ReleaseAll
     End

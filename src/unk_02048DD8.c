@@ -29,7 +29,7 @@
 #include "game_records.h"
 #include "unk_0202E2CC.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02048DD8.h"
 #include "unk_02054884.h"
 #include "poketch_data.h"
@@ -79,7 +79,7 @@ BOOL ScrCmd_235 (ScriptContext * param0)
     break;
     case 3:
     {
-        StringTemplate ** v4 = sub_0203F098(param0->fieldSystem, 15);
+        StringTemplate ** v4 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
         u16 v5 = ScriptContext_GetVar(param0);
         u16 * v6 = ScriptContext_GetVarPointer(param0);
         u16 * v7 = ScriptContext_GetVarPointer(param0);
@@ -160,7 +160,7 @@ BOOL ScrCmd_237 (ScriptContext * param0)
 {
     StringTemplate ** v0;
 
-    v0 = sub_0203F098(param0->fieldSystem, 15);
+    v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0:

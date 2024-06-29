@@ -126,14 +126,14 @@ _010E:
     Message 7
     SetVar 0x8004, 0x1B6
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 159
     Message 8
     SetVar 0x8004, 94
     SetVar 0x8005, 10
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _01AD
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Message 9
     GoTo _01B0
 
@@ -212,7 +212,7 @@ _0293:
     ScrCmd_074
     PlayFanfare SEQ_SE_DP_REGI
     ScrCmd_04B 0x644
-    ScrCmd_014 0x7E0
+    CallCommonScript 0x7E0
     ScrCmd_073
     CloseMessage
     ReleaseAll
@@ -247,7 +247,7 @@ _02EF:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0306:
@@ -256,7 +256,7 @@ _0306:
     FacePlayer
     SetVar 0x8004, 0x1B6
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     CloseMessage
     SetFlag 159
     ScrCmd_065 3

@@ -94,7 +94,7 @@ _0165:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0172:
@@ -140,7 +140,7 @@ _01E1:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0218:
@@ -155,7 +155,7 @@ _0218:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0242:
@@ -173,7 +173,7 @@ _0259:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _027A:
@@ -188,7 +188,7 @@ _027A:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _02B0:
@@ -200,7 +200,7 @@ _02B0:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _02D4:
@@ -231,24 +231,24 @@ _02FC:
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 1, _0341
     ScrCmd_038 2
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _033A:
     ScrCmd_038 2
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0341:
     ScrCmd_038 4
     ScrCmd_039
     ScrCmd_03C
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _034C:
     Call _0356
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0356:
@@ -340,20 +340,20 @@ _0494:
     SetFlag 31
     Call _04A8
     SetVar 0x4000, 0x800C
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _04A8:
-    ScrCmd_12C 0x800C
-    GoToIfEq 0x800C, 0, _04FC
+    CheckSaveType 0x800C
+    GoToIfEq 0x800C, SAVE_TYPE_OVERWRITE, _04FC
     ScrCmd_2C1
     Message 13
     ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _05A0
-    ScrCmd_12C 0x800C
-    GoToIfEq 0x800C, 1, _051D
-    GoToIfEq 0x800C, 2, _0509
-    GoToIfEq 0x800C, 3, _0526
+    GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _05A0
+    CheckSaveType 0x800C
+    GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _051D
+    GoToIfEq 0x800C, SAVE_TYPE_FULL_SAVE, _0509
+    GoToIfEq 0x800C, SAVE_TYPE_QUICK_SAVE, _0526
     End
 
 _04FC:
@@ -542,7 +542,7 @@ _0713:
 
 _0719:
     Call _0723
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0723:
@@ -687,13 +687,13 @@ _0901:
     Call _091D
     Message 109
     WaitABXPadPress
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0910:
     Call _091D
     Message 128
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _091D:
@@ -707,7 +707,7 @@ _091D:
 
 _093A:
     Call _0944
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0944:
@@ -720,7 +720,7 @@ _0944:
 
 _095C:
     Call _0966
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0966:
@@ -736,13 +736,13 @@ _0983:
     Call _099F
     Message 31
     WaitABXPadPress
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0992:
     Call _099F
     Message 127
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _099F:
@@ -759,13 +759,13 @@ _09BD:
     Call _09D9
     Message 31
     WaitABXPadPress
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _09CC:
     Call _09D9
     Message 127
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _09D9:
@@ -780,7 +780,7 @@ _09D9:
 
 _09F5:
     Call _09FF
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _09FF:
@@ -795,7 +795,7 @@ _09FF:
 
 _0A34:
     Call _0A3E
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0A3E:
@@ -893,7 +893,7 @@ _0BDB:
 
 _0BDD:
     Call _0BE7
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0BE7:
@@ -1124,7 +1124,7 @@ _0F59:
 
 _0F62:
     PlayFanfare SEQ_SE_DP_PC_LOGIN
-    ScrCmd_014 0x26DF
+    CallCommonScript 0x26DF
     GoTo _0C1C
 
 _0F70:
@@ -1159,7 +1159,7 @@ _0FA7:
 
 _0FC3:
     Message 37
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _0FCA:
@@ -1495,7 +1495,7 @@ _13AB:
 
 _13BE:
     Call _13C8
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _13C8:
@@ -1609,7 +1609,7 @@ _1581:
     ScrCmd_14D 0x800C
     CallIfEq 0x800C, 0, _15A7
     CallIfEq 0x800C, 1, _15AD
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _15A7:
@@ -1623,26 +1623,26 @@ _15AD:
 _15B3:
     ScrCmd_051 0
     ScrCmd_057 0x473
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _15BF:
     ScrCmd_051 0
     ScrCmd_057 0x472
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _15CB:
     ScrCmd_051 0
     ScrCmd_057 0x4B0
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _15D7:
     ScrCmd_054 0, 30
     ScrCmd_051 0
     ScrCmd_052
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _15E7:
@@ -1655,14 +1655,14 @@ _15E7:
     ScrCmd_0A1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _1624:
     ScrCmd_0A1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _1636:
@@ -1715,7 +1715,7 @@ _16AA:
     End
 
 _1706:
-    ScrCmd_015
+    ReturnCommonScript
     End
 
 _170A:
@@ -1723,7 +1723,7 @@ _170A:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
-    ScrCmd_015
+    ReturnCommonScript
     End
 
     .byte 0

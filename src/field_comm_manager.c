@@ -22,7 +22,7 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02050A74.h"
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
@@ -409,7 +409,7 @@ static void sub_02059B74 (void)
                         }
                     }
 
-                    sub_0203E880(sFieldCommMan->fieldSystem, 9102, NULL);
+                    ScriptManager_Set(sFieldCommMan->fieldSystem, 9102, NULL);
                 }
             }
         }

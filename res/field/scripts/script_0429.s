@@ -25,7 +25,7 @@ _002D:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0044:
@@ -33,7 +33,7 @@ _0044:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _005B:
@@ -41,7 +41,7 @@ _005B:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 5, 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0070:
@@ -49,14 +49,14 @@ _0070:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 6, 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0085:
     LockAll
     ApplyMovement 5, _0268
     WaitMovement
-    ScrCmd_014 0x7FA
+    CallCommonScript 0x7FA
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2F5, _00D1
     GoToIfEq 0x8005, 0x2F6, _00E1

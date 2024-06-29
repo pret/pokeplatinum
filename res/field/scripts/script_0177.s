@@ -11,7 +11,7 @@
 
 _0016:
     SetVar 0x8007, 0
-    ScrCmd_014 0x7D2
+    CallCommonScript 0x7D2
     End
 
 _0022:

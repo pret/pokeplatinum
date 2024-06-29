@@ -175,7 +175,7 @@ _02B5:
     Message 4
     ApplyMovement 3, _0564
     WaitMovement
-    ScrCmd_014 0x7FA
+    CallCommonScript 0x7FA
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     Message 5
@@ -185,7 +185,7 @@ _02B5:
     ApplyMovement 3, _056C
     WaitMovement
     ScrCmd_065 3
-    ScrCmd_014 0x7FB
+    CallCommonScript 0x7FB
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _0344
     GoToIfEq 0x800C, 1, _0352
@@ -465,7 +465,7 @@ _057C:
     Message 9
     SetVar 0x8004, 0x162
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Message 10
     CloseMessage
     ApplyMovement 14, _07A0
@@ -515,7 +515,7 @@ _066B:
 
 _067A:
     CloseMessage
-    ScrCmd_014 0x800
+    CallCommonScript 0x800
     ApplyMovement 4, _0808
     ApplyMovement 0xFF, _07C0
     WaitMovement
@@ -583,7 +583,7 @@ _0772:
     ApplyMovement 4, _0830
     ApplyMovement 0xFF, _07E4
     WaitMovement
-    ScrCmd_014 0x801
+    CallCommonScript 0x801
     ScrCmd_065 4
     SetVar 0x4071, 2
     ReleaseAll
@@ -721,7 +721,7 @@ _088C:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _08A3:
@@ -729,7 +729,7 @@ _08A3:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _08BA:
@@ -738,7 +738,7 @@ _08BA:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _08D4:
@@ -746,7 +746,7 @@ _08D4:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _08EB:
@@ -754,7 +754,7 @@ _08EB:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
     .byte 0

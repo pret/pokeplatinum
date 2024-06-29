@@ -43,7 +43,7 @@
 #include "unk_02027F50.h"
 #include "map_header_data.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
@@ -4100,8 +4100,8 @@ BOOL ov8_0224C51C (FieldSystem * fieldSystem)
             if (v3 != -1) {
                 int v9 = MapObject_GetEventID(v7);
 
-                sub_0203E880(fieldSystem, 3928, v7);
-                sub_0203E8B0(fieldSystem, v7, v3, v1, v9, Script_GetTrainerID(v9), 0, 0);
+                ScriptManager_Set(fieldSystem, 3928, v7);
+                ScriptManager_SetApproachingTrainer(fieldSystem, v7, v3, v1, v9, Script_GetTrainerID(v9), 0, 0);
                 return 1;
             }
         }

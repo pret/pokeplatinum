@@ -40,13 +40,13 @@ _007C:
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _00AE
     SetFlag 210
-    ScrCmd_014 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
 
 _00AE:
-    ScrCmd_014 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End

@@ -89,7 +89,7 @@ _014C:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 3, 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
     .byte 0

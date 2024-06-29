@@ -36,7 +36,7 @@
 #include "communication_system.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FA34.h"
 #include "unk_020508D4.h"
@@ -99,7 +99,7 @@ BOOL ScrCmd_2CC (ScriptContext * param0)
 
     v10 = sub_02030114(param0->fieldSystem->saveData);
     v11 = sub_0203026C(param0->fieldSystem->saveData);
-    v8 = sub_0203F098(param0->fieldSystem, 19);
+    v8 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
 
     switch (v3) {
     case 0:
@@ -531,7 +531,7 @@ BOOL ScrCmd_324 (ScriptContext * param0)
     u32 v4, v5, v6;
     u16 v7, v8;
     FieldSystem * fieldSystem = param0->fieldSystem;
-    StringTemplate ** v10 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v11 = ScriptContext_ReadByte(param0);
     u8 v12 = ScriptContext_ReadByte(param0);
     u8 v13 = ScriptContext_ReadByte(param0);

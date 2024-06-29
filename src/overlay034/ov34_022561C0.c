@@ -13,7 +13,7 @@
 #include "sys_task.h"
 #include "heap.h"
 #include "touch_screen.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "overlay034/ov34_02256540.h"
 
 typedef struct {

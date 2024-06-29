@@ -15,7 +15,7 @@
 #include "unk_020261E4.h"
 #include "field_system.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_0204CA84.h"
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
@@ -24,7 +24,7 @@ BOOL ScrCmd_16D (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     ov5_021E72BC(sub_02026310(v1), *v2);
 
@@ -74,7 +74,7 @@ BOOL ScrCmd_1A4 (ScriptContext * param0)
     FieldSystem * fieldSystem = param0->fieldSystem;
     UnkStruct_02026310 * v1;
     Party * v2;
-    StringTemplate ** v3 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     SaveData * v4 = fieldSystem->saveData;
     u16 * v5 = ScriptContext_GetVarPointer(param0);
     u8 v6 = ScriptContext_GetVar(param0);
@@ -90,7 +90,7 @@ BOOL ScrCmd_1AA (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     UnkStruct_02026310 * v1;
-    StringTemplate ** v2 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     SaveData * v3 = fieldSystem->saveData;
     u16 * v4 = ScriptContext_GetVarPointer(param0);
     u8 v5 = ScriptContext_GetVar(param0);
@@ -106,7 +106,7 @@ BOOL ScrCmd_1AE (ScriptContext * param0)
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
     UnkStruct_02026310 * v2;
-    StringTemplate ** v3 = sub_0203F098(param0->fieldSystem, 15);
+    StringTemplate ** v3 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 * v4 = ScriptContext_GetVarPointer(param0);
     u16 v5 = ScriptContext_GetVar(param0);
 
@@ -120,7 +120,7 @@ BOOL ScrCmd_1AF (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     Party * v1;
-    StringTemplate ** v2 = sub_0203F098(param0->fieldSystem, 15);
+    StringTemplate ** v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 v3 = ScriptContext_ReadHalfWord(param0);
     u16 v4 = ScriptContext_GetVar(param0);
     u16 * v5 = ScriptContext_GetVarPointer(param0);
@@ -151,7 +151,7 @@ BOOL ScrCmd_1BC (ScriptContext * param0)
 {
     FieldSystem * fieldSystem = param0->fieldSystem;
     SaveData * v1 = fieldSystem->saveData;
-    StringTemplate ** v2 = sub_0203F098(param0->fieldSystem, 15);
+    StringTemplate ** v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v3 = ScriptContext_GetVar(param0);
     u8 v4 = ScriptContext_GetVar(param0);
     u8 v5 = ScriptContext_GetVar(param0);

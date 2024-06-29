@@ -44,7 +44,7 @@
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_0205DFC4.h"
 #include "player_avatar.h"
@@ -138,7 +138,7 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
     MessageLoader * v7;
     FieldSystem * fieldSystem = ctx->fieldSystem;
     UnkStruct_ov5_021F6704 * v9;
-    StringTemplate ** v10 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 v11 = ScriptContext_GetVar(ctx);
     u16 v12 = ScriptContext_GetVar(ctx);
     u16 v13 = ScriptContext_ReadHalfWord(ctx);
@@ -148,7 +148,7 @@ BOOL ScrCmd_2DE (ScriptContext * ctx)
     ctx->data[0] = v13;
 
     v6 = MessageLoader_Init(0, 26, 412, 32);
-    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, sub_0203F098(ctx->fieldSystem, 1), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
+    v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
     v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
 
     if (v0 == 1) {

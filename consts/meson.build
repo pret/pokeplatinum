@@ -10,6 +10,7 @@ consts_manifest_basenames = [
     'movement',
     'moves',
     'pokemon',
+    'scrcmd',
     'sdat',
     'shadows',
     'species',

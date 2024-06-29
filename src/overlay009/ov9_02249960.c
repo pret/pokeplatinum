@@ -59,7 +59,7 @@
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_0205DAC8.h"
@@ -2110,7 +2110,7 @@ BOOL ov9_0224A67C (FieldSystem * fieldSystem, int param1)
                 ov9_02250F44(v0, &v3, &v4, &v5);
 
                 if ((v3 == 89) && (v4 == 65) && (v5 == 57)) {
-                    sub_0203E880(fieldSystem, 2, NULL);
+                    ScriptManager_Set(fieldSystem, 2, NULL);
                     return 1;
                 }
             }
@@ -2123,7 +2123,7 @@ BOOL ov9_0224A67C (FieldSystem * fieldSystem, int param1)
             ov9_02250F44(v0, &v6, &v7, &v8);
 
             if ((v6 == 15) && (v7 == 1) && (v8 == 25)) {
-                sub_0203E880(fieldSystem, 4, NULL);
+                ScriptManager_Set(fieldSystem, 4, NULL);
                 return 1;
             }
         }
@@ -2165,13 +2165,13 @@ BOOL ov9_0224A71C (FieldSystem * fieldSystem)
             if ((v6 == 581) && (v4 == 0)) {
                 if (sub_0206B5D8(v7) >= 10) {
                     if ((v1 == 89) && (v2 == 65) && ((v3 == 56) || (v3 == 57))) {
-                        sub_0203E880(fieldSystem, 2, NULL);
+                        ScriptManager_Set(fieldSystem, 2, NULL);
                         return 1;
                     }
                 }
             } else if ((v6 == 582) && (v4 == 1)) {
                 if ((v1 == 15) && (v2 == 1) && ((v3 == 25) || (v3 == 26))) {
-                    sub_0203E880(fieldSystem, 4, NULL);
+                    ScriptManager_Set(fieldSystem, 4, NULL);
                     return 1;
                 }
             }
@@ -2197,7 +2197,7 @@ BOOL ov9_0224A800 (FieldSystem * fieldSystem, int param1)
                 ov9_02250F44(v0, &v3, &v4, &v5);
 
                 if ((v3 == 89) && (v4 == 65) && (v5 == 57)) {
-                    sub_0203E880(fieldSystem, 2, NULL);
+                    ScriptManager_Set(fieldSystem, 2, NULL);
                     return 1;
                 }
             }
@@ -2210,7 +2210,7 @@ BOOL ov9_0224A800 (FieldSystem * fieldSystem, int param1)
             ov9_02250F44(v0, &v6, &v7, &v8);
 
             if ((v6 == 15) && (v7 == 1) && (v8 == 25)) {
-                sub_0203E880(fieldSystem, 4, NULL);
+                ScriptManager_Set(fieldSystem, 4, NULL);
                 return 1;
             }
         }
@@ -7185,7 +7185,7 @@ static BOOL ov9_0224EF64 (UnkStruct_ov9_02249B04 * param0, MapObject ** param1, 
 
         *param1 = v0;
     } else {
-        if ((ov9_0224EF30(param0, param2, param4) == 0) || (sub_0203F188(param0->fieldSystem, param2->unk_08.flag) != 0)) {
+        if ((ov9_0224EF30(param0, param2, param4) == 0) || (FieldSystem_CheckFlag(param0->fieldSystem, param2->unk_08.flag) != 0)) {
             return 0;
         }
 
@@ -7639,7 +7639,7 @@ static BOOL ov9_0224F3BC (UnkStruct_ov9_0224F6EC * param0)
             }
 
             ov9_02249DE4(param0->unk_00, v15);
-            sub_0203E8E0(param0->unk_08, v14, NULL, NULL);
+            ScriptManager_Start(param0->unk_08, v14, NULL, NULL);
             param0->unk_10++;
             break;
         }
@@ -8687,7 +8687,7 @@ static int ov9_022506AC (UnkStruct_ov9_02249B04 * param0, TaskManager * param1, 
 {
     const UnkStruct_ov9_022506AC * v0 = param3;
 
-    sub_0203E8E0(param1, v0->unk_00, NULL, NULL);
+    ScriptManager_Start(param1, v0->unk_00, NULL, NULL);
     (*param2)++;
     return 0;
 }

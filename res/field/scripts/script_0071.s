@@ -112,7 +112,7 @@ _0137:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _014E:
@@ -120,7 +120,7 @@ _014E:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 37, 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0163:
@@ -128,7 +128,7 @@ _0163:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _017A:
@@ -136,7 +136,7 @@ _017A:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0191:
@@ -144,7 +144,7 @@ _0191:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _01A8:
@@ -152,7 +152,7 @@ _01A8:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _01BF:
@@ -214,7 +214,7 @@ _0286:
     Message 7
     SetVar 0x8004, 0x1A4
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Message 8
     CloseMessage
     ScrCmd_069 0x8004, 0x8005
@@ -833,7 +833,7 @@ _09EB:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
     CloseMessage
-    ScrCmd_014 0x7FA
+    CallCommonScript 0x7FA
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     Message 1
@@ -878,7 +878,7 @@ _0AB6:
     ScrCmd_0CE 0
     Message 2
     CloseMessage
-    ScrCmd_014 0x7FB
+    CallCommonScript 0x7FB
     ScrCmd_32E
     ScrCmd_332
     ScrCmd_066 0x143, 0x20C

@@ -155,11 +155,11 @@ _015D:
     End
 
 _0163:
-    ScrCmd_014 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _015D
     CloseMessage
-    ScrCmd_014 0x802
+    CallCommonScript 0x802
     ReleaseAll
     End
 

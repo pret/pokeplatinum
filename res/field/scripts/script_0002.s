@@ -91,7 +91,7 @@ _0149:
     WaitMovement
     ApplyMovement 7, _044C
     WaitMovement
-    ScrCmd_014 0x7F8
+    CallCommonScript 0x7F8
     ScrCmd_14D 0x800C
     GoToIfEq 0x800C, 0, _018D
     GoToIfEq 0x800C, 1, _0224
@@ -228,7 +228,7 @@ _0348:
 _036E:
     ApplyMovement 31, _0550
     WaitMovement
-    ScrCmd_014 0x807
+    CallCommonScript 0x807
     Message 12
     Message 13
     CloseMessage
@@ -256,7 +256,7 @@ _03C0:
     Message 20
     SetVar 0x8004, 0x1D1
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     Message 21
     CloseMessage
     ApplyMovement 31, _055C
@@ -269,7 +269,7 @@ _03C0:
     WaitMovement
     ScrCmd_187 31, 186, 0, 0x2F4, 1
     ScrCmd_186 31, 186, 0x2F4
-    ScrCmd_014 0x808
+    CallCommonScript 0x808
     Return
 
 _041B:
@@ -986,7 +986,7 @@ _0C7C:
 _0CF0:
     SetVar 0x8004, 0x1B3
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 242
     Call _0D58
     Call _0D58
@@ -1405,7 +1405,7 @@ _103A:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _1051:
@@ -1413,7 +1413,7 @@ _1051:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _1068:
@@ -1421,7 +1421,7 @@ _1068:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _107F:
@@ -1429,7 +1429,7 @@ _107F:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _1096:
@@ -1437,7 +1437,7 @@ _1096:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _10AD:
@@ -1445,7 +1445,7 @@ _10AD:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _10C4:
@@ -1649,7 +1649,7 @@ _1356:
     SetVar 0x8004, 0x1CC
     SetVar 0x8005, 1
     SetFlag 237
-    ScrCmd_014 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -1688,7 +1688,7 @@ _13CD:
     SetVar 0x8004, 0x1CD
     SetVar 0x8005, 1
     SetFlag 238
-    ScrCmd_014 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -1729,7 +1729,7 @@ _1451:
     SetVar 0x8004, 0x1CE
     SetVar 0x8005, 1
     SetFlag 239
-    ScrCmd_014 0x7E0
+    CallCommonScript 0x7E0
     CloseMessage
     ReleaseAll
     End
@@ -1786,7 +1786,7 @@ _14CF:
     ScrCmd_064 31
     ApplyMovement 31, _1538
     WaitMovement
-    ScrCmd_014 0x807
+    CallCommonScript 0x807
     ApplyMovement 31, _1544
     ApplyMovement 0xFF, _08A0
     WaitMovement
@@ -1795,7 +1795,7 @@ _14CF:
     ApplyMovement 31, _154C
     WaitMovement
     ScrCmd_065 31
-    ScrCmd_014 0x808
+    CallCommonScript 0x808
     SetVar 0x4076, 2
     ReleaseAll
     End

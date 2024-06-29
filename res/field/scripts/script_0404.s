@@ -2312,7 +2312,7 @@ _1EEA:
     End
 
 _1EF0:
-    ScrCmd_014 0x7D1
+    CallCommonScript 0x7D1
     ScrCmd_065 0x800D
     ScrCmd_07B 0x8004, 0x8005, 0x800C
     ScrCmd_2A2 0x8004
@@ -2424,5 +2424,5 @@ _20C0:
     Return
 
 _20C6:
-    ScrCmd_014 0x7F6
+    CallCommonScript 0x7F6
     Return

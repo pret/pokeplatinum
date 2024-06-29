@@ -5,7 +5,7 @@
 #include "savedata.h"
 
 #include "unk_0202D7A8.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "overlay006/ov6_02246BF4.h"
 
 BOOL ov6_02246BF4 (SaveData * param0, FieldSystem * fieldSystem)
@@ -18,7 +18,7 @@ BOOL ov6_02246BF4 (SaveData * param0, FieldSystem * fieldSystem)
         (*v0)--;
 
         if ((*v0) == 0) {
-            sub_0203E880(fieldSystem, 2032, NULL);
+            ScriptManager_Set(fieldSystem, 2032, NULL);
             return 1;
         }
     }

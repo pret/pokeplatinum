@@ -154,7 +154,7 @@ _0297:
     CallIfEq 0x40BD, 1, _043C
     SetVar 0x4000, 0
     ScrCmd_14E
-    ScrCmd_014 0x7D6
+    CallCommonScript 0x7D6
     SetVar 0x800C, 0x4000
     GoToIfEq 0x800C, 0, _0139
     GoToIfEq 0x40BD, 2, _02E5
@@ -347,7 +347,7 @@ _05C1:
 
 _05D5:
     SetVar 0x40BC, 0
-    ScrCmd_014 0x809
+    CallCommonScript 0x809
     End
 
     .balign 4, 0
@@ -489,7 +489,7 @@ _0745:
     ScrCmd_04E 0x486
     ScrCmd_04F
     SetVar 0x4052, 4
-    ScrCmd_014 0x806
+    CallCommonScript 0x806
     Return
 
 _0760:

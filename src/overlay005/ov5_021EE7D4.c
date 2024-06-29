@@ -7,7 +7,7 @@
 #include "field/field_system.h"
 
 #include "string_template.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
@@ -145,7 +145,7 @@ void ov5_021EE9BC (FieldSystem * fieldSystem, u16 param1)
 static void ov5_021EE9E8 (FieldSystem * fieldSystem, u8 param1, u8 param2, u16 param3, vu16 param4)
 {
     u32 v0;
-    StringTemplate ** v1 = sub_0203F098(fieldSystem, 15);
+    StringTemplate ** v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     v0 = ov5_021EE8A8(param3, param4);
 

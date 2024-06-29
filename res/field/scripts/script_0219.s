@@ -148,7 +148,7 @@ _0198:
 
 _01DB:
     Message 6
-    ScrCmd_014 0x7E0
+    CallCommonScript 0x7E0
     GoTo _01EA
     End
 
@@ -415,7 +415,7 @@ _04E0:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _04F7:
@@ -423,7 +423,7 @@ _04F7:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 15, 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _050C:

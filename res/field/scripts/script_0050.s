@@ -127,7 +127,7 @@ _01B6:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 2
     CloseMessage
-    ScrCmd_014 0x7FA
+    CallCommonScript 0x7FA
     ScrCmd_0CE 0
     ScrCmd_0CD 1
     Message 3
@@ -177,7 +177,7 @@ _026D:
 _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_065 3
-    ScrCmd_014 0x7FB
+    CallCommonScript 0x7FB
     SetVar 0x4079, 3
     ReleaseAll
     End
@@ -292,7 +292,7 @@ _0376:
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _03C8
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 0x109
     GoTo _03BD
     End
@@ -305,7 +305,7 @@ _03BD:
     End
 
 _03C8:
-    ScrCmd_014 0x7E1
+    CallCommonScript 0x7E1
     CloseMessage
     ReleaseAll
     End
@@ -370,7 +370,7 @@ _047D:
 _0497:
     Message 6
     CloseMessage
-    ScrCmd_014 0x800
+    CallCommonScript 0x800
     ScrCmd_069 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2EC, _04DC
     GoToIfEq 0x8005, 0x2ED, _04F6
@@ -410,7 +410,7 @@ _0544:
     Message 7
     WaitABXPadPress
     CloseMessage
-    ScrCmd_014 0x801
+    CallCommonScript 0x801
     SetVar 0x4079, 1
     ReleaseAll
     End
@@ -571,7 +571,7 @@ _06A9:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06C0:
@@ -579,7 +579,7 @@ _06C0:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 28, 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06D5:
@@ -587,7 +587,7 @@ _06D5:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _06EC:
@@ -595,7 +595,7 @@ _06EC:
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
-    ScrCmd_014 0x7D0
+    CallCommonScript 0x7D0
     End
 
 _0703:

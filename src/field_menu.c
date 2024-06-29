@@ -68,7 +68,7 @@
 #include "field_menu.h"
 #include "field_system.h"
 #include "unk_0203D1B8.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020508D4.h"
 #include "unk_020553DC.h"
@@ -1471,13 +1471,13 @@ static void FieldMenu_Save (TaskManager * taskMan)
     SaveMenu * saveMenu;
 
     if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
-        sub_0203E8E0(taskMan, 2034, NULL, NULL);
+        ScriptManager_Start(taskMan, 2034, NULL, NULL);
     } else {
         menu->unk_25C = Heap_AllocFromHeap(32, sizeof(SaveMenu));
         saveMenu = menu->unk_25C;
         saveMenu->unk_04 = 0;
 
-        sub_0203E8E0(taskMan, 2005, NULL, &saveMenu->unk_04);
+        ScriptManager_Start(taskMan, 2005, NULL, &saveMenu->unk_04);
     }
 
     menu->state = FIELD_MENU_STATE_SAVE_WAIT;
@@ -1624,9 +1624,9 @@ static BOOL FieldMenu_SelectRetire (TaskManager * taskMan)
     sub_0203B200(taskMan);
 
     if (sub_0206AE5C(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
-        sub_0203E918(taskMan, 8821, NULL);
+        ScriptManager_Change(taskMan, 8821, NULL);
     } else {
-        sub_0203E918(taskMan, 4, NULL);
+        ScriptManager_Change(taskMan, 4, NULL);
     }
 
     Heap_FreeToHeap(menu);

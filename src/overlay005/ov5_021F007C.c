@@ -16,7 +16,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "map_header.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
 #include "player_avatar.h"
@@ -550,12 +550,12 @@ BOOL ov5_021F0488 (TaskManager * param0)
         v1->unk_0E--;
 
         if (v1->unk_0E < 0) {
-            sub_0203E8E0(param0, 2029, NULL, NULL);
+            ScriptManager_Start(param0, 2029, NULL, NULL);
             v1->unk_0C = 9;
         }
         break;
     case 8:
-        sub_0203E8E0(param0, 2028, NULL, NULL);
+        ScriptManager_Start(param0, 2028, NULL, NULL);
         v1->unk_0C = 9;
         break;
     case 9:

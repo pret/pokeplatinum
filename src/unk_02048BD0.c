@@ -16,13 +16,13 @@
 #include "unk_0202B37C.h"
 #include "unk_0203D1B8.h"
 #include "field_script_context.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "unk_02048BD0.h"
 #include "unk_0206CCB0.h"
 
 BOOL ScrCmd_21D (ScriptContext * param0)
 {
-    StringTemplate ** v0 = sub_0203F098(param0->fieldSystem, 15);
+    StringTemplate ** v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->fieldSystem->saveData);
     SaveData * v2 = param0->fieldSystem->saveData;
 

@@ -26,7 +26,7 @@
 
 #include "sys_task.h"
 #include "heap.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
@@ -307,7 +307,7 @@ MapObject * sub_02061A74 (const MapObjectManager * mapObjMan, int param1, int pa
         int v2 = sub_02063114(v1);
         FieldSystem * fieldSystem = MapObjectMan_FieldSystem(mapObjMan);
 
-        if (sub_0203F188(fieldSystem, v2) == 0) {
+        if (FieldSystem_CheckFlag(fieldSystem, v2) == 0) {
             mapObj = MapObjectMan_AddMapObjectFromHeader(mapObjMan, v1, param3);
         }
     }
@@ -351,7 +351,7 @@ void MapObject_Delete (MapObject * mapObj)
 void sub_02061B28 (MapObject * mapObj)
 {
     int v0 = sub_02062958(mapObj);
-    sub_0203F19C(MapObject_FieldSystem(mapObj), v0);
+    FieldSystem_SetFlag(MapObject_FieldSystem(mapObj), v0);
     MapObject_Delete(mapObj);
 }
 
@@ -639,7 +639,7 @@ static void sub_020620C4 (UnkStruct_020620C4 * param0)
     v2 = param0->unk_10;
 
     do {
-        if ((sub_020631D8(v2) == 1) || (sub_0203F188(fieldSystem, v2->flag) == 0)) {
+        if ((sub_020631D8(v2) == 1) || (FieldSystem_CheckFlag(fieldSystem, v2->flag) == 0)) {
             mapObj = MapObjectMan_AddMapObjectFromHeader(param0->unk_0C, v2, param0->unk_00);
             GF_ASSERT(mapObj != NULL);
         }

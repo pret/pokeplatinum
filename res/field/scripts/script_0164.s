@@ -68,7 +68,7 @@ _00A9:
     ScrCmd_07E 0x1B2, 1, 0x800C
     GoToIfEq 0x800C, 0, _00D9
     Message 7
-    ScrCmd_014 0x7E3
+    CallCommonScript 0x7E3
     ScrCmd_035
     Call _00E4
     ReleaseAll

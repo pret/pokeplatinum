@@ -78,7 +78,7 @@ _00B0:
     ScrCmd_261 0, 0x8004
     Message 3
     SetVar 0x8005, 1
-    ScrCmd_014 0x7DF
+    CallCommonScript 0x7DF
     SetFlag 0x12B
     CloseMessage
     ReleaseAll

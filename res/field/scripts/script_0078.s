@@ -17,7 +17,7 @@ _0016:
     Message 0
     SetVar 0x8004, 0x1C2
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FC
+    CallCommonScript 0x7FC
     SetFlag 130
     SetVar 0x4114, 1
     ScrCmd_14C 9

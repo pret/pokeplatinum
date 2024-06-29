@@ -43,7 +43,7 @@ _000E:
     GoToIfEq 0x8004, -1, _00F6
     Message 7
     SetVar 0x8005, 1
-    ScrCmd_014 0x7FF
+    CallCommonScript 0x7FF
     GoTo _00F6
 
 _00D5:

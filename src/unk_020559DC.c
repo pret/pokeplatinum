@@ -18,7 +18,7 @@
 #include "unk_0202D7A8.h"
 #include "unk_0202E2CC.h"
 #include "field_system.h"
-#include "unk_0203E880.h"
+#include "script_manager.h"
 #include "vars_flags.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
@@ -125,7 +125,7 @@ static void sub_02055AC0 (FieldSystem * fieldSystem, s32 param1)
     }
 
     sub_0206B514(fieldSystem->saveData);
-    sub_0203F310(fieldSystem);
+    FieldSystem_ClearDailyHiddenItemFlags(fieldSystem);
     sub_0206C008(fieldSystem->saveData);
     sub_0202C9A0(sub_0202C878(fieldSystem->saveData));
     sub_0206F2F0(fieldSystem->saveData);
