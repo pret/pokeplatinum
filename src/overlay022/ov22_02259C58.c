@@ -9,7 +9,6 @@
 #include "struct_defs/struct_020127E8.h"
 #include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "cell_actor.h"
 #include "overlay022/struct_ov22_02259C58.h"
 #include "overlay022/struct_ov22_02259C58_1.h"
 #include "overlay022/struct_ov22_02259C9C.h"

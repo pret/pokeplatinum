@@ -6,8 +6,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
@@ -15,7 +13,6 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
-#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "struct_defs/sprite_template.h"
 #include "overlay104/struct_ov104_022412F4.h"

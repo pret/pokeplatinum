@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"

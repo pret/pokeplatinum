@@ -11,7 +11,6 @@
 
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02099F80.h"
-#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"

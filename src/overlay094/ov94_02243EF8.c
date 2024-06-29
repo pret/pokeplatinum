@@ -2,7 +2,6 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "cell_actor.h"
 
 #include "touch_screen.h"
 #include "overlay094/struct_ov94_0223FD4C.h"

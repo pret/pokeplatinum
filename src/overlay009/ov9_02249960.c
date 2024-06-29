@@ -6,8 +6,6 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "sys_task_manager.h"
 #include "struct_decls/struct_020216E0_decl.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_02039E30_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -32,7 +30,6 @@
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay009/struct_ov9_02249FF4.h"
-#include "cell_actor.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 #include "overlay115/camera_angle.h"
 

@@ -5,8 +5,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
@@ -14,7 +12,6 @@
 #include "struct_defs/struct_0200C738.h"
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "cell_actor.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_0200679C.h"

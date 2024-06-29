@@ -7,8 +7,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
@@ -19,7 +17,6 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "cell_actor.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay115/camera_angle.h"

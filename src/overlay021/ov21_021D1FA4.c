@@ -7,12 +7,9 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "cell_actor.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D1FA4.h"
 #include "overlay021/struct_ov21_021D22F8.h"

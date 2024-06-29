@@ -3,8 +3,6 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 #include "trainer_info.h"
 
 #include "struct_defs/struct_02009508.h"

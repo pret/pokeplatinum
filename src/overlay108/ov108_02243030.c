@@ -2,11 +2,9 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "cell_actor.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "cell_actor.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay108/struct_ov108_02243030.h"
 

@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "cell_actor.h"
 #include "strbuf.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 

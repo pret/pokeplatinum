@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
 #include "pokemon.h"
 
 #include "field/field_system.h"

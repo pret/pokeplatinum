@@ -11,7 +11,6 @@
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209903C_sub1.h"
 #include "struct_defs/struct_0209916C.h"
-#include "cell_actor.h"
 
 #include "narc.h"
 #include "unk_020093B4.h"

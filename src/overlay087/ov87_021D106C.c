@@ -5,8 +5,6 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "overlay087/struct_ov87_021D0D80_decl.h"
@@ -16,7 +14,6 @@
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
-#include "cell_actor.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay087/struct_ov87_021D12C0.h"
 #include "overlay087/struct_ov87_021D1640.h"

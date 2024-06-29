@@ -5,8 +5,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
-#include "cell_actor.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "pokemon.h"
@@ -15,7 +13,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
 #include "field/field_system.h"
-#include "cell_actor.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_02005474.h"

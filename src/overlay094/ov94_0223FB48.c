@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"

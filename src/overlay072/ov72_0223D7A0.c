@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
 #include "strbuf.h"
 #include "savedata.h"
 #include "overlay072/struct_ov72_0223DB98_decl.h"

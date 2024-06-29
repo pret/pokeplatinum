@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_defs/struct_0203DDFC.h"

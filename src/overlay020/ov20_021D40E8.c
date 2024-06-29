@@ -4,7 +4,6 @@
 #include "enums.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "cell_actor.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
