@@ -9,6 +9,8 @@
 #include "gx_layers.h"
 #include "unk_02024220.h"
 
+#define G3X_DEPTH_MAX 0x7FFF
+
 static void Easy3D_SetupEngine(void);
 
 void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource)
@@ -93,7 +95,7 @@ static void Easy3D_SetupEngine(void)
     G3X_AlphaBlend(TRUE);
     G3X_EdgeMarking(FALSE);
     G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
-    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, FALSE);
+    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, G3X_DEPTH_MAX, 63, FALSE);
     G3_ViewPort(0, 0, 255, 191);
 }
 
