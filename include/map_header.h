@@ -6,7 +6,7 @@ typedef struct {
     u8 unk_01;
     u16 mapMatrixID;
     u16 scriptsArchiveID;
-    u16 mapScriptArchiveID;
+    u16 initScriptsArchiveID;
     u16 msgArchiveID;
     u16 dayMusicID;
     u16 nightMusicID;
@@ -30,7 +30,7 @@ const u16 sub_0203A04C(u32 param0);
 const u16 MapHeader_GetMapMatrixID(u32 param0);
 u32 MapHeader_GetMsgArchiveID(u32 param0);
 u32 MapHeader_GetScriptsArchiveID(u32 param0);
-u32 MapHeader_GetMapScriptArchiveID(u32 param0);
+u32 MapHeader_GetInitScriptsArchiveID(u32 param0);
 u16 MapHeader_GetDayMusicID(u32 param0);
 u16 MapHeader_GetNightMusicID(u32 param0);
 BOOL MapHeader_HasWildEncounters(u32 param0);

@@ -54,10 +54,10 @@ u32 MapHeader_GetScriptsArchiveID (u32 headerID)
     return sMapHeaders[headerID].scriptsArchiveID;
 }
 
-u32 MapHeader_GetMapScriptArchiveID (u32 headerID)
+u32 MapHeader_GetInitScriptsArchiveID (u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
-    return sMapHeaders[headerID].mapScriptArchiveID;
+    return sMapHeaders[headerID].initScriptsArchiveID;
 }
 
 u16 MapHeader_GetDayMusicID (u32 headerID)

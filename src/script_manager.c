@@ -742,17 +742,17 @@ void FieldSystem_RunScript (FieldSystem * fieldSystem, u16 scriptID)
 
 BOOL sub_0203F5C0 (FieldSystem * fieldSystem, u8 param1)
 {
-    const u8 *mapScripts = MapHeaderData_GetScripts(fieldSystem);
+    const u8 *initScripts = MapHeaderData_GetInitScripts(fieldSystem);
 
-    if (mapScripts == NULL) {
+    if (initScripts == NULL) {
         return FALSE;
     }
 
     u16 scriptID;
     if (param1 == 1) {
-        scriptID = sub_0203F638(fieldSystem, mapScripts, param1);
+        scriptID = sub_0203F638(fieldSystem, initScripts, param1);
     } else {
-        scriptID = sub_0203F610(mapScripts, param1);
+        scriptID = sub_0203F610(initScripts, param1);
     }
 
     if (scriptID == 0xffff) {
