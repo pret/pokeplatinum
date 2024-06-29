@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021EDFBC_H
 #define POKEPLATINUM_STRUCT_OV5_021EDFBC_H
 
-#include "resource_manager.h"
+#include "resource_collection.h"
 
 typedef struct {
     u32 unk_00;

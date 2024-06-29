@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "resource_manager.h"
+#include "resource_collection.h"
 
 #include <nnsys.h>
 
@@ -28,7 +28,7 @@ typedef struct {
     NNSGfdPlttKey unk_28;
     BOOL unk_2C;
     u8 * unk_30;
-    ResourceManager * unk_34;
+    ResourceCollection * unk_34;
     NNSG2dCharacterData ** unk_38;
     int unk_3C;
     BGL * unk_40;

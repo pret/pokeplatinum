@@ -52,7 +52,7 @@
 #include "camera.h"
 #include "unk_02020AEC.h"
 #include "unk_020218BC.h"
-#include "resource_manager.h"
+#include "resource_collection.h"
 #include "savedata_misc.h"
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"

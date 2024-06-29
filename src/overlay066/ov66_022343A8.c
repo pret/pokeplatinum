@@ -23,7 +23,7 @@
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
-#include "resource_manager.h"
+#include "resource_collection.h"
 #include "unk_0202414C.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay066/ov66_02231428.h"
@@ -60,8 +60,8 @@ typedef struct UnkStruct_ov66_02234798_t {
 } UnkStruct_ov66_02234798;
 
 typedef struct UnkStruct_ov66_02234548_t {
-    ResourceManager * unk_00;
-    ResourceManager * unk_04;
+    ResourceCollection * unk_00;
+    ResourceCollection * unk_04;
     TextureResourceManager * unk_08;
     UnkStruct_02020C44 * unk_0C;
     UnkStruct_ov66_02234798 * unk_10;
@@ -162,8 +162,8 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
         }
     }
 
-    v0->unk_00 = ResourceManager_New(1, param2);
-    v0->unk_04 = ResourceManager_New(2, param2);
+    v0->unk_00 = ResourceCollection_New(1, param2);
+    v0->unk_04 = ResourceCollection_New(2, param2);
     v0->unk_08 = TextureResourceManager_New(20, param2);
 
     {
@@ -187,7 +187,7 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
 
         {
             v5 = sub_0200723C(v4, 127, 0, param3, 0);
-            ResourceManager_AddResource(v0->unk_00, v5, 127);
+            ResourceCollection_AddResource(v0->unk_00, v5, 127);
             ov66_02231668(v5);
 
             {
@@ -203,7 +203,7 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
         {
             for (v6 = 0; v6 < 2; v6++) {
                 v5 = sub_0200723C(v3, Unk_ov66_02258B28[v6], 0, param3, 0);
-                ResourceManager_AddResource(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
+                ResourceCollection_AddResource(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
             }
         }
 
@@ -253,8 +253,8 @@ void ov66_02234548 (UnkStruct_ov66_02234548 * param0)
     {
         ov66_02234958(&param0->unk_18);
         TextureResourceManager_Clear(param0->unk_08);
-        ResourceManager_Clear(param0->unk_00);
-        ResourceManager_Clear(param0->unk_04);
+        ResourceCollection_Clear(param0->unk_00);
+        ResourceCollection_Clear(param0->unk_04);
     }
 
     {
@@ -263,8 +263,8 @@ void ov66_02234548 (UnkStruct_ov66_02234548 * param0)
     }
 
     TextureResourceManager_Delete(param0->unk_08);
-    ResourceManager_Delete(param0->unk_00);
-    ResourceManager_Delete(param0->unk_04);
+    ResourceCollection_Delete(param0->unk_00);
+    ResourceCollection_Delete(param0->unk_04);
     Heap_FreeToHeap(param0->unk_10);
     Heap_FreeToHeap(param0);
 }
@@ -332,7 +332,7 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
         v1 = ov66_022348B0(v6);
 
         {
-            v4 = ResourceManager_FindResource(param0->unk_00, 127);
+            v4 = ResourceCollection_FindResource(param0->unk_00, 127);
             v7 = Resource_GetData(v4);
         }
 
@@ -351,7 +351,7 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
                 v15 = Unk_ov66_02258B28[0];
             }
 
-            v4 = ResourceManager_FindResource(param0->unk_04, v15);
+            v4 = ResourceCollection_FindResource(param0->unk_04, v15);
             v16 = Resource_GetData(v4);
 
             sub_02024184(v16, &v9);

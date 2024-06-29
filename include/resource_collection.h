@@ -18,11 +18,11 @@ typedef struct Resource {
     void *data;
 } Resource;
 
-typedef struct ResourceManager {
+typedef struct ResourceCollection {
     Resource *resources;
-    int maxResources;
-    int resourceCount;
-} ResourceManager;
+    int capacity;
+    int count;
+} ResourceCollection;
 
 typedef struct TextureResource {
     Resource *resource;
@@ -35,18 +35,18 @@ typedef struct TextureResource {
 } TextureResource;
 
 typedef struct TextureResourceManager {
-    ResourceManager *resMgr;
+    ResourceCollection *resources;
     TextureResource *textures;
 } TextureResourceManager;
 
-ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID);
-void ResourceManager_Delete(ResourceManager *resMgr);
-BOOL ResourceManager_IsIDUnused(ResourceManager *resMgr, int id);
-Resource *ResourceManager_AddResource(ResourceManager *resMgr, void *data, int id);
-Resource *ResourceManager_AddResourceFromFile(ResourceManager *resMgr, const char *filename, int id, enum HeapId heapID);
-void ResourceManager_RemoveResource(ResourceManager *resMgr, Resource *resource);
-void ResourceManager_Clear(ResourceManager *resMgr);
-Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id);
+ResourceCollection *ResourceCollection_New(s32 maxResources, enum HeapId heapID);
+void ResourceCollection_Delete(ResourceCollection *collection);
+BOOL ResourceCollection_IsIDUnused(ResourceCollection *collection, int id);
+Resource *ResourceCollection_AddResource(ResourceCollection *collection, void *data, int id);
+Resource *ResourceCollection_AddResourceFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapId heapID);
+void ResourceCollection_RemoveResource(ResourceCollection *collection, Resource *resource);
+void ResourceCollection_Clear(ResourceCollection *collection);
+Resource *ResourceCollection_FindResource(ResourceCollection *collection, int id);
 void *Resource_GetData(Resource *resource);
 void Resource_SetData(Resource *resource, void *data);
 int Resource_GetID(Resource *resource);

@@ -91,7 +91,7 @@ Static main
 	Object main.nef.p/src_touch_screen.c.o
 	Object main.nef.p/src_unk_02022844.c.o
 	Object main.nef.p/src_error_handling.c.o
-	Object main.nef.p/src_resource_manager.c.o
+	Object main.nef.p/src_resource_collection.c.o
 	Object main.nef.p/src_unk_0202309C.c.o
 	Object main.nef.p/src_unk_020232E0.c.o
 	Object main.nef.p/src_strbuf.c.o

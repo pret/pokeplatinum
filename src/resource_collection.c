@@ -4,11 +4,11 @@
 #include "constants/heap.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "resource_manager.h"
+#include "resource_collection.h"
 
 #define RESOURCE_ID_INVALID (-1)
 
-static Resource *ResourceManager_AllocResource(ResourceManager *resMgr);
+static Resource *ResourceCollection_AllocResource(ResourceCollection *collection);
 static void Resource_Init(Resource *resource);
 static TextureResource *TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr);
 static void TextureResource_Init(TextureResource *texResource);
@@ -21,77 +21,77 @@ static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes);
 static void *CreateStrippedTexture(void *resFile, enum HeapId heapID);
 static u32 GetStrippedTextureResourceSize(const void *resFile);
 
-ResourceManager *ResourceManager_New(s32 maxResources, enum HeapId heapID)
+ResourceCollection *ResourceCollection_New(s32 capacity, enum HeapId heapID)
 {
-    ResourceManager *resMgr = Heap_AllocFromHeap(heapID, sizeof(ResourceManager));
+    ResourceCollection *resMgr = Heap_AllocFromHeap(heapID, sizeof(ResourceCollection));
     GF_ASSERT(resMgr);
 
-    resMgr->resources = Heap_AllocFromHeap(heapID, sizeof(Resource) * maxResources);
+    resMgr->resources = Heap_AllocFromHeap(heapID, sizeof(Resource) * capacity);
     GF_ASSERT(resMgr->resources);
 
-    for (int i = 0; i < maxResources; i++) {
+    for (int i = 0; i < capacity; i++) {
         Resource_Init(resMgr->resources + i);
     }
 
-    resMgr->maxResources = maxResources;
-    resMgr->resourceCount = 0;
+    resMgr->capacity = capacity;
+    resMgr->count = 0;
 
     return resMgr;
 }
 
-void ResourceManager_Delete(ResourceManager *resMgr)
+void ResourceCollection_Delete(ResourceCollection *collection)
 {
-    GF_ASSERT(resMgr);
+    GF_ASSERT(collection);
 
-    ResourceManager_Clear(resMgr);
-    Heap_FreeToHeap(resMgr->resources);
-    Heap_FreeToHeap(resMgr);
+    ResourceCollection_Clear(collection);
+    Heap_FreeToHeap(collection->resources);
+    Heap_FreeToHeap(collection);
 }
 
-BOOL ResourceManager_IsIDUnused(ResourceManager *resMgr, int id)
+BOOL ResourceCollection_IsIDUnused(ResourceCollection *collection, int id)
 {
-    GF_ASSERT(resMgr);
-    return ResourceManager_FindResource(resMgr, id) == NULL;
+    GF_ASSERT(collection);
+    return ResourceCollection_FindResource(collection, id) == NULL;
 }
 
-Resource *ResourceManager_AddResource(ResourceManager *resMgr, void *data, int id)
+Resource *ResourceCollection_AddResource(ResourceCollection *collection, void *data, int id)
 {
-    GF_ASSERT(resMgr);
+    GF_ASSERT(collection);
 
-    Resource *resource = ResourceManager_AllocResource(resMgr);
+    Resource *resource = ResourceCollection_AllocResource(collection);
     GF_ASSERT(resource);
 
-    GF_ASSERT(ResourceManager_IsIDUnused(resMgr, id) == TRUE);
+    GF_ASSERT(ResourceCollection_IsIDUnused(collection, id) == TRUE);
 
     resource->data = data;
     resource->id = id;
-    resMgr->resourceCount++;
+    collection->count++;
 
     return resource;
 }
 
-Resource *ResourceManager_AddResourceFromFile(ResourceManager *resMgr, const char *filename, int id, enum HeapId heapID)
+Resource *ResourceCollection_AddResourceFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapId heapID)
 {
-    GF_ASSERT(resMgr);
+    GF_ASSERT(collection);
     GF_ASSERT(filename);
 
-    Resource *resource = ResourceManager_AllocResource(resMgr);
+    Resource *resource = ResourceCollection_AllocResource(collection);
 
     GF_ASSERT(resource);
-    GF_ASSERT(ResourceManager_IsIDUnused(resMgr, id) == TRUE);
+    GF_ASSERT(ResourceCollection_IsIDUnused(collection, id) == TRUE);
 
     resource->data = ReadFileToHeap(heapID, filename);
     GF_ASSERT(resource->data);
     resource->id = id;
 
-    resMgr->resourceCount++;
+    collection->count++;
 
     return resource;
 }
 
-void ResourceManager_RemoveResource(ResourceManager *resMgr, Resource *resource)
+void ResourceCollection_RemoveResource(ResourceCollection *collection, Resource *resource)
 {
-    GF_ASSERT(resMgr);
+    GF_ASSERT(collection);
     GF_ASSERT(resource);
 
     if (resource->data) {
@@ -100,28 +100,28 @@ void ResourceManager_RemoveResource(ResourceManager *resMgr, Resource *resource)
     }
 
     resource->id = RESOURCE_ID_INVALID;
-    resMgr->resourceCount--;
+    collection->count--;
 }
 
-void ResourceManager_Clear(ResourceManager *resMgr)
+void ResourceCollection_Clear(ResourceCollection *resMgr)
 {
     GF_ASSERT(resMgr);
     GF_ASSERT(resMgr->resources);
 
-    for (int i = 0; i < resMgr->maxResources; i++) {
+    for (int i = 0; i < resMgr->capacity; i++) {
         if (resMgr->resources[i].id != RESOURCE_ID_INVALID) {
-            ResourceManager_RemoveResource(resMgr, resMgr->resources + i);
+            ResourceCollection_RemoveResource(resMgr, resMgr->resources + i);
         }
     }
 }
 
-Resource *ResourceManager_FindResource(ResourceManager *resMgr, int id)
+Resource *ResourceCollection_FindResource(ResourceCollection *collection, int id)
 {
-    GF_ASSERT(resMgr);
+    GF_ASSERT(collection);
 
-    for (int i = 0; i < resMgr->maxResources; i++) {
-        if (resMgr->resources[i].id == id) {
-            return resMgr->resources + i;
+    for (int i = 0; i < collection->capacity; i++) {
+        if (collection->resources[i].id == id) {
+            return collection->resources + i;
         }
     }
 
@@ -151,13 +151,13 @@ int Resource_GetID(Resource *resource)
     return resource->id;
 }
 
-static Resource *ResourceManager_AllocResource(ResourceManager *resMgr)
+static Resource *ResourceCollection_AllocResource(ResourceCollection *collection)
 {
-    GF_ASSERT(resMgr);
+    GF_ASSERT(collection);
 
-    for (int i = 0; i < resMgr->maxResources; i++) {
-        if (resMgr->resources[i].id == RESOURCE_ID_INVALID) {
-            return resMgr->resources + i;
+    for (int i = 0; i < collection->capacity; i++) {
+        if (collection->resources[i].id == RESOURCE_ID_INVALID) {
+            return collection->resources + i;
         }
     }
 
@@ -176,7 +176,7 @@ TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId 
 {
     TextureResourceManager *texMgr = Heap_AllocFromHeap(heapID, sizeof(TextureResourceManager));
 
-    texMgr->resMgr = ResourceManager_New(maxTextures, heapID);
+    texMgr->resources = ResourceCollection_New(maxTextures, heapID);
     texMgr->textures = Heap_AllocFromHeap(heapID, sizeof(TextureResource) * maxTextures);
 
     for (int i = 0; i < maxTextures; i++) {
@@ -191,7 +191,7 @@ void TextureResourceManager_Delete(TextureResourceManager *texMgr)
     GF_ASSERT(texMgr);
 
     TextureResourceManager_Clear(texMgr);
-    ResourceManager_Delete(texMgr->resMgr);
+    ResourceCollection_Delete(texMgr->resources);
     Heap_FreeToHeap(texMgr->textures);
     Heap_FreeToHeap(texMgr);
 }
@@ -199,7 +199,7 @@ void TextureResourceManager_Delete(TextureResourceManager *texMgr)
 BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id)
 {
     GF_ASSERT(texMgr);
-    return ResourceManager_IsIDUnused(texMgr->resMgr, id);
+    return ResourceCollection_IsIDUnused(texMgr->resources, id);
 }
 
 TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, 
@@ -221,7 +221,7 @@ TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager 
         texResource->textureData = NULL;
     }
 
-    texResource->resource = ResourceManager_AddResource(texMgr->resMgr, resourceData, id);
+    texResource->resource = ResourceCollection_AddResource(texMgr->resources, resourceData, id);
 
     return texResource;
 }
@@ -246,7 +246,7 @@ void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, Textur
     }
 
     if (texResource->resource) {
-        ResourceManager_RemoveResource(texMgr->resMgr, texResource->resource);
+        ResourceCollection_RemoveResource(texMgr->resources, texResource->resource);
     }
 
     if (texResource->texKey != NNS_GFD_ALLOC_ERROR_TEXKEY) {
@@ -275,7 +275,7 @@ void TextureResourceManager_Clear(TextureResourceManager *texMgr)
     GF_ASSERT(texMgr);
     GF_ASSERT(texMgr->textures);
 
-    for (int i = 0; i < texMgr->resMgr->maxResources; i++) {
+    for (int i = 0; i < texMgr->resources->capacity; i++) {
         if (texMgr->textures[i].resource) {
             TextureResourceManager_RemoveTexture(texMgr, texMgr->textures + i);
         }
@@ -286,7 +286,7 @@ TextureResource *TextureResourceManager_FindTextureResource(const TextureResourc
 {
     GF_ASSERT(texMgr);
 
-    for (int i = 0; i < texMgr->resMgr->maxResources; i++) {
+    for (int i = 0; i < texMgr->resources->capacity; i++) {
         // Combining these two checks into one doesn't match
         if (texMgr->textures[i].resource) {
             int texId = TextureResource_GetID(texMgr->textures + i);
@@ -408,7 +408,7 @@ u32 Utility_GetStrippedTextureResourceSize(NNSG3dResFileHeader *resFile)
 
 static TextureResource *TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr)
 {
-    for (int i = 0; i < texMgr->resMgr->maxResources; i++) {
+    for (int i = 0; i < texMgr->resources->capacity; i++) {
         if (texMgr->textures[i].resource == NULL) {
             return texMgr->textures + i;
         }
