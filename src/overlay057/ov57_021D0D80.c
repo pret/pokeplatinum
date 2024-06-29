@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "savedata_misc.h"
 #include "game_options.h"

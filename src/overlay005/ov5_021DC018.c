@@ -30,7 +30,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "coins.h"
 #include "unk_0202D05C.h"
@@ -908,7 +908,7 @@ void ov5_021DD098 (FieldSystem * fieldSystem, Window * param1)
     v1 = StringTemplate_Default(4);
     v2 = Strbuf_Init(16, 4);
     v3 = MessageLoader_GetNewStrbuf(v0, 197);
-    v4 = Coins_GetValue(sub_02025E50(fieldSystem->saveData));
+    v4 = Coins_GetValue(SaveData_GetCoins(fieldSystem->saveData));
 
     StringTemplate_SetNumber(v1, 0, v4, 5, 1, 1);
     StringTemplate_Format(v1, v2, v3);

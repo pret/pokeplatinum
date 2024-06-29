@@ -51,7 +51,7 @@
 #include "unk_02023FCC.h"
 #include "savedata/save_table.h"
 #include "savedata.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"

@@ -16,7 +16,7 @@
 #include "functypes/funcptr_02084808.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "journal.h"
 #include "map_header.h"

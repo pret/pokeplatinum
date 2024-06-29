@@ -70,7 +70,7 @@
 #include "savedata/save_table.h"
 #include "savedata.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "savedata_misc.h"
@@ -1587,11 +1587,11 @@ static BOOL sub_0203E35C (TaskManager * param0)
         break;
     case 1:
         if (sub_020509B4(fieldSystem) == 0) {
-            u16 * v5 = sub_02025E50(fieldSystem->saveData);
+            u16 * v5 = SaveData_GetCoins(fieldSystem->saveData);
             s64 v6 = GetTimestamp();
 
             sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->unk_04, v6) / 60);
-            Coins_SetValue(sub_02025E50(fieldSystem->saveData), v2->unk_00);
+            Coins_SetValue(SaveData_GetCoins(fieldSystem->saveData), v2->unk_00);
 
             v4 = sub_0206B394(v1);
 
@@ -1615,7 +1615,7 @@ void sub_0203E414 (TaskManager * param0, int param1)
     UnkStruct_0203E35C * v2 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
-    v2->unk_00 = Coins_GetValue(sub_02025E50(fieldSystem->saveData));
+    v2->unk_00 = Coins_GetValue(SaveData_GetCoins(fieldSystem->saveData));
     v2->unk_04 = GetTimestamp();
     v2->unk_0C.records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     v2->unk_0C.unk_0C = 0;

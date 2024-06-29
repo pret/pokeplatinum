@@ -18,7 +18,7 @@
 #include "struct_defs/pokemon_summary.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
 #include "unk_02030494.h"

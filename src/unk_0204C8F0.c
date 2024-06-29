@@ -8,7 +8,7 @@
 #include "field/field_system.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "field_system.h"
 #include "field_script_context.h"

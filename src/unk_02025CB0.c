@@ -9,7 +9,7 @@
 #include "unk_02025CB0.h"
 
 typedef struct UnkStruct_02025CCC_t {
-    s64 unk_00;
+    s64 unk_00;  
     u8 unk_08[6];
     u8 unk_0E;
     u8 unk_0F;

@@ -14,7 +14,7 @@
 #include "string_template.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "unk_020298BC.h"
 #include "coins.h"
 #include "unk_0202C9F4.h"
@@ -100,7 +100,7 @@ u8 sub_0207CBAC (UnkStruct_0207CB08 * param0)
 
 static u32 sub_0207CBB4 (SaveData * param0)
 {
-    return Coins_GetValue(sub_02025E50(param0));
+    return Coins_GetValue(SaveData_GetCoins(param0));
 }
 
 static u32 sub_0207CBC0 (SaveData * param0)

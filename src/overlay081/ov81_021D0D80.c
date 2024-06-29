@@ -27,7 +27,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "journal.h"
 #include "unk_020393C8.h"

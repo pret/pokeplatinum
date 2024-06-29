@@ -5,7 +5,7 @@
 #include "savedata.h"
 
 #include "savedata.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0203D178.h"
 #include "vars_flags.h"

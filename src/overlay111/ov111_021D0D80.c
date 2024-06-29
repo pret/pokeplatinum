@@ -48,7 +48,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "game_options.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "overlay111/ov111_021D2F80.h"

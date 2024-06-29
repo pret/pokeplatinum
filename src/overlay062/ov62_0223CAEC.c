@@ -32,7 +32,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "play_time.h"
 #include "game_records.h"
 #include "unk_02030A80.h"

@@ -14,7 +14,7 @@
 
 #include "narc.h"
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
