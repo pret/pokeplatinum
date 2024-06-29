@@ -4,10 +4,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_0202298C_decl.h"
-#include "struct_decls/struct_02022BC0_decl.h"
-#include "struct_decls/struct_02022BD8_2_decl.h"
-#include "struct_decls/struct_02022BD8_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -27,7 +23,7 @@
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
-#include "unk_0202298C.h"
+#include "resource_collection.h"
 #include "unk_0202414C.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay066/ov66_02231428.h"
@@ -64,9 +60,9 @@ typedef struct UnkStruct_ov66_02234798_t {
 } UnkStruct_ov66_02234798;
 
 typedef struct UnkStruct_ov66_02234548_t {
-    UnkStruct_0202298C * unk_00;
-    UnkStruct_0202298C * unk_04;
-    UnkStruct_02022BD8 * unk_08;
+    ResourceCollection * unk_00;
+    ResourceCollection * unk_04;
+    TextureResourceManager * unk_08;
     UnkStruct_02020C44 * unk_0C;
     UnkStruct_ov66_02234798 * unk_10;
     u32 unk_14;
@@ -166,9 +162,9 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
         }
     }
 
-    v0->unk_00 = sub_0202298C(1, param2);
-    v0->unk_04 = sub_0202298C(2, param2);
-    v0->unk_08 = sub_02022BD8(20, param2);
+    v0->unk_00 = ResourceCollection_New(1, param2);
+    v0->unk_04 = ResourceCollection_New(2, param2);
+    v0->unk_08 = TextureResourceManager_New(20, param2);
 
     {
         UnkStruct_ov5_021EDDAC v2;
@@ -191,7 +187,7 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
 
         {
             v5 = sub_0200723C(v4, 127, 0, param3, 0);
-            sub_02022A1C(v0->unk_00, v5, 127);
+            ResourceCollection_Add(v0->unk_00, v5, 127);
             ov66_02231668(v5);
 
             {
@@ -207,12 +203,12 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
         {
             for (v6 = 0; v6 < 2; v6++) {
                 v5 = sub_0200723C(v3, Unk_ov66_02258B28[v6], 0, param3, 0);
-                sub_02022A1C(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
+                ResourceCollection_Add(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
             }
         }
 
         {
-            UnkStruct_02022BD8_2 * v9;
+            TextureResource * v9;
             int v10;
             BOOL v11;
 
@@ -234,12 +230,12 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
                 }
 
                 v5 = sub_0200723C(v3, Unk_ov66_02258B38[v6].unk_02_0, 0, param3, 0);
-                v9 = sub_02022C58(v0->unk_08, v5, Unk_ov66_02258B38[v6].unk_02_0, v11, param3);
+                v9 = TextureResourceManager_AddTexture(v0->unk_08, v5, Unk_ov66_02258B38[v6].unk_02_0, v11, param3);
 
                 if (v11 == 1) {
-                    sub_02022EBC(v9);
-                    sub_02022E08(v9);
-                    sub_02022E54(v9);
+                    TextureResource_AllocVRam(v9);
+                    TextureResource_UploadToVRam(v9);
+                    TextureResource_DiscardTextureData(v9);
                 }
             }
         }
@@ -256,9 +252,9 @@ void ov66_02234548 (UnkStruct_ov66_02234548 * param0)
 {
     {
         ov66_02234958(&param0->unk_18);
-        sub_02022D58(param0->unk_08);
-        sub_02022AE4(param0->unk_00);
-        sub_02022AE4(param0->unk_04);
+        TextureResourceManager_Clear(param0->unk_08);
+        ResourceCollection_Clear(param0->unk_00);
+        ResourceCollection_Clear(param0->unk_04);
     }
 
     {
@@ -266,9 +262,9 @@ void ov66_02234548 (UnkStruct_ov66_02234548 * param0)
         sub_02020BD0();
     }
 
-    sub_02022C1C(param0->unk_08);
-    sub_020229D8(param0->unk_00);
-    sub_020229D8(param0->unk_04);
+    TextureResourceManager_Delete(param0->unk_08);
+    ResourceCollection_Delete(param0->unk_00);
+    ResourceCollection_Delete(param0->unk_04);
     Heap_FreeToHeap(param0->unk_10);
     Heap_FreeToHeap(param0);
 }
@@ -320,8 +316,8 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
         const UnkStruct_ov66_02258B38 * v1;
         UnkStruct_ov5_021DF84C v2;
         UnkStruct_ov5_021DF7F8 v3;
-        UnkStruct_02022BC0 * v4;
-        UnkStruct_02022BD8_2 * v5;
+        Resource * v4;
+        TextureResource * v5;
         u32 v6;
         void * v7;
         const NNSG3dResTex * v8;
@@ -336,13 +332,13 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
         v1 = ov66_022348B0(v6);
 
         {
-            v4 = sub_02022B20(param0->unk_00, 127);
-            v7 = sub_02022B54(v4);
+            v4 = ResourceCollection_FindResource(param0->unk_00, 127);
+            v7 = Resource_GetData(v4);
         }
 
         {
-            v5 = sub_02022D98(param0->unk_08, v1->unk_02_0);
-            v8 = sub_02022DF4(v5);
+            v5 = TextureResourceManager_FindTextureResource(param0->unk_08, v1->unk_02_0);
+            v8 = TextureResource_GetUnderlyingResource(v5);
         }
 
         {
@@ -355,8 +351,8 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
                 v15 = Unk_ov66_02258B28[0];
             }
 
-            v4 = sub_02022B20(param0->unk_04, v15);
-            v16 = sub_02022B54(v4);
+            v4 = ResourceCollection_FindResource(param0->unk_04, v15);
+            v16 = Resource_GetData(v4);
 
             sub_02024184(v16, &v9);
         }
@@ -364,9 +360,9 @@ UnkStruct_ov66_02234798 * ov66_0223461C (UnkStruct_ov66_02234548 * param0, const
         if (v1->unk_02_15 == 1) {
             sub_02021284(&v2, v7, v8, Unk_ov66_02258B88, &v9);
         } else {
-            v10 = sub_02022EF4(v5);
-            v11 = sub_02022F04(v5);
-            v12 = sub_02022F14(v5);
+            v10 = TextureResource_GetTexKey(v5);
+            v11 = TextureResource_GetTex4x4Key(v5);
+            v12 = TextureResource_GetPaletteKey(v5);
 
             sub_0202125C(&v2, v7, v8, Unk_ov66_02258B88, &v9, v10, v11, v12);
         }

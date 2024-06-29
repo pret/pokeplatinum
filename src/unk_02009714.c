@@ -2,8 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0202298C_decl.h"
-#include "struct_decls/struct_02022BC0_decl.h"
 
 #include "struct_defs/struct_02009CFC.h"
 
@@ -11,17 +9,17 @@
 #include "unk_02006E3C.h"
 #include "unk_02009714.h"
 #include "heap.h"
-#include "unk_0202298C.h"
+#include "resource_collection.h"
 
 
 typedef struct UnkStruct_02009DC8_t {
-    UnkStruct_02022BC0 * unk_00;
+    Resource * unk_00;
     int unk_04;
     void * unk_08;
 } UnkStruct_02009DC8;
 
 typedef struct UnkStruct_02009714_t {
-    UnkStruct_0202298C * unk_00;
+    ResourceCollection * unk_00;
     UnkStruct_02009DC8 * unk_04;
     int unk_08;
     int unk_0C;
@@ -98,7 +96,7 @@ UnkStruct_02009714 * sub_02009714 (int param0, int param1, int param2)
     int v1;
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02009714));
-    v0->unk_00 = sub_0202298C(param0, param2);
+    v0->unk_00 = ResourceCollection_New(param0, param2);
     v0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02009DC8) * param0);
 
     memset(v0->unk_04, 0, sizeof(UnkStruct_02009DC8) * param0);
@@ -118,7 +116,7 @@ void sub_02009754 (UnkStruct_02009714 * param0)
 
     sub_02009D9C(param0);
 
-    sub_020229D8(param0->unk_00);
+    ResourceCollection_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 
     Heap_FreeToHeap(param0->unk_04);
@@ -387,7 +385,7 @@ void sub_02009D20 (UnkStruct_02009CFC * param0)
 BOOL sub_02009D34 (const UnkStruct_02009714 * param0, int param1)
 {
     GF_ASSERT(param0);
-    return sub_020229F8(param0->unk_00, param1);
+    return ResourceCollection_IsIDUnused(param0->unk_00, param1);
 }
 
 void sub_02009D4C (UnkStruct_02009DC8 * param0)
@@ -395,7 +393,7 @@ void sub_02009D4C (UnkStruct_02009DC8 * param0)
     GF_ASSERT(param0);
 
     sub_0200A1F8(param0);
-    sub_02022B64(param0->unk_00, NULL);
+    Resource_SetData(param0->unk_00, NULL);
 }
 
 void sub_02009D68 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1)
@@ -404,7 +402,7 @@ void sub_02009D68 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1)
     GF_ASSERT(param0->unk_04);
 
     sub_0200A1F8(param1);
-    sub_02022AB0(param0->unk_00, param1->unk_00);
+    ResourceCollection_Remove(param0->unk_00, param1->unk_00);
 
     param1->unk_00 = NULL;
     param0->unk_0C--;
@@ -430,7 +428,7 @@ UnkStruct_02009DC8 * sub_02009DC8 (const UnkStruct_02009714 * param0, int param1
 
     for (v0 = 0; v0 < param0->unk_08; v0++) {
         if (param0->unk_04[v0].unk_00) {
-            v1 = sub_02022B80(param0->unk_04[v0].unk_00);
+            v1 = Resource_GetID(param0->unk_04[v0].unk_00);
 
             if (v1 == param1) {
                 return param0->unk_04 + v0;
@@ -444,7 +442,7 @@ UnkStruct_02009DC8 * sub_02009DC8 (const UnkStruct_02009714 * param0, int param1
 int sub_02009E08 (const UnkStruct_02009DC8 * param0)
 {
     GF_ASSERT(param0);
-    return sub_02022B80(param0->unk_00);
+    return Resource_GetID(param0->unk_00);
 }
 
 NNSG2dCharacterData * sub_02009E1C (const UnkStruct_02009DC8 * param0)
@@ -720,7 +718,7 @@ static void sub_0200A0D4 (UnkStruct_02009DC8 * param0, int param1, int param2, i
 {
     void * v0;
 
-    v0 = sub_02022B54(param0->unk_00);
+    v0 = Resource_GetData(param0->unk_00);
 
     switch (param1) {
     case 0:
@@ -827,7 +825,7 @@ static void * sub_0200A20C (const UnkStruct_02009DC8 * param0)
 
 static void sub_0200A224 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1, const char * param2, int param3, int param4, int param5, int param6, int param7)
 {
-    param1->unk_00 = sub_02022A58(param0->unk_00, param2, param3, param7);
+    param1->unk_00 = ResourceCollection_AddFromFile(param0->unk_00, param2, param3, param7);
     param1->unk_04 = param6;
 
     sub_0200A0D4(param1, param6, param4, param5, param7);
@@ -839,7 +837,7 @@ static void sub_0200A250 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * para
 
     v0 = sub_02006FE8(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = sub_02022A1C(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceCollection_Add(param0->unk_00, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);
@@ -851,7 +849,7 @@ static void sub_0200A288 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * para
 
     v0 = sub_0200A2DC(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = sub_02022A1C(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceCollection_Add(param0->unk_00, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);

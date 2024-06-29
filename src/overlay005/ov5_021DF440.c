@@ -5,8 +5,6 @@
 #include "sys_task_manager.h"
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_02022BD8_2_decl.h"
-#include "struct_decls/struct_02022BD8_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "overlay005/struct_ov5_021F06D8_decl.h"
@@ -29,7 +27,7 @@
 #include "sys_task.h"
 #include "heap.h"
 #include "unk_02020AEC.h"
-#include "unk_0202298C.h"
+#include "resource_collection.h"
 #include "unk_0202414C.h"
 #include "map_object.h"
 #include "unk_020711EC.h"
@@ -68,7 +66,7 @@ typedef struct UnkStruct_ov5_021DF8FC_t {
     UnkStruct_02020C44 * unk_0C;
     UnkStruct_ov5_021F06D8 * unk_10;
     UnkStruct_ov5_021F06D8 * unk_14;
-    UnkStruct_02022BD8 * unk_18;
+    TextureResourceManager * unk_18;
     UnkStruct_ov5_021DF8C8 * unk_1C;
     UnkStruct_ov5_021DF84C * unk_20;
 } UnkStruct_ov5_021DF8FC;
@@ -81,7 +79,7 @@ typedef struct UnkStruct_ov5_021DF8C8_t {
 typedef struct {
     u32 unk_00;
     u32 unk_04;
-    UnkStruct_02022BD8 * unk_08;
+    TextureResourceManager * unk_08;
 } UnkStruct_ov5_021DFA88;
 
 static u32 ov5_021DF584(const UnkStruct_ov5_021DF47C * param0);
@@ -106,8 +104,8 @@ static void ov5_021DF8C8(UnkStruct_ov5_021DF47C * param0, UnkStruct_ov5_021DF8FC
 static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC * param0);
 static UnkStruct_ov5_021DF84C * ov5_021DF9B4(UnkStruct_ov5_021DF8FC * param0, u32 param1);
 static void ov5_021DF910(UnkStruct_ov5_021DF8FC * param0, u32 param1);
-static UnkStruct_ov5_021DF84C * ov5_021DF930(UnkStruct_ov5_021DF8FC * param0, u32 param1, void * param2, UnkStruct_02024184 * param3, void * param4, UnkStruct_02022BD8_2 * param5, const UnkStruct_020217F4 * param6);
-static void ov5_021DFA88(UnkStruct_ov5_021DF47C * param0, u32 param1, UnkStruct_02022BD8 * param2);
+static UnkStruct_ov5_021DF84C * ov5_021DF930(UnkStruct_ov5_021DF8FC * param0, u32 param1, void * param2, UnkStruct_02024184 * param3, void * param4, TextureResource * param5, const UnkStruct_020217F4 * param6);
+static void ov5_021DFA88(UnkStruct_ov5_021DF47C * param0, u32 param1, TextureResourceManager * param2);
 static void ov5_021DFAC0(SysTask * param0, void * param1);
 static void ov5_021DFADC(SysTask * param0, void * param1);
 
@@ -435,7 +433,7 @@ static void ov5_021DF754 (UnkStruct_ov5_021DF47C * param0, u32 param1, u32 param
     v0->unk_0A = param5;
     v0->unk_10 = ov5_021F067C(param1, 69, param6, param3);
     v0->unk_14 = ov5_021F067C(param1, 70, param7, param4);
-    v0->unk_18 = sub_02022BD8(param5, param1);
+    v0->unk_18 = TextureResourceManager_New(param5, param1);
 
     ov5_021DF8C8(param0, v0, param2);
 
@@ -453,7 +451,7 @@ static void ov5_021DF7C4 (UnkStruct_ov5_021DF47C * param0)
         ov5_021DF8FC(v0);
         ov5_021F06D8(v0->unk_10);
         ov5_021F06D8(v0->unk_14);
-        sub_02022C1C(v0->unk_18);
+        TextureResourceManager_Delete(v0->unk_18);
         ov5_021DF554(v0);
 
         param0->unk_20 = NULL;
@@ -497,7 +495,7 @@ UnkStruct_ov5_021DF84C * ov5_021DF864 (UnkStruct_ov5_021DF47C * param0, u32 para
 {
     void * v0, * v1, * v2;
     UnkStruct_02024184 v3;
-    UnkStruct_02022BD8_2 * v4;
+    TextureResource * v4;
     UnkStruct_ov5_021DF84C * v5;
     UnkStruct_ov5_021DF8FC * v6;
 
@@ -507,9 +505,9 @@ UnkStruct_ov5_021DF84C * ov5_021DF864 (UnkStruct_ov5_021DF47C * param0, u32 para
 
     sub_02024184(v2, &v3);
 
-    v4 = sub_02022D98(v6->unk_18, param4);
+    v4 = TextureResourceManager_FindTextureResource(v6->unk_18, param4);
     GF_ASSERT(v4 != NULL);
-    v1 = sub_02022DF4(v4);
+    v1 = TextureResource_GetUnderlyingResource(v4);
 
     if (param5 == 1) {
         v4 = NULL;
@@ -563,7 +561,7 @@ static void ov5_021DF910 (UnkStruct_ov5_021DF8FC * param0, u32 param1)
     GF_ASSERT(FALSE);
 }
 
-static UnkStruct_ov5_021DF84C * ov5_021DF930 (UnkStruct_ov5_021DF8FC * param0, u32 param1, void * param2, UnkStruct_02024184 * param3, void * param4, UnkStruct_02022BD8_2 * param5, const UnkStruct_020217F4 * param6)
+static UnkStruct_ov5_021DF84C * ov5_021DF930 (UnkStruct_ov5_021DF8FC * param0, u32 param1, void * param2, UnkStruct_02024184 * param3, void * param4, TextureResource * param5, const UnkStruct_020217F4 * param6)
 {
     UnkStruct_ov5_021DF84C * v0;
 
@@ -605,9 +603,9 @@ static UnkStruct_ov5_021DF84C * ov5_021DF930 (UnkStruct_ov5_021DF8FC * param0, u
     v0->unk_04 = param4;
 
     if (param5 != NULL) {
-        v0->unk_1C = sub_02022EF4(param5);
-        v0->unk_20 = sub_02022F04(param5);
-        v0->unk_24 = sub_02022F14(param5);
+        v0->unk_1C = TextureResource_GetTexKey(param5);
+        v0->unk_20 = TextureResource_GetTex4x4Key(param5);
+        v0->unk_24 = TextureResource_GetPaletteKey(param5);
     }
 
     v0->unk_08 = param6;
@@ -675,7 +673,7 @@ void ov5_021DFA3C (UnkStruct_ov5_021DF47C * param0, u32 param1, u32 param2, u32 
 {
     UnkStruct_ov5_021DF8FC * v0 = param0->unk_20;
     void * v1 = ov5_021DF5C0(param0, param2, 1);
-    UnkStruct_02022BD8_2 * v2 = sub_02022C9C(v0->unk_18, v1, param1, param3, ov5_021DF584(param0));
+    TextureResource * v2 = TextureResourceManager_AddTextureAndAllocVRam(v0->unk_18, v1, param1, param3, ov5_021DF584(param0));
 
     GF_ASSERT(v2 != NULL);
     ov5_021DFA88(param0, param1, v0->unk_18);
@@ -684,10 +682,10 @@ void ov5_021DFA3C (UnkStruct_ov5_021DF47C * param0, u32 param1, u32 param2, u32 
 void ov5_021DFA7C (UnkStruct_ov5_021DF47C * param0, u32 param1)
 {
     UnkStruct_ov5_021DF8FC * v0 = param0->unk_20;
-    sub_02022D38(v0->unk_18, param1);
+    TextureResourceManager_RemoveTextureWithID(v0->unk_18, param1);
 }
 
-static void ov5_021DFA88 (UnkStruct_ov5_021DF47C * param0, u32 param1, UnkStruct_02022BD8 * param2)
+static void ov5_021DFA88 (UnkStruct_ov5_021DF47C * param0, u32 param1, TextureResourceManager * param2)
 {
     UnkStruct_ov5_021DFA88 * v0 = ov5_021DF528(param0, (sizeof(UnkStruct_ov5_021DFA88)), 1);
 
@@ -703,7 +701,7 @@ static void ov5_021DFAC0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021DFA88 * v0 = param1;
 
-    sub_02022E38(v0->unk_08, v0->unk_04);
+    TextureResourceManager_UploadResourceToVRam(v0->unk_08, v0->unk_04);
     v0->unk_00 = 1;
     SysTask_Done(param0);
 }
@@ -713,7 +711,7 @@ static void ov5_021DFADC (SysTask * param0, void * param1)
     UnkStruct_ov5_021DFA88 * v0 = param1;
 
     if (v0->unk_00 == 1) {
-        sub_02022EA0(v0->unk_08, v0->unk_04);
+        TextureResourceManager_DiscardTextureData(v0->unk_08, v0->unk_04);
         ov5_021DF554(v0);
         SysTask_Done(param0);
     }

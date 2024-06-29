@@ -23,7 +23,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0202298C.h"
+#include "resource_collection.h"
 #include "unk_020298BC.h"
 #include "pokemon.h"
 #include "overlay022/ov22_02254DE0.h"
@@ -464,10 +464,10 @@ static void ov22_0225B5A8 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_0225
         v3 = sub_0202A624(param2->unk_04[v0]);
         v1 = v3;
 
-        if (sub_020229F8(param1->unk_10, v1) == 1) {
+        if (ResourceCollection_IsIDUnused(param1->unk_10, v1) == 1) {
             v2 = sub_0200723C(param0->unk_5C, v3 + 1, 0, param3, 1);
 
-            sub_02022A1C(param1->unk_10, v2, v1);
+            ResourceCollection_Add(param1->unk_10, v2, v1);
             NNS_G2dGetUnpackedCharacterData(v2, &param1->unk_00[v1].unk_04);
 
             param1->unk_00[v1].unk_00 = param0->unk_00;
@@ -476,7 +476,7 @@ static void ov22_0225B5A8 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_0225
 
     v2 = sub_0200723C(param0->unk_5C, 0, 0, param3, 1);
 
-    sub_02022A1C(param1->unk_14, v2, 0);
+    ResourceCollection_Add(param1->unk_14, v2, 0);
     NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);
 
     param1->unk_08[0].unk_00 = param0->unk_00;

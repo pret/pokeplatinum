@@ -3,8 +3,7 @@
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_0202298C_decl.h"
-#include "struct_decls/struct_02022BD8_decl.h"
+#include "resource_collection.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021DF84C.h"
@@ -29,10 +28,10 @@ void ov5_021EDBC4(const MapObjectManager * param0, int param1, MapObject * param
 void ov5_021EDC84(UnkStruct_ov5_021ED0A4 * param0, UnkStruct_02020C44 * param1);
 UnkStruct_02020C44 * ov5_021EDC8C(UnkStruct_ov5_021ED0A4 * param0);
 void ov5_021EDC94(UnkStruct_ov5_021ED0A4 * param0, int param1);
-UnkStruct_0202298C * ov5_021EDC98(const UnkStruct_ov5_021ED0A4 * param0);
-UnkStruct_0202298C * ov5_021EDCA0(const UnkStruct_ov5_021ED0A4 * param0);
-void ov5_021EDCA8(UnkStruct_ov5_021ED0A4 * param0, UnkStruct_02022BD8 * param1);
-UnkStruct_02022BD8 * ov5_021EDCB0(const UnkStruct_ov5_021ED0A4 * param0);
+ResourceCollection * ov5_021EDC98(const UnkStruct_ov5_021ED0A4 * param0);
+ResourceCollection * ov5_021EDCA0(const UnkStruct_ov5_021ED0A4 * param0);
+void ov5_021EDCA8(UnkStruct_ov5_021ED0A4 * param0, TextureResourceManager * param1);
+TextureResourceManager * ov5_021EDCB0(const UnkStruct_ov5_021ED0A4 * param0);
 void ov5_021EDD78(MapObject * param0, int param1);
 int ov5_021EDD94(MapObject * param0);
 BOOL ov5_021EDEB4(MapObject * param0, UnkStruct_020216E0 * param1);
