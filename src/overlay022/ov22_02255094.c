@@ -247,7 +247,7 @@ void ov22_02255338 (UnkStruct_ov22_02255CB8 * param0)
 
 NNSG2dCharacterData * ov22_02255340 (UnkStruct_ov22_0225A0E4 * param0, void * param1, int param2)
 {
-    ResourceCollection_AddResource(param0->unk_34, param1, param2);
+    ResourceCollection_Add(param0->unk_34, param1, param2);
     NNS_G2dGetUnpackedCharacterData(param1, &param0->unk_38[param2]);
 
     return param0->unk_38[param2];
@@ -765,7 +765,7 @@ static void ov22_02255ACC (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_0225
 
     v2 = sub_0200723C(param0->unk_5C, 0, 0, 14, 1);
 
-    ResourceCollection_AddResource(param1->unk_14, v2, 0);
+    ResourceCollection_Add(param1->unk_14, v2, 0);
     NNS_G2dGetUnpackedPaletteData(v2, &param1->unk_08[0].unk_04);
 
     param1->unk_08[0].unk_00 = param0->unk_00;
@@ -788,7 +788,7 @@ static void ov22_02255B50 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_0225
         v2 = v0 + 1;
         v1 = sub_0200723C(param0->unk_5C, (v0) * 4 + 134 + 1, 0, 14, 1);
 
-        ResourceCollection_AddResource(param1->unk_14, v1, v2);
+        ResourceCollection_Add(param1->unk_14, v1, v2);
         NNS_G2dGetUnpackedPaletteData(v1, &param1->unk_08[v2].unk_04);
         GF_ASSERT(param1->unk_08[v2].unk_04);
 

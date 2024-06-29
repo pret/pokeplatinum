@@ -42,9 +42,9 @@ typedef struct TextureResourceManager {
 ResourceCollection *ResourceCollection_New(s32 maxResources, enum HeapId heapID);
 void ResourceCollection_Delete(ResourceCollection *collection);
 BOOL ResourceCollection_IsIDUnused(ResourceCollection *collection, int id);
-Resource *ResourceCollection_AddResource(ResourceCollection *collection, void *data, int id);
-Resource *ResourceCollection_AddResourceFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapId heapID);
-void ResourceCollection_RemoveResource(ResourceCollection *collection, Resource *resource);
+Resource *ResourceCollection_Add(ResourceCollection *collection, void *data, int id);
+Resource *ResourceCollection_AddFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapId heapID);
+void ResourceCollection_Remove(ResourceCollection *collection, Resource *resource);
 void ResourceCollection_Clear(ResourceCollection *collection);
 Resource *ResourceCollection_FindResource(ResourceCollection *collection, int id);
 void *Resource_GetData(Resource *resource);

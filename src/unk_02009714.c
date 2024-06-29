@@ -402,7 +402,7 @@ void sub_02009D68 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1)
     GF_ASSERT(param0->unk_04);
 
     sub_0200A1F8(param1);
-    ResourceCollection_RemoveResource(param0->unk_00, param1->unk_00);
+    ResourceCollection_Remove(param0->unk_00, param1->unk_00);
 
     param1->unk_00 = NULL;
     param0->unk_0C--;
@@ -825,7 +825,7 @@ static void * sub_0200A20C (const UnkStruct_02009DC8 * param0)
 
 static void sub_0200A224 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * param1, const char * param2, int param3, int param4, int param5, int param6, int param7)
 {
-    param1->unk_00 = ResourceCollection_AddResourceFromFile(param0->unk_00, param2, param3, param7);
+    param1->unk_00 = ResourceCollection_AddFromFile(param0->unk_00, param2, param3, param7);
     param1->unk_04 = param6;
 
     sub_0200A0D4(param1, param6, param4, param5, param7);
@@ -837,7 +837,7 @@ static void sub_0200A250 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * para
 
     v0 = sub_02006FE8(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = ResourceCollection_AddResource(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceCollection_Add(param0->unk_00, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);
@@ -849,7 +849,7 @@ static void sub_0200A288 (UnkStruct_02009714 * param0, UnkStruct_02009DC8 * para
 
     v0 = sub_0200A2DC(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = ResourceCollection_AddResource(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceCollection_Add(param0->unk_00, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);

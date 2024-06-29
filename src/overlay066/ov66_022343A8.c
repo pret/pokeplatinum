@@ -187,7 +187,7 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
 
         {
             v5 = sub_0200723C(v4, 127, 0, param3, 0);
-            ResourceCollection_AddResource(v0->unk_00, v5, 127);
+            ResourceCollection_Add(v0->unk_00, v5, 127);
             ov66_02231668(v5);
 
             {
@@ -203,7 +203,7 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
         {
             for (v6 = 0; v6 < 2; v6++) {
                 v5 = sub_0200723C(v3, Unk_ov66_02258B28[v6], 0, param3, 0);
-                ResourceCollection_AddResource(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
+                ResourceCollection_Add(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
             }
         }
 
