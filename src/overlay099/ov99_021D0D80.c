@@ -28,7 +28,7 @@
 #include "unk_0200C6E4.h"
 #include "sys_task.h"
 #include "unk_0200F174.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -745,7 +745,7 @@ static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)
 
         for (v3 = 0; v3 < 2; v3++) {
             for (v4 = 0; v4 < 16; v4++) {
-                sub_02017294(&param0->unk_6C[v3][v4]);
+                Easy3DObject_Draw(&param0->unk_6C[v3][v4]);
             }
         }
     }

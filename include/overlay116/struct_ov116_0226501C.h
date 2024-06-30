@@ -1,18 +1,16 @@
 #ifndef POKEPLATINUM_STRUCT_OV116_0226501C_H
 #define POKEPLATINUM_STRUCT_OV116_0226501C_H
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
+#include "easy3d_object.h"
 #include "overlay116/union_ov116_02266FEC.h"
 #include "overlay116/union_ov116_022671EC.h"
 
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    UnkStruct_02017294 unk_00;
-    UnkStruct_020170F4 unk_78;
-    UnkStruct_02017248 unk_88[10];
+    Easy3DObject unk_00;
+    Easy3DModel unk_78;
+    Easy3DAnim unk_88[10];
     UnkUnion_ov116_022671EC unk_150;
     UnkUnion_ov116_02266FEC unk_190;
     UnkUnion_ov116_02266FEC unk_1A0;

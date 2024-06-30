@@ -63,13 +63,13 @@ Static main
 	Object main.nef.p/src_unk_02015920.c.o
 	Object main.nef.p/src_unk_02015F84.c.o
 	Object main.nef.p/src_unk_02017038.c.o
-	Object main.nef.p/src_unk_020170BC.c.o
+	Object main.nef.p/src_easy3d_object.c.o
 	Object main.nef.p/src_unk_02017428.c.o
 	Object main.nef.p/src_unk_02017498.c.o
 	Object main.nef.p/src_unk_02017728.c.o
 	Object main.nef.p/src_heap.c.o
 	Object main.nef.p/src_unk_02018340.c.o
-	Object main.nef.p/src_unk_0201C970.c.o
+	Object main.nef.p/src_easy3d.c.o
 	Object main.nef.p/src_sys_task_manager.c.o
 	Object main.nef.p/src_unk_0201CED8.c.o
 	Object main.nef.p/src_charcode.c.o

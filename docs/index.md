@@ -6,3 +6,7 @@ For more detailed information about the project as a whole, please refer to its
 ## Issues with the source code
 
 - [Fixes for Various Bugs and Glitches](bugs_and_glitches.md)
+
+## Subsystems
+
+- [3D Graphics](3d_rendering.md)

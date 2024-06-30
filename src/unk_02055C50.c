@@ -16,7 +16,7 @@
 #include "overlay005/map_object_anim_cmd.h"
 
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201CED8.h"
 #include "savedata_misc.h"
 #include "unk_02027B70.h"
@@ -132,7 +132,7 @@ static void sub_02055D14 (FieldSystem * fieldSystem, UnkStruct_02055CBC * param1
     param1->unk_60 = Heap_AllocFromHeap(param1->unk_00, v1);
 
     ov5_021DF5B4(v0, 17, param1->unk_60);
-    sub_0201CA3C(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
+    Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
 }
 
 static void sub_02055D48 (UnkStruct_02055CBC * param0)

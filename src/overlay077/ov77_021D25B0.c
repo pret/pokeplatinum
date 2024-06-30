@@ -31,7 +31,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
@@ -1677,7 +1677,7 @@ static void ov77_021D3EDC (UnkStruct_ov77_021D37C0 * param0, int param1)
     {
         BOOL v0;
 
-        v0 = sub_0201CBCC(param0->unk_20.unk_04);
+        v0 = Easy3D_UploadTextureToVRAM(param0->unk_20.unk_04);
         GF_ASSERT(v0);
     }
 
@@ -1715,7 +1715,7 @@ static void ov77_021D3F24 (UnkStruct_ov77_021D37C0 * param0, int param1, int par
 
         param0->unk_20.unk_0C[v0].unk_54 = NARC_AllocAndReadWholeMember(v1, Unk_ov77_021D779C[param1][v0], 76);
 
-        v2 = sub_0201CBB0(param0->unk_20.unk_0C[v0].unk_54, param0->unk_20.unk_04);
+        v2 = Easy3D_BindTextureToResource(param0->unk_20.unk_0C[v0].unk_54, param0->unk_20.unk_04);
         GF_ASSERT(v2);
 
         v3 = NNS_G3dGetMdlSet(param0->unk_20.unk_0C[v0].unk_54);
@@ -1827,7 +1827,7 @@ static void ov77_021D4188 (UnkStruct_ov77_021D37C0 * param0)
     if (param0->unk_25C == 1) {
         for (v0 = 0; v0 < param0->unk_20.unk_21C; v0++) {
             DC_FlushAll();
-            sub_0201CA74(&param0->unk_20.unk_0C[v0].unk_00, &v3, &v1, &v2);
+            Easy3D_DrawRenderObj(&param0->unk_20.unk_0C[v0].unk_00, &v3, &v1, &v2);
         }
     }
 

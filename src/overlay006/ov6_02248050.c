@@ -7,9 +7,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017248.h"
-#include "struct_defs/struct_02017294.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
@@ -17,7 +14,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "heap.h"
 #include "player_avatar.h"
 #include "map_object.h"
@@ -25,9 +22,9 @@
 #include "overlay006/ov6_02248050.h"
 
 typedef struct {
-    UnkStruct_02017294 unk_00;
-    UnkStruct_020170F4 unk_78;
-    UnkStruct_02017248 unk_88[4];
+    Easy3DObject unk_00;
+    Easy3DModel unk_78;
+    Easy3DAnim unk_88[4];
     u32 unk_D8;
 } UnkStruct_ov6_02248140;
 
@@ -50,13 +47,13 @@ typedef struct UnkStruct_ov6_02248498_t {
 } UnkStruct_ov6_02248498;
 
 typedef struct {
-    UnkStruct_02017294 unk_00;
-    UnkStruct_02017248 unk_78[4];
+    Easy3DObject unk_00;
+    Easy3DAnim unk_78[4];
     u32 unk_C8;
 } UnkStruct_ov6_022486B4;
 
 typedef struct {
-    UnkStruct_020170F4 unk_00;
+    Easy3DModel unk_00;
     UnkStruct_ov6_022486B4 unk_10[16];
     void * unk_CD0[4];
     FieldSystem * fieldSystem;
@@ -68,7 +65,7 @@ typedef struct {
     u32 unk_D0C;
 } UnkStruct_ov6_022487F8;
 
-static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017294 * param2)
+static void ov6_02248050 (MapObjectManager * param0, u32 param1, Easy3DObject * param2)
 {
     int v0;
     int v1, v2;
@@ -101,10 +98,10 @@ static void ov6_02248050 (MapObjectManager * param0, u32 param1, UnkStruct_02017
         break;
     }
 
-    sub_02017350(param2, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
+    Easy3DObject_SetPosition(param2, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_022480BC (PlayerAvatar * const playerAvatar, UnkStruct_02017294 * param1)
+static void ov6_022480BC (PlayerAvatar * const playerAvatar, Easy3DObject * param1)
 {
     int v0;
     int v1, v2;
@@ -134,15 +131,15 @@ static void ov6_022480BC (PlayerAvatar * const playerAvatar, UnkStruct_02017294 
         break;
     }
 
-    sub_02017350(param1, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
+    Easy3DObject_SetPosition(param1, (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1), v3.y, (((v2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1));
 }
 
-static void ov6_02248124 (PlayerAvatar * const playerAvatar, UnkStruct_02017294 * param1)
+static void ov6_02248124 (PlayerAvatar * const playerAvatar, Easy3DObject * param1)
 {
     VecFx32 v0;
 
     PlayerAvatar_PosVectorOut(playerAvatar, &v0);
-    sub_02017350(param1, v0.x, v0.y, v0.z);
+    Easy3DObject_SetPosition(param1, v0.x, v0.y, v0.z);
 }
 
 static void ov6_02248140 (UnkStruct_ov6_02248140 * param0, NARC * param1, u32 param2, u32 param3, int param4, NNSFndAllocator * param5)
@@ -151,14 +148,14 @@ static void ov6_02248140 (UnkStruct_ov6_02248140 * param0, NARC * param1, u32 pa
 
     memset(param0, 0, sizeof(UnkStruct_ov6_02248140));
 
-    sub_020170D8(&param0->unk_78, param1, param2, 4);
-    sub_02017258(&param0->unk_00, &param0->unk_78);
+    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, 4);
+    Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
 
     param0->unk_D8 = param4;
 
     for (v0 = 0; v0 < param0->unk_D8; v0++) {
-        sub_02017164(&param0->unk_88[v0], &param0->unk_78, param1, param3 + v0, 4, param5);
-        sub_0201727C(&param0->unk_00, &param0->unk_88[v0]);
+        Easy3DAnim_LoadFrom(&param0->unk_88[v0], &param0->unk_78, param1, param3 + v0, 4, param5);
+        Easy3DObject_AddAnim(&param0->unk_00, &param0->unk_88[v0]);
     }
 }
 
@@ -166,10 +163,10 @@ static void ov6_022481BC (UnkStruct_ov6_02248140 * param0, NNSFndAllocator * par
 {
     int v0;
 
-    sub_02017110(&param0->unk_78);
+    Easy3DModel_Release(&param0->unk_78);
 
     for (v0 = 0; v0 < param0->unk_D8; v0++) {
-        sub_020171A0(&param0->unk_88[v0], param1);
+        Easy3DAnim_Release(&param0->unk_88[v0], param1);
     }
 }
 
@@ -181,7 +178,7 @@ static BOOL ov6_022481F0 (UnkStruct_ov6_02248140 * param0)
     v1 = 1;
 
     for (v0 = 0; v0 < param0->unk_D8; v0++) {
-        v1 &= sub_02017204(&param0->unk_88[v0], FX32_ONE);
+        v1 &= Easy3DAnim_Update(&param0->unk_88[v0], FX32_ONE);
     }
 
     return v1;
@@ -192,13 +189,13 @@ static void ov6_02248224 (UnkStruct_ov6_02248140 * param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_D8; v0++) {
-        sub_020171CC(&param0->unk_88[v0], FX32_ONE);
+        Easy3DAnim_UpdateLooped(&param0->unk_88[v0], FX32_ONE);
     }
 }
 
 static void ov6_02248254 (UnkStruct_ov6_02248140 * param0)
 {
-    sub_02017294(&param0->unk_00);
+    Easy3DObject_Draw(&param0->unk_00);
 }
 
 static void ov6_0224825C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSystem, void * param2)
@@ -238,7 +235,7 @@ static void ov6_022482CC (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
         v2 = ov6_022481F0(&v0->unk_00);
 
         if (v2 == 1) {
-            sub_02017348(&v0->unk_00.unk_00, 0);
+            Easy3DObject_SetVisibility(&v0->unk_00.unk_00, 0);
             v0->unk_EC++;
         }
         break;
@@ -339,7 +336,7 @@ static void ov6_02248410 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
         v2 = ov6_022481F0(&v0->unk_00);
 
         if (v2 == 1) {
-            sub_02017348(&v0->unk_00.unk_00, 0);
+            Easy3DObject_SetVisibility(&v0->unk_00.unk_00, 0);
             v0->unk_EC++;
         }
         break;
@@ -446,15 +443,15 @@ static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
         ov6_02248140(&v0->unk_00[1], v2, 11, 9, 2, &v0->unk_1B8);
         NARC_dtor(v2);
         ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
-        sub_02017348(&v0->unk_00[1].unk_00, 0);
+        Easy3DObject_SetVisibility(&v0->unk_00[1].unk_00, 0);
         v0->unk_1C8++;
     case 1:
         v1 = ov6_022481F0(&v0->unk_00[0]);
         ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[0].unk_00);
 
         if (v1 == 1) {
-            sub_02017348(&v0->unk_00[1].unk_00, 1);
-            sub_02017348(&v0->unk_00[0].unk_00, 0);
+            Easy3DObject_SetVisibility(&v0->unk_00[1].unk_00, 1);
+            Easy3DObject_SetVisibility(&v0->unk_00[0].unk_00, 0);
             ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
             v0->unk_1C8++;
         }
@@ -507,15 +504,15 @@ static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, PlayerAvatar * const 
     GF_ASSERT(param0->unk_C8 == 0);
 
     PlayerAvatar_PosVectorOut(playerAvatar, &v0);
-    sub_02017350(&param0->unk_00, v0.x, v0.y + param2, v0.z + param3);
+    Easy3DObject_SetPosition(&param0->unk_00, v0.x, v0.y + param2, v0.z + param3);
 
     param0->unk_C8 = 1;
 
     for (v1 = 0; v1 < 4; v1++) {
-        sub_02017240(&param0->unk_78[v1], 0);
+        Easy3DAnim_SetFrame(&param0->unk_78[v1], 0);
     }
 
-    sub_02017348(&param0->unk_00, 1);
+    Easy3DObject_SetVisibility(&param0->unk_00, 1);
     Sound_PlayEffect(1575);
 }
 
@@ -531,28 +528,28 @@ static void ov6_02248678 (UnkStruct_ov6_022486B4 * param0)
     v1 = 1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1 &= sub_02017204(&param0->unk_78[v0], FX32_ONE);
+        v1 &= Easy3DAnim_Update(&param0->unk_78[v0], FX32_ONE);
     }
 
     if (v1 == 1) {
         param0->unk_C8 = 0;
-        sub_02017348(&param0->unk_00, 0);
+        Easy3DObject_SetVisibility(&param0->unk_00, 0);
     }
 }
 
-static void ov6_022486B4 (UnkStruct_ov6_022486B4 * param0, UnkStruct_020170F4 * param1, NNSFndAllocator * param2, void ** param3)
+static void ov6_022486B4 (UnkStruct_ov6_022486B4 * param0, Easy3DModel * param1, NNSFndAllocator * param2, void ** param3)
 {
     int v0;
 
     memset(param0, 0, sizeof(UnkStruct_ov6_022486B4));
-    sub_02017258(&param0->unk_00, param1);
+    Easy3DObject_Init(&param0->unk_00, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02017190(&param0->unk_78[v0], param1, param3[v0], param2);
-        sub_0201727C(&param0->unk_00, &param0->unk_78[v0]);
+        Easy3DAnim_LoadFromData(&param0->unk_78[v0], param1, param3[v0], param2);
+        Easy3DObject_AddAnim(&param0->unk_00, &param0->unk_78[v0]);
     }
 
-    sub_02017348(&param0->unk_00, 0);
+    Easy3DObject_SetVisibility(&param0->unk_00, 0);
 }
 
 static void ov6_02248700 (UnkStruct_ov6_022486B4 * param0, NNSFndAllocator * param1)
@@ -560,7 +557,7 @@ static void ov6_02248700 (UnkStruct_ov6_022486B4 * param0, NNSFndAllocator * par
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_020171A0(&param0->unk_78[v0], param1);
+        Easy3DAnim_Release(&param0->unk_78[v0], param1);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov6_022486B4));
@@ -619,7 +616,7 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, 4);
 
-    sub_020170D8(&v0->unk_00, v2, 8, 4);
+    Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, 4);
 
     for (v1 = 0; v1 < 4; v1++) {
         v0->unk_CD0[v1] = sub_0200723C(v2, 4 + v1, 0, 4, 0);
@@ -645,7 +642,7 @@ static void ov6_0224889C (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
         ov6_02248700(&v0->unk_10[v1], &v0->unk_CFC);
     }
 
-    sub_02017110(&v0->unk_00);
+    Easy3DModel_Release(&v0->unk_00);
 
     for (v1 = 0; v1 < 4; v1++) {
         Heap_FreeToHeap(v0->unk_CD0[v1]);
@@ -678,7 +675,7 @@ static void ov6_02248914 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldSy
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
-        sub_02017294(&v0->unk_10[v1].unk_00);
+        Easy3DObject_Draw(&v0->unk_10[v1].unk_00);
     }
 }
 

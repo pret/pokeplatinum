@@ -20,7 +20,7 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201D670.h"
 #include "unk_0202854C.h"
 #include "unk_020508D4.h"
@@ -1312,7 +1312,7 @@ static void ov23_02255EC4 (UnkStruct_ov23_02255EC4 * param0)
 {
     NNSG3dResMdl * v0;
 
-    sub_0201CA24(4, "data/ug_base_cur.nsbmd", &param0->unk_00, &v0, &param0->unk_54);
+    Easy3D_InitRenderObjFromPath(4, "data/ug_base_cur.nsbmd", &param0->unk_00, &v0, &param0->unk_54);
 
     param0->unk_58.x = 0;
     param0->unk_58.y = 0;
@@ -1629,6 +1629,6 @@ static void ov23_022562C8 (UnkStruct_ov5_021D1BEC * param0, FieldSystem * fieldS
         MtxFx33 v1 = {FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE};
         VecFx32 v2 = {FX32_ONE, FX32_ONE, FX32_ONE};
 
-        sub_0201CA74(&v0->unk_00, &v0->unk_58, &v1, &v2);
+        Easy3D_DrawRenderObj(&v0->unk_00, &v0->unk_58, &v1, &v2);
     }
 }

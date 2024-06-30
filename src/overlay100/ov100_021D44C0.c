@@ -4,7 +4,7 @@
 #include "overlay100/struct_ov100_021D49B4.h"
 #include "overlay100/struct_ov100_021D54D0.h"
 
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "overlay100/ov100_021D44C0.h"
 
 void ov100_021D44C0(UnkStruct_ov100_021D49B4 * param0, UnkStruct_ov100_021D54D0 * param1);
@@ -43,7 +43,7 @@ void ov100_021D4510 (UnkStruct_ov100_021D49B4 * param0)
     int v1;
     int v2;
     fx32 v3;
-    fx32 v4 = sub_02017248(&param0->unk_88[0]);
+    fx32 v4 = Easy3DAnim_GetFrame(&param0->unk_88[0]);
     fx32 v5;
 
     v0 = v4 >> FX32_SHIFT;
@@ -64,7 +64,7 @@ void ov100_021D4510 (UnkStruct_ov100_021D49B4 * param0)
         v3 = v5;
     }
 
-    sub_02017240(&param0->unk_88[0], v3);
+    Easy3DAnim_SetFrame(&param0->unk_88[0], v3);
 }
 
 void ov100_021D45A4 (UnkStruct_ov100_021D49B4 * param0)
@@ -110,11 +110,11 @@ void ov100_021D45A4 (UnkStruct_ov100_021D49B4 * param0)
             case 1:
             case 2:
             case 9:
-                param0->unk_00.unk_54.z -= v1[param0->unk_180].unk_08;
+                param0->unk_00.position.z -= v1[param0->unk_180].unk_08;
                 break;
             case 4:
             case 3:
-                param0->unk_00.unk_54.x += v1[param0->unk_180].unk_08;
+                param0->unk_00.position.x += v1[param0->unk_180].unk_08;
                 break;
             }
         }

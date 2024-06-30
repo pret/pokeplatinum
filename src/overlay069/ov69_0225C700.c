@@ -18,8 +18,6 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017294.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -50,7 +48,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -133,15 +131,15 @@ typedef struct {
     VecFx32 unk_00;
     VecFx32 unk_0C;
     VecFx32 unk_18;
-    UnkStruct_02017294 unk_24;
-    UnkStruct_020170F4 unk_9C;
+    Easy3DObject unk_24;
+    Easy3DModel unk_9C;
 } UnkStruct_ov69_0225D71C;
 
 typedef struct {
     UnkStruct_ov69_0225CA7C_sub1 unk_00;
     VecFx32 unk_B804;
-    UnkStruct_02017294 unk_B810[3];
-    UnkStruct_020170F4 unk_B978[3];
+    Easy3DObject unk_B810[3];
+    Easy3DModel unk_B978[3];
 } UnkStruct_ov69_0225CA7C;
 
 typedef struct {
@@ -1559,15 +1557,15 @@ static void ov69_0225D6D8 (UnkStruct_ov69_0225D71C * param0, UnkStruct_ov69_0225
     }
 
     {
-        sub_020170D8(&param0->unk_9C, param1->unk_1A8, 3, param2);
-        sub_02017258(&param0->unk_24, &param0->unk_9C);
+        Easy3DModel_LoadFrom(&param0->unk_9C, param1->unk_1A8, 3, param2);
+        Easy3DObject_Init(&param0->unk_24, &param0->unk_9C);
     }
 }
 
 static void ov69_0225D71C (UnkStruct_ov69_0225D71C * param0)
 {
     {
-        sub_02017110(&param0->unk_9C);
+        Easy3DModel_Release(&param0->unk_9C);
     }
 }
 
@@ -1577,10 +1575,10 @@ static void ov69_0225D728 (UnkStruct_ov69_0225D71C * param0)
 
     ov69_0225D770(param0, &v0);
 
-    sub_02017350(&param0->unk_24, param0->unk_00.x, param0->unk_00.y, param0->unk_00.z);
-    sub_0201736C(&param0->unk_24, param0->unk_0C.x, param0->unk_0C.y, param0->unk_0C.z);
+    Easy3DObject_SetPosition(&param0->unk_24, param0->unk_00.x, param0->unk_00.y, param0->unk_00.z);
+    Easy3DObject_SetScale(&param0->unk_24, param0->unk_0C.x, param0->unk_0C.y, param0->unk_0C.z);
 
-    sub_02017330(&param0->unk_24, &v0);
+    Easy3DObject_DrawRotated(&param0->unk_24, &v0);
 }
 
 static void ov69_0225D760 (const UnkStruct_ov69_0225D71C * param0, VecFx32 * param1)
@@ -1610,8 +1608,8 @@ static void ov69_0225D7A0 (UnkStruct_ov69_0225CA7C * param0, const UnkStruct_ov6
     ov69_0225C980(param0, param1, param4);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020170D8(&param0->unk_B978[v0], param2->unk_1A8, Unk_ov69_0225F028[v0], param4);
-        sub_02017258(&param0->unk_B810[v0], &param0->unk_B978[v0]);
+        Easy3DModel_LoadFrom(&param0->unk_B978[v0], param2->unk_1A8, Unk_ov69_0225F028[v0], param4);
+        Easy3DObject_Init(&param0->unk_B810[v0], &param0->unk_B978[v0]);
     }
 
     if (param3.unk_00_0 == 0) {
@@ -1626,7 +1624,7 @@ static void ov69_0225D838 (UnkStruct_ov69_0225CA7C * param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_02017110(&param0->unk_B978[v0]);
+        Easy3DModel_Release(&param0->unk_B978[v0]);
     }
 }
 
@@ -1641,18 +1639,18 @@ static void ov69_0225D854 (UnkStruct_ov69_0225CA7C * param0, const UnkStruct_ov6
     ov69_0225D770(param1, &v2);
 
     for (v1 = 0; v1 < 3; v1++) {
-        sub_02017350(&param0->unk_B810[v1], v3.x, v3.y, v3.z);
+        Easy3DObject_SetPosition(&param0->unk_B810[v1], v3.x, v3.y, v3.z);
 
         if (v1 == 2) {
-            sub_0201736C(&param0->unk_B810[v1], param0->unk_B804.x, param0->unk_B804.y, param0->unk_B804.z + (FX32_CONST(0.1)));
+            Easy3DObject_SetScale(&param0->unk_B810[v1], param0->unk_B804.x, param0->unk_B804.y, param0->unk_B804.z + (FX32_CONST(0.1)));
         } else {
-            sub_0201736C(&param0->unk_B810[v1], param0->unk_B804.x, param0->unk_B804.y, param0->unk_B804.z);
+            Easy3DObject_SetScale(&param0->unk_B810[v1], param0->unk_B804.x, param0->unk_B804.y, param0->unk_B804.z);
         }
     }
 
     {
         MTX_Identity33(&v0);
-        sub_02017330(&param0->unk_B810[2], &v0);
+        Easy3DObject_DrawRotated(&param0->unk_B810[2], &v0);
     }
 
     {
@@ -1660,7 +1658,7 @@ static void ov69_0225D854 (UnkStruct_ov69_0225CA7C * param0, const UnkStruct_ov6
             MTX_Concat33(&param0->unk_00.unk_04[v1].unk_04, &v2, &v0);
 
             if (param0->unk_00.unk_04[v1].unk_28 != 3) {
-                sub_02017330(&param0->unk_B810[param0->unk_00.unk_04[v1].unk_28], &v0);
+                Easy3DObject_DrawRotated(&param0->unk_B810[param0->unk_00.unk_04[v1].unk_28], &v0);
             }
         }
     }

@@ -13,7 +13,7 @@
 #include "overlay005/struct_ov5_021EDDAC.h"
 
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201DD00.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"
@@ -321,7 +321,7 @@ static void sub_02020DA8 (UnkStruct_02020C44 * param0)
                 v3 = &v2;
             }
 
-            sub_0201CA74(&v0->unk_30, &v0->unk_00, v3, &v0->unk_0C);
+            Easy3D_DrawRenderObj(&v0->unk_30, &v0->unk_00, v3, &v0->unk_0C);
             sub_0202187C(v0);
         }
 

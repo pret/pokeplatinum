@@ -34,7 +34,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -196,7 +196,7 @@ static BOOL FieldMap_Init (OverlayManager * overlayMan, int * param1)
 
         sub_0201DBEC(128, 4);
         sub_02020B90(4, 4);
-        sub_0201CAF4(4);
+        Easy3D_Init(4);
 
         ov5_021D15B4();
         ov5_021D154C();
@@ -337,7 +337,7 @@ static BOOL FieldMap_Exit (OverlayManager * overlayMan, int * param1)
             ov5_021D15E8();
             sub_02020BD0();
             sub_0201DC3C();
-            sub_0201CBA0();
+            Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetMainCallback(NULL, NULL);
             Heap_FreeToHeap(fieldSystem->unk_08);

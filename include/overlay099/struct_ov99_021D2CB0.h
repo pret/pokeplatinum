@@ -7,8 +7,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017294.h"
+#include "easy3d_object.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
 #include "camera.h"
@@ -32,8 +31,8 @@ typedef struct {
     MessageLoader * unk_20;
     Window * unk_24;
     Camera * camera;
-    UnkStruct_020170F4 unk_2C[4];
-    UnkStruct_02017294 unk_6C[2][16];
+    Easy3DModel unk_2C[4];
+    Easy3DObject unk_6C[2][16];
     UnkStruct_ov99_021D2CB0_sub1 unk_F6C;
     UnkStruct_ov99_021D3A40 unk_FA4;
     CellActorData * unk_10E0[5];

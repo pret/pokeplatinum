@@ -11,7 +11,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "unk_0201C970.h"
+#include "easy3d.h"
 #include "unk_0201CED8.h"
 #include "camera.h"
 #include "overlay095/ov95_022476F0.h"
@@ -118,7 +118,7 @@ static void ov95_022477B8 (UnkStruct_ov95_02247958 * param0)
         NNS_G3dGlbPolygonAttr(0, 0, 0, 0, param0->unk_88, 0);
     }
 
-    sub_0201CA74(&param0->unk_04, &param0->unk_68, &v0, &param0->unk_74);
+    Easy3D_DrawRenderObj(&param0->unk_04, &param0->unk_68, &v0, &param0->unk_74);
 }
 
 static void ov95_02247868 (UnkStruct_ov95_02247958 * param0)
@@ -151,8 +151,8 @@ UnkStruct_ov95_02247958 * ov95_022478B4 (UnkStruct_ov95_0224773C * param0, int p
         v0->unk_5C = NNS_G3dGetMdlByIdx(v0->unk_58, 0);
         v0->unk_60 = NNS_G3dGetTex(v0->unk_00);
 
-        sub_0201CBCC(v0->unk_60);
-        sub_0201CBB0(v0->unk_00, v0->unk_60);
+        Easy3D_UploadTextureToVRAM(v0->unk_60);
+        Easy3D_BindTextureToResource(v0->unk_00, v0->unk_60);
 
         NNS_G3dRenderObjInit(&v0->unk_04, v0->unk_5C);
 

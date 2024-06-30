@@ -24,8 +24,6 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_020170F4.h"
-#include "struct_defs/struct_02017294.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -61,7 +59,7 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_020170BC.h"
+#include "easy3d_object.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -90,8 +88,8 @@
 #include "overlay113/ov113_022607D8.h"
 
 typedef struct {
-    UnkStruct_020170F4 unk_00;
-    UnkStruct_02017294 unk_10;
+    Easy3DModel unk_00;
+    Easy3DObject unk_10;
 } UnkStruct_ov113_0225DBCC_sub1;
 
 typedef struct {
@@ -1208,16 +1206,16 @@ static void ov113_0225DAA8 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
         v0 = 27;
     }
 
-    sub_020170D8(&param0->unk_D8.unk_00, param1, v0, 118);
-    sub_02017258(&param0->unk_D8.unk_10, &param0->unk_D8.unk_00);
-    sub_02017350(&param0->unk_D8.unk_10, (FX32_CONST(0)), (FX32_CONST(0)), (FX32_CONST(0)));
-    sub_0201736C(&param0->unk_D8.unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    sub_02017348(&param0->unk_D8.unk_10, 1);
+    Easy3DModel_LoadFrom(&param0->unk_D8.unk_00, param1, v0, 118);
+    Easy3DObject_Init(&param0->unk_D8.unk_10, &param0->unk_D8.unk_00);
+    Easy3DObject_SetPosition(&param0->unk_D8.unk_10, (FX32_CONST(0)), (FX32_CONST(0)), (FX32_CONST(0)));
+    Easy3DObject_SetScale(&param0->unk_D8.unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
+    Easy3DObject_SetVisibility(&param0->unk_D8.unk_10, 1);
 }
 
 static void ov113_0225DAFC (UnkStruct_ov113_0225DBCC * param0)
 {
-    sub_02017110(&param0->unk_D8.unk_00);
+    Easy3DModel_Release(&param0->unk_D8.unk_00);
 }
 
 static void ov113_0225DB08 (UnkStruct_ov113_0225DBCC * param0)
@@ -1250,7 +1248,7 @@ static void ov113_0225DB08 (UnkStruct_ov113_0225DBCC * param0)
     NNS_G3dGePushMtx();
 
     {
-        sub_02017294(&param0->unk_D8.unk_10);
+        Easy3DObject_Draw(&param0->unk_D8.unk_10);
         ov113_0225E4A0(&param0->unk_194);
     }
 
