@@ -1133,7 +1133,7 @@ scr_seq_files = files(
 
 scr_seq_narc_order = files('scripts.order')
 
-src_seq_narc = custom_target('scr_seq.narc',
+scr_seq_narc = custom_target('scr_seq.narc',
     output: [
         'scr_seq.narc',
         'scr_seq.naix',
@@ -1151,4 +1151,6 @@ src_seq_narc = custom_target('scr_seq.narc',
     ]
 )
 
-nitrofs_files += src_seq_narc
+nitrofs_files += scr_seq_narc
+
+naix_headers += scr_seq_narc[1]
