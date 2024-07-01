@@ -65,7 +65,7 @@ typedef struct {
 typedef struct {
     CellActor *unk_00[2];
     UnkStruct_ov21_021D4CA0 *unk_08[2];
-    UnkStruct_02009DC8 *unk_10[4];
+    SpriteResource *unk_10[4];
     CellActor *unk_20[4];
     int unk_30[2];
     void *unk_38[2];
@@ -554,9 +554,9 @@ static void ov21_021E6FD8(UnkStruct_ov21_021E6C60 *param0, UnkStruct_ov21_021E6A
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
     sub_0200A4E4(param0->unk_10[0]);
-    sub_02009D68(v0->unk_13C[0], param0->unk_10[0]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_10[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_10[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_10[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_10[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_10[3]);
 }
 
 static void ov21_021E700C(UnkStruct_ov21_021E6C60 *param0, UnkStruct_ov21_021E6A34 *param1, int param2)
@@ -604,7 +604,7 @@ static void ov21_021E70D4(UnkStruct_ov21_021E6C60 *param0, UnkStruct_ov21_021E6A
 {
     Window *v0;
     UnkStruct_ov21_021D4CB8 v1;
-    UnkStruct_02009DC8 *v2;
+    SpriteResource *v2;
     UnkStruct_ov21_021D13FC *v3 = param1->unk_00;
     int v4;
     u32 v5;

@@ -545,7 +545,7 @@ static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
     sub_0200A6DC(param0->unk_D84[1][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_D74[v0]);
+        SpriteResourceCollection_Delete(param0->unk_D74[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_BE4);

@@ -668,9 +668,9 @@ static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1)
 {
     u8 *v0;
     u32 v1;
-    UnkStruct_02009DC8 *v2;
+    SpriteResource *v2;
     NNSG2dImageProxy *v3;
-    UnkStruct_02009DC8 *v4;
+    SpriteResource *v4;
     const NNSG2dImagePaletteProxy *v5;
 
     v0 = Heap_AllocFromHeap(param0->unk_1C6, ((32 * 10 * 10) * 2));

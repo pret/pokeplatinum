@@ -722,7 +722,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     CellActor *v1;
     UnkStruct_ov21_021D4CB8 v2;
     Window *v3;
-    UnkStruct_02009DC8 *v4;
+    SpriteResource *v4;
     VecFx32 v5;
     const UnkStruct_ov21_021D37DC *v6;
     u32 v7 = ov21_021D36D8(param1);

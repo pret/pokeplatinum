@@ -56,9 +56,9 @@ static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225ADC0(UnkStruct_ov22_0225AB54 *param0, UnkStruct_ov22_0225AE9C *param1);
 static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0);
 static BOOL ov22_0225AF34(const UnkStruct_ov22_0225AE9C *param0);
-static void ov22_0225AA34(UnkStruct_02009DC8 **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
-static void ov22_0225AAC0(UnkStruct_02009DC8 **param0, SpriteResourceCollection **param1);
-static void ov22_0225AAF4(UnkStruct_02009DC8 **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3);
+static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
+static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1);
+static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3);
 static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 param2, int param3);
 static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 *param0);
 
@@ -349,7 +349,7 @@ static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollect
     ov22_0225AAC0(param0->unk_00, param1);
 }
 
-static void ov22_0225AA34(UnkStruct_02009DC8 **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
+static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     param0[0] = sub_02009A4C(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
@@ -365,17 +365,17 @@ static void ov22_0225AA34(UnkStruct_02009DC8 **param0, SpriteResourceCollection 
     param0[3] = sub_02009BC4(param1[3], param3, param7, 0, param9 + param7, 3, param2);
 }
 
-static void ov22_0225AAC0(UnkStruct_02009DC8 **param0, SpriteResourceCollection **param1)
+static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1)
 {
     sub_0200A4E4(param0[0]);
     sub_0200A6DC(param0[1]);
-    sub_02009D68(param1[0], param0[0]);
-    sub_02009D68(param1[1], param0[1]);
-    sub_02009D68(param1[2], param0[2]);
-    sub_02009D68(param1[3], param0[3]);
+    SpriteResourceCollection_Remove(param1[0], param0[0]);
+    SpriteResourceCollection_Remove(param1[1], param0[1]);
+    SpriteResourceCollection_Remove(param1[2], param0[2]);
+    SpriteResourceCollection_Remove(param1[3], param0[3]);
 }
 
-static void ov22_0225AAF4(UnkStruct_02009DC8 **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3)
+static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3)
 {
     sub_020093B4(param2, sub_02009E08(param0[0]), sub_02009E08(param0[1]), sub_02009E08(param0[2]), sub_02009E08(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }

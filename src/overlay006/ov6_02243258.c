@@ -73,10 +73,10 @@ typedef struct {
     SpriteResourceCollection *unk_204;
     SpriteResourceCollection *unk_208;
     SpriteResourceCollection *unk_20C;
-    UnkStruct_02009DC8 *unk_210[4];
-    UnkStruct_02009DC8 *unk_220[3];
-    UnkStruct_02009DC8 *unk_22C[4];
-    UnkStruct_02009DC8 *unk_23C[2];
+    SpriteResource *unk_210[4];
+    SpriteResource *unk_220[3];
+    SpriteResource *unk_22C[4];
+    SpriteResource *unk_23C[2];
     UnkStruct_020711EC *unk_244;
     CellActor *unk_248;
     CellActor *unk_24C;
@@ -142,7 +142,7 @@ typedef struct {
 typedef struct {
     s16 unk_00;
     s16 unk_02;
-    UnkStruct_02009DC8 *unk_04;
+    SpriteResource *unk_04;
 } UnkStruct_ov6_02243258_sub1;
 
 typedef struct {
@@ -289,9 +289,9 @@ static void ov6_02244FE4(SysTask *param0, void *param1);
 static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, ArchivedSprite *param1);
 static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 param2);
 static void *ov6_022450E4(ArchivedSprite *param0, u32 param1);
-static UnkStruct_02009DC8 *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1);
+static SpriteResource *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1);
 static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1);
-static UnkStruct_02009DC8 *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1);
+static SpriteResource *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1);
 static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1);
 static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0);
 static CellActor *ov6_0224529C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1);
@@ -399,10 +399,10 @@ static void ov6_0224339C(UnkStruct_ov6_02243258 *param0)
         }
     }
 
-    sub_02009754(param0->unk_198);
-    sub_02009754(param0->unk_19C);
-    sub_02009754(param0->unk_1A0);
-    sub_02009754(param0->unk_1A4);
+    SpriteResourceCollection_Delete(param0->unk_198);
+    SpriteResourceCollection_Delete(param0->unk_19C);
+    SpriteResourceCollection_Delete(param0->unk_1A0);
+    SpriteResourceCollection_Delete(param0->unk_1A4);
     Heap_FreeToHeap(param0->unk_1A8);
     Heap_FreeToHeap(param0->unk_1AC);
     Heap_FreeToHeap(param0->unk_1B0);
@@ -1661,7 +1661,7 @@ static void ov6_02244734(SysTask *param0, void *param1)
 static void ov6_022447B4(SysTask *param0, void *param1)
 {
     UnkStruct_ov6_02243FFC *v0 = param1;
-    UnkStruct_02009DC8 *v1 = sub_02009DC8(v0->unk_200, 0);
+    SpriteResource *v1 = sub_02009DC8(v0->unk_200, 0);
 
     switch (v0->unk_268) {
     case 0:
@@ -1675,7 +1675,7 @@ static void ov6_022447B4(SysTask *param0, void *param1)
 static void ov6_022447EC(SysTask *param0, void *param1)
 {
     UnkStruct_ov6_02243FFC *v0 = param1;
-    UnkStruct_02009DC8 *v1 = sub_02009DC8(v0->unk_200, 0);
+    SpriteResource *v1 = sub_02009DC8(v0->unk_200, 0);
 
     if (v0->unk_268 == 1) {
         sub_02009D4C(v1);
@@ -1824,10 +1824,10 @@ static void ov6_02244B6C(UnkStruct_ov6_02243FFC *param0)
         }
     }
 
-    sub_02009754(param0->unk_200);
-    sub_02009754(param0->unk_204);
-    sub_02009754(param0->unk_208);
-    sub_02009754(param0->unk_20C);
+    SpriteResourceCollection_Delete(param0->unk_200);
+    SpriteResourceCollection_Delete(param0->unk_204);
+    SpriteResourceCollection_Delete(param0->unk_208);
+    SpriteResourceCollection_Delete(param0->unk_20C);
     CellActorCollection_DeleteAll(param0->unk_70);
     CellActorCollection_Delete(param0->unk_70);
 }
@@ -2081,9 +2081,9 @@ static void *ov6_022450E4(ArchivedSprite *param0, u32 param1)
     return v0;
 }
 
-static UnkStruct_02009DC8 *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1)
+static SpriteResource *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009A4C(param0->unk_200, param1, 5, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
     return v0;
@@ -2092,7 +2092,7 @@ static UnkStruct_02009DC8 *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *pa
 static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1)
 {
     u32 v0;
-    UnkStruct_02009DC8 *v1;
+    SpriteResource *v1;
     const NNSG2dImageProxy *v2;
 
     v1 = sub_02009DC8(param0->unk_200, 3);
@@ -2103,9 +2103,9 @@ static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1)
     GX_LoadOBJ(param1, v0, ((32 * 10) * 10));
 }
 
-static UnkStruct_02009DC8 *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1)
+static SpriteResource *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009B04(param0->unk_204, param1, 3, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
     return v0;
@@ -2114,8 +2114,8 @@ static UnkStruct_02009DC8 *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *pa
 static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1)
 {
     u32 v0;
-    UnkStruct_02009DC8 *v1;
-    UnkStruct_02009DC8 *v2;
+    SpriteResource *v1;
+    SpriteResource *v2;
     NNSG2dImageProxy *v3;
     const NNSG2dImagePaletteProxy *v4;
 
@@ -2132,10 +2132,10 @@ static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1)
 static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
 {
     int v0;
-    UnkStruct_02009DC8 *v1 = sub_02009DC8(param0->unk_200, 3);
+    SpriteResource *v1 = sub_02009DC8(param0->unk_200, 3);
 
     sub_0200A4E4(v1);
-    sub_02009D68(param0->unk_200, v1);
+    SpriteResourceCollection_Remove(param0->unk_200, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_210[v0] == v1) {
@@ -2148,7 +2148,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
 
     v1 = sub_02009DC8(param0->unk_204, 2);
     sub_0200A6DC(v1);
-    sub_02009D68(param0->unk_204, v1);
+    SpriteResourceCollection_Remove(param0->unk_204, v1);
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_220[v0] == v1) {
@@ -2161,7 +2161,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
     v1 = sub_02009DC8(param0->unk_208, 3);
 
     sub_02009D4C(v1);
-    sub_02009D68(param0->unk_208, v1);
+    SpriteResourceCollection_Remove(param0->unk_208, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_22C[v0] == v1) {

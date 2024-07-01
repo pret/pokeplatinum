@@ -30,7 +30,7 @@ typedef struct UnkStruct_ov77_021D5564_t {
     CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
     SpriteResourceCollection *unk_190[4];
-    UnkStruct_02009DC8 *unk_1A0[11][4];
+    SpriteResource *unk_1A0[11][4];
     CellActor *unk_250[17];
     CellActorResourceData unk_294[3];
     NNSG2dCellTransferState *unk_300;
@@ -216,7 +216,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);

@@ -601,7 +601,7 @@ static void ov65_022358CC(UnkStruct_ov65_022358CC *param0)
     ov65_02235900(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);
@@ -672,7 +672,7 @@ static void ov65_02235A60(UnkStruct_ov65_022358CC *param0)
     sub_0200A6DC(param0->unk_1A0.unk_00[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param0->unk_190[v0], param0->unk_1A0.unk_00[v0]);
+        SpriteResourceCollection_Remove(param0->unk_190[v0], param0->unk_1A0.unk_00[v0]);
     }
 }
 

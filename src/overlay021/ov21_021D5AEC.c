@@ -781,7 +781,7 @@ static void ov21_021D6538(UnkStruct_ov21_021D71A8 *param0, int param1)
 
 static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009DC8(param0->unk_80[0], 81);
     sub_0200A4E4(v0);
@@ -792,15 +792,15 @@ static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0)
     v0 = sub_02009DC8(param0->unk_80[0], 111);
     sub_0200A4E4(v0);
 
-    sub_02009754(param0->unk_80[0]);
-    sub_02009754(param0->unk_80[1]);
-    sub_02009754(param0->unk_80[2]);
-    sub_02009754(param0->unk_80[3]);
+    SpriteResourceCollection_Delete(param0->unk_80[0]);
+    SpriteResourceCollection_Delete(param0->unk_80[1]);
+    SpriteResourceCollection_Delete(param0->unk_80[2]);
+    SpriteResourceCollection_Delete(param0->unk_80[3]);
 }
 
 static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13FC *param1, int param2)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
     NARC *v1 = ov21_021D26E0(param1);
 
     v0 = sub_02009A4C(param0->unk_80[0], v1, 81, 1, 81, NNS_G2D_VRAM_TYPE_2DMAIN, param2);

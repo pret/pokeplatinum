@@ -158,7 +158,7 @@ typedef struct {
 typedef struct {
     Easy3DModel unk_00[5];
     Easy3DModel unk_50;
-    UnkStruct_02009DC8 *unk_60[4];
+    SpriteResource *unk_60[4];
     CellActorResourceData unk_70;
 } UnkStruct_ov115_02264A40;
 
@@ -237,7 +237,7 @@ typedef struct {
 } UnkStruct_ov115_02262E64;
 
 typedef struct {
-    UnkStruct_02009DC8 *unk_00[4];
+    SpriteResource *unk_00[4];
     CellActorResourceData unk_10;
     CellActor *unk_34;
     u8 unk_38;
@@ -254,7 +254,7 @@ typedef struct {
 } UnkStruct_ov115_022632C8;
 
 typedef struct {
-    UnkStruct_02009DC8 *unk_00[4];
+    SpriteResource *unk_00[4];
     CellActorResourceData unk_10;
     CellActor *unk_34;
     Window unk_38;
@@ -262,7 +262,7 @@ typedef struct {
     UnkStruct_02012B20 *unk_4C;
     SpriteManagerAllocation unk_50;
     Strbuf *unk_5C;
-    UnkStruct_02009DC8 *unk_60;
+    SpriteResource *unk_60;
     UnkStruct_ov115_02261304 unk_64;
     UnkStruct_ov115_02261304 unk_7C;
     s16 unk_94;
@@ -291,7 +291,7 @@ typedef struct {
     UnkStruct_0200C738 unk_20;
     SpriteResourceCollection *unk_1AC[4];
     CellActorResourceData unk_1BC;
-    UnkStruct_02009DC8 *unk_1E0[4];
+    SpriteResource *unk_1E0[4];
     UnkStruct_02012744 *unk_1F0;
     Camera *camera;
     VecFx32 unk_1F8;
@@ -2703,10 +2703,10 @@ static void ov115_022630DC(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_022
     {
         sub_0200A4E4(param0->unk_00[0]);
         sub_0200A6DC(param0->unk_00[1]);
-        sub_02009D68(param1->unk_1AC[0], param0->unk_00[0]);
-        sub_02009D68(param1->unk_1AC[1], param0->unk_00[1]);
-        sub_02009D68(param1->unk_1AC[2], param0->unk_00[2]);
-        sub_02009D68(param1->unk_1AC[3], param0->unk_00[3]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[0], param0->unk_00[0]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_00[1]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[2], param0->unk_00[2]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[3], param0->unk_00[3]);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov115_02263130));
@@ -3206,7 +3206,7 @@ static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0)
     CellActorCollection_Delete(param0->unk_1C);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_1AC[v0]);
+        SpriteResourceCollection_Delete(param0->unk_1AC[v0]);
     }
 
     sub_0201E958();
@@ -3240,10 +3240,10 @@ static void ov115_02263B78(UnkStruct_ov115_02261ADC *param0)
     {
         sub_0200A4E4(param0->unk_1E0[0]);
         sub_0200A6DC(param0->unk_1E0[1]);
-        sub_02009D68(param0->unk_1AC[0], param0->unk_1E0[0]);
-        sub_02009D68(param0->unk_1AC[1], param0->unk_1E0[1]);
-        sub_02009D68(param0->unk_1AC[2], param0->unk_1E0[2]);
-        sub_02009D68(param0->unk_1AC[3], param0->unk_1E0[3]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[0], param0->unk_1E0[0]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[1], param0->unk_1E0[1]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[2], param0->unk_1E0[2]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[3], param0->unk_1E0[3]);
     }
 }
 
@@ -3654,10 +3654,10 @@ static void ov115_02264564(UnkStruct_ov115_02261ADC *param0)
     {
         sub_0200A4E4(param0->unk_760.unk_60[0]);
         sub_0200A6DC(param0->unk_760.unk_60[1]);
-        sub_02009D68(param0->unk_1AC[0], param0->unk_760.unk_60[0]);
-        sub_02009D68(param0->unk_1AC[1], param0->unk_760.unk_60[1]);
-        sub_02009D68(param0->unk_1AC[2], param0->unk_760.unk_60[2]);
-        sub_02009D68(param0->unk_1AC[3], param0->unk_760.unk_60[3]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[0], param0->unk_760.unk_60[0]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[1], param0->unk_760.unk_60[1]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[2], param0->unk_760.unk_60[2]);
+        SpriteResourceCollection_Remove(param0->unk_1AC[3], param0->unk_760.unk_60[3]);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -4478,7 +4478,7 @@ static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
     {
         sub_02012BD8(param0->unk_48);
         sub_0200A6DC(param0->unk_60);
-        sub_02009D68(param1->unk_1AC[1], param0->unk_60);
+        SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_60);
         sub_0201EE28(&param0->unk_50);
         sub_02012B48(param0->unk_4C);
         Strbuf_Free(param0->unk_5C);
@@ -4489,10 +4489,10 @@ static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
     {
         sub_0200A4E4(param0->unk_00[0]);
         sub_0200A6DC(param0->unk_00[1]);
-        sub_02009D68(param1->unk_1AC[0], param0->unk_00[0]);
-        sub_02009D68(param1->unk_1AC[1], param0->unk_00[1]);
-        sub_02009D68(param1->unk_1AC[2], param0->unk_00[2]);
-        sub_02009D68(param1->unk_1AC[3], param0->unk_00[3]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[0], param0->unk_00[0]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[1], param0->unk_00[1]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[2], param0->unk_00[2]);
+        SpriteResourceCollection_Remove(param1->unk_1AC[3], param0->unk_00[3]);
     }
 }
 

@@ -48,7 +48,7 @@ typedef struct {
     CellActorCollection *unk_444;
     UnkStruct_0200C738 unk_448;
     SpriteResourceCollection *unk_5D4[6];
-    UnkStruct_02009DC8 *unk_5EC[6];
+    SpriteResource *unk_5EC[6];
     CellActorResourceData unk_604;
     CellActor *unk_628;
     int unk_62C;

@@ -11,7 +11,7 @@ typedef struct {
     CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
     SpriteResourceCollection *unk_190[4];
-    UnkStruct_02009DC8 *unk_1A0[1][4];
+    SpriteResource *unk_1A0[1][4];
 } UnkStruct_ov105_02245AAC;
 
 #endif // POKEPLATINUM_STRUCT_OV105_02245AAC_H

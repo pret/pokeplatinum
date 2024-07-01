@@ -6,7 +6,7 @@
 #include "cell_actor.h"
 
 typedef struct {
-    UnkStruct_02009DC8 *unk_00[4];
+    SpriteResource *unk_00[4];
     BOOL unk_10;
     CellActorResourceData unk_14;
 } UnkStruct_ov83_0223D95C;

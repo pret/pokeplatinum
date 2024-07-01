@@ -73,7 +73,7 @@ typedef struct {
     Window unk_00[1];
     s32 unk_10;
     CellActor *unk_14;
-    UnkStruct_02009DC8 *unk_18[4];
+    SpriteResource *unk_18[4];
     u16 unk_28;
     u16 unk_2A;
     UnkStruct_ov68_0225DB8C unk_2C;
@@ -555,7 +555,7 @@ static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0)
     CellActorCollection_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_194[v0]);
+        SpriteResourceCollection_Delete(param0->unk_194[v0]);
     }
 
     sub_0201E958();
@@ -874,7 +874,7 @@ static void ov68_0225D02C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         sub_0200A6DC(param0->unk_18[1]);
 
         for (v1 = 0; v1 < 4; v1++) {
-            sub_02009D68(param2->unk_194[v1], param0->unk_18[v1]);
+            SpriteResourceCollection_Remove(param2->unk_194[v1], param0->unk_18[v1]);
         }
     }
 }

@@ -95,7 +95,7 @@ struct UnkStruct_02087A10_t {
     CellActorCollection *unk_188;
     UnkStruct_0200C738 unk_18C;
     SpriteResourceCollection *unk_318[4];
-    UnkStruct_02009DC8 *unk_328[2][4];
+    SpriteResource *unk_328[2][4];
     CellActorResourceData unk_348;
     CellActorResourceData unk_36C;
     CellActor *unk_390[14];
@@ -1154,7 +1154,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     sub_0200A6DC(v0->unk_328[1][1]);
 
     for (v2 = 0; v2 < 4; v2++) {
-        sub_02009754(v0->unk_318[v2]);
+        SpriteResourceCollection_Delete(v0->unk_318[v2]);
     }
 
     CellActorCollection_Delete(v0->unk_188);

@@ -36,7 +36,7 @@ CellActor *ov21_021D22A8(const UnkStruct_ov21_021D13FC *param0);
 CellActor *ov21_021D22C4(const UnkStruct_ov21_021D13FC *param0);
 void ov21_021D22E0(UnkStruct_ov21_021D13FC *param0, UnkStruct_ov21_021D4CB8 *param1, int param2, int param3, u32 param4);
 void ov21_021D22F8(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4CB8 *param1, int param2, int param3, u32 param4);
-UnkStruct_02009DC8 *ov21_021D2344(const UnkStruct_ov21_021D13FC *param0, int param1);
+SpriteResource *ov21_021D2344(const UnkStruct_ov21_021D13FC *param0, int param1);
 void ov21_021D2360(const UnkStruct_ov21_021D13FC *param0, GXOamMode param1);
 void ov21_021D238C(const UnkStruct_ov21_021D13FC *param0, int param1);
 void ov21_021D23C0(const UnkStruct_ov21_021D13FC *param0, BOOL param1);

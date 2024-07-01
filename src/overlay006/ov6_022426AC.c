@@ -23,7 +23,7 @@
 
 typedef struct UnkStruct_ov6_022426B8_t {
     SpriteResourceCollection *unk_00[4];
-    UnkStruct_02009DC8 *unk_10[4];
+    SpriteResource *unk_10[4];
     void *unk_20;
     void *unk_24;
     ArchivedSprite unk_28;
@@ -141,7 +141,7 @@ void ov6_02242828(UnkStruct_ov6_022426B8 *param0)
     sub_0200A6DC(param0->unk_10[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_00[v0]);
+        SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_38);
@@ -165,8 +165,8 @@ static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollect
 {
     int v0;
     u32 v1, v2;
-    UnkStruct_02009DC8 *v3;
-    UnkStruct_02009DC8 *v4;
+    SpriteResource *v3;
+    SpriteResource *v4;
     NNSG2dImageProxy *v5;
     const NNSG2dImagePaletteProxy *v6;
 

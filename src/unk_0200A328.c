@@ -12,7 +12,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 
-BOOL sub_0200A328(const UnkStruct_02009DC8 *param0)
+BOOL sub_0200A328(const SpriteResource *param0)
 {
     UnkStruct_0200A328 v0;
 
@@ -42,7 +42,7 @@ void sub_0200A368(const UnkStruct_02009CFC *param0)
     }
 }
 
-BOOL sub_0200A39C(const UnkStruct_02009DC8 *param0)
+BOOL sub_0200A39C(const SpriteResource *param0)
 {
     UnkStruct_0200A328 v0;
 
@@ -57,7 +57,7 @@ BOOL sub_0200A39C(const UnkStruct_02009DC8 *param0)
     return sub_0201EA7C(&v0);
 }
 
-BOOL sub_0200A3DC(const UnkStruct_02009DC8 *param0)
+BOOL sub_0200A3DC(const SpriteResource *param0)
 {
     UnkStruct_0200A328 v0;
 
@@ -87,7 +87,7 @@ void sub_0200A41C(const UnkStruct_02009CFC *param0)
     }
 }
 
-BOOL sub_0200A450(const UnkStruct_02009DC8 *param0)
+BOOL sub_0200A450(const SpriteResource *param0)
 {
     UnkStruct_0200A328 v0;
 
@@ -102,7 +102,7 @@ BOOL sub_0200A450(const UnkStruct_02009DC8 *param0)
     return sub_0201EA7C(&v0);
 }
 
-void sub_0200A490(const UnkStruct_02009DC8 *param0, const UnkStruct_02009DC8 *param1)
+void sub_0200A490(const SpriteResource *param0, const SpriteResource *param1)
 {
     int v0;
     NNSG2dCharacterData *v1;
@@ -116,7 +116,7 @@ void sub_0200A490(const UnkStruct_02009DC8 *param0, const UnkStruct_02009DC8 *pa
     sub_0201EB08(v0, v1);
 }
 
-void sub_0200A4C0(const UnkStruct_02009DC8 *param0)
+void sub_0200A4C0(const SpriteResource *param0)
 {
     int v0;
     NNSG2dCharacterData *v1;
@@ -129,7 +129,7 @@ void sub_0200A4C0(const UnkStruct_02009DC8 *param0)
     sub_0201EB08(v0, v1);
 }
 
-void sub_0200A4E4(UnkStruct_02009DC8 *param0)
+void sub_0200A4E4(SpriteResource *param0)
 {
     int v0;
 
@@ -153,7 +153,7 @@ void sub_0200A508(UnkStruct_02009CFC *param0)
     }
 }
 
-NNSG2dImageProxy *sub_0200A534(const UnkStruct_02009DC8 *param0)
+NNSG2dImageProxy *sub_0200A534(const SpriteResource *param0)
 {
     int v0;
 
@@ -164,7 +164,7 @@ NNSG2dImageProxy *sub_0200A534(const UnkStruct_02009DC8 *param0)
     return sub_0201EBDC(v0);
 }
 
-NNSG2dImageProxy *sub_0200A558(const UnkStruct_02009DC8 *param0, const UnkStruct_02009DC8 *param1)
+NNSG2dImageProxy *sub_0200A558(const SpriteResource *param0, const SpriteResource *param1)
 {
     int v0;
     NNSG2dCellDataBank *v1;
@@ -195,7 +195,7 @@ void sub_0200A5B4(const NNSG2dImageProxy *param0)
     sub_0201ED1C(param0);
 }
 
-BOOL sub_0200A5C8(const UnkStruct_02009DC8 *param0)
+BOOL sub_0200A5C8(const SpriteResource *param0)
 {
     UnkStruct_0200A5C8 v0;
 
@@ -225,7 +225,7 @@ void sub_0200A60C(const UnkStruct_02009CFC *param0)
     }
 }
 
-BOOL sub_0200A640(const UnkStruct_02009DC8 *param0)
+BOOL sub_0200A640(const SpriteResource *param0)
 {
     UnkStruct_0200A5C8 v0;
 
@@ -255,7 +255,7 @@ void sub_0200A684(const UnkStruct_02009CFC *param0)
     }
 }
 
-void sub_0200A6B8(const UnkStruct_02009DC8 *param0)
+void sub_0200A6B8(const SpriteResource *param0)
 {
     NNSG2dPaletteData *v0;
     int v1;
@@ -269,7 +269,7 @@ void sub_0200A6B8(const UnkStruct_02009DC8 *param0)
     sub_0201F990(v1, v0);
 }
 
-void sub_0200A6DC(UnkStruct_02009DC8 *param0)
+void sub_0200A6DC(SpriteResource *param0)
 {
     int v0;
 
@@ -293,7 +293,7 @@ void sub_0200A700(UnkStruct_02009CFC *param0)
     }
 }
 
-const NNSG2dImagePaletteProxy *sub_0200A72C(const UnkStruct_02009DC8 *param0, NNSG2dImageProxy *param1)
+const NNSG2dImagePaletteProxy *sub_0200A72C(const SpriteResource *param0, NNSG2dImageProxy *param1)
 {
     int v0;
 
@@ -309,7 +309,7 @@ const NNSG2dImagePaletteProxy *sub_0200A72C(const UnkStruct_02009DC8 *param0, NN
     return sub_0201FA58(v0);
 }
 
-u32 sub_0200A760(const UnkStruct_02009DC8 *param0, NNS_G2D_VRAM_TYPE param1)
+u32 sub_0200A760(const SpriteResource *param0, NNS_G2D_VRAM_TYPE param1)
 {
     int v0;
     const NNSG2dImagePaletteProxy *v1;

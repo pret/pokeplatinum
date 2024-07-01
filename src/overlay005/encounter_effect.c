@@ -748,7 +748,7 @@ void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0)
     CellActorCollection_Delete(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 }
 
@@ -773,7 +773,7 @@ void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1
     sub_0200A6DC(param1->unk_00[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param0->unk_190[v0], param1->unk_00[v0]);
+        SpriteResourceCollection_Remove(param0->unk_190[v0], param1->unk_00[v0]);
     }
 }
 

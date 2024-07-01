@@ -118,8 +118,8 @@ typedef struct {
     CellActor *unk_04;
     CellActor *unk_08;
     CellActor *unk_0C[2];
-    UnkStruct_02009DC8 *unk_14[4];
-    UnkStruct_02009DC8 *unk_24[4];
+    SpriteResource *unk_14[4];
+    SpriteResource *unk_24[4];
     const UnkStruct_ov21_021E9DB0 *unk_34;
     int unk_38;
     SysTask *unk_3C;
@@ -604,18 +604,18 @@ static void ov21_021E7AA0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     sub_0200A4E4(param0->unk_14[0]);
     sub_0200A6DC(param0->unk_14[1]);
 
-    sub_02009D68(v0->unk_13C[0], param0->unk_14[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_14[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_14[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_14[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_14[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_14[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_14[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_14[3]);
 
     sub_0200A4E4(param0->unk_24[0]);
     sub_0200A6DC(param0->unk_24[1]);
 
-    sub_02009D68(v0->unk_13C[0], param0->unk_24[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_24[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_24[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_24[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_24[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_24[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_24[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_24[3]);
 
     Heap_FreeToHeap(param0->unk_BC);
     Heap_FreeToHeap(param0->unk_C0);

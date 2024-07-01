@@ -51,7 +51,7 @@ typedef struct {
 
 typedef struct {
     CellActor *unk_00[4];
-    UnkStruct_02009DC8 *unk_10[4];
+    SpriteResource *unk_10[4];
     UnkStruct_ov21_021D4CA0 *unk_20[2];
     UnkStruct_ov21_021D2648 unk_28[4];
     int unk_A8[4];
@@ -544,10 +544,10 @@ static void ov21_021DFDC8(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
 
     sub_0200A4E4(param0->unk_10[0]);
     sub_0200A6DC(param0->unk_10[1]);
-    sub_02009D68(v0->unk_13C[0], param0->unk_10[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_10[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_10[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_10[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_10[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_10[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_10[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_10[3]);
 }
 
 static void ov21_021DFE0C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3)

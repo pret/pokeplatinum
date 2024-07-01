@@ -20,7 +20,7 @@
 typedef struct {
     u16 unk_00;
     u16 unk_02;
-    UnkStruct_02009DC8 *unk_04;
+    SpriteResource *unk_04;
 } UnkStruct_ov101_021D7E48_sub1;
 
 typedef struct UnkStruct_ov101_021D7E48_t {
@@ -126,10 +126,10 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
         }
     }
 
-    sub_02009754(param0->unk_1A0);
-    sub_02009754(param0->unk_1A4);
-    sub_02009754(param0->unk_1A8);
-    sub_02009754(param0->unk_1AC);
+    SpriteResourceCollection_Delete(param0->unk_1A0);
+    SpriteResourceCollection_Delete(param0->unk_1A4);
+    SpriteResourceCollection_Delete(param0->unk_1A8);
+    SpriteResourceCollection_Delete(param0->unk_1AC);
     Heap_FreeToHeap(param0->unk_1B0);
     Heap_FreeToHeap(param0->unk_1B4);
     Heap_FreeToHeap(param0->unk_1B8);
@@ -277,7 +277,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
         for (v0 = 0; v0 < param0->unk_04; v0++) {
             if (param0->unk_1B0[v0].unk_00 == param1) {
                 sub_0200A4E4(param0->unk_1B0[v0].unk_04);
-                sub_02009D68(param0->unk_1A0, param0->unk_1B0[v0].unk_04);
+                SpriteResourceCollection_Remove(param0->unk_1A0, param0->unk_1B0[v0].unk_04);
                 param0->unk_1B0[v0].unk_00 = param0->unk_08;
                 break;
             }
@@ -288,7 +288,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
         for (v0 = 0; v0 < param0->unk_05; v0++) {
             if (param0->unk_1B4[v0].unk_00 == param2) {
                 sub_0200A6DC(param0->unk_1B4[v0].unk_04);
-                sub_02009D68(param0->unk_1A4, param0->unk_1B4[v0].unk_04);
+                SpriteResourceCollection_Remove(param0->unk_1A4, param0->unk_1B4[v0].unk_04);
                 param0->unk_1B4[v0].unk_00 = param0->unk_09;
                 break;
             }
@@ -299,7 +299,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
         for (v0 = 0; v0 < param0->unk_06; v0++) {
             if (param0->unk_1B8[v0].unk_00 == param3) {
                 sub_02009D4C(param0->unk_1B8[v0].unk_04);
-                sub_02009D68(param0->unk_1A8, param0->unk_1B8[v0].unk_04);
+                SpriteResourceCollection_Remove(param0->unk_1A8, param0->unk_1B8[v0].unk_04);
                 param0->unk_1B8[v0].unk_00 = param0->unk_0A;
                 break;
             }
@@ -310,7 +310,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
         for (v0 = 0; v0 < param0->unk_07; v0++) {
             if (param0->unk_1BC[v0].unk_00 == param4) {
                 sub_02009D4C(param0->unk_1BC[v0].unk_04);
-                sub_02009D68(param0->unk_1AC, param0->unk_1BC[v0].unk_04);
+                SpriteResourceCollection_Remove(param0->unk_1AC, param0->unk_1BC[v0].unk_04);
                 param0->unk_1BC[v0].unk_00 = param0->unk_0B;
                 break;
             }

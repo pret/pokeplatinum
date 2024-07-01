@@ -78,7 +78,7 @@ typedef struct {
     UnkStruct_ov21_021D4CA0 *unk_24;
     u16 unk_28;
     u16 unk_2A;
-    UnkStruct_02009DC8 *unk_2C[4];
+    SpriteResource *unk_2C[4];
 } UnkStruct_ov21_021D7C64;
 
 static UnkStruct_ov21_021D77D4 *ov21_021D7728(int param0, UnkStruct_ov21_021D0F60 *param1);
@@ -583,10 +583,10 @@ static void ov21_021D7E3C(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
 
     sub_0200A4E4(param0->unk_2C[0]);
     sub_0200A6DC(param0->unk_2C[1]);
-    sub_02009D68(v0->unk_13C[0], param0->unk_2C[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_2C[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_2C[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_2C[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_2C[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_2C[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_2C[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_2C[3]);
 }
 
 static void ov21_021D7E80(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1, const UnkStruct_ov21_021D77D4 *param2, int param3)
@@ -674,7 +674,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
 {
     Window *v0;
     UnkStruct_ov21_021D4CB8 v1;
-    UnkStruct_02009DC8 *v2;
+    SpriteResource *v2;
     UnkStruct_ov21_021D13FC *v3 = param1->unk_00;
     int v4;
 

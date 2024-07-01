@@ -118,10 +118,10 @@ void ov21_021D2098(UnkStruct_ov21_021D13FC *param0)
 
     Heap_FreeToHeap(param0->unk_00);
     CellActorCollection_Delete(param0->unk_138);
-    sub_02009754(param0->unk_13C[0]);
-    sub_02009754(param0->unk_13C[1]);
-    sub_02009754(param0->unk_13C[2]);
-    sub_02009754(param0->unk_13C[3]);
+    SpriteResourceCollection_Delete(param0->unk_13C[0]);
+    SpriteResourceCollection_Delete(param0->unk_13C[1]);
+    SpriteResourceCollection_Delete(param0->unk_13C[2]);
+    SpriteResourceCollection_Delete(param0->unk_13C[3]);
 
     ov21_021D4C6C(param0->unk_14C);
     sub_02002C60(2);
@@ -256,7 +256,7 @@ void ov21_021D22F8(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4CB8 *par
     }
 }
 
-UnkStruct_02009DC8 *ov21_021D2344(const UnkStruct_ov21_021D13FC *param0, int param1)
+SpriteResource *ov21_021D2344(const UnkStruct_ov21_021D13FC *param0, int param1)
 {
     GF_ASSERT(param1 <= 3);
     return param0->unk_1B0.unk_0C[param1];
@@ -837,10 +837,10 @@ static void ov21_021D2C10(UnkStruct_ov21_021D13FC *param0)
     sub_0200A4E4(v0->unk_0C[0]);
     sub_0200A6DC(v0->unk_0C[1]);
 
-    sub_02009D68(param0->unk_13C[0], v0->unk_0C[0]);
-    sub_02009D68(param0->unk_13C[1], v0->unk_0C[1]);
-    sub_02009D68(param0->unk_13C[2], v0->unk_0C[2]);
-    sub_02009D68(param0->unk_13C[3], v0->unk_0C[3]);
+    SpriteResourceCollection_Remove(param0->unk_13C[0], v0->unk_0C[0]);
+    SpriteResourceCollection_Remove(param0->unk_13C[1], v0->unk_0C[1]);
+    SpriteResourceCollection_Remove(param0->unk_13C[2], v0->unk_0C[2]);
+    SpriteResourceCollection_Remove(param0->unk_13C[3], v0->unk_0C[3]);
 }
 
 void ov21_021D2C58(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **param1)
@@ -848,10 +848,10 @@ void ov21_021D2C58(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **p
     sub_0200A4E4(param0->unk_0C[0]);
     sub_0200A6DC(param0->unk_0C[1]);
 
-    sub_02009D68(param1[0], param0->unk_0C[0]);
-    sub_02009D68(param1[1], param0->unk_0C[1]);
-    sub_02009D68(param1[2], param0->unk_0C[2]);
-    sub_02009D68(param1[3], param0->unk_0C[3]);
+    SpriteResourceCollection_Remove(param1[0], param0->unk_0C[0]);
+    SpriteResourceCollection_Remove(param1[1], param0->unk_0C[1]);
+    SpriteResourceCollection_Remove(param1[2], param0->unk_0C[2]);
+    SpriteResourceCollection_Remove(param1[3], param0->unk_0C[3]);
 }
 
 static void ov21_021D2C8C(UnkStruct_ov21_021D13FC *param0, int param1)
@@ -989,10 +989,10 @@ static void ov21_021D2F14(UnkStruct_ov21_021D13FC *param0)
     sub_0200A4E4(v0->unk_10[0]);
     sub_0200A6DC(v0->unk_10[1]);
 
-    sub_02009D68(param0->unk_13C[0], v0->unk_10[0]);
-    sub_02009D68(param0->unk_13C[1], v0->unk_10[1]);
-    sub_02009D68(param0->unk_13C[2], v0->unk_10[2]);
-    sub_02009D68(param0->unk_13C[3], v0->unk_10[3]);
+    SpriteResourceCollection_Remove(param0->unk_13C[0], v0->unk_10[0]);
+    SpriteResourceCollection_Remove(param0->unk_13C[1], v0->unk_10[1]);
+    SpriteResourceCollection_Remove(param0->unk_13C[2], v0->unk_10[2]);
+    SpriteResourceCollection_Remove(param0->unk_13C[3], v0->unk_10[3]);
 }
 
 static void ov21_021D2F5C(UnkStruct_ov21_021D13FC *param0, int param1)

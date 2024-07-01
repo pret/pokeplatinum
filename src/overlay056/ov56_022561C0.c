@@ -80,7 +80,7 @@ struct UnkStruct_ov56_02256468_t {
     CellActorCollection *unk_28;
     UnkStruct_0200C738 unk_2C;
     SpriteResourceCollection *unk_1B8[4];
-    UnkStruct_02009DC8 *unk_1C8[4];
+    SpriteResource *unk_1C8[4];
     CellActorResourceData unk_1D8;
     CellActor *unk_1FC[8];
     int unk_21C;
@@ -257,7 +257,7 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
         sub_0200A6DC(param0->unk_1C8[1]);
 
         for (v1 = 0; v1 < 4; v1++) {
-            sub_02009754(param0->unk_1B8[v1]);
+            SpriteResourceCollection_Delete(param0->unk_1B8[v1]);
         }
 
         CellActorCollection_Delete(param0->unk_28);

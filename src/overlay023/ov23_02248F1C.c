@@ -55,7 +55,7 @@ struct UnkStruct_ov23_0224942C_t {
     CellActorCollection *unk_1BC;
     UnkStruct_0200C738 unk_1C0;
     SpriteResourceCollection *unk_34C[4];
-    UnkStruct_02009DC8 *unk_35C[4];
+    SpriteResource *unk_35C[4];
     CellActorResourceData unk_36C;
     CellActor *unk_390[8];
     CellActor *unk_3B0[17];
@@ -174,7 +174,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         sub_0200A6DC(v0->unk_35C[1]);
 
         for (v2 = 0; v2 < 4; v2++) {
-            sub_02009754(v0->unk_34C[v2]);
+            SpriteResourceCollection_Delete(v0->unk_34C[v2]);
         }
 
         CellActorCollection_Delete(v0->unk_1BC);

@@ -1500,7 +1500,7 @@ static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
 static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3)) {
         CellActor_SetDrawFlag(param0->unk_25C[3], 0);

@@ -168,7 +168,7 @@ typedef struct ChooseStarterRotation {
 
 typedef struct ChooseStarterCursor {
     CellActor *unk_00;
-    UnkStruct_02009DC8 *unk_04[6];
+    SpriteResource *unk_04[6];
     VecFx32 unk_1C;
     SysTask *unk_28;
     ChooseStarterRotation unk_2C;
@@ -766,10 +766,10 @@ static void MakeCellActors(ChooseStarterApp *param0, int param1)
 static void ov78_021D1594(ChooseStarterApp *param0)
 {
     CellActorCollection_Delete(param0->unk_248);
-    sub_02009754(param0->unk_24C[0]);
-    sub_02009754(param0->unk_24C[1]);
-    sub_02009754(param0->unk_24C[2]);
-    sub_02009754(param0->unk_24C[3]);
+    SpriteResourceCollection_Delete(param0->unk_24C[0]);
+    SpriteResourceCollection_Delete(param0->unk_24C[1]);
+    SpriteResourceCollection_Delete(param0->unk_24C[2]);
+    SpriteResourceCollection_Delete(param0->unk_24C[3]);
 }
 
 static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, int param3, NNSFndAllocator *param4)
@@ -1452,10 +1452,10 @@ static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
     sub_0200A4E4(param1->unk_04[0]);
     sub_0200A6DC(param1->unk_04[1]);
 
-    sub_02009D68(param0->unk_24C[0], param1->unk_04[0]);
-    sub_02009D68(param0->unk_24C[1], param1->unk_04[1]);
-    sub_02009D68(param0->unk_24C[2], param1->unk_04[2]);
-    sub_02009D68(param0->unk_24C[3], param1->unk_04[3]);
+    SpriteResourceCollection_Remove(param0->unk_24C[0], param1->unk_04[0]);
+    SpriteResourceCollection_Remove(param0->unk_24C[1], param1->unk_04[1]);
+    SpriteResourceCollection_Remove(param0->unk_24C[2], param1->unk_04[2]);
+    SpriteResourceCollection_Remove(param0->unk_24C[3], param1->unk_04[3]);
 }
 
 static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)

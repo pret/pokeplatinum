@@ -103,10 +103,10 @@ typedef struct {
     SpriteResourceCollection *unk_194;
     SpriteResourceCollection *unk_198;
     SpriteResourceCollection *unk_19C;
-    UnkStruct_02009DC8 *unk_1A0[7];
-    UnkStruct_02009DC8 *unk_1BC[1];
-    UnkStruct_02009DC8 *unk_1C0[7];
-    UnkStruct_02009DC8 *unk_1DC[7];
+    SpriteResource *unk_1A0[7];
+    SpriteResource *unk_1BC[1];
+    SpriteResource *unk_1C0[7];
+    SpriteResource *unk_1DC[7];
     SysTask *unk_1F8;
 } UnkStruct_ov9_0224B064;
 
@@ -2715,7 +2715,7 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1C0[v0] != NULL) {
             sub_02009D4C(param0->unk_1C0[v0]);
-            sub_02009D68(
+            SpriteResourceCollection_Remove(
                 param0->unk_198, param0->unk_1C0[v0]);
         }
     }
@@ -2723,15 +2723,15 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1DC[v0] != NULL) {
             sub_02009D4C(param0->unk_1DC[v0]);
-            sub_02009D68(
+            SpriteResourceCollection_Remove(
                 param0->unk_19C, param0->unk_1DC[v0]);
         }
     }
 
-    sub_02009754(param0->unk_190);
-    sub_02009754(param0->unk_194);
-    sub_02009754(param0->unk_198);
-    sub_02009754(param0->unk_19C);
+    SpriteResourceCollection_Delete(param0->unk_190);
+    SpriteResourceCollection_Delete(param0->unk_194);
+    SpriteResourceCollection_Delete(param0->unk_198);
+    SpriteResourceCollection_Delete(param0->unk_19C);
 
     CellActorCollection_DeleteAll(param0->unk_00);
     CellActorCollection_Delete(param0->unk_00);
@@ -7835,7 +7835,7 @@ static void ov9_0224F804(UnkStruct_ov9_02249B04 *param0)
         {
             u32 v1;
             UnkStruct_ov9_0224B064 *v2;
-            UnkStruct_02009DC8 *v3;
+            SpriteResource *v3;
             const NNSG2dImagePaletteProxy *v4;
 
             v2 = &param0->unk_1A8;

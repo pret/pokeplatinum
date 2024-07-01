@@ -132,7 +132,7 @@ typedef struct {
     u16 unk_38;
     u16 unk_3A;
     BOOL unk_3C;
-    UnkStruct_02009DC8 *unk_40[4];
+    SpriteResource *unk_40[4];
     CellActor *unk_50[2];
 } UnkStruct_ov70_0225EC20;
 
@@ -174,14 +174,14 @@ typedef struct {
     u32 unk_00;
     Window unk_04[5];
     CellActor *unk_54;
-    UnkStruct_02009DC8 *unk_58[4];
+    SpriteResource *unk_58[4];
     CellActor *unk_68;
-    UnkStruct_02009DC8 *unk_6C[4];
+    SpriteResource *unk_6C[4];
     CellActor *unk_7C[12];
-    UnkStruct_02009DC8 *unk_AC[4];
-    UnkStruct_02009DC8 *unk_BC[12];
-    UnkStruct_02009DC8 *unk_EC[4];
-    UnkStruct_02009DC8 *unk_FC[4];
+    SpriteResource *unk_AC[4];
+    SpriteResource *unk_BC[12];
+    SpriteResource *unk_EC[4];
+    SpriteResource *unk_FC[4];
 } UnkStruct_ov70_0225FA84;
 
 typedef struct {
@@ -1374,7 +1374,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
         param0->unk_1A4 = NULL;
 
         for (v1 = 0; v1 < 4; v1++) {
-            sub_02009754(param0->unk_194[v1]);
+            SpriteResourceCollection_Delete(param0->unk_194[v1]);
         }
 
         CellActorCollection_Delete(param0->unk_04);
@@ -1712,7 +1712,7 @@ static void ov70_0225ED4C(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
     sub_0200A6DC(param0->unk_40[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param1->unk_194[v0], param0->unk_40[v0]);
+        SpriteResourceCollection_Remove(param1->unk_194[v0], param0->unk_40[v0]);
     }
 }
 
@@ -2748,7 +2748,7 @@ static void ov70_02260048(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         sub_0200A6DC(param0->unk_58[1]);
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_02009D68(param1->unk_194[v0], param0->unk_58[v0]);
+            SpriteResourceCollection_Remove(param1->unk_194[v0], param0->unk_58[v0]);
         }
     }
 }
@@ -2822,7 +2822,7 @@ static void ov70_02260228(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         sub_0200A6DC(param0->unk_6C[1]);
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_02009D68(param1->unk_194[v0], param0->unk_6C[v0]);
+            SpriteResourceCollection_Remove(param1->unk_194[v0], param0->unk_6C[v0]);
         }
     }
 }
@@ -3041,7 +3041,7 @@ static void ov70_0226068C(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
             param0->unk_7C[v0] = NULL;
 
             sub_0200A4E4(param0->unk_BC[v0]);
-            sub_02009D68(param1->unk_194[0], param0->unk_BC[v0]);
+            SpriteResourceCollection_Remove(param1->unk_194[0], param0->unk_BC[v0]);
 
             param0->unk_BC[v0] = NULL;
         }
@@ -3050,9 +3050,9 @@ static void ov70_0226068C(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_AC[v0] != NULL) {
             sub_0200A6DC(param0->unk_AC[v0]);
-            sub_02009D68(param1->unk_194[1], param0->unk_AC[v0]);
-            sub_02009D68(param1->unk_194[2], param0->unk_EC[v0]);
-            sub_02009D68(param1->unk_194[3], param0->unk_FC[v0]);
+            SpriteResourceCollection_Remove(param1->unk_194[1], param0->unk_AC[v0]);
+            SpriteResourceCollection_Remove(param1->unk_194[2], param0->unk_EC[v0]);
+            SpriteResourceCollection_Remove(param1->unk_194[3], param0->unk_FC[v0]);
             param0->unk_AC[v0] = NULL;
         }
     }

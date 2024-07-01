@@ -13,17 +13,17 @@
 #include "resource_collection.h"
 
 
-typedef struct UnkStruct_02009DC8_t {
-    Resource * unk_00;
+typedef struct SpriteResource_t {
+    Resource * resource;
     int unk_04;
     void * unk_08;
-} UnkStruct_02009DC8;
+} SpriteResource;
 
 typedef struct SpriteResourceCollection_t {
-    ResourceCollection * resources;
-    UnkStruct_02009DC8 * unk_04;
+    ResourceCollection * collection;
+    SpriteResource * resources;
     int capacity;
-    int unk_0C;
+    int count;
     int unk_10;
 } SpriteResourceCollection;
 
@@ -75,60 +75,58 @@ typedef struct {
     NNSG2dAnimBankData * unk_00;
 } UnkStruct_02009E94;
 
-static UnkStruct_02009DC8 * sub_0200A0A8(SpriteResourceCollection * param0);
-static void sub_0200A224(SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, const char * param2, int param3, int param4, int param5, int param6, int param7);
-static void sub_0200A250(SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, int param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10);
-static void sub_0200A288(SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, NARC * param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10);
+static SpriteResource * sub_0200A0A8(SpriteResourceCollection * param0);
+static void sub_0200A224(SpriteResourceCollection * param0, SpriteResource * param1, const char * param2, int param3, int param4, int param5, int param6, int param7);
+static void sub_0200A250(SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10);
+static void sub_0200A288(SpriteResourceCollection * param0, SpriteResource * param1, NARC * param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10);
 static void * sub_0200A2DC(NARC * param0, u32 param1, BOOL param2, u32 param3, u32 param4);
-static void sub_0200A0D4(UnkStruct_02009DC8 * param0, int param1, int param2, int param3, int param4);
+static void sub_0200A0D4(SpriteResource * param0, int param1, int param2, int param3, int param4);
 static UnkStruct_0200A144 * sub_0200A144(void * param0, int param1, int param2);
 static UnkStruct_02009E34 * sub_0200A164(void * param0, int param1, int param2, int param3);
 static UnkStruct_02009E4C * sub_0200A188(void * param0, int param1);
 static UnkStruct_02009E64 * sub_0200A1A4(void * param0, int param1);
 static UnkStruct_02009E7C * sub_0200A1C0(void * param0, int param1);
 static UnkStruct_02009E94 * sub_0200A1DC(void * param0, int param1);
-static void * sub_0200A20C(const UnkStruct_02009DC8 * param0);
-static void sub_0200A1F8(UnkStruct_02009DC8 * param0);
+static void * sub_0200A20C(const SpriteResource * param0);
+static void sub_0200A1F8(SpriteResource * param0);
 static int sub_0200A2C0(const UnkStruct_0200A2C0 * param0);
 
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, int param1, enum HeapId heapID)
 {
-    SpriteResourceCollection * spriteResources;
+    SpriteResourceCollection *spriteResources = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceCollection));
+    spriteResources->collection = ResourceCollection_New(capacity, heapID);
+    spriteResources->resources = Heap_AllocFromHeap(heapID, sizeof(SpriteResource) * capacity);
 
-    spriteResources = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceCollection));
-    spriteResources->resources = ResourceCollection_New(capacity, heapID);
-    spriteResources->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02009DC8) * capacity);
-
-    memset(spriteResources->unk_04, 0, sizeof(UnkStruct_02009DC8) * capacity);
+    memset(spriteResources->resources, 0, sizeof(SpriteResource) * capacity);
 
     spriteResources->capacity = capacity;
-    spriteResources->unk_0C = 0;
+    spriteResources->count = 0;
     spriteResources->unk_10 = param1;
 
     return spriteResources;
 }
 
-void sub_02009754 (SpriteResourceCollection * param0)
+void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->resources);
-    GF_ASSERT(param0->unk_04);
+    GF_ASSERT(spriteResources);
+    GF_ASSERT(spriteResources->collection);
+    GF_ASSERT(spriteResources->resources);
 
-    sub_02009D9C(param0);
+    SpriteResourceCollection_Clear(spriteResources);
 
-    ResourceCollection_Delete(param0->resources);
-    param0->resources = NULL;
+    ResourceCollection_Delete(spriteResources->collection);
+    spriteResources->collection = NULL;
 
-    Heap_FreeToHeap(param0->unk_04);
-    param0->unk_04 = NULL;
+    Heap_FreeToHeap(spriteResources->resources);
+    spriteResources->resources = NULL;
 
-    Heap_FreeToHeap(param0);
-    param0 = NULL;
+    Heap_FreeToHeap(spriteResources);
+    spriteResources = NULL;
 }
 
-UnkStruct_02009DC8 * sub_02009794 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3)
+SpriteResource * sub_02009794 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
     UnkStruct_02009794 * v1;
     UnkStruct_0200A2C0 * v2;
 
@@ -150,14 +148,14 @@ UnkStruct_02009DC8 * sub_02009794 (SpriteResourceCollection * param0, const UnkS
         sub_0200A250(param0, v0, v2->unk_00, v2->unk_04, v2->unk_08, v2->unk_0C, v2->unk_10[0], v2->unk_10[1], param1->unk_08, param3, 0);
     }
 
-    param0->unk_0C++;
+    param0->count++;
 
     return v0;
 }
 
-UnkStruct_02009DC8 * sub_0200985C (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6)
+SpriteResource * sub_0200985C (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 0);
@@ -167,14 +165,14 @@ UnkStruct_02009DC8 * sub_0200985C (SpriteResourceCollection * param0, int param1
     GF_ASSERT(v0);
     sub_0200A250(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, 0);
 
-    param0->unk_0C++;
+    param0->count++;
 
     return v0;
 }
 
-UnkStruct_02009DC8 * sub_020098B8 (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6, int param7)
+SpriteResource * sub_020098B8 (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 1);
@@ -184,13 +182,13 @@ UnkStruct_02009DC8 * sub_020098B8 (SpriteResourceCollection * param0, int param1
     GF_ASSERT(v0);
     sub_0200A250(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, 0);
 
-    param0->unk_0C++;
+    param0->count++;
     return v0;
 }
 
-UnkStruct_02009DC8 * sub_02009918 (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6)
+SpriteResource * sub_02009918 (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
 
@@ -199,11 +197,11 @@ UnkStruct_02009DC8 * sub_02009918 (SpriteResourceCollection * param0, int param1
     GF_ASSERT(v0);
     sub_0200A250(param0, v0, param1, param2, param3, param4, 0, 0, param5, param6, 0);
 
-    param0->unk_0C++;
+    param0->count++;
     return v0;
 }
 
-void sub_02009968 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, int param2, int param3, BOOL param4, int param5)
+void sub_02009968 (SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5)
 {
     int v0;
     int v1;
@@ -216,11 +214,11 @@ void sub_02009968 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param
     v1 = sub_02009E08(param1);
     v0 = sub_02009EBC(param1);
 
-    sub_02009D68(param0, param1);
+    SpriteResourceCollection_Remove(param0, param1);
     sub_0200A250(param0, param1, param2, param3, param4, v1, v0, 0, 0, param5, 0);
 }
 
-void sub_020099D4 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, int param2, int param3, BOOL param4, int param5)
+void sub_020099D4 (SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5)
 {
     int v0;
     int v1;
@@ -235,13 +233,13 @@ void sub_020099D4 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param
     v0 = sub_02009EBC(param1);
     v1 = sub_02009EE8(param1);
 
-    sub_02009D68(param0, param1);
+    SpriteResourceCollection_Remove(param0, param1);
     sub_0200A250(param0, param1, param2, param3, param4, v2, v0, v1, 1, param5, 0);
 }
 
-UnkStruct_02009DC8 * sub_02009A4C (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6)
+SpriteResource * sub_02009A4C (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 0);
@@ -250,14 +248,14 @@ UnkStruct_02009DC8 * sub_02009A4C (SpriteResourceCollection * param0, NARC * par
     GF_ASSERT(v0);
 
     sub_0200A288(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, 0);
-    param0->unk_0C++;
+    param0->count++;
 
     return v0;
 }
 
-UnkStruct_02009DC8 * sub_02009AA8 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6, int param7)
+SpriteResource * sub_02009AA8 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 0);
@@ -267,14 +265,14 @@ UnkStruct_02009DC8 * sub_02009AA8 (SpriteResourceCollection * param0, NARC * par
 
     sub_0200A288(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, param7);
 
-    param0->unk_0C++;
+    param0->count++;
 
     return v0;
 }
 
-UnkStruct_02009DC8 * sub_02009B04 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6, int param7)
+SpriteResource * sub_02009B04 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 1);
@@ -284,13 +282,13 @@ UnkStruct_02009DC8 * sub_02009B04 (SpriteResourceCollection * param0, NARC * par
     GF_ASSERT(v0);
     sub_0200A288(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, 0);
 
-    param0->unk_0C++;
+    param0->count++;
     return v0;
 }
 
-UnkStruct_02009DC8 * sub_02009B64 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6, int param7, int param8)
+SpriteResource * sub_02009B64 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6, int param7, int param8)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 1);
@@ -300,13 +298,13 @@ UnkStruct_02009DC8 * sub_02009B64 (SpriteResourceCollection * param0, NARC * par
     GF_ASSERT(v0);
     sub_0200A288(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, param8);
 
-    param0->unk_0C++;
+    param0->count++;
     return v0;
 }
 
-UnkStruct_02009DC8 * sub_02009BC4 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6)
+SpriteResource * sub_02009BC4 (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 * v0;
+    SpriteResource * v0;
 
     GF_ASSERT(param0);
 
@@ -315,11 +313,11 @@ UnkStruct_02009DC8 * sub_02009BC4 (SpriteResourceCollection * param0, NARC * par
     GF_ASSERT(v0);
     sub_0200A288(param0, v0, param1, param2, param3, param4, 0, 0, param5, param6, 0);
 
-    param0->unk_0C++;
+    param0->count++;
     return v0;
 }
 
-void sub_02009C14 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, NARC * param2, int param3, BOOL param4, int param5)
+void sub_02009C14 (SpriteResourceCollection * param0, SpriteResource * param1, NARC * param2, int param3, BOOL param4, int param5)
 {
     int v0;
     int v1;
@@ -332,7 +330,7 @@ void sub_02009C14 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param
     v1 = sub_02009E08(param1);
     v0 = sub_02009EBC(param1);
 
-    sub_02009D68(param0, param1);
+    SpriteResourceCollection_Remove(param0, param1);
     sub_0200A288(param0, param1, param2, param3, param4, v1, v0, 0, 0, param5, 0);
 }
 
@@ -348,7 +346,7 @@ int sub_02009C80 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * 
 void sub_02009CB4 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5)
 {
     int v0;
-    UnkStruct_02009DC8 * v1;
+    SpriteResource * v1;
 
     for (v0 = param2; v0 < param2 + param3; v0++) {
         v1 = sub_02009794(param0, param1, v0, param5);
@@ -368,7 +366,7 @@ UnkStruct_02009CFC * sub_02009CFC (int param0, int param1)
 
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009CFC));
 
-    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009DC8 *) * param0);
+    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(SpriteResource *) * param0);
     v0->unk_04 = param0;
     v0->unk_08 = 0;
 
@@ -385,41 +383,39 @@ void sub_02009D20 (UnkStruct_02009CFC * param0)
 BOOL sub_02009D34 (const SpriteResourceCollection * param0, int param1)
 {
     GF_ASSERT(param0);
-    return ResourceCollection_IsIDUnused(param0->resources, param1);
+    return ResourceCollection_IsIDUnused(param0->collection, param1);
 }
 
-void sub_02009D4C (UnkStruct_02009DC8 * param0)
+void sub_02009D4C (SpriteResource * param0)
 {
     GF_ASSERT(param0);
 
     sub_0200A1F8(param0);
-    Resource_SetData(param0->unk_00, NULL);
+    Resource_SetData(param0->resource, NULL);
 }
 
-void sub_02009D68 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1)
+void SpriteResourceCollection_Remove(SpriteResourceCollection *spriteResources, SpriteResource *resource)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04);
+    GF_ASSERT(spriteResources);
+    GF_ASSERT(spriteResources->resources);
 
-    sub_0200A1F8(param1);
-    ResourceCollection_Remove(param0->resources, param1->unk_00);
+    sub_0200A1F8(resource);
+    ResourceCollection_Remove(spriteResources->collection, resource->resource);
 
-    param1->unk_00 = NULL;
-    param0->unk_0C--;
+    resource->resource = NULL;
+    spriteResources->count--;
 }
 
-void sub_02009D9C (SpriteResourceCollection * param0)
+void SpriteResourceCollection_Clear(SpriteResourceCollection *spriteResources)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->capacity; v0++) {
-        if (param0->unk_04[v0].unk_00 != NULL) {
-            sub_02009D68(param0, param0->unk_04 + v0);
+    for (int i = 0; i < spriteResources->capacity; i++) {
+        if (spriteResources->resources[i].resource != NULL) {
+            SpriteResourceCollection_Remove(spriteResources, spriteResources->resources + i);
         }
     }
 }
 
-UnkStruct_02009DC8 * sub_02009DC8 (const SpriteResourceCollection * param0, int param1)
+SpriteResource * sub_02009DC8 (const SpriteResourceCollection * param0, int param1)
 {
     int v0;
     int v1;
@@ -427,11 +423,11 @@ UnkStruct_02009DC8 * sub_02009DC8 (const SpriteResourceCollection * param0, int 
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->capacity; v0++) {
-        if (param0->unk_04[v0].unk_00) {
-            v1 = Resource_GetID(param0->unk_04[v0].unk_00);
+        if (param0->resources[v0].resource) {
+            v1 = Resource_GetID(param0->resources[v0].resource);
 
             if (v1 == param1) {
-                return param0->unk_04 + v0;
+                return param0->resources + v0;
             }
         }
     }
@@ -439,13 +435,13 @@ UnkStruct_02009DC8 * sub_02009DC8 (const SpriteResourceCollection * param0, int 
     return NULL;
 }
 
-int sub_02009E08 (const UnkStruct_02009DC8 * param0)
+int sub_02009E08 (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
-    return Resource_GetID(param0->unk_00);
+    return Resource_GetID(param0->resource);
 }
 
-NNSG2dCharacterData * sub_02009E1C (const UnkStruct_02009DC8 * param0)
+NNSG2dCharacterData * sub_02009E1C (const SpriteResource * param0)
 {
     UnkStruct_0200A144 * v0;
 
@@ -455,7 +451,7 @@ NNSG2dCharacterData * sub_02009E1C (const UnkStruct_02009DC8 * param0)
     return v0->unk_00;
 }
 
-NNSG2dPaletteData * sub_02009E34 (const UnkStruct_02009DC8 * param0)
+NNSG2dPaletteData * sub_02009E34 (const SpriteResource * param0)
 {
     UnkStruct_02009E34 * v0;
 
@@ -465,7 +461,7 @@ NNSG2dPaletteData * sub_02009E34 (const UnkStruct_02009DC8 * param0)
     return v0->unk_00;
 }
 
-NNSG2dCellDataBank * sub_02009E4C (const UnkStruct_02009DC8 * param0)
+NNSG2dCellDataBank * sub_02009E4C (const SpriteResource * param0)
 {
     UnkStruct_02009E4C * v0;
 
@@ -475,7 +471,7 @@ NNSG2dCellDataBank * sub_02009E4C (const UnkStruct_02009DC8 * param0)
     return v0->unk_00;
 }
 
-NNSG2dCellAnimBankData * sub_02009E64 (const UnkStruct_02009DC8 * param0)
+NNSG2dCellAnimBankData * sub_02009E64 (const SpriteResource * param0)
 {
     UnkStruct_02009E64 * v0;
 
@@ -485,7 +481,7 @@ NNSG2dCellAnimBankData * sub_02009E64 (const UnkStruct_02009DC8 * param0)
     return v0->unk_00;
 }
 
-NNSG2dMultiCellDataBank * sub_02009E7C (const UnkStruct_02009DC8 * param0)
+NNSG2dMultiCellDataBank * sub_02009E7C (const SpriteResource * param0)
 {
     UnkStruct_02009E7C * v0;
 
@@ -495,7 +491,7 @@ NNSG2dMultiCellDataBank * sub_02009E7C (const UnkStruct_02009DC8 * param0)
     return v0->unk_00;
 }
 
-NNSG2dMultiCellAnimBankData * sub_02009E94 (const UnkStruct_02009DC8 * param0)
+NNSG2dMultiCellAnimBankData * sub_02009E94 (const SpriteResource * param0)
 {
     UnkStruct_02009E94 * v0;
 
@@ -505,13 +501,13 @@ NNSG2dMultiCellAnimBankData * sub_02009E94 (const UnkStruct_02009DC8 * param0)
     return v0->unk_00;
 }
 
-int sub_02009EAC (const UnkStruct_02009DC8 * param0)
+int sub_02009EAC (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
     return param0->unk_04;
 }
 
-int sub_02009EBC (const UnkStruct_02009DC8 * param0)
+int sub_02009EBC (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
 
@@ -532,7 +528,7 @@ int sub_02009EBC (const UnkStruct_02009DC8 * param0)
     return 0;
 }
 
-int sub_02009EE8 (const UnkStruct_02009DC8 * param0)
+int sub_02009EE8 (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
 
@@ -546,7 +542,7 @@ int sub_02009EE8 (const UnkStruct_02009DC8 * param0)
     return 0;
 }
 
-void sub_02009F08 (UnkStruct_02009DC8 * param0, int param1)
+void sub_02009F08 (SpriteResource * param0, int param1)
 {
     GF_ASSERT(param0);
 
@@ -701,24 +697,24 @@ int sub_0200A074 (const UnkStruct_02009F38 * param0, int param1)
     return v0;
 }
 
-static UnkStruct_02009DC8 * sub_0200A0A8 (SpriteResourceCollection * param0)
+static SpriteResource * sub_0200A0A8 (SpriteResourceCollection * param0)
 {
     int v0;
 
     for (v0 = 0; v0 < param0->capacity; v0++) {
-        if (param0->unk_04[v0].unk_00 == NULL) {
-            return param0->unk_04 + v0;
+        if (param0->resources[v0].resource == NULL) {
+            return param0->resources + v0;
         }
     }
 
     return NULL;
 }
 
-static void sub_0200A0D4 (UnkStruct_02009DC8 * param0, int param1, int param2, int param3, int param4)
+static void sub_0200A0D4 (SpriteResource * param0, int param1, int param2, int param3, int param4)
 {
     void * v0;
 
-    v0 = Resource_GetData(param0->unk_00);
+    v0 = Resource_GetData(param0->resource);
 
     switch (param1) {
     case 0:
@@ -806,7 +802,7 @@ static UnkStruct_02009E94 * sub_0200A1DC (void * param0, int param1)
     return v0;
 }
 
-static void sub_0200A1F8 (UnkStruct_02009DC8 * param0)
+static void sub_0200A1F8 (SpriteResource * param0)
 {
     if (param0->unk_08) {
         Heap_FreeToHeap(param0->unk_08);
@@ -815,7 +811,7 @@ static void sub_0200A1F8 (UnkStruct_02009DC8 * param0)
     param0->unk_08 = NULL;
 }
 
-static void * sub_0200A20C (const UnkStruct_02009DC8 * param0)
+static void * sub_0200A20C (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_08);
@@ -823,33 +819,33 @@ static void * sub_0200A20C (const UnkStruct_02009DC8 * param0)
     return param0->unk_08;
 }
 
-static void sub_0200A224 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, const char * param2, int param3, int param4, int param5, int param6, int param7)
+static void sub_0200A224 (SpriteResourceCollection * param0, SpriteResource * param1, const char * param2, int param3, int param4, int param5, int param6, int param7)
 {
-    param1->unk_00 = ResourceCollection_AddFromFile(param0->resources, param2, param3, param7);
+    param1->resource = ResourceCollection_AddFromFile(param0->collection, param2, param3, param7);
     param1->unk_04 = param6;
 
     sub_0200A0D4(param1, param6, param4, param5, param7);
 }
 
-static void sub_0200A250 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, int param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+static void sub_0200A250 (SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     void * v0;
 
     v0 = sub_02006FE8(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = ResourceCollection_Add(param0->resources, v0, param5);
+    param1->resource = ResourceCollection_Add(param0->collection, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);
 }
 
-static void sub_0200A288 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, NARC * param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+static void sub_0200A288 (SpriteResourceCollection * param0, SpriteResource * param1, NARC * param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     void * v0;
 
     v0 = sub_0200A2DC(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = ResourceCollection_Add(param0->resources, v0, param5);
+    param1->resource = ResourceCollection_Add(param0->collection, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);

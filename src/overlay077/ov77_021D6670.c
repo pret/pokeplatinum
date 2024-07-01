@@ -54,7 +54,7 @@ typedef struct {
     CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
     SpriteResourceCollection *unk_190[4];
-    UnkStruct_02009DC8 *unk_1A0[4];
+    SpriteResource *unk_1A0[4];
     UnkStruct_ov77_021D6ADC unk_1B0[10];
 } UnkStruct_ov77_021D6800;
 
@@ -226,7 +226,7 @@ static void ov77_021D691C(UnkStruct_ov77_021D6800 *param0)
     sub_0200A6DC(param0->unk_1A0[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);

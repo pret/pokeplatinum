@@ -146,7 +146,7 @@ typedef struct {
     Strbuf* unk_234;
     u32 unk_238;
     CellActorResourceData unk_23C;
-    UnkStruct_02009DC8 * unk_260[4];
+    SpriteResource * unk_260[4];
     CellActor * unk_270[2];
     UnkStruct_ov64_022300E4 unk_278;
 } UnkStruct_ov64_0222E21C;
@@ -1041,11 +1041,11 @@ static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)
     sub_0200A6DC(param0->unk_260[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param0->unk_204[v0], param0->unk_260[v0]);
+        SpriteResourceCollection_Remove(param0->unk_204[v0], param0->unk_260[v0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_204[v0]);
+        SpriteResourceCollection_Delete(param0->unk_204[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_04);

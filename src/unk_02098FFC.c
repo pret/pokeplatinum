@@ -91,7 +91,7 @@ static void sub_02099118(UnkStruct_0209903C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009D20(param0->unk_1B4[v0]);
-        sub_02009754(param0->unk_1A4[v0]);
+        SpriteResourceCollection_Delete(param0->unk_1A4[v0]);
     }
 }
 
@@ -108,7 +108,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     UnkStruct_0209916C *v3;
     CellActorData *v4 = NULL;
     CellActorInitParamsEx v5;
-    UnkStruct_02009DC8 *v6;
+    SpriteResource *v6;
 
     v1 = sub_020994B8(param0, param1);
 
@@ -175,7 +175,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
 void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int param2)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = param0->unk_1B4[1]->unk_00[param1->unk_00];
 
@@ -199,7 +199,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     int v0;
     SpriteResourceCollection *v1;
     UnkStruct_02009CFC *v2;
-    UnkStruct_02009DC8 *v3;
+    SpriteResource *v3;
     NARC *v4;
 
     v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);

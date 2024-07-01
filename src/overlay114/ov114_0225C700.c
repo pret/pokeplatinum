@@ -77,7 +77,7 @@ typedef struct {
 
 typedef struct {
     BOOL unk_00;
-    UnkStruct_02009DC8 *unk_04[4];
+    SpriteResource *unk_04[4];
     CellActorResourceData unk_14;
 } UnkStruct_ov114_0225CDB4;
 
@@ -1137,7 +1137,7 @@ void ov114_0225CB38(UnkStruct_ov114_0225CAD4 *param0)
 
 int ov114_0225CB74(UnkStruct_ov114_0225CAD4 *param0)
 {
-    UnkStruct_02009DC8 *v0 = sub_02009DC8(param0->unk_10.unk_00[1], 5000);
+    SpriteResource *v0 = sub_02009DC8(param0->unk_10.unk_00[1], 5000);
     return sub_0200A760(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
@@ -1251,7 +1251,7 @@ static void ov114_0225CD10(UnkStruct_ov114_0225CCD0 *param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_00[v0]);
+        SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
     Heap_FreeToHeap(param0->unk_10);
@@ -1327,7 +1327,7 @@ static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
     sub_0200A6DC(param1->unk_04[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009D68(param0->unk_00[v0], param1->unk_04[v0]);
+        SpriteResourceCollection_Remove(param0->unk_00[v0], param1->unk_04[v0]);
     }
 }
 

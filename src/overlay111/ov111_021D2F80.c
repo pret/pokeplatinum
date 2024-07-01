@@ -160,7 +160,7 @@ void ov111_021D3320(UnkStruct_ov111_021D2F80 *param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);
@@ -201,7 +201,7 @@ static u8 Unk_ov111_021D3940[8] = {
 
 void ov111_021D33B0(UnkStruct_ov111_021D2F80 *param0, int param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     if (param1 >= 8) {
         GF_ASSERT(0);

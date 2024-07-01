@@ -499,7 +499,7 @@ void ov97_02237DA0(void)
     }
 
     for (v2 = 0; v2 < 6; v2++) {
-        sub_02009754(v1->unk_190[v2]);
+        SpriteResourceCollection_Delete(v1->unk_190[v2]);
         v1->unk_190[v2] = NULL;
     }
 

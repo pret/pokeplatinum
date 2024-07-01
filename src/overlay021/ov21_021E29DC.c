@@ -72,7 +72,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov21_021D4CA0 *unk_04[5];
-    UnkStruct_02009DC8 *unk_18[4];
+    SpriteResource *unk_18[4];
 } UnkStruct_ov21_021E326C;
 
 typedef struct {
@@ -106,7 +106,7 @@ typedef struct {
 
 typedef struct {
     CellActor *unk_00[6];
-    UnkStruct_02009DC8 *unk_18[4];
+    SpriteResource *unk_18[4];
 } UnkStruct_ov21_021E3900;
 
 static UnkStruct_ov21_021E2BA8 *ov21_021E2A5C(int param0, UnkStruct_ov21_021D0F60 *param1);
@@ -694,10 +694,10 @@ static void ov21_021E3224(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E32
     sub_0200A4E4(param1->unk_18[0]);
     sub_0200A6DC(param1->unk_18[1]);
 
-    sub_02009D68(v0->unk_13C[0], param1->unk_18[0]);
-    sub_02009D68(v0->unk_13C[1], param1->unk_18[1]);
-    sub_02009D68(v0->unk_13C[2], param1->unk_18[2]);
-    sub_02009D68(v0->unk_13C[3], param1->unk_18[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param1->unk_18[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param1->unk_18[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param1->unk_18[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param1->unk_18[3]);
 }
 
 static void ov21_021E3268(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E326C *param1, int param2)
@@ -1266,10 +1266,10 @@ static void ov21_021E3AAC(UnkStruct_ov21_021E3900 *param0, UnkStruct_ov21_021E34
     sub_0200A4E4(param0->unk_18[0]);
     sub_0200A6DC(param0->unk_18[1]);
 
-    sub_02009D68(v0->unk_13C[0], param0->unk_18[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_18[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_18[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_18[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_18[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_18[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_18[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_18[3]);
 }
 
 static void ov21_021E3AF0(UnkStruct_ov21_021E3900 *param0, UnkStruct_ov21_021E3440 *param1, int param2)

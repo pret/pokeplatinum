@@ -50,7 +50,7 @@ typedef struct {
 } UnkStruct_ov5_021F8D90;
 
 typedef struct {
-    UnkStruct_02009DC8 *unk_00[4];
+    SpriteResource *unk_00[4];
     CellActorInitParamsEx unk_10;
     CellActorResourceData unk_40;
 } UnkStruct_ov5_021D6690;
@@ -245,7 +245,7 @@ static BOOL ov5_021D6548(UnkStruct_ov5_021D6538 *param0);
 static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
 static void ov5_021D6A2C(UnkStruct_ov5_021D6594 *param0, int param1);
 static void ov5_021D6690(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
-static UnkStruct_02009DC8 *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5);
+static SpriteResource *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5);
 static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0);
 static void ov5_021D6290(UnkStruct_02009F38 *param0, int param1, int param2);
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0);
@@ -833,7 +833,7 @@ static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0)
         v1 = sub_02009F38(param0->unk_10, v0);
 
         sub_02009F8C(v1);
-        sub_02009754(param0->unk_00[v0]);
+        SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
     Heap_FreeToHeap(param0->unk_10);
@@ -1033,10 +1033,10 @@ static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     ov5_021D6CA0(param0, param1, param2);
 }
 
-static UnkStruct_02009DC8 *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5)
+static SpriteResource *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5)
 {
     UnkStruct_02009F38 *v0;
-    UnkStruct_02009DC8 *v1;
+    SpriteResource *v1;
     int v2;
     BOOL v3;
     int v4;
@@ -1083,7 +1083,7 @@ static void ov5_021D6690(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
 
         for (v0 = 0; v0 < 4; v0++) {
             if (param2->unk_00[v0]) {
-                sub_02009D68(param0->unk_08.unk_00[v0], param2->unk_00[v0]);
+                SpriteResourceCollection_Remove(param0->unk_08.unk_00[v0], param2->unk_00[v0]);
             }
         }
     }

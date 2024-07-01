@@ -50,8 +50,8 @@ typedef struct {
     CellActor *unk_00[3];
     CellActor *unk_0C;
     UnkStruct_ov21_021D4CA0 *unk_10;
-    UnkStruct_02009DC8 *unk_14[4];
-    UnkStruct_02009DC8 *unk_24[4];
+    SpriteResource *unk_14[4];
+    SpriteResource *unk_24[4];
     UnkStruct_ov21_021D2648 unk_34;
     UnkStruct_ov21_021D2648 unk_54;
 } UnkStruct_ov21_021DF374;
@@ -535,10 +535,10 @@ static void ov21_021DEE38(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 
     sub_0200A4E4(param0->unk_24[0]);
     sub_0200A6DC(param0->unk_24[1]);
-    sub_02009D68(v0->unk_13C[0], param0->unk_24[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_24[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_24[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_24[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_24[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_24[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_24[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_24[3]);
 }
 
 static void ov21_021DEE80(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, int param2)
@@ -621,10 +621,10 @@ static void ov21_021DF054(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 
     sub_0200A4E4(param0->unk_14[0]);
     sub_0200A6DC(param0->unk_14[1]);
-    sub_02009D68(v0->unk_13C[0], param0->unk_14[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_14[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_14[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_14[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_14[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_14[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_14[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_14[3]);
 }
 
 static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
@@ -746,7 +746,7 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     int v3 = ov21_021D37BC(param2->unk_04);
     Window *v4;
     UnkStruct_ov21_021D4CB8 v5;
-    UnkStruct_02009DC8 *v6;
+    SpriteResource *v6;
 
     sub_020093B4(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 

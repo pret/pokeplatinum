@@ -131,7 +131,7 @@ typedef struct {
     CellActorCollection *unk_28;
     UnkStruct_0200C738 unk_2C;
     SpriteResourceCollection *unk_1B8[6];
-    UnkStruct_02009DC8 *unk_1D0[6];
+    SpriteResource *unk_1D0[6];
     CellActorResourceData unk_1E8;
     UnkStruct_ov97_02234A2C_sub1 unk_20C[30];
     TouchScreenRect unk_374[34];
@@ -1572,7 +1572,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     sub_0200A6DC(param0->unk_1D0[1]);
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02009754(param0->unk_1B8[v0]);
+        SpriteResourceCollection_Delete(param0->unk_1B8[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_28);

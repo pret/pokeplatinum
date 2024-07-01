@@ -20,12 +20,12 @@
 
 void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)
 {
-    UnkStruct_02009DC8 *v0;
-    UnkStruct_02009DC8 *v1;
-    UnkStruct_02009DC8 *v2;
-    UnkStruct_02009DC8 *v3 = NULL;
-    UnkStruct_02009DC8 *v4 = NULL;
-    UnkStruct_02009DC8 *v5 = NULL;
+    SpriteResource *v0;
+    SpriteResource *v1;
+    SpriteResource *v2;
+    SpriteResource *v3 = NULL;
+    SpriteResource *v4 = NULL;
+    SpriteResource *v5 = NULL;
     NNSG2dImageProxy *v6;
 
     GF_ASSERT(param9);

@@ -203,7 +203,7 @@ void ov83_0223D784(UnkStruct_ov83_0223D784 *param0)
     param0->unk_00 = NULL;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_190[v0]);
+        SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 }
 
@@ -228,7 +228,7 @@ void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     sub_020093B4(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
 
-void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, UnkStruct_02009DC8 *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, SpriteResource *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     BOOL v0;
     u32 v1;
@@ -261,10 +261,10 @@ void ov83_0223D95C(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
 
     for (v0 = 0; v0 < 4; v0++) {
         if (v0 != 1) {
-            sub_02009D68(param0->unk_190[v0], param1->unk_00[v0]);
+            SpriteResourceCollection_Remove(param0->unk_190[v0], param1->unk_00[v0]);
         } else {
             if (param1->unk_10 == 0) {
-                sub_02009D68(param0->unk_190[v0], param1->unk_00[v0]);
+                SpriteResourceCollection_Remove(param0->unk_190[v0], param1->unk_00[v0]);
             }
         }
     }

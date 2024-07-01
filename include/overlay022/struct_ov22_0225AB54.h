@@ -11,7 +11,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    UnkStruct_02009DC8 *unk_00[4];
+    SpriteResource *unk_00[4];
     CellActor *unk_10[2];
     Window *unk_18;
     int unk_1C;

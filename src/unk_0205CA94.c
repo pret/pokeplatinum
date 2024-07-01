@@ -512,7 +512,7 @@ static void sub_0205D22C(UnkStruct_0205D094 *param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_08[v0]);
+        SpriteResourceCollection_Delete(param0->unk_08[v0]);
     }
 }
 

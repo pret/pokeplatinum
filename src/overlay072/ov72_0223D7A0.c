@@ -221,7 +221,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     sub_0200A6DC(v0->unk_1DC[1][1]);
 
     for (v1 = 0; v1 < 4; v1++) {
-        sub_02009754(v0->unk_1CC[v1]);
+        SpriteResourceCollection_Delete(v0->unk_1CC[v1]);
     }
 
     CellActorCollection_Delete(v0->unk_3C);

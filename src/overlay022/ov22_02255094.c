@@ -174,7 +174,7 @@ CellActor *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2
 
 void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009A4C(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
     sub_0200A3DC(v0);
@@ -182,7 +182,7 @@ void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
 
 void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5, int param6)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009B04(param0->unk_48[1], param1, param2, param3, param6, param4, param5, 14);
     sub_0200A640(v0);
@@ -200,34 +200,34 @@ void ov22_022552A8(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
 
 void ov22_022552C4(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009DC8(param0->unk_48[0], param1);
-    sub_02009D68(param0->unk_48[0], v0);
+    SpriteResourceCollection_Remove(param0->unk_48[0], v0);
 }
 
 void ov22_022552D8(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009DC8(param0->unk_48[1], param1);
-    sub_02009D68(param0->unk_48[1], v0);
+    SpriteResourceCollection_Remove(param0->unk_48[1], v0);
 }
 
 void ov22_022552EC(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009DC8(param0->unk_48[2], param1);
-    sub_02009D68(param0->unk_48[2], v0);
+    SpriteResourceCollection_Remove(param0->unk_48[2], v0);
 }
 
 void ov22_02255300(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
-    UnkStruct_02009DC8 *v0;
+    SpriteResource *v0;
 
     v0 = sub_02009DC8(param0->unk_48[3], param1);
-    sub_02009D68(param0->unk_48[3], v0);
+    SpriteResourceCollection_Remove(param0->unk_48[3], v0);
 }
 
 void ov22_02255314(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1)
@@ -729,7 +729,7 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
         int v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_02009754(param0->unk_48[v0]);
+            SpriteResourceCollection_Delete(param0->unk_48[v0]);
         }
     }
 

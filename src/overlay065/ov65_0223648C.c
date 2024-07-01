@@ -879,7 +879,7 @@ static void ov65_02236E04(UnkStruct_ov65_02236840 *param0)
     CellActorCollection_Delete(param0->unk_18);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02009754(param0->unk_1A8[v0]);
+        SpriteResourceCollection_Delete(param0->unk_1A8[v0]);
     }
 
     sub_0201E958();

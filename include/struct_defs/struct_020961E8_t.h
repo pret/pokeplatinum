@@ -39,7 +39,7 @@ struct UnkStruct_020961E8_t {
     CellActorCollection *unk_50;
     UnkStruct_0200C738 unk_54;
     SpriteResourceCollection *unk_1E0[4];
-    UnkStruct_02009DC8 *unk_1F0[3][4];
+    SpriteResource *unk_1F0[3][4];
     CellActorResourceData unk_220;
     CellActorResourceData unk_244;
     CellActorResourceData unk_268;

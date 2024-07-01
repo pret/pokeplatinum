@@ -101,7 +101,7 @@ typedef struct {
     s8 unk_08;
     UnkStruct_ov97_02237AEC *unk_0C;
     CellActorResourceData unk_10[2];
-    UnkStruct_02009DC8 *unk_58[2][6];
+    SpriteResource *unk_58[2][6];
     UnkStruct_ov97_0222EEB8 unk_88[80];
     UnkStruct_ov97_0222EEB8 unk_1848[80];
     UnkStruct_ov97_0222EEB8 unk_3008;

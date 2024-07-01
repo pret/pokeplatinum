@@ -34,7 +34,7 @@ struct UnkStruct_ov72_0223DB98_t {
     CellActorCollection *unk_3C;
     UnkStruct_0200C738 unk_40;
     SpriteResourceCollection *unk_1CC[4];
-    UnkStruct_02009DC8 *unk_1DC[2][4];
+    SpriteResource *unk_1DC[2][4];
     CellActorResourceData unk_1FC;
     CellActorResourceData unk_220;
     CellActor *unk_244[14];

@@ -320,7 +320,7 @@ int ov58_021D1018(OverlayManager *param0, int *param1)
         sub_0200A6DC(v0->unk_1D4[1][1]);
 
         for (v2 = 0; v2 < 4; v2++) {
-            sub_02009754(v0->unk_1C4[v2]);
+            SpriteResourceCollection_Delete(v0->unk_1C4[v2]);
         }
 
         CellActorCollection_Delete(v0->unk_34);

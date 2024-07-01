@@ -72,7 +72,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov21_021D2648 unk_00;
     UnkStruct_ov21_021E4B30 unk_20[9];
-    UnkStruct_02009DC8 *unk_314[4];
+    SpriteResource *unk_314[4];
     int unk_324;
     int unk_328;
     int unk_32C;
@@ -562,10 +562,10 @@ static void ov21_021E4770(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
     sub_0200A4E4(param0->unk_314[0]);
     sub_0200A6DC(param0->unk_314[1]);
 
-    sub_02009D68(v0->unk_13C[0], param0->unk_314[0]);
-    sub_02009D68(v0->unk_13C[1], param0->unk_314[1]);
-    sub_02009D68(v0->unk_13C[2], param0->unk_314[2]);
-    sub_02009D68(v0->unk_13C[3], param0->unk_314[3]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_314[0]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_314[1]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_314[2]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_314[3]);
 }
 
 static void ov21_021E47CC(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E4108 *param1, int param2)
