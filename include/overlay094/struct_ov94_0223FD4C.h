@@ -12,8 +12,6 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -23,7 +21,7 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/pokemon_summary.h"
 #include "overlay006/struct_ov6_02246254.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
@@ -100,21 +98,21 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Strbuf* unk_BB4[10];
     Strbuf* unk_BDC;
     int unk_BE0;
-    GraphicElementManager * unk_BE4;
+    CellActorCollection * unk_BE4;
     UnkStruct_0200C738 unk_BE8;
     UnkStruct_02009714 * unk_D74[4];
     UnkStruct_02009DC8 * unk_D84[3][4];
-    UnkStruct_ov19_021DA864 unk_DB4;
-    UnkStruct_ov19_021DA864 unk_DD8;
-    UnkStruct_ov19_021DA864 unk_DFC;
-    GraphicElementData * unk_E20;
-    GraphicElementData * unk_E24;
-    GraphicElementData * unk_E28[30];
-    GraphicElementData * unk_EA0[30];
-    GraphicElementData * unk_F18[6];
-    GraphicElementData * unk_F30;
-    GraphicElementData * unk_F34[8];
-    GraphicElementData * unk_F54[2];
+    CellActorResourceData unk_DB4;
+    CellActorResourceData unk_DD8;
+    CellActorResourceData unk_DFC;
+    CellActor * unk_E20;
+    CellActor * unk_E24;
+    CellActor * unk_E28[30];
+    CellActor * unk_EA0[30];
+    CellActor * unk_F18[6];
+    CellActor * unk_F30;
+    CellActor * unk_F34[8];
+    CellActor * unk_F54[2];
     Window unk_F5C;
     Window unk_F6C;
     Window unk_F7C;

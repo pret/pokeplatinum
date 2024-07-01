@@ -55,7 +55,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "save_player.h"
 #include "trainer_info.h"
@@ -586,7 +586,7 @@ int ov107_02241BD4 (OverlayManager * param0, int * param1)
     }
 
     ov107_02245C00(v0);
-    sub_020219F8(v0->unk_1D8.unk_00);
+    CellActorCollection_Update(v0->unk_1D8.unk_00);
 
     return 0;
 }

@@ -10,7 +10,7 @@
 #include "narc.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0206A780.h"
 #include "overlay005/ov5_021D2F14.h"
 
@@ -90,11 +90,11 @@ void sub_0206A870 (UnkStruct_0206A844 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            sub_02021E2C(param0->unk_1C8[v0]->unk_00, FX32_ONE);
+            CellActor_UpdateAnim(param0->unk_1C8[v0]->unk_00, FX32_ONE);
         }
     }
 
-    sub_020219F8(param0->unk_00.unk_00);
+    CellActorCollection_Update(param0->unk_00.unk_00);
 }
 
 void sub_0206A8A0 (UnkStruct_0206A844 * param0, s16 param1, s16 param2, s16 param3)

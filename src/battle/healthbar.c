@@ -36,7 +36,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "unk_0208C098.h"
@@ -897,7 +897,7 @@ s32 ov16_02267560 (Healthbar * param0)
 void ov16_0226757C (Healthbar * param0)
 {
     if (param0->arrowActor != NULL) {
-        sub_02021CC8(param0->arrowActor->unk_00, 1);
+        CellActor_SetAnimateFlag(param0->arrowActor->unk_00, 1);
         Healthbar_EnableArrow(param0, 1);
     }
 
@@ -909,7 +909,7 @@ void ov16_0226757C (Healthbar * param0)
 void ov16_022675AC (Healthbar * param0)
 {
     if (param0->arrowActor != NULL) {
-        sub_02021CC8(param0->arrowActor->unk_00, 0);
+        CellActor_SetAnimateFlag(param0->arrowActor->unk_00, 0);
         SpriteActor_SetAnimFrame(param0->arrowActor->unk_00, 0);
         Healthbar_EnableArrow(param0, 0);
     }

@@ -13,7 +13,6 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
@@ -27,7 +26,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"
@@ -275,7 +274,7 @@ static void ov94_0223C85C (UnkStruct_ov94_0223FD4C * param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    sub_02021CAC(param0->unk_E20, 0);
+    CellActor_SetDrawFlag(param0->unk_E20, 0);
 }
 
 static void ov94_0223C888 (UnkStruct_ov94_0223FD4C * param0)
@@ -306,22 +305,22 @@ static const u16 Unk_ov94_02245A48[][2] = {
 
 static void ov94_0223C950 (UnkStruct_ov94_0223FD4C * param0)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
 
     ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0.unk_08.x = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][0];
-    v0.unk_08.y = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][1];
+    v0.position.x = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][0];
+    v0.position.y = FX32_ONE * Unk_ov94_02245A48[param0->unk_10C][1];
 
-    param0->unk_E20 = sub_02021AA0(&v0);
+    param0->unk_E20 = CellActorCollection_AddEx(&v0);
 
-    sub_02021CC8(param0->unk_E20, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_E20, 1);
+    CellActor_SetAnimateFlag(param0->unk_E20, 1);
+    CellActor_SetAnim(param0->unk_E20, 1);
 }
 
 static void ov94_0223C9B0 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_02021BD4(param0->unk_E20);
+    CellActor_Delete(param0->unk_E20);
 }
 
 static void ov94_0223C9C0 (UnkStruct_ov94_0223FD4C * param0)
@@ -423,7 +422,7 @@ static int ov94_0223CBEC (UnkStruct_ov94_0223FD4C * param0)
 {
     ov94_0223CF80(param0, 4, 1, 0, 0xf0f);
     ov94_0223C3F4(param0, 10, 6);
-    sub_02021CC8(param0->unk_E20, 1);
+    CellActor_SetAnimateFlag(param0->unk_E20, 1);
     ov94_0223C584(param0);
 
     return 3;
@@ -434,7 +433,7 @@ static int ov94_0223CC28 (UnkStruct_ov94_0223FD4C * param0)
     if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
         ov94_0223CFD8(param0, 7, ov94_0223C4D4(param0), 0, 0xf0f);
         ov94_0223C3F4(param0, 10, 12);
-        sub_02021CC8(param0->unk_E20, 0);
+        CellActor_SetAnimateFlag(param0->unk_E20, 0);
     } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
         switch (param0->unk_10C) {
         case 0:
@@ -450,7 +449,7 @@ static int ov94_0223CC28 (UnkStruct_ov94_0223FD4C * param0)
                     param0->unk_3A = (60 * 30);
                     Sound_PlayEffect(1500);
                 } else {
-                    sub_02021CC8(param0->unk_E20, 0);
+                    CellActor_SetAnimateFlag(param0->unk_E20, 0);
                     ov94_0223CF80(param0, 34, 1, 0, 0xf0f);
                     ov94_0223C3F4(param0, 11, 5);
                     Sound_PlayEffect(1523);
@@ -466,7 +465,7 @@ static int ov94_0223CC28 (UnkStruct_ov94_0223FD4C * param0)
         case 2:
             ov94_0223CFD8(param0, 7, ov94_0223C4D4(param0), 0, 0xf0f);
             ov94_0223C3F4(param0, 10, 12);
-            sub_02021CC8(param0->unk_E20, 0);
+            CellActor_SetAnimateFlag(param0->unk_E20, 0);
             Sound_PlayEffect(1500);
             break;
         }
@@ -535,7 +534,7 @@ static int ov94_0223CE7C (UnkStruct_ov94_0223FD4C * param0)
         if (v0 == 0xfffffffe) {
             sub_0200E084(&param0->unk_109C, 1);
             sub_0201ACF4(&param0->unk_109C);
-            sub_02021CC8(param0->unk_E20, 1);
+            CellActor_SetAnimateFlag(param0->unk_E20, 1);
             param0->unk_2C = 5;
         } else {
             sub_0200E084(&param0->unk_109C, 1);

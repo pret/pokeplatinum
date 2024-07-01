@@ -4,13 +4,9 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -22,13 +18,13 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay077/ov77_021D6670.h"
 
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    GraphicElementData * unk_04;
+    CellActor * unk_04;
     SysTask * unk_08;
 } UnkStruct_ov77_021D6ADC;
 
@@ -54,7 +50,7 @@ typedef struct {
 } UnkStruct_ov77_021D6A0C;
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    CellActorCollection * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[4];
     UnkStruct_02009DC8 * unk_1A0[4];
@@ -101,23 +97,23 @@ static void ov77_021D6670 ()
     sub_0201F8E4();
 }
 
-static void ov77_021D66A0 (UnkStruct_ov77_021D6800 * param0, UnkStruct_ov115_02261520 * param1, UnkStruct_ov19_021DA864 * param2)
+static void ov77_021D66A0 (UnkStruct_ov77_021D6800 * param0, CellActorInitParamsEx * param1, CellActorResourceData * param2)
 {
     sub_020093B4(param2, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
-        param1->unk_00 = param0->unk_00;
-        param1->unk_04 = param2;
-        param1->unk_08.x = 0;
-        param1->unk_08.y = 0;
-        param1->unk_08.z = 0;
-        param1->unk_14.x = FX32_ONE;
-        param1->unk_14.y = FX32_ONE;
-        param1->unk_14.z = FX32_ONE;
-        param1->unk_20 = 0;
-        param1->unk_24 = 1;
-        param1->unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        param1->unk_2C = 76;
+        param1->collection = param0->unk_00;
+        param1->resourceData = param2;
+        param1->position.x = 0;
+        param1->position.y = 0;
+        param1->position.z = 0;
+        param1->affineScale.x = FX32_ONE;
+        param1->affineScale.y = FX32_ONE;
+        param1->affineScale.z = FX32_ONE;
+        param1->affineZRotation = 0;
+        param1->priority = 1;
+        param1->vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        param1->heapID = 76;
     }
 }
 
@@ -163,7 +159,7 @@ void ov77_021D6760 (UnkStruct_ov77_021D6734 * param0)
     Heap_FreeToHeap(param0);
 }
 
-GraphicElementData ** ov77_021D6794 (UnkStruct_ov77_021D6734 * param0, const int param1)
+CellActor ** ov77_021D6794 (UnkStruct_ov77_021D6734 * param0, const int param1)
 {
     GF_ASSERT(param1 < param0->unk_00);
     return &param0->unk_04[param1].unk_04;
@@ -232,7 +228,7 @@ static void ov77_021D691C (UnkStruct_ov77_021D6800 * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    sub_02021964(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();
@@ -241,24 +237,24 @@ static void ov77_021D691C (UnkStruct_ov77_021D6800 * param0)
 static void ov77_021D6964 (UnkStruct_ov77_021D6800 * param0)
 {
     int v0;
-    UnkStruct_ov19_021DA864 v1;
-    UnkStruct_ov115_02261520 v2;
+    CellActorResourceData v1;
+    CellActorInitParamsEx v2;
 
     for (v0 = 0; v0 < 10; v0++) {
         ov77_021D66A0(param0, &v2, &v1);
-        v2.unk_08.x = FX32_ONE * v0 * 2;
-        v2.unk_08.y = FX32_ONE * v0 * 2;
+        v2.position.x = FX32_ONE * v0 * 2;
+        v2.position.y = FX32_ONE * v0 * 2;
 
-        param0->unk_1B0[v0].unk_04 = sub_02021AA0(&v2);
+        param0->unk_1B0[v0].unk_04 = CellActorCollection_AddEx(&v2);
 
-        sub_02021CC8(param0->unk_1B0[v0].unk_04, 0);
-        sub_02021CAC(param0->unk_1B0[v0].unk_04, 0);
+        CellActor_SetAnimateFlag(param0->unk_1B0[v0].unk_04, 0);
+        CellActor_SetDrawFlag(param0->unk_1B0[v0].unk_04, 0);
     }
 }
 
 static void ov77_021D69B4 (UnkStruct_ov77_021D6800 * param0)
 {
-    sub_020219F8(param0->unk_00);
+    CellActorCollection_Update(param0->unk_00);
 }
 
 void ov77_021D69C0 (UnkStruct_ov77_021D670C * param0, const int param1)
@@ -302,15 +298,15 @@ static void ov77_021D6A44 (UnkStruct_ov77_021D6ADC * param0, const u8 param1, co
         {
             VecFx32 v3;
 
-            v3 = *sub_02021D28(v1->unk_04);
+            v3 = *CellActor_GetPosition(v1->unk_04);
             v3.x = FX32_ONE * (64 + (LCRNG_Next() % 128));
             v3.y = FX32_ONE * (v2 + (LCRNG_Next() % 64));
 
-            sub_02021C50(v1->unk_04, &v3);
+            CellActor_SetPosition(v1->unk_04, &v3);
         }
 
-        sub_02021CC8(v1->unk_04, 1);
-        sub_02021CAC(v1->unk_04, 1);
+        CellActor_SetAnimateFlag(v1->unk_04, 1);
+        CellActor_SetDrawFlag(v1->unk_04, 1);
 
         v1->unk_08 = SysTask_Start(ov77_021D6B48, v1, 20);
     }
@@ -357,10 +353,10 @@ static void ov77_021D6B48 (SysTask * param0, void * param1)
     {
         VecFx32 v1;
 
-        v1 = *sub_02021D28(v0->unk_04);
+        v1 = *CellActor_GetPosition(v0->unk_04);
         v1.y += (FX32_ONE * 3);
 
-        sub_02021C50(v0->unk_04, &v1);
+        CellActor_SetPosition(v0->unk_04, &v1);
     }
 
     v0->unk_01++;
@@ -369,8 +365,8 @@ static void ov77_021D6B48 (SysTask * param0, void * param1)
         SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
-        sub_02021CC8(v0->unk_04, 0);
-        sub_02021CAC(v0->unk_04, 0);
+        CellActor_SetAnimateFlag(v0->unk_04, 0);
+        CellActor_SetDrawFlag(v0->unk_04, 0);
     }
 }
 
@@ -393,19 +389,19 @@ static void ov77_021D6BAC (UnkStruct_ov77_021D6734 * param0, const u8 param1, in
         {
             VecFx32 v3;
 
-            v3 = *sub_02021D28(v2->unk_04);
+            v3 = *CellActor_GetPosition(v2->unk_04);
             v3.x = FX32_ONE * ((16 - 6) + (LCRNG_Next() % 224));
             v3.y = FX32_ONE * (192 + (64 - 6) + (LCRNG_Next() % 56));
 
-            sub_02021C50(v2->unk_04, &v3);
+            CellActor_SetPosition(v2->unk_04, &v3);
         }
 
-        sub_02021CC8(v2->unk_04, 1);
+        CellActor_SetAnimateFlag(v2->unk_04, 1);
 
         if (param2 == 0) {
-            sub_02021CAC(v2->unk_04, 1);
+            CellActor_SetDrawFlag(v2->unk_04, 1);
         } else {
-            sub_02021CAC(v2->unk_04, 0);
+            CellActor_SetDrawFlag(v2->unk_04, 0);
         }
 
         v2->unk_08 = SysTask_Start(ov77_021D6C44, v2, 20);
@@ -422,7 +418,7 @@ static void ov77_021D6C44 (SysTask * param0, void * param1)
         SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
-        sub_02021CC8(v0->unk_04, 0);
-        sub_02021CAC(v0->unk_04, 0);
+        CellActor_SetAnimateFlag(v0->unk_04, 0);
+        CellActor_SetDrawFlag(v0->unk_04, 0);
     }
 }

@@ -46,7 +46,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -600,7 +600,7 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
         v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
         v3 = PokeIconPaletteIndex(v2, v4, v1);
 
-        sub_02021F24(param0->unk_2FC[v0]->unk_00, v3);
+        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_2FC[v0]->unk_00, v3);
         sub_0200D364(param0->unk_2FC[v0], 1);
     }
 }

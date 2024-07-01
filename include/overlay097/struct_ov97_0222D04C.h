@@ -9,13 +9,11 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "savedata.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay097/union_ov97_0222D2B0.h"
 #include "overlay097/struct_ov97_0223829C.h"
 
@@ -45,12 +43,12 @@ typedef struct {
     int unk_438;
     int unk_43C;
     int unk_440;
-    GraphicElementManager * unk_444;
+    CellActorCollection * unk_444;
     UnkStruct_0200C738 unk_448;
     UnkStruct_02009714 * unk_5D4[6];
     UnkStruct_02009DC8 * unk_5EC[6];
-    UnkStruct_ov19_021DA864 unk_604;
-    GraphicElementData * unk_628;
+    CellActorResourceData unk_604;
+    CellActor * unk_628;
     int unk_62C;
     int unk_630;
     int unk_634;

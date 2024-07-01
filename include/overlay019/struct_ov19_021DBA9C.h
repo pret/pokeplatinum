@@ -6,8 +6,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0201AE08.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -18,7 +17,7 @@
 typedef struct {
     UnkStruct_ov19_021D61B0 * unk_00;
     BGL * unk_04;
-    GraphicElementManager * unk_08;
+    CellActorCollection * unk_08;
     const UnkStruct_ov19_021D4DF0 * unk_0C;
     Window * unk_10;
     void * unk_14;
@@ -32,8 +31,8 @@ typedef struct {
     NNSG2dScreenData * unk_38;
     UnkStruct_0201AE08 unk_3C;
     UnkStruct_0200C440 * unk_44;
-    GraphicElementData * unk_48[18];
-    GraphicElementData * unk_90;
+    CellActor * unk_48[18];
+    CellActor * unk_90;
     u32 unk_94[18];
     SysTask * unk_DC;
     s32 unk_E0;

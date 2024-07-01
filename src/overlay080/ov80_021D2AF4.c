@@ -13,7 +13,7 @@
 
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay080/ov80_021D2AF4.h"
 
 #include "overlay080/struct_ov80_021D2C5C_sub1.h"
@@ -71,17 +71,17 @@ UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (SpriteRenderer * param0, SpriteGfxHandl
         v1->unk_14 = param2[v3];
         v1->unk_18 = sub_0200CA08(param0, param1, &v4);
 
-        sub_02021CAC(v1->unk_18, 1);
+        CellActor_SetDrawFlag(v1->unk_18, 1);
 
         if (v1->unk_14) {
-            sub_02021E90(v1->unk_18, 5 + v1->unk_00.unk_09 + v1->unk_14);
+            CellActor_SetExplicitPalette(v1->unk_18, 5 + v1->unk_00.unk_09 + v1->unk_14);
         } else {
             if ((v1->unk_00.unk_0A == 1) || (v1->unk_00.unk_0A == 2)) {
-                sub_02021CAC(v1->unk_18, 0);
+                CellActor_SetDrawFlag(v1->unk_18, 0);
             }
         }
 
-        sub_02021E2C(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
+        CellActor_UpdateAnim(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
         SpriteActor_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
     }
 
@@ -95,8 +95,8 @@ void ov80_021D2C1C (UnkStruct_ov80_021D2C1C * param0)
 
     for (v1 = 0; v1 < param0->unk_00; v1++) {
         v0 = &param0->unk_08[v1];
-        sub_02021C98(v0->unk_18, 0, 0);
-        sub_02021BD4(v0->unk_18);
+        CellActor_SetAffineZRotationEx(v0->unk_18, 0, 0);
+        CellActor_Delete(v0->unk_18);
     }
 
     Heap_FreeToHeap(param0->unk_08);
@@ -154,7 +154,7 @@ int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int
 
     if ((v0 == NULL) || (v0->unk_14 == 0)) {
         if (param0->unk_04 != NULL) {
-            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+            CellActor_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
         }
 
         param0->unk_04 = NULL;
@@ -166,7 +166,7 @@ int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int
         param0->unk_03 = 0;
     } else {
         if ((v0->unk_00.unk_0A == 2) || (v0->unk_00.unk_0A == 3)) {
-            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+            CellActor_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
         }
     }
 
@@ -184,9 +184,9 @@ void ov80_021D2D28 (UnkStruct_ov80_021D2C1C * param0, int param1)
     }
 
     if (param0->unk_03 == 0) {
-        sub_02021E90(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.unk_09);
+        CellActor_SetExplicitPalette(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.unk_09);
     } else {
-        sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+        CellActor_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
     }
 
     param0->unk_02++;

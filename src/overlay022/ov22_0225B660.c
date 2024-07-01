@@ -4,7 +4,6 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
@@ -27,7 +26,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
@@ -44,7 +43,7 @@ typedef struct {
     u32 unk_0C;
     UnkStruct_ov22_0225B1BC * unk_10;
     UnkStruct_ov22_0225A0E4 unk_14;
-    GraphicElementData * unk_1FC;
+    CellActor * unk_1FC;
     Window * unk_200;
 } UnkStruct_ov22_0225B85C;
 
@@ -228,7 +227,7 @@ static void ov22_0225B964 (UnkStruct_ov22_0225B85C * param0)
 
     param0->unk_1FC = ov22_022551E4(&param0->unk_14, 1000, 0, 144, 100, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    sub_02021E80(param0->unk_1FC, 1);
+    CellActor_SetExplicitPriority(param0->unk_1FC, 1);
 }
 
 static void ov22_0225BA00 (UnkStruct_ov22_0225B85C * param0)
@@ -237,7 +236,7 @@ static void ov22_0225BA00 (UnkStruct_ov22_0225B85C * param0)
     ov22_022552D8(&param0->unk_14, 1000);
     ov22_022552EC(&param0->unk_14, 1000);
     ov22_02255300(&param0->unk_14, 1000);
-    sub_02021BD4(param0->unk_1FC);
+    CellActor_Delete(param0->unk_1FC);
 }
 
 static void ov22_0225BA40 (UnkStruct_ov22_0225B85C * param0)
@@ -287,11 +286,11 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     GF_ASSERT(v8);
     v5 = StringTemplate_Default(13);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_1FC, 5);
+    CellActor_SetAnim(param0->unk_1FC, 5);
     v0.x = 48 << FX32_SHIFT;
     v0.y = 144 << FX32_SHIFT;
     v0.z = 0;
-    sub_02021C50(param0->unk_1FC, &v0);
+    CellActor_SetPosition(param0->unk_1FC, &v0);
 
     v7 = Strbuf_Init(12, 13);
     sub_0202A1A0(param0->unk_00, v7);
@@ -334,7 +333,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     int v8, v9;
     int v10;
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_1FC, param0->unk_08);
+    CellActor_SetAnim(param0->unk_1FC, param0->unk_08);
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = StringTemplate_Default(13);

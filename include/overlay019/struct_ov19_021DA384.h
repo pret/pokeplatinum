@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV19_021DA384_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -18,7 +18,7 @@ typedef struct {
     void * unk_18;
     NNSG2dCellDataBank * unk_1C;
     NNSG2dAnimBankData * unk_20;
-    GraphicElementManager * unk_24;
+    CellActorCollection * unk_24;
     u8 padding_28[24];
     const UnkStruct_ov19_021D4DF0 * unk_40;
     UnkStruct_ov19_021D61B0 * unk_44;

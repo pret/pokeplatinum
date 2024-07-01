@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -12,7 +11,6 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021DA384.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay019/struct_ov19_021DBA9C.h"
 #include "overlay061/struct_ov61_0222C884.h"
 
@@ -24,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
@@ -72,7 +70,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C * param0, u32 param1);
 static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C * param0, fx32 param1);
 static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C * param0);
 
-BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, NARC * param5)
+BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, CellActorCollection * param4, NARC * param5)
 {
     int v0;
 
@@ -350,7 +348,7 @@ static void ov19_021DBD9C (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 par
 
 static void ov19_021DBDF4 (UnkStruct_ov19_021DBA9C * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
     UnkStruct_ov19_021DA384 * v1;
     NNSG2dImageProxy v2;
     VecFx32 v3;
@@ -365,14 +363,14 @@ static void ov19_021DBDF4 (UnkStruct_ov19_021DBA9C * param0)
         NNS_G2dInitImageProxy(&v2);
         ov19_021DBBA8(param0, v5, 1584 + 32 * v4, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
-        v0.unk_00 = &v2;
+        v0.imageProxy = &v2;
         param0->unk_48[v4] = ov19_021D785C(param0->unk_08, &v0, 512, 256, 11, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         GF_ASSERT(param0->unk_48[v4] != NULL);
 
-        sub_02021CAC(param0->unk_48[v4], 0);
+        CellActor_SetDrawFlag(param0->unk_48[v4], 0);
         VEC_Set(&v3, FX32_CONST(32 + v4 * 32), FX32_CONST(88), 0);
-        sub_02021C50(param0->unk_48[v4], &v3);
+        CellActor_SetPosition(param0->unk_48[v4], &v3);
         ov19_021DBD68(param0, v5);
 
         if (++v5 >= 18) {
@@ -391,7 +389,7 @@ static void ov19_021DBEF8 (UnkStruct_ov19_021DBA9C * param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_48[v0] != NULL) {
-            sub_02021BD4(param0->unk_48[v0]);
+            CellActor_Delete(param0->unk_48[v0]);
             param0->unk_48[v0] = NULL;
         }
     }
@@ -405,7 +403,7 @@ static void ov19_021DBF18 (UnkStruct_ov19_021DBA9C * param0)
 
     for (v1 = 0; v1 < 7; v1++) {
         ov19_021DBD9C(param0, v1, v0);
-        sub_02021CAC(param0->unk_48[v1], 1);
+        CellActor_SetDrawFlag(param0->unk_48[v1], 1);
 
         if (++v0 >= 18) {
             v0 = 0;
@@ -702,7 +700,7 @@ static void ov19_021DC46C (SysTask * param0, void * param1)
 static void ov19_021DC4F8 (UnkStruct_ov19_021DBA9C * param0, u32 param1)
 {
     if (param1 != 0) {
-        UnkStruct_ov19_021DA864 v0;
+        CellActorResourceData v0;
         UnkStruct_ov19_021DA384 * v1;
         NNSG2dImageProxy v2;
         NNSG2dCharacterData * v3;
@@ -720,7 +718,7 @@ static void ov19_021DC4F8 (UnkStruct_ov19_021DBA9C * param0, u32 param1)
         param0->unk_90 = ov19_021D785C(param0->unk_08, &v0, 18, 224, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         if (param0->unk_90) {
-            sub_02021E90(param0->unk_90, 6);
+            CellActor_SetExplicitPalette(param0->unk_90, 6);
         }
 
         Heap_FreeToHeap(v4);
@@ -736,13 +734,13 @@ static void ov19_021DC5B8 (UnkStruct_ov19_021DBA9C * param0, fx32 param1)
         v0.y = param1;
         v0.z = 0;
 
-        sub_02021C50(param0->unk_90, &v0);
+        CellActor_SetPosition(param0->unk_90, &v0);
     }
 }
 
 static void ov19_021DC5E0 (UnkStruct_ov19_021DBA9C * param0)
 {
     if (param0->unk_90) {
-        sub_02021BD4(param0->unk_90);
+        CellActor_Delete(param0->unk_90);
     }
 }

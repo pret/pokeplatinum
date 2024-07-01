@@ -5,13 +5,11 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
 #include "touch_screen.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021D4660.h"
@@ -19,7 +17,6 @@
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 
 #include "overlay021/struct_ov21_021E6A68.h"
 
@@ -32,7 +29,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_02023FCC.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -67,10 +64,10 @@ typedef struct {
 } UnkStruct_ov21_021E88B0;
 
 typedef struct {
-    GraphicElementData * unk_00[1];
+    CellActor * unk_00[1];
     UnkStruct_ov21_021D4CA0 * unk_04[1];
     UnkStruct_02009DC8 * unk_08[4];
-    GraphicElementData * unk_18[4];
+    CellActor * unk_18[4];
     int unk_28[1];
     void * unk_2C[1];
 } UnkStruct_ov21_021E8794;
@@ -97,8 +94,8 @@ static void ov21_021E88B0(UnkStruct_ov21_021E88B0 * param0);
 static void ov21_021E88B8(UnkStruct_ov21_021E88B0 * param0, UnkStruct_ov21_021E8570 * param1);
 static void ov21_021E88D0(UnkStruct_ov21_021E88B0 * param0);
 static void ov21_021E88E8(u32 param0, u32 param1, void * param2);
-static void ov21_021E8BE8(UnkStruct_ov21_021E8584 * param0, GraphicElementData * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10);
-static void ov21_021E8C94(GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4);
+static void ov21_021E8BE8(UnkStruct_ov21_021E8584 * param0, CellActor * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10);
+static void ov21_021E8C94(CellActor * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4);
 static void ov21_021E8CBC(UnkStruct_ov21_021E8584 * param0, UnkStruct_ov21_021E8794 * param1, const UnkStruct_ov21_021E88B0 * param2, int param3);
 static void ov21_021E8D3C(const UnkStruct_ov21_021E8570 * param0);
 static void ov21_021E8CF0(UnkStruct_ov21_021E88B0 * param0, UnkStruct_ov21_021E8570 * param1);
@@ -354,7 +351,7 @@ static void ov21_021E8794 (UnkStruct_ov21_021E8794 * param0)
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_XLU);
+        CellActor_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_XLU);
         sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_XLU);
     }
 }
@@ -364,7 +361,7 @@ static void ov21_021E87AC (UnkStruct_ov21_021E8794 * param0)
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02021FE0(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
+        CellActor_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
         sub_02012AF0(param0->unk_04[v0]->unk_00, GX_OAM_MODE_NORMAL);
     }
 }
@@ -537,26 +534,26 @@ static void ov21_021E8A74 (UnkStruct_ov21_021E8794 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E8AA8 (UnkStruct_ov21_021E8794 * param0, UnkStruct_ov21_021E8584 * param1, int param2)
 {
-    UnkStruct_ov19_021DA864 v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorResourceData v0;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3;
 
     sub_020093B4(&v0, 102 + 13000, 11 + 2100, 100 + 13000, 101 + 13000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v1.unk_1C = param2;
+    v1.collection = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    v1.heapID = param2;
 
-    v1.unk_08.x = 128 << FX32_SHIFT;
-    v1.unk_08.y = 144 << FX32_SHIFT;
-    v1.unk_08.y += (192 << FX32_SHIFT);
+    v1.position.x = 128 << FX32_SHIFT;
+    v1.position.y = 144 << FX32_SHIFT;
+    v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_00[0] = sub_02021B90(&v1);
+    param0->unk_00[0] = CellActorCollection_Add(&v1);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_00[0], 2);
+    CellActor_SetAnim(param0->unk_00[0], 2);
 }
 
 static void ov21_021E8B34 (UnkStruct_ov21_021E8794 * param0)
@@ -564,7 +561,7 @@ static void ov21_021E8B34 (UnkStruct_ov21_021E8794 * param0)
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02021BD4(param0->unk_00[v0]);
+        CellActor_Delete(param0->unk_00[v0]);
     }
 }
 
@@ -612,7 +609,7 @@ static void ov21_021E8BDC (UnkStruct_ov21_021E8794 * param0, UnkStruct_ov21_021E
     }
 }
 
-static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, GraphicElementData * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10)
+static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, CellActor * param1, UnkStruct_ov21_021D4CA0 * param2, int param3, int param4, int param5, int * param6, int param7, int param8, int param9, void ** param10)
 {
     int v0;
     NNSG2dPaletteData * v1;
@@ -623,7 +620,7 @@ static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, GraphicElementData 
     ov21_021D144C(param1, param3);
     ov21_021E8C94(param1, param2, param4, param8, param9);
 
-    v0 = sub_02021E74(param1);
+    v0 = CellActor_GetAnimFrame(param1);
 
     switch (v0) {
     case 0:
@@ -662,12 +659,12 @@ static void ov21_021E8BE8 (UnkStruct_ov21_021E8584 * param0, GraphicElementData 
     }
 }
 
-static void ov21_021E8C94 (GraphicElementData * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4)
+static void ov21_021E8C94 (CellActor * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4)
 {
     int v0;
 
     ov21_021D1498(param0, param1, param2);
-    v0 = sub_02021E74(param0);
+    v0 = CellActor_GetAnimFrame(param0);
 
     if (v0 < 2) {
         sub_02012AC0(param1->unk_00, param3);

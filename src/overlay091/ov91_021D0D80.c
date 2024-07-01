@@ -51,7 +51,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "pokemon.h"
@@ -1335,7 +1335,7 @@ static void ov91_021D20E8 (UnkStruct_ov91_021D0ED8 * param0)
     u16 v0;
 
     for (v0 = 0; v0 < 13; v0++) {
-        sub_02021E2C(param0->unk_118[v0]->unk_00, FX32_ONE);
+        CellActor_UpdateAnim(param0->unk_118[v0]->unk_00, FX32_ONE);
     }
 }
 

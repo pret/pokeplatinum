@@ -13,8 +13,6 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_decls/struct_02027F8C_decl.h"
@@ -27,7 +25,7 @@
 #include "struct_defs/struct_02095E80_sub1.h"
 #include "struct_defs/pokemon_summary.h"
 #include "savedata.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
 
@@ -71,18 +69,18 @@ struct UnkStruct_02095E80_t {
     Strbuf* unk_188;
     Strbuf* unk_18C;
     Strbuf* unk_190;
-    GraphicElementManager * unk_194;
+    CellActorCollection * unk_194;
     UnkStruct_0200C738 unk_198;
     UnkStruct_02009714 * unk_324[4];
     UnkStruct_02009DC8 * unk_334[2][4];
-    UnkStruct_ov19_021DA864 unk_354;
-    UnkStruct_ov19_021DA864 unk_378;
-    GraphicElementData * unk_39C[14];
-    GraphicElementData * unk_3D4[12];
-    GraphicElementData * unk_404[12];
-    GraphicElementData * unk_434[12];
-    GraphicElementData * unk_464[6];
-    GraphicElementData * unk_47C;
+    CellActorResourceData unk_354;
+    CellActorResourceData unk_378;
+    CellActor * unk_39C[14];
+    CellActor * unk_3D4[12];
+    CellActor * unk_404[12];
+    CellActor * unk_434[12];
+    CellActor * unk_464[6];
+    CellActor * unk_47C;
     SysTask * unk_480[7];
     Window unk_49C[34];
     UIControlData * unk_6BC;

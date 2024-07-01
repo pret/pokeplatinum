@@ -5,7 +5,7 @@
 #include "string_template.h"
 #include "struct_decls/font_oam.h"
 #include "struct_defs/sprite_manager_allocation.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 
@@ -34,7 +34,7 @@ typedef struct {
     Window unk_FC[8][2];
     Window unk_1FC;
     UnkStruct_02009DC8 * unk_20C[4];
-    GraphicElementData * unk_21C[3];
+    CellActor * unk_21C[3];
     SpriteManagerAllocation unk_228;
     FontOAM * unk_234;
     u32 unk_238;

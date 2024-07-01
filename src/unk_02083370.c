@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0207070C.h"
 #include "pokemon.h"
 #include "party.h"
@@ -441,8 +441,8 @@ static void sub_02083AD0 (GameWindowLayout * param0, int * param1)
     sub_0200D414(param0->unk_5B0[6], 0);
     sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
     SpriteActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
-    sub_02021CAC(param0->unk_5B0[7], 1);
+    CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
+    CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
     sub_0207F8F8(param0, param0->unk_B0F_0);
     sub_0200E084(&param0->unk_04[33], 1);
     sub_0208337C(param0);
@@ -454,7 +454,7 @@ static void sub_02083AD0 (GameWindowLayout * param0, int * param1)
 void sub_02083B88 (GameWindowLayout * param0)
 {
     param0->unk_B0F_6 = 0;
-    sub_02021CAC(param0->unk_5B0[7], 0);
+    CellActor_SetDrawFlag(param0->unk_5B0[7], 0);
 
     if (param0->unk_B11 < 6) {
         sub_0207F8F8(param0, param0->unk_B11);
@@ -504,8 +504,8 @@ void sub_02083BD4 (GameWindowLayout * param0)
         memcpy(&param0->unk_7F8.unk_180[1][v6 * 16], &v1[v4 + (v5 + v6) * 32], 16 * 2);
     }
 
-    sub_02021CAC(param0->unk_5B0[6], 0);
-    sub_02021CAC(param0->unk_5B0[7], 0);
+    CellActor_SetDrawFlag(param0->unk_5B0[6], 0);
+    CellActor_SetDrawFlag(param0->unk_5B0[7], 0);
 }
 
 BOOL sub_02083D1C (GameWindowLayout * param0)
@@ -554,7 +554,7 @@ BOOL sub_02083D1C (GameWindowLayout * param0)
 
     case 4:
         Party_SwapSlots(param0->unk_5A4->unk_00, v0->unk_300[0], v0->unk_300[1]);
-        sub_02021CAC(param0->unk_5B0[6], 1);
+        CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
 
         v0->unk_304 = 0;
         param0->unk_B0F_6 = 0;
@@ -847,7 +847,7 @@ int sub_02084780 (GameWindowLayout * param0)
 
     if (Pokemon_GetValue(v0, MON_DATA_MAIL_ID, NULL) == 0) {
         MessageLoader_GetStrbuf(param0->unk_69C, 129, param0->unk_6A4);
-        sub_02021CAC(param0->unk_5B0[22 + param0->unk_B11], 1);
+        CellActor_SetDrawFlag(param0->unk_5B0[22 + param0->unk_B11], 1);
     } else {
         MessageLoader_GetStrbuf(param0->unk_69C, 130, param0->unk_6A4);
         param0->unk_B11 = 7;
@@ -1020,8 +1020,8 @@ static int sub_02084A18 (GameWindowLayout * param0)
         sub_0200D414(param0->unk_5B0[6], 0);
         sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
         SpriteActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
-        sub_02021CAC(param0->unk_5B0[7], 1);
+        CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
+        CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
         sub_0207F8F8(param0, param0->unk_B0F_0);
         sub_020826E0(param0, 36, 1);
 

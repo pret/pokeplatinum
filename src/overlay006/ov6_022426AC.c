@@ -5,13 +5,9 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0200C738.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "narc.h"
 #include "unk_020093B4.h"
@@ -21,7 +17,7 @@
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "overlay006/ov6_022426AC.h"
 
@@ -31,9 +27,9 @@ typedef struct UnkStruct_ov6_022426B8_t {
     void * unk_20;
     void * unk_24;
     ArchivedSprite unk_28;
-    GraphicElementManager * unk_38;
+    CellActorCollection * unk_38;
     UnkStruct_0200C738 unk_3C;
-    GraphicElementData * unk_1C8;
+    CellActor * unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;
 } UnkStruct_ov6_022426B8;
@@ -148,7 +144,7 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
         sub_02009754(param0->unk_00[v0]);
     }
 
-    sub_02021964(param0->unk_38);
+    CellActorCollection_Delete(param0->unk_38);
     Heap_FreeToHeap(param0->unk_20);
     Heap_FreeToHeap(param0->unk_24);
 }
@@ -158,7 +154,7 @@ static void ov6_02242860 (SysTask * param0, void * param1)
     UnkStruct_ov6_022426B8 * v0 = param1;
 
     if (v0->unk_1CC) {
-        sub_020219F8(v0->unk_38);
+        CellActorCollection_Update(v0->unk_38);
     } else {
         v0->unk_1D0 = 1;
         SysTask_Done(param0);
@@ -198,31 +194,31 @@ static void ov6_02242880 (UnkStruct_02009714 * param0, UnkStruct_02009714 * para
 static void ov6_022428F8 (UnkStruct_ov6_022426B8 * param0)
 {
     int v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
 
     sub_020093B4(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v2;
+        CellActorInitParamsEx v2;
 
-        v2.unk_00 = param0->unk_38;
-        v2.unk_04 = &v1;
-        v2.unk_08.x = 0;
-        v2.unk_08.y = 0;
-        v2.unk_08.z = 0;
-        v2.unk_14.x = FX32_ONE;
-        v2.unk_14.y = FX32_ONE;
-        v2.unk_14.z = FX32_ONE;
-        v2.unk_20 = 0;
-        v2.unk_24 = 0;
-        v2.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.unk_2C = 4;
-        v2.unk_08.x = FX32_ONE * (256 / 2);
-        v2.unk_08.y = FX32_ONE * (192 / 2);
+        v2.collection = param0->unk_38;
+        v2.resourceData = &v1;
+        v2.position.x = 0;
+        v2.position.y = 0;
+        v2.position.z = 0;
+        v2.affineScale.x = FX32_ONE;
+        v2.affineScale.y = FX32_ONE;
+        v2.affineScale.z = FX32_ONE;
+        v2.affineZRotation = 0;
+        v2.priority = 0;
+        v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v2.heapID = 4;
+        v2.position.x = FX32_ONE * (256 / 2);
+        v2.position.y = FX32_ONE * (192 / 2);
 
-        param0->unk_1C8 = sub_02021AA0(&v2);
+        param0->unk_1C8 = CellActorCollection_AddEx(&v2);
 
-        sub_02021CC8(param0->unk_1C8, 0);
-        SpriteActor_SetSpriteAnimActive(param0->unk_1C8, 0);
+        CellActor_SetAnimateFlag(param0->unk_1C8, 0);
+        CellActor_SetAnim(param0->unk_1C8, 0);
     }
 }

@@ -18,7 +18,6 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 #include "overlay094/struct_ov94_0223FD4C_sub3.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -33,7 +32,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "unk_0202DA40.h"
@@ -294,24 +293,24 @@ static void ov94_0223E6B8 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223E770 (UnkStruct_ov94_0223FD4C * param0)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
 
     ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0.unk_08.x = FX32_ONE;
-    v0.unk_08.y = FX32_ONE;
+    v0.position.x = FX32_ONE;
+    v0.position.y = FX32_ONE;
 
-    param0->unk_E20 = sub_02021AA0(&v0);
+    param0->unk_E20 = CellActorCollection_AddEx(&v0);
 
-    sub_02021CC8(param0->unk_E20, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_E20, 0);
-    sub_02021E80(param0->unk_E20, 1);
+    CellActor_SetAnimateFlag(param0->unk_E20, 1);
+    CellActor_SetAnim(param0->unk_E20, 0);
+    CellActor_SetExplicitPriority(param0->unk_E20, 1);
     sub_02039734();
 }
 
 static void ov94_0223E7C4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_02021BD4(param0->unk_E20);
+    CellActor_Delete(param0->unk_E20);
 }
 
 static const u16 Unk_ov94_02245D94[6][2] = {
@@ -464,7 +463,7 @@ static int ov94_0223EA84 (UnkStruct_ov94_0223FD4C * param0)
 
         if (param0->unk_10F2) {
             if (v1 >= 0) {
-                SpriteActor_SetSpriteAnimActive(param0->unk_F34[v1 + 1], 16 + v1 * 4);
+                CellActor_SetAnim(param0->unk_F34[v1 + 1], 16 + v1 * 4);
                 param0->unk_2C = 2;
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_11C = v1;
@@ -736,7 +735,7 @@ static void ov94_0223EFAC (UnkStruct_ov94_0223FD4C * param0)
         v1.x = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][0];
         v1.y = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][1];
 
-        sub_02021C50(param0->unk_E20, &v1);
+        CellActor_SetPosition(param0->unk_E20, &v1);
     }
 }
 

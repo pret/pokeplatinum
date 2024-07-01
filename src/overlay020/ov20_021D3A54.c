@@ -7,14 +7,12 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
 
@@ -24,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_020998EC.h"
 #include "overlay020/ov20_021D0D80.h"
@@ -43,7 +41,7 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     SysTask * unk_18;
     UnkStruct_ov20_021D4FF0 unk_1C;
     UnkStruct_ov20_021D4E8C unk_3C;
-    GraphicElementData * unk_5C;
+    CellActor * unk_5C;
 } UnkStruct_ov20_021D3E0C;
 
 static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2);
@@ -69,7 +67,7 @@ UnkStruct_ov20_021D3E0C * ov20_021D3A54 (UnkStruct_ov20_021D2128 * param0, const
 void ov20_021D3A80 (UnkStruct_ov20_021D3E0C * param0)
 {
     if (param0->unk_5C) {
-        sub_02021BD4(param0->unk_5C);
+        CellActor_Delete(param0->unk_5C);
     }
 
     Heap_FreeToHeap(param0);
@@ -230,23 +228,23 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 pa
 
 static void ov20_021D3E0C (UnkStruct_ov20_021D3E0C * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
 
     ov20_021D2E0C(param0->unk_00, &v0, 0, 1);
     param0->unk_5C = ov20_021D2E50(param0->unk_00, &v0, 48, 54, 2, NNS_G2D_VRAM_TYPE_2DMAIN);
-    SpriteActor_SetSpriteAnimActive(param0->unk_5C, 4);
-    sub_02021CAC(param0->unk_5C, 0);
+    CellActor_SetAnim(param0->unk_5C, 4);
+    CellActor_SetDrawFlag(param0->unk_5C, 0);
 }
 
 void ov20_021D3E48 (UnkStruct_ov20_021D3E0C * param0, BOOL param1)
 {
-    sub_02021CAC(param0->unk_5C, param1);
+    CellActor_SetDrawFlag(param0->unk_5C, param1);
 
     if (param1) {
         if (ov20_021D1F94(param0->unk_04) == 0) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_5C, 4);
+            CellActor_SetAnim(param0->unk_5C, 4);
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_5C, 6);
+            CellActor_SetAnim(param0->unk_5C, 6);
         }
     }
 }
@@ -282,8 +280,8 @@ void ov20_021D3E74 (UnkStruct_ov20_021D3E0C * param0, u32 param1)
     v0.x *= FX32_ONE;
     v0.y *= FX32_ONE;
 
-    sub_02021C50(param0->unk_5C, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_5C, v2);
+    CellActor_SetPosition(param0->unk_5C, &v0);
+    CellActor_SetAnim(param0->unk_5C, v2);
 }
 
 void ov20_021D3EF8 (UnkStruct_ov20_021D3E0C * param0)

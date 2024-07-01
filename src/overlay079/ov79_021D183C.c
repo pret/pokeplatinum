@@ -22,7 +22,7 @@
 #include "unk_020158A8.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D183C.h"
@@ -215,30 +215,30 @@ void ov79_021D1B24 (UnkStruct_ov79_021D0E1C * param0, u8 param1, u8 param2)
 {
     switch (param2) {
     case 0:
-        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3);
-        sub_02021CC8(param0->unk_1E0[param1], 0);
+        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3);
+        CellActor_SetAnimateFlag(param0->unk_1E0[param1], 0);
         sub_0201C04C(
             &param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         break;
     case 1:
-        sub_02021DE0(param0->unk_1E0[param1]);
-        sub_02021CC8(param0->unk_1E0[param1], 1);
+        CellActor_RestartAnim(param0->unk_1E0[param1]);
+        CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
         sub_0201C04C(&param0->unk_E8[7 + param1], 0, 4, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 2:
-        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3 + 1);
+        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
         sub_0201C04C(&param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
     case 3:
-        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3 + 2);
+        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 2);
         sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 4:
-        SpriteActor_SetSpriteAnimActive(param0->unk_1E0[param1], param1 * 3 + 1);
-        sub_02021CC8(param0->unk_1E0[param1], 1);
+        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
+        CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
         sub_0201C04C(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
@@ -289,16 +289,16 @@ static void ov79_021D1D20 (UnkStruct_ov79_021D0E1C * param0, UnkStruct_020989DC 
 
     if (param1 == NULL) {
         for (v0 = 0; v0 < 5; v0++) {
-            sub_02021CAC(param0->unk_1CC[v0], 0);
+            CellActor_SetDrawFlag(param0->unk_1CC[v0], 0);
         }
         return;
     }
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param1->unk_20_val2 & v1) {
-            sub_02021CAC(param0->unk_1CC[v0], 1);
+            CellActor_SetDrawFlag(param0->unk_1CC[v0], 1);
         } else {
-            sub_02021CAC(param0->unk_1CC[v0], 0);
+            CellActor_SetDrawFlag(param0->unk_1CC[v0], 0);
         }
 
         v1 <<= 1;
@@ -330,15 +330,15 @@ static void ov79_021D1D94 (BmpList * param0, u32 param1, u8 param2)
     SpriteActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
-        sub_02021CAC(v0->unk_1C0[1], 0);
+        CellActor_SetDrawFlag(v0->unk_1C0[1], 0);
     } else {
-        sub_02021CAC(v0->unk_1C0[1], 1);
+        CellActor_SetDrawFlag(v0->unk_1C0[1], 1);
     }
 
     if (v2 < (v0->unk_1C - 6)) {
-        sub_02021CAC(v0->unk_1C0[2], 1);
+        CellActor_SetDrawFlag(v0->unk_1C0[2], 1);
     } else {
-        sub_02021CAC(v0->unk_1C0[2], 0);
+        CellActor_SetDrawFlag(v0->unk_1C0[2], 0);
     }
 
     BGL_WindowColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);

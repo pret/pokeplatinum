@@ -8,13 +8,11 @@
 #include "string_template.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "pokemon.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay096/struct_ov96_0223B450.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
@@ -60,14 +58,14 @@ struct UnkStruct_ov96_0223BF40_t {
     Strbuf* unk_BE8;
     Strbuf* unk_BEC;
     int unk_BF0;
-    GraphicElementManager * unk_BF4;
+    CellActorCollection * unk_BF4;
     UnkStruct_0200C738 unk_BF8;
     UnkStruct_02009714 * unk_D84[4];
     UnkStruct_02009DC8 * unk_D94[3][4];
-    UnkStruct_ov19_021DA864 unk_DC4;
-    UnkStruct_ov19_021DA864 unk_DE8;
-    UnkStruct_ov19_021DA864 unk_E0C;
-    GraphicElementData * unk_E30[2];
+    CellActorResourceData unk_DC4;
+    CellActorResourceData unk_DE8;
+    CellActorResourceData unk_E0C;
+    CellActor * unk_E30[2];
     Window unk_E38;
     Window unk_E48;
     Window unk_E58;

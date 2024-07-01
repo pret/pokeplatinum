@@ -3,14 +3,13 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay105/struct_ov105_02246060_decl.h"
 
 #include "overlay105/struct_ov105_02245AAC.h"
 #include "overlay105/struct_ov105_02246394.h"
 
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay105/ov105_02245AAC.h"
 #include "overlay105/ov105_02245FB8.h"
 
@@ -21,7 +20,7 @@ struct UnkStruct_ov105_02246060_t {
     u8 unk_03;
     const UnkStruct_ov105_02246394 * unk_04;
     const u8 * unk_08;
-    GraphicElementData * unk_0C;
+    CellActor * unk_0C;
     u8 unk_10;
 };
 
@@ -61,13 +60,13 @@ UnkStruct_ov105_02246060 * ov105_02245FB8 (UnkStruct_ov105_02245AAC * param0, u8
     v1.x = (v0->unk_04[v0->unk_02].unk_00 * FX32_ONE);
     v1.y = (v0->unk_04[v0->unk_02].unk_02 * FX32_ONE);
 
-    sub_02021C50(v0->unk_0C, &v1);
+    CellActor_SetPosition(v0->unk_0C, &v1);
     return v0;
 }
 
 void * ov105_02246060 (UnkStruct_ov105_02246060 * param0)
 {
-    sub_02021BD4(param0->unk_0C);
+    CellActor_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
 
     return NULL;
@@ -75,7 +74,7 @@ void * ov105_02246060 (UnkStruct_ov105_02246060 * param0)
 
 void ov105_02246074 (UnkStruct_ov105_02246060 * param0, int param1)
 {
-    sub_02021CAC(param0->unk_0C, param1);
+    CellActor_SetDrawFlag(param0->unk_0C, param1);
     return;
 }
 
@@ -145,14 +144,14 @@ void ov105_02246080 (UnkStruct_ov105_02246060 * param0)
     }
 
     if (param0->unk_08 != NULL) {
-        sub_02021DCC(param0->unk_0C, param0->unk_08[param0->unk_02]);
+        CellActor_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
     }
 
-    v0 = *(sub_02021D28(param0->unk_0C));
+    v0 = *(CellActor_GetPosition(param0->unk_0C));
     v0.x = (param0->unk_04[param0->unk_02].unk_00 * FX32_ONE);
     v0.y = (param0->unk_04[param0->unk_02].unk_02 * FX32_ONE);
 
-    sub_02021C50(param0->unk_0C, &v0);
+    CellActor_SetPosition(param0->unk_0C, &v0);
     return;
 }
 
@@ -166,9 +165,9 @@ void ov105_022461A4 (UnkStruct_ov105_02246060 * param0, int param1)
     param0->unk_03 = param1;
 
     if (param1 == 0) {
-        sub_02021DCC(param0->unk_0C, 8);
+        CellActor_SetAnimNoRestart(param0->unk_0C, 8);
     } else {
-        sub_02021DCC(param0->unk_0C, 13);
+        CellActor_SetAnimNoRestart(param0->unk_0C, 13);
     }
 
     return;
@@ -181,14 +180,14 @@ void ov105_022461C0 (UnkStruct_ov105_02246060 * param0, u8 param1)
     param0->unk_02 = param1;
 
     if (param0->unk_08 != NULL) {
-        sub_02021DCC(param0->unk_0C, param0->unk_08[param0->unk_02]);
+        CellActor_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
     }
 
-    v0 = *(sub_02021D28(param0->unk_0C));
+    v0 = *(CellActor_GetPosition(param0->unk_0C));
 
     v0.x = (param0->unk_04[param0->unk_02].unk_00 * FX32_ONE);
     v0.y = (param0->unk_04[param0->unk_02].unk_02 * FX32_ONE);
 
-    sub_02021C50(param0->unk_0C, &v0);
+    CellActor_SetPosition(param0->unk_0C, &v0);
     return;
 }

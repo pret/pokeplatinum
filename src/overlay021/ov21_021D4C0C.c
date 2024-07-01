@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_020127E8.h"
@@ -25,7 +25,7 @@
 
 typedef struct UnkStruct_ov21_021D4C0C_t {
     UnkStruct_02012744 * unk_00;
-    GraphicElementManager * unk_04;
+    CellActorCollection * unk_04;
     BGL * unk_08;
     UnkStruct_ov21_021D4CA0 * unk_0C;
     int unk_10;

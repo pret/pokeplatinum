@@ -2,26 +2,24 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021DA384.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
 
-BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, GraphicElementManager * param3, NARC * param4)
+BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, CellActorCollection * param3, NARC * param4)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dPaletteData * v1;
@@ -107,7 +105,7 @@ void ov19_021DA3F0 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 {
     while (param2--) {
         if (param1->unk_00 != NULL) {
-            sub_02021BD4(param1->unk_00);
+            CellActor_Delete(param1->unk_00);
             param1->unk_00 = NULL;
         }
 
@@ -123,7 +121,7 @@ void ov19_021DA418 (const UnkStruct_ov19_021DCD18 * param0, UnkStruct_ov19_021DC
 void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 * param7)
 {
     NNSG2dCharacterData * v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
     u16 v2;
     u8 v3;
     u8 v4;
@@ -149,12 +147,12 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
 
     NNS_G2dLoadImage1DMapping(v0, param6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param7->unk_04));
 
-    v1.unk_00 = &(param7->unk_04);
+    v1.imageProxy = &(param7->unk_04);
     param7->unk_00 = ov19_021D785C(param0->unk_24, &v1, param2, param3, param5, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     GF_ASSERT(param7->unk_00 != NULL);
 
-    sub_02021E90(param7->unk_00, 2 + param7->unk_2C);
+    CellActor_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
     ov19_021DA63C(param0, param7, ov19_021D5EC8(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(param1, v5);
 }
@@ -162,7 +160,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
 void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
 {
     NNSG2dCharacterData * v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorResourceData v1;
     BOOL v2;
     u8 v3, v4;
 
@@ -185,12 +183,12 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
 
     NNS_G2dLoadImage1DMapping(v0, param9 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param10->unk_04));
 
-    v1.unk_00 = &(param10->unk_04);
+    v1.imageProxy = &(param10->unk_04);
     param10->unk_00 = ov19_021D785C(param0->unk_24, &v1, param5, param6, param8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     GF_ASSERT(param10->unk_00 != NULL);
 
-    sub_02021E90(param10->unk_00, 2 + param10->unk_2C);
+    CellActor_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
     ov19_021DA63C(param0, param10, ov19_021D5EC8(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(param1, v2);
 }
@@ -202,20 +200,20 @@ void ov19_021DA63C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
         if ((param2 & 1)) {
             if (param1->unk_30 == 0) {
-                sub_02021FE0(param1->unk_00, GX_OAM_MODE_XLU);
+                CellActor_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
                 return;
             }
         }
 
         for (v0 = 0; v0 < 6; v0++) {
             if ((param2 & (2 << v0)) && ((param1->unk_2E & (1 << v0)) == 0)) {
-                sub_02021FE0(param1->unk_00, GX_OAM_MODE_XLU);
+                CellActor_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_XLU);
                 return;
             }
         }
     }
 
-    sub_02021FE0(param1->unk_00, GX_OAM_MODE_NORMAL);
+    CellActor_SetExplicitOAMMode(param1->unk_00, GX_OAM_MODE_NORMAL);
 }
 
 void ov19_021DA68C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)
@@ -270,31 +268,31 @@ void ov19_021DA754 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
         NNS_G2dLoadImage1DMapping(v0, param2 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &(param1->unk_04));
 
-        sub_02021F7C(param1->unk_00, &(param1->unk_04));
+        CellActor_SetImageProxy(param1->unk_00, &(param1->unk_04));
     }
 }
 
 void ov19_021DA7B8 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)
 {
     if ((param2 == 1) || (param2 == 2)) {
-        sub_02021CF8(param1->unk_00, 1);
+        CellActor_SetAffineOverwriteMode(param1->unk_00, 1);
     } else {
-        sub_02021CF8(param1->unk_00, 0);
+        CellActor_SetAffineOverwriteMode(param1->unk_00, 0);
     }
 
-    SpriteActor_SetSpriteAnimActive(param1->unk_00, param2);
+    CellActor_SetAnim(param1->unk_00, param2);
 }
 
 BOOL ov19_021DA7E0 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1)
 {
-    return sub_02021FD0(param1->unk_00) == 0;
+    return CellActor_IsAnimated(param1->unk_00) == 0;
 }
 
 void ov19_021DA7F4 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, BOOL param2)
 {
     u32 v0 = ((param2) ? 6 : 2) + param1->unk_2C;
 
-    sub_02021E90(param1->unk_00, v0);
+    CellActor_SetExplicitPalette(param1->unk_00, v0);
 }
 
 NNSG2dCellDataBank * ov19_021DA80C (UnkStruct_ov19_021DA384 * param0)

@@ -20,8 +20,6 @@
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/archived_sprite.h"
@@ -29,14 +27,12 @@
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay021/struct_ov21_021E7F40.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 #include "overlay115/camera_angle.h"
@@ -69,7 +65,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "camera.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "game_options.h"
@@ -173,7 +169,7 @@ typedef struct ChooseStarterRotation {
 } ChooseStarterRotation;
 
 typedef struct ChooseStarterCursor {
-    GraphicElementData * unk_00;
+    CellActor * unk_00;
     UnkStruct_02009DC8 * unk_04[6];
     VecFx32 unk_1C;
     SysTask * unk_28;
@@ -223,7 +219,7 @@ typedef struct ChooseStarterApp {
     UnkStruct_ov61_0222C884 unk_B0;
     UIControlData * unk_B8;
     UnkStruct_0200C738 unk_BC;
-    GraphicElementManager * unk_248;
+    CellActorCollection * unk_248;
     UnkStruct_02009714 * unk_24C[6];
     UnkStruct_02007768 *spriteManager;
     Sprite *sprites[NUM_STARTER_OPTIONS];
@@ -781,7 +777,7 @@ static void MakeCellActors (ChooseStarterApp * param0, int param1)
 
 static void ov78_021D1594 (ChooseStarterApp * param0)
 {
-    sub_02021964(param0->unk_248);
+    CellActorCollection_Delete(param0->unk_248);
     sub_02009754(param0->unk_24C[0]);
     sub_02009754(param0->unk_24C[1]);
     sub_02009754(param0->unk_24C[2]);
@@ -1064,7 +1060,7 @@ static void DrawScene (ChooseStarterApp * param0)
     NNS_G3dGePopMtx(1);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    sub_020219F8(param0->unk_248);
+    CellActorCollection_Update(param0->unk_248);
 }
 
 static void MakeCamera (ChooseStarterApp * param0, int param1)
@@ -1476,22 +1472,22 @@ static void ov78_021D2290 (ChooseStarterApp * param0, ChooseStarterCursor * para
 
 static void AttachCursorCellActor (ChooseStarterApp * param0, ChooseStarterCursor * param1, int param2)
 {
-    UnkStruct_ov19_021DA864 v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorResourceData v0;
+    CellActorInitParams v1;
 
     sub_020093B4(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
 
-    v1.unk_00 = param0->unk_248;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 32;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param2;
+    v1.collection = param0->unk_248;
+    v1.resourceData = &v0;
+    v1.priority = 32;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param2;
 
-    v1.unk_08.x = 0;
-    v1.unk_08.y = 0;
+    v1.position.x = 0;
+    v1.position.y = 0;
 
-    param1->unk_00 = sub_02021B90(&v1);
-    sub_02021CAC(param1->unk_00, 0);
+    param1->unk_00 = CellActorCollection_Add(&v1);
+    CellActor_SetDrawFlag(param1->unk_00, 0);
 
     param1->unk_1C.x = 0;
     param1->unk_1C.y = 0;
@@ -1499,7 +1495,7 @@ static void AttachCursorCellActor (ChooseStarterApp * param0, ChooseStarterCurso
 
 static void ov78_021D2350 (ChooseStarterCursor * param0)
 {
-    sub_02021BD4(param0->unk_00);
+    CellActor_Delete(param0->unk_00);
 }
 
 static void ov78_021D235C (ChooseStarterRotation * param0, fx32 param1, int param2)
@@ -1541,7 +1537,7 @@ static void ov78_021D23E8 (SysTask * param0, void * param1)
     v1 = v0->unk_1C;
     v1.y += v0->unk_2C.unk_00;
 
-    sub_02021C50(v0->unk_00, &v1);
+    CellActor_SetPosition(v0->unk_00, &v1);
 }
 
 static void ov78_021D241C (ChooseStarterCursor * param0)
@@ -1554,7 +1550,7 @@ static void ov78_021D241C (ChooseStarterCursor * param0)
 
 static void ov78_021D2430 (ChooseStarterCursor * param0, BOOL param1)
 {
-    sub_02021CAC(param0->unk_00, param1);
+    CellActor_SetDrawFlag(param0->unk_00, param1);
 }
 
 static void ov78_021D243C (ChooseStarterCursor * param0, int param1, int param2)

@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "message.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -24,7 +23,7 @@
 #include "string_template.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "save_player.h"
 #include "trainer_info.h"
@@ -41,8 +40,8 @@
 #include "overlay104/ov104_0222DCE0.h"
 
 void ov104_0222E1C0(SaveData * param0, Party * param1, Pokemon * param2);
-void ov104_0222E1D8(GraphicElementData * param0, u8 param1);
-void ov104_0222E204(GraphicElementData * param0, s16 param1, s16 param2, u8 param3);
+void ov104_0222E1D8(CellActor * param0, u8 param1);
+void ov104_0222E204(CellActor * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
 void ov104_0222E278(UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, int param3);
 void ov104_0222E284(BattleParams * param0, UnkStruct_ov104_0223A348_sub1 * param1, int param2, int param3, int param4);
@@ -384,19 +383,19 @@ void ov104_0222E1C0 (SaveData * param0, Party * param1, Pokemon * param2)
     return;
 }
 
-void ov104_0222E1D8 (GraphicElementData * param0, u8 param1)
+void ov104_0222E1D8 (CellActor * param0, u8 param1)
 {
-    if (sub_02021E24(param0) == param1) {
+    if (CellActor_GetActiveAnim(param0) == param1) {
         return;
     }
 
     SpriteActor_SetAnimFrame(param0, 0);
-    SpriteActor_SetSpriteAnimActive(param0, param1);
-    sub_02021E2C(param0, FX32_ONE);
+    CellActor_SetAnim(param0, param1);
+    CellActor_UpdateAnim(param0, FX32_ONE);
     return;
 }
 
-void ov104_0222E204 (GraphicElementData * param0, s16 param1, s16 param2, u8 param3)
+void ov104_0222E204 (CellActor * param0, s16 param1, s16 param2, u8 param3)
 {
     VecFx32 v0;
 
@@ -405,14 +404,14 @@ void ov104_0222E204 (GraphicElementData * param0, s16 param1, s16 param2, u8 par
     v0.z = 0;
 
     if (param3 == 1) {
-        if (sub_02021E74(param0) == 0) {
+        if (CellActor_GetAnimFrame(param0) == 0) {
             v0.y = (param2 - 3) * FX32_ONE;
         } else {
             v0.y = (param2 + 1) * FX32_ONE;
         }
     }
 
-    sub_02021C50(param0, &v0);
+    CellActor_SetPosition(param0, &v0);
     return;
 }
 

@@ -15,8 +15,6 @@
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -34,14 +32,12 @@
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay064/struct_ov64_022302EC.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
@@ -72,7 +68,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0202309C.h"
 #include "strbuf.h"
 #include "save_player.h"
@@ -138,7 +134,7 @@ typedef struct {
 
 typedef struct {
     BGL * unk_00;
-    GraphicElementManager * unk_04;
+    CellActorCollection * unk_04;
     NNSG2dRenderSurface unk_08;
     UnkStruct_0200C738 unk_78;
     UnkStruct_02009714 * unk_204[4];
@@ -149,9 +145,9 @@ typedef struct {
     Strbuf* unk_230;
     Strbuf* unk_234;
     u32 unk_238;
-    UnkStruct_ov19_021DA864 unk_23C;
+    CellActorResourceData unk_23C;
     UnkStruct_02009DC8 * unk_260[4];
-    GraphicElementData * unk_270[2];
+    CellActor * unk_270[2];
     UnkStruct_ov64_022300E4 unk_278;
 } UnkStruct_ov64_0222E21C;
 
@@ -197,7 +193,7 @@ typedef struct {
     BmpList * unk_F8;
     UIControlData * unk_FC;
     s32 unk_100;
-    GraphicElementData * unk_104;
+    CellActor * unk_104;
     u32 unk_108;
 } UnkStruct_ov64_0222F0C4;
 
@@ -905,7 +901,7 @@ static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 
 static void ov64_0222E21C (UnkStruct_ov64_0222E21C * param0)
 {
-    sub_020219F8(param0->unk_04);
+    CellActorCollection_Update(param0->unk_04);
 }
 
 static void ov64_0222E228 (UnkStruct_ov64_0222E21C * param0)
@@ -1052,7 +1048,7 @@ static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)
         sub_02009754(param0->unk_204[v0]);
     }
 
-    sub_02021964(param0->unk_04);
+    CellActorCollection_Delete(param0->unk_04);
     sub_0201E958();
     sub_0201F8B4();
     sub_0200A878();
@@ -1211,7 +1207,7 @@ static void ov64_0222E990 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 
 static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 {
-    static UnkStruct_ov115_02261520 v0[2] = {
+    static CellActorInitParamsEx v0[2] = {
         {
             NULL,
             NULL,
@@ -1236,15 +1232,15 @@ static void ov64_0222E9A4 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
-        v0[v1].unk_00 = param0->unk_04;
-        v0[v1].unk_04 = &param0->unk_23C;
-        v0[v1].unk_2C = param1;
+        v0[v1].collection = param0->unk_04;
+        v0[v1].resourceData = &param0->unk_23C;
+        v0[v1].heapID = param1;
 
-        param0->unk_270[v1] = sub_02021AA0(&v0[v1]);
+        param0->unk_270[v1] = CellActorCollection_AddEx(&v0[v1]);
 
-        sub_02021CC8(param0->unk_270[v1], 1);
-        sub_02021CAC(param0->unk_270[v1], 0);
-        SpriteActor_SetSpriteAnimActive(param0->unk_270[v1], v1);
+        CellActor_SetAnimateFlag(param0->unk_270[v1], 1);
+        CellActor_SetDrawFlag(param0->unk_270[v1], 0);
+        CellActor_SetAnim(param0->unk_270[v1], v1);
     }
 }
 
@@ -1253,7 +1249,7 @@ static void ov64_0222EA0C (UnkStruct_ov64_0222E21C * param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021BD4(param0->unk_270[v0]);
+        CellActor_Delete(param0->unk_270[v0]);
     }
 }
 
@@ -1262,7 +1258,7 @@ static void ov64_0222EA28 (UnkStruct_ov64_0222E21C * param0, BOOL param1)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021CAC(param0->unk_270[v0], param1);
+        CellActor_SetDrawFlag(param0->unk_270[v0], param1);
     }
 }
 
@@ -1271,7 +1267,7 @@ static void ov64_0222EA48 (UnkStruct_ov64_0222E21C * param0, BOOL param1)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02021CC8(param0->unk_270[v0], param1);
+        CellActor_SetAnimateFlag(param0->unk_270[v0], param1);
     }
 }
 
@@ -1958,7 +1954,7 @@ static const u16 Unk_ov64_022321BC[3] = {
     0x1BB
 };
 
-static const UnkStruct_ov115_02261520 Unk_ov64_022322B4 = {
+static const CellActorInitParamsEx Unk_ov64_022322B4 = {
     NULL,
     NULL,
     {0x0, 0x0, 0x0},
@@ -2171,7 +2167,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     ldr r0, [sp, #0x18]
     str r0, [sp, #0x54]
     add r0, sp, #0x28
-    bl sub_02021AA0
+    bl CellActorCollection_AddEx
     mov r2, #0x42
     ldr r1, [sp, #0x14]
     lsl r2, r2, #2
@@ -2179,7 +2175,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     add r0, r1, #0
     ldr r0, [r0, r2]
     mov r1, #0
-    bl sub_02021CAC
+    bl CellActor_SetDrawFlag
     add sp, #0x58
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -2189,7 +2185,7 @@ static void ov64_0222F5F4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 {
     int v0;
 
-    sub_02021BD4(param0->unk_104);
+    CellActor_Delete(param0->unk_104);
     BGL_DeleteWindow(&param0->unk_C4);
     Strbuf_Free(param0->unk_D4);
 
@@ -2645,12 +2641,12 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     VecFx32 v0;
     u32 v1;
 
-    sub_02021CAC(param0->unk_104, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_104, 2);
+    CellActor_SetDrawFlag(param0->unk_104, 1);
+    CellActor_SetAnim(param0->unk_104, 2);
 
     param0->unk_108 = 0;
 
-    sub_02021CC8(param0->unk_104, 1);
+    CellActor_SetAnimateFlag(param0->unk_104, 1);
 
     v1 = param0->unk_04;
 
@@ -2659,7 +2655,7 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     v0.x <<= FX32_SHIFT;
     v0.y <<= FX32_SHIFT;
 
-    sub_02021C50(param0->unk_104, &v0);
+    CellActor_SetPosition(param0->unk_104, &v0);
 
     G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2, 0);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
@@ -2672,11 +2668,11 @@ static BOOL ov64_02230008 (UnkStruct_ov64_0222F0C4 * param0)
 {
     u32 v0;
 
-    if (sub_02021FD0(param0->unk_104) == 0) {
+    if (CellActor_IsAnimated(param0->unk_104) == 0) {
         return 1;
     }
 
-    v0 = sub_02021E74(param0->unk_104);
+    v0 = CellActor_GetAnimFrame(param0->unk_104);
 
     if ((v0 - param0->unk_108) >= 2) {
         param0->unk_108 = v0;
@@ -2690,8 +2686,8 @@ static void ov64_02230044 (UnkStruct_ov64_0222F0C4 * param0)
 {
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_02021CAC(param0->unk_104, 0);
-    sub_02021CC8(param0->unk_104, 0);
+    CellActor_SetDrawFlag(param0->unk_104, 0);
+    CellActor_SetAnimateFlag(param0->unk_104, 0);
 }
 
 static void ov64_02230074 (UnkStruct_ov64_02230074 * param0, UnkStruct_ov64_0222E21C * param1, const UnkStruct_ov64_0223221C * param2, u32 param3, u32 param4)

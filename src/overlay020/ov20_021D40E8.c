@@ -4,21 +4,19 @@
 #include "enums.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
 
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
@@ -32,9 +30,9 @@ typedef struct UnkStruct_ov20_021D4210_t {
     BGL * unk_0C;
     Window unk_10;
     Window unk_20;
-    GraphicElementData * unk_30;
-    GraphicElementData * unk_34;
-    GraphicElementData * unk_38;
+    CellActor * unk_30;
+    CellActor * unk_34;
+    CellActor * unk_38;
     Strbuf* unk_3C;
     UnkStruct_ov20_021D4FF0 unk_40;
     UnkStruct_ov20_021D4E8C unk_60;
@@ -73,15 +71,15 @@ UnkStruct_ov20_021D4210 * ov20_021D40E8 (UnkStruct_ov20_021D2128 * param0, const
 void ov20_021D4164 (UnkStruct_ov20_021D4210 * param0)
 {
     if (param0->unk_30) {
-        sub_02021BD4(param0->unk_30);
+        CellActor_Delete(param0->unk_30);
     }
 
     if (param0->unk_34) {
-        sub_02021BD4(param0->unk_34);
+        CellActor_Delete(param0->unk_34);
     }
 
     if (param0->unk_38) {
-        sub_02021BD4(param0->unk_38);
+        CellActor_Delete(param0->unk_38);
     }
 
     if (param0->unk_3C) {
@@ -115,21 +113,21 @@ void ov20_021D41A8 (UnkStruct_ov20_021D4210 * param0)
 
 static void ov20_021D4210 (UnkStruct_ov20_021D4210 * param0)
 {
-    UnkStruct_ov19_021DA864 v0;
+    CellActorResourceData v0;
 
     ov20_021D2E0C(param0->unk_00, &v0, 0, 2);
     param0->unk_30 = ov20_021D2E50(param0->unk_00, &v0, 72, 56, 3, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    SpriteActor_SetSpriteAnimActive(param0->unk_30, 8);
-    sub_02021CAC(param0->unk_30, 0);
+    CellActor_SetAnim(param0->unk_30, 8);
+    CellActor_SetDrawFlag(param0->unk_30, 0);
 
     param0->unk_34 = ov20_021D2E50(param0->unk_00, &v0, 240, 64, 4, NNS_G2D_VRAM_TYPE_2DMAIN);
-    SpriteActor_SetSpriteAnimActive(param0->unk_34, 11);
-    sub_02021CAC(param0->unk_34, 0);
+    CellActor_SetAnim(param0->unk_34, 11);
+    CellActor_SetDrawFlag(param0->unk_34, 0);
 
     param0->unk_38 = ov20_021D2E50(param0->unk_00, &v0, 240, 144, 4, NNS_G2D_VRAM_TYPE_2DMAIN);
-    SpriteActor_SetSpriteAnimActive(param0->unk_38, 10);
-    sub_02021CAC(param0->unk_38, 0);
+    CellActor_SetAnim(param0->unk_38, 10);
+    CellActor_SetDrawFlag(param0->unk_38, 0);
 }
 
 void ov20_021D4294 (UnkStruct_ov20_021D4210 * param0)
@@ -216,14 +214,14 @@ BOOL ov20_021D43D8 (UnkStruct_ov20_021D4210 * param0)
 
 void ov20_021D4440 (UnkStruct_ov20_021D4210 * param0, BOOL param1)
 {
-    sub_02021CAC(param0->unk_30, param1);
+    CellActor_SetDrawFlag(param0->unk_30, param1);
 
     if (param1) {
-        sub_02021CAC(param0->unk_34, ov20_021D204C(param0->unk_04));
-        sub_02021CAC(param0->unk_38, ov20_021D2060(param0->unk_04));
+        CellActor_SetDrawFlag(param0->unk_34, ov20_021D204C(param0->unk_04));
+        CellActor_SetDrawFlag(param0->unk_38, ov20_021D2060(param0->unk_04));
     } else {
-        sub_02021CAC(param0->unk_34, 0);
-        sub_02021CAC(param0->unk_38, 0);
+        CellActor_SetDrawFlag(param0->unk_34, 0);
+        CellActor_SetDrawFlag(param0->unk_38, 0);
     }
 }
 
@@ -239,8 +237,8 @@ void ov20_021D4480 (UnkStruct_ov20_021D4210 * param0, u32 param1)
     v0.y = (56 + 24 * v2) * FX32_ONE;
     v0.z = 0;
 
-    sub_02021C50(param0->unk_30, &v0);
-    SpriteActor_SetSpriteAnimActive(param0->unk_30, 8);
+    CellActor_SetPosition(param0->unk_30, &v0);
+    CellActor_SetAnim(param0->unk_30, 8);
 }
 
 void ov20_021D44BC (UnkStruct_ov20_021D4210 * param0, int param1)
@@ -287,8 +285,8 @@ void ov20_021D44BC (UnkStruct_ov20_021D4210 * param0, int param1)
 BOOL ov20_021D4578 (UnkStruct_ov20_021D4210 * param0)
 {
     if (ov20_021D4E8C(&param0->unk_60)) {
-        sub_02021CAC(param0->unk_34, ov20_021D204C(param0->unk_04));
-        sub_02021CAC(param0->unk_38, ov20_021D2060(param0->unk_04));
+        CellActor_SetDrawFlag(param0->unk_34, ov20_021D204C(param0->unk_04));
+        CellActor_SetDrawFlag(param0->unk_38, ov20_021D2060(param0->unk_04));
         return 1;
     }
 

@@ -14,7 +14,6 @@
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
@@ -27,7 +26,7 @@
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "unk_020393C8.h"
@@ -223,23 +222,23 @@ static void ov94_0223DE04 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223DE7C (UnkStruct_ov94_0223FD4C * param0)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
 
     ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0.unk_08.x = FX32_ONE * 208;
-    v0.unk_08.y = FX32_ONE * 58;
+    v0.position.x = FX32_ONE * 208;
+    v0.position.y = FX32_ONE * 58;
 
-    param0->unk_F30 = sub_02021AA0(&v0);
+    param0->unk_F30 = CellActorCollection_AddEx(&v0);
 
-    sub_02021CC8(param0->unk_F30, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_F30, 37);
+    CellActor_SetAnimateFlag(param0->unk_F30, 1);
+    CellActor_SetAnim(param0->unk_F30, 37);
     sub_02039734();
 }
 
 static void ov94_0223DEC8 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_02021BD4(param0->unk_F30);
+    CellActor_Delete(param0->unk_F30);
 }
 
 static const int Unk_ov94_02245CC4[][4] = {
@@ -357,7 +356,7 @@ static int ov94_0223E0A4 (UnkStruct_ov94_0223FD4C * param0)
 
         if (1) {
             if ((v0 != param0->unk_11C) && (v0 >= 0)) {
-                SpriteActor_SetSpriteAnimActive(param0->unk_F34[v0 + 1], 16 + v0 * 4);
+                CellActor_SetAnim(param0->unk_F34[v0 + 1], 16 + v0 * 4);
                 param0->unk_2C = 2;
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_11C = v0;

@@ -5,7 +5,6 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "play_time.h"
@@ -43,7 +42,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_02024358.h"
 #include "savedata/save_table.h"
@@ -129,7 +128,7 @@ typedef struct {
     int unk_150;
     BOOL unk_154[1];
     Window unk_158;
-    GraphicElementData * unk_168[2];
+    CellActor * unk_168[2];
     int unk_170;
 } UnkStruct_0222AE60;
 
@@ -489,10 +488,10 @@ static void ov97_0222B404 (UnkStruct_0222AE60 * param0)
     ov97_02237B0C(116, 43, 40, 42, 41, 0);
 
     param0->unk_168[0] = ov97_02237D14(0, param0->unk_168[0], HW_LCD_WIDTH / 2, 8, 0);
-    sub_02021CAC(param0->unk_168[0], 0);
+    CellActor_SetDrawFlag(param0->unk_168[0], 0);
 
     param0->unk_168[1] = ov97_02237D14(0, param0->unk_168[1], HW_LCD_WIDTH / 2, HW_LCD_HEIGHT - 8, 1);
-    sub_02021CAC(param0->unk_168[1], 0);
+    CellActor_SetDrawFlag(param0->unk_168[1], 0);
 }
 
 static void ov97_0222B46C (UnkStruct_0222AE60 * param0)
@@ -893,8 +892,8 @@ static void ov97_0222BC1C (UnkStruct_0222AE60 * param0)
         }
     }
 
-    sub_02021CAC(param0->unk_168[0], v1);
-    sub_02021CAC(param0->unk_168[1], v2);
+    CellActor_SetDrawFlag(param0->unk_168[0], v1);
+    CellActor_SetDrawFlag(param0->unk_168[1], v2);
 }
 
 static void ov97_0222BC9C (OverlayManager * param0)
@@ -903,8 +902,8 @@ static void ov97_0222BC9C (OverlayManager * param0)
     UnkStruct_0222AE60 * v1 = OverlayManager_Data(param0);
 
     if (v1->unk_168[0] || v1->unk_168[1]) {
-        sub_02021BD4(v1->unk_168[0]);
-        sub_02021BD4(v1->unk_168[1]);
+        CellActor_Delete(v1->unk_168[0]);
+        CellActor_Delete(v1->unk_168[1]);
         ov97_02237DA0();
     }
 

@@ -3,8 +3,6 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
@@ -15,8 +13,6 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "overlay006/struct_ov6_02246254.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay095/struct_ov95_02247568.h"
 
 #include "unk_020041CC.h"
@@ -35,7 +31,7 @@
 #include "unk_02018340.h"
 #include "sys_task_manager.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "unk_020393C8.h"
@@ -56,7 +52,7 @@ struct UnkStruct_ov95_02247628_t {
     StringTemplate * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
-    GraphicElementManager * unk_18;
+    CellActorCollection * unk_18;
     UnkStruct_0200C738 unk_1C;
     SysTask * unk_1A8;
     BOOL unk_1AC;
@@ -220,7 +216,7 @@ int ov95_02246E1C (OverlayManager * param0, int * param1)
     MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
-    sub_02021964(v1->unk_18);
+    CellActorCollection_Delete(v1->unk_18);
     sub_0200A878();
     OverlayManager_FreeData(param0);
     Heap_Destroy(57);
@@ -265,7 +261,7 @@ static void ov95_02246F0C (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02247628 * v0 = param1;
 
-    sub_020219F8(v0->unk_18);
+    CellActorCollection_Update(v0->unk_18);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -634,38 +630,38 @@ void ov95_022475A0 (UnkStruct_ov95_02247568 * param0)
     }
 }
 
-void ov95_022475C4 (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov95_02247568 * param1, NNSG2dImageProxy * param2, NNSG2dImagePaletteProxy * param3, u32 param4)
+void ov95_022475C4 (CellActorResourceData * param0, UnkStruct_ov95_02247568 * param1, NNSG2dImageProxy * param2, NNSG2dImagePaletteProxy * param3, u32 param4)
 {
-    param0->unk_00 = param2;
-    param0->unk_08 = param3;
-    param0->unk_0C = param1->unk_08;
-    param0->unk_10 = param1->unk_0C;
-    param0->unk_20 = param4;
-    param0->unk_04 = NULL;
-    param0->unk_14 = NULL;
-    param0->unk_18 = NULL;
-    param0->unk_1C = 0;
+    param0->imageProxy = param2;
+    param0->paletteProxy = param3;
+    param0->cellBank = param1->unk_08;
+    param0->cellAnimBank = param1->unk_0C;
+    param0->priority = param4;
+    param0->charData = NULL;
+    param0->multiCellBank = NULL;
+    param0->multiCellAnimBank = NULL;
+    param0->isVRamTransfer = 0;
 }
 
-GraphicElementData * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+CellActor * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    GraphicElementData * v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActor * v0;
+    CellActorInitParams v1;
 
-    v1.unk_00 = param0->unk_18;
-    v1.unk_04 = param1;
-    v1.unk_08.x = param2 * FX32_ONE;
-    v1.unk_08.y = param3 * FX32_ONE;
-    v1.unk_08.z = 0;
-    v1.unk_14 = param4;
-    v1.unk_18 = param5;
-    v1.unk_1C = 57;
+    v1.collection = param0->unk_18;
+    v1.resourceData = param1;
+    v1.position.x = param2 * FX32_ONE;
+    v1.position.y = param3 * FX32_ONE;
+    v1.position.z = 0;
+    v1.priority = param4;
+    v1.vramType = param5;
+    v1.heapID = 57;
 
-    v0 = sub_02021B90(&v1);
+    v0 = CellActorCollection_Add(&v1);
 
     if (v0) {
-        sub_02021CC8(v0, 1);
-        sub_02021CE4(v0, FX32_ONE);
+        CellActor_SetAnimateFlag(v0, 1);
+        CellActor_SetAnimSpeed(v0, FX32_ONE);
     }
 
     return v0;

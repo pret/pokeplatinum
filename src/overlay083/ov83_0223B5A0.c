@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "savedata/save_table.h"
 #include "game_options.h"
 #include "poffin.h"
@@ -411,7 +411,7 @@ static int ov83_0223B9EC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     case 5:
         v2 = ov83_0223E32C(&param1->unk_5E4);
         {
-            int v3 = sub_02021E74(param1->unk_5E4.unk_08);
+            int v3 = CellActor_GetAnimFrame(param1->unk_5E4.unk_08);
 
             if (param1->unk_3BC != (v3 + 1) / 3) {
                 if (v3 < 10) {

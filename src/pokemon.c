@@ -48,7 +48,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "unk_02028124.h"
@@ -3175,7 +3175,7 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
 
     v1 = SpriteActor_LoadResources(param0, param1, &v0);
 
-    sub_02021F24(v1->unk_00, 0);
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(v1->unk_00, 0);
     SpriteActor_SetSpritePositionXY(v1, param3, param4);
     sub_0200D330(v1);
     sub_0200D390(v1, 1);

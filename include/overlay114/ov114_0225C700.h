@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV114_0225C700_H
 #define POKEPLATINUM_OV114_0225C700_H
 
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "trainer_info.h"
 #include "savedata.h"
 #include "overlay066/struct_ov66_02230DBC.h"
@@ -34,7 +34,7 @@ void ov114_0225CA2C(UnkStruct_ov114_0225E854 * param0, u32 param1, BOOL param2);
 void ov114_0225CA44(UnkStruct_ov114_0225E854 * param0, BOOL param1);
 BOOL ov114_0225CA54(UnkStruct_ov114_0225C76C * param0);
 BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C * param0);
-UnkStruct_ov114_0225CAD4 * ov114_0225CAD4(GraphicElementManager * param0, u32 param1);
+UnkStruct_ov114_0225CAD4 * ov114_0225CAD4(CellActorCollection * param0, u32 param1);
 void ov114_0225CB38(UnkStruct_ov114_0225CAD4 * param0);
 int ov114_0225CB74(UnkStruct_ov114_0225CAD4 * param0);
 void ov114_0225CB8C(UnkStruct_ov114_0225CAD4 * param0);

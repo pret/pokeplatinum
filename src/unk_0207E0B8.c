@@ -44,7 +44,7 @@
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
@@ -1013,8 +1013,8 @@ static void sub_0207EE14 (GameWindowLayout * param0)
     }
 
     if ((param0->unk_5A4->unk_20 != 2) && (param0->unk_5A4->unk_20 != 17) && (param0->unk_5A4->unk_20 != 23) && (param0->unk_5A4->unk_20 != 22)) {
-        sub_02021CAC(param0->unk_5B0[8], 0);
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[9], 0);
+        CellActor_SetDrawFlag(param0->unk_5B0[8], 0);
+        CellActor_SetAnim(param0->unk_5B0[9], 0);
 
         {
             s16 v1, v2;
@@ -1027,7 +1027,7 @@ static void sub_0207EE14 (GameWindowLayout * param0)
     }
 
     if ((param0->unk_5A4->unk_20 == 4) || (param0->unk_5A4->unk_20 == 21)) {
-        sub_02021CAC(param0->unk_5B0[9], 0);
+        CellActor_SetDrawFlag(param0->unk_5B0[9], 0);
         v0 ^= 2;
     }
 
@@ -1399,7 +1399,7 @@ static void sub_0207F9A0 (GameWindowLayout * param0)
     u8 v0, v1;
 
     sub_0201E028(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, 4);
-    SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
+    CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
     SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
 }
 
@@ -1467,10 +1467,10 @@ static u8 sub_0207FA24 (GameWindowLayout * param0)
 
     if ((v0 != param0->unk_B11) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
-            sub_02021CAC(param0->unk_5B0[6], 0);
+            CellActor_SetDrawFlag(param0->unk_5B0[6], 0);
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, v0));
-            sub_02021CAC(param0->unk_5B0[6], 1);
+            CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, v0));
+            CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
             SpriteActor_SetPositionXY(param0->unk_5B0[6], v2, v3);
         }
 
@@ -1557,8 +1557,8 @@ static u8 sub_0207FC94 (GameWindowLayout * param0)
         }
 
         sub_0201E028(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->unk_B11, 4);
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
-        sub_02021CAC(param0->unk_5B0[6], 1);
+        CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
+        CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
         SpriteActor_SetPositionXY(param0->unk_5B0[6], v1, v2);
 
         param0->unk_B0C = 1;
@@ -1579,13 +1579,13 @@ static u8 sub_0207FC94 (GameWindowLayout * param0)
 void sub_0207FD68 (GameWindowLayout * param0, u8 param1)
 {
     if ((param1 == 6) || (param1 == 7)) {
-        sub_02021CAC(param0->unk_5B0[6], 0);
+        CellActor_SetDrawFlag(param0->unk_5B0[6], 0);
     } else {
         u8 v0, v1;
 
         sub_0201E028(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, 4);
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
-        sub_02021CAC(param0->unk_5B0[6], 1);
+        CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
+        CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
         SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
     }
 
@@ -1988,7 +1988,7 @@ u8 sub_02080488 (GameWindowLayout * param0, u8 param1)
 static void sub_02080500 (GameWindowLayout * param0, u8 param1, u8 param2)
 {
     if (param1 == 6) {
-        u8 v0 = sub_02021E24(param0->unk_5B0[8]);
+        u8 v0 = CellActor_GetActiveAnim(param0->unk_5B0[8]);
 
         if (param2 == 0) {
             v0 = (v0 & 2);
@@ -1996,12 +1996,12 @@ static void sub_02080500 (GameWindowLayout * param0, u8 param1, u8 param2)
             v0 = (v0 & 2) + 1;
         }
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[8], v0);
+        CellActor_SetAnim(param0->unk_5B0[8], v0);
         return;
     }
 
     if (param1 == 7) {
-        u8 v1 = sub_02021E24(param0->unk_5B0[9]);
+        u8 v1 = CellActor_GetActiveAnim(param0->unk_5B0[9]);
 
         if (param2 == 0) {
             v1 = (v1 & 2);
@@ -2009,7 +2009,7 @@ static void sub_02080500 (GameWindowLayout * param0, u8 param1, u8 param2)
             v1 = (v1 & 2) + 1;
         }
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[9], v1);
+        CellActor_SetAnim(param0->unk_5B0[9], v1);
         return;
     }
 
@@ -2017,12 +2017,12 @@ static void sub_02080500 (GameWindowLayout * param0, u8 param1, u8 param2)
         param0->unk_704[param1].unk_16 -= 2;
         param0->unk_704[param1].unk_18 -= 2;
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[0 + param1], 0);
+        CellActor_SetAnim(param0->unk_5B0[0 + param1], 0);
     } else {
         param0->unk_704[param1].unk_16 += 2;
         param0->unk_704[param1].unk_18 += 2;
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_5B0[0 + param1], 1);
+        CellActor_SetAnim(param0->unk_5B0[0 + param1], 1);
     }
 
     sub_0207F8F8(param0, param1);

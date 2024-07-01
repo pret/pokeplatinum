@@ -3,10 +3,8 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
@@ -18,8 +16,8 @@ BOOL ov20_021D21F8(UnkStruct_ov20_021D2128 * param0);
 BOOL ov20_021D2210(UnkStruct_ov20_021D2128 * param0, int param1);
 u32 ov20_021D2DF4(UnkStruct_ov20_021D2128 * param0);
 BGL * ov20_021D2E04(UnkStruct_ov20_021D2128 * param0);
-GraphicElementManager * ov20_021D2E08(UnkStruct_ov20_021D2128 * param0);
-void ov20_021D2E0C(UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3);
-GraphicElementData * ov20_021D2E50(UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5);
+CellActorCollection * ov20_021D2E08(UnkStruct_ov20_021D2128 * param0);
+void ov20_021D2E0C(UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3);
+CellActor * ov20_021D2E50(UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5);
 
 #endif // POKEPLATINUM_OV20_021D2098_H

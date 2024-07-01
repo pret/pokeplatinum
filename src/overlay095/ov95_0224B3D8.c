@@ -8,7 +8,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
@@ -19,7 +18,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay097/struct_ov97_0222DB78.h"
@@ -38,7 +36,7 @@
 #include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "pokemon.h"
@@ -69,7 +67,7 @@ typedef struct {
     UnkStruct_02007768 * unk_10;
     Sprite * unk_14;
     SpriteAnimationFrame unk_18[10];
-    GraphicElementData * unk_40[2];
+    CellActor * unk_40[2];
     UnkStruct_ov95_02247568 unk_48;
     BGL * unk_58;
     Window unk_5C;
@@ -335,8 +333,8 @@ static int ov95_0224B6F0 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
     switch (*param1) {
     case 0:
         if (ScreenWipe_Done()) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_40[0], 1);
-            sub_02021CAC(param0->unk_40[0], 1);
+            CellActor_SetAnim(param0->unk_40[0], 1);
+            CellActor_SetDrawFlag(param0->unk_40[0], 1);
             return 1;
         }
         break;
@@ -353,8 +351,8 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
         (*param1)++;
     case 1:
         if (param0->unk_80 == NULL) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_40[1], 2);
-            sub_02021CAC(param0->unk_40[1], 1);
+            CellActor_SetAnim(param0->unk_40[1], 2);
+            CellActor_SetDrawFlag(param0->unk_40[1], 1);
             ov95_022479A8(param0->unk_78, 0);
             param0->unk_08 = 0;
             (*param1)++;
@@ -523,7 +521,7 @@ static void ov95_0224BAE8 (UnkStruct_ov95_0224B4D4 * param0)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
-    UnkStruct_ov19_021DA864 v2;
+    CellActorResourceData v2;
 
     ov95_02247568(&param0->unk_48, 93, 7, 8);
 
@@ -538,9 +536,9 @@ static void ov95_0224BAE8 (UnkStruct_ov95_0224B4D4 * param0)
     param0->unk_40[0] = ov95_022475E4(param0->unk_00, &v2, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
     param0->unk_40[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    sub_02021E80(param0->unk_40[1], 1);
-    sub_02021CAC(param0->unk_40[0], 0);
-    sub_02021CAC(param0->unk_40[1], 0);
+    CellActor_SetExplicitPriority(param0->unk_40[1], 1);
+    CellActor_SetDrawFlag(param0->unk_40[0], 0);
+    CellActor_SetDrawFlag(param0->unk_40[1], 0);
 }
 
 static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)
@@ -549,7 +547,7 @@ static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_40[v0]) {
-            sub_02021BD4(param0->unk_40[v0]);
+            CellActor_Delete(param0->unk_40[v0]);
         }
     }
 

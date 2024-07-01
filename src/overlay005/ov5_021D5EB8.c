@@ -8,15 +8,10 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 
-#include "struct_defs/struct_020095C4.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02005474.h"
 #include "narc.h"
@@ -33,7 +28,7 @@
 #include "unk_0201E190.h"
 #include "gx_layers.h"
 #include "camera.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0202309C.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021D5EB8.h"
@@ -56,8 +51,8 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    UnkStruct_ov115_02261520 unk_10;
-    UnkStruct_ov19_021DA864 unk_40;
+    CellActorInitParamsEx unk_10;
+    CellActorResourceData unk_40;
 } UnkStruct_ov5_021D6690;
 
 typedef struct {
@@ -71,7 +66,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov5_021D6FA8_tag {
     UnkStruct_ov5_021D6594 * unk_00;
-    GraphicElementData * unk_04;
+    CellActor * unk_04;
     void * unk_08;
     s32 unk_0C[10];
     struct UnkStruct_ov5_021D6FA8_tag * unk_34;
@@ -115,7 +110,7 @@ typedef struct {
     UnkStruct_02009F38 * unk_10;
     NNSG2dRendererInstance unk_14;
     NNSG2dRenderSurface unk_C0;
-    GraphicElementManager * unk_130;
+    CellActorCollection * unk_130;
     SysTask * unk_134;
 } UnkStruct_ov5_021D61D0;
 
@@ -255,11 +250,11 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 * param0);
 static void ov5_021D6290(UnkStruct_02009F38 * param0, int param1, int param2);
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 * param0);
 static void ov5_021D6284(SysTask * param0, void * param1);
-static void ov5_021D630C(GraphicElementData * param0, VecFx32 * param1);
+static void ov5_021D630C(CellActor * param0, VecFx32 * param1);
 static void ov5_021D6FA8(UnkStruct_ov5_021D6FA8 * param0);
 static void ov5_021D6FD8(UnkStruct_ov5_021D6FA8 * param0);
 static UnkStruct_ov5_021D6FA8 * ov5_021D6F00(UnkStruct_ov5_021DB4B8 * param0, int param1);
-static void ov5_021D6F4C(UnkStruct_ov19_021DA864 * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4);
+static void ov5_021D6F4C(CellActorResourceData * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4);
 static BOOL ov5_021D6A48(UnkStruct_ov5_021D6594 * param0, UnkStruct_ov5_021D69B8 * param1);
 static void ov5_021D6FF0(UnkStruct_ov5_021D6FA8 * param0, UnkFuncPtr_ov5_021D6FF0 param1);
 static void ov5_021D700C(UnkStruct_ov5_021DB4B8 * param0);
@@ -800,13 +795,13 @@ static void ov5_021D61D0 (UnkStruct_ov5_021D61D0 * param0)
     ov5_021D6290(param0->unk_10, 3, 62);
 
     {
-        UnkStruct_020095C4 v3;
+        CellActorCollectionParams v3;
 
-        v3.unk_00 = 96;
-        v3.unk_04 = &param0->unk_14;
-        v3.unk_08 = 4;
+        v3.maxElements = 96;
+        v3.renderer = &param0->unk_14;
+        v3.heapID = 4;
 
-        param0->unk_130 = sub_020218BC(&v3);
+        param0->unk_130 = CellActorCollection_New(&v3);
         param0->unk_134 = SysTask_Start(ov5_021D6284, param0, 10);
     }
 }
@@ -814,7 +809,7 @@ static void ov5_021D61D0 (UnkStruct_ov5_021D61D0 * param0)
 static void ov5_021D6284 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D61D0 * v0 = param1;
-    sub_020219F8(v0->unk_130);
+    CellActorCollection_Update(v0->unk_130);
 }
 
 static void ov5_021D6290 (UnkStruct_02009F38 * param0, int param1, int param2)
@@ -844,14 +839,14 @@ static void ov5_021D62BC (UnkStruct_ov5_021D61D0 * param0)
     Heap_FreeToHeap(param0->unk_10);
     param0->unk_10 = NULL;
 
-    sub_02021964(param0->unk_130);
+    CellActorCollection_Delete(param0->unk_130);
     param0->unk_130 = NULL;
 
     SysTask_Done(param0->unk_134);
     param0->unk_134 = NULL;
 }
 
-static void ov5_021D630C (GraphicElementData * param0, VecFx32 * param1)
+static void ov5_021D630C (CellActor * param0, VecFx32 * param1)
 {
     if (param1->x > ((255 << FX32_SHIFT) + 64 * FX32_ONE)) {
         param1->x %= ((255 << FX32_SHIFT) + 64 * FX32_ONE);
@@ -869,7 +864,7 @@ static void ov5_021D630C (GraphicElementData * param0, VecFx32 * param1)
         }
     }
 
-    sub_02021C50(param0, param1);
+    CellActor_SetPosition(param0, param1);
 }
 
 UnkStruct_ov5_021D6594 * ov5_021D6364 (FieldSystem * fieldSystem)
@@ -1462,13 +1457,13 @@ static void ov5_021D6CDC (UnkStruct_ov5_021D6594 * param0, UnkStruct_ov5_021D69B
 {
     if (param1->unk_00 != 0xffff) {
         ov5_021D6F4C(&param1->unk_0C->unk_40, param0, param1->unk_0C, 0, 1);
-        memset(&param1->unk_0C->unk_10, 0, sizeof(UnkStruct_ov115_02261520));
-        param1->unk_0C->unk_10.unk_00 = param0->unk_08.unk_130;
-        param1->unk_0C->unk_10.unk_04 = &param1->unk_0C->unk_40;
-        param1->unk_0C->unk_10.unk_14.x = FX32_ONE;
-        param1->unk_0C->unk_10.unk_14.y = FX32_ONE;
-        param1->unk_0C->unk_10.unk_14.z = FX32_ONE;
-        param1->unk_0C->unk_10.unk_28 = 1;
+        memset(&param1->unk_0C->unk_10, 0, sizeof(CellActorInitParamsEx));
+        param1->unk_0C->unk_10.collection = param0->unk_08.unk_130;
+        param1->unk_0C->unk_10.resourceData = &param1->unk_0C->unk_40;
+        param1->unk_0C->unk_10.affineScale.x = FX32_ONE;
+        param1->unk_0C->unk_10.affineScale.y = FX32_ONE;
+        param1->unk_0C->unk_10.affineScale.z = FX32_ONE;
+        param1->unk_0C->unk_10.vramType = 1;
     }
 }
 
@@ -1477,8 +1472,8 @@ static void ov5_021D6D34 (UnkStruct_ov5_021DB4B8 * param0)
     int v0;
 
     for (v0 = 0; v0 < 48; v0++) {
-        param0->unk_48[v0].unk_04 = sub_02021AA0(&param0->unk_08->unk_10);
-        sub_02021CAC(param0->unk_48[v0].unk_04, 0);
+        param0->unk_48[v0].unk_04 = CellActorCollection_AddEx(&param0->unk_08->unk_10);
+        CellActor_SetDrawFlag(param0->unk_48[v0].unk_04, 0);
         GF_ASSERT(param0->unk_48[v0].unk_04);
     }
 }
@@ -1489,7 +1484,7 @@ static void ov5_021D6D64 (UnkStruct_ov5_021DB4B8 * param0)
 
     for (v0 = 0; v0 < 48; v0++) {
         if (param0->unk_48[v0].unk_04) {
-            sub_02021BD4(param0->unk_48[v0].unk_04);
+            CellActor_Delete(param0->unk_48[v0].unk_04);
             param0->unk_48[v0].unk_04 = NULL;
         }
     }
@@ -1589,12 +1584,12 @@ static UnkStruct_ov5_021D6FA8 * ov5_021D6F00 (UnkStruct_ov5_021DB4B8 * param0, i
     }
 
     GF_ASSERT(v0->unk_04);
-    sub_02021CAC(v0->unk_04, 1);
+    CellActor_SetDrawFlag(v0->unk_04, 1);
 
     return v0;
 }
 
-static void ov5_021D6F4C (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4)
+static void ov5_021D6F4C (CellActorResourceData * param0, UnkStruct_ov5_021D6594 * param1, UnkStruct_ov5_021D6690 * param2, int param3, int param4)
 {
     int v0[4];
     int v1;
@@ -1608,12 +1603,12 @@ static void ov5_021D6F4C (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov5_021D65
 
 static void ov5_021D6FA8 (UnkStruct_ov5_021D6FA8 * param0)
 {
-    GraphicElementData * v0;
+    CellActor * v0;
 
     param0->unk_38->unk_34 = param0->unk_34;
     param0->unk_34->unk_38 = param0->unk_38;
 
-    sub_02021CAC(param0->unk_04, 0);
+    CellActor_SetDrawFlag(param0->unk_04, 0);
     ov5_021D6EF0(param0);
 
     v0 = param0->unk_04;
@@ -1659,7 +1654,7 @@ static void ov5_021D700C (UnkStruct_ov5_021DB4B8 * param0)
 
 static VecFx32 ov5_021D7010 (UnkStruct_ov5_021D6FA8 * param0)
 {
-    const VecFx32 * v0 = sub_02021D28(param0->unk_04);
+    const VecFx32 * v0 = CellActor_GetPosition(param0->unk_04);
     return *v0;
 }
 

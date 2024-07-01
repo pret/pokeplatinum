@@ -8,17 +8,14 @@
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
@@ -35,7 +32,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "resource_collection.h"
 #include "unk_0202419C.h"
 #include "overlay022/ov22_02255094.h"
@@ -156,23 +153,23 @@ void ov22_022551D0 (UnkStruct_ov22_0225A0E4 * param0)
     sub_020151EC(param0->unk_00);
 }
 
-GraphicElementData * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5)
+CellActor * ov22_022551E4 (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_ov19_021DA864 v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorResourceData v0;
+    CellActorInitParams v1;
 
     sub_020093B4(&v0, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_48[0], param0->unk_48[1], param0->unk_48[2], param0->unk_48[3], NULL, NULL);
 
-    v1.unk_00 = param0->unk_44;
-    v1.unk_04 = &v0;
-    v1.unk_08.x = param2 << FX32_SHIFT;
-    v1.unk_08.y = param3 << FX32_SHIFT;
-    v1.unk_08.z = 0;
-    v1.unk_14 = param4;
-    v1.unk_18 = param5;
-    v1.unk_1C = 14;
+    v1.collection = param0->unk_44;
+    v1.resourceData = &v0;
+    v1.position.x = param2 << FX32_SHIFT;
+    v1.position.y = param3 << FX32_SHIFT;
+    v1.position.z = 0;
+    v1.priority = param4;
+    v1.vramType = param5;
+    v1.heapID = 14;
 
-    return sub_02021B90(&v1);
+    return CellActorCollection_Add(&v1);
 }
 
 void ov22_02255248 (UnkStruct_ov22_0225A0E4 * param0, NARC * param1, int param2, BOOL param3, int param4, int param5)
@@ -726,7 +723,7 @@ static void ov22_022559F8 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_02255A98 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    sub_02021964(param0->unk_44);
+    CellActorCollection_Delete(param0->unk_44);
 
     {
         int v0;
@@ -743,7 +740,7 @@ static void ov22_02255A98 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_02255AC0 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    sub_020219F8(param0->unk_44);
+    CellActorCollection_Update(param0->unk_44);
 }
 
 static void ov22_02255ACC (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_02255CB8 * param1)

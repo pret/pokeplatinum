@@ -75,7 +75,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "touch_screen.h"
 #include "unk_020797C8.h"
 #include "pokemon_icon.h"
@@ -12248,7 +12248,7 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
 
     param1->cellActorData[1] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
 
-    sub_02021F24(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
     sub_0200D330(param1->cellActorData[1]);
 
     param1->tmpPtr[0] = sub_02012744(1, 5);

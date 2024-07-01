@@ -1,21 +1,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 
 #include "unk_02006E3C.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_0201E86C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 
 typedef struct {
-    GraphicElementData * unk_00;
+    CellActor * unk_00;
     int unk_04;
     int unk_08;
 } UnkStruct_02012CE0_sub1;
@@ -23,7 +20,7 @@ typedef struct {
 typedef struct FontOAM {
     UnkStruct_02012CE0_sub1 * unk_00;
     int unk_04;
-    const GraphicElementData * unk_08;
+    const CellActor * unk_08;
     int unk_0C;
     int unk_10;
 } FontOAM;
@@ -70,7 +67,7 @@ static void sub_02012E6C(const Window * param0, const UnkStruct_02013034 * param
 static int sub_02012EE0(const Window * param0, const UnkStruct_02013034 * param1, NNSG2dImageProxy * param2, int param3, int param4, int param5, int param6, int param7);
 static int sub_02013034(const UnkStruct_02013034 * param0, int param1);
 static void sub_02013088(const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2, FontOAM * param3);
-static GraphicElementData * sub_02013100(const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2);
+static CellActor * sub_02013100(const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2);
 static void sub_020130DC(FontOAM * param0);
 static UnkStruct_02013034 * sub_02013188(int param0);
 static void sub_020131A4(UnkStruct_02013034 * param0);
@@ -205,7 +202,7 @@ void sub_020128C4 (FontOAM * param0, int param1, int param2)
     param2 *= FX32_ONE;
 
     if (param0->unk_08) {
-        v2 = sub_02021D28(param0->unk_08);
+        v2 = CellActor_GetPosition(param0->unk_08);
 
         param1 += v2->x;
         param2 += v2->y;
@@ -217,7 +214,7 @@ void sub_020128C4 (FontOAM * param0, int param1, int param2)
         v1.x = param1 + (param0->unk_00[v0].unk_04 << FX32_SHIFT);
         v1.y = param2 + (param0->unk_00[v0].unk_08 << FX32_SHIFT);
 
-        sub_02021C50(param0->unk_00[v0].unk_00, &v1);
+        CellActor_SetPosition(param0->unk_00[v0].unk_00, &v1);
     }
 }
 
@@ -233,7 +230,7 @@ void sub_02012938 (FontOAM * param0)
     if (param0->unk_08) {
         v3 = param0->unk_0C << FX32_SHIFT;
         v4 = param0->unk_10 << FX32_SHIFT;
-        v2 = sub_02021D28(param0->unk_08);
+        v2 = CellActor_GetPosition(param0->unk_08);
 
         v3 += v2->x;
         v4 += v2->y;
@@ -244,7 +241,7 @@ void sub_02012938 (FontOAM * param0)
             v1.x = v3 + (param0->unk_00[v0].unk_04 << FX32_SHIFT);
             v1.y = v4 + (param0->unk_00[v0].unk_08 << FX32_SHIFT);
 
-            sub_02021C50(param0->unk_00[v0].unk_00, &v1);
+            CellActor_SetPosition(param0->unk_00[v0].unk_00, &v1);
         }
     }
 }
@@ -266,7 +263,7 @@ void sub_020129D0 (FontOAM * param0, BOOL param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021CAC(param0->unk_00[v0].unk_00, param1);
+        CellActor_SetDrawFlag(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -277,7 +274,7 @@ void sub_02012A00 (FontOAM * param0, u8 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021E80(param0->unk_00[v0].unk_00, param1);
+        CellActor_SetExplicitPriority(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -288,7 +285,7 @@ void sub_02012A30 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021F58(param0->unk_00[v0].unk_00, param1);
+        CellActor_SetPriority(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -299,7 +296,7 @@ void sub_02012A60 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021E90(param0->unk_00[v0].unk_00, param1);
+        CellActor_SetExplicitPalette(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -310,7 +307,7 @@ void sub_02012A90 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021EF0(param0->unk_00[v0].unk_00, param1);
+        CellActor_SetExplicitPaletteOffset(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -321,7 +318,7 @@ void sub_02012AC0 (FontOAM * param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021F24(param0->unk_00[v0].unk_00, param1);
+        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -332,7 +329,7 @@ void sub_02012AF0 (FontOAM * param0, GXOamMode param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021FE0(param0->unk_00[v0].unk_00, param1);
+        CellActor_SetExplicitOAMMode(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -396,10 +393,10 @@ void sub_02012BE0 (FontOAM * param0, const UnkStruct_02012B20 * param1, const Wi
     int v0;
     char * v1;
     NNSG2dImageProxy * v2;
-    GraphicElementData * v3 = param0->unk_00[0].unk_00;
+    CellActor * v3 = param0->unk_00[0].unk_00;
     int v4;
 
-    v4 = sub_02021FC8(v3);
+    v4 = CellActor_GetVRamType(v3);
     v0 = sub_02012B58(param1, v4);
     v1 = (char *)Heap_AllocFromHeapAtEnd(param3, v0);
 
@@ -721,45 +718,45 @@ static void sub_020130DC (FontOAM * param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_02021BD4(param0->unk_00[v0].unk_00);
+        CellActor_Delete(param0->unk_00[v0].unk_00);
     }
 }
 
-static GraphicElementData * sub_02013100 (const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2)
+static CellActor * sub_02013100 (const UnkStruct_020127E8 * param0, const UnkStruct_02013034 * param1, const NNSG2dImageProxy * param2)
 {
-    UnkStruct_ov83_0223D9A8 v0;
-    UnkStruct_ov19_021DA864 v1;
+    CellActorInitParams v0;
+    CellActorResourceData v1;
 
-    v1.unk_00 = param2;
-    v1.unk_04 = NULL;
-    v1.unk_08 = param0->unk_0C;
-    v1.unk_0C = param0->unk_00->unk_30[param1->unk_08];
-    v1.unk_10 = NULL;
-    v1.unk_14 = NULL;
-    v1.unk_18 = NULL;
-    v1.unk_1C = 0;
-    v1.unk_20 = param0->unk_20;
+    v1.imageProxy = param2;
+    v1.charData = NULL;
+    v1.paletteProxy = param0->unk_0C;
+    v1.cellBank = param0->unk_00->unk_30[param1->unk_08];
+    v1.cellAnimBank = NULL;
+    v1.multiCellBank = NULL;
+    v1.multiCellAnimBank = NULL;
+    v1.isVRamTransfer = 0;
+    v1.priority = param0->unk_20;
 
-    v0.unk_00 = param0->unk_08;
-    v0.unk_04 = &v1;
-    v0.unk_14 = param0->unk_24;
-    v0.unk_18 = param0->unk_28;
-    v0.unk_1C = param0->unk_2C;
-    v0.unk_08.x = 0;
-    v0.unk_08.y = 0;
-    v0.unk_08.z = 0;
+    v0.collection = param0->unk_08;
+    v0.resourceData = &v1;
+    v0.priority = param0->unk_24;
+    v0.vramType = param0->unk_28;
+    v0.heapID = param0->unk_2C;
+    v0.position.x = 0;
+    v0.position.y = 0;
+    v0.position.z = 0;
 
     if (param0->unk_10) {
         const VecFx32 * v2;
 
-        v2 = sub_02021D28(param0->unk_10);
-        v0.unk_08 = *v2;
+        v2 = CellActor_GetPosition(param0->unk_10);
+        v0.position = *v2;
     }
 
-    v0.unk_08.x += (param0->unk_18 << FX32_SHIFT) + ((param1->unk_00 * 8) << FX32_SHIFT);
-    v0.unk_08.y += (param0->unk_1C << FX32_SHIFT) + ((param1->unk_04 * 8) << FX32_SHIFT);
+    v0.position.x += (param0->unk_18 << FX32_SHIFT) + ((param1->unk_00 * 8) << FX32_SHIFT);
+    v0.position.y += (param0->unk_1C << FX32_SHIFT) + ((param1->unk_04 * 8) << FX32_SHIFT);
 
-    return sub_02021B90(&v0);
+    return CellActorCollection_Add(&v0);
 }
 
 static UnkStruct_02013034 * sub_02013188 (int param0)
@@ -803,7 +800,7 @@ static void sub_020131D0 (UnkStruct_02013034 * param0, UnkStruct_02013034 * para
     param1->unk_0C = param0;
 }
 
-void sub_020131E0 (FontOAM * param0, const GraphicElementData * param1)
+void sub_020131E0 (FontOAM * param0, const CellActor * param1)
 {
     param0->unk_08 = param1;
     sub_02012938(param0);

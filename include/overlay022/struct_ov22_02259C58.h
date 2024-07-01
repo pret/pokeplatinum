@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_02259C58_H
 #define POKEPLATINUM_STRUCT_OV22_02259C58_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 
 typedef struct UnkStruct_ov22_02259C58_tag {
-    GraphicElementData * unk_00;
+    CellActor * unk_00;
     int unk_04;
     void * unk_08;
     void (* unk_0C)(struct UnkStruct_ov22_02259C58_tag * param0, void * param1);

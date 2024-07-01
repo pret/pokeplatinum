@@ -2,14 +2,11 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay108/struct_ov108_02243030.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "narc.h"
 #include "unk_020093B4.h"
@@ -20,7 +17,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon_icon.h"
 #include "party.h"
 #include "unk_0207E0B8.h"
@@ -31,7 +28,7 @@ static const u8 Unk_ov108_02243760[4] = {
 };
 
 void ov108_02243030(UnkStruct_ov108_02243030 * param0, Party * param1, Party * param2, u8 param3);
-GraphicElementData * ov108_022430F0(UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
+CellActor * ov108_022430F0(UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
 void ov108_02243194(UnkStruct_ov108_02243030 * param0);
 static void ov108_022431FC(void);
 static void ov108_02243230(UnkStruct_ov108_02243030 * param0);
@@ -74,41 +71,41 @@ void ov108_02243030 (UnkStruct_ov108_02243030 * param0, Party * param1, Party * 
     return;
 }
 
-GraphicElementData * ov108_022430F0 (UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
+CellActor * ov108_022430F0 (UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
 {
     int v0;
-    UnkStruct_ov19_021DA864 v1;
-    GraphicElementData * v2;
+    CellActorResourceData v1;
+    CellActor * v2;
 
     sub_020093B4(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v3;
+        CellActorInitParamsEx v3;
 
-        v3.unk_00 = param0->unk_00;
-        v3.unk_04 = &v1;
-        v3.unk_08.x = 0;
-        v3.unk_08.y = 0;
-        v3.unk_08.z = 0;
-        v3.unk_14.x = FX32_ONE;
-        v3.unk_14.y = FX32_ONE;
-        v3.unk_14.z = FX32_ONE;
-        v3.unk_20 = 0;
-        v3.unk_24 = param5;
-        v3.unk_2C = 103;
+        v3.collection = param0->unk_00;
+        v3.resourceData = &v1;
+        v3.position.x = 0;
+        v3.position.y = 0;
+        v3.position.z = 0;
+        v3.affineScale.x = FX32_ONE;
+        v3.affineScale.y = FX32_ONE;
+        v3.affineScale.z = FX32_ONE;
+        v3.affineZRotation = 0;
+        v3.priority = param5;
+        v3.heapID = 103;
 
         if (param7 == 0) {
-            v3.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+            v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         } else {
-            v3.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-            v3.unk_08.y += (192 << FX32_SHIFT);
+            v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+            v3.position.y += (192 << FX32_SHIFT);
         }
 
-        v2 = sub_02021AA0(&v3);
+        v2 = CellActorCollection_AddEx(&v3);
 
-        sub_02021CC8(v2, 1);
-        sub_02021CE4(v2, FX32_ONE);
-        SpriteActor_SetSpriteAnimActive(v2, param4);
+        CellActor_SetAnimateFlag(v2, 1);
+        CellActor_SetAnimSpeed(v2, FX32_ONE);
+        CellActor_SetAnim(v2, param4);
     }
 
     return v2;
@@ -130,7 +127,7 @@ void ov108_02243194 (UnkStruct_ov108_02243030 * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    sub_02021964(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
     sub_0201E958();
     sub_0201F8B4();

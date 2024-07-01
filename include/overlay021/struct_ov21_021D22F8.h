@@ -2,14 +2,14 @@
 #define POKEPLATINUM_STRUCT_OV21_021D22F8_H
 
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    GraphicElementData * unk_00;
-    GraphicElementData * unk_04;
+    CellActor * unk_00;
+    CellActor * unk_04;
     UnkStruct_ov21_021D4CA0 * unk_08;
     UnkStruct_02009DC8 * unk_0C[4];
     VecFx32 unk_1C;

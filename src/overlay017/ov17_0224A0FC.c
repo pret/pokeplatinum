@@ -52,7 +52,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "pokemon.h"
@@ -977,7 +977,7 @@ BOOL ov17_0224AD70 (UnkStruct_ov17_0224DF54 * param0, int param1, int param2)
 
     sub_0200D364(v0, param2);
     sub_0200D500(v0, v5, v6, (256 * FX32_ONE));
-    sub_02021CC8(v0->unk_00, 1);
+    CellActor_SetAnimateFlag(v0->unk_00, 1);
     SpriteActor_UpdateObject(v0->unk_00);
 
     v1 = sub_02094E98(param0->unk_00);

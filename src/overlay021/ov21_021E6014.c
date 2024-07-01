@@ -5,17 +5,14 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 
 #include "overlay021/struct_ov21_021E6A68.h"
 
@@ -29,7 +26,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
@@ -55,7 +52,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    GraphicElementData * unk_10;
+    CellActor * unk_10;
 } UnkStruct_ov21_021E6274;
 
 static UnkStruct_ov21_021E6104 * ov21_021E608C(int param0, UnkStruct_ov21_021D0F60 * param1);
@@ -88,9 +85,9 @@ static void ov21_021E6600(UnkStruct_ov21_021E6118 * param0, int param1);
 static void ov21_021E66B0(UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1, int param2);
 static void ov21_021E67C8(UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1);
 static void ov21_021E6844(UnkStruct_ov21_021E6118 * param0);
-static void ov21_021E6860(GraphicElementData * param0, short param1);
+static void ov21_021E6860(CellActor * param0, short param1);
 static void ov21_021E687C(Sprite * param0, short param1);
-static void ov21_021E688C(GraphicElementData * param0, short param1);
+static void ov21_021E688C(CellActor * param0, short param1);
 static void ov21_021E68B0(Sprite * param0, short param1);
 
 void ov21_021E6014 (UnkStruct_ov21_021E68F4 * param0, UnkStruct_ov21_021D0F60 * param1, int param2)
@@ -296,12 +293,12 @@ static int ov21_021E6204 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
 
 static void ov21_021E6274 (UnkStruct_ov21_021E6274 * param0)
 {
-    sub_02021FE0(param0->unk_10, GX_OAM_MODE_XLU);
+    CellActor_SetExplicitOAMMode(param0->unk_10, GX_OAM_MODE_XLU);
 }
 
 static void ov21_021E6280 (UnkStruct_ov21_021E6274 * param0)
 {
-    sub_02021FE0(param0->unk_10, GX_OAM_MODE_NORMAL);
+    CellActor_SetExplicitOAMMode(param0->unk_10, GX_OAM_MODE_NORMAL);
 }
 
 static void ov21_021E628C (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E6118 * param1, const UnkStruct_ov21_021E6104 * param2, BOOL param3)
@@ -408,8 +405,8 @@ static void ov21_021E64D4 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E6118 * param1, const UnkStruct_ov21_021E6104 * param2, int param3)
 {
-    UnkStruct_ov19_021DA864 v0;
-    UnkStruct_ov83_0223D9A8 v1;
+    CellActorResourceData v0;
+    CellActorInitParams v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     VecFx32 v3;
     short v4;
@@ -418,24 +415,24 @@ static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
 
     sub_020093B4(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.unk_00 = v2->unk_138;
-    v1.unk_04 = &v0;
-    v1.unk_14 = 31;
-    v1.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.unk_1C = param3;
+    v1.collection = v2->unk_138;
+    v1.resourceData = &v0;
+    v1.priority = 31;
+    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v1.heapID = param3;
 
     v4 = sub_02098848(param2->unk_04->unk_1748, v6);
     v5 = sub_02098888(param2->unk_04->unk_1748, v6);
 
-    v1.unk_08.x = 168 << FX32_SHIFT;
-    v1.unk_08.y = (88 + v4) << FX32_SHIFT;
+    v1.position.x = 168 << FX32_SHIFT;
+    v1.position.y = (88 + v4) << FX32_SHIFT;
 
-    param0->unk_10 = sub_02021B90(&v1);
+    param0->unk_10 = CellActorCollection_Add(&v1);
 
     if (ov21_021D3920(param2->unk_04) == 0) {
-        SpriteActor_SetSpriteAnimActive(param0->unk_10, 5);
+        CellActor_SetAnim(param0->unk_10, 5);
     } else {
-        SpriteActor_SetSpriteAnimActive(param0->unk_10, 6);
+        CellActor_SetAnim(param0->unk_10, 6);
     }
 
     ov21_021E6860(param0->unk_10, v4);
@@ -444,7 +441,7 @@ static void ov21_021E6518 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E65EC (UnkStruct_ov21_021E6274 * param0)
 {
-    sub_02021BD4(param0->unk_10);
+    CellActor_Delete(param0->unk_10);
 }
 
 static void ov21_021E65F8 (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E6118 * param1, const UnkStruct_ov21_021E6104 * param2, int param3)
@@ -545,14 +542,14 @@ static void ov21_021E6844 (UnkStruct_ov21_021E6118 * param0)
     sub_02008780(v0);
 }
 
-static void ov21_021E6860 (GraphicElementData * param0, short param1)
+static void ov21_021E6860 (CellActor * param0, short param1)
 {
     VecFx32 v0;
 
     v0.x = 168 << FX32_SHIFT;
     v0.y = (88 + param1) << FX32_SHIFT;
 
-    sub_02021C50(param0, &v0);
+    CellActor_SetPosition(param0, &v0);
 }
 
 static void ov21_021E687C (Sprite * param0, short param1)
@@ -560,14 +557,14 @@ static void ov21_021E687C (Sprite * param0, short param1)
     sub_02007DEC(param0, 1, 88 + param1);
 }
 
-static void ov21_021E688C (GraphicElementData * param0, short param1)
+static void ov21_021E688C (CellActor * param0, short param1)
 {
     VecFx32 v0;
 
     v0.x = FX_Div(0x100 << FX32_SHIFT, param1 << FX32_SHIFT);
     v0.y = v0.x;
 
-    sub_02021C80(param0, &v0, 2);
+    CellActor_SetAffineScaleEx(param0, &v0, 2);
 }
 
 static void ov21_021E68B0 (Sprite * param0, short param1)

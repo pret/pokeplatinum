@@ -3,8 +3,6 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D30F8_decl.h"
@@ -15,8 +13,6 @@
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
@@ -31,7 +27,7 @@
 #include "unk_02018340.h"
 #include "sys_task_manager.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D2EA4.h"
@@ -47,7 +43,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     const UnkStruct_ov20_021D16E8 * unk_18;
     const UnkStruct_020998EC * unk_1C;
     BGL * unk_20;
-    GraphicElementManager * unk_24;
+    CellActorCollection * unk_24;
     UnkStruct_0200C738 unk_28;
     NNSG2dImageProxy unk_1B4[2];
     NNSG2dImagePaletteProxy unk_1FC[2];
@@ -152,7 +148,7 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
         SysTask_Done(param0->unk_04);
 
         sub_0200A878();
-        sub_02021964(param0->unk_24);
+        CellActorCollection_Delete(param0->unk_24);
 
         Heap_FreeToHeap(param0->unk_20);
         Heap_FreeToHeap(param0);
@@ -173,7 +169,7 @@ static void ov20_021D217C (SysTask * param0, void * param1)
 {
     UnkStruct_ov20_021D2128 * v0 = param1;
 
-    sub_020219F8(v0->unk_24);
+    CellActorCollection_Update(v0->unk_24);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -964,47 +960,47 @@ BGL * ov20_021D2E04 (UnkStruct_ov20_021D2128 * param0)
     return param0->unk_20;
 }
 
-GraphicElementManager * ov20_021D2E08 (UnkStruct_ov20_021D2128 * param0)
+CellActorCollection * ov20_021D2E08 (UnkStruct_ov20_021D2128 * param0)
 {
     return param0->unk_24;
 }
 
-void ov20_021D2E0C (UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3)
+void ov20_021D2E0C (UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3)
 {
-    param1->unk_00 = &param0->unk_1B4[param2];
-    param1->unk_08 = &param0->unk_1FC[param2];
-    param1->unk_0C = param0->unk_224[param2];
-    param1->unk_10 = param0->unk_22C[param2];
-    param1->unk_20 = param3;
-    param1->unk_04 = NULL;
-    param1->unk_14 = NULL;
-    param1->unk_18 = NULL;
-    param1->unk_1C = 0;
+    param1->imageProxy = &param0->unk_1B4[param2];
+    param1->paletteProxy = &param0->unk_1FC[param2];
+    param1->cellBank = param0->unk_224[param2];
+    param1->cellAnimBank = param0->unk_22C[param2];
+    param1->priority = param3;
+    param1->charData = NULL;
+    param1->multiCellBank = NULL;
+    param1->multiCellAnimBank = NULL;
+    param1->isVRamTransfer = 0;
 }
 
-GraphicElementData * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+CellActor * ov20_021D2E50 (UnkStruct_ov20_021D2128 * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    UnkStruct_ov83_0223D9A8 v0;
-    GraphicElementData * v1;
+    CellActorInitParams v0;
+    CellActor * v1;
     OSIntrMode v2;
 
-    v0.unk_00 = param0->unk_24;
-    v0.unk_04 = param1;
-    v0.unk_08.x = param2 * FX32_ONE;
-    v0.unk_08.y = param3 * FX32_ONE;
-    v0.unk_08.z = 0;
-    v0.unk_14 = param4;
-    v0.unk_18 = param5;
-    v0.unk_1C = 35;
+    v0.collection = param0->unk_24;
+    v0.resourceData = param1;
+    v0.position.x = param2 * FX32_ONE;
+    v0.position.y = param3 * FX32_ONE;
+    v0.position.z = 0;
+    v0.priority = param4;
+    v0.vramType = param5;
+    v0.heapID = 35;
 
     v2 = OS_DisableInterrupts();
-    v1 = sub_02021B90(&v0);
+    v1 = CellActorCollection_Add(&v0);
 
     OS_RestoreInterrupts(v2);
 
     if (v1) {
-        sub_02021CC8(v1, 1);
-        sub_02021CE4(v1, ((FX32_ONE * 2) / 2));
+        CellActor_SetAnimateFlag(v1, 1);
+        CellActor_SetAnimSpeed(v1, ((FX32_ONE * 2) / 2));
     }
 
     return v1;

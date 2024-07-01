@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_0222AC70.h"
@@ -737,10 +737,10 @@ void ov12_0222B68C (UnkStruct_ov12_0221FCDC * param0)
             sub_0200D460(v0->unk_18[2], v4);
             sub_0200D460(v0->unk_18[3], v4);
 
-            v2 = sub_0201FAB4(sub_02021F9C(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
             sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
 
-            v2 = sub_0201FAB4(sub_02021F9C(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
             sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
         } else {
             sub_0200D474(v0->unk_18[0], 20);
@@ -756,10 +756,10 @@ void ov12_0222B68C (UnkStruct_ov12_0221FCDC * param0)
             sub_0200D460(v0->unk_18[2], v4);
             sub_0200D460(v0->unk_18[3], v4);
 
-            v2 = sub_0201FAB4(sub_02021F9C(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
             sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
 
-            v2 = sub_0201FAB4(sub_02021F9C(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
             sub_02003B08(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
         }
     }
@@ -1142,7 +1142,7 @@ void ov12_0222C0C0 (UnkStruct_ov12_0221FCDC * param0)
         int v2 = ov12_02223334(v0->unk_04, ov12_02220240(v0->unk_04));
         int v3 = ov12_02223344(v0->unk_04, ov12_02220240(v0->unk_04));
 
-        v1 = sub_0201FAB4(sub_02021F9C(v0->unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v1 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02003B08(ov12_0222332C(v0->unk_04), v3, v2, ov12_0221FDE4(param0), 2, 0x20, v1 * 16, 256, 256, 256);
     }
 

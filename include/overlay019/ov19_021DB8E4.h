@@ -3,14 +3,14 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DBA9C.h"
 
 #include <nnsys.h>
 
-BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4, NARC * param5);
+BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, CellActorCollection * param4, NARC * param5);
 void ov19_021DBA9C(UnkStruct_ov19_021DBA9C * param0);
 void ov19_021DBAD0(UnkStruct_ov19_021DBA9C * param0);
 void ov19_021DBB48(UnkStruct_ov19_021DBA9C * param0);

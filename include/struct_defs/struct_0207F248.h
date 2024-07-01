@@ -10,7 +10,7 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
@@ -34,7 +34,7 @@ typedef struct {
     PartyManagementData * unk_5A4;
     SpriteRenderer * unk_5A8;
     SpriteGfxHandler * unk_5AC;
-    GraphicElementData * unk_5B0[29];
+    CellActor * unk_5B0[29];
     CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;
     MessageLoader * unk_69C;

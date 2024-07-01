@@ -4,15 +4,14 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_defs/struct_0200C738.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 
 typedef struct {
-    GraphicElementManager * unk_00;
+    CellActorCollection * unk_00;
     UnkStruct_0200C738 unk_04;
     UnkStruct_02009714 * unk_190[6];
     UnkStruct_02009DC8 * unk_1A8[2][6];
-    UnkStruct_ov19_021DA864 unk_1D8[2];
+    CellActorResourceData unk_1D8[2];
     int unk_220;
     int unk_224;
     int unk_228;

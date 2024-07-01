@@ -1,20 +1,19 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay105/struct_ov105_02245E1C_decl.h"
 
 #include "overlay105/struct_ov105_02245AAC.h"
 
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay105/ov105_02245AAC.h"
 #include "overlay105/ov105_02245DC4.h"
 
 struct UnkStruct_ov105_02245E1C_t {
     int unk_00;
     int unk_04;
-    GraphicElementData * unk_08;
+    CellActor * unk_08;
 };
 
 UnkStruct_ov105_02245E1C * ov105_02245DC4(UnkStruct_ov105_02245AAC * param0, u32 param1, int param2, int param3, u32 param4);
@@ -40,7 +39,7 @@ UnkStruct_ov105_02245E1C * ov105_02245DC4 (UnkStruct_ov105_02245AAC * param0, u3
 
 void * ov105_02245E1C (UnkStruct_ov105_02245E1C * param0)
 {
-    sub_02021BD4(param0->unk_08);
+    CellActor_Delete(param0->unk_08);
     Heap_FreeToHeap(param0);
 
     return NULL;
@@ -53,11 +52,11 @@ void ov105_02245E30 (UnkStruct_ov105_02245E1C * param0, int param1, int param2)
     v0.x = (param1 * FX32_ONE);
     v0.y = (param2 * FX32_ONE);
 
-    sub_02021C50(param0->unk_08, &v0);
+    CellActor_SetPosition(param0->unk_08, &v0);
     return;
 }
 
 BOOL ov105_02245E48 (UnkStruct_ov105_02245E1C * param0)
 {
-    return sub_02021FD0(param0->unk_08);
+    return CellActor_IsAnimated(param0->unk_08);
 }

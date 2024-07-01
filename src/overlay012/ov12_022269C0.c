@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -38,7 +38,7 @@ typedef struct {
     SpriteGfxHandler * unk_0C;
     CellActorData * unk_10;
     CellActorData * unk_14[100];
-    GraphicElementData * unk_1A4[10];
+    CellActor * unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
 void ov12_022269C0 (UnkStruct_ov12_0221FCDC * param0)

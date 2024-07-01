@@ -33,7 +33,7 @@
 #include "sys_task_manager.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 
 typedef struct {
@@ -530,8 +530,8 @@ static void ov104_0223E3FC (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
         SpriteActor_EnableObject(param1->unk_04[v0], 0);
 
         if (v0 != 3) {
-            sub_02021CF8(param1->unk_04[v0]->unk_00, 2);
-            SpriteActor_SetSpriteAnimActive(param1->unk_04[v0]->unk_00, 1);
+            CellActor_SetAffineOverwriteMode(param1->unk_04[v0]->unk_00, 2);
+            CellActor_SetAnim(param1->unk_04[v0]->unk_00, 1);
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);
@@ -569,8 +569,8 @@ static BOOL ov104_0223E4A4 (UnkStruct_ov104_0223E48C * param0)
         v1 = ov104_0223E544(&param0->unk_14[v0]);
         v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
-        sub_02021C70(param0->unk_04[v0]->unk_00, &v3);
-        sub_02021CAC(param0->unk_04[v0]->unk_00, 1);
+        CellActor_SetAffineScale(param0->unk_04[v0]->unk_00, &v3);
+        CellActor_SetDrawFlag(param0->unk_04[v0]->unk_00, 1);
 
         if (v1 == 0) {
             v2 = 0;

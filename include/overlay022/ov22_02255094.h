@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
@@ -18,7 +18,7 @@ void ov22_02255134(UnkStruct_ov22_0225A0E4 * param0);
 void ov22_02255180(UnkStruct_ov22_0225A0E4 * param0);
 void ov22_022551B4(UnkStruct_ov22_0225A0E4 * param0, UnkStruct_ov22_02255CB8 * param1);
 void ov22_022551D0(UnkStruct_ov22_0225A0E4 * param0);
-GraphicElementData * ov22_022551E4(UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5);
+CellActor * ov22_022551E4(UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, int param3, int param4, int param5);
 void ov22_02255248(UnkStruct_ov22_0225A0E4 * param0, NARC * param1, int param2, BOOL param3, int param4, int param5);
 void ov22_02255268(UnkStruct_ov22_0225A0E4 * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6);
 void ov22_0225528C(UnkStruct_ov22_0225A0E4 * param0, NARC * param1, int param2, BOOL param3, int param4);

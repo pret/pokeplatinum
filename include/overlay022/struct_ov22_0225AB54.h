@@ -3,14 +3,14 @@
 
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
 #include "overlay022/struct_ov22_0225AE9C.h"
 
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
-    GraphicElementData * unk_10[2];
+    CellActor * unk_10[2];
     Window * unk_18;
     int unk_1C;
     int unk_20;

@@ -46,7 +46,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"
@@ -2240,7 +2240,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
         NNSG2dImagePaletteProxy * v19;
         int v20;
 
-        v19 = sub_02021F9C(v1->unk_00);
+        v19 = CellActor_GetPaletteProxy(v1->unk_00);
         v20 = sub_0201FAB4(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteSys_LoadPalette(param0->unk_C4, v8, v9, param0->unk_00, 2, 0x20, v20 * 16);
@@ -4332,7 +4332,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (BattleSystem * param0, int param1, int 
                     NNSG2dImagePaletteProxy * v18;
                     int v19;
 
-                    v18 = sub_02021F9C(v10->unk_00);
+                    v18 = CellActor_GetPaletteProxy(v10->unk_00);
                     v19 = sub_0201FAB4(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                     PaletteSys_LoadPalette(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);

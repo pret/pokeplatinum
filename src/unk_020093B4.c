@@ -3,13 +3,10 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009508_1.h"
-#include "struct_defs/struct_020095C4.h"
 #include "struct_defs/struct_0200C738.h"
-#include "overlay019/struct_ov19_021DA864.h"
 
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -18,10 +15,10 @@
 #include "heap.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0202309C.h"
 
-void sub_020093B4 (UnkStruct_ov19_021DA864 * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, UnkStruct_02009714 * param9, UnkStruct_02009714 * param10, UnkStruct_02009714 * param11, UnkStruct_02009714 * param12, UnkStruct_02009714 * param13, UnkStruct_02009714 * param14)
+void sub_020093B4 (CellActorResourceData * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, UnkStruct_02009714 * param9, UnkStruct_02009714 * param10, UnkStruct_02009714 * param11, UnkStruct_02009714 * param12, UnkStruct_02009714 * param13, UnkStruct_02009714 * param14)
 {
     UnkStruct_02009DC8 * v0;
     UnkStruct_02009DC8 * v1;
@@ -67,39 +64,39 @@ void sub_020093B4 (UnkStruct_ov19_021DA864 * param0, int param1, int param2, int
         v6 = sub_0200A558(v0, v2);
         GF_ASSERT(v6);
 
-        param0->unk_04 = sub_02009E1C(v0);
+        param0->charData = sub_02009E1C(v0);
     } else {
         v6 = sub_0200A534(v0);
         GF_ASSERT(v6);
-        param0->unk_04 = NULL;
+        param0->charData = NULL;
     }
 
-    param0->unk_08 = sub_0200A72C(v1, v6);
-    param0->unk_00 = v6;
-    param0->unk_0C = sub_02009E4C(v2);
+    param0->paletteProxy = sub_0200A72C(v1, v6);
+    param0->imageProxy = v6;
+    param0->cellBank = sub_02009E4C(v2);
 
     if (v3) {
-        param0->unk_10 = sub_02009E64(v3);
+        param0->cellAnimBank = sub_02009E64(v3);
     } else {
-        param0->unk_10 = NULL;
+        param0->cellAnimBank = NULL;
     }
 
     if (v4) {
-        param0->unk_14 = sub_02009E7C(v4);
-        param0->unk_18 = sub_02009E94(v5);
+        param0->multiCellBank = sub_02009E7C(v4);
+        param0->multiCellAnimBank = sub_02009E94(v5);
     } else {
-        param0->unk_14 = NULL;
-        param0->unk_18 = NULL;
+        param0->multiCellBank = NULL;
+        param0->multiCellAnimBank = NULL;
     }
 
-    param0->unk_1C = param7;
-    param0->unk_20 = param8;
+    param0->isVRamTransfer = param7;
+    param0->priority = param8;
 }
 
-void sub_020094F0 (UnkStruct_ov19_021DA864 * param0)
+void sub_020094F0 (CellActorResourceData * param0)
 {
-    sub_0200A5B4(param0->unk_00);
-    memset(param0, 0, sizeof(UnkStruct_ov19_021DA864));
+    sub_0200A5B4(param0->imageProxy);
+    memset(param0, 0, sizeof(CellActorResourceData));
 }
 
 UnkStruct_02009508 * sub_02009508 (const UnkStruct_02009508_1 * param0, int param1, UnkStruct_02009714 * param2, UnkStruct_02009714 * param3, UnkStruct_02009714 * param4, UnkStruct_02009714 * param5, UnkStruct_02009714 * param6, UnkStruct_02009714 * param7)
@@ -116,7 +113,7 @@ UnkStruct_02009508 * sub_02009508 (const UnkStruct_02009508_1 * param0, int para
     }
 
     v2 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009508));
-    v2->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov19_021DA864) * v1);
+    v2->unk_00 = Heap_AllocFromHeap(param1, sizeof(CellActorResourceData) * v1);
     v2->unk_04 = v1;
 
     for (v0 = 0; v0 < v2->unk_04; v0++) {
@@ -137,9 +134,9 @@ void sub_020095A8 (UnkStruct_02009508 * param0)
     Heap_FreeToHeap(param0);
 }
 
-GraphicElementManager * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, int param2)
+CellActorCollection * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, int param2)
 {
-    UnkStruct_020095C4 v0;
+    CellActorCollectionParams v0;
     NNSG2dViewRect v1;
 
     sub_0202309C(&param1->unk_00, -FX32_ONE);
@@ -158,11 +155,11 @@ GraphicElementManager * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, i
 
     sub_0200A8B0(&param1->unk_94[1], &v1, NNS_G2D_SURFACETYPE_SUB2D, &param1->unk_00);
 
-    v0.unk_00 = param0;
-    v0.unk_04 = &param1->unk_00;
-    v0.unk_08 = param2;
+    v0.maxElements = param0;
+    v0.renderer = &param1->unk_00;
+    v0.heapID = param2;
 
-    return sub_020218BC(&v0);
+    return CellActorCollection_New(&v0);
 }
 
 void sub_0200962C (UnkStruct_0200C738 * param0, fx32 param1, fx32 param2)

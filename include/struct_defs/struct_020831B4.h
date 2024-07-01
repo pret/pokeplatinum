@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_020831B4_H
 #define POKEPLATINUM_STRUCT_020831B4_H
 
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 
 typedef struct {
@@ -26,7 +26,7 @@ typedef struct {
     s16 unk_1C;
     s16 unk_1E;
     s16 unk_20;
-    GraphicElementData * unk_24;
+    CellActor * unk_24;
     u8 unk_28;
     u8 unk_29;
 } StrBufWrapper;

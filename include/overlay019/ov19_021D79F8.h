@@ -2,14 +2,14 @@
 #define POKEPLATINUM_OV19_021D79F8_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4F5C.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
-BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4);
+BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, CellActorCollection * param4);
 void ov19_021D7A74(UnkStruct_ov19_021D8318 * param0);
 void ov19_021D7A9C(UnkStruct_ov19_021D8318 * param0);
 void ov19_021D7B4C(UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov19_021D4F5C * param1, int param2, BOOL param3);

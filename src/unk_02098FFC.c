@@ -11,8 +11,6 @@
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209903C_sub1.h"
 #include "struct_defs/struct_0209916C.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "narc.h"
 #include "unk_020093B4.h"
@@ -20,7 +18,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_02098FFC.h"
 
 static void sub_02099058(UnkStruct_0209903C * param0);
@@ -87,7 +85,7 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
     u32 v0;
 
     Heap_FreeToHeap(param0->unk_1C4);
-    sub_02021964(param0->unk_10);
+    CellActorCollection_Delete(param0->unk_10);
     sub_0200A508(param0->unk_1B4[0]);
     sub_0200A700(param0->unk_1B4[1]);
 
@@ -99,7 +97,7 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
 
 void sub_02099160 (UnkStruct_0209903C * param0)
 {
-    sub_020219F8(param0->unk_10);
+    CellActorCollection_Update(param0->unk_10);
 }
 
 UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 param2, u16 param3, u16 param4, u8 param5, u8 param6, int param7)
@@ -109,7 +107,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     u32 v2;
     UnkStruct_0209916C * v3;
     CellActorData * v4 = NULL;
-    UnkStruct_ov115_02261520 v5;
+    CellActorInitParamsEx v5;
     UnkStruct_02009DC8 * v6;
 
     v1 = sub_020994B8(param0, param1);
@@ -137,36 +135,36 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
     v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
-    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov19_021DA864));
+    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
     v4->unk_04 = v4->unk_08->unk_00;
 
     sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
-    v5.unk_00 = param0->unk_10;
-    v5.unk_04 = v4->unk_04;
-    v5.unk_08.x = FX32_CONST(param2);
-    v5.unk_08.y = FX32_CONST(param3);
-    v5.unk_08.z = FX32_CONST(param4);
+    v5.collection = param0->unk_10;
+    v5.resourceData = v4->unk_04;
+    v5.position.x = FX32_CONST(param2);
+    v5.position.y = FX32_CONST(param3);
+    v5.position.z = FX32_CONST(param4);
 
     if (v0 == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v5.unk_08.y += (192 << FX32_SHIFT);
+        v5.position.y += (192 << FX32_SHIFT);
     }
 
-    v5.unk_14.x = FX32_ONE;
-    v5.unk_14.y = FX32_ONE;
-    v5.unk_14.z = FX32_ONE;
-    v5.unk_20 = 0;
-    v5.unk_24 = param6;
-    v5.unk_28 = v0;
-    v5.unk_2C = param0->unk_00;
+    v5.affineScale.x = FX32_ONE;
+    v5.affineScale.y = FX32_ONE;
+    v5.affineScale.z = FX32_ONE;
+    v5.affineZRotation = 0;
+    v5.priority = param6;
+    v5.vramType = v0;
+    v5.heapID = param0->unk_00;
 
-    v4->unk_00 = sub_02021AA0(&v5);
+    v4->unk_00 = CellActorCollection_AddEx(&v5);
 
     if (v4->unk_00 != NULL) {
-        SpriteActor_SetSpriteAnimActive(v4->unk_00, 0);
+        CellActor_SetAnim(v4->unk_00, 0);
         v2 = sub_0200A760(
             v6, v0);
-        sub_02021E90(v4->unk_00, v2);
+        CellActor_SetExplicitPalette(v4->unk_00, v2);
     } else {
         GF_ASSERT(FALSE);
     }

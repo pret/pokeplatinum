@@ -16,7 +16,6 @@
 #include "overlay065/struct_ov65_022358CC.h"
 #include "overlay065/struct_ov65_02236318.h"
 #include "overlay065/struct_ov65_022376D0.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
@@ -26,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay063/ov63_0222BCE8.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CA88.h"
@@ -219,7 +218,7 @@ u32 ov65_02235198 (UnkStruct_ov65_02235130 * param0)
 void ov65_02235244 (UnkStruct_ov65_02235130 * param0)
 {
     if (param0->unk_00) {
-        sub_020219F8(param0->unk_14.unk_00);
+        CellActorCollection_Update(param0->unk_14.unk_00);
     }
 }
 
@@ -605,7 +604,7 @@ static void ov65_022358CC (UnkStruct_ov65_022358CC * param0)
         sub_02009754(param0->unk_190[v0]);
     }
 
-    sub_02021964(param0->unk_00);
+    CellActorCollection_Delete(param0->unk_00);
 }
 
 static void ov65_022358F8 (UnkStruct_ov65_022358CC * param0, u32 param1, NARC * param2)
@@ -679,31 +678,31 @@ static void ov65_02235A60 (UnkStruct_ov65_022358CC * param0)
 
 static void ov65_02235A94 (UnkStruct_ov65_022358CC * param0, u32 param1)
 {
-    UnkStruct_ov115_02261520 v0;
+    CellActorInitParamsEx v0;
 
-    memset(&v0, 0, sizeof(UnkStruct_ov115_02261520));
+    memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
-    v0.unk_00 = param0->unk_00;
-    v0.unk_04 = &param0->unk_1A0.unk_10;
-    v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.unk_14.x = FX32_ONE;
-    v0.unk_14.y = FX32_ONE;
-    v0.unk_24 = 0;
-    v0.unk_2C = param1;
+    v0.collection = param0->unk_00;
+    v0.resourceData = &param0->unk_1A0.unk_10;
+    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.affineScale.x = FX32_ONE;
+    v0.affineScale.y = FX32_ONE;
+    v0.priority = 0;
+    v0.heapID = param1;
 
-    param0->unk_1A0.unk_34 = sub_02021AA0(&v0);
-    param0->unk_1A0.unk_38 = sub_02021AA0(&v0);
+    param0->unk_1A0.unk_34 = CellActorCollection_AddEx(&v0);
+    param0->unk_1A0.unk_38 = CellActorCollection_AddEx(&v0);
 
-    sub_02021CAC(param0->unk_1A0.unk_34, 0);
-    sub_02021CAC(param0->unk_1A0.unk_38, 0);
-    sub_02021CC8(param0->unk_1A0.unk_34, 1);
-    SpriteActor_SetSpriteAnimActive(param0->unk_1A0.unk_38, 1);
+    CellActor_SetDrawFlag(param0->unk_1A0.unk_34, 0);
+    CellActor_SetDrawFlag(param0->unk_1A0.unk_38, 0);
+    CellActor_SetAnimateFlag(param0->unk_1A0.unk_34, 1);
+    CellActor_SetAnim(param0->unk_1A0.unk_38, 1);
 }
 
 static void ov65_02235B14 (UnkStruct_ov65_022358CC * param0)
 {
-    sub_02021BD4(param0->unk_1A0.unk_34);
-    sub_02021BD4(param0->unk_1A0.unk_38);
+    CellActor_Delete(param0->unk_1A0.unk_34);
+    CellActor_Delete(param0->unk_1A0.unk_38);
 }
 
 static void ov65_02235B30 (UnkStruct_ov65_02235130 * param0)
@@ -719,13 +718,13 @@ static void ov65_02235B30 (UnkStruct_ov65_02235130 * param0)
     v1.x = v0.unk_00 << FX32_SHIFT;
     v1.y = v0.unk_02 << FX32_SHIFT;
 
-    sub_02021C50(param0->unk_14.unk_1A0.unk_34, &v1);
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_34, 1);
+    CellActor_SetPosition(param0->unk_14.unk_1A0.unk_34, &v1);
+    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 1);
 }
 
 static void ov65_02235B78 (UnkStruct_ov65_02235130 * param0)
 {
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_34, 0);
+    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 0);
 }
 
 static void ov65_02235B88 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov63_0222CC3C param1, u32 param2)
@@ -738,14 +737,14 @@ static void ov65_02235B88 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov63_0222
     v0.x = param1.unk_00 << FX32_SHIFT;
     v0.y = param1.unk_02 << FX32_SHIFT;
 
-    sub_02021C50(param0->unk_14.unk_1A0.unk_38, &v0);
-    sub_02021F58(param0->unk_14.unk_1A0.unk_38, param2);
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_38, 1);
+    CellActor_SetPosition(param0->unk_14.unk_1A0.unk_38, &v0);
+    CellActor_SetPriority(param0->unk_14.unk_1A0.unk_38, param2);
+    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 1);
 }
 
 static void ov65_02235BD8 (UnkStruct_ov65_02235130 * param0)
 {
-    sub_02021CAC(param0->unk_14.unk_1A0.unk_38, 0);
+    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 0);
 }
 
 static BOOL ov65_02235BE8 (UnkStruct_ov65_02235130 * param0)

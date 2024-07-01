@@ -5,13 +5,11 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay095/struct_ov95_02247568.h"
 #include "overlay097/struct_ov97_0222DB78.h"
@@ -26,7 +24,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_0202419C.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
@@ -93,7 +91,7 @@ typedef struct {
     int unk_08;
     BOOL unk_0C;
     UnkStruct_ov95_02247568 unk_10;
-    GraphicElementData * unk_20[1];
+    CellActor * unk_20[1];
     BGL * unk_24;
     UnkStruct_ov95_0224773C * unk_28;
     UnkStruct_ov95_02247958 * unk_2C;
@@ -221,13 +219,13 @@ static int ov95_02249840 (UnkStruct_ov95_022497D8 * param0, int * param1)
     case 2:
         if (ov95_02249CF0(&(param0->unk_34))) {
             Sound_PlayEffect(1709);
-            SpriteActor_SetSpriteAnimActive(param0->unk_20[0], 3);
-            sub_02021CAC(param0->unk_20[0], 1);
+            CellActor_SetAnim(param0->unk_20[0], 3);
+            CellActor_SetDrawFlag(param0->unk_20[0], 1);
             (*param1)++;
         }
         break;
     case 3:
-        if (sub_02021FD0(param0->unk_20[0]) == 0) {
+        if (CellActor_IsAnimated(param0->unk_20[0]) == 0) {
             sub_0200F174(0, 0, 0, 0x7fff, 16, 1, 58);
             (*param1)++;
         }
@@ -402,7 +400,7 @@ static void ov95_02249B90 (UnkStruct_ov95_022497D8 * param0)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
-    UnkStruct_ov19_021DA864 v2;
+    CellActorResourceData v2;
 
     ov95_02247568(&param0->unk_10, 93, 7, 8);
 
@@ -415,7 +413,7 @@ static void ov95_02249B90 (UnkStruct_ov95_022497D8 * param0)
 
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, UnkEnum_ov95_02249B90_00, UnkEnum_ov95_02249B90_01, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    sub_02021CAC(param0->unk_20[0], 0);
+    CellActor_SetDrawFlag(param0->unk_20[0], 0);
 }
 
 static void ov95_02249C10 (UnkStruct_ov95_022497D8 * param0)
@@ -424,7 +422,7 @@ static void ov95_02249C10 (UnkStruct_ov95_022497D8 * param0)
 
     for (v0 = 0; v0 < 1; v0++) {
         if (param0->unk_20[v0]) {
-            sub_02021BD4(param0->unk_20[v0]);
+            CellActor_Delete(param0->unk_20[v0]);
         }
     }
 

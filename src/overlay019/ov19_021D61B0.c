@@ -6,8 +6,6 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DCF88_decl.h"
@@ -21,13 +19,11 @@
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021D8E00.h"
 #include "overlay019/struct_ov19_021DA384.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay019/struct_ov19_021DA8D8.h"
 #include "overlay019/struct_ov19_021DA9E0.h"
 #include "overlay019/struct_ov19_021DB6F0.h"
 #include "overlay019/struct_ov19_021DBA9C.h"
 #include "overlay019/struct_ov19_021DC680.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
@@ -45,7 +41,7 @@
 #include "unk_02018340.h"
 #include "sys_task_manager.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
@@ -64,7 +60,7 @@ struct UnkStruct_ov19_021D61B0_t {
     SysTask * unk_00;
     SysTask * unk_04;
     SysTask * unk_08[4];
-    GraphicElementManager * unk_18;
+    CellActorCollection * unk_18;
     UnkStruct_0200C738 unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 * unk_1BC;
@@ -259,7 +255,7 @@ void ov19_021D64A0 (UnkStruct_ov19_021D61B0 * param0)
     ov19_021D7A74(&(param0->unk_494));
     ov19_021DA384(&(param0->unk_1C8));
 
-    sub_02021964(param0->unk_18);
+    CellActorCollection_Delete(param0->unk_18);
     sub_02019044(param0->unk_1C0, 3);
     sub_02019044(param0->unk_1C0, 2);
     sub_02019044(param0->unk_1C0, 1);
@@ -405,7 +401,7 @@ static void ov19_021D6664 (SysTask * param0, void * param1)
 
     ov19_021DAA80(&v0->unk_6604);
 
-    sub_020219F8(v0->unk_18);
+    CellActorCollection_Update(v0->unk_18);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -1925,53 +1921,53 @@ int ov19_021D7820 (UnkStruct_ov19_021D61B0 * param0)
     }
 }
 
-void ov19_021D783C (UnkStruct_ov19_021DA864 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, NNSG2dCellDataBank * param3, NNSG2dCellAnimBankData * param4, u32 param5)
+void ov19_021D783C (CellActorResourceData * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, NNSG2dCellDataBank * param3, NNSG2dCellAnimBankData * param4, u32 param5)
 {
-    param0->unk_00 = param1;
-    param0->unk_08 = param2;
-    param0->unk_0C = param3;
-    param0->unk_10 = param4;
-    param0->unk_20 = param5;
-    param0->unk_04 = NULL;
-    param0->unk_14 = NULL;
-    param0->unk_18 = NULL;
-    param0->unk_1C = 0;
+    param0->imageProxy = param1;
+    param0->paletteProxy = param2;
+    param0->cellBank = param3;
+    param0->cellAnimBank = param4;
+    param0->priority = param5;
+    param0->charData = NULL;
+    param0->multiCellBank = NULL;
+    param0->multiCellAnimBank = NULL;
+    param0->isVRamTransfer = 0;
 }
 
-GraphicElementData * ov19_021D785C (GraphicElementManager * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5)
+CellActor * ov19_021D785C (CellActorCollection * param0, CellActorResourceData * param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    UnkStruct_ov83_0223D9A8 v0;
-    GraphicElementData * v1;
+    CellActorInitParams v0;
+    CellActor * v1;
 
-    v0.unk_00 = param0;
-    v0.unk_04 = param1;
-    v0.unk_08.x = param2 * FX32_ONE;
-    v0.unk_08.y = param3 * FX32_ONE;
-    v0.unk_08.z = 0;
-    v0.unk_14 = param4;
-    v0.unk_18 = param5;
-    v0.unk_1C = 10;
+    v0.collection = param0;
+    v0.resourceData = param1;
+    v0.position.x = param2 * FX32_ONE;
+    v0.position.y = param3 * FX32_ONE;
+    v0.position.z = 0;
+    v0.priority = param4;
+    v0.vramType = param5;
+    v0.heapID = 10;
 
     {
         OSIntrMode v2 = OS_DisableInterrupts();
 
-        v1 = sub_02021B90(&v0);
+        v1 = CellActorCollection_Add(&v0);
         OS_RestoreInterrupts(v2);
     }
 
     if (v1) {
-        sub_02021CC8(v1, 1);
-        sub_02021CE4(v1, (FX32_ONE * (2 / 2)));
+        CellActor_SetAnimateFlag(v1, 1);
+        CellActor_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
     }
 
     return v1;
 }
 
-void ov19_021D78AC (GraphicElementData * param0, u32 param1)
+void ov19_021D78AC (CellActor * param0, u32 param1)
 {
     OSIntrMode v0 = OS_DisableInterrupts();
 
-    sub_02021F58(param0, param1);
+    CellActor_SetPriority(param0, param1);
     OS_RestoreInterrupts(v0);
 }
 

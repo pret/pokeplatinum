@@ -4,12 +4,8 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay101/struct_ov101_021D8544.h"
 
 #include "unk_020093B4.h"
@@ -17,7 +13,7 @@
 #include "unk_0200A328.h"
 #include "heap.h"
 #include "unk_0201DBEC.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "overlay101/ov101_021D7E48.h"
 
 typedef struct {
@@ -36,7 +32,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     u8 unk_09;
     u8 unk_0A;
     u8 unk_0B;
-    GraphicElementManager * unk_0C;
+    CellActorCollection * unk_0C;
     UnkStruct_0200C738 unk_10;
     NNSG2dCellTransferState * unk_19C;
     UnkStruct_02009714 * unk_1A0;
@@ -139,14 +135,14 @@ void ov101_021D7FB4 (UnkStruct_ov101_021D7E48 * param0)
     Heap_FreeToHeap(param0->unk_1BC);
     sub_0201DC3C();
     sub_0201DCF0(param0->unk_19C);
-    sub_020219C0(param0->unk_0C);
-    sub_02021964(param0->unk_0C);
+    CellActorCollection_DeleteAll(param0->unk_0C);
+    CellActorCollection_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
 }
 
 void ov101_021D80D4 (UnkStruct_ov101_021D7E48 * param0)
 {
-    sub_020219F8(param0->unk_0C);
+    CellActorCollection_Update(param0->unk_0C);
     sub_0201DCE8();
 }
 
@@ -323,9 +319,9 @@ void ov101_021D8358 (UnkStruct_ov101_021D7E48 * param0, u32 param1, u32 param2, 
 
 void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544 * param1, const VecFx32 * param2, u32 param3, int param4, u32 param5, u32 param6, u32 param7, u32 param8, int param9, int param10)
 {
-    UnkStruct_ov19_021DA864 v0;
-    UnkStruct_ov83_0223D9A8 v1;
-    GraphicElementData * v2;
+    CellActorResourceData v0;
+    CellActorInitParams v1;
+    CellActor * v2;
 
     if (param8 == param0->unk_0B) {
         param8 = 0xffffffff;
@@ -335,20 +331,20 @@ void ov101_021D84A4 (UnkStruct_ov101_021D7E48 * param0, UnkStruct_ov101_021D8544
         &v0, param5, param6, param7, param8, 0xffffffff, 0xffffffff, param4, param9, param0->unk_1A0, param0->unk_1A4, param0->unk_1A8, param0->unk_1AC, NULL, NULL);
 
     if (param4 == 1) {
-        param1->unk_08 = v0.unk_00;
+        param1->unk_08 = v0.imageProxy;
         param1->unk_00 = 1;
     } else {
         param1->unk_00 = 0;
     }
 
-    v1.unk_00 = param0->unk_0C;
-    v1.unk_04 = &v0;
-    v1.unk_08 = *param2;
-    v1.unk_14 = param10;
-    v1.unk_18 = param3;
-    v1.unk_1C = param0->unk_00;
+    v1.collection = param0->unk_0C;
+    v1.resourceData = &v0;
+    v1.position = *param2;
+    v1.priority = param10;
+    v1.vramType = param3;
+    v1.heapID = param0->unk_00;
 
-    param1->unk_04 = sub_02021B90(&v1);
+    param1->unk_04 = CellActorCollection_Add(&v1);
     GF_ASSERT(param1->unk_04 != NULL);
 }
 
@@ -358,18 +354,18 @@ void ov101_021D8544 (UnkStruct_ov101_021D8544 * param0)
         sub_0200A5B4(param0->unk_08);
     }
 
-    sub_02021BD4(param0->unk_04);
+    CellActor_Delete(param0->unk_04);
     param0->unk_04 = NULL;
 }
 
-void ov101_021D8560 (GraphicElementData * param0, VecFx32 * param1)
+void ov101_021D8560 (CellActor * param0, VecFx32 * param1)
 {
-    const VecFx32 * v0 = sub_02021D28(param0);
+    const VecFx32 * v0 = CellActor_GetPosition(param0);
     *param1 = *v0;
 }
 
-void ov101_021D8574 (GraphicElementData * param0, VecFx32 * param1)
+void ov101_021D8574 (CellActor * param0, VecFx32 * param1)
 {
-    const VecFx32 * v0 = sub_02021D2C(param0);
+    const VecFx32 * v0 = CellActor_GetAffineScale(param0);
     *param1 = *v0;
 }

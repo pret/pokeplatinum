@@ -8,8 +8,6 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "struct_decls/struct_02087A10_decl.h"
@@ -20,11 +18,9 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_020021B0.h"
 #include "unk_02002B7C.h"
@@ -55,7 +51,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "pokemon.h"
@@ -99,15 +95,15 @@ struct UnkStruct_02087A10_t {
     Strbuf* unk_17C;
     Strbuf* unk_180;
     Strbuf* unk_184;
-    GraphicElementManager * unk_188;
+    CellActorCollection * unk_188;
     UnkStruct_0200C738 unk_18C;
     UnkStruct_02009714 * unk_318[4];
     UnkStruct_02009DC8 * unk_328[2][4];
-    UnkStruct_ov19_021DA864 unk_348;
-    UnkStruct_ov19_021DA864 unk_36C;
-    GraphicElementData * unk_390[14];
-    GraphicElementData * unk_3C8[12];
-    GraphicElementData * unk_3F8[2];
+    CellActorResourceData unk_348;
+    CellActorResourceData unk_36C;
+    CellActor * unk_390[14];
+    CellActor * unk_3C8[12];
+    CellActor * unk_3F8[2];
     SysTask * unk_400[7];
     Window unk_41C[10];
     int unk_4BC;
@@ -133,14 +129,14 @@ struct UnkStruct_02087A10_t {
 };
 
 typedef struct {
-    GraphicElementData * unk_00;
-    GraphicElementData * unk_04;
+    CellActor * unk_00;
+    CellActor * unk_04;
     int unk_08;
     int unk_0C;
 } UnkStruct_020879DC;
 
 typedef struct {
-    GraphicElementData * unk_00;
+    CellActor * unk_00;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -165,7 +161,7 @@ static void sub_020871CC(void);
 static void sub_020871EC(BGL * param0);
 static void sub_0208765C(BGL * param0, Window * param1);
 static void sub_0208769C(UnkStruct_02087A10 * param0, NARC * param1);
-static void sub_02087D64(BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], GraphicElementData ** param6, void * param7);
+static void sub_02087D64(BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], CellActor ** param6, void * param7);
 static void sub_0208737C(UnkStruct_02087A10 * param0, OverlayManager * param1);
 static void sub_02088240(BGL * param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
@@ -182,17 +178,17 @@ static void sub_02088754(Window * param0, u16 * param1, int param2, u16 * param3
 static int sub_02088898(UnkStruct_02087A10 * param0, u16 param1, int param2);
 static int sub_02088D08(int param0, int param1, int param2, int param3, u16 * param4, int param5);
 static int sub_02088C9C(int param0, int param1, u16 * param2, int param3);
-static void sub_02088E1C(GraphicElementData ** param0, int param1, int param2);
+static void sub_02088E1C(CellActor ** param0, int param1, int param2);
 static void sub_020871B0(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
 static void sub_02088E58(Window * param0, u16 param1, int param2, u32 param3, u8 * param4);
 static void sub_02088454(UnkStruct_02087A10 * param0, int param1);
-static void sub_02088F40(int param0[], GraphicElementData ** param1, int param2);
+static void sub_02088F40(int param0[], CellActor ** param1, int param2);
 static void sub_020879DC(SysTask * param0, void * param1);
 static void sub_02087CDC(SysTask * param0, void * param1);
 static void sub_02086B30(NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3);
 static void sub_0208732C(int param0);
 static void sub_02087544(UnkStruct_02087A10 * param0, OverlayManager * param1);
-static void sub_02087BE4(UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1);
+static void sub_02087BE4(UnkStruct_02087A10 * param0, CellActorInitParamsEx * param1);
 static void sub_02086E6C(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
 static void sub_02087F48(Window * param0, int param1, Strbuf *param2);
 static void sub_02088FD0(UnkStruct_02087A10 * param0);
@@ -1029,7 +1025,7 @@ static int sub_02086B64 (OverlayManager * param0, int * param1)
         break;
     }
 
-    sub_020219F8(v0->unk_188);
+    CellActorCollection_Update(v0->unk_188);
 
     return 0;
 }
@@ -1039,8 +1035,8 @@ static int sub_02086D38 (UnkStruct_02087A10 * param0, int param1)
     sub_02088350(param0);
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
-        if (sub_02021D34(param0->unk_390[8]) == 0) {
-            sub_02021CAC(param0->unk_390[8], 1);
+        if (CellActor_GetDrawFlag(param0->unk_390[8]) == 0) {
+            CellActor_SetDrawFlag(param0->unk_390[8], 1);
             return param1;
         }
 
@@ -1164,7 +1160,7 @@ static int sub_02086F3C (OverlayManager * param0, int * param1)
         sub_02009754(v0->unk_318[v2]);
     }
 
-    sub_02021964(v0->unk_188);
+    CellActorCollection_Delete(v0->unk_188);
     sub_0200A878();
     Heap_FreeToHeapExplicit(18, v0->unk_510);
 
@@ -1592,12 +1588,12 @@ static void sub_020879DC (SysTask * param0, void * param1)
     VecFx32 v1;
     UnkStruct_020879DC * v2 = (UnkStruct_020879DC *)param1;
 
-    v0 = sub_02021D28(v2->unk_00);
+    v0 = CellActor_GetPosition(v2->unk_00);
     v1.x = v0->x + v2->unk_08;
     v1.y = FX32_ONE * Unk_020F2984[v2->unk_0C][1];
     v1.z = 0;
 
-    sub_02021C50(v2->unk_04, &v1);
+    CellActor_SetPosition(v2->unk_04, &v1);
 }
 
 static void sub_02087A10 (UnkStruct_02087A10 * param0)
@@ -1608,34 +1604,34 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
     sub_020093B4(&param0->unk_36C, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v1;
+        CellActorInitParamsEx v1;
 
-        v1.unk_00 = param0->unk_188;
-        v1.unk_04 = &param0->unk_348;
-        v1.unk_08.x = FX32_CONST(32);
-        v1.unk_08.y = FX32_CONST(96);
-        v1.unk_08.z = 0;
-        v1.unk_14.x = FX32_ONE;
-        v1.unk_14.y = FX32_ONE;
-        v1.unk_14.z = FX32_ONE;
-        v1.unk_20 = 0;
-        v1.unk_24 = 1;
-        v1.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.unk_2C = 18;
+        v1.collection = param0->unk_188;
+        v1.resourceData = &param0->unk_348;
+        v1.position.x = FX32_CONST(32);
+        v1.position.y = FX32_CONST(96);
+        v1.position.z = 0;
+        v1.affineScale.x = FX32_ONE;
+        v1.affineScale.y = FX32_ONE;
+        v1.affineScale.z = FX32_ONE;
+        v1.affineZRotation = 0;
+        v1.priority = 1;
+        v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        v1.heapID = 18;
 
         for (v0 = 0; v0 < 9; v0++) {
-            v1.unk_08.x = FX32_ONE * Unk_020F2984[v0][0];
-            v1.unk_08.y = FX32_ONE * Unk_020F2984[v0][1];
+            v1.position.x = FX32_ONE * Unk_020F2984[v0][0];
+            v1.position.y = FX32_ONE * Unk_020F2984[v0][1];
 
-            param0->unk_390[v0] = sub_02021AA0(&v1);
+            param0->unk_390[v0] = CellActorCollection_AddEx(&v1);
 
-            sub_02021CC8(param0->unk_390[v0], 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_390[v0], Unk_020F2984[v0][2]);
-            sub_02021F58(param0->unk_390[v0], Unk_020F2984[v0][3]);
+            CellActor_SetAnimateFlag(param0->unk_390[v0], 1);
+            CellActor_SetAnim(param0->unk_390[v0], Unk_020F2984[v0][2]);
+            CellActor_SetPriority(param0->unk_390[v0], Unk_020F2984[v0][3]);
         }
 
-        sub_02021CAC(param0->unk_390[4], 0);
-        sub_02021CAC(param0->unk_390[8], 0);
+        CellActor_SetDrawFlag(param0->unk_390[4], 0);
+        CellActor_SetDrawFlag(param0->unk_390[8], 0);
 
         for (v0 = 0; v0 < 7; v0++) {
             UnkStruct_020879DC * v2;
@@ -1649,13 +1645,13 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         }
 
         for (v0 = 0; v0 < param0->unk_0C; v0++) {
-            v1.unk_08.x = FX32_ONE * ((10 * 8) + v0 * 12);
-            v1.unk_08.y = FX32_ONE * (4 * 8 + 7);
+            v1.position.x = FX32_ONE * ((10 * 8) + v0 * 12);
+            v1.position.y = FX32_ONE * (4 * 8 + 7);
 
-            param0->unk_3C8[v0] = sub_02021AA0(&v1);
+            param0->unk_3C8[v0] = CellActorCollection_AddEx(&v1);
 
-            sub_02021CC8(param0->unk_3C8[v0], 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_3C8[v0], 43);
+            CellActor_SetAnimateFlag(param0->unk_3C8[v0], 1);
+            CellActor_SetAnim(param0->unk_3C8[v0], 43);
         }
 
         sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
@@ -1666,50 +1662,50 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1)
+static void sub_02087BE4 (UnkStruct_02087A10 * param0, CellActorInitParamsEx * param1)
 {
-    param1->unk_08.x = FX32_ONE * 24;
-    param1->unk_08.y = FX32_ONE * (16 - 8);
-    param0->unk_3F8[0] = sub_02021AA0(param1);
+    param1->position.x = FX32_ONE * 24;
+    param1->position.y = FX32_ONE * (16 - 8);
+    param0->unk_3F8[0] = CellActorCollection_AddEx(param1);
 
-    sub_02021CC8(param0->unk_3F8[0], 1);
+    CellActor_SetAnimateFlag(param0->unk_3F8[0], 1);
 
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_04 == 0) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 48);
+            CellActor_SetAnim(param0->unk_3F8[0], 48);
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 49);
+            CellActor_SetAnim(param0->unk_3F8[0], 49);
         }
         break;
     case 3:
-        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 51);
+        CellActor_SetAnim(param0->unk_3F8[0], 51);
         break;
     case 6:
-        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 55);
+        CellActor_SetAnim(param0->unk_3F8[0], 55);
         break;
     case 5:
-        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 54);
+        CellActor_SetAnim(param0->unk_3F8[0], 54);
         break;
     case 4:
     case 7:
-        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 53);
+        CellActor_SetAnim(param0->unk_3F8[0], 53);
         break;
     case 2:
-        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 47);
+        CellActor_SetAnim(param0->unk_3F8[0], 47);
         break;
     case 1:
-        SpriteActor_SetSpriteAnimActive(param0->unk_3F8[0], 50);
+        CellActor_SetAnim(param0->unk_3F8[0], 50);
 
         if (param0->unk_10 != 2) {
-            param1->unk_08.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
-            param1->unk_08.y = FX32_ONE * ((4 * 8 + 7) - 12);
-            param0->unk_3F8[1] = sub_02021AA0(param1);
+            param1->position.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
+            param1->position.y = FX32_ONE * ((4 * 8 + 7) - 12);
+            param0->unk_3F8[1] = CellActorCollection_AddEx(param1);
 
             if (param0->unk_10 == 0) {
-                SpriteActor_SetSpriteAnimActive(param0->unk_3F8[1], 45);
+                CellActor_SetAnim(param0->unk_3F8[1], 45);
             } else {
-                SpriteActor_SetSpriteAnimActive(param0->unk_3F8[1], 46);
+                CellActor_SetAnim(param0->unk_3F8[1], 46);
             }
         }
         break;
@@ -1727,19 +1723,19 @@ static void sub_02087CDC (SysTask * param0, void * param1)
     switch (v0->unk_04) {
     case 0:
         v1.x = v0->unk_08 + 4 * FX32_ONE;
-        sub_02021C50(v0->unk_00, &v1);
+        CellActor_SetPosition(v0->unk_00, &v1);
         break;
     case 2:
         v1.x = v0->unk_08 - 3 * FX32_ONE;
-        sub_02021C50(v0->unk_00, &v1);
+        CellActor_SetPosition(v0->unk_00, &v1);
         break;
     case 4:
         v1.x = v0->unk_08 + 2 * FX32_ONE;
-        sub_02021C50(v0->unk_00, &v1);
+        CellActor_SetPosition(v0->unk_00, &v1);
         break;
     case 6:
         v1.x = v0->unk_08;
-        sub_02021C50(v0->unk_00, &v1);
+        CellActor_SetPosition(v0->unk_00, &v1);
         SysTask_FinishAndFreeParam(param0);
         break;
     }
@@ -1747,7 +1743,7 @@ static void sub_02087CDC (SysTask * param0, void * param1)
     v0->unk_04++;
 }
 
-static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], GraphicElementData ** param6, void * param7)
+static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param3, int * param4, VecFx32 param5[], CellActor ** param6, void * param7)
 {
     int v0 = *param4;
     int v1 = v0 ^ 1;
@@ -1780,8 +1776,8 @@ static void sub_02087D64 (BGL * param0, Window * param1, int * param2, int param
             v4 = SysTask_GetParam(v5);
             v4->unk_00 = param6[7];
             v4->unk_04 = 0;
-            v4->unk_08 = sub_02021D28(param6[7])->x;
-            v4->unk_0C = sub_02021D28(param6[7])->y;
+            v4->unk_08 = CellActor_GetPosition(param6[7])->x;
+            v4->unk_0C = CellActor_GetPosition(param6[7])->y;
 
             param5[v0].x = -11;
             (*param2)++;
@@ -1967,41 +1963,41 @@ static void sub_02088350 (UnkStruct_02087A10 * param0)
     int v1 = 0;
     BOOL v2 = 0;
 
-    if (sub_02021D34(param0->unk_390[8]) == 0) {
+    if (CellActor_GetDrawFlag(param0->unk_390[8]) == 0) {
         v2 = 1;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
         Sound_PlayEffect(1500);
-        sub_02021CAC(param0->unk_390[8], 1);
+        CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 1;
         v0++;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
         Sound_PlayEffect(1500);
-        sub_02021CAC(param0->unk_390[8], 1);
+        CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 2;
         v0++;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
         Sound_PlayEffect(1500);
-        sub_02021CAC(param0->unk_390[8], 1);
+        CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 3;
         v0++;
     }
 
     if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         Sound_PlayEffect(1500);
-        sub_02021CAC(param0->unk_390[8], 1);
+        CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 4;
         v0++;
     }
 
     if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
         Sound_PlayEffect(1500);
-        sub_02021CAC(param0->unk_390[8], 1);
+        CellActor_SetDrawFlag(param0->unk_390[8], 1);
         param0->unk_1C.unk_00 = 12;
         param0->unk_1C.unk_04 = 0;
         v0++;
@@ -2031,12 +2027,12 @@ static void sub_02088454 (UnkStruct_02087A10 * param0, int param1)
         VecFx32 v0;
 
         if ((param0->unk_1C.unk_0C == 0) && (param0->unk_1C.unk_0C != param0->unk_1C.unk_04)) {
-            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 39);
+            CellActor_SetAnim(param0->unk_390[8], 39);
         }
 
         v0.x = FX32_ONE * (26 + param0->unk_1C.unk_00 * 16);
         v0.y = FX32_ONE * ((111 - 20) + (param0->unk_1C.unk_04 - 1) * 19);
-        sub_02021C50(param0->unk_390[8], &v0);
+        CellActor_SetPosition(param0->unk_390[8], &v0);
     } else {
         VecFx32 v1;
         int v2 = param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00] - (0xe001 + 1);
@@ -2044,8 +2040,8 @@ static void sub_02088454 (UnkStruct_02087A10 * param0, int param1)
         v1.x = FX32_ONE * Unk_020F251C[v2];
         v1.y = FX32_ONE * (88 - 20);
 
-        SpriteActor_SetSpriteAnimActive(param0->unk_390[8], Unk_020F24E8[v2]);
-        sub_02021C50(param0->unk_390[8], &v1);
+        CellActor_SetAnim(param0->unk_390[8], Unk_020F24E8[v2]);
+        CellActor_SetPosition(param0->unk_390[8], &v1);
     }
 
     param0->unk_38 = 180;
@@ -2242,8 +2238,8 @@ static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
         }
     }
 
-    if ((sub_02021D34(param0->unk_390[8]) == 0) && (gCoreSys.touchPressed == 0)) {
-        sub_02021CAC(param0->unk_390[8], 1);
+    if ((CellActor_GetDrawFlag(param0->unk_390[8]) == 0) && (gCoreSys.touchPressed == 0)) {
+        CellActor_SetDrawFlag(param0->unk_390[8], 1);
         return 2;
     }
 
@@ -2280,7 +2276,7 @@ static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
             sub_02088844(param0->unk_3A, param0->unk_4C4);
             param0->unk_4F4[param1 - (0xe001 + 1)]++;
             Sound_PlayEffect(1694);
-            sub_02021CAC(param0->unk_390[8], param2);
+            CellActor_SetDrawFlag(param0->unk_390[8], param2);
         }
         break;
     case (0xe001 + 6):
@@ -2302,12 +2298,12 @@ static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
             param0->unk_4F4[5]++;
 
             Sound_PlayEffect(1500);
-            sub_02021CAC(param0->unk_390[8], param2);
+            CellActor_SetDrawFlag(param0->unk_390[8], param2);
         }
         break;
     case (0xe001 + 7):
         sub_02015760(param0->unk_628);
-        sub_02021CAC(param0->unk_390[8], param2);
+        CellActor_SetDrawFlag(param0->unk_390[8], param2);
 
         if (param0->unk_14 == 0) {
             Sound_PlayEffect(1506);
@@ -2333,11 +2329,11 @@ static int sub_02088898 (UnkStruct_02087A10 * param0, u16 param1, int param2)
 
             sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
             Sound_PlayEffect(1515);
-            sub_02021CAC(param0->unk_390[8], 1);
-            sub_02021FE0(param0->unk_390[8], GX_OAM_MODE_XLU);
+            CellActor_SetDrawFlag(param0->unk_390[8], 1);
+            CellActor_SetExplicitOAMMode(param0->unk_390[8], GX_OAM_MODE_XLU);
 
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 8, 8);
-            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 60);
+            CellActor_SetAnim(param0->unk_390[8], 60);
 
             param0->unk_1C.unk_18 = 1;
 
@@ -2438,16 +2434,16 @@ static int sub_02088D08 (int param0, int param1, int param2, int param3, u16 * p
     return 0;
 }
 
-static void sub_02088E1C (GraphicElementData ** param0, int param1, int param2)
+static void sub_02088E1C (CellActor ** param0, int param1, int param2)
 {
     int v0;
 
     for (v0 = 0; v0 < param2; v0++) {
-        SpriteActor_SetSpriteAnimActive(param0[v0], 43);
+        CellActor_SetAnim(param0[v0], 43);
     }
 
     if (param1 != param2) {
-        SpriteActor_SetSpriteAnimActive(param0[param1], 44);
+        CellActor_SetAnim(param0[param1], 44);
     }
 }
 
@@ -2483,24 +2479,24 @@ static void sub_02088E58 (Window * param0, u16 param1, int param2, u32 param3, u
     sub_0201A954(param0);
 }
 
-static void sub_02088F40 (int param0[], GraphicElementData ** param1, int param2)
+static void sub_02088F40 (int param0[], CellActor ** param1, int param2)
 {
     int v0, v1;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0[v0]) {
             for (v1 = 0; v1 < 3; v1++) {
-                SpriteActor_SetSpriteAnimActive(param1[v1], Unk_020F2984[v1][2]);
+                CellActor_SetAnim(param1[v1], Unk_020F2984[v1][2]);
             }
 
-            SpriteActor_SetSpriteAnimActive(param1[v0], Unk_020F2984[v0][2] - 3);
+            CellActor_SetAnim(param1[v0], Unk_020F2984[v0][2] - 3);
             break;
         }
     }
 
     for (v0 = 5; v0 < 7; v0++) {
         if (param0[v0]) {
-            SpriteActor_SetSpriteAnimActive(param1[v0], Unk_020F2984[v0][2] + 1);
+            CellActor_SetAnim(param1[v0], Unk_020F2984[v0][2] + 1);
         }
     }
 
@@ -2511,24 +2507,24 @@ static void sub_02088F40 (int param0[], GraphicElementData ** param1, int param2
 
 static void sub_02088FD0 (UnkStruct_02087A10 * param0)
 {
-    if (!sub_02021FD0(param0->unk_390[8])) {
+    if (!CellActor_IsAnimated(param0->unk_390[8])) {
         if (param0->unk_158 == param0->unk_0C) {
             param0->unk_1C.unk_00 = 12;
             param0->unk_1C.unk_04 = 0;
-            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 39);
+            CellActor_SetAnim(param0->unk_390[8], 39);
         } else {
-            SpriteActor_SetSpriteAnimActive(param0->unk_390[8], 39);
+            CellActor_SetAnim(param0->unk_390[8], 39);
         }
 
         if (param0->unk_1C.unk_14 == 0) {
-            sub_02021CAC(param0->unk_390[8], 0);
+            CellActor_SetDrawFlag(param0->unk_390[8], 0);
         } else {
             sub_02088454(param0, 0);
         }
 
         param0->unk_1C.unk_18 = 0;
 
-        sub_02021FE0(param0->unk_390[8], GX_OAM_MODE_NORMAL);
+        CellActor_SetExplicitOAMMode(param0->unk_390[8], GX_OAM_MODE_NORMAL);
     }
 }
 

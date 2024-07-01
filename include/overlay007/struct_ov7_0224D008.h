@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "camera.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"
@@ -33,7 +33,7 @@ typedef struct {
     StringTemplate * unk_8C;
     Camera * camera;
     UnkStruct_ov5_021D30A8 unk_94;
-    GraphicElementData * unk_25C[4];
+    CellActor * unk_25C[4];
     u16 unk_26C[2];
     TrainerInfo * unk_270;
     void * unk_274;

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
+#include "cell_actor.h"
 #include "resource_collection.h"
 
 #include <nnsys.h>
@@ -32,7 +32,7 @@ typedef struct {
     NNSG2dCharacterData ** unk_38;
     int unk_3C;
     BGL * unk_40;
-    GraphicElementManager * unk_44;
+    CellActorCollection * unk_44;
     UnkStruct_02009714 * unk_48[4];
     UnkStruct_0200C738 unk_58;
     NARC * unk_5C;

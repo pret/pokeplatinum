@@ -5,7 +5,6 @@
 #include "constants/trainer.h"
 #include "message.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "overlay005/encounter_effect.h"
@@ -36,7 +35,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "camera.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "save_player.h"
@@ -600,7 +599,7 @@ typedef struct TrainerGrassEncounterEffect {
     ScreenSliceEffect * screenSliceEfx;
     UnkStruct_ov5_021DE47C unk_48;
     UnkStruct_ov5_021DE5A4 unk_1E8;
-    GraphicElementData * pokeballSprites[2];
+    CellActor * pokeballSprites[2];
     Camera * camera;
     QuadraticInterpolationTaskFX32 unk_228;
     s32 unk_240;
@@ -612,7 +611,7 @@ typedef struct {
     ScreenSplitEffect * unk_28;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
-    GraphicElementData * unk_200[2];
+    CellActor * unk_200[2];
     Camera * camera;
     QuadraticInterpolationTaskFX32 unk_20C;
     s32 unk_224;
@@ -626,7 +625,7 @@ typedef struct {
     BOOL unk_4C;
     UnkStruct_ov5_021DE47C unk_50;
     UnkStruct_ov5_021DE5A4 unk_1F0;
-    GraphicElementData * unk_224[2];
+    CellActor * unk_224[2];
     Camera * camera;
     QuadraticInterpolationTaskFX32 unk_230;
     s32 unk_248;
@@ -635,7 +634,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    GraphicElementData * unk_1D4[3];
+    CellActor * unk_1D4[3];
     LinearInterpolationTaskS32 unk_1E0[3];
     LinearInterpolationTaskS32 unk_21C[3];
     UnkStruct_ov5_021DE6BC * unk_258[3];
@@ -655,7 +654,7 @@ typedef struct {
     LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC;
-    GraphicElementData * unk_230;
+    CellActor * unk_230;
     Camera * camera;
     QuadraticInterpolationTaskFX32 unk_238;
     s32 unk_250;
@@ -664,7 +663,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    GraphicElementData * unk_1D4[3];
+    CellActor * unk_1D4[3];
     LinearInterpolationTaskS32 unk_1E0[3];
     LinearInterpolationTaskS32 unk_21C[3];
     BOOL unk_258[3];
@@ -702,8 +701,8 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         for (i = 0; i < 2; i++) {
             trainerEffect->pokeballSprites[i] = ov5_021DE62C(
                 &trainerEffect->unk_48, &trainerEffect->unk_1E8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-            sub_02021CAC(trainerEffect->pokeballSprites[i], 0);
-            sub_02021F58(trainerEffect->pokeballSprites[i], i * 2);
+            CellActor_SetDrawFlag(trainerEffect->pokeballSprites[i], 0);
+            CellActor_SetPriority(trainerEffect->pokeballSprites[i], i * 2);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -733,11 +732,11 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         );
 
         for (i = 0; i < 2; i++) {
-            sub_02021CAC(
+            CellActor_SetDrawFlag(
                 trainerEffect->pokeballSprites[i], 1);
-            sub_02021CF8(
+            CellActor_SetAffineOverwriteMode(
                 trainerEffect->pokeballSprites[i], 2);
-            sub_02021C70(
+            CellActor_SetAffineScale(
                 trainerEffect->pokeballSprites[i], &v5);
         }
 
@@ -754,14 +753,14 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         LinearInterpolationTaskS32_Update(&trainerEffect->pokeballRotation);
 
         for (i = 0; i < 2; i++) {
-            sub_02021C70(
+            CellActor_SetAffineScale(
                 trainerEffect->pokeballSprites[i], &v5);
         }
 
-        sub_02021C94(
+        CellActor_SetAffineZRotation(
             trainerEffect->pokeballSprites[0], 0xffff & trainerEffect->pokeballRotation.currentValue);
 
-        sub_02021C94(
+        CellActor_SetAffineZRotation(
             trainerEffect->pokeballSprites[1], 0xffff & (trainerEffect->pokeballRotation.currentValue - 0x100));
 
         if (done == TRUE) {
@@ -774,9 +773,9 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
 
         EncounterEffect_ScreenSlice(encEffect, trainerEffect->screenSliceEfx, 96, 6, 0, (255 * FX32_ONE), (FX32_ONE * 10));
 
-        SpriteActor_SetSpriteAnimActive(
+        CellActor_SetAnim(
             trainerEffect->pokeballSprites[0], 1);
-        SpriteActor_SetSpriteAnimActive(
+        CellActor_SetAnim(
             trainerEffect->pokeballSprites[1], 2);
 
         QuadraticInterpolationTaskFX32_Init(&trainerEffect->unk_2C, 0, (255 * FX32_ONE), (FX32_ONE * 10), 6);
@@ -784,9 +783,9 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         v3 = Camera_GetDistance(trainerEffect->camera);
         QuadraticInterpolationTaskFX32_Init(&trainerEffect->unk_228, v3, v3 + (-FX32_CONST(500)), (-FX32_CONST(10)), 6);
 
-        sub_02021C94(
+        CellActor_SetAffineZRotation(
             trainerEffect->pokeballSprites[0], 0xffff & 0);
-        sub_02021C94(
+        CellActor_SetAffineZRotation(
             trainerEffect->pokeballSprites[1], 0xffff & 0);
 
         encEffect->state++;
@@ -799,9 +798,9 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
             VecFx32 v7 = VecFx32_FromXYZ((128 * FX32_ONE) - trainerEffect->unk_2C.currentValue, (96 * FX32_ONE), 0);
             VecFx32 v8 = VecFx32_FromXYZ((128 * FX32_ONE) + trainerEffect->unk_2C.currentValue, (96 * FX32_ONE), 0);
 
-            sub_02021C50(
+            CellActor_SetPosition(
                 trainerEffect->pokeballSprites[0], &v7);
-            sub_02021C50(
+            CellActor_SetPosition(
                 trainerEffect->pokeballSprites[1], &v8);
         }
 
@@ -825,7 +824,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
             int v9;
 
             for (v9 = 0; v9 < 2; v9++) {
-                sub_02021BD4(trainerEffect->pokeballSprites[v9]);
+                CellActor_Delete(trainerEffect->pokeballSprites[v9]);
             }
         }
         ov5_021DE5A4(&trainerEffect->unk_48, &trainerEffect->unk_1E8);
@@ -836,7 +835,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
     }
 
     if (encEffect->state != 7) {
-        sub_020219F8(trainerEffect->unk_48.unk_00);
+        CellActorCollection_Update(trainerEffect->unk_48.unk_00);
     }
 }
 
@@ -868,8 +867,8 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
             for (v4 = 0; v4 < 2; v4++) {
                 v1->unk_200[v4] = ov5_021DE62C(
                     &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), 0, 0, 0);
-                sub_02021CAC(v1->unk_200[v4], 0);
-                sub_02021CF8(v1->unk_200[v4], 2);
+                CellActor_SetDrawFlag(v1->unk_200[v4], 0);
+                CellActor_SetAffineOverwriteMode(v1->unk_200[v4], 2);
             }
         }
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -892,18 +891,18 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
 
     case 3:
         LinearInterpolationTaskFX32_Init(&v1->unk_00, (-192 * FX32_ONE), (192 * FX32_ONE), 8);
-        sub_02021CAC(
+        CellActor_SetDrawFlag(
             v1->unk_200[0], 1);
-        sub_02021CAC(
+        CellActor_SetDrawFlag(
             v1->unk_200[1], 1);
 
         {
             VecFx32 v5 = VecFx32_FromXYZ((128 * FX32_ONE) - v1->unk_00.currentValue, (64 * FX32_ONE), 0);
             VecFx32 v6 = VecFx32_FromXYZ((128 * FX32_ONE) + v1->unk_00.currentValue, (128 * FX32_ONE), 0);
 
-            sub_02021C50(
+            CellActor_SetPosition(
                 v1->unk_200[0], &v5);
-            sub_02021C50(
+            CellActor_SetPosition(
                 v1->unk_200[1], &v6);
         }
 
@@ -919,16 +918,16 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
             VecFx32 v7 = VecFx32_FromXYZ((128 * FX32_ONE) - v1->unk_00.currentValue, (64 * FX32_ONE), 0);
             VecFx32 v8 = VecFx32_FromXYZ((128 * FX32_ONE) + v1->unk_00.currentValue, (128 * FX32_ONE), 0);
 
-            sub_02021C50(
+            CellActor_SetPosition(
                 v1->unk_200[0], &v7);
-            sub_02021C50(
+            CellActor_SetPosition(
                 v1->unk_200[1], &v8);
         }
 
         LinearInterpolationTaskS32_Update(&v1->unk_14);
-        sub_02021C94(
+        CellActor_SetAffineZRotation(
             v1->unk_200[0], v1->unk_14.currentValue);
-        sub_02021C94(
+        CellActor_SetAffineZRotation(
             v1->unk_200[1], -v1->unk_14.currentValue);
 
         if (v2 == 1) {
@@ -969,7 +968,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
             int v9;
 
             for (v9 = 0; v9 < 2; v9++) {
-                sub_02021BD4(v1->unk_200[v9]);
+                CellActor_Delete(v1->unk_200[v9]);
             }
         }
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
@@ -980,7 +979,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel (SysTask * param0, void * param1)
     }
 
     if (encEffect->state != 7) {
-        sub_020219F8(v1->unk_2C.unk_00);
+        CellActorCollection_Update(v1->unk_2C.unk_00);
     }
 }
 
@@ -1013,8 +1012,8 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
         for (v5 = 0; v5 < 2; v5++) {
             v1->unk_224[v5] = ov5_021DE62C(
                 &v1->unk_50, &v1->unk_1F0, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-            sub_02021CAC(v1->unk_224[v5], 0);
-            sub_02021F58(v1->unk_224[v5], v5);
+            CellActor_SetDrawFlag(v1->unk_224[v5], 0);
+            CellActor_SetPriority(v1->unk_224[v5], v5);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1047,12 +1046,12 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_18.currentValue, 16 - v1->unk_18.currentValue);
 
         for (v5 = 0; v5 < 2; v5++) {
-            sub_02021CAC(
+            CellActor_SetDrawFlag(
                 v1->unk_224[v5], 1);
 
-            sub_02021CF8(
+            CellActor_SetAffineOverwriteMode(
                 v1->unk_224[v5], 2);
-            sub_02021FE0(v1->unk_224[v5], GX_OAM_MODE_XLU);
+            CellActor_SetExplicitOAMMode(v1->unk_224[v5], GX_OAM_MODE_XLU);
         }
 
         LinearInterpolationTaskS32_Init(&v1->unk_2C, 0, 0xffff, 8);
@@ -1068,18 +1067,18 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
         v3 = LinearInterpolationTaskS32_Update(&v1->unk_2C);
 
         if (v3 == 0) {
-            sub_02021C94(v1->unk_224[0], 0xffff & v1->unk_2C.currentValue);
-            sub_02021C94(v1->unk_224[1], 0xffff & v6);
+            CellActor_SetAffineZRotation(v1->unk_224[0], 0xffff & v1->unk_2C.currentValue);
+            CellActor_SetAffineZRotation(v1->unk_224[1], 0xffff & v6);
         } else {
-            sub_02021C94(v1->unk_224[0], 0);
-            sub_02021C94(v1->unk_224[1], 0);
+            CellActor_SetAffineZRotation(v1->unk_224[0], 0);
+            CellActor_SetAffineZRotation(v1->unk_224[1], 0);
         }
 
         if (v2 == 1) {
             G2_BlendNone();
 
             for (v5 = 0; v5 < 2; v5++) {
-                sub_02021FE0(v1->unk_224[v5], GX_OAM_MODE_NORMAL);
+                CellActor_SetExplicitOAMMode(v1->unk_224[v5], GX_OAM_MODE_NORMAL);
             }
 
             v0->state++;
@@ -1095,7 +1094,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
             VecFx32 v7 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
 
             for (v5 = 0; v5 < 2; v5++) {
-                sub_02021C70(
+                CellActor_SetAffineScale(
                     v1->unk_224[v5], &v7);
             }
         }
@@ -1113,7 +1112,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
             VecFx32 v8 = VecFx32_FromXYZ(v1->unk_00.currentValue, v1->unk_00.currentValue, v1->unk_00.currentValue);
 
             for (v5 = 0; v5 < 2; v5++) {
-                sub_02021C70(
+                CellActor_SetAffineScale(
                     v1->unk_224[v5], &v8);
             }
         }
@@ -1138,7 +1137,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
         v1->unk_4C = 0;
 
         for (v5 = 0; v5 < 2; v5++) {
-            sub_02021BD4(v1->unk_224[v5]);
+            CellActor_Delete(v1->unk_224[v5]);
         }
 
         ov5_021DE5A4(&v1->unk_50, &v1->unk_1F0);
@@ -1152,7 +1151,7 @@ void EncounterEffect_Trainer_Water_LowerLevel (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_50.unk_00);
+        CellActorCollection_Update(v1->unk_50.unk_00);
     }
 }
 
@@ -1184,8 +1183,8 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
         for (v3 = 0; v3 < 3; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, 0, 0, 0, 0);
-            sub_02021CAC(v1->unk_1D4[v3], 0);
-            sub_02021CF8(v1->unk_1D4[v3], 2);
+            CellActor_SetDrawFlag(v1->unk_1D4[v3], 0);
+            CellActor_SetAffineOverwriteMode(v1->unk_1D4[v3], 2);
 
             v1->unk_258[v3] = ov5_021DE6A4(4);
         }
@@ -1246,8 +1245,8 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
 
         v4 = VecFx32_FromXYZ(
             43 * FX32_ONE, 231 * FX32_ONE, 0);
-        sub_02021C50(v1->unk_1D4[0], &v4);
-        sub_02021CAC(v1->unk_1D4[0], 1);
+        CellActor_SetPosition(v1->unk_1D4[0], &v4);
+        CellActor_SetDrawFlag(v1->unk_1D4[0], 1);
         v1->unk_264[0] = 1;
         v0->state++;
         v1->unk_2A0 = 4;
@@ -1267,8 +1266,8 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
         ov5_021DE6C4(v1->unk_258[1], 215, 215, 312, 0, 6, v1->unk_270, 86, 64, 15);
         v4 = VecFx32_FromXYZ(
             215 * FX32_ONE, 231 * FX32_ONE, 1);
-        sub_02021C50(v1->unk_1D4[1], &v4);
-        sub_02021CAC(v1->unk_1D4[1], 1);
+        CellActor_SetPosition(v1->unk_1D4[1], &v4);
+        CellActor_SetDrawFlag(v1->unk_1D4[1], 1);
         v1->unk_264[1] = 1;
         v0->state++;
         v1->unk_2A0 = 2;
@@ -1288,8 +1287,8 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
         ov5_021DE6C4(v1->unk_258[2], 129, 129, 312, 0, 6, v1->unk_270, 86, 64, 15);
         v4 = VecFx32_FromXYZ(
             129 * FX32_ONE, 231 * FX32_ONE, 2);
-        sub_02021C50(v1->unk_1D4[2], &v4);
-        sub_02021CAC(v1->unk_1D4[2], 1);
+        CellActor_SetPosition(v1->unk_1D4[2], &v4);
+        CellActor_SetDrawFlag(v1->unk_1D4[2], 1);
         v1->unk_264[2] = 1;
 
         v0->state++;
@@ -1317,7 +1316,7 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
         v1->unk_280 = 0;
 
         for (v3 = 0; v3 < 3; v3++) {
-            sub_02021BD4(v1->unk_1D4[v3]);
+            CellActor_Delete(v1->unk_1D4[v3]);
             ov5_021DE6BC(v1->unk_258[v3]);
         }
 
@@ -1353,19 +1352,19 @@ void EncounterEffect_Trainer_Water_HigherLevel (SysTask * param0, void * param1)
             LinearInterpolationTaskS32_Update(&v1->unk_1E0[v3]);
             LinearInterpolationTaskS32_Update(&v1->unk_21C[v3]);
 
-            sub_02021C94(v1->unk_1D4[v3], v1->unk_21C[v3].currentValue);
+            CellActor_SetAffineZRotation(v1->unk_1D4[v3], v1->unk_21C[v3].currentValue);
 
-            v7 = sub_02021D28(v1->unk_1D4[v3]);
+            v7 = CellActor_GetPosition(v1->unk_1D4[v3]);
             v8 = *v7;
             v8.y = v1->unk_1E0[v3].currentValue * FX32_ONE;
-            sub_02021C50(v1->unk_1D4[v3], &v8);
+            CellActor_SetPosition(v1->unk_1D4[v3], &v8);
         }
     }
 
     sub_0201A9A4(v1->unk_270);
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_00.unk_00);
+        CellActorCollection_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -1392,7 +1391,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
 
         v1->unk_230 = ov5_021DE62C(
             &v1->unk_5C, &v1->unk_1FC, (128 * FX32_ONE), (-32 * FX32_ONE), 0, 0);
-        sub_02021CAC(v1->unk_230, 0);
+        CellActor_SetDrawFlag(v1->unk_230, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->state++;
@@ -1413,7 +1412,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
 
     case 3:
         QuadraticInterpolationTaskFX32_Init(&v1->unk_00, 0, (256 * FX32_ONE), (2 * FX32_ONE), 12);
-        sub_02021CAC(
+        CellActor_SetDrawFlag(
             v1->unk_230, 1);
 
         QuadraticInterpolationTaskFX32_Init(&v1->unk_18, (FX32_CONST(0.10f)), (FX32_CONST(2.0f)), (FX32_CONST(0.0f)), 12);
@@ -1421,7 +1420,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
         QuadraticInterpolationTaskFX32_Init(&v1->unk_30, (FX32_CONST(0.10f)), (FX32_CONST(2.0f)), (FX32_CONST(0.0f)), 12);
 
         v4 = VecFx32_FromXYZ(v1->unk_18.currentValue, v1->unk_30.currentValue, 0);
-        sub_02021C80(v1->unk_230, &v4, 2);
+        CellActor_SetAffineScaleEx(v1->unk_230, &v4, 2);
 
         LinearInterpolationTaskS32_Init(&v1->unk_48, 0, (0xffff * 1), 12);
         v0->state++;
@@ -1432,19 +1431,19 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
         {
             VecFx32 v5 = VecFx32_FromXYZ((128 * FX32_ONE), (-32 * FX32_ONE) + (v1->unk_00.currentValue), 0);
 
-            sub_02021C50(
+            CellActor_SetPosition(
                 v1->unk_230, &v5);
         }
         QuadraticInterpolationTaskFX32_Update(&v1->unk_18);
         QuadraticInterpolationTaskFX32_Update(&v1->unk_30);
         v4 = VecFx32_FromXYZ(v1->unk_18.currentValue, v1->unk_30.currentValue, 0);
-        sub_02021C70(v1->unk_230, &v4);
+        CellActor_SetAffineScale(v1->unk_230, &v4);
 
         LinearInterpolationTaskS32_Update(&v1->unk_48);
-        sub_02021C94(v1->unk_230, v1->unk_48.currentValue);
+        CellActor_SetAffineZRotation(v1->unk_230, v1->unk_48.currentValue);
 
         if (v2 == 1) {
-            sub_02021CAC(
+            CellActor_SetDrawFlag(
                 v1->unk_230, 0);
             v0->state++;
         }
@@ -1482,7 +1481,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        sub_02021BD4(v1->unk_230);
+        CellActor_Delete(v1->unk_230);
         ov5_021DE5A4(&v1->unk_5C, &v1->unk_1FC);
         ov5_021DE4AC(&v1->unk_5C);
         EncounterEffect_Finish(v0, param0);
@@ -1490,7 +1489,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_5C.unk_00);
+        CellActorCollection_Update(v1->unk_5C.unk_00);
     }
 }
 
@@ -1519,7 +1518,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         for (v4 = 0; v4 < 3; v4++) {
             v1->unk_1D4[v4] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, 0, -32, 0, 0);
-            sub_02021CAC(v1->unk_1D4[v4], 0);
+            CellActor_SetDrawFlag(v1->unk_1D4[v4], 0);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1565,12 +1564,12 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         LinearInterpolationTaskS32_Init(&v1->unk_1E0[0], -32, 224, 5);
         v2 = VecFx32_FromXYZ(
             128 * FX32_ONE, -32 * FX32_ONE, 0);
-        sub_02021C50(v1->unk_1D4[0], &v2);
-        sub_02021CAC(
+        CellActor_SetPosition(v1->unk_1D4[0], &v2);
+        CellActor_SetDrawFlag(
             v1->unk_1D4[0], 1);
 
         LinearInterpolationTaskS32_Init(&v1->unk_21C[0], 0, (0xffff * 1), 5);
-        sub_02021CF8(v1->unk_1D4[0], 2);
+        CellActor_SetAffineOverwriteMode(v1->unk_1D4[0], 2);
 
         v1->unk_258[0] = 1;
         v0->state++;
@@ -1587,13 +1586,13 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         LinearInterpolationTaskS32_Init(&v1->unk_1E0[1], -32, 224, 5);
         v2 = VecFx32_FromXYZ(
             208 * FX32_ONE, -32 * FX32_ONE, 0);
-        sub_02021C50(v1->unk_1D4[1], &v2);
-        sub_02021CAC(
+        CellActor_SetPosition(v1->unk_1D4[1], &v2);
+        CellActor_SetDrawFlag(
             v1->unk_1D4[1], 1);
 
         LinearInterpolationTaskS32_Init(&v1->unk_21C[1], 0, (0xffff * -1), 5);
 
-        sub_02021CF8(v1->unk_1D4[1], 2);
+        CellActor_SetAffineOverwriteMode(v1->unk_1D4[1], 2);
         v1->unk_258[1] = 1;
         v0->state++;
         v1->unk_288 = 3;
@@ -1609,12 +1608,12 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         LinearInterpolationTaskS32_Init(&v1->unk_1E0[2], -32, 224, 5);
         v2 = VecFx32_FromXYZ(
             48 * FX32_ONE, -32 * FX32_ONE, 0);
-        sub_02021C50(v1->unk_1D4[2], &v2);
-        sub_02021CAC(
+        CellActor_SetPosition(v1->unk_1D4[2], &v2);
+        CellActor_SetDrawFlag(
             v1->unk_1D4[2], 1);
 
         LinearInterpolationTaskS32_Init(&v1->unk_21C[2], 0, (0xffff * 1), 5);
-        sub_02021CF8(v1->unk_1D4[2], 2);
+        CellActor_SetAffineOverwriteMode(v1->unk_1D4[2], 2);
 
         v1->unk_258[2] = 1;
         v0->state++;
@@ -1624,7 +1623,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
 
         if ((v1->unk_258[0] == 0) && (v1->unk_258[1] == 0) && (v1->unk_258[2] == 0)) {
             for (v4 = 0; v4 < 3; v4++) {
-                sub_02021CAC(
+                CellActor_SetDrawFlag(
                     v1->unk_1D4[v4], 0);
             }
 
@@ -1663,7 +1662,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
         }
 
         for (v4 = 0; v4 < 3; v4++) {
-            sub_02021BD4(v1->unk_1D4[v4]);
+            CellActor_Delete(v1->unk_1D4[v4]);
         }
 
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
@@ -1694,16 +1693,16 @@ void EncounterEffect_Trainer_Cave_HigherLevel (SysTask * param0, void * param1)
                 v1->unk_258[v4] = 0;
             }
 
-            v7 = sub_02021D28(v1->unk_1D4[v4]);
+            v7 = CellActor_GetPosition(v1->unk_1D4[v4]);
             v8 = *v7;
             v8.y = v1->unk_1E0[v4].currentValue * FX32_ONE;
-            sub_02021C50(v1->unk_1D4[v4], &v8);
-            sub_02021C94(v1->unk_1D4[v4], (0xffff & v1->unk_21C[v4].currentValue));
+            CellActor_SetPosition(v1->unk_1D4[v4], &v8);
+            CellActor_SetAffineZRotation(v1->unk_1D4[v4], (0xffff & v1->unk_21C[v4].currentValue));
         }
     }
 
     if (v0->state != 9) {
-        sub_020219F8(v1->unk_00.unk_00);
+        CellActorCollection_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -1712,14 +1711,14 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_14;
     UnkStruct_ov5_021DE47C unk_2C;
     UnkStruct_ov5_021DE5A4 unk_1CC;
-    GraphicElementData * unk_200;
+    CellActor * unk_200;
     s32 unk_204;
 } UnkStruct_ov5_021E4260;
 
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    GraphicElementData * unk_1D4[4];
+    CellActor * unk_1D4[4];
     QuadraticInterpolationTaskFX32 unk_1E4[2];
 } UnkStruct_ov5_021E44C0;
 
@@ -1742,8 +1741,8 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
 
         v1->unk_200 = ov5_021DE62C(
             &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-        sub_02021CAC(v1->unk_200, 0);
-        sub_02021FE0(v1->unk_200, GX_OAM_MODE_XLU);
+        CellActor_SetDrawFlag(v1->unk_200, 0);
+        CellActor_SetExplicitOAMMode(v1->unk_200, GX_OAM_MODE_XLU);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->state++;
@@ -1766,7 +1765,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
         LinearInterpolationTaskS32_Init(&v1->unk_00, 0, 16, 12);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_00.currentValue, 16 - v1->unk_00.currentValue);
 
-        sub_02021CAC(
+        CellActor_SetDrawFlag(
             v1->unk_200, 1);
         v0->state++;
         break;
@@ -1777,7 +1776,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
 
         if (v2 == 1) {
             G2_BlendNone();
-            sub_02021FE0(v1->unk_200, GX_OAM_MODE_NORMAL);
+            CellActor_SetExplicitOAMMode(v1->unk_200, GX_OAM_MODE_NORMAL);
             v0->state++;
         }
 
@@ -1786,12 +1785,12 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
     case 5:
         QuadraticInterpolationTaskFX32_Init(&v1->unk_14, (FX32_CONST(1.0f)), (FX32_CONST(0.1f)), 1, 6);
 
-        sub_02021CF8(
+        CellActor_SetAffineOverwriteMode(
             v1->unk_200, 2);
         {
             VecFx32 v3 = VecFx32_FromXYZ(v1->unk_14.currentValue, v1->unk_14.currentValue, v1->unk_14.currentValue);
 
-            sub_02021C70(
+            CellActor_SetAffineScale(
                 v1->unk_200, &v3);
         }
 
@@ -1805,7 +1804,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
         {
             VecFx32 v4 = VecFx32_FromXYZ(v1->unk_14.currentValue, v1->unk_14.currentValue, v1->unk_14.currentValue);
 
-            sub_02021C70(
+            CellActor_SetAffineScale(
                 v1->unk_200, &v4);
         }
 
@@ -1824,7 +1823,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        sub_02021BD4(v1->unk_200);
+        CellActor_Delete(v1->unk_200);
         ov5_021DE5A4(&v1->unk_2C, &v1->unk_1CC);
         ov5_021DE4AC(&v1->unk_2C);
         EncounterEffect_Finish(v0, param0);
@@ -1832,7 +1831,7 @@ void EncounterEffect_Frontier (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_2C.unk_00);
+        CellActorCollection_Update(v1->unk_2C.unk_00);
     }
 }
 
@@ -1858,7 +1857,7 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-            sub_02021CAC(v1->unk_1D4[v3], 0);
+            CellActor_SetDrawFlag(v1->unk_1D4[v3], 0);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1884,7 +1883,7 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
         QuadraticInterpolationTaskFX32_Init(&v1->unk_1E4[1], 0, (160 * FX32_ONE), (FX32_CONST(0.1f)), 4);
 
         for (v3 = 0; v3 < 4; v3++) {
-            sub_02021CAC(v1->unk_1D4[v3], 1);
+            CellActor_SetDrawFlag(v1->unk_1D4[v3], 1);
         }
 
         v0->state++;
@@ -1897,19 +1896,19 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
 
         v4 = VecFx32_FromXYZ(
             (128 * FX32_ONE), (96 * FX32_ONE) - v1->unk_1E4[0].currentValue, 0);
-        sub_02021C50(v1->unk_1D4[0], &v4);
+        CellActor_SetPosition(v1->unk_1D4[0], &v4);
 
         v4 = VecFx32_FromXYZ(
             (128 * FX32_ONE), (96 * FX32_ONE) + v1->unk_1E4[0].currentValue, 0);
-        sub_02021C50(v1->unk_1D4[1], &v4);
+        CellActor_SetPosition(v1->unk_1D4[1], &v4);
 
         v4 = VecFx32_FromXYZ(
             (128 * FX32_ONE) - v1->unk_1E4[1].currentValue, (96 * FX32_ONE), 0);
-        sub_02021C50(v1->unk_1D4[2], &v4);
+        CellActor_SetPosition(v1->unk_1D4[2], &v4);
 
         v4 = VecFx32_FromXYZ(
             (128 * FX32_ONE) + v1->unk_1E4[1].currentValue, (96 * FX32_ONE), 0);
-        sub_02021C50(v1->unk_1D4[3], &v4);
+        CellActor_SetPosition(v1->unk_1D4[3], &v4);
 
         if (v2 == 1) {
             v0->state++;
@@ -1941,7 +1940,7 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
         }
 
         for (v3 = 0; v3 < 4; v3++) {
-            sub_02021BD4(v1->unk_1D4[v3]);
+            CellActor_Delete(v1->unk_1D4[v3]);
         }
 
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
@@ -1951,7 +1950,7 @@ void EncounterEffect_Double (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_00.unk_00);
+        CellActorCollection_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -1974,7 +1973,7 @@ static const s32 Unk_ov5_021F9E94[6][8] = {
 typedef struct {
     UnkStruct_ov5_021DE47C unk_00;
     UnkStruct_ov5_021DE5A4 unk_1A0;
-    GraphicElementData * unk_1D4[6];
+    CellActor * unk_1D4[6];
     QuadraticInterpolationTaskFX32 unk_1EC[6];
     QuadraticInterpolationTaskFX32 unk_27C[6];
     QuadraticInterpolationTaskFX32 unk_30C[6];
@@ -1989,7 +1988,7 @@ typedef struct {
     UnkStruct_ov5_021DEC18 * unk_04;
     UnkStruct_ov5_021DE47C unk_08;
     UnkStruct_ov5_021DE5A4 unk_1A8;
-    GraphicElementData * unk_1DC;
+    CellActor * unk_1DC;
     LinearInterpolationTaskS32 unk_1E0;
     LinearInterpolationTaskS32 unk_1F4;
     LinearInterpolationTaskS32 unk_208;
@@ -2019,7 +2018,7 @@ void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
         for (v3 = 0; v3 < 6; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, 0, 0, 0, 0);
-            sub_02021CAC(v1->unk_1D4[v3], 0);
+            CellActor_SetDrawFlag(v1->unk_1D4[v3], 0);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -2054,13 +2053,13 @@ void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
 
             LinearInterpolationTaskS32_Init(&v1->unk_39C[v1->unk_42C], 0, Unk_ov5_021F9E94[v1->unk_42C][7], 8);
 
-            sub_02021CAC(v1->unk_1D4[v1->unk_42C], 1);
+            CellActor_SetDrawFlag(v1->unk_1D4[v1->unk_42C], 1);
             v4 = VecFx32_FromXYZ(
                 Unk_ov5_021F9E94[v1->unk_42C][0], Unk_ov5_021F9E94[v1->unk_42C][3], 0);
-            sub_02021C50(v1->unk_1D4[v1->unk_42C], &v4);
+            CellActor_SetPosition(v1->unk_1D4[v1->unk_42C], &v4);
             v5 = VecFx32_FromXYZ(
                 (FX32_CONST(2.0f)), (FX32_CONST(2.0f)), 0);
-            sub_02021C80(v1->unk_1D4[v1->unk_42C], &v5, 2);
+            CellActor_SetAffineScaleEx(v1->unk_1D4[v1->unk_42C], &v5, 2);
 
             v1->unk_414[v1->unk_42C] = 1;
 
@@ -2108,7 +2107,7 @@ void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
         }
 
         for (v3 = 0; v3 < 6; v3++) {
-            sub_02021BD4(v1->unk_1D4[v3]);
+            CellActor_Delete(v1->unk_1D4[v3]);
         }
 
         ov5_021DE5A4(&v1->unk_00, &v1->unk_1A0);
@@ -2127,21 +2126,21 @@ void EncounterEffect_GalacticGrunt (SysTask * param0, void * param1)
 
             if (v2) {
                 v1->unk_414[v3] = 0;
-                sub_02021CAC(v1->unk_1D4[v3], 0);
+                CellActor_SetDrawFlag(v1->unk_1D4[v3], 0);
             }
 
             v4 = VecFx32_FromXYZ(
                 v1->unk_27C[v3].currentValue, v1->unk_30C[v3].currentValue, 0);
-            sub_02021C50(v1->unk_1D4[v3], &v4);
+            CellActor_SetPosition(v1->unk_1D4[v3], &v4);
             v5 = VecFx32_FromXYZ(
                 v1->unk_1EC[v3].currentValue, v1->unk_1EC[v3].currentValue, 0);
-            sub_02021C70(v1->unk_1D4[v3], &v5);
-            sub_02021C94(v1->unk_1D4[v3], v1->unk_39C[v3].currentValue);
+            CellActor_SetAffineScale(v1->unk_1D4[v3], &v5);
+            CellActor_SetAffineZRotation(v1->unk_1D4[v3], v1->unk_39C[v3].currentValue);
         }
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_00.unk_00);
+        CellActorCollection_Update(v1->unk_00.unk_00);
     }
 }
 
@@ -2164,9 +2163,9 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
 
         v1->unk_1DC = ov5_021DE62C(
             &v1->unk_08, &v1->unk_1A8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-        sub_02021CAC(v1->unk_1DC, 0);
-        sub_02021FE0(v1->unk_1DC, GX_OAM_MODE_XLU);
-        sub_02021E80(v1->unk_1DC, 1);
+        CellActor_SetDrawFlag(v1->unk_1DC, 0);
+        CellActor_SetExplicitOAMMode(v1->unk_1DC, GX_OAM_MODE_XLU);
+        CellActor_SetExplicitPriority(v1->unk_1DC, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_04 = ov5_021DEBEC(4);
@@ -2201,7 +2200,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
 
     case 3:
         LinearInterpolationTaskS32_Init(&v1->unk_1F4, 0, 16, 15);
-        sub_02021CAC(v1->unk_1DC, 1);
+        CellActor_SetDrawFlag(v1->unk_1DC, 1);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_1F4.currentValue, 16 - v1->unk_1F4.currentValue);
         v0->state++;
         break;
@@ -2212,7 +2211,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
 
         if (v2 == 1) {
             G2_BlendNone();
-            sub_02021FE0(v1->unk_1DC, GX_OAM_MODE_NORMAL);
+            CellActor_SetExplicitOAMMode(v1->unk_1DC, GX_OAM_MODE_NORMAL);
             v0->state++;
             v1->unk_21C = 16;
         }
@@ -2251,7 +2250,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
             *(v0->done) = 1;
         }
 
-        sub_02021BD4(v1->unk_1DC);
+        CellActor_Delete(v1->unk_1DC);
         ov5_021DE5A4(&v1->unk_08, &v1->unk_1A8);
         ov5_021DE4AC(&v1->unk_08);
 
@@ -2269,7 +2268,7 @@ void EncounterEffect_GalacticBoss (SysTask * param0, void * param1)
     }
 
     if (v0->state != 7) {
-        sub_020219F8(v1->unk_08.unk_00);
+        CellActorCollection_Update(v1->unk_08.unk_00);
     }
 }
 
@@ -2791,7 +2790,7 @@ static const EliterFourChampionEncounterParam sEliteFourChampionEncounterParams[
 typedef struct {
     s16 unk_00;
     s16 unk_02;
-    GraphicElementData * unk_04[4];
+    CellActor * unk_04[4];
     LinearInterpolationTaskFX32 unk_14[4];
 } UnkStruct_ov5_021E5128;
 
@@ -2802,7 +2801,7 @@ typedef struct {
     UnkStruct_ov5_021DED04 * unk_40;
     UnkStruct_ov5_021DE47C unk_44;
     UnkStruct_ov5_021DE5A4 unk_1E4[2];
-    GraphicElementData * unk_24C;
+    CellActor * unk_24C;
     UnkStruct_ov5_021E5128 unk_250;
     UnkStruct_ov5_021E52A8_sub1 unk_2B4;
     UnkStruct_ov5_021E52A8_sub2 unk_2BC;
@@ -2819,7 +2818,7 @@ typedef struct {
     LinearInterpolationTaskS32 unk_48;
     UnkStruct_ov5_021DE47C unk_5C;
     UnkStruct_ov5_021DE5A4 unk_1FC[4];
-    GraphicElementData * unk_2CC[4];
+    CellActor * unk_2CC[4];
     VecFx32 unk_2DC;
     VecFx32 unk_2E8;
     UnkStruct_ov5_021E5128 unk_2F4;
@@ -2839,11 +2838,11 @@ static void ov5_021E5128 (UnkStruct_ov5_021E5128 * param0, UnkStruct_ov5_021DE47
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_04[v0] = ov5_021DE62C(
             param1, param2, param3, param4, 0, 0);
-        sub_02021CAC(param0->unk_04[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_04[v0], 0);
 
         if (v0 != 3) {
-            sub_02021CF8(param0->unk_04[v0], 2);
-            SpriteActor_SetSpriteAnimActive(param0->unk_04[v0], 1);
+            CellActor_SetAffineOverwriteMode(param0->unk_04[v0], 2);
+            CellActor_SetAnim(param0->unk_04[v0], 1);
 
             LinearInterpolationTaskFX32_Init(&param0->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
@@ -2857,7 +2856,7 @@ static void ov5_021E519C (UnkStruct_ov5_021E5128 * param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02021BD4(param0->unk_04[v0]);
+        CellActor_Delete(param0->unk_04[v0]);
     }
 }
 
@@ -2883,8 +2882,8 @@ static BOOL ov5_021E51B4 (UnkStruct_ov5_021E5128 * param0)
 
         v3 = VecFx32_FromXYZ(
             param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
-        sub_02021C70(param0->unk_04[v0], &v3);
-        sub_02021CAC(param0->unk_04[v0], 1);
+        CellActor_SetAffineScale(param0->unk_04[v0], &v3);
+        CellActor_SetDrawFlag(param0->unk_04[v0], 1);
 
         if (v1 == 0) {
             v2 = 0;
@@ -2951,7 +2950,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
         v0->unk_24C = ov5_021DE62C(
             &v0->unk_44, &v0->unk_1E4[0], (272 * FX32_ONE), (66 * FX32_ONE), 0, 0);
-        sub_02021CAC(v0->unk_24C, 0);
+        CellActor_SetDrawFlag(v0->unk_24C, 0);
         ov5_021E5128(&v0->unk_250, &v0->unk_44, &v0->unk_1E4[1], (FX32_CONST(72)), (FX32_CONST(74)), heapID);
 
         ov5_021DE5D0(v0->unk_24C, heapID, param->trainerClass, 14, (GX_RGB(0, 0, 0)));
@@ -3020,12 +3019,12 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
     case 6:
 
         QuadraticInterpolationTaskFX32_Init(&v0->unk_00, (272 * FX32_ONE), param->endX, (-64 * FX32_ONE), 4);
-        sub_02021CAC(v0->unk_24C, 1);
-        sub_02021E80(v0->unk_24C, 0);
+        CellActor_SetDrawFlag(v0->unk_24C, 1);
+        CellActor_SetExplicitPriority(v0->unk_24C, 0);
 
         v3 = VecFx32_FromXYZ(
             v0->unk_00.currentValue, (66 * FX32_ONE), 0);
-        sub_02021C50(v0->unk_24C, &v3);
+        CellActor_SetPosition(v0->unk_24C, &v3);
 
         encEffect->state++;
         break;
@@ -3035,7 +3034,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         v1 = QuadraticInterpolationTaskFX32_Update(&v0->unk_00);
         v3 = VecFx32_FromXYZ(
             v0->unk_00.currentValue, (66 * FX32_ONE), 0);
-        sub_02021C50(v0->unk_24C, &v3);
+        CellActor_SetPosition(v0->unk_24C, &v3);
 
         if (v1 == 1) {
             encEffect->state++;
@@ -3118,7 +3117,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
             *(encEffect->done) = 1;
         }
 
-        sub_02021BD4(v0->unk_24C);
+        CellActor_Delete(v0->unk_24C);
         ov5_021E519C(&v0->unk_250);
         ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[0]);
         ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[1]);
@@ -3142,7 +3141,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
     }
 
     if (encEffect->state != 15) {
-        sub_020219F8(v0->unk_44.unk_00);
+        CellActorCollection_Update(v0->unk_44.unk_00);
     }
 
     return 0;
@@ -3291,9 +3290,9 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
             v0->unk_2CC[v5] = ov5_021DE62C(
                 &v0->unk_5C, v7, 0, 0, 0, 0);
-            sub_02021CAC(v0->unk_2CC[v5], 0);
-            SpriteActor_SetSpriteAnimActive(v0->unk_2CC[v5], v8);
-            sub_02021E80(v0->unk_2CC[v5], 1);
+            CellActor_SetDrawFlag(v0->unk_2CC[v5], 0);
+            CellActor_SetAnim(v0->unk_2CC[v5], v8);
+            CellActor_SetExplicitPriority(v0->unk_2CC[v5], 1);
         }
 
         if (v0->unk_368) {
@@ -3347,22 +3346,22 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         QuadraticInterpolationTaskFX32_Init(&v0->unk_00, (-128 * FX32_ONE), (56 * FX32_ONE), (80 * FX32_ONE), 6);
         v3 = VecFx32_FromXYZ(
             v0->unk_00.currentValue, (92 * FX32_ONE), 0);
-        sub_02021C50(v0->unk_2CC[0], &v3);
+        CellActor_SetPosition(v0->unk_2CC[0], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[2], &v3);
-        sub_02021CAC(v0->unk_2CC[0], 1);
-        sub_02021CAC(v0->unk_2CC[2], 1);
+        CellActor_SetPosition(v0->unk_2CC[2], &v3);
+        CellActor_SetDrawFlag(v0->unk_2CC[0], 1);
+        CellActor_SetDrawFlag(v0->unk_2CC[2], 1);
 
         QuadraticInterpolationTaskFX32_Init(&v0->unk_30, (384 * FX32_ONE), (200 * FX32_ONE), (-80 * FX32_ONE), 6);
         v3 = VecFx32_FromXYZ(
             v0->unk_30.currentValue, (92 * FX32_ONE), 0);
-        sub_02021C50(v0->unk_2CC[1], &v3);
+        CellActor_SetPosition(v0->unk_2CC[1], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (-16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[3], &v3);
-        sub_02021CAC(v0->unk_2CC[1], 1);
-        sub_02021CAC(v0->unk_2CC[3], 1);
+        CellActor_SetPosition(v0->unk_2CC[3], &v3);
+        CellActor_SetDrawFlag(v0->unk_2CC[1], 1);
+        CellActor_SetDrawFlag(v0->unk_2CC[3], 1);
 
         {
             Strbuf* v9;
@@ -3401,19 +3400,19 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         v3 = VecFx32_FromXYZ(
             v0->unk_00.currentValue, (92 * FX32_ONE), 0);
         v0->unk_2DC = v3;
-        sub_02021C50(v0->unk_2CC[0], &v3);
+        CellActor_SetPosition(v0->unk_2CC[0], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[2], &v3);
+        CellActor_SetPosition(v0->unk_2CC[2], &v3);
 
         v1 = QuadraticInterpolationTaskFX32_Update(&v0->unk_30);
         v3 = VecFx32_FromXYZ(
             v0->unk_30.currentValue, (92 * FX32_ONE), 0);
         v0->unk_2E8 = v3;
-        sub_02021C50(v0->unk_2CC[1], &v3);
+        CellActor_SetPosition(v0->unk_2CC[1], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (-16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[3], &v3);
+        CellActor_SetPosition(v0->unk_2CC[3], &v3);
 
         if (v1 == 1) {
             encEffect->state++;
@@ -3445,10 +3444,10 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
             ov5_021DE5D0(v0->unk_2CC[1], heapID, param->trainerClass, 0, (GX_RGB(0, 0, 0)));
 
-            sub_02021CC8(v0->unk_2CC[2], 1);
-            sub_02021CE4(v0->unk_2CC[2], FX32_ONE * 2);
-            sub_02021CC8(v0->unk_2CC[3], 1);
-            sub_02021CE4(v0->unk_2CC[3], FX32_ONE * 2);
+            CellActor_SetAnimateFlag(v0->unk_2CC[2], 1);
+            CellActor_SetAnimSpeed(v0->unk_2CC[2], FX32_ONE * 2);
+            CellActor_SetAnimateFlag(v0->unk_2CC[3], 1);
+            CellActor_SetAnimSpeed(v0->unk_2CC[3], FX32_ONE * 2);
 
             ov5_021DF0CC(encEffect->narc, 108);
 
@@ -3512,10 +3511,10 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             v0->unk_2DC = v3;
         }
 
-        sub_02021C50(v0->unk_2CC[0], &v3);
+        CellActor_SetPosition(v0->unk_2CC[0], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[2], &v3);
+        CellActor_SetPosition(v0->unk_2CC[2], &v3);
 
         if (((encEffect->effectComplete / 2) % 2) == 0) {
             v3 = VecFx32_FromXYZ(
@@ -3529,10 +3528,10 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             v0->unk_2E8 = v3;
         }
 
-        sub_02021C50(v0->unk_2CC[1], &v3);
+        CellActor_SetPosition(v0->unk_2CC[1], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (-16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[3], &v3);
+        CellActor_SetPosition(v0->unk_2CC[3], &v3);
 
         if (v1) {
             encEffect->state++;
@@ -3553,17 +3552,17 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
         v3 = VecFx32_FromXYZ(
             v0->unk_2DC.x - v0->unk_00.currentValue, v0->unk_2DC.y - v0->unk_18.currentValue, 0);
-        sub_02021C50(v0->unk_2CC[0], &v3);
+        CellActor_SetPosition(v0->unk_2CC[0], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[2], &v3);
+        CellActor_SetPosition(v0->unk_2CC[2], &v3);
 
         v3 = VecFx32_FromXYZ(
             v0->unk_2E8.x + v0->unk_00.currentValue, v0->unk_2E8.y + v0->unk_18.currentValue, 0);
-        sub_02021C50(v0->unk_2CC[1], &v3);
+        CellActor_SetPosition(v0->unk_2CC[1], &v3);
         v3.y += (4 * FX32_ONE);
         v3.x += (-16 * FX32_ONE);
-        sub_02021C50(v0->unk_2CC[3], &v3);
+        CellActor_SetPosition(v0->unk_2CC[3], &v3);
 
         if (ScreenWipe_Done()) {
             encEffect->state++;
@@ -3583,7 +3582,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         BGL_DeleteWindow(&v0->unk_358);
 
         for (v5 = 0; v5 < 4; v5++) {
-            sub_02021BD4(v0->unk_2CC[v5]);
+            CellActor_Delete(v0->unk_2CC[v5]);
         }
 
         for (v5 = 0; v5 < 4; v5++) {
@@ -3602,7 +3601,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
     }
 
     if (encEffect->state != 14) {
-        sub_020219F8(v0->unk_5C.unk_00);
+        CellActorCollection_Update(v0->unk_5C.unk_00);
 
         if (4 < encEffect->state) {
             sub_020241B4();

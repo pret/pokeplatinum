@@ -24,7 +24,7 @@
 #include "unk_0200C6E4.h"
 #include "sys_task.h"
 #include "heap.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/party_gauge.h"
 
@@ -323,10 +323,10 @@ static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum Par
 
     if (side == PARTY_GAUGE_OURS) {
         SpriteActor_SetSpritePositionXY(arrow->cells, ARROW_X_START_OURS, sArrowYPosOurs[pos]);
-        SpriteActor_SetSpriteAnimActive(arrow->cells->unk_00, PGANM_ARROW_OURS);
+        CellActor_SetAnim(arrow->cells->unk_00, PGANM_ARROW_OURS);
     } else {
         SpriteActor_SetSpritePositionXY(arrow->cells, ARROW_X_START_THEIRS, sArrowYPosTheirs[pos]);
-        SpriteActor_SetSpriteAnimActive(arrow->cells->unk_00, PGANM_ARROW_THEIRS);
+        CellActor_SetAnim(arrow->cells->unk_00, PGANM_ARROW_THEIRS);
     }
 
     SpriteActor_UpdateObject(arrow->cells->unk_00);
@@ -479,7 +479,7 @@ static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum Par
         SpriteActor_SetSpritePositionXY(pokeballs->cells, POKEBALL_X_START_THEIRS, sPokeballYPosTheirs[pos]);
     }
 
-    SpriteActor_SetSpriteAnimActive(pokeballs->cells->unk_00, frame);
+    CellActor_SetAnim(pokeballs->cells->unk_00, frame);
     SpriteActor_UpdateObject(pokeballs->cells->unk_00);
 
     pokeballs->side = side;
@@ -579,7 +579,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
             break;
         }
 
-        SpriteActor_SetSpriteAnimActive(pokeballs->cells->unk_00, pokeballs->flipAnimation);
+        CellActor_SetAnim(pokeballs->cells->unk_00, pokeballs->flipAnimation);
         pokeballs->delay = 0;
         pokeballs->state++;
         // fall-through

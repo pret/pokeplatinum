@@ -5,7 +5,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02022550_decl.h"
+#include "cell_actor.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include <nitro/gx.h>
@@ -32,6 +32,6 @@ FontOAM * sub_02012B60(const UnkStruct_020127E8 * param0, const UnkStruct_02012B
 void sub_02012BD8(FontOAM * param0);
 void sub_02012BE0(FontOAM * param0, const UnkStruct_02012B20 * param1, const Window * param2, int param3);
 void sub_02012C60(const Window * param0, int param1, int param2, int param3, int param4, char * param5);
-void sub_020131E0(FontOAM * param0, const GraphicElementData * param1);
+void sub_020131E0(FontOAM * param0, const CellActor * param1);
 
 #endif // POKEPLATINUM_UNK_02012744_H

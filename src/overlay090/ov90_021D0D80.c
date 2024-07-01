@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
@@ -46,7 +45,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "save_player.h"
 #include "unk_0202D05C.h"
@@ -98,7 +97,7 @@ typedef struct {
     UnkStruct_ov90_021D17F8 unk_BC[30];
     SpriteRenderer * unk_29C;
     SpriteGfxHandler * unk_2A0;
-    GraphicElementData * unk_2A4[4];
+    CellActor * unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 
 static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC * param0);
@@ -934,12 +933,12 @@ static void ov90_021D1BAC (UnkStruct_ov90_021D0ECC * param0)
         param0->unk_2A4[v0] = sub_0200CA08(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
-    sub_02021CAC(param0->unk_2A4[2], 0);
-    sub_02021CAC(param0->unk_2A4[1], 0);
-    sub_02021CC8(param0->unk_2A4[0], 1);
-    sub_02021CC8(param0->unk_2A4[2], 1);
-    sub_02021CC8(param0->unk_2A4[3], 1);
-    sub_02021E80(param0->unk_2A4[1], 3);
+    CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
+    CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[0], 1);
+    CellActor_SetAnimateFlag(param0->unk_2A4[2], 1);
+    CellActor_SetAnimateFlag(param0->unk_2A4[3], 1);
+    CellActor_SetExplicitPriority(param0->unk_2A4[1], 3);
 }
 
 static void ov90_021D1C28 (UnkStruct_ov90_021D0ECC * param0)
@@ -956,16 +955,16 @@ static void ov90_021D1C44 (UnkStruct_ov90_021D0ECC * param0, BOOL param1)
     BOOL v0;
 
     if (param1 == 0) {
-        sub_02021E90(param0->unk_2A4[0], 1);
+        CellActor_SetExplicitPalette(param0->unk_2A4[0], 1);
         v0 = 0;
     } else {
-        sub_02021E90(param0->unk_2A4[0], 0);
+        CellActor_SetExplicitPalette(param0->unk_2A4[0], 0);
         v0 = 1;
     }
 
-    sub_02021CC8(param0->unk_2A4[0], v0);
-    sub_02021CC8(param0->unk_2A4[2], v0);
-    sub_02021CC8(param0->unk_2A4[3], v0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[0], v0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[2], v0);
+    CellActor_SetAnimateFlag(param0->unk_2A4[3], v0);
 }
 
 static void ov90_021D1C90 (UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param2, u8 param3)
@@ -973,30 +972,30 @@ static void ov90_021D1C90 (UnkStruct_ov90_021D0ECC * param0, u8 param1, u8 param
     u16 v0, v1;
 
     if (param0->unk_0E == 10 - 2) {
-        sub_02021CAC(param0->unk_2A4[1], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[1], 1);
 
         if (param1 == 10) {
             SpriteActor_SetAnimFrame(param0->unk_2A4[1], 1);
-            sub_02021CAC(param0->unk_2A4[0], 0);
+            CellActor_SetDrawFlag(param0->unk_2A4[0], 0);
         } else {
             SpriteActor_SetAnimFrame(param0->unk_2A4[1], 0);
-            sub_02021CAC(param0->unk_2A4[0], 1);
+            CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
         }
     } else {
-        sub_02021CAC(param0->unk_2A4[0], 1);
-        sub_02021CAC(param0->unk_2A4[1], 0);
+        CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
     }
 
     switch (param0->unk_0E) {
     case 0:
-        sub_02021CAC(param0->unk_2A4[2], 0);
+        CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
         break;
     case (10 - 2):
-        sub_02021CAC(param0->unk_2A4[3], 0);
+        CellActor_SetDrawFlag(param0->unk_2A4[3], 0);
         break;
     default:
-        sub_02021CAC(param0->unk_2A4[2], 1);
-        sub_02021CAC(param0->unk_2A4[3], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[2], 1);
+        CellActor_SetDrawFlag(param0->unk_2A4[3], 1);
         break;
     }
 

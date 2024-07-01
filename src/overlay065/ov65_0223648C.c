@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "journal.h"
@@ -57,7 +56,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "save_player.h"
 #include "trainer_info.h"
@@ -117,7 +116,7 @@ typedef struct {
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
-    GraphicElementManager * unk_18;
+    CellActorCollection * unk_18;
     UnkStruct_0200C738 unk_1C;
     UnkStruct_02009714 * unk_1A8[4];
     UnkStruct_ov63_0222BE18 * unk_1B8;
@@ -502,7 +501,7 @@ int ov65_02236548 (OverlayManager * param0, int * param1)
     }
 
     ov65_022372B0(&v0->unk_30);
-    sub_020219F8(v0->unk_30.unk_18);
+    CellActorCollection_Update(v0->unk_30.unk_18);
 
     return 0;
 }
@@ -882,7 +881,7 @@ static void ov65_02236E04 (UnkStruct_ov65_02236840 * param0)
     ov63_0222CD9C(param0->unk_1BC);
     ov63_0222BE58(param0->unk_1B8);
 
-    sub_02021964(param0->unk_18);
+    CellActorCollection_Delete(param0->unk_18);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_1A8[v0]);

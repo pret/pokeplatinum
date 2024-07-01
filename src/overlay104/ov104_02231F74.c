@@ -55,7 +55,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201F834.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "save_player.h"
 #include "game_options.h"
@@ -935,7 +935,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         DC_FlushRange(v4, sizeof((10 * 10 * ((8 / 2) * 8))));
         GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], (10 * 10 * ((8 / 2) * 8)));
 
-        v12 = sub_02021F9C(v5->unk_00);
+        v12 = CellActor_GetPaletteProxy(v5->unk_00);
         v13 = sub_0201FAB4(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteSys_LoadPalette(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
@@ -1022,7 +1022,7 @@ CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * par
 
     v0 = SpriteActor_LoadResources(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
 
-    sub_02021F24(v0->unk_00, Pokemon_IconPaletteIndex(param1));
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(v0->unk_00, Pokemon_IconPaletteIndex(param1));
     sub_0200D330(v0);
 
     return v0;

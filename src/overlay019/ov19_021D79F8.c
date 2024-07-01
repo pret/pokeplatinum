@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
@@ -22,7 +21,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
 #include "pokemon_icon.h"
@@ -106,7 +105,7 @@ static const u16 Unk_ov19_021E0138[] = {
     9, 10,
 };
 
-BOOL ov19_021D79F8 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, GraphicElementManager * param4)
+BOOL ov19_021D79F8 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, CellActorCollection * param4)
 {
     param0->unk_00 = param2->unk_40.unk_00;
     param0->unk_01 = 11;
@@ -415,7 +414,7 @@ static void ov19_021D8114 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param1->unk_00 != NULL) {
-            sub_02021BD4(param1->unk_00);
+            CellActor_Delete(param1->unk_00);
             param1->unk_00 = NULL;
         }
 
@@ -686,9 +685,9 @@ static void ov19_021D865C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
     for (v2 = 0; v2 < 5; v2++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param1->unk_00 != NULL) {
-                v0 = *(sub_02021D28(param1->unk_00));
+                v0 = *(CellActor_GetPosition(param1->unk_00));
                 v0.x = param0->unk_68[param2][v1];
-                sub_02021C50(param1->unk_00, &v0);
+                CellActor_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;
@@ -704,9 +703,9 @@ static void ov19_021D86B4 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
     for (v2 = 0; v2 < 5; v2++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param1->unk_00 != NULL) {
-                v0 = *(sub_02021D28(param1->unk_00));
+                v0 = *(CellActor_GetPosition(param1->unk_00));
                 v0.x = param0->unk_38[param2][v1];
-                sub_02021C50(param1->unk_00, &v0);
+                CellActor_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;
@@ -728,7 +727,7 @@ static void ov19_021D870C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
             v0.x = (112 + param0->unk_585C + v1 * 24) * FX32_ONE;
 
             if (param1->unk_00 != NULL) {
-                sub_02021C50(param1->unk_00, &v0);
+                CellActor_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;

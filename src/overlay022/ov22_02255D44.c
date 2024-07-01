@@ -58,7 +58,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "game_options.h"
@@ -443,7 +443,7 @@ int ov22_02256174 (OverlayManager * param0, int * param1)
     ov22_0225894C(v2->unk_18, &v0->unk_1E8);
     ov22_022566C0(v0);
 
-    sub_020219A4(v0->unk_00.unk_44, 0);
+    CellActorCollection_SetActive(v0->unk_00.unk_44, 0);
     sub_02039734();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -1278,7 +1278,7 @@ static void ov22_0225718C (UnkStruct_ov22_02255D44 * param0)
     ov22_022568DC(param0);
 
     sub_0200F344(0, 0x0);
-    sub_020219A4(param0->unk_00.unk_44, 1);
+    CellActorCollection_SetActive(param0->unk_00.unk_44, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);

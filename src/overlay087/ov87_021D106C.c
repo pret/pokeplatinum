@@ -5,8 +5,6 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "overlay087/struct_ov87_021D0D80_decl.h"
@@ -16,8 +14,6 @@
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
-#include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay087/struct_ov87_021D12C0.h"
 #include "overlay087/struct_ov87_021D1640.h"
@@ -39,7 +35,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "overlay087/ov87_021D106C.h"
@@ -51,9 +47,9 @@ typedef struct UnkStruct_ov87_021D106C_t {
     int unk_0C;
     BGL * unk_10;
     Window unk_14[2];
-    GraphicElementManager * unk_34;
+    CellActorCollection * unk_34;
     UnkStruct_0200C738 unk_38;
-    GraphicElementData * unk_1C4[6];
+    CellActor * unk_1C4[6];
     void * unk_1DC;
     void * unk_1E0;
     MessageLoader * unk_1E4;
@@ -132,7 +128,7 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
         MessageLoader_Free(param0->unk_1EC);
         MessageLoader_Free(param0->unk_1E8);
         MessageLoader_Free(param0->unk_1E4);
-        sub_02021964(param0->unk_34);
+        CellActorCollection_Delete(param0->unk_34);
         sub_0200A878();
         Heap_FreeToHeap(param0->unk_10);
         Heap_FreeToHeap(param0);
@@ -143,7 +139,7 @@ static void ov87_021D11AC (void * param0)
 {
     UnkStruct_ov87_021D106C * v0 = param0;
 
-    sub_020219F8(v0->unk_34);
+    CellActorCollection_Update(v0->unk_34);
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -210,14 +206,14 @@ static BOOL ov87_021D12C0 (UnkStruct_ov87_021D106C * param0, int * param1)
 
     for (v1 = 0; v1 < v0->unk_14; v1++) {
         if (v1 == v0->unk_18) {
-            sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
-            sub_02021F58(param0->unk_1C4[v1], 0);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
+            CellActor_SetPriority(param0->unk_1C4[v1], 0);
             Sound_FlagDefaultChatotCry(1);
 
             sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
-            sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
-            sub_02021F58(param0->unk_1C4[v1], v1 + 1);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
+            CellActor_SetPriority(param0->unk_1C4[v1], v1 + 1);
         }
     }
 
@@ -471,7 +467,7 @@ static void ov87_021D186C (UnkStruct_ov87_021D106C * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_1C4[v0]) {
-            sub_02021BD4(param0->unk_1C4[v0]);
+            CellActor_Delete(param0->unk_1C4[v0]);
         }
     }
 
@@ -492,8 +488,8 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         {216, 112},
         {56, 112},
     };
-    UnkStruct_ov19_021DA864 v1;
-    UnkStruct_ov83_0223D9A8 v2;
+    CellActorResourceData v1;
+    CellActorInitParams v2;
     NNSG2dImageProxy v3;
     NNSG2dImagePaletteProxy v4;
     NNSG2dCharacterData * v5;
@@ -502,20 +498,20 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
     void * v8;
     int v9;
 
-    v1.unk_04 = NULL;
-    v1.unk_14 = NULL;
-    v1.unk_18 = NULL;
-    v1.unk_1C = 0;
-    v1.unk_0C = param1;
-    v1.unk_10 = param2;
-    v1.unk_20 = 0;
-    v1.unk_00 = &v3;
-    v1.unk_08 = &v4;
-    v2.unk_00 = param0->unk_34;
-    v2.unk_04 = &v1;
-    v2.unk_08.z = 0;
-    v2.unk_18 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v2.unk_1C = 61;
+    v1.charData = NULL;
+    v1.multiCellBank = NULL;
+    v1.multiCellAnimBank = NULL;
+    v1.isVRamTransfer = 0;
+    v1.cellBank = param1;
+    v1.cellAnimBank = param2;
+    v1.priority = 0;
+    v1.imageProxy = &v3;
+    v1.paletteProxy = &v4;
+    v2.collection = param0->unk_34;
+    v2.resourceData = &v1;
+    v2.position.z = 0;
+    v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v2.heapID = 61;
 
     v7 = sub_02006F50(27, 76, 0, &v5, 61);
     v8 = sub_02006F88(27, 75, &v6, 61);
@@ -526,12 +522,12 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         NNS_G2dLoadImage1DMapping(v5, v9 * 3200, NNS_G2D_VRAM_TYPE_2DMAIN, &v3);
         NNS_G2dLoadPalette(v6, v9 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v4);
 
-        v2.unk_08.x = v0[v9].x << FX32_SHIFT;
-        v2.unk_08.y = v0[v9].y << FX32_SHIFT;
-        v2.unk_14 = v9 + 1;
+        v2.position.x = v0[v9].x << FX32_SHIFT;
+        v2.position.y = v0[v9].y << FX32_SHIFT;
+        v2.priority = v9 + 1;
 
-        param0->unk_1C4[v9] = sub_02021B90(&v2);
-        sub_02021CAC(param0->unk_1C4[v9], 0);
+        param0->unk_1C4[v9] = CellActorCollection_Add(&v2);
+        CellActor_SetDrawFlag(param0->unk_1C4[v9], 0);
     }
 
     Heap_FreeToHeap(v8);
@@ -563,16 +559,16 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
         if (v3 == v2->unk_18) {
             Sound_FlagDefaultChatotCry(1);
             sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
-            sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
-            sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
+            CellActor_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
         }
 
-        sub_02021CAC(param0->unk_1C4[v3], 1);
+        CellActor_SetDrawFlag(param0->unk_1C4[v3], 1);
     }
 
     for ( ; v3 < 6; v3++) {
-        sub_02021CAC(param0->unk_1C4[v3], 0);
+        CellActor_SetDrawFlag(param0->unk_1C4[v3], 0);
     }
 }
 
@@ -581,6 +577,6 @@ static void ov87_021D1AB8 (UnkStruct_ov87_021D106C * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02021CAC(param0->unk_1C4[v0], 0);
+        CellActor_SetDrawFlag(param0->unk_1C4[v0], 0);
     }
 }

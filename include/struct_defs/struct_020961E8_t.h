@@ -9,15 +9,13 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "sys_task_manager.h"
-#include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020961E8_sub1.h"
 #include "savedata.h"
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 #include "overlay059/struct_ov59_021D109C.h"
 #include "overlay059/struct_ov59_021D30E0.h"
 
@@ -36,15 +34,15 @@ struct UnkStruct_020961E8_t {
     Strbuf* unk_44;
     Strbuf* unk_48;
     int unk_4C;
-    GraphicElementManager * unk_50;
+    CellActorCollection * unk_50;
     UnkStruct_0200C738 unk_54;
     UnkStruct_02009714 * unk_1E0[4];
     UnkStruct_02009DC8 * unk_1F0[3][4];
-    UnkStruct_ov19_021DA864 unk_220;
-    UnkStruct_ov19_021DA864 unk_244;
-    UnkStruct_ov19_021DA864 unk_268;
-    GraphicElementData * unk_28C[14];
-    GraphicElementData * unk_2C4[14];
+    CellActorResourceData unk_220;
+    CellActorResourceData unk_244;
+    CellActorResourceData unk_268;
+    CellActor * unk_28C[14];
+    CellActor * unk_2C4[14];
     Window unk_2FC[5];
     Window unk_34C;
     Window unk_35C;

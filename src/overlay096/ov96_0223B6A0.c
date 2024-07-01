@@ -11,12 +11,10 @@
 
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02099F80.h"
-#include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay096/struct_ov96_0223BF40_t.h"
-#include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
@@ -36,7 +34,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_02099550.h"
@@ -161,7 +159,7 @@ int ov96_0223B7F8 (OverlayManager * param0, int * param1)
     }
 
     if (v0->unk_BF4 != NULL) {
-        sub_020219F8(v0->unk_BF4);
+        CellActorCollection_Update(v0->unk_BF4);
     }
 
     return 0;
@@ -285,18 +283,18 @@ static const u16 Unk_ov96_0223DA80[][2] = {
     {0xE0, 0x81}
 };
 
-void ov96_0223BAE0 (UnkStruct_ov115_02261520 * param0, UnkStruct_ov96_0223BF40 * param1, UnkStruct_ov19_021DA864 * param2, int param3)
+void ov96_0223BAE0 (CellActorInitParamsEx * param0, UnkStruct_ov96_0223BF40 * param1, CellActorResourceData * param2, int param3)
 {
-    param0->unk_00 = param1->unk_BF4;
-    param0->unk_04 = param2;
-    param0->unk_08.z = 0;
-    param0->unk_14.x = FX32_ONE;
-    param0->unk_14.y = FX32_ONE;
-    param0->unk_14.z = FX32_ONE;
-    param0->unk_20 = 0;
-    param0->unk_24 = 1;
-    param0->unk_28 = param3;
-    param0->unk_2C = 68;
+    param0->collection = param1->unk_BF4;
+    param0->resourceData = param2;
+    param0->position.z = 0;
+    param0->affineScale.x = FX32_ONE;
+    param0->affineScale.y = FX32_ONE;
+    param0->affineScale.z = FX32_ONE;
+    param0->affineZRotation = 0;
+    param0->priority = 1;
+    param0->vramType = param3;
+    param0->heapID = 68;
 }
 
 static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)
@@ -306,17 +304,17 @@ static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)
     sub_020093B4(&param0->unk_DC4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D84[0], param0->unk_D84[1], param0->unk_D84[2], param0->unk_D84[3], NULL, NULL);
 
     {
-        UnkStruct_ov115_02261520 v1;
+        CellActorInitParamsEx v1;
 
         ov96_0223BAE0(&v1, param0, &param0->unk_DC4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         for (v0 = 0; v0 < 2; v0++) {
-            v1.unk_08.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
-            v1.unk_08.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
-            param0->unk_E30[v0] = sub_02021AA0(&v1);
-            sub_02021CC8(param0->unk_E30[v0], 1);
-            SpriteActor_SetSpriteAnimActive(param0->unk_E30[v0], v0);
-            sub_02021CAC(param0->unk_E30[v0], 0);
+            v1.position.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
+            v1.position.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
+            param0->unk_E30[v0] = CellActorCollection_AddEx(&v1);
+            CellActor_SetAnimateFlag(param0->unk_E30[v0], 1);
+            CellActor_SetAnim(param0->unk_E30[v0], v0);
+            CellActor_SetDrawFlag(param0->unk_E30[v0], 0);
         }
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -416,7 +414,7 @@ static void ov96_0223BC8C (UnkStruct_ov96_0223BF40 * param0)
         sub_02009754(param0->unk_D84[v0]);
     }
 
-    sub_02021964(param0->unk_BF4);
+    CellActorCollection_Delete(param0->unk_BF4);
 
     param0->unk_BF4 = NULL;
 

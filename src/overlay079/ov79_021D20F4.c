@@ -10,7 +10,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "communication_system.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"
@@ -83,12 +83,12 @@ void ov79_021D21F8 (UnkStruct_ov79_021D0E1C * param0)
 void ov79_021D2214 (UnkStruct_ov79_021D0E1C * param0, BOOL param1)
 {
     if (param1 == 0) {
-        sub_02021E90(param0->unk_1C0[0], 0);
-        sub_02021CC8(param0->unk_1C0[1], 1);
-        sub_02021CC8(param0->unk_1C0[2], 1);
+        CellActor_SetExplicitPalette(param0->unk_1C0[0], 0);
+        CellActor_SetAnimateFlag(param0->unk_1C0[1], 1);
+        CellActor_SetAnimateFlag(param0->unk_1C0[2], 1);
     } else {
-        sub_02021E90(param0->unk_1C0[0], 9);
-        sub_02021CC8(param0->unk_1C0[1], 0);
-        sub_02021CC8(param0->unk_1C0[2], 0);
+        CellActor_SetExplicitPalette(param0->unk_1C0[0], 9);
+        CellActor_SetAnimateFlag(param0->unk_1C0[1], 0);
+        CellActor_SetAnimateFlag(param0->unk_1C0[2], 0);
     }
 }

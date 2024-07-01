@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_02009508_H
 #define POKEPLATINUM_STRUCT_02009508_H
 
-#include "overlay019/struct_ov19_021DA864.h"
+#include "cell_actor.h"
 
 typedef struct {
-    UnkStruct_ov19_021DA864 * unk_00;
+    CellActorResourceData * unk_00;
     int unk_04;
 } UnkStruct_02009508;
 

@@ -31,7 +31,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_020218BC.h"
+#include "cell_actor.h"
 #include "strbuf.h"
 #include "game_options.h"
 #include "pokemon.h"
@@ -420,7 +420,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
         param0->unk_10.unk_128[v2] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &v0);
 
         sub_0200D364(param0->unk_10.unk_128[v2], 1);
-        sub_02021F24(param0->unk_10.unk_128[v2]->unk_00, Pokemon_IconPaletteIndex(param0->unk_00->unk_00.unk_00[v2]));
+        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10.unk_128[v2]->unk_00, Pokemon_IconPaletteIndex(param0->unk_00->unk_00.unk_00[v2]));
         sub_0200D330(param0->unk_10.unk_128[v2]);
     }
 
