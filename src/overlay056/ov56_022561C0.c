@@ -37,7 +37,7 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
@@ -79,7 +79,7 @@ struct UnkStruct_ov56_02256468_t {
     NNSG2dScreenData *unk_24;
     CellActorCollection *unk_28;
     UnkStruct_0200C738 unk_2C;
-    UnkStruct_02009714 *unk_1B8[4];
+    SpriteResourceCollection *unk_1B8[4];
     UnkStruct_02009DC8 *unk_1C8[4];
     CellActorResourceData unk_1D8;
     CellActor *unk_1FC[8];

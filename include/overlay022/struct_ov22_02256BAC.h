@@ -12,7 +12,7 @@
 typedef struct {
     BGL *unk_00;
     CellActorCollection *unk_04;
-    UnkStruct_02009714 **unk_08;
+    SpriteResourceCollection **unk_08;
     const Options *unk_0C;
     int unk_10;
     int unk_14;

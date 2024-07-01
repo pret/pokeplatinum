@@ -48,7 +48,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02018340.h"
@@ -120,7 +120,7 @@ typedef struct {
     FieldSystem *fieldSystem;
     CellActorCollection *unk_44;
     UnkStruct_0200C738 unk_48;
-    UnkStruct_02009714 *unk_1D4[2][4];
+    SpriteResourceCollection *unk_1D4[2][4];
     UnkStruct_02009DC8 *unk_1F4[2][4];
     CellActorResourceData unk_214;
     CellActorResourceData unk_238;

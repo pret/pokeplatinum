@@ -49,7 +49,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "message.h"
@@ -137,7 +137,7 @@ typedef struct {
     CellActorCollection * unk_04;
     NNSG2dRenderSurface unk_08;
     UnkStruct_0200C738 unk_78;
-    UnkStruct_02009714 * unk_204[4];
+    SpriteResourceCollection * unk_204[4];
     StringTemplate * unk_214;
     MessageLoader * unk_218;
     NARC * unk_21C;

@@ -15,7 +15,7 @@
 #include "core_sys.h"
 #include "gx_layers.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201DBEC.h"
@@ -29,7 +29,7 @@ void include_data_ov77_021D79B8(void);
 typedef struct UnkStruct_ov77_021D5564_t {
     CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
-    UnkStruct_02009714 *unk_190[4];
+    SpriteResourceCollection *unk_190[4];
     UnkStruct_02009DC8 *unk_1A0[11][4];
     CellActor *unk_250[17];
     CellActorResourceData unk_294[3];

@@ -102,7 +102,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     int unk_BE0;
     CellActorCollection *unk_BE4;
     UnkStruct_0200C738 unk_BE8;
-    UnkStruct_02009714 *unk_D74[4];
+    SpriteResourceCollection *unk_D74[4];
     UnkStruct_02009DC8 *unk_D84[3][4];
     CellActorResourceData unk_DB4;
     CellActorResourceData unk_DD8;

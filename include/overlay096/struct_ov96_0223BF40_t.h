@@ -62,7 +62,7 @@ struct UnkStruct_ov96_0223BF40_t {
     int unk_BF0;
     CellActorCollection *unk_BF4;
     UnkStruct_0200C738 unk_BF8;
-    UnkStruct_02009714 *unk_D84[4];
+    SpriteResourceCollection *unk_D84[4];
     UnkStruct_02009DC8 *unk_D94[3][4];
     CellActorResourceData unk_DC4;
     CellActorResourceData unk_DE8;

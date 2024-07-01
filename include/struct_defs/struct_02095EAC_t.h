@@ -31,7 +31,7 @@ struct UnkStruct_02095EAC_t {
     int unk_30;
     CellActorCollection *unk_34;
     UnkStruct_0200C738 unk_38;
-    UnkStruct_02009714 *unk_1C4[4];
+    SpriteResourceCollection *unk_1C4[4];
     UnkStruct_02009DC8 *unk_1D4[2][4];
     CellActorResourceData unk_1F4;
     CellActorResourceData unk_218;

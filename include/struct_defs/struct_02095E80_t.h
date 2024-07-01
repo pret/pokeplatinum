@@ -73,7 +73,7 @@ struct UnkStruct_02095E80_t {
     Strbuf *unk_190;
     CellActorCollection *unk_194;
     UnkStruct_0200C738 unk_198;
-    UnkStruct_02009714 *unk_324[4];
+    SpriteResourceCollection *unk_324[4];
     UnkStruct_02009DC8 *unk_334[2][4];
     CellActorResourceData unk_354;
     CellActorResourceData unk_378;

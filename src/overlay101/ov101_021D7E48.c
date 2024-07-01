@@ -13,7 +13,7 @@
 #include "cell_actor.h"
 #include "heap.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0201DBEC.h"
 
@@ -36,10 +36,10 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     CellActorCollection *unk_0C;
     UnkStruct_0200C738 unk_10;
     NNSG2dCellTransferState *unk_19C;
-    UnkStruct_02009714 *unk_1A0;
-    UnkStruct_02009714 *unk_1A4;
-    UnkStruct_02009714 *unk_1A8;
-    UnkStruct_02009714 *unk_1AC;
+    SpriteResourceCollection *unk_1A0;
+    SpriteResourceCollection *unk_1A4;
+    SpriteResourceCollection *unk_1A8;
+    SpriteResourceCollection *unk_1AC;
     UnkStruct_ov101_021D7E48_sub1 *unk_1B0;
     UnkStruct_ov101_021D7E48_sub1 *unk_1B4;
     UnkStruct_ov101_021D7E48_sub1 *unk_1B8;

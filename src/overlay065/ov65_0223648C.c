@@ -53,7 +53,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A784.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -113,7 +113,7 @@ typedef struct {
     u16 unk_16;
     CellActorCollection *unk_18;
     UnkStruct_0200C738 unk_1C;
-    UnkStruct_02009714 *unk_1A8[4];
+    SpriteResourceCollection *unk_1A8[4];
     UnkStruct_ov63_0222BE18 *unk_1B8;
     UnkStruct_ov63_0222CD2C *unk_1BC;
     UnkStruct_ov65_02237908 unk_1C0[4];

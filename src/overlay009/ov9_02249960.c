@@ -59,7 +59,7 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_02018340.h"
 #include "unk_0201CED8.h"
@@ -99,10 +99,10 @@ typedef struct {
 typedef struct {
     CellActorCollection *unk_00;
     UnkStruct_0200C738 unk_04;
-    UnkStruct_02009714 *unk_190;
-    UnkStruct_02009714 *unk_194;
-    UnkStruct_02009714 *unk_198;
-    UnkStruct_02009714 *unk_19C;
+    SpriteResourceCollection *unk_190;
+    SpriteResourceCollection *unk_194;
+    SpriteResourceCollection *unk_198;
+    SpriteResourceCollection *unk_19C;
     UnkStruct_02009DC8 *unk_1A0[7];
     UnkStruct_02009DC8 *unk_1BC[1];
     UnkStruct_02009DC8 *unk_1C0[7];

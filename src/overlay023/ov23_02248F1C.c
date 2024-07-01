@@ -27,7 +27,7 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -54,7 +54,7 @@ struct UnkStruct_ov23_0224942C_t {
     BGL *unk_1B8;
     CellActorCollection *unk_1BC;
     UnkStruct_0200C738 unk_1C0;
-    UnkStruct_02009714 *unk_34C[4];
+    SpriteResourceCollection *unk_34C[4];
     UnkStruct_02009DC8 *unk_35C[4];
     CellActorResourceData unk_36C;
     CellActor *unk_390[8];

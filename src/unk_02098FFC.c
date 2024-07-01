@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200C6E4.h"
 
@@ -197,7 +197,7 @@ void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
 static void sub_020993A8(UnkStruct_0209903C *param0)
 {
     int v0;
-    UnkStruct_02009714 *v1;
+    SpriteResourceCollection *v1;
     UnkStruct_02009CFC *v2;
     UnkStruct_02009DC8 *v3;
     NARC *v4;

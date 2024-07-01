@@ -24,7 +24,7 @@ typedef struct {
     Window unk_04;
     UnkStruct_0200C738 unk_14;
     CellActorCollection *unk_138;
-    UnkStruct_02009714 *unk_13C[4];
+    SpriteResourceCollection *unk_13C[4];
     UnkStruct_ov21_021D4C0C *unk_14C;
     UnkStruct_02007768 *unk_150;
     Sprite *unk_154[4];

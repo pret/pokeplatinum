@@ -16,13 +16,13 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_020131EC.h"
 #include "unk_0201D15C.h"
 
 typedef struct UnkStruct_ov6_022426B8_t {
-    UnkStruct_02009714 *unk_00[4];
+    SpriteResourceCollection *unk_00[4];
     UnkStruct_02009DC8 *unk_10[4];
     void *unk_20;
     void *unk_24;
@@ -36,7 +36,7 @@ typedef struct UnkStruct_ov6_022426B8_t {
 
 static void ov6_022428F8(UnkStruct_ov6_022426B8 *param0);
 static void ov6_02242860(SysTask *param0, void *param1);
-static void ov6_02242880(UnkStruct_02009714 *param0, UnkStruct_02009714 *param1, void *param2, void *param3);
+static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollection *param1, void *param2, void *param3);
 
 static const u8 Unk_ov6_02249030[] = {
     0x1,
@@ -161,7 +161,7 @@ static void ov6_02242860(SysTask *param0, void *param1)
     }
 }
 
-static void ov6_02242880(UnkStruct_02009714 *param0, UnkStruct_02009714 *param1, void *param2, void *param3)
+static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollection *param1, void *param2, void *param3)
 {
     int v0;
     u32 v1, v2;

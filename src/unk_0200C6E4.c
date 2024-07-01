@@ -25,7 +25,7 @@
 #include "heap.h"
 #include "unk_02002F38.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02017728.h"
@@ -45,7 +45,7 @@ typedef struct AnimationResourceCollection_t {
     CellActorCollection *unk_00;
     UnkStruct_02009508 *unk_04;
     UnkStruct_02009F38 *unk_08;
-    UnkStruct_02009714 *unk_0C[6];
+    SpriteResourceCollection *unk_0C[6];
     UnkStruct_02009CFC *unk_24[6];
     int unk_3C[6];
     int unk_54;
@@ -54,9 +54,9 @@ typedef struct AnimationResourceCollection_t {
 static BOOL sub_0200D11C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, int param3, int param4, int param5, int param6);
 static BOOL sub_0200D18C(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2, int param3, int param4, int param5, int param6);
 static BOOL sub_0200D1FC(UnkStruct_02009CFC *param0, UnkStruct_02009DC8 *param1);
-static BOOL sub_0200D27C(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1, int param2);
-static BOOL sub_0200D2D0(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1, int param2);
-static BOOL sub_0200D230(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1, int param2);
+static BOOL sub_0200D27C(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2);
+static BOOL sub_0200D2D0(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2);
+static BOOL sub_0200D230(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2);
 
 SpriteRenderer *sub_0200C6E4(int param0)
 {
@@ -708,7 +708,7 @@ static BOOL sub_0200D1FC(UnkStruct_02009CFC *param0, UnkStruct_02009DC8 *param1)
     return 0;
 }
 
-static BOOL sub_0200D230(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1, int param2)
+static BOOL sub_0200D230(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2)
 {
     int v0;
     int v1;
@@ -733,7 +733,7 @@ static BOOL sub_0200D230(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1,
     return 0;
 }
 
-static BOOL sub_0200D27C(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1, int param2)
+static BOOL sub_0200D27C(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2)
 {
     int v0;
     int v1;
@@ -759,7 +759,7 @@ static BOOL sub_0200D27C(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1,
     return 0;
 }
 
-static BOOL sub_0200D2D0(UnkStruct_02009714 *param0, UnkStruct_02009CFC *param1, int param2)
+static BOOL sub_0200D2D0(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2)
 {
     int v0;
     int v1;

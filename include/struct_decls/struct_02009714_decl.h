@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02009714_DECL_H
 #define POKEPLATINUM_STRUCT_02009714_DECL_H
 
-typedef struct UnkStruct_02009714_t UnkStruct_02009714;
+typedef struct SpriteResourceCollection_t SpriteResourceCollection;
 
 #endif // POKEPLATINUM_STRUCT_02009714_DECL_H

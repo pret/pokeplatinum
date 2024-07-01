@@ -55,7 +55,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
@@ -148,7 +148,7 @@ typedef struct {
     MATHRandContext32 unk_08;
     CellActorCollection *unk_20;
     UnkStruct_0200C738 unk_24;
-    UnkStruct_02009714 *unk_1B0[4];
+    SpriteResourceCollection *unk_1B0[4];
     UnkStruct_02009DC8 *unk_1C0[8];
     CellActorResourceData unk_1E0;
     CellActorResourceData unk_204[2];

@@ -63,9 +63,9 @@ void ov21_021D276C(UnkStruct_ov21_021D13FC *param0, u32 param1, int param2, u32 
 void *ov21_021D27B8(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4);
 void *ov21_021D27E0(UnkStruct_ov21_021D13FC *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3);
 void *ov21_021D2808(UnkStruct_ov21_021D13FC *param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4);
-void ov21_021D2B88(UnkStruct_ov21_021D22F8 *param0, UnkStruct_02009714 **param1, int param2, NARC *param3);
-void ov21_021D2C58(UnkStruct_ov21_021D22F8 *param0, UnkStruct_02009714 **param1);
-void ov21_021D2D88(UnkStruct_ov21_021D22F8 *param0, CellActorCollection *param1, UnkStruct_02009714 **param2, int param3, int param4);
+void ov21_021D2B88(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **param1, int param2, NARC *param3);
+void ov21_021D2C58(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **param1);
+void ov21_021D2D88(UnkStruct_ov21_021D22F8 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, int param4);
 void ov21_021D2E1C(UnkStruct_ov21_021D22F8 *param0);
 void ov21_021D2E44(UnkStruct_ov21_021D22F8 *param0, BOOL param1);
 

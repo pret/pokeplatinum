@@ -28,7 +28,7 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
@@ -69,10 +69,10 @@ typedef struct {
     NNSG2dPaletteData *unk_6C;
     CellActorCollection *unk_70;
     UnkStruct_0200C738 unk_74;
-    UnkStruct_02009714 *unk_200;
-    UnkStruct_02009714 *unk_204;
-    UnkStruct_02009714 *unk_208;
-    UnkStruct_02009714 *unk_20C;
+    SpriteResourceCollection *unk_200;
+    SpriteResourceCollection *unk_204;
+    SpriteResourceCollection *unk_208;
+    SpriteResourceCollection *unk_20C;
     UnkStruct_02009DC8 *unk_210[4];
     UnkStruct_02009DC8 *unk_220[3];
     UnkStruct_02009DC8 *unk_22C[4];
@@ -156,10 +156,10 @@ typedef struct {
     s8 unk_07;
     CellActorCollection *unk_08;
     UnkStruct_0200C738 unk_0C;
-    UnkStruct_02009714 *unk_198;
-    UnkStruct_02009714 *unk_19C;
-    UnkStruct_02009714 *unk_1A0;
-    UnkStruct_02009714 *unk_1A4;
+    SpriteResourceCollection *unk_198;
+    SpriteResourceCollection *unk_19C;
+    SpriteResourceCollection *unk_1A0;
+    SpriteResourceCollection *unk_1A4;
     UnkStruct_ov6_02243258_sub1 *unk_1A8;
     UnkStruct_ov6_02243258_sub1 *unk_1AC;
     UnkStruct_ov6_02243258_sub1 *unk_1B0;

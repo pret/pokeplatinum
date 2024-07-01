@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0200A328.h"
 #include "struct_defs/struct_0200A5C8.h"
 
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 

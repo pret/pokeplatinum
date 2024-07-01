@@ -34,7 +34,7 @@ typedef struct {
     int unk_3C;
     BGL *unk_40;
     CellActorCollection *unk_44;
-    UnkStruct_02009714 *unk_48[4];
+    SpriteResourceCollection *unk_48[4];
     UnkStruct_0200C738 unk_58;
     NARC *unk_5C;
 } UnkStruct_ov22_0225A0E4;

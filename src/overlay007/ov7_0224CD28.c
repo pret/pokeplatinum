@@ -43,7 +43,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"

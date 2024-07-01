@@ -11,14 +11,14 @@
 
 #include "cell_actor.h"
 #include "heap.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0202309C.h"
 
-void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, UnkStruct_02009714 *param9, UnkStruct_02009714 *param10, UnkStruct_02009714 *param11, UnkStruct_02009714 *param12, UnkStruct_02009714 *param13, UnkStruct_02009714 *param14)
+void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)
 {
     UnkStruct_02009DC8 *v0;
     UnkStruct_02009DC8 *v1;
@@ -99,7 +99,7 @@ void sub_020094F0(CellActorResourceData *param0)
     memset(param0, 0, sizeof(CellActorResourceData));
 }
 
-UnkStruct_02009508 *sub_02009508(const UnkStruct_02009508_1 *param0, int param1, UnkStruct_02009714 *param2, UnkStruct_02009714 *param3, UnkStruct_02009714 *param4, UnkStruct_02009714 *param5, UnkStruct_02009714 *param6, UnkStruct_02009714 *param7)
+UnkStruct_02009508 *sub_02009508(const UnkStruct_02009508_1 *param0, int param1, SpriteResourceCollection *param2, SpriteResourceCollection *param3, SpriteResourceCollection *param4, SpriteResourceCollection *param5, SpriteResourceCollection *param6, SpriteResourceCollection *param7)
 {
     int v0;
     int v1;

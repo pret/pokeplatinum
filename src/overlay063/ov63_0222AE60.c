@@ -15,7 +15,7 @@
 #include "narc.h"
 #include "unk_02002F38.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 
 typedef struct {
@@ -55,7 +55,7 @@ typedef struct UnkStruct_ov63_0222AE60_t {
     UnkStruct_ov63_0222AE60_sub1 unk_2148[16];
     UnkStruct_ov63_0222B96C unk_2248;
     u32 unk_227C;
-    UnkStruct_02009714 *unk_2280[4];
+    SpriteResourceCollection *unk_2280[4];
     UnkStruct_02009DC8 *unk_2290;
     NARC *unk_2294[2];
 } UnkStruct_ov63_0222AE60;

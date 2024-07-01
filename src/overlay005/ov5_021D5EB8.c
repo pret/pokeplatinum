@@ -26,7 +26,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02018340.h"
@@ -106,7 +106,7 @@ typedef struct {
 typedef void (*UnkFuncPtr_ov5_021D6FF0)(UnkStruct_ov5_021D6FA8 *);
 
 typedef struct {
-    UnkStruct_02009714 *unk_00[4];
+    SpriteResourceCollection *unk_00[4];
     UnkStruct_02009F38 *unk_10;
     NNSG2dRendererInstance unk_14;
     NNSG2dRenderSurface unk_C0;
@@ -245,7 +245,7 @@ static BOOL ov5_021D6548(UnkStruct_ov5_021D6538 *param0);
 static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
 static void ov5_021D6A2C(UnkStruct_ov5_021D6594 *param0, int param1);
 static void ov5_021D6690(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
-static UnkStruct_02009DC8 *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, UnkStruct_02009714 *param3, NARC *param4, u32 param5);
+static UnkStruct_02009DC8 *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5);
 static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0);
 static void ov5_021D6290(UnkStruct_02009F38 *param0, int param1, int param2);
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0);
@@ -1033,7 +1033,7 @@ static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     ov5_021D6CA0(param0, param1, param2);
 }
 
-static UnkStruct_02009DC8 *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, UnkStruct_02009714 *param3, NARC *param4, u32 param5)
+static UnkStruct_02009DC8 *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5)
 {
     UnkStruct_02009F38 *v0;
     UnkStruct_02009DC8 *v1;

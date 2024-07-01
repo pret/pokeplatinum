@@ -23,7 +23,7 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
@@ -31,7 +31,7 @@
 typedef struct {
     CellActorCollection *unk_00;
     UnkStruct_02009508 *unk_04;
-    UnkStruct_02009714 *unk_08[4];
+    SpriteResourceCollection *unk_08[4];
     UnkStruct_02009CFC *unk_18[2];
     int unk_20[4];
     UnkStruct_0200C738 unk_30;
@@ -86,7 +86,7 @@ static CellActor *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *
 static void sub_0205D3AC(UnkStruct_0205D3AC *param0);
 static void sub_0205D0B4(UnkStruct_0205D094 *param0);
 static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2);
-static int sub_0205D1C4(UnkStruct_02009714 *param0, UnkStruct_02009CFC **param1, u32 param2);
+static int sub_0205D1C4(SpriteResourceCollection *param0, UnkStruct_02009CFC **param1, u32 param2);
 static void sub_0205D22C(UnkStruct_0205D094 *param0);
 static void sub_0205D3C4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1);
 static void sub_0205D404(struct UnkStruct_0205D3AC_t *param0);
@@ -465,7 +465,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     Heap_FreeToHeap(v1);
 }
 
-static int sub_0205D1C4(UnkStruct_02009714 *param0, UnkStruct_02009CFC **param1, u32 param2)
+static int sub_0205D1C4(SpriteResourceCollection *param0, UnkStruct_02009CFC **param1, u32 param2)
 {
     UnkStruct_02009F38 *v0;
     UnkStruct_02009CFC *v1;

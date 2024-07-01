@@ -35,7 +35,7 @@
 #include "unk_02002B7C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_02012744.h"
 #include "unk_02015064.h"
@@ -814,7 +814,7 @@ static void ov21_021D2AE8(UnkStruct_ov21_021D13FC *param0, int param1)
     v0->unk_0C[3] = sub_02009BC4(param0->unk_13C[3], v1, 77, 1, 3000, 3, param1);
 }
 
-void ov21_021D2B88(UnkStruct_ov21_021D22F8 *param0, UnkStruct_02009714 **param1, int param2, NARC *param3)
+void ov21_021D2B88(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **param1, int param2, NARC *param3)
 {
     param0->unk_0C[0] = sub_02009A4C(param1[0], param3, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -843,7 +843,7 @@ static void ov21_021D2C10(UnkStruct_ov21_021D13FC *param0)
     sub_02009D68(param0->unk_13C[3], v0->unk_0C[3]);
 }
 
-void ov21_021D2C58(UnkStruct_ov21_021D22F8 *param0, UnkStruct_02009714 **param1)
+void ov21_021D2C58(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **param1)
 {
     sub_0200A4E4(param0->unk_0C[0]);
     sub_0200A6DC(param0->unk_0C[1]);
@@ -901,7 +901,7 @@ static void ov21_021D2D4C(UnkStruct_ov21_021D13FC *param0)
     }
 }
 
-void ov21_021D2D88(UnkStruct_ov21_021D22F8 *param0, CellActorCollection *param1, UnkStruct_02009714 **param2, int param3, int param4)
+void ov21_021D2D88(UnkStruct_ov21_021D22F8 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, int param4)
 {
     CellActorResourceData v0;
     CellActorInitParams v1;

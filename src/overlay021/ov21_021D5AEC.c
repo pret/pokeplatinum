@@ -35,7 +35,7 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
@@ -67,7 +67,7 @@ typedef struct {
     CellActor *unk_74;
     fx32 unk_78;
     CellActor *unk_7C;
-    UnkStruct_02009714 *unk_80[4];
+    SpriteResourceCollection *unk_80[4];
     CellActorResourceData unk_90;
     CellActorResourceData unk_B4;
     void *unk_D8;

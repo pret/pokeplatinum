@@ -30,7 +30,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_02009714.h"
+#include "sprite_util.h"
 #include "unk_0200A784.h"
 #include "message.h"
 #include "unk_0200F174.h"
@@ -125,7 +125,7 @@ typedef struct {
     BGL * unk_00;
     CellActorCollection * unk_04;
     UnkStruct_0200C738 unk_08;
-    UnkStruct_02009714 * unk_194[4];
+    SpriteResourceCollection * unk_194[4];
     NARC * unk_1A4;
 } UnkStruct_ov112_0225C9BC;
 
