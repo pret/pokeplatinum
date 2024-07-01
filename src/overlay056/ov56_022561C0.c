@@ -386,7 +386,7 @@ static void ov56_02256634(UnkStruct_ov56_02256468 *param0)
     param0->unk_28 = sub_020095C4(10, &param0->unk_2C, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1B8[v0] = sub_02009714(1, v0, 4);
+        param0->unk_1B8[v0] = SpriteResourceCollection_New(1, v0, 4);
     }
 
     param0->unk_1C8[0] = sub_0200985C(param0->unk_1B8[0], 74, 5, 1, 999, NNS_G2D_VRAM_TYPE_2DSUB, 4);

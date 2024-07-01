@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "struct_defs/struct_02009CFC.h"
@@ -19,9 +20,9 @@ typedef struct UnkStruct_02009DC8_t {
 } UnkStruct_02009DC8;
 
 typedef struct SpriteResourceCollection_t {
-    ResourceCollection * unk_00;
+    ResourceCollection * resources;
     UnkStruct_02009DC8 * unk_04;
-    int unk_08;
+    int capacity;
     int unk_0C;
     int unk_10;
 } SpriteResourceCollection;
@@ -90,34 +91,33 @@ static void * sub_0200A20C(const UnkStruct_02009DC8 * param0);
 static void sub_0200A1F8(UnkStruct_02009DC8 * param0);
 static int sub_0200A2C0(const UnkStruct_0200A2C0 * param0);
 
-SpriteResourceCollection *sub_02009714(int param0, int param1, int param2)
+SpriteResourceCollection *SpriteResourceCollection_New(int capacity, int param1, enum HeapId heapID)
 {
-    SpriteResourceCollection * v0;
-    int v1;
+    SpriteResourceCollection * spriteResources;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(SpriteResourceCollection));
-    v0->unk_00 = ResourceCollection_New(param0, param2);
-    v0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02009DC8) * param0);
+    spriteResources = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceCollection));
+    spriteResources->resources = ResourceCollection_New(capacity, heapID);
+    spriteResources->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02009DC8) * capacity);
 
-    memset(v0->unk_04, 0, sizeof(UnkStruct_02009DC8) * param0);
+    memset(spriteResources->unk_04, 0, sizeof(UnkStruct_02009DC8) * capacity);
 
-    v0->unk_08 = param0;
-    v0->unk_0C = 0;
-    v0->unk_10 = param1;
+    spriteResources->capacity = capacity;
+    spriteResources->unk_0C = 0;
+    spriteResources->unk_10 = param1;
 
-    return v0;
+    return spriteResources;
 }
 
 void sub_02009754 (SpriteResourceCollection * param0)
 {
     GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_00);
+    GF_ASSERT(param0->resources);
     GF_ASSERT(param0->unk_04);
 
     sub_02009D9C(param0);
 
-    ResourceCollection_Delete(param0->unk_00);
-    param0->unk_00 = NULL;
+    ResourceCollection_Delete(param0->resources);
+    param0->resources = NULL;
 
     Heap_FreeToHeap(param0->unk_04);
     param0->unk_04 = NULL;
@@ -385,7 +385,7 @@ void sub_02009D20 (UnkStruct_02009CFC * param0)
 BOOL sub_02009D34 (const SpriteResourceCollection * param0, int param1)
 {
     GF_ASSERT(param0);
-    return ResourceCollection_IsIDUnused(param0->unk_00, param1);
+    return ResourceCollection_IsIDUnused(param0->resources, param1);
 }
 
 void sub_02009D4C (UnkStruct_02009DC8 * param0)
@@ -402,7 +402,7 @@ void sub_02009D68 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param
     GF_ASSERT(param0->unk_04);
 
     sub_0200A1F8(param1);
-    ResourceCollection_Remove(param0->unk_00, param1->unk_00);
+    ResourceCollection_Remove(param0->resources, param1->unk_00);
 
     param1->unk_00 = NULL;
     param0->unk_0C--;
@@ -412,7 +412,7 @@ void sub_02009D9C (SpriteResourceCollection * param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->unk_08; v0++) {
+    for (v0 = 0; v0 < param0->capacity; v0++) {
         if (param0->unk_04[v0].unk_00 != NULL) {
             sub_02009D68(param0, param0->unk_04 + v0);
         }
@@ -426,7 +426,7 @@ UnkStruct_02009DC8 * sub_02009DC8 (const SpriteResourceCollection * param0, int 
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_08; v0++) {
+    for (v0 = 0; v0 < param0->capacity; v0++) {
         if (param0->unk_04[v0].unk_00) {
             v1 = Resource_GetID(param0->unk_04[v0].unk_00);
 
@@ -705,7 +705,7 @@ static UnkStruct_02009DC8 * sub_0200A0A8 (SpriteResourceCollection * param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->unk_08; v0++) {
+    for (v0 = 0; v0 < param0->capacity; v0++) {
         if (param0->unk_04[v0].unk_00 == NULL) {
             return param0->unk_04 + v0;
         }
@@ -825,7 +825,7 @@ static void * sub_0200A20C (const UnkStruct_02009DC8 * param0)
 
 static void sub_0200A224 (SpriteResourceCollection * param0, UnkStruct_02009DC8 * param1, const char * param2, int param3, int param4, int param5, int param6, int param7)
 {
-    param1->unk_00 = ResourceCollection_AddFromFile(param0->unk_00, param2, param3, param7);
+    param1->unk_00 = ResourceCollection_AddFromFile(param0->resources, param2, param3, param7);
     param1->unk_04 = param6;
 
     sub_0200A0D4(param1, param6, param4, param5, param7);
@@ -837,7 +837,7 @@ static void sub_0200A250 (SpriteResourceCollection * param0, UnkStruct_02009DC8 
 
     v0 = sub_02006FE8(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = ResourceCollection_Add(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceCollection_Add(param0->resources, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);
@@ -849,7 +849,7 @@ static void sub_0200A288 (SpriteResourceCollection * param0, UnkStruct_02009DC8 
 
     v0 = sub_0200A2DC(param2, param3, param4, param9, param10);
 
-    param1->unk_00 = ResourceCollection_Add(param0->unk_00, v0, param5);
+    param1->unk_00 = ResourceCollection_Add(param0->resources, v0, param5);
     param1->unk_04 = param8;
 
     sub_0200A0D4(param1, param8, param6, param7, param9);

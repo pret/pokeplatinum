@@ -345,10 +345,10 @@ static void ov6_02243258(UnkStruct_ov6_02243258 *param0, int param1, int param2,
 
     sub_0200964C(&param0->unk_0C, 0, FX32_CONST(512));
 
-    param0->unk_198 = sub_02009714(param2, 0, 4);
-    param0->unk_19C = sub_02009714(param3, 1, 4);
-    param0->unk_1A0 = sub_02009714(param4, 2, 4);
-    param0->unk_1A4 = sub_02009714(param5, 3, 4);
+    param0->unk_198 = SpriteResourceCollection_New(param2, 0, 4);
+    param0->unk_19C = SpriteResourceCollection_New(param3, 1, 4);
+    param0->unk_1A0 = SpriteResourceCollection_New(param4, 2, 4);
+    param0->unk_1A4 = SpriteResourceCollection_New(param5, 3, 4);
     param0->unk_1A8 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02243258_sub1)) * param2);
     param0->unk_1AC = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02243258_sub1)) * param3);
     param0->unk_1B0 = ov6_02245F44(4, (sizeof(UnkStruct_ov6_02243258_sub1)) * param4);
@@ -1737,10 +1737,10 @@ static void ov6_02244928(UnkStruct_ov6_02243FFC *param0, NARC *param1)
     param0->unk_70 = sub_020095C4(32, &param0->unk_74, 4);
     sub_0200964C(&param0->unk_74, 0, FX32_CONST(512));
 
-    param0->unk_200 = sub_02009714(4, 0, 4);
-    param0->unk_204 = sub_02009714(3, 1, 4);
-    param0->unk_208 = sub_02009714(4, 2, 4);
-    param0->unk_20C = sub_02009714(2, 3, 4);
+    param0->unk_200 = SpriteResourceCollection_New(4, 0, 4);
+    param0->unk_204 = SpriteResourceCollection_New(3, 1, 4);
+    param0->unk_208 = SpriteResourceCollection_New(4, 2, 4);
+    param0->unk_20C = SpriteResourceCollection_New(2, 3, 4);
 
     for (v0 = 0; v0 < 1; v0++) {
         param0->unk_210[v0] = sub_02009A4C(param0->unk_200, param1, Unk_ov6_02249108[v0].unk_04, 0, Unk_ov6_02249108[v0].unk_00, NNS_G2D_VRAM_TYPE_2DMAIN, 4);

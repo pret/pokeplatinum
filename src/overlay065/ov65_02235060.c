@@ -586,7 +586,7 @@ static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *par
     sub_0200964C(&param0->unk_04, 0, (800 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(16, v0, param1);
+        param0->unk_190[v0] = SpriteResourceCollection_New(16, v0, param1);
     }
 
     ov65_022358F8(param0, param1, param2);

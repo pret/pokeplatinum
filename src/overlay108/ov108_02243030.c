@@ -53,7 +53,7 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
     param0->unk_00 = sub_020095C4(((4 * 4) + 1 + 8 + 8 + 1), &param0->unk_04, 103);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov108_02243760[v0], v0, 103);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov108_02243760[v0], v0, 103);
     }
 
     ov108_02243490(param0);

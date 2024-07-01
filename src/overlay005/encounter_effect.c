@@ -737,7 +737,7 @@ void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
     param0->unk_00 = sub_020095C4(param1, &param0->unk_04, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(param2, v0, 4);
+        param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, 4);
     }
 }
 

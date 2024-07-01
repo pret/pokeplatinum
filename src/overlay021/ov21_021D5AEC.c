@@ -773,10 +773,10 @@ static void ov21_021D64B0(UnkStruct_ov21_021D13FC *param0, int param1, int param
 
 static void ov21_021D6538(UnkStruct_ov21_021D71A8 *param0, int param1)
 {
-    param0->unk_80[0] = sub_02009714(2, 0, param1);
-    param0->unk_80[1] = sub_02009714(2, 1, param1);
-    param0->unk_80[2] = sub_02009714(2, 2, param1);
-    param0->unk_80[3] = sub_02009714(2, 3, param1);
+    param0->unk_80[0] = SpriteResourceCollection_New(2, 0, param1);
+    param0->unk_80[1] = SpriteResourceCollection_New(2, 1, param1);
+    param0->unk_80[2] = SpriteResourceCollection_New(2, 2, param1);
+    param0->unk_80[3] = SpriteResourceCollection_New(2, 3, param1);
 }
 
 static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0)

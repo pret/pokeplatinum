@@ -1333,7 +1333,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         sub_0200964C(&param0->unk_08, 0, (256 * FX32_ONE));
 
         for (v3 = 0; v3 < 4; v3++) {
-            param0->unk_194[v3] = sub_02009714(24, v3, param2);
+            param0->unk_194[v3] = SpriteResourceCollection_New(24, v3, param2);
         }
 
         param0->unk_1A4 = sub_0201DCC8(24, param2);

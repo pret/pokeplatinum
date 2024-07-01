@@ -387,7 +387,7 @@ static void ov21_021E9208(SpriteResourceCollection **param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0[v0] = sub_02009714(8, v0, param1);
+        param0[v0] = SpriteResourceCollection_New(8, v0, param1);
     }
 }
 

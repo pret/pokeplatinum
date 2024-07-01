@@ -635,7 +635,7 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BGL *param1, u32 param2
     Window_Show(param0->unk_04, 0, (1 + (18 + 12)), 11);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_138[v0] = sub_02009714(1, v0, param2);
+        param0->unk_138[v0] = SpriteResourceCollection_New(1, v0, param2);
     }
 
     ov7_0224CA54(&v2, param0, param2);

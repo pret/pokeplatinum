@@ -66,7 +66,7 @@ static void sub_02099058(UnkStruct_0209903C *param0)
     v2[1] = param0->unk_0A;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1A4[v0] = sub_02009714(v2[v0], v0, param0->unk_00);
+        param0->unk_1A4[v0] = SpriteResourceCollection_New(v2[v0], v0, param0->unk_00);
         param0->unk_1B4[v0] = sub_02009CFC(v2[v0], param0->unk_00);
 
         for (v1 = 0; v1 < param0->unk_1B4[v0]->unk_04; v1++) {

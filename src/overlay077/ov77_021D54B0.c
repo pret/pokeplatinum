@@ -150,7 +150,7 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
     param0->unk_300 = sub_0201DCC8(3, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov77_021D7914[v0], v0, v1);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov77_021D7914[v0], v0, v1);
     }
 
     param0->unk_1A0[0][0] = sub_0200985C(param0->unk_190[0], 128, 46, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v1);

@@ -2645,10 +2645,10 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
 {
     param1->unk_00 = sub_020095C4(16, &param1->unk_04, 4);
     sub_0200962C(&param1->unk_04, (FX32_ONE * 0), (FX32_ONE * -512));
-    param1->unk_190 = sub_02009714(7, 0, 4);
-    param1->unk_194 = sub_02009714(1, 1, 4);
-    param1->unk_198 = sub_02009714(7, 2, 4);
-    param1->unk_19C = sub_02009714(7, 3, 4);
+    param1->unk_190 = SpriteResourceCollection_New(7, 0, 4);
+    param1->unk_194 = SpriteResourceCollection_New(1, 1, 4);
+    param1->unk_198 = SpriteResourceCollection_New(7, 2, 4);
+    param1->unk_19C = SpriteResourceCollection_New(7, 3, 4);
 
     {
         int v0;

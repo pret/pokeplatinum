@@ -1252,7 +1252,7 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     param0->unk_194 = sub_020095C4((2 + 12 + 12 + 12 + 2 + 2 + 2 + 1), &param0->unk_198, 26);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_324[v0] = sub_02009714(2, v0, 26);
+        param0->unk_324[v0] = SpriteResourceCollection_New(2, v0, 26);
     }
 
     param0->unk_334[0][0] = sub_02009A4C(param0->unk_324[0], param1, 7, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 26);

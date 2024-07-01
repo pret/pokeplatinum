@@ -96,7 +96,7 @@ void ov6_022426C0(UnkStruct_ov6_022426B8 *param0, const int param1)
     v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_00[v0] = sub_02009714(Unk_ov6_02249030[v0], v0, 4);
+        param0->unk_00[v0] = SpriteResourceCollection_New(Unk_ov6_02249030[v0], v0, 4);
     }
 
     {

@@ -191,7 +191,7 @@ void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int 
     param0->unk_00 = sub_020095C4(param1, &param0->unk_04, param3);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(param2, v0, param3);
+        param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, param3);
     }
 }
 

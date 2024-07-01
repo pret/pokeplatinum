@@ -629,7 +629,7 @@ static void ov58_021D1554(UnkStruct_02095EAC *param0, NARC *param1)
     sub_0200964C(&param0->unk_38, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1C4[v0] = sub_02009714(2, v0, 39);
+        param0->unk_1C4[v0] = SpriteResourceCollection_New(2, v0, 39);
     }
 
     param0->unk_1D4[0][0] = sub_02009A4C(param0->unk_1C4[0], param1, 6, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 39);

@@ -1552,7 +1552,7 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     sub_0200964C(&param0->unk_18C, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_318[v0] = sub_02009714(2, v0, 18);
+        param0->unk_318[v0] = SpriteResourceCollection_New(2, v0, 18);
     }
 
     param0->unk_328[0][0] = sub_02009A4C(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 18);

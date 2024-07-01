@@ -44,7 +44,7 @@ void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1)
     param0->unk_00 = sub_020095C4(2, &param0->unk_04, 98);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov106_0224384C[v0], v0, 98);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov106_0224384C[v0], v0, 98);
     }
 
     param0->unk_1A0[0][0] = sub_0200985C(param0->unk_190[0], 151, 12, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 98);

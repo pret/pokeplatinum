@@ -341,7 +341,7 @@ void ov97_02237A74(void)
     v1->unk_274 = (192 << FX32_SHIFT);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1->unk_34.unk_190[v0] = sub_02009714(32, v0, v1->unk_08);
+        v1->unk_34.unk_190[v0] = SpriteResourceCollection_New(32, v0, v1->unk_08);
     }
 }
 

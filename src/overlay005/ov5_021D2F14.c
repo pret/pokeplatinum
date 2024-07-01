@@ -57,7 +57,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
         v0 = sub_02009F38(v1, v4);
         v3 = sub_02009FA4(v0);
-        param0->unk_194[v4] = sub_02009714(v3, v4, param3);
+        param0->unk_194[v4] = SpriteResourceCollection_New(v3, v4, param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
@@ -146,7 +146,7 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *para
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        param0->unk_194[v4] = sub_02009714(param1->val1[v4], v4, param3);
+        param0->unk_194[v4] = SpriteResourceCollection_New(param1->val1[v4], v4, param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {

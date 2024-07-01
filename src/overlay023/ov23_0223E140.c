@@ -2785,7 +2785,7 @@ static void ov23_02240E88(void)
     sub_0200964C(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257740->unk_1B0[v0] = sub_02009714(2, v0, 29);
+        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
     }
 
     v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, 29);

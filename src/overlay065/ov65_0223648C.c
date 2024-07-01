@@ -862,7 +862,7 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 param1)
     param0->unk_18 = sub_020095C4(4, &param0->unk_1C, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1A8[v0] = sub_02009714(4, v0, param1);
+        param0->unk_1A8[v0] = SpriteResourceCollection_New(4, v0, param1);
     }
 
     param0->unk_1B8 = ov63_0222BE18(4, param1);

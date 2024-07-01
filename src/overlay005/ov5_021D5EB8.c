@@ -783,7 +783,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     sub_0200A8B0(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
 
     for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_00[v1] = sub_02009714(31, v1, 4);
+        param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, 4);
     }
 
     v2 = sub_02009F34();

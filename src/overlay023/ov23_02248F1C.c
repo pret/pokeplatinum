@@ -442,7 +442,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
     param0->unk_1BC = sub_020095C4(((7 + 1) + 16 + 1), &param0->unk_1C0, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_34C[v0] = sub_02009714(1, v0, 4);
+        param0->unk_34C[v0] = SpriteResourceCollection_New(1, v0, 4);
     }
 
     {

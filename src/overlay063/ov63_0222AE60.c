@@ -313,11 +313,11 @@ UnkStruct_ov63_0222AE60 *ov63_0222AE60(CellActorCollection *param0, PaletteData 
     v0->unk_2294[1] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_UNIONOBJ, param3);
 
     for (v1 = 0; v1 < 2; v1++) {
-        v0->unk_2280[v1] = sub_02009714((151 + 1), v1, param3);
+        v0->unk_2280[v1] = SpriteResourceCollection_New((151 + 1), v1, param3);
     }
 
     for (v1 = 0; v1 < 2; v1++) {
-        v0->unk_2280[v1 + 2] = sub_02009714(((3 * 2) + 16 + 1), v1 + 2, param3);
+        v0->unk_2280[v1 + 2] = SpriteResourceCollection_New(((3 * 2) + 16 + 1), v1 + 2, param3);
     }
 
     for (v1 = 0; v1 < 3; v1++) {

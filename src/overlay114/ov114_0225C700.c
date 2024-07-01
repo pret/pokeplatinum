@@ -1232,7 +1232,7 @@ static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 *param0, u32 param1, u32 par
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_00[v0] = sub_02009714(param1, v0, param2);
+        param0->unk_00[v0] = SpriteResourceCollection_New(param1, v0, param2);
     }
 
     param0->unk_10 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov114_0225CDB4) * param1);

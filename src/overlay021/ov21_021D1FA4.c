@@ -83,10 +83,10 @@ void ov21_021D1FA4(UnkStruct_ov21_021D13FC *param0, int param1)
     ov21_021D29D0(param0, param1);
 
     param0->unk_138 = sub_020095C4(128, &param0->unk_14, param1);
-    param0->unk_13C[0] = sub_02009714(32, 0, param1);
-    param0->unk_13C[1] = sub_02009714(32, 1, param1);
-    param0->unk_13C[2] = sub_02009714(32, 2, param1);
-    param0->unk_13C[3] = sub_02009714(32, 3, param1);
+    param0->unk_13C[0] = SpriteResourceCollection_New(32, 0, param1);
+    param0->unk_13C[1] = SpriteResourceCollection_New(32, 1, param1);
+    param0->unk_13C[2] = SpriteResourceCollection_New(32, 2, param1);
+    param0->unk_13C[3] = SpriteResourceCollection_New(32, 3, param1);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);

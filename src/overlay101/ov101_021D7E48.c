@@ -66,10 +66,10 @@ UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 param0, u32 param1, u32 param2, u32
 
     sub_0201DBEC(param2, param0);
 
-    v0->unk_1A0 = sub_02009714(param3, 0, param0);
-    v0->unk_1A4 = sub_02009714(param4, 1, param0);
-    v0->unk_1A8 = sub_02009714(param5, 2, param0);
-    v0->unk_1AC = sub_02009714(param6, 3, param0);
+    v0->unk_1A0 = SpriteResourceCollection_New(param3, 0, param0);
+    v0->unk_1A4 = SpriteResourceCollection_New(param4, 1, param0);
+    v0->unk_1A8 = SpriteResourceCollection_New(param5, 2, param0);
+    v0->unk_1AC = SpriteResourceCollection_New(param6, 3, param0);
     v0->unk_1B0 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param3);
     v0->unk_1B4 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param4);
     v0->unk_1B8 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param5);

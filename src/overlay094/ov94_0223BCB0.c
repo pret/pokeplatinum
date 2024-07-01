@@ -357,7 +357,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
     sub_0200964C(&param0->unk_BE8, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_D74[v0] = sub_02009714(3, v0, 62);
+        param0->unk_D74[v0] = SpriteResourceCollection_New(3, v0, 62);
     }
 
     param0->unk_D84[0][0] = sub_02009A4C(param0->unk_D74[0], v1, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 62);

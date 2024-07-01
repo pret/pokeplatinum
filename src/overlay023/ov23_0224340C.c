@@ -783,7 +783,7 @@ static void ov23_02243754(void)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257764->unk_1D4[1][v0] = sub_02009714(1, v0, 4);
+        Unk_ov23_02257764->unk_1D4[1][v0] = SpriteResourceCollection_New(1, v0, 4);
     }
 
     {
@@ -3259,7 +3259,7 @@ static void ov23_02246324(void)
     sub_0200964C(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257764->unk_1D4[0][v0] = sub_02009714(2, v0, 4);
+        Unk_ov23_02257764->unk_1D4[0][v0] = SpriteResourceCollection_New(2, v0, 4);
     }
 }
 
@@ -4164,7 +4164,7 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
             sub_0200964C(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
 
             for (v2 = 0; v2 < 4; v2++) {
-                Unk_ov23_02257764->unk_1D4[0][v2] = sub_02009714(7 + 1, v2, 4);
+                Unk_ov23_02257764->unk_1D4[0][v2] = SpriteResourceCollection_New(7 + 1, v2, 4);
             }
         }
         v0->unk_00++;

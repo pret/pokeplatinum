@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_02009714_H
 #define POKEPLATINUM_UNK_02009714_H
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_02009CFC.h"
@@ -9,7 +11,7 @@
 
 #include <nnsys.h>
 
-SpriteResourceCollection * sub_02009714(int param0, int param1, int param2);
+SpriteResourceCollection * SpriteResourceCollection_New(int param0, int param1, enum HeapId param2);
 void sub_02009754(SpriteResourceCollection * param0);
 UnkStruct_02009DC8 * sub_02009794(SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3);
 UnkStruct_02009DC8 * sub_0200985C(SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6);

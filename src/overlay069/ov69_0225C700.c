@@ -1491,7 +1491,7 @@ static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 param1)
     sub_0200964C(&param0->unk_08, 0, (FX32_CONST(256)));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_194[v0] = sub_02009714(32, v0, param1);
+        param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, param1);
     }
 
     sub_02039734();

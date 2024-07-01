@@ -51,7 +51,7 @@ void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0)
     sub_0200964C(&param0->unk_04, 0, (512 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov111_021D3820[v0], v0, 115);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov111_021D3820[v0], v0, 115);
     }
 
     ov111_021D304C(param0, NNS_G2D_VRAM_TYPE_2DMAIN);

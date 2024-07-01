@@ -38,7 +38,7 @@ void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
     param0->unk_00 = sub_020095C4((6 + 2 + 1), &param0->unk_04, 93);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = sub_02009714(Unk_ov105_02246444[v0], v0, 93);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov105_02246444[v0], v0, 93);
     }
 
     param0->unk_1A0[0][0] = sub_0200985C(param0->unk_190[0], 151, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 93);

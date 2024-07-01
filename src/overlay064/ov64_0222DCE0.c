@@ -1014,7 +1014,7 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_204[v0] = sub_02009714(64, v0, param1);
+        param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);
     }
 
     param0->unk_260[0] = sub_02009A4C(param0->unk_204[0], param0->unk_21C, 15, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, param1);

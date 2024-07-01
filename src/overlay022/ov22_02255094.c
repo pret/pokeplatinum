@@ -715,10 +715,10 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
     param0->unk_44 = sub_020095C4(48, &param0->unk_58, 14);
     sub_0200964C(&param0->unk_58, 0, (512 * FX32_ONE));
 
-    param0->unk_48[0] = sub_02009714(8, 0, 14);
-    param0->unk_48[1] = sub_02009714(5, 1, 14);
-    param0->unk_48[2] = sub_02009714(48, 2, 14);
-    param0->unk_48[3] = sub_02009714(48, 3, 14);
+    param0->unk_48[0] = SpriteResourceCollection_New(8, 0, 14);
+    param0->unk_48[1] = SpriteResourceCollection_New(5, 1, 14);
+    param0->unk_48[2] = SpriteResourceCollection_New(48, 2, 14);
+    param0->unk_48[3] = SpriteResourceCollection_New(48, 3, 14);
 }
 
 static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)

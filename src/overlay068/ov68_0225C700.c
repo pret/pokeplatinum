@@ -540,7 +540,7 @@ static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, u32 param1)
     param0->unk_04 = sub_020095C4(32, &param0->unk_08, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_194[v0] = sub_02009714(32, v0, param1);
+        param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, param1);
     }
 
     sub_02039734();
