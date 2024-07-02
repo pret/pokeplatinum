@@ -14,9 +14,9 @@
 
 
 typedef struct SpriteResource_t {
-    Resource * resource;
-    int unk_04;
-    void * unk_08;
+    Resource *rawResource;
+    enum SpriteResourceType type;
+    void * data;
 } SpriteResource;
 
 typedef struct SpriteResourceCollection_t {
@@ -49,46 +49,49 @@ typedef struct UnkStruct_02009F38_t {
 } UnkStruct_02009F38;
 
 typedef struct {
-    NNSG2dCharacterData * unk_00;
+    NNSG2dCharacterData * charData;
     int unk_04;
-} UnkStruct_0200A144;
+} CharacterResourceData;
 
 typedef struct {
-    NNSG2dPaletteData * unk_00;
+    NNSG2dPaletteData * paletteData;
     int unk_04;
     int unk_08;
-} UnkStruct_02009E34;
+} PaletteResourceData;
 
 typedef struct {
-    NNSG2dCellDataBank * unk_00;
-} UnkStruct_02009E4C;
+    NNSG2dCellDataBank * cellBank;
+} CellResourceData;
 
 typedef struct {
-    NNSG2dAnimBankData * unk_00;
-} UnkStruct_02009E64;
+    NNSG2dAnimBankData * animBank;
+} CellAnimResourceData;
 
 typedef struct {
-    NNSG2dMultiCellDataBank * unk_00;
-} UnkStruct_02009E7C;
+    NNSG2dMultiCellDataBank * multiCellBank;
+} MultiCellResourceData;
 
 typedef struct {
-    NNSG2dAnimBankData * unk_00;
-} UnkStruct_02009E94;
+    NNSG2dAnimBankData * multiCellAnimBank;
+} MultiCellAnimResourceData;
 
-static SpriteResource * sub_0200A0A8(SpriteResourceCollection * param0);
-static void sub_0200A224(SpriteResourceCollection * param0, SpriteResource * param1, const char * param2, int param3, int param4, int param5, int param6, int param7);
-static void sub_0200A250(SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10);
-static void sub_0200A288(SpriteResourceCollection * param0, SpriteResource * param1, NARC * param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10);
+static SpriteResource *SpriteResourceCollection_AllocResource(SpriteResourceCollection *spriteResources);
+static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+    const char *filename, int id, int param4, int param5, enum SpriteResourceType type, enum HeapId heapID);
+static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+    int narcIdx, int memberIdx, BOOL compressed, int id, int param6, int param7, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
+static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+    NARC *narc, int memberIdx, BOOL compressed, int id, int param6, int param7, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
 static void * sub_0200A2DC(NARC * param0, u32 param1, BOOL param2, u32 param3, u32 param4);
-static void sub_0200A0D4(SpriteResource * param0, int param1, int param2, int param3, int param4);
-static UnkStruct_0200A144 * sub_0200A144(void * param0, int param1, int param2);
-static UnkStruct_02009E34 * sub_0200A164(void * param0, int param1, int param2, int param3);
-static UnkStruct_02009E4C * sub_0200A188(void * param0, int param1);
-static UnkStruct_02009E64 * sub_0200A1A4(void * param0, int param1);
-static UnkStruct_02009E7C * sub_0200A1C0(void * param0, int param1);
-static UnkStruct_02009E94 * sub_0200A1DC(void * param0, int param1);
-static void * sub_0200A20C(const SpriteResource * param0);
-static void sub_0200A1F8(SpriteResource * param0);
+static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteResourceType type, int param2, int param3, enum HeapId heapID);
+static CharacterResourceData *SpriteUtil_UnpackCharacterResource(void *rawData, int param1, enum HeapId heapID);
+static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, int param1, int param2, enum HeapId heapID);
+static CellResourceData *SpriteUtil_UnpackCellResource(void *rawData, enum HeapId heapID);
+static CellAnimResourceData *SpriteUtil_UnpackCellAnimResource(void *rawData, enum HeapId heapID);
+static MultiCellResourceData *SpriteUtil_UnpackMultiCellResource(void *rawData, enum HeapId heapID);
+static MultiCellAnimResourceData *SpriteUtil_UnpackMultiCellAnimResource(void *rawData, enum HeapId heapID);
+static void *SpriteResource_GetData(const SpriteResource *spriteRes);
+static void SpriteResource_FreeData(SpriteResource *spriteRes);
 static int sub_0200A2C0(const UnkStruct_0200A2C0 * param0);
 
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, int param1, enum HeapId heapID)
@@ -135,17 +138,17 @@ SpriteResource * sub_02009794 (SpriteResourceCollection * param0, const UnkStruc
     GF_ASSERT(param1->unk_04 > param2);
     GF_ASSERT(param0->unk_10 == param1->unk_08);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
     GF_ASSERT(v0);
 
     if (param1->unk_0C == 0) {
         v1 = (UnkStruct_02009794 *)param1->unk_00 + param2;
         GF_ASSERT(sub_02009D34(param0, v1->unk_00) == 1);
-        sub_0200A224(param0, v0, v1->unk_04, v1->unk_00, v1->unk_44[0], v1->unk_44[1], param1->unk_08, param3);
+        SpriteResourceCollection_InitResFromFile(param0, v0, v1->unk_04, v1->unk_00, v1->unk_44[0], v1->unk_44[1], param1->unk_08, param3);
     } else {
         v2 = (UnkStruct_0200A2C0 *)param1->unk_00 + param2;
         GF_ASSERT(sub_02009D34(param0, v2->unk_0C) == 1);
-        sub_0200A250(param0, v0, v2->unk_00, v2->unk_04, v2->unk_08, v2->unk_0C, v2->unk_10[0], v2->unk_10[1], param1->unk_08, param3, 0);
+        SpriteResourceCollection_InitRes(param0, v0, v2->unk_00, v2->unk_04, v2->unk_08, v2->unk_0C, v2->unk_10[0], v2->unk_10[1], param1->unk_08, param3, 0);
     }
 
     param0->count++;
@@ -153,21 +156,20 @@ SpriteResource * sub_02009794 (SpriteResourceCollection * param0, const UnkStruc
     return v0;
 }
 
-SpriteResource * sub_0200985C (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6)
+SpriteResource *sub_0200985C(SpriteResourceCollection *spriteResources, int param1, int param2, BOOL param3, 
+    int param4, int param5, int param6)
 {
-    SpriteResource * v0;
+    GF_ASSERT(spriteResources);
+    GF_ASSERT(spriteResources->unk_10 == 0);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_10 == 0);
+    SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
 
-    v0 = sub_0200A0A8(param0);
+    GF_ASSERT(spriteRes);
+    SpriteResourceCollection_InitRes(spriteResources, spriteRes, param1, param2, param3, param4, param5, 0, 0, param6, 0);
 
-    GF_ASSERT(v0);
-    sub_0200A250(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, 0);
+    spriteResources->count++;
 
-    param0->count++;
-
-    return v0;
+    return spriteRes;
 }
 
 SpriteResource * sub_020098B8 (SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6, int param7)
@@ -177,10 +179,10 @@ SpriteResource * sub_020098B8 (SpriteResourceCollection * param0, int param1, in
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 1);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
 
     GF_ASSERT(v0);
-    sub_0200A250(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, 0);
+    SpriteResourceCollection_InitRes(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, 0);
 
     param0->count++;
     return v0;
@@ -192,10 +194,10 @@ SpriteResource * sub_02009918 (SpriteResourceCollection * param0, int param1, in
 
     GF_ASSERT(param0);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
 
     GF_ASSERT(v0);
-    sub_0200A250(param0, v0, param1, param2, param3, param4, 0, 0, param5, param6, 0);
+    SpriteResourceCollection_InitRes(param0, v0, param1, param2, param3, param4, 0, 0, param5, param6, 0);
 
     param0->count++;
     return v0;
@@ -209,13 +211,13 @@ void sub_02009968 (SpriteResourceCollection * param0, SpriteResource * param1, i
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 0);
     GF_ASSERT(param1);
-    GF_ASSERT(param1->unk_04 == 0);
+    GF_ASSERT(param1->type == 0);
 
     v1 = sub_02009E08(param1);
     v0 = sub_02009EBC(param1);
 
     SpriteResourceCollection_Remove(param0, param1);
-    sub_0200A250(param0, param1, param2, param3, param4, v1, v0, 0, 0, param5, 0);
+    SpriteResourceCollection_InitRes(param0, param1, param2, param3, param4, v1, v0, 0, 0, param5, 0);
 }
 
 void sub_020099D4 (SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5)
@@ -227,14 +229,14 @@ void sub_020099D4 (SpriteResourceCollection * param0, SpriteResource * param1, i
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 1);
     GF_ASSERT(param1);
-    GF_ASSERT(param1->unk_04 == 1);
+    GF_ASSERT(param1->type == 1);
 
     v2 = sub_02009E08(param1);
     v0 = sub_02009EBC(param1);
     v1 = sub_02009EE8(param1);
 
     SpriteResourceCollection_Remove(param0, param1);
-    sub_0200A250(param0, param1, param2, param3, param4, v2, v0, v1, 1, param5, 0);
+    SpriteResourceCollection_InitRes(param0, param1, param2, param3, param4, v2, v0, v1, 1, param5, 0);
 }
 
 SpriteResource * sub_02009A4C (SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6)
@@ -244,10 +246,10 @@ SpriteResource * sub_02009A4C (SpriteResourceCollection * param0, NARC * param1,
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 0);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
     GF_ASSERT(v0);
 
-    sub_0200A288(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, 0);
+    SpriteResourceCollection_InitResFromNARC(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, 0);
     param0->count++;
 
     return v0;
@@ -260,10 +262,10 @@ SpriteResource * sub_02009AA8 (SpriteResourceCollection * param0, NARC * param1,
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 0);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
     GF_ASSERT(v0);
 
-    sub_0200A288(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, param7);
+    SpriteResourceCollection_InitResFromNARC(param0, v0, param1, param2, param3, param4, param5, 0, 0, param6, param7);
 
     param0->count++;
 
@@ -277,10 +279,10 @@ SpriteResource * sub_02009B04 (SpriteResourceCollection * param0, NARC * param1,
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 1);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
 
     GF_ASSERT(v0);
-    sub_0200A288(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, 0);
+    SpriteResourceCollection_InitResFromNARC(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, 0);
 
     param0->count++;
     return v0;
@@ -293,10 +295,10 @@ SpriteResource * sub_02009B64 (SpriteResourceCollection * param0, NARC * param1,
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 1);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
 
     GF_ASSERT(v0);
-    sub_0200A288(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, param8);
+    SpriteResourceCollection_InitResFromNARC(param0, v0, param1, param2, param3, param4, param5, param6, 1, param7, param8);
 
     param0->count++;
     return v0;
@@ -308,10 +310,10 @@ SpriteResource * sub_02009BC4 (SpriteResourceCollection * param0, NARC * param1,
 
     GF_ASSERT(param0);
 
-    v0 = sub_0200A0A8(param0);
+    v0 = SpriteResourceCollection_AllocResource(param0);
 
     GF_ASSERT(v0);
-    sub_0200A288(param0, v0, param1, param2, param3, param4, 0, 0, param5, param6, 0);
+    SpriteResourceCollection_InitResFromNARC(param0, v0, param1, param2, param3, param4, 0, 0, param5, param6, 0);
 
     param0->count++;
     return v0;
@@ -325,13 +327,13 @@ void sub_02009C14 (SpriteResourceCollection * param0, SpriteResource * param1, N
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10 == 0);
     GF_ASSERT(param1);
-    GF_ASSERT(param1->unk_04 == 0);
+    GF_ASSERT(param1->type == 0);
 
     v1 = sub_02009E08(param1);
     v0 = sub_02009EBC(param1);
 
     SpriteResourceCollection_Remove(param0, param1);
-    sub_0200A288(param0, param1, param2, param3, param4, v1, v0, 0, 0, param5, 0);
+    SpriteResourceCollection_InitResFromNARC(param0, param1, param2, param3, param4, v1, v0, 0, 0, param5, 0);
 }
 
 int sub_02009C80 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, UnkStruct_02009CFC * param2, int param3)
@@ -390,8 +392,8 @@ void sub_02009D4C (SpriteResource * param0)
 {
     GF_ASSERT(param0);
 
-    sub_0200A1F8(param0);
-    Resource_SetData(param0->resource, NULL);
+    SpriteResource_FreeData(param0);
+    Resource_SetData(param0->rawResource, NULL);
 }
 
 void SpriteResourceCollection_Remove(SpriteResourceCollection *spriteResources, SpriteResource *resource)
@@ -399,17 +401,17 @@ void SpriteResourceCollection_Remove(SpriteResourceCollection *spriteResources, 
     GF_ASSERT(spriteResources);
     GF_ASSERT(spriteResources->resources);
 
-    sub_0200A1F8(resource);
-    ResourceCollection_Remove(spriteResources->collection, resource->resource);
+    SpriteResource_FreeData(resource);
+    ResourceCollection_Remove(spriteResources->collection, resource->rawResource);
 
-    resource->resource = NULL;
+    resource->rawResource = NULL;
     spriteResources->count--;
 }
 
 void SpriteResourceCollection_Clear(SpriteResourceCollection *spriteResources)
 {
     for (int i = 0; i < spriteResources->capacity; i++) {
-        if (spriteResources->resources[i].resource != NULL) {
+        if (spriteResources->resources[i].rawResource != NULL) {
             SpriteResourceCollection_Remove(spriteResources, spriteResources->resources + i);
         }
     }
@@ -423,8 +425,8 @@ SpriteResource * sub_02009DC8 (const SpriteResourceCollection * param0, int para
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->capacity; v0++) {
-        if (param0->resources[v0].resource) {
-            v1 = Resource_GetID(param0->resources[v0].resource);
+        if (param0->resources[v0].rawResource) {
+            v1 = Resource_GetID(param0->resources[v0].rawResource);
 
             if (v1 == param1) {
                 return param0->resources + v0;
@@ -438,90 +440,90 @@ SpriteResource * sub_02009DC8 (const SpriteResourceCollection * param0, int para
 int sub_02009E08 (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
-    return Resource_GetID(param0->resource);
+    return Resource_GetID(param0->rawResource);
 }
 
 NNSG2dCharacterData * sub_02009E1C (const SpriteResource * param0)
 {
-    UnkStruct_0200A144 * v0;
+    CharacterResourceData * v0;
 
-    GF_ASSERT(param0->unk_04 == 0);
+    GF_ASSERT(param0->type == 0);
 
-    v0 = (UnkStruct_0200A144 *)sub_0200A20C(param0);
-    return v0->unk_00;
+    v0 = (CharacterResourceData *)SpriteResource_GetData(param0);
+    return v0->charData;
 }
 
 NNSG2dPaletteData * sub_02009E34 (const SpriteResource * param0)
 {
-    UnkStruct_02009E34 * v0;
+    PaletteResourceData * v0;
 
-    GF_ASSERT(param0->unk_04 == 1);
+    GF_ASSERT(param0->type == 1);
 
-    v0 = (UnkStruct_02009E34 *)sub_0200A20C(param0);
-    return v0->unk_00;
+    v0 = (PaletteResourceData *)SpriteResource_GetData(param0);
+    return v0->paletteData;
 }
 
 NNSG2dCellDataBank * sub_02009E4C (const SpriteResource * param0)
 {
-    UnkStruct_02009E4C * v0;
+    CellResourceData * v0;
 
-    GF_ASSERT(param0->unk_04 == 2);
+    GF_ASSERT(param0->type == 2);
 
-    v0 = (UnkStruct_02009E4C *)sub_0200A20C(param0);
-    return v0->unk_00;
+    v0 = (CellResourceData *)SpriteResource_GetData(param0);
+    return v0->cellBank;
 }
 
 NNSG2dCellAnimBankData * sub_02009E64 (const SpriteResource * param0)
 {
-    UnkStruct_02009E64 * v0;
+    CellAnimResourceData * v0;
 
-    GF_ASSERT(param0->unk_04 == 3);
+    GF_ASSERT(param0->type == 3);
 
-    v0 = (UnkStruct_02009E64 *)sub_0200A20C(param0);
-    return v0->unk_00;
+    v0 = (CellAnimResourceData *)SpriteResource_GetData(param0);
+    return v0->animBank;
 }
 
 NNSG2dMultiCellDataBank * sub_02009E7C (const SpriteResource * param0)
 {
-    UnkStruct_02009E7C * v0;
+    MultiCellResourceData * v0;
 
-    GF_ASSERT(param0->unk_04 == 4);
+    GF_ASSERT(param0->type == 4);
 
-    v0 = (UnkStruct_02009E7C *)sub_0200A20C(param0);
-    return v0->unk_00;
+    v0 = (MultiCellResourceData *)SpriteResource_GetData(param0);
+    return v0->multiCellBank;
 }
 
 NNSG2dMultiCellAnimBankData * sub_02009E94 (const SpriteResource * param0)
 {
-    UnkStruct_02009E94 * v0;
+    MultiCellAnimResourceData * v0;
 
-    GF_ASSERT(param0->unk_04 == 5);
+    GF_ASSERT(param0->type == 5);
 
-    v0 = (UnkStruct_02009E94 *)sub_0200A20C(param0);
-    return v0->unk_00;
+    v0 = (MultiCellAnimResourceData *)SpriteResource_GetData(param0);
+    return v0->multiCellAnimBank;
 }
 
 int sub_02009EAC (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
-    return param0->unk_04;
+    return param0->type;
 }
 
 int sub_02009EBC (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
 
-    if (param0->unk_04 == 0) {
-        UnkStruct_0200A144 * v0;
+    if (param0->type == 0) {
+        CharacterResourceData * v0;
 
-        v0 = sub_0200A20C(param0);
+        v0 = SpriteResource_GetData(param0);
         return v0->unk_04;
     }
 
-    if (param0->unk_04 == 1) {
-        UnkStruct_02009E34 * v1;
+    if (param0->type == 1) {
+        PaletteResourceData * v1;
 
-        v1 = sub_0200A20C(param0);
+        v1 = SpriteResource_GetData(param0);
         return v1->unk_04;
     }
 
@@ -532,10 +534,10 @@ int sub_02009EE8 (const SpriteResource * param0)
 {
     GF_ASSERT(param0);
 
-    if (param0->unk_04 == 1) {
-        UnkStruct_02009E34 * v0;
+    if (param0->type == 1) {
+        PaletteResourceData * v0;
 
-        v0 = sub_0200A20C(param0);
+        v0 = SpriteResource_GetData(param0);
         return v0->unk_08;
     }
 
@@ -546,17 +548,17 @@ void sub_02009F08 (SpriteResource * param0, int param1)
 {
     GF_ASSERT(param0);
 
-    if (param0->unk_04 == 0) {
-        UnkStruct_0200A144 * v0;
+    if (param0->type == 0) {
+        CharacterResourceData * v0;
 
-        v0 = sub_0200A20C(param0);
+        v0 = SpriteResource_GetData(param0);
         v0->unk_04 = param1;
     }
 
-    if (param0->unk_04 == 1) {
-        UnkStruct_02009E34 * v1;
+    if (param0->type == 1) {
+        PaletteResourceData * v1;
 
-        v1 = sub_0200A20C(param0);
+        v1 = SpriteResource_GetData(param0);
         v1->unk_04 = param1;
     }
 }
@@ -697,158 +699,141 @@ int sub_0200A074 (const UnkStruct_02009F38 * param0, int param1)
     return v0;
 }
 
-static SpriteResource * sub_0200A0A8 (SpriteResourceCollection * param0)
+static SpriteResource *SpriteResourceCollection_AllocResource(SpriteResourceCollection *spriteResources)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->capacity; v0++) {
-        if (param0->resources[v0].resource == NULL) {
-            return param0->resources + v0;
+    for (int i = 0; i < spriteResources->capacity; i++) {
+        if (spriteResources->resources[i].rawResource == NULL) {
+            return spriteResources->resources + i;
         }
     }
 
     return NULL;
 }
 
-static void sub_0200A0D4 (SpriteResource * param0, int param1, int param2, int param3, int param4)
+static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteResourceType type, int param2, int param3, enum HeapId heapID)
 {
-    void * v0;
+    void *rawData = Resource_GetData(spriteRes->rawResource);
 
-    v0 = Resource_GetData(param0->resource);
-
-    switch (param1) {
-    case 0:
-        param0->unk_08 = sub_0200A144(v0, param2, param4);
+    switch (type) {
+    case SPRITE_RESOURCE_CHARACTER:
+        spriteRes->data = SpriteUtil_UnpackCharacterResource(rawData, param2, heapID);
         break;
-    case 1:
-        param0->unk_08 = sub_0200A164(v0, param2, param3, param4);
+    case SPRITE_RESOURCE_PALETTE:
+        spriteRes->data = SpriteUtil_UnpackPaletteResource(rawData, param2, param3, heapID);
         break;
-    case 2:
-        param0->unk_08 = sub_0200A188(v0, param4);
+    case SPRITE_RESOURCE_CELL:
+        spriteRes->data = SpriteUtil_UnpackCellResource(rawData, heapID);
         break;
-    case 3:
-        param0->unk_08 = sub_0200A1A4(v0, param4);
+    case SPRITE_RESOURCE_CELL_ANIM:
+        spriteRes->data = SpriteUtil_UnpackCellAnimResource(rawData, heapID);
         break;
-    case 4:
-        param0->unk_08 = sub_0200A1C0(v0, param4);
+    case SPRITE_RESOURCE_MULTI_CELL:
+        spriteRes->data = SpriteUtil_UnpackMultiCellResource(rawData, heapID);
         break;
-    case 5:
-        param0->unk_08 = sub_0200A1DC(v0, param4);
+    case SPRITE_RESOURCE_MULTI_CELL_ANIM:
+        spriteRes->data = SpriteUtil_UnpackMultiCellAnimResource(rawData, heapID);
         break;
     }
 }
 
-static UnkStruct_0200A144 * sub_0200A144 (void * param0, int param1, int param2)
+static CharacterResourceData *SpriteUtil_UnpackCharacterResource(void *rawData, int param1, enum HeapId heapID)
 {
-    UnkStruct_0200A144 * v0;
+    CharacterResourceData *charRes = Heap_AllocFromHeap(heapID, sizeof(CharacterResourceData));
+    NNS_G2dGetUnpackedCharacterData(rawData, &charRes->charData);
+    charRes->unk_04 = param1;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0200A144));
-    NNS_G2dGetUnpackedCharacterData(param0, &v0->unk_00);
-    v0->unk_04 = param1;
-
-    return v0;
+    return charRes;
 }
 
-static UnkStruct_02009E34 * sub_0200A164 (void * param0, int param1, int param2, int param3)
+static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, int param1, int param2, enum HeapId heapID)
 {
-    UnkStruct_02009E34 * v0;
+    PaletteResourceData *paletteRes = Heap_AllocFromHeap(heapID, sizeof(PaletteResourceData));
+    NNS_G2dGetUnpackedPaletteData(rawData, &paletteRes->paletteData);
 
-    v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_02009E34));
-    NNS_G2dGetUnpackedPaletteData(param0, &v0->unk_00);
+    paletteRes->unk_04 = param1;
+    paletteRes->unk_08 = param2;
 
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-
-    return v0;
+    return paletteRes;
 }
 
-static UnkStruct_02009E4C * sub_0200A188 (void * param0, int param1)
+static CellResourceData *SpriteUtil_UnpackCellResource(void *rawData, enum HeapId heapID)
 {
-    UnkStruct_02009E4C * v0;
+    CellResourceData *cellRes = Heap_AllocFromHeap(heapID, sizeof(CellResourceData));
+    NNS_G2dGetUnpackedCellBank(rawData, &cellRes->cellBank);
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009E4C));
-    NNS_G2dGetUnpackedCellBank(param0, &v0->unk_00);
-
-    return v0;
+    return cellRes;
 }
 
-static UnkStruct_02009E64 * sub_0200A1A4 (void * param0, int param1)
+static CellAnimResourceData *SpriteUtil_UnpackCellAnimResource(void *rawData, enum HeapId heapID)
 {
-    UnkStruct_02009E64 * v0;
+    CellAnimResourceData *cellAnimRes = Heap_AllocFromHeap(heapID, sizeof(CellAnimResourceData));
+    NNS_G2dGetUnpackedAnimBank(rawData, &cellAnimRes->animBank);
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009E64));
-    NNS_G2dGetUnpackedAnimBank(param0, &v0->unk_00);
-
-    return v0;
+    return cellAnimRes;
 }
 
-static UnkStruct_02009E7C * sub_0200A1C0 (void * param0, int param1)
+static MultiCellResourceData *SpriteUtil_UnpackMultiCellResource(void *rawData, enum HeapId heapID)
 {
-    UnkStruct_02009E7C * v0;
+    MultiCellResourceData *multiCellRes = Heap_AllocFromHeap(heapID, sizeof(MultiCellResourceData));
+    NNS_G2dGetUnpackedMultiCellBank(rawData, &multiCellRes->multiCellBank);
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009E7C));
-    NNS_G2dGetUnpackedMultiCellBank(param0, &v0->unk_00);
-
-    return v0;
+    return multiCellRes;
 }
 
-static UnkStruct_02009E94 * sub_0200A1DC (void * param0, int param1)
+static MultiCellAnimResourceData *SpriteUtil_UnpackMultiCellAnimResource(void *rawData, enum HeapId heapID)
 {
-    UnkStruct_02009E94 * v0;
+    MultiCellAnimResourceData *multiCellAnimRes = Heap_AllocFromHeap(heapID, sizeof(MultiCellAnimResourceData));
+    NNS_G2dGetUnpackedMCAnimBank(rawData, &multiCellAnimRes->multiCellAnimBank);
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009E94));
-    NNS_G2dGetUnpackedMCAnimBank(param0, &v0->unk_00);
-
-    return v0;
+    return multiCellAnimRes;
 }
 
-static void sub_0200A1F8 (SpriteResource * param0)
+static void SpriteResource_FreeData(SpriteResource *spriteRes)
 {
-    if (param0->unk_08) {
-        Heap_FreeToHeap(param0->unk_08);
+    if (spriteRes->data) {
+        Heap_FreeToHeap(spriteRes->data);
     }
 
-    param0->unk_08 = NULL;
+    spriteRes->data = NULL;
 }
 
-static void * sub_0200A20C (const SpriteResource * param0)
+static void *SpriteResource_GetData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_08);
+    GF_ASSERT(spriteRes);
+    GF_ASSERT(spriteRes->data);
 
-    return param0->unk_08;
+    return spriteRes->data;
 }
 
-static void sub_0200A224 (SpriteResourceCollection * param0, SpriteResource * param1, const char * param2, int param3, int param4, int param5, int param6, int param7)
+static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+    const char *filename, int id, int param4, int param5, enum SpriteResourceType type, enum HeapId heapID)
 {
-    param1->resource = ResourceCollection_AddFromFile(param0->collection, param2, param3, param7);
-    param1->unk_04 = param6;
+    spriteRes->rawResource = ResourceCollection_AddFromFile(spriteResources->collection, filename, id, heapID);
+    spriteRes->type = type;
 
-    sub_0200A0D4(param1, param6, param4, param5, param7);
+    SpriteResource_UnpackData(spriteRes, type, param4, param5, heapID);
 }
 
-static void sub_0200A250 (SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+    int narcIdx, int memberIdx, BOOL compressed, int id, int param6, int param7, enum SpriteResourceType type, enum HeapId heapID, u32 param10)
 {
-    void * v0;
+    void *data = sub_02006FE8(narcIdx, memberIdx, compressed, heapID, param10);
 
-    v0 = sub_02006FE8(param2, param3, param4, param9, param10);
+    spriteRes->rawResource = ResourceCollection_Add(spriteResources->collection, data, id);
+    spriteRes->type = type;
 
-    param1->resource = ResourceCollection_Add(param0->collection, v0, param5);
-    param1->unk_04 = param8;
-
-    sub_0200A0D4(param1, param8, param6, param7, param9);
+    SpriteResource_UnpackData(spriteRes, type, param6, param7, heapID);
 }
 
-static void sub_0200A288 (SpriteResourceCollection * param0, SpriteResource * param1, NARC * param2, int param3, BOOL param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+    NARC *narc, int memberIdx, BOOL compressed, int id, int param6, int param7, enum SpriteResourceType type, enum HeapId heapID, u32 param10)
 {
-    void * v0;
+    void *data = sub_0200A2DC(narc, memberIdx, compressed, heapID, param10);
 
-    v0 = sub_0200A2DC(param2, param3, param4, param9, param10);
+    spriteRes->rawResource = ResourceCollection_Add(spriteResources->collection, data, id);
+    spriteRes->type = type;
 
-    param1->resource = ResourceCollection_Add(param0->collection, v0, param5);
-    param1->unk_04 = param8;
-
-    sub_0200A0D4(param1, param8, param6, param7, param9);
+    SpriteResource_UnpackData(spriteRes, type, param6, param7, heapID);
 }
 
 static int sub_0200A2C0 (const UnkStruct_0200A2C0 * param0)

@@ -11,6 +11,15 @@
 
 #include <nnsys.h>
 
+enum SpriteResourceType {
+    SPRITE_RESOURCE_CHARACTER = 0,
+    SPRITE_RESOURCE_PALETTE,
+    SPRITE_RESOURCE_CELL,
+    SPRITE_RESOURCE_CELL_ANIM,
+    SPRITE_RESOURCE_MULTI_CELL,
+    SPRITE_RESOURCE_MULTI_CELL_ANIM,
+};
+
 SpriteResourceCollection * SpriteResourceCollection_New(int param0, int param1, enum HeapId param2);
 void SpriteResourceCollection_Delete(SpriteResourceCollection * param0);
 SpriteResource * sub_02009794(SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3);
