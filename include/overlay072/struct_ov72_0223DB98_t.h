@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV72_0223DB98_T_H
 #define POKEPLATINUM_STRUCT_OV72_0223DB98_T_H
 
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
+#include "sprite_resource.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0200C738.h"

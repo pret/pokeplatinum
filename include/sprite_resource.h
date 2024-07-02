@@ -2,12 +2,9 @@
 #define POKEPLATINUM_SPRITE_RESOURCE_H
 
 #include "constants/heap.h"
+#include "resource_collection.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_defs/struct_02009CFC.h"
-#include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02009F38_decl.h"
 
 #include <nnsys.h>
 
@@ -19,6 +16,50 @@ enum SpriteResourceType {
     SPRITE_RESOURCE_MULTI_CELL,
     SPRITE_RESOURCE_MULTI_CELL_ANIM,
 };
+
+typedef struct SpriteResource {
+    Resource *rawResource;
+    enum SpriteResourceType type;
+    void * data;
+} SpriteResource;
+
+typedef struct SpriteResourceCollection {
+    ResourceCollection * collection;
+    SpriteResource * resources;
+    int capacity;
+    int count;
+    enum SpriteResourceType type;
+} SpriteResourceCollection;
+
+typedef struct SpriteResourceTableEntryFile {
+    int id;
+    char filename[64];
+    NNS_G2D_VRAM_TYPE vramType;
+    int paletteIndex;
+} SpriteResourceTableEntryFile;
+
+typedef struct SpriteResourceTableEntryNARC {
+    int narcIndex;
+    int memberIndex;
+    BOOL compressed;
+    int id;
+    NNS_G2D_VRAM_TYPE vramType;
+    int paletteIndex;
+} SpriteResourceTableEntryNARC;
+
+typedef struct SpriteResourceTable {
+    void *entries;
+    int count;
+    enum SpriteResourceType type;
+    u8 isNARC; // Whether the entries are SpriteResourceTableEntryNARC or SpriteResourceTableEntryFile
+} SpriteResourceTable;
+
+// Fixed size, non-owning list of SpriteResource pointers
+typedef struct SpriteResourceList {
+    SpriteResource **resources;
+    int capacity;
+    int count;
+} SpriteResourceList;
 
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, enum SpriteResourceType type, enum HeapId heapID);
 void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources);

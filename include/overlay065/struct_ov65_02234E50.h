@@ -4,7 +4,7 @@
 #include <nnsys.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_02009DC8_decl.h"
+#include "sprite_resource.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"

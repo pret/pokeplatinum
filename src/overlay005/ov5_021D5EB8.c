@@ -4,9 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_02009F38_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"

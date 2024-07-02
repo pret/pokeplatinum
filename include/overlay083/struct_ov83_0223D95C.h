@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223D95C_H
 #define POKEPLATINUM_STRUCT_OV83_0223D95C_H
 
-#include "struct_decls/struct_02009DC8_decl.h"
+#include "sprite_resource.h"
 
 #include "cell_actor.h"
 

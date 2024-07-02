@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0200A328_H
 #define POKEPLATINUM_UNK_0200A328_H
 
+#include "sprite_resource.h"
+
 #include <nnsys.h>
 
 #include "struct_decls/struct_02009DC8_decl.h"

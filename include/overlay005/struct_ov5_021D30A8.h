@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021D30A8_H
 #define POKEPLATINUM_STRUCT_OV5_021D30A8_H
 
-#include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_02009CFC.h"
+#include "sprite_resource.h"
 #include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"

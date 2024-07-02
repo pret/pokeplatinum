@@ -3,7 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02009DC8_decl.h"
+#include "sprite_resource.h"
 
 #include "overlay021/struct_ov21_021D4CA0.h"
 

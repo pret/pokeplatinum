@@ -5,7 +5,6 @@
 #include "nnsys/g2d/g2d_Image.h"
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "struct_defs/struct_02009CFC.h"
 
 #include "narc.h"
 #include "unk_02006E3C.h"
@@ -16,42 +15,32 @@
 #define SPRITE_VRAM_TYPE_DEFAULT NNS_G2D_VRAM_TYPE_3DMAIN
 #define NARC_INDEX_NONE 0xFFFFFFFE
 
-typedef struct SpriteResource_t {
-    Resource *rawResource;
-    enum SpriteResourceType type;
-    void * data;
-} SpriteResource;
+typedef struct CharResourceData {
+    NNSG2dCharacterData * charData;
+    NNS_G2D_VRAM_TYPE vramType;
+} CharResourceData;
 
-typedef struct SpriteResourceCollection_t {
-    ResourceCollection * collection;
-    SpriteResource * resources;
-    int capacity;
-    int count;
-    enum SpriteResourceType type;
-} SpriteResourceCollection;
-
-typedef struct SpriteResourceTableEntryFile {
-    int id;
-    char filename[64];
+typedef struct PaletteResourceData {
+    NNSG2dPaletteData * paletteData;
     NNS_G2D_VRAM_TYPE vramType;
     int paletteIndex;
-} SpriteResourceTableEntryFile;
+} PaletteResourceData;
 
-typedef struct SpriteResourceTableEntryNARC {
-    int narcIndex;
-    int memberIndex;
-    BOOL compressed;
-    int id;
-    NNS_G2D_VRAM_TYPE vramType;
-    int paletteIndex;
-} SpriteResourceTableEntryNARC;
+typedef struct CellResourceData {
+    NNSG2dCellDataBank * cellBank;
+} CellResourceData;
 
-typedef struct UnkStruct_02009F38_t {
-    void *entries;
-    int count;
-    enum SpriteResourceType type;
-    u8 isNARC; // Whether the entries are SpriteResourceTableEntryNARC or SpriteResourceTableEntryFile
-} SpriteResourceTable;
+typedef struct CellAnimResourceData {
+    NNSG2dAnimBankData * animBank;
+} CellAnimResourceData;
+
+typedef struct MultiCellResourceData {
+    NNSG2dMultiCellDataBank * multiCellBank;
+} MultiCellResourceData;
+
+typedef struct MultiCellAnimResourceData {
+    NNSG2dAnimBankData * multiCellAnimBank;
+} MultiCellAnimResourceData;
 
 typedef struct SpriteResourceTableBinary {
     enum SpriteResourceType type;
@@ -60,33 +49,6 @@ typedef struct SpriteResourceTableBinary {
         SpriteResourceTableEntryNARC narcEntries[1];
     };
 } SpriteResourceTableBinary;
-
-typedef struct {
-    NNSG2dCharacterData * charData;
-    NNS_G2D_VRAM_TYPE vramType;
-} CharResourceData;
-
-typedef struct {
-    NNSG2dPaletteData * paletteData;
-    NNS_G2D_VRAM_TYPE vramType;
-    int paletteIndex;
-} PaletteResourceData;
-
-typedef struct {
-    NNSG2dCellDataBank * cellBank;
-} CellResourceData;
-
-typedef struct {
-    NNSG2dAnimBankData * animBank;
-} CellAnimResourceData;
-
-typedef struct {
-    NNSG2dMultiCellDataBank * multiCellBank;
-} MultiCellResourceData;
-
-typedef struct {
-    NNSG2dAnimBankData * multiCellAnimBank;
-} MultiCellAnimResourceData;
 
 static SpriteResource *SpriteResourceCollection_AllocResource(SpriteResourceCollection *spriteResources);
 static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, const char *filename, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID);

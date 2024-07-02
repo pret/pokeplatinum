@@ -6,8 +6,7 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_02009DC8_decl.h"
+#include "sprite_resource.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "overlay021/struct_ov21_021D13FC.h"

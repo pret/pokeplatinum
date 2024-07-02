@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_02009DC8_DECL_H
-#define POKEPLATINUM_STRUCT_02009DC8_DECL_H
-
-typedef struct SpriteResource_t SpriteResource;
-
-#endif // POKEPLATINUM_STRUCT_02009DC8_DECL_H
