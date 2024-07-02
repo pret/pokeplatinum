@@ -27,16 +27,16 @@ BOOL sub_0200A328(const SpriteResource *param0)
     return sub_0201EA24(&v0);
 }
 
-void sub_0200A368(const UnkStruct_02009CFC *param0)
+void sub_0200A368(const SpriteResourceList *param0)
 {
     int v0;
     BOOL v1;
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0]) {
-            v1 = sub_0200A328(param0->unk_00[v0]);
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0]) {
+            v1 = sub_0200A328(param0->resources[v0]);
             GF_ASSERT(v1);
         }
     }
@@ -72,16 +72,16 @@ BOOL sub_0200A3DC(const SpriteResource *param0)
     return sub_0201EA24(&v0);
 }
 
-void sub_0200A41C(const UnkStruct_02009CFC *param0)
+void sub_0200A41C(const SpriteResourceList *param0)
 {
     int v0;
     BOOL v1;
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0]) {
-            v1 = sub_0200A3DC(param0->unk_00[v0]);
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0]) {
+            v1 = sub_0200A3DC(param0->resources[v0]);
             GF_ASSERT(v1);
         }
     }
@@ -140,15 +140,15 @@ void sub_0200A4E4(SpriteResource *param0)
     sub_0201EB50(v0);
 }
 
-void sub_0200A508(UnkStruct_02009CFC *param0)
+void sub_0200A508(SpriteResourceList *param0)
 {
     int v0;
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0]) {
-            sub_0200A4E4(param0->unk_00[v0]);
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0]) {
+            sub_0200A4E4(param0->resources[v0]);
         }
     }
 }
@@ -210,16 +210,16 @@ BOOL sub_0200A5C8(const SpriteResource *param0)
     return sub_0201F90C(&v0);
 }
 
-void sub_0200A60C(const UnkStruct_02009CFC *param0)
+void sub_0200A60C(const SpriteResourceList *param0)
 {
     int v0;
     BOOL v1;
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0]) {
-            v1 = sub_0200A5C8(param0->unk_00[v0]);
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0]) {
+            v1 = sub_0200A5C8(param0->resources[v0]);
             GF_ASSERT(v1);
         }
     }
@@ -240,16 +240,16 @@ BOOL sub_0200A640(const SpriteResource *param0)
     return sub_0201F950(&v0);
 }
 
-void sub_0200A684(const UnkStruct_02009CFC *param0)
+void sub_0200A684(const SpriteResourceList *param0)
 {
     int v0;
     BOOL v1;
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0]) {
-            v1 = sub_0200A640(param0->unk_00[v0]);
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0]) {
+            v1 = sub_0200A640(param0->resources[v0]);
             GF_ASSERT(v1);
         }
     }
@@ -280,15 +280,15 @@ void sub_0200A6DC(SpriteResource *param0)
     sub_0201F9F0(v0);
 }
 
-void sub_0200A700(UnkStruct_02009CFC *param0)
+void sub_0200A700(SpriteResourceList *param0)
 {
     int v0;
 
     GF_ASSERT(param0);
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0]) {
-            sub_0200A6DC(param0->unk_00[v0]);
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0]) {
+            sub_0200A6DC(param0->resources[v0]);
         }
     }
 }

@@ -34,10 +34,10 @@ SpriteResource *SpriteResourceCollection_AddPaletteFrom(SpriteResourceCollection
 SpriteResource *SpriteResourceCollection_AddPaletteFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID, int param8);
 SpriteResource *SpriteResourceCollection_AddFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, enum SpriteResourceType type, enum HeapId heapID);
 void SpriteResourceCollection_ModifyCharFrom(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, enum HeapId heapID);
-int sub_02009C80(SpriteResourceCollection * param0, const SpriteResourceTable * param1, UnkStruct_02009CFC * param2, int param3);
-void sub_02009CB4(SpriteResourceCollection * param0, const SpriteResourceTable * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5);
-UnkStruct_02009CFC * sub_02009CFC(int param0, int param1);
-void sub_02009D20(UnkStruct_02009CFC * param0);
+int SpriteResourceCollection_AddTable(SpriteResourceCollection * param0, const SpriteResourceTable * param1, SpriteResourceList * param2, int param3);
+void SpriteResoureCollection_AddTableEx(SpriteResourceCollection * param0, const SpriteResourceTable * param1, int param2, int param3, SpriteResourceList * param4, int param5);
+SpriteResourceList * SpriteResourceList_New(int param0, int param1);
+void SpriteResourceList_Delete(SpriteResourceList * param0);
 BOOL SpriteResourceCollection_IsIDUnused(const SpriteResourceCollection * param0, int param1);
 void SpriteResource_ReleaseData(SpriteResource * param0);
 void SpriteResourceCollection_Remove(SpriteResourceCollection * param0, SpriteResource * param1);

@@ -32,7 +32,7 @@ typedef struct {
     CellActorCollection *unk_00;
     UnkStruct_02009508 *unk_04;
     SpriteResourceCollection *unk_08[4];
-    UnkStruct_02009CFC *unk_18[2];
+    SpriteResourceList *unk_18[2];
     int unk_20[4];
     UnkStruct_0200C738 unk_30;
 } UnkStruct_0205D094;
@@ -86,7 +86,7 @@ static CellActor *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *
 static void sub_0205D3AC(UnkStruct_0205D3AC *param0);
 static void sub_0205D0B4(UnkStruct_0205D094 *param0);
 static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2);
-static int sub_0205D1C4(SpriteResourceCollection *param0, UnkStruct_02009CFC **param1, u32 param2);
+static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **param1, u32 param2);
 static void sub_0205D22C(UnkStruct_0205D094 *param0);
 static void sub_0205D3C4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1);
 static void sub_0205D404(struct UnkStruct_0205D3AC_t *param0);
@@ -443,14 +443,14 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
 
     param0->unk_20[0] = sub_0205D1C4(param0->unk_08[0], &param0->unk_18[0], Unk_020ED8B4[0][param1]);
 
-    for (v0 = 0; v0 < param0->unk_18[0]->unk_08; v0++) {
-        SpriteResource_SetVRAMType(param0->unk_18[0]->unk_00[v0], param2);
+    for (v0 = 0; v0 < param0->unk_18[0]->count; v0++) {
+        SpriteResource_SetVRAMType(param0->unk_18[0]->resources[v0], param2);
     }
 
     param0->unk_20[1] = sub_0205D1C4(param0->unk_08[1], &param0->unk_18[1], Unk_020ED8B4[1][param1]);
 
-    for (v0 = 0; v0 < param0->unk_18[1]->unk_08; v0++) {
-        SpriteResource_SetVRAMType(param0->unk_18[1]->unk_00[v0], param2);
+    for (v0 = 0; v0 < param0->unk_18[1]->count; v0++) {
+        SpriteResource_SetVRAMType(param0->unk_18[1]->resources[v0], param2);
     }
 
     param0->unk_20[2] = sub_0205D1C4(param0->unk_08[2], NULL, 0);
@@ -465,10 +465,10 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     Heap_FreeToHeap(v1);
 }
 
-static int sub_0205D1C4(SpriteResourceCollection *param0, UnkStruct_02009CFC **param1, u32 param2)
+static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **param1, u32 param2)
 {
     SpriteResourceTable *v0;
-    UnkStruct_02009CFC *v1;
+    SpriteResourceList *v1;
     int v2;
     void *v3;
 
@@ -480,13 +480,13 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, UnkStruct_02009CFC **p
 
     if (param1 != NULL) {
         v2 = SpriteResourceTable_GetCount(v0);
-        *param1 = sub_02009CFC(v2, 4);
+        *param1 = SpriteResourceList_New(v2, 4);
         v1 = *param1;
     } else {
         v1 = NULL;
     }
 
-    v2 = sub_02009C80(param0, v0, v1, 4);
+    v2 = SpriteResourceCollection_AddTable(param0, v0, v1, 4);
 
     SpriteResourceTable_Clear(v0);
     Heap_FreeToHeap(v0);
@@ -508,7 +508,7 @@ static void sub_0205D22C(UnkStruct_0205D094 *param0)
     sub_0200A700(param0->unk_18[1]);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_02009D20(param0->unk_18[v0]);
+        SpriteResourceList_Delete(param0->unk_18[v0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {

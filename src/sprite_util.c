@@ -92,7 +92,7 @@ static SpriteResource *SpriteResourceCollection_AllocResource(SpriteResourceColl
 static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, const char *filename, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID);
 static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
 static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
-static void *sub_0200A2DC(NARC *param0, u32 param1, BOOL param2, u32 param3, u32 param4);
+static void *SpriteUtil_ReadNARCMember(NARC *param0, u32 param1, BOOL param2, u32 param3, u32 param4);
 static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteResourceType type, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
 static CharResourceData *SpriteUtil_UnpackCharacterResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
 static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
@@ -460,50 +460,45 @@ void SpriteResourceCollection_ModifyCharFrom(SpriteResourceCollection *spriteRes
     );
 }
 
-int sub_02009C80 (SpriteResourceCollection * param0, const SpriteResourceTable * param1, UnkStruct_02009CFC * param2, int param3)
+int SpriteResourceCollection_AddTable(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, 
+    SpriteResourceList *outList, int heapID)
 {
-    GF_ASSERT(param0);
-    GF_ASSERT(param1);
+    GF_ASSERT(spriteResources);
+    GF_ASSERT(table);
 
-    sub_02009CB4(param0, param1, 0, param1->count, param2, param3);
-    return param1->count;
+    SpriteResoureCollection_AddTableEx(spriteResources, table, 0, table->count, outList, heapID);
+    return table->count;
 }
 
-void sub_02009CB4 (SpriteResourceCollection * param0, const SpriteResourceTable * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5)
+void SpriteResoureCollection_AddTableEx(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, int first, int count, 
+    SpriteResourceList *outList, int heapID)
 {
-    int v0;
-    SpriteResource * v1;
+    for (int i = first; i < first + count; i++) {
+        SpriteResource *spriteRes = SpriteResourceCollection_AddFromTable(spriteResources, table, i, heapID);
 
-    for (v0 = param2; v0 < param2 + param3; v0++) {
-        v1 = SpriteResourceCollection_AddFromTable(param0, param1, v0, param5);
-
-        if (param4 != NULL) {
-            if (param4->unk_04 > param4->unk_08) {
-                param4->unk_00[param4->unk_08] = v1;
-                param4->unk_08++;
-            }
+        if (outList != NULL && outList->capacity > outList->count) {
+            outList->resources[outList->count] = spriteRes;
+            outList->count++;
         }
     }
 }
 
-UnkStruct_02009CFC * sub_02009CFC (int param0, int param1)
+SpriteResourceList *SpriteResourceList_New(int capacity, int heapID)
 {
-    UnkStruct_02009CFC * v0;
+    SpriteResourceList *list = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceList));
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009CFC));
+    list->resources = Heap_AllocFromHeap(heapID, sizeof(SpriteResource *) * capacity);
+    list->capacity = capacity;
+    list->count = 0;
 
-    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(SpriteResource *) * param0);
-    v0->unk_04 = param0;
-    v0->unk_08 = 0;
-
-    return v0;
+    return list;
 }
 
-void sub_02009D20 (UnkStruct_02009CFC * param0)
+void SpriteResourceList_Delete(SpriteResourceList *list)
 {
-    Heap_FreeToHeap(param0->unk_00);
-    Heap_FreeToHeap(param0);
-    param0 = NULL;
+    Heap_FreeToHeap(list->resources);
+    Heap_FreeToHeap(list);
+    list = NULL;
 }
 
 BOOL SpriteResourceCollection_IsIDUnused(const SpriteResourceCollection *spriteResources, int id)
@@ -910,7 +905,7 @@ static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteRes
 static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
     NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10)
 {
-    void *data = sub_0200A2DC(narc, memberIdx, compressed, heapID, param10);
+    void *data = SpriteUtil_ReadNARCMember(narc, memberIdx, compressed, heapID, param10);
 
     spriteRes->rawResource = ResourceCollection_Add(spriteResources->collection, data, id);
     spriteRes->type = type;
@@ -928,30 +923,28 @@ static int SpriteResourceTableEntryNARC_GetEntryCount(const SpriteResourceTableE
     return i;
 }
 
-static void * sub_0200A2DC (NARC * param0, u32 param1, BOOL param2, u32 param3, u32 param4)
+static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, u32 param4)
 {
-    void * v0;
+    void *data = NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 
-    v0 = NARC_AllocAndReadWholeMember(param0, param1, param3);
-
-    if (v0 != NULL) {
-        if (param2) {
-            void * v1;
+    if (data != NULL) {
+        if (compressed) {
+            void *decompressed;
 
             if (param4 == 0) {
-                v1 = Heap_AllocFromHeap(param3, MI_GetUncompressedSize(v0));
+                decompressed = Heap_AllocFromHeap(heapID, MI_GetUncompressedSize(data));
             } else {
-                v1 = Heap_AllocFromHeapAtEnd(param3, MI_GetUncompressedSize(v0));
+                decompressed = Heap_AllocFromHeapAtEnd(heapID, MI_GetUncompressedSize(data));
             }
 
-            if (v1) {
-                MI_UncompressLZ8(v0, v1);
-                Heap_FreeToHeap(v0);
+            if (decompressed) {
+                MI_UncompressLZ8(data, decompressed);
+                Heap_FreeToHeap(data);
             }
 
-            v0 = v1;
+            data = decompressed;
         }
     }
 
-    return v0;
+    return data;
 }

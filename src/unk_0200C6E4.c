@@ -46,17 +46,17 @@ typedef struct AnimationResourceCollection_t {
     UnkStruct_02009508 *unk_04;
     SpriteResourceTable *unk_08;
     SpriteResourceCollection *unk_0C[6];
-    UnkStruct_02009CFC *unk_24[6];
+    SpriteResourceList *unk_24[6];
     int unk_3C[6];
     int unk_54;
 } SpriteGfxHandler;
 
 static BOOL sub_0200D11C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, int param3, int param4, int param5, int param6);
 static BOOL sub_0200D18C(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2, int param3, int param4, int param5, int param6);
-static BOOL sub_0200D1FC(UnkStruct_02009CFC *param0, SpriteResource *param1);
-static BOOL sub_0200D27C(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2);
-static BOOL sub_0200D2D0(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2);
-static BOOL sub_0200D230(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2);
+static BOOL sub_0200D1FC(SpriteResourceList *param0, SpriteResource *param1);
+static BOOL sub_0200D27C(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2);
+static BOOL sub_0200D2D0(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2);
+static BOOL sub_0200D230(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2);
 
 SpriteRenderer *sub_0200C6E4(int param0)
 {
@@ -196,7 +196,7 @@ void sub_0200C82C(SpriteGfxHandler *param0)
     sub_0200A700(param0->unk_24[1]);
 
     for (v0 = 0; v0 < param0->unk_54; v0++) {
-        sub_02009D20(param0->unk_24[v0]);
+        SpriteResourceList_Delete(param0->unk_24[v0]);
         SpriteResourceCollection_Delete(param0->unk_0C[v0]);
     }
 }
@@ -273,8 +273,8 @@ BOOL sub_0200C8F0(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStr
         v3 = SpriteResourceTable_GetArrayElement(param1->unk_08, v0);
         v2 = SpriteResourceTable_GetCount(v3);
 
-        param1->unk_24[v0] = sub_02009CFC(v2, param0->unk_00);
-        param1->unk_3C[v0] = sub_02009C80(param1->unk_0C[v0], v3, param1->unk_24[v0], param0->unk_00);
+        param1->unk_24[v0] = SpriteResourceList_New(v2, param0->unk_00);
+        param1->unk_3C[v0] = SpriteResourceCollection_AddTable(param1->unk_0C[v0], v3, param1->unk_24[v0], param0->unk_00);
     }
 
     sub_0200A368(param1->unk_24[0]);
@@ -357,11 +357,11 @@ BOOL sub_0200CB30(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStr
             continue;
         }
 
-        param1->unk_24[v0] = sub_02009CFC(v3, param0->unk_00);
+        param1->unk_24[v0] = SpriteResourceList_New(v3, param0->unk_00);
         param1->unk_3C[v0] = 0;
 
-        for (v1 = 0; v1 < param1->unk_24[v0]->unk_04; v1++) {
-            param1->unk_24[v0]->unk_00[v1] = NULL;
+        for (v1 = 0; v1 < param1->unk_24[v0]->capacity; v1++) {
+            param1->unk_24[v0]->resources[v1] = NULL;
         }
     }
 
@@ -627,7 +627,7 @@ void sub_0200D0B0(SpriteRenderer *param0, SpriteGfxHandler *param1)
     sub_0200A700(param1->unk_24[1]);
 
     for (v0 = 0; v0 < param1->unk_54; v0++) {
-        sub_02009D20(param1->unk_24[v0]);
+        SpriteResourceList_Delete(param1->unk_24[v0]);
         SpriteResourceCollection_Delete(param1->unk_0C[v0]);
     }
 
@@ -690,17 +690,17 @@ static BOOL sub_0200D18C(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC 
     return (v0 == NULL) ? 0 : 1;
 }
 
-static BOOL sub_0200D1FC(UnkStruct_02009CFC *param0, SpriteResource *param1)
+static BOOL sub_0200D1FC(SpriteResourceList *param0, SpriteResource *param1)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0] != NULL) {
+    for (v0 = 0; v0 < param0->capacity; v0++) {
+        if (param0->resources[v0] != NULL) {
             continue;
         }
 
-        param0->unk_00[v0] = param1;
-        param0->unk_08++;
+        param0->resources[v0] = param1;
+        param0->count++;
 
         return 1;
     }
@@ -708,23 +708,23 @@ static BOOL sub_0200D1FC(UnkStruct_02009CFC *param0, SpriteResource *param1)
     return 0;
 }
 
-static BOOL sub_0200D230(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2)
+static BOOL sub_0200D230(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2)
 {
     int v0;
     int v1;
 
-    for (v0 = 0; v0 < param1->unk_04; v0++) {
-        if (param1->unk_00[v0] == NULL) {
+    for (v0 = 0; v0 < param1->capacity; v0++) {
+        if (param1->resources[v0] == NULL) {
             continue;
         }
 
-        v1 = SpriteResource_GetID(param1->unk_00[v0]);
+        v1 = SpriteResource_GetID(param1->resources[v0]);
 
         if (v1 == param2) {
-            SpriteResourceCollection_Remove(param0, param1->unk_00[v0]);
+            SpriteResourceCollection_Remove(param0, param1->resources[v0]);
 
-            param1->unk_00[v0] = NULL;
-            param1->unk_08--;
+            param1->resources[v0] = NULL;
+            param1->count--;
 
             return 1;
         }
@@ -733,24 +733,24 @@ static BOOL sub_0200D230(SpriteResourceCollection *param0, UnkStruct_02009CFC *p
     return 0;
 }
 
-static BOOL sub_0200D27C(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2)
+static BOOL sub_0200D27C(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2)
 {
     int v0;
     int v1;
 
-    for (v0 = 0; v0 < param1->unk_04; v0++) {
-        if (param1->unk_00[v0] == NULL) {
+    for (v0 = 0; v0 < param1->capacity; v0++) {
+        if (param1->resources[v0] == NULL) {
             continue;
         }
 
-        v1 = SpriteResource_GetID(param1->unk_00[v0]);
+        v1 = SpriteResource_GetID(param1->resources[v0]);
 
         if (v1 == param2) {
             sub_0201EB50(param2);
-            SpriteResourceCollection_Remove(param0, param1->unk_00[v0]);
+            SpriteResourceCollection_Remove(param0, param1->resources[v0]);
 
-            param1->unk_00[v0] = NULL;
-            param1->unk_08--;
+            param1->resources[v0] = NULL;
+            param1->count--;
 
             return 1;
         }
@@ -759,24 +759,24 @@ static BOOL sub_0200D27C(SpriteResourceCollection *param0, UnkStruct_02009CFC *p
     return 0;
 }
 
-static BOOL sub_0200D2D0(SpriteResourceCollection *param0, UnkStruct_02009CFC *param1, int param2)
+static BOOL sub_0200D2D0(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2)
 {
     int v0;
     int v1;
 
-    for (v0 = 0; v0 < param1->unk_04; v0++) {
-        if (param1->unk_00[v0] == NULL) {
+    for (v0 = 0; v0 < param1->capacity; v0++) {
+        if (param1->resources[v0] == NULL) {
             continue;
         }
 
-        v1 = SpriteResource_GetID(param1->unk_00[v0]);
+        v1 = SpriteResource_GetID(param1->resources[v0]);
 
         if (v1 == param2) {
             sub_0201F9F0(param2);
-            SpriteResourceCollection_Remove(param0, param1->unk_00[v0]);
+            SpriteResourceCollection_Remove(param0, param1->resources[v0]);
 
-            param1->unk_00[v0] = NULL;
-            param1->unk_08--;
+            param1->resources[v0] = NULL;
+            param1->count--;
 
             return 1;
         }
