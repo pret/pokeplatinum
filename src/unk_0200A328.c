@@ -20,7 +20,7 @@ BOOL sub_0200A328(const SpriteResource *param0)
     GF_ASSERT(sub_02009EAC(param0) == 0);
 
     v0.unk_00 = sub_02009E1C(param0);
-    v0.unk_04 = sub_02009EBC(param0);
+    v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 0;
 
@@ -50,7 +50,7 @@ BOOL sub_0200A39C(const SpriteResource *param0)
     GF_ASSERT(sub_02009EAC(param0) == 0);
 
     v0.unk_00 = sub_02009E1C(param0);
-    v0.unk_04 = sub_02009EBC(param0);
+    v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 0;
 
@@ -65,7 +65,7 @@ BOOL sub_0200A3DC(const SpriteResource *param0)
     GF_ASSERT(sub_02009EAC(param0) == 0);
 
     v0.unk_00 = sub_02009E1C(param0);
-    v0.unk_04 = sub_02009EBC(param0);
+    v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 1;
 
@@ -95,7 +95,7 @@ BOOL sub_0200A450(const SpriteResource *param0)
     GF_ASSERT(sub_02009EAC(param0) == 0);
 
     v0.unk_00 = sub_02009E1C(param0);
-    v0.unk_04 = sub_02009EBC(param0);
+    v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 1;
 
@@ -203,9 +203,9 @@ BOOL sub_0200A5C8(const SpriteResource *param0)
     GF_ASSERT(sub_02009EAC(param0) == 1);
 
     v0.unk_00 = sub_02009E34(param0);
-    v0.unk_04 = sub_02009EBC(param0);
+    v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_0C = SpriteResource_GetID(param0);
-    v0.unk_08 = sub_02009EE8(param0);
+    v0.unk_08 = SpriteResource_GetPaletteIndex(param0);
 
     return sub_0201F90C(&v0);
 }
@@ -233,9 +233,9 @@ BOOL sub_0200A640(const SpriteResource *param0)
     GF_ASSERT(sub_02009EAC(param0) == 1);
 
     v0.unk_00 = sub_02009E34(param0);
-    v0.unk_04 = sub_02009EBC(param0);
+    v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_0C = SpriteResource_GetID(param0);
-    v0.unk_08 = sub_02009EE8(param0);
+    v0.unk_08 = SpriteResource_GetPaletteIndex(param0);
 
     return sub_0201F950(&v0);
 }
