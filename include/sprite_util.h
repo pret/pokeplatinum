@@ -12,7 +12,7 @@
 #include <nnsys.h>
 
 enum SpriteResourceType {
-    SPRITE_RESOURCE_CHARACTER = 0,
+    SPRITE_RESOURCE_CHAR = 0,
     SPRITE_RESOURCE_PALETTE,
     SPRITE_RESOURCE_CELL,
     SPRITE_RESOURCE_CELL_ANIM,
@@ -20,12 +20,12 @@ enum SpriteResourceType {
     SPRITE_RESOURCE_MULTI_CELL_ANIM,
 };
 
-SpriteResourceCollection * SpriteResourceCollection_New(int param0, int param1, enum HeapId param2);
+SpriteResourceCollection * SpriteResourceCollection_New(int param0, enum SpriteResourceType param1, enum HeapId param2);
 void SpriteResourceCollection_Delete(SpriteResourceCollection * param0);
 SpriteResource * sub_02009794(SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3);
-SpriteResource * sub_0200985C(SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6);
-SpriteResource * sub_020098B8(SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6, int param7);
-SpriteResource * sub_02009918(SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6);
+SpriteResource * SpriteResourceCollection_AddChar(SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6);
+SpriteResource * SpriteResourceCollection_AddPalette(SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, int param5, int param6, int param7);
+SpriteResource * SpriteResourceCollection_Add(SpriteResourceCollection * param0, int param1, int param2, BOOL param3, int param4, enum SpriteResourceType param5, int param6);
 void sub_02009968(SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5);
 void sub_020099D4(SpriteResourceCollection * param0, SpriteResource * param1, int param2, int param3, BOOL param4, int param5);
 SpriteResource * sub_02009A4C(SpriteResourceCollection * param0, NARC * param1, int param2, BOOL param3, int param4, int param5, int param6);
@@ -38,12 +38,12 @@ int sub_02009C80(SpriteResourceCollection * param0, const UnkStruct_02009F38 * p
 void sub_02009CB4(SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5);
 UnkStruct_02009CFC * sub_02009CFC(int param0, int param1);
 void sub_02009D20(UnkStruct_02009CFC * param0);
-BOOL sub_02009D34(const SpriteResourceCollection * param0, int param1);
-void sub_02009D4C(SpriteResource * param0);
+BOOL SpriteResourceCollection_IsIDUnused(const SpriteResourceCollection * param0, int param1);
+void SpriteResource_ReleaseData(SpriteResource * param0);
 void SpriteResourceCollection_Remove(SpriteResourceCollection * param0, SpriteResource * param1);
 void SpriteResourceCollection_Clear(SpriteResourceCollection * param0);
 SpriteResource * sub_02009DC8(const SpriteResourceCollection * param0, int param1);
-int sub_02009E08(const SpriteResource * param0);
+int SpriteResource_GetID(const SpriteResource * param0);
 NNSG2dCharacterData * sub_02009E1C(const SpriteResource * param0);
 NNSG2dPaletteData * sub_02009E34(const SpriteResource * param0);
 NNSG2dCellDataBank * sub_02009E4C(const SpriteResource * param0);

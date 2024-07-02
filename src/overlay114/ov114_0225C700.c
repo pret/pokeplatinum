@@ -1306,12 +1306,12 @@ static void ov114_0225CDE0(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
     v0 = sub_0200A3DC(param1->unk_04[0]);
     GF_ASSERT(v0);
 
-    sub_02009D4C(param1->unk_04[0]);
+    SpriteResource_ReleaseData(param1->unk_04[0]);
 
     v0 = sub_0200A640(param1->unk_04[1]);
     GF_ASSERT(v0);
 
-    sub_02009D4C(param1->unk_04[1]);
+    SpriteResource_ReleaseData(param1->unk_04[1]);
     sub_020093B4(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 1, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
 }
 

@@ -781,8 +781,8 @@ static void ov63_0222B510(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
         ov63_0222BC80(param0, param0->unk_10[param1].unk_04[1], 1);
     }
 
-    sub_02009D4C(param0->unk_10[param1].unk_04[0]);
-    sub_02009D4C(param0->unk_10[param1].unk_04[1]);
+    SpriteResource_ReleaseData(param0->unk_10[param1].unk_04[0]);
+    SpriteResource_ReleaseData(param0->unk_10[param1].unk_04[1]);
 
     param0->unk_10[param1].unk_0C = param2;
     param0->unk_10[param1].unk_10 = param3;
@@ -814,7 +814,7 @@ static void ov63_0222B664(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
 
     v1 = sub_0200A450(param0->unk_10[param1].unk_04[0]);
     GF_ASSERT(v1);
-    sub_02009D4C(param0->unk_10[param1].unk_04[0]);
+    SpriteResource_ReleaseData(param0->unk_10[param1].unk_04[0]);
 
     param0->unk_10[param1].unk_04[1] = NULL;
     param0->unk_10[param1].unk_0C = param2;
@@ -900,7 +900,7 @@ static void ov63_0222B7E8(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
     v1 = sub_0200A450(param0->unk_2248.unk_00[0]);
     GF_ASSERT(v1);
 
-    sub_02009D4C(param0->unk_2248.unk_00[0]);
+    SpriteResource_ReleaseData(param0->unk_2248.unk_00[0]);
     sub_020093B4(&param0->unk_2248.unk_10, 0x120, 0x200 + v3, 0x120, 0x120, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
 }
 
@@ -946,7 +946,7 @@ static void ov63_0222B97C(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
         ov63_0222BC80(param0, param0->unk_2290, 8);
     }
 
-    sub_02009D4C(param0->unk_2290);
+    SpriteResource_ReleaseData(param0->unk_2290);
 }
 
 static void ov63_0222B9EC(UnkStruct_ov63_0222AE60 *param0)

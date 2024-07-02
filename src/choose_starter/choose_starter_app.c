@@ -1433,18 +1433,18 @@ static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
 
 static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
 {
-    param1->unk_04[0] = sub_0200985C(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param1->unk_04[0] = SpriteResourceCollection_AddChar(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param1->unk_04[0]);
-    sub_02009D4C(param1->unk_04[0]);
+    SpriteResource_ReleaseData(param1->unk_04[0]);
 
-    param1->unk_04[1] = sub_020098B8(param0->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
+    param1->unk_04[1] = SpriteResourceCollection_AddPalette(param0->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
 
     sub_0200A640(param1->unk_04[1]);
-    sub_02009D4C(param1->unk_04[1]);
+    SpriteResource_ReleaseData(param1->unk_04[1]);
 
-    param1->unk_04[2] = sub_02009918(param0->unk_24C[2], 82, 12, 0, 12, 2, param2);
-    param1->unk_04[3] = sub_02009918(param0->unk_24C[3], 82, 13, 0, 13, 3, param2);
+    param1->unk_04[2] = SpriteResourceCollection_Add(param0->unk_24C[2], 82, 12, 0, 12, 2, param2);
+    param1->unk_04[3] = SpriteResourceCollection_Add(param0->unk_24C[3], 82, 13, 0, 13, 3, param2);
 }
 
 static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)

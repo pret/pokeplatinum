@@ -441,18 +441,18 @@ static void ov21_021E92B0(UnkStruct_ov21_021D22F8 *param0)
 
 static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
-    param0[0] = sub_0200985C(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param0[0] = SpriteResourceCollection_AddChar(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param0[0]);
-    sub_02009D4C(param0[0]);
+    SpriteResource_ReleaseData(param0[0]);
 
-    param0[1] = sub_020098B8(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
+    param0[1] = SpriteResourceCollection_AddPalette(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
 
     sub_0200A640(param0[1]);
-    sub_02009D4C(param0[1]);
+    SpriteResource_ReleaseData(param0[1]);
 
-    param0[2] = sub_02009918(param1[2], param3, param6, 1, param9, 2, param2);
-    param0[3] = sub_02009918(param1[3], param3, param7, 1, param9, 3, param2);
+    param0[2] = SpriteResourceCollection_Add(param1[2], param3, param6, 1, param9, 2, param2);
+    param0[3] = SpriteResourceCollection_Add(param1[3], param3, param7, 1, param9, 3, param2);
 }
 
 static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
@@ -460,12 +460,12 @@ static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **pa
     param0[0] = sub_02009A4C(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param0[0]);
-    sub_02009D4C(param0[0]);
+    SpriteResource_ReleaseData(param0[0]);
 
     param0[1] = sub_02009B04(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
 
     sub_0200A640(param0[1]);
-    sub_02009D4C(param0[1]);
+    SpriteResource_ReleaseData(param0[1]);
 
     param0[2] = sub_02009BC4(param1[2], param3, param6, 1, param9, 2, param2);
     param0[3] = sub_02009BC4(param1[3], param3, param7, 1, param9, 3, param2);
@@ -484,7 +484,7 @@ static void ov21_021E93C4(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov21_021E93F8(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3)
 {
-    sub_020093B4(param2, sub_02009E08(param0[0]), sub_02009E08(param0[1]), sub_02009E08(param0[2]), sub_02009E08(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
+    sub_020093B4(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
 static void ov21_021E9458(UnkStruct_ov21_021E94F8 *param0, SpriteResourceCollection **param1, int param2, int param3)

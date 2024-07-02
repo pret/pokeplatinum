@@ -544,12 +544,12 @@ static void ov21_021E46A8(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
     param0->unk_314[0] = sub_02009A4C(v0->unk_13C[0], v1, 116, 1, 116 + 11000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param0->unk_314[0]);
-    sub_02009D4C(param0->unk_314[0]);
+    SpriteResource_ReleaseData(param0->unk_314[0]);
 
     param0->unk_314[1] = sub_02009B04(v0->unk_13C[1], v1, 19, 0, 19 + 11000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
 
     sub_0200A640(param0->unk_314[1]);
-    sub_02009D4C(param0->unk_314[1]);
+    SpriteResource_ReleaseData(param0->unk_314[1]);
 
     param0->unk_314[2] = sub_02009BC4(v0->unk_13C[2], v1, 117, 1, 117 + 11000, 2, param2);
     param0->unk_314[3] = sub_02009BC4(v0->unk_13C[3], v1, 115, 1, 115 + 11000, 3, param2);

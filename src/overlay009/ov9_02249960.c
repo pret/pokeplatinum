@@ -2714,7 +2714,7 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1C0[v0] != NULL) {
-            sub_02009D4C(param0->unk_1C0[v0]);
+            SpriteResource_ReleaseData(param0->unk_1C0[v0]);
             SpriteResourceCollection_Remove(
                 param0->unk_198, param0->unk_1C0[v0]);
         }
@@ -2722,7 +2722,7 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1DC[v0] != NULL) {
-            sub_02009D4C(param0->unk_1DC[v0]);
+            SpriteResource_ReleaseData(param0->unk_1DC[v0]);
             SpriteResourceCollection_Remove(
                 param0->unk_19C, param0->unk_1DC[v0]);
         }

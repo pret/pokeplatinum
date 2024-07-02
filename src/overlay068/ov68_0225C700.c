@@ -688,8 +688,8 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         v0 = sub_0200A640(param0->unk_18[1]);
         GF_ASSERT(v0);
 
-        sub_02009D4C(param0->unk_18[0]);
-        sub_02009D4C(param0->unk_18[1]);
+        SpriteResource_ReleaseData(param0->unk_18[0]);
+        SpriteResource_ReleaseData(param0->unk_18[1]);
 
         param0->unk_18[2] = sub_02009BC4(param2->unk_194[2], param2->unk_1A4, 206, 0, 20, 2, param3);
         param0->unk_18[3] = sub_02009BC4(param2->unk_194[3], param2->unk_1A4, 207, 0, 20, 3, param3);

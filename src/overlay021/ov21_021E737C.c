@@ -565,7 +565,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     param0->unk_14[0] = sub_02009A4C(v0->unk_13C[0], v9, v1, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
 
     sub_0200A450(param0->unk_14[0]);
-    sub_02009D4C(param0->unk_14[0]);
+    SpriteResource_ReleaseData(param0->unk_14[0]);
 
     param0->unk_14[1] = sub_02009B04(v0->unk_13C[1], v9, v2, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, 3, param3);
 
@@ -581,7 +581,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     param0->unk_24[0] = sub_02009A4C(v0->unk_13C[0], v7, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
 
     sub_0200A3DC(param0->unk_24[0]);
-    sub_02009D4C(param0->unk_24[0]);
+    SpriteResource_ReleaseData(param0->unk_24[0]);
 
     param0->unk_24[1] = sub_02009B04(v0->unk_13C[1], v7, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param3);
 
@@ -670,7 +670,7 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     param0->unk_0C[1] = CellActorCollection_Add(&v1);
 
     CellActor_SetAnim(param0->unk_0C[1], 0);
-    sub_020093B4(&v0, sub_02009E08(param0->unk_14[0]), sub_02009E08(param0->unk_14[1]), sub_02009E08(param0->unk_14[2]), sub_02009E08(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    sub_020093B4(&v0, SpriteResource_GetID(param0->unk_14[0]), SpriteResource_GetID(param0->unk_14[1]), SpriteResource_GetID(param0->unk_14[2]), SpriteResource_GetID(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

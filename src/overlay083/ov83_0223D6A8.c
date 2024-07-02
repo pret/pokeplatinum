@@ -219,11 +219,11 @@ void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
 
     v0 = sub_0200A450(param1->unk_00[0]);
     GF_ASSERT(v0);
-    sub_02009D4C(param1->unk_00[0]);
+    SpriteResource_ReleaseData(param1->unk_00[0]);
 
     v0 = sub_0200A640(param1->unk_00[1]);
     GF_ASSERT(v0);
-    sub_02009D4C(param1->unk_00[1]);
+    SpriteResource_ReleaseData(param1->unk_00[1]);
 
     sub_020093B4(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
@@ -237,7 +237,7 @@ void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     param1->unk_00[1] = param3;
     param1->unk_10 = 1;
 
-    v1 = sub_02009E08(param3);
+    v1 = SpriteResource_GetID(param3);
 
     param1->unk_00[2] = sub_02009BC4(param0->unk_190[2], param2, param5, 0, param7, 2, param8);
     param1->unk_00[3] = sub_02009BC4(param0->unk_190[3], param2, param6, 0, param7, 3, param8);
@@ -245,7 +245,7 @@ void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     v0 = sub_0200A450(param1->unk_00[0]);
     GF_ASSERT(v0);
 
-    sub_02009D4C(param1->unk_00[0]);
+    SpriteResource_ReleaseData(param1->unk_00[0]);
     sub_020093B4(&param1->unk_14, param7, v1, param7, param7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
 

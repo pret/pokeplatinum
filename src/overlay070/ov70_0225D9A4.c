@@ -2704,13 +2704,13 @@ static void ov70_0225FEF0(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
 
         v2 = sub_0200A3DC(param0->unk_58[0]);
         GF_ASSERT(v2);
-        sub_02009D4C(param0->unk_58[0]);
+        SpriteResource_ReleaseData(param0->unk_58[0]);
 
         param0->unk_58[1] = sub_02009B04(param1->unk_194[1], param2, 89, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 3, param3);
 
         v2 = sub_0200A640(param0->unk_58[1]);
         GF_ASSERT(v2);
-        sub_02009D4C(param0->unk_58[1]);
+        SpriteResource_ReleaseData(param0->unk_58[1]);
 
         param0->unk_58[2] = sub_02009BC4(param1->unk_194[2], param2, 60 + (v0 * 3), 0, 100, 2, param3);
         param0->unk_58[3] = sub_02009BC4(param1->unk_194[3], param2, 59 + (v0 * 3), 0, 100, 3, param3);
@@ -2775,19 +2775,19 @@ static void ov70_02260080(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
     {
         BOOL v5;
 
-        param0->unk_6C[0] = sub_0200985C(param1->unk_194[0], v4.unk_00, v4.unk_04, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, param3);
+        param0->unk_6C[0] = SpriteResourceCollection_AddChar(param1->unk_194[0], v4.unk_00, v4.unk_04, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, param3);
         v5 = sub_0200A3DC(param0->unk_6C[0]);
         GF_ASSERT(v5);
 
-        param0->unk_6C[1] = sub_020098B8(param1->unk_194[1], v4.unk_00, v4.unk_08, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, 1, param3);
+        param0->unk_6C[1] = SpriteResourceCollection_AddPalette(param1->unk_194[1], v4.unk_00, v4.unk_08, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, 1, param3);
         ov70_02260268(sub_02009E34(param0->unk_6C[1]));
         v5 = sub_0200A640(param0->unk_6C[1]);
         GF_ASSERT(v5);
 
-        sub_02009D4C(param0->unk_6C[1]);
+        SpriteResource_ReleaseData(param0->unk_6C[1]);
 
-        param0->unk_6C[2] = sub_02009918(param1->unk_194[2], v4.unk_00, v4.unk_0C, 0, 101, 2, param3);
-        param0->unk_6C[3] = sub_02009918(param1->unk_194[3], v4.unk_00, v4.unk_10, 0, 101, 3, param3);
+        param0->unk_6C[2] = SpriteResourceCollection_Add(param1->unk_194[2], v4.unk_00, v4.unk_0C, 0, 101, 2, param3);
+        param0->unk_6C[3] = SpriteResourceCollection_Add(param1->unk_194[3], v4.unk_00, v4.unk_10, 0, 101, 3, param3);
     }
 
     {
@@ -2982,7 +2982,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         v3 = sub_0200A640(param0->unk_AC[v0]);
         GF_ASSERT(v3);
 
-        sub_02009D4C(param0->unk_AC[v0]);
+        SpriteResource_ReleaseData(param0->unk_AC[v0]);
 
         param0->unk_EC[v0] = sub_02009BC4(param1->unk_194[2], v2, v12[v0], 0, 150 + v0, 2, param3);
         param0->unk_FC[v0] = sub_02009BC4(param1->unk_194[3], v2, v13[v0], 0, 150 + v0, 3, param3);
@@ -3009,7 +3009,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
             v3 = sub_0200A3DC(param0->unk_BC[v0]);
             GF_ASSERT(v3);
 
-            sub_02009D4C(param0->unk_BC[v0]);
+            SpriteResource_ReleaseData(param0->unk_BC[v0]);
             sub_020093B4(&v9, 150 + v0, 150 + v10->unk_00, 150 + v10->unk_00, 150 + v10->unk_00, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
             v8.collection = param1->unk_04;

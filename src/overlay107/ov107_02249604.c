@@ -59,15 +59,15 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov107_0224A204[v0], v0, 100);
     }
 
-    param0->unk_1A0[0][0] = sub_0200985C(param0->unk_190[0], 151, 15, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
-    param0->unk_1A0[0][1] = sub_020098B8(param0->unk_190[1], 151, 39, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 100);
-    param0->unk_1A0[0][2] = sub_02009918(param0->unk_190[2], 151, 17, 1, 0, 2, 100);
-    param0->unk_1A0[0][3] = sub_02009918(param0->unk_190[3], 151, 16, 1, 0, 3, 100);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 151, 15, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
+    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 39, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 100);
+    param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 17, 1, 0, 2, 100);
+    param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 16, 1, 0, 3, 100);
 
     v1 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, 100);
 
     param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, Item_FileID(0, 1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
-    param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
+    param0->unk_1A0[1][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
     param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, Item_IconNCERFile(), 0, 1, 2, 100);
     param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, Item_IconNANRFile(), 0, 1, 3, 100);
 
@@ -76,7 +76,7 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 100);
 
-    param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
+    param0->unk_1A0[3][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
     param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v1, PokeIcon32KCellsFileIndex(), 0, 3, 2, 100);
     param0->unk_1A0[3][3] = sub_02009BC4(param0->unk_190[3], v1, PokeIcon32KAnimationFileIndex(), 0, 3, 3, 100);
 
@@ -227,7 +227,7 @@ static void ov107_02249A70(UnkStruct_ov107_02249954 *param0)
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 100);
 
     param0->unk_1A0[2][0] = sub_02009A4C(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
-    param0->unk_1A0[2][1] = sub_020098B8(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
+    param0->unk_1A0[2][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
     param0->unk_1A0[2][2] = sub_02009BC4(param0->unk_190[2], v0, sub_02081938(), 0, 2, 2, 100);
     param0->unk_1A0[2][3] = sub_02009BC4(param0->unk_190[3], v0, sub_0208193C(), 0, 2, 3, 100);
 

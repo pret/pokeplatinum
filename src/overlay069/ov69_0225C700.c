@@ -2646,7 +2646,7 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
     param0->unk_6C[0][1] = sub_02009B04(param1->unk_194[1], param1->unk_1A8, 20, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 12, param3);
     v2 = sub_0200A640(param0->unk_6C[0][1]);
     GF_ASSERT(v2);
-    sub_02009D4C(param0->unk_6C[0][1]);
+    SpriteResource_ReleaseData(param0->unk_6C[0][1]);
 
     for (v0 = 0; v0 < 12; v0++) {
         param0->unk_6C[v0][0] = sub_02009A4C(param1->unk_194[0], param1->unk_1A8, (21 + ((v0) * 3)), 0, v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
@@ -2656,7 +2656,7 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
         v2 = sub_0200A3DC(param0->unk_6C[v0][0]);
         GF_ASSERT(v2);
 
-        sub_02009D4C(param0->unk_6C[v0][0]);
+        SpriteResource_ReleaseData(param0->unk_6C[v0][0]);
         sub_020093B4(&v1, v0, 0, v0, v0, 0xffffffff, 0xffffffff, 0, 1, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
         param0->unk_3C[v0] = CellActorCollection_Add(&v3);

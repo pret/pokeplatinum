@@ -511,18 +511,18 @@ static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     int v4 = ov21_021D1F9C();
     int v5 = ov21_021D1FA0();
 
-    param0->unk_24[0] = sub_0200985C(v0->unk_13C[0], v1, v2, 1, 4000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param0->unk_24[0] = SpriteResourceCollection_AddChar(v0->unk_13C[0], v1, v2, 1, 4000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param0->unk_24[0]);
-    sub_02009D4C(param0->unk_24[0]);
+    SpriteResource_ReleaseData(param0->unk_24[0]);
 
-    param0->unk_24[1] = sub_020098B8(v0->unk_13C[1], v1, v3, 0, 4000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
+    param0->unk_24[1] = SpriteResourceCollection_AddPalette(v0->unk_13C[1], v1, v3, 0, 4000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
 
     sub_0200A640(param0->unk_24[1]);
-    sub_02009D4C(param0->unk_24[1]);
+    SpriteResource_ReleaseData(param0->unk_24[1]);
 
-    param0->unk_24[2] = sub_02009918(v0->unk_13C[2], v1, v4, 1, 4000, 2, param2);
-    param0->unk_24[3] = sub_02009918(v0->unk_13C[3], v1, v5, 1, 4000, 3, param2);
+    param0->unk_24[2] = SpriteResourceCollection_Add(v0->unk_13C[2], v1, v4, 1, 4000, 2, param2);
+    param0->unk_24[3] = SpriteResourceCollection_Add(v0->unk_13C[3], v1, v5, 1, 4000, 3, param2);
 }
 
 static void ov21_021DEE38(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1)
@@ -604,12 +604,12 @@ static void ov21_021DEFA8(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     param0->unk_14[0] = sub_02009A4C(v0->unk_13C[0], v1, 90, 1, 90 + 4000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param0->unk_14[0]);
-    sub_02009D4C(param0->unk_14[0]);
+    SpriteResource_ReleaseData(param0->unk_14[0]);
 
     param0->unk_14[1] = sub_02009B04(v0->unk_13C[1], v1, 13, 0, 13 + 4000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param2);
 
     sub_0200A640(param0->unk_14[1]);
-    sub_02009D4C(param0->unk_14[1]);
+    SpriteResource_ReleaseData(param0->unk_14[1]);
 
     param0->unk_14[2] = sub_02009BC4(v0->unk_13C[2], v1, 88, 1, 88 + 4000, 2, param2);
     param0->unk_14[3] = sub_02009BC4(v0->unk_13C[3], v1, 89, 1, 89 + 4000, 3, param2);

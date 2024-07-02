@@ -2801,7 +2801,7 @@ static void ov23_02240E88(void)
     ov23_02240E60(sub_02009A4C(Unk_ov23_02257740->unk_1B0[0], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
 
     sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
-    ov23_02240E60(sub_020098B8(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 29));
+    ov23_02240E60(SpriteResourceCollection_AddPalette(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 29));
     sub_0200A640(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
     ov23_02240E60(sub_02009BC4(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, 29));

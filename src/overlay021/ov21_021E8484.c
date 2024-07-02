@@ -515,7 +515,7 @@ static void ov21_021E89F4(UnkStruct_ov21_021E8794 *param0, UnkStruct_ov21_021E85
     param0->unk_08[0] = sub_02009A4C(v0->unk_13C[0], v1, 102, 1, 102 + 13000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     sub_0200A3DC(param0->unk_08[0]);
-    sub_02009D4C(param0->unk_08[0]);
+    SpriteResource_ReleaseData(param0->unk_08[0]);
 
     param0->unk_08[2] = sub_02009BC4(v0->unk_13C[2], v1, 100, 1, 100 + 13000, 2, param2);
     param0->unk_08[3] = sub_02009BC4(v0->unk_13C[3], v1, 101, 1, 101 + 13000, 3, param2);

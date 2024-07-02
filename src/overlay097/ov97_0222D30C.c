@@ -1134,20 +1134,20 @@ static void ov97_0222E398(UnkStruct_ov97_0222E398 *param0)
         v6 = NNS_G2D_VRAM_TYPE_2DMAIN;
         v7 = 20000 + v6;
 
-        param0->unk_58[v9 + 0][0] = sub_0200985C(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
-        param0->unk_58[v9 + 0][1] = sub_020098B8(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
-        param0->unk_58[v9 + 0][2] = sub_02009918(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
-        param0->unk_58[v9 + 0][3] = sub_02009918(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
+        param0->unk_58[v9 + 0][0] = SpriteResourceCollection_AddChar(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
+        param0->unk_58[v9 + 0][1] = SpriteResourceCollection_AddPalette(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
+        param0->unk_58[v9 + 0][2] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
+        param0->unk_58[v9 + 0][3] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
     }
 
     {
         v6 = NNS_G2D_VRAM_TYPE_2DSUB;
         v7 = 20000 + v6;
 
-        param0->unk_58[v9 + 1][0] = sub_0200985C(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
-        param0->unk_58[v9 + 1][1] = sub_020098B8(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
-        param0->unk_58[v9 + 1][2] = sub_02009918(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
-        param0->unk_58[v9 + 1][3] = sub_02009918(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
+        param0->unk_58[v9 + 1][0] = SpriteResourceCollection_AddChar(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
+        param0->unk_58[v9 + 1][1] = SpriteResourceCollection_AddPalette(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
+        param0->unk_58[v9 + 1][2] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
+        param0->unk_58[v9 + 1][3] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
     }
 
     sub_0200A328(param0->unk_58[v9 + 0][0]);

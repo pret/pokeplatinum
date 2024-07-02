@@ -116,13 +116,13 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
 
     for (v0 = 0; v0 < param0->unk_06; v0++) {
         if (param0->unk_1B8[v0].unk_00 != param0->unk_0A) {
-            sub_02009D4C(param0->unk_1B8[v0].unk_04);
+            SpriteResource_ReleaseData(param0->unk_1B8[v0].unk_04);
         }
     }
 
     for (v0 = 0; v0 < param0->unk_07; v0++) {
         if (param0->unk_1BC[v0].unk_00 != param0->unk_0B) {
-            sub_02009D4C(param0->unk_1BC[v0].unk_04);
+            SpriteResource_ReleaseData(param0->unk_1BC[v0].unk_04);
         }
     }
 
@@ -184,7 +184,7 @@ void ov101_021D8180(UnkStruct_ov101_021D7E48 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
         if (param0->unk_1B0[v0].unk_00 == param1) {
-            sub_02009D4C(param0->unk_1B0[v0].unk_04);
+            SpriteResource_ReleaseData(param0->unk_1B0[v0].unk_04);
             return;
         }
     }
@@ -228,7 +228,7 @@ void ov101_021D8254(UnkStruct_ov101_021D7E48 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0->unk_05; v0++) {
         if (param0->unk_1B4[v0].unk_00 == param1) {
-            sub_02009D4C(param0->unk_1B4[v0].unk_04);
+            SpriteResource_ReleaseData(param0->unk_1B4[v0].unk_04);
             return;
         }
     }
@@ -298,7 +298,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
     if (param3 != param0->unk_0A) {
         for (v0 = 0; v0 < param0->unk_06; v0++) {
             if (param0->unk_1B8[v0].unk_00 == param3) {
-                sub_02009D4C(param0->unk_1B8[v0].unk_04);
+                SpriteResource_ReleaseData(param0->unk_1B8[v0].unk_04);
                 SpriteResourceCollection_Remove(param0->unk_1A8, param0->unk_1B8[v0].unk_04);
                 param0->unk_1B8[v0].unk_00 = param0->unk_0A;
                 break;
@@ -309,7 +309,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
     if (param4 != param0->unk_0B) {
         for (v0 = 0; v0 < param0->unk_07; v0++) {
             if (param0->unk_1BC[v0].unk_00 == param4) {
-                sub_02009D4C(param0->unk_1BC[v0].unk_04);
+                SpriteResource_ReleaseData(param0->unk_1BC[v0].unk_04);
                 SpriteResourceCollection_Remove(param0->unk_1AC, param0->unk_1BC[v0].unk_04);
                 param0->unk_1BC[v0].unk_00 = param0->unk_0B;
                 break;

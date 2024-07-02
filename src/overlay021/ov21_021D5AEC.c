@@ -806,12 +806,12 @@ static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v0 = sub_02009A4C(param0->unk_80[0], v1, 81, 1, 81, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(v0);
-    sub_02009D4C(v0);
+    SpriteResource_ReleaseData(v0);
 
     v0 = sub_02009B04(param0->unk_80[1], v1, 3, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 12, param2);
 
     sub_0200A640(v0);
-    sub_02009D4C(v0);
+    SpriteResource_ReleaseData(v0);
     sub_02009BC4(param0->unk_80[2], v1, 79, 1, 79, 2, param2);
     sub_02009BC4(param0->unk_80[3], v1, 80, 1, 80, 3, param2);
     sub_020093B4(&param0->unk_90, 81, 3, 79, 80, 0xffffffff, 0xffffffff, 0, 2, param0->unk_80[0], param0->unk_80[1], param0->unk_80[2], param0->unk_80[3], NULL, NULL);
@@ -819,7 +819,7 @@ static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     v0 = sub_02009A4C(param0->unk_80[0], v1, 111, 1, 111, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(v0);
-    sub_02009D4C(v0);
+    SpriteResource_ReleaseData(v0);
     sub_02009BC4(param0->unk_80[2], v1, 109, 1, 109, 2, param2);
     sub_02009BC4(param0->unk_80[3], v1, 110, 1, 110, 3, param2);
     sub_020093B4(&param0->unk_B4, 111, 3, 109, 110, 0xffffffff, 0xffffffff, 0, 2, param0->unk_80[0], param0->unk_80[1], param0->unk_80[2], param0->unk_80[3], NULL, NULL);

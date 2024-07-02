@@ -1028,8 +1028,8 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     v1 = sub_0200A640(param0->unk_260[1]);
     GF_ASSERT(v1);
 
-    sub_02009D4C(param0->unk_260[0]);
-    sub_02009D4C(param0->unk_260[1]);
+    SpriteResource_ReleaseData(param0->unk_260[0]);
+    SpriteResource_ReleaseData(param0->unk_260[1]);
     sub_020093B4(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
 }
 
