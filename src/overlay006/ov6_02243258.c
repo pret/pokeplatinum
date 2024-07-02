@@ -1661,7 +1661,7 @@ static void ov6_02244734(SysTask *param0, void *param1)
 static void ov6_022447B4(SysTask *param0, void *param1)
 {
     UnkStruct_ov6_02243FFC *v0 = param1;
-    SpriteResource *v1 = sub_02009DC8(v0->unk_200, 0);
+    SpriteResource *v1 = SpriteResourceCollection_Find(v0->unk_200, 0);
 
     switch (v0->unk_268) {
     case 0:
@@ -1675,7 +1675,7 @@ static void ov6_022447B4(SysTask *param0, void *param1)
 static void ov6_022447EC(SysTask *param0, void *param1)
 {
     UnkStruct_ov6_02243FFC *v0 = param1;
-    SpriteResource *v1 = sub_02009DC8(v0->unk_200, 0);
+    SpriteResource *v1 = SpriteResourceCollection_Find(v0->unk_200, 0);
 
     if (v0->unk_268 == 1) {
         SpriteResource_ReleaseData(v1);
@@ -2095,7 +2095,7 @@ static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1)
     SpriteResource *v1;
     const NNSG2dImageProxy *v2;
 
-    v1 = sub_02009DC8(param0->unk_200, 3);
+    v1 = SpriteResourceCollection_Find(param0->unk_200, 3);
     v2 = sub_0200A534(v1);
     v0 = NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -2119,9 +2119,9 @@ static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1)
     NNSG2dImageProxy *v3;
     const NNSG2dImagePaletteProxy *v4;
 
-    v2 = sub_02009DC8(param0->unk_200, 3);
+    v2 = SpriteResourceCollection_Find(param0->unk_200, 3);
     v3 = sub_0200A534(v2);
-    v1 = sub_02009DC8(param0->unk_204, 2);
+    v1 = SpriteResourceCollection_Find(param0->unk_204, 2);
     v4 = sub_0200A72C(v1, v3);
     v0 = NNS_G2dGetImagePaletteLocation(v4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -2132,7 +2132,7 @@ static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1)
 static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
 {
     int v0;
-    SpriteResource *v1 = sub_02009DC8(param0->unk_200, 3);
+    SpriteResource *v1 = SpriteResourceCollection_Find(param0->unk_200, 3);
 
     sub_0200A4E4(v1);
     SpriteResourceCollection_Remove(param0->unk_200, v1);
@@ -2146,7 +2146,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
 
     GF_ASSERT(v0 < 4);
 
-    v1 = sub_02009DC8(param0->unk_204, 2);
+    v1 = SpriteResourceCollection_Find(param0->unk_204, 2);
     sub_0200A6DC(v1);
     SpriteResourceCollection_Remove(param0->unk_204, v1);
 
@@ -2158,7 +2158,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
     }
 
     GF_ASSERT(v0 < 3);
-    v1 = sub_02009DC8(param0->unk_208, 3);
+    v1 = SpriteResourceCollection_Find(param0->unk_208, 3);
 
     SpriteResource_ReleaseData(v1);
     SpriteResourceCollection_Remove(param0->unk_208, v1);

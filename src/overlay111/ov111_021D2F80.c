@@ -207,7 +207,7 @@ void ov111_021D33B0(UnkStruct_ov111_021D2F80 *param0, int param1)
         GF_ASSERT(0);
     }
 
-    v0 = sub_02009DC8(param0->unk_190[1], 3);
+    v0 = SpriteResourceCollection_Find(param0->unk_190[1], 3);
 
     SpriteResourceCollection_ModifyPalette(param0->unk_190[1], v0, 184, Unk_ov111_021D3940[param1], 0, 115);
     sub_0200A6B8(v0);

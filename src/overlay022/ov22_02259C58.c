@@ -413,7 +413,7 @@ asm static void ov22_0225A154 (UnkStruct_ov22_0225A154 * param0, int param1, Unk
     str r2, [sp, #0x90]
     str r0, [sp, #0xa0]
     ldr r0, [r4, #0x4c]
-    bl sub_02009DC8
+    bl SpriteResourceCollection_Find
     mov r1, #0
     bl sub_0200A72C
     str r0, [sp, #0x98]

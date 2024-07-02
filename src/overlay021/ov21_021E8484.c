@@ -575,7 +575,7 @@ static void ov21_021E8B40(UnkStruct_ov21_021E8794 *param0, UnkStruct_ov21_021E85
 
     GF_ASSERT(param0->unk_00[0]);
 
-    v2 = sub_02009DC8(v3->unk_13C[1], 11 + 2100);
+    v2 = SpriteResourceCollection_Find(v3->unk_13C[1], 11 + 2100);
 
     v1.unk_00 = v3->unk_14C;
     v1.unk_08 = sub_0200A72C(v2, NULL);

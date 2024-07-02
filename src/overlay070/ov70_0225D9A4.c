@@ -2780,7 +2780,7 @@ static void ov70_02260080(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         GF_ASSERT(v5);
 
         param0->unk_6C[1] = SpriteResourceCollection_AddPalette(param1->unk_194[1], v4.unk_00, v4.unk_08, 0, 101, NNS_G2D_VRAM_TYPE_2DSUB, 1, param3);
-        ov70_02260268(sub_02009E34(param0->unk_6C[1]));
+        ov70_02260268(SpriteResource_GetPaletteData(param0->unk_6C[1]));
         v5 = sub_0200A640(param0->unk_6C[1]);
         GF_ASSERT(v5);
 

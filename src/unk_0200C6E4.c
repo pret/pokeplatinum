@@ -588,13 +588,13 @@ CellActorData *SpriteActor_LoadResources(SpriteRenderer *param0, SpriteGfxHandle
 
 const NNSG2dImagePaletteProxy *sub_0200D04C(SpriteGfxHandler *param0, int param1)
 {
-    SpriteResource *v0 = sub_02009DC8(param0->unk_0C[1], param1);
+    SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_0C[1], param1);
     return sub_0200A72C(v0, NULL);
 }
 
 u32 sub_0200D05C(SpriteGfxHandler *param0, int param1, NNS_G2D_VRAM_TYPE param2)
 {
-    SpriteResource *v0 = sub_02009DC8(param0->unk_0C[1], param1);
+    SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_0C[1], param1);
     return sub_0200A760(v0, param2);
 }
 
@@ -1311,7 +1311,7 @@ void sub_0200D948(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
 {
     SpriteResource *v0;
 
-    v0 = sub_02009DC8(param1->unk_0C[0], param5);
+    v0 = SpriteResourceCollection_Find(param1->unk_0C[0], param5);
 
     SpriteResourceCollection_ModifyChar(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
     sub_0200A4C0(v0);
@@ -1321,7 +1321,7 @@ void sub_0200D97C(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
 {
     SpriteResource *v0;
 
-    v0 = sub_02009DC8(param1->unk_0C[1], param5);
+    v0 = SpriteResourceCollection_Find(param1->unk_0C[1], param5);
 
     SpriteResourceCollection_ModifyPalette(param1->unk_0C[1], v0, param2, param3, param4, param0->unk_00);
     sub_0200A6B8(v0);
@@ -1336,7 +1336,7 @@ void sub_0200D9B4(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2
 {
     SpriteResource *v0;
 
-    v0 = sub_02009DC8(param1->unk_0C[0], param5);
+    v0 = SpriteResourceCollection_Find(param1->unk_0C[0], param5);
 
     SpriteResourceCollection_ModifyCharFrom(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
     sub_0200A4C0(v0);

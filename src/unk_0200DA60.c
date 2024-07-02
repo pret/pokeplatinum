@@ -684,7 +684,7 @@ static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1)
         sub_020135F0(param1->archive, param1->character, param0->unk_1C6, &v7, &v0[(32 * 10 * 10)]);
     }
 
-    v2 = sub_02009DC8(param0->unk_194[0], 89301);
+    v2 = SpriteResourceCollection_Find(param0->unk_194[0], 89301);
     v3 = sub_0200A534(v2);
     v1 = NNS_G2dGetImageLocation(v3, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -694,7 +694,7 @@ static void sub_0200EE98(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *param1)
     Heap_FreeToHeap(v0);
 
     v0 = sub_02013660(param1->archive, param1->palette, param0->unk_1C6);
-    v4 = sub_02009DC8(param0->unk_194[1], 89301);
+    v4 = SpriteResourceCollection_Find(param0->unk_194[1], 89301);
     v5 = sub_0200A72C(v4, v3);
     v1 = NNS_G2dGetImagePaletteLocation(v5, NNS_G2D_VRAM_TYPE_2DMAIN);
 

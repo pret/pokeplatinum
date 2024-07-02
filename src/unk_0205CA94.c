@@ -444,13 +444,13 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     param0->unk_20[0] = sub_0205D1C4(param0->unk_08[0], &param0->unk_18[0], Unk_020ED8B4[0][param1]);
 
     for (v0 = 0; v0 < param0->unk_18[0]->unk_08; v0++) {
-        sub_02009F08(param0->unk_18[0]->unk_00[v0], param2);
+        SpriteResource_SetVRAMType(param0->unk_18[0]->unk_00[v0], param2);
     }
 
     param0->unk_20[1] = sub_0205D1C4(param0->unk_08[1], &param0->unk_18[1], Unk_020ED8B4[1][param1]);
 
     for (v0 = 0; v0 < param0->unk_18[1]->unk_08; v0++) {
-        sub_02009F08(param0->unk_18[1]->unk_00[v0], param2);
+        SpriteResource_SetVRAMType(param0->unk_18[1]->unk_00[v0], param2);
     }
 
     param0->unk_20[2] = sub_0205D1C4(param0->unk_08[2], NULL, 0);

@@ -2686,7 +2686,7 @@ static void ov21_021DBDC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
     SpriteResource *v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
-    v1 = sub_02009DC8(v2->unk_13C[1], 3 + 16000);
+    v1 = SpriteResourceCollection_Find(v2->unk_13C[1], 3 + 16000);
 
     v0.unk_00 = v2->unk_14C;
     v0.unk_08 = sub_0200A72C(v1, NULL);
@@ -2711,7 +2711,7 @@ static void ov21_021DBE3C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
     SpriteResource *v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
-    v1 = sub_02009DC8(v2->unk_13C[1], 3 + 16000);
+    v1 = SpriteResourceCollection_Find(v2->unk_13C[1], 3 + 16000);
 
     v0.unk_00 = v2->unk_14C;
     v0.unk_08 = sub_0200A72C(v1, NULL);

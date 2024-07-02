@@ -925,7 +925,7 @@ static void ov21_021E58B8(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     int v4;
     u32 v5;
 
-    v2 = sub_02009DC8(v3->unk_13C[1], 18 + 10000);
+    v2 = SpriteResourceCollection_Find(v3->unk_13C[1], 18 + 10000);
 
     v1.unk_00 = v3->unk_14C;
     v1.unk_08 = sub_0200A72C(v2, NULL);

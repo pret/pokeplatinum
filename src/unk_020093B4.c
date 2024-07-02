@@ -34,29 +34,29 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
     GF_ASSERT(param11);
     GF_ASSERT(param0);
 
-    v0 = sub_02009DC8(param9, param1);
+    v0 = SpriteResourceCollection_Find(param9, param1);
     GF_ASSERT(v0);
 
-    v1 = sub_02009DC8(param10, param2);
+    v1 = SpriteResourceCollection_Find(param10, param2);
     GF_ASSERT(v1);
 
-    v2 = sub_02009DC8(param11, param3);
+    v2 = SpriteResourceCollection_Find(param11, param3);
     GF_ASSERT(v2);
 
     if (param12) {
         if (param4 != 0xffffffff) {
-            v3 = sub_02009DC8(param12, param4);
+            v3 = SpriteResourceCollection_Find(param12, param4);
             GF_ASSERT(v3);
         }
     }
 
     if (param13 != NULL) {
         if (param5 != 0xffffffff) {
-            v4 = sub_02009DC8(param13, param5);
+            v4 = SpriteResourceCollection_Find(param13, param5);
         }
 
         if (param6 != 0xffffffff) {
-            v5 = sub_02009DC8(param14, param6);
+            v5 = SpriteResourceCollection_Find(param14, param6);
         }
     }
 
@@ -64,7 +64,7 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
         v6 = sub_0200A558(v0, v2);
         GF_ASSERT(v6);
 
-        param0->charData = sub_02009E1C(v0);
+        param0->charData = SpriteResource_GetCharData(v0);
     } else {
         v6 = sub_0200A534(v0);
         GF_ASSERT(v6);
@@ -73,17 +73,17 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
 
     param0->paletteProxy = sub_0200A72C(v1, v6);
     param0->imageProxy = v6;
-    param0->cellBank = sub_02009E4C(v2);
+    param0->cellBank = SpriteResource_GetCellData(v2);
 
     if (v3) {
-        param0->cellAnimBank = sub_02009E64(v3);
+        param0->cellAnimBank = SpriteResource_GetCellAnimData(v3);
     } else {
         param0->cellAnimBank = NULL;
     }
 
     if (v4) {
-        param0->multiCellBank = sub_02009E7C(v4);
-        param0->multiCellAnimBank = sub_02009E94(v5);
+        param0->multiCellBank = SpriteResource_GetMultiCellData(v4);
+        param0->multiCellAnimBank = SpriteResource_GetMultiCellAnimData(v5);
     } else {
         param0->multiCellBank = NULL;
         param0->multiCellAnimBank = NULL;

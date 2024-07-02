@@ -2663,7 +2663,7 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
         {
             NNSG2dPaletteData *v1;
 
-            v1 = sub_02009E34(param1->unk_1BC[0]);
+            v1 = SpriteResource_GetPaletteData(param1->unk_1BC[0]);
             {
                 int v2 = 0;
                 UnkStruct_ov9_0224ADC0 *v3 = &param0->unk_1D00;

@@ -170,8 +170,8 @@ static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollect
     NNSG2dImageProxy *v5;
     const NNSG2dImagePaletteProxy *v6;
 
-    v3 = sub_02009DC8(param0, 0);
-    v4 = sub_02009DC8(param1, 1);
+    v3 = SpriteResourceCollection_Find(param0, 0);
+    v4 = SpriteResourceCollection_Find(param1, 1);
 
     sub_0200A3DC(v3);
     sub_0200A640(v4);

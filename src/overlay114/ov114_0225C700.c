@@ -1137,7 +1137,7 @@ void ov114_0225CB38(UnkStruct_ov114_0225CAD4 *param0)
 
 int ov114_0225CB74(UnkStruct_ov114_0225CAD4 *param0)
 {
-    SpriteResource *v0 = sub_02009DC8(param0->unk_10.unk_00[1], 5000);
+    SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_10.unk_00[1], 5000);
     return sub_0200A760(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 

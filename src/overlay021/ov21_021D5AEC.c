@@ -783,13 +783,13 @@ static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0)
 {
     SpriteResource *v0;
 
-    v0 = sub_02009DC8(param0->unk_80[0], 81);
+    v0 = SpriteResourceCollection_Find(param0->unk_80[0], 81);
     sub_0200A4E4(v0);
 
-    v0 = sub_02009DC8(param0->unk_80[1], 3);
+    v0 = SpriteResourceCollection_Find(param0->unk_80[1], 3);
     sub_0200A6DC(v0);
 
-    v0 = sub_02009DC8(param0->unk_80[0], 111);
+    v0 = SpriteResourceCollection_Find(param0->unk_80[0], 111);
     sub_0200A4E4(v0);
 
     SpriteResourceCollection_Delete(param0->unk_80[0]);

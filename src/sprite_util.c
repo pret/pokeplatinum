@@ -509,19 +509,16 @@ void SpriteResourceCollection_Clear(SpriteResourceCollection *spriteResources)
     }
 }
 
-SpriteResource * sub_02009DC8 (const SpriteResourceCollection * param0, int param1)
+SpriteResource *SpriteResourceCollection_Find(const SpriteResourceCollection *spriteResources, int id)
 {
-    int v0;
-    int v1;
+    GF_ASSERT(spriteResources);
 
-    GF_ASSERT(param0);
-
-    for (v0 = 0; v0 < param0->capacity; v0++) {
-        if (param0->resources[v0].rawResource) {
-            v1 = Resource_GetID(param0->resources[v0].rawResource);
-
-            if (v1 == param1) {
-                return param0->resources + v0;
+    for (int i = 0; i < spriteResources->capacity; i++) {
+        if (spriteResources->resources[i].rawResource) {
+            // Explicit assignment is needed to match
+            int resID = Resource_GetID(spriteResources->resources[i].rawResource);
+            if (resID == id) {
+                return spriteResources->resources + i;
             }
         }
     }
@@ -535,70 +532,58 @@ int SpriteResource_GetID(const SpriteResource *spriteRes)
     return Resource_GetID(spriteRes->rawResource);
 }
 
-NNSG2dCharacterData * sub_02009E1C (const SpriteResource * param0)
+NNSG2dCharacterData *SpriteResource_GetCharData(const SpriteResource *spriteRes)
 {
-    CharResourceData * v0;
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CHAR);
 
-    GF_ASSERT(param0->type == 0);
-
-    v0 = (CharResourceData *)SpriteResource_GetData(param0);
-    return v0->charData;
+    CharResourceData *charRes = SpriteResource_GetData(spriteRes);
+    return charRes->charData;
 }
 
-NNSG2dPaletteData * sub_02009E34 (const SpriteResource * param0)
+NNSG2dPaletteData *SpriteResource_GetPaletteData(const SpriteResource *spriteRes)
 {
-    PaletteResourceData * v0;
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_PALETTE);
 
-    GF_ASSERT(param0->type == 1);
-
-    v0 = (PaletteResourceData *)SpriteResource_GetData(param0);
-    return v0->paletteData;
+    PaletteResourceData *paletteRes = SpriteResource_GetData(spriteRes);
+    return paletteRes->paletteData;
 }
 
-NNSG2dCellDataBank * sub_02009E4C (const SpriteResource * param0)
+NNSG2dCellDataBank *SpriteResource_GetCellData(const SpriteResource *spriteRes)
 {
-    CellResourceData * v0;
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CELL);
 
-    GF_ASSERT(param0->type == 2);
-
-    v0 = (CellResourceData *)SpriteResource_GetData(param0);
-    return v0->cellBank;
+    CellResourceData *cellRes = SpriteResource_GetData(spriteRes);
+    return cellRes->cellBank;
 }
 
-NNSG2dCellAnimBankData * sub_02009E64 (const SpriteResource * param0)
+NNSG2dCellAnimBankData *SpriteResource_GetCellAnimData(const SpriteResource *spriteRes)
 {
-    CellAnimResourceData * v0;
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CELL_ANIM);
 
-    GF_ASSERT(param0->type == 3);
-
-    v0 = (CellAnimResourceData *)SpriteResource_GetData(param0);
-    return v0->animBank;
+    CellAnimResourceData *cellAnimRes = SpriteResource_GetData(spriteRes);
+    return cellAnimRes->animBank;
 }
 
-NNSG2dMultiCellDataBank * sub_02009E7C (const SpriteResource * param0)
+NNSG2dMultiCellDataBank *SpriteResource_GetMultiCellData(const SpriteResource *spriteRes)
 {
-    MultiCellResourceData * v0;
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_CELL);
 
-    GF_ASSERT(param0->type == 4);
-
-    v0 = (MultiCellResourceData *)SpriteResource_GetData(param0);
-    return v0->multiCellBank;
+    MultiCellResourceData *multiCellRes = SpriteResource_GetData(spriteRes);
+    return multiCellRes->multiCellBank;
 }
 
-NNSG2dMultiCellAnimBankData * sub_02009E94 (const SpriteResource * param0)
+NNSG2dMultiCellAnimBankData *SpriteResource_GetMultiCellAnimData(const SpriteResource *spriteRes)
 {
-    MultiCellAnimResourceData * v0;
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_CELL_ANIM);
 
-    GF_ASSERT(param0->type == 5);
-
-    v0 = (MultiCellAnimResourceData *)SpriteResource_GetData(param0);
-    return v0->multiCellAnimBank;
+    MultiCellAnimResourceData *multiCellAnimRes = SpriteResource_GetData(spriteRes);
+    return multiCellAnimRes->multiCellAnimBank;
 }
 
-int sub_02009EAC (const SpriteResource * param0)
+enum SpriteResourceType SpriteResource_GetType(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(param0);
-    return param0->type;
+    GF_ASSERT(spriteRes);
+    return spriteRes->type;
 }
 
 NNS_G2D_VRAM_TYPE SpriteResource_GetVRAMType(const SpriteResource *spriteRes)
@@ -630,22 +615,18 @@ int SpriteResource_GetPaletteIndex(const SpriteResource *spriteRes)
     return 0;
 }
 
-void sub_02009F08 (SpriteResource * param0, int param1)
+void SpriteResource_SetVRAMType(SpriteResource *spriteRes, NNS_G2D_VRAM_TYPE vramType)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(spriteRes);
 
-    if (param0->type == 0) {
-        CharResourceData * v0;
-
-        v0 = SpriteResource_GetData(param0);
-        v0->vramType = param1;
+    if (spriteRes->type == SPRITE_RESOURCE_CHAR) {
+        CharResourceData *charRes = SpriteResource_GetData(spriteRes);
+        charRes->vramType = vramType;
     }
 
-    if (param0->type == 1) {
-        PaletteResourceData * v1;
-
-        v1 = SpriteResource_GetData(param0);
-        v1->vramType = param1;
+    if (spriteRes->type == SPRITE_RESOURCE_PALETTE) {
+        PaletteResourceData *paletteRes = SpriteResource_GetData(spriteRes);
+        paletteRes->vramType = vramType;
     }
 }
 

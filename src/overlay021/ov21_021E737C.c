@@ -1085,13 +1085,13 @@ static const UnkStruct_ov21_021E9DB0 *ov21_021E83D8(const UnkStruct_ov21_021E9DB
 
 static void ov21_021E8400(UnkStruct_ov21_021E7714 *param0, u8 param1, u16 param2)
 {
-    NNSG2dPaletteData *v0 = sub_02009E34(param0->unk_14[1]);
+    NNSG2dPaletteData *v0 = SpriteResource_GetPaletteData(param0->unk_14[1]);
     const NNSG2dImagePaletteProxy *v1 = sub_0200A72C(param0->unk_14[1], NULL);
 
     sub_0200393C(v0->pRawData, param0->unk_BC, 3 * 16, param1, param2);
     sub_0201DC68(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, NNS_G2dGetImagePaletteLocation(v1, NNS_G2D_VRAM_TYPE_2DMAIN), param0->unk_BC, 3 * 32);
 
-    v0 = sub_02009E34(param0->unk_24[1]);
+    v0 = SpriteResource_GetPaletteData(param0->unk_24[1]);
     v1 = sub_0200A72C(param0->unk_24[1], NULL);
 
     sub_0200393C(v0->pRawData, param0->unk_C0, 5 * 16, param1, param2);
