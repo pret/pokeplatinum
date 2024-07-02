@@ -16,7 +16,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020093B4.h"
-#include "sprite_util.h"
+#include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_020131EC.h"
 #include "unk_0201D15C.h"

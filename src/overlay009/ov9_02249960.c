@@ -59,7 +59,7 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "sprite_util.h"
+#include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_02018340.h"
 #include "unk_0201CED8.h"

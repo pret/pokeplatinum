@@ -35,7 +35,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020093B4.h"
-#include "sprite_util.h"
+#include "sprite_resource.h"
 #include "unk_0200A328.h"
 #include "unk_02015064.h"
 #include "unk_02018340.h"
