@@ -457,18 +457,18 @@ static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
-    param0[0] = sub_02009A4C(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param0[0] = SpriteResourceCollection_AddCharFrom(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param0[0]);
     SpriteResource_ReleaseData(param0[0]);
 
-    param0[1] = sub_02009B04(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
+    param0[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
 
     sub_0200A640(param0[1]);
     SpriteResource_ReleaseData(param0[1]);
 
-    param0[2] = sub_02009BC4(param1[2], param3, param6, 1, param9, 2, param2);
-    param0[3] = sub_02009BC4(param1[3], param3, param7, 1, param9, 3, param2);
+    param0[2] = SpriteResourceCollection_AddFrom(param1[2], param3, param6, 1, param9, 2, param2);
+    param0[3] = SpriteResourceCollection_AddFrom(param1[3], param3, param7, 1, param9, 3, param2);
 }
 
 static void ov21_021E93C4(SpriteResource **param0, SpriteResourceCollection **param1)

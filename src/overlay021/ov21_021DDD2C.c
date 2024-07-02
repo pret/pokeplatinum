@@ -407,13 +407,13 @@ static void ov21_021DE1A4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
     NARC *v1 = ov21_021D26E0(param1->unk_00);
 
-    param0->unk_04[0] = sub_02009A4C(v0->unk_13C[0], v1, 105, 1, 105 + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_04[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v1, 105, 1, 105 + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     sub_0200A3DC(param0->unk_04[0]);
     SpriteResource_ReleaseData(param0->unk_04[0]);
 
-    param0->unk_04[2] = sub_02009BC4(v0->unk_13C[2], v1, 103, 1, 103 + 6000, 2, param2);
-    param0->unk_04[3] = sub_02009BC4(v0->unk_13C[3], v1, 104, 1, 104 + 6000, 3, param2);
+    param0->unk_04[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 103, 1, 103 + 6000, 2, param2);
+    param0->unk_04[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v1, 104, 1, 104 + 6000, 3, param2);
 }
 
 static void ov21_021DE224(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1)

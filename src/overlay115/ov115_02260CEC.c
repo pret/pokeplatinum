@@ -2661,10 +2661,10 @@ static void ov115_02262FB4(UnkStruct_ov115_02263130 *param0, UnkStruct_ov115_022
     v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param2);
 
     {
-        param0->unk_00[0] = sub_02009A4C(param1->unk_1AC[0], v0, 21, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, param2);
-        param0->unk_00[1] = sub_02009B04(param1->unk_1AC[1], v0, 20, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, 2, param2);
-        param0->unk_00[2] = sub_02009BC4(param1->unk_1AC[2], v0, 22, 0, 120, 2, param2);
-        param0->unk_00[3] = sub_02009BC4(param1->unk_1AC[3], v0, 23, 0, 120, 3, param2);
+        param0->unk_00[0] = SpriteResourceCollection_AddCharFrom(param1->unk_1AC[0], v0, 21, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+        param0->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_1AC[1], v0, 20, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, 2, param2);
+        param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], v0, 22, 0, 120, 2, param2);
+        param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], v0, 23, 0, 120, 3, param2);
 
         v1 = sub_0200A450(param0->unk_00[0]);
         GF_ASSERT(v1);
@@ -3219,10 +3219,10 @@ static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
     BOOL v0;
 
     {
-        param0->unk_1E0[0] = sub_02009A4C(param0->unk_1AC[0], param1, 2, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
-        param0->unk_1E0[1] = sub_02009B04(param0->unk_1AC[1], param1, 3, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, 8, param2);
-        param0->unk_1E0[2] = sub_02009BC4(param0->unk_1AC[2], param1, 1, 0, 200, 2, param2);
-        param0->unk_1E0[3] = sub_02009BC4(param0->unk_1AC[3], param1, 0, 0, 200, 3, param2);
+        param0->unk_1E0[0] = SpriteResourceCollection_AddCharFrom(param0->unk_1AC[0], param1, 2, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+        param0->unk_1E0[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 3, 0, 200, NNS_G2D_VRAM_TYPE_2DMAIN, 8, param2);
+        param0->unk_1E0[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 1, 0, 200, 2, param2);
+        param0->unk_1E0[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 0, 0, 200, 3, param2);
 
         v0 = sub_0200A450(param0->unk_1E0[0]);
         GF_ASSERT(v0);
@@ -3622,10 +3622,10 @@ static void ov115_022643EC(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 p
     NNS_G3dMdlUseGlbAlpha(param0->unk_760.unk_50.model);
 
     {
-        param0->unk_760.unk_60[0] = sub_02009A4C(param0->unk_1AC[0], param1, 7, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
-        param0->unk_760.unk_60[1] = sub_02009B04(param0->unk_1AC[1], param1, 4, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 4, param2);
-        param0->unk_760.unk_60[2] = sub_02009BC4(param0->unk_1AC[2], param1, 6, 0, 100, 2, param2);
-        param0->unk_760.unk_60[3] = sub_02009BC4(param0->unk_1AC[3], param1, 5, 0, 100, 3, param2);
+        param0->unk_760.unk_60[0] = SpriteResourceCollection_AddCharFrom(param0->unk_1AC[0], param1, 7, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+        param0->unk_760.unk_60[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1AC[1], param1, 4, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 4, param2);
+        param0->unk_760.unk_60[2] = SpriteResourceCollection_AddFrom(param0->unk_1AC[2], param1, 6, 0, 100, 2, param2);
+        param0->unk_760.unk_60[3] = SpriteResourceCollection_AddFrom(param0->unk_1AC[3], param1, 5, 0, 100, 3, param2);
 
         v0 = sub_0200A450(param0->unk_760.unk_60[0]);
         GF_ASSERT(v0);
@@ -4398,10 +4398,10 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
     {
         BOOL v0;
 
-        param0->unk_00[0] = sub_02009A4C(param1->unk_1AC[0], param2, 10, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
-        param0->unk_00[1] = sub_02009B04(param1->unk_1AC[1], param2, 11, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
-        param0->unk_00[2] = sub_02009BC4(param1->unk_1AC[2], param2, 9, 0, 140, 2, param3);
-        param0->unk_00[3] = sub_02009BC4(param1->unk_1AC[3], param2, 8, 0, 140, 3, param3);
+        param0->unk_00[0] = SpriteResourceCollection_AddCharFrom(param1->unk_1AC[0], param2, 10, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        param0->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_1AC[1], param2, 11, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
+        param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], param2, 9, 0, 140, 2, param3);
+        param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], param2, 8, 0, 140, 3, param3);
 
         v0 = sub_0200A450(param0->unk_00[0]);
         GF_ASSERT(v0);

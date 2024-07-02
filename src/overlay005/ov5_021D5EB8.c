@@ -1052,16 +1052,16 @@ static SpriteResource *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int 
 
     switch (param1) {
     case 0:
-        v1 = sub_02009AA8(param3, param4, v2, v3, v6, v4, 4, param5);
+        v1 = SpriteResourceCollection_AddCharFromEx(param3, param4, v2, v3, v6, v4, 4, param5);
         break;
     case 1:
-        v1 = sub_02009B64(param3, param4, v2, v3, v6, v4, v5, 4, param5);
+        v1 = SpriteResourceCollection_AddPaletteFromEx(param3, param4, v2, v3, v6, v4, v5, 4, param5);
         break;
     case 2:
-        v1 = sub_02009BC4(param3, param4, v2, v3, v6, 2, 4);
+        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 2, 4);
         break;
     case 3:
-        v1 = sub_02009BC4(param3, param4, v2, v3, v6, 3, 4);
+        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 3, 4);
         break;
     }
 

@@ -6684,10 +6684,10 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 
-    param0->unk_BE0.unk_20C[0] = sub_02009A4C(param0->unk_31C[0], param1, 42, 0, 30, NNS_G2D_VRAM_TYPE_2DSUB, param2);
-    param0->unk_BE0.unk_20C[1] = sub_02009B04(param0->unk_31C[1], param1, 43, 0, 30, NNS_G2D_VRAM_TYPE_2DSUB, 8, param2);
-    param0->unk_BE0.unk_20C[2] = sub_02009BC4(param0->unk_31C[2], param1, 40, 0, 30, 2, param2);
-    param0->unk_BE0.unk_20C[3] = sub_02009BC4(param0->unk_31C[3], param1, 41, 0, 30, 3, param2);
+    param0->unk_BE0.unk_20C[0] = SpriteResourceCollection_AddCharFrom(param0->unk_31C[0], param1, 42, 0, 30, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_BE0.unk_20C[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_31C[1], param1, 43, 0, 30, NNS_G2D_VRAM_TYPE_2DSUB, 8, param2);
+    param0->unk_BE0.unk_20C[2] = SpriteResourceCollection_AddFrom(param0->unk_31C[2], param1, 40, 0, 30, 2, param2);
+    param0->unk_BE0.unk_20C[3] = SpriteResourceCollection_AddFrom(param0->unk_31C[3], param1, 41, 0, 30, 3, param2);
 
     v0 = sub_0200A450(param0->unk_BE0.unk_20C[0]);
     GF_ASSERT(v0);

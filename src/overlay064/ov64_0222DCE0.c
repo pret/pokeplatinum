@@ -1017,10 +1017,10 @@ static void ov64_0222E3D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
         param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);
     }
 
-    param0->unk_260[0] = sub_02009A4C(param0->unk_204[0], param0->unk_21C, 15, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
-    param0->unk_260[1] = sub_02009B04(param0->unk_204[1], param0->unk_21C, 0, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param1);
-    param0->unk_260[2] = sub_02009BC4(param0->unk_204[2], param0->unk_21C, 16, 0, 100, 2, param1);
-    param0->unk_260[3] = sub_02009BC4(param0->unk_204[3], param0->unk_21C, 17, 0, 100, 3, param1);
+    param0->unk_260[0] = SpriteResourceCollection_AddCharFrom(param0->unk_204[0], param0->unk_21C, 15, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
+    param0->unk_260[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_204[1], param0->unk_21C, 0, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param1);
+    param0->unk_260[2] = SpriteResourceCollection_AddFrom(param0->unk_204[2], param0->unk_21C, 16, 0, 100, 2, param1);
+    param0->unk_260[3] = SpriteResourceCollection_AddFrom(param0->unk_204[3], param0->unk_21C, 17, 0, 100, 3, param1);
 
     v1 = sub_0200A3DC(param0->unk_260[0]);
     GF_ASSERT(v1);

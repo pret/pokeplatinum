@@ -1662,10 +1662,10 @@ static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
     int v2;
     NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 
-    param0->unk_40[0] = sub_02009A4C(param1->unk_194[0], v3, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
-    param0->unk_40[1] = sub_02009B04(param1->unk_194[1], v3, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
-    param0->unk_40[2] = sub_02009BC4(param1->unk_194[2], v3, 5, 0, 5000, 2, param2);
-    param0->unk_40[3] = sub_02009BC4(param1->unk_194[3], v3, 6, 0, 5000, 3, param2);
+    param0->unk_40[0] = SpriteResourceCollection_AddCharFrom(param1->unk_194[0], v3, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param0->unk_40[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194[1], v3, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
+    param0->unk_40[2] = SpriteResourceCollection_AddFrom(param1->unk_194[2], v3, 5, 0, 5000, 2, param2);
+    param0->unk_40[3] = SpriteResourceCollection_AddFrom(param1->unk_194[3], v3, 6, 0, 5000, 3, param2);
 
     NARC_dtor(v3);
     sub_0200A3DC(param0->unk_40[0]);
@@ -2700,20 +2700,20 @@ static void ov70_0225FEF0(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
     {
         BOOL v2;
 
-        param0->unk_58[0] = sub_02009A4C(param1->unk_194[0], param2, 61 + (v0 * 3), 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param3);
+        param0->unk_58[0] = SpriteResourceCollection_AddCharFrom(param1->unk_194[0], param2, 61 + (v0 * 3), 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, param3);
 
         v2 = sub_0200A3DC(param0->unk_58[0]);
         GF_ASSERT(v2);
         SpriteResource_ReleaseData(param0->unk_58[0]);
 
-        param0->unk_58[1] = sub_02009B04(param1->unk_194[1], param2, 89, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 3, param3);
+        param0->unk_58[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194[1], param2, 89, 0, 100, NNS_G2D_VRAM_TYPE_2DSUB, 3, param3);
 
         v2 = sub_0200A640(param0->unk_58[1]);
         GF_ASSERT(v2);
         SpriteResource_ReleaseData(param0->unk_58[1]);
 
-        param0->unk_58[2] = sub_02009BC4(param1->unk_194[2], param2, 60 + (v0 * 3), 0, 100, 2, param3);
-        param0->unk_58[3] = sub_02009BC4(param1->unk_194[3], param2, 59 + (v0 * 3), 0, 100, 3, param3);
+        param0->unk_58[2] = SpriteResourceCollection_AddFrom(param1->unk_194[2], param2, 60 + (v0 * 3), 0, 100, 2, param3);
+        param0->unk_58[3] = SpriteResourceCollection_AddFrom(param1->unk_194[3], param2, 59 + (v0 * 3), 0, 100, 3, param3);
     }
 
     {
@@ -2978,14 +2978,14 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
             v2 = param2;
         }
 
-        param0->unk_AC[v0] = sub_02009B04(param1->unk_194[1], v2, v11[v0][1], 0, 150 + v0, NNS_G2D_VRAM_TYPE_2DSUB, v11[v0][2], param3);
+        param0->unk_AC[v0] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194[1], v2, v11[v0][1], 0, 150 + v0, NNS_G2D_VRAM_TYPE_2DSUB, v11[v0][2], param3);
         v3 = sub_0200A640(param0->unk_AC[v0]);
         GF_ASSERT(v3);
 
         SpriteResource_ReleaseData(param0->unk_AC[v0]);
 
-        param0->unk_EC[v0] = sub_02009BC4(param1->unk_194[2], v2, v12[v0], 0, 150 + v0, 2, param3);
-        param0->unk_FC[v0] = sub_02009BC4(param1->unk_194[3], v2, v13[v0], 0, 150 + v0, 3, param3);
+        param0->unk_EC[v0] = SpriteResourceCollection_AddFrom(param1->unk_194[2], v2, v12[v0], 0, 150 + v0, 2, param3);
+        param0->unk_FC[v0] = SpriteResourceCollection_AddFrom(param1->unk_194[3], v2, v13[v0], 0, 150 + v0, 3, param3);
     }
 
     for (v0 = 0; v0 < 12; v0++) {
@@ -3004,7 +3004,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
                 v2 = v1;
             }
 
-            param0->unk_BC[v0] = sub_02009A4C(param1->unk_194[0], v2, v10->unk_02, 0, 150 + v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
+            param0->unk_BC[v0] = SpriteResourceCollection_AddCharFrom(param1->unk_194[0], v2, v10->unk_02, 0, 150 + v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
 
             v3 = sub_0200A3DC(param0->unk_BC[v0]);
             GF_ASSERT(v3);

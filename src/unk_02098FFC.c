@@ -129,7 +129,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
     v6 = param0->unk_1B4[1]->unk_00[v1];
 
-    sub_020099D4(param0->unk_1A4[1], param0->unk_1B4[1]->unk_00[v1], 88, 3 + param1, 0, param0->unk_00);
+    SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], param0->unk_1B4[1]->unk_00[v1], 88, 3 + param1, 0, param0->unk_00);
     sub_0200A6B8(param0->unk_1B4[1]->unk_00[v1]);
 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
@@ -179,7 +179,7 @@ void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int pa
 
     v0 = param0->unk_1B4[1]->unk_00[param1->unk_00];
 
-    sub_020099D4(param0->unk_1A4[1], v0, 88, 3 + param2, 0, param0->unk_00);
+    SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], v0, 88, 3 + param2, 0, param0->unk_00);
     sub_0200A6B8(v0);
 }
 
@@ -205,7 +205,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);
 
     v2 = param0->unk_1B4[0];
-    v2->unk_00[0] = sub_02009A4C(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);
+    v2->unk_00[0] = SpriteResourceCollection_AddCharFrom(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);
 
     GF_ASSERT(v2->unk_00[0] != NULL);
 
@@ -224,7 +224,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         v2 = param0->unk_1B4[2 + v0];
-        v2->unk_00[0] = sub_02009BC4(param0->unk_1A4[2 + v0], v4, 1 + v0, 0, 0xe000, 2 + v0, param0->unk_00);
+        v2->unk_00[0] = SpriteResourceCollection_AddFrom(param0->unk_1A4[2 + v0], v4, 1 + v0, 0, 0xe000, 2 + v0, param0->unk_00);
 
         GF_ASSERT(v2->unk_00[0] != NULL);
     }
@@ -232,7 +232,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     v2 = param0->unk_1B4[1];
 
     for (v0 = 0; v0 < param0->unk_0A; v0++) {
-        v2->unk_00[v0] = sub_02009B04(param0->unk_1A4[1], v4, 3 + 1, 0, 0xe000 + v0, param0->unk_0E, 1, param0->unk_00);
+        v2->unk_00[v0] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1A4[1], v4, 3 + 1, 0, 0xe000 + v0, param0->unk_0E, 1, param0->unk_00);
 
         GF_ASSERT(v2->unk_00[v0] != NULL);
         sub_0200A5C8(v2->unk_00[v0]);

@@ -155,7 +155,7 @@ void ov101_021D80E4(UnkStruct_ov101_021D7E48 *param0, u32 param1, NARC *param2, 
         if (param0->unk_1B0[v0].unk_00 == param0->unk_08) {
             param0->unk_1B0[v0].unk_00 = param4;
             param0->unk_1B0[v0].unk_02 = 0;
-            param0->unk_1B0[v0].unk_04 = sub_02009A4C(
+            param0->unk_1B0[v0].unk_04 = SpriteResourceCollection_AddCharFrom(
                 param0->unk_1A0, param2, param3, 0, param4, param1, param0->unk_00);
             return;
         }
@@ -200,7 +200,7 @@ void ov101_021D81B4(UnkStruct_ov101_021D7E48 *param0, u32 param1, NARC *param2, 
         if (param0->unk_1B4[v0].unk_00 == param0->unk_09) {
             param0->unk_1B4[v0].unk_00 = param4;
             param0->unk_1B4[v0].unk_02 = 0;
-            param0->unk_1B4[v0].unk_04 = sub_02009B04(param0->unk_1A4, param2, param3, 0, param4, param1, 1, param0->unk_00);
+            param0->unk_1B4[v0].unk_04 = SpriteResourceCollection_AddPaletteFrom(param0->unk_1A4, param2, param3, 0, param4, param1, 1, param0->unk_00);
             return;
         }
     }
@@ -244,7 +244,7 @@ void ov101_021D8288(UnkStruct_ov101_021D7E48 *param0, NARC *param1, u32 param2, 
         if (param0->unk_1B8[v0].unk_00 == param0->unk_0A) {
             param0->unk_1B8[v0].unk_00 = param3;
             param0->unk_1B8[v0].unk_02 = 0;
-            param0->unk_1B8[v0].unk_04 = sub_02009BC4(param0->unk_1A8, param1, param2, 0, param3, 2, param0->unk_00);
+            param0->unk_1B8[v0].unk_04 = SpriteResourceCollection_AddFrom(param0->unk_1A8, param1, param2, 0, param3, 2, param0->unk_00);
             return;
         }
     }
@@ -260,7 +260,7 @@ void ov101_021D82F0(UnkStruct_ov101_021D7E48 *param0, NARC *param1, u32 param2, 
         if (param0->unk_1BC[v0].unk_00 == param0->unk_0B) {
             param0->unk_1BC[v0].unk_00 = param3;
             param0->unk_1BC[v0].unk_02 = 0;
-            param0->unk_1BC[v0].unk_04 = sub_02009BC4(
+            param0->unk_1BC[v0].unk_04 = SpriteResourceCollection_AddFrom(
                 param0->unk_1AC, param1, param2, 0, param3, 3, param0->unk_00);
             return;
         }

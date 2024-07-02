@@ -562,12 +562,12 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     v3 = PokeIconCellsFileIndex();
     v4 = PokeIconAnimationFileIndex();
 
-    param0->unk_14[0] = sub_02009A4C(v0->unk_13C[0], v9, v1, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+    param0->unk_14[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v9, v1, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
 
     sub_0200A450(param0->unk_14[0]);
     SpriteResource_ReleaseData(param0->unk_14[0]);
 
-    param0->unk_14[1] = sub_02009B04(v0->unk_13C[1], v9, v2, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, 3, param3);
+    param0->unk_14[1] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], v9, v2, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, 3, param3);
 
     v6 = sub_0200A640(param0->unk_14[1]);
     GF_ASSERT(v6);
@@ -576,14 +576,14 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
         param0->unk_BC = Heap_AllocFromHeap(param3, 32 * 3);
     }
 
-    param0->unk_14[2] = sub_02009BC4(v0->unk_13C[2], v9, v3, 0, 8000, 2, param3);
-    param0->unk_14[3] = sub_02009BC4(v0->unk_13C[3], v9, v4, 0, 8000, 3, param3);
-    param0->unk_24[0] = sub_02009A4C(v0->unk_13C[0], v7, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+    param0->unk_14[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v9, v3, 0, 8000, 2, param3);
+    param0->unk_14[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v9, v4, 0, 8000, 3, param3);
+    param0->unk_24[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v7, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
 
     sub_0200A3DC(param0->unk_24[0]);
     SpriteResource_ReleaseData(param0->unk_24[0]);
 
-    param0->unk_24[1] = sub_02009B04(v0->unk_13C[1], v7, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param3);
+    param0->unk_24[1] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], v7, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param3);
 
     sub_0200A640(param0->unk_24[1]);
 
@@ -591,8 +591,8 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
         param0->unk_C0 = Heap_AllocFromHeap(param3, 32 * 5);
     }
 
-    param0->unk_24[2] = sub_02009BC4(v0->unk_13C[2], v7, 91, 1, 91 + 7000, 2, param3);
-    param0->unk_24[3] = sub_02009BC4(v0->unk_13C[3], v7, 92, 1, 92 + 7000, 3, param3);
+    param0->unk_24[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v7, 91, 1, 91 + 7000, 2, param3);
+    param0->unk_24[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v7, 92, 1, 92 + 7000, 3, param3);
 
     NARC_dtor(v9);
 }

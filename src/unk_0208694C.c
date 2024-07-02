@@ -1555,10 +1555,10 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
         param0->unk_318[v0] = SpriteResourceCollection_New(2, v0, 18);
     }
 
-    param0->unk_328[0][0] = sub_02009A4C(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 18);
-    param0->unk_328[0][1] = sub_02009B04(param0->unk_318[1], param1, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 18);
-    param0->unk_328[0][2] = sub_02009BC4(param0->unk_318[2], param1, 12, 1, 0, 2, 18);
-    param0->unk_328[0][3] = sub_02009BC4(param0->unk_318[3], param1, 14, 1, 0, 3, 18);
+    param0->unk_328[0][0] = SpriteResourceCollection_AddCharFrom(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 18);
+    param0->unk_328[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, 18);
+    param0->unk_328[0][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 12, 1, 0, 2, 18);
+    param0->unk_328[0][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 14, 1, 0, 3, 18);
 
     if (param0->unk_00 == 1) {
         param0->unk_518 = sub_02006F50(19, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, 18);
@@ -1568,10 +1568,10 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
         DC_FlushRange(param0->unk_524, 0x20 * 4);
     }
 
-    param0->unk_328[1][0] = sub_02009A4C(param0->unk_318[0], param1, 11, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 18);
-    param0->unk_328[1][1] = sub_02009B04(param0->unk_318[1], param1, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, 18);
-    param0->unk_328[1][2] = sub_02009BC4(param0->unk_318[2], param1, 13, 1, 1, 2, 18);
-    param0->unk_328[1][3] = sub_02009BC4(param0->unk_318[3], param1, 15, 1, 1, 3, 18);
+    param0->unk_328[1][0] = SpriteResourceCollection_AddCharFrom(param0->unk_318[0], param1, 11, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, 18);
+    param0->unk_328[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, 18);
+    param0->unk_328[1][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 13, 1, 1, 2, 18);
+    param0->unk_328[1][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 15, 1, 1, 3, 18);
 
     sub_0200A328(param0->unk_328[0][0]);
     sub_0200A328(param0->unk_328[1][0]);

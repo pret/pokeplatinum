@@ -176,7 +176,7 @@ void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
 {
     SpriteResource *v0;
 
-    v0 = sub_02009A4C(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
+    v0 = SpriteResourceCollection_AddCharFrom(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
     sub_0200A3DC(v0);
 }
 
@@ -184,18 +184,18 @@ void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
 {
     SpriteResource *v0;
 
-    v0 = sub_02009B04(param0->unk_48[1], param1, param2, param3, param6, param4, param5, 14);
+    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_48[1], param1, param2, param3, param6, param4, param5, 14);
     sub_0200A640(v0);
 }
 
 void ov22_0225528C(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4)
 {
-    sub_02009BC4(param0->unk_48[2], param1, param2, param3, param4, 2, 14);
+    SpriteResourceCollection_AddFrom(param0->unk_48[2], param1, param2, param3, param4, 2, 14);
 }
 
 void ov22_022552A8(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4)
 {
-    sub_02009BC4(param0->unk_48[3], param1, param2, param3, param4, 3, 14);
+    SpriteResourceCollection_AddFrom(param0->unk_48[3], param1, param2, param3, param4, 3, 14);
 }
 
 void ov22_022552C4(UnkStruct_ov22_0225A0E4 *param0, int param1)
