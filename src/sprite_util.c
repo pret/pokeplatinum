@@ -14,6 +14,7 @@
 #include "resource_collection.h"
 
 #define SPRITE_VRAM_TYPE_DEFAULT NNS_G2D_VRAM_TYPE_3DMAIN
+#define NARC_INDEX_NONE 0xFFFFFFFE
 
 typedef struct SpriteResource_t {
     Resource *rawResource;
@@ -29,26 +30,36 @@ typedef struct SpriteResourceCollection_t {
     enum SpriteResourceType type;
 } SpriteResourceCollection;
 
-typedef struct {
-    int unk_00;
-    char unk_04[64];
-    int unk_44[2];
-} UnkStruct_02009794;
+typedef struct SpriteResourceTableEntryFile {
+    int id;
+    char filename[64];
+    NNS_G2D_VRAM_TYPE vramType;
+    int paletteIndex;
+} SpriteResourceTableEntryFile;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    BOOL unk_08;
-    int unk_0C;
-    int unk_10[2];
-} UnkStruct_0200A2C0;
+typedef struct SpriteResourceTableEntryNARC {
+    int narcIndex;
+    int memberIndex;
+    BOOL compressed;
+    int id;
+    NNS_G2D_VRAM_TYPE vramType;
+    int paletteIndex;
+} SpriteResourceTableEntryNARC;
 
 typedef struct UnkStruct_02009F38_t {
-    void * unk_00;
-    int unk_04;
-    int unk_08;
-    u8 unk_0C;
-} UnkStruct_02009F38;
+    void *entries;
+    int count;
+    enum SpriteResourceType type;
+    u8 isNARC; // Whether the entries are SpriteResourceTableEntryNARC or SpriteResourceTableEntryFile
+} SpriteResourceTable;
+
+typedef struct SpriteResourceTableBinary {
+    enum SpriteResourceType type;
+    union {
+        SpriteResourceTableEntryFile fileEntries[1];
+        SpriteResourceTableEntryNARC narcEntries[1];
+    };
+} SpriteResourceTableBinary;
 
 typedef struct {
     NNSG2dCharacterData * charData;
@@ -91,7 +102,7 @@ static MultiCellResourceData *SpriteUtil_UnpackMultiCellResource(void *rawData, 
 static MultiCellAnimResourceData *SpriteUtil_UnpackMultiCellAnimResource(void *rawData, enum HeapId heapID);
 static void *SpriteResource_GetData(const SpriteResource *spriteRes);
 static void SpriteResource_FreeData(SpriteResource *spriteRes);
-static int sub_0200A2C0(const UnkStruct_0200A2C0 *param0);
+static int SpriteResourceTableEntryNARC_GetEntryCount(const SpriteResourceTableEntryNARC *param0);
 
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, enum SpriteResourceType type, enum HeapId heapID)
 {
@@ -126,33 +137,54 @@ void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources)
     spriteResources = NULL;
 }
 
-SpriteResource * sub_02009794 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3)
+SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *spriteResources, 
+    const SpriteResourceTable *table, int index, enum HeapId heapID)
 {
-    SpriteResource * v0;
-    UnkStruct_02009794 * v1;
-    UnkStruct_0200A2C0 * v2;
+    SpriteResource * spriteRes;
+    SpriteResourceTableEntryFile * fileEntry;
+    SpriteResourceTableEntryNARC * narcEntry;
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param1);
-    GF_ASSERT(param1->unk_04 > param2);
-    GF_ASSERT(param0->type == param1->unk_08);
+    GF_ASSERT(spriteResources);
+    GF_ASSERT(table);
+    GF_ASSERT(table->count > index);
+    GF_ASSERT(spriteResources->type == table->type);
 
-    v0 = SpriteResourceCollection_AllocResource(param0);
-    GF_ASSERT(v0);
+    spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
+    GF_ASSERT(spriteRes);
 
-    if (param1->unk_0C == 0) {
-        v1 = (UnkStruct_02009794 *)param1->unk_00 + param2;
-        GF_ASSERT(SpriteResourceCollection_IsIDUnused(param0, v1->unk_00) == 1);
-        SpriteResourceCollection_InitResFromFile(param0, v0, v1->unk_04, v1->unk_00, v1->unk_44[0], v1->unk_44[1], param1->unk_08, param3);
+    if (table->isNARC == FALSE) {
+        fileEntry = (SpriteResourceTableEntryFile *)table->entries + index;
+        GF_ASSERT(SpriteResourceCollection_IsIDUnused(spriteResources, fileEntry->id) == TRUE);
+        SpriteResourceCollection_InitResFromFile(
+            spriteResources, 
+            spriteRes, 
+            fileEntry->filename, 
+            fileEntry->id, 
+            fileEntry->vramType, 
+            fileEntry->paletteIndex, 
+            table->type, 
+            heapID
+        );
     } else {
-        v2 = (UnkStruct_0200A2C0 *)param1->unk_00 + param2;
-        GF_ASSERT(SpriteResourceCollection_IsIDUnused(param0, v2->unk_0C) == 1);
-        SpriteResourceCollection_InitRes(param0, v0, v2->unk_00, v2->unk_04, v2->unk_08, v2->unk_0C, v2->unk_10[0], v2->unk_10[1], param1->unk_08, param3, 0);
+        narcEntry = (SpriteResourceTableEntryNARC *)table->entries + index;
+        GF_ASSERT(SpriteResourceCollection_IsIDUnused(spriteResources, narcEntry->id) == TRUE);
+        SpriteResourceCollection_InitRes(
+            spriteResources, 
+            spriteRes, 
+            narcEntry->narcIndex, 
+            narcEntry->memberIndex, 
+            narcEntry->compressed, 
+            narcEntry->id, 
+            narcEntry->vramType, 
+            narcEntry->paletteIndex, 
+            table->type, 
+            heapID, 
+            0
+        );
     }
 
-    param0->count++;
-
-    return v0;
+    spriteResources->count++;
+    return spriteRes;
 }
 
 SpriteResource *SpriteResourceCollection_AddChar(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, 
@@ -428,22 +460,22 @@ void SpriteResourceCollection_ModifyCharFrom(SpriteResourceCollection *spriteRes
     );
 }
 
-int sub_02009C80 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, UnkStruct_02009CFC * param2, int param3)
+int sub_02009C80 (SpriteResourceCollection * param0, const SpriteResourceTable * param1, UnkStruct_02009CFC * param2, int param3)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
-    sub_02009CB4(param0, param1, 0, param1->unk_04, param2, param3);
-    return param1->unk_04;
+    sub_02009CB4(param0, param1, 0, param1->count, param2, param3);
+    return param1->count;
 }
 
-void sub_02009CB4 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5)
+void sub_02009CB4 (SpriteResourceCollection * param0, const SpriteResourceTable * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5)
 {
     int v0;
     SpriteResource * v1;
 
     for (v0 = param2; v0 < param2 + param3; v0++) {
-        v1 = sub_02009794(param0, param1, v0, param5);
+        v1 = SpriteResourceCollection_AddFromTable(param0, param1, v0, param5);
 
         if (param4 != NULL) {
             if (param4->unk_04 > param4->unk_08) {
@@ -630,140 +662,122 @@ void SpriteResource_SetVRAMType(SpriteResource *spriteRes, NNS_G2D_VRAM_TYPE vra
     }
 }
 
-int sub_02009F34 (void)
+int SpriteResourceTable_Size(void)
 {
-    return sizeof(UnkStruct_02009F38);
+    return sizeof(SpriteResourceTable);
 }
 
-UnkStruct_02009F38 * sub_02009F38 (UnkStruct_02009F38 * param0, int param1)
+SpriteResourceTable *SpriteResourceTable_GetArrayElement(SpriteResourceTable *table, int index)
 {
-    return param0 + param1;
+    return table + index;
 }
 
-void sub_02009F40 (const void * param0, UnkStruct_02009F38 * param1, int param2)
+void SpriteResourceTable_LoadFromBinary(const void *data, SpriteResourceTable *table, int heapID)
 {
-    int v0;
-    const int * v1;
+    GF_ASSERT(table);
 
-    GF_ASSERT(param1);
+    const SpriteResourceTableBinary *tableBin = data;
+    table->type = tableBin->type;
+    table->isNARC = TRUE;
+    table->count = SpriteResourceTableEntryNARC_GetEntryCount(tableBin->narcEntries);
 
-    v1 = param0;
-
-    param1->unk_08 = v1[0];
-    param1->unk_0C = 1;
-    param1->unk_04 = sub_0200A2C0((const UnkStruct_0200A2C0 *)(v1 + 1));
-
-    if (param1->unk_04 > 0) {
-        param1->unk_00 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0200A2C0) * param1->unk_04);
+    if (table->count > 0) {
+        table->entries = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceTableEntryNARC) * table->count);
     } else {
-        param1->unk_00 = NULL;
+        table->entries = NULL;
     }
 
-    if (param1->unk_00) {
-        memcpy(param1->unk_00, v1 + 1, sizeof(UnkStruct_0200A2C0) * param1->unk_04);
+    if (table->entries) {
+        memcpy(table->entries, tableBin->narcEntries, sizeof(SpriteResourceTableEntryNARC) * table->count);
     }
 }
 
-void sub_02009F8C (UnkStruct_02009F38 * param0)
+void SpriteResourceTable_Clear(SpriteResourceTable *table)
 {
-    if (param0->unk_00) {
-        Heap_FreeToHeap(param0->unk_00);
+    if (table->entries) {
+        Heap_FreeToHeap(table->entries);
     }
 
-    param0->unk_00 = NULL;
-    param0->unk_04 = 0;
+    table->entries = NULL;
+    table->count = 0;
 }
 
-int sub_02009FA4 (const UnkStruct_02009F38 * param0)
+int SpriteResourceTable_GetCount(const SpriteResourceTable *table)
 {
-    GF_ASSERT(param0);
-    return param0->unk_04;
+    GF_ASSERT(table);
+    return table->count;
 }
 
-int sub_02009FB4 (const UnkStruct_02009F38 * param0, int param1)
+int SpriteResourceTable_GetEntryID(const SpriteResourceTable *table, int index)
 {
-    int v0;
+    GF_ASSERT(table);
+    GF_ASSERT(table->count > index);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04 > param1);
-
-    if (param0->unk_0C == 0) {
-        UnkStruct_02009794 * v1 = param0->unk_00;
-        v0 = v1[param1].unk_00;
+    if (table->isNARC == FALSE) {
+        SpriteResourceTableEntryFile *fileEntries = table->entries;
+        return fileEntries[index].id;
     } else {
-        UnkStruct_0200A2C0 * v2 = param0->unk_00;
-        v0 = v2[param1].unk_0C;
+        SpriteResourceTableEntryNARC *narcEntries = table->entries;
+        return narcEntries[index].id;
     }
-
-    return v0;
 }
 
-int sub_02009FE8 (const UnkStruct_02009F38 * param0, int param1)
+int SpriteResourceTable_GetNARCEntryMemberIndex(const SpriteResourceTable *table, int index)
 {
-    int v0;
+    int memberIdx;
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04 > param1);
+    GF_ASSERT(table);
+    GF_ASSERT(table->count > index);
 
-    if (param0->unk_0C == 1) {
-        UnkStruct_0200A2C0 * v1 = param0->unk_00;
-
-        v0 = v1[param1].unk_04;
+    if (table->isNARC == TRUE) {
+        SpriteResourceTableEntryNARC *narcEntries = table->entries;
+        memberIdx = narcEntries[index].memberIndex;
     }
 
-    return v0;
+    return memberIdx;
 }
 
-int sub_0200A014 (const UnkStruct_02009F38 * param0, int param1)
+BOOL SpriteResourceTable_IsNARCEntryCompressed(const SpriteResourceTable *table, int index)
 {
-    int v0;
+    BOOL compressed;
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04 > param1);
+    GF_ASSERT(table);
+    GF_ASSERT(table->count > index);
 
-    if (param0->unk_0C == 1) {
-        UnkStruct_0200A2C0 * v1 = param0->unk_00;
-
-        v0 = v1[param1].unk_08;
+    if (table->isNARC == TRUE) {
+        SpriteResourceTableEntryNARC *narcEntries = table->entries;
+        compressed = narcEntries[index].compressed;
     }
 
-    return v0;
+    return compressed;
 }
 
-int sub_0200A040 (const UnkStruct_02009F38 * param0, int param1)
+NNS_G2D_VRAM_TYPE SpriteResourceTable_GetEntryVRAMType(const SpriteResourceTable *table, int index)
 {
-    int v0;
+    GF_ASSERT(table);
+    GF_ASSERT(table->count > index);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04 > param1);
-
-    if (param0->unk_0C == 0) {
-        UnkStruct_02009794 * v1 = param0->unk_00;
-        v0 = v1[param1].unk_44[0];
+    if (table->isNARC == FALSE) {
+        SpriteResourceTableEntryFile *fileEntries = table->entries;
+        return fileEntries[index].vramType;
     } else {
-        UnkStruct_0200A2C0 * v2 = param0->unk_00;
-        v0 = v2[param1].unk_10[0];
+        SpriteResourceTableEntryNARC *narcEntries = table->entries;
+        return narcEntries[index].vramType;
     }
-
-    return v0;
 }
 
-int sub_0200A074 (const UnkStruct_02009F38 * param0, int param1)
+int SpriteResourceTable_GetPaletteIndex(const SpriteResourceTable *table, int index)
 {
-    int v0;
+    GF_ASSERT(table);
+    GF_ASSERT(table->count > index);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param0->unk_04 > param1);
-
-    if (param0->unk_0C == 0) {
-        UnkStruct_02009794 * v1 = param0->unk_00;
-        v0 = v1[param1].unk_44[1];
+    if (table->isNARC == FALSE) {
+        SpriteResourceTableEntryFile *fileEntries = table->entries;
+        return fileEntries[index].paletteIndex;
     } else {
-        UnkStruct_0200A2C0 * v2 = param0->unk_00;
-        v0 = v2[param1].unk_10[1];
+        SpriteResourceTableEntryNARC *narcEntries = table->entries;
+        return narcEntries[index].paletteIndex;
     }
-
-    return v0;
 }
 
 static SpriteResource *SpriteResourceCollection_AllocResource(SpriteResourceCollection *spriteResources)
@@ -904,17 +918,14 @@ static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *s
     SpriteResource_UnpackData(spriteRes, type, vramType, paletteIdx, heapID);
 }
 
-static int sub_0200A2C0 (const UnkStruct_0200A2C0 * param0)
+static int SpriteResourceTableEntryNARC_GetEntryCount(const SpriteResourceTableEntryNARC *entries)
 {
-    int v0;
-
-    v0 = 0;
-
-    while (param0[v0].unk_00 != 0xfffffffe) {
-        v0++;
+    int i = 0;
+    while (entries[i].narcIndex != NARC_INDEX_NONE) {
+        i++;
     }
 
-    return v0;
+    return i;
 }
 
 static void * sub_0200A2DC (NARC * param0, u32 param1, BOOL param2, u32 param3, u32 param4)

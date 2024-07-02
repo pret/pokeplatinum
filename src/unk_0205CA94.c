@@ -467,19 +467,19 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
 
 static int sub_0205D1C4(SpriteResourceCollection *param0, UnkStruct_02009CFC **param1, u32 param2)
 {
-    UnkStruct_02009F38 *v0;
+    SpriteResourceTable *v0;
     UnkStruct_02009CFC *v1;
     int v2;
     void *v3;
 
-    v0 = Heap_AllocFromHeapAtEnd(4, sub_02009F34());
+    v0 = Heap_AllocFromHeapAtEnd(4, SpriteResourceTable_Size());
     v3 = sub_02006FE8(177, param2, 0, 4, 0);
 
-    sub_02009F40(v3, v0, 4);
+    SpriteResourceTable_LoadFromBinary(v3, v0, 4);
     Heap_FreeToHeap(v3);
 
     if (param1 != NULL) {
-        v2 = sub_02009FA4(v0);
+        v2 = SpriteResourceTable_GetCount(v0);
         *param1 = sub_02009CFC(v2, 4);
         v1 = *param1;
     } else {
@@ -488,7 +488,7 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, UnkStruct_02009CFC **p
 
     v2 = sub_02009C80(param0, v0, v1, 4);
 
-    sub_02009F8C(v0);
+    SpriteResourceTable_Clear(v0);
     Heap_FreeToHeap(v0);
 
     return v2;

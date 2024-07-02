@@ -107,7 +107,7 @@ typedef void (*UnkFuncPtr_ov5_021D6FF0)(UnkStruct_ov5_021D6FA8 *);
 
 typedef struct {
     SpriteResourceCollection *unk_00[4];
-    UnkStruct_02009F38 *unk_10;
+    SpriteResourceTable *unk_10;
     NNSG2dRendererInstance unk_14;
     NNSG2dRenderSurface unk_C0;
     CellActorCollection *unk_130;
@@ -245,9 +245,9 @@ static BOOL ov5_021D6548(UnkStruct_ov5_021D6538 *param0);
 static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
 static void ov5_021D6A2C(UnkStruct_ov5_021D6594 *param0, int param1);
 static void ov5_021D6690(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_ov5_021D6690 *param2);
-static SpriteResource *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5);
+static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5);
 static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0);
-static void ov5_021D6290(UnkStruct_02009F38 *param0, int param1, int param2);
+static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2);
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0);
 static void ov5_021D6284(SysTask *param0, void *param1);
 static void ov5_021D630C(CellActor *param0, VecFx32 *param1);
@@ -786,7 +786,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
         param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, 4);
     }
 
-    v2 = sub_02009F34();
+    v2 = SpriteResourceTable_Size();
     param0->unk_10 = Heap_AllocFromHeap(4, v2 * 4);
 
     ov5_021D6290(param0->unk_10, 0, 63);
@@ -812,27 +812,27 @@ static void ov5_021D6284(SysTask *param0, void *param1)
     CellActorCollection_Update(v0->unk_130);
 }
 
-static void ov5_021D6290(UnkStruct_02009F38 *param0, int param1, int param2)
+static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
 {
-    UnkStruct_02009F38 *v0;
+    SpriteResourceTable *v0;
     void *v1;
 
-    v0 = sub_02009F38(param0, param1);
+    v0 = SpriteResourceTable_GetArrayElement(param0, param1);
     v1 = sub_02006FE8(65, param2, 0, 4, 1);
 
-    sub_02009F40(v1, v0, 4);
+    SpriteResourceTable_LoadFromBinary(v1, v0, 4);
     Heap_FreeToHeap(v1);
 }
 
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0)
 {
     int v0;
-    UnkStruct_02009F38 *v1;
+    SpriteResourceTable *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1 = sub_02009F38(param0->unk_10, v0);
+        v1 = SpriteResourceTable_GetArrayElement(param0->unk_10, v0);
 
-        sub_02009F8C(v1);
+        SpriteResourceTable_Clear(v1);
         SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
@@ -1033,9 +1033,9 @@ static void ov5_021D6594(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     ov5_021D6CA0(param0, param1, param2);
 }
 
-static SpriteResource *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5)
+static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int param2, SpriteResourceCollection *param3, NARC *param4, u32 param5)
 {
-    UnkStruct_02009F38 *v0;
+    SpriteResourceTable *v0;
     SpriteResource *v1;
     int v2;
     BOOL v3;
@@ -1043,12 +1043,12 @@ static SpriteResource *ov5_021D65C0(UnkStruct_02009F38 *param0, int param1, int 
     int v5;
     int v6;
 
-    v0 = sub_02009F38(param0, param1);
-    v2 = sub_02009FE8(v0, param2);
-    v3 = sub_0200A014(v0, param2);
-    v4 = sub_0200A040(v0, param2);
-    v5 = sub_0200A074(v0, param2);
-    v6 = sub_02009FB4(v0, param2);
+    v0 = SpriteResourceTable_GetArrayElement(param0, param1);
+    v2 = SpriteResourceTable_GetNARCEntryMemberIndex(v0, param2);
+    v3 = SpriteResourceTable_IsNARCEntryCompressed(v0, param2);
+    v4 = SpriteResourceTable_GetEntryVRAMType(v0, param2);
+    v5 = SpriteResourceTable_GetPaletteIndex(v0, param2);
+    v6 = SpriteResourceTable_GetEntryID(v0, param2);
 
     switch (param1) {
     case 0:

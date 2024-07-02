@@ -44,7 +44,7 @@ typedef struct CellTransferStateData_t {
 typedef struct AnimationResourceCollection_t {
     CellActorCollection *unk_00;
     UnkStruct_02009508 *unk_04;
-    UnkStruct_02009F38 *unk_08;
+    SpriteResourceTable *unk_08;
     SpriteResourceCollection *unk_0C[6];
     UnkStruct_02009CFC *unk_24[6];
     int unk_3C[6];
@@ -184,11 +184,11 @@ void sub_0200C81C(SpriteGfxHandler *param0)
 void sub_0200C82C(SpriteGfxHandler *param0)
 {
     int v0;
-    UnkStruct_02009F38 *v1;
+    SpriteResourceTable *v1;
 
     for (v0 = 0; v0 < param0->unk_54; v0++) {
-        v1 = sub_02009F38(param0->unk_08, v0);
-        sub_02009F8C(v1);
+        v1 = SpriteResourceTable_GetArrayElement(param0->unk_08, v0);
+        SpriteResourceTable_Clear(v1);
     }
 
     Heap_FreeToHeap(param0->unk_08);
@@ -239,7 +239,7 @@ BOOL sub_0200C8F0(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStr
     int v0;
     int v1 = 6;
     int v2;
-    UnkStruct_02009F38 *v3;
+    SpriteResourceTable *v3;
     void *v4;
 
     if ((param0 == NULL) || (param1 == NULL)) {
@@ -251,27 +251,27 @@ BOOL sub_0200C8F0(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStr
     }
 
     param1->unk_54 = v1;
-    v2 = sub_02009F34();
+    v2 = SpriteResourceTable_Size();
     param1->unk_08 = Heap_AllocFromHeap(param0->unk_00, v2 * v1);
 
     for (v0 = 0; v0 < v1; v0++) {
-        v3 = sub_02009F38(param1->unk_08, v0);
+        v3 = SpriteResourceTable_GetArrayElement(param1->unk_08, v0);
         v4 = ReadFileToHeap(param0->unk_00, param2->val1[v0]);
 
-        sub_02009F40(v4, v3, param0->unk_00);
+        SpriteResourceTable_LoadFromBinary(v4, v3, param0->unk_00);
         Heap_FreeToHeap(v4);
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        v3 = sub_02009F38(param1->unk_08, v0);
-        v2 = sub_02009FA4(v3);
+        v3 = SpriteResourceTable_GetArrayElement(param1->unk_08, v0);
+        v2 = SpriteResourceTable_GetCount(v3);
 
         param1->unk_0C[v0] = SpriteResourceCollection_New(v2, v0, param0->unk_00);
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        v3 = sub_02009F38(param1->unk_08, v0);
-        v2 = sub_02009FA4(v3);
+        v3 = SpriteResourceTable_GetArrayElement(param1->unk_08, v0);
+        v2 = SpriteResourceTable_GetCount(v3);
 
         param1->unk_24[v0] = sub_02009CFC(v2, param0->unk_00);
         param1->unk_3C[v0] = sub_02009C80(param1->unk_0C[v0], v3, param1->unk_24[v0], param0->unk_00);
@@ -334,7 +334,7 @@ BOOL sub_0200CB30(SpriteRenderer *param0, SpriteGfxHandler *param1, const UnkStr
     int v1;
     int v2 = 6;
     int v3;
-    UnkStruct_02009F38 *v4;
+    SpriteResourceTable *v4;
 
     if ((param0 == NULL) || (param1 == NULL)) {
         return 0;

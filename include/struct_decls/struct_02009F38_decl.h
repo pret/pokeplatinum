@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02009F38_DECL_H
 #define POKEPLATINUM_STRUCT_02009F38_DECL_H
 
-typedef struct UnkStruct_02009F38_t UnkStruct_02009F38;
+typedef struct UnkStruct_02009F38_t SpriteResourceTable;
 
 #endif // POKEPLATINUM_STRUCT_02009F38_DECL_H

@@ -22,7 +22,7 @@ enum SpriteResourceType {
 
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, enum SpriteResourceType type, enum HeapId heapID);
 void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources);
-SpriteResource * sub_02009794 (SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3);
+SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *spriteResources, const SpriteResourceTable *table, int index, enum HeapId heapID);
 SpriteResource *SpriteResourceCollection_AddChar(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
 SpriteResource *SpriteResourceCollection_AddPalette(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
 SpriteResource *SpriteResourceCollection_Add(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, enum SpriteResourceType type, enum HeapId heapID);
@@ -34,8 +34,8 @@ SpriteResource *SpriteResourceCollection_AddPaletteFrom(SpriteResourceCollection
 SpriteResource *SpriteResourceCollection_AddPaletteFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID, int param8);
 SpriteResource *SpriteResourceCollection_AddFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, enum SpriteResourceType type, enum HeapId heapID);
 void SpriteResourceCollection_ModifyCharFrom(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, enum HeapId heapID);
-int sub_02009C80(SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, UnkStruct_02009CFC * param2, int param3);
-void sub_02009CB4(SpriteResourceCollection * param0, const UnkStruct_02009F38 * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5);
+int sub_02009C80(SpriteResourceCollection * param0, const SpriteResourceTable * param1, UnkStruct_02009CFC * param2, int param3);
+void sub_02009CB4(SpriteResourceCollection * param0, const SpriteResourceTable * param1, int param2, int param3, UnkStruct_02009CFC * param4, int param5);
 UnkStruct_02009CFC * sub_02009CFC(int param0, int param1);
 void sub_02009D20(UnkStruct_02009CFC * param0);
 BOOL SpriteResourceCollection_IsIDUnused(const SpriteResourceCollection * param0, int param1);
@@ -54,15 +54,15 @@ enum SpriteResourceType SpriteResource_GetType(const SpriteResource * param0);
 NNS_G2D_VRAM_TYPE SpriteResource_GetVRAMType(const SpriteResource *spriteRes);
 int SpriteResource_GetPaletteIndex(const SpriteResource *spriteRes);
 void SpriteResource_SetVRAMType(SpriteResource * param0, NNS_G2D_VRAM_TYPE param1);
-int sub_02009F34(void);
-UnkStruct_02009F38 * sub_02009F38(UnkStruct_02009F38 * param0, int param1);
-void sub_02009F40(const void * param0, UnkStruct_02009F38 * param1, int param2);
-void sub_02009F8C(UnkStruct_02009F38 * param0);
-int sub_02009FA4(const UnkStruct_02009F38 * param0);
-int sub_02009FB4(const UnkStruct_02009F38 * param0, int param1);
-int sub_02009FE8(const UnkStruct_02009F38 * param0, int param1);
-int sub_0200A014(const UnkStruct_02009F38 * param0, int param1);
-int sub_0200A040(const UnkStruct_02009F38 * param0, int param1);
-int sub_0200A074(const UnkStruct_02009F38 * param0, int param1);
+int SpriteResourceTable_Size(void);
+SpriteResourceTable * SpriteResourceTable_GetArrayElement(SpriteResourceTable * param0, int param1);
+void SpriteResourceTable_LoadFromBinary(const void * param0, SpriteResourceTable * param1, int param2);
+void SpriteResourceTable_Clear(SpriteResourceTable * param0);
+int SpriteResourceTable_GetCount(const SpriteResourceTable * param0);
+int SpriteResourceTable_GetEntryID(const SpriteResourceTable * param0, int param1);
+int SpriteResourceTable_GetNARCEntryMemberIndex(const SpriteResourceTable * param0, int param1);
+BOOL SpriteResourceTable_IsNARCEntryCompressed(const SpriteResourceTable * param0, int param1);
+NNS_G2D_VRAM_TYPE SpriteResourceTable_GetEntryVRAMType(const SpriteResourceTable * param0, int param1);
+int SpriteResourceTable_GetPaletteIndex(const SpriteResourceTable * param0, int param1);
 
 #endif // POKEPLATINUM_UNK_02009714_H

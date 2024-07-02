@@ -29,8 +29,8 @@ static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param
 
 void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *param1, u32 param2, u32 param3)
 {
-    UnkStruct_02009F38 *v0;
-    UnkStruct_02009F38 *v1;
+    SpriteResourceTable *v0;
+    SpriteResourceTable *v1;
     void *v2;
     u32 v3;
     u32 v4;
@@ -44,32 +44,32 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
         param0->unk_1C4 = 6;
     }
 
-    v1 = Heap_AllocFromHeap(param3, sub_02009F34() * param0->unk_1C4);
+    v1 = Heap_AllocFromHeap(param3, SpriteResourceTable_Size() * param0->unk_1C4);
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
         v2 = ReadFileToHeap(param3, param1->val1[v4]);
 
-        sub_02009F40(v2, v0, param3);
+        SpriteResourceTable_LoadFromBinary(v2, v0, param3);
         Heap_FreeToHeap(v2);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
-        v3 = sub_02009FA4(v0);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
+        v3 = SpriteResourceTable_GetCount(v0);
         param0->unk_194[v4] = SpriteResourceCollection_New(v3, v4, param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
-        v3 = sub_02009FA4(v0);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
+        v3 = SpriteResourceTable_GetCount(v0);
         param0->unk_1AC[v4] = sub_02009CFC(v3, param3);
         sub_02009C80(param0->unk_194[v4], v0, param0->unk_1AC[v4], param3);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
-        v0 = sub_02009F38(v1, v4);
-        sub_02009F8C(v0);
+        v0 = SpriteResourceTable_GetArrayElement(v1, v4);
+        SpriteResourceTable_Clear(v0);
     }
 
     Heap_FreeToHeap(v1);
@@ -128,8 +128,8 @@ CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224
 
 void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *param1, u32 param2, u32 param3)
 {
-    UnkStruct_02009F38 *v0;
-    UnkStruct_02009F38 *v1;
+    SpriteResourceTable *v0;
+    SpriteResourceTable *v1;
     void *v2;
     u32 v3;
     u32 v4, v5;
