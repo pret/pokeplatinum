@@ -1,5 +1,6 @@
 #include "constants/trainer.h"
 
+// clang-format off
 static u8 sTrainerClassPrizeMul[] = {
     [TRAINER_CLASS_PLAYER_MALE]             = 0,
     [TRAINER_CLASS_PLAYER_FEMALE]           = 0,
@@ -107,3 +108,4 @@ static u8 sTrainerClassPrizeMul[] = {
     [TRAINER_CLASS_DP_PLAYER_MALE_2]        = 0,
     [TRAINER_CLASS_DP_PLAYER_FEMALE_2]      = 0,
 };
+// clang-format on

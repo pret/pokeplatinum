@@ -13,6 +13,7 @@ typedef struct HiddenItem {
 
 #define HIDDEN_ITEM_ENTRY(item_in, qty_in, range_in, script_in) { .item = item_in, .qty = qty_in, .range = range_in, .pad = 0, .script = script_in }
 
+// clang-format off
 const HiddenItem gHiddenItems[] = {
 	HIDDEN_ITEM_ENTRY(ITEM_MAX_ELIXIR,   1, 2, 0),
     HIDDEN_ITEM_ENTRY(ITEM_INSECT_PLATE, 1, 0, 1),
@@ -272,5 +273,6 @@ const HiddenItem gHiddenItems[] = {
     HIDDEN_ITEM_ENTRY(ITEM_NUGGET,       1, 2, 282),
     HIDDEN_ITEM_ENTRY(ITEM_NUGGET,       1, 2, 283),
 };
+// clang-format on
 
 #endif

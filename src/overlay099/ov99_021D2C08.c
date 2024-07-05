@@ -42,7 +42,7 @@ static const UnkStruct_ov99_021D4B70 Unk_ov99_021D4B70[] = {
         0xe00,
         0x8000,
         0.0030,
-        60
+        60,
     },
     {
         1350,
@@ -64,7 +64,7 @@ static const UnkStruct_ov99_021D4B70 Unk_ov99_021D4B70[] = {
         0xc00,
         0x8000,
         -0.0045,
-        60
+        60,
     },
 };
 

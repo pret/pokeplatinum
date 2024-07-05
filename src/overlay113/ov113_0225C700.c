@@ -761,7 +761,7 @@ static void ov113_0225CF58 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -776,7 +776,7 @@ static void ov113_0225CF58 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -791,7 +791,7 @@ static void ov113_0225CF58 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -829,7 +829,7 @@ static void ov113_0225CF58 (BGL * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -844,7 +844,7 @@ static void ov113_0225CF58 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -859,7 +859,7 @@ static void ov113_0225CF58 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

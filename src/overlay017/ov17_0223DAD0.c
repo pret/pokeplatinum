@@ -105,7 +105,7 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 		0x3,
 		0x4,
 		0x4,
-		{ 0x2, 0x2, 0x3, 0x3 }
+		{ 0x2, 0x2, 0x3, 0x3 },
 	},
 	{
 		0x49B,
@@ -114,7 +114,7 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 		0x4,
 		0x4,
 		0x4,
-		{ 0x2, 0x2, 0x3, 0x3 }
+		{ 0x2, 0x2, 0x3, 0x3 },
 	},
 	{
 		0x4B5,
@@ -123,7 +123,7 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 		0x4,
 		0x3,
 		0x3,
-		{ 0x1, 0x1, 0x2, 0x2 }
+		{ 0x1, 0x1, 0x2, 0x2 },
 	},
 	{
 		0x4B9,
@@ -132,7 +132,7 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 		0x4,
 		0x3,
 		0x3,
-		{ 0x2, 0x2, 0x3, 0x3 }
+		{ 0x2, 0x2, 0x3, 0x3 },
 	},
 	{
 		0x4B7,
@@ -141,7 +141,7 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 		0x4,
 		0x4,
 		0x4,
-		{ 0x1, 0x1, 0x2, 0x2 }
+		{ 0x1, 0x1, 0x2, 0x2 },
 	},
 	{
 		0x4B6,
@@ -150,7 +150,7 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 		0x4,
 		0x4,
 		0x4,
-		{ 0x1, 0x1, 0x2, 0x2 }
+		{ 0x1, 0x1, 0x2, 0x2 },
 	},
 	{
 		0x4B8,
@@ -159,8 +159,8 @@ static const UnkStruct_ov17_02253084 Unk_ov17_02253084[] = {
 		0x4,
 		0x4,
 		0x4,
-		{ 0x1, 0x1, 0x2, 0x2 }
-	}
+		{ 0x1, 0x1, 0x2, 0x2 },
+	},
 };
 
 static const struct {
@@ -621,7 +621,7 @@ static void ov17_0223E250 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -636,7 +636,7 @@ static void ov17_0223E250 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -651,7 +651,7 @@ static void ov17_0223E250 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

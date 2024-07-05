@@ -876,7 +876,7 @@ static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8[] = {
         0,
         0,
         0,
-        0
+        0,
     },
     {
         1,
@@ -890,7 +890,7 @@ static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8[] = {
         0,
         0,
         0,
-        0
+        0,
     },
     {
         2,
@@ -904,7 +904,7 @@ static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8[] = {
         0,
         0,
         0,
-        0
+        0,
     },
 };
 

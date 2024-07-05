@@ -214,7 +214,7 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {0x2378, 0x15A0, 0x0},
             {0x2378, 0x15A0, 0x0},
             {-6248, -2944, 0x0},
-            {-6248, -2944, 0x0}
+            {-6248, -2944, 0x0},
         },
         {
             {0x2B30, 0x1130, -5248},
@@ -240,7 +240,7 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {-6936, -4832, 0x0},
             {-6936, -4832, 0x0},
             {0x2058, 0x1538, 0x0},
-            {0x2058, 0x1538, 0x0}
+            {0x2058, 0x1538, 0x0},
         },
         {
             {-14936, -5032, 0x40},
@@ -266,7 +266,7 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {0x2A48, 0x1D40, 0x0},
             {0x2A48, 0x1D40, 0x0},
             {-9856, -3200, 0x0},
-            {-9856, -3200, 0x0}
+            {-9856, -3200, 0x0},
         },
         {
             {0x1CC8, 0x1748, -5248},
@@ -292,7 +292,7 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {-9536, -3120, 0xAA8},
             {-9536, -3120, 0xAA8},
             {0x3500, 0xB80, 0x0},
-            {0x3500, 0xB80, 0x0}
+            {0x3500, 0xB80, 0x0},
         },
         {
             {-5364, -6568, -0x400},
@@ -318,7 +318,7 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {0x1420, 0x1D40, 0x0},
             {0x1420, 0x1D40, 0x0},
             {-2308, -5632, 0x0},
-            {-2308, -5632, 0x0}
+            {-2308, -5632, 0x0},
         },
         {
             {0x3B50, 0x1148, -0x1cb0},
@@ -344,7 +344,7 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {-5408, -6000, 0x0},
             {-5408, -6000, 0x0},
             {0x1B00, 0x1000, 0x0},
-            {0x1B00, 0x1000, 0x0}
+            {0x1B00, 0x1000, 0x0},
         },
         {
             {0x1CC8, -5032, 0x40},
@@ -370,7 +370,7 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {-9536, 0x1D40, 0x0},
             {-9536, 0x1D40, 0x0},
             {0x3500, -3200, 0x0},
-            {0x3500, -2944, 0x0}
+            {0x3500, -2944, 0x0},
         },
         {
             {-5364, 0x1148, -5248},
@@ -396,8 +396,8 @@ static void ov12_022353CC (int param0, VecFx32 * param1, int param2, int param3,
             {0x1420, -6000, 0xAA8},
             {0x1420, -5408, 0xAA8},
             {-2308, 0x1000, 0x0},
-            {-2984, 0x2048, 0x0}
-        }
+            {-2984, 0x2048, 0x0},
+        },
     };
 
     if (param2 == 1) {

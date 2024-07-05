@@ -25,7 +25,7 @@ static const SpriteTemplate Unk_020EFA04[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x34D8, 0x34D8, 0x34D8, 0x34D8, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0x50,
@@ -37,8 +37,8 @@ static const SpriteTemplate Unk_020EFA04[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x34D8, 0x34D8, 0x34D8, 0x34D8, 0x0, 0x0},
         0x0,
-        0x0
-    }
+        0x0,
+    },
 };
 
 UnkStruct_0206A844 * sub_0206A780 (int param0)

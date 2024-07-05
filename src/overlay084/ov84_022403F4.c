@@ -36,7 +36,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC0F9, 0xC0F9, 0xC0F9, 0xC0F9, 0x0, 0x0},
         0x1,
-        0x0
+        0x0,
     },
     {
         0xD,
@@ -48,7 +48,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC0FA, 0xC0FA, 0xC0FA, 0xC0FA, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0x2,
@@ -60,7 +60,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC0FD, 0xC0FA, 0xC0FD, 0xC0FD, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0x62,
@@ -72,7 +72,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC0FD, 0xC0FA, 0xC0FD, 0xC0FD, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0xB1,
@@ -84,7 +84,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC0FB, 0xC0FA, 0xC0FB, 0xC0FB, 0x0, 0x0},
         0x1,
-        0x0
+        0x0,
     },
     {
         0xB1,
@@ -96,7 +96,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC0FC, 0xC0FA, 0xC0FC, 0xC0FC, 0x0, 0x0},
         0x1,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -108,7 +108,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DSUB,
         {0xC0FE, 0xC0FB, 0xC0FE, 0xC0FE, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0x16,
@@ -120,7 +120,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC0FF, 0xC0FC, 0xC0FF, 0xC0FF, 0x0, 0x0},
         0x1,
-        0x0
+        0x0,
     },
     {
         0xDC,
@@ -132,7 +132,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC100, 0xC0FD, 0xC100, 0xC100, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0xDC,
@@ -144,7 +144,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC100, 0xC0FD, 0xC100, 0xC100, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0x40,
@@ -156,7 +156,7 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC101, 0xC0FE, 0xC101, 0xC101, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0xA8,
@@ -168,8 +168,8 @@ static const SpriteTemplate Unk_ov84_022411B0[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xC102, 0xC0FE, 0xC101, 0xC101, 0x0, 0x0},
         0x0,
-        0x0
-    }
+        0x0,
+    },
 };
 
 void ov84_022403F4 (UnkStruct_ov84_0223B5A0 * param0)

@@ -83,7 +83,7 @@ static const UnkStruct_ov12_02239E34 Unk_ov12_02239E34[][6] = {
         {0xD8, 0x70},
         {0x50, 0x2A},
         {0x0, 0x0},
-        {0x0, 0x0}
+        {0x0, 0x0},
     },
     {
         {0x40, 0x70},
@@ -91,8 +91,8 @@ static const UnkStruct_ov12_02239E34 Unk_ov12_02239E34[][6] = {
         {0x28, 0x70},
         {0xD8, 0x32},
         {0x50, 0x78},
-        {0xB0, 0x2A}
-    }
+        {0xB0, 0x2A},
+    },
 };
 
 void ov12_02225864 (int param0, int param1, s16 * param2, s16 * param3)

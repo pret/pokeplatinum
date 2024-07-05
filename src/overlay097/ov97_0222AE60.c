@@ -67,7 +67,10 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
+
+    // clang-format off
     BOOL (* unk_0C)(void *, int, UnkStruct_ov97_02237808 *, int);
+    // clang-format on
 } UnkStruct_ov97_0223E014;
 
 typedef struct {

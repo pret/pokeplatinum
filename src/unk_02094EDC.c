@@ -33,7 +33,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 	{
 		0x0,
 		0x0,
-		0x0
+		0x0,
 	},
 	{
 		0x0,
@@ -48,7 +48,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x2,
@@ -63,7 +63,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x4,
@@ -78,7 +78,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0x7,
 		0x2,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x6,
@@ -93,7 +93,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x8,
@@ -108,7 +108,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0xA,
@@ -123,7 +123,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xB,
-		0x2
+		0x2,
 	},
 	{
 		0xC,
@@ -138,7 +138,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0xE,
@@ -153,7 +153,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x10,
@@ -168,7 +168,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0x10,
-		0x2
+		0x2,
 	},
 	{
 		0x12,
@@ -183,7 +183,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x14,
@@ -198,7 +198,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x16,
@@ -213,7 +213,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x18,
@@ -228,7 +228,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x1A,
@@ -243,7 +243,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x1C,
@@ -258,7 +258,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x1E,
@@ -273,7 +273,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x20,
@@ -288,7 +288,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x22,
@@ -303,7 +303,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x24,
@@ -318,7 +318,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x26,
@@ -333,7 +333,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x28,
@@ -348,7 +348,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0x1F,
 		0x2,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x2A,
@@ -363,7 +363,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
+		0x0,
 	},
 	{
 		0x2C,
@@ -378,8 +378,8 @@ const UnkStruct_020F568C Unk_020F568C[] = {
 		0xffff,
 		0x0,
 		0xffff,
-		0x0
-	}
+		0x0,
+	},
 };
 
 int sub_02094EDC (UnkStruct_02095C48 * param0)

@@ -82,7 +82,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(48 << FX32_SHIFT), (48 << FX32_SHIFT)},
@@ -90,7 +90,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(144 << FX32_SHIFT), (48 << FX32_SHIFT)},
@@ -98,7 +98,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             1,
             2,
             0,
-            0
+            0,
         },
         {
             {(56 << FX32_SHIFT), (80 << FX32_SHIFT)},
@@ -106,7 +106,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(136 << FX32_SHIFT), (80 << FX32_SHIFT)},
@@ -114,7 +114,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             1,
             2,
             0,
-            0
+            0,
         },
         {
             {(72 << FX32_SHIFT), (120 << FX32_SHIFT)},
@@ -122,7 +122,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(72 << FX32_SHIFT), (164 << FX32_SHIFT)},
@@ -130,7 +130,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             2,
             2,
             0,
-            0
+            0,
         },
         {
             {(120 << FX32_SHIFT), (120 << FX32_SHIFT)},
@@ -138,7 +138,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(120 << FX32_SHIFT), (164 << FX32_SHIFT)},
@@ -146,7 +146,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             2,
             2,
             0,
-            0
+            0,
         },
         {
             {(64 << FX32_SHIFT), (144 << FX32_SHIFT)},
@@ -154,7 +154,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(80 << FX32_SHIFT), (144 << FX32_SHIFT)},
@@ -162,7 +162,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(112 << FX32_SHIFT), (144 << FX32_SHIFT)},
@@ -170,7 +170,7 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(128 << FX32_SHIFT), (144 << FX32_SHIFT)},
@@ -178,8 +178,8 @@ static void ov45_0225673C (UnkStruct_ov45_022566EC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
-        }
+            0,
+        },
     };
     int v1;
 

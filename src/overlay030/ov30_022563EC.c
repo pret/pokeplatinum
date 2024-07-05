@@ -207,7 +207,7 @@ static BOOL ov30_022565F4 (UnkStruct_ov30_022563EC * param0)
             0,
             2,
             0,
-            1
+            1,
         },
         {
             {116 << FX32_SHIFT, 100 << FX32_SHIFT},
@@ -215,7 +215,7 @@ static BOOL ov30_022565F4 (UnkStruct_ov30_022563EC * param0)
             0,
             2,
             0,
-            1
+            1,
         },
     };
 

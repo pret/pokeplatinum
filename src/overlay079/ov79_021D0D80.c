@@ -513,7 +513,7 @@ static void ov79_021D132C (UnkStruct_ov79_021D0E1C * param0)
                 0x0,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -528,7 +528,7 @@ static void ov79_021D132C (UnkStruct_ov79_021D0E1C * param0)
                 0x1,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -543,7 +543,7 @@ static void ov79_021D132C (UnkStruct_ov79_021D0E1C * param0)
                 0x3,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -558,7 +558,7 @@ static void ov79_021D132C (UnkStruct_ov79_021D0E1C * param0)
                 0x3,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -573,7 +573,7 @@ static void ov79_021D132C (UnkStruct_ov79_021D0E1C * param0)
                 0x0,
                 0x0,
                 0x0,
-                0x0
+                0x0,
             },
             {
                 0x0,
@@ -588,8 +588,8 @@ static void ov79_021D132C (UnkStruct_ov79_021D0E1C * param0)
                 0x1,
                 0x0,
                 0x0,
-                0x0
-            }
+                0x0,
+            },
         };
 
         v1 = 0;

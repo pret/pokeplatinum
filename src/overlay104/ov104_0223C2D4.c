@@ -507,7 +507,7 @@ static void ov104_0223C948 (BGL * param0, int param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -522,7 +522,7 @@ static void ov104_0223C948 (BGL * param0, int param1)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -537,7 +537,7 @@ static void ov104_0223C948 (BGL * param0, int param1)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
         u16 v4;
@@ -603,7 +603,7 @@ static void ov104_0223C948 (BGL * param0, int param1)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

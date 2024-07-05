@@ -98,7 +98,7 @@ static void ov52_0225670C (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(112 << FX32_SHIFT), (102 << FX32_SHIFT)},
@@ -106,7 +106,7 @@ static void ov52_0225670C (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(112 << FX32_SHIFT), (102 << FX32_SHIFT)},
@@ -114,7 +114,7 @@ static void ov52_0225670C (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(112 << FX32_SHIFT), (150 << FX32_SHIFT)},
@@ -122,8 +122,8 @@ static void ov52_0225670C (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
             0,
             2,
             0,
-            0
-        }
+            0,
+        },
     };
     int v1;
 

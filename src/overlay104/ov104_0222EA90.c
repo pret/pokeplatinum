@@ -66,7 +66,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x0,
         0x81,
         0x0,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_0,
@@ -84,7 +84,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x0,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_0,
@@ -102,7 +102,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x0,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -120,7 +120,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x0,
         0x81,
         0x1,
-        0x0
+        0x0,
     },
     {
         GX_BGMODE_5,
@@ -138,7 +138,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -156,7 +156,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x2D,
         0x8D,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -174,7 +174,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x2D,
         0x8D,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -192,7 +192,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -210,7 +210,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -228,7 +228,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -246,7 +246,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x13,
         0x85,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -264,7 +264,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -282,7 +282,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x1D,
         0x8C,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -300,7 +300,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -318,7 +318,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -336,7 +336,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xffff,
         0xffff,
         0x1,
-        0x1
+        0x1,
     },
     {
         GX_BGMODE_5,
@@ -354,8 +354,8 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x59,
         0xA9,
         0x1,
-        0x1
-    }
+        0x1,
+    },
 };
 
 int ov104_0222EA90 (int param0, int param1)

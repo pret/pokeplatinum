@@ -68,7 +68,7 @@ static const UnkStruct_ov99_021D4BDC Unk_ov99_021D4BDC[] = {
         (96 + 16) * FX32_ONE,
         0x80,
         80,
-        30
+        30,
     },
     {
         100,

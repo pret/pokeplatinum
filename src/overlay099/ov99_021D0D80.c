@@ -417,7 +417,7 @@ static void ov99_021D1380 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -432,7 +432,7 @@ static void ov99_021D1380 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -447,7 +447,7 @@ static void ov99_021D1380 (BGL * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -484,7 +484,7 @@ static void ov99_021D1380 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -499,7 +499,7 @@ static void ov99_021D1380 (BGL * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -514,7 +514,7 @@ static void ov99_021D1380 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -596,7 +596,7 @@ static void ov99_021D1580 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -611,7 +611,7 @@ static void ov99_021D1580 (BGL * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -626,7 +626,7 @@ static void ov99_021D1580 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -661,7 +661,7 @@ static void ov99_021D1580 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

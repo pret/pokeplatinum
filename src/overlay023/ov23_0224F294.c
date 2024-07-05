@@ -166,7 +166,7 @@ static const SpriteTemplate Unk_ov23_0225695C[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x38C0, 0x38C0, 0x38C0, 0x38C0, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0xAE,
@@ -178,7 +178,7 @@ static const SpriteTemplate Unk_ov23_0225695C[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x38C1, 0x38C0, 0x38C1, 0x38C1, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     }
 };
 

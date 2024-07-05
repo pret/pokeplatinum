@@ -207,7 +207,10 @@ static int sub_02067540 (MapObject * param0)
     }
     case 1:
     {
-        int v3[2][2] = {{2, 3}, {0, 1}};
+        int v3[2][2] = {
+            {2, 3},
+            {0, 1},
+        };
         int v4 = v3[v0->unk_05][v0->unk_06];
         int v5 = sub_02065838(v4, 0x0);
 
@@ -313,7 +316,10 @@ static int sub_02067658 (MapObject * param0)
 static int sub_020676D4 (MapObject * param0)
 {
     UnkStruct_020674AC * v0;
-    int v1[2][4] = {{0, 2, 1, 3}, {0, 3, 1, 2}};
+    int v1[2][4] = {
+        {0, 2, 1, 3},
+        {0, 3, 1, 2},
+    };
 
     v0 = sub_02062AA0(param0);
 

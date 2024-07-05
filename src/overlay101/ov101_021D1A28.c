@@ -4580,28 +4580,28 @@ static u32 ov101_021D597C (UnkStruct_ov101_021D13C8 * param0)
 static const UnkStruct_ov101_021D87A8 Unk_ov101_021D87A8[6] = {
     {
         {PAD_BUTTON_Y, PAD_BUTTON_B, PAD_BUTTON_A},
-        {UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_07}
+        {UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_07},
     },
     {
         {PAD_BUTTON_Y, PAD_BUTTON_A, PAD_BUTTON_B},
-        {UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_05}
+        {UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_05},
     },
     {
         {PAD_BUTTON_B, PAD_BUTTON_Y, PAD_BUTTON_A},
-        {UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_07}
+        {UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_07},
     },
     {
         {PAD_BUTTON_B, PAD_BUTTON_A, PAD_BUTTON_Y},
-        {UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_06}
+        {UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_06},
     },
     {
         {PAD_BUTTON_A, PAD_BUTTON_Y, PAD_BUTTON_B},
-        {UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_05}
+        {UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_06, UnkEnum_ov101_021D679C_05},
     },
     {
         {PAD_BUTTON_A, PAD_BUTTON_B, PAD_BUTTON_Y},
-        {UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_06}
-    }
+        {UnkEnum_ov101_021D679C_07, UnkEnum_ov101_021D679C_05, UnkEnum_ov101_021D679C_06},
+    },
 };
 
 static const int Unk_ov101_021D8740[3][2] = {

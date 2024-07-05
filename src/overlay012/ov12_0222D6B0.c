@@ -263,20 +263,20 @@ static const UnkStruct_ov12_02235350 Unk_ov12_0223A162[] = {
 static const UnkStruct_ov12_02235350 Unk_ov12_0223A17A[][2] = {
     {
         {0x78, 0x50},
-        {0x88, 0x50}
+        {0x88, 0x50},
     },
     {
         {0x78, 0x50},
-        {0x88, 0x50}
+        {0x88, 0x50},
     },
     {
         {0x78, 0x50},
-        {0x88, 0x50}
+        {0x88, 0x50},
     },
     {
         {0x58, 0x50},
-        {0xA8, 0x50}
-    }
+        {0xA8, 0x50},
+    },
 };
 
 static const u8 Unk_ov12_0223A140[] = {

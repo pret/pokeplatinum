@@ -874,6 +874,7 @@ static BOOL ov8_0224A0E8 (TaskManager * taskMan)
     return 0;
 }
 
+// clang-format off
 static const u8 Unk_ov8_0224D035[4][1024] = {
     {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -1012,6 +1013,7 @@ static const u8 Unk_ov8_0224D035[4][1024] = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
     },
 };
+// clang-format on
 
 static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
     {
@@ -1020,7 +1022,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x10, 0x1E, 0x9},
         0,
         3,
-        0x0
+        0x0,
     },
     {
         0x128,
@@ -1028,7 +1030,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0xB, 0xA, 0xD},
         0,
         1,
-        0x0
+        0x0,
     },
     {
         0x128,
@@ -1036,7 +1038,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0xF, 0xA, 0xD},
         0,
         1,
-        0x0
+        0x0,
     },
     {
         0x128,
@@ -1044,7 +1046,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x13, 0xA, 0xD},
         0,
         1,
-        0x0
+        0x0,
     },
     {
         0x128,
@@ -1052,7 +1054,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x18, 0xA, 0xD},
         0,
         1,
-        0x0
+        0x0,
     },
     {
         0x128,
@@ -1060,7 +1062,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x15, 0xA, 0x16},
         0,
         1,
-        0x0
+        0x0,
     },
     {
         0x128,
@@ -1068,7 +1070,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x19, 0xA, 0x9},
         0,
         1,
-        0x1
+        0x1,
     },
     {
         0x128,
@@ -1076,7 +1078,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x19, 0xA, 0x16},
         0,
         1,
-        0x1
+        0x1,
     },
     {
         0x128,
@@ -1084,7 +1086,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x1D, 0xA, 0x16},
         0,
         1,
-        0x1
+        0x1,
     },
     {
         0x128,
@@ -1092,7 +1094,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x5, 0x14, 0x1A},
         1,
         2,
-        0x0
+        0x0,
     },
     {
         0x127,
@@ -1100,7 +1102,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x12, 0xA, 0x16},
         1,
         1,
-        0x1
+        0x1,
     },
     {
         0x128,
@@ -1108,7 +1110,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x1D, 0x14, 0x9},
         1,
         2,
-        0x1
+        0x1,
     },
     {
         0x127,
@@ -1116,7 +1118,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0xE, 0x14, 0x4},
         2,
         2,
-        0x0
+        0x0,
     },
     {
         0x127,
@@ -1124,7 +1126,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x16, 0x14, 0x4},
         2,
         2,
-        0x0
+        0x0,
     },
     {
         0x127,
@@ -1132,7 +1134,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x16, 0x14, 0xC},
         2,
         2,
-        0x0
+        0x0,
     },
     {
         0x127,
@@ -1140,7 +1142,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x15, 0x14, 0x1A},
         2,
         2,
-        0x0
+        0x0,
     },
     {
         0x126,
@@ -1148,7 +1150,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x2, 0x14, 0x16},
         2,
         2,
-        0x1
+        0x1,
     },
     {
         0x126,
@@ -1156,7 +1158,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x1A, 0x14, 0x16},
         2,
         2,
-        0x0
+        0x0,
     },
     {
         0x126,
@@ -1164,7 +1166,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x1D, 0x14, 0x16},
         2,
         2,
-        0x1
+        0x1,
     },
     {
         0x129,
@@ -1172,7 +1174,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x7, 0x1E, 0x9},
         0,
         3,
-        0x1
+        0x1,
     },
     {
         0x127,
@@ -1180,7 +1182,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x1A, 0x1E, 0x4},
         3,
         3,
-        0x0
+        0x0,
     },
     {
         0x127,
@@ -1188,7 +1190,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x1A, 0x1E, 0x1A},
         3,
         3,
-        0x1
+        0x1,
     },
     {
         0x126,
@@ -1196,7 +1198,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x1D, 0x1E, 0x17},
         3,
         3,
-        0x0
+        0x0,
     },
     {
         0x126,
@@ -1204,8 +1206,8 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
         {0x2, 0x1E, 0x17},
         3,
         3,
-        0x1
-    }
+        0x1,
+    },
 };
 
 static void ov8_0224A1B4 (const UnkStruct_ov8_0224A1E4 * param0, const BOOL param1, const int param2)
@@ -2013,8 +2015,8 @@ UnkStruct_ov8_0224E740 Unk_ov8_0224E740[3] = {
             Unk_ov8_0224C6E0,
             Unk_ov8_0224C6F0,
             Unk_ov8_0224C6E8,
-            Unk_ov8_0224C6D8
-        }
+            Unk_ov8_0224C6D8,
+        },
     },
     {
         0xB,
@@ -2022,8 +2024,8 @@ UnkStruct_ov8_0224E740 Unk_ov8_0224E740[3] = {
             Unk_ov8_0224E050,
             Unk_ov8_0224E038,
             Unk_ov8_0224E044,
-            Unk_ov8_0224E05C
-        }
+            Unk_ov8_0224E05C,
+        },
     },
     {
         0xE,
@@ -2031,9 +2033,9 @@ UnkStruct_ov8_0224E740 Unk_ov8_0224E740[3] = {
             Unk_ov8_0224E068,
             Unk_ov8_0224E078,
             Unk_ov8_0224E088,
-            Unk_ov8_0224E098
-        }
-    }
+            Unk_ov8_0224E098,
+        },
+    },
 };
 
 static u8 ov8_0224AB40 (const u8 param0)

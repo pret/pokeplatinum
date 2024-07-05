@@ -150,23 +150,23 @@ void ov5_021F3678 (MapObject * param0, int param1)
         {
             0,
             0,
-            (FX32_ONE * 8)
+            (FX32_ONE * 8),
         },
         {
             (FX32_ONE * 11),
             (FX32_ONE * 14),
-            (FX32_ONE * 17)
+            (FX32_ONE * 17),
         },
         {
             (FX32_ONE * -11),
             (FX32_ONE * 14),
-            (FX32_ONE * 17)
+            (FX32_ONE * 17),
         },
         {
             0,
             (FX32_ONE * 32),
-            (FX32_ONE * 8)
-        }
+            (FX32_ONE * 8),
+        },
     };
 
     v1 = ov5_021DF578(param0);

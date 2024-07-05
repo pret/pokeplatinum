@@ -468,7 +468,7 @@ static void ov17_0223B728 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -483,7 +483,7 @@ static void ov17_0223B728 (BGL * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -498,7 +498,7 @@ static void ov17_0223B728 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

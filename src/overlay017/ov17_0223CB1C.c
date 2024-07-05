@@ -460,7 +460,7 @@ static void ov17_0223D1B8 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -475,10 +475,22 @@ static void ov17_0223D1B8 (BGL * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
             {
-                0, 0, 0x1000, 0, 3, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01, 3, 0, 0, 0
+                0,
+                0,
+                0x1000,
+                0,
+                3,
+                GX_BG_COLORMODE_16,
+                GX_BG_SCRBASE_0x3000,
+                GX_BG_CHARBASE_0x04000,
+                GX_BG_EXTPLTT_01,
+                3,
+                0,
+                0,
+                0,
             },
         };
 
@@ -514,7 +526,7 @@ static void ov17_0223D1B8 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

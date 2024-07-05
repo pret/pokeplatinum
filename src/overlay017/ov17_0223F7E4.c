@@ -243,20 +243,20 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02253278[][2] = {
 __attribute__((aligned(4))) static const u16 Unk_ov17_02253314[][2][2] = {
     {
         {0x13, 0x40},
-        {0x13, 0x50}
+        {0x13, 0x50},
     },
     {
         {0x93, 0x40},
-        {0x93, 0x50}
+        {0x93, 0x50},
     },
     {
         {0x13, 0xA0},
-        {0x13, 0xB0}
+        {0x13, 0xB0},
     },
     {
         {0x93, 0xA0},
-        {0x93, 0xB0}
-    }
+        {0x93, 0xB0},
+    },
 };
 
 __attribute__((aligned(4))) static const u16 Unk_ov17_0225325C[][2] = {
@@ -428,7 +428,7 @@ static const UnkStruct_ov17_02253558 Unk_ov17_02253558[] = {
         NULL,
         NULL,
         ov17_0223FBD4,
-        NULL
+        NULL,
     },
     {
         0xB,
@@ -441,7 +441,7 @@ static const UnkStruct_ov17_02253558 Unk_ov17_02253558[] = {
         NULL,
         NULL,
         NULL,
-        NULL
+        NULL,
     },
     {
         0xB,
@@ -454,7 +454,7 @@ static const UnkStruct_ov17_02253558 Unk_ov17_02253558[] = {
         ov17_02240D04,
         ov17_02240E68,
         ov17_0223FCAC,
-        ov17_0223FFF4
+        ov17_0223FFF4,
     },
     {
         0xB,
@@ -467,8 +467,8 @@ static const UnkStruct_ov17_02253558 Unk_ov17_02253558[] = {
         ov17_02240EA4,
         ov17_02240FC4,
         ov17_0223FF38,
-        ov17_02240094
-    }
+        ov17_02240094,
+    },
 };
 
 static const SpriteTemplate Unk_ov17_02253354 = {

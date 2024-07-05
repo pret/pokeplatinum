@@ -72,7 +72,11 @@ typedef struct {
     int unk_26D0;
     int unk_26D4;
     DWCErrorType unk_26D8;
+
+    // clang-format off
     BOOL (* unk_26DC)(void);
+    // clang-format on
+
     Window unk_26E0;
     UnkUnion_ov97_0222D2B0 unk_26F0;
     void (* unk_2A48)(void *);

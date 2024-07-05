@@ -540,7 +540,7 @@ static const NNSG3dResName Unk_ov115_022660A4[6][15] = {
         "polySurface2",
         "polySurface3",
         "pTorus2",
-        "null1"
+        "null1",
     },
     {
         "polySurface7",
@@ -548,7 +548,7 @@ static const NNSG3dResName Unk_ov115_022660A4[6][15] = {
         "pSphere2",
         "pSphere3",
         "pSphere6",
-        "pSphere7"
+        "pSphere7",
     },
     {
         "polySurface13",
@@ -569,7 +569,7 @@ static const NNSG3dResName Unk_ov115_022660A4[6][15] = {
         "polySurface2",
         "polySurface3",
         "polySurface7",
-        "polySurface12"
+        "polySurface12",
     },
     {
         "polySurface7",
@@ -578,7 +578,7 @@ static const NNSG3dResName Unk_ov115_022660A4[6][15] = {
         "pSphere3",
         "pSphere6",
         "pSphere7",
-        "null1"
+        "null1",
     },
     {
         "polySurface7",
@@ -586,8 +586,8 @@ static const NNSG3dResName Unk_ov115_022660A4[6][15] = {
         "pSphere2",
         "pSphere3",
         "pSphere6",
-        "pSphere7"
-    }
+        "pSphere7",
+    },
 };
 
 static const u8 Unk_ov115_02266644[6] = {
@@ -596,43 +596,43 @@ static const u8 Unk_ov115_02266644[6] = {
     0x0,
     0x2,
     0x1,
-    0x0
+    0x0,
 };
 
 static const u8 Unk_ov115_02265AE0[1] = {
-    0x0
+    0x0,
 };
 
 static const VecFx32 Unk_ov115_02265B20 = {
     (FX32_CONST(0)),
     (FX32_CONST(-90)),
-    (FX32_CONST(0))
+    (FX32_CONST(0)),
 };
 
 static const VecFx32 Unk_ov115_02265B44 = {
     0x0,
     FX32_CONST(2500),
-    0x0
+    0x0,
 };
 
 static const u32 Unk_ov115_02265B2C[3] = {
     0x64,
     0xC8,
-    0x12C
+    0x12C,
 };
 
 static const u16 Unk_ov115_02265C3C[4][4] = {
     {0x0, 0x0, 0x0, 0x0},
     {0x0, 0x7FFF, 0x0, 0x0},
     {0x0, 0x5555, 0xAAAA, 0x0},
-    {0x0, 0x7FFF, 0x3FFF, 0xBFFF}
+    {0x0, 0x7FFF, 0x3FFF, 0xBFFF},
 };
 
 static const u16 Unk_ov115_02265C5C[4][4] = {
     {0x0, 0x0, 0x0, 0x0},
     {0x7FFF, 0x0, 0x0, 0x0},
     {0x7FFF, 0xD554, 0x2AAA, 0x0},
-    {0x7FFF, 0x0, 0xBFFF, 0x3FFF}
+    {0x7FFF, 0x0, 0xBFFF, 0x3FFF},
 };
 
 static const UnkStruct_ov92_021D28C0 Unk_ov115_02265CA4[4][4][4] = {
@@ -640,70 +640,70 @@ static const UnkStruct_ov92_021D28C0 Unk_ov115_02265CA4[4][4][4] = {
         {0x0},
         {
             {0x0, 0x0},
-            {0xC, 0x2}
+            {0xC, 0x2},
         },
         {
             {0x0, 0x0},
             {0x17, 0x4},
-            {0x1, 0x4}
+            {0x1, 0x4},
         },
         {
             {0x0, 0x0},
             {0xC, 0x2},
             {0x17, 0x6},
-            {0x1, 0x6}
-        }
+            {0x1, 0x6},
+        },
     },
     {
         {0x0},
         {
             {0xC, 0x2},
-            {0x0, 0x0}
+            {0x0, 0x0},
         },
         {
             {0x1, 0x4},
             {0x0, 0x0},
-            {0x17, 0x4}
+            {0x17, 0x4},
         },
         {
             {0xC, 0x2},
             {0x0, 0x0},
             {0x1, 0x6},
-            {0x17, 0x6}
-        }
+            {0x17, 0x6},
+        },
     },
     {
         {0x0},
         {
-            {0x0}
+            {0x0},
         },
         {
             {0x17, 0x4},
             {0x1, 0x4},
-            {0x0, 0x0}
+            {0x0, 0x0},
         },
         {
             {0x1, 0x6},
             {0x17, 0x6},
             {0x0, 0x0},
-            {0xC, 0x2}
-        }
+            {0xC, 0x2},
+        },
     },
     {
         {0x0},
         {
-            {0x0}
+            {0x0},
         },
         {
-            {0x0, 0x0}
+            {0x0, 0x0},
         },
         {
             {0x17, 0x6},
             {0x1, 0x6},
             {0xC, 0x2},
-            {0x0, 0x0}
-        }
-    }
+            {0x0, 0x0},
+        },
+    },
 };
 
 static TPData Unk_ov115_022666C0[8];

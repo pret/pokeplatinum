@@ -1088,7 +1088,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x0,
         {0x0, 0x0, 0x0},
         {0x0, 0x0, 0x0},
-        NULL
+        NULL,
     },
     {
         0x96,
@@ -1096,7 +1096,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x1,
         {0x0, 0x0, 0x0},
         {0x0, 0x0, 0x0},
-        ov116_02265AA4
+        ov116_02265AA4,
     },
     {
         0x96,
@@ -1104,7 +1104,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x2,
         {0x0, 0x0, 0x0},
         {0x0, 0x0, 0x0},
-        ov116_022660A8
+        ov116_022660A8,
     },
     {
         0x96,
@@ -1112,7 +1112,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x2,
         {0x0, 0x1, 0x0},
         {0x1, 0x0, 0x0},
-        ov116_022660A8
+        ov116_022660A8,
     },
     {
         0x96,
@@ -1120,7 +1120,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x3,
         {0x0, 0x1, 0x2},
         {0x2, 0x0, 0x0},
-        ov116_0226644C
+        ov116_0226644C,
     },
     {
         0x96,
@@ -1128,7 +1128,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x4,
         {0x0, 0x1, 0x2},
         {0x2, 0x0, 0x0},
-        ov116_0226644C
+        ov116_0226644C,
     },
     {
         0x96,
@@ -1136,7 +1136,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x5,
         {0x2, 0x1, 0x0},
         {0x1, 0x0, 0x0},
-        ov116_022667F4
+        ov116_022667F4,
     },
     {
         0x96,
@@ -1144,7 +1144,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x5,
         {0x2, 0x1, 0x0},
         {0x2, 0x0, 0x0},
-        ov116_02266BF0
+        ov116_02266BF0,
     },
     {
         0x96,
@@ -1152,8 +1152,8 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
         0x5,
         {0x2, 0x1, 0x0},
         {0x2, 0x0, 0x0},
-        ov116_02266BF0
-    }
+        ov116_02266BF0,
+    },
 };
 
 static void ov116_0226591C (SysTask * param0, void * param1)

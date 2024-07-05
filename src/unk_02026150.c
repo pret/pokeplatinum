@@ -26,7 +26,7 @@ BattleRegulation Unk_02100880[] = {
         0x0,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         {0xffff},
@@ -39,7 +39,7 @@ BattleRegulation Unk_02100880[] = {
         0x0,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         {0xffff},
@@ -52,7 +52,7 @@ BattleRegulation Unk_02100880[] = {
         0x0,
         0x0,
         0x0,
-        0x1
+        0x1,
     },
     {
         {0xffff},
@@ -65,7 +65,7 @@ BattleRegulation Unk_02100880[] = {
         0x0,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         {0xffff},
@@ -78,8 +78,8 @@ BattleRegulation Unk_02100880[] = {
         0x0,
         0x0,
         0x0,
-        0x0
-    }
+        0x0,
+    },
 };
 
 BattleRegulation Unk_02100860 = {
@@ -93,7 +93,7 @@ BattleRegulation Unk_02100860 = {
     0x1,
     0x1,
     0x1,
-    0x0
+    0x0,
 };
 
 const BattleRegulation * sub_02026150 (SaveData * param0, int param1)

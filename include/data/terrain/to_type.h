@@ -1,6 +1,7 @@
 #include "constants/battle/terrain.h"
 #include "constants/pokemon.h"
 
+// clang-format off
 static const u8 sTerrainCamouflageType[] = {
     [TERRAIN_PLAIN]       = TYPE_GROUND,
     [TERRAIN_SAND]        = TYPE_GROUND,
@@ -16,3 +17,4 @@ static const u8 sTerrainCamouflageType[] = {
     [TERRAIN_BRIDGE]      = TYPE_FLYING,
     [TERRAIN_SPECIAL]     = TYPE_NORMAL,
 };
+// clang-format on

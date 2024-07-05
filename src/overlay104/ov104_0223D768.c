@@ -23,7 +23,7 @@ static const SpriteTemplate Unk_ov104_022417D8[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x21, 0x2C, 0x23, 0x22, 0xffffffff, 0xffffffff},
         0x1,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -35,7 +35,7 @@ static const SpriteTemplate Unk_ov104_022417D8[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x21, 0x2C, 0x23, 0x22, 0xffffffff, 0xffffffff},
         0x1,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -47,7 +47,7 @@ static const SpriteTemplate Unk_ov104_022417D8[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x18, 0x2A, 0x1A, 0x19, 0xffffffff, 0xffffffff},
         0x1,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -59,8 +59,8 @@ static const SpriteTemplate Unk_ov104_022417D8[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x1B, 0x2B, 0x1D, 0x1C, 0xffffffff, 0xffffffff},
         0x1,
-        0x0
-    }
+        0x0,
+    },
 };
 
 void ov104_0223D768 (SpriteRenderer * param0, SpriteGfxHandler * param1, NARC * param2, PaletteData * param3, u16 param4)

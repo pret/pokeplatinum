@@ -98,7 +98,7 @@ static void ov41_0225680C (UnkStruct_ov41_022567B0 * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            1
+            1,
         },
         {
             {(187 << FX32_SHIFT), (50 << FX32_SHIFT)},
@@ -106,7 +106,7 @@ static void ov41_0225680C (UnkStruct_ov41_022567B0 * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(187 << FX32_SHIFT), (96 << FX32_SHIFT)},
@@ -114,7 +114,7 @@ static void ov41_0225680C (UnkStruct_ov41_022567B0 * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(187 << FX32_SHIFT), (142 << FX32_SHIFT)},
@@ -122,8 +122,8 @@ static void ov41_0225680C (UnkStruct_ov41_022567B0 * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
-        }
+            0,
+        },
     };
     int v1;
 

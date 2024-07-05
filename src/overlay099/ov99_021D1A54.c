@@ -146,7 +146,7 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
         ov99_021D1F44,
         ov99_021D1EB4,
         ov99_021D1FB8,
-        ov99_021D2C08
+        ov99_021D2C08,
     },
     {
         ov99_021D211C,
@@ -161,7 +161,7 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
         ov99_021D216C,
         ov99_021D2164,
         ov99_021D2174,
-        ov99_021D3A40
+        ov99_021D3A40,
     },
     {
         ov99_021D2180,
@@ -176,7 +176,7 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
         ov99_021D2384,
         ov99_021D22F4,
         ov99_021D23F0,
-        ov99_021D2E28
+        ov99_021D2E28,
     },
     {
         ov99_021D211C,
@@ -191,7 +191,7 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
         ov99_021D216C,
         ov99_021D2164,
         ov99_021D2174,
-        ov99_021D3B2C
+        ov99_021D3B2C,
     },
     {
         ov99_021D24F0,
@@ -206,7 +206,7 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
         ov99_021D27FC,
         ov99_021D275C,
         ov99_021D288C,
-        ov99_021D340C
+        ov99_021D340C,
     },
     {
         ov99_021D2A38,
@@ -221,7 +221,7 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
         ov99_021D2A98,
         ov99_021D2A90,
         ov99_021D2AA0,
-        ov99_021D3C18
+        ov99_021D3C18,
     },
     {
         ov99_021D2AAC,
@@ -236,8 +236,8 @@ static const UnkStruct_ov99_021D4A04 Unk_ov99_021D4A04[] = {
         ov99_021D2BF4,
         ov99_021D2BEC,
         ov99_021D2BFC,
-        ov99_021D3DE0
-    }
+        ov99_021D3DE0,
+    },
 };
 
 static const SpriteTemplate Unk_ov99_021D499C = {

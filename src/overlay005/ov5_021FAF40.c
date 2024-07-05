@@ -1918,75 +1918,75 @@ const UnkStruct_ov5_021EC700 Unk_ov5_021FB51C[] = {
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x5C,
-        { 0x0, 0x0, ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)) }
+        { 0x0, 0x0, ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)), },
     },
     {
         0x5D,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x5E,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x5f,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0x60,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6) - (FX32_ONE * 2)),
+        },
     },
     {
         0xB7,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+        },
     },
     {
         0xD1,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+        },
     },
     {
         0x106,
         {
             0x0,
             0x0,
-            ((FX32_ONE * 6) - (FX32_ONE * 6))
-        }
+            ((FX32_ONE * 6) - (FX32_ONE * 6)),
+        },
     },
     {
         0xffff,
         {
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     }
 };

@@ -215,7 +215,7 @@ static const SpriteTemplate Unk_020EA0A4[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x34D8, 0x34D8, 0x34D8, 0x34D8, 0x0, 0x0},
         0x0,
-        0x0
+        0x0,
     },
     {
         0xAE,
@@ -227,8 +227,8 @@ static const SpriteTemplate Unk_020EA0A4[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x34D9, 0x34D8, 0x34D9, 0x34D9, 0x0, 0x0},
         0x0,
-        0x0
-    }
+        0x0,
+    },
 };
 
 static const u8 Unk_020EA020[] = {
@@ -240,7 +240,7 @@ static const u8 Unk_020EA020[] = {
     0x5,
     0x6,
     0x7,
-    0xff
+    0xff,
 };
 
 const u8 Unk_020EA02C[] = {
@@ -252,13 +252,13 @@ const u8 Unk_020EA02C[] = {
     0x5,
     0x6,
     0x7,
-    0x8
+    0x8,
 };
 
 static const u8 Unk_020EA01C[] = {
     0x3,
     0x5,
-    0x8
+    0x8,
 };
 
 BOOL sub_0203A9C8 (FieldSystem * fieldSystem)

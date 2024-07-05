@@ -265,7 +265,10 @@ static void sub_0202F510 (SaveData * param0, UnkStruct_0202F41C * param1, const 
 {
     int v0, v1, v2, v3, v4, v5, v6;
     const UnkStruct_02078B40 * v7;
-    const u8 v8[2][4] = {{0, 2, 3, 1}, {3, 1, 0, 2}};
+    const u8 v8[2][4] = {
+        {0, 2, 3, 1},
+        {3, 1, 0, 2},
+    };
     const u8 v9[4] = {0, 2, 1, 3};
 
     MI_CpuClear8(param1, sizeof(UnkStruct_0202F41C));

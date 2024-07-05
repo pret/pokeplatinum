@@ -203,7 +203,7 @@ static void ov83_0223CC30 (BGL ** param0, int param1)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -218,7 +218,7 @@ static void ov83_0223CC30 (BGL ** param0, int param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -233,7 +233,7 @@ static void ov83_0223CC30 (BGL ** param0, int param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -248,7 +248,7 @@ static void ov83_0223CC30 (BGL ** param0, int param1)
                 1,
                 0,
                 0,
-                0
+                0,
             },
         };
 

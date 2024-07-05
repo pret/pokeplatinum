@@ -298,56 +298,56 @@ static const UnkStruct_ov70_0226DBB8 Unk_ov70_0226DBB8[] = {
         {0x1, 0xFF},
         0x0,
         {ov70_02264150, NULL},
-        NULL
+        NULL,
     },
     {
         {0x16, 0x17, 0x18, 0x19, 0xFF},
         0x0,
         {ov70_02264324, NULL},
-        NULL
+        NULL,
     },
     {
         {0x1A, 0x1B, 0x1C, 0x1D, 0xFF},
         0x0,
         {ov70_02264324, NULL},
-        NULL
+        NULL,
     },
     {
         {0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD},
         0x0,
         {ov70_02264324, NULL},
-        NULL
+        NULL,
     },
     {
         {0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15},
         0x0,
         {ov70_02264324, NULL},
-        NULL
+        NULL,
     },
     {
         {0x21, 0x22, 0x23, 0xFF},
         0x0,
         {ov70_02264D38, NULL},
-        NULL
+        NULL,
     },
     {
         {0x1E, 0x1F, 0x20, 0xFF},
         0x0,
         {ov70_022646C8, NULL},
-        NULL
+        NULL,
     },
     {
         {0x2C, 0xFF},
         0x0,
         {ov70_02264974, NULL},
-        NULL
+        NULL,
     },
     {
         {0xFF},
         0x3,
         {NULL, NULL},
-        NULL
-    }
+        NULL,
+    },
 };
 
 static const UnkStruct_ov70_0226DBB8 Unk_ov70_0226DB28[] = {
@@ -355,38 +355,38 @@ static const UnkStruct_ov70_0226DBB8 Unk_ov70_0226DB28[] = {
         {0x24, 0xFF},
         0x1,
         {ov70_02264C9C, NULL},
-        NULL
+        NULL,
     },
     {
         {0x25, 0xFF},
         0x1,
         {ov70_02268390, NULL},
-        NULL
+        NULL,
     },
     {
         {0x26, 0xFF},
         0x1,
         {ov70_0226889C, NULL},
-        NULL
+        NULL,
     },
     {
         {0x27, 0x28, 0x29, 0xFF},
         0x1,
         {ov70_022669FC, NULL},
-        NULL
+        NULL,
     },
     {
         {0x2B, 0xFF},
         0x1,
         {ov70_0226CC74, NULL},
-        NULL
+        NULL,
     },
     {
         {0xFF},
         0x3,
         {NULL, NULL},
-        NULL
-    }
+        NULL,
+    },
 };
 
 static const UnkStruct_ov70_0226DBB8 Unk_ov70_0226DAF8[] = {
@@ -394,14 +394,14 @@ static const UnkStruct_ov70_0226DBB8 Unk_ov70_0226DAF8[] = {
         {0x27, 0x28, 0x29, 0xFF},
         0x1,
         {ov70_022669FC, NULL},
-        NULL
+        NULL,
     },
     {
         {0xFF},
         0x3,
         {NULL, NULL},
-        NULL
-    }
+        NULL,
+    },
 };
 
 static const UnkStruct_ov70_0226DA18 Unk_ov70_0226D9F8 = {

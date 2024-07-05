@@ -2459,7 +2459,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFF5},
             {0x32, 0xFFFFFFFFFFFFFFF4},
             {0x7FFF, 0x7FFF},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2467,7 +2467,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFF5},
             {0x32, 0xFFFFFFFFFFFFFFF4},
             {0x32, 0xFFFFFFFFFFFFFFF4},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2475,14 +2475,14 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFF5},
             {0x32, 0xFFFFFFFFFFFFFFF4},
             {0x7FFF, 0x7FFF},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
             {0xFFFFFFFFFFFFFFDF, 0xFFFFFFFFFFFFFFFA},
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFEE},
             {0x32, 0xFFFFFFFFFFFFFFDC},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2490,7 +2490,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFEE},
             {0x32, 0xFFFFFFFFFFFFFFE4},
             {0x7FFF, 0x7FFF},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2498,7 +2498,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFF5},
             {0x32, 0xFFFFFFFFFFFFFFF4},
             {0x7FFF, 0x7FFF},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2506,7 +2506,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFF5},
             {0x32, 0xFFFFFFFFFFFFFFF4},
             {0x7FFF, 0x7FFF},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2514,7 +2514,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE9, 0xFFFFFFFFFFFFFFFF},
             {0x32, 0xFFFFFFFFFFFFFFFE},
             {0x7FFF, 0x7FFF},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2522,7 +2522,7 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFF5},
             {0x32, 0xFFFFFFFFFFFFFFF4},
             {0x32, 0xFFFFFFFFFFFFFFF4},
-            {0x7FFF, 0x7FFF}
+            {0x7FFF, 0x7FFF},
         },
         {
             {0x0, 0x80},
@@ -2530,8 +2530,8 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             {0xFFFFFFFFFFFFFFE4, 0xFFFFFFFFFFFFFFF5},
             {0x32, 0xFFFFFFFFFFFFFFF4},
             {0x32, 0xFFFFFFFFFFFFFFF4},
-            {0x7FFF, 0x7FFF}
-        }
+            {0x7FFF, 0x7FFF},
+        },
     };
 
     v4 = BattleSystem_BattleType(v0->unk_00);

@@ -816,7 +816,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -831,7 +831,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -846,7 +846,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -876,7 +876,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
         };
 

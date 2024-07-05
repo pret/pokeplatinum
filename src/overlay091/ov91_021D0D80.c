@@ -214,7 +214,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8A8, 0xB8A8, 0xB8A8, 0xB8A8, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0xF6,
@@ -226,7 +226,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8A8, 0xB8A8, 0xB8A8, 0xB8A8, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0xC4,
@@ -238,7 +238,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8A9, 0xB8A8, 0xB8A9, 0xB8A9, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0xC4,
@@ -250,7 +250,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8A9, 0xB8A8, 0xB8A9, 0xB8A9, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0xC4,
@@ -262,7 +262,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8AA, 0xB8A8, 0xB8AA, 0xB8AA, 0x0, 0x0},
         0x1,
-        0x0
+        0x0,
     },
     {
         0x74,
@@ -274,7 +274,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8AB, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0x98,
@@ -286,7 +286,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8AC, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0x98,
@@ -298,7 +298,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8AD, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0x98,
@@ -310,7 +310,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8AE, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0x98,
@@ -322,7 +322,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8AF, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0x98,
@@ -334,7 +334,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8B0, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0x98,
@@ -346,7 +346,7 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8B1, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
+        0x0,
     },
     {
         0x98,
@@ -358,8 +358,8 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0xB8B2, 0xB8A8, 0xB8AB, 0xB8AB, 0x0, 0x0},
         0x2,
-        0x0
-    }
+        0x0,
+    },
 };
 
 int ov91_021D0D80 (OverlayManager * param0, int * param1)

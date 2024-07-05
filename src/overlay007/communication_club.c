@@ -487,6 +487,7 @@ static void ov7_0224A0C8 (CommClubManager * commClubMan)
     }
 }
 
+// clang-format off
 asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
 {
     push {r4, r5, lr}
@@ -610,6 +611,7 @@ asm static void CommClubTask_SelectServerList (SysTask * task, void * param1)
               add sp, #0xc
     pop {r4, r5, pc}
 }
+// clang-format on
 
 static BOOL ov7_0224A244 (SysTask * task, void * data)
 {

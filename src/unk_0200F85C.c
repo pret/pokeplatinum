@@ -1306,14 +1306,19 @@ BOOL sub_0201006C (UnkStruct_0200F7A0 * param0)
         };
         static UnkStruct_0201006C v1 = {
             {
-                {0, 94, 255, 98}, {128, 96, 128, 96}, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 1
+                {0, 94, 255, 98},
+                {128, 96, 128, 96},
+                0,
+                GX_BLEND_ALL,
+                GX_BLEND_PLANEMASK_BD,
+                1,
             },
             {
                 NULL,
                 2,
-                1
+                1,
             },
-            FX32_CONST(0.70f)
+            FX32_CONST(0.70f),
         };
 
         v1.unk_0C.unk_00 = v0;
@@ -1343,14 +1348,14 @@ BOOL sub_020100A8 (UnkStruct_0200F7A0 * param0)
                 0,
                 GX_BLEND_ALL,
                 GX_BLEND_PLANEMASK_BD,
-                0
+                0,
             },
             {
                 NULL,
                 2,
-                0
+                0,
             },
-            FX32_CONST(0.70f)
+            FX32_CONST(0.70f),
         };
 
         v1.unk_0C.unk_00 = v0;

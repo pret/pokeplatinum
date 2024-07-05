@@ -541,7 +541,7 @@ static void ov77_021D2724 (UnkStruct_ov77_021D2E9C * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -556,7 +556,7 @@ static void ov77_021D2724 (UnkStruct_ov77_021D2E9C * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -571,7 +571,7 @@ static void ov77_021D2724 (UnkStruct_ov77_021D2E9C * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -663,7 +663,7 @@ static void ov77_021D2828 (UnkStruct_ov77_021D2E9C * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -678,7 +678,7 @@ static void ov77_021D2828 (UnkStruct_ov77_021D2E9C * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -693,7 +693,7 @@ static void ov77_021D2828 (UnkStruct_ov77_021D2E9C * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

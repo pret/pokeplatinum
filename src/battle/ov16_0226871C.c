@@ -589,7 +589,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         NULL,
         NULL,
         NULL,
-        NULL
+        NULL,
     },
     {
         0x1C,
@@ -602,7 +602,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_02269654,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -615,7 +615,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_02269654,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -628,7 +628,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_02269668,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -641,7 +641,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_02269668,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -654,7 +654,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_022698A8,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -667,7 +667,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_022698BC,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -680,7 +680,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_02269654,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -693,7 +693,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226BEC0,
         ov16_0226C0A0,
         ov16_02269668,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -706,7 +706,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226C100,
         NULL,
         ov16_02269924,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -719,7 +719,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226C100,
         NULL,
         ov16_02269938,
-        ov16_0226A318
+        ov16_0226A318,
     },
     {
         0x1C,
@@ -732,7 +732,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226C1F8,
         ov16_0226C378,
         ov16_022699AC,
-        ov16_0226A3F4
+        ov16_0226A3F4,
     },
     {
         0x1C,
@@ -745,7 +745,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226C3C8,
         ov16_0226C9B8,
         ov16_0226A12C,
-        ov16_0226A528
+        ov16_0226A528,
     },
     {
         0x1C,
@@ -758,7 +758,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226CA14,
         NULL,
         ov16_02269C7C,
-        ov16_0226A4A4
+        ov16_0226A4A4,
     },
     {
         0x1C,
@@ -771,7 +771,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226CA14,
         NULL,
         ov16_02269D14,
-        ov16_0226A4A4
+        ov16_0226A4A4,
     },
     {
         0x1C,
@@ -784,7 +784,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226CA14,
         NULL,
         ov16_02269DB0,
-        ov16_0226A4A4
+        ov16_0226A4A4,
     },
     {
         0x1C,
@@ -797,7 +797,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226CA14,
         NULL,
         ov16_02269F68,
-        ov16_0226A4A4
+        ov16_0226A4A4,
     },
     {
         0x1C,
@@ -810,7 +810,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         ov16_0226CA14,
         NULL,
         ov16_0226A04C,
-        ov16_0226A4A4
+        ov16_0226A4A4,
     },
     {
         0x1C,
@@ -823,8 +823,8 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         NULL,
         NULL,
         ov16_02269E94,
-        ov16_0226A634
-    }
+        ov16_0226A634,
+    },
 };
 
 static const SpriteTemplate Unk_ov16_02270414 = {
@@ -837,7 +837,7 @@ static const SpriteTemplate Unk_ov16_02270414 = {
     NNS_G2D_VRAM_TYPE_2DSUB,
     {0x4E37, 0x4E37, 0x4E2F, 0x4E2F, 0xFFFFFFFF, 0xFFFFFFFF},
     0x1,
-    0x0
+    0x0,
 };
 
 static const SpriteTemplate Unk_ov16_02270448 = {
@@ -850,7 +850,7 @@ static const SpriteTemplate Unk_ov16_02270448 = {
     NNS_G2D_VRAM_TYPE_2DSUB,
     {0x4E38, 0x4E37, 0x4E30, 0x4E30, 0xFFFFFFFF, 0xFFFFFFFF},
     0x1,
-    0x0
+    0x0,
 };
 
 static const SpriteTemplate Unk_ov16_0227047C = {
@@ -863,7 +863,7 @@ static const SpriteTemplate Unk_ov16_0227047C = {
     NNS_G2D_VRAM_TYPE_2DSUB,
     {0x4E39, 0x4E34, 0x4E31, 0x4E31, 0xFFFFFFFF, 0xFFFFFFFF},
     0x1,
-    0x0
+    0x0,
 };
 
 static const SpriteTemplate Unk_ov16_022704B0 = {
@@ -876,21 +876,21 @@ static const SpriteTemplate Unk_ov16_022704B0 = {
     NNS_G2D_VRAM_TYPE_2DSUB,
     {0x4E45, 0x4E36, 0x4E35, 0x4E35, 0xFFFFFFFF, 0xFFFFFFFF},
     0x1,
-    0x0
+    0x0,
 };
 
 __attribute__((aligned(4))) static const s16 Unk_ov16_022703A4[][3] = {
     {0x0, 0xC0, 0x180},
     {0x0, 0xC0, 0x180},
     {0x0, 0xC0, 0x180},
-    {0x0, 0xC0, 0x180}
+    {0x0, 0xC0, 0x180},
 };
 
 __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_022702F4[] = {
     {0x4, 0xF, 0x2, 0x1D},
     {0x11, 0x17, 0x0, 0x9},
     {0x11, 0x17, 0x16, 0x1F},
-    {0x12, 0x17, 0xB, 0x14}
+    {0x12, 0x17, 0xB, 0x14},
 };
 
 __attribute__((aligned(4))) static const s16 Unk_ov16_022703F4[][3] = {
@@ -898,7 +898,7 @@ __attribute__((aligned(4))) static const s16 Unk_ov16_022703F4[][3] = {
     {0x0, 0xC0, 0x180},
     {0x0, 0xC0, 0x180},
     {0x0, 0xC0, 0x180},
-    {0x0, 0xC0, 0x180}
+    {0x0, 0xC0, 0x180},
 };
 
 __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_02270378[] = {
@@ -906,21 +906,21 @@ __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_022703
     {0x2, 0x9, 0x10, 0x1F},
     {0xA, 0x11, 0x0, 0xF},
     {0xA, 0x11, 0x10, 0x1F},
-    {0x12, 0x17, 0x1, 0x1E}
+    {0x12, 0x17, 0x1, 0x1E},
 };
 
 __attribute__((aligned(4))) static const s16 Unk_ov16_0227022C[] = {
     0x22F,
     0x22C,
     0x229,
-    0x226
+    0x226,
 };
 
 __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_02270274[] = {
     {0x3, 0x9, 0x0, 0xF},
     {0x3, 0x9, 0x10, 0x1F},
     {0xB, 0x11, 0x0, 0xF},
-    {0xB, 0x11, 0x10, 0x1F}
+    {0xB, 0x11, 0x10, 0x1F},
 };
 
 __attribute__((aligned(4))) static const s16 Unk_ov16_022703D4[][3] = {
@@ -928,7 +928,7 @@ __attribute__((aligned(4))) static const s16 Unk_ov16_022703D4[][3] = {
     {0x0, 0xC0, 0x180},
     {0x0, 0xC0, 0x180},
     {0x0, 0xC0, 0x180},
-    {0x0, 0xC0, 0x180}
+    {0x0, 0xC0, 0x180},
 };
 
 __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_0227033C[] = {
@@ -936,31 +936,31 @@ __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_022703
     {0x0, 0x9, 0x11, 0x1F},
     {0xA, 0x11, 0x11, 0x1F},
     {0x0, 0x9, 0x0, 0xE},
-    {0x12, 0x17, 0x1, 0x1E}
+    {0x12, 0x17, 0x1, 0x1E},
 };
 
 __attribute__((aligned(4))) static const s16 Unk_ov16_022701FC[] = {
     0x238,
     0x235,
     0x232,
-    0x23B
+    0x23B,
 };
 
 __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_022702C4[] = {
     {0xB, 0x11, 0x0, 0xE},
     {0x1, 0x9, 0x11, 0x1F},
     {0xB, 0x11, 0x11, 0x1F},
-    {0x1, 0x9, 0x0, 0xE}
+    {0x1, 0x9, 0x0, 0xE},
 };
 
 __attribute__((aligned(4))) static const s16 Unk_ov16_02270240[][3] = {
     {0x0, 0x5, 0xA},
-    {0x0, 0xC0, 0x180}
+    {0x0, 0xC0, 0x180},
 };
 
 __attribute__((aligned(4))) static const UnkStruct_ov16_022702F4 Unk_ov16_0227021C[] = {
     {0xD, 0x14, 0x0, 0x1F},
-    {0x4, 0xB, 0x0, 0x1F}
+    {0x4, 0xB, 0x0, 0x1F},
 };
 
 __attribute__((aligned(4))) static const s16 Unk_ov16_022701F4[3] = {
@@ -992,7 +992,7 @@ __attribute__((aligned(4))) static const int Unk_ov16_022705B0[][4] = {
     {0x0, 0x1, 0x1, 0x1},
     {0x1, 0x1, 0x0, 0x1},
     {0x1, 0x0, 0x1, 0x0},
-    {0x0, 0x1, 0x0, 0x1}
+    {0x0, 0x1, 0x0, 0x1},
 };
 
 static const struct {
@@ -1021,7 +1021,7 @@ static const struct {
     {0xFFFF, 0xFFFF},
     {0xFFFF, 0xFFFF},
     {0xFFFF, 0xFFFF},
-    {0xFFFF, 0xFFFF}
+    {0xFFFF, 0xFFFF},
 };
 
 static void * ov16_0226871C (void)

@@ -70,7 +70,7 @@ const UnkStruct_ov80_021D2E94 Unk_ov80_021D2E94[3] = {
         ov80_021D16F8,
         ov80_021D1744,
         ov80_021D1478,
-        ov80_021D1758
+        ov80_021D1758,
     },
     {
         ov80_021D1458,
@@ -81,7 +81,7 @@ const UnkStruct_ov80_021D2E94 Unk_ov80_021D2E94[3] = {
         ov80_021D16F8,
         ov80_021D1744,
         ov80_021D1478,
-        ov80_021D1758
+        ov80_021D1758,
     },
     {
         ov80_021D1458,
@@ -92,8 +92,8 @@ const UnkStruct_ov80_021D2E94 Unk_ov80_021D2E94[3] = {
         ov80_021D16F8,
         ov80_021D1744,
         ov80_021D1478,
-        ov80_021D1758
-    }
+        ov80_021D1758,
+    },
 };
 
 int ov80_021D0D80 (OverlayManager * param0, int * param1)
@@ -308,7 +308,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -323,7 +323,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -338,7 +338,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 2,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -353,7 +353,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -368,7 +368,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -383,7 +383,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -398,7 +398,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 2,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -413,7 +413,7 @@ static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 

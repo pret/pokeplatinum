@@ -818,6 +818,7 @@ static BOOL ov62_0223A9F4 (UnkStruct_0208C06C * param0)
     return 0;
 }
 
+// clang-format off
 BOOL(*const Unk_ov62_02248E24[])(UnkStruct_0208C06C *) = {
     ov62_0223A17C,
     ov62_0223A2A8,
@@ -831,7 +832,9 @@ BOOL(*const Unk_ov62_02248E24[])(UnkStruct_0208C06C *) = {
     ov62_0223A93C,
     ov62_0223B424,
 };
+// clang-format on
 
+// clang-format off
 BOOL(*const Unk_ov62_02248E50[])(UnkStruct_0208C06C *) = {
     ov62_0223A17C,
     ov62_0223A2A8,
@@ -848,6 +851,7 @@ BOOL(*const Unk_ov62_02248E50[])(UnkStruct_0208C06C *) = {
     ov62_0223A9F4,
     ov62_0223C948,
 };
+// clang-format on
 
 static const u8 Unk_ov62_02248D9C[][4] = {
     {0x1, 0x2, 0x9, 0x3},

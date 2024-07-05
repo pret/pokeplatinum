@@ -46,7 +46,8 @@ const UnkEnum_ov101_021D9688 Unk_ov101_021D9688[3][21] = {
         0x2,
         0x0,
         0x2,
-        0x4 },
+        0x4,
+    },
     {
         0x3,
         0x0,
@@ -68,7 +69,8 @@ const UnkEnum_ov101_021D9688 Unk_ov101_021D9688[3][21] = {
         0x1,
         0x5,
         0x4,
-        0x2 },
+        0x2,
+    },
     {
         0x4,
         0x2,
@@ -90,7 +92,8 @@ const UnkEnum_ov101_021D9688 Unk_ov101_021D9688[3][21] = {
         0x2,
         0x0,
         0x3,
-        0x5 }
+        0x5,
+    },
 };
 
 const int Unk_ov101_021D9550[6] = {
@@ -125,38 +128,38 @@ const UnkStruct_ov101_021D95C8 Unk_ov101_021D95C8[6] = {
         { 0x1, 0x4 },
         { 0x2, 0xD },
         { 0x1, 0x27 },
-        { 0x1, 0x27 }
+        { 0x1, 0x27 },
     },
     {
         { 0x1, 0x4 },
         { 0x2, 0xD },
         { 0x1, 0x27 },
-        { 0x1, 0x27 }
+        { 0x1, 0x27 },
     },
     {
         { 0x2, 0x3 },
         { 0x4, 0xB },
         { 0x2, 0x26 },
-        { 0x2, 0x26 }
+        { 0x2, 0x26 },
     },
     {
         { 0x3, 0x2 },
         { 0x4, 0xB },
         { 0x2, 0x26 },
-        { 0x2, 0x26 }
+        { 0x2, 0x26 },
     },
     {
         { 0x4, 0x1 },
         { 0x6, 0x9 },
         { 0x3, 0x25 },
-        { 0x3, 0x25 }
+        { 0x3, 0x25 },
     },
     {
         { 0x4, 0x1 },
         { 0x6, 0x9 },
         { 0x3, 0x25 },
-        { 0x3, 0x25 }
-    }
+        { 0x3, 0x25 },
+    },
 };
 
 
@@ -177,7 +180,7 @@ const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06] 
         { 0xA, UnkEnum_ov101_021D9934_05, UnkEnum_ov101_021D9934_1_02 },
         { 0xA, UnkEnum_ov101_021D9934_02, UnkEnum_ov101_021D9934_1_02 },
         { 0xF, UnkEnum_ov101_021D9934_04, UnkEnum_ov101_021D9934_1_01 },
-        { 0x32, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 }
+        { 0x32, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 },
     },
     {
         { 0x5, UnkEnum_ov101_021D9934_03, UnkEnum_ov101_021D9934_1_00 },
@@ -185,7 +188,7 @@ const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06] 
         { 0xA, UnkEnum_ov101_021D9934_05, UnkEnum_ov101_021D9934_1_02 },
         { 0xA, UnkEnum_ov101_021D9934_02, UnkEnum_ov101_021D9934_1_02 },
         { 0xF, UnkEnum_ov101_021D9934_04, UnkEnum_ov101_021D9934_1_01 },
-        { 0x32, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 }
+        { 0x32, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 },
     },
     {
         { 0x5, UnkEnum_ov101_021D9934_03, UnkEnum_ov101_021D9934_1_00 },
@@ -193,7 +196,7 @@ const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06] 
         { 0xA, UnkEnum_ov101_021D9934_05, UnkEnum_ov101_021D9934_1_02 },
         { 0xF, UnkEnum_ov101_021D9934_02, UnkEnum_ov101_021D9934_1_02 },
         { 0xF, UnkEnum_ov101_021D9934_04, UnkEnum_ov101_021D9934_1_01 },
-        { 0x28, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 }
+        { 0x28, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 },
     },
     {
         { 0x5, UnkEnum_ov101_021D9934_03, UnkEnum_ov101_021D9934_1_00 },
@@ -201,7 +204,7 @@ const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06] 
         { 0xF, UnkEnum_ov101_021D9934_05, UnkEnum_ov101_021D9934_1_02 },
         { 0xF, UnkEnum_ov101_021D9934_02, UnkEnum_ov101_021D9934_1_02 },
         { 0xA, UnkEnum_ov101_021D9934_04, UnkEnum_ov101_021D9934_1_01 },
-        { 0x28, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 }
+        { 0x28, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 },
     },
     {
         { 0x5, UnkEnum_ov101_021D9934_03, UnkEnum_ov101_021D9934_1_00 },
@@ -209,7 +212,7 @@ const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06] 
         { 0xF, UnkEnum_ov101_021D9934_05, UnkEnum_ov101_021D9934_1_02 },
         { 0x14, UnkEnum_ov101_021D9934_02, UnkEnum_ov101_021D9934_1_02 },
         { 0xA, UnkEnum_ov101_021D9934_04, UnkEnum_ov101_021D9934_1_01 },
-        { 0x1E, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 }
+        { 0x1E, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 },
     },
     {
         { 0x5, UnkEnum_ov101_021D9934_03, UnkEnum_ov101_021D9934_1_00 },
@@ -217,8 +220,8 @@ const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06] 
         { 0xF, UnkEnum_ov101_021D9934_05, UnkEnum_ov101_021D9934_1_02 },
         { 0x14, UnkEnum_ov101_021D9934_02, UnkEnum_ov101_021D9934_1_02 },
         { 0xA, UnkEnum_ov101_021D9934_04, UnkEnum_ov101_021D9934_1_01 },
-        { 0x1E, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 }
-    }
+        { 0x1E, UnkEnum_ov101_021D9934_00, UnkEnum_ov101_021D9934_1_00 },
+    },
 };
 
 const u32 Unk_ov101_021D9568[UnkEnum_ov101_021D9934_06] = {
@@ -235,104 +238,104 @@ const UnkStruct_ov101_021D9784 Unk_ov101_021D9784[6][UnkEnum_ov101_021D9934_1_03
         {
             { 0x5, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x4B, UnkEnum_ov101_021D6764_01 }
+            { 0x4B, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x14, UnkEnum_ov101_021D6764_02 },
             { 0x3C, UnkEnum_ov101_021D6764_00 },
-            { 0x14, UnkEnum_ov101_021D6764_01 }
+            { 0x14, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x4B, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x5, UnkEnum_ov101_021D6764_01 }
-        }
+            { 0x5, UnkEnum_ov101_021D6764_01 },
+        },
     },
     {
         {
             { 0x5, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x4B, UnkEnum_ov101_021D6764_01 }
+            { 0x4B, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x14, UnkEnum_ov101_021D6764_02 },
             { 0x3C, UnkEnum_ov101_021D6764_00 },
-            { 0x14, UnkEnum_ov101_021D6764_01 }
+            { 0x14, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x4B, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x5, UnkEnum_ov101_021D6764_01 }
-        }
+            { 0x5, UnkEnum_ov101_021D6764_01 },
+        },
     },
     {
         {
             { 0x5, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x4B, UnkEnum_ov101_021D6764_01 }
+            { 0x4B, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x14, UnkEnum_ov101_021D6764_02 },
             { 0x3C, UnkEnum_ov101_021D6764_00 },
-            { 0x14, UnkEnum_ov101_021D6764_01 }
+            { 0x14, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x4B, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x5, UnkEnum_ov101_021D6764_01 }
-        }
+            { 0x5, UnkEnum_ov101_021D6764_01 },
+        },
     },
     {
         {
             { 0x5, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x4B, UnkEnum_ov101_021D6764_01 }
+            { 0x4B, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x14, UnkEnum_ov101_021D6764_02 },
             { 0x3C, UnkEnum_ov101_021D6764_00 },
-            { 0x14, UnkEnum_ov101_021D6764_01 }
+            { 0x14, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x4B, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x5, UnkEnum_ov101_021D6764_01 }
-        }
+            { 0x5, UnkEnum_ov101_021D6764_01 },
+        },
     },
     {
         {
             { 0x5, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x4B, UnkEnum_ov101_021D6764_01 }
+            { 0x4B, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x14, UnkEnum_ov101_021D6764_02 },
             { 0x3C, UnkEnum_ov101_021D6764_00 },
-            { 0x14, UnkEnum_ov101_021D6764_01 }
+            { 0x14, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x4B, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x5, UnkEnum_ov101_021D6764_01 }
-        }
+            { 0x5, UnkEnum_ov101_021D6764_01 },
+        },
     },
     {
         {
             { 0x5, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x4B, UnkEnum_ov101_021D6764_01 }
+            { 0x4B, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x14, UnkEnum_ov101_021D6764_02 },
             { 0x3C, UnkEnum_ov101_021D6764_00 },
-            { 0x14, UnkEnum_ov101_021D6764_01 }
+            { 0x14, UnkEnum_ov101_021D6764_01 },
         },
         {
             { 0x4B, UnkEnum_ov101_021D6764_02 },
             { 0x14, UnkEnum_ov101_021D6764_00 },
-            { 0x5, UnkEnum_ov101_021D6764_01 }
-        }
-    }
+            { 0x5, UnkEnum_ov101_021D6764_01 },
+        },
+    },
 };
 
 const u32 Unk_ov101_021D9538[6] = {
@@ -390,7 +393,7 @@ const UnkStruct_ov101_021D9AE4 Unk_ov101_021D9AE4[6][UnkEnum_ov101_021D9AE4_09] 
         { UnkEnum_ov101_021D9AE4_03, 0x32, 0x28, 0xA },
         { UnkEnum_ov101_021D9AE4_02, 0x3C, 0x1E, 0xA },
         { UnkEnum_ov101_021D9AE4_01, 0x50, 0xA, 0xA },
-        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 }
+        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 },
     },
     {
         { UnkEnum_ov101_021D9AE4_08, 0xA, 0xA, 0x50 },
@@ -401,7 +404,7 @@ const UnkStruct_ov101_021D9AE4 Unk_ov101_021D9AE4[6][UnkEnum_ov101_021D9AE4_09] 
         { UnkEnum_ov101_021D9AE4_03, 0x32, 0x28, 0xA },
         { UnkEnum_ov101_021D9AE4_02, 0x3C, 0x1E, 0xA },
         { UnkEnum_ov101_021D9AE4_01, 0x50, 0xA, 0xA },
-        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 }
+        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 },
     },
     {
         { UnkEnum_ov101_021D9AE4_08, 0xA, 0xA, 0x50 },
@@ -412,7 +415,7 @@ const UnkStruct_ov101_021D9AE4 Unk_ov101_021D9AE4[6][UnkEnum_ov101_021D9AE4_09] 
         { UnkEnum_ov101_021D9AE4_03, 0x32, 0x28, 0xA },
         { UnkEnum_ov101_021D9AE4_02, 0x3C, 0x1E, 0xA },
         { UnkEnum_ov101_021D9AE4_01, 0x50, 0xA, 0xA },
-        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 }
+        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 },
     },
     {
         { UnkEnum_ov101_021D9AE4_08, 0xA, 0xA, 0x50 },
@@ -423,7 +426,7 @@ const UnkStruct_ov101_021D9AE4 Unk_ov101_021D9AE4[6][UnkEnum_ov101_021D9AE4_09] 
         { UnkEnum_ov101_021D9AE4_03, 0x32, 0x28, 0xA },
         { UnkEnum_ov101_021D9AE4_02, 0x3C, 0x1E, 0xA },
         { UnkEnum_ov101_021D9AE4_01, 0x50, 0xA, 0xA },
-        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 }
+        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 },
     },
     {
         { UnkEnum_ov101_021D9AE4_08, 0xA, 0xA, 0x50 },
@@ -434,7 +437,7 @@ const UnkStruct_ov101_021D9AE4 Unk_ov101_021D9AE4[6][UnkEnum_ov101_021D9AE4_09] 
         { UnkEnum_ov101_021D9AE4_03, 0x32, 0x28, 0xA },
         { UnkEnum_ov101_021D9AE4_02, 0x3C, 0x1E, 0xA },
         { UnkEnum_ov101_021D9AE4_01, 0x50, 0xA, 0xA },
-        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 }
+        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 },
     },
     {
         { UnkEnum_ov101_021D9AE4_08, 0xA, 0xA, 0x50 },
@@ -445,6 +448,6 @@ const UnkStruct_ov101_021D9AE4 Unk_ov101_021D9AE4[6][UnkEnum_ov101_021D9AE4_09] 
         { UnkEnum_ov101_021D9AE4_03, 0x32, 0x28, 0xA },
         { UnkEnum_ov101_021D9AE4_02, 0x3C, 0x1E, 0xA },
         { UnkEnum_ov101_021D9AE4_01, 0x50, 0xA, 0xA },
-        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 }
-    }
+        { UnkEnum_ov101_021D9AE4_00, 0x5A, 0x5, 0x5 },
+    },
 };

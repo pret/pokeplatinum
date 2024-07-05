@@ -6575,8 +6575,8 @@ static const UnkStruct_ov9_02252414 Unk_ov9_02252414[1] = {
         0x1,
         {FX32_ONE, FX32_ONE, FX32_ONE},
         {(FX32_ONE * 48), 0x0, 0x0},
-        0x40
-    }
+        0x40,
+    },
 };
 
 void ov9_0224E884 (FieldSystem * fieldSystem, u16 param1)
@@ -9784,7 +9784,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x68,
         0x1400,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 12)), 0x0},
-        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2}
+        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2},
     },
     {
         0x6,
@@ -9794,7 +9794,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x68,
         0x1400,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 12)), 0x0},
-        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2}
+        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2},
     },
     {
         0x6,
@@ -9804,7 +9804,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x68,
         0x1400,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 12)), 0x0},
-        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2}
+        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2},
     },
     {
         0x6,
@@ -9814,7 +9814,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x68,
         0x1400,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 12)), 0x0},
-        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2}
+        {FX32_ONE *2, FX32_ONE *2, FX32_ONE *2},
     },
     {
         0x1,
@@ -9824,7 +9824,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x3C,
         0x1000,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 32)), 0x0},
-        {FX32_ONE, FX32_ONE, FX32_ONE}
+        {FX32_ONE, FX32_ONE, FX32_ONE},
     },
     {
         0x2,
@@ -9834,7 +9834,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x3C,
         0x1000,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 32)), 0x0},
-        {FX32_ONE, FX32_ONE, FX32_ONE}
+        {FX32_ONE, FX32_ONE, FX32_ONE},
     },
     {
         0x3,
@@ -9844,7 +9844,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x2A,
         0xC00,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 32)), 0x0},
-        {FX32_ONE, FX32_ONE, FX32_ONE}
+        {FX32_ONE, FX32_ONE, FX32_ONE},
     },
     {
         0x4,
@@ -9854,7 +9854,7 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x2A,
         0xC00,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 32)), 0x0},
-        {FX32_ONE, FX32_ONE, FX32_ONE}
+        {FX32_ONE, FX32_ONE, FX32_ONE},
     },
     {
         0x5,
@@ -9864,14 +9864,14 @@ static const UnkStruct_ov9_02253680 Unk_ov9_02253680[9] = {
         0x0,
         0x800,
         {(FX32_ONE * 128), (FX32_ONE * (96 + 32)), 0x0},
-        {FX32_ONE, FX32_ONE, FX32_ONE}
+        {FX32_ONE, FX32_ONE, FX32_ONE},
     }
 };
 
 static const fx32 Unk_ov9_02252C08[3][4] = {
     {0x0, 0x0, 0x0, 0x0},
     {0x800, 0x1800, 0x3000, 0x5000},
-    {-0x800 * 4, -0xc00 * 6, -0x1000 * 7, -0x1400 * 10}
+    {-0x800 * 4, -0xc00 * 6, -0x1000 * 7, -0x1400 * 10},
 };
 
 static const u32 Unk_ov9_02252FD0[25] = {
@@ -10551,7 +10551,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x0,
-        0xB
+        0xB,
     },
     {
         0x1,
@@ -10564,7 +10564,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0x0
+        0x0,
     },
     {
         0x2,
@@ -10577,7 +10577,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x1,
-        0xB
+        0xB,
     },
     {
         0x3,
@@ -10590,7 +10590,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0x1
+        0x1,
     },
     {
         0x4,
@@ -10603,7 +10603,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x2,
-        0xB
+        0xB,
     },
     {
         0x5,
@@ -10616,7 +10616,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0x2
+        0x2,
     },
     {
         0x6,
@@ -10629,7 +10629,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x3,
-        0x6
+        0x6,
     },
     {
         0x7,
@@ -10642,7 +10642,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x4,
-        0xB
+        0xB,
     },
     {
         0x8,
@@ -10655,7 +10655,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x5,
-        0xB
+        0xB,
     },
     {
         0x9,
@@ -10668,7 +10668,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0xB,
-        0xB
+        0xB,
     },
     {
         0xA,
@@ -10681,7 +10681,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0x6,
-        0x3
+        0x3,
     },
     {
         0xB,
@@ -10694,7 +10694,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0x4
+        0x4,
     },
     {
         0xC,
@@ -10707,7 +10707,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x7,
-        0x8
+        0x8,
     },
     {
         0xD,
@@ -10720,7 +10720,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0x8,
-        0x7
+        0x7,
     },
     {
         0xE,
@@ -10733,7 +10733,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0x9,
-        0xB
+        0xB,
     },
     {
         0xF,
@@ -10746,7 +10746,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0x5
+        0x5,
     },
     {
         0x10,
@@ -10759,7 +10759,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0xB
+        0xB,
     },
     {
         0x11,
@@ -10772,7 +10772,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0x9
+        0x9,
     },
     {
         0x12,
@@ -10785,7 +10785,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * -4), 0x0},
         0xA,
-        0xB
+        0xB,
     },
     {
         0x13,
@@ -10798,7 +10798,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0xA
+        0xA,
     },
     {
         0x14,
@@ -10811,7 +10811,7 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0xB
+        0xB,
     },
     {
         0x15,
@@ -10824,8 +10824,8 @@ static const UnkStruct_ov9_02253830 Unk_ov9_02253830[22] = {
         0x0,
         {0x0, (FX32_ONE * 4), 0x0},
         0xB,
-        0xB
-    }
+        0xB,
+    },
 };
 
 static const UnkFuncPtr_ov9_02253BE4 * Unk_ov9_02253BE4[18] = {
@@ -11722,13 +11722,13 @@ static const UnkStruct_ov9_02252384 Unk_ov9_02252384 = {
         0x0,
         -21,
         0x0,
-        {0x0, (FX32_ONE * -1), 0x0}
-    }
+        {0x0, (FX32_ONE * -1), 0x0},
+    },
 };
 
 static const UnkStruct_ov9_02251438 Unk_ov9_02251438[] = {
     {0xA, &Unk_ov9_02252384},
-    {0x12, NULL}
+    {0x12, NULL},
 };
 
 static const UnkStruct_ov9_02252414 Unk_ov9_022523A8 = {
@@ -11739,7 +11739,7 @@ static const UnkStruct_ov9_02252414 Unk_ov9_022523A8 = {
     0x1,
     {FX32_ONE, FX32_ONE, FX32_ONE},
     {0x0, 0x0, (FX32_ONE * 48)},
-    0x40
+    0x40,
 };
 
 static const UnkStruct_ov9_022506EC Unk_ov9_02251274 = {
@@ -11793,8 +11793,8 @@ static const UnkStruct_ov9_022523F0 Unk_ov9_022523F0 = {
         0x0,
         0x14,
         0x0,
-        {0x0, (FX32_ONE * 8), 0x0}
-    }
+        {0x0, (FX32_ONE * 8), 0x0},
+    },
 };
 
 static const UnkStruct_ov9_02251438 Unk_ov9_022513D8[] = {
@@ -11999,8 +11999,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252598 = {
         0x0,
         0x37,
         0x28,
-        ((289 << 4) * FX32_ONE)
-    }
+        ((289 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022525E8 = {
@@ -12023,8 +12023,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022525E8 = {
         0x0,
         0x27,
         0x34,
-        ((289 << 4) * FX32_ONE)
-    }
+        ((289 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253B34[] = {
@@ -12053,8 +12053,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252638 = {
         0x0,
         0xC,
         0x39,
-        ((257 << 4) * FX32_ONE)
-    }
+        ((257 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253B08[] = {
@@ -12082,8 +12082,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022526D8 = {
         0x0,
         0x1E,
         0x14,
-        ((233 << 4) * FX32_ONE)
-    }
+        ((233 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252728 = {
@@ -12106,8 +12106,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252728 = {
         0x0,
         0x1E,
         0x14,
-        ((232 << 4) * FX32_ONE)
-    }
+        ((232 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253B58[] = {
@@ -12136,8 +12136,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022527A0 = {
         0x0,
         0x41,
         0x31,
-        ((193 << 4) * FX32_ONE)
-    }
+        ((193 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253B20[] = {
@@ -12165,8 +12165,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022527F0 = {
         0x0,
         0x59,
         0x40,
-        ((161 << 4) * FX32_ONE)
-    }
+        ((161 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253B18[] = {
@@ -12194,8 +12194,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252840 = {
         0x0,
         0x4B,
         0x44,
-        ((129 << 4) * FX32_ONE)
-    }
+        ((129 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252890 = {
@@ -12218,8 +12218,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252890 = {
         0x0,
         0x62,
         0x43,
-        ((129 << 4) * FX32_ONE)
-    }
+        ((129 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022528B8 = {
@@ -12242,8 +12242,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022528B8 = {
         0x0,
         0x56,
         0x38,
-        ((129 << 4) * FX32_ONE)
-    }
+        ((129 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252908 = {
@@ -12266,8 +12266,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252908 = {
         0x0,
         0x56,
         0x3A,
-        (((129 - 16) << 4) * FX32_ONE)
-    }
+        (((129 - 16) << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252958 = {
@@ -12290,8 +12290,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252958 = {
         0x0,
         0x60,
         0x43,
-        (((129 - 12) << 4) * FX32_ONE)
-    }
+        (((129 - 12) << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022529A8 = {
@@ -12314,8 +12314,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022529A8 = {
         0x0,
         0x4D,
         0x44,
-        (((129 - 8) << 4) * FX32_ONE)
-    }
+        (((129 - 8) << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253BC8[] = {
@@ -12348,8 +12348,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252A20 = {
         0x0,
         0x4B,
         0x44,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252A70 = {
@@ -12372,8 +12372,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252A70 = {
         0x0,
         0x62,
         0x43,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252AC0 = {
@@ -12396,8 +12396,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252AC0 = {
         0x0,
         0x56,
         0x38,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252AE8 = {
@@ -12420,8 +12420,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252AE8 = {
         0x0,
         0x44,
         0x40,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252B10 = {
@@ -12444,8 +12444,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252B10 = {
         0x0,
         0x52,
         0x3C,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252B38 = {
@@ -12468,8 +12468,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252B38 = {
         0x0,
         0x60,
         0x47,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252480 = {
@@ -12492,8 +12492,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252480 = {
         0x0,
         0x55,
         0x50,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022524F8 = {
@@ -12516,8 +12516,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022524F8 = {
         0x0,
         0x54,
         0x54,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252520 = {
@@ -12540,8 +12540,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252520 = {
         0x0,
         0x44,
         0x43,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252570 = {
@@ -12564,8 +12564,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252570 = {
         0x0,
         0x4B,
         0x43,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252610 = {
@@ -12588,8 +12588,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252610 = {
         0x0,
         0x4F,
         0x43,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252660 = {
@@ -12612,8 +12612,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252660 = {
         0x0,
         0x55,
         0x34,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252750 = {
@@ -12636,8 +12636,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252750 = {
         0x0,
         0x55,
         0x38,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022527C8 = {
@@ -12660,8 +12660,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022527C8 = {
         0x0,
         0x55,
         0x3C,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252818 = {
@@ -12684,8 +12684,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252818 = {
         0x0,
         0x60,
         0x44,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252868 = {
@@ -12708,8 +12708,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252868 = {
         0x0,
         0x64,
         0x44,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022528E0 = {
@@ -12732,8 +12732,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022528E0 = {
         0x0,
         0x69,
         0x44,
-        ((115 << 4) * FX32_ONE)
-    }
+        ((115 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252930 = {
@@ -12756,8 +12756,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252930 = {
         0x0,
         0x44,
         0x42,
-        ((113 << 4) * FX32_ONE)
-    }
+        ((113 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022529D0 = {
@@ -12780,8 +12780,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022529D0 = {
         0x0,
         0x60,
         0x45,
-        ((113 << 4) * FX32_ONE)
-    }
+        ((113 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252A48 = {
@@ -12804,8 +12804,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252A48 = {
         0x0,
         0x54,
         0x3C,
-        ((113 << 4) * FX32_ONE)
-    }
+        ((113 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253C78[] = {
@@ -12852,8 +12852,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252B88 = {
         0x0,
         0x55,
         0x4A,
-        ((65 << 4) * FX32_ONE)
-    }
+        ((65 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022524A8 = {
@@ -12876,8 +12876,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022524A8 = {
         0x0,
         0x54,
         0x4A,
-        ((65 << 4) * FX32_ONE)
-    }
+        ((65 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022525C0 = {
@@ -12900,8 +12900,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022525C0 = {
         0x0,
         0x59,
         0x45,
-        ((65 << 4) * FX32_ONE)
-    }
+        ((65 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252688 = {
@@ -12924,8 +12924,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252688 = {
         0x0,
         0x55,
         0x46,
-        ((65 << 4) * FX32_ONE)
-    }
+        ((65 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252700 = {
@@ -12948,8 +12948,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252700 = {
         0x0,
         0x55,
         0x4A,
-        ((65 << 4) * FX32_ONE)
-    }
+        ((65 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253B98[] = {
@@ -12981,8 +12981,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252980 = {
         0x0,
         0xF,
         0xD,
-        ((1 << 4) * FX32_ONE)
-    }
+        ((1 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252A98 = {
@@ -13005,8 +13005,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252A98 = {
         0x0,
         0xF,
         0x17,
-        ((1 << 4) * FX32_ONE)
-    }
+        ((1 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252B60 = {
@@ -13029,8 +13029,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252B60 = {
         0x0,
         0xF,
         0x17,
-        ((1 << 4) * FX32_ONE)
-    }
+        ((1 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022524D0 = {
@@ -13053,8 +13053,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022524D0 = {
         0x0,
         0xF,
         0xD,
-        ((1 << 4) * FX32_ONE)
-    }
+        ((1 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_022526B0 = {
@@ -13077,8 +13077,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_022526B0 = {
         0x0,
         0xF,
         0xF,
-        ((1 << 4) * FX32_ONE)
-    }
+        ((1 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253BB0[] = {
@@ -13102,16 +13102,15 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252BB0 = {
         0x0,
         0x0,
         0x2,
-        0x0,
-        0x0,
+        0x0, 0x0,
         0x0,
         0x0,
         0x0,
         0x0,
         0x74,
         0x4A,
-        ((65 << 4) * FX32_ONE)
-    }
+        ((65 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252778 = {
@@ -13134,8 +13133,8 @@ static const UnkStruct_ov9_0224EF30 Unk_ov9_02252778 = {
         0x0,
         0x59,
         0x37,
-        ((65 << 4) * FX32_ONE)
-    }
+        ((65 << 4) * FX32_ONE),
+    },
 };
 
 static const UnkStruct_ov9_0224EF30 * Unk_ov9_02253B40[] = {

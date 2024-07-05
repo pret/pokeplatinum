@@ -29,7 +29,11 @@ typedef struct {
     int unk_1384;
     int unk_1388;
     UnkFuncPtr_02031E6C unk_138C;
+
+    // clang-format off
     BOOL (* unk_1390)(WMStartParentCallback *);
+    // clang-format on
+
     UnkFuncPtr_020320FC unk_1394;
     UnkFuncPtr_02032110 unk_1398;
     UnkFuncPtr_02032110 unk_139C;

@@ -1,6 +1,7 @@
 #include "consts/gender.h"
 #include "constants/trainer.h"
 
+// clang-format off
 static const u8 sTrainerClassGender[] = {
     [TRAINER_CLASS_PLAYER_MALE]             = GENDER_MALE,
     [TRAINER_CLASS_PLAYER_FEMALE]           = GENDER_FEMALE,
@@ -108,3 +109,4 @@ static const u8 sTrainerClassGender[] = {
     [TRAINER_CLASS_DP_PLAYER_MALE_2]        = GENDER_MALE,
     [TRAINER_CLASS_DP_PLAYER_FEMALE_2]      = GENDER_FEMALE,
 };
+// clang-format on

@@ -316,7 +316,7 @@ static void ov29_02256ABC (UnkStruct_ov29_022566C8 * param0)
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {192 << FX32_SHIFT, 136 << FX32_SHIFT},
@@ -324,7 +324,7 @@ static void ov29_02256ABC (UnkStruct_ov29_022566C8 * param0)
             0,
             2,
             0,
-            0
+            0,
         },
     };
 

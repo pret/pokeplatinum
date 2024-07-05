@@ -238,7 +238,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(32 + 16) << FX32_SHIFT, 40 << FX32_SHIFT},
@@ -246,7 +246,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {80 << FX32_SHIFT, 40 << FX32_SHIFT},
@@ -254,7 +254,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(80 + 16) << FX32_SHIFT, 40 << FX32_SHIFT},
@@ -262,7 +262,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {128 << FX32_SHIFT, 40 << FX32_SHIFT},
@@ -270,7 +270,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(128 + 16) << FX32_SHIFT, 40 << FX32_SHIFT},
@@ -278,7 +278,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {176 << FX32_SHIFT, 40 << FX32_SHIFT},
@@ -286,7 +286,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(176 + 16) << FX32_SHIFT, 40 << FX32_SHIFT},
@@ -294,7 +294,7 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {112 << FX32_SHIFT, 96 << FX32_SHIFT},
@@ -302,8 +302,8 @@ static void ov27_02256B24 (UnkStruct_ov27_0225680C * param0, const UnkStruct_ov2
             0,
             2,
             2,
-            0
-        }
+            0,
+        },
     };
     u32 v1;
 

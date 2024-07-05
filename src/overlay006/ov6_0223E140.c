@@ -2735,7 +2735,7 @@ static const UnkStruct_ov5_021D52F4 Unk_ov6_02248F30[3] = {
         GX_RGB(13, 13, 14),
         GX_RGB(13, 12, 12),
         GX_RGB(13, 11, 14),
-        GX_RGB(11, 9, 10)
+        GX_RGB(11, 9, 10),
     },
     {
         16,
@@ -2755,7 +2755,7 @@ static const UnkStruct_ov5_021D52F4 Unk_ov6_02248F30[3] = {
         GX_RGB(11, 11, 12),
         GX_RGB(13, 12, 12),
         GX_RGB(13, 11, 14),
-        GX_RGB(11, 9, 10)
+        GX_RGB(11, 9, 10),
     },
     {
         24,
@@ -2775,7 +2775,7 @@ static const UnkStruct_ov5_021D52F4 Unk_ov6_02248F30[3] = {
         GX_RGB(10, 9, 9),
         GX_RGB(11, 10, 10),
         GX_RGB(13, 11, 14),
-        GX_RGB(11, 9, 10)
+        GX_RGB(11, 9, 10),
     },
 };
 

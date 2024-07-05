@@ -97,7 +97,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            1
+            1,
         },
         {
             {(168 << FX32_SHIFT), (128 << FX32_SHIFT)},
@@ -105,7 +105,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            1
+            1,
         },
         {
             {(112 << FX32_SHIFT), (136 << FX32_SHIFT)},
@@ -113,7 +113,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            1
+            1,
         },
         {
             {(48 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -121,7 +121,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(64 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -129,7 +129,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(80 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -137,7 +137,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(152 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -145,7 +145,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(168 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -153,7 +153,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(184 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -161,7 +161,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(96 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -169,7 +169,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(200 << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -177,7 +177,7 @@ static void ov40_022564D4 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
     };
     int v1;

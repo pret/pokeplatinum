@@ -367,9 +367,11 @@ BOOL ov62_02235008 (UnkStruct_0208C06C * param0)
     return 0;
 }
 
+// clang-format off
 BOOL(*const Unk_ov62_02248BD8[])(UnkStruct_0208C06C *) = {
     ov62_02234AB4,
     ov62_02234CDC,
     ov62_02234EF8,
     ov62_02234FCC,
 };
+// clang-format on

@@ -850,7 +850,7 @@ static const u8 Unk_ov72_0223EC30[2][8][16] = {
             0x0,
             0x0,
             0x0,
-            0x0
+            0x0,
         },
         {
             0x0,
@@ -868,8 +868,8 @@ static const u8 Unk_ov72_0223EC30[2][8][16] = {
             0x0,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         {
@@ -886,7 +886,7 @@ static const u8 Unk_ov72_0223EC30[2][8][16] = {
             0x11,
             0x11,
             0x0,
-            0x0
+            0x0,
         },
         {
             0x0,
@@ -902,9 +902,9 @@ static const u8 Unk_ov72_0223EC30[2][8][16] = {
             0x22,
             0x22,
             0x0,
-            0x0
-        }
-    }
+            0x0,
+        },
+    },
 };
 
 static void ov72_0223E5E0 (Window * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)

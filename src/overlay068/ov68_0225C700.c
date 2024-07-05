@@ -265,7 +265,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov68_0225DE18[4] = {
         0x3,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -280,7 +280,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov68_0225DE18[4] = {
         0x1,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -295,7 +295,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov68_0225DE18[4] = {
         0x2,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -310,8 +310,8 @@ static const UnkStruct_ov97_0222DB78 Unk_ov68_0225DE18[4] = {
         0x0,
         0x0,
         0x0,
-        0x0
-    }
+        0x0,
+    },
 };
 
 static void (* Unk_ov68_0225DEB0[2])(UnkUnion_ov68_0225CCA8 *, UnkStruct_ov68_0225CB70 *, UnkStruct_ov68_0225C91C *, UnkStruct_ov66_02231374 *, u32) = {

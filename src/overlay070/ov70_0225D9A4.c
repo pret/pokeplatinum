@@ -376,12 +376,12 @@ static const u16 Unk_ov70_0226D590[2] = {
 static const u16 Unk_ov70_0226D624[2][2][4] = {
     {
         {0x2E4, 0x2E5, 0x2E6, 0x2E7},
-        {0x2E8, 0x2E9, 0x2EA, 0x2EB}
+        {0x2E8, 0x2E9, 0x2EA, 0x2EB},
     },
     {
         {0x2EC, 0x2ED, 0x2EE, 0x2EF},
-        {0x2F0, 0x2F1, 0x2F2, 0x2F3}
-    }
+        {0x2F0, 0x2F1, 0x2F2, 0x2F3},
+    },
 };
 
 static const UnkStruct_ov61_0222C884 Unk_ov70_0226D68C[5] = {
@@ -389,7 +389,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov70_0226D68C[5] = {
     {0x6, 0x1, 0x7, 0x1E, 0x6, 0x5, 0x180},
     {0x6, 0x1, 0xE, 0x13, 0x4, 0x5, 0x234},
     {0x6, 0x1, 0x13, 0x13, 0x4, 0x5, 0x280},
-    {0x6, 0x0, 0xE, 0x16, 0x8, 0x5, 0x234}
+    {0x6, 0x0, 0xE, 0x16, 0x8, 0x5, 0x234},
 };
 
 static const UnkStruct_ov70_0226D724 Unk_ov70_0226D724[18] = {
@@ -522,7 +522,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov70_0226D6B4[4] = {
         0x0,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -537,7 +537,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov70_0226D6B4[4] = {
         0x2,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -552,7 +552,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov70_0226D6B4[4] = {
         0x1,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -567,15 +567,15 @@ static const UnkStruct_ov97_0222DB78 Unk_ov70_0226D6B4[4] = {
         0x0,
         0x0,
         0x0,
-        0x0
-    }
+        0x0,
+    },
 };
 
 static const UnkStruct_ov22_022559F8 Unk_ov70_0226D5DC = {
     0x18,
     0x8000,
     0x4000,
-    0x70
+    0x70,
 };
 
 static const UnkStruct_ov84_02240FA8 Unk_ov70_0226D644 = {
@@ -597,7 +597,7 @@ static const UnkStruct_ov84_02240FA8 Unk_ov70_0226D644 = {
     0x0,
     0x0,
     0x0,
-    NULL
+    NULL,
 };
 
 int ov70_0225D9A4 (OverlayManager * param0, int * param1)

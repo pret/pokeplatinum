@@ -368,7 +368,7 @@ static void ov74_021D12D4 (UnkStruct_ov74_021D0D80 * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -383,7 +383,7 @@ static void ov74_021D12D4 (UnkStruct_ov74_021D0D80 * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -398,7 +398,7 @@ static void ov74_021D12D4 (UnkStruct_ov74_021D0D80 * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -413,7 +413,7 @@ static void ov74_021D12D4 (UnkStruct_ov74_021D0D80 * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -428,7 +428,7 @@ static void ov74_021D12D4 (UnkStruct_ov74_021D0D80 * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
         };
 

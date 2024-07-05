@@ -398,7 +398,7 @@ static void ov79_021D257C (UnkStruct_ov79_021D2928 * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -413,7 +413,7 @@ static void ov79_021D257C (UnkStruct_ov79_021D2928 * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -428,7 +428,7 @@ static void ov79_021D257C (UnkStruct_ov79_021D2928 * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
         };
         u8 v4[] = {1, 2, 4};

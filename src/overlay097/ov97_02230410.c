@@ -135,7 +135,11 @@ typedef struct {
     int unk_18;
     int unk_1C;
     u32 unk_20;
+
+    // clang-format off
     BOOL (* unk_24)(UnkStruct_ov97_02230868 *, Window *, u32);
+    // clang-format on
+
     int unk_28;
     int unk_2C;
 } UnkStruct_ov97_0223E680;

@@ -64,6 +64,7 @@ static void ov62_02236BC8(UnkStruct_0208C06C * param0, int param1);
 static void ov62_02236C20(UnkStruct_0208C06C * param0);
 static void ov62_02236C94(UnkStruct_0208C06C * param0);
 
+// clang-format off
 BOOL(*const Unk_ov62_02248C28[])(UnkStruct_0208C06C *) = {
     ov62_02235E64,
     ov62_02235EBC,
@@ -76,6 +77,7 @@ BOOL(*const Unk_ov62_02248C28[])(UnkStruct_0208C06C *) = {
     ov62_022367B4,
     ov62_02236920,
 };
+// clang-format on
 
 static const TouchScreenRect Unk_ov62_02248C1C[] = {
     {0x10, 0x30, 0x40, 0xC8},

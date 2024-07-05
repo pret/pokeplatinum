@@ -480,7 +480,7 @@ static void ov90_021D11EC (UnkStruct_ov90_021D0ECC * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -495,7 +495,7 @@ static void ov90_021D11EC (UnkStruct_ov90_021D0ECC * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -510,7 +510,7 @@ static void ov90_021D11EC (UnkStruct_ov90_021D0ECC * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
         };
 

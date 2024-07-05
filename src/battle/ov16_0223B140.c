@@ -404,7 +404,7 @@ void ov16_0223B578 (BattleSystem * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -419,7 +419,7 @@ void ov16_0223B578 (BattleSystem * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -434,7 +434,7 @@ void ov16_0223B578 (BattleSystem * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -885,7 +885,7 @@ static void ov16_0223C004 (BattleSystem * param0, BGL * param1)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -900,7 +900,7 @@ static void ov16_0223C004 (BattleSystem * param0, BGL * param1)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -915,7 +915,7 @@ static void ov16_0223C004 (BattleSystem * param0, BGL * param1)
                 3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -1001,68 +1001,68 @@ static void ov16_0223C2BC (BattleSystem * param0)
 }
 
 static const u8 Unk_ov16_0226E25C[] = {
-    {0x0},
-    {0x1}
+    0x0,
+    0x1
 };
 
 static const u8 Unk_ov16_0226E260[][2] = {
     {
-        {0x0},
-        {0x1}
+        0x0,
+        0x1,
     },
     {
-        {0x1},
-        {0x0}
-    }
+        0x1,
+        0x0,
+    },
 };
 
 static const u8 Unk_ov16_0226E560[] = {
-    {0x2},
-    {0x3},
-    {0x4},
-    {0x5}
+    0x2,
+    0x3,
+    0x4,
+    0x5
 };
 
 static const u8 Unk_ov16_0226E264[][4] = {
     {
-        {0x2},
-        {0x3},
-        {0x4},
-        {0x5}
+        0x2,
+        0x3,
+        0x4,
+        0x5,
     },
     {
-        {0x3},
-        {0x2},
-        {0x5},
-        {0x4}
-    }
+        0x3,
+        0x2,
+        0x5,
+        0x4,
+    },
 };
 
 static const u8 Unk_ov16_0226E28C[][4] = {
     {
-        {0x2},
-        {0x5},
-        {0x4},
-        {0x3}
+        0x2,
+        0x5,
+        0x4,
+        0x3,
     },
     {
-        {0x3},
-        {0x4},
-        {0x5},
-        {0x2}
+        0x3,
+        0x4,
+        0x5,
+        0x2,
     },
     {
-        {0x2},
-        {0x5},
-        {0x4},
-        {0x3}
+        0x2,
+        0x5,
+        0x4,
+        0x3,
     },
     {
-        {0x3},
-        {0x4},
-        {0x5},
-        {0x2}
-    }
+        0x3,
+        0x4,
+        0x5,
+        0x2,
+    },
 };
 
 static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)

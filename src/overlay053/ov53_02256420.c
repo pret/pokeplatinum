@@ -221,7 +221,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             10,
-            1
+            1,
         },
         {
             {(112 << FX32_SHIFT), (80 << FX32_SHIFT)},
@@ -229,7 +229,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             0,
-            1
+            1,
         },
         {
             {(176 << FX32_SHIFT), (96 << FX32_SHIFT)},
@@ -237,7 +237,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             1,
-            1
+            1,
         },
         {
             {(48 << FX32_SHIFT), (104 << FX32_SHIFT)},
@@ -245,7 +245,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             2,
-            1
+            1,
         },
         {
             {(((144 + 8 * 0)) << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -253,7 +253,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((144 + 8 * 1)) << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -261,7 +261,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((144 + 8 * 2)) << FX32_SHIFT), (40 << FX32_SHIFT)},
@@ -269,7 +269,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((100 + 8 * 0)) << FX32_SHIFT), (144 << FX32_SHIFT)},
@@ -277,7 +277,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((100 + 8 * 1)) << FX32_SHIFT), (144 << FX32_SHIFT)},
@@ -285,7 +285,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((100 + 8 * 2)) << FX32_SHIFT), (144 << FX32_SHIFT)},
@@ -293,7 +293,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((164 + 8 * 0)) << FX32_SHIFT), (160 << FX32_SHIFT)},
@@ -301,7 +301,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((164 + 8 * 1)) << FX32_SHIFT), (160 << FX32_SHIFT)},
@@ -309,7 +309,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((164 + 8 * 2)) << FX32_SHIFT), (160 << FX32_SHIFT)},
@@ -317,7 +317,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((36 + 8 * 0)) << FX32_SHIFT), (168 << FX32_SHIFT)},
@@ -325,7 +325,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((36 + 8 * 1)) << FX32_SHIFT), (168 << FX32_SHIFT)},
@@ -333,7 +333,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
         {
             {(((36 + 8 * 2)) << FX32_SHIFT), (168 << FX32_SHIFT)},
@@ -341,7 +341,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
             0,
             2,
             3,
-            0
+            0,
         },
     };
     u32 v1;

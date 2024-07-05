@@ -90,7 +90,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             1,
-            0
+            0,
         },
         {
             {(176 << FX32_SHIFT), (56 << FX32_SHIFT)},
@@ -106,7 +106,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(112 << FX32_SHIFT), (160 << FX32_SHIFT)},
@@ -114,7 +114,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(176 << FX32_SHIFT), (160 << FX32_SHIFT)},
@@ -122,7 +122,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(80 << FX32_SHIFT), (88 << FX32_SHIFT)},
@@ -154,7 +154,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(80 << FX32_SHIFT), (136 << FX32_SHIFT)},
@@ -162,7 +162,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             2,
             2,
             0,
-            0
+            0,
         },
         {
             {(96 << FX32_SHIFT), (136 << FX32_SHIFT)},
@@ -170,7 +170,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             2,
             2,
             0,
-            0
+            0,
         },
         {
             {(128 << FX32_SHIFT), (136 << FX32_SHIFT)},
@@ -178,7 +178,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             2,
             2,
             0,
-            0
+            0,
         },
         {
             {(144 << FX32_SHIFT), (136 << FX32_SHIFT)},
@@ -186,7 +186,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             2,
             2,
             0,
-            0
+            0,
         },
         {
             {(80 << FX32_SHIFT), (112 << FX32_SHIFT)},
@@ -194,7 +194,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(96 << FX32_SHIFT), (112 << FX32_SHIFT)},
@@ -202,7 +202,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(128 << FX32_SHIFT), (112 << FX32_SHIFT)},
@@ -210,7 +210,7 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
+            0,
         },
         {
             {(144 << FX32_SHIFT), (112 << FX32_SHIFT)},
@@ -218,8 +218,8 @@ static void ov46_02256C20 (UnkStruct_ov46_02256BCC * param0, const UnkStruct_ov4
             0,
             2,
             0,
-            0
-        }
+            0,
+        },
     };
     int v1;
 

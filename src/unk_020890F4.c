@@ -247,7 +247,7 @@ static void sub_0208945C (BGL * param0)
                 0x1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -262,7 +262,7 @@ static void sub_0208945C (BGL * param0)
                 0x2,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -277,7 +277,7 @@ static void sub_0208945C (BGL * param0)
                 0x3,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -308,7 +308,7 @@ static void sub_0208945C (BGL * param0)
                 0x0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -323,7 +323,7 @@ static void sub_0208945C (BGL * param0)
                 0x1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0

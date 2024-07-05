@@ -349,7 +349,7 @@ static void ov61_0222C224 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -364,7 +364,7 @@ static void ov61_0222C224 (BGL * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -393,7 +393,7 @@ static void ov61_0222C224 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -408,7 +408,7 @@ static void ov61_0222C224 (BGL * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
         };
 

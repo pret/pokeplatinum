@@ -20,12 +20,12 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
     {
         0x29aec1,
         {
-            -0x29fe, 0, 0
+            -0x29fe, 0, 0.
         },
         0,
         0x5c1,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
     {
         0x29aec1,
@@ -35,7 +35,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x5c1,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
     {
         0x20374c,
@@ -45,7 +45,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x770,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
     {
         0x29aec1,
@@ -55,7 +55,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x5c1,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
     {
         0x61b89b,
@@ -65,9 +65,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         1,
         0x281,
         FX32_ONE * 150,
-        FX32_ONE * 1735
+        FX32_ONE * 1735,
     },
-
     {
         0x13c805,
         {
@@ -76,9 +75,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0xc01,
         FX32_ONE * 10,
-        FX32_ONE * 1008
+        FX32_ONE * 1008,
     },
-
     {
         0x3628df,
         {
@@ -87,9 +85,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x481,
         FX32_ONE * 115,
-        FX32_ONE * 1221
+        FX32_ONE * 1221,
     },
-
     {
         0x29aec1,
         {
@@ -98,9 +95,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x5c1,
         FX32_ONE * 153,
-        FX32_ONE * 1031
+        FX32_ONE * 1031,
     },
-
     {
         0x296ec1,
         {
@@ -109,9 +105,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x701,
         FX32_ONE * 150,
-        FX32_ONE * 1034
+        FX32_ONE * 1034,
     },
-
     {
         0x1659ac,
         {
@@ -120,9 +115,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0xab0,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
-
     {
         0x4b25b1,
         {
@@ -131,9 +125,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x341,
         FX32_ONE * 150,
-        FX32_ONE * 1746
+        FX32_ONE * 1746,
     },
-
     {
         0x2a3d55,
         {
@@ -142,9 +135,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x5c1,
         FX32_ONE * 230,
-        FX32_ONE * 1127
+        FX32_ONE * 1127,
     },
-
     {
         0x23e93f,
         {
@@ -153,9 +145,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x6c1,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
-
     {
         0x20374c,
         {
@@ -164,9 +155,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x770,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
-
     {
         0xa9765,
         {
@@ -175,9 +165,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x1501,
         FX32_ONE * 10,
-        FX32_ONE * 1008
+        FX32_ONE * 1008,
     },
-
     {
         0x28dedf,
         {
@@ -186,9 +175,8 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0x5f0,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
-
     {
         0x14aec0,
         {
@@ -197,7 +185,7 @@ static const UnkStruct_ov5_021F8AE4 Unk_ov5_021F8AE4[] = {
         0,
         0xb01,
         FX32_ONE * 150,
-        FX32_ONE * 900
+        FX32_ONE * 900,
     },
 };
 

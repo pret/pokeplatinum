@@ -249,18 +249,18 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200C10 = {
 static const VecFx32 Unk_ov5_02200C24[4][2] = {
     {
         {0x0, 0x0, 0x0},
-        {0x0, 0x0, -(FX32_ONE * 2)}
+        {0x0, 0x0, -(FX32_ONE * 2)},
     },
     {
         {0x0, 0x0, 0x0},
-        {0x0, 0x0, (FX32_ONE * 2)}
+        {0x0, 0x0, (FX32_ONE * 2)},
     },
     {
         {0x0, 0x0, 0x0},
-        {-(FX32_ONE * 2), 0x0, 0x0}
+        {-(FX32_ONE * 2), 0x0, 0x0},
     },
     {
         {0x0, 0x0, 0x0},
-        {(FX32_ONE * 2), 0x0, 0x0}
-    }
+        {(FX32_ONE * 2), 0x0, 0x0},
+    },
 };

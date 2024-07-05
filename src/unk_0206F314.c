@@ -635,7 +635,7 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
             NNS_G2D_VRAM_TYPE_2DMAIN,
             {0x34D8, 0x34D8, 0x34D8, 0x34D8, 0x0, 0x0},
             0x1,
-            0x0
+            0x0,
         },
         {
             0x4A,
@@ -647,8 +647,8 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
             NNS_G2D_VRAM_TYPE_2DMAIN,
             {0x34D8, 0x34D8, 0x34D8, 0x34D8, 0x0, 0x0},
             0x1,
-            0x0
-        }
+            0x0,
+        },
     };
 
     ov5_021D3190(&param0->unk_134, &v1, 2, param0->unk_00);

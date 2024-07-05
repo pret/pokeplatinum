@@ -128,7 +128,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov67_0225D438[3] = {
         0x1,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -143,7 +143,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov67_0225D438[3] = {
         0x0,
         0x0,
         0x0,
-        0x0
+        0x0,
     },
     {
         0x0,
@@ -158,8 +158,8 @@ static const UnkStruct_ov97_0222DB78 Unk_ov67_0225D438[3] = {
         0x0,
         0x0,
         0x0,
-        0x0
-    }
+        0x0,
+    },
 };
 
 static const UnkStruct_ov61_0222C884 Unk_ov67_0225D3EC = {

@@ -526,8 +526,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260284[5] = {
             0x3,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x1,
@@ -544,8 +544,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260284[5] = {
             0x1,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x2,
@@ -562,8 +562,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260284[5] = {
             0x0,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x0,
@@ -580,8 +580,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260284[5] = {
             0x2,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x4,
@@ -598,32 +598,32 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260284[5] = {
             0x0,
             0x0,
             0x0,
-            0x0
-        }
-    }
+            0x0,
+        },
+    },
 };
 
 static const UnkStruct_ov114_02260204 Unk_ov114_02260204[4] = {
     {
         {0x0, 0x0, 0x0, 0x0},
         {0x0, 0x0, 0x0, 0x0},
-        {0x0, 0x0, 0x0, 0x0}
+        {0x0, 0x0, 0x0, 0x0},
     },
     {
         {0xE, 0x4, 0x0, 0x0},
         {0x12, 0x0, 0x0, 0x0},
-        {0x0, 0x3, 0x0, 0x0}
+        {0x0, 0x3, 0x0, 0x0},
     },
     {
         {0xE, 0x8, 0x2, 0x0},
         {0x12, 0x0, 0x6, 0x0},
-        {0x0, 0x2, 0x1, 0x0}
+        {0x0, 0x2, 0x1, 0x0},
     },
     {
         {0x12, 0xC, 0x0, 0x6},
         {0x12, 0x0, 0x6, 0xC},
-        {0x0, 0x2, 0x3, 0x1}
-    }
+        {0x0, 0x2, 0x3, 0x1},
+    },
 };
 
 static const u8 Unk_ov114_0226016C[4][4] = {
@@ -669,8 +669,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260324[6] = {
             0x3,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x1,
@@ -687,8 +687,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260324[6] = {
             0x2,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x2,
@@ -705,8 +705,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260324[6] = {
             0x0,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x0,
@@ -723,8 +723,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260324[6] = {
             0x1,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x4,
@@ -741,8 +741,8 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260324[6] = {
             0x0,
             0x0,
             0x0,
-            0x0
-        }
+            0x0,
+        },
     },
     {
         0x5,
@@ -759,9 +759,9 @@ static const UnkStruct_ov114_02260284 Unk_ov114_02260324[6] = {
             0x0,
             0x0,
             0x0,
-            0x0
-        }
-    }
+            0x0,
+        },
+    },
 };
 
 static const UnkStruct_ov114_02260234 Unk_ov114_02260234[] = {
@@ -784,7 +784,7 @@ static const UnkStruct_ov114_02260234 Unk_ov114_02260234[] = {
     {0x10, 0x10},
     {0x11, 0x16},
     {0x12, 0x17},
-    {0x13, 0x13}
+    {0x13, 0x13},
 };
 
 void ov114_0225C700 (UnkStruct_ov114_0225C76C * param0, BOOL param1, SaveData * param2, BOOL param3, UnkStruct_ov66_02230DBC * param4)

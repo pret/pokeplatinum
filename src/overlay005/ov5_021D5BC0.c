@@ -12,10 +12,12 @@
 FS_EXTERN_OVERLAY(overlay56);
 
 typedef struct {
+    // clang-format off
     void (* unk_00)(FieldSystem *);
     BOOL (* unk_04)(FieldSystem *);
     void (* unk_08)(FieldSystem *);
     BOOL (* unk_0C)(FieldSystem *);
+    // clang-format on
 } UnkStruct_ov5_021F8C7C;
 
 
@@ -53,7 +55,10 @@ void ov5_021D5BD8 (FieldSystem * fieldSystem)
 
 BOOL ov5_021D5BF4 (FieldSystem * fieldSystem)
 {
+    // clang-format off
     BOOL (* v0)(FieldSystem *);
+    // clang-format on
+
     v0 = Unk_ov5_021F8C7C[ov5_021D5BC0(fieldSystem)].unk_04;
 
     if (v0 == NULL) {

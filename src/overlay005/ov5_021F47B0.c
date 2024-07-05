@@ -453,7 +453,7 @@ static const VecFx32 Unk_ov5_022007C0[4][6] = {
         {0x1000, 0x800, 0x1000},
         {0x1000, 0xC00, 0x1000},
         {0x1000, 0x1000, 0x1000},
-        {0x1000, 0x1400, 0x1000}
+        {0x1000, 0x1400, 0x1000},
     },
     {
         {0xC00, 0x100, 0x1000},
@@ -461,7 +461,7 @@ static const VecFx32 Unk_ov5_022007C0[4][6] = {
         {0x1000, 0x800, 0x1000},
         {0x1000, 0xC00, 0x1000},
         {0x1000, 0x1000, 0x1000},
-        {0x1000, 0x1400, 0x1000}
+        {0x1000, 0x1400, 0x1000},
     },
     {
         {0x1000, 0x200, 0x1000},
@@ -469,7 +469,7 @@ static const VecFx32 Unk_ov5_022007C0[4][6] = {
         {0x1000, 0xA00, 0x1000},
         {0x1000, 0xE00, 0x1000},
         {0x1000, 0x1200, 0x1000},
-        {0x1000, 0x1400, 0x1000}
+        {0x1000, 0x1400, 0x1000},
     },
     {
         {0x1000, 0x200, 0x1000},
@@ -477,8 +477,8 @@ static const VecFx32 Unk_ov5_022007C0[4][6] = {
         {0x1000, 0xA00, 0x1000},
         {0x1000, 0xE00, 0x1000},
         {0x1000, 0x1200, 0x1000},
-        {0x1000, 0x1400, 0x1000}
-    }
+        {0x1000, 0x1400, 0x1000},
+    },
 };
 
 static const VecFx32 Unk_ov5_022008E0[4][6] = {
@@ -488,7 +488,7 @@ static const VecFx32 Unk_ov5_022008E0[4][6] = {
         {(FX32_ONE * 0), (FX32_ONE * -15), (FX32_ONE * -47)},
         {(FX32_ONE * 0), (FX32_ONE * -15), (FX32_ONE * -63)},
         {(FX32_ONE * 0), (FX32_ONE * -15), (FX32_ONE * -79)},
-        {(FX32_ONE * 0), (FX32_ONE * -15), (FX32_ONE * -95)}
+        {(FX32_ONE * 0), (FX32_ONE * -15), (FX32_ONE * -95)},
     },
     {
         {(FX32_ONE * 0), (FX32_ONE * 0), (FX32_ONE * 13)},
@@ -496,7 +496,7 @@ static const VecFx32 Unk_ov5_022008E0[4][6] = {
         {(FX32_ONE * 0), (FX32_ONE * 0), (FX32_ONE * 44)},
         {(FX32_ONE * 0), (FX32_ONE * 0), (FX32_ONE * 60)},
         {(FX32_ONE * 0), (FX32_ONE * 0), (FX32_ONE * 78)},
-        {(FX32_ONE * 0), (FX32_ONE * 0), (FX32_ONE * 93)}
+        {(FX32_ONE * 0), (FX32_ONE * 0), (FX32_ONE * 93)},
     },
     {
         {(FX32_ONE * -13), (FX32_ONE * 0), (FX32_ONE * 6)},
@@ -504,7 +504,7 @@ static const VecFx32 Unk_ov5_022008E0[4][6] = {
         {(FX32_ONE * -45), (FX32_ONE * 0), (FX32_ONE * 10)},
         {(FX32_ONE * -61), (FX32_ONE * 0), (FX32_ONE * 10)},
         {(FX32_ONE * -78), (FX32_ONE * 0), (FX32_ONE * 10)},
-        {(FX32_ONE * -85), (FX32_ONE * 0), (FX32_ONE * 10)}
+        {(FX32_ONE * -85), (FX32_ONE * 0), (FX32_ONE * 10)},
     },
     {
         {(FX32_ONE * 13), (FX32_ONE * 0), (FX32_ONE * 6)},
@@ -512,6 +512,6 @@ static const VecFx32 Unk_ov5_022008E0[4][6] = {
         {(FX32_ONE * 45), (FX32_ONE * 0), (FX32_ONE * 10)},
         {(FX32_ONE * 61), (FX32_ONE * 0), (FX32_ONE * 10)},
         {(FX32_ONE * 78), (FX32_ONE * 0), (FX32_ONE * 10)},
-        {(FX32_ONE * 85), (FX32_ONE * 0), (FX32_ONE * 10)}
-    }
+        {(FX32_ONE * 85), (FX32_ONE * 0), (FX32_ONE * 10)},
+    },
 };

@@ -127,5 +127,5 @@ static const u16 sBerryInitTable[] = {
 	ITEM_KELPSY_BERRY,      2,
 	ITEM_KELPSY_BERRY,      2,
 	ITEM_GREPA_BERRY,       1,
-	ITEM_GREPA_BERRY,       1
+	ITEM_GREPA_BERRY,       1,
 };

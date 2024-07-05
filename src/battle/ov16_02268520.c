@@ -27,7 +27,7 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x4E2D, 0x4E29, 0x4E25, 0x4E25, 0xFFFFFFFF, 0xFFFFFFFF},
         0x3,
-        0x0
+        0x0,
     },
     {
         0xFFFFFFFFFFFFFFB0,
@@ -39,8 +39,8 @@ static const SpriteTemplate Unk_ov16_022700CC[] = {
         NNS_G2D_VRAM_TYPE_2DMAIN,
         {0x4E2E, 0x4E29, 0x4E26, 0x4E26, 0xFFFFFFFF, 0xFFFFFFFF},
         0x3,
-        0x0
-    }
+        0x0,
+    },
 };
 
 __attribute__((aligned(4))) static const u16 Unk_ov16_0227009C[] = {

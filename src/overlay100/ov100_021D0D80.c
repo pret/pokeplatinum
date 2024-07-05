@@ -331,7 +331,7 @@ static void ov100_021D1208 (BGL * param0)
                 1,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -346,7 +346,7 @@ static void ov100_021D1208 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -361,7 +361,7 @@ static void ov100_021D1208 (BGL * param0)
                 3,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -376,7 +376,7 @@ static void ov100_021D1208 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
         };
 
@@ -409,7 +409,7 @@ static void ov100_021D1208 (BGL * param0)
                 0,
                 0,
                 0,
-                0
+                0,
             },
             {
                 0,
@@ -424,7 +424,7 @@ static void ov100_021D1208 (BGL * param0)
                 2,
                 0,
                 0,
-                0
+                0,
             },
         };
 
