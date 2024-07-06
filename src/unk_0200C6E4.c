@@ -372,7 +372,7 @@ BOOL sub_0200CBDC(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
         return 0;
     }
 
-    v0 = SpriteResourceCollection_AddChar(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
+    v0 = SpriteResourceCollection_AddTiles(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
         sub_0200A3DC(v0);
@@ -394,7 +394,7 @@ BOOL SpriteRenderer_LoadCharResObjFromOpenNarc(SpriteRenderer *param0, SpriteGfx
         return 0;
     }
 
-    v0 = SpriteResourceCollection_AddCharFrom(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
+    v0 = SpriteResourceCollection_AddTilesFrom(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
         sub_0200A3DC(v0);
@@ -1245,7 +1245,7 @@ BOOL sub_0200D828(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
         return 0;
     }
 
-    v0 = SpriteResourceCollection_AddChar(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
+    v0 = SpriteResourceCollection_AddTiles(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
         sub_0200A39C(v0);
@@ -1267,7 +1267,7 @@ BOOL sub_0200D888(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
         return 0;
     }
 
-    v0 = SpriteResourceCollection_AddChar(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
+    v0 = SpriteResourceCollection_AddTiles(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
         sub_0200A450(v0);
@@ -1289,7 +1289,7 @@ BOOL sub_0200D8E8(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2
         return 0;
     }
 
-    v0 = SpriteResourceCollection_AddCharFrom(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
+    v0 = SpriteResourceCollection_AddTilesFrom(param1->unk_0C[0], param2, param3, param4, param6, param5, param0->unk_00);
 
     if (v0 != NULL) {
         sub_0200A450(v0);
@@ -1309,7 +1309,7 @@ void sub_0200D948(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, 
 
     v0 = SpriteResourceCollection_Find(param1->unk_0C[0], param5);
 
-    SpriteResourceCollection_ModifyChar(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
+    SpriteResourceCollection_ModifyTiles(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
     sub_0200A4C0(v0);
 }
 
@@ -1334,6 +1334,6 @@ void sub_0200D9B4(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2
 
     v0 = SpriteResourceCollection_Find(param1->unk_0C[0], param5);
 
-    SpriteResourceCollection_ModifyCharFrom(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
+    SpriteResourceCollection_ModifyTilesFrom(param1->unk_0C[0], v0, param2, param3, param4, param0->unk_00);
     sub_0200A4C0(v0);
 }

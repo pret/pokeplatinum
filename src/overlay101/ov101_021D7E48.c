@@ -153,7 +153,7 @@ void ov101_021D80E4(UnkStruct_ov101_021D7E48 *param0, u32 param1, NARC *param2, 
         if (param0->unk_1B0[v0].unk_00 == param0->unk_08) {
             param0->unk_1B0[v0].unk_00 = param4;
             param0->unk_1B0[v0].unk_02 = 0;
-            param0->unk_1B0[v0].unk_04 = SpriteResourceCollection_AddCharFrom(
+            param0->unk_1B0[v0].unk_04 = SpriteResourceCollection_AddTilesFrom(
                 param0->unk_1A0, param2, param3, 0, param4, param1, param0->unk_00);
             return;
         }

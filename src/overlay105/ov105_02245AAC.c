@@ -41,7 +41,7 @@ void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov105_02246444[v0], v0, 93);
     }
 
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 151, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 93);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 93);
     param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 36, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 8, 93);
     param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 2, 1, 0, 2, 93);
     param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 1, 1, 0, 3, 93);

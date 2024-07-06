@@ -202,7 +202,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);
 
     v2 = param0->unk_1B4[0];
-    v2->resources[0] = SpriteResourceCollection_AddCharFrom(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);
+    v2->resources[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);
 
     GF_ASSERT(v2->resources[0] != NULL);
 

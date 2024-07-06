@@ -724,7 +724,7 @@ static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 
-    param1->unk_148[0] = SpriteResourceCollection_AddCharFrom(param1->unk_138[0], v0, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param1->unk_148[0] = SpriteResourceCollection_AddTilesFrom(param1->unk_138[0], v0, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
     param1->unk_148[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_138[1], v0, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
     param1->unk_148[2] = SpriteResourceCollection_AddFrom(param1->unk_138[2], v0, 5, 0, 5000, 2, param2);
     param1->unk_148[3] = SpriteResourceCollection_AddFrom(param1->unk_138[3], v0, 6, 0, 5000, 3, param2);

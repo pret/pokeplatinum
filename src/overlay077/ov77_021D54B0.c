@@ -151,17 +151,17 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov77_021D7914[v0], v0, v1);
     }
 
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 46, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
-    param0->unk_1A0[1][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 46, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, v1);
-    param0->unk_1A0[2][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 50, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
-    param0->unk_1A0[3][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 87, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
-    param0->unk_1A0[4][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 22, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
-    param0->unk_1A0[5][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 23, 0, 5, NNS_G2D_VRAM_TYPE_2DSUB, v1);
-    param0->unk_1A0[6][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 91, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
-    param0->unk_1A0[7][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 83, 0, 7, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
-    param0->unk_1A0[8][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 83, 0, 8, NNS_G2D_VRAM_TYPE_2DSUB, v1);
-    param0->unk_1A0[9][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 54, 0, 9, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
-    param0->unk_1A0[10][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 128, 54, 0, 10, NNS_G2D_VRAM_TYPE_2DSUB, v1);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 46, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
+    param0->unk_1A0[1][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 46, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, v1);
+    param0->unk_1A0[2][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 50, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
+    param0->unk_1A0[3][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 87, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
+    param0->unk_1A0[4][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 22, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
+    param0->unk_1A0[5][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 23, 0, 5, NNS_G2D_VRAM_TYPE_2DSUB, v1);
+    param0->unk_1A0[6][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 91, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
+    param0->unk_1A0[7][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 83, 0, 7, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
+    param0->unk_1A0[8][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 83, 0, 8, NNS_G2D_VRAM_TYPE_2DSUB, v1);
+    param0->unk_1A0[9][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 54, 0, 9, NNS_G2D_VRAM_TYPE_2DMAIN, v1);
+    param0->unk_1A0[10][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 54, 0, 10, NNS_G2D_VRAM_TYPE_2DSUB, v1);
     param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 49, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v1);
     param0->unk_1A0[1][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 49, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 1, v1);
     param0->unk_1A0[2][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 53, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v1);

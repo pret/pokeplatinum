@@ -349,7 +349,7 @@ static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollect
 
 static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
-    param0[0] = SpriteResourceCollection_AddCharFrom(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     sub_0200A3DC(param0[0]);
     SpriteResource_ReleaseData(param0[0]);

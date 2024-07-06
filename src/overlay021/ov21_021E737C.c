@@ -561,7 +561,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     v3 = PokeIconCellsFileIndex();
     v4 = PokeIconAnimationFileIndex();
 
-    param0->unk_14[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v9, v1, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+    param0->unk_14[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v9, v1, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
 
     sub_0200A450(param0->unk_14[0]);
     SpriteResource_ReleaseData(param0->unk_14[0]);
@@ -577,7 +577,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
     param0->unk_14[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v9, v3, 0, 8000, 2, param3);
     param0->unk_14[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v9, v4, 0, 8000, 3, param3);
-    param0->unk_24[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v7, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+    param0->unk_24[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v7, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
 
     sub_0200A3DC(param0->unk_24[0]);
     SpriteResource_ReleaseData(param0->unk_24[0]);

@@ -526,7 +526,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
         param0->unk_1B8[v0] = SpriteResourceCollection_New(3, v0, 78);
     }
 
-    param0->unk_1D0[0] = SpriteResourceCollection_AddChar(param0->unk_1B8[0], 116, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 78);
+    param0->unk_1D0[0] = SpriteResourceCollection_AddTiles(param0->unk_1B8[0], 116, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 78);
     param0->unk_1D0[1] = SpriteResourceCollection_AddPalette(param0->unk_1B8[1], 116, 23, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 78);
     param0->unk_1D0[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 116, 25, 1, 0, 2, 78);
     param0->unk_1D0[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 116, 24, 1, 0, 3, 78);

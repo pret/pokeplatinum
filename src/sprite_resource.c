@@ -15,32 +15,32 @@
 #define SPRITE_VRAM_TYPE_DEFAULT NNS_G2D_VRAM_TYPE_3DMAIN
 #define NARC_INDEX_NONE 0xFFFFFFFE
 
-typedef struct CharResourceData {
-    NNSG2dCharacterData * charData;
+typedef struct TileResourceData {
+    NNSG2dCharacterData *tileData;
     NNS_G2D_VRAM_TYPE vramType;
-} CharResourceData;
+} TileResourceData;
 
 typedef struct PaletteResourceData {
-    NNSG2dPaletteData * paletteData;
+    NNSG2dPaletteData *paletteData;
     NNS_G2D_VRAM_TYPE vramType;
     int paletteIndex;
 } PaletteResourceData;
 
-typedef struct CellResourceData {
-    NNSG2dCellDataBank * cellBank;
-} CellResourceData;
+typedef struct SpriteResourceData {
+    NNSG2dCellDataBank *spriteBank;
+} SpriteResourceData;
 
-typedef struct CellAnimResourceData {
-    NNSG2dAnimBankData * animBank;
-} CellAnimResourceData;
+typedef struct SpriteAnimResourceData {
+    NNSG2dAnimBankData *animBank;
+} SpriteAnimResourceData;
 
-typedef struct MultiCellResourceData {
-    NNSG2dMultiCellDataBank * multiCellBank;
-} MultiCellResourceData;
+typedef struct MultiSpriteResourceData {
+    NNSG2dMultiCellDataBank *multiSpriteBank;
+} MultiSpriteResourceData;
 
-typedef struct MultiCellAnimResourceData {
-    NNSG2dAnimBankData * multiCellAnimBank;
-} MultiCellAnimResourceData;
+typedef struct MultiSpriteAnimResourceData {
+    NNSG2dAnimBankData *multiSpriteAnimBank;
+} MultiSpriteAnimResourceData;
 
 typedef struct SpriteResourceTableBinary {
     enum SpriteResourceType type;
@@ -56,12 +56,12 @@ static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteRes
 static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapId heapID, u32 param10);
 static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, u32 param4);
 static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteResourceType type, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
-static CharResourceData *SpriteUtil_UnpackCharacterResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
+static TileResourceData *SpriteUtil_UnpacktileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID);
 static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID);
-static CellResourceData *SpriteUtil_UnpackCellResource(void *rawData, enum HeapId heapID);
-static CellAnimResourceData *SpriteUtil_UnpackCellAnimResource(void *rawData, enum HeapId heapID);
-static MultiCellResourceData *SpriteUtil_UnpackMultiCellResource(void *rawData, enum HeapId heapID);
-static MultiCellAnimResourceData *SpriteUtil_UnpackMultiCellAnimResource(void *rawData, enum HeapId heapID);
+static SpriteResourceData *SpriteUtil_UnpackSpriteResource(void *rawData, enum HeapId heapID);
+static SpriteAnimResourceData *SpriteUtil_UnpackSpriteAnimResource(void *rawData, enum HeapId heapID);
+static MultiSpriteResourceData *SpriteUtil_UnpackMultiSpriteResource(void *rawData, enum HeapId heapID);
+static MultiSpriteAnimResourceData *SpriteUtil_UnpackMultiSpriteAnimResource(void *rawData, enum HeapId heapID);
 static void *SpriteResource_GetData(const SpriteResource *spriteRes);
 static void SpriteResource_FreeData(SpriteResource *spriteRes);
 static int SpriteResourceTableEntryNARC_GetEntryCount(const SpriteResourceTableEntryNARC *entries);
@@ -145,11 +145,11 @@ SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *
     return spriteRes;
 }
 
-SpriteResource *SpriteResourceCollection_AddChar(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, 
+SpriteResource *SpriteResourceCollection_AddTiles(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, 
     BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -163,7 +163,7 @@ SpriteResource *SpriteResourceCollection_AddChar(SpriteResourceCollection *sprit
         id, 
         vramType, 
         0, 
-        SPRITE_RESOURCE_CHAR, 
+        SPRITE_RESOURCE_TILES, 
         heapID, 
         0
     );
@@ -213,19 +213,19 @@ SpriteResource *SpriteResourceCollection_Add(SpriteResourceCollection *spriteRes
     return spriteRes;
 }
 
-void SpriteResourceCollection_ModifyChar(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+void SpriteResourceCollection_ModifyTiles(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
     int narcIdx, int memberIdx, BOOL compressed, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
     GF_ASSERT(spriteRes);
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_TILES);
 
     int id = SpriteResource_GetID(spriteRes);
     NNS_G2D_VRAM_TYPE vramType = SpriteResource_GetVRAMType(spriteRes);
 
     SpriteResourceCollection_Remove(spriteResources, spriteRes);
-    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, vramType, 0, SPRITE_RESOURCE_CHAR, heapID, 0);
+    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, vramType, 0, SPRITE_RESOURCE_TILES, heapID, 0);
 }
 
 void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
@@ -257,11 +257,11 @@ void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteReso
     );
 }
 
-SpriteResource *SpriteResourceCollection_AddCharFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, 
+SpriteResource *SpriteResourceCollection_AddTilesFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, 
     BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -275,7 +275,7 @@ SpriteResource *SpriteResourceCollection_AddCharFrom(SpriteResourceCollection *s
         id, 
         vramType, 
         0, 
-        SPRITE_RESOURCE_CHAR, 
+        SPRITE_RESOURCE_TILES, 
         heapID, 
         0
     );
@@ -284,11 +284,11 @@ SpriteResource *SpriteResourceCollection_AddCharFrom(SpriteResourceCollection *s
     return spriteRes;
 }
 
-SpriteResource *SpriteResourceCollection_AddCharFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, 
+SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, 
     BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID, int param7)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -302,7 +302,7 @@ SpriteResource *SpriteResourceCollection_AddCharFromEx(SpriteResourceCollection 
         id, 
         vramType, 
         0, 
-        SPRITE_RESOURCE_CHAR, 
+        SPRITE_RESOURCE_TILES, 
         heapID, 
         param7
     );
@@ -391,13 +391,13 @@ SpriteResource *SpriteResourceCollection_AddFrom(SpriteResourceCollection *sprit
     return spriteRes;
 }
 
-void SpriteResourceCollection_ModifyCharFrom(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
+void SpriteResourceCollection_ModifyTilesFrom(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, 
     NARC *narc, int memberIdx, BOOL compressed, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
     GF_ASSERT(spriteRes);
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_TILES);
 
     int id = SpriteResource_GetID(spriteRes);
     NNS_G2D_VRAM_TYPE vramType = SpriteResource_GetVRAMType(spriteRes);
@@ -412,7 +412,7 @@ void SpriteResourceCollection_ModifyCharFrom(SpriteResourceCollection *spriteRes
         id, 
         vramType, 
         0, 
-        SPRITE_RESOURCE_CHAR, 
+        SPRITE_RESOURCE_TILES, 
         heapID, 
         0
     );
@@ -517,52 +517,52 @@ int SpriteResource_GetID(const SpriteResource *spriteRes)
     return Resource_GetID(spriteRes->rawResource);
 }
 
-NNSG2dCharacterData *SpriteResource_GetCharData(const SpriteResource *spriteRes)
+NNSG2dCharacterData *SpriteResource_GetTileData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CHAR);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_TILES);
 
-    CharResourceData *charRes = SpriteResource_GetData(spriteRes);
-    return charRes->charData;
+    TileResourceData *tileData = SpriteResource_GetData(spriteRes);
+    return tileData->tileData;
 }
 
 NNSG2dPaletteData *SpriteResource_GetPaletteData(const SpriteResource *spriteRes)
 {
     GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_PALETTE);
 
-    PaletteResourceData *paletteRes = SpriteResource_GetData(spriteRes);
-    return paletteRes->paletteData;
+    PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
+    return paletteData->paletteData;
 }
 
-NNSG2dCellDataBank *SpriteResource_GetCellData(const SpriteResource *spriteRes)
+NNSG2dCellDataBank *SpriteResource_GetSpriteData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CELL);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_SPRITE);
 
-    CellResourceData *cellRes = SpriteResource_GetData(spriteRes);
-    return cellRes->cellBank;
+    SpriteResourceData *spriteData = SpriteResource_GetData(spriteRes);
+    return spriteData->spriteBank;
 }
 
-NNSG2dCellAnimBankData *SpriteResource_GetCellAnimData(const SpriteResource *spriteRes)
+NNSG2dCellAnimBankData *SpriteResource_GetSpriteAnimData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CELL_ANIM);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_SPRITE_ANIM);
 
-    CellAnimResourceData *cellAnimRes = SpriteResource_GetData(spriteRes);
-    return cellAnimRes->animBank;
+    SpriteAnimResourceData *spriteAnimData = SpriteResource_GetData(spriteRes);
+    return spriteAnimData->animBank;
 }
 
-NNSG2dMultiCellDataBank *SpriteResource_GetMultiCellData(const SpriteResource *spriteRes)
+NNSG2dMultiCellDataBank *SpriteResource_GetMultiSpriteData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_CELL);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_SPRITE);
 
-    MultiCellResourceData *multiCellRes = SpriteResource_GetData(spriteRes);
-    return multiCellRes->multiCellBank;
+    MultiSpriteResourceData *multiSpriteData = SpriteResource_GetData(spriteRes);
+    return multiSpriteData->multiSpriteBank;
 }
 
-NNSG2dMultiCellAnimBankData *SpriteResource_GetMultiCellAnimData(const SpriteResource *spriteRes)
+NNSG2dMultiCellAnimBankData *SpriteResource_GetMultiSpriteAnimData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_CELL_ANIM);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_SPRITE_ANIM);
 
-    MultiCellAnimResourceData *multiCellAnimRes = SpriteResource_GetData(spriteRes);
-    return multiCellAnimRes->multiCellAnimBank;
+    MultiSpriteAnimResourceData *multiSpriteAnimData = SpriteResource_GetData(spriteRes);
+    return multiSpriteAnimData->multiSpriteAnimBank;
 }
 
 enum SpriteResourceType SpriteResource_GetType(const SpriteResource *spriteRes)
@@ -575,14 +575,14 @@ NNS_G2D_VRAM_TYPE SpriteResource_GetVRAMType(const SpriteResource *spriteRes)
 {
     GF_ASSERT(spriteRes);
 
-    if (spriteRes->type == SPRITE_RESOURCE_CHAR) {
-        CharResourceData *charRes = SpriteResource_GetData(spriteRes);
-        return charRes->vramType;
+    if (spriteRes->type == SPRITE_RESOURCE_TILES) {
+        TileResourceData *tileData = SpriteResource_GetData(spriteRes);
+        return tileData->vramType;
     }
 
     if (spriteRes->type == SPRITE_RESOURCE_PALETTE) {
-        PaletteResourceData *paletteRes = SpriteResource_GetData(spriteRes);
-        return paletteRes->vramType;
+        PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
+        return paletteData->vramType;
     }
 
     return SPRITE_VRAM_TYPE_DEFAULT;
@@ -593,8 +593,8 @@ int SpriteResource_GetPaletteIndex(const SpriteResource *spriteRes)
     GF_ASSERT(spriteRes);
 
     if (spriteRes->type == SPRITE_RESOURCE_PALETTE) {
-        PaletteResourceData *paletteRes = SpriteResource_GetData(spriteRes);
-        return paletteRes->paletteIndex;
+        PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
+        return paletteData->paletteIndex;
     }
 
     return 0;
@@ -604,14 +604,14 @@ void SpriteResource_SetVRAMType(SpriteResource *spriteRes, NNS_G2D_VRAM_TYPE vra
 {
     GF_ASSERT(spriteRes);
 
-    if (spriteRes->type == SPRITE_RESOURCE_CHAR) {
-        CharResourceData *charRes = SpriteResource_GetData(spriteRes);
-        charRes->vramType = vramType;
+    if (spriteRes->type == SPRITE_RESOURCE_TILES) {
+        TileResourceData *tileData = SpriteResource_GetData(spriteRes);
+        tileData->vramType = vramType;
     }
 
     if (spriteRes->type == SPRITE_RESOURCE_PALETTE) {
-        PaletteResourceData *paletteRes = SpriteResource_GetData(spriteRes);
-        paletteRes->vramType = vramType;
+        PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
+        paletteData->vramType = vramType;
     }
 }
 
@@ -750,77 +750,77 @@ static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteReso
     void *rawData = Resource_GetData(spriteRes->rawResource);
 
     switch (type) {
-    case SPRITE_RESOURCE_CHAR:
-        spriteRes->data = SpriteUtil_UnpackCharacterResource(rawData, vramType, heapID);
+    case SPRITE_RESOURCE_TILES:
+        spriteRes->data = SpriteUtil_UnpacktileResource(rawData, vramType, heapID);
         break;
     case SPRITE_RESOURCE_PALETTE:
         spriteRes->data = SpriteUtil_UnpackPaletteResource(rawData, vramType, paletteIdx, heapID);
         break;
-    case SPRITE_RESOURCE_CELL:
-        spriteRes->data = SpriteUtil_UnpackCellResource(rawData, heapID);
+    case SPRITE_RESOURCE_SPRITE:
+        spriteRes->data = SpriteUtil_UnpackSpriteResource(rawData, heapID);
         break;
-    case SPRITE_RESOURCE_CELL_ANIM:
-        spriteRes->data = SpriteUtil_UnpackCellAnimResource(rawData, heapID);
+    case SPRITE_RESOURCE_SPRITE_ANIM:
+        spriteRes->data = SpriteUtil_UnpackSpriteAnimResource(rawData, heapID);
         break;
-    case SPRITE_RESOURCE_MULTI_CELL:
-        spriteRes->data = SpriteUtil_UnpackMultiCellResource(rawData, heapID);
+    case SPRITE_RESOURCE_MULTI_SPRITE:
+        spriteRes->data = SpriteUtil_UnpackMultiSpriteResource(rawData, heapID);
         break;
-    case SPRITE_RESOURCE_MULTI_CELL_ANIM:
-        spriteRes->data = SpriteUtil_UnpackMultiCellAnimResource(rawData, heapID);
+    case SPRITE_RESOURCE_MULTI_SPRITE_ANIM:
+        spriteRes->data = SpriteUtil_UnpackMultiSpriteAnimResource(rawData, heapID);
         break;
     }
 }
 
-static CharResourceData *SpriteUtil_UnpackCharacterResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
+static TileResourceData *SpriteUtil_UnpacktileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
 {
-    CharResourceData *charRes = Heap_AllocFromHeap(heapID, sizeof(CharResourceData));
-    NNS_G2dGetUnpackedCharacterData(rawData, &charRes->charData);
-    charRes->vramType = vramType;
+    TileResourceData *tileData = Heap_AllocFromHeap(heapID, sizeof(TileResourceData));
+    NNS_G2dGetUnpackedCharacterData(rawData, &tileData->tileData);
+    tileData->vramType = vramType;
 
-    return charRes;
+    return tileData;
 }
 
 static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID)
 {
-    PaletteResourceData *paletteRes = Heap_AllocFromHeap(heapID, sizeof(PaletteResourceData));
-    NNS_G2dGetUnpackedPaletteData(rawData, &paletteRes->paletteData);
+    PaletteResourceData *paletteData = Heap_AllocFromHeap(heapID, sizeof(PaletteResourceData));
+    NNS_G2dGetUnpackedPaletteData(rawData, &paletteData->paletteData);
 
-    paletteRes->vramType = vramType;
-    paletteRes->paletteIndex = paletteIdx;
+    paletteData->vramType = vramType;
+    paletteData->paletteIndex = paletteIdx;
 
-    return paletteRes;
+    return paletteData;
 }
 
-static CellResourceData *SpriteUtil_UnpackCellResource(void *rawData, enum HeapId heapID)
+static SpriteResourceData *SpriteUtil_UnpackSpriteResource(void *rawData, enum HeapId heapID)
 {
-    CellResourceData *cellRes = Heap_AllocFromHeap(heapID, sizeof(CellResourceData));
-    NNS_G2dGetUnpackedCellBank(rawData, &cellRes->cellBank);
+    SpriteResourceData *spriteResData = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceData));
+    NNS_G2dGetUnpackedCellBank(rawData, &spriteResData->spriteBank);
 
-    return cellRes;
+    return spriteResData;
 }
 
-static CellAnimResourceData *SpriteUtil_UnpackCellAnimResource(void *rawData, enum HeapId heapID)
+static SpriteAnimResourceData *SpriteUtil_UnpackSpriteAnimResource(void *rawData, enum HeapId heapID)
 {
-    CellAnimResourceData *cellAnimRes = Heap_AllocFromHeap(heapID, sizeof(CellAnimResourceData));
-    NNS_G2dGetUnpackedAnimBank(rawData, &cellAnimRes->animBank);
+    SpriteAnimResourceData *spriteAnimData = Heap_AllocFromHeap(heapID, sizeof(SpriteAnimResourceData));
+    NNS_G2dGetUnpackedAnimBank(rawData, &spriteAnimData->animBank);
 
-    return cellAnimRes;
+    return spriteAnimData;
 }
 
-static MultiCellResourceData *SpriteUtil_UnpackMultiCellResource(void *rawData, enum HeapId heapID)
+static MultiSpriteResourceData *SpriteUtil_UnpackMultiSpriteResource(void *rawData, enum HeapId heapID)
 {
-    MultiCellResourceData *multiCellRes = Heap_AllocFromHeap(heapID, sizeof(MultiCellResourceData));
-    NNS_G2dGetUnpackedMultiCellBank(rawData, &multiCellRes->multiCellBank);
+    MultiSpriteResourceData *multiSpriteData = Heap_AllocFromHeap(heapID, sizeof(MultiSpriteResourceData));
+    NNS_G2dGetUnpackedMultiCellBank(rawData, &multiSpriteData->multiSpriteBank);
 
-    return multiCellRes;
+    return multiSpriteData;
 }
 
-static MultiCellAnimResourceData *SpriteUtil_UnpackMultiCellAnimResource(void *rawData, enum HeapId heapID)
+static MultiSpriteAnimResourceData *SpriteUtil_UnpackMultiSpriteAnimResource(void *rawData, enum HeapId heapID)
 {
-    MultiCellAnimResourceData *multiCellAnimRes = Heap_AllocFromHeap(heapID, sizeof(MultiCellAnimResourceData));
-    NNS_G2dGetUnpackedMCAnimBank(rawData, &multiCellAnimRes->multiCellAnimBank);
+    MultiSpriteAnimResourceData *multiSpriteAnimData = Heap_AllocFromHeap(heapID, sizeof(MultiSpriteAnimResourceData));
+    NNS_G2dGetUnpackedMCAnimBank(rawData, &multiSpriteAnimData->multiSpriteAnimBank);
 
-    return multiCellAnimRes;
+    return multiSpriteAnimData;
 }
 
 static void SpriteResource_FreeData(SpriteResource *spriteRes)

@@ -158,7 +158,7 @@ static void ov108_022431FC(void)
 
 static void ov108_02243230(UnkStruct_ov108_02243030 *param0)
 {
-    param0->unk_1A0[1][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 151, 18, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+    param0->unk_1A0[1][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 18, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
     param0->unk_1A0[1][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 40, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 8, 103);
     param0->unk_1A0[1][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 20, 1, 1, 2, 103);
     param0->unk_1A0[1][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 19, 1, 1, 3, 103);
@@ -173,7 +173,7 @@ static void ov108_022432B4(UnkStruct_ov108_02243030 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 103);
 
-    param0->unk_1A0[2][0] = SpriteResourceCollection_AddCharFrom(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+    param0->unk_1A0[2][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
     param0->unk_1A0[2][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
     param0->unk_1A0[2][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], v0, sub_02081938(), 0, 2, 2, 103);
     param0->unk_1A0[2][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], v0, sub_0208193C(), 0, 2, 3, 103);
@@ -209,8 +209,8 @@ static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Part
             v1 = Party_GetPokemonBySlotIndex(param2, v3);
         }
 
-        param0->unk_1A0[3 + v3][0] = SpriteResourceCollection_AddCharFrom(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v0), 0, 3 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
-        param0->unk_1A0[7 + v3][0] = SpriteResourceCollection_AddCharFrom(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v1), 0, 7 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+        param0->unk_1A0[3 + v3][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v0), 0, 3 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
+        param0->unk_1A0[7 + v3][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], v2, Pokemon_IconSpriteIndex(v1), 0, 7 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
     }
 
     NARC_dtor(v2);
@@ -219,7 +219,7 @@ static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Part
 
 static void ov108_02243490(UnkStruct_ov108_02243030 *param0)
 {
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddChar(param0->unk_190[0], 151, 21, 1, 0, NNS_G2D_VRAM_TYPE_2DSUB, 103);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 21, 1, 0, NNS_G2D_VRAM_TYPE_2DSUB, 103);
     param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 41, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 2, 103);
     param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 23, 1, 0, 2, 103);
     param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 22, 1, 0, 3, 103);

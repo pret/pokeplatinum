@@ -236,7 +236,7 @@ void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL p
         return;
     }
 
-    v0 = SpriteResourceCollection_AddChar(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddTiles(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         sub_0200A3DC(v0);
@@ -256,7 +256,7 @@ void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL
         return;
     }
 
-    v0 = SpriteResourceCollection_AddCharFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
         sub_0200A3DC(v0);

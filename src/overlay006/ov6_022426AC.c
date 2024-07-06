@@ -98,7 +98,7 @@ void ov6_022426C0(UnkStruct_ov6_022426B8 *param0, const int param1)
     }
 
     {
-        param0->unk_10[0] = SpriteResourceCollection_AddCharFrom(param0->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        param0->unk_10[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         param0->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
         param0->unk_10[2] = SpriteResourceCollection_AddFrom(param0->unk_00[2], v1, 6, 0, 2, 2, 4);
         param0->unk_10[3] = SpriteResourceCollection_AddFrom(param0->unk_00[3], v1, 12, 0, 3, 3, 4);

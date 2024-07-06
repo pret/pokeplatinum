@@ -368,7 +368,7 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
     }
 
     if (param1 != -1) {
-        v0->unk_34.unk_1A8[param5][0] = SpriteResourceCollection_AddChar(v0->unk_34.unk_190[0], param0, param1, v2, param5, v1, v0->unk_08);
+        v0->unk_34.unk_1A8[param5][0] = SpriteResourceCollection_AddTiles(v0->unk_34.unk_190[0], param0, param1, v2, param5, v1, v0->unk_08);
     }
 
     if (param2 != -1) {

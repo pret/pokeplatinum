@@ -789,7 +789,7 @@ static void ov23_02243754(void)
 
         v1 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, 4);
 
-        Unk_ov23_02257764->unk_1F4[1][0] = SpriteResourceCollection_AddCharFrom(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[1][0] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         Unk_ov23_02257764->unk_1F4[1][1] = SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257764->unk_1D4[1][1], v1, 18, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
         Unk_ov23_02257764->unk_1F4[1][2] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][2], v1, 16, 0, 0, 2, 4);
         Unk_ov23_02257764->unk_1F4[1][3] = SpriteResourceCollection_AddFrom(Unk_ov23_02257764->unk_1D4[1][3], v1, 15, 0, 0, 3, 4);
@@ -3106,7 +3106,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
             v2 = 28;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddChar(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         v0->unk_00++;
         break;
     case 2:
@@ -3553,7 +3553,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddChar(Unk_ov23_02257764->unk_1D4[0][0], 50, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
@@ -4127,7 +4127,7 @@ static void ov23_022479F4(UnkStruct_ov23_022471D8 *param0)
         v2 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, 4);
 
         if (v1 < (7 - 1)) {
-            param0->unk_F8[v1 + 1] = SpriteResourceCollection_AddCharFrom(Unk_ov23_02257764->unk_1D4[0][0], v2, v0[v1], 0, v1 + 1, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+            param0->unk_F8[v1 + 1] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[0][0], v2, v0[v1], 0, v1 + 1, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         }
 
         NARC_dtor(v2);
@@ -4169,7 +4169,7 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
         break;
     case 1:
         sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddChar(Unk_ov23_02257764->unk_1D4[0][0], 50, 32, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 32, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         v0->unk_F8[0] = Unk_ov23_02257764->unk_1F4[0][0];
         v0->unk_00++;
         break;
@@ -4455,7 +4455,7 @@ static void ov23_022480C4(SysTask *param0, void *param1)
             v2 = 25;
         }
 
-        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddChar(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, v2, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         v0->unk_00++;
         break;
     case 2:

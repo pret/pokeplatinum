@@ -611,7 +611,7 @@ static void ov21_021D8C1C(UnkStruct_ov21_021D9320 *param0, UnkStruct_ov21_021D87
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
     NARC *v1 = ov21_021D26E0(v0);
 
-    param0->unk_24[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v1, 81, 1, 81 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param0->unk_24[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 81, 1, 81 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param0->unk_24[0]);
     SpriteResource_ReleaseData(param0->unk_24[0]);

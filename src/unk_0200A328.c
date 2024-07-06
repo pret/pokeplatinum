@@ -17,7 +17,7 @@ BOOL sub_0200A328(const SpriteResource *param0)
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 0);
 
-    v0.unk_00 = SpriteResource_GetCharData(param0);
+    v0.unk_00 = SpriteResource_GetTileData(param0);
     v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 0;
@@ -47,7 +47,7 @@ BOOL sub_0200A39C(const SpriteResource *param0)
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 0);
 
-    v0.unk_00 = SpriteResource_GetCharData(param0);
+    v0.unk_00 = SpriteResource_GetTileData(param0);
     v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 0;
@@ -62,7 +62,7 @@ BOOL sub_0200A3DC(const SpriteResource *param0)
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 0);
 
-    v0.unk_00 = SpriteResource_GetCharData(param0);
+    v0.unk_00 = SpriteResource_GetTileData(param0);
     v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 1;
@@ -92,7 +92,7 @@ BOOL sub_0200A450(const SpriteResource *param0)
     GF_ASSERT(param0);
     GF_ASSERT(SpriteResource_GetType(param0) == 0);
 
-    v0.unk_00 = SpriteResource_GetCharData(param0);
+    v0.unk_00 = SpriteResource_GetTileData(param0);
     v0.unk_04 = SpriteResource_GetVRAMType(param0);
     v0.unk_08 = SpriteResource_GetID(param0);
     v0.unk_0C = 1;
@@ -109,7 +109,7 @@ void sub_0200A490(const SpriteResource *param0, const SpriteResource *param1)
     GF_ASSERT(param1);
 
     v0 = SpriteResource_GetID(param0);
-    v1 = SpriteResource_GetCharData(param1);
+    v1 = SpriteResource_GetTileData(param1);
 
     sub_0201EB08(v0, v1);
 }
@@ -122,7 +122,7 @@ void sub_0200A4C0(const SpriteResource *param0)
     GF_ASSERT(param0);
 
     v0 = SpriteResource_GetID(param0);
-    v1 = SpriteResource_GetCharData(param0);
+    v1 = SpriteResource_GetTileData(param0);
 
     sub_0201EB08(v0, v1);
 }
@@ -174,7 +174,7 @@ NNSG2dImageProxy *sub_0200A558(const SpriteResource *param0, const SpriteResourc
     GF_ASSERT(SpriteResource_GetType(param1) == 2);
 
     v0 = SpriteResource_GetID(param0);
-    v1 = SpriteResource_GetCellData(param1);
+    v1 = SpriteResource_GetSpriteData(param1);
     v2 = sub_0201EC00(v0, v1->pVramTransferData->szByteMax);
 
     if (v2 == NULL) {

@@ -1431,7 +1431,7 @@ static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
 
 static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
 {
-    param1->unk_04[0] = SpriteResourceCollection_AddChar(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param1->unk_04[0] = SpriteResourceCollection_AddTiles(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param1->unk_04[0]);
     SpriteResource_ReleaseData(param1->unk_04[0]);

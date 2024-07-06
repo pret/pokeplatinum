@@ -175,7 +175,7 @@ void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
 {
     SpriteResource *v0;
 
-    v0 = SpriteResourceCollection_AddCharFrom(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
+    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
     sub_0200A3DC(v0);
 }
 

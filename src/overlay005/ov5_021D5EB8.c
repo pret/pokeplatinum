@@ -1049,7 +1049,7 @@ static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int
 
     switch (param1) {
     case 0:
-        v1 = SpriteResourceCollection_AddCharFromEx(param3, param4, v2, v3, v6, v4, 4, param5);
+        v1 = SpriteResourceCollection_AddTilesFromEx(param3, param4, v2, v3, v6, v4, 4, param5);
         break;
     case 1:
         v1 = SpriteResourceCollection_AddPaletteFromEx(param3, param4, v2, v3, v6, v4, v5, 4, param5);

@@ -62,7 +62,7 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
         v6 = sub_0200A558(v0, v2);
         GF_ASSERT(v6);
 
-        param0->charData = SpriteResource_GetCharData(v0);
+        param0->charData = SpriteResource_GetTileData(v0);
     } else {
         v6 = sub_0200A534(v0);
         GF_ASSERT(v6);
@@ -71,17 +71,17 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
 
     param0->paletteProxy = sub_0200A72C(v1, v6);
     param0->imageProxy = v6;
-    param0->cellBank = SpriteResource_GetCellData(v2);
+    param0->cellBank = SpriteResource_GetSpriteData(v2);
 
     if (v3) {
-        param0->cellAnimBank = SpriteResource_GetCellAnimData(v3);
+        param0->cellAnimBank = SpriteResource_GetSpriteAnimData(v3);
     } else {
         param0->cellAnimBank = NULL;
     }
 
     if (v4) {
-        param0->multiCellBank = SpriteResource_GetMultiCellData(v4);
-        param0->multiCellAnimBank = SpriteResource_GetMultiCellAnimData(v5);
+        param0->multiCellBank = SpriteResource_GetMultiSpriteData(v4);
+        param0->multiCellAnimBank = SpriteResource_GetMultiSpriteAnimData(v5);
     } else {
         param0->multiCellBank = NULL;
         param0->multiCellAnimBank = NULL;

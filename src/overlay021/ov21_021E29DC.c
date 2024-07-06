@@ -672,7 +672,7 @@ static void ov21_021E3178(UnkStruct_ov21_021E2BBC *param0, UnkStruct_ov21_021E32
     UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
     NARC *v1 = ov21_021D26E0(param0->unk_00);
 
-    param1->unk_18[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v1, 87, 1, 87 + 2000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param1->unk_18[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 87, 1, 87 + 2000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     sub_0200A3DC(param1->unk_18[0]);
     SpriteResource_ReleaseData(param1->unk_18[0]);
@@ -1244,7 +1244,7 @@ static void ov21_021E39FC(UnkStruct_ov21_021E3900 *param0, UnkStruct_ov21_021E34
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
     NARC *v1 = ov21_021D26E0(param1->unk_00);
 
-    param0->unk_18[0] = SpriteResourceCollection_AddCharFrom(v0->unk_13C[0], v1, 96, 1, 96 + 2100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_18[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 96, 1, 96 + 2100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     sub_0200A3DC(param0->unk_18[0]);
     SpriteResource_ReleaseData(param0->unk_18[0]);
