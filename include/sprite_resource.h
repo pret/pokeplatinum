@@ -20,7 +20,7 @@ enum SpriteResourceType {
 typedef struct SpriteResource {
     Resource *rawResource;
     enum SpriteResourceType type;
-    void * data;
+    void *data;
 } SpriteResource;
 
 typedef struct SpriteResourceCollection {
